@@ -176,16 +176,16 @@
             "movement": 7
           },
           {
-            "country": "BR",
-            "name": "Brazil",
-            "position": 150,
-            "movement": -8
-          },
-          {
             "country": "BS",
             "name": "The Bahamas",
             "position": 156,
             "movement": 43
+          },
+          {
+            "country": "BR",
+            "name": "Brazil",
+            "position": 160,
+            "movement": -22
           },
           {
             "country": "QA",
@@ -228,10 +228,17 @@
             "status": "new"
           },
           {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 5,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "NG",
             "name": "Nigeria",
             "position": 21,
-            "movement": -10
+            "movement": -9
           }
         ]
       }
@@ -270,6 +277,26 @@
             "name": "Botswana",
             "position": 155,
             "movement": -27
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CH",
+            "name": "Switzerland",
+            "position": 98,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "US",
+            "name": "United States",
+            "position": 197,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -440,7 +467,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 147,
+            "position": 160,
             "movement": null,
             "status": "new"
           }
@@ -460,7 +487,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 141,
+            "position": 178,
             "movement": null,
             "status": "new"
           }
@@ -519,8 +546,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 71,
-            "movement": -8
+            "position": 72,
+            "movement": -4
           }
         ]
       }

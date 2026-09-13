@@ -49,28 +49,22 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "BJ",
+            "name": "Benin",
+            "position": 20,
+            "movement": 5
+          },
+          {
             "country": "KE",
             "name": "Kenya",
             "position": 23,
             "movement": -3
           },
           {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 25,
-            "movement": 8
-          },
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 28,
-            "movement": 2
-          },
-          {
             "country": "NG",
             "name": "Nigeria",
-            "position": 31,
-            "movement": -1
+            "position": 29,
+            "movement": 2
           },
           {
             "country": "CM",
@@ -83,6 +77,12 @@
             "name": "Uganda",
             "position": 38,
             "movement": 0
+          },
+          {
+            "country": "NE",
+            "name": "Niger",
+            "position": 44,
+            "movement": -16
           },
           {
             "country": "SL",
@@ -99,8 +99,8 @@
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 67,
-            "movement": 7
+            "position": 83,
+            "movement": -16
           },
           {
             "country": "GH",
@@ -133,18 +133,6 @@
             "movement": 18
           }
         ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 200,
-            "movement": -22
-          }
-        ]
       }
     ],
     "kind": "song",
@@ -158,16 +146,16 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 85,
+            "movement": 4
+          },
+          {
             "country": "SL",
             "name": "Sierra Leone",
             "position": 87,
             "movement": 39
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 89,
-            "movement": 4
           },
           {
             "country": "LR",
@@ -190,8 +178,15 @@
           {
             "country": "BJ",
             "name": "Benin",
-            "position": 149,
-            "movement": 41
+            "position": 146,
+            "movement": 3
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 147,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "MW",
@@ -216,13 +211,20 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 123,
-            "movement": -8
+            "position": 126,
+            "movement": -3
           },
           {
             "country": "SL",
             "name": "Sierra Leone",
             "position": 176,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "BJ",
+            "name": "Benin",
+            "position": 181,
             "movement": null,
             "status": "new"
           }
@@ -269,6 +271,38 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Olamidé",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 61,
+            "movement": 0
+          },
+          {
+            "country": "BJ",
+            "name": "Benin",
+            "position": 118,
+            "movement": -6
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 120,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Unruly",
     "platforms": [
       {
@@ -301,7 +335,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/498d4ae81da58e1fcf5e2704a99e0ed8/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Olamidé",
+    "title": "Carpe Diem",
     "platforms": [
       {
         "platform": "Apple Music",
@@ -310,46 +344,21 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 61,
-            "movement": 0
+            "position": 84,
+            "movement": -2
           },
           {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 118,
-            "movement": -6
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "UY Scuti",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "MT",
-            "name": "Malta",
-            "position": 124,
+            "country": "GM",
+            "name": "Gambia",
+            "position": 119,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 183,
-            "movement": -23
           }
         ]
       }
     ],
     "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/bdfe7c01a5c1aff44cfd2345a67fa4b4/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/2f5c91242bfb5ed7be4ccb2b435b6f7f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Baddest Guy Ever Liveth",
@@ -431,8 +440,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 128,
-            "movement": 3
+            "position": 122,
+            "movement": 6
           }
         ]
       }
@@ -450,7 +459,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 24,
+            "position": 26,
             "movement": null,
             "status": "new"
           }
@@ -470,8 +479,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 159,
-            "movement": 4
+            "position": 174,
+            "movement": -15
           }
         ]
       }
@@ -489,8 +498,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 186,
-            "movement": 12
+            "position": 193,
+            "movement": -7
           }
         ]
       }
@@ -499,23 +508,24 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Carpe Diem",
+    "title": "Omo Ope",
     "platforms": [
       {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 84,
-            "movement": -2
+            "country": "NE",
+            "name": "Niger",
+            "position": 144,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
     ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/2f5c91242bfb5ed7be4ccb2b435b6f7f/500x500-000000-80-0-0.jpg"
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/636b24b8b52148a55ce3bf9c263ba19e/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Ikigai / 生き甲斐, Vol. 1",
@@ -535,6 +545,25 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/1d54453224f17a5f5271d50f793fca7b/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "UY Scuti",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 183,
+            "movement": -23
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/bdfe7c01a5c1aff44cfd2345a67fa4b4/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Street OT",

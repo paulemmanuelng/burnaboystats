@@ -270,12 +270,6 @@
             "movement": 42
           },
           {
-            "country": "CA",
-            "name": "Canada",
-            "position": 168,
-            "movement": 13
-          },
-          {
             "country": "SE",
             "name": "Sweden",
             "position": 170,
@@ -288,6 +282,12 @@
             "position": 182,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "CA",
+            "name": "Canada",
+            "position": 183,
+            "movement": 10
           }
         ]
       },
@@ -298,7 +298,7 @@
           {
             "country": "PH",
             "name": "Philippines",
-            "position": 25,
+            "position": 32,
             "movement": null,
             "status": "new"
           }
@@ -647,8 +647,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 113,
-            "movement": -92
+            "position": 126,
+            "movement": -100
           }
         ]
       }
@@ -1157,7 +1157,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 58,
-            "movement": -9
+            "movement": -8
           }
         ]
       }
@@ -1531,7 +1531,7 @@
           {
             "country": "TR",
             "name": "Turkey",
-            "position": 164,
+            "position": 30,
             "movement": null,
             "status": "new"
           }
@@ -1688,8 +1688,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 4,
-            "movement": -3
+            "position": 5,
+            "movement": -4
           },
           {
             "country": "NG",
@@ -1837,7 +1837,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 135,
-            "movement": 3
+            "movement": 4
           }
         ]
       }
@@ -1988,13 +1988,13 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 92,
-            "movement": 5
+            "movement": 6
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 97,
-            "movement": 1
+            "position": 96,
+            "movement": 3
           }
         ]
       }
@@ -2013,7 +2013,7 @@
             "country": "GM",
             "name": "Gambia",
             "position": 13,
-            "movement": -1
+            "movement": 0
           },
           {
             "country": "DM",
@@ -2124,14 +2124,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 2,
-            "movement": 27
+            "position": 3,
+            "movement": 33
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 38,
-            "movement": -7
+            "position": 39,
+            "movement": -3
           }
         ]
       }
@@ -2297,7 +2297,7 @@
             "country": "BB",
             "name": "Barbados",
             "position": 75,
-            "movement": -13
+            "movement": -10
           }
         ]
       }
@@ -2315,7 +2315,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 93,
+            "position": 107,
             "movement": null,
             "status": "new"
           }
@@ -2324,25 +2324,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Blessed",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 98,
-            "movement": -83
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "U Don't Know",
@@ -2384,6 +2365,25 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/27ab85a0fa9ffa1c5a337c8e8ce43194/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Blessed",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 111,
+            "movement": -93
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Dis Love",
     "platforms": [
       {
@@ -2413,8 +2413,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 88,
-            "movement": -23
+            "position": 89,
+            "movement": -18
           }
         ]
       }
@@ -2432,8 +2432,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 179,
-            "movement": -22
+            "position": 181,
+            "movement": -23
           }
         ]
       }
@@ -2470,7 +2470,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 131,
+            "position": 144,
             "movement": null,
             "status": "new"
           }

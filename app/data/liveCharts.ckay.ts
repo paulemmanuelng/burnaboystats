@@ -51,13 +51,13 @@
           {
             "country": "RU",
             "name": "Russia",
-            "position": 5,
-            "movement": 2
+            "position": 6,
+            "movement": 1
           },
           {
             "country": "IL",
             "name": "Israel",
-            "position": 29,
+            "position": 34,
             "movement": null,
             "status": "new"
           },
@@ -70,7 +70,7 @@
           {
             "country": "CO",
             "name": "Colombia",
-            "position": 45,
+            "position": 52,
             "movement": null,
             "status": "new"
           }
@@ -96,24 +96,6 @@
     "title": "BODY",
     "platforms": [
       {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 91,
-            "movement": -16
-          },
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 190,
-            "movement": -90
-          }
-        ]
-      },
-      {
         "platform": "Spotify",
         "numberOnes": 0,
         "entries": [
@@ -122,6 +104,18 @@
             "name": "Nigeria",
             "position": 95,
             "movement": 4
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 91,
+            "movement": -16
           }
         ]
       }
@@ -169,25 +163,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/ba3181c9fe6a8e7e725a04506efb1dda/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "forever",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 80,
-            "movement": 31
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/73e10a485de513f9c18f87575ae66d58/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Beggie Beggie",
     "platforms": [
       {
@@ -207,6 +182,25 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/b922c719d3a9901f749140e8f532a8d0/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "forever",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 87,
+            "movement": 53
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/73e10a485de513f9c18f87575ae66d58/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "La La",
     "platforms": [
       {
@@ -216,8 +210,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 173,
-            "movement": 2
+            "position": 172,
+            "movement": 1
           }
         ]
       }

@@ -224,8 +224,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 28,
-            "movement": -22
+            "position": 29,
+            "movement": -17
           },
           {
             "country": "TT",
@@ -236,8 +236,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 83,
-            "movement": -78
+            "position": 97,
+            "movement": -95
           }
         ]
       },
@@ -483,8 +483,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 12,
-            "movement": 117
+            "position": 14,
+            "movement": 144
           }
         ]
       },
@@ -637,8 +637,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 108,
-            "movement": -17
+            "position": 110,
+            "movement": -18
           },
           {
             "country": "SN",
@@ -680,8 +680,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 90,
-            "movement": -12
+            "position": 83,
+            "movement": -2
           }
         ]
       }
@@ -1067,14 +1067,14 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 14,
-            "movement": -2
+            "position": 17,
+            "movement": -5
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 40,
-            "movement": -24
+            "position": 44,
+            "movement": -27
           }
         ]
       },
@@ -1717,26 +1717,26 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 16,
-            "movement": 1
+            "position": 17,
+            "movement": 0
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 51,
+            "position": 52,
             "movement": null,
             "status": "new"
           },
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 53,
-            "movement": 10
+            "position": 56,
+            "movement": 7
           },
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 154,
+            "position": 193,
             "movement": null,
             "status": "new"
           }
@@ -1824,7 +1824,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 142,
+            "position": 155,
             "movement": null,
             "status": "new"
           }
@@ -2018,7 +2018,7 @@
           {
             "country": "ES",
             "name": "Spain",
-            "position": 102,
+            "position": 125,
             "movement": null,
             "status": "new"
           }
@@ -2087,7 +2087,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 187,
-            "movement": 6
+            "movement": 7
           }
         ]
       }
@@ -2160,8 +2160,8 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 14,
-            "movement": 1
+            "position": 15,
+            "movement": 0
           },
           {
             "country": "NE",
@@ -2172,14 +2172,14 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 40,
-            "movement": 19
+            "position": 41,
+            "movement": 17
           },
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 56,
-            "movement": 10
+            "position": 59,
+            "movement": 7
           }
         ]
       }
@@ -2298,12 +2298,12 @@
             "country": "GM",
             "name": "Gambia",
             "position": 29,
-            "movement": -1
+            "movement": 0
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 54,
+            "position": 57,
             "movement": null,
             "status": "new"
           }
@@ -2497,8 +2497,8 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 53,
-            "movement": 13
+            "position": 54,
+            "movement": 12
           }
         ]
       }
@@ -2535,8 +2535,8 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 72,
-            "movement": 13
+            "position": 73,
+            "movement": 12
           }
         ]
       }
@@ -2632,8 +2632,8 @@
           {
             "country": "QA",
             "name": "Qatar",
-            "position": 91,
-            "movement": -45
+            "position": 93,
+            "movement": -25
           }
         ]
       }
@@ -2709,7 +2709,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 116,
+            "position": 129,
             "movement": null,
             "status": "new"
           }
@@ -2729,7 +2729,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 130,
+            "position": 143,
             "movement": null,
             "status": "new"
           }
@@ -2778,26 +2778,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/1d5dfc880396e953e316456a394d7353/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "The Sound",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 157,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/80fe4f71f92865be0d0f8d558cf54a72/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Gallardo",
     "platforms": [
       {
@@ -2815,6 +2795,26 @@
       }
     ],
     "kind": "song"
+  },
+  {
+    "title": "The Sound",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 170,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/80fe4f71f92865be0d0f8d558cf54a72/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Son of Mercy - EP",

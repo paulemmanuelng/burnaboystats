@@ -177,7 +177,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 15,
+            "position": 17,
             "movement": null,
             "status": "new"
           }
@@ -402,8 +402,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 89,
-            "movement": -80
+            "position": 103,
+            "movement": -92
           }
         ]
       }
@@ -561,7 +561,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 169,
-            "movement": -77
+            "movement": -76
           }
         ]
       }
@@ -986,6 +986,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/332d8b3586d040e4d5ef670f3987dcfc/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Ole",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 2,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/82813fcf300b4a32405e93fdaa89a5dd/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "GWAGWALADA",
     "platforms": [
       {
@@ -1033,8 +1053,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 30,
-            "movement": -18
+            "position": 34,
+            "movement": -21
           }
         ]
       }
@@ -1129,8 +1149,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 120,
-            "movement": -1
+            "position": 119,
+            "movement": 1
           }
         ]
       }

@@ -584,14 +584,14 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 14,
-            "movement": -2
+            "position": 17,
+            "movement": -5
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 40,
-            "movement": -24
+            "position": 44,
+            "movement": -27
           }
         ]
       },
@@ -1199,7 +1199,7 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 77,
+            "position": 79,
             "movement": -1
           },
           {

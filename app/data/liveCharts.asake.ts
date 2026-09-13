@@ -205,16 +205,16 @@
             "movement": 8
           },
           {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 43,
-            "movement": 1
-          },
-          {
             "country": "IE",
             "name": "Ireland",
             "position": 44,
             "movement": -8
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 44,
+            "movement": 0
           },
           {
             "country": "SZ",
@@ -231,8 +231,8 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 63,
-            "movement": -1
+            "position": 67,
+            "movement": -2
           },
           {
             "country": "BF",
@@ -315,16 +315,16 @@
             "movement": -34
           },
           {
-            "country": "FR",
-            "name": "France",
-            "position": 177,
-            "movement": 0
-          },
-          {
             "country": "LC",
             "name": "St. Lucia",
             "position": 179,
             "movement": -4
+          },
+          {
+            "country": "FR",
+            "name": "France",
+            "position": 187,
+            "movement": -7
           },
           {
             "country": "BB",
@@ -341,14 +341,14 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 52,
-            "movement": -45
+            "position": 78,
+            "movement": -70
           },
           {
             "country": "NG",
             "name": "Nigeria",
             "position": 80,
-            "movement": -12
+            "movement": -11
           }
         ]
       }
@@ -562,8 +562,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 185,
-            "movement": -146
+            "position": 198,
+            "movement": -149
           }
         ]
       },
@@ -743,9 +743,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 29,
-            "movement": null,
-            "status": "new"
+            "position": 33,
+            "movement": -21
           }
         ]
       },
@@ -945,7 +944,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 45,
-            "movement": -9
+            "movement": -8
           }
         ]
       }
@@ -1594,7 +1593,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 139,
-            "movement": -57
+            "movement": -56
           }
         ]
       }
@@ -2333,8 +2332,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 141,
-            "movement": -24
+            "position": 144,
+            "movement": -26
           }
         ]
       }
@@ -2465,115 +2464,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/6e1ad63b14bb184c957d0887f1097e43/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Amapiano",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 20,
-            "movement": 5
-          },
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 23,
-            "movement": -3
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 29,
-            "movement": 2
-          },
-          {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 33,
-            "movement": 8
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 38,
-            "movement": 0
-          },
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 44,
-            "movement": -16
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 48,
-            "movement": -2
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 66,
-            "movement": -29
-          },
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 83,
-            "movement": -16
-          },
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 93,
-            "movement": -2
-          },
-          {
-            "country": "SN",
-            "name": "Senegal",
-            "position": 136,
-            "movement": 8
-          },
-          {
-            "country": "TZ",
-            "name": "Tanzania",
-            "position": 167,
-            "movement": -2
-          },
-          {
-            "country": "MW",
-            "name": "Malawi",
-            "position": 173,
-            "movement": -90
-          },
-          {
-            "country": "CI",
-            "name": "Côte d'Ivoire",
-            "position": 177,
-            "movement": 18
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 200,
-            "movement": -22
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ca53dc32e25c8249389aa28d80ad8fe7/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Remember",
     "platforms": [
       {
@@ -2679,8 +2569,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 2,
-            "movement": 0
+            "position": 3,
+            "movement": -1
           }
         ]
       }
@@ -2998,14 +2888,14 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 76,
+            "position": 75,
             "movement": null,
             "status": "new"
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 100,
+            "position": 113,
             "movement": null,
             "status": "new"
           }
@@ -3150,12 +3040,109 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 58,
-            "movement": -9
+            "movement": -8
           }
         ]
       }
     ],
     "kind": "album"
+  },
+  {
+    "title": "Amapiano",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BJ",
+            "name": "Benin",
+            "position": 20,
+            "movement": 5
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 23,
+            "movement": -3
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 29,
+            "movement": 2
+          },
+          {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 33,
+            "movement": 8
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 38,
+            "movement": 0
+          },
+          {
+            "country": "NE",
+            "name": "Niger",
+            "position": 44,
+            "movement": -16
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 48,
+            "movement": -2
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 66,
+            "movement": -29
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 83,
+            "movement": -16
+          },
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 93,
+            "movement": -2
+          },
+          {
+            "country": "SN",
+            "name": "Senegal",
+            "position": 136,
+            "movement": 8
+          },
+          {
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 167,
+            "movement": -2
+          },
+          {
+            "country": "MW",
+            "name": "Malawi",
+            "position": 173,
+            "movement": -90
+          },
+          {
+            "country": "CI",
+            "name": "Côte d'Ivoire",
+            "position": 177,
+            "movement": 18
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ca53dc32e25c8249389aa28d80ad8fe7/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Eja Meja",
@@ -3583,7 +3570,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 142,
+            "position": 155,
             "movement": null,
             "status": "new"
           }
@@ -3829,7 +3816,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 6,
+            "position": 7,
             "movement": 0
           }
         ]
@@ -3885,7 +3872,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 146,
+            "position": 159,
             "movement": null,
             "status": "new"
           }
@@ -3957,8 +3944,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 4,
-            "movement": -3
+            "position": 5,
+            "movement": -4
           },
           {
             "country": "NG",
@@ -4693,7 +4680,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 93,
+            "position": 107,
             "movement": null,
             "status": "new"
           }

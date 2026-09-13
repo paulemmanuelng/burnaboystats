@@ -250,8 +250,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 92,
-            "movement": -82
+            "position": 106,
+            "movement": -94
           }
         ]
       },
@@ -415,14 +415,14 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 7,
-            "movement": -5
+            "position": 8,
+            "movement": -2
           },
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 60,
-            "movement": 13
+            "position": 61,
+            "movement": 12
           }
         ]
       },
@@ -748,113 +748,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/1d4942d3e1817e9b723eceb6dae28636/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Calm Down",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "IT",
-            "name": "Italy",
-            "position": 51,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "AT",
-            "name": "Austria",
-            "position": 55,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "CH",
-            "name": "Switzerland",
-            "position": 56,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "BE",
-            "name": "Belgium",
-            "position": 75,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "DE",
-            "name": "Germany",
-            "position": 81,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 82,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "DK",
-            "name": "Denmark",
-            "position": 91,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SZ",
-            "name": "Swaziland",
-            "position": 27,
-            "movement": 1
-          },
-          {
-            "country": "IE",
-            "name": "Ireland",
-            "position": 53,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 58,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "AT",
-            "name": "Austria",
-            "position": 149,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FM",
-            "name": "Micronesia",
-            "position": 122,
-            "movement": -10
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/07d4291391724a969f243406cc92be66/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Rave & Roses",
     "platforms": [
       {
@@ -1129,6 +1022,106 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/fe3deba215d998d74542663a84621852/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Calm Down",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "IT",
+            "name": "Italy",
+            "position": 51,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "AT",
+            "name": "Austria",
+            "position": 55,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "CH",
+            "name": "Switzerland",
+            "position": 56,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "BE",
+            "name": "Belgium",
+            "position": 75,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "DE",
+            "name": "Germany",
+            "position": 81,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 82,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "DK",
+            "name": "Denmark",
+            "position": 91,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SZ",
+            "name": "Swaziland",
+            "position": 25,
+            "movement": 3
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 59,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "IE",
+            "name": "Ireland",
+            "position": 59,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FM",
+            "name": "Micronesia",
+            "position": 122,
+            "movement": -10
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/07d4291391724a969f243406cc92be66/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Soweto",
     "platforms": [
       {
@@ -1394,22 +1387,22 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 9,
+            "movement": 6
+          },
+          {
             "country": "BW",
             "name": "Botswana",
-            "position": 49,
-            "movement": 13
+            "position": 50,
+            "movement": 12
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 84,
-            "movement": -23
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 96,
-            "movement": -84
+            "position": 88,
+            "movement": -26
           }
         ]
       },
@@ -1721,6 +1714,31 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/0dd0b79a37a28f75ab7f61b38d0dccda/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Goals",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CH",
+            "name": "Switzerland",
+            "position": 74,
+            "movement": 38
+          },
+          {
+            "country": "US",
+            "name": "United States",
+            "position": 185,
+            "movement": -5
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/8d26b51a325ab59c594708d1c8c71bf2/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "KELEBU",
     "platforms": [
       {
@@ -1796,25 +1814,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/159a067af3e7b92c6a6b45c576968b09/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Goals",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "US",
-            "name": "United States",
-            "position": 193,
-            "movement": 5
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/8d26b51a325ab59c594708d1c8c71bf2/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Fi Kan We Kan",
     "platforms": [
       {
@@ -1824,8 +1823,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 30,
-            "movement": -18
+            "position": 34,
+            "movement": -21
           }
         ]
       }

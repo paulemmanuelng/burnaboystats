@@ -187,12 +187,6 @@
             "movement": -16
           },
           {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 41,
-            "movement": -3
-          },
-          {
             "country": "SL",
             "name": "Sierra Leone",
             "position": 41,
@@ -209,6 +203,12 @@
             "name": "Azerbaijan",
             "position": 43,
             "movement": -7
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 43,
+            "movement": -4
           },
           {
             "country": "TZ",
@@ -302,6 +302,12 @@
             "movement": -24
           },
           {
+            "country": "NZ",
+            "name": "New Zealand",
+            "position": 64,
+            "movement": 0
+          },
+          {
             "country": "BZ",
             "name": "Belize",
             "position": 65,
@@ -324,12 +330,6 @@
             "name": "Namibia",
             "position": 66,
             "movement": 4
-          },
-          {
-            "country": "NZ",
-            "name": "New Zealand",
-            "position": 66,
-            "movement": -4
           },
           {
             "country": "ZA",
@@ -418,8 +418,8 @@
           {
             "country": "DE",
             "name": "Germany",
-            "position": 102,
-            "movement": -4
+            "position": 101,
+            "movement": -5
           },
           {
             "country": "GH",
@@ -478,8 +478,8 @@
           {
             "country": "AU",
             "name": "Australia",
-            "position": 119,
-            "movement": -11
+            "position": 120,
+            "movement": -14
           },
           {
             "country": "BT",
@@ -556,16 +556,16 @@
             "movement": -20
           },
           {
-            "country": "CA",
-            "name": "Canada",
-            "position": 171,
-            "movement": -23
-          },
-          {
             "country": "ID",
             "name": "Indonesia",
             "position": 174,
             "movement": -2
+          },
+          {
+            "country": "CA",
+            "name": "Canada",
+            "position": 180,
+            "movement": -15
           },
           {
             "country": "KN",
@@ -1107,40 +1107,34 @@
           {
             "country": "RO",
             "name": "Romania",
-            "position": 12,
+            "position": 15,
             "movement": null,
             "status": "new"
           },
           {
             "country": "KZ",
             "name": "Kazakhstan",
-            "position": 13,
-            "movement": 1
+            "position": 16,
+            "movement": 2
           },
           {
             "country": "MD",
             "name": "Moldova",
             "position": 21,
-            "movement": -5
+            "movement": -3
           },
           {
             "country": "SA",
             "name": "Saudi Arabia",
-            "position": 27,
+            "position": 33,
             "movement": null,
             "status": "new"
           },
           {
             "country": "EE",
             "name": "Estonia",
-            "position": 49,
-            "movement": -39
-          },
-          {
-            "country": "SI",
-            "name": "Slovenia",
-            "position": 61,
-            "movement": -29
+            "position": 55,
+            "movement": -40
           },
           {
             "country": "TJ",
@@ -1149,10 +1143,16 @@
             "movement": -8
           },
           {
+            "country": "SI",
+            "name": "Slovenia",
+            "position": 74,
+            "movement": -35
+          },
+          {
             "country": "AM",
             "name": "Armenia",
             "position": 83,
-            "movement": -12
+            "movement": -10
           }
         ]
       },
@@ -1214,7 +1214,7 @@
             "country": "US",
             "name": "United States",
             "position": 19,
-            "movement": 1
+            "movement": 3
           },
           {
             "country": "KY",
@@ -1358,8 +1358,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 113,
-            "movement": -23
+            "position": 117,
+            "movement": -26
           }
         ]
       }
@@ -1414,14 +1414,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 7,
-            "movement": 0
+            "position": 2,
+            "movement": 7
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 157,
-            "movement": -22
+            "position": 160,
+            "movement": -24
           }
         ]
       },
@@ -1547,7 +1547,7 @@
             "country": "US",
             "name": "United States",
             "position": 106,
-            "movement": 4
+            "movement": 9
           },
           {
             "country": "AG",
@@ -1689,7 +1689,7 @@
             "country": "GM",
             "name": "Gambia",
             "position": 13,
-            "movement": -1
+            "movement": 0
           },
           {
             "country": "DM",
@@ -1818,25 +1818,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/d015c74bed325b8928343913858fb3c2/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Big Daddy",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 67,
-            "movement": -26
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/584f40f4d2b62b611a7ab8561b656ff3/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Try Me",
     "platforms": [
       {
@@ -1855,6 +1836,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/0989302f2acc1132d8922b3f292abe4b/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Big Daddy",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 71,
+            "movement": -29
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/584f40f4d2b62b611a7ab8561b656ff3/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Fountains",
