@@ -51,20 +51,13 @@
           {
             "country": "RU",
             "name": "Russia",
-            "position": 7,
-            "movement": 0
+            "position": 5,
+            "movement": 2
           },
           {
             "country": "IL",
             "name": "Israel",
-            "position": 20,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "CO",
-            "name": "Colombia",
-            "position": 33,
+            "position": 29,
             "movement": null,
             "status": "new"
           },
@@ -73,6 +66,13 @@
             "name": "Burkina Faso",
             "position": 43,
             "movement": 24
+          },
+          {
+            "country": "CO",
+            "name": "Colombia",
+            "position": 45,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -83,8 +83,8 @@
           {
             "country": "MA",
             "name": "Morocco",
-            "position": 170,
-            "movement": -2
+            "position": 149,
+            "movement": 21
           }
         ]
       }
@@ -102,8 +102,8 @@
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 75,
-            "movement": -8
+            "position": 91,
+            "movement": -16
           },
           {
             "country": "GM",
@@ -120,8 +120,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 99,
-            "movement": -7
+            "position": 95,
+            "movement": 4
           }
         ]
       }
@@ -130,20 +130,8 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Emiliana",
+    "title": "SHEGE",
     "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 180,
-            "movement": -51
-          }
-        ]
-      },
       {
         "platform": "Deezer",
         "numberOnes": 0,
@@ -151,7 +139,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 99,
+            "position": 76,
             "movement": null,
             "status": "new"
           }
@@ -159,7 +147,7 @@
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/17c6e2a5233d9bb0920643922dd4f210/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/1d0daaf8c0025c2d95c96beafe4e0a0b/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Boyfriend",
@@ -190,8 +178,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 67,
-            "movement": 25
+            "position": 80,
+            "movement": 31
           }
         ]
       }
@@ -209,9 +197,8 @@
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 148,
-            "movement": null,
-            "status": "new"
+            "position": 161,
+            "movement": -13
           }
         ]
       }
@@ -239,25 +226,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "love nwantiti (feat. ElGrande Toto) (North African Remix)",
-    "kind": "song",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SN",
-            "name": "Senegal",
-            "position": 72,
-            "movement": -50
-          }
-        ]
-      }
-    ],
-    "cover": "https://cdn-images.dzcdn.net/images/cover/330629fb8b6242beb5a119f17ff52c9c/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "BODY (danz)",
     "kind": "song",
     "platforms": [
@@ -275,12 +243,6 @@
       }
     ],
     "cover": "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "SHEGE",
-    "platforms": [],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/1d0daaf8c0025c2d95c96beafe4e0a0b/500x500-000000-80-0-0.jpg"
   }
 ];
   
