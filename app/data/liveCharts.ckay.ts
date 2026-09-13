@@ -46,20 +46,27 @@
     "platforms": [
       {
         "platform": "iTunes",
-        "numberOnes": 1,
+        "numberOnes": 0,
         "entries": [
           {
             "country": "IL",
             "name": "Israel",
-            "position": 1,
+            "position": 7,
             "movement": null,
             "status": "new"
           },
           {
             "country": "RU",
             "name": "Russia",
-            "position": 6,
+            "position": 7,
             "movement": -1
+          },
+          {
+            "country": "CO",
+            "name": "Colombia",
+            "position": 31,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "BF",
@@ -164,8 +171,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 19,
-            "movement": -1
+            "position": 34,
+            "movement": 19
           }
         ]
       }
@@ -268,6 +275,12 @@
       }
     ],
     "cover": "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "SHEGE",
+    "platforms": [],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/1d0daaf8c0025c2d95c96beafe4e0a0b/500x500-000000-80-0-0.jpg"
   }
 ];
   

@@ -188,8 +188,8 @@
           {
             "country": "BR",
             "name": "Brazil",
-            "position": 140,
-            "movement": 8
+            "position": 142,
+            "movement": -10
           },
           {
             "country": "PT",
@@ -216,12 +216,6 @@
             "movement": -66
           },
           {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 171,
-            "movement": 1
-          },
-          {
             "country": "BS",
             "name": "The Bahamas",
             "position": 199,
@@ -237,7 +231,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 19,
-            "movement": -12
+            "movement": -10
           }
         ]
       }
@@ -373,26 +367,6 @@
         ]
       },
       {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 75,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "US",
-            "name": "United States",
-            "position": 172,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
         "platform": "Spotify",
         "numberOnes": 0,
         "entries": [
@@ -475,7 +449,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 83,
+            "position": 96,
             "movement": null,
             "status": "new"
           }
@@ -509,19 +483,6 @@
             "name": "Malaysia",
             "position": 179,
             "movement": -12
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SE",
-            "name": "Sweden",
-            "position": 147,
-            "movement": null,
-            "status": "new"
           }
         ]
       }
@@ -581,6 +542,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Breathe Me",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 47,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Talk to Me",
     "platforms": [
       {
@@ -610,7 +591,7 @@
             "country": "UG",
             "name": "Uganda",
             "position": 70,
-            "movement": -15
+            "movement": -13
           }
         ]
       }
