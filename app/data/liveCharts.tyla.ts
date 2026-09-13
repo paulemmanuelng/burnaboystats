@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-12";
+  export const liveChartsUpdated = "2026-09-13";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -188,8 +188,8 @@
           {
             "country": "BR",
             "name": "Brazil",
-            "position": 138,
-            "movement": 49
+            "position": 137,
+            "movement": 24
           },
           {
             "country": "PT",
@@ -218,9 +218,8 @@
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 170,
-            "movement": null,
-            "status": "new"
+            "position": 176,
+            "movement": 0
           },
           {
             "country": "BS",
@@ -237,7 +236,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 12,
+            "position": 13,
             "movement": -6
           }
         ]
@@ -386,6 +385,19 @@
         ]
       },
       {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 48,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
         "platform": "Shazam",
         "numberOnes": 0,
         "entries": [
@@ -448,12 +460,12 @@
             "country": "MZ",
             "name": "Mozambique",
             "position": 78,
-            "movement": -24
+            "movement": -22
           },
           {
             "country": "SE",
             "name": "Sweden",
-            "position": 101,
+            "position": 120,
             "movement": null,
             "status": "new"
           }
@@ -583,8 +595,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 68,
-            "movement": -12
+            "position": 69,
+            "movement": -14
           }
         ]
       }

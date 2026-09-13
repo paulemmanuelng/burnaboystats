@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-12";
+  export const liveChartsUpdated = "2026-09-13";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -173,8 +173,9 @@
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 18,
-            "movement": -3
+            "position": 16,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "CI",
@@ -215,8 +216,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 2,
-            "movement": 1
+            "position": 3,
+            "movement": 0
           },
           {
             "country": "TT",
@@ -415,6 +416,12 @@
             "movement": 0
           },
           {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 96,
+            "movement": 15
+          },
+          {
             "country": "NG",
             "name": "Nigeria",
             "position": 98,
@@ -425,12 +432,6 @@
             "name": "Uganda",
             "position": 106,
             "movement": -2
-          },
-          {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 109,
-            "movement": 12
           },
           {
             "country": "TZ",
@@ -483,8 +484,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 168,
-            "movement": -138
+            "position": 177,
+            "movement": -147
           }
         ]
       }
@@ -605,7 +606,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 89,
-            "movement": 22
+            "movement": 8
           },
           {
             "country": "BW",
@@ -652,8 +653,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 81,
-            "movement": -8
+            "position": 86,
+            "movement": -13
           }
         ]
       }
@@ -794,8 +795,8 @@
           {
             "country": "IL",
             "name": "Israel",
-            "position": 74,
-            "movement": -16
+            "position": 76,
+            "movement": -18
           }
         ]
       }
@@ -927,7 +928,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 165,
+            "position": 174,
             "movement": null,
             "status": "new"
           }
@@ -1045,14 +1046,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 17,
-            "movement": 1
+            "position": 20,
+            "movement": 2
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 157,
-            "movement": -138
+            "position": 166,
+            "movement": -147
           }
         ]
       },
@@ -1088,8 +1089,8 @@
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 97,
-            "movement": -5
+            "position": 110,
+            "movement": -6
           },
           {
             "country": "KE",
@@ -1339,8 +1340,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 149,
-            "movement": -139
+            "position": 158,
+            "movement": -148
           }
         ]
       },
@@ -1652,8 +1653,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 195,
-            "movement": 0
+            "position": 183,
+            "movement": 12
           }
         ]
       }
@@ -2120,7 +2121,7 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 58,
+            "position": 59,
             "movement": 29
           },
           {
@@ -2276,8 +2277,8 @@
           {
             "country": "QA",
             "name": "Qatar",
-            "position": 68,
-            "movement": -52
+            "position": 70,
+            "movement": -48
           }
         ]
       }
@@ -2408,6 +2409,46 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/61fc2faba453737555d0b81de1e20c6a/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Like Dat",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 32,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/999b76908ce8d84c0ca25eb5e58dc505/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Tchelete",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 40,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/603c1798522c1b9fae27290d2e877f3f/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Funds",
     "platforms": [
       {
@@ -2463,6 +2504,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/a880bf2aaa27d39c446bd9b19effd22e/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "The Sound",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 59,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/80fe4f71f92865be0d0f8d558cf54a72/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Lover Boy",

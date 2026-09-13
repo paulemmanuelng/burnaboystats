@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-12";
+  export const liveChartsUpdated = "2026-09-13";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -222,7 +222,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 43,
-            "movement": 6
+            "movement": 2
           },
           {
             "country": "PT",
@@ -258,7 +258,7 @@
             "country": "CA",
             "name": "Canada",
             "position": 69,
-            "movement": 2
+            "movement": 4
           },
           {
             "country": "BB",
@@ -327,7 +327,7 @@
             "country": "FR",
             "name": "France",
             "position": 174,
-            "movement": 19
+            "movement": 18
           },
           {
             "country": "LC",
@@ -363,15 +363,15 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 8,
+            "position": 11,
             "movement": null,
             "status": "new"
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 70,
-            "movement": -6
+            "position": 76,
+            "movement": -12
           }
         ]
       }
@@ -516,8 +516,8 @@
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 40,
-            "movement": 30
+            "position": 41,
+            "movement": 24
           },
           {
             "country": "GH",
@@ -571,7 +571,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 49,
+            "position": 56,
             "movement": null,
             "status": "new"
           }
@@ -779,7 +779,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 12,
+            "position": 14,
             "movement": null,
             "status": "new"
           }
@@ -1149,8 +1149,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 38,
-            "movement": -8
+            "position": 41,
+            "movement": -11
           }
         ]
       }
@@ -1600,7 +1600,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 111,
+            "position": 120,
             "movement": null,
             "status": "new"
           }
@@ -1772,8 +1772,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 84,
-            "movement": -9
+            "position": 135,
+            "movement": -60
           }
         ]
       }
@@ -2295,8 +2295,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 166,
-            "movement": -138
+            "position": 175,
+            "movement": -147
           }
         ]
       }
@@ -2394,7 +2394,7 @@
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 173,
+            "position": 188,
             "movement": null,
             "status": "new"
           },
@@ -2548,7 +2548,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 179,
+            "position": 182,
             "movement": -23
           }
         ]
@@ -2787,8 +2787,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 118,
-            "movement": -31
+            "position": 121,
+            "movement": -30
           }
         ]
       }
@@ -3123,8 +3123,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 51,
-            "movement": -6
+            "position": 54,
+            "movement": -9
           }
         ]
       }
@@ -3791,8 +3791,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 2,
-            "movement": 54
+            "position": 3,
+            "movement": 53
           },
           {
             "country": "NG",
@@ -3898,7 +3898,7 @@
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 120,
+            "position": 148,
             "movement": null,
             "status": "new"
           }
@@ -4040,8 +4040,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 7,
-            "movement": -3
+            "position": 8,
+            "movement": -4
           }
         ]
       }
@@ -4564,6 +4564,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/636b24b8b52148a55ce3bf9c263ba19e/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Bad Girl",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 15,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Psycho",

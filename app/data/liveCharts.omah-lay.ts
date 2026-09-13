@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-12";
+  export const liveChartsUpdated = "2026-09-13";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -278,14 +278,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 17,
-            "movement": 1
+            "position": 20,
+            "movement": 2
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 157,
-            "movement": -138
+            "position": 166,
+            "movement": -147
           }
         ]
       },
@@ -322,8 +322,8 @@
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 97,
-            "movement": -5
+            "position": 110,
+            "movement": -6
           },
           {
             "country": "KE",
@@ -904,7 +904,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 185,
+            "position": 188,
             "movement": -23
           }
         ]
@@ -997,8 +997,8 @@
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 161,
-            "movement": -18
+            "position": 165,
+            "movement": -22
           },
           {
             "country": "NG",
@@ -1182,8 +1182,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 78,
-            "movement": -2
+            "position": 80,
+            "movement": -4
           },
           {
             "country": "BE",
@@ -1265,7 +1265,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 176,
+            "position": 185,
             "movement": null,
             "status": "new"
           }
@@ -1455,25 +1455,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/d9cbcfdbfb5dab6a1a37aeae7039d83c/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "reason",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 142,
-            "movement": 21
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/fc81a1daef5228b3e31fb1f37bc1ad67/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Holy Ghost",
     "platforms": [
       {
@@ -1530,6 +1511,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/3772b0b5eabc8b7efd2ba401dd555fc4/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "reason",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 183,
+            "movement": -20
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/fc81a1daef5228b3e31fb1f37bc1ad67/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Push",

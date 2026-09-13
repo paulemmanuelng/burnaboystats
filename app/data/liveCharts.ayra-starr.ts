@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-12";
+  export const liveChartsUpdated = "2026-09-13";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -312,19 +312,19 @@
       },
       {
         "platform": "Shazam",
-        "numberOnes": 2,
+        "numberOnes": 1,
         "entries": [
-          {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 1,
-            "movement": 0
-          },
           {
             "country": "UG",
             "name": "Uganda",
             "position": 1,
             "movement": 0
+          },
+          {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 2,
+            "movement": -1
           },
           {
             "country": "KE",
@@ -425,8 +425,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 8,
-            "movement": 1
+            "position": 9,
+            "movement": 0
           },
           {
             "country": "KE",
@@ -437,14 +437,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 20,
-            "movement": -17
+            "position": 23,
+            "movement": -20
           },
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 39,
-            "movement": -21
+            "position": 45,
+            "movement": -27
           },
           {
             "country": "GD",
@@ -455,8 +455,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 63,
-            "movement": 28
+            "position": 64,
+            "movement": 27
           }
         ]
       },
@@ -852,7 +852,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 129,
-            "movement": 9
+            "movement": 3
           },
           {
             "country": "VG",
@@ -918,8 +918,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 63,
-            "movement": -6
+            "position": 66,
+            "movement": -9
           }
         ]
       }
@@ -1004,8 +1004,8 @@
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 45,
-            "movement": -5
+            "position": 49,
+            "movement": -6
           },
           {
             "country": "UG",
@@ -1277,7 +1277,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 13,
+            "position": 16,
             "movement": null,
             "status": "new"
           }
@@ -1376,8 +1376,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 119,
-            "movement": -2
+            "position": 123,
+            "movement": -6
           },
           {
             "country": "CI",
@@ -1901,8 +1901,8 @@
           {
             "country": "IT",
             "name": "Italy",
-            "position": 22,
-            "movement": 12
+            "position": 26,
+            "movement": 8
           }
         ]
       }
@@ -2491,25 +2491,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/227c27e8b3db2fc1be8808745b5c9fc1/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Love Don't Cost A Dime",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 54,
-            "movement": -16
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/37efb43b4704415ff51e98e357041982/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Midnight in New York",
     "platforms": [
       {
@@ -2528,6 +2509,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/64f822132d39a3677d59f745a248a2ce/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Love Don't Cost A Dime",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 55,
+            "movement": -17
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/37efb43b4704415ff51e98e357041982/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Beggie Beggie",

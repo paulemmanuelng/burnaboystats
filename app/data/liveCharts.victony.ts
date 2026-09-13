@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-12";
+  export const liveChartsUpdated = "2026-09-13";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -254,12 +254,6 @@
             "movement": 0
           },
           {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 11,
-            "movement": -1
-          },
-          {
             "country": "GH",
             "name": "Ghana",
             "position": 12,
@@ -270,6 +264,12 @@
             "name": "Mozambique",
             "position": 13,
             "movement": -6
+          },
+          {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 14,
+            "movement": -5
           },
           {
             "country": "SN",
@@ -356,17 +356,17 @@
             "movement": -58
           },
           {
-            "country": "CO",
-            "name": "Colombia",
-            "position": 117,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "US",
             "name": "United States",
             "position": 129,
             "movement": 32
+          },
+          {
+            "country": "CO",
+            "name": "Colombia",
+            "position": 141,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "CH",
@@ -473,15 +473,15 @@
           {
             "country": "HU",
             "name": "Hungary",
-            "position": 46,
+            "position": 51,
             "movement": null,
             "status": "new"
           },
           {
             "country": "MU",
             "name": "Mauritius",
-            "position": 80,
-            "movement": -7
+            "position": 81,
+            "movement": -8
           }
         ]
       },
@@ -701,13 +701,13 @@
             "country": "CA",
             "name": "Canada",
             "position": 172,
-            "movement": 13
+            "movement": 10
           },
           {
             "country": "UK",
             "name": "United Kingdom",
             "position": 173,
-            "movement": 20
+            "movement": 6
           },
           {
             "country": "IE",
@@ -849,7 +849,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 63,
+            "position": 72,
             "movement": null,
             "status": "new"
           }
@@ -862,8 +862,8 @@
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 184,
-            "movement": 3
+            "position": 191,
+            "movement": -38
           }
         ]
       },
