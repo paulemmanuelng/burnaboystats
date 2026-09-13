@@ -287,7 +287,7 @@
             "country": "CA",
             "name": "Canada",
             "position": 183,
-            "movement": 10
+            "movement": 14
           }
         ]
       },
@@ -298,9 +298,8 @@
           {
             "country": "PH",
             "name": "Philippines",
-            "position": 32,
-            "movement": null,
-            "status": "new"
+            "position": 33,
+            "movement": 119
           }
         ]
       },
@@ -473,6 +472,12 @@
             "movement": 1
           },
           {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 82,
+            "movement": 14
+          },
+          {
             "country": "UG",
             "name": "Uganda",
             "position": 85,
@@ -483,18 +488,6 @@
             "name": "Cameroon",
             "position": 94,
             "movement": -14
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 100,
-            "movement": -13
-          },
-          {
-            "country": "TZ",
-            "name": "Tanzania",
-            "position": 124,
-            "movement": -5
           },
           {
             "country": "CI",
@@ -647,8 +640,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 126,
-            "movement": -100
+            "position": 132,
+            "movement": -103
           }
         ]
       }
@@ -667,7 +660,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 5,
-            "movement": -3
+            "movement": -2
           },
           {
             "country": "SL",
@@ -766,7 +759,7 @@
             "country": "UG",
             "name": "Uganda",
             "position": 47,
-            "movement": 4
+            "movement": 0
           },
           {
             "country": "GH",
@@ -783,8 +776,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 80,
-            "movement": -2
+            "position": 81,
+            "movement": -3
           }
         ]
       }
@@ -990,7 +983,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 99,
-            "movement": -1
+            "movement": 0
           },
           {
             "country": "CM",
@@ -1070,7 +1063,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 67,
-            "movement": -1
+            "movement": 0
           },
           {
             "country": "TD",
@@ -1531,7 +1524,7 @@
           {
             "country": "TR",
             "name": "Turkey",
-            "position": 30,
+            "position": 32,
             "movement": null,
             "status": "new"
           }
@@ -1552,7 +1545,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 24,
-            "movement": -20
+            "movement": -17
           },
           {
             "country": "TD",
@@ -1606,7 +1599,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 169,
+            "position": 135,
             "movement": null,
             "status": "new"
           }
@@ -1689,7 +1682,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 5,
-            "movement": -4
+            "movement": -3
           },
           {
             "country": "NG",
@@ -1994,7 +1987,7 @@
             "country": "UG",
             "name": "Uganda",
             "position": 96,
-            "movement": 3
+            "movement": 1
           }
         ]
       }
@@ -2125,7 +2118,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 3,
-            "movement": 33
+            "movement": 39
           },
           {
             "country": "UG",
@@ -2239,7 +2232,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 64,
-            "movement": -1
+            "movement": 0
           }
         ]
       }
@@ -2297,33 +2290,13 @@
             "country": "BB",
             "name": "Barbados",
             "position": 75,
-            "movement": -10
+            "movement": -9
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ec91c9f741208370ed9ab6b9029e90cc/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Bad Girl",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 107,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "U Don't Know",
@@ -2346,23 +2319,23 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/cbd8af17625915ac863ee340498d5d9f/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Stay For The Night",
+    "title": "Bad Girl",
     "platforms": [
       {
-        "platform": "Shazam",
+        "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 154,
-            "movement": -66
+            "position": 114,
+            "movement": -99
           }
         ]
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/27ab85a0fa9ffa1c5a337c8e8ce43194/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Blessed",
@@ -2374,8 +2347,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 111,
-            "movement": -93
+            "position": 118,
+            "movement": -97
           }
         ]
       }
@@ -2384,7 +2357,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Dis Love",
+    "title": "Stay For The Night",
     "platforms": [
       {
         "platform": "Shazam",
@@ -2393,7 +2366,45 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 105,
+            "position": 178,
+            "movement": -66
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/27ab85a0fa9ffa1c5a337c8e8ce43194/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Final",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 187,
+            "movement": 1
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3cda4cca35e5a322d6ad9e71c49dbecf/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "In My Bed",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 189,
             "movement": null,
             "status": "new"
           }
@@ -2401,7 +2412,7 @@
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/bc0d04683a3ba1691887cf597749de93/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/9be0538ebbb9c6fd3dcb74844e7e2e2a/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "More",
@@ -2413,14 +2424,33 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 89,
-            "movement": -18
+            "position": 90,
+            "movement": -19
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b1eb19b96a5e2985053b8bef3138498f/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Tonight",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 146,
+            "movement": 52
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/67996ba3c56f059ae5a870268c66b39f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Energy",
@@ -2433,7 +2463,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 181,
-            "movement": -23
+            "movement": -20
           }
         ]
       }
@@ -2470,9 +2500,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 144,
-            "movement": null,
-            "status": "new"
+            "position": 150,
+            "movement": -109
           }
         ]
       }

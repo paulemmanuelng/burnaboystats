@@ -311,7 +311,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 45,
-            "movement": -27
+            "movement": -24
           }
         ]
       },
@@ -412,7 +412,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 153,
-            "movement": -24
+            "movement": -21
           }
         ]
       },
@@ -500,7 +500,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 162,
-            "movement": -24
+            "movement": -21
           }
         ]
       }
@@ -622,31 +622,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/3fe94d046b5097983f35fcc47037c799/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Love Again",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 17,
-            "movement": -2
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 33,
-            "movement": 32
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Run Around",
     "platforms": [
       {
@@ -664,6 +639,31 @@
             "name": "Liberia",
             "position": 163,
             "movement": -10
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Love Again",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 17,
+            "movement": -2
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 33,
+            "movement": 32
           }
         ]
       }
@@ -720,7 +720,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 62,
-            "movement": -28
+            "movement": -25
           }
         ]
       }
@@ -808,7 +808,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 112,
-            "movement": -26
+            "movement": -23
           }
         ]
       }

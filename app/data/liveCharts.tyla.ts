@@ -294,7 +294,7 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 197,
+            "position": 199,
             "movement": null,
             "status": "new"
           }
@@ -467,7 +467,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 160,
+            "position": 159,
             "movement": null,
             "status": "new"
           }
@@ -487,7 +487,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 178,
+            "position": 198,
             "movement": null,
             "status": "new"
           }

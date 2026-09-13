@@ -55,22 +55,22 @@
             "movement": 1
           },
           {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 44,
+            "movement": 23
+          },
+          {
             "country": "IL",
             "name": "Israel",
-            "position": 34,
+            "position": 56,
             "movement": null,
             "status": "new"
           },
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 43,
-            "movement": 24
-          },
-          {
             "country": "CO",
             "name": "Colombia",
-            "position": 52,
+            "position": 65,
             "movement": null,
             "status": "new"
           }
@@ -154,7 +154,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 59,
-            "movement": -1
+            "movement": 0
           }
         ]
       }
@@ -191,8 +191,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 87,
-            "movement": 53
+            "position": 108,
+            "movement": 51
           }
         ]
       }

@@ -345,12 +345,6 @@
             "movement": 0
           },
           {
-            "country": "TZ",
-            "name": "Tanzania",
-            "position": 3,
-            "movement": 1
-          },
-          {
             "country": "UG",
             "name": "Uganda",
             "position": 3,
@@ -361,6 +355,12 @@
             "name": "Côte d'Ivoire",
             "position": 4,
             "movement": 0
+          },
+          {
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 7,
+            "movement": -4
           },
           {
             "country": "ZM",
@@ -375,16 +375,16 @@
             "movement": 0
           },
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 19,
-            "movement": -18
-          },
-          {
             "country": "MZ",
             "name": "Mozambique",
             "position": 22,
             "movement": 95
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 25,
+            "movement": -24
           },
           {
             "country": "WW",
@@ -437,20 +437,20 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 34,
-            "movement": -18
+            "position": 35,
+            "movement": -19
           },
           {
             "country": "GH",
             "name": "Ghana",
             "position": 47,
-            "movement": -27
+            "movement": -24
           },
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 53,
-            "movement": -14
+            "position": 56,
+            "movement": -11
           },
           {
             "country": "UG",
@@ -467,8 +467,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 98,
-            "movement": -90
+            "position": 105,
+            "movement": -96
           }
         ]
       },
@@ -838,16 +838,16 @@
             "movement": 39
           },
           {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 156,
+            "movement": -27
+          },
+          {
             "country": "NE",
             "name": "Niger",
             "position": 157,
             "movement": -70
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 160,
-            "movement": -29
           },
           {
             "country": "PT",
@@ -999,8 +999,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 195,
-            "movement": -93
+            "position": 188,
+            "movement": -60
           }
         ]
       },
@@ -1109,8 +1109,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 139,
-            "movement": -47
+            "position": 129,
+            "movement": -28
           },
           {
             "country": "ZM",
@@ -1243,8 +1243,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 108,
-            "movement": -95
+            "position": 115,
+            "movement": -99
           }
         ]
       },
@@ -1255,8 +1255,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 67,
-            "movement": -25
+            "position": 78,
+            "movement": -35
           }
         ]
       },
@@ -1428,7 +1428,7 @@
             "country": "FR",
             "name": "France",
             "position": 126,
-            "movement": -7
+            "movement": -3
           },
           {
             "country": "CM",
@@ -1620,7 +1620,7 @@
             "country": "IT",
             "name": "Italy",
             "position": 5,
-            "movement": 4
+            "movement": 3
           },
           {
             "country": "BG",
@@ -1656,13 +1656,13 @@
           {
             "country": "IT",
             "name": "Italy",
-            "position": 14,
-            "movement": 8
+            "position": 15,
+            "movement": 9
           },
           {
             "country": "FI",
             "name": "Finland",
-            "position": 21,
+            "position": 37,
             "movement": null,
             "status": "new"
           }
@@ -1738,7 +1738,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 38,
-            "movement": -2
+            "movement": -1
           },
           {
             "country": "UG",
@@ -1825,7 +1825,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 117,
+            "position": 124,
             "movement": null,
             "status": "new"
           }
@@ -1838,8 +1838,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 142,
-            "movement": -26
+            "position": 148,
+            "movement": -51
           }
         ]
       },
@@ -2050,55 +2050,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/d096ea1c1019d1af67c0a2e434890e1e/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Misunderstood",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 52,
-            "movement": 4
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 91,
-            "movement": -23
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 156,
-            "movement": 7
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 167,
-            "movement": 18
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/64f822132d39a3677d59f745a248a2ce/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Bad Vibes",
     "platforms": [
       {
@@ -2132,7 +2083,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 41,
+            "position": 47,
             "movement": null,
             "status": "new"
           }
@@ -2153,7 +2104,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 89,
-            "movement": -1
+            "movement": 0
           },
           {
             "country": "FM",
@@ -2225,6 +2176,43 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/12ca87c2ea2fa9506d6fc562bd8f5a01/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Misunderstood",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 52,
+            "movement": 4
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 91,
+            "movement": -23
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 156,
+            "movement": 7
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/64f822132d39a3677d59f745a248a2ce/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Hot Body",
@@ -2411,8 +2399,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 72,
-            "movement": -18
+            "position": 73,
+            "movement": -19
           }
         ]
       }

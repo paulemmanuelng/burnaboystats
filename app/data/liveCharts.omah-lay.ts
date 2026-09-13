@@ -207,7 +207,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 47,
-            "movement": -2
+            "movement": -1
           },
           {
             "country": "GH",
@@ -438,16 +438,16 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "TZ",
-            "name": "Tanzania",
-            "position": 114,
-            "movement": -4
-          },
-          {
             "country": "SN",
             "name": "Senegal",
             "position": 164,
             "movement": -5
+          },
+          {
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 186,
+            "movement": -93
           }
         ]
       },
@@ -591,7 +591,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 44,
-            "movement": -27
+            "movement": -24
           }
         ]
       },
@@ -865,16 +865,16 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 3,
+            "country": "KE",
+            "name": "Kenya",
+            "position": 6,
             "movement": null,
             "status": "new"
           },
           {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 6,
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 10,
             "movement": null,
             "status": "new"
           },
@@ -1105,8 +1105,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 165,
-            "movement": -28
+            "position": 177,
+            "movement": -69
           }
         ]
       }
@@ -1200,7 +1200,7 @@
             "country": "FR",
             "name": "France",
             "position": 79,
-            "movement": -1
+            "movement": 1
           },
           {
             "country": "BE",
@@ -1345,26 +1345,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/c9d87c5a3f02efbf52b0a27d553f1a87/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Ye Ye Ye",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 152,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/c9d87c5a3f02efbf52b0a27d553f1a87/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "What Have We Done - EP",
     "platforms": [
       {
@@ -1375,7 +1355,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 63,
-            "movement": -1
+            "movement": 0
           }
         ]
       }
