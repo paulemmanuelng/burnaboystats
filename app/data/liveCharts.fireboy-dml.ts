@@ -543,8 +543,8 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 56,
-            "movement": 7
+            "position": 58,
+            "movement": 13
           }
         ]
       }

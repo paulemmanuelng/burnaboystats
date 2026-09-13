@@ -49,22 +49,22 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "RU",
+            "name": "Russia",
+            "position": 7,
+            "movement": 0
+          },
+          {
             "country": "IL",
             "name": "Israel",
-            "position": 7,
+            "position": 20,
             "movement": null,
             "status": "new"
           },
           {
-            "country": "RU",
-            "name": "Russia",
-            "position": 7,
-            "movement": -1
-          },
-          {
             "country": "CO",
             "name": "Colombia",
-            "position": 31,
+            "position": 33,
             "movement": null,
             "status": "new"
           },
@@ -162,25 +162,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/17c6e2a5233d9bb0920643922dd4f210/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "forever",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 34,
-            "movement": 19
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/73e10a485de513f9c18f87575ae66d58/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Boyfriend",
     "platforms": [
       {
@@ -198,6 +179,25 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ba3181c9fe6a8e7e725a04506efb1dda/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "forever",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 67,
+            "movement": 25
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/73e10a485de513f9c18f87575ae66d58/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Beggie Beggie",

@@ -312,14 +312,8 @@
       },
       {
         "platform": "Shazam",
-        "numberOnes": 1,
+        "numberOnes": 0,
         "entries": [
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 1,
-            "movement": 0
-          },
           {
             "country": "CM",
             "name": "Cameroon",
@@ -345,6 +339,12 @@
             "movement": 1
           },
           {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 3,
+            "movement": -2
+          },
+          {
             "country": "CI",
             "name": "Côte d'Ivoire",
             "position": 4,
@@ -353,20 +353,14 @@
           {
             "country": "ZM",
             "name": "Zambia",
-            "position": 5,
-            "movement": -4
+            "position": 8,
+            "movement": -3
           },
           {
             "country": "GH",
             "name": "Ghana",
             "position": 10,
             "movement": 0
-          },
-          {
-            "country": "WW",
-            "name": "Worldwide",
-            "position": 11,
-            "movement": -1
           },
           {
             "country": "NG",
@@ -379,6 +373,12 @@
             "name": "Mozambique",
             "position": 22,
             "movement": 95
+          },
+          {
+            "country": "WW",
+            "name": "Worldwide",
+            "position": 27,
+            "movement": -20
           },
           {
             "country": "AE",
@@ -425,38 +425,38 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 22,
-            "movement": -17
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 30,
-            "movement": 21
+            "position": 29,
+            "movement": -21
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 37,
+            "position": 39,
             "movement": -25
           },
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 52,
-            "movement": -30
+            "position": 53,
+            "movement": -17
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 63,
+            "movement": 27
           },
           {
             "country": "GD",
             "name": "Grenada",
             "position": 67,
-            "movement": -36
+            "movement": -34
           },
           {
             "country": "UG",
             "name": "Uganda",
             "position": 67,
-            "movement": -15
+            "movement": -11
           }
         ]
       },
@@ -849,12 +849,6 @@
             "movement": -18
           },
           {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 130,
-            "movement": -11
-          },
-          {
             "country": "VG",
             "name": "British Virgin Islands",
             "position": 136,
@@ -865,6 +859,12 @@
             "name": "Ireland",
             "position": 141,
             "movement": 0
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 154,
+            "movement": -31
           },
           {
             "country": "JO",
@@ -918,8 +918,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 68,
-            "movement": -8
+            "position": 70,
+            "movement": -10
           }
         ]
       }
@@ -1010,8 +1010,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 68,
-            "movement": -2
+            "position": 59,
+            "movement": 1
           },
           {
             "country": "NG",
@@ -1022,8 +1022,8 @@
           {
             "country": "ZM",
             "name": "Zambia",
-            "position": 179,
-            "movement": -18
+            "position": 172,
+            "movement": 7
           }
         ]
       },
@@ -1277,7 +1277,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 42,
+            "position": 74,
             "movement": null,
             "status": "new"
           }
@@ -1376,8 +1376,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 112,
-            "movement": -2
+            "position": 123,
+            "movement": -6
           },
           {
             "country": "CI",
@@ -1482,7 +1482,7 @@
             "country": "UG",
             "name": "Uganda",
             "position": 97,
-            "movement": -6
+            "movement": -2
           }
         ]
       },
@@ -1717,6 +1717,62 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/24407cf49fdf864463cb5ca5ad974630/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Wo, man",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "IT",
+            "name": "Italy",
+            "position": 5,
+            "movement": 4
+          },
+          {
+            "country": "BG",
+            "name": "Bulgaria",
+            "position": 7,
+            "movement": 2
+          },
+          {
+            "country": "IE",
+            "name": "Ireland",
+            "position": 25,
+            "movement": 6
+          },
+          {
+            "country": "RO",
+            "name": "Romania",
+            "position": 37,
+            "movement": 156
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FI",
+            "name": "Finland",
+            "position": 8,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "IT",
+            "name": "Italy",
+            "position": 18,
+            "movement": 19
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/c4c1696f82feac0a7fa1e26379b9f7e2/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Bad Vibes",
     "platforms": [
       {
@@ -1854,7 +1910,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 53,
+            "position": 84,
             "movement": null,
             "status": "new"
           }
@@ -1888,55 +1944,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/64f822132d39a3677d59f745a248a2ce/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Wo, man",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "IT",
-            "name": "Italy",
-            "position": 5,
-            "movement": 4
-          },
-          {
-            "country": "BG",
-            "name": "Bulgaria",
-            "position": 7,
-            "movement": 2
-          },
-          {
-            "country": "IE",
-            "name": "Ireland",
-            "position": 25,
-            "movement": 6
-          },
-          {
-            "country": "RO",
-            "name": "Romania",
-            "position": 37,
-            "movement": 156
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "IT",
-            "name": "Italy",
-            "position": 13,
-            "movement": 33
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/c4c1696f82feac0a7fa1e26379b9f7e2/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Commas",
@@ -2518,8 +2525,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 60,
-            "movement": -16
+            "position": 67,
+            "movement": -21
           }
         ]
       }

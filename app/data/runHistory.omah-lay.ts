@@ -15,7 +15,14 @@
     position: number;
   }
   
-  export const runHistory: RunPoint[] = [];
+  export const runHistory: RunPoint[] = [
+  {
+    "date": "2026-09-13",
+    "release": "As We Get High",
+    "platform": "Shazam",
+    "position": 199
+  }
+];
   
   /** The dated series for one release on one platform, oldest first. */
   export const runSeries = (release: string, platform: string) =>

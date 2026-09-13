@@ -248,16 +248,16 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 7,
-            "movement": 0
-          },
-          {
             "country": "GH",
             "name": "Ghana",
             "position": 12,
             "movement": 0
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 12,
+            "movement": -7
           },
           {
             "country": "MZ",
@@ -286,14 +286,14 @@
           {
             "country": "WW",
             "name": "Worldwide",
-            "position": 30,
-            "movement": -2
+            "position": 33,
+            "movement": -9
           },
           {
             "country": "ZM",
             "name": "Zambia",
-            "position": 32,
-            "movement": -21
+            "position": 35,
+            "movement": -3
           },
           {
             "country": "TZ",
@@ -449,22 +449,29 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 4,
+            "position": 5,
             "movement": null,
             "status": "new"
           },
           {
-            "country": "HU",
-            "name": "Hungary",
-            "position": 76,
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 13,
             "movement": null,
             "status": "new"
           },
           {
             "country": "MU",
             "name": "Mauritius",
-            "position": 82,
-            "movement": -4
+            "position": 86,
+            "movement": -8
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 119,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -707,14 +714,14 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 163,
-            "movement": -7
+            "position": 164,
+            "movement": -4
           },
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 163,
-            "movement": 6
+            "position": 181,
+            "movement": 0
           },
           {
             "country": "IE",
@@ -856,9 +863,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 126,
-            "movement": null,
-            "status": "new"
+            "position": 157,
+            "movement": -115
           }
         ]
       },

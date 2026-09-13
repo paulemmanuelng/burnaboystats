@@ -230,16 +230,16 @@
             "movement": 24
           },
           {
-            "country": "CA",
-            "name": "Canada",
-            "position": 159,
-            "movement": 10
-          },
-          {
             "country": "OM",
             "name": "Oman",
             "position": 159,
             "movement": -70
+          },
+          {
+            "country": "CA",
+            "name": "Canada",
+            "position": 160,
+            "movement": 12
           },
           {
             "country": "AO",
@@ -269,22 +269,9 @@
           {
             "country": "PH",
             "name": "Philippines",
-            "position": 17,
+            "position": 20,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "PL",
-            "name": "Poland",
-            "position": 150,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "CL",
-            "name": "Chile",
-            "position": 195,
-            "movement": -168
           }
         ]
       },
@@ -447,14 +434,20 @@
           {
             "country": "ZM",
             "name": "Zambia",
-            "position": 41,
-            "movement": 21
+            "position": 37,
+            "movement": 4
           },
           {
             "country": "SN",
             "name": "Senegal",
             "position": 44,
             "movement": 1
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 85,
+            "movement": 16
           },
           {
             "country": "CM",
@@ -467,12 +460,6 @@
             "name": "Nigeria",
             "position": 100,
             "movement": -13
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 101,
-            "movement": -7
           },
           {
             "country": "TZ",
@@ -772,8 +759,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 62,
-            "movement": -51
+            "position": 93,
+            "movement": -73
           }
         ]
       }
@@ -1137,14 +1124,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 76,
-            "movement": 2
+            "position": 78,
+            "movement": 0
           },
           {
             "country": "KE",
             "name": "Kenya",
             "position": 80,
-            "movement": -5
+            "movement": -2
           }
         ]
       }
@@ -1352,8 +1339,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 56,
-            "movement": -8
+            "position": 58,
+            "movement": -10
           }
         ]
       }
@@ -1526,6 +1513,19 @@
             "country": "LR",
             "name": "Liberia",
             "position": 196,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TR",
+            "name": "Turkey",
+            "position": 120,
             "movement": null,
             "status": "new"
           }
@@ -1991,8 +1991,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 133,
-            "movement": 4
+            "position": 135,
+            "movement": 2
           }
         ]
       }
@@ -2060,8 +2060,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 90,
-            "movement": 6
+            "position": 92,
+            "movement": 4
           },
           {
             "country": "UG",
@@ -2160,15 +2160,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 3,
-            "movement": null,
-            "status": "new"
+            "position": 5,
+            "movement": 22
           },
           {
             "country": "UG",
             "name": "Uganda",
             "position": 37,
-            "movement": -12
+            "movement": -8
           }
         ]
       }
@@ -2377,7 +2376,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 41,
+            "position": 73,
             "movement": null,
             "status": "new"
           }
@@ -2386,26 +2385,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Blessed",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 47,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "One Love",
@@ -2425,6 +2404,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ec91c9f741208370ed9ab6b9029e90cc/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Blessed",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 78,
+            "movement": -64
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Boom",
@@ -2496,34 +2494,14 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 77,
-            "movement": -17
+            "position": 84,
+            "movement": -21
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b1eb19b96a5e2985053b8bef3138498f/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Beat of Life",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 80,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/c631f1ee2ce8650a2f6ebdaa682c0ae6/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Tonight",
@@ -2554,14 +2532,34 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 174,
-            "movement": -24
+            "position": 175,
+            "movement": -23
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/24a4bbe1d6d25c216426e42587156a04/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Beat of Life",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 112,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/c631f1ee2ce8650a2f6ebdaa682c0ae6/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Alive",

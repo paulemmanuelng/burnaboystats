@@ -233,15 +233,35 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 22,
+            "position": 23,
             "movement": null,
             "status": "new"
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 40,
-            "movement": -34
+            "position": 72,
+            "movement": -63
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 64,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "ZM",
+            "name": "Zambia",
+            "position": 142,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -342,6 +362,12 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 24,
+            "movement": 15
+          },
+          {
             "country": "KE",
             "name": "Kenya",
             "position": 34,
@@ -352,12 +378,6 @@
             "name": "Nigeria",
             "position": 44,
             "movement": -33
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 47,
-            "movement": -2
           },
           {
             "country": "SN",
@@ -381,7 +401,7 @@
             "country": "ZM",
             "name": "Zambia",
             "position": 138,
-            "movement": -25
+            "movement": 0
           }
         ]
       },
@@ -393,14 +413,13 @@
             "country": "UG",
             "name": "Uganda",
             "position": 6,
-            "movement": null,
-            "status": "new"
+            "movement": -4
           },
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 57,
-            "movement": 7
+            "position": 59,
+            "movement": 13
           }
         ]
       },
@@ -566,7 +585,7 @@
           {
             "country": "TH",
             "name": "Thailand",
-            "position": 163,
+            "position": 160,
             "movement": null,
             "status": "new"
           },
@@ -1069,96 +1088,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/47d4b2f030cf6387a1f36dde2ce29e9b/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Calm Down",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SZ",
-            "name": "Swaziland",
-            "position": 27,
-            "movement": -2
-          },
-          {
-            "country": "AE",
-            "name": "United Arab Emirates",
-            "position": 51,
-            "movement": -44
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 58,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "KH",
-            "name": "Cambodia",
-            "position": 100,
-            "movement": -9
-          },
-          {
-            "country": "NZ",
-            "name": "New Zealand",
-            "position": 157,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CA",
-            "name": "Canada",
-            "position": 63,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "AU",
-            "name": "Australia",
-            "position": 64,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 70,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FM",
-            "name": "Micronesia",
-            "position": 112,
-            "movement": -89
-          },
-          {
-            "country": "MV",
-            "name": "Maldives",
-            "position": 193,
-            "movement": -51
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/07d4291391724a969f243406cc92be66/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Who's Dat Girl",
     "platforms": [
       {
@@ -1307,6 +1236,84 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/813c9474be279f125aba17ccd6e2cea0/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Calm Down",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SZ",
+            "name": "Swaziland",
+            "position": 27,
+            "movement": -2
+          },
+          {
+            "country": "IE",
+            "name": "Ireland",
+            "position": 41,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 58,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CA",
+            "name": "Canada",
+            "position": 63,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "AU",
+            "name": "Australia",
+            "position": 64,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 70,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FM",
+            "name": "Micronesia",
+            "position": 112,
+            "movement": -89
+          },
+          {
+            "country": "MV",
+            "name": "Maldives",
+            "position": 193,
+            "movement": -51
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/07d4291391724a969f243406cc92be66/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Bounce",
     "platforms": [
       {
@@ -1376,22 +1383,22 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 44,
-            "movement": -36
-          },
-          {
             "country": "BW",
             "name": "Botswana",
-            "position": 46,
-            "movement": 7
+            "position": 48,
+            "movement": 13
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 76,
+            "movement": -65
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 79,
-            "movement": -25
+            "position": 80,
+            "movement": -24
           }
         ]
       },
@@ -1784,7 +1791,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 24,
+            "position": 26,
             "movement": null,
             "status": "new"
           }
@@ -1793,26 +1800,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/e4c2c39678f951dd57f09d2e98cd4062/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Goals",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "US",
-            "name": "United States",
-            "position": 199,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/8d26b51a325ab59c594708d1c8c71bf2/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Trouble Maker",
