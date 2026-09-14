@@ -16,7 +16,7 @@ import {
 } from "../../data/charts";
 import { liveCharts } from "../../data/liveCharts";
 import { daiDaiCertCount } from "../../data/certifications";
-import { DAI_DAI_VIDEO_VIEWS, DAI_DAI_1B_DAYS, DAI_DAI_1B_RANK_ES, DAI_DAI_SPOTIFY_STREAMS, DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_NO1_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_TOP10_DAYS, DAI_DAI_SPOTIFY_DAYS_OFF, daiDaiSpotifyDaysOnChart, daiDaiSpotifyStraightDays, daiDaiYouTubeDaysAtNo1 } from "../../data/daiDai";
+import { DAI_DAI_VIDEO_VIEWS, DAI_DAI_1B_DAYS, DAI_DAI_1B_RANK_ES, DAI_DAI_SPOTIFY_STREAMS, DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_NO1_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_NO1_FIRST_LONG_ES, DAI_DAI_SPOTIFY_NO1_LAST_LONG_ES, DAI_DAI_SPOTIFY_TOP10_DAYS, DAI_DAI_SPOTIFY_DAYS_OFF, daiDaiSpotifyDaysOnChart, daiDaiSpotifyStraightDays, daiDaiYouTubeDaysAtNo1 } from "../../data/daiDai";
 import { spotifyImage, spotifySrcSet } from "../../lib/spotifyImage";
 import { daiDaiEsOgId } from "./ogId";
 import { BURNA_PORTRAIT, SHAKIRA_PORTRAIT } from "../../lib/artistImages";
@@ -191,7 +191,7 @@ export default function DaiDaiPageES() {
       label: "Las rachas en streaming",
       intro: `Las rachas diarias y semanales, según la última lectura de cada lista — la racha en Spotify hasta la lista del ${DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG_ES}; los días en el número 1, hasta la del ${DAI_DAI_SPOTIFY_NO1_READ_ON_LONG_ES}.`,
       items: [
-        { v: "37 días", l: `en total en el número 1 de la lista Global Daily Top Songs de Spotify —algo inédito para un artista africano, y la canción con más días en el número 1 de todo 2026, cinco por delante de “End of Beginning” de Djo (32) y seis de “Beauty And A Beat” de Justin Bieber y Nicki Minaj (31)—. Es un total cerrado: contado hasta la lista del ${DAI_DAI_SPOTIFY_NO1_READ_ON_LONG_ES}, con ${DAI_DAI_SPOTIFY_TOP10_DAYS} días dentro del top 10 mundial leídos en esa misma lista, y la racha en la cima ya ha terminado` },
+        { v: "37 días", l: `en total en el número 1 de la lista Global Daily Top Songs de Spotify —algo inédito para un artista africano, y la canción con más días en el número 1 de todo 2026, cinco por delante de “End of Beginning” de Djo (32) y seis de “Beauty And A Beat” de Justin Bieber y Nicki Minaj (31)—. Es un total cerrado: el primero en la lista del ${DAI_DAI_SPOTIFY_NO1_FIRST_LONG_ES} y el último en la del ${DAI_DAI_SPOTIFY_NO1_LAST_LONG_ES}, confirmado día a día hasta la lista del ${DAI_DAI_SPOTIFY_NO1_READ_ON_LONG_ES} — con ${DAI_DAI_SPOTIFY_TOP10_DAYS} días dentro del top 10 mundial en total, contados hasta esa misma lista` },
         { v: "6 semanas", l: "en el número 1 de la lista Global Weekly Top Songs de Spotify, en su 13.ª semana en ella — con un pico de 40,28 millones de reproducciones en una sola semana" },
         { v: "N.º 114", l: `puesto por el que entró en la lista Global Daily Top Songs de Spotify el 15 de mayo de 2026, un día después de su lanzamiento — cayó de ella durante ${cardinalWord(DAI_DAI_SPOTIFY_DAYS_OFF, "es")} días, volvió el 22 de mayo y no ha salido desde entonces: ${daiDaiSpotifyStraightDays} seguidos en la lista y ${daiDaiSpotifyDaysOnChart} en total, contados hasta la lista del ${DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG_ES}, que imprime ambas cifras en sus propias columnas (Spotify Charts)` },
         { v: "58 días", l: "en el número 1 de la lista europea de Apple Music, más 11 días en la cima de la lista mundial de Apple Music" },
@@ -227,7 +227,7 @@ export default function DaiDaiPageES() {
       label: "Los rankings mundiales",
       intro: "Las listas que miden el planeta entero a la vez.",
       items: [
-        { v: "10 semanas", l: "en el número 1 del United World Chart de Mediatraffic — 283.000 puntos en la semana del 5 de septiembre, y la primera canción de Burna Boy que lo lidera" },
+        { v: "12 semanas", l: "en el número 1 del United World Chart de Mediatraffic — 246.000 puntos en la semana del 19 de septiembre, y la primera canción de Burna Boy que lo lidera" },
         { v: "N.º 1", l: "en la lista de canciones de iTunes en 73 países — Estados Unidos, Reino Unido, Canadá, Francia, Italia, Nueva Zelanda, India, España, Portugal, Hungría y decenas más, Bielorrusia la más reciente" },
         { v: "N.º 13", l: "en el Deezer Worldwide Top 100 — un nuevo pico, con presencia en 57 países y el número 1 en 23 de ellos" },
         { v: "29 días", l: "en el número 1 de la lista Global Music Video de Spotify — más que cualquier otra canción en esa lista, y no por poco: la siguiente racha más larga es de 3 días" },

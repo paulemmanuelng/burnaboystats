@@ -99,9 +99,12 @@ describe("sitemap lastmod is evidence-backed", () => {
     // same problem fifteen times over. If any of them ever gains a real stamp
     // this list is what says so out loud, rather than the date quietly
     // reappearing.
+    // /methodology left this list on 14 Sep 2026: its disputed-counts list
+    // gained two entries (the African Giant superlative, the "Dai Dai" 6.05M
+    // units) and the feed logs the change against the page, which is exactly
+    // the evidence a lastmod is meant to rest on.
     const shouldBeSilent = [
       "/contact",
-      "/methodology",
       "/faq",
       "/curator",
       "/press",

@@ -25,6 +25,14 @@ export interface RejectedClaim {
 }
 
 /** Bodies named in circulating tallies that no primary source ties to him. */
+import { artistBySlug, priceRelease } from "../lib/certUnits";
+
+// The song's certified floor, derived so it moves with the plaques (three
+// arrived in the month to 14 Sep 2026); a typed figure here would be stale
+// within weeks. Nigeria is irrelevant — the song holds no NG plaque.
+const daiDai = priceRelease(artistBySlug("burna-boy")!, "Dai Dai");
+const fmt = (n: number) => n.toLocaleString("en-US");
+
 export const unsourcedBodies: RejectedClaim[] = [
   { claim: "ASCAP Awards", reason: "No primary source names him for a specific song or year." },
   { claim: "The FABYs", reason: "No primary source names him at all." },
@@ -61,6 +69,16 @@ export const disputedCounts: RejectedClaim[] = [
     claim: "“Dai Dai” — No. 2 on US Rhythmic radio",
     reason:
       "No. 4 on Mediabase's Rhythmic chart, read on its syndicated listing. Mediabase and Billboard are different charts that share a monitoring feed: Billboard's Rhythmic Airplay ranks 40 positions on its own reporter panel and a Mon–Sun week, Mediabase's ranks 50 on its own panel and a Sun–Sat week. The gap shows in this record — Billboard No. 3, Mediabase No. 4, the same week. This site publishes the Billboard peak.",
+  },
+  {
+    claim: "African Giant — “the first ever certified Nigerian album” (Silver, UK, 22 September 2020)",
+    reason:
+      "The award is real but the rest is not. BPI's own register dates the Silver 18 September 2020 — the 22nd is when the press ran it — and the album has been Gold since 22 July 2022. It was Burna Boy's first UK-certified album, not the first certified Nigerian one: Sade, born in Ibadan, had Diamond Life at 4× Platinum with the BPI by 1987, and Lagos-born Keziah Jones's Blufunk was Double Gold with SNEP in June 2000. This site carries the award and its dates, and no superlative.",
+  },
+  {
+    claim: "“Dai Dai” — 6,050,000 units sold worldwide",
+    reason:
+      `A fan estimate, not a figure any body or platform publishes. No certifying body states worldwide units for a single, and pure sales run in the low thousands a week, so a total that size can only be streams converted to units at a ratio of the poster's choosing — its lines for India, MENA, Brazil and Mexico sit where no register prices the song at all. Where a register does speak, it says less: the RIAA's only award is the Latin programme's 2× Platino, at least 120,000 units, not 935,000; the BPI's is Silver, at least 200,000, not 370,000; BVMI and Music Canada hold no award for the song. This site prices the song's ${daiDai?.release.certs.length ?? 0} plaques at their own bodies' thresholds — at least ${fmt(daiDai?.total ?? 0)} certified units across the ${daiDai?.pricedPlaques ?? 0} that can be priced — and publishes no worldwide total.`,
   },
 ];
 

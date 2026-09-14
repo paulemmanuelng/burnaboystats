@@ -128,12 +128,31 @@ export interface PendingCeremony {
   /** ISO date the ceremony is held. */
   date: string;
   where: string;
+  /**
+   * The ceremony has been held, the body was read, and it had published no
+   * winners yet — the date of that reading. The alarm in awardsPending.test.ts
+   * stands down for three days from it and then rings again; it is a dated
+   * snooze with a reason, never a silence. Delete the row, not this field,
+   * once the winners are read.
+   */
+  checkedOn?: string;
+  checkedNote?: string;
 }
 
 export const pendingResults: PendingCeremony[] = [
   // 12 Sep 2026, Dallas — four noms: Artist of the Year, Album of the Year,
   // Crossing Boundaries, Best Male West Africa.
-  { ceremony: "African Muzik Magazine Awards (AFRIMMA)", year: 2026, date: "2026-09-12", where: "Annette Strauss Square, Dallas" },
+  {
+    ceremony: "African Muzik Magazine Awards (AFRIMMA)", year: 2026, date: "2026-09-12", where: "Annette Strauss Square, Dallas",
+    // 14 Sep 2026: afrimma.com answers 503 ("We'll be right back"); its own
+    // home page, in the 29 Aug archived copy, billed "AFRIMMA Awards and
+    // Festival — Event Happening September 12, 2026"; @afrimma on X has posted
+    // nothing since 6 Sep, and its Instagram's newest post (13 Sep) is a
+    // "thank you Dallas" for the Music Fest with no winners. Read again from
+    // 17 Sep; resolve at the body only.
+    checkedOn: "2026-09-14",
+    checkedNote: "body site down; no winners on its X or Instagram",
+  },
   // 19 Sep 2026 — the fourth edition, and the first held in the Caribbean after
   // three years at Brooklyn's Kings Theatre. Voting closed 10 Aug 2026.
   { ceremony: "Caribbean Music Awards", year: 2026, date: "2026-09-19", where: "NAPA, Port of Spain" },

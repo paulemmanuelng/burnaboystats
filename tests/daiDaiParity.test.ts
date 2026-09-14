@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import { cardinalWord, ordinalWord } from "../app/lib/plural";
 import { weeksAtPeak, weeksOnChart, daiDaiChartEntryCount, daiDaiNumberOnes } from "../app/data/charts";
 import { daiDaiCertCount } from "../app/data/certifications";
-import { daiDaiSpotifyDaysOnChart, daiDaiSpotifyStraightDays, daiDaiYouTubeDaysAtNo1, DAI_DAI_1B_DAYS, DAI_DAI_1B_RANK_EN, DAI_DAI_1B_RANK_ES, DAI_DAI_SPOTIFY_CONFIRMED_THROUGH, DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG, DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_NO1_READ_ON_LONG, DAI_DAI_SPOTIFY_NO1_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_TOP10_DAYS, DAI_DAI_SPOTIFY_DAYS_OFF } from "../app/data/daiDai";
+import { daiDaiSpotifyDaysOnChart, daiDaiSpotifyStraightDays, daiDaiYouTubeDaysAtNo1, DAI_DAI_1B_DAYS, DAI_DAI_1B_RANK_EN, DAI_DAI_1B_RANK_ES, DAI_DAI_SPOTIFY_CONFIRMED_THROUGH, DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG, DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_NO1_READ_ON_LONG, DAI_DAI_SPOTIFY_NO1_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_NO1_FIRST_LONG, DAI_DAI_SPOTIFY_NO1_FIRST_LONG_ES, DAI_DAI_SPOTIFY_NO1_LAST_LONG, DAI_DAI_SPOTIFY_NO1_LAST_LONG_ES, DAI_DAI_SPOTIFY_TOP10_DAYS, DAI_DAI_SPOTIFY_DAYS_OFF } from "../app/data/daiDai";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 
@@ -77,13 +77,19 @@ const DERIVED: Record<string, number | string | null> = {
   daiDaiYouTubeDaysAtNo1,
   // Not figures but dates: the charts the Spotify run was last read off, which
   // both cards now name instead of calling the run live. TWO anchors since
-  // 9 Sep 2026 — the streak through 7 Sep, the days at No. 1 through 28 Aug —
-  // and one spelling per edition, so the digit comparison below sees the same
-  // 7, 28 and 2026 on each side, as it should.
+  // 9 Sep 2026 — the streak and the days at No. 1 each carry their own (they
+  // re-converged on the 13 Sep chart on 14 Sep 2026, and may split again) —
+  // plus, since 14 Sep, the first and last days at No. 1, walked at the body.
+  // One spelling per edition, so the digit comparison below sees the same
+  // digits on each side, as it should.
   DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG,
   DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG_ES,
   DAI_DAI_SPOTIFY_NO1_READ_ON_LONG,
   DAI_DAI_SPOTIFY_NO1_READ_ON_LONG_ES,
+  DAI_DAI_SPOTIFY_NO1_FIRST_LONG,
+  DAI_DAI_SPOTIFY_NO1_FIRST_LONG_ES,
+  DAI_DAI_SPOTIFY_NO1_LAST_LONG,
+  DAI_DAI_SPOTIFY_NO1_LAST_LONG_ES,
   DAI_DAI_SPOTIFY_TOP10_DAYS,
   // The days-off count, which both editions now render as a WORD rather than
   // typing it. It shipped as "every day but one" in English and "todos los días

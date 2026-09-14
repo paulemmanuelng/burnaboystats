@@ -663,6 +663,19 @@ export const certHistory: CertEvent[] = [
   { title: "On the Low", country: "US", level: "Gold", year: 2022 },
   { title: "On the Low", country: "UK", level: "Silver", year: 2020 },
 
+  // "African Giant" in the UK — read at BPI's own register on 14 Sep 2026
+  // (certified-awards.bpi.co.uk/format/3/artist/4398/title/13134, certification
+  // history: Silver 18 September 2020, Gold 22 July 2022). The release row
+  // already carried the Gold; neither award event had ever been logged here.
+  // The Silver was his first BPI-certified ALBUM (Love, Damini's Silver came
+  // 10 Feb 2023, I Told Them's 22 Dec 2023, Twice as Tall's 6 Mar 2026) — not
+  // his first BPI award, and NOT "the first certified Nigerian album": Sade's
+  // Diamond Life was BPI 4× Platinum by 1987 and Keziah Jones's Blufunk was
+  // SNEP Double Or on 27/06/2000. The "22 September 2020" that circulates is
+  // the date of the press coverage, not the award.
+  { title: "African Giant", album: true, country: "UK", level: "Silver", year: 2020 },
+  { title: "African Giant", album: true, country: "UK", level: "Gold", year: 2022 },
+
   // GLF/Grammotex, read 27 Aug 2026. All four certified 2023-08-16.
   { title: "On the Low", country: "SE", level: "Platinum", year: 2023 },
   { title: "Ye", country: "SE", level: "Platinum", year: 2023 },
