@@ -1,3 +1,4 @@
+import { artistBySlug, priceRelease } from "../app/lib/certUnits";
 import { describe, it, expect } from "vitest";
 import { unsourcedBodies, disputedCounts } from "../app/data/rejectedClaims";
 import { ceremonies } from "../app/data/awards";
@@ -44,8 +45,17 @@ describe("rejected claims are still rejected", () => {
     // chart has it at No. 4, and Mediabase is a different chart from
     // Billboard's Rhythmic Airplay (No. 3), which is the peak this site
     // publishes. It carries no win count, so winsFor() does not apply to it.
-    expect(disputedCounts.length).toBe(5);
+    // Seven since 14 Sep 2026: two more that carry no win count — the African
+    // Giant "first ever certified Nigerian album" superlative (BPI: Silver
+    // 18 Sep 2020, Gold 22 Jul 2022; Sade and Keziah Jones precede it) and the
+    // circulating "6,050,000 units worldwide" for "Dai Dai", whose figure is
+    // derived from priceRelease() and must match what the compare page prices.
+    expect(disputedCounts.length).toBe(7);
     expect(disputedCounts.filter((c) => /rhythmic/i.test(c.reason)).length).toBe(1);
+    const units = disputedCounts.find((c) => /6,050,000/.test(c.claim));
+    const dd = priceRelease(artistBySlug("burna-boy")!, "Dai Dai")!;
+    expect(units?.reason).toContain(`at least ${dd.total.toLocaleString("en-US")} certified units`);
+    expect(units?.reason).toContain("publishes no worldwide total");
   });
 
   it("does not reject the Headies count the site now carries", () => {

@@ -39,6 +39,48 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-09-14",
+    category: "Streaming",
+    text: "Back inside the global Top 10: “Dai Dai” sits at No. 9 on Spotify's Daily Top Songs Global for 13 September with 2,580,521 filtered streams, down from No. 4 the day before — a 115th consecutive day on the chart by its own streak column, 116 in all, and an 83rd day inside the Top 10. That last figure is a total, not a streak: it had left the Top 10 for five charts, 7 to 11 September (No. 11, 12, 14, 14 and 11), before climbing back to No. 4 on the 12th — read day by day at Spotify's own chart from the 28 August list, where the count stood at 72, and still the most days inside the global Top 10 by any African song in the chart's history. The 37 days at No. 1 have now been walked the same way on Spotify's own archive: the first was the chart dated 30 June, the last 22 August, in six spells between them.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-09-14",
+    category: "Streaming",
+    text: "Past 350 million plays on Audiomack: I Told Them… reads 350,926,676 on its own Audiomack page, read on 14 September, on the platform where his account stands at 2.11 billion plays in all. Audiomack carries several regional uploads of most of his albums, so where the album ranks depends on how they are added: with every upload of a title counted together, only Love, Damini (611 million across three) and Twice As Tall (454 million across three) sit above it, making it his third-most-played title there; on any single page it is second, with the Africa upload of Twice As Tall 2.7 million behind at 348 million. Audiomack counts “plays”, not streams, and publishes no per-title total — the 350 million is one page's own count.",
+    href: "/music/albums/i-told-them",
+  },
+  {
+    date: "2026-09-14",
+    category: "Certifications",
+    text: "African Giant's UK history, read at the BPI's own register: certified Silver on 18 September 2020 — his first certified album in Britain — and Gold since 22 July 2022. Both awards now sit in the dated log. It was not the first certified Nigerian album, whatever the reposts say: Sade's Diamond Life was 4× Platinum with the BPI by 1987, and Lagos-born Keziah Jones's Blufunk was Double Gold in France in 2000.",
+    href: "/certifications",
+  },
+  {
+    date: "2026-09-14",
+    category: "Certifications",
+    text: "A circulating “6,050,000 units sold worldwide” for “Dai Dai” is now on the methodology page's list of counts this site does not carry. No certifying body or platform publishes worldwide units for a single, and pure sales run in the low thousands a week, so the figure is streams converted to units at a ratio of the poster's choosing. Read at the bodies today: the RIAA holds only the Latin 2× Platino (at least 120,000 units), the BPI Silver (at least 200,000), and BVMI and Music Canada no award at all. The only worldwide figure this site stands behind is the certified floor the compare page derives from the song's plaques.",
+    href: "/methodology",
+  },
+  {
+    date: "2026-09-13",
+    category: "Charts",
+    text: "A 14th straight week at No. 1 in Switzerland: the Schweizer Hitparade dated 13 September keeps “Dai Dai” at the top for the 14th consecutive chart since 14 June, its 17th week on the Singles Top 100 — still the longest run atop the Swiss chart by any song this year.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-09-13",
+    category: "Charts",
+    text: "A 12th week atop Mediatraffic's United World Chart: “Dai Dai” holds No. 1 on the global ranking in the chart week dated 19 September, on 246,000 points — an unbroken run since the week dated 4 July, and it remains the first Burna Boy record ever to lead it. Mediatraffic now also marks the song as past 4 million of its chart points (its sixteen weekly figures sum to 4,110,000); that is the chart's own points tally, not a certification.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-09-13",
+    category: "Charts",
+    text: "A 12th straight week at No. 1 on the Dutch Top 40 — the Stichting Nederlandse Top 40's chart, distinct from the Single Top 100 this site tables for the Netherlands — takes “Dai Dai” to 16 weeks on that list as of the 12 September edition. The Top 40 itself frames the record as Shakira's: with her four earlier chart-toppers there she has now led that chart for 30 weeks in total, passing Lady Gaga's 29 as the female artist with the most weeks at No. 1 in its history. It is not the longest stay by any act — the Top 40 names five men ahead of her, The Beatles' 74 weeks at the top — nor the longest run by one song there, which remains “Die With A Smile” at 17. On the Single Top 100 the run at the top closed at seven weeks; the 12 September chart is the song's 16th week there, at No. 4.",
+    href: "/dai-dai",
+  },
+  {
     date: "2026-09-12",
     category: "Streaming",
     text: "A correction to the 2026 streaming race on Africa's Biggest: Burna Boy has not passed Wizkid. Through 9 September, Spotify's 2026 totals stand at Tems 1.770 billion, Wizkid 1.764 billion and Burna Boy 1.756 billion, with Asake at 1.420 billion and Tyla at 1.185 billion — and Burna Boy is closing on Wizkid at roughly a million and a half streams a day. The board had carried him past Wizkid on 11 September on totals this site was summing for itself, day by day, from a count that does not move quite the way the trackers' does; those sums also counted three late-August days twice and missed three others. All five figures are now the tracker's own, read together and dated, and they will move together.",
@@ -281,7 +323,7 @@ export const updates: Update[] = [
   {
     date: "2026-08-22",
     category: "Streaming",
-    text: "A 36th day as the most-streamed song on Earth: “Dai Dai” climbs two places back to No. 1 on Spotify's Global Daily Top Songs chart for 21 August, with 3,768,605 filtered streams. That puts it four days clear of Djo's “End of Beginning” (32) as the longest run at No. 1 by any song in 2026 — 65 days inside the global Top 10 and 93 days on the chart, both still counting.",
+    text: "A 36th day as the most-streamed song on Earth: “Dai Dai” climbs two places back to No. 1 on Spotify's Global Daily Top Songs chart for 21 August, with 3,768,805 filtered streams. That puts it four days clear of Djo's “End of Beginning” (32) as the longest run at No. 1 by any song in 2026 — 65 days inside the global Top 10 and 93 days on the chart, both still counting.",
     href: "/dai-dai",
   },
   {
@@ -401,7 +443,7 @@ export const updates: Update[] = [
   {
     date: "2026-08-16",
     category: "Streaming",
-    text: "A 34th day at No. 1, and the lead widens: Spotify's Daily Top Songs Global for 15 August keeps “Dai Dai” on top with 4,219,912 streams — up on the day, two days clear of Djo's “End of Beginning” (32) as 2026's longest-running No. 1, with 59 days inside the global Top 10 and 87 days on the chart.",
+    text: "A 34th day at No. 1, and the lead widens: Spotify's Daily Top Songs Global for 15 August keeps “Dai Dai” on top with 4,219,512 streams — up on the day, two days clear of Djo's “End of Beginning” (32) as 2026's longest-running No. 1, with 59 days inside the global Top 10 and 87 days on the chart.",
     href: "/dai-dai",
   },
   {

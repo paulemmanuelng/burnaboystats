@@ -25,10 +25,20 @@ import { ceremonies, pendingResults, type PendingCeremony } from "../app/data/aw
 const daysUntil = (iso: string, now: Date) =>
   Math.floor((Date.parse(`${iso}T23:59:59Z`) - now.getTime()) / 86_400_000);
 
-/** Pending rows whose ceremony has already been held. */
+/** How long a dated "checked, nothing published yet" reading stands the alarm down. */
+const CHECK_HOLDS_FOR_DAYS = 3;
+
+/**
+ * Pending rows whose ceremony has already been held — unless the body was read
+ * after it and had published nothing yet, in which case the reading's date
+ * holds the alarm down for CHECK_HOLDS_FOR_DAYS and it rings again. A snooze
+ * with a date and a reason on it, not a silence: the row still says the
+ * ceremony is unresolved, and the next reading is due.
+ */
 export const overdue = (list: PendingCeremony[], now = new Date()) =>
   list
     .filter((p) => daysUntil(p.date, now) < 0)
+    .filter((p) => !(p.checkedOn && p.checkedOn > p.date && daysUntil(p.checkedOn, now) >= -CHECK_HOLDS_FOR_DAYS))
     .map((p) => `${p.ceremony} ${p.year} was held on ${p.date} — read the winners at the body and resolve it`);
 
 describe("the deadline rule", () => {
@@ -51,6 +61,17 @@ describe("the deadline rule", () => {
     const out = overdue([AFRIMMA], new Date("2026-09-13T09:00:00Z"));
     expect(out).toHaveLength(1);
     expect(out[0]).toContain("read the winners at the body");
+  });
+
+  it("stands down for three days after a dated reading that found nothing published, then rings again", () => {
+    // 14 Sep 2026: AFRIMMA's site was down and its own channels carried no
+    // winners two days after the ceremony. The reading is on the row.
+    const checked = { ...AFRIMMA, checkedOn: "2026-09-14", checkedNote: "body site down; no winners on its X or Instagram" };
+    expect(overdue([checked], new Date("2026-09-14T20:00:00Z"))).toHaveLength(0);
+    expect(overdue([checked], new Date("2026-09-17T09:00:00Z"))).toHaveLength(0);
+    expect(overdue([checked], new Date("2026-09-18T09:00:00Z"))).toHaveLength(1);
+    // A reading dated BEFORE the ceremony is not a reading of its results.
+    expect(overdue([{ ...checked, checkedOn: "2026-09-10" }], new Date("2026-09-14T09:00:00Z"))).toHaveLength(1);
   });
 });
 

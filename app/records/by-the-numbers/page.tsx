@@ -56,7 +56,7 @@ const asOf = asOfDate.toLocaleDateString("en-US", {
 // dated dataset, and the page's own "Updated {asOf}" stamp covers them. The
 // all-time YouTube total is neither: it is counted by hand at
 // youtube.com/@BurnaBoy/about because no automated source measures its scope
-// (kworb sees 187 of his 344 videos — see data/streamingTotals.ts), and the
+// (kworb sees 187 of his 346 videos — see data/streamingTotals.ts), and the
 // stamp built to date it, `youtubeTotalViewsAsOf`, was referenced by NOTHING.
 // So the one headline figure on the site that cannot refresh itself was the one
 // published with no date on it, while its date sat in the repo as dead code.

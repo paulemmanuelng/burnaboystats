@@ -65,9 +65,12 @@ export const DAI_DAI_1B_RANK_ES = `${daiDaiBillionRank}.º${daiDaiBillionTied ? 
 export const DAI_DAI_SPOTIFY_DEBUT = "2026-05-15"; // entered at No. 114, the day after release
 /**
  * Spotify's OWN columns, read off the Daily Top Songs Global chart dated
- * 7 Sep 2026 (Paul, from the chart page): Dai Dai — No. 11, Prev 6, Peak 1,
- * **Streak 109**, 2,631,577 streams, and in the expanded row **Total days on
- * chart 110**, first entry 15 May 2026 at No. 114, release 14 May 2026.
+ * 13 Sep 2026 (charts.spotify.com, in a signed-in browser, read 14 Sep): Dai
+ * Dai — No. 9, Prev 4, Peak 1, **Streak 115**, 2,580,521 streams, and in the
+ * expanded row **Total days on chart 116**, first entry 15 May 2026 at No. 114,
+ * release 14 May 2026. The previous read, the 7 Sep chart (No. 11, Prev 6,
+ * Peak 1, Streak 109, 2,631,577, Total 110), re-read identically on the same
+ * archive, which is reachable by date in the URL when signed in.
  *
  * The total is the important addition. Every other figure here is derived from
  * two dates and DAYS_OFF, so DAYS_OFF could be wrong without any arithmetic
@@ -75,21 +78,22 @@ export const DAI_DAI_SPOTIFY_DEBUT = "2026-05-15"; // entered at No. 114, the da
  * number nothing on this side could check.
  */
 export const DAI_DAI_SPOTIFY_BODY_READ = {
-  date: "2026-09-07",
-  streak: 109,
-  totalDaysOnChart: 110,
+  date: "2026-09-13",
+  streak: 115,
+  totalDaysOnChart: 116,
   debutPosition: 114,
 } as const;
-export const DAI_DAI_SPOTIFY_STREAK_SINCE = "2026-05-22"; // 109 days back from the body read
-export const DAI_DAI_SPOTIFY_CONFIRMED_THROUGH = "2026-09-07";
+export const DAI_DAI_SPOTIFY_STREAK_SINCE = "2026-05-22"; // 115 days back from the body read
+export const DAI_DAI_SPOTIFY_CONFIRMED_THROUGH = "2026-09-13";
 /**
  * Days it has dropped off the chart, ever. SIX, all of them in 16-21 May.
  *
  * This read 1 from May until 9 Sep 2026, sourced to live tracking and stated in
  * both editions as "on it every day but one since". It is forced the other way
  * by Spotify's own two columns: 15 May to 7 Sep inclusive is 116 days, the
- * chart says the song has spent 110 of them on it, and 116 - 110 = 6. The feed
- * ledger above says the same thing six more times.
+ * chart says the song has spent 110 of them on it, and 116 - 110 = 6 (and on
+ * the 13 Sep chart, 122 days against a total of 116: still 6). The feed ledger
+ * above says the same thing six more times.
  *
  * So the shape of the run changes, though none of the published totals do: the
  * song entered at No. 114 on 15 May, fell straight back off for six days, and
@@ -120,7 +124,7 @@ export const daiDaiSpotifyDaysOnChart =
  *
  * A fourth, separate number: not the streak, not days-on-chart, not
  * consecutive days at the top — the count of chart days the song has led,
- * added up across two spells either side of the August reclaim.
+ * added up across several spells.
  *
  * It lived nowhere. It was typed into twelve places in two languages —
  * page copy, the FAQ answer that is also emitted as FAQPage structured data,
@@ -132,12 +136,22 @@ export const daiDaiSpotifyDaysOnChart =
  * The anchor is what matters. Reconciled against the updates feed's own dated
  * ledger, which records each new day at No. 1 as it lands: the 31st on
  * 12 Aug, 33rd on 14 Aug, 34th on 15 Aug, 36th on 21 Aug, and the 28 Aug entry
- * confirming "37 of them at No. 1". Spotify's chart is login-gated, so like
- * everything else here this is a record of what was read off-site, not
- * something a scraper refreshes — which is exactly why it needs a date.
+ * confirming "37 of them at No. 1". Spotify's chart is login-gated to a
+ * scraper, so like everything else here this is a record of what was read
+ * off-site, not something a bot refreshes — which is exactly why it needs a
+ * date.
+ *
+ * Then walked day by day, 14 Sep 2026, on charts.spotify.com's own archive
+ * (every Daily Top Songs Global chart from 28 Jun to 13 Sep, by date in the
+ * URL, signed in): 37 chart days at No. 1 in six spells — 30 Jun; 3–7 Jul;
+ * 10–14 Jul; 17–30 Jul; 7–16 Aug; 21–22 Aug — and not at No. 1 on any chart
+ * from 23 Aug (No. 2, Prev 1) to 13 Sep (No. 9). The feed's 37 stands, now
+ * read at the body and confirmed through the 13 Sep chart.
  */
 export const DAI_DAI_SPOTIFY_NO1_DAYS = 37;
-export const DAI_DAI_SPOTIFY_NO1_DAYS_AS_OF = "2026-08-28";
+export const DAI_DAI_SPOTIFY_NO1_DAYS_AS_OF = "2026-09-13";
+export const DAI_DAI_SPOTIFY_NO1_FIRST_DAY = "2026-06-30";
+export const DAI_DAI_SPOTIFY_NO1_LAST_DAY = "2026-08-22";
 
 /**
  * THE SPOTIFY No. 1 RUN HAS ENDED, and 37 is therefore a FINAL total rather
@@ -154,11 +168,14 @@ export const DAI_DAI_SPOTIFY_NO1_DAYS_AS_OF = "2026-08-28";
  * stopped accruing before the anchor above. What was missing was confirmation
  * that it had not gone back up in the days since. It has not.
  *
- * THE EXACT LAST DAY AT No. 1 IS NOT ESTABLISHED and is not published. The
- * login wall means the run cannot be walked day by day the way the YouTube run
- * was, and this project does not publish a figure it has not read. What is
- * stated is what is established: 37 days at No. 1 in total, counted through the
- * chart dated 28 August 2026, and that the run has since ended.
+ * THE LAST DAY AT No. 1 IS THE CHART DATED 22 AUGUST 2026 — established on
+ * 14 Sep 2026 by walking every daily chart from 28 Jun to 13 Sep on
+ * charts.spotify.com itself (see the No. 1 total above). The chart is not
+ * anonymously scrapeable, but its archive is readable by date in the URL in a
+ * signed-in browser, so the run could be walked the way the YouTube run was,
+ * and was. What is stated is what was read: 37 days at No. 1 in total, the
+ * first on 30 June and the last on 22 August, confirmed through the chart
+ * dated 13 September 2026.
  *
  * If it returns to No. 1, set this false and move the anchor — do not simply
  * add days, because the gap in between is not established either.
@@ -168,22 +185,29 @@ export const DAI_DAI_SPOTIFY_NO1_RUN_ENDED = true;
 export const DAI_DAI_SPOTIFY_NO1_ENDED_SEEN_ON = "2026-09-09";
 
 /**
- * Days spent inside the global Top 10, and the chart that count was read off.
+ * TOTAL days spent inside the global Top 10, and the chart the count was read
+ * off. A total, not a streak: the song left the Top 10 for five charts (7–11
+ * Sep: No. 11, 12, 14, 14, 11) and came back at No. 4 on 12 Sep.
  *
  * Was typed into both editions as a bare "72", inside a clause that then said
- * all three figures were "read the same day". Two of them now are not: this one
- * and the days-at-No. 1 total below both stop at the 28 Aug chart, while the
- * streak runs to 7 Sep. It cannot be carried forward either — the song is at
- * No. 11 on the 7 Sep chart, so the run inside the Top 10 ended somewhere in
- * between and this project does not publish a day it has not counted.
+ * all three figures were "read the same day"; for a while they were not, and
+ * the card carried two dates. 72 is sourced: the 30 Aug feed entry, reading
+ * the chart dated 28 August — "its 72nd day inside the Top 10 and, by the
+ * chart's own streak column, a 99th consecutive day on it". That entry is also
+ * why the streak column governs here rather than the feed's other day-counts,
+ * which are totals.
  *
- * 72 is sourced: the 30 Aug feed entry, reading the chart dated 28 August —
- * "its 72nd day inside the Top 10 and, by the chart's own streak column, a 99th
- * consecutive day on it". That entry is also why the streak column governs here
- * rather than the feed's other day-counts, which are totals.
+ * Then walked day by day at charts.spotify.com on 14 Sep 2026, from the 28 Aug
+ * chart (No. 3, streak 99 — the 72nd day) to the 13 Sep chart (No. 9, prev 4,
+ * streak 115, 2,580,521 streams). Eleven of the sixteen charts after 28 Aug
+ * had it at No. 10 or better — 29 Aug–6 Sep (2, 5, 8, 9, 9, 9, 6, 2, 6), then
+ * 12 and 13 Sep (4, 9). 72 + 11 = 83. kworb's all-time tally of the same chart
+ * (global_daily_totals, T10 column) reads 82 through 12 Sep: the same
+ * arithmetic from the other direction, and an independent check on the 72.
+ * Carry this forward only by reading the chart, and only ever as a total.
  */
-export const DAI_DAI_SPOTIFY_TOP10_DAYS = 72;
-export const DAI_DAI_SPOTIFY_TOP10_DAYS_AS_OF = "2026-08-28";
+export const DAI_DAI_SPOTIFY_TOP10_DAYS = 83;
+export const DAI_DAI_SPOTIFY_TOP10_DAYS_AS_OF = "2026-09-13";
 
 const longDate = (iso: string, locale: "en-GB" | "es-ES") =>
   new Date(`${iso}T12:00:00Z`).toLocaleDateString(locale, {
@@ -194,7 +218,9 @@ const longDate = (iso: string, locale: "en-GB" | "es-ES") =>
   });
 
 /**
- * THE ANCHORS HAVE SPLIT, so the card prints two dates rather than one.
+ * THE ANCHORS SPLIT ONCE (7–14 Sep 2026), so the card prints each figure under
+ * its own date rather than one shared one; they have since re-converged on the
+ * 13 Sep chart, and the two stamps print the same date until they split again.
  *
  * There used to be a single DAI_DAI_SPOTIFY_READ_ON here, defined as the OLDER
  * of the streak and No. 1 anchors, on the reasoning that a shared date could
@@ -212,9 +238,14 @@ const longDate = (iso: string, locale: "en-GB" | "es-ES") =>
  * liveClaims.test.ts asks for exactly this when the anchors diverge: give each
  * figure its own date in the card.
  */
+export const DAI_DAI_SPOTIFY_NO1_FIRST_LONG = longDate(DAI_DAI_SPOTIFY_NO1_FIRST_DAY, "en-GB");
+export const DAI_DAI_SPOTIFY_NO1_FIRST_LONG_ES = longDate(DAI_DAI_SPOTIFY_NO1_FIRST_DAY, "es-ES");
+export const DAI_DAI_SPOTIFY_NO1_LAST_LONG = longDate(DAI_DAI_SPOTIFY_NO1_LAST_DAY, "en-GB");
+export const DAI_DAI_SPOTIFY_NO1_LAST_LONG_ES = longDate(DAI_DAI_SPOTIFY_NO1_LAST_DAY, "es-ES");
 export const DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG = longDate(DAI_DAI_SPOTIFY_CONFIRMED_THROUGH, "en-GB");
 export const DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG_ES = longDate(DAI_DAI_SPOTIFY_CONFIRMED_THROUGH, "es-ES");
-/** The 28 Aug chart, which the No. 1 total and the Top 10 count both stop at. */
+/** The chart the No. 1 total and the Top 10 count both stop at — the same
+ *  chart as the streak again since 14 Sep 2026 (all three read off 13 Sep). */
 export const DAI_DAI_SPOTIFY_NO1_READ_ON_LONG = longDate(DAI_DAI_SPOTIFY_NO1_DAYS_AS_OF, "en-GB");
 export const DAI_DAI_SPOTIFY_NO1_READ_ON_LONG_ES = longDate(DAI_DAI_SPOTIFY_NO1_DAYS_AS_OF, "es-ES");
 
