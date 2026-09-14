@@ -51,8 +51,8 @@
           {
             "country": "RU",
             "name": "Russia",
-            "position": 7,
-            "movement": 0
+            "position": 8,
+            "movement": -3
           },
           {
             "country": "BF",
@@ -63,7 +63,7 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 105,
+            "position": 74,
             "movement": null,
             "status": "new"
           }
@@ -107,8 +107,8 @@
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 91,
-            "movement": -16
+            "position": 89,
+            "movement": 2
           }
         ]
       }
@@ -187,25 +187,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/ba3181c9fe6a8e7e725a04506efb1dda/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Beggie Beggie",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 161,
-            "movement": -13
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b922c719d3a9901f749140e8f532a8d0/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "La La",
     "platforms": [
       {
@@ -215,33 +196,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 172,
-            "movement": 1
+            "position": 177,
+            "movement": -5
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "forever",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 180,
-            "movement": -146
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/73e10a485de513f9c18f87575ae66d58/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "love nwantiti (ah ah ah)",
