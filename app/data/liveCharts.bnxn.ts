@@ -177,7 +177,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 28,
+            "position": 48,
             "movement": null,
             "status": "new"
           }
@@ -190,8 +190,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 15,
-            "movement": -5
+            "position": 11,
+            "movement": 4
           }
         ]
       },
@@ -311,6 +311,19 @@
         ]
       },
       {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 95,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
         "platform": "YouTube",
         "numberOnes": 0,
         "entries": [
@@ -402,8 +415,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 162,
-            "movement": -140
+            "position": 182,
+            "movement": -145
           }
         ]
       }
@@ -727,7 +740,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 43,
+            "position": 63,
             "movement": null,
             "status": "new"
           }
@@ -1055,7 +1068,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 38,
-            "movement": -19
+            "movement": -14
           }
         ]
       }
@@ -1149,7 +1162,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 118,
+            "position": 117,
             "movement": 2
           }
         ]

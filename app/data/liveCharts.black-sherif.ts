@@ -311,7 +311,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 49,
-            "movement": -19
+            "movement": -14
           }
         ]
       },
@@ -361,7 +361,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 22,
-            "movement": -19
+            "movement": -14
           }
         ]
       },
@@ -411,7 +411,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 157,
-            "movement": -16
+            "movement": -12
           }
         ]
       },
@@ -460,7 +460,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 39,
-            "movement": -19
+            "movement": -14
           }
         ]
       }
@@ -498,7 +498,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 166,
-            "movement": -16
+            "movement": -12
           }
         ]
       }
@@ -718,7 +718,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 66,
-            "movement": -20
+            "movement": -14
           }
         ]
       }
@@ -806,7 +806,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 116,
-            "movement": -18
+            "movement": -13
           }
         ]
       }

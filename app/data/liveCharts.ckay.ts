@@ -51,8 +51,8 @@
           {
             "country": "RU",
             "name": "Russia",
-            "position": 8,
-            "movement": -2
+            "position": 7,
+            "movement": 0
           },
           {
             "country": "BF",
@@ -61,15 +61,9 @@
             "movement": -9
           },
           {
-            "country": "IL",
-            "name": "Israel",
-            "position": 72,
-            "movement": -71
-          },
-          {
-            "country": "CO",
-            "name": "Colombia",
-            "position": 97,
+            "country": "IN",
+            "name": "India",
+            "position": 105,
             "movement": null,
             "status": "new"
           }
@@ -123,6 +117,38 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "BODY (danz)",
+    "kind": "song",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 25,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 42,
+            "movement": 0
+          }
+        ]
+      }
+    ],
+    "cover": "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "SHEGE",
     "platforms": [
       {
@@ -132,9 +158,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 76,
-            "movement": null,
-            "status": "new"
+            "position": 94,
+            "movement": -18
           }
         ]
       }
@@ -209,8 +234,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 160,
-            "movement": -141
+            "position": 180,
+            "movement": -146
           }
         ]
       }
@@ -219,23 +244,44 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/73e10a485de513f9c18f87575ae66d58/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "BODY (danz)",
+    "title": "love nwantiti (ah ah ah)",
     "kind": "song",
     "platforms": [
       {
-        "platform": "YouTube",
+        "platform": "Deezer",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 42,
-            "movement": 0
+            "country": "JM",
+            "name": "Jamaica",
+            "position": 71,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
     ],
-    "cover": "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ed3944c139089af1359c26d78843d435/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "love nwantiti (feat. ElGrande Toto) (North African Remix)",
+    "kind": "song",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "MA",
+            "name": "Morocco",
+            "position": 32,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "cover": "https://cdn-images.dzcdn.net/images/cover/330629fb8b6242beb5a119f17ff52c9c/500x500-000000-80-0-0.jpg"
   }
 ];
   
