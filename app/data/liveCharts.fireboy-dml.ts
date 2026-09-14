@@ -427,7 +427,7 @@
             "country": "BW",
             "name": "Botswana",
             "position": 60,
-            "movement": 12
+            "movement": 13
           }
         ]
       },
@@ -470,8 +470,8 @@
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 67,
-            "movement": 1
+            "position": 68,
+            "movement": -1
           }
         ]
       }

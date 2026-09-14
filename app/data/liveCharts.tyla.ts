@@ -197,8 +197,8 @@
           {
             "country": "BR",
             "name": "Brazil",
-            "position": 171,
-            "movement": -34
+            "position": 180,
+            "movement": -40
           },
           {
             "country": "LC",
@@ -237,8 +237,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 21,
-            "movement": -8
+            "position": 31,
+            "movement": -12
           }
         ]
       }
@@ -285,16 +285,15 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "CH",
-            "name": "Switzerland",
-            "position": 128,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "US",
             "name": "United States",
-            "position": 175,
+            "position": 152,
+            "movement": 20
+          },
+          {
+            "country": "CH",
+            "name": "Switzerland",
+            "position": 163,
             "movement": null,
             "status": "new"
           }
@@ -459,19 +458,6 @@
             "movement": 104
           }
         ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 183,
-            "movement": null,
-            "status": "new"
-          }
-        ]
       }
     ],
     "kind": "song",
@@ -526,7 +512,7 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 71,
+            "position": 72,
             "movement": -2
           }
         ]

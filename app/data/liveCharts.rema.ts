@@ -271,13 +271,13 @@
             "country": "ZW",
             "name": "Zimbabwe",
             "position": 27,
-            "movement": -8
+            "movement": -5
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 132,
-            "movement": -118
+            "position": 165,
+            "movement": -140
           }
         ]
       },
@@ -379,7 +379,7 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 34,
+            "position": 35,
             "movement": 31
           },
           {
@@ -421,14 +421,14 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 9,
-            "movement": -3
+            "position": 10,
+            "movement": -4
           },
           {
             "country": "BW",
             "name": "Botswana",
             "position": 61,
-            "movement": 12
+            "movement": 13
           }
         ]
       },
@@ -591,13 +591,6 @@
             "movement": 9
           },
           {
-            "country": "VN",
-            "name": "Vietnam",
-            "position": 148,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "CA",
             "name": "Canada",
             "position": 159,
@@ -615,6 +608,12 @@
             "name": "Portugal",
             "position": 171,
             "movement": 20
+          },
+          {
+            "country": "VN",
+            "name": "Vietnam",
+            "position": 174,
+            "movement": -26
           }
         ]
       },
@@ -1092,20 +1091,19 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 24,
-            "movement": 1
+            "position": 27,
+            "movement": 0
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 59,
-            "movement": null,
-            "status": "new"
+            "position": 64,
+            "movement": -5
           },
           {
             "country": "IE",
             "name": "Ireland",
-            "position": 87,
+            "position": 112,
             "movement": null,
             "status": "new"
           }
@@ -1395,20 +1393,20 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 12,
-            "movement": 6
+            "position": 16,
+            "movement": 13
           },
           {
             "country": "BW",
             "name": "Botswana",
             "position": 53,
-            "movement": 9
+            "movement": 10
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 91,
-            "movement": -26
+            "position": 92,
+            "movement": -18
           }
         ]
       },
@@ -1727,16 +1725,17 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "CH",
-            "name": "Switzerland",
-            "position": 105,
-            "movement": 24
-          },
-          {
             "country": "US",
             "name": "United States",
-            "position": 125,
+            "position": 81,
             "movement": 50
+          },
+          {
+            "country": "CH",
+            "name": "Switzerland",
+            "position": 130,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -1755,7 +1754,7 @@
             "country": "CV",
             "name": "Cape Verde",
             "position": 9,
-            "movement": -4
+            "movement": 0
           }
         ]
       },
@@ -1810,8 +1809,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 91,
-            "movement": 0
+            "position": 93,
+            "movement": -2
           }
         ]
       }
@@ -1829,14 +1828,34 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 37,
-            "movement": -22
+            "position": 38,
+            "movement": -19
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/e4c2c39678f951dd57f09d2e98cd4062/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "BUBALU",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "PE",
+            "name": "Peru",
+            "position": 71,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/56f2de197c8f55917c66611779ff876c/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "DND",
