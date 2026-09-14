@@ -496,19 +496,20 @@
             "country": "GH",
             "name": "Ghana",
             "position": 13,
-            "movement": -8
+            "movement": -5
           },
           {
-            "country": "MU",
-            "name": "Mauritius",
-            "position": 93,
-            "movement": -7
+            "country": "PT",
+            "name": "Portugal",
+            "position": 36,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 95,
-            "movement": -79
+            "position": 106,
+            "movement": -88
           }
         ]
       },
@@ -519,7 +520,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 19,
+            "position": 20,
             "movement": -1
           }
         ]
@@ -719,12 +720,6 @@
             "name": "St. Lucia",
             "position": 180,
             "movement": -137
-          },
-          {
-            "country": "CA",
-            "name": "Canada",
-            "position": 188,
-            "movement": -19
           }
         ]
       }
@@ -794,19 +789,6 @@
             "movement": 10
           }
         ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 199,
-            "movement": null,
-            "status": "new"
-          }
-        ]
       }
     ],
     "kind": "song",
@@ -852,8 +834,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 52,
-            "movement": 5
+            "position": 58,
+            "movement": -6
           }
         ]
       },
@@ -926,8 +908,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 84,
-            "movement": -1
+            "position": 89,
+            "movement": -5
           }
         ]
       },
@@ -1020,8 +1002,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 46,
-            "movement": -1
+            "position": 41,
+            "movement": 5
           }
         ]
       },
@@ -1108,8 +1090,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 181,
-            "movement": -49
+            "position": 152,
+            "movement": 29
           }
         ]
       },
@@ -1202,8 +1184,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 133,
-            "movement": -3
+            "position": 155,
+            "movement": -22
           }
         ]
       }
@@ -1250,25 +1232,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/42248d8b06dd650f1f1f6eafcca490e0/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "PITY THIS BOY",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 124,
-            "movement": -31
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/92d9434341384d2ebdca52fd613a18d6/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Hello",
     "platforms": [
       {
@@ -1278,14 +1241,33 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 132,
-            "movement": -10
+            "position": 135,
+            "movement": -3
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/56bbf7807715d0374f6b8084268052e2/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "PITY THIS BOY",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 150,
+            "movement": -26
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/92d9434341384d2ebdca52fd613a18d6/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "OHEMA",

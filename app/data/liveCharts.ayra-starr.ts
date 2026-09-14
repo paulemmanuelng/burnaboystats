@@ -412,25 +412,19 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 3,
-            "movement": 81
+            "movement": 95
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
             "position": 10,
-            "movement": -9
+            "movement": -8
           },
           {
             "country": "GH",
             "name": "Ghana",
             "position": 55,
-            "movement": -12
-          },
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 57,
-            "movement": -24
+            "movement": -8
           },
           {
             "country": "ZW",
@@ -439,16 +433,22 @@
             "movement": -16
           },
           {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 72,
+            "movement": -38
+          },
+          {
             "country": "UG",
             "name": "Uganda",
             "position": 75,
-            "movement": -7
+            "movement": -6
           },
           {
             "country": "GD",
             "name": "Grenada",
             "position": 82,
-            "movement": -14
+            "movement": -4
           }
         ]
       },
@@ -501,8 +501,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 24,
-            "movement": 5
+            "position": 31,
+            "movement": -7
           }
         ]
       },
@@ -805,8 +805,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 148,
-            "movement": 13
+            "position": 142,
+            "movement": 18
           },
           {
             "country": "VG",
@@ -938,8 +938,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 42,
-            "movement": 4
+            "position": 46,
+            "movement": -4
           }
         ]
       },
@@ -951,7 +951,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 14,
-            "movement": -9
+            "movement": -8
           }
         ]
       },
@@ -1079,7 +1079,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 18,
+            "position": 19,
             "movement": -1
           }
         ]
@@ -1091,8 +1091,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 8,
-            "movement": 86
+            "position": 9,
+            "movement": 99
           }
         ]
       },
@@ -1255,8 +1255,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 53,
-            "movement": 3
+            "position": 66,
+            "movement": -13
           }
         ]
       }
@@ -1341,8 +1341,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 138,
-            "movement": 3
+            "position": 157,
+            "movement": -19
           }
         ]
       }
@@ -1367,25 +1367,25 @@
             "country": "SZ",
             "name": "Swaziland",
             "position": 20,
-            "movement": 1
+            "movement": 2
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
             "position": 30,
-            "movement": -9
+            "movement": -8
           },
           {
             "country": "AG",
             "name": "Antigua and Barbuda",
-            "position": 47,
-            "movement": -1
+            "position": 46,
+            "movement": 0
           },
           {
             "country": "UG",
             "name": "Uganda",
             "position": 96,
-            "movement": 2
+            "movement": 3
           }
         ]
       },
@@ -1560,7 +1560,7 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 117,
+            "position": 119,
             "movement": 7
           },
           {
@@ -1749,146 +1749,19 @@
             "country": "MZ",
             "name": "Mozambique",
             "position": 4,
-            "movement": -3
+            "movement": -1
           },
           {
             "country": "IT",
             "name": "Italy",
-            "position": 36,
-            "movement": -16
+            "position": 43,
+            "movement": -29
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/c4c1696f82feac0a7fa1e26379b9f7e2/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Ms. Paper",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 32,
-            "movement": 81
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 107,
-            "movement": 2
-          },
-          {
-            "country": "DM",
-            "name": "Dominica",
-            "position": 178,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 169,
-            "movement": 4
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 148,
-            "movement": -51
-          }
-        ]
-      },
-      {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 85,
-            "movement": null,
-            "status": "re"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/64f822132d39a3677d59f745a248a2ce/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Misunderstood",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 51,
-            "movement": 40
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 53,
-            "movement": -1
-          },
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 141,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "MW",
-            "name": "Malawi",
-            "position": 169,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "SB",
-            "name": "Solomon Islands",
-            "position": 189,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 156,
-            "movement": 7
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/64f822132d39a3677d59f745a248a2ce/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Hot Body",
@@ -2035,52 +1908,99 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/64f822132d39a3677d59f745a248a2ce/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Dangerous",
+    "title": "Ms. Paper",
     "platforms": [
       {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 32,
+            "movement": 81
+          },
+          {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 98,
-            "movement": -27
+            "position": 107,
+            "movement": 2
+          },
+          {
+            "country": "DM",
+            "name": "Dominica",
+            "position": 178,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 148,
+            "movement": -51
+          }
+        ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 85,
+            "movement": null,
+            "status": "re"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/64f822132d39a3677d59f745a248a2ce/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Misunderstood",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 51,
+            "movement": 40
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 53,
+            "movement": -1
           },
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 103,
-            "movement": -15
+            "position": 141,
+            "movement": null,
+            "status": "new"
           },
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 188,
-            "movement": 8
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
+            "country": "MW",
+            "name": "Malawi",
+            "position": 169,
+            "movement": null,
+            "status": "new"
+          },
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 173,
-            "movement": 11
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 36,
+            "country": "SB",
+            "name": "Solomon Islands",
+            "position": 189,
             "movement": null,
             "status": "new"
           }
@@ -2131,8 +2051,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 136,
-            "movement": -102
+            "position": 147,
+            "movement": -106
           }
         ]
       }
@@ -2237,6 +2157,50 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/d096ea1c1019d1af67c0a2e434890e1e/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Dangerous",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 98,
+            "movement": -27
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 103,
+            "movement": -15
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 188,
+            "movement": 8
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 36,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/64f822132d39a3677d59f745a248a2ce/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Amazing",
     "platforms": [
       {
@@ -2304,8 +2268,8 @@
           {
             "country": "DM",
             "name": "Dominica",
-            "position": 32,
-            "movement": -1
+            "position": 31,
+            "movement": 0
           }
         ]
       }
@@ -2323,8 +2287,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 179,
-            "movement": 8
+            "position": 196,
+            "movement": -17
           }
         ]
       },
@@ -2347,7 +2311,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 94,
+            "position": 105,
             "movement": null,
             "status": "new"
           }
@@ -2367,8 +2331,8 @@
           {
             "country": "PA",
             "name": "Panama",
-            "position": 158,
-            "movement": 1
+            "position": 161,
+            "movement": -3
           }
         ]
       },
@@ -2423,7 +2387,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 12,
+            "position": 13,
             "movement": null,
             "status": "new"
           }
@@ -2496,25 +2460,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/227c27e8b3db2fc1be8808745b5c9fc1/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Love Don't Cost A Dime",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 95,
-            "movement": -24
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/37efb43b4704415ff51e98e357041982/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Escaladizzy II",

@@ -183,13 +183,6 @@
             "status": "new"
           },
           {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 174,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "KN",
             "name": "Saint Kitts and Nevis",
             "position": 188,
@@ -229,9 +222,8 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 40,
-            "movement": null,
-            "status": "new"
+            "position": 68,
+            "movement": -63
           }
         ]
       }
@@ -287,16 +279,15 @@
           {
             "country": "NO",
             "name": "Norway",
-            "position": 85,
+            "position": 99,
             "movement": null,
             "status": "new"
           },
           {
             "country": "US",
             "name": "United States",
-            "position": 180,
-            "movement": null,
-            "status": "new"
+            "position": 187,
+            "movement": 12
           }
         ]
       },
@@ -512,7 +503,7 @@
             "country": "UG",
             "name": "Uganda",
             "position": 73,
-            "movement": -2
+            "movement": -1
           }
         ]
       },

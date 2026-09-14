@@ -165,8 +165,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 13,
-            "movement": -1
+            "position": 12,
+            "movement": 1
           }
         ]
       },
@@ -177,7 +177,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 10,
+            "position": 11,
             "movement": null,
             "status": "new"
           }
@@ -287,8 +287,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 26,
-            "movement": 1
+            "position": 28,
+            "movement": -2
           }
         ]
       },
@@ -398,8 +398,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 65,
-            "movement": 5
+            "position": 68,
+            "movement": -3
           }
         ]
       }
@@ -596,8 +596,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 39,
-            "movement": 0
+            "position": 42,
+            "movement": -3
           }
         ]
       }
@@ -646,8 +646,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 84,
-            "movement": -1
+            "position": 89,
+            "movement": -5
           }
         ]
       }
@@ -797,7 +797,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 108,
+            "position": 119,
             "movement": null,
             "status": "new"
           }
@@ -817,8 +817,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 115,
-            "movement": 13
+            "position": 100,
+            "movement": 15
           }
         ]
       },
@@ -848,7 +848,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 75,
+            "position": 74,
             "movement": 1
           }
         ]
@@ -904,8 +904,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 139,
-            "movement": -3
+            "position": 122,
+            "movement": 17
           }
         ]
       },
@@ -992,33 +992,13 @@
             "country": "UG",
             "name": "Uganda",
             "position": 5,
-            "movement": null,
-            "status": "new"
+            "movement": -3
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/82813fcf300b4a32405e93fdaa89a5dd/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "GWAGWALADA",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 96,
-            "movement": 15
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/7f89da381e2508e30a82f7dc2d18287f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Oshey",
@@ -1060,6 +1040,25 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/47b72924cef36764e12e24f894bb0bd9/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "GWAGWALADA",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 128,
+            "movement": -32
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/7f89da381e2508e30a82f7dc2d18287f/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Fi Kan We Kan",
     "platforms": [
       {
@@ -1070,7 +1069,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 42,
-            "movement": -12
+            "movement": -8
           }
         ]
       }
@@ -1088,8 +1087,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 182,
-            "movement": -5
+            "position": 175,
+            "movement": 7
           }
         ]
       }
@@ -1107,8 +1106,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 73,
-            "movement": -4
+            "position": 74,
+            "movement": -5
           }
         ]
       }
@@ -1165,7 +1164,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 118,
+            "position": 117,
             "movement": 2
           }
         ]

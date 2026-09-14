@@ -52,18 +52,18 @@
             "country": "RU",
             "name": "Russia",
             "position": 8,
-            "movement": -3
+            "movement": -2
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
             "position": 52,
-            "movement": -9
+            "movement": -8
           },
           {
             "country": "IN",
             "name": "India",
-            "position": 74,
+            "position": 102,
             "movement": null,
             "status": "new"
           }
@@ -76,8 +76,8 @@
           {
             "country": "MA",
             "name": "Morocco",
-            "position": 149,
-            "movement": 21
+            "position": 158,
+            "movement": -9
           }
         ]
       }
@@ -95,8 +95,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 95,
-            "movement": 4
+            "position": 107,
+            "movement": -12
           }
         ]
       },
@@ -185,6 +185,26 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ba3181c9fe6a8e7e725a04506efb1dda/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Ma chérie",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 129,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/55b9f4eb11ddba289b4a1650701941d4/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "La La",

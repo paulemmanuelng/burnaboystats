@@ -255,8 +255,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 13,
-            "movement": 79
+            "position": 14,
+            "movement": 92
           },
           {
             "country": "ZW",
@@ -426,13 +426,13 @@
             "country": "UG",
             "name": "Uganda",
             "position": 12,
-            "movement": -5
+            "movement": -4
           },
           {
             "country": "BW",
             "name": "Botswana",
             "position": 62,
-            "movement": -2
+            "movement": -1
           }
         ]
       },
@@ -461,8 +461,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 14,
-            "movement": 1
+            "position": 15,
+            "movement": -1
           }
         ]
       },
@@ -604,18 +604,6 @@
             "name": "Vietnam",
             "position": 174,
             "movement": -26
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "AE",
-            "name": "United Arab Emirates",
-            "position": 197,
-            "movement": -25
           }
         ]
       }
@@ -1000,13 +988,13 @@
             "country": "SZ",
             "name": "Swaziland",
             "position": 24,
-            "movement": 3
+            "movement": 1
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 64,
-            "movement": -6
+            "position": 63,
+            "movement": -4
           }
         ]
       }
@@ -1091,8 +1079,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 138,
-            "movement": 3
+            "position": 157,
+            "movement": -19
           }
         ]
       }
@@ -1243,19 +1231,6 @@
             "movement": 10
           }
         ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 199,
-            "movement": null,
-            "status": "new"
-          }
-        ]
       }
     ],
     "kind": "song",
@@ -1301,20 +1276,20 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 9,
-            "movement": 87
+            "position": 10,
+            "movement": -1
           },
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 54,
-            "movement": -5
+            "position": 51,
+            "movement": -1
           },
           {
             "country": "GH",
             "name": "Ghana",
             "position": 96,
-            "movement": -12
+            "movement": -8
           }
         ]
       },
@@ -1325,8 +1300,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 151,
-            "movement": -7
+            "position": 173,
+            "movement": -22
           }
         ]
       }
@@ -1583,8 +1558,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 34,
-            "movement": -1
+            "position": 39,
+            "movement": -5
           }
         ]
       },
@@ -1689,8 +1664,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 121,
-            "movement": 32
+            "position": 141,
+            "movement": -20
           }
         ]
       }
@@ -1741,15 +1716,8 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 107,
-            "movement": 86
-          },
-          {
-            "country": "TH",
-            "name": "Thailand",
-            "position": 169,
-            "movement": null,
-            "status": "new"
+            "position": 90,
+            "movement": 79
           }
         ]
       }
@@ -1786,8 +1754,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 94,
-            "movement": -3
+            "position": 96,
+            "movement": -5
           }
         ]
       }
@@ -1816,26 +1784,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/4891a944de9418f059cabda0c7699160/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Oroma Baby",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 41,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/e43cc1d22a556fa87272c55c933bb4d7/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Fi Kan We Kan",
     "platforms": [
       {
@@ -1846,13 +1794,33 @@
             "country": "GH",
             "name": "Ghana",
             "position": 42,
-            "movement": -12
+            "movement": -8
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/e4c2c39678f951dd57f09d2e98cd4062/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Oroma Baby",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 48,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/e43cc1d22a556fa87272c55c933bb4d7/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Dumebi",
@@ -1903,7 +1871,7 @@
           {
             "country": "RO",
             "name": "Romania",
-            "position": 61,
+            "position": 85,
             "movement": null,
             "status": "new"
           }
@@ -1923,7 +1891,7 @@
           {
             "country": "PE",
             "name": "Peru",
-            "position": 170,
+            "position": 183,
             "movement": null,
             "status": "new"
           }

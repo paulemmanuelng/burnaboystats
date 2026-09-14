@@ -509,7 +509,7 @@
             "country": "BW",
             "name": "Botswana",
             "position": 61,
-            "movement": -2
+            "movement": -1
           }
         ]
       }
