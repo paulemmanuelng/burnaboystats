@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-13";
+  export const liveChartsUpdated = "2026-09-14";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -270,14 +270,14 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 26,
-            "movement": -7
+            "position": 27,
+            "movement": -8
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 113,
-            "movement": -99
+            "position": 132,
+            "movement": -118
           }
         ]
       },
@@ -421,8 +421,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 8,
-            "movement": -2
+            "position": 9,
+            "movement": -3
           },
           {
             "country": "BW",
@@ -1092,8 +1092,8 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 25,
-            "movement": 3
+            "position": 24,
+            "movement": 1
           },
           {
             "country": "BF",
@@ -1105,7 +1105,7 @@
           {
             "country": "IE",
             "name": "Ireland",
-            "position": 73,
+            "position": 87,
             "movement": null,
             "status": "new"
           }
@@ -1395,20 +1395,20 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 11,
-            "movement": 7
+            "position": 12,
+            "movement": 6
           },
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 50,
-            "movement": 12
+            "position": 53,
+            "movement": 9
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 88,
-            "movement": -23
+            "position": 91,
+            "movement": -26
           }
         ]
       },
@@ -1729,14 +1729,14 @@
           {
             "country": "CH",
             "name": "Switzerland",
-            "position": 82,
-            "movement": 47
+            "position": 105,
+            "movement": 24
           },
           {
             "country": "US",
             "name": "United States",
-            "position": 169,
-            "movement": 6
+            "position": 125,
+            "movement": 50
           }
         ]
       }
@@ -1829,8 +1829,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 34,
-            "movement": -19
+            "position": 37,
+            "movement": -22
           }
         ]
       }

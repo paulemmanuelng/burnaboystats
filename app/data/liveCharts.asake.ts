@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-13";
+  export const liveChartsUpdated = "2026-09-14";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -339,16 +339,16 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 80,
-            "movement": -11
-          },
-          {
             "country": "ZA",
             "name": "South Africa",
-            "position": 85,
-            "movement": -74
+            "position": 102,
+            "movement": -91
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 135,
+            "movement": -65
           }
         ]
       }
@@ -563,6 +563,19 @@
         ]
       },
       {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 20,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
         "platform": "Deezer",
         "numberOnes": 0,
         "entries": [
@@ -738,8 +751,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 33,
-            "movement": -19
+            "position": 36,
+            "movement": -22
           }
         ]
       },
@@ -939,7 +952,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 45,
-            "movement": -8
+            "movement": -7
           }
         ]
       }
@@ -1577,18 +1590,6 @@
             "position": 140,
             "movement": null,
             "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 139,
-            "movement": -56
           }
         ]
       }
@@ -2327,8 +2328,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 144,
-            "movement": -23
+            "position": 147,
+            "movement": -26
           }
         ]
       }
@@ -2564,8 +2565,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 3,
-            "movement": -1
+            "position": 5,
+            "movement": -3
           }
         ]
       }
@@ -2883,14 +2884,14 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 74,
+            "position": 72,
             "movement": null,
             "status": "new"
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 120,
+            "position": 138,
             "movement": null,
             "status": "new"
           }
@@ -3035,7 +3036,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 58,
-            "movement": -8
+            "movement": -7
           }
         ]
       }
@@ -3565,7 +3566,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 161,
+            "position": 178,
             "movement": null,
             "status": "new"
           }
@@ -3867,7 +3868,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 165,
+            "position": 182,
             "movement": null,
             "status": "new"
           }
@@ -3940,7 +3941,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 5,
-            "movement": -3
+            "movement": -2
           },
           {
             "country": "NG",
@@ -4675,8 +4676,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 114,
-            "movement": -99
+            "position": 133,
+            "movement": -118
           }
         ]
       }

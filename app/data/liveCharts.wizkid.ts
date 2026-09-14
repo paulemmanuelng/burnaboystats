@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-13";
+  export const liveChartsUpdated = "2026-09-14";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -286,8 +286,8 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 183,
-            "movement": 14
+            "position": 187,
+            "movement": 10
           }
         ]
       },
@@ -298,8 +298,8 @@
           {
             "country": "PH",
             "name": "Philippines",
-            "position": 33,
-            "movement": 119
+            "position": 35,
+            "movement": 117
           }
         ]
       },
@@ -640,8 +640,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 132,
-            "movement": -103
+            "position": 149,
+            "movement": -120
           }
         ]
       }
@@ -764,20 +764,20 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 67,
-            "movement": 1
+            "position": 65,
+            "movement": 3
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 78,
-            "movement": 1
+            "position": 70,
+            "movement": 11
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 81,
-            "movement": -3
+            "position": 79,
+            "movement": -1
           }
         ]
       }
@@ -1150,7 +1150,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 58,
-            "movement": -8
+            "movement": -7
           }
         ]
       }
@@ -1682,7 +1682,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 5,
-            "movement": -3
+            "movement": -2
           },
           {
             "country": "NG",
@@ -1829,8 +1829,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 135,
-            "movement": 4
+            "position": 124,
+            "movement": 16
           }
         ]
       }
@@ -1968,8 +1968,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 49,
-            "movement": 2
+            "position": 47,
+            "movement": 4
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 83,
+            "movement": 16
           },
           {
             "country": "GD",
@@ -1978,16 +1984,10 @@
             "movement": 1
           },
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 92,
-            "movement": 6
-          },
-          {
             "country": "UG",
             "name": "Uganda",
-            "position": 96,
-            "movement": 1
+            "position": 95,
+            "movement": 2
           }
         ]
       }
@@ -2123,7 +2123,7 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 39,
+            "position": 40,
             "movement": -3
           }
         ]
@@ -2319,44 +2319,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/cbd8af17625915ac863ee340498d5d9f/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Bad Girl",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 114,
-            "movement": -99
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Blessed",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 118,
-            "movement": -97
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Stay For The Night",
     "platforms": [
       {
@@ -2376,6 +2338,25 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/27ab85a0fa9ffa1c5a337c8e8ce43194/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Bad Girl",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 133,
+            "movement": -118
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Final",
     "platforms": [
       {
@@ -2393,6 +2374,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/3cda4cca35e5a322d6ad9e71c49dbecf/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Blessed",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 136,
+            "movement": -115
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "In My Bed",
@@ -2462,8 +2462,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 181,
-            "movement": -20
+            "position": 184,
+            "movement": -23
           }
         ]
       }
@@ -2500,8 +2500,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 150,
-            "movement": -109
+            "position": 167,
+            "movement": -126
           }
         ]
       }

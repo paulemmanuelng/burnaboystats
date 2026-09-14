@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-13";
+  export const liveChartsUpdated = "2026-09-14";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","YouTube","iTunes"];
@@ -182,12 +182,6 @@
             "movement": 43
           },
           {
-            "country": "BR",
-            "name": "Brazil",
-            "position": 160,
-            "movement": -22
-          },
-          {
             "country": "QA",
             "name": "Qatar",
             "position": 160,
@@ -199,6 +193,12 @@
             "position": 161,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "BR",
+            "name": "Brazil",
+            "position": 171,
+            "movement": -34
           },
           {
             "country": "LC",
@@ -230,7 +230,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 5,
+            "position": 6,
             "movement": null,
             "status": "new"
           },
@@ -238,7 +238,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 21,
-            "movement": -9
+            "movement": -8
           }
         ]
       }
@@ -287,14 +287,14 @@
           {
             "country": "CH",
             "name": "Switzerland",
-            "position": 98,
+            "position": 128,
             "movement": null,
             "status": "new"
           },
           {
             "country": "US",
             "name": "United States",
-            "position": 199,
+            "position": 175,
             "movement": null,
             "status": "new"
           }
@@ -392,8 +392,8 @@
           {
             "country": "RO",
             "name": "Romania",
-            "position": 55,
-            "movement": -14
+            "position": 60,
+            "movement": -17
           },
           {
             "country": "BG",
@@ -467,7 +467,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 159,
+            "position": 183,
             "movement": null,
             "status": "new"
           }
@@ -476,26 +476,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Breathe Me",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 198,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "CHANEL",
@@ -546,8 +526,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 72,
-            "movement": -4
+            "position": 71,
+            "movement": -2
           }
         ]
       }

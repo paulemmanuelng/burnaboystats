@@ -21,6 +21,12 @@
     "release": "As We Get High",
     "platform": "Shazam",
     "position": 199
+  },
+  {
+    "date": "2026-09-14",
+    "release": "As We Get High",
+    "platform": "Shazam",
+    "position": 199
   }
 ];
   

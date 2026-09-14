@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-13";
+  export const liveChartsUpdated = "2026-09-14";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -590,8 +590,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 44,
-            "movement": -24
+            "position": 47,
+            "movement": -27
           }
         ]
       },
@@ -1109,6 +1109,19 @@
             "movement": -69
           }
         ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 95,
+            "movement": null,
+            "status": "new"
+          }
+        ]
       }
     ],
     "kind": "song",
@@ -1199,8 +1212,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 79,
-            "movement": 1
+            "position": 82,
+            "movement": -2
           },
           {
             "country": "BE",

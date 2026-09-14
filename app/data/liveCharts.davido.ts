@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-13";
+  export const liveChartsUpdated = "2026-09-14";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -242,7 +242,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 115,
+            "position": 126,
             "movement": null,
             "status": "new"
           }
@@ -490,8 +490,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 16,
-            "movement": 161
+            "position": 19,
+            "movement": 158
           }
         ]
       },
@@ -687,8 +687,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 84,
-            "movement": -3
+            "position": 85,
+            "movement": -11
           }
         ]
       }
@@ -967,7 +967,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 33,
+            "position": 41,
             "movement": null,
             "status": "new"
           }
@@ -1093,8 +1093,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 44,
-            "movement": -24
+            "position": 47,
+            "movement": -27
           }
         ]
       },
@@ -1364,6 +1364,18 @@
             "name": "Nigeria",
             "position": 43,
             "movement": 5
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 17,
+            "movement": 141
           }
         ]
       },
@@ -1762,7 +1774,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 161,
+            "position": 178,
             "movement": null,
             "status": "new"
           }
@@ -1875,13 +1887,13 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 17,
-            "movement": 0
+            "position": 15,
+            "movement": 2
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 52,
+            "position": 51,
             "movement": null,
             "status": "new"
           },
@@ -2031,7 +2043,7 @@
           {
             "country": "ES",
             "name": "Spain",
-            "position": 137,
+            "position": 148,
             "movement": null,
             "status": "new"
           }
@@ -2099,8 +2111,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 187,
-            "movement": 7
+            "position": 173,
+            "movement": 22
           }
         ]
       }
@@ -2173,8 +2185,8 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 15,
-            "movement": 0
+            "position": 13,
+            "movement": 2
           },
           {
             "country": "NE",
@@ -2185,8 +2197,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 41,
-            "movement": 18
+            "position": 43,
+            "movement": 16
           },
           {
             "country": "MZ",
@@ -2316,7 +2328,7 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 57,
+            "position": 56,
             "movement": null,
             "status": "new"
           }
@@ -2529,8 +2541,8 @@
           {
             "country": "NE",
             "name": "Niger",
-            "position": 57,
-            "movement": 0
+            "position": 56,
+            "movement": 1
           }
         ]
       }
@@ -2665,8 +2677,8 @@
           {
             "country": "QA",
             "name": "Qatar",
-            "position": 95,
-            "movement": -25
+            "position": 96,
+            "movement": -26
           }
         ]
       }
@@ -2713,25 +2725,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/da0c3e984d1fa2b9c54158ee1a02fbd1/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Like Dat",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 135,
-            "movement": -103
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/999b76908ce8d84c0ca25eb5e58dc505/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Father",
     "platforms": [
       {
@@ -2749,25 +2742,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/329ae36eecf839ca2e82a46203a10cbc/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Tchelete",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 149,
-            "movement": -109
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/603c1798522c1b9fae27290d2e877f3f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Activate",
@@ -2789,6 +2763,25 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/1d5dfc880396e953e316456a394d7353/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Like Dat",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 152,
+            "movement": -120
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/999b76908ce8d84c0ca25eb5e58dc505/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Gallardo",
     "platforms": [
       {
@@ -2808,6 +2801,25 @@
     "kind": "song"
   },
   {
+    "title": "Tchelete",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 166,
+            "movement": -126
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/603c1798522c1b9fae27290d2e877f3f/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "The Sound",
     "platforms": [
       {
@@ -2817,8 +2829,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 176,
-            "movement": -117
+            "position": 193,
+            "movement": -134
           }
         ]
       }
