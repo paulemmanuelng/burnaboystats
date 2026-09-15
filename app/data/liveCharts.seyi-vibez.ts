@@ -135,8 +135,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 11,
-            "movement": -1
+            "position": 9,
+            "movement": 2
           }
         ]
       }
@@ -221,9 +221,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 3,
-            "movement": null,
-            "status": "new"
+            "position": 17,
+            "movement": -14
           }
         ]
       }
@@ -275,13 +274,26 @@
             "movement": -4
           }
         ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 44,
+            "movement": null,
+            "status": "re"
+          }
+        ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ff869559b2b6b876cc2b7811bb7e4436/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Bad Vibes",
+    "title": "99",
     "platforms": [
       {
         "platform": "Apple Music",
@@ -290,27 +302,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 112,
-            "movement": 4
+            "position": 120,
+            "movement": 6
           },
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 129,
-            "movement": 31
-          },
-          {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 176,
-            "movement": -49
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 196,
-            "movement": null,
-            "status": "new"
+            "position": 173,
+            "movement": 3
           }
         ]
       },
@@ -319,16 +318,35 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 12,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "NG",
             "name": "Nigeria",
-            "position": 189,
-            "movement": -142
+            "position": 151,
+            "movement": -138
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 84,
+            "movement": 2
           }
         ]
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/e61faaeb59320961cbd17a1ef7f9e6e7/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Thy Kingdom Come",
@@ -497,7 +515,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/aa8d9ee07662959c9f52b4e9282a0f54/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "99",
+    "title": "Bad Vibes",
     "platforms": [
       {
         "platform": "Apple Music",
@@ -506,44 +524,33 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 120,
-            "movement": 6
+            "position": 112,
+            "movement": 4
           },
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 173,
-            "movement": 3
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
+            "position": 129,
+            "movement": 31
+          },
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 84,
-            "movement": 2
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
+            "country": "BJ",
+            "name": "Benin",
+            "position": 176,
+            "movement": -49
+          },
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 134,
-            "movement": -125
+            "country": "LR",
+            "name": "Liberia",
+            "position": 196,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/e61faaeb59320961cbd17a1ef7f9e6e7/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Billion Dollar Baby 2.0",

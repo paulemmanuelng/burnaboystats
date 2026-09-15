@@ -389,64 +389,64 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 7,
-            "movement": -3
-          },
-          {
             "country": "AO",
             "name": "Angola",
-            "position": 10,
+            "position": 6,
+            "movement": 4
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 6,
             "movement": 1
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 10,
-            "movement": -2
+            "position": 11,
+            "movement": -1
           },
           {
             "country": "MU",
             "name": "Mauritius",
-            "position": 12,
-            "movement": 0
+            "position": 11,
+            "movement": 1
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 24,
-            "movement": 1
+            "position": 25,
+            "movement": -1
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 46,
-            "movement": -17
+            "position": 40,
+            "movement": 6
           },
           {
             "country": "LU",
             "name": "Luxembourg",
-            "position": 52,
-            "movement": -15
+            "position": 48,
+            "movement": 4
           },
           {
             "country": "ZW",
             "name": "Zimbabwe",
             "position": 60,
-            "movement": -15
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 73,
-            "movement": -7
+            "movement": 0
           },
           {
             "country": "TZ",
             "name": "Tanzania",
-            "position": 79,
-            "movement": -18
+            "position": 64,
+            "movement": 15
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 66,
+            "movement": 7
           }
         ]
       },
@@ -493,23 +493,24 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 14,
-            "movement": -6
-          },
-          {
-            "country": "PT",
-            "name": "Portugal",
-            "position": 40,
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 17,
             "movement": null,
             "status": "new"
           },
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 148,
-            "movement": -128
+            "country": "GH",
+            "name": "Ghana",
+            "position": 21,
+            "movement": -12
+          },
+          {
+            "country": "PT",
+            "name": "Portugal",
+            "position": 65,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -724,8 +725,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 198,
-            "movement": -5
+            "position": 183,
+            "movement": 10
           }
         ]
       }
@@ -864,8 +865,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 29,
-            "movement": -8
+            "position": 27,
+            "movement": 2
           }
         ]
       }
@@ -916,18 +917,6 @@
             "name": "Nigeria",
             "position": 89,
             "movement": -5
-          }
-        ]
-      },
-      {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 65,
-            "movement": -41
           }
         ]
       }
@@ -1024,18 +1013,6 @@
             "movement": 131
           }
         ]
-      },
-      {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 93,
-            "movement": -36
-          }
-        ]
       }
     ],
     "kind": "song",
@@ -1110,18 +1087,6 @@
             "name": "Nigeria",
             "position": 98,
             "movement": 1
-          }
-        ]
-      },
-      {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 64,
-            "movement": -33
           }
         ]
       }
@@ -1371,25 +1336,6 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b7f8a994a2879ad8100aab10404627a4/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "TOO LIT",
-    "kind": "song",
-    "platforms": [
-      {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 94,
-            "movement": -40
-          }
-        ]
-      }
-    ],
-    "cover": "https://cdn-images.dzcdn.net/images/cover/4446cd79abcc87206d5e47417ba9bde7/500x500-000000-80-0-0.jpg"
   }
 ];
   

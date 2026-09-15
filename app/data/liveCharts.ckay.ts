@@ -52,18 +52,18 @@
             "country": "RU",
             "name": "Russia",
             "position": 8,
-            "movement": -1
+            "movement": -2
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 52,
-            "movement": -8
+            "position": 53,
+            "movement": -1
           },
           {
             "country": "IN",
             "name": "India",
-            "position": 125,
+            "position": 128,
             "movement": null,
             "status": "new"
           }
@@ -140,8 +140,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 42,
-            "movement": 0
+            "position": 43,
+            "movement": -1
           }
         ]
       }
@@ -177,8 +177,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 59,
-            "movement": 0
+            "position": 57,
+            "movement": 2
           }
         ]
       }

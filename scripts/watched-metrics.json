@@ -161,7 +161,7 @@
         }
       ],
       "lastChanged": "2026-09-13",
-      "lastSeenValue": 1071495253,
+      "lastSeenValue": 1072489120,
       "lastSeenAt": "2026-09-15",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
@@ -193,7 +193,7 @@
         }
       ],
       "lastChanged": "2026-09-06",
-      "lastSeenValue": 363358476,
+      "lastSeenValue": 363371290,
       "lastSeenAt": "2026-09-15",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. Source moved off kworb on 28 Aug 2026: kworb.net/youtube/artist/burnaboy.html froze on 25 Aug, serving byte-identical totals for three days while still printing a ~105k/day view rate. The staleness alarm caught it. YouTube itself was 105k-309k views ahead on every one of the four."
@@ -225,7 +225,7 @@
         }
       ],
       "lastChanged": "2026-09-05",
-      "lastSeenValue": 310062967,
+      "lastSeenValue": 310070546,
       "lastSeenAt": "2026-09-15",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. Source moved off kworb on 28 Aug 2026: kworb.net/youtube/artist/burnaboy.html froze on 25 Aug, serving byte-identical totals for three days while still printing a ~105k/day view rate. The staleness alarm caught it. YouTube itself was 105k-309k views ahead on every one of the four."
@@ -257,7 +257,7 @@
         }
       ],
       "lastChanged": "2026-09-12",
-      "lastSeenValue": 481972677,
+      "lastSeenValue": 481986359,
       "lastSeenAt": "2026-09-15",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. Source moved off kworb on 28 Aug 2026: kworb.net/youtube/artist/burnaboy.html froze on 25 Aug, serving byte-identical totals for three days while still printing a ~105k/day view rate. The staleness alarm caught it. YouTube itself was 105k-309k views ahead on every one of the four."
@@ -289,7 +289,7 @@
         }
       ],
       "lastChanged": "2026-08-25",
-      "lastSeenValue": 118448355,
+      "lastSeenValue": 118453243,
       "lastSeenAt": "2026-09-15",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. Source moved off kworb on 28 Aug 2026: kworb.net/youtube/artist/burnaboy.html froze on 25 Aug, serving byte-identical totals for three days while still printing a ~105k/day view rate. The staleness alarm caught it. YouTube itself was 105k-309k views ahead on every one of the four."
@@ -783,15 +783,15 @@
       "extractor": "kworbArtistPage",
       "group": "streams-2026",
       "kind": "peak",
-      "baseline": 1786446023,
+      "baseline": 1796353718,
       "anchor": {
         "date": "2026-09-09",
         "value": 1770000000,
         "source": "@WITTIEWIZ, 10 Sep 2026 11:31 UTC"
       },
       "checkpoint": {
-        "date": "2026-09-12",
-        "value": 1786446023
+        "date": "2026-09-14",
+        "value": 1796353718
       },
       "readings": {},
       "dailyMax": 25000000,
@@ -821,14 +821,14 @@
           "describes": "the kworb day the five 2026 totals are read through"
         }
       ],
-      "lastSeenValue": 1786446023,
-      "lastSeenAt": "2026-09-13",
-      "lastChanged": "2026-09-13",
+      "lastSeenValue": 1796353718,
+      "lastSeenAt": "2026-09-15",
+      "lastChanged": "2026-09-15",
       "tieWithin": 10000000,
       "lastStamp": {
-        "date": "2026-09-12",
-        "total": 6185088167,
-        "daily": 5581858
+        "date": "2026-09-14",
+        "total": 6194995862,
+        "daily": 5005320
       },
       "derived": []
     },
@@ -840,19 +840,17 @@
       "extractor": "kworbArtistPage",
       "group": "streams-2026",
       "kind": "peak",
-      "baseline": 1782608950,
+      "baseline": 1794293988,
       "anchor": {
         "date": "2026-09-09",
         "value": 1764000000,
         "source": "@WITTIEWIZ, 10 Sep 2026 11:31 UTC"
       },
       "checkpoint": {
-        "date": "2026-09-12",
-        "value": 1782608950
+        "date": "2026-09-14",
+        "value": 1794293988
       },
-      "readings": {
-        "2026-09-13": 6202237
-      },
+      "readings": {},
       "dailyMax": 25000000,
       "live": true,
       "sanity": {
@@ -880,14 +878,14 @@
           "describes": "the kworb day the five 2026 totals are read through"
         }
       ],
-      "lastSeenValue": 1782608950,
-      "lastSeenAt": "2026-09-14",
-      "lastChanged": "2026-09-13",
+      "lastSeenValue": 1794293988,
+      "lastSeenAt": "2026-09-15",
+      "lastChanged": "2026-09-15",
       "tieWithin": 10000000,
       "lastStamp": {
-        "date": "2026-09-13",
-        "total": 11516297181,
-        "daily": 6202237
+        "date": "2026-09-14",
+        "total": 11522674083,
+        "daily": 5482801
       }
     },
     {
@@ -898,20 +896,17 @@
       "extractor": "kworbArtistPage",
       "group": "streams-2026",
       "kind": "peak",
-      "baseline": 1779790387,
+      "baseline": 1795334235,
       "anchor": {
         "date": "2026-09-09",
         "value": 1756000000,
         "source": "@WITTIEWIZ, 10 Sep 2026 11:31 UTC"
       },
       "checkpoint": {
-        "date": "2026-09-12",
-        "value": 1779790387
+        "date": "2026-09-14",
+        "value": 1795334235
       },
-      "readings": {
-        "2026-09-13": 8403348,
-        "2026-09-14": 7140500
-      },
+      "readings": {},
       "dailyMax": 25000000,
       "live": true,
       "sanity": {
@@ -939,9 +934,9 @@
           "describes": "the kworb day the five 2026 totals are read through"
         }
       ],
-      "lastSeenValue": 1779790387,
+      "lastSeenValue": 1795334235,
       "lastSeenAt": "2026-09-15",
-      "lastChanged": "2026-09-13",
+      "lastChanged": "2026-09-15",
       "tieWithin": 10000000,
       "lastStamp": {
         "date": "2026-09-14",
@@ -957,19 +952,17 @@
       "extractor": "kworbArtistPage",
       "group": "streams-2026",
       "kind": "peak",
-      "baseline": 1437689322,
+      "baseline": 1448941223,
       "anchor": {
         "date": "2026-09-09",
         "value": 1420000000,
         "source": "@WITTIEWIZ, 10 Sep 2026 11:31 UTC"
       },
       "checkpoint": {
-        "date": "2026-09-12",
-        "value": 1437689322
+        "date": "2026-09-14",
+        "value": 1448941223
       },
-      "readings": {
-        "2026-09-13": 6041385
-      },
+      "readings": {},
       "dailyMax": 25000000,
       "live": true,
       "sanity": {
@@ -997,14 +990,14 @@
           "describes": "the kworb day the five 2026 totals are read through"
         }
       ],
-      "lastSeenValue": 1437689322,
-      "lastSeenAt": "2026-09-14",
-      "lastChanged": "2026-09-13",
+      "lastSeenValue": 1448941223,
+      "lastSeenAt": "2026-09-15",
+      "lastChanged": "2026-09-15",
       "tieWithin": 10000000,
       "lastStamp": {
-        "date": "2026-09-13",
-        "total": 4333217484,
-        "daily": 6041385
+        "date": "2026-09-14",
+        "total": 4338093722,
+        "daily": 5210516
       }
     },
     {
@@ -1015,19 +1008,17 @@
       "extractor": "kworbArtistPage",
       "group": "streams-2026",
       "kind": "peak",
-      "baseline": 1195589881,
+      "baseline": 1202008464,
       "anchor": {
         "date": "2026-09-09",
         "value": 1185000000,
         "source": "@WITTIEWIZ, 10 Sep 2026 11:31 UTC"
       },
       "checkpoint": {
-        "date": "2026-09-12",
-        "value": 1195589881
+        "date": "2026-09-14",
+        "value": 1202008464
       },
-      "readings": {
-        "2026-09-13": 3429708
-      },
+      "readings": {},
       "dailyMax": 25000000,
       "live": true,
       "sanity": {
@@ -1055,14 +1046,14 @@
           "describes": "the kworb day the five 2026 totals are read through"
         }
       ],
-      "lastSeenValue": 1195589881,
-      "lastSeenAt": "2026-09-14",
-      "lastChanged": "2026-09-13",
+      "lastSeenValue": 1202008464,
+      "lastSeenAt": "2026-09-15",
+      "lastChanged": "2026-09-15",
       "tieWithin": 10000000,
       "lastStamp": {
-        "date": "2026-09-13",
-        "total": 4809382791,
-        "daily": 3429708
+        "date": "2026-09-14",
+        "total": 4812358167,
+        "daily": 2988875
       }
     }
   ],

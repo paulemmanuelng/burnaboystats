@@ -123,8 +123,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 5,
-            "movement": 0
+            "position": 6,
+            "movement": -1
           }
         ]
       }
@@ -181,18 +181,6 @@
             "movement": -19
           }
         ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 133,
-            "movement": 0
-          }
-        ]
       }
     ],
     "kind": "album",
@@ -245,8 +233,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 70,
-            "movement": 0
+            "position": 101,
+            "movement": -31
           }
         ]
       }
@@ -282,8 +270,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 27,
-            "movement": -9
+            "position": 34,
+            "movement": -12
           }
         ]
       },
@@ -294,9 +282,9 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 16,
+            "position": 14,
             "movement": null,
-            "status": "new"
+            "status": "re"
           }
         ]
       }
@@ -332,70 +320,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 54,
-            "movement": -9
-          }
-        ]
-      },
-      {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 4,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Expresso",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 12,
-            "movement": -4
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 155,
-            "movement": -72
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 162,
-            "movement": -9
-          }
-        ]
-      },
-      {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 12,
-            "movement": -8
+            "position": 7,
+            "movement": 42
           }
         ]
       }
@@ -431,8 +357,45 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 44,
-            "movement": -9
+            "position": 51,
+            "movement": -12
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Expresso",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 12,
+            "movement": -4
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 155,
+            "movement": -72
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 168,
+            "movement": -11
           }
         ]
       }
@@ -468,8 +431,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 171,
-            "movement": -9
+            "position": 178,
+            "movement": -12
           }
         ]
       }
@@ -515,44 +478,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Forever",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 15,
-            "movement": -2
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 99,
-            "movement": -14
-          }
-        ]
-      },
-      {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 17,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "So it Goes",
     "platforms": [
       {
@@ -582,7 +507,7 @@
             "name": "Ghana",
             "position": 18,
             "movement": null,
-            "status": "new"
+            "status": "re"
           }
         ]
       }
@@ -608,6 +533,31 @@
             "name": "Liberia",
             "position": 41,
             "movement": -8
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Forever",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 15,
+            "movement": -2
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 99,
+            "movement": -14
           }
         ]
       }
@@ -662,8 +612,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 71,
-            "movement": -9
+            "position": 77,
+            "movement": -11
           }
         ]
       }
@@ -853,8 +803,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 121,
-            "movement": -9
+            "position": 127,
+            "movement": -11
           }
         ]
       }
@@ -1025,7 +975,7 @@
             "country": "GM",
             "name": "Gambia",
             "position": 25,
-            "movement": -1
+            "movement": 0
           }
         ]
       }

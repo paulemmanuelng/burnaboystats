@@ -38,7 +38,7 @@
   export const liveChartsUpdated = "2026-09-15";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -223,6 +223,25 @@
         ]
       },
       {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 12,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 151,
+            "movement": -138
+          }
+        ]
+      },
+      {
         "platform": "Spotify",
         "numberOnes": 0,
         "entries": [
@@ -231,18 +250,6 @@
             "name": "Nigeria",
             "position": 84,
             "movement": 2
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 134,
-            "movement": -125
           }
         ]
       }
@@ -323,8 +330,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 70,
-            "movement": -6
+            "position": 83,
+            "movement": -19
           }
         ]
       },
@@ -367,34 +374,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 158,
-            "movement": -15
+            "position": 157,
+            "movement": -4
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/15b2af0e10dba1c44ddbe8b0c587d5e4/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Sometimes",
-    "platforms": [
-      {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 68,
-            "movement": null,
-            "status": "re"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/0481331853437da241959e0584bb9152/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Dope Money",
@@ -503,8 +490,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 175,
-            "movement": -138
+            "position": 189,
+            "movement": -131
           }
         ]
       }
@@ -579,8 +566,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 115,
-            "movement": -15
+            "position": 112,
+            "movement": -2
           }
         ]
       }
@@ -598,14 +585,20 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 121,
-            "movement": -15
+            "position": 119,
+            "movement": -3
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/6c243844bbecece7ab92e5f5799111a5/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Sometimes",
+    "platforms": [],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/0481331853437da241959e0584bb9152/500x500-000000-80-0-0.jpg"
   }
 ];
   
