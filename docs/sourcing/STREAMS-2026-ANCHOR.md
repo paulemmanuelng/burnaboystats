@@ -137,6 +137,25 @@ Asake 5.787M and Tyla 3.449M — inside the stated error either way.) Re-anchor 
 post, whenever a hole is reported, and whenever the two drift by more than a
 day's streams.
 
+## A second fixed point (15 Sep 2026)
+
+The tracker's earlier post — 5 Sep 2026, 19:50 UTC, "All African artists with
+over 1 BILLION streams gained in 2026 on Spotify so far": Tems 1.750B, Wizkid
+1.739B, Burna Boy 1.725B, Asake 1.396B, Tyla 1.172B — is through kworb's 09/05
+pages (posted after that evening's pages went up). Between it and the 10 Sep
+post (through 09/09, four kworb days) the tracker moved Burna Boy +31M,
+Wizkid +25M, Tems +20M; kworb's own dailies for 09/06–09/09, as the bot read
+them, sum to 31.9M, 25.0M and 20.7M. The tracker is the sum of kworb's dailies
+to the rounding, and the ledger's method reproduces its movement. Asake +24M
+against kworb's 23.8M and Tyla +13M against 13.9M say the same for the rows
+below.
+
+Through 14 Sep the ledger reads Tems 1,796.4M, Burna Boy 1,795.3M, Wizkid
+1,794.3M — joint first, as the rule intends; the first fan call of "Burna Boy
+now the most-streamed" appeared on 15 Sep, on a 1–2M margin no count can
+resolve. By kworb's dailies the gap clears ten million around 19–20 Sep, and
+the board will say so then, on a kworb date.
+
 ## The decision (12 Sep 2026): option (b)
 
 Paul chose **(b)**: the row moves every day on kworb's dailies, re-anchored
