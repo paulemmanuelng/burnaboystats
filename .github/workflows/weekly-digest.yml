@@ -1,0 +1,65 @@
+# The Saturday digest — the week's updates, as one email, to everyone who
+# confirmed a subscription (Resend audience). 17:00 UTC is 18:00 in London and
+# Lagos. An empty week sends nothing and the run still succeeds: that is the
+# designed outcome, not a failure.
+#
+# Manual runs: "Run workflow" with an address in `test_to` sends the email to
+# that address only; `dry_run` renders it into the job summary and sends
+# nothing. Either is the way to look at a digest before Saturday.
+name: Weekly digest
+
+on:
+  schedule:
+    - cron: "0 17 * * 6" # Saturdays 17:00 UTC
+  workflow_dispatch:
+    inputs:
+      test_to:
+        description: "Send only to this address (leave blank for the real broadcast)"
+        required: false
+        type: string
+      dry_run:
+        description: "Render only — send nothing"
+        required: false
+        type: boolean
+        default: false
+
+concurrency:
+  group: weekly-digest
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Send the digest
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          RESEND_AUDIENCE_ID: ${{ secrets.RESEND_AUDIENCE_ID }}
+          RESEND_FROM: ${{ secrets.RESEND_FROM }}
+          SITE_ORIGIN: https://burnaboystats.com
+        run: |
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            npx tsx scripts/send-digest.mjs --dry-run
+          elif [ -n "${{ inputs.test_to }}" ]; then
+            npx tsx scripts/send-digest.mjs --test "${{ inputs.test_to }}"
+          else
+            npx tsx scripts/send-digest.mjs
+          fi
+      - name: Keep the rendered preview
+        if: ${{ inputs.dry_run == true }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: digest-preview
+          path: |
+            digest-preview.html
+            digest-preview.txt

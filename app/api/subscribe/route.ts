@@ -6,9 +6,26 @@ import { signEmail, looksLikeEmail } from "../../lib/subscribeToken";
  * email. Nothing joins the audience until the link in that email is clicked —
  * the flow the spam laws (and inbox providers) expect.
  *
- * The honeypot field is called "website": humans never see it, bots fill it,
- * and a filled honeypot gets a cheerful 200 so the bot moves on.
+ * Three bot deterrents, none of them visible to a person:
+ *   • the honeypot field "website": humans never see it, form-fillers fill it,
+ *     and a filled honeypot gets a cheerful 200 so the bot moves on;
+ *   • `elapsed`, the milliseconds between the box mounting and the submit —
+ *     under 1.5 s is a script; it gets the same cheerful 200;
+ *   • a per-instance rate limit by address and by IP. Serverless instances do
+ *     not share memory, so this is a brake on a loop, not a wall — the cost it
+ *     bounds is Resend sending a confirmation to an address that never asked.
  */
+const WINDOW_MS = 60 * 60 * 1000;
+const PER_IP = 10;
+const PER_EMAIL = 3;
+const seen = new Map<string, number[]>();
+const over = (key: string, limit: number, now = Date.now()) => {
+  const hits = (seen.get(key) ?? []).filter((t) => now - t < WINDOW_MS);
+  hits.push(now);
+  seen.set(key, hits);
+  return hits.length > limit;
+};
+
 export async function POST(req: Request) {
   const key = process.env.RESEND_API_KEY;
   if (!key || !process.env.RESEND_AUDIENCE_ID) {
@@ -18,7 +35,7 @@ export async function POST(req: Request) {
     );
   }
 
-  let body: { email?: string; website?: string };
+  let body: { email?: string; website?: string; elapsed?: number };
   try {
     body = await req.json();
   } catch {
@@ -26,9 +43,14 @@ export async function POST(req: Request) {
   }
 
   if (body.website) return NextResponse.json({ ok: true }); // honeypot
+  if (typeof body.elapsed === "number" && body.elapsed < 1500) return NextResponse.json({ ok: true }); // too fast for a thumb
   const email = (body.email ?? "").trim();
   if (!looksLikeEmail(email)) {
     return NextResponse.json({ error: "That doesn't look like an email address." }, { status: 400 });
+  }
+  const ip = req.headers.get("x-forwarded-for")?.split(",")[0].trim() || "unknown";
+  if (over(`ip:${ip}`, PER_IP) || over(`email:${email.toLowerCase()}`, PER_EMAIL)) {
+    return NextResponse.json({ error: "Too many tries — give it an hour and try again." }, { status: 429 });
   }
 
   const origin = new URL(req.url).origin;

@@ -2,10 +2,12 @@
 
 // "Follow the run" — the site's return-visitor hook. A stats site about a live
 // chart run is worth coming back to, but every visit was one-and-done: there was
-// no way to be reminded. This offers the three no-signup ways back:
+// no way to be reminded. This offers the ways back:
+//   • The Saturday digest — an email address, double opt-in (SubscribeBox)
 //   • Install the site as an app (Add to Home Screen) — a real home-screen icon
 //   • Follow on X for the updates as they land
-//   • Subscribe to the RSS feed
+// The RSS feed stayed, as the small footer link it always was (lib/links.ts);
+// the subscribe box took its place here.
 //
 // The install button only appears when the browser actually offers it (Chrome/
 // Edge/Android fire `beforeinstallprompt`). iOS Safari never does, so there we
@@ -13,6 +15,7 @@
 
 import { useEffect, useState } from "react";
 import styles from "./FollowPanel.module.css";
+import SubscribeBox from "./SubscribeBox";
 
 const X_URL = "https://x.com/paulemmanuelng";
 
@@ -21,7 +24,7 @@ interface InstallPromptEvent extends Event {
   userChoice: Promise<{ outcome: "accepted" | "dismissed" }>;
 }
 
-export default function FollowPanel() {
+export default function FollowPanel({ subscribeEnabled = false }: { subscribeEnabled?: boolean }) {
   const [installPrompt, setInstallPrompt] = useState<InstallPromptEvent | null>(null);
   // Read once on mount from browser-only APIs (display-mode + UA). Kept as one
   // object so the mount read is a single state write.
@@ -80,6 +83,8 @@ export default function FollowPanel() {
         milestones as they land.
       </p>
 
+      {subscribeEnabled && <SubscribeBox id="subscribe" />}
+
       <div className={styles.actions}>
         {installed ? (
           <span className={styles.installed}>✓ Installed — it&apos;s on your home screen</span>
@@ -96,9 +101,11 @@ export default function FollowPanel() {
         <a className={styles.secondary} href={X_URL} target="_blank" rel="noopener noreferrer">
           Follow on X ↗
         </a>
-        <a className={styles.secondary} href="/rss.xml">
-          RSS feed ↗
-        </a>
+        {!subscribeEnabled && (
+          <a className={styles.secondary} href="/rss.xml">
+            RSS feed ↗
+          </a>
+        )}
       </div>
     </aside>
   );

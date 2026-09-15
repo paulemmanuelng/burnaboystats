@@ -27,6 +27,12 @@ const EXEMPT = new Set([
   "https://schema.org",
   "https://burnaboystats.com",
   "https://www.burnaboystats.com",
+  // Reached from the SERVER only — app/api/subscribe/* are Route Handlers, and
+  // scripts/send-digest.mjs runs in GitHub Actions. A browser never connects to
+  // Resend, so connect-src must not name it: the policy describes what the
+  // page may reach, and widening it for a server call would be a false
+  // statement about the page. (Added 15 Sep 2026 with the Saturday digest.)
+  "https://api.resend.com",
 ]);
 
 /** Directives whose host lists we police, in the order a browser reads them. */

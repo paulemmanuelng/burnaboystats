@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import SubscribeBox from "./SubscribeBox";
 import styles from "./mobileUpdates.module.css";
 import { inkFor } from "../lib/updateInk";
 import type { Update, UpdateCategory } from "../data/updates";
@@ -31,9 +32,12 @@ const asDate = (iso: string) => new Date(`${iso}T00:00:00Z`);
 export default function MobileUpdates({
   items,
   lastEntry,
+  subscribeEnabled = false,
 }: {
   items: Update[];
   lastEntry: string;
+  /** Resend is configured on the server — show the digest box, not the RSS link. */
+  subscribeEnabled?: boolean;
 }) {
   const [cat, setCat] = useState<UpdateCategory | null>(null);
 
@@ -56,7 +60,11 @@ export default function MobileUpdates({
           </svg>
         </BackLink>
         <span className={styles.backLabel}>Updates</span>
-        <a href="/rss.xml" className={styles.rss}>RSS ↗</a>
+        {subscribeEnabled ? (
+          <a href="#subscribe-m" className={styles.rss}>Subscribe</a>
+        ) : (
+          <a href="/rss.xml" className={styles.rss}>RSS ↗</a>
+        )}
         <MobileMenuButton />
       </div>
 
@@ -77,6 +85,10 @@ export default function MobileUpdates({
           Last entry <strong>{lastEntry}</strong>
         </div>
       </div>
+
+      {/* The Saturday digest — the back bar's "Subscribe" jumps here. The RSS
+          link this replaced lives on in the footer (lib/links.ts). */}
+      {subscribeEnabled && <SubscribeBox id="subscribe-m" compact />}
 
       {/* Filter rail */}
       <div className={styles.rail}>
