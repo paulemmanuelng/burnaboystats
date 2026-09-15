@@ -1,0 +1,163 @@
+/* The subscribe box — lives inside the FollowPanel on desktop /updates and on
+   its own, compact, on the phone screen. Pills match the panel's (44px, mono),
+   the field takes the same rhythm so the row reads as one control. */
+.box {
+  margin: 0 0 20px;
+  padding: 18px 18px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--bg-raised);
+}
+.compact {
+  margin: 18px 16px 6px;
+}
+
+.lead {
+  margin: 0 0 12px;
+  max-width: 54ch;
+  color: var(--text-muted);
+  line-height: 1.55;
+  font-size: 0.92rem;
+}
+.lead b {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.input {
+  flex: 1 1 220px;
+  max-width: 520px;
+  min-width: 0;
+  min-height: 44px;
+  padding: 10px 16px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-mono), monospace;
+  /* 16px stops iOS zooming the page into the field on focus. */
+  font-size: 16px;
+  letter-spacing: 0.02em;
+}
+.input::placeholder {
+  color: var(--text-muted);
+}
+.input:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+.input[aria-invalid="true"] {
+  border-color: color-mix(in srgb, var(--gold-ink) 60%, transparent);
+}
+
+.button {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 11px 22px;
+  border: none;
+  border-radius: 999px;
+  color: var(--ink-on-gold);
+  background: linear-gradient(120deg, var(--gold-bright), var(--gold-fill));
+  font-family: var(--font-mono), monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: filter var(--dur-fast) var(--ease);
+}
+.button:hover {
+  filter: brightness(1.06);
+}
+.button:disabled {
+  cursor: default;
+  opacity: 0.7;
+}
+.button:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.sent,
+.landedOk,
+.landedBad,
+.error {
+  margin: 0;
+  line-height: 1.5;
+  font-size: 0.9rem;
+}
+.sent,
+.landedOk {
+  color: var(--text);
+  padding: 10px 14px;
+  border-radius: var(--radius);
+  background: var(--gold-wash);
+  border: 1px solid color-mix(in srgb, var(--gold-ink) 30%, transparent);
+}
+.landedOk {
+  margin-bottom: 12px;
+}
+.landedBad {
+  margin-bottom: 12px;
+  color: var(--text);
+}
+.error {
+  flex-basis: 100%;
+  color: var(--text);
+}
+
+.fine {
+  margin: 10px 0 0;
+  color: var(--text-muted);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+}
+
+/* Visually hidden label — the placeholder is not a label. */
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* The honeypot: out of the layout and out of the accessibility tree. Not
+   display:none — some form-fillers skip hidden fields, which defeats it. */
+.trap {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+@media (max-width: 480px) {
+  .form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  /* In a column, flex-basis is HEIGHT — the 220px above made the field a
+     220px-tall blob on the first phone render. Basis auto, width full. */
+  .input,
+  .button {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: none;
+  }
+}

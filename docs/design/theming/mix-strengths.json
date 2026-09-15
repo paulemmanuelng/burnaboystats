@@ -140,6 +140,10 @@
     "--gold-wash-base 16%",
     "--scrim-base 82%"
   ],
+  "app/components/SubscribeBox.module.css": [
+    "--gold-ink 30%",
+    "--gold-ink 60%"
+  ],
   "app/components/appState.module.css": [
     "--red 10%",
     "--red 12%",

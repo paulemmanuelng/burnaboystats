@@ -35,12 +35,20 @@ export interface Update {
   category: UpdateCategory;
   text: string;
   href: string;
+  /**
+   * A headliner for the Saturday digest (lib/digest.ts): the week's entries
+   * marked `big` lead the email, the rest follow ranked by category. Mark the
+   * one entry per story that a reader who sees nothing else should see — a
+   * new record, a new plaque tier, a chart run's milestone — not every tick.
+   */
+  big?: true;
 }
 
 export const updates: Update[] = [
   {
     date: "2026-09-14",
     category: "Streaming",
+    big: true,
     text: "Back inside the global Top 10: “Dai Dai” sits at No. 9 on Spotify's Daily Top Songs Global for 13 September with 2,580,521 filtered streams, down from No. 4 the day before — a 115th consecutive day on the chart by its own streak column, 116 in all, and an 83rd day inside the Top 10. That last figure is a total, not a streak: it had left the Top 10 for five charts, 7 to 11 September (No. 11, 12, 14, 14 and 11), before climbing back to No. 4 on the 12th — read day by day at Spotify's own chart from the 28 August list, where the count stood at 72, and still the most days inside the global Top 10 by any African song in the chart's history. The 37 days at No. 1 have now been walked the same way on Spotify's own archive: the first was the chart dated 30 June, the last 22 August, in six spells between them.",
     href: "/dai-dai",
   },
@@ -65,6 +73,7 @@ export const updates: Update[] = [
   {
     date: "2026-09-13",
     category: "Charts",
+    big: true,
     text: "A 14th straight week at No. 1 in Switzerland: the Schweizer Hitparade dated 13 September keeps “Dai Dai” at the top for the 14th consecutive chart since 14 June, its 17th week on the Singles Top 100 — still the longest run atop the Swiss chart by any song this year.",
     href: "/dai-dai",
   },

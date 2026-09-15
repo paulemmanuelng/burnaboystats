@@ -43,11 +43,16 @@ const tally = [
   { value: String(monthsTracked), label: "Months tracked" },
 ];
 
+// The subscribe box shows only once Resend is configured on the server; until
+// then the API would answer 503 and a live button that says "not switched on
+// yet" reads as broken. Both layouts keep their RSS link in the meantime.
+const subscribeEnabled = Boolean(process.env.RESEND_API_KEY && process.env.RESEND_AUDIENCE_ID);
+
 export default function UpdatesPage() {
   return (
     <main id="content">
       {/* Mobile is screen 06 — one block per entry, no month headings. */}
-      <MobileUpdates items={updates} lastEntry={lastEntry} />
+      <MobileUpdates items={updates} lastEntry={lastEntry} subscribeEnabled={subscribeEnabled} />
 
       <div className={styles.desktopOnly}>
         <BreadcrumbBar path="/updates" />
@@ -98,7 +103,7 @@ export default function UpdatesPage() {
         {/* ── Follow panel ───────────────────────────────────── */}
         <section className={styles.band}>
           <div className={`${styles.wide} ${styles.followPad}`}>
-            <FollowPanel />
+            <FollowPanel subscribeEnabled={subscribeEnabled} />
           </div>
         </section>
 
