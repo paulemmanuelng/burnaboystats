@@ -408,7 +408,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 83,
-            "movement": -16
+            "movement": -14
           }
         ]
       }

@@ -483,28 +483,22 @@
             "movement": -1
           },
           {
-            "country": "ZW",
-            "name": "Zimbabwe",
-            "position": 75,
-            "movement": -6
-          },
-          {
             "country": "GH",
             "name": "Ghana",
             "position": 76,
             "movement": -21
           },
           {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 81,
-            "movement": -6
+            "country": "ZW",
+            "name": "Zimbabwe",
+            "position": 76,
+            "movement": -7
           },
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 86,
-            "movement": -83
+            "country": "UG",
+            "name": "Uganda",
+            "position": 82,
+            "movement": -7
           },
           {
             "country": "GD",
@@ -515,8 +509,14 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 98,
-            "movement": -44
+            "position": 99,
+            "movement": -27
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 120,
+            "movement": -117
           }
         ]
       },
@@ -857,7 +857,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 145,
-            "movement": 3
+            "movement": -3
           },
           {
             "country": "NE",
@@ -984,7 +984,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 112,
+            "position": 146,
             "movement": null,
             "status": "new"
           }
@@ -1247,8 +1247,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 96,
-            "movement": -88
+            "position": 130,
+            "movement": -121
           }
         ]
       },
@@ -1374,7 +1374,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 137,
+            "position": 169,
             "movement": null,
             "status": "new"
           }
@@ -1516,8 +1516,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 112,
-            "movement": 5
+            "position": 113,
+            "movement": 6
           },
           {
             "country": "CI",
@@ -1583,8 +1583,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 93,
-            "movement": 3
+            "position": 94,
+            "movement": 2
           }
         ]
       },
@@ -1697,7 +1697,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 2,
-            "movement": 92
+            "movement": 103
           }
         ]
       }
@@ -1890,8 +1890,8 @@
           {
             "country": "IT",
             "name": "Italy",
-            "position": 39,
-            "movement": 4
+            "position": 25,
+            "movement": 18
           }
         ]
       }
@@ -2037,6 +2037,50 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/b922c719d3a9901f749140e8f532a8d0/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Hot Body",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 106,
+            "movement": -38
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 108,
+            "movement": -2
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 120,
+            "movement": -5
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 32,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/4b5a287c8f574407dc5b1b03b5ae0c58/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Misunderstood",
     "platforms": [
       {
@@ -2077,7 +2121,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 113,
+            "position": 147,
             "movement": null,
             "status": "new"
           }
@@ -2125,37 +2169,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/e61faaeb59320961cbd17a1ef7f9e6e7/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Hot Body",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 106,
-            "movement": -38
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 108,
-            "movement": -2
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 120,
-            "movement": -5
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/4b5a287c8f574407dc5b1b03b5ae0c58/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "All The Love",
     "platforms": [
       {
@@ -2184,8 +2197,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 101,
-            "movement": -89
+            "position": 135,
+            "movement": -122
           }
         ]
       }

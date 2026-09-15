@@ -269,17 +269,17 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "PE",
-            "name": "Peru",
-            "position": 162,
-            "movement": -149
-          },
-          {
             "country": "NZ",
             "name": "New Zealand",
-            "position": 168,
+            "position": 171,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "PE",
+            "name": "Peru",
+            "position": 177,
+            "movement": -159
           }
         ]
       },
@@ -490,8 +490,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 111,
-            "movement": -93
+            "position": 145,
+            "movement": -124
           }
         ]
       }
@@ -769,8 +769,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 103,
-            "movement": -89
+            "position": 137,
+            "movement": -122
           }
         ]
       }
@@ -1214,7 +1214,7 @@
             "country": "KE",
             "name": "Kenya",
             "position": 80,
-            "movement": -1
+            "movement": 0
           },
           {
             "country": "NG",
@@ -1507,7 +1507,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 62,
-            "movement": -34
+            "movement": -32
           },
           {
             "country": "NE",
@@ -1702,7 +1702,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 2,
-            "movement": 92
+            "movement": 103
           }
         ]
       }
@@ -1721,7 +1721,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 13,
-            "movement": -4
+            "movement": -2
           },
           {
             "country": "NG",
@@ -2046,13 +2046,13 @@
             "country": "GD",
             "name": "Grenada",
             "position": 90,
-            "movement": -2
+            "movement": -1
           },
           {
             "country": "UG",
             "name": "Uganda",
             "position": 96,
-            "movement": 0
+            "movement": -1
           },
           {
             "country": "NG",
@@ -2151,14 +2151,14 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 46,
-            "movement": -3
+            "position": 47,
+            "movement": -4
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 93,
-            "movement": -86
+            "position": 127,
+            "movement": -120
           }
         ]
       }
@@ -2265,7 +2265,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 83,
-            "movement": -16
+            "movement": -14
           }
         ]
       }
@@ -2302,14 +2302,34 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 31,
-            "movement": -24
+            "position": 32,
+            "movement": -25
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/a95ad39eeab8749be5d4d8c7d4458615/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Picture Perfect",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 51,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/a8dc47ce1fd807b1814e8171a91c1fc9/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Alaye",
@@ -2340,7 +2360,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 20,
+            "position": 25,
             "movement": null,
             "status": "new"
           }

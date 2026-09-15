@@ -226,8 +226,9 @@
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 169,
-            "movement": 5
+            "position": 171,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "CY",
@@ -272,13 +273,13 @@
       },
       {
         "platform": "iTunes",
-        "numberOnes": 1,
+        "numberOnes": 0,
         "entries": [
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 1,
-            "movement": 0
+            "position": 2,
+            "movement": -1
           },
           {
             "country": "NG",
@@ -289,8 +290,8 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 141,
-            "movement": -101
+            "position": 164,
+            "movement": -96
           }
         ]
       }
@@ -339,19 +340,6 @@
             "country": "ZA",
             "name": "South Africa",
             "position": 171,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 190,
             "movement": null,
             "status": "new"
           }
@@ -434,6 +422,19 @@
             "name": "Bermuda",
             "position": 169,
             "movement": 20
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "IN",
+            "name": "India",
+            "position": 108,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -547,6 +548,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Water",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "PT",
+            "name": "Portugal",
+            "position": 22,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Talk to Me",
     "platforms": [
       {
@@ -595,8 +616,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 79,
-            "movement": -6
+            "position": 80,
+            "movement": -7
           }
         ]
       }
