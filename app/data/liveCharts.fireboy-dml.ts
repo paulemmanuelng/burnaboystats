@@ -495,8 +495,8 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 61,
-            "movement": 0
+            "position": 62,
+            "movement": -1
           }
         ]
       }
@@ -593,7 +593,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 106,
+            "position": 122,
             "movement": null,
             "status": "new"
           }

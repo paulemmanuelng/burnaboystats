@@ -51,7 +51,7 @@
           {
             "country": "RU",
             "name": "Russia",
-            "position": 6,
+            "position": 8,
             "movement": 0
           },
           {
@@ -59,13 +59,6 @@
             "name": "Burkina Faso",
             "position": 53,
             "movement": -1
-          },
-          {
-            "country": "ES",
-            "name": "Spain",
-            "position": 107,
-            "movement": null,
-            "status": "new"
           }
         ]
       },
@@ -127,9 +120,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 25,
-            "movement": null,
-            "status": "new"
+            "position": 56,
+            "movement": -31
           }
         ]
       },
@@ -147,6 +139,26 @@
       }
     ],
     "cover": "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "IN MY BED",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SN",
+            "name": "Senegal",
+            "position": 29,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/8f2c610ad0f59119d6991e2d97a3f717/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Boyfriend",
@@ -205,71 +217,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "SHEGE",
-    "kind": "song",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 94,
-            "movement": -18
-          }
-        ]
-      }
-    ],
-    "cover": "https://cdn-images.dzcdn.net/images/cover/1d0daaf8c0025c2d95c96beafe4e0a0b/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "love nwantiti (ah ah ah)",
-    "kind": "song",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "JM",
-            "name": "Jamaica",
-            "position": 71,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ed3944c139089af1359c26d78843d435/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "love nwantiti (feat. ElGrande Toto) (North African Remix)",
-    "kind": "song",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "MA",
-            "name": "Morocco",
-            "position": 32,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "cover": "https://cdn-images.dzcdn.net/images/cover/330629fb8b6242beb5a119f17ff52c9c/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "IN MY BED",
-    "platforms": [],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/8f2c610ad0f59119d6991e2d97a3f717/500x500-000000-80-0-0.jpg"
   }
 ];
   

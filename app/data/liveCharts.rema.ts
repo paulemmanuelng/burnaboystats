@@ -249,6 +249,32 @@
         ]
       },
       {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 7,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 24,
+            "movement": -18
+          },
+          {
+            "country": "SN",
+            "name": "Senegal",
+            "position": 28,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
         "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
@@ -256,13 +282,14 @@
             "country": "ZW",
             "name": "Zimbabwe",
             "position": 41,
-            "movement": -3
+            "movement": -2
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 60,
-            "movement": 125
+            "position": 77,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -275,18 +302,6 @@
             "name": "Nigeria",
             "position": 1,
             "movement": 0
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 6,
-            "movement": 6
           }
         ]
       }
@@ -423,23 +438,23 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 7,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "UG",
             "name": "Uganda",
-            "position": 12,
+            "position": 14,
             "movement": -2
           },
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 62,
-            "movement": 0
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
             "position": 63,
-            "movement": null,
-            "status": "new"
+            "movement": -1
           }
         ]
       },
@@ -480,8 +495,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 96,
-            "movement": -63
+            "position": 90,
+            "movement": 6
           }
         ]
       }
@@ -824,131 +839,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/1d4942d3e1817e9b723eceb6dae28636/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Calm Down",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CA",
-            "name": "Canada",
-            "position": 62,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "AU",
-            "name": "Australia",
-            "position": 69,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "IT",
-            "name": "Italy",
-            "position": 88,
-            "movement": -37
-          },
-          {
-            "country": "NO",
-            "name": "Norway",
-            "position": 97,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "WW",
-            "name": "Worldwide",
-            "position": 97,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FM",
-            "name": "Micronesia",
-            "position": 159,
-            "movement": -37
-          },
-          {
-            "country": "YE",
-            "name": "Yemen",
-            "position": 159,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "QA",
-            "name": "Qatar",
-            "position": 186,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "OM",
-            "name": "Oman",
-            "position": 196,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SZ",
-            "name": "Swaziland",
-            "position": 24,
-            "movement": 0
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 65,
-            "movement": -1
-          },
-          {
-            "country": "IT",
-            "name": "Italy",
-            "position": 147,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "TR",
-            "name": "Turkey",
-            "position": 175,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 76,
-            "movement": null,
-            "status": "re"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/07d4291391724a969f243406cc92be66/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Who's Dat Girl",
     "platforms": [
       {
@@ -1037,7 +927,20 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 96,
+            "position": 112,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 55,
             "movement": null,
             "status": "new"
           }
@@ -1323,20 +1226,20 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 54,
-            "movement": -3
+            "position": 52,
+            "movement": -1
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 55,
-            "movement": -52
+            "position": 72,
+            "movement": -68
           },
           {
             "country": "GH",
             "name": "Ghana",
             "position": 106,
-            "movement": -14
+            "movement": -12
           }
         ]
       },
@@ -1349,6 +1252,19 @@
             "name": "Nigeria",
             "position": 173,
             "movement": -22
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 53,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -1414,10 +1330,107 @@
             "movement": 41
           }
         ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SN",
+            "name": "Senegal",
+            "position": 64,
+            "movement": null,
+            "status": "new"
+          }
+        ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/e26def467fccdcadca010b8c0f00fd0f/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Calm Down",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FM",
+            "name": "Micronesia",
+            "position": 159,
+            "movement": -37
+          },
+          {
+            "country": "YE",
+            "name": "Yemen",
+            "position": 159,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "QA",
+            "name": "Qatar",
+            "position": 186,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "OM",
+            "name": "Oman",
+            "position": 196,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SZ",
+            "name": "Swaziland",
+            "position": 25,
+            "movement": -1
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 66,
+            "movement": -3
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "AE",
+            "name": "United Arab Emirates",
+            "position": 88,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 76,
+            "movement": null,
+            "status": "re"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/07d4291391724a969f243406cc92be66/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Soundgasm",
@@ -1617,8 +1630,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 50,
-            "movement": 5
+            "position": 65,
+            "movement": -15
           }
         ]
       }
@@ -1751,8 +1764,8 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 128,
-            "movement": -28
+            "position": 147,
+            "movement": -40
           }
         ]
       }
@@ -1828,8 +1841,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 53,
-            "movement": -15
+            "position": 54,
+            "movement": -14
           }
         ]
       }
@@ -1866,7 +1879,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 90,
+            "position": 106,
             "movement": null,
             "status": "new"
           }
@@ -1886,34 +1899,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 108,
-            "movement": null,
-            "status": "new"
+            "position": 124,
+            "movement": -102
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/e43cc1d22a556fa87272c55c933bb4d7/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Rizzla",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "RO",
-            "name": "Romania",
-            "position": 192,
-            "movement": -165
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/1e0b6213b1da0d39bb35f07b9e6f5d48/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Bad Commando - EP",
@@ -1951,26 +1944,6 @@
       }
     ],
     "kind": "album"
-  },
-  {
-    "title": "AZAMAN",
-    "kind": "song",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "PH",
-            "name": "Philippines",
-            "position": 69,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "cover": "https://cdn-images.dzcdn.net/images/cover/4891a944de9418f059cabda0c7699160/500x500-000000-80-0-0.jpg"
   }
 ];
   

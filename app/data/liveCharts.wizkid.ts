@@ -229,12 +229,6 @@
             "movement": -19
           },
           {
-            "country": "CA",
-            "name": "Canada",
-            "position": 179,
-            "movement": -7
-          },
-          {
             "country": "TC",
             "name": "Turks and Caicos",
             "position": 181,
@@ -252,6 +246,12 @@
             "name": "Saudi Arabia",
             "position": 196,
             "movement": -73
+          },
+          {
+            "country": "CA",
+            "name": "Canada",
+            "position": 199,
+            "movement": -14
           }
         ]
       },
@@ -260,29 +260,15 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "IL",
-            "name": "Israel",
-            "position": 88,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "SE",
-            "name": "Sweden",
-            "position": 118,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "PE",
             "name": "Peru",
-            "position": 139,
-            "movement": -127
+            "position": 150,
+            "movement": -137
           },
           {
-            "country": "PL",
-            "name": "Poland",
-            "position": 151,
+            "country": "NZ",
+            "name": "New Zealand",
+            "position": 161,
             "movement": null,
             "status": "new"
           }
@@ -293,9 +279,9 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "SA",
-            "name": "Saudi Arabia",
-            "position": 70,
+            "country": "JO",
+            "name": "Jordan",
+            "position": 2,
             "movement": null,
             "status": "new"
           }
@@ -495,9 +481,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 70,
-            "movement": null,
-            "status": "new"
+            "position": 86,
+            "movement": -75
           }
         ]
       }
@@ -644,9 +629,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 61,
-            "movement": null,
-            "status": "new"
+            "position": 78,
+            "movement": -71
           }
         ]
       }
@@ -1023,8 +1007,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 21,
-            "movement": 26
+            "position": 25,
+            "movement": -4
           }
         ]
       },
@@ -1147,12 +1131,12 @@
       },
       {
         "platform": "iTunes",
-        "numberOnes": 1,
+        "numberOnes": 0,
         "entries": [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 1,
+            "position": 2,
             "movement": null,
             "status": "new"
           }
@@ -1721,18 +1705,6 @@
         ]
       },
       {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 82,
-            "movement": -12
-          }
-        ]
-      },
-      {
         "platform": "YouTube",
         "numberOnes": 0,
         "entries": [
@@ -1897,6 +1869,69 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/6ddb34c26029baeb2bd73c71bb8d839f/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Gimme Dat",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 5,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 80,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 196,
+            "movement": -17
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 116,
+            "movement": -13
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 9,
+            "movement": 60
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/2e52f4bf8bdb05c98002b714669ee2c2/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Jam",
     "platforms": [
       {
@@ -1995,8 +2030,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 96,
-            "movement": 0
+            "position": 95,
+            "movement": 1
           },
           {
             "country": "NG",
@@ -2038,7 +2073,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 2,
+            "position": 3,
             "movement": null,
             "status": "new"
           }
@@ -2086,49 +2121,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Gimme Dat",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 196,
-            "movement": -17
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 116,
-            "movement": -13
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 6,
-            "movement": 43
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/2e52f4bf8bdb05c98002b714669ee2c2/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "More Love, Less Ego",
     "platforms": [
       {
@@ -2158,31 +2150,6 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/e4286ac8a38829b6cf5d225c311bccf7/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Kese",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 43,
-            "movement": -2
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 51,
-            "movement": -23
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b83e12a893bcd9bca6f6e84283dbedaa/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Final",
@@ -2215,6 +2182,31 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/3cda4cca35e5a322d6ad9e71c49dbecf/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Kese",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 45,
+            "movement": -2
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 68,
+            "movement": -18
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b83e12a893bcd9bca6f6e84283dbedaa/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "BIG TIME",
@@ -2321,9 +2313,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 8,
-            "movement": null,
-            "status": "new"
+            "position": 13,
+            "movement": -6
           }
         ]
       }
@@ -2418,8 +2409,8 @@
           {
             "country": "BB",
             "name": "Barbados",
-            "position": 78,
-            "movement": -2
+            "position": 79,
+            "movement": -3
           }
         ]
       }
