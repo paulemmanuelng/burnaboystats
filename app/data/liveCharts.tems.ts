@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-14";
+  export const liveChartsUpdated = "2026-09-15";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -77,7 +77,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 13,
-            "movement": 1
+            "movement": 0
           },
           {
             "country": "FJ",
@@ -212,12 +212,6 @@
             "movement": -14
           },
           {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 38,
-            "movement": 5
-          },
-          {
             "country": "SL",
             "name": "Sierra Leone",
             "position": 38,
@@ -234,6 +228,12 @@
             "name": "Kenya",
             "position": 39,
             "movement": 7
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 39,
+            "movement": 4
           },
           {
             "country": "TT",
@@ -280,8 +280,8 @@
           {
             "country": "NZ",
             "name": "New Zealand",
-            "position": 53,
-            "movement": 11
+            "position": 51,
+            "movement": 14
           },
           {
             "country": "LK",
@@ -387,16 +387,16 @@
             "movement": -27
           },
           {
+            "country": "DE",
+            "name": "Germany",
+            "position": 89,
+            "movement": 10
+          },
+          {
             "country": "TC",
             "name": "Turks and Caicos",
             "position": 89,
             "movement": -28
-          },
-          {
-            "country": "DE",
-            "name": "Germany",
-            "position": 90,
-            "movement": 11
           },
           {
             "country": "IE",
@@ -407,8 +407,8 @@
           {
             "country": "AU",
             "name": "Australia",
-            "position": 101,
-            "movement": 19
+            "position": 100,
+            "movement": 20
           },
           {
             "country": "BB",
@@ -541,23 +541,23 @@
             "movement": 7
           },
           {
-            "country": "NO",
-            "name": "Norway",
-            "position": 151,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "CA",
             "name": "Canada",
-            "position": 155,
-            "movement": 25
+            "position": 156,
+            "movement": 30
           },
           {
             "country": "KH",
             "name": "Cambodia",
             "position": 160,
             "movement": -42
+          },
+          {
+            "country": "NO",
+            "name": "Norway",
+            "position": 163,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "RO",
@@ -1142,35 +1142,35 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "UA",
+            "name": "Ukraine",
+            "position": 7,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "LV",
             "name": "Latvia",
-            "position": 6,
+            "position": 8,
             "movement": null,
             "status": "new"
           },
           {
             "country": "KZ",
             "name": "Kazakhstan",
-            "position": 19,
-            "movement": -3
+            "position": 10,
+            "movement": -5
           },
           {
             "country": "MD",
             "name": "Moldova",
-            "position": 25,
-            "movement": -4
-          },
-          {
-            "country": "UA",
-            "name": "Ukraine",
-            "position": 39,
-            "movement": null,
-            "status": "new"
+            "position": 27,
+            "movement": -6
           },
           {
             "country": "BG",
             "name": "Bulgaria",
-            "position": 53,
+            "position": 61,
             "movement": null,
             "status": "new"
           },
@@ -1178,20 +1178,14 @@
             "country": "TJ",
             "name": "Tajikistan",
             "position": 76,
-            "movement": -7
+            "movement": -2
           },
           {
             "country": "BR",
             "name": "Brazil",
-            "position": 148,
+            "position": 176,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "RO",
-            "name": "Romania",
-            "position": 159,
-            "movement": -144
           }
         ]
       },
@@ -1253,8 +1247,8 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 20,
-            "movement": -1
+            "position": 19,
+            "movement": 1
           },
           {
             "country": "MZ",
@@ -1452,8 +1446,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 125,
-            "movement": -8
+            "position": 126,
+            "movement": -9
           }
         ]
       }
@@ -1536,14 +1530,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 4,
-            "movement": -2
+            "position": 3,
+            "movement": -1
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 167,
-            "movement": -7
+            "position": 168,
+            "movement": -8
           }
         ]
       },
@@ -1689,8 +1683,8 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 108,
-            "movement": -2
+            "position": 119,
+            "movement": -7
           },
           {
             "country": "DM",
@@ -1906,8 +1900,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 79,
-            "movement": -8
+            "position": 80,
+            "movement": -9
           }
         ]
       }
@@ -1993,26 +1987,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/3d1528266cd1263f06d630c1c73376d5/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "MOVE",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 168,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/02552930a9bbf685ec4f683ff0ca2029/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Black Panther: Wakanda Forever - Music From and Inspired By",
     "platforms": [
       {
@@ -2023,7 +1997,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 56,
-            "movement": 0
+            "movement": -1
           }
         ]
       }
