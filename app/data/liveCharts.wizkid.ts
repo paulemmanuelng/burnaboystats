@@ -258,13 +258,26 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 186,
-            "movement": 3
+            "position": 179,
+            "movement": 0
           },
           {
             "country": "MW",
             "name": "Malawi",
             "position": 191,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CH",
+            "name": "Switzerland",
+            "position": 117,
             "movement": null,
             "status": "new"
           }
@@ -971,14 +984,13 @@
       },
       {
         "platform": "iTunes",
-        "numberOnes": 0,
+        "numberOnes": 1,
         "entries": [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 15,
-            "movement": null,
-            "status": "new"
+            "position": 1,
+            "movement": 0
           }
         ]
       }
@@ -1171,13 +1183,13 @@
             "country": "GH",
             "name": "Ghana",
             "position": 66,
-            "movement": -1
+            "movement": 0
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 78,
-            "movement": 1
+            "position": 79,
+            "movement": 2
           },
           {
             "country": "KE",
@@ -1458,8 +1470,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 147,
-            "movement": -65
+            "position": 148,
+            "movement": -64
           }
         ]
       }
@@ -1677,8 +1689,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 14,
-            "movement": 150
+            "position": 24,
+            "movement": -18
           }
         ]
       }
@@ -1908,59 +1920,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 17,
-            "movement": null,
-            "status": "new"
+            "position": 26,
+            "movement": -24
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Essence",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 14,
-            "movement": 0
-          },
-          {
-            "country": "DM",
-            "name": "Dominica",
-            "position": 32,
-            "movement": -11
-          },
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 200,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 155,
-            "movement": 9
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "One Condition",
@@ -2085,8 +2052,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 130,
-            "movement": 8
+            "position": 131,
+            "movement": 9
           }
         ]
       }
@@ -2105,30 +2072,67 @@
             "country": "GH",
             "name": "Ghana",
             "position": 47,
-            "movement": 0
+            "movement": 1
           },
           {
             "country": "GD",
             "name": "Grenada",
             "position": 88,
-            "movement": 1
+            "movement": 2
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 89,
-            "movement": 6
+            "position": 90,
+            "movement": 7
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 95,
+            "position": 96,
             "movement": 0
           }
         ]
       }
     ],
     "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Essence",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 14,
+            "movement": 0
+          },
+          {
+            "country": "DM",
+            "name": "Dominica",
+            "position": 32,
+            "movement": -11
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 155,
+            "movement": 9
+          }
+        ]
+      }
+    ],
+    "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
   },
   {
@@ -2267,7 +2271,7 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 47,
+            "position": 48,
             "movement": -40
           }
         ]
@@ -2343,8 +2347,8 @@
           {
             "country": "BB",
             "name": "Barbados",
-            "position": 88,
-            "movement": -10
+            "position": 90,
+            "movement": -12
           }
         ]
       }
@@ -2362,7 +2366,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 93,
+            "position": 101,
             "movement": null,
             "status": "new"
           }
@@ -2382,7 +2386,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 53,
+            "position": 61,
             "movement": null,
             "status": "new"
           }
@@ -2488,6 +2492,18 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ad33274548de3455303618bb650b6d86/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Après Minuit",
+    "platforms": [],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Piece of My Heart",
+    "platforms": [],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/23dec0c82a7bb91327d048b0019004bd/500x500-000000-80-0-0.jpg"
   }
 ];
   

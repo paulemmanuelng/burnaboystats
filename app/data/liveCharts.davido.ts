@@ -242,14 +242,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 20,
-            "movement": -15
+            "position": 29,
+            "movement": 17
           },
           {
             "country": "TT",
             "name": "Trinidad and Tobago",
-            "position": 55,
-            "movement": -12
+            "position": 57,
+            "movement": -11
           }
         ]
       },
@@ -477,19 +477,6 @@
             "movement": -4
           }
         ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "MY",
-            "name": "Malaysia",
-            "position": 194,
-            "movement": null,
-            "status": "new"
-          }
-        ]
       }
     ],
     "kind": "song",
@@ -626,8 +613,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 117,
-            "movement": -1
+            "position": 134,
+            "movement": -10
           },
           {
             "country": "ML",
@@ -1026,20 +1013,20 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 21,
-            "movement": -15
+            "position": 2,
+            "movement": 2
           },
           {
             "country": "MZ",
             "name": "Mozambique",
             "position": 24,
-            "movement": -6
+            "movement": -5
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 79,
-            "movement": -19
+            "position": 80,
+            "movement": -17
           }
         ]
       },
@@ -1674,7 +1661,7 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 16,
+            "position": 17,
             "movement": null,
             "status": "new"
           }
@@ -1739,7 +1726,7 @@
             "country": "MZ",
             "name": "Mozambique",
             "position": 54,
-            "movement": 0
+            "movement": 1
           },
           {
             "country": "BF",
@@ -1805,7 +1792,7 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 6,
+            "position": 7,
             "movement": null,
             "status": "new"
           }
@@ -1978,8 +1965,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 181,
-            "movement": 3
+            "position": 182,
+            "movement": 4
           }
         ]
       }
@@ -2016,7 +2003,7 @@
             "country": "MZ",
             "name": "Mozambique",
             "position": 57,
-            "movement": 0
+            "movement": 1
           },
           {
             "country": "UG",
@@ -2028,8 +2015,9 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 194,
-            "movement": 6
+            "position": 195,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -2222,13 +2210,13 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 66,
-            "movement": -5
+            "position": 69,
+            "movement": -8
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 198,
+            "position": 199,
             "movement": null,
             "status": "new"
           }
@@ -2237,38 +2225,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/61fc2faba453737555d0b81de1e20c6a/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Funds",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 83,
-            "movement": 30
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 47,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/28cbbe0064bd5b7494523e75b6ebeb95/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "The Best",
@@ -2348,16 +2304,28 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Gang",
+    "title": "Funds",
     "platforms": [
       {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "TD",
-            "name": "Chad",
-            "position": 183,
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 83,
+            "movement": 30
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 47,
             "movement": null,
             "status": "new"
           }
@@ -2365,7 +2333,7 @@
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/28cbbe0064bd5b7494523e75b6ebeb95/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Risky",
@@ -2446,16 +2414,16 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/89d5885fe38a406504224ed98c1ab605/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Offa Me",
+    "title": "Julie",
     "platforms": [
       {
-        "platform": "Deezer",
+        "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 54,
+            "position": 18,
             "movement": null,
             "status": "new"
           }
@@ -2463,7 +2431,7 @@
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/08304eb172098540c635de98530d4929/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Aye",
@@ -2554,7 +2522,7 @@
             "country": "BW",
             "name": "Botswana",
             "position": 57,
-            "movement": -2
+            "movement": -1
           }
         ]
       }
@@ -2573,7 +2541,7 @@
             "country": "BW",
             "name": "Botswana",
             "position": 76,
-            "movement": -2
+            "movement": -1
           }
         ]
       }
@@ -2717,6 +2685,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/329ae36eecf839ca2e82a46203a10cbc/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Gang",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 183,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Son of Mercy - EP",
     "platforms": [
       {
@@ -2736,10 +2724,24 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/50d12a3358fb88c810b8c9231ced0cd6/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Know Your Worth",
-    "platforms": [],
+    "title": "Offa Me",
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6233b002023b8914609a3d879b7817a4/500x500-000000-80-0-0.jpg"
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 54,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "cover": "https://cdn-images.dzcdn.net/images/cover/08304eb172098540c635de98530d4929/500x500-000000-80-0-0.jpg"
   }
 ];
   
