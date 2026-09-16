@@ -137,6 +137,9 @@ describe("two headliners in full, the rest by first sentence", () => {
     const t = "Billboard's summer recaps put “Dai Dai” top of the world outside America: No. 1 on the Global Excl. U.S. top 10 songs of summer 2026. A second sentence.";
     expect(firstSentence(t)).toBe("Billboard's summer recaps put “Dai Dai” top of the world outside America: No. 1 on the Global Excl. U.S. top 10 songs of summer 2026.");
     expect(leadClause("A 10th week on Billboard's Global Excl. U.S. chart. More.")).toBe("A 10th week on Billboard's Global Excl. U.S. chart");
+    // The feed's own lower-case form, from the entry dated 2026-08-27.
+    const cert = "A Swedish plaque that was never on the site: “On The Low” is Platinum in Sweden, certificate no. 10448, awarded 16 August 2023. More.";
+    expect(firstSentence(cert)).toBe("A Swedish plaque that was never on the site: “On The Low” is Platinum in Sweden, certificate no. 10448, awarded 16 August 2023.");
   });
   it("cuts at the first sentence and keeps 'No. 9' whole", () => {
     expect(firstSentence("Back inside the global Top 10: “Dai Dai” sits at No. 9 on Spotify's chart. That figure is a total.")).toBe(

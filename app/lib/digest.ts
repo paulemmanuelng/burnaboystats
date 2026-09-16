@@ -74,13 +74,14 @@ export function splitDigest(items: Update[]): { headliners: Update[]; rest: Upda
  * list is the band's (lib/bandHeadline.ts), so the email and the home page
  * agree on where a sentence ends.
  */
-const SENTENCE_END = new RegExp(`(?<!\\b(?:${ABBREV.join("|")}))\\. `);
+const SENTENCE_END = new RegExp(`(?<!\\b(?:${ABBREV.join("|")}))\\. `, "i");
 
 /**
  * The entry's first sentence, the full stop kept. A one-sentence entry comes
  * back whole. "No. 9" was the first abbreviation this had to know; "Excl.
  * U.S." was the second — an entry that opened with Billboard's Global Excl.
- * U.S. chart would have printed in the digest cut at "Global Excl."
+ * U.S. chart would have printed in the digest cut at "Global Excl." — and
+ * "certificate no. 10448" the third, which is why the match ignores case.
  */
 export function firstSentence(text: string): string {
   const m = SENTENCE_END.exec(text);

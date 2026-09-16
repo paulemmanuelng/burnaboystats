@@ -67,7 +67,7 @@ export const updates: Update[] = [
   {
     date: "2026-09-14",
     category: "Certifications",
-    text: "African Giant's UK history, read at the BPI's own register: certified Silver on 18 September 2020 — his first certified album in Britain — and Gold since 22 July 2022. Both awards now sit in the dated log.",
+    text: "African Giant's UK history, read at the BPI's own register: certified Silver on 18 September 2020 — his first certified album in Britain — and Gold since 22 July 2022.",
     href: "/certifications",
   },
   {
