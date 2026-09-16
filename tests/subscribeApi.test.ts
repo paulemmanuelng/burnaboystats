@@ -58,10 +58,39 @@ describe("POST /api/subscribe", () => {
     expect(res.status).toBe(200);
     expect(calls).toHaveLength(1);
     expect(calls[0].url).toBe("https://api.resend.com/emails");
-    const body = calls[0].body as { to: string; html: string };
+    const body = calls[0].body as { to: string; subject: string; html: string; text: string };
     expect(body.to).toBe("reader@example.com");
-    expect(body.html).toContain(`/api/subscribe/confirm?e=reader%40example.com&t=${signEmail("reader@example.com")}`);
+    const link = `https://burnaboystats.com/api/subscribe/confirm?e=reader%40example.com&t=${signEmail("reader@example.com")}`;
+    // The HTML carries the link twice — the button and the raw line for
+    // clients that strip buttons — with its ampersand escaped as HTML wants;
+    // the plain text carries it once, raw, so it can be copied.
+    expect(body.html.split(`href="${link.replace("&", "&amp;")}"`)).toHaveLength(3);
+    expect(body.html).not.toContain(`&t=`);
+    expect(body.text).toContain(link);
     expect(calls.some((c) => c.url.includes("/audiences/"))).toBe(false);
+  });
+  it("the confirmation reads as the design's: one job, one tap", async () => {
+    const { POST } = await import("../app/api/subscribe/route");
+    await POST(post({ email: "reader@example.com", elapsed: 5000 }));
+    const body = calls[0].body as { subject: string; html: string; text: string };
+    expect(body.subject).toBe("Confirm your Saturday digest");
+    // Preheader, kicker, headline, sentence, button, ignore line, footer — in that order.
+    const order = [
+      "One tap. Nothing is sent until you do.",
+      "THE SATURDAY DIGEST &middot; ONE TAP TO CONFIRM",
+      "Confirm, and you're in.",
+      "sent Saturdays at 18:00 London time",
+      "CONFIRM SUBSCRIPTION",
+      "Didn't ask for this? Ignore it",
+      "If the button doesn't work, open this link",
+      "An unofficial fan site",
+    ];
+    const at = order.map((s) => body.html.indexOf(s));
+    expect(at.every((i) => i >= 0)).toBe(true);
+    expect([...at].sort((a, b) => a - b)).toEqual(at);
+    expect(body.html).toContain('width="600"');
+    expect(body.html).not.toMatch(/fonts\.googleapis|@import|<link|<img/);
+    for (const s of ["Confirm, and you're in.", "Didn't ask for this?", "An unofficial fan site"]) expect(body.text).toContain(s);
   });
   it("swallows a bot quietly: a filled honeypot or a sub-1.5s submit gets 200 and no email", async () => {
     const { POST } = await import("../app/api/subscribe/route");
