@@ -1,7 +1,8 @@
 import { describe, it, expect } from "vitest";
 import type { Update } from "../app/data/updates";
 import { updates } from "../app/data/updates";
-import { selectDigest, digestWindow, digestSubject, leadClause, splitDigest, firstSentence, weekRange, DIGEST_CAP, CATEGORY_RANK } from "../app/lib/digest";
+import { readFileSync } from "node:fs";
+import { selectDigest, digestWindow, digestSubject, leadClause, splitDigest, splitClause, digestPreheader, weekRange, weekRangeShort, DIGEST_CAP, CATEGORY_RANK } from "../app/lib/digest";
 import { renderDigestHtml, renderDigestText, UNSUBSCRIBE_PLACEHOLDER } from "../app/lib/digestEmail";
 
 // The Saturday digest is sent by a script nobody watches. These are the rules
@@ -97,14 +98,18 @@ describe("the email itself", () => {
     }
     expect(html).not.toMatch(/href="\//);
   });
-  it("escapes the entry text and loads no web fonts or external styles", () => {
+  it("escapes the entry text, loads no web fonts or external styles, and carries one image — the site's own crown", () => {
     expect(html).toContain("&lt;b&gt;bold&lt;/b&gt; &amp; &quot;quoted&quot;");
     expect(html).not.toContain("<b>bold</b>");
     expect(html).not.toMatch(/fonts\.googleapis|@import|<link/);
+    const imgs = html.match(/<img\b[^>]*>/g) ?? [];
+    expect(imgs).toHaveLength(1);
+    expect(imgs[0]).toContain('src="https://burnaboystats.com/email/crown-email-2x.png"');
+    expect(imgs[0]).toMatch(/width="40" height="35" alt="Burnaboystats"/);
   });
-  it("names the week and the count", () => {
-    expect(html).toContain("THE WEEK TO 19 SEPTEMBER &middot; 2 ENTRIES");
-    expect(text).toContain("the week to 19 September (2 entries)");
+  it("names the week and the count in the masthead, and the window in the footer", () => {
+    expect(html).toContain("THE SATURDAY DIGEST &middot; 13–19 SEPTEMBER &middot; 2 ENTRIES");
+    expect(text).toContain("The Saturday digest · 13–19 September · 2 entries");
     expect(text).toContain("this one ran 13 to 19 September. A quiet week sends nothing.");
     expect(html).toContain("this one ran 13 to 19 September. A quiet week sends nothing.");
   });
@@ -121,90 +126,96 @@ describe("the email itself", () => {
   });
 });
 
-describe("two headliners in full, the rest by first sentence", () => {
+describe("one list, every entry whole (design response 16 Sep 2026)", () => {
+  const now = new Date("2026-09-19T17:00:00Z");
+  const origin = "https://burnaboystats.com";
+
   it("splits on `big`, at most two, and falls back to the top entry when nothing is marked", () => {
     const a = u("2026-09-18", "Charts", "a", { big: true });
     const b = u("2026-09-17", "Streaming", "b", { big: true });
     const c = u("2026-09-16", "Charts", "c", { big: true });
     const d = u("2026-09-15", "Charts", "d");
-    expect(splitDigest([a, b, c, d])).toEqual({ headliners: [a, b], rest: [c, d] });
     const e = u("2026-09-14", "Streaming", "e");
-    expect(splitDigest([d, c])).toEqual({ headliners: [c], rest: [d] }); // one marked: one card
-    expect(splitDigest([d, e])).toEqual({ headliners: [d], rest: [e] }); // none marked: the top entry leads
+    expect(splitDigest([a, b, c, d])).toEqual({ headliners: [a, b], rest: [c, d] });
+    expect(splitDigest([d, c])).toEqual({ headliners: [c], rest: [d] });
+    expect(splitDigest([d, e])).toEqual({ headliners: [d], rest: [e] });
     expect(splitDigest([d])).toEqual({ headliners: [d], rest: [] });
   });
-  it("knows the feed's abbreviations — 'Excl. U.S.' is not a sentence end", () => {
-    const t = "Billboard's summer recaps put “Dai Dai” top of the world outside America: No. 1 on the Global Excl. U.S. top 10 songs of summer 2026. A second sentence.";
-    expect(firstSentence(t)).toBe("Billboard's summer recaps put “Dai Dai” top of the world outside America: No. 1 on the Global Excl. U.S. top 10 songs of summer 2026.");
-    expect(leadClause("A 10th week on Billboard's Global Excl. U.S. chart. More.")).toBe("A 10th week on Billboard's Global Excl. U.S. chart");
-    // The feed's own lower-case form, from the entry dated 2026-08-27.
-    const cert = "A Swedish plaque that was never on the site: “On The Low” is Platinum in Sweden, certificate no. 10448, awarded 16 August 2023. More.";
-    expect(firstSentence(cert)).toBe("A Swedish plaque that was never on the site: “On The Low” is Platinum in Sweden, certificate no. 10448, awarded 16 August 2023.");
-  });
-  it("cuts at the first sentence and keeps 'No. 9' whole", () => {
-    expect(firstSentence("Back inside the global Top 10: “Dai Dai” sits at No. 9 on Spotify's chart. That figure is a total.")).toBe(
-      "Back inside the global Top 10: “Dai Dai” sits at No. 9 on Spotify's chart.",
-    );
-    expect(firstSentence("One sentence, no cut.")).toBe("One sentence, no cut.");
-    expect(firstSentence("Ends with No. 1")).toBe("Ends with No. 1");
-  });
-  it("on the seven entries of the week to 19 September, every first sentence is a whole sentence of its entry", () => {
-    const week = selectDigest(updates, new Date("2026-09-19T17:00:00Z"));
-    expect(week.length).toBeGreaterThanOrEqual(7);
-    for (const x of week) {
-      const first = firstSentence(x.text);
-      expect(x.text.startsWith(first)).toBe(true);
-      expect(first.endsWith(".") || first === x.text).toBe(true);
-      // No cut inside the site's one abbreviation, and the cut is at a sentence end.
-      expect(first).not.toMatch(/\bNo\.$/);
-      if (first !== x.text) expect(x.text.slice(first.length)).toMatch(/^ /);
-    }
-    // The two the data marks lead, in full; the others are shorter than their entries.
-    const { headliners, rest } = splitDigest(week);
-    expect(headliners.map((x) => x.big)).toEqual([true, true]);
-    expect(rest.some((x) => firstSentence(x.text).length < x.text.length)).toBe(true);
-  });
-  it("prints the headliners whole and numbered, then a divider, then the rest cut — in the same order in both bodies", () => {
-    const now = new Date("2026-09-19T17:00:00Z");
+
+  it("prints every entry whole, in one list, each its own anchor with its clause in bold and its URL as the link line", () => {
     const items = [
-      u("2026-09-18", "Charts", "First headliner. Its second sentence.", { href: "/a", big: true }),
-      u("2026-09-17", "Streaming", "Second headliner at No. 1. Also whole.", { href: "/b", big: true }),
+      u("2026-09-18", "Charts", "First headliner: its second half. Another sentence.", { href: "/a", big: true }),
+      u("2026-09-17", "Streaming", "Second headliner at No. 1: also whole.", { href: "/b", big: true }),
       u("2026-09-16", "Certifications", "Third entry first sentence. Third entry rest.", { href: "/c" }),
-      u("2026-09-15", "Charts", "Fourth, one sentence.", { href: "/d" }),
+      u("2026-09-15", "Charts", "A correction, twice over: fourth, one sentence.", { href: "/d" }),
     ];
-    const html = renderDigestHtml(items, { origin: "https://burnaboystats.com", now });
-    const text = renderDigestText(items, { origin: "https://burnaboystats.com", now });
-    // The HTML's preheader repeats the first headliner, so the order is read
-    // from the body proper: after the lockup.
-    const bodies: [string, string, string][] = [
-      [html.slice(html.indexOf("BURNABOY")), ">01<", ">02<"],
-      [text, "01 · CHARTS", "02 · STREAMING"],
-    ];
-    for (const [b, one, two] of bodies) {
-      expect(b).toContain("First headliner. Its second sentence.");
-      expect(b).toContain("Second headliner at No. 1. Also whole.");
-      expect(b).toContain("Third entry first sentence.");
-      expect(b).not.toContain("Third entry rest.");
-      expect(b).toContain("Fourth, one sentence.");
-      const order = [one, "First headliner", two, "Second headliner", "ALSO THIS WEEK", "Third entry", "Fourth"].map((k) => b.indexOf(k));
-      expect(order.every((i) => i >= 0)).toBe(true);
-      expect([...order].sort((a, c) => a - c)).toEqual(order);
+    const html = renderDigestHtml(items, { origin, now });
+    const text = renderDigestText(items, { origin, now });
+    for (const b of [html, text]) {
+      expect(b).toContain("Third entry rest.");
+      expect(b).not.toContain("ALSO THIS WEEK");
+      expect(b).not.toContain("SEE THE FIGURE");
     }
-    expect(html).toContain("ALSO THIS WEEK &middot; 2 ENTRIES");
-    expect(text).toContain("ALSO THIS WEEK · 2 entries");
-    // Four links in each body, one per entry, the two-sentence entries linked as much as the whole ones.
-    for (const x of items) {
-      expect(html).toContain(`href="https://burnaboystats.com${x.href}"`);
-      expect(text).toContain(`https://burnaboystats.com${x.href}`);
+    expect(html).not.toMatch(/>0[12]</);
+    // Four anchors wrapping four entries; the clause bold in each; the size by tier.
+    const entries = html.match(/<td class="entry cell"[\s\S]*?<\/td>/g) ?? [];
+    expect(entries).toHaveLength(4);
+    for (const [i, cell] of entries.entries()) {
+      expect(cell.match(/<a href="https:\/\/burnaboystats\.com\/[abcd]"/g)).toHaveLength(1);
+      expect(cell).toContain("<strong style=\"font-weight:bold;\">");
+      expect(cell).toContain(`burnaboystats.com${items[i].href} &#8599;&#xFE0E;`);
+      expect(cell).toContain(i < 2 ? "font-size:19px;line-height:28px" : "font-size:15px;line-height:23px");
     }
-    // No divider and no list when the headliners are the whole week.
-    const two = renderDigestHtml(items.slice(0, 2), { origin: "https://burnaboystats.com", now });
-    expect(two).not.toContain("ALSO THIS WEEK");
-    // The gold-tinted headliner border is gone; the cards share one hairline.
-    expect(html).not.toContain("#5a4210");
+    expect(html).toContain("<strong style=\"font-weight:bold;\">First headliner:</strong> its second half. Another sentence.");
+    expect(html).toContain("<strong style=\"font-weight:bold;\">Second headliner at No. 1:</strong> also whole.");
+    // A correction is keyed on its opening words, in both bodies.
+    expect(html).toContain("CORRECTION &middot; CHARTS &middot; 15 SEPTEMBER".replace(/&middot;/g, "·"));
+    expect(text).toContain("CORRECTION · CHARTS · 15 September");
+    // Order carries the headliners — the same order in both bodies. (The
+    // HTML's preheader quotes the second entry, so read from the masthead on.)
+    const order = (b: string) => ["First headliner", "Second headliner", "Third entry", "A correction"].map((k) => b.indexOf(k));
+    for (const b of [html.slice(html.indexOf("BURNABOY<span")), text]) expect([...order(b)].sort((x, y) => x - y)).toEqual(order(b));
   });
-  it("names the window across a month end", () => {
+
+  it("carries the masthead, the gold rules, the footer's three link cells, the sign-off band and the legal line", () => {
+    const items = [u("2026-09-18", "Charts", "Only one: entry.", { href: "/dai-dai", big: true })];
+    const html = renderDigestHtml(items, { origin, now });
+    expect(html).toContain("THE SATURDAY DIGEST &middot; 13–19 SEPTEMBER &middot; 1 ENTRY");
+    expect(html.match(/border-top:2px solid #ffb627|border-bottom:2px solid #ffb627/g)).toHaveLength(2);
+    expect(html).toContain("ALL UPDATES &#8599;&#xFE0E;");
+    expect(html).toContain("HOW THE NUMBERS ARE CHECKED &#8599;&#xFE0E;");
+    expect(html).toMatch(/<a href="\{\{\{RESEND_UNSUBSCRIBE_URL\}\}\}"[^>]*text-decoration:underline;">UNSUBSCRIBE<\/a>/);
+    expect(html).toContain('bgcolor="#ffb627"');
+    expect(html).toContain("THE NUMBERS, VERIFIED &middot; SATURDAYS &middot; 18:00 LONDON");
+    expect(html).toContain("You're getting this because you confirmed at burnaboystats.com/updates.");
+    expect(html).not.toContain("#16130f"); // the card colour is retired — nothing sits on a tint
+    expect(Buffer.byteLength(html, "utf8")).toBeLessThan(80_000);
+  });
+
+  it("the preheader is the second entry's clause, the categories in rank order and the window — never the subject", () => {
+    const week = selectDigest(updates, now);
+    const { from, to } = digestWindow(now);
+    expect(digestPreheader(week, from, to)).toBe("Back inside the global Top 10 — certifications, charts and streaming, 13 to 19 September.");
+    expect(digestPreheader([week[0]], from, to)).toBe(
+      "The Schweizer Hitparade dated 13 September keeps “Dai Dai” at the top for the 14th consecutive chart since 14 June,…",
+    );
+    const html = renderDigestHtml(week, { origin, now });
+    expect(html).toContain("Back inside the global Top 10 — certifications, charts and streaming, 13 to 19 September.&zwnj;&nbsp;");
+    expect(html).not.toContain("A 14th straight week at No. 1 in Switzerland — and");
+    // Two entries of one category: no "and".
+    expect(digestPreheader([u("2026-09-18", "Charts", "One: a."), u("2026-09-17", "Charts", "Two: b.")], from, to)).toBe("Two — charts, 13 to 19 September.");
+  });
+
+  it("the plain-text twin for the week to 19 September matches the designer's fixture byte for byte", () => {
+    const week = selectDigest(updates, now);
+    const fixture = readFileSync("tests/fixtures/digest-2026-09-19.txt", "utf8");
+    expect(renderDigestText(week, { origin, now })).toBe(fixture);
+  });
+
+  it("names the window across a month end, in both forms", () => {
     expect(weekRange("2026-09-13", "2026-09-19")).toBe("13 to 19 September");
     expect(weekRange("2026-09-27", "2026-10-03")).toBe("27 September to 3 October");
+    expect(weekRangeShort("2026-09-13", "2026-09-19")).toBe("13–19 September");
+    expect(weekRangeShort("2026-08-30", "2026-09-05")).toBe("30 August–5 September");
   });
 });

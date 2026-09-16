@@ -18,9 +18,10 @@ would read as broken. Four steps, about twenty minutes, all in your own accounts
   no pending-signups database.
 - **The digest.** Every Saturday at 18:00 London (two UTC crons, 17:00 and 18:00; the script sends on whichever one lands at 18:00 in Europe/London) a
   GitHub Action sends one email to the audience: the week's entries from
-  `app/data/updates.ts`, at most eight. The headliners (`big: true`, at most
-  two) print in full; the rest print as their first sentence with a link, so
-  the whole entry is one tap away. Weeks with no entries send nothing.
+  `app/data/updates.ts`, at most eight, every one printed whole in one list —
+  the headliners (`big: true`, at most two) set larger, each entry's opening
+  clause bold, each entry one tap through to its page. Weeks with no entries
+  send nothing.
 - **Unsubscribe** is Resend's own one-tap link in the footer of every email.
 
 ## 1. Resend account and domain
@@ -73,14 +74,17 @@ lists exactly what went out, with the subject line.
 ## Editing the digest
 
 - **What goes in** is `app/data/updates.ts` — the same entries the site shows.
-  Mark the week's one or two headliners `big: true` — those are the two that
-  print in full; everything else is ranked by category (records and plaques,
-  then awards, charts, streaming, tours, lifestyle), capped at eight, and
-  printed as its first sentence. Rules and tests: `app/lib/digest.ts`,
-  `tests/digest.test.ts`.
+  Mark the week's one or two headliners `big: true` — those lead, set larger;
+  everything else is ranked by category (records and plaques, then awards,
+  charts, streaming, tours, lifestyle) and capped at eight. Entries are
+  ≤300 characters (`tests/updatesLength.test.ts`) and print whole. Rules and
+  tests: `app/lib/digest.ts`, `tests/digest.test.ts`; the twin's fixture is
+  `tests/fixtures/digest-2026-09-19.txt`.
 - **How it looks** is `app/lib/digestEmail.ts` (HTML and plain text) and
   `app/lib/confirmEmail.ts` (the confirmation); the palette they share is
-  `app/lib/emailChrome.ts`.
+  `app/lib/emailChrome.ts`, and the one image either carries is
+  `public/email/crown-email-2x.png`. Design: `docs/design/handoff-digest-email-2026-09-16.md`
+  and `docs/design/design-response-digest-email-2026-09-16.md`.
 - **When it sends** is the pair of crons in `.github/workflows/weekly-digest.yml` and the London-hour guard in `scripts/send-digest.mjs` (`--scheduled`).
 - **Local preview:** `npx tsx scripts/send-digest.mjs --dry-run` writes
   `digest-preview.html` and `.txt` in the repo root (git-ignored); add
