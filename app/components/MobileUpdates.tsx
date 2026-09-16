@@ -1,8 +1,8 @@
 "use client"; // the category rail filters the feed
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import SubscribeBox from "./SubscribeBox";
+import SubscribeBox, { landedFromLocation } from "./SubscribeBox";
 import styles from "./mobileUpdates.module.css";
 import { inkFor } from "../lib/updateInk";
 import type { Update, UpdateCategory } from "../data/updates";
@@ -18,6 +18,12 @@ import BackLink from "./BackLink";
  * block — category pill and date on top, the text beneath — and the month
  * headings go, because a phone reading one entry at a time gets the date from
  * the entry itself. The filter is the same set of categories, as a rail.
+ *
+ * The Saturday digest is a band after the third entry (design response §2):
+ * on a phone everything costs vertical room, so the module pays for its place
+ * by letting the reader see three entries first. The one exception is a
+ * landing from the confirmation email (?subscribed=…), when it renders under
+ * the hero — the reader came back for exactly that message.
  *
  * This screen keeps the five-tab bar, so there is no action bar here.
  */
@@ -40,6 +46,13 @@ export default function MobileUpdates({
   subscribeEnabled?: boolean;
 }) {
   const [cat, setCat] = useState<UpdateCategory | null>(null);
+  // Whether this is a landing from the confirm link — read once on mount, the
+  // same way SubscribeBox reads it (a server render has no query string).
+  const [landed, setLanded] = useState(false);
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time mount read of the URL
+    if (landedFromLocation()) setLanded(true);
+  }, []);
 
   const counts = items.reduce<Record<string, number>>((acc, u) => {
     acc[u.category] = (acc[u.category] ?? 0) + 1;
@@ -49,6 +62,22 @@ export default function MobileUpdates({
     (a, b) => counts[b] - counts[a]
   );
   const shown = cat ? items.filter((u) => u.category === cat) : items;
+
+  const row = (u: Update, i: number) => {
+    const ink = inkFor(u.category);
+    return (
+      <Link key={`${u.date}-${i}-${u.href}`} href={u.href} className={styles.row}>
+        <div className={styles.rowTop}>
+          <span className={styles.tag} style={{ borderColor: ink, color: ink }}>
+            <span className={styles.tagDot} style={{ background: ink }} aria-hidden="true" />
+            {u.category}
+          </span>
+          <span className={styles.rowDate}>{DATE_FMT.format(asDate(u.date))}</span>
+        </div>
+        <div className={styles.rowText}>{u.text}</div>
+      </Link>
+    );
+  };
 
   return (
     <div className={styles.screen}>
@@ -61,7 +90,7 @@ export default function MobileUpdates({
         </BackLink>
         <span className={styles.backLabel}>Updates</span>
         {subscribeEnabled ? (
-          <a href="#subscribe-m" className={styles.rss}>Subscribe</a>
+          <a href="#digest-m" className={styles.subscribe}>Subscribe</a>
         ) : (
           <a href="/rss.xml" className={styles.rss}>RSS ↗</a>
         )}
@@ -86,9 +115,9 @@ export default function MobileUpdates({
         </div>
       </div>
 
-      {/* The Saturday digest — the back bar's "Subscribe" jumps here. The RSS
-          link this replaced lives on in the footer (lib/links.ts). */}
-      {subscribeEnabled && <SubscribeBox id="subscribe-m" compact />}
+      {/* Landing from the confirmation email: the module (the ticket, or the
+          note above the form) sits right here, not three entries down. */}
+      {subscribeEnabled && landed && <SubscribeBox id="digest-m" compact entries="#entries-m" />}
 
       {/* Filter rail */}
       <div className={styles.rail}>
@@ -124,23 +153,14 @@ export default function MobileUpdates({
         {shown.length} {shown.length === 1 ? "entry" : "entries"}
       </p>
 
-      {/* Feed */}
-      <div className={styles.list}>
-        {shown.map((u, i) => {
-          const ink = inkFor(u.category);
-          return (
-            <Link key={`${u.date}-${i}`} href={u.href} className={styles.row}>
-              <div className={styles.rowTop}>
-                <span className={styles.tag} style={{ borderColor: ink, color: ink }}>
-                  <span className={styles.tagDot} style={{ background: ink }} aria-hidden="true" />
-                  {u.category}
-                </span>
-                <span className={styles.rowDate}>{DATE_FMT.format(asDate(u.date))}</span>
-              </div>
-              <div className={styles.rowText}>{u.text}</div>
-            </Link>
-          );
-        })}
+      {/* Feed. The digest band follows the third entry (or the last, when a
+          filter leaves fewer); the back bar's "Subscribe" jumps to it. The band
+          sits between two slices rather than inside the map so a filter change
+          re-keys the rows around it without remounting a half-typed form. */}
+      <div id="entries-m" className={styles.list}>
+        {shown.slice(0, 3).map(row)}
+        {subscribeEnabled && !landed && <SubscribeBox id="digest-m" compact entries="#entries-m" />}
+        {shown.slice(3).map(row)}
       </div>
 
       <div className={styles.spacer} />

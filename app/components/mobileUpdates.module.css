@@ -68,6 +68,21 @@
   color: var(--text-muted);
   flex: none;
 }
+/* The digest jump is drawn in gold on the phone board (Saturday Digest.dc.html):
+   it points at the one action on the screen, where RSS pointed off it. */
+.subscribe {
+  margin-left: auto;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--gold-ink);
+  flex: none;
+}
 
 /* ── Hero ─────────────────────────────────────────────────────────────── */
 .hero { padding: 22px 18px 16px; }
