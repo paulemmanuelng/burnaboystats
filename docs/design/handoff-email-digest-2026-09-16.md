@@ -4,6 +4,7 @@
 **Status:** the feature is BUILT and merged (`main`, PR #256) but dormant on the live site: the subscribe box only renders once Resend is configured, which has not happened yet. Nothing you design changes how it works; you are designing how it looks and where it sits.
 **Date:** 16 September 2026
 **Build owner:** Claude Code, from your artboards — see §7 for what comes back.
+**Answered:** `design-response-email-digest-2026-09-16.md` beside this file (16 September 2026); boards in `design_handoff_burnaboystats/designs/desktop/Saturday Digest.dc.html`. Built the same day.
 
 ---
 

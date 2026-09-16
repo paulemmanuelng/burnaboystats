@@ -77,6 +77,13 @@
   .liveDot { animation: none; }
 }
 
+/* With the digest module as the right column (Saturday Digest.dc.html): the
+   module's own width, the title stack takes the rest, both centred. */
+.heroDigest {
+  grid-template-columns: minmax(0, 1fr) 480px;
+  gap: 56px;
+  align-items: center;
+}
 .heroAside { border-left: 1px solid var(--line); padding-left: 40px; }
 .asideText { font-size: 14px; line-height: 1.55; color: var(--text-body-cool); margin: 12px 0 0; }
 .tally { display: flex; gap: 26px; margin-top: 22px; padding-top: 20px; border-top: 1px solid var(--line); }
@@ -205,6 +212,8 @@
 @media (max-width: 1239px) {
   .h1 { font-size: 70px; }
   .heroPad { grid-template-columns: 1fr; gap: 32px; align-items: start; }
+  /* Stacked, the module keeps its designed width rather than spanning the band. */
+  .heroDigest > :last-child { max-width: 480px; }
   .heroAside { border-left: 0; border-top: 1px solid var(--line); padding-left: 0; padding-top: 40px; }
   /* The date column is the first to fold — the month heading already says it. */
   .row { grid-template-columns: 150px 1fr auto; }

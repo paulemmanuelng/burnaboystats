@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import type { Update } from "../app/data/updates";
 import { updates } from "../app/data/updates";
-import { selectDigest, digestWindow, digestSubject, leadClause, DIGEST_CAP, CATEGORY_RANK } from "../app/lib/digest";
+import { selectDigest, digestWindow, digestSubject, leadClause, splitDigest, firstSentence, weekRange, DIGEST_CAP, CATEGORY_RANK } from "../app/lib/digest";
 import { renderDigestHtml, renderDigestText, UNSUBSCRIBE_PLACEHOLDER } from "../app/lib/digestEmail";
 
 // The Saturday digest is sent by a script nobody watches. These are the rules
@@ -103,13 +103,100 @@ describe("the email itself", () => {
     expect(html).not.toMatch(/fonts\.googleapis|@import|<link/);
   });
   it("names the week and the count", () => {
-    expect(html).toContain("THE WEEK TO 19 SEPTEMBER · 2 ENTRIES");
+    expect(html).toContain("THE WEEK TO 19 SEPTEMBER &middot; 2 ENTRIES");
     expect(text).toContain("the week to 19 September (2 entries)");
-    expect(text).toContain("13 September to 19 September");
+    expect(text).toContain("this one ran 13 to 19 September. A quiet week sends nothing.");
+    expect(html).toContain("this one ran 13 to 19 September. A quiet week sends nothing.");
+  });
+  it("says why the reader is getting it, and links the methodology, in both bodies", () => {
+    for (const b of [html, text]) {
+      expect(b).toContain("You're getting this because you confirmed at burnaboystats.com/updates.");
+      expect(b).toContain("https://burnaboystats.com/methodology");
+    }
   });
   it("a test send can print a real unsubscribe link instead of the placeholder", () => {
     const h = renderDigestHtml(items, { origin: "https://burnaboystats.com", now, unsubscribe: "https://burnaboystats.com/updates#subscribe" });
     expect(h).not.toContain(UNSUBSCRIBE_PLACEHOLDER);
     expect(h).toContain('href="https://burnaboystats.com/updates#subscribe"');
+  });
+});
+
+describe("two headliners in full, the rest by first sentence", () => {
+  it("splits on `big`, at most two, and falls back to the top entry when nothing is marked", () => {
+    const a = u("2026-09-18", "Charts", "a", { big: true });
+    const b = u("2026-09-17", "Streaming", "b", { big: true });
+    const c = u("2026-09-16", "Charts", "c", { big: true });
+    const d = u("2026-09-15", "Charts", "d");
+    expect(splitDigest([a, b, c, d])).toEqual({ headliners: [a, b], rest: [c, d] });
+    const e = u("2026-09-14", "Streaming", "e");
+    expect(splitDigest([d, c])).toEqual({ headliners: [c], rest: [d] }); // one marked: one card
+    expect(splitDigest([d, e])).toEqual({ headliners: [d], rest: [e] }); // none marked: the top entry leads
+    expect(splitDigest([d])).toEqual({ headliners: [d], rest: [] });
+  });
+  it("cuts at the first sentence and keeps 'No. 9' whole", () => {
+    expect(firstSentence("Back inside the global Top 10: “Dai Dai” sits at No. 9 on Spotify's chart. That figure is a total.")).toBe(
+      "Back inside the global Top 10: “Dai Dai” sits at No. 9 on Spotify's chart.",
+    );
+    expect(firstSentence("One sentence, no cut.")).toBe("One sentence, no cut.");
+    expect(firstSentence("Ends with No. 1")).toBe("Ends with No. 1");
+  });
+  it("on the seven entries of the week to 19 September, every first sentence is a whole sentence of its entry", () => {
+    const week = selectDigest(updates, new Date("2026-09-19T17:00:00Z"));
+    expect(week.length).toBeGreaterThanOrEqual(7);
+    for (const x of week) {
+      const first = firstSentence(x.text);
+      expect(x.text.startsWith(first)).toBe(true);
+      expect(first.endsWith(".") || first === x.text).toBe(true);
+      // No cut inside the site's one abbreviation, and the cut is at a sentence end.
+      expect(first).not.toMatch(/\bNo\.$/);
+      if (first !== x.text) expect(x.text.slice(first.length)).toMatch(/^ /);
+    }
+    // The two the data marks lead, in full; the others are shorter than their entries.
+    const { headliners, rest } = splitDigest(week);
+    expect(headliners.map((x) => x.big)).toEqual([true, true]);
+    expect(rest.some((x) => firstSentence(x.text).length < x.text.length)).toBe(true);
+  });
+  it("prints the headliners whole and numbered, then a divider, then the rest cut — in the same order in both bodies", () => {
+    const now = new Date("2026-09-19T17:00:00Z");
+    const items = [
+      u("2026-09-18", "Charts", "First headliner. Its second sentence.", { href: "/a", big: true }),
+      u("2026-09-17", "Streaming", "Second headliner at No. 1. Also whole.", { href: "/b", big: true }),
+      u("2026-09-16", "Certifications", "Third entry first sentence. Third entry rest.", { href: "/c" }),
+      u("2026-09-15", "Charts", "Fourth, one sentence.", { href: "/d" }),
+    ];
+    const html = renderDigestHtml(items, { origin: "https://burnaboystats.com", now });
+    const text = renderDigestText(items, { origin: "https://burnaboystats.com", now });
+    // The HTML's preheader repeats the first headliner, so the order is read
+    // from the body proper: after the lockup.
+    const bodies: [string, string, string][] = [
+      [html.slice(html.indexOf("BURNABOY")), ">01<", ">02<"],
+      [text, "01 · CHARTS", "02 · STREAMING"],
+    ];
+    for (const [b, one, two] of bodies) {
+      expect(b).toContain("First headliner. Its second sentence.");
+      expect(b).toContain("Second headliner at No. 1. Also whole.");
+      expect(b).toContain("Third entry first sentence.");
+      expect(b).not.toContain("Third entry rest.");
+      expect(b).toContain("Fourth, one sentence.");
+      const order = [one, "First headliner", two, "Second headliner", "ALSO THIS WEEK", "Third entry", "Fourth"].map((k) => b.indexOf(k));
+      expect(order.every((i) => i >= 0)).toBe(true);
+      expect([...order].sort((a, c) => a - c)).toEqual(order);
+    }
+    expect(html).toContain("ALSO THIS WEEK &middot; 2 ENTRIES");
+    expect(text).toContain("ALSO THIS WEEK · 2 entries");
+    // Four links in each body, one per entry, the two-sentence entries linked as much as the whole ones.
+    for (const x of items) {
+      expect(html).toContain(`href="https://burnaboystats.com${x.href}"`);
+      expect(text).toContain(`https://burnaboystats.com${x.href}`);
+    }
+    // No divider and no list when the headliners are the whole week.
+    const two = renderDigestHtml(items.slice(0, 2), { origin: "https://burnaboystats.com", now });
+    expect(two).not.toContain("ALSO THIS WEEK");
+    // The gold-tinted headliner border is gone; the cards share one hairline.
+    expect(html).not.toContain("#5a4210");
+  });
+  it("names the window across a month end", () => {
+    expect(weekRange("2026-09-13", "2026-09-19")).toBe("13 to 19 September");
+    expect(weekRange("2026-09-27", "2026-10-03")).toBe("27 September to 3 October");
   });
 });

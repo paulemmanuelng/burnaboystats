@@ -87,7 +87,8 @@ export default function UpdatesFeed({ items }: { items: Update[] }) {
         </div>
       </section>
 
-      <section className={styles.band}>
+      {/* `entries` is where the digest ticket's "This week's entries ↓" lands. */}
+      <section id="entries" className={styles.band}>
         <div className={`${styles.wide} ${styles.feedPad}`}>
           {months.map((g) => (
             <div key={g.month} className={styles.month}>

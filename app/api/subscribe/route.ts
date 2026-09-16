@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { signEmail, looksLikeEmail } from "../../lib/subscribeToken";
+import { CONFIRM_SUBJECT, renderConfirmHtml, renderConfirmText } from "../../lib/confirmEmail";
 
 /**
  * Step one of the double opt-in: validate the address and send a confirmation
@@ -63,13 +64,9 @@ export async function POST(req: Request) {
     body: JSON.stringify({
       from,
       to: email,
-      subject: "Confirm your Burna Boy Stats subscription",
-      html: `<div style="font-family:Arial,Helvetica,sans-serif;background:#0d0b09;color:#f5f4f0;padding:36px 24px;max-width:560px;margin:0 auto">
-        <div style="font-size:20px;font-weight:800;letter-spacing:1px">BURNABOY<span style="color:#ffb627">STATS</span></div>
-        <p style="color:#cfc7bb;line-height:1.6;margin:18px 0 26px">One tap and you're in — the biggest Burna Boy chart, certification and record news lands in this inbox every Saturday evening.</p>
-        <a href="${confirmUrl}" style="display:inline-block;background:#ffb627;color:#0d0b09;font-weight:800;text-decoration:none;padding:13px 26px;border-radius:4px">Confirm subscription</a>
-        <p style="color:#8a8279;font-size:12px;line-height:1.6;margin-top:28px">If you didn't request this, ignore it — nothing happens without the tap.</p>
-      </div>`,
+      subject: CONFIRM_SUBJECT,
+      html: renderConfirmHtml({ confirmUrl, origin }),
+      text: renderConfirmText({ confirmUrl, origin }),
     }),
   });
 
