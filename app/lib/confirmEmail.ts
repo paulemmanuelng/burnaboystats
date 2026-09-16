@@ -25,7 +25,7 @@ export function renderConfirmHtml({ confirmUrl, origin }: { confirmUrl: string; 
   /* The masthead is the digest's, so it moves the way the digest's does at 375
      (the board's media-query table, masthead rows only). */
   @media only screen and (max-width: 480px) {
-    .mast { padding-top: 16px !important; padding-left: 16px !important; padding-right: 16px !important; }
+    .mast { padding-top: 16px !important; }
     .crown { width: 36px !important; height: 32px !important; }
     .wm { font-size: 20px !important; line-height: 24px !important; }
     .week { letter-spacing: 0 !important; }
@@ -36,10 +36,10 @@ export function renderConfirmHtml({ confirmUrl, origin }: { confirmUrl: string; 
   <div style="display:none;max-height:0;overflow:hidden;font-size:1px;line-height:1px;color:${BG};mso-hide:all;">${esc(CONFIRM_PREHEADER)}</div>
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:${BG};">
     <tr>
-      <td align="center" style="padding:24px 0;">
-        <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;width:100%;">${mastheadHtml(origin, "THE SATURDAY DIGEST &middot; ONE TAP TO CONFIRM")}
+      <td align="center" style="padding:28px 20px;">
+        <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;width:100%;">${mastheadHtml(origin, "THE SATURDAY DIGEST &middot; ONE TAP TO CONFIRM", 0)}
           <tr>
-            <td style="padding:24px 24px 0;">
+            <td style="padding:22px 0 0;">
               <div style="font-family:${FONT};font-size:26px;line-height:1.2;font-weight:800;color:${INK};">Confirm, and you're in.</div>
               <p style="font-family:${FONT};font-size:15px;line-height:1.6;color:${BODY};margin:14px 0 0 0;max-width:520px;">You asked for the Saturday digest at this address: the week's chart peaks, certifications and records, sent Saturdays at 18:00 London time &mdash; only in weeks something happened, and never more than once a week.</p>
               <div style="padding:26px 0 0 0;"><a href="${url}" style="display:inline-block;background:${GOLD};color:${INK_ON_GOLD};font-family:${MONO};font-weight:700;font-size:13px;letter-spacing:1px;text-decoration:none;padding:15px 26px;border-radius:999px;">CONFIRM SUBSCRIPTION</a></div>
@@ -47,9 +47,9 @@ export function renderConfirmHtml({ confirmUrl, origin }: { confirmUrl: string; 
               <p style="font-family:${MONO};font-size:11px;line-height:1.6;color:${FINE};margin:14px 0 0 0;word-break:break-all;">If the button doesn't work, open this link: <a href="${url}" style="color:${FINE};text-decoration:underline;">${url}</a></p>
             </td>
           </tr>
-          <tr><td style="padding:26px 24px 16px;"><div style="height:1px;line-height:1px;font-size:1px;background:${CARD_LINE};">&nbsp;</div></td></tr>
+          <tr><td style="padding:26px 0 16px 0;"><div style="height:1px;line-height:1px;font-size:1px;background:${CARD_LINE};">&nbsp;</div></td></tr>
           <tr>
-            <td style="padding:0 24px 4px;">
+            <td style="padding:0;">
               <p style="font-family:${FONT};font-size:${FINE_SIZE}px;line-height:1.6;color:${FINE};margin:0;"><a href="${esc(origin)}" style="color:${GOLD};text-decoration:none;">burnaboystats.com</a> &middot; An unofficial fan site &mdash; not affiliated with or endorsed by Burna Boy.</p>
             </td>
           </tr>
