@@ -140,6 +140,10 @@
   --display-ramp-dim: light-dark(#945e00, #c98a2e);
   --gold-wash-base: light-dark(#945e00, #ffb627);
   --gold-wash: light-dark(rgba(148, 94, 0, 0.10), rgba(255, 182, 39, 0.10));
+  /* The wash's own edge — the 30% gold hairline a --gold-wash block sits in
+     (the digest's "check your inbox" note). A token, not a color-mix, so the
+     light value is read off the design and not derived. */
+  --gold-edge: light-dark(rgba(148, 94, 0, 0.30), rgba(255, 182, 39, 0.30));
   /* The car pages' stage light and floor ring. Paper needs MORE light, not
      less — the ring is what separates a dark car from the ground it sits on. */
   --floor-glow: light-dark(rgba(255, 182, 39, 0.30), rgba(255, 182, 39, 0.16));

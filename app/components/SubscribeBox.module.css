@@ -1,39 +1,105 @@
-/* The subscribe box — lives inside the FollowPanel on desktop /updates and on
-   its own, compact, on the phone screen. Pills match the panel's (44px, mono),
-   the field takes the same rhythm so the row reads as one control. */
+/* The Saturday digest module. Values verbatim from
+   design_handoff_burnaboystats/designs/desktop/Saturday Digest.dc.html.
+
+   Two layouts, never scaled into each other:
+     • default  — the desktop card, the hero's right column on /updates:
+                  bordered, radius 6, field and button in a row, 44px;
+     • .compact — the phone band after the third entry (or under the hero
+                  on a landing): full bleed between hairlines, field and
+                  button stacked, 48px, and the facts on two lines.
+   Tokens only — the one this module needed that did not exist, --gold-edge,
+   lives in globals.css beside --gold-wash. */
+
 .box {
-  margin: 0 0 20px;
-  padding: 18px 18px 14px;
+  padding: 22px 24px 20px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: var(--bg-raised);
+  background: var(--bg-soft);
+  color: var(--text);
 }
 .compact {
-  margin: 18px 16px 6px;
+  padding: 22px 18px 20px;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
 }
 
-.lead {
-  margin: 0 0 12px;
-  max-width: 54ch;
-  color: var(--text-muted);
-  line-height: 1.55;
-  font-size: 0.92rem;
-}
-.lead b {
-  color: var(--text);
+/* ── Promise ─────────────────────────────────────────────────────────── */
+.kicker {
+  font-family: var(--font-mono), monospace;
   font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--gold-ink);
 }
-
-.form {
+.head {
+  margin: 8px 0 0;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 28px;
+  line-height: 1.05;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+}
+.compact .head {
+  font-size: 26px;
+}
+.facts,
+.factsStack {
+  margin-top: 12px;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.facts {
   display: flex;
   flex-wrap: wrap;
+  gap: 6px 14px;
+}
+.factsSep {
+  width: 1px;
+  height: 12px;
+  background: var(--line);
+  align-self: center;
+}
+.factsStack {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+/* ── Form ────────────────────────────────────────────────────────────── */
+.form {
+  display: block;
+}
+.label {
+  display: block;
+  margin-top: 16px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.row {
+  position: relative; /* the honeypot is positioned off this box */
+  display: flex;
   gap: 10px;
   align-items: center;
+  margin-top: 6px;
+}
+.compact .row {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
 }
 
 .input {
-  flex: 1 1 220px;
-  max-width: 520px;
+  flex: 1 1 200px;
   min-width: 0;
   min-height: 44px;
   padding: 10px 16px;
@@ -50,11 +116,11 @@
   color: var(--text-muted);
 }
 .input:focus-visible {
-  outline: 2px solid var(--gold);
+  outline: 2px solid var(--gold-ink);
   outline-offset: 2px;
 }
 .input[aria-invalid="true"] {
-  border-color: color-mix(in srgb, var(--gold-ink) 60%, transparent);
+  border-color: var(--gold-dim);
 }
 
 .button {
@@ -69,7 +135,8 @@
   color: var(--ink-on-gold);
   background: linear-gradient(120deg, var(--gold-bright), var(--gold-fill));
   font-family: var(--font-mono), monospace;
-  font-size: 0.8rem;
+  font-weight: 700;
+  font-size: 12.8px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   cursor: pointer;
@@ -83,57 +150,159 @@
   opacity: 0.7;
 }
 .button:focus-visible {
-  outline: 2px solid var(--gold);
+  outline: 2px solid var(--gold-ink);
   outline-offset: 3px;
 }
-
-.sent,
-.landedOk,
-.landedBad,
-.error {
-  margin: 0;
-  line-height: 1.5;
-  font-size: 0.9rem;
+/* The phone band: stacked, full width, 48px — a thumb's controls. In a column,
+   flex-basis is height, so the field's basis goes back to auto here. */
+.compact .input,
+.compact .button {
+  flex: 0 0 auto;
+  width: 100%;
+  min-height: 48px;
 }
-.sent,
-.landedOk {
+
+.error {
+  margin: 8px 0 0;
+  font-size: 13.5px;
+  line-height: 1.5;
   color: var(--text);
-  padding: 10px 14px;
+}
+.bang {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  color: var(--gold-ink);
+}
+
+/* ── Sent ────────────────────────────────────────────────────────────── */
+.sent {
+  margin-top: 16px;
+  padding: 14px 16px;
+  border: 1px solid var(--gold-edge);
   border-radius: var(--radius);
   background: var(--gold-wash);
-  border: 1px solid color-mix(in srgb, var(--gold-ink) 30%, transparent);
 }
-.landedOk {
-  margin-bottom: 12px;
+.sentHead {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1;
+  text-transform: uppercase;
 }
-.landedBad {
-  margin-bottom: 12px;
+.sentText {
+  margin: 8px 0 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.sentTo {
+  margin-top: 10px;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  overflow-wrap: anywhere;
+}
+.sentTo span {
   color: var(--text);
-}
-.error {
-  flex-basis: 100%;
-  color: var(--text);
+  text-transform: none;
 }
 
+/* ── Fine print ──────────────────────────────────────────────────────── */
 .fine {
   margin: 10px 0 0;
-  color: var(--text-muted);
   font-family: var(--font-mono), monospace;
-  font-size: 0.68rem;
-  letter-spacing: 0.04em;
+  font-size: 11px;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  color: var(--text-muted);
 }
 
-/* Visually hidden label — the placeholder is not a label. */
-.srOnly {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
+/* ── Landed · invalid / error: a note above an idle form ─────────────── */
+.note {
+  margin-bottom: 16px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--bg-raised);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.note b {
+  font-weight: 700;
+}
+
+/* ── Landed · confirmed: the ticket, the one gold fill on the page ───── */
+.ticket {
+  border-color: var(--gold-fill);
+  background: linear-gradient(160deg, var(--gold-bright), var(--gold-fill));
+  color: var(--ink-on-gold);
+}
+.ticketKicker {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+.ticketHead {
+  margin: 8px 0 0;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+.compact .ticketHead {
+  font-size: 36px;
+}
+.ticketText {
+  margin: 12px 0 0;
+  max-width: 46ch;
+  font-size: 14.5px;
+  line-height: 1.55;
+}
+.ticketText b {
+  font-weight: 700;
+}
+.ticketFacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  margin-top: 14px;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+/* The phone band stacks the ticket's two facts, as it stacks the module's —
+   in 354px the separator dot only ever hung at a line end. */
+.compact .ticketFacts {
+  flex-direction: column;
+  gap: 5px;
+}
+.compact .ticketDot {
+  display: none;
+}
+.ticketLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 6px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.ticketLink:focus-visible {
+  outline: 2px solid var(--ink-on-gold);
+  outline-offset: 3px;
 }
 
 /* The honeypot: out of the layout and out of the accessibility tree. Not
@@ -145,19 +314,4 @@
   width: 1px;
   height: 1px;
   overflow: hidden;
-}
-
-@media (max-width: 480px) {
-  .form {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  /* In a column, flex-basis is HEIGHT — the 220px above made the field a
-     220px-tall blob on the first phone render. Basis auto, width full. */
-  .input,
-  .button {
-    flex: 0 0 auto;
-    width: 100%;
-    max-width: none;
-  }
 }
