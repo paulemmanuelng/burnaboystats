@@ -2,10 +2,13 @@
 // renders. Hexes, deliberately: an email does not read globals.css, and a
 // mail client's dark mode recolours what it likes. Shared by the confirmation
 // (confirmEmail.ts) and the digest (digestEmail.ts) so the two look like one
-// sender. Values: the digest-email design response's palette table. There is
-// no card colour any more — a tinted surface three per cent off the ground is
-// exactly what Gmail's recolouring collapses, so nothing sits on one.
+// sender. Values: the digest-email design response's palette table, plus the
+// one raised surface Paul's "cool elements" round brought back — bordered and
+// railed, never a tint doing a job on its own.
 export const BG = "#0d0b09";
+/** The one raised surface — the headliners' card. Always with a 1px hairline
+ *  border and a gold rail, so it stands even where a client flattens tints. */
+export const RAISED = "#16130f";
 export const CARD_LINE = "#2a251f";
 export const INK = "#f5f4f0";
 export const BODY = "#cfc7bb";

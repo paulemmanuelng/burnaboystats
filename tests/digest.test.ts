@@ -156,20 +156,33 @@ describe("one list, every entry whole (design response 16 Sep 2026)", () => {
       expect(b).not.toContain("ALSO THIS WEEK");
       expect(b).not.toContain("SEE THE FIGURE");
     }
-    expect(html).not.toMatch(/>0[12]</);
-    // Four anchors wrapping four entries; the clause bold in each; the size by tier.
-    const entries = html.match(/<td class="entry cell"[\s\S]*?<\/td>/g) ?? [];
-    expect(entries).toHaveLength(4);
-    for (const [i, cell] of entries.entries()) {
+    // Four anchors wrapping four entries — the headliners on the railed card,
+    // the rest as ledger rows — each opening on its index, its clause bold.
+    const heads = html.match(/<td class="head"[\s\S]*?<\/a>/g) ?? [];
+    const plain = html.match(/<td class="entry cell"[\s\S]*?<\/a>/g) ?? [];
+    expect(heads).toHaveLength(2);
+    expect(plain).toHaveLength(2);
+    const cells = [...heads, ...plain];
+    for (const [i, cell] of cells.entries()) {
       expect(cell.match(/<a href="https:\/\/burnaboystats\.com\/[abcd]"/g)).toHaveLength(1);
       expect(cell).toContain("<strong style=\"font-weight:bold;\">");
       expect(cell).toContain(`burnaboystats.com${items[i].href} &#8599;&#xFE0E;`);
-      expect(cell).toContain(i < 2 ? "font-size:19px;line-height:28px" : "font-size:15px;line-height:23px");
+      expect(cell).toContain(`>${String(i + 1).padStart(2, "0")}</span>`);
+      expect(cell).toContain(">/04</span>");
     }
-    expect(html).toContain("<strong style=\"font-weight:bold;\">First headliner:</strong> its second half. Another sentence.");
-    expect(html).toContain("<strong style=\"font-weight:bold;\">Second headliner at No. 1:</strong> also whole.");
-    // A correction is keyed on its opening words, in both bodies.
-    expect(html).toContain("CORRECTION &middot; CHARTS &middot; 15 SEPTEMBER".replace(/&middot;/g, "·"));
+    for (const cell of heads) {
+      expect(cell).toContain(`border-left:4px solid #ffb627`);
+      expect(cell).toContain("font-size:23px;line-height:29px");
+      expect(cell).toContain("font-size:17px;line-height:26px");
+    }
+    for (const cell of plain) expect(cell).toContain("font-size:16px;line-height:24px");
+    // The headliner's clause stands as its display line; a plain entry keeps it inline.
+    expect(html).toContain("<strong style=\"font-weight:bold;\">First headliner:</strong></div>");
+    expect(html).toContain(">its second half. Another sentence.</div>");
+    expect(html).toContain("<strong style=\"font-weight:bold;\">Third entry first sentence.</strong> Third entry rest.");
+    // A correction is keyed on its opening words, in both bodies — the pill
+    // carries the flag with the category; the date sits beside it.
+    expect(html).toContain(">CORRECTION · CHARTS</span>");
     expect(text).toContain("CORRECTION · CHARTS · 15 September");
     // Order carries the headliners — the same order in both bodies. (The
     // HTML's preheader quotes the second entry, so read from the masthead on.)
@@ -177,18 +190,29 @@ describe("one list, every entry whole (design response 16 Sep 2026)", () => {
     for (const b of [html.slice(html.indexOf("BURNABOY<span")), text]) expect([...order(b)].sort((x, y) => x - y)).toEqual(order(b));
   });
 
-  it("carries the masthead, the gold rules, the footer's three link cells, the sign-off band and the legal line", () => {
+  it("carries the masthead, the week strip, the footer's three link cells, the sign-off band and the legal line", () => {
     const items = [u("2026-09-18", "Charts", "Only one: entry.", { href: "/dai-dai", big: true })];
     const html = renderDigestHtml(items, { origin, now });
     expect(html).toContain("THE SATURDAY DIGEST &middot; 13–19 SEPTEMBER &middot; 1 ENTRY");
-    expect(html.match(/border-top:2px solid #ffb627|border-bottom:2px solid #ffb627/g)).toHaveLength(2);
+    // Seven day cells: the day the entry is dated ruled in gold, the send day filled.
+    const days = html.match(/<td align="center" (?:bgcolor|style)=[^>]*width:14\.28%[^>]*>[\s\S]*?<\/td>/g) ?? [];
+    expect(days).toHaveLength(7);
+    expect(days.map((d) => d.match(/>(\d+)<\/div>/)![1])).toEqual(["13", "14", "15", "16", "17", "18", "19"]);
+    expect(days[5]).toContain("border-bottom:2px solid #ffb627"); // 18 September: the entry's date
+    expect(days[6]).toContain('bgcolor="#ffb627"'); // 19 September: the send day
+    expect(days[2]).not.toContain("#ffb627");
+    // One gold rule opens the footer.
+    expect(html.match(/height:0;border-top:2px solid #ffb627/g)).toHaveLength(1);
     expect(html).toContain("ALL UPDATES &#8599;&#xFE0E;");
     expect(html).toContain("HOW THE NUMBERS ARE CHECKED &#8599;&#xFE0E;");
     expect(html).toMatch(/<a href="\{\{\{RESEND_UNSUBSCRIBE_URL\}\}\}"[^>]*text-decoration:underline;">UNSUBSCRIBE<\/a>/);
     expect(html).toContain('bgcolor="#ffb627"');
     expect(html).toContain("THE NUMBERS, VERIFIED &middot; SATURDAYS &middot; 18:00 LONDON");
     expect(html).toContain("You're getting this because you confirmed at burnaboystats.com/updates.");
-    expect(html).not.toContain("#16130f"); // the card colour is retired — nothing sits on a tint
+    // The one raised surface never stands on its tint alone: a hairline and a rail every time.
+    for (const card of html.match(/<td class="head"[^>]*>/g) ?? []) {
+      expect(card).toContain("border:1px solid #2a251f;border-left:4px solid #ffb627");
+    }
     expect(Buffer.byteLength(html, "utf8")).toBeLessThan(80_000);
   });
 
