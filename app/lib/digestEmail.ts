@@ -27,7 +27,7 @@ const longDate = (iso: string) =>
 
 /** "CORRECTION · CHARTS · 2 SEPTEMBER" — corrections are keyed on their opening words; there is no field. */
 const isCorrection = (u: Update) => /^A correction\b/.test(u.text);
-const kickerOf = (u: Update) => `${isCorrection(u) ? "CORRECTION · " : ""}${u.category.toUpperCase()} · ${longDate(u.date).toUpperCase()}`;
+const kickerOf = (u: Update) => `${isCorrection(u) ? "CORRECTION · " : ""}${esc(u.category).toUpperCase()} · ${esc(longDate(u.date)).toUpperCase()}`;
 const count = (n: number) => `${n} ${n === 1 ? "ENTRY" : "ENTRIES"}`;
 
 export interface DigestRender {
@@ -46,8 +46,8 @@ export function mastheadHtml(origin: string, line: string): string {
                 <tr>
                   <td style="vertical-align:top;padding:2px 14px 0 0;"><img class="crown" src="${esc(origin)}${CROWN.path}" width="${CROWN.width}" height="${CROWN.height}" alt="${esc(CROWN.alt)}" style="display:block;width:${CROWN.width}px;height:${CROWN.height}px;border:0;"></td>
                   <td style="vertical-align:top;">
-                    <a class="wm" href="${esc(origin)}/updates" style="display:block;font-family:${FONT};font-size:24px;line-height:28px;font-weight:bold;letter-spacing:1px;color:${INK};text-decoration:none;white-space:nowrap;">BURNABOY<span style="color:${GOLD};">STATS</span></a>
-                    <div class="week" style="font-family:${MONO};font-size:11px;line-height:16px;letter-spacing:1px;color:${MUTED};padding-top:4px;">${line}</div>
+                    <a class="wm" href="${esc(origin)}/updates" style="display:block;font-family:${FONT};font-size:24px;line-height:28px;mso-line-height-rule:exactly;font-weight:bold;letter-spacing:1px;color:${INK};text-decoration:none;white-space:nowrap;">BURNABOY<span style="color:${GOLD};">STATS</span></a>
+                    <div class="week" style="font-family:${MONO};font-size:11px;line-height:16px;mso-line-height-rule:exactly;letter-spacing:1px;color:${MUTED};padding-top:4px;">${line}</div>
                   </td>
                 </tr>
               </table>
@@ -72,9 +72,9 @@ export function renderDigestHtml(items: Update[], { origin, now, unsubscribe = U
           <tr>
             <td class="entry cell" style="padding:20px 24px;border-bottom:1px solid ${CARD_LINE};">
               <a href="${url}" style="display:block;color:${INK};text-decoration:none;">
-                <div style="font-family:${MONO};font-size:11px;line-height:16px;letter-spacing:1px;color:${MUTED};">${kickerOf(u)}</div>
+                <div style="font-family:${MONO};font-size:11px;line-height:16px;mso-line-height-rule:exactly;letter-spacing:1px;color:${MUTED};">${kickerOf(u)}</div>
                 <div class="${big ? "big" : "text"}" style="font-family:${FONT};font-size:${big ? 19 : 15}px;line-height:${big ? 28 : 23}px;mso-line-height-rule:exactly;color:${INK};padding-top:8px;"><strong style="font-weight:bold;">${esc(clause)}</strong>${esc(rest)}</div>
-                <div style="font-family:${MONO};font-size:12px;line-height:18px;color:${GOLD};padding-top:8px;">burnaboystats.com${esc(u.href)} &#8599;&#xFE0E;</div>
+                <div style="font-family:${MONO};font-size:12px;line-height:18px;mso-line-height-rule:exactly;color:${GOLD};padding-top:8px;">burnaboystats.com${esc(u.href)} &#8599;&#xFE0E;</div>
               </a>
             </td>
           </tr>`;
@@ -112,7 +112,7 @@ export function renderDigestHtml(items: Update[], { origin, now, unsubscribe = U
 </style>
 </head>
 <body style="margin:0;padding:0;background:${BG};-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;">
-  <div style="display:none;max-height:0;overflow:hidden;font-size:1px;line-height:1px;color:${BG};mso-hide:all;">${esc(preheader)}${filler}</div>
+  <div style="display:none;max-height:0;overflow:hidden;font-size:1px;line-height:1px;mso-line-height-rule:exactly;color:${BG};mso-hide:all;">${esc(preheader)}${filler}</div>
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:${BG};">
     <tr>
       <td align="center" class="pad" style="padding:24px 0;">
@@ -124,17 +124,18 @@ export function renderDigestHtml(items: Update[], { origin, now, unsubscribe = U
           </tr>
           <tr>
             <td class="foot cell" style="padding:24px 24px 8px;">
-              <p style="font-family:${FONT};font-size:13px;line-height:20px;color:${MUTED};margin:0;">Every figure above links to the page it lives on, read at the body that publishes it.</p>
-              <p style="font-family:${FONT};font-size:13px;line-height:20px;color:${MUTED};margin:0;padding-top:10px;">Sent on Saturdays at 18:00 London, only in weeks something happened &mdash; this one ran ${esc(weekRange(from, to))}. A quiet week sends nothing.</p>
-              <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="padding-top:6px;">
-                <tr>
-                  <td style="padding:13px 24px 13px 0;"><a href="${esc(origin)}/updates" style="font-family:${MONO};font-size:12px;line-height:18px;letter-spacing:1px;color:${GOLD};text-decoration:none;">ALL UPDATES &#8599;&#xFE0E;</a></td>
-                  <td style="padding:13px 24px 13px 0;"><a href="${esc(origin)}/methodology" style="font-family:${MONO};font-size:12px;line-height:18px;letter-spacing:1px;color:${GOLD};text-decoration:none;">HOW THE NUMBERS ARE CHECKED &#8599;&#xFE0E;</a></td>
-                </tr>
-                <tr>
-                  <td colspan="2" style="padding:13px 0;"><a href="${unsubscribe}" style="font-family:${MONO};font-size:12px;line-height:18px;letter-spacing:1px;color:${MUTED};text-decoration:underline;">UNSUBSCRIBE</a></td>
-                </tr>
-              </table>
+              <p style="font-family:${FONT};font-size:13px;line-height:20px;mso-line-height-rule:exactly;color:${MUTED};margin:0;">Every figure above links to the page it lives on, read at the body that publishes it.</p>
+              <p style="font-family:${FONT};font-size:13px;line-height:20px;mso-line-height-rule:exactly;color:${MUTED};margin:0;padding-top:10px;">Sent on Saturdays at 18:00 London, only in weeks something happened &mdash; this one ran ${esc(weekRange(from, to))}. A quiet week sends nothing.</p>
+              <!-- Inline-block anchors, 13px of padding on each, so every link is
+                   its own 44px target and the two gold ones wrap to two rows at
+                   375 on their own — a table row could not. -->
+              <div style="padding-top:6px;font-size:0;line-height:0;">
+                <a href="${esc(origin)}/updates" style="display:inline-block;padding:13px 24px 13px 0;font-family:${MONO};font-size:12px;line-height:18px;mso-line-height-rule:exactly;letter-spacing:1px;color:${GOLD};text-decoration:none;">ALL UPDATES &#8599;&#xFE0E;</a>
+                <a href="${esc(origin)}/methodology" style="display:inline-block;padding:13px 24px 13px 0;font-family:${MONO};font-size:12px;line-height:18px;mso-line-height-rule:exactly;letter-spacing:1px;color:${GOLD};text-decoration:none;">HOW THE NUMBERS ARE CHECKED &#8599;&#xFE0E;</a>
+              </div>
+              <div style="font-size:0;line-height:0;">
+                <a href="${unsubscribe}" style="display:inline-block;padding:13px 0;font-family:${MONO};font-size:12px;line-height:18px;mso-line-height-rule:exactly;letter-spacing:1px;color:${MUTED};text-decoration:underline;">UNSUBSCRIBE</a>
+              </div>
             </td>
           </tr>
           <tr>
@@ -142,8 +143,8 @@ export function renderDigestHtml(items: Update[], { origin, now, unsubscribe = U
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
                 <tr>
                   <td bgcolor="${GOLD}" style="background:${GOLD};padding:22px 24px;color:${INK_ON_GOLD};">
-                    <div style="font-family:${FONT};font-size:20px;line-height:24px;font-weight:bold;letter-spacing:1px;color:${INK_ON_GOLD};">BURNABOYSTATS</div>
-                    <div style="font-family:${MONO};font-size:11px;line-height:16px;letter-spacing:2px;color:${INK_ON_GOLD};padding-top:6px;">THE NUMBERS, VERIFIED &middot; SATURDAYS &middot; 18:00 LONDON</div>
+                    <div style="font-family:${FONT};font-size:20px;line-height:24px;mso-line-height-rule:exactly;font-weight:bold;letter-spacing:1px;color:${INK_ON_GOLD};">BURNABOYSTATS</div>
+                    <div style="font-family:${MONO};font-size:11px;line-height:16px;mso-line-height-rule:exactly;letter-spacing:2px;color:${INK_ON_GOLD};padding-top:6px;">THE NUMBERS, VERIFIED &middot; SATURDAYS &middot; 18:00 LONDON</div>
                   </td>
                 </tr>
               </table>
@@ -151,7 +152,7 @@ export function renderDigestHtml(items: Update[], { origin, now, unsubscribe = U
           </tr>
           <tr>
             <td class="cell" style="padding:14px 24px 4px;">
-              <p class="fine" style="font-family:${FONT};font-size:${FINE_SIZE}px;line-height:18px;color:${FINE};margin:0;">You're getting this because you confirmed at burnaboystats.com/updates. An unofficial fan site &mdash; not affiliated with or endorsed by Burna Boy.</p>
+              <p class="fine" style="font-family:${FONT};font-size:${FINE_SIZE}px;line-height:18px;mso-line-height-rule:exactly;color:${FINE};margin:0;">You're getting this because you confirmed at burnaboystats.com/updates. An unofficial fan site &mdash; not affiliated with or endorsed by Burna Boy.</p>
             </td>
           </tr>
         </table>

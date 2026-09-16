@@ -21,6 +21,16 @@ export function renderConfirmHtml({ confirmUrl, origin }: { confirmUrl: string; 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
 <title>${esc(CONFIRM_SUBJECT)}</title>
+<style>
+  /* The masthead is the digest's, so it moves the way the digest's does at 375
+     (the board's media-query table, masthead rows only). */
+  @media only screen and (max-width: 480px) {
+    .mast { padding-top: 16px !important; padding-left: 16px !important; padding-right: 16px !important; }
+    .crown { width: 36px !important; height: 32px !important; }
+    .wm { font-size: 20px !important; line-height: 24px !important; }
+    .week { letter-spacing: 0 !important; }
+  }
+</style>
 </head>
 <body style="margin:0;padding:0;background:${BG};-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;">
   <div style="display:none;max-height:0;overflow:hidden;font-size:1px;line-height:1px;color:${BG};mso-hide:all;">${esc(CONFIRM_PREHEADER)}</div>
@@ -40,7 +50,7 @@ export function renderConfirmHtml({ confirmUrl, origin }: { confirmUrl: string; 
           <tr><td style="padding:26px 24px 16px;"><div style="height:1px;line-height:1px;font-size:1px;background:${CARD_LINE};">&nbsp;</div></td></tr>
           <tr>
             <td style="padding:0 24px 4px;">
-              <p style="font-family:${FONT};font-size:${FINE_SIZE}px;line-height:18px;color:${FINE};margin:0;"><a href="${esc(origin)}" style="color:${GOLD};text-decoration:none;">burnaboystats.com</a> &middot; An unofficial fan site &mdash; not affiliated with or endorsed by Burna Boy.</p>
+              <p style="font-family:${FONT};font-size:${FINE_SIZE}px;line-height:1.6;color:${FINE};margin:0;"><a href="${esc(origin)}" style="color:${GOLD};text-decoration:none;">burnaboystats.com</a> &middot; An unofficial fan site &mdash; not affiliated with or endorsed by Burna Boy.</p>
             </td>
           </tr>
         </table>
