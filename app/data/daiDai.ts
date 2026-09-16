@@ -65,12 +65,14 @@ export const DAI_DAI_1B_RANK_ES = `${daiDaiBillionRank}.º${daiDaiBillionTied ? 
 export const DAI_DAI_SPOTIFY_DEBUT = "2026-05-15"; // entered at No. 114, the day after release
 /**
  * Spotify's OWN columns, read off the Daily Top Songs Global chart dated
- * 13 Sep 2026 (charts.spotify.com, in a signed-in browser, read 14 Sep): Dai
- * Dai — No. 9, Prev 4, Peak 1, **Streak 115**, 2,580,521 streams, and in the
- * expanded row **Total days on chart 116**, first entry 15 May 2026 at No. 114,
- * release 14 May 2026. The previous read, the 7 Sep chart (No. 11, Prev 6,
- * Peak 1, Streak 109, 2,631,577, Total 110), re-read identically on the same
- * archive, which is reachable by date in the URL when signed in.
+ * 14 Sep 2026 (charts.spotify.com, read 16 Sep — the chart page opens without
+ * a login; the 15 Sep chart was not yet published): Dai Dai — No. 20, Prev 9,
+ * Peak 1, **Streak 116**, 2,423,416 streams, and in the expanded row **Total
+ * days on chart 117**, first entry 15 May 2026 at No. 114, release 14 May 2026.
+ * The read before it, the 13 Sep chart (No. 9, Prev 4, Peak 1, Streak 115,
+ * 2,580,521, Total 116), and the 7 Sep chart before that (No. 11, Prev 6,
+ * Streak 109, 2,631,577, Total 110) are on the same archive, by date in the
+ * URL.
  *
  * The total is the important addition. Every other figure here is derived from
  * two dates and DAYS_OFF, so DAYS_OFF could be wrong without any arithmetic
@@ -78,13 +80,13 @@ export const DAI_DAI_SPOTIFY_DEBUT = "2026-05-15"; // entered at No. 114, the da
  * number nothing on this side could check.
  */
 export const DAI_DAI_SPOTIFY_BODY_READ = {
-  date: "2026-09-13",
-  streak: 115,
-  totalDaysOnChart: 116,
+  date: "2026-09-14",
+  streak: 116,
+  totalDaysOnChart: 117,
   debutPosition: 114,
 } as const;
-export const DAI_DAI_SPOTIFY_STREAK_SINCE = "2026-05-22"; // 115 days back from the body read
-export const DAI_DAI_SPOTIFY_CONFIRMED_THROUGH = "2026-09-13";
+export const DAI_DAI_SPOTIFY_STREAK_SINCE = "2026-05-22"; // 116 days back from the body read
+export const DAI_DAI_SPOTIFY_CONFIRMED_THROUGH = "2026-09-14";
 /**
  * Days it has dropped off the chart, ever. SIX, all of them in 16-21 May.
  *
@@ -92,7 +94,7 @@ export const DAI_DAI_SPOTIFY_CONFIRMED_THROUGH = "2026-09-13";
  * both editions as "on it every day but one since". It is forced the other way
  * by Spotify's own two columns: 15 May to 7 Sep inclusive is 116 days, the
  * chart says the song has spent 110 of them on it, and 116 - 110 = 6 (and on
- * the 13 Sep chart, 122 days against a total of 116: still 6). The feed ledger
+ * the 14 Sep chart, 123 days against a total of 117: still 6). The feed ledger
  * above says the same thing six more times.
  *
  * So the shape of the run changes, though none of the published totals do: the
@@ -149,7 +151,7 @@ export const daiDaiSpotifyDaysOnChart =
  * read at the body and confirmed through the 13 Sep chart.
  */
 export const DAI_DAI_SPOTIFY_NO1_DAYS = 37;
-export const DAI_DAI_SPOTIFY_NO1_DAYS_AS_OF = "2026-09-13";
+export const DAI_DAI_SPOTIFY_NO1_DAYS_AS_OF = "2026-09-14"; // 14 Sep chart: No. 20
 export const DAI_DAI_SPOTIFY_NO1_FIRST_DAY = "2026-06-30";
 export const DAI_DAI_SPOTIFY_NO1_LAST_DAY = "2026-08-22";
 
@@ -207,7 +209,8 @@ export const DAI_DAI_SPOTIFY_NO1_ENDED_SEEN_ON = "2026-09-09";
  * Carry this forward only by reading the chart, and only ever as a total.
  */
 export const DAI_DAI_SPOTIFY_TOP10_DAYS = 83;
-export const DAI_DAI_SPOTIFY_TOP10_DAYS_AS_OF = "2026-09-13";
+// 14 Sep chart: No. 20, so the count did not move; the stamp did.
+export const DAI_DAI_SPOTIFY_TOP10_DAYS_AS_OF = "2026-09-14";
 
 const longDate = (iso: string, locale: "en-GB" | "es-ES") =>
   new Date(`${iso}T12:00:00Z`).toLocaleDateString(locale, {
@@ -245,7 +248,7 @@ export const DAI_DAI_SPOTIFY_NO1_LAST_LONG_ES = longDate(DAI_DAI_SPOTIFY_NO1_LAS
 export const DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG = longDate(DAI_DAI_SPOTIFY_CONFIRMED_THROUGH, "en-GB");
 export const DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG_ES = longDate(DAI_DAI_SPOTIFY_CONFIRMED_THROUGH, "es-ES");
 /** The chart the No. 1 total and the Top 10 count both stop at — the same
- *  chart as the streak again since 14 Sep 2026 (all three read off 13 Sep). */
+ *  chart as the streak again since 14 Sep 2026 (all three read off one chart). */
 export const DAI_DAI_SPOTIFY_NO1_READ_ON_LONG = longDate(DAI_DAI_SPOTIFY_NO1_DAYS_AS_OF, "en-GB");
 export const DAI_DAI_SPOTIFY_NO1_READ_ON_LONG_ES = longDate(DAI_DAI_SPOTIFY_NO1_DAYS_AS_OF, "es-ES");
 

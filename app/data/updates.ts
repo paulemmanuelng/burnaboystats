@@ -46,6 +46,12 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-09-16",
+    category: "Streaming",
+    text: "Out of the global Top 10 again: “Dai Dai” falls to No. 20 on Spotify's Daily Top Songs Global for 14 September with 2,423,416 filtered streams, down from No. 9 — a 116th consecutive day on the chart by its own streak column, 117 days on the chart in all.",
+    href: "/dai-dai",
+  },
+  {
     date: "2026-09-14",
     category: "Streaming",
     big: true,
