@@ -51,11 +51,13 @@ export const carDescription = (car: GarageCar) =>
 
 /** The strongest figure in the collection on each axis — the bars' 100%. */
 export const garageBest = {
-  // Two cars have no citable weight, so they are out of the power-to-weight
-  // comparison entirely rather than being given an invented denominator.
+  // Cars with no citable figure on an axis are out of that comparison
+  // entirely rather than being given an invented number: three have no
+  // weight, and the Black Badge Cullinan has neither a 0–100 time nor a top
+  // speed on any Rolls-Royce page.
   powerToWeight: Math.max(...garage.filter((c) => c.num.kg).map((c) => c.num.hp / c.num.kg!)),
-  acc: Math.min(...garage.map((c) => c.num.acc)),
-  vmax: Math.max(...garage.map((c) => c.num.vmax)),
+  acc: Math.min(...garage.flatMap((c) => (c.num.acc === null ? [] : [c.num.acc]))),
+  vmax: Math.max(...garage.flatMap((c) => (c.num.vmax === null ? [] : [c.num.vmax]))),
   usd: Math.max(...garage.map((c) => c.valueUsd)),
 };
 
@@ -86,14 +88,19 @@ const pct = (share: number) => Math.round(share * 100);
  */
 export function performanceBars(car: GarageCar): PerformanceBar[] {
   const pending = !car.specs.verified;
-  // Null where the manufacturer publishes no weight for this exact car — the
+  // Null where the manufacturer publishes no figure for this exact car — the
   // bar then reads "not published" instead of being computed from a guess.
+  // Weight was the first such row; the Cullinan's 0–100 and top speed joined
+  // it once no Rolls-Royce page could be found that states either.
   const pw = car.num.kg ? car.num.hp / car.num.kg : null;
   const pwShare = pw ? pw / garageBest.powerToWeight : 0;
-  const accShare = garageBest.acc / car.num.acc;
-  const vmaxShare = car.num.vmax / garageBest.vmax;
+  const acc = car.num.acc;
+  const vmax = car.num.vmax;
+  const accShare = acc === null ? 0 : garageBest.acc / acc;
+  const vmaxShare = vmax === null ? 0 : vmax / garageBest.vmax;
   const usdShare = car.valueUsd / garageBest.usd;
   const wait = "pending verification";
+  const unpublished = (what: string) => `${what}: the manufacturer publishes no ${what.toLowerCase()} for this car`;
   return [
     {
       key: "Power / weight",
@@ -108,16 +115,24 @@ export function performanceBars(car: GarageCar): PerformanceBar[] {
     },
     {
       key: "0–100 km/h",
-      value: pending ? "—" : `${car.num.acc.toFixed(1)} s`,
-      share: pending ? 0 : width(accShare),
-      aria: pending ? `0 to 100 km/h: ${wait}` : `0 to 100 km/h in ${car.num.acc.toFixed(1)} seconds, ${pct(accShare)}% of the quickest in the collection`,
+      value: pending || acc === null ? "—" : `${acc.toFixed(1)} s`,
+      share: pending || acc === null ? 0 : width(accShare),
+      aria: pending
+        ? `0 to 100 km/h: ${wait}`
+        : acc === null
+          ? unpublished("0 to 100 km/h time")
+          : `0 to 100 km/h in ${acc.toFixed(1)} seconds, ${pct(accShare)}% of the quickest in the collection`,
       pending,
     },
     {
       key: "Top speed",
-      value: pending ? "—" : `${car.num.vmax} km/h`,
-      share: pending ? 0 : width(vmaxShare),
-      aria: pending ? `Top speed: ${wait}` : `Top speed ${car.num.vmax} km/h, ${pct(vmaxShare)}% of the fastest in the collection`,
+      value: pending || vmax === null ? "—" : `${vmax} km/h`,
+      share: pending || vmax === null ? 0 : width(vmaxShare),
+      aria: pending
+        ? `Top speed: ${wait}`
+        : vmax === null
+          ? unpublished("Top speed")
+          : `Top speed ${vmax} km/h, ${pct(vmaxShare)}% of the fastest in the collection`,
       pending,
     },
     {
