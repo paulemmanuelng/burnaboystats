@@ -11,6 +11,7 @@
 //     "nothing happened" email;
 //   • the subject leads with the top item's own opening clause.
 import type { Update, UpdateCategory } from "../data/updates";
+import { ABBREV } from "./bandHeadline";
 
 export const DIGEST_DAYS = 7;
 export const DIGEST_CAP = 8;
@@ -68,12 +69,21 @@ export function splitDigest(items: Update[]): { headliners: Update[]; rest: Upda
 }
 
 /**
- * The entry's first sentence: up to the first ". " that is not "No. " — the
- * data writes "No. 9" and "No. 1", and a cut there would end a sentence at
- * "sits at No." — the full stop kept. A one-sentence entry comes back whole.
+ * A full stop that ends a sentence: followed by a space and not part of an
+ * abbreviation the feed uses — "No. 9", "Global Excl. U.S.", "Vol. 2". The
+ * list is the band's (lib/bandHeadline.ts), so the email and the home page
+ * agree on where a sentence ends.
+ */
+const SENTENCE_END = new RegExp(`(?<!\\b(?:${ABBREV.join("|")}))\\. `);
+
+/**
+ * The entry's first sentence, the full stop kept. A one-sentence entry comes
+ * back whole. "No. 9" was the first abbreviation this had to know; "Excl.
+ * U.S." was the second — an entry that opened with Billboard's Global Excl.
+ * U.S. chart would have printed in the digest cut at "Global Excl."
  */
 export function firstSentence(text: string): string {
-  const m = /(?<!\bNo)\. /.exec(text);
+  const m = SENTENCE_END.exec(text);
   return m ? text.slice(0, m.index + 1) : text;
 }
 
@@ -90,7 +100,7 @@ export function weekRange(from: string, to: string): string {
  * and is a full stop followed by a space, so that one abbreviation is exempt.
  */
 export function leadClause(text: string, max = 72): string {
-  const cut = text.split(/:| — |(?<!\bNo)\. /)[0].replace(/[“”"]/g, "").trim();
+  const cut = text.split(new RegExp(`:| — |${SENTENCE_END.source}`))[0].replace(/[“”"]/g, "").trim();
   if (cut.length <= max) return cut;
   const words = cut.slice(0, max).split(" ");
   words.pop();

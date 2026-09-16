@@ -133,6 +133,11 @@ describe("two headliners in full, the rest by first sentence", () => {
     expect(splitDigest([d, e])).toEqual({ headliners: [d], rest: [e] }); // none marked: the top entry leads
     expect(splitDigest([d])).toEqual({ headliners: [d], rest: [] });
   });
+  it("knows the feed's abbreviations — 'Excl. U.S.' is not a sentence end", () => {
+    const t = "Billboard's summer recaps put “Dai Dai” top of the world outside America: No. 1 on the Global Excl. U.S. top 10 songs of summer 2026. A second sentence.";
+    expect(firstSentence(t)).toBe("Billboard's summer recaps put “Dai Dai” top of the world outside America: No. 1 on the Global Excl. U.S. top 10 songs of summer 2026.");
+    expect(leadClause("A 10th week on Billboard's Global Excl. U.S. chart. More.")).toBe("A 10th week on Billboard's Global Excl. U.S. chart");
+  });
   it("cuts at the first sentence and keeps 'No. 9' whole", () => {
     expect(firstSentence("Back inside the global Top 10: “Dai Dai” sits at No. 9 on Spotify's chart. That figure is a total.")).toBe(
       "Back inside the global Top 10: “Dai Dai” sits at No. 9 on Spotify's chart.",
