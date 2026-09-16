@@ -51,6 +51,39 @@ export function selectDigest(
   return ranked.slice(0, cap);
 }
 
+/** How many entries the email prints in full; the rest are first sentences. */
+export const HEADLINERS_MAX = 2;
+
+/**
+ * The email's two tiers: the headliners run in full as cards, the rest as a
+ * ruled list of first sentences. Headliners are the entries marked `big` —
+ * at most two, the first two by the existing rank if the data marks more.
+ * A week that marks none still leads with something: its top-ranked entry.
+ */
+export function splitDigest(items: Update[]): { headliners: Update[]; rest: Update[] } {
+  const big = items.filter((u) => u.big).slice(0, HEADLINERS_MAX);
+  const headliners = big.length ? big : items.slice(0, 1);
+  const rest = items.filter((u) => !headliners.includes(u));
+  return { headliners, rest };
+}
+
+/**
+ * The entry's first sentence: up to the first ". " that is not "No. " — the
+ * data writes "No. 9" and "No. 1", and a cut there would end a sentence at
+ * "sits at No." — the full stop kept. A one-sentence entry comes back whole.
+ */
+export function firstSentence(text: string): string {
+  const m = /(?<!\bNo)\. /.exec(text);
+  return m ? text.slice(0, m.index + 1) : text;
+}
+
+/** "13 to 19 September", or "27 September to 3 October" across a month end. */
+export function weekRange(from: string, to: string): string {
+  const day = (d: string) => new Date(`${d}T12:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "long", timeZone: "UTC" });
+  const sameMonth = from.slice(0, 7) === to.slice(0, 7);
+  return sameMonth ? `${Number(from.slice(8))} to ${day(to)}` : `${day(from)} to ${day(to)}`;
+}
+
 /**
  * The entry's opening clause — up to the first colon, spaced dash or sentence
  * end — trimmed to fit a subject line. "No. 1" is the site's commonest phrase
