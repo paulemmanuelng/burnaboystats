@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-15";
+  export const liveChartsUpdated = "2026-09-16";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -211,30 +211,6 @@
         ]
       },
       {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TT",
-            "name": "Trinidad and Tobago",
-            "position": 47,
-            "movement": -4
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 88,
-            "movement": -86
-          },
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 93,
-            "movement": -44
-          }
-        ]
-      },
-      {
         "platform": "YouTube",
         "numberOnes": 1,
         "entries": [
@@ -256,6 +232,24 @@
             "position": 15,
             "movement": null,
             "status": "re"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 9,
+            "movement": -5
+          },
+          {
+            "country": "TT",
+            "name": "Trinidad and Tobago",
+            "position": 47,
+            "movement": -4
           }
         ]
       },
@@ -491,7 +485,7 @@
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 121,
+            "position": 153,
             "movement": null,
             "status": "new"
           }
@@ -632,8 +626,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 129,
-            "movement": -6
+            "position": 120,
+            "movement": -3
           },
           {
             "country": "ML",
@@ -677,7 +671,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 100,
-            "movement": 0
+            "movement": -2
           }
         ]
       }
@@ -810,9 +804,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 105,
-            "movement": null,
-            "status": "new"
+            "position": 183,
+            "movement": -162
           }
         ]
       },
@@ -1045,20 +1038,20 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 6,
-            "movement": 10
+            "position": 10,
+            "movement": 9
           },
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 20,
-            "movement": -2
+            "position": 24,
+            "movement": -6
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 74,
-            "movement": -22
+            "position": 77,
+            "movement": -24
           }
         ]
       },
@@ -1630,75 +1623,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/b9fd1fc1b331838b6b0ba9b2eacbf31e/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Fall",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SB",
-            "name": "Solomon Islands",
-            "position": 15,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 75,
-            "movement": -10
-          },
-          {
-            "country": "MW",
-            "name": "Malawi",
-            "position": 90,
-            "movement": -32
-          },
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 109,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "TZ",
-            "name": "Tanzania",
-            "position": 133,
-            "movement": -18
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SZ",
-            "name": "Swaziland",
-            "position": 17,
-            "movement": -2
-          },
-          {
-            "country": "MZ",
-            "name": "Mozambique",
-            "position": 56,
-            "movement": -1
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 58,
-            "movement": -1
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6f5e2eeac47abb6bf1bcc293125e0016/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "D & G",
     "platforms": [
       {
@@ -1754,10 +1678,154 @@
             "movement": 6
           }
         ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 15,
+            "movement": null,
+            "status": "new"
+          }
+        ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b9fd1fc1b331838b6b0ba9b2eacbf31e/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Fall",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SB",
+            "name": "Solomon Islands",
+            "position": 15,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 75,
+            "movement": -10
+          },
+          {
+            "country": "MW",
+            "name": "Malawi",
+            "position": 90,
+            "movement": -32
+          },
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 109,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 133,
+            "movement": -18
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SZ",
+            "name": "Swaziland",
+            "position": 17,
+            "movement": -1
+          },
+          {
+            "country": "MZ",
+            "name": "Mozambique",
+            "position": 54,
+            "movement": 1
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 58,
+            "movement": -1
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6f5e2eeac47abb6bf1bcc293125e0016/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Blow My Mind",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 36,
+            "movement": 20
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 90,
+            "movement": 19
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 123,
+            "movement": -54
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 138,
+            "movement": -11
+          },
+          {
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 159,
+            "movement": 9
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 192,
+            "movement": 2
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 5,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/9b38babe761ad3914bfd843b8c199555/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "NO COMPETITION",
@@ -1922,63 +1990,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 186,
-            "movement": 0
+            "position": 180,
+            "movement": 7
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Blow My Mind",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 36,
-            "movement": 20
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 90,
-            "movement": 19
-          },
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 123,
-            "movement": -54
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 138,
-            "movement": -11
-          },
-          {
-            "country": "TZ",
-            "name": "Tanzania",
-            "position": 159,
-            "movement": 9
-          },
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 192,
-            "movement": 2
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/9b38babe761ad3914bfd843b8c199555/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Sensational",
@@ -2039,26 +2058,33 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 14,
+            "position": 15,
             "movement": -1
           },
           {
             "country": "NE",
             "name": "Niger",
             "position": 30,
-            "movement": 2
+            "movement": 0
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 49,
-            "movement": 0
+            "position": 50,
+            "movement": -1
           },
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 59,
-            "movement": -1
+            "position": 57,
+            "movement": 1
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 93,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -2187,38 +2213,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "FIA",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 30,
-            "movement": 0
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 60,
-            "movement": 1
-          },
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 160,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/61fc2faba453737555d0b81de1e20c6a/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Funds",
     "platforms": [
       {
@@ -2275,6 +2269,31 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "FIA",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 29,
+            "movement": 1
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 61,
+            "movement": -2
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/61fc2faba453737555d0b81de1e20c6a/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "High",
@@ -2514,7 +2533,7 @@
           {
             "country": "NE",
             "name": "Niger",
-            "position": 55,
+            "position": 54,
             "movement": 1
           }
         ]

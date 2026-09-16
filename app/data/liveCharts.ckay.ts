@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-15";
+  export const liveChartsUpdated = "2026-09-16";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Spotify","YouTube","iTunes"];
@@ -71,8 +71,8 @@
           {
             "country": "RU",
             "name": "Russia",
-            "position": 9,
-            "movement": -1
+            "position": 8,
+            "movement": 0
           },
           {
             "country": "BF",

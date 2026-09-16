@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-15";
+  export const liveChartsUpdated = "2026-09-16";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -349,8 +349,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 118,
-            "movement": -98
+            "position": 195,
+            "movement": -163
           }
         ]
       }
@@ -430,20 +430,20 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 6,
-            "movement": 10
+            "position": 10,
+            "movement": 9
           },
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 20,
-            "movement": -2
+            "position": 24,
+            "movement": -6
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 74,
-            "movement": -22
+            "position": 77,
+            "movement": -24
           }
         ]
       },
@@ -753,14 +753,14 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 20,
+            "position": 44,
             "movement": null,
             "status": "new"
           },
           {
             "country": "CO",
             "name": "Colombia",
-            "position": 98,
+            "position": 136,
             "movement": null,
             "status": "new"
           }
@@ -942,8 +942,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 94,
-            "movement": 3
+            "position": 82,
+            "movement": 15
           }
         ]
       }
@@ -1197,8 +1197,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 74,
-            "movement": 3
+            "position": 77,
+            "movement": 1
           },
           {
             "country": "BE",
@@ -1344,8 +1344,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 27,
-            "movement": -24
+            "position": 41,
+            "movement": -38
           }
         ]
       }
