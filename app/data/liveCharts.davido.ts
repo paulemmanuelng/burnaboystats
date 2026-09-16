@@ -235,7 +235,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 5,
-            "movement": 67
+            "movement": 107
           },
           {
             "country": "TT",
@@ -472,8 +472,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 33,
-            "movement": -4
+            "position": 29,
+            "movement": 4
           }
         ]
       }
@@ -605,8 +605,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 130,
-            "movement": 3
+            "position": 131,
+            "movement": -2
           },
           {
             "country": "AO",
@@ -860,7 +860,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 11,
-            "movement": -6
+            "movement": -4
           },
           {
             "country": "MZ",
@@ -872,7 +872,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 87,
-            "movement": -19
+            "movement": -13
           }
         ]
       },
@@ -901,8 +901,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 124,
-            "movement": -3
+            "position": 119,
+            "movement": 5
           }
         ]
       },
@@ -1004,8 +1004,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 23,
-            "movement": 0
+            "position": 21,
+            "movement": 2
           }
         ]
       },
@@ -1017,7 +1017,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 17,
-            "movement": 72
+            "movement": 112
           }
         ]
       },
@@ -1125,8 +1125,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 50,
-            "movement": 0
+            "position": 53,
+            "movement": -3
           }
         ]
       },
@@ -1377,7 +1377,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 67,
-            "movement": -5
+            "movement": 0
           }
         ]
       },
@@ -1547,7 +1547,7 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 21,
+            "position": 23,
             "movement": null,
             "status": "new"
           }
@@ -1630,8 +1630,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 182,
-            "movement": 4
+            "position": 184,
+            "movement": 2
           }
         ]
       }
@@ -1835,7 +1835,7 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 11,
+            "position": 13,
             "movement": null,
             "status": "new"
           }
@@ -2076,8 +2076,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 70,
-            "movement": -7
+            "position": 68,
+            "movement": -5
           }
         ]
       },
@@ -2164,8 +2164,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 139,
-            "movement": 5
+            "position": 128,
+            "movement": 11
           }
         ]
       },
@@ -2386,26 +2386,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/08304eb172098540c635de98530d4929/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Julie",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 65,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "La La",
     "platforms": [
       {
@@ -2423,6 +2403,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Julie",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 72,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Titanium",

@@ -177,23 +177,29 @@
             "movement": -10
           },
           {
-            "country": "BR",
-            "name": "Brazil",
-            "position": 167,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "LC",
             "name": "St. Lucia",
             "position": 170,
             "movement": -140
           },
           {
+            "country": "BR",
+            "name": "Brazil",
+            "position": 173,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "QA",
             "name": "Qatar",
             "position": 192,
             "movement": -160
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 196,
+            "movement": -25
           }
         ]
       },
@@ -205,13 +211,13 @@
             "country": "MZ",
             "name": "Mozambique",
             "position": 3,
-            "movement": -2
+            "movement": -1
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 49,
-            "movement": -4
+            "position": 50,
+            "movement": -5
           }
         ]
       }
@@ -267,9 +273,8 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 171,
-            "movement": null,
-            "status": "new"
+            "position": 167,
+            "movement": 4
           }
         ]
       },
@@ -280,7 +285,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 109,
+            "position": 124,
             "movement": null,
             "status": "new"
           }
@@ -404,7 +409,7 @@
           {
             "country": "SG",
             "name": "Singapore",
-            "position": 40,
+            "position": 45,
             "movement": null,
             "status": "new"
           }
@@ -460,7 +465,7 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 25,
+            "position": 26,
             "movement": null,
             "status": "new"
           }
@@ -594,26 +599,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/1ae9486180d1f50e7dbbb099b1e66825/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Water",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ES",
-            "name": "Spain",
-            "position": 181,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "FAIRYTALE",

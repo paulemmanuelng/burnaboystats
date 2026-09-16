@@ -310,18 +310,18 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 16,
-            "movement": 70
+            "movement": 110
           },
           {
             "country": "ZW",
             "name": "Zimbabwe",
             "position": 52,
-            "movement": -9
+            "movement": -7
           },
           {
             "country": "ES",
             "name": "Spain",
-            "position": 125,
+            "position": 171,
             "movement": null,
             "status": "new"
           }
@@ -505,8 +505,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 99,
-            "movement": -92
+            "position": 108,
+            "movement": -99
           }
         ]
       },
@@ -535,8 +535,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 14,
-            "movement": 1
+            "position": 16,
+            "movement": -2
           }
         ]
       },
@@ -704,8 +704,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 53,
-            "movement": -1
+            "position": 54,
+            "movement": -2
           },
           {
             "country": "KE",
@@ -849,20 +849,13 @@
           {
             "country": "CH",
             "name": "Switzerland",
-            "position": 133,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
+            "position": 145,
+            "movement": -12
+          },
           {
-            "country": "VN",
-            "name": "Vietnam",
-            "position": 160,
+            "country": "AE",
+            "name": "United Arab Emirates",
+            "position": 189,
             "movement": null,
             "status": "new"
           }
@@ -962,8 +955,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 156,
-            "movement": 1
+            "position": 166,
+            "movement": -10
           }
         ]
       }
@@ -1049,8 +1042,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 59,
-            "movement": -1
+            "position": 60,
+            "movement": -2
           },
           {
             "country": "TZ",
@@ -1313,6 +1306,13 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "DO",
+            "name": "Dominican Republic",
+            "position": 2,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "SZ",
             "name": "Swaziland",
             "position": 25,
@@ -1321,14 +1321,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 73,
-            "movement": -8
-          },
-          {
-            "country": "CO",
-            "name": "Colombia",
-            "position": 196,
-            "movement": -160
+            "position": 72,
+            "movement": -7
           }
         ]
       },
@@ -1422,13 +1416,13 @@
             "country": "GH",
             "name": "Ghana",
             "position": 17,
-            "movement": 93
+            "movement": -10
           },
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 52,
-            "movement": 4
+            "position": 53,
+            "movement": 3
           }
         ]
       },
@@ -1439,8 +1433,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 176,
-            "movement": -3
+            "position": 161,
+            "movement": 15
           }
         ]
       }
@@ -1565,8 +1559,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 41,
-            "movement": -2
+            "position": 39,
+            "movement": 2
           }
         ]
       },
@@ -1577,7 +1571,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 160,
+            "position": 169,
             "movement": null,
             "status": "new"
           }
@@ -1641,8 +1635,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 135,
-            "movement": 6
+            "position": 142,
+            "movement": -7
           }
         ]
       },
@@ -1657,23 +1651,42 @@
             "movement": -4
           }
         ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/0dd0b79a37a28f75ab7f61b38d0dccda/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Fi Kan We Kan",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 197,
+            "movement": null,
+            "status": "new"
+          }
+        ]
       },
       {
         "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 192,
-            "movement": null,
-            "status": "new"
+            "country": "GH",
+            "name": "Ghana",
+            "position": 78,
+            "movement": -14
           }
         ]
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/0dd0b79a37a28f75ab7f61b38d0dccda/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/e4c2c39678f951dd57f09d2e98cd4062/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "RAVAGE - EP",
@@ -1719,26 +1732,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/9762353430bf3c5816735dca5d916a96/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Addicted",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 43,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/e43cc1d22a556fa87272c55c933bb4d7/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Wine",
     "platforms": [
       {
@@ -1759,23 +1752,24 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/e43cc1d22a556fa87272c55c933bb4d7/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Fi Kan We Kan",
+    "title": "Addicted",
     "platforms": [
       {
         "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 78,
-            "movement": -20
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 48,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/e4c2c39678f951dd57f09d2e98cd4062/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/e43cc1d22a556fa87272c55c933bb4d7/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Dumebi",
@@ -1807,8 +1801,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 60,
-            "movement": -1
+            "position": 61,
+            "movement": -2
           }
         ]
       }
