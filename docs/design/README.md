@@ -16,3 +16,8 @@ and read on GitHub rather than passed around as attachments.
 Note: `/design` in the repo root is a **local-only** drop folder (gitignored) for
 incoming design output. Anything a designer needs to *read* belongs here in
 `docs/design/` instead, because the ignored folder never reaches GitHub.
+
+## The two digest briefs
+
+- `handoff-email-digest-2026-09-16.md` — round one: the subscribe module and both emails; answered in `design-response-email-digest-2026-09-16.md`, built in PR #258.
+- `handoff-digest-email-2026-09-16.md` — round two: the digest email only, as it lands in an inbox; its assets are in `handoff-digest-email/`; the response is `design-response-digest-email-2026-09-16.md` when it exists.

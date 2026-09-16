@@ -5,6 +5,7 @@
 **Date:** 16 September 2026
 **Build owner:** Claude Code, from your artboards — see §7 for what comes back.
 **Answered:** `design-response-email-digest-2026-09-16.md` beside this file (16 September 2026); boards in `design_handoff_burnaboystats/designs/desktop/Saturday Digest.dc.html`. Built the same day.
+**Superseded in part:** §5 (the emails) and §6 items 4–5 are replaced by `handoff-digest-email-2026-09-16.md`, the email-only brief that followed once the log's entries were cut to 300 characters. §1–§4 and the module still stand.
 
 ---
 
