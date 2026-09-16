@@ -153,7 +153,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 7,
-            "movement": -2
+            "movement": -1
           }
         ]
       }
@@ -285,8 +285,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 51,
-            "movement": -24
+            "position": 53,
+            "movement": -19
           }
         ]
       },
@@ -342,8 +342,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 68,
-            "movement": -24
+            "position": 70,
+            "movement": -19
           }
         ]
       }
@@ -386,8 +386,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 182,
-            "movement": -20
+            "position": 185,
+            "movement": -17
           }
         ]
       }
@@ -475,7 +475,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 111,
-            "movement": -41
+            "movement": -10
           }
         ]
       }
@@ -511,8 +511,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 25,
-            "movement": 29
+            "position": 27,
+            "movement": -20
           }
         ]
       }
@@ -574,8 +574,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 142,
-            "movement": -21
+            "position": 144,
+            "movement": -17
           }
         ]
       },
@@ -595,43 +595,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/f32b4f877cb5c1458d1b552593d20810/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Soma Obi",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 56,
-            "movement": 0
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 164,
-            "movement": -73
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 192,
-            "movement": -21
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "So it Goes",
@@ -769,14 +732,39 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 94,
-            "movement": -23
+            "position": 96,
+            "movement": -19
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/9e217d2c845c86a0395cedfcd893d0b2/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Soma Obi",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 56,
+            "movement": 0
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 164,
+            "movement": -73
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Rebel Music",
@@ -1040,8 +1028,8 @@
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 24,
-            "movement": 1
+            "position": 25,
+            "movement": 0
           }
         ]
       }
