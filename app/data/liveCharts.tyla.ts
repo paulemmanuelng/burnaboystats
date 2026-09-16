@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-15";
+  export const liveChartsUpdated = "2026-09-16";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -224,13 +224,6 @@
             "status": "new"
           },
           {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 171,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "CY",
             "name": "Cyprus",
             "position": 183,
@@ -241,6 +234,13 @@
             "country": "GM",
             "name": "Gambia",
             "position": 189,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "BR",
+            "name": "Brazil",
+            "position": 196,
             "movement": null,
             "status": "new"
           },
@@ -284,14 +284,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 45,
+            "position": 46,
             "movement": -9
           },
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 164,
-            "movement": -96
+            "position": 184,
+            "movement": -108
           }
         ]
       }
@@ -432,7 +432,7 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 108,
+            "position": 59,
             "movement": null,
             "status": "new"
           }
@@ -557,7 +557,7 @@
           {
             "country": "PT",
             "name": "Portugal",
-            "position": 22,
+            "position": 26,
             "movement": null,
             "status": "new"
           }
@@ -605,25 +605,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/1ae9486180d1f50e7dbbb099b1e66825/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "PUSH 2 START",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 80,
-            "movement": -7
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
   }
 ];
   
