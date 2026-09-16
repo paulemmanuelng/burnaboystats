@@ -37,11 +37,13 @@ export interface DigestRender {
   unsubscribe?: string;
 }
 
-/** The masthead both emails open on: crown, wordmark, one mono line, a 2px gold rule. */
-export function mastheadHtml(origin: string, line: string): string {
+/** The masthead both emails open on: crown, wordmark, one mono line, a 2px gold rule.
+ *  `inset` is the cell's side padding — the digest's 24px column inset, or 0
+ *  where the body beneath sits flush, as the confirmation's does. */
+export function mastheadHtml(origin: string, line: string, inset = 24): string {
   return `
           <tr>
-            <td class="mast cell" style="padding:20px 24px 18px;border-bottom:2px solid ${GOLD};">
+            <td class="mast${inset ? " cell" : ""}" style="padding:20px ${inset}px 18px;border-bottom:2px solid ${GOLD};">
               <table role="presentation" cellpadding="0" cellspacing="0" border="0">
                 <tr>
                   <td style="vertical-align:top;padding:2px 14px 0 0;"><img class="crown" src="${esc(origin)}${CROWN.path}" width="${CROWN.width}" height="${CROWN.height}" alt="${esc(CROWN.alt)}" style="display:block;width:${CROWN.width}px;height:${CROWN.height}px;border:0;"></td>
