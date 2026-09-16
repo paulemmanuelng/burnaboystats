@@ -3,6 +3,7 @@ import styles from "./updates.module.css";
 import UpdatesFeed from "../components/UpdatesFeed";
 import MobileUpdates from "../components/MobileUpdates";
 import FollowPanel from "../components/FollowPanel";
+import SubscribeBox from "../components/SubscribeBox";
 import BreadcrumbBar from "../components/BreadcrumbBar";
 import KeepExploring from "../components/KeepExploring";
 import { updates } from "../data/updates";
@@ -43,9 +44,10 @@ const tally = [
   { value: String(monthsTracked), label: "Months tracked" },
 ];
 
-// The subscribe box shows only once Resend is configured on the server; until
+// The digest module shows only once Resend is configured on the server; until
 // then the API would answer 503 and a live button that says "not switched on
-// yet" reads as broken. Both layouts keep their RSS link in the meantime.
+// yet" reads as broken. Without it the hero's right column keeps the tally it
+// had before the digest, and the phone keeps its RSS link in the back bar.
 const subscribeEnabled = Boolean(process.env.RESEND_API_KEY && process.env.RESEND_AUDIENCE_ID);
 
 export default function UpdatesPage() {
@@ -58,8 +60,12 @@ export default function UpdatesPage() {
         <BreadcrumbBar path="/updates" />
 
         {/* ── Hero ───────────────────────────────────────────── */}
+        {/* The digest module is the hero's right column (design response §1):
+            where a first-time reader is, and it costs the page no vertical
+            room. It takes the place of the tally aside, which stays only as
+            the fallback for a deploy with no Resend keys. */}
         <section className={styles.band}>
-          <div className={`${styles.wide} ${styles.heroPad}`}>
+          <div className={`${styles.wide} ${styles.heroPad} ${subscribeEnabled ? styles.heroDigest : ""}`}>
             <div>
               <div className={styles.eyebrow}>
                 <span className={styles.eyebrowRule} aria-hidden="true" />
@@ -69,31 +75,36 @@ export default function UpdatesPage() {
                 Latest <span className="inkText">Updates</span>
               </h1>
               <p className={styles.lede}>
-                Everything new on the site — chart peaks, certifications and records, as
-                they&apos;re added.
+                Chart peaks, certifications and records, as they&apos;re added — every
+                figure read at the body that publishes it.
               </p>
               <div className={styles.lastEntry}>
                 <span className={styles.liveDot} aria-hidden="true" />
                 Last entry <strong>{lastEntry}</strong>
+                {subscribeEnabled && <> · {updates.length} entries</>}
               </div>
             </div>
 
-            <div className={styles.heroAside}>
-              <div className={styles.eyebrow}>Tracked as it happens</div>
-              <p className={styles.asideText}>
-                Certification announcements are read from the issuing body, chart peaks
-                from the national chart, and box-office figures from Billboard Boxscore.
-                Every entry links to the page holding the number.
-              </p>
-              <div className={styles.tally}>
-                {tally.map((t) => (
-                  <div key={t.label}>
-                    <div className={styles.tallyValue}>{t.value}</div>
-                    <div className={styles.tallyLabel}>{t.label}</div>
-                  </div>
-                ))}
+            {subscribeEnabled ? (
+              <SubscribeBox id="digest" entries="#entries" />
+            ) : (
+              <div className={styles.heroAside}>
+                <div className={styles.eyebrow}>Tracked as it happens</div>
+                <p className={styles.asideText}>
+                  Certification announcements are read from the issuing body, chart peaks
+                  from the national chart, and box-office figures from Billboard Boxscore.
+                  Every entry links to the page holding the number.
+                </p>
+                <div className={styles.tally}>
+                  {tally.map((t) => (
+                    <div key={t.label}>
+                      <div className={styles.tallyValue}>{t.value}</div>
+                      <div className={styles.tallyLabel}>{t.label}</div>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </section>
 

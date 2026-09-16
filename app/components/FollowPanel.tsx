@@ -3,11 +3,12 @@
 // "Follow the run" — the site's return-visitor hook. A stats site about a live
 // chart run is worth coming back to, but every visit was one-and-done: there was
 // no way to be reminded. This offers the ways back:
-//   • The Saturday digest — an email address, double opt-in (SubscribeBox)
 //   • Install the site as an app (Add to Home Screen) — a real home-screen icon
 //   • Follow on X for the updates as they land
-// The RSS feed stayed, as the small footer link it always was (lib/links.ts);
-// the subscribe box took its place here.
+//   • The RSS feed
+// The Saturday digest is not here: its module is the hero's right column at
+// the top of the page (design response §1), and this panel — read by the
+// person who reached the foot of the log — only points back up to it.
 //
 // The install button only appears when the browser actually offers it (Chrome/
 // Edge/Android fire `beforeinstallprompt`). iOS Safari never does, so there we
@@ -15,7 +16,6 @@
 
 import { useEffect, useState } from "react";
 import styles from "./FollowPanel.module.css";
-import SubscribeBox from "./SubscribeBox";
 
 const X_URL = "https://x.com/paulemmanuelng";
 
@@ -74,16 +74,22 @@ export default function FollowPanel({ subscribeEnabled = false }: { subscribeEna
 
   return (
     <aside className={styles.wrap} aria-labelledby="follow-title">
-      <p className={styles.eyebrow}>Don&apos;t miss the next record</p>
+      <p className={styles.eyebrow}>Keep the site close</p>
       <h2 id="follow-title" className={styles.title}>
         Follow <span className="goldText">the run</span>
       </h2>
       <p className={styles.blurb}>
-        The numbers here move most days. Keep the site one tap away, or get the
-        milestones as they land.
+        The numbers here move most days. Keep the site one tap away.
+        {subscribeEnabled && (
+          <>
+            {" "}
+            Prefer email?{" "}
+            <a href="#digest" className={styles.digestLink}>
+              The Saturday digest ↑
+            </a>
+          </>
+        )}
       </p>
-
-      {subscribeEnabled && <SubscribeBox id="subscribe" />}
 
       <div className={styles.actions}>
         {installed ? (
@@ -101,11 +107,9 @@ export default function FollowPanel({ subscribeEnabled = false }: { subscribeEna
         <a className={styles.secondary} href={X_URL} target="_blank" rel="noopener noreferrer">
           Follow on X ↗
         </a>
-        {!subscribeEnabled && (
-          <a className={styles.secondary} href="/rss.xml">
-            RSS feed ↗
-          </a>
-        )}
+        <a className={styles.secondary} href="/rss.xml">
+          RSS feed ↗
+        </a>
       </div>
     </aside>
   );
