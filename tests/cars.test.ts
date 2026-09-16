@@ -117,14 +117,18 @@ describe("the garage — the fifteen current cars as pages", () => {
     // The strings carry qualifiers the bars cannot use — ">350 km/h", "<3.0 s",
     // "1,995 kg (DIN)" — so the twins are the same figure with the prose off.
     const num = (s: string) => Number(s.replace(/\(.*\)/, "").replace(/[^0-9.]/g, ""));
+    // A null spec must have a null twin, or a bar would be computed from a
+    // figure nobody gave — weight on three cars, and the Black Badge
+    // Cullinan's 0–100 and top speed, which no Rolls-Royce page states.
+    const twin = (slug: string, spec: string | null, n: number | null, what: string) => {
+      if (spec === null) expect(n, `${slug} ${what}`).toBeNull();
+      else expect(num(spec), `${slug} ${what}`).toBe(n);
+    };
     for (const c of garage) {
       expect(num(c.specs.power), `${c.slug} power`).toBe(c.num.hp);
-      expect(num(c.specs.zeroToHundred), `${c.slug} 0–100`).toBe(c.num.acc);
-      expect(num(c.specs.topSpeed), `${c.slug} top speed`).toBe(c.num.vmax);
-      // Weight is null on the two cars whose maker publishes none; the twin
-      // must be null too, or a bar would be computed from a figure nobody gave.
-      if (c.specs.weight === null) expect(c.num.kg, `${c.slug} weight`).toBeNull();
-      else expect(num(c.specs.weight), `${c.slug} weight`).toBe(c.num.kg);
+      twin(c.slug, c.specs.zeroToHundred, c.num.acc, "0–100");
+      twin(c.slug, c.specs.topSpeed, c.num.vmax, "top speed");
+      twin(c.slug, c.specs.weight, c.num.kg, "weight");
     }
   });
 
@@ -134,8 +138,9 @@ describe("the garage — the fifteen current cars as pages", () => {
       // 100kg+. Every weight on the page names which it is.
       if (c.specs.weight !== null) {
         expect(c.specs.weight, `${c.slug} weight has no basis`).toMatch(/\((dry|DIN|unladen[^)]*|EU[^)]*)\)/);
-      } else {
-        // An absent figure has to explain itself, or it reads as a bug.
+      }
+      // An absent figure has to explain itself, or it reads as a bug.
+      if (c.specs.weight === null || c.specs.zeroToHundred === null || c.specs.topSpeed === null) {
         expect(c.specs.note, `${c.slug} drops a figure with no explanation`).toBeTruthy();
       }
       // Power is imperial across the whole set — the convention the design was
@@ -184,8 +189,34 @@ describe("the garage — the fifteen current cars as pages", () => {
   it("every specification has been read off its source", () => {
     // The panel renders "pending verification" until this is true, so flipping
     // it without doing the reading is the one thing that must not happen
-    // silently. All fifteen were checked against the manufacturer in Sep 2026.
+    // silently. All fifteen were checked against the manufacturer in Sep 2026,
+    // and re-read on 16 Sep: a row that could not be read there is null with a
+    // note, never a figure from somewhere else under a verified flag.
     for (const c of garage) expect(c.specs.verified, `${c.slug}`).toBe(true);
+  });
+
+  it("the rows nobody publishes are exactly the ones recorded, each nulled with its note", () => {
+    // Pinned so a figure cannot creep back in from a third-party database, and
+    // so a new null has to be said out loud here.
+    const nulls = garage
+      .flatMap((c) =>
+        (["weight", "zeroToHundred", "topSpeed"] as const).filter((k) => c.specs[k] === null).map((k) => `${c.slug}:${k}`),
+      )
+      .sort();
+    expect(nulls).toEqual([
+      "lamborghini-urus:weight",
+      "mercedes-maybach-gls-600:weight",
+      "rolls-royce-cullinan-black-badge:topSpeed",
+      "rolls-royce-cullinan-black-badge:weight",
+      "rolls-royce-cullinan-black-badge:zeroToHundred",
+    ]);
+    // The Cullinan's note says why all three are missing; the GLS 600's says
+    // the cited release has no weight. A note that fell out of step with the
+    // nulls would leave an em dash with the wrong reason under it.
+    const cullinan = garage.find((c) => c.slug === "rolls-royce-cullinan-black-badge")!;
+    expect(cullinan.specs.note).toMatch(/0–100 km\/h time or a top speed/);
+    const gls = garage.find((c) => c.slug === "mercedes-maybach-gls-600")!;
+    expect(gls.specs.note).toMatch(/carries no weight/);
   });
 
   it("carries a five-colour livery and a subtitle for every car", () => {
@@ -213,11 +244,16 @@ describe("computed figures (CARS-HANDOFF §7)", () => {
           expect(b.share).toBe(0);
           expect(b.aria).toMatch(/pending verification/);
         } else if (b.key === "Power / weight" && c.num.kg === null) {
-          // The two cars whose maker publishes no weight: the bar reads as
+          // The cars whose maker publishes no weight: the bar reads as
           // unavailable rather than being drawn from an invented denominator.
           expect(b.value).toBe("—");
           expect(b.share).toBe(0);
           expect(b.aria).toMatch(/publishes no weight/);
+        } else if ((b.key === "0–100 km/h" && c.num.acc === null) || (b.key === "Top speed" && c.num.vmax === null)) {
+          // The Cullinan Black Badge: no Rolls-Royce page states either.
+          expect(b.value).toBe("—");
+          expect(b.share).toBe(0);
+          expect(b.aria).toMatch(/publishes no/);
         } else {
           expect(b.share).toBeGreaterThanOrEqual(0.03);
           expect(b.share).toBeLessThanOrEqual(1);

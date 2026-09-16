@@ -1,3 +1,25 @@
+// SPEC CHECK, 16 SEPTEMBER 2026 (third pass)
+// All fifteen panels were re-read against manufacturer material, and the rows
+// that could not be read there were resolved the way the rules below say —
+// nulled with a note, never left as a comment beside a "verified" figure:
+//   • Cullinan Black Badge: neither the 2019 launch release nor the 2024
+//     Series II release states a 0–100 time or a top speed (they give 600 PS,
+//     900 Nm and all-wheel drive). The 4.9 s that had sat here is a 0–60 mph
+//     figure from third-party databases. Both rows are now null.
+//   • GLS 600: the Mercedes release the panel cites carries no weight at all;
+//     the 2,785 kg it showed was the pre-facelift EU figure from elsewhere, and
+//     whether his 2024 car is the facelift is unresolved. Weight is now null.
+//   • Senna: McLaren has taken down both the spec page and the press PDF the
+//     row cited; the archived spec page (9 Nov 2024) is the source now, and
+//     it gives both the 1,198 kg lightest dry weight and 1,309 kg DIN.
+//   • 812 GTS: Ferrari's page no longer lists a weight; 1,600 kg dry stands
+//     on Ferrari's own two statements (the spider is 75 kg over the Superfast,
+//     whose sheet gives 1,525 kg dry with optional equipment) — said in the
+//     note. 328 GTS: the 6.4 s, 263 km/h and 1,273 kg dry ARE on Ferrari's
+//     page, under its Performance and Bodywork tabs; 270 hp there is 270 cv.
+// The SVJ Roadster's 2.9 s stands: the cited page's spec table says 2.9 s,
+// only its engine blurb says 2.98 s.
+//
 // ── SEPTEMBER 2026 — the garage gets pages ──────────────────────────────────
 // Each current car now carries a route (`slug`), an editorial `subtitle`, a
 // pre-filled `specs` panel, its numeric twin `num` for the performance bars,
@@ -110,10 +132,12 @@
  *
  * A field is `null` when the manufacturer does not publish that figure for
  * this exact car — the panel then shows an em dash and says why, because an
- * absent figure is itself a fact and a guess would be worse. Two cars use it:
- * Rolls-Royce publishes no separate weight for the Black Badge Cullinan (the
- * 2,660 kg that circulates is the STANDARD Cullinan's), and Lamborghini's own
- * brochures give three different Urus weights, all labelled "curb".
+ * absent figure is itself a fact and a guess would be worse. Rolls-Royce
+ * publishes no separate weight for the Black Badge Cullinan (the 2,660 kg that
+ * circulates is the STANDARD Cullinan's) and no 0–100 time or top speed for it
+ * either; Lamborghini's own brochures give three different Urus weights, all
+ * labelled "curb"; and the Mercedes release the GLS 600 panel cites carries no
+ * weight at all.
  *
  * POWER IS IMPERIAL (bhp/SAE) throughout. That is the convention the dataset
  * already used on all fifteen cars and what the design was drawn against: the
@@ -127,8 +151,10 @@
 export interface CarSpecs {
   engine: string;
   power: string; // imperial hp (bhp/SAE)
-  zeroToHundred: string; // s, one decimal
-  topSpeed: string; // km/h
+  /** s, one decimal — or null where the maker states none for this exact car. */
+  zeroToHundred: string | null;
+  /** km/h — or null, as above. */
+  topSpeed: string | null;
   drivetrain: string;
   weight: string | null;
   /** "base model" on the one-off conversions — nobody has measured those. */
@@ -147,8 +173,8 @@ export interface CarSpecs {
 export interface CarNum {
   hp: number;
   kg: number | null;
-  acc: number; // 0–100 km/h, seconds
-  vmax: number; // km/h
+  acc: number | null; // 0–100 km/h, seconds
+  vmax: number | null; // km/h
 }
 
 export interface CarImage {
@@ -247,7 +273,14 @@ export const cars: Car[] = [
     link: "https://autojosh.com/burna-boy-splashes-n3-2-billion-on-a-mclaren-senna-hypercar/",
     slug: "mclaren-senna",
     subtitle: "TRACK-BRED HYPERCAR IN EXPOSED MSO CARBON",
-    specs: { engine: "4.0L twin-turbo V8", power: "789 hp", zeroToHundred: "2.8 s", topSpeed: "335 km/h", drivetrain: "RWD", weight: "1,198 kg (dry)", basis: "base model", source: "https://cars.mclaren.press/assets/documents/original/9263-McLarenSennatheultimateroadlegalMcLarentrackcarmediainformationGERJune2018.pdf", verified: true },
+    // Spec check 16 Sep 2026: McLaren's own specification page listed "Dry
+    // Weight (Lightest) 1,198kg" and "DIN Kerb Weight 1,309kg" (0-100 2.8 s,
+    // 335 km/h, 800 PS / 789 bhp). McLaren has since removed the Senna from
+    // its site — the live page and the press PDF this row used to cite both
+    // 404 — so the source is the Wayback Machine's copy of that page, read the
+    // same day. Switching to the DIN figure would line up with the Chiron,
+    // Dawn and GT3 RS; that is an editorial call, so it is not made here.
+    specs: { engine: "4.0L twin-turbo V8", power: "789 hp", zeroToHundred: "2.8 s", topSpeed: "335 km/h", drivetrain: "RWD", weight: "1,198 kg (dry)", basis: "base model", source: "https://web.archive.org/web/20241109044020/https://cars.mclaren.com/gb-en/ultimate-models/mclaren-senna/specification", note: "1,198 kg is the dry weight McLaren quotes for the lightest specification; McLaren also lists a DIN kerb weight of 1,309 kg. McLaren has since taken the Senna's page down — the source is an archived copy.", verified: true },
     num: { hp: 789, kg: 1198, acc: 2.8, vmax: 335 },
     palette: ["#e6e8eb", "#a5a6a7", "#868686", "#686868", "#373737"],
     heroSize: [898, 660],
@@ -259,6 +292,12 @@ export const cars: Car[] = [
     desc: "The open-top version of Ferrari's plug-in-hybrid V8 hypercar, with nearly 1,000 combined horsepower — reported as the only one of its kind in Africa.",
     slug: "ferrari-sf90-spider",
     subtitle: "OPEN-TOP PLUG-IN HYBRID V8 — REPORTEDLY AFRICA'S ONLY ONE",
+    // Spec check 16 Sep 2026: ferrari.com's SF90 Spider page shows 1,000 cv and
+    // the 0-100 tile but no weight; 1,670 kg dry is Ferrari's launch figure
+    // (November 2020). Ferrari's launch article for it could not be reached
+    // that day (its corporate URL now 404s). TODO: find Ferrari's own sheet
+    // for the Spider and, if the 1,670 kg carries the "with optional
+    // equipment" footnote its other sheets do, add the note the Purosangue has.
     specs: { engine: "4.0L twin-turbo V8 plug-in hybrid", power: "986 hp", zeroToHundred: "2.5 s", topSpeed: "340 km/h", drivetrain: "AWD", weight: "1,670 kg (dry)", basis: "as built", source: "https://www.ferrari.com/en-EN/auto/sf90-spider", verified: true },
     num: { hp: 986, kg: 1670, acc: 2.5, vmax: 340 },
     palette: ["#484749", "#686669", "#868587", "#f5f6f5", "#262629"],
@@ -298,8 +337,17 @@ export const cars: Car[] = [
     link: "https://autojosh.com/burna-boy-buys-customized-rolls-royce-cullinan-with-diamond-encrusted-bonnet-ornament/",
     slug: "rolls-royce-cullinan-black-badge",
     subtitle: "THE FLAGSHIP SUV IN BLACK BADGE TRIM — DIAMOND SPIRIT OF ECSTASY",
-    specs: { engine: "6.75L twin-turbo V12", power: "592 hp", zeroToHundred: "4.9 s", topSpeed: "250 km/h", drivetrain: "AWD", weight: null, basis: "as built", source: "https://www.press.rolls-roycemotorcars.com/rolls-royce-motor-cars-pressclub/article/detail/T0441739EN/rolls-royce-black-badge-cullinan-series-ii:-the-alter-ego-evolved?language=en", note: "Rolls-Royce publishes no separate weight for the Black Badge. The 2,660 kg that circulates is the standard Cullinan’s DIN figure, so it is not shown here.", verified: true },
-    num: { hp: 592, kg: null, acc: 4.9, vmax: 250 },
+    // Spec check 16 Sep 2026: the cited release (Series II, 7 May 2024) states
+    // the V12, 600PS and 900Nm; the 2019 launch release (T0302517EN) states the
+    // same power and torque and "all-wheel drive and four-wheel steering". No
+    // Rolls-Royce page found that day states a 0-100 km/h time or a top speed
+    // for the Black Badge — the 4.9 s that sat here is a 0-60 mph figure from
+    // third-party databases (KBB lists 5.0 s to 60 mph for the 2024 car), and
+    // Rolls-Royce's sheet for the STANDARD Cullinan gives 5.2 s to 100 km/h.
+    // So both rows are null, the way weight already was. Still open: whether
+    // his 2024 car is Series I or Series II; power and torque are the same.
+    specs: { engine: "6.75L twin-turbo V12", power: "592 hp", zeroToHundred: null, topSpeed: null, drivetrain: "AWD", weight: null, basis: "as built", source: "https://www.press.rolls-roycemotorcars.com/rolls-royce-motor-cars-pressclub/article/detail/T0441739EN/rolls-royce-black-badge-cullinan-series-ii:-the-alter-ego-evolved?language=en", note: "Rolls-Royce publishes no separate weight for the Black Badge (the 2,660 kg that circulates is the standard Cullinan’s DIN figure), and neither its launch release nor the Series II release states a 0–100 km/h time or a top speed for it. The 4.9 s that circulates is a 0–60 mph figure from third-party databases.", verified: true },
+    num: { hp: 592, kg: null, acc: null, vmax: null },
     palette: ["#84888c", "#c4c8cb", "#646668", "#45484a", "#25272a"],
     heroSize: [898, 660],
     groundLine: 0.6371,
@@ -312,6 +360,9 @@ export const cars: Car[] = [
     linkLabel: "Watch the delivery",
     slug: "lamborghini-aventador-svj-roadster",
     subtitle: "THE MOST EXTREME AVENTADOR — 759-HP V12, OPEN TOP",
+    // Spec check 16 Sep 2026: the source page's TECHNICAL SPECIFICATIONS table
+    // says 2.9 s; the ENGINE blurb lower on the same page says 2.98 s. The
+    // table is the figure used. Do not "correct" this to 3.0 s from the blurb.
     specs: { engine: "6.5L naturally aspirated V12", power: "759 hp", zeroToHundred: "2.9 s", topSpeed: ">350 km/h", drivetrain: "AWD", weight: "1,575 kg (dry)", basis: "as built", source: "https://www.lamborghini.com/en-en/history/aventador-svj-roadster", verified: true },
     num: { hp: 759, kg: 1575, acc: 2.9, vmax: 350 },
     palette: ["#391a57", "#583a75", "#767676", "#474748", "#262728"],
@@ -338,7 +389,15 @@ export const cars: Car[] = [
     link: "https://www.legit.ng/entertainment/celebrities/1570054-christmas-burna-boy-spurges-n700m-a-brand-ferrari-812-gts-video-frenzy/",
     slug: "ferrari-812-gts",
     subtitle: "FRONT-ENGINED 6.5-LITRE V12 CONVERTIBLE",
-    specs: { engine: "6.5L naturally aspirated V12", power: "789 hp", zeroToHundred: "<3.0 s", topSpeed: "340 km/h", drivetrain: "RWD", weight: "1,600 kg (dry)", basis: "as built", source: "https://www.ferrari.com/en-EN/auto/812-gts", verified: true },
+    // Spec check 16 Sep 2026: ferrari.com's 812 GTS page shows 800 cv, "<3.0
+    // sec" and no weight. Ferrari's own launch article (9 Sep 2019, on
+    // ferrari.com/corporate) gives 800 cv, 718 Nm, 0-100 under 3 s, 0-200 in
+    // 8.3 s, 340 km/h, and the spider as 75 kg heavier than the berlinetta;
+    // Ferrari's 812 Superfast sheet gives 1,525 kg dry, marked "with optional
+    // equipment". 1,525 + 75 = 1,600 kg dry, on that basis — the note says so.
+    // The 1,645 kg on a dealer's technical sheet is not a Ferrari page and is
+    // not published here.
+    specs: { engine: "6.5L naturally aspirated V12", power: "789 hp", zeroToHundred: "<3.0 s", topSpeed: "340 km/h", drivetrain: "RWD", weight: "1,600 kg (dry)", basis: "as built", source: "https://www.ferrari.com/en-EN/auto/812-gts", note: "Ferrari’s 812 GTS page lists no weight. Its launch article puts the spider 75 kg over the 812 Superfast, whose Ferrari sheet gives 1,525 kg dry with optional equipment — 1,600 kg on the same basis. It is not a kerb weight.", verified: true },
     num: { hp: 789, kg: 1600, acc: 3.0, vmax: 340 },
     palette: ["#585958", "#767776", "#989896", "#f7f7f6", "#252729"],
     heroSize: [898, 660],
@@ -392,8 +451,21 @@ export const cars: Car[] = [
     desc: "The flagship Maybach SUV — the \"Maybach Truck\" (a 2024 GLS 600, not the 2026 model some blogs list). He bought two of them, shown together in his own TikTok video: one he kept for himself (this one) and an identical unit gifted to his mother/manager Bose Ogulu. Only his own is counted here; hers is kept out of the fleet totals. Value is an estimate in line with the Maybach tier.",
     slug: "mercedes-maybach-gls-600",
     subtitle: "THE FLAGSHIP MAYBACH SUV — THE “MAYBACH TRUCK”",
-    specs: { engine: "4.0L biturbo V8 · 48V mild hybrid", power: "550 hp", zeroToHundred: "4.9 s", topSpeed: "250 km/h (limited)", drivetrain: "AWD", weight: "2,785 kg (EU, incl. driver)", basis: "as built", source: "https://media.mercedes-benz.com/article/1e4be408-e56e-4b4e-a7ff-1fcdcfc19bf5", note: "2,785 kg is the pre-facelift figure, which is the car recorded here; the facelift is about 30 kg heavier.", verified: true },
-    num: { hp: 550, kg: 2785, acc: 4.9, vmax: 250 },
+    // Spec check 16 Sep 2026: the cited release ("The new Mercedes-Maybach GLS:
+    // A new form of luxury", 21 Nov 2019) states 410 kW (558 PS) plus 16 kW of
+    // EQ Boost, 4.9 s and 250 km/h — and NO weight. The 2,785 kg this panel
+    // showed was the pre-facelift EU figure from elsewhere, so it is null now.
+    // Still open, and it decides which sheet to read: the year and the note
+    // disagreed. The facelifted GLS reached US dealers from mid-September 2023
+    // and European dealers from late October 2023 (Mercedes release of 4 Apr
+    // 2023), and Mercedes-Benz USA sold it as the "2024 Mercedes-Maybach GLS
+    // 600" — so a 2024 model year is normally the facelift. Check his TikTok
+    // video (the facelift's grille carries the Maybach name); if his is the
+    // facelift, read its EU weight off Mercedes' facelift data sheet and fill
+    // the row; if it is pre-facelift, the year is 2023 or earlier and `desc`
+    // says "a 2024 GLS 600" too.
+    specs: { engine: "4.0L biturbo V8 · 48V mild hybrid", power: "550 hp", zeroToHundred: "4.9 s", topSpeed: "250 km/h (limited)", drivetrain: "AWD", weight: null, basis: "as built", source: "https://media.mercedes-benz.com/article/1e4be408-e56e-4b4e-a7ff-1fcdcfc19bf5", note: "The Mercedes release this panel is read from carries no weight for the GLS 600, and whether this car is the 2023 facelift — about 30 kg heavier than the 2,785 kg pre-facelift figure — is unresolved, so none is shown.", verified: true },
+    num: { hp: 550, kg: null, acc: 4.9, vmax: 250 },
     palette: ["#878687", "#d6d6d8", "#676767", "#474748", "#262628"],
     heroSize: [898, 660],
     groundLine: 0.6477,
@@ -419,7 +491,12 @@ export const cars: Car[] = [
     desc: "A 1980s classic — the final evolution of Ferrari's celebrated 308/328 line, in open-top GTS form. This is the Ferrari kept in his Lagos penthouse.",
     slug: "ferrari-328-gts",
     subtitle: "THE FINAL 308/328 — KEPT IN HIS LAGOS PENTHOUSE",
-    specs: { engine: "3.2L V8", power: "266 hp", zeroToHundred: "6.4 s", topSpeed: "263 km/h", drivetrain: "RWD", weight: "1,273 kg (dry)", basis: "as built", source: "https://www.ferrari.com/en-EN/auto/328-gts", verified: true },
+    // Spec check 16 Sep 2026: read off ferrari.com's 328 GTS page under its
+    // tabs — Engine "199 kW (270 hp) at 7000 rpm", Bodywork "1273kg (dry)",
+    // Performance "263km/h" and "0-100 KM/H 6.4sec". The "270 hp" is the
+    // metric 270 cv (199 kW); 266 hp is the imperial figure. The tabs render
+    // client-side, which is why an earlier read found only the top speed.
+    specs: { engine: "3.2L V8", power: "266 hp", zeroToHundred: "6.4 s", topSpeed: "263 km/h", drivetrain: "RWD", weight: "1,273 kg (dry)", basis: "as built", source: "https://www.ferrari.com/en-EN/auto/328-gts", note: "Ferrari’s page gives the output as 270 bhp, but that is the metric figure (270 cv). In imperial horsepower it is 266 hp.", verified: true },
     num: { hp: 266, kg: 1273, acc: 6.4, vmax: 263 },
     palette: ["#981717", "#571619", "#d59998", "#494745", "#282627"],
     heroSize: [898, 660],
