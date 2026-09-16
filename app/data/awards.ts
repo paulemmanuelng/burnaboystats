@@ -140,19 +140,6 @@ export interface PendingCeremony {
 }
 
 export const pendingResults: PendingCeremony[] = [
-  // 12 Sep 2026, Dallas — four noms: Artist of the Year, Album of the Year,
-  // Crossing Boundaries, Best Male West Africa.
-  {
-    ceremony: "African Muzik Magazine Awards (AFRIMMA)", year: 2026, date: "2026-09-12", where: "Annette Strauss Square, Dallas",
-    // 14 Sep 2026: afrimma.com answers 503 ("We'll be right back"); its own
-    // home page, in the 29 Aug archived copy, billed "AFRIMMA Awards and
-    // Festival — Event Happening September 12, 2026"; @afrimma on X has posted
-    // nothing since 6 Sep, and its Instagram's newest post (13 Sep) is a
-    // "thank you Dallas" for the Music Fest with no winners. Read again from
-    // 17 Sep; resolve at the body only.
-    checkedOn: "2026-09-14",
-    checkedNote: "body site down; no winners on its X or Instagram",
-  },
   // 19 Sep 2026 — the fourth edition, and the first held in the Caribbean after
   // three years at Brooklyn's Kings Theatre. Voting closed 10 Aug 2026.
   { ceremony: "Caribbean Music Awards", year: 2026, date: "2026-09-19", where: "NAPA, Port of Spain" },
@@ -388,12 +375,19 @@ export const ceremonies: Ceremony[] = [
       // Toronto. PENDING — the ceremony has not happened, so every row is
       // won:false and must stay that way until a winners list exists.
       //
-      // The published nomination lists group by SONG, which puts "Producer of
-      // the Year" for "Bundle by Bundle" under his name. That nomination
-      // belongs to the producer, DK, not to him, and is deliberately not
-      // recorded here — the same rule that keeps producer credits out of the
-      // certification counts.
+      // Five nominations, read on the body's own nominee cards at
+      // theheadies.com/18th-headies-nominees/ on 16 Sep 2026. Four were logged
+      // from the press lists on 26 Aug; the fifth, Album of the Year (card
+      // ALBUM-OF-THE-YEAR-07, "BURNA BOY / NO SIGN OF WEAKNESS"), was missed
+      // because those lists also filed a "Producer of the Year" nomination for
+      // "Bundle by Bundle" under his name, and the exclusion of that one was
+      // taken to be the whole difference. The body's Producer of the Year field
+      // is Magicsticks, P.Priime, Ragee, Sarz and Tempoe — no Bundle by Bundle
+      // — so there never was a producer nomination to exclude. DK's nomination
+      // is the Music Video of the Year card ("DK — Bundle by Bundle (Burna
+      // Boy)"), the director's award, carried below as the site has since Aug.
       { year: 2026, category: "Best Male Artiste", won: false },
+      { year: 2026, category: "Album of the Year", work: "No Sign of Weakness", won: false },
       { year: 2026, category: "Afrobeats Album of the Year", work: "No Sign of Weakness", won: false },
       { year: 2026, category: "Afrobeats Single of the Year", work: "Bundle by Bundle", won: false },
       { year: 2026, category: "Music Video of the Year", work: "Bundle by Bundle", won: false },
@@ -426,7 +420,12 @@ export const ceremonies: Ceremony[] = [
   {
     name: "African Muzik Magazine Awards (AFRIMMA)",
     noms: [
-      // PENDING — the 2026 ceremony is 12 Sep; see `pendingResults` above.
+      // RESOLVED at the body, 16 Sep 2026: afrimma.com's own "AFRIMMA 2026
+      // Award Winners — THE OFFICIAL RESULTS" (published 2026-09-15T15:22:23Z,
+      // 41 honours; the site was 503 on 14 Sep). Artist of the Year — Fally
+      // Ipupa; Album of the Year — Davido, 5ive; Crossing Boundaries with Music
+      // — Fally Ipupa; Best Male West Africa — Ruger. He is named in none of
+      // the 41, so all four rows are losses.
       { year: 2026, category: "Artist of the Year", won: false },
       { year: 2026, category: "Album of the Year", work: "No Sign of Weakness", won: false },
       { year: 2026, category: "Crossing Boundaries With Music Award", won: false },

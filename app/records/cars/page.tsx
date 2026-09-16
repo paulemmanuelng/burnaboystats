@@ -5,7 +5,7 @@ import BreadcrumbBar from "../../components/BreadcrumbBar";
 import MobileDeepPage from "../../components/MobileDeepPage";
 import GatedImage from "../../components/GatedImage";
 import { numberWord } from "../../lib/homeData";
-import { garage, currentCars, soldCars, unconfirmedCars, carCount, totalValueFormatted } from "../../data/cars";
+import { garage, currentCars, soldCars, unconfirmedCars, carCount, totalValueFormatted, conversionNote } from "../../data/cars";
 import { usdFull, usdShort, rankLabel, modelShort, marqueTally } from "../../lib/garage";
 import { pageMetadata, datasetJsonLd } from "../../lib/seo";
 
@@ -277,9 +277,17 @@ export default function CarsPage() {
               The car images are illustrations of each model, not photographs of his cars —
               none of his own vehicles has a free-to-reuse image. Naira figures are
               import-inclusive and USD figures use each source&apos;s own conversion
-              (~₦1,455/$), so they run higher than international sticker prices. The McLaren
-              Senna is the one confirmed price — $2M, posted by Burna Boy himself. Last fully
-              re-verified July 2026.
+              (~{conversionNote.typical}), so they run higher than international sticker
+              prices{conversionNote.exceptions.length > 0 && (
+                <>
+                  {" "}— except the{" "}
+                  {conversionNote.exceptions
+                    .map((e) => `${e.name}, whose reported ${e.naira} is converted here at ${e.rate}`)
+                    .join("; and the ")}
+                  {conversionNote.exceptions.length === 1 && ", the rate on the day the buy was announced"}
+                </>
+              )}. The McLaren Senna is the one confirmed price — $2M, posted by Burna Boy
+              himself. Last fully re-verified July 2026.
             </p>
           </div>
         </section>

@@ -79,7 +79,9 @@
 // social/blog estimates, marked "(est.)" below rather than presented with the
 // same precision as the rest. Naira figures are import-inclusive; USD figures
 // use each source's own conversion (~₦1,455/$), so they run higher than
-// international sticker prices.
+// international sticker prices — except the Bugatti, whose ₦9bn is the source
+// figure and is converted here at the announcement-day rate (see its row).
+// The page's note derives both rates from the rows (`conversionNote` below).
 //
 // KNOWN VALUE DISCREPANCIES (flagged during re-verification, not hidden):
 // a few entries have a second, differing figure reported elsewhere — noted in
@@ -545,6 +547,35 @@ export const soldCars = [...cars].filter((c) => c.status === "sold").sort(byValu
 export const unconfirmedCars = [...cars].filter((c) => c.status === "unconfirmed").sort(byValueDesc);
 
 export const totalValueUsd = currentCars.reduce((sum, c) => sum + c.valueUsd, 0);
+
+/** "₦1.46 billion" → 1_460_000_000. Only the two units the file uses. */
+const nairaToNumber = (s: string): number | null => {
+  const m = /₦\s*([\d.]+)\s*(billion|million)/i.exec(s);
+  if (!m) return null;
+  return Math.round(parseFloat(m[1]) * (m[2].toLowerCase() === "billion" ? 1e9 : 1e6));
+};
+
+/**
+ * The conversion rates the note on /records/cars states, DERIVED from the rows
+ * so a re-conversion cannot leave the sentence behind — which is what happened
+ * when the Bugatti moved from an implied ₦1,454/$ to the announcement-day
+ * ₦1,370.08/$ and the note went on saying "~₦1,455/$" for the whole fleet.
+ * `typical` is the median ratio across the current cars priced in dollars
+ * (the press converts at roughly one rate); `exceptions` lists any car whose
+ * own ratio sits more than 3% away from it, with the rate its row implies.
+ */
+export const conversionNote = (() => {
+  const ratios = currentCars
+    .map((c) => ({ car: c, rate: (nairaToNumber(c.valueNaira) ?? 0) / c.valueUsd }))
+    .filter((r) => r.rate > 0)
+    .sort((a, b) => a.rate - b.rate);
+  const typical = ratios[Math.floor(ratios.length / 2)]?.rate ?? 0;
+  const exceptions = ratios
+    .filter((r) => Math.abs(r.rate - typical) / typical > 0.03)
+    .map((r) => ({ name: `${r.car.make} ${r.car.model.split(" (")[0]}`, naira: r.car.valueNaira, rate: r.rate }));
+  const fmt = (n: number) => `₦${Math.round(n).toLocaleString("en-US")}/$`;
+  return { typical: fmt(typical), exceptions: exceptions.map((e) => ({ ...e, rate: fmt(e.rate) })) };
+})();
 export const carCount = currentCars.length;
 
 function formatUsd(n: number): string {

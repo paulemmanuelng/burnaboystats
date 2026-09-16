@@ -11,7 +11,7 @@ import KeepExploring from "../components/KeepExploring";
 import { siteUrl } from "../site";
 import {
   COUNTRIES, albums as certAlbums, singles, features, certHistory, intlCertHistory, allItems,
-  totalAwards, certifiedReleaseCount, countryCount,
+  totalAwards, certifiedReleaseCount, countryCount, certSources, CERTS_VERIFIED_ON,
 } from "../data/certifications";
 import { pageMetadata, datasetJsonLd } from "../lib/seo";
 import { portraitArtFor } from "../lib/portraitArt";
@@ -29,6 +29,9 @@ export const metadata = pageMetadata({
 });
 
 const total = totalAwards();
+const certsVerifiedLong = new Date(`${CERTS_VERIFIED_ON}T12:00:00Z`).toLocaleDateString("en-GB", {
+  day: "numeric", month: "long", year: "numeric", timeZone: "UTC",
+});
 
 const certJsonLd = {
   "@context": "https://schema.org",
@@ -211,13 +214,9 @@ export default function CertificationsPage() {
       <section className={styles.sourceBand}>
         <div className={styles.wide}>
           <p className={styles.source}>
-            Sources: RIAA (US), BPI (UK), Music Canada, SNEP (France), BVMI (Germany), FIMI
-            (Italy), BEA (Belgium), GLF (Sweden), NVPI (Netherlands), ARIA (Australia), RMNZ
-            (New Zealand), Promusicae (Spain), IFPI (Denmark, Norway, Switzerland, Austria),
-            ZPAV (Poland), AFP (Portugal), RiSA (South Africa), TCSN (Nigeria) and Pro-Música
-            Brasil — cross-checked against Wikipedia&apos;s cited certification tables, as of
-            August 2026. Each row shows a release&apos;s current level in every country; “×”
-            denotes multi-platinum.
+            Sources: {certSources()} — each award read at the body&apos;s own register, most
+            recently on {certsVerifiedLong}. Each row shows a release&apos;s current level in
+            every country; “×” denotes multi-platinum.
           </p>
         </div>
       </section>

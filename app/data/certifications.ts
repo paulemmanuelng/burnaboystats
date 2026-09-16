@@ -454,7 +454,11 @@ export const features: Release[] = [
     { c: "CA", level: "Gold" }, { c: "CH", level: "Gold" }, { c: "UK", level: "Silver" },
   ] },
   { title: "My Oasis", credit: "Sam Smith ft. Burna Boy", year: 2020, cover: "https://cdn-images.dzcdn.net/images/cover/b34fa153a6137126a0c37972033c79fc/500x500-000000-80-0-0.jpg", certs: [
-    { c: "BR", level: "Platinum" }, { c: "AU", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "UK", level: "Gold" },
+    // UK is SILVER, read at BPI's own register on 16 Sep 2026: "SAM SMITH FT
+    // BURNA BOY | MY OASIS | Most Recent Certification Silver | 22 August 2025 |
+    // Certification history: 22 August 2025 Silver" — one award, no Gold. It
+    // was Silver here until 1 Jul 2026, when a typed 2025 event list bumped it.
+    { c: "BR", level: "Platinum" }, { c: "AU", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "UK", level: "Silver" },
   ] },
   { title: "Donne-moi l'accord", credit: "Dadju ft. Burna Boy", year: 2019, cover: "https://cdn-images.dzcdn.net/images/cover/046cf3983b563fea65147732eeb653c2/500x500-000000-80-0-0.jpg", certs: [
     { c: "FR", level: "Platinum" },
@@ -594,8 +598,12 @@ export const certHistory: CertEvent[] = [
   { title: "WGFT", credit: "Gunna ft. Burna Boy", country: "NZ", level: "Platinum", year: 2026 },
   { title: "Gbona", country: "NZ", level: "Gold", year: 2026 },
   { title: "We Pray", credit: "Coldplay ft. Burna Boy & others", country: "PL", level: "Platinum", year: 2026 },
+  // BPI title page, read 16 Sep 2026: "Certification history 01 May 2026 Gold |
+  // 10 January 2025 Silver". The release row already carried the Gold; the log
+  // had only the Silver step.
+  { title: "We Pray", credit: "Coldplay ft. Burna Boy & others", country: "UK", level: "Gold", year: 2026 },
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "US", level: "Platinum", x: 2, year: 2026, body: "RIAA Latin" },
-  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "CO", level: "Gold", year: 2026 },
+  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "CO", level: "Gold", year: 2026, body: "Sony Music Colombia" },
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "ES", level: "Gold", year: 2026 },
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "FR", level: "Gold", year: 2026 },
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "HU", level: "Gold", year: 2026 },
@@ -626,7 +634,7 @@ export const certHistory: CertEvent[] = [
   { title: "Real Life", credit: "feat. Stormzy", country: "NZ", level: "Gold", year: 2025 },
   { title: "Love, Damini", album: true, country: "NZ", level: "Platinum", year: 2025 },
   { title: "We Pray", credit: "Coldplay ft. Burna Boy & others", country: "PL", level: "Gold", year: 2025 },
-  { title: "My Oasis", credit: "Sam Smith ft. Burna Boy", country: "UK", level: "Gold", year: 2025 },
+  { title: "My Oasis", credit: "Sam Smith ft. Burna Boy", country: "UK", level: "Silver", year: 2025 }, // BPI: 22 Aug 2025 Silver, read 16 Sep 2026
   { title: "City Boys", country: "US", level: "Gold", year: 2025 },
   { title: "Real Life", credit: "feat. Stormzy", country: "AU", level: "Gold", year: 2025 },
   { title: "We Pray", credit: "Coldplay ft. Burna Boy & others", country: "AU", level: "Gold", year: 2025 },
@@ -681,16 +689,30 @@ export const certHistory: CertEvent[] = [
   { title: "Ye", country: "SE", level: "Platinum", year: 2023 },
   { title: "African Giant", album: true, country: "SE", level: "Gold", year: 2023 },
   { title: "Gbona", country: "SE", level: "Gold", year: 2023 },
-  { title: "Last Last", country: "FR", level: "Platinum", year: 2023 },
-  { title: "Last Last", country: "NZ", level: "Platinum", year: 2023 },
+  // SNEP's register (read 16 Sep 2026) holds ONE Last Last row: "Diamant | Date
+  // de constat 02/11/2023" — no Or or Platine step, so the 2023 event is the
+  // Diamond itself, which this log had typed as Platinum.
+  { title: "Last Last", country: "FR", level: "Diamond", year: 2023 },
+  // RMNZ (RadioScope, read 16 Sep 2026): Gold 2022-09-08, Plat x1 2022-12-08,
+  // Plat x2 2023-12-21, Plat x3 2026-03-05. The 2023 event is the 2× Platinum;
+  // the Gold and first Platinum are 2022 rows, below.
+  { title: "Last Last", country: "NZ", level: "Platinum", x: 2, year: 2023 },
   { title: "Own It", credit: "Stormzy ft. Ed Sheeran & Burna Boy", country: "UK", level: "Platinum", x: 3, year: 2023 },
   { title: "Ye", country: "US", level: "Platinum", year: 2023 },
   { title: "Location", credit: "Dave ft. Burna Boy", country: "DK", level: "Platinum", year: 2023 },
   { title: "Gbona", country: "PT", level: "Gold", year: 2022 },
+  { title: "Last Last", country: "NZ", level: "Platinum", year: 2022 }, // RMNZ 2022-12-08
+  { title: "Last Last", country: "NZ", level: "Gold", year: 2022 }, // RMNZ 2022-09-08
   { title: "Love, Damini", album: true, country: "UK", level: "Silver", year: 2023 },
+  // BPI album page, read 16 Sep 2026: "01 December 2023 Gold | 10 February
+  // 2023 Silver" — the Gold step was on the release row but never in this log.
+  { title: "Love, Damini", album: true, country: "UK", level: "Gold", year: 2023 },
+  // SNEP register, read 16 Sep 2026: "ALONE | BURNA BOY | Or | Date de constat
+  // 26/10/2023" — on the release row, absent from this log until now.
+  { title: "Alone", country: "FR", level: "Gold", year: 2023 },
   { title: "Gbona", country: "UK", level: "Gold", year: 2026 },
   { title: "Love, Damini", album: true, country: "DK", level: "Gold", year: 2023 },
-  { title: "Love, Damini", album: true, country: "NL", level: "Gold", year: 2023 },
+  { title: "Love, Damini", album: true, country: "NL", level: "Gold", year: 2022 }, // NVPI: "3-11-2022", read 16 Sep 2026
   { title: "Last Last", country: "US", level: "Platinum", year: 2023 },
   { title: "Collateral Damage", country: "FR", level: "Gold", year: 2023 },
   { title: "On the Low", country: "UK", level: "Gold", year: 2023 },
@@ -823,6 +845,34 @@ export function totalAwards() {
 // make the year-on-year comparison read high. Nigerian plaques still count
 // everywhere else: the worldwide total, the country grid, every release's row.
 export const intlCertHistory = certHistory.filter((e) => e.country !== "NG");
+
+/** The most recent day a certifying body's own register was read for this
+ *  file. Printed on the page's sources line in place of a typed "as of" month
+ *  — bump it on every body read, in the same edit as the row it changes. */
+export const CERTS_VERIFIED_ON = "2026-09-16";
+
+/** The sources line, built from COUNTRIES so a body renamed or a country added
+ *  there (Ultratop for the old BEA, Greece, Colombia…) reaches the page without
+ *  a retype. National IFPI groups fold into one "IFPI (Denmark, Norway, …)"
+ *  item; a body that already carries its country's name ("Music Canada",
+ *  "Pro-Música Brasil") prints alone. Nigeria's TCSN is listed like the rest. */
+export const certSources = (): string => {
+  const items: string[] = [];
+  const ifpi: string[] = [];
+  const cns: string[] = [];
+  for (const c of Object.values(COUNTRIES)) {
+    const acronym = c.body.match(/\(([^)]+)\)/)?.[1]; // "TurnTable (TCSN)" → TCSN
+    if (/^ČNS IFPI/.test(c.body)) cns.push(c.name);
+    else if (/^IFPI( |$)/.test(c.body)) ifpi.push(c.name);
+    else if (c.body.toLowerCase().includes(c.name.slice(0, 3).toLowerCase())) items.push(c.body);
+    else items.push(`${acronym ?? c.body} (${c.name})`);
+  }
+  if (ifpi.length) items.push(`IFPI (${ifpi.join(", ")})`);
+  if (cns.length) items.push(`ČNS IFPI (${cns.join(", ")})`);
+  return items.length > 1
+    ? `${items.slice(0, -1).join(", ")} and ${items[items.length - 1]}`
+    : items[0] ?? "";
+};
 
 /** Every year the international log actually covers, newest first.
  *

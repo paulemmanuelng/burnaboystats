@@ -95,19 +95,22 @@ describe("certHistory (certifications by year)", () => {
     ]);
   });
 
-  it("2026 logs 57 international certifications (65 events with Nigeria)", () => {
+  it("2026 logs 58 international certifications (66 events with Nigeria)", () => {
     // The by-year log is international-only: earlier years predate the TCSN
     // register, so Nigeria's 8 events would skew the comparison. They still
     // count in the totals. The log counts award EVENTS, so a Gold and a later
     // Platinum in the same country are two.
-    expect(intlCertHistory.filter((e) => e.year === 2026).length).toBe(57);
+    expect(intlCertHistory.filter((e) => e.year === 2026).length).toBe(58);
     // 54th and 55th: the French Diamant upgrade and Poland's Gold, both
     // awarded 31 Aug 2026 and both missing from this log until 3 Sep.
     // 56th: Austria's Platinum for "Dai Dai", read in IFPI Austria's own
     // Gold & Platin database the day it was awarded, 3 Sep 2026.
     // 57th: Greece's Platinum for "Dai Dai" — the Award column of IFPI
     // Greece's own week-36 chart reads P where it read G, 16 Sep 2026.
-    expect(certHistory.filter((e) => e.year === 2026).length).toBe(65);
+    // 58th: "We Pray" UK Gold — BPI's title page prints "01 May 2026 Gold |
+    // 10 January 2025 Silver", read 16 Sep 2026; the release row had the Gold
+    // all along, the log only the Silver step.
+    expect(certHistory.filter((e) => e.year === 2026).length).toBe(66);
   });
 
   it("2025 has the published count of 29 certifications", () => {
@@ -118,13 +121,17 @@ describe("certHistory (certifications by year)", () => {
     expect(certHistory.filter((e) => e.year === 2024).length).toBe(20);
   });
 
-  it("2023 has the published count of 43 certifications", () => {
+  it("2023 has the published count of 44 certifications", () => {
     // 39 + the four Swedish awards of 2023-08-16, read at GLF/Grammotex,
     // less "Gbona"'s Portuguese Gold, which moved to 2022 once AFP/Audiogest's
     // TOP Anual 2022 was read at the body: it is already OU there (1555), and
     // that report's Gal. column freezes at 29 Dec 2022. 2023 was never
     // supportable, only unchecked.
-    expect(certHistory.filter((e) => e.year === 2023).length).toBe(43);
+    // 43 -> 44 on 16 Sep 2026, three moves at once: "Love, Damini" UK Gold
+    // (BPI: 01 December 2023 Gold) and "Alone" FR Gold (SNEP: date de constat
+    // 26/10/2023) enter the log, and "Love, Damini" NL Gold leaves for 2022
+    // (NVPI: 3-11-2022). Both bodies read that day.
+    expect(certHistory.filter((e) => e.year === 2023).length).toBe(44);
   });
 
   it("the four Portuguese Golds are dated to the AFP report that shows them", () => {
@@ -262,5 +269,25 @@ describe("the dated log keeps up with the releases", () => {
         missing.push(`${c.c} is ${c.level} on the release, log stops at ${rows.map((e) => e.level).join("/")}`);
     }
     expect(missing).toEqual([]);
+  });
+});
+
+describe("dated-log rows carry the release row's certifying body", () => {
+  // "Dai Dai" in Colombia is certified by Sony Music Colombia, not Pro Musica
+  // Colombia — the release row said so and the 2026 log row did not, so the
+  // two layouts printed two bodies for one plaque. A log event whose release
+  // cert overrides the country's default body must carry the same override.
+  it("every overridden body appears on the matching log event", () => {
+    for (const item of allItems) {
+      for (const cert of item.certs) {
+        if (!cert.body) continue;
+        const events = certHistory.filter(
+          (e) => e.title === item.title && e.country === cert.c && (e.credit ?? "") === (item.credit ?? ""),
+        );
+        for (const e of events) {
+          expect(e.body, `${item.title} · ${cert.c} log row should say ${cert.body}`).toBe(cert.body);
+        }
+      }
+    }
   });
 });

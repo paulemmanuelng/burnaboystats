@@ -143,7 +143,7 @@ export default function DaiDaiPageES() {
       scene: "global1",
       kicker: "El récord",
       title: "Número 1 en el Billboard Global 200",
-      body: `En cuestión de semanas la canción lideró la lista mundial insignia de Billboard, la que incluye a Estados Unidos: el segundo número 1 de Shakira en el Global 200 y la primera vez en la historia que un artista africano ayuda a encabezarla. Tras cuatro semanas consecutivas bajó al N.º 3, y el 22 de agosto recuperó la cima y no la ha soltado: ${cardinalWord(weeksGLB, "es")} semanas en el número 1 en total, un mes después del final del Mundial. Nunca ha dejado el número 1 del Global 200 Excl. US, donde ya suma ${cardinalWord(weeksGLBX, "es")} semanas.`,
+      body: `En cuestión de semanas la canción lideró la lista mundial insignia de Billboard, la que incluye a Estados Unidos: el segundo número 1 de Shakira en el Global 200 y la primera vez en la historia que un artista africano ayuda a encabezarla. Tras cuatro semanas consecutivas bajó al N.º 3, y el 22 de agosto recuperó la cima y la mantuvo tres semanas más: ${cardinalWord(weeksGLB, "es")} semanas en el número 1 en total, la última en la lista del 5 de septiembre. En el Global 200 Excl. US encadenó ${cardinalWord(weeksGLBX, "es")} semanas seguidas en el número 1, del 4 de julio al 5 de septiembre.`,
     },
     {
       scene: "no1s",
@@ -161,7 +161,7 @@ export default function DaiDaiPageES() {
       scene: "certs",
       kicker: "Certificada en el mundo entero",
       title: "Llegaron los discos",
-      body: `La canción ganó sus propias certificaciones: diamante en Francia, doble platino (latino) en Estados Unidos, platino en España, Eslovaquia, Portugal, Hungría y Austria, oro en Colombia, Grecia, Chequia, Italia y Polonia, y plata en el Reino Unido. Ya son ${daiDaiCertCount} certificaciones para la colaboración de Shakira y Burna Boy, y siguen sumando.`,
+      body: `La canción ganó sus propias certificaciones: diamante en Francia, doble platino (latino) en Estados Unidos, platino en España, Eslovaquia, Portugal, Hungría, Austria y Grecia, oro en Colombia, Chequia, Italia y Polonia, y plata en el Reino Unido. Ya son ${daiDaiCertCount} certificaciones para la colaboración de Shakira y Burna Boy, y siguen sumando.`,
     },
     {
       scene: "worldsong",
@@ -180,9 +180,9 @@ export default function DaiDaiPageES() {
   const heroNumbers: { v: string; l: string }[] = [
     { v: `${daiDaiChartEntryCount}`, l: "entradas en listas oficiales de todo el mundo — en listas nacionales de sencillos, más las dos listas globales de Billboard" },
     { v: `${daiDaiNumberOnes}`, l: "países con la canción en el número 1 de su lista oficial de sencillos — de Francia y Alemania a Emiratos Árabes Unidos" },
-    { v: "N.º 1", l: `en las dos listas globales de Billboard — ${ordinalWord(weeksGLB, "es")} semana en la cima del Global 200 (algo inédito para un artista africano, y el segundo de Shakira), cima recuperada en la lista del 22 de agosto tras una semana en el N.º 3 y mantenida desde entonces, y ${ordinalWord(weeksGLBX, "es")} semana consecutiva en el Global 200 Excl. US` },
+    { v: "N.º 1", l: `en las dos listas globales de Billboard — ${ordinalWord(weeksGLB, "es")} semana en la cima del Global 200 (algo inédito para un artista africano, y el segundo de Shakira), cima recuperada en la lista del 22 de agosto tras una semana en el N.º 3 y mantenida hasta la lista del 5 de septiembre, cuando la racha se cerró (N.º 3 en la edición del 12 de septiembre), y ${cardinalWord(weeksGLBX, "es")} semanas consecutivas en la cima del Global 200 Excl. US, del 4 de julio al 5 de septiembre (N.º 2 en la edición del 12 de septiembre)` },
     { v: DAI_DAI_SPOTIFY_STREAMS, l: "reproducciones en Spotify — la octava canción de Burna Boy que supera los 300 millones, más que ningún otro artista africano, tras 37 días como la canción más escuchada del planeta" },
-    { v: `${daiDaiCertCount}`, l: "certificaciones — diamante en Francia, doble platino (latino) en EE. UU., platino en España, Eslovaquia, Portugal, Hungría y Austria, oro en Colombia, Grecia, Chequia, Italia y Polonia, y plata en el Reino Unido" },
+    { v: `${daiDaiCertCount}`, l: "certificaciones — diamante en Francia, doble platino (latino) en EE. UU., platino en España, Eslovaquia, Portugal, Hungría, Austria y Grecia, oro en Colombia, Chequia, Italia y Polonia, y plata en el Reino Unido" },
     { v: "19 jul", l: "Shakira y Burna Boy interpretaron “Dai Dai” en vivo en el primer show de medio tiempo de una Final del Mundial de la FIFA" },
   ];
 
@@ -192,7 +192,7 @@ export default function DaiDaiPageES() {
       intro: `Las rachas diarias y semanales, según la última lectura de cada lista — la racha en Spotify hasta la lista del ${DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG_ES}; los días en el número 1, hasta la del ${DAI_DAI_SPOTIFY_NO1_READ_ON_LONG_ES}.`,
       items: [
         { v: "37 días", l: `en total en el número 1 de la lista Global Daily Top Songs de Spotify —algo inédito para un artista africano, y la canción con más días en el número 1 de todo 2026, cinco por delante de “End of Beginning” de Djo (32) y seis de “Beauty And A Beat” de Justin Bieber y Nicki Minaj (31)—. Es un total cerrado: el primero en la lista del ${DAI_DAI_SPOTIFY_NO1_FIRST_LONG_ES} y el último en la del ${DAI_DAI_SPOTIFY_NO1_LAST_LONG_ES}, confirmado día a día hasta la lista del ${DAI_DAI_SPOTIFY_NO1_READ_ON_LONG_ES} — con ${DAI_DAI_SPOTIFY_TOP10_DAYS} días dentro del top 10 mundial en total, contados hasta esa misma lista` },
-        { v: "6 semanas", l: "en el número 1 de la lista Global Weekly Top Songs de Spotify, en su 13.ª semana en ella — con un pico de 40,28 millones de reproducciones en una sola semana" },
+        { v: "6 semanas", l: "en el número 1 de la lista Global Weekly Top Songs de Spotify — una racha cerrada en la lista del 27 de agosto — en una estancia de 16 semanas contada hasta la lista del 10 de septiembre de 2026, con un pico de 40,28 millones de reproducciones en una sola semana" },
         { v: "N.º 114", l: `puesto por el que entró en la lista Global Daily Top Songs de Spotify el 15 de mayo de 2026, un día después de su lanzamiento — cayó de ella durante ${cardinalWord(DAI_DAI_SPOTIFY_DAYS_OFF, "es")} días, volvió el 22 de mayo y no ha salido desde entonces: ${daiDaiSpotifyStraightDays} seguidos en la lista y ${daiDaiSpotifyDaysOnChart} en total, contados hasta la lista del ${DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG_ES}, que imprime ambas cifras en sus propias columnas (Spotify Charts)` },
         { v: "58 días", l: "en el número 1 de la lista europea de Apple Music, más 11 días en la cima de la lista mundial de Apple Music" },
         { v: "40 días", l: "en el número 1 de la lista mundial de canciones de iTunes, y 15 días en la cima de la lista europea de iTunes" },
@@ -219,8 +219,8 @@ export default function DaiDaiPageES() {
         { v: "N.º 2", l: `en la lista oficial de sencillos del Reino Unido — ${weeksUK}.ª semana en ese pico, ya con ${runUK} semanas en lista. La primera canción de un Mundial de la FIFA que entra en el top 10 británico, muy por encima del N.º 21 que alcanzó “Waka Waka” de la propia Shakira` },
         { v: "N.º 3", l: "en el Billboard Canadian Hot 100 — un nuevo pico y el primer top 10 de Burna Boy en Canadá, donde su mejor posición había sido el N.º 14. Es también el primer top 10 canadiense de Shakira desde “She Wolf” en 2009" },
         { v: "N.º 17", l: "en el Billboard Hot 100 de Estados Unidos — un salto del 42 al 17 en la lista del 1 de agosto, el pico más alto de una canción mundialista en la historia del Hot 100. Luminate registró 8,6 millones de reproducciones en Estados Unidos (+69 %), 13,9 millones de audiencia radial (+11 %) y 7.000 copias vendidas (+322 %) en la semana de seguimiento del 17 al 23 de julio" },
-        { v: "N.º 1", l: "en el Big Top 40 del Reino Unido por tercera semana — la cuenta atrás nacional de las cadenas Capital y Heart, con Burna Boy recibiendo la placa de número 1" },
-        { v: "N.º 1", l: "en la lista Rhythmic Airplay de Billboard con fecha del 5 de septiembre de 2026 — el primer N.º 1 de Shakira en ese formato, veinte años después de que “Hips Don't Lie” llegara al N.º 5. La canción subió del 3 al 1; en esa misma lista del 5 de septiembre figura en el N.º 27 de Pop Airplay, a un puesto de su pico de N.º 26, alcanzado en la lista del 15 de agosto" },
+        { v: "4 semanas", l: "en el número 1 del Big Top 40 del Reino Unido (las listas del 9 al 30 de agosto de 2026) — la cuenta atrás nacional de las cadenas Capital y Heart, con Burna Boy recibiendo la placa de número 1" },
+        { v: "2 semanas", l: "en el número 1 de la lista Rhythmic Airplay de Billboard (con fecha del 5 y el 12 de septiembre de 2026) — el primer N.º 1 de Shakira en ese formato, veinte años después de que “Hips Don't Lie” llegara al N.º 5 — y N.º 2 en la lista del 19 de septiembre; en esa misma lista del 19 de septiembre figura en el N.º 26 de Pop Airplay, igualando el pico que fijó en la lista del 15 de agosto" },
       ],
     },
     {
@@ -239,7 +239,7 @@ export default function DaiDaiPageES() {
       intro: "El video de “Dai Dai”, con carrera propia.",
       items: [
         { v: DAI_DAI_VIDEO_VIEWS, l: `visualizaciones en YouTube — mil millones en ${DAI_DAI_1B_DAYS} días, el ${DAI_DAI_1B_RANK_ES} más rápido de la historia de YouTube y el primer video de 2026 en alcanzarlos. Antes: 500 millones en 59,4 días, 600 millones en 67 días (el más rápido de la carrera de ambos artistas hasta esa cifra) y 700 millones en 74,8 días` },
-        { v: `${daiDaiYouTubeDaysAtNo1} días`, l: "seguidos en el número 1 como el video musical más visto del mundo en YouTube, del 9 de junio a la lista del 27 de agosto. Esa racha se cortó —el video quedó en el número 2 en las listas del 5 y el 6 de septiembre— y desde entonces ha recuperado la cima: número 1 otra vez en la lista del 7 de septiembre de 2026, en su día 108 en la lista. Los 80 son un total cerrado, no una racha en curso; el nuevo tramo empezó un día que nadie ha leído. Ya supera los 6,1 millones de “me gusta”" },
+        { v: `${daiDaiYouTubeDaysAtNo1} días`, l: "seguidos en el número 1 como el video musical más visto del mundo en YouTube, del 9 de junio a la lista del 27 de agosto. Esa racha se cortó —el video quedó en el número 2 en las listas del 5 y el 6 de septiembre— y recuperó la cima: número 1 otra vez en la lista del 7 de septiembre de 2026, en su día 108 en la lista. Ese segundo tramo también terminó —número 2 en la lista del 14 de septiembre, tras una nueva entrada—. Los 80 son un total cerrado, no una racha en curso" },
       ],
     },
   ];
@@ -267,7 +267,7 @@ export default function DaiDaiPageES() {
     },
     {
       q: "¿Cuántas certificaciones tiene “Dai Dai”?",
-      a: `“Dai Dai” tiene ${daiDaiCertCount} certificaciones: diamante en Francia por la SNEP, doble platino (latino) en Estados Unidos por la RIAA, platino en España, Eslovaquia, Portugal, Hungría y Austria, oro en Colombia, Grecia, Chequia, Italia y Polonia, y plata en el Reino Unido por la BPI.`,
+      a: `“Dai Dai” tiene ${daiDaiCertCount} certificaciones: diamante en Francia por la SNEP, doble platino (latino) en Estados Unidos por la RIAA, platino en España, Eslovaquia, Portugal, Hungría, Austria y Grecia, oro en Colombia, Chequia, Italia y Polonia, y plata en el Reino Unido por la BPI.`,
     },
     {
       q: "¿Cuándo fue el show de medio tiempo de la Final del Mundial 2026?",

@@ -535,7 +535,7 @@ export default function MobileCerts({
                 <div className={styles.rowMain}>
                   <div className={styles.eventTitle}>{e.title}</div>
                   <div className={styles.rowMeta}>
-                    {[e.album ? "Album" : e.credit, countries[e.country].body]
+                    {[e.album ? "Album" : e.credit, e.body ?? countries[e.country].body]
                       .filter(Boolean)
                       .join(" · ")}
                   </div>
