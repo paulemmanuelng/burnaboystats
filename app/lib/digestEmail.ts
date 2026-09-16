@@ -51,7 +51,7 @@ export function renderDigestHtml(items: Update[], { origin, now, unsubscribe = U
                       </tr>
                     </table>
                     <div class="big" style="font-family:${FONT};font-size:17px;line-height:1.55;color:${INK};padding-top:10px;">${esc(u.text)}</div>
-                    <div style="padding-top:12px;"><a href="${url}" style="font-family:${MONO};font-size:12px;letter-spacing:1px;color:${GOLD};text-decoration:none;">SEE THE FIGURE &#8599;</a></div>
+                    <div style="padding-top:12px;"><a href="${url}" style="font-family:${MONO};font-size:12px;letter-spacing:1px;color:${GOLD};text-decoration:none;">SEE THE FIGURE &#8599;&#xFE0E;</a></div>
                   </td>
                 </tr>
               </table>
@@ -79,7 +79,7 @@ export function renderDigestHtml(items: Update[], { origin, now, unsubscribe = U
           <tr>
             <td style="padding:16px 0;border-bottom:1px solid ${CARD_LINE};">
               <div style="font-family:${MONO};font-size:11px;letter-spacing:1.5px;color:${GOLD};">${kickerOf(u)}</div>
-              <div style="font-family:${FONT};font-size:15px;line-height:1.55;color:${INK};padding-top:8px;">${esc(firstSentence(u.text))} <a href="${url}" style="font-family:${MONO};font-size:12px;letter-spacing:1px;color:${GOLD};text-decoration:none;white-space:nowrap;">SEE THE FIGURE &#8599;</a></div>
+              <div style="font-family:${FONT};font-size:15px;line-height:1.55;color:${INK};padding-top:8px;">${esc(firstSentence(u.text))} <a href="${url}" style="font-family:${MONO};font-size:12px;letter-spacing:1px;color:${GOLD};text-decoration:none;white-space:nowrap;">SEE THE FIGURE &#8599;&#xFE0E;</a></div>
             </td>
           </tr>`;
         })
@@ -94,6 +94,10 @@ export function renderDigestHtml(items: Update[], { origin, now, unsubscribe = U
 <meta name="color-scheme" content="dark">
 <title>Burna Boy Stats — the week to ${esc(longDate(to))}</title>
 <style>
+  /* iOS Mail wraps dates it recognises in its own links, which would paint
+     "dated 13 September" blue inside an ink sentence; this hands them the
+     surrounding style back. Apple honours it; every other client ignores it. */
+  a[x-apple-data-detectors] { color: inherit !important; text-decoration: none !important; font-size: inherit !important; font-family: inherit !important; font-weight: inherit !important; line-height: inherit !important; }
   /* The narrow case is the one this column was designed for; at 375 only the
      paddings and the headliner size tighten. Clients that drop <style> keep
      the 600 values, which still read on a phone. */
@@ -104,7 +108,7 @@ export function renderDigestHtml(items: Update[], { origin, now, unsubscribe = U
   }
 </style>
 </head>
-<body style="margin:0;padding:0;background:${BG};">
+<body style="margin:0;padding:0;background:${BG};-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;">
   <div style="display:none;max-height:0;overflow:hidden;font-size:1px;line-height:1px;color:${BG};">${esc(items[0]?.text.slice(0, 120) ?? "")}</div>
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:${BG};">
     <tr>

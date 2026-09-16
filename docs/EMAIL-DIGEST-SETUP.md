@@ -16,7 +16,7 @@ would read as broken. Four steps, about twenty minutes, all in your own accounts
   confirmation link → tapping it joins the Resend audience. Nothing is stored
   on the site: the link carries a signature (HMAC) of the address, so there is
   no pending-signups database.
-- **The digest.** Every Saturday at 17:00 UTC (18:00 London, 18:00 Lagos) a
+- **The digest.** Every Saturday at 18:00 London (two UTC crons, 17:00 and 18:00; the script sends on whichever one lands at 18:00 in Europe/London) a
   GitHub Action sends one email to the audience: the week's entries from
   `app/data/updates.ts`, at most eight. The headliners (`big: true`, at most
   two) print in full; the rest print as their first sentence with a link, so
@@ -81,7 +81,7 @@ lists exactly what went out, with the subject line.
 - **How it looks** is `app/lib/digestEmail.ts` (HTML and plain text) and
   `app/lib/confirmEmail.ts` (the confirmation); the palette they share is
   `app/lib/emailChrome.ts`.
-- **When it sends** is the cron in `.github/workflows/weekly-digest.yml`.
+- **When it sends** is the pair of crons in `.github/workflows/weekly-digest.yml` and the London-hour guard in `scripts/send-digest.mjs` (`--scheduled`).
 - **Local preview:** `npx tsx scripts/send-digest.mjs --dry-run` writes
   `digest-preview.html` and `.txt` in the repo root (git-ignored); add
   `--now 2026-09-19` to render a particular week.

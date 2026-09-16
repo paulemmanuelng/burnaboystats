@@ -1,7 +1,11 @@
 # The Saturday digest — the week's updates, as one email, to everyone who
-# confirmed a subscription (Resend audience). 17:00 UTC is 18:00 in London and
-# Lagos. An empty week sends nothing and the run still succeeds: that is the
-# designed outcome, not a failure.
+# confirmed a subscription (Resend audience). The promise the site makes is
+# 18:00 LONDON, and GitHub's cron only speaks UTC — so there are two schedules,
+# 17:00 and 18:00 UTC, and the script exits quietly unless it is 18:00 in
+# Europe/London (the --scheduled flag; BST makes 17:00 UTC the right one from
+# late March to late October, GMT makes 18:00 UTC right the rest of the year).
+# An empty week sends nothing and the run still succeeds: that is the designed
+# outcome, not a failure.
 #
 # Manual runs: "Run workflow" with an address in `test_to` sends the email to
 # that address only; `dry_run` renders it into the job summary and sends
@@ -10,7 +14,8 @@ name: Weekly digest
 
 on:
   schedule:
-    - cron: "0 17 * * 6" # Saturdays 17:00 UTC
+    - cron: "0 17 * * 6" # Saturdays 17:00 UTC — 18:00 London under BST
+    - cron: "0 18 * * 6" # Saturdays 18:00 UTC — 18:00 London under GMT
   workflow_dispatch:
     inputs:
       test_to:
@@ -53,7 +58,7 @@ jobs:
           elif [ -n "${{ inputs.test_to }}" ]; then
             npx tsx scripts/send-digest.mjs --test "${{ inputs.test_to }}"
           else
-            npx tsx scripts/send-digest.mjs
+            npx tsx scripts/send-digest.mjs --scheduled
           fi
       - name: Keep the rendered preview
         if: ${{ inputs.dry_run == true }}

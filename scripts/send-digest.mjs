@@ -4,6 +4,11 @@
 //   npx tsx scripts/send-digest.mjs --dry-run              # print, send nothing
 //   npx tsx scripts/send-digest.mjs --test you@example.com # one real email, to you
 //   npx tsx scripts/send-digest.mjs                        # the broadcast, to the audience
+//   npx tsx scripts/send-digest.mjs --scheduled            # the same, but only at 18:00 London
+//
+// --scheduled is what the workflow's two crons pass (17:00 and 18:00 UTC): the
+// one that lands at 18:00 in Europe/London sends, the other exits 0 having
+// done nothing, so the digest keeps the London hour across the clock change.
 //
 // Env: RESEND_API_KEY, RESEND_AUDIENCE_ID, RESEND_FROM (optional), SITE_ORIGIN
 // (optional, defaults to the live site). The broadcast is created, then sent —
@@ -13,6 +18,7 @@ import { writeFile, appendFile } from "node:fs/promises";
 import { updates } from "../app/data/updates.ts";
 import { selectDigest, digestSubject, digestWindow } from "../app/lib/digest.ts";
 import { renderDigestHtml, renderDigestText } from "../app/lib/digestEmail.ts";
+import { DIGEST_ZONE, DIGEST_HOUR } from "../app/lib/nextDigest.ts";
 
 const argv = process.argv.slice(2);
 const flag = (k) => argv.includes(`--${k}`);
@@ -20,6 +26,7 @@ const opt = (k) => { const i = argv.indexOf(`--${k}`); return i >= 0 ? argv[i + 
 
 const DRY = flag("dry-run");
 const TEST_TO = opt("test");
+const SCHEDULED = flag("scheduled");
 const origin = (process.env.SITE_ORIGIN || "https://burnaboystats.com").replace(/\/$/, "");
 const from = process.env.RESEND_FROM || "Burna Boy Stats <updates@burnaboystats.com>";
 const now = opt("now") ? new Date(`${opt("now")}T17:00:00Z`) : new Date();
@@ -28,6 +35,14 @@ const summary = async (line) => {
   console.log(line);
   if (process.env.GITHUB_STEP_SUMMARY) await appendFile(process.env.GITHUB_STEP_SUMMARY, `${line}\n`);
 };
+
+if (SCHEDULED) {
+  const hour = Number(new Intl.DateTimeFormat("en-GB", { timeZone: DIGEST_ZONE, hour: "numeric", hourCycle: "h23" }).format(now));
+  if (hour !== DIGEST_HOUR) {
+    await summary(`Not ${DIGEST_HOUR}:00 in ${DIGEST_ZONE} (it is ${hour}:00) — this is the other cron; nothing sent.`);
+    process.exit(0);
+  }
+}
 
 const items = selectDigest(updates, now);
 const { from: weekFrom, to: weekTo } = digestWindow(now);
