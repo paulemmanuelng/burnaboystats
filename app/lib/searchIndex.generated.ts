@@ -486,6 +486,20 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "NRJ Music Awards",
+    "path": "/records/awards",
+    "section": "Awards",
+    "description": "0 wins from 1 nomination.",
+    "keywords": [
+      "award",
+      "awards",
+      "ceremony",
+      "won",
+      "nomination"
+    ],
+    "generated": true
+  },
+  {
     "title": "Planet Rap Awards",
     "path": "/records/awards",
     "section": "Awards",

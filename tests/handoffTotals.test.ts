@@ -60,8 +60,11 @@ describe("handoff checklist — data integrity", () => {
     // carried as Platinum and IFPI Schweiz's register prints Gold, so one plaque
     // moved down a tier. The total is unchanged. Caught because the compare page
     // priced the same recording two ways on Burna's row and Wizkid's.
-    expect(byLevel("Platinum")).toBe(100); // + Dai Dai AT, − Ginger CH
-    expect(byLevel("Gold")).toBe(97); // + "Dai Dai" in Poland (ZPAV), + Ginger CH
+    // 100 -> 101 and 97 -> 96 on 16 Sep 2026: "Dai Dai" in Greece moved up a
+    // tier — IFPI Greece's own week-36 chart reads P in its Award column where
+    // it read G. An upgrade: the total is unchanged.
+    expect(byLevel("Platinum")).toBe(101); // + Dai Dai AT, − Ginger CH, + Dai Dai GR
+    expect(byLevel("Gold")).toBe(96); // + "Dai Dai" in Poland (ZPAV), + Ginger CH, − Dai Dai GR
     expect(byLevel("Silver")).toBe(30); // On the Low NG left this tier for Gold
 
     const sum = byLevel("Diamond") + byLevel("Platinum") + byLevel("Gold") + byLevel("Silver");
@@ -103,7 +106,7 @@ describe("handoff checklist — data integrity", () => {
     ).toBe(chartTitle);
   });
 
-  it("counts 83 award wins from 240 nominations across 46 bodies", () => {
+  it("counts 83 award wins from 241 nominations across 47 bodies", () => {
     const wins = allNoms.filter((n) => n.won).length;
 
     // 4 Aug 2026 year-by-year pass: +2 wins (Headies 2012 Rookie of the
@@ -124,11 +127,14 @@ describe("handoff checklist — data integrity", () => {
     // 83rd: Premios Juventud 2026, OMG Collaboration for "Dai Dai" — announced
     // by the ceremony's own account on 3 Sep 2026. It was carried as a pending
     // nomination (won: false) until the body itself named the winner.
+    // 240 -> 241 and a 47th body on 16 Sep 2026: the NRJ Music Awards, "Collab'
+    // Internationale" for "Dai Dai", read on NRJ's own nominee pages the day
+    // the categories were revealed. Ceremony 23 October, Cannes — pending.
     expect(wins).toBe(83);
-    expect(allNoms.length).toBe(236 + 4);
+    expect(allNoms.length).toBe(236 + 4 + 1);
     expect(totalWins).toBe(wins);
     expect(totalNominations).toBe(allNoms.length);
-    expect(ceremonyCount).toBe(46);
+    expect(ceremonyCount).toBe(47);
   });
 
   it("counts 57 countries performed in and 52 firsts", () => {
