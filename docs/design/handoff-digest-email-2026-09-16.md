@@ -6,6 +6,7 @@
 **Build owner:** Claude Code, from your boards — see §7 for what comes back.
 **Read alongside:** `handoff-email-digest-2026-09-16.md` (the first brief) — read its **§1 and §3 only**: what the site is, the site's tokens and type. Its §5 (the emails) and §6 items 4–5 are superseded by this document. Your answers are in `design-response-email-digest-2026-09-16.md`; the module you designed there is built and unchanged.
 **Response document:** name it `design-response-digest-email-2026-09-16.md`. The two briefs are near-anagrams — *email-digest* is the module round, *digest-email* is this one.
+**Answered:** `design-response-digest-email-2026-09-16.md` beside this file (16 September 2026); boards in `design_handoff_burnaboystats/designs/desktop/Saturday Digest - Email.dc.html`. Built the same day.
 
 ---
 

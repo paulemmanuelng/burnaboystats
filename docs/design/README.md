@@ -20,4 +20,4 @@ incoming design output. Anything a designer needs to *read* belongs here in
 ## The two digest briefs
 
 - `handoff-email-digest-2026-09-16.md` — round one: the subscribe module and both emails; answered in `design-response-email-digest-2026-09-16.md`, built in PR #258.
-- `handoff-digest-email-2026-09-16.md` — round two: the digest email only, as it lands in an inbox; its assets are in `handoff-digest-email/`; the response is `design-response-digest-email-2026-09-16.md` when it exists.
+- `handoff-digest-email-2026-09-16.md` — round two: the digest email only, as it lands in an inbox; its assets are in `handoff-digest-email/`; answered in `design-response-digest-email-2026-09-16.md`, built the same day.

@@ -52,14 +52,15 @@ export function selectDigest(
   return ranked.slice(0, cap);
 }
 
-/** How many entries the email prints in full; the rest are first sentences. */
+/** How many entries the email sets large; the rest follow at the list size. */
 export const HEADLINERS_MAX = 2;
 
 /**
- * The email's two tiers: the headliners run in full as cards, the rest as a
- * ruled list of first sentences. Headliners are the entries marked `big` —
- * at most two, the first two by the existing rank if the data marks more.
- * A week that marks none still leads with something: its top-ranked entry.
+ * The email's two sizes, one list: the headliners are the entries marked
+ * `big` — at most two, the first two by the existing rank if the data marks
+ * more — and a week that marks none still leads with something: its
+ * top-ranked entry. Every entry prints whole; size and position are the only
+ * difference (design response §4.1).
  */
 export function splitDigest(items: Update[]): { headliners: Update[]; rest: Update[] } {
   const big = items.filter((u) => u.big).slice(0, HEADLINERS_MAX);
@@ -69,23 +70,67 @@ export function splitDigest(items: Update[]): { headliners: Update[]; rest: Upda
 }
 
 /**
+ * An entry's opening clause and the rest of it, for the email's bold lede:
+ * the clause runs to the first colon (kept), spaced dash (left with the
+ * rest) or sentence end (kept) — the same boundary the subject line uses.
+ * "A 14th straight week at No. 1 in Switzerland:" + " the Schweizer…".
+ */
+export function splitClause(text: string): { clause: string; rest: string } {
+  const colon = text.indexOf(":");
+  const dash = text.indexOf(" — ");
+  const stop = SENTENCE_END.exec(text);
+  const ends = [
+    [colon, colon + 1],
+    [dash, dash],
+    [stop ? stop.index : -1, stop ? stop.index + 1 : -1],
+  ]
+    .filter(([at]) => at > 0)
+    .sort((a, b) => a[0] - b[0]);
+  if (!ends.length) return { clause: text, rest: "" };
+  const [, end] = ends[0];
+  return { clause: text.slice(0, end), rest: text.slice(end) };
+}
+
+/** Cut to `max` characters at a word boundary, with an ellipsis. */
+const cutAt = (s: string, max: number) => {
+  if (s.length <= max) return s;
+  const head = s.slice(0, max - 1);
+  return `${head.slice(0, head.lastIndexOf(" "))}…`;
+};
+
+/**
+ * The preheader — the line under the subject in an inbox list. Never the
+ * subject's own clause again (design response §4.5): with two or more
+ * entries, the second entry's clause, then the categories present in rank
+ * order, then the window; with one, the rest of that entry after its clause.
+ * Capped at 120 at a word boundary.
+ */
+export function digestPreheader(items: Update[], from: string, to: string): string {
+  const window = weekRange(from, to);
+  if (items.length >= 2) {
+    const cats = [...new Set(items.map((u) => u.category))]
+      .sort((a, b) => CATEGORY_RANK[a] - CATEGORY_RANK[b])
+      .map((c) => c.toLowerCase());
+    const list = cats.length < 2 ? cats.join("") : `${cats.slice(0, -1).join(", ")} and ${cats[cats.length - 1]}`;
+    return cutAt(`${leadClause(items[1].text, Infinity)} — ${list}, ${window}.`, 120);
+  }
+  const rest = splitClause(items[0].text).rest.replace(/^[\s—]+/, "").trim();
+  return cutAt(rest.charAt(0).toUpperCase() + rest.slice(1), 120);
+}
+
+/**
  * A full stop that ends a sentence: followed by a space and not part of an
- * abbreviation the feed uses — "No. 9", "Global Excl. U.S.", "Vol. 2". The
- * list is the band's (lib/bandHeadline.ts), so the email and the home page
- * agree on where a sentence ends.
+ * abbreviation the feed uses — "No. 9", "Global Excl. U.S.", "certificate
+ * no. 10448". The list is the band's (lib/bandHeadline.ts), so the email's
+ * clause and the home page's headline agree on where a sentence ends.
  */
 const SENTENCE_END = new RegExp(`(?<!\\b(?:${ABBREV.join("|")}))\\. `, "i");
 
-/**
- * The entry's first sentence, the full stop kept. A one-sentence entry comes
- * back whole. "No. 9" was the first abbreviation this had to know; "Excl.
- * U.S." was the second — an entry that opened with Billboard's Global Excl.
- * U.S. chart would have printed in the digest cut at "Global Excl." — and
- * "certificate no. 10448" the third, which is why the match ignores case.
- */
-export function firstSentence(text: string): string {
-  const m = SENTENCE_END.exec(text);
-  return m ? text.slice(0, m.index + 1) : text;
+/** "13–19 September", or "30 August–5 September" across a month end — the masthead's form. */
+export function weekRangeShort(from: string, to: string): string {
+  const day = (d: string) => new Date(`${d}T12:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "long", timeZone: "UTC" });
+  const sameMonth = from.slice(0, 7) === to.slice(0, 7);
+  return sameMonth ? `${Number(from.slice(8))}–${day(to)}` : `${day(from)}–${day(to)}`;
 }
 
 /** "13 to 19 September", or "27 September to 3 October" across a month end. */
@@ -101,7 +146,7 @@ export function weekRange(from: string, to: string): string {
  * and is a full stop followed by a space, so that one abbreviation is exempt.
  */
 export function leadClause(text: string, max = 72): string {
-  const cut = text.split(new RegExp(`:| — |${SENTENCE_END.source}`))[0].replace(/[“”"]/g, "").trim();
+  const cut = text.split(new RegExp(`:| — |${SENTENCE_END.source}`, "i"))[0].replace(/[“”"]/g, "").trim();
   if (cut.length <= max) return cut;
   const words = cut.slice(0, max).split(" ");
   words.pop();

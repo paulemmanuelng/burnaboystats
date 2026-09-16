@@ -89,7 +89,10 @@ describe("POST /api/subscribe", () => {
     expect(at.every((i) => i >= 0)).toBe(true);
     expect([...at].sort((a, b) => a - b)).toEqual(at);
     expect(body.html).toContain('width="600"');
-    expect(body.html).not.toMatch(/fonts\.googleapis|@import|<link|<img/);
+    expect(body.html).not.toMatch(/fonts\.googleapis|@import|<link/);
+    // One image, the site's own crown, self-hosted — the masthead the digest shares.
+    expect(body.html.match(/<img\b[^>]*>/g)).toHaveLength(1);
+    expect(body.html).toContain('src="https://burnaboystats.com/email/crown-email-2x.png"');
     for (const s of ["Confirm, and you're in.", "Didn't ask for this?", "An unofficial fan site"]) expect(body.text).toContain(s);
   });
   it("swallows a bot quietly: a filled honeypot or a sub-1.5s submit gets 200 and no email", async () => {
