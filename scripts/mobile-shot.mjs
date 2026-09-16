@@ -2,7 +2,11 @@
 // Headless-Chrome CDP harness (no playwright). Node 24: global WebSocket + fetch.
 //   node shot.mjs --url URL [--width 375] [--height 812] [--dpr 2] [--out file.png]
 //                 [--full] [--theme light|dark] [--eval "js expr"] [--click "css"]...
-//                 [--open-details] [--scroll N]
+//                 [--open-details] [--scroll N] [--desktop] [--site-theme light|dark|system]
+//                 [--pre "js expr"]   (runs after load, before --click — stub fetch, fill a field)
+//   --theme emulates prefers-color-scheme; --site-theme sets the site's own
+//   stored choice (localStorage.theme) before the page loads, which is what
+//   the ThemeToggle reads — the site defaults to dark whatever the OS says.
 // Prints JSON: {url, width, height, scrollWidth, clientWidth, overflowX, evalResult}
 import { spawn } from "node:child_process";
 import { mkdtempSync, writeFileSync, rmSync } from "node:fs";
@@ -53,11 +57,14 @@ if (!desktop) {
   await send("Emulation.setUserAgentOverride", { userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1" });
 }
 await send("Emulation.setEmulatedMedia", { features: [{ name: "prefers-color-scheme", value: theme }] });
+const siteTheme = opt("site-theme");
+if (siteTheme) await send("Page.addScriptToEvaluateOnNewDocument", { source: `try{localStorage.setItem("theme",${JSON.stringify(siteTheme)})}catch{}` });
 await send("Page.navigate", { url });
 await waitLoad();
 await sleep(400);
 // fonts + images
 await evaluate("document.fonts ? document.fonts.ready.then(() => true) : true");
+if (opt("pre")) { await evaluate(opt("pre")); await sleep(200); }
 if (flag("open-details")) await evaluate("[...document.querySelectorAll('details')].forEach(d => d.open = true); true");
 for (const sel of clicks) { await evaluate(`(() => { const el = document.querySelector(${JSON.stringify(sel)}); if (!el) return 'MISSING ' + ${JSON.stringify(sel)}; el.click(); return 'clicked'; })()`); await sleep(250); }
 if (scrollY) { await evaluate(`window.scrollTo(0, ${scrollY}); true`); await sleep(200); }

@@ -7,17 +7,20 @@ would read as broken. Four steps, about twenty minutes, all in your own accounts
 
 ## What it does
 
-- **Subscribe box** on `/updates`, in the "Follow the run" panel on desktop and
-  under the hero on the phone screen. It replaces the RSS link there; RSS stays
-  in the footer.
+- **The digest module** on `/updates` — the hero's right column on desktop, a
+  band after the third entry on the phone (under the hero when the reader
+  lands from the confirmation link). Design: `docs/design/handoff-email-digest-2026-09-16.md`
+  (the brief) and `docs/design/design-response-email-digest-2026-09-16.md`
+  (the answers, every state and string).
 - **Double opt-in.** A reader enters an address → the site emails a
   confirmation link → tapping it joins the Resend audience. Nothing is stored
   on the site: the link carries a signature (HMAC) of the address, so there is
   no pending-signups database.
 - **The digest.** Every Saturday at 17:00 UTC (18:00 London, 18:00 Lagos) a
   GitHub Action sends one email to the audience: the week's entries from
-  `app/data/updates.ts`, headliners first (`big: true`), at most eight,
-  every one linking to its page. Weeks with no entries send nothing.
+  `app/data/updates.ts`, at most eight. The headliners (`big: true`, at most
+  two) print in full; the rest print as their first sentence with a link, so
+  the whole entry is one tap away. Weeks with no entries send nothing.
 - **Unsubscribe** is Resend's own one-tap link in the footer of every email.
 
 ## 1. Resend account and domain
@@ -70,11 +73,14 @@ lists exactly what went out, with the subject line.
 ## Editing the digest
 
 - **What goes in** is `app/data/updates.ts` — the same entries the site shows.
-  Mark the week's one or two headliners `big: true`; everything else is ranked
-  by category (records and plaques, then awards, charts, streaming, tours,
-  lifestyle) and capped at eight. Rules and tests: `app/lib/digest.ts`,
+  Mark the week's one or two headliners `big: true` — those are the two that
+  print in full; everything else is ranked by category (records and plaques,
+  then awards, charts, streaming, tours, lifestyle), capped at eight, and
+  printed as its first sentence. Rules and tests: `app/lib/digest.ts`,
   `tests/digest.test.ts`.
-- **How it looks** is `app/lib/digestEmail.ts` (HTML and plain text).
+- **How it looks** is `app/lib/digestEmail.ts` (HTML and plain text) and
+  `app/lib/confirmEmail.ts` (the confirmation); the palette they share is
+  `app/lib/emailChrome.ts`.
 - **When it sends** is the cron in `.github/workflows/weekly-digest.yml`.
 - **Local preview:** `npx tsx scripts/send-digest.mjs --dry-run` writes
   `digest-preview.html` and `.txt` in the repo root (git-ignored); add
@@ -82,8 +88,9 @@ lists exactly what went out, with the subject line.
 
 ## If something goes wrong
 
-- Box missing on the live site → the two Vercel variables aren't set on
-  Production, or the site wasn't redeployed after adding them.
+- Module missing on the live site → the two Vercel variables aren't set on
+  Production, or the site wasn't redeployed after adding them. (Without them
+  the desktop hero shows its old tally column and the phone its RSS link.)
 - Confirmation email never arrives → domain not verified in Resend, or the
   API key lacks sending access. Resend → Emails shows every attempt and why.
 - "Too many tries" → the API allows three attempts per address and ten per IP
