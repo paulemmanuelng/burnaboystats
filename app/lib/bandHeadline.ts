@@ -53,7 +53,7 @@ const MAX = 72;
  * at the top of every page, which is the exact shape of the "Nine weeks at No"
  * bug this function was written to fix.
  */
-const ABBREV = ["No", "Vol", "St", "Mr", "Mrs", "Ms", "Dr", "Jr", "Sr", "Excl", "Feat", "ft", "Est", "Inc", "Ltd", "U\\.S", "U\\.K"];
+export const ABBREV = ["No", "Vol", "St", "Mr", "Mrs", "Ms", "Dr", "Jr", "Sr", "Excl", "Feat", "ft", "Est", "Inc", "Ltd", "U\\.S", "U\\.K"];
 
 /**
  * The shortest a headline may be before we conclude the cut was wrong.

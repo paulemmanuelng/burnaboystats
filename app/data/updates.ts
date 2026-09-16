@@ -55,25 +55,25 @@ export const updates: Update[] = [
     date: "2026-09-14",
     category: "Streaming",
     big: true,
-    text: "Back inside the global Top 10: “Dai Dai” sits at No. 9 on Spotify's Daily Top Songs Global for 13 September with 2,580,521 filtered streams, down from No. 4 the day before — a 115th consecutive day on the chart by its own streak column, 116 in all, and an 83rd day inside the Top 10. That last figure is a total, not a streak: it had left the Top 10 for five charts, 7 to 11 September (No. 11, 12, 14, 14 and 11), before climbing back to No. 4 on the 12th — read day by day at Spotify's own chart from the 28 August list, where the count stood at 72, and still the most days inside the global Top 10 by any African song in the chart's history. The 37 days at No. 1 have now been walked the same way on Spotify's own archive: the first was the chart dated 30 June, the last 22 August, in six spells between them.",
+    text: "Back inside the global Top 10: “Dai Dai” sits at No. 9 on Spotify's Daily Top Songs Global for 13 September with 2,580,521 filtered streams — a 115th consecutive day on the chart, 116 days on the chart in all, an 83rd day inside the Top 10 and 37 days at No. 1.",
     href: "/dai-dai",
   },
   {
     date: "2026-09-14",
     category: "Streaming",
-    text: "Past 350 million plays on Audiomack: I Told Them… reads 350,926,676 on its own Audiomack page, read on 14 September, on the platform where his account stands at 2.11 billion plays in all. Audiomack carries several regional uploads of most of his albums, so where the album ranks depends on how they are added: with every upload of a title counted together, only Love, Damini (611 million across three) and Twice As Tall (454 million across three) sit above it, making it his third-most-played title there; on any single page it is second, with the Africa upload of Twice As Tall 2.7 million behind at 348 million. Audiomack counts “plays”, not streams, and publishes no per-title total — the 350 million is one page's own count.",
+    text: "Past 350 million plays on Audiomack: I Told Them… reads 350,926,676 on its own Audiomack page, read on 14 September, on a platform where his account stands at 2.11 billion plays in all.",
     href: "/music/albums/i-told-them",
   },
   {
     date: "2026-09-14",
     category: "Certifications",
-    text: "African Giant's UK history, read at the BPI's own register: certified Silver on 18 September 2020 — his first certified album in Britain — and Gold since 22 July 2022. Both awards now sit in the dated log. It was not the first certified Nigerian album, whatever the reposts say: Sade's Diamond Life was 4× Platinum with the BPI by 1987, and Lagos-born Keziah Jones's Blufunk was Double Gold in France in 2000.",
+    text: "African Giant's UK history, read at the BPI's own register: certified Silver on 18 September 2020 — his first certified album in Britain — and Gold since 22 July 2022. Both awards now sit in the dated log.",
     href: "/certifications",
   },
   {
     date: "2026-09-14",
     category: "Certifications",
-    text: "A circulating “6,050,000 units sold worldwide” for “Dai Dai” is now on the methodology page's list of counts this site does not carry. No certifying body or platform publishes worldwide units for a single, and pure sales run in the low thousands a week, so the figure is streams converted to units at a ratio of the poster's choosing. Read at the bodies today: the RIAA holds only the Latin 2× Platino (at least 120,000 units), the BPI Silver (at least 200,000), and BVMI and Music Canada no award at all. The only worldwide figure this site stands behind is the certified floor the compare page derives from the song's plaques.",
+    text: "A circulating 6,050,000 worldwide units for “Dai Dai” goes on the methodology page's list of counts this site does not carry: no certifying body or platform publishes worldwide units for a single, so the figure is streams converted to units at a ratio of the poster's choosing.",
     href: "/methodology",
   },
   {
@@ -86,103 +86,103 @@ export const updates: Update[] = [
   {
     date: "2026-09-13",
     category: "Charts",
-    text: "A 12th week atop Mediatraffic's United World Chart: “Dai Dai” holds No. 1 on the global ranking in the chart week dated 19 September, on 246,000 points — an unbroken run since the week dated 4 July, and it remains the first Burna Boy record ever to lead it. Mediatraffic now also marks the song as past 4 million of its chart points (its sixteen weekly figures sum to 4,110,000); that is the chart's own points tally, not a certification.",
+    text: "A 12th week atop Mediatraffic's United World Chart: “Dai Dai” holds No. 1 on the global ranking in the chart week dated 19 September, on 246,000 points — an unbroken run since the week dated 4 July, and still the first Burna Boy record ever to lead it.",
     href: "/dai-dai",
   },
   {
     date: "2026-09-13",
     category: "Charts",
-    text: "A 12th straight week at No. 1 on the Dutch Top 40 — the Stichting Nederlandse Top 40's chart, distinct from the Single Top 100 this site tables for the Netherlands — takes “Dai Dai” to 16 weeks on that list as of the 12 September edition. The Top 40 itself frames the record as Shakira's: with her four earlier chart-toppers there she has now led that chart for 30 weeks in total, passing Lady Gaga's 29 as the female artist with the most weeks at No. 1 in its history. It is not the longest stay by any act — the Top 40 names five men ahead of her, The Beatles' 74 weeks at the top — nor the longest run by one song there, which remains “Die With A Smile” at 17. On the Single Top 100 the run at the top closed at seven weeks; the 12 September chart is the song's 16th week there, at No. 4.",
+    text: "A 12th straight week at No. 1 on the Dutch Top 40: “Dai Dai” leads the Stichting Nederlandse Top 40's chart in the 12 September edition, its 16th week on that list. On the Single Top 100, where its run on top closed at seven weeks, it sits at No. 4 in a 16th week.",
     href: "/dai-dai",
   },
   {
     date: "2026-09-12",
     category: "Streaming",
-    text: "A correction to the 2026 streaming race on Africa's Biggest: Burna Boy has not passed Wizkid. Through 9 September, Spotify's 2026 totals stand at Tems 1.770 billion, Wizkid 1.764 billion and Burna Boy 1.756 billion, with Asake at 1.420 billion and Tyla at 1.185 billion — and Burna Boy is closing on Wizkid at roughly a million and a half streams a day. The board had carried him past Wizkid on 11 September on totals this site was summing for itself, day by day, from a count that does not move quite the way the trackers' does; those sums also counted three late-August days twice and missed three others. All five figures are now the tracker's own, read together and dated, and they will move together.",
+    text: "A correction to the 2026 streaming race on Africa's Biggest: Burna Boy has not passed Wizkid. Through 9 September, Spotify's 2026 totals stand at Tems 1.770 billion, Wizkid 1.764 billion and Burna Boy 1.756 billion, with Asake at 1.420 billion and Tyla at 1.185 billion.",
     href: "/records/africas-biggest",
   },
   {
     date: "2026-09-12",
     category: "Certifications",
-    text: "The compare page now counts every plaque an artist holds. Featured appearances are in by default — “All Eyes on Me”, AKA's record with Burna Boy featured, is 19× Platinum in South Africa and had sat behind a switch — and Sweden and Mexico, whose bodies publish their song levels in streams and no download-equivalence, are priced at 100 streams to a unit, the ratio Denmark and Norway publish, with every such line marked and explained. Burna Boy's international floor reads at least 30,215,157 certified units across 167 of his 171 plaques; the four that still cannot be priced — Poland measures singles in revenue, Greece and Colombia publish no threshold — are listed on the page and never hidden.",
+    text: "The compare page now counts every plaque an artist holds: featured appearances are in by default, and Burna Boy's international floor reads at least 30,215,157 certified units across 167 of his 171 plaques. The four that cannot yet be priced are listed on the page.",
     href: "/compare/burna-boy-vs-wizkid",
   },
   {
     date: "2026-09-11",
     category: "Streaming",
-    text: "The “Dai Dai” video reached a billion YouTube views in 105 days — joint fifth-fastest music video in YouTube history, level with “APT.” by ROSÉ & Bruno Mars, behind only “Hello” (88 days), “Shape of You” and “Despacito” (97) and “Mi Gente” (103). Africa's Biggest now carries that leaderboard — the top five, ties included, the one world board on the page where the record is a song's rather than an artist's; the days are counted from each video's premiere, as published by Chart Data and Pop Core.",
+    text: "The “Dai Dai” video reached a billion YouTube views in 105 days: joint fifth-fastest music video in YouTube history, level with “APT.” by ROSÉ & Bruno Mars and behind only “Hello” (88 days), “Shape of You” and “Despacito” (97) and “Mi Gente” (103).",
     href: "/records/africas-biggest",
   },
   {
     date: "2026-09-12",
     category: "Certifications",
-    text: "A new page: certified units, compared. Pick any two of the sixteen artists on this site — or any two of their certified records — and every plaque is priced at the level its own certifying body publishes today, then added up country by country under identical rules. Every figure is a floor: a Platinum single in the UK means at least 600,000 and could be 1,190,000, so the page says “at least” and never “sold”. One plaque per release per country, at its current tier; streams-based bodies converted with their own published download-equivalence; plaques from bodies that publish no comparable threshold — Sweden, Mexico and Poland among them — listed and named, never summed; Nigeria on its own line, folded in when both artists hold most of their plaques there. The full threshold table for all 27 bodies, and which of them raised their levels since 2015, lives on the methodology page.",
+    text: "A new page: certified units, compared. Pick any two of the sixteen artists on this site, or any two of their certified records, and every plaque is priced at the level its own certifying body publishes today, then added up country by country under identical rules.",
     href: "/compare",
   },
   {
     date: "2026-09-11",
     category: "Certifications",
-    text: "A correction: “Ginger” with Wizkid is Gold in Switzerland, not Platinum. It had sat here as Platinum since 2023 while Wizkid's own page on this site read Gold — the same recording, two tiers — and building the certified-units comparison is what made the disagreement visible. IFPI Schweiz's register, read three ways and in archived copies from 2024 and 2026, prints a single row for the song: Gold, 2023. No Platinum was ever awarded. Every other Swiss plaque here was checked against the same lists at the same time and stands. The catalogue is still 234 awards; one of them is a tier lower than it was.",
+    text: "A correction: “Ginger” with Wizkid is Gold in Switzerland, not Platinum. IFPI Schweiz's register prints a single row for the song, Gold, 2023; the catalogue is still 234 awards, one of them a tier lower than it was.",
     href: "/certifications",
   },
   {
     date: "2026-09-10",
     category: "Streaming",
-    text: "The gap widens again at the top of the African all-time board: ChartMasters now has Burna Boy on 15,132,000 equivalent album sales to Wizkid's 14,848,000, read on 10 September with the board's streaming data stamped 8 September. Both men gained since the 30 August reading — Burna by 121,000, Wizkid by 90,000 — so the lead grows from about 253,000 to some 284,000, and both climb as the board expands from 688 names to 691. The scope is worth keeping beside the number: neither man has a completed CSPC study there, so both totals are streaming equivalents rather than full sales tallies, and they remain the only two artists from any African country on the whole board.",
+    text: "The gap widens again at the top of the African all-time board: ChartMasters now has Burna Boy on 15,132,000 equivalent album sales to Wizkid's 14,848,000, read on 10 September — a lead of some 284,000, up from about 253,000 on 30 August.",
     href: "/records/africas-biggest",
   },
   {
     date: "2026-09-09",
     category: "Charts",
-    text: "Billboard's summer recaps put “Dai Dai” top of the world outside America: the Shakira and Burna Boy World Cup song finishes No. 1 on Billboard's Global Excl. U.S. top 10 songs of summer 2026, and No. 4 on the Global 200 equivalent, a list led by Ariana Grande's “Hate That I Made You Love Me” ahead of Ella Langley and Michael Jackson. These are season-ending recaps rather than charts of their own — Billboard ranked cumulative streaming and sales compiled by Luminate, worldwide for the Global 200 and from territories outside the United States for the Excl. U.S. list, across the weekly issues dated 6 June to 12 September, Memorial Day to Labor Day. The same article records the song as the first official World Cup anthem ever to lead the weekly Global Excl. U.S. chart, on a run of ten consecutive weeks from 4 July to 5 September.",
+    text: "Billboard's summer recaps put “Dai Dai” top of the world outside America: No. 1 on the Global Excl. U.S. top 10 songs of summer 2026 and No. 4 on the Global 200 equivalent — the first official World Cup anthem ever to lead the weekly Global Excl. U.S. chart, ten straight weeks from 4 July.",
     href: "/records/charts",
   },
   {
     date: "2026-09-09",
     category: "Charts",
-    text: "Fifteen weeks on the French chart, and nine of them at No. 1: SNEP has carried “Dai Dai” in every weekly Top Singles issue since the semaine du 29 mai, when it entered at No. 95, and has kept it on top since the semaine du 10 juillet. SNEP publishes no weeks-on-chart column of its own, so the fifteen is counted from its consecutive weekly issues — the one longevity figure on this site that the chart body does not state itself, and it is labelled as such.",
+    text: "Fifteen weeks on the French chart, and nine of them at No. 1: SNEP has carried “Dai Dai” in every weekly Top Singles issue since the semaine du 29 mai, when it entered at No. 95, and has kept it on top since the semaine du 10 juillet.",
     href: "/records/charts",
   },
   {
     date: "2026-09-09",
     category: "Charts",
-    text: "Greece brings its chart back and “Dai Dai” is still on top: IFPI Greece paused its Digital Singles Chart over the summer, returned with a single combined edition covering weeks 31-34, and has the song at No. 1 there and again in week 35 — six chart editions at No. 1 in all, on a chart that now reads twelve weeks. Longer runs elsewhere: fourteen weeks in Slovakia, where a No. 2 in week 36 closes its eight-week run at the top; thirteen in the Czech Republic, twelve in Italy and fourteen in the United Arab Emirates.",
+    text: "Greece brings its chart back and “Dai Dai” is still on top: IFPI Greece's Digital Singles Chart returns with a combined edition covering weeks 31-34 and has the song at No. 1 there and in week 35 — six chart editions at No. 1 in all, on a chart that now reads twelve weeks.",
     href: "/records/charts",
   },
   {
     date: "2026-09-09",
     category: "Streaming",
-    text: "Back on top on YouTube: the “Dai Dai” video retakes No. 1 on the Global Daily Top Music Videos chart dated 7 September, up from No. 2, on its 108th day on the chart. Its first run there — 80 consecutive days from 9 June — closed at the end of August, and the video spent the charts dated 5 and 6 September at No. 2 behind LISA's “SaWaDiKa”. The 80 stays a closed count rather than growing: the day this new spell began has not been read, because charts.youtube.com renders only the latest chart.",
+    text: "Back on top on YouTube: the “Dai Dai” video retakes No. 1 on the Global Daily Top Music Videos chart dated 7 September, up from No. 2, on its 108th day on the chart.",
     href: "/dai-dai",
   },
   {
     date: "2026-09-09",
     category: "Charts",
-    text: "Nine weeks at No. 1 in France. SNEP's own weekly Top Singles has “Dai Dai” leading every issue from the semaine du 10 juillet to the current semaine du 4 septembre 2026 — an unbroken run, and three weeks longer than the site had recorded. It has been on the French chart since the semaine du 29 mai, when it entered at No. 95.",
+    text: "Nine weeks at No. 1 in France: SNEP's weekly Top Singles has “Dai Dai” leading every issue from the semaine du 10 juillet to the semaine du 4 septembre 2026, an unbroken run.",
     href: "/records/charts",
   },
   {
     date: "2026-09-09",
     category: "Streaming",
-    text: "The Spotify run at No. 1 is over, and the shape of the whole run turns out to have been misread. Spotify's Global Daily Top Songs chart for 7 September has “Dai Dai” at No. 11, down five, with a streak of 109 days and — in the chart's own expanded row — 110 days on the chart in total since it entered at No. 114 on 15 May. Those two columns settle something this site had wrong all summer: 15 May to 7 September is 116 days, so the song spent six of them off the chart, not the one it had been credited with. It fell straight back off after the debut and returned on 22 May. The published totals are unchanged — 37 days at No. 1, counted through the 28 August chart, now a closed figure rather than a running one.",
+    text: "The Spotify run at No. 1 is over: Spotify's Global Daily Top Songs chart for 7 September has “Dai Dai” at No. 11, down five, with 110 days on the chart in total. A correction: six days off the chart since 15 May, not one; the 37 days at No. 1, through the 28 August chart, stand.",
     href: "/dai-dai",
   },
   {
     date: "2026-09-08",
     category: "Lifestyle",
-    text: `A correction to the garage total, now ${totalValueFormatted} across ${carCount} cars. The Bugatti Chiron is the one car here whose price is reported in naira — ₦9 billion — so its dollar figure is derived from that rather than the other way round, and it was being derived at ₦1,454 to the dollar: a rate matching no date near the purchase. Re-converted at ₦1,370.08, the rate on 5 July 2026, the day the buy was announced. Nothing about the car changed; only the arithmetic did.`,
+    text: `A correction to the garage total, now ${totalValueFormatted} across ${carCount} cars: the Bugatti Chiron's ₦9 billion is re-converted at ₦1,370.08 to the dollar, the rate on 5 July 2026, the day the buy was announced — not the ₦1,454 it had been. Nothing about the car changed; only the arithmetic did.`,
     href: "/records/cars",
   },
   {
     date: "2026-09-06",
     category: "Streaming",
-    text: "A billion views for “Dai Dai”. The official video reads 1,008,439,801 on YouTube, read at the video's own page — Burna Boy's first music video to a billion, from a 23 May release. The site had been publishing the count all along; the crossing itself went unlogged because the figure is written by the stats pipeline and the milestone is not.",
+    text: "A billion views for “Dai Dai”: the official video reads 1,008,439,801 on YouTube, Burna Boy's first music video to a billion, from a 23 May release.",
     href: "/dai-dai",
   },
   {
     date: "2026-09-03",
     category: "Certifications",
-    text: "Austria certifies “Dai Dai” Platinum. IFPI Austria's own Gold & Platin database returns a single row — “Shakira & Burna Boy · Dai Dai · Single · PLATIN · Sony · 03.09.2026” — for 30,000 units, the Austrian Platinum threshold for a single. It is the song's 13th plaque and Burna Boy's 234th certification overall, in a market where the record has already spent nine weeks at No. 1.",
+    text: "Austria certifies “Dai Dai” Platinum: IFPI Austria's Gold & Platin database lists the single at PLATIN, dated 03.09.2026, for 30,000 units, the Austrian Platinum threshold. It is the song's 13th plaque and Burna Boy's 234th certification overall.",
     href: "/dai-dai",
   },
   {
@@ -194,7 +194,7 @@ export const updates: Update[] = [
   {
     date: "2026-09-03",
     category: "Charts",
-    text: "“Dai Dai” goes to No. 1 on Billboard's Rhythmic Airplay chart dated 5 September 2026, climbing 3–1. It is Shakira's first-ever No. 1 on the format, twenty years after “Hips Don't Lie” peaked at No. 5 in 2006, and the song's fourth week in the format's top three. It is No. 27 on Pop Airplay on the same 5 September chart, one off the No. 26 peak it set on the chart dated 15 August. (This entry read “holds at No. 26” until 9 Sep 2026: 26 is the peak, not the position — Billboard's own row for the 5 September chart reads rank 27, LW 27, PEAK 26.) This is Billboard's own Rhythmic Airplay panel, not Mediabase's — the two share a monitoring feed but rank different panels over different weeks, and this site publishes the Billboard peak. (The date read 6 September here until 6 Sep 2026: Billboard issues fall on Saturdays, 5 September 2026 is the Saturday, and the German chart frame of 04.09–10.09 pins the same week independently.)",
+    text: "A Billboard No. 1: “Dai Dai” goes to No. 1 on Billboard's Rhythmic Airplay chart dated 5 September 2026, climbing 3–1 — Shakira's first-ever No. 1 on the format. It is No. 27 on Pop Airplay for the same week, one off the No. 26 peak it set on the chart dated 15 August.",
     href: "/dai-dai",
   },
   {
@@ -206,13 +206,13 @@ export const updates: Update[] = [
   {
     date: "2026-09-02",
     category: "Charts",
-    text: "A correction, twice over: “Dai Dai” was never No. 1 in the Dominican Republic or El Salvador. Monitor Latino names the No. 1 on each country’s Top 20 General weekly, and across all sixteen weeks of the song’s life the Dominican top spot belongs to Amenazzy, then Yiyo Sarante for eleven weeks, then Yenddi, then DaniLeigh — while the same posts name “Dai Dai” the No. 1 elsewhere in those very weeks. El Salvador is not a chart Monitor Latino publishes at all, and ASAP EGC publishes none either; what the same posts do show is “Dai Dai” topping the regional Top Centroamérica on 15 June, which is where that figure belongs. Both entries came from a round-up rather than a chart and have been removed: 26 country No. 1s for the song, 47 chart-topping placements for the career.",
+    text: "A correction, twice over: “Dai Dai” was never No. 1 in the Dominican Republic or El Salvador; both entries came from a round-up rather than a chart and have been removed. That leaves 26 country No. 1s for the song and 47 chart-topping placements for the career.",
     href: "/records/charts",
   },
   {
     date: "2026-09-02",
     category: "Streaming",
-    text: "A ninth song past 300 million: “wgft”, Gunna’s single featuring Burna Boy, crossed the mark on 1 September at 300,255,936 — read on Spotify’s own track page, which the usual trackers had not caught up to. Five of the nine are past 400 million: “Location”, “Last Last”, “On the Low”, “Own It” and “Dai Dai”.",
+    text: "A ninth song past 300 million: “wgft”, Gunna’s single featuring Burna Boy, crossed the mark on Spotify on 1 September at 300,255,936. Five of the nine are past 400 million: “Location”, “Last Last”, “On the Low”, “Own It” and “Dai Dai”.",
     href: "/records/africas-biggest",
   },
   {
@@ -230,13 +230,13 @@ export const updates: Update[] = [
   {
     date: "2026-08-31",
     category: "Certifications",
-    text: "A French Diamond and a Polish Gold on the same day: SNEP upgrades “Dai Dai” from Platinum to Diamant at 50 million equivalent streams, three months after release, and ZPAV enters it on Poland’s złote płyty list. The song now holds twelve plaques, and France is its first Diamond — Burna Boy’s seventh record to reach that tier there, alongside “Last Last”, “On the Low”, “Gbona”, “Location”, “Be Honest” and the “Jerusalema” remix.",
+    text: "A French Diamond and a Polish Gold on the same day: SNEP upgrades “Dai Dai” from Platinum to Diamant at 50 million equivalent streams, and ZPAV enters it on Poland’s złote płyty list. The song now holds twelve plaques, and France is its first Diamond.",
     href: "/certifications",
   },
   {
     date: "2026-08-30",
     category: "Streaming",
-    text: "Past 15 million: ChartMasters' all-time board now has Burna Boy on 15,011,000 equivalent album sales to Wizkid's 14,758,000, a gap of 253,000, widened from about 238,000 on 26 August. Worth reading the scope alongside the number — the two of them are the only artists from any African country on that 688-name board, and their totals are streaming equivalents rather than full sales studies.",
+    text: "Past 15 million: ChartMasters' all-time board now has Burna Boy on 15,011,000 equivalent album sales to Wizkid's 14,758,000, a gap of 253,000.",
     href: "/records/africas-biggest",
   },
   {
@@ -248,73 +248,73 @@ export const updates: Update[] = [
   {
     date: "2026-08-30",
     category: "Certifications",
-    text: "Nineteen New Zealand plaques, read row by row in Recorded Music NZ's own register: seventeen singles and two albums, from Gold up to 3× Platinum for “Last Last” and for Dave's “Location”. It is the largest New Zealand tally among the artists tracked on the Afrobeats board here — Tems has eleven, Wizkid and Tyla seven each.",
+    text: "Nineteen New Zealand plaques: Recorded Music NZ's register carries seventeen singles and two albums, from Gold up to 3× Platinum for “Last Last” and for Dave's “Location”.",
     href: "/certifications",
   },
   {
     date: "2026-08-30",
     category: "Streaming",
-    text: "Back inside the global top three: “Dai Dai” climbs to No. 3 on Spotify’s Daily Top Songs Global for 28 August with 3,350,583 filtered streams, its 72nd day inside the Top 10 and, by the chart’s own streak column, a 99th consecutive day on it — 37 of them at No. 1, still the longest run at the top by any African artist.",
+    text: "Back inside the global top three: “Dai Dai” climbs to No. 3 on Spotify's Daily Top Songs Global for 28 August with 3,350,583 filtered streams — its 72nd day inside the Top 10, a 99th consecutive day on the chart and 37 days at No. 1.",
     href: "/dai-dai",
   },
   {
     date: "2026-08-29",
     category: "Streaming",
-    text: "An 80th straight day as the world’s most-viewed music video: the “Dai Dai” video has led YouTube’s Global Daily Top Music Videos every day since 9 June, on the chart dated 27 August — the last one published. It has been No. 1 on 93 of its 97 days on that chart, missing only 28 and 29 May, 2 June and 8 June.",
+    text: "An 80th straight day as the world's most-viewed music video: the “Dai Dai” video has led YouTube's Global Daily Top Music Videos every day since 9 June, on the chart dated 27 August — No. 1 on 93 of its 97 days on that chart.",
     href: "/dai-dai",
   },
   {
     date: "2026-08-29",
     category: "Charts",
-    text: "“Dai Dai” tops the official singles chart in Poland for the first time — ZPAV's own week-34 list (14–20 August) has it at No. 1 after twelve weeks, up from No. 9, having stalled at No. 4 in late July. Poland is the 28th country to put the song at No. 1, and it takes his career tally of chart-topping placements to 49.",
+    text: "“Dai Dai” tops the official singles chart in Poland for the first time — No. 1 on ZPAV's week-34 list (14–20 August) after twelve weeks, up from No. 9. Poland is the 28th country to put the song at No. 1, taking his career tally of chart-topping placements to 49.",
     href: "/records/charts",
   },
   {
     date: "2026-08-28",
     category: "Streaming",
-    text: "Seventy days inside the global Top 10, from a start nobody would have predicted: “Dai Dai” entered Spotify's Global Daily Top Songs chart at No. 114 on 15 May, the day after release, and had left it for six days since — 98 days on the chart, 37 of them at No. 1, and still there at No. 8 with 3,228,190 streams. (This read “98 straight days” and “has left it exactly once” until 9 Sep 2026: 98 is the TOTAL, not the streak, and the song had left the chart for six days rather than one — both settled by the columns Spotify prints on its 7 September chart.) No African song has spent longer in the global Top 10 since the chart launched.",
+    text: "Seventy days inside the global Top 10: “Dai Dai” entered Spotify's Global Daily Top Songs chart at No. 114 on 15 May and is still there at No. 8 with 3,228,190 streams — 98 days on the chart in total, 37 of them at No. 1. No African song has spent longer in the global Top 10.",
     href: "/dai-dai",
   },
   {
     date: "2026-08-28",
     category: "Certifications",
-    text: "A 232nd plaque, from the one Portuguese route nobody had read: “Wgft” with Gunna is certified Ouro by AFP/Audiogest, announced on the body's own award card in its March 2026 batch. Portugal badges a record on its weekly chart only while that record is charting — “Wgft” spent four weeks there in February with the column blank and had already dropped off when the plaque landed, so the award exists in the monthly announcement and nowhere else. It is his seventh Portuguese plaque.",
+    text: "A 232nd plaque, from the one Portuguese route nobody had read: “Wgft” with Gunna is certified Ouro by AFP/Audiogest, announced on the body's own award card in its March 2026 batch — his seventh Portuguese plaque.",
     href: "/certifications",
   },
   {
     date: "2026-08-27",
     category: "Certifications",
-    text: "Four Portuguese Golds, confirmed at last. AFP/Audiogest's annual TOP reports — which carry the same Galardão column as the weekly charts but run to 10,000 positions instead of 200 — show “Gbona”, “Location” with Dave, “Own It” with Stormzy and Ed Sheeran, and “We Pray” with Coldplay all marked Ouro. Three were awarded earlier than recorded here: “Own It” and “Location” both during 2020, “Gbona” by the end of 2022. “Gbona” had never once entered Portugal's Top 200, which is why the weekly charts had nothing to say about it.",
+    text: "Four Portuguese Golds, confirmed at last: AFP/Audiogest's annual TOP reports mark “Gbona”, “Location” with Dave, “Own It” with Stormzy and Ed Sheeran, and “We Pray” with Coldplay all Ouro. “Own It” and “Location” were awarded during 2020, “Gbona” by the end of 2022.",
     href: "/certifications",
   },
   {
     date: "2026-08-27",
     category: "Certifications",
-    text: "“On The Low” gains a plaque and corrects one. Reading its certifications at each issuing body's own register — SNEP, Music Canada, BPI, IFPI Schweiz, RIAA, ARIA, IFPI Danmark and TCSN — confirms the tiers already recorded here, adds Sweden (GLF, Platinum, certificate no. 10448, awarded 16 August 2023) and corrects Nigeria, which TCSN gives as Gold rather than Silver. That is ten countries for a song whose French plaque is a full Diamond. The catalogue stands at 231.",
+    text: "“On The Low” gains a plaque and corrects one: Sweden is added (GLF, Platinum, certificate no. 10448, awarded 16 August 2023) and Nigeria is corrected from Silver to Gold, the tier TCSN gives. That is ten countries for the song; the catalogue stands at 231.",
     href: "/certifications",
   },
   {
     date: "2026-08-27",
     category: "Certifications",
-    text: "A Swedish plaque that was never on the site: “On The Low” is Platinum in Sweden, certificate no. 10448, awarded 16 August 2023. It surfaced with three others read the same day from Grammotex, the Swedish record industry's own trade database, which lists a certificate number and award date against each article: “Ye” Platinum (no. 10450), “African Giant” Gold (no. 10452) and “Gbona” Gold (no. 10453). Sweden stopped publishing an awarded-certification register after 2004, so those last three had sat here for months carrying the right tier and no source. They now carry a certificate number — strong corroboration, though Grammotex is badged to GLF rather than to Ifpi Sverige itself, which are separate bodies sharing an office.",
+    text: "A Swedish plaque that was never on the site: “On The Low” is Platinum in Sweden, certificate no. 10448, awarded 16 August 2023, read at Grammotex alongside “Ye” Platinum (no. 10450), “African Giant” Gold (no. 10452) and “Gbona” Gold (no. 10453).",
     href: "/certifications",
   },
   {
     date: "2026-08-26",
     category: "Streaming",
-    text: "The best-selling African artist of all time pulls further clear: Burna Boy is on 14,964,000 equivalent album sales to Wizkid's 14,726,000 (ChartMasters, CSPC methodology). Both gained since the 10 August reading of 14.75 million to 14.59 million, but the gap widened from about 164,000 to some 238,000.",
+    text: "The best-selling African artist of all time pulls further clear: Burna Boy is on 14,964,000 equivalent album sales to Wizkid's 14,726,000 (ChartMasters, CSPC methodology), the gap widening from about 164,000 to some 238,000 since the 10 August reading.",
     href: "/records/africas-biggest",
   },
   {
     date: "2026-08-25",
     category: "Charts",
-    text: "A radio format that had never played him: “Dai Dai” debuts at No. 14 on Billboard's Adult Contemporary chart — Burna Boy's first entry there in his career, and Shakira's second after “Hips Don't Lie” peaked at No. 24 in 2007. Adult Contemporary is a format chart rather than a national one, so it does not appear among the official chart peaks.",
+    text: "A radio format that had never played him: “Dai Dai” debuts at No. 14 on Billboard's Adult Contemporary chart — Burna Boy's first entry there in his career.",
     href: "/records/firsts",
   },
   {
     date: "2026-08-22",
     category: "Streaming",
-    text: "A 37th day as the most-streamed song on Earth — and a record equalled. “Dai Dai” holds No. 1 on Spotify's Global Daily Top Songs chart with 3,898,249 streams, drawing level with “WAP” by Cardi B and Megan Thee Stallion for the most days any song has ever spent atop the chart. No other African artist has reached No. 1 on it at all, let alone stayed 30 days.",
+    text: "A 37th day as the most-streamed song on Earth — and a record equalled. “Dai Dai” holds No. 1 on Spotify's Global Daily Top Songs chart with 3,898,249 streams, drawing level with “WAP” by Cardi B and Megan Thee Stallion for the most days any song has ever spent atop the chart.",
     href: "/dai-dai",
   },
   {
@@ -326,7 +326,7 @@ export const updates: Update[] = [
   {
     date: "2026-08-22",
     category: "Streaming",
-    text: "A new board on Africa's Biggest, and one he does not top: biggest single day on Spotify, counting a whole catalogue's streams in 24 hours. Burna Boy's best is 14.3 million, fourth among Nigerian artists behind Wizkid (21.6M), Asake (18M) and Davido (17.3M) — a measure that rewards the size of a release day rather than the length of a run.",
+    text: "A new board on Africa's Biggest, and one he does not top: biggest single day on Spotify, a whole catalogue's streams in 24 hours. Burna Boy's best is 14.3 million, fourth among Nigerian artists behind Wizkid (21.6M), Asake (18M) and Davido (17.3M).",
     href: "/records/africas-biggest",
   },
   {
@@ -338,7 +338,7 @@ export const updates: Update[] = [
   {
     date: "2026-08-22",
     category: "Streaming",
-    text: "A 36th day as the most-streamed song on Earth: “Dai Dai” climbs two places back to No. 1 on Spotify's Global Daily Top Songs chart for 21 August, with 3,768,805 filtered streams. That puts it four days clear of Djo's “End of Beginning” (32) as the longest run at No. 1 by any song in 2026 — 65 days inside the global Top 10 and 93 days on the chart, both still counting.",
+    text: "A 36th day as the most-streamed song on Earth: “Dai Dai” climbs two places back to No. 1 on Spotify's Global Daily Top Songs chart for 21 August with 3,768,805 filtered streams — 65 days inside the global Top 10 and 93 days on the chart.",
     href: "/dai-dai",
   },
   {
@@ -350,25 +350,25 @@ export const updates: Update[] = [
   {
     date: "2026-08-22",
     category: "Charts",
-    text: "Six national No. 1s in a single week, every run still lengthening: “Dai Dai” holds the summit in Austria for a 9th week and in Belgium's Wallonia for a 9th, in Germany for an 8th, the Netherlands for a 7th and Norway for a 4th — and climbs back to the top in Sweden for a 6th week there. In the UK it spends a 5th week at its No. 2 peak, 12 weeks into the run. Every figure was counted in the chart body's own week-by-week run rather than taken from a round-up.",
+    text: "Six national No. 1s in a single week, every run still lengthening: “Dai Dai” holds No. 1 in Austria for a 9th week, Belgium's Wallonia for a 9th, Germany for an 8th, the Netherlands for a 7th and Norway for a 4th, and climbs back to the top in Sweden for a 6th week there.",
     href: "/records/charts",
   },
   {
     date: "2026-08-21",
     category: "Streaming",
-    text: "No. 1 on iTunes in 73 countries, and forty days atop the worldwide list: “Dai Dai” has led the iTunes songs chart outright in 73 territories — from Anguilla and Argentina to the UK and the USA, Belarus the newest — and by 21 August had reached a 40th on the worldwide iTunes songs chart, with a 15th day at the top of the European one.",
+    text: "No. 1 on iTunes in 73 countries, and forty days atop the worldwide list: “Dai Dai” has led the iTunes songs chart in 73 territories, Belarus the newest, and by 21 August had reached a 40th on the worldwide iTunes songs chart, with a 15th day at the top of the European one.",
     href: "/dai-dai",
   },
   {
     date: "2026-08-21",
     category: "Certifications",
-    text: "Two artists join the Afrobeats Board: Victony (22 certifications across 4 countries, 40 chart entries) and Fireboy DML (36 across 6, 67 entries — including a French Diamond and a UK 3× Platinum for “Peru”). Both swept the same way as the other nine: every plaque read in an issuing body's own register, every chart peak in the chart body's own run. The board is now 11 artists and 801 plaques.",
+    text: "Two artists join the Afrobeats Board: Victony (22 certifications across 4 countries, 40 chart entries) and Fireboy DML (36 across 6, 67 entries, including a French Diamond and a UK 3× Platinum for “Peru”). The board is now 11 artists and 801 plaques.",
     href: "/afrobeats",
   },
   {
     date: "2026-08-21",
     category: "Certifications",
-    text: "Asake picks up a fourth country: Recorded Music NZ certified “Bandana”, his 7× Platinum record with Fireboy DML, Gold in New Zealand on 20 August — read in RMNZ's own register, which it publishes through RadioScope rather than on its main site. It takes him to 80 plaques, and the Afrobeats Board to 743.",
+    text: "Asake picks up a fourth country: Recorded Music NZ certified “Bandana”, his 7× Platinum record with Fireboy DML, Gold in New Zealand on 20 August. It takes him to 80 plaques, and the Afrobeats Board to 743.",
     href: "/afrobeats/asake",
   },
   {
@@ -386,7 +386,7 @@ export const updates: Update[] = [
   {
     date: "2026-08-21",
     category: "Streaming",
-    text: "Setting the record straight on the February drop: Spotify did not remove streams from Burna Boy for being artificial — it un-merged two remixes whose plays had been wrongly combined with the original recordings, moving about 309 million streams to the versions that earned them. The full arithmetic is now on the site, checkable against Spotify's own per-track counts.",
+    text: "Setting the record straight on the February drop: Spotify did not remove streams from Burna Boy for being artificial — it un-merged two remixes wrongly combined with the original recordings, moving about 309 million streams to the versions that earned them.",
     href: "/analysis/spotify-unmerge",
   },
   {
@@ -404,7 +404,7 @@ export const updates: Update[] = [
   {
     date: "2026-08-18",
     category: "Awards",
-    text: "Two nominations at the 2026 MTV Video Music Awards: “Dai Dai” is up for Best Collaboration, and for Best Latin against Bad Bunny, Karol G and Rosalía. The ceremony is on 27 September at the Peacock Theater in Los Angeles — and with no Afrobeats category held this year, both of Burna Boy's nominations sit in open fields.",
+    text: "Two nominations at the 2026 MTV Video Music Awards: “Dai Dai” is up for Best Collaboration, and for Best Latin against Bad Bunny, Karol G and Rosalía. The ceremony is on 27 September at the Peacock Theater in Los Angeles.",
     href: "/records/awards",
   },
   {
@@ -538,7 +538,7 @@ export const updates: Update[] = [
   {
     date: "2026-08-12",
     category: "Certifications",
-    text: "Nigeria's register, read in full: TCSN's own records carry four plaques the site had missed — “TaTaTa” Platinum, “Update” Platinum, “Love” 3× Platinum and “Dem Dey” Gold — and four upgrades, with “Location”, “Talibans II” and “Bundle by Bundle” all moving up to Platinum and “Giza” to 3×. That is 229 certifications worldwide, 58 of them awarded in 2026.",
+    text: "Nigeria's register, read in full: four missed TCSN plaques — “TaTaTa” Platinum, “Update” Platinum, “Love” 3× Platinum, “Dem Dey” Gold — and four upgrades, “Location”, “Talibans II” and “Bundle by Bundle” to Platinum, “Giza” to 3×. Now 229 certifications worldwide, 58 in 2026.",
     href: "/certifications",
   },
   {
@@ -661,7 +661,7 @@ export const updates: Update[] = [
   {
     date: "2026-08-09",
     category: "Charts",
-    text: "The Nigerian record, filled in: a TurnTable sweep surfaces 9 missing home-chart placements — I Told Them… and No Sign of Weakness were both No. 1 albums in Nigeria, Love, Damini reached No. 3, and on the Top 100 both Giza (with Seyi Vibez) and Big 7 hit No. 2, with Cheat on Me at No. 4, TaTaTa No. 5 and Sittin' on Top of the World No. 8 — lifting the career tally to 280 chart entries and 48 No. 1 placements worldwide.",
+    text: "The Nigerian record, filled in: 9 TurnTable entries — No. 1 albums I Told Them… and No Sign of Weakness, Love, Damini No. 3, Top 100: Giza and Big 7 No. 2, Cheat on Me No. 4, TaTaTa No. 5, Sittin' on Top of the World No. 8. Now 280 chart entries, 48 No. 1 placements worldwide.",
     href: "/records/charts",
   },
   {
@@ -769,13 +769,13 @@ export const updates: Update[] = [
   {
     date: "2026-08-04",
     category: "Charts",
-    text: "The “Dai Dai” chart sweep lands 11 new territories — No. 1 in Estonia and, via IFPI Latin America's new chart, Ecuador — plus improved peaks in Uruguay (2), Malaysia (5) and Croatia (13). The song now counts 70 official chart entries with 27 countries at No. 1, and Burna Boy's career No. 1 tally moves to 46.",
+    text: "The “Dai Dai” chart sweep lands 11 new territories: No. 1 in Estonia and, on IFPI Latin America's new chart, Ecuador, plus improved peaks in Uruguay (2), Malaysia (5) and Croatia (13). Now 70 official chart entries, 27 countries at No. 1, and a career No. 1 tally of 46.",
     href: "/dai-dai",
   },
   {
     date: "2026-08-04",
     category: "Awards",
-    text: "A year-by-year audit of 2010–2026 surfaces two missing wins — Burna Boy's very first award, Rookie of the Year at The Headies 2012 (shared with Dammy Krane), and 2025 International Artist of the Year at the African Entertainment Awards USA — lifting the tally to 82 wins from 234 nominations across 46 award bodies.",
+    text: "A year-by-year audit of 2010–2026 surfaces two missing wins: Rookie of the Year at The Headies 2012 (shared with Dammy Krane) and 2025 International Artist of the Year at the African Entertainment Awards USA. That is 82 wins from 234 nominations across 46 award bodies.",
     href: "/records/awards",
   },
   {
