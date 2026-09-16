@@ -418,20 +418,20 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 21,
-            "movement": -15
+            "position": 2,
+            "movement": 2
           },
           {
             "country": "MZ",
             "name": "Mozambique",
             "position": 24,
-            "movement": -6
+            "movement": -5
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 79,
-            "movement": -19
+            "position": 80,
+            "movement": -17
           }
         ]
       },
@@ -698,86 +698,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/f31fc975fcb1a6ea4130d536558ecd96/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "As We Get High",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 5,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 10,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 120,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "WW",
-            "name": "Worldwide",
-            "position": 199,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 48,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 54,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "CO",
-            "name": "Colombia",
-            "position": 187,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 31,
-            "movement": 3
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b4d2ad60759dd994a1a8440baa1c61e8/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Forever",
     "platforms": [
       {
@@ -823,8 +743,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 192,
-            "movement": 6
+            "position": 193,
+            "movement": 7
           }
         ]
       },
@@ -951,6 +871,72 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/e51306cd0211b33a043b1fef073026e5/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "As We Get High",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 5,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 10,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 120,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "WW",
+            "name": "Worldwide",
+            "position": 199,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 31,
+            "movement": 3
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 56,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b4d2ad60759dd994a1a8440baa1c61e8/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Get Layd - EP",
@@ -1198,8 +1184,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 74,
-            "movement": 2
+            "position": 75,
+            "movement": 3
           },
           {
             "country": "BE",
@@ -1345,7 +1331,7 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 43,
+            "position": 44,
             "movement": -40
           }
         ]
@@ -1422,7 +1408,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 132,
+            "position": 140,
             "movement": null,
             "status": "new"
           }
@@ -1449,6 +1435,12 @@
       }
     ],
     "kind": "album"
+  },
+  {
+    "title": "attention",
+    "platforms": [],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ae9663b409e03e98646161728b176979/500x500-000000-80-0-0.jpg"
   }
 ];
   

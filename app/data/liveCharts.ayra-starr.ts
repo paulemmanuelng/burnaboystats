@@ -485,20 +485,27 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 78,
-            "movement": -6
+            "position": 79,
+            "movement": -7
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 81,
-            "movement": -19
+            "position": 82,
+            "movement": -17
           },
           {
             "country": "GD",
             "name": "Grenada",
-            "position": 95,
-            "movement": -8
+            "position": 97,
+            "movement": -9
+          },
+          {
+            "country": "IN",
+            "name": "India",
+            "position": 190,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -838,8 +845,15 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 138,
-            "movement": 0
+            "position": 147,
+            "movement": -3
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 169,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "NE",
@@ -1336,6 +1350,92 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/fe3deba215d998d74542663a84621852/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Rush",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CV",
+            "name": "Cape Verde",
+            "position": 20,
+            "movement": 0
+          },
+          {
+            "country": "SZ",
+            "name": "Swaziland",
+            "position": 22,
+            "movement": -1
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 37,
+            "movement": -6
+          },
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 48,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "AG",
+            "name": "Antigua and Barbuda",
+            "position": 51,
+            "movement": 2
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 81,
+            "movement": 9
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FJ",
+            "name": "Fiji",
+            "position": 141,
+            "movement": 44
+          },
+          {
+            "country": "NA",
+            "name": "Namibia",
+            "position": 196,
+            "movement": -19
+          },
+          {
+            "country": "MG",
+            "name": "Madagascar",
+            "position": 197,
+            "movement": -116
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CI",
+            "name": "Côte d'Ivoire",
+            "position": 159,
+            "movement": -23
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/a73bed954d61b52564118ac926925d76/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "The Year I Turned 21",
     "platforms": [
       {
@@ -1454,8 +1554,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 109,
-            "movement": 6
+            "position": 111,
+            "movement": 7
           },
           {
             "country": "CI",
@@ -1486,85 +1586,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/7b49d51e89ff07824c8c62043775a2ab/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Rush",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CV",
-            "name": "Cape Verde",
-            "position": 20,
-            "movement": 0
-          },
-          {
-            "country": "SZ",
-            "name": "Swaziland",
-            "position": 22,
-            "movement": -1
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 37,
-            "movement": -6
-          },
-          {
-            "country": "AG",
-            "name": "Antigua and Barbuda",
-            "position": 51,
-            "movement": 2
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 81,
-            "movement": 9
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FJ",
-            "name": "Fiji",
-            "position": 141,
-            "movement": 44
-          },
-          {
-            "country": "NA",
-            "name": "Namibia",
-            "position": 196,
-            "movement": -19
-          },
-          {
-            "country": "MG",
-            "name": "Madagascar",
-            "position": 197,
-            "movement": -116
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CI",
-            "name": "Côte d'Ivoire",
-            "position": 159,
-            "movement": -23
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/a73bed954d61b52564118ac926925d76/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Wo, man",
@@ -1608,18 +1629,18 @@
             "country": "MZ",
             "name": "Mozambique",
             "position": 10,
-            "movement": -6
+            "movement": -5
           },
           {
             "country": "IT",
             "name": "Italy",
-            "position": 26,
-            "movement": 9
+            "position": 34,
+            "movement": 40
           },
           {
-            "country": "IE",
-            "name": "Ireland",
-            "position": 192,
+            "country": "DE",
+            "name": "Germany",
+            "position": 82,
             "movement": null,
             "status": "new"
           }
@@ -1628,6 +1649,62 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/c4c1696f82feac0a7fa1e26379b9f7e2/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Away",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 63,
+            "movement": 18
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 78,
+            "movement": 6
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 86,
+            "movement": -5
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 126,
+            "movement": -1
+          },
+          {
+            "country": "MW",
+            "name": "Malawi",
+            "position": 139,
+            "movement": 14
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 178,
+            "movement": -14
+          },
+          {
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 187,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/24407cf49fdf864463cb5ca5ad974630/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Ms. Paper",
@@ -1779,70 +1856,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 14,
-            "movement": 150
+            "position": 24,
+            "movement": -18
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2e52f4bf8bdb05c98002b714669ee2c2/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Away",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 63,
-            "movement": 18
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 78,
-            "movement": 6
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 86,
-            "movement": -5
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 126,
-            "movement": -1
-          },
-          {
-            "country": "MW",
-            "name": "Malawi",
-            "position": 139,
-            "movement": 14
-          },
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 178,
-            "movement": -14
-          },
-          {
-            "country": "TZ",
-            "name": "Tanzania",
-            "position": 187,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/24407cf49fdf864463cb5ca5ad974630/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Last Heartbreak Song",
@@ -2015,7 +2036,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 68,
+            "position": 76,
             "movement": null,
             "status": "new"
           }
@@ -2130,6 +2151,44 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/64f822132d39a3677d59f745a248a2ce/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Ayra Starr - EP",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 89,
+            "movement": 0
+          },
+          {
+            "country": "FM",
+            "name": "Micronesia",
+            "position": 112,
+            "movement": -5
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TR",
+            "name": "Turkey",
+            "position": 94,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/fee95162ec0b1b078345831eb47b8e99/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Santa",
@@ -2319,31 +2378,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/b922c719d3a9901f749140e8f532a8d0/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Ayra Starr - EP",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 89,
-            "movement": 0
-          },
-          {
-            "country": "FM",
-            "name": "Micronesia",
-            "position": 112,
-            "movement": -5
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/fee95162ec0b1b078345831eb47b8e99/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Dance",
     "platforms": [
       {
@@ -2402,25 +2436,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/6811d7a880826af2be69b81686f629f2/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Where Do We Go",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 85,
-            "movement": -1
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/227c27e8b3db2fc1be8808745b5c9fc1/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Midnight in New York",
     "platforms": [
       {
@@ -2439,6 +2454,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/64f822132d39a3677d59f745a248a2ce/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Where Do We Go",
+    "kind": "song",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 85,
+            "movement": -1
+          }
+        ]
+      }
+    ],
+    "cover": "https://cdn-images.dzcdn.net/images/cover/227c27e8b3db2fc1be8808745b5c9fc1/500x500-000000-80-0-0.jpg"
   }
 ];
   

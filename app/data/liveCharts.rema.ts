@@ -275,25 +275,6 @@
         ]
       },
       {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ZW",
-            "name": "Zimbabwe",
-            "position": 46,
-            "movement": -5
-          },
-          {
-            "country": "NO",
-            "name": "Norway",
-            "position": 169,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
         "platform": "Spotify",
         "numberOnes": 1,
         "entries": [
@@ -302,6 +283,18 @@
             "name": "Nigeria",
             "position": 1,
             "movement": 0
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZW",
+            "name": "Zimbabwe",
+            "position": 47,
+            "movement": -6
           }
         ]
       }
@@ -453,14 +446,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 23,
-            "movement": 0
+            "position": 31,
+            "movement": 32
           },
           {
             "country": "BW",
             "name": "Botswana",
             "position": 64,
-            "movement": -2
+            "movement": -1
           }
         ]
       },
@@ -642,7 +635,7 @@
           {
             "country": "VN",
             "name": "Vietnam",
-            "position": 37,
+            "position": 95,
             "movement": null,
             "status": "new"
           }
@@ -1018,96 +1011,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/a21fb655cf3e2fc8b05db68fc6eb34b1/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Calm Down",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SZ",
-            "name": "Swaziland",
-            "position": 25,
-            "movement": -1
-          },
-          {
-            "country": "CO",
-            "name": "Colombia",
-            "position": 63,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 70,
-            "movement": -4
-          },
-          {
-            "country": "IL",
-            "name": "Israel",
-            "position": 91,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "MV",
-            "name": "Maldives",
-            "position": 120,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "FM",
-            "name": "Micronesia",
-            "position": 169,
-            "movement": -10
-          },
-          {
-            "country": "QA",
-            "name": "Qatar",
-            "position": 174,
-            "movement": 12
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "AE",
-            "name": "United Arab Emirates",
-            "position": 88,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 76,
-            "movement": null,
-            "status": "re"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/07d4291391724a969f243406cc92be66/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "HEIS",
     "platforms": [
       {
@@ -1246,6 +1149,89 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/47d4b2f030cf6387a1f36dde2ce29e9b/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Calm Down",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "MV",
+            "name": "Maldives",
+            "position": 120,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "FM",
+            "name": "Micronesia",
+            "position": 169,
+            "movement": -10
+          },
+          {
+            "country": "QA",
+            "name": "Qatar",
+            "position": 174,
+            "movement": 12
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SZ",
+            "name": "Swaziland",
+            "position": 25,
+            "movement": -1
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 71,
+            "movement": -5
+          },
+          {
+            "country": "CO",
+            "name": "Colombia",
+            "position": 141,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "AE",
+            "name": "United Arab Emirates",
+            "position": 88,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 76,
+            "movement": null,
+            "status": "re"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/07d4291391724a969f243406cc92be66/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Bounce",
     "platforms": [
       {
@@ -1359,14 +1345,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 7,
-            "movement": 96
+            "position": 8,
+            "movement": 98
           },
           {
             "country": "BW",
             "name": "Botswana",
             "position": 53,
-            "movement": -2
+            "movement": 2
           }
         ]
       },
@@ -1505,68 +1491,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/1232dc64734f222e05a866a61860169c/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "FUN",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 88,
-            "movement": 36
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 128,
-            "movement": 27
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 41,
-            "movement": -2
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 86,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 65,
-            "movement": -15
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/c8e5156cfb208f46ca97fd26072becce/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Woman",
     "platforms": [
       {
@@ -1617,6 +1541,68 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/47d4b2f030cf6387a1f36dde2ce29e9b/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "FUN",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NE",
+            "name": "Niger",
+            "position": 88,
+            "movement": 36
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 128,
+            "movement": 27
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 41,
+            "movement": -2
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 94,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 65,
+            "movement": -15
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/c8e5156cfb208f46ca97fd26072becce/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Lalala",
     "platforms": [
       {
@@ -1656,7 +1642,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 118,
+            "position": 126,
             "movement": null,
             "status": "new"
           }
@@ -1742,25 +1728,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/9762353430bf3c5816735dca5d916a96/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Goals",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "US",
-            "name": "United States",
-            "position": 181,
-            "movement": -98
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/8d26b51a325ab59c594708d1c8c71bf2/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Fi Kan We Kan",
     "platforms": [
       {
@@ -1770,8 +1737,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 69,
-            "movement": -19
+            "position": 70,
+            "movement": -17
           }
         ]
       }
@@ -1816,6 +1783,12 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/d386058066ab6b2b140515ed5c591a1f/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Wine",
+    "platforms": [],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/e43cc1d22a556fa87272c55c933bb4d7/500x500-000000-80-0-0.jpg"
   }
 ];
   

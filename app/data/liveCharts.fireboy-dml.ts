@@ -475,7 +475,7 @@
             "country": "BW",
             "name": "Botswana",
             "position": 63,
-            "movement": -2
+            "movement": -1
           }
         ]
       }
@@ -551,7 +551,7 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 24,
+            "position": 26,
             "movement": null,
             "status": "new"
           }
