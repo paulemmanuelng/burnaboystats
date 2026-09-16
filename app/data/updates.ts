@@ -47,6 +47,19 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-09-16",
+    category: "Certifications",
+    big: true,
+    text: "Platinum in Greece: IFPI Greece's own chart now marks “Dai Dai” P in its Award column, up from G, in the week-36 Digital Singles Chart (International) where it sits at No. 1 for a 13th week. An upgrade, so the song stays on 13 plaques.",
+    href: "/certifications",
+  },
+  {
+    date: "2026-09-16",
+    category: "Awards",
+    text: "Nominated at the NRJ Music Awards: “Dai Dai” is on NRJ's own list for Collab' Internationale at the 2026 ceremony, one of six against David Guetta & Jennifer Lopez, Martin Garrix & Ed Sheeran and Tame Impala & Jennie — 23 October, live from Cannes on TF1.",
+    href: "/records/awards",
+  },
+  {
+    date: "2026-09-16",
     category: "Streaming",
     text: "Out of the global Top 10 again: “Dai Dai” falls to No. 20 on Spotify's Daily Top Songs Global for 14 September with 2,423,416 filtered streams, down from No. 9 — a 116th consecutive day on the chart by its own streak column, 117 days on the chart in all.",
     href: "/dai-dai",
@@ -592,7 +605,7 @@ export const updates: Update[] = [
   {
     date: "2026-08-10",
     category: "Certifications",
-    text: "Gold in a 26th country: ČNS IFPI's own chart now carries the “Zlatý singl” badge for “Dai Dai” in Czechia at 2.5 million streams — the collaboration's 10th plaque, Burna Boy's 225th certification worldwide, and his first ever from the Czech body.",
+    text: "Gold in a 26th country: ČNS IFPI's own chart now carries the “Zlatý singl” badge for “Dai Dai” in Czechia, the 2.5-million-stream tier — the collaboration's 10th plaque, Burna Boy's 225th certification worldwide, and his first ever from the Czech body.",
     href: "/certifications",
   },
   {

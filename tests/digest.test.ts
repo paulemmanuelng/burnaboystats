@@ -216,8 +216,12 @@ describe("one list, every entry whole (design response 16 Sep 2026)", () => {
     expect(Buffer.byteLength(html, "utf8")).toBeLessThan(80_000);
   });
 
+  // The designer's fixture week: the eight entries of 13–19 September as they
+  // stood when the twin was drawn (the live feed has since gained entries).
+  const fixtureWeek: Update[] = JSON.parse(readFileSync("tests/fixtures/digest-2026-09-19.items.json", "utf8"));
+
   it("the preheader is the second entry's clause, the categories in rank order and the window — never the subject", () => {
-    const week = selectDigest(updates, now);
+    const week = fixtureWeek;
     const { from, to } = digestWindow(now);
     expect(digestPreheader(week, from, to)).toBe("Back inside the global Top 10 — certifications, charts and streaming, 13 to 19 September.");
     expect(digestPreheader([week[0]], from, to)).toBe(
@@ -231,9 +235,10 @@ describe("one list, every entry whole (design response 16 Sep 2026)", () => {
   });
 
   it("the plain-text twin for the week to 19 September matches the designer's fixture byte for byte", () => {
-    const week = selectDigest(updates, now);
     const fixture = readFileSync("tests/fixtures/digest-2026-09-19.txt", "utf8");
-    expect(renderDigestText(week, { origin, now })).toBe(fixture);
+    expect(renderDigestText(fixtureWeek, { origin, now })).toBe(fixture);
+    // And the fixture week is what selectDigest makes of those entries.
+    expect(selectDigest(fixtureWeek, now)).toEqual(fixtureWeek);
   });
 
   it("names the window across a month end, in both forms", () => {

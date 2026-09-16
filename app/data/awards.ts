@@ -158,6 +158,9 @@ export const pendingResults: PendingCeremony[] = [
   { ceremony: "Caribbean Music Awards", year: 2026, date: "2026-09-19", where: "NAPA, Port of Spain" },
   // Nominations announced 18 Aug 2026; ceremony 27 Sep 2026.
   { ceremony: "MTV Video Music Awards", year: 2026, date: "2026-09-27", where: "United States" },
+  // 28th NRJ Music Awards — nominees published on NRJ's own site 16 Sep 2026;
+  // public vote 16 Sep 12:00 to 23 Oct 12:00 (French time); live on TF1.
+  { ceremony: "NRJ Music Awards", year: 2026, date: "2026-10-23", where: "Palais des Festivals, Cannes" },
   // 18th Headies, nominations announced 26 Aug 2026.
   { ceremony: "The Headies", year: 2026, date: "2026-10-25", where: "Toronto" },
 ];
@@ -298,6 +301,18 @@ export const ceremonies: Ceremony[] = [
       { year: 2015, category: "Best Collaboration", work: "All Eyes on Me", won: true },
       { year: 2016, category: "Best Collaboration", work: "Baddest (AKA ft. Burna Boy, Yanga & Khuli Chana)", won: false },
       { year: 2016, category: "Listener's Choice", won: false },
+    ],
+  },
+  {
+    name: "NRJ Music Awards",
+    noms: [
+      // Read on NRJ's own vote page (nrj.fr/music-awards/votes) and nominee
+      // index (nrj.fr/music-awards/nommes), 16 Sep 2026: the category is
+      // "Collab' Internationale" as NRJ writes it (the règlement: "Collab /
+      // Duo Internationale de l'année"); the card reads "Shakira & Burna Boy —
+      // Dai Dai", one of six. His only category; Shakira also has Artiste
+      // Féminine Internationale. Pending until the 23 Oct ceremony.
+      { year: 2026, category: "Collab' Internationale", work: "Dai Dai (with Shakira)", won: false },
     ],
   },
   {

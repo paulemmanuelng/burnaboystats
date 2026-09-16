@@ -185,7 +185,7 @@ export const singles: Release[] = [
     // SHAKIRA & BURNA BOY | SONY MUSIC LATIN / SONY MUSIC ENTERTAINMENT | Diamant",
     // date de constat 27/08/2026, three months from release. One plaque per title
     // per country at its CURRENT tier, so the Diamond replaces the Platinum.
-    { c: "CO", level: "Gold", body: "Sony Music Colombia" }, { c: "ES", level: "Platinum" }, { c: "FR", level: "Diamond" }, { c: "HU", level: "Platinum" }, { c: "SK", level: "Platinum" }, { c: "PT", level: "Platinum" }, { c: "GR", level: "Gold" }, { c: "UK", level: "Silver" }, { c: "CZ", level: "Gold" }, { c: "IT", level: "Gold" },
+    { c: "CO", level: "Gold", body: "Sony Music Colombia" }, { c: "ES", level: "Platinum" }, { c: "FR", level: "Diamond" }, { c: "HU", level: "Platinum" }, { c: "SK", level: "Platinum" }, { c: "PT", level: "Platinum" }, { c: "GR", level: "Platinum" }, { c: "UK", level: "Silver" }, { c: "CZ", level: "Gold" }, { c: "IT", level: "Gold" },
     // PL read in ZPAV's own award register via olis.pl's API (category 3 =
     // "oficjalna lista wyróżnień", subcategory 6 = "złote płyty"): title "Dai Dai",
     // artist "Shakira, Burna Boy", contractor Sony Music Entertainment, format
@@ -730,7 +730,10 @@ export const certHistory: CertEvent[] = [
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "PT", level: "Platinum", year: 2026 },
   // Announced by the BRIT Awards' own account (#BRITcertified), 7 Aug 2026.
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "UK", level: "Silver", year: 2026 },
-  // 225th: gold badge ("Zlatý singl") on ČNS IFPI's own Singles Digital Top 100, week 32/2026 — 2.5M streams.
+  // 225th: gold badge ("Zlatý singl") on ČNS IFPI's own Singles Digital Top 100,
+  // week 32/2026. The row prints no count; 2.5M subscription streams is the Gold
+  // threshold in ČNS IFPI's rules (Platinum 5M). Re-read 16 Sep 2026, week
+  // 37/2026: still "Zlatý singl" at No. 13 — a reported upgrade was not on the body.
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "CZ", level: "Gold", year: 2026 },
   // Gold→Platinum upgrade — verified at MAHASZ's own register search
   // (slagerlistak.hu/arany-es-platinalemezek/kereso) 14 Aug 2026, which returns
@@ -787,6 +790,14 @@ export const certHistory: CertEvent[] = [
   // Same day, read at the body: IFPI Austria's Gold & Platin database returns
   // "Shakira & Burna Boy | Dai Dai | Single | PLATIN | Sony | 03.09.2026".
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "AT", level: "Platinum", year: 2026 },
+  // Greece, Gold -> Platinum, read 16 Sep 2026 at IFPI Greece's own chart page
+  // (ifpi.gr/digital_ien.html — Digital Singles Chart (International), Week
+  // 36/2026): row 1, "Shakira, Burna Boy | Dai Dai | Sony-Warner |
+  // USQX92602560 | P | 1 | 13 | 1 | 2026_35". The Award column is unlabelled;
+  // "P" is the tier above the "G" the site carried. An upgrade, so the
+  // worldwide total stays put; the GR Gold row above stays. The page is
+  // overwritten weekly, so the row is preserved in docs/sourcing/GREECE-2026-W36.md.
+  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "GR", level: "Platinum", year: 2026 },
 ];
 
 // Helpers

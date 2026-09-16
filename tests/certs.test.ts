@@ -95,17 +95,19 @@ describe("certHistory (certifications by year)", () => {
     ]);
   });
 
-  it("2026 logs 56 international certifications (64 events with Nigeria)", () => {
+  it("2026 logs 57 international certifications (65 events with Nigeria)", () => {
     // The by-year log is international-only: earlier years predate the TCSN
     // register, so Nigeria's 8 events would skew the comparison. They still
     // count in the totals. The log counts award EVENTS, so a Gold and a later
     // Platinum in the same country are two.
-    expect(intlCertHistory.filter((e) => e.year === 2026).length).toBe(56);
+    expect(intlCertHistory.filter((e) => e.year === 2026).length).toBe(57);
     // 54th and 55th: the French Diamant upgrade and Poland's Gold, both
     // awarded 31 Aug 2026 and both missing from this log until 3 Sep.
     // 56th: Austria's Platinum for "Dai Dai", read in IFPI Austria's own
     // Gold & Platin database the day it was awarded, 3 Sep 2026.
-    expect(certHistory.filter((e) => e.year === 2026).length).toBe(64);
+    // 57th: Greece's Platinum for "Dai Dai" — the Award column of IFPI
+    // Greece's own week-36 chart reads P where it read G, 16 Sep 2026.
+    expect(certHistory.filter((e) => e.year === 2026).length).toBe(65);
   });
 
   it("2025 has the published count of 29 certifications", () => {
