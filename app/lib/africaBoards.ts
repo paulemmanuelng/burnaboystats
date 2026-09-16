@@ -57,13 +57,30 @@ function yearBoard(box: LeaderboardBox, flags: Map<string, string>): Board {
   const years = box.rows ?? [];
   const rows: BoardRow[] = years.map((r, i) => {
     const winner = r.entries[0];
+    // The leading GROUP, not just the top row: the data marks a row `tie: true`
+    // when it sits within the count's resolution of the row above, and the
+    // desktop reads that as "joint first". The phone used to name entries[0]
+    // alone — Tems, on a 2026 row the same file calls a three-way tie — so it
+    // called a lead the data had refused to call.
+    const group = winner ? [winner] : [];
+    for (const e of r.entries.slice(1)) {
+      if (!e.tie) break;
+      group.push(e);
+    }
+    const joint = group.length > 1;
+    const names = group.map((e) => e.name);
+    const name = joint
+      ? `${names.slice(0, -1).join(", ")} & ${names[names.length - 1]}`
+      : (winner?.name ?? "—");
+    // One flag per country, not per name: three Nigerians share one 🇳🇬.
+    const flag = [...new Set(names.map((n) => flags.get(n) ?? "").filter(Boolean))].join("");
     const streams = winner?.value ? ` · ${winner.value} streams` : "";
     return {
       rank: String(i + 1).padStart(2, "0"),
-      name: winner?.name ?? "—",
-      sub: `${flags.get(winner?.name ?? "") ?? ""} ${r.label ?? ""}${
+      name,
+      sub: `${flag} ${r.label ?? ""}${
         r.inProgress ? " · in progress" : streams
-      }`.trim(),
+      }${joint ? " · joint" : ""}`.trim(),
       // An em dash, not a placing: the year hasn't finished, so no one has won
       // it yet. Absence, never zero.
       value: r.inProgress ? "—" : "1st",

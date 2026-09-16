@@ -615,7 +615,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "The Headies",
     "path": "/records/awards",
     "section": "Awards",
-    "description": "10 wins from 34 nominations.",
+    "description": "10 wins from 35 nominations.",
     "keywords": [
       "award",
       "awards",

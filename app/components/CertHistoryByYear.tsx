@@ -102,7 +102,7 @@ export default function CertHistoryByYear({
                 <div className={styles.eventMain}>
                   <span className={styles.eventTitle}>{event.title}</span>
                   <span className={styles.eventMeta}>
-                    {[event.album ? "Album" : event.credit, countries[event.country].body]
+                    {[event.album ? "Album" : event.credit, event.body ?? countries[event.country].body]
                       .filter(Boolean)
                       .join(" · ")}
                   </span>

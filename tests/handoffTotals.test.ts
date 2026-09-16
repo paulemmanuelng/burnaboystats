@@ -44,7 +44,7 @@ describe("handoff checklist — data integrity", () => {
     expect(certCountryCount).toBe(Object.keys(CERT_COUNTRIES).length);
   });
 
-  it("splits into 7 Diamond / 101 Platinum / 96 Gold / 30 Silver", () => {
+  it("splits into 7 Diamond / 101 Platinum / 95 Gold / 31 Silver", () => {
     // 6 Aug 2026: “Dai Dai” Portugal upgraded Gold → Platinum (AFP week-31 PDF).
     const byLevel = (level: string) =>
       allItems.reduce((n, i) => n + i.certs.filter((c) => c.level === level).length, 0);
@@ -63,9 +63,13 @@ describe("handoff checklist — data integrity", () => {
     // 100 -> 101 and 97 -> 96 on 16 Sep 2026: "Dai Dai" in Greece moved up a
     // tier — IFPI Greece's own week-36 chart reads P in its Award column where
     // it read G. An upgrade: the total is unchanged.
+    // 96 -> 95 and 30 -> 31 on 16 Sep 2026: "My Oasis" in the UK was carried
+    // as Gold; BPI's own register holds one Silver award (22 Aug 2025) and no
+    // Gold — a downgrade back to the tier the snapshot originally held, before
+    // a typed 2025 event list bumped it on 1 Jul 2026. Total unchanged.
     expect(byLevel("Platinum")).toBe(101); // + Dai Dai AT, − Ginger CH, + Dai Dai GR
-    expect(byLevel("Gold")).toBe(96); // + "Dai Dai" in Poland (ZPAV), + Ginger CH, − Dai Dai GR
-    expect(byLevel("Silver")).toBe(30); // On the Low NG left this tier for Gold
+    expect(byLevel("Gold")).toBe(95); // + "Dai Dai" in Poland (ZPAV), + Ginger CH, − Dai Dai GR, − My Oasis UK
+    expect(byLevel("Silver")).toBe(31); // On the Low NG left this tier for Gold; My Oasis UK came back to it
 
     const sum = byLevel("Diamond") + byLevel("Platinum") + byLevel("Gold") + byLevel("Silver");
     expect(sum).toBe(234);
@@ -106,7 +110,7 @@ describe("handoff checklist — data integrity", () => {
     ).toBe(chartTitle);
   });
 
-  it("counts 83 award wins from 241 nominations across 47 bodies", () => {
+  it("counts 83 award wins from 242 nominations across 47 bodies", () => {
     const wins = allNoms.filter((n) => n.won).length;
 
     // 4 Aug 2026 year-by-year pass: +2 wins (Headies 2012 Rookie of the
@@ -120,10 +124,12 @@ describe("handoff checklist — data integrity", () => {
     //
     // 236 -> 240 on 26 Aug 2026: four nominations at the 18th Headies,
     // announced that day, ceremony 25 October in Toronto. Wins stay at 82;
-    // all four are pending. The published lists group by song and so file
-    // "Producer of the Year" for "Bundle by Bundle" under his name — that one
-    // belongs to the producer, DK, and is deliberately NOT counted, which is
-    // why this is +4 and not +5.
+    // all four are pending. A fifth, Album of the Year for "No Sign of
+    // Weakness", was added on 16 Sep 2026 after reading the body's own nominee
+    // cards (theheadies.com/18th-headies-nominees/, ALBUM-OF-THE-YEAR-07): the
+    // earlier "+4 not +5" reasoning excluded a Producer of the Year nomination
+    // for "Bundle by Bundle" that the press lists carried and the body never
+    // did — its Producer field is Magicsticks, P.Priime, Ragee, Sarz, Tempoe.
     // 83rd: Premios Juventud 2026, OMG Collaboration for "Dai Dai" — announced
     // by the ceremony's own account on 3 Sep 2026. It was carried as a pending
     // nomination (won: false) until the body itself named the winner.
@@ -131,7 +137,7 @@ describe("handoff checklist — data integrity", () => {
     // Internationale" for "Dai Dai", read on NRJ's own nominee pages the day
     // the categories were revealed. Ceremony 23 October, Cannes — pending.
     expect(wins).toBe(83);
-    expect(allNoms.length).toBe(236 + 4 + 1);
+    expect(allNoms.length).toBe(236 + 4 + 1 + 1); // + Headies Album of the Year, 16 Sep 2026
     expect(totalWins).toBe(wins);
     expect(totalNominations).toBe(allNoms.length);
     expect(ceremonyCount).toBe(47);

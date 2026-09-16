@@ -3070,13 +3070,13 @@
    "year": 2020,
    "country": "UK",
    "body": "BPI",
-   "tier": "Gold",
+   "tier": "Silver",
    "x": null,
-   "status": "pending",
-   "url": null,
-   "quote": null,
-   "readOn": null,
-   "note": null
+   "status": "confirmed",
+   "url": "https://certified-awards.bpi.co.uk/format/2/artist/6533/title/7114",
+   "quote": "SAM SMITH FT BURNA BOY | MY OASIS | Most Recent Certification Silver | 22 August 2025 | Certification history: 22 August 2025 Silver",
+   "readOn": "2026-09-16",
+   "note": "Was carried as Gold from 1 Jul 2026 (a typed 2025 event list); the register holds one Silver award."
   },
   {
    "key": "Donne-moi l'accord|FR",

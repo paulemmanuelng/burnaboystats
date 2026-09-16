@@ -61,7 +61,7 @@ export const firstGroups: FirstGroup[] = [
   {
     label: "Stadiums & arenas",
     items: [
-      { year: "2025", title: "First Nigerian artist to headline Red Rocks Amphitheatre", text: "Opening the No Sign of Weakness tour at the iconic Colorado venue." },
+      { year: "2025", title: "First Nigerian artist to headline Red Rocks Amphitheatre", text: "Opening the North American leg of the No Sign of Weakness tour at the iconic Colorado venue (12 November 2025)." },
       { year: "2025", title: "First African artist to headline a stadium concert in New Zealand", text: "Headlining the inaugural Afrosoul Festival at Auckland's Go Media Stadium." },
       { year: "2025", title: "First African artist to sell out the Stade de France", text: "Headlining the 80,000-capacity Paris stadium (April 2025) — a $4.53M night." },
       { year: "2023", title: "First African artist to headline & sell out a UK stadium", text: "London Stadium, to around 60,000 fans, on the Love, Damini tour." },
@@ -103,7 +103,7 @@ export const firstGroups: FirstGroup[] = [
     items: [
       { year: "2026", title: "First African artist to reach No. 1 on the Billboard Global 200", text: "“Dai Dai” (with Shakira) topped Billboard's flagship worldwide chart in July 2026 — no African artist had ever led the US-inclusive Global 200 before." },
       { year: "2026", title: "First African artist to top Spotify's Global Music Video Chart", text: "“Dai Dai” (with Shakira) debuted at No. 1 on Spotify's newly launched Global Music Video Chart in July 2026 — the first African artist ever to top it." },
-      { year: "2026", title: "First African artist with four albums past 500 million Spotify streams", text: "“Outside” crossed the mark in August 2026, joining “Love, Damini” (1.71 billion), “African Giant” (1.35 billion) and “I Told Them…” (868 million). Among Nigerian acts the next-highest tally is three." },
+      { year: "2026", title: "First African artist with four albums past 500 million Spotify streams", text: "“Outside” crossed the mark in August 2026, joining “Love, Damini” (1.71 billion), “African Giant” (1.35 billion) and “I Told Them…” (868 million), as read on 22 August 2026. Among Nigerian acts the next-highest tally is three." },
       { year: "2026", title: "First African artist with a song over 6 million Spotify streams in a day", text: "“Dai Dai” drew a single-day high of 6.72 million Spotify streams — the first time any African artist's song has crossed 6 million daily streams." },
       { year: "2026", title: "First African artist to reach 60 million Spotify monthly listeners", text: "Crossed 60 million on 8 August 2026 — 60,012,272 listeners at No. 37 among all artists worldwide, the first and only African act ever at that height. The next-closest African peak is under 47 million." },
       { year: "2026", title: "First African artist to reach 50 million Spotify monthly listeners", text: "Crossed 50 million in July 2026 — the first African artist ever to reach the mark, powered by the “Dai Dai” World Cup run — then kept climbing." },

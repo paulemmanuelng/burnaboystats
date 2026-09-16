@@ -73,7 +73,7 @@ const EN_SCENE: SceneCopy = {
   no1sLink: "See every Dai Dai chart position →",
   streamingNote: "Daily & Weekly · 37 days as Earth's most-streamed song",
   certsLabel: "certifications for Dai Dai",
-  certsNote: "2× Platinum (Latin) US · Platinum in 5 more",
+  certsNote: "2× Platinum (Latin) US · Platinum in 6 more",
   certsLink: "See the Dai Dai certifications →",
   worldsongWord: "BIGGEST\nWORLD CUP\nANTHEM EVER",
   worldsongLabel: "Highest-peaking on Spotify Global",
@@ -103,7 +103,7 @@ function buildSteps(p: Props): Step[] {
       scene: "global1",
       kicker: "The record",
       title: "No. 1 on the Billboard Global 200",
-      body: `Within weeks their song topped Billboard's flagship, US-inclusive worldwide chart — Shakira's second-ever Global 200 No. 1, and the first time in history an African artist has helped lead it. After four straight weeks it slipped to No. 3, then took the chart back on 22 August and has not let go — ${cardinalWord(p.weeksGLB, p.lang ?? "en")} weeks at No. 1 in all, a month after the World Cup ended. It has never left the top of the Global 200 Excl. US, where it is now ${cardinalWord(p.weeksGLBX, p.lang ?? "en")} weeks in.`,
+      body: `Within weeks their song topped Billboard's flagship, US-inclusive worldwide chart — Shakira's second-ever Global 200 No. 1, and the first time in history an African artist has helped lead it. After four straight weeks it slipped to No. 3, then took the chart back on 22 August and held it three more weeks — ${cardinalWord(p.weeksGLB, p.lang ?? "en")} weeks at No. 1 in all, the last of them on the chart dated 5 September. On the Global 200 Excl. US it ran ${cardinalWord(p.weeksGLBX, p.lang ?? "en")} straight weeks at No. 1, 4 July to 5 September.`,
     },
     {
       scene: "no1s",
@@ -121,7 +121,7 @@ function buildSteps(p: Props): Step[] {
       scene: "certs",
       kicker: "Certified worldwide",
       title: "The plaques rolled in",
-      body: `The song earned its own plaques — Diamond in France, 2× Platinum (Latin) in the US, Platinum in Spain, Slovakia, Portugal, Hungary and Austria, Gold in Colombia, Greece, the Czech Republic, Italy and Poland, and Silver in the UK. ${p.daiDaiCerts} certifications for Shakira and Burna Boy's collaboration, and counting.`,
+      body: `The song earned its own plaques — Diamond in France, 2× Platinum (Latin) in the US, Platinum in Spain, Slovakia, Portugal, Hungary, Austria and Greece, Gold in Colombia, the Czech Republic, Italy and Poland, and Silver in the UK. ${p.daiDaiCerts} certifications for Shakira and Burna Boy's collaboration, and counting.`,
     },
     {
       scene: "worldsong",

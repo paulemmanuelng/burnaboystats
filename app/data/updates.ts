@@ -47,6 +47,60 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-09-16",
+    category: "Charts",
+    text: "The French run closes at nine weeks: SNEP's Top Singles for the semaine du 11 septembre has “Dai Dai” at No. 3, down from No. 1, behind Mauvais Djo's “Maladie” — nine consecutive issues on top from the semaine du 10 juillet to the semaine du 4 septembre, and a 16th weekly issue on the chart.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-09-16",
+    category: "Charts",
+    text: "The Billboard Global 200 run closes at seven weeks: “Dai Dai” is No. 3 on the chart dated 12 September, down from No. 1, behind Karol G's “BbY WOW” — its 15th week on the chart. On the Global Excl. US it is No. 2 after ten straight weeks at No. 1, 4 July to 5 September.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-09-16",
+    category: "Streaming",
+    text: "Holding at No. 20: “Dai Dai” sits at No. 20 on Spotify's Daily Top Songs Global for 15 September with 2,430,949 filtered streams, unchanged from the day before — a 117th consecutive day on the chart by its own streak column, 118 days on the chart in all.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-09-16",
+    category: "Awards",
+    text: "A fifth Headies nomination: the body's own nominee cards list No Sign of Weakness for Album of the Year at the 18th Headies, alongside the four nominations logged in August — Best Male Artiste, Afrobeats Album, Afrobeats Single and Music Video of the Year. Ceremony 25 October, Toronto.",
+    href: "/records/awards",
+  },
+  {
+    date: "2026-09-16",
+    category: "Awards",
+    text: "AFRIMMA 2026 resolved at the body: afrimma.com's official results name Fally Ipupa Artist of the Year and for Crossing Boundaries, Davido's 5ive Album of the Year and Ruger Best Male West Africa — so all four of his nominations at the 12 September ceremony in Dallas closed without a win.",
+    href: "/records/awards",
+  },
+  {
+    date: "2026-09-16",
+    category: "Certifications",
+    text: "“We Pray” with Coldplay is Gold in the UK: BPI's register dates the award 1 May 2026, the step up from the Silver of January 2025. The plaque was already counted at Gold; the dated log now carries the upgrade as its own 2026 event.",
+    href: "/certifications",
+  },
+  {
+    date: "2026-09-16",
+    category: "Certifications",
+    text: "A correction: “My Oasis” with Sam Smith is Silver in the UK, not Gold. BPI's register holds one award for the single — Silver, 22 August 2025 — so the plaque returns to the tier it held before July. The catalogue is still 234 awards across 26 countries.",
+    href: "/certifications",
+  },
+  {
+    date: "2026-09-16",
+    category: "Certifications",
+    text: "Two corrections to the dated log, read at the registers: “Last Last” went straight to Diamond in France (SNEP, 2 November 2023, no Platinum step) and is 2× Platinum in New Zealand as of December 2023, after Gold and Platinum in 2022; and Love, Damini's Dutch Gold dates to November 2022, not 2023.",
+    href: "/certifications",
+  },
+  {
+    date: "2026-09-16",
+    category: "Streaming",
+    text: "The 200-million-stream board re-read at kworb: Burna Boy still leads with 15 songs past 200M on Spotify, and nine past 300M. Tyla is next-deepest in the 300M tier with six, then Tems with five; CKay now has four songs past 200M, one clear of Wizkid and Omah Lay.",
+    href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-09-16",
     category: "Certifications",
     big: true,
     text: "Platinum in Greece: IFPI Greece's own chart now marks “Dai Dai” P in its Award column, up from G, in the week-36 Digital Singles Chart (International) where it sits at No. 1 for a 13th week. An upgrade, so the song stays on 13 plaques.",
@@ -121,16 +175,16 @@ export const updates: Update[] = [
     href: "/compare/burna-boy-vs-wizkid",
   },
   {
-    date: "2026-09-11",
-    category: "Streaming",
-    text: "The “Dai Dai” video reached a billion YouTube views in 105 days: joint fifth-fastest music video in YouTube history, level with “APT.” by ROSÉ & Bruno Mars and behind only “Hello” (88 days), “Shape of You” and “Despacito” (97) and “Mi Gente” (103).",
-    href: "/records/africas-biggest",
-  },
-  {
     date: "2026-09-12",
     category: "Certifications",
     text: "A new page: certified units, compared. Pick any two of the sixteen artists on this site, or any two of their certified records, and every plaque is priced at the level its own certifying body publishes today, then added up country by country under identical rules.",
     href: "/compare",
+  },
+  {
+    date: "2026-09-11",
+    category: "Streaming",
+    text: "The “Dai Dai” video reached a billion YouTube views in 105 days: joint fifth-fastest music video in YouTube history, level with “APT.” by ROSÉ & Bruno Mars and behind only “Hello” (88 days), “Shape of You” and “Despacito” (97) and “Mi Gente” (103).",
+    href: "/records/africas-biggest",
   },
   {
     date: "2026-09-11",

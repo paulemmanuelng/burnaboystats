@@ -90,7 +90,7 @@
 - Be Honest [Jorja Smith ft. Burna Boy] — Platinum
 - Own It [Stormzy ft. Ed Sheeran & Burna Boy] — Platinum x3
 - Ginger [Wizkid ft. Burna Boy] — Silver
-- My Oasis [Sam Smith ft. Burna Boy] — Gold
+- My Oasis [Sam Smith ft. Burna Boy] — Silver
 - Play Play [J Hus ft. Burna Boy] — Platinum
 - Sungba (Remix) [Asake ft. Burna Boy] — Silver
 - Simmer [Mahalia ft. Burna Boy] — Gold
