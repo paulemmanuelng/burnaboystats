@@ -79,15 +79,19 @@ function yearBoard(box: LeaderboardBox, flags: Map<string, string>): Board {
       rank: String(i + 1).padStart(2, "0"),
       name,
       sub: `${flag} ${r.label ?? ""}${
-        r.inProgress ? " · in progress" : streams
+        r.inProgress ? `${winner?.value ? ` · ${winner.value} so far` : ""} · in progress` : streams
       }${joint ? " · joint" : ""}`.trim(),
-      // An em dash, not a placing: the year hasn't finished, so no one has won
-      // it yet. Absence, never zero.
-      value: r.inProgress ? "—" : "1st",
-      his: winner?.name === HIGHLIGHT && !r.inProgress,
+      // A running year has a leader, not a winner: "Leads" while it runs,
+      // "1st" once it is closed. (This was an em dash until 17 Sep 2026, when
+      // the phone showed "01 Burna Boy … —" the day the count put him on
+      // top; Paul asked for the lead to be called.)
+      value: r.inProgress ? "Leads" : "1st",
+      his: winner?.name === HIGHLIGHT,
     };
   });
-  const won = rows.filter((r) => r.his).length;
+  // Years WON — the badge counts closed years only; a lead in the running
+  // year is gold on its row but not a year in the bag.
+  const won = years.filter((r) => !r.inProgress && r.entries[0]?.name === HIGHLIGHT).length;
   return {
     id: box.id,
     title: box.title,

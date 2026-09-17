@@ -33,15 +33,17 @@ describe("mobile year boards honour the data's ties", () => {
     }
   });
 
-  it("the 2026 row is currently a three-way tie and says so", () => {
-    // The live bot maintains the tie flags and the order; when the race
-    // separates, this case is the one to retire, not the rule above. The
-    // order is whatever the data holds — Burna Boy first from 16 Sep 2026.
+  it("the running year names its leader and calls the lead", () => {
+    // Paul retired the joint mark on 17 Sep 2026: the row carries the count's
+    // leader, "Leads" (not "1st" — the year is not won yet), his total so far,
+    // and gold when the leader is Burna Boy; the badge counts closed years only.
     const row = board.rows.find((r) => r.sub.includes("2026"))!;
-    const names = box.rows!.find((r) => r.label === "2026")!.entries.slice(0, 3).map((e) => e.name);
-    expect(row.name).toBe(`${names[0]}, ${names[1]} & ${names[2]}`);
-    expect(row.sub).toBe("🇳🇬 2026 · in progress · joint");
-    expect(row.value).toBe("—");
-    expect(row.his).toBe(false);
+    const data = box.rows!.find((r) => r.label === "2026")!;
+    expect(row.name).toBe(data.entries[0].name);
+    expect(row.value).toBe("Leads");
+    expect(row.sub).toBe(`🇳🇬 2026 · ${data.entries[0].value} so far · in progress`);
+    expect(row.his).toBe(data.entries[0].name === "Burna Boy");
+    const closedWins = box.rows!.filter((r) => !r.inProgress && r.entries[0].name === "Burna Boy").length;
+    expect(board.badge).toBe(`${closedWins} of ${box.rows!.length} yrs`);
   });
 });

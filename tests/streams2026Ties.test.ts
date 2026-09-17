@@ -1,4 +1,5 @@
 import { describe, it, expect } from "vitest";
+import { readFileSync } from "node:fs";
 import { statBoxes, rankOf } from "../app/data/africasBiggest";
 
 // The 2026 streaming row marks a figure `tie: true` when it sits within ten
@@ -7,7 +8,15 @@ import { statBoxes, rankOf } from "../app/data/africasBiggest";
 // The marks are written by the stats bot from the same rule; this holds the
 // shipped file to it, so a hand edit or a bot regression cannot print a
 // ranked list the values do not support.
-const WITHIN = 10_000_000;
+// The rule is whatever the ledger config says. From 12 to 17 Sep 2026 every
+// member carried tieWithin 10,000,000 and rows inside it were shown joint;
+// on 17 Sep Paul retired the mark (the trackers had Burna Boy on top by 2.7M
+// and the site was still calling the three level), so no member carries it
+// and the board calls the lead. If the key comes back, the marks must too.
+const config = JSON.parse(readFileSync("scripts/watched-metrics.json", "utf8")) as {
+  metrics: { group?: string; tieWithin?: number }[];
+};
+const WITHIN = config.metrics.find((m) => m.group === "streams-2026" && m.tieWithin != null)?.tieWithin ?? 0;
 
 describe("the 2026 streaming row's joint marks follow its own values", () => {
   const box = statBoxes.find((b) => b.id === "most-streamed-african-artist")!;
@@ -30,6 +39,12 @@ describe("the 2026 streaming row's joint marks follow its own values", () => {
       if (e.tie) expect(rankOf(row.entries, i)).toBe(rankOf(row.entries, i - 1));
       else expect(rankOf(row.entries, i)).toBe(i + 1 === 1 ? 1 : rankOf(row.entries, i));
     });
+  });
+
+  it("no member carries the joint rule today — the lead is called", () => {
+    expect(WITHIN).toBe(0);
+    expect(row.entries.some((e) => e.tie)).toBe(false);
+    expect(row.note).toMatch(/ahead of|behind/);
   });
 
   it("the note says joint where the rows are joint, and never calls a joint row a lead", () => {
