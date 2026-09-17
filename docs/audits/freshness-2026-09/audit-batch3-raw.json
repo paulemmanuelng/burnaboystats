@@ -1,0 +1,988 @@
+{
+ "pages": [
+  {
+   "page": "/afrobeats",
+   "checked": 181,
+   "findings": [
+    {
+     "claim": "/afrobeats (both layouts): provenance tile \"Read at source, 17–28 August 2026\" and footer \"Last read at source 17–28 August 2026\"; hero/provenance copy \"re-read weekly\" / \"The board is reviewed weekly\"",
+     "onPage": "17–28 August 2026 as the last read-at-source date, printed twice on desktop and once on the phone screen; \"re-read weekly\"",
+     "shouldBe": "6 September 2026 (or 17 August – 6 September 2026). Every register was re-read on 6 Sep 2026 and the resulting tier moves were applied on 8 Sep (PR #216: Tems' Raindance PT 2×→3× Platinum, DK Gold→Platinum) without any artist's verifiedOn moving, so the derived sweptRange stayed at the August dates. The last sweep is now 11 days old, so \"re-read weekly\" is also slipping.",
+     "source": "docs/sweeps/RESUME-2026-09-06.md (\"16/16 swept, 14/14 verified\"); git show 2a71d891 -- app/data/afrobeats.ts (Raindance row changed, no verifiedOn/AFROBEATS_VERIFIED_ON change); app/afrobeats/page.tsx lines 48-61 (sweptRange derives only from sweptArtists[].verifiedOn); app/data/afrobeats.ts lines 238-260 (newest constant AFROBEATS_VERIFIED_ON_6 = \"2026-08-28\")",
+     "severity": "stale",
+     "fix": "In app/data/afrobeats.ts add `export const AFROBEATS_VERIFIED_ON_7 = \"2026-09-06\"` and set every swept artist's verifiedOn to it (the 6 Sep sweep re-read all 15); add a test that max(verifiedOn) is not older than the newest docs/sweeps/RESUME-*.md date so a sweep can never be applied without moving the printed date; if weekly re-reads are not actually happening, change the hero line (page.tsx line 195) and provenance body (line 280) to state the cadence that is true."
+    },
+    {
+     "claim": "/afrobeats \"Chart peaks\" rail: Seyi Vibez 114; Seyi Vibez tile hook \"102 plaques and 114 chart entries, every one of them Nigerian\" (also /afrobeats/seyi-vibez/charts)",
+     "onPage": "114 chart entries",
+     "shouldBe": "115 — \"BACK 2 U\" (Seyi Vibez) is on TurnTable's Official Nigeria Top 100, week 37 (issue dated 10 Sep 2026): rank 10, highestPosition 8, 2 weeks on chart. Not in his charts array. Run is live, so publish it the way Rema's TEA is published — with the \"peak still open\" note.",
+     "source": "https://turntablecharts.com/charts/1 __NEXT_DATA__ chartData (weekNumber 37, dateCreated 2026-09-10): {rank:10, title:\"BACK 2 U\", artiste:\"Seyi Vibez\", highestPosition:8, weeksOnChart:2}; app/data/afrobeats.ts Seyi Vibez charts (from line 1591), hook line 1587, chartPublished",
+     "severity": "stale",
+     "fix": "Add `{ title: \"BACK 2 U\", kind: \"Singles\", entries: [{ c: \"NG\", peak: 8, note: <peak-still-open note> }] }` to Seyi Vibez's charts in app/data/afrobeats.ts; bump chartPublished.entries 114→115 and the hook at line 1587 to \"115 chart entries\" (tests/artistHookFigures.test.ts guards it); update the searchIndex copy and docs/sweeps/seyi-vibez-chart-peaks-v1.md in the same commit."
+    },
+    {
+     "claim": "/afrobeats \"Chart peaks\" rail: Omah Lay 71 (also /afrobeats/omah-lay/charts)",
+     "onPage": "71 chart entries",
+     "shouldBe": "72 — \"As We Get High\" (bees & honey, OMAH LAY, BEAM & Gyptian) debuted at No. 35 on TurnTable's Official Nigeria Top 100, week 37 (10 Sep 2026), 1 week on chart. Omah Lay is a credited artist, so it counts as a featured entry; no row exists.",
+     "source": "https://turntablecharts.com/charts/1 __NEXT_DATA__ chartData week 37: {rank:35, title:\"As We Get High\", artiste:\"bees & honey, OMAH LAY, BEAM & Gyptian\", highestPosition:35, weeksOnChart:1}; app/data/afrobeats.ts Omah Lay charts (from line 1467)",
+     "severity": "stale",
+     "fix": "Add `{ title: \"As We Get High\", kind: \"Singles\", entries: [{ c: \"NG\", peak: 35, note: <peak-still-open note> }] }` to Omah Lay's charts in app/data/afrobeats.ts; chartPublished.entries 71→72; update searchIndex.ts's Omah Lay counts (two separate typed counts, per RESUME-2026-09-06.md) and docs/sweeps/omah-lay-chart-peaks-v1.md."
+    },
+    {
+     "claim": "/afrobeats \"Chart peaks\" rail: CKay 33 (also /afrobeats/ckay/charts)",
+     "onPage": "33 chart entries",
+     "shouldBe": "34 — \"SHEGE\" (CKay) is on TurnTable's Official Nigeria Top 100, week 37: rank 50, highestPosition 50, 5 weeks on chart. The 6 Sep sweep rejected it at 61/57 \"because the run is live\", but the site already publishes open-run peaks with a note (Rema's TEA at 3, five Davido rows), so the exclusion is inconsistent with the board's own practice; either add it with the note or apply the same rule to TEA.",
+     "source": "https://turntablecharts.com/charts/1 __NEXT_DATA__ chartData week 37: {rank:50, title:\"SHEGE\", artiste:\"CKay\", highestPosition:50, weeksOnChart:5}; docs/sweeps/RESUME-2026-09-06.md line 92 (\"CKay SHEGE NG 61 — rejected — TurnTable now reads 57, and the run is live\"); app/data/afrobeats.ts CKay charts (from line 1999)",
+     "severity": "stale",
+     "fix": "Add `{ title: \"SHEGE\", kind: \"Singles\", entries: [{ c: \"NG\", peak: 50, note: <peak-still-open note> }] }` to CKay's charts in app/data/afrobeats.ts; chartPublished.entries 33→34; searchIndex + docs/sweeps/ckay-chart-peaks-v1.md; and write down one rule for live runs in docs/sweeps/README.md so the next sweep does not adjudicate TEA and SHEGE differently."
+    },
+    {
+     "claim": "/afrobeats \"Chart peaks\" rail: Ayra Starr 82 (also /afrobeats/ayra-starr/charts)",
+     "onPage": "82 chart entries; Starrgirl album carries only FR #100",
+     "shouldBe": "83 — Starrgirl is on TurnTable's Official Top 100 Albums (week 36, issue dated 3 Sep 2026): rank 4, lastPosition 4, highestPosition 2, 3 weeks on chart. The 6 Sep sweep held the Nigerian row back over a 2-vs-3 conflict (TurnTable's written week-34 report said \"debuts at No. 3\") and then published neither, so the site says the album never charted in Nigeria at all. TurnTable's own payload has now carried highestPosition 2 across three consecutive issues; the conservative publishable value is 3 with a note, the payload value is 2.",
+     "source": "https://turntablecharts.com/charts/2 __NEXT_DATA__ chartData (weekNumber 36, dateCreated 2026-09-03): {rank:4, title:\"Starrgirl\", artiste:\"Ayra Starr\", lastPosition:4, highestPosition:2, weeksOnChart:3}; docs/sweeps/RESUME-2026-09-06.md lines 93 and 399 (\"rejected by the challenge — the payload/report conflict is still unresolved\"); app/data/afrobeats.ts line 1276 (Starrgirl entries: [{ c: \"FR\", peak: 100 }])",
+     "severity": "stale",
+     "fix": "In app/data/afrobeats.ts line 1276 add `{ c: \"NG\", peak: 2 }` (or peak 3 with a note naming the conflict) to the Starrgirl album row; chartPublished.entries 82→83; update docs/sweeps/ayra-starr-chart-peaks-v1.md and the searchIndex copy. Do not leave a charted album with no home-country row while the conflict is only about which top-three position it took."
+    },
+    {
+     "claim": "/afrobeats/victony/charts and /afrobeats/bnxn/charts and /afrobeats/tyla/charts (reached from the hub's Chart peaks rail): Nigerian peaks for \"TWIN\" (Victony & FOLA) = 64, \"WHO THIS\" (Victony & BNXN) = 42, \"That Girl\" (Tyla) = 48",
+     "onPage": "TWIN NG 64; WHO THIS NG 42 (on both Victony's and BNXN's boards); That Girl NG 48",
+     "shouldBe": "TWIN NG 18 (rank 18, highestPosition 18, 3 weeks); WHO THIS NG 24 (rank 24, highestPosition 24, 3 weeks) on both boards; That Girl NG 41 (rank 71, highestPosition 41, 7 weeks). All three runs are still open, so carry the \"peak still open\" note.",
+     "source": "https://turntablecharts.com/charts/1 __NEXT_DATA__ chartData week 37 (10 Sep 2026); app/data/afrobeats.ts Victony charts (from line 1816), BNXN charts (from line 509), Tyla charts (from line 1146) — found by normalised-title diff of every board-artist row on the chart against the data",
+     "severity": "stale",
+     "fix": "Update the NG peak on TWIN (64→18) and WHO THIS (42→24) in Victony's charts and WHO THIS (42→24) in BNXN's charts (tests/afrobeats.test.ts holds a shared record to one answer, so both in one commit), and That Girl (48→41) in Tyla's; add the open-run note; refresh the three sweep documents. No entry or territory count moves."
+    },
+    {
+     "claim": "/afrobeats CKay tile hook: \"France certified two of his records Diamond — the only country that has given him anything above Platinum, and it did it twice.\" (and the FR Diamond row for \"love nwantiti (ah ah ah)\" behind CKay's 28 / 15 countries)",
+     "onPage": "Two French Diamonds for CKay; 28 certifications",
+     "shouldBe": "SNEP's own register serves ONE CKay row today — EMILIANA, Diamant, constat 08/09/2022. Searching interprete=ckay / CKAY returns only Emiliana; titre=nwantiti, nwant, \"love nwa\" and \"ah ah ah\" return nothing (the same title search finds RAINDANCE, so the parameter works, and the artist search finds featured credits such as \"DAVE FEAT. TEMS\"). The sweep document carries no register mark for this plaque. Under the site's own rule a plaque the readable register does not hold is omitted, not published: 28→27 (countries stay 15 via Emiliana) and the hook must be rewritten — unless the row can be produced from SNEP itself.",
+     "source": "https://snepmusique.com/les-certifications/?interprete=ckay (one row: EMILIANA / CKAY / Diamant / 08/09/2022); ?titre=nwantiti, ?titre=nwant, ?titre=love%20nwa, ?titre=ah%20ah%20ah (all empty); ?titre=raindance (control, returns DAVE FEAT. TEMS); docs/sweeps/ckay-certifications-v1.md lines 36-44 (table with no ✓ marks, no SNEP line); app/data/afrobeats.ts CKay releases (from line 1999)",
+     "severity": "wrong",
+     "fix": "Re-read SNEP for the \"love nwantiti\" FR Diamond; if it cannot be produced from snepmusique.com (register page, per-artist CSV export, or a dated Wayback capture of the register URL), remove `{ c: \"FR\", level: \"Diamond\" }` from the love nwantiti row in app/data/afrobeats.ts, rewrite the hook at line 2004 (e.g. \"'Emiliana' is Diamond in France — the only Diamond he holds\"), set the count to 27 everywhere it is typed (hook, searchIndex, docs/sweeps/ckay-certifications-v1.md which already miscounts \"Fourteen of the twenty-seven\"), and record the omission in the sweep doc so a later sweep does not re-add it without a register read."
+    },
+    {
+     "claim": "/afrobeats/davido (behind the hub's Davido tile, 91 certifications · 9 countries): South African tiers for \"Blow My Mind\" and \"Risky / Risk\" shown as Platinum",
+     "onPage": "Blow My Mind ZA Platinum; Risky / Risk ZA Platinum",
+     "shouldBe": "Both carry RiSA's RISA-MULTI-PLATINUM badge (≥3×, no multiple stated), certified 30 Mar 2023. Plaque count unchanged; the displayed tier understates the register. Flagged in the 6 Sep sweep as an open data-model decision and still unresolved.",
+     "source": "https://risa-prod.trafficmanager.net/website/certification/certifications/?artist=Davido (rows: Blow My Mind — RISA-MULTI-PLATINUM — 30 Mar, 2023; Risky — RISA-MULTI-PLATINUM — 30 Mar, 2023); docs/sweeps/davido-certifications-v1.md lines 25-26 and 189 (\"Multi-Platinum ✓* … never render as 3×\"); docs/sweeps/RESUME-2026-09-06.md line 249; app/data/afrobeats.ts Davido releases (from line 836)",
+     "severity": "note",
+     "fix": "Give AfroCert a way to carry a numberless multi-Platinum (e.g. `multi: true` rendered by plaqueLabel in app/data/afrobeats.ts line 2199 as \"Multi-Platinum\"), set it on the two ZA rows, and mirror the label wherever plaqueLabel is used (tiles, OG chips, artist page). Do not type 3×."
+    },
+    {
+     "claim": "/afrobeats CKay tile hook wording: \"the only country that has given him anything above Platinum\"",
+     "onPage": "\"anything above Platinum\"",
+     "shouldBe": "The same data holds love nwantiti at US 8× Platinum, PT 6×, CA 4×, PL 4×; a reader takes 8× Platinum as \"above Platinum\". The intended claim is \"above the Platinum tier\" (i.e. Diamond).",
+     "source": "app/data/afrobeats.ts line 2004 (hook) and CKay releases (US x:8, PT x:6, CA x:4, PL x:4 on love nwantiti); derived list in this audit",
+     "severity": "note",
+     "fix": "Reword the hook at app/data/afrobeats.ts line 2004 to \"the only country to give him a Diamond\" (and fold in the SNEP outcome above)."
+    },
+    {
+     "claim": "app/afrobeats/opengraph-image.tsx source comment explaining the share card's face selection",
+     "onPage": "Comment says Seyi Vibez (103), Davido (91), Rema (80) and Asake (79) outrank three of the five faces, and \"the footer states 'five of nine'\"",
+     "shouldBe": "Card itself is correct (Burna 234, Wizkid 156, Tems 71, Tyla 62, Ayra Starr 41; \"Five of 16 artists · 1212 plaques\", which sums the board exactly; lockup gold). The comment's figures are stale (102/91/82/80), the footer says \"Five of 16\", and six artists now outrank at least one shown face (Seyi Vibez, Davido, Rema, Asake, BNXN 65 and Olamide 54 > Ayra 41) — a maintainer reading the comment will misjudge whether the selection still reads as a leaderboard.",
+     "source": "app/afrobeats/opengraph-image.tsx lines 8-16 vs live card https://burnaboystats.com/afrobeats/opengraph-image/77l70j?ec5fe1d6dc1dad2c and the tile figures on /afrobeats",
+     "severity": "note",
+     "fix": "Rewrite the comment at app/afrobeats/opengraph-image.tsx lines 8-16 without typed figures (\"several board artists outrank faces shown; the footer states the selection\"), or derive the note from certCount at build time."
+    }
+   ]
+  },
+  {
+   "page": "/afrobeats/rema",
+   "checked": 54,
+   "findings": [
+    {
+     "claim": "/afrobeats/rema (desktop provenance line) and the Dataset JSON-LD on /afrobeats/rema and /afrobeats/rema/charts: \"Every figure read in an issuing body's own register — last verified 17 August 2026\" / dateModified 2026-08-17",
+     "onPage": "last verified 17 August 2026 (desktop By-the-numbers section; Dataset dateModified on both the artist and charts pages; sitemap lastmod via verifiedOn)",
+     "shouldBe": "28 August 2026 at the earliest. Two of the 82 plaques the page counts were read AFTER the printed date — Bubalu Colombia Diamante (Pro Musica register PDF, read 27 Aug 2026) and Secondhand Portugal Ouro (AFP July 2026 award card, reinstated 28 Aug 2026) — and the Bubalu RIAA Latin tag was confirmed 10 Sep 2026. Tems, Omah Lay and Victony already carry AFROBEATS_VERIFIED_ON_5 (2026-08-28) for the same AFP card pass that added Rema's Secondhand row.",
+     "source": "docs/sweeps/rema-certifications-v1.md lines 8-47 (dated retraction 28 Aug, Colombia correction 27 Aug); app/data/afrobeats.ts lines 100-118 (RIAA Latin audit 10 Sep 2026) and 240-247 (AFROBEATS_VERIFIED_ON_5 definition)",
+     "severity": "stale",
+     "fix": "app/data/afrobeats.ts line 1013: change `verifiedOn: AFROBEATS_VERIFIED_ON` to `verifiedOn: AFROBEATS_VERIFIED_ON_5` (2026-08-28). This also corrects the Dataset dateModified on /afrobeats/rema and /afrobeats/rema/charts and the sitemap lastmod, which all read a.verifiedOn."
+    },
+    {
+     "claim": "/afrobeats/rema live-board CTA \"rebuilt hourly\"; /afrobeats/rema/live mobile lede \"refreshed hourly\", desktop lede \"refreshed every hour\", source note \"rebuilt hourly\", meta description and og:description \"refreshed hourly\"",
+     "onPage": "hourly / every hour (6 places across the two routes, both layouts, plus <meta name=description> and og:description on /afrobeats/rema/live)",
+     "shouldBe": "\"several times a day\" — the stats-live workflow is scheduled 17,47 * * * * but GitHub's best-effort schedule fires it every two to six hours (four to ten runs a day over 12-16 Sep 2026), so \"hourly\" overstates the cadence",
+     "source": "app/lib/liveChartMeta.ts lines 16-30 (LIVE_CADENCE_ADVERB comment documenting the measured run history); .github/workflows/stats-live.yml",
+     "severity": "wrong",
+     "fix": "Already staged but UNCOMMITTED in the working tree on branch audit/batch-2-fixes: app/afrobeats/[artist]/page.tsx line 449 (LIVE_CADENCE_ADVERB), app/afrobeats/[artist]/live/page.tsx lines 37-39, 80, 193, 304-305 (LIVE_CADENCE / LIVE_CADENCE_LABEL / LIVE_CADENCE_ADVERB), app/components/MobileLiveCharts.tsx line 123. Commit and deploy; the live site still prints \"hourly\" until it ships."
+    },
+    {
+     "claim": "/afrobeats/rema/charts album row title \"Rave & Roses / Rave & Roses\" (both layouts — mobile list, desktop cards and table)",
+     "onPage": "Rave & Roses / Rave & Roses (#2 NG, #13 NL, #15 CA, #31 FR, #81 US, #189 BE)",
+     "shouldBe": "Rave & Roses / Rave & Roses Ultra — the sweep row is \"Rave & Roses / Rave & Roses (Ultra)\": one album whose standard and Ultra editions charted as one title, and the generator stripped \"(Ultra)\" as if it were a sweep annotation, leaving the title repeated against itself",
+     "source": "docs/sweeps/rema-chart-peaks-v1.md line 64 and line 254 (\"Rave & Roses (Ultra) #2\" read from the live TurnTable payload 6 Aug 2026); tests/afrobeats.test.ts line 101 forbids only (new|reinstated|title track|archive-only|register-only|year) annotations, so \"Ultra\" is legal in a title",
+     "severity": "broken",
+     "fix": "app/data/afrobeats.ts line 1090: change `title: \"Rave & Roses / Rave & Roses\"` to `title: \"Rave & Roses / Rave & Roses Ultra\"`. Regenerate or hand-edit; the sweepDocs test compares counts, not titles, so it will not object."
+    },
+    {
+     "claim": "/afrobeats/rema hero hook: \"“Calm Down” is certified in twenty countries — a French Diamond, 9× Platinum in Portugal.\"",
+     "onPage": "twenty countries / French Diamond / 9× Platinum in Portugal (typed prose in the artist record)",
+     "shouldBe": "Currently TRUE — Calm Down carries exactly 20 certs in the data, SNEP prints Diamant (constat 01/09/2022) and the Portuguese 9× Platina is unchanged in the sweep — but it is a typed figure with no guard: tests/artistHookFigures.test.ts matches \"across N countries\" and \"N countries have certified\" but NOT \"certified in N countries\", so a 21st country or an AFP upgrade to 10× Platina would rot it silently",
+     "source": "app/data/afrobeats.ts line 1010 (hook) and line 1019 (Calm Down certs, 20 rows); tests/artistHookFigures.test.ts lines 80-100 (the three regex forms); snepmusique.com/les-certifications/?interprete=rema read 17 Sep 2026",
+     "severity": "note",
+     "fix": "Add a fourth form to tests/artistHookFigures.test.ts, e.g. /“([^”]+)” is certified in (NUM) countries/ resolved against that release's certs.length, and a check that the named PT multiplier equals the release's PT `x` — or derive the hook from the data instead of typing it."
+    },
+    {
+     "claim": "/afrobeats/rema/charts — TEA 🇳🇬 #3 with the note \"Peak still open — read in the release's first weeks on the Top 100, so it may yet climb. Re-read in a later capture.\" (title tooltip on desktop, note on mobile)",
+     "onPage": "#3, note undated",
+     "shouldBe": "Still #3 — TurnTable's current issue (Official Nigeria Top 100, Sep 4th–10th 2026) lists TEA at #6, 5 weeks on chart, peak 3, so the figure holds; but the note is undated so a reader cannot tell whether \"still open\" is a month old. Also: \"Oh No\" is Spotify NG #1 / Apple Music NG #2 on the live board today and is not yet on the Top 100 (not in the 4–10 Sep issue); it will need an NG row when the 11–17 Sep issue publishes (~22 Sep)",
+     "source": "https://www.turntablecharts.com/charts/1 read 17 Sep 2026 (row: 6 | TEA | Rema | LW 5 | WoC 5 | Peak 3; no Rema row for Oh No); app/data/liveCharts.rema.ts (Oh No, Spotify NG 1 at No. 1); app/data/runHistory.rema.ts (Oh No first seen 2026-09-16)",
+     "severity": "note",
+     "fix": "app/data/afrobeats.ts line ~1082 (TEA entry): date the note, e.g. \"Peak still open — read 17 Aug 2026 in its first weeks; re-read 17 Sep 2026: #6 in week 5, peak 3.\" Diary a re-read of TurnTable for the 11–17 Sep issue to add \"Oh No\" NG and re-check TEA."
+    },
+    {
+     "claim": "/afrobeats/rema — the two layouts do not carry the same provenance claim: desktop prints \"last verified 17 August 2026\"; the phone layout (MobileCerts lede: \"Every Rema plaque, read in the issuing body's own register — 82 across 21 countries, from 46 certified releases.\") prints no verification date anywhere",
+     "onPage": "Desktop: dated. Mobile: undated (grep of the served HTML finds \"17 August 2026\" only inside the .desktopOnly tree)",
+     "shouldBe": "Both layouts should state the same last-verified date; a phone reader (and Googlebot at phone width) currently gets an undated \"read at source\" claim",
+     "source": "scratchpad copy of https://burnaboystats.com/afrobeats/rema (served HTML, 17 Sep 2026); app/afrobeats/[artist]/page.tsx lines 195-218 (MobileCerts props — no verifiedOn passed) vs lines 322-334 (desktop provenance line)",
+     "severity": "note",
+     "fix": "app/afrobeats/[artist]/page.tsx line ~213: append the formatted a.verifiedOn to the MobileCerts `lede` (or add a `verifiedOn` prop to app/components/MobileCerts.tsx and print it under the tier bars), so both layouts date the claim."
+    },
+    {
+     "claim": "/afrobeats/rema/live (mobile notice): \"Platform charts, not official charts. Career peaks live on Chart Records.\"",
+     "onPage": "Link labelled \"Chart Records\" (Burna Boy's /records/charts page name), href=/afrobeats/rema/charts",
+     "shouldBe": "The target is right (Rema's chart board) but the label names Burna Boy's page; the desktop notice on the same route says \"counted separately on the chart board\"",
+     "source": "served HTML of /afrobeats/rema/live; app/components/MobileLiveCharts.tsx lines 131-132 (hardcoded \"Chart Records\" label)",
+     "severity": "note",
+     "fix": "app/components/MobileLiveCharts.tsx line 132: take the label from a prop (e.g. chartsLabel, default \"Chart Records\" for Burna's /live-charts) and pass \"the chart board\" from app/afrobeats/[artist]/live/page.tsx line ~156."
+    },
+    {
+     "claim": "Certification rows whose issuing body could not be re-read today: Calm Down 🇨🇭 4× Platinum, Rave & Roses 🇨🇭 Platinum, Dumebi 🇨🇭 Gold, Soundgasm 🇨🇭 Gold (IFPI Switzerland via hitparade.ch); Calm Down 🇧🇪 2× Platinum (Ultratop); Calm Down 🇵🇹 9× Platinum and Secondhand 🇵🇹 Gold (AFP monthly award cards); Calm Down 🇬🇷 Platinum (IFPI Greece)",
+     "onPage": "8 of the 82 plaques as listed in app/data/afrobeats.ts lines 1016-1019, 1024, 1054",
+     "shouldBe": "Unverified today, not contradicted: hitparade.ch and ultratop.be both serve a Cloudflare \"Just a moment\" challenge to curl and to the in-app browser; AFP's award cards live on instagram.com/audiogest and facebook.com/audiogest, which are not readable logged-out and the weekly TOP PDF only badges charting titles; IFPI Greece's Award column exists only inside the weekly Digital Singles chart, and no Rema title is on week 36/2026. Every other body was read and agrees with the page: RIAA (Calm Down 5× Platinum 27 Sep 2024, Bubalu Latin 2× 2 Feb 2024, Rave & Roses Ultra Gold; no Secondhand), Music Canada (Calm Down Diamond, Rave & Roses Platinum, Secondhand Gold 14 Jul 2026 filed under Don Toliver), SNEP (7 rows incl. Toxic Or 12/02/2026), BPI certified-awards (6 rows, Calm Down 3× Platinum 20.09.2024), ARIA (Aug 2026 singles list carries no Rema row; 8× stands), RMNZ/RadioScope (Plat x4 27 Feb 2025), ZPAV via olis.pl (Calm Down Diamond, Rave & Roses Platinum), Promusicae (Calm Down 4×, Bubalu Platinum, 44 Platinum), Pro-Música Brasil (Diamante / 2× Platina / Ouro), BVMI (1x Platin 2024), FIMI (3° platino 2024 wk27, nothing 2025-26), NVPI (Calm Down goud, Soundgasm goud), IFPI Norge (Calm Down Platina x1), IFPI Danmark (no Rema row on pages 0-14, i.e. since 18 Mar 2026), IFPI Austria (no Rema row pages 1-12, since 21 Jul 2026), Pro Musica Colombia (same PDF, last-modified 5 Mar 2025, Bubalu Diamante), TurnTable live register (still the 6 Feb 2026 batch; all 18 visible Rema rows match), RiSA (no Rema row; Wizkid control returns rows)",
+     "source": "Read 17 Sep 2026 at each body's own URL as named; challenge pages saved in the scratchpad (ch.html, be.html)",
+     "severity": "note",
+     "fix": "No data change. Re-read hitparade.ch/awards.asp?year=2026 and ultratop.be/nl/certifications.asp?year=2026 from a real browser session, and ask Paul for AFP's Aug/Sep 2026 award cards, before the next weekly board review; record the read in docs/sweeps/rema-certifications-v1.md."
+    }
+   ]
+  },
+  {
+   "page": "/afrobeats/davido",
+   "checked": 237,
+   "findings": [
+    {
+     "claim": "/afrobeats/davido/charts — 'Magician (Morravey & Davido)' Nigeria peak #44 (carried with a 'Peak still open' note)",
+     "onPage": "Nigeria, peak #44 (both layouts; desktop tooltip says the peak is still open and may yet climb)",
+     "shouldBe": "Nigeria peak #28 — TurnTable's own register: week of 11 Jan 2024 shows rank 94, highestPosition 28, 5 weeks on chart; the run closed that week",
+     "source": "TurnTable Official Nigeria Top 100, week 2/2024 via the site's own proxy https://turntablecharts.com/api/ttc-proxy/api/chart/1/2/2024 (base64 payload, chartItems[].highestPosition), read 17 Sep 2026",
+     "severity": "wrong",
+     "fix": "app/data/afrobeats.ts line 997: change peak: 44 to peak: 28 and delete the note; bump chartPublished stays 93 (no new row). Record the read in docs/sweeps/davido-chart-peaks-v1.md"
+    },
+    {
+     "claim": "/afrobeats/davido/charts — 'Yebo Lapho' Nigeria peak #23",
+     "onPage": "Nigeria, peak #23 (desktop card, mobile list, OG chip set unaffected)",
+     "shouldBe": "Nigeria peak #21 — TurnTable files it as 'Yebo' by TxC & Davido ft. Tony Duardo, Leemckrazy & Djy Biza; highestPosition 21 from the week of 29 Aug 2024 (rank 21, week 10) through its last week (3 Oct 2024, rank 90, week 15)",
+     "source": "TurnTable Official Nigeria Top 100, weeks 35–40/2024 via https://turntablecharts.com/api/ttc-proxy/api/chart/1/{week}/2024, read 17 Sep 2026",
+     "severity": "wrong",
+     "fix": "app/data/afrobeats.ts line 987: peak: 23 → peak: 21"
+    },
+    {
+     "claim": "/afrobeats/davido/charts — 'Wallah Wallah (Badshah & Davido)' Nigeria peak #85 ('Peak still open')",
+     "onPage": "Nigeria, peak #85",
+     "shouldBe": "Nigeria peak #82 — week of 27 Nov 2025: rank 82, highestPosition 82, week 2; not on the chart in any later week",
+     "source": "TurnTable Official Nigeria Top 100 weeks 46–48/2025 via the ttc-proxy endpoint, read 17 Sep 2026",
+     "severity": "stale",
+     "fix": "app/data/afrobeats.ts line 999: peak: 85 → peak: 82, drop the note"
+    },
+    {
+     "claim": "/afrobeats/davido/charts — '93 entries' / 'Singles (65)' (and the same 93 on /afrobeats/davido's chart CTA, meta description, OG card and Dataset schema)",
+     "onPage": "93 chart entries, 65 charting singles",
+     "shouldBe": "At least 110 entries: TurnTable's own weekly archive holds 17 Davido-credited Official Nigeria Top 100 runs the board omits, every one now closed so its highestPosition is final — Dada (Remix) (Young Jonn ft. Davido) #16, Holy Water (ft. Victony & Musa Keys) #19, CFMF #24, R&B (ft. Shenseea & 450) #28, Titanium (ft. Chris Brown) #30, Hip Hop Messiah (Zlatan ft. Davido) #31, Don't Know #33, Five By Alhanislam #37, Nuttin Dey #38, Lately #40, Drift (Remix) (Teejay & Davido) #46, Lover Boy (ft. Tayc & Dadju) #49, Tek (ft. Becky G) #50, If It's Okay (Nicki Minaj ft. David Guetta & Davido) #51, Bad Habits (King Promise & Davido) #73, Bum Bum (PaBrymo ft. Davido) #85, Easy On Me (Logos Olori & Davido) #86. The 27 Aug rule that rejected week-one rows ('a debut, not a peak') no longer applies: these runs ended months ago, so the debut is the peak. No. 1s and territories are unchanged.",
+     "source": "TurnTable Official Nigeria Top 100, every week Aug 2023–Sep 2026 that the proxy served (https://turntablecharts.com/api/ttc-proxy/api/chart/1/{week}/{year}, browser UA + Referer, ≤100 req/min), read 17 Sep 2026; weeks 8–31/2023 and 29–34/2024 rate-limited and unread, so the true count may be higher still",
+     "severity": "stale",
+     "fix": "Add the 17 rows to the Davido charts[] block in app/data/afrobeats.ts (after line 1000), set chartPublished.entries to the new count (line 847), append the register reads to docs/sweeps/davido-chart-peaks-v1.md, and add an updates.ts entry"
+    },
+    {
+     "claim": "/afrobeats/davido/charts — five rows carry 'Peak still open — read in the release's first weeks on the Top 100, so it may yet climb. Re-read in a later capture.' (Blessings on Blessings #22, Magician #44, Sober #83, Wallah Wallah #85, Dodo #93)",
+     "onPage": "The note on all five (desktop only, as a hover title / aria-label)",
+     "shouldBe": "No note: every one of the five runs has closed — Blessings on Blessings last charted 4 Sep 2025 (peak 22 confirmed), Sober 13 Feb 2025 (83 confirmed), Dodo 7 Nov 2024 (93 confirmed), Magician 11 Jan 2024 (peak 28, see above), Wallah Wallah 27 Nov 2025 (82, see above)",
+     "source": "TurnTable Official Nigeria Top 100 weekly archive via the ttc-proxy endpoint, read 17 Sep 2026",
+     "severity": "stale",
+     "fix": "app/data/afrobeats.ts lines 991–1000: delete the comment block and the five note: fields once the two peaks are corrected"
+    },
+    {
+     "claim": "/afrobeats/davido/charts — the phone layout and the desktop layout do not carry the same caveat for the five 'open' peaks",
+     "onPage": "Desktop: note present only as title/aria-label on the pill (never visible text). Mobile (MobileOfficialCharts): no note at all — 0 occurrences of 'Peak still open' in the mobile markup versus 15 in the desktop markup",
+     "shouldBe": "Both layouts print the same caveat, visibly, or neither carries a caveated row",
+     "source": "curl of https://burnaboystats.com/afrobeats/davido/charts, HTML split at the .desktopOnly wrapper, 17 Sep 2026",
+     "severity": "broken",
+     "fix": "app/components/MobileOfficialCharts.tsx drops entry.note (ChartExplorer.tsx line 83–85 keeps it only in title/aria-label). Either render a visible marker in both components or, since the Davido notes are now stale, remove them (above) and add a test that any note in afrobeats.ts appears in both layouts"
+    },
+    {
+     "claim": "/afrobeats/davido — 'Blow My Mind' and 'Risky / Risk' shown as South Africa 'Platinum' (explorer rows, country strip counts ZA best tier as '2× Platinum')",
+     "onPage": "🇿🇦 Platinum for both (tier tally: 40 Platinum)",
+     "shouldBe": "RiSA's register carries both under its RISA-MULTI-PLATINUM badge (≥3×, above Double-Platinum). The repo's own rule for that badge — set on 10 Sep 2026 for 'Essence' (afrobeats.ts note: '3x is the floor the badge establishes') — prices the same badge as 3× Platinum, so Davido's two rows understate their own register reading by two tiers and the /compare unit totals are two-thirds short on each. The Davido sweep doc (line 189) says 'Never render these as 3×', which now contradicts the Essence decision",
+     "source": "RiSA live register (Ninja Tables dataset behind https://risa.org.za/certification-levels/certifications/, admin-ajax table_id=15622, 766 rows, read in-browser 17 Sep 2026): 'Davido x Chris Brown | Blow My Mind | 2023-03-30 | multi-plat' and 'Davido & Popcaan | Risky | 2023-03-30 | multi-plat'; same badge on the stale mirror at risa-prod.trafficmanager.net",
+     "severity": "wrong",
+     "fix": "app/data/afrobeats.ts lines 854–855: { c: \"ZA\", level: \"Platinum\", x: 3 } for both, matching the Essence rule, and amend docs/sweeps/davido-certifications-v1.md line 189. Also update the RiSA recipe: risa-prod.trafficmanager.net is a stale mirror (608 rows, ends Sep 2025, lacks 'Yebo Lapho' by TxC & Davido); the live register is the risa.org.za Ninja Tables AJAX endpoint (766 rows to 3 Sep 2026), which does carry Yebo Lapho Platinum 2025-09-17"
+    },
+    {
+     "claim": "/afrobeats/davido and /afrobeats/davido/live — 'rebuilt hourly by the same job that tracks Burna Boy', 'refreshed every hour', 'refreshed hourly' (desktop lede, mobile lede, source note, meta description, share description)",
+     "onPage": "'rebuilt hourly' (artist page live CTA); live page: 'refreshed every hour' (desktop lede), 'refreshed hourly' (mobile lede + meta description), 'rebuilt hourly' (source note)",
+     "shouldBe": "'several times a day' — the workflow is scheduled 17,47 * * * * but fires every two to six hours (4–10 runs/day across 12–16 Sep); the snapshot date on the page is the honest cadence signal",
+     "source": "Repo: app/lib/liveChartMeta.ts LIVE_CADENCE_ADVERB comment and .github/workflows/stats-live.yml run history; live HTML fetched 17 Sep 2026 still prints 'hourly' in all five places",
+     "severity": "wrong",
+     "fix": "Already fixed on origin/main by PR #270 (LIVE_CADENCE_* constants wired into app/afrobeats/[artist]/page.tsx and live/page.tsx); the production build fetched at 07:xx on 17 Sep predates it — confirm the deploy lands and re-curl the three pages for 'hourly'"
+    },
+    {
+     "claim": "/afrobeats/davido — 'Every figure read in an issuing body's own register — last verified 17 August 2026' and Dataset dateModified 2026-08-17 (also sitemap lastmod for /afrobeats/davido and /charts)",
+     "onPage": "17 August 2026",
+     "shouldBe": "27 August 2026 at the latest — commit a7a1f9c7 (27 Aug) re-read SNEP, Promusicae, BPI, RIAA, Music Canada and RiSA and added 26 Nigerian chart rows plus one correction, and the page prints the older date under data that changed after it; once the fixes above land the date moves again",
+     "source": "git log -S 'Peak still open' -- app/data/afrobeats.ts; app/afrobeats/[artist]/page.tsx provenance line reads a.verifiedOn (AFROBEATS_VERIFIED_ON = 2026-08-17)",
+     "severity": "note",
+     "fix": "app/data/afrobeats.ts line 845: give Davido his own verifiedOn (a new AFROBEATS_VERIFIED_ON_7 = \"2026-08-27\", or the date of the re-read that applies these findings) rather than the shared 17 Aug constant"
+    },
+    {
+     "claim": "/afrobeats/davido/live — OG share card lists 'Oriadé' as the third release",
+     "onPage": "Renders as 'Oriade´' — the accent drawn as a detached mark after the e",
+     "shouldBe": "'Oriadé' (or 'Oriade', which is how /afrobeats/davido/charts and the sweep spell the same album — the two Davido pages currently disagree on the title)",
+     "source": "https://burnaboystats.com/afrobeats/davido/live/opengraph-image/59jx9j?c2c60a9b1c2a3984 viewed 17 Sep 2026; app/data/liveCharts.davido.ts stores the title as 'Oriade' + U+0301 (NFD, from kworb), which Satori does not compose",
+     "severity": "broken",
+     "fix": "Normalise titles to NFC in scripts/build-live-charts.mjs where releases are assembled (around line 333: title: r.title.normalize(\"NFC\")) so the generated liveCharts.*.ts and the OG card (app/afrobeats/[artist]/live/opengraph-image.tsx line 130) get a precomposed é; decide one spelling for the album across charts and live"
+    },
+    {
+     "claim": "/afrobeats/davido/charts — 17 Nigerian rows are marked in the sweep as 'unverifiable at source by any route TurnTable exposes' and the page's provenance rests on that ('the API serves one week only', docs/sweeps/davido-chart-peaks-v1.md 'Nigeria: what verified can and cannot mean')",
+     "onPage": "The historic No. 1s and 2020–2025 catalogue rows are published on TurnTable editorial write-ups, not register reads",
+     "shouldBe": "They can be read at the body: TurnTable's site proxies a per-week endpoint, /api/ttc-proxy/api/chart/{categoryId}/{week}/{year} (category 1 = Top 100, 2 = Albums; week numbers use Friday-start weeks), which returned every 2023–2026 week requested here, back to at least Nov 2020. The '°' rows should be re-read there and the sweep's structural claim retracted",
+     "source": "turntablecharts.com/_next/static/chunks/pages/_app-*.js (`c.Z.get(\"/api/chart/\".concat(t,\"/\").concat(n,\"/\").concat(r))` with baseURL /api/ttc-proxy); 200 responses with base64 payloads for 2023–2026 weeks on 17 Sep 2026",
+     "severity": "note",
+     "fix": "Re-read the 17 '°' rows (and the Feb–Jul 2023 and Feb–Jul 2024 windows this audit could not complete under the 100/min rate limit) via that endpoint; update docs/sweeps/davido-chart-peaks-v1.md and app/data/afrobeats.ts comments at lines 985–990 that describe the archive as unreachable"
+    }
+   ]
+  },
+  {
+   "page": "/afrobeats/tems",
+   "checked": 133,
+   "findings": [
+    {
+     "claim": "/afrobeats/tems — provenance line under 'By the numbers': \"Every figure read in an issuing body's own register — last verified 28 August 2026.\" (also the sitemap lastmod for /afrobeats/tems and /afrobeats/tems/charts, and the Dataset JSON-LD dateModified on both routes, all inherit this date)",
+     "onPage": "last verified 28 August 2026",
+     "shouldBe": "last verified 6 September 2026 (the date the Portuguese 3× Platina and Danish Platin on 'Raindance' were read at AFP and IFPI Danmark and applied in PR #216 on 8 Sep). The 3× Platina figure the page now prints did not exist on 28 Aug — AFP's Gal. column stepped 2PL→3PL in Semana 35, whose PDF was published 3 Sep 2026 — so the page's own date contradicts one of its figures. Today's re-read (16–17 Sep) found no further change, so 2026-09-17 is also defensible if that read is logged.",
+     "source": "AFP/Audiogest Semana 34 (file_2026-08-26-08-43-16.pdf, 2PL) vs Semana 35 (file_2026-09-03-09-27-14.pdf, 3PL) and Semana 37 (file_2026-09-16-10-35-23.pdf: '30 27 4 46 3PL Raindance Dave & Tems'); git show 2a71d891 (PR #216, 8 Sep) changed PT x:2→x:3 and DK Gold→Platinum without touching verifiedOn; app/data/afrobeats.ts:1106 still reads verifiedOn: AFROBEATS_VERIFIED_ON_5 (= 2026-08-28)",
+     "severity": "stale",
+     "fix": "In /Users/paulemmanuelng/burnaboy-website/app/data/afrobeats.ts add `export const AFROBEATS_VERIFIED_ON_7 = \"2026-09-06\";` after line 260 (with a comment naming the 6 Sep re-read / PR #216), and change line 1106 to `verifiedOn: AFROBEATS_VERIFIED_ON_7,`. The provenance line (app/afrobeats/[artist]/page.tsx ~line 290), sitemap.ts:98-99 and both datasetJsonLd dateModified fields derive from it, so nothing else needs editing. Apply the same bump to every other artist whose tiers/peaks moved in #216."
+    },
+    {
+     "claim": "docs/sweeps/tems-certifications-v1.md — the evidence file behind the page's 71 / 37 Platinum / 28 Gold: its 'Tier split' table prints Platinum 36 and total 70, 'Featured appearances — 40', and 'Featured subtotal: 14+13+8+3+2 = 40', while its own header says 71 and its Fountains row now carries 4 plaques (PT Ouro added 28 Aug)",
+     "onPage": "Tier split: Platinum 36, total 70; Featured appearances 40; 'Per-tier derivation' featured Platinum 24 (Raindance ×10)",
+     "shouldBe": "Platinum 37, Gold 28, total 71; Featured appearances 41 (14+13+8+4+2); featured Platinum 25 (Raindance ×11, now including DK Platin). The page and afrobeats.ts already sum to 1/37/28/5 = 71 — only the sweep document's arithmetic is stale, so a reader tracing the page's figure to its evidence finds a document that disagrees with it.",
+     "source": "app/data/afrobeats.ts lines 1110-1124 summed (1 Diamond, 37 Platinum, 28 Gold, 5 Silver = 71); docs/sweeps/tems-certifications-v1.md lines ~52-60 (tier table) and ~46 (featured subtotal)",
+     "severity": "note",
+     "fix": "Update the tier-split table, section totals and per-tier derivation in /Users/paulemmanuelng/burnaboy-website/docs/sweeps/tems-certifications-v1.md to 2 albums + 28 lead + 41 featured = 71 and 1/37/28/5, noting the two moves (Fountains PT Ouro 28 Aug; Raindance DK Guld→Platin, register-dated 07.07.2026, applied 8 Sep)."
+    },
+    {
+     "claim": "docs/sweeps/tems-chart-peaks-v1.md — 'Raindance' United States peak printed as 49 in the singles table (line 28) and in the 'Rows challenged and upheld' Hot 100 table (line 380: 'Raindance | 2/07/26 | 49 | 4/18/26 | 27'), while the page and afrobeats.ts:1127 publish US #42",
+     "onPage": "Sweep document: 🇺🇸49; site: 🇺🇸#42 (charts sub-route, Raindance row)",
+     "shouldBe": "42 — Billboard's own Hot 100 chart history for Tems reads 'Raindance | Dave & Tems | debut 2/07/26 | peak 42 | peak date 8/29/26 | 30 wks'. The site is right (re-read 26 Aug, commit bc5bd1e); the evidence document was never updated and now contradicts the page it is supposed to back.",
+     "source": "https://www.billboard.com/artist/tems/chart-history/hsi/ read 17 Sep 2026; docs/sweeps/RESUME-2026-09-06.md:309 records the 49→42 re-read",
+     "severity": "note",
+     "fix": "In /Users/paulemmanuelng/burnaboy-website/docs/sweeps/tems-chart-peaks-v1.md change 🇺🇸49 to 🇺🇸42 on line 28 and rewrite the line-380 row as 'Raindance | 2/07/26 | 42 | 8/29/26 | 30', with a dated note that the peak improved after the 17 Aug sweep."
+    },
+    {
+     "claim": "'Move' (Beyoncé ft. Grace Jones & Tems) 🇧🇷 Platinum — shown on both layouts of /afrobeats/tems and in the sweep doc as 'Pro-Música Brasil ✓' with no caveat",
+     "onPage": "🇧🇷 Platinum (correct)",
+     "shouldBe": "Unchanged — but the register's Platina row is credited 'Beyoncé feat.Grace Jones and Teams' (sic, 2024), so an artist-side search for 'Tems' at pro-musicabr.org.br returns ONLY the superseded 2023 Ouro row. A future re-verifier matching artist+title on 'Tems' will read Gold and wrongly downgrade the plaque; the sweep document should record the misspelt credit as the provenance of the Platinum.",
+     "source": "https://pro-musicabr.org.br/home/certificados/?busca_artista=Grace%20Jones read in-browser 17 Sep 2026: two rows — '(2024) SINGLE Beyoncé feat.Grace Jones and Teams MOVE Sony Music' badge disco_platina.png, and '(2023) SINGLE Beyoncé feat. Grace Jones and Tems MOVE Sony Music' badge disco_ouro.png",
+     "severity": "note",
+     "fix": "Add to the Move row and the Pro-Música coverage line in /Users/paulemmanuelng/burnaboy-website/docs/sweeps/tems-certifications-v1.md: 'Platina (2024) is filed under the credit \"…and Teams\" — search by title or by Grace Jones, not by Tems'."
+    },
+    {
+     "claim": "Register coverage for this audit — figures whose issuing body could not be reached today, so their current tier is unverified beyond the last sweep: 🇧🇪 Raindance Platinum (Ultratop), 🇸🇪 no Swedish plaque (GLF/Grammotex), the 7 South African chart rows and Wait For U ZA #1 (TOSAC), and the 3 archive-only Nigerian plaques (Damages Gold, Love Me JeJe Gold, Get It Right Silver)",
+     "onPage": "🇧🇪 Platinum Belgium; no Sweden pill; ZA peaks 1/4/10/14/15/32/60; NG 8 plaques",
+     "shouldBe": "No change can be asserted either way. Ultratop serves a Cloudflare bot challenge to both curl and the in-app browser (not bypassed, per the site's rules); Grammotex's discovery search returns 'Ej behörig' without a trade login, and Raindance's Sverigetopplistan peak of No. 4 is exactly the shape that earns a Swedish plaque, so the absent SE pill remains a floor rather than a proven zero; TOSAC publishes the current week only; TCSN's live page is hard-capped at 500 rows (456 Platinum, 44 Gold, zero Silver, all stamped 6 Feb 2026 — re-confirmed today).",
+     "source": "ultratop.be/nl/goud-platina → 'Performing security verification' (Ray a3c607fc9b56bea3); docs/sweeps/RESUME-2026-09-06.md:308 for Grammotex; turntablecharts.com/certification parsed 17 Sep 2026",
+     "severity": "note",
+     "fix": "No page edit. Record in docs/sweeps/tems-certifications-v1.md that Belgium and Sweden were unreachable on 17 Sep 2026 and that the next pass should read Ultratop from a real browser session and Grammotex by record id if one is ever obtained."
+    }
+   ]
+  },
+  {
+   "page": "/afrobeats/tyla",
+   "checked": 214,
+   "findings": [
+    {
+     "claim": "/afrobeats/tyla/charts (and the artist page's chart CTA, OG card, meta, FAQ): \"175 entries across 52 territories\", \"18 charting releases\"; Nigeria holds 15 rows",
+     "onPage": "Nigeria rows: Water 13, Chanel 29, She Did It Again 62, Push 2 Start 30, Jump 57, Is It 69, Art 61, That Girl 48, One Call 35, Dynamite 13, Game Time 76, Body Go 31, Memories 93; albums Tyla 25, A*Pop 77 — no row for Girl Next Door, Truth or Dare, No.1, Breathe Me, Show Me Love or the WWP EP",
+     "shouldBe": "Six more Nigerian entries, every one credited to Tyla in TurnTable's own register: Girl Next Door (Tyla & Ayra Starr) #73 (issue 18 May 2023); Truth Or Dare #95 (7 Dec 2023, 1 wk); No.1 (Tyla ft. Tems) #79 (28 Mar 2024); Breathe Me #89 (3 Oct 2024); Show Me Love (WizTheMc, bees & honey & Tyla) #59 (15 May 2025); WWP - EP #18 on the Top 100 Albums (31 Jul 2025, 17 weeks). With the ZA finding below: 175 → 184 entries, 18 → 27 charting releases; territories (52) and No. 1s (3) unchanged",
+     "source": "TurnTable's per-week archive, GET https://www.turntablecharts.com/api/ttc-proxy/api/chart/1/{week}/{year} (singles, every issue 2023–2026) and /chart/2/{week}/{year} (albums, 2024–2026) with a turntablecharts.com Referer, base64 payload decoded, each issue validated against its weekNumber/dateCreated. The sweep doc admits Nigeria was a 'text-mine' verified for one row only (docs/sweeps/tyla-chart-peaks-v1.md line 228)",
+     "severity": "wrong",
+     "fix": "app/data/afrobeats.ts Tyla `charts` (lines 1170–1189): add { title: \"Girl Next Door\", kind: \"Singles\", entries: [{ c: \"NG\", peak: 73 }] }, { title: \"Truth or Dare\", … [{ c: \"NG\", peak: 95 }] }, { title: \"No.1\", … [{ c: \"NG\", peak: 79 }] }, { title: \"Breathe Me\", … [{ c: \"NG\", peak: 89 }] }, { title: \"Show Me Love\", … [{ c: \"NG\", peak: 59 }] }, { title: \"WWP\", kind: \"Albums\", entries: [{ c: \"NG\", peak: 18 }] }; bump chartPublished.entries (line 1157) to the new count so tests/afrobeats.test.ts passes; log the rows in docs/sweeps/tyla-chart-peaks-v1.md and add an updates.ts entry"
+    },
+    {
+     "claim": "/afrobeats/tyla/charts — \"That Girl\" Nigeria peak #48 (desktop card, phone list, OG chips unaffected)",
+     "onPage": "🇳🇬 #48",
+     "shouldBe": "#41 — TurnTable Top 100 issue dated 13 Aug 2026 (week 33) ranks THAT GIRL at 41, highestPosition 41; every later issue (20 Aug → 10 Sep 2026) carries highestPosition 41. The improvement predates the 17 Aug verifiedOn and the 6 Sep re-sweep, both of which missed it",
+     "source": "https://www.turntablecharts.com/api/ttc-proxy/api/chart/1/33/2026 (rank 41, weeksOnChart 3) and the live https://www.turntablecharts.com/charts/top-100 (issue 2026-09-10: rank 71, highestPosition 41, weeksOnChart 7)",
+     "severity": "stale",
+     "fix": "app/data/afrobeats.ts line 1179: { c: \"NG\", peak: 48 } → { c: \"NG\", peak: 41 }; update docs/sweeps/tyla-chart-peaks-v1.md line 39"
+    },
+    {
+     "claim": "/afrobeats/tyla/charts — \"Game Time\" Nigeria peak #76",
+     "onPage": "🇳🇬 #76",
+     "shouldBe": "#77 — the register's full run is 82 (18 Jun 2026) → 79 → 85 → 77 (9 Jul 2026) → 90 (16 Jul 2026), then off; highestPosition reads 77 on every issue and it never charted again",
+     "source": "https://www.turntablecharts.com/api/ttc-proxy/api/chart/1/{25..30}/2026",
+     "severity": "wrong",
+     "fix": "app/data/afrobeats.ts line 1183: { c: \"NG\", peak: 76 } → { c: \"NG\", peak: 77 }; docs/sweeps/tyla-chart-peaks-v1.md line 43"
+    },
+    {
+     "claim": "/afrobeats/tyla/charts — South Africa holds 6 rows; the sweep removed \"Is It Love\" #17, \"Double Blind\" #19 and \"Mr. Nonchalant\" #20 as \"below the published chart depth\"",
+     "onPage": "ZA rows: Water 3, Push 2 Start 3, That Girl 5, Is It 7, She Did It Again 9, Chanel 24",
+     "shouldBe": "Three more ZA entries — TOSAC's principal Local & International Streaming Chart Top 20, Week 31 2026 (published 6 Aug 2026) lists, all credited \"Tyla\": THAT GIRL #5 (now verified at source), IS IT LOVE #17, DOUBLE BLIND #19, MR. NONCHALANT #20 — positions inside the Top 20 the sweep itself says TOSAC publishes in 2026, so the removal reasoning does not apply to these three",
+     "source": "https://theofficialsacharts.co.za/charts/local-international-streaming-chart-top-20-week-31/ (readable in a real browser; curl gets the anti-bot decoy) and TOSAC's Ed. 245 editorial https://theofficialsacharts.co.za/tylas-apop-captures-the-charts-ed-245/",
+     "severity": "wrong",
+     "fix": "app/data/afrobeats.ts Tyla `charts`: add { title: \"Is It Love\", kind: \"Singles\", entries: [{ c: \"ZA\", peak: 17 }] }, { title: \"Double Blind\", … [{ c: \"ZA\", peak: 19 }] }, { title: \"Mr. Nonchalant\", … [{ c: \"ZA\", peak: 20 }] }; correct docs/sweeps/tyla-chart-peaks-v1.md lines 50/265/310 (the 'seventeen removed' list keeps the other fourteen); mark That Girl ZA #5 verified"
+    },
+    {
+     "claim": "/afrobeats/tyla/charts — no ZA entry for \"Fairytale\" (A*POP)",
+     "onPage": "absent",
+     "shouldBe": "Unresolved: the same TOSAC week-31 chart has Fairytale at #2 (PEAK 2, new entry) but credits it \"Liquideep\" alone, while TOSAC's own Ed. 245 write-up says it is Tyla's A*POP re-recording with Liquideep. Under the artist-AND-title rule the chart credit does not name her, so it cannot be banked without a decision — but it would be a ZA #2 and her best peak on the A*POP campaign",
+     "source": "https://theofficialsacharts.co.za/charts/local-international-streaming-chart-top-20-week-31/ (row 2: Fairytale — Liquideep) vs https://theofficialsacharts.co.za/tylas-apop-captures-the-charts-ed-245/",
+     "severity": "note",
+     "fix": "Decision for Paul: either leave out (credit rule) and record the row under Deliberately excluded in docs/sweeps/tyla-chart-peaks-v1.md, or add { title: \"Fairytale\", entries: [{ c: \"ZA\", peak: 2 }] } with a provenance note citing Ed. 245"
+    },
+    {
+     "claim": "All three sub-routes: \"rebuilt hourly\" (artist page live CTA, desktop and phone), \"refreshed every hour\" (live lede), \"refreshed hourly\" (live phone lede, meta description, share description), \"rebuilt hourly\" (live source note)",
+     "onPage": "hourly / every hour",
+     "shouldBe": "\"several times a day\" — the workflow is scheduled 17,47 * * * * but GitHub's schedule fires it every two to six hours (four to ten runs a day across 12–16 Sep), as app/lib/liveChartMeta.ts itself now documents; the deployed site still promises hourly",
+     "source": "Live pages read 17 Sep 2026; repo app/lib/liveChartMeta.ts (LIVE_CADENCE_ADVERB) and .github/workflows/stats-live.yml run history",
+     "severity": "wrong",
+     "fix": "The fix is already in the working tree on branch audit/batch-2-fixes (app/afrobeats/[artist]/page.tsx line 449, app/afrobeats/[artist]/live/page.tsx lines 37–39, 80, 193, 304; app/components/MobileLiveCharts.tsx line 123) but uncommitted and undeployed — commit, merge and deploy it; tests/liveClaims.test.ts then guards it"
+    },
+    {
+     "claim": "/afrobeats/tyla/charts phone layout footnote: \"Airplay, genre and platform charts excluded.\"",
+     "onPage": "Phone: \"Peaks on each country's principal national chart, plus 2 Billboard global charts — the same standard used for Burna Boy. Airplay, genre and platform charts excluded.\" Desktop: \"…as are airplay charts except in the few countries that publish no non-airplay chart at all\"",
+     "shouldBe": "The phone must carry the desktop's caveat: 20 of the 175 entries in 12 territories are airplay charts the site counts by design — BG, EE, PA, VE, UA, RS, GT, LB, MT, MK, SI, KZ (all tagged 'airplay — no other national chart' in chartCountryMeta). The two layouts state different rules for the same table; this is the exact fault MobileOfficialCharts' own comment says was fixed for Burna's page",
+     "source": "app/data/afrobeats.ts chartCountryMeta bodies vs the rendered phone footnote on https://burnaboystats.com/afrobeats/tyla/charts",
+     "severity": "broken",
+     "fix": "app/afrobeats/[artist]/charts/page.tsx line 134: change sourceNote to \"…the same standard used for Burna Boy. Genre and platform charts excluded; airplay charts only where a country publishes no other. Board reviewed weekly.\" — or derive the airplay count per artist the way chartSourceSplit does for Burna"
+    },
+    {
+     "claim": "/afrobeats/tyla \"last verified 17 August 2026\"; /afrobeats/tyla/charts prints no date at all and its Dataset dateModified is 2026-08-17",
+     "onPage": "17 August 2026 (artist page + both Dataset nodes); charts page shows only \"Board reviewed weekly\"",
+     "shouldBe": "The chart rows were changed on 8 Sep 2026 (UK She Did It Again #40 added, commit 2a71d891) and every register was re-read at the body on 6 Sep 2026 (docs/sweeps/RESUME-2026-09-06.md, Tyla: 'no change'), so the printed date understates freshness and the charts Dataset's dateModified predates its own data. After the fixes above the date must move again",
+     "source": "git log -S on app/data/afrobeats.ts; docs/sweeps/RESUME-2026-09-06.md §Tyla",
+     "severity": "note",
+     "fix": "app/data/afrobeats.ts line 1155: give Tyla her own verifiedOn (2026-09-06, or today's date once the NG/ZA rows land) instead of AFROBEATS_VERIFIED_ON; print the verification date on app/afrobeats/[artist]/charts/page.tsx next to the stat grid the way the artist page's provenance line does"
+    },
+    {
+     "claim": "/afrobeats/tyla/charts — \"Push 2 Start\" Nigeria #30",
+     "onPage": "🇳🇬 #30",
+     "shouldBe": "Defensible but mis-provenanced: TurnTable's #30 row (27 Feb 2025) is \"PUSH 2 START (REMIX)\" credited Tyla & Sean Paul; the plain \"PUSH 2 START\" row peaked #43 (5 Feb 2026). One title per country lets the remix carry the peak, but the sweep doc records this row as an unverified text-mine, not as the remix credit",
+     "source": "https://www.turntablecharts.com/api/ttc-proxy/api/chart/1/9/2025 and /1/6/2026",
+     "severity": "note",
+     "fix": "docs/sweeps/tyla-chart-peaks-v1.md line ~40: record the NG 30 as the Tyla & Sean Paul remix row (verified) and the base track's 43; no data change"
+    },
+    {
+     "claim": "/afrobeats/tyla/live phone preview for \"THAT GIRL\": 🇿🇦 #86 ▲9 and 🇿🇦 #87 ▲3",
+     "onPage": "Two South Africa rows for one song, no platform named",
+     "shouldBe": "Each preview row should say which platform it is (Apple Music ZA and a second platform's ZA chart) — as printed, a reader sees the same country twice with two different positions",
+     "source": "app/afrobeats/[artist]/live/page.tsx `preview` (top-5 across platforms) and app/components/MobileLiveCharts.tsx row preview",
+     "severity": "note",
+     "fix": "Include e.platform in ReleasePreview.top and print it beside the flag in MobileLiveCharts, or take the best position per country for the five-chip preview"
+    },
+    {
+     "claim": "/afrobeats/tyla/live phone notice: \"Career peaks live on Chart Records.\"",
+     "onPage": "Link text \"Chart Records\" (Burna Boy's page name), href /afrobeats/tyla/charts",
+     "shouldBe": "\"Tyla's chart board\" — the link goes to her board, not /records/charts",
+     "source": "app/components/MobileLiveCharts.tsx lines 131–133",
+     "severity": "note",
+     "fix": "Pass a label with chartsHref (e.g. chartsLabel={`${a.name}'s chart board`}) from app/afrobeats/[artist]/live/page.tsx and default to \"Chart Records\" only for Burna's own screen"
+    }
+   ]
+  },
+  {
+   "page": "/afrobeats/seyi-vibez",
+   "checked": 176,
+   "findings": [
+    {
+     "claim": "/afrobeats/seyi-vibez/charts (and the main page, hook, FAQ and both OG cards): \"114 entries across 1 territory\", \"103 charting singles\" — the Nigerian singles list has no row for \"BACK 2 U\"",
+     "onPage": "114 chart entries / 103 singles; no BACK 2 U row (charts page desktop + mobile, main-page chart block \"114 entries\", hook \"102 plaques and 114 chart entries\", FAQ \"from 114 entries in total\", main OG card \"114 CHART ENTRIES\", charts OG card \"114\")",
+     "shouldBe": "115 chart entries / 104 singles, with a row BACK 2 U — NG peak #8 (debuted at 8 on the chart dated 3 Sep 2026, rank 10 with highestPosition 8 on the chart dated 10 Sep 2026, the newest issue). Territories stay 1, No. 1s stay 11. Also still watch SWAGUU: it is #21 on Apple Music Nigeria's album chart today but is NOT on TurnTable's Official Top 100 Albums through the issue dated 3 Sep (the 10 Sep albums issue is not yet published) — nothing to add yet.",
+     "source": "TurnTable Official Nigeria Top 100, read at https://turntablecharts.com/api/ttc-proxy/api/chart/1/36/2026 (chart id 5874, dateCreated 2026-09-03: {rank 8, title BACK 2 U, artiste Seyi Vibez, lastPosition 0, highestPosition 8, weeksOnChart 1}) and /chart/1/37/2026 (chart id 5921, dateCreated 2026-09-10: {rank 10, highestPosition 8, weeksOnChart 2}); the same row is in the __NEXT_DATA__ chartData of https://www.turntablecharts.com/charts/1 today. Every other Seyi Vibez row in the 20 Aug–10 Sep issues (GTA peak 2, OPERA MINI peak 7, the seven charting albums) matches the site.",
+     "severity": "stale",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/afrobeats.ts: insert `{ title: \"BACK 2 U\", kind: \"Singles\", entries: [{ c: \"NG\", peak: 8 }] }` in Seyi Vibez's `charts` array beside the other peak-8 rows (after \"FUJI MOTO (single)\", ~line 1722); change `chartPublished: { entries: 114, ...}` (line 1593) to `entries: 115` (tests/afrobeats.test.ts:160 reconciles it); change the hook (line 1587) \"114 chart entries\" → \"115 chart entries\" (tests/artistHookFigures.test.ts guards it); give the artist a new verifiedOn constant dated today; append the row to docs/sweeps/seyi-vibez-chart-peaks-v1.md and add an updates.ts entry. Olamide's hook (\"second only to Seyi Vibez\") still holds."
+    },
+    {
+     "claim": "/afrobeats/seyi-vibez/live (and the main page's \"Live charts — 100 placements today\" and the live OG card): \"100 placements across 10 countries\", \"34 releases charting\", \"Spotify 15\"",
+     "onPage": "100 live placements · 34 releases · Spotify 15 · albums FUJI MOTO 6 charts, Thy Kingdom Come 4, Vibe Till Thy Kingdom Come 3, Loseyi Professor 2, Billion Dollar Baby 2.0 2, NSNV 2 — all Apple Music only; no \"Billion Dollar Baby\" album row at all",
+     "shouldBe": "The source page also carries seven Spotify Nigeria weekly ALBUM chart placements the build silently drops: FUJI MOTO #19, Thy Kingdom Come #16, Vibe Till Thy Kingdom Come #60, Loseyi Professor #47, Billion Dollar Baby 2.0 #45, NSNV #83 and Billion Dollar Baby #61 — i.e. 107 placements, 35 releases, Spotify 22 at the same snapshot. The drop is structural, not a Seyi Vibez quirk: kworb links album rows to `https://charts.spotify.com/charts/view/album-ng-weekly/latest`, and the parser's link regex only accepts `/<cc>_daily.html`, `/<cc>.html` or `global_daily.html`. Every artist's live board (Burna Boy's included) has albums on Apple Music/iTunes only for this reason, and nothing in the script, tests or docs says it is deliberate.",
+     "source": "https://kworb.net/itunes/artist/seyivibez.html read 17 Sep 2026 02:35 EDT (raw HTML cells `Album: Thy Kingdom Come … <div class=\"spo\">Spotify:<br>… <a href=\"https://charts.spotify.com/charts/view/album-ng-weekly/latest\">#16 Nigeria</a>`), versus app/data/liveCharts.seyi-vibez.ts (liveChartsUpdated 2026-09-17) where no album has a Spotify platform; confirmed across liveCharts.ts and liveCharts.wizkid.ts (album platforms = Apple Music, iTunes only).",
+     "severity": "broken",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/scripts/stats-lib.mjs, extractLiveCharts (the `body.matchAll(/<a href=\"[^\"]*?\\/([a-z]{2}|global)(?:_daily)?\\.html\">#(\\d+) ([^<]+)<\\/a>…/g)` loop, ~line 565): add an alternation for `charts\\.spotify\\.com/charts/view/album-([a-z]{2}|global)-weekly` and take the country from that group; then either flag those entries as weekly (cadenceOf in app/lib/liveChartMeta.ts is per-platform, so a per-entry `cadence` or a \"Spotify albums are weekly\" note is needed so the page does not call them daily), or, if the exclusion is intended, document it in the script and on the live page's footnote instead of leaving the count silently short."
+    },
+    {
+     "claim": "/afrobeats/seyi-vibez (phone layout) \"Most-certified releases\" top ten",
+     "onPage": "01 Cana 6× Platinum, 02 Different Pattern 4×, 03 Doha 4×, 04 Man Of The Year 4×, 05 Karma 3×, 06 Mario Kart 3×, 07 Pressure 3×, 08 Shaolin 3×, 09 Bullion Van 2×, 10 Chance (Na Ham) 2×",
+     "shouldBe": "Gwagwalada (5× Platinum) and Instagram (5× Platinum) are his second- and third-most-certified records, and Where I'm From (4×), 99 (3×) and Giza (3×) all outrank Bullion Van and Chance (Na Ham) (2×) — none of the five appear. The list is sorted by NUMBER of certs, which is 1 for every release of a one-country artist, so it falls through to data order and prints the first ten lead singles; the featured appearances that hold his higher tiers sit at the bottom of the array and never surface. The desktop layout has no such ranking, so the two layouts disagree on which records are his most-certified.",
+     "source": "app/data/afrobeats.ts Seyi Vibez `releases` (Gwagwalada and Instagram `{ c: \"NG\", level: \"Platinum\", x: 5 }` under \"Featured appearances\"), versus the rendered phone list in https://burnaboystats.com/afrobeats/seyi-vibez; the tiers themselves match TCSN's live register row by row (51 of 51 rows served).",
+     "severity": "broken",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/components/MobileCerts.tsx line ~196: in the `matching` sort, after `b.certs.length - a.certs.length` add a tie-break on the best badge weight, e.g. `|| Math.max(...b.certs.map(badgeWeight)) - Math.max(...a.certs.map(badgeWeight))` (badgeWeight is already used at line ~406), so \"Most-certified\" means highest tier when plaque counts tie."
+    },
+    {
+     "claim": "\"1 countries\", \"1 territories\" — hard-coded plurals on the desktop layout and both share cards",
+     "onPage": "Main page desktop: \"1 countries\" (By the numbers), \"1 countries · best tier shown\", \"1 territories\" (Official charts block); charts page desktop: \"1 territories charted in\"; main OG card \"1 COUNTRIES\"; charts OG card \"1 TERRITORIES\". The phone layout says \"1 country\" (MobileCerts.tsx:300 uses a ternary), so the two layouts print different grammar for the same figure.",
+     "shouldBe": "\"1 country\" / \"1 territory\" (the lede on the same page already gets it right via `countries === 1 ? \"country\" : \"countries\"`).",
+     "source": "Rendered HTML of https://burnaboystats.com/afrobeats/seyi-vibez and /charts; app/afrobeats/[artist]/page.tsx lines 314, 346, 403; app/afrobeats/[artist]/charts/page.tsx line 228; app/afrobeats/[artist]/opengraph-image.tsx line 45; app/afrobeats/[artist]/charts/opengraph-image.tsx line 66.",
+     "severity": "note",
+     "fix": "Use `count(n, \"country\", \"countries\")` from app/lib/plural (already imported in page.tsx) or the existing ternary at each of the six sites listed; for the OG cards make the label `countryCount(a) === 1 ? \"Country\" : \"Countries\"` / `\"Territory\"`. Seyi Vibez is currently the only board artist this shows on, but Olamide's `territories: 2` etc. are one sweep away from the same edge."
+    },
+    {
+     "claim": "\"Every figure read in an issuing body's own register — last verified 19 August 2026\" beside \"Both are read at source and reviewed weekly\" (main page) and \"Board reviewed weekly\" / \"The board is reviewed weekly\" (charts page); the charts sub-route prints no verification date at all",
+     "onPage": "last verified 19 August 2026; reviewed weekly (main page desktop ×1, charts page desktop ×2, mobile source note ×1); /charts has no visible date (only JSON-LD dateModified = verifiedOn)",
+     "shouldBe": "The record shows a later re-read the page does not print (6 Sep 2026, \"No change reported: … Seyi Vibez\") and nothing in the 11 days since — during which BACK 2 U entered the chart — so \"reviewed weekly\" is a live claim the printed date contradicts by four weeks. Print the date of the latest re-read (today's, once BACK 2 U lands) and either keep the review weekly or replace the adverb with the date; give /charts its own visible \"peaks last read <date>\" line as the main page has.",
+     "source": "docs/sweeps/RESUME-2026-09-06.md:119; app/data/afrobeats.ts AFROBEATS_VERIFIED_ON_2 = \"2026-08-19\" (line 241); rendered text of both routes.",
+     "severity": "note",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/afrobeats.ts: add a new AFROBEATS_VERIFIED_ON_7 for Seyi Vibez when the BACK 2 U row is published; app/afrobeats/[artist]/page.tsx:491 and app/afrobeats/[artist]/charts/page.tsx:134,217: drop \"reviewed weekly\" or make the review actually weekly; app/afrobeats/[artist]/charts/page.tsx: render `a.verifiedOn` in the source note (the value already feeds dateModified at line 114)."
+    }
+   ]
+  },
+  {
+   "page": "/afrobeats/asake",
+   "checked": 265,
+   "findings": [
+    {
+     "claim": "/afrobeats/asake/live (both layouts): \"542 placements across 51 countries\", \"8 YouTube\", \"18 Deezer\"; Chanel \"11 charts\" and Eja Meja \"12 charts\" with no YouTube row; Jogodo \"13 charts\" with no Deezer row",
+     "onPage": "542 live placements; YouTube 8; Deezer 18; Chanel and Eja Meja carry no YouTube placement, Jogodo carries no Deezer placement",
+     "shouldBe": "545 placements; YouTube 10 (add Blaqbonez - Chanel (feat. Asake) NG #20 and BNXN fka Buju - Eja Meja (feat. Asake) NG #23); Deezer 19 (add Wizkid - Jogodo NG #65). Every record Asake is FEATURED on is silently dropped from the two directly-swept platforms because his alias list is empty",
+     "source": "kworb.net/youtube/insights/ng.html rows 20 and 23 and kworb.net/charts/deezer/ng.html row 65, read 17 Sep 2026; app/data/liveCharts.asake.ts carries only 8 YouTube and 18 Deezer entries, none for those three titles. Cause: scripts/live-artists.mjs lines 158-162 — `aliases: []` with the comment \"No register sweep has run for this artist yet\", stale since the 19 Aug sweep; scripts/stats-lib.mjs extractCountryChart attaches a lead-billed row only via an alias",
+     "severity": "wrong",
+     "fix": "scripts/live-artists.mjs lines 158-162: replace the stale comment and populate `aliases` from the featured table in docs/sweeps/asake-certifications-v1.md and the chart doc, using kworb's exact lead credit strings, e.g. { artist: \"Blaqbonez\", title: \"Chanel\", release: \"Chanel\" }, { artist: \"BNXN fka Buju\", title: \"Eja Meja\", release: \"Eja Meja\" }, { artist: \"Wizkid\", title: \"Jogodo\", release: \"Jogodo\" }, plus Turbulence, Bad Girl, Alaye, Iskolodo (Wizkid), Bandana (Fireboy DML), No Competition (Davido), THAT GIRL (Darkoo), 99 / New Religion / Uptown Disco (Olamide), Stubborn (Victony), Che Che / 2Factor (Young Jonn), Happiness / Getting Paid / C'mon Look! (Sarz), Loaded (Tiwa Savage), Gold (J Hus), Get It Right (Tems), Goodbye (Warm Up) (Ayra Starr), Satisfaction (Gunna), Blessings (Fridayy), Bust Down (Zlatan), Palazzo (SPINALL), BROTHER (Ashidapo). Re-run the builder; the 542/8/18 figures are derived and will move on their own"
+    },
+    {
+     "claim": "/afrobeats/asake: \"Every figure read in an issuing body's own register — last verified 19 August 2026\" (desktop provenance line) and Dataset JSON-LD dateModified 2026-08-19, over a total of 80 plaques",
+     "onPage": "last verified 19 August 2026",
+     "shouldBe": "last verified 21 August 2026 — the 80th plaque (Bandana, Recorded Music NZ Gold, certified 2026-08-20) was read on 21 Aug; on 19 Aug the verified total was 79. The sitemap already reports 2026-08-21 for this route, so the page's own date, its JSON-LD and the sitemap disagree",
+     "source": "docs/sweeps/asake-certifications-v1.md update note (\"Update, 21 Aug 2026 — one plaque added after this sweep ran\"); app/data/updates.ts line 454-458 (2026-08-21 entry \"It takes him to 80 plaques\"); sitemap.xml lastmod 2026-08-21T12:00:00Z for /afrobeats/asake; RMNZ RadioScope table 2052 read 17 Sep 2026 confirms the row ['Fireboy DML And Asake','Bandana','Gold','2026-08-20']",
+     "severity": "wrong",
+     "fix": "app/data/afrobeats.ts line 1291: `verifiedOn: AFROBEATS_VERIFIED_ON_2` → `verifiedOn: AFROBEATS_VERIFIED_ON_3` (the existing 2026-08-21 constant), and amend the comment at lines 239-241 so it no longer says Asake prints 19 Aug. The page, JSON-LD and sitemap then agree"
+    },
+    {
+     "claim": "/afrobeats/asake hook: \"Eighty plaques and 24 Nigerian No. 1s — more chart-toppers at home than anyone else on this board.\"",
+     "onPage": "Eighty plaques … more chart-toppers at home than anyone else on this board",
+     "shouldBe": "Currently true (certCount 80; Asake 24 Nigerian No. 1s vs Davido 16, Seyi Vibez 11, Wizkid 9) but \"Eighty\" and the comparative are TYPED and unguarded — only \"24 Nigerian No. 1s\" is pinned by tests/afrobeats.test.ts lines 409-412. The next NZ/BPI upgrade or a rival's new Nigerian No. 1 rots the sentence silently",
+     "source": "app/data/afrobeats.ts line 1287; tally of NG peak-1 entries across all 15 artists from app/data/afrobeats.ts run 17 Sep 2026",
+     "severity": "note",
+     "fix": "tests/afrobeats.test.ts ~line 412: add `expect(certCount(asake)).toBe(80)` with a comment that the hook spells it out, and assert Asake has the board's maximum count of NG peak-1 entries — or derive the number in the hook from certCount(a)"
+    },
+    {
+     "claim": "/afrobeats/asake (head-to-head note) \"Both are read at source and reviewed weekly.\" and /afrobeats/asake/charts footer \"The board is reviewed weekly.\" / meta \"Board reviewed weekly.\"",
+     "onPage": "reviewed weekly, beside a printed verification date of 19 August 2026 (29 days old)",
+     "shouldBe": "Either re-stamp the verification after this read or stop promising weekly review. Re-read 17 Sep 2026 with no change: BPI 7 rows (Amapiano Silver 07.08.2026 latest), RIAA 1 (Bandana Gold, badge level 0), RMNZ 1 (Bandana Gold 2026-08-20), Music Canada 0, SNEP 0 (also Tiakola's page carries no Badman Gangsta), RiSA newest row 09 Sep 2025, TCSN live 500 rows / 456 Platinum / 44 Gold / 0 Silver with 53 Asake rows matching every tier plus the excluded Bad Influence, OCC 8 singles + 4 albums + 2 Irish albums matching, TurnTable Top 100 week 37 and Top 100 Albums week 36 every Asake highestPosition equal to the site's peak, Billboard Global 200 / Global Excl. US / Hot 100 / 200 / Canadian Hot 100 issues 29 Aug, 5 Sep, 12 Sep zero Asake",
+     "source": "Bodies named above, all read 17 Sep 2026. Not re-read this pass: ARIA (Dropbox zip), IFPI Denmark and Austria (full crawls), ZPAV (olis.pl/api/search returned 302 without a session), GLF, AFP weekly PDFs, Ultratop (Cloudflare 403), and TurnTable weekly issues between 20 Aug and 3 Sep (Wayback offline) — so the NG peaks are confirmed only for the current issue",
+     "severity": "note",
+     "fix": "Append a dated re-read note to docs/sweeps/asake-certifications-v1.md and asake-chart-peaks-v1.md, then bump Asake's verifiedOn (see the 21 Aug finding) to the re-read date; or change the two \"reviewed weekly\" sentences in app/afrobeats/[artist]/page.tsx (compareNote) and app/afrobeats/[artist]/charts/page.tsx lines 134 and 217 to state the printed date instead of a cadence"
+    },
+    {
+     "claim": "/afrobeats/asake certifications ledger lists the record as \"2:30\" (4× Platinum) while /afrobeats/asake/charts lists the same record as \"02:30\" (NG #1)",
+     "onPage": "2:30 on the artist page; 02:30 on the charts page",
+     "shouldBe": "One title on both sub-routes — the release is titled \"2:30\" on Mr. Money With The Vibe; the sweep doc records that TurnTable prints both spellings for one record",
+     "source": "app/data/afrobeats.ts line 1302 (releases: \"2:30\") vs line 1383 (charts: \"02:30\"); docs/sweeps/asake-certifications-v1.md \"Register spellings to expect\" (\"02:30 and 2:30 both appear — one title\")",
+     "severity": "note",
+     "fix": "app/data/afrobeats.ts line 1383: `title: \"02:30\"` → `title: \"2:30\"` (check tests/sweepDocs.test.ts does not pin the chart-doc spelling; if it does, update the doc row to match)"
+    },
+    {
+     "claim": "/afrobeats/asake/live release title \"Happiness ​(f​eat​. Asake, Gunna​)\"",
+     "onPage": "The title string carries four U+200B zero-width spaces copied verbatim from kworb (bytes e2 80 8b after \"Happiness\", inside \"f eat\", after \"eat\" and before \")\")",
+     "shouldBe": "\"Happiness (feat. Asake, Gunna)\" with the invisible characters stripped — they survive into titleKey, the API JSON and on-page search, so the same record under a clean spelling would land twice",
+     "source": "app/data/liveCharts.asake.ts line 4386 (od -c shows 342 200 213 sequences); kworb.net/itunes/artist/asake.html row \"Happiness ​(f​eat​. Asake, Gunna​)\"",
+     "severity": "note",
+     "fix": "scripts/stats-lib.mjs extractLiveCharts (line 548) and the country-chart row parser: normalise titles with .replace(/[​-‍﻿]/g, \"\") before titleKey/merge; rebuild"
+    }
+   ]
+  },
+  {
+   "page": "/afrobeats/omah-lay",
+   "checked": 260,
+   "findings": [
+    {
+     "claim": "/afrobeats/omah-lay and /afrobeats/omah-lay/charts (both layouts, hero button, chart CTA, FAQ 'How many No. 1s', meta description, <title> 'Omah Lay Chart History — 6 No.1s', all three OG cards): '71 entries across 16 territories, 6 of them at No. 1' and 'Nigeria 43'",
+     "onPage": "71 official chart entries; 43 Nigerian singles rows; chartPublished { entries: 71, territories: 16, no1s: 6 }",
+     "shouldBe": "72 entries (44 Nigerian). TurnTable's current Official Nigeria Top 100 (issue dateCreated 2026-09-10, weekNumber 37, chart id 5921) carries a NEW Omah Lay row: rank 35, title 'As We Get High', artiste 'bees & honey, OMAH LAY, BEAM & Gyptian', highestPosition 35, weeksOnChart 1. Omah Lay is on the chart body's own credit line, so it counts under the sweep's credit rule. Territories (16) and No. 1s (6) are unchanged. Peak is a floor while it is still charting — re-read next issue.",
+     "source": "https://turntablecharts.com/charts/1 __NEXT_DATA__ props.pageProps.chartData (read 17 Sep 2026). Existing rows re-confirmed in the same issue: I AM highestPosition 2, Gut Genug 24; albums chart (charts/2): CLARITY OF MIIND highestPosition 1 (22 wks), Boy Alone: Deluxe Edition highestPosition 1 (201 wks).",
+     "severity": "stale",
+     "fix": "app/data/afrobeats.ts: insert after line 1557 `{ title: \"As We Get High\", kind: \"Singles\", entries: [{ c: \"NG\", peak: 35 }] }` (Deezer has the cover: search 'As We Get High (feat. Omah Lay & BEAM)' by bees & honey); line 1478 chartPublished entries 71 → 72. docs/sweeps/omah-lay-chart-peaks-v1.md: add the row to the Singles table, singles subtotal 63 → 64, 'Total: 63 + 8 = 71 chart entries' → 72 (tests/sweepDocs.test.ts anchors on that '= N chart entries' sum), Nigeria 43 → 44 in the territories table. Add an app/data/updates.ts line and mint a new verifiedOn constant for omah-lay (currently AFROBEATS_VERIFIED_ON_5 = 2026-08-28, shared with Tems and Victony, so it cannot be bumped in place)."
+    },
+    {
+     "claim": "/afrobeats/omah-lay/charts (desktop card list and mobile screen, Albums group): album titled 'CLARITY OF MIIND'",
+     "onPage": "CLARITY OF MIIND — NG #1",
+     "shouldBe": "CLARITY OF MIND. The release is named 'CLARITY OF MIND' on Spotify's own discography page for artist 5yOvAmpIR7hVxiS6Ls5DPO and on Deezer (12 tracks); the site's own /afrobeats/omah-lay/live page and its OG card print 'CLARITY OF MIND' for the same record, so the two sub-routes disagree on one title. 'MIIND' is TurnTable's misspelling copied from the register row; afrobeats.ts's own header rule is 'TITLES: stored as the release is named.'",
+     "source": "https://open.spotify.com/artist/5yOvAmpIR7hVxiS6Ls5DPO/discography/album (read in-browser 17 Sep 2026); api.deezer.com/search/album?q=omah lay clarity; turntablecharts.com/charts/2 prints 'CLARITY OF MIIND'",
+     "severity": "wrong",
+     "fix": "app/data/afrobeats.ts line 1573: title \"CLARITY OF MIIND\" → \"CLARITY OF MIND\"; docs/sweeps/omah-lay-chart-peaks-v1.md lines 79 and 100 likewise, keeping a parenthetical that TurnTable's row spells it MIIND so the next sweep matches the register string."
+    },
+    {
+     "claim": "/afrobeats/omah-lay 'last verified 28 August 2026' beside 'this board is reviewed weekly' (compare note, desktop) and /afrobeats/omah-lay/charts 'The board is reviewed weekly' (desktop source paragraph) / 'Board reviewed weekly' (mobile sourceNote)",
+     "onPage": "Every figure read in an issuing body's own register — last verified 28 August 2026 … Both are read at source and reviewed weekly.",
+     "shouldBe": "Either a fresh verifiedOn date (the 10 Sep TurnTable issue above already moved the record, and the printed date is 20 days old on a page that promises a weekly review) or cadence wording that matches the printed date. The Sep 6 resume doc re-swept Tems but Omah Lay's constant stayed at 28 Aug.",
+     "source": "Page text vs app/data/afrobeats.ts AFROBEATS_VERIFIED_ON_5 = \"2026-08-28\" (line 254); docs/sweeps/RESUME-2026-09-06.md covers Tems only",
+     "severity": "note",
+     "fix": "After applying finding 1, add `export const AFROBEATS_VERIFIED_ON_7 = \"2026-09-17\"` in app/data/afrobeats.ts and point omah-lay's verifiedOn (line 1476) at it; otherwise change 'reviewed weekly' in app/afrobeats/[artist]/page.tsx (compareNote, ~line 491) and app/afrobeats/[artist]/charts/page.tsx (sourceNote line 137 and the source paragraph ~line 218) to wording the verifiedOn date can back."
+    },
+    {
+     "claim": "/afrobeats/omah-lay Head to head (desktop): 'Fireboy DML 36 — 6 countries · 1 chart No. 1s'",
+     "onPage": "1 chart No. 1s",
+     "shouldBe": "1 chart No. 1 — the label is typed with a hard-coded plural while the country word beside it is pluralised correctly; the same line for the artist cell (line 472) has the same bug for any artist with exactly one No. 1.",
+     "source": "app/afrobeats/[artist]/page.tsx lines 472 and 483; opponentOf(omah-lay) returns Fireboy DML no1s: 1",
+     "severity": "broken",
+     "fix": "app/afrobeats/[artist]/page.tsx lines 472 and 483: replace `{chartNo1s(a)} chart No. 1s` / `{rival.no1s} chart No. 1s` with `{count(chartNo1s(a), \"chart No. 1\", \"chart No. 1s\")}` / `{count(rival.no1s, \"chart No. 1\", \"chart No. 1s\")}` (count is already imported from ../../lib/plural)."
+    },
+    {
+     "claim": "The provenance line on /afrobeats/omah-lay says every figure traces to a row in the sweep document; the certifications sweep document's own arithmetic check lines still say 61 (Gold 23), and the chart document's distribution check sums to 70 with Nigeria 42",
+     "onPage": "62 certifications / 24 gold; 71 entries / Nigeria 43 (page is right — the data derives them)",
+     "shouldBe": "The docs' check lines should say 62 / Gold 24 (the 28 Aug PT 'understand' Ouro was added to the headline and the per-tier list but not to the tier table, the 'Total 61' derivation line, or the closing comparison) and 71 / Nigeria 43 (the chart doc's headline and singles table say 43 and 71 while the distribution sum and the closing prose say 42 and 70). Whoever applies finding 1 will otherwise be reconciling against a document that disagrees with itself in four places.",
+     "source": "docs/sweeps/omah-lay-certifications-v1.md lines 13, 15, 16, 103, 169, 207, 215; docs/sweeps/omah-lay-chart-peaks-v1.md lines 87, 208, 210; app/data/afrobeats.ts derives 62 / 2-23-24-13 and 71 (NG 43)",
+     "severity": "note",
+     "fix": "Edit the listed lines in the two sweep docs to 62 / Gold 24 and 71 / NG 43 (then 72 / NG 44 with finding 1); tests/sweepDocs.test.ts only anchors on the '= N chart entries' sum, so add the tier-table total to its check if you want it guarded."
+    },
+    {
+     "claim": "Bodies re-read on 17 Sep 2026 for the 62 plaques and 71 peaks — what could and could not be reached",
+     "onPage": "BPI 4 Silver (Boy Alone, soso, Understand, Infinity 07.08.2026) — unchanged; SNEP 6 (Namek Diamant, soso Diamant, Holy Ghost/Boy Alone/Understand/Bad Or) — unchanged; RIAA soso Gold 9 Sep 2025 — unchanged (no Attention row title-side); Music Canada 4 rows = 3 plaques (soso Platinum 12 Jul 2024 over Gold, Understand Gold, attention Gold) — unchanged; Promusicae via elportaldemusica.es soso 1× Oro 2025 wk 9 — unchanged; BVMI 'Luciano feat. Omah Lay — Another Vibe 1x Gold 2025' — unchanged; RiSA origin host: one row, Forever (Remix) RISA-PLATINUM 28 Jul 2022, register still ends 09 Sep 2025 — unchanged, still a floor; TCSN live register: 22 Omah Lay rows, every tier matches the data, all dated Feb 6 2026 — unchanged; UK OCC artist page: Attention 76 (2 wks), With You 85 (1 wk) — unchanged; Offizielle Deutsche Charts: Another Vibe peak 17 (17 wks) — unchanged; swisscharts item page for 'Gut genug (KitschKrieg with Omah Lay, Blumengarten & 255)' released 14.08.2026 carries no Swiss chart run.",
+     "shouldBe": "NOT reachable, so these rows are unverified today, not confirmed: Portugal — AFP's weekly TOP PDFs of 3, 8 and 16 Sep 2026 carry no Omah Lay row (he is not charting), and the monthly award cards that alone could show a soso Platina step-up or a new plaque are Facebook-only; Nigeria — the 21 archive-only NG plaques (9 Silver, 12 Gold) live in Wayback captures and were not re-walked; Poland — POST olis.pl/api/search now answers a Cloudflare 302 (was readable 29 Aug); France charts — lescharts.com is behind a Cloudflare challenge to curl; Billboard Global/Canada weekly pages not re-walked (Attention's 2022 peaks cannot move).",
+     "source": "certified-awards.bpi.co.uk (htmx ?search=omah); snepmusique.com/les-certifications/?interprete=Omah+Lay; riaa.com/gold-platinum/?se=omah+lay; musiccanada.com/wp-json/facetwp/v1/refresh template goldplatinum; elportaldemusica.es/awards/index?AwardsSearch[artist]=OMAH LAY; musikindustrie.de datenbank POST strInterpret=omah; risa-prod.trafficmanager.net/website/certification/certifications/?artist=Omah; turntablecharts.com/certification; officialcharts.com/artist/59239/omah-lay/; offiziellecharts.de/suche?artist_search=Omah+Lay; audiogest.pt uploads file_2026-09-03/09-08/09-16 PDFs",
+     "severity": "note",
+     "fix": "No page change. Ask Paul for AFP's Aug/Sep 2026 award cards before the next Portugal pass; retry olis.pl later; the NG archive rows stay as-published per the TCSN provenance note."
+    }
+   ]
+  },
+  {
+   "page": "/afrobeats/victony",
+   "checked": 82,
+   "findings": [
+    {
+     "claim": "/afrobeats/victony/charts — TWIN (Victony & FOLA) Nigeria peak #64 (also feeds the artist page's 51-entry summary and Top 40 filter counts)",
+     "onPage": "TWIN 🇳🇬 #64, listed outside Top 40 on both the desktop table and the phone cards",
+     "shouldBe": "TWIN 🇳🇬 #18 — TurnTable Official Nigeria Top 100 issue dated 2026-09-03 (weekNumber 36, id 5874): rank 18, highestPosition 18, lastPosition 64; issue dated 2026-09-10 (weekNumber 37, id 5921): rank 18, highestPosition 18",
+     "source": "GET https://turntablecharts.com/api/ttc-proxy/api/chart/1/36/2026 and /1/37/2026 with a turntablecharts.com Referer, base64 payload decoded and validated against weekNumber/dateCreated",
+     "severity": "stale",
+     "fix": "app/data/afrobeats.ts line 1884: change `{ title: \"TWIN\", kind: \"Singles\", entries: [{ c: \"NG\", peak: 64 }] }` to peak 18. Entry/territory/No.1 counts are unchanged (still 51/6/1) so chartPublished stays; add a 2026-09-1x updates.ts line and append the row to docs/sweeps/victony-chart-peaks-v1.md."
+    },
+    {
+     "claim": "/afrobeats/victony/charts — WHO THIS (Victony & BNXN) Nigeria peak #42",
+     "onPage": "WHO THIS 🇳🇬 #42 on both layouts",
+     "shouldBe": "WHO THIS 🇳🇬 #24 — TurnTable Official Nigeria Top 100 issue 2026-09-03: rank 40, highestPosition 40; issue 2026-09-10: rank 24, highestPosition 24, weeksOnChart 3",
+     "source": "Same two TurnTable API issues (chart 1, weeks 36 and 37 of 2026); the site's own 6 Sep sweep read only up to week 35 (2026-08-27)",
+     "severity": "stale",
+     "fix": "app/data/afrobeats.ts line 1877 (Victony) AND line 681 (BNXN — the record is pinned as shared in tests/afrobeats.test.ts line 375, so both boards must carry the same peak): change peak 42 to 24. Update the row in docs/sweeps/victony-chart-peaks-v1.md and bnxn-chart-peaks-v1.md."
+    },
+    {
+     "claim": "/afrobeats/victony — 'Every figure read in an issuing body's own register — last verified 28 August 2026' (desktop By-the-numbers block, page.tsx line 328); the same date is the Dataset JSON-LD dateModified and the sitemap lastmod",
+     "onPage": "last verified 28 August 2026",
+     "shouldBe": "The page's own data was re-read at the body after that date twice: SNEP's Soweto Or (date de constat 27/08/2026) was added 1 Sep 2026 (commit b168c603; updates.ts entry dated 2026-09-02 says so), and 11 Nigerian chart rows were added 8 Sep 2026 from the 6 Sep sweep (commit 2a71d891, 40 → 51 entries). The printed date should be the newest verification, e.g. 6 or 8 September 2026 — and it should move again when the TWIN/WHO THIS peaks above are applied.",
+     "source": "git log of app/data/afrobeats.ts; app/data/updates.ts line 310; app/data/afrobeats.ts line 1825 `verifiedOn: AFROBEATS_VERIFIED_ON_5` (= \"2026-08-28\")",
+     "severity": "stale",
+     "fix": "app/data/afrobeats.ts line 1825: give Victony his own constant (e.g. AFROBEATS_VERIFIED_ON_7 = \"2026-09-08\", or today's date once the two peaks are applied) instead of AFROBEATS_VERIFIED_ON_5; the Dataset dateModified (page.tsx line 124) and sitemap lastmod follow automatically."
+    },
+    {
+     "claim": "/afrobeats/victony — FAQ 'How many certifications does Victony have?' (both layouts and FAQPage JSON-LD): 'The most decorated is “Pity This Boy” (3× Platinum)'",
+     "onPage": "The most decorated is “Pity This Boy” (3× Platinum)",
+     "shouldBe": "“Soweto” — it holds the same top tier (NG 3× Platinum) AND five further plaques (PT Platinum, US/UK/ES/FR Gold); the page's own 'Most-certified releases' list ranks Soweto 01 with 6 certs and Pity This Boy 02 with 1. topPlaque() breaks the tier tie by array order, so the FAQ contradicts the list above it.",
+     "source": "app/lib/boardFaqs.ts lines 50–66 (topPlaque) vs app/data/afrobeats.ts lines 1829–1830",
+     "severity": "wrong",
+     "fix": "app/lib/boardFaqs.ts topPlaque(): on equal rank and multiplier, prefer the release with more certs (r.certs.length), or phrase it as 'The highest tier is 3× Platinum, held by “Pity This Boy” and “Soweto”'."
+    },
+    {
+     "claim": "docs/sweeps/victony-chart-peaks-v1.md (the evidence the /charts page cites as its provenance): headline '51 chart entries … 42 charting singles, 3 charting projects', 'Swept 21 Aug 2026'",
+     "onPage": "Headline says 51 entries; the 'Every placing' table beneath lists 40 rows — STARLIFE (album, NG 2), STARLIFE (single, NG 51), WHO THIS 42, 2FRESH 61, TWIN 64, TYPO 69, TOO LIT 70, PINO 72, ARMED & DANGEROUS 80, FYNE 93 and MISSIN PIECE 96 are published on the page but absent from the document, and the sweep date still reads 21 Aug",
+     "shouldBe": "Table carrying all 51 rows the page publishes, with the 8 Sep 2026 addition dated",
+     "source": "docs/sweeps/victony-chart-peaks-v1.md vs app/data/afrobeats.ts lines 1855–1895; commit 2a71d891 changed only the headline lines of the doc",
+     "severity": "note",
+     "fix": "Append the 11 rows (with the two corrected peaks above) to the 'Every placing' table and add 'Rows added 8 Sep 2026 from TurnTable issues to 27 Aug 2026' under the Swept line."
+    },
+    {
+     "claim": "/afrobeats/victony — FAQ 'Why don't Victony's Nigerian certifications match TurnTable's website?': '…open the February 2026 capture and search Victony's name to see them'",
+     "onPage": "Answer tells the reader to open a capture but neither layout links it; the archive URL (https://web.archive.org/web/20260221224010/https://turntablecharts.com/certification) exists only on /methodology",
+     "shouldBe": "A link to that capture (or to /methodology#…) beside the sentence, so the instruction can be followed from the page. The factual half of the answer was re-checked today: the live register serves ~488 rows and zero Silver-tier rows, and all 9 Victony Platinum-tier rows there match the page.",
+     "source": "app/lib/boardFaqs.ts lines 117–128; https://turntablecharts.com/certification read 17 Sep 2026",
+     "severity": "note",
+     "fix": "app/lib/boardFaqs.ts: FAQ answers are plain strings, so either add the /methodology link in the rendering component beside this answer, or reword to 'open the February 2026 capture linked from the methodology page'."
+    },
+    {
+     "claim": "/afrobeats/victony — Soweto 🇵🇹 Platinum (AFP/Audiogest, March 2026 award card) and the '5 countries outside Nigeria' hook",
+     "onPage": "PT Platinum; 'five countries have certified him'",
+     "shouldBe": "Unverifiable today for any batch after March 2026: AFP's monthly award cards live only on instagram.com/audiogest / facebook.com/audiogest, which serve nothing logged-out; audiogest.pt/noticias carries no award batches; ineews.eu reproduces only the Feb and Mar 2026 batches. A later upgrade (2× Platina) or a new Portuguese plaque for another title would be invisible to this audit. BPI, RIAA, SNEP, Promusicae (gold.svg, 2025 wk 9) and Music Canada (zero, control 'wizkid' returns 50 rows) were all re-read and match.",
+     "source": "Bodies read 17 Sep 2026: certified-awards.bpi.co.uk (?search=victony), riaa.com/gold-platinum (?se=victony, row default_442609 Gold 15 Sep 2025), snepmusique.com/les-certifications/?interprete=victony (Or, constat 27/08/2026), elportaldemusica.es/awards (VICTONY & TEMPOE, gold.svg), musiccanada.com/gold-platinum/?_gp_search=victony (0)",
+     "severity": "note",
+     "fix": "Ask Paul for the April–September 2026 AFP award cards (per memory rule) before the next Victony 'last verified' date is bumped; no data change on this evidence."
+    }
+   ]
+  },
+  {
+   "page": "/afrobeats/olamide",
+   "checked": 225,
+   "findings": [
+    {
+     "claim": "/afrobeats/olamide/charts lists two singles \"Pon Pon\" (#20) and \"PonPon\" (#20); every derived surface counts them twice — \"105 entries\" (artist-page hero button, Official-charts CTA, FAQ \"from 105 entries in total\", meta title/description, Dataset JSON-LD, both OG cards, charts page stat grid, mobile screen, /afrobeats board, /compare, /api/v1/afrobeats), \"104 charting releases\", and the hook \"A hundred and four charted records in Nigeria\"",
+     "onPage": "Singles (99) with both \"PON PON 🇳🇬 #20\" and \"PONPON 🇳🇬 #20\"; 105 chart entries; 104 charting releases; hook \"A hundred and four charted records in Nigeria\"",
+     "shouldBe": "One row: \"Pon Pon\" (Olamide ft. FAVE) NG #20; 104 chart entries; 103 charting releases; hook \"A hundred and three charted records in Nigeria\" (ranking is unchanged: Seyi Vibez 114 > Olamide 103 > BNXN 95)",
+     "source": "TurnTable's own archive read today via GET turntablecharts.com/api/ttc-proxy/api/chart/1/{25,26,27}/2021 (Referer header): issue 2021-06-24 rank 20 \"Pon Pon \" Olamide ft. FAVE wks 1; issue 2021-07-01 rank 35 \"PonPon \" lastPosition 20, peak 20, wks 2; issue 2021-07-08 rank 41 wks 3 — one continuous run of one record under two spellings. The sweep's own extraction docs/sourcing/board-expansion/peaks-olamide-blacksherif.json records the row with the verbatim \"Chart printed both 'Pon Pon' and 'PonPon'; merged as one release\" and holds 98 Nigerian singles; app/data/afrobeats.ts carries 99. TCSN's register also holds a single \"Ponpon\" plaque.",
+     "severity": "wrong",
+     "fix": "Delete app/data/afrobeats.ts:378 ({ title: \"PonPon\", kind: \"Singles\", entries: [{ c: \"NG\", peak: 20 }] }); change chartPublished at app/data/afrobeats.ts:275 from entries: 105 to entries: 104; change the hook at app/data/afrobeats.ts:269 to \"A hundred and three charted records in Nigeria — second only to Seyi Vibez on this board, and all but one of his chart entries came at home.\" (tests/artistHookFigures.test.ts parses the hundreds phrase and will fail otherwise); change docs/sweeps/olamide-chart-peaks-v1.md line \"## Total: 100 singles + 5 albums = 105 chart entries\" to \"99 singles + 5 albums = 104 chart entries\" (tests/sweepDocs.test.ts pins doc total = chartEntries) and its \"**4 No. 1s**, all in Nigeria\" line to 7 (the 7 Sep correction changed only the total); add a dated entry to app/data/updates.ts; the OG cards, /compare, /afrobeats and the API follow from the data."
+    },
+    {
+     "claim": "\"Every figure read in an issuing body's own register — last verified 28 August 2026\" on /afrobeats/olamide; Dataset dateModified \"2026-08-28\" and sitemap lastmod on both /afrobeats/olamide and /afrobeats/olamide/charts",
+     "onPage": "last verified 28 August 2026; dateModified 2026-08-28 on the charts Dataset",
+     "shouldBe": "The chart rows changed on 7 Sep 2026 (five album rows added, per the comment at app/data/afrobeats.ts:430-434), and the registers were re-read on 6 Sep (docs/sweeps/RESUME-2026-09-06.md, olamide section) and again today with no change — so the printed date understates both the last data change and the last verification. A date the page prints should be the date the data was last read at the body.",
+     "source": "Re-read today 16/17 Sep 2026: TCSN live register (_next/data/0c754DSEVVyV5fFEzY6zy/certification.json: 500 rows, 456 Platinum/44 Gold/0 Silver, all stamped 2026-02-06, 19 Olamide rows matching every published tier; all 52 NG plaques reconcile with docs/sourcing/board-expansion/tcsn_olamide.json); BPI certified-awards.bpi.co.uk search \"olamide\" = exactly Infinity Silver and Amapiano Silver, 07.08.2026; OCC — all twelve Olamide credit pages, Amapiano #86 (29 Jun 2023) still his only Official Singles Chart entry; TurnTable singles issues 2026-08-27, 09-03, 09-10 carry no Olamide row; albums issues 2026-08-27 and 09-03 show \"Olamide\" peak 1 and \"Carpe Diem\" peak 33 unchanged; RIAA returns \"no matching results\" with Asake as a working positive control. Not re-read today: Music Canada (FacetWP template returned empty for Olamide and for the BNXN control, so the read is inconclusive), RMNZ, SNEP, ARIA, ZPAV, GLF, AFP, RiSA.",
+     "severity": "note",
+     "fix": "Give Olamide his own verifiedOn rather than the shared AFROBEATS_VERIFIED_ON_6 (app/data/afrobeats.ts:273, e.g. a new AFROBEATS_VERIFIED_ON_7 = \"2026-09-17\" with a comment naming the bodies re-read above), so the artist page's \"last verified\" line, both Dataset dateModified values (app/afrobeats/[artist]/page.tsx and charts/page.tsx use a.verifiedOn) and app/sitemap.ts:98-99 move together; record the 7 Sep album addition as the date the chart data last changed."
+    },
+    {
+     "claim": "\"Both are read at source and reviewed weekly.\" (/afrobeats/olamide, head-to-head note) and \"Board reviewed weekly.\" / \"The board is reviewed weekly.\" (/afrobeats/olamide/charts, both layouts)",
+     "onPage": "reviewed weekly",
+     "shouldBe": "The last board review was the 6 Sep 2026 sweep, applied 8 Sep (PR #216); on 16 Sep the cadence has slipped to ten days. A cadence promise with no date beside it is a live claim the reader cannot check.",
+     "source": "docs/sweeps/RESUME-2026-09-06.md and git log for app/data/afrobeats.ts and docs/sweeps (no review commit after 8 Sep 2026)",
+     "severity": "note",
+     "fix": "Either apply this audit as the week's review (finding 1 plus the verifiedOn bump) so the claim is true again, or print the date of the last review from data beside the cadence — e.g. a BOARD_REVIEWED_ON constant in app/data/afrobeats.ts rendered in the compareNote in app/afrobeats/[artist]/page.tsx and in sourceNote / the source paragraph in app/afrobeats/[artist]/charts/page.tsx — so it rots visibly rather than silently."
+    }
+   ]
+  },
+  {
+   "page": "/afrobeats/black-sherif",
+   "checked": 94,
+   "findings": [
+    {
+     "claim": "/afrobeats/black-sherif (head-to-head) and /afrobeats/black-sherif/charts (source note, both layouts): \"this board is reviewed weekly\" / \"Board reviewed weekly\"",
+     "onPage": "\"Burna Boy's figures update daily; this board is reviewed weekly.\" beside \"last verified 28 August 2026\"; the charts page says \"The board is reviewed weekly.\" with no date at all",
+     "shouldBe": "Either a printed review date that actually moves, or drop \"weekly\". Black Sherif's verifiedOn is AFROBEATS_VERIFIED_ON_6 = 2026-08-28 and has not changed in 19–20 days (today 16/17 Sep); the newest verifiedOn constant on the whole board is that same 28 Aug. The register and chart bodies did not move (TCSN live register: same 500 rows all dated 2026-02-06; TurnTable weeks 35–37 hold no new Black Sherif singles rows; albums week 36 shows IRON BOY peak 3 / Villain peak 6), so the figures are still right — but the cadence claim is not evidenced by anything the page prints.",
+     "source": "app/data/afrobeats.ts lines 256–260 (verifiedOn constant); git log app/data/afrobeats.ts (last touch 11 Sep, no verifiedOn bump); turntablecharts.com/certification __NEXT_DATA__ read 17 Sep 2026; turntablecharts.com/api/ttc-proxy/api/chart/1/{35,36}/2026 and /charts/1 (week 37) read 17 Sep 2026",
+     "severity": "stale",
+     "fix": "app/afrobeats/[artist]/page.tsx line 490 and app/afrobeats/[artist]/charts/page.tsx lines 134 and 217 (also app/afrobeats/page.tsx line 195): replace the bare \"reviewed weekly\" with a derived line such as `last reviewed ${format(a.verifiedOn)}` and bump AFROBEATS_VERIFIED_ON when a review actually runs; or reword to \"reviewed periodically\"."
+    },
+    {
+     "claim": "/afrobeats/black-sherif phone layout carries no \"last verified\" date while the desktop layout does",
+     "onPage": "Desktop: \"Every figure read in an issuing body's own register — last verified 28 August 2026.\" Phone (MobileCerts): \"Every Black Sherif plaque, read in the issuing body's own register — 24 across 1 country, from 24 certified releases.\" — no date anywhere in the mobile DOM",
+     "shouldBe": "Both layouts print the same verifiedOn date (28 August 2026)",
+     "source": "DOM of https://burnaboystats.com/afrobeats/black-sherif read 17 Sep 2026 (main children outside .desktopOnly); app/afrobeats/[artist]/page.tsx lines 182–208 (MobileCerts call, no verifiedOn prop) vs lines 327–333 (desktop provenance line); app/components/MobileCerts.tsx has no verified/date prop",
+     "severity": "broken",
+     "fix": "app/afrobeats/[artist]/page.tsx line 203: append `, last verified ${new Date(a.verifiedOn+'T12:00:00Z').toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}` to the `lede` passed to MobileCerts (or add a `verifiedOn` prop to MobileCerts and print it under the lede)."
+    },
+    {
+     "claim": "/afrobeats/black-sherif/charts prints no verification date in either layout, and its Dataset JSON-LD dateModified is 2026-08-28 although the two album rows (IRON BOY NG #3, The Villain I Never Was NG #6) were added on 8 Sep 2026",
+     "onPage": "No date on the page; JSON-LD dateModified: a.verifiedOn = \"2026-08-28\"; sweep doc's Nigeria section documents only the singles chart (303 issues of category 1) and its peaks table omits both album rows",
+     "shouldBe": "A printed \"peaks last read <date>\" on the page, and a dateModified that reflects the 8 Sep change (or a separate chartsVerifiedOn); the sweep doc should carry an albums section naming the issue read (Official Top 100 Albums, 2026-08-27, category 2)",
+     "source": "git log -L on app/data/afrobeats.ts: album rows landed in ac4dc128 (2026-09-08, #218); app/afrobeats/[artist]/charts/page.tsx line 114; docs/sweeps/black-sherif-chart-peaks-v1.md (total line says 2 albums, body never mentions them; provenance only in docs/sweeps/RESUME-2026-09-06.md lines 91, 1202, 1323); turntablecharts.com/charts/2 week 36 read 17 Sep 2026 confirms peak 3 and peak 6",
+     "severity": "note",
+     "fix": "app/data/afrobeats.ts: add `chartsVerifiedOn: \"2026-09-08\"` to the black-sherif entry (or bump its verifiedOn) and use it at app/afrobeats/[artist]/charts/page.tsx line 114 and in a printed date line near line 217; add an \"## Nigeria — albums\" section to docs/sweeps/black-sherif-chart-peaks-v1.md with the two rows and the issue they were read from."
+    },
+    {
+     "claim": "Singular figures printed with plural labels on all three surfaces: \"1 COUNTRIES\" (artist stat card, section meta \"1 COUNTRIES · BEST TIER SHOWN\", artist OG card), \"1 TERRITORIES\" (charts stat, charts OG card), \"1 territories charted in\", \"1 CHART NO. 1S\" (head-to-head), and FAQ \"holds plaques in 1 country, including Nigeria\"",
+     "onPage": "\"1 COUNTRIES\", \"1 TERRITORIES\", \"1 territories charted in\", \"1 country · 1 chart No. 1s\", \"in 1 country, including Nigeria\"",
+     "shouldBe": "\"1 country\", \"1 territory\", \"1 territory charted in\", \"1 chart No. 1\", \"in 1 country: Nigeria\" — the repo already has count() in app/lib/plural.ts and uses it elsewhere on the same page",
+     "source": "Page text and OG PNGs of /afrobeats/black-sherif and /afrobeats/black-sherif/charts read 17 Sep 2026; app/afrobeats/[artist]/page.tsx lines 314, 346, 472; app/afrobeats/[artist]/opengraph-image.tsx line 45; app/afrobeats/[artist]/charts/page.tsx lines 129, 228; app/afrobeats/[artist]/charts/opengraph-image.tsx line 66; app/lib/boardFaqs.ts lines 168–172",
+     "severity": "wrong",
+     "fix": "Use count()/a ternary at each site: page.tsx line 314 `{countries === 1 ? \"country\" : \"countries\"}`, line 346 same, line 472 `{chartNo1s(a) === 1 ? \"chart No. 1\" : \"chart No. 1s\"}`; opengraph-image.tsx line 45 `l: countryCount(a) === 1 ? \"Country\" : \"Countries\"`; charts/page.tsx line 129 and 228 `territories === 1 ? \"Territory\" : \"Territories\"`; charts/opengraph-image.tsx line 66 same; boardFaqs.ts line 170: when list.length === 1 write `: ${list[0]}` instead of `, including …`."
+    },
+    {
+     "claim": "FAQ (both layouts): TurnTable's public page \"currently displays no Silver awards at all\" and \"open the February 2026 capture and search Black Sherif's name\"",
+     "onPage": "An undated \"currently\" claim, and a reference to a capture with no link — the reader cannot open it",
+     "shouldBe": "The claim holds today (live register read 17 Sep 2026: 500 rows, all certifiedDate 2026-02-06, tiers Platinum_1–8 and Gold_1 only, zero Silver; Black Sherif's six Platinum rows present and matching the page: Wotowoto Seasoning 3×, Kwaku The Traveller 2×, Sacrifice, Second Sermon (Remix), So It Goes, Soja), but it is a live claim and should be dated (\"as of <verifiedOn>\") and the archived capture should be linked (the URL/archive the sweep read)",
+     "source": "turntablecharts.com/certification __NEXT_DATA__ props.pageProps.certEntries read 17 Sep 2026; docs/sweeps/black-sherif-certifications-v1.md (\"archived capture of 21 Feb 2026 — 2,477 rows\"); app/lib/boardFaqs.ts lines 117–127",
+     "severity": "note",
+     "fix": "app/lib/boardFaqs.ts lines 119–126: pass a.verifiedOn into the sentence (\"…displayed no Silver awards at all when last read on 28 August 2026…\") and add the capture URL from the sweep doc; on the desktop FAQ block render it as a link."
+    },
+    {
+     "claim": "runHistory.black-sherif.ts header: \"Collection began 2026-09-17\"",
+     "onPage": "Not printed on the live page, but the generated file's start date rolls forward every night (2026-09-16 → 2026-09-17 in the last two bot commits) because the file has zero rows and the generator writes `mergedRuns[0]?.date ?? today`",
+     "shouldBe": "A fixed collection-start date (the day the artist's run tracking began), independent of whether any run has been recorded yet",
+     "source": "git show 5ee120a3 and 78add432 -- app/data/runHistory.black-sherif.ts; scripts/build-live-charts.mjs line 609",
+     "severity": "note",
+     "fix": "scripts/build-live-charts.mjs line 609: persist the first-seen date (read it back from the existing file header or a sidecar) instead of falling back to `today` on every rebuild."
+    }
+   ]
+  },
+  {
+   "page": "/afrobeats/ayra-starr",
+   "checked": 168,
+   "findings": [
+    {
+     "claim": "/afrobeats/ayra-starr/charts (both layouts) and the OG card: 82 chart entries; Starrgirl (album) listed with a single peak, 🇫🇷 #100",
+     "onPage": "Starrgirl → FR #100 only; 82 entries / 30 territories / 10 No. 1s",
+     "shouldBe": "Starrgirl → NG #2 on TurnTable's Official Top 100 Albums (debuted #2 in the issue dated 2026-08-20, #4 on 27 Aug and 3 Sep, highestPosition 2 on every row) in addition to FR #100 — 83 entries, territories stay 30, No. 1s stay 10",
+     "source": "TurnTable's own archive API: GET https://turntablecharts.com/api/ttc-proxy/api/chart/2/{34,35,36}/2026 with a turntablecharts.com Referer (payload decoded; dateCreated validated 2026-08-20 / 08-27 / 09-03)",
+     "severity": "stale",
+     "fix": "app/data/afrobeats.ts line 1276: entries: [{ c: \"NG\", peak: 2 }, { c: \"FR\", peak: 100 }]; line 1210 chartPublished.entries 82 → 83 (tests/afrobeats.test.ts pins equality); add the row to docs/sweeps/ayra-starr-chart-peaks-v1.md Albums table"
+    },
+    {
+     "claim": "/afrobeats/ayra-starr/charts: \"Fashion Killa\" 🇳🇬 #18",
+     "onPage": "Fashion Killa — NG #18 (and the same record is spelled \"Fashion Killer\" on the certifications page)",
+     "shouldBe": "No such row exists on the register: all 52 weekly issues of 2021 (album week 2021-08-05 onward) and every issue to 2026-09-10 — 306 issues read — carry no Ayra Starr row titled Fashion Killa/Killer at any position; her only 19 & Dangerous tracks that charted are Bloody Samaritan and Beggie Beggie. The only \"Fashion Killer\" on the register is Iyanya, Rayvanny & ZiiBeats (2024, peak 72). Remove the row or re-source it; the sweep doc itself flags it text-mined and unverified",
+     "source": "TurnTable Official Nigeria Top 100 archive, every issue 2020-11-05 → 2026-09-10 via the ttc-proxy API (category 1), matched on artist AND title",
+     "severity": "wrong",
+     "fix": "app/data/afrobeats.ts line 1268: delete the \"Fashion Killa\" release (entries −1; chartPublished.entries adjusted with the other changes); strike the row in docs/sweeps/ayra-starr-chart-peaks-v1.md line 62"
+    },
+    {
+     "claim": "/afrobeats/ayra-starr/charts: \"My Love\" (Leigh-Anne ft. Ayra Starr) 🇳🇬 #64",
+     "onPage": "My Love — NG #64",
+     "shouldBe": "NG #51 — the register's four weeks read 65 (2023-09-14), 51 (2023-09-21), 58, 63, and TurnTable's own highestPosition field prints 51 on every row; 64 was never a weekly position",
+     "source": "TurnTable Official Nigeria Top 100 issues dated 2023-09-14 → 2023-10-05 (ttc-proxy API, category 1)",
+     "severity": "wrong",
+     "fix": "app/data/afrobeats.ts line 1242: { c: \"NG\", peak: 64 } → { c: \"NG\", peak: 51 }; correct the sweep doc row (line 32)"
+    },
+    {
+     "claim": "/afrobeats/ayra-starr/charts: 82 entries, 29 of them Nigerian — presented as every official peak; \"People\" NG #6 is published on Omah Lay's board but absent from hers",
+     "onPage": "No Nigerian chart row for Ngozi, People, Love Don't Cost A Dime (Re-Up), Beggie Beggie, Escaladizzy II, You're Hired, Good Feelings, Bora Bora and 19 further credited records",
+     "shouldBe": "27 register-read Nigerian singles peaks are missing (artist credit names her on every row): Ngozi #2 (36 wks), People (Libianca ft. Ayra Starr & Omah Lay) #6, Love Don't Cost A Dime (Re-Up) #8, PINACOLADA #15, Beggie Beggie #26, Alle (Mavins) #29, How Many Times #30, Running #34, Escaladizzy II #34, Disturbing U #36, Amina (Mavins) #45, Many Roads #47, Woman Commando #56, On A Low #62, Make It Up To You #65, Amazing #70, Girl Next Door #73, Birds Sing of Money #74, Control #81, You're Hired #86, Misunderstood #86, Good Feelings #92, Jane #94, Lonely Refix #95, Midnight in New York #95, Bora Bora #96, Lagos Love Story #99. The three the 6 Sep sweep held back (Amazing, Misunderstood, Midnight in New York) now have their second read from the body's own API, not Wayback. Omah Lay's row (afrobeats.ts line 1547) already publishes People at NG #6, so the two boards currently give different answers for one record",
+     "source": "Deterministic read of all 306 TurnTable Official Nigeria Top 100 issues (2020-11-05 → 2026-09-10) via https://turntablecharts.com/api/ttc-proxy/api/chart/1/{week}/{year}, Referer required, dateCreated validated per issue; positions cross-checked against each row's highestPosition",
+     "severity": "stale",
+     "fix": "app/data/afrobeats.ts Ayra Starr charts block (lines 1240–1278): add NG entries to the existing Ngozi/You're Hired/Good Feelings/Bora Bora releases and new Singles rows for the rest; update chartPublished (line 1210) — with Starrgirl added and Fashion Killa removed this is entries 109 / territories 30 / no1s 10; append the rows to docs/sweeps/ayra-starr-chart-peaks-v1.md and retire the \"Held back\" section (line 479)"
+    },
+    {
+     "claim": "/afrobeats/ayra-starr: \"Every figure read in an issuing body's own register — last verified 17 August 2026\"; Dataset dateModified 2026-08-17 on both the artist and charts pages; sitemap lastmod 2026-08-17; \"reviewed weekly\"",
+     "onPage": "last verified 17 August 2026 (desktop provenance line; JSON-LD dateModified 2026-08-17 on / and /charts; sitemap lastmod 2026-08-17)",
+     "shouldBe": "The data behind the page changed after that date: Heaven Baby NG #2 was added from the 6 Sep sweep (commit 2a71d891, 8 Sep) and Santa was re-read at RIAA on 10 Sep and re-tagged RIAA Latin (commit 5e8c85dc, 11 Sep). verifiedOn should carry the latest body read (2026-09-10), and dateModified/lastmod follow it; as printed, a reader is told a weekly-reviewed board was last verified a month ago",
+     "source": "git log -- app/data/afrobeats.ts (2a71d891, 5e8c85dc); rendered pages and https://burnaboystats.com/sitemap.xml",
+     "severity": "note",
+     "fix": "app/data/afrobeats.ts line 1208: verifiedOn: AFROBEATS_VERIFIED_ON → a new constant for the 10 Sep 2026 read (the pattern AFROBEATS_VERIFIED_ON_5/_6 already exists); sitemap and JSON-LD derive from it"
+    },
+    {
+     "claim": "/afrobeats/ayra-starr/charts: \"Rush\" 🇧🇪 #16",
+     "onPage": "Belgium #16 with no chart-side note",
+     "shouldBe": "Belgium is the one country the file's own AfroPeak.note comment says must name which list the peak came from (Ultratop runs separate Flanders and Wallonia charts; CKay's row reads \"Flanders #8 · Wallonia #10\"). Ayra's BE row is the only Belgian peak on her board and says neither; Ultratop returned 403 to a non-browser read this pass, so the side could not be confirmed here",
+     "source": "app/data/afrobeats.ts AfroPeak.note comment and the CKay row (line 2024); ultratop.be (403 to curl)",
+     "severity": "note",
+     "fix": "app/data/afrobeats.ts line 1240: add note: \"Flanders #N · Wallonia #N\" after reading ultratop.be in a browser session"
+    }
+   ]
+  },
+  {
+   "page": "/afrobeats/wizkid",
+   "checked": 257,
+   "findings": [
+    {
+     "claim": "/afrobeats/wizkid/charts (both layouts), /afrobeats/wizkid hero CTA + 'Official charts' card + FAQ + meta description + all three OG cards: '154 entries · 32 territories · 24 No. 1 placements' and 'every peak read from each country's principal national chart'. Nigeria's record on the board is 20 singles + 6 albums.",
+     "onPage": "154 chart entries, 24 No. 1 peaks, 43 charting releases; Wizkid's Nigerian rows: Essence #2, Jogodo #1, Turbulence #2, Piece of My Heart #1, 2 Sugar #5, Coca Body #22, Gimme Dat #3, Ginger #1, Kese #1, Bad to Me #3, Dynamite #13, MMS #1, Cash Flow #1, B. D'OR #2, Money Constant #3, One Condition #4, Bad Girl #2, Alive #14, Oshe #14, Man on a Mission #29 + 6 albums.",
+     "shouldBe": "A deterministic read of every published issue of TurnTable's Official Nigeria Top 100 (306 issues, 2020-11-05 → 2026-09-10, gaps only at TurnTable's own New Year special) and Official Top 100 Albums (201 issues, 2022-11-02 → 2026-09-03) — the same method the Olamide/Black Sherif/BNXN sweeps used — confirms all 26 existing rows at the same peaks but finds ~80 further Wizkid-credited singles and 3 albums with Nigerian peaks the board omits, including a missing No. 1: 'S2 – EP' (Wizkid) #1 on the albums chart, 58 weeks (first #1 issue 2023-12-28). Singles missing, best first: IDK (ft. Zlatan) #2 (24 wks); Billionaires Club (Olamide, Wizkid & Darkoo) #2; Forever Be Mine (Gunna ft. Wizkid) #2 (24 wks; board has only ZA/UK/US/GLB for it); Getting Paid (Sarz, Asake, Wizkid & Skillibeng) #2; Reckless #3; Kai! (Olamide & Wizkid) #3; Big Time (ODUMODUBLVCK & Wizkid) #3; Alaye (Wizkid & Asake) #3; No Stress #4; Money & Love #4; Ololufe #4; Troubled Mind #5; Iskolodo #5; Abracadabra (Remix) #6; Bend #7; IDG (Asa ft. Wizkid) #8; State of Mind (DJ Tunez & Wizkid) #8; Diamonds #9; Karamo #9; Easy With Me #9; Blessed #10; Pray #10; Time #11; Longtime #12; Pami #12; Mood #12; Call Me Every Day #12; One Love #12; A Million Blessings #12; Like That (Bomboclatt) #12; Smile #13; Après Minuit #13; Wow #15; Energy #15; Apala Disco (Remix) #15; Break Me Down #15; Loju #17; Soji #17; Anoti #18; Many Ways #18; True Love #19; Balance #19; Bad For You #19; Situation #19; Mighty Wine #20; Ebelebe #20; Slow #20; Piece of Me #21; Don't Care #21; Everyday #22; Roma #23; Lose #25; Nights In The Sun #25; Sweet One #27; Flower Pads #28; Grace #30; Slip N Slide #31; LV N ATTN #32; Frames #32; Gyrate #34; System #36; Pressure #39; Abangani #39; Deep #40; Jam #40; Plenty Loving #42; Blessings #42; Special #44; Brown Skin Girl #46; Work Me Out #46; Majo #47; Awolowo #48; Stay For The Night #56; Slow Motion #61; Fiesta #71; Lighter #72; Pongo #81; Link Up (Spider-Verse Remix) #82; Anxious #86; Ojuelegba #92. Albums missing: S2 – EP #1, SoundMan Vol. 1 (StarBoy & Wizkid) #82, Superstar #92. Under the board's own rule (one entry per title per country, lead and featured both) entries rise from 154 to roughly 237 and No. 1s from 24 to 25; the OG card, meta description, FAQ answer, hero CTA and head-to-head all derive from the same rows and move with them. Four of these peaks are ALREADY published on other boards in the same file (Olamide: Billionaires Club #2, Kai! #3; Asake: Getting Paid #2, Alaye #3; BNXN: Mood #12, Many Ways #18; Seyi Vibez: Apala Disco (Remix) #15), so the repo currently contradicts itself about Wizkid's record.",
+     "source": "turntablecharts.com — GET /api/ttc-proxy/api/chart/1/{week}/{year} and /chart/2/{week}/{year} with a turntablecharts.com Referer, base64 payload decoded, every response validated on weekNumber AND dateCreated (an out-of-range week silently returns the earliest issue; a 429 returns a JSON 'Rate limit exceeded' payload that must be retried, not treated as absent — 100 req/min). Peaks = min of rank and highestPosition across all issues. Raw issues saved at scratchpad wiz/tt_cat1.jsonl and tt_cat2.jsonl, the diff at wiz/ng_singles.txt. The Wizkid sweep (docs/sweeps/wizkid-chart-peaks-v1.md line 528) text-mined Nigeria because it believed 'TurnTable exposes no weekly archive' — the Olamide sweep of 28 Aug (docs/sweeps/olamide-chart-peaks-v1.md lines 20–38) had already shown that to be false.",
+     "severity": "wrong",
+     "fix": "Re-derive Wizkid's Nigerian rows with the Olamide-sweep method and add them to app/data/afrobeats.ts charts array (lines 789–833): NG peaks on the singles above (one row per title, best peak; fold Mood ft. Buju / ft. BNXN and the two True Love credits) and the three albums; set chartPublished (line 701) to the recomputed entries/no1s (territories stay 32); update the Nigeria section and the 'no weekly archive' caveat in docs/sweeps/wizkid-chart-peaks-v1.md (lines 117–131, 528) and the sweepDocs test pair; add an updates.ts entry. Then extend the co-credit test in tests/afrobeats.test.ts so a record on artist A's board with a Wizkid credit must also appear on Wizkid's board (today it only compares records present on both)."
+    },
+    {
+     "claim": "/afrobeats/wizkid/charts: 'Board reviewed weekly.' (phone source note, page.tsx line 134) and 'The board is reviewed weekly.' (desktop, line 217) — with no verification date anywhere on the chart page.",
+     "onPage": "'Board reviewed weekly' / 'The board is reviewed weekly'; no date printed in either layout (only the Dataset JSON-LD carries dateModified 2026-08-17).",
+     "shouldBe": "Wizkid's verifiedOn is AFROBEATS_VERIFIED_ON = 2026-08-17 (afrobeats.ts line 699); the last data touch was the Essence ZA correction on 10 Sep. A live 'weekly' claim with a 31-day-old sweep and no printed date is unverifiable by the reader; print 'last verified 17 August 2026' from a.verifiedOn as the artist page already does, and either date the review or drop 'weekly'.",
+     "source": "app/data/afrobeats.ts line 699 (verifiedOn), app/afrobeats/[artist]/charts/page.tsx lines 134 and 217; live page text fetched 17 Sep 2026.",
+     "severity": "note",
+     "fix": "In app/afrobeats/[artist]/charts/page.tsx derive a `verifiedLabel` from a.verifiedOn (same toLocaleDateString call as [artist]/page.tsx lines 331–336) and print it in sourceNote (line 134) and the desktop source paragraph (line 217) in place of / alongside 'reviewed weekly'."
+    },
+    {
+     "claim": "/afrobeats/wizkid phone layout: no verification date. Desktop prints 'Every figure read in an issuing body's own register — last verified 17 August 2026'; the phone screen (MobileCerts) prints only the lede '156 across 21 countries, from 85 certified releases' and the site-wide header stamp 'Updated 16 Sept 2026'.",
+     "onPage": "Phone: 'Updated 16 Sept 2026' (site header, from updates.ts latest entry) and no 'last verified' line; desktop: 'last verified 17 August 2026'.",
+     "shouldBe": "Both layouts should carry the same provenance date — 17 August 2026 (a.verifiedOn). On a phone the only date visible implies the board figures are a day old.",
+     "source": "app/afrobeats/[artist]/page.tsx lines 190–210 (MobileCerts props, lede at line 203) vs lines 328–340; app/lib/api.ts line 18 (lastUpdated = newest updates.ts date); rendered HTML fetched 17 Sep 2026.",
+     "severity": "note",
+     "fix": "Append the verified date to the MobileCerts lede at app/afrobeats/[artist]/page.tsx line 203 (e.g. '… from 85 certified releases. Last verified 17 August 2026.') or add a provenance prop to MobileCerts and render it under the tier bars; add the assertion to tests/faqMobileVisibility.test.tsx or a sibling so both layouts print a.verifiedOn."
+    },
+    {
+     "claim": "/afrobeats/wizkid/charts lede and source panel (both layouts): 'every peak read from each country's principal national chart' / 'Every peak in the tables above was read from a chart body's own data'.",
+     "onPage": "'154 entries across 32 territories, 24 of them at No. 1 — every peak read from each country's principal national chart, plus 2 Billboard global charts.'",
+     "shouldBe": "The sweep document itself flags the South African rows (Essence #15, Forever Be Mine #13, Call Me Every Day #16, 2 Sugar #70) plus Italy, Poland, Sweden and Paraguay peaks as resting on dated citations, not a body read (docs/sweeps/wizkid-chart-peaks-v1.md lines 526–529). Spain I re-read at source today: One Dance 'Posición Máxima 2' and Pongo #75 at elportaldemusica.es match. The others remain unread; the page should not say 'every peak read' while its own evidence file says otherwise, or those rows should be verified (TOSAC via a browser; FIMI/ZPAV/Sverigetopplistan archives).",
+     "source": "docs/sweeps/wizkid-chart-peaks-v1.md lines 526–529; elportaldemusica.es/single/drake-feat-wizkid-kyla-one-dance and /single/rvssian-rauw-alejandro-wizkid-pongo (read 17 Sep 2026).",
+     "severity": "note",
+     "fix": "Either verify the ZA/IT/PL/SE/PY rows at the bodies and update the sweep doc, or soften the lede in app/afrobeats/[artist]/charts/page.tsx (line ~168 template and MobileOfficialCharts lede) to the standard the sweep actually met; move Spain from 'dated citation' to 'read at source' in the sweep doc (line 529)."
+    },
+    {
+     "claim": "/afrobeats/wizkid/live: 'Snapshot taken 17 September 2026' (desktop) / 'Snapshot 17 September 2026' (phone), on a page that says it is refreshed several times a day.",
+     "onPage": "Date only, no time; board.updated is the date string liveChartsUpdated = \"2026-09-16\" in the generated file (the deployed build carries 2026-09-17).",
+     "shouldBe": "With 6–7 rebuilds a day (stats-live.yml runs at 01:32, 23:16, 20:27, 17:18, 12:38, 06:51 UTC on 16–17 Sep) a date alone cannot tell a reader which edition they are looking at; the Dataset JSON-LD dateModified is likewise date-only. Print the snapshot timestamp (UTC) — the builder knows it.",
+     "source": "app/afrobeats/[artist]/live/page.tsx lines 128–132 and 197; app/data/liveCharts.wizkid.ts line 38; gh run list --workflow=stats-live.yml.",
+     "severity": "note",
+     "fix": "Have scripts/build-live-charts.mjs emit liveChartsUpdatedAt as an ISO datetime alongside liveChartsUpdated, thread it through liveBoards.ts (board.updated) and format 'Snapshot taken 17 September 2026, 01:32 UTC' in live/page.tsx line 197 and the MobileLiveCharts `updated` prop; pass the datetime to asDateTime for the JSON-LD."
+    },
+    {
+     "claim": "/afrobeats/wizkid/live OG share card: four release rows over the three stat tiles.",
+     "onPage": "Rendered card (opengraph-image/12a951p): the fourth row '#13 Joro 16 charts' pill sits flush against the top edge of the 292/66/6 tiles, and the tiles sit flush against the footer URL line — no breathing room, unlike the artist and charts cards.",
+     "shouldBe": "Consistent spacing with the other two cards (gap of ~24px between the release list and the tiles, and between the tiles and the footer).",
+     "source": "https://burnaboystats.com/afrobeats/wizkid/live/opengraph-image/12a951p?c2c60a9b1c2a3984 fetched 17 Sep 2026 (scratchpad wiz/og_5c4757.png); app/afrobeats/[artist]/live/opengraph-image.tsx lines 55 and 108–140.",
+     "severity": "note",
+     "fix": "In app/afrobeats/[artist]/live/opengraph-image.tsx either slice the release list to 3 rows (line 55) or reduce the h1 margin/font (line 108) and add marginBottom to the list container (line 113) so justifyContent: space-between has room; bump OG_ART after the art change per the OG lockup rule."
+    },
+    {
+     "claim": "Certification rows whose bodies could not be re-read today (13 of the 156 plaques): Switzerland 6 (Made in Lagos Gold, Essence Platinum, Come Closer Gold, Ginger Gold, Joro Platinum, Call Me Every Day Gold), Belgium 1 (One Dance 3× Platinum), Portugal 1 (One Dance 8× Platinum), Poland 1 (One Dance 3× Platinum), Sweden 1 (One Dance 7× Platinum), Greece 1 (One Dance 3× Platinum), Mexico 1 (One Dance 4× Platinum).",
+     "onPage": "As listed on /afrobeats/wizkid (both layouts) and unchanged since verifiedOn 17 Aug 2026.",
+     "shouldBe": "Unknown — not stale as far as could be established. hitparade.ch (IFPI Schweiz) and ultratop.be sit behind a Cloudflare bot check that curl and the in-app browser both fail; AFP publishes only the current weekly PDF (One Dance is not charting); bestsellery.zpav.pl refuses non-Polish traffic; Grammotex is behind a trade login; IFPI Greece's award column is overwritten weekly; AMPROFON's 4.4 MB table was not re-pulled. Every other body was read at source today and matched row-for-row with nothing newer than the sweep: BPI (15 rows, newest 10 Jul 2026), RIAA (10, newest 2 Jun 2025), Music Canada (13, newest 19 Nov 2025), SNEP (6 via title search — the interprete filter is an exact-credit match and returns 0 for 'Wizkid'), RiSA at risa-prod.trafficmanager.net (13), RMNZ via RadioScope table 2052/2051 (7, newest 8 Jan 2026), TurnTable live register (30 rows, all at board tiers), BVMI (One Dance Diamond), FIMI weeks 32–37/2026 (no Wizkid rows), Promusicae/El Portal (One Dance 5×), Pro-Música Brasil (One Dance Diamante, Checklist Ouro), ARIA Aug 2026 lists (no 2026 Wizkid rows; 17× and BSG Gold in 2025 lists), NVPI goudplatina.nl (Made in Lagos Goud), IFPI Danmark pages 0–3 back to 21 Jul 2026 (no Wizkid rows).",
+     "source": "Bodies named above, all read 17 Sep 2026 by curl from this machine; Cloudflare challenge pages captured for hitparade.ch.",
+     "severity": "note",
+     "fix": "No page change. Record in docs/sweeps/wizkid-certifications-v1.md that CH/BE need a human browser session to re-verify, and add the SNEP title-search recipe (?titre= is a substring match; ?interprete= is exact-credit) to docs/sourcing/cert-sourcing.js line 29 so the next reader does not report France as empty."
+    }
+   ]
+  },
+  {
+   "page": "/afrobeats/ckay",
+   "checked": 102,
+   "findings": [
+    {
+     "claim": "/afrobeats/ckay/charts (and the /afrobeats/ckay hero, CTA card, FAQ and OG card): \"33 entries across 20 territories\" — no Ireland row for love nwantiti (ah ah ah)",
+     "onPage": "33 chart entries · 20 territories; love nwantiti's country list runs CH FR NL NO PT GLBX NZ UK AT SE DE DK AU BE IT ES US CA GLB, no IE",
+     "shouldBe": "Add Ireland #5: love nwantiti (ah ah ah) peaked at No. 5 on the Official Irish Singles Chart. Entries 33 → 34, territories 20 → 21, No. 1s unchanged at 6.",
+     "source": "Official Irish Singles Chart (IRMA, compiled by the Official Charts Company), read week by week at officialcharts.com/charts/irish-singles-chart/<date>/ie7501/: 1 Oct 2021 #9 (peak 9), 8 Oct #7, 15 Oct #5 (Peak: 5, Weeks: 5), 22 Oct #5, 29 Oct #5, 5 Nov #7 (peak 5), 12 Nov #5 (peak 5), 19 Nov #31, 26 Nov #30, 3 Dec #35, 10 Dec #50; row credited CKAY. The v1 sweep doc listed Ireland as 'reported, not confirmable' — it is confirmable and the site already reads this chart for Davido.",
+     "severity": "stale",
+     "fix": "app/data/afrobeats.ts line 2024: append { c: \"IE\", peak: 5 } to the love nwantiti (ah ah ah) entries; line 2010: chartPublished → { entries: 34, territories: 21, no1s: 6 } (or 36/22 if Hungary is applied too); add the row and the OCC evidence to docs/sweeps/ckay-chart-peaks-v1.md first per docs/sweeps/README.md; log a line in app/data/updates.ts; IE already exists in app/data/charts.ts (line 39, IRMA)."
+    },
+    {
+     "claim": "/afrobeats/ckay/charts (and the /afrobeats/ckay hero, CTA card, FAQ and OG card): no Hungary rows — love nwantiti (ah ah ah) and Emiliana both charted on MAHASZ's Single Top 40",
+     "onPage": "33 chart entries · 20 territories; no HU entry for either title",
+     "shouldBe": "love nwantiti (ah ah ah) HU #6 and Emiliana HU #26. With Ireland also applied: 36 entries, 22 territories, 6 No. 1s.",
+     "source": "MAHASZ's own archive, artist search at slagerlistak.hu/archivum/kereso-eloado-cim-szerint (POST eloado=ckay): 'Single Top 40 slágerlista — CKay | Love Nwantiti (Ah Ah Ah) | 8 weeks | peak 6 (2021. 39. hét)' and 'CKay | Emiliana | 1 week | peak 26 (2022. 2. hét)'. Confirmed on the weekly pages: slagerlistak.hu/single-top-40-slagerlista/2021/39 row '6 | CKay | Love Nwantiti (Ah Ah Ah) | (Magneoton/Warner Music)' and /2022/2 row '26 | ÚJ | CKay | Emiliana'. The Rádiós, Dance and Stream Top 40 rows on the same result are excluded by the site's own rule. The v1 sweep doc listed Hungary as 'reported, not confirmable'.",
+     "severity": "stale",
+     "fix": "app/data/afrobeats.ts line 2024: append { c: \"HU\", peak: 6 } to love nwantiti (ah ah ah); line 2026: append { c: \"HU\", peak: 26 } to Emiliana's entries (SE 90, GLB 176); line 2010: chartPublished entries/territories to match; evidence rows into docs/sweeps/ckay-chart-peaks-v1.md; updates.ts entry. HU already exists in app/data/charts.ts line 55 (MAHASZ Single Top 40)."
+    },
+    {
+     "claim": "/afrobeats/ckay desktop provenance line: \"Every figure read in an issuing body's own register — last verified 26 August 2026\" (also Dataset JSON-LD dateModified 2026-08-26 on both /ckay and /ckay/charts, and the sitemap lastmod)",
+     "onPage": "last verified 26 August 2026",
+     "shouldBe": "A date at or after the last verification. The registers were re-read on 6 Sep 2026 (RIAA, BPI, SNEP, TCSN — docs/sweeps/RESUME-2026-09-06.md line 201) and four chart rows were added on 8 Sep 2026 (PR #216: BADAMINTON, E CLEAR, AFRICAN GIRLS, BANGER BOY), yet the page still stamps the 26 Aug sweep. After this pass it should read 17 September 2026.",
+     "source": "app/data/afrobeats.ts line 2008 (verifiedOn: AFROBEATS_VERIFIED_ON_4 = \"2026-08-26\"); git log for app/data/afrobeats.ts shows commits 2a71d891 (8 Sep) and ac4dc128 (8 Sep) touching CKay's data with no verifiedOn bump; no artist's verifiedOn was moved after the 6 Sep sweep.",
+     "severity": "stale",
+     "fix": "Add an AFROBEATS_VERIFIED_ON_7 = \"2026-09-17\" constant (app/data/afrobeats.ts ~line 260) and set CKay's verifiedOn to it at line 2008 when the Ireland/Hungary rows land; the provenance line, both Dataset dateModified values and app/sitemap.ts lines 98–99 all derive from it."
+    },
+    {
+     "claim": "/afrobeats/ckay/charts: \"The board is reviewed weekly\" with no verification date printed on either layout, while the same data is stamped 26 Aug in the page's JSON-LD",
+     "onPage": "desktop: '...so the two records can be read side by side. The board is reviewed weekly.' — mobile: 'Board reviewed weekly.' No date.",
+     "shouldBe": "Print the read date next to the review claim, e.g. 'Last read 17 September 2026', the way the certifications page does.",
+     "source": "app/afrobeats/[artist]/charts/page.tsx lines 134 and 217 (prose has no date); line 114 uses a.verifiedOn only inside JSON-LD.",
+     "severity": "note",
+     "fix": "In app/afrobeats/[artist]/charts/page.tsx render a.verifiedOn (formatted as on page.tsx line ~280) after 'reviewed weekly' at line 217 and in sourceNote at line 134 so both layouts carry the date."
+    },
+    {
+     "claim": "/afrobeats/ckay/charts: SHEGE is absent because its Nigerian run was live at the 6 Sep sweep — it is still live and has climbed",
+     "onPage": "No SHEGE row (correct under the 'a peak on a live run is not a peak' rule); 33 entries",
+     "shouldBe": "Nothing to publish yet, but the rejected value is out of date: SHEGE is now #50 with highestPosition 50 (was 61, then 57), weeksOnChart 5, on TurnTable's Official Nigeria Top 100 week of 10 Sep 2026 (chart id 5921). E CLEAR sits at #49 with highestPosition 16 (matches the site). Re-read when the run closes; it will be a 35th/37th entry.",
+     "source": "turntablecharts.com/charts/1 __NEXT_DATA__ chartData, dateCreated 2026-09-10T00:00:00, rows {rank 50, title SHEGE, artiste CKay, highestPosition 50, lastPosition 57, weeksOnChart 5} and {rank 49, title E CLEAR, highestPosition 16, weeksOnChart 7}.",
+     "severity": "note",
+     "fix": "Add SHEGE to the watch list in docs/sweeps/ckay-chart-peaks-v1.md (pending, live at 50 on 10 Sep 2026) so the next weekly pass reads it; no data change until TurnTable's row leaves the top 100."
+    },
+    {
+     "claim": "/afrobeats/ckay/live: \"9 releases charting\" / \"Songs (8)\" — the same record is listed twice under two platform spellings, twice",
+     "onPage": "Songs list carries both 'BODY' (Apple Music LR/SL/GM + Spotify NG) and 'BODY (danz)' (YouTube NG), and both 'Love Nwantiti' (iTunes RU/BF + Spotify MA) and 'love nwantiti (ah ah ah)' (Deezer SG); summary tile says 9 releases charting; hero on /afrobeats/ckay says 15 placements (placements are right, releases are not)",
+     "shouldBe": "7 distinct releases charting (BODY (danz), love nwantiti (ah ah ah), Beggie Beggie, Emiliana, samson and delilah, La La, Boyfriend); each record grouped once with all its platforms under it.",
+     "source": "app/data/liveCharts.ckay.ts (generated 2026-09-17) titles at lines 45, 89, 230, 250; scripts/live-artists.mjs line 203 only aliases 'BODY (danz) (feat. MAVO)' → 'BODY (danz)', so kworb's bare 'BODY' and 'Love Nwantiti' spellings survive as separate releases.",
+     "severity": "note",
+     "fix": "scripts/live-artists.mjs line 203: extend titleAliases to { \"BODY (danz) (feat. MAVO)\": \"BODY (danz)\", \"BODY\": \"BODY (danz)\", \"Love Nwantiti\": \"love nwantiti (ah ah ah)\" } (the alias matcher already normalises case), then let the hourly build regenerate liveCharts.ckay.ts; the 'releases charting' tile in app/afrobeats/[artist]/live/page.tsx line ~240 then derives 7."
+    }
+   ]
+  },
+  {
+   "page": "/afrobeats/bnxn",
+   "checked": 112,
+   "findings": [
+    {
+     "claim": "/afrobeats/bnxn/charts (both layouts) and the chart-count surfaces: \"WHO THIS\" Nigeria peak #42",
+     "onPage": "WHO THIS — 🇳🇬 #42 (desktop card and table, phone list \"Nigeria, peak #42\")",
+     "shouldBe": "#24 — and flagged as a live run. TurnTable's Official Nigeria Top 100 issue dated 2026-09-10 (weekNumber 37) reads rank 24, highestPosition 24, weeksOnChart 3, lastPosition 40 for \"WHO THIS — Victony & BNXN\"; the 2026-09-03 issue (week 36) already had it at 40. The site's 42 was read from the 2026-08-27 debut issue and two newer issues have since bettered it. Week 38 (17 Sep) is not yet published (the proxy returns the category's earliest instance).",
+     "source": "GET https://turntablecharts.com/api/ttc-proxy/api/chart/1/37/2026 with a turntablecharts.com Referer, base64 payload decoded and validated against week 37 / dateCreated 2026-09-10; turntablecharts.com/charts/1 __NEXT_DATA__ dateCreated confirms 2026-09-10 is the newest singles issue. Albums chart (categoryId 2) newest issue is 2026-09-03; CAPTAIN 1, Sincerely Benson 2, RnB 2, The Game Needs Us 2 unchanged. Back Outside (peak 1), Eja Meja (4), Already (17) unchanged.",
+     "severity": "stale",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/afrobeats.ts line 681 (BNXN) AND line 1877 (Victony's copy of the same co-credited row — tests hold both to one answer): peak: 42 → 24. Re-read at the 2026-09-17 issue before committing, since the run is live and climbing (42→40→24); record the read in docs/sweeps/bnxn-chart-peaks-v1.md."
+    },
+    {
+     "claim": "/afrobeats/bnxn desktop provenance line and Dataset JSON-LD dateModified: \"Every figure read in an issuing body's own register — last verified 28 August 2026\"",
+     "onPage": "last verified 28 August 2026 (page.tsx line 328; dateModified \"2026-08-28\" in the Dataset node)",
+     "shouldBe": "8 September 2026 at the latest — the repo's own sweep document records all ten international plaques re-read at BPI, RIAA, Music Canada, RMNZ and SNEP on 8 Sep 2026 (\"Verified at the register, 8 Sep 2026\"), and the chart rows the page counts (five album entries, WHO THIS, Bad Since '97 EP) were read 6 Sep and applied 8 Sep in #218. Re-read today at those five bodies, all ten rows still match (BPI Finesse Gold 14.11.2025 / Propeller Silver / WIZKID FT BUJU Mood Silver; RIAA Finesse and Mood Gold; Music Canada Finesse Platinum, Mood Gold 21 Jul 2023; RMNZ Finesse Gold 2024-02-08, Mood Gold 2025-10-02; SNEP Finesse Platine 29/05/2025), and TCSN's live register still serves the same 26 BNXN rows dated 2026-02-06 — so the date is the only stale part.",
+     "source": "docs/sweeps/bnxn-certifications-v1.md §\"Verified at the register, 8 Sep 2026\"; git ac4dc128 (#218, 8 Sep); certified-awards.bpi.co.uk (?search=BNXN / BUJU, HX-Request), riaa.com default-award tab se=BNXN, musiccanada.com FacetWP refresh gp_search=Buju/Finesse, radioscope.co.nz TablePress 2052, snepmusique.com ?interprete=BNXN, turntablecharts.com/certification __NEXT_DATA__ — all read 17 Sep 2026.",
+     "severity": "stale",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/afrobeats.ts line 260: AFROBEATS_VERIFIED_ON_6 = \"2026-08-28\" is shared by Olamide, Black Sherif and BNXN. Either bump it to \"2026-09-08\" for all three (all three had rows applied in #218) or give BNXN its own constant; once finding 1 is applied, set it to that read's date."
+    },
+    {
+     "claim": "/afrobeats/bnxn/charts prints no verification date in either layout — only \"Board reviewed weekly\" (phone sourceNote) and \"The board is reviewed weekly\" (desktop source paragraph)",
+     "onPage": "\"Peaks on each country's principal national chart, plus 2 Billboard global charts — the same standard used for Burna Boy. Airplay, genre and platform charts excluded. Board reviewed weekly.\" — no date anywhere on the rendered page; the Dataset JSON-LD alone carries dateModified 2026-08-28",
+     "shouldBe": "A printed \"read at source on <verifiedOn>\" line in both layouts, so a reader can see how old the peaks are (the Nigerian rows are already one issue behind, per finding 1)",
+     "source": "/Users/paulemmanuelng/burnaboy-website/app/afrobeats/[artist]/charts/page.tsx lines 134 (sourceNote) and the desktop source paragraph (~line 200); rendered page read 17 Sep 2026",
+     "severity": "note",
+     "fix": "Append the formatted a.verifiedOn to sourceNote (charts/page.tsx line 134) and to the desktop source paragraph, the same en-GB formatting the artist page uses at page.tsx lines 328-333."
+    },
+    {
+     "claim": "/afrobeats/bnxn phone layout omits the provenance date the desktop layout prints",
+     "onPage": "Phone screen (MobileCerts): lede \"Every BNXN plaque, read in the issuing body's own register — 65 across 6 countries, from 55 certified releases.\" with no \"last verified\" date; desktop prints \"last verified 28 August 2026\"",
+     "shouldBe": "Both layouts carrying the same dated claim",
+     "source": "DOM of https://burnaboystats.com/afrobeats/bnxn read 17 Sep 2026 (mobileCerts-module screen vs .desktopOnly); MobileCerts.tsx has no verifiedOn/lastUpdated prop",
+     "severity": "note",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/afrobeats/[artist]/page.tsx MobileCerts call (~line 175): pass verifiedOn={a.verifiedOn} and print it under the lede in app/components/MobileCerts.tsx, or fold the date into the lede string passed at page.tsx ~line 191."
+    },
+    {
+     "claim": "Sweep document headline for BNXN's chart peaks: \"**6 No. 1s**, all in Nigeria. **7 territories.**\"",
+     "onPage": "docs/sweeps/bnxn-chart-peaks-v1.md line 17 says 6 No. 1s; the live pages (artist page, /charts hero, stat grid, OG card, FAQ, meta title \"7 No.1s\") all say 7",
+     "shouldBe": "7 — the 7 Sep correction on line 12 added five album entries including CAPTAIN at No. 1 on the Official Top 100 Albums, and chartNo1s() derives 7 from the array; the doc's No. 1 line was not updated with its total line",
+     "source": "docs/sweeps/bnxn-chart-peaks-v1.md lines 12-17; app/data/afrobeats.ts CAPTAIN Albums NG peak 1 (line ~682); tests/sweepDocs.test.ts guards the certifications total and Burna's phrasing but not a board artist's \"N No. 1s\" line",
+     "severity": "note",
+     "fix": "docs/sweeps/bnxn-chart-peaks-v1.md line 17: 6 → 7 (with a dated note that CAPTAIN's albums-chart No. 1 is the seventh). Add a case to tests/sweepDocs.test.ts holding each chart-peaks doc's \"**N No. 1s**\" line to chartNo1s(a) so the pair cannot drift again."
+    },
+    {
+     "claim": "Code comment above BNXN's Nigerian album rows says the \"Bad Since '97\" EP is HELD BACK, but the row is published",
+     "onPage": "app/data/afrobeats.ts lines 674-680: \"HELD BACK: the 'Bad Since '97' EP reads 14 on this chart ... Needs a decision, not a guess.\" — while line 686 carries { title: \"Bad Since '97\", kind: \"Albums\", entries: [{ c: \"NG\", peak: 14 }] } (applied in #218, 8 Sep) and /charts shows BAD SINCE '97 #14 under Albums and #37 under Singles",
+     "shouldBe": "The comment should record the decision that was taken (applied 8 Sep, every week 2022-44 to 2026-35 read). The collision it warns about is real in code: covers on the charts page are keyed on title alone (Object.fromEntries(a.charts.map(r => [r.title, r.cover])) at charts/page.tsx ~line 90), and the artist now has two chart rows titled \"Bad Since '97\" — harmless today only because both rows point at the same Deezer URL",
+     "source": "git ac4dc128 (#218) added the row; app/data/afrobeats.ts lines 674-686; app/afrobeats/[artist]/charts/page.tsx covers map",
+     "severity": "note",
+     "fix": "Replace the HELD BACK comment at afrobeats.ts:674-680 with the applied-8-Sep record; key the covers map on `${r.kind}:${r.title}` in charts/page.tsx (and the matching lookup in ChartExplorer/MobileOfficialCharts) so a same-title single/album pair can carry different art."
+    },
+    {
+     "claim": "Hook: \"Britain, Canada and New Zealand still file Wizkid's 'Mood' under Buju, the name on his records until early 2022\" — an undated \"still\" claim",
+     "onPage": "Hero hook on /afrobeats/bnxn (desktop) and the same string in the phone header",
+     "shouldBe": "True today — BPI credits \"WIZKID FT BUJU\" (title 8312), Music Canada \"Wizkid Mood (Ft. Buju)\" (Gold, 21 Jul 2023), RMNZ \"WizKid feat. Buju\" (Gold, 2025-10-02) — but nothing guards it: tests/artistHookFigures.test.ts checks the \"Seven Nigerian No. 1s\" half and not the credit strings, so the sentence rots silently the day any register re-credits the row",
+     "source": "certified-awards.bpi.co.uk/format/2/artist/6116/title/8312; musiccanada.com FacetWP gp_search=Buju; radioscope.co.nz TablePress 2052 search \"Buju\" — all read 17 Sep 2026",
+     "severity": "note",
+     "fix": "Either date the clause (\"as of September 2026\") in app/data/afrobeats.ts line 514, or add a test that reads the three credit strings from docs/sweeps/bnxn-certifications-v1.md's pinned table and fails if a re-sweep changes them."
+    },
+    {
+     "claim": "Four of BNXN's nine international chart peaks could not be re-read at a body today: Propeller IE #59, Finesse IE #61, Finesse Billboard Global 200 #131 and Global Excl. U.S. #106",
+     "onPage": "/charts shows 🇮🇪 #59 (Propeller), 🇮🇪 #61 (Finesse), 🌍 #131 and 🌐 #106 (Finesse)",
+     "shouldBe": "Unchanged as far as can be told — these are carried forward from the 28 Aug sweep unverified. The other five were confirmed today: Official Singles Chart Finesse 52 (20 wks), Propeller 38 (9 wks), Pray 2 The East 77 (1 wk) at officialcharts.com artist pages 62318/63091/62739; Single Top 100 Finesse peak 84 (8 wks) at dutchcharts.nl.",
+     "source": "officialcharts.com publishes no Irish artist chart history; irish-charts.com sits behind an interactive bot check (not attempted); Billboard's per-artist /chart-history/glo and /gxu pages are client-rendered and returned no rows to a fetch — same gaps the 6 Sep sweep recorded",
+     "severity": "note",
+     "fix": "No data change. Record in docs/sweeps/bnxn-chart-peaks-v1.md that IE and both Billboard global peaks were last read 28 Aug 2026 and remain unverified since, so the next sweep opens them in a real browser rather than a fetch."
+    }
+   ]
+  },
+  {
+   "page": "/afrobeats/fireboy-dml",
+   "checked": 216,
+   "findings": [
+    {
+     "claim": "/afrobeats/fireboy-dml (both layouts): \"Uptown Disco\" is filed under Singles (23) as one of Fireboy DML's lead singles; the phone screen and desktop explorer both print \"Singles (23) / Featured Appearances (5)\".",
+     "onPage": "Uptown Disco — Nigeria Platinum — listed in the Singles/lead group; Singles (23), Featured Appearances (5).",
+     "shouldBe": "Uptown Disco under Featured appearances: Singles (22), Featured Appearances (6). Total stays 36.",
+     "source": "TurnTable's own register (turntablecharts.com/_next/data/0c754DSEVVyV5fFEzY6zy/certification.json, 500 rows, read 17 Sep 2026) credits it \"Olamide, Fireboy DML & Asake\"; Deezer files the record under Olamide (album Ikigai). The board already treats this credit as a feature on Asake's page (app/data/afrobeats.ts:1359, kind \"Featured appearances\") and as a lead only on Olamide's (line 293).",
+     "severity": "wrong",
+     "fix": "app/data/afrobeats.ts line 1920: change kind from \"Lead singles\" to \"Featured appearances\" for Uptown Disco in the fireboy-dml releases array (the charts row at line 1944 keeps kind \"Singles\" — chart kinds are Albums/Singles only)."
+    },
+    {
+     "claim": "/afrobeats/fireboy-dml/charts (both layouts) and the artist page hero/CTA/FAQ/meta/OG: \"68 entries\", \"55 releases charting\" — the list carries both \"All of Us (Ashawo)\" NG #16 and \"Ashawo\" NG #16 as two releases.",
+     "onPage": "All of Us (Ashawo) — Nigeria #16; Ashawo — Nigeria #16 (two rows, two releases; 68 entries, 55 releases).",
+     "shouldBe": "If these are one record filed under two TurnTable title strings (identical peak, and the certification register, Deezer and the site's own certs know only \"All Of Us (Ashawo)\"), one row should go: 67 entries, 54 releases, everywhere the figure is derived (hero button, CTA card, FAQ, meta description, OG card, Dataset node, searchIndex, chartPublished guard).",
+     "source": "TurnTable's Nigeria Top 100 archive was the sweep's source (docs/sweeps/fireboy-dml-chart-peaks-v1.md rows 35–36, title-keyed join); TurnTable's chart proxy (api/ttc-proxy/api/chart/1/{week}/2026) returns 403 to curl on 17 Sep 2026 so the two runs could not be re-read at the body today; Deezer search for Fireboy DML returns only \"All Of Us (Ashawo)\"; the TCSN cert JSON has only \"All Of Us (Ashawo)\".",
+     "severity": "note",
+     "fix": "Re-read the two title strings' runs in the TurnTable captures (compare weeks-on-chart and dates); if they are the same record delete app/data/afrobeats.ts line 1958 (\"Ashawo\") and set chartPublished.entries at line 1909 to 67, then update the sweep doc rows 35–36 and the searchIndex/updates figures."
+    },
+    {
+     "claim": "/afrobeats/fireboy-dml/charts phone layout: the release cards are printed in data order, not by peak — \"Peru\" (badge #2, his only international hit, 11 charts) is the 34th card, between \"YAWA #32\" and \"Jabo #37\"; \"Body\" (#17) is the last card after \"change your life #100\". The desktop explorer sorts the same rows by reach/peak.",
+     "onPage": "Mobile Singles list: … Elon Musk (Remix) #32, YAWA #32, Peru #2, Jabo #37, … change your life #100, Body #17.",
+     "shouldBe": "Same order as desktop (Peru first among singles, Bandana second, Body third), i.e. sorted by best peak / number of charts rather than the array's Nigeria-peak order.",
+     "source": "app/components/MobileOfficialCharts.tsx lines 155–190 build `sections` from `albums/singles/features` without sorting; app/components/ChartExplorer.tsx lines 177–186 sort with byReach. Fireboy's array in afrobeats.ts is ordered by NG peak with Peru at NG #33 and Body (no NG entry) appended last.",
+     "severity": "broken",
+     "fix": "In app/components/MobileOfficialCharts.tsx sort each group's rows before render (e.g. `.sort((x, y) => y.peaks.length - x.peaks.length || x.best - y.best)` after the map at line ~189), matching ChartExplorer's byReach; this fixes every board artist whose array is in Nigeria-peak order, not only Fireboy."
+    },
+    {
+     "claim": "/afrobeats/fireboy-dml: \"Every figure read in an issuing body's own register — last verified 21 August 2026\" (desktop provenance line; Dataset JSON-LD dateModified 2026-08-21); plus \"Both are read at source and reviewed weekly\" (head-to-head) and \"Board reviewed weekly\" / \"The board is reviewed weekly\" on /charts (both layouts).",
+     "onPage": "last verified 21 August 2026 · reviewed weekly",
+     "shouldBe": "The repo's own log shows a full re-read of every reachable body for Fireboy on 6 Sep 2026 (RIAA, BPI, SNEP, RMNZ, IFPI DK, TCSN JSON, Music Canada, Billboard, OCC) that found and applied one delta (CLAAT! NG #21, PR #216, 8 Sep); the date printed should be 6 September 2026. And the \"weekly\" promise is not currently being kept: the last review was 6 Sep, 11 days before today, with no later sweep file.",
+     "source": "docs/sweeps/RESUME-2026-09-06.md §fireboy-dml (\"every reachable body re-read at source today (6 Sep 2026)\"); git log — the only later afrobeats.ts commits are design/compare work; app/data/afrobeats.ts:244 AFROBEATS_VERIFIED_ON_3 = \"2026-08-21\" is still what fireboy-dml (line 1907) points at.",
+     "severity": "stale",
+     "fix": "Add a constant (e.g. AFROBEATS_VERIFIED_ON_7 = \"2026-09-06\") in app/data/afrobeats.ts and point fireboy-dml's verifiedOn (line 1907) at it — sitemap and Dataset dateModified follow; either run the weekly review or soften \"reviewed weekly\" at app/afrobeats/[artist]/page.tsx:491 and charts/page.tsx:134 and :217 to a printed last-review date."
+    },
+    {
+     "claim": "/afrobeats/fireboy-dml/live OG share card: \"#92 Playboy 7 charts\".",
+     "onPage": "OG image row: #92 Playboy — 7 charts.",
+     "shouldBe": "No figure on the page reads 7: the page lists the album \"Playboy\" (6 charts, best #92) and the song \"Playboy\" (1 chart, #112) separately in both layouts. The card should either print the album row (6 charts) or label the merged row so the count can be reconciled.",
+     "source": "app/afrobeats/[artist]/live/opengraph-image.tsx lines 36–52 merge same-title releases on purpose (\"One row per TITLE\"); the live page and app/data/liveCharts.fireboy-dml.ts keep the album and song apart.",
+     "severity": "note",
+     "fix": "In app/afrobeats/[artist]/live/opengraph-image.tsx key the byTitle map on `${r.title}|${r.kind}` (or append \" (album)\" to the merged label) so the card's count matches a row a reader can find on the page."
+    },
+    {
+     "claim": "/afrobeats/fireboy-dml/charts: \"Body\" — Belgium #17, Netherlands #17 (2 charts); 13 territories.",
+     "onPage": "Body: 🇧🇪 #17, 🇳🇱 #17.",
+     "shouldBe": "Netherlands #17 is confirmed (Dutch Top 40 artist page: Body 17, 7 weeks; Peru 21, 15 weeks). \"Body\" is Topic × Fireboy DML × Nico Santos (released 29 Aug 2025, two German acts), so Germany's, Austria's and Switzerland's principal charts are the likeliest missing entries; none could be read today.",
+     "source": "top40.nl/top40-artiesten/fireboy-dml (read 17 Sep 2026); Deezer track 3519927181 contributors Topic / Fireboy DML / Nico Santos. offiziellecharts.de, austriancharts.at, hitparade.ch and ultratop.be all answer 403 / a Cloudflare challenge to curl and WebFetch; the shared in-app Browser was at its tab cap and in use by other audits, so they were not opened.",
+     "severity": "note",
+     "fix": "Open offiziellecharts.de (Suche → Topic), austriancharts.at and hitparade.ch in a browser for \"Body\"; add any DE/AT/CH peak to app/data/afrobeats.ts line 1995 and bump chartPublished (line 1909) and the sweep doc; also confirm which Ultratop side the BE #17 is."
+    }
+   ]
+  }
+ ]
+}

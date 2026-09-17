@@ -1,0 +1,744 @@
+{
+ "pages": [
+  {
+   "page": "/",
+   "checked": 41,
+   "findings": [
+    {
+     "claim": "\"The full picture\" tier bars: Gold 96 (41%) · Silver 30 (13%) — built from app/data/certifications.ts, which carries \"My Oasis\" (Sam Smith ft. Burna Boy) as UK Gold",
+     "onPage": "Gold 96 · Silver 30 (desktop CertLedger breakdown panel; the same tierTotals feed the mobile certs screen)",
+     "shouldBe": "Gold 95 · Silver 31 (percentages stay 41% / 13%; the 234 total and 26 countries are unchanged)",
+     "source": "BPI's own register, certified-awards.bpi.co.uk, search \"Burna Boy\" sorted certified-newest, read 16 Sep 2026: \"SAM SMITH FT BURNA BOY | MY OASIS | Silver | Single | CAPITOL | 22.08.2025\". A title search for \"My Oasis\" returns the same single row at Silver. The repo's own docs/sourcing/burna-boy.worklist.json has this key (\"My Oasis|UK\", tier Gold) with status \"pending\", url null, quote null — it was never read at the body; commit d2c35e68 (1 Jul 2026) set it to Gold from a 'current-tier snapshot', not from BPI. All other 29 UK rows match BPI's 30-row list (Sungba is credited to ASAKE alone and We Pray to COLDPLAY; \"Dai Dai\" is still Silver, 07.08.2026).",
+     "severity": "wrong",
+     "fix": "app/data/certifications.ts line 457: change `{ c: \"UK\", level: \"Gold\" }` in the My Oasis row to `{ c: \"UK\", level: \"Silver\" }`; line 629 (certHistory) `{ title: \"My Oasis\", ..., country: \"UK\", level: \"Gold\", year: 2025 }` → level \"Silver\" (BPI dates it 22.08.2025); add a Certifications correction entry at the top of app/data/updates.ts; mark the worklist row confirmed with the BPI quote; bump any Gold/Silver baselines in scripts/watched-metrics.json that count tiers."
+    },
+    {
+     "claim": "\"Their anthem has now spent 37 days as the most-streamed song on Earth — back on top in August.\" (desktop) / \"“Dai Dai” spent 37 days as the most-streamed song on Earth — back on top in August.\" (mobile)",
+     "onPage": "37 days, 'has now spent', 'back on top in August' — typed prose in both layouts",
+     "shouldBe": "37 days is still the correct closed total, but the sentence reads as a live run on 16 September and the run ended three weeks ago. Derive the figure and date it: \"37 days as the most-streamed song on Earth, the last of them on the chart dated 22 August\" (or \"a run that closed on 22 August\").",
+     "source": "The site's own app/data/daiDai.ts: DAI_DAI_SPOTIFY_NO1_DAYS = 37, DAI_DAI_SPOTIFY_NO1_LAST_DAY = \"2026-08-22\", DAI_DAI_SPOTIFY_NO1_RUN_ENDED = true, DAI_DAI_SPOTIFY_NO1_DAYS_AS_OF = \"2026-09-14\" (14 Sep chart: No. 20); updates.ts 9 Sep entry \"The Spotify run at No. 1 is over\" and 16 Sep entry (No. 20 on the 14 Sep chart). Spotify's own public charts endpoint (charts-spotify-com-service.spotify.com/public/v0/charts) read 16 Sep: Weekly Top Songs Global dated 2026-09-10 has \"Dai Dai\" at No. 7, down from 6. The daily chart needs a login, so the 15 Sep daily could not be read anonymously. /dai-dai/page.tsx already derives the same sentence from these constants; the home page retypes it.",
+     "severity": "stale",
+     "fix": "app/page.tsx line 165 and app/components/MobileHome.tsx lines 315–316: import DAI_DAI_SPOTIFY_NO1_DAYS and DAI_DAI_SPOTIFY_NO1_LAST_LONG from \"../data/daiDai\" (\"./data/daiDai\" in page.tsx) and render `${DAI_DAI_SPOTIFY_NO1_DAYS} days as the most-streamed song on Earth, the last of them on the chart dated ${DAI_DAI_SPOTIFY_NO1_LAST_LONG}` in both layouts; drop 'has now' and 'back on top in August'. The same typed 37 also sits in app/faq/page.tsx line 74 and app/data/africasBiggest.ts line 377 ('has now held')."
+    },
+    {
+     "claim": "\"Showing 24 of 30 · official national charts\" under the desktop No. 1 board",
+     "onPage": "Showing 24 of 30",
+     "shouldBe": "23 of 30 countries (the 24 cells include the United Kingdom twice — Official Singles Chart and Official Albums Chart — by the curation in homeData.ts), or word it as '24 cells'",
+     "source": "app/page.tsx line 208 prints boardCells.length (cells), while boardCountryTotal (30) counts distinct countries; app/lib/homeData.ts withOverrides() maps the PA and LU slots to ukSinglesCell and ukAlbumsCell, so the rendered 24 cells cover 23 countries. Counted on the live DOM: 24 cells, UK code appears twice.",
+     "severity": "note",
+     "fix": "app/page.tsx line 208: `Showing {new Set(boardCells.map((c) => c.code)).size} of {boardCountryTotal}` — or change the noun to 'cells' if the two UK cells are meant to count separately."
+    },
+    {
+     "claim": "Board cell 'Greece — IFPI Greece' rests on charts.ts's GR row for \"Dai Dai\": weeksAtPeak 6, weeks 12, with a note ending at week 35",
+     "onPage": "Only the country and chart body are printed on the home board; the weeks figures are printed on /records/charts and /dai-dai",
+     "shouldBe": "weeksAtPeak 7, weeks 13 — IFPI Greece's week-36 chart has the song at No. 1 again",
+     "source": "ifpi.gr/digital_ien.html read 16 Sep 2026: Week 36/2026, Rank 1, \"Shakira, Burna Boy — Dai Dai\", Award P, Week-1: 1, # of Weeks 13, Best Position 1. The site's own 16 Sep feed entry already says 'No. 1 for a 13th week' but app/data/charts.ts line ~325 (GR entry, weeksAtPeak: 6, weeks: 12) was not moved with it.",
+     "severity": "note",
+     "fix": "app/data/charts.ts, the \"Dai Dai\" GR entry (line ~325): weeksAtPeak 6 → 7, weeks 12 → 13, and extend the note to 'then No.1 again in weeks 35 and 36'. Not a home-page figure, flagged because the body was read while confirming the band headline."
+    }
+   ]
+  },
+  {
+   "page": "/dai-dai",
+   "checked": 52,
+   "findings": [
+    {
+     "claim": "Dai Dai certification breakdown (hero card, FAQ answer + FAQPage JSON-LD, story scene 05, story stat note)",
+     "onPage": "\"Platinum in Spain, Slovakia, Portugal, Hungary & Austria, Gold in Colombia, Greece, the Czech Republic, Italy & Poland\" (three copies) and the story tile \"2× Platinum (Latin) US · Platinum in 5 more\"",
+     "shouldBe": "Greece is Platinum: \"Platinum in Spain, Slovakia, Portugal, Hungary, Austria & Greece, Gold in Colombia, the Czech Republic, Italy & Poland\"; tile \"Platinum in 6 more\". Count stays 13 (an upgrade).",
+     "source": "Repo: app/data/certifications.ts line 188 (GR level Platinum in the Dai Dai release block) and line 800 (GR Platinum row, read 16 Sep 2026 at ifpi.gr Digital Singles Chart (International) week 36, Award column P); merged today in #267 (483a521f) but the typed prose was not touched. updates.ts 16 Sep entry says the same.",
+     "severity": "wrong",
+     "fix": "app/dai-dai/page.tsx line 208 and line 305; app/components/DaiDaiStory.tsx line 124 and line 76 (certsNote). The same typed list is in app/dai-dai/es/page.tsx lines 164, 185, 270. Better: derive the tier list from the Dai Dai certs array in certifications.ts so an upgrade cannot leave the prose behind again."
+    },
+    {
+     "claim": "Billboard Global 200 — \"the top retaken on the chart dated 22 August after a week at No. 3 and held since\" (hero) / \"took the chart back on 22 August and has not let go — seven weeks at No. 1 in all\" (story)",
+     "onPage": "Present tense: still No. 1, held since 22 Aug",
+     "shouldBe": "The run closed at seven weeks: on the chart dated 12 September 2026 Dai Dai is No. 3 (LW 1, peak 1, 15 weeks on chart) behind Karol G's \"BbY WOW\" (No. 1) and Ella Langley's \"Choosin' Texas\". Seven weeks (four to 8 Aug, three from 22 Aug to 5 Sep) is a closed total; say so and date it.",
+     "source": "billboard.com/charts/billboard-global-200/ read 16 Sep 2026 (latest published week: September 12, 2026; the 19 Sep global charts are not yet up).",
+     "severity": "wrong",
+     "fix": "app/dai-dai/page.tsx line 206: drop \"and held since\", state the run as closed on the 12 Sep chart. app/components/DaiDaiStory.tsx line 106: replace \"has not let go\" with the closed run. app/data/charts.ts line 325 GLB row: weeks 14 → 15 and note that the 12 Sep issue has it at No. 3."
+    },
+    {
+     "claim": "Billboard Global 200 Excl. US — \"a 10th consecutive week atop the Global 200 Excl. US\" (hero) / \"It has never left the top of the Global 200 Excl. US, where it is now ten weeks in\" (story)",
+     "onPage": "Still at No. 1, ten weeks and counting",
+     "shouldBe": "The ten-week run ended: chart dated 12 September 2026 has Dai Dai at No. 2 (LW 1, peak 1, 16 weeks on chart). Ten consecutive weeks (4 July–5 September) is a closed total.",
+     "source": "billboard.com/charts/billboard-global-excl-us/ read 16 Sep 2026 (Week of September 12, 2026).",
+     "severity": "wrong",
+     "fix": "app/dai-dai/page.tsx line 206 and app/components/DaiDaiStory.tsx line 106: past tense, dated. app/data/charts.ts line 325 GLBX row: weeks 15 → 16, add a note that the run closed at 10 on the 12 Sep issue."
+    },
+    {
+     "claim": "\"No. 1 on the UK's Big Top 40 for a 3rd week\"",
+     "onPage": "Present tense, 3rd week, undated",
+     "shouldBe": "The run was FOUR weeks — No. 1 on the charts of 9, 16, 23 and 30 August 2026 — then No. 2 on 6 September and No. 3 on 13 September (LW 2, highest 1).",
+     "source": "bigtop40.com/charts/2026/32/ through /2026/37/, read 16 Sep 2026.",
+     "severity": "wrong",
+     "fix": "app/dai-dai/page.tsx line 248: \"four weeks at No. 1 on the UK's Big Top 40 (9–30 August 2026)\" — typed figure, has never been re-read since the 10 Aug feed entry."
+    },
+    {
+     "claim": "Germany — \"10 weeks at No. 1 on Germany's official singles chart\"",
+     "onPage": "10 weeks (weeksAtPeak DE = 10, weeks 15)",
+     "shouldBe": "11 weeks at No. 1: the Offizielle Deutsche Charts single chart dated 11.09.2026–17.09.2026 has Dai Dai at No. 1 (LW 1), 16 weeks in charts; the 04.09–10.09 chart (No. 1, 15 W) is the one the data reflects.",
+     "source": "offiziellecharts.de/charts/single (current) and /charts/single/for-date-1788550681000 (4–10 Sep), read 16 Sep 2026.",
+     "severity": "stale",
+     "fix": "app/data/charts.ts line 325 DE row: weeksAtPeak 10 → 11, weeks 15 → 16 (page.tsx line 229 derives from it)."
+    },
+    {
+     "claim": "Austria — \"11 weeks at No. 1 on Austria's Ö3 Top 40 — an unbroken run since late June, and 15 weeks on the chart\"",
+     "onPage": "11 at No. 1 / 15 on chart",
+     "shouldBe": "12 weeks at No. 1 and 16 weeks on chart: Ö3 Austria Top 40 Single-Charts vom 11. September 2026 — DW 1, LW 1, WW 16, Dai Dai, Shakira & Burna Boy.",
+     "source": "oe3.orf.at/charts/stories/oe3austriatop40/ read 16 Sep 2026.",
+     "severity": "stale",
+     "fix": "app/data/charts.ts line 325 AT row: weeksAtPeak 11 → 12, weeks 15 → 16 (page.tsx line 232 derives both)."
+    },
+    {
+     "claim": "UK — \"No. 2 UK Official Singles Chart — a 5th week at that peak, 14 weeks in\"",
+     "onPage": "14 weeks in",
+     "shouldBe": "15 weeks in: Official Singles Chart Top 100 for 11–17 September 2026 has Dai Dai at No. 19, LW 14, Peak 2, Weeks 15. Peak and five weeks at it stand.",
+     "source": "officialcharts.com/charts/singles-chart/ read 16 Sep 2026.",
+     "severity": "stale",
+     "fix": "app/data/charts.ts line 326 UK row: weeks 14 → 15 (page.tsx line 245 derives runUK)."
+    },
+    {
+     "claim": "Sweden — \"7 weeks at No. 1 on Sweden's Sverigetopplistan ... 16 weeks on the list\"",
+     "onPage": "16 weeks on the list",
+     "shouldBe": "17 weeks: Sverigetopplistan vecka 37 2026 lists Dai Dai at No. 41 (down from 2); its own statistics panel reads \"17 Veckor på listan · 2 Föregående placering · 1 Högsta placering\". Seven at No. 1 stands (closed).",
+     "source": "sverigetopplistan.se (vecka 37) and its admin-ajax preload_item panel for liid 41 / sart 15311162, read 16 Sep 2026.",
+     "severity": "stale",
+     "fix": "app/data/charts.ts line 325 SE row: weeks 16 → 17 (page.tsx line 235 derives runSE)."
+    },
+    {
+     "claim": "\"6 weeks at No. 1 on Spotify's Global Weekly Top Songs chart, in its 13th week on it\"",
+     "onPage": "13th week on the weekly chart, No. 1 count implied still running",
+     "shouldBe": "The No. 1 run closed at 6 weeks (week of 21–27 Aug: No. 3, prev 1). Latest weekly chart, 4–10 September 2026: No. 7, prev 6, peak 1, streak 16 weeks, 19,844,054 streams. Print \"6 weeks at No. 1, a closed run, in a 16-week stay through the chart dated 10 September\".",
+     "source": "charts.spotify.com/charts/view/regional-global-weekly/latest and /2026-08-27, read 16 Sep 2026.",
+     "severity": "stale",
+     "fix": "app/dai-dai/page.tsx line 218 — typed, undated, and unchanged since the 20 Aug feed entry; move the weeks-on-chart figure into app/data/daiDai.ts with a read date."
+    },
+    {
+     "claim": "Spotify daily streak — \"116 straight days on the chart and 117 in all, counted through the chart dated 14 September 2026\" (+ the two as-of dates in the group intro)",
+     "onPage": "Through 14 Sep: streak 116, total 117",
+     "shouldBe": "The 15 September 2026 chart is published: Dai Dai No. 20 (Prev 20), Peak 1, Streak 117, 2,430,949 streams — so 117 straight, 118 in all (the total is the streak+1 that Spotify's expanded row prints; I read the Streak column directly, the expanded Total row was not captured). Not at No. 1 and outside the Top 10, so 37 and 83 stand.",
+     "source": "charts.spotify.com/charts/view/regional-global-daily/2026-09-15, read 16 Sep 2026.",
+     "severity": "stale",
+     "fix": "app/data/daiDai.ts lines 82–89: DAI_DAI_SPOTIFY_BODY_READ → date 2026-09-15, streak 117, totalDaysOnChart 118; CONFIRMED_THROUGH, NO1_DAYS_AS_OF (line 154) and TOP10_DAYS_AS_OF (line 213) → 2026-09-15. Add a 15 Sep feed entry."
+    },
+    {
+     "claim": "Billboard Rhythmic Airplay / Pop Airplay — \"No. 1 on Billboard's Rhythmic Airplay chart dated 5 September 2026 ... on that same 5 September chart it is No. 27 on Pop Airplay, one off the No. 26 peak\"",
+     "onPage": "One week at No. 1 (5 Sep); Pop Airplay No. 27",
+     "shouldBe": "It held Rhythmic Airplay No. 1 for a second week on the chart dated 12 September (LW 1, 15 weeks) and is No. 2 on the chart dated 19 September (LW 1, peak 1, 16 weeks). Pop Airplay: No. 26 on the 19 Sep chart (LW 27), back at its peak.",
+     "source": "billboard.com/charts/rhythmic-40/ (19 Sep), /rhythmic-40/2026-09-12/, /pop-songs/ (19 Sep), read 16 Sep 2026.",
+     "severity": "stale",
+     "fix": "app/dai-dai/page.tsx line 249: \"two weeks at No. 1 on Rhythmic Airplay (charts dated 5 and 12 September 2026), No. 2 on the 19 September chart; No. 26 on Pop Airplay on that 19 September chart, equalling its peak\"."
+    },
+    {
+     "claim": "YouTube video — \"Now past 6.1 million likes\"",
+     "onPage": "6.1 million likes",
+     "shouldBe": "8,151,590 likes (views 1,081,823,829 — the 1.08B on the page is right).",
+     "source": "youtube.com/watch?v=fcnDmrtj6Sk page data (likeCount), read 16 Sep 2026.",
+     "severity": "stale",
+     "fix": "app/dai-dai/page.tsx line 268: typed \"6.1 million\" with no date. Either add a likes metric to scripts/watched-metrics.json next to dai-dai-video-views, or drop the clause."
+    },
+    {
+     "claim": "YouTube Global Daily Top Music Videos — \"it has since retaken the top: No. 1 again on the chart dated 7 September 2026\"",
+     "onPage": "Reads as currently No. 1 again",
+     "shouldBe": "The second spell has ended too: the chart dated 14 September 2026 has \"Jai Jai Ram\" (Shreya Ghoshal & Arijit Singh, new) at No. 1 and Dai Dai at No. 2, Yesterday 1, 115 days on chart. So: No. 1 again from the 7 Sep chart, No. 2 on 14 Sep behind a new entry.",
+     "source": "charts.youtube.com/charts/TopVideos/global/daily (Sept 14, 2026), read 16 Sep 2026.",
+     "severity": "stale",
+     "fix": "app/dai-dai/page.tsx line 268 and app/data/daiDai.ts line 313 area: add a DAI_DAI_YT_SECOND_SPELL_ENDED_SEEN_ON = \"2026-09-14\" constant and phrase the reclaim as dated, not current."
+    },
+    {
+     "claim": "Story scene 02 — \"seven weeks at No. 1 in all, a month after the World Cup ended\"",
+     "onPage": "\"a month after the World Cup ended\"",
+     "shouldBe": "The Final was 19 July; it is now two months on, and the seventh week was the chart dated 5 September (seven weeks after). Date the clause (\"the seventh on the chart dated 5 September\") rather than measuring from today.",
+     "source": "app/components/DaiDaiStory.tsx line 106 (typed); Billboard Global 200 weeks as above.",
+     "severity": "stale",
+     "fix": "app/components/DaiDaiStory.tsx line 106."
+    },
+    {
+     "claim": "\"58 days at No. 1 on Apple Music's European songs chart — plus 11 days atop the worldwide Apple Music chart\" and \"40 days at No. 1 on the worldwide iTunes songs chart, and 15 days atop the European iTunes chart\"",
+     "onPage": "Four running day-counts with no read date",
+     "shouldBe": "Either the closed totals with the date the runs ended, or an as-of date. The 58 was last stated in the feed as \"57 days\" on 18 Aug and \"40th\" on 21 Aug; nothing on the site dates them since. Apple/iTunes publish no days-at-No. 1 column, so these cannot be re-read at a body here.",
+     "source": "app/dai-dai/page.tsx lines 220–221 (typed); updates.ts entries of 18 and 21 Aug.",
+     "severity": "note",
+     "fix": "Move both into app/data/daiDai.ts with a READ_ON date and print it in the label, as the Spotify and YouTube runs already do."
+    },
+    {
+     "claim": "Bodies not reachable this session for three national runs: France (9 weeks, through semaine 36), Belgium Wallonia (9 weeks, \"nine straight\"), Norway (4 weeks from week 31)",
+     "onPage": "FR 9 / BE 9 / NO 4 weeks at No. 1, BE and NO undated in the prose",
+     "shouldBe": "Unverified today: snepmusique.com's Top Singles returned \"aucun résultat\" for every URL tried (semaine 37 would be out), ultratop.be sits behind a Cloudflare challenge, and every VG-lista chart path (lista.vg.no, vg.no/vglista/..., vglista.no/topplister) 404s. Belgium's 9th week was the 22 Aug feed read, so three later Ultratop issues are unread.",
+     "source": "Attempted 16 Sep 2026 via curl and the in-app browser.",
+     "severity": "note",
+     "fix": "Re-read BE and NO in a signed-in/desktop browser; print the chart date the BE and NO runs were counted through in page.tsx lines 233 and 236 (FR carries its semaine in charts.ts but not on the page)."
+    },
+    {
+     "claim": "\"Spotify streams — his 8th song past 300 million, the most of any African act\"",
+     "onPage": "8th song past 300M, the most of any African act",
+     "shouldBe": "Dai Dai was the 8th; the feed's 1 Sep entry records a 9th (\"wgft\"), so \"the most of any African act\" now attaches to nine, not eight. Say \"his 8th song past 300 million (he now has nine, the most of any African act)\" or drop the superlative.",
+     "source": "app/data/updates.ts line 228 (1 Sep 2026 entry); page.tsx line 207 (typed).",
+     "severity": "note",
+     "fix": "app/dai-dai/page.tsx line 207; the 300M-song count exists derivable in the streams data used by the 1 Sep entry."
+    }
+   ]
+  },
+  {
+   "page": "/certifications",
+   "checked": 260,
+   "findings": [
+    {
+     "claim": "My Oasis (Sam Smith ft. Burna Boy) — UK Gold (release row in the explorer, both layouts) and dated-log row \"My Oasis · BPI 🇬🇧 Gold\" under 2025",
+     "onPage": "🇬🇧 Gold",
+     "shouldBe": "🇬🇧 Silver — BPI's certification history for the title lists one award only: Silver, 22 August 2025 (no Gold)",
+     "source": "certified-awards.bpi.co.uk, htmx search `?skin=bpi&search=My+Oasis` with HX-Request header → title page /format/2/artist/6533/title/7114: \"SAM SMITH FT BURNA BOY | MY OASIS | Most Recent Certification Silver | 22 August 2025 | Certification history: 22 August 2025 Silver\"",
+     "severity": "wrong",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/certifications.ts line 457: change `{ c: \"UK\", level: \"Gold\" }` to `{ c: \"UK\", level: \"Silver\" }`; line 629: change the log row's `level: \"Gold\"` to `\"Silver\"`. Total stays 234; the tier rail (Gold 96→95, Silver 30→31) and percentages are derived. Add an updates.ts correction entry and bump watched-metrics baselines if Gold/Silver are watched."
+    },
+    {
+     "claim": "Dated log, 2023: \"Last Last · SNEP 🇫🇷 Platinum\"",
+     "onPage": "Platinum (2023)",
+     "shouldBe": "Diamond — SNEP's register holds a single row for Last Last: Diamant, date de constat 02/11/2023; there is no Platine row",
+     "source": "snepmusique.com/les-certifications/?interprete=Burna+Boy: \"Singles | LAST LAST | BURNA BOY | Diamant | Date de constat 02/11/2023\" (the register does keep escalation rows — City Boys Or 04/01/2024 → Platine 22/05/2025; Dai Dai Platine 30/07/2026 → Diamant 27/08/2026 — so a Platine row would show if it existed)",
+     "severity": "wrong",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/certifications.ts line 684: change `level: \"Platinum\"` to `level: \"Diamond\"` (year 2023 stays). The release row already carries FR Diamond, so the log currently never records the Diamond event at all."
+    },
+    {
+     "claim": "Dated log, 2023: \"Last Last · RMNZ 🇳🇿 Platinum\"",
+     "onPage": "Platinum, 2023",
+     "shouldBe": "2× Platinum in 2023 (RMNZ appended Plat x2 on 2023-12-21); the 1× Platinum was 2022-12-08 and the Gold 2022-09-08, neither logged",
+     "source": "RadioScope/RMNZ singles register (TablePress 2052 SSP, search \"Burna\"): rows \"Burna Boy | Last Last | Gold | 2022-09-08\", \"Plat x1 | 2022-12-08\", \"Plat x2 | 2023-12-21\", \"Plat x3 | 2026-03-05\"",
+     "severity": "wrong",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/certifications.ts line 685: add `x: 2`; append `{ title: \"Last Last\", country: \"NZ\", level: \"Platinum\", year: 2022 }` and `{ title: \"Last Last\", country: \"NZ\", level: \"Gold\", year: 2022 }` (append-never-rewrite rule)."
+    },
+    {
+     "claim": "Dated log, 2023: \"Love, Damini · Album · NVPI 🇳🇱 Gold\"",
+     "onPage": "logged under 2023",
+     "shouldBe": "2022 — NVPI dates the Dutch Gold 3-11-2022 (year field \"2022\")",
+     "source": "goudplatina.nl/api/filter?search=Burna → item uid `2022_burna-boy_love-damini_album_goud`, date \"3-11-2022\", status \"Goud\". The site's own docs/sourcing/NETHERLANDS.md already records this date.",
+     "severity": "wrong",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/certifications.ts line 693: change `year: 2023` to `year: 2022`. Year rail becomes 2023 · 42 / 2022 · 5 (derived)."
+    },
+    {
+     "claim": "Dated log, 2026 (both layouts): \"Dai Dai · Shakira & Burna Boy · Pro Musica Colombia 🇨🇴 Gold\"",
+     "onPage": "Pro Musica Colombia",
+     "shouldBe": "Sony Music Colombia (label-issued) — the release row on the same page prints \"🇨🇴 Gold · Sony Music Colombia\", and the data's own comment says Pro Musica Colombia's roster ends Aug 2024 and cannot speak to a 2026 award",
+     "source": "/Users/paulemmanuelng/burnaboy-website/app/data/certifications.ts lines 180-186 (release cert `body: \"Sony Music Colombia\"` + comment) vs line 598 (log row has no `body`); renderers use `countries[e.country].body` and ignore the event's `body`",
+     "severity": "wrong",
+     "fix": "certifications.ts line 598: add `body: \"Sony Music Colombia\"`; /Users/paulemmanuelng/burnaboy-website/app/components/CertHistoryByYear.tsx line 105 and /Users/paulemmanuelng/burnaboy-website/app/components/MobileCerts.tsx line 538: render `event.body ?? countries[event.country].body` (the badge tooltip at CertHistoryByYear.tsx line 42 already does)."
+    },
+    {
+     "claim": "Dated log, 2026 (both layouts): \"Dai Dai · Shakira & Burna Boy · RIAA 🇺🇸 2× Platinum\"",
+     "onPage": "RIAA · 2× Platinum",
+     "shouldBe": "RIAA Latin · 2× Platinum — the award is a Premios de Oro y Platino plaque (~120,000 units, badge \"LA level 2\"), which the release row marks with a \"Latin\" programme tag but the log strips",
+     "source": "riaa.com/gold-platinum search ar=Burna+Boy: row \"SHAKIRA & BURNA BOY | DAI DAI | SONY LATIN | SINGLE | July 9, 2026\", badge alt \"badge LA level 2\"; certifications.ts line 594 carries `body: \"RIAA Latin\"` on the event but CertHistoryByYear.tsx:105 / MobileCerts.tsx:538 print the country default",
+     "severity": "broken",
+     "fix": "Same renderer change as the Colombia finding: print `event.body ?? country.body` in both CertHistoryByYear.tsx (line 105) and MobileCerts.tsx (line 538)."
+    },
+    {
+     "claim": "\"New in 2026 · 57 · International awards\" (summary strip), year chip \"2026 · 57\" (both layouts) and the note \"57 international plaques and counting\"",
+     "onPage": "57",
+     "shouldBe": "at least 58 — BPI upgraded We Pray (Coldplay ft. Burna Boy & others) from Silver to Gold on 1 May 2026; the release row already carries UK Gold but the log has only the 2025 Silver event",
+     "source": "certified-awards.bpi.co.uk /format/2/artist/1407/title/8734: \"COLDPLAY | WE PRAY | Most Recent Certification Gold | 01 May 2026 | Certification history: 01 May 2026 Gold; 10 January 2025 Silver\"",
+     "severity": "stale",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/certifications.ts: append `{ title: \"We Pray\", credit: \"Coldplay ft. Burna Boy & others\", country: \"UK\", level: \"Gold\", year: 2026 }` after line 608. Summary strip, chips and the YEAR_NOTES sentence all derive from intlCertHistory."
+    },
+    {
+     "claim": "\"…past his own previous best of 43 in 2023\" (desktop year note) and the \"2023 · 43\" chip (both layouts)",
+     "onPage": "43",
+     "shouldBe": "44 after the NL row moves to 2022: the log omits two 2023 awards that the bodies date — Love, Damini UK Gold (BPI 1 December 2023) and Alone FR Gold (SNEP date de constat 26/10/2023). The release rows carry both tiers; the log never recorded the events",
+     "source": "BPI /format/3/artist/4398/title/11169: \"LOVE DAMINI | Certification history: 01 December 2023 Gold; 10 February 2023 Silver\"; SNEP register: \"Singles | ALONE | BURNA BOY | Or | Date de constat 26/10/2023\"",
+     "severity": "stale",
+     "fix": "certifications.ts: append `{ title: \"Love, Damini\", album: true, country: \"UK\", level: \"Gold\", year: 2023 }` next to line 690 and `{ title: \"Alone\", country: \"FR\", level: \"Gold\", year: 2023 }`. The 'previous best' figure is derived (bestIntlYearBefore) and follows."
+    },
+    {
+     "claim": "Three French log rows: \"Dai Dai · SNEP Gold\" (2026), \"We Pray · SNEP Gold\" (2025), \"Location · SNEP Platinum\" (2023)",
+     "onPage": "Gold / Gold / Platinum events attributed to SNEP",
+     "shouldBe": "Not on SNEP's register: it lists Dai Dai as Platine 30/07/2026 + Diamant 27/08/2026 only, We Pray as Platine 29/05/2025 only, Location as Diamant 28/05/2026 only — while it does retain intermediate rows for other titles (City Boys Or→Platine, Dai Dai Platine→Diamant, Shakira's Whenever Wherever Or→Platine from 2002). The site's updates feed logged the Dai Dai Or on 13 Jul 2026 from an announcement rather than the register",
+     "source": "snepmusique.com/les-certifications/?interprete=Burna+Boy (21 rows, tabulated) and ?interprete=Shakira; app/data/updates.ts lines 1418-1422 and 830-834",
+     "severity": "note",
+     "fix": "certifications.ts lines 600, 610, 704: either annotate these three rows with where they were read (SNEP social post / Wikipedia table) or, per the 'confirm at the body' rule, retract the rows that cannot be found in the register. If SNEP has purged them, say so in a comment so the next sweep does not repeat this check."
+    },
+    {
+     "claim": "Sources paragraph (desktop): \"… cross-checked against Wikipedia's cited certification tables, as of August 2026\" listing 19 bodies incl. \"BEA (Belgium)\"",
+     "onPage": "as of August 2026; BEA (Belgium); no Hungary, Czechia, Slovakia, Greece or Colombia body named",
+     "shouldBe": "A date that follows the data — the file carries body reads dated 3 Sep (IFPI Austria), 14 Sep (BPI) and 16 Sep 2026 (IFPI Greece week 36, ČNS IFPI week 37) — and a body list generated from COUNTRIES: Ultratop (not BEA, per the COUNTRIES comment), MAHASZ, ČNS IFPI, IFPI Greece and the Colombian label award are all missing from the typed list although their flags sit in the country filter above it",
+     "source": "/Users/paulemmanuelng/burnaboy-website/app/certifications/page.tsx lines 213-220 (typed paragraph) vs app/data/certifications.ts COUNTRIES (lines 54-114) and dated comments at lines 191-197, 741-744, 823-831",
+     "severity": "stale",
+     "fix": "page.tsx lines 213-220: build the body list from `Object.values(COUNTRIES)` and print a `CERTS_VERIFIED_ON` constant (or the newest dated read) instead of the literal 'August 2026'; the MobileCerts source line, if any, should use the same source."
+    },
+    {
+     "claim": "Summary strip: \"26 Countries — 26 issuing bodies\"",
+     "onPage": "26 issuing bodies",
+     "shouldBe": "25 — ČNS IFPI is one organisation (ifpicr.cz) whose two chart pages the file models as \"ČNS IFPI (Slovakia)\" and \"ČNS IFPI (Czechia)\", so the Set of body strings double-counts it",
+     "source": "/Users/paulemmanuelng/burnaboy-website/app/certifications/page.tsx lines 84-90 (`new Set(Object.values(COUNTRIES).map(c => c.body)).size`) and certifications.ts lines 87-92 (comment: 'ČNS IFPI publishes … Chart 43 is Slovakia, 30 Czechia')",
+     "severity": "note",
+     "fix": "page.tsx line 85: normalise the body name before counting (e.g. strip a trailing parenthetical) or add an `org` field to Country and count that."
+    },
+    {
+     "claim": "Desktop year note: \"57 international plaques and counting — the most certified African artist of 2026, and Burna Boy's biggest certification year on record…\"",
+     "onPage": "Desktop only; the phone log has no note at all, and the 'most certified African artist of 2026' half is a typed, undated live claim",
+     "shouldBe": "Both layouts should carry the same sentence (or neither), and the un-derivable 'most certified African artist of 2026' should be dated or attributed — the component's own comment admits no body or aggregator publishes the per-year comparison",
+     "source": "/Users/paulemmanuelng/burnaboy-website/app/components/CertHistoryByYear.tsx lines 15-35 (YEAR_NOTES, desktop) vs /Users/paulemmanuelng/burnaboy-website/app/components/MobileCerts.tsx lines 500-560 (no YEAR_NOTES rendered)",
+     "severity": "broken",
+     "fix": "Move YEAR_NOTES into app/data/certifications.ts (or a shared lib) and render it under the year rail in MobileCerts.tsx (after line 527), and print a 'per @BurnaBoyStats tracking, as of <date>' qualifier on the 2026 line."
+    },
+    {
+     "claim": "Year rail \"2022 · 4\" and \"2020 · 4\" under a lede that promises \"Each international announcement as it landed\"",
+     "onPage": "2022 · 4, 2020 · 4 (both layouts); 41 of the 171 international plaques on the release rows have no log row at all",
+     "shouldBe": "The bodies date far more: Music Canada alone lists 10 Burna Boy awards in 2022 (Ye Platinum, On the Low Platinum, Anybody Gold, Location Gold and Platinum — all 14 Apr; African Giant Gold, Gbona Gold, Last Last Gold — 12 Sep; Last Last Platinum 7 Nov; Ginger Gold 14 Dec) and 2 in 2020 (Ye Gold 10 Dec, On the Low Gold 15 Dec); RMNZ lists 5 in 2022 (Ye Gold, Location Plat x1, Last Last Gold, Own It Plat x1, Last Last Plat x1); SNEP lists Be Honest Diamant 17/11/2022 and Jerusalema Diamant 23/10/2020; BPI lists Gum Body Silver 19.08.2022 and Real Life Silver 02.12.2022; NVPI lists African Giant Goud 17-8-2020. 2024 is also short: RMNZ City Boys Gold 2024-06-13, Ye Plat x1 2024-02-22, Sittin' Gold 2024-01-25, For My Hand Gold 2024-01-11; RIAA Ginger Gold 22 Nov 2024; Music Canada My Oasis Gold 1 Aug 2023 for 2023",
+     "source": "musiccanada.com FacetWP API (33 rows, all tabulated), RadioScope/RMNZ table 2052 (29 rows), snepmusique.com register (21 rows), certified-awards.bpi.co.uk (24 rows), goudplatina.nl/api/filter, riaa.com search — read 16 Sep 2026",
+     "severity": "note",
+     "fix": "certifications.ts certHistory: backfill the dated events listed here (each is a register row with a date), or change the lede in CertHistoryByYear.tsx line 68 and MobileCerts.tsx line 505 to say the log is complete from 2023 and partial before that, so the 2022/2020 chips are not read as totals."
+    },
+    {
+     "claim": "Keep exploring card: \"The Music — 8 albums, EPs & every hit\"",
+     "onPage": "8 albums (typed)",
+     "shouldBe": "Derived from albums.length (currently 8, so correct today) — a ninth studio album turns it stale silently, and the nav on the same page already derives \"11 releases\"",
+     "source": "/Users/paulemmanuelng/burnaboy-website/app/components/KeepExploring.tsx line 13 vs app/lib/navGroups.ts line 49",
+     "severity": "note",
+     "fix": "KeepExploring.tsx line 13: `desc: \\`${albums.length} albums, EPs & every hit\\`` importing albums from ../data/albums."
+    },
+    {
+     "claim": "Bodies not re-read this audit: Switzerland (Gbona CH Platinum on the release row vs Gold 2023 in the log; Dai Dai has 14 weeks at No. 1 there with no plaque carried), Belgium (Ultratop), Australia (ARIA), Czechia/Slovakia (ČNS IFPI)",
+     "onPage": "CH rows unchanged; no BE/AU/CZ/SK change proposed",
+     "shouldBe": "Unverified, not confirmed — hitparade.ch and ultratop.be answer with a Cloudflare bot wall to curl and to the in-app browser; ARIA's accreditations live in a Dropbox folder of PDFs; ifpicr.cz/hitparada/30 and /43 timed out twice (curl exit 000)",
+     "source": "Attempted 16 Sep 2026: https://hitparade.ch/edelmetall?year=2026 ('Just a moment…'), https://www.ultratop.be/fr/or-platine (403), https://ifpicr.cz/hitparada/43 (no response)",
+     "severity": "note",
+     "fix": "Re-read these four in a browser session where the bot wall can be passed by a person; the Gbona CH release-vs-log tier gap (certifications.ts line 237 Platinum vs line 731 Gold 2023) is the one open discrepancy that needs the Swiss register."
+    }
+   ]
+  },
+  {
+   "page": "/records/charts",
+   "checked": 139,
+   "findings": [
+    {
+     "claim": "Dai Dai — Billboard Global 200 weeks on chart (desktop pill tooltip / data row)",
+     "onPage": "weeks: 14 (weeksAtPeak 7)",
+     "shouldBe": "weeks: 15 — the 12 Sep 2026 issue (posted 8 Sep) has Dai Dai at No. 3, LW 1, WEEKS 15. weeksAtPeak 7 is correct: walked every issue 6 Jun–12 Sep; No. 1 on 18 Jul, 25 Jul, 1 Aug, 8 Aug, 22 Aug, 29 Aug, 5 Sep.",
+     "source": "https://www.billboard.com/charts/billboard-global-200/2026-09-12/ (and each dated issue back to 2026-06-06). The 19 Sep global issue is not yet served at the dated URL (0 rows).",
+     "severity": "stale",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/charts.ts line 325, the GLB entry: change `weeks: 14` to `weeks: 15`; leave weeksAtPeak 7 and its note."
+    },
+    {
+     "claim": "Dai Dai — Billboard Global Excl. US weeks on chart",
+     "onPage": "weeks: 15 (weeksAtPeak 10)",
+     "shouldBe": "weeks: 16 — 12 Sep 2026 issue: No. 2, LW 1, WEEKS 16. weeksAtPeak 10 confirmed (No. 1 every issue 4 Jul–5 Sep).",
+     "source": "https://www.billboard.com/charts/billboard-global-excl-us/2026-09-12/ and dated issues 2026-06-06 to 2026-09-05",
+     "severity": "stale",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/charts.ts line 325, the GLBX entry: `weeks: 15` -> `weeks: 16`."
+    },
+    {
+     "claim": "Dai Dai — UK Official Singles Chart weeks on chart",
+     "onPage": "weeks: 14 (peak 2, weeksAtPeak 5)",
+     "shouldBe": "weeks: 15 — chart dated 11–17 September 2026: No. 19, LW 14, Peak 2, Weeks 15. Peak 2 and the five weeks at No. 2 stand.",
+     "source": "https://www.officialcharts.com/charts/singles-chart/ (Official Singles Chart Top 100, 11 September 2026 – 17 September 2026)",
+     "severity": "stale",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/charts.ts line 326, the UK entry: `weeks: 14` -> `weeks: 15`."
+    },
+    {
+     "claim": "Dai Dai — Sweden (Sverigetopplistan) weeks on chart",
+     "onPage": "weeks: 16 (weeksAtPeak 7, note 'weeks 28-32, then 34 and 35')",
+     "shouldBe": "weeks: 17 — Veckolista Singlar vecka 37: Dai Dai No. 3; the body's own statistics panel for sart 15311162 reads '17 Veckor på listan · 2 Föregående placering · 1 Högsta placering · Första placering: Vecka 21'. Seven at No. 1 stands.",
+     "source": "https://sverigetopplistan.se/chart/41?dspy=2026&dspp=37 plus POST https://sverigetopplistan.se/wp-admin/admin-ajax.php action=preload_item&liid=41&sart=15311162&dspp=37&dspy=2026",
+     "severity": "stale",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/charts.ts line 325, the SE entry: `weeks: 16` -> `weeks: 17`."
+    },
+    {
+     "claim": "Dai Dai — Germany (Offizielle Deutsche Charts) run",
+     "onPage": "weeksAtPeak: 10, weeks: 15",
+     "shouldBe": "weeksAtPeak: 11, weeks: 16 — Top 100 Single-Charts, Datum 11.09.2026 – 17.09.2026: Dai Dai No. 1, last week 1, 'IN CHARTS: 16 W', PEAK 1. The 10/15 figures were read from the 4 Sep chart on 7 Sep (#178); the 11 Sep chart adds one more week at No. 1.",
+     "source": "https://www.offiziellecharts.de/charts/single (read in the in-app browser; curl gets 403)",
+     "severity": "stale",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/charts.ts line 325, the DE entry: `weeksAtPeak: 10, weeks: 15` -> `weeksAtPeak: 11, weeks: 16`."
+    },
+    {
+     "claim": "Dai Dai — Austria (Ö3 Austria Top 40) run",
+     "onPage": "weeksAtPeak: 11, weeks: 15",
+     "shouldBe": "weeksAtPeak: 12, weeks: 16 — 'Single Charts vom 11. September 2026': DW 1, LW 1, WW 16, Dai Dai — Shakira & Burna Boy. The 11/15 pair was read from the 4 Sep chart.",
+     "source": "https://oe3.orf.at/charts/stories/oe3austriatop40/ (Ö3's own page, in-app browser)",
+     "severity": "stale",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/charts.ts line 325, the AT entry: `weeksAtPeak: 11, weeks: 15` -> `weeksAtPeak: 12, weeks: 16`."
+    },
+    {
+     "claim": "Dai Dai — Italy (FIMI Top Singoli) weeks on chart",
+     "onPage": "weeks: 12 (weeksAtPeak 4)",
+     "shouldBe": "weeks: 13 — FIMI week 37 (04-09-2026 – 10-09-2026): Dai Dai No. 3 (unchanged), 'Numero di settimane' 13. Four at No. 1 stands.",
+     "source": "https://www.fimi.it/top-of-the-music/classifiche.kl (Top Singoli, week37 selected)",
+     "severity": "stale",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/charts.ts line 325, the IT entry: `weeks: 12` -> `weeks: 13`."
+    },
+    {
+     "claim": "Dai Dai — Greece (IFPI Greece Digital Singles, International) run",
+     "onPage": "weeksAtPeak: 6, weeks: 12; note ends '…then No.1 again in week 35'",
+     "shouldBe": "weeksAtPeak: 7, weeks: 13 — IFPI's Digital Singles Chart (International) Week 36/2026: Rank 1, Week-1 1, '# of Weeks' 13, Best Position 1. So No. 1 in week 36 as well; note should read 'seven weeks at No.1 … then No.1 again in weeks 35 and 36'. (Row also shows Award 'P' — Platinum — which is a certifications-page matter, not this page's.)",
+     "source": "https://www.ifpi.gr/digital_ien.html",
+     "severity": "stale",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/charts.ts line 325, the GR entry: `weeksAtPeak: 6, weeks: 12` -> `weeksAtPeak: 7, weeks: 13`, and change the note's 'six weeks at No.1' to 'seven weeks at No.1' and 'then No.1 again in week 35' to 'then No.1 again in weeks 35 and 36' — tests/chartNotes.test.ts holds the spelled-out word to weeksAtPeak, so both must move together."
+    },
+    {
+     "claim": "Dai Dai — France (SNEP Top Singles) counted weeks on chart",
+     "onPage": "weeks: 15; note: '15 is the number of consecutive SNEP issues the record appears in - semaine 22 … through semaine 36'",
+     "shouldBe": "weeks: 16 — SNEP semaine 37 (Semaine du 11 septembre 2026), Top Singles: DAI DAI at No. 3, 'La Semaine Dernière 1er', credited to SHAKIRA alone (the same metadata quirk the note records for semaine 30). The nine-week No. 1 run ended at semaine 36 as the note says; the counted total is now 16 consecutive issues (22–37).",
+     "source": "https://snepmusique.com/les-tops/le-top-de-la-semaine/top-albums/?semaine=37&annee=2026&categorie=Top%20Singles (the /top-singles/ path now redirects to the annual page; the weekly singles table is served under the top-albums path with categorie=Top Singles)",
+     "severity": "stale",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/charts.ts line 325, the FR entry: `weeks: 15` -> `weeks: 16`; in its note change 'so 15 is the number of consecutive SNEP issues' to 'so 16 …' and 'through semaine 36' (the weeks-on-chart clause) to 'through semaine 37 (11 septembre, No.3)'. Leave the No. 1 chain 'semaine 28 through semaine 36' as is."
+    },
+    {
+     "claim": "Dai Dai — Poland (ZPAV OLiS 'single w streamie') weeks on chart",
+     "onPage": "weeks: 13 (weeksAtPeak 1)",
+     "shouldBe": "weeks: 14 — OLiS API row for Dai Dai (Shakira, Burna Boy): times_listed 14, positions_on_list W23–W36 (W34 No. 1, W35 No. 3, W36 No. 8), latest_date 2026-09-03.",
+     "source": "POST https://www.olis.pl/api/search {\"category_id\":1,\"subcategory_id\":2,\"limit\":100} with the Referer/X-Requested-With headers from docs/sourcing/POLAND-OLIS.md",
+     "severity": "stale",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/charts.ts line 325, the PL entry: `weeks: 13` -> `weeks: 14`."
+    },
+    {
+     "claim": "Dai Dai — Luxembourg (Billboard Luxembourg Songs) weeks on chart",
+     "onPage": "weeks: 14 (weeksAtPeak 8)",
+     "shouldBe": "weeks: 16 — current issue dated September 19, 2026: Dai Dai No. 1, LW 1, PEAK 1, WEEKS 16. Two issues behind (12 Sep and 19 Sep). Billboard serves no dated archive for this chart (every dated URL returns the current issue), so weeksAtPeak 8 cannot be walked; but LW 1 on the 19 Sep issue proves at least two further No. 1 weeks the row does not carry.",
+     "source": "https://www.billboard.com/charts/luxembourg-songs/",
+     "severity": "stale",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/charts.ts line 325, the LU entry: `weeks: 14` -> `weeks: 16`. Either raise weeksAtPeak to 10 (the 12 Sep and 19 Sep issues are readable as No. 1 now, before the 26 Sep issue replaces them) or add a note that the run figure is a floor — the current 8 is now knowingly under."
+    },
+    {
+     "claim": "Dai Dai desktop card release note (visible prose under the title in Cards view)",
+     "onPage": "'No.1 on both Billboard global charts — the week counts are on the entries themselves, so this sentence cannot go stale again. Also No.1 on Billboard's US World Digital Song Sales and Latin Airplay charts, …'",
+     "shouldBe": "Reader-facing prose only: 'No.1 on both Billboard global charts. Also No.1 on Billboard's US World Digital Song Sales and Latin Airplay charts, No.1 on the IFPI Middle East & North Africa chart (No.3 on North Africa), and No.1 on BMAT's Central America & Caribbean airplay chart.' The clause 'the week counts are on the entries themselves, so this sentence cannot go stale again' is a maintainer's remark and is rendered to every desktop visitor (ChartExplorer renders item.note into .releaseNote). The mobile screen does not render release notes, so the two layouts also differ here.",
+     "source": "Live HTML of https://burnaboystats.com/records/charts (span.charts-module__…__releaseNote) and app/components/ChartExplorer.tsx line 70",
+     "severity": "wrong",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/charts.ts line 340: move 'the week counts are on the entries themselves, so this sentence cannot go stale again' out of the `note` string into a `//` comment above the row."
+    },
+    {
+     "claim": "Dai Dai — Slovakia (Singles Digitál Top 100) note",
+     "onPage": "'eight weeks at No.1, not consecutive - weeks 26 and 27, then 30 to 35; No.2 in week 36, so the run at the top is final'",
+     "shouldBe": "Drop 'so the run at the top is final'. It is a forecast, not a reading — the same song has already fallen and retaken No. 1 on the Global 200, in Greece and in the Netherlands. State the last week read instead: 'No.2 in week 36 (last week read)'. IFPI SK could not be reached from here (ifpi.sk times out; in-app browser hangs), so week 37 is unverified either way.",
+     "source": "app/data/charts.ts line 325 (SK entry); ifpi.sk unreachable on 16 Sep",
+     "severity": "note",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/charts.ts line 325, SK entry note: replace '; No.2 in week 36, so the run at the top is final' with '; No.2 in week 36, the last week read'."
+    }
+   ]
+  },
+  {
+   "page": "/records/awards",
+   "checked": 112,
+   "findings": [
+    {
+     "claim": "The Headies 2026: 4 nominations (Best Male Artiste, Afrobeats Album of the Year, Afrobeats Single of the Year, Music Video of the Year); Headies \"10 of 34\"; 241 nominations site-wide (title, hero lede, stat cards, FAQ + FAQPage JSON-LD, OG card, mobile ledger header \"ALL 241\" / \"241 NOMINATIONS · 47 BODIES\")",
+     "onPage": "Headies block lists four 2026 rows; every total reads 241 nominations; Headies row reads 10 of 34",
+     "shouldBe": "Five 2026 Headies nominations — add Album of the Year for No Sign of Weakness (won: false, pending 25 Oct). Totals become 242 nominations; Headies 10 of 35. The repo comment says the 5th press-listed nod was \"Producer of the Year\" for Bundle by Bundle and was dropped as DK's — but the Headies' own Producer of the Year card set (Magicsticks, P.Priime, Ragee, Sarz, Tempoe) contains no Bundle by Bundle at all; the real fifth nomination is Album of the Year.",
+     "source": "theheadies.com/18th-headies-nominees/ — nominee cards (images): ALBUM-OF-THE-YEAR-07.webp reads \"BURNA BOY — NO SIGN OF WEAKNESS — NOMINEE — ALBUM OF THE YEAR\"; PRODUCER-OF-THE-YEAR-01..05.webp list no Burna Boy work. The other four rows were confirmed on BEST-MALE-ARTISTE-07, AFROBEATS-ALBUM-06, AFROBEAT-SINGLE-07 and MUSIC-VIDEO-OF-D-YEAR07.webp.webp",
+     "severity": "wrong",
+     "fix": "app/data/awards.ts line 397: insert `{ year: 2026, category: \"Album of the Year\", work: \"No Sign of Weakness\", won: false },` after the Afrobeats Album row; rewrite the comment at lines 391-395 (no Producer nom exists at the body). tests/handoffTotals.test.ts line 109 rename to \"...242 nominations...\", line 133 `expect(allNoms.length).toBe(236 + 4 + 1 + 1)` with a dated note, and correct the +4-not-+5 comment at lines 121-125. Add an updates.ts entry. Totals, FAQ, OG and both layouts are derived and follow."
+    },
+    {
+     "claim": "AFRIMMA 2026 is still pending: pendingResults row says \"body site down; no winners on its X or Instagram\" (checkedOn 2026-09-14); the four 2026 rows carry a PENDING comment",
+     "onPage": "Four AFRIMMA 2026 rows shown as NOMINATED (correct as losses); desktop source note says nominations at ceremonies \"still to be held\" stay listed",
+     "shouldBe": "Resolved: afrimma.com published \"AFRIMMA 2026 Award Winners — THE OFFICIAL RESULTS\" on 15 Sep 2026. Artist of the Year → Fally Ipupa; Album of the Year → Davido (5ive); Crossing Boundaries with Music Award → Fally Ipupa; Best Male West Africa → Ruger. Burna Boy is not named anywhere in the 41 honours. All four rows stay won:false; nothing on the page changes.",
+     "source": "https://afrimma.com/ (home page now serves the winners list, dated 2026-09-15T15:22:23+00:00; 41 categories read, zero Burna Boy mentions)",
+     "severity": "stale",
+     "fix": "app/data/awards.ts lines 145-155: delete the AFRIMMA pendingResults row (its 3-day snooze expires 17 Sep and tests/awardsPending.test.ts will ring). Replace the PENDING comment at line 429 with the resolved result and the 15 Sep read date. Add an updates.ts entry (four losses, read at the body). Keep the four rows as won:false."
+    },
+    {
+     "claim": "\"Compiled and verified against each ceremony's results, August 2026\" (desktop source band)",
+     "onPage": "August 2026",
+     "shouldBe": "A derived or current date — the data was revised 3 Sep (Premios Juventud win), 14 Sep (AFRIMMA check) and 16 Sep 2026 (NRJ nomination, commit 483a521f); the stamp is typed and already a month behind the file it describes. The phone layout prints no verification date at all.",
+     "source": "git log app/data/awards.ts (last change 16 Sep 2026); app/records/awards/page.tsx line 235",
+     "severity": "note",
+     "fix": "Export a `lastVerified` string from app/data/awards.ts (bumped in the same commit as any row change) and print it at page.tsx line 235 and in MobileAwards' footNote (page.tsx line ~111) instead of the literal \"August 2026\"."
+    },
+    {
+     "claim": "Mobile ledger row order for AFRIMMA (and any body whose data is not in year order)",
+     "onPage": "Phone layout lists AFRIMMA as 2026, 2026, 2026, 2026, 2018, 2018, 2019…, 2020, 2020, 2022 (Artist of the Year, WON), 2020, 2020…, 2022, 2022, 2022 — data order; the desktop AwardExplorer sorts each body by year (AwardExplorer.tsx line 199), so the two layouts present the same rows in different orders",
+     "shouldBe": "Same year order on both layouts",
+     "source": "app/data/awards.ts AFRIMMA block (2026 rows at lines 430-433 sit above 2018; a 2022 row sits between 2020 rows); live phone text of /records/awards",
+     "severity": "note",
+     "fix": "app/records/awards/page.tsx `mobileCeremonies` (line ~88): map each ceremony's noms through `.sort((a, b) => a.year - b.year)` before passing to MobileAwards — or move the AFRIMMA 2026 rows to the end of the block and the stray 2022 row into place in awards.ts."
+    },
+    {
+     "claim": "Headies 2026 \"Music Video of the Year — Bundle by Bundle\" counted as a Burna Boy nomination, while the site's own rule (awards.ts lines 391-395) excludes credits that belong to the producer",
+     "onPage": "Music Video of the Year listed under Burna Boy; Headies 10 of 34",
+     "shouldBe": "Apply one rule. The Headies define the category as \"Award presented to the video director\" and the nominee card reads \"DK — BUNDLE BY BUNDLE (BURNA BOY)\" — the same structure as the producer credit the site refuses. Either drop it (Headies 2026 = 4 with Album of the Year added, totals unchanged at 241) or state in the comment that director-credited video nominations are counted for the artist.",
+     "source": "theheadies.com/18th-headies-nominees/ category text for Music Video of the Year and card MUSIC-VIDEO-OF-D-YEAR07.webp.webp (nominee name: DK)",
+     "severity": "note",
+     "fix": "Decide in app/data/awards.ts lines 391-399: remove the Music Video row (and adjust tests/handoffTotals.test.ts accordingly) or extend the comment to say director-credited video noms are kept for the artist, so the next pass does not re-litigate it."
+    },
+    {
+     "claim": "Bodies I could not read for the remaining time-sensitive rows: MTV VMA 2026 (Best Collaboration, Best Latin — ceremony 27 Sep), Caribbean Music Awards 2026 (Konpa Song of the Year — 19 Sep), and the two 2024 BRIT Billion honours",
+     "onPage": "VMA and Caribbean rows shown as NOMINATED (pending); two BRIT Billion Award cards dated 2024 (1bn and 2bn UK streams)",
+     "shouldBe": "Unverified here — not a contradiction. mtv.com/vma redirects to mtv.co.uk from this location and paramountpressexpress.com answers \"location-not-allowed\"; caribbeanmusicawards.com serves a 114-byte JS shell to curl; bpi.co.uk's news search returns nothing for \"burna\". NRJ (Collab' Internationale: Shakira & Burna Boy, Dai Dai — and no other Burna entry across its 12 categories) and AFRIMMA were read at the body.",
+     "source": "curl probes 16 Sep 2026; nrj.fr/music-awards/votes",
+     "severity": "note",
+     "fix": "Read the VMA and Caribbean results at the bodies after 19 and 27 Sep as pendingResults already schedules; for the BRIT Billion cards, cite the BPI post URL in a comment on app/data/awards.ts lines 712-723 so the two same-year cards can be re-checked without a search."
+    }
+   ]
+  },
+  {
+   "page": "/records/africas-biggest",
+   "checked": 34,
+   "findings": [
+    {
+     "claim": "300M-stream tier: \"No other African act has more than Tems's five\" (Most songs over 200M board note)",
+     "onPage": "He owns the 300M tier too, and is now nine deep in it … No other African act has more than Tems's five.",
+     "shouldBe": "Tyla has six songs past 300M on kworb (Water 1.47B, PUSH 2 START 525M, CHANEL 410M, Truth or Dare 356M, Show Me Love 342M, Jump 320M) — more than Tems's five. The sentence must name Tyla (six) as the next-highest, or drop the comparison.",
+     "source": "kworb.net/spotify/artist/3SozjO3Lat463tQICI9LcE_songs.html (Last updated 2026/09/15) and Tems's page 687cZJR45JO7jhk1LHIbgq (2026/09/14) — the body this board cites",
+     "severity": "wrong",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/africasBiggest.ts line 346: replace \"No other African act has more than Tems’s five\" with \"The next-deepest is Tyla with six, then Tems with five\" (counted per the board's own all-versions rule); ideally derive the 300M counts from the same kworb read the bot already makes rather than typing them."
+    },
+    {
+     "claim": "CKay has 3 songs over 200M Spotify streams (tied 5th with Wizkid & Omah Lay)",
+     "onPage": "05 Wizkid, CKay & Omah Lay · 🇳🇬 Nigeria · tied · 3",
+     "shouldBe": "CKay now has 4 songs ≥200M on kworb — love nwantiti (ah ah ah) 1.065B, love nwantiti Remix 735M, emiliana 320M, and love nwantiti North African Remix 204M (a separate version, which the board's own rule counts individually). Row 5 should be CKay alone on 4; Wizkid and Omah Lay (3) fall outside the top five.",
+     "source": "kworb.net/spotify/artist/048LktY5zMnakWq7PTtFrz_songs.html, read 16 Sep 2026 (the board's stated source: \"counted from kworb.net stream totals\")",
+     "severity": "stale",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/africasBiggest.ts line 344: change to { name: \"CKay\", sub: \"🇳🇬 Nigeria\", value: \"4\" }; also refresh the source line at line 348 from \"As of August 2026\" to the re-read date."
+    },
+    {
+     "claim": "Best-selling African artist (ChartMasters EAS): Burna Boy 15.13M, Wizkid 14.85M, gap \"some 284,000\", \"691-name board\"",
+     "onPage": "Burna Boy 15.13M / Wizkid 14.85M; note: lead \"stretched … to some 284,000\" on \"ChartMasters' 691-name board\"; source: \"15,132,000 (rank 534) to Wizkid's 14,848,000 (rank 538), read 10 September 2026 with the board's streams stamped 8 September\"",
+     "shouldBe": "ChartMasters now serves Burna Boy 15,197,000 (rank 534, streams stamped 09/14/26) and WizKid 14,887,000 (rank 538, stamped 09/13/26) on a 692-name board — gap about 310,000. Akon in the source note is now 16,620,000 (was 16,516,000). Note the two rows carry different stamp dates; the site's method says read same-date.",
+     "source": "chartmasters.org Best-Selling Artists of All-Time, wpDataTables endpoint admin-ajax.php?action=get_wdtable&table_id=41 (692 records), read 16 Sep 2026",
+     "severity": "stale",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/africasBiggest.ts lines 473–477: values 15.20M / 14.89M, note \"some 310,000\" and \"692-name board\", source line re-dated 16 September with stamps 14/13 September and Akon 16,620,000. This board is typed and re-read by hand; add it to scripts/watched-metrics.json (the endpoint above is curl-readable, rank from the g# column)."
+    },
+    {
+     "claim": "\"these two are the only artists from any African country on ChartMasters' board, and the only Afrobeats artists it has published an EAS total for at all\"",
+     "onPage": "…the only Afrobeats artists it has published an EAS total for at all.",
+     "shouldBe": "ChartMasters' board now carries a third row tagged genre \"Afrobeats\": Beéle (Colombia), 10,914,000 EAS, rank 654. The \"only African country\" half still holds (Beéle is Colombian); the \"only Afrobeats artists\" half is contradicted by the body's own genre tag.",
+     "source": "chartmasters.org table_id=41, row 654: Beéle · Afrobeats · Colombia · 10,914,000 (09/13/26), read 16 Sep 2026",
+     "severity": "wrong",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/africasBiggest.ts line 476: drop \"and the only Afrobeats artists it has published an EAS total for at all\" or rewrite as \"the only African artists — ChartMasters also tags Colombia's Beéle (10.9M) as Afrobeats\"."
+    },
+    {
+     "claim": "Most-followed African artist on Spotify — Burna 17.33M, Wizkid 12.36M, Davido 11.62M, Asake 10.14M, Tyla 5.28M; meta says \"current\"; \"just under 5 million clear of Wizkid\"",
+     "onPage": "Spotify followers · African artists · current — Every figure re-read on 10 August 2026",
+     "shouldBe": "Could not be verified at the body from this environment: open.spotify.com artist pages redirect to charts.spotify.com in the in-app browser and the SSR HTML carries no follower count. The reading is 37 days old on a board whose meta says \"current\" and whose note makes two live comparisons (the ~5M gap, Asake past 10M).",
+     "source": "Spotify artist pages unreachable here (open.spotify.com/artist/3wcj11K77LjEY1PkEazffa); app/data/spotify.ts line 7 is hand-maintained",
+     "severity": "note",
+     "fix": "Re-read all five at open.spotify.com in a real browser and update /Users/paulemmanuelng/burnaboy-website/app/data/spotify.ts line 7 (Burna) and app/data/africasBiggest.ts lines 357–360 plus the date at line 364; or change the meta at line 353 from \"current\" to \"as read 10 Aug 2026\"."
+    },
+    {
+     "claim": "Most songs over 200M source line: \"As of August 2026\" while the note dates an event to 1 September",
+     "onPage": "Source: …As of August 2026 — figures shift as songs cross the threshold. Note: Gunna’s “wgft” became the ninth on 1 September.",
+     "shouldBe": "The source date should not predate an event the note reports; print the actual last-read date (and the CKay/Tyla corrections above show the counts have moved since August).",
+     "source": "app/data/africasBiggest.ts lines 346 and 348 read against each other; kworb pages stamped 2026/09/15",
+     "severity": "note",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/africasBiggest.ts line 348: re-date to the September re-read, or derive the date from the bot's kworb stamp as the 2026 streams row does with asOf."
+    },
+    {
+     "claim": "Mobile layout's Most-streamed board names Tems alone for 2026 (\"01 Tems 🇳🇬 2026 · in progress —\") while the desktop row marks Tems, Burna Boy and Wizkid joint first",
+     "onPage": "Mobile: 01 Tems · 2026 · in progress · —. Desktop: 1 Tems 1.796B / 1 Burna Boy 1.795B / 1 Wizkid 1.794B (joint), note \"with Tems, Burna Boy and Wizkid joint first\"",
+     "shouldBe": "The phone row should carry the tie the data declares (e.g. \"Tems, Burna Boy & Wizkid · 2026 · in progress · joint\") — the site's own rule is that a joint row is never called a lead.",
+     "source": "app/lib/africaBoards.ts yearBoard() takes r.entries[0] only and ignores tie:true; app/data/africasBiggest.ts lines 219–221",
+     "severity": "broken",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/lib/africaBoards.ts lines ~57–70: when r.inProgress and the following entries carry tie:true, join the tied names for the row (and keep his: false), so both layouts state the same 2026 standing."
+    }
+   ]
+  },
+  {
+   "page": "/records/firsts",
+   "checked": 105,
+   "findings": [
+    {
+     "claim": "\"First African artist with four albums past 500 million Spotify streams\" — the parenthetical album totals",
+     "onPage": "“Outside” crossed the mark in August 2026, joining “Love, Damini” (1.71 billion), “African Giant” (1.35 billion) and “I Told Them…” (868 million).",
+     "shouldBe": "The three totals are a 22 August 2026 reading (updates.ts line 336) printed with no date. Read 16 Sep 2026 at kworb's Burna Boy albums table (the tracker the site itself uses for Spotify totals): Love, Damini 1,729,395,482 (1.73B), African Giant 1,393,196,286 (1.39B), I Told Them… 878,210,010 (878M), Outside 504,238,856. Either date the figures — “…joining Love, Damini (1.71 billion), African Giant (1.35 billion) and I Told Them… (868 million), as read on 22 August 2026” — or drop the parentheticals, since the record is the crossing, not the running totals.",
+     "source": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_albums.html read 16 Sep 2026; /Users/paulemmanuelng/burnaboy-website/app/data/updates.ts line 336 (dated 2026-08-22)",
+     "severity": "stale",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/firsts.ts line 106: add the read date to the sentence or remove the three album totals; the same undated figures sit in updates.ts line 336 but that entry is dated by the feed."
+    },
+    {
+     "claim": "\"First African artist to surpass 700 million YouTube Music monthly audience\" — the live \"now\" figure and world rank",
+     "onPage": "…passed 700 million in July 2026 — now 929 million, a first for any African artist, and the sixth-biggest audience ever recorded worldwide, above Lady Gaga (862M) and Michael Jackson (741M).",
+     "shouldBe": "929M is the August 2026 peak (africasBiggest.ts lines 90–91; its own source line says “As of August 2026 — figures update as they climb”), and “sixth-biggest” is the August world table. On this page it renders as “now 929 million” with no date, so it will read as current however old it gets. Print the date: “peaking at 929 million in August 2026” — or add an asOf next to BURNA_YT_AUDIENCE and render it here. YouTube for Artists is not reachable to re-read.",
+     "source": "/Users/paulemmanuelng/burnaboy-website/app/data/africasBiggest.ts lines 90–91 and 408–412 (source string “As of August 2026”)",
+     "severity": "note",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/firsts.ts line 111: replace “now ${BURNA_YT_AUDIENCE_WORDS}” with a dated phrasing, or export a BURNA_YT_AUDIENCE_AS_OF from africasBiggest.ts line 90 and interpolate it."
+    },
+    {
+     "claim": "Page comment says the September stamp covers a Rhythmic Airplay No. 1 milestone in firsts.ts",
+     "onPage": "page.tsx source-band comment: “data/firsts.ts gained milestones in September that were cross-checked then: ‘Dai Dai’ at No. 1 on Billboard's Rhythmic Airplay chart, and the 4-billion YouTube mark”",
+     "shouldBe": "firsts.ts contains no Rhythmic Airplay entry (grep -n Rhythmic app/data/firsts.ts returns nothing; PR #149 only added the 4-billion YouTube row). The comment justifies the “as of September 2026” stamp with a milestone that is not on the page. Either add the row (the No. 1 on the chart dated 5 September 2026 is on /dai-dai and in updates.ts line 210) or correct the comment to name only the YouTube row. Note PR #149's commit message says the chart was dated 6 September; 5 September 2026 is the Saturday, so updates.ts/dai-dai are right and the commit message is the odd one out.",
+     "source": "/Users/paulemmanuelng/burnaboy-website/app/records/firsts/page.tsx lines 127–132; git show 668a4e36 -- app/data/firsts.ts",
+     "severity": "note",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/records/firsts/page.tsx lines 127–132: fix the comment, or add the Rhythmic Airplay entry to firsts.ts under Charts & streaming."
+    },
+    {
+     "claim": "\"First Nigerian artist to surpass 4 billion YouTube views\" — the channel count is typed here and re-read elsewhere",
+     "onPage": "His channel passed 4 billion views across 344 videos — 4,029,086,804 read at youtube.com/@BurnaBoy on 3 September 2026.",
+     "shouldBe": "Not wrong — it is dated — but the same figure has a second hand-typed home that has since moved on: streamingTotals.ts re-measured 4,043,634,651 across 346 videos on 14 Sep 2026 (youtubeTotalViewsAsOf = \"2026-09-14\"). Two typed copies of one count will drift; keep this row as the dated crossing record, or derive the sentence from streamingTotals.ts so the latest dated read appears here too.",
+     "source": "/Users/paulemmanuelng/burnaboy-website/app/data/streamingTotals.ts lines 72–80 and 100",
+     "severity": "note",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/firsts.ts line 110: import youtubeTotalViewsAsOf (and an exact-count export) from streamingTotals.ts, or leave as-is and add a comment that this is the 3 Sep crossing read, not the live count."
+    },
+    {
+     "claim": "\"Fastest music video of his career to 600 million views\" — the \"first and only 2026 music video\" clause",
+     "onPage": "…the quickest either artist has managed, and the first and only 2026 music video to pass the mark.",
+     "shouldBe": "“Only” is a standing claim read on 27 July 2026 (updates.ts line 953) and printed here with no date; another 2026 video passing 600M would silently make it false. No body publishes a dated list of 2026-released videos (kworb's topvideos is all-time, not by publish year), so it cannot be re-checked. Date it (“as of 27 July 2026”) or cut “and only”.",
+     "source": "/Users/paulemmanuelng/burnaboy-website/app/data/updates.ts line 953 (dated 2026-07-27); https://kworb.net/youtube/topvideos.html has no publish-year view",
+     "severity": "note",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/firsts.ts line 80: reword to “the first 2026 music video to pass the mark” or append the read date."
+    }
+   ]
+  },
+  {
+   "page": "/records/tours",
+   "checked": 35,
+   "findings": [
+    {
+     "claim": "Announced 2027 London Stadium show — source line",
+     "onPage": "\"Announced by Burna Boy on Instagram, 3 August 2026\" (both layouts)",
+     "shouldBe": "\"Announced by Burna Boy on X, 3 August 2026\" — the announcement post was on X (\"So excited for 2027! London Stadium III and much more announcements for y'all\"); Instagram only carried a cryptic necklace teaser beforehand. Still no date announced as of 16 Sep 2026, so \"No date announced yet\" and \"2027\" stand.",
+     "source": "Pulse Nigeria (3 Aug 2026), Notjustok (3 Aug 2026), Arise News (5 Aug 2026), Legit.ng (4 Aug 2026) all attribute the announcement to a post on X; Legit.ng separately describes the Instagram post as a cryptic hint, not the announcement. Could not open x.com/burnaboy directly (browser tab was in use by another session).",
+     "severity": "wrong",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/tours.ts line 242: change `source: \"Announced by Burna Boy on Instagram, 3 August 2026\"` to `source: \"Announced by Burna Boy on X, 3 August 2026\"`. The updates.ts entry (line ~802) names no platform, so it needs no change."
+    },
+    {
+     "claim": "Lionesses' Euro victory parade crowd size",
+     "onPage": "\"Surprise-performed “For My Hand” for a 100,000-strong crowd at Buckingham Palace\" (Record nights list, desktop)",
+     "shouldBe": "\"for a 65,000-strong crowd\" — the FA, which staged the homecoming, puts the crowd at 65,000.",
+     "source": "The FA's own report, englandfootball.com, 29 Jul 2025 (\"a powerful message to the 65,000 fans gathered before them\"); ESPN and OneFootball carry the same FA figure. No body publishes 100,000.",
+     "severity": "wrong",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/tours.ts line 252: replace \"100,000-strong crowd\" with \"65,000-strong crowd\" (or \"crowd the FA put at 65,000\")."
+    },
+    {
+     "claim": "Red Rocks live moment — \"opening the No Sign of Weakness tour\"",
+     "onPage": "\"First Nigerian artist to headline the iconic Colorado venue, opening the No Sign of Weakness tour.\" (2025 live moment)",
+     "shouldBe": "\"...opening the tour's North American leg.\" The site's own NSOW date list starts Oct 16, 2025 at Sidney Myer Music Bowl, Melbourne, and the tour note says the run began in Oceania (Oct 2025); Red Rocks (Nov 12, 2025) opened the North American leg, not the tour.",
+     "source": "Repo: app/data/tours.ts NSOW dates (Oct 16–24 Australia before Nov 12 Red Rocks) and the NSOW note; TouringData NSOW report (14 Mar 2026) lists Oceania Oct 16–24 as the first leg. Ticketmaster's FAQ calls Red Rocks the kick-off of the \"2025 North American\" tour.",
+     "severity": "wrong",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/tours.ts line 251: change \"opening the No Sign of Weakness tour\" to \"opening the North American leg of the No Sign of Weakness tour\"."
+    },
+    {
+     "claim": "No Sign of Weakness Tour gross column",
+     "onPage": "\"— Not reported\" for the tour, with the explorer footnote \"A dash means the run has no reported gross, not that it was small\" (both layouts), while the same tour's note says \"the Oceania leg alone grossed $3.12M from 30,946 tickets across four arena shows\"",
+     "shouldBe": "The tour's body report exists and is partial: TouringData reports $3,123,623 from 30,946 tickets over 4 of 21 shows (Oceania only; North America 0/13 and Europe 0/4 still TBA). Either show the reported partial ($3.12M · 30,946 tickets · 4 of 21 shows reported), mirroring how I Told Them… shows 22 reported of 27 documented, or reword the footnote so a dash can mean \"no full-tour gross reported\" — as written, the dash contradicts its own definition and the note beneath it.",
+     "source": "https://touringdata.org/2026/03/14/burna-boy-no-sign-of-weakness-tour/ (read 16 Sep 2026): Reported Revenue $3,123,623, Tickets 30,946, Total Reports 4 / 21. The repo already cites this report in app/data/tourRevenue.ts (comment above the Brisbane row).",
+     "severity": "note",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/tours.ts line 37 block: either add `gross: \"$3.12M\"`, `tickets: \"30,946\"`, `shows: 4` with a comment that 17 of 21 reports are TBA (tourMeta then prints \"30,946 tickets · 4 shows\" — consider a `partialGross: true` flag rendered as \"4 of 21 reported\"), or edit the footnote in app/components/MobileTours.tsx line ~180 and the ToursExplorer equivalent to \"A dash means no full-tour gross has been reported\"."
+    },
+    {
+     "claim": "Headline strip \"Biggest concert\" figure vs the lede and the record-nights entry",
+     "onPage": "Desktop headline strip: \"$6.1M — Biggest concert · African record\"; lede two lines above: \"($6.15M from 58,973 fans)\"; 2024 live moment: \"$6.15M from 58,973 tickets\"",
+     "shouldBe": "One rounding on one page — \"$6.15M\" everywhere (the strip uses topShowM(1), everything else uses two decimals, and $6,147,209 rounds to $6.15M). The page's own comment at line 62 records this exact class of bug for the tour gross.",
+     "source": "Repo: app/records/tours/page.tsx line 68 `topShowM(1)` vs line 108 `topShowM(2)`; app/data/tourRevenue.ts row 1 revenue 6147209 (matches TouringData $6,147,209).",
+     "severity": "note",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/records/tours/page.tsx line 68: change `topShowM(1)` to `topShowM(2)`."
+    },
+    {
+     "claim": "Page <title>, meta description and OG card carry a typed \"$30.46M\"",
+     "onPage": "<title> \"Burna Boy Tours — $30.46M Record Tour & Sold-Out Stadiums\"; description \"...the $30.46M highest-grossing African tour ever...\"; OG sub \"$30.46M — the highest-grossing tour ever by an African artist\"; KeepExploring tile desc \"$30.46M — the biggest African tour\"",
+     "shouldBe": "Derived from topTour.gross like the rest of the page. The page comment (lines 27–29) says \"Nothing below is a number typed into the markup\", but the metadata, OG card and KeepExploring tile are typed and will not follow a data change (a No Sign of Weakness full-tour report could move it).",
+     "source": "Repo: app/records/tours/page.tsx lines 14–16; app/records/tours/opengraph-image.tsx line 9; app/components/KeepExploring.tsx line 25. Current value is correct against TouringData's I Told Them… report ($30,463,574).",
+     "severity": "note",
+     "fix": "In page.tsx build `title`/`description` from `topTour.gross` (hoist the derived constants above `metadata`); in opengraph-image.tsx import `tours` and compute the top gross for `card.sub` (ogVersions already keys the URL on card contents so the preview will follow); in KeepExploring.tsx derive the tours tile desc the same way."
+    },
+    {
+     "claim": "\"Upcoming dates & tickets\" panel (desktop hero)",
+     "onPage": "Kicker \"Upcoming dates & tickets\" with \"Tickets · Ticketmaster ↗\" and \"Official tour site ↗\"; mobile footer also carries \"Tickets · Ticketmaster\"",
+     "shouldBe": "Both links resolve, but neither has an upcoming date: Ticketmaster's artist page shows \"CONCERTS 0 RESULTS — No Upcoming Concerts\", and onaspaceship.com/tour lists only the four played 2026 dates (Apr 11 El Gouna, Jul 3 Afro Nation, Jul 11 North Sea Jazz, Jul 31 Reggae Land). The only forward-looking item is the undated 2027 London Stadium show. Consider wording the kicker as \"Tickets & official dates\" or gating it on there being a dated upcoming show.",
+     "source": "https://www.ticketmaster.com/burna-boy-tickets/artist/2486272 (in-browser, 16 Sep 2026); https://www.onaspaceship.com/tour (in-browser; returns 403 to curl but loads in the browser).",
+     "severity": "note",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/records/tours/page.tsx line 113: change the kicker text, or render \"Upcoming dates\" only when an upcomingShows entry has a `when` that parses to a date."
+    },
+    {
+     "claim": "Top-10 rows 10 (Scotiabank Arena Toronto, $1,400,964) — and row 23 on the full list (Bell Centre, $952,192)",
+     "onPage": "\"Burna Boy · Scotiabank Arena · I Told Them… Tour (1 of 2 sold-out nights) · 2024 · Tickets: Not reported · $1,400,964\"",
+     "shouldBe": "The body reports these as single two-show reports: Feb 24–25, 2024 Scotiabank Arena $2,801,928 / 29,579 tickets (2 shows) and Feb 28–29 Bell Centre $1,904,384 / 26,303 (2 shows). $1,400,964 and $952,192 are exact halves computed by the site, not per-show grosses the body published, and the tickets are equally halvable (14,789/14,790; 13,151/13,152) yet shown as \"Not reported\". Label the split as such (e.g. \"½ of a 2-night report\") in the tour cell or footnote, so a computed figure is not presented as a reported one.",
+     "source": "https://touringdata.org/2025/12/29/burna-boy-i-told-them-tour/ North America table (2-show rows); repo app/data/tourRevenue.ts lines 28 and 45.",
+     "severity": "note",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/tourRevenue.ts lines 28 and 45: add a `split?: 2` field (or comment + tour label \"½ of a 2-night report\") and render a footnote on both /records/tours and /records/tours/revenue; or keep the row but say the tickets are likewise unsplit rather than \"Not reported\"."
+    }
+   ]
+  },
+  {
+   "page": "/records/cars",
+   "checked": 74,
+   "findings": [
+    {
+     "claim": "Conversion-rate note in \"A note on this list\" (desktop only)",
+     "onPage": "\"USD figures use each source's own conversion (~₦1,455/$)\"",
+     "shouldBe": "The lead car no longer uses that rate: the Bugatti's ₦9 billion is converted at ₦1,370.08/$ (the CBN rate on 5 July 2026, the announcement day), giving the $6,570,000 shown on the same page — 39% of the $16.84M total. The note should say so, e.g. \"~₦1,455/$; the Bugatti's ₦9bn is converted at ₦1,370, the rate on 5 July 2026, the day it was announced\".",
+     "source": "/Users/paulemmanuelng/burnaboy-website/app/data/cars.ts lines 248–256 (Bugatti row comment and valueUsd 6_570_000); app/data/updates.ts line 186 (correction entry); commit a46ca5c4 (#204). Every other car divides to ₦1,428–1,500/$, so the note is right for the other fourteen.",
+     "severity": "wrong",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/records/cars/page.tsx lines 279–280: amend the noteFine paragraph to state the Bugatti's ₦1,370.08 rate and date; ideally derive both rates from cars.ts (valueNaira / valueUsd) rather than typing them."
+    },
+    {
+     "claim": "\"Last fully re-verified July 2026\" (desktop note) and \"Only cars confirmed by multiple independent sources are listed here\" — ownership status of the Mercedes rows",
+     "onPage": "Mercedes-Maybach S680 4MATIC ($300,000) and Mercedes-Maybach GLS 600 ($250,000) counted as current; Mercedes-AMG G63 ($202,000) listed as Unconfirmed; note dated July 2026",
+     "shouldBe": "Unchanged for now — but the verification date is typed prose and is now two months old, and since 8 Sep 2026 a primary source (Burna Boy's official chauffeur, @Moat_Toam, via Messenger to Paul) has said \"Remove the two Mercedes Benz\" and \"The G63 belongs to Ronami\". Paul explicitly said not to delete anything until his 10 Sep call; that decision is still open. When it lands: removing both Maybachs drops the fleet to 13 cars / ~$16.29M, and the derived title, OG description, stat cells and mobile lede follow automatically.",
+     "source": "Memory note project-burnaboystats-car-fleet-pending (raised 8 Sep 2026); /Users/paulemmanuelng/burnaboy-website/app/data/cars.ts lines 437–470 and 533–536; cars.ts header lines 119–122 records the last ownership sweep as July 2026 (the 16 Sep pass re-read specs only).",
+     "severity": "note",
+     "fix": "No data change until Paul confirms. When he does: set status on the affected rows in app/data/cars.ts, re-pin tests/handoffTotals.test.ts and tests/cars.test.ts, add an updates.ts entry, and change page.tsx line 281–282 \"Last fully re-verified July 2026\" to the new date (or derive it from a LAST_VERIFIED constant in cars.ts so the two files cannot drift again)."
+    },
+    {
+     "claim": "\"$2 million McLaren Senna\" in the desktop lede and \"$2M, posted by Burna Boy himself\" in the note",
+     "onPage": "$2 million / $2M (typed)",
+     "shouldBe": "Same value today (cars.ts valueUsd 2_000_000), but typed twice in prose while the tiles read it from data — a re-pricing of the Senna row would leave the lede and note contradicting the tile beside them.",
+     "source": "/Users/paulemmanuelng/burnaboy-website/app/data/cars.ts line 271 (valueUsd: 2_000_000); page.tsx already derives topCar/topCarValue at lines 59–61 but the lede does not use it.",
+     "severity": "note",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/records/cars/page.tsx lines 150–151 and 280: look the Senna up by slug (garage.find(c => c.slug === \"mclaren-senna\")) and interpolate usdShort/usdFull of its valueUsd."
+    },
+    {
+     "claim": "\"₦9 billion Bugatti Chiron\" / \"₦9bn\" typed in the desktop lede, mobile lede, meta description and share description",
+     "onPage": "₦9 billion / ₦9bn (typed in four places)",
+     "shouldBe": "Same value today (cars.ts valueNaira \"₦9 billion\"), but typed rather than read from topCar — the page already derives topCarName and topCarValue from garage[0], and the highlight cell reads priciest.valueNaira, so the lede/metadata are the odd ones out.",
+     "source": "/Users/paulemmanuelng/burnaboy-website/app/data/cars.ts line 256; page.tsx lines 14–19 (metadata), 84 (mobile lede), 150 (desktop lede) vs the derived priciest.valueNaira at line 49.",
+     "severity": "note",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/records/cars/page.tsx lines 14, 19, 84, 150: interpolate topCar.valueNaira (and topCar.make/modelShort) instead of the literal; keep the wording."
+    },
+    {
+     "claim": "\"Only one in Africa — Ferrari SF90 Spider (reported)\" highlight cell (desktop only)",
+     "onPage": "Only one in Africa · Ferrari SF90 Spider · reported",
+     "shouldBe": "A continental superlative with no date and no cited source; it stops being true the day a second SF90 Spider is delivered anywhere in Africa and nothing on the page or in the data would flag it. The claim is typed in the page (page.tsx line 50) and separately in the car's desc (cars.ts line 292) — two copies that can drift.",
+     "source": "/Users/paulemmanuelng/burnaboy-website/app/records/cars/page.tsx line 50 (hard-coded highlights entry); app/data/cars.ts line 292 (\"reported as the only one of its kind in Africa\"). No body publishes SF90 deliveries by country, so the claim cannot be verified against a register.",
+     "severity": "note",
+     "fix": "Move the claim into the SF90 row in cars.ts as a dated, sourced field (e.g. claim: { text: \"Only one in Africa\", asOf: \"2026-07\", source: <url> }) and render the highlight from it with its date, or drop the cell."
+    },
+    {
+     "claim": "Collection value in the mobile layout vs desktop",
+     "onPage": "Mobile lede and stat cell: \"$16.84M\" (no plus); desktop lede, stat cell and <title>: \"$16.84M+\"",
+     "shouldBe": "Both layouts should carry the same qualifier — the \"+\" is the page's signal that the total is a floor of reported values. Same underlying number on both, so not a figure mismatch, but the two layouts state its confidence differently.",
+     "source": "/Users/paulemmanuelng/burnaboy-website/app/records/cars/page.tsx line 84 and 86 (mobile: totalValueFormatted without \"+\") vs lines 151 and 158 (desktop: totalValueFormatted + \"+\"); live DOM read of both blocks on 16 Sep 2026.",
+     "severity": "note",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/records/cars/page.tsx line 84 (lede) and line 86 (stats value): append \"+\" to match desktop, or drop it from desktop — one convention."
+    }
+   ]
+  },
+  {
+   "page": "/updates",
+   "checked": 78,
+   "findings": [
+    {
+     "claim": "France No. 1 run described as ongoing: \"Fifteen weeks on the French chart, and nine of them at No. 1 ... has kept it on top since the semaine du 10 juillet\" (9 Sept) and \"Nine weeks at No. 1 in France ... an unbroken run\" (9 Sept). No later entry closes the run.",
+     "onPage": "Two 9 Sept entries (both layouts) present the SNEP run as still live; the newest French chart the log knows is the semaine du 4 septembre 2026.",
+     "shouldBe": "SNEP's semaine du 11 septembre 2026 (semaine 37) has DAI DAI at No. 3, \"1er La Semaine Dernière\" — the run closed at nine weeks, and the song is now in its 16th week on the Top Singles. A new top entry should record it.",
+     "source": "snepmusique.com/les-tops/le-top-de-la-semaine/top-albums/?semaine=37&annee=2026&categorie=Top%20Singles (PDF link tops_pdf.php?annee=2026&semaine=37), read 16 Sep 2026; semaine 36 still shows it at No. 1.",
+     "severity": "stale",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/updates.ts — add a new Charts entry at the top of the array, dated 2026-09-16, e.g. \"The French run closes at nine weeks: SNEP's semaine du 11 septembre has “Dai Dai” at No. 3, down from No. 1, in its 16th week on the Top Singles.\" (href /dai-dai). Then update the France run wherever the Dai Dai page derives it (app/data/daiDai.ts / charts.ts) so the two agree."
+    },
+    {
+     "claim": "Newest Spotify entry (16 Sept): \"“Dai Dai” falls to No. 20 on Spotify's Daily Top Songs Global for 14 September ... a 116th consecutive day on the chart, 117 days on the chart in all.\"",
+     "onPage": "Log's latest Spotify reading is the 14 September chart (No. 20).",
+     "shouldBe": "Spotify's own 15 September 2026 Top Songs Global chart was already published on 16 Sep: “Dai Dai” at No. 20, no movement (\"–\"), i.e. a 117th consecutive day and 118 days in all. The entry's own date (16 Sep) is a day behind the body.",
+     "source": "charts.spotify.com/charts/view/regional-global-daily/latest, read 16 Sep 2026 (\"Top Songs Global · September 15, 2026\", row 20 Dai Dai — Shakira, Burna Boy).",
+     "severity": "note",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/updates.ts line ~64 — either date the entry to the chart it reads (it already says \"for 14 September\", so fine as a dated fact) or add the 15 Sep reading as the newer entry; the Dai Dai page's \"streak through 14 September 2026\" line should move with it."
+    },
+    {
+     "claim": "Entries are stored and rendered newest-first (page.tsx derives 'Last entry' from updates[0] and both layouts render array order).",
+     "onPage": "Both layouts show the sequence 12 Sept (compare page counts every plaque) → 11 Sept (billion YouTube views in 105 days) → 12 Sept (A new page: certified units, compared) → 11 Sept (Ginger Gold in Switzerland) — an entry dated 12 Sept sits below one dated 11 Sept.",
+     "shouldBe": "Strictly non-increasing dates: the 2026-09-12 entry at updates.ts line 130 should sit above the 2026-09-11 entry at line 124.",
+     "source": "/Users/paulemmanuelng/burnaboy-website/app/data/updates.ts lines 112–141 (date lines 112: 09-12, 118: 09-12, 124: 09-11, 130: 09-12, 136: 09-11); confirmed on the live page text in both the mobile and desktop DOM.",
+     "severity": "broken",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/updates.ts — move the object at lines 130–135 (\"A new page: certified units, compared\") above the object at lines 124–129. Consider a test that asserts updates[] dates are non-increasing, since page.tsx's lastEntry silently depends on it."
+    },
+    {
+     "claim": "\"A new page: certified units, compared. Pick any two of the sixteen artists on this site ...\" (12 Sept, Certifications)",
+     "onPage": "Logged as a Burna Boy update.",
+     "shouldBe": "This is a site/dev change, which the file's own header forbids (\"never log site/dev changes here — new filters, new pages\"). It carries no Burna Boy fact; the 30,215,157-unit floor is already logged in the neighbouring 12 Sept entry.",
+     "source": "/Users/paulemmanuelng/burnaboy-website/app/data/updates.ts header comment lines 7–9 vs entry at lines 130–135.",
+     "severity": "note",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/updates.ts lines 130–135 — remove the entry (or fold its one fact into the 12 Sept compare-page entry at line 118), and decrement nothing else: the tally and category counts are derived."
+    }
+   ]
+  }
+ ]
+}
