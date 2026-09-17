@@ -156,7 +156,9 @@ now the most-streamed" appeared on 15 Sep, on a 1–2M margin no count can
 resolve. By kworb's dailies the gap clears ten million around 19–20 Sep, and
 the board will say so then, on a kworb date.
 
-## A third fixed point, and a re-anchor (16 Sep 2026)
+## A third fixed point, and a re-anchor (16 Sep 2026) — the tracker is ChartMasters
+
+*Confirmed 17 Sep 2026 on Paul's ChartMasters account: the tracker's three totals are ChartMasters' Playcounts Tool totals "through September 15, 2026" to the unit (Burna Boy 11,010,480,657, Wizkid 11,765,176,755, Tems 6,248,869,339), and its 2026 figures are those minus the 2025 closes. ChartMasters' data day N pairs with kworb's page stamped N+1, so the 16 Sep checkpoint date below is the right kworb date for a ChartMasters figure through 15 Sep — see docs/sourcing/CAREER-STREAMS-OFFSET.md.*
 
 @BurnaBoyStats — the fan page, not this site — posted on the morning of 17 Sep
 2026 a "Most-streamed African artists in 2026" table with exact figures, method
@@ -168,8 +170,8 @@ close this site published on 21 Aug at /analysis/spotify-unmerge:
 | artist | total, 16 Sep | 16 Sep daily | 2026 so far |
 |---|---|---|---|
 | Burna Boy | 11,010,480,657 | 7,509,481 | **1,810,927,983** |
-| Wizkid | 10,765,176,755 | 6,287,773 | **1,808,204,727** |
-| Tems | 8,248,869,339 | 5,362,022 | **1,807,644,361** |
+| Wizkid | 11,765,176,755 | 6,287,773 | **1,808,204,727** |
+| Tems | 6,248,869,339 | 5,362,022 | **1,807,644,361** |
 
 Against this site's own ledger through kworb's 2026/09/16 pages (checkpoint
 14 Sep + the 15 and 16 Sep dailies; Tems' 15 Sep derived from her page's
@@ -192,8 +194,7 @@ sums dailies rather than differencing cumulatives.
 The career figure corroborates the method from the other side: the tracker's
 Burna Boy total, 11,010,480,657, sits 2,872,057 above this site's own
 11,007,608,600 for the same day (kworb's raw 10,895,302,794 plus the
-ChartMasters-anchored offset of 112,305,806) — two roster-complete counts
-within three million of each other.
+ChartMasters-anchored offset of 112,305,806) — the 2.9M being the offset a week stale; read directly on 17 Sep, ChartMasters is that total exactly.
 
 **Re-anchored 17 Sep 2026** at the tracker's three exact figures through
 16 Sep; Asake (1,460,097,619) and Tyla (1,208,808,241) at the ledger's own
