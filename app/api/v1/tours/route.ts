@@ -1,6 +1,6 @@
 import { apiJson } from "../../../lib/api";
 import { tours, festivals, otherShows } from "../../../data/tours";
-import { revenueShows } from "../../../data/tourRevenue";
+import { revenueShows, revenueStands } from "../../../data/tourRevenue";
 import { countryCount as performedCountryCount } from "../../../data/performedCountries";
 
 export const dynamic = "force-static";
@@ -65,6 +65,19 @@ export function GET() {
         city: r.city,
         tour: r.tour,
         year: r.year,
+        tickets: r.tickets,
+        revenueUsd: r.revenue,
+      })),
+      // Stands Boxscore reports as ONE figure for several nights — kept apart
+      // from the single-show ranking, with the body's combined numbers and no
+      // per-night split invented for them.
+      multiNightStands: revenueStands.map((r) => ({
+        artist: r.artist,
+        venue: r.venue,
+        city: r.city,
+        tour: r.tour,
+        dates: r.dates,
+        shows: r.shows,
         tickets: r.tickets,
         revenueUsd: r.revenue,
       })),
