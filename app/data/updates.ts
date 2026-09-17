@@ -47,6 +47,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-09-17",
+    category: "Streaming",
+    text: "17.81 million Spotify followers, the most of any African artist and just over five million clear of Wizkid (12.77M) — with Davido (11.96M), Rema (11.87M) and Asake (10.66M) completing the five. Every count read at Spotify itself on 17 September.",
+    href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-09-17",
     category: "Awards",
     text: "A correction at the Headies: the “Music Video of the Year” nomination for “Bundle by Bundle” comes off his count. The body presents that award to the video's director, and its card names DK — the rule that keeps producer credits out applies. Four 2026 nominations stand; 241 in all.",
     href: "/records/awards",
