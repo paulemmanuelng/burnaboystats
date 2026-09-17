@@ -16,17 +16,22 @@
 // to kworb's raw sum before writing this string. Never hand-edit either string —
 // the next bot run overwrites it. To move the figure, move the offset.
 //
-// RE-ANCHORED 10 Sep 2026 to ChartMasters, by Paul's decision, after their
-// figure was independently restated by a premium subscriber. The offset is the
-// SAME-DATE gap between the two trackers on the 9 Sep reading:
+// RE-ANCHORED 17 Sep 2026 on a DIRECT read of ChartMasters' Playcounts Tool
+// (Paul's premium account, read in the site's own browser), eight same-date
+// pairs deep. ChartMasters' "streams updated through" day N pairs with kworb's
+// page stamped N+1 — kworb stamps a page with the day it was built — and under
+// that pairing the gap is stable to within half a million across 8–13 Sep:
 //
-//     ChartMasters  10,956,307,905
-//     kworb raw     10,844,002,099
-//     offset           112,305,806
+//     ChartMasters through 15 Sep   11,010,480,657
+//     kworb raw, page 2026/09/16    10,895,302,794
+//     offset                           115,177,863
 //
-// Both sides are dated reads of the same day, which is what makes the
-// subtraction meaningful; an earlier version of this note compared reads a day
-// apart and the timing quietly flattered the result.
+// The 10 Sep anchor (112,305,806) was ChartMasters' "through 8 Sep" figure
+// against kworb's 09/09 page — the same pairing, described then as a same-
+// number one. The gap stepped up 2.6M on kworb's 09/15 page, whose cumulative
+// moved only 4,694,787 against its own Daily of 7,319,821: a roster removal
+// on kworb's side that ChartMasters did not make. Full table in
+// scripts/watched-metrics.json and docs/sourcing/CAREER-STREAMS-OFFSET.md.
 //
 // WHAT IS EVIDENCED AND WHAT IS NOT. 80,606,612 of that was measured track by
 // track: 42 credited recordings that exist on Spotify but are absent from
@@ -36,7 +41,7 @@
 // reads drops. The remaining 31,699,194 is the amount by which ChartMasters'
 // roster exceeds both kworb's and our own hunt. Its mechanism is named and
 // plausible — catalogue completeness, counted further — but it has NOT been
-// enumerated. Do not call the whole 112,305,806 measured.
+// enumerated. Do not call the whole offset measured.
 //
 // Neither figure is ground truth. Spotify publishes no career total anywhere —
 // not on the artist page, not in the Web API — so both trackers are estimates
@@ -48,13 +53,14 @@
 // already contains 4,640,678,029 of them, 43% of the figure — and the gap does
 // not grow.
 //
-// IT DECAYS, AND THAT IS THE MAINTENANCE JOB. kworb's cumulative has been rising
-// about 10.81M/day against actual streaming near 7.6M/day, which is a tracker
-// absorbing catalogue it previously missed, and every unit of that closes this
-// gap. Left alone, this offset will drift the published figure ABOVE
-// ChartMasters. Re-read ChartMasters and re-subtract against kworb's raw on the
-// SAME date; never derive it by arithmetic on the published figure. The bot
-// cannot catch the drift — 31M on 10.9B is 0.3%, far under its 3% threshold.
+// IT DOES NOT DECAY — IT MOVES WHEN KWORB'S ROSTER MOVES, in either direction,
+// and only a same-date re-read of ChartMasters catches it (the bot's rawJumpAlert
+// flags a kworb jump, not a quiet drift). The earlier note here said the gap
+// closes as kworb absorbs catalogue; eight dated pairs say otherwise. Re-read
+// chartmasters.org/spotify-streaming-numbers-tool (the account is set to Burna
+// Boy; the date picker serves the last 15 days) monthly or on any raw jump,
+// and move offset and baseline together; never derive the offset from the
+// published figure.
 //
 // Method and full evidence: docs/sourcing/CAREER-STREAMS-OFFSET.md.
 export const spotifyTotalStreams = "11.01B";
@@ -67,7 +73,7 @@ export const spotifyTotalStreams = "11.01B";
 // and rounding the one live input forced its derived figures to be rounded too.
 // Both are written by the SAME metric on the same daily run, so they cannot
 // disagree with each other.
-export const spotifyTotalStreamsExact = "11,007,608,600";
+export const spotifyTotalStreamsExact = "11,010,480,657";
 
 // Every Burna Boy video on YouTube, across his channel and others'. He leads
 // all Nigerian artists on this measure — 346 videos to 4.04 billion views,

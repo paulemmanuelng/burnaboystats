@@ -135,7 +135,7 @@ export const updates: Update[] = [
     date: "2026-09-16",
     category: "Streaming",
     big: true,
-    text: "Past 11 billion Spotify streams across every credit: this site's career count read 11,000,362,193 on 16 September — kworb's roster plus the ChartMasters-anchored offset — and 11,007,608,600 a day later. The second African artist past the mark, after Wizkid.",
+    text: "Past 11 billion Spotify streams across every credit: ChartMasters' own count crossed on 14 September (11,002,971,256 through that day) and reads 11,010,480,657 through the 15th, read directly at the tool. The second African artist past the mark, after Wizkid (11.77 billion on the same read).",
     href: "/records/by-the-numbers",
   },
   {

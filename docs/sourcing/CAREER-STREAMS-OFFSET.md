@@ -538,3 +538,43 @@ closes this gap**. Left alone, `raw + 112,305,806` drifts *above* ChartMasters.
 whenever the two are compared. Do not derive the offset from the published figure.
 Nothing automated will catch the drift: 31M on 10.9B is 0.3%, far under the
 metric's 3% threshold.
+
+## 17 Sep 2026 — ChartMasters read directly, eight days deep
+
+Paul obtained a ChartMasters premium account (Node tier) and signed in in the
+site's own browser; the Playcounts Tool (chartmasters.org/spotify-streaming-numbers-tool,
+artist 3wcj11K77LjEY1PkEazffa, date picker `valid_as_of`) was read for every
+day it serves. "Streams updated through" is ChartMasters' data day; kworb's
+page is stamped with the day it was BUILT, so day N on ChartMasters pairs with
+kworb's stamp N+1 — the pairing under which the gap sits still:
+
+| ChartMasters through | total | kworb page | raw | gap |
+|---|---|---|---|---|
+| 8 Sep | 10,956,307,905 | 09/09 | 10,844,002,099 | 112,305,806 |
+| 9 Sep | 10,964,040,720 | 09/10 | 10,851,429,147 | 112,611,573 |
+| 10 Sep | 10,971,894,722 | 09/11 | 10,859,476,411 | 112,418,311 |
+| 11 Sep | 10,980,187,935 | 09/12 | 10,867,434,697 | 112,753,238 |
+| 12 Sep | 10,988,533,871 | 09/13 | 10,875,860,409 | 112,673,462 |
+| 13 Sep | 10,995,638,278 | 09/14 | 10,883,361,600 | 112,276,678 |
+| 14 Sep | 11,002,971,256 | 09/15 | 10,888,056,387 | 114,914,869 |
+| 15 Sep | 11,010,480,657 | 09/16 | 10,895,302,794 | **115,177,863** |
+
+Same-number pairing (through N against stamp N) gives 119.6M–122.4M and
+wanders by 3M; the shifted pairing holds within 0.5M for six days and then
+steps once. The 10 Sep anchor was therefore right in its pairing and wrong in
+its description — and the note's claim that the gap *decays* was wrong: it
+moved +2.6M on kworb's 09/15 page, whose cumulative rose 4,694,787 against a
+printed Daily of 7,319,821 (a removal on kworb's roster that ChartMasters did
+not make). The offset moves when kworb's roster moves, in either direction.
+
+**Offset 112,305,806 → 115,177,863; baseline and exact string 11,010,480,657
+(kworb 09/16 raw + offset = ChartMasters through 15 Sep, to the unit).**
+ChartMasters' own "Recent milestones" card dates Burna Boy's 11B crossing to
+**14 September 2026** (11,002,971,256 through that day). Also read the same
+day, through 15 Sep: Wizkid 11,765,176,755, Tems 6,248,869,339 — and the fan
+tracker's 16 Sep table (docs/sourcing/STREAMS-2026-ANCHOR.md) is these three
+totals minus the 2025 closes, to the unit, so the 2026 ledger's anchor is
+ChartMasters.
+
+Re-read monthly and on any rawJumpAlert; the picker serves the last fifteen
+days, so a missed month cannot be back-filled.
