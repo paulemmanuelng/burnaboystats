@@ -167,6 +167,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // One page per pair of the sixteen artists, canonical order only.
     ...allPairs().map(([a, b]) => ({ path: `/compare/${pairSlug(a, b)}`, priority: 0.6, changeFrequency: "weekly" as const })),
     { path: "/music", priority: 0.8, changeFrequency: "weekly" },
+    { path: "/music/listeners", priority: 0.6, changeFrequency: "monthly" },
     ...songs.map((sg) => ({ path: `/music/${sg.slug}`, priority: 0.8, changeFrequency: "weekly" as const })),
     ...albumPages.map((al) => ({ path: `/music/albums/${al.slug}`, priority: 0.8, changeFrequency: "weekly" as const })),
     { path: "/timeline", priority: 0.8, changeFrequency: "weekly" },

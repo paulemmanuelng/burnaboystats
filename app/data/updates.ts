@@ -47,6 +47,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-09-17",
+    category: "Streaming",
+    text: "Lagos is Burna Boy's biggest city on Spotify — 1,429,129 monthly listeners, with London (993,316), Port Harcourt and Abuja behind it. His top 50 cities span 29 countries, and Germany places eight of them, more than any other country.",
+    href: "/music/listeners",
+  },
+  {
+    date: "2026-09-17",
     category: "Charts",
     text: "Two chart entries withdrawn after reading the bodies: “Alone” never entered Sverigetopplistan's singles chart (Heatseeker only), and the “Jerusalema” remix's South Africa No. 1 predates the chart that would have carried it. 276 entries, 46 No. 1s.",
     href: "/records/charts",

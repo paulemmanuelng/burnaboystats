@@ -174,6 +174,9 @@
   margin-top: 6px;
 }
 .latestText { font-size: 13px; line-height: 1.45; color: var(--text-body-cool); margin-top: 8px; }
+/* The audience map, under the counts — the same gold pill as the tracklist CTA
+   (one gradient for every gold action on the phone), as a link. */
+.heroCta,
 .latestCta {
   display: flex;
   align-items: center;
@@ -333,6 +336,7 @@
 .albumCard { border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
 .albumCard:nth-child(2n) { border-right: 0; }
 .latestCta { border: 0; font: inherit; cursor: pointer; width: 100%; }
+.heroCta { margin-top: 18px; text-decoration: none; }
 
 /* Expand control for the song stories, matching the certifications screen. */
 .moreBtn {

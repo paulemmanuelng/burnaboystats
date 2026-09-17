@@ -282,6 +282,13 @@ export const searchIndex: SearchDoc[] = [
     keywords: ["revenue", "box office", "grossing", "highest grossing", "boxscore", "earnings", "tour money"],
   },
   {
+    title: "Where the World Listens",
+    path: "/music/listeners",
+    section: "Music",
+    description: "Burna Boy's top 50 Spotify cities by monthly listeners, mapped — Lagos first, 29 countries.",
+    keywords: ["listeners", "monthly listeners", "cities", "spotify", "where people listen", "audience", "lagos", "london", "map", "fans"],
+  },
+  {
     title: "Where He's Performed",
     path: "/records/tours/map",
     section: "Records",

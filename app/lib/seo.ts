@@ -153,6 +153,7 @@ export const SEGMENT_LABELS: Record<string, string> = {
   festivals: "Festivals & Shows",
   revenue: "Highest Revenue Per Show",
   map: "Where He's Performed",
+  listeners: "Where the World Listens",
   cars: "Car Collection",
   firsts: "Firsts & Records",
   "africas-biggest": "Africa's Biggest",

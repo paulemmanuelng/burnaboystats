@@ -1,3 +1,4 @@
+import { cityCount } from "../data/listeners";
 import { liveCharts } from "../data/liveCharts";
 import { totalAwards, countryCount } from "../data/certifications";
 import { chartEntryCount, chartCountryCount, numberOnes } from "../data/charts";
@@ -39,6 +40,7 @@ export const searchStats: Record<string, string> = {
   "/records/awards": `${totalWins} wins`,
   "/records/tours": tours.find((t) => t.record)?.gross ?? "",
   "/records/tours/map": `${performedCountryCount} countries`,
+  "/music/listeners": `${cityCount} cities`,
   "/records/tours/revenue": `${revenueShows.length} shows`,
   "/records/tours/festivals": String(festivals.length + concerts.length + otherShows.length),
   "/records/africas-biggest": `${statBoxes.length} boards`,

@@ -1,0 +1,47 @@
+/* "Where the world listens" — the dot layer over the shared world map.
+   Frame, zoom, viewport and card come from records/tours/map/map.module.css
+   (the performance map's); only what a CITY needs is here. */
+
+/* A country that places a city in the 50 — washed lighter than the performed
+   map's 42%, because the wash here is reach, not the record: the dots carry
+   the figure. Not interactive. */
+.reach {
+  fill: color-mix(in srgb, var(--gold-wash-base) 18%, transparent);
+  stroke: color-mix(in srgb, var(--scrim-base) 90%, transparent);
+  stroke-width: 0.4;
+}
+
+/* A city. Translucent so an overlap still shows both, gold-edged so the
+   smallest (2.6 px) survives on the wash. */
+.city {
+  fill: color-mix(in srgb, var(--gold-wash-base) 62%, transparent);
+  stroke: var(--gold-bright);
+  stroke-width: 0.9;
+  cursor: pointer;
+  transition: fill 0.15s ease;
+  outline: none;
+}
+.city:hover,
+.city:focus-visible,
+.cityActive { fill: var(--gold-hit); }
+
+/* The card's figure — display type, like the count line on the page. */
+.cardCount {
+  display: block;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+  margin-top: 9px;
+}
+.cardWord {
+  display: block;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-top: 5px;
+}

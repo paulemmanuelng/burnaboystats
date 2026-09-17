@@ -21,6 +21,7 @@ export const BACK_BAR_ROUTES = new Set<string>([
   // ACTION_BAR_ROUTES: the design keeps the five-tab bar at its foot.
   "/search",
   "/music",
+  "/music/listeners",
   "/live-charts",
   "/records",
   "/records/charts",
@@ -70,6 +71,7 @@ export const ACTION_BAR_ROUTES = new Set<string>([
   "/records/tours/revenue",
   "/records/tours/festivals",
   "/records/tours/map",
+  "/music/listeners",
   "/records/by-the-numbers",
   "/records/africas-biggest",
   "/records/visualized",

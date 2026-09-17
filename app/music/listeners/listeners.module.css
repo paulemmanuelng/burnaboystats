@@ -1,0 +1,229 @@
+/* "Where the world listens" — the desktop page. Every page-level value is the
+   performance map's (records/tours/map/map.module.css), which this page is
+   built from; the map component itself imports that file's frame, zoom and
+   card classes and adds its dot layer in components/ListenerMap.module.css.
+   Only the ranked city list at the bottom of this file is new. */
+
+/* ═══ Page — desktop ═══════════════════════════════════════════════════════ */
+.desktopOnly { display: block; }
+@media (max-width: 900px) { .desktopOnly { display: none; } }
+
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
+
+.head { padding-top: 32px; }
+.kicker {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.title {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 78px;
+  line-height: 0.9;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 14px 0 0;
+}
+.lede {
+  font-size: var(--type-lede);
+  line-height: var(--type-lede-lh);
+  color: var(--text-body);
+  max-width: 62ch;
+  margin: 18px 0 0;
+  text-wrap: pretty;
+}
+
+/* The two counts read as one line: countries lit, regions plain, a hairline
+   between them. Regions aren't a record — they're the shape of the first
+   number. */
+.counts { display: flex; align-items: baseline; gap: 14px; margin-top: 22px; flex-wrap: wrap; }
+.countBig {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 58px;
+  line-height: 0.9;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+}
+.countBigPlain { color: var(--text); }
+.countWord {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+.countRule { width: 1px; height: 22px; background: var(--line); display: block; }
+
+.figure { margin: 28px auto 0; }
+.frame { position: relative; border: 1px solid var(--line); background: var(--bg-soft); }
+.legend {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex-wrap: wrap;
+}
+/* Two swatches, because there are two ways a country can appear: a shaded
+   shape, or a marker where 110m geometry has no usable shape for it. */
+.swatch {
+  width: 14px;
+  height: 14px;
+  background: color-mix(in srgb, var(--gold-wash-base) 42%, transparent);
+  border: 1px solid var(--gold);
+  display: block;
+  flex: none;
+}
+.swatchDot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--gold-wash-base) 75%, transparent);
+  border: 1px solid var(--gold-bright);
+  display: block;
+  flex: none;
+  margin-left: 14px;
+}
+
+.breakdown { padding-top: 52px; }
+.breakdownTitle {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 34px;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 12px 0 0;
+}
+.tableWrap { margin-top: 22px; overflow-x: auto; }
+.table { width: 100%; border-collapse: collapse; }
+.table th {
+  text-align: left;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.table td { padding: 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.table tbody tr:hover td { background: color-mix(in srgb, var(--gold-wash-base) calc(5% * var(--wash-strength)), transparent); }
+.regionCell {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 17px;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  color: var(--text);
+  border-bottom: 1px solid var(--line);
+  padding: 14px;
+  white-space: nowrap;
+  text-align: left;
+}
+.numCol {
+  text-align: right;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-small);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  width: 90px;
+}
+.namesCell { font-size: 13.5px; line-height: 1.7; color: var(--text-body); }
+.table tfoot td {
+  border-bottom: none;
+  border-top: 1px solid var(--border);
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+/* The total row's last cell is prose, not display type. */
+.tfootPlain {
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: 14px;
+  text-transform: none;
+}
+
+.note { font-size: 13px; line-height: 1.7; color: var(--text-muted); margin: 22px 0 0; max-width: 84ch; }
+.note a { color: var(--gold); }
+.pills { display: flex; gap: 10px; flex-wrap: wrap; padding: 40px 0 72px; }
+
+@media (max-width: 1239px) {
+  .title { font-size: 57px; }
+  .countBig { font-size: 44px; }
+}
+
+
+/* ═══ The fifty, ranked ═════════════════════════════════════════════════ */
+/* Two columns of rows, each a rank, a name, a bar against Lagos and the
+   figure — the table equivalent of the dots, in reading order. */
+.cityGrid {
+  list-style: none;
+  margin: 22px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 40px;
+  border-top: 1px solid var(--border);
+}
+.cityRow {
+  display: grid;
+  grid-template-columns: 30px 1fr 120px 96px;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--line);
+}
+.cityRow:hover { background: color-mix(in srgb, var(--gold-wash-base) calc(5% * var(--wash-strength)), transparent); }
+.cityRank {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.cityName {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.cityCountry {
+  font-family: var(--font-mono), monospace;
+  font-weight: 400;
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-left: 8px;
+}
+.cityBar { display: block; height: 6px; background: var(--bg-soft-2); overflow: hidden; }
+.cityBarFill { display: block; height: 100%; background: color-mix(in srgb, var(--gold-wash-base) 70%, transparent); border-right: 1px solid var(--gold); }
+.cityCount {
+  text-align: right;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-small);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+@media (max-width: 1239px) {
+  .cityGrid { grid-template-columns: 1fr; }
+}
