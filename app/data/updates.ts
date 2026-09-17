@@ -47,6 +47,25 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-09-17",
+    category: "Tours",
+    big: true,
+    text: "Burna Boy will headline the halftime show at the first NFL game ever played in France: Pittsburgh Steelers v New Orleans Saints at Stade de France on Sunday 25 October, 2:30 pm CEST — the NFL's own announcement, and a return to the stadium he was the first African artist to headline in April 2025.",
+    href: "/records/tours",
+  },
+  {
+    date: "2026-09-17",
+    category: "Streaming",
+    text: "Fifty songs past 50 million Spotify streams: “4 Kampé II” crossed on the 16 September reading at 50,236,513. On the same tracker GIMS has 48, Akon 45 and Wizkid 39. A 23rd song is past 100 million too — “Sungba (Remix)” at 100,642,822 — where Akon stands at 32 and GIMS at 24.",
+    href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-09-17",
+    category: "Streaming",
+    text: "Five songs past 400 million Spotify streams: “Dai Dai” (449,530,883 on the 16 September reading) joins “Location” (736.6M), “Last Last” (611.1M), “On the Low” (428.2M) and “Own It” (414.3M). Nine are past 300 million and 15 past 200 million, as the board says.",
+    href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-09-17",
     category: "Charts",
     text: "Wizkid's Nigerian record, read from TurnTable's own archive — 306 weekly issues since 2020: 83 chart entries the board never had, including a tenth Nigerian No. 1 (the S2 EP, 28 December 2023). 237 chart entries across 32 territories, 25 of them No. 1s.",
     href: "/afrobeats/wizkid/charts",

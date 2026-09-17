@@ -233,6 +233,17 @@ export interface UpcomingShow {
 
 export const upcomingShows: UpcomingShow[] = [
   {
+    venue: "Stade de France",
+    city: "Paris",
+    country: "France",
+    when: "25 Oct 2026",
+    note: "Headlines the halftime show at the first NFL game ever played in France — Pittsburgh Steelers v New Orleans Saints, 2:30 pm CEST — back at the stadium he was the first African artist to headline, in April 2025. One of seven halftime shows across the league's 2026 international games.",
+    // nfl.com/news/burna-boy-headline-halftime-show-2026-nfl-paris-game-oct-25
+    // and @NFL on X, 17 Sep 2026: "Sunday, Oct. 25 at 2:30 p.m. CEST (9:30 a.m.
+    // ET) at Stade de France".
+    source: "Announced by the NFL, 17 September 2026",
+  },
+  {
     venue: "London Stadium",
     city: "London",
     country: "UK",
