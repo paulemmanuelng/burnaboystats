@@ -1,0 +1,560 @@
+{
+ "pages": [
+  {
+   "page": "/music/ye",
+   "checked": 25,
+   "findings": [
+    {
+     "claim": "Nigeria certification tier for “Ye” (Certifications section pill, and counted inside “8 certifications worldwide”)",
+     "onPage": "🇳🇬 Silver — Nigeria (both layouts; single component)",
+     "shouldBe": "🇳🇬 Gold — Nigeria. TCSN's own register (the 21 Feb 2026 capture the repo's sweep README prescribes, web.archive.org/web/20260221224010id_/https://turntablecharts.com/certification, __NEXT_DATA__ props.pageProps.certEntries, 2,477 rows) holds two Burna Boy “Ye” rows: id 970 Silver (2025-01-05 batch) and id 1956 Gold (2025-02-06 batch). Highest tier per record = Gold. This is exactly the row pattern “On The Low” had (ids 1031 Silver / 2011 Gold), which the site already corrected Silver→Gold on 27 Aug 2026; “Ye” was left behind because docs/sweeps/refresh-2026-08-26.md recorded it as “could not be checked” against the 500-row live register, which serves no Silver and no “Ye” row at all (re-read today: 500 rows, no Ye). The plaque count stays 8.",
+     "source": "TCSN register archive capture 20260221224010 (certEntries ids 970 and 1956, artiste “Burna Boy”, title “Ye”); live turntablecharts.com/certification read 17 Sep 2026 (500 rows, no Ye row)",
+     "severity": "stale",
+     "fix": "app/data/certifications.ts line 235: change `{ c: \"NG\", level: \"Silver\" }` to `{ c: \"NG\", level: \"Gold\" }` in the Ye release row (add a comment like the On the Low one at lines 207-218: TCSN archive, migration-batch stamp, no dated-log row). Then tests/handoffTotals.test.ts lines 71-72: Gold 95→96, Silver 31→30 (sum stays 234). docs/sourcing/burna-boy.by-country.md line 8: `Ye — Silver` → `Ye — Gold`. Add an updates.ts entry mirroring the 27 Aug On The Low one (line 459). Re-run the full test suite and read the exit code before committing."
+    },
+    {
+     "claim": "“Anthem — a live-set staple and enduring fan favourite that still defines his early sound” (By the numbers card)",
+     "onPage": "…that still defines his early sound",
+     "shouldBe": "Drop the “still” or date it — the site's own rule treats “still/now/currently” as a live claim that rots, and this one has no figure or date behind it. E.g. “a live-set staple since 2018 and an enduring fan favourite”.",
+     "source": "app/data/songs.ts line 95 (typed extraFact); site prose rules",
+     "severity": "note",
+     "fix": "app/data/songs.ts line 95: reword the label to remove “still” (e.g. `l: \"a live-set staple since 2018 and an enduring fan favourite\"`)."
+    },
+    {
+     "claim": "“Platinum — certified in the US, UK, France, Canada, Sweden, NZ & Switzerland” (By the numbers card) and blurb “went Platinum across the US, UK, France, Canada and beyond”",
+     "onPage": "Typed list of seven Platinum countries",
+     "shouldBe": "Correct today (RIAA 26 Jan 2023 Platinum; BPI 30.06.2023 Platinum; SNEP Platine constat 04/07/2024; Music Canada Platinum Single 14 Apr 2022; RMNZ Plat x1 2024-02-22; swisscharts.com Edelmetall 2023 Platin, no upgrade in 2024–2026 lists; Sweden not reachable at the body — Grammotex record pages sit behind the trade login — so SE rests on the 27 Aug 2026 sweep read, cert no. 10450). But the list is typed, not derived from certifications.ts, so the next Platinum (or an upgrade to 2×) will leave it stale without any test tripping.",
+     "source": "riaa.com/gold-platinum ?se=Burna+Boy; certified-awards.bpi.co.uk (HX-Request search); snepmusique.com/les-certifications; musiccanada.com/gold-platinum/?_gp_search=burna+boy; radioscope.co.nz TablePress 2052; swisscharts.com/edelmetall/2023–2026; docs/sweeps/sweden-glf-grammotex-2026-08-27.md line 69",
+     "severity": "note",
+     "fix": "app/data/songs.ts line 94: derive the label from the song's Platinum-tier certs (e.g. build the country list in page.tsx from `certs.filter(c => tierOf(c.level) === \"platinum\")` and drop the typed extraFact), or leave a data test that fails when the Platinum country set for “Ye” in certifications.ts differs from the seven named here."
+    }
+   ]
+  },
+  {
+   "page": "/music/city-boys",
+   "checked": 74,
+   "findings": [
+    {
+     "claim": "New Zealand Gold plaque for City Boys (shown on the page's Certifications strip) has no row in the dated certification log, so the /certifications by-year count for 2024 is one short",
+     "onPage": "Page shows 🇳🇿 Gold New Zealand (from the certifications.ts snapshot, line 244); certHistory carries City Boys rows only for CA 2026, UK 2025, FR 2025, US 2025, FR 2024, UK 2024 — no NZ row in any year; /certifications prints \"2024 · 20\" (tests/certs.test.ts line 121 pins 20)",
+     "shouldBe": "A 2024 NZ Gold event: RMNZ's register row reads Burna Boy | City Boys | Gold | 2024-06-13, so 2024 should count 21",
+     "source": "RMNZ register via RadioScope TablePress table 2052 (https://www.radioscope.co.nz/2024/00/00/single-cert-search/, SSP query search=City Boys), read 17 Sep 2026: exactly one row ['Burna Boy','City Boys','Gold','2024-06-13']",
+     "severity": "wrong",
+     "fix": "app/data/certifications.ts: add `{ title: \"City Boys\", country: \"NZ\", level: \"Gold\", year: 2024 }` in the 2024 block beside lines 663–664 (City Boys FR Gold / UK Silver); tests/certs.test.ts line 121: `toBe(20)` → `toBe(21)` with a dated comment (\"20 → 21 on 17 Sep 2026: City Boys NZ Gold, RMNZ/RadioScope 2024-06-13, was in the snapshot but never logged\"); add a Certifications correction entry at the top of app/data/updates.ts"
+    },
+    {
+     "claim": "119M YouTube views for the official video / 289M Spotify streams",
+     "onPage": "\"119M — YouTube views for the official video\" and \"289M — Spotify streams\" (By the numbers, both layouts)",
+     "shouldBe": "The bodies read 118,544,869 views and 288,945,461 streams; the bot's M0/compact formats round to nearest, so the page prints 455,131 views and 54,539 streams the recording has not reached — a floor (\"118M\", \"288M\") would honour the never-inflated rule",
+     "source": "https://www.youtube.com/watch?v=hLDQ88vAhIs (\"Burna Boy - City Boys [Official Music Video]\", viewCount 118544869, read 17 Sep 2026); kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html row City Boys 288,945,461 (last updated 2026/09/16); scripts/watched-metrics.json lastSeenValue 118540874 / 288945461",
+     "severity": "note",
+     "fix": "scripts/stats-lib.mjs formatStat: line ~431 `M0` → `${Math.floor(n / 1e6)}M` and line ~434 `compact` branch `Math.round(n / 1e6)` → `Math.floor(n / 1e6)` (same for the K branch), then let the bot rewrite songs.ts lines 180 and 184 on its next run; if nearest-rounding is the intended policy, record that decision in watched-metrics.json's $comment for yt-views-city-boys and spotify-streams-city-boys instead"
+    },
+    {
+     "claim": "Typed prose figures duplicate derived data with no guard: \"reached No. 2 in Nigeria, charted in eight countries and went 4× Platinum at home\", \"plus Platinum in Canada & France\", FAQ \"charted in eight countries, including the UK and the Netherlands … 4× Platinum in Nigeria, plus Platinum in Canada and France\", meta description \"No. 2 in Nigeria, 4× Platinum at home and charting in eight countries\"",
+     "onPage": "Blurb, extra-fact cards, FAQ answer and <meta name=description> all state the figures as typed strings; the By-the-numbers cards beside them derive the same values (8 countries, No. 2, 6 certs) from charts.ts / certifications.ts",
+     "shouldBe": "All four typed figures currently agree with the data (charts.ts line 349: 8 country entries + GLB, NG peak 2; certifications.ts line 242: NG 4× Platinum, CA Platinum, FR Platinum) — but a ninth country entry or a tier upgrade (UK/US Gold → Platinum) will leave the prose stale while the cards move",
+     "source": "app/data/songs.ts lines 187, 189–190, 200, 205 vs app/data/charts.ts line 349 and app/data/certifications.ts line 242; tests/songFacts.test.ts only checks Platinum-country enumeration, tests/songs.test.ts checks no figures",
+     "severity": "note",
+     "fix": "Either derive them (build the blurb/FAQ sentence from countryEntries.length, the NG peak and the cert tiers in app/music/[song]/page.tsx, as the OG image already does at app/music/[song]/opengraph-image.tsx lines 15–24) or add a guard in tests/songFacts.test.ts: for each song, any \"charted in N countries\"/number-word in blurb, faqs and metaDescription must equal the non-GLB entry count, any \"No. N in Nigeria\" must equal the NG peak, and any \"N× Platinum\" must equal the NG multiplier"
+    },
+    {
+     "claim": "All six City Boys certifications are logged in the sourcing worklist as \"pending\" (never read at the body)",
+     "onPage": "docs/sourcing/burna-boy.worklist.json keys City Boys|NG, |CA, |FR, |UK, |US, |NZ: status \"pending\", url/quote/readOn null",
+     "shouldBe": "All six confirmed at the body on 17 Sep 2026: TCSN Platinum_4 certifiedDate 2026-02-06 (turntablecharts.com/certification, id 48); Music Canada \"January 28, 2026 | Platinum Single | Burna Boy | City Boys | Atlantic Records\" (musiccanada.com/gold-platinum/?_gp_search=city+boys); SNEP \"CITY BOYS | BURNA BOY | Platine | Date de constat 22/05/2025\" and \"Or | 04/01/2024\" (snepmusique.com/les-certifications/?interprete=Burna+Boy&titre=City+Boys); BPI \"Most Recent Certification Gold | 07 March 2025 | Certification history 07 March 2025 Gold | 05 January 2024 Silver\" (certified-awards.bpi.co.uk/format/2/artist/4398/title/8340); RIAA \"BURNA BOY | CITY BOYS | SINGLE | October 29, 2025 | Gold\" (riaa.com/gold-platinum/?tab_active=default-award&ar=Burna+Boy&ti=City+Boys); RMNZ/RadioScope \"Burna Boy | City Boys | Gold | 2024-06-13\"",
+     "source": "Each register read directly on 17 Sep 2026 as quoted; every tier and year on the page matches (UK Silver 2024 / Gold 2025, FR Gold 2024 / Platinum 2025, US Gold 2025, CA Platinum 2026, NZ Gold, NG 4× Platinum)",
+     "severity": "note",
+     "fix": "docs/sourcing/burna-boy.worklist.json: set the six City Boys rows to status \"confirmed\" with the url, verbatim quote and readOn \"2026-09-17\" above; no change to app/data (snapshot already correct); bump CERTS_VERIFIED_ON in app/data/certifications.ts line 852 to \"2026-09-17\" in the same edit"
+    }
+   ]
+  },
+  {
+   "page": "/music/on-the-low",
+   "checked": 26,
+   "findings": [
+    {
+     "claim": "Release year of the song: credit line \"Burna Boy · 2019\", picker chip \"On the Low 2019\", mobile back bar \"2019\", and MusicRecording JSON-LD datePublished \"2019\"",
+     "onPage": "Burna Boy · 2019 (hero credit, desktop and phone); picker and mobile back bar print 2019; JSON-LD \"datePublished\":\"2019\"",
+     "shouldBe": "2018 — the single was released 16 Nov 2018. The site's own /records/charts and /certifications pages print \"On the Low · 2018\" (charts.ts line 380 and certifications.ts line 226 both carry year: 2018), so the song page contradicts the rest of the site. Only the album kicker (\"African Giant · 2019\") and the FAQ/meta \"from African Giant (2019)\" are right as album-year statements.",
+     "source": "SNEP register row: \"ON THE LOW | BURNA BOY | Diamant | Date de sortie 16/11/2018\" (snepmusique.com/les-certifications, read 17 Sep 2026); BPI register: \"BURNA BOY | ON THE LOW | Platinum | Single | Released 16.11.2018\" (certified-awards.bpi.co.uk, htmx GET /?search=On+the+Low); dutchcharts.nl item page \"Jaar 2018 … Digital 16/11/2018\"; official video uploadDate 2018-11-16 (youtube.com/watch?v=Ecl8Aod0Tl0); live burnaboystats.com/records/charts and /certifications both print 2018.",
+     "severity": "wrong",
+     "fix": "app/data/songs.ts line 118: change `year: 2019` to `year: 2018` so it matches charts.ts/certifications.ts. Then stop the kicker reusing the song year as the album year: in app/music/[song]/page.tsx (kicker, ~line 214 `· {song.year}`) and app/music/[song]/opengraph-image.tsx line 91 (`Burna Boy · {song?.album} · {song?.year}`) print the album's year from albums.ts (albumPageByTitle(song.album) / the African Giant row at app/data/albums.ts line 62 `year: 2019`) instead of song.year, so the kicker stays \"African Giant · 2019\" while the credit, picker, back bar and JSON-LD datePublished read 2018. Add a test that every songs.ts year equals the matching charts.ts/certifications.ts year."
+    },
+    {
+     "claim": "\"picked up ten certifications worldwide\" / \"holds ten certifications in total\" / \"ten certifications in all\"",
+     "onPage": "The word \"ten\" is typed three times — blurb, FAQ answer and meta description — beside a derived card that reads 10.",
+     "shouldBe": "Still 10 today (all seven reachable registers confirm the current tiers and no eleventh plaque exists), but the figure is hand-typed while the card next to it is computed from certifications.ts; the next plaque (Gbona-style RMNZ/Music Canada additions land monthly) makes the sentence wrong with nothing to catch it — exactly the failure tests/songFacts.test.ts documents for this song's Platinum list.",
+     "source": "app/data/songs.ts lines 125, 134, 143 (typed) vs app/music/[song]/page.tsx line 91 (certs.length). tests/songFacts.test.ts guards only the \"Platinum in …\" enumeration, not the total.",
+     "severity": "note",
+     "fix": "Either derive the count in the prose (template `${certs.length}` into the blurb/FAQ at render time in page.tsx, and into metaDescription in generateMetadata) or extend tests/songFacts.test.ts to assert that any number word in blurb/faqs/metaDescription immediately before \"certification(s)\" equals the song's certs.length."
+    },
+    {
+     "claim": "428M Spotify streams and 482M YouTube views \"By the numbers\" cards",
+     "onPage": "428M Spotify streams; 482M YouTube views for the official video — no date, no source line, on either layout.",
+     "shouldBe": "Figures are current (kworb 428,178,691 on its 2026/09/16 update; YouTube page viewCount 482,312,920 on 17 Sep 2026) but the site's rule is that every figure is dated; these two are the only live, rotting numbers on the page and the reader cannot tell when they were read or that they come from kworb/YouTube.",
+     "source": "kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html (\"Last updated: 2026/09/16\", row On the Low 428,178,691); youtube.com/watch?v=Ecl8Aod0Tl0 (\"viewCount\":\"482312920\"); scripts/watched-metrics.json lastSeenValue 428178691 / 482296627.",
+     "severity": "note",
+     "fix": "In app/music/[song]/page.tsx, print an \"as of <date> · Spotify via kworb / YouTube\" line under the numbers grid (or in the two cards' labels), sourcing the date from the bot's lastChanged/lastSeenAt in scripts/watched-metrics.json or a `streamsAsOf` field the bot writes beside spotifyStreams/ytViews in songs.ts."
+    }
+   ]
+  },
+  {
+   "page": "/music/wgft",
+   "checked": 42,
+   "findings": [
+    {
+     "claim": "Blurb: \"It charted in 12 countries and put him back in the US Top 20.\"",
+     "onPage": "\"put him back in the US Top 20\" — implies a return to a Top 20 he had reached before",
+     "shouldBe": "\"gave him his first US Top 20 single\" — WGFT (No. 16, peak date 8/23/25) is the first Burna Boy entry inside the Hot 100 Top 20; every earlier entry peaked at 44 or lower (Last Last 44, Just Like Me 67, Sittin' on Top of the World 80, Loved by You 87, We Pray 87, Talibans II 99). Dai Dai (17) came after.",
+     "source": "billboard.com/artist/burna-boy/chart-history/hsi/ read 17 Sep 2026 — full Hot 100 history, nine entries with peaks",
+     "severity": "wrong",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/songs.ts line 156: replace \"and put him back in the US Top 20\" with \"and gave him his first US Top 20 single\". Add an updates.ts log line if the site treats prose corrections as content changes."
+    },
+    {
+     "claim": "Extra fact: \"12 — countries charted, from the US and UK to Greece\"",
+     "onPage": "A hand-typed \"12\" that duplicates the derived \"12 countries charted\" card directly above it — the page prints \"12 countries charted\" twice",
+     "shouldBe": "Either drop the typed fact (the derived card already carries the count) or derive it from countryEntries.length so a 13th chart cannot leave it stale. The typed \"12\" also sits in the blurb (line 156) and metaDescription (line 174).",
+     "source": "app/data/songs.ts line 159 vs app/music/[song]/page.tsx autoFacts (countryEntries.length = 12 from charts.ts line 424–428, 13 entries minus GLB)",
+     "severity": "note",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/songs.ts line 159: remove the extraFact, or rewrite as a non-numeric label; tests/songFacts.test.ts could assert no extraFact.v equals the derived country count for the same song."
+    },
+    {
+     "claim": "\"Burna Boy's highest-ever Billboard Hot 100 peak\" (tagline), \"his highest position ever on the US Billboard Hot 100 — No. 16\" (blurb), \"Burna Boy's highest-ever Hot 100 peak\" (extra fact), FAQ answer, metaTitle \"His Best Billboard Hot 100 Peak\", metaDescription",
+     "onPage": "Six typed instances of a live superlative, no guard",
+     "shouldBe": "True today (WGFT 16; Dai Dai peak 17, currently No. 29 on the 19 Sep 2026 Hot 100 with LW 31, still charting), but nothing in the repo fails when a US peak below 16 lands in charts.ts. A test should assert that the minimum US singles/features peak in charts.ts belongs to WGFT while these strings exist.",
+     "source": "billboard.com/charts/hot-100/ (week of 19 Sep 2026) and billboard.com/artist/burna-boy/chart-history/hsi/ read 17 Sep 2026; tests/songFacts.test.ts and tests/songs.test.ts have no such guard",
+     "severity": "note",
+     "fix": "Add to /Users/paulemmanuelng/burnaboy-website/tests/songFacts.test.ts: find the lowest US peak across singles+features in charts.ts and expect it to be the WGFT row whenever songs.ts's wgft entry contains /highest/i; strings live at app/data/songs.ts lines 154, 156, 158, 165, 172, 174."
+    },
+    {
+     "claim": "Certification pill \"Platinum — Nigeria\" (TCSN) and the comment behind it: \"No announcement date published, so it sits here and not in the dated log.\"",
+     "onPage": "Pill is correct; the data comment is stale and the dated certHistory log has no NG Platinum row for WGFT (nor a PT Gold row, though the same file dates the AFP card to March 2026)",
+     "shouldBe": "TCSN's own register prints \"Wgft — PLATINUM — Gunna ft. Burna Boy — Single — CERTIFICATION DATE: Feb 6, 2026\". The dated log (certHistory, 2026 block) should carry { title: \"WGFT\", credit: \"Gunna ft. Burna Boy\", country: \"NG\", level: \"Platinum\", year: 2026 } and, on the file's own March-2026 evidence, the PT Gold row.",
+     "source": "turntablecharts.com/certification read 17 Sep 2026 (register row with certification date); app/data/certifications.ts lines 483–493 and certHistory lines 550–644 (WGFT rows present: NZ Gold, UK Gold, NZ Platinum 2026; UK Silver 2025)",
+     "severity": "note",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/certifications.ts: rewrite the comment at lines 490–492 to cite the 6 Feb 2026 register date, and append NG Platinum 2026 (and PT Gold 2026) rows to certHistory in the 2026 block (~line 587–598). Re-check any 2026-count baselines in scripts/watched-metrics.json after adding rows."
+    },
+    {
+     "claim": "\"308M — Spotify streams\"",
+     "onPage": "Live figure with no read date printed on either layout",
+     "shouldBe": "Figure matches kworb (308,241,554 at kworb's 2026/09/16 update) and the site's 1 Sep crossing log, so it is current; but the site rule is that every live figure is dated, and this card is the only undated live number on the page.",
+     "source": "kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html read 17 Sep 2026; app/data/songs.ts line 153 (spotifyStreams, bot-written); page.tsx line ~96",
+     "severity": "note",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/music/[song]/page.tsx around line 96: give the Spotify-streams card a label that carries the bot's read date (e.g. from the stats pipeline's last-run stamp), as the live boards do."
+    }
+   ]
+  },
+  {
+   "page": "/music/23",
+   "checked": 30,
+   "findings": [
+    {
+     "claim": "\"48M — YouTube views for the official video\" (By the numbers card, both layouts; also /api/v1/songs youtubeVideoViews)",
+     "onPage": "48M",
+     "shouldBe": "50M (YouTube's own page for Burna Boy - 23 [Official Music Video], video PFPfxcvRshk on the Burna Boy channel UCEzDdNqNkT-7rSfSGSr1hWg, reads 50,272,024 views on 17 Sep 2026; kworb youtube/artist/burnaboy.html reads 50,227,476)",
+     "source": "https://www.youtube.com/watch?v=PFPfxcvRshk (viewCount 50272024, read 17 Sep 2026); kworb.net/youtube/artist/burnaboy.html",
+     "severity": "stale",
+     "fix": "app/data/songs.ts line 280: ytViews: \"48M\" -> \"50M\". The figure was typed on 25 Jul 2026 (commit 622b16a5) and has never moved because scripts/watched-metrics.json has NO yt-views metric for \"23\" — only Dai Dai, Last Last, Ye, On the Low and City Boys videos are tracked — so the page label and the page.tsx comment (\"Live figure — the stats bot keeps this current hourly\") are untrue for this song. Add a \"yt-views-23\" metric mirroring yt-views-last-last (sourceUrl https://www.youtube.com/watch?v=PFPfxcvRshk, extractor youtubeViews, kind peak, baseline 50272024, siteTarget anchor 'slug: \"23\",' pattern 'ytViews: \"\\\\d+M\"', format M0) so the bot maintains it."
+    },
+    {
+     "claim": "\"48M — views on the official video\" (second, hand-typed By the numbers card, songs.ts extraFacts)",
+     "onPage": "48M (duplicate of the auto card above, same stale value)",
+     "shouldBe": "Removed — the auto card from song.ytViews already prints this figure, and a typed copy can never follow the bot, so the two cards will diverge the moment ytViews is refreshed (page would read 50M and 48M side by side)",
+     "source": "app/data/songs.ts lines 280 and 287 vs app/music/[song]/page.tsx line 94 (autoFacts already emits ytViews)",
+     "severity": "note",
+     "fix": "app/data/songs.ts line 287: delete { v: \"48M\", l: \"views on the official video\" } from the \"23\" extraFacts (no other song page duplicates its live figure as a typed fact). If a fourth extra fact is wanted, use a non-live one, e.g. { v: \"Mar 2021\", l: \"official video released\" } (YouTube publishDate 2021-03-23)."
+    },
+    {
+     "claim": "Release year on the shared certification record for \"23\" (certifications.ts, feeds this page's cert lookup and prints on /certifications as \"23 · 2022\")",
+     "onPage": "year: 2022 in certifications.ts; /certifications explorer prints \"23 · 2022\" while /music/23 prints 2020 everywhere",
+     "shouldBe": "year: 2020 — the file documents this field as the RELEASE year (line 299: \"this field is the release year\"); Spotify's own track page gives the release date 2020-08-13 (Twice as Tall), and songs.ts/albums.ts both say 2020",
+     "source": "open.spotify.com/embed/track/7EqoATlXAKNwzv45LAlqRt (releaseDate 2020-08-13); app/data/certifications.ts line 299 field definition; app/data/albums.ts line 86",
+     "severity": "wrong",
+     "fix": "app/data/certifications.ts line 328: { title: \"23\", year: 2022, ... } -> year: 2020. (TCSN's live register confirms the tier: \"23 · Burna Boy · Single · PLATINUM\" at turntablecharts.com/certification, read 17 Sep 2026 — the tier is right, only the year is wrong.)"
+    },
+    {
+     "claim": "\"the album that won Burna Boy the Grammy for Best Global Music Album\" / \"(2021)\" (blurb, Grammy card, FAQ 1, meta title)",
+     "onPage": "Grammy, Best Global Music Album, 2021",
+     "shouldBe": "Unchanged as far as can be verified — matches awards.ts line 160 ({ year: 2021, category: \"Best Global Music Album\", work: \"Twice as Tall\", won: true }) — but the award body itself could not be read today",
+     "source": "grammy.com returned 403 Forbidden on /awards/63rd-annual-grammy-awards-2020 and /search, and \"Page not found\" on the artist pages, from both curl and the in-app browser on 17 Sep 2026",
+     "severity": "note",
+     "fix": "No page change. Body unreachable this run; re-read grammy.com's 63rd-awards winners list on the next pass to close the check."
+    }
+   ]
+  },
+  {
+   "page": "/music/rizzla",
+   "checked": 32,
+   "findings": [
+    {
+     "claim": "Blurb: \"critics repeatedly singled out “Rizzla” as one of its strongest moments\"; stat card \"Standout — picked out by reviewers as one of the album's best tracks\"",
+     "onPage": "Repeated critical praise implied across the album's reviews (both desktop and phone, same DOM)",
+     "shouldBe": "Softer and sourced: of the four contemporary reviews, Pulse Nigeria (Joey Akan, 7 Dec 2015) lists it among five \"good tracks\"; NotJustOk (Tola Sarumi) calls it the one J Fem production that earned its place; 360nobs (Wilfred Okiche, 27 Mar 2016) cites it as an example of \"mixed effects\"; Music in Africa does not mention it. Two of four is not \"repeatedly\" and one reviewer disagrees.",
+     "source": "Pulse review (web.archive.org/web/20160128173354/http://pulse.ng/reviews/pulse-album-review-burna-boy-fails-to-fly-very-high-with-on-a-spaceship-album-id4434820.html), NotJustOk review (web.archive.org/web/20160122081939/http://notjustok.com/2016/01/21/album-review-burna-boy-spaceship/), 360nobs review (web.archive.org/web/20160401001336/http://www.360nobs.com/2016/03/burna-boys-spaceship-not-even-get-off-ground)",
+     "severity": "note",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/songs.ts line 346: change \"critics repeatedly singled out “Rizzla” as one of its strongest moments\" to \"Pulse Nigeria and NotJustOk both picked out “Rizzla” among its better tracks\"; line 350: change the Standout label to \"named among the album's best tracks by Pulse and NotJustOk\"."
+    },
+    {
+     "claim": "By the numbers: \"1.8M — YouTube views for the official video\"",
+     "onPage": "1.8M, presented (per the songs.ts field comment) as an hourly bot-refreshed figure",
+     "shouldBe": "Currently correct — YouTube itself shows 1,820,618 views on \"Burnaboy - Rizzla [Official Video]\" (BurnaboyVEVO, daMkeOtlDRY) — but the value is TYPED: it was written once on 25 Jul 2026 (commit 622b16a5) and there is no watched-metric for it; only last-last, ye, on-the-low and city-boys have yt-views entries. It will rot the day the video crosses 2M.",
+     "source": "https://www.youtube.com/watch?v=daMkeOtlDRY (viewCount 1820618, read 17 Sep 2026); scripts/watched-metrics.json ids yt-views-*; git log -S'ytViews: \"1.8M\"'",
+     "severity": "note",
+     "fix": "Add a \"yt-views-rizzla\" entry to /Users/paulemmanuelng/burnaboy-website/scripts/watched-metrics.json modelled on yt-views-city-boys (line 266): sourceUrl https://www.youtube.com/watch?v=daMkeOtlDRY, extractor youtubeViews, kind peak, siteTarget file app/data/songs.ts, anchor 'slug: \"rizzla\",', pattern 'ytViews: \"[\\d.]+[KMB]\"', format compact, baseline 1820618. The pattern must allow \"1.8M\" (decimal), which the existing '\\d+M' pattern at line 189 would not match."
+    },
+    {
+     "claim": "Hero blurb and stat card: On a Spaceship was put out \"through his own Spaceship Records with Universal\" / \"on his own label with Universal\"",
+     "onPage": "Spaceship Records + Universal",
+     "shouldBe": "Consistent across the two pages. The album page this card links to (/music/albums/on-a-spaceship) says \"self-released on his own Spaceship label\" three times and never mentions Universal. Wikipedia's infobox lists both Spaceship and Universal; the song page is the one that matches it, so the album page should carry the Universal credit (or both should drop it).",
+     "source": "https://burnaboystats.com/music/albums/on-a-spaceship (live); /Users/paulemmanuelng/burnaboy-website/app/data/albumPages.ts lines 58-81; en.wikipedia.org On_a_Spaceship infobox (label = Spaceship, Universal)",
+     "severity": "note",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/albumPages.ts lines 58, 60, 63, 67, 81: change \"self-released on his own Spaceship label\" to \"released on his own Spaceship label through Universal\" so the album page agrees with songs.ts lines 346 and 349."
+    },
+    {
+     "claim": "\"the album Burna Boy put out on 25 November 2015\" (blurb) and \"released 25 November 2015 through Spaceship Records and Universal Music Group\" (FAQ 1)",
+     "onPage": "25 November 2015, stated twice, undated and unsourced",
+     "shouldBe": "The date is typed and no publishing body is reachable for it: Spotify's own pages for both editions of the album (6NW4thIIMVcb6Wedxqu6ev and 5zH79s5J4D633IxoFWadp8) print 13 March 2015 (a metadata artefact — it precedes the lead single \"Soke\", 4 Apr 2015, and the tracklist reveal of 18 Nov 2015), and Wikipedia's article body says 16 November 2015 while its infobox says 25 November 2015. Keep 25 Nov 2015 (the widely reported date) but record where it came from.",
+     "source": "open.spotify.com/album/6NW4thIIMVcb6Wedxqu6ev and /album/5zH79s5J4D633IxoFWadp8 (music:release_date 2015-03-13); en.wikipedia.org/wiki/On_a_Spaceship raw (infobox 25 Nov 2015, lead paragraph 16 Nov 2015)",
+     "severity": "note",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/songs.ts line 346 and line 355: add a data comment above the rizzla entry naming the source for 25 November 2015 (e.g. the 360nobs 18 Nov 2015 announcement piece), and be aware that Spotify's date cannot be used as the body for this figure."
+    }
+   ]
+  },
+  {
+   "page": "/music/jerusalema",
+   "checked": 44,
+   "findings": [
+    {
+     "claim": "South Africa #1 on \"The Official SA Charts\" (pill tooltip), and the typed prose built on it — \"No. 1 in six countries, including … South Africa\" (blurb), \"6 countries at No. 1 — … Suriname & South Africa\" (card), both FAQ answers and the meta description",
+     "onPage": "🇿🇦 #1 South Africa — tooltip \"South Africa — The Official SA Charts\"; \"6 countries at No. 1\" (derived card) and four typed \"six countries\" sentences",
+     "shouldBe": "No 2020 South African placing can be read at the body named: TOSAC/RiSA's own site (theofficialsacharts.co.za, WP REST API) holds its first charts on 1 Sep 2021 (\"TOSAC Streaming – International and Local\", Week 36 2021 onward); the remix peaked in mid-2020. Its search returns Jerusalema only in Dec 2021 radio commentary (#17 local radio, #40 local & international radio) and a 2024 editorial. Either cite a 2020 national chart body for the #1 or drop the entry — in which case the derived count becomes 5 and the typed \"six countries\"/\"South Africa\" prose must follow",
+     "source": "https://theofficialsacharts.co.za/wp-json/wp/v2/posts?order=asc (earliest post 2021-09-01) and /wp-json/wp/v2/search?search=jerusalema (3 hits: posts 7670, 7669 of 31 Dec 2021 and 21657 of 8 Nov 2024), read 17 Sep 2026",
+     "severity": "wrong",
+     "fix": "app/data/charts.ts line 397: remove `{ c: \"ZA\", peak: 1 }` unless a 2020 SA national chart can be cited (a platform chart must not be filed here); then app/data/songs.ts line 217 (blurb: \"six countries, including Belgium, Switzerland, the Netherlands and South Africa\" → five, drop South Africa), line 221 (extraFact list), line 226 (FAQ 1 \"six countries\"), line 230 (FAQ 2 list + \"six\"), line 235 (metaDescription \"No. 1 in six countries\")"
+    },
+    {
+     "claim": "Spotify streams for the remix — absent from this page while every other song page carries the bot-fed figure",
+     "onPage": "No \"Spotify streams\" card; songs.ts jerusalema entry has no spotifyStreams and scripts/watched-metrics.json has no spotify-streams-jerusalema metric (13 of 14 song pages are tracked)",
+     "shouldBe": "85,571,611 streams for \"Jerusalema (feat. Burna Boy & Nomcebo Zikode) - Remix\" on the site's own source (the separate \"Remix / Radio Edit\" row at 8,999,368 is another recording and must not be summed)",
+     "source": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html, read 17 Sep 2026 — the same page the bot reads for Last Last (611,085,242 there and in watched-metrics lastSeenValue)",
+     "severity": "note",
+     "fix": "app/data/songs.ts jerusalema entry (after line 213): add `spotifyStreams: \"85.6M\"`; scripts/watched-metrics.json: add a `spotify-streams-jerusalema` entry cloned from spotify-streams-last-last (lines 318–349) with match \"Jerusalema (feat. Burna Boy & Nomcebo Zikode) - Remix\", anchor `slug: \"jerusalema\",`, baseline 85571611"
+    },
+    {
+     "claim": "\"6 countries at No. 1\" appears twice in By the numbers — once derived, once typed with a country list",
+     "onPage": "Card 3: \"6 / countries at No. 1\" (derived); Card 5: \"6 / countries at No. 1 — Belgium, Switzerland, Hungary, Netherlands, Suriname & South Africa\" (typed extraFact)",
+     "shouldBe": "One card. The typed copy is a second count that will diverge from charts.ts the moment an entry moves (it diverges immediately if the South Africa row above is dropped)",
+     "source": "app/music/[song]/page.tsx lines 87–91 (autoFacts no1Countries) vs app/data/songs.ts line 221; live HTML contains \"countries at No. 1\" twice",
+     "severity": "note",
+     "fix": "app/data/songs.ts line 221: delete the typed \"6 countries at No. 1 — …\" extraFact, or replace it with a non-count fact; if a country list is wanted, build it in page.tsx from countryEntries.filter(e => e.peak === 1).map(e => CHART_COUNTRIES[e.c].name)"
+    },
+    {
+     "claim": "\"charting in 16 countries\" (FAQ 2) and \"17 chart entries\" (meta description) are typed copies of figures the page derives",
+     "onPage": "FAQ: \"charting in 16 countries\"; <meta name=\"description\">: \"… and 17 chart entries …\"",
+     "shouldBe": "Both match charts.ts today (16 countries + Global 200 = 17 entries) but are typed at songs.ts lines 230 and 235 and will not follow the data; the same sentences also carry \"No. 1 in six countries\" and \"Diamond in France and 4× Platinum in Italy\"",
+     "source": "app/data/songs.ts lines 229–236 vs app/music/[song]/page.tsx songData() (countryEntries.length = 16, entries.length = 17)",
+     "severity": "note",
+     "fix": "Derive: in app/music/[song]/page.tsx generateMetadata and the FAQ render, template the counts from songData(song) (e.g. `${countryEntries.length} countries`, `${entries.length} chart entries`) instead of the literals at songs.ts lines 230 and 235"
+    },
+    {
+     "claim": "Share card and og:title credit the recording to Burna Boy alone",
+     "onPage": "OG image kicker \"BURNA BOY · SINGLE · 2020\"; <meta property=\"og:title\" content=\"Jerusalema (Remix) — Burna Boy\">; page body correctly says \"Master KG ft. Nomcebo Zikode & Burna Boy\"",
+     "shouldBe": "\"Master KG ft. Nomcebo Zikode & Burna Boy · 2020\" (SNEP, BVMI, IFPI Austria and Ultratop all file it under Master KG feat. Burna Boy & Nomcebo Zikode)",
+     "source": "https://burnaboystats.com/music/jerusalema/opengraph-image/yzlyd6?349c2c956de9f6cd (rendered PNG) and the live <head>; app/music/[song]/opengraph-image.tsx line 91, app/music/[song]/page.tsx line 50",
+     "severity": "note",
+     "fix": "app/music/[song]/opengraph-image.tsx line 91: `{song?.credit ?? \"Burna Boy\"} · {song?.album ?? \"Song\"} · {song?.year ?? \"\"}`; app/music/[song]/page.tsx line 50: `shareTitle: \\`${song.title} — ${song.credit ?? \"Burna Boy\"}\\``; bump OG_ART since this is an art change"
+    },
+    {
+     "claim": "Peaks and plaques that could not be re-read at their bodies today: Belgium #1, Switzerland #1, Italy #2 and 4× Platinum, Suriname #1, Slovakia #46, Portugal #15, Billboard Global 200 #38",
+     "onPage": "🇧🇪 #1, 🇨🇭 #1, 🇮🇹 #2, 🇸🇷 #1, 🇸🇰 #46, 🇵🇹 #15, 🌍 #38; 🇮🇹 4× Platinum",
+     "shouldBe": "Unverified, not contradicted. ultratop.be, hitparade.ch, lescharts.com and italiancharts.com serve a Cloudflare Turnstile wall (not bypassed); web.archive.org returned 503 \"Temporarily Offline\" for every CDX query; billboard.com 307s to tollbit.billboard.com (\"not authorized … without a valid TollBit Token\"); ifpicr.cz refused connections; fimi.it was not probed per the repo's own note that its footer carries a no-AI-crawling notice (docs/sweeps/RESUME-2026-09-06.md line 591). Belgium 2× Platinum and Portugal 2× Platinum rest on the repo's 27 Aug 2026 archive/PDF reads, not a live read today. Everything else on the page was confirmed at the body on 17 Sep 2026: UK #55 and Ireland #4 (officialcharts.com), Germany #3 (offiziellecharts.de, credited Master KG feat. Burna Boy & Nomcebo Zikode), Austria #2 (austriancharts.at, entry 18.09.2020), Netherlands #1 (top40.nl piekpositie 1; dutchcharts.nl Single Top 100 peak 2), Hungary #1 (slagerlistak.hu Single Top 40, Cs=1, 71 weeks), Sweden #3 (sverigetopplistan.se Högsta placering 3), Spain #10 (elportaldemusica.es Posición Máxima 10), France #2 (SNEP weekly Top Singles, #2 in weeks 33–35 of 2020, never #1 in weeks 30–44); SNEP Diamant (23/10/2020, credited MASTER KG FEAT. BURNA BOY & NOMCEBO ZIKODE), BVMI 1x Platin 2021 (same credit), IFPI Austria GOLD 30.11.2020; no Dutch plaque at goudplatina.nl; BPI Platinum (28.03.2025) and Promusicae 2× Platino (2021 wk 2) exist but credit only Master KG ft Nomcebo Zikode, consistent with the page omitting them",
+     "source": "Bodies as named, all read 17 Sep 2026",
+     "severity": "note",
+     "fix": "No edit; re-read the seven walled figures when Wayback is back or from a browser that clears Turnstile, and record the reads in docs/sourcing/burna-boy.worklist.json, whose six Jerusalema rows (lines 2842–2930) are all still status \"pending\" with url/quote null despite SNEP, BVMI and IFPI Austria being readable"
+    }
+   ]
+  },
+  {
+   "page": "/music/last-last",
+   "checked": 100,
+   "findings": [
+    {
+     "claim": "Nigeria chart peak",
+     "onPage": "Chart peaks pill \"🇳🇬 #2 Nigeria\" (TurnTable Top 100), both layouts; feeds the \"15 charts\" count",
+     "shouldBe": "#3. TurnTable's own weekly data (api/ttc-proxy/api/chart/1/{week}/2022, Referer turntablecharts.com, base64 payload decoded) has Last Last debut at rank 3 on the TurnTable Top 50 for the week of 19 May 2022 (lastPosition 0, highestPosition 3, weeksOnChart 1), then 4,4,4,4,5,4 through 30 June with highestPosition 3 throughout; on the Top 100 (from 7 July 2022) its own highestPosition counter reads 4 for every week read through 16 March 2023. It never charted at 2.",
+     "source": "turntablecharts.com ttc-proxy chart 1, weeks 19–52 of 2022 and 1–11 of 2023, read 17 Sep 2026",
+     "severity": "wrong",
+     "fix": "app/data/charts.ts line 344: `{ c: \"NG\", peak: 2 }` → `{ c: \"NG\", peak: 3 }` with a note that the 3 is the TurnTable Top 50 (week of 19 May 2022) and the Top 100's own counter reads 4. Also correct the comment at charts.ts lines 80–97: the ttc-proxy serves Top 50 weeks before July 2022 (weeks 19–26 of 2022 read today), so that era is not invisible."
+    },
+    {
+     "claim": "South Africa certification",
+     "onPage": "Certifications pill \"🇿🇦 Platinum South Africa\", counted in \"12 certifications worldwide\" / \"12 AWARDS\"; FAQ \"with 12 certifications\"; meta description \"12 certifications in all\"",
+     "shouldBe": "Not on the body's register. RiSA's full published register (risa-prod.trafficmanager.net, all 26 pages, 641 dated rows, 1 Jul 2015 → 9 Sep 2025) holds no Last Last row; its own ?artist= search for Burna / burna+boy / Damini returns only Wizkid's \"Ginger\" and \"No Stress\", and ?title=Last+Last returns nothing. The repo's row (certifications.ts 205 and dated log 741, 2023) has no register read behind it — the 27 Aug 2026 body-by-body comment covers On the Low only. The site's own precedent (Tyla sweep) removes South African plaques absent from RiSA.",
+     "source": "risa-prod.trafficmanager.net/website/certification/certifications/ (pages 1–26 + artist/title searches), read 17 Sep 2026",
+     "severity": "wrong",
+     "fix": "Remove `{ c: \"ZA\", level: \"Platinum\" }` from app/data/certifications.ts line 205 and the dated row at line 741; the pill, \"12\" card and \"12 AWARDS\" then derive to 11. Update the typed copies: app/data/songs.ts line 72 (\"with 12 certifications\") and line 77 (\"12 certifications in all\"), app/lib/searchIndex.ts line 125 (\"12 certifications\"); bump tests/certs.test.ts line 67 totalAwards 234→233 and line 136 the 2023 count 44→43. If Paul wants it kept pending a RiSA reply, it must at least carry the same unverified marker the sweeps use."
+    },
+    {
+     "claim": "UK certification tier in the FAQ",
+     "onPage": "FAQ \"Is Last Last certified?\": \"…and Platinum in the US and UK\"",
+     "shouldBe": "2× Platinum in the UK — BPI's register: BURNA BOY | LAST LAST | 2x Platinum | Latest Certification 12.07.2024. The page's own certification pill already prints \"2× Platinum United Kingdom\", so the FAQ understates the page's own data.",
+     "source": "certified-awards.bpi.co.uk (?skin=bpi&search=Burna+Boy, HX-Request), read 17 Sep 2026",
+     "severity": "stale",
+     "fix": "app/data/songs.ts line 72: \"…4× Platinum in Canada and Platinum in the US and UK\" → \"…4× Platinum in Canada, 2× Platinum in the UK and Platinum in the US\" — or build the sentence from the certs array so it cannot drift again."
+    },
+    {
+     "claim": "Typed counts duplicating derived figures",
+     "onPage": "FAQ \"charting in 14 countries in all\" and \"with 12 certifications\"; meta description \"12 certifications in all\"; searchIndex \"12 certifications\"",
+     "shouldBe": "Same numbers the page derives (countryEntries.length, certs.length) — they match today (14, 12) but are typed in four places and will silently diverge the next time charts.ts or certifications.ts moves (the ZA removal above moves one of them immediately).",
+     "source": "app/data/songs.ts lines 68, 72, 77; app/lib/searchIndex.ts line 125 vs page.tsx songData()",
+     "severity": "note",
+     "fix": "Derive: in songs.ts make faqs/metaDescription functions of the chart/cert data (or template `${certs.length}` at render time in page.tsx and generateMetadata), and generate the searchIndex description from the same helper."
+    },
+    {
+     "claim": "Two curated facts never render",
+     "onPage": "By the numbers shows 8 cards; the song's extraFacts \"No. 44 — US Billboard Hot 100\" and \"Diamond — certified Diamond in France (SNEP)\" are absent on both layouts",
+     "shouldBe": "Either shown or removed — page.tsx builds 6 auto facts + 4 extras and then `.slice(0, 8)`, so the last two extras are dead data (and the two that survive, No. 1 South Africa and No. 4 UK, duplicate the derived \"No. 1 best chart peak\" card).",
+     "source": "app/music/[song]/page.tsx lines 76–101 (facts = [...missingFacts, ...autoFacts, ...song.extraFacts].slice(0, 8)); live DOM read 17 Sep 2026",
+     "severity": "note",
+     "fix": "Either raise the cap for songs with ≥4 extras, or trim Last Last's extraFacts in songs.ts lines 56–61 to the two that add information (No. 44 US Hot 100, Diamond France) and drop the two the auto cards already cover."
+    },
+    {
+     "claim": "Figures whose body could not be reached this pass",
+     "onPage": "Chart pills Canada #30, Global #39, Switzerland #38, Belgium #49, Australia #79, Portugal #142; certification pills Sweden Platinum, New Zealand 3× Platinum",
+     "shouldBe": "Unchanged unless a body read says otherwise. Billboard's Global 200 and Canadian Hot 100 histories sit behind the TollBit gate (curl only ever returns the Hot 100 table, which does confirm US #44); hitparade.ch / ultratop.be / australian-charts / portuguesecharts / lescharts serve Cloudflare challenges and ARIA's public page is a Top 50 so #79 is not readable; Grammotex record pages are behind the GLF trade login; RMNZ's 3× Platinum rests on the repo's own 16 Sep 2026 RadioScope read (not re-read today). Every other figure on the page was confirmed at its body today: UK 4 and Ireland 27 (Official Charts), NZ 12 (RMNZ), FR 23 (SNEP weeks 35–36 2022), NL 14 and SE 21 (Hung Medien mirrors), ZA 1 (TOSAC editorial 22 Jul 2022), US 44 (Billboard); FR Diamant 02/11/2023, NG Platinum_5 (TCSN), CA 4× Platinum 16 Jan 2026, UK 2× Platinum 12 Jul 2024, US Platinum 7 Mar 2023, AU Platinum 1 May 2023, CH Platin 2023, AT Gold 8 Apr 2025, DK Guld 30 Apr 2024; Spotify 611,085,242 (kworb) and YouTube 363,583,335 (video page) → 611M / 364M as printed.",
+     "source": "Bodies listed; read 17 Sep 2026",
+     "severity": "note",
+     "fix": "No edit. Re-read the six chart peaks and the Swedish plaque from a browser session that can pass the Cloudflare/TollBit gates, or leave as-is."
+    }
+   ]
+  },
+  {
+   "page": "/music/tatata",
+   "checked": 24,
+   "findings": [
+    {
+     "claim": "12M — YouTube views for the official video (By the numbers, both layouts)",
+     "onPage": "ytViews: \"12M\" is a hand-typed string in app/data/songs.ts:312, last written 25 Jul 2026 (commit 622b16a5) and never touched since. There is NO yt-views-tatata entry in scripts/watched-metrics.json (only last-last, ye, on-the-low, city-boys are tracked), yet page.tsx:93 comments \"Live figure — the stats bot keeps this current hourly\" and songs.ts:25 says the field is auto-updated hourly.",
+     "shouldBe": "Still 12M today — YouTube's own page for Uj1g5oumzWY reads 12,740,836 views (17 Sep 2026) — but it rolls to 13M in roughly 260k views and nothing will update it; the same untracked-typed situation applies to 23, rizzla, boshe-nlo and darko.",
+     "source": "https://www.youtube.com/watch?v=Uj1g5oumzWY (viewCount 12740836, channel Burna Boy, published 2025-05-23); kworb youtube/artist/burnaboy.html 12,734,002; scripts/watched-metrics.json has no tatata YouTube metric",
+     "severity": "note",
+     "fix": "Add a `yt-views-tatata` block to scripts/watched-metrics.json mirroring yt-views-last-last (lines 170–200): sourceUrl https://www.youtube.com/watch?v=Uj1g5oumzWY, extractor youtubeViews, kind peak, baseline 12740836, siteTargets anchor `slug: \"tatata\"`, pattern `ytViews: \"\\d+M\"`, format M0. Do the same for 23 / rizzla / boshe-nlo / darko, or remove the \"hourly\" comments at page.tsx:93 and songs.ts:25 for songs that are not tracked."
+    },
+    {
+     "claim": "Play on Spotify button / mobile action bar (hero and bottom bar)",
+     "onPage": "Absent — TaTaTa is the only one of the 14 song pages with no `spotify` field in songs.ts (13/14 have one), so both the desktop \"▶ Play on Spotify ↗\" button (page.tsx:239) and the mobile action bar (page.tsx:392) do not render.",
+     "shouldBe": "spotify: \"https://open.spotify.com/track/7iCvoWlfuJ1y7zibnh1EW9\" — verified via Spotify oEmbed (title \"TaTaTa (feat. Travis Scott)\"), and it is exactly the track id kworb links the 68M stream figure to. (The album-version id is 4OGN4GO4yqtWcj4152jJz9, whose oEmbed art is the No Sign of Weakness cover the page uses.)",
+     "source": "https://open.spotify.com/oembed?url=https://open.spotify.com/track/7iCvoWlfuJ1y7zibnh1EW9; kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html row 122 links that id",
+     "severity": "note",
+     "fix": "Add `spotify: \"https://open.spotify.com/track/7iCvoWlfuJ1y7zibnh1EW9\",` after line 309 in app/data/songs.ts (the songs.ts rule — omit only when no id can be verified via oEmbed — is now satisfied)."
+    }
+   ]
+  },
+  {
+   "page": "/music/boshe-nlo",
+   "checked": 22,
+   "findings": [
+    {
+     "claim": "Tagline: \"The closer from the Redemption EP\" (hero, share description, OG card, mobile back bar context)",
+     "onPage": "The closer from the Redemption EP",
+     "shouldBe": "Boshe Nlo is track 3 of 7 on Redemption; \"We On\" closes the EP. Something like \"Track three of the Redemption EP\".",
+     "source": "Spotify album 50qNx4v7MKypMx5wGynQ8j (embed trackList: 1 Pree Me, 2 Fa so Lati Do, 3 Boshe Nlo, 4 Mary Jane, 5 Body to Body #Ycd, 6 Plenty Song, 7 We On) and Deezer album 151258082 (same order, ℗ 2016 Spaceship Entertainment). Both are the label's own release.",
+     "severity": "wrong",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/songs.ts line 376: change tagline to \"Track three of the Redemption EP\" (this also fixes the OG image at app/music/[song]/opengraph-image.tsx line 109 and the shareDescription in page.tsx generateMetadata, which both print song.tagline)."
+    },
+    {
+     "claim": "FAQ answer: \"“Boshe Nlo” closes it.\" (also emitted in the FAQPage JSON-LD)",
+     "onPage": "Redemption is a seven-track EP Burna Boy released in 2016, between On a Spaceship and Outside. “Boshe Nlo” closes it.",
+     "shouldBe": "Redemption is a seven-track EP Burna Boy released on 23 September 2016 on his own Spaceship label, between On a Spaceship and Outside. “Boshe Nlo” is its third track; “We On” closes it.",
+     "source": "Spotify album page music:release_date 2016-09-23 and embed trackList; Deezer album 151258082 release_date 2016-09-23, label Spaceship Entertainment, Boshe Nlo track 3, We On track 7.",
+     "severity": "wrong",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/songs.ts line 386: rewrite the answer as above. Root cause is the EP tracklist order in /Users/paulemmanuelng/burnaboy-website/app/data/albums.ts lines 150-153 (Mary Jane … Boshe Nlo), which is not the release's order; reorder to Pree Me, Fa So La Ti Do, Boshe Nlo, Mary Jane, Body to Body, Plenty Song, We On (that order is also what TracklistDialog on /music renders)."
+    },
+    {
+     "claim": "Blurb: the EP was \"released between albums during his Aristokrat-to-Spaceship transition\"",
+     "onPage": "From Redemption (2016), the seven-track EP Burna Boy released between albums during his Aristokrat-to-Spaceship transition.",
+     "shouldBe": "The EP was released on Spaceship Entertainment in September 2016, ten months after On a Spaceship (Nov 2015), which the site itself describes as \"self-released on his own Spaceship label — the imprint still on every record since\". There was no Aristokrat-to-Spaceship transition in 2016; drop the clause (e.g. \"the seven-track EP Burna Boy put out on his own Spaceship label between On a Spaceship and Outside\").",
+     "source": "Release ℗/© 2016 Spaceship Entertainment (Spotify album page, Deezer album 151258082); site's own app/data/albumPages.ts lines 58-63 and app/data/timeline.ts line 35 (On a Spaceship, 2015, self-released on Spaceship).",
+     "severity": "wrong",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/songs.ts lines 378-379: remove \"during his Aristokrat-to-Spaceship transition\" and state the Spaceship label instead."
+    },
+    {
+     "claim": "By-the-numbers card: \"Pre-Outside — two years before Outside carried him worldwide\"",
+     "onPage": "Pre-Outside / two years before Outside carried him worldwide",
+     "shouldBe": "Redemption is dated 23 September 2016 and Outside 26 January 2018: sixteen months, not two years. Either \"Sep 2016 — sixteen months before Outside carried him worldwide\" or a looser \"the release before Outside\".",
+     "source": "Spotify/Deezer release date 2016-09-23 for Redemption; Outside release date 26 Jan 2018 (site's own Outside album page).",
+     "severity": "note",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/songs.ts line 383: change the label to \"sixteen months before Outside carried him worldwide\" (or print the release month in v)."
+    },
+    {
+     "claim": "By-the-numbers card: \"1M — YouTube views for the official video\"",
+     "onPage": "1M YouTube views for the official video",
+     "shouldBe": "Matches today by rounding (official video -mJ1wxT_jcI on Burna Boy's channel: 1,044,262 views on 17 Sep 2026) but the figure is TYPED in songs.ts and not in the bot's watched metrics, while page.tsx's comment above the card says \"the stats bot keeps this current hourly\". Only last-last, ye, on-the-low and city-boys have a yt-views metric. Derive it: add a watched metric so it cannot rot.",
+     "source": "YouTube search results for \"burna boy boshe nlo\" (Burna Boy channel, 'Burnaboy - Boshe Nlo [Official Video]', 1,044,262 views); scripts/watched-metrics.json has no yt-views-boshe-nlo entry; git log shows the \"1M\" was typed on 25 Jul 2026 (commit 622b16a5) and never rewritten.",
+     "severity": "note",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/scripts/watched-metrics.json: add a \"yt-views-boshe-nlo\" entry modelled on yt-views-city-boys with sourceUrl https://www.youtube.com/watch?v=-mJ1wxT_jcI, baseline 1044262, siteTarget anchor slug: \"boshe-nlo\", pattern ytViews: \"[\\d.]+M\" (note the existing pattern \\d+M would not match a future \"1.1M\"). Or, if the bot will not track it, correct the comment at app/music/[song]/page.tsx line 87 so the page stops claiming hourly refresh for typed values."
+    },
+    {
+     "claim": "MusicRecording JSON-LD: inAlbum name \"Redemption (EP)\"",
+     "onPage": "\"inAlbum\":{\"@type\":\"MusicAlbum\",\"name\":\"Redemption (EP)\"}",
+     "shouldBe": "The release is titled \"Redemption\"; \"(EP)\" is the site's display suffix from songs.ts album field and is being published as part of the album's name (same issue for Darko's \"Steel & Copper (EP)\"). Strip the suffix in the schema, or add albumReleaseType.",
+     "source": "Spotify/Deezer release title \"Redemption\"; app/data/albums.ts eps[0].title \"Redemption\"; page.tsx lines 138-143 emit song.album verbatim.",
+     "severity": "note",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/music/[song]/page.tsx line 141: use song.album.replace(/\\s*\\(EP\\)$/, \"\") for the inAlbum name (and optionally add \"albumReleaseType\": \"EPRelease\" when the suffix was present)."
+    }
+   ]
+  },
+  {
+   "page": "/music/darko",
+   "checked": 26,
+   "findings": [
+    {
+     "claim": "By the numbers card: \"1.2M — YouTube views for the official video\" (both layouts; the numbers grid is shared)",
+     "onPage": "1.2M",
+     "shouldBe": "1.3M — the video sits at 1,251,069 views today, which the site's own compact formatter (stats-lib.mjs formatStat, sub-10M keeps one decimal) renders as \"1.3M\". The figure was typed on 25 Jul 2026 (commit 622b16a5) and, unlike Last Last / Ye / On the Low / City Boys, has no yt-views watcher in scripts/watched-metrics.json, so nothing will ever refresh it; the page.tsx comment at line 93 (\"the stats bot keeps this current hourly\") is false for this song.",
+     "source": "YouTube watch page https://www.youtube.com/watch?v=xOF8AtTvqSk (Burna Boy channel, \"Burna Boy x DJDS - Thuggin / Darko [Official Music Video]\", published 1 Apr 2019): ytInitialPlayerResponse.videoDetails.viewCount = 1251069, read 17 Sep 2026",
+     "severity": "stale",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/songs.ts line 402: ytViews: \"1.2M\" → ytViews: \"1.3M\". Then add a \"yt-views-darko\" entry to /Users/paulemmanuelng/burnaboy-website/scripts/watched-metrics.json modelled on yt-views-city-boys (anchor `slug: \"darko\",`, pattern `ytViews: \"[\\d.]+M\"`, format compact, baseline 1251069) so the bot drafts future bumps; and correct the page.tsx line 93 comment to say the bot refreshes only the songs that have a watcher."
+    },
+    {
+     "claim": "Label \"YouTube views for the official video\" on the 1.2M card",
+     "onPage": "YouTube views for the official video",
+     "shouldBe": "The only official video is a combined two-song visual, \"Thuggin / Darko\", so the count is the joint video's, not a Darko-only one. Label should say so, e.g. \"YouTube views for the Thuggin / Darko official video\" — or use a song-specific override label so the shared \"official video\" wording isn't applied to a shared video.",
+     "source": "YouTube search + watch page https://www.youtube.com/watch?v=xOF8AtTvqSk — title \"Burna Boy x DJDS - Thuggin / Darko [Official Music Video]\"; the Darko-only upload is an [Official Audio] at 386K (uTVWNukev5E)",
+     "severity": "note",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/music/[song]/page.tsx line 94 builds the label generically from song.ytViews; add an optional `ytViewsLabel` on the Song type in /Users/paulemmanuelng/burnaboy-website/app/data/songs.ts and set it for darko (line ~402) to \"YouTube views for the Thuggin / Darko official video\"."
+    },
+    {
+     "claim": "FAQ \"What is Steel & Copper?\": released \"through Spaceship Entertainment, Bad Habit, Atlantic and Loma Vista\" (also emitted in the FAQPage JSON-LD)",
+     "onPage": "Spaceship Entertainment, Bad Habit, Atlantic and Loma Vista",
+     "shouldBe": "The release's own label line credits only \"Atlantic/Bad Habit/Spaceship Records, ℗ 2019 Atlantic Recording Corporation\" on Spotify and \"℗ 2019 Atlantic Recording Corporation\" on Apple Music; Loma Vista (DJDS's own label) is not on the record. Typed sentence with no body behind the fourth label; either drop Loma Vista and use \"Spaceship Records\" as the release credits it, or keep it only if a release-side credit can be found.",
+     "source": "Spotify album page https://open.spotify.com/album/7z1KSudQMWVOFpSjhxL6Qm (copyright/phonographic line, read 17 Sep 2026); Apple Music https://music.apple.com/us/album/steel-copper-ep/1456672317 (℗ line)",
+     "severity": "note",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/songs.ts line 416 (faqs[0].a): change \"through Spaceship Entertainment, Bad Habit, Atlantic and Loma Vista\" to \"through Atlantic, Bad Habit and Spaceship Records\" (the credit as the release carries it)."
+    }
+   ]
+  },
+  {
+   "page": "/music/like-to-party",
+   "checked": 24,
+   "findings": [
+    {
+     "claim": "Hero kicker (and OG share card) reads “L.I.F.E · 2012” — the album name followed by the song year, so the page publishes the album as a 2012 release",
+     "onPage": "L.I.F.E · 2012 (hero kicker, both layouts; OG image top-left reads BURNA BOY · L.I.F.E · 2012)",
+     "shouldBe": "L.I.F.E · 2013 (album released 12 Aug 2013 — the page's own blurb, albums.ts year: 2013, and the linked /music/albums/life page all say 2013), or drop the year from the kicker since the credit line already carries “Burna Boy · 2012”",
+     "source": "Billboard Reggae Albums chart dated 31 Aug 2013 (debut at No. 7); /Users/paulemmanuelng/burnaboy-website/app/data/albums.ts line 26 (year: 2013); this page's own blurb",
+     "severity": "wrong",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/music/[song]/page.tsx lines 218–225: render the album's year from albums.ts (albumByTitle(song.album)?.year) instead of song.year, or remove `· {song.year}` from the kicker. Same fix in /Users/paulemmanuelng/burnaboy-website/app/music/[song]/opengraph-image.tsx where the kicker string is built. Like to Party is the only song page where song year ≠ album year, so no other page changes."
+    },
+    {
+     "claim": "The page says L.I.F.E was NOMINATED for Album of the Year at the 2014 Nigeria Entertainment Awards (correct), but the album page this page links to from the kicker, and awards.ts, say L.I.F.E WON Album of the Year at the 2015 NEA — the two pages contradict each other and the 2015 claim is false",
+     "onPage": "“nominated for Album of the Year at both The Headies and the Nigeria Entertainment Awards in 2014” (blurb + FAQ 3) vs linked /music/albums/life: “won Album of the Year at the 2015 Nigeria Entertainment Awards” and stat card “2015 — Album of the Year — Nigeria Entertainment Awards”",
+     "shouldBe": "Keep this page's wording. Remove the 2015 NEA win: at NEA 2014 (7 Sep 2014, NYU Skirball) L.I.F.E was nominated and Olamide's Baddest Guy Ever Liveth won; at NEA 2015 (6 Sep 2015) Album of the Year went to Flavour's Thankful and L.I.F.E was not nominated; Burna Boy was nominated for Best Pop Artist 2015 and lost to Davido",
+     "source": "2014 NEA winners coverage (BellaNaija / GhanaWeb / allAfrica, 7–8 Sep 2014); Wikipedia 2015 Nigeria Entertainment Awards (nominees + winners) corroborated by 2015 winners coverage; the NEA body's own site is no longer reachable, so this rests on contemporaneous winners lists, not the body",
+     "severity": "note",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/awards.ts lines 467–468: change `{ year: 2015, category: \"Best Pop Artist of the Year\", won: true }` to won: false and replace `{ year: 2015, category: \"Album of the Year\", work: \"L.I.F.E\", won: true }` with `{ year: 2014, category: \"Album of the Year\", work: \"L.I.F.E\", won: false }`. Then /Users/paulemmanuelng/burnaboy-website/app/data/albumPages.ts lines 31–32 (blurb), 34 (extraFacts “2015 Album of the Year”), 48 (FAQ) and 53 (metaDescription): replace the NEA win with the 2014 nomination. Add an updates.ts entry and re-run the awards tally guards."
+    },
+    {
+     "claim": "“2× nom — Album of the Year at The Headies and the Nigeria Entertainment Awards, 2014” is a typed figure that cannot be derived from awards.ts because the Headies 2014 Album of the Year entry has no work field; and the song's own Headies 2013 Best R&B Single nomination (in awards.ts, confirmed at the Headies 2013 nominee list) never appears on the song page",
+     "onPage": "2× nom (By the numbers, card 7); no mention of the song's own Headies nomination",
+     "shouldBe": "Same figure, but derivable: awards.ts Headies 2014 entry should read `{ year: 2014, category: \"Album of the Year\", work: \"L.I.F.E\", won: false }`; optionally surface “Best R&B Single nominee — The Headies 2013” as a song-level fact (nominees: Banky W won; Burna Boy “Like to Party” nominated)",
+     "source": "theheadies.com 2014 full nominees list (Album of the Year: The Journey, L.I.F.E, Baddest Guy Ever Liveth, No Guts No Glory); The Headies 2013 nominee list (Best R&B Single); /Users/paulemmanuelng/burnaboy-website/app/data/awards.ts lines 346 and 349",
+     "severity": "note",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/awards.ts line 349: add `work: \"L.I.F.E\"`. Optionally derive the nomination count on the song page from awards.ts (noms where work === song.album or song.title) instead of the typed extraFacts entry at /Users/paulemmanuelng/burnaboy-website/app/data/songs.ts line 443."
+    },
+    {
+     "claim": "Spotify streams shown as “11M” when the source figure is 10,611,615 — the compact formatter rounds anything ≥10M to whole millions, so this page overstates by ~390K (3.7%) while sub-10M figures on sibling pages print to one decimal (Darko: 988K, 1.2M)",
+     "onPage": "11M — Spotify streams",
+     "shouldBe": "10.6M (or 10.61M) — the site rule is never inflate; the bot's own baseline is 10,503,620 and lastSeenValue 10,611,615 (17 Sep 2026)",
+     "source": "kworb Burna Boy Spotify songs page read 17 Sep 2026: Like to Party 10,611,615 total; /Users/paulemmanuelng/burnaboy-website/scripts/watched-metrics.json lines 549–578; /Users/paulemmanuelng/burnaboy-website/scripts/stats-lib.mjs line 436 (`if (n >= 1e7) return Math.round(n/1e6) + \"M\"`)",
+     "severity": "note",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/scripts/stats-lib.mjs line 436–437: keep one decimal up to 1e8 (`if (n >= 1e8) whole millions; if (n >= 1e6) toFixed(1)`), or floor instead of round for cumulative totals so a total is never printed above the source. The figure itself is current — no data change needed."
+    },
+    {
+     "claim": "Two dated facts on the page have no reachable body: the single's release date “30 May 2012” and the 2014 Nigeria Entertainment Awards nomination",
+     "onPage": "30 May 2012 — released as the album's lead single; nominated for Album of the Year at … the Nigeria Entertainment Awards in 2014",
+     "shouldBe": "Both are consistent with every secondary source read (Wikipedia L.I.F.E article single dates; 2014 NEA winners coverage listing L.I.F.E among the seven Album of the Year nominees), but neither could be confirmed at a primary body: the NEA site is defunct and no register holds a 2012 Nigerian single's release date. The figures verified at the body: Billboard Reggae Albums No. 7 (chart dated 31 Aug 2013, debut, one week — Billboard's own archive), Headies 2014 Album of the Year nomination (theheadies.com), Spotify track ID and cover (Spotify oEmbed), streams (kworb, the site's declared source)",
+     "source": "Billboard reggae-albums chart 2013-08-31 (peak 7, 1 week, NEW); theheadies.com 2014 nominees; Spotify oEmbed for track 6cgEDo8mFLrvQ0FVqXAKpH (“Like to Party”, art ab67616d…e3497b75 = L.I.F.E deluxe); kworb songs page",
+     "severity": "note",
+     "fix": "No change required; if the site wants a primary anchor for 30 May 2012, cite Aristokrat/Burna Boy's own release post in /Users/paulemmanuelng/burnaboy-website/app/data/songs.ts line 441 or the blurb at line 438."
+    }
+   ]
+  },
+  {
+   "page": "/music/alone",
+   "checked": 30,
+   "findings": [
+    {
+     "claim": "Sweden chart peak No. 33 (chart pill \"#33 Sweden\"; FAQ \"No. 33 in Sweden\"; derived counts \"8 countries charted\" / \"9 charts · best No. 19\"; typed blurb \"a run across nine official charts\"; typed FAQ \"charted in eight countries plus the Billboard Global 200\")",
+     "onPage": "🇸🇪 #33 Sweden in the Chart peaks section (both layouts, same DOM), \"8 countries charted\", \"9 CHARTS · BEST NO. 19\", blurb \"a run across nine official charts\", FAQ 2 \"charted in eight countries … No. 33 in Sweden and No. 45 in Switzerland\"",
+     "shouldBe": "No Sweden entry at all. Sverigetopplistan's Veckolista Singlar (chart 41, 100 positions) never carried \"Alone\": every weekly list from vecka 45/2022 to vecka 4/2023 was read and no Burna Boy row appears; Sverigetopplistan's own search for \"Burna Boy\" returns 11 titles (Dai Dai, Last Last, City Boys, Cheat On Me, Wild Dreams, For My Hand, We Pray + albums) and no \"Alone\". The song appeared only on Veckolista Heatseeker (chart 215): No. 15 in vecka 46 and No. 7 in vecka 47 of 2022 — an extension chart the site's own standard excludes (charts.ts header; docs/sweeps/tyla-chart-peaks-v1.md line 272 and wizkid-chart-peaks-v1.md line 332 say \"Heatseeker excluded\"). The 33 matches neither list. Hung Medien's cross-country matrix on dutchcharts.nl also lists only CH/FR/NL/PT for the song, no SE. After removal the page derives 7 countries and 8 charts.",
+     "source": "https://www.sverigetopplistan.se/chart/41?dspy=2022&dspp=45 … dspp=52 and ?dspy=2023&dspp=1…4 (all 100-deep, no Alone); https://www.sverigetopplistan.se/chart/215?dspy=2022&dspp=46 (Heatseeker: 15 ALONE BURNA BOY) and dspp=47 (7 ALONE BURNA BOY); https://www.sverigetopplistan.se/search?query=Burna+Boy (11 hits, no Alone); dutchcharts.nl item page Wereldwijd line — all read 17 Sep 2026",
+     "severity": "wrong",
+     "fix": "app/data/charts.ts line 364: delete `{ c: \"SE\", peak: 33 }, ` from the Alone row. app/data/songs.ts line 247: change \"a run across nine official charts\" to \"a run across eight official charts\" (or derive it from the entry count). app/data/songs.ts line 261: change to \"“Alone” charted in seven countries plus the Billboard Global 200 — its best peaks were No. 19 in France, No. 28 on the UK Official Singles Chart and No. 45 in Switzerland. It also reached No. 1 on the UK's Official Afrobeats Chart.\" The \"8 countries charted\" card, \"9 charts\" meta, OG card stats and its cache id all recompute from charts.ts. Log the correction in app/data/updates.ts and, if the SE row is counted in any records/charts totals or watched-metrics baselines, bump those in the same edit."
+    },
+    {
+     "claim": "\"It opens the film's soundtrack rollout\" (FAQ 1, also emitted in the FAQPage JSON-LD)",
+     "onPage": "FAQ \"What Burna Boy song is in Black Panther: Wakanda Forever?\": \"… It opens the film's soundtrack rollout and became a hit in its own right …\"",
+     "shouldBe": "It did not open the rollout. Marvel's and Universal's own announcements put Rihanna's \"Lift Me Up\" out first, on 28 October 2022, as the lead single that \"leads the Black Panther: Wakanda Forever soundtrack\"; \"Alone\" followed on 4 November 2022 alongside the album (BPI's register prints Released 04.11.2022 for it). Nor is it track 1 of the album. Say it followed \"Lift Me Up\" as the soundtrack's second single.",
+     "source": "https://www.marvel.com/articles/movies/rihanna-leads-the-black-panther-wakanda-forever-soundtrack-with-new-original-song-lift-me-up and https://www.universalmusic.ca/press-releases/rihanna-leads-the-black-panther-wakanda-forever-soundtrack-with-new-original-song-lift-me-up/ (Lift Me Up, 28 Oct 2022, lead single; album 4 Nov 2022); certified-awards.bpi.co.uk search \"Burna Boy Alone\" (Released 04.11.2022) — read 17 Sep 2026",
+     "severity": "wrong",
+     "fix": "app/data/songs.ts line 257: replace \"It opens the film's soundtrack rollout and became a hit in its own right\" with \"Released on 4 November 2022 as the soundtrack's second single, after Rihanna's “Lift Me Up”, it became a hit in its own right\"."
+    },
+    {
+     "claim": "\"215M Spotify streams\" — a live bot-written figure printed with no read date anywhere on the page",
+     "onPage": "By the numbers card: \"215M — Spotify streams\" (both layouts). No \"read …\" / \"as of\" date appears on the page; the section has no sources line.",
+     "shouldBe": "The figure is current — kworb's Burna Boy song table (last updated 2026/09/16) reads 214,970,863 for Alone, which rounds to 215M — but a live figure without a printed date is an undated claim by the site's own rule. Print the bot's read date beside it (the same day-stamp the stats bot writes) or a \"streams read <date>\" line under the grid.",
+     "source": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html (\"Last updated: 2026/09/16\", row \"Alone 214,970,863\") — read 17 Sep 2026; app/data/songs.ts line 241 (spotifyStreams: \"215M\"), app/music/[song]/page.tsx line 95",
+     "severity": "note",
+     "fix": "app/music/[song]/page.tsx line 95: append the read date to the card label (e.g. l: `Spotify streams · read ${STREAMS_READ_ON}`) using the date constant the stats bot already maintains, or add a `<p className={styles.source}>` under the numbers grid that prints it, so the figure carries its own date like the certifications file's CERTS_VERIFIED_ON."
+    },
+    {
+     "claim": "Canada No. 73, Billboard Global 200 No. 143 and Switzerland No. 45 (chart pills; CH also in FAQ 2)",
+     "onPage": "🇨🇦 #73 Canada, 🌍 #143 Global, 🇨🇭 #45 Switzerland",
+     "shouldBe": "Not refuted, but not read at the body in this audit: billboard.com/robots.txt disallows ClaudeBot, Claude-Web and anthropic-ai, so the Canadian Hot 100 and Global 200 pages were not read (a human should open billboard.com/charts/canadian-hot-100/2022-11-26/ and /charts/billboard-global-200/2022-12-03/ by hand); hitparade.ch sits behind a bot challenge that was not bypassed, and No. 45 is corroborated only by Hung Medien's own cross-country matrix on the dutchcharts.nl item page (\"CH Peak: 45 / weken: 4\") — the same database that runs the Schweizer Hitparade site, but not the hitparade.ch page itself. Every other peak and all five plaques were confirmed at the body: SNEP semaine 46/2022 debut at 19 then 40/58/101/143/162/198; OCC peak 28 and Official Afrobeats Chart peak 1 (8 weeks at No.1); IRMA song page Peak #50; dutchcharts Single Top 100 peak 58 (2 weeks); AFP Top 200 Singles + EPs Digitais 186→97→97→97 (semanas 46–49/2022); RIAA Gold 22 Jan 2026; BPI Silver 12 Jan 2024; RMNZ Gold 2025-11-20; SNEP Or, date de constat 26/10/2023; TCSN Platinum 6 Feb 2026.",
+     "source": "https://www.billboard.com/robots.txt; dutchcharts.nl showitem.asp?interpret=Burna+Boy&titel=Alone&cat=s (Wereldwijd: CH 45/4, FR 19/7, NL 58/2, PT 97/4); hitparade.ch returned a Cloudflare challenge — 17 Sep 2026",
+     "severity": "note",
+     "fix": "No data change. Record in the sweep/audit log that CA 73 and GLB 143 were last human-verified on Billboard and CH 45 via Hung Medien's matrix; re-open hitparade.ch/song/Burna-Boy/Alone-2044006 in a normal browser to close the CH read."
+    }
+   ]
+  },
+  {
+   "page": "/music/smoke",
+   "checked": 22,
+   "findings": [
+    {
+     "claim": "By the numbers shows two cards with the same value: \"2011 — released\" and \"2011 — the earliest release documented on this site\" (both layouts, phone and desktop)",
+     "onPage": "— History only / 2011 released / 3.7M Spotify streams / 2011 the earliest release documented on this site / Aristokrat / Onosz",
+     "shouldBe": "One 2011 card. The page component already injects a gold \"released\" card for every history-only song, so the typed extraFact duplicates it. Either drop the extraFact or make it carry the actual date the release body gives: Spotify's album page dates Best of Burn Series, Vol. 1 to 28 April 2011.",
+     "source": "https://burnaboystats.com/music/smoke live DOM (checked at 375px and desktop width); /Users/paulemmanuelng/burnaboy-website/app/music/[song]/page.tsx lines 105-111 (missingFacts adds {v: song.year, l: \"released\"}); open.spotify.com/album/1KO52a7CF7exVydwrwzNPN (\"28 April 2011\")",
+     "severity": "note",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/songs.ts line 482: change `{ v: \"2011\", l: \"the earliest release documented on this site\" }` to `{ v: \"28 Apr 2011\", l: \"release date — the earliest on this site\" }` (or delete the line). Same duplication will exist on the other four storyOnly songs if they carry a year extraFact — check lines 343-436."
+    },
+    {
+     "claim": "Blurb: \"the starting point of a catalogue that ends at a World Cup Final\"",
+     "onPage": "…it exists as the starting point of a catalogue that ends at a World Cup Final.",
+     "shouldBe": "A dated or non-terminal phrasing. \"Ends at\" is a latest-item claim: it is true today (site's own tours.ts/timeline.ts record the 19 July 2026 halftime show as the most recent milestone) but rots on his next release or milestone. E.g. \"a catalogue that, by July 2026, reached a World Cup Final\".",
+     "source": "/Users/paulemmanuelng/burnaboy-website/app/data/tours.ts line 260; app/data/timeline.ts line 96 (19 Jul 2026 halftime show)",
+     "severity": "note",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/songs.ts line 480 (blurb): replace \"a catalogue that ends at a World Cup Final\" with \"a catalogue that by July 2026 had reached a World Cup Final\"."
+    },
+    {
+     "claim": "\"the 2011 Aristokrat Records compilation\" / FAQ: \"Best of Burn Series, Vol. 1 (2011) on Aristokrat Records\" (stated 5 times: blurb, extraFact, two FAQs, meta description; also albums.ts label)",
+     "onPage": "Aristokrat — from the Aristokrat Records compilation Best of Burn Series, Vol. 1; FAQ: \"Best of Burn Series, Vol. 1 (2011) on Aristokrat Records\"",
+     "shouldBe": "The release's own artwork reads \"Aristokrat Records presents — Best of the Burn Series Vol. 1\" (visible on the cover the page itself serves), so \"presented by Aristokrat\" is supported. But the release's rights line at every DSP is not Aristokrat: Spotify prints \"© 2011 Spaceship Entertainment / ℗ 2011 Spaceship Entertainment\" and Deezer's album record gives label \"Spaceship Records\", release date 2011-04-28. The FAQ's \"on Aristokrat Records\" (a label-of-release statement) is therefore not what the register says. Safer wording: \"the 2011 compilation presented by Aristokrat Records (℗ Spaceship Entertainment)\".",
+     "source": "open.spotify.com/album/1KO52a7CF7exVydwrwzNPN (rights line); api.deezer.com/album/663761211 (label: Spaceship Records, release_date 2011-04-28); cover art at https://i.scdn.co/image/ab67616d0000b2739c2cb75c521fe1c48f74a3c1 (\"Aristokrat Records presents\")",
+     "severity": "note",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/songs.ts lines 480, 483, 489, 493, 498: change \"on Aristokrat Records\" / \"Aristokrat Records compilation\" to \"the compilation presented by Aristokrat Records\"; /Users/paulemmanuelng/burnaboy-website/app/data/albums.ts line 172: label \"Aristokrat Records\" → \"Aristokrat Records (℗ Spaceship Entertainment)\"."
+    },
+    {
+     "claim": "\"3.7M — Spotify streams\" card carries no date and no source line (the chart and certification sections print a source footnote; the numbers grid does not)",
+     "onPage": "3.7M / Spotify streams",
+     "shouldBe": "Figure is correct (kworb 3,716,234 at its 2026/09/16 update; Spotify's own track page shows the same 3,716,234 today; watched-metrics lastSeenAt 2026-09-17) but the page gives the reader no date or provenance for a live figure. Print the source and read date, e.g. \"Spotify streams · via kworb, 16 Sep 2026\".",
+     "source": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html (Smoke (feat. Onosz) 3,716,234, Last updated 2026/09/16); open.spotify.com/track/2fOpoSqkF5kuiZcDLGyA7B (3,716,234); /Users/paulemmanuelng/burnaboy-website/scripts/watched-metrics.json lines 746-776",
+     "severity": "note",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/music/[song]/page.tsx line 99: extend the spotifyStreams fact label to \"Spotify streams (via kworb)\" and add a <p className={styles.source}> under the numbers grid (after line ~285) that prints the bot's lastSeenAt for the song's spotify-streams metric — shared component, so this applies to all 14 song pages."
+    }
+   ]
+  }
+ ]
+}

@@ -9,7 +9,9 @@ the body that publishes the figure before anything is changed.
 | 1 | /, /dai-dai, /certifications, /records/{charts,awards,africas-biggest,firsts,tours,cars}, /updates | 52 | 50 | 2 | PR #269, 16 Sep |
 | 2 | /music, /live-charts, /analysis, /compare, /records/by-the-numbers, /records/tours/{revenue,festivals}, /dai-dai/es, /about, /faq, /methodology, /press | 34 | 32 | 2 | PR #270, 17 Sep |
 | 3 | /afrobeats + the 15 artist pages with their /charts and /live | 55 | 51 | 4 | PR #274, 17 Sep |
-| 4 | song, album, car and compare-pair pages; /timeline, /records/visualized, /records/tours/map, /search, /share, /contact, /curator, /api, /analysis/spotify-unmerge | not yet run | | | |
+| 4a | the 14 song pages under /music/<slug> | 59 (17 non-note) | 11 of 4 pages so far | 4 | PAUSED 17 Sep — verify run one page at a time (Paul's rule), 4 of 14 verified; `audit-batch4a-raw.json` + partial `audit-batch4a-verdicts.json`; resume wf_a077789d-ab8 |
+| 4b | 8 album pages + 15 car pages | not yet run | | | |
+| 4c | /timeline, /records/visualized, /records/tours/map, /records, /search, /share, /contact, /curator, /api, /analysis/spotify-unmerge, 3 compare pairs | not yet run | | | |
 
 Files: `audit-batch{N}-raw.json` is what the auditors reported (every finding,
 notes included); `audit-batch{N}-verdicts.json` is the verifier's ruling on
