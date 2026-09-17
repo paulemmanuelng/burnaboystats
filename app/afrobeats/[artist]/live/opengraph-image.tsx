@@ -3,6 +3,7 @@ import { ogId, cardUrl } from "../../../lib/og-image";
 import { OgLockup, ogFonts } from "../../../lib/og-lockup";
 import { artistBySlug } from "../../../data/afrobeats";
 import { LIVE_BOARDS, liveBoardFor } from "../../../data/liveBoards";
+import { LIVE_CADENCE } from "../../../lib/liveChartMeta";
 
 export function generateStaticParams() {
   return LIVE_BOARDS.map((b) => ({ artist: b.slug }));
@@ -22,7 +23,7 @@ export async function generateImageMetadata({ params }: { params: Promise<{ arti
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt = "Live platform chart placements, refreshed hourly";
+export const alt = `Live platform chart placements, ${LIVE_CADENCE}`;
 
 const GOLD = "#ffb627";
 const LIVE = "#3ed17f"; // the site green — one green, per the token decision

@@ -75,6 +75,22 @@ export const NON_EUROPE = new Set([
 export const numberOneCountriesInEurope = numberOneCountries.filter((c) => EUROPE.has(c));
 export const numberOneCountriesOutsideEurope = numberOneCountries.filter((c) => !EUROPE.has(c));
 
+/**
+ * Where each non-European No. 1 country sits, for Finding 02's sentence. The
+ * tail of that sentence was typed — "Nigeria and South Africa, and a run
+ * through Latin America and the Gulf" — and never mentioned Lebanon or India,
+ * both No. 1s in the same data. A country missing here fails tests/analysis.
+ */
+export const NON_EUROPE_REGION: Record<string, string> = {
+  NG: "Africa", ZA: "Africa",
+  AR: "Latin America", CO: "Latin America", EC: "Latin America", PA: "Latin America", SR: "Latin America", VE: "Latin America",
+  AE: "the Gulf", LB: "the Middle East", IN: "South Asia",
+};
+const REGION_ORDER = ["Africa", "Latin America", "the Gulf", "the Middle East", "South Asia"];
+export const numberOneRegionsOutsideEurope = [
+  ...new Set(numberOneCountriesOutsideEurope.map((c) => NON_EUROPE_REGION[c] ?? c)),
+].sort((a, b) => (REGION_ORDER.indexOf(a) + 1 || 99) - (REGION_ORDER.indexOf(b) + 1 || 99));
+
 export const chartedCountryCount = new Set(
   allChartItems.flatMap((r) => r.entries.map((e) => e.c)).filter((c) => !isGlobalChart(c))
 ).size;

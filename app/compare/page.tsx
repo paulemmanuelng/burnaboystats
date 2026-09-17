@@ -4,6 +4,17 @@ import BreadcrumbBar from "../components/BreadcrumbBar";
 import { pageMetadata, datasetJsonLd } from "../lib/seo";
 import { siteUrl } from "../site";
 import { countryMeta } from "../data/afrobeats";
+import { CERT_THRESHOLDS } from "../data/certThresholds";
+
+// The bodies that publish their levels in streams AND their own download
+// equivalence — the same filter /methodology uses. Typed, this card named four
+// (France, Denmark, Norway, the Netherlands) while the table below it priced
+// Czech and Slovak plaques by the same rule.
+const streamRatioNames = Object.values(CERT_THRESHOLDS)
+  .filter((t) => t.singleRaw && !t.assumed)
+  .map((t) => (t.code === "NL" ? "the Netherlands" : t.code === "CZ" ? "Czechia" : countryMeta(t.code).name))
+  .sort((a, b) => a.replace(/^the /, "").localeCompare(b.replace(/^the /, "")));
+const streamRatioBodies = `${streamRatioNames.slice(0, -1).join(", ")} and ${streamRatioNames[streamRatioNames.length - 1]}`;
 import type { Metadata } from "next";
 import { PICKER_FOLD, fold, pickerArtists, pickerReleases } from "../lib/comparePicker";
 import { featuredPairs, pairCopy, pairSlug } from "../lib/comparePairs";
@@ -1005,7 +1016,7 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
           <div>
             <p className={styles.methodTitle}>Each body&apos;s own threshold</p>
             <p className={styles.methodBody}>
-              Streams-based bodies — France, Denmark, Norway and the Netherlands — are converted with the
+              Streams-based bodies — {streamRatioBodies} — are converted with the
               body&apos;s own published download-equivalence, never an estimate.
             </p>
           </div>

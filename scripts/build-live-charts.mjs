@@ -481,13 +481,15 @@ for (const w of work.values()) {
   }
   
   const body = `// GENERATED FILE — do not edit by hand.
-  // Rebuilt hourly by scripts/build-live-charts.mjs${artist.slug === "burna-boy" ? "" : ` --artist=${artist.slug}`} from kworb's artist page.
+  // Rebuilt several times a day by scripts/build-live-charts.mjs${artist.slug === "burna-boy" ? "" : ` --artist=${artist.slug}`} from kworb's artist page.
   //
   // PLATFORM chart data for ${artist.name}: where each release is sitting RIGHT
   // NOW on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube country
   // charts. This is not official-chart data — the official national peaks that
   // feed the site's headline totals live elsewhere, and the two are kept apart
   // on purpose.
+  
+  import { countriesOf } from "../lib/liveChartMeta";
   
   export interface LiveEntry {
     country: string; // ISO alpha-2
@@ -518,6 +520,9 @@ for (const w of work.values()) {
   
   /** When this snapshot was taken (ISO date). */
   export const liveChartsUpdated = ${JSON.stringify(new Date().toISOString().slice(0, 10))};
+  /** The minute the snapshot was taken, so a reader can tell a 17:20 board
+   *  from a fresh one — the job fires a few times a day, not on the hour. */
+  export const liveChartsBuiltAt = ${JSON.stringify(new Date().toISOString().slice(0, 16) + "Z")};
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ${JSON.stringify(platforms)};
@@ -533,9 +538,13 @@ for (const w of work.values()) {
     (n, r) => n + r.platforms.reduce((m, p) => m + p.numberOnes, 0),
     0
   );
-  export const liveCountryCount = new Set(
-    liveCharts.flatMap((r) => r.platforms.flatMap((p) => p.entries.map((e) => e.country)))
-  ).size;
+  // Counted by the site's own rule (app/lib/liveChartMeta.ts): kworb labels
+  // Britain "UK" on five platforms and "GB" on Spotify's, and emits "WW" for
+  // its worldwide chart. A raw code count claimed the UK twice and the world
+  // as a nation — the share card said 151 countries where the page said 149.
+  export const liveCountryCount = countriesOf(
+    liveCharts.flatMap((r) => r.platforms.flatMap((p) => p.entries))
+  );
   
   /** Placements per platform, biggest first — powers the summary row. */
   export const livePlatformTotals: { platform: string; placements: number; numberOnes: number }[] =

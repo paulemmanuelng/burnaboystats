@@ -17,7 +17,10 @@ import {
   numberOneCountriesInEurope,
   numberOneCountriesOutsideEurope,
   numberOneCountryCount,
+  NON_EUROPE_REGION,
+  numberOneRegionsOutsideEurope,
 } from "../app/lib/analysis";
+import { findings } from "../app/lib/analysisFindings";
 import { CHART_COUNTRIES, chartCountryCount } from "../app/data/charts";
 
 // /analysis makes ARGUMENTS about the data, not just restatements of it. New
@@ -115,6 +118,16 @@ describe("the continental split covers every chart country", () => {
       "a new chart country has to be put in EUROPE or NON_EUROPE in app/lib/analysis.ts, or the /analysis split silently undercounts",
     ).toEqual([]);
     expect(both, "a code cannot be in both sets").toEqual([]);
+  });
+
+  it("names a region for every non-European No. 1 country", () => {
+    // Finding 02's tail used to be typed ("Nigeria and South Africa, and a run
+    // through Latin America and the Gulf") and never mentioned Lebanon or
+    // India. Now it is built from NON_EUROPE_REGION, and a No. 1 in a country
+    // that map does not know fails here rather than falling out of the prose.
+    expect(numberOneCountriesOutsideEurope.filter((c) => !NON_EUROPE_REGION[c])).toEqual([]);
+    const body = (findings.find((f) => f.id === "02") ?? findings[1]).body.join(" ");
+    for (const region of numberOneRegionsOutsideEurope) expect(body).toContain(region);
   });
 
   it("splits the No. 1 countries without losing any", () => {

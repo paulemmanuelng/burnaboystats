@@ -18,6 +18,8 @@ vi.mock("next/link", () => ({
 }));
 
 import ComparePage from "../app/compare/page";
+import { CERT_THRESHOLDS } from "../app/data/certThresholds";
+import { countryMeta } from "../app/data/afrobeats";
 import { compare, comparableArtists, priceRelease } from "../app/lib/certUnits";
 import { PICKER_FOLD, pickerArtists, pickerReleases } from "../app/lib/comparePicker";
 
@@ -387,5 +389,25 @@ describe("the pair pages", () => {
     expect(ph).toContain('"name":"Burna Boy vs Wizkid","item":"https://burnaboystats.com/compare/burna-boy-vs-wizkid"');
     expect(ph).toContain('"@type":"Dataset"');
     expect(text(ph)).toContain("Burna Boy vs Wizkid");
+  });
+});
+
+describe("the method card names every stream-ratio body the table prices", () => {
+  // Typed, the card said "France, Denmark, Norway and the Netherlands" while
+  // the same response priced Czech and Slovak plaques by the same rule. The
+  // card now derives its list with the filter /methodology uses; this holds
+  // the two to each other.
+  it("lists each body with singleRaw and no assumed ratio, by country name", async () => {
+    const page = await html({ a: "burna-boy", b: "wizkid", all: "1" });
+    const card = page.slice(page.indexOf("Streams-based bodies"), page.indexOf("never an estimate"));
+    expect(card.length).toBeGreaterThan(20);
+    for (const t of Object.values(CERT_THRESHOLDS)) {
+      if (!t.singleRaw || t.assumed) continue;
+      const name = t.code === "NL" ? "Netherlands" : t.code === "CZ" ? "Czechia" : countryMeta(t.code).name;
+      expect(card, `${t.code} is priced by its own ratio and should be named`).toContain(name);
+    }
+    for (const code of ["BE", "BR", "SE", "MX"]) {
+      expect(card, `${code} converts no streams by a body ratio`).not.toContain(countryMeta(code).name);
+    }
   });
 });

@@ -1,5 +1,6 @@
 import { liveCharts, liveChartsUpdated } from "../../../data/liveCharts";
 import { apiHeaders, API_VERSION, LIVE_CACHE_CONTROL, provenance } from "../../../lib/api";
+import { LIVE_CADENCE_REBUILT } from "../../../lib/liveChartMeta";
 
 // force-static like its siblings. This route was the only static-able one
 // served on demand, burning a function invocation per request — including the
@@ -29,7 +30,7 @@ export function GET() {
       artist: "Burna Boy",
       endpoint: `/api/${API_VERSION}/live-charts`,
       description:
-        "Where each release is sitting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube country charts. These are PLATFORM charts, rebuilt hourly — not official-chart data. The official national peaks behind this site's headline totals are at /api/v1/charts, and the two are never mixed.",
+        `Where each release is sitting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube country charts. These are PLATFORM charts, ${LIVE_CADENCE_REBUILT} — not official-chart data. The official national peaks behind this site's headline totals are at /api/v1/charts, and the two are never mixed.`,
       updated: liveChartsUpdated,
       count: liveCharts.length,
       countOf: "releases",

@@ -217,7 +217,10 @@
     "--shadow-base 45%"
   ],
   "app/components/mobileLiveCharts.module.css": [
+    "--gold-ink 28%",
+    "--gold-wash-base 22%",
     "--gold-wash-base 4%",
+    "--gold-wash-base 6%",
     "--gold-wash-base 8%",
     "--green 4%",
     "--green 8%",

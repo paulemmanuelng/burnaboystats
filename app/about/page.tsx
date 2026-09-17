@@ -33,8 +33,8 @@ const timeline = [
   { year: "2021", title: "Grammy winner", text: "Wins Best Global Music Album for Twice as Tall at the 63rd Grammy Awards." },
   { year: "2022", title: "Love, Damini", text: "Becomes the highest-debuting Nigerian album on the US Billboard 200." },
   { year: "2023", title: "Stadium history", text: "First African artist to sell out London Stadium, to about 60,000 fans, and to headline & sell out a stadium in the US (Citi Field). Also releases I Told Them…" },
-  { year: "2025", title: "No Sign of Weakness", text: "Releases his eighth studio album and becomes the first Nigerian artist to headline the legendary Red Rocks Amphitheatre, on his biggest North American tour to date." },
-  { year: "2026", title: "FIFA World Cup opener", text: "Headlines the 2026 FIFA World Cup Opening Ceremony in Mexico City alongside Shakira, performing the official tournament song, “Dai Dai.”" },
+  { year: "2025", title: "No Sign of Weakness", text: "Releases his eighth studio album and becomes the first Nigerian artist to headline the legendary Red Rocks Amphitheatre, opening the North American leg of the No Sign of Weakness Tour — a world tour across Oceania, North America and Europe." },
+  { year: "2026", title: "The World Cup year", text: "Headlines the 2026 FIFA World Cup Opening Ceremony in Mexico City alongside Shakira, performing the official tournament song, “Dai Dai” — which in July becomes the first African artist's No. 1 on the Billboard Global 200, before he becomes the first African artist to perform at the World Cup Final halftime show (19 July)." },
 ];
 
 // Person entity for the biography page — reinforces "real name / birth name / age"

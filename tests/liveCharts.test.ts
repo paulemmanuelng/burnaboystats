@@ -13,8 +13,12 @@ import {
   livePlacementCount,
   liveNumberOnes,
   livePlatformTotals,
+  liveCountryCount,
+  liveChartsUpdated,
+  liveChartsBuiltAt,
 } from "../app/data/liveCharts";
 import { CHART_COUNTRIES } from "../app/data/charts";
+import { countriesOf } from "../app/lib/liveChartMeta";
 
 // The live-charts page is generated wholesale from a scraped page, so the
 // parser is the single point of failure. These pin its behaviour on a fixture
@@ -98,6 +102,23 @@ describe("generated liveCharts data", () => {
     expect(liveCharts.length).toBeGreaterThan(0);
     const titles = liveCharts.map((r) => r.title);
     expect(titles).toHaveLength(new Set(titles).size);
+  });
+
+  it("counts countries by the site's rule, not by raw kworb code", () => {
+    // The share card read the generated count (151) while the page recounted
+    // (149): kworb says "UK" on five platforms and "GB" on Spotify's, and
+    // emits "WW" for its worldwide chart. One rule, in liveChartMeta, for both.
+    const entries = liveCharts.flatMap((r) => r.platforms.flatMap((p) => p.entries));
+    expect(liveCountryCount).toBe(countriesOf(entries));
+    const raw = new Set(entries.map((e) => e.country));
+    if (raw.has("UK") && raw.has("GB")) expect(liveCountryCount).toBeLessThan(raw.size);
+  });
+
+  it("stamps the snapshot to the minute, on the same day as its date", () => {
+    // The job fires a few times a day, not on the hour, so the page prints the
+    // minute the board was built rather than letting a date imply "now".
+    expect(liveChartsBuiltAt).toMatch(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}Z$/);
+    expect(liveChartsBuiltAt.slice(0, 10)).toBe(liveChartsUpdated);
   });
 
   it("derived totals agree with the rows", () => {

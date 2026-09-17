@@ -9,6 +9,7 @@ import { BURNA_PORTRAIT, SHAKIRA_PORTRAIT } from "../lib/artistImages";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
 import { cardinalWord } from "../lib/plural";
+import { daiDaiPlatinumMore } from "../data/certifications";
 
 // Every figure here is "Dai Dai"'s OWN — never Burna Boy's artist-wide totals
 // (monthly listeners, YouTube audience, career certs). Burna had a huge
@@ -73,7 +74,7 @@ const EN_SCENE: SceneCopy = {
   no1sLink: "See every Dai Dai chart position →",
   streamingNote: "Daily & Weekly · 37 days as Earth's most-streamed song",
   certsLabel: "certifications for Dai Dai",
-  certsNote: "2× Platinum (Latin) US · Platinum in 6 more",
+  certsNote: `2× Platinum (Latin) US · Platinum in ${daiDaiPlatinumMore} more`,
   certsLink: "See the Dai Dai certifications →",
   worldsongWord: "BIGGEST\nWORLD CUP\nANTHEM EVER",
   worldsongLabel: "Highest-peaking on Spotify Global",
@@ -103,7 +104,7 @@ function buildSteps(p: Props): Step[] {
       scene: "global1",
       kicker: "The record",
       title: "No. 1 on the Billboard Global 200",
-      body: `Within weeks their song topped Billboard's flagship, US-inclusive worldwide chart — Shakira's second-ever Global 200 No. 1, and the first time in history an African artist has helped lead it. After four straight weeks it slipped to No. 3, then took the chart back on 22 August and held it three more weeks — ${cardinalWord(p.weeksGLB, p.lang ?? "en")} weeks at No. 1 in all, the last of them on the chart dated 5 September. On the Global 200 Excl. US it ran ${cardinalWord(p.weeksGLBX, p.lang ?? "en")} straight weeks at No. 1, 4 July to 5 September.`,
+      body: `Within weeks their song topped Billboard's flagship, US-inclusive worldwide chart — Shakira's second-ever Global 200 No. 1, and the first time in history an African artist has helped lead it. After four straight weeks it slipped to No. 3, then took the chart back for three weeks — the issues of 22 and 29 August and 5 September — ${cardinalWord(p.weeksGLB, p.lang ?? "en")} weeks at No. 1 in all. On the Global 200 Excl. US it ran ${cardinalWord(p.weeksGLBX, p.lang ?? "en")} straight weeks at No. 1, 4 July to 5 September.`,
     },
     {
       scene: "no1s",

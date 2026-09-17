@@ -15,6 +15,13 @@ export interface RevenueShow {
   revenue: number; // USD
 }
 
+// NOT ON THE BOARD: Toronto (Scotiabank Arena, 24–25 Feb 2024, $2,801,928 /
+// 29,579, 2 shows) and Montreal (Centre Bell, 28–29 Feb 2024, $1,904,384 /
+// 26,303, 2 shows). TouringData/Boxscore report each stand as ONE combined
+// two-show figure and never published a per-night gross, so a per-show board
+// cannot rank them. They were carried here as exact halves ($1,400,964 and
+// $952,192) from 3 Jul 2026 to 16 Sep 2026 — an even split the body never
+// printed, with the headcount it did print dropped as "not reported".
 export const revenueShows: RevenueShow[] = [
   { artist: "Burna Boy", venue: "London Stadium", city: "London", flag: "🇬🇧", tour: "I Told Them… Tour", year: "2024", tickets: "58,973", revenue: 6147209 },
   { artist: "Burna Boy", venue: "Stade de France", city: "Paris", flag: "🇫🇷", tour: "I Told Them… Tour", year: "2025", tickets: "43,881", revenue: 4528368 },
@@ -25,7 +32,6 @@ export const revenueShows: RevenueShow[] = [
   { artist: "Burna Boy", venue: "Madison Square Garden", city: "New York", flag: "🇺🇸", tour: "Space Drift Tour", year: "2022", tickets: "13,586", revenue: 1576641 },
   { artist: "Burna Boy", venue: "Ziggo Dome", city: "Amsterdam", flag: "🇳🇱", tour: "Space Drift Tour", year: "2022", tickets: "17,000", revenue: 1564720 },
   { artist: "Burna Boy", venue: "Capital One Arena", city: "Washington, D.C.", flag: "🇺🇸", tour: "Love, Damini Tour", year: "2022", tickets: "14,688", revenue: 1434525 },
-  { artist: "Burna Boy", venue: "Scotiabank Arena", city: "Toronto", flag: "🇨🇦", tour: "I Told Them… Tour (1 of 2 sold-out nights)", year: "2024", revenue: 1400964 },
   { artist: "Burna Boy", venue: "State Farm Arena", city: "Atlanta", flag: "🇺🇸", tour: "I Told Them… Tour", year: "2024", tickets: "13,331", revenue: 1394173 },
   { artist: "Burna Boy", venue: "Lanxess Arena", city: "Cologne", flag: "🇩🇪", tour: "I Told Them… Tour", year: "2023", tickets: "14,260", revenue: 1386581 },
   { artist: "Burna Boy", venue: "The O2 Arena", city: "London", flag: "🇬🇧", tour: "Space Drift Tour", year: "2021", tickets: "15,165", revenue: 1347333 },
@@ -42,7 +48,6 @@ export const revenueShows: RevenueShow[] = [
   { artist: "Wizkid", venue: "Madison Square Garden", city: "New York", flag: "🇺🇸", tour: "More Love, Less Ego Tour", year: "2022", tickets: "12,901", revenue: 1002709 },
   { artist: "Burna Boy", venue: "Hard Rock Live", city: "Hollywood, FL", flag: "🇺🇸", tour: "I Told Them… Tour", year: "2024", tickets: "5,591", revenue: 965925 },
   { artist: "Wizkid", venue: "The O2 Arena", city: "London", flag: "🇬🇧", tour: "Made in Lagos Tour", year: "2021", tickets: "16,938", revenue: 958489 },
-  { artist: "Burna Boy", venue: "Bell Centre", city: "Montreal", flag: "🇨🇦", tour: "I Told Them… Tour (1 of 2 sold-out nights)", year: "2024", revenue: 952192 },
   { artist: "Asake", venue: "Scotiabank Arena", city: "Toronto", flag: "🇨🇦", tour: "Live in Canada", year: "2024", tickets: "9,652", revenue: 916954 },
   { artist: "Burna Boy", venue: "State Farm Arena", city: "Atlanta", flag: "🇺🇸", tour: "Love, Damini Tour", year: "2022", tickets: "12,753", revenue: 905024 },
   { artist: "Burna Boy", venue: "Oakland Arena", city: "Oakland", flag: "🇺🇸", tour: "Love, Damini Tour", year: "2023", tickets: "9,436", revenue: 885278 },

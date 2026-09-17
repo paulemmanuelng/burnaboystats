@@ -9,6 +9,7 @@ import BreadcrumbBar from "../components/BreadcrumbBar";
 import KeepExploring from "../components/KeepExploring";
 import MobileRecords from "../components/MobileRecords";
 import NotReported from "../components/NotReported";
+import { LIVE_CADENCE } from "../lib/liveChartMeta";
 
 export const metadata = pageMetadata({
   title: "Career Records — Burna Boy Charts, Awards, Tours & Firsts",
@@ -23,7 +24,7 @@ export const metadata = pageMetadata({
 // (by-the-numbers, visualized, map, cars) following.
 const subs = [
   { href: "/records/charts", title: "Official Charts", desc: "Peak positions on every major chart worldwide" },
-  { href: "/live-charts", title: "Live Charts", desc: "Where every release is charting right now, refreshed hourly" },
+  { href: "/live-charts", title: "Live Charts", desc: `Where every release is charting right now, ${LIVE_CADENCE}` },
   { href: "/records/awards", title: "Awards", desc: "Every win & nomination to date" },
   { href: "/records/firsts", title: "Firsts", desc: "Every record broken & first achieved" },
   { href: "/timeline", title: "Career Timeline", desc: "Sixteen years, era by era — every milestone dated" },

@@ -5,7 +5,7 @@ import bar from "../artist.module.css";
 import KeepExploring from "../../../components/KeepExploring";
 import MobileLiveCharts, { type ReleasePreview } from "../../../components/MobileLiveCharts";
 import LiveReleaseBlock, { type ReleaseSummary } from "../../../components/LiveReleaseBlock";
-import { cadenceOf, reachOf, numberOnesOf } from "../../../lib/liveChartMeta";
+import { cadenceOf, reachOf, numberOnesOf, LIVE_CADENCE, LIVE_CADENCE_LABEL, LIVE_CADENCE_ADVERB } from "../../../lib/liveChartMeta";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime } from "../../../lib/seo";
 import { artistBySlug } from "../../../data/afrobeats";
 import { LIVE_BOARDS, liveBoardFor, type LiveBoard } from "../../../data/liveBoards";
@@ -34,9 +34,9 @@ function leadRelease(board: LiveBoard) {
  * and the shortest is short enough that nothing can overflow it.
  */
 const LIVE_TAILS = [
-  "Spotify, Apple Music, Shazam and more, refreshed hourly.",
-  "Spotify, Apple Music and more, refreshed hourly.",
-  "Refreshed hourly.",
+  `Spotify, Apple Music, Shazam and more, ${LIVE_CADENCE}.`,
+  `Spotify, Apple Music and more, ${LIVE_CADENCE}.`,
+  `${LIVE_CADENCE_LABEL}.`,
 ];
 
 function liveDescription(
@@ -77,7 +77,7 @@ export async function generateMetadata({ params }: { params: Promise<{ artist: s
     description: liveDescription(a.name, board, lead),
     path: `/afrobeats/${slug}/live`,
     shareTitle: `${a.name} — Live Charts`,
-    shareDescription: `${board.placements} live placements across ${board.countries} countries, refreshed hourly.`,
+    shareDescription: `${board.placements} live placements across ${board.countries} countries, ${LIVE_CADENCE}.`,
   });
 }
 
@@ -190,7 +190,7 @@ export default async function AfroLiveChartsPage({
               {a.name} Live <span className="inkText">Charts</span>
             </h1>
             <p className={styles.lede}>
-              {`Where every ${a.name} record is charting right now — ${board.placements} placements across ${board.countries} countries, refreshed every hour.`}
+              {`Where every ${a.name} record is charting right now — ${board.placements} placements across ${board.countries} countries, ${LIVE_CADENCE}.`}
             </p>
             <p className={styles.updated}>
               <span className={styles.liveDot} aria-hidden="true" />
@@ -301,8 +301,8 @@ export default async function AfroLiveChartsPage({
         <section className={styles.sourceBand}>
           <div className={styles.wide}>
             <p className={styles.source}>
-              Positions come from each platform&apos;s own country charts, via kworb, rebuilt
-              hourly by the same job that builds Burna Boy&apos;s. Movement is against that
+              Positions come from each platform&apos;s own country charts, via kworb, rebuilt{" "}
+              {LIVE_CADENCE_ADVERB} by the same job that builds Burna Boy&apos;s. Movement is against that
               chart&apos;s previous edition — “NEW” means the record entered it this time round,
               “RE-ENTRY” that it charted before, dropped off and came back, and no marker means
               the platform doesn&apos;t publish movement for that chart. Spotify, Apple Music,

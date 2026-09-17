@@ -12,6 +12,7 @@ import { afrobeatsArtists, countryMeta } from "../data/afrobeats";
 import { chartEntryCount, numberOnes, chartSourceSplit, chartCountryCount } from "../data/charts";
 import { ceremonyCount } from "../data/awards";
 import { tours } from "../data/tours";
+import { numberWord } from "../lib/homeData";
 
 export const metadata = pageMetadata({
   title: "Methodology — How Burna Boy Stats Verifies Every Number",
@@ -43,7 +44,7 @@ const sources = [
     count: String(countryCount),
     tag: "RIAA · BPI · SNEP · BVMI",
     detail:
-      "Official certification databases of each market — the RIAA (US), BPI (UK), SNEP (France), BVMI (Germany), CAPIF (Argentina) and others. A certification is only counted once it appears in the awarding body's own searchable database.",
+      "Official certification databases of each market — the RIAA (US), BPI (UK), SNEP (France), BVMI (Germany), FIMI (Italy) and others. A certification is only counted once it appears in the awarding body's own searchable database.",
   },
   {
     area: "Charts",
@@ -118,6 +119,18 @@ const certBodies = (() => {
     }
   }
   return [...byBody.values()].sort((a, b) => a.body.localeCompare(b.body));
+})();
+
+// The bodies whose SINGLE threshold cannot be priced at any ratio, Poland
+// aside (its złoty-of-revenue case is named separately). Typed, this sentence
+// said "Greece, Belgium, Colombia and the rest" while Belgium's thresholds had
+// been found at Ultratop and priced on 10 Sep 2026.
+const unpricedSingleNames = (() => {
+  const names = Object.values(CERT_THRESHOLDS)
+    .filter((c) => c.single === null && c.code !== "PL")
+    .map((c) => countryMeta(c.code).name)
+    .sort();
+  return names.length > 1 ? `${names.slice(0, -1).join(", ")} and ${names[names.length - 1]}` : (names[0] ?? "");
 })();
 
 const principles = [
@@ -318,8 +331,8 @@ export default function MethodologyPage() {
           <p className={styles.p}>
             Bigger totals for this artist circulate every few months. Each one has been
             walked body by body against the awarding organisation&apos;s own records, and
-            what could not be traced is not here. The checks cut both ways — three of them
-            changed figures on this site.
+            what could not be traced is not here. The checks cut both ways —{" "}
+            {numberWord(correctionsMade.length).toLowerCase()} of them changed figures on this site.
           </p>
 
           <h3 className={styles.blockH}>No primary source names him</h3>
@@ -561,8 +574,8 @@ export default function MethodologyPage() {
             body did not set, and it is there because a plaque that cannot be summed is
             a plaque that goes unseen. Sweden counts capped streams, so its figure is a
             floor twice over. What remains cannot be converted at any ratio: Poland
-            measures singles in złoty of revenue, and Greece, Belgium, Colombia and the
-            rest of the unpriced bodies publish no threshold. Those plaques are{" "}
+            measures singles in złoty of revenue, and {unpricedSingleNames} publish no
+            threshold. Those plaques are{" "}
             <strong>listed and never summed</strong> — and never folded out of sight —
             because scoring them zero in silence would penalise whoever holds more of
             them.

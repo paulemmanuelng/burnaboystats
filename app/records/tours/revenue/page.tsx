@@ -48,7 +48,7 @@ const revenueDataset = datasetJsonLd({
 });
 
 const SOURCE_NOTE =
-  "Box-office figures reported by Billboard Boxscore & Pollstar (as aggregated by TouringData), cross-checked against press reporting, as of August 2026. Each entry is a single night's gross — multi-night stands (e.g. Toronto & Montreal) are ranked per night, not combined.";
+  "Box-office figures reported by Billboard Boxscore & Pollstar (as aggregated by TouringData), cross-checked against press reporting, as of September 2026. Each entry is a single night's gross. Stands that Boxscore reported only as a combined multi-night total — Burna Boy's two-night Toronto ($2.80M) and Montreal ($1.90M) runs in February 2024 — are left off, because no per-night figure was published.";
 
 export default function RevenuePage() {
   return (
@@ -82,7 +82,7 @@ export default function RevenuePage() {
           tickets: s.tickets,
           his: s.artist === "Burna Boy",
         }))}
-        sourceNote="Grosses and ticket counts from Billboard Boxscore. The board ranks every reported show by an African artist, not only his — a missing night means Boxscore never reported it. A dash means no headcount was published."
+        sourceNote="Grosses and ticket counts from Billboard Boxscore. The board ranks every reported show by an African artist, not only his — a missing night means Boxscore never reported it. A dash means no headcount was published. Stands Boxscore reported only as a combined multi-night total (Toronto and Montreal, February 2024) are left off — no per-night figure exists."
       />
 
       <div className={styles.desktopOnly}>

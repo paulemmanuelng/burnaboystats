@@ -10,6 +10,7 @@ import KeepExploring from "../components/KeepExploring";
 import { spotifyImage, spotifySrcSet } from "../lib/spotifyImage";
 import { songs as songPages } from "../data/songs";
 import { siteUrl } from "../site";
+import { numberWord } from "../lib/homeData";
 import { pageMetadata } from "../lib/seo";
 import { spotifyTotalStreams } from "../data/streamingTotals";
 
@@ -185,7 +186,11 @@ export default function MusicPage() {
           <div>
             <div className={styles.kicker}>Also released</div>
             <h2 className={styles.h2Tight}>{eps.length === 1 ? "EP" : "EPs"}</h2>
-            <p className={styles.blockLede}>Two short-form releases, seven years apart.</p>
+            {/* Derived: this said "seven years apart" over two EPs the same page
+                dated 2016 and 2019. */}
+            <p className={styles.blockLede}>
+              {`${numberWord(eps.length)} short-form releases, ${numberWord(Math.abs(eps[eps.length - 1].year - eps[0].year)).toLowerCase()} years apart.`}
+            </p>
             <Discography albums={eps} layout="pair" />
           </div>
           <div>

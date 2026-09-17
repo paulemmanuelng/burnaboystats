@@ -1,5 +1,6 @@
 import { LIVE_BOARDS, liveBoardFor } from "../../../../data/liveBoards";
 import { apiHeaders, API_VERSION, LIVE_CACHE_CONTROL, provenance } from "../../../../lib/api";
+import { LIVE_CADENCE_REBUILT } from "../../../../lib/liveChartMeta";
 
 // dynamicParams stays TRUE so this handler runs for a slug that is not on the
 // board. It was false, which made Next answer an unknown artist with the
@@ -69,7 +70,7 @@ export async function GET(_req: Request, { params }: { params: Promise<{ artist:
       artist,
       endpoint: `/api/${API_VERSION}/live-charts/${artist}`,
       description:
-        "One Afrobeats Board artist's current PLATFORM positions — Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube country charts, rebuilt hourly. Not official-chart data; the board's official chart records are at /api/v1/afrobeats.",
+        `One Afrobeats Board artist's current PLATFORM positions — Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube country charts, ${LIVE_CADENCE_REBUILT}. Not official-chart data; the board's official chart records are at /api/v1/afrobeats.`,
       updated: board.updated,
       count: board.releases.length,
       countOf: "releases",

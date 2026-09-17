@@ -14,6 +14,7 @@ import { CANONICAL_ORIGIN } from "../lib/seo";
 // so this is the established way to read it.
 import { faqs } from "../faq/page";
 import { albums } from "../data/albums";
+import { LIVE_CADENCE_REBUILT } from "../lib/liveChartMeta";
 
 /**
  * /llms.txt — a plain-text map of the site for answer engines.
@@ -91,7 +92,7 @@ how most published figures about this artist go wrong.
 - [About](${CANONICAL_ORIGIN}/about): real name, birth date, birthplace, family and career history.
 - [Certifications](${CANONICAL_ORIGIN}/certifications): every plaque, by country and tier.
 - [Official charts](${CANONICAL_ORIGIN}/records/charts): peak positions, country by country.
-- [Live charts](${CANONICAL_ORIGIN}/live-charts): current platform positions, rebuilt hourly.
+- [Live charts](${CANONICAL_ORIGIN}/live-charts): current platform positions, ${LIVE_CADENCE_REBUILT}.
 - [Discography](${CANONICAL_ORIGIN}/music): ${albums.length} studio albums, the EPs, and a page per song at /music/{slug}.
 - [Dai Dai](${CANONICAL_ORIGIN}/dai-dai): the 2026 FIFA World Cup song with Shakira. Spanish edition at /dai-dai/es.
 - [By the numbers](${CANONICAL_ORIGIN}/records/by-the-numbers): the headline career figures on one page, each linked to the page that documents it.

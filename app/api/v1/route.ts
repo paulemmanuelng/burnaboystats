@@ -1,5 +1,6 @@
 import { apiJson, API_VERSION } from "../../lib/api";
 import { sweptArtists } from "../../data/afrobeats";
+import { LIVE_CADENCE_REBUILT } from "../../lib/liveChartMeta";
 
 // Prerendered at build time — these are static datasets, not live queries.
 export const dynamic = "force-static";
@@ -44,7 +45,7 @@ const endpoints = [
   {
     path: `/api/${API_VERSION}/live-charts`,
     description:
-      "Current platform positions across Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube country charts, rebuilt hourly. Add /{artist} for a board artist.",
+      `Current platform positions across Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube country charts, ${LIVE_CADENCE_REBUILT}. Add /{artist} for a board artist.`,
   },
 ];
 

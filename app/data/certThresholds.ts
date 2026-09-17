@@ -15,7 +15,7 @@
 // means nothing, so this file puts everything it can on ONE scale —
 // sales-equivalent units — and refuses to price the rest.
 //
-// NORMALISATION USES THE BODY'S OWN ARITHMETIC, NEVER AN ESTIMATE. Four
+// NORMALISATION USES THE BODY'S OWN ARITHMETIC, NEVER AN ESTIMATE. Six
 // countries publish in streams AND publish a sale-equivalence; those are divided
 // by it and the printed figure is kept alongside in `*Raw` so the conversion can
 // be checked. Where a body publishes thresholds in something other than units and
@@ -220,7 +220,7 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
     body: "BVMI (Bundesverband Musikindustrie e.V.)",
     sourceUrl: "https://www.musikindustrie.de/fileadmin/bvmi/upload/01_Der_BVMI/Dokumente-zum-Download/Richtlinien_BVMI_Gold_Platin_3_0_FINAL.pdf",
     vintage:
-      "BVMI raised its single levels on 30 June 2023 from 200,000 / 400,000 / 1,000,000 to 300,000 / 600,000 / 1,500,000. Albums did not move. Priced at today's level; a plaque awarded before then may have cleared the lower bar. BVMI keys bands to release date and every German single here was released 2016 or later.",
+      "BVMI raised its single levels on 30 June 2023 from 200,000 / 400,000 / 1,000,000 to 300,000 / 600,000 / 1,500,000. Albums moved the other way on the same date, keyed to release date: Gold 100,000 / Platin 200,000 for albums first released 1 January 2003 to 29 June 2023, 75,000 / 150,000 for releases from 30 June 2023 — the table prints the newer band, and no German album plaque is on the site. Priced at today's level; a plaque awarded before then may have cleared the lower bar. BVMI keys bands to release date and every German single here was released 2016 or later.",
     single: { silver: null, gold: 300_000, platinum: 600_000, diamond: 1_500_000 },
     floor: { single: { silver: null, gold: 200_000, platinum: 400_000, diamond: 1_000_000 } },
     album: { silver: null, gold: 75_000, platinum: 150_000, diamond: 750_000 },

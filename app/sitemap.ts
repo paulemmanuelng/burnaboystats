@@ -180,7 +180,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...afrobeatsArtists
       .filter((a) => a.charts.length > 0)
       .map((a) => ({ path: `/afrobeats/${a.slug}/charts`, priority: 0.7, changeFrequency: "weekly" as const })),
-    // Live boards are rebuilt hourly; "daily" is the strongest signal this
+    // Live boards are rebuilt several times a day; "daily" is the strongest signal this
     // sitemap's own type allows, and it is what /live-charts declares too.
     ...LIVE_BOARDS.map((b) => ({
       path: `/afrobeats/${b.slug}/live`,
