@@ -15,7 +15,7 @@ import {
   weeksOnChart,
 } from "../../data/charts";
 import { liveCharts } from "../../data/liveCharts";
-import { daiDaiCertCount } from "../../data/certifications";
+import { daiDaiCertCount, daiDaiPlatinumMore } from "../../data/certifications";
 import { DAI_DAI_VIDEO_VIEWS, DAI_DAI_1B_DAYS, DAI_DAI_1B_RANK_ES, DAI_DAI_SPOTIFY_STREAMS, DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_NO1_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_NO1_FIRST_LONG_ES, DAI_DAI_SPOTIFY_NO1_LAST_LONG_ES, DAI_DAI_SPOTIFY_TOP10_DAYS, DAI_DAI_SPOTIFY_DAYS_OFF, daiDaiSpotifyDaysOnChart, daiDaiSpotifyStraightDays, daiDaiYouTubeDaysAtNo1 } from "../../data/daiDai";
 import { spotifyImage, spotifySrcSet } from "../../lib/spotifyImage";
 import { daiDaiEsOgId } from "./ogId";
@@ -143,7 +143,7 @@ export default function DaiDaiPageES() {
       scene: "global1",
       kicker: "El récord",
       title: "Número 1 en el Billboard Global 200",
-      body: `En cuestión de semanas la canción lideró la lista mundial insignia de Billboard, la que incluye a Estados Unidos: el segundo número 1 de Shakira en el Global 200 y la primera vez en la historia que un artista africano ayuda a encabezarla. Tras cuatro semanas consecutivas bajó al N.º 3, y el 22 de agosto recuperó la cima y la mantuvo tres semanas más: ${cardinalWord(weeksGLB, "es")} semanas en el número 1 en total, la última en la lista del 5 de septiembre. En el Global 200 Excl. US encadenó ${cardinalWord(weeksGLBX, "es")} semanas seguidas en el número 1, del 4 de julio al 5 de septiembre.`,
+      body: `En cuestión de semanas la canción lideró la lista mundial insignia de Billboard, la que incluye a Estados Unidos: el segundo número 1 de Shakira en el Global 200 y la primera vez en la historia que un artista africano ayuda a encabezarla. Tras cuatro semanas consecutivas bajó al N.º 3, y el 22 de agosto recuperó la cima por tres semanas —las listas del 22 y el 29 de agosto y del 5 de septiembre—: ${cardinalWord(weeksGLB, "es")} semanas en el número 1 en total. En el Global 200 Excl. US encadenó ${cardinalWord(weeksGLBX, "es")} semanas seguidas en el número 1, del 4 de julio al 5 de septiembre.`,
     },
     {
       scene: "no1s",
@@ -216,7 +216,7 @@ export default function DaiDaiPageES() {
         // que no se releía desde el 4 de agosto y no puede fecharse sin publicar
         // una semana de lista que nadie ha leído. El pico se mantiene.
         { v: "N.º 1", l: "en el Official MENA Chart Top 20 y en la lista US World Digital Song Sales de Billboard" },
-        { v: "N.º 2", l: `en la lista oficial de sencillos del Reino Unido — ${weeksUK}.ª semana en ese pico, ya con ${runUK} semanas en lista. La primera canción de un Mundial de la FIFA que entra en el top 10 británico, muy por encima del N.º 21 que alcanzó “Waka Waka” de la propia Shakira` },
+        { v: "N.º 2", l: `en la lista oficial de sencillos del Reino Unido — ${cardinalWord(weeksUK, "es")} semanas en ese pico, del 30 de julio al 27 de agosto de 2026, en una estancia de ${runUK} semanas contada hasta la lista del 17 de septiembre (N.º 19). La primera canción de un Mundial de la FIFA que entra en el top 10 británico, muy por encima del N.º 21 que alcanzó “Waka Waka” de la propia Shakira` },
         { v: "N.º 3", l: "en el Billboard Canadian Hot 100 — un nuevo pico y el primer top 10 de Burna Boy en Canadá, donde su mejor posición había sido el N.º 14. Es también el primer top 10 canadiense de Shakira desde “She Wolf” en 2009" },
         { v: "N.º 17", l: "en el Billboard Hot 100 de Estados Unidos — un salto del 42 al 17 en la lista del 1 de agosto, el pico más alto de una canción mundialista en la historia del Hot 100. Luminate registró 8,6 millones de reproducciones en Estados Unidos (+69 %), 13,9 millones de audiencia radial (+11 %) y 7.000 copias vendidas (+322 %) en la semana de seguimiento del 17 al 23 de julio" },
         { v: "4 semanas", l: "en el número 1 del Big Top 40 del Reino Unido (las listas del 9 al 30 de agosto de 2026) — la cuenta atrás nacional de las cadenas Capital y Heart, con Burna Boy recibiendo la placa de número 1" },
@@ -345,7 +345,7 @@ export default function DaiDaiPageES() {
             no1sLink: "Ver todas las posiciones de Dai Dai →",
             streamingNote: "Diaria y semanal · 37 días como la canción más escuchada del mundo",
             certsLabel: "certificaciones de Dai Dai",
-            certsNote: "Doble platino (latino) en EE. UU. · platino en 5 países más",
+            certsNote: `Doble platino (latino) en EE. UU. · platino en ${daiDaiPlatinumMore} países más`,
             certsLink: "Ver las certificaciones de Dai Dai →",
             worldsongWord: "EL HIMNO\nMUNDIALISTA\nMÁS GRANDE",
             worldsongLabel: "El pico más alto en el Spotify Global",

@@ -851,6 +851,13 @@ export const intlCertHistory = certHistory.filter((e) => e.country !== "NG");
  *  — bump it on every body read, in the same edit as the row it changes. */
 export const CERTS_VERIFIED_ON = "2026-09-16";
 
+/** "Dai Dai" Platinum plaques beyond the US Latin 2× — the "Platinum in N more"
+ *  rail note on the story and its Spanish twin, counted rather than typed after
+ *  Greece's upgrade left the Spanish edition saying 5 while English said 6. */
+export const daiDaiPlatinumMore = (allItems.find((r) => r.title === "Dai Dai")?.certs ?? []).filter(
+  (c) => c.level === "Platinum" && c.c !== "US",
+).length;
+
 /** The sources line, built from COUNTRIES so a body renamed or a country added
  *  there (Ultratop for the old BEA, Greece, Colombia…) reaches the page without
  *  a retype. National IFPI groups fold into one "IFPI (Denmark, Norway, …)"

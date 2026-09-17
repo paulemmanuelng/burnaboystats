@@ -27,6 +27,7 @@ import { totalAwards, countryCount as certCountries } from "../data/certificatio
 import { albums as studioAlbums } from "../data/albums";
 import { tours } from "../data/tours";
 import { MARKET_WEIGHT } from "../lib/certs";
+import { LIVE_CADENCE } from "../lib/liveChartMeta";
 
 const DAI_DAI_COVER = "https://i.scdn.co/image/ab67616d0000b27303cadf1b3fe324c1dc710ed4";
 
@@ -175,7 +176,7 @@ export default function MobileHome() {
         <p className={styles.arrivals}>
           {recentArrivals.length
             ? `${recentArrivals.slice(0, 4).join(", ").replace(/, ([^,]*)$/, " and $1")} joined ${arrivalWindowPhrase}.`
-            : "On streaming charts right now, refreshed hourly."}
+            : `On streaming charts right now, ${LIVE_CADENCE}.`}
         </p>
         <div className={styles.statusRow}>
           <span className={styles.statusDot} aria-hidden="true" />
@@ -192,7 +193,7 @@ export default function MobileHome() {
               the DOM at once, so the document carries two — one per layout, and
               only ever one is visible; the SEO gate checks that pairing rather
               than a bare count. The name stays the heading precisely because
-              the figure above it changes every hour and a heading must not. */}
+              the figure above it changes through the day and a heading must not. */}
           <h1 className={styles.title}>Burna Boy</h1>
           <p className={styles.eyebrow}>
             <span className={styles.rule} aria-hidden="true" />

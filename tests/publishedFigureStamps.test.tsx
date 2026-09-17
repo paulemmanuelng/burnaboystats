@@ -21,6 +21,8 @@ import AfricasBiggestPage from "../app/records/africas-biggest/page";
 import AwardsPage from "../app/records/awards/page";
 import { stats as byTheNumbers } from "../app/records/by-the-numbers/page";
 import {
+  BURNA_YT_AUDIENCE,
+  BURNA_YT_AUDIENCE_SET_ON_LONG,
   BURNA_PEAK_LISTENERS,
   BURNA_PEAK_LISTENERS_RISE,
   BURNA_PEAK_LISTENERS_SET_ON,
@@ -301,5 +303,18 @@ describe("the awards FAQ on a phone", () => {
       }
     }
     expect(offenders, "a mobile FAQ section is headed with something else").toEqual([]);
+  });
+});
+
+describe("the YouTube Music audience tile says it is a peak, and when", () => {
+  // 929M is an all-time high from 12 Aug 2026, not a reading of today: the
+  // platform showed 875M the day this guard was written. The Spotify-listeners
+  // tile already carries "at peak" and its date; this holds the YouTube one to
+  // the same standard, so the number can stay a peak without reading as live.
+  it("labels the tile 'at peak' and prints the day it was set", () => {
+    const tile = byTheNumbers.find((x) => x.num === BURNA_YT_AUDIENCE);
+    if (!tile) throw new Error("the YouTube Music audience is no longer on /records/by-the-numbers");
+    expect(tile.label).toContain("at peak");
+    expect(tile.sub).toContain(BURNA_YT_AUDIENCE_SET_ON_LONG);
   });
 });

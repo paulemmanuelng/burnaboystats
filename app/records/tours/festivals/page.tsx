@@ -66,8 +66,8 @@ export default function FestivalsPage() {
     <main id="content">
       {/* Mobile is screen 13 — three accordion sections, first one open, not a
           flat list. The screen carries every documented appearance, which is
-          why the design folds them. Figures derived: the mock says 57/30, the
-          data says 58/31. */}
+          why the design folds them. Figures derived: the mock says 57/30; the
+          data is whatever the arrays hold (59/32 on 16 Sep 2026). */}
       <MobileFestivals
         total={total}
         lede={`${numberWord(total)} documented appearances — ${headlined.length} festivals headlined, including ${numberWord(afroNation).toLowerCase()} Afro Nation editions. Tap a section to open it.`}

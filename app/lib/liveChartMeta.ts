@@ -12,6 +12,21 @@ const CADENCE: Record<string, string> = { YouTube: "weekly" };
 
 export const cadenceOf = (platform: string) => CADENCE[platform] ?? "daily";
 
+/**
+ * How often the live boards are ACTUALLY rebuilt, stated once. The job is
+ * scheduled every half hour (.github/workflows/stats-live.yml, "17,47 * * * *")
+ * but GitHub runs `schedule` events on a best-effort basis, and this repo's
+ * fire every two to six hours — four to ten runs a day across the 12–16 Sep
+ * 2026 run history. The site said "hourly" in forty places until 16 Sep; it
+ * says this instead, from one home, so the day the cadence is made real (an
+ * external dispatcher on the workflow_dispatch trigger) is a one-line change.
+ * tests/liveClaims.test.ts refuses "hourly" anywhere in rendered text.
+ */
+export const LIVE_CADENCE_ADVERB = "several times a day";
+export const LIVE_CADENCE = `refreshed ${LIVE_CADENCE_ADVERB}`;
+export const LIVE_CADENCE_REBUILT = `rebuilt ${LIVE_CADENCE_ADVERB}`;
+export const LIVE_CADENCE_LABEL = `Refreshed ${LIVE_CADENCE_ADVERB}`;
+
 /** Total placements for a release, across every platform it charts on. */
 export const reachOf = (r: { platforms: { entries: unknown[] }[] }) =>
   r.platforms.reduce((n, p) => n + p.entries.length, 0);

@@ -5,6 +5,7 @@ import MobileMenuButton from "./MobileMenuButton";
 import ScrollRail from "./ScrollRail";
 import { spotifyImage, spotifySrcSet } from "../lib/spotifyImage";
 import { BLANK_PIXEL } from "../lib/blankPixel";
+import { LIVE_CADENCE_REBUILT } from "../lib/liveChartMeta";
 
 /**
  * Mobile screen for /afrobeats.
@@ -205,7 +206,7 @@ export default function MobileAfrobeatsHub({
 
         <div className={styles.liveLabel}>
           <span className={styles.liveDot} aria-hidden="true" />
-          Charting now · rebuilt hourly
+          Charting now · {LIVE_CADENCE_REBUILT}
         </div>
         <ScrollRail className={styles.rail} label="Live chart placements by artist">
           {liveRail.map((r) => (

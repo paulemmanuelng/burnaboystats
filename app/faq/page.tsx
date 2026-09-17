@@ -71,7 +71,7 @@ export const faqs: { g: GroupId; q: string; a: string }[] = [
   {
     g: "worldcup",
     q: "What is Burna Boy's World Cup song?",
-    a: `"Dai Dai", his collaboration with Shakira, is the official song of the 2026 FIFA World Cup. It reached No. 1 on both Billboard global charts and on the official singles chart in ${daiDaiNumberOnes} countries, and has spent 37 days at No. 1 on Spotify's Global Daily Top Songs chart as the most-streamed song in the world — reclaiming the top spot in August as the longest-running No. 1 by any 2026 release.`,
+    a: `"Dai Dai", his collaboration with Shakira, is the official song of the 2026 FIFA World Cup. It reached No. 1 on both Billboard global charts and on the official singles chart in ${daiDaiNumberOnes} countries, and spent 37 days at No. 1 on Spotify's Global Daily Top Songs chart as the most-streamed song in the world, between 30 June and 22 August 2026 — the longest-running No. 1 by any 2026 release.`,
   },
   {
     g: "awards",
@@ -111,7 +111,7 @@ export const faqs: { g: GroupId; q: string; a: string }[] = [
   {
     g: "music",
     q: "What is Burna Boy's biggest song?",
-    a: `By chart performance it is "Dai Dai" with Shakira, the 2026 FIFA World Cup song — No. 1 on both Billboard global charts and in ${daiDaiNumberOnes} countries. His biggest solo song is "Last Last" (2022), certified Diamond in France and his most-streamed track. His biggest featured credit is "Location" with Dave, certified 5× Platinum in the UK.`,
+    a: `By chart performance it is "Dai Dai" with Shakira, the 2026 FIFA World Cup song — No. 1 on both Billboard global charts and in ${daiDaiNumberOnes} countries. His biggest solo song is "Last Last" (2022), certified Diamond in France and his most-streamed solo song. His biggest featured credit is "Location" with Dave, certified 5× Platinum in the UK.`,
   },
   {
     g: "music",

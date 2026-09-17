@@ -4,8 +4,8 @@ import { useState } from "react";
 import Link from "next/link";
 import styles from "./mobileLiveCharts.module.css";
 import { spotifyImage } from "../lib/spotifyImage";
-import { coverFor } from "../lib/covers";
-import { cadenceOf } from "../lib/liveChartMeta";
+import { coverFor, monogramFor } from "../lib/covers";
+import { cadenceOf, LIVE_CADENCE } from "../lib/liveChartMeta";
 import { useLiveRelease } from "../lib/useLiveRelease";
 import ScrollRail from "./ScrollRail";
 import MobileMenuButton from "./MobileMenuButton";
@@ -120,7 +120,7 @@ export default function MobileLiveCharts({
           <span className={styles.gold}>{heading ? heading.gold : "Charts"}</span>
         </h1>
         <p className={styles.lede}>
-          {placements} placements across {countries} countries, refreshed hourly. Snapshot{" "}
+          {placements} placements across {countries} countries, {LIVE_CADENCE}. Snapshot{" "}
           {updated}.
         </p>
         {/* A <p>, not a <div>: this is a sentence, and the link inside it is an
@@ -186,10 +186,16 @@ export default function MobileLiveCharts({
                 onClick={() => setOpen(isOpen ? null : r.title)}
               >
                 <span className={styles.rowTop}>
-                  <span
-                    className={styles.rowCover}
-                    style={{ backgroundImage: `url(${spotifyImage(r.cover ?? coverFor(r.title) ?? "", 300)})` }}
-                  />
+                  {/* No art on file → the release's initial, as the desktop
+                      draws it, rather than a blank tinted square. */}
+                  {(r.cover ?? coverFor(r.title)) ? (
+                    <span
+                      className={styles.rowCover}
+                      style={{ backgroundImage: `url(${spotifyImage(r.cover ?? coverFor(r.title) ?? "", 300)})` }}
+                    />
+                  ) : (
+                    <span className={styles.rowCover} data-letter={monogramFor(r.title)} aria-hidden="true" />
+                  )}
                   <span className={styles.rowMain}>
                     <span className={styles.rowTitle}>
                       {r.title}

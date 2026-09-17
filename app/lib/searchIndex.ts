@@ -32,6 +32,7 @@ export type SearchDoc = {
 };
 
 import { generatedDocs } from "./searchIndex.generated";
+import { LIVE_CADENCE } from "./liveChartMeta";
 
 export const searchIndex: SearchDoc[] = [
   {
@@ -533,42 +534,42 @@ export const searchIndex: SearchDoc[] = [
     title: "Wizkid — Live Charts",
     path: "/afrobeats/wizkid/live",
     section: "Afrobeats",
-    description: "Where every Wizkid release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — refreshed hourly.",
+    description: `Where every Wizkid release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — ${LIVE_CADENCE}.`,
     keywords: ["wizkid live charts", "wizkid charting now", "wizkid today"],
   },
   {
     title: "Davido — Live Charts",
     path: "/afrobeats/davido/live",
     section: "Afrobeats",
-    description: "Where every Davido release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — refreshed hourly.",
+    description: `Where every Davido release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — ${LIVE_CADENCE}.`,
     keywords: ["davido live charts", "davido charting now", "davido today"],
   },
   {
     title: "Rema — Live Charts",
     path: "/afrobeats/rema/live",
     section: "Afrobeats",
-    description: "Where every Rema release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — refreshed hourly.",
+    description: `Where every Rema release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — ${LIVE_CADENCE}.`,
     keywords: ["rema live charts", "rema charting now", "rema today"],
   },
   {
     title: "Tems — Live Charts",
     path: "/afrobeats/tems/live",
     section: "Afrobeats",
-    description: "Where every Tems release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — refreshed hourly.",
+    description: `Where every Tems release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — ${LIVE_CADENCE}.`,
     keywords: ["tems live charts", "tems charting now", "tems today"],
   },
   {
     title: "Tyla — Live Charts",
     path: "/afrobeats/tyla/live",
     section: "Afrobeats",
-    description: "Where every Tyla release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — refreshed hourly.",
+    description: `Where every Tyla release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — ${LIVE_CADENCE}.`,
     keywords: ["tyla live charts", "tyla charting now", "tyla today"],
   },
   {
     title: "Ayra Starr — Live Charts",
     path: "/afrobeats/ayra-starr/live",
     section: "Afrobeats",
-    description: "Where every Ayra Starr release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — refreshed hourly.",
+    description: `Where every Ayra Starr release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — ${LIVE_CADENCE}.`,
     keywords: ["ayra starr live charts", "ayra starr charting now", "ayra starr today"],
   },
   {
@@ -582,7 +583,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Asake — Live Charts",
     path: "/afrobeats/asake/live",
     section: "Afrobeats",
-    description: "Where every Asake release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — refreshed hourly.",
+    description: `Where every Asake release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — ${LIVE_CADENCE}.`,
     keywords: ["asake live charts", "asake charting now", "asake today"],
   },
   {
@@ -596,7 +597,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Omah Lay — Live Charts",
     path: "/afrobeats/omah-lay/live",
     section: "Afrobeats",
-    description: "Where every Omah Lay release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — refreshed hourly.",
+    description: `Where every Omah Lay release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — ${LIVE_CADENCE}.`,
     keywords: ["omah lay live charts", "omah lay charting now", "omah lay today"],
   },
   {
@@ -610,7 +611,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Seyi Vibez — Live Charts",
     path: "/afrobeats/seyi-vibez/live",
     section: "Afrobeats",
-    description: "Where every Seyi Vibez release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — refreshed hourly.",
+    description: `Where every Seyi Vibez release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — ${LIVE_CADENCE}.`,
     keywords: ["seyi vibez live charts", "seyi vibez charting now", "seyi vibez today"],
   },
   {
@@ -715,7 +716,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Victony — Live Charts",
     path: "/afrobeats/victony/live",
     section: "Afrobeats",
-    description: "Where every Victony release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — refreshed hourly.",
+    description: `Where every Victony release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — ${LIVE_CADENCE}.`,
     keywords: ["victony live charts", "victony charting now", "victony today"],
   },
   {
@@ -736,7 +737,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Fireboy DML — Live Charts",
     path: "/afrobeats/fireboy-dml/live",
     section: "Afrobeats",
-    description: "Where every Fireboy DML release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — refreshed hourly.",
+    description: `Where every Fireboy DML release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — ${LIVE_CADENCE}.`,
     keywords: ["fireboy dml live charts", "fireboy dml charting now", "fireboy dml today"],
   },
 ];

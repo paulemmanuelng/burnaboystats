@@ -3,7 +3,7 @@ import styles from "./liveCharts.module.css";
 import KeepExploring from "../components/KeepExploring";
 import BreadcrumbBar from "../components/BreadcrumbBar";
 import MobileLiveCharts, { type ReleasePreview } from "../components/MobileLiveCharts";
-import { cadenceOf, reachOf, numberOnesOf, countriesOf } from "../lib/liveChartMeta";
+import { cadenceOf, reachOf, numberOnesOf, countriesOf, LIVE_CADENCE, LIVE_CADENCE_ADVERB } from "../lib/liveChartMeta";
 import LiveReleaseBlock, { type ReleaseSummary } from "../components/LiveReleaseBlock";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime } from "../lib/seo";
 import { coverFor, monogramFor } from "../lib/covers";
@@ -11,6 +11,7 @@ import { spotifyImage } from "../lib/spotifyImage";
 import {
   liveCharts,
   liveChartsUpdated,
+  liveChartsBuiltAt,
   livePlacementCount,
   liveNumberOnes,
   livePlatformTotals,
@@ -24,10 +25,10 @@ const liveCountryCount = countriesOf(liveCharts.flatMap((r) => r.platforms.flatM
 
 export const metadata = pageMetadata({
   title: "Burna Boy Live Charts — Where He's Charting Right Now",
-  description: `Every Burna Boy song charting right now: ${livePlacementCount} live placements across ${liveCountryCount} countries on Spotify, Apple Music, YouTube, Deezer, iTunes and Shazam. Updated hourly.`,
+  description: `Every Burna Boy song charting right now: ${livePlacementCount} live placements across ${liveCountryCount} countries on Spotify, Apple Music, YouTube and more, ${LIVE_CADENCE}.`,
   path: "/live-charts",
   shareTitle: "Burna Boy — Live Charts",
-  shareDescription: `${livePlacementCount} live chart placements across ${liveCountryCount} countries, refreshed hourly.`,
+  shareDescription: `${livePlacementCount} live chart placements across ${liveCountryCount} countries, ${LIVE_CADENCE}.`,
 });
 
 // ISO alpha-2 → regional-indicator flag emoji.
@@ -80,11 +81,15 @@ const summarize = (r: (typeof liveCharts)[number]): ReleaseSummary => ({
 const songs = liveCharts.filter((r) => r.kind === "song");
 const albums = liveCharts.filter((r) => r.kind === "album");
 
-const updatedLabel = new Date(`${liveChartsUpdated}T12:00:00Z`).toLocaleDateString("en-GB", {
+// Date AND minute: the job fires a few times a day, so "16 September" alone
+// could not tell a reader whether the board is from 17:20 or just now.
+const builtAt = new Date(liveChartsBuiltAt);
+const updatedLabel = `${builtAt.toLocaleDateString("en-GB", {
   day: "numeric",
   month: "long",
   year: "numeric",
-});
+  timeZone: "UTC",
+})}, ${builtAt.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit", timeZone: "UTC" })} UTC`;
 
 // Movement marker. A re-entry is not a new entry — the record charted there
 // before, dropped off and came back — so it gets its own label rather than
@@ -129,7 +134,7 @@ export default function LiveChartsPage() {
             </h1>
             <p className={styles.lede}>
               Where every Burna Boy record is charting right now — {livePlacementCount}{" "}
-              placements across {liveCountryCount} countries, refreshed every hour.
+              placements across {liveCountryCount} countries, {LIVE_CADENCE}.
             </p>
             <p className={styles.updated}>
               <span className={styles.liveDot} aria-hidden="true" />
@@ -231,8 +236,8 @@ export default function LiveChartsPage() {
         <section className={styles.sourceBand}>
           <div className={styles.wide}>
             <p className={styles.source}>
-              Positions come from each platform&apos;s own country charts, via kworb, rebuilt
-              hourly. Movement is against that chart&apos;s previous edition — “NEW” means
+              Positions come from each platform&apos;s own country charts, via kworb, rebuilt{" "}
+              {LIVE_CADENCE_ADVERB}. Movement is against that chart&apos;s previous edition — “NEW” means
               the record entered it this time round, “RE-ENTRY” that it charted before,
               dropped off and came back, and no marker means the platform doesn&apos;t publish
               movement for that chart. Spotify, Apple Music, iTunes, Deezer and Shazam are

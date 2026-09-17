@@ -46,6 +46,24 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-09-17",
+    category: "Tours",
+    text: "Two rows withdrawn from the highest-grossing shows board: Toronto and Montreal, February 2024, were carried as exact halves of Boxscore's combined two-night totals ($2,801,928 and $1,904,384). No per-night gross was ever published, so a per-show board cannot rank them.",
+    href: "/records/tours/revenue",
+  },
+  {
+    date: "2026-09-17",
+    category: "Tours",
+    text: "Gurtenfestival 2024, re-read at the organisers' own count: 18,000 on his night, the Thursday, at a festival capped at 20,000 a day — not the 80,000 the page carried, which exceeded the whole edition's 73,000 entries. Sunny Hill 2024 loses its unsourced ~15,000.",
+    href: "/records/tours/festivals",
+  },
+  {
+    date: "2026-09-17",
+    category: "Tours",
+    text: "The Luna Loca launch at O Beach Ibiza (14 August 2026), his first Ibiza performance, joins the festivals and one-off shows list — it was already on the performance map and in this feed, and the list's counts now include it.",
+    href: "/records/tours/festivals",
+  },
+  {
     date: "2026-09-16",
     category: "Charts",
     text: "The French run closes at nine weeks: SNEP's Top Singles for the semaine du 11 septembre has “Dai Dai” at No. 3, down from No. 1, behind Mauvais Djo's “Maladie” — nine consecutive issues on top from the semaine du 10 juillet to the semaine du 4 septembre, and a 16th weekly issue on the chart.",

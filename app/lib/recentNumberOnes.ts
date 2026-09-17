@@ -1,5 +1,6 @@
 import { updates } from "../data/updates";
 import { allChartItems, CHART_COUNTRIES } from "../data/charts";
+import { LIVE_CADENCE, LIVE_CADENCE_LABEL } from "./liveChartMeta";
 
 /**
  * Which countries the updates feed reports *arriving* at No. 1 recently.
@@ -95,9 +96,9 @@ export const recentArrivals = countryNames.filter((n) => recentArrivalSet.has(n)
 export const recentArrivalSentence = (title: string) =>
   recentArrivals.length
     ? `“${title}” added ${listNames(recentArrivals)} ${arrivalWindowPhrase}.`
-    : "On streaming charts right now, refreshed hourly.";
+    : `On streaming charts right now, ${LIVE_CADENCE}.`;
 
 /** "N charts changed this week" */
 export const changedSentence = recentArrivals.length
   ? `${recentArrivals.length} chart${recentArrivals.length === 1 ? "" : "s"} changed ${arrivalChangedPhrase}`
-  : "Refreshed hourly";
+  : LIVE_CADENCE_LABEL;

@@ -42,8 +42,9 @@ describe("rejected claims are still rejected", () => {
     expect(winsFor("Galaxy")).toBe(1);
     // Four award-wins disputes above, plus one chart-position dispute added
     // 28 Aug 2026: "Dai Dai — No. 2 on US Rhythmic radio". Mediabase's own
-    // chart has it at No. 4, and Mediabase is a different chart from
-    // Billboard's Rhythmic Airplay (No. 3), which is the peak this site
+    // chart had it at No. 4 that week, and Mediabase is a different chart
+    // from Billboard's Rhythmic Airplay (No. 3 then; both charts reached
+    // No. 1 in September 2026), and Billboard's is the peak this site
     // publishes. It carries no win count, so winsFor() does not apply to it.
     // Seven since 14 Sep 2026: two more that carry no win count — the African
     // Giant "first ever certified Nigerian album" superlative (BPI: Silver

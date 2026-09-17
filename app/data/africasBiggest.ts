@@ -89,6 +89,12 @@ export const BURNA_PEAK_LISTENERS_RISE = {
  *  YouTube Music itself showed 844M. One home, imported everywhere. */
 export const BURNA_YT_AUDIENCE = "929M";
 export const BURNA_YT_AUDIENCE_WORDS = "929 million";
+/** The day the peak was set — TYPED, because no trendSeries tracks the YouTube
+ *  Music audience the way peakPoint tracks Spotify listeners. Bump it in the
+ *  same edit as BURNA_YT_AUDIENCE, never one without the other; the feed entry
+ *  of 12 Aug 2026 is where the 929M was read. */
+export const BURNA_YT_AUDIENCE_SET_ON = "2026-08-12";
+export const BURNA_YT_AUDIENCE_SET_ON_LONG = monthYear(BURNA_YT_AUDIENCE_SET_ON);
 
 /** His career Billboard Hot 100 entries — the record for any African artist.
  *

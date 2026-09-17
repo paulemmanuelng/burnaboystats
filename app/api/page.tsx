@@ -13,6 +13,8 @@ import { songs } from "../data/songs";
 import { totalNominations } from "../data/awards";
 import { tours } from "../data/tours";
 import { sweptArtists } from "../data/afrobeats";
+import { LIVE_CADENCE_REBUILT } from "../lib/liveChartMeta";
+import { livePlacementCount } from "../data/liveCharts";
 
 export const metadata = pageMetadata({
   title: "Burna Boy Open Data API — Free Chart & Certification Dataset",
@@ -67,8 +69,8 @@ const endpoints = [
   },
   {
     path: "/live-charts",
-    what: "Current platform positions across six services, rebuilt hourly. Add /{artist} for a board artist.",
-    size: "hourly",
+    what: `Current platform positions across six services, ${LIVE_CADENCE_REBUILT}. Add /{artist} for a board artist.`,
+    size: `${livePlacementCount} placements`,
   },
 ];
 

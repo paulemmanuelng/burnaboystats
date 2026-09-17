@@ -470,3 +470,39 @@ describe("published figures do not claim to be live once they have stopped movin
     }
   });
 });
+
+describe("the live boards' cadence is stated once, and truthfully", () => {
+  // .github/workflows/stats-live.yml is scheduled every half hour, and GitHub
+  // fires it every two to six hours: 4–10 runs a day across 12–16 Sep 2026.
+  // The site said "hourly" in forty places. It now says LIVE_CADENCE from
+  // app/lib/liveChartMeta.ts — this refuses the old word in anything rendered,
+  // so it cannot creep back into one page while the rest tell the truth.
+  const walk = (dir: string): string[] =>
+    readdirSync(dir, { withFileTypes: true }).flatMap((d) =>
+      d.isDirectory() ? walk(`${dir}/${d.name}`) : /\.(ts|tsx)$/.test(d.name) ? [`${dir}/${d.name}`] : [],
+    );
+
+  it("never says 'hourly' or 'every hour' in rendered text under app/", () => {
+    const hits: string[] = [];
+    for (const file of walk("app")) {
+      if (/app\/data\/liveCharts(\.[a-z-]+)?\.ts$/.test(file)) continue; // generated headers
+      const lines = readFileSync(file, "utf8").split("\n");
+      let inBlock = false;
+      lines.forEach((line, i) => {
+        const t = line.trim();
+        if (inBlock) {
+          if (t.includes("*/")) inBlock = false;
+          return;
+        }
+        if (t.startsWith("/*") || t.startsWith("{/*")) {
+          if (!t.includes("*/")) inBlock = true;
+          return;
+        }
+        if (t.startsWith("//") || t.startsWith("*")) return;
+        const code = line.replace(/\/\/.*$/, "");
+        if (/\bhourly\b|\bevery hour\b/i.test(code)) hits.push(`${file}:${i + 1}: ${t.slice(0, 90)}`);
+      });
+    }
+    expect(hits, "rendered text still promises an hourly refresh").toEqual([]);
+  });
+});

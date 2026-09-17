@@ -113,3 +113,14 @@ describe("the tour figures agree wherever they are stated", () => {
     expect(all, "no $N.NNM found in app/ at all — has the format changed?").toContain(topTour.gross);
   });
 });
+
+describe("the per-show board carries only per-show figures", () => {
+  // Toronto and Montreal (Feb 2024) sat here as exact halves of Boxscore's
+  // combined two-show totals, labelled "1 of 2 sold-out nights" with the
+  // headcount dropped. The body never published a per-night gross; a row that
+  // says it is one night of a stand, with no headcount, is that estimate again.
+  it("has no row that is one night of a multi-night stand without a headcount", () => {
+    const halves = revenueShows.filter((s) => /\b1 of \d|\(\d nights?\)/i.test(s.tour) && !s.tickets);
+    expect(halves.map((s) => `${s.venue}, ${s.city}`)).toEqual([]);
+  });
+});

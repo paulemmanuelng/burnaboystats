@@ -30,6 +30,7 @@ import {
   topAward,
   type Tier,
 } from "../../data/afrobeats";
+import { LIVE_CADENCE_ADVERB } from "../../lib/liveChartMeta";
 
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -445,8 +446,8 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
                 </span>
               </span>
               <span className={styles.chartCtaNote}>
-                Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube country charts, rebuilt
-                hourly by the same job that tracks Burna Boy — platform charts, not official ones.
+                Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube country charts, rebuilt{" "}
+                {LIVE_CADENCE_ADVERB} by the same job that tracks Burna Boy — platform charts, not official ones.
               </span>
             </span>
             <span className={styles.chartCtaArrow} aria-hidden="true">

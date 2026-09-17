@@ -15,6 +15,7 @@ import { DAI_DAI_VIDEO_VIEWS, DAI_DAI_1B_DAYS, DAI_DAI_1B_RANK_EN, DAI_DAI_SPOTI
 import { spotifyImage, spotifySrcSet } from "../lib/spotifyImage";
 import { BURNA_PORTRAIT, SHAKIRA_PORTRAIT } from "../lib/artistImages";
 import { daiDaiOgId } from "./ogId";
+import { LIVE_CADENCE } from "../lib/liveChartMeta";
 
 // Countries "Dai Dai" charted in, mapped to the world-map's ISO id space, for
 // the animated takeover map. Excludes the two Billboard global charts (not
@@ -74,7 +75,7 @@ const platformOnes = ["YouTube", "Apple Music", "Deezer", "Spotify", "iTunes", "
 const liveOnesLabel = `right now on the daily charts of ${platformOnes
   .map(([p, n], i) => (i === 0 ? `${p} (${n} countries)` : `${p} (${n})`))
   .join(", ")
-  .replace(/, ([^,]*)$/, " and $1")} — refreshed hourly from the live board`;
+  .replace(/, ([^,]*)$/, " and $1")} — ${LIVE_CADENCE} from the live board`;
 
 
 export const metadata = pageMetadata({
@@ -242,7 +243,7 @@ export default function DaiDaiPage() {
         // publishing a chart week nobody had read. The peak stands; the currency
         // claim does not.
         { v: "No. 1", l: "Official MENA Chart Top 20 — and Billboard's US World Digital Song Sales chart" },
-        { v: "No. 2", l: `UK Official Singles Chart — a ${weeksUK}th week at that peak, ${runUK} weeks in. The first FIFA World Cup song ever to reach the UK Top 10, and by far the highest-charting World Cup song in UK history, beating Shakira's own “Waka Waka” (No. 21)` },
+        { v: "No. 2", l: `UK Official Singles Chart — ${cardinalWord(weeksUK, "en")} weeks at that peak, 30 July to 27 August 2026, in a ${runUK}-week stay counted through the chart of 17 September (No. 19). The first FIFA World Cup song ever to reach the UK Top 10, and by far the highest-charting World Cup song in UK history, beating Shakira's own “Waka Waka” (No. 21)` },
         { v: "No. 3", l: "Billboard Canadian Hot 100 — a new peak and Burna Boy's first-ever top 10 in Canada, where his best song placing had been No. 14. It is also Shakira's first Canadian top 10 since “She Wolf” in 2009" },
         { v: "No. 17", l: "Billboard Hot 100 (US) — a 42-to-17 jump on the chart dated 1 August, the highest-charting World Cup song in Hot 100 history. Luminate logged 8.6M US streams (+69%), 13.9M radio airplay audience (+11%) and 7,000 sold (+322%) in the 17–23 July tracking week" },
         { v: "4 weeks", l: "at No. 1 on the UK's Big Top 40 (the charts of 9 to 30 August 2026) — the Capital and Heart networks' national countdown, with Burna Boy presented the No. 1 plaque" },

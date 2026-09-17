@@ -766,3 +766,17 @@ describe("the RIAA Latin marker is visible on every surface", () => {
     expect(bubalu.byCountry.find((l) => l.country === "US")?.top?.body).toBe("RIAA Latin");
   });
 });
+
+describe("the unpriced singles are exactly the ones /methodology names", () => {
+  // The methodology page's sentence "Poland measures singles in złoty of
+  // revenue, and Greece and Colombia publish no threshold" is derived from this
+  // set; if a body here gains a threshold (Belgium did, 10 Sep 2026) or a new
+  // unpriced country arrives, the page follows and this pins what it says.
+  it("is CO, GR and PL", () => {
+    const unpriced = Object.values(CERT_THRESHOLDS)
+      .filter((c) => c.single === null)
+      .map((c) => c.code)
+      .sort();
+    expect(unpriced).toEqual(["CO", "GR", "PL"]);
+  });
+});

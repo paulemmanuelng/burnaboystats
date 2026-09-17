@@ -34,6 +34,7 @@ import { songs } from "../../data/songs";
 import { livePlatformTotals, liveChartsUpdated } from "../../data/liveCharts";
 import { performedCountries } from "../../data/performedCountries";
 import { A2_TO_ISO } from "../../lib/isoCodes";
+import { LIVE_CADENCE } from "../../lib/liveChartMeta";
 
 export const metadata = pageMetadata({
   title: "Burna Boy, Visualized — Career Stats in Charts",
@@ -420,7 +421,7 @@ export default function VisualizedPage() {
           },
           {
             title: "Where he is charting right now",
-            note: `${livePlacementTotal} placements on today's board — country charts only, refreshed hourly.`,
+            note: `${livePlacementTotal} placements on today's board — country charts only, ${LIVE_CADENCE}.`,
             items: toBars(livePlatformBars, livePlatformBars.length),
           },
           {
@@ -572,7 +573,7 @@ export default function VisualizedPage() {
             <span className={styles.captionLead}>
               {`${livePlacementTotal} placements on today’s board`}
             </span>{" "}
-            — country charts only, refreshed hourly. Last swept {liveChartsUpdated}.
+            — country charts only, {LIVE_CADENCE}. Last swept {liveChartsUpdated}.
           </p>
           <Link href="/live-charts" className={`btn btnSecondary ${styles.cta}`}>
             The live board ↗
