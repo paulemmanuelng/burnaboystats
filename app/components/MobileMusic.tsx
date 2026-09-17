@@ -72,7 +72,7 @@ export default function MobileMusic({
       <span className={styles.albumTitle}>{a.title}</span>
       <span className={styles.albumMeta}>
         <span>{a.year}</span>
-        <span className={styles.albumTracks}>{a.tracks.length} trk</span>
+        <span className={styles.albumTracks} title={a.editionNote}>{a.tracks.length} trk{a.editionNote ? " · std" : ""}</span>
       </span>
     </button>
   );

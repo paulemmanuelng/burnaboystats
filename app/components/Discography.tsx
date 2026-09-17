@@ -34,7 +34,7 @@ export default function Discography({
             <span>
               <span className={styles.wideTitle}>{a.title}</span>
               <span className={styles.cardLabel}>{a.year} · {a.label}</span>
-              <span className={styles.cardTracks}>{a.tracks.length} tracks ↗</span>
+              <span className={styles.cardTracks} title={a.editionNote}>{a.tracks.length} tracks{a.editionNote ? " (standard)" : ""} ↗</span>
             </span>
           </button>
         ))}
@@ -57,7 +57,7 @@ export default function Discography({
             <span className={styles.albumYear}>{a.year}</span>
           </span>
           <span className={styles.cardLabel}>{a.label}</span>
-          <span className={styles.cardTracks}>{a.tracks.length} tracks ↗</span>
+          <span className={styles.cardTracks} title={a.editionNote}>{a.tracks.length} tracks{a.editionNote ? " (standard)" : ""} ↗</span>
         </button>
       ))}
     </div>

@@ -385,12 +385,15 @@ export const ceremonies: Ceremony[] = [
       // is Magicsticks, P.Priime, Ragee, Sarz and Tempoe — no Bundle by Bundle
       // — so there never was a producer nomination to exclude. DK's nomination
       // is the Music Video of the Year card ("DK — Bundle by Bundle (Burna
-      // Boy)"), the director's award, carried below as the site has since Aug.
+      // Boy)"): by the Headies' own definition the award is presented to the
+      // video's director, and the card names DK. Carried here from 26 Aug to
+      // 17 Sep 2026, then dropped under the same rule that keeps producer
+      // credits out of the counts — a nomination the body files under
+      // another person's name is not his. Decided 17 Sep 2026.
       { year: 2026, category: "Best Male Artiste", won: false },
       { year: 2026, category: "Album of the Year", work: "No Sign of Weakness", won: false },
       { year: 2026, category: "Afrobeats Album of the Year", work: "No Sign of Weakness", won: false },
       { year: 2026, category: "Afrobeats Single of the Year", work: "Bundle by Bundle", won: false },
-      { year: 2026, category: "Music Video of the Year", work: "Bundle by Bundle", won: false },
     ],
   },
   {

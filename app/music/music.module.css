@@ -393,6 +393,8 @@
   color: var(--text-muted);
   margin-top: 8px;
 }
+/* "standard edition — …" beside the count, when the linked Spotify release differs. */
+.dialogEdition { color: var(--text-muted); font-style: italic; }
 .dialogClose {
   width: 36px;
   height: 36px;
