@@ -8,7 +8,7 @@ export const dynamic = "force-static";
 const endpoints = [
   {
     path: `/api/${API_VERSION}/stats`,
-    description: "Headline career totals plus the Spotify monthly-listeners trend series.",
+    description: "Headline career totals plus the Spotify monthly-listener peak series (new highs only).",
   },
   {
     path: `/api/${API_VERSION}/charts`,

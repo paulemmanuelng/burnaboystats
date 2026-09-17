@@ -3,6 +3,15 @@ import styles from "./KeepExploring.module.css";
 import { exploreFor } from "../lib/links";
 import { totalAwards, countryCount } from "../data/certifications";
 import { chartEntryCount, numberOnes } from "../data/charts";
+import { tours } from "../data/tours";
+import { albums } from "../data/albums";
+import { careerYears } from "../data/timeline";
+import { numberWord } from "../lib/homeData";
+
+// The record tour by gross — the tile typed "$30.46M" while the hub beside it
+// derived the same figure, and a typed copy follows nothing.
+const grossOf = (g?: string) => (g ? Number.parseFloat(g.replace(/[^0-9.]/g, "")) : 0);
+const topTour = [...tours].sort((a, b) => grossOf(b.gross) - grossOf(a.gross))[0];
 
 type SectionLink = { href: string; title: string; desc: string };
 
@@ -10,7 +19,7 @@ type SectionLink = { href: string; title: string; desc: string };
 // the server and is never shipped to the browser — the numbers below auto-update.
 export const sectionLinks: Record<string, SectionLink> = {
   home: { href: "/", title: "Home", desc: "Start here" },
-  music: { href: "/music", title: "The Music", desc: "8 albums, EPs & every hit" },
+  music: { href: "/music", title: "The Music", desc: `${albums.length} albums, EPs & every hit` },
   certifications: {
     href: "/certifications",
     title: "Certifications",
@@ -22,9 +31,9 @@ export const sectionLinks: Record<string, SectionLink> = {
     title: "Chart Records",
     desc: `${chartEntryCount} chart entries · ${numberOnes} No.1s worldwide`,
   },
-  tours: { href: "/records/tours", title: "Tours & Live", desc: "$30.46M — the biggest African tour" },
+  tours: { href: "/records/tours", title: "Tours & Live", desc: `${topTour.gross} — the biggest African tour` },
   about: { href: "/about", title: "About Burna Boy", desc: "Bio & career timeline" },
-  timeline: { href: "/timeline", title: "Career Timeline", desc: "Sixteen years, era by era" },
+  timeline: { href: "/timeline", title: "Career Timeline", desc: `${numberWord(careerYears)} years, era by era` },
   afrobeats: { href: "/afrobeats", title: "The Afrobeats Board", desc: "The genre's biggest, counted by one rule" },
   "dai-dai": { href: "/dai-dai", title: "The Dai Dai Story", desc: "The World Cup song that conquered 2026" },
   "africas-biggest": { href: "/records/africas-biggest", title: "Africa's Biggest", desc: "Most-streamed African artists" },

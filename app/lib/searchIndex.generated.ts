@@ -892,6 +892,329 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "Asake vs Ayra Starr",
+    "path": "/compare/asake-vs-ayra-starr",
+    "section": "Compare",
+    "description": "Asake against Ayra Starr by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "asake",
+      "ayra starr",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Asake vs Black Sherif",
+    "path": "/compare/asake-vs-black-sherif",
+    "section": "Compare",
+    "description": "Asake against Black Sherif by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "asake",
+      "black sherif",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Asake vs BNXN",
+    "path": "/compare/asake-vs-bnxn",
+    "section": "Compare",
+    "description": "Asake against BNXN by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "asake",
+      "bnxn",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Asake vs CKay",
+    "path": "/compare/asake-vs-ckay",
+    "section": "Compare",
+    "description": "Asake against CKay by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "asake",
+      "ckay",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Asake vs Fireboy DML",
+    "path": "/compare/asake-vs-fireboy-dml",
+    "section": "Compare",
+    "description": "Asake against Fireboy DML by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "asake",
+      "fireboy dml",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Asake vs Olamide",
+    "path": "/compare/asake-vs-olamide",
+    "section": "Compare",
+    "description": "Asake against Olamide by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "asake",
+      "olamide",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Asake vs Omah Lay",
+    "path": "/compare/asake-vs-omah-lay",
+    "section": "Compare",
+    "description": "Asake against Omah Lay by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "asake",
+      "omah lay",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Asake vs Tems",
+    "path": "/compare/asake-vs-tems",
+    "section": "Compare",
+    "description": "Asake against Tems by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "asake",
+      "tems",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Asake vs Tyla",
+    "path": "/compare/asake-vs-tyla",
+    "section": "Compare",
+    "description": "Asake against Tyla by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "asake",
+      "tyla",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Asake vs Victony",
+    "path": "/compare/asake-vs-victony",
+    "section": "Compare",
+    "description": "Asake against Victony by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "asake",
+      "victony",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Ayra Starr vs Black Sherif",
+    "path": "/compare/ayra-starr-vs-black-sherif",
+    "section": "Compare",
+    "description": "Ayra Starr against Black Sherif by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "ayra starr",
+      "black sherif",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Ayra Starr vs CKay",
+    "path": "/compare/ayra-starr-vs-ckay",
+    "section": "Compare",
+    "description": "Ayra Starr against CKay by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "ayra starr",
+      "ckay",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Ayra Starr vs Fireboy DML",
+    "path": "/compare/ayra-starr-vs-fireboy-dml",
+    "section": "Compare",
+    "description": "Ayra Starr against Fireboy DML by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "ayra starr",
+      "fireboy dml",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Ayra Starr vs Victony",
+    "path": "/compare/ayra-starr-vs-victony",
+    "section": "Compare",
+    "description": "Ayra Starr against Victony by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "ayra starr",
+      "victony",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Black Sherif vs Victony",
+    "path": "/compare/black-sherif-vs-victony",
+    "section": "Compare",
+    "description": "Black Sherif against Victony by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "black sherif",
+      "victony",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "BNXN vs Ayra Starr",
+    "path": "/compare/bnxn-vs-ayra-starr",
+    "section": "Compare",
+    "description": "BNXN against Ayra Starr by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "bnxn",
+      "ayra starr",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "BNXN vs Black Sherif",
+    "path": "/compare/bnxn-vs-black-sherif",
+    "section": "Compare",
+    "description": "BNXN against Black Sherif by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "bnxn",
+      "black sherif",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "BNXN vs CKay",
+    "path": "/compare/bnxn-vs-ckay",
+    "section": "Compare",
+    "description": "BNXN against CKay by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "bnxn",
+      "ckay",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "BNXN vs Fireboy DML",
+    "path": "/compare/bnxn-vs-fireboy-dml",
+    "section": "Compare",
+    "description": "BNXN against Fireboy DML by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "bnxn",
+      "fireboy dml",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
     "title": "BNXN vs Olamide",
     "path": "/compare/bnxn-vs-olamide",
     "section": "Compare",
@@ -899,6 +1222,91 @@ export const generatedDocs: SearchDoc[] = [
     "keywords": [
       "bnxn",
       "olamide",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "BNXN vs Omah Lay",
+    "path": "/compare/bnxn-vs-omah-lay",
+    "section": "Compare",
+    "description": "BNXN against Omah Lay by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "bnxn",
+      "omah lay",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "BNXN vs Tyla",
+    "path": "/compare/bnxn-vs-tyla",
+    "section": "Compare",
+    "description": "BNXN against Tyla by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "bnxn",
+      "tyla",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "BNXN vs Victony",
+    "path": "/compare/bnxn-vs-victony",
+    "section": "Compare",
+    "description": "BNXN against Victony by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "bnxn",
+      "victony",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Burna Boy vs Asake",
+    "path": "/compare/burna-boy-vs-asake",
+    "section": "Compare",
+    "description": "Burna Boy against Asake by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "burna boy",
+      "asake",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Burna Boy vs Ayra Starr",
+    "path": "/compare/burna-boy-vs-ayra-starr",
+    "section": "Compare",
+    "description": "Burna Boy against Ayra Starr by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "burna boy",
+      "ayra starr",
       "vs",
       "versus",
       "compare",
@@ -926,6 +1334,159 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "Burna Boy vs BNXN",
+    "path": "/compare/burna-boy-vs-bnxn",
+    "section": "Compare",
+    "description": "Burna Boy against BNXN by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "burna boy",
+      "bnxn",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Burna Boy vs CKay",
+    "path": "/compare/burna-boy-vs-ckay",
+    "section": "Compare",
+    "description": "Burna Boy against CKay by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "burna boy",
+      "ckay",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Burna Boy vs Davido",
+    "path": "/compare/burna-boy-vs-davido",
+    "section": "Compare",
+    "description": "Burna Boy against Davido by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "burna boy",
+      "davido",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Burna Boy vs Fireboy DML",
+    "path": "/compare/burna-boy-vs-fireboy-dml",
+    "section": "Compare",
+    "description": "Burna Boy against Fireboy DML by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "burna boy",
+      "fireboy dml",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Burna Boy vs Olamide",
+    "path": "/compare/burna-boy-vs-olamide",
+    "section": "Compare",
+    "description": "Burna Boy against Olamide by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "burna boy",
+      "olamide",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Burna Boy vs Omah Lay",
+    "path": "/compare/burna-boy-vs-omah-lay",
+    "section": "Compare",
+    "description": "Burna Boy against Omah Lay by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "burna boy",
+      "omah lay",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Burna Boy vs Rema",
+    "path": "/compare/burna-boy-vs-rema",
+    "section": "Compare",
+    "description": "Burna Boy against Rema by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "burna boy",
+      "rema",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Burna Boy vs Seyi Vibez",
+    "path": "/compare/burna-boy-vs-seyi-vibez",
+    "section": "Compare",
+    "description": "Burna Boy against Seyi Vibez by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "burna boy",
+      "seyi vibez",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Burna Boy vs Tems",
+    "path": "/compare/burna-boy-vs-tems",
+    "section": "Compare",
+    "description": "Burna Boy against Tems by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "burna boy",
+      "tems",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
     "title": "Burna Boy vs Tyla",
     "path": "/compare/burna-boy-vs-tyla",
     "section": "Compare",
@@ -933,6 +1494,23 @@ export const generatedDocs: SearchDoc[] = [
     "keywords": [
       "burna boy",
       "tyla",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Burna Boy vs Victony",
+    "path": "/compare/burna-boy-vs-victony",
+    "section": "Compare",
+    "description": "Burna Boy against Victony by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "burna boy",
+      "victony",
       "vs",
       "versus",
       "compare",
@@ -960,6 +1538,23 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "CKay vs Black Sherif",
+    "path": "/compare/ckay-vs-black-sherif",
+    "section": "Compare",
+    "description": "CKay against Black Sherif by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "ckay",
+      "black sherif",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
     "title": "CKay vs Victony",
     "path": "/compare/ckay-vs-victony",
     "section": "Compare",
@@ -967,6 +1562,23 @@ export const generatedDocs: SearchDoc[] = [
     "keywords": [
       "ckay",
       "victony",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Davido vs Asake",
+    "path": "/compare/davido-vs-asake",
+    "section": "Compare",
+    "description": "Davido against Asake by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "davido",
+      "asake",
       "vs",
       "versus",
       "compare",
@@ -994,6 +1606,363 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "Davido vs Black Sherif",
+    "path": "/compare/davido-vs-black-sherif",
+    "section": "Compare",
+    "description": "Davido against Black Sherif by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "davido",
+      "black sherif",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Davido vs BNXN",
+    "path": "/compare/davido-vs-bnxn",
+    "section": "Compare",
+    "description": "Davido against BNXN by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "davido",
+      "bnxn",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Davido vs CKay",
+    "path": "/compare/davido-vs-ckay",
+    "section": "Compare",
+    "description": "Davido against CKay by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "davido",
+      "ckay",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Davido vs Fireboy DML",
+    "path": "/compare/davido-vs-fireboy-dml",
+    "section": "Compare",
+    "description": "Davido against Fireboy DML by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "davido",
+      "fireboy dml",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Davido vs Olamide",
+    "path": "/compare/davido-vs-olamide",
+    "section": "Compare",
+    "description": "Davido against Olamide by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "davido",
+      "olamide",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Davido vs Omah Lay",
+    "path": "/compare/davido-vs-omah-lay",
+    "section": "Compare",
+    "description": "Davido against Omah Lay by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "davido",
+      "omah lay",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Davido vs Rema",
+    "path": "/compare/davido-vs-rema",
+    "section": "Compare",
+    "description": "Davido against Rema by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "davido",
+      "rema",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Davido vs Tems",
+    "path": "/compare/davido-vs-tems",
+    "section": "Compare",
+    "description": "Davido against Tems by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "davido",
+      "tems",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Davido vs Tyla",
+    "path": "/compare/davido-vs-tyla",
+    "section": "Compare",
+    "description": "Davido against Tyla by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "davido",
+      "tyla",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Davido vs Victony",
+    "path": "/compare/davido-vs-victony",
+    "section": "Compare",
+    "description": "Davido against Victony by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "davido",
+      "victony",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Fireboy DML vs Black Sherif",
+    "path": "/compare/fireboy-dml-vs-black-sherif",
+    "section": "Compare",
+    "description": "Fireboy DML against Black Sherif by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "fireboy dml",
+      "black sherif",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Fireboy DML vs CKay",
+    "path": "/compare/fireboy-dml-vs-ckay",
+    "section": "Compare",
+    "description": "Fireboy DML against CKay by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "fireboy dml",
+      "ckay",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Fireboy DML vs Victony",
+    "path": "/compare/fireboy-dml-vs-victony",
+    "section": "Compare",
+    "description": "Fireboy DML against Victony by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "fireboy dml",
+      "victony",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Olamide vs Ayra Starr",
+    "path": "/compare/olamide-vs-ayra-starr",
+    "section": "Compare",
+    "description": "Olamide against Ayra Starr by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "olamide",
+      "ayra starr",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Olamide vs Black Sherif",
+    "path": "/compare/olamide-vs-black-sherif",
+    "section": "Compare",
+    "description": "Olamide against Black Sherif by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "olamide",
+      "black sherif",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Olamide vs CKay",
+    "path": "/compare/olamide-vs-ckay",
+    "section": "Compare",
+    "description": "Olamide against CKay by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "olamide",
+      "ckay",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Olamide vs Fireboy DML",
+    "path": "/compare/olamide-vs-fireboy-dml",
+    "section": "Compare",
+    "description": "Olamide against Fireboy DML by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "olamide",
+      "fireboy dml",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Olamide vs Victony",
+    "path": "/compare/olamide-vs-victony",
+    "section": "Compare",
+    "description": "Olamide against Victony by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "olamide",
+      "victony",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Omah Lay vs Ayra Starr",
+    "path": "/compare/omah-lay-vs-ayra-starr",
+    "section": "Compare",
+    "description": "Omah Lay against Ayra Starr by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "omah lay",
+      "ayra starr",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Omah Lay vs Black Sherif",
+    "path": "/compare/omah-lay-vs-black-sherif",
+    "section": "Compare",
+    "description": "Omah Lay against Black Sherif by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "omah lay",
+      "black sherif",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Omah Lay vs CKay",
+    "path": "/compare/omah-lay-vs-ckay",
+    "section": "Compare",
+    "description": "Omah Lay against CKay by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "omah lay",
+      "ckay",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
     "title": "Omah Lay vs Fireboy DML",
     "path": "/compare/omah-lay-vs-fireboy-dml",
     "section": "Compare",
@@ -1001,6 +1970,193 @@ export const generatedDocs: SearchDoc[] = [
     "keywords": [
       "omah lay",
       "fireboy dml",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Omah Lay vs Olamide",
+    "path": "/compare/omah-lay-vs-olamide",
+    "section": "Compare",
+    "description": "Omah Lay against Olamide by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "omah lay",
+      "olamide",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Omah Lay vs Tyla",
+    "path": "/compare/omah-lay-vs-tyla",
+    "section": "Compare",
+    "description": "Omah Lay against Tyla by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "omah lay",
+      "tyla",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Omah Lay vs Victony",
+    "path": "/compare/omah-lay-vs-victony",
+    "section": "Compare",
+    "description": "Omah Lay against Victony by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "omah lay",
+      "victony",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Rema vs Asake",
+    "path": "/compare/rema-vs-asake",
+    "section": "Compare",
+    "description": "Rema against Asake by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "rema",
+      "asake",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Rema vs Ayra Starr",
+    "path": "/compare/rema-vs-ayra-starr",
+    "section": "Compare",
+    "description": "Rema against Ayra Starr by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "rema",
+      "ayra starr",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Rema vs Black Sherif",
+    "path": "/compare/rema-vs-black-sherif",
+    "section": "Compare",
+    "description": "Rema against Black Sherif by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "rema",
+      "black sherif",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Rema vs BNXN",
+    "path": "/compare/rema-vs-bnxn",
+    "section": "Compare",
+    "description": "Rema against BNXN by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "rema",
+      "bnxn",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Rema vs CKay",
+    "path": "/compare/rema-vs-ckay",
+    "section": "Compare",
+    "description": "Rema against CKay by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "rema",
+      "ckay",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Rema vs Fireboy DML",
+    "path": "/compare/rema-vs-fireboy-dml",
+    "section": "Compare",
+    "description": "Rema against Fireboy DML by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "rema",
+      "fireboy dml",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Rema vs Olamide",
+    "path": "/compare/rema-vs-olamide",
+    "section": "Compare",
+    "description": "Rema against Olamide by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "rema",
+      "olamide",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Rema vs Omah Lay",
+    "path": "/compare/rema-vs-omah-lay",
+    "section": "Compare",
+    "description": "Rema against Omah Lay by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "rema",
+      "omah lay",
       "vs",
       "versus",
       "compare",
@@ -1028,6 +2184,40 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "Rema vs Tyla",
+    "path": "/compare/rema-vs-tyla",
+    "section": "Compare",
+    "description": "Rema against Tyla by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "rema",
+      "tyla",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Rema vs Victony",
+    "path": "/compare/rema-vs-victony",
+    "section": "Compare",
+    "description": "Rema against Victony by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "rema",
+      "victony",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
     "title": "Seyi Vibez vs Asake",
     "path": "/compare/seyi-vibez-vs-asake",
     "section": "Compare",
@@ -1035,6 +2225,703 @@ export const generatedDocs: SearchDoc[] = [
     "keywords": [
       "seyi vibez",
       "asake",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Seyi Vibez vs Ayra Starr",
+    "path": "/compare/seyi-vibez-vs-ayra-starr",
+    "section": "Compare",
+    "description": "Seyi Vibez against Ayra Starr by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "seyi vibez",
+      "ayra starr",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Seyi Vibez vs Black Sherif",
+    "path": "/compare/seyi-vibez-vs-black-sherif",
+    "section": "Compare",
+    "description": "Seyi Vibez against Black Sherif by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "seyi vibez",
+      "black sherif",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Seyi Vibez vs BNXN",
+    "path": "/compare/seyi-vibez-vs-bnxn",
+    "section": "Compare",
+    "description": "Seyi Vibez against BNXN by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "seyi vibez",
+      "bnxn",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Seyi Vibez vs CKay",
+    "path": "/compare/seyi-vibez-vs-ckay",
+    "section": "Compare",
+    "description": "Seyi Vibez against CKay by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "seyi vibez",
+      "ckay",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Seyi Vibez vs Davido",
+    "path": "/compare/seyi-vibez-vs-davido",
+    "section": "Compare",
+    "description": "Seyi Vibez against Davido by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "seyi vibez",
+      "davido",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Seyi Vibez vs Fireboy DML",
+    "path": "/compare/seyi-vibez-vs-fireboy-dml",
+    "section": "Compare",
+    "description": "Seyi Vibez against Fireboy DML by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "seyi vibez",
+      "fireboy dml",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Seyi Vibez vs Olamide",
+    "path": "/compare/seyi-vibez-vs-olamide",
+    "section": "Compare",
+    "description": "Seyi Vibez against Olamide by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "seyi vibez",
+      "olamide",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Seyi Vibez vs Omah Lay",
+    "path": "/compare/seyi-vibez-vs-omah-lay",
+    "section": "Compare",
+    "description": "Seyi Vibez against Omah Lay by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "seyi vibez",
+      "omah lay",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Seyi Vibez vs Rema",
+    "path": "/compare/seyi-vibez-vs-rema",
+    "section": "Compare",
+    "description": "Seyi Vibez against Rema by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "seyi vibez",
+      "rema",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Seyi Vibez vs Tems",
+    "path": "/compare/seyi-vibez-vs-tems",
+    "section": "Compare",
+    "description": "Seyi Vibez against Tems by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "seyi vibez",
+      "tems",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Seyi Vibez vs Tyla",
+    "path": "/compare/seyi-vibez-vs-tyla",
+    "section": "Compare",
+    "description": "Seyi Vibez against Tyla by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "seyi vibez",
+      "tyla",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Seyi Vibez vs Victony",
+    "path": "/compare/seyi-vibez-vs-victony",
+    "section": "Compare",
+    "description": "Seyi Vibez against Victony by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "seyi vibez",
+      "victony",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Tems vs Ayra Starr",
+    "path": "/compare/tems-vs-ayra-starr",
+    "section": "Compare",
+    "description": "Tems against Ayra Starr by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "tems",
+      "ayra starr",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Tems vs Black Sherif",
+    "path": "/compare/tems-vs-black-sherif",
+    "section": "Compare",
+    "description": "Tems against Black Sherif by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "tems",
+      "black sherif",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Tems vs BNXN",
+    "path": "/compare/tems-vs-bnxn",
+    "section": "Compare",
+    "description": "Tems against BNXN by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "tems",
+      "bnxn",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Tems vs CKay",
+    "path": "/compare/tems-vs-ckay",
+    "section": "Compare",
+    "description": "Tems against CKay by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "tems",
+      "ckay",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Tems vs Fireboy DML",
+    "path": "/compare/tems-vs-fireboy-dml",
+    "section": "Compare",
+    "description": "Tems against Fireboy DML by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "tems",
+      "fireboy dml",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Tems vs Olamide",
+    "path": "/compare/tems-vs-olamide",
+    "section": "Compare",
+    "description": "Tems against Olamide by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "tems",
+      "olamide",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Tems vs Omah Lay",
+    "path": "/compare/tems-vs-omah-lay",
+    "section": "Compare",
+    "description": "Tems against Omah Lay by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "tems",
+      "omah lay",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Tems vs Tyla",
+    "path": "/compare/tems-vs-tyla",
+    "section": "Compare",
+    "description": "Tems against Tyla by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "tems",
+      "tyla",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Tems vs Victony",
+    "path": "/compare/tems-vs-victony",
+    "section": "Compare",
+    "description": "Tems against Victony by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "tems",
+      "victony",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Tyla vs Ayra Starr",
+    "path": "/compare/tyla-vs-ayra-starr",
+    "section": "Compare",
+    "description": "Tyla against Ayra Starr by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "tyla",
+      "ayra starr",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Tyla vs Black Sherif",
+    "path": "/compare/tyla-vs-black-sherif",
+    "section": "Compare",
+    "description": "Tyla against Black Sherif by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "tyla",
+      "black sherif",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Tyla vs CKay",
+    "path": "/compare/tyla-vs-ckay",
+    "section": "Compare",
+    "description": "Tyla against CKay by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "tyla",
+      "ckay",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Tyla vs Fireboy DML",
+    "path": "/compare/tyla-vs-fireboy-dml",
+    "section": "Compare",
+    "description": "Tyla against Fireboy DML by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "tyla",
+      "fireboy dml",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Tyla vs Olamide",
+    "path": "/compare/tyla-vs-olamide",
+    "section": "Compare",
+    "description": "Tyla against Olamide by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "tyla",
+      "olamide",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Tyla vs Victony",
+    "path": "/compare/tyla-vs-victony",
+    "section": "Compare",
+    "description": "Tyla against Victony by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "tyla",
+      "victony",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Wizkid vs Asake",
+    "path": "/compare/wizkid-vs-asake",
+    "section": "Compare",
+    "description": "Wizkid against Asake by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "wizkid",
+      "asake",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Wizkid vs Ayra Starr",
+    "path": "/compare/wizkid-vs-ayra-starr",
+    "section": "Compare",
+    "description": "Wizkid against Ayra Starr by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "wizkid",
+      "ayra starr",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Wizkid vs Black Sherif",
+    "path": "/compare/wizkid-vs-black-sherif",
+    "section": "Compare",
+    "description": "Wizkid against Black Sherif by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "wizkid",
+      "black sherif",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Wizkid vs BNXN",
+    "path": "/compare/wizkid-vs-bnxn",
+    "section": "Compare",
+    "description": "Wizkid against BNXN by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "wizkid",
+      "bnxn",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Wizkid vs CKay",
+    "path": "/compare/wizkid-vs-ckay",
+    "section": "Compare",
+    "description": "Wizkid against CKay by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "wizkid",
+      "ckay",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Wizkid vs Davido",
+    "path": "/compare/wizkid-vs-davido",
+    "section": "Compare",
+    "description": "Wizkid against Davido by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "wizkid",
+      "davido",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Wizkid vs Fireboy DML",
+    "path": "/compare/wizkid-vs-fireboy-dml",
+    "section": "Compare",
+    "description": "Wizkid against Fireboy DML by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "wizkid",
+      "fireboy dml",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Wizkid vs Olamide",
+    "path": "/compare/wizkid-vs-olamide",
+    "section": "Compare",
+    "description": "Wizkid against Olamide by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "wizkid",
+      "olamide",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Wizkid vs Omah Lay",
+    "path": "/compare/wizkid-vs-omah-lay",
+    "section": "Compare",
+    "description": "Wizkid against Omah Lay by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "wizkid",
+      "omah lay",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Wizkid vs Rema",
+    "path": "/compare/wizkid-vs-rema",
+    "section": "Compare",
+    "description": "Wizkid against Rema by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "wizkid",
+      "rema",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Wizkid vs Seyi Vibez",
+    "path": "/compare/wizkid-vs-seyi-vibez",
+    "section": "Compare",
+    "description": "Wizkid against Seyi Vibez by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "wizkid",
+      "seyi vibez",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Wizkid vs Tems",
+    "path": "/compare/wizkid-vs-tems",
+    "section": "Compare",
+    "description": "Wizkid against Tems by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "wizkid",
+      "tems",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Wizkid vs Tyla",
+    "path": "/compare/wizkid-vs-tyla",
+    "section": "Compare",
+    "description": "Wizkid against Tyla by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "wizkid",
+      "tyla",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Wizkid vs Victony",
+    "path": "/compare/wizkid-vs-victony",
+    "section": "Compare",
+    "description": "Wizkid against Victony by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "wizkid",
+      "victony",
       "vs",
       "versus",
       "compare",

@@ -210,3 +210,31 @@ describe("the curated index's chart-board counts match the data", () => {
     expect(stale).toEqual([]);
   });
 });
+
+// The board hub's description names six artists and counts the rest in words
+// ("Fifteen … and nine more"). Typed, by the file's no-datasets rule — so the
+// words are held to the board here, the way the per-artist counts are above.
+describe("the curated index's board-hub count matches the board", () => {
+  it("names the board's size and the remainder after the six it lists", () => {
+    const src = readFileSync(join(process.cwd(), "app/lib/searchIndex.ts"), "utf8");
+    const m = src.match(/path: "\/afrobeats",[\s\S]{0,400}?description: "(\w+) Afrobeats artists — ([^"]*?) and (\w+) more/);
+    expect(m, "the hub description no longer reads '<N> Afrobeats artists — … and <M> more'").not.toBeNull();
+    const WORDS = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty"];
+    const named = m![2].split(/,\s*|\s+and\s+/).filter(Boolean).length;
+    expect(WORDS.indexOf(m![1].toLowerCase())).toBe(afrobeatsArtists.length);
+    expect(WORDS.indexOf(m![3].toLowerCase())).toBe(afrobeatsArtists.length - named);
+  });
+});
+
+// Live-board rows must name the platforms the boards actually carry: four of
+// them said "Spotify, Apple Music, Deezer and YouTube" while their boards held
+// iTunes and Shazam rows, and no Deezer row at all for two of them.
+describe("every live-board row in the curated index names the same platforms", () => {
+  it("uses the shared template for /live-charts and every /afrobeats/<slug>/live", () => {
+    const src = readFileSync(join(process.cwd(), "app/lib/searchIndex.ts"), "utf8");
+    const rows = [...src.matchAll(/path: "(\/live-charts|\/afrobeats\/[a-z-]+\/live)",[\s\S]{0,400}?description: ([`"])([^`"]*)\2/g)];
+    expect(rows.length).toBeGreaterThan(10);
+    const wrong = rows.filter((r) => !/on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — \$\{LIVE_CADENCE\}\./.test(r[3])).map((r) => r[1]);
+    expect(wrong).toEqual([]);
+  });
+});

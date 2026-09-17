@@ -8,7 +8,7 @@ export const alt = "Burna Boy, Visualized — his career plotted in charts";
 const card = {
   kicker: "Charts & graphs",
   title: "Visualized",
-  sub: `${totalAwards()} certifications · ${totalWins} award wins · the biggest tour in African history — charted`,
+  sub: `${totalAwards()} certifications · ${totalWins} award wins · the biggest single-show grosses — charted`,
 };
 
 // Versioned by the card's own contents, so the link preview follows the data.

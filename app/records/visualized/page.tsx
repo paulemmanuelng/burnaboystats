@@ -12,7 +12,7 @@ import { pageMetadata, datasetJsonLd } from "../../lib/seo";
 import { JUMP } from "../../lib/visualizedSections";
 import { revenueShows } from "../../data/tourRevenue";
 import { COUNTRIES, albums, singles, features, totalAwards } from "../../data/certifications";
-import { ceremonies, totalWins } from "../../data/awards";
+import { ceremonies, totalWins, pendingNominations as pendingNoms, decidedNominations as decidedNoms } from "../../data/awards";
 import { albumCharts, singleCharts, featureCharts, CHART_COUNTRIES } from "../../data/charts";
 import { statBoxes, HIGHLIGHT } from "../../data/africasBiggest";
 import { monthlyListenersSeries } from "../../data/trends";
@@ -82,7 +82,7 @@ const certsByCountry: BarItem[] = (() => {
 })();
 
 // ── The climb ────────────────────────────────────────────────────────────
-// The only daily series the site keeps: monthly listeners through the "Dai
+// The only dated series the site keeps: monthly listeners through the "Dai
 // Dai" run. Milestones are found IN the data rather than hardcoded, so the
 // markers can never contradict the line they sit on.
 const listenerMilestones: SeriesAnnotation[] = [50, 60]
@@ -109,7 +109,7 @@ const listenerDate = (iso: string) =>
     year: "numeric",
     timeZone: "UTC",
   });
-const listenerAria = `Burna Boy's Spotify monthly listeners, daily, from ${listenerDate(
+const listenerAria = `Burna Boy's Spotify monthly listeners, ${monthlyListenersSeries.length} dated readings from ${listenerDate(
   listenerFirst.date
 )} to ${listenerDate(listenerLast.date)}`;
 
@@ -188,10 +188,12 @@ const regionBars: BarItem[] = (() => {
 const shortBody = (name: string) => name.match(/\(([^)]+)\)/)?.[1] ?? name;
 const winsByBody: BarItem[] = ceremonies
   .map((c) => ({ name: c.name, wins: c.noms.filter((n) => n.won).length }))
-  .filter((c) => c.wins > 0)
+  // A threshold, not a top-N: a "top 10" cut a body with the same count as the
+  // tenth. Every body with three or more wins (the phone shows four or more).
+  .filter((c) => c.wins >= 3)
   .sort((a, b) => b.wins - a.wins)
-  .slice(0, 10)
   .map((c) => ({ name: shortBody(c.name), value: c.wins, displayValue: `${c.wins}` }));
+const winsByBodyPhone = winsByBody.filter((c) => c.value >= 4);
 
 // ── Scatter: tickets vs revenue per show ──
 // Label the four highest-grossing shows. The 3rd & 4th are both La Défense Arena
@@ -199,6 +201,7 @@ const winsByBody: BarItem[] = ceremonies
 // below its dot so the two don't collide.
 const num = (s: string | undefined) => Number((s ?? "").replace(/,/g, ""));
 const TOP_LABELS = 4;
+const topShowRow = [...revenueShows].sort((a, b) => b.revenue - a.revenue)[0];
 const shortVenue = (v: string) => v.replace(/ Arena$/, "");
 const topVenueCount: Record<string, number> = {};
 revenueShows.slice(0, TOP_LABELS).forEach((s) => {
@@ -277,13 +280,25 @@ const africanStreams: BarItem[] = (streamRow2025?.entries ?? [])
     displayValue: e.value!,
     tone: e.name === HIGHLIGHT ? "gold" : "muted",
   }));
+// "The biggest streaming year ever by an African act" holds only while no
+// later year's leader has passed the 2025 figure — checked against the
+// in-progress row rather than typed.
+const laterLeaders = statBoxes
+  .find((b) => b.id === "most-streamed-african-artist")
+  ?.rows?.filter((r) => r.label !== "2025" && Number(r.label) > 2025)
+  .flatMap((r) => r.entries.map((e) => (e.value ? parseBig(e.value) : 0))) ?? [];
+const streamRecordStands = africanStreams.length > 0 && Math.max(0, ...laterLeaders) < africanStreams[0].value;
 
 // ── Donut: award wins vs nominations (career strike rate) ──
-const totalNoms = ceremonies.reduce((n, c) => n + c.noms.length, 0);
-const winRate = Math.round((totalWins / totalNoms) * 100);
+// A nomination whose ceremony has not happened yet is neither won nor lost —
+// counting it as "not converted" pulled the rate down (34% for 35%) every
+// awards season. Decided = every nomination except those at a pending edition
+// (data/awards.ts derives both; the awards page prints the same rate).
+const winRate = Math.round((totalWins / decidedNoms) * 100);
 const winRateSegments: DonutSeg[] = [
   { label: "Won", value: totalWins, color: "var(--gold-fill)" },
-  { label: "Nominated", value: totalNoms - totalWins, color: "var(--seg-rest)" },
+  { label: "Not won", value: decidedNoms - totalWins, color: "var(--seg-rest)" },
+  ...(pendingNoms ? [{ label: "Pending", value: pendingNoms, color: "var(--seg-pending)" }] : []),
 ];
 
 // ── Choropleth: best chart peak by country ──
@@ -306,10 +321,10 @@ const peakCountryCount = Object.keys(peakByISO).length;
 const jsonLd = datasetJsonLd({
   name: "Burna Boy, Visualized",
   description:
-    "Charted views of Burna Boy's career: biggest single-show grosses, certifications by country, and award wins by body.",
+    "Charted views of Burna Boy's career: biggest single-show grosses, certifications by country and by tier, the dated monthly-listener log, award wins by body and by year, live platform placements, countries performed in, and a map of the best chart peak per country.",
   path: "/records/visualized",
   keywords: ["Burna Boy", "charts", "data visualization", "grosses", "certifications", "awards", "chart peaks", "win rate", "most-streamed African artist", "Wizkid", "Tyla", "Rema", "Tems"],
-  variableMeasured: ["Revenue per show", "Certifications per country", "Chart peak distribution", "Spotify streams by artist", "Award wins per body", "Award win rate"],
+  variableMeasured: ["Revenue per show", "Certifications per country", "Certifications per tier", "International certifications per year (as logged)", "Spotify monthly listeners (dated log)", "Chart peak distribution", "Best chart peak per country", "Spotify streams by artist", "Award wins per body", "Award wins per year", "Award win rate", "Live platform-chart placements", "Countries performed in per region"],
 });
 
 
@@ -379,7 +394,7 @@ export default function VisualizedPage() {
         timeCharts={[
           {
             title: "The climb to sixty million",
-            note: `+${listenerGain}M in ${listenerDays} days — every reading logged as it happened through the “Dai Dai” run.`,
+            note: `+${listenerGain}M in ${listenerDays} days — ${monthlyListenersSeries.length} dated readings through the “Dai Dai” run.`,
             points: monthlyListenersSeries,
             annotations: listenerMilestones,
             format: "listeners",
@@ -409,19 +424,19 @@ export default function VisualizedPage() {
           },
           {
             title: "Most-decorated stages",
-            note: `Where his ${totalWins} wins come from — top 6 bodies.`,
-            items: toBars(winsByBody, 6),
+            note: `Where his ${totalWins} wins come from — every body with four or more.`,
+            items: toBars(winsByBodyPhone, winsByBodyPhone.length),
           },
           {
             title: "The pace of the plaques",
             note: certYearRecord
               ? `${thisYear} is already his biggest year — ${certYearPeak} international certifications, and it is still running.`
-              : "International awards, counted by the year each landed.",
+              : "International awards, counted by the year each landed — as logged; the log is complete from 2023.",
             items: toBars(certsByYear, certsByYear.length),
           },
           {
             title: "Where he is charting right now",
-            note: `${livePlacementTotal} placements on today's board — country charts only, ${LIVE_CADENCE}.`,
+            note: `${livePlacementTotal} placements on today's board — country charts only, ${LIVE_CADENCE}. Last swept ${liveChartsUpdated}.`,
             items: toBars(livePlatformBars, livePlatformBars.length),
           },
           {
@@ -431,7 +446,7 @@ export default function VisualizedPage() {
           },
           {
             title: "Most-streamed African artist, 2025",
-            note: "Gold is Burna Boy — his 1.986B set the record for the biggest streaming year by an African artist.",
+            note: `Gold is ${africanStreams[0].name} — ${africanStreams[0].displayValue}${streamRecordStands ? ", the biggest streaming year by an African artist" : ", the most of any African artist that year"}.`,
             items: toBars(africanStreams, 5),
           },
         ]}
@@ -480,7 +495,7 @@ export default function VisualizedPage() {
 
         {/* ── The climb ──────────────────────────────────────── */}
         <section id="the-climb" className={`${styles.wrap} ${styles.sectionPad}`}>
-          <div className={styles.eyebrow}>Spotify · monthly listeners · daily</div>
+          <div className={styles.eyebrow}>Spotify · monthly listeners · dated readings</div>
           <h2 className={styles.h2}>The climb to sixty million</h2>
           <div className={styles.chartBody}>
             <TimeSeriesChart
@@ -512,19 +527,21 @@ export default function VisualizedPage() {
           <div className={styles.chartBody}>
             <RankedBars
               items={certsByYear}
-              ariaLabel="Burna Boy international certifications awarded in each year"
+              ariaLabel="Burna Boy international certifications logged in each year — complete from 2023"
             />
           </div>
           <p className={`${styles.caption} ${styles.captionNarrow}`}>
             {certYearRecord ? (
               <>
                 <span className={styles.captionLead}>{thisYear} is already his biggest year</span>{" "}
-                — {certYearPeak} certifications with the year still running.
+                — {certYearPeak} certifications with the year still running. Counted as logged;
+                the log is complete from 2023.
               </>
             ) : (
               <>
-                <span className={styles.captionLead}>Counted the year each award landed</span> — a
-                release can appear twice in a year if it certified at two tiers.
+                <span className={styles.captionLead}>Counted the year each award landed</span> — as
+                logged; the log is complete from 2023, and a release can appear twice in a year if
+                it certified at two tiers.
               </>
             )}
           </p>
@@ -550,9 +567,9 @@ export default function VisualizedPage() {
           <p className={`${styles.caption} ${styles.captionNarrow}`}>
             <span className={styles.captionLead}>
               {bestWinYear} was the peak — {winYearCounts[bestWinYear]} wins in a single year
-            </span>{" "}
-            — the African Giant year. Every win is counted in the year the ceremony
-            happened, across {totalWins} in all.
+            </span>
+            {bestWinYear === 2019 ? " — the African Giant year" : ""}. Every win is counted in the year the
+            ceremony happened, across {totalWins} in all.
           </p>
           <Link href="/records/awards" className={`btn btnSecondary ${styles.cta}`}>
             Every award ↗
@@ -594,8 +611,7 @@ export default function VisualizedPage() {
             <span className={styles.captionLead}>
               {performedCountries.length} countries across {regionBars.length} regions
             </span>{" "}
-            — Africa and Europe carry the most stages, but only the Caribbean run is newer than
-            the World Cup.
+            — Africa and Europe carry the most stages.
           </p>
           <Link href="/records/tours/map" className={`btn btnSecondary ${styles.cta}`}>
             The performance map ↗
@@ -640,7 +656,8 @@ export default function VisualizedPage() {
           <p className={`${styles.caption} ${styles.captionNarrow}`}>
             Each dot is a show — <span className={styles.captionLead}>gold is Burna Boy</span>.
             Revenue tracks ticket count closely, but higher-priced rooms sit above the line:
-            London Stadium turned ~59,000 tickets into $6.15M.
+            {topShowRow.venue} turned ~{Math.round(num(topShowRow.tickets) / 1000)},000 tickets into $
+            {(topShowRow.revenue / 1e6).toFixed(2)}M.
           </p>
         </section>
 
@@ -653,8 +670,8 @@ export default function VisualizedPage() {
           </div>
           <p className={`${styles.caption} ${styles.captionNarrow}`}>
             The {certsByCountry.length} biggest of {certifyingCountryCount} certifying
-            countries — Nigeria (TurnTable), the UK (BPI) and Canada (Music Canada) lead the
-            tally.
+            countries — {certsByCountry.slice(0, 3).map((c) => `${c.name} (${c.meta})`).join(", ")} lead
+            the tally.
           </p>
           <Link href="/certifications" className={`btn btnSecondary ${styles.cta}`}>
             All certifications ↗
@@ -733,10 +750,10 @@ export default function VisualizedPage() {
             <RankedBars items={africanStreams} ariaLabel="Most-streamed African artists on Spotify in 2025, by total streams in billions" />
           </div>
           <p className={styles.caption}>
-            <span className={styles.captionLead}>Burna Boy leads</span> — his 1.986 billion
-            Spotify streams in 2025 were the most of any African artist, the biggest
-            streaming year ever by an African act, just ahead of Wizkid, Tyla, Rema and
-            Tems.
+            <span className={styles.captionLead}>{africanStreams[0].name} leads</span> — {africanStreams[0].displayValue}{" "}
+            Spotify streams in 2025 were the most of any African artist
+            {streamRecordStands ? ", the biggest streaming year ever by an African act" : ""}, ahead of{" "}
+            {africanStreams.slice(1).map((a) => a.name).join(", ").replace(/, ([^,]*)$/, " and $1")}.
           </p>
           <Link href="/records/africas-biggest" className={`btn btnSecondary ${styles.cta}`}>
             Africa&apos;s biggest ↗
@@ -748,7 +765,7 @@ export default function VisualizedPage() {
           <div className={styles.eyebrow}>Decorated</div>
           <h2 className={styles.h2}>Most-decorated stages</h2>
           <div className={styles.chartBody}>
-            <RankedBars items={winsByBody} ariaLabel="Burna Boy's award wins by award body — the top 10" />
+            <RankedBars items={winsByBody} ariaLabel="Burna Boy's award wins by award body — every body that has given him three or more" />
           </div>
           <p className={styles.caption}>
             Where his {totalWins} wins come from — the top {winsByBody.length} award bodies
@@ -767,15 +784,16 @@ export default function VisualizedPage() {
           <div className={styles.donutPanel}>
             <TierDonut
               segments={winRateSegments}
-              total={totalNoms}
+              total={decidedNoms + pendingNoms}
               centerNum={`${winRate}%`}
               centerLabel="win rate"
-              ariaLabel={`Award win rate: ${totalWins} won of ${totalNoms} nominations`}
+              ariaLabel={`Award win rate: ${totalWins} won of ${decidedNoms} decided nominations${pendingNoms ? `, ${pendingNoms} pending` : ""}`}
             />
           </div>
           <p className={styles.caption}>
-            Across every awards ceremony, {totalWins} of {totalNoms} career nominations
-            converted to wins — a {winRate}% strike rate.
+            Across every awards ceremony, {totalWins} of {decidedNoms} decided nominations
+            converted to wins — a {winRate}% strike rate
+            {pendingNoms ? `, with ${pendingNoms} results still to come` : ""}.
           </p>
         </section>
 

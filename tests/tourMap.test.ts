@@ -3,6 +3,7 @@ import { readFileSync, readdirSync, statSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { performedCountries } from "../app/data/performedCountries";
 import { worldShapes } from "../app/data/worldShapes";
+import { tours } from "../app/data/tours";
 
 /**
  * Every country on the tour map is actually drawn, and the prose says how many
@@ -111,5 +112,34 @@ describe("comments cite guards that exist", () => {
     }
     expect(cited, "no test citations found at all — has the convention changed?").toBeGreaterThan(10);
     expect(missing, "a comment claims a guard that does not exist").toEqual([]);
+  });
+});
+
+// A country card lists two shows and says "…and more" only when `more` is
+// set. Belgium had three tour dates in tours.ts and no flag, so the card read
+// as a complete record of two (17 Sep 2026). tours[].dates carries a typed
+// `country`, so the count is anchored there — festivals and one-offs have
+// free-form locations and are not counted.
+describe("a country with more tour dates than its card shows says so", () => {
+  const ALIAS: Record<string, string> = { USA: "United States", UK: "United Kingdom" };
+  it("every performed country with more than two tour dates carries `more`", () => {
+    const dates = new Map<string, number>();
+    for (const t of tours) for (const d of t.dates ?? []) {
+      const name = ALIAS[d.country] ?? d.country;
+      dates.set(name, (dates.get(name) ?? 0) + 1);
+    }
+    const missing = performedCountries
+      .filter((c) => (dates.get(c.name) ?? 0) > 2 && !c.more)
+      .map((c) => `${c.name} has ${dates.get(c.name)} tour dates in tours.ts but no \`more\` flag — the card reads as a complete record`);
+    expect(missing).toEqual([]);
+    // The reproducer, in the words the card now speaks.
+    const be = performedCountries.find((c) => c.name === "Belgium")!;
+    expect(`${be.name}: ${be.events.slice(0, 2).join("; ")}${be.more ? " and more" : ""}`).toMatch(/ and more$/);
+  });
+
+  it("the desktop legend no longer calls the markers island nations", () => {
+    const page = readFileSync(join(process.cwd(), "app/records/tours/map/page.tsx"), "utf8");
+    expect(page).not.toContain("Island nations too small to shade"); // Kosovo is landlocked
+    expect(page).toContain("Territories too small to shade");
   });
 });

@@ -1,5 +1,7 @@
 import { artistBySlug, priceRelease } from "../app/lib/certUnits";
 import { describe, it, expect } from "vitest";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { unsourcedBodies, disputedCounts } from "../app/data/rejectedClaims";
 import { ceremonies } from "../app/data/awards";
 
@@ -64,5 +66,26 @@ describe("rejected claims are still rejected", () => {
     expect(winsFor("Headies")).toBe(10);
     const all = [...unsourcedBodies, ...disputedCounts].map((r) => r.claim.toLowerCase());
     expect(all.some((c) => c.includes("headies"))).toBe(false);
+  });
+
+  // FIFA's own announcement names Madonna, Shakira, BTS and Justin Bieber as
+  // the co-headliners of the World Cup Final halftime show and says Burna Boy
+  // "will also appear"; the site's records say "perform at" — but four pages
+  // and the timeline said "headline" until 17 Sep 2026. No sentence may pair
+  // the two again.
+  it("never calls the World Cup Final halftime appearance a headline slot", () => {
+    const files = ["app/data/timeline.ts", "app/page.tsx", "app/components/MobileHome.tsx", "app/faq/page.tsx", "app/data/firsts.ts", "app/data/tours.ts", "app/about/page.tsx"];
+    const offenders: string[] = [];
+    for (const f of files) {
+      const text = readFileSync(join(process.cwd(), f), "utf8");
+      for (const sentence of text.split(/(?<=[.!?])\s+|\n/)) {
+        // He DID headline the NBA All-Star halftime (2023) and does the NFL
+        // Paris one (Oct 2026), and the FAQ pairs the opening-ceremony headline
+        // slot with the Final's "perform at" in one sentence — those stand.
+        if (/opening ceremony|NFL|NBA/i.test(sentence)) continue;
+        if (/halftime/i.test(sentence) && /headlin/i.test(sentence)) offenders.push(`${f}: ${sentence.trim().slice(0, 120)}`);
+      }
+    }
+    expect(offenders).toEqual([]);
   });
 });

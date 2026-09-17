@@ -70,9 +70,12 @@ need a targeted re-read, not a downgrade.
 
 Burna's pass returned three South African rows as sourced, including a
 **"No Stress" RiSA Platinum** I flagged as a missing plaque. This pass finds
-**risa.org.za returning HTTP 421 and an empty document**. Those two results
-cannot both be right. Until RiSA is readable again, treat "No Stress" as
-unconfirmed and do not publish it.
+**risa.org.za returning HTTP 421 and an empty document**. RESOLVED 17 Sep
+2026: RiSA IS readable at risa-prod.trafficmanager.net (risa.org.za is the
+tarpit) and its register does print "Wizkid feat. Burna Boy | No Stress |
+Platinum | 11 Sep 2023" — the plaque is real, and it stays unpublished here
+because the recording's credits are Wizkid solo (see certifications.ts beside
+the Ginger row).
 
 ## Not yet done
 

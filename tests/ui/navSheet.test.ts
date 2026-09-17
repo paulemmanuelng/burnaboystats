@@ -1,3 +1,4 @@
+import { recordBooks } from "../../app/lib/recordBooks";
 import { describe, it, expect } from "vitest";
 import { navGroups, navRoutes, navSearchHint } from "../../app/lib/navGroups";
 
@@ -48,8 +49,9 @@ describe("mobile nav sheet", () => {
     // seeing them here would mean someone had typed the number in.
     expect(metas["/updates"]).not.toBe("22");
     expect(metas["/live-charts"]).not.toBe("65 No. 1s");
-    // The Records row advertises the length of the Deep data group itself.
-    expect(metas["/records"]).toBe(`${navGroups[1].items.length} books`);
+    // The Records row advertises the hub's own record-book list (14), not the
+    // sheet's Deep data group (8) — the two disagreed until 17 Sep 2026.
+    expect(metas["/records"]).toBe(`${recordBooks.length} books`);
   });
 
   it("builds the search hint from the two headline datasets", () => {

@@ -55,8 +55,8 @@ export const performedCountries: PerformedCountry[] = [
   // ── Europe ──
   { name: "United Kingdom", code: 826, region: "Europe", flag: "🇬🇧", events: ["London Stadium (2023 & 2024)", "The O2 Arena, London (2021)"], more: true },
   { name: "France", code: 250, region: "Europe", flag: "🇫🇷", events: ["Stade de France, Paris (2025)", "Accor Arena, Paris (2021)"], more: true },
-  { name: "Netherlands", code: 528, region: "Europe", flag: "🇳🇱", events: ["Ziggo Dome, Amsterdam (2022)", "Rotterdam Ahoy (2022)"], more: true },
-  { name: "Belgium", code: 56, region: "Europe", flag: "🇧🇪", events: ["ING Arena, Brussels (2026)", "Palais 12, Brussels (2019)"] },
+  { name: "Netherlands", code: 528, region: "Europe", flag: "🇳🇱", events: ["Ziggo Dome, Amsterdam (2022)", "Rotterdam Ahoy (2022 & 2026)"], more: true },
+  { name: "Belgium", code: 56, region: "Europe", flag: "🇧🇪", events: ["ING Arena, Brussels (2026)", "Palais 12, Brussels (2019)"], more: true },
   { name: "Ireland", code: 372, region: "Europe", flag: "🇮🇪", events: ["3Arena, Dublin (Mar & Dec 2022)"] },
   { name: "Spain", code: 724, region: "Europe", flag: "🇪🇸", events: ["O Beach, Ibiza (2026)", "FITZ, Madrid (2025)"], more: true },
   { name: "Italy", code: 380, region: "Europe", flag: "🇮🇹", events: ["Atlantico, Rome (2020)"] },
@@ -80,7 +80,7 @@ export const performedCountries: PerformedCountry[] = [
 
   // ── North America ──
   { name: "United States", code: 840, region: "North America", flag: "🇺🇸", events: ["Madison Square Garden, New York (2022)", "Citi Field, New York (2023)"], more: true },
-  { name: "Canada", code: 124, region: "North America", flag: "🇨🇦", events: ["Scotiabank Arena, Toronto (2024 & 2025)", "Bell Centre, Montréal (2024)"], more: true },
+  { name: "Canada", code: 124, region: "North America", flag: "🇨🇦", events: ["Scotiabank Arena, Toronto (2024 & 2025)", "Bell Centre, Montréal (2024 & 2025)"], more: true },
   { name: "Mexico", code: 484, region: "North America", flag: "🇲🇽", events: ["FIFA World Cup Opening Ceremony, Mexico City (2026)"] },
 
   // ── South America ──

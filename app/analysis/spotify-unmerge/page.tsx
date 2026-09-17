@@ -29,12 +29,18 @@ import { spotifyTotalStreams, spotifyTotalStreamsExact } from "../../data/stream
  *
  * VERIFICATION. The claim was checked against the platform, not taken from the
  * timeline that made it: kworb's mirror of Spotify's own per-track counts shows
- * the two remixes today at roughly 51.9M and 3.3M — not the ~232M and ~130M they
+ * the two remixes today at roughly 52.1M and 3.4M — not the ~232M and ~130M they
  * carried before 10 February. The figures below are stated as "roughly" where
  * they move daily, and exactly where they are fixed points in the arithmetic.
  */
 
-const VERIFIED_ON = "21 August 2026";
+const VERIFIED_ON = "17 September 2026";
+// What the two remixes read at Spotify on VERIFIED_ON — one home each, printed
+// in the FAQ and the prose (they were typed twice and could have disagreed).
+// Rounded to the 100,000 because they move daily; re-read them together with
+// the date, never one without the other.
+const ENJOY_NOW = "52.1 million";
+const FINDERS_NOW = "3.4 million";
 // The day this correction was published, and the day the two remixes were read
 // at source. A publication date does not move, so it is deliberately NOT taken
 // from the updates feed: datePublished was reading `lastUpdated`, the newest
@@ -103,11 +109,11 @@ const faqs = [
   },
   {
     q: "How many Spotify streams does Burna Boy have now?",
-    a: `His career total stands at ${spotifyTotalStreamsExact} (${spotifyTotalStreams}), read from Spotify daily. Measured against his corrected 2025 close of 9,199,552,674 — the figure after the reallocated streams were taken out — that is ${totalToday !== null ? exactly(totalToday - CORRECTED_2025_CLOSE) : "over a billion"} added since. Every one of those arrived on a counter that no longer contained the moved streams.`,
+    a: `His career total stands at ${spotifyTotalStreamsExact} (${spotifyTotalStreams}), built daily from Spotify's per-track counts (kworb's mirror, anchored to a dated ChartMasters read). Measured against his corrected 2025 close of 9,199,552,674 — the figure after the reallocated streams were taken out — that is ${totalToday !== null ? exactly(totalToday - CORRECTED_2025_CLOSE) : "over a billion"} added since. Every one of those arrived on a counter that no longer contained the moved streams.`,
   },
   {
     q: "How can this be checked?",
-    a: `Open the two remixes on Spotify. As of ${VERIFIED_ON} they show roughly 51.9 million and 3.3 million plays — not the 232 million and 130 million they carried before 10 February 2026. If the streams had been deleted as fraudulent they would not appear on the original recordings either, and they do.`,
+    a: `Open the two remixes on Spotify. As of ${VERIFIED_ON} they show roughly ${ENJOY_NOW} and ${FINDERS_NOW} plays — not the 232 million and 130 million they carried before 10 February 2026. If the streams had been deleted as fraudulent they would not appear on the original recordings either, and they do.`,
   },
 ];
 
@@ -262,7 +268,8 @@ export default function SpotifyUnmergePage() {
           </>
         ) : null}
         <p className={styles.sub}>
-          The career total is read from Spotify daily and updates on its own, so this
+          The career total is built daily from Spotify&apos;s per-track counts via kworb,
+          anchored to ChartMasters, and updates on its own, so this
           figure moves; the table above is fixed points that do not. Both the exact count
           and the rounded one are written by the same daily job, so they can never
           disagree — and the subtraction is shown in full rather than rounded, because a
@@ -272,14 +279,14 @@ export default function SpotifyUnmergePage() {
         <h2 className={styles.h2}>How to check it yourself</h2>
         <p className={styles.p}>
           Open the two remixes on Spotify. As of {VERIFIED_ON} they show roughly{" "}
-          <strong>51.9 million</strong> and <strong>3.3 million</strong> plays — not the
+          <strong>{ENJOY_NOW}</strong> and <strong>{FINDERS_NOW}</strong> plays — not the
           232 million and 130 million they carried before 10 February 2026. Then open the
           original recordings: the difference is there. Had the streams been removed as
           fraudulent, they would not appear on the originals either.
         </p>
         <p className={styles.p}>
-          This site&apos;s own streaming figures are read from the platform after the
-          correction, so nothing here was ever inflated by the merge. How every number is
+          This site&apos;s own streaming figures are built from the platform&apos;s per-track
+          counts after the correction, so nothing here was ever inflated by the merge. How every number is
           sourced is set out on the{" "}
           <Link href="/methodology" className={styles.link}>methodology page</Link>, and the
           current totals are on{" "}

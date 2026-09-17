@@ -30,8 +30,11 @@ const inkFor = (s: string) => SECTION_INK[s] ?? ["var(--text-muted)", "var(--bor
 
 const SUGGESTIONS = ["Charts", "Certifications", "Tours", "Awards", "Dai Dai", "Cars"];
 
-// Enough to show every page at once; the index is under 50 docs.
-const LIMIT = 60;
+// Enough to show every page at once. The index is 100 curated docs plus the
+// generated ones (every release, award body, country and compare pair — well
+// over 400); a cap of 60 printed "60 results" for any broad query and hid the
+// rest, along with their filter chips, until 17 Sep 2026.
+const LIMIT = 1000;
 
 export default function SearchResults({
   initialQuery,
@@ -155,7 +158,7 @@ export default function SearchResults({
         <div className={styles.resultsHead}>
           <span className={styles.resultsLabel}>
             {q.trim() === ""
-              ? `All ${results.length} pages`
+              ? `Browse ${results.length} pages`
               : `${results.length} ${results.length === 1 ? "result" : "results"}`}
           </span>
           <span className={styles.resultsHint}>
@@ -167,7 +170,7 @@ export default function SearchResults({
           <div className={styles.empty}>
             <div className={styles.emptyH}>Nothing matches “{q.trim()}”</div>
             <p className={styles.emptyP}>
-              Try a country, a song title, an award body, or a year.
+              Try a country, a song title, an award body, or an artist.
             </p>
             <div className={styles.suggestions}>
               {SUGGESTIONS.map((s) => (

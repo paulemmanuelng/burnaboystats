@@ -12,26 +12,28 @@
 // and the button on their artist page all follow from this.
 
 import { countriesOf } from "../lib/liveChartMeta";
-import { liveCharts as wizkid, liveChartsUpdated as wizkidAt, type LiveRelease } from "./liveCharts.wizkid";
-import { liveCharts as davido, liveChartsUpdated as davidoAt } from "./liveCharts.davido";
-import { liveCharts as rema, liveChartsUpdated as remaAt } from "./liveCharts.rema";
-import { liveCharts as tems, liveChartsUpdated as temsAt } from "./liveCharts.tems";
-import { liveCharts as tyla, liveChartsUpdated as tylaAt } from "./liveCharts.tyla";
-import { liveCharts as ayra, liveChartsUpdated as ayraAt } from "./liveCharts.ayra-starr";
-import { liveCharts as asake, liveChartsUpdated as asakeAt } from "./liveCharts.asake";
-import { liveCharts as omahLay, liveChartsUpdated as omahLayAt } from "./liveCharts.omah-lay";
-import { liveCharts as seyiVibez, liveChartsUpdated as seyiVibezAt } from "./liveCharts.seyi-vibez";
-import { liveCharts as victony, liveChartsUpdated as victonyAt } from "./liveCharts.victony";
-import { liveCharts as fireboyDml, liveChartsUpdated as fireboyDmlAt } from "./liveCharts.fireboy-dml";
-import { liveCharts as ckay, liveChartsUpdated as ckayAt } from "./liveCharts.ckay";
-import { liveCharts as olamide, liveChartsUpdated as olamideAt } from "./liveCharts.olamide";
-import { liveCharts as blackSherif, liveChartsUpdated as blackSherifAt } from "./liveCharts.black-sherif";
-import { liveCharts as bnxn, liveChartsUpdated as bnxnAt } from "./liveCharts.bnxn";
+import { liveCharts as wizkid, liveChartsUpdated as wizkidAt, liveChartsBuiltAt as wizkidBuilt, type LiveRelease } from "./liveCharts.wizkid";
+import { liveCharts as davido, liveChartsUpdated as davidoAt, liveChartsBuiltAt as davidoBuilt } from "./liveCharts.davido";
+import { liveCharts as rema, liveChartsUpdated as remaAt, liveChartsBuiltAt as remaBuilt } from "./liveCharts.rema";
+import { liveCharts as tems, liveChartsUpdated as temsAt, liveChartsBuiltAt as temsBuilt } from "./liveCharts.tems";
+import { liveCharts as tyla, liveChartsUpdated as tylaAt, liveChartsBuiltAt as tylaBuilt } from "./liveCharts.tyla";
+import { liveCharts as ayra, liveChartsUpdated as ayraAt, liveChartsBuiltAt as ayraBuilt } from "./liveCharts.ayra-starr";
+import { liveCharts as asake, liveChartsUpdated as asakeAt, liveChartsBuiltAt as asakeBuilt } from "./liveCharts.asake";
+import { liveCharts as omahLay, liveChartsUpdated as omahLayAt, liveChartsBuiltAt as omahLayBuilt } from "./liveCharts.omah-lay";
+import { liveCharts as seyiVibez, liveChartsUpdated as seyiVibezAt, liveChartsBuiltAt as seyiVibezBuilt } from "./liveCharts.seyi-vibez";
+import { liveCharts as victony, liveChartsUpdated as victonyAt, liveChartsBuiltAt as victonyBuilt } from "./liveCharts.victony";
+import { liveCharts as fireboyDml, liveChartsUpdated as fireboyDmlAt, liveChartsBuiltAt as fireboyDmlBuilt } from "./liveCharts.fireboy-dml";
+import { liveCharts as ckay, liveChartsUpdated as ckayAt, liveChartsBuiltAt as ckayBuilt } from "./liveCharts.ckay";
+import { liveCharts as olamide, liveChartsUpdated as olamideAt, liveChartsBuiltAt as olamideBuilt } from "./liveCharts.olamide";
+import { liveCharts as blackSherif, liveChartsUpdated as blackSherifAt, liveChartsBuiltAt as blackSherifBuilt } from "./liveCharts.black-sherif";
+import { liveCharts as bnxn, liveChartsUpdated as bnxnAt, liveChartsBuiltAt as bnxnBuilt } from "./liveCharts.bnxn";
 
 export interface LiveBoard {
   slug: string;
   releases: LiveRelease[];
   updated: string;
+  /** The minute the snapshot was rebuilt — the API's `builtAt`. */
+  builtAt: string;
   /** Where the page's country panels fetch the full snapshot from. */
   api: string;
   placements: number;
@@ -41,13 +43,14 @@ export interface LiveBoard {
 }
 
 /** Totals derived from the rows, so they can never disagree with what renders. */
-function board(slug: string, releases: LiveRelease[], updated: string): LiveBoard {
+function board(slug: string, releases: LiveRelease[], updated: string, builtAt: string): LiveBoard {
   const entries = releases.flatMap((r) => r.platforms.flatMap((p) => p.entries));
   const platforms = [...new Set(releases.flatMap((r) => r.platforms.map((p) => p.platform)))];
   return {
     slug,
     releases,
     updated,
+    builtAt,
     api: `/api/v1/live-charts/${slug}`,
     placements: entries.length,
     countries: countriesOf(entries),
@@ -69,21 +72,21 @@ function board(slug: string, releases: LiveRelease[], updated: string): LiveBoar
 // whose register sweeps are still scheduled. A live board needs no sweep: the
 // platform charts are readable today, which is why all nine have one.
 export const LIVE_BOARDS: LiveBoard[] = [
-  board("wizkid", wizkid, wizkidAt),
-  board("davido", davido, davidoAt),
-  board("rema", rema, remaAt),
-  board("tems", tems, temsAt),
-  board("tyla", tyla, tylaAt),
-  board("ayra-starr", ayra, ayraAt),
-  board("asake", asake, asakeAt),
-  board("omah-lay", omahLay, omahLayAt),
-  board("seyi-vibez", seyiVibez, seyiVibezAt),
-  board("victony", victony, victonyAt),
-  board("fireboy-dml", fireboyDml, fireboyDmlAt),
-  board("ckay", ckay, ckayAt),
-  board("olamide", olamide, olamideAt),
-  board("black-sherif", blackSherif, blackSherifAt),
-  board("bnxn", bnxn, bnxnAt),
+  board("wizkid", wizkid, wizkidAt, wizkidBuilt),
+  board("davido", davido, davidoAt, davidoBuilt),
+  board("rema", rema, remaAt, remaBuilt),
+  board("tems", tems, temsAt, temsBuilt),
+  board("tyla", tyla, tylaAt, tylaBuilt),
+  board("ayra-starr", ayra, ayraAt, ayraBuilt),
+  board("asake", asake, asakeAt, asakeBuilt),
+  board("omah-lay", omahLay, omahLayAt, omahLayBuilt),
+  board("seyi-vibez", seyiVibez, seyiVibezAt, seyiVibezBuilt),
+  board("victony", victony, victonyAt, victonyBuilt),
+  board("fireboy-dml", fireboyDml, fireboyDmlAt, fireboyDmlBuilt),
+  board("ckay", ckay, ckayAt, ckayBuilt),
+  board("olamide", olamide, olamideAt, olamideBuilt),
+  board("black-sherif", blackSherif, blackSherifAt, blackSherifBuilt),
+  board("bnxn", bnxn, bnxnAt, bnxnBuilt),
 ];
 
 export const liveBoardFor = (slug: string) => LIVE_BOARDS.find((b) => b.slug === slug);

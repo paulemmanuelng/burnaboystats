@@ -24,7 +24,7 @@ import { songs } from "../data/songs";
 import { albumPages } from "../data/albumPages";
 import { garage } from "../data/cars";
 import { titleKey } from "./titleKey";
-import { featuredPairs, pairSlug } from "./comparePairs";
+import { allPairs, pairSlug } from "./comparePairs";
 import type { SearchDoc } from "./searchIndex";
 
 export function buildSearchDocs(): SearchDoc[] {
@@ -152,8 +152,9 @@ export function buildSearchDocs(): SearchDoc[] {
   }
 
   // ── Head to head ────────────────────────────────────────────────────────
-  // The board's curated pairings, each a page of its own under /compare.
-  for (const [x, y] of featuredPairs()) {
+  // Every pairing that has a page under /compare — not only the curated nine,
+  // which left "burna boy vs davido" returning nothing (17 Sep 2026).
+  for (const [x, y] of allPairs()) {
     add({
       title: `${x.name} vs ${y.name}`,
       path: `/compare/${pairSlug(x, y)}`,

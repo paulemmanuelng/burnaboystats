@@ -1,3 +1,4 @@
+import { ENVELOPE_NOTE, UPDATED_NOTE } from "../lib/api";
 import Link from "next/link";
 import styles from "./mobileApi.module.css";
 import CopyButton from "./CopyButton";
@@ -106,10 +107,7 @@ export default function MobileApi({
           <code className={styles.codeLine}>{curl}</code>
         </div>
         <p className={styles.blockBody}>
-          Every response uses the same envelope — the data, plus where it came from and when
-          it last changed. <span className={styles.code}>updated</span> is the date of the
-          most recent real change, not the last deploy, so you can use it to decide whether
-          to re-fetch.
+          {ENVELOPE_NOTE} {UPDATED_NOTE}
         </p>
       </div>
 

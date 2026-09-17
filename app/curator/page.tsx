@@ -55,11 +55,11 @@ const sections = [
   },
   {
     h: "Why this site exists",
-    p: `Burna Boy is the most decorated artist Africa has ever produced, but his numbers lived scattered across fan threads, press write-ups and screenshots — often unsourced, often contradicting each other. I kept seeing the same figures repeated with nobody checking them, so in June 2026 I started building the careful home those numbers deserved: today it tracks ${totalAwards()} certifications across ${countryCount} countries, ${chartEntryCount} official chart entries with ${numberOnes} No. 1s, and ${totalWins} award wins — every figure traced to the body that owns it.`,
+    p: `Burna Boy is the most-certified artist Africa has ever produced, but his numbers lived scattered across fan threads, press write-ups and screenshots — often unsourced, often contradicting each other. I kept seeing the same figures repeated with nobody checking them, so in June 2026 I started building the careful home those numbers deserved: today it tracks ${totalAwards()} certifications across ${countryCount} countries, ${chartEntryCount} official chart entries with ${numberOnes} No. 1s, and ${totalWins} award wins — every figure traced to the body that owns it.`,
   },
   {
     h: "How I work",
-    p: "Nothing goes up unverified. A certification is counted when it appears in the certifying body's own database, a chart peak when the chart's owner publishes it, a streaming figure from the platform's own screen. When a fan tally and a primary source disagree, the primary source wins — even when the fan number is better. The full standard is on the methodology page, and every change worth noting is logged on the updates feed.",
+    p: "Nothing goes up unverified. A certification is counted when it appears in the certifying body's own database, a chart peak when the chart's owner publishes it, a streaming figure from the platform's own screen where the platform publishes one — monthly listeners, followers, per-track counts — and, for the career total Spotify never publishes, from kworb's per-track sum anchored on a dated ChartMasters read (the methodology page sets the method out). When a fan tally and a primary source disagree, the primary source wins — even when the fan number is better. The full standard is on the methodology page, and every change worth noting is logged on the updates feed.",
   },
   {
     h: "Independence",

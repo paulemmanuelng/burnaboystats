@@ -313,7 +313,7 @@ export default function MobileHome() {
           Burna Boy
         </h2>
         <p className={styles.historyText}>
-          First African headliner of a World Cup Final halftime show. “Dai Dai” spent
+          First African artist to perform at a World Cup Final halftime show. “Dai Dai” spent
           37 days as the most-streamed song on Earth — back on top in August.
         </p>
         <Link href="/dai-dai" className={styles.historyCta}>

@@ -107,6 +107,10 @@ const contentStamp: Record<string, string> = {
   // /music/listeners prints its read date beside every figure; the 50 cities
   // are re-read by hand and replaced whole, so the read date is the stamp.
   "/music/listeners": LISTENERS_READ_ON,
+  // A pair page changes when either side's registers are re-read.
+  ...Object.fromEntries(
+    allPairs().map(([a, b]) => [`/compare/${pairSlug(a, b)}`, [a.verifiedOn, b.verifiedOn].sort().at(-1)!]),
+  ),
 };
 
 /**

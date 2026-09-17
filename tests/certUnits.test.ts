@@ -507,7 +507,7 @@ describe("RIAA's ladder does not stop at Diamond — settled: they stay Diamond"
     }
   });
 
-  it("both are FEATURED appearances, so either choice is invisible by default", () => {
+  it("with features off the US line drops below Diamond (features are the default view, so the million shows)", () => {
     const wizLead = priceArtist(bySlug("wizkid"), { includeNigeria: false, includeFeatures: false });
     expect(wizLead.byCountry.find((l) => l.country === "US")?.units).toBeLessThan(10_000_000);
   });

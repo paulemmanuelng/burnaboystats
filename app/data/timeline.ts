@@ -69,7 +69,7 @@ export const timelineEras: TimelineEra[] = [
       { date: "Jun 2023", title: "First African artist to perform at a UEFA Champions League final", text: "Istanbul, before Manchester City vs Inter — his first global football stage.", href: "/records/firsts", kind: "milestone" },
       { date: "Aug 2023", title: "I Told Them… debuts at UK No. 1", text: "The first Afrobeats album ever to top the UK Official Albums Chart — and a No. 1 in Nigeria.", href: "/music/albums/i-told-them", kind: "album" },
       { date: "2023", title: "Stadium history, twice", text: "First African artist to headline and sell out a UK stadium (London Stadium) and a US stadium (Citi Field) — in the same year.", href: "/records/firsts", kind: "tour" },
-      { date: "2023", title: "The I Told Them… Tour", text: "The arena run behind the album. When Billboard Boxscore published the full tally in 2025, it stood at $30.46M and 302,801 tickets — the highest-grossing tour ever by an African artist.", href: "/records/tours", kind: "tour" },
+      { date: "2023–25", title: "The I Told Them… Tour", text: "The arena-and-stadium run behind the album, November 2023 to July 2025. When Billboard Boxscore published the full tally in 2025, it stood at $30.46M and 302,801 tickets — the highest-grossing tour ever by an African artist.", href: "/records/tours", kind: "tour" },
       { date: "Feb 2024", title: "First African artist on the Grammys' main telecast stage", text: "A medley from I Told Them… with Brandy and 21 Savage.", href: "/records/firsts", kind: "milestone" },
       { date: "2024", title: "The biggest single show by any African artist", text: "London Stadium: $6.15M grossed and 58,973 tickets in one night.", href: "/records/tours/revenue", kind: "tour" },
     ],
@@ -93,7 +93,7 @@ export const timelineEras: TimelineEra[] = [
       { date: "May 2026", title: "“Dai Dai” arrives", text: "The official 2026 FIFA World Cup song, with Shakira — released 14 May.", href: "/dai-dai", kind: "chart" },
       { date: "Jun 2026", title: "First African artist to headline a FIFA World Cup opening ceremony", text: "Mexico City, alongside Shakira, performing the tournament's own song.", href: "/records/firsts", kind: "milestone" },
       { date: "2026", title: "No. 1 on the Billboard Global 200", text: "The first African artist to top it — and the highest-charting World Cup song in Billboard Hot 100 history.", href: "/records/charts", kind: "chart" },
-      { date: "19 Jul 2026", title: "The World Cup Final halftime show", text: "The first-ever FIFA World Cup Final halftime show — and the first African artist to headline it.", href: "/dai-dai", kind: "milestone" },
+      { date: "19 Jul 2026", title: "The World Cup Final halftime show", text: "The first-ever FIFA World Cup Final halftime show — and the first African artist to perform at it, alongside Madonna, Shakira, BTS, Justin Bieber and Coldplay.", href: "/dai-dai", kind: "milestone" },
       { date: "8 Aug 2026", title: "60 million monthly listeners", text: "The first African artist to reach 60 million on Spotify — after being the first to 50 million weeks earlier.", href: "/records/africas-biggest", kind: "milestone" },
       { date: "Aug 2026", title: "The 100th Platinum plaque", text: "“Dai Dai” goes Platinum in Hungary — Burna Boy's 100th current Platinum award worldwide.", href: "/certifications", kind: "award" },
     ],
@@ -101,3 +101,10 @@ export const timelineEras: TimelineEra[] = [
 ];
 
 export const timelineEntryCount = timelineEras.reduce((n, e) => n + e.entries.length, 0);
+
+/** The career's first dated year — the timeline's first entry. */
+export const careerStartYear = Number(timelineEras[0].entries[0].date.slice(-4));
+/** Years since, at build time. "Sixteen years" was typed in three places and
+ *  would have read sixteen through 2027; the site rebuilds daily, so a
+ *  build-time year is fresh enough. */
+export const careerYears = new Date().getUTCFullYear() - careerStartYear;

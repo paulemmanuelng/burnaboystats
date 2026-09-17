@@ -362,14 +362,14 @@ export const searchIndex: SearchDoc[] = [
     title: "Live Charts",
     path: "/live-charts",
     section: "Records",
-    description: "Where every Burna Boy release is charting right now on Spotify, Apple Music, iTunes, Deezer and Shazam.",
-    keywords: ["live charts", "charting now", "right now", "apple music", "itunes", "shazam", "deezer", "how many countries", "currently charting"],
+    description: `Where every Burna Boy release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — ${LIVE_CADENCE}.`,
+    keywords: ["live charts", "charting now", "right now", "apple music", "itunes", "shazam", "deezer", "youtube", "how many countries", "currently charting"],
   },
   {
     title: "Chart Analysis",
     path: "/analysis",
     section: "Site",
-    description: "What Burna Boy's chart and certification record actually shows — four data-led findings.",
+    description: "What Burna Boy's chart and certification record actually shows — the data-led findings.",
     keywords: ["analysis", "what the numbers say", "insights", "findings", "uk vs us", "diamond france", "breakdown", "interpretation"],
   },
   {
@@ -429,8 +429,10 @@ export const searchIndex: SearchDoc[] = [
     title: "The Afrobeats Board",
     path: "/afrobeats",
     section: "Afrobeats",
-    description: "Wizkid, Davido, Rema, Tems, Tyla and Ayra Starr counted by the same rules as Burna Boy — every plaque read at source.",
-    keywords: ["afrobeats board", "afrobeats artists", "compare afrobeats", "wizkid", "davido", "rema", "tems", "tyla", "ayra starr", "asake", "omah lay", "seyi vibez", "most certified afrobeats artist", "who has more certifications"],
+    // Typed on purpose (this file imports no datasets); tests/searchIndex.test.ts
+    // holds "Fifteen" and "nine more" to afrobeatsArtists.length.
+    description: "Fifteen Afrobeats artists — Wizkid, Davido, Rema, Tems, Tyla, Ayra Starr and nine more — counted by the same rules as Burna Boy, every plaque read at source.",
+    keywords: ["afrobeats board", "afrobeats artists", "compare afrobeats", "wizkid", "davido", "rema", "tems", "tyla", "ayra starr", "asake", "omah lay", "seyi vibez", "victony", "fireboy dml", "ckay", "olamide", "black sherif", "bnxn", "most certified afrobeats artist", "who has more certifications"],
   },
   {
     title: "Wizkid",
@@ -639,7 +641,7 @@ export const searchIndex: SearchDoc[] = [
     title: "CKay — Live Platform Charts",
     path: "/afrobeats/ckay/live",
     section: "Afrobeats",
-    description: "Where CKay is charting right now across Spotify, Apple Music, Deezer and YouTube.",
+    description: `Where every CKay release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — ${LIVE_CADENCE}.`,
     keywords: ["ckay live charts", "ckay today", "ckay streaming"],
   },
   {
@@ -660,7 +662,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Olamide — Live Platform Charts",
     path: "/afrobeats/olamide/live",
     section: "Afrobeats",
-    description: "Where Olamide is charting right now across Spotify, Apple Music, Deezer and YouTube.",
+    description: `Where every Olamide release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — ${LIVE_CADENCE}.`,
     keywords: ["olamide live charts", "olamide today", "olamide streaming"],
   },
   {
@@ -681,7 +683,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Black Sherif — Live Platform Charts",
     path: "/afrobeats/black-sherif/live",
     section: "Afrobeats",
-    description: "Where Black Sherif is charting right now across Spotify, Apple Music, Deezer and YouTube.",
+    description: `Where every Black Sherif release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — ${LIVE_CADENCE}.`,
     keywords: ["black sherif live charts", "black sherif today", "black sherif streaming"],
   },
   {
@@ -702,7 +704,7 @@ export const searchIndex: SearchDoc[] = [
     title: "BNXN — Live Platform Charts",
     path: "/afrobeats/bnxn/live",
     section: "Afrobeats",
-    description: "Where BNXN is charting right now across Spotify, Apple Music, Deezer and YouTube.",
+    description: `Where every BNXN release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — ${LIVE_CADENCE}.`,
     keywords: ["bnxn live charts", "bnxn today", "bnxn streaming"],
   },
   {

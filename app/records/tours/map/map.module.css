@@ -225,7 +225,7 @@
 .on:focus-visible { fill: var(--gold-hit); }
 .activePath { fill: var(--gold-hit); }
 
-/* dot markers for tiny island nations (no shape at this map resolution) */
+/* dot markers for territories with no shape at this map resolution */
 .dot {
   fill: color-mix(in srgb, var(--gold-wash-base) 75%, transparent);
   stroke: var(--gold-hit);

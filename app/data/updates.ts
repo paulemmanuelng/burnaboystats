@@ -47,6 +47,24 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-09-17",
+    category: "Firsts & Records",
+    text: "A correction to the World Cup Final entry: Burna Boy was the first African artist to perform at the halftime show, on a bill headlined by Madonna, Shakira, BTS and Justin Bieber — FIFA's own announcement draws that line, and the site now does too.",
+    href: "/timeline",
+  },
+  {
+    date: "2026-09-17",
+    category: "Awards",
+    text: "The strike rate now counts decided nominations only: 82 wins from 234 decided — 35% — with 8 results still to come at ceremonies not yet held (Caribbean Music Awards, VMAs, NRJ, the Headies).",
+    href: "/records/awards",
+  },
+  {
+    date: "2026-09-17",
+    category: "Streaming",
+    text: "The two un-merged remixes re-read at Spotify: “Enjoy Yourself (Remix)” at roughly 52.1 million plays and “Finders Keepers (Remix)” at 3.4 million — still a fraction of the 232 million and 130 million they carried before February's correction.",
+    href: "/analysis/spotify-unmerge",
+  },
+  {
+    date: "2026-09-17",
     category: "Streaming",
     text: "Lagos is Burna Boy's biggest city on Spotify — 1,429,129 monthly listeners, with London (993,316), Port Harcourt and Abuja behind it. His top 50 cities span 29 countries, and Germany places eight of them, more than any other country.",
     href: "/music/listeners",
@@ -1529,7 +1547,7 @@ export const updates: Update[] = [
   {
     date: "2026-07-19",
     category: "Firsts & Records",
-    text: "History made: Shakira & Burna Boy performed “Dai Dai” at the first-ever FIFA World Cup Final halftime show — Burna Boy the first African artist to headline a World Cup halftime show, on a bill with Madonna, BTS & Justin Bieber.",
+    text: "History made: Shakira & Burna Boy performed “Dai Dai” at the first-ever FIFA World Cup Final halftime show — Burna Boy the first African artist to perform at a World Cup Final halftime show, on a bill with Madonna, BTS & Justin Bieber.",
     href: "/dai-dai",
   },
   {

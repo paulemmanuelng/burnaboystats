@@ -16,7 +16,7 @@ export const metadata = pageMetadata({
 const channels = [
   { label: "Official Site", value: "onaspaceship.com ↗", href: "https://www.onaspaceship.com" },
   { label: "Instagram", value: "@burnaboygram ↗", href: "https://www.instagram.com/burnaboygram" },
-  { label: "X / Twitter", value: "@burnaboy ↗", href: "https://twitter.com/burnaboy" },
+  { label: "X / Twitter", value: "@burnaboy ↗", href: "https://x.com/burnaboy" },
   { label: "Tickets", value: "Ticketmaster ↗", href: "https://www.ticketmaster.com/burna-boy-tickets/artist/2486272" },
 ];
 

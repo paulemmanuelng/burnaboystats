@@ -1,0 +1,219 @@
+[
+ {
+  "batch": "4c",
+  "pr": 285,
+  "page": "/timeline",
+  "kind": "wrong",
+  "tier": "prose",
+  "title": "\"First African artist to headline\" the World Cup Final halftime show — FIFA says perform",
+  "was": "Timeline entry, the home page, the phone home, the FAQ and the 19 Jul feed line all said \"headline\".",
+  "body": "fifa.com, 8 Jul 2026: Madonna, Shakira, BTS and Justin Bieber \"co-headliners\"; Burna Boy \"will also appear\". The site's own firsts, tours and about pages already said \"perform at\".",
+  "now": "\"The first African artist to perform at it, alongside Madonna, Shakira, BTS, Justin Bieber and Coldplay\" — on every page.",
+  "also": [
+   "/",
+   "/faq"
+  ],
+  "guard": "tests/rejectedClaims: no sentence pairs \"halftime\" with \"headlin\" (the NFL and NBA halftimes, which he did headline, are excluded)."
+ },
+ {
+  "batch": "4c",
+  "pr": 285,
+  "page": "/timeline",
+  "kind": "note",
+  "tier": "figure",
+  "title": "The record tour and the career span were typed beside derived cells",
+  "was": "\"$30.46M\" typed in the \"Where it stands today\" band; \"sixteen years\" typed in three places (timeline, records hub, keep-exploring); the tour entry dated \"2023\".",
+  "body": "tours.ts holds the gross; the timeline's first entry is 2010; the tour ran 2023–25.",
+  "now": "Record tour by gross; careerYears derived from the first entry's year; entry dated \"2023–25\".",
+  "also": [
+   "/records"
+  ]
+ },
+ {
+  "batch": "4c",
+  "pr": 285,
+  "page": "/records/tours/map",
+  "kind": "wrong",
+  "tier": "figure",
+  "title": "Belgium's card read as a complete record of two shows",
+  "was": "No \"…and more\" on Belgium; Montréal and Rotterdam cards a year short; the legend called Kosovo an island nation.",
+  "body": "tours.ts: three Belgian dates; Bell Centre 2024 & 2025; Rotterdam Ahoy 2022 & 2026.",
+  "now": "`more: true`, both years on the two cards, \"Territories too small to shade at 110m\".",
+  "guard": "tests/tourMap: a performed country with more than two tour dates carries `more`."
+ },
+ {
+  "batch": "4c",
+  "pr": 285,
+  "page": "/search",
+  "kind": "broken",
+  "tier": "structure",
+  "title": "Results capped at 60 while the index holds hundreds",
+  "was": "\"60 results for certifications\" (there are 77); \"burna boy vs davido\" found nothing (only nine featured pairs indexed); the empty state promised \"a year\"; four live-board rows named the wrong platforms; \"All 100 pages\"; a searchStats key with no doc.",
+  "body": "app/components/SearchResults.tsx LIMIT = 60 with a comment saying \"under 50 docs\"; buildSearchDocs iterated featuredPairs().",
+  "now": "LIMIT 1000; every compare pair indexed (338 generated docs); \"or an artist\"; the shared live-board template on all 16 rows; \"Browse N pages\"; orphan key removed; the board-hub and analysis blurbs no longer type counts they cannot derive.",
+  "guard": "tests/search: LIMIT ≥ the merged index; every pair findable; every searchStats key is a doc; tests/searchIndex: the hub's \"Fifteen … and nine more\" equals the board; every live row uses the template."
+ },
+ {
+  "batch": "4c",
+  "pr": 285,
+  "page": "/records",
+  "kind": "stale",
+  "tier": "prose",
+  "title": "Box-office note dated August; nav sheet said \"8 books\" while the hub said 14",
+  "was": "\"reporting — August 2026\" typed on the hub; navGroups counted its own Deep-data group; a headline cell linked the wrong page; \"$30.46M\" and \"8 albums\" typed in the keep-exploring tiles.",
+  "body": "The leaderboard was re-read 17 Sep; the hub lists 14 books; tours.ts and albums.ts hold the figures.",
+  "now": "REVENUE_AS_OF in tourRevenue.ts printed on the hub and the leaderboard; app/lib/recordBooks.ts is the one list both the hub and the nav sheet count; the tickets cell links /records/tours/revenue; tiles derive.",
+  "also": [
+   "/contact",
+   "/curator"
+  ]
+ },
+ {
+  "batch": "4c",
+  "pr": 285,
+  "page": "/contact",
+  "kind": "stale",
+  "tier": "link",
+  "title": "X links pointed at twitter.com",
+  "was": "https://twitter.com/burnaboy on the contact, about and layout; twitter.com/intent on the share pages.",
+  "body": "x.com is the host.",
+  "now": "x.com everywhere.",
+  "also": [
+   "/about",
+   "/share"
+  ]
+ },
+ {
+  "batch": "4c",
+  "pr": 285,
+  "page": "/records/visualized",
+  "kind": "wrong",
+  "tier": "prose",
+  "title": "\"Only the Caribbean run is newer than the World Cup\" — Ibiza (Aug 2026) is",
+  "was": "Caption under the regions chart.",
+  "body": "performedCountries.ts: the Caribbean rows are 2020–2024; Spain's O Beach, Ibiza is 14 Aug 2026.",
+  "now": "Clause removed."
+ },
+ {
+  "batch": "4c",
+  "pr": 285,
+  "page": "/records/visualized",
+  "kind": "wrong",
+  "tier": "figure",
+  "title": "The win rate counted pending nominations as losses",
+  "was": "\"82 of 242 career nominations — 34%\" here and on /records/awards.",
+  "body": "awards.ts pendingResults: eight nominations at four ceremonies not yet held.",
+  "now": "\"82 of 234 decided nominations — 35%, with 8 results still to come\"; a Pending segment on the donut; the same rate on /records/awards.",
+  "also": [
+   "/records/awards"
+  ]
+ },
+ {
+  "batch": "4c",
+  "pr": 285,
+  "page": "/records/visualized",
+  "kind": "stale",
+  "tier": "figure",
+  "title": "Gbona's Swiss plaque logged as Gold; the register says Platin",
+  "was": "certHistory row { Gbona, CH, Gold, 2023 }.",
+  "body": "IFPI Schweiz Edelmetall card: Jahr 2023, Platin.",
+  "now": "Platinum, 2023."
+ },
+ {
+  "batch": "4c",
+  "pr": 285,
+  "page": "/records/visualized",
+  "kind": "note",
+  "tier": "prose",
+  "title": "Typed captions beside derived charts",
+  "was": "\"Nigeria (TurnTable), the UK (BPI) and Canada\" lead; \"1.986 billion … biggest streaming year ever\"; \"London Stadium turned ~59,000 tickets into $6.15M\"; \"the African Giant year\"; \"top 10 bodies\" / \"top 6\"; \"monthly listeners · daily\"; the phone note without the sweep date; OG sub \"the biggest tour\" over a per-show chart.",
+  "body": "The page's own data.",
+  "now": "Every one derived: the top three bodies, the 2025 leader and its peers (the record clause conditional on no later year passing it), the top show's own figures, the peak-year clause, a ≥3-wins threshold (≥4 on the phone), \"dated readings\", \"Last swept …\", an OG sub that names what the page charts; the cert-pace chart says the log is complete from 2023; the Dataset lists every variable; \"41+\" on the peak legend."
+ },
+ {
+  "batch": "4c",
+  "pr": 285,
+  "page": "/share",
+  "kind": "wrong",
+  "tier": "prose",
+  "title": "Four card asides said things the data does not",
+  "was": "\"the biggest song in the world\" (present tense, run closed); \"across three continents\" (two); \"first UK stadium headline\" pinned to the 2024 night (it was 2023); \"all awarded by SNEP\" typed beside a derived count; \"$30.46M\", \"$6.15M\", \"58,973\" typed four times; captions with no figure (\"Burna Boy — certifications across 26 countries\"); \"Verified <date>\" on a site-wide date; a never-rendered `stats` field with two present-tense chips.",
+  "body": "tourRevenue.ts, tours.ts, certifications.ts; FIFA/Boxscore; the share components.",
+  "now": "Labels derived from the data (No. 1 in 26 countries; the record tour and night by gross; the Diamond bodies from the rows); the 2023 night named; captions and alt text lead with the figure; \"Site updated\"; the dead field removed."
+ },
+ {
+  "batch": "4c",
+  "pr": 285,
+  "page": "/curator",
+  "kind": "wrong",
+  "tier": "prose",
+  "title": "\"The most decorated artist Africa has ever produced\" and a streaming rule the site does not follow",
+  "was": "\"most decorated\"; \"a streaming figure from the platform's own screen\" while the 11.01B is kworb + a ChartMasters anchor; methodology said \"not pulled from a scraper\".",
+  "body": "The site's own method (streamingTotals.ts).",
+  "now": "\"most-certified\"; the career total's method named on the curator and methodology pages.",
+  "also": [
+   "/methodology"
+  ]
+ },
+ {
+  "batch": "4c",
+  "pr": 285,
+  "page": "/api",
+  "kind": "broken",
+  "tier": "structure",
+  "title": "The docs promised one envelope for every endpoint; the two live snapshots use another",
+  "was": "\"Every response uses the same envelope\" on both layouts; a hand-written sample missing description, licence url, source, methodology, docs and chartedReleases; /stats described as a daily series (it logs peaks only); \"Every verified number on this site\"; no minute stamp on the live snapshots.",
+  "body": "curl of the eight endpoints.",
+  "now": "One shared ENVELOPE_NOTE / UPDATED_NOTE on both layouts naming the exception; the sample is a slice of the real payload (app/lib/chartsPayload.ts); the peak-series wording in three places; the lede names what is served; `builtAt` on both live routes (boards carry it).",
+  "guard": "tests/apiContract: the sample's keys equal the endpoint's; the docs contain the shared note; builtAt matches the minute format on both live routes."
+ },
+ {
+  "batch": "4c",
+  "pr": 285,
+  "page": "/analysis/spotify-unmerge",
+  "kind": "stale",
+  "tier": "figure",
+  "title": "The two remixes were last read four weeks ago",
+  "was": "\"As of 21 August 2026 … 51.9 million and 3.3 million\".",
+  "body": "Spotify: 52,106,967 and 3,401,870 on 17 Sep 2026.",
+  "now": "\"As of 17 September 2026 … 52.1 million and 3.4 million\", one constant each; \"read from Spotify daily\" → built from per-track counts via kworb, anchored to ChartMasters (three sentences)."
+ },
+ {
+  "batch": "4c",
+  "pr": 285,
+  "page": "/compare/burna-boy-vs-wizkid",
+  "kind": "broken",
+  "tier": "structure",
+  "title": "The visible breadcrumb and the BreadcrumbList disagreed",
+  "was": "JSON-LD: Home › Certifications › Compare › pair; the bar: Home › Compare › pair.",
+  "body": "The site files /compare under Certifications.",
+  "now": "BreadcrumbBar takes `parents`; the bar now shows Certifications on every pair page.",
+  "guard": "tests/comparePage: the bar's labels equal the BreadcrumbList's names."
+ },
+ {
+  "batch": "4c",
+  "pr": 285,
+  "page": "/compare/burna-boy-vs-wizkid",
+  "kind": "note",
+  "tier": "figure",
+  "title": "Four typed figures on every pair page",
+  "was": "\"26 countries · international\"; \"at least 600,000, and could be 1,190,000\"; \"the other fourteen\"; \"Sweden and Mexico … Poland … Greece and Colombia … 100 streams to a unit\".",
+  "body": "CERT_THRESHOLDS and comparableArtists.",
+  "now": "All derived: the priced-body count, the UK single Platinum, the artist count, the three lists and the ratio; the ¹ footnote names the programme a Colombian plaque came from; each pair prints both sides' register-read dates, its Dataset carries dateModified and the sitemap stamps it.",
+  "also": [
+   "every /compare pair"
+  ],
+  "guard": "tests/comparePage: five new assertions; tests/sitemapEvidence knows the pair stamps."
+ },
+ {
+  "batch": "4c",
+  "pr": 285,
+  "page": "/compare/burna-boy-vs-davido",
+  "kind": "note",
+  "tier": "prose",
+  "title": "South African plaques with no register row behind them, now said so",
+  "was": "All Eyes on Me 19× Platinum and Baddest Gold priced with no provenance; \"No Stress\" excluded on a claim that RiSA's credit was invented.",
+  "body": "RiSA's register (risa-prod.trafficmanager.net, 17 Sep 2026): no row for either AKA title; \"Wizkid feat. Burna Boy | No Stress | Platinum | 11 Sep 2023\" IS printed.",
+  "now": "Comments beside the rows name the Sony label plaque and the missing register row (Baddest kept, flagged, per the batch-4a ruling); the No Stress exclusion restated on the recording's credits; RETRACTIONS #2, BOARD-FINDINGS and the by-country ledger corrected."
+ }
+]

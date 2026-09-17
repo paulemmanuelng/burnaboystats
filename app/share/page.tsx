@@ -17,7 +17,7 @@ export const metadata = pageMetadata({
     "Pick a record and download a shareable Burna Boy stat card.",
 });
 
-// Verified date rides the newest logged update, so it's never hand-maintained.
+// "Site updated" rides the newest logged update, so it is never hand-maintained — it is the site's date, not a per-figure verification.
 const verified = new Date(`${updates[0].date}T00:00:00Z`).toLocaleDateString("en-GB", {
   day: "numeric",
   month: "long",
@@ -32,6 +32,7 @@ export default function SharePage() {
   const choices = getStatCards().map((c) => ({
     id: c.id,
     chip: c.chip,
+    value: c.value,
     label: c.label,
     detail: c.detail,
     source: c.source,

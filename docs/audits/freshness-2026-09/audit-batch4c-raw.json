@@ -1,0 +1,714 @@
+{
+ "pages": [
+  {
+   "page": "/records/tours/map",
+   "checked": 108,
+   "findings": [
+    {
+     "claim": "Belgium hover card / aria-label lists two shows with no \"…and more\" hint (both layouts)",
+     "onPage": "Belgium: ING Arena, Brussels (2026); Palais 12, Brussels (2019) — no `more`, so the card reads as a complete two-show record",
+     "shouldBe": "Belgium: ING Arena, Brussels (2026); Palais 12, Brussels (2019) …and more — the site's own tours.ts carries three Belgian dates (Palais 12, 20 Oct 2019; Sportpaleis Antwerp, 12 Dec 2023; ING Arena, 23 Jan 2026), and performedCountries.ts's own rule says `more: true` whenever there are appearances beyond the two listed",
+     "source": "/Users/paulemmanuelng/burnaboy-website/app/data/tours.ts (African Giant Tour, I Told Them… Tour, No Sign of Weakness Tour date lists) vs app/data/performedCountries.ts line 59; served HTML aria-label for Belgium confirms no \"and more\"",
+     "severity": "wrong",
+     "fix": "app/data/performedCountries.ts line 59: add `more: true` to the Belgium entry. Add a guard to tests/tourMap.test.ts: for every performed country, count that country's entries across tours[].dates + festivals + otherShows + concerts in app/data/tours.ts and assert `more === true` whenever the count exceeds 2 (Belgium is the reproducer)."
+    },
+    {
+     "claim": "Desktop legend describes the dot markers as island nations",
+     "onPage": "Island nations too small to shade",
+     "shouldBe": "Territories too small to shade at 110m — one of the eight markers is Kosovo, which is landlocked; the mobile footnote (\"Eight territories have no usable shape at 110m\") and tests/tourMap.test.ts's own docstring already make this exact point",
+     "source": "app/data/performedCountries.ts (Kosovo entry, code 383, carries `marker`); served HTML shows 8 <circle> markers incl. Kosovo; app/components/MobileTourMap.tsx footNote copy",
+     "severity": "wrong",
+     "fix": "app/records/tours/map/page.tsx line 97: change \"Island nations too small to shade\" to \"Territories too small to shade at 110m\" (and the comment in app/components/PerformanceMap.tsx above the circle loop, \"Dot markers for island nations…\", to match)."
+    },
+    {
+     "claim": "The map's provenance date is stale and never printed on the page",
+     "onPage": "performedCountries.ts header: \"cross-checked against press/setlist records, as of 27 June 2026\"; neither layout prints any as-of / last-checked date",
+     "shouldBe": "The list was changed after that date — O Beach Ibiza (14 Aug 2026) was added in d700c6ba on 15 Aug 2026 — so the stamp should read the date of the last re-check, and the page should print it (site rule: every figure is dated). The artist's own posts for any post-15-Aug show in a new country could not be read here; the site's own feed and tours.ts show none",
+     "source": "git log -S'O Beach, Ibiza' -- app/data/performedCountries.ts → d700c6ba 2026-08-15; app/data/updates.ts entries 2026-08-15 and 2026-09-17 (Ibiza); served HTML has no date string in either layout",
+     "severity": "note",
+     "fix": "app/data/performedCountries.ts line 3: export `export const performedCountriesVerifiedOn = \"2026-08-15\"` (or the date of the next re-read) and update the comment; app/records/tours/map/page.tsx desktop note (the <p className={styles.note}> after the table, ~line 138) and app/components/MobileTourMap.tsx footNote (~line 84): append \"Last re-checked <date>\" derived from that export."
+    },
+    {
+     "claim": "Canada hover card year label for Bell Centre, Montréal",
+     "onPage": "Bell Centre, Montréal (2024)",
+     "shouldBe": "Bell Centre, Montréal (2024 & 2025) — tours.ts lists Bell Centre on 28–29 Feb 2024 and again 15 Dec 2025; the Toronto label on the same card already uses the \"(2024 & 2025)\" convention for its repeat venue",
+     "source": "/Users/paulemmanuelng/burnaboy-website/app/data/tours.ts lines 56, 97–98",
+     "severity": "note",
+     "fix": "app/data/performedCountries.ts line 83: change \"Bell Centre, Montréal (2024)\" to \"Bell Centre, Montréal (2024 & 2025)\"."
+    },
+    {
+     "claim": "Netherlands hover card year label for Rotterdam Ahoy",
+     "onPage": "Rotterdam Ahoy (2022)",
+     "shouldBe": "Rotterdam Ahoy (2022 & 2026) — the North Sea Jazz Festival set on 11 July 2026 was at Rotterdam Ahoy (tours.ts festivals); the Switzerland card on the same map uses \"Hallenstadion, Zürich (2022 & 2026)\" for the same situation",
+     "source": "/Users/paulemmanuelng/burnaboy-website/app/data/tours.ts festivals[] North Sea Jazz Festival entry (\"at Rotterdam Ahoy\"); app/data/updates.ts 2026-07-11 entry",
+     "severity": "note",
+     "fix": "app/data/performedCountries.ts line 58: change \"Rotterdam Ahoy (2022)\" to \"Rotterdam Ahoy (2022 & 2026)\"."
+    }
+   ]
+  },
+  {
+   "page": "/records",
+   "checked": 74,
+   "findings": [
+    {
+     "claim": "Desktop box-office source note dates the leaderboard to August 2026",
+     "onPage": "\"Source: TouringData, aggregating Billboard Boxscore, cross-checked against press reporting — August 2026. Per-show gross, distinct from tour-level totals.\" (desktop only; the mobile screen prints no source or date line at all)",
+     "shouldBe": "September 2026 — the board it summarises was re-read and changed on 17 Sep 2026 (commit fcdc01b7, the Toronto/Montreal stands moved beneath the ranking; ac3b73fe withdrew two rows the same day) and its own page /records/tours/revenue prints \"as of September 2026\". The data file's header still says July 2026, so three dates are printed for one dataset.",
+     "source": "app/records/page.tsx:207 (typed literal, blame 53d86fc6 4 Aug 2026); app/records/tours/revenue/page.tsx:51 SOURCE_NOTE (\"as of September 2026\"); app/data/tourRevenue.ts header comment (\"July 2026\"); git log -- app/data/tourRevenue.ts (last change 2026-09-17). TouringData's I Told Them… report (touringdata.org/2025/12/29/burna-boy-i-told-them-tour/) read today confirms the rows the hub prints: London Stadium $6,147,209 / 58,973; Stade de France $4,528,368 / 43,881; Capital One $1,724,853 / 13,892; TD Garden $1,592,684 / 13,219. The Love, Damini / Space Drift / Fally Ipupa rows (ranks 3, 4, 7, 8) are not on any TouringData page its search returns today, so they were not re-verifiable at the body in this pass.",
+     "severity": "stale",
+     "fix": "Export one dated constant from app/data/tourRevenue.ts (e.g. `export const REVENUE_AS_OF = \"September 2026\"`, updated whenever the board is re-read) and interpolate it in app/records/page.tsx:207 and in SOURCE_NOTE at app/records/tours/revenue/page.tsx:51; update the file header at app/data/tourRevenue.ts:1-5 to the same date. Give app/components/MobileRecords.tsx a source line under the show list using the same constant so both layouts carry the date."
+    },
+    {
+     "claim": "Headline cell \"58,973 · Tickets, one night · The African record\" links to /records/africas-biggest and asserts an attendance record the site makes nowhere else",
+     "onPage": "Both layouts: value 58,973, label \"Tickets, one night\", note \"The African record\", href /records/africas-biggest",
+     "shouldBe": "The link should go to the page that carries this record (/records/tours/revenue, or /records/firsts). /records/africas-biggest is sixteen streaming and chart boards (billboard-global-200-peak … spotify-top-artists-peak) with no attendance or box-office board. Everywhere else the site states the London Stadium record as \"highest-grossing single concert by any African artist\" (firsts.ts:151, tours.ts:266, faq/page.tsx:99, statCards.ts:158); a ticket-count superlative is a different metric and is supported only across Boxscore-reported shows — TouringData has no report for any Wizkid date at all (search returns nothing), so e.g. Tottenham Hotspur Stadium 2023 is simply unreported, not smaller.",
+     "source": "app/records/page.tsx:63-69; app/data/africasBiggest.ts board ids (lines 168-487); touringdata.org/?s=wizkid (no results, read 17 Sep 2026); app/data/firsts.ts:151; app/data/tours.ts:266",
+     "severity": "note",
+     "fix": "app/records/page.tsx:68 — change href to \"/records/tours/revenue\"; line 67 — change the note to the claim the body supports, e.g. \"Biggest reported African crowd\" or \"The African box-office record\" (the gross cell above it already carries the record wording)."
+    },
+    {
+     "claim": "\"Sixteen years, era by era\" is a typed span that rots on 1 January 2027",
+     "onPage": "Career Timeline card: \"Sixteen years, era by era — every milestone dated\" (both layouts)",
+     "shouldBe": "Derived from the timeline's own first year (2010, timeline.ts:32) and the current year, via numberWord; correct today (2026 − 2010 = 16), wrong in fourteen weeks. The same literal is typed twice more on the site.",
+     "source": "app/records/page.tsx:30; app/components/KeepExploring.tsx:27; app/timeline/page.tsx:92 (\"sixteen years\"); app/data/timeline.ts:28-32 (first era span \"2010 – 2015\", first entry 2010)",
+     "severity": "note",
+     "fix": "Export `careerStartYear = 2010` and `careerYears = new Date().getUTCFullYear() - careerStartYear` from app/data/timeline.ts (the site rebuilds daily, so build time is fine); use `${numberWord(careerYears)} years, era by era…` at app/records/page.tsx:30, app/components/KeepExploring.tsx:27 and app/timeline/page.tsx:92."
+    },
+    {
+     "claim": "The nav sheet on this page says \"Records · 8 books\" while the page itself says \"14 books\" / \"14 record books\" / \"Fourteen ways in\"",
+     "onPage": "Mobile nav sheet (in the same DOM): Records 8 books. Mobile back bar: \"14 books\". Desktop lede: \"14 record books\". Desktop h2: \"Fourteen ways in\".",
+     "shouldBe": "One count for one word. The nav derives 8 from the Deep data group (the eight /records/* sub-routes); the hub derives 14 from its own card list, which also counts /live-charts, /timeline, /afrobeats and the three /records/tours/* pages as \"books\". Both are derived, but from different sets, so the same page contradicts itself.",
+     "source": "app/lib/navGroups.ts:72 (`${deepData.length} books`, deepData has 8 rows at lines 52-61); app/records/page.tsx:26-41 (subs, 14 entries) and lines 113, 129; app/components/MobileRecords.tsx:39",
+     "severity": "note",
+     "fix": "Move `subs` out of app/records/page.tsx into a server module (e.g. app/lib/recordBooks.ts) and have app/lib/navGroups.ts:72 print `${recordBooks.length} books`; or, if \"books\" is meant to be the eight deep-data pages, change the hub's copy at page.tsx:113/129 and MobileRecords.tsx:39 to count `deepData` and call the other six cards something else."
+    },
+    {
+     "claim": "Keep-exploring tile \"$30.46M — the biggest African tour\" is a typed copy of a figure this same page derives from tours.ts",
+     "onPage": "Keep exploring → Tours & Live: \"$30.46M — the biggest African tour\"",
+     "shouldBe": "Derived from tours (the headline strip on the same page computes `topTour.gross` from app/data/tours.ts; the value is correct today — TouringData's report totals $30,463,574, and its No Sign of Weakness report still shows 4 of 21 shows reported as of today, so nothing has overtaken it). Already reported as a note in batch 1 under /records/tours (audit-batch1-raw.json pages[7].findings[5]) but not applied; it still renders typed on /records.",
+     "source": "app/components/KeepExploring.tsx:25; app/records/page.tsx:47-49 (topTour derivation); touringdata.org/2025/12/29/burna-boy-i-told-them-tour/ ($30,463,574 / 302,801 / 22 reports) and touringdata.org/2026/03/14/burna-boy-no-sign-of-weakness-tour/ ($3,123,623, 4 of 21 reports), both read 17 Sep 2026",
+     "severity": "note",
+     "fix": "app/components/KeepExploring.tsx:25 — import `tours` from ../data/tours, compute the top gross the way app/records/page.tsx:46-49 does (or export `topTour` from a shared lib and import it in both), and build the desc as `${topTour.gross} — the biggest African tour`; the same derivation closes the still-open batch-1 note on /records/tours page.tsx:14-16 and opengraph-image.tsx:9."
+    }
+   ]
+  },
+  {
+   "page": "/timeline",
+   "checked": 94,
+   "findings": [
+    {
+     "claim": "19 Jul 2026 entry — \"The first-ever FIFA World Cup Final halftime show — and the first African artist to headline it.\"",
+     "onPage": "\"the first African artist to headline it\" (both layouts share the one DOM; live 17 Sep 2026)",
+     "shouldBe": "\"— and the first African artist to perform at it.\" FIFA's own announcement (fifa.com, published 8 Jul 2026, read in the in-app browser 17 Sep 2026) names Madonna, Shakira, BTS and Justin Bieber as the co-headliners and says Burna Boy \"will also appear during the 11-minute broadcast\" / \"will also join\"; Burna Boy's own quote there is \"to represent Africa on the first-ever FIFA World Cup Final Halftime Show\". The site's own records already say perform, not headline: app/data/firsts.ts:78 (\"First African artist to perform at a FIFA World Cup Final halftime show … alongside Madonna, Shakira, BTS, Justin Bieber and Coldplay\"), app/data/tours.ts:260 (\"Performed at … on a bill with Madonna, Shakira, BTS, Justin Bieber and Coldplay\"), app/about/page.tsx:37 (fixed to \"perform at\" in batch 2), and the linked /dai-dai page's MusicEvent JSON-LD (app/dai-dai/page.tsx:166, \"performed … alongside Madonna, BTS, Justin Bieber and Coldplay\"). \"Headline\" is an inflation the body does not support and the page it links to for the working contradicts.",
+     "source": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/justin-bieber-to-co-headline-final-halftime-show-with-madonna-shakira-bts (FIFA, 8 Jul 2026); /Users/paulemmanuelng/burnaboy-website/app/data/firsts.ts:78; app/data/tours.ts:260; app/about/page.tsx:37; app/dai-dai/page.tsx:166",
+     "severity": "wrong",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/timeline.ts line 96: replace `— and the first African artist to headline it.` with `— and the first African artist to perform at it.` (or, matching firsts.ts, `— the first African artist ever on its bill, alongside Madonna, Shakira, BTS, Justin Bieber and Coldplay.`). The same overstated word ships on pages outside this audit and should move with it: app/page.tsx:164-165 (\"the first African artist to headline it\"), app/components/MobileHome.tsx:316 (\"First African headliner of a World Cup Final halftime show\"), app/faq/page.tsx:69 (\"the first African artist ever to headline a World Cup halftime show\"), app/data/updates.ts:1532 (same phrase in the 19 Jul log line). No test pins the string (grep 'headline it' tests/ → nothing); add a guard asserting timeline.ts/page.tsx/MobileHome.tsx/faq do not pair 'halftime' with 'headlin' within one sentence."
+    },
+    {
+     "claim": "\"Where it stands today\" band — \"$30.46M · the record tour\"",
+     "onPage": "$30.46M (typed literal in the `today` array)",
+     "shouldBe": "The same value, but derived from app/data/tours.ts (the record tour's `gross`, line 68), as the two cells beside it already are (totalAwards(), numberOnes, countryCount, chartedCountryCount). The page's own comment (page.tsx:54-55) says the band \"derives live from the data … can never drift\" — this cell is the one that can. The three timeline entries that restate tour box office (timeline.ts:72 \"$30.46M and 302,801 tickets\", :74 \"$6.15M … 58,973 tickets\") are typed by design per the file header (\"restates a fact that already lives … in tours.ts\"), so they are not separately reported here.",
+     "source": "/Users/paulemmanuelng/burnaboy-website/app/timeline/page.tsx:54-61; app/data/tours.ts:66-69 (gross: \"$30.46M\", record: true); the same typed literal was flagged on /records/by-the-numbers in batch 2 (audit-batch2-raw.json pages[4].findings[2])",
+     "severity": "note",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/timeline/page.tsx line 60: `{ v: \"$30.46M\", l: \"the record tour\", href: \"/records/tours\" }` → `{ v: tours.find((t) => t.record)!.gross!, l: \"the record tour\", href: \"/records/tours\" }`, adding `import { tours } from \"../data/tours\";` at line 11. Also fold it into the OG id string on app/timeline/opengraph-image.tsx:20 if the card ever prints it (today it does not, so no change needed there)."
+    },
+    {
+     "claim": "Hero lede — \"From Port Harcourt mixtapes to the World Cup Final halftime show — sixteen years, era by era …\"",
+     "onPage": "\"sixteen years\" (typed word)",
+     "shouldBe": "A derived span or a phrasing without a count. 2010→2026 is sixteen years today and the word rots on 1 Jan 2027, when every other figure on the page (29 milestones, 234 certs, 46 No. 1s) will still be right because they are computed. The OG card avoids the problem (\"From Port Harcourt to the World Cup Final halftime show — dated and sourced\").",
+     "source": "/Users/paulemmanuelng/burnaboy-website/app/timeline/page.tsx:92; app/data/timeline.ts:29 (first entry dated 2010); the same class of typed-year-count was confirmed on /music in batch 2 (\"seven years apart\" → derived)",
+     "severity": "note",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/timeline/page.tsx line 92: replace `— sixteen years,` with `— 2010 to today,` (no count to rot), or derive: `— ${numberWord(new Date().getFullYear() - 2010)} years,` using the one…nineteen → word helper batch 2 suggested for /methodology; the site rebuilds daily so a build-time year is fresh enough."
+    },
+    {
+     "claim": "2022–2024 era — entry dated \"2023\", titled \"The I Told Them… Tour\", text \"The arena run behind the album. When Billboard Boxscore published the full tally in 2025, it stood at $30.46M and 302,801 tickets\"",
+     "onPage": "date label \"2023\"; \"The arena run behind the album\"",
+     "shouldBe": "The tour the figure belongs to ran 2023–25 (app/data/tours.ts:67 `years: \"2023–25\"`), and its $30.46M / 22-report total includes the 2024 London Stadium and 2025 Stade de France stadium nights (tours.ts:104-108; firsts.ts:150 dates the record \"2025\"). A reader who follows \"See the record →\" to /records/tours meets \"2023–25\", not 2023, and the page's own next entry (\"2024 · The biggest single show … London Stadium\") is a night of this same tour. The label under-dates a figure the text itself says was only settled in 2025.",
+     "source": "/Users/paulemmanuelng/burnaboy-website/app/data/tours.ts:66-108; app/data/firsts.ts:150; app/data/tourRevenue.ts:26 (London Stadium 2024 filed under \"I Told Them… Tour\")",
+     "severity": "note",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/timeline.ts line 72: `date: \"2023\"` → `date: \"2023–25\"` and `The arena run behind the album.` → `The arena-and-stadium run behind the album, 2023 to 2025.` (the entry can stay in the 2022–2024 era as the run's start; the jump-chip spans are era labels, not a guard). No test pins the string."
+    }
+   ]
+  },
+  {
+   "page": "/share",
+   "checked": 96,
+   "findings": [
+    {
+     "claim": "Dai Dai stat card: value \"No. 1\" with label \"“Dai Dai” — the biggest song in the world\", printed on the downloadable PNG (both ratios) beside \"NATIONAL CHART BODIES · AS OF 2026-09-17\", and as the <img alt> / X and WhatsApp share text on both layouts",
+     "onPage": "No. 1 — “Dai Dai” — the biggest song in the world (as of 2026-09-17)",
+     "shouldBe": "A closed-run wording derived from data, e.g. label \"“Dai Dai” — No. 1 in 26 countries and on both Billboard global charts\" (from daiDaiNumberOnes), or value `${weeksAtPeak(\"Dai Dai\",\"GLB\")}` + label \"weeks at No. 1 on the Billboard Global 200\" — not a present-tense 'biggest song in the world'",
+     "source": "Billboard Global 200, week of September 12, 2026 (billboard.com/charts/billboard-global-200/, read 17 Sep 2026): Dai Dai No. 3, LW 1, peak 1, 15 wks; Global Excl. US same issue: No. 2, LW 1. The repo agrees — app/data/charts.ts line 319 GLB note \"the run closed at seven - No.3 on the 12 September issue\", GLBX \"No.2 on the 12 September issue, so the run is final\" (batch 1 closed the runs in the data but never touched this typed label)",
+     "severity": "stale",
+     "fix": "app/lib/statCards.ts lines 70–71: replace value \"No. 1\" / label \"“Dai Dai” — the biggest song in the world\" with a derived, past-tense label (import weeksAtPeak from ../data/charts if the weeks form is used); the card image, alt text and share captions all read from these two fields so one edit covers desktop, mobile and the PNG"
+    },
+    {
+     "claim": "Peak-listeners card aside (desktop 'Behind this number'): \"Read from Spotify's own artist page rather than a tracker.\"",
+     "onPage": "Read from Spotify's own artist page rather than a tracker. The first African artist ever past 60 million monthly listeners.",
+     "shouldBe": "The 60.13M peak is kworb's recorded all-time high, auto-published by the stats bot (kind: peak) and set on 10 August 2026 — e.g. \"An all-time high set on {BURNA_PEAK_LISTENERS_SET_ON_LONG}, taken from kworb's log of Spotify's monthly-listener count — the first African artist past {Math.floor(parseFloat(BURNA_PEAK_LISTENERS))} million.\"",
+     "source": "scripts/watched-metrics.json 'spotify-peak-listeners': sourceName \"kworb.net — Spotify listeners\", siteTargets → app/data/africasBiggest.ts BURNA_PEAK_LISTENERS; app/data/africasBiggest.ts line 308 source line: \"Burna Boy, Tyla, Tems and Rema are kworb's recorded peaks\"; same file lines 17–36: Spotify's own page read 52,813,789 on 4 Sep 2026, 7.3M below the published peak",
+     "severity": "wrong",
+     "fix": "app/lib/statCards.ts line 110: rewrite `detail` for id \"listeners\" as above, importing BURNA_PEAK_LISTENERS_SET_ON_LONG from ../data/africasBiggest and deriving the 'past N million' threshold from BURNA_PEAK_LISTENERS instead of the typed \"60 million\""
+    },
+    {
+     "claim": "Record-tour card aside: \"Box-office gross across three continents.\"",
+     "onPage": "Box-office gross across three continents. His London Stadium night alone took $6.15M from 58,973 tickets…",
+     "shouldBe": "Box-office gross across two continents (North America and Europe) — or drop the continent count",
+     "source": "app/data/tours.ts lines 65–110 (I Told Them… Tour): all 28 listed dates are USA/Canada/Germany/Belgium/UK/France; comment line 74–77 \"22 reports: North America 16 shows … plus Europe 6\"; note line 80 \"across 22 shows in North America and Europe\"",
+     "severity": "wrong",
+     "fix": "app/lib/statCards.ts line 126: change \"across three continents\" to \"across North America and Europe\" (the wording tours.ts uses)"
+    },
+    {
+     "claim": "Biggest-concert card aside: \"58,973 tickets at London Stadium, June 2024 — the highest-grossing single concert by any African artist, and the first UK stadium headline by one.\"",
+     "onPage": "…London Stadium, June 2024 … and the first UK stadium headline by one.",
+     "shouldBe": "The June 2024 night was his second London Stadium headline; the first UK stadium headline by an African artist was London Stadium on 3 June 2023 (Love, Damini tour). Either drop the clause or say \"a year after his 2023 night there made him the first African artist to headline a UK stadium\"",
+     "source": "app/data/firsts.ts line 67 (year 2023: \"First African artist to headline & sell out a UK stadium … on the Love, Damini tour\"); app/data/tours.ts line 268 (\"3 June 2023\") and line 116; app/data/updates.ts line 998 (\"the 2023 debut that made him the first African artist to headline a UK stadium and the 2024 night that set the … record\")",
+     "severity": "wrong",
+     "fix": "app/lib/statCards.ts line 158: rewrite the second clause so 'first UK stadium headline' is attributed to June 2023, not the June 2024 record night; the dead `stats` entry \"1st UK stadium\" on line 166 carries the same conflation"
+    },
+    {
+     "claim": "Tour and concert figures typed into the share cards: \"$30.46M\", \"$6.15M\", \"58,973\" (aside text ×2 and card values), plus \"2021\" and \"60 million\"",
+     "onPage": "$30.46M / $6.15M / 58,973 tickets / 2021 / past 60 million",
+     "shouldBe": "Same values, derived: gross from tours (app/data/tours.ts `gross`), revenue+tickets from app/data/tourRevenue.ts row 26 (revenue 6147209, tickets \"58,973\"), Grammy year from awards.ts (Grammy Awards nom year 2021 won: true), listener threshold from BURNA_PEAK_LISTENERS as africasBiggest.ts already does",
+     "source": "app/lib/statCards.ts lines 110, 126–127, 133, 143, 158–159, 164; tests/tourGrossFigures.test.ts guards only the \"$N.NNM\" strings, not 58,973, 2021 or 60 million",
+     "severity": "note",
+     "fix": "app/lib/statCards.ts: import `tours` / `revenueShows` / the Grammy ceremony and format the values from them; at minimum the 58,973 ticket figure (lines 126, 158) and the \"60 million\" threshold (line 110) have no guard today"
+    },
+    {
+     "claim": "African-Giant card aside: \"7 of them are Diamond, all awarded by SNEP in France.\" — the count is derived, the 'all SNEP in France' clause is typed",
+     "onPage": "7 of them are Diamond, all awarded by SNEP in France.",
+     "shouldBe": "Same today (all 7 Diamond rows are c: \"FR\"), but the clause silently becomes false the day a Diamond lands elsewhere (e.g. RIAA)",
+     "source": "app/data/certifications.ts via tierOf: Diamond rows = Dai Dai, Last Last, On the Low, Gbona, Location, Be Honest, Jerusalema (Remix), all FR",
+     "severity": "note",
+     "fix": "app/lib/statCards.ts line 53: derive the body list from the Diamond rows' COUNTRIES[c].body (as certBodies() already does for per-release cards) instead of the literal \"all awarded by SNEP in France\""
+    },
+    {
+     "claim": "\"Verified 17 September 2026\" (desktop aside, paired with \"Source · Billboard Boxscore\" etc.; mobile footer line) and \"AS OF 2026-09-17\" printed on every card",
+     "onPage": "Verified 17 September 2026 / AS OF 2026-09-17",
+     "shouldBe": "The date is the newest /updates entry (updates[0].date, lastUpdated), not the day these eight figures were read at their bodies: the tour gross was verified 29 Dec 2025 (tours.ts), the peak listeners set 10 Aug 2026, YouTube 12 Aug 2026. Label it \"Site updated\" / \"Data as of\", or carry a per-card read date",
+     "source": "app/share/page.tsx lines 20–26; app/lib/api.ts line 18; app/lib/statCardImage.tsx lines 303–304; app/data/tours.ts line 73; app/data/africasBiggest.ts lines 36, 96",
+     "severity": "note",
+     "fix": "app/share/page.tsx line 21 + app/components/StatCardMaker.tsx line 211 + app/components/MobileStatCards.tsx line 184: rename the label to \"Site updated\" (or add a `readOn` field to StatCard and print that); app/lib/statCardImage.tsx line 304 likewise"
+    },
+    {
+     "claim": "X / WhatsApp share caption and <img alt> on both layouts: \"Burna Boy — certifications across 26 countries. RIAA · BPI · SNEP · IFPI.\" (and \"Burna Boy — highest-grossing African tour ever. Billboard Boxscore.\") — the headline value is missing from every caption",
+     "onPage": "Burna Boy — certifications across 26 countries. RIAA · BPI · SNEP · IFPI.",
+     "shouldBe": "Burna Boy — 234 certifications across 26 countries. RIAA · BPI · SNEP · IFPI. (value + label)",
+     "source": "app/share/page.tsx lines 32–39 strip `value` from the client choices; app/components/StatCardMaker.tsx line 57 and app/components/MobileStatCards.tsx line 58 build shareText from card.label only; live intent URLs on the served page confirm the number is absent",
+     "severity": "note",
+     "fix": "app/share/page.tsx line 33: include `value: c.value` in the choice; StatCardMaker.tsx line 57 / MobileStatCards.tsx line 58: `Burna Boy — ${card.value} ${card.label}. ${card.source}.`; add `value` to CardChoice (StatCardMaker.tsx line 23)"
+    },
+    {
+     "claim": "Each StatCard's `stats` array (\"302K tickets sold\", \"22 shows\", \"80K capacity\", \"Global 200: No.1\", \"Spotify Global: No.1\", \"YouTube peak 929M\", \"#1 most-followed\") is typed but rendered nowhere — statCardImage.tsx never reads card.stats",
+     "onPage": "(not shown on the page or the PNG)",
+     "shouldBe": "Either render them on the card or delete the field; as dead typed figures they rot unseen (\"Global 200: No.1\" and \"Spotify Global: No.1\" are already closed runs per charts.ts line 319)",
+     "source": "grep of app/ for `.stats` finds only analysis pages; app/lib/statCardImage.tsx lines 1–321 contain no reference to `stats`; app/lib/statCards.ts lines 27–28 still document them as printed",
+     "severity": "note",
+     "fix": "app/lib/statCards.ts lines 16–19, 27–28, 58–62, 74–78, 94–103, 115–119, 131–135, 147–151, 163–167, 179–183, 250–253, 271: remove `stats` and SignatureStat, or wire them into statCardImage.tsx and derive the values (tickets/shows from tours.ts, capacity from the London Stadium date's `cap`)"
+    },
+    {
+     "claim": "\"Post on X\" links on both layouts point at https://twitter.com/intent/tweet?…",
+     "onPage": "https://twitter.com/intent/tweet?text=…&url=https%3A%2F%2Fburnaboystats.com%2Fshare",
+     "shouldBe": "https://x.com/intent/tweet?… (one 301 hop today)",
+     "source": "curl -sIL: twitter.com/intent/tweet → 301 → x.com/intent/tweet (200)",
+     "severity": "note",
+     "fix": "app/components/StatCardMaker.tsx line 179 and app/components/MobileStatCards.tsx line 195: change the host to x.com"
+    }
+   ]
+  },
+  {
+   "page": "/search",
+   "checked": 281,
+   "findings": [
+    {
+     "claim": "Result count and filter chips for any query matching more than 60 docs — e.g. \"60 results for “Certifications”\", chip \"All 60 · Release 16\"",
+     "onPage": "Live https://burnaboystats.com/search?q=Certifications renders \"60 results\" and chips \"All 60 / Country 26 / Afrobeats 16 / Release 16 / Music 1 / Song 1\"; ?q=burna%20boy also renders \"60 results\".",
+     "shouldBe": "77 results (33 Release docs) for \"certifications\"; 80 for \"burna boy\". searchDocs(q, LIMIT) is capped at LIMIT = 60 (SearchResults.tsx line 34, justified by the comment \"the index is under 50 docs\" — it is 100 curated + 227 generated = 327), and the counts/chips are computed from the capped set. The 17 docs cut on \"certifications\" are exactly the certified-release records the generated index exists for: Last Last, Location, Love, Damini, Loved by You, My Oasis, On the Low, Own It, Real Life, Simmer, Sittin' on Top of the World, Sungba (Remix), Talibans II, Tested, Approved & Trusted, Toni-Ann Singh, We Pray, WGFT, Ye. On \"burna boy\" the 20 cut include FAQ, Live Charts, Chart Analysis, About the Curator, The Afrobeats Board and all 15 car pages.",
+     "source": "app/components/SearchResults.tsx lines 33-34, 47, 51-58, 159; app/lib/searchIndex.ts searchDocs(); searchIndex.generated.ts (227 docs); ran searchDocs(\"certifications\", 1000) → 77 and searchDocs(\"burna boy\", 1000) → 80 under vitest on main 79d07b44; live page curl 17 Sep 2026.",
+     "severity": "broken",
+     "fix": "app/components/SearchResults.tsx line 34: raise LIMIT to cover the whole index (e.g. `const LIMIT = 400;` or `searchIndex.length + generatedDocs.length`) and fix the line-33 comment (\"under 50 docs\" → \"100 curated + 227 generated docs\"); or keep the cap but compute `base`/`counts` from searchDocs(q, Infinity) and slice only the rendered list, and print \"Showing 60 of 77 results\". Add a test in tests/search.test.ts asserting searchDocs(\"certifications\", LIMIT).length === searchDocs(\"certifications\", 1000).length so the cap can never silently hide records again."
+    },
+    {
+     "claim": "Empty-state copy: \"Try a country, a song title, an award body, or a year.\"",
+     "onPage": "Queries \"2017\", \"2021\" (the Grammy-win year) and \"2024\" return \"Nothing matches\" on the live page (curl /search?q=2024 → \"Nothing matches “2024”\"); the other 13 career years 2011–2026 return 1–3 docs only because a year happens to sit in an album/song keyword list.",
+     "shouldBe": "Either every career year resolves to something (timeline, awards-by-year, updates), or the copy stops promising a year. No doc carries 2017, 2021 or 2024 as a keyword or in its description.",
+     "source": "app/components/SearchResults.tsx line 170; ran searchDocs(y, 1000) for y in 2011..2026 under vitest: 2017 → 0, 2021 → 0, 2024 → 0; live page 17 Sep 2026.",
+     "severity": "broken",
+     "fix": "Either (a) app/lib/searchIndex.ts: give the Career Timeline doc (line ~62) and the Awards & Nominations doc keywords for every year 2011–2026 (or have scripts/build-search-index.mjs generate a per-year doc pointing at /timeline#<year> from app/data/timeline.ts), or (b) app/components/SearchResults.tsx line 170: drop \"or a year\" from the sentence. Add the three failing years to tests/search.test.ts as a negative control."
+    },
+    {
+     "claim": "Search-index descriptions for the CKay, Olamide, Black Sherif and BNXN live boards: \"Where <artist> is charting right now across Spotify, Apple Music, Deezer and YouTube.\"",
+     "onPage": "Four rows on the live page (and in the ⌘K palette) name Spotify, Apple Music, Deezer and YouTube only.",
+     "shouldBe": "The boards those rows link to carry iTunes and Shazam placements and, for two of them, no Deezer row at all — today's snapshot (liveChartsUpdated 2026-09-17): Olamide 13 Apple Music, 5 iTunes, 3 Shazam, 3 Spotify Albums, 1 Spotify, 1 YouTube, 0 Deezer; Black Sherif 30 Apple Music, 10 iTunes, 6 Shazam, 2 Spotify Albums, 1 Spotify, 2 YouTube, 0 Deezer; BNXN 23 Apple Music, 6 iTunes, 2 Shazam, 11 Spotify, 3 Spotify Albums, 2 YouTube, 1 Deezer; CKay 5 Apple Music, 1 iTunes, 2 Spotify, 1 Spotify Albums, 3 Deezer, 1 YouTube. The other eleven board live docs use the shared template \"…on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — ${LIVE_CADENCE}\".",
+     "source": "app/lib/searchIndex.ts lines 642, 663, 684, 705 vs app/data/liveCharts.{ckay,olamide,black-sherif,bnxn}.ts (platform counts grepped on main 79d07b44, liveChartsUpdated = \"2026-09-17\"); template at lines 548-590.",
+     "severity": "wrong",
+     "fix": "app/lib/searchIndex.ts lines 642, 663, 684, 705: replace each description with the shared template, e.g. `Where every CKay release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — ${LIVE_CADENCE}.` (and the same for Olamide, Black Sherif, BNXN). Optionally retitle lines 639/660/681/702 from \"— Live Platform Charts\" to \"— Live Charts\" to match the other eleven. Add to tests/searchIndex.test.ts: every doc whose path ends in /live must contain LIVE_CADENCE and the six platform names."
+    },
+    {
+     "claim": "\"burna boy vs davido\" (and any compare pair outside the nine featured ones) returns nothing, though the page exists",
+     "onPage": "Live /search?q=burna%20boy%20vs%20davido renders \"Nothing matches “burna boy vs davido”\"; \"wizkid vs davido\" and \"burna boy vs rema\" also return nothing. /compare/burna-boy-vs-davido serves 200 and is in the sitemap.",
+     "shouldBe": "The sitemap lists 235 URLs; the search index (100 curated + 227 generated) covers 124 paths. All 111 uncovered URLs are /compare/<a>-vs-<b> pair pages — only the nine featuredPairs get a generated doc, so 111 of the site's 120 head-to-head pages cannot be reached from the site's own search, including all 12 non-featured Burna Boy pairs.",
+     "source": "app/lib/buildSearchDocs.ts lines 155-162 (featuredPairs only); app/lib/searchIndex.generated.ts Compare section (9 docs); https://burnaboystats.com/sitemap.xml read 17 Sep 2026 (235 locs) diffed against the index paths; searchDocs(\"burna boy vs davido\") → [] under vitest.",
+     "severity": "note",
+     "fix": "app/lib/buildSearchDocs.ts line ~155: generate a Compare doc for every pair the /compare/[pair] route builds (iterate the same pair list app/compare/[pair]/page.tsx uses for generateStaticParams, not featuredPairs), then `node scripts/build-search-index.mjs`. Also give the /compare hub doc (searchIndex.ts line ~236) keywords for each board artist's name so \"<artist> vs\" lands on the hub when no pair doc exists. Add the query \"burna boy vs davido\" to tests/search.test.ts."
+    },
+    {
+     "claim": "\"All 100 pages\" — the empty-query results label",
+     "onPage": "\"All 100 pages · Start typing to narrow\", listing the 100 curated docs.",
+     "shouldBe": "100 is the curated index length, not the site's page count: the sitemap carries 235 URLs and even the search index itself knows 124 distinct paths (the 15 car pages and 9 compare pairs are only reachable by typing). \"All … pages\" reads as a complete inventory; it is the browsable subset.",
+     "source": "app/components/SearchResults.tsx line 157 (`All ${results.length} pages`, results = searchIndex when q is empty); sitemap.xml 235 locs read 17 Sep 2026; generatedDocs 227 (15 Car, 9 Compare, 67 Country, 47 Awards, 89 Release).",
+     "severity": "note",
+     "fix": "app/components/SearchResults.tsx line 157: change the label to `${results.length} pages to browse` or `Browse ${results.length} pages` (or list the generated Car and Compare docs in the empty state too, since they are pages, and keep \"All\"). No data change."
+    },
+    {
+     "claim": "Search-index description for /live-charts: \"…charting right now on Spotify, Apple Music, iTunes, Deezer and Shazam.\"",
+     "onPage": "Row \"Live Charts · 43 live\" names five platforms; YouTube is missing, while all fifteen board live docs name it.",
+     "shouldBe": "Add YouTube — livePlatforms in app/data/liveCharts.ts is [\"Apple Music\",\"Deezer\",\"Shazam\",\"Spotify\",\"Spotify Albums\",\"YouTube\",\"iTunes\"] and the page carries a YouTube block today. Batch 2 raised this as a note (audit-batch2-raw.json, \"Search-index description for /live-charts\"); notes were not applied, so it is still live.",
+     "source": "app/lib/searchIndex.ts line 365; app/data/liveCharts.ts line 46 (livePlatforms) and platform rows on main 79d07b44; docs/audits/freshness-2026-09/audit-batch2-raw.json.",
+     "severity": "note",
+     "fix": "app/lib/searchIndex.ts line 365: `Where every Burna Boy release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — ${LIVE_CADENCE}.` so the Burna row matches the board rows and carries the cadence."
+    },
+    {
+     "claim": "Search-index description for /analysis: \"four data-led findings\" beside the derived stat \"4 findings\"",
+     "onPage": "Row \"Chart Analysis — …four data-led findings · 4 findings\": the word is typed, the number on the right is derived from findings.length.",
+     "shouldBe": "Derived, or unnumbered. The same typed \"four\" was flagged on the /analysis page itself in batch 2 (meta, JSON-LD, OG); the search doc is another copy. searchIndex.ts cannot import data by design, so either drop the count from the description or guard it in tests/searchIndex.test.ts against findings.length the way the Afrobeats counts are guarded.",
+     "source": "app/lib/searchIndex.ts line 372; app/lib/searchStats.ts line 46 (`${findings.length} findings`); app/lib/analysisFindings.ts (4 findings); docs/audits/freshness-2026-09/audit-batch2-raw.json.",
+     "severity": "note",
+     "fix": "app/lib/searchIndex.ts line 372: `What Burna Boy's chart and certification record actually shows — the data-led findings.` (the derived \"4 findings\" already prints on the row); or add a test in tests/searchIndex.test.ts that reads the description's number word and compares it with findings.length."
+    },
+    {
+     "claim": "Search-index description for /afrobeats: \"Wizkid, Davido, Rema, Tems, Tyla and Ayra Starr counted by the same rules as Burna Boy\"",
+     "onPage": "Row \"The Afrobeats Board\" names six artists.",
+     "shouldBe": "The board is fifteen artists (afrobeatsArtists.length = 15, all swept); the six named are the August launch six. The description was written before Asake, Omah Lay, Seyi Vibez, CKay, Olamide, Black Sherif, BNXN, Victony and Fireboy DML joined. Not wrong, but a reader searching \"asake\" sees a board row that does not mention him.",
+     "source": "app/lib/searchIndex.ts line 432; app/data/afrobeats.ts afrobeatsArtists (15 on main 79d07b44); app/afrobeats/page.tsx line 29 comment already notes ten names no longer fit its own meta description.",
+     "severity": "note",
+     "fix": "app/lib/searchIndex.ts line 432: `Fifteen Afrobeats artists — Wizkid, Davido, Rema, Tems, Tyla, Ayra Starr and nine more — counted by the same rules as Burna Boy, every plaque read at source.` and guard the count word against afrobeatsArtists.length in tests/searchIndex.test.ts."
+    },
+    {
+     "claim": "searchStats key \"/records/charts#territories\" → \"69 territories\"",
+     "onPage": "Never rendered: no curated or generated doc has path \"/records/charts#territories\", so the derived figure is dead code in the stat map (the Chart Records row shows \"276 entries\").",
+     "shouldBe": "Either a doc that carries it (a \"Chart territories\" doc pointing at /records/charts#territories) or delete the entry so the map only holds figures that print.",
+     "source": "app/lib/searchStats.ts line 53; searchIndex + generatedDocs paths (124 distinct, none with the fragment) dumped under vitest on main 79d07b44.",
+     "severity": "note",
+     "fix": "app/lib/searchStats.ts line 53: remove the entry, or add `{ title: \"Chart territories\", path: \"/records/charts#territories\", section: \"Records\", description: \"Every country and Billboard global line Burna Boy has charted in.\", keywords: [\"territories\", \"countries charted\", \"how many countries\"] }` to app/lib/searchIndex.ts after the Chart Records doc (line ~256). Add a test asserting every searchStats key has a doc."
+    }
+   ]
+  },
+  {
+   "page": "/contact",
+   "checked": 46,
+   "findings": [
+    {
+     "claim": "Keep exploring card: \"The Music — 8 albums, EPs & every hit\" (rendered on /contact via the DEFAULT_EXPLORE fallback)",
+     "onPage": "\"8 albums\" is a typed string literal in the shared KeepExploring sectionLinks; it agrees with albums.length (8) today.",
+     "shouldBe": "Derived from albums.length, as the sibling card on the same block already derives `${totalAwards()} awards across ${countryCount} countries` (234 / 26 — recomputed from app/data/certifications, matches the live page). Already reported as a note in batches 1 and 2 and still unfixed on main (79d07b44); listed here because it is live on this page.",
+     "source": "npx tsx over app/data/albums.ts = 8 albums; live HTML of https://burnaboystats.com/contact carries \"8 albums, EPs & every hit\"; docs/audits/freshness-2026-09/audit-batch1-raw.json and audit-batch2-raw.json (same finding, note)",
+     "severity": "note",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/components/KeepExploring.tsx line 13: import { albums } from \"../data/albums\" and set desc: `${albums.length} albums, EPs & every hit`."
+    },
+    {
+     "claim": "Official channel \"X / Twitter — @burnaboy\" links to https://twitter.com/burnaboy; \"Official Site — onaspaceship.com\" links to https://www.onaspaceship.com",
+     "onPage": "Both resolve, each through one redirect hop: twitter.com/burnaboy lands on x.com/burnaboy (in-app browser, 17 Sep 2026); www.onaspaceship.com lands on https://onaspaceship.com (\"Burna Boy | Official Website\"; the www host answers 403 to curl but the browser is redirected to the apex). Neither is broken.",
+     "shouldBe": "Link the final URLs directly: https://x.com/burnaboy (the site's own Organization sameAs at app/layout.tsx and the tours.ts source comments already use x.com) and https://onaspaceship.com. The same twitter.com URL is also typed in app/layout.tsx line 186 and app/about/page.tsx line 59.",
+     "source": "In-app browser navigation to https://twitter.com/burnaboy (final tab URL https://x.com/burnaboy) and to https://www.onaspaceship.com (final URL https://onaspaceship.com); curl -sIL on www.onaspaceship.com returns HTTP 403 with no Location (bot wall), the browser confirms the page loads.",
+     "severity": "note",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/contact/page.tsx line 17: href \"https://onaspaceship.com\"; line 19: href \"https://x.com/burnaboy\". Optionally the same swap at app/layout.tsx line 186 and app/about/page.tsx line 59 so all three copies agree."
+    },
+    {
+     "claim": "The four official channel URLs (Instagram, X, official site, Ticketmaster) are typed on the contact page",
+     "onPage": "app/contact/page.tsx lines 17–20 carry a private `channels` array; the Instagram and X URLs are typed again in app/layout.tsx lines 185–186 (MusicGroup sameAs) and app/about/page.tsx lines 58–59, and the Ticketmaster artist URL again in app/records/tours/page.tsx line 117 and app/components/MobileTours.tsx line 195. All copies currently agree.",
+     "shouldBe": "One exported constant (e.g. app/lib/links.ts or app/data/official.ts) that the contact page, the layout JSON-LD, /about and the tours pages all import, so a handle change (as happened with twitter→x) is made once. Verified today at the bodies: Instagram @burnaboygram is Burna Boy's account (18.2M followers, in-app browser), onaspaceship.com titles \"Burna Boy | Official Website\", Ticketmaster artist 2486272 is \"Burna Boy Tickets\".",
+     "source": "grep over app/ for burnaboygram / twitter.com/burnaboy / ticketmaster.com/burna-boy; in-app browser reads of instagram.com/burnaboygram, onaspaceship.com and ticketmaster.com/burna-boy-tickets/artist/2486272 on 17 Sep 2026",
+     "severity": "note",
+     "fix": "Add `export const officialChannels` to /Users/paulemmanuelng/burnaboy-website/app/lib/links.ts and replace the literals at app/contact/page.tsx lines 16–21, app/layout.tsx lines 185–186, app/about/page.tsx lines 58–59, app/records/tours/page.tsx line 117 and app/components/MobileTours.tsx line 195 with imports from it."
+    },
+    {
+     "claim": "Official channel \"Tickets — Ticketmaster ↗\" (both layouts)",
+     "onPage": "Links to Ticketmaster's Burna Boy artist page, which today reads \"CONCERTS 0 RESULTS — No Upcoming Concerts\". The link is the correct official outlet and resolves (HTTP 200), so the label is not wrong, but a reader following \"Tickets\" finds nothing to buy. Batch 1 raised the same body reading for /records/tours' \"Upcoming dates & tickets\" kicker; /contact was not in that batch.",
+     "shouldBe": "Either keep as-is (it is his official ticket outlet) or soften the label to \"Tickets (Ticketmaster)\" / \"Tour tickets\" and let the tours page carry the upcoming-dates gate. No figure on the page depends on it.",
+     "source": "https://www.ticketmaster.com/burna-boy-tickets/artist/2486272 read in the in-app browser 17 Sep 2026: \"No Upcoming Concerts — We're sorry, but we couldn't find any upcoming concerts for Burna Boy.\"",
+     "severity": "note",
+     "fix": "No change required; if wanted, /Users/paulemmanuelng/burnaboy-website/app/contact/page.tsx line 20: label \"Tour tickets\"."
+    }
+   ]
+  },
+  {
+   "page": "/records/visualized",
+   "checked": 48,
+   "findings": [
+    {
+     "claim": "\"Where he has performed\" caption: \"Africa and Europe carry the most stages, but only the Caribbean run is newer than the World Cup.\"",
+     "onPage": "Desktop caption under the regions chart (mobile note does not carry the sentence).",
+     "shouldBe": "The Caribbean rows in performedCountries.ts are dated 2020–2024 (Haiti 2020; Jamaica, Curaçao, Barbados, Dominica, Trinidad & Tobago, Antigua 2022; St Kitts 2023; Bahamas Feb 2024, Saint Lucia May 2024) — none is newer than the 2026 World Cup. Europe IS: Spain's row carries \"O Beach, Ibiza (2026)\", which tours.ts line 322 and updates.ts line 717 date to 14 August 2026, after the 19 July 2026 World Cup final; Afro Nation Portimão (3 July 2026, tours.ts line 300) also post-dates the 11 June opening ceremony. The clause is false on both ends.",
+     "source": "/Users/paulemmanuelng/burnaboy-website/app/data/performedCountries.ts lines 84, 91–101 (Caribbean block, event years) and the Spain/Portugal rows; /Users/paulemmanuelng/burnaboy-website/app/data/tours.ts lines 300, 322; app/components/DaiDaiStory.tsx line 81 (World Cup Final halftime).",
+     "severity": "wrong",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/records/visualized/page.tsx line 597–598: delete \", but only the Caribbean run is newer than the World Cup\" so the caption reads \"— Africa and Europe carry the most stages.\" (or derive a true recency line from the data, e.g. the newest event year per region; performedCountries events are strings with years only, so a typed date claim here cannot be guarded)."
+    },
+    {
+     "claim": "Cert-pace bars (2023 · 44, 2024 · 21) and the \"Certifications by tier\" total both draw on Gbona's Swiss award, but the dated log and the release row disagree on its tier.",
+     "onPage": "The release row (certifications.ts line 247) holds Gbona CH Platinum and the tier donut counts it as Platinum; certHistory holds only { title: \"Gbona\", country: \"CH\", level: \"Gold\", year: 2023 } (line 743) — no Platinum step anywhere in the log, so the pace chart never counts the Swiss Platinum. A reconcile of the 234 snapshot certs against the log finds this as the only tier mismatch (script: snapshot top tier vs log top tier per title+country).",
+     "shouldBe": "The Swiss register lists Gbona on BOTH its 2023 and 2024 Edelmetall pages, printed \"Edelmetall: Platin\" (award_platin_1.svg) each time — there is no Gold-only row; \"On The Low\" likewise appears on both the 2023 and 2024 pages as Platin while the log holds a single 2023 Platinum row. The log needs the Platinum step for Gbona (and a second CH event for On the Low), or line 743's tier corrected — either way the 2023/2024 bars move.",
+     "source": "https://www.swisscharts.com/edelmetall/2023 and https://www.swisscharts.com/edelmetall/2024 (the Hung Medien mirror of hitparade.ch, which the site's own sweeps accept — docs/sweeps/RESUME-2026-09-06.md line 863; hitparade.ch itself returns 403), read 17 Sep 2026: 2023 page → Burna Boy | Gbona | Single | Jahr 2023 | Warner | Platin; 2024 page → Burna Boy | Gbona | Single | Jahr 2024 | Warner | Platin; On The Low Platin on both pages; also 2023: Last Last Platin, Ye Platin, For My Hand Gold, Location Doppel-Platin, Ginger Gold; 2024: African Giant (Album) Gold, Anybody Gold.",
+     "severity": "wrong",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/certifications.ts: after line 743 add `{ title: \"Gbona\", country: \"CH\", level: \"Platinum\", year: 2024 },` (the register's 2024 listing), keeping the 2023 Gold row if the verifier reads the 2023 page's Platin as current-tier display; otherwise change line 743 to level \"Platinum\". Consider the same for On the Low (line 672 → add a 2024 CH row). Then bump tests/certs.test.ts line 123 (2024: 21 → 22) and the pins in tests/handoffTotals.test.ts if they cover intlCertsInYear, and log the entry in app/data/updates.ts."
+    },
+    {
+     "claim": "\"The pace of the plaques\" — aria \"Burna Boy international certifications awarded in each year\"; bars 2020 · 4, 2022 · 7, 2023 · 44, 2024 · 21, 2025 · 29, 2026 · 58; caption/mobile note \"2026 is already his biggest year — 58 certifications with the year still running\".",
+     "onPage": "Both layouts. The chart has no 2021 bar at all and starts at 2020.",
+     "shouldBe": "The chart is built from intlCertHistory, a hand-kept log of 163 events, while the release rows hold 171 international plaques — 39 of them (e.g. Be Honest FR Diamond, Jerusalema (Remix) FR Diamond/IT/BE/DE/PT Platinum/AT Gold, Ye CA/NZ Platinum, Own It NZ/DK Platinum, For My Hand SE/DK Platinum, Location CA Platinum, Last Last SE Platinum, African Giant CA/NL Gold…) have no dated event, so their years are simply absent from the bars; 2021 is missing entirely although the bodies date awards to it, and batch 1 (audit-batch1-raw.json, /certifications, severity note, not applied) already listed the register dates that would put ~18 more events in 2022 and ~5 in 2024. The page's own principle for the wins chart (\"a gap in a time series is a lie about the shape\") is violated here, and \"biggest year\" compares 2026 against undercounted years (it still holds on the batch-1 numbers, but the bars are wrong). This page re-states the batch-1 note as a record claim, so it is worth fixing at the caption if the backfill is not done.",
+     "source": "Reconcile script over /Users/paulemmanuelng/burnaboy-website/app/data/certifications.ts (release rows vs certHistory, 17 Sep 2026): snapshot intl 171, log intl 163, 39 intl snapshot certs with no log event, 0 orphan events; docs/audits/freshness-2026-09/audit-batch1-raw.json (the /certifications 'Year rail 2022 · 4 / 2020 · 4' note with Music Canada, RMNZ, SNEP, BPI, NVPI dates).",
+     "severity": "note",
+     "fix": "Either backfill certHistory from the batch-1 register dates (certifications.ts lines 550–849) so every release-row plaque has a year, or at /Users/paulemmanuelng/burnaboy-website/app/records/visualized/page.tsx lines 118–132 fill every year between the first and last (as winsSeries does, lines 148–157) and change the aria at line 505 and the captions at lines 417–419 / 519–528 to say the log is complete from 2023 and partial before it (e.g. \"as logged since 2020 — the log is complete from 2023\")."
+    },
+    {
+     "claim": "\"Across every awards ceremony, 82 of 242 career nominations converted to wins — a 34% strike rate\" / donut Won 82 · Nominated 160.",
+     "onPage": "Both layouts (desktop caption line 776–779; mobile donut centre \"34%\").",
+     "shouldBe": "8 of the 242 nominations are for ceremonies that have not been held (pendingResults: Caribbean Music Awards 19 Sep · 1, MTV VMAs 27 Sep · 2, NRJ 23 Oct · 1, The Headies 25 Oct · 4). They carry won:false and so sit in the \"Nominated\" (not-won) segment, i.e. undecided nominations are counted as failed conversions. On decided nominations the rate is 82 of 234 = 35.0%. The number will also swing over the next five weeks as each ceremony resolves.",
+     "source": "/Users/paulemmanuelng/burnaboy-website/app/data/awards.ts lines 142–152 (pendingResults) cross-joined with ceremonies noms (year match, won:false) — computed 17 Sep 2026.",
+     "severity": "note",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/records/visualized/page.tsx lines 282–287: import pendingResults and exclude nominations whose (ceremony, year) is pending from totalNoms before computing winRate, or add a third donut segment \"Pending\" (8) and word the caption \"82 of 234 decided nominations … 35%\"; keep the raw 242 elsewhere if the awards page prints it."
+    },
+    {
+     "claim": "Mobile \"Where he is charting right now\" note: \"590 placements on today's board — country charts only, refreshed several times a day.\"",
+     "onPage": "Mobile note (page.tsx line 424) prints no sweep date; the desktop caption (line 576) prints \"Last swept 2026-09-17\".",
+     "shouldBe": "Both layouts should carry the same dated stamp — \"today's board\" on a phone has no date to anchor it once the sweep lags.",
+     "source": "/Users/paulemmanuelng/burnaboy-website/app/records/visualized/page.tsx lines 424 vs 574–576; liveChartsUpdated in app/data/liveCharts.ts.",
+     "severity": "note",
+     "fix": "page.tsx line 424: append ` Last swept ${liveChartsUpdated}.` to the mobile note (liveChartsUpdated is already imported at line 34)."
+    },
+    {
+     "claim": "\"Spotify · monthly listeners · daily\" eyebrow and aria \"Burna Boy's Spotify monthly listeners, daily, from 1 July 2026 to 10 August 2026\"; caption \"every reading logged as it happened\".",
+     "onPage": "Desktop eyebrow (line 483), aria on both layouts (line 112), code comment line 85 \"The only daily series\".",
+     "shouldBe": "The series holds 26 readings across 41 days (gaps 2 Jul, 4 Jul, 6–10 Jul, 12–13 Jul, 15 Jul, 19–20 Jul, 27–28 Jul, 7 Aug). It is a dated, irregular log, not a daily series. (The peak itself stands: Spotify's own artist page read 17 Sep 2026 shows 49,058,318 monthly listeners, below the 60,131,126 peak of 10 Aug, so the series' end is correct.)",
+     "source": "/Users/paulemmanuelng/burnaboy-website/app/data/trends.ts lines 10–37; open.spotify.com/artist/3wcj11K77LjEY1PkEazffa read in-browser 17 Sep 2026.",
+     "severity": "note",
+     "fix": "page.tsx line 483: \"Spotify · monthly listeners · dated readings\" (or \"· logged\"); line 112: drop \", daily\" from listenerAria; optionally print the reading count (`${monthlyListenersSeries.length} readings`) in the caption at lines 493–500."
+    },
+    {
+     "claim": "Typed copies of figures the page derives elsewhere: \"his 1.986B set the record…\" (mobile) and \"his 1.986 billion Spotify streams in 2025 … just ahead of Wizkid, Tyla, Rema and Tems\" (desktop); \"London Stadium turned ~59,000 tickets into $6.15M\"; \"Nigeria (TurnTable), the UK (BPI) and Canada (Music Canada) lead the tally\"; \"2019 was the peak … — the African Giant year\".",
+     "onPage": "page.tsx lines 434, 736–739, 643, 656–657, 554. All match the data today (statBoxes 2025 row 1.986B/1.947B/1.798B/1.267B/1.195B; London Stadium tickets \"58,973\", revenue 6,147,209; certsByCountry top 3 = NG 63, UK 30, CA 22; bestWinYear 2019).",
+     "shouldBe": "Derived from the same arrays the bars use, so a data edit cannot leave the prose behind (France at 19 is three plaques from overtaking Canada at 22; the 2025 row is edited whenever the board is re-read).",
+     "source": "/Users/paulemmanuelng/burnaboy-website/app/data/africasBiggest.ts (statBoxes most-streamed-african-artist, 2025 row); app/data/tourRevenue.ts London Stadium row; certsByCountry computed at page.tsx lines 69–83.",
+     "severity": "note",
+     "fix": "page.tsx line 434/736: print `${africanStreams[0].displayValue}` and `${africanStreams.slice(1).map(b => b.name).join(', ')}`; line 643: derive from revenueShows[0] (tickets, revenue/1e6); line 656: print `certsByCountry.slice(0,3)` names/bodies; line 554: guard \"the African Giant year\" with `bestWinYear === 2019 ? ' — the African Giant year' : ''`."
+    },
+    {
+     "claim": "\"Most-streamed African artist, 2025\" — the chart selects `r.label === \"2025\"`.",
+     "onPage": "page.tsx line 270 hardcodes the row; statBoxes now also carries a 2026 row (inProgress, asOf 2026-09-16: Burna 1.811B, Wizkid 1.808B, Tems 1.808B, Asake 1.460B, Tyla 1.209B).",
+     "shouldBe": "The chart should pick the most recent CLOSED year from the data (first row without inProgress) so it advances when 2026 closes, and the section heading/caption should take the year from that row instead of the typed \"2025\" (lines 431, 731, 735–739).",
+     "source": "/Users/paulemmanuelng/burnaboy-website/app/data/africasBiggest.ts statBoxes 'most-streamed-african-artist' rows (2026 inProgress, 2025).",
+     "severity": "note",
+     "fix": "page.tsx line 270: `?.rows?.find((r) => !r.inProgress)`; expose its label as `streamYear` and use it in the h2/notes at lines 431, 731 and the JSON-LD keywords; keep \"set the record\" wording only while the 2025 row's note still says so."
+    },
+    {
+     "claim": "\"Most-decorated stages — the top 10 award bodies by number of trophies\" (desktop, 10 bars) and \"top 6 bodies\" (mobile, 6 bars).",
+     "onPage": "Desktop shows MOBO, NEA, Ghana Music Awards, IRAWMA, AEA USA at 3 and omits Metro FM Music Awards (also 3); mobile shows MOBO (3) and omits the other four bodies on 3.",
+     "shouldBe": "Eleven bodies have ≥3 wins; a cut at 10 (or 6) inside a five-way tie is arbitrary and depends on the order ceremonies are listed in awards.ts, so \"the top 10 by number of trophies\" is not a well-defined list.",
+     "source": "/Users/paulemmanuelng/burnaboy-website/app/data/awards.ts ceremonies, wins per body computed 17 Sep 2026: Headies 10, Soundcity 8, AFRIMMA 8, AFRIMA 7, BET 4, then MOBO/NEA/GMA/IRAWMA/AEA USA/Metro FM all 3.",
+     "severity": "note",
+     "fix": "page.tsx lines 188–194: cut at a win threshold instead of a count (e.g. every body with ≥3 wins, so 11 bars) and word the caption at line 750 \"every body that has given him three or more\"; mobile line 413: same rule or \"bodies with 4+ wins\" (5 bars) so no tie is split."
+    },
+    {
+     "claim": "PeakMap legend ticks \"No. 1 · Top 10 · Top 40 · 40+\" (both layouts) beside a donut whose last band is \"41+\".",
+     "onPage": "Two adjacent charts on the same page label the same boundary differently; \"Top 40\" and \"40+\" overlap at 40.",
+     "shouldBe": "\"41+\" (the page's own comment at lines 235–237 fixed the donut's label for exactly this reason).",
+     "source": "/Users/paulemmanuelng/burnaboy-website/app/components/PeakMap.tsx lines 148–151; page.tsx lines 235–246.",
+     "severity": "note",
+     "fix": "PeakMap.tsx line 151: `<span>41+</span>`."
+    },
+    {
+     "claim": "OG/share card sub-line: \"234 certifications · 82 award wins · the biggest tour in African history — charted\".",
+     "onPage": "Share image (opengraph-image.tsx line 11); the page charts single-show grosses and tickets vs revenue, not a tour total, and the $30.46M tour figure appears nowhere on the page.",
+     "shouldBe": "Sub-line should name what the page actually charts (e.g. \"· the biggest single-show grosses — charted\") — the tour superlative is a /records/tours claim.",
+     "source": "/Users/paulemmanuelng/burnaboy-website/app/records/visualized/opengraph-image.tsx line 11; page sections at page.tsx lines 604–648.",
+     "severity": "note",
+     "fix": "opengraph-image.tsx line 11: replace \"the biggest tour in African history\" with \"the biggest single-show grosses\" (OG_ART bump per the OG-lockup rule is not needed — the card versions itself on its contents)."
+    },
+    {
+     "claim": "Dataset JSON-LD: description \"Charted views of Burna Boy's career: biggest single-show grosses, certifications by country, and award wins by body\"; variableMeasured lists 6 variables.",
+     "onPage": "The page renders 14 charts (nav badge \"14 charts\"); the JSON-LD names neither the listeners series, certifications by year, wins by year, live placements, countries by region, tiers nor the peak map.",
+     "shouldBe": "variableMeasured/description should cover the page's charts — derive the list from JUMP labels or list all 14 measured variables.",
+     "source": "/Users/paulemmanuelng/burnaboy-website/app/records/visualized/page.tsx lines 306–313; app/lib/visualizedSections.ts.",
+     "severity": "note",
+     "fix": "page.tsx line 312: extend variableMeasured with \"Spotify monthly listeners (daily log)\", \"International certifications per year\", \"Award wins per year\", \"Live platform-chart placements\", \"Countries performed in per region\", \"Certifications per tier\", \"Best chart peak per country\"; line 309: widen the description accordingly."
+    }
+   ]
+  },
+  {
+   "page": "/curator",
+   "checked": 30,
+   "findings": [
+    {
+     "claim": "\"How I work\": \"a streaming figure from the platform's own screen\"",
+     "onPage": "Nothing goes up unverified. … a chart peak when the chart's owner publishes it, a streaming figure from the platform's own screen.",
+     "shouldBe": "The site's headline streaming figure is not read from Spotify's own screen: the 11.01B career total (LiveBand.tsx:48, MobileMusic.tsx:44, by-the-numbers:118, /press) is kworb's raw per-track sum plus a pipeline offset anchored on ChartMasters' Playcounts Tool (app/data/streamingTotals.ts lines 9–44: \"read from kworb's…\", \"RE-ANCHORED 17 Sep 2026 on a DIRECT read of ChartMasters\", offset 115,177,863), and /live-charts and the board /live pages say positions come \"via kworb\" (app/live-charts/page.tsx:239, app/afrobeats/[artist]/live/page.tsx:304). Only monthly listeners / followers / per-track counts are read at Spotify's own pages. The sentence should say what the site actually does.",
+     "source": "/Users/paulemmanuelng/burnaboy-website/app/data/streamingTotals.ts lines 9–44 (kworb + ChartMasters offset); app/live-charts/page.tsx:239 (\"via kworb\"); app/music/listeners/page.tsx:168 (city counts \"as published by ChartMasters\"); contrast app/curator/page.tsx:62",
+     "severity": "wrong",
+     "fix": "app/curator/page.tsx line 62: replace \"a streaming figure from the platform's own screen\" with \"a streaming figure from the platform's own screen where it publishes one — and, where it doesn't (career totals, live positions), from a method the methodology page names and dates\". The methodology page's own \"not pulled from a scraper\" line (app/methodology/page.tsx:65) contradicts the same files and should be reworded in the same PR."
+    },
+    {
+     "claim": "\"Why this site exists\": \"Burna Boy is the most decorated artist Africa has ever produced\"",
+     "onPage": "Burna Boy is the most decorated artist Africa has ever produced",
+     "shouldBe": "No body publishes a \"most decorated African artist\" ranking and the site's own data does not support the awards reading of \"decorated\": the page's own JSON-LD credits Burna one Grammy (Best Global Music Album, 2021) while Angélique Kidjo and Ladysmith Black Mambazo each hold five. The claim the site CAN evidence is the one the FAQ already makes — \"the most-certified African artist in history (234 certifications across 26 countries)\" — from the 15-artist Afrobeats Board sweep.",
+     "source": "/Users/paulemmanuelng/burnaboy-website/app/faq/page.tsx:144 (site's own evidenced wording, derived from totalAwards()/countryCount); app/data/certifications.ts:838–839; the Afrobeats Board data under app/data (Burna 234 leads every swept artist); no external body publishes a decorated-artist ranking",
+     "severity": "note",
+     "fix": "app/curator/page.tsx line 58: change \"the most decorated artist Africa has ever produced\" to \"the most-certified artist Africa has ever produced\" (or \"one of the most decorated…\"), so the sentence is the same claim the FAQ makes and the figures that follow in the same sentence prove it."
+    },
+    {
+     "claim": "Keep exploring tile: \"The Music — 8 albums, EPs & every hit\"",
+     "onPage": "8 albums, EPs & every hit (typed literal, rendered on /curator via KeepExploring)",
+     "shouldBe": "Same value today (albums.length = 8: L.I.F.E … No Sign of Weakness) but typed while the sibling certifications tile on the same component is derived. Already reported in batches 1 and 2 (three raw findings, all notes) and still unapplied: KeepExploring.tsx line 13 is unchanged on main at 79d07b44.",
+     "source": "/Users/paulemmanuelng/burnaboy-website/app/components/KeepExploring.tsx:13 vs :17; app/data/albums.ts:23 (8 entries, probed via a throwaway vitest, removed); docs/audits/freshness-2026-09/audit-batch1-raw.json and audit-batch2-raw.json (prior findings)",
+     "severity": "note",
+     "fix": "app/components/KeepExploring.tsx line 13: import { albums } from \"../data/albums\" and set desc: `${albums.length} albums, EPs & every hit` — the fix the earlier batches already specified; apply it once so every page rendering KeepExploring (including /curator) follows the data."
+    },
+    {
+     "claim": "ProfilePage JSON-LD sameAs: https://www.linkedin.com/in/paulemmanuelng",
+     "onPage": "sameAs: [x.com/paulemmanuelng, linkedin.com/in/paulemmanuelng, tiktok.com/@paulemmanuelng]",
+     "shouldBe": "Cannot be verified from outside: curl returns LinkedIn's 999 bot block and the in-app Browser is redirected to /authwall (Sign Up) without ever showing the profile, so a logged-out reader or crawler cannot confirm the slug exists. X (200, profile) and TikTok (200, uniqueId paulemmanuelng, nickname \"Paul Emmanuel\", bio mentions the stats website) both corroborate the person; LinkedIn is the one sameAs entry with no reachable body behind it.",
+     "source": "curl -sIL https://www.linkedin.com/in/paulemmanuelng → 999; in-app Browser → https://www.linkedin.com/authwall?…sessionRedirect=%2Fin%2Fpaulemmanuelng; app/curator/page.tsx:35 and :92",
+     "severity": "note",
+     "fix": "No code change if Paul confirms the slug is his (app/curator/page.tsx line 35); otherwise drop LINKEDIN from the sameAs array at line 92. Recording the check here so the next audit does not spend time on an unreachable body."
+    }
+   ]
+  },
+  {
+   "page": "/api",
+   "checked": 96,
+   "findings": [
+    {
+     "claim": "\"Every response uses the same envelope — the data, plus where it came from and when it last changed\" (desktop Try-it note and mobile Try-it block), and the sample shows everything nested under `data`.",
+     "onPage": "Both layouts state that every /api/v1 response uses the same envelope with the payload under `data`.",
+     "shouldBe": "Six of the eight documented endpoints do; /api/v1/live-charts and /api/v1/live-charts/{artist} serve `releases` at the TOP level with no `data` key at all (app/lib/useLiveRelease.ts reads `d.releases` off the body, and tests/apiContract.test.ts:216-224 pins that shape). The docs should say so: \"Every response uses the same envelope … except the two live-charts snapshots, which keep `releases` at the top level for the live page's own panels.\"",
+     "source": "curl https://burnaboystats.com/api/v1/live-charts → keys [artist, endpoint, description, updated, count, countOf, license, source, methodology, docs, releases], no `data`; same for /live-charts/rema; app/api/v1/live-charts/route.ts:19-38 comment admits it cannot use apiJson.",
+     "severity": "broken",
+     "fix": "app/api/page.tsx:256-258 and app/components/MobileApi.tsx:109-112: add the live-charts exception to the envelope sentence (one shared string in app/lib/api.ts so both layouts read it), and extend tests/apiContract.test.ts:251-264 to assert the docs page names the exception."
+    },
+    {
+     "claim": "/api/v1/live-charts row: size column \"604 placements\"; the Try-it note says `count` is the endpoint's headline size and, where it differs from the array length, \"the array's own length is published under data.totals\".",
+     "onPage": "Size = 604 placements (livePlacementCount); note promises a `data.totals` block whenever count ≠ array length.",
+     "shouldBe": "The endpoint's own `count` is 45 with `countOf: \"releases\"`, and it publishes no totals block anywhere (no `data`, no `totals`), so the figure the docs advertise for this endpoint (placements) does not exist in the payload a consumer receives. Either publish `totals: { releases, placements, numberOnes, countries }` beside `releases` in both live-charts routes (derived from livePlacementCount / liveNumberOnes / liveCountryCount in app/data/liveCharts.ts:4390-4402 and the board's equivalents), or change the docs row to `${liveCharts.length} releases` so the size column matches what `count` says.",
+     "source": "curl https://burnaboystats.com/api/v1/live-charts → count 45, countOf \"releases\"; placements summed from releases[].platforms[].entries = 604; app/api/page.tsx:71-76 builds the row from livePlacementCount.",
+     "severity": "broken",
+     "fix": "Preferred: app/api/v1/live-charts/route.ts:34-38 and app/api/v1/live-charts/[artist]/route.ts:74-78 add a top-level `totals` object; then keep page.tsx:75. Minimum: app/api/page.tsx:75 `size: \\`${liveCharts.length} releases\\`` (import liveCharts instead of livePlacementCount) and mirror in the JSON index description if you want the unit there too."
+    },
+    {
+     "claim": "Sample envelope in \"Try it\": `license: { name, attribution }`, `data.totals: { chartEntries, numberOnes, countries, territories }`, entries with `countryCode, country, chart, peak` — with the source comment \"The sample payload is built from the real dataset at build time, so these docs can never drift out of sync with what the endpoint actually returns.\"",
+     "onPage": "The sample omits `description`, `license.url`, `source`, `methodology`, `docs`, `data.totals.chartedReleases`, and the per-entry `weeksAtPeak`, `weeks` and `note` fields that the served /charts payload carries (the Dai Dai CH entry shown in the sample is served as peak 1, weeksAtPeak 14, weeks 17).",
+     "shouldBe": "The sample should be the real envelope: build it by calling the same builder the route uses (export the charts payload builder from app/api/v1/charts/route.ts or a lib, then slice `releases` to the Dai Dai row and its first three entries) rather than retyping the envelope's keys in page.tsx. tests/apiContract.test.ts:261 only checks five key names appear somewhere in page.tsx, which is why six missing keys passed; it should compare the sample's top-level keys to the served envelope's exact key list it already pins at :256-259.",
+     "source": "curl https://burnaboystats.com/api/v1/charts → license {name,url,attribution}; source/methodology/docs present; data.totals has 5 keys incl. chartedReleases 38; entries carry weeksAtPeak/weeks/note (app/api/v1/charts/route.ts:29-30). Served page sample (both layouts render only the desktop one) lacks all of these.",
+     "severity": "note",
+     "fix": "app/api/page.tsx:89-124: replace the hand-assembled object with the route's own payload (spread `provenance` from app/lib/api.ts and `description`, keep totals from the route), and tests/apiContract.test.ts:260-263: parse the rendered sample and `expect(Object.keys(sample)).toEqual(Object.keys(b))` plus `sample.license.url`."
+    },
+    {
+     "claim": "/api/v1/stats: \"Headline career totals plus the dated Spotify monthly-listeners series.\" (docs row, JSON index and the endpoint's own description: \"the dated Spotify monthly-listeners series behind the site's trend charts\").",
+     "onPage": "Described as a monthly-listeners series; the route comment says \"each point logged on the date it was recorded\".",
+     "shouldBe": "The series is a new-high-only ledger (app/data/trends.ts is appended only when the peak metric moves up, per scripts/watched-metrics.json spotify-peak-listeners), so it ends 2026-08-10 at 60.13M although current listeners have since fallen (kworb read 49,058,318 today, 17 Sep; the site's own watched-metrics note records 52.8M on 4 Sep). A consumer reading it as a listeners time series is misled. Say what it is: \"the dated series of Spotify monthly-listener PEAKS (new highs only; the current figure is not published)\" in all three places.",
+     "source": "app/data/trends.ts:9-30 (last point 2026-08-10, 60.13); scripts/watched-metrics.json lines 5-32 (peak-only, current figure deliberately not published); https://kworb.net/spotify/listeners.html row 75 = Burna Boy 49,058,318, peak 60,131,126.",
+     "severity": "note",
+     "fix": "app/api/page.tsx:33 `what`, app/api/v1/route.ts:15-16, app/api/v1/stats/route.ts:21-23 description and the field name at :42 (e.g. rename to `monthlyListenersPeakSeries` only in v2 — for v1 keep the key and fix the description and the :41 comment)."
+    },
+    {
+     "claim": "\"updated is the date of the most recent real change to the data, not the last deploy — so you can safely use it to decide whether to re-fetch.\" (both layouts), applied to /live-charts, which is \"rebuilt several times a day\".",
+     "onPage": "The live-charts endpoints publish `updated: \"2026-09-17\"` (date only) as their freshness field.",
+     "shouldBe": "A snapshot rebuilt several times a day carries the same `updated` value across every rebuild that day, so the field cannot drive a re-fetch decision as the docs promise; today's 17:08Z and 20:23Z snapshots (590 → 604 placements) both said `updated: 2026-09-17`. The routes already have the minute (liveChartsBuiltAt = \"2026-09-17T20:23Z\", and the live page prints it): publish it as `builtAt` beside `updated` on both live-charts routes and say in the docs that the snapshots stamp the minute.",
+     "source": "app/data/liveCharts.ts:40-43 (liveChartsUpdated date-only; liveChartsBuiltAt minute); app/api/v1/live-charts/route.ts:34; served payload before and after today's 20:23Z bot commit (be3876af on origin/main) both `updated: 2026-09-17`.",
+     "severity": "note",
+     "fix": "app/api/v1/live-charts/route.ts:34 add `builtAt: liveChartsBuiltAt,`; app/api/v1/live-charts/[artist]/route.ts:74 add the board's equivalent stamp; app/api/page.tsx:254-258 one clause: \"the live-charts snapshots also carry `builtAt`, the minute the board was rebuilt\"."
+    },
+    {
+     "claim": "Desktop lede: \"Every verified number on this site, free to use in JSON.\"",
+     "onPage": "Claims total coverage of the site's figures.",
+     "shouldBe": "The eight endpoints do not serve the car fleet (/records/cars, 15 cars), the firsts board (/records/firsts, 54), the by-the-numbers page, the timeline or the Africa's-biggest board; the mobile lede makes no such claim. Soften to \"The site's chart, certification, award, tour, song and live-platform figures, free to use in JSON\" or list what is not yet served.",
+     "source": "app/api/page.tsx:26-78 endpoints list vs the site nav in the served HTML (Cars 15, Firsts 54, By the numbers 15, Africa's biggest 16, Timeline 29 — none has an endpoint).",
+     "severity": "note",
+     "fix": "app/api/page.tsx:191-194: rewrite the lede to name the datasets actually served."
+    }
+   ]
+  },
+  {
+   "page": "/analysis/spotify-unmerge",
+   "checked": 41,
+   "findings": [
+    {
+     "claim": "\"As of 21 August 2026 they show roughly 51.9 million and 3.3 million plays\" — the per-track verification of the two remixes (hero line, 'How to check it yourself', FAQ 'How can this be checked?')",
+     "onPage": "As of 21 August 2026 … roughly 51.9 million and 3.3 million plays (VERIFIED_ON typed; the two figures typed in three separate places)",
+     "shouldBe": "As of 17 September 2026 … roughly 52.1 million and 3.4 million plays. The date is honest but four weeks old, and a reader who follows the page's own instruction today sees 52,106,967 and 3,401,870 — '3.3 million' no longer rounds to what Spotify shows.",
+     "source": "Spotify's own track pages read in-browser 17 Sep 2026: open.spotify.com/track/6QzkbRRLWTEcFE0NyOX1Dt = 52,106,967; open.spotify.com/track/2hbMLNr8C555alIZPBNMiO = 3,401,870. kworb (the site's own per-track mirror, page stamped 2026/09/16) agrees: 52,098,090 and 3,399,209.",
+     "severity": "stale",
+     "fix": "app/analysis/spotify-unmerge/page.tsx: line 37 VERIFIED_ON = \"17 September 2026\"; line 110 (FAQ) and lines 274–275 (prose) '51.9 million' → '52.1 million', '3.3 million' → '3.4 million'; line 32 doc comment likewise. Better: hoist the two figures into constants beside VERIFIED_ON (e.g. ENJOY_NOW = \"52.1 million\", FINDERS_NOW = \"3.4 million\") and interpolate them in both the FAQ and the prose, so the date and the two readings can only move together."
+    },
+    {
+     "claim": "\"His career total stands at 11,010,480,657 (11.01B), read from Spotify daily\" and \"The career total is read from Spotify daily and updates on its own\"",
+     "onPage": "read from Spotify daily (FAQ answer, line 106; closing note, line 265)",
+     "shouldBe": "Spotify publishes no career total anywhere; the figure is kworb's raw per-track sum plus a 115,177,863 offset anchored to ChartMasters' Playcounts Tool (re-anchored 17 Sep 2026). The sentence should attribute it to that — e.g. 'tracked daily from Spotify's per-track counts via kworb, anchored to ChartMasters' — or point to the methodology page, rather than name Spotify as the body.",
+     "source": "app/data/streamingTotals.ts (comment block above spotifyTotalStreams: 'the spotify-total-streams metric adds a pipeline offset to kworb's raw sum … Spotify publishes no career total anywhere — not on the artist page, not in the Web API'); scripts/watched-metrics.json spotify-total-streams sourceName 'kworb.net — Spotify artist total'; docs/sourcing/CAREER-STREAMS-OFFSET.md.",
+     "severity": "note",
+     "fix": "app/analysis/spotify-unmerge/page.tsx line 106: replace 'read from Spotify daily' with 'tracked daily from Spotify's per-track counts (kworb's mirror, anchored to ChartMasters)'; line 265: 'The career total is read from Spotify daily' → 'The career total is built daily from Spotify's per-track counts and anchored to ChartMasters'. The hero line 200 ('Verified against Spotify's own per-track counts') is accurate and can stay."
+    },
+    {
+     "claim": "\"Career Spotify streams, 31 December 2025 — as his counter then read — 9,508,991,024\" and \"His counter on 12 February 2026 — 9,438,600,171\"",
+     "onPage": "Two typed fixed points presented as readings of 'his counter', with no source named on the page",
+     "shouldBe": "Spotify has no artist-level counter; these are tracker readings (the page's own source comment says the evidence is 'a chart-tracker's timeline in screenshots'). The site now treats 9,199,552,674 as the authoritative 2025 close for its running-streams ledger (docs/sourcing/chartmasters/closes-2025.json), so the tracker those two readings came from should be named beside them.",
+     "source": "app/analysis/spotify-unmerge/page.tsx lines 76 and 83 (typed SUMS rows); page doc comment lines 20–22; commit 8fc728e9 message ('the evidence is screenshots on a chart-tracker's timeline'); docs/sourcing/chartmarters/closes-2025.json cites this page as its only source for the Burna Boy close. No tracker is named anywhere on the page or in the SUMS notes.",
+     "severity": "note",
+     "fix": "app/analysis/spotify-unmerge/page.tsx line 76: note 'as his counter then read' → 'as ChartMasters/kworb (name the tracker actually read) showed his total that day'; line 83: add note naming the same tracker. Add the same provenance to the 'source' string in docs/sourcing/chartmasters/closes-2025.json for burna-boy."
+    }
+   ]
+  },
+  {
+   "page": "/compare/burna-boy-vs-wizkid",
+   "checked": 173,
+   "findings": [
+    {
+     "claim": "BreadcrumbList JSON-LD: Home › Certifications › Compare › Burna Boy vs Wizkid (four ListItems)",
+     "onPage": "The visible breadcrumb bar (the only one in the DOM, both layouts) renders three crumbs: \"Home / Compare / Burna Boy vs Wizkid\". The JSON-LD block the page emits carries a fourth crumb, position 2 \"Certifications\" → /certifications, that no reader sees. BreadcrumbBar.tsx's own comment says \"its JSON-LD twin says the same\" — it does not.",
+     "shouldBe": "The structured trail and the visible trail should be the same list: either drop the Certifications ListItem from the JSON-LD (Home › Compare › Burna Boy vs Wizkid) or render Certifications in the bar. Google's BreadcrumbList guidance is that the markup reflects the breadcrumb shown on the page.",
+     "source": "Live HTML https://burnaboystats.com/compare/burna-boy-vs-wizkid read 17 Sep 2026: <nav aria-label=\"Breadcrumb\"> text \"Home / Compare / Burna Boy vs Wizkid\"; the application/ld+json BreadcrumbList has itemListElement positions 1–4 with position 2 = Certifications. Source: /Users/paulemmanuelng/burnaboy-website/app/compare/page.tsx lines 676–685 (jsonLd) vs app/components/BreadcrumbBar.tsx (segments of path only).",
+     "severity": "broken",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/compare/page.tsx line 680: remove the `{ position: 2, name: \"Certifications\" ... }` ListItem and renumber Compare → 2, leaf → 3 (or, if the Certifications crumb is wanted, pass it to BreadcrumbBar so both trails match). Add an assertion in tests/comparePage.test.tsx that the rendered <nav aria-label=\"Breadcrumb\"> link labels equal the JSON-LD item names in order."
+    },
+    {
+     "claim": "Wizkid · United States · Diamond · 20,000,000 (10 plaques · top shown); header \"Wizkid · at least 40,867,770\"; \"Wizkid leads by at least 10,852,613\"; same figures in <title>/description/og/Dataset JSON-LD/OG image",
+     "onPage": "Wizkid's US line prices \"One Dance\" as Diamond = 10,000,000. RIAA's own row (read 17 Sep 2026) is \"11x Platinum Award for ONE DANCE (FEAT. WIZKID & KYLA)\", certified October 30, 2023 — 11,000,000 units at the body's own threshold. Holding Diamond is a SETTLED decision (Paul, 10 Sep 2026; afrobeats.ts lines 123–163, guarded by tests/certUnits.test.ts 496–516), so this is NOT a request to change the tier. But the rationale that settled it — \"both FEATURED appearances, so they are invisible unless the reader turns features on\" — stopped being true on 12 Sep when featured appearances became the default (certUnits.ts line 156–166, DEFAULT_OPTIONS.includeFeatures = true): the 1,000,000 understatement is now on this page's default view, in its title, description, share card and Dataset JSON-LD.",
+     "shouldBe": "Either the settled floor stands with its rationale corrected (the comment and the test title should say the understatement IS visible by default and is accepted as a floor), or, as the comment itself proposes, a separate current-level field on the cert (e.g. `units`/`currentX: 11`) lets the engine price 11,000,000 while `level` stays Diamond for the tier tallies and Wizkid's \"Diamond in five countries\" hook. Priced at RIAA's row the page would read Wizkid US 21,000,000 · total 41,867,770 · lead 11,852,613 · ratio 1.395 (\"1.4×\" unchanged).",
+     "source": "https://www.riaa.com/gold-platinum/?tab_active=default-award&ar=Wizkid (browser UA), row DRAKE | ONE DANCE (FEAT. WIZKID & KYLA) | October 30, 2023, badge alt \"badge DI level 11\", share text \"11x Platinum Award\". Repo: app/data/afrobeats.ts line 766 `{ c: \"US\", level: \"Diamond\" }`; the decision block at lines 123–163; tests/certUnits.test.ts lines 496–516; app/lib/certUnits.ts lines 156–166 (features default on since 12 Sep).",
+     "severity": "note",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/data/afrobeats.ts lines 134–136: rewrite the TRADE paragraph — the +1,000,000 is on the default view since 12 Sep; state that it is accepted as a floor. tests/certUnits.test.ts line 510: retitle \"both are FEATURED appearances, so either choice is invisible by default\" (it tests includeFeatures:false, which is no longer the default) to \"with features off the US line drops below Diamond\". If Paul wants both facts, add an optional `units` override on ComparableCert read by unitsForCert (certUnits.ts ~line 178) and set it to 11_000_000 on line 766 without touching `level`."
+    },
+    {
+     "claim": "Footnote ¹ \"Not counted — Colombia (Pro Musica Colombia) · Greece (IFPI Greece) · Poland (ZPAV)\"",
+     "onPage": "The Colombia cell on the same table prints the chip \"Gold · Sony Music Colombia · not counted ¹\" (the cert's own body override, data line 188 `body: \"Sony Music Colombia\"`), while the footnote it points at attributes the plaque to Pro Musica Colombia — two issuers for one plaque on one screen, the same defect batch 1 fixed on /certifications (PR #269).",
+     "shouldBe": "The footnote should name the issuer the chip names — \"Colombia (Sony Music Colombia)\" — or say both: \"Colombia (Sony Music Colombia; Pro Música Colombia publishes no threshold)\". Wizkid's Bubalu-style CO Diamond rows elsewhere are body-less and unaffected.",
+     "source": "Live HTML 17 Sep 2026: table row 🇨🇴 Colombia CO | Gold | Sony Music Colombia | not counted ¹ vs notes \"¹ Not counted — Colombia (Pro Musica Colombia)\". Repo: app/compare/page.tsx line 977 prints `countryMeta(n.country).body`, ignoring the line's `top.body`; app/data/certifications.ts line 188; docs/audits/freshness-2026-09/fixes-applied-batches-1-2.json (\"The dated log named the wrong certifying body for Dai Dai in Colombia\").",
+     "severity": "note",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/lib/certUnits.ts ~line 578 (notCounted map): carry `issuer: l.top?.body` alongside country/body/reason; app/compare/page.tsx line 977: render `${countryMeta(n.country).name} (${n.issuer ?? countryMeta(n.country).body})`. Mirror in the useSongs noteSource branch (page.tsx ~line 593). Extend tests/comparePage.test.tsx with the Burna–Wizkid render asserting the ¹ footnote contains \"Sony Music Colombia\"."
+    },
+    {
+     "claim": "Scope line \"26 countries · international\" (and \"27 countries · Nigeria included\" on the ng=1 variant)",
+     "onPage": "Typed literals \"27\"/\"26\" at page.tsx line 669. Today CERT_THRESHOLDS has 27 keys so both read true, but a 28th body (the file grew by five this summer: GR, CO, HU, CZ, SK) will leave the line wrong on all 120 pair pages. Already reported as a note in batch 2 (audit-batch2-raw.json, /compare) and still typed on main.",
+     "shouldBe": "Derived: `${Object.keys(CERT_THRESHOLDS).length}` and `${… - 1}`.",
+     "source": "app/compare/page.tsx line 669; app/data/certThresholds.ts (27 entries, counted with tsx 17 Sep 2026); docs/audits/freshness-2026-09/audit-batch2-raw.json /compare note.",
+     "severity": "note",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/compare/page.tsx line 669: `const bodies = Object.keys(CERT_THRESHOLDS).length; const scope = ngOn ? `${bodies} countries · Nigeria included` : `${bodies - 1} countries · international`;` (CERT_THRESHOLDS is already imported at line 7)."
+    },
+    {
+     "claim": "Exit card: \"Two artists priced against each other — the other fourteen are one tap away\"",
+     "onPage": "Typed \"fourteen\" (page.tsx line 1046). True today (16 comparable artists − 2), but the board's memory says a 16th/17th artist is a fresh assessment and the count is derived everywhere else (nav \"Compare · 16 artists\"). Reported as a note in batch 2, not applied.",
+     "shouldBe": "Derived from comparableArtists.length − 2.",
+     "source": "app/compare/page.tsx line 1046; app/lib/certUnits.ts comparableArtists (16, counted 17 Sep 2026); audit-batch2-raw.json /compare.",
+     "severity": "note",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/compare/page.tsx line 1046: replace the literal with `{numberWord(comparableArtists.length - 2)}` (comparableArtists is imported at line 24) or the numeral."
+    },
+    {
+     "claim": "Lede: \"a Platinum single in the UK means at least 600,000, and could be 1,190,000\"",
+     "onPage": "Typed 600,000 / 1,190,000 (page.tsx lines 707–708). Matches CERT_THRESHOLDS.UK.single.platinum = 600,000 today; a BPI threshold change would leave the sentence stale on every compare page. Reported as a note in batch 2, still typed.",
+     "shouldBe": "`{fmt(CERT_THRESHOLDS.UK.single!.platinum!)}` and a derived upper example (e.g. 2× − 10,000), or \"anything short of 1,200,000\".",
+     "source": "app/compare/page.tsx lines 707–708; app/data/certThresholds.ts UK single (silver 200,000 / gold 400,000 / platinum 600,000); audit-batch2-raw.json /compare.",
+     "severity": "note",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/compare/page.tsx lines 707–708: derive both figures from CERT_THRESHOLDS.UK.single.platinum."
+    },
+    {
+     "claim": "Method card \"Not quite everything can be priced\": \"Sweden and Mexico publish their song levels in streams and no download-equivalence … marked §. Poland measures singles in złoty of revenue and Greece and Colombia publish no thresholds\"",
+     "onPage": "Every body name on this card is typed (page.tsx lines 1026–1028). It matches the data today (assumed: MX, SE; singleExcluded: PL, GR, CO), but it is the sibling of the card batch 2 found wrong (\"France, Denmark, Norway and the Netherlands\" while the table priced six), which was fixed by deriving it (lines 12–17). The same drift will hit this card the next time a body is added or a ratio is found.",
+     "shouldBe": "Derived the way the card above it now is, and the way /methodology derives `unpricedSingleNames`: assumed = CERT_THRESHOLDS entries with `assumed`; unpriced = entries with `singleExcluded`.",
+     "source": "app/compare/page.tsx lines 12–17 (derived stream-ratio list) vs 1026–1028 (typed); app/data/certThresholds.ts flags enumerated with tsx 17 Sep 2026; app/methodology/page.tsx ~line 576 (unpricedSingleNames derived); fixes-applied-batches-1-2.json batch 2 /compare.",
+     "severity": "note",
+     "fix": "/Users/paulemmanuelng/burnaboy-website/app/compare/page.tsx lines 1026–1028: build `assumedNames` from `Object.values(CERT_THRESHOLDS).filter(t => t.assumed)` and `unpricedNames` from `.filter(t => t.singleExcluded)` (same name mapping as streamRatioNames at line 14) and interpolate; extend the render test that holds the stream-ratio card to the data (tests/comparePage.test.tsx) to cover this card."
+    }
+   ]
+  },
+  {
+   "page": "/compare/burna-boy-vs-davido",
+   "checked": 214,
+   "findings": [
+    {
+     "claim": "South Africa row — Burna Boy \"19× Platinum ‡ 980,000 · 5 plaques · top shown\" (All Eyes on Me 19× Platinum = 760,000 of the 980,000; Baddest Gold = 20,000)",
+     "onPage": "Burna's ZA line is 5 plaques / 980,000, with All Eyes on Me priced at 19 × 40,000 and Baddest at 20,000, both carrying the ‡ (today's RiSA level).",
+     "shouldBe": "Neither plaque has a row in RiSA's published register. Read today at the body (risa-prod.trafficmanager.net/website/certification/certifications/): ?title=Eyes → 0 rows, ?title=Badd → 0 rows, ?artist=AKA → 14 rows (Fela in Versace, Touch My Blood, Star Signs, Beyonce, Mass Country…), none of them; ?artist=Burna returns only Ginger (Double Platinum) and No Stress (Platinum). Batch 4a's verifier read the live risa.org.za Ninja Tables dataset (766 rows to 3 Sep 2026) and listed Burna's rows as Location, Ginger and No Stress only. RiSA's badge ladder is Gold / Platinum / Double / Multi, so a \"19×\" cannot come from the register at all. app/data/certifications.ts lines 519–524 carry no provenance comment for either row (unlike the Ginger row at 444–451). Paul vetoed removing Last Last ZA on the same ground in batch 4a, so this is not a removal proposal — but 760,000 units (78% of Burna's ZA row, 2.5% of his 30,015,157 total) rest on a multiplier the body does not publish and a row it does not print.",
+     "source": "RiSA register at risa-prod.trafficmanager.net (17 Sep 2026, title and artist searches above); docs/audits/freshness-2026-09/audit-batch4a-verdicts.json (live risa.org.za read, 17 Sep); app/data/certifications.ts 519–524; docs/sourcing/burna-boy.by-country.md 228–233 (lists the row, names no read).",
+     "severity": "note",
+     "fix": "app/data/certifications.ts line 522: add a provenance comment naming what the 19× and the Baddest Gold were read from (the way lines 444–451 do for Ginger), or, if there is no register read behind them, put them to Paul with the register evidence above; either way the compare page needs no code change."
+    },
+    {
+     "claim": "South Africa row — Burna Boy \"5 plaques\" / header \"167 of 171 plaques counted\" / total \"at least 30,015,157\"",
+     "onPage": "Burna's South African line holds 5 plaques; RiSA's register today prints a sixth row credited to him that the site does not carry: \"Wizkid feat. Burna Boy | No Stress | 11 Sep, 2023 | Platinum\".",
+     "shouldBe": "A decision, documented in the data. The site excludes No Stress from Burna's ledger on the strength of docs/sourcing/RETRACTIONS.md §3, which says the finding agent \"appears to have invented\" the \"Wizkid feat. Burna Boy\" credit — but the body's own register prints exactly that credit (read directly today; the batch 4a verifier read the same string on the live risa.org.za table). The recording on Made in Lagos is a Wizkid solo track, so Paul's ruling that it is not a Burna Boy song can stand on the recording's credits — it cannot stand on \"the register does not say so\". If it were counted under the site's own rule (a plaque counts when the body's record carries the credit), Burna's ZA line would be 6 plaques / 1,020,000, total 30,055,157, lead 25,130,157, \"168 of 172 plaques counted\"; the Wizkid board (app/data/afrobeats.ts:724) already carries the same plaque as a Wizkid lead single with no feature credit.",
+     "source": "https://risa-prod.trafficmanager.net/website/certification/certifications/?artist=Burna (17 Sep 2026); docs/audits/freshness-2026-09/audit-batch4a-verdicts.json line 15 (live risa.org.za read, same string); docs/sourcing/RETRACTIONS.md lines 42–49; docs/sourcing/BOARD-FINDINGS.md 70–75; app/data/afrobeats.ts:724.",
+     "severity": "note",
+     "fix": "Paul's call. Either add { title: \"No Stress\", credit: \"Wizkid ft. Burna Boy\", certs: [{ c: \"ZA\", level: \"Platinum\" }] } to the features array in app/data/certifications.ts (and bump the counts the tests pin), or keep the exclusion and record it in app/data/certifications.ts beside the Ginger row (444–451): quote RiSA's string and state that the exclusion rests on the recording's credits, not the register; correct docs/sourcing/RETRACTIONS.md §3 (line 46) to drop the \"invented credit\" claim, so the next sweep does not re-find it."
+    },
+    {
+     "claim": "Scope line \"26 countries · international\" (and \"27 countries · Nigeria included\" on the ng=1 variant)",
+     "onPage": "Typed: `const scope = ngOn ? \"27 countries · Nigeria included\" : \"26 countries · international\";` — right today (CERT_THRESHOLDS has 27 keys) but reported as an open note in batch 2 and still typed.",
+     "shouldBe": "Derived from the threshold table: Object.keys(CERT_THRESHOLDS).length, the way app/methodology/page.tsx already derives its body count. A 28th body added to certThresholds.ts leaves this line reading 27 on all 120 pair pages.",
+     "source": "app/compare/page.tsx line 657; app/data/certThresholds.ts (27 entries: AT AU BE BR CA CH CO CZ DE DK ES FR GR HU IT MX NG NL NO NZ PL PT SE SK UK US ZA); docs/audits/freshness-2026-09/audit-batch2-raw.json (/compare, note, not applied).",
+     "severity": "note",
+     "fix": "app/compare/page.tsx line 657: `const bodies = Object.keys(CERT_THRESHOLDS).length; const scope = ngOn ? `${bodies} countries · Nigeria included` : `${bodies - 1} countries · international`;` (CERT_THRESHOLDS is already imported at line 7)."
+    },
+    {
+     "claim": "Exit card: \"Two artists priced against each other — the other fourteen are one tap away\"",
+     "onPage": "Typed word \"fourteen\"; correct today (16 comparable artists − 2) but a 17th board artist leaves every pair page stale. Reported in batch 2 as a note, still typed.",
+     "shouldBe": "comparableArtists.length − 2, rendered from the roster.",
+     "source": "app/compare/page.tsx line 1013; app/lib/certUnits.ts `comparableArtists` (Burna + 15 board artists = 16, confirmed by running the engine today).",
+     "severity": "note",
+     "fix": "app/compare/page.tsx line 1013: replace the literal with `{comparableArtists.length - 2}` (numeral) or a small numberWord() of it; comparableArtists is already imported at line 25."
+    },
+    {
+     "claim": "Lede: \"a Platinum single in the UK means at least 600,000, and could be 1,190,000\"",
+     "onPage": "Both figures typed in JSX. 600,000 matches BPI's Platinum single level in app/data/certThresholds.ts (UK.single.platinum) and 1,190,000 sits under the 2× step, so the sentence is true today — but it is the page's headline illustration and is not read from the table it describes. Batch 2 note, still typed.",
+     "shouldBe": "Derived: fmt(CERT_THRESHOLDS.UK.single.platinum) and fmt(CERT_THRESHOLDS.UK.single.platinum * 2 − 10_000), so a BPI level change moves the example with the table.",
+     "source": "app/compare/page.tsx lines 707–708; app/data/certThresholds.ts UK entry; docs/audits/freshness-2026-09/audit-batch2-raw.json (/compare, note).",
+     "severity": "note",
+     "fix": "app/compare/page.tsx line 707: `at least {fmt(CERT_THRESHOLDS.UK.single!.platinum!)}, and could be {fmt(CERT_THRESHOLDS.UK.single!.platinum! * 2 - 10_000)}`."
+    },
+    {
+     "claim": "Method card \"Not quite everything can be priced\": \"Sweden and Mexico publish their song levels in streams and no download-equivalence … marked §. Poland measures singles in złoty of revenue and Greece and Colombia publish no thresholds\"",
+     "onPage": "Typed country list. It matches the data today (certThresholds.ts: `assumed` on SE line 396 and MX line 306; `singleExcluded` on CO line 194, GR line 268, PL line 369) — but the card beside it (\"Each body's own threshold\") was changed in batch 2 to derive its country list from CERT_THRESHOLDS precisely because a typed list of the same kind had drifted (four bodies named, six priced).",
+     "shouldBe": "Derived from the same table: the § bodies from entries with `assumed`, the listed-never-summed bodies from entries with `singleExcluded`/`albumExcluded`, so a new unpriced or assumed body cannot leave this card naming the wrong countries on 120 pages.",
+     "source": "app/compare/page.tsx lines 998–1002; app/data/certThresholds.ts lines 194, 268, 306, 369, 396; the derived sibling at app/compare/page.tsx lines 9–17 (`streamRatioNames`).",
+     "severity": "note",
+     "fix": "app/compare/page.tsx lines 998–1002: build `assumedNames` from `Object.values(CERT_THRESHOLDS).filter(t => t.assumed)` and `unpricedNames` from `.filter(t => t.singleExcluded || t.albumExcluded)` with countryMeta names, and render them the way streamRatioBodies is rendered at line 993; add the render test the batch 2 fix added for the sibling card."
+    },
+    {
+     "claim": "Rows re-read at the body today vs rows that could not be: UK (36 plaques), US (12), Canada (Davido's 6 and Burna's 15 lead rows), France (22), New Zealand (Davido's 3 and Burna's 17 singles), South Africa (Davido's 6 register rows) all match the page tier for tier; Switzerland (Burna 2× Platinum 235,000/9, Davido 2× Platinum 60,000), Spain (Dai Dai Platinum, We Pray Platinum, Eva Longoria 2× Platinum), Germany, Italy and Sweden could NOT be re-read.",
+     "onPage": "CH row: Burna \"2× Platinum 235,000 · 9 plaques\", Davido \"2× Platinum 60,000\"; ES row 200,000 each; DE 900,000; IT 900,000; SE 690,000.",
+     "shouldBe": "Unverified at the body this pass, not wrong: hitparade.ch returns Cloudflare 403 to every fetch (and a bot-check in a browser, not attempted), swisscharts.com's awards path 404s; Promusicae, BVMI, FIMI and Ifpi Sverige were not read here. The figures reproduce exactly from app/data (engine run today: 30,015,157 vs 4,925,000; 167/171 + 4; 31/31; 14 rows + 11 folded = 1,489,326), and the last body reads on file are the 26–28 Aug refresh and batch 1/3 of this audit.",
+     "source": "BPI certified-awards.bpi.co.uk (HX-Request search, pages 1–2); riaa.com (badge levels read in-browser: Davido Blow My Mind/Unavailable/If Gold, Fall Platinum; Burna's 8 incl. Dai Dai Latin 2×); musiccanada.com ?_gp_search (For My Hand Double Platinum 16 Jan 2026, Last Last Quadruple Platinum); snepmusique.com ?interprete= (Davido Gang/Unavailable/Fall Or; Burna's 19 incl. Dai Dai Diamant 27/08/2026); RadioScope table 2052 (Davido 3 Gold; Burna 17 singles); risa-prod.trafficmanager.net (Davido's 6 rows, both Multi-Platinum rows priced 3×). hitparade.ch → 403; swisscharts.com/awards.asp → 404.",
+     "severity": "note",
+     "fix": "No code change. Re-read Switzerland (hitparade.ch Edelmetall) and Spain (Promusicae/EPDM) in a browser session when the Cloudflare gate is not up; nothing found today suggests either has moved."
+    }
+   ]
+  },
+  {
+   "page": "/compare/burna-boy-vs-rema",
+   "checked": 104,
+   "findings": [
+    {
+     "claim": "The whole page — two floors (30,015,157 vs 14,148,355), the 25-row table, the Nigeria strip, the meta description, the OG card and the Dataset JSON-LD — is a live claim that moves with every register sweep, and nothing on the page or in its markup says when the registers were last read",
+     "onPage": "No date anywhere in the served HTML (both layouts share one DOM); the Dataset JSON-LD block has no dateModified, while the sibling Dataset blocks on /afrobeats/rema and /certifications carry one",
+     "shouldBe": "A printed 'registers last read <date>' beside the scope line, and dateModified in the Dataset block, both derived from the OLDER of the two sides' verification dates — today Rema's 2026-09-06 (afrobeats.ts:1148, AFROBEATS_VERIFIED_ON_7) against Burna's CERTS_VERIFIED_ON 2026-09-17 (certifications.ts:855) — because a pair is only as fresh as its staler ledger",
+     "source": "Served HTML of https://burnaboystats.com/compare/burna-boy-vs-rema (curl 17 Sep 2026): four ld+json blocks parse, the Dataset one has no dateModified; app/lib/seo.ts:82-85 and :103 (dateModified is optional and its own comment says an undated Dataset 'looks static'); app/afrobeats/[artist]/page.tsx:132 passes a.verifiedOn; app/compare/page.tsx:687-695 passes none. The figures themselves reproduce the repo engine exactly (compare() from app/lib/certUnits.ts run locally: 30,015,157 / 14,148,355 / 167 of 171 / 42 of 45 / 25 rows / NG 63 · 7,125,000 and 37 · 4,275,000), and 91 plaques behind the four biggest rows were re-read at the bodies today and all agree: SNEP interprete=Burna Boy 19/19 rows; BPI certified-awards 30/30 Burna + 6/6 Rema; RIAA 8/8 Burna + 3/3 Rema (Calm Down DI level 5, Bubalu LA level 2, Rave & Roses Ultra ST level 0); Music Canada 22/22 Burna + 3/3 Rema. ARIA's register (Dropbox document set) and the remaining 18 bodies were not re-read today; those rows rest on batch 1 (16 Sep) and batch 3 (17 Sep).",
+     "severity": "note",
+     "fix": "app/lib/certUnits.ts: add `verifiedOn: string` to ComparableArtist — CERTS_VERIFIED_ON (import from ../data/certifications) for burna, `a.verifiedOn` for each board artist. app/compare/page.tsx:687-695: pass `dateModified: [a.verifiedOn, b.verifiedOn].sort()[0]` to datasetJsonLd. app/compare/page.tsx:879: render the same date after the scope, e.g. `{scope} · registers last read {longDate(older)}` using the en-GB formatter /certifications already uses (app/certifications/page.tsx:32). Pair pages and /compare?a=&b= inherit it since both render CompareView."
+    },
+    {
+     "claim": "Method card 'Not quite everything can be priced': \"Sweden and Mexico publish their song levels in streams and no download-equivalence — those plaques are converted at 100 streams to a unit, the ratio Denmark and Norway publish, and marked §. Poland measures singles in złoty of revenue and Greece and Colombia publish no thresholds\" — and the § footnote repeats \"100 streams to a unit, the ratio Denmark and Norway publish\"",
+     "onPage": "Five body names and one ratio typed in JSX, on a page whose sibling card (the six stream-ratio bodies) was made data-derived in PR #270 for exactly this reason",
+     "shouldBe": "Correct today — app/data/certThresholds.ts marks MX and SE `assumed`, exclusionFor() excludes CO and GR for both formats and PL for singles only, and DK's singleRaw Platinum 9,000,000 over its 90,000-unit level (NO: 6,000,000 / 60,000) is 100 — but every one of those names is retyped from data the same file already imports, so a 28th body or a Polish rule change leaves the card wrong while the table beside it is right",
+     "source": "app/compare/page.tsx:998-1000 (§ footnote) and :1026-1029 (card); app/data/certThresholds.ts (assumed: MX, SE; exclusionFor single: CO, GR, PL; album: CO, GR; DK/NO singleRaw) read via a local tsx run; the derived sibling at app/compare/page.tsx:13-18 (streamRatioNames)",
+     "severity": "note",
+     "fix": "app/compare/page.tsx: beside streamRatioNames (lines 13-18) derive `assumedNames` = codes with `assumed`, `revenueNames` = codes where exclusionFor(c,'single') && !exclusionFor(c,'album'), `noThresholdNames` = codes excluded for both formats (countryMeta names, sorted), and `assumedRatio` = CERT_THRESHOLDS.DK.singleRaw.platinum / CERT_THRESHOLDS.DK.single.platinum; render them at lines 998-1000 and 1026-1029 in place of the literals. Extend the render guard added for the six-body card in tests/comparePage.test.tsx to these three lists."
+    },
+    {
+     "claim": "Three typed constants batch 2 already flagged as notes on /compare are still live on this pair page unapplied: scope line \"26 countries · international\" / \"27 countries · Nigeria included\"; exit card \"the other fourteen are one tap away\"; lede \"a Platinum single in the UK means at least 600,000, and could be 1,190,000\"",
+     "onPage": "Typed strings at app/compare/page.tsx:669, :1046 and :707-708; all three still correct today (27 keys in CERT_THRESHOLDS; 16 comparable artists; UK.single.platinum 600,000)",
+     "shouldBe": "Derived: Object.keys(CERT_THRESHOLDS).length (and −1 for international); comparableArtists.length − 2; CERT_THRESHOLDS.UK.single.platinum and one unit under 2× — as batch 2's findings proposed. Carried here only so the batch 4c ledger for this route is complete; not a new finding",
+     "source": "docs/audits/freshness-2026-09/audit-batch2-raw.json (/compare, the three `note` entries) vs fixes-applied-batches-1-2.json (only the six-body card landed for /compare); grep of app/compare/page.tsx on main 17 Sep 2026 confirms the literals remain",
+     "severity": "note",
+     "fix": "app/compare/page.tsx:669 `const bodies = Object.keys(CERT_THRESHOLDS).length; const scope = ngOn ? `${bodies} countries · Nigeria included` : `${bodies - 1} countries · international`;` — :1046 `the other {comparableArtists.length - 2}` (or a number-word helper) — :707-708 `{fmt(CERT_THRESHOLDS.UK.single!.platinum!)}` and `{fmt(CERT_THRESHOLDS.UK.single!.platinum! * 2 - 10_000)}`"
+    }
+   ]
+  }
+ ]
+}

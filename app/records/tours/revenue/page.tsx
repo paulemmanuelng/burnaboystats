@@ -4,7 +4,7 @@ import BreadcrumbBar from "../../../components/BreadcrumbBar";
 import RevenueBoard from "../../../components/RevenueBoard";
 import MobileRevenue from "../../../components/MobileRevenue";
 import { numberWord } from "../../../lib/homeData";
-import { revenueShows, revenueStands } from "../../../data/tourRevenue";
+import { revenueShows, revenueStands, REVENUE_AS_OF } from "../../../data/tourRevenue";
 import { pageMetadata, datasetJsonLd } from "../../../lib/seo";
 
 // Derived, not written down. The list grows whenever a new show is reported —
@@ -48,7 +48,7 @@ const revenueDataset = datasetJsonLd({
 });
 
 const SOURCE_NOTE =
-  "Box-office figures reported by Billboard Boxscore & Pollstar (as aggregated by TouringData), cross-checked against press reporting, as of September 2026. Each entry is a single night's gross. Stands that Boxscore reported only as one combined total are listed beneath the board with the body's own figures — they cannot be ranked against single nights, and no per-night split is invented for them.";
+  `Box-office figures reported by Billboard Boxscore & Pollstar (as aggregated by TouringData), cross-checked against press reporting, as of ${REVENUE_AS_OF}. Each entry is a single night's gross. Stands that Boxscore reported only as one combined total are listed beneath the board with the body's own figures — they cannot be ranked against single nights, and no per-night split is invented for them.`;
 
 export default function RevenuePage() {
   return (
