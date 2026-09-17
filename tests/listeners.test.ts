@@ -93,7 +93,21 @@ describe("the top-50 listener cities", () => {
     expect(LISTENERS_READ_ON).toMatch(/^\d{4}-\d{2}-\d{2}$/);
     const desktop = readFileSync("app/music/listeners/page.tsx", "utf8");
     const phone = readFileSync("app/components/MobileListeners.tsx", "utf8");
-    expect(desktop).toContain("listenersReadOnLabel");
-    expect(phone).toContain("listenersReadOnLabel");
+    const desktopHead = desktop.slice(desktop.indexOf("styles.head"), desktop.indexOf("styles.figure"));
+    const phoneHero = phone.slice(phone.indexOf("styles.hero"), phone.indexOf("styles.mapCard"));
+    expect(desktopHead, "desktop hero dates its figures").toContain("listenersReadOnLabel");
+    expect(phoneHero, "phone hero dates its figures").toContain("listenersReadOnLabel");
+    // The share surfaces carry a live figure (Lagos's count), so they carry the date too.
+    const og = readFileSync("app/music/listeners/opengraph-image.tsx", "utf8");
+    expect(og).toContain("listenersReadOnLabel");
+    expect(desktop.slice(desktop.indexOf("shareDescription"), desktop.indexOf("shareDescription") + 200)).toContain("listenersReadOnLabel");
+  });
+
+  it("the map is a group of buttons, not an image, and the phone list sits under headings", () => {
+    const map = readFileSync("app/components/ListenerMap.tsx", "utf8");
+    expect(map).not.toContain('role="img"'); // an img role hides the 50 buttons from assistive tech
+    expect(map).toContain('role="group"');
+    const phone = readFileSync("app/components/MobileListeners.tsx", "utf8");
+    expect((phone.match(/<h2\b/g) ?? []).length).toBe(2);
   });
 });

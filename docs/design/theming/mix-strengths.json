@@ -109,8 +109,8 @@
     "--text 55%"
   ],
   "app/components/ListenerMap.module.css": [
-    "--gold-wash-base 18%",
-    "--gold-wash-base 62%",
+    "--gold-wash-base 42%",
+    "--gold-wash-base 75%",
     "--scrim-base 90%"
   ],
   "app/components/MobileCerts.tsx": [

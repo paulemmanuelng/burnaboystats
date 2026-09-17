@@ -118,7 +118,8 @@ export function datasetJsonLd(opts: {
  */
 const OWN_BREADCRUMB = [
   /^\/music$/,
-  /^\/music\/[^/]+$/,
+  // /music/listeners is a static sibling of the song pages and uses the generated trail.
+  /^\/music\/(?!listeners$)[^/]+$/,
   /^\/music\/albums\/[^/]+$/,
   /^\/certifications$/,
   /^\/timeline$/,

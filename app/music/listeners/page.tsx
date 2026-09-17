@@ -19,7 +19,11 @@ import {
   formatListeners,
   compactListeners,
   listenersReadOnLabel,
+  LISTENERS_READ_ON,
   MONTHLY_LISTENERS_ON_READ,
+  nycWithBrooklyn,
+  pctOf,
+  spell,
 } from "../../data/listeners";
 import styles from "./listeners.module.css";
 
@@ -28,7 +32,7 @@ export const metadata = pageMetadata({
   description: `The ${cityCount} cities with the most Burna Boy listeners on Spotify, mapped — ${listenerCountryCount} countries, ${topCity.city} first at ${compactListeners(topCity.listeners)} a month. Read ${listenersReadOnLabel}.`,
   path: "/music/listeners",
   shareTitle: "Where the World Listens to Burna Boy",
-  shareDescription: `${cityCount} cities, ${listenerCountryCount} countries — ${topCity.city} first at ${compactListeners(topCity.listeners)} monthly listeners.`,
+  shareDescription: `${cityCount} cities, ${listenerCountryCount} countries — ${topCity.city} first at ${compactListeners(topCity.listeners)} monthly listeners, read ${listenersReadOnLabel}.`,
 });
 
 const dataset = datasetJsonLd({
@@ -37,11 +41,9 @@ const dataset = datasetJsonLd({
   path: "/music/listeners",
   keywords: ["Burna Boy", "Spotify", "monthly listeners", "cities", "where people listen", "audience"],
   variableMeasured: ["City", "Country", "Monthly listeners"],
+  dateModified: LISTENERS_READ_ON,
 });
 
-const WORDS = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"];
-const spell = (n: number) => WORDS[n] ?? String(n);
-const pct = (n: number, of: number) => `${Math.round((n / of) * 100)}%`;
 
 export default function ListenersPage() {
   return (
@@ -66,13 +68,13 @@ export default function ListenersPage() {
             the figure.
           </p>
           <div className={styles.counts}>
-            <span className={styles.countBig}>{cityCount}</span>
+            <span className={`${styles.countBig} ${styles.countBigPlain}`}>{cityCount}</span>
             <span className={styles.countWord}>cities</span>
             <span className={styles.countRule} aria-hidden="true" />
             <span className={`${styles.countBig} ${styles.countBigPlain}`}>{listenerCountryCount}</span>
             <span className={styles.countWord}>countries</span>
             <span className={styles.countRule} aria-hidden="true" />
-            <span className={`${styles.countBig} ${styles.countBigPlain}`}>{compactListeners(MONTHLY_LISTENERS_ON_READ)}</span>
+            <span className={styles.countBig}>{compactListeners(MONTHLY_LISTENERS_ON_READ)}</span>
             <span className={styles.countWord}>monthly listeners · {listenersReadOnLabel}</span>
           </div>
         </section>
@@ -83,18 +85,19 @@ export default function ListenersPage() {
           </div>
           <figcaption className={styles.legend}>
             <span className={styles.swatchDot} aria-hidden="true" />
-            A city in the top {cityCount} — the dot&apos;s area is its monthly listeners
+            A city in the top {cityCount}, sized by its monthly listeners
+            <span className="visuallyHidden">. </span>
             <span className={styles.swatch} aria-hidden="true" />
             A country with at least one
           </figcaption>
         </figure>
 
-        <section className={`${styles.wrap} ${styles.breakdown}`} aria-label="The fifty cities, ranked">
+        <section className={`${styles.wrap} ${styles.breakdown}`} aria-label={`The ${cityCount} cities, ranked`}>
           <div className={styles.kicker}>The {cityCount}</div>
           <h2 className={styles.breakdownTitle}>
             Every city, ranked
           </h2>
-          <ol className={styles.cityGrid}>
+          <ol className={styles.cityGrid} role="list">
             {listenerCities.map((c) => (
               <li key={c.rank} className={styles.cityRow}>
                 <span className={styles.cityRank}>{String(c.rank).padStart(2, "0")}</span>
@@ -148,7 +151,7 @@ export default function ListenersPage() {
                   <td className={styles.numCol}>{cityCount}</td>
                   <td className={styles.numCol}>{formatListeners(top50Listeners)}</td>
                   <td className={styles.tfootPlain}>
-                    the {cityCount} cities together — {pct(top50Listeners, MONTHLY_LISTENERS_ON_READ)} of his{" "}
+                    the {cityCount} cities together — {pctOf(top50Listeners, MONTHLY_LISTENERS_ON_READ)} of his{" "}
                     {compactListeners(MONTHLY_LISTENERS_ON_READ)} monthly listeners that day
                   </td>
                 </tr>
@@ -157,7 +160,7 @@ export default function ListenersPage() {
           </div>
           <p className={styles.note}>
             Nigeria&apos;s {spell(nigeriaCityCount)} cities hold {formatListeners(nigeriaListeners)} of the{" "}
-            {formatListeners(top50Listeners)} in the {cityCount} — {pct(nigeriaListeners, top50Listeners)} — and{" "}
+            {formatListeners(top50Listeners)} in the {cityCount} — {pctOf(nigeriaListeners, top50Listeners)} — and{" "}
             {citiesOutsideAfrica} of the {cityCount} cities are outside Africa. Spotify publishes only an
             artist&apos;s top {cityCount} cities, so every country total here is a floor: a country&apos;s
             51st-ranked city and below are not counted. Monthly listeners are a rolling 28-day figure that
@@ -165,6 +168,9 @@ export default function ListenersPage() {
             own city counts as published by ChartMasters&apos; Artist Global Impact tool, and are that day&apos;s
             reading. Country shapes are Natural Earth 110m data (public domain); Singapore has no shape at that
             resolution and appears as a dot only.
+            {nycWithBrooklyn != null && (
+              <> Spotify lists Brooklyn apart from New York City; together the two are {formatListeners(nycWithBrooklyn)}, and on the map they share a dot.</>
+            )}
           </p>
         </section>
 

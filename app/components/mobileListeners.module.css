@@ -116,6 +116,9 @@
   padding: 22px 18px 10px;
 }
 .sectionKicker {
+  /* An h2 now (heading navigation reaches the list); the class already sets
+     every face property, and the global h2 line-height is the one to undo. */
+  line-height: inherit;
   font-family: var(--font-mono), monospace;
   font-weight: 700;
   font-size: 11px;

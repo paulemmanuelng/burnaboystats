@@ -137,6 +137,13 @@ export const mostCitiesTie = listenerCountries.filter((c) => c.cities.length ===
 
 export const nigeriaListeners = listenerCountries.find((c) => c.code === "NG")?.listeners ?? 0;
 export const nigeriaCityCount = listenerCountries.find((c) => c.code === "NG")?.cities.length ?? 0;
+/** Spotify lists Brooklyn as a city of its own, apart from New York City, and
+ *  the two sit on the same map pixel. Their sum, when both are in the 50 —
+ *  null otherwise, so the sentence disappears rather than the build failing. */
+const nycRow = listenerCities.find((c) => c.city === "New York City");
+const brooklynRow = listenerCities.find((c) => c.city === "Brooklyn");
+export const nycWithBrooklyn = nycRow && brooklynRow ? nycRow.listeners + brooklynRow.listeners : null;
+
 /** Cities outside Africa, of the 50. */
 const AFRICA = new Set(["NG", "KE", "ZA", "GH"]);
 export const citiesOutsideAfrica = listenerCities.filter((c) => !AFRICA.has(c.code)).length;
@@ -150,6 +157,11 @@ export const formatListeners = (n: number) => fmt.format(n);
 /** 1,429,129 → "1.43M"; 993,316 → "993K". */
 export const compactListeners = (n: number) =>
   n >= 1_000_000 ? `${(n / 1_000_000).toFixed(2)}M` : `${Math.round(n / 1000)}K`;
+/** "32%" — one rounding for both layouts. */
+export const pctOf = (n: number, of: number) => `${Math.round((n / of) * 100)}%`;
+const WORDS = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"];
+/** Small counts spelled out in prose, the same way on both layouts. */
+export const spell = (n: number) => WORDS[n] ?? String(n);
 
 export const listenersReadOnLabel = (() => {
   const [y, m, d] = LISTENERS_READ_ON.split("-").map(Number);

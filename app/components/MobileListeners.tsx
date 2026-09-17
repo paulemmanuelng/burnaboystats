@@ -17,6 +17,12 @@ import {
   compactListeners,
   listenersReadOnLabel,
   MONTHLY_LISTENERS_ON_READ,
+  nigeriaListeners,
+  nigeriaCityCount,
+  citiesOutsideAfrica,
+  nycWithBrooklyn,
+  pctOf,
+  spell,
 } from "../data/listeners";
 
 /**
@@ -54,8 +60,8 @@ export default function MobileListeners() {
         </h1>
         <p className={styles.lede}>
           His {cityCount} biggest cities on Spotify, in {listenerCountryCount} countries — {topCity.city} first at{" "}
-          {formatListeners(topCity.listeners)} a month. {mostCities.name} places {mostCities.cities.length} of the{" "}
-          {cityCount}{mostCitiesTie === 1 ? ", more than anywhere else" : ""}.
+          {formatListeners(topCity.listeners)} a month. {mostCities.name} places {spell(mostCities.cities.length)} of the{" "}
+          {cityCount}{mostCitiesTie === 1 ? ", more than anywhere else" : ""}. Read {listenersReadOnLabel}.
         </p>
       </div>
 
@@ -65,17 +71,17 @@ export default function MobileListeners() {
           <ListenerMap />
         </div>
         <p className={styles.mapHint}>
-          Each dot is a city, sized by its monthly listeners. Tap one for the figure; the
-          list below is the same {cityCount} in order.
+          Each dot is a city, sized by its monthly listeners; a tap near one shows its
+          figure. The list below is the same {cityCount} in order, each with its count.
         </p>
       </div>
 
       {/* The fifty */}
       <div className={styles.sectionHead}>
-        <span className={styles.sectionKicker}>The {cityCount}</span>
+        <h2 id="m-the-fifty" className={styles.sectionKicker}>The {cityCount}</h2>
         <span className={styles.sectionNote}>read {listenersReadOnLabel}</span>
       </div>
-      <ol className={styles.cities}>
+      <ol className={styles.cities} role="list" aria-labelledby="m-the-fifty">
         {listenerCities.map((c) => (
           <li key={c.rank} className={styles.city}>
             <span className={styles.cityRank}>{String(c.rank).padStart(2, "0")}</span>
@@ -91,7 +97,7 @@ export default function MobileListeners() {
 
       {/* By country */}
       <div className={styles.sectionHead}>
-        <span className={styles.sectionKicker}>By country</span>
+        <h2 className={styles.sectionKicker}>By country</h2>
         <span className={styles.sectionNote}>{listenerCountryCount} in the {cityCount}</span>
       </div>
       <div className={styles.regions}>
@@ -113,10 +119,16 @@ export default function MobileListeners() {
 
       <p className={styles.footNote}>
         The {cityCount} cities hold {formatListeners(top50Listeners)} of his{" "}
-        {compactListeners(MONTHLY_LISTENERS_ON_READ)} monthly listeners on {listenersReadOnLabel}. Spotify
+        {compactListeners(MONTHLY_LISTENERS_ON_READ)} monthly listeners on {listenersReadOnLabel} —{" "}
+        {pctOf(top50Listeners, MONTHLY_LISTENERS_ON_READ)}. Nigeria&apos;s {spell(nigeriaCityCount)} cities hold{" "}
+        {formatListeners(nigeriaListeners)} of that ({pctOf(nigeriaListeners, top50Listeners)}), and{" "}
+        {citiesOutsideAfrica} of the {cityCount} are outside Africa. Spotify
         publishes only an artist&apos;s top {cityCount} cities, so every country figure is a floor. Monthly
         listeners are a rolling 28-day count — all {cityCount} rows are one day&apos;s reading of Spotify&apos;s
         own city counts, via ChartMasters&apos; Artist Global Impact tool.
+        {nycWithBrooklyn != null && (
+          <> Spotify lists Brooklyn apart from New York City; together the two are {formatListeners(nycWithBrooklyn)}, and on the map they share a dot.</>
+        )}
       </p>
 
       <div className={styles.spacer} />

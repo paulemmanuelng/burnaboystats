@@ -5,6 +5,7 @@ import { updates } from "../app/data/updates";
 import { afrobeatsArtists } from "../app/data/afrobeats";
 import { LIVE_BOARDS } from "../app/data/liveBoards";
 import { liveChartsUpdated } from "../app/data/liveCharts";
+import { LISTENERS_READ_ON } from "../app/data/listeners";
 import { siteUrl } from "../app/site";
 
 /**
@@ -49,6 +50,7 @@ function evidenceFor(path: string): string[] {
   // The Spanish edition imports every figure from the English page's data.
   if (path === "/dai-dai/es") dates.push(feedDate("/dai-dai"));
   if (path === "/live-charts") dates.push(liveChartsUpdated);
+  if (path === "/music/listeners") dates.push(LISTENERS_READ_ON);
   if (path === "/updates") dates.push([...updates.map((u) => u.date)].sort().at(-1));
   if (path === "/afrobeats") dates.push([...swept.map((a) => a.verifiedOn)].sort().at(-1));
   const board = LIVE_BOARDS.find((b) => `/afrobeats/${b.slug}/live` === path);

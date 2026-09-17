@@ -8,6 +8,7 @@ import { afrobeatsArtists } from "./data/afrobeats";
 import { LIVE_BOARDS } from "./data/liveBoards";
 import { liveChartsUpdated } from "./data/liveCharts";
 import { carSlugs } from "./data/cars";
+import { LISTENERS_READ_ON } from "./data/listeners";
 
 /**
  * lastmod is a claim about a specific URL, and it is only worth making when
@@ -103,6 +104,9 @@ const contentStamp: Record<string, string> = {
   // the day the most recent of those sweeps landed.
   "/afrobeats": [...sweptArtists.map((a) => a.verifiedOn)].sort().at(-1)!,
   "/updates": [...updates.map((u) => u.date)].sort().at(-1)!,
+  // /music/listeners prints its read date beside every figure; the 50 cities
+  // are re-read by hand and replaced whole, so the read date is the stamp.
+  "/music/listeners": LISTENERS_READ_ON,
 };
 
 /**

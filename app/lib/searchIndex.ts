@@ -285,7 +285,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Where the World Listens",
     path: "/music/listeners",
     section: "Music",
-    description: "Burna Boy's top 50 Spotify cities by monthly listeners, mapped — Lagos first, 29 countries.",
+    description: "The cities with the most Burna Boy listeners on Spotify, mapped and ranked, every count dated to the day it was read.",
     keywords: ["listeners", "monthly listeners", "cities", "spotify", "where people listen", "audience", "lagos", "london", "map", "fans"],
   },
   {

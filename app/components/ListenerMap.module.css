@@ -2,21 +2,25 @@
    Frame, zoom, viewport and card come from records/tours/map/map.module.css
    (the performance map's); only what a CITY needs is here. */
 
-/* A country that places a city in the 50 — washed lighter than the performed
-   map's 42%, because the wash here is reach, not the record: the dots carry
-   the figure. Not interactive. */
+/* A country that places a city in the 50 — the performed map's 42%, the same
+   tint the page's legend swatch shows (an 18% wash was invisible on paper:
+   1.07:1 against the base map). The wash is reach, not the record: the dots
+   carry the figure. Not interactive. */
 .reach {
-  fill: color-mix(in srgb, var(--gold-wash-base) 18%, transparent);
+  fill: color-mix(in srgb, var(--gold-wash-base) 42%, transparent);
   stroke: color-mix(in srgb, var(--scrim-base) 90%, transparent);
   stroke-width: 0.4;
 }
 
 /* A city. Translucent so an overlap still shows both, gold-edged so the
-   smallest (2.6 px) survives on the wash. */
+   smallest (about 4.8 viewBox units at zoom 1) survives on the wash. Fill and
+   edge match the legend's .swatchDot; the stroke is non-scaling so it stays a
+   full pixel on a phone (0.37 px per unit) and at every zoom step. */
 .city {
-  fill: color-mix(in srgb, var(--gold-wash-base) 62%, transparent);
+  fill: color-mix(in srgb, var(--gold-wash-base) 75%, transparent);
   stroke: var(--gold-bright);
-  stroke-width: 0.9;
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
   cursor: pointer;
   transition: fill 0.15s ease;
   outline: none;
@@ -24,6 +28,18 @@
 .city:hover,
 .city:focus-visible,
 .cityActive { fill: var(--gold-hit); }
+
+/* The card's country line — mono like the tour card's region, but muted:
+   the figure below is the card's one gold, as in the table and phone list. */
+.cardCountry {
+  display: block;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
 
 /* The card's figure — display type, like the count line on the page. */
 .cardCount {

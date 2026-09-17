@@ -37,9 +37,10 @@
   text-wrap: pretty;
 }
 
-/* The two counts read as one line: countries lit, regions plain, a hairline
-   between them. Regions aren't a record — they're the shape of the first
-   number. */
+/* The three counts read as one line: the live, dated monthly-listener figure
+   lit, the 50 and the country count plain, a hairline between them. 50 is
+   Spotify's publication cap and can never move; the country count is derived
+   from it. Gold is for the figure that is live. */
 .counts { display: flex; align-items: baseline; gap: 14px; margin-top: 22px; flex-wrap: wrap; }
 .countBig {
   font-family: var(--font-anton), sans-serif;
@@ -73,8 +74,9 @@
   color: var(--text-muted);
   flex-wrap: wrap;
 }
-/* Two swatches, because there are two ways a country can appear: a shaded
-   shape, or a marker where 110m geometry has no usable shape for it. */
+/* Two swatches: a city (the dot, first here — the dots are the record) and a
+   country with at least one (the square). The fills mirror .city and .reach in
+   components/ListenerMap.module.css (75% / 42%); change them together. */
 .swatch {
   width: 14px;
   height: 14px;
@@ -82,6 +84,7 @@
   border: 1px solid var(--gold);
   display: block;
   flex: none;
+  margin-left: 14px;
 }
 .swatchDot {
   width: 9px;
@@ -91,7 +94,6 @@
   border: 1px solid var(--gold-bright);
   display: block;
   flex: none;
-  margin-left: 14px;
 }
 
 .breakdown { padding-top: 52px; }

@@ -21,7 +21,6 @@ export const BACK_BAR_ROUTES = new Set<string>([
   // ACTION_BAR_ROUTES: the design keeps the five-tab bar at its foot.
   "/search",
   "/music",
-  "/music/listeners",
   "/live-charts",
   "/records",
   "/records/charts",
@@ -71,7 +70,6 @@ export const ACTION_BAR_ROUTES = new Set<string>([
   "/records/tours/revenue",
   "/records/tours/festivals",
   "/records/tours/map",
-  "/music/listeners",
   "/records/by-the-numbers",
   "/records/africas-biggest",
   "/records/visualized",
@@ -85,8 +83,10 @@ export const ACTION_BAR_ROUTES = new Set<string>([
 ]);
 
 /**
- * A song page is screen 26 — a deep screen with its own back bar and action
- * bar, but at a dynamic path, so it can't sit in the sets above. `/music`
+ * Every deep screen under /music/ — a song page (screen 26), an album page
+ * (/music/albums/<slug>) and the listeners map (/music/listeners) — draws its
+ * own back bar and action bar. Song and album paths are dynamic, so none of
+ * them can sit in the sets above; this predicate is their one home. `/music`
  * itself is screen 04 and keeps the five-tab bar, hence the trailing slash.
  */
 const isSongPage = (pathname: string) => pathname.startsWith("/music/");
