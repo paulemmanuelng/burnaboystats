@@ -4,7 +4,7 @@ import BreadcrumbBar from "../../../components/BreadcrumbBar";
 import RevenueBoard from "../../../components/RevenueBoard";
 import MobileRevenue from "../../../components/MobileRevenue";
 import { numberWord } from "../../../lib/homeData";
-import { revenueShows } from "../../../data/tourRevenue";
+import { revenueShows, revenueStands } from "../../../data/tourRevenue";
 import { pageMetadata, datasetJsonLd } from "../../../lib/seo";
 
 // Derived, not written down. The list grows whenever a new show is reported —
@@ -48,7 +48,7 @@ const revenueDataset = datasetJsonLd({
 });
 
 const SOURCE_NOTE =
-  "Box-office figures reported by Billboard Boxscore & Pollstar (as aggregated by TouringData), cross-checked against press reporting, as of September 2026. Each entry is a single night's gross. Stands that Boxscore reported only as a combined multi-night total — Burna Boy's two-night Toronto ($2.80M) and Montreal ($1.90M) runs in February 2024 — are left off, because no per-night figure was published.";
+  "Box-office figures reported by Billboard Boxscore & Pollstar (as aggregated by TouringData), cross-checked against press reporting, as of September 2026. Each entry is a single night's gross. Stands that Boxscore reported only as one combined total are listed beneath the board with the body's own figures — they cannot be ranked against single nights, and no per-night split is invented for them.";
 
 export default function RevenuePage() {
   return (
@@ -82,7 +82,14 @@ export default function RevenuePage() {
           tickets: s.tickets,
           his: s.artist === "Burna Boy",
         }))}
-        sourceNote="Grosses and ticket counts from Billboard Boxscore. The board ranks every reported show by an African artist, not only his — a missing night means Boxscore never reported it. A dash means no headcount was published. Stands Boxscore reported only as a combined multi-night total (Toronto and Montreal, February 2024) are left off — no per-night figure exists."
+        stands={revenueStands.map((s) => ({
+          venue: s.venue,
+          meta: `${s.city} · ${s.tour} · ${s.dates} · ${s.shows} shows`,
+          gross: `$${(s.revenue / 1e6).toFixed(2)}M`,
+          tickets: `${s.tickets} over ${s.shows} nights`,
+          his: s.artist === "Burna Boy",
+        }))}
+        sourceNote="Grosses and ticket counts from Billboard Boxscore. The board ranks every reported show by an African artist, not only his — a missing night means Boxscore never reported it. A dash means no headcount was published. Stands Boxscore reported only as one combined total sit beneath the board with the body's figures; no per-night split is invented for them."
       />
 
       <div className={styles.desktopOnly}>
@@ -113,6 +120,30 @@ export default function RevenuePage() {
 
         {/* ── Filter band + board ────────────────────────────── */}
         <RevenueBoard shows={revenueShows}>
+          {/* Multi-night stands the body reports as one figure. Shown here,
+              beneath the ranking, with the body's numbers — not halved into
+              the board (which is how they sat from July to September 2026)
+              and not dropped from the page either. */}
+          <section className={styles.stands} aria-labelledby="stands-title">
+            <h2 id="stands-title" className={styles.standsTitle}>Reported as a stand — one figure for the run</h2>
+            <ul className={styles.standsList}>
+              {revenueStands.map((s) => (
+                <li key={`${s.venue}-${s.dates}`} className={styles.stand}>
+                  <span className={styles.standVenue}>
+                    <span aria-hidden="true">{s.flag}</span> {s.venue}, {s.city}
+                    <span className={styles.standMeta}> · {s.tour} · {s.dates} · {s.shows} shows</span>
+                  </span>
+                  <span className={styles.standGross}>${s.revenue.toLocaleString("en-US")}</span>
+                  <span className={styles.standTickets}>{s.tickets} tickets over {s.shows} nights</span>
+                </li>
+              ))}
+            </ul>
+            <p className={styles.standsNote}>
+              Boxscore reported each of these runs as one combined figure and never a per-night gross, so
+              they are shown as the body prints them rather than ranked above — a two-night total would
+              sit fifth on a board of single nights it never had.
+            </p>
+          </section>
           <p className={styles.sourceNote}>{SOURCE_NOTE}</p>
           <Link href="/records/tours" className={`btn btnSecondary ${styles.back}`}>
             ← Tours

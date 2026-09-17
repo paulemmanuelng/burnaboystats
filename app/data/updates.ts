@@ -97,7 +97,7 @@ export const updates: Update[] = [
   {
     date: "2026-09-17",
     category: "Tours",
-    text: "Two rows withdrawn from the highest-grossing shows board: Toronto and Montreal, February 2024, were carried as exact halves of Boxscore's combined two-night totals ($2,801,928 and $1,904,384). No per-night gross was ever published, so a per-show board cannot rank them.",
+    text: "Toronto and Montreal, February 2024, leave the single-show ranking and sit beneath it as stands: Boxscore reports each as one combined figure — $2,801,928 over 29,579 tickets and $1,904,384 over 26,303, two nights each — and never a per-night gross, so the board no longer halves them.",
     href: "/records/tours/revenue",
   },
   {

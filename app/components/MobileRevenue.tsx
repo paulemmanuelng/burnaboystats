@@ -42,6 +42,15 @@ export interface RevenueRow {
   his: boolean;
 }
 
+/** A stand the body reports as one figure for several nights — shown, not ranked. */
+export interface RevenueStandRow {
+  venue: string;
+  meta: string;
+  gross: string;
+  tickets: string;
+  his: boolean;
+}
+
 export default function MobileRevenue({
   rows,
   stats,
@@ -49,8 +58,10 @@ export default function MobileRevenue({
   topGross,
   sourceNote,
   counts,
+  stands = [],
 }: {
   rows: RevenueRow[];
+  stands?: RevenueStandRow[];
   /** Two cells, as the design draws it. */
   stats: { value: string; label: string }[];
   lede: string;
@@ -142,6 +153,30 @@ export default function MobileRevenue({
           </div>
         </div>
       ))}
+
+      {stands.length > 0 && (
+        <>
+          {/* Same row grammar as the board, minus the rank: these are the
+              body's own combined figures for a multi-night stand, shown as
+              what they are rather than ranked against single nights. */}
+          <div className={styles.metaBar}>
+            <span>Reported as a stand — {stands.length === 1 ? "one figure for the run" : "one figure per run"}</span>
+          </div>
+          {stands.map((r) => (
+            <div key={r.venue + r.meta} className={`${styles.row} ${r.his ? "" : styles.rowOther}`}>
+              <span className={styles.rank} aria-hidden="true">—</span>
+              <div className={styles.main}>
+                <div className={styles.venue}>{r.venue}</div>
+                <div className={styles.meta}>{r.meta}</div>
+              </div>
+              <div className={styles.right}>
+                <div className={`${styles.gross} ${r.his ? styles.grossHis : ""}`}>{r.gross}</div>
+                <div className={styles.tickets}>{r.tickets}</div>
+              </div>
+            </div>
+          ))}
+        </>
+      )}
 
       <p className={styles.foot}>{sourceNote}</p>
 

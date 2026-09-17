@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import { readFileSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { tours } from "../app/data/tours";
-import { revenueShows } from "../app/data/tourRevenue";
+import { revenueShows, revenueStands } from "../app/data/tourRevenue";
 
 /**
  * The record tour gross, and the record single-show gross, agree everywhere.
@@ -122,5 +122,29 @@ describe("the per-show board carries only per-show figures", () => {
   it("has no row that is one night of a multi-night stand without a headcount", () => {
     const halves = revenueShows.filter((s) => /\b1 of \d|\(\d nights?\)/i.test(s.tour) && !s.tickets);
     expect(halves.map((s) => `${s.venue}, ${s.city}`)).toEqual([]);
+  });
+});
+
+describe("multi-night stands are carried as the body prints them", () => {
+  // Toronto and Montreal (Feb 2024) were halved into the single-show board,
+  // then withdrawn; Paul asked why a verified figure should vanish. They are
+  // shown beneath the board as stands: the body's combined gross and headcount,
+  // the number of shows, and no per-night split — and never in the ranking.
+  it("each stand names its show count and is not also on the ranked board", () => {
+    expect(revenueStands.length).toBeGreaterThan(0);
+    for (const st of revenueStands) {
+      expect(st.shows).toBeGreaterThan(1);
+      expect(st.tickets).toMatch(/^\d{1,3}(,\d{3})*$/);
+      expect(st.revenue).toBeGreaterThan(0);
+      const onBoard = revenueShows.filter((s) => s.artist === st.artist && s.venue === st.venue && s.year === st.dates.slice(-4));
+      expect(onBoard, `${st.venue} ${st.dates} is both a stand and a ranked show`).toEqual([]);
+    }
+  });
+
+  it("keeps the two February 2024 stands at Boxscore's figures", () => {
+    const toronto = revenueStands.find((s) => s.city === "Toronto")!;
+    const montreal = revenueStands.find((s) => s.city === "Montreal")!;
+    expect([toronto.revenue, toronto.tickets, toronto.shows]).toEqual([2801928, "29,579", 2]);
+    expect([montreal.revenue, montreal.tickets, montreal.shows]).toEqual([1904384, "26,303", 2]);
   });
 });

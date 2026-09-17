@@ -153,6 +153,49 @@
 }
 .grossHis { color: var(--gold); }
 
+/* Multi-night stands beneath the board: the same row grammar as the board's
+   rows, without a rank — they are shown, not placed. */
+.stands { margin-top: 28px; border-top: 1px solid var(--line); padding-top: 18px; }
+.standsTitle {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 0 10px;
+}
+.standsList { list-style: none; margin: 0; padding: 0; }
+.stand {
+  display: grid;
+  grid-template-columns: 1fr 140px 200px;
+  gap: 12px;
+  align-items: baseline;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+}
+.standVenue { font-size: 15px; }
+.standMeta { color: var(--text-muted); font-size: 13px; }
+.standGross {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: var(--gold);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.standTickets {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  color: var(--text-muted);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.standsNote { font-size: 13px; line-height: 1.7; margin: 12px 0 0; max-width: 104ch; color: var(--text-muted); }
+@media (max-width: 720px) {
+  .stand { grid-template-columns: 1fr; gap: 2px; }
+  .standGross, .standTickets { text-align: left; }
+}
+
 .sourceNote {
   font-size: 13px;
   line-height: 1.7;

@@ -15,13 +15,13 @@ export interface RevenueShow {
   revenue: number; // USD
 }
 
-// NOT ON THE BOARD: Toronto (Scotiabank Arena, 24–25 Feb 2024, $2,801,928 /
-// 29,579, 2 shows) and Montreal (Centre Bell, 28–29 Feb 2024, $1,904,384 /
-// 26,303, 2 shows). TouringData/Boxscore report each stand as ONE combined
-// two-show figure and never published a per-night gross, so a per-show board
-// cannot rank them. They were carried here as exact halves ($1,400,964 and
-// $952,192) from 3 Jul 2026 to 16 Sep 2026 — an even split the body never
-// printed, with the headcount it did print dropped as "not reported".
+// NOT ON THE RANKED BOARD, carried below it as stands: Toronto and Montreal,
+// February 2024. TouringData/Boxscore report each as ONE combined two-show
+// figure and never published a per-night gross, so a per-show board cannot
+// rank them. They were carried here as exact halves ($1,400,964 and $952,192)
+// from 3 Jul 2026 to 16 Sep 2026 — an even split the body never printed, with
+// the headcount it did print dropped as "not reported". The body's own
+// figures are in `revenueStands`.
 export const revenueShows: RevenueShow[] = [
   { artist: "Burna Boy", venue: "London Stadium", city: "London", flag: "🇬🇧", tour: "I Told Them… Tour", year: "2024", tickets: "58,973", revenue: 6147209 },
   { artist: "Burna Boy", venue: "Stade de France", city: "Paris", flag: "🇫🇷", tour: "I Told Them… Tour", year: "2025", tickets: "43,881", revenue: 4528368 },
@@ -72,4 +72,30 @@ export const revenueShows: RevenueShow[] = [
   // Boxscore via press (Oct 2024): her highest-grossing show, and the highest
   // by a Nigerian female artist.
   { artist: "Tems", venue: "Radio City Music Hall", city: "New York", flag: "🇺🇸", tour: "Born in the Wild Tour", year: "2024", revenue: 547697 },
+];
+
+/**
+ * Stands the body reports as ONE figure for several nights. They are real,
+ * verified box-office reports — TouringData's I Told Them… Tour table prints
+ * "February 24-25, 2024 · Scotiabank Arena · $2,801,928 · 29,579 (100%) · 2
+ * shows" — and belong on the page; they just cannot sit in a ranking of single
+ * shows, where a two-night total would place fifth on nights it never had. So
+ * they are shown beneath the board as what they are, with the body's numbers
+ * and no per-night split invented for them.
+ */
+export interface RevenueStand {
+  artist: string;
+  venue: string;
+  city: string;
+  flag: string;
+  tour: string;
+  dates: string;
+  shows: number;
+  tickets: string;
+  revenue: number; // USD, the stand's combined gross as the body prints it
+}
+
+export const revenueStands: RevenueStand[] = [
+  { artist: "Burna Boy", venue: "Scotiabank Arena", city: "Toronto", flag: "🇨🇦", tour: "I Told Them… Tour", dates: "24–25 February 2024", shows: 2, tickets: "29,579", revenue: 2801928 },
+  { artist: "Burna Boy", venue: "Centre Bell", city: "Montreal", flag: "🇨🇦", tour: "I Told Them… Tour", dates: "28–29 February 2024", shows: 2, tickets: "26,303", revenue: 1904384 },
 ];
