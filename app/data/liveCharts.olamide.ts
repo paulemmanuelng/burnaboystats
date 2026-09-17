@@ -1,11 +1,13 @@
 // GENERATED FILE — do not edit by hand.
-  // Rebuilt hourly by scripts/build-live-charts.mjs --artist=olamide from kworb's artist page.
+  // Rebuilt several times a day by scripts/build-live-charts.mjs --artist=olamide from kworb's artist page.
   //
   // PLATFORM chart data for Olamide: where each release is sitting RIGHT
   // NOW on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube country
   // charts. This is not official-chart data — the official national peaks that
   // feed the site's headline totals live elsewhere, and the two are kept apart
   // on purpose.
+  
+  import { countriesOf } from "../lib/liveChartMeta";
   
   export interface LiveEntry {
     country: string; // ISO alpha-2
@@ -36,9 +38,12 @@
   
   /** When this snapshot was taken (ISO date). */
   export const liveChartsUpdated = "2026-09-17";
+  /** The minute the snapshot was taken, so a reader can tell a 17:20 board
+   *  from a fresh one — the job fires a few times a day, not on the hour. */
+  export const liveChartsBuiltAt = "2026-09-17T11:38Z";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -146,6 +151,62 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/ca53dc32e25c8249389aa28d80ad8fe7/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "99",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 94,
+            "movement": -62
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 117,
+            "movement": 2
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 9,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 49,
+            "movement": -16
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 80,
+            "movement": 9
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Infinity",
     "platforms": [
       {
@@ -189,55 +250,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/2f5c91242bfb5ed7be4ccb2b435b6f7f/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "99",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 94,
-            "movement": -62
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 117,
-            "movement": 2
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 80,
-            "movement": 9
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 47,
-            "movement": -19
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Olamidé",
     "platforms": [
       {
@@ -255,6 +267,18 @@
             "name": "Chad",
             "position": 113,
             "movement": 19
+          }
+        ]
+      },
+      {
+        "platform": "Spotify Albums",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 41,
+            "movement": 3
           }
         ]
       }
@@ -282,6 +306,18 @@
             "movement": -9
           }
         ]
+      },
+      {
+        "platform": "Spotify Albums",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 148,
+            "movement": -20
+          }
+        ]
       }
     ],
     "kind": "album",
@@ -305,6 +341,18 @@
             "name": "Nigeria",
             "position": 130,
             "movement": 0
+          }
+        ]
+      },
+      {
+        "platform": "Spotify Albums",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 123,
+            "movement": 7
           }
         ]
       }
@@ -346,25 +394,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/636b24b8b52148a55ce3bf9c263ba19e/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Kana",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 99,
-            "movement": -16
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/81b302f950caef7e10cf377769407ff4/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Sometimes",
     "platforms": [
       {
@@ -404,6 +433,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/2f5c91242bfb5ed7be4ccb2b435b6f7f/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Zion",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 66,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/2f5c91242bfb5ed7be4ccb2b435b6f7f/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Dope Money",
     "platforms": [
       {
@@ -413,7 +462,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 94,
+            "position": 124,
             "movement": null,
             "status": "new"
           }
@@ -491,7 +540,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 101,
+            "position": 124,
             "movement": null,
             "status": "new"
           }
@@ -511,7 +560,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 149,
+            "position": 158,
             "movement": null,
             "status": "new"
           }
@@ -570,8 +619,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 109,
-            "movement": 6
+            "position": 110,
+            "movement": -3
           }
         ]
       }
@@ -589,8 +638,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 115,
-            "movement": 7
+            "position": 116,
+            "movement": -3
           }
         ]
       }
@@ -608,8 +657,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 152,
-            "movement": 8
+            "position": 153,
+            "movement": -3
           }
         ]
       }
@@ -628,9 +677,13 @@
     (n, r) => n + r.platforms.reduce((m, p) => m + p.numberOnes, 0),
     0
   );
-  export const liveCountryCount = new Set(
-    liveCharts.flatMap((r) => r.platforms.flatMap((p) => p.entries.map((e) => e.country)))
-  ).size;
+  // Counted by the site's own rule (app/lib/liveChartMeta.ts): kworb labels
+  // Britain "UK" on five platforms and "GB" on Spotify's, and emits "WW" for
+  // its worldwide chart. A raw code count claimed the UK twice and the world
+  // as a nation — the share card said 151 countries where the page said 149.
+  export const liveCountryCount = countriesOf(
+    liveCharts.flatMap((r) => r.platforms.flatMap((p) => p.entries))
+  );
   
   /** Placements per platform, biggest first — powers the summary row. */
   export const livePlatformTotals: { platform: string; placements: number; numberOnes: number }[] =

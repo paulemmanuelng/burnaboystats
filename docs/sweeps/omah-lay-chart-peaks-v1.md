@@ -10,7 +10,7 @@ Swept **19 August 2026** in two halves — Nigeria/Africa/Billboard Global, and 
 
 ## Headline
 
-- **71 chart entries** (release × chart-territory pairs)
+- **72 chart entries** (release × chart-territory pairs)
 - **14 countries**, plus the two Billboard Global charts — **16 chart territories**
 - **6 No. 1 placements**, all in **1 country** (Nigeria)
 - **Major markets:** 🇺🇸 US — **no Hot 100 entry ever**, and **no Billboard 200 entry ever**. 🇬🇧 UK — **No. 76** (*Attention*, Official Singles Chart). 🌐 Billboard Global 200 — **No. 74**; Global Excl. US — **No. 73**, both *Attention*, both for two weeks in March 2022. **Best peak anywhere outside Nigeria: 🇫🇷 No. 2** — *Namek* (Jul feat. Omah Lay), 27 weeks.
@@ -57,6 +57,7 @@ Swept **19 August 2026** in two halves — Nigeria/Africa/Billboard Global, and 
 | bend you | 🇳🇬 #32 | **1** |
 | it's yours | 🇳🇬 #33 | **1** |
 | One Call (SPINALL, Omah Lay & Tyla) | 🇳🇬 #35 | **1** |
+| As We Get High (bees & honey, Omah Lay, BEAM & Gyptian) | 🇳🇬 #35 | **1** |
 | temptations | 🇳🇬 #47 | **1** |
 | understand | 🇳🇬 #60 | **1** |
 | how to luv | 🇳🇬 #68 | **1** |
@@ -76,13 +77,13 @@ Swept **19 August 2026** in two halves — Nigeria/Africa/Billboard Global, and 
 | release | chart peaks by country | |
 |---|---|---|
 | Boy Alone (2022) *(incl. Boy Alone: Deluxe Edition)* | 🇳🇬 **#1** † · 🇳🇱 #42 · 🇨🇭 #82 · 🇫🇷 #106 · 🇧🇪 #158 | **5** |
-| CLARITY OF MIIND (2026) | 🇳🇬 **#1** | **1** |
+| CLARITY OF MIND (2026) *(TurnTable's row prints "CLARITY OF MIIND")* | 🇳🇬 **#1** | **1** |
 | Get Layd (EP, 2020) | 🇳🇬 #29 | **1** |
 | What Have We Done (EP, 2020) | 🇳🇬 #31 | **1** |
 
 **Albums subtotal:** 5 + 1 + 1 + 1 = **8** ✓
 
-**Total: 63 + 8 = 71 chart entries.** ✓
+**Total: 64 + 8 = 72 chart entries.** ✓
 
 **Distribution check** — the 71 entries fall in 14 countries plus the 2 supranational Billboard Global charts: 🇳🇬 43 · 🇨🇭 5 · 🇫🇷 4 · 🇳🇱 3 · 🇬🇧 2 · 🇵🇹 2 · 🇧🇪 2 · 🇿🇦 2 · then eight territories with 1 each (🇨🇦 🇩🇪 🇦🇹 🇱🇺 🇮🇪 🇸🇪 🌐 GLB 🌐 GLBX). Sum: 42 + 5 + 4 + 3 + 2 + 2 + 2 + 2 + 8 = **70** ✓. No release appears twice for the same country.
 
@@ -97,7 +98,7 @@ This counts No. 1 **placements**, not releases. Omah Lay has **6 No. 1 placement
 | 3 | With You (Davido ft. Omah Lay) | 🇳🇬 Nigeria | TurnTable Official Nigeria Top 100 | **Observed at rank 1** on the 2025-04-24 and 2025-05-15 issues; 51 weeks on chart. |
 | 4 | Waist | 🇳🇬 Nigeria | TurnTable Official Nigeria Top 100 | **Observed at rank 1** on the 2025-11-27 issue; 31 weeks on chart. |
 | 5 | Boy Alone † | 🇳🇬 Nigeria | TurnTable Official Top 100 Albums | `highestPosition` moves from 2 to 1 between the 2023-03-23 and 2023-06-15 issues, dating the No. 1 to that window. Still on chart at No. 17 with **197 weeks on** in the live 2026-08-06 issue. |
-| 6 | CLARITY OF MIIND | 🇳🇬 Nigeria | TurnTable Official Top 100 Albums | **Observed at rank 1** on the 2026-04-16 issue; No. 6 with 18 weeks on in the live 2026-08-06 issue. |
+| 6 | CLARITY OF MIND (register string "CLARITY OF MIIND") | 🇳🇬 Nigeria | TurnTable Official Top 100 Albums | **Observed at rank 1** on the 2026-04-16 issue; No. 6 with 18 weeks on in the live 2026-08-06 issue. |
 
 **Four of the six were seen at rank 1 in an actual issue. Two rest on the register's own peak field** — flagged † and set out in gap 3.
 
@@ -210,3 +211,9 @@ The honest comparison: Omah Lay's **70 entries across 16 chart territories** is 
 But the two lines are not measuring the same career. Burna Boy's 278 is built on a fifteen-year catalogue with more than a dozen records that charted in ten-plus countries each. Omah Lay is, on this evidence, **a Nigeria-dominant artist with almost no global chart presence**: 42 of 70 entries are Nigerian, and his entire non-Nigerian footprint outside the two guest-billed French rap hits and one Luciano feature is thin enough to list in a sentence. Across **123,600 Billboard Global rows** he appears **once**, for two weeks, at 73 and 74, on a Justin Bieber duet — and he has never entered the Hot 100 or the Billboard 200 at all.
 
 Where the line is genuinely strong is **at home and in France**. In Nigeria he holds 38 charting singles, 4 charting albums and 6 No. 1 placements, with *Boy Alone* still on the albums chart at **197 weeks** — a run that outlasts most of what this sweep set contains. In France he reached **No. 2** on SNEP, higher than anything Ayra Starr, Tems or Tyla have managed on that chart, and did it as a **featured guest on a Jul record** — the kind of placement no artist-side fan list would ever surface. His Nigerian count is also the one most likely to be a floor: an entire breakout era, 2020–21, sits behind an unreadable predecessor chart, and TurnTable publishes no weekly archive at all.
+
+## Re-read 17 Sep 2026 (freshness audit, batch 3)
+
+**As We Get High** (bees & honey, OMAH LAY, BEAM & Gyptian) — TurnTable Official Nigeria Top 100, week 37 (10 Sep 2026): debut at 35, one week, Omah Lay named on the chart body's own credit line — a featured entry under the lead-and-featured rule, as Gut Genug is. Published at its open peak with the live-run note. Headline 71 → **72**.
+
+**CLARITY OF MIND** — the album row was typed "CLARITY OF MIIND", the spelling TurnTable's own register string carries; the album is *Clarity of Mind*. Corrected on the board; the register string is kept here so the next sweep's title match still finds the row.

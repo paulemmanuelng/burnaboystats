@@ -80,7 +80,7 @@ export default function MobileAfrobeatsHub({
           Where Burna Boy stands among the genre&rsquo;s biggest names — counted the same way he
           is, every figure read in the issuing body&rsquo;s own register.
         </p>
-        <div className={styles.cadence}>Reviewed weekly · Burna Boy&rsquo;s pages daily</div>
+        <div className={styles.cadence}>Re-read at each sweep, last {sweptRange} · Burna Boy&rsquo;s pages daily</div>
       </div>
 
       {/* The door. He is not a cell in the wall — he is the way into the site. */}

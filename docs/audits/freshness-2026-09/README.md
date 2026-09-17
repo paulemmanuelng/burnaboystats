@@ -8,13 +8,13 @@ the body that publishes the figure before anything is changed.
 |---|---|---|---|---|---|
 | 1 | /, /dai-dai, /certifications, /records/{charts,awards,africas-biggest,firsts,tours,cars}, /updates | 52 | 50 | 2 | PR #269, 16 Sep |
 | 2 | /music, /live-charts, /analysis, /compare, /records/by-the-numbers, /records/tours/{revenue,festivals}, /dai-dai/es, /about, /faq, /methodology, /press | 34 | 32 | 2 | PR #270, 17 Sep |
-| 3 | /afrobeats + the 15 artist pages with their /charts and /live | 55 | verifying | — | — |
+| 3 | /afrobeats + the 15 artist pages with their /charts and /live | 55 | 51 | 4 | PR #274, 17 Sep |
 | 4 | song, album, car and compare-pair pages; /timeline, /records/visualized, /records/tours/map, /search, /share, /contact, /curator, /api, /analysis/spotify-unmerge | not yet run | | | |
 
 Files: `audit-batch{N}-raw.json` is what the auditors reported (every finding,
 notes included); `audit-batch{N}-verdicts.json` is the verifier's ruling on
 each non-note finding with the evidence it read and the corrected fix;
-`fixes-applied-*.json` is the ledger of what actually changed on the site,
+`fixes-applied-*.json` (batches 1–2, and batch 3) is the ledger of what actually changed on the site,
 written for the report to Paul.
 
 Rules the audit runs under: a figure is read at the body that publishes it; a

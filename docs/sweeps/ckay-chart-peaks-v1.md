@@ -8,7 +8,7 @@ charts are recorded separately as GLB and GLBX, not as countries.
 
 ## Headline
 
-- **28 chart entries** (title × country pairs)
+- **37 chart entries** (title × country pairs)
 - **15 countries**, plus the US, Canada and both Billboard global charts — **19 chart territories**
 - **5 No. 1 placements** across **5 countries**
 
@@ -16,14 +16,15 @@ charts are recorded separately as GLB and GLBX, not as countries.
 
 | release | chart peaks by country | |
 |---|---|---|
-| love nwantiti (ah ah ah) | 🇨🇭 #1 · 🇫🇷 #1 · 🇳🇱 #1 · 🇳🇴 #1 · 🌐 GLBX #2 · 🇳🇿 #2 · 🇬🇧 #3 · 🇦🇹 #4 · 🇸🇪 #4 · 🇩🇪 #6 · 🇩🇰 #6 · 🇦🇺 #8 · 🇧🇪 #8 · 🇮🇹 #20 · 🇪🇸 #46 | **15** |
+| love nwantiti (ah ah ah) | 🇨🇭 #1 · 🇫🇷 #1 · 🇳🇱 #1 · 🇳🇴 #1 · 🌐 GLBX #2 · 🇳🇿 #2 · 🇬🇧 #3 · 🇦🇹 #4 · 🇸🇪 #4 · 🇩🇪 #6 · 🇩🇰 #6 · 🇦🇺 #8 · 🇧🇪 #8 · 🇮🇹 #20 · 🇪🇸 #46 · 🇮🇪 #5 · 🇭🇺 #6 | **17** |
 | BODY (danz) | 🇳🇬 #1 | **1** |
 | AFRICAN GIRLS | 🇳🇬 #20 | **1** |
 | BADAMINTON | 🇳🇬 #11 | **1** |
 | E CLEAR | 🇳🇬 #16 | **1** |
-| Emiliana | 🇸🇪 #90 | **1** |
+| SHEGE | 🇳🇬 #50 (peak open, read 17 Sep 2026) | **1** |
+| Emiliana | 🇸🇪 #90 · 🇭🇺 #26 | **2** |
 
-**Singles subtotal: 18 + 1 + 2 = 21**
+**Singles subtotal: 29** *(love nwantiti 17, Emiliana 2, the other singles 9 and SHEGE 1 — 17 Sep 2026: 🇮🇪 🇭🇺 on love nwantiti, 🇭🇺 on Emiliana, SHEGE 🇳🇬 added; see the re-read below)*
 
 ## Albums — 8
 
@@ -36,7 +37,7 @@ charts are recorded separately as GLB and GLBX, not as countries.
 
 **Albums subtotal: 5 + 1 + 1 + 1 = 8**
 
-**Total: 25 + 8 = 33 chart entries.**
+**Total: 29 + 8 = 37 chart entries.**
 
 > **+1 on 27 Aug 2026 — 🇵🇹 Portugal, and it is a No. 1.** Found while verifying every
 > Portuguese certification on the board against AFP's own register. *love nwantiti*
@@ -82,8 +83,8 @@ Not counted, and not disproved:
   read at source.
 - **Portugal (AFP)** — a No. 1 is reported and could not be confirmed at the
   body. If it holds, it is a sixth No. 1.
-- **Ireland, Greece, Czechia, Slovakia, Hungary** — reported entries, none
-  confirmable at source within this sweep.
+- **Ireland and Hungary** — read at the bodies on 17 Sep 2026, below. **Greece,
+  Czechia, Slovakia** — reported entries, not confirmable at source within this sweep.
 - **South Africa (TOSAC)** — reported at #2, not readable.
 - **Finland** returned a clean nil: the chart loaded and CKay has no entry.
 
@@ -118,3 +119,9 @@ Songs No. 10 for "Emiliana"; US World Albums No. 4 for the EP. A No. 1 on a
 genre chart is not a No. 1.
 
 Territories rise 16 → 19: the US, Canada and the Global 200 join.
+
+## Re-read 17 Sep 2026 (freshness audit, batch 3)
+
+- **love nwantiti (ah ah ah) 🇮🇪 #5** — Official Irish Singles Chart (officialcharts.com/charts/irish-singles-chart/, © IRMA), credited CKAY on every issue: debut #9 (1 Oct 2021), **#5 on 15 Oct 2021** (Peak 5), #5 again 12 Nov, then 31, 50, 38, 45, 49, 48 (4 Feb 2022, Peak field still 5, 21 weeks); off the chart by 4 Mar 2022. The cumulative Peak field reads 5 on its last week, so 5 is final. Emiliana never charted in Ireland.
+- **love nwantiti (ah ah ah) 🇭🇺 #6** and **Emiliana 🇭🇺 #26** — MAHASZ Single Top 40 (slagerlistak.hu archive, artist search "ckay"; Cs = peak): love nwantiti debut #10 in 2021/38, **#6 in 2021/39** (2021. 09. 24. – 09. 30.), 14, 17, 10 — the Cs column never reads better than 6; Emiliana **#26 on debut, 2022/2** (2022. 01. 07. – 01. 13.), one week. The Rádiós, Dance and Stream Top 40 rows the same search returns are component charts and excluded.
+- **SHEGE 🇳🇬 #50** — TurnTable Official Nigeria Top 100, week 37 (10 Sep 2026): rank 50, highestPosition 50, 5 weeks, still climbing. The 6 Sep sweep rejected the row "because the run is live"; the board publishes live runs at their current peak with the open-run note (Rema's TEA, five Davido rows), so it is published the same way. Headline 33 → **37** (SHEGE, Ireland, two Hungary rows), territories 20 → **22**.

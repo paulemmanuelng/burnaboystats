@@ -1,5 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { artistFaqs } from "../app/lib/boardFaqs";
+import { byMostCertified } from "../app/lib/certs";
+import { byReachOrder } from "../app/lib/chartOrder";
 import sitemap from "../app/sitemap";
 import { HEAD_TO_HEAD, opponentOf } from "../app/lib/headToHead";
 import { totalAwards, countryCount as burnaCountryCount } from "../app/data/certifications";
@@ -20,7 +22,7 @@ import {
 } from "../app/data/afrobeats";
 import { countryMeta, chartCountryMeta } from "../app/data/afrobeats";
 import { COUNTRIES as CERT_COUNTRIES } from "../app/data/certifications";
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 
 // These totals are the published output of the 15–17 Aug 2026 register sweeps.
 // They are pinned because the data file is GENERATED from those documents, and
@@ -342,7 +344,16 @@ describe("records that appear on two boards", () => {
     //   record. The `kind` field already says so on both rows.
     // Anything else that lands here is a real disagreement and must be settled,
     // not added to this list.
-    const known = new Set<string>(["Pressure|NG", "Apollo|NG", "Away|NG"]);
+    // 17 Sep 2026: Wizkid's Nigerian record was read from TurnTable's archive and
+    // five of his bare titles are different records from same-titled rows on
+    // other boards — "Special" (Olamide's NG 61), "Pray" (BNXN's NG 2),
+    // "Diamonds" and "Everyday" (Fireboy DML's NG 87 / NG 10) and "Blessings"
+    // (Omah Lay's NG 79; Asake's is "Blessings (Remix)"). The chart body's
+    // artiste line separates them; the bare title does not.
+    const known = new Set<string>([
+      "Pressure|NG", "Apollo|NG", "Away|NG",
+      "Special|NG", "Pray|NG", "Diamonds|NG", "Everyday|NG", "Blessings|NG",
+    ]);
     const conflicts: string[] = [];
     for (const [title, per] of shared()) {
       const slugs = [...per.keys()];
@@ -369,9 +380,22 @@ describe("records that appear on two boards", () => {
         "Bad Girl", "Bad Vibes", "Bandana", "Come Alive", "Cough Syrup", "Dynamite",
         "Eja Meja", "Essence", "FUJI PARTY", "Fi Kan We Kan", "Free", "Gang",
         "Gimme Dat", "Gwagwalada", "Jogodo", "MMS", "MY HEALER", "Modupe",
-        "New Religion", "No Competition", "One Call", "Pressure",
+        "New Religion", "No Competition", "One Call",
+        // 17 Sep 2026: TurnTable's own archive read for Wizkid, Davido, Tyla and
+        // Ayra Starr put records on their boards that other boards already
+        // carried — Wizkid's guest spots with Olamide, Asake, BNXN and Seyi
+        // Vibez (Alaye, Apala Disco (Remix), Billionaires Club, Getting Paid,
+        // Iskolodo, Kai!, Many Ways, Mood), Davido's "Holy Water" (Victony),
+        // Tyla & Ayra Starr's "Girl Next Door" — and five bare titles that are
+        // different records on the other board (see `known` above).
+        "Alaye", "Apala Disco (Remix)", "Billionaires Club", "Blessings", "Diamonds",
+        "Everyday", "Getting Paid", "Girl Next Door", "Holy Water", "Iskolodo", "Kai!",
+        "Many Ways", "Mood (Wizkid ft. BNXN)", "Pray", "Special",
+        // 17 Sep 2026: Ayra Starr's Nigerian peaks read from TurnTable's archive put
+        // "People" (Libianca ft. Ayra Starr & Omah Lay, NG 6) on her board as well as Omah Lay's.
+        "People", "Pressure",
         // Joined the shared list on 8 Sep 2026 with the 6 Sep sweep: BNXN
-        // already carried it, and Victony's NG 42 puts it on both boards.
+        // already carried it, and Victony's NG row puts it on both boards (24 since 17 Sep 2026).
         "WHO THIS",
         "REAL, Vol. 1 \u2013 EP", "Set Up", "Shibebe", "Skido", "So It Goes", "Soweto",
         "Stubborn", "Toxic", "Turbulence", "Uptown Disco", "Who's Dat Girl",
@@ -423,7 +447,9 @@ describe("hooks that state a figure", () => {
     // credit — the track is Blaqbonez ft. Black Sherif, and Seyi Vibez has no
     // recording of that title. Titles collide; match on artist AND title.
     expect(certCount(seyi)).toBe(102);
-    expect(chartEntries(seyi)).toBe(114);
+    // 114 -> 115 on 17 Sep 2026: "BACK 2 U" entered TurnTable's Top 100 in
+    // week 36 and read rank 10 / peak 8 in week 37 — published at its open peak.
+    expect(chartEntries(seyi)).toBe(115);
     // The whole point of his line: everything he has is Nigerian.
     expect(new Set(seyi.releases.flatMap((r) => r.certs.map((c) => c.c)))).toEqual(new Set(["NG"]));
     expect(new Set(seyi.charts.flatMap((r) => r.entries.map((e) => e.c)))).toEqual(new Set(["NG"]));
@@ -966,5 +992,60 @@ describe("board chart provenance", () => {
         `${f} resolves a chart row through countryMeta, which answers with the certifying body`
       ).toBe(false);
     }
+  });
+});
+
+describe("the board's stamp cannot fall behind its sweeps", () => {
+  // The 6 Sep 2026 sweep (docs/sweeps/RESUME-2026-09-06.md) was applied on
+  // 8 Sep without moving a single verifiedOn, so the hub printed "Read at
+  // source, 17–28 August" for eleven days after every register had been
+  // re-read. The newest verifiedOn must be no older than the newest sweep
+  // record on disk.
+  it("the newest verifiedOn is on or after the newest docs/sweeps/RESUME-*.md", () => {
+    const resumes = readdirSync("docs/sweeps")
+      .map((f) => /^RESUME-(\d{4}-\d{2}-\d{2})\.md$/.exec(f)?.[1])
+      .filter((d): d is string => Boolean(d))
+      .sort();
+    const newestSweep = resumes[resumes.length - 1];
+    const newestStamp = afrobeatsArtists.filter((a) => a.swept).map((a) => a.verifiedOn).sort().pop()!;
+    expect(newestSweep, "a sweep record exists").toBeTruthy();
+    expect(newestStamp >= newestSweep, `verifiedOn ${newestStamp} is older than the sweep of ${newestSweep}`).toBe(true);
+  });
+});
+
+describe("the certifications FAQ names the release the list puts first", () => {
+  // topPlaque() and the "Most-certified releases" list tie-break the same way
+  // (byMostCertified), so a reader never sees "Soweto" at the top of the list
+  // and "Pity This Boy" named as the most decorated in the FAQ beneath it —
+  // which is what Victony's page did until 17 Sep 2026.
+  it("for every swept artist whose most-certified release holds the top tier", () => {
+    const order = ["Diamond", "Platinum", "Gold", "Silver"];
+    const top = (r: { certs: { level: string; x?: number }[] }) =>
+      Math.min(...r.certs.map((c) => order.indexOf(c.level) * 100 - (c.x ?? 1)));
+    for (const a of sweptArtists) {
+      const first = [...a.releases].sort(byMostCertified)[0];
+      const best = Math.min(...a.releases.map(top));
+      if (top(first) !== best) continue; // the list leader is not on the top tier; the FAQ names the tier holder
+      const faq = artistFaqs(a).find((q) => /How many certifications/.test(q.q));
+      expect(faq?.a, a.slug).toContain(`“${first.title}”`);
+    }
+  });
+});
+
+describe("the board's chart pages hand the phone the explorer's order", () => {
+  // MobileOfficialCharts prints cards in the order it is given. Until 17 Sep
+  // 2026 the board's pages gave it data order, so Fireboy DML's "Peru" — 11
+  // charts, his only international hit — was the 34th card on the phone while
+  // leading the desktop explorer. The sort lives on the page, not in the
+  // shared component, because Burna Boy's own /records/charts screen is
+  // hand-ordered from the design file.
+  it("the page sorts both lists with the explorer's comparator before handing them over", () => {
+    const page = readFileSync("app/afrobeats/[artist]/charts/page.tsx", "utf8");
+    const split = page.slice(page.indexOf("const split ="), page.indexOf("});", page.indexOf("const split =")));
+    expect(split).toMatch(/kind === "Albums"\)\.sort\(byReachOrder\)/);
+    expect(split).toMatch(/kind === "Singles"\)\.sort\(byReachOrder\)/);
+    // And the comparator puts the hit first: Peru is Fireboy DML's most-charted single.
+    const fireboy = artistBySlug("fireboy-dml")!;
+    expect([...fireboy.charts.filter((r) => r.kind === "Singles")].sort(byReachOrder)[0].title).toBe("Peru");
   });
 });

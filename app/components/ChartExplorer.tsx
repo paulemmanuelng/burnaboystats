@@ -7,6 +7,7 @@ import { track } from "../lib/analytics";
 import { coverFor } from "../lib/covers";
 import { spotifyImage } from "../lib/spotifyImage";
 import FilterEmpty from "./FilterEmpty";
+import { byReachOrder } from "../lib/chartOrder";
 
 type Countries = Record<string, ChartCountry>;
 
@@ -172,13 +173,9 @@ export default function ChartExplorer({
     (!country || it.entries.some((e) => e.c === country)) &&
     (!peakMax || it.entries.some((e) => e.peak <= peakMax));
 
-  // Most-charted first: rank by how many territories a release charted in, then
-  // by its best (lowest) peak, then newest — so the biggest hits lead each list.
-  const byReach = (a: ExplorerRelease, b: ExplorerRelease) =>
-    b.entries.length - a.entries.length ||
-    Math.min(...a.entries.map((e) => e.peak)) - Math.min(...b.entries.map((e) => e.peak)) ||
-    (b.year ?? 0) - (a.year ?? 0) ||
-    a.title.localeCompare(b.title);
+  // Most-charted first — the one comparator, shared with the board's chart
+  // pages so the phone gets the same order (app/lib/chartOrder.ts).
+  const byReach = byReachOrder;
 
   const groups = [
     { label: "Albums", items: albums.filter(keep).sort(byReach) },

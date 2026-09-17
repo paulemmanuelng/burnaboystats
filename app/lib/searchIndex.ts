@@ -436,7 +436,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Wizkid — Chart History",
     path: "/afrobeats/wizkid/charts",
     section: "Afrobeats",
-    description: "Every Wizkid official chart entry and peak — 154 entries and 24 No. 1 placements, country by country.",
+    description: "Every Wizkid official chart entry and peak — 237 entries and 25 No. 1 placements, country by country.",
     keywords: ["wizkid", "wizzy", "star boy", "wizkid charts", "wizkid chart history", "wizkid chart peaks", "wizkid number ones"],
   },
   {
@@ -450,7 +450,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Davido — Chart History",
     path: "/afrobeats/davido/charts",
     section: "Afrobeats",
-    description: "Every Davido official chart entry and peak — 93 entries and 17 No. 1 placements, country by country.",
+    description: "Every Davido official chart entry and peak — 146 entries and 17 No. 1 placements, country by country.",
     keywords: ["davido", "obo", "david adeleke", "davido charts", "davido chart history", "davido chart peaks", "davido number ones"],
   },
   {
@@ -492,7 +492,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Tyla — Chart History",
     path: "/afrobeats/tyla/charts",
     section: "Afrobeats",
-    description: "Every Tyla official chart entry and peak — 175 entries and 3 No. 1 placements, country by country.",
+    description: "Every Tyla official chart entry and peak — 184 entries and 3 No. 1 placements, country by country.",
     keywords: ["tyla", "water", "amapiano", "tyla charts", "tyla chart history", "tyla chart peaks", "tyla number ones"],
   },
   {
@@ -506,7 +506,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Ayra Starr — Chart History",
     path: "/afrobeats/ayra-starr/charts",
     section: "Afrobeats",
-    description: "Every Ayra Starr official chart entry and peak — 82 entries and 10 No. 1 placements, country by country.",
+    description: "Every Ayra Starr official chart entry and peak — 110 entries and 10 No. 1 placements, country by country.",
     keywords: ["ayra starr", "rush", "sability", "ayra starr charts", "ayra starr chart history", "ayra starr chart peaks", "ayra starr number ones"],
   },
   {
@@ -520,14 +520,14 @@ export const searchIndex: SearchDoc[] = [
     title: "Omah Lay",
     path: "/afrobeats/omah-lay",
     section: "Afrobeats",
-    description: "Omah Lay's 62 certifications across 9 countries and 71 official chart entries, verified at source.",
+    description: "Omah Lay's 62 certifications across 9 countries and 72 official chart entries, verified at source.",
     keywords: ["omah lay", "understand", "soso", "boy alone", "omah lay certifications"],
   },
   {
     title: "Seyi Vibez",
     path: "/afrobeats/seyi-vibez",
     section: "Afrobeats",
-    description: "Seyi Vibez's 102 certifications across 1 country and 114 official chart entries, verified at source.",
+    description: "Seyi Vibez's 102 certifications across 1 country and 115 official chart entries, verified at source.",
     keywords: ["seyi vibez", "loseyi professor", "memory card", "seyi vibez certifications"],
   },
   {
@@ -590,7 +590,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Omah Lay — Chart History",
     path: "/afrobeats/omah-lay/charts",
     section: "Afrobeats",
-    description: "Every Omah Lay official chart entry and peak — 71 entries and 6 No. 1 placements, country by country.",
+    description: "Every Omah Lay official chart entry and peak — 72 entries and 6 No. 1 placements, country by country.",
     keywords: ["omah lay", "understand", "soso", "omah lay charts", "omah lay chart history", "omah lay number ones"],
   },
   {
@@ -604,7 +604,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Seyi Vibez — Chart History",
     path: "/afrobeats/seyi-vibez/charts",
     section: "Afrobeats",
-    description: "Every Seyi Vibez official chart entry and peak — 114 entries and 11 No. 1 placements, country by country.",
+    description: "Every Seyi Vibez official chart entry and peak — 115 entries and 11 No. 1 placements, country by country.",
     keywords: ["seyi vibez", "loseyi professor", "memory card", "seyi vibez charts", "seyi vibez chart history", "seyi vibez number ones"],
   },
   {
@@ -618,14 +618,14 @@ export const searchIndex: SearchDoc[] = [
     title: "CKay — Certifications & Chart Records",
     path: "/afrobeats/ckay",
     section: "Afrobeats",
-    description: "CKay's 28 certifications across 15 countries and 33 official chart entries, verified at source.",
+    description: "CKay's 28 certifications across 15 countries and 37 official chart entries, verified at source.",
     keywords: ["ckay", "chukwuka ekweani", "love nwantiti", "emiliana", "sad romance", "ckay certifications"],
   },
   {
     title: "CKay — Official Chart Peaks",
     path: "/afrobeats/ckay/charts",
     section: "Afrobeats",
-    description: "Every official chart peak for CKay — 33 entries across 20 territories, 6 of them No. 1.",
+    description: "Every official chart peak for CKay — 37 entries across 22 territories, 6 of them No. 1.",
     keywords: ["ckay charts", "love nwantiti chart", "ckay peak", "ckay number one"],
   },
   {
@@ -639,14 +639,14 @@ export const searchIndex: SearchDoc[] = [
     title: "Olamide — Certifications",
     path: "/afrobeats/olamide",
     section: "Afrobeats",
-    description: "54 certifications across 2 countries and 105 official chart entries, verified at source.",
+    description: "54 certifications across 2 countries and 104 official chart entries, verified at source.",
     keywords: ["olamide", "olamide gbenga adedeji", "baddo", "ybnl", "olamide certifications"],
   },
   {
     title: "Olamide — Official Chart Peaks",
     path: "/afrobeats/olamide/charts",
     section: "Afrobeats",
-    description: "Every official chart peak for Olamide — 105 entries across 2 territories, 7 of them No. 1 in Nigeria.",
+    description: "Every official chart peak for Olamide — 104 entries across 2 territories, 7 of them No. 1 in Nigeria.",
     keywords: ["olamide charts", "olamide number one", "rock olamide", "olamide peak"],
   },
   {

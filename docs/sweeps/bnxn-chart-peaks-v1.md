@@ -87,3 +87,7 @@ No. 90 that is not counted.
 
 **Pray 2 The East is UK-only.** It never entered the Nigerian chart, so it appears
 here with a single entry and no Nigerian row.
+
+## Re-read 17 Sep 2026 (freshness audit, batch 3)
+
+- **WHO THIS** (Victony & BNXN) — TurnTable Official Nigeria Top 100, week 37 (10 Sep 2026): rank 24, highestPosition 24, 3 weeks. Board row moved 42 → **24**, the same answer on Victony's board (open peak, live-run note).

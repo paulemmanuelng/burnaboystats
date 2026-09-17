@@ -8,7 +8,11 @@
  * Shared so the desktop page and the mobile screen can never state it
  * differently.
  */
-const CADENCE: Record<string, string> = { YouTube: "weekly" };
+// "Spotify Albums" is Spotify's Weekly Top Albums chart — a weekly chart,
+// unlike the daily songs chart the "Spotify" rows come from; the extractor in
+// scripts/stats-lib.mjs publishes it under this name (SPOTIFY_ALBUMS) for
+// exactly that reason.
+const CADENCE: Record<string, string> = { YouTube: "weekly", "Spotify Albums": "weekly" };
 
 export const cadenceOf = (platform: string) => CADENCE[platform] ?? "daily";
 

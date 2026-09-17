@@ -200,8 +200,8 @@ export default async function AfroLiveChartsPage({
             <div className={styles.notice}>
               <strong>These are platform charts, not official charts.</strong>{" "}
               This page tracks the country charts of Spotify, Apple Music, iTunes, Deezer and
-              Shazam, which refresh daily, plus YouTube&apos;s, which refreshes weekly — where a
-              record sits <em>right now</em>.{" "}
+              Shazam, which refresh daily, plus YouTube&apos;s and Spotify&apos;s Top Albums,
+              which refresh weekly — where a record sits <em>right now</em>.{" "}
               {hasChartBoard ? (
                 <>
                   {a.name}&apos;s official national peaks, and the career records they produce, are

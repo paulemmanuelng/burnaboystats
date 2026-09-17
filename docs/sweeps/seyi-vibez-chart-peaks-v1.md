@@ -6,13 +6,13 @@
 
 ## Headline
 
-- **114 chart entries** (title × country pairs)
+- **115 chart entries** (title × country pairs)
 - **1 chart territory** — 🇳🇬 Nigeria. There is no second one.
 - **11 No. 1 placements**, all Nigerian — 5 singles and 6 projects
 - **103 charting singles, 11 charting projects**
 - **Major markets:** 🇺🇸 US — **no Hot 100 entry and no Billboard 200 entry, ever**, proven across 346 published weeks of each. 🌐 Billboard Global 200 and Global 200 Excl. US — **no entry ever**, proven across 309 published weeks of each. 🇬🇧 UK — **no Official Singles Chart or Official Albums Chart entry**; his only OCC chart section is the Official Afrobeats Chart, a genre chart, which this standard excludes.
 
-This is the most single-market chart career in the sweep series. **Every one of the 114 entries is Nigerian, and every one of the 11 No. 1s is Nigerian.** The finding is not that the international registers were unreadable — 233,900 Billboard rows, 261 weeks of FIMI, 246 Portuguese weekly PDFs, the whole of the NZ chart's 50-year search index and every published MENA week were read. They were read, and he is not in them.
+This is the most single-market chart career in the sweep series. **Every one of the 115 entries is Nigerian, and every one of the 11 No. 1s is Nigerian.** The finding is not that the international registers were unreadable — 233,900 Billboard rows, 261 weeks of FIMI, 246 Portuguese weekly PDFs, the whole of the NZ chart's 50-year search index and every published MENA week were read. They were read, and he is not in them.
 
 ## Singles — 103
 
@@ -43,6 +43,7 @@ This is the most single-market chart career in the sweep series. **Every one of 
 | OPERA MINI (Poco Lee & Seyi Vibez) | #7 | 10 (still charting) |
 | Dejavu | #8 | 19 |
 | FUJI MOTO (single) | #8 | 26 |
+| BACK 2 U | #8 | 2 (peak open, read 17 Sep 2026 — issues 2026-09-03 and 2026-09-10) |
 | Bounce (Bella Shmurda & Seyi Vibez) | #9 | 14 |
 | Shazam | #9 | 18 |
 | MACHO (ft. NLE Choppa) | #11 | 10 |
@@ -146,9 +147,9 @@ All 11 rows are the **TurnTable Official Top 100 Albums** (published as *Nigeria
 
 **Albums subtotal: 11.**
 
-**Total: 103 + 11 = 114 chart entries.**
+**Total: 104 + 11 = 115 chart entries.**
 
-*Distribution check — 🇳🇬 Nigeria 114, every other territory 0. Sum: **114*** ✓. No release appears twice for the same country on the same chart.
+*Distribution check — 🇳🇬 Nigeria 115, every other territory 0. Sum: **115*** ✓. No release appears twice for the same country on the same chart.
 
 ## No. 1 placements
 
@@ -243,8 +244,12 @@ This **closes the "Nigeria is structurally unverifiable beyond the current week"
 
 Under this identical standard, **Burna Boy has 278 chart entries and 47 No. 1 placements across 69 chart territories** ([burnaboystats.com](https://burnaboystats.com)).
 
-The comparison is not close, and it is not really a comparison of size — it is a comparison of shape. Seyi Vibez's **114 entries** is **41% of Burna Boy's count**, which for an artist whose first chart week was January 2021 is a remarkable rate. But those 114 entries sit in **1 chart territory against Burna Boy's 71**, and his **11 No. 1s against 48** are all in that one country. Burna Boy's ledger is 71 territories deep and comparatively shallow in each; Seyi Vibez's is one territory deep and, within it, denser than anyone else's in this sweep series.
+The comparison is not close, and it is not really a comparison of size — it is a comparison of shape. Seyi Vibez's **115 entries** is **41% of Burna Boy's count**, which for an artist whose first chart week was January 2021 is a remarkable rate. But those 114 entries sit in **1 chart territory against Burna Boy's 71**, and his **11 No. 1s against 48** are all in that one country. Burna Boy's ledger is 71 territories deep and comparatively shallow in each; Seyi Vibez's is one territory deep and, within it, denser than anyone else's in this sweep series.
 
 What drives the density is that TurnTable charts album cuts and interludes: *Apala Interlude* at No. 7, *Fuji Interlude* at No. 13, *Highlife Interlude* at No. 46. **103 charting singles in five years in one market** is the highest single-market singles count in the series. And the catalogue does not fall off — *Thy Kingdom Come* has 163 weeks on the albums chart, *NSNV* 163, *Vibe Till Thy Kingdom Come* 151, *NAHAMciaga* 138.
 
 The gap is entirely at the border. Burna Boy's 280 includes a Hot 100 line, a Global 200 line and a UK line; Seyi Vibez has **no entry on any chart outside Nigeria**, and this sweep read the registers rather than assuming it — 309 Global 200 weeks, 309 Global Excl. US weeks, 346 Hot 100 weeks, 346 Billboard 200 weeks, 261 FIMI weeks, 246 Portuguese weekly PDFs, 489 Czech and Slovak weekly charts, the whole NZ search index and every published MENA week. That is the finding, and it is a read result, not a silence.
+
+## Re-read 17 Sep 2026 (freshness audit, batch 3)
+
+**BACK 2 U** — TurnTable Official Nigeria Top 100, week 37 (issue dated 10 Sep 2026): rank 10, highestPosition 8, 2 weeks on chart (`__NEXT_DATA__` chartData, read 17 Sep 2026). Published at its open peak with the board's live-run note. Headline 114 → **115**.

@@ -1,11 +1,13 @@
 // GENERATED FILE — do not edit by hand.
-  // Rebuilt hourly by scripts/build-live-charts.mjs --artist=ckay from kworb's artist page.
+  // Rebuilt several times a day by scripts/build-live-charts.mjs --artist=ckay from kworb's artist page.
   //
   // PLATFORM chart data for CKay: where each release is sitting RIGHT
   // NOW on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube country
   // charts. This is not official-chart data — the official national peaks that
   // feed the site's headline totals live elsewhere, and the two are kept apart
   // on purpose.
+  
+  import { countriesOf } from "../lib/liveChartMeta";
   
   export interface LiveEntry {
     country: string; // ISO alpha-2
@@ -36,9 +38,12 @@
   
   /** When this snapshot was taken (ISO date). */
   export const liveChartsUpdated = "2026-09-17";
+  /** The minute the snapshot was taken, so a reader can tell a 17:20 board
+   *  from a fresh one — the job fires a few times a day, not on the hour. */
+  export const liveChartsBuiltAt = "2026-09-17T11:38Z";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Deezer","Spotify","YouTube","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Deezer","Spotify","Spotify Albums","YouTube","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -95,14 +100,14 @@
           {
             "country": "RU",
             "name": "Russia",
-            "position": 16,
-            "movement": -8
+            "position": 15,
+            "movement": -2
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 60,
-            "movement": -7
+            "position": 56,
+            "movement": 3
           }
         ]
       },
@@ -149,6 +154,25 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/b922c719d3a9901f749140e8f532a8d0/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Boyfriend",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 65,
+            "movement": -8
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ba3181c9fe6a8e7e725a04506efb1dda/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Emiliana",
     "platforms": [
       {
@@ -169,45 +193,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/17c6e2a5233d9bb0920643922dd4f210/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Boyfriend",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 59,
-            "movement": -2
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ba3181c9fe6a8e7e725a04506efb1dda/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "samson and delilah",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "MA",
-            "name": "Morocco",
-            "position": 87,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/71000d4cdf0e9d662dd70c614e1de2a8/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "La La",
     "platforms": [
       {
@@ -225,6 +210,45 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "BANGER BOY",
+    "platforms": [
+      {
+        "platform": "Spotify Albums",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 111,
+            "movement": -8
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/1d0daaf8c0025c2d95c96beafe4e0a0b/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "samson and delilah",
+    "kind": "song",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "MA",
+            "name": "Morocco",
+            "position": 87,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "cover": "https://cdn-images.dzcdn.net/images/cover/71000d4cdf0e9d662dd70c614e1de2a8/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "love nwantiti (ah ah ah)",
@@ -264,6 +288,18 @@
       }
     ],
     "cover": "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "forever",
+    "platforms": [],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/73e10a485de513f9c18f87575ae66d58/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "E CLEAR",
+    "platforms": [],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/1d0daaf8c0025c2d95c96beafe4e0a0b/500x500-000000-80-0-0.jpg"
   }
 ];
   
@@ -276,9 +312,13 @@
     (n, r) => n + r.platforms.reduce((m, p) => m + p.numberOnes, 0),
     0
   );
-  export const liveCountryCount = new Set(
-    liveCharts.flatMap((r) => r.platforms.flatMap((p) => p.entries.map((e) => e.country)))
-  ).size;
+  // Counted by the site's own rule (app/lib/liveChartMeta.ts): kworb labels
+  // Britain "UK" on five platforms and "GB" on Spotify's, and emits "WW" for
+  // its worldwide chart. A raw code count claimed the UK twice and the world
+  // as a nation — the share card said 151 countries where the page said 149.
+  export const liveCountryCount = countriesOf(
+    liveCharts.flatMap((r) => r.platforms.flatMap((p) => p.entries))
+  );
   
   /** Placements per platform, biggest first — powers the summary row. */
   export const livePlatformTotals: { platform: string; placements: number; numberOnes: number }[] =

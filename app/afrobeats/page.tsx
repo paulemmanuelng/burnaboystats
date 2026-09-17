@@ -192,7 +192,7 @@ export default function AfrobeatsPage() {
           every figure read in the issuing body&apos;s own register rather than taken from a fan tally.
         </p>
         <p className={styles.cadence}>
-          The board is reviewed weekly. Burna Boy&apos;s own pages update daily.
+          The board is re-read at each register sweep — last on {sweptRange}. Burna Boy&apos;s own pages update daily.
         </p>
       </section>
 
@@ -274,8 +274,8 @@ export default function AfrobeatsPage() {
               <span className={styles.ruleName}>Read at source, {sweptRange}</span>
               <span className={styles.ruleBody}>
                 {sweptArtists.length} register sweeps — RIAA, BPI, SNEP, TurnTable and their
-                equivalents — re-read weekly. A figure with no register behind it is not
-                published.
+                equivalents — re-read at each sweep, last on {sweptRange}. A figure with no
+                register behind it is not published.
               </span>
               <span className={styles.ruleLink}>Where the figures come from →</span>
             </span>

@@ -14,7 +14,7 @@
 > peak to date, not a closed run: the album released 14 August 2026 and could
 > still climb. Territories stay at 30, since France was already counted.
 
-- **82 chart entries** (title × country pairs)
+- **110 chart entries** (title × country pairs)
 - **28 countries**, plus the two Billboard Global charts — **30 chart territories**
 - **10 No. 1 placements** across **5 countries**
 - **Major markets:** 🇺🇸 US — **no Hot 100 entry ever**; her only US placement is *The Year I Turned 21* at **No. 195** on the Billboard 200. 🇬🇧 UK — **No. 24** (*Rush*, Official Singles Chart). 🌐 Billboard Global 200 — **No. 24** (*Santa*); Global 200 Excl. US — **No. 14** (*Santa*), her best placement on any Billboard chart.
@@ -29,7 +29,7 @@ The shape of the career is unmistakable in the data: **28 of 78 entries (36%) ar
 |---|---|---|
 | Rush | 🇳🇬 #1 · 🇸🇷 #1 · 🇱🇧 #3 · 🇫🇷 #5 · 🇿🇦 #6 · 🇱🇺 #8 · 🇧🇪 #16 · 🇳🇱 #17 · 🇨🇭 #18 · 🇭🇺 #18 · 🇬🇧 #24 · 🇮🇪 #56 · 🇸🇪 #56 · 🇨🇦 #63 · 🌐 GLBX #87 · 🌐 GLB #115 | **16** |
 | Santa (Rvssian, Rauw Alejandro & Ayra Starr) | 🇪🇸 #1 · 🇵🇪 #1 · 🇧🇴 #1 · 🇨🇴 #2 · 🇪🇨 #2 · 🇵🇦 #5 · 🇨🇱 #7 · 🇦🇷 #11 · 🌐 GLBX #14 · 🇲🇽 #15 · 🌐 GLB #24 · 🇨🇭 #38 · 🇮🇹 #46 · 🇵🇹 #50 | **14** |
-| My Love (Leigh-Anne ft. Ayra Starr) | 🇸🇷 #5 · 🇬🇧 #28 · 🇳🇬 #64 | **3** |
+| My Love (Leigh-Anne ft. Ayra Starr) | 🇸🇷 #5 · 🇬🇧 #28 · 🇳🇬 #51 | **3** |
 | 2 Sugar (Wizkid ft. Ayra Starr) | 🇳🇬 #5 · 🇬🇧 #70 · 🇿🇦 #70 | **3** |
 | Gimme Dat (Ayra Starr & Wizkid) | 🇳🇬 #3 · 🇸🇷 #6 | **2** |
 | Heaven Baby | 🇳🇬 #2 | **1** |
@@ -58,25 +58,24 @@ The shape of the career is unmistakable in the data: **28 of 78 entries (36%) ar
 | Goodbye (Warm Up) (with Asake) | 🇳🇬 #9 | **1** |
 | Rhythm & Blues | 🇳🇬 #12 | **1** |
 | Last Heartbreak Song (with Giveon) | 🇳🇬 #14 | **1** |
-| Fashion Killa | 🇳🇬 #18 | **1** |
 | You're Hired (Neiked ft. Ayra Starr) | 🇸🇷 #20 | **1** |
 | Jazzy's Song | 🇳🇬 #24 | **1** |
 | Aye Kan (Angélique Kidjo ft. Ayra Starr) | 🇳🇬 #33 | **1** |
 | Show Me (with Latto) | 🇳🇬 #54 † | **1** |
 
-**Singles subtotal:** 16 + 14 + (3 × 2) + (2 × 7) + (1 × 25) = 16 + 14 + 6 + 14 + 25 = **75**
+**Singles subtotal:** 16 + 14 + (3 × 2) + (2 × 7) + (1 × 24) = 16 + 14 + 6 + 14 + 24 = **74**, plus the 28 Nigerian rows and additions of 17 Sep 2026 below = **102**
 
 ### Albums — 7
 
 | release | chart peaks by country | |
 |---|---|---|
-| Starrgirl (2026) | 🇫🇷 #100 | **1** |
+| Starrgirl (2026) | 🇳🇬 #2 · 🇫🇷 #100 | **2** |
 | The Year I Turned 21 (2024) | 🇳🇬 #1 † · 🇫🇷 #72 · 🇬🇧 #80 · 🇨🇦 #89 · 🇺🇸 #195 | **5** |
 | 19 & Dangerous (2021) | 🇳🇬 #7 | **1** |
 
 **Albums subtotal:** 1 + 5 + 1 = **7**
 
-**Total: 75 + 7 = 82 chart entries.**
+**Total: 102 + 8 = 110 chart entries.**
 
 Distribution check — the 82 entries fall in 28 countries plus the 2 supranational Billboard Global charts: 🇳🇬 32, 🇸🇷 9, 🇬🇧 4, 🇫🇷 5, then six territories with 2 each (🌐 GLB, 🌐 GLBX, 🇨🇦, 🇨🇭, 🇳🇱, 🇿🇦), then 20 with 1 each (🇱🇧 🇱🇺 🇧🇪 🇭🇺 🇮🇪 🇸🇪 🇪🇸 🇵🇪 🇧🇴 🇨🇴 🇪🇨 🇵🇦 🇨🇱 🇦🇷 🇲🇽 🇮🇹 🇵🇹 🇲🇹 🇷🇺 🇺🇸). Sum: 28 + 9 + 5 + 5 + (6 × 2) + 20 = **79** ✓. No country appears twice for the same title.
 
@@ -447,7 +446,7 @@ This section is what makes the 78 defensible. Every peak below is real; none of 
 3. 🇵🇹 ***Santa* PT #50 remains unverified.** The AFP source was opened, but only the current week; the 2024 issues holding *Santa*'s run were not reached.
 4. 🇦🇺 **ARIA 51–100 is subscriber-only**, so a deep Australian placing cannot be ruled out.
 5. 🇵🇱 **Poland could not be read at source** (ZPAV/OLiS); no Polish entry claimed either way.
-6. 🇳🇬 **23 of 28 Nigerian rows stay unverified by construction** — TurnTable publishes no weekly archive, so nothing but a live-chart appearance can ever verify them.
+6. 🇳🇬 ~~23 of 28 Nigerian rows stay unverified by construction — TurnTable publishes no weekly archive~~ **Superseded 17 Sep 2026:** TurnTable's own per-week archive route (`/api/ttc-proxy/api/chart/1/{week}/{year}`, Referer required) serves every issue; all 306 were read and every Nigerian row is now register-read — see the re-read below.
 7. **Matrix divergence to flag across files:** the shared six-artist matrix lists Türkiye among its 19 airplay carve-outs. This file departs from that on the re-audit's ruling (Billboard Turkey Songs is non-airplay), which is why it prints 59 official / 21 carve-out where the shared matrix prints 58 / 22 after the same Egypt and TopHit repairs. The chart-country total (80) is identical either way.
 
 ### Context
@@ -476,7 +475,7 @@ The two sweeps disagreed because they were looking at different things. `tonlist
 
 ---
 
-## Held back from the 6 Sep sweep — three rows, deliberately not published
+## Held back from the 6 Sep sweep — three rows, deliberately not published *(published 17 Sep 2026 — see the re-read below)*
 
 Three further Nigerian peaks were swept and adjudicated as standing: **Amazing
 🇳🇬 #70, Misunderstood 🇳🇬 #86, Midnight in New York 🇳🇬 #95**. They are NOT in the
@@ -494,3 +493,16 @@ Nothing in the test suite could have caught this either way: `chartPublished`
 equality verifies arithmetic, not provenance, and would have passed at 85 whether
 the three rows were right or wrong. Re-read them from a live payload in a later
 sweep, and add them then.
+
+## Re-read 17 Sep 2026 (freshness audit, batch 3)
+
+**Starrgirl 🇳🇬 #2** — TurnTable Official Top 100 Albums, read from the archive route on 17 Sep 2026: week 34 (dateCreated 2026-08-20) rank 2 on debut, lastPosition 0; week 35 lastPosition 2, highestPosition 2; week 36 (3 Sep 2026) rank 4, highestPosition 2, 3 weeks. The 6 Sep sweep held the row over a 2-vs-3 conflict with TurnTable's written week-34 report ("debuts at No. 3"); the body's own payload carries 2 across three consecutive issues, and the payload is the chart. Published at 2 with the live-run note. Headline 82 → **83**.
+
+## Re-read 17 Sep 2026 (freshness audit, batch 3) — Nigeria from the body's own archive
+
+Every issue of TurnTable's Official Nigeria Top 100 / Top 50 was read from the body's own archive route (`https://www.turntablecharts.com/api/ttc-proxy/api/chart/1/{week}/{year}`, Referer `turntablecharts.com/charts/1`, paced under its 100/min limit, each payload validated on `weekNumber`/`dateCreated` because an invalid week returns the earliest issue): **306 distinct issues, id 145 (2020-11-05) to id 5921 (2026-09-10)**, Top 50 through 2022-06-30 and Top 100 from 2022-07-07. Rows matched on the `artiste` field AND title.
+
+- **Removed — "Fashion Killa" 🇳🇬 #18.** No row credited to Ayra Starr is titled Fashion Killa/Killer in any issue; the only "Fashion Killer" on the register is Iyanya, Rayvanny & ZiiBeats (best 72, 2024). The row came from the news text-mine this document already flagged as unverified.
+- **Corrected — "My Love" (Leigh-Anne ft. Ayra Starr) 🇳🇬 64 → 51.** Issue 2515 (2023-09-14) rank 65 on debut; 2516 (2023-09-21) rank 51, highestPosition 51; 2517 rank 58; 2518 (2023-10-05) rank 63, 4 weeks; absent otherwise. 64 was never a weekly position.
+- **Added — 28 Nigerian peaks, all runs closed** (none on issue 5921): Ngozi (Crayon & Ayra Starr) **2**, 36 weeks 2023-08-24→2024-05-02 · People (Libianca ft. Ayra Starr & Omah Lay) **6**, the row Omah Lay's board already carried · Love Don't Cost A Dime (Re-Up) (Magixx ft.) **8** · PINACOLADA (Thisizlondon, Ayra Starr & 6LACK) **15** · Beggie Beggie (ft. Ckay) **26** · Alle (Mavins) **29** · How Many Times (DJ Big N, Oxlade & Ayra Starr) **30** · Running (& Lojay) **34** · Escaladizzy II (Mavo, Ayra Starr & Shallipopi ft. Zlatan) **34** · Disturbing U (DARKOO &) **36** · Amina **45** · Many Roads (Zinoleesky ft.) **47** · Woman Commando **56** · On A Low (Elestee &) **62** · Make It Up To You (Khalid ft.) **65** · Bloody Samaritan (Remix) (& Kelly Rowland) **66**, its own row for 4 weeks from 2022-10-06, published as a separately-charting remix like Sungba (Remix) · Amazing (ft. kwn) **70** · Girl Next Door (Tyla &) **73** · Birds Sing of Money **74** · Control **81** · You're Hired (NEIKED ft.) **86** · Misunderstood **86** · GOOD FEELINGS (Coldplay &) **92** · Jane (Skip Marley &) **94** · Lonely Refix (& Zinoleesky) **95** · Midnight in New York **95** · Bora Bora (AP Dhillon ft.) **96** · Lagos Love Story **99**. The three "held back" rows above (Amazing, Misunderstood, Midnight in New York, issue 5848 dated 2026-08-20, one week each) are among them — their peaks are final.
+- **Starrgirl 🇳🇬 #2** on the albums chart (above). Headline 82 → **110**; territories 30 and No. 1s 10 unchanged (Ngozi peaked at 2).

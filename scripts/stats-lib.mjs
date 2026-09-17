@@ -526,6 +526,10 @@ export function staleMetrics(metrics, now = new Date()) {
 //       <span class="change24">(=)</span></div> …
 // The country code lives in the href, which is far more reliable than the
 // display name (kworb writes "Turks and Caicos", "Côte d'Ivoire" etc.).
+/** Spotify's WEEKLY Top Albums charts, published as their own platform: a
+ *  different chart from the daily songs chart the "Spotify" rows come from,
+ *  and a weekly one — app/lib/liveChartMeta.ts gives it that cadence. */
+export const SPOTIFY_ALBUMS = "Spotify Albums";
 const PLATFORM_CLASSES = {
   spo: "Spotify",
   app: "Apple Music",
@@ -561,38 +565,57 @@ export function extractLiveCharts(html) {
       // Spotify's global chart lives at "global_daily.html" — without the
       // alternation the site silently dropped Spotify worldwide placements
       // while showing Shazam's and Deezer's ("ww" happens to be two letters).
+      // Album cells carry a SECOND kind of Spotify link: the weekly Top Albums
+      // chart, "https://charts.spotify.com/charts/view/album-ng-weekly/latest",
+      // with no ".html" and no country page of its own. The song-only pattern
+      // silently dropped every one of them on all sixteen boards — Seyi Vibez's
+      // page read "Spotify 15" while Spotify's own Weekly Top Albums Nigeria
+      // listed seven of his albums (found 17 Sep 2026). They are a different
+      // chart (weekly, albums), so they publish as their own platform.
+      const albumEntries = [];
       for (const m of body.matchAll(
-        /<a href="[^"]*?\/([a-z]{2}|global)(?:_daily)?\.html">#(\d+) ([^<]+)<\/a>\s*(?:<span[^>]*>([^<]*)<\/span>)?/g
+        /<a href="(?:[^"]*?\/([a-z]{2}|global)(?:_daily)?\.html|https:\/\/charts\.spotify\.com\/charts\/view\/album-([a-z]{2}|global)-weekly\/latest)">#(\d+) ([^<]+)<\/a>\s*(?:<span[^>]*>([^<]*)<\/span>)?/g
       )) {
+        const code = m[1] ?? m[2];
         // "(NE)" and "(RE)" both mean "no previous position", so both give a
         // null movement — but they are different facts, and rendering a
         // re-entry as NEW says the record has never charted there when it has.
         // Keep which one it was. A marker missing entirely stays absent rather
         // than being read as either.
         const entry = {
-          country: m[1] === "global" ? "WW" : m[1].toUpperCase(),
-          name: m[3].trim(),
-          position: Number.parseInt(m[2], 10),
+          country: code === "global" ? "WW" : code.toUpperCase(),
+          name: m[4].trim(),
+          position: Number.parseInt(m[3], 10),
         };
-        if (m[4] !== undefined) {
-          entry.movement = parseMovement(m[4]);
-          const flag = m[4].replace(/[()]/g, "").trim();
+        if (m[5] !== undefined) {
+          entry.movement = parseMovement(m[5]);
+          const flag = m[5].replace(/[()]/g, "").trim();
           if (flag === "NE") entry.status = "new";
           else if (flag === "RE") entry.status = "re";
         }
-        entries.push(entry);
+        (m[2] !== undefined ? albumEntries : entries).push(entry);
       }
+      const byPosition = (a, b) => a.position - b.position || a.name.localeCompare(b.name);
       if (entries.length) {
         platforms.push({
           platform: PLATFORM_CLASSES[h[1]],
           numberOnes: entries.filter((e) => e.position === 1).length,
-          entries: entries.sort((a, b) => a.position - b.position || a.name.localeCompare(b.name)),
+          entries: entries.sort(byPosition),
+        });
+      }
+      if (albumEntries.length) {
+        platforms.push({
+          platform: SPOTIFY_ALBUMS,
+          numberOnes: albumEntries.filter((e) => e.position === 1).length,
+          entries: albumEntries.sort(byPosition),
         });
       }
     }
     if (platforms.length) {
       songs.push({
-        title: title.replace(/&amp;/g, "&").trim(),
+        // NFC: kworb serves some titles decomposed ("Oriade" + a combining
+        // acute), and Satori draws the accent detached on the OG card.
+        title: title.replace(/&amp;/g, "&").trim().normalize("NFC"),
         platforms: platforms.sort((a, b) => b.entries.length - a.entries.length),
       });
     }

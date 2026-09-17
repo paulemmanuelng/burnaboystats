@@ -179,6 +179,9 @@ export default function MobileOfficialCharts({
               flag: countries[e.c]?.flag ?? "🏳",
               name: countries[e.c]?.name ?? e.c,
               peak: e.peak,
+              // The open-run caveat the desktop carries in its pill's title —
+              // the phone dropped it, so both layouts carry it the same way.
+              note: e.note,
               off: Boolean((peakMax && e.peak > peakMax) || (only && e.c !== only)),
             }));
           return {
@@ -406,7 +409,7 @@ export default function MobileOfficialCharts({
                   return (
                     <span
                       key={`${p.code}-${p.peak}`}
-                      title={`${p.name} — peak #${p.peak}`}
+                      title={`${p.name} — peak #${p.peak}${p.note ? ` (${p.note})` : ""}`}
                       className={styles.pill}
                       style={{
                         color: b.color,
@@ -423,6 +426,7 @@ export default function MobileOfficialCharts({
                           page's .peakName gets at this width. */}
                       <span className="visuallyHidden">{p.name}, peak </span>
                       <span className={styles.pillFlag} aria-hidden="true">{p.flag}</span>#{p.peak}
+                      {p.note && <span className="visuallyHidden">, {p.note}</span>}
                     </span>
                   );
                 })}

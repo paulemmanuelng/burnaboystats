@@ -47,6 +47,48 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-09-17",
+    category: "Charts",
+    text: "Wizkid's Nigerian record, read from TurnTable's own archive — 306 weekly issues since 2020: 83 chart entries the board never had, including a tenth Nigerian No. 1 (the S2 EP, 28 December 2023). 237 chart entries across 32 territories, 25 of them No. 1s.",
+    href: "/afrobeats/wizkid/charts",
+  },
+  {
+    date: "2026-09-17",
+    category: "Charts",
+    text: "Davido's Nigerian record, from the same archive: 53 chart entries the board never had — “Somebody Baby” and “High” at No. 2, “Jowo” No. 3 — and three peaks corrected (“Magician” 28, “Yebo Lapho” 21, “Wallah Wallah” 82). 146 chart entries; South Africa's two plaques read as 3× Platinum.",
+    href: "/afrobeats/davido/charts",
+  },
+  {
+    date: "2026-09-17",
+    category: "Charts",
+    text: "Tyla: nine chart entries the board never had — five Nigerian singles led by “Show Me Love” at 59 and the WWP EP at 18 on the albums chart, and three South African Top 20 placings read at TOSAC's own chart (“Is It Love” 17, “Double Blind” 19, “Mr. Nonchalant” 20). 184 chart entries.",
+    href: "/afrobeats/tyla/charts",
+  },
+  {
+    date: "2026-09-17",
+    category: "Charts",
+    text: "Ayra Starr's Nigerian record, read from TurnTable's own archive — all 306 issues since 2020: 28 peaks the board never had, led by “Ngozi” with Crayon at No. 2 and “People” at No. 6; “My Love” corrected 64→51; a text-mined “Fashion Killa” row that no issue carries removed. 110 chart entries.",
+    href: "/afrobeats/ayra-starr/charts",
+  },
+  {
+    date: "2026-09-17",
+    category: "Charts",
+    text: "Seven board peaks moved on TurnTable's own week-37 payload: Seyi Vibez's “BACK 2 U” No. 8, Ayra Starr's Starrgirl No. 2 on the albums chart, Victony & FOLA's “TWIN” 64→18, Victony & BNXN's “WHO THIS” 42→24, Tyla's “That Girl” 48→41, CKay's “SHEGE” 50 and Omah Lay's “As We Get High” 35.",
+    href: "/afrobeats",
+  },
+  {
+    date: "2026-09-17",
+    category: "Charts",
+    text: "Two countries CKay's board was missing, read at the bodies: “love nwantiti (ah ah ah)” peaked at No. 5 on the Official Irish Singles Chart (October 2021) and No. 6 on Hungary's MAHASZ Single Top 40, where “Emiliana” reached No. 26 — 37 entries across 22 territories.",
+    href: "/afrobeats/ckay/charts",
+  },
+  {
+    date: "2026-09-17",
+    category: "Charts",
+    text: "A correction on Olamide's board: “Pon Pon” and “PonPon” were one three-week run on TurnTable's chart in June–July 2021 (the title lost its space in week two), not two entries. 104 chart entries, 98 distinct Nigerian charting singles.",
+    href: "/afrobeats/olamide/charts",
+  },
+  {
+    date: "2026-09-17",
     category: "Streaming",
     big: true,
     text: "Burna Boy is the most-streamed African artist of 2026 so far: 1,810,927,983 Spotify streams through 16 September by the tracker's count, past Wizkid (1,808,204,727) and Tems (1,807,644,361) for the first time this year — 2.7 million clear, with 106 days of the year to run.",
@@ -265,6 +307,12 @@ export const updates: Update[] = [
     category: "Streaming",
     text: "The Spotify run at No. 1 is over: Spotify's Global Daily Top Songs chart for 7 September has “Dai Dai” at No. 11, down five, with 110 days on the chart in total. A correction: six days off the chart since 15 May, not one; the 37 days at No. 1, through the 28 August chart, stand.",
     href: "/dai-dai",
+  },
+  {
+    date: "2026-09-08",
+    category: "Charts",
+    text: "Two Nigerian album peaks for Black Sherif from TurnTable's Official Top 100 Albums, read from the archive: IRON BOY at No. 3 and The Villain I Never Was at No. 6 — his first album rows on the board.",
+    href: "/afrobeats/black-sherif/charts",
   },
   {
     date: "2026-09-08",

@@ -1,4 +1,4 @@
-import { count } from "../../lib/plural";
+import { count, plural } from "../../lib/plural";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import styles from "./artist.module.css";
@@ -79,6 +79,14 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
   const faqs = artistFaqs(a);
   const total = certCount(a);
   const countries = countryCount(a);
+  // One formatted date for both layouts — the phone's lede carried none until
+  // 17 Sep 2026 while the desktop printed it in the provenance line.
+  const verifiedLong = new Date(`${a.verifiedOn}T12:00:00Z`).toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  });
   const rival = opponentOf(a);
   // Which register and which platform a reader is about to open. Both derived:
   // "and more" only appears when there genuinely is more than one.
@@ -200,7 +208,7 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
         backHref="/afrobeats"
         backLabel={a.name}
         subject={a.name}
-        lede={`Every ${a.name} plaque, read in the issuing body's own register — ${total} across ${countries} ${countries === 1 ? "country" : "countries"}, from ${a.releases.length} certified releases.`}
+        lede={`Every ${a.name} plaque, read in the issuing body's own register — ${total} across ${count(countries, "country", "countries")}, from ${a.releases.length} certified releases. Last verified ${verifiedLong}.`}
         faqs={faqs}
         showActionBar
         compareSlug={a.slug}
@@ -311,7 +319,7 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
           </div>
           <div className={styles.numCard}>
             <span className={styles.numValue}>{countries}</span>
-            <span className={styles.numLabel}>countries</span>
+            <span className={styles.numLabel}>{plural(countries, "country", "countries")}</span>
           </div>
           {TIERS.map((t) =>
             tierCount(a, t) > 0 ? (
@@ -326,12 +334,7 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
         {/* Verified-at-source line: the site's actual differentiator. */}
         <p className={styles.provenance}>
           Every figure read in an issuing body&apos;s own register — last verified{" "}
-          {new Date(`${a.verifiedOn}T12:00:00Z`).toLocaleDateString("en-GB", {
-            day: "numeric",
-            month: "long",
-            year: "numeric",
-          })}
-          . Counted by the same rules, set out in the{" "}
+          {verifiedLong}. Counted by the same rules, set out in the{" "}
           <Link href="/methodology#principles">methodology</Link>: one plaque per title per
           country at its current tier, lead and featured credits both.
         </p>
@@ -343,7 +346,7 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
       <section className={styles.sectionPad} aria-labelledby="countries">
         <div className={styles.sectionHead}>
           <h2 id="countries" className={styles.h2}>Where the plaques are</h2>
-          <span className={styles.sectionMeta}>{countries} countries · best tier shown</span>
+          <span className={styles.sectionMeta}>{count(countries, "country", "countries")} · best tier shown</span>
         </div>
         <div className={styles.pills}>
           {countryStrip.map(([code, t]) => {
@@ -400,7 +403,7 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
                   <b>{chartEntries(a)}</b> entries
                 </span>
                 <span className={styles.chartFig}>
-                  <b>{chartTerritories(a)}</b> territories
+                  <b>{chartTerritories(a)}</b> {plural(chartTerritories(a), "territory", "territories")}
                 </span>
                 <span className={styles.chartFig}>
                   <b>{chartNo1s(a)}</b> No. 1{chartNo1s(a) === 1 ? " placement" : " placements"}
@@ -469,7 +472,7 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
             <span className={styles.compareName}>{a.name}</span>
             <span className={styles.compareValue}>{total}</span>
             <span className={styles.compareLabel}>
-              {countries} {countries === 1 ? "country" : "countries"} · {chartNo1s(a)} chart No. 1s
+              {count(countries, "country", "countries")} · {count(chartNo1s(a), "chart No. 1", "chart No. 1s")}
             </span>
           </div>
           <div className={styles.compareCell}>
@@ -480,15 +483,15 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
               {rival.total}
             </span>
             <span className={styles.compareLabel}>
-              {rival.countries} {rival.countries === 1 ? "country" : "countries"} · {rival.no1s} chart No. 1s
+              {count(rival.countries, "country", "countries")} · {count(rival.no1s, "chart No. 1", "chart No. 1s")}
             </span>
           </div>
         </div>
         <p className={styles.compareNote}>
           Both counted identically.{" "}
           {rival.isBurna
-            ? "Burna Boy's figures update daily; this board is reviewed weekly."
-            : "Both are read at source and reviewed weekly."}{" "}
+            ? `Burna Boy's figures update daily; this board was last re-read at every register on ${verifiedLong}.`
+            : `Both are read at source; this board was last re-read at every register on ${verifiedLong}.`}{" "}
           <Link href={rival.href}>{rival.name}&apos;s page ↗</Link>
         </p>
       </section>

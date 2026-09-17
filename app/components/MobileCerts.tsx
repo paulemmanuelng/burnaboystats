@@ -3,7 +3,7 @@
 import { useState, useEffect, type CSSProperties } from "react";
 import Link from "next/link";
 import styles from "./mobileCerts.module.css";
-import { badgeWeight } from "../lib/certs";
+import { badgeWeight, byMostCertified } from "../lib/certs";
 import ScrollRail from "./ScrollRail";
 import { titleKey } from "../lib/titleKey";
 import { coverFor } from "../lib/covers";
@@ -193,10 +193,14 @@ export default function MobileCerts({
     // Albums lead, then the songs — each block running most-certified to
     // least. The blocks aren't labelled; the ALBUM tag on each album row is
     // what carries the split.
+    // The same comparator the desktop uses (count, then the summed weight of
+    // the tiers), so the two layouts rank identically: the phone used to break
+    // ties by nothing, and Seyi Vibez's list put Bullion Van (one Gold) at 09
+    // while Gwagwalada's 5× Platinum sat outside the ten.
     .sort((a, b) => {
       const aAlbum = albumTitles.has(titleKey(a.title)) ? 0 : 1;
       const bAlbum = albumTitles.has(titleKey(b.title)) ? 0 : 1;
-      return aAlbum - bAlbum || b.certs.length - a.certs.length;
+      return aAlbum - bAlbum || byMostCertified(a, b);
     });
   const rows = expanded ? matching : matching.slice(0, ROWS_SHOWN);
   const hidden = matching.length - rows.length;
