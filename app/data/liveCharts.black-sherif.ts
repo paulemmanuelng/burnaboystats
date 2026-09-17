@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-17";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-17T11:38Z";
+  export const liveChartsBuiltAt = "2026-09-17T17:09Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -96,16 +96,16 @@
             "movement": 2
           },
           {
-            "country": "TR",
-            "name": "Turkey",
-            "position": 51,
-            "movement": -1
-          },
-          {
             "country": "SR",
             "name": "Suriname",
             "position": 54,
             "movement": -37
+          },
+          {
+            "country": "TR",
+            "name": "Turkey",
+            "position": 62,
+            "movement": -12
           },
           {
             "country": "BJ",
@@ -277,8 +277,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 110,
-            "movement": 1
+            "position": 114,
+            "movement": -3
           }
         ]
       }
@@ -314,8 +314,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 45,
-            "movement": -15
+            "position": 49,
+            "movement": -17
           }
         ]
       },
@@ -364,8 +364,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 15,
-            "movement": -12
+            "position": 19,
+            "movement": -15
           }
         ]
       },
@@ -414,8 +414,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 6,
-            "movement": 67
+            "position": 10,
+            "movement": 65
           }
         ]
       },
@@ -464,8 +464,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 70,
-            "movement": -14
+            "position": 74,
+            "movement": -16
           }
         ]
       },
@@ -485,6 +485,57 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "So it Goes",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 40,
+            "movement": 5
+          },
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 67,
+            "movement": 0
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 33,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 18,
+            "movement": null,
+            "status": "re"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3fe94d046b5097983f35fcc47037c799/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Expresso",
@@ -561,44 +612,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "So it Goes",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 40,
-            "movement": 5
-          },
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 67,
-            "movement": 0
-          }
-        ]
-      },
-      {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 18,
-            "movement": null,
-            "status": "re"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3fe94d046b5097983f35fcc47037c799/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Run Around",
@@ -697,8 +710,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 109,
-            "movement": -10
+            "position": 113,
+            "movement": -13
           }
         ]
       }
@@ -837,8 +850,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 158,
-            "movement": -11
+            "position": 162,
+            "movement": -14
           }
         ]
       }

@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-17";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-17T11:38Z";
+  export const liveChartsBuiltAt = "2026-09-17T17:08Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -154,8 +154,8 @@
           {
             "country": "BR",
             "name": "Brazil",
-            "position": 118,
-            "movement": 54
+            "position": 124,
+            "movement": 62
           },
           {
             "country": "KW",
@@ -194,13 +194,6 @@
             "movement": -140
           },
           {
-            "country": "NZ",
-            "name": "New Zealand",
-            "position": 191,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "QA",
             "name": "Qatar",
             "position": 192,
@@ -221,8 +214,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 58,
-            "movement": -9
+            "position": 59,
+            "movement": -10
           }
         ]
       },
@@ -312,10 +305,11 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "JM",
-            "name": "Jamaica",
-            "position": 21,
-            "movement": 65
+            "country": "SN",
+            "name": "Senegal",
+            "position": 78,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -328,94 +322,6 @@
             "name": "South Africa",
             "position": 87,
             "movement": 3
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "CHANEL",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NO",
-            "name": "Norway",
-            "position": 78,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "AT",
-            "name": "Austria",
-            "position": 80,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "DK",
-            "name": "Denmark",
-            "position": 82,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "SE",
-            "name": "Sweden",
-            "position": 84,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "IT",
-            "name": "Italy",
-            "position": 87,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "CH",
-            "name": "Switzerland",
-            "position": 89,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 100,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "LY",
-            "name": "Libya",
-            "position": 41,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "HN",
-            "name": "Honduras",
-            "position": 47,
-            "movement": null,
-            "status": "new"
           }
         ]
       }
@@ -470,9 +376,8 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 23,
-            "movement": null,
-            "status": "new"
+            "position": 48,
+            "movement": -10
           }
         ]
       }
@@ -528,6 +433,52 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "CHANEL",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "LY",
+            "name": "Libya",
+            "position": 41,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "HN",
+            "name": "Honduras",
+            "position": 48,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "AU",
+            "name": "Australia",
+            "position": 61,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "IS IT LOVE",
     "platforms": [
       {
@@ -555,22 +506,42 @@
             "status": "new"
           }
         ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "JM",
-            "name": "Jamaica",
-            "position": 14,
-            "movement": 70
-          }
-        ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "TYLA",
+    "platforms": [
+      {
+        "platform": "Spotify Albums",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 139,
+            "movement": -13
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 18,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Talk to Me",
@@ -610,45 +581,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "TYLA",
-    "platforms": [
-      {
-        "platform": "Spotify Albums",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 139,
-            "movement": -13
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Truth or Dare",
-    "kind": "song",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "PH",
-            "name": "Philippines",
-            "position": 13,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "cover": "https://cdn-images.dzcdn.net/images/cover/1ae9486180d1f50e7dbbb099b1e66825/500x500-000000-80-0-0.jpg"
   }
 ];
   

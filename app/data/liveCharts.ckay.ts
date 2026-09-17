@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-17";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-17T11:38Z";
+  export const liveChartsBuiltAt = "2026-09-17T17:08Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -100,8 +100,8 @@
           {
             "country": "RU",
             "name": "Russia",
-            "position": 15,
-            "movement": -2
+            "position": 12,
+            "movement": 5
           },
           {
             "country": "BF",
@@ -154,6 +154,53 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/b922c719d3a9901f749140e8f532a8d0/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "love nwantiti (feat. ElGrande Toto) (North African Remix)",
+    "kind": "song",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SN",
+            "name": "Senegal",
+            "position": 32,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "MA",
+            "name": "Morocco",
+            "position": 81,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6129d0ffc3ab3aaa28706630173a8fed/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "forever",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 17,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/73e10a485de513f9c18f87575ae66d58/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Boyfriend",
     "platforms": [
       {
@@ -191,6 +238,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/17c6e2a5233d9bb0920643922dd4f210/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "E CLEAR",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 83,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/1d0daaf8c0025c2d95c96beafe4e0a0b/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "La La",
@@ -231,46 +298,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/1d0daaf8c0025c2d95c96beafe4e0a0b/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "samson and delilah",
-    "kind": "song",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "MA",
-            "name": "Morocco",
-            "position": 87,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "cover": "https://cdn-images.dzcdn.net/images/cover/71000d4cdf0e9d662dd70c614e1de2a8/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "love nwantiti (ah ah ah)",
-    "kind": "song",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SG",
-            "name": "Singapore",
-            "position": 52,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ed3944c139089af1359c26d78843d435/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "BODY (danz)",
     "kind": "song",
     "platforms": [
@@ -288,18 +315,6 @@
       }
     ],
     "cover": "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "forever",
-    "platforms": [],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/73e10a485de513f9c18f87575ae66d58/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "E CLEAR",
-    "platforms": [],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/1d0daaf8c0025c2d95c96beafe4e0a0b/500x500-000000-80-0-0.jpg"
   }
 ];
   

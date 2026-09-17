@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-17";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-17T11:38Z";
+  export const liveChartsBuiltAt = "2026-09-17T17:09Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -152,6 +152,25 @@
         ]
       },
       {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 20,
+            "movement": 5
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 49,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
         "platform": "Spotify",
         "numberOnes": 0,
         "entries": [
@@ -170,21 +189,9 @@
           {
             "country": "SE",
             "name": "Sweden",
-            "position": 15,
+            "position": 75,
             "movement": null,
             "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 25,
-            "movement": 4
           }
         ]
       },
@@ -1071,8 +1078,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 85,
-            "movement": -13
+            "position": 89,
+            "movement": -15
           }
         ]
       }
@@ -1147,8 +1154,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 12,
-            "movement": -1
+            "position": 16,
+            "movement": -5
           }
         ]
       }
@@ -1166,8 +1173,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 81,
-            "movement": 0
+            "position": 82,
+            "movement": -1
           }
         ]
       }
