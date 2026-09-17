@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { afrobeatsArtists } from "../app/data/afrobeats";
 import { SEGMENT_LABELS } from "../app/lib/seo";
-import { datasetJsonLd, breadcrumbList } from "../app/lib/seo";
+import { datasetJsonLd, breadcrumbList, hasOwnBreadcrumb } from "../app/lib/seo";
 
 // These tests encode Google's required + recommended fields for each rich-result
 // type we emit, so a missing field fails here instead of surfacing weeks later as
@@ -55,6 +55,18 @@ describe("BreadcrumbList structured data", () => {
 
   it("returns null for the home page", () => {
     expect(breadcrumbList("/")).toBeNull();
+  });
+
+  // /music/listeners is a static page beside the dynamic song pages. The song
+  // pages stand the site-wide trail down (they write their own); the listeners
+  // page must not be swallowed by that rule, or it ships no BreadcrumbList.
+  it("/music/listeners takes the generated trail; a song page keeps its own", () => {
+    expect(hasOwnBreadcrumb("/music/listeners")).toBe(false);
+    expect(hasOwnBreadcrumb("/music/last-last")).toBe(true);
+    const bc = breadcrumbList("/music/listeners") as Record<string, unknown>;
+    const items = bc.itemListElement as Record<string, unknown>[];
+    expect(items.map((it) => it.name)).toEqual(["Home", "Music", "Where the World Listens"]);
+    expect(String(items[2].item)).toBe("https://burnaboystats.com/music/listeners");
   });
 });
 

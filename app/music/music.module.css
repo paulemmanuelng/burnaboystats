@@ -113,6 +113,8 @@
   border-top: 1px solid var(--line);
 }
 .countCell { padding: 20px 18px 0 0; }
+/* One action under the counts — the audience map, the catalogue's other half. */
+.heroActions { display: flex; gap: 10px; margin-top: 26px; }
 .countValue {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;

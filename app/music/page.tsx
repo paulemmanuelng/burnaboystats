@@ -125,6 +125,11 @@ export default function MusicPage() {
                 </div>
               ))}
             </div>
+            <div className={styles.heroActions}>
+              <Link href="/music/listeners" className="btn btnPrimary">
+                Where the world listens ↗
+              </Link>
+            </div>
           </div>
 
           <div className={styles.latest}>

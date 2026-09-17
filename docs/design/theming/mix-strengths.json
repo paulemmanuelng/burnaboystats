@@ -108,6 +108,11 @@
     "--text 5%",
     "--text 55%"
   ],
+  "app/components/ListenerMap.module.css": [
+    "--gold-wash-base 42%",
+    "--gold-wash-base 75%",
+    "--scrim-base 90%"
+  ],
   "app/components/MobileCerts.tsx": [
     "--tier-diamond-ink 58%",
     "--tier-gold-ink 58%",
@@ -215,6 +220,9 @@
     "--green-dot 70%",
     "--ink-wash-base 7%",
     "--shadow-base 45%"
+  ],
+  "app/components/mobileListeners.module.css": [
+    "--gold-glow-base 25%"
   ],
   "app/components/mobileLiveCharts.module.css": [
     "--gold-ink 28%",
@@ -359,6 +367,13 @@
     "--veil-base 60%",
     "--veil-base 78%",
     "--veil-base 94%"
+  ],
+  "app/music/listeners/listeners.module.css": [
+    "--gold-wash-base 42%",
+    "--gold-wash-base 5%",
+    "--gold-wash-base 5%",
+    "--gold-wash-base 70%",
+    "--gold-wash-base 75%"
   ],
   "app/music/music.module.css": [
     "--gold-wash-base 5%",

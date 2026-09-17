@@ -47,6 +47,7 @@ export const footerColumns: { label: string; links: { href: string; label: strin
       { href: "/live-charts", label: "Live Charts" },
       { href: "/records/charts", label: "Chart records" },
       { href: "/music", label: "Discography" },
+      { href: "/music/listeners", label: "Where the world listens" },
       { href: "/records/by-the-numbers", label: "By the numbers" },
       { href: "/records/visualized", label: "Visualized" },
       { href: "/analysis", label: "Chart analysis" },

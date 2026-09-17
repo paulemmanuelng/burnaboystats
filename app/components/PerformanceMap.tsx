@@ -85,6 +85,12 @@ export default function PerformanceMap() {
     onFocus: (e: React.FocusEvent<SVGElement>) => show(c.code, e.currentTarget.getBoundingClientRect()),
     onBlur: clear,
     onKeyDown: (e: React.KeyboardEvent<SVGElement>) => {
+      // Escape dismisses the card without moving focus (WCAG 1.4.13).
+      if (e.key === "Escape") {
+        e.preventDefault();
+        clear();
+        return;
+      }
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
         show(c.code, e.currentTarget.getBoundingClientRect());
@@ -121,7 +127,9 @@ export default function PerformanceMap() {
         viewBox={`0 0 ${MAP_W} ${MAP_H}`}
         className={styles.svg}
         style={{ width: `${zoom * 100}%` }}
-        role="img"
+        // "group", not "img": an img role declares the country buttons inside
+        // it presentational to assistive tech; the label still names the map.
+        role="group"
         aria-label="World map highlighting the countries Burna Boy has performed in"
         onClick={(e) => {
           // Tapping the ocean / empty space dismisses the card.

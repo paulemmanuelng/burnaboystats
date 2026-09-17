@@ -114,6 +114,9 @@ export default function MobileMusic({
             </div>
           ))}
         </div>
+        <Link href="/music/listeners" className={styles.heroCta}>
+          Where the world listens<span aria-hidden="true">↗</span>
+        </Link>
       </div>
 
       {/* Latest album */}

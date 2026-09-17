@@ -282,6 +282,13 @@ export const searchIndex: SearchDoc[] = [
     keywords: ["revenue", "box office", "grossing", "highest grossing", "boxscore", "earnings", "tour money"],
   },
   {
+    title: "Where the World Listens",
+    path: "/music/listeners",
+    section: "Music",
+    description: "The cities with the most Burna Boy listeners on Spotify, mapped and ranked, every count dated to the day it was read.",
+    keywords: ["listeners", "monthly listeners", "cities", "spotify", "where people listen", "audience", "lagos", "london", "map", "fans"],
+  },
+  {
     title: "Where He's Performed",
     path: "/records/tours/map",
     section: "Records",

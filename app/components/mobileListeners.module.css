@@ -1,0 +1,251 @@
+/* Mobile "where the world listens" screen — the tour-map screen's values
+   (mobileTourMap.module.css, design screen 20) applied to a city list. Shown
+   only below the mobile breakpoint; the desktop page is a different layout. */
+.screen { display: none; }
+
+@media (max-width: 900px) {
+  .screen {
+    display: flex;
+    flex-direction: column;
+    background: var(--bg);
+    min-height: 100%;
+  }
+}
+
+/* ── Back bar ─────────────────────────────────────────────────────────── */
+.backBar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: var(--scrim);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+  padding: 12px 18px;
+  /* With viewport-fit=cover the bar reaches under the notch and the
+     status bar; the insets push its CONTENT back into the safe area
+     while the background still bleeds to the edges. */
+  padding-top: calc(12px + env(safe-area-inset-top, 0px));
+  padding-left: calc(18px + env(safe-area-inset-left, 0px));
+  padding-right: calc(18px + env(safe-area-inset-right, 0px));
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.backBtn {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  color: var(--text);
+  flex: none;
+}
+.backLabel {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+.badge {
+  margin-left: auto;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  flex: none;
+}
+
+/* ── Hero ─────────────────────────────────────────────────────────────── */
+.hero { padding: 22px 18px 18px; }
+.kicker {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--ember);
+}
+.title {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 40px;
+  line-height: 0.94;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin-top: 11px;
+}
+.gold {
+  background: linear-gradient(180deg, var(--display-ramp-a), var(--display-ramp-b) 45%, var(--display-ramp-c));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  /* Paints the glyph, not the line box. background-clip:text fills the PADDING
+     box and clips that to the glyphs, so any ink outside it renders invisible —
+     and Anton's ink overruns every sub-1 line-height on this site. The pad
+     grows the paint area only: on a block it is cancelled by the margin, and on
+     an inline span vertical margins do not apply in the first place. 0.2em, not
+     the 0.12em the spec suggests: measured on the real page, a descender at
+     line-height 0.86 needs 0.119em, which left 0.0px of headroom. */
+  padding: 0.2em 0;
+  margin: -0.2em 0;
+}
+.lede { font-size: var(--type-lede); line-height: var(--type-lede-lh); color: var(--text-body); margin: 12px 0 0; }
+
+/* ── Map card ─────────────────────────────────────────────────────────── */
+.mapCard { margin: 0 18px; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.mapInner { background: var(--bg-soft); }
+.mapHint {
+  padding: 11px 14px;
+  border-top: 1px solid var(--line);
+  background: var(--bg);
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--dim);
+}
+
+/* ── Section heads and the fifty ──────────────────────────────────────── */
+.sectionHead {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 22px 18px 10px;
+}
+.sectionKicker {
+  /* An h2 now (heading navigation reaches the list); the class already sets
+     every face property, and the global h2 line-height is the one to undo. */
+  line-height: inherit;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--ember);
+}
+.sectionNote {
+  margin-left: auto;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--dim);
+}
+.cities { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.city {
+  display: grid;
+  grid-template-columns: 28px 1fr auto;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  border-bottom: 1px solid var(--line);
+}
+.cityRank {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.cityName {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.cityCountry {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-left: 7px;
+}
+.cityCount {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Regions ──────────────────────────────────────────────────────────── */
+.regions { padding: 0; }
+.region { padding: 14px 18px; border-top: 1px solid var(--line); }
+.regionTop { display: flex; align-items: baseline; gap: 10px; }
+.regionName {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 17px;
+  text-transform: uppercase;
+}
+.regionCount {
+  margin-left: auto;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 19px;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+}
+.regionList {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin: 7px 0 0;
+}
+
+.footNote {
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--dim);
+  padding: 18px 18px 0;
+  border-top: 1px solid var(--line);
+  margin: 0;
+}
+.spacer { height: 110px; }
+
+/* ── Action bar — replaces the tab bar on this screen ─────────────────── */
+.actionBar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 40;
+  background: var(--scrim);
+  backdrop-filter: blur(14px);
+  border-top: 1px solid var(--line);
+  padding: 12px 18px calc(12px + env(safe-area-inset-bottom, 22px));
+  padding-left: calc(18px + env(safe-area-inset-left, 0px));
+  padding-right: calc(18px + env(safe-area-inset-right, 0px));
+  display: flex;
+  gap: 10px;
+}
+.actionPrimary {
+  flex: 1;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  /* Same gold ramp as .btnPrimary and the home screen's own .primary — every
+     gold action on the site runs one gradient, or the phone shows two golds. */
+  background-color: var(--gold-fill);
+  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold-fill) 48%, var(--gold-dim) 100%);
+  color: var(--ink-on-gold);
+  -webkit-text-fill-color: var(--ink-on-gold);
+  /* Promotes the layer at rest — see .btnPrimary for the iPhone reason. */
+  transform: translateZ(0);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  box-shadow: 0 0 26px color-mix(in srgb, var(--gold-glow-base) 25%, transparent);
+}
