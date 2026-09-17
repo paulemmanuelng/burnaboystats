@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-16";
+  export const liveChartsUpdated = "2026-09-17";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -244,6 +244,13 @@
             "status": "new"
           },
           {
+            "country": "CA",
+            "name": "Canada",
+            "position": 183,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "BH",
             "name": "Bahrain",
             "position": 187,
@@ -253,13 +260,6 @@
             "country": "CH",
             "name": "Switzerland",
             "position": 187,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "CA",
-            "name": "Canada",
-            "position": 188,
             "movement": null,
             "status": "new"
           },
@@ -303,10 +303,17 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "SA",
+            "name": "Saudi Arabia",
+            "position": 17,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "NZ",
             "name": "New Zealand",
-            "position": 50,
-            "movement": 132
+            "position": 55,
+            "movement": 127
           }
         ]
       }
@@ -983,13 +990,13 @@
             "country": "KE",
             "name": "Kenya",
             "position": 81,
-            "movement": -1
+            "movement": 2
           },
           {
             "country": "NG",
             "name": "Nigeria",
             "position": 81,
-            "movement": 0
+            "movement": 1
           }
         ]
       }
@@ -1093,13 +1100,13 @@
       },
       {
         "platform": "iTunes",
-        "numberOnes": 0,
+        "numberOnes": 1,
         "entries": [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 2,
-            "movement": 1
+            "position": 1,
+            "movement": 3
           }
         ]
       }
@@ -1465,7 +1472,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 150,
-            "movement": -66
+            "movement": -65
           }
         ]
       }
@@ -1543,8 +1550,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 4,
-            "movement": null,
-            "status": "new"
+            "movement": -2
           }
         ]
       }
@@ -1767,6 +1773,63 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/09422f55197ec57417a5742ce5801f13/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Essence",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 13,
+            "movement": 0
+          },
+          {
+            "country": "DM",
+            "name": "Dominica",
+            "position": 34,
+            "movement": -2
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 86,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 167,
+            "movement": -12
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 188,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Sponono",
     "platforms": [
       {
@@ -1895,7 +1958,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 133,
-            "movement": 7
+            "movement": 8
           }
         ]
       }
@@ -1974,71 +2037,20 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 5,
-            "movement": null,
-            "status": "new"
+            "position": 6,
+            "movement": -1
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 104,
-            "movement": -100
+            "position": 130,
+            "movement": -125
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Essence",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 14,
-            "movement": 0
-          },
-          {
-            "country": "DM",
-            "name": "Dominica",
-            "position": 34,
-            "movement": -2
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 167,
-            "movement": -12
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 188,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Tonight",
@@ -2097,25 +2109,25 @@
             "country": "GH",
             "name": "Ghana",
             "position": 47,
-            "movement": 1
+            "movement": 0
           },
           {
             "country": "GD",
             "name": "Grenada",
             "position": 88,
-            "movement": 2
+            "movement": 0
           },
           {
             "country": "NG",
             "name": "Nigeria",
             "position": 92,
-            "movement": 5
+            "movement": 6
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 96,
-            "movement": 0
+            "position": 97,
+            "movement": -1
           }
         ]
       }
@@ -2152,12 +2164,12 @@
       },
       {
         "platform": "iTunes",
-        "numberOnes": 1,
+        "numberOnes": 0,
         "entries": [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 1,
+            "position": 2,
             "movement": 1
           }
         ]
@@ -2210,7 +2222,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 3,
+            "position": 5,
             "movement": null,
             "status": "new"
           }
@@ -2294,7 +2306,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 24,
+            "position": 30,
             "movement": null,
             "status": "new"
           }
@@ -2391,8 +2403,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 49,
-            "movement": -2
+            "position": 50,
+            "movement": -1
           }
         ]
       }
@@ -2430,8 +2442,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 54,
-            "movement": -22
+            "position": 60,
+            "movement": -15
           }
         ]
       }
@@ -2477,25 +2489,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "One Love",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BB",
-            "name": "Barbados",
-            "position": 90,
-            "movement": -10
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ec91c9f741208370ed9ab6b9029e90cc/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "BROWN SKIN GIRL",
@@ -2587,8 +2580,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 176,
-            "movement": -125
+            "position": 200,
+            "movement": -139
           }
         ]
       }
@@ -2606,8 +2599,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 137,
-            "movement": -112
+            "position": 162,
+            "movement": -133
           }
         ]
       }

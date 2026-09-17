@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-16";
+  export const liveChartsUpdated = "2026-09-17";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -169,15 +169,15 @@
             "movement": -8
           },
           {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 27,
+            "movement": 2
+          },
+          {
             "country": "CM",
             "name": "Cameroon",
             "position": 28,
-            "movement": 4
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 29,
             "movement": 4
           },
           {
@@ -280,7 +280,7 @@
             "country": "NZ",
             "name": "New Zealand",
             "position": 46,
-            "movement": 8
+            "movement": 7
           },
           {
             "country": "GM",
@@ -400,8 +400,8 @@
           {
             "country": "DE",
             "name": "Germany",
-            "position": 84,
-            "movement": 3
+            "position": 83,
+            "movement": 5
           },
           {
             "country": "ML",
@@ -417,16 +417,16 @@
             "movement": 5
           },
           {
-            "country": "AU",
-            "name": "Australia",
-            "position": 87,
-            "movement": 9
-          },
-          {
             "country": "VG",
             "name": "British Virgin Islands",
             "position": 88,
             "movement": 40
+          },
+          {
+            "country": "AU",
+            "name": "Australia",
+            "position": 89,
+            "movement": 8
           },
           {
             "country": "TJ",
@@ -496,12 +496,6 @@
             "movement": -33
           },
           {
-            "country": "CA",
-            "name": "Canada",
-            "position": 146,
-            "movement": 2
-          },
-          {
             "country": "JM",
             "name": "Jamaica",
             "position": 146,
@@ -518,6 +512,12 @@
             "name": "Nigeria",
             "position": 149,
             "movement": -10
+          },
+          {
+            "country": "CA",
+            "name": "Canada",
+            "position": 150,
+            "movement": 1
           },
           {
             "country": "SK",
@@ -587,10 +587,10 @@
             "movement": 2
           },
           {
-            "country": "NO",
-            "name": "Norway",
+            "country": "IT",
+            "name": "Italy",
             "position": 198,
-            "movement": -26
+            "movement": -1
           },
           {
             "country": "GR",
@@ -1145,33 +1145,33 @@
             "country": "TJ",
             "name": "Tajikistan",
             "position": 1,
-            "movement": 92
+            "movement": 94
           },
           {
             "country": "KZ",
             "name": "Kazakhstan",
-            "position": 2,
-            "movement": 2
+            "position": 4,
+            "movement": -2
           },
           {
             "country": "UZ",
             "name": "Uzbekistan",
-            "position": 6,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "PT",
-            "name": "Portugal",
-            "position": 11,
+            "position": 7,
             "movement": null,
             "status": "new"
           },
           {
             "country": "IN",
             "name": "India",
+            "position": 13,
+            "movement": 11
+          },
+          {
+            "country": "PT",
+            "name": "Portugal",
             "position": 14,
-            "movement": 10
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "BS",
@@ -1183,32 +1183,39 @@
           {
             "country": "MD",
             "name": "Moldova",
-            "position": 41,
-            "movement": -10
+            "position": 46,
+            "movement": -14
+          },
+          {
+            "country": "GR",
+            "name": "Greece",
+            "position": 57,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "LV",
             "name": "Latvia",
-            "position": 63,
-            "movement": -40
+            "position": 70,
+            "movement": -39
           },
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 74,
+            "position": 88,
             "movement": null,
             "status": "new"
           },
           {
             "country": "TR",
             "name": "Turkey",
-            "position": 156,
-            "movement": -76
+            "position": 185,
+            "movement": -105
           },
           {
             "country": "BR",
             "name": "Brazil",
-            "position": 182,
+            "position": 192,
             "movement": null,
             "status": "new"
           }
@@ -1465,8 +1472,8 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 197,
-            "movement": -3
+            "position": 191,
+            "movement": 7
           },
           {
             "country": "PT",
@@ -1502,8 +1509,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 156,
-            "movement": -12
+            "position": 162,
+            "movement": -17
           }
         ]
       }
@@ -1755,16 +1762,16 @@
             "status": "new"
           },
           {
-            "country": "US",
-            "name": "United States",
-            "position": 114,
-            "movement": 3
-          },
-          {
             "country": "BS",
             "name": "The Bahamas",
             "position": 116,
             "movement": -52
+          },
+          {
+            "country": "US",
+            "name": "United States",
+            "position": 117,
+            "movement": 0
           },
           {
             "country": "AI",
@@ -2022,7 +2029,7 @@
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 14,
+            "position": 13,
             "movement": 0
           },
           {
@@ -2030,6 +2037,13 @@
             "name": "Dominica",
             "position": 34,
             "movement": -2
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 86,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -2124,8 +2138,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 112,
-            "movement": -12
+            "position": 118,
+            "movement": -17
           }
         ]
       }
@@ -2241,26 +2255,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/584f40f4d2b62b611a7ab8561b656ff3/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "I THINK YOU'RE SPECIAL",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 97,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/67541e55a567744d91f140a7d5bc1727/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Mine",
     "platforms": [
       {
@@ -2319,6 +2313,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/584f40f4d2b62b611a7ab8561b656ff3/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "I THINK YOU'RE SPECIAL",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 117,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/67541e55a567744d91f140a7d5bc1727/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Crazy Tings",
@@ -2465,7 +2479,7 @@
             "country": "GD",
             "name": "Grenada",
             "position": 86,
-            "movement": 2
+            "movement": 0
           }
         ]
       }

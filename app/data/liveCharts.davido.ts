@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-16";
+  export const liveChartsUpdated = "2026-09-17";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -235,13 +235,13 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 5,
-            "movement": 107
+            "movement": 4
           },
           {
             "country": "TT",
             "name": "Trinidad and Tobago",
-            "position": 59,
-            "movement": -12
+            "position": 62,
+            "movement": -15
           }
         ]
       },
@@ -597,16 +597,16 @@
             "movement": 64
           },
           {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 119,
+            "movement": 1
+          },
+          {
             "country": "AE",
             "name": "United Arab Emirates",
             "position": 129,
             "movement": -54
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 131,
-            "movement": -2
           },
           {
             "country": "AO",
@@ -859,20 +859,20 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 11,
-            "movement": -4
+            "position": 12,
+            "movement": -2
           },
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 28,
-            "movement": -8
+            "position": 29,
+            "movement": -5
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 87,
-            "movement": -13
+            "position": 93,
+            "movement": -18
           }
         ]
       },
@@ -1016,8 +1016,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 17,
-            "movement": 112
+            "position": 20,
+            "movement": 140
           }
         ]
       },
@@ -1137,7 +1137,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 19,
+            "position": 23,
             "movement": null,
             "status": "new"
           }
@@ -1547,9 +1547,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 23,
-            "movement": null,
-            "status": "new"
+            "position": 29,
+            "movement": -14
           }
         ]
       }
@@ -1631,7 +1630,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 184,
-            "movement": 2
+            "movement": 3
           }
         ]
       }
@@ -1755,14 +1754,14 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 17,
-            "movement": 0
+            "position": 12,
+            "movement": 5
           },
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 58,
-            "movement": -2
+            "position": 54,
+            "movement": 0
           },
           {
             "country": "BF",
@@ -1835,9 +1834,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 13,
-            "movement": null,
-            "status": "new"
+            "position": 19,
+            "movement": -14
           }
         ]
       }
@@ -1918,8 +1916,8 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 15,
-            "movement": -1
+            "position": 10,
+            "movement": 5
           },
           {
             "country": "NE",
@@ -1931,20 +1929,19 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 57,
-            "movement": -8
+            "movement": -7
           },
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 61,
-            "movement": -2
+            "position": 57,
+            "movement": 0
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 93,
-            "movement": null,
-            "status": "new"
+            "position": 83,
+            "movement": 10
           }
         ]
       },
@@ -2071,13 +2068,13 @@
             "country": "GM",
             "name": "Gambia",
             "position": 30,
-            "movement": 0
+            "movement": -1
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
             "position": 68,
-            "movement": -5
+            "movement": -6
           }
         ]
       },
@@ -2405,26 +2402,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Julie",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 72,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Titanium",
     "platforms": [
       {
@@ -2461,6 +2438,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/08304eb172098540c635de98530d4929/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Julie",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 91,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Electricity",

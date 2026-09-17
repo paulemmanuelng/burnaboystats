@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-16";
+  export const liveChartsUpdated = "2026-09-17";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -309,19 +309,19 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 16,
-            "movement": 110
+            "position": 19,
+            "movement": 138
           },
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 52,
-            "movement": -7
+            "position": 60,
+            "movement": -14
           },
           {
             "country": "ES",
             "name": "Spain",
-            "position": 171,
+            "position": 200,
             "movement": null,
             "status": "new"
           }
@@ -493,8 +493,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 18,
-            "movement": -2
+            "position": 19,
+            "movement": -1
           },
           {
             "country": "BW",
@@ -505,8 +505,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 108,
-            "movement": -99
+            "position": 134,
+            "movement": -123
           }
         ]
       },
@@ -1315,14 +1315,14 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 25,
-            "movement": 0
+            "position": 21,
+            "movement": 4
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 72,
-            "movement": -7
+            "position": 73,
+            "movement": -8
           }
         ]
       },
@@ -1415,14 +1415,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 17,
-            "movement": -10
+            "position": 23,
+            "movement": -16
           },
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 53,
-            "movement": 3
+            "position": 52,
+            "movement": 4
           }
         ]
       },
@@ -1571,7 +1571,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 169,
+            "position": 193,
             "movement": null,
             "status": "new"
           }
@@ -1679,8 +1679,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 78,
-            "movement": -14
+            "position": 84,
+            "movement": -19
           }
         ]
       }
@@ -1722,8 +1722,8 @@
           {
             "country": "CV",
             "name": "Cape Verde",
-            "position": 9,
-            "movement": 0
+            "position": 11,
+            "movement": -2
           }
         ]
       }
@@ -1761,7 +1761,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 48,
+            "position": 63,
             "movement": null,
             "status": "new"
           }
@@ -1770,6 +1770,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/e43cc1d22a556fa87272c55c933bb4d7/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "VILLAIN",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 80,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/4891a944de9418f059cabda0c7699160/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Dumebi",

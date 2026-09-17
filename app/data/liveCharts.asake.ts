@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-16";
+  export const liveChartsUpdated = "2026-09-17";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -214,7 +214,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 46,
-            "movement": 2
+            "movement": -1
           },
           {
             "country": "BM",
@@ -260,16 +260,16 @@
             "movement": -9
           },
           {
-            "country": "CA",
-            "name": "Canada",
-            "position": 95,
-            "movement": -17
-          },
-          {
             "country": "TD",
             "name": "Chad",
             "position": 95,
             "movement": -7
+          },
+          {
+            "country": "CA",
+            "name": "Canada",
+            "position": 97,
+            "movement": -18
           },
           {
             "country": "DM",
@@ -308,6 +308,12 @@
             "position": 184,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "FR",
+            "name": "France",
+            "position": 195,
+            "movement": -4
           }
         ]
       }
@@ -544,8 +550,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 114,
-            "movement": -101
+            "position": 13,
+            "movement": 2
           }
         ]
       }
@@ -732,8 +738,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 77,
-            "movement": -14
+            "position": 83,
+            "movement": -19
           }
         ]
       },
@@ -929,7 +935,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 73,
-            "movement": -6
+            "movement": -5
           }
         ]
       }
@@ -1116,8 +1122,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 126,
-            "movement": -105
+            "position": 151,
+            "movement": -127
           }
         ]
       },
@@ -2227,7 +2233,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 34,
-            "movement": -6
+            "movement": -5
           }
         ]
       }
@@ -2776,13 +2782,13 @@
       },
       {
         "platform": "iTunes",
-        "numberOnes": 0,
+        "numberOnes": 1,
         "entries": [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 2,
-            "movement": 1
+            "position": 1,
+            "movement": 3
           }
         ]
       }
@@ -3060,8 +3066,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 183,
-            "movement": -13
+            "position": 189,
+            "movement": -18
           }
         ]
       },
@@ -3256,7 +3262,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 150,
-            "movement": -66
+            "movement": -65
           }
         ]
       }
@@ -3898,8 +3904,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 41,
-            "movement": -14
+            "position": 47,
+            "movement": -19
           }
         ]
       }
@@ -4303,8 +4309,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 105,
-            "movement": -100
+            "position": 131,
+            "movement": -124
           }
         ]
       }
@@ -4394,6 +4400,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/77fc9f281aabc0cfb5c17649afe08c8c/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "My Heart",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 60,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/9b36905d4dcb4eb744bb219d311a52e5/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Bad Boy - Live in London",
