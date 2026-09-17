@@ -38,23 +38,33 @@ describe("a running-year total is a ledger of dated dailies, never a run-date su
       expect(m.kind, `${m.id}: a year-to-date total only moves up`).toBe("peak");
       expect(m.checkpoint?.date, m.id).toMatch(/^\d{4}-\d{2}-\d{2}$/);
       expect(typeof m.checkpoint?.value, m.id).toBe("number");
-      expect(m.anchor?.source, `${m.id}: the checkpoint chain starts at a named tracker post`).toMatch(/WITTIEWIZ/);
+      // A named tracker post — @WITTIEWIZ's "so far" posts to 10 Sep, then
+      // @BurnaBoyStats' dated table of 17 Sep; the ledger's own figures where
+      // the post prints fewer rows than the board carries.
+      expect(m.anchor?.source, `${m.id}: the checkpoint chain starts at a named tracker post or the ledger`).toMatch(
+        /WITTIEWIZ|BurnaBoyStats|this site's own ledger/,
+      );
       expect(typeof m.dailyMax, `${m.id}: a daily is gated before it can enter the ledger`).toBe("number");
       expect(m.offset, `${m.id}: a ledger carries no offset — it is not a cumulative`).toBeUndefined();
       expect(m.live, m.id).toBe(true);
     }
   });
 
-  it("the anchor is the tracker's 10 Sep 2026 post, and the ledger only ever moves forward from it", () => {
+  it("the anchor is the tracker's 16 Sep 2026 post, and the ledger only ever moves forward from it", () => {
+    // Re-anchored 17 Sep 2026 from @BurnaBoyStats' dated table (through the
+    // 16 Sep pages) — the top three at the tracker's exact figures, Asake and
+    // Tyla at this ledger's own figures for the same day; the 10 Sep anchor
+    // (@WITTIEWIZ: 1.770B / 1.764B / 1.756B / 1.420B / 1.185B) and the
+    // comparison between the two are in docs/sourcing/STREAMS-2026-ANCHOR.md.
     const tracker: Record<string, number> = {
-      "streams-2026-tems": 1_770_000_000,
-      "streams-2026-wizkid": 1_764_000_000,
-      "streams-2026-burna": 1_756_000_000,
-      "streams-2026-asake": 1_420_000_000,
-      "streams-2026-tyla": 1_185_000_000,
+      "streams-2026-burna": 1_810_927_983,
+      "streams-2026-wizkid": 1_808_204_727,
+      "streams-2026-tems": 1_807_644_361,
+      "streams-2026-asake": 1_460_097_619,
+      "streams-2026-tyla": 1_208_808_241,
     };
     for (const m of group) {
-      expect(m.anchor, m.id).toMatchObject({ date: "2026-09-09", value: tracker[m.id] });
+      expect(m.anchor, m.id).toMatchObject({ date: "2026-09-16", value: tracker[m.id] });
       expect(m.checkpoint.date >= m.anchor.date, `${m.id}: the checkpoint cannot precede the anchor`).toBe(true);
       expect(m.checkpoint.value >= m.anchor.value, m.id).toBe(true);
       for (const d of Object.keys(m.readings ?? {})) expect(d > m.checkpoint.date, `${m.id}: a daily on or before the checkpoint is already inside it`).toBe(true);
