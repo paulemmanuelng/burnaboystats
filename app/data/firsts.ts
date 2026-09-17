@@ -127,13 +127,21 @@ export const firstGroups: FirstGroup[] = [
       { year: "2026", title: "First African artist to appear on the Billboard Vietnam Hot 100", text: "“Dai Dai” with Shakira debuted at No. 93 — afrobeats breaking onto Vietnam's chart." },
       { year: "2026", title: "One of only two African artists to top the Billboard Global 200 (Excl. US)", text: "“Dai Dai” (with Shakira) reached No. 1 — Burna Boy joins Rema (“Calm Down”) as the only African acts ever to lead the chart." },
       { year: "2026", title: "First African artist to reach No. 1 on Spotify's Global Songs chart", text: "“Dai Dai” (with Shakira) topped both Spotify's Daily and Weekly Top Songs Global charts — no African artist had done it before. Also the highest-peaking FIFA World Cup anthem in the chart's history." },
-      // Deliberately "more than 20" and not the exact 22. "Sungba" crosses 100M
-      // within a day or two and this figure has no watched-metrics.json entry
-      // behind it, so an exact count would be wrong by Monday and nothing would
-      // catch it. The "First African artist" claim is gone: Akon passed twenty
-      // songs over 100M years earlier, and "a record for an African artist"
-      // rested on a one-song margin over GIMS across a population nobody swept.
-      { year: "2026", title: "More than 20 songs over 100 million Spotify streams", text: "Over twenty of his songs have each passed 100 million streams on Spotify — nine of them solo, three as lead with a guest, and the rest as a featured artist. “Tested, Approved & Trusted” crossed on 28 August 2026, the second from “I Told Them…” to do it." },
+      // WHO COUNTS AS AN AFRICAN ARTIST here — Paul's ruling, 17 Sep 2026:
+      // nationality and where the career sits, not birthplace or parentage.
+      // Akon is an American artist (born in Missouri, Senegalese parents);
+      // GIMS (born in Kinshasa), Aya Nakamura (born in Bamako), Ninho, Damso and
+      // the rest of the French and Belgian rap school are French and Belgian
+      // artists. They are not on these boards. Every African artist on kworb's
+      // index was counted on the 16 Sep 2026 pages — an artist absent from
+      // that index has too few streams to hold any of these counts.
+      //
+      // Counts are deliberately loose ("more than 20", "five") where a
+      // crossing is days away and nothing in watched-metrics.json tracks the
+      // figure; the exact numbers live in the dated feed entries.
+      { year: "2026", title: "First African artist with five songs past 400 million Spotify streams", text: "“Dai Dai” became the fifth on the 16 September 2026 reading (449.5 million), joining “Location”, “Last Last”, “On the Low” and “Own It”. Tems and Tyla are next with three each. Nine of his songs are past 300 million, where Tyla is next with six." },
+      { year: "2026", title: "First African artist with more than 20 songs past 100 million Spotify streams", text: "Twenty-three of his songs have each passed 100 million streams on Spotify — nine of them solo, three as lead with a guest, and the rest as a featured artist. “Sungba (Remix)” was the 23rd, on 16 September 2026; Wizkid is next with 18." },
+      { year: "2026", title: "First African artist with 50 songs past 50 million Spotify streams", text: "“4 Kampé II” was the fiftieth, on the 16 September 2026 reading. Wizkid is next with 39, Asake with 29." },
     ],
   },
   {

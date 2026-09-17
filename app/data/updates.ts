@@ -55,13 +55,13 @@ export const updates: Update[] = [
   {
     date: "2026-09-17",
     category: "Streaming",
-    text: "Fifty songs past 50 million Spotify streams: “4 Kampé II” crossed on the 16 September reading at 50,236,513. On the same tracker GIMS has 48, Akon 45 and Wizkid 39. A 23rd song is past 100 million too — “Sungba (Remix)” at 100,642,822 — where Akon stands at 32 and GIMS at 24.",
+    text: "Fifty songs past 50 million Spotify streams — the first African artist to get there: “4 Kampé II” crossed on the 16 September reading at 50,236,513, with Wizkid next on 39. A 23rd song is past 100 million too, “Sungba (Remix)” at 100,642,822; Wizkid is next with 18.",
     href: "/records/africas-biggest",
   },
   {
     date: "2026-09-17",
     category: "Streaming",
-    text: "Five songs past 400 million Spotify streams: “Dai Dai” (449,530,883 on the 16 September reading) joins “Location” (736.6M), “Last Last” (611.1M), “On the Low” (428.2M) and “Own It” (414.3M). Nine are past 300 million and 15 past 200 million, as the board says.",
+    text: "Five songs past 400 million Spotify streams, the first African artist with that many: “Dai Dai” (449,530,883 on the 16 September reading) joins “Location” (736.6M), “Last Last” (611.1M), “On the Low” (428.2M) and “Own It” (414.3M). Tems and Tyla are next with three.",
     href: "/records/africas-biggest",
   },
   {
