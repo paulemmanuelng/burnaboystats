@@ -9,7 +9,7 @@ Shazam, YouTube, Audiomack, Boomplay); **genre and component charts** (Billboard
 U.S. Afrobeats Songs, Streaming Songs, Radio Songs); extension charts below a
 main chart; year-end, mid-week and recurrent charts.
 
-## Total: 100 singles + 5 albums = 105 chart entries
+## Total: 99 singles + 5 albums = 104 chart entries
 
 > **Corrected 7 Sep 2026.** This document previously read "100 singles + 0 albums". That zero was never a finding — the Nigeria method in this sweep read only TurnTable's SINGLES category (`GET /api/chart/1/{week}/{year}`) while the standard line above says "singles **or albums** chart", so the albums chart was never queried. Re-read across all 200 published issues of the Official Top 100 Albums, 2 Nov 2022 launch to 2026-08-27. The same omission affected the whole 28 Aug board-expansion batch.
 
@@ -68,3 +68,7 @@ marked NEW, annotated "Peak: 86, Weeks: 1".
 **Two better-looking numbers for the same record were rejected.** Its *Official
 Singles Chart Update* peak is 72 and its *UK Afrobeats Chart* peak is 3. Neither
 is a principal national chart, so neither is published here.
+
+## Re-read 17 Sep 2026 (freshness audit, batch 3)
+
+**Pon Pon / PonPon — one run, one entry.** TurnTable's archive (chart 1, 2021 weeks 25–28, re-read 17 Sep 2026): week 25 (2021-06-24) rank 20 "Pon Pon", Olamide ft. FAVE, highestPosition 20, 1 week; week 26 (2021-07-01) rank 35 "PonPon", lastPosition 20, 2 weeks; week 27 rank 41, lastPosition 35, 3 weeks; gone by week 28. Same credit, same title modulo a space, one lastPosition chain. The board carried it twice ("Pon Pon" and "PonPon", both NG #20); the duplicate is removed and the headline is 105 → **104** — 98 distinct Nigerian charting singles, as docs/sourcing/board-expansion/peaks-olamide-blacksherif.json already recorded.

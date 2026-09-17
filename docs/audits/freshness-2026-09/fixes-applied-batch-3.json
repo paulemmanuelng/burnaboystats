@@ -1,0 +1,200 @@
+[
+ {
+  "batch": 3,
+  "pr": 274,
+  "page": "/afrobeats",
+  "also": [
+   "all 15 artist pages"
+  ],
+  "kind": "stale",
+  "tier": "prose",
+  "title": "The board's provenance stamp was eleven days behind its own sweep",
+  "was": "“Read at source, 17–28 August 2026” on the hub (both layouts) and “last verified 17–28 August” on every artist page — while the full register re-read of 6 September had been applied on 8 September (PR #216) without moving a single date. “Re-read weekly” / “Reviewed weekly” beside it.",
+  "body": "docs/sweeps/RESUME-2026-09-06.md: “16/16 swept, 14/14 verified”; git shows the 8 Sep commits changed rows but no verifiedOn.",
+  "now": "Every artist's verifiedOn points at the 6 September sweep (the last time every register was read); the hub and the artist pages print “re-read at each register sweep — last on 6 September 2026”, and the phone's certifications lede now carries the date the desktop always had.",
+  "guard": "tests/afrobeats: the newest verifiedOn can never be older than the newest docs/sweeps/RESUME-*.md on disk."
+ },
+ {
+  "batch": 3,
+  "pr": 274,
+  "page": "/afrobeats/ayra-starr",
+  "kind": "stale",
+  "tier": "figure",
+  "title": "Ayra Starr's Nigerian record was a text-mine; the body's own archive holds 28 peaks it never had",
+  "was": "82 chart entries. The sweep document itself said 23 of her 28 Nigerian rows “rest on a text-mine … and remain unverified by construction — TurnTable publishes no weekly archive.” A “Fashion Killa” NG #18 row; “My Love” NG #64; Starrgirl with a French #100 only.",
+  "body": "TurnTable's own per-week archive route, all 306 issues from 5 Nov 2020 to 10 Sep 2026, matched on artist AND title: no issue carries a Fashion Killa by her (the only one is Iyanya's); “My Love” ran 65 → 51 → 58 → 63 (highestPosition 51); Starrgirl debuted at 2 on the albums chart and held highestPosition 2 across three issues; and 28 closed runs the board never carried — “Ngozi” with Crayon at No. 2 for 36 weeks, “People” No. 6, “Love Don't Cost A Dime (Re-Up)” No. 8, down to “Lagos Love Story” No. 99.",
+  "now": "110 chart entries (from 82): Fashion Killa removed, My Love corrected to 51, Starrgirl NG #2 added, 28 Nigerian peaks added including the separately-charting “Bloody Samaritan (Remix)” (#66), published as the board publishes other remixes. Territories 30 and No. 1s 10 unchanged."
+ },
+ {
+  "batch": 3,
+  "pr": 274,
+  "page": "/afrobeats/ckay",
+  "kind": "stale",
+  "tier": "figure",
+  "title": "Ireland and Hungary were on CKay's record and off his board",
+  "was": "33 entries across 20 territories; the sweep doc listed Ireland and Hungary as “reported … not confirmable at source”. “SHEGE”, on the chart for five weeks, held back “because the run is live”.",
+  "body": "Official Irish Singles Chart (IRMA): “love nwantiti (ah ah ah)” No. 5 on 15 Oct 2021, Peak field 5 through its last week (4 Feb 2022). MAHASZ Single Top 40 archive: love nwantiti No. 6 (week 39/2021), “Emiliana” No. 26 on debut (week 2/2022). TurnTable week 37: SHEGE rank 50, highestPosition 50.",
+  "now": "37 entries across 22 territories: IE #5, HU #6 and HU #26 added; SHEGE published at its open peak with the live-run note — the same way Rema's TEA and five Davido rows already were. The rule is now written down in docs/sweeps/README.md so the next sweep adjudicates every live run the same way."
+ },
+ {
+  "batch": 3,
+  "pr": 274,
+  "page": "/afrobeats/seyi-vibez",
+  "also": [
+   "/afrobeats/omah-lay",
+   "/afrobeats/victony",
+   "/afrobeats/bnxn",
+   "/afrobeats/tyla"
+  ],
+  "kind": "stale",
+  "tier": "figure",
+  "title": "Seven Nigerian peaks moved on TurnTable's week-37 payload",
+  "was": "Seyi Vibez 114 entries (no “BACK 2 U”); Omah Lay 71 (no “As We Get High”); Victony's “TWIN” NG 64 and “WHO THIS” NG 42 (also on BNXN's board); Tyla's “That Girl” NG 48.",
+  "body": "turntablecharts.com's own chart payload, issue dated 10 September 2026: BACK 2 U rank 10 / highestPosition 8; As We Get High debut 35 (Omah Lay on the credit line); TWIN 18; WHO THIS 24; That Girl highestPosition 41.",
+  "now": "Seyi Vibez 115, Omah Lay 72; TWIN 18, WHO THIS 24 on both boards, That Girl 41 — each with the open-run note. Hooks, search-index copy and the sweep documents moved with the data; the shared-record test holds Victony and BNXN to one answer."
+ },
+ {
+  "batch": 3,
+  "pr": 274,
+  "page": "/afrobeats/olamide",
+  "kind": "wrong",
+  "tier": "figure",
+  "title": "Olamide's board counted one three-week run as two entries",
+  "was": "“Pon Pon” NG #20 and “PonPon” NG #20 — 105 entries, hook “a hundred and four charted records in Nigeria”.",
+  "body": "TurnTable archive, 2021 weeks 25–27: “Pon Pon” (Olamide ft. FAVE) rank 20 on 24 Jun; “PonPon” rank 35 on 1 Jul with lastPosition 20 and weeksOnChart 2; rank 41 on 8 Jul — one lastPosition chain, the title losing its space in week two. The repo's own exhaustive extraction had already merged them.",
+  "now": "One row; 104 entries; hook says a hundred and three."
+ },
+ {
+  "batch": 3,
+  "pr": 274,
+  "page": "/afrobeats/*/live",
+  "also": [
+   "/live-charts"
+  ],
+  "kind": "broken",
+  "tier": "fix",
+  "title": "Every live board dropped Spotify's Weekly Top Albums placements",
+  "was": "Seyi Vibez's live board read “Spotify 15” while Spotify's own Weekly Top Albums Nigeria listed seven of his albums; Burna Boy's and Wizkid's albums showed Apple Music and iTunes only.",
+  "body": "kworb links an album's Spotify placements to charts.spotify.com/charts/view/album-<cc>-weekly/latest — no “.html”, no country page — and the extractor's song-only pattern silently skipped every one, on all sixteen boards, since the boards launched.",
+  "now": "The extractor keeps them as their own platform, “Spotify Albums”, with the weekly cadence Spotify's chart actually has; all sixteen boards regenerated (Burna Boy +7, Wizkid +8, Seyi Vibez +8 placements). A fixture test carries the literal album cell that would have caught it."
+ },
+ {
+  "batch": 3,
+  "pr": 274,
+  "page": "/afrobeats/asake/live",
+  "kind": "stale",
+  "tier": "fix",
+  "title": "Asake's features never reached his live board",
+  "was": "“Chanel”, “Eja Meja” and “Jogodo” were on Nigeria's YouTube and Deezer charts with the board showing no YouTube or Deezer row for any of them; the alias list carried a stale note that “no register sweep has run for this artist yet”.",
+  "body": "kworb's Nigeria YouTube chart: “Blaqbonez - Chanel (feat. Asake)” #20, “BNXN fka Buju - Eja Meja (feat. Asake)” #23, “Wizkid - Jogodo” #50; Deezer Nigeria: Chanel #65, Jogodo #41 — the country sweeps match on the lead credit, which is not his.",
+  "now": "The three lead credits are aliased exactly as kworb prints them; a forced sweep put all five placements on the board."
+ },
+ {
+  "batch": 3,
+  "pr": 274,
+  "page": "/afrobeats/seyi-vibez",
+  "also": [
+   "every artist's phone certifications screen"
+  ],
+  "kind": "broken",
+  "tier": "fix",
+  "title": "The phone ranked releases by count alone and buried the 5× Platinums",
+  "was": "On Seyi Vibez's phone screen (one plaque per title, all Nigerian) “Bullion Van” — a single Gold — sat at 09 while Gwagwalada's 5× Platinum, Instagram's 5×, Where I'm From's 4×, 99's and Giza's 3× were outside the top ten.",
+  "body": "Repo: the desktop explorer breaks ties by the summed weight of the tiers; the phone broke them by nothing.",
+  "now": "Both layouts use the same comparator; a render test asserts the phone's order equals the desktop's for every swept artist, with Seyi Vibez's list as the negative control."
+ },
+ {
+  "batch": 3,
+  "pr": 274,
+  "page": "/afrobeats/fireboy-dml",
+  "kind": "broken",
+  "tier": "fix",
+  "title": "Fireboy DML's phone chart cards were in data order; his only international hit was 34th",
+  "was": "“Peru” (11 charts) led the desktop explorer and sat 34th on the phone.",
+  "body": "Repo: the shared mobile component prints cards in the order it is handed, and the board's pages handed it data order.",
+  "now": "The board's chart pages sort both lists with the explorer's comparator before handing them to either layout — on the page, not in the component, because Burna Boy's own /records/charts screen is hand-ordered from the design file."
+ },
+ {
+  "batch": 3,
+  "pr": 274,
+  "page": "/afrobeats/fireboy-dml",
+  "also": [
+   "/afrobeats/victony",
+   "/afrobeats/black-sherif",
+   "/afrobeats/omah-lay",
+   "/afrobeats/rema"
+  ],
+  "kind": "wrong",
+  "tier": "prose",
+  "title": "Small things the board printed wrong",
+  "was": "“Dealer”, “So It Goes” and “Uptown Disco” filed as Fireboy DML's lead singles (he is second-billed on all three); Victony's FAQ named “Pity This Boy” as his most decorated while the list above it led with “Soweto”; “1 COUNTRIES”, “1 TERRITORIES”, “1 chart No. 1s” on Black Sherif's page; Omah Lay's album typed “CLARITY OF MIIND”; Rema's “Rave & Roses / Rave & Roses” (the title against itself).",
+  "body": "The registers and TurnTable's own strings, and the site's own rules for co-credits and tie-breaks.",
+  "now": "Three co-credits are featured appearances; the FAQ tie-breaks exactly as the list does (guarded for every artist); every singular label is pluralised through the shared helper; “CLARITY OF MIND”; “Rave & Roses / Rave & Roses Ultra”. A missing 8 September feed entry for Black Sherif's two album peaks was added."
+ },
+ {
+  "batch": 3,
+  "pr": 274,
+  "page": "/afrobeats/ckay",
+  "kind": "refuted",
+  "tier": "kept",
+  "title": "Refuted — CKay's hook about France's two Diamonds is right",
+  "was": "An auditor could not find “love nwantiti” Diamant on SNEP's HTML listing and proposed softening the hook.",
+  "body": "SNEP's per-artist CSV export carries it (Diamant, date de constat 25/11/2021); the HTML listing omits rows in the legacy “Single” category.",
+  "now": "No change to the site; a provenance note in the sweep doc so the next SNEP read searches the export."
+ },
+ {
+  "batch": 3,
+  "pr": 274,
+  "page": "/afrobeats/rema",
+  "kind": "refuted",
+  "tier": "kept",
+  "title": "Refuted — Rema's live board saying “hourly”",
+  "was": "An auditor flagged the pre-merge working tree.",
+  "body": "Batch 2 (PR #270) had already replaced every “hourly”; the live routes print “several times a day” and a test refuses the old word.",
+  "now": "No change."
+ },
+ {
+  "batch": 3,
+  "pr": 274,
+  "page": "/afrobeats/wizkid",
+  "kind": "stale",
+  "tier": "figure",
+  "title": "Wizkid's Nigerian record was 26 rows; the body's own archive holds 109",
+  "was": "154 chart entries, 24 No. 1s; Nigeria 26 entries. The sweep document asserted “TurnTable publishes no weekly archive … unverified by construction” — while the Olamide sweep of 28 August had already walked that archive.",
+  "body": "TurnTable's per-week archive route, all 306 singles issues (5 Nov 2020 → 10 Sep 2026) and 201 album issues, matched on the chart body's own artiste line (75 distinct Wizkid credit strings): every one of the 26 rows reproduces at the same peak, and 83 more runs exist — “IDK” No. 2, “Billionaires Club” No. 2, “Getting Paid” No. 2, “Kai!” No. 3 … down to “Ojuelegba” No. 92 — plus the S2 EP at No. 1 on the albums chart (28 Dec 2023).",
+  "now": "237 chart entries (from 154), 25 No. 1s (the S2 EP is the tenth Nigerian one); seven existing rows gained their Nigerian peak; 73 singles and three albums added; guest spots the other boards already carried (Alaye, Iskolodo, Getting Paid, Billionaires Club, Kai!, Many Ways, Apala Disco) now sit on his board at the same peak. Every run is closed."
+ },
+ {
+  "batch": 3,
+  "pr": 274,
+  "page": "/afrobeats/davido",
+  "kind": "stale",
+  "tier": "figure",
+  "title": "Davido's board omitted 53 Nigerian placements and carried three wrong peaks",
+  "was": "93 chart entries; “Magician” 44, “Yebo Lapho” 23, “Wallah Wallah” 85, all five recent rows still marked “peak still open”.",
+  "body": "The same 306-issue archive read: the register resets highestPosition on the 7 Jul 2022 relaunch and on every re-entry, so a peak is the best rank in any issue. Magician ran 9 Nov 2023 – 11 Jan 2024 with highestPosition 28; Yebo Lapho 21; Wallah Wallah 82; every one of the five runs has closed. Fifty closed runs the board never had — “Somebody Baby” 2, “High” 2, “Jowo” 3, “Stand Strong” 6, “Dada (Remix)” 7 (its all-time peak, not the 16 of its post-relaunch run) — plus Nigerian entries on Money, Hayya Hayya and If It's Okay. RiSA files Blow My Mind and Risky under RISA-MULTI-PLATINUM.",
+  "now": "146 chart entries (from 93), No. 1s and territories unchanged; three peaks corrected, five stale notes removed; the two South African plaques render 3× Platinum under the rule the board already applied to Essence. The phone's chart pills now carry the open-run caveat the desktop's do."
+ },
+ {
+  "batch": 3,
+  "pr": 274,
+  "page": "/afrobeats/tyla",
+  "kind": "stale",
+  "tier": "figure",
+  "title": "Tyla: five Nigerian runs, an EP and three South African Top 20 placings the board never had",
+  "was": "175 chart entries; Nigeria 15 rows, South Africa 6; the sweep had removed Is It Love, Double Blind and Mr. Nonchalant as “below the published chart depth”; “Game Time” 76; the phone footnote said airplay charts were excluded.",
+  "body": "TurnTable's archive (every held issue re-read, the twelve published rows reproducing exactly): Girl Next Door 73, Show Me Love 59, No.1 79, Breathe Me 89, Truth Or Dare 95, WWP EP 18 on the albums chart. TOSAC's own Week 31 2026 Top 20, read in-browser: IS IT LOVE 17, DOUBLE BLIND 19, MR. NONCHALANT 20 in the PEAK column, credited Tyla — inside the top 20 the body publishes.",
+  "now": "184 chart entries (from 175); Game Time 77; the footnote on every board artist's chart page now says what the desktop does — airplay charts only where a country publishes no other."
+ },
+ {
+  "batch": 3,
+  "pr": 274,
+  "page": "/afrobeats/davido/live",
+  "kind": "broken",
+  "tier": "fix",
+  "title": "“Oriade´” on the live share card",
+  "was": "Davido's live OG card drew the album's accent detached from its letter.",
+  "body": "kworb serves the title decomposed (an “e” plus a combining acute); Satori does not compose it.",
+  "now": "The extractor normalises every title to NFC; Davido's board regenerated with “Oriadé”; a test refuses a combining mark in any board file."
+ }
+]

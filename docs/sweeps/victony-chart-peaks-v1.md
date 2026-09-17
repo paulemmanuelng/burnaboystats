@@ -68,3 +68,8 @@ The UK's **Official Afrobeats Chart** is a genre chart and does not count here. 
 ## Proven zeros vs gaps
 
 **Proven zeros** — archives read in full, holding nothing. **Gaps** — 🇿🇦 TOSAC could not be read for this sweep: `theofficialsacharts.co.za` disallows AI crawlers in robots.txt, so it was not scraped. Where a South African peak appears above it is carried from this project's own earlier sweep, which read 139 weekly issues while the site was reachable.
+
+## Re-read 17 Sep 2026 (freshness audit, batch 3)
+
+- **TWIN** (Victony & FOLA) — TurnTable Official Nigeria Top 100, week 37 (10 Sep 2026): rank 18, highestPosition 18, 3 weeks. Board row moved 64 → **18** (open peak, live-run note).
+- **WHO THIS** (Victony & BNXN) — same issue: rank 24, highestPosition 24, 3 weeks. Board row moved 42 → **24** on both artists' boards (open peak, live-run note). Neither row was in this document's table before; both are on the board.

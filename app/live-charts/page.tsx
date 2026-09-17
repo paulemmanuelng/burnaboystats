@@ -243,7 +243,7 @@ export default function LiveChartsPage() {
               movement for that chart. Spotify, Apple Music, iTunes, Deezer and Shazam are
               daily, so a placement can appear and vanish within a day; YouTube&apos;s is a
               weekly chart, counting a song&apos;s streams across YouTube rather than views of
-              one video. The official peaks on{" "}
+              one video, and Spotify&apos;s Top Albums charts are weekly too. The official peaks on{" "}
               <Link href="/records/charts">Chart Records</Link> are permanent by contrast. How
               every figure on this site is sourced is set out in the{" "}
               <Link href="/methodology">methodology</Link>.

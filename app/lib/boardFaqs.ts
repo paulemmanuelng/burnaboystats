@@ -33,6 +33,7 @@ import {
 } from "../data/afrobeats";
 import { count } from "./plural";
 import { opponentOf } from "./headToHead";
+import { certWeight } from "./certs";
 
 export interface Faq {
   q: string;
@@ -47,18 +48,29 @@ function tierLabel(level: string, x?: number): string {
 /**
  * The artist's single most decorated release, as a phrase.
  * Returns undefined rather than a guess when the register is empty.
+ *
+ * Ties on the top plaque (two releases both 3× Platinum somewhere) break the
+ * way the list above the FAQ breaks them — byMostCertified: more plaques,
+ * then the heavier set — so the answer names the release the reader has just
+ * seen at the top. Victony's FAQ named "Pity This Boy" (one 3× Platinum) over
+ * "Soweto" (3× Platinum plus five more plaques) until 17 Sep 2026.
  */
 function topPlaque(a: AfroArtist): string | undefined {
   const order = ["Diamond", "Platinum", "Gold", "Silver"];
-  let best: { title: string; label: string; rank: number; x: number } | undefined;
+  let best: { title: string; label: string; rank: number; x: number; n: number; w: number } | undefined;
   for (const r of a.releases) {
     for (const c of r.certs) {
       const rank = order.indexOf(c.level);
       const x = c.x ?? 1;
       if (rank < 0) continue;
-      if (!best || rank < best.rank || (rank === best.rank && x > best.x)) {
-        best = { title: r.title, label: tierLabel(c.level, c.x), rank, x };
-      }
+      const n = r.certs.length;
+      const w = certWeight(r);
+      const better =
+        !best ||
+        rank < best.rank ||
+        (rank === best.rank && x > best.x) ||
+        (rank === best.rank && x === best.x && (n > best.n || (n === best.n && w > best.w)));
+      if (better) best = { title: r.title, label: tierLabel(c.level, c.x), rank, x, n, w };
     }
   }
   return best ? `“${best.title}” (${best.label})` : undefined;

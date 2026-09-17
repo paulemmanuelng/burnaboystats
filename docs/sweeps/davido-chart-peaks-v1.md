@@ -12,7 +12,7 @@
 
 ## Headline
 
-**93 chart entries** — title × country pairs — across **13 chart countries**, including **17 No. 1 placements**.
+**146 chart entries** (93 at the 19 Aug sweep; +53 from the 17 Sep 2026 archive read below) — title × country pairs — across **13 chart countries**, including **17 No. 1 placements**.
 
 | | |
 |---|---|
@@ -98,7 +98,7 @@ All five Nigerian album peaks were read directly from TurnTable's own chart payl
 
 **Country counts, albums:** 🇳🇬 5 · 🇬🇧 4 · 🇺🇸 2 · 🇮🇪 2 · 🇨🇭 1 · 🇫🇷 1 · 🇳🇱 1 · 🇨🇦 1 = 17 ✓
 
-**Grand total: 76 singles + 17 albums = 93 chart entries.** ✓
+**Grand total at the 19 Aug sweep: 76 singles + 17 albums = 93.** After the 17 Sep 2026 read: **129 singles + 17 albums = 146 chart entries.** ✓
 
 > **Resweep, 27 Aug 2026 — +26 Nigerian peaks and one correction.** A body-by-body
 > repass added **21** TurnTable Top 100 peaks read in the register's own archived
@@ -559,3 +559,12 @@ The two sweeps disagreed because they were looking at different things. `tonlist
 - ***Water*** (Tyla) 🇮🇸 **#14 remains unproven** and keeps its marker. Only 8 weekly captures survive for 2024 and none covers the week the peak would fall in. Absence from those eight is not disproof — the figure is neither confirmed nor refuted, and is left flagged rather than promoted or deleted.
 
 **A correction worth recording:** the year-end lists are *not* peaks. The 2016 year-end Top 100 places "One Dance" at #18 credited to "Drake" alone, which is the likeliest origin of a claimed Icelandic peak of 18 for that record. A year-end ranking and a weekly peak are different measurements, and only the weekly one satisfies this file's standard.
+
+## Re-read 17 Sep 2026 (freshness audit, batch 3) — Nigeria from the body's own archive
+
+Every issue TurnTable's proxy serves was walked (`/api/ttc-proxy/api/chart/1/{week}/{year}`, Referer required, each payload validated on `weekNumber`/`dateCreated`): **306 issues, 5 Nov 2020 → 10 Sep 2026** — "TurnTable Top 50" to 30 Jun 2022, "TurnTable Nigeria Top 100" to 5 Jan 2023, "Official Nigeria Top 100" since. Two register behaviours matter: on the 7 Jul 2022 relaunch every row's `weeksOnChart` reset to 1 and `highestPosition` to that week's rank, and `highestPosition` also resets on re-entry — so a peak is the minimum over EVERY issue's rank and highestPosition, never the newest issue's field. The board already counted Top 50-era placings (FEM, Holy Ground, The Best, For You, Baddest Boy), so the lineage is one chart.
+
+- **Corrected:** Magician (Morravey & Davido) 44 → **28** (run 9 Nov 2023 – 11 Jan 2024, closed); Yebo Lapho 23 → **21** (TurnTable files it as "Yebo", TxC & Davido ft. Tony Duardo, Leemckrazy & Djy Biza); Wallah Wallah (Badshah & Davido) 85 → **82**. The five "peak still open" notes came off — every one of those runs has closed.
+- **Added — 50 Nigerian rows, all runs closed, peaks all-time:** Somebody Baby (Peruzzi ft.) 2 · High (Adekunle Gold ft.) 2 · Jowo 3 · Stand Strong 6 · So Crazy 7 · Dada (Remix) (Young Jonn ft.) 7 — not the 16 of its post-relaunch run · Shopping Spree 8 · Champion Sound (& Focalistic) 8 · Something Fishy 9 · La La 10 · Watawi (Ckay ft.) 10 · All (Rexxie ft.) 11 · Heaven 12 · Cho Cho (Zlatan ft.) 12 · Maserati (Remix) (Olakira ft.) 13 · Ke Star (Remix) (Focalistic &) 15 · Tanana 16 · Very Special 18 · Fade 19 · Holy Water 19 · Sunlight 21 · Showing Off Her Body (DaBaby &) 21 · Bop 21 · Mebe 23 · Precision 23 · U (Juju) 24 · CFMF 24 · Picasso 26 · Birthday Cake 27 · Pepe (L.A.X ft.) 27 · LCND 27 · I Got a Friend 28 · Activate (Stonebwoy ft.) 28 · R&B 28 · Titanium 30 · Hip Hop Messiah (Zlatan ft.) 31 · On My Way 32 · Don't Know 33 · Betty Butter (Mayorkun ft.) 34 · Mandeman (Remix) (Small Doctor ft.) 37 · Five By Alhanislam 37 · Nuttin Dey 38 · Lately 40 · This Your Body (Skales ft.) 43 · Drift (Remix) (Teejay &) 46 · Lover Boy 49 · Tek 50 · Bad Habits (King Promise &) 73 · Bum Bum (PaBrymo ft.) 85 · Easy On Me (Logos Olori &) 86; plus Nigerian entries on three rows the board had — Money (Zlatan ft.) 27, Hayya Hayya 36, If It's Okay (Nicki Minaj ft. David Guetta & Davido) 51. The 17 "°" editorial-only rows in the tables above are now verifiable at the body from the same archive.
+- **Headline 93 → 146**; territories 13 and No. 1s 17 unchanged.
+- **Certifications:** Blow My Mind and Risky / Risk are filed by RiSA under RISA-MULTI-PLATINUM, which the board renders as 3× Platinum under the Essence rule of 10 Sep 2026 (plaque count 91 and 9 countries unchanged).

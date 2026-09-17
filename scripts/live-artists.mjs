@@ -155,11 +155,18 @@ export const LIVE_ARTISTS = {
     name: "Asake",
     source: "https://kworb.net/itunes/artist/asake.html",
     credit: /\basake\b/i,
+    // Records he is FEATURED on, under the lead credit kworb prints — the
+    // country sweeps match on the lead string, so without these his features
+    // never reached the board (Chanel, Eja Meja and Jogodo were all on
+    // Nigeria's YouTube and Deezer charts on 17 Sep 2026 with the board
+    // showing none). Credits verified that day on kworb's ng pages; the
+    // 19 Aug 2026 register sweep (docs/sweeps/asake-certifications-v1.md,
+    // Featured) is the list to extend from, with each credit spelled exactly
+    // as kworb prints it.
     aliases: [
-
-      // No register sweep has run for this artist yet, so there is no verified
-      // credit list to build from. Lead credits are caught by the matcher above;
-      // records they are FEATURED on are under-reported until the sweep lands.
+      { artist: "Blaqbonez", title: "Chanel", release: "Chanel" },
+      { artist: "BNXN fka Buju", title: "Eja Meja", release: "Eja Meja" },
+      { artist: "Wizkid", title: "Jogodo", release: "Jogodo" },
     ],
     // Live cuts of the same song: YouTube charts them under the live name,
     // the artist page under the studio one, and the row landed twice.

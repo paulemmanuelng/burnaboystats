@@ -1,4 +1,5 @@
 import { describe, it, expect } from "vitest";
+import { readFileSync, readdirSync } from "node:fs";
 // @ts-expect-error — plain .mjs helper shared with the stats bot
 import {
   extractLiveCharts,
@@ -18,7 +19,7 @@ import {
   liveChartsBuiltAt,
 } from "../app/data/liveCharts";
 import { CHART_COUNTRIES } from "../app/data/charts";
-import { countriesOf } from "../app/lib/liveChartMeta";
+import { countriesOf, cadenceOf } from "../app/lib/liveChartMeta";
 
 // The live-charts page is generated wholesale from a scraped page, so the
 // parser is the single point of failure. These pin its behaviour on a fixture
@@ -36,6 +37,9 @@ const CELL = `
 <div class="eu app"><a href="/charts/apple_s/gb.html">#7 United Kingdom</a> <span class="change24">(NE)</span></div>
 </div></td>
 <td valign=top><div class="wrap"><b>Album: Test Record</b></div><br>
+<div class="spo">Spotify:<br>
+<div class="africa small spo"><a href="https://charts.spotify.com/charts/view/album-ng-weekly/latest">#19 Nigeria</a> <span class="change24">(=)</span></div>
+</div>
 <div class="itu">iTunes:<br>
 <div class="eu itu"><a href="/charts/itunes/ng.html">#3 Nigeria</a> <span class="change24">(=)</span></div>
 </div></td>`;
@@ -58,6 +62,22 @@ describe("extractLiveCharts", () => {
     expect(out.map((r: { title: string }) => r.title)).toContain("Test Song");
     const album = out.find((r: { kind: string }) => r.kind === "album");
     expect(album.title).toBe("Test Record"); // prefix removed
+  });
+
+  it("keeps Spotify's weekly Top Albums placements, as their own weekly platform", () => {
+    // kworb links an album's Spotify placements to
+    // charts.spotify.com/charts/view/album-<cc>-weekly/latest — no ".html", no
+    // country page — and the song-only pattern dropped every one of them on
+    // all sixteen boards. Seyi Vibez's page read "Spotify 15" on 17 Sep 2026
+    // while Spotify's own Weekly Top Albums Nigeria listed seven of his albums.
+    const album = out.find((r: { kind: string }) => r.kind === "album");
+    const names = album.platforms.map((p: { platform: string }) => p.platform);
+    expect(names).toEqual(expect.arrayContaining(["Spotify Albums", "iTunes"]));
+    expect(names).not.toContain("Spotify");
+    const spotify = album.platforms.find((p: { platform: string }) => p.platform === "Spotify Albums");
+    expect(spotify.entries).toEqual([{ country: "NG", name: "Nigeria", position: 19, movement: 0 }]);
+    expect(cadenceOf("Spotify Albums")).toBe("weekly");
+    expect(cadenceOf("Spotify")).toBe("daily");
   });
 
   it("groups placements under the right platform", () => {
@@ -119,6 +139,18 @@ describe("generated liveCharts data", () => {
     // minute the board was built rather than letting a date imply "now".
     expect(liveChartsBuiltAt).toMatch(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}Z$/);
     expect(liveChartsBuiltAt.slice(0, 10)).toBe(liveChartsUpdated);
+  });
+
+  it("carries no decomposed accents in any board's titles", () => {
+    // kworb served Davido's "Oriadé" as "Oriade" + a combining acute (NFD);
+    // Satori drew the accent detached on the live OG card. The extractor
+    // normalises to NFC; this holds every generated board to it.
+    const files = readdirSync("app/data").filter((f) => /^liveCharts(\.[a-z-]+)?\.ts$/.test(f));
+    expect(files.length).toBeGreaterThan(10);
+    for (const f of files) {
+      const src = readFileSync(`app/data/${f}`, "utf8");
+      expect(/[\u0300-\u036f]/.test(src), `${f} carries a combining mark`).toBe(false);
+    }
   });
 
   it("derived totals agree with the rows", () => {

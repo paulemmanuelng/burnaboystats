@@ -1,10 +1,11 @@
 import Link from "next/link";
-import { count } from "../../../lib/plural";
+import { count, plural } from "../../../lib/plural";
 import { notFound } from "next/navigation";
 import styles from "../../../records/charts/charts.module.css";
 import KeepExploring from "../../../components/KeepExploring";
 import MobileOfficialCharts from "../../../components/MobileOfficialCharts";
 import ChartExplorer from "../../../components/ChartExplorer";
+import { byReachOrder } from "../../../lib/chartOrder";
 import bar from "../artist.module.css";
 import { lastUpdated } from "../../../lib/api";
 import { pageMetadata, datasetJsonLd } from "../../../lib/seo";
@@ -61,9 +62,12 @@ export async function generateMetadata({ params }: { params: Promise<{ artist: s
 
 /** The explorer wants releases; the board stores them by kind. Albums and
  *  singles only — the sweeps record a featured credit as the release it is. */
+// Sorted HERE, not inside the shared mobile component: MobileOfficialCharts is
+// also Burna Boy's own /records/charts screen, whose order is hand-set from the
+// design file. The board's pages want the explorer's order on both layouts.
 const split = (a: AfroArtist) => ({
-  albums: a.charts.filter((r) => r.kind === "Albums"),
-  singles: a.charts.filter((r) => r.kind === "Singles"),
+  albums: a.charts.filter((r) => r.kind === "Albums").sort(byReachOrder),
+  singles: a.charts.filter((r) => r.kind === "Singles").sort(byReachOrder),
 });
 
 export default async function AfroArtistChartsPage({
@@ -78,6 +82,12 @@ export default async function AfroArtistChartsPage({
   const { albums, singles } = split(a);
   const entries = chartEntries(a);
   const territories = chartTerritories(a);
+  const verifiedLong = new Date(`${a.verifiedOn}T12:00:00Z`).toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  });
   const no1s = chartNo1s(a);
   const releases = a.charts.length;
 
@@ -104,7 +114,7 @@ export default async function AfroArtistChartsPage({
 
   const dataset = datasetJsonLd({
     name: `${a.name} official chart peaks by country`,
-    description: `${a.name}'s peak positions on official singles and album charts across ${territories} territories — every charting release and its highest position, chart by chart, read from ${sourceClause(a)}, including ${no1s} No. 1 peaks.`,
+    description: `${a.name}'s peak positions on official singles and album charts across ${count(territories, "territory", "territories")} — every charting release and its highest position, chart by chart, read from ${sourceClause(a)}, including ${count(no1s, "No. 1 peak", "No. 1 peaks")}.`,
     path: `/afrobeats/${a.slug}/charts`,
     keywords: [a.name, "chart positions", "official charts", "peak chart position", "Afrobeats charts"],
     variableMeasured: ["Peak chart position", "Country / territory", "Release", "Chart"],
@@ -126,12 +136,12 @@ export default async function AfroArtistChartsPage({
 
   const stats = [
     { num: entries, label: "Chart entries", note: "official charts only" },
-    { num: no1s, label: "No. 1 peaks", note: "placements, not releases" },
-    { num: territories, label: "Territories", note: territoryNote },
+    { num: no1s, label: plural(no1s, "No. 1 peak", "No. 1 peaks"), note: "placements, not releases" },
+    { num: territories, label: plural(territories, "Territory", "Territories"), note: territoryNote },
     { num: releases, label: "Charting releases", note: "albums and singles" },
   ];
 
-  const sourceNote = `Peaks on ${sourceClause(a)} — the same standard used for Burna Boy. Airplay, genre and platform charts excluded. Board reviewed weekly.`;
+  const sourceNote = `Peaks on ${sourceClause(a)} — the same standard used for Burna Boy. Genre and platform charts excluded; airplay charts only where a country publishes no other. Last re-read at every register on ${verifiedLong}.`;
 
   return (
     <main id="content">
@@ -214,7 +224,7 @@ export default async function AfroArtistChartsPage({
               countries that publish no non-airplay chart at all. Counted by exactly the standard
               behind Burna Boy&apos;s{" "}
               <Link href="/records/charts">{burnaEntries} entries and {burnaNo1s} No. 1s</Link>, so
-              the two records can be read side by side. The board is reviewed weekly.
+              the two records can be read side by side. The board was last re-read at every register on {verifiedLong}.
             </p>
             <div className={styles.splitPanel}>
               <div className={styles.splitKicker}>This artist&apos;s record</div>
@@ -225,11 +235,11 @@ export default async function AfroArtistChartsPage({
                 </div>
                 <div className={styles.splitRow}>
                   <span className={styles.splitNum}>{territories}</span>
-                  <span className={styles.splitLabel}>territories charted in</span>
+                  <span className={styles.splitLabel}>{plural(territories, "territory", "territories")} charted in</span>
                 </div>
                 <div className={styles.splitRow}>
                   <span className={styles.splitNum}>{no1s}</span>
-                  <span className={styles.splitLabel}>peaks at No. 1</span>
+                  <span className={styles.splitLabel}>{plural(no1s, "peak", "peaks")} at No. 1</span>
                 </div>
               </div>
             </div>

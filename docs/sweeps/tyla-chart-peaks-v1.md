@@ -12,7 +12,7 @@ Original sweep **17 Aug 2026**; **audit repair pass applied the same day** — s
 
 ## Headline
 
-**175 chart entries** — release × country pairs — across **52 chart countries and entities** (50 national charts plus the two Billboard Global charts).
+**184 chart entries** (175 at the sweep; +9 from the 17 Sep 2026 reads below) — release × country pairs — across **52 chart countries and entities** (50 national charts plus the two Billboard Global charts).
 
 **3 No. 1 placements**, in 3 countries, all for the same song.
 
@@ -36,7 +36,7 @@ The shape of the discography is lopsided in a way worth stating plainly: **"Wate
 | Talk to Me (Damiano David, Tyla & Nile Rodgers) | 🇧🇬 #5 · 🇪🇪 #11 · 🇸🇮 #14 · 🇳🇱 #15 · 🇱🇧 #16 · 🇰🇿 #33 · 🇧🇪 #44 | **7** |
 | Is It | 🇿🇦 #7 · 🇬🇷 #54 · 🇳🇬 #69 · 🇬🇧 #99 | **4** |
 | Art | 🇳🇬 #61 · 🇬🇧 #85 | **2** |
-| That Girl | 🇿🇦 #5 · 🇳🇬 #48 | **2** |
+| That Girl | 🇿🇦 #5 · 🇳🇬 #41 | **2** |
 | One Call (Spinall, Omah Lay & Tyla) | 🇸🇷 #8 · 🇳🇬 #35 | **2** |
 | Dynamite (with Wizkid) | 🇳🇬 #13 | **1** |
 | Bliss | 🇱🇧 #19 | **1** |
@@ -58,7 +58,7 @@ Twelve releases that appeared in the previous version of this file — "Truth or
 
 *Albums subtotal: 19 + 11 = **30*** ✓
 
-**145 + 30 = 175 chart entries** ✓ — matches the headline.
+**145 + 30 = 175 at the sweep; 153 + 31 = 184 chart entries** after the 17 Sep 2026 reads ✓ — matches the headline.
 
 ### No. 1 placements
 
@@ -439,3 +439,13 @@ The two sweeps disagreed because they were looking at different things. `tonlist
 - ***Water*** (Tyla) 🇮🇸 **#14 remains unproven** and keeps its marker. Only 8 weekly captures survive for 2024 and none covers the week the peak would fall in. Absence from those eight is not disproof — the figure is neither confirmed nor refuted, and is left flagged rather than promoted or deleted.
 
 **A correction worth recording:** the year-end lists are *not* peaks. The 2016 year-end Top 100 places "One Dance" at #18 credited to "Drake" alone, which is the likeliest origin of a claimed Icelandic peak of 18 for that record. A year-end ranking and a weekly peak are different measurements, and only the weekly one satisfies this file's standard.
+
+## Re-read 17 Sep 2026 (freshness audit, batch 3)
+
+- **That Girl 🇳🇬 #41** — TurnTable Official Nigeria Top 100, week 37 (10 Sep 2026): rank 71, highestPosition 41, 7 weeks. Board row moved 48 → **41** (open peak, live-run note).
+
+## Re-read 17 Sep 2026 (freshness audit, batch 3)
+
+- **Nigeria (TurnTable's own archive route, every held issue re-read; the twelve rows already published reproduce exactly):** Girl Next Door (Tyla & Ayra Starr) **73** (18 May 2023, one week) · Show Me Love (WizTheMc, bees & honey & Tyla) **59** (8 May – 12 Jun 2025) · No.1 (ft. Tems) **79** (28 Mar 2024) · Breathe Me **89** (3 Oct 2024) · Truth Or Dare **95** (7 Dec 2023) · **WWP – EP 18** on the Official Top 100 Albums (31 Jul 2025, 17 issues to 27 Nov). Tyla is on TurnTable's credit line for every one, so the "no Tyla-credited row" exclusion this document applied elsewhere does not apply. Game Time 76 → **77**; That Girl 48 → **41** (open).
+- **South Africa (theofficialsacharts.co.za, Local & International Streaming Chart Top 20, Week 31 2026, read in-browser — curl gets the anti-bot decoy):** THAT GIRL 5 (now read at source), IS IT LOVE **17**, DOUBLE BLIND **19**, MR. NONCHALANT **20** — inside the Top 20 the body publishes in 2026, PEAK column, credited "Tyla" alone; gone by Week 33. The depth rule that removed the three was built for 2024 Local-chart figures and does not apply.
+- **Headline 175 → 184**; Nigeria 15 → 21, South Africa 6 → 9; territories 52 and No. 1s 3 unchanged.
