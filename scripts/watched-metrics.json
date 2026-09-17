@@ -295,6 +295,166 @@
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. Source moved off kworb on 28 Aug 2026: kworb.net/youtube/artist/burnaboy.html froze on 25 Aug, serving byte-identical totals for three days while still printing a ~105k/day view rate. The staleness alarm caught it. YouTube itself was 105k-309k views ahead on every one of the four."
     },
     {
+      "id": "yt-views-23",
+      "label": "“23” video — YouTube views",
+      "sourceName": "YouTube — official video",
+      "sourceUrl": "https://www.youtube.com/watch?v=PFPfxcvRshk",
+      "extractor": "youtubeViews",
+      "kind": "peak",
+      "threshold": 0.005,
+      "baseline": 50275788,
+      "live": true,
+      "sanity": {
+        "maxJump": 0.2,
+        "min": 1000000,
+        "max": 5000000000
+      },
+      "note": "Views of the official “23” video, shown on /music/23. Read from the video's own YouTube page. Typed once on 25 Jul 2026 and never watched until 17 Sep 2026, when the freshness audit found it stale. ",
+      "siteTargets": [
+        {
+          "file": "app/data/songs.ts",
+          "anchor": "slug: \"23\",",
+          "pattern": "ytViews: \"\\d+M\"",
+          "template": "ytViews: \"%s\"",
+          "format": "M0",
+          "describes": "displayed YouTube views on /music/23"
+        }
+      ],
+      "lastChanged": "2026-09-17",
+      "lastSeenValue": 50275788,
+      "lastSeenAt": "2026-09-17",
+      "stalenessDays": 3,
+      "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total."
+    },
+    {
+      "id": "yt-views-tatata",
+      "label": "“TaTaTa” video — YouTube views",
+      "sourceName": "YouTube — official video",
+      "sourceUrl": "https://www.youtube.com/watch?v=Uj1g5oumzWY",
+      "extractor": "youtubeViews",
+      "kind": "peak",
+      "threshold": 0.005,
+      "baseline": 12741312,
+      "live": true,
+      "sanity": {
+        "maxJump": 0.2,
+        "min": 1000000,
+        "max": 5000000000
+      },
+      "note": "Views of the official “TaTaTa” video, shown on /music/tatata. Read from the video's own YouTube page. Typed once on 25 Jul 2026 and never watched until 17 Sep 2026, when the freshness audit found it stale. ",
+      "siteTargets": [
+        {
+          "file": "app/data/songs.ts",
+          "anchor": "slug: \"tatata\",",
+          "pattern": "ytViews: \"\\d+M\"",
+          "template": "ytViews: \"%s\"",
+          "format": "M0",
+          "describes": "displayed YouTube views on /music/tatata"
+        }
+      ],
+      "lastChanged": "2026-09-17",
+      "lastSeenValue": 12741312,
+      "lastSeenAt": "2026-09-17",
+      "stalenessDays": 3,
+      "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total."
+    },
+    {
+      "id": "yt-views-rizzla",
+      "label": "“Rizzla” video — YouTube views",
+      "sourceName": "YouTube — official video",
+      "sourceUrl": "https://www.youtube.com/watch?v=daMkeOtlDRY",
+      "extractor": "youtubeViews",
+      "kind": "peak",
+      "threshold": 0.005,
+      "baseline": 1820621,
+      "live": true,
+      "sanity": {
+        "maxJump": 0.2,
+        "min": 1000000,
+        "max": 5000000000
+      },
+      "note": "Views of the official “Rizzla” video, shown on /music/rizzla. Read from the video's own YouTube page. Typed once on 25 Jul 2026 and never watched until 17 Sep 2026, when the freshness audit found it still right by luck. ",
+      "siteTargets": [
+        {
+          "file": "app/data/songs.ts",
+          "anchor": "slug: \"rizzla\",",
+          "pattern": "ytViews: \"[\\d.]+[KMB]\"",
+          "template": "ytViews: \"%s\"",
+          "format": "compact",
+          "describes": "displayed YouTube views on /music/rizzla"
+        }
+      ],
+      "lastChanged": "2026-09-17",
+      "lastSeenValue": 1820621,
+      "lastSeenAt": "2026-09-17",
+      "stalenessDays": 3,
+      "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total."
+    },
+    {
+      "id": "yt-views-boshe-nlo",
+      "label": "“Boshe Nlo” video — YouTube views",
+      "sourceName": "YouTube — official video",
+      "sourceUrl": "https://www.youtube.com/watch?v=-mJ1wxT_jcI",
+      "extractor": "youtubeViews",
+      "kind": "peak",
+      "threshold": 0.005,
+      "baseline": 1044269,
+      "live": true,
+      "sanity": {
+        "maxJump": 0.2,
+        "min": 1000000,
+        "max": 5000000000
+      },
+      "note": "Views of the official “Boshe Nlo” video, shown on /music/boshe-nlo. Read from the video's own YouTube page. Typed once on 25 Jul 2026 and never watched until 17 Sep 2026, when the freshness audit found it still right by luck. ",
+      "siteTargets": [
+        {
+          "file": "app/data/songs.ts",
+          "anchor": "slug: \"boshe-nlo\",",
+          "pattern": "ytViews: \"\\d+M\"",
+          "template": "ytViews: \"%s\"",
+          "format": "M0",
+          "describes": "displayed YouTube views on /music/boshe-nlo"
+        }
+      ],
+      "lastChanged": "2026-09-17",
+      "lastSeenValue": 1044269,
+      "lastSeenAt": "2026-09-17",
+      "stalenessDays": 3,
+      "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total."
+    },
+    {
+      "id": "yt-views-darko",
+      "label": "“Darko” video — YouTube views",
+      "sourceName": "YouTube — official video",
+      "sourceUrl": "https://www.youtube.com/watch?v=xOF8AtTvqSk",
+      "extractor": "youtubeViews",
+      "kind": "peak",
+      "threshold": 0.005,
+      "baseline": 1251062,
+      "live": true,
+      "sanity": {
+        "maxJump": 0.2,
+        "min": 1000000,
+        "max": 5000000000
+      },
+      "note": "Views of the official “Darko” video, shown on /music/darko. Read from the video's own YouTube page. Typed once on 25 Jul 2026 and never watched until 17 Sep 2026, when the freshness audit found it stale. The video is the joint \"Thuggin / Darko\" visual. ",
+      "siteTargets": [
+        {
+          "file": "app/data/songs.ts",
+          "anchor": "slug: \"darko\",",
+          "pattern": "ytViews: \"[\\d.]+[KMB]\"",
+          "template": "ytViews: \"%s\"",
+          "format": "compact",
+          "describes": "displayed YouTube views on /music/darko"
+        }
+      ],
+      "lastChanged": "2026-09-17",
+      "lastSeenValue": 1251062,
+      "lastSeenAt": "2026-09-17",
+      "stalenessDays": 3,
+      "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total."
+    },
+    {
       "id": "youtube-total-views",
       "label": "YouTube views across kworb's tracked videos",
       "sourceName": "kworb — Burna Boy YouTube",
@@ -774,6 +934,39 @@
       "lastSeenAt": "2026-09-17",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
+    },
+    {
+      "id": "spotify-streams-jerusalema",
+      "label": "“Jerusalema (Remix)” — Spotify streams",
+      "sourceName": "kworb — Burna Boy Spotify songs",
+      "sourceUrl": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html",
+      "extractor": "kworbSongStreams",
+      "match": "Jerusalema (feat. Burna Boy & Nomcebo Zikode) - Remix",
+      "kind": "peak",
+      "threshold": 0.005,
+      "baseline": 85571611,
+      "live": true,
+      "sanity": {
+        "maxJump": 0.25,
+        "min": 100000,
+        "max": 20000000000
+      },
+      "note": "Total Spotify streams for the “Jerusalema” remix, shown on /music/jerusalema — the remix row only; kworb's separate \"Remix / Radio Edit\" row is another recording and is not summed. Added 17 Sep 2026: every other song page carried the bot-fed figure, this one had none.",
+      "siteTargets": [
+        {
+          "file": "app/data/songs.ts",
+          "anchor": "slug: \"jerusalema\",",
+          "pattern": "spotifyStreams: \"[\\d.]+[KMB]\"",
+          "template": "spotifyStreams: \"%s\"",
+          "format": "compact",
+          "describes": "Spotify streams on /music/jerusalema"
+        }
+      ],
+      "lastChanged": "2026-09-17",
+      "lastSeenValue": 85571611,
+      "lastSeenAt": "2026-09-17",
+      "stalenessDays": 3,
+      "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total."
     },
     {
       "id": "streams-2026-tems",

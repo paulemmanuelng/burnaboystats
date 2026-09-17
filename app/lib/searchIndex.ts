@@ -66,7 +66,7 @@ export const searchIndex: SearchDoc[] = [
     title: "L.I.F.E",
     path: "/music/albums/life",
     section: "Album",
-    description: "Burna Boy's 2013 debut album — “Like to Party”, “Tonight”, and Album of the Year at the 2015 NEA.",
+    description: "Burna Boy's 2013 debut album — “Like to Party”, “Tonight”, and Album of the Year nominations at the 2014 Headies and NEA.",
     keywords: ["life", "l.i.f.e", "album", "debut", "2013", "like to party", "tonight", "run my race", "aristokrat", "leaving an impact for eternity"],
   },
   {
@@ -157,8 +157,8 @@ export const searchIndex: SearchDoc[] = [
     title: "Jerusalema (Remix)",
     path: "/music/jerusalema",
     section: "Song",
-    description: "Master KG, Nomcebo & Burna Boy “Jerusalema” remix — No. 1 in six countries, Diamond in France.",
-    keywords: ["jerusalema", "remix", "master kg", "nomcebo", "song", "dance challenge", "diamond", "2020", "south africa"],
+    description: "Master KG, Nomcebo & Burna Boy “Jerusalema” remix — No. 1 in five countries, Diamond in France.",
+    keywords: ["jerusalema", "remix", "master kg", "nomcebo", "song", "dance challenge", "diamond", "2020"],
   },
   {
     title: "Alone",

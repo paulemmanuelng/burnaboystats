@@ -1,0 +1,244 @@
+[
+ {
+  "batch": "4a",
+  "pr": 283,
+  "page": "/music/last-last",
+  "kind": "wrong",
+  "tier": "figure",
+  "title": "Nigeria peak was No. 2; TurnTable's own archive says No. 3",
+  "was": "Chart pill “#2 Nigeria”, on both layouts and in the 15-chart count.",
+  "body": "turntablecharts.com/api/ttc-proxy — 229 consecutive weekly issues read; “Last Last” in 46 of them, debut at 3 on the Top 50 of 19 May 2022, never higher; the Top 100 counter from July 2022 reads 4.",
+  "now": "NG peak 3, with the issue named in charts.ts. The Nigeria comment block that said the archive was unreadable is rewritten — three of its claims were false."
+ },
+ {
+  "batch": "4a",
+  "pr": 283,
+  "page": "/music/last-last",
+  "kind": "stale",
+  "tier": "prose",
+  "title": "The FAQ said Platinum in the UK; the page's own pill says 2× Platinum",
+  "was": "“…Platinum in the US and UK.”",
+  "body": "BPI: BURNA BOY | LAST LAST | 2x Platinum | 12.07.2024 — and the certification pill already printed it.",
+  "now": "“…4× Platinum in Canada, 2× Platinum in the UK and Platinum in the US.” The ZA Platinum row was left as it is (Paul's call)."
+ },
+ {
+  "batch": "4a",
+  "pr": 283,
+  "page": "/music/last-last",
+  "kind": "broken",
+  "tier": "structure",
+  "title": "Two “By the numbers” extras never rendered",
+  "was": "Four extras typed, the grid caps at eight and six derived cards come first — “No. 44 US Hot 100” and “Diamond France” were dead data on both layouts.",
+  "body": "app/music/[song]/page.tsx: facts.slice(0, 8), live DOM at 362px and 1400px.",
+  "now": "Two extras: the two the derived cards do not already say. The No. 1 (South Africa) and No. 4 (UK) cards duplicated the derived best-peak card and the chart pills."
+ },
+ {
+  "batch": "4a",
+  "pr": 283,
+  "page": "/music/ye",
+  "kind": "note",
+  "tier": "guard",
+  "title": "Ye's Platinum label form escaped the completeness guard",
+  "was": "`{ v: \"Platinum\", l: \"certified in the US, UK, France…\" }` — tests/songFacts only checked labels containing “Platinum in”.",
+  "body": "tests/songFacts.test.ts line 36.",
+  "now": "Trigger widened; a Sweden-less label now fails. The NG Silver row was left as it is (Paul's call).",
+  "guard": "tests/songFacts: a fact that names Platinum countries names all of them — both label forms."
+ },
+ {
+  "batch": "4a",
+  "pr": 283,
+  "page": "/music/on-the-low",
+  "kind": "wrong",
+  "tier": "figure",
+  "title": "A 2018 single dated 2019 everywhere the song's year prints",
+  "was": "“Burna Boy · 2019”, the picker chip, the phone back bar and JSON-LD datePublished 2019.",
+  "body": "BPI “Released 16.11.2018”; SNEP “Date de sortie 16/11/2018”; the official video uploaded 16 Nov 2018.",
+  "now": "year 2018 in songs.ts. The kicker now dates the ALBUM from albums.ts (“African Giant · 2019”) instead of reusing the song year — which also fixes Like to Party's “L.I.F.E · 2012”.",
+  "also": [
+   "/music/like-to-party",
+   "every song page's share card"
+  ]
+ },
+ {
+  "batch": "4a",
+  "pr": 283,
+  "page": "/music/city-boys",
+  "kind": "stale",
+  "tier": "figure",
+  "title": "The NZ Gold plaque had no dated log row",
+  "was": "On the release row since the snapshot; absent from certHistory, so the by-year count on /certifications was one short for 2024.",
+  "body": "RMNZ via RadioScope table 2052: Burna Boy | City Boys | Gold | 2024-06-13.",
+  "now": "Logged as 2024; the 2024 count moves 20 → 21; CERTS_VERIFIED_ON 2026-09-17."
+ },
+ {
+  "batch": "4a",
+  "pr": 283,
+  "page": "/music/wgft",
+  "kind": "wrong",
+  "tier": "prose",
+  "title": "“Put him back in the US Top 20” — he had never been there",
+  "was": "Blurb: “…and put him back in the US Top 20.”",
+  "body": "Billboard chart history: nine Hot 100 entries, every one before WGFT peaked at 44 or lower; WGFT 16 (31 Jan 2026), Dai Dai 17 after it.",
+  "now": "“…and gave him his first US Top 20 single.” The typed “12 countries” extra that duplicated the derived card is gone.",
+  "guard": "tests/songFacts: WGFT must hold the lowest US peak on file while its page and the Africa's Biggest board call it his highest-ever."
+ },
+ {
+  "batch": "4a",
+  "pr": 283,
+  "page": "/music/23",
+  "kind": "stale",
+  "tier": "figure",
+  "title": "The video count was typed once in July and never watched",
+  "was": "“48M — YouTube views” plus a second hand-typed “48M” card.",
+  "body": "youtube.com/watch?v=PFPfxcvRshk: 50,272,024 on 17 Sep 2026.",
+  "now": "50M, one card, and a yt-views-23 watcher in scripts/watched-metrics.json so the bot moves it from now on."
+ },
+ {
+  "batch": "4a",
+  "pr": 283,
+  "page": "/music/23",
+  "kind": "wrong",
+  "tier": "figure",
+  "title": "The certification record dated “23” to 2022",
+  "was": "certifications.ts year: 2022 — the field is the release year.",
+  "body": "Spotify: released 13 Aug 2020 on Twice as Tall; songs.ts and albums.ts both say 2020.",
+  "now": "year: 2020.",
+  "guard": "tests/songFacts: a song's year equals its certification record's release year."
+ },
+ {
+  "batch": "4a",
+  "pr": 283,
+  "page": "/music/tatata",
+  "kind": "stale",
+  "tier": "figure",
+  "title": "12M video views had rolled over; no Spotify button",
+  "was": "“12M” typed 25 Jul; the hero had no Play on Spotify because no track id had been verified.",
+  "body": "youtube.com/watch?v=Uj1g5oumzWY 12,741,312; Spotify oEmbed for 7iCvoWlfuJ1y7zibnh1EW9 = “TaTaTa (feat. Travis Scott)”, the recording kworb credits the 68M to.",
+  "now": "13M with a watcher; the single's Spotify link on both layouts."
+ },
+ {
+  "batch": "4a",
+  "pr": 283,
+  "page": "/music/darko",
+  "kind": "stale",
+  "tier": "figure",
+  "title": "1.2M was 1.3M, and the label claimed a Darko-only video",
+  "was": "“1.2M — YouTube views for the official video”; FAQ credited Loma Vista as a label on the EP.",
+  "body": "youtube.com/watch?v=xOF8AtTvqSk 1,251,069; the only video is the joint “Thuggin / Darko”; Spotify and Apple credit Atlantic/Bad Habit/Spaceship Records only.",
+  "now": "1.3M with a watcher; label “YouTube views for the Thuggin / Darko official video” (new ytViewsLabel field); the FAQ names the three labels the release carries."
+ },
+ {
+  "batch": "4a",
+  "pr": 283,
+  "page": "/music/rizzla",
+  "kind": "note",
+  "tier": "prose",
+  "title": "“Critics repeatedly singled out Rizzla” overstated four reviews",
+  "was": "Blurb and a “Standout” card.",
+  "body": "Pulse Nigeria (Joey Akan) lists it among five good tracks; NotJustOk calls it the one J Fem production that earned its place; 360nobs and Music in Africa do not single it out.",
+  "now": "Named the two outlets that did. A yt-views-rizzla watcher added (1.8M was right by luck)."
+ },
+ {
+  "batch": "4a",
+  "pr": 283,
+  "page": "/music/boshe-nlo",
+  "kind": "wrong",
+  "tier": "prose",
+  "title": "Called “the closer” of an EP it sits third on",
+  "was": "Tagline, FAQ and JSON-LD said it closes Redemption; the EP's tracklist in albums.ts was in a scrambled order; “two years before Outside” (sixteen months); an “Aristokrat-to-Spaceship transition” that did not happen in 2016.",
+  "body": "Spotify's own tracklist for album 50qNx4v7MKypMx5wGynQ8j: Pree Me, Fa So La Ti Do, Boshe Nlo, Mary Jane, Body to Body, Plenty Song, We On. Redemption 23 Sep 2016 → Outside 26 Jan 2018.",
+  "now": "“Track three of the Redemption EP”; tracklist in release order; sixteen months; Spaceship label named. JSON-LD inAlbum drops the “(EP)” display suffix and says EPRelease.",
+  "also": [
+   "/music/darko (schema)"
+  ]
+ },
+ {
+  "batch": "4a",
+  "pr": 283,
+  "page": "/music/alone",
+  "kind": "wrong",
+  "tier": "figure",
+  "title": "A Sweden No. 33 the singles chart never carried",
+  "was": "Chart pill “#33 Sweden”, FAQ “No. 33 in Sweden”, “nine official charts”.",
+  "body": "Sverigetopplistan Veckolista Singlar, 27 consecutive issues: no row. Heatseeker (an extension chart the site excludes): 15 and 7. The body's search lists eleven Burna Boy items; Alone is not one.",
+  "now": "Row removed (RETRACTIONS #9); eight charts, seven countries; FAQ rewritten. Chart entries 278 → 277."
+ },
+ {
+  "batch": "4a",
+  "pr": 283,
+  "page": "/music/alone",
+  "kind": "wrong",
+  "tier": "prose",
+  "title": "“It opens the film's soundtrack rollout” — Rihanna's single did",
+  "was": "FAQ 1 and the FAQPage JSON-LD.",
+  "body": "Marvel/Universal: “Lift Me Up” led on 28 Oct 2022; BPI: Alone released 04.11.2022 with the album.",
+  "now": "“Released on 4 November 2022 with the soundtrack album, a week after Rihanna's lead single…”"
+ },
+ {
+  "batch": "4a",
+  "pr": 283,
+  "page": "/music/jerusalema",
+  "kind": "wrong",
+  "tier": "figure",
+  "title": "A South Africa No. 1 on a chart that started a year later",
+  "was": "“#1 South Africa” pill, “No. 1 in six countries” in the blurb, both FAQs, the meta description and the search index; “17 chart entries”.",
+  "body": "TOSAC's own site: first post 1 Sep 2021, first chart the week of 27 Aug 2021; nothing before. The remix peaked mid-2020. No other 2020 SA national chart.",
+  "now": "Row removed (RETRACTIONS #10); five countries at No. 1, 15 countries, 16 entries everywhere. Site totals 276 entries, 46 No. 1s.",
+  "guard": "tests/songFacts: every typed “N countries”, “N chart entries”, “No. 1 in N countries”, “N certifications”, “No. N in Nigeria”, “N× Platinum in Nigeria” equals the data; no extra fact restates a derived card."
+ },
+ {
+  "batch": "4a",
+  "pr": 283,
+  "page": "/music/jerusalema",
+  "kind": "stale",
+  "tier": "figure",
+  "title": "The only song page without its Spotify count",
+  "was": "No streams card.",
+  "body": "kworb: “Jerusalema (feat. Burna Boy & Nomcebo Zikode) - Remix” 85,571,611 — the radio-edit row is another recording and is not summed.",
+  "now": "86M with a spotify-streams-jerusalema watcher."
+ },
+ {
+  "batch": "4a",
+  "pr": 283,
+  "page": "/music/jerusalema",
+  "kind": "wrong",
+  "tier": "prose",
+  "title": "The share card credited the record to Burna Boy alone",
+  "was": "OG kicker and og:title “Jerusalema (Remix) — Burna Boy”.",
+  "body": "SNEP, BVMI, IFPI Austria and Ultratop all file it under Master KG feat. Burna Boy & Nomcebo Zikode.",
+  "now": "Kicker and share title print the song's credit; the five credited cards re-version on their own (credit is in the OG id), no OG_ART bump.",
+  "also": [
+   "/music/wgft",
+   "/music/tatata",
+   "/music/darko",
+   "/music/smoke"
+  ]
+ },
+ {
+  "batch": "4a",
+  "pr": 283,
+  "page": "/music/like-to-party",
+  "kind": "wrong",
+  "tier": "figure",
+  "title": "L.I.F.E “won Album of the Year at the 2015 NEA” — it was a 2014 nominee",
+  "was": "awards.ts 2015 win; the album page (blurb, card, FAQ, meta), /timeline and the search index all repeated it.",
+  "body": "neaawards.com (Wayback 30 Aug 2014): L.I.F.E among seven Album of the Year nominees; (28 Sep 2015) the 2015 nominee list does not include it. Same 2014 page: Best Collaboration, Burna Boy ft. D'banj.",
+  "now": "Row moved to 2014, won: false; the D'banj nomination added; 82 wins from 242 nominations. The 2015 Best Pop Artist win stays as typed but is unsourced — flagged for Paul (RETRACTIONS #11).",
+  "also": [
+   "/music/albums/life",
+   "/timeline",
+   "/records/awards"
+  ]
+ },
+ {
+  "batch": "4a",
+  "pr": 283,
+  "page": "/music/smoke",
+  "kind": "broken",
+  "tier": "structure",
+  "title": "Two “2011” cards",
+  "was": "“2011 — released” (derived, gold) and “2011 — the earliest release documented on this site” (typed).",
+  "body": "page.tsx injects the released card for every history-only song.",
+  "now": "The typed one is gone."
+ }
+]

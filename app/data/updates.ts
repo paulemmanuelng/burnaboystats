@@ -47,6 +47,30 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-09-17",
+    category: "Charts",
+    text: "Two chart entries withdrawn after reading the bodies: “Alone” never entered Sverigetopplistan's singles chart (Heatseeker only), and the “Jerusalema” remix's South Africa No. 1 predates the chart that would have carried it. 276 entries, 46 No. 1s.",
+    href: "/records/charts",
+  },
+  {
+    date: "2026-09-17",
+    category: "Awards",
+    text: "A correction to L.I.F.E's record: the debut was an Album of the Year nominee at the 2014 Nigeria Entertainment Awards, not the 2015 winner — the body's own 2015 nominee list does not include it. Its 2014 Best Collaboration nod (with D'banj) joins the count: 82 wins from 242 nominations.",
+    href: "/music/albums/life",
+  },
+  {
+    date: "2026-09-17",
+    category: "Streaming",
+    text: "86 million Spotify streams for the “Jerusalema” remix — the Burna Boy version alone, not the radio edit — while the “23” video passes 50 million YouTube views and “TaTaTa”'s 13 million, both read on 17 September.",
+    href: "/music/jerusalema",
+  },
+  {
+    date: "2026-09-17",
+    category: "Charts",
+    text: "Two song-page corrections: “Last Last” peaked at No. 3 on TurnTable's Nigeria chart (its Top 50 debut, May 2022), not No. 2 — 46 weekly issues re-read at the body; and “On the Low” is a 2018 single, released 16 November 2018, not a 2019 one.",
+    href: "/music/last-last",
+  },
+  {
+    date: "2026-09-17",
     category: "Streaming",
     text: "17.81 million Spotify followers, the most of any African artist and just over five million clear of Wizkid (12.77M) — with Davido (11.96M), Rema (11.87M) and Asake (10.66M) completing the five. Every count read at Spotify itself on 17 September.",
     href: "/records/africas-biggest",

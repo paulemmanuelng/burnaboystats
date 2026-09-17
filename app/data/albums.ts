@@ -1,3 +1,5 @@
+import { sameTitle } from "../lib/titleKey";
+
 // Studio albums + verified tracklists (sources: Wikipedia, per album).
 // Each album: title, year, label, and the STANDARD-EDITION tracklist — the
 // rule, decided 17 Sep 2026: counts are the album as released, not the
@@ -147,9 +149,12 @@ export const eps: AlbumEntry[] = [
     cover: "https://i.scdn.co/image/ab67616d0000b2739c6526408de3ed6a97d0f0db",
     year: 2016,
     label: "Spaceship",
+    // Release order, as Spotify's own tracklist prints it (re-read 17 Sep 2026):
+    // the file carried these seven in a scrambled order for months, which is how
+    // /music/boshe-nlo came to call track three "the closer".
     tracks: [
-      "Mary Jane", "Body to Body", "We On", "Plenty Song",
-      "Fa So La Ti Do", "Pree Me", "Boshe Nlo",
+      "Pree Me", "Fa So La Ti Do", "Boshe Nlo", "Mary Jane",
+      "Body to Body", "Plenty Song", "We On",
     ],
   },
   {
@@ -188,3 +193,17 @@ export const compilations: AlbumEntry[] = [
  */
 export const isEp = (title: string) =>
   eps.some((e) => e.title.toLowerCase() === title.trim().toLowerCase());
+
+/**
+ * The release year of an album, EP or compilation, looked up by title.
+ *
+ * A song page's kicker names the parent release and has to date THAT, not the
+ * single: "On the Low" is a 16 Nov 2018 single on 2019's African Giant, and
+ * until 17 Sep 2026 the kicker printed "African Giant · " + the song's year.
+ * songs.ts writes EPs as "Redemption (EP)"; the suffix is dropped for the match.
+ * Undefined for a release this file does not hold ("Single", a soundtrack).
+ */
+export const albumYearByTitle = (title: string): number | undefined => {
+  const key = title.replace(/\s*\(EP\)\s*$/i, "");
+  return [...albums, ...eps, ...compilations].find((a) => sameTitle(a.title, key))?.year;
+};

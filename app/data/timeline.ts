@@ -31,7 +31,7 @@ export const timelineEras: TimelineEra[] = [
     entries: [
       { date: "2010", title: "The career begins", text: "Burna Boy starts releasing music out of Port Harcourt, working with producer LeriQ in the Aristokrat camp.", kind: "milestone" },
       { date: "2012", title: "“Like to Party” breaks through", text: "The breakout single that carried him onto Nigerian radio, later the lead track of his debut album.", href: "/music/like-to-party", kind: "chart" },
-      { date: "2013", title: "L.I.F.E — the debut album", text: "Leaving an Impact For Eternity, released on Aristokrat Records. It would win Album of the Year at the 2015 Nigeria Entertainment Awards.", href: "/music/albums/life", kind: "album" },
+      { date: "2013", title: "L.I.F.E — the debut album", text: "Leaving an Impact For Eternity, released on Aristokrat Records. It earned Album of the Year nominations at the 2014 Headies and Nigeria Entertainment Awards.", href: "/music/albums/life", kind: "album" },
       { date: "2015", title: "On a Spaceship", text: "The second album, self-released on his own Spaceship label — the imprint still on every record since.", href: "/music/albums/on-a-spaceship", kind: "album" },
     ],
   },

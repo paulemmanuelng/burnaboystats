@@ -447,7 +447,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Nigeria Entertainment Awards",
     "path": "/records/awards",
     "section": "Awards",
-    "description": "4 wins from 4 nominations.",
+    "description": "3 wins from 5 nominations.",
     "keywords": [
       "award",
       "awards",
@@ -2010,7 +2010,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Alone",
     "path": "/music/alone",
     "section": "Release",
-    "description": "5 certifications · 9 chart entries.",
+    "description": "5 certifications · 8 chart entries.",
     "keywords": [
       "song",
       "release"
@@ -2432,7 +2432,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Jerusalema (Remix)",
     "path": "/music/jerusalema",
     "section": "Release",
-    "description": "Master KG, Nomcebo & Burna Boy — 6 certifications · 17 chart entries.",
+    "description": "Master KG, Nomcebo & Burna Boy — 6 certifications · 16 chart entries.",
     "keywords": [
       "master",
       "nomcebo",

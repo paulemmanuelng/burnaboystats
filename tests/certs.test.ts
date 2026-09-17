@@ -117,8 +117,10 @@ describe("certHistory (certifications by year)", () => {
     expect(certHistory.filter((e) => e.year === 2025).length).toBe(29);
   });
 
-  it("2024 has the published count of 20 certifications", () => {
-    expect(certHistory.filter((e) => e.year === 2024).length).toBe(20);
+  it("2024 has the published count of 21 certifications", () => {
+    // 20 → 21 on 17 Sep 2026: City Boys NZ Gold (RMNZ via RadioScope, 2024-06-13),
+    // on the release row since the snapshot but never in this log.
+    expect(certHistory.filter((e) => e.year === 2024).length).toBe(21);
   });
 
   it("2023 has the published count of 44 certifications", () => {

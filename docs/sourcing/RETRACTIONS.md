@@ -276,3 +276,76 @@ same sweep. Three countries were added together on trust; two were wrong.
 one source, they share that source's reliability. Verifying one of them is not
 evidence for the others — and here it was the two that nobody re-checked that
 turned out to be wrong.
+
+## 9. "Alone" — Sweden No. 33, published from a chart table, never read at the body (17 Sep 2026)
+
+`{ c: "SE", peak: 33 }` sat in "Alone"'s entries from 25 July 2026 (commit
+`622b16a5`, "per the song's cited chart table") and has been **removed**.
+
+**What the body says.** Sverigetopplistan's Veckolista Singlar (chart 41, 100
+rows an issue) was read for 27 consecutive issues, vecka 42/2022 → 16/2023.
+No "ALONE" row and no Burna Boy row in any of them — while the same parse finds
+*FOR MY HAND (feat. Ed Sheeran)* at 75 and 93 in weeks 42–43, so a Burna Boy
+row would have been caught. The song does appear on the **Veckolista
+Heatseeker** (chart 215, 20 rows): 15 in vecka 46/2022, 7 in vecka 47/2022;
+the body's own stats module gives it "2 Veckor på listan · Högsta placering 7"
+there and returns an empty body for the singles chart. Sverigetopplistan's search
+for Burna Boy lists eleven items; Alone is not one. Hung Medien's worldwide
+matrix for the song carries CH/FR/NL/PT and no SE.
+
+**Heatseeker is an extension chart** that sits below the main list, and this
+file's own rules exclude it (charts.ts header; the Wizkid and Tyla sweeps name
+it). The 33 matches neither list; where it came from is not recoverable.
+
+**Resynced:** 278 → 277 chart entries; Alone 9 → 8 entries, 8 → 7 countries;
+the FAQ and the "nine official charts" line on /music/alone. Sweden keeps its
+other entries, so the territory count holds at 69.
+
+## 10. The Jerusalema remix — South Africa No. 1 on a chart that did not exist yet (17 Sep 2026)
+
+`{ c: "ZA", peak: 1 }` on "Jerusalema (Remix)" came in on commit `950fa8dc`
+(20 Jun 2026, "Expand Official Charts") with no body cited, and has been
+**removed**.
+
+**What the body says.** `ZA` is defined in charts.ts as "The Official SA Charts"
+— TOSAC. Its own site, read through its WordPress API, holds its complete run:
+the earliest post is 1 September 2021 and the first chart page is the week of
+27 August 2021; every query before August 2021 returns nothing. The remix peaked
+in mid-2020, a year before the chart existed. TOSAC's search finds "Jerusalema"
+only in December 2021 radio commentary — the Nomcebo original, climbing a radio
+chart to 17 — never the Burna Boy remix and never at No. 1. No other South
+African national chart published in 2020.
+
+**Resynced with #9:** 278 → 276 chart entries, 47 → 46 No. 1 placements;
+Jerusalema 17 → 16 entries, 16 → 15 countries, six → five countries at No. 1 —
+the blurb, both FAQs, the meta description and the search index follow. ZA
+keeps other entries (Last Last, Dai Dai), so 69 territories holds.
+
+**The lesson is #7's again:** a country code with a named body is not evidence
+the body ever published the figure. The body has to be *read*, and the first
+thing to read is the date it started.
+
+## 11. L.I.F.E — "Album of the Year, 2015 Nigeria Entertainment Awards": a win that was a 2014 nomination (17 Sep 2026)
+
+awards.ts carried `{ year: 2015, category: "Album of the Year", work: "L.I.F.E",
+won: true }` since the 20 June 2026 build, and the album page, the timeline, the
+search index and /music/like-to-party all repeated the win. **The row is now
+2014, won: false.**
+
+**What the body says.** The NEA's own site (neaawards.com, dead now, archived).
+The 30 Aug 2014 nominees page lists Album of the Year as *Takeover – Kcee;
+Journey – Sean Tizzle; Once Upon A Time – Tiwa Savage; Leaving An Impact For
+Eternity (L.I.F.E) – Burna Boy; Jagz Nation – Jesse Jagz; Blessed – Flavour;
+Baddest Boy Ever Liveth – Olamide*. The 28 Sep 2015 capture of the 2015 Album
+of the Year page lists *Baba Hafusa – Reminisce; Thankful – Flavour; King of
+Queens – Yemi Alade; Street OT – Olamide; Praiz; Wizkid* — L.I.F.E is not a
+2015 nominee, so it cannot have won. The body never published a winners list in
+any capture; the 2015 Best Pop Artist row (won: true) therefore rests on press
+and is left as it was, flagged.
+
+**Gained from the same page:** *Best Collaboration — Burna Boy Ft Dbanj* (2014),
+a nomination the file never had, added.
+
+**Resynced:** 83 → 82 wins, 241 → 242 nominations; L.I.F.E's Headies 2014
+Album of the Year row now names the work. The like-to-party page's "2× nom"
+card was already right.

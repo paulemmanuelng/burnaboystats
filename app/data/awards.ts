@@ -347,7 +347,7 @@ export const ceremonies: Ceremony[] = [
       { year: 2014, category: "Best R&B Single", work: "Don Gorgon", won: false },
       { year: 2014, category: "Best R&B/Pop Album", work: "L.I.F.E", won: false },
       { year: 2014, category: "Revelation of the Year", won: false },
-      { year: 2014, category: "Album of the Year", won: false },
+      { year: 2014, category: "Album of the Year", work: "L.I.F.E", won: false },
       { year: 2019, category: "Artiste of the Year", won: true },
       { year: 2019, category: "Song of the Year", work: "Ye", won: true },
       { year: 2019, category: "Best Collaboration", work: "Killin' Dem", won: true },
@@ -465,7 +465,13 @@ export const ceremonies: Ceremony[] = [
     noms: [
       { year: 2013, category: "Best New Act of the Year", won: true },
       { year: 2015, category: "Best Pop Artist of the Year", won: true },
-      { year: 2015, category: "Album of the Year", work: "L.I.F.E", won: true },
+      // Read at the body 17 Sep 2026 (neaawards.com, Wayback 30 Aug 2014 and 28 Sep
+      // 2015 captures): L.I.F.E was a 2014 Album of the Year NOMINEE (Olamide's
+      // Baddest Guy Ever Liveth won) and was not among the 2015 nominees at all —
+      // the 2015 "win" this file carried since 20 Jun 2026 had no body behind it.
+      // The same 2014 page lists Best Collaboration for Burna Boy ft. D'banj.
+      { year: 2014, category: "Album of the Year", work: "L.I.F.E", won: false },
+      { year: 2014, category: "Best Collaboration", work: "Won Da Mo (with D'banj)", won: false },
       { year: 2018, category: "Album of the Year", work: "Outside", won: true },
     ],
   },

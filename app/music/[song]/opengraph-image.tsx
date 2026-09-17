@@ -4,6 +4,7 @@ import { OgLockup, ogFonts } from "../../lib/og-lockup";
 import { songBySlug, songSlugs } from "../../data/songs";
 import { allChartItems } from "../../data/charts";
 import { allItems } from "../../data/certifications";
+import { albumYearByTitle } from "../../data/albums";
 
 export function generateStaticParams() {
   return songSlugs.map((song) => ({ song }));
@@ -29,8 +30,10 @@ export async function generateImageMetadata({
   params: Promise<{ song: string }>;
 }) {
   const { song: slug } = await params;
-  const { countries, best, certCount } = songStats(slug);
-  return [{ id: ogId(`${slug}|${best}|${countries}|${certCount}|${cardUrl(`/music/${slug}`)}`), alt, size, contentType }];
+  const { song, countries, best, certCount } = songStats(slug);
+  // The credit is part of the id: the five credited cards changed text on
+  // 17 Sep 2026 without any art change, so they re-version alone (no OG_ART bump).
+  return [{ id: ogId(`${slug}|${song?.credit ?? ""}|${best}|${countries}|${certCount}|${cardUrl(`/music/${slug}`)}`), alt, size, contentType }];
 }
 
 export const size = { width: 1200, height: 630 };
@@ -88,7 +91,7 @@ export default async function Image({ params }: { params: Promise<{ song: string
           // Capped so a long kicker wraps rather than running under the
           // lockup in the facing corner (1072 box - 238 mark - clear space).
           maxWidth: 780 }}>
-          Burna Boy · {song?.album ?? "Song"} · {song?.year ?? ""}
+          {song?.credit ?? "Burna Boy"} · {song?.album ?? "Song"} · {song ? (albumYearByTitle(song.album) ?? song.year) : ""}
         </div>
 
         <div style={{ display: "flex", alignItems: "center", gap: 50 }}>
