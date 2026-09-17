@@ -98,13 +98,19 @@ export default function MobileTours({
       {/* Announced but unplayed — kept out of every figure above. */}
       {upcomingShows.length > 0 && (
         <div className={styles.upcoming}>
+          {/* One date per show, not one for the block: with the NFL Paris
+              halftime (25 Oct 2026) and London Stadium (2027) both announced,
+              a single head date would label the second with the first's. */}
           <div className={styles.upcomingHead}>
             <span className={styles.upcomingTag}>Announced</span>
-            <span className={styles.upcomingWhen}>{upcomingShows[0].when}</span>
+            <span className={styles.upcomingWhen}>{upcomingShows.length === 1 ? upcomingShows[0].when : `${upcomingShows.length} shows`}</span>
           </div>
           {upcomingShows.map((u) => (
             <div key={`${u.venue}-${u.when}`}>
-              <div className={styles.upcomingVenue}>{u.venue}</div>
+              <div className={styles.upcomingVenue}>
+                {u.venue}
+                {upcomingShows.length > 1 && <span className={styles.upcomingWhen}> · {u.when}</span>}
+              </div>
               <div className={styles.upcomingCity}>
                 {u.city}, {u.country}
                 {u.cap ? ` · ${u.cap.toLocaleString()} cap` : ""}
