@@ -149,7 +149,11 @@ describe("handoff checklist — data integrity", () => {
     // across 344 videos, read at the channel on 3 Sep 2026 — Wizkid is next at
     // 2.66B). 51st was the first entry on Billboard's Adult Contemporary chart
     // ("Dai Dai" debuts at No. 14, chart dated 29 Aug 2026).
-    expect(firstsCount).toBe(52);
+    // 52 -> 54 on 17 Sep 2026: five songs past 400M and fifty past 50M on
+    // Spotify (kworb's 16 Sep pages, every African artist on its index
+    // counted), under Paul's ruling that Akon is an American artist and the
+    // French rap school French — nationality, not birthplace.
+    expect(firstsCount).toBe(54);
   });
 
   it("values the current car collection at $16.84M — current only", () => {
