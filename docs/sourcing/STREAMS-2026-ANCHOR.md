@@ -1,4 +1,4 @@
-# The 2026 running Spotify totals — what happened, what they are now (12 Sep 2026)
+# The 2026 running Spotify totals — what happened, what they are now (12 Sep 2026; re-anchored 17 Sep)
 
 The "Most-streamed African artist · 2026" row on Africa's Biggest is five live
 figures. This file records what went wrong with them, what they are anchored
@@ -155,6 +155,55 @@ Through 14 Sep the ledger reads Tems 1,796.4M, Burna Boy 1,795.3M, Wizkid
 now the most-streamed" appeared on 15 Sep, on a 1–2M margin no count can
 resolve. By kworb's dailies the gap clears ten million around 19–20 Sep, and
 the board will say so then, on a kworb date.
+
+## A third fixed point, and a re-anchor (16 Sep 2026)
+
+@BurnaBoyStats — the fan page, not this site — posted on the morning of 17 Sep
+2026 a "Most-streamed African artists in 2026" table with exact figures, method
+stated on the graphic ("2026 streams = total streams − total at the end of
+2025. Totals are the sum of the artist's own Spotify profile counts"), a daily
+column for 16 Sep, and Burna Boy's 2025 close at 9,199,552,674 — the corrected
+close this site published on 21 Aug at /analysis/spotify-unmerge:
+
+| artist | total, 16 Sep | 16 Sep daily | 2026 so far |
+|---|---|---|---|
+| Burna Boy | 11,010,480,657 | 7,509,481 | **1,810,927,983** |
+| Wizkid | 10,765,176,755 | 6,287,773 | **1,808,204,727** |
+| Tems | 8,248,869,339 | 5,362,022 | **1,807,644,361** |
+
+Against this site's own ledger through kworb's 2026/09/16 pages (checkpoint
+14 Sep + the 15 and 16 Sep dailies; Tems' 15 Sep derived from her page's
+totals, 5,265,672, the page having skipped that day):
+
+| artist | ledger, 16 Sep | tracker | gap |
+|---|---|---|---|
+| Burna Boy | 1,810,143,793 | 1,810,927,983 | +784,190 |
+| Wizkid | 1,806,161,655 | 1,808,204,727 | +2,043,072 |
+| Tems | 1,806,917,767 | 1,807,644,361 | +726,594 |
+
+Two different measures — kworb's tracked roster and its dailies against a sum
+of every credited track's own counter — agree within a day's streams on all
+three; the tracker's measure runs a little higher, most of all for Wizkid,
+whose 16 Sep daily it counts at 6,287,773 against kworb's 5,997,915. The same
+day kworb's Wizkid cumulative moved only 1.4M while his Daily read 6.0M — a
+catalogue adjustment inside kworb's total, and one more reason the ledger
+sums dailies rather than differencing cumulatives.
+
+The career figure corroborates the method from the other side: the tracker's
+Burna Boy total, 11,010,480,657, sits 2,872,057 above this site's own
+11,007,608,600 for the same day (kworb's raw 10,895,302,794 plus the
+ChartMasters-anchored offset of 112,305,806) — two roster-complete counts
+within three million of each other.
+
+**Re-anchored 17 Sep 2026** at the tracker's three exact figures through
+16 Sep; Asake (1,460,097,619) and Tyla (1,208,808,241) at the ledger's own
+figures for the same day, the tracker having printed the top three only.
+Checkpoint, baseline and anchor moved together; readings dropped; `lastStamp`
+set to the 16 Sep pages. The board reads Burna Boy 1.811B, Wizkid 1.808B,
+Tems 1.808B — Burna Boy first in order for the first time this year, and all
+three marked joint: 2.7M and 0.6M are inside the ten-million resolution, so
+the note says "joint first" and the feed says the trackers have him on top by
+a margin the count cannot resolve. That is the rule working as chosen below.
 
 ## The decision (12 Sep 2026): option (b)
 

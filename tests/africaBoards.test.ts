@@ -34,10 +34,12 @@ describe("mobile year boards honour the data's ties", () => {
   });
 
   it("the 2026 row is currently a three-way tie and says so", () => {
-    // The live bot maintains the tie flags; when the race separates, this
-    // case is the one to retire, not the rule above.
+    // The live bot maintains the tie flags and the order; when the race
+    // separates, this case is the one to retire, not the rule above. The
+    // order is whatever the data holds — Burna Boy first from 16 Sep 2026.
     const row = board.rows.find((r) => r.sub.includes("2026"))!;
-    expect(row.name).toBe("Tems, Burna Boy & Wizkid");
+    const names = box.rows!.find((r) => r.label === "2026")!.entries.slice(0, 3).map((e) => e.name);
+    expect(row.name).toBe(`${names[0]}, ${names[1]} & ${names[2]}`);
     expect(row.sub).toBe("🇳🇬 2026 · in progress · joint");
     expect(row.value).toBe("—");
     expect(row.his).toBe(false);

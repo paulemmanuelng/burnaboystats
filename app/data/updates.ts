@@ -47,6 +47,13 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-09-17",
+    category: "Streaming",
+    big: true,
+    text: "Burna Boy moves to the top of the 2026 Spotify race: 1,810,927,983 streams through 16 September by the tracker's count, against Wizkid's 1,808,204,727 and Tems' 1,807,644,361 — 2.7 million clear, a margin inside a day's streams, so the board shows the three level.",
+    href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-09-17",
     category: "Tours",
     text: "Two rows withdrawn from the highest-grossing shows board: Toronto and Montreal, February 2024, were carried as exact halves of Boxscore's combined two-night totals ($2,801,928 and $1,904,384). No per-night gross was ever published, so a per-show board cannot rank them.",
     href: "/records/tours/revenue",
@@ -62,6 +69,13 @@ export const updates: Update[] = [
     category: "Tours",
     text: "The Luna Loca launch at O Beach Ibiza (14 August 2026), his first Ibiza performance, joins the festivals and one-off shows list — it was already on the performance map and in this feed, and the list's counts now include it.",
     href: "/records/tours/festivals",
+  },
+  {
+    date: "2026-09-16",
+    category: "Streaming",
+    big: true,
+    text: "Past 11 billion Spotify streams across every credit: this site's career count read 11,000,362,193 on 16 September — kworb's roster plus the ChartMasters-anchored offset — and 11,007,608,600 a day later. The second African artist past the mark, after Wizkid.",
+    href: "/records/by-the-numbers",
   },
   {
     date: "2026-09-16",
