@@ -72,6 +72,7 @@ export async function GET(_req: Request, { params }: { params: Promise<{ artist:
       description:
         `One Afrobeats Board artist's current PLATFORM positions — Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube country charts, ${LIVE_CADENCE_REBUILT}. Not official-chart data; the board's official chart records are at /api/v1/afrobeats.`,
       updated: board.updated,
+      builtAt: board.builtAt,
       count: board.releases.length,
       countOf: "releases",
       ...provenance,

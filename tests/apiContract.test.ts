@@ -224,12 +224,15 @@ describe("the live-charts snapshots keep their top-level shape", () => {
     expect(b.releases.length).toBe(liveSnapshot.length);
     expect(b.data, "wrapping the snapshot in `data` breaks the live-charts page").toBeUndefined();
     expect(b.updated).toBeTruthy();
+    // The minute stamp a consumer polls on — `updated` is only a day.
+    expect(b.builtAt).toMatch(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}Z$/);
   });
 
   it("does the same for a board artist", async () => {
     const b = await body(await artistRes(LIVE_BOARDS[0].slug));
     expect(b.artist).toBe(LIVE_BOARDS[0].slug);
     expect(Array.isArray(b.releases)).toBe(true);
+    expect(b.builtAt).toMatch(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}Z$/);
     expect(b.data).toBeUndefined();
   });
 
@@ -257,8 +260,17 @@ describe("the envelope the docs page draws", () => {
       "artist", "endpoint", "description", "updated", "count", "countOf",
       "license", "source", "methodology", "docs", "data",
     ]);
-    const docs = readFileSync("app/api/page.tsx", "utf8");
-    for (const k of ["count", "countOf", "updated", "license", "endpoint"])
-      expect(docs, `the sample payload omits ${k}`).toContain(`${k}:`);
+    // The docs page prints a slice of the real envelope now (app/lib/chartsPayload.ts),
+    // so the sample cannot omit a key the endpoint serves — pin that, and pin
+    // that the docs name the live-charts exception beside the envelope sentence.
+    const { chartsSample, chartsPayload } = await import("../app/lib/chartsPayload");
+    expect(Object.keys(chartsSample())).toEqual(Object.keys(b));
+    expect(Object.keys(chartsPayload())).toEqual(Object.keys(b));
+    expect((chartsSample() as { license: { url: string } }).license.url).toContain("creativecommons.org");
+    const { ENVELOPE_NOTE, UPDATED_NOTE } = await import("../app/lib/api");
+    expect(ENVELOPE_NOTE).toMatch(/live-charts[^.]*top level/);
+    expect(UPDATED_NOTE).toContain("builtAt");
+    for (const f of ["app/api/page.tsx", "app/components/MobileApi.tsx"])
+      expect(readFileSync(f, "utf8"), `${f} does not print the shared envelope note`).toContain("ENVELOPE_NOTE");
   });
 });

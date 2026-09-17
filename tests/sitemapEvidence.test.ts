@@ -6,6 +6,7 @@ import { afrobeatsArtists } from "../app/data/afrobeats";
 import { LIVE_BOARDS } from "../app/data/liveBoards";
 import { liveChartsUpdated } from "../app/data/liveCharts";
 import { LISTENERS_READ_ON } from "../app/data/listeners";
+import { allPairs, pairSlug } from "../app/lib/comparePairs";
 import { siteUrl } from "../app/site";
 
 /**
@@ -51,6 +52,8 @@ function evidenceFor(path: string): string[] {
   if (path === "/dai-dai/es") dates.push(feedDate("/dai-dai"));
   if (path === "/live-charts") dates.push(liveChartsUpdated);
   if (path === "/music/listeners") dates.push(LISTENERS_READ_ON);
+  const pair = allPairs().find(([a, b]) => `/compare/${pairSlug(a, b)}` === path);
+  if (pair) dates.push([pair[0].verifiedOn, pair[1].verifiedOn].sort().at(-1)!);
   if (path === "/updates") dates.push([...updates.map((u) => u.date)].sort().at(-1));
   if (path === "/afrobeats") dates.push([...swept.map((a) => a.verifiedOn)].sort().at(-1));
   const board = LIVE_BOARDS.find((b) => `/afrobeats/${b.slug}/live` === path);
@@ -112,7 +115,8 @@ describe("sitemap lastmod is evidence-backed", () => {
       "/press",
       "/api",
       "/share",
-      "/timeline",
+      // NOT /timeline since 17 Sep 2026: the feed logs the World Cup halftime
+      // correction against it, which is exactly the evidence a lastmod rests on.
       "/records/visualized",
       "/records/cars/bugatti-chiron",
       "/music/albums/african-giant",

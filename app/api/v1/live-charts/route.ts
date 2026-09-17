@@ -1,4 +1,4 @@
-import { liveCharts, liveChartsUpdated } from "../../../data/liveCharts";
+import { liveCharts, liveChartsUpdated, liveChartsBuiltAt } from "../../../data/liveCharts";
 import { apiHeaders, API_VERSION, LIVE_CACHE_CONTROL, provenance } from "../../../lib/api";
 import { LIVE_CADENCE_REBUILT } from "../../../lib/liveChartMeta";
 
@@ -32,6 +32,9 @@ export function GET() {
       description:
         `Where each release is sitting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube country charts. These are PLATFORM charts, ${LIVE_CADENCE_REBUILT} — not official-chart data. The official national peaks behind this site's headline totals are at /api/v1/charts, and the two are never mixed.`,
       updated: liveChartsUpdated,
+      // The minute the board was rebuilt — `updated` is a day, and a consumer
+      // polling for a new snapshot needs the finer stamp.
+      builtAt: liveChartsBuiltAt,
       count: liveCharts.length,
       countOf: "releases",
       ...provenance,

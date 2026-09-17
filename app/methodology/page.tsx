@@ -62,7 +62,7 @@ const sources = [
     count: "live",
     tag: "Spotify · YouTube · in-app figures",
     detail:
-      "Spotify and YouTube's own in-app figures for monthly listeners, followers and view counts, cross-checked against the platforms directly. Fast-moving totals are tracked live and updated as they move, not pulled from a scraper.",
+      "Spotify and YouTube's own in-app figures for monthly listeners, followers and view counts, cross-checked against the platforms directly. The one figure Spotify never publishes — a career stream total — is built from its per-track counts: kworb's mirror of them, summed daily, anchored to a dated read of ChartMasters' Playcounts Tool (last 17 September 2026), the method streamingTotals.ts documents.",
   },
   {
     area: "Awards",
@@ -136,7 +136,7 @@ const unpricedSingleNames = (() => {
 const principles = [
   {
     h: "Primary sources, not summaries",
-    p: "A number is verified against the body that owns it — the chart's official run, the certifying database, the platform's own screen. Search-result snippets and news write-ups go stale and often quote the wrong chart (Global 200 vs Global 200 Excl. US, for example), so an official chart body's own card or database always wins over a summary that paraphrases it.",
+    p: "A number is verified against the body that owns it — the chart's official run, the certifying database, the platform's own screen or, where the platform publishes no figure, a named and dated tracker method. Search-result snippets and news write-ups go stale and often quote the wrong chart (Global 200 vs Global 200 Excl. US, for example), so an official chart body's own card or database always wins over a summary that paraphrases it.",
   },
   {
     h: "Nothing goes up unverified",

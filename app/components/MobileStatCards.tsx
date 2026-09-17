@@ -38,7 +38,7 @@ export default function MobileStatCards({
 }: {
   cards: CardChoice[];
   /** The date the figures were last checked, already formatted by /share.
-   *  Desktop shows it in the aside as "Verified / {date}"; this screen had no
+   *  Desktop shows it in the aside as "Site updated / {date}"; this screen had no
    *  prop for it at all, so a phone reader got no "as of" date for a number
    *  they were about to post publicly. */
   verified: string;
@@ -55,7 +55,7 @@ export default function MobileStatCards({
   const card = cards.find((c) => c.id === id) ?? cards[0];
   const src = `/stat-card?stat=${id}&ratio=${ratio}${attempt ? `&r=${attempt}` : ""}`;
   const size = CARD_SIZES[ratio];
-  const shareText = `Burna Boy — ${card.label}. ${card.source}.`;
+  const shareText = `Burna Boy — ${card.value} ${card.label}. ${card.source}.`;
   // On a phone the primary action opens the share sheet (Save Image, or post
   // straight to an app), so the button should not promise a download.
   const shareable = useSyncExternalStore(subscribeNever, canShareFiles, () => false);
@@ -122,7 +122,7 @@ export default function MobileStatCards({
             loading ? styles.cardLoading : ""
           }`}
           src={src}
-          alt={`Stat card: ${card.label}`}
+          alt={`Stat card: ${card.value} ${card.label}`}
           width={size.width}
           height={size.height}
           onLoad={() => {
@@ -177,11 +177,11 @@ export default function MobileStatCards({
       <p className={styles.note}>
         Renders at {size.width} × {size.height} px. Every card carries its source line.
       </p>
-      {/* The provenance the desktop aside carries as "Verified / {date}". The
+      {/* The stamp the desktop aside carries as "Site updated / {date}". The
           aside itself is deliberately desktop-only, but the date is a fact, not
           a panel — it belongs wherever the card is about to be posted. */}
       <p className={`${styles.note} ${styles.verified}`}>
-        Verified <span className={styles.verifiedDate}>{verified}</span>
+        Site updated <span className={styles.verifiedDate}>{verified}</span>
       </p>
 
       <div className={styles.spacer} />
@@ -192,7 +192,7 @@ export default function MobileStatCards({
         <div className={styles.secondaryRow}>
           <a
             className={styles.secondary}
-            href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(pageUrl)}`}
+            href={`https://x.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(pageUrl)}`}
             target="_blank"
             rel="noopener noreferrer"
           >

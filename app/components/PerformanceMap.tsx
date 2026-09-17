@@ -150,7 +150,7 @@ export default function PerformanceMap() {
           );
         })}
 
-        {/* Dot markers for island nations too small to have a shape at 110m. */}
+        {/* Dot markers for territories too small to have a shape at 110m (seven island states and landlocked Kosovo). */}
         {performedCountries.map((c) =>
           c.marker ? (
             <circle

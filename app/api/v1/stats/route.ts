@@ -19,7 +19,7 @@ export function GET() {
   return apiJson({
     endpoint: "/stats",
     description:
-      "Headline career totals, plus the dated Spotify monthly-listeners series behind the site's trend charts.",
+      "Headline career totals, plus the dated series of Spotify monthly-listener highs behind the site's trend charts — a point is added only when the all-time peak moves; the current figure is not published.",
     data: {
       charts: {
         chartEntries: chartEntryCount,
@@ -38,7 +38,9 @@ export function GET() {
       spotify: {
         followers: spotifyFollowersDisplay,
         globalRankByMonthlyListeners: Number(spotifyGlobalRank),
-        // Values in millions, each point logged on the date it was recorded.
+        // Values in millions; the bot appends a point only when the all-time peak
+        // moves (kind: peak in scripts/watched-metrics.json), so the series ends
+        // on the day the peak was last set, not today.
         monthlyListenersSeries,
       },
       daiDai: {

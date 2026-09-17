@@ -11,7 +11,7 @@ the body that publishes the figure before anything is changed.
 | 3 | /afrobeats + the 15 artist pages with their /charts and /live | 55 | 51 | 4 | PR #274, 17 Sep |
 | 4a | the 14 song pages under /music/<slug> | 59 (17 non-note) | 29 | 14 | PR #283, 17 Sep — verified one page at a time for four pages, then the remaining ten together (Paul's call); Ye NG Silver→Gold and Last Last ZA Platinum removal VETOED by Paul, everything else applied |
 | 4b | 8 album pages + 15 car pages | not yet run | | | |
-| 4c | /timeline, /records/visualized, /records/tours/map, /records, /search, /share, /contact, /curator, /api, /analysis/spotify-unmerge, 3 compare pairs | not yet run | | | |
+| 4c | /timeline, /records/visualized, /records/tours/map, /records, /search, /share, /contact, /curator, /api, /analysis/spotify-unmerge, 3 compare pairs | 79 (18 non-note) | 70 | 8 (1 unverifiable) | PR #285, 17 Sep — find pass 6 parallel + 7 sequential (Paul pacing credits), verify 13 in parallel after the 22:10 reset |
 
 Files: `audit-batch{N}-raw.json` is what the auditors reported (every finding,
 notes included); `audit-batch{N}-verdicts.json` is the verifier's ruling on

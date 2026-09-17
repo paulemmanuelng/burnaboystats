@@ -71,10 +71,10 @@ export function apiHeaders(cacheControl: string = API_CACHE_CONTROL): Record<str
   };
 }
 
-type Envelope = {
+type Envelope<D = unknown> = {
   endpoint: string;
   description: string;
-  data: unknown;
+  data: D;
 } & (
   // `count` and `countOf` travel together or not at all. A bare `count` was
   // documented here as "the collection count" while /charts set it to 278
@@ -96,20 +96,33 @@ type Envelope = {
  * endpoint publishes the collection's own length under `data.totals` as well,
  * so a consumer can have either without guessing which one it got.
  */
-export function apiJson({ endpoint, description, count, countOf, data }: Envelope) {
-  return Response.json(
-    {
-      artist: "Burna Boy",
-      endpoint: `/api/${API_VERSION}${endpoint}`,
-      description,
-      updated: lastUpdated,
-      ...(count === undefined ? {} : { count, countOf }),
-      ...provenance,
-      data,
-    },
-    { headers: apiHeaders() }
-  );
+export function envelopeBody<D>({ endpoint, description, count, countOf, data }: Envelope<D>) {
+  return {
+    artist: "Burna Boy",
+    endpoint: `/api/${API_VERSION}${endpoint}`,
+    description,
+    updated: lastUpdated,
+    ...(count === undefined ? {} : { count, countOf }),
+    ...provenance,
+    data,
+  };
 }
+
+export function apiJson(envelope: Envelope) {
+  return Response.json(envelopeBody(envelope), { headers: apiHeaders() });
+}
+
+/**
+ * What the docs page says about the envelope — one string for both layouts,
+ * because the desktop and phone docs each typed their own and neither named
+ * the exception: the two live-charts snapshots keep `releases` at the top
+ * level with no `data` key, and carry `builtAt`, the minute the board was
+ * rebuilt.
+ */
+export const ENVELOPE_NOTE =
+  "Every response uses the same envelope — the data, plus where it came from and when it last changed. The two live-charts snapshots are the exception: they keep releases at the top level, with no data key, because the live page's own panels read it there.";
+export const UPDATED_NOTE =
+  "updated is the date of the most recent real change to the data, not the last deploy — so you can safely use it to decide whether to re-fetch. The two live-charts snapshots also carry builtAt, the minute the board was rebuilt: use that, not updated, to detect a new snapshot.";
 
 // Note: no OPTIONS handler on purpose. A route that exports anything beyond GET
 // is excluded from static generation, and a plain cross-origin GET never fires

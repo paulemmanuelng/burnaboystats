@@ -737,6 +737,13 @@ export const honours: Honour[] = [
 export const allNoms: AwardNom[] = ceremonies.flatMap((c) => c.noms);
 export const totalNominations = allNoms.length;
 export const totalWins = allNoms.filter((n) => n.won).length;
+/** Nominations at an edition whose ceremony has not happened yet (`pendingResults`)
+ *  — neither won nor lost, so a strike rate is taken over the DECIDED ones. */
+export const pendingNominations = ceremonies.reduce(
+  (n, c) => n + c.noms.filter((x) => !x.won && pendingResults.some((p) => p.ceremony === c.name && p.year === x.year)).length,
+  0,
+);
+export const decidedNominations = totalNominations - pendingNominations;
 export const ceremonyCount = ceremonies.length;
 export const honourCount = honours.length;
 export const grammyWins = ceremonies

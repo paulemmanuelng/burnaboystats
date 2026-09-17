@@ -9,11 +9,22 @@ import { SEGMENT_LABELS } from "../lib/seo";
  * the JSON-LD twin in the root layout stays where it is. Labels come from the
  * same map the structured data uses, so the two can never disagree.
  */
-export default function BreadcrumbBar({ path, leaf }: { path: string; leaf?: string }) {
+export default function BreadcrumbBar({
+  path,
+  leaf,
+  parents = [],
+}: {
+  path: string;
+  leaf?: string;
+  /** Crumbs that sit between Home and the path's own — a page filed under a
+   *  section its URL does not spell (/compare lives under Certifications).
+   *  Its JSON-LD twin must list the same. */
+  parents?: { label: string; href: string }[];
+}) {
   const segments = path.split("/").filter(Boolean);
   if (segments.length === 0) return null;
 
-  const crumbs: { label: string; href: string }[] = [];
+  const crumbs: { label: string; href: string }[] = [...parents];
   let acc = "";
   for (const seg of segments) {
     acc += `/${seg}`;

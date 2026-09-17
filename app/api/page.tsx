@@ -5,7 +5,8 @@ import BreadcrumbBar from "../components/BreadcrumbBar";
 import CopyButton from "../components/CopyButton";
 import MobileApi from "../components/MobileApi";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime } from "../lib/seo";
-import { API_VERSION, lastUpdated } from "../lib/api";
+import { API_VERSION, lastUpdated, ENVELOPE_NOTE, UPDATED_NOTE } from "../lib/api";
+import { chartsSample } from "../lib/chartsPayload";
 import { chartEntryCount, chartCountryCount, numberOnes, CHART_COUNTRIES, allChartItems } from "../data/charts";
 import { totalAwards } from "../data/certifications";
 import { chartedCountryCount } from "../lib/analysis";
@@ -30,7 +31,7 @@ const base = `${CANONICAL_ORIGIN}/api/${API_VERSION}`;
 const endpoints = [
   {
     path: "/stats",
-    what: "Headline career totals plus the dated Spotify monthly-listeners series.",
+    what: "Headline career totals plus the dated series of Spotify monthly-listener highs (a point is added only when the peak moves; the current figure is not published).",
     size: "1 object",
   },
   {
@@ -86,42 +87,9 @@ const caveats = [
   { h: "This is an unofficial fan project.", p: "It is not affiliated with Burna Boy or his label." },
 ];
 
-// The sample payload is built from the real dataset at build time, so these docs
-// can never drift out of sync with what the endpoint actually returns.
-const sampleRelease = allChartItems.find((r) => r.title === "Dai Dai") ?? allChartItems[0];
-const sample = JSON.stringify(
-  {
-    artist: "Burna Boy",
-    endpoint: `/api/${API_VERSION}/charts`,
-    updated: lastUpdated,
-    count: chartEntryCount,
-    countOf: "chart entries",
-    license: { name: "CC BY 4.0", attribution: `Data from ${SITE_NAME} (${CANONICAL_ORIGIN})` },
-    data: {
-      totals: {
-        chartEntries: chartEntryCount,
-        numberOnes,
-        countries: chartedCountryCount,
-        territories: chartCountryCount,
-      },
-      releases: [
-        {
-          title: sampleRelease.title,
-          credit: sampleRelease.credit ?? "Burna Boy",
-          year: sampleRelease.year,
-          entries: sampleRelease.entries.slice(0, 3).map((e) => ({
-            countryCode: e.c,
-            country: CHART_COUNTRIES[e.c]?.name ?? e.c,
-            chart: CHART_COUNTRIES[e.c]?.body ?? null,
-            peak: e.peak,
-          })),
-        },
-      ],
-    },
-  },
-  null,
-  2
-);
+// The sample payload is a slice of the real envelope, built by the same code the
+// endpoint runs, so these docs can never drift out of sync with what it returns.
+const sample = JSON.stringify(chartsSample(), null, 2);
 
 export default function ApiPage() {
   const jsonLd = {
@@ -189,8 +157,8 @@ export default function ApiPage() {
             Open <span className="inkText">Data API</span>
           </h1>
           <p className={styles.lede}>
-            Every verified number on this site, free to use in JSON. No API key, no rate
-            limit, no sign-up.
+            Every verified chart entry, certification, award, tour, song and live placement on
+            this site, free to use in JSON. No API key, no rate limit, no sign-up.
           </p>
           <p className={styles.intro}>
             Afrobeats has no open chart dataset. Every figure here is checked against the
@@ -252,16 +220,12 @@ export default function ApiPage() {
             <code className={styles.curl}>{CURL}</code>
             <CopyButton value={CURL} className={styles.copyBtn} />
           </div>
-          <p className={styles.body}>
-            Every response uses the same envelope — the data, plus where it came from and
-            when it last changed:
-          </p>
+          <p className={styles.body}>{ENVELOPE_NOTE.replace(/\.$/, "")}:</p>
           <pre className={styles.pre}>
             <code>{sample}</code>
           </pre>
           <p className={styles.note}>
-            <code>updated</code> is the date of the most recent real change to the data, not
-            the last deploy — so you can safely use it to decide whether to re-fetch.{" "}
+            {UPDATED_NOTE}{" "}
             {/* `count` used to arrive with no unit: on this endpoint it is 278
                 chart entries, not the 38 releases in the array beside it, and
                 on /certifications it is 234 awards over 85 releases. countOf

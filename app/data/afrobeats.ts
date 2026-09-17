@@ -131,8 +131,11 @@ export type Tier = "Diamond" | "Platinum" | "Gold" | "Silver";
  * falsifies Wizkid's published hook, which reads "“One Dance” is Diamond in five
  * countries" — it would become four.
  *
- * THE TRADE. Gain: +1,000,000 units on each, both FEATURED appearances, so they
- * are invisible unless the reader turns features on — about 0.007% of the board.
+ * THE TRADE. Gain: +1,000,000 units on each, both FEATURED appearances. Since
+ * features became the default view (#245, 11 Sep 2026) that million IS on the
+ * default page — Wizkid's US line, total, title, share card and Dataset all
+ * carry the Diamond price — and the understatement is accepted because every
+ * figure on /compare is a floor. About 0.007% of the board.
  * Cost: two real Diamond awards disappear from every tier tally, Tems is left
  * with none at all, and a live sentence on Wizkid's page has to be rewritten.
  *

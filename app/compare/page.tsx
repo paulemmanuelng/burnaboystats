@@ -5,6 +5,7 @@ import { pageMetadata, datasetJsonLd } from "../lib/seo";
 import { siteUrl } from "../site";
 import { countryMeta } from "../data/afrobeats";
 import { CERT_THRESHOLDS } from "../data/certThresholds";
+import { numberWord } from "../lib/homeData";
 
 // The bodies that publish their levels in streams AND their own download
 // equivalence — the same filter /methodology uses. Typed, this card named four
@@ -15,6 +16,29 @@ const streamRatioNames = Object.values(CERT_THRESHOLDS)
   .map((t) => (t.code === "NL" ? "the Netherlands" : t.code === "CZ" ? "Czechia" : countryMeta(t.code).name))
   .sort((a, b) => a.replace(/^the /, "").localeCompare(b.replace(/^the /, "")));
 const streamRatioBodies = `${streamRatioNames.slice(0, -1).join(", ")} and ${streamRatioNames[streamRatioNames.length - 1]}`;
+
+// The method card's other three lists, derived the same way — "Sweden and
+// Mexico", "Poland" and "Greece and Colombia" were typed and would have stood
+// still the day a body joined or left a category.
+const nameOf = (code: string) => (code === "NL" ? "the Netherlands" : code === "CZ" ? "Czechia" : countryMeta(code).name);
+const joinNames = (xs: string[]) => (xs.length <= 1 ? xs.join("") : `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}`);
+const byName = (a: string, b: string) => a.replace(/^the /, "").localeCompare(b.replace(/^the /, ""));
+/** Bodies whose song levels are streams with no download-equivalence — priced at an assumed ratio, marked §. */
+const assumedNames = Object.values(CERT_THRESHOLDS).filter((t) => t.assumed).map((t) => nameOf(t.code)).sort(byName);
+/** Bodies that price albums but not singles (Poland: singles in złoty of revenue). */
+const revenueNames = Object.values(CERT_THRESHOLDS).filter((t) => t.singleExcluded && !t.albumExcluded).map((t) => nameOf(t.code)).sort(byName);
+/** Bodies that publish no threshold for either format — listed, never summed. */
+const noThresholdNames = Object.values(CERT_THRESHOLDS).filter((t) => t.singleExcluded && t.albumExcluded).map((t) => nameOf(t.code)).sort(byName);
+/** The ratio the § conversion applies, read off an assumed body's own raw and priced levels. */
+const assumedRatio = (() => {
+  const t = Object.values(CERT_THRESHOLDS).find((x) => x.assumed && x.singleRaw?.platinum && x.single?.platinum);
+  return t ? Math.round(t.singleRaw!.platinum! / t.single!.platinum!) : 100;
+})();
+/** How many countries the table can price, and how many of those are not Nigeria. */
+const pricedBodies = Object.keys(CERT_THRESHOLDS);
+const longDate = (iso: string) =>
+  new Date(`${iso}T12:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
+const ukPlatinum = CERT_THRESHOLDS.UK.single!.platinum!;
 import type { Metadata } from "next";
 import { PICKER_FOLD, fold, pickerArtists, pickerReleases } from "../lib/comparePicker";
 import { featuredPairs, pairCopy, pairSlug } from "../lib/comparePairs";
@@ -633,7 +657,7 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
     ? {
         notCounted: [...spa!.listed, ...spb!.listed, ...spa!.byCountry.filter((l) => l.notCounted), ...spb!.byCountry.filter((l) => l.notCounted)]
           .filter((l, i, xs) => xs.findIndex((y) => y.country === l.country) === i)
-          .map((l) => ({ country: l.country, body: l.body, reason: l.reason ?? l.notCounted?.reason ?? "" })),
+          .map((l) => ({ country: l.country, body: l.body, issuer: (l.top ?? l.notCounted?.top)?.body, reason: l.reason ?? l.notCounted?.reason ?? "" })),
         caveats: [...new Set([...spa!.caveats, ...spb!.caveats])],
         vintages: [...new Set([...spa!.vintages, ...spb!.vintages])],
         assumptions: [...new Set([...spa!.assumptions, ...spb!.assumptions])],
@@ -666,7 +690,7 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
   // used to write ng=0 / feat=0 into every shared URL, and on a default-included
   // pair the round trip left ng=1, hiding the "by default" label and the why-line.
   const ngDefault = a && b && !refused && !record ? nigeriaDefault(a, b, includeFeatures).on : false;
-  const scope = ngOn ? "27 countries · Nigeria included" : "26 countries · international";
+  const scope = ngOn ? `${pricedBodies.length} countries · Nigeria included` : `${pricedBodies.filter((c) => c !== "NG").length} countries · international`;
   const trailing = (n: string) => (n.endsWith("s") ? `${n}'` : `${n}'s`);
 
   // The ONE breadcrumb trail this page emits (the site-wide one stands down
@@ -692,6 +716,9 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
         keywords: [a.name, b.name, "certified units", "certifications", "Afrobeats", "head to head"],
         variableMeasured: ["Certified units (floor) per country", "Highest certification per release per country", "Plaques counted and not counted"],
         about: { name: `${a.name} and ${b.name}` },
+        // The newer of the two sides' register reads — the day the comparison
+        // last changed; the sitemap stamps the pair with the same date.
+        dateModified: [a.verifiedOn, b.verifiedOn].sort().at(-1)!,
       })
     : null;
 
@@ -699,13 +726,13 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       {dataset && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(dataset) }} />}
-      <BreadcrumbBar path={path} leaf={leaf} />
+      <BreadcrumbBar path={path} leaf={leaf} parents={[{ label: "Certifications", href: "/certifications" }]} />
       <main id="content" className={styles.wrap}>
         <p className={styles.kicker}>Certifications › Compare</p>
         <h1 className={styles.h1}>Certified units, compared</h1>
         <p className={styles.lede}>
-          Every plaque is a floor — a Platinum single in the UK means <em>at least</em> 600,000, and could
-          be 1,190,000. This page adds those floors up for two records or two artists, at each certifying
+          Every plaque is a floor — a Platinum single in the UK means <em>at least</em> {fmt(ukPlatinum)}, and could
+          be {fmt(ukPlatinum * 2 - 10_000)}. This page adds those floors up for two records or two artists, at each certifying
           body&apos;s own published threshold, under identical rules.
         </p>
 
@@ -876,7 +903,12 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
                       : "The country-by-country table appears when both sides are filled. Featured appearances are off — lead credits only."}
                 </p>
               )}
-              <span className={styles.scope}>{scope}</span>
+              <span className={styles.scope}>
+                {scope}
+                {ready && a && b && !record
+                  ? ` · registers read ${longDate(a.verifiedOn)} (${a.name}) and ${longDate(b.verifiedOn)} (${b.name})`
+                  : ""}
+              </span>
             </div>
           </>
         )}
@@ -974,7 +1006,7 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
               {(visibleNotCounted || foldedNotCounted > 0) && noteSource.notCounted.length > 0 && (
                 <p>
                   <strong><span className={styles.mark}>¹</span> Not counted</strong> —{" "}
-                  {noteSource.notCounted.map((n) => `${countryMeta(n.country).name} (${countryMeta(n.country).body})`).join(" · ")}.
+                  {noteSource.notCounted.map((n) => `${countryMeta(n.country).name} (${n.issuer ?? countryMeta(n.country).body})`).join(" · ")}.
                   Listed, never summed: these bodies publish no threshold this page can put on the same scale
                   as the rest.
                 </p>
@@ -996,7 +1028,7 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
               {visibleAssumed && noteSource.assumptions.length > 0 && (
                 <p>
                   <strong><span className={styles.mark}>§</span> Ratio assumed</strong> — the body publishes its levels in
-                  streams and no download-equivalence, so this page converts at 100 streams to a unit, the ratio
+                  streams and no download-equivalence, so this page converts at {assumedRatio} streams to a unit, the ratio
                   Denmark and Norway publish for the same measure. {noteSource.assumptions.join(" ")}
                 </p>
               )}
@@ -1023,10 +1055,11 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
           <div>
             <p className={styles.methodTitle}>Not quite everything can be priced</p>
             <p className={styles.methodBody}>
-              Sweden and Mexico publish their song levels in streams and no download-equivalence — those
-              plaques are converted at 100 streams to a unit, the ratio Denmark and Norway publish, and marked §.
-              Poland measures singles in złoty of revenue and Greece and Colombia publish no thresholds: those
-              plaques are listed, never summed, and never hidden.
+              {joinNames(assumedNames)} publish their song levels in streams and no download-equivalence — those
+              plaques are converted at {assumedRatio} streams to a unit, the ratio Denmark and Norway publish, and marked §.
+              {" "}{joinNames(revenueNames)} {revenueNames.length === 1 ? "measures" : "measure"} singles in{" "}
+              {revenueNames.length === 1 && revenueNames[0] === "Poland" ? "złoty of revenue" : "revenue"} and{" "}
+              {joinNames(noThresholdNames)} publish no thresholds: those plaques are listed, never summed, and never hidden.
             </p>
           </div>
         </div>
@@ -1043,8 +1076,8 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
           <section className={styles.exit} aria-label="Next">
             <h2 className={styles.exitKicker}>Next</h2>
             <p className={styles.exitLead}>
-              Two artists priced against each other — the other fourteen are one tap away, each with a ledger
-              you can bring back here.
+              Two artists priced against each other — the other {numberWord(comparableArtists.length - 2).toLowerCase()} are one tap
+              away, each with a ledger you can bring back here.
             </p>
             <Link href="/afrobeats" className="btn btnPrimary">The Afrobeats Board <span aria-hidden="true">↗</span></Link>
           </section>

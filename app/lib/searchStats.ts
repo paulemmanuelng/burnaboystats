@@ -50,7 +50,6 @@ export const searchStats: Record<string, string> = {
   "/updates": `${updates.length} entries`,
   "/about": `${countryCount} countries`,
   "/methodology": `${ceremonyCount} bodies`,
-  "/records/charts#territories": `${chartCountryCount} territories`,
   // Per-song rows quote Spotify streams where the bot has a verified figure.
   ...Object.fromEntries(
     songs.map((s) => [`/music/${s.slug}`, s.spotifyStreams ?? ""])

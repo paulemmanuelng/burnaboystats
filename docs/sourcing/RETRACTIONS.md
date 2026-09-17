@@ -44,10 +44,12 @@ I normalised, and got misfiled. **The existing decision stands.**
 It is already on the site at `afrobeats.ts:179` under **Wizkid**, a lead single,
 ZA Platinum + NG Gold. Paul is right that it is a Wizkid song.
 
-The agent that "found" it reported `ARTIST: Wizkid feat. Burna Boy` — a credit
-it appears to have invented, since the board pass read the same row as plain
-"Wizkid". Its tier was also inferred from an award-image filename rather than
-text. **Treat that agent's three South African rows as unreliable.**
+The agent that "found" it reported `ARTIST: Wizkid feat. Burna Boy`. CORRECTION
+(17 Sep 2026): that credit was NOT invented — RiSA's register, read at
+risa-prod.trafficmanager.net, prints "Wizkid feat. Burna Boy | No Stress |
+11 Sep, 2023 | Platinum". The exclusion stands on the recording's own credits
+(Made in Lagos track 8 is Wizkid solo; Burna Boy features on "Ginger"), not on
+the register — the same ruling as "Bad Influence".
 
 ## The lesson, which is now twice-learned
 

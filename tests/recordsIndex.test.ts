@@ -12,9 +12,11 @@ import { join } from "node:path";
 // row understated the count too. This test makes the omission fail CI instead
 // of going unnoticed.
 
-const src = readFileSync(join(process.cwd(), "app/records/page.tsx"), "utf8");
+// The list moved to app/lib/recordBooks.ts on 17 Sep 2026 (one home for the
+// hub and the nav sheet's count); the hub renders it as `subs`.
+const src = readFileSync(join(process.cwd(), "app/lib/recordBooks.ts"), "utf8");
 const listed = new Set(
-  [...(src.match(/const subs = \[[\s\S]*?\n\];/)?.[0] ?? "").matchAll(/href: "([^"]+)"/g)].map(
+  [...(src.match(/export const recordBooks[^=]*= \[[\s\S]*?\n\];/)?.[0] ?? "").matchAll(/href: "([^"]+)"/g)].map(
     (m) => m[1]
   )
 );

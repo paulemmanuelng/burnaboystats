@@ -4,7 +4,7 @@ import KeepExploring from "../../components/KeepExploring";
 import AwardExplorer from "../../components/AwardExplorer";
 import BreadcrumbBar from "../../components/BreadcrumbBar";
 import MobileAwards from "../../components/MobileAwards";
-import { totalWins, totalNominations, ceremonyCount, honours, honourCount, grammyWins, ceremonies } from "../../data/awards";
+import { totalWins, totalNominations, decidedNominations, ceremonyCount, honours, honourCount, grammyWins, ceremonies } from "../../data/awards";
 import { pageMetadata, CANONICAL_ORIGIN } from "../../lib/seo";
 
 export const metadata = pageMetadata({
@@ -114,7 +114,8 @@ export default function AwardsPage() {
           {
             value: String(totalNominations),
             label: "Nominations",
-            note: `${Math.round((totalWins / totalNominations) * 100)}% strike rate`,
+            // Of DECIDED nominations — a pending ceremony's are neither won nor lost.
+            note: `${Math.round((totalWins / decidedNominations) * 100)}% strike rate`,
           },
           { value: String(ceremonyCount), label: "Award bodies", note: "worldwide" },
           {

@@ -148,7 +148,7 @@ export default function PeakMap({
           <span>No. 1</span>
           <span>Top 10</span>
           <span>Top 40</span>
-          <span>40+</span>
+          <span>41+</span>
         </div>
       </div>
     </figure>

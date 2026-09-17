@@ -94,7 +94,7 @@ export default function PerformanceMapPage() {
             <span className={styles.swatch} aria-hidden="true" />
             Countries with a confirmed Burna Boy performance
             <span className={styles.swatchDot} aria-hidden="true" />
-            Island nations too small to shade
+            Territories too small to shade at 110m
           </figcaption>
         </figure>
 

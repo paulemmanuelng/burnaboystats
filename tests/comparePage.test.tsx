@@ -411,3 +411,59 @@ describe("the method card names every stream-ratio body the table prices", () =>
     }
   });
 });
+
+// Batch 4c (17 Sep 2026): the scope line, the lede's UK thresholds, the exit
+// card's "fourteen" and the method card's three country lists were typed —
+// four figures that follow CERT_THRESHOLDS and comparableArtists but did not.
+describe("the pair page derives its remaining typed figures", () => {
+  const WORDS = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty"];
+  const nameOf = (code: string) => (code === "NL" ? "the Netherlands" : code === "CZ" ? "Czechia" : countryMeta(code).name);
+
+  it("the scope line counts the priced bodies, the lede prints the UK single Platinum, the exit card counts the rest", async () => {
+    const page = await html({ a: "burna-boy", b: "wizkid" });
+    const t = text(page);
+    const bodies = Object.keys(CERT_THRESHOLDS);
+    expect(t).toContain(`${bodies.filter((c) => c !== "NG").length} countries · international`);
+    const uk = CERT_THRESHOLDS.UK.single!.platinum!;
+    expect(t).toContain(`at least ${uk.toLocaleString("en-US")}, and could be ${(uk * 2 - 10_000).toLocaleString("en-US")}`);
+    expect(t).toContain(`the other ${WORDS[comparableArtists.length - 2]} are one tap away`);
+  });
+
+  it("the method card names every assumed-ratio body, every revenue-measured body and every no-threshold body", async () => {
+    const page = await html({ a: "burna-boy", b: "wizkid", all: "1" });
+    const card = page.slice(page.indexOf("Not quite everything"), page.indexOf("never hidden"));
+    expect(card.length).toBeGreaterThan(20);
+    const ts = Object.values(CERT_THRESHOLDS);
+    for (const x of ts.filter((x) => x.assumed)) expect(card, `${x.code} assumed`).toContain(nameOf(x.code));
+    for (const x of ts.filter((x) => x.singleExcluded && !x.albumExcluded)) expect(card, `${x.code} revenue`).toContain(nameOf(x.code));
+    for (const x of ts.filter((x) => x.singleExcluded && x.albumExcluded)) expect(card, `${x.code} no threshold`).toContain(nameOf(x.code));
+    // Denmark and Norway ARE named — as the source of the ratio, not as assumed bodies.
+    for (const code of ["BE", "BR", "FR"]) expect(card, `${code} is priced by its own thresholds`).not.toContain(countryMeta(code).name);
+    // The § ratio the card states is the one the assumed bodies' own levels imply.
+    const se = CERT_THRESHOLDS.SE;
+    const ratio = Math.round(se.singleRaw!.platinum! / se.single!.platinum!);
+    expect(card).toContain(`${ratio} streams to a unit`);
+    const dk = CERT_THRESHOLDS.DK;
+    expect(Math.round(dk.singleRaw!.platinum! / dk.single!.platinum!)).toBe(ratio);
+  });
+
+  it("the ¹ footnote names the programme a Colombian plaque came from, and both sides' register dates print", async () => {
+    const page = await html({ a: "burna-boy", b: "wizkid", all: "1" });
+    const t = text(page);
+    expect(t).toContain("Sony Music Colombia");
+    const burna = comparableArtists.find((x) => x.slug === "burna-boy")!;
+    const wiz = comparableArtists.find((x) => x.slug === "wizkid")!;
+    const long = (iso: string) => new Date(`${iso}T12:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
+    expect(t).toContain(`registers read ${long(burna.verifiedOn)} (Burna Boy) and ${long(wiz.verifiedOn)} (Wizkid)`);
+  });
+
+  it("the visible breadcrumb bar lists the same trail as the BreadcrumbList", async () => {
+    const { CompareView } = await import("../app/compare/page");
+    const tree = await CompareView({ sp: { a: "burna-boy", b: "wizkid" }, path: "/compare/burna-boy-vs-wizkid", leaf: "Burna Boy vs Wizkid" });
+    const ph = renderToStaticMarkup(tree);
+    const nav = ph.slice(ph.indexOf('aria-label="Breadcrumb"'), ph.indexOf("</nav>"));
+    const visible = [...nav.matchAll(/>([^<>]+)<\/(?:a|span)>/g)].map((m) => m[1]).filter((x) => !["/"].includes(x.trim()));
+    const ld = JSON.parse(ph.match(/<script type="application\/ld\+json">(\{"@context":"https:\/\/schema.org","@type":"BreadcrumbList".*?)<\/script>/)![1]);
+    expect(visible).toEqual(ld.itemListElement.map((i: { name: string }) => i.name));
+  });
+});

@@ -106,6 +106,30 @@ describe("The Afrobeats Board in search", () => {
 // Deduping by path is NOT the fix and must not be introduced — it would collapse
 // 47 distinct award-body docs into a single row and destroy the record-level
 // search the generated index exists to provide.
+describe("the result cap and the promises the empty state makes", () => {
+  // LIMIT was 60 with a comment saying "the index is under 50 docs" — it was
+  // 327, so "certifications" printed "60 results" and dropped the rest with
+  // their filter chips. The cap has to clear the whole merged index.
+  it("the results component's LIMIT clears the merged index", () => {
+    const src = readFileSync(join(process.cwd(), "app/components/SearchResults.tsx"), "utf8");
+    const limit = Number(src.match(/const LIMIT = (\d+);/)![1]);
+    expect(limit).toBeGreaterThanOrEqual(searchIndex.length + generatedDocs.length);
+    expect(searchDocs("certifications", limit).length).toBe(searchDocs("certifications", 100000).length);
+  });
+
+  it("every compare pair with a page is findable, not only the featured nine", () => {
+    expect(searchDocs("burna boy vs davido", 5).some((d) => d.path === "/compare/burna-boy-vs-davido")).toBe(true);
+    expect(searchDocs("wizkid vs davido", 5).some((d) => d.path === "/compare/davido-vs-wizkid" || d.path === "/compare/wizkid-vs-davido")).toBe(true);
+  });
+
+  it("every searchStats key is a path the merged index carries", async () => {
+    const { searchStats } = await import("../app/lib/searchStats");
+    const paths = new Set([...searchIndex, ...generatedDocs].map((d) => d.path));
+    const orphans = Object.keys(searchStats).filter((k) => !paths.has(k));
+    expect(orphans).toEqual([]);
+  });
+});
+
 describe("search rows carry a key that identifies the doc, not the destination", () => {
   const keyOf = (d: { section: string; title: string; path: string }) =>
     `${d.section}|${d.title}|${d.path}`;

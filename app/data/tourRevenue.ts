@@ -1,8 +1,13 @@
 // Highest reported box-office revenue per individual show, among African
 // artists. Sourced from TouringData (which aggregates Billboard Boxscore),
 // cross-checked against press reporting and, for Burna Boy's own dates,
-// against the site's own verified tour records — July 2026. This is PER-SHOW
-// gross, distinct from the tour-level totals on the main Tours page.
+// against the site's own verified tour records — last re-read on the date in
+// REVENUE_AS_OF below. This is PER-SHOW gross, distinct from the tour-level
+// totals on the main Tours page.
+
+/** The month the board was last re-read at its bodies — printed on the hub's
+ *  source note and the leaderboard's own; move it whenever the board is. */
+export const REVENUE_AS_OF = "September 2026";
 
 export interface RevenueShow {
   artist: string;

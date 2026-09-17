@@ -27,6 +27,7 @@ import { updates } from "../data/updates";
 import { albums, eps, compilations } from "../data/albums";
 import { liveNumberOnes } from "../data/liveCharts";
 import { comparableArtists } from "./certUnits";
+import { recordBooks } from "./recordBooks";
 import { africaBoards } from "./africaBoards";
 import { findings } from "./analysisFindings";
 import { API_VERSION, lastUpdated } from "./api";
@@ -67,9 +68,10 @@ export const navGroups: NavGroup[] = [
       { label: "Home", href: "/", meta: "" },
       { label: "Music", href: "/music", meta: `${releaseCount} releases` },
       { label: "Certifications", href: "/certifications", meta: String(totalAwards()) },
-      // "Books" is the group's own word for the record pages listed under
-      // Deep data, so the figure is that group's length rather than a literal.
-      { label: "Records", href: "/records", meta: `${deepData.length} books` },
+      // "Books" is the hub's own word for the record pages it lists — the
+      // same array the hub renders (app/lib/recordBooks.ts), so this row and
+      // the hub can never disagree (they did: 8 here, 14 there).
+      { label: "Records", href: "/records", meta: `${recordBooks.length} books` },
       { label: "Live charts", href: "/live-charts", meta: `${liveNumberOnes} No. 1s` },
       { label: "The Afrobeats Board", href: "/afrobeats", meta: String(afrobeatsArtists.length) },
       // 12 Sep 2026: +/compare. Paul asked for it in the mobile nav; the row

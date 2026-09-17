@@ -23,6 +23,9 @@ import { saveCard } from "../lib/saveCard";
 export type CardChoice = {
   id: string;
   chip: string;
+  /** The headline figure — the caption and alt text lead with it, so a card
+   *  never shares as "certifications across 26 countries" with no number. */
+  value: string;
   label: string;
   detail: string;
   source: string;
@@ -54,7 +57,7 @@ export default function StatCardMaker({
   const card = cards.find((c) => c.id === id) ?? cards[0];
   const src = `/stat-card?stat=${id}&ratio=${ratio}${attempt ? `&r=${attempt}` : ""}`;
   const size = CARD_SIZES[ratio];
-  const shareText = `Burna Boy — ${card.label}. ${card.source}.`;
+  const shareText = `Burna Boy — ${card.value} ${card.label}. ${card.source}.`;
 
   function select(next: string) {
     if (next === id) return;
@@ -137,7 +140,7 @@ export default function StatCardMaker({
                   ratio === "story" ? styles.cardStory : styles.cardSquare
                 } ${loading ? styles.cardLoading : ""}`}
                 src={src}
-                alt={`Stat card: ${card.label}`}
+                alt={`Stat card: ${card.value} ${card.label}`}
                 width={size.width}
                 height={size.height}
                 onLoad={() => {
@@ -176,7 +179,7 @@ export default function StatCardMaker({
               </button>
               <a
                 className={styles.secondary}
-                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(pageUrl)}`}
+                href={`https://x.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(pageUrl)}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -208,7 +211,7 @@ export default function StatCardMaker({
                 <span className={styles.metaValue}>{card.source}</span>
               </div>
               <div className={styles.metaRow}>
-                <span className={styles.metaLabel}>Verified</span>
+                <span className={styles.metaLabel}>Site updated</span>
                 <span className={styles.metaValue}>{verified}</span>
               </div>
             </div>

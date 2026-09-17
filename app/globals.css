@@ -243,6 +243,9 @@
   /* The "everything that is not the story" arc — the nominations a win rate is
      measured against. Recessive in both themes, which is the whole point. */
   --seg-rest: light-dark(#b8b2a6, #4a4a52);
+  /* The arc for nominations whose ceremony has not happened yet — neither won
+     nor lost, so lighter than --seg-rest, never gold. */
+  --seg-pending: light-dark(#dad5cb, #33333a);
 
   /* Certification tiers. These used to borrow --cyan and --silver, which also
      colour the Top 10 / Top 40 chart bands — two unrelated meanings sharing

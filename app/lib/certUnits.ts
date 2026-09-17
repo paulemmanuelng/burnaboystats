@@ -44,6 +44,7 @@ import {
   albums as burnaAlbums,
   singles as burnaSingles,
   features as burnaFeatures,
+  CERTS_VERIFIED_ON,
   type Tier,
 } from "../data/certifications";
 import { afrobeatsArtists, BURNA } from "../data/afrobeats";
@@ -75,6 +76,9 @@ export interface ComparableArtist {
   image: string;
   /** Where this artist's own ledger lives. */
   href: string;
+  /** The last day every register behind this ledger was read (ISO). A pair page
+   *  prints both sides' dates and stamps its Dataset with the newer. */
+  verifiedOn: string;
   releases: ComparableRelease[];
 }
 
@@ -111,6 +115,7 @@ const burna: ComparableArtist = {
   name: BURNA.name,
   image: BURNA.image,
   href: BURNA.href,
+  verifiedOn: CERTS_VERIFIED_ON,
   releases: [
     ...burnaAlbums.map((r) => ({ ...r, format: "album" as const, isFeature: false })),
     ...burnaSingles.map((r) => ({ ...r, format: "single" as const, isFeature: false })),
@@ -132,6 +137,7 @@ export const comparableArtists: ComparableArtist[] = [
     name: a.name,
     image: a.image,
     href: `/afrobeats/${a.slug}`,
+    verifiedOn: a.verifiedOn,
     releases: a.releases.map((r) => ({
       title: r.title,
       format: (r.kind === "Albums" ? "album" : "single") as CertFormat,
@@ -525,7 +531,10 @@ export interface Comparison {
   nigeria: NigeriaDefault;
   options: UnitsOptions;
   /** Footnote 1 — bodies whose plaques could not be priced, with the reason. */
-  notCounted: { country: string; body: string; reason: string }[];
+  /** `issuer` is the programme the plaque actually came from (e.g. Sony Music
+   *  Colombia) when the country's own body prices nothing — the footnote names
+   *  it rather than a body that never issued the plaque. */
+  notCounted: { country: string; body: string; issuer?: string; reason: string }[];
   /** Footnote 2 — multiplier rules this file had to assume. */
   caveats: string[];
   /** Footnote 3 — bodies that changed their thresholds inside the window. */
@@ -623,7 +632,7 @@ export function compare(
     ...pb.byCountry.filter((l) => l.notCounted),
   ]
     .filter((l, i, xs) => xs.findIndex((y) => y.country === l.country) === i)
-    .map((l) => ({ country: l.country, body: l.body, reason: l.reason ?? l.notCounted?.reason ?? "" }));
+    .map((l) => ({ country: l.country, body: l.body, issuer: (l.top ?? l.notCounted?.top)?.body, reason: l.reason ?? l.notCounted?.reason ?? "" }));
 
   return {
     a: pa,

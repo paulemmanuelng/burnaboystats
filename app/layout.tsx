@@ -183,7 +183,7 @@ const jsonLd = {
     sameAs: [
       "https://en.wikipedia.org/wiki/Burna_Boy",
       "https://www.instagram.com/burnaboygram",
-      "https://twitter.com/burnaboy",
+      "https://x.com/burnaboy",
       "https://www.youtube.com/channel/UCEzDdNqNkT-7rSfSGSr1hWg",
       "https://open.spotify.com/artist/3wcj11K77LjEY1PkEazffa",
       "https://music.apple.com/us/artist/burna-boy/591899010",

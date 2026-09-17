@@ -6,17 +6,21 @@ import { numberOnes, chartEntryCount, daiDaiNumberOnes, daiDaiChartEntryCount } 
 import { chartedCountryCount, numberOneCountryCount } from "./analysis";
 import { totalWins, totalNominations, ceremonyCount } from "../data/awards";
 import { spotifyFollowersDisplay } from "../data/spotify";
-import { BURNA_YT_AUDIENCE, BURNA_PEAK_LISTENERS } from "../data/africasBiggest";
+import { BURNA_PEAK_LISTENERS } from "../data/africasBiggest";
+import { revenueShows } from "../data/tourRevenue";
+import { tours } from "../data/tours";
+
+// The record tour and the record night, read off the data the tour pages use —
+// "$30.46M", "$6.15M" and "58,973" were typed here four times over.
+const grossOf = (g?: string) => (g ? Number.parseFloat(g.replace(/[^0-9.]/g, "")) : 0);
+const topTour = [...tours].sort((a, b) => grossOf(b.gross) - grossOf(a.gross))[0];
+const topShow = [...revenueShows].sort((a, b) => b.revenue - a.revenue)[0];
+const usd = (n: number) => `$${(n / 1e6).toFixed(2)}M`;
+const showYear = (y: string) => y;
 
 // Shareable "stat cards" — a Burna Boy headline stat rendered as a downloadable
 // image (the Receiptify/Volt.fm-style viral artifact). Values are data-driven so
 // the cards never go stale. Server-only (pulls the big data modules).
-
-// A small "FIFA-style" supporting stat (value + short label).
-export interface SignatureStat {
-  value: string;
-  label: string;
-}
 
 export interface StatCard {
   id: string;
@@ -24,8 +28,6 @@ export interface StatCard {
   label: string;
   kicker: string;
   chip: string;
-  // Three supporting stats, each relevant to THIS card's headline (not generic).
-  stats: SignatureStat[];
   /** The body that owns this number — printed on the card itself. */
   source: string;
   /** Why the number is what it is. Shown beside the preview, not on the card. */
@@ -43,6 +45,9 @@ const tierCount = (tier: "diamond" | "platinum") =>
 export function getStatCards(): StatCard[] {
   const diamond = tierCount("diamond");
   const platinum = tierCount("platinum");
+  // The bodies behind the Diamond plaques — "all awarded by SNEP" was typed
+  // beside a derived count and would have outlived a second Diamond body.
+  const diamondBodies = [...new Set(allItems.flatMap((it) => it.certs.filter((c) => tierOf(c.level) === "diamond").map((c) => COUNTRIES[c.c]?.body ?? c.c)))];
 
   return [
     {
@@ -50,16 +55,11 @@ export function getStatCards(): StatCard[] {
       source: "RIAA · BPI · SNEP · IFPI",
       watermark: "GOLD",
       href: "/certifications",
-      detail: `Every award is counted once it appears in the issuing body's own searchable database. ${diamond} of them are Diamond, all awarded by SNEP in France.`,
+      detail: `Every award is counted once it appears in the issuing body's own searchable database. ${diamond} of them are Diamond${diamondBodies.length === 1 ? `, all awarded by ${diamondBodies[0]}` : `, across ${diamondBodies.join(" · ")}`}.`,
       value: `${totalAwards()}`,
       label: `certifications across ${countryCount} countries`,
       kicker: "The most-certified African artist in history",
       chip: "Most-certified",
-      stats: [
-        { value: `${countryCount}`, label: "Countries" },
-        { value: `${diamond}`, label: "Diamond" },
-        { value: `${platinum}`, label: "Platinum" },
-      ],
     },
     {
       id: "dai-dai",
@@ -68,14 +68,10 @@ export function getStatCards(): StatCard[] {
       href: "/dai-dai",
       detail: `The official song of the 2026 FIFA World Cup, with Shakira — No. 1 on both Billboard global charts and on ${daiDaiNumberOnes} national singles charts.`,
       value: "No. 1",
-      label: "“Dai Dai” — the biggest song in the world",
+      // A closed run stated as its record, not a present-tense superlative.
+      label: `“Dai Dai” — No. 1 in ${daiDaiNumberOnes} countries and on both Billboard global charts`,
       kicker: "The 2026 FIFA World Cup anthem, with Shakira",
       chip: "Dai Dai · No. 1",
-      stats: [
-        { value: `${daiDaiNumberOnes}`, label: "Country No.1s" },
-        { value: `${daiDaiChartEntryCount}`, label: "Chart entries" },
-        { value: `${daiDaiCertCount}`, label: "Certifications" },
-      ],
     },
     {
       id: "no1s",
@@ -91,48 +87,28 @@ export function getStatCards(): StatCard[] {
       label: "No. 1 chart placements worldwide",
       kicker: "Nigeria, the UK, the Netherlands, Colombia & more",
       chip: "No. 1s",
-      stats: [
-        // A figure beside a No. 1s headline has to describe those No. 1s:
-        // "Countries: 69" over a 47-No.-1s card asserts he topped the chart in
-        // 69 places, and 69 counts the two global charts as countries besides.
-        // Same regression tests/homeScoreboardParity.test.ts pins for the
-        // homepage tile.
-        { value: `${numberOneCountryCount}`, label: "Countries at No. 1" },
-        { value: `${chartEntryCount}`, label: "Chart entries" },
-        { value: "No.1", label: "Global 200" },
-      ],
     },
     {
       id: "listeners",
       source: "Spotify",
       watermark: "PLAY",
       href: "/records/africas-biggest",
-      detail: `Read from Spotify's own artist page rather than a tracker. The first African artist ever past 60 million monthly listeners.`,
+      detail: `Read from Spotify's own artist page rather than a tracker. The first African artist ever past ${Math.floor(Number.parseFloat(BURNA_PEAK_LISTENERS))} million monthly listeners.`,
       value: BURNA_PEAK_LISTENERS,
       label: "peak Spotify monthly listeners",
       kicker: "The most of any African artist",
       chip: "Peak listeners",
-      stats: [
-        { value: spotifyFollowersDisplay, label: "Followers" },
-        { value: BURNA_YT_AUDIENCE, label: "YouTube peak" },
-        { value: "No.1", label: "Spotify Global" },
-      ],
     },
     {
       id: "tour",
       source: "Billboard Boxscore",
       watermark: "TOUR",
       href: "/records/tours",
-      detail: `Box-office gross across three continents. His London Stadium night alone took $6.15M from 58,973 tickets — the biggest concert ever by an African artist.`,
-      value: "$30.46M",
+      detail: `Box-office gross across North America and Europe. His ${topShow.venue} night alone took ${usd(topShow.revenue)} from ${topShow.tickets} tickets — the biggest concert ever by an African artist.`,
+      value: topTour.gross!,
       label: "highest-grossing African tour ever",
       kicker: "The I Told Them… Tour",
       chip: "Record tour",
-      stats: [
-        { value: "$6.15M", label: "Biggest concert" },
-        { value: "302K", label: "Tickets sold" },
-        { value: "22", label: "Shows" },
-      ],
     },
     {
       id: "grammy",
@@ -144,27 +120,17 @@ export function getStatCards(): StatCard[] {
       label: "Grammy winner — Best Global Music Album",
       kicker: "Twice as Tall",
       chip: "Grammy",
-      stats: [
-        { value: `${totalWins}`, label: "Award wins" },
-        { value: `${totalNominations}`, label: "Nominations" },
-        { value: `${ceremonyCount}`, label: "Award bodies" },
-      ],
     },
     {
       id: "concert",
       source: "Billboard Boxscore",
       watermark: "LIVE",
       href: "/records/tours/revenue",
-      detail: `58,973 tickets at London Stadium, June 2024 — the highest-grossing single concert by any African artist, and the first UK stadium headline by one.`,
-      value: "$6.15M",
+      detail: `${topShow.tickets} tickets at ${topShow.venue}, June ${showYear(topShow.year)} — the highest-grossing single concert by any African artist, a year after his 2023 night there made him the first African artist to headline a UK stadium.`,
+      value: usd(topShow.revenue),
       label: "biggest concert by an African artist",
-      kicker: "London Stadium · June 2024",
+      kicker: `${topShow.venue} · June ${showYear(topShow.year)}`,
       chip: "Biggest concert",
-      stats: [
-        { value: "$30.46M", label: "Record tour" },
-        { value: "80K", label: "Capacity" },
-        { value: "1st", label: "UK stadium" },
-      ],
     },
     {
       id: "followers",
@@ -176,11 +142,6 @@ export function getStatCards(): StatCard[] {
       label: "Spotify followers — most of any African artist",
       kicker: "The most-followed African artist on Spotify",
       chip: "Followers",
-      stats: [
-        { value: BURNA_PEAK_LISTENERS, label: "Peak listeners" },
-        { value: BURNA_YT_AUDIENCE, label: "YouTube peak" },
-        { value: "#1", label: "Most-followed" },
-      ],
     },
   ];
 }
@@ -247,10 +208,6 @@ export function findCard(id: string | null): StatCard | undefined {
       watermark: "CERTS",
       href: "/certifications",
       detail: `Every certification “${r.title}” holds, as recorded by each country's own certifying body.`,
-      stats: r.certs.slice(0, 3).map((c) => ({
-        value: `${c.x ? `${c.x}× ` : ""}${c.level}`,
-        label: COUNTRIES[c.c]?.name ?? c.c,
-      })),
     };
   }
 
@@ -268,7 +225,6 @@ export function findCard(id: string | null): StatCard | undefined {
       watermark: "FIRST",
       href: "/records/firsts",
       detail: f.text,
-      stats: [],
     };
   }
 

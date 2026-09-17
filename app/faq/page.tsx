@@ -66,7 +66,7 @@ export const faqs: { g: GroupId; q: string; a: string }[] = [
   {
     g: "worldcup",
     q: "Did Burna Boy perform at the 2026 World Cup halftime show?",
-    a: `Yes. Burna Boy performed "Dai Dai" with Shakira at the first-ever FIFA World Cup Final halftime show on 19 July 2026 at MetLife Stadium — the first African artist ever to headline a World Cup halftime show. The bill also featured Madonna, BTS, Justin Bieber and Coldplay, with Uganda's Triplets Ghetto Kids joining them on stage.`,
+    a: `Yes. Burna Boy performed "Dai Dai" with Shakira at the first-ever FIFA World Cup Final halftime show on 19 July 2026 at MetLife Stadium — the first African artist ever to perform at a World Cup Final halftime show. The bill also featured Madonna, BTS, Justin Bieber and Coldplay, with Uganda's Triplets Ghetto Kids joining them on stage.`,
   },
   {
     g: "worldcup",

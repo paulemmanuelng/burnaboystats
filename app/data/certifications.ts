@@ -449,6 +449,12 @@ export const features: Release[] = [
   // Boy | Ginger | Single | Sony | Gold | 2023", badge award_gold.svg. No
   // Platinum row exists in any year. Wizkid's row was right; this one was not.
   // Every OTHER Swiss plaque here was checked against the same lists and matches.
+  // "No Stress" (Made in Lagos track 8) is NOT here by design: RiSA's register
+  // prints "Wizkid feat. Burna Boy | No Stress | 11 Sep, 2023 | Platinum" (read
+  // 17 Sep 2026), but the recording's own credits are Wizkid solo — Burna Boy
+  // features on Ginger only — so the exclusion rests on the credits, not on the
+  // register (the Bad Influence ruling). docs/sourcing/RETRACTIONS.md #2 and
+  // BOARD-FINDINGS.md carry the correction.
   { title: "Ginger", credit: "Wizkid ft. Burna Boy", year: 2020, cover: "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg", certs: [
     { c: "ZA", level: "Platinum", x: 2 }, { c: "NG", level: "Platinum" }, { c: "US", level: "Gold" },
     { c: "CA", level: "Gold" }, { c: "CH", level: "Gold" }, { c: "UK", level: "Silver" },
@@ -516,9 +522,18 @@ export const features: Release[] = [
   { title: "Lenu (Remix)", cover: "https://cdn-images.dzcdn.net/images/cover/aef7ccf16f0481793eea256ab167aa88/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Silver" },
   ] },
+  // ZA Gold from the 19 Jun 2026 import with no body read on file: RiSA's
+  // register (risa-prod.trafficmanager.net, read 17 Sep 2026) returns no row for
+  // ?title=Badd. Kept, per Paul's ruling on register-absent plaques (batch 4a,
+  // Last Last ZA) — flagged, not removed.
   { title: "Baddest", credit: "AKA ft. Burna Boy, Khuli Chana & Yanga Chief", year: 2019, cover: "https://cdn-images.dzcdn.net/images/cover/b86f99833d3100ad7eb753ec6966e3aa/500x500-000000-80-0-0.jpg", certs: [
     { c: "ZA", level: "Gold" },
   ] },
+  // A LABEL plaque, not a register row: Sony Music Entertainment Africa's
+  // 390,000-unit award, Dec 2020, shared by AKA (commit da460d95). RiSA's ladder
+  // is Gold / Platinum / Double / Multi and its register (read 17 Sep 2026)
+  // holds no row for this title, so 19× = 390,000 ÷ the pre-2024 Platinum of
+  // 20,000; /compare prices it at today's 40,000 under the ‡ rule.
   { title: "All Eyes on Me", credit: "AKA ft. Burna Boy, Da L.E.S & JR", year: 2014, cover: "https://cdn-images.dzcdn.net/images/cover/51a425dcf87f37e33159744d5685471d/500x500-000000-80-0-0.jpg", certs: [
     { c: "ZA", level: "Platinum", x: 19 },
   ] },
@@ -740,7 +755,8 @@ export const certHistory: CertEvent[] = [
   { title: "Last Last", country: "AU", level: "Platinum", year: 2023 },
   { title: "On the Low", country: "AU", level: "Gold", year: 2023 },
   { title: "For My Hand", credit: "feat. Ed Sheeran", country: "AU", level: "Gold", year: 2023 },
-  { title: "Gbona", country: "CH", level: "Gold", year: 2023 },
+  // IFPI Schweiz's Edelmetall card: Jahr 2023, Platin — the log said Gold (17 Sep 2026).
+  { title: "Gbona", country: "CH", level: "Platinum", year: 2023 },
   { title: "Last Last", country: "ZA", level: "Platinum", year: 2023 },
   { title: "Last Last", country: "CH", level: "Platinum", year: 2023 },
   { title: "Ye", country: "CH", level: "Platinum", year: 2023 },

@@ -5,7 +5,9 @@ import KeepExploring from "../components/KeepExploring";
 import MobileMenuButton from "../components/MobileMenuButton";
 import BackLink from "../components/BackLink";
 import { pageMetadata, CANONICAL_ORIGIN } from "../lib/seo";
-import { timelineEras, timelineEntryCount, type TimelineKind } from "../data/timeline";
+import { timelineEras, timelineEntryCount, careerYears, type TimelineKind } from "../data/timeline";
+import { tours } from "../data/tours";
+import { numberWord } from "../lib/homeData";
 import { totalAwards, countryCount } from "../data/certifications";
 import { numberOnes } from "../data/charts";
 import { chartedCountryCount } from "../lib/analysis";
@@ -52,12 +54,15 @@ const breadcrumbJsonLd = {
 
 // The closing band derives live from the data, same as the homepage — the
 // timeline's "today" can never drift from the rest of the site.
+const grossOf = (g?: string) => (g ? Number.parseFloat(g.replace(/[^0-9.]/g, "")) : 0);
+const topTour = [...tours].sort((a, b) => grossOf(b.gross) - grossOf(a.gross))[0];
 const today = [
   { v: String(totalAwards()), l: `certifications · ${countryCount} countries`, href: "/certifications" },
   // chartedCountryCount, not chartCountryCount: the label says "countries",
   // and the headline territory figure counts Billboard's two global charts.
   { v: String(numberOnes), l: `No. 1s · ${chartedCountryCount} countries charted`, href: "/records/charts" },
-  { v: "$30.46M", l: "the record tour", href: "/records/tours" },
+  // The record tour by gross, not by a typed figure or a typed flag.
+  { v: topTour.gross!, l: "the record tour", href: "/records/tours" },
 ];
 
 export default function TimelinePage() {
@@ -89,7 +94,7 @@ export default function TimelinePage() {
           The Career <span className="inkText">Timeline</span>
         </h1>
         <p className={styles.lede}>
-          From Port Harcourt mixtapes to the World Cup Final halftime show — sixteen years,
+          From Port Harcourt mixtapes to the World Cup Final halftime show — {numberWord(careerYears).toLowerCase()} years,
           era by era, every milestone dated and linked to the page that holds the working.
         </p>
         {/* Era jump list — real anchors, so it works without JS. */}

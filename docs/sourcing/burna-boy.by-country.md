@@ -230,7 +230,8 @@
 - Location [Dave ft. Burna Boy] — Platinum x2
 - Ginger [Wizkid ft. Burna Boy] — Platinum x2
 - Baddest [AKA ft. Burna Boy, Khuli Chana & Yanga Chief] — Gold
-- All Eyes on Me [AKA ft. Burna Boy, Da L.E.S & JR] — Platinum x19
+- All Eyes on Me [AKA ft. Burna Boy, Da L.E.S & JR] — Platinum x19 (a Sony Music Entertainment Africa label plaque, 390,000 units, Dec 2020 — not a RiSA register row; RiSA holds none for this title, read 17 Sep 2026)
+- Not counted: No Stress [Wizkid] — RiSA Platinum, 11 Sep 2023, printed "Wizkid feat. Burna Boy", but the recording's credits are Wizkid solo; Baddest's Gold has no register row (kept, flagged)
 
 ### NL — NVPI (3)
 - African Giant — Gold
