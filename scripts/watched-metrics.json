@@ -787,7 +787,7 @@
       "anchor": {
         "date": "2026-09-16",
         "value": 1807644361,
-        "source": "@BurnaBoyStats (fan tracker), 17 Sep 2026 post, through 16 Sep — sum of each artist's own Spotify profile counts minus the 2025 close"
+        "source": "ChartMasters Playcounts Tool, total through 2026-09-15 (6,248,869,339) minus the 2025 close (4,441,224,978, derived 17 Sep 2026: ChartMasters total through 15 Sep (6,248,869,339) minus @BurnaBoyStats' 2026 figure of the same day (1,807,644,361); replace with a direct read if one is ever served); read 2026-09-17"
       },
       "checkpoint": {
         "date": "2026-09-16",
@@ -843,7 +843,7 @@
       "anchor": {
         "date": "2026-09-16",
         "value": 1808204727,
-        "source": "@BurnaBoyStats (fan tracker), 17 Sep 2026 post, through 16 Sep — sum of each artist's own Spotify profile counts minus the 2025 close"
+        "source": "ChartMasters Playcounts Tool, total through 2026-09-15 (11,765,176,755) minus the 2025 close (9,956,972,028, derived 17 Sep 2026: ChartMasters total through 15 Sep (11,765,176,755) minus @BurnaBoyStats' 2026 figure of the same day (1,808,204,727); replace with a direct read of a 31 Dec 2025 total if one is ever served); read 2026-09-17"
       },
       "checkpoint": {
         "date": "2026-09-16",
@@ -899,7 +899,7 @@
       "anchor": {
         "date": "2026-09-16",
         "value": 1810927983,
-        "source": "@BurnaBoyStats (fan tracker), 17 Sep 2026 post, through 16 Sep — sum of each artist's own Spotify profile counts minus the 2025 close"
+        "source": "ChartMasters Playcounts Tool, total through 2026-09-15 (11,010,480,657) minus the 2025 close (9,199,552,674, this site's corrected 2025 close — 9,508,991,024 on 31 Dec 2025 less the 309,438,350 Spotify reallocated to two originals in Feb 2026 (/analysis/spotify-unmerge, 21 Aug 2026); ChartMasters through 15 Sep 2026 minus it reproduces the tracker's 1,810,927,983 to the unit); read 2026-09-17"
       },
       "checkpoint": {
         "date": "2026-09-16",
