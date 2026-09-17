@@ -49,7 +49,7 @@ export const updates: Update[] = [
     date: "2026-09-17",
     category: "Streaming",
     big: true,
-    text: "Burna Boy moves to the top of the 2026 Spotify race: 1,810,927,983 streams through 16 September by the tracker's count, against Wizkid's 1,808,204,727 and Tems' 1,807,644,361 — 2.7 million clear, a margin inside a day's streams, so the board shows the three level.",
+    text: "Burna Boy is the most-streamed African artist of 2026 so far: 1,810,927,983 Spotify streams through 16 September by the tracker's count, past Wizkid (1,808,204,727) and Tems (1,807,644,361) for the first time this year — 2.7 million clear, with 106 days of the year to run.",
     href: "/records/africas-biggest",
   },
   {

@@ -217,14 +217,15 @@ export const statBoxes: LeaderboardBox[] = [
         // newest day every one of the five ledgers covers. Until 12 Sep 2026 the
         // top three were summed once per calendar day of the bot's own clock,
         // which counted three days twice and missed three; the bottom two were
-        // typed and never moved. The bot keeps the rows sorted, and marks a row
-        // `tie: true` when it sits within ten million of the row above — the
-        // resolution of a count anchored to a tracker's post — so the board
-        // shows a level pair as joint rather than call a lead it cannot support.
+        // typed and never moved. The bot keeps the rows sorted. From 12 to
+        // 17 Sep 2026 a row within ten million of the row above was marked
+        // `tie: true` and shown joint; Paul retired that on 17 Sep — the board
+        // calls the lead the count gives, as the trackers do — so no row
+        // carries the mark now, though the loader below still honours one.
         entries: [
           /* live:streams-2026-burna */ { name: "Burna Boy", value: "1.811B" },
-          /* live:streams-2026-wizkid */ { name: "Wizkid", value: "1.808B", tie: true },
-          /* live:streams-2026-tems */ { name: "Tems", value: "1.808B", tie: true },
+          /* live:streams-2026-wizkid */ { name: "Wizkid", value: "1.808B" },
+          /* live:streams-2026-tems */ { name: "Tems", value: "1.808B" },
           /* live:streams-2026-asake */ { name: "Asake", value: "1.460B" },
           /* live:streams-2026-tyla */ { name: "Tyla", value: "1.209B" },
         ],
@@ -280,7 +281,7 @@ export const statBoxes: LeaderboardBox[] = [
       },
     ],
     source:
-      "Ranked by total Spotify streams each year (2022–2026), sourced from streaming trackers. The 2026 row is the five artists' running totals as read together on one day, stated in the note: a chart tracker's published count, carried forward day by day from kworb's per-artist daily streams under the date each page is stamped with — not an official Spotify report and not projected forward from a daily average. Artists within ten million of the row above are shown level (joint), the resolution of a count carried this way. 2026 is still running, so both the totals and the order will change.",
+      "Ranked by total Spotify streams each year (2022–2026), sourced from streaming trackers. The 2026 row is the five artists' running totals as read together on one day, stated in the note: a chart tracker's published count, carried forward day by day from kworb's per-artist daily streams under the date each page is stamped with — not an official Spotify report and not projected forward from a daily average. The order is the count's: the leader is named, and a lead of a few million is a lead of a few million — the note prints the spread. 2026 is still running, so both the totals and the order will change.",
   },
   {
     // Verified against kworb's PkListeners column, which agrees to the digit on

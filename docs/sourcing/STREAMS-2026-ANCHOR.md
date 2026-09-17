@@ -205,7 +205,21 @@ three marked joint: 2.7M and 0.6M are inside the ten-million resolution, so
 the note says "joint first" and the feed says the trackers have him on top by
 a margin the count cannot resolve. That is the rule working as chosen below.
 
-## The decision (12 Sep 2026): option (b)
+## The decision revisited (17 Sep 2026): option (a) — the lead is called
+
+With the board reading Burna Boy 1.811B, Wizkid 1.808B, Tems 1.808B and every
+tracker naming Burna Boy the most-streamed African artist of 2026, Paul retired
+the joint mark: "it is not joint — Burna Boy is now No. 1 based on fact." The
+board now ranks the rows by value and names the leader; the note prints the
+spread beside them ("with Burna Boy ahead of Wizkid and Tems, the three of
+them separated by about 3 million"), and the phone's year board reads
+"01 Burna Boy · 2026 · 1.811B so far · in progress · Leads", gold. `tieWithin`
+is removed from all five members (tiedRows() marks nothing without it); the
+code path and the loader's joint wording stay for any future decision.
+tests/streams2026Ties.test.ts reads the rule from the config, so putting the
+key back would bring the marks back with it.
+
+## The decision (12 Sep 2026): option (b) — superseded 17 Sep
 
 Paul chose **(b)**: the row moves every day on kworb's dailies, re-anchored
 at each tracker post, and a row inside the method's resolution of the row
