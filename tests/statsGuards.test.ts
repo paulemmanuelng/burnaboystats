@@ -38,11 +38,12 @@ describe("a running-year total is a ledger of dated dailies, never a run-date su
       expect(m.kind, `${m.id}: a year-to-date total only moves up`).toBe("peak");
       expect(m.checkpoint?.date, m.id).toMatch(/^\d{4}-\d{2}-\d{2}$/);
       expect(typeof m.checkpoint?.value, m.id).toBe("number");
-      // A named tracker post — @WITTIEWIZ's "so far" posts to 10 Sep, then
-      // @BurnaBoyStats' dated table of 17 Sep; the ledger's own figures where
-      // the post prints fewer rows than the board carries.
-      expect(m.anchor?.source, `${m.id}: the checkpoint chain starts at a named tracker post or the ledger`).toMatch(
-        /WITTIEWIZ|BurnaBoyStats|this site's own ledger/,
+      // A named source — @WITTIEWIZ's "so far" posts to 10 Sep, @BurnaBoyStats'
+      // dated table of 17 Sep, and from that afternoon ChartMasters' Playcounts
+      // Tool read directly (scripts/chartmasters-anchor.mjs); the ledger's own
+      // figures where the read covers fewer artists than the board carries.
+      expect(m.anchor?.source, `${m.id}: the checkpoint chain starts at a named source or the ledger`).toMatch(
+        /WITTIEWIZ|BurnaBoyStats|ChartMasters Playcounts Tool|this site's own ledger/,
       );
       expect(typeof m.dailyMax, `${m.id}: a daily is gated before it can enter the ledger`).toBe("number");
       expect(m.offset, `${m.id}: a ledger carries no offset — it is not a cumulative`).toBeUndefined();

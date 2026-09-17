@@ -1,0 +1,15 @@
+{
+  "$comment": "The 2025 closing Spotify totals the 2026 running-streams ledgers subtract from. ChartMasters' date picker serves only the last fifteen days, so a close is never re-readable there; each one carries where it came from. A ledger with no close here stays on kworb's dailies.",
+  "burna-boy": {
+    "close": 9199552674,
+    "source": "this site's corrected 2025 close — 9,508,991,024 on 31 Dec 2025 less the 309,438,350 Spotify reallocated to two originals in Feb 2026 (/analysis/spotify-unmerge, 21 Aug 2026); ChartMasters through 15 Sep 2026 minus it reproduces the tracker's 1,810,927,983 to the unit"
+  },
+  "wizkid": {
+    "close": 9956972028,
+    "source": "derived 17 Sep 2026: ChartMasters total through 15 Sep (11,765,176,755) minus @BurnaBoyStats' 2026 figure of the same day (1,808,204,727); replace with a direct read of a 31 Dec 2025 total if one is ever served"
+  },
+  "tems": {
+    "close": 4441224978,
+    "source": "derived 17 Sep 2026: ChartMasters total through 15 Sep (6,248,869,339) minus @BurnaBoyStats' 2026 figure of the same day (1,807,644,361); replace with a direct read if one is ever served"
+  }
+}

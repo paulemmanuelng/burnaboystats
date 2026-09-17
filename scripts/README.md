@@ -130,6 +130,32 @@ npm run check:stats
 It never fails the build: an unreachable source is reported as
 `source unavailable`, not an error.
 
+## The ChartMasters anchor (monthly, by hand, one command)
+
+Two figures rest on ChartMasters rather than kworb: the career Spotify total
+(kworb's raw + an offset for the recordings kworb's roster misses) and the
+2026 running-streams ledgers' anchors. ChartMasters is behind a membership
+login and its export is a button, so the bot never reads it — a person signed
+in in the site's Browser pane does, and `scripts/chartmasters-anchor.mjs` does
+the rest:
+
+```
+node scripts/chartmasters-anchor.mjs --snippet        # JS to run in the Playcounts Tool page, per date
+node scripts/chartmasters-anchor.mjs --dry-run docs/sourcing/chartmasters/reads/<date>.json
+node scripts/chartmasters-anchor.mjs docs/sourcing/chartmasters/reads/<date>.json
+```
+
+It pairs ChartMasters' "streams updated through" day N with kworb's page
+stamped N+1 (kworb stamps the build day — the pairing under which the gap sits
+still), prints every pair it can make from the bot's git history, sets the
+offset from the newest pair against kworb's page read right now, re-anchors
+each 2026 ledger that has a 2025 close in `docs/sourcing/chartmasters/closes-2025.json`
+(anchor, checkpoint, baseline moved together; absorbed readings dropped; board
+rows rewritten and re-ordered), and appends a block to
+`docs/sourcing/chartmasters/reads.md`. It refuses an offset step over 25M
+without `--force` — that is a roster change on one side and wants a look
+first. Then `npm run verify` and commit the reading file with the edits.
+
 ## When you update a real figure
 
 After you verify and update a number on the site, **bump its `baseline`** in

@@ -1,0 +1,13 @@
+{
+  "$comment": "One reading = one sign-in session. Capture each day with `node scripts/chartmasters-anchor.mjs --snippet` run in the Playcounts Tool page; `through` is the tool's own 'Streams updated through' date; totals are the Total row of the discography table. Keep milestones as the tool prints them.",
+  "readOn": "2026-09-17",
+  "artists": {
+    "burna-boy": {
+      "spotifyId": "3wcj11K77LjEY1PkEazffa",
+      "name": "Burna Boy",
+      "days": { "September 14, 2026": 11002971256, "September 15, 2026": 11010480657 },
+      "milestones": [{ "figure": "11B", "what": "Artist Streams", "on": "Sep 14, 2026" }]
+    },
+    "wizkid": { "spotifyId": "3tVQdUvClmAT7URs9V3rsp", "name": "Wizkid", "days": { "September 15, 2026": 11765176755 } }
+  }
+}

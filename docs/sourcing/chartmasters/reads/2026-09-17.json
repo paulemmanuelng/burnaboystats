@@ -1,0 +1,27 @@
+{
+  "readOn": "2026-09-17",
+  "artists": {
+    "burna-boy": {
+      "spotifyId": "3wcj11K77LjEY1PkEazffa",
+      "name": "Burna Boy",
+      "days": {
+        "September 8, 2026": 10956307905,
+        "September 9, 2026": 10964040720,
+        "September 10, 2026": 10971894722,
+        "September 11, 2026": 10980187935,
+        "September 12, 2026": 10988533871,
+        "September 13, 2026": 10995638278,
+        "September 14, 2026": 11002971256,
+        "September 15, 2026": 11010480657
+      },
+      "milestones": [
+        { "figure": "11B", "what": "Artist Streams", "on": "Sep 14, 2026" },
+        { "figure": "7.0B", "what": "Artist Streams", "on": "Sep 11, 2026" },
+        { "figure": "800M", "what": "Artist YouTube Views", "on": "Sep 6, 2026" },
+        { "figure": "4.0B", "what": "Artist YouTube Views", "on": "Sep 2, 2026" }
+      ]
+    },
+    "wizkid": { "spotifyId": "3tVQdUvClmAT7URs9V3rsp", "name": "Wizkid", "days": { "September 15, 2026": 11765176755 } },
+    "tems": { "spotifyId": "687cZJR45JO7jhk1LHIbgq", "name": "Tems", "days": { "September 15, 2026": 6248869339 } }
+  }
+}
