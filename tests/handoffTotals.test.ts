@@ -110,7 +110,7 @@ describe("handoff checklist — data integrity", () => {
     ).toBe(chartTitle);
   });
 
-  it("counts 83 award wins from 242 nominations across 47 bodies", () => {
+  it("counts 83 award wins from 241 nominations across 47 bodies", () => {
     const wins = allNoms.filter((n) => n.won).length;
 
     // 4 Aug 2026 year-by-year pass: +2 wins (Headies 2012 Rookie of the
@@ -137,7 +137,11 @@ describe("handoff checklist — data integrity", () => {
     // Internationale" for "Dai Dai", read on NRJ's own nominee pages the day
     // the categories were revealed. Ceremony 23 October, Cannes — pending.
     expect(wins).toBe(83);
-    expect(allNoms.length).toBe(236 + 4 + 1 + 1); // + Headies Album of the Year, 16 Sep 2026
+    // 242 -> 241 on 17 Sep 2026: the Headies' Music Video of the Year row for
+    // "Bundle by Bundle" dropped — the body presents that award to the video's
+    // director and its card names DK, the same rule that keeps producer
+    // credits out. Four Headies rows for 2026 stand.
+    expect(allNoms.length).toBe(236 + 4 + 1 + 1 - 1);
     expect(totalWins).toBe(wins);
     expect(totalNominations).toBe(allNoms.length);
     expect(ceremonyCount).toBe(47);

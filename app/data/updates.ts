@@ -47,6 +47,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-09-17",
+    category: "Awards",
+    text: "A correction at the Headies: the “Music Video of the Year” nomination for “Bundle by Bundle” comes off his count. The body presents that award to the video's director, and its card names DK — the rule that keeps producer credits out applies. Four 2026 nominations stand; 241 in all.",
+    href: "/records/awards",
+  },
+  {
+    date: "2026-09-17",
     category: "Tours",
     big: true,
     text: "Burna Boy will headline the halftime show at the first NFL game ever played in France: Pittsburgh Steelers v New Orleans Saints at Stade de France on Sunday 25 October, 2:30 pm CEST — the NFL's own announcement, and a return to the stadium he was the first African artist to headline in April 2025.",

@@ -22,3 +22,30 @@ tier downgrade needs the register's own row quoted; a live chart run's peak is
 published only with the "peak still open" note; both layouts carry the same
 figures; a typed figure with a source of truth in app/data is derived, not
 retyped.
+
+## The four open decisions — settled 17 Sep 2026
+
+Paul asked for the best decision on each; these are they, and why.
+
+1. **Live boards are not hourly — the wording stands.** The only GitHub-native
+   way to make the half-hourly cron fire is a self-dispatching job that sleeps
+   on a runner around the clock, which burns ~22 runner-hours a day and uses
+   Actions as a timer against its usage terms. Not done. The pages say
+   "refreshed several times a day" and stamp the snapshot to the minute, which
+   is true. If hourly is wanted, an external trigger on `workflow_dispatch`
+   (a fine-grained token, Actions: write, at a scheduler such as cron-job.org)
+   is five minutes of Paul's time and no code change.
+2. **The Afrobeats Board's cadence is printed, not promised.** Every "reviewed
+   weekly" became "last re-read at every register on <date>", derived from the
+   artists' own `verifiedOn`, in batch 3 — so the copy cannot rot the way
+   "hourly" did. No alarm: a red build for a missed sweep would block unrelated
+   work; the printed date is the honest signal.
+3. **The Headies "Music Video of the Year" row is dropped.** The body presents
+   that award to the video's director and its card names DK; the site keeps
+   producer credits out of every count for the same reason. Four 2026 Headies
+   nominations stand; 241 nominations site-wide. Feed entry logged.
+4. **Track counts stay at the standard edition**, so every album is counted
+   the same way (the rule was already stated in albums.ts). Where the linked
+   Spotify release differs — L.I.F.E's 19-track deluxe, On a Spaceship's "Soke"
+   bonus track — an `editionNote` now says so beside the count on both layouts
+   and in the tracklist dialog, instead of changing the count.

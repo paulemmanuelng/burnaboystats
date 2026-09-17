@@ -1,5 +1,10 @@
 // Studio albums + verified tracklists (sources: Wikipedia, per album).
-// Each album: title, year, label, and the standard-edition tracklist.
+// Each album: title, year, label, and the STANDARD-EDITION tracklist — the
+// rule, decided 17 Sep 2026: counts are the album as released, not the
+// edition Spotify happens to link, so every album on the page is counted the
+// same way. Where the linked Spotify edition differs, `editionNote` says so
+// beside the count (both layouts and the tracklist dialog) rather than
+// changing the count.
 // `cover` = official album artwork served by Spotify (displayed unmodified,
 // attributed, and linked back to Spotify — see the Music page).
 export interface AlbumEntry {
@@ -9,6 +14,8 @@ export interface AlbumEntry {
   year: number;
   label: string;
   tracks: string[];
+  /** When the Spotify release the card links to is not the standard edition. */
+  editionNote?: string;
 }
 
 export const albums: AlbumEntry[] = [
@@ -18,6 +25,7 @@ export const albums: AlbumEntry[] = [
     cover: "https://i.scdn.co/image/ab67616d0000b273e3497b75e40ffc5bfffce8cf",
     year: 2013,
     label: "Aristokrat Records",
+    editionNote: "standard edition — the Spotify release is the 19-track deluxe edition",
     tracks: [
       "Intro: My Life", "No No No", "Say So",
       "Abeg Abeg (feat. 2face Idibia & Timaya)", "Na So E Suppose Be",
@@ -33,6 +41,7 @@ export const albums: AlbumEntry[] = [
     cover: "https://i.scdn.co/image/ab67616d0000b2737e09ba6174aec9958461aa44",
     year: 2015,
     label: "Spaceship",
+    editionNote: "standard edition — the Spotify release adds “Soke” as a bonus track",
     tracks: [
       "Intro", "Oluwa Burna", "The Realest", "Mine Tonight (feat. Nyanda)",
       "Ring Ring", "Single (feat. Wizkid)", "Sampudi", "As E Be (skit)",
