@@ -451,7 +451,7 @@ This section is what makes the 78 defensible. Every peak below is real; none of 
 
 ### Context
 
-Under this identical standard, **Burna Boy has 278 chart entries and 47 No. 1 placements across 67 chart countries** ([burnaboystats.com](https://burnaboystats.com)).
+Under this identical standard, **Burna Boy has 276 chart entries and 46 No. 1 placements across 67 chart countries** ([burnaboystats.com](https://burnaboystats.com)).
 
 The honest comparison: Ayra Starr's **82 entries across 30 chart territories** is a little under **a third of Burna Boy's entry count (29%) and 42% of his chart-country reach** — and the gap in No. 1s is wider still, 10 to 47. But the two lines are not measuring the same thing. Burna Boy's 280 is built on a fifteen-year catalogue with more than a dozen records that charted in ten-plus countries each; Ayra Starr debuted in 2021, and her entire international footprint outside Nigeria rests on **two songs**. Strip *Rush* and *Santa* out and the 50 non-Nigerian entries become 21.
 

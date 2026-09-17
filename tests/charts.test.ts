@@ -182,8 +182,11 @@ describe("chart data integrity", () => {
     // 4 Aug 2026 Dai Dai sweep: +11 territories (EE at No.1 on TopHit, the
     // Monitor Latino belt, TR/KZ/MD/UA/RU), Ecuador's IFPI LatAm chart turned
     // its Billboard #4 into a #1, and UY/MY/HR peaks improved (2/5/13).
-    expect(chartEntryCount).toBe(278); // 2 Sep 2026: -2, the unsupported Dominican and Salvadoran No. 1s removed (RETRACTIONS #7, #8)
-    expect(numberOnes).toBe(47); // 2 Sep 2026: Poland took this to 49, then the Dominican and Salvadoran No. 1s came out (RETRACTIONS #7, #8)
+    // 17 Sep 2026: -2 again — "Alone" Sweden 33 (Sverigetopplistan's singles chart
+    // never carried it, Heatseeker only) and the Jerusalema remix's South Africa
+    // No. 1 (TOSAC did not exist before Sep 2021) — RETRACTIONS #9, #10.
+    expect(chartEntryCount).toBe(276); // 2 Sep 2026: -2, the unsupported Dominican and Salvadoran No. 1s removed (RETRACTIONS #7, #8)
+    expect(numberOnes).toBe(46); // 2 Sep 2026: Poland took this to 49, then the Dominican and Salvadoran No. 1s came out (#7, #8); 17 Sep: Jerusalema ZA out (#10)
     expect(chartCountryCount).toBe(69); // -2: the Dominican Republic and El Salvador each left with their only entry
   });
 });

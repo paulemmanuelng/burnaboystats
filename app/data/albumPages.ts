@@ -29,9 +29,9 @@ export const albumPages: AlbumPage[] = [
     title: "L.I.F.E",
     tagline: "The debut — Leaving an Impact For Eternity",
     blurb:
-      "Burna Boy's 2013 debut studio album on Aristokrat Records, its title an acronym for Leaving an Impact For Eternity. Carried by “Like to Party”, “Tonight” and “Run My Race”, it announced a sound already fluent in Fela's afrobeat and dancehall — and won Album of the Year at the 2015 Nigeria Entertainment Awards.",
+      "Burna Boy's 2013 debut studio album on Aristokrat Records, its title an acronym for Leaving an Impact For Eternity. Carried by “Like to Party”, “Tonight” and “Run My Race”, it announced a sound already fluent in Fela's afrobeat and dancehall — and was an Album of the Year nominee at both The Headies and the Nigeria Entertainment Awards in 2014.",
     extraFacts: [
-      { v: "2015", l: "Album of the Year — Nigeria Entertainment Awards" },
+      { v: "2× nom", l: "Album of the Year — The Headies and the Nigeria Entertainment Awards, 2014" },
       { v: "15", l: "tracks, with 2face Idibia, Timaya, Wizkid, Olamide and Reminisce among the guests" },
     ],
     faqs: [
@@ -45,12 +45,12 @@ export const albumPages: AlbumPage[] = [
       },
       {
         q: "Did L.I.F.E win any awards?",
-        a: "Yes — L.I.F.E won Album of the Year at the 2015 Nigeria Entertainment Awards and was nominated for Best R&B/Pop Album at the 2014 Headies.",
+        a: "It was nominated, not awarded: Album of the Year at both the 2014 Nigeria Entertainment Awards and the 2014 Headies, where it was also up for Best R&B/Pop Album.",
       },
     ],
     metaTitle: "L.I.F.E — Burna Boy's 2013 Debut Album",
     metaDescription:
-      "L.I.F.E (Leaving an Impact For Eternity), Burna Boy's 2013 debut: “Like to Party”, guests from Wizkid to 2face — and Album of the Year at the 2015 NEA.",
+      "L.I.F.E (Leaving an Impact For Eternity), Burna Boy's 2013 debut: “Like to Party”, guests from Wizkid to 2face, and 2014 Album of the Year nominations.",
   },
   {
     slug: "on-a-spaceship",

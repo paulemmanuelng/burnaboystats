@@ -82,7 +82,7 @@ describe("handoff checklist — data integrity", () => {
   // retractions (RETRACTIONS #7, #8) moved the assertions and left the title
   // where it was. The title is a const now, and the last check in this block
   // recomposes it from the data, so it cannot drift again on its own.
-  const chartTitle = "counts 278 chart entries across 69 territories, 47 of them at No. 1";
+  const chartTitle = "counts 276 chart entries across 69 territories, 46 of them at No. 1";
 
   it(chartTitle, () => {
     const entries = allChartItems.reduce((n, r) => n + r.entries.length, 0);
@@ -95,9 +95,12 @@ describe("handoff checklist — data integrity", () => {
     );
 
     // 4 Aug 2026 Dai Dai sweep — see tests/charts.test.ts for the breakdown.
-    expect(entries).toBe(278); // -2: unsupported Dominican and Salvadoran No. 1s removed
+    // 17 Sep 2026: 278 → 276 and 47 → 46 — "Alone" SE 33 and the Jerusalema remix's
+    // ZA No. 1 retracted at the bodies (RETRACTIONS #9, #10). Sweden and South
+    // Africa keep other entries, so territories hold at 69.
+    expect(entries).toBe(276); // -2: unsupported Dominican and Salvadoran No. 1s removed
     expect(territories).toBe(69);
-    expect(ones).toBe(47); // + Poland 29 Aug, - Dominican Republic and El Salvador 2 Sep
+    expect(ones).toBe(46); // + Poland 29 Aug, - Dominican Republic and El Salvador 2 Sep
 
     expect(chartEntryCount).toBe(entries);
     expect(chartCountryCount).toBe(territories);
@@ -110,7 +113,7 @@ describe("handoff checklist — data integrity", () => {
     ).toBe(chartTitle);
   });
 
-  it("counts 83 award wins from 241 nominations across 47 bodies", () => {
+  it("counts 82 award wins from 242 nominations across 47 bodies", () => {
     const wins = allNoms.filter((n) => n.won).length;
 
     // 4 Aug 2026 year-by-year pass: +2 wins (Headies 2012 Rookie of the
@@ -136,12 +139,17 @@ describe("handoff checklist — data integrity", () => {
     // 240 -> 241 and a 47th body on 16 Sep 2026: the NRJ Music Awards, "Collab'
     // Internationale" for "Dai Dai", read on NRJ's own nominee pages the day
     // the categories were revealed. Ceremony 23 October, Cannes — pending.
-    expect(wins).toBe(83);
+    // 83 → 82 on 17 Sep 2026: L.I.F.E's "2015 NEA Album of the Year" win had no
+    // body — neaawards.com's own 2015 nominee page (Wayback 28 Sep 2015) does
+    // not list it; the 2014 page lists it as a NOMINEE, so the row moved to
+    // 2014, won: false. Same page: Best Collaboration, Burna Boy ft. D'banj —
+    // a 2014 nomination the file never had, 241 → 242 (RETRACTIONS #11).
+    expect(wins).toBe(82);
     // 242 -> 241 on 17 Sep 2026: the Headies' Music Video of the Year row for
     // "Bundle by Bundle" dropped — the body presents that award to the video's
     // director and its card names DK, the same rule that keeps producer
     // credits out. Four Headies rows for 2026 stand.
-    expect(allNoms.length).toBe(236 + 4 + 1 + 1 - 1);
+    expect(allNoms.length).toBe(236 + 4 + 1 + 1 - 1 + 1);
     expect(totalWins).toBe(wins);
     expect(totalNominations).toBe(allNoms.length);
     expect(ceremonyCount).toBe(47);

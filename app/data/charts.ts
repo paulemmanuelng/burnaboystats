@@ -76,36 +76,28 @@ export const CHART_COUNTRIES: Record<string, ChartCountry> = {
   LU: { name: "Luxembourg", flag: "🇱🇺", body: "Billboard Luxembourg Songs" },
   NO: { name: "Norway", flag: "🇳🇴", body: "VG-lista" },
   PL: { name: "Poland", flag: "🇵🇱", body: "ZPAV Streaming Top 100" },
-  // NIGERIAN COVERAGE IS THINNER THAN THE NIGERIAN CERTIFICATION DATA, AND
-  // CANNOT BE FULLY CLOSED. 63 releases hold a Nigerian plaque; 16 have a
-  // Nigerian chart peak. That gap was investigated properly on 21 Aug 2026 and
-  // the limit is structural, not effort:
-  //   * TurnTable serves ONLY the current week at /charts/1 — `?week=` and
-  //     `?weekNumber=` are ignored — and publishes no per-artist or per-song
-  //     chart-history page. Its routes are charts, certification, news,
-  //     magazine, business, powerlist. There is nothing to read a peak off.
-  //   * The Wayback archive of /charts/1 holds 154 captures, July 2022 → Aug
-  //     2026, and they ARE machine-readable: `__NEXT_DATA__` →
-  //     props.pageProps.chartData.chartItems, each row carrying rank,
-  //     highestPosition and weeksOnChart. But they cover ~120 distinct weeks of
-  //     the ~213 in that era. A sample, never a register read in full.
-  //   * Everything before July 2022 is invisible: the predecessor TurnTable Top
-  //     50 archived as a Nuxt shell whose state object carries `charts:[]`, the
-  //     rows having been fetched from a backend that is now dead and was never
-  //     archived.
-  // A 63-week sample surfaced 47 titles with no Nigerian entry here. They were
-  // NOT added. `highestPosition` read from a sampled week is a FLOOR — "at
-  // least #N" — not the proven peak every other entry in this file is, and the
-  // one provable class (a peak of 1, which cannot improve) turned out to be
-  // empty: all four Nigerian No. 1s the archive shows are already on file. So
-  // adding them would have traded a uniform standard for a bigger count.
-  // The same sample independently reproduced 11 of the peaks already here and
-  // contradicted none of them, which is the reassuring half of the exercise.
-  // If you revisit this: read the ALBUMS chart (chartCategoryId 2) separately —
-  // "I Told Them...", "Love, Damini" and "No Sign of Weakness" are albums here
-  // and same-named songs sit at 23, 36 and 19 on the songs chart, so a naive
-  // title join silently overwrites three album peaks. And fetch slowly;
-  // web.archive.org rate-limits hard above about one request every few seconds.
+  // NIGERIAN COVERAGE IS THINNER THAN THE NIGERIAN CERTIFICATION DATA. 63
+  // releases hold a Nigerian plaque; 16 have a Nigerian chart peak. Until
+  // 17 Sep 2026 this comment said the gap could not be closed — that TurnTable
+  // serves only the current week, that the Wayback captures are a sample, and
+  // that everything before July 2022 is invisible. ALL THREE WERE WRONG. The
+  // body's own archive route serves every weekly issue:
+  //   turntablecharts.com/api/ttc-proxy/api/chart/{1|2}/{week}/{year}
+  //   (1 = singles, 2 = albums; a turntablecharts.com Referer is required; the
+  //   payload is base64 JSON; validate weekNumber AND dateCreated on every
+  //   response; about 100 requests a minute before it rate-limits)
+  // — 306 singles issues from the Top 50 of 5 Nov 2020 through today and 201
+  // album issues from 2 Nov 2022, the batch-3 sweep of the Afrobeats board
+  // walked it whole (docs/sweeps/*-chart-peaks-v1.md, "Re-read 17 Sep 2026").
+  // A peak is the best rank in ANY issue: `highestPosition` resets on the
+  // 7 Jul 2022 relaunch (Top 50 → Top 100) and again on every re-entry, so a
+  // single issue's counter is a floor, never the peak. Read the ALBUMS chart
+  // separately — "I Told Them...", "Love, Damini" and "No Sign of Weakness"
+  // are albums there while same-named songs sit on the singles chart, and a
+  // naive title join overwrites the album peaks.
+  // Burna Boy's OWN rows here have not yet had that full walk (only the 16
+  // peaks on file were re-read, Last Last's among them); the 47 plaqued titles
+  // with no Nigerian entry are the next sweep, not a guess.
   NG: { name: "Nigeria", flag: "🇳🇬", body: "TurnTable Top 100" },
   ZA: { name: "South Africa", flag: "🇿🇦", body: "The Official SA Charts" },
   SR: { name: "Suriname", flag: "🇸🇷", body: "Nationale Top 40" },
@@ -341,7 +333,11 @@ export const singleCharts: ChartRelease[] = [
     { c: "RU", peak: 31 }, { c: "MD", peak: 34 }, { c: "UA", peak: 90 }, { c: "VN", peak: 93 },
   ], note: "No.1 on both Billboard global charts. Also No.1 on Billboard's US World Digital Song Sales and Latin Airplay charts, No.1 on the IFPI Middle East & North Africa chart (No.3 on North Africa), and No.1 on BMAT's Central America & Caribbean airplay chart." },
   { title: "Last Last", year: 2022, entries: [
-    { c: "ZA", peak: 1 }, { c: "NG", peak: 2 }, { c: "UK", peak: 4 }, { c: "NZ", peak: 12 },
+    // NG 3, not 2: TurnTable Top 50 debut, issue of 19 May 2022 (ttc-proxy chart
+    // 1, week 20/2022, id 1096 — rank 3, highestPosition 3); 46 issues in all,
+    // never higher, and the Top 100 counter from 7 Jul 2022 reads 4. Re-read
+    // 17 Sep 2026 across 229 consecutive issues.
+    { c: "ZA", peak: 1 }, { c: "NG", peak: 3 }, { c: "UK", peak: 4 }, { c: "NZ", peak: 12 },
     { c: "NL", peak: 14 }, { c: "SE", peak: 21 }, { c: "FR", peak: 23 }, { c: "IE", peak: 27 },
     { c: "CA", peak: 30 }, { c: "CH", peak: 38 }, { c: "GLB", peak: 39 }, { c: "US", peak: 44 },
     { c: "BE", peak: 49 }, { c: "AU", peak: 79 }, { c: "PT", peak: 142 },
@@ -361,7 +357,7 @@ export const singleCharts: ChartRelease[] = [
   // Airplay placings are genre/component/airplay charts, excluded by the rules
   // at the top of this file.
   { title: "Alone", year: 2022, entries: [
-    { c: "FR", peak: 19 }, { c: "UK", peak: 28 }, { c: "SE", peak: 33 }, { c: "CH", peak: 45 },
+    { c: "FR", peak: 19 }, { c: "UK", peak: 28 }, { c: "CH", peak: 45 },
     { c: "IE", peak: 50 }, { c: "NL", peak: 58 }, { c: "CA", peak: 73 }, { c: "PT", peak: 97 },
     { c: "GLB", peak: 143 },
   ] },
@@ -394,7 +390,7 @@ export const featureCharts: ChartRelease[] = [
   ] },
   { title: "Jerusalema (Remix)", credit: "Master KG ft. Nomcebo Zikode & Burna Boy", year: 2020, entries: [
     { c: "BE", peak: 1 }, { c: "CH", peak: 1 }, { c: "HU", peak: 1 }, { c: "NL", peak: 1 },
-    { c: "SR", peak: 1 }, { c: "ZA", peak: 1 }, { c: "AT", peak: 2 }, { c: "FR", peak: 2 },
+    { c: "SR", peak: 1 }, { c: "AT", peak: 2 }, { c: "FR", peak: 2 },
     { c: "IT", peak: 2 }, { c: "DE", peak: 3 }, { c: "SE", peak: 3 }, { c: "IE", peak: 4 },
     { c: "ES", peak: 10 }, { c: "PT", peak: 15 }, { c: "GLB", peak: 38 }, { c: "SK", peak: 46 }, { c: "UK", peak: 55 },
   ] },

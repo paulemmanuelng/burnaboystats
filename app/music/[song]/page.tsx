@@ -9,6 +9,7 @@ import { songBySlug, songSlugs, songs, type Song } from "../../data/songs";
 import { allChartItems, CHART_COUNTRIES, chartTier } from "../../data/charts";
 import { allItems, COUNTRIES, tierOf } from "../../data/certifications";
 import { albumPageByTitle } from "../../data/albumPages";
+import { albumYearByTitle } from "../../data/albums";
 import MobileMenuButton from "../../components/MobileMenuButton";
 import BackLink from "../../components/BackLink";
 
@@ -47,7 +48,9 @@ export async function generateMetadata({ params }: { params: Promise<{ song: str
     title: song.metaTitle,
     description: song.metaDescription,
     path: `/music/${song.slug}`,
-    shareTitle: `${song.title} — Burna Boy`,
+    // A feature is credited as the release credits it — "Jerusalema" is Master
+    // KG's record with Burna Boy on it, and the share title said "Burna Boy" alone.
+    shareTitle: `${song.title} — ${song.credit ?? "Burna Boy"}`,
     shareDescription: song.tagline,
   });
 }
@@ -91,7 +94,7 @@ export default async function SongPage({ params }: { params: Promise<{ song: str
       l: plural(certs.length, "certification worldwide", "certifications worldwide"),
     },
     // Live figure — the stats bot keeps this current hourly.
-    song.ytViews && { v: song.ytViews, l: "YouTube views for the official video" },
+    song.ytViews && { v: song.ytViews, l: song.ytViewsLabel ?? "YouTube views for the official video" },
     song.spotifyStreams && { v: song.spotifyStreams, l: "Spotify streams" },
   ].filter(Boolean) as { v: string; l: string; missing?: boolean; lead?: boolean }[];
   // Em dash, not zero. The badge names the reason so the reader doesn't have to
@@ -133,8 +136,16 @@ export default async function SongPage({ params }: { params: Promise<{ song: str
       : { "@type": "MusicGroup", name: "Burna Boy" },
     // "Single" is songs.ts's placeholder for a track that was never on an album,
     // so publishing it as an album name asserts a release that does not exist.
+    // "(EP)" is the site's display suffix, not part of the release's name —
+    // the schema gets the bare title and says it is an EP the schema.org way.
     ...(song.album && song.album !== "Single"
-      ? { inAlbum: { "@type": "MusicAlbum", name: song.album } }
+      ? {
+          inAlbum: {
+            "@type": "MusicAlbum",
+            name: song.album.replace(/\s*\(EP\)$/, ""),
+            ...(/\(EP\)$/.test(song.album) ? { albumReleaseType: "https://schema.org/EPRelease" } : {}),
+          },
+        }
       : {}),
     datePublished: String(song.year),
     url: `${CANONICAL_ORIGIN}/music/${song.slug}`,
@@ -228,7 +239,7 @@ export default async function SongPage({ params }: { params: Promise<{ song: str
                 ) : (
                   song.album
                 )}{" "}
-                · {song.year}
+                · {albumYearByTitle(song.album) ?? song.year}
               </div>
               <h1 className={`${styles.title} ${song.title.length > 14 ? styles.titleLong : ""}`}>
                 {song.title}

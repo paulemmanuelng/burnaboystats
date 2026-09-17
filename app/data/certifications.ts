@@ -325,7 +325,7 @@ export const singles: Release[] = [
   { title: "Way Too Big", year: 2020, cover: "https://cdn-images.dzcdn.net/images/cover/fd271b2967aa9a67f7cb23f956c58b10/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Platinum" },
   ] },
-  { title: "23", year: 2022, certs: [
+  { title: "23", year: 2020, certs: [
     { c: "NG", level: "Platinum" },
   ] },
   { title: "Dey Play", cover: "https://cdn-images.dzcdn.net/images/cover/1120c9c53e59dcbaffb9d7f77908db16/500x500-000000-80-0-0.jpg", certs: [
@@ -662,6 +662,9 @@ export const certHistory: CertEvent[] = [
   { title: "Alone", country: "UK", level: "Silver", year: 2024 },
   { title: "City Boys", country: "FR", level: "Gold", year: 2024 },
   { title: "City Boys", country: "UK", level: "Silver", year: 2024 },
+  // On the release row since the snapshot, never logged: RMNZ (RadioScope
+  // table 2052) "Burna Boy | City Boys | Gold | 2024-06-13", read 17 Sep 2026.
+  { title: "City Boys", country: "NZ", level: "Gold", year: 2024 },
   { title: "I Told Them...", album: true, country: "UK", level: "Silver", year: 2024 },
 
   // "On the Low" awards that were confirmed at the body on 27 Aug 2026 but had
@@ -849,7 +852,7 @@ export const intlCertHistory = certHistory.filter((e) => e.country !== "NG");
 /** The most recent day a certifying body's own register was read for this
  *  file. Printed on the page's sources line in place of a typed "as of" month
  *  — bump it on every body read, in the same edit as the row it changes. */
-export const CERTS_VERIFIED_ON = "2026-09-16";
+export const CERTS_VERIFIED_ON = "2026-09-17";
 
 /** "Dai Dai" Platinum plaques beyond the US Latin 2× — the "Platinum in N more"
  *  rail note on the story and its Spanish twin, counted rather than typed after

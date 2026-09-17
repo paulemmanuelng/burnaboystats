@@ -23,9 +23,13 @@ export interface Song {
   // Omitted when no track ID could be VERIFIED via oEmbed — never guess one.
   spotify?: string;
   // Official-music-video YouTube views, displayed in whole millions. Auto-updated
-  // hourly by the live stats bot (kworb per-video counts). Omit for songs whose
-  // video lives on another artist's channel (WGFT, Jerusalema).
+  // by the live stats bot from the video's own YouTube page (watched-metrics.json
+  // moved the source off kworb's per-video list on 28 Aug 2026). Omit for songs
+  // whose video lives on another artist's channel (WGFT, Jerusalema).
   ytViews?: string;
+  // Override for the ytViews card label when the counted video is not a
+  // single-song visual (Darko's is the joint "Thuggin / Darko" video).
+  ytViewsLabel?: string;
   // Total Spotify streams, auto-updated hourly by the live stats bot (kworb).
   spotifyStreams?: string;
   // True when no chart/cert/views figure exists — the page carries the history
@@ -52,9 +56,12 @@ export const songs: Song[] = [
     tagline: "The heartbreak anthem — “I need igbo and shayo”",
     blurb:
       "The lead single from Love, Damini (2022), built on a sample of Toni Braxton's “He Wasn't Man Enough.” It became Burna Boy's signature breakup anthem and one of the most-certified African songs ever — topping the South African chart, reaching No. 4 in the UK (his highest-charting solo single there at the time) and going Diamond in France.",
+    // Two extras, not four: the page caps "By the numbers" at eight cards and
+    // the six derived ones come first, so only two of these ever render. The
+    // No. 1 (South Africa) and No. 4 (UK) cards repeated the derived "best
+    // peak" card and the chart pills; these two say something the cards do
+    // not (17 Sep 2026 — the last two had never rendered on either layout).
     extraFacts: [
-      { v: "No. 1", l: "South Africa (TOSAC) — his home-continent chart-topper" },
-      { v: "No. 4", l: "UK Official Singles Chart — his highest solo single there at the time" },
       { v: "No. 44", l: "US Billboard Hot 100" },
       { v: "Diamond", l: "certified Diamond in France (SNEP)" },
     ],
@@ -69,7 +76,7 @@ export const songs: Song[] = [
       },
       {
         q: "Is “Last Last” certified?",
-        a: "Yes — it is one of the most-certified African songs ever, with 12 certifications including Diamond in France, 5× Platinum in Nigeria, 4× Platinum in Canada and Platinum in the US and UK.",
+        a: "Yes — it is one of the most-certified African songs ever, with 12 certifications including Diamond in France, 5× Platinum in Nigeria, 4× Platinum in Canada, 2× Platinum in the UK and Platinum in the US.",
       },
     ],
     metaTitle: "Burna Boy “Last Last” — Chart Peaks, Certifications & Facts",
@@ -114,7 +121,11 @@ export const songs: Song[] = [
   {
     slug: "on-the-low",
     title: "On the Low",
-    year: 2019,
+    // 2018, not 2019: released 16 Nov 2018 as a single (BPI "Released 16.11.2018",
+    // SNEP "Date de sortie 16/11/2018", the official video uploaded that day)
+    // and placed on 2019's African Giant — the kicker dates the album from
+    // albums.ts, this field dates the song.
+    year: 2018,
     spotifyStreams: "428M",
     album: "African Giant",
     cover: "https://i.scdn.co/image/ab67616d0000b273a9c13c1a5538f87146ac8ca5",
@@ -153,10 +164,9 @@ export const songs: Song[] = [
     spotifyStreams: "308M",
     tagline: "Burna Boy's highest-ever Billboard Hot 100 peak",
     blurb:
-      "A feature on Gunna's 2025 album The Last Wun, “WGFT” gave Burna Boy his highest position ever on the US Billboard Hot 100 — No. 16 — blending Gunna's melodic trap with Burna's Afrobeats cadence. It charted in 12 countries and put him back in the US Top 20.",
+      "A feature on Gunna's 2025 album The Last Wun, “WGFT” gave Burna Boy his highest position ever on the US Billboard Hot 100 — No. 16 — blending Gunna's melodic trap with Burna's Afrobeats cadence. It charted in 12 countries and gave him his first US Top 20 single.",
     extraFacts: [
       { v: "No. 16", l: "US Billboard Hot 100 — Burna Boy's highest-ever Hot 100 peak" },
-      { v: "12", l: "countries charted, from the US and UK to Greece" },
       { v: "2025", l: "a feature on Gunna's album The Last Wun" },
     ],
     faqs: [
@@ -212,27 +222,27 @@ export const songs: Song[] = [
     album: "Single",
     cover: "https://i.scdn.co/image/ab67616d0000b2739d07e4e641b9ee80b0f713d0",
     spotify: "https://open.spotify.com/track/1dmES1X8l1AnFBy2gR3wYA",
+    spotifyStreams: "86M",
     tagline: "The global dance phenomenon",
     blurb:
-      "In 2020 Burna Boy joined the remix of Master KG and Nomcebo Zikode's “Jerusalema” — the gospel-house track that swept the world through the #JerusalemaDanceChallenge. His verse helped push it to No. 1 in six countries, including Belgium, Switzerland, the Netherlands and South Africa, and Diamond certification in France. It remains one of the biggest African songs in history.",
+      "In 2020 Burna Boy joined the remix of Master KG and Nomcebo Zikode's “Jerusalema” — the gospel-house track that swept the world through the #JerusalemaDanceChallenge. His verse helped push it to No. 1 in five countries, including Belgium, Switzerland and the Netherlands, and Diamond certification in France. It remains one of the biggest African songs in history.",
     extraFacts: [
-      { v: "6", l: "countries at No. 1 — Belgium, Switzerland, Hungary, Netherlands, Suriname & South Africa" },
       { v: "Diamond", l: "certified Diamond in France, 4× Platinum in Italy" },
       { v: "2020", l: "the global #JerusalemaDanceChallenge phenomenon" },
     ],
     faqs: [
       {
         q: "Is Burna Boy on “Jerusalema”?",
-        a: "Yes — Burna Boy features on the 2020 remix of Master KG and Nomcebo Zikode's “Jerusalema.” His verse helped the song reach No. 1 in six countries during the global #JerusalemaDanceChallenge.",
+        a: "Yes — Burna Boy features on the 2020 remix of Master KG and Nomcebo Zikode's “Jerusalema.” His verse helped the song reach No. 1 in five countries during the global #JerusalemaDanceChallenge.",
       },
       {
         q: "How big was “Jerusalema (Remix)”?",
-        a: "It was a global phenomenon — No. 1 in Belgium, Switzerland, Hungary, the Netherlands, Suriname and South Africa, charting in 16 countries and certified Diamond in France and 4× Platinum in Italy.",
+        a: "It was a global phenomenon — No. 1 in Belgium, Switzerland, Hungary, the Netherlands and Suriname, charting in 15 countries and certified Diamond in France and 4× Platinum in Italy.",
       },
     ],
     metaTitle: "“Jerusalema (Remix)” — Master KG, Nomcebo & Burna Boy Stats",
     metaDescription:
-      "Burna Boy on the “Jerusalema” remix: No. 1 in six countries, Diamond in France and 17 chart entries during the global #JerusalemaDanceChallenge — full stats.",
+      "Burna Boy on the “Jerusalema” remix: No. 1 in five countries, Diamond in France and 16 chart entries during the global #JerusalemaDanceChallenge — full stats.",
   },
   {
     slug: "alone",
@@ -244,7 +254,7 @@ export const songs: Song[] = [
     spotify: "https://open.spotify.com/track/0AoBY2Y3qs6dtGgOD6c91N",
     tagline: "His song from Black Panther: Wakanda Forever",
     blurb:
-      "Burna Boy's contribution to the Black Panther: Wakanda Forever soundtrack (2022), a Marvel record that put Afrobeats at the centre of one of the biggest films of the year. It became a genuine international hit in its own right — No. 19 in France, No. 28 in the UK and a run across nine official charts — and topped the UK's Afrobeats chart.",
+      "Burna Boy's contribution to the Black Panther: Wakanda Forever soundtrack (2022), a Marvel record that put Afrobeats at the centre of one of the biggest films of the year. It became a genuine international hit in its own right — No. 19 in France, No. 28 in the UK and a run across eight official charts — and topped the UK's Afrobeats chart.",
     extraFacts: [
       { v: "No. 19", l: "France (SNEP) — its highest national peak" },
       { v: "No. 28", l: "UK Official Singles Chart" },
@@ -254,11 +264,11 @@ export const songs: Song[] = [
     faqs: [
       {
         q: "What Burna Boy song is in Black Panther: Wakanda Forever?",
-        a: "“Alone” is Burna Boy's song from Black Panther: Wakanda Forever, released on the 2022 soundtrack “Music From and Inspired By.” It opens the film's soundtrack rollout and became a hit in its own right, reaching No. 19 in France and No. 28 in the UK.",
+        a: "“Alone” is Burna Boy's song from Black Panther: Wakanda Forever, released on the 2022 soundtrack “Music From and Inspired By.” Released on 4 November 2022 with the soundtrack album, a week after Rihanna's lead single “Lift Me Up”, it became a hit in its own right, reaching No. 19 in France and No. 28 in the UK.",
       },
       {
         q: "How did “Alone” chart?",
-        a: "“Alone” charted in eight countries plus the Billboard Global 200 — its best peaks were No. 19 in France, No. 28 on the UK Official Singles Chart, No. 33 in Sweden and No. 45 in Switzerland. It also reached No. 1 on the UK's Official Afrobeats Chart.",
+        a: "“Alone” charted in seven countries plus the Billboard Global 200 — its best peaks were No. 19 in France, No. 28 on the UK Official Singles Chart and No. 45 in Switzerland. It also reached No. 1 on the UK's Official Afrobeats Chart.",
       },
       {
         q: "Is “Alone” certified?",
@@ -277,7 +287,7 @@ export const songs: Song[] = [
     album: "Twice as Tall",
     cover: "https://i.scdn.co/image/ab67616d0000b2735b069390c128a4b4c3197d80",
     spotify: "https://open.spotify.com/track/7EqoATlXAKNwzv45LAlqRt",
-    ytViews: "48M",
+    ytViews: "50M",
     tagline: "The Jordan-numbered highlight of the Grammy album",
     blurb:
       "A standout from Twice as Tall (2020) — the album that won Burna Boy the Grammy for Best Global Music Album. Named for Michael Jordan's jersey number, “23” pairs a boastful, victory-lap energy with one of the record's most-played videos, and is certified Platinum in Nigeria.",
@@ -285,7 +295,6 @@ export const songs: Song[] = [
       { v: "Grammy", l: "from Twice as Tall, winner of Best Global Music Album (2021)" },
       { v: "Platinum", l: "certified Platinum in Nigeria" },
       { v: "23", l: "named after Michael Jordan's jersey number" },
-      { v: "48M", l: "views on the official video" },
     ],
     faqs: [
       {
@@ -307,9 +316,12 @@ export const songs: Song[] = [
     credit: "Burna Boy feat. Travis Scott",
     year: 2025,
     spotifyStreams: "68M",
+    // The single edition — the recording kworb credits the stream figure to,
+    // verified via oEmbed 17 Sep 2026 (the album version is 4OGN4GO4yqtWcj4152jJz9).
+    spotify: "https://open.spotify.com/track/7iCvoWlfuJ1y7zibnh1EW9",
     album: "No Sign of Weakness",
     cover: "https://i.scdn.co/image/ab67616d0000b273d00c3ad1a774c0e171939239",
-    ytViews: "12M",
+    ytViews: "13M",
     tagline: "The Travis Scott team-up from No Sign of Weakness",
     blurb:
       "The Travis Scott collaboration from No Sign of Weakness (2025), Burna Boy's eighth studio album. It was one of the record's most-anticipated moments — a meeting of Afro-fusion and Houston rap — and charted in the UK on release.",
@@ -343,11 +355,11 @@ export const songs: Song[] = [
     storyOnly: true,
     tagline: "The On a Spaceship era, before the world caught on",
     blurb:
-      "Released as a single on 24 March 2016 from On a Spaceship — the album Burna Boy put out on 25 November 2015 through his own Spaceship Records with Universal. The record drew mixed reviews overall, but critics repeatedly singled out “Rizzla” as one of its strongest moments. It's a window into the Afro-fusion sound he was already building at home, three years before “Ye” took it worldwide.",
+      "Released as a single on 24 March 2016 from On a Spaceship — the album Burna Boy put out on 25 November 2015 through his own Spaceship Records with Universal. The record drew mixed reviews overall; Pulse Nigeria listed “Rizzla” among its good tracks and NotJustOk called it the one J Fem production that earned its place. It's a window into the Afro-fusion sound he was already building at home, three years before “Ye” took it worldwide.",
     extraFacts: [
       { v: "24 Mar 2016", l: "released as the album's third single" },
       { v: "Spaceship", l: "from On a Spaceship (2015), on his own label with Universal" },
-      { v: "Standout", l: "picked out by reviewers as one of the album's best tracks" },
+      { v: "Standout", l: "named among the album's good tracks by Pulse Nigeria and NotJustOk" },
     ],
     faqs: [
       {
@@ -373,17 +385,17 @@ export const songs: Song[] = [
     spotify: "https://open.spotify.com/track/530ZXkK83EFoX2tVdQ9SbG",
     ytViews: "1M",
     storyOnly: true,
-    tagline: "The closer from the Redemption EP",
+    tagline: "Track three of the Redemption EP",
     blurb:
-      "From Redemption (2016), the seven-track EP Burna Boy released between albums during his Aristokrat-to-Spaceship transition. The EP is a compact snapshot of the period just before Outside changed everything.",
+      "From Redemption (2016), the seven-track EP Burna Boy put out on his own Spaceship label between On a Spaceship and Outside. The EP is a compact snapshot of the period just before Outside changed everything.",
     extraFacts: [
-      { v: "2016", l: "from the seven-track Redemption EP" },
-      { v: "Pre-Outside", l: "two years before Outside carried him worldwide" },
+      { v: "Track 3", l: "of the seven-track Redemption EP — “We On” closes it" },
+      { v: "Pre-Outside", l: "sixteen months before Outside carried him worldwide" },
     ],
     faqs: [
       {
         q: "What is Burna Boy's Redemption EP?",
-        a: "Redemption is a seven-track EP Burna Boy released in 2016, between On a Spaceship and Outside. “Boshe Nlo” closes it.",
+        a: "Redemption is a seven-track EP Burna Boy released on 23 September 2016 on his own Spaceship label, between On a Spaceship and Outside. “Boshe Nlo” is its third track; “We On” closes it.",
       },
     ],
     metaTitle: "Burna Boy “Boshe Nlo” — from the Redemption EP (2016)",
@@ -399,7 +411,10 @@ export const songs: Song[] = [
     album: "Steel & Copper (EP)",
     cover: "https://i.scdn.co/image/ab67616d0000b27376cd360b4344922af3685208",
     spotify: "https://open.spotify.com/track/4Ty2eRGfNVhJOgEDRzRsyb",
-    ytViews: "1.2M",
+    ytViews: "1.3M",
+    // The only official video is the joint "Thuggin / Darko" visual, so the
+    // count is that video's — the generic label would claim a Darko-only one.
+    ytViewsLabel: "YouTube views for the Thuggin / Darko official video",
     storyOnly: true,
     tagline: "The four-track experiment with DJDS",
     blurb:
@@ -412,7 +427,7 @@ export const songs: Song[] = [
     faqs: [
       {
         q: "What is Steel & Copper?",
-        a: "Steel & Copper is a four-track joint EP by Burna Boy and Los Angeles production duo DJDS, released 21 March 2019 through Spaceship Entertainment, Bad Habit, Atlantic and Loma Vista — four months before African Giant.",
+        a: "Steel & Copper is a four-track joint EP by Burna Boy and Los Angeles production duo DJDS, released 21 March 2019 through Atlantic, Bad Habit and Spaceship Records — four months before African Giant.",
       },
       {
         q: "Who are DJDS?",
@@ -479,7 +494,6 @@ export const songs: Song[] = [
     blurb:
       "From Best of Burn Series, Vol. 1 — the 2011 Aristokrat Records compilation that collected Burna Boy's earliest work, two years before his debut album L.I.F.E and long before anyone outside Nigeria was listening. Nothing here charted or was certified; it exists as the starting point of a catalogue that ends at a World Cup Final.",
     extraFacts: [
-      { v: "2011", l: "the earliest release documented on this site" },
       { v: "Aristokrat", l: "from the Aristokrat Records compilation Best of Burn Series, Vol. 1" },
       { v: "Onosz", l: "a guest feature from the Port Harcourt era" },
     ],
