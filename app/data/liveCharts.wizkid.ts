@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-17";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-17T20:23Z";
+  export const liveChartsBuiltAt = "2026-09-17T23:09Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -297,8 +297,8 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 180,
-            "movement": 8
+            "position": 178,
+            "movement": 10
           },
           {
             "country": "TC",
@@ -350,7 +350,7 @@
           {
             "country": "SA",
             "name": "Saudi Arabia",
-            "position": 82,
+            "position": 88,
             "movement": null,
             "status": "new"
           }
@@ -556,7 +556,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 17,
+            "position": 20,
             "movement": null,
             "status": "new"
           }
@@ -1050,7 +1050,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 16,
+            "position": 22,
             "movement": null,
             "status": "new"
           }
@@ -1199,7 +1199,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 71,
-            "movement": -7
+            "movement": -6
           },
           {
             "country": "BJ",
@@ -1254,7 +1254,7 @@
             "country": "UG",
             "name": "Uganda",
             "position": 47,
-            "movement": 0
+            "movement": 1
           },
           {
             "country": "GH",
@@ -1271,8 +1271,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 81,
-            "movement": -1
+            "position": 84,
+            "movement": -4
           }
         ]
       },
@@ -1407,7 +1407,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 75,
-            "movement": -7
+            "movement": -6
           },
           {
             "country": "TZ",
@@ -1535,8 +1535,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 15,
-            "movement": -12
+            "position": 18,
+            "movement": -15
           }
         ]
       }
@@ -1666,6 +1666,25 @@
         ]
       },
       {
+        "platform": "iTunes",
+        "numberOnes": 1,
+        "entries": [
+          {
+            "country": "NE",
+            "name": "Niger",
+            "position": 1,
+            "movement": 0
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 31,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
         "platform": "Shazam",
         "numberOnes": 0,
         "entries": [
@@ -1680,18 +1699,6 @@
             "name": "Senegal",
             "position": 182,
             "movement": -40
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 1,
-        "entries": [
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 1,
-            "movement": 0
           }
         ]
       }
@@ -1758,8 +1765,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 138,
-            "movement": -6
+            "position": 140,
+            "movement": -8
           }
         ]
       }
@@ -1834,7 +1841,7 @@
             "country": "DM",
             "name": "Dominica",
             "position": 34,
-            "movement": -2
+            "movement": 0
           },
           {
             "country": "UG",
@@ -2172,8 +2179,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 97,
-            "movement": -6
+            "position": 101,
+            "movement": -10
           }
         ]
       },
@@ -2363,6 +2370,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/67996ba3c56f059ae5a870268c66b39f/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Bad Girl",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 14,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Time",
     "platforms": [
       {
@@ -2380,46 +2407,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Say My Name",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 36,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/9348290ff2c42fef0438d57515d5233a/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Money & Love",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 39,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/e4286ac8a38829b6cf5d225c311bccf7/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Alaye",
@@ -2441,7 +2428,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/a4c216574fd4d381c73a4df2f512f599/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "EASY WITH ME",
+    "title": "Say My Name",
     "platforms": [
       {
         "platform": "iTunes",
@@ -2458,7 +2445,7 @@
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/2e5bc56dd547bcc84a47089b865230cb/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/9348290ff2c42fef0438d57515d5233a/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Bella",
@@ -2472,6 +2459,26 @@
             "name": "Niger",
             "position": 66,
             "movement": 73
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/e4286ac8a38829b6cf5d225c311bccf7/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Money & Love",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 53,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -2499,6 +2506,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/b83e12a893bcd9bca6f6e84283dbedaa/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "EASY WITH ME",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 64,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/2e5bc56dd547bcc84a47089b865230cb/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "ABANGANI",
     "platforms": [
       {
@@ -2508,7 +2535,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 62,
+            "position": 81,
             "movement": null,
             "status": "new"
           }
@@ -2528,7 +2555,7 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 16,
+            "position": 43,
             "movement": null,
             "status": "new"
           }
@@ -2548,7 +2575,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 43,
+            "position": 58,
             "movement": null,
             "status": "new"
           }
@@ -2568,8 +2595,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 101,
-            "movement": -77
+            "position": 126,
+            "movement": -102
           }
         ]
       }

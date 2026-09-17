@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-17";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-17T20:23Z";
+  export const liveChartsBuiltAt = "2026-09-17T23:09Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -316,8 +316,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 56,
-            "movement": -19
+            "position": 57,
+            "movement": -20
           }
         ]
       },
@@ -365,8 +365,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 30,
-            "movement": -21
+            "position": 31,
+            "movement": -22
           }
         ]
       },
@@ -458,8 +458,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 21,
-            "movement": -17
+            "position": 22,
+            "movement": -18
           }
         ]
       },
@@ -507,8 +507,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 80,
-            "movement": -18
+            "position": 81,
+            "movement": -19
           }
         ]
       },
@@ -557,7 +557,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 41,
+            "position": 56,
             "movement": null,
             "status": "new"
           }
@@ -689,8 +689,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 119,
-            "movement": -16
+            "position": 120,
+            "movement": -17
           }
         ]
       }
@@ -878,8 +878,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 168,
-            "movement": -17
+            "position": 169,
+            "movement": -18
           }
         ]
       }
