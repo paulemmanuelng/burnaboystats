@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-18";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-18T06:43Z";
+  export const liveChartsBuiltAt = "2026-09-18T11:53Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -225,62 +225,69 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 6,
-            "movement": 4
+            "position": 4,
+            "movement": 2
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 9,
+            "position": 6,
             "movement": 3
           },
           {
             "country": "ZM",
             "name": "Zambia",
-            "position": 38,
-            "movement": 9
+            "position": 28,
+            "movement": 10
           },
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 46,
-            "movement": 31
+            "position": 35,
+            "movement": 11
           },
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 56,
-            "movement": 15
+            "position": 48,
+            "movement": 8
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 76,
-            "movement": 28
-          },
-          {
-            "country": "TZ",
-            "name": "Tanzania",
-            "position": 123,
-            "movement": 25
+            "position": 61,
+            "movement": 15
           },
           {
             "country": "WW",
             "name": "Worldwide",
-            "position": 124,
-            "movement": 61
+            "position": 85,
+            "movement": 39
+          },
+          {
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 105,
+            "movement": 18
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 137,
-            "movement": 37
+            "position": 116,
+            "movement": 21
           },
           {
             "country": "CA",
             "name": "Canada",
-            "position": 163,
-            "movement": 35
+            "position": 144,
+            "movement": 19
+          },
+          {
+            "country": "AE",
+            "name": "United Arab Emirates",
+            "position": 199,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -291,14 +298,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 14,
-            "movement": 12
+            "position": 24,
+            "movement": 21
           },
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 68,
-            "movement": -8
+            "position": 69,
+            "movement": -7
           }
         ]
       },
@@ -412,38 +419,38 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 33,
-            "movement": 3
+            "position": 37,
+            "movement": -4
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 38,
-            "movement": 0
+            "position": 40,
+            "movement": -2
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 66,
-            "movement": -5
+            "position": 78,
+            "movement": -12
           },
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 125,
-            "movement": 13
+            "position": 108,
+            "movement": 17
           },
           {
             "country": "ZM",
             "name": "Zambia",
-            "position": 129,
-            "movement": 17
+            "position": 159,
+            "movement": -30
           },
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 137,
-            "movement": -7
+            "position": 182,
+            "movement": -45
           }
         ]
       },
@@ -460,14 +467,20 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 26,
-            "movement": -7
+            "position": 30,
+            "movement": -11
           },
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 69,
-            "movement": -5
+            "position": 87,
+            "movement": -23
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 159,
+            "movement": 24
           }
         ]
       },
@@ -540,7 +553,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 64,
-            "movement": -8
+            "movement": -4
           },
           {
             "country": "KE",
@@ -697,15 +710,14 @@
           {
             "country": "SA",
             "name": "Saudi Arabia",
-            "position": 74,
-            "movement": 20
+            "position": 55,
+            "movement": 19
           },
           {
             "country": "CN",
             "name": "China",
-            "position": 178,
-            "movement": null,
-            "status": "new"
+            "position": 109,
+            "movement": 69
           }
         ]
       },
@@ -828,7 +840,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 71,
-            "movement": -9
+            "movement": -5
           },
           {
             "country": "NG",
@@ -1058,97 +1070,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/4891a944de9418f059cabda0c7699160/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Calm Down",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BG",
-            "name": "Bulgaria",
-            "position": 18,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "SZ",
-            "name": "Swaziland",
-            "position": 21,
-            "movement": 0
-          },
-          {
-            "country": "DO",
-            "name": "Dominican Republic",
-            "position": 26,
-            "movement": -23
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 74,
-            "movement": -1
-          },
-          {
-            "country": "BE",
-            "name": "Belgium",
-            "position": 155,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 166,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CV",
-            "name": "Cape Verde",
-            "position": 137,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "MY",
-            "name": "Malaysia",
-            "position": 91,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 76,
-            "movement": null,
-            "status": "re"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/07d4291391724a969f243406cc92be66/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Soweto",
     "platforms": [
       {
@@ -1269,7 +1190,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 49,
+            "position": 62,
             "movement": null,
             "status": "new"
           }
@@ -1278,6 +1199,82 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/813c9474be279f125aba17ccd6e2cea0/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Calm Down",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SZ",
+            "name": "Swaziland",
+            "position": 18,
+            "movement": 3
+          },
+          {
+            "country": "BG",
+            "name": "Bulgaria",
+            "position": 28,
+            "movement": -26
+          },
+          {
+            "country": "DO",
+            "name": "Dominican Republic",
+            "position": 30,
+            "movement": -24
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 74,
+            "movement": -2
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CV",
+            "name": "Cape Verde",
+            "position": 137,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "MY",
+            "name": "Malaysia",
+            "position": 91,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 76,
+            "movement": null,
+            "status": "re"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/07d4291391724a969f243406cc92be66/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Bounce",
@@ -1326,8 +1323,8 @@
           {
             "country": "MA",
             "name": "Morocco",
-            "position": 24,
-            "movement": 1
+            "position": 25,
+            "movement": -1
           }
         ]
       },
@@ -1401,7 +1398,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 50,
+            "position": 63,
             "movement": null,
             "status": "new"
           }
@@ -1446,13 +1443,13 @@
             "country": "GH",
             "name": "Ghana",
             "position": 46,
-            "movement": -22
+            "movement": -21
           },
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 58,
-            "movement": -2
+            "position": 76,
+            "movement": -20
           }
         ]
       },
@@ -1652,13 +1649,46 @@
             "country": "GH",
             "name": "Ghana",
             "position": 105,
-            "movement": -21
+            "movement": -20
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/e4c2c39678f951dd57f09d2e98cd4062/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "TOXIC",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "MG",
+            "name": "Madagascar",
+            "position": 181,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CH",
+            "name": "Switzerland",
+            "position": 199,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/1732de52d38b7e0d8cd01c52c1057ccd/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "RAVAGE - EP",
@@ -1685,46 +1715,6 @@
     "kind": "album"
   },
   {
-    "title": "AZAMAN",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SN",
-            "name": "Senegal",
-            "position": 95,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/4891a944de9418f059cabda0c7699160/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Bout U",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 68,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6d2d72d718d4ad08f355e40b0ec94a33/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Trouble Maker",
     "platforms": [
       {
@@ -1745,27 +1735,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/9f343b559a9382c0d35ba0c9eca79159/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "TOXIC",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "MG",
-            "name": "Madagascar",
-            "position": 181,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/1732de52d38b7e0d8cd01c52c1057ccd/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Addicted",
+    "title": "Bout U",
     "platforms": [
       {
         "platform": "iTunes",
@@ -1774,14 +1744,35 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 200,
-            "movement": -119
+            "position": 81,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/e43cc1d22a556fa87272c55c933bb4d7/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6d2d72d718d4ad08f355e40b0ec94a33/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Peace of Mind",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 168,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/dcc05a9f00c838cb5af3784bb6932102/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Rave & Roses Ultra",
@@ -1813,13 +1804,39 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 72,
-            "movement": -9
+            "movement": -5
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/d386058066ab6b2b140515ed5c591a1f/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "AZAMAN",
+    "kind": "song",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SN",
+            "name": "Senegal",
+            "position": 95,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "cover": "https://cdn-images.dzcdn.net/images/cover/4891a944de9418f059cabda0c7699160/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Wine",
+    "platforms": [],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/e43cc1d22a556fa87272c55c933bb4d7/500x500-000000-80-0-0.jpg"
   }
 ];
   
