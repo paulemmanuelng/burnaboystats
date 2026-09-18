@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-18";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-18T16:32Z";
+  export const liveChartsBuiltAt = "2026-09-18T19:15Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -56,13 +56,13 @@
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 140,
-            "movement": -42
+            "position": 121,
+            "movement": 19
           },
           {
-            "country": "NE",
-            "name": "Niger",
-            "position": 156,
+            "country": "GM",
+            "name": "Gambia",
+            "position": 150,
             "movement": null,
             "status": "new"
           }
@@ -94,8 +94,8 @@
           {
             "country": "RU",
             "name": "Russia",
-            "position": 11,
-            "movement": 1
+            "position": 9,
+            "movement": 3
           },
           {
             "country": "BF",
@@ -141,9 +141,9 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "ML",
-            "name": "Mali",
-            "position": 171,
+            "country": "NE",
+            "name": "Niger",
+            "position": 152,
             "movement": null,
             "status": "new"
           }
@@ -152,59 +152,6 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/1d0daaf8c0025c2d95c96beafe4e0a0b/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Beggie Beggie",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 167,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 178,
-            "movement": -18
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b922c719d3a9901f749140e8f532a8d0/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "love nwantiti (feat. ElGrande Toto) (North African Remix)",
-    "kind": "song",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SN",
-            "name": "Senegal",
-            "position": 32,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "MA",
-            "name": "Morocco",
-            "position": 81,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6129d0ffc3ab3aaa28706630173a8fed/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "forever",
@@ -216,9 +163,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 17,
-            "movement": null,
-            "status": "new"
+            "position": 63,
+            "movement": -46
           }
         ]
       }
@@ -236,14 +182,33 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 136,
-            "movement": 4
+            "position": 106,
+            "movement": 30
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Beggie Beggie",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 183,
+            "movement": -5
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b922c719d3a9901f749140e8f532a8d0/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Boyfriend",
@@ -263,26 +228,6 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ba3181c9fe6a8e7e725a04506efb1dda/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "E CLEAR",
-    "kind": "song",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 83,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "cover": "https://cdn-images.dzcdn.net/images/cover/1d0daaf8c0025c2d95c96beafe4e0a0b/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "BODY (danz)",
