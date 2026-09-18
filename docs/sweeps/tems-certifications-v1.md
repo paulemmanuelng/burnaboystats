@@ -2,7 +2,7 @@
 
 **Method:** identical to burnaboystats.com — a certification counts when it appears in the issuing body's own records; one plaque per title per country at its **current** tier (a 5× Platinum is one plaque, not five); lead and featured **artist** credits both count, writer/producer credits do not. First pass 15 Aug 2026 (21 registers); **gap sweep 16 Aug 2026** added 13 national bodies never previously queried, re-attacked the three that had defeated the first pass (ARIA, ZPAV, IFPI Greece) and read the TurnTable archive in full. **36 bodies now appear in the coverage table.** ✓ = seen in the issuing body's own database. ✓ᴬ = confirmed in the body's own *archived* register (Wayback capture of the same URL). No tick = Wikipedia-cited only, because the body publishes no verifiable register.
 
-## Total: **71 certifications** — **71 of 71 verified body-side**
+## Total: **72 certifications** — **72 of 72 verified body-side**
 
 > **What the gap sweep changed:** no new plaques, and that is the finding. Thirteen national registers that had never been queried — Norway, Finland, Ireland, Singapore, Malaysia, India, Turkey, Croatia, Argentina, Chile, Colombia, Peru, Slovakia — returned **zero** Tems rows between them, and nine of the thirteen turn out to publish no usable certification register at all. What did change is provenance: the **six** plaques the first pass had to carry on Wikipedia's word alone — Australia (3), Poland (2), Greece (1) — were all found in the issuing bodies' own records and are now ticked. ARIA's register was not dead, only moved; ZPAV's had migrated to olis.pl; and IFPI Greece publishes certifications as an unlabelled award column inside its weekly chart. **The file no longer contains a single unverified claim.**
 
@@ -11,22 +11,22 @@
 |---|---|
 | Born in the Wild (2024) | 🇬🇧 Silver ✓ (15.05.2026) · 🇳🇿 Gold ✓ — **2** |
 
-### Lead singles — 28
+### Lead singles — 29
 | song | certifications |
 |---|---|
 | Me & U | 🇬🇧 Platinum ✓ (upgraded 31.07.2026) · 🇳🇬 Platinum ✓ · 🇳🇿 Platinum ✓ · 🇵🇹 Platina ✓ (wk 118, Apr 2026 — *new*) · 🇺🇸 Gold ✓ · 🇫🇷 Or ✓ (16.04.2026) · 🇨🇦 Gold ✓ · 🇨🇭 Gold ✓ — **8** |
 | Free Mind | 🇺🇸 2× Platinum ✓ · 🇨🇦 Platinum ✓ · 🇳🇿 Platinum ✓ · 🇬🇧 Gold ✓ — **4** |
 | Higher | 🇺🇸 Platinum ✓ · 🇳🇿 Platinum ✓ · 🇨🇦 Gold ✓ · 🇬🇧 Silver ✓ — **4** |
 | Damages | 🇨🇦 Gold ✓ · 🇳🇬 Gold ✓ᴬ · 🇬🇧 Silver ✓ — **3** |
-| Love Me JeJe | 🇳🇿 Platinum ✓ · 🇬🇧 Gold ✓ · 🇳🇬 Gold ✓ᴬ — **3** |
+| Love Me JeJe | 🇳🇿 Platinum ✓ · 🇬🇧 Gold ✓ · 🇳🇬 Gold ✓ᴬ · 🇵🇹 Ouro ✓ (AFP award card, May 2026) — **4** |
 | Found (ft. Brent Faiyaz) | 🇺🇸 Gold ✓ · 🇨🇦 Gold ✓ · 🇳🇿 Gold ✓ — **3** |
 | Isaka (6Am) (Ciza, Tems & Omah Lay) | 🇳🇬 Platinum ✓ — **1** |
 | Replay *(register-only find)* | 🇳🇿 Gold ✓ (02.04.2026) — **1** |
 | Get It Right (ft. Asake) *(register-only find)* | 🇳🇬 Silver ✓ᴬ — **1** |
 
-*Lead singles subtotal: 8+4+4+3+3+3 = 25, plus 3 single-entry rows = **28*** ✓
+*Lead singles subtotal: 8+4+4+3+4+3 = 26, plus 3 single-entry rows = **29*** ✓
 
-### Featured appearances — 40
+### Featured appearances — 41
 | song | certifications |
 |---|---|
 | Raindance (Dave ft. Tems) | 🇬🇧 2× Platinum ✓ (07.08.2026) · 🇵🇹 3× Platina ✓ (Semana 35 de 2026) · 🇧🇷 2× Platinum ✓ · 🇬🇷 2× Platinum ✓ (Jul 2026) · 🇫🇷 Platine ✓ (14.05.2026) · 🇨🇦 Platinum ✓ · 🇧🇪 Platinum ✓ (13.04.2026) · 🇳🇱 Platinum ✓ · 🇳🇿 2× Platinum ✓ (27.08.2026) · 🇦🇺 Platinum ✓ (Mar 2026) · 🇩🇰 Platin ✓ (07.07.2026) · 🇮🇹 Gold ✓ · 🇳🇬 Gold ✓ · 🇵🇱 Gold ✓ (05.08.2026) — **14** |
@@ -35,26 +35,26 @@
 | Fountains (Drake ft. Tems) | 🇳🇿 Gold ✓ · 🇦🇺 Gold ✓ (2024) · 🇵🇹 Ouro ✓ (AFP award card, March 2026) · 🇬🇧 Silver ✓ — **4** |
 | Move (Beyoncé ft. Grace Jones & Tems) | 🇧🇷 Platinum ✓ · 🇺🇸 Gold ✓ — **2** |
 
-*Featured subtotal: 14+13+8+3+2 = **40*** ✓
+*Featured subtotal: 14+13+8+4+2 = **41*** ✓
 
 ### Tier split (arithmetic check)
 | tier | count |
 |---|---|
 | 💎 Diamond | 1 |
-| Platinum (incl. multi-platinum) | 36 |
-| Gold | 28 |
+| Platinum (incl. multi-platinum) | 37 |
+| Gold | 29 |
 | Silver | 5 |
-| **total** | **70** ✓ |
+| **total** | **72** ✓ |
 
-*Sections: 2 albums + 28 lead singles + 40 featured = **70*** ✓
-*Tier split: 1 + 36 + 28 + 5 = **70*** ✓
-*Per-tier derivation — Diamond: Wait For U 🇺🇸. Platinum: albums 0, lead singles 10 (Me & U ×3, Free Mind ×3, Higher ×2, Love Me JeJe, Isaka), featured 24 (Raindance ×10, Wait For U ×6, Essence ×7, Move ×1). Gold: albums 1, lead singles 14, featured 14 (Fountains gains 🇵🇹). Silver: albums 1 (BOTW 🇬🇧), lead singles 3 (Higher 🇬🇧, Damages 🇬🇧, Get It Right 🇳🇬), featured 1 (Fountains 🇬🇧).*
+*Sections: 2 albums + 29 lead singles + 41 featured = **72*** ✓
+*Tier split: 1 + 37 + 29 + 5 = **72*** ✓
+*Per-tier derivation (re-derived from the rows, 18 Sep 2026) — Diamond: Wait For U 🇺🇸. Platinum: albums 0, lead singles 11 (Me & U ×4 incl. 🇵🇹, Free Mind ×3, Higher ×2, Love Me JeJe, Isaka), featured 26 (Raindance ×11, Wait For U ×7, Essence ×7, Move ×1). Gold: albums 1, lead singles 15 (Love Me JeJe gains 🇵🇹), featured 13 (Raindance ×3, Wait For U ×5, Essence ×1, Fountains ×3 incl. 🇵🇹, Move ×1). Silver: albums 1 (BOTW 🇬🇧), lead singles 3 (Higher 🇬🇧, Damages 🇬🇧, Get It Right 🇳🇬), featured 1 (Fountains 🇬🇧). 1 + 37 + 29 + 5 = 72.*
 
 ## Award events vs plaques
 
 This section exists because fan trackers and the site are counting two different things. A tally circulating as **"41 international certifications in 2026"** cannot be compared with the number above until the convention is fixed.
 
-**Plaque count (this file, and burnaboystats.com's convention): 71.** One plaque per title per country at its current tier. Burna Boy's 229 is counted the same way, so the two are directly comparable.
+**Plaque count (this file, and burnaboystats.com's convention): 72.** One plaque per title per country at its current tier. Burna Boy's 235 is counted the same way, so the two are directly comparable.
 
 **Award-event count (the fan-tracker convention): every separate announcement counts.** Wait For U in Australia was announced Platinum on 24.08.2022 and 2× Platinum on 03.03.2023 — one plaque, two certifications by that convention.
 
@@ -71,7 +71,7 @@ Only some bodies publish the tier ladder as separate dated rows. Five of the reg
 | Music Canada | 1 of 8 | **4** | Essence Gold → Platinum → 2× → 3× (the other seven Canadian ladders were collapsed to current tier without recording step counts) |
 | **measured total** | **15** | **24** | ratio **1.60 announcements per plaque** |
 
-**Arithmetic:** 11 + 4 + 3 + 2 + 4 = **24 announcements behind 15 plaques.** The remaining **53** plaques sit in registers that either overwrite in place, publish period snapshots, or were read at current tier only — their step counts are unmeasured. Applying the observed 1.60 ratio to all 68 gives a rough **~109 announcements**, but that is an extrapolation, not evidence, and it is explicitly *not* the number this file publishes.
+**Arithmetic:** 11 + 4 + 3 + 2 + 4 = **24 announcements behind 15 plaques.** The remaining **53** plaques sit in registers that either overwrite in place, publish period snapshots, or were read at current tier only — their step counts are unmeasured. Applying the observed 1.60 ratio to all 68 (the total when this section was written, 16 Aug 2026; 72 today) gives a rough **~109 announcements**, but that is an extrapolation, not evidence, and it is explicitly *not* the number this file publishes.
 
 ### The 2026 tally, reconciled — the ~41 is award events, and it is now explained
 
@@ -83,6 +83,14 @@ read off Audiogest's own award card ("Fountains / Drake feat. Tems / Universal
 Music"). It appears in the TOP Anual 2022 at 1876 with the `Gal.` cell **blank**
 and was not charting in 2026, so no weekly could ever have carried the badge —
 Portugal announces off-chart awards only in the monthly cards.
+
+**Added 18 Sep 2026 — a fifth Portuguese plaque, from a card the page would not serve.**
+*Love Me JeJe* takes **Ouro** in AFP's **May 2026** monthly batch ("Galardões de
+Ouro de Maio de 2026", Audiogest's Facebook post of 8 Jun 2026: "Love Me JeJe /
+Tems / Sony Music"), read from Paul's screenshots of the post — logged out,
+facebook.com/audiogest serves only its newest ~10 photos, so the May card was
+already out of reach when the March one was read on 28 Aug. The song was not
+charting in Portugal in 2026, so no weekly TOP could have badged it. 71 → **72**.
 
 **New Zealand, re-read 28 Aug 2026.** RMNZ's register (published through
 RadioScope, TablePress table 2052, 24,260 single rows) carries 23 Tems-crediting
@@ -104,7 +112,7 @@ date stamped across that whole weekly batch.
 One country, three titles: **6 announcements behind 3 plaques.** Multiply that pattern across the ~20 countries "Raindance" was certified in during 2026 and the low-40s fan figure is not inflated — it is the same events counted by a different rule.
 
 **Both numbers are now defensible, and they measure different things:**
-- **71 plaques** (this file, and burnaboystats.com's convention — directly comparable to Burna Boy's 230).
+- **72 plaques** (this file, and burnaboystats.com's convention — directly comparable to Burna Boy's 235).
 - **~41 award announcements in 2026** (the fan-tracker convention, counting every Gold→Platinum→multi-Platinum step and every country separately).
 
 Neither is wrong. Quoting one against the other is.
@@ -160,7 +168,7 @@ Every United States tier in this file was re-confirmed at source in one pass —
 | IFPI Austria | **swept ✓** | 1 — Wait For U Gold. |
 | FIMI (Italy) | **swept ✓** (POST endpoint, both formats × 7 years, 322 title queries) | 2 — Wait For U Gold, Raindance Gold. Both absent from Wikipedia's Tems page. |
 | Promusicae (Spain) | **swept ✓** | 1 — Wait For U Gold. |
-| AFP/Audiogest (Portugal) | **swept ✓** *(current register only)* | 1 — Raindance 2× Platina, badge corroborated across weeks 29–32. Historic titles no longer charting cannot be checked. |
+| AFP/Audiogest (Portugal) | **swept ✓** *(weeklies + annuals 27–28 Aug 2026; monthly award cards March, April and May 2026)* | 5 — Raindance 3× Platina, Wait For U 2× Platina, Me & U Platina, Fountains Ouro (March card), Love Me JeJe Ouro (May card, read 18 Sep 2026). Off-chart awards appear only on the monthly cards; months whose cards have not been read stay open. |
 | Pro-Música Brasil | **swept ✓** | 2 — Move Platinum, Raindance 2× Platinum. |
 | RiSA (South Africa) | **swept ✓** (production origin; risa.org.za serves anti-bot decoys) | 1 — Essence Multi-Platinum. All 597 register entries downloaded and grepped. |
 | Ultratop (Belgium) | **swept ✓** (both language sides, 2020–2026) | 1 — Raindance Platinum (13.04.2026). |
@@ -184,7 +192,7 @@ Every United States tier in this file was re-confirmed at source in one pass —
 | ČNS IFPI (Czech Republic & **Slovakia**) | **no public register** | 0 — ČNS IFPI administers both countries' awards and publishes **only six rules PDFs**, no listing. ifpi.sk is offline. Slovak rules (in force 09.03.2026) allow **Gold and Platinum only** — no multi-platinum, no diamond — and bar any release issued before **1 Jan 2022**, which makes Essence structurally ineligible regardless of streams. Request-based and private. |
 
 ## Verification notes — read before quoting
-- **Coverage, honestly stated:** **all 68** plaques have now been seen in an issuing body's own records — 65 live, 3 in TurnTable's archived register. The six Wikipedia-only claims from the first pass (Australia 3, Poland 2, Greece 1) were confirmed at ARIA, ZPAV and IFPI Greece respectively on 16 Aug 2026. **No row in this file rests on a secondary source.**
+- **Coverage, honestly stated (16 Aug 2026; the four added since — Me & U 🇵🇹, Wait For U 🇵🇹, Fountains 🇵🇹, Love Me JeJe 🇵🇹 — were each read at AFP's own chart or card):** **all 68** plaques had by then been seen in an issuing body's own records — 65 live, 3 in TurnTable's archived register. The six Wikipedia-only claims from the first pass (Australia 3, Poland 2, Greece 1) were confirmed at ARIA, ZPAV and IFPI Greece respectively on 16 Aug 2026. **No row in this file rests on a secondary source.**
 - **Thirteen new bodies, zero new plaques.** Norway, Finland, Ireland, Singapore, Malaysia, India, Turkey, Croatia, Argentina, Chile, Colombia, Peru and Slovakia together added nothing. **Nine of the thirteen publish no usable certification register at all**, which is a permanent structural finding, not a failed fetch: Ireland (register ends 2013), India (promotional gallery only), Turkey (ends 2009), Croatia (physical-only, no register), Argentina (ends 2011), Colombia (body defunct), Peru (not a certifying body), Malaysia ("coming soon" since 2020), Slovakia (rules only). Do not re-sweep these expecting a different answer.
 - **Removals — Wikipedia-implied claims deleted, and the new confirmations behind them:**
   - **"Know Your Worth" (Khalid & Disclosure) — all countries.** Certified in Canada, Denmark, Brazil and New Zealand, but every register credits **"Khalid & Disclosure" only**; Tems appears on the later remix, not the certified recording. The gap sweep confirmed this by *reading the rows* rather than assuming: **ARIA** 2020 list reads `Khalid x Disclosure | Know Your Worth | SME | PLATINUM | 10-06-2020`; **ZPAV** row id 14148 reads `KHALID FEAT. DISCLOSURE — "KNOW YOUR WORTH" — Gold — 2021-06-09`; **IFPI Greece**'s row credits `Khalid, Disclosure` only. No plaque, anywhere. This remains the single biggest source of inflation in fan tallies for Tems.

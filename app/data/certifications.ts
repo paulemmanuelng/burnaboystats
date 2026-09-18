@@ -243,7 +243,7 @@ export const singles: Release[] = [
   ] },
   { title: "City Boys", year: 2023, certs: [
     { c: "NG", level: "Platinum", x: 4 }, { c: "CA", level: "Platinum" }, { c: "FR", level: "Platinum" },
-    { c: "UK", level: "Gold" }, { c: "US", level: "Gold" }, { c: "NZ", level: "Gold" },
+    { c: "UK", level: "Gold" }, { c: "US", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "PT", level: "Gold" },
   ] },
   { title: "Gbona", year: 2018, cover: "https://cdn-images.dzcdn.net/images/cover/f270e126a51295c0042411f529b2f9d6/500x500-000000-80-0-0.jpg", certs: [
     { c: "FR", level: "Diamond" }, { c: "CA", level: "Platinum" }, { c: "CH", level: "Platinum" },
@@ -825,6 +825,13 @@ export const certHistory: CertEvent[] = [
   // charted, so neither the weekly TOP nor an annual could ever have shown it.
   // AFP prints the title "Wgft", not "WGFT".
   { title: "WGFT", credit: "Gunna ft. Burna Boy", country: "PT", level: "Gold", year: 2026 },
+  // AFP/Audiogest's APRIL 2026 monthly batch ("Galardões de Ouro de Abril de
+  // 2026", Audiogest's Facebook post of 11 May 2026: "City Boys / Burna Boy /
+  // Warner Music"), read 18 Sep 2026 from Paul's screenshots of the post —
+  // logged out, facebook.com serves only the newest ~10 photos, so the April
+  // card was out of reach when the March one was read on 28 Aug. The song was
+  // not charting in Portugal in 2026, so no weekly TOP could have badged it.
+  { title: "City Boys", country: "PT", level: "Gold", year: 2026 },
 
   // 31 Aug 2026 — both of these were on the RELEASE and missing from this log,
   // so the by-year figures ran two short. The site's own updates feed recorded
@@ -877,7 +884,7 @@ export const intlCertHistory = certHistory.filter((e) => e.country !== "NG");
 /** The most recent day a certifying body's own register was read for this
  *  file. Printed on the page's sources line in place of a typed "as of" month
  *  — bump it on every body read, in the same edit as the row it changes. */
-export const CERTS_VERIFIED_ON = "2026-09-17";
+export const CERTS_VERIFIED_ON = "2026-09-18";
 
 /** "Dai Dai" Platinum plaques beyond the US Latin 2× — the "Platinum in N more"
  *  rail note on the story and its Spanish twin, counted rather than typed after

@@ -8,14 +8,14 @@ tier**. A 5× Platinum is one plaque, not five. Lead and featured credits both
 count; writer and producer credits do not. Every plaque below was read in an
 issuing body's own register.
 
-## Total: **28 certifications**
+## Total: **29 certifications**
 
 Across **15 countries**, on **10 titles**.
 
 ## The shape of it
 
-Fourteen of the twenty-seven belong to one record. "love nwantiti (ah ah ah)"
-is certified in fourteen countries — the widest single-record spread on the
+Fifteen of the twenty-nine belong to one record. "love nwantiti (ah ah ah)"
+is certified in fifteen countries — the widest single-record spread on the
 board — and it reaches that spread through versions the registers name
 differently: the original, the ElGrande Toto North African remix, the Joeboy &
 Kuami Eugene remix, the Franglish French remix, the Pronto & Eunique German
@@ -32,7 +32,19 @@ ElGrande Toto / WARNER` at `OU`, badged in the weekly of 22.10.2021**. Two more
 versions appear unbadged: *feat. Joeboy & Kuami Eugene* and *feat. Eunique &
 Pronto*. Counting the ElGrande Toto Ouro would give CKay a second Portuguese
 plaque for one song, so it is deliberately not counted — recorded here so a
-later sweep does not "discover" it and add it.
+later sweep does not "discover" it and add it. The same rule covers AFP's
+**April 2026** monthly card, which prints "Love Nwantiti / CKay feat. DJ Yo! &
+AX'EL / Warner Music" at **1ª Platina** — a fresh registration of the remix,
+not an upgrade of the `6PL` main product; one Portuguese plaque for the song,
+at 6×, stands.
+
+**Added 18 Sep 2026 — a Portuguese Gold for *Emiliana*.** The same April 2026
+card ("Galardões de Ouro de Abril de 2026", Audiogest's Facebook post of 11 May
+2026) prints "Emiliana / CKay / Warner Music" at **Ouro**. Read from Paul's
+screenshots of the post: logged out, facebook.com/audiogest serves only its
+newest ~10 photos, so the April batch was out of reach on 28 Aug. *Emiliana*
+was not charting in Portugal in 2026, so no weekly TOP could have badged it.
+28 → **29**.
 
 **France certified two of his records Diamond** — "love nwantiti" and
 "Emiliana". No other country has given him anything above Platinum, and France
@@ -44,6 +56,7 @@ gave him two.
 | 🇫🇷 France | Emiliana | Diamond |
 | 🇺🇸 United States | love nwantiti (ah ah ah) | 8× Platinum |
 | 🇵🇹 Portugal | love nwantiti (ah ah ah) | 6× Platinum |
+| 🇳🇿 New Zealand | love nwantiti (ah ah ah) | 3× Platinum |
 | 🇨🇦 Canada | love nwantiti (ah ah ah) | 4× Platinum |
 | 🇵🇱 Poland | love nwantiti (ah ah ah) | 4× Platinum |
 | 🇬🇧 United Kingdom | love nwantiti (ah ah ah) | 2× Platinum |
@@ -59,6 +72,7 @@ gave him two.
 | 🇦🇺 Australia | love nwantiti (ah ah ah) | Gold |
 | 🇨🇦 Canada | Emiliana | Gold |
 | 🇳🇱 Netherlands | Emiliana | Gold |
+| 🇵🇹 Portugal | Emiliana | Gold |
 | 🇳🇬 Nigeria | love nwantiti (ah ah ah) | Gold |
 | 🇳🇬 Nigeria | HALLELUJAH | Gold |
 | 🇳🇬 Nigeria | Trumpet | Gold |
@@ -68,7 +82,7 @@ gave him two.
 | 🇳🇬 Nigeria | by now | Silver |
 | 🇳🇬 Nigeria | WATAWI | Silver |
 
-**Per country:** 🇳🇬 10, 🇫🇷 2, 🇨🇦 2, 🇬🇧 2, 🇳🇱 2, and one each in 🇺🇸 🇵🇹 🇵🇱 🇦🇹 🇩🇪 🇩🇰 🇪🇸 🇮🇹 🇦🇺 🇳🇿. Sum: 10 + 2 + 2 + 2 + 2 + 10 = **28** ✓
+**Per country:** 🇳🇬 10, 🇫🇷 2, 🇨🇦 2, 🇬🇧 2, 🇳🇱 2, 🇵🇹 2, and one each in 🇺🇸 🇵🇱 🇦🇹 🇩🇪 🇩🇰 🇪🇸 🇮🇹 🇦🇺 🇳🇿. Sum: 10 + 2 + 2 + 2 + 2 + 2 + 9 = **29** ✓
 
 **Featured credits, counted as the rules require:** "La La" is Davido's record
 and "Beggie Beggie" is Ayra Starr's. Both carry his credit, so both count. The

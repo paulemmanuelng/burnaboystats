@@ -273,6 +273,14 @@ export const AFROBEATS_VERIFIED_ON_6 = "2026-08-28";
  *  the newest verifiedOn to the newest sweep record on disk. */
 export const AFROBEATS_VERIFIED_ON_7 = "2026-09-06";
 
+/** Tems and CKay, re-read 18 Sep 2026 against AFP/Audiogest's April and May
+ *  2026 monthly award cards (Audiogest's Facebook posts of 11 May and 8 Jun
+ *  2026, read from Paul's screenshots — logged out, the page serves only its
+ *  newest ~10 photos, so both batches were out of reach on 28 Aug). Each
+ *  gained one Portuguese Gold: "Emiliana" (April) and "Love Me JeJe" (May).
+ *  docs/sweeps/portugal-afp-verification-2026-08-27.md, "Read 18 Sep 2026". */
+export const AFROBEATS_VERIFIED_ON_8 = "2026-09-18";
+
 export const afrobeatsArtists: AfroArtist[] = [
   {
     slug: "olamide",
@@ -1241,7 +1249,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     spotifyId: "687cZJR45JO7jhk1LHIbgq",
     wikipedia: "https://en.wikipedia.org/wiki/Tems_(singer)",
     image: "https://i.scdn.co/image/ab6761610000e5eb22d7d6f8981c7a27bf68a382",
-    verifiedOn: AFROBEATS_VERIFIED_ON_7,
+    verifiedOn: AFROBEATS_VERIFIED_ON_8,
     swept: true,
     chartPublished: { entries: 124, territories: 44, no1s: 7 },
     releases: [
@@ -1250,7 +1258,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Free Mind", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/53e9db9663c87b34723c17bcf9c2a8e8/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Platinum", x: 2 }, { c: "CA", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "UK", level: "Gold" }] },
       { title: "Higher", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/53e9db9663c87b34723c17bcf9c2a8e8/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "CA", level: "Gold" }, { c: "UK", level: "Silver" }] },
       { title: "Damages", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/3d1528266cd1263f06d630c1c73376d5/500x500-000000-80-0-0.jpg", certs: [{ c: "CA", level: "Gold" }, { c: "NG", level: "Gold" }, { c: "UK", level: "Silver" }] },
-      { title: "Love Me JeJe", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/4bfd7acfa6aaa14c1497f19aeb5a0536/500x500-000000-80-0-0.jpg", certs: [{ c: "NZ", level: "Platinum" }, { c: "UK", level: "Gold" }, { c: "NG", level: "Gold" }] },
+      { title: "Love Me JeJe", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/4bfd7acfa6aaa14c1497f19aeb5a0536/500x500-000000-80-0-0.jpg", certs: [{ c: "NZ", level: "Platinum" }, { c: "UK", level: "Gold" }, { c: "NG", level: "Gold" }, { c: "PT", level: "Gold" }] }, // PT: AFP "Galardões de Ouro de Maio de 2026" card (Audiogest post, 8 Jun 2026), read 18 Sep 2026
       { title: "Found", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/b3aea8ba7c55e2eafd6672ff29668bdb/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "NZ", level: "Gold" }] },
       { title: "Isaka", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/d015c74bed325b8928343913858fb3c2/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Replay", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/b3aea8ba7c55e2eafd6672ff29668bdb/500x500-000000-80-0-0.jpg", certs: [{ c: "NZ", level: "Gold" }] },
@@ -2184,12 +2192,12 @@ export const afrobeatsArtists: AfroArtist[] = [
     spotifyId: "048LktY5zMnakWq7PTtFrz",
     wikipedia: "https://en.wikipedia.org/wiki/CKay",
     image: "https://i.scdn.co/image/ab6761610000e5ebff101c2e561cfcff3f6195aa",
-    verifiedOn: AFROBEATS_VERIFIED_ON_7,
+    verifiedOn: AFROBEATS_VERIFIED_ON_8,
     swept: true,
     chartPublished: { entries: 37, territories: 22, no1s: 6 },
     releases: [
       { title: "love nwantiti (ah ah ah)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/ed3944c139089af1359c26d78843d435/500x500-000000-80-0-0.jpg", certs: [{ c: "FR", level: "Diamond" }, { c: "US", level: "Platinum", x: 8 }, { c: "PT", level: "Platinum", x: 6 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "CA", level: "Platinum", x: 4 }, { c: "PL", level: "Platinum", x: 4 }, { c: "NL", level: "Platinum", x: 2 }, { c: "UK", level: "Platinum", x: 2 }, { c: "AT", level: "Platinum" }, { c: "DE", level: "Platinum" }, { c: "DK", level: "Platinum" }, { c: "ES", level: "Platinum" }, { c: "IT", level: "Platinum" }, { c: "AU", level: "Gold" }, { c: "NG", level: "Gold" }] },
-      { title: "Emiliana", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/17c6e2a5233d9bb0920643922dd4f210/500x500-000000-80-0-0.jpg", certs: [{ c: "FR", level: "Diamond" }, { c: "NG", level: "Platinum" }, { c: "CA", level: "Gold" }, { c: "NL", level: "Gold" }, { c: "UK", level: "Silver" }] },
+      { title: "Emiliana", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/17c6e2a5233d9bb0920643922dd4f210/500x500-000000-80-0-0.jpg", certs: [{ c: "FR", level: "Diamond" }, { c: "NG", level: "Platinum" }, { c: "CA", level: "Gold" }, { c: "NL", level: "Gold" }, { c: "PT", level: "Gold" }, { c: "UK", level: "Silver" }] }, // PT: AFP "Galardões de Ouro de Abril de 2026" card (Audiogest post, 11 May 2026), read 18 Sep 2026
       { title: "BODY (danz)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
       { title: "Beggie Beggie", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/b922c719d3a9901f749140e8f532a8d0/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Felony", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/9adfaa37a1fbd5ab5907e3fb78ff7a70/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },

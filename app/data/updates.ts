@@ -48,6 +48,12 @@ export const updates: Update[] = [
   {
     date: "2026-09-18",
     category: "Certifications",
+    text: "“City Boys” is Gold in Portugal — AFP/Audiogest listed it in the April 2026 awards, the song's seventh plaque and its first Portuguese one, taking his certification count to 235 across 26 countries.",
+    href: "/certifications",
+  },
+  {
+    date: "2026-09-18",
+    category: "Certifications",
     text: "“B. D'OR” with Wizkid is Platinum in Nigeria — TurnTable certified the 2021 single on 8 June 2023, the same record that peaked at No. 2 on the Nigeria Top 100.",
     href: "/certifications",
   },

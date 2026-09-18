@@ -64,7 +64,7 @@ describe("certification data integrity", () => {
   });
 
   it("matches the published headline figures", () => {
-    expect(totalAwards()).toBe(234); // + "Dai Dai" Platinum in Austria (IFPI Austria, 3 Sep 2026)
+    expect(totalAwards()).toBe(235); // + "City Boys" Gold in Portugal (AFP April 2026 card, 18 Sep 2026)
     expect(countryCount).toBe(26);
     expect(certifiedReleaseCount).toBe(85); // TaTaTa, Update, Love, Dem Dey join via TCSN
   });
@@ -95,12 +95,12 @@ describe("certHistory (certifications by year)", () => {
     ]);
   });
 
-  it("2026 logs 58 international certifications (66 events with Nigeria)", () => {
+  it("2026 logs 59 international certifications (67 events with Nigeria)", () => {
     // The by-year log is international-only: earlier years predate the TCSN
     // register, so Nigeria's 8 events would skew the comparison. They still
     // count in the totals. The log counts award EVENTS, so a Gold and a later
     // Platinum in the same country are two.
-    expect(intlCertHistory.filter((e) => e.year === 2026).length).toBe(58);
+    expect(intlCertHistory.filter((e) => e.year === 2026).length).toBe(59);
     // 54th and 55th: the French Diamant upgrade and Poland's Gold, both
     // awarded 31 Aug 2026 and both missing from this log until 3 Sep.
     // 56th: Austria's Platinum for "Dai Dai", read in IFPI Austria's own
@@ -110,7 +110,9 @@ describe("certHistory (certifications by year)", () => {
     // 58th: "We Pray" UK Gold — BPI's title page prints "01 May 2026 Gold |
     // 10 January 2025 Silver", read 16 Sep 2026; the release row had the Gold
     // all along, the log only the Silver step.
-    expect(certHistory.filter((e) => e.year === 2026).length).toBe(66);
+    // 59th: "City Boys" Portugal Gold — AFP's April 2026 award card (Audiogest's
+    // post of 11 May 2026), read 18 Sep 2026 from the body's own card.
+    expect(certHistory.filter((e) => e.year === 2026).length).toBe(67);
   });
 
   it("2025 has the published count of 29 certifications", () => {

@@ -39,10 +39,10 @@ const EXPECTED = {
   "fireboy-dml": { total: 36, diamond: 1 },
   davido: { total: 91, diamond: 0 },
   rema: { total: 82, diamond: 5 }, // + "Secondhand" 🇵🇹 Ouro, AFP's own July 2026 award card
-  tems: { total: 71, diamond: 1 }, // + "Fountains" 🇵🇹 Ouro, AFP March 2026 card
+  tems: { total: 72, diamond: 1 }, // + "Fountains" 🇵🇹 Ouro (AFP March 2026 card), + "Love Me JeJe" 🇵🇹 Ouro (May 2026 card, read 18 Sep)
   tyla: { total: 62, diamond: 2 },
   "ayra-starr": { total: 41, diamond: 2 },
-  ckay: { total: 28, diamond: 2 },
+  ckay: { total: 29, diamond: 2 }, // + "Emiliana" 🇵🇹 Ouro, AFP April 2026 card, read 18 Sep 2026
   // Added 28 Aug 2026 as artists 13, 14 and 15. Nigeria read deterministically
   // from all 303 weekly issues TurnTable has published; internationals read at
   // each issuing body by hand.
