@@ -4100,7 +4100,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "City Boys",
     "path": "/music/city-boys",
     "section": "Release",
-    "description": "6 certifications · 9 chart entries.",
+    "description": "7 certifications · 9 chart entries.",
     "keywords": [
       "song",
       "release"

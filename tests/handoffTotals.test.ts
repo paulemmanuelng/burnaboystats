@@ -33,11 +33,11 @@ import { cars, totalValueUsd } from "../app/data/cars";
  */
 
 describe("handoff checklist — data integrity", () => {
-  it("counts 234 certifications across 26 countries", () => {
+  it("counts 235 certifications across 26 countries", () => {
     const certs = allItems.reduce((n, item) => n + item.certs.length, 0);
     const countries = new Set(allItems.flatMap((i) => i.certs.map((c) => c.c))).size;
 
-    expect(certs).toBe(234); // + "Dai Dai" Platinum in Austria (IFPI Austria register, 3 Sep 2026)
+    expect(certs).toBe(235); // + "City Boys" Gold in Portugal (AFP April 2026 card, read 18 Sep 2026)
     expect(countries).toBe(26); // Czechia joins
     // The page-facing helpers must agree with the raw reduce.
     expect(totalAwards()).toBe(certs);
@@ -68,11 +68,11 @@ describe("handoff checklist — data integrity", () => {
     // Gold — a downgrade back to the tier the snapshot originally held, before
     // a typed 2025 event list bumped it on 1 Jul 2026. Total unchanged.
     expect(byLevel("Platinum")).toBe(101); // + Dai Dai AT, − Ginger CH, + Dai Dai GR
-    expect(byLevel("Gold")).toBe(95); // + "Dai Dai" in Poland (ZPAV), + Ginger CH, − Dai Dai GR, − My Oasis UK
+    expect(byLevel("Gold")).toBe(96); // + City Boys PT, + "Dai Dai" in Poland (ZPAV), + Ginger CH, − Dai Dai GR, − My Oasis UK
     expect(byLevel("Silver")).toBe(31); // On the Low NG left this tier for Gold; My Oasis UK came back to it
 
     const sum = byLevel("Diamond") + byLevel("Platinum") + byLevel("Gold") + byLevel("Silver");
-    expect(sum).toBe(234);
+    expect(sum).toBe(235);
   });
 
   // A test NAME is not an assertion, which is how this one came to read "280

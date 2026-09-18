@@ -136,6 +136,31 @@ to 07/2026, blank throughout, and left before the March batch.
 conclusion was wrong: a register read in full is a proven zero only for the awards
 that register can express. Corrected in `victony-certifications-v1.md`.
 
+**Read 18 Sep 2026 — the April and May 2026 batches, from screenshots.** Logged
+out, facebook.com/audiogest serves only its newest ~10 photos and instagram.com
+serves three posts, so on 28 Aug only the March batch was in reach. Paul's
+screenshots of Audiogest's own posts (m.facebook.com, the "Galardões de Ouro de
+Abril de 2026" post of 11 May 2026, the "Galardões de Ouro de Maio de 2026" post
+of 8 Jun 2026, the "Galardões de Platina de Abril" post of 14 May 2026 and a
+Platina post of August 2026) add three plaques. These are single FRAMES of
+video carousels — 8 rows of the April Ouro post, 4 of the May Ouro post, 4 of
+the April Platina post, 4 of the August Platina post — not the whole batches:
+
+| Artist | Title | Tier | Batch | Note |
+|---|---|---|---|---|
+| Burna Boy | **City Boys** | Ouro | April 2026 (posted 11 May) | "City Boys / Burna Boy / Warner Music" — NEW on the site |
+| CKay | **Emiliana** | Ouro | April 2026 (posted 11 May) | "Emiliana / CKay / Warner Music" — NEW on the board |
+| Tems | **Love Me JeJe** | Ouro | May 2026 (posted 8 Jun) | "Love Me JeJe / Tems / Sony Music" — NEW on the board |
+| CKay | Love Nwantiti (feat. DJ Yo! & AX'EL) | 1ª Platina | April 2026 (posted 14 May) | a fresh registration of the remix; the `6PL` main product stands as the song's one Portuguese plaque (see ckay-certifications-v1.md) |
+| Shakira & Burna Boy | Dai Dai | 1ª Platina | August 2026 post (footer reads "1▮ Aug 2026", day partly hidden; caption not captured) | already on the site (certHistory, PT Platinum 2026, from the week-31 PDF) |
+
+*City Boys* charted nowhere in Portugal's 2026 weeklies and *Emiliana* and *Love
+Me JeJe* were not charting either, so — as with March — no PDF could have carried
+these. The screenshots are the body's own cards; the one thing they cannot give
+is the weekly badge date, which the cards never print anyway. **April and May
+2026 stay OPEN for the other thirteen board artists** — only the twenty rows
+above were seen, so a later pass must not treat either month as a proven zero.
+
 **Provenance note.** ineews.eu reproduces these batch tables verbatim and is a
 sound way to FIND a row, but it is syndication, not the body — and demonstrably
 imperfect: its February article says 42 awards while its table prints 41. Every

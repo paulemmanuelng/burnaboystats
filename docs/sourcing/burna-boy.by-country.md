@@ -217,9 +217,11 @@
 - Location [Dave ft. Burna Boy] — Gold
 - Ginger [Wizkid ft. Burna Boy] — Gold
 
-### PT — AFP (6)
+### PT — AFP (8)
 - Dai Dai [Shakira & Burna Boy] — Platinum
 - Gbona — Gold
+- City Boys — Gold (AFP April 2026 award card, Audiogest post of 11 May 2026; read 18 Sep 2026)
+- WGFT [Gunna ft. Burna Boy] — Gold (AFP March 2026 award card, printed "Wgft"; read 28 Aug 2026)
 - Location [Dave ft. Burna Boy] — Gold
 - We Pray [Coldplay ft. Burna Boy & others] — Gold
 - Own It [Stormzy ft. Ed Sheeran & Burna Boy] — Gold
@@ -238,7 +240,8 @@
 - Love, Damini — Gold
 - Location [Dave ft. Burna Boy] — Platinum
 
-### AT — IFPI Austria (3)
+### AT — IFPI Austria (4)
+- Dai Dai [Shakira & Burna Boy] — Platinum (IFPI Austria Gold & Platin database, 3 Sep 2026)
 - Last Last — Gold
 - We Pray [Coldplay ft. Burna Boy & others] — Gold
 - Jerusalema (Remix) [Master KG, Nomcebo & Burna Boy] — Gold
@@ -278,8 +281,9 @@
 ### NO — IFPI Norway (1)
 - Location [Dave ft. Burna Boy] — Platinum
 
-### PL — ZPAV (1)
+### PL — ZPAV (2)
 - We Pray [Coldplay ft. Burna Boy & others] — Platinum
+- Dai Dai [Shakira & Burna Boy] — Gold (ZPAV, 31 Aug 2026)
 
 ### BE — BEA (1)
 - Jerusalema (Remix) [Master KG, Nomcebo & Burna Boy] — Platinum x2
