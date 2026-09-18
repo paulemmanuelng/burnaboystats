@@ -547,7 +547,7 @@ The Netherlands "Boom" figure stays at **#33** (Nederlandse Top 40) rather than 
 
 ### Context
 
-Under the **identical standard**, Burna Boy has **284 chart entries** and **46 No. 1 placements** across **67 chart countries** ([burnaboystats.com](https://burnaboystats.com)).
+Under the **identical standard**, Burna Boy has **351 chart entries** and **46 No. 1 placements** across **67 chart countries** ([burnaboystats.com](https://burnaboystats.com)).
 
 Comparing honestly:
 

@@ -94,7 +94,7 @@ export const songs: Song[] = [
     ytViews: "310M",
     tagline: "The defiant life-anthem that became his global signature",
     blurb:
-      "From the 2018 album Outside, “Ye” is one of Burna Boy's signature songs — the record that carried a career already six years deep into a worldwide audience. A defiant, celebratory Afro-fusion anthem about the will to live and enjoy every moment — “I no wan die, I wan enjoy” — it became a global streaming staple and went Platinum across the US, UK, France, Canada and beyond, all without ever needing a singles chart.",
+      "From the 2018 album Outside, “Ye” is one of Burna Boy's signature songs — the record that carried a career already six years deep into a worldwide audience. A defiant, celebratory Afro-fusion anthem about the will to live and enjoy every moment — “I no wan die, I wan enjoy” — it became a global streaming staple and went Platinum across the US, UK, France, Canada and beyond without a singles-chart run to speak of — its only chart visit came eight years on, four weeks in Nigeria's Top 100 in July 2026 that peaked at No. 70.",
     extraFacts: [
       { v: "2018", l: "the Outside single that carried him to a worldwide audience" },
       { v: "Platinum", l: "certified in the US, UK, France, Canada, Sweden, NZ & Switzerland" },
@@ -164,7 +164,7 @@ export const songs: Song[] = [
     spotifyStreams: "308M",
     tagline: "Burna Boy's highest-ever Billboard Hot 100 peak",
     blurb:
-      "A feature on Gunna's 2025 album The Last Wun, “WGFT” gave Burna Boy his highest position ever on the US Billboard Hot 100 — No. 16 — blending Gunna's melodic trap with Burna's Afrobeats cadence. It charted in 12 countries and gave him his first US Top 20 single.",
+      "A feature on Gunna's 2025 album The Last Wun, “WGFT” gave Burna Boy his highest position ever on the US Billboard Hot 100 — No. 16 — blending Gunna's melodic trap with Burna's Afrobeats cadence. It charted in 13 countries and gave him his first US Top 20 single.",
     extraFacts: [
       { v: "No. 16", l: "US Billboard Hot 100 — Burna Boy's highest-ever Hot 100 peak" },
       { v: "2025", l: "a feature on Gunna's album The Last Wun" },
@@ -181,7 +181,7 @@ export const songs: Song[] = [
     ],
     metaTitle: "Gunna & Burna Boy “WGFT” — His Best Billboard Hot 100 Peak",
     metaDescription:
-      "“WGFT” by Gunna featuring Burna Boy gave Burna his highest-ever Billboard Hot 100 peak at No. 16, charting in 12 countries — the full chart run and story.",
+      "“WGFT” by Gunna featuring Burna Boy gave Burna his highest-ever Billboard Hot 100 peak at No. 16, charting in 13 countries — the full chart run and story.",
   },
   {
     slug: "city-boys",
@@ -237,12 +237,12 @@ export const songs: Song[] = [
       },
       {
         q: "How big was “Jerusalema (Remix)”?",
-        a: "It was a global phenomenon — No. 1 in Belgium, Switzerland, Hungary, the Netherlands and Suriname, charting in 15 countries and certified Diamond in France and 4× Platinum in Italy.",
+        a: "It was a global phenomenon — No. 1 in Belgium, Switzerland, Hungary, the Netherlands and Suriname, charting in 16 countries and certified Diamond in France and 4× Platinum in Italy.",
       },
     ],
     metaTitle: "“Jerusalema (Remix)” — Master KG, Nomcebo & Burna Boy Stats",
     metaDescription:
-      "Burna Boy on the “Jerusalema” remix: No. 1 in five countries, Diamond in France and 16 chart entries during the global #JerusalemaDanceChallenge — full stats.",
+      "Burna Boy on the “Jerusalema” remix: No. 1 in five countries, Diamond in France and 17 chart entries during the global #JerusalemaDanceChallenge — full stats.",
   },
   {
     slug: "alone",
@@ -254,7 +254,7 @@ export const songs: Song[] = [
     spotify: "https://open.spotify.com/track/0AoBY2Y3qs6dtGgOD6c91N",
     tagline: "His song from Black Panther: Wakanda Forever",
     blurb:
-      "Burna Boy's contribution to the Black Panther: Wakanda Forever soundtrack (2022), a Marvel record that put Afrobeats at the centre of one of the biggest films of the year. It became a genuine international hit in its own right — No. 19 in France, No. 28 in the UK and a run across eight official charts — and topped the UK's Afrobeats chart.",
+      "Burna Boy's contribution to the Black Panther: Wakanda Forever soundtrack (2022), a Marvel record that put Afrobeats at the centre of one of the biggest films of the year. It became a genuine international hit in its own right — No. 19 in France, No. 28 in the UK and a run across nine official charts — and topped the UK's Afrobeats chart.",
     extraFacts: [
       { v: "No. 19", l: "France (SNEP) — its highest national peak" },
       { v: "No. 28", l: "UK Official Singles Chart" },
@@ -268,7 +268,7 @@ export const songs: Song[] = [
       },
       {
         q: "How did “Alone” chart?",
-        a: "“Alone” charted in seven countries plus the Billboard Global 200 — its best peaks were No. 19 in France, No. 28 on the UK Official Singles Chart and No. 45 in Switzerland. It also reached No. 1 on the UK's Official Afrobeats Chart.",
+        a: "“Alone” charted in eight countries plus the Billboard Global 200 — its best peaks were No. 19 in France, No. 28 on the UK Official Singles Chart and No. 45 in Switzerland. It also reached No. 1 on the UK's Official Afrobeats Chart.",
       },
       {
         q: "Is “Alone” certified?",

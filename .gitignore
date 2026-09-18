@@ -62,3 +62,4 @@ design_handoff_burnaboystats/
 # Throwaway agent worktrees — checkouts of this same repo.
 .claude/worktrees/
 digest-preview.*
+.turntable-walk/

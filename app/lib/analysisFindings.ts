@@ -62,6 +62,7 @@ const toBars = (rows: { name: string; n: number; hot?: boolean }[]): FindingBar[
 const uk = marketProfile("UK");
 const us = marketProfile("US");
 const fr = marketProfile("FR");
+const ng = marketProfile("NG");
 const topCert = certsByCountry[0];
 const diamondHome = diamondCerts[0]?.country ?? "France";
 const ddEntryShare = Math.round((daiDaiChartEntryCount / chartEntryCount) * 100);
@@ -108,11 +109,12 @@ export const findings: Finding[] = [
       { v: `${us.top10s}`, l: "US top 10s, ever" },
     ],
     body: [
-      `The United Kingdom is his single strongest market by volume: ${uk.entries} chart entries, ${uk.top10s} of them top 10, and ${uk.numberOnes} No. 1s. The United States, for all the coverage it attracts, has produced ${us.entries} entries — and not one top 10 on either the Hot 100 or the Billboard 200. His best American peak is No. ${us.bestPeak}.`,
-      `The pattern holds beyond those two. ${marketsByVolume
+      `Outside his home chart, the United Kingdom is his single strongest market by volume: ${uk.entries} chart entries, ${uk.top10s} of them top 10, and ${uk.numberOnes} No. 1s. The United States, for all the coverage it attracts, has produced ${us.entries} entries — and not one top 10 on either the Hot 100 or the Billboard 200. His best American peak is No. ${us.bestPeak}.`,
+      `The pattern holds beyond those two. Nigeria's own Top 100 leads the whole table, as a home chart should, with ${ng.entries} entries; abroad, ${marketsByVolume
+        .filter((m) => m.code !== "NG")
         .slice(0, 5)
         .map((m) => m.country)
-        .join(", ")} lead the table. His No. 1s are not only European, though: of the ${numberOneCountries.length} countries where a release has topped the chart, ${numberOneCountriesInEurope.length} are in Europe and ${numberOneCountriesOutsideEurope.length} are not — ${listJoin(numberOneRegionsOutsideEurope)}.`,
+        .join(", ")} lead. His No. 1s are not only European, though: of the ${numberOneCountries.length} countries where a release has topped the chart, ${numberOneCountriesInEurope.length} are in Europe and ${numberOneCountriesOutsideEurope.length} are not — ${listJoin(numberOneRegionsOutsideEurope)}.`,
       `This matters because the standard narrative treats American success as the measure of an Afrobeats crossover. By that yardstick Burna Boy looks like a near-miss. By the actual record, he is an established European chart fixture who happens to be a cult concern in the US — a materially different, and more interesting, career shape.`,
     ],
     links: [

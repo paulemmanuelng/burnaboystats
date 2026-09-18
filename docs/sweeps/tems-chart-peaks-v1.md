@@ -404,7 +404,7 @@ Every one of the eight matches this file exactly. The audit's premise is the par
 
 ### Context
 
-Under this **identical** standard, Burna Boy holds **284 chart entries and 46 No. 1 placements across 67 chart countries** ([burnaboystats.com](https://burnaboystats.com)). Tems has **124 entries, 7 No. 1 placements, 42 chart countries** — 44% of his entry count, 63% of his country reach, and 15% of his No. 1s.
+Under this **identical** standard, Burna Boy holds **351 chart entries and 46 No. 1 placements across 67 chart countries** ([burnaboystats.com](https://burnaboystats.com)). Tems has **124 entries, 7 No. 1 placements, 42 chart countries** — 35% of his entry count, 63% of his country reach, and 15% of his No. 1s.
 
 The honest reading is that these are two different shapes of chart career, not two points on one scale.
 
