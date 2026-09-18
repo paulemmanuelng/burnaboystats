@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-17";
+  export const liveChartsUpdated = "2026-09-18";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-17T23:09Z";
+  export const liveChartsBuiltAt = "2026-09-18T01:19Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -461,19 +461,19 @@
             "country": "GH",
             "name": "Ghana",
             "position": 3,
-            "movement": 85
+            "movement": 91
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 19,
-            "movement": -1
+            "position": 21,
+            "movement": -3
           },
           {
             "country": "ZW",
             "name": "Zimbabwe",
             "position": 97,
-            "movement": -13
+            "movement": -5
           },
           {
             "country": "GD",
@@ -1105,7 +1105,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 4,
-            "movement": 11
+            "movement": 13
           }
         ]
       },
@@ -1237,8 +1237,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 23,
-            "movement": -1
+            "position": 25,
+            "movement": -3
           }
         ]
       },
@@ -1477,8 +1477,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 119,
-            "movement": -9
+            "position": 121,
+            "movement": -11
           },
           {
             "country": "ML",
@@ -1527,27 +1527,26 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 33,
-            "movement": 5
+            "position": 35,
+            "movement": 3
           },
           {
             "country": "AG",
             "name": "Antigua and Barbuda",
-            "position": 54,
-            "movement": -3
+            "position": 53,
+            "movement": -2
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 77,
-            "movement": 4
+            "position": 64,
+            "movement": 17
           },
           {
             "country": "NG",
             "name": "Nigeria",
             "position": 125,
-            "movement": null,
-            "status": "new"
+            "movement": -98
           }
         ]
       },
@@ -1684,13 +1683,13 @@
           {
             "country": "IT",
             "name": "Italy",
-            "position": 12,
-            "movement": 0
+            "position": 15,
+            "movement": -3
           },
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 18,
+            "position": 19,
             "movement": -4
           }
         ]
@@ -1771,8 +1770,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 45,
-            "movement": -7
+            "position": 48,
+            "movement": -10
           },
           {
             "country": "UG",
@@ -1797,8 +1796,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 189,
-            "movement": null,
-            "status": "new"
+            "movement": 11
           }
         ]
       },
@@ -1817,49 +1815,6 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b922c719d3a9901f749140e8f532a8d0/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Ngozi",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 33,
-            "movement": -29
-          },
-          {
-            "country": "SC",
-            "name": "Seychelles",
-            "position": 96,
-            "movement": 77
-          },
-          {
-            "country": "TZ",
-            "name": "Tanzania",
-            "position": 137,
-            "movement": -16
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 142,
-            "movement": 11
-          },
-          {
-            "country": "MW",
-            "name": "Malawi",
-            "position": 185,
-            "movement": 9
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/12ca87c2ea2fa9506d6fc562bd8f5a01/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Ms. Paper",
@@ -1922,6 +1877,49 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/64f822132d39a3677d59f745a248a2ce/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Ngozi",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 39,
+            "movement": -35
+          },
+          {
+            "country": "SC",
+            "name": "Seychelles",
+            "position": 96,
+            "movement": 77
+          },
+          {
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 137,
+            "movement": -16
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 142,
+            "movement": 11
+          },
+          {
+            "country": "MW",
+            "name": "Malawi",
+            "position": 185,
+            "movement": 9
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/12ca87c2ea2fa9506d6fc562bd8f5a01/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Gimme Dat",
@@ -2196,8 +2194,8 @@
           {
             "country": "DM",
             "name": "Dominica",
-            "position": 43,
-            "movement": 0
+            "position": 42,
+            "movement": 2
           }
         ]
       }
@@ -2417,8 +2415,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 97,
-            "movement": -6
+            "position": 100,
+            "movement": -9
           },
           {
             "country": "FM",
