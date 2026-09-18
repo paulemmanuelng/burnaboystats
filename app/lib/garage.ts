@@ -47,7 +47,7 @@ export const carTitle = (car: GarageCar) => `${car.make} ${car.model} — Burna 
 
 /** The meta description — the gate caps it at 160 characters. */
 export const carDescription = (car: GarageCar) =>
-  `${car.make} ${modelShort(car.model)}: ranked ${car.rank} of ${garage.length} in Burna Boy's garage, reported at ${usdFull(car.valueUsd)}. Specs, illustration and source.`;
+  `${car.make} ${modelShort(car.model)}: ranked ${car.rank} of ${garage.length} in Burna Boy's garage${car.jointWith ? ` (joint with ${car.jointWith} others)` : ""}, ${car.valueBasis === "estimate" ? "estimated" : "reported"} at ${usdFull(car.valueUsd)}. Specs, illustration and ${car.link ? "source" : "sourcing"}.`;
 
 /** The strongest figure in the collection on each axis — the bars' 100%. */
 export const garageBest = {
@@ -96,6 +96,11 @@ export function performanceBars(car: GarageCar): PerformanceBar[] {
   const pwShare = pw ? pw / garageBest.powerToWeight : 0;
   const acc = car.num.acc;
   const vmax = car.num.vmax;
+  // Ferrari publishes ">310 km/h" and Lamborghini ">350 km/h": the bar keeps
+  // the qualifier the specification row prints, read from the string so the
+  // numeric twin stays a number.
+  const vmaxOpen = (car.specs.topSpeed ?? "").trim().startsWith(">");
+  const accOpen = (car.specs.zeroToHundred ?? "").trim().startsWith("<");
   const accShare = acc === null ? 0 : garageBest.acc / acc;
   const vmaxShare = vmax === null ? 0 : vmax / garageBest.vmax;
   const usdShare = car.valueUsd / garageBest.usd;
@@ -115,24 +120,24 @@ export function performanceBars(car: GarageCar): PerformanceBar[] {
     },
     {
       key: "0–100 km/h",
-      value: pending || acc === null ? "—" : `${acc.toFixed(1)} s`,
+      value: pending || acc === null ? "—" : `${accOpen ? "<" : ""}${acc.toFixed(1)} s`,
       share: pending || acc === null ? 0 : width(accShare),
       aria: pending
         ? `0 to 100 km/h: ${wait}`
         : acc === null
           ? unpublished("0 to 100 km/h time")
-          : `0 to 100 km/h in ${acc.toFixed(1)} seconds, ${pct(accShare)}% of the quickest in the collection`,
+          : `0 to 100 km/h in ${accOpen ? "under " : ""}${acc.toFixed(1)} seconds, ${pct(accShare)}% of the quickest in the collection`,
       pending,
     },
     {
       key: "Top speed",
-      value: pending || vmax === null ? "—" : `${vmax} km/h`,
+      value: pending || vmax === null ? "—" : `${vmaxOpen ? ">" : ""}${vmax} km/h`,
       share: pending || vmax === null ? 0 : width(vmaxShare),
       aria: pending
         ? `Top speed: ${wait}`
         : vmax === null
           ? unpublished("Top speed")
-          : `Top speed ${vmax} km/h, ${pct(vmaxShare)}% of the fastest in the collection`,
+          : `Top speed ${vmaxOpen ? "over " : ""}${vmax} km/h, ${pct(vmaxShare)}% of the fastest in the collection`,
       pending,
     },
     {

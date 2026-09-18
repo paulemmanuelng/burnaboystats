@@ -6,7 +6,7 @@ import KeepExploring from "../../../components/KeepExploring";
 import MobileMenuButton from "../../../components/MobileMenuButton";
 import BackLink from "../../../components/BackLink";
 import { pageMetadata, CANONICAL_ORIGIN } from "../../../lib/seo";
-import { carBySlug, carSlugs, garage } from "../../../data/cars";
+import { carBySlug, carSlugs, garage, CARS_LAST_SWEEP, CARS_SPECS_CHECKED, valueWord } from "../../../data/cars";
 import {
   modelShort,
   usdFull,
@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: { params: Promise<{ car: stri
     description: carDescription(car),
     path: `/records/cars/${car.slug}`,
     shareTitle: `${car.make} ${modelShort(car.model)} — Burna Boy's cars`,
-    shareDescription: `Reported value ${usdFull(car.valueUsd)} · ${car.valueNaira}. Ranked ${car.rank} of ${garage.length} in the garage.`,
+    shareDescription: `${car.valueBasis === "estimate" ? "Estimated" : "Reported"} value ${usdFull(car.valueUsd)} · ${car.valueNaira}. Ranked ${car.rank} of ${garage.length} in the garage${car.jointWith ? `, joint with ${car.jointWith} ${car.jointWith === 1 ? "other" : "others"}` : ""}.`,
   });
 }
 
@@ -120,7 +120,7 @@ export default async function CarPage({ params }: { params: Promise<{ car: strin
   // behind one line until someone has checked each against the linked sheet.
   const pending = !car.specs.verified;
   const baseModel = car.specs.basis === "base model";
-  const yearLine = car.year ? `Model year ${car.year}` : "Model year not reported";
+  const yearLine = car.year ? (car.yearIs === "acquired" ? `Bought ${car.year}` : `Model year ${car.year}`) : "Model year not reported";
 
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
@@ -196,7 +196,7 @@ export default async function CarPage({ params }: { params: Promise<{ car: strin
           {/* The 3D MODEL slot, repointed at the one figure the site holds (§5.3). */}
           <div className={styles.valueBox}>
             <span className={styles.valueUsd}>{usdFull(car.valueUsd)}</span>
-            <span className={styles.valueNaira}>{car.valueNaira} · reported value</span>
+            <span className={styles.valueNaira}>{car.valueNaira} · {valueWord(car)} value</span>
           </div>
         </div>
 
@@ -230,13 +230,13 @@ export default async function CarPage({ params }: { params: Promise<{ car: strin
         <div className={styles.statCells}>
           <div className={styles.statCell}>
             <div className={styles.statValue}>{usdFull(car.valueUsd)}</div>
-            <div className={styles.statLabel}>{car.valueNaira} · reported</div>
+            <div className={styles.statLabel}>{car.valueNaira} · {valueWord(car)}</div>
           </div>
           <div className={styles.statCell}>
             <div className={`${styles.statValue} ${styles.statGold}`}>
               {rankLabel(car.rank)}<span className={styles.statOf}> / {total}</span>
             </div>
-            <div className={styles.statLabel}>Rank by value</div>
+            <div className={styles.statLabel}>{car.jointWith ? "Position by value" : "Rank by value"}</div>
           </div>
         </div>
 
@@ -247,7 +247,7 @@ export default async function CarPage({ params }: { params: Promise<{ car: strin
               {baseModel && (
                 <span
                   className={styles.baseTag}
-                  title="Figures are for the standard production model; this car is a one-off build"
+                  title="Figures are for the standard production model, not this car's own specification"
                 >
                   Base model
                 </span>
@@ -324,9 +324,12 @@ export default async function CarPage({ params }: { params: Promise<{ car: strin
             <div className={styles.provKicker}>Why it&apos;s on this list</div>
             <p className={styles.provText}>{car.desc}</p>
             <div className={styles.provMeta}>
-              <span>Rank <b className={styles.provRank}>{rankLabel(car.rank)}</b> of {total} by reported value</span>
+              <span>
+                Rank <b className={styles.provRank}>{rankLabel(car.rank)}</b> of {total} by {valueWord(car)} value
+                {car.jointWith ? ` — joint with ${car.jointWith} ${car.jointWith === 1 ? "other" : "others"} at ${usdFull(car.valueUsd)}` : ""}
+              </span>
               <span>{yearLine}</span>
-              <span>Last re-verified July 2026</span>
+              <span>List re-verified {CARS_LAST_SWEEP} · specs read at the maker {CARS_SPECS_CHECKED}</span>
             </div>
           </div>
 

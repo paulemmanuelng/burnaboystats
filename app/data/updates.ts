@@ -46,6 +46,24 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-09-18",
+    category: "Charts",
+    text: "Twice as Tall's Nigerian albums-chart peak is No. 17, reached on 2 and 16 February 2023 — every TurnTable issue since the chart began in November 2022 was read, and the album is still on it 184 weeks later.",
+    href: "/music/albums/twice-as-tall",
+  },
+  {
+    date: "2026-09-18",
+    category: "Charts",
+    text: "Eight album peaks read at the bodies: No Sign of Weakness charted in Switzerland (28) and Portugal (66); I Told Them… in New Zealand (12), Denmark (13) and Austria (39); African Giant hit 12 in the Netherlands, 64 in Switzerland and 23 in Nigeria — and Ireland's peak was 80, not 12.",
+    href: "/records/charts",
+  },
+  {
+    date: "2026-09-18",
+    category: "Certifications",
+    text: "I Told Them… went Silver in the UK on 22 December 2023, BPI's register shows — the log had it under 2024. The count is unchanged; the year is now the register's.",
+    href: "/certifications",
+  },
+  {
     date: "2026-09-17",
     category: "Firsts & Records",
     text: "A correction to the World Cup Final entry: Burna Boy was the first African artist to perform at the halftime show, on a bill headlined by Madonna, Shakira, BTS and Justin Bieber — FIFA's own announcement draws that line, and the site now does too.",
@@ -396,7 +414,7 @@ export const updates: Update[] = [
   {
     date: "2026-09-08",
     category: "Lifestyle",
-    text: `A correction to the garage total, now ${totalValueFormatted} across ${carCount} cars: the Bugatti Chiron's ₦9 billion is re-converted at ₦1,370.08 to the dollar, the rate on 5 July 2026, the day the buy was announced — not the ₦1,454 it had been. Nothing about the car changed; only the arithmetic did.`,
+    text: `A correction to the garage total, now ${totalValueFormatted} across ${carCount} cars: the Bugatti Chiron's ₦9 billion is re-converted at CBN's ₦1,370.19 to the dollar, the last trading day before the 4 July reveal — not the ₦1,454 it had been. Nothing about the car changed; only the arithmetic did.`,
     href: "/records/cars",
   },
   {

@@ -257,9 +257,9 @@ Four rows here also appear in files already written, and **all four reproduce to
 
 ### Context
 
-Under this identical standard, **Burna Boy has 276 chart entries and 46 No. 1 placements across 69 chart territories** ([burnaboystats.com](https://burnaboystats.com)).
+Under this identical standard, **Burna Boy has 284 chart entries and 46 No. 1 placements across 69 chart territories** ([burnaboystats.com](https://burnaboystats.com)).
 
-Asake's **131 entries across 12 chart territories** is **47% of Burna Boy's entry count** and **just over half his No. 1 tally** — but only **17% of his chart-territory reach**, and that last number is the honest one. The two lines are not the same shape at all. Burna Boy's 276 is spread across 69 territories at an average of four entries each; Asake's 131 is **94 entries in one country** plus a 37-entry tail.
+Asake's **131 entries across 12 chart territories** is **46% of Burna Boy's entry count** and **just over half his No. 1 tally** — but only **17% of his chart-territory reach**, and that last number is the honest one. The two lines are not the same shape at all. Burna Boy's 284 is spread across 69 territories at an average of four entries each; Asake's 131 is **94 entries in one country** plus a 37-entry tail.
 
 Set against the others in this sweep, the comparison is sharper still. Ayra Starr has **82 entries across 30 chart territories** — fewer entries than Asake, in nearly three times as many places. Asake out-charts her at home by 94 to 32 and out-No.-1s her 24 to 10, and then loses the international comparison outright: she has a Spanish No. 1, a six-week Peruvian No. 1 and a Bolivian No. 1; he has **no No. 1 anywhere outside Nigeria, and a best Billboard Global 200 peak of #120.**
 

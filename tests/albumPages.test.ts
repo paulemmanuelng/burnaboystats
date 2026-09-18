@@ -2,7 +2,9 @@ import { describe, it, expect } from "vitest";
 import { albumPages, albumPageBySlug, albumPageByTitle } from "../app/data/albumPages";
 import { albums } from "../app/data/albums";
 import { albumCharts } from "../app/data/charts";
-import { allItems } from "../app/data/certifications";
+import { allItems, COUNTRIES, tierOf } from "../app/data/certifications";
+import { CHART_COUNTRIES } from "../app/data/charts";
+import { ceremonies } from "../app/data/awards";
 import { sameTitle } from "../app/lib/titleKey";
 
 /**
@@ -101,5 +103,65 @@ describe("album pages data", () => {
   it("albumPageBySlug finds and misses correctly", () => {
     expect(albumPageBySlug("african-giant")?.title).toBe("African Giant");
     expect(albumPageBySlug("nope")).toBeUndefined();
+  });
+
+  /**
+   * Album prose types figures the page derives beside them — track counts,
+   * country counts, chart peaks, plaque tiers, Album of the Year nominations —
+   * and they drifted: African Giant said "seven countries, peaking at No. 12 in
+   * Ireland" (nine; Ireland's peak is 80), On a Spaceship "his longest album"
+   * (a three-way tie). Nothing tied the words to the data until 18 Sep 2026.
+   */
+  it("every typed count, peak, tier and nomination in album prose equals the data", () => {
+    const WORDS: Record<string, number> = { one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10, eleven: 11, twelve: 12, thirteen: 13, fourteen: 14, fifteen: 15, sixteen: 16, seventeen: 17, eighteen: 18, nineteen: 19, twenty: 20 };
+    const num = (w: string) => (/^\d+$/.test(w) ? Number(w) : WORDS[w.toLowerCase()]);
+    const ALIAS: Record<string, string> = { "the UK": "GB", UK: "GB", "the Netherlands": "NL", "the US": "US", US: "US", Nigeria: "NG", Ireland: "IE", Canada: "CA", France: "FR", Sweden: "SE", Belgium: "BE", Germany: "DE", Switzerland: "CH", Norway: "NO", Austria: "AT", Portugal: "PT", Denmark: "DK", "New Zealand": "NZ", Australia: "AU" };
+    const codeOf = (name: string) => {
+      if (ALIAS[name]) return ALIAS[name] === "GB" ? "UK" : ALIAS[name];
+      const hit = Object.entries(CHART_COUNTRIES).find(([, m]) => m.name === name);
+      return hit?.[0];
+    };
+    const problems: string[] = [];
+    for (const p of albumPages) {
+      const album = albums.find((a) => sameTitle(a.title, p.title));
+      const chart = albumCharts.find((r) => sameTitle(r.title, p.title));
+      const cert = allItems.find((r) => sameTitle(r.title, p.title));
+      const countries = chart ? chart.entries.filter((e) => e.c !== "GLB" && e.c !== "GLBX") : [];
+      const texts = [p.blurb, p.metaDescription, ...p.extraFacts.map((f) => `${f.v} ${f.l}`), ...p.faqs.flatMap((f) => [f.q, f.a])];
+      for (const text of texts) {
+        for (const m of text.matchAll(/\b(\w+)[- ]tracks?\b(?! deluxe)/gi)) {
+          // "the 19-track deluxe edition" names the OTHER edition and is exempt.
+          const n = num(m[1]);
+          if (n != null && album && n !== album.tracks.length) problems.push(`${p.slug}: "${m[0]}" but albums.ts holds ${album.tracks.length}`);
+        }
+        for (const m of text.matchAll(/(?:charted|charting|certifications|certified) in (\w+) countries/gi)) {
+          const n = num(m[1]);
+          const isCert = /certif/i.test(m[0]);
+          const want = isCert ? (cert ? new Set(cert.certs.map((c) => c.c)).size : 0) : countries.length;
+          if (n != null && n !== want) problems.push(`${p.slug}: "${m[0]}" but the data holds ${want}`);
+        }
+        for (const m of text.matchAll(/No\. (\d+) (?:in|on) (?:the )?([A-Z][A-Za-z ]+?)(?=[,.;)]| and | —|$)/g)) {
+          const code = codeOf(m[2].replace(/^US Billboard 200$/, "US").replace(/^Billboard 200$/, "US").trim());
+          if (!code) continue;
+          const row = chart?.entries.find((e) => e.c === code);
+          if (!row || row.peak !== Number(m[1])) problems.push(`${p.slug}: "${m[0]}" but charts.ts holds ${row ? row.peak : "no entry"} for ${code}`);
+        }
+        for (const m of text.matchAll(/(\d+)× Platinum in ([A-Z][a-z]+)/g)) {
+          const code = codeOf(m[2]);
+          const c = cert?.certs.find((x) => x.c === code);
+          if (!c || tierOf(c.level) !== "platinum" || (c.x ?? 1) !== Number(m[1])) problems.push(`${p.slug}: "${m[0]}" but certifications.ts holds ${c ? `${c.level}${c.x ? ` ×${c.x}` : ""}` : "no plaque"}`);
+        }
+        for (const m of text.matchAll(/(\d+)× nom/g)) {
+          const noms = ceremonies.flatMap((b) => b.noms.filter((n) => n.category === "Album of the Year" && !n.won && sameTitle(n.work ?? "", p.title)));
+          if (Number(m[1]) !== noms.length) problems.push(`${p.slug}: "${m[0]}" but awards.ts holds ${noms.length} Album of the Year nominations`);
+        }
+      }
+    }
+    expect(problems).toEqual([]);
+  });
+
+  it("Love, Damini's tracks 6–10 are in the release's order", () => {
+    // Read at Spotify, Apple and Deezer on 18 Sep 2026; Wikipedia's order was the outlier.
+    expect(albums.find((a) => a.title === "Love, Damini")!.tracks.slice(5, 10)).toEqual(["Whiskey", "Last Last", "Different Size (feat. Victony)", "It's Plenty", "Dirty Secrets"]);
   });
 });

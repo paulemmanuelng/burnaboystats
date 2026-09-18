@@ -1,0 +1,261 @@
+[
+ {
+  "batch": "4b",
+  "pr": 286,
+  "page": "/music/albums/african-giant",
+  "kind": "wrong",
+  "tier": "figure",
+  "title": "Ireland's peak was 80, not 12; three peaks missing, one that never was",
+  "was": "Pills and FAQ: \"No. 12 in Ireland\", seven countries; Germany 80; no Netherlands, Switzerland or Nigeria.",
+  "body": "IRMA issue of 2 Aug 2019: 80, one week; Dutch Album Top 100 entry 3 Aug 2019 at 12 (155 weeks); Schweizer Hitparade 64; TurnTable Official Top 100 Albums 23 (30 Jul 2026, still charting); Offizielle Charts has no run.",
+  "now": "NL 12 · UK 16 · NG 23 (open) · CA 33 · FR 54 · BE 58 · CH 64 · IE 80 · US 104 — nine countries; the FAQ, blurb and Edison line (\"Jazz/World award in the World category\", not \"Best World Album\") follow; label carries Bad Habit.",
+  "guard": "tests/albumPages: every typed count, peak, tier and nomination in album prose equals the data (proven on \"No. 12 in Ireland\" and \"seven countries\")."
+ },
+ {
+  "batch": "4b",
+  "pr": 286,
+  "page": "/music/albums/no-sign-of-weakness",
+  "kind": "stale",
+  "tier": "figure",
+  "title": "Two album peaks unrecorded; the Grammy card dated to the wrong year",
+  "was": "Seven countries; \"2025 — Album of the Year — AFRIMA — and a Grammy nomination\".",
+  "body": "Schweizer Hitparade issue of 20 Jul 2025: 28; AFP/Audiogest semana 29/2025: 66; the Grammy nomination is the 2026 ceremony's.",
+  "now": "CH 28 and PT 66 added (nine countries); the AFRIMA win and the 2026 Grammy nomination on separate cards."
+ },
+ {
+  "batch": "4b",
+  "pr": 286,
+  "page": "/music/albums/i-told-them",
+  "kind": "stale",
+  "tier": "figure",
+  "title": "Three album peaks unrecorded; the UK Silver logged a year late",
+  "was": "Eleven countries; certHistory UK Silver 2024; \"$30.46M\" and \"22 shows\" typed four times; label without Bad Habit.",
+  "body": "RMNZ 12 (13 weeks); Hitlisten uge 35/2023: 13; austriancharts.at 39; BPI title/9614: Silver 22 December 2023.",
+  "now": "NZ 12 · DK 13 · AT 39 added (fourteen countries); the Silver row moved to 2023 (2023: 45, 2024: 20); the record tour's figures read from tours.ts; label \"Atlantic · Bad Habit · Spaceship\"."
+ },
+ {
+  "batch": "4b",
+  "pr": 286,
+  "page": "/music/albums/twice-as-tall",
+  "kind": "wrong",
+  "tier": "figure",
+  "title": "Nigeria peak was the debut position, not the peak",
+  "was": "\"No. 25 Nigeria\" — the album's rank on the chart's first issue.",
+  "body": "Every TurnTable Official Top 100 Albums issue read (2 Nov 2022 → 10 Sep 2026): 17 on the 2 and 16 Feb 2023 issues; 26 on the latest, 184 weeks.",
+  "now": "NG 17 with a note; the Nigeria body reads \"TurnTable Top 100 / Top 100 Albums\"; every Atlantic-era label carries Bad Habit in the release's order."
+ },
+ {
+  "batch": "4b",
+  "pr": 286,
+  "page": "/music/albums/outside",
+  "kind": "wrong",
+  "tier": "figure",
+  "title": "No chart row at all — the album has a 51-issue Nigerian run",
+  "was": "No chart section, no peak facts, no OG peak; /records/firsts named Outside among five Billboard 200 albums (it never charted there); the 2019 Headies Album of the Year row had no work; \"over 330 million\" streams typed on a card.",
+  "body": "TurnTable Official Top 100 Albums: debut 96 (14 Mar 2024), peak 41 (4 Jul 2024), 89 on 10 Sep 2026; Billboard 200 history; Headies 2019 nominees.",
+  "now": "NG 41 row; the firsts sentence names the five albums that did chart (I Told Them… in, Outside out); the Headies row names Outside and the FAQ says so; the \"Ye\" card drops its typed stream count; the NEA 2018 win's press provenance stated on the row.",
+  "also": [
+   "/records/firsts"
+  ]
+ },
+ {
+  "batch": "4b",
+  "pr": 286,
+  "page": "/music/albums/love-damini",
+  "kind": "wrong",
+  "tier": "figure",
+  "title": "Tracks 6–10 in the wrong order; Victony misspelled",
+  "was": "\"Dirty Secrets\" at 6; \"Different Size (feat. Vict0ny)\" in the tracklist and the cert credit.",
+  "body": "Spotify, Apple and Deezer all list Whiskey, Last Last, Different Size, It's Plenty, Dirty Secrets at 6–10; Victony spells his name with a letter o.",
+  "now": "Release order and spelling in albums.ts and certifications.ts; search index rebuilt.",
+  "guard": "tests/albumPages: tracks 6–10 pinned to the release's order."
+ },
+ {
+  "batch": "4b",
+  "pr": 286,
+  "page": "/music/albums/on-a-spaceship",
+  "kind": "wrong",
+  "tier": "prose",
+  "title": "\"His longest album\" — a three-way tie",
+  "was": "\"19 — tracks — his longest album\"; the Rizzla song page said the album came out \"with Universal\" while this page says self-released.",
+  "body": "albums.ts: On a Spaceship, African Giant and Love, Damini all 19 under the standard-edition rule; Spotify's ℗: Spaceship Entertainment.",
+  "now": "\"joint-longest with African Giant and Love, Damini\"; Rizzla's three label mentions say self-released on Spaceship.",
+  "also": [
+   "/music/rizzla"
+  ]
+ },
+ {
+  "batch": "4b",
+  "pr": 286,
+  "page": "/music/albums/life",
+  "kind": "note",
+  "tier": "structure",
+  "title": "The edition note never reached the album page",
+  "was": "The 17 Sep decision put the note beside the count on /music and in the dialog — the album page itself said \"15 tracks\" under a \"Deluxe Edition\" cover linking a 19-track release.",
+  "body": "albums.ts editionNote; Spotify album 7pqUKMWH6P7AJPIjUiphTS: 19 songs.",
+  "now": "The album page prints the edition note under the tracklist head (On a Spaceship's \"Soke\" note too); the L.I.F.E card and FAQ say \"standard edition\".",
+  "also": [
+   "/music/albums/on-a-spaceship"
+  ]
+ },
+ {
+  "batch": "4b",
+  "pr": 286,
+  "page": "/records/cars/bugatti-chiron",
+  "kind": "stale",
+  "tier": "link",
+  "title": "The reveal video is gone; the rate was dated to a Sunday",
+  "was": "\"Watch the reveal\" → an unavailable YouTube video; \"the rate on 5 July 2026\" (no market that day); \"Bugatti publishes no absolute weight\"; a spec link to bugatti.com.",
+  "body": "CBN NFEM rate for Friday 3 July 2026: ₦1,370.19 → $6,568,428; Bugatti's newsroom technical-specifications sheet: DIN 1,995 kg; AutoJosh 5 Jul 2026 on the dealer's ₦9bn.",
+  "now": "No link (the slot says how the list is sourced); the rate named and dated on the row, the index and the 8 Sep feed line — the $6.57M is unchanged; the note cites Bugatti's own sheet; the desc names the dealer behind the ₦9bn."
+ },
+ {
+  "batch": "4b",
+  "pr": 286,
+  "page": "/records/cars/mclaren-senna",
+  "kind": "wrong",
+  "tier": "prose",
+  "title": "\"$2M is the figure Burna Boy himself posted\" — it is the dealer's",
+  "was": "Desc and the index: a price posted by Burna Boy; drivetrain not on the cited page; the base-model tooltip called every base-model car a one-off.",
+  "body": "Abuja Car Limited's June 2025 sale post: ₦3.2bn; press to ₦3.5bn; McLaren's Senna performance page (archived): rear wheels.",
+  "now": "Dealer-stated on the row and the index (the dollar read off the row); the drivetrain source named in the note; the tooltip corrected."
+ },
+ {
+  "batch": "4b",
+  "pr": 286,
+  "page": "/records/cars/ferrari-purosangue",
+  "kind": "note",
+  "tier": "figure",
+  "title": "Five cars tie at $1,000,000 but each was \"ranked N of 15\"",
+  "was": "Strict ranks on the page, the OG card, the meta description; \">310 km/h\" on the panel but \"310 km/h\" on the bar; \"Model year 2024\" for a purchase year.",
+  "body": "cars.ts values; Ferrari's own \">\" qualifier; AutoJosh 21/22 Dec 2024 (bought new).",
+  "now": "Joint ranks stated everywhere a rank prints (jointWith); the bars keep Ferrari's and Lamborghini's \">\" and \"<\" qualifiers; `yearIs: \"acquired\"` prints \"Bought 2024\" — the same for the SVJ, Dawn, 812 GTS, Urus, Cullinan and GT3 RS.",
+  "also": [
+   "every car page"
+  ],
+  "guard": "tests/cars: tied cars carry jointWith and say \"joint\"; a \">\" spec keeps its qualifier on the bar."
+ },
+ {
+  "batch": "4b",
+  "pr": 286,
+  "page": "/records/cars/lamborghini-aventador-svj-roadster",
+  "kind": "stale",
+  "tier": "link",
+  "title": "The delivery video is gone",
+  "was": "\"Watch the delivery\" → an unavailable YouTube video; \"Model year 2022\".",
+  "body": "AutoJosh's dated report of him in the car; announced Nov 2022, delivered Jan 2023.",
+  "now": "The dated report is the source; \"Bought 2022\"."
+ },
+ {
+  "batch": "4b",
+  "pr": 286,
+  "page": "/records/cars/rolls-royce-dawn",
+  "kind": "stale",
+  "tier": "link",
+  "title": "The Dawn's spec page now redirects to Rolls-Royce's home page",
+  "was": "Spec link to a withdrawn showroom page; \"also fitted with a diamond Spirit of Ecstasy\" (unsourced); no price provenance.",
+  "body": "Rolls-Royce's own EU technical sheet (July 2019, archived); AutoJosh July 2020 (₦200m, a Christmas 2019 gift to himself); Pulse Nov 2025 ($350,000).",
+  "now": "Archived sheet as the source with a note; the desc tells the sourced story and names the earlier figures; \"Bought 2019\"."
+ },
+ {
+  "batch": "4b",
+  "pr": 286,
+  "page": "/records/cars/ferrari-812-gts",
+  "kind": "wrong",
+  "tier": "prose",
+  "title": "The weight note derived a figure Ferrari publishes outright",
+  "was": "\"Ferrari's 812 GTS page lists no weight … 1,525 + 75\"; \"340 km/h\" without Ferrari's \">\"; \"Model year 2023\".",
+  "body": "ferrari.com's Technical Specifications tab: Dry weight 1600 kg, > 340 km/h; Legit.ng 22 Dec 2023 (over $700,000).",
+  "now": "Note reads \"Dry weight, as Ferrari's technical specifications list it\"; \">340 km/h\"; price provenance in the desc; \"Bought 2023\"."
+ },
+ {
+  "batch": "4b",
+  "pr": 286,
+  "page": "/records/cars/porsche-911-gt3-rs",
+  "kind": "note",
+  "tier": "prose",
+  "title": "\"Weissach\" with no source; the ₦900m is an estimate",
+  "was": "\"911 GT3 RS (Weissach)\" in the model name, desc and subtitle; \"a Polanco staffer put the price at ₦900 million\".",
+  "body": "No dated source shows the pack; AutoJosh 17 Feb 2026 reported over ₦1 billion; the ₦900m is the July 2026 fan breakdown.",
+  "now": "Model \"911 GT3 RS\"; the desc names the estimate and the press figure; \"Bought 2026\"; search index rebuilt."
+ },
+ {
+  "batch": "4b",
+  "pr": 286,
+  "page": "/records/cars/lamborghini-urus",
+  "kind": "note",
+  "tier": "prose",
+  "title": "The weight note misquoted the brochures; no price provenance",
+  "was": "\"three different weights, all labelled curb\"; ₦730m with the ₦200m report as the only link.",
+  "body": "Urus S brochure: 2,350 kg curb; Performante: 2,157 kg dry — later variants; AutoJosh Mar 2022: ₦200m-plus.",
+  "now": "The note says what the brochures say and why none applies; the desc names the estimate's origin; \"Bought 2022\"."
+ },
+ {
+  "batch": "4b",
+  "pr": 286,
+  "page": "/records/cars/rolls-royce-cullinan-black-badge",
+  "kind": "note",
+  "tier": "prose",
+  "title": "The trim was asserted; the spec link pointed at the wrong series",
+  "was": "\"in Black Badge trim — custom-ordered\"; source = the Series II release; \"Still open: Series I or II\".",
+  "body": "His Instagram story of 22 Mar 2024 (before the 7 May 2024 Series II announcement); AutoJosh 23 Mar 2024 gave no price.",
+  "now": "\"reported as Black Badge trim — customised\"; the Series I release as the source; the price's origin named; \"Bought 2024\"."
+ },
+ {
+  "batch": "4b",
+  "pr": 286,
+  "page": "/records/cars/mercedes-maybach-s680",
+  "kind": "stale",
+  "tier": "link",
+  "title": "The spec link hit a Mercedes me login wall",
+  "was": "\"Manufacturer figures\" → a login page; the desc cited an expired Instagram caption as \"confirmed\"; ₦440m with no provenance.",
+  "body": "Mercedes' technical-data lightbox for the S 680 Saloon (Z223), as of 22 Jan 2025 — every panel row matches; Pulse 30 Dec 2022 on the 11 Nov 2022 Story; Legit.ng 27 Aug 2026 ($300,000).",
+  "now": "The data-sheet lightbox as the source with a note; the Story attributed and dated; the row's comment names the price sources. Presence and identity stay Paul's call."
+ },
+ {
+  "batch": "4b",
+  "pr": 286,
+  "page": "/records/cars/mercedes-maybach-gls-600",
+  "kind": "note",
+  "tier": "figure",
+  "title": "A site estimate labelled \"reported value\"",
+  "was": "\"$250,000 · ₦360 million · reported value\" with no report behind it; the weight note borrowed a 2,785 kg figure from another sheet.",
+  "body": "The July 2026 fan breakdown (no press); the Mercedes release cited carries no weight.",
+  "now": "`valueBasis: \"estimate\"` → \"estimate\" / \"estimated\" everywhere the value prints, the share card and meta description included; the note borrows no figure.",
+  "guard": "tests/cars: an estimated value is labelled as one everywhere; the GLS note carries no kilogram figure."
+ },
+ {
+  "batch": "4b",
+  "pr": 286,
+  "page": "/records/cars/ferrari-testarossa",
+  "kind": "note",
+  "tier": "prose",
+  "title": "A model year and a price origin the page could not back",
+  "was": "\"Model year 1988\" (no source; the F-plate only makes it 1988 or later); \"a 1988 Testarossa realistically sits… ₦175 million\" with Legit.ng as the implied source; the crane lift dated to the wrong year; \"non-catalyst figures\".",
+  "body": "The UK plate F20 TRS; the July 2026 fan breakdown (Legit.ng and billionaires.africa repeat it); Ferrari's sheet: 287 kW (390 cv), US cars 380.",
+  "now": "No year printed; the desc names the breakdown and the contested lift footage; the power note quotes Ferrari's own figures."
+ },
+ {
+  "batch": "4b",
+  "pr": 286,
+  "page": "/records/cars/ferrari-328-gts",
+  "kind": "wrong",
+  "tier": "prose",
+  "title": "\"Kept in his Lagos penthouse\" stated as fact; the launch year as his car's",
+  "was": "\"This is the Ferrari kept in his Lagos penthouse\" (title and subtitle); \"Model year 1985\".",
+  "body": "The press is split between this car and the Testarossa for the August 2025 crane lift; Ferrari's \"(1985)\" is the model's launch year; 234Drive can only place the car in the 1985–89 run.",
+  "now": "\"Reported as the Ferrari craned into his 26th-floor Ikoyi penthouse… the press is split\"; no year printed; the crane-lift photos linked and dated."
+ },
+ {
+  "batch": "4b",
+  "pr": 286,
+  "page": "/records/cars",
+  "kind": "stale",
+  "tier": "prose",
+  "title": "\"Last re-verified July 2026\" typed sixteen times",
+  "was": "The index and every car page carried the literal; the July date understated the 16 Sep spec pass.",
+  "body": "cars.ts header.",
+  "now": "`CARS_LAST_SWEEP` and `CARS_SPECS_CHECKED` printed from one home: \"List re-verified July 2026 · specs read at the maker 16 September 2026\".",
+  "guard": "tests/cars: neither route contains a typed re-verified month."
+ }
+]

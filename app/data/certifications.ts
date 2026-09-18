@@ -316,7 +316,7 @@ export const singles: Release[] = [
   { title: "Do I", credit: "Phyno & Burna Boy", year: 2023, cover: "https://cdn-images.dzcdn.net/images/cover/060b1718eafdeecf3642fb53b072d2e8/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Platinum" },
   ] },
-  { title: "Different Size", credit: "feat. Vict0ny", year: 2022, cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [
+  { title: "Different Size", credit: "feat. Victony", year: 2022, cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Platinum" },
   ] },
   { title: "Big 7", year: 2023, cover: "https://cdn-images.dzcdn.net/images/cover/f5f99a13558a35bbec024b3587357300/500x500-000000-80-0-0.jpg", certs: [
@@ -680,7 +680,6 @@ export const certHistory: CertEvent[] = [
   // On the release row since the snapshot, never logged: RMNZ (RadioScope
   // table 2052) "Burna Boy | City Boys | Gold | 2024-06-13", read 17 Sep 2026.
   { title: "City Boys", country: "NZ", level: "Gold", year: 2024 },
-  { title: "I Told Them...", album: true, country: "UK", level: "Silver", year: 2024 },
 
   // "On the Low" awards that were confirmed at the body on 27 Aug 2026 but had
   // never been logged here. The UK/CA/DK/AU/NZ rows were already present above.
@@ -722,6 +721,9 @@ export const certHistory: CertEvent[] = [
   { title: "Last Last", country: "NZ", level: "Platinum", year: 2022 }, // RMNZ 2022-12-08
   { title: "Last Last", country: "NZ", level: "Gold", year: 2022 }, // RMNZ 2022-09-08
   { title: "Love, Damini", album: true, country: "UK", level: "Silver", year: 2023 },
+  // BPI title/9614: certification history "22 December 2023 — Silver" (read
+  // 18 Sep 2026); the log had it under 2024.
+  { title: "I Told Them...", album: true, country: "UK", level: "Silver", year: 2023 },
   // BPI album page, read 16 Sep 2026: "01 December 2023 Gold | 10 February
   // 2023 Silver" — the Gold step was on the release row but never in this log.
   { title: "Love, Damini", album: true, country: "UK", level: "Gold", year: 2023 },

@@ -116,7 +116,7 @@ export const firstGroups: FirstGroup[] = [
       { year: "2024", title: "First African artist to surpass 2 billion UK streams", text: "Recognised with a BRIT Billion award — the first African to reach it." },
       { year: "2024", title: "First African artist to surpass 1 billion UK streams", text: "Awarded his first BRIT Billion plaque." },
       { year: "2022", title: "Highest-charting Nigerian album in Billboard 200 history", text: "Love, Damini debuted at No. 14 — passing the previous Nigerian best, Wizkid's Made in Lagos (No. 28)." },
-      { year: "2025", title: "First Nigerian artist to chart five albums on the Billboard 200", text: "Outside, African Giant, Twice as Tall, Love, Damini and No Sign of Weakness." },
+      { year: "2025", title: "First Nigerian artist to chart five albums on the Billboard 200", text: "African Giant, Twice as Tall, Love, Damini, I Told Them… and No Sign of Weakness." },
       { year: "2024", title: "First African artist with two albums over 1 billion Spotify streams", text: "Love, Damini and African Giant have each crossed a billion streams — and in August 2026 Love, Damini passed 1.7 billion, his first album to that mark and only the second Nigerian album ever to reach it." },
       { year: "2023", title: "First Afrobeats artist to top the UK Official Albums Chart", text: "I Told Them… debuted at No. 1 in Britain — one better than Love, Damini's record No. 2." },
       { year: "2023", title: "First African artist to earn a UK No. 1 album and No. 1 single", text: "“Own It” (with Stormzy & Ed Sheeran) topped the UK Singles Chart in 2019, and I Told Them… topped the UK Albums Chart in 2023 — no other African artist had held both." },

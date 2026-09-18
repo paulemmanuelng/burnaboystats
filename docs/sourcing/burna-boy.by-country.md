@@ -22,7 +22,7 @@
 - Dem Dey — Gold
 - Giza — Platinum x3
 - Do I — Platinum
-- Different Size [feat. Vict0ny] — Platinum
+- Different Size [feat. Victony] — Platinum
 - Big 7 — Platinum
 - Way Too Big — Platinum
 - 23 — Platinum

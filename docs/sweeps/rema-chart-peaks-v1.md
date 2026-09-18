@@ -443,7 +443,7 @@ The numbers above are defensible because of what is *not* in them. Each of these
 
 ### Context
 
-Under this identical standard, **Burna Boy has 276 chart entries and 46 No. 1 placements across 67 chart countries** ([burnaboystats.com](https://burnaboystats.com)).
+Under this identical standard, **Burna Boy has 284 chart entries and 46 No. 1 placements across 67 chart countries** ([burnaboystats.com](https://burnaboystats.com)).
 
 The honest comparison: Rema's **119 entries across 53 territories** is about **43% of Burna Boy's entry count** and **77% of his territorial reach**, with **17 No. 1s against 47** — roughly a third. The gap is one of depth, not of ceiling. Rema's single best record outperforms anything in the comparison set on the Billboard Global Excl. U.S. chart, where *Calm Down* spent a week at No. 1 and 137 weeks on the chart, and his Hot 100 and UK peaks of No. 3 are both strong. But that is one song. Of his 53 territories, **50 were entered by *Calm Down***, and **29 by no other Rema release at all**; only **24** territories are reachable without it. Burna Boy's 280 entries are spread across a deep catalogue of charting albums and singles; Rema's album footprint is five entries for *HEIS* and six for *Rave & Roses*, and his non-*Calm Down* singles rarely clear the top 50 in any Western market — *Secondhand*, his second-strongest international record, peaks at #18 (Greece) and sits in the 30s–90s everywhere else. Only *Bubalu*, on a Feid co-billing, opens a region (Andean and Spanish-language markets) that *Calm Down* did not.
 
