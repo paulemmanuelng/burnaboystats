@@ -174,8 +174,10 @@
   margin-top: 6px;
 }
 .latestText { font-size: 13px; line-height: 1.45; color: var(--text-body-cool); margin-top: 8px; }
-/* The audience map, under the counts — the same gold pill as the tracklist CTA
-   (one gradient for every gold action on the phone), as a link. */
+/* The tracklist CTA is the screen's one gold pill; the audience-map link
+   under the counts shares its shape but not its fill — two golds stacked
+   within a screen height read as two headlines (Paul, 18 Sep 2026). It is
+   the outlined sibling every other phone screen uses beside a gold action. */
 .heroCta,
 .latestCta {
   display: flex;
@@ -336,7 +338,16 @@
 .albumCard { border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
 .albumCard:nth-child(2n) { border-right: 0; }
 .latestCta { border: 0; font: inherit; cursor: pointer; width: 100%; }
-.heroCta { margin-top: 18px; text-decoration: none; }
+.heroCta {
+  margin-top: 18px;
+  text-decoration: none;
+  background: transparent;
+  background-image: none;
+  border: 1px solid var(--line);
+  color: var(--text);
+  -webkit-text-fill-color: var(--text);
+  box-shadow: none;
+}
 
 /* Expand control for the song stories, matching the certifications screen. */
 .moreBtn {
