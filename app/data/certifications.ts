@@ -328,10 +328,10 @@ export const singles: Release[] = [
   { title: "23", year: 2020, certs: [
     { c: "NG", level: "Platinum" },
   ] },
-  { title: "Dey Play", cover: "https://cdn-images.dzcdn.net/images/cover/1120c9c53e59dcbaffb9d7f77908db16/500x500-000000-80-0-0.jpg", certs: [
+  { title: "Dey Play", year: 2023, cover: "https://cdn-images.dzcdn.net/images/cover/1120c9c53e59dcbaffb9d7f77908db16/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Platinum" },
   ] },
-  { title: "On Form", cover: "https://cdn-images.dzcdn.net/images/cover/1120c9c53e59dcbaffb9d7f77908db16/500x500-000000-80-0-0.jpg", certs: [
+  { title: "On Form", year: 2023, cover: "https://cdn-images.dzcdn.net/images/cover/1120c9c53e59dcbaffb9d7f77908db16/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Platinum" },
   ] },
   { title: "Bundle by Bundle", year: 2024, cover: "https://cdn-images.dzcdn.net/images/cover/210cc4c59e508f189c0f69ae6d01ba14/500x500-000000-80-0-0.jpg", certs: [
@@ -349,16 +349,16 @@ export const singles: Release[] = [
   { title: "Normal", year: 2023, cover: "https://cdn-images.dzcdn.net/images/cover/1120c9c53e59dcbaffb9d7f77908db16/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Gold" },
   ] },
-  { title: "Science", cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [
+  { title: "Science", year: 2022, cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Gold" },
   ] },
-  { title: "Vanilla", cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [
+  { title: "Vanilla", year: 2022, cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Gold" },
   ] },
-  { title: "Jagele", cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [
+  { title: "Jagele", year: 2022, cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Gold" },
   ] },
-  { title: "I Told Them", year: 2023, cover: "https://cdn-images.dzcdn.net/images/cover/1120c9c53e59dcbaffb9d7f77908db16/500x500-000000-80-0-0.jpg", certs: [
+  { title: "I Told Them", credit: "feat. GZA", year: 2023, cover: "https://cdn-images.dzcdn.net/images/cover/1120c9c53e59dcbaffb9d7f77908db16/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Gold" },
   ] },
   { title: "Rollercoaster", credit: "feat. J Balvin", year: 2022, cover: "https://cdn-images.dzcdn.net/images/cover/7048ff78d00d6c89e075a75b37cd6380/500x500-000000-80-0-0.jpg", certs: [
@@ -370,34 +370,34 @@ export const singles: Release[] = [
   { title: "Wild Dreams", credit: "feat. Khalid", year: 2022, cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Silver" },
   ] },
-  { title: "Glory", credit: "feat. Ladysmith Black Mambazo", cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [
+  { title: "Glory", credit: "feat. Ladysmith Black Mambazo", year: 2022, cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Silver" },
   ] },
-  { title: "Solid", credit: "feat. Kehlani & Justin Bieber", cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [
+  { title: "Solid", credit: "feat. Blxst & Kehlani", year: 2022, cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Silver" },
   ] },
   { title: "Dirty Secrets", year: 2022, cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Silver" },
   ] },
-  { title: "Whiskey", year: 2020, cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [
+  { title: "Whiskey", year: 2022, cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Silver" },
   ] },
   { title: "Bank On It", year: 2020, cover: "https://cdn-images.dzcdn.net/images/cover/fd271b2967aa9a67f7cb23f956c58b10/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Silver" },
   ] },
-  { title: "If I'm Lying", cover: "https://cdn-images.dzcdn.net/images/cover/1120c9c53e59dcbaffb9d7f77908db16/500x500-000000-80-0-0.jpg", certs: [
+  { title: "If I'm Lying", year: 2023, cover: "https://cdn-images.dzcdn.net/images/cover/1120c9c53e59dcbaffb9d7f77908db16/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Silver" },
   ] },
   { title: "No Fit Vex", cover: "https://cdn-images.dzcdn.net/images/cover/fd271b2967aa9a67f7cb23f956c58b10/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Silver" },
   ] },
-  { title: "Thanks", year: 2020, cover: "https://cdn-images.dzcdn.net/images/cover/1120c9c53e59dcbaffb9d7f77908db16/500x500-000000-80-0-0.jpg", certs: [
+  { title: "Thanks", credit: "feat. J. Cole", year: 2023, cover: "https://cdn-images.dzcdn.net/images/cover/1120c9c53e59dcbaffb9d7f77908db16/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Silver" },
   ] },
-  { title: "Onyeka (Baby)", year: 2019, cover: "https://cdn-images.dzcdn.net/images/cover/fd271b2967aa9a67f7cb23f956c58b10/500x500-000000-80-0-0.jpg", certs: [
+  { title: "Onyeka (Baby)", year: 2020, cover: "https://cdn-images.dzcdn.net/images/cover/fd271b2967aa9a67f7cb23f956c58b10/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Silver" },
   ] },
-  { title: "How Bad Could It Be", cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [
+  { title: "How Bad Could It Be", year: 2022, cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Silver" },
   ] },
   { title: "Level Up", cover: "https://cdn-images.dzcdn.net/images/cover/fd271b2967aa9a67f7cb23f956c58b10/500x500-000000-80-0-0.jpg", certs: [
@@ -406,7 +406,7 @@ export const singles: Release[] = [
   { title: "Wonderful", year: 2020, cover: "https://cdn-images.dzcdn.net/images/cover/2fff7aefcfa8eaed5d2843521c2b0d55/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Silver" },
   ] },
-  { title: "Virgil", cover: "https://cdn-images.dzcdn.net/images/cover/1120c9c53e59dcbaffb9d7f77908db16/500x500-000000-80-0-0.jpg", certs: [
+  { title: "Virgil", year: 2023, cover: "https://cdn-images.dzcdn.net/images/cover/1120c9c53e59dcbaffb9d7f77908db16/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Silver" },
   ] },
   { title: "Collateral Damage", year: 2019, cover: "https://cdn-images.dzcdn.net/images/cover/3cfb4e9b823e7c1c610382ee27cb7575/500x500-000000-80-0-0.jpg", certs: [

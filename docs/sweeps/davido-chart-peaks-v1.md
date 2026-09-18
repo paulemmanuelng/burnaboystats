@@ -534,7 +534,7 @@ A verification pass re-opened every source hole in the sweep. Twelve closed; one
 
 ### Context
 
-Under this identical standard, **Burna Boy** holds **284 chart entries** and **46 No. 1 placements** across **67 chart countries** (burnaboystats.com). Davido's **93 entries** and **17 No. 1 placements** across **13 countries** sit well below that, and the honest reading is that the gap is one of geography rather than of scale at home.
+Under this identical standard, **Burna Boy** holds **351 chart entries** and **46 No. 1 placements** across **67 chart countries** (burnaboystats.com). Davido's **93 entries** and **17 No. 1 placements** across **13 countries** sit well below that, and the honest reading is that the gap is one of geography rather than of scale at home.
 
 - **At home they are comparable.** Sixteen of Davido's 17 No. 1 placements are Nigerian, 13 of them TurnTable No. 1 singles — a haul very few artists anywhere match, including several multi-week and debut-at-No. 1 runs, plus three No. 1 albums and a 175-week chart life for *Timeless*.
 - **Abroad the gap is the whole story.** Davido charts in 13 countries; Burna Boy in 67. Davido has **zero** entries in Germany, Austria, all five Nordic countries, all nine Central/Eastern European countries swept, all six TopHit airplay markets, Australia, New Zealand, all six Asian territories, all six MENA territories, and all twelve Latin American airplay markets. After the repair pass most of those zeroes are proven against the chart bodies' own complete archives rather than merely unfound. Burna Boy charts in most of them.

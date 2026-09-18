@@ -9,6 +9,8 @@ Every certification and chart peak on [/afrobeats](https://burnaboystats.com/afr
 
 Nine artists: Wizkid, Davido, Rema, Tems, Tyla, Ayra Starr, Asake, Omah Lay, Seyi Vibez. Swept 15–19 August 2026.
 
+One file is Burna Boy's own: `burna-boy-nigeria-2026-09-18.md` — every issue of TurnTable's Nigeria Top 100 and Top 100 Albums walked for his catalogue on 18 September 2026 (the 89 Nigerian peaks in `app/data/charts.ts`, each with the issue that set it). The walker is `scripts/turntable-walk.mjs`.
+
 They lived outside the repo until 21 August 2026, which meant the site published 742 plaques whose evidence existed only as loose files on one laptop. **Change a number in `app/data/afrobeats.ts` only after changing the row here that backs it.**
 
 ## What the marks mean

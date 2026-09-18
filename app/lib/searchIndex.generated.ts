@@ -3844,10 +3844,32 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "20 10 20",
+    "path": "/records/charts",
+    "section": "Release",
+    "description": "1 chart entry.",
+    "keywords": [
+      "song",
+      "release"
+    ],
+    "generated": true
+  },
+  {
     "title": "23",
     "path": "/music/23",
     "section": "Release",
-    "description": "1 certification.",
+    "description": "1 certification · 1 chart entry.",
+    "keywords": [
+      "song",
+      "release"
+    ],
+    "generated": true
+  },
+  {
+    "title": "28 Grams",
+    "path": "/records/charts",
+    "section": "Release",
+    "description": "1 chart entry.",
     "keywords": [
       "song",
       "release"
@@ -3856,9 +3878,9 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "4 Kampé II",
-    "path": "/certifications",
+    "path": "/records/charts",
     "section": "Release",
-    "description": "Joé Dwèt Filé ft. Burna Boy — 1 certification · 1 chart entry.",
+    "description": "Joé Dwèt Filé ft. Burna Boy — 1 certification · 2 chart entries.",
     "keywords": [
       "fil",
       "burna",
@@ -3894,10 +3916,26 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "All My Life (Burna Boy Remix)",
+    "path": "/records/charts",
+    "section": "Release",
+    "description": "Lil Durk & J. Cole ft. Burna Boy — 1 chart entry.",
+    "keywords": [
+      "lil",
+      "durk",
+      "cole",
+      "burna",
+      "boy",
+      "song",
+      "release"
+    ],
+    "generated": true
+  },
+  {
     "title": "Alone",
     "path": "/music/alone",
     "section": "Release",
-    "description": "5 certifications · 8 chart entries.",
+    "description": "5 certifications · 9 chart entries.",
     "keywords": [
       "song",
       "release"
@@ -3910,6 +3948,19 @@ export const generatedDocs: SearchDoc[] = [
     "section": "Release",
     "description": "4 certifications.",
     "keywords": [
+      "song",
+      "release"
+    ],
+    "generated": true
+  },
+  {
+    "title": "B. D'OR",
+    "path": "/records/charts",
+    "section": "Release",
+    "description": "feat. Wizkid — 1 chart entry.",
+    "keywords": [
+      "feat",
+      "wizkid",
       "song",
       "release"
     ],
@@ -3985,11 +4036,62 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "Birthday",
+    "path": "/records/charts",
+    "section": "Release",
+    "description": "Fredo, Burna Boy & Steel Banglez — 1 chart entry.",
+    "keywords": [
+      "fredo",
+      "burna",
+      "boy",
+      "steel",
+      "banglez",
+      "song",
+      "release"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Born Winner",
+    "path": "/records/charts",
+    "section": "Release",
+    "description": "1 chart entry.",
+    "keywords": [
+      "song",
+      "release"
+    ],
+    "generated": true
+  },
+  {
     "title": "Bundle by Bundle",
     "path": "/certifications",
     "section": "Release",
-    "description": "1 certification.",
+    "description": "1 certification · 1 chart entry.",
     "keywords": [
+      "song",
+      "release"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Buy You Life",
+    "path": "/records/charts",
+    "section": "Release",
+    "description": "1 chart entry.",
+    "keywords": [
+      "song",
+      "release"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Change Your Mind",
+    "path": "/records/charts",
+    "section": "Release",
+    "description": "feat. Shaboozey — 1 chart entry.",
+    "keywords": [
+      "feat",
+      "shaboozey",
       "song",
       "release"
     ],
@@ -4023,7 +4125,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Cloak & Dagger",
     "path": "/certifications",
     "section": "Release",
-    "description": "feat. J Hus — 1 certification.",
+    "description": "feat. J Hus — 1 certification · 1 chart entry.",
     "keywords": [
       "feat",
       "hus",
@@ -4044,10 +4146,35 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "Come Gimme",
+    "path": "/records/charts",
+    "section": "Release",
+    "description": "1 chart entry.",
+    "keywords": [
+      "song",
+      "release"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Coming Home",
+    "path": "/records/charts",
+    "section": "Release",
+    "description": "Usher & Burna Boy — 1 chart entry.",
+    "keywords": [
+      "usher",
+      "burna",
+      "boy",
+      "song",
+      "release"
+    ],
+    "generated": true
+  },
+  {
     "title": "Common Person",
     "path": "/certifications",
     "section": "Release",
-    "description": "1 certification.",
+    "description": "1 certification · 1 chart entry.",
     "keywords": [
       "song",
       "release"
@@ -4072,7 +4199,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Dem Dey",
     "path": "/certifications",
     "section": "Release",
-    "description": "1 certification.",
+    "description": "1 certification · 1 chart entry.",
     "keywords": [
       "song",
       "release"
@@ -4083,7 +4210,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Dey Play",
     "path": "/certifications",
     "section": "Release",
-    "description": "1 certification.",
+    "description": "1 certification · 1 chart entry.",
     "keywords": [
       "song",
       "release"
@@ -4094,7 +4221,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Different Size",
     "path": "/certifications",
     "section": "Release",
-    "description": "feat. Victony — 1 certification.",
+    "description": "feat. Victony — 1 certification · 1 chart entry.",
     "keywords": [
       "feat",
       "victony",
@@ -4107,7 +4234,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Dirty Secrets",
     "path": "/certifications",
     "section": "Release",
-    "description": "1 certification.",
+    "description": "1 certification · 1 chart entry.",
     "keywords": [
       "song",
       "release"
@@ -4118,11 +4245,22 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Do I",
     "path": "/certifications",
     "section": "Release",
-    "description": "Phyno & Burna Boy — 1 certification.",
+    "description": "Phyno & Burna Boy — 1 certification · 1 chart entry.",
     "keywords": [
       "phyno",
       "burna",
       "boy",
+      "song",
+      "release"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Don't Let Me Drown",
+    "path": "/records/charts",
+    "section": "Release",
+    "description": "1 chart entry.",
+    "keywords": [
       "song",
       "release"
     ],
@@ -4137,6 +4275,20 @@ export const generatedDocs: SearchDoc[] = [
       "dadju",
       "burna",
       "boy",
+      "song",
+      "release"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Empty Chairs",
+    "path": "/records/charts",
+    "section": "Release",
+    "description": "feat. Mick Jagger — 1 chart entry.",
+    "keywords": [
+      "feat",
+      "mick",
+      "jagger",
       "song",
       "release"
     ],
@@ -4213,7 +4365,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Glory",
     "path": "/certifications",
     "section": "Release",
-    "description": "feat. Ladysmith Black Mambazo — 1 certification.",
+    "description": "feat. Ladysmith Black Mambazo — 1 certification · 1 chart entry.",
     "keywords": [
       "feat",
       "ladysmith",
@@ -4239,6 +4391,20 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "Hey Boy",
+    "path": "/records/charts",
+    "section": "Release",
+    "description": "Sia ft. Burna Boy — 1 chart entry.",
+    "keywords": [
+      "sia",
+      "burna",
+      "boy",
+      "song",
+      "release"
+    ],
+    "generated": true
+  },
+  {
     "title": "Higher",
     "path": "/records/charts",
     "section": "Release",
@@ -4253,8 +4419,23 @@ export const generatedDocs: SearchDoc[] = [
     "title": "How Bad Could It Be",
     "path": "/certifications",
     "section": "Release",
-    "description": "1 certification.",
+    "description": "1 certification · 1 chart entry.",
     "keywords": [
+      "song",
+      "release"
+    ],
+    "generated": true
+  },
+  {
+    "title": "I FEEL IT",
+    "path": "/records/charts",
+    "section": "Release",
+    "description": "Jon Bellion ft. Burna Boy — 1 chart entry.",
+    "keywords": [
+      "jon",
+      "bellion",
+      "burna",
+      "boy",
       "song",
       "release"
     ],
@@ -4264,8 +4445,10 @@ export const generatedDocs: SearchDoc[] = [
     "title": "I Told Them",
     "path": "/certifications",
     "section": "Release",
-    "description": "1 certification.",
+    "description": "feat. GZA — 1 certification · 1 chart entry.",
     "keywords": [
+      "feat",
+      "gza",
       "song",
       "release"
     ],
@@ -4286,7 +4469,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "If I'm Lying",
     "path": "/certifications",
     "section": "Release",
-    "description": "1 certification.",
+    "description": "1 certification · 1 chart entry.",
     "keywords": [
       "song",
       "release"
@@ -4297,7 +4480,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "It's Plenty",
     "path": "/certifications",
     "section": "Release",
-    "description": "5 certifications.",
+    "description": "5 certifications · 1 chart entry.",
     "keywords": [
       "song",
       "release"
@@ -4308,7 +4491,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Jagele",
     "path": "/certifications",
     "section": "Release",
-    "description": "1 certification.",
+    "description": "1 certification · 1 chart entry.",
     "keywords": [
       "song",
       "release"
@@ -4319,7 +4502,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Jerusalema (Remix)",
     "path": "/music/jerusalema",
     "section": "Release",
-    "description": "Master KG, Nomcebo & Burna Boy — 6 certifications · 16 chart entries.",
+    "description": "Master KG, Nomcebo & Burna Boy — 6 certifications · 17 chart entries.",
     "keywords": [
       "master",
       "nomcebo",
@@ -4334,7 +4517,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Just Like Me",
     "path": "/records/charts",
     "section": "Release",
-    "description": "21 Savage, Burna Boy & Metro Boomin — 1 chart entry.",
+    "description": "21 Savage, Burna Boy & Metro Boomin — 2 chart entries.",
     "keywords": [
       "savage",
       "burna",
@@ -4347,11 +4530,36 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "Kabiyesi",
+    "path": "/records/charts",
+    "section": "Release",
+    "description": "1 chart entry.",
+    "keywords": [
+      "song",
+      "release"
+    ],
+    "generated": true
+  },
+  {
     "title": "Kilometre",
     "path": "/certifications",
     "section": "Release",
     "description": "2 certifications · 2 chart entries.",
     "keywords": [
+      "song",
+      "release"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Laho II",
+    "path": "/records/charts",
+    "section": "Release",
+    "description": "Shallipopi & Burna Boy — 1 chart entry.",
+    "keywords": [
+      "shallipopi",
+      "burna",
+      "boy",
       "song",
       "release"
     ],
@@ -4428,12 +4636,26 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Loved by You",
-    "path": "/certifications",
+    "path": "/records/charts",
     "section": "Release",
-    "description": "Justin Bieber ft. Burna Boy — 2 certifications · 2 chart entries.",
+    "description": "Justin Bieber ft. Burna Boy — 2 certifications · 3 chart entries.",
     "keywords": [
       "justin",
       "bieber",
+      "burna",
+      "boy",
+      "song",
+      "release"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Masculine",
+    "path": "/records/charts",
+    "section": "Release",
+    "description": "J Hus ft. Burna Boy — 1 chart entry.",
+    "keywords": [
+      "hus",
       "burna",
       "boy",
       "song",
@@ -4454,6 +4676,20 @@ export const generatedDocs: SearchDoc[] = [
       "boy",
       "steel",
       "banglez",
+      "song",
+      "release"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Monsters You Made",
+    "path": "/records/charts",
+    "section": "Release",
+    "description": "feat. Chris Martin — 1 chart entry.",
+    "keywords": [
+      "feat",
+      "chris",
+      "martin",
       "song",
       "release"
     ],
@@ -4486,6 +4722,17 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "No Panic",
+    "path": "/records/charts",
+    "section": "Release",
+    "description": "1 chart entry.",
+    "keywords": [
+      "song",
+      "release"
+    ],
+    "generated": true
+  },
+  {
     "title": "No Sign of Weakness",
     "path": "/music/albums/no-sign-of-weakness",
     "section": "Release",
@@ -4500,7 +4747,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Normal",
     "path": "/certifications",
     "section": "Release",
-    "description": "1 certification.",
+    "description": "1 certification · 1 chart entry.",
     "keywords": [
       "song",
       "release"
@@ -4511,7 +4758,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "On Form",
     "path": "/certifications",
     "section": "Release",
-    "description": "1 certification.",
+    "description": "1 certification · 1 chart entry.",
     "keywords": [
       "song",
       "release"
@@ -4547,7 +4794,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Onyeka (Baby)",
     "path": "/certifications",
     "section": "Release",
-    "description": "1 certification.",
+    "description": "1 certification · 1 chart entry.",
     "keywords": [
       "song",
       "release"
@@ -4581,6 +4828,19 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "Pardon",
+    "path": "/records/charts",
+    "section": "Release",
+    "description": "with Stromae — 1 chart entry.",
+    "keywords": [
+      "with",
+      "stromae",
+      "song",
+      "release"
+    ],
+    "generated": true
+  },
+  {
     "title": "Play Play",
     "path": "/certifications",
     "section": "Release",
@@ -4598,7 +4858,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Question",
     "path": "/certifications",
     "section": "Release",
-    "description": "feat. Don Jazzy — 1 certification.",
+    "description": "feat. Don Jazzy — 1 certification · 1 chart entry.",
     "keywords": [
       "feat",
       "don",
@@ -4612,7 +4872,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Real Life",
     "path": "/certifications",
     "section": "Release",
-    "description": "feat. Stormzy — 4 certifications · 1 chart entry.",
+    "description": "feat. Stormzy — 4 certifications · 2 chart entries.",
     "keywords": [
       "feat",
       "stormzy",
@@ -4622,10 +4882,25 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "ROBOSHOTTA",
+    "path": "/records/charts",
+    "section": "Release",
+    "description": "Busta Rhymes ft. Burna Boy — 1 chart entry.",
+    "keywords": [
+      "busta",
+      "rhymes",
+      "burna",
+      "boy",
+      "song",
+      "release"
+    ],
+    "generated": true
+  },
+  {
     "title": "Rollercoaster",
     "path": "/certifications",
     "section": "Release",
-    "description": "feat. J Balvin — 1 certification.",
+    "description": "feat. J Balvin — 1 certification · 1 chart entry.",
     "keywords": [
       "feat",
       "balvin",
@@ -4649,10 +4924,24 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "Rotate",
+    "path": "/records/charts",
+    "section": "Release",
+    "description": "Becky G, Burna Boy — 1 chart entry.",
+    "keywords": [
+      "becky",
+      "burna",
+      "boy",
+      "song",
+      "release"
+    ],
+    "generated": true
+  },
+  {
     "title": "Science",
     "path": "/certifications",
     "section": "Release",
-    "description": "1 certification.",
+    "description": "1 certification · 1 chart entry.",
     "keywords": [
       "song",
       "release"
@@ -4663,7 +4952,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Second Sermon (Remix)",
     "path": "/certifications",
     "section": "Release",
-    "description": "Black Sherif ft. Burna Boy — 1 certification.",
+    "description": "Black Sherif ft. Burna Boy — 1 certification · 1 chart entry.",
     "keywords": [
       "black",
       "sherif",
@@ -4719,12 +5008,11 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Solid",
     "path": "/certifications",
     "section": "Release",
-    "description": "feat. Kehlani & Justin Bieber — 1 certification.",
+    "description": "feat. Blxst & Kehlani — 1 certification · 1 chart entry.",
     "keywords": [
       "feat",
+      "blxst",
       "kehlani",
-      "justin",
-      "bieber",
       "song",
       "release"
     ],
@@ -4745,10 +5033,21 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
-    "title": "Talibans II",
-    "path": "/certifications",
+    "title": "Sweet Love",
+    "path": "/records/charts",
     "section": "Release",
-    "description": "with Byron Messia — 2 certifications · 2 chart entries.",
+    "description": "1 chart entry.",
+    "keywords": [
+      "song",
+      "release"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Talibans II",
+    "path": "/records/charts",
+    "section": "Release",
+    "description": "with Byron Messia — 2 certifications · 3 chart entries.",
     "keywords": [
       "with",
       "byron",
@@ -4773,10 +5072,27 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "Teary Eyes",
+    "path": "/records/charts",
+    "section": "Release",
+    "description": "YoungBoy Never Broke Again & Burna Boy — 1 chart entry.",
+    "keywords": [
+      "youngboy",
+      "never",
+      "broke",
+      "again",
+      "burna",
+      "boy",
+      "song",
+      "release"
+    ],
+    "generated": true
+  },
+  {
     "title": "Tested, Approved & Trusted",
     "path": "/certifications",
     "section": "Release",
-    "description": "3 certifications.",
+    "description": "3 certifications · 1 chart entry.",
     "keywords": [
       "song",
       "release"
@@ -4787,8 +5103,10 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Thanks",
     "path": "/certifications",
     "section": "Release",
-    "description": "1 certification.",
+    "description": "feat. J. Cole — 1 certification · 1 chart entry.",
     "keywords": [
+      "feat",
+      "cole",
       "song",
       "release"
     ],
@@ -4798,7 +5116,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Toni-Ann Singh",
     "path": "/certifications",
     "section": "Release",
-    "description": "feat. Popcaan — 2 certifications.",
+    "description": "feat. Popcaan — 2 certifications · 1 chart entry.",
     "keywords": [
       "feat",
       "popcaan",
@@ -4837,7 +5155,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Update",
     "path": "/certifications",
     "section": "Release",
-    "description": "1 certification.",
+    "description": "1 certification · 1 chart entry.",
     "keywords": [
       "song",
       "release"
@@ -4848,7 +5166,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Vanilla",
     "path": "/certifications",
     "section": "Release",
-    "description": "1 certification.",
+    "description": "1 certification · 1 chart entry.",
     "keywords": [
       "song",
       "release"
@@ -4859,7 +5177,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Virgil",
     "path": "/certifications",
     "section": "Release",
-    "description": "1 certification.",
+    "description": "1 certification · 1 chart entry.",
     "keywords": [
       "song",
       "release"
@@ -4870,7 +5188,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Want It All",
     "path": "/certifications",
     "section": "Release",
-    "description": "feat. Polo G — 1 certification.",
+    "description": "feat. Polo G — 1 certification · 1 chart entry.",
     "keywords": [
       "feat",
       "polo",
@@ -4883,7 +5201,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Way Too Big",
     "path": "/certifications",
     "section": "Release",
-    "description": "1 certification.",
+    "description": "1 certification · 1 chart entry.",
     "keywords": [
       "song",
       "release"
@@ -4909,7 +5227,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "WGFT",
     "path": "/music/wgft",
     "section": "Release",
-    "description": "Gunna ft. Burna Boy — 4 certifications · 13 chart entries.",
+    "description": "Gunna ft. Burna Boy — 4 certifications · 14 chart entries.",
     "keywords": [
       "gunna",
       "burna",
@@ -4923,7 +5241,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Whiskey",
     "path": "/certifications",
     "section": "Release",
-    "description": "1 certification.",
+    "description": "1 certification · 1 chart entry.",
     "keywords": [
       "song",
       "release"
@@ -4934,7 +5252,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Wild Dreams",
     "path": "/certifications",
     "section": "Release",
-    "description": "feat. Khalid — 1 certification.",
+    "description": "feat. Khalid — 1 certification · 1 chart entry.",
     "keywords": [
       "feat",
       "khalid",
@@ -4958,7 +5276,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Yaba Buluku (Remix)",
     "path": "/certifications",
     "section": "Release",
-    "description": "DJ Tarico & Burna Boy — 1 certification.",
+    "description": "DJ Tarico & Burna Boy — 1 certification · 1 chart entry.",
     "keywords": [
       "tarico",
       "burna",
@@ -4972,7 +5290,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Ye",
     "path": "/music/ye",
     "section": "Release",
-    "description": "8 certifications.",
+    "description": "8 certifications · 1 chart entry.",
     "keywords": [
       "song",
       "release"

@@ -82,7 +82,7 @@ describe("handoff checklist — data integrity", () => {
   // retractions (RETRACTIONS #7, #8) moved the assertions and left the title
   // where it was. The title is a const now, and the last check in this block
   // recomposes it from the data, so it cannot drift again on its own.
-  const chartTitle = "counts 284 chart entries across 69 territories, 46 of them at No. 1";
+  const chartTitle = "counts 351 chart entries across 69 territories, 46 of them at No. 1";
 
   it(chartTitle, () => {
     const entries = allChartItems.reduce((n, r) => n + r.entries.length, 0);
@@ -99,7 +99,8 @@ describe("handoff checklist — data integrity", () => {
     // ZA No. 1 retracted at the bodies (RETRACTIONS #9, #10). Sweden and South
     // Africa keep other entries, so territories hold at 69.
     // 18 Sep 2026: 276 → 283, eight album peaks (one out, Germany) read at the bodies (see tests/charts.test.ts).
-    expect(entries).toBe(284); // -2: unsupported Dominican and Salvadoran No. 1s removed
+    // 18 Sep 2026 (later): 284 → 351 — the Nigeria sweep (see tests/charts.test.ts). No. 1s hold at 46.
+    expect(entries).toBe(351); // -2: unsupported Dominican and Salvadoran No. 1s removed
     expect(territories).toBe(69);
     expect(ones).toBe(46); // + Poland 29 Aug, - Dominican Republic and El Salvador 2 Sep
 

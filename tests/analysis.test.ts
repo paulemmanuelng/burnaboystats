@@ -75,8 +75,11 @@ describe("finding 2 — bigger in Britain than America", () => {
     ).toBe(0);
   });
 
-  it("the UK is still his highest-volume market", () => {
-    expect(marketsByVolume[0]?.code).toBe("UK");
+  it("Nigeria leads on volume and the UK leads every market abroad", () => {
+    // The prose says the home chart tops the table and Britain tops the rest;
+    // both halves are read from the data, so both are guarded.
+    expect(marketsByVolume[0]?.code).toBe("NG");
+    expect(marketsByVolume.filter((m) => m.code !== "NG")[0]?.code).toBe("UK");
   });
 });
 

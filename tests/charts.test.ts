@@ -188,7 +188,11 @@ describe("chart data integrity", () => {
     // 18 Sep 2026: 276 → 284 — album peaks (Outside NG 41 joins too) read at the bodies: No Sign of
     // Weakness CH 28 + PT 66; I Told Them... NZ 12 + DK 13 + AT 39; African
     // Giant NL 12 + CH 64 + NG 23 in, DE 80 out (IE corrected 12 → 80).
-    expect(chartEntryCount).toBe(284); // 2 Sep 2026: -2, the unsupported Dominican and Salvadoran No. 1s removed (RETRACTIONS #7, #8)
+    // 18 Sep 2026 (later): 284 → 351 — the Nigeria sweep. Every issue of
+    // TurnTable's Top 100 walked (306 issues, Nov 2020 → Sep 2026): 8 existing
+    // rows gain an NG peak, 59 releases get their first row, no peak moved and
+    // no No. 1 was added (docs/sweeps/burna-boy-nigeria-2026-09-18.md).
+    expect(chartEntryCount).toBe(351); // 2 Sep 2026: -2, the unsupported Dominican and Salvadoran No. 1s removed (RETRACTIONS #7, #8)
     expect(numberOnes).toBe(46); // 2 Sep 2026: Poland took this to 49, then the Dominican and Salvadoran No. 1s came out (#7, #8); 17 Sep: Jerusalema ZA out (#10)
     expect(chartCountryCount).toBe(69); // -2: the Dominican Republic and El Salvador each left with their only entry
   });

@@ -48,6 +48,13 @@ export const updates: Update[] = [
   {
     date: "2026-09-18",
     category: "Charts",
+    text: "Every issue of Nigeria's Top 100 since November 2020 has now been read: 59 more Burna Boy releases charted at home, led by “B. D'OR”, “Bundle by Bundle” and “Laho II” at No. 2, and “Loved by You” reached No. 4 — 89 of his releases hold a Nigerian peak.",
+    href: "/records/charts",
+    big: true,
+  },
+  {
+    date: "2026-09-18",
+    category: "Charts",
     text: "Twice as Tall's Nigerian albums-chart peak is No. 17, reached on 2 and 16 February 2023 — every TurnTable issue since the chart began in November 2022 was read, and the album is still on it 184 weeks later.",
     href: "/music/albums/twice-as-tall",
   },
