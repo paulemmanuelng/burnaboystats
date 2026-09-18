@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-18";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-18T11:53Z";
+  export const liveChartsBuiltAt = "2026-09-18T16:32Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -204,16 +204,16 @@
             "movement": -15
           },
           {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 54,
-            "movement": -1
-          },
-          {
             "country": "MT",
             "name": "Malta",
             "position": 59,
             "movement": -49
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 59,
+            "movement": -8
           },
           {
             "country": "QA",
@@ -236,8 +236,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 82,
-            "movement": -5
+            "position": 83,
+            "movement": -6
           },
           {
             "country": "PT",
@@ -248,8 +248,8 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 95,
-            "movement": 2
+            "position": 94,
+            "movement": 4
           },
           {
             "country": "TT",
@@ -580,8 +580,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 26,
-            "movement": 13
+            "position": 6,
+            "movement": 65
           }
         ]
       }
@@ -958,8 +958,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 166,
-            "movement": -82
+            "position": 169,
+            "movement": -84
           }
         ]
       }
@@ -1248,8 +1248,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 86,
-            "movement": -5
+            "position": 87,
+            "movement": -6
           },
           {
             "country": "TD",
@@ -1445,9 +1445,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 5,
-            "movement": null,
-            "status": "new"
+            "position": 8,
+            "movement": -7
           }
         ]
       }
@@ -1835,7 +1834,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 109,
+            "position": 130,
             "movement": null,
             "status": "new"
           }
@@ -2359,8 +2358,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 56,
-            "movement": -15
+            "position": 59,
+            "movement": -17
           }
         ]
       }
@@ -2603,8 +2602,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 16,
-            "movement": -12
+            "position": 3,
+            "movement": -2
           }
         ]
       }
@@ -3351,9 +3350,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 84,
-            "movement": null,
-            "status": "new"
+            "position": 105,
+            "movement": -69
           }
         ]
       },
@@ -3401,8 +3399,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 80,
-            "movement": -5
+            "position": 81,
+            "movement": -6
           },
           {
             "country": "TZ",
@@ -3770,14 +3768,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 41,
-            "movement": -32
+            "position": 63,
+            "movement": -46
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 70,
-            "movement": -21
+            "position": 76,
+            "movement": -23
           }
         ]
       },
@@ -4471,26 +4469,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/a4c216574fd4d381c73a4df2f512f599/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Gold",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 101,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/57c1ee5810247893a3fc33500c08d5b8/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Bad Boy",
     "platforms": [
       {
@@ -4539,7 +4517,7 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 56,
+            "position": 62,
             "movement": null,
             "status": "new"
           }
@@ -4548,6 +4526,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Gold",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 122,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/57c1ee5810247893a3fc33500c08d5b8/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Gratitude (Live in London)",

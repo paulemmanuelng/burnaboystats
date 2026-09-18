@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-18";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-18T11:53Z";
+  export const liveChartsBuiltAt = "2026-09-18T16:32Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -155,8 +155,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 2,
-            "movement": -1
+            "position": 3,
+            "movement": -2
           }
         ]
       }
@@ -234,6 +234,63 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Love Again",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 19,
+            "movement": 0
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 32,
+            "movement": 1
+          },
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 119,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 11,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 183,
+            "movement": -37
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "The Villain I Never Was",
     "platforms": [
       {
@@ -279,8 +336,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 113,
-            "movement": -3
+            "position": 109,
+            "movement": 5
           }
         ]
       }
@@ -289,7 +346,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/6c62324aa93ed6be667929a5ab922f65/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "So it Goes",
+    "title": "Sacrifice",
     "platforms": [
       {
         "platform": "Apple Music",
@@ -298,14 +355,14 @@
           {
             "country": "LR",
             "name": "Liberia",
-            "position": 47,
-            "movement": -7
+            "position": 36,
+            "movement": -9
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 70,
-            "movement": -3
+            "position": 38,
+            "movement": 2
           }
         ]
       },
@@ -316,16 +373,15 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 80,
+            "position": 24,
             "movement": null,
             "status": "new"
           },
           {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 163,
-            "movement": null,
-            "status": "new"
+            "country": "GH",
+            "name": "Ghana",
+            "position": 95,
+            "movement": -21
           }
         ]
       },
@@ -336,7 +392,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 18,
+            "position": 14,
             "movement": null,
             "status": "re"
           }
@@ -344,7 +400,7 @@
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3fe94d046b5097983f35fcc47037c799/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Jolie",
@@ -374,8 +430,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 66,
-            "movement": -21
+            "position": 72,
+            "movement": -23
           }
         ]
       },
@@ -423,8 +479,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 40,
-            "movement": -25
+            "position": 46,
+            "movement": -27
           }
         ]
       },
@@ -437,50 +493,6 @@
             "name": "Ghana",
             "position": 45,
             "movement": 3
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Love Again",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 19,
-            "movement": 0
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 32,
-            "movement": 1
-          },
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 119,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 183,
-            "movement": -37
           }
         ]
       }
@@ -516,8 +528,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 32,
-            "movement": -26
+            "position": 38,
+            "movement": -28
           }
         ]
       },
@@ -538,7 +550,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Sacrifice",
+    "title": "So it Goes",
     "platforms": [
       {
         "platform": "Apple Music",
@@ -547,14 +559,14 @@
           {
             "country": "LR",
             "name": "Liberia",
-            "position": 36,
-            "movement": -9
+            "position": 47,
+            "movement": -7
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 38,
-            "movement": 2
+            "position": 70,
+            "movement": -3
           }
         ]
       },
@@ -563,10 +575,10 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 90,
-            "movement": -20
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 7,
+            "movement": 26
           }
         ]
       },
@@ -577,7 +589,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 14,
+            "position": 18,
             "movement": null,
             "status": "re"
           }
@@ -585,7 +597,7 @@
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3fe94d046b5097983f35fcc47037c799/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Expresso",
@@ -721,8 +733,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 130,
-            "movement": -21
+            "position": 135,
+            "movement": -22
           }
         ]
       }
@@ -885,8 +897,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 192,
-            "movement": -34
+            "position": 197,
+            "movement": -35
           }
         ]
       }
@@ -1026,26 +1038,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Country Side",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 181,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/1d7cc732628e0d8b65e303351d620048/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "One",

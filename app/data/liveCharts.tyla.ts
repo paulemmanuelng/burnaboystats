@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-18";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-18T11:53Z";
+  export const liveChartsBuiltAt = "2026-09-18T16:32Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -204,12 +204,6 @@
             "status": "new"
           },
           {
-            "country": "BR",
-            "name": "Brazil",
-            "position": 182,
-            "movement": -62
-          },
-          {
             "country": "KH",
             "name": "Cambodia",
             "position": 183,
@@ -242,8 +236,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 73,
-            "movement": -15
+            "position": 76,
+            "movement": -17
           }
         ]
       },
@@ -447,8 +441,8 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 97,
-            "movement": -69
+            "position": 28,
+            "movement": 20
           }
         ]
       }
@@ -466,8 +460,8 @@
           {
             "country": "HN",
             "name": "Honduras",
-            "position": 77,
-            "movement": -30
+            "position": 83,
+            "movement": -35
           }
         ]
       },
@@ -514,38 +508,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Talk to Me",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "RO",
-            "name": "Romania",
-            "position": 199,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FI",
-            "name": "Finland",
-            "position": 137,
-            "movement": -8
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/cd07d0b83bcc8a17928619b3771e42df/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "TYLA",
     "platforms": [
       {
@@ -567,9 +529,8 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 61,
-            "movement": null,
-            "status": "new"
+            "position": 83,
+            "movement": -65
           }
         ]
       }
@@ -595,6 +556,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Talk to Me",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FI",
+            "name": "Finland",
+            "position": 137,
+            "movement": -8
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/cd07d0b83bcc8a17928619b3771e42df/500x500-000000-80-0-0.jpg"
   }
 ];
   

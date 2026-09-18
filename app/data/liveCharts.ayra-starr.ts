@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-18";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-18T11:53Z";
+  export const liveChartsBuiltAt = "2026-09-18T16:32Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -460,8 +460,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 9,
-            "movement": -7
+            "position": 15,
+            "movement": -13
           },
           {
             "country": "BF",
@@ -472,8 +472,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 30,
-            "movement": 3
+            "position": 52,
+            "movement": 14
           }
         ]
       },
@@ -816,16 +816,16 @@
             "status": "new"
           },
           {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 166,
-            "movement": -12
-          },
-          {
             "country": "IE",
             "name": "Ireland",
             "position": 172,
             "movement": -85
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 172,
+            "movement": -18
           },
           {
             "country": "TC",
@@ -1092,8 +1092,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 17,
-            "movement": 27
+            "position": 41,
+            "movement": 35
           }
         ]
       },
@@ -1286,26 +1286,26 @@
           {
             "country": "AG",
             "name": "Antigua and Barbuda",
-            "position": 55,
-            "movement": -2
+            "position": 59,
+            "movement": -6
           },
           {
             "country": "UG",
             "name": "Uganda",
             "position": 68,
-            "movement": 3
+            "movement": 7
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 173,
-            "movement": -120
+            "position": 194,
+            "movement": -109
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 193,
-            "movement": 3
+            "position": 198,
+            "movement": 2
           }
         ]
       },
@@ -1555,7 +1555,7 @@
             "country": "FR",
             "name": "France",
             "position": 118,
-            "movement": -9
+            "movement": -5
           },
           {
             "country": "CI",
@@ -1690,14 +1690,14 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 20,
-            "movement": -4
+            "position": 21,
+            "movement": -5
           },
           {
             "country": "IT",
             "name": "Italy",
-            "position": 33,
-            "movement": -23
+            "position": 41,
+            "movement": -29
           }
         ]
       },
@@ -1872,14 +1872,57 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 2,
-            "movement": 5
+            "position": 4,
+            "movement": 9
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2e52f4bf8bdb05c98002b714669ee2c2/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Ngozi",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 50,
+            "movement": -18
+          },
+          {
+            "country": "SC",
+            "name": "Seychelles",
+            "position": 96,
+            "movement": 77
+          },
+          {
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 137,
+            "movement": -16
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 142,
+            "movement": 11
+          },
+          {
+            "country": "MW",
+            "name": "Malawi",
+            "position": 185,
+            "movement": 9
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/12ca87c2ea2fa9506d6fc562bd8f5a01/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Ms. Paper",
@@ -1909,7 +1952,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 46,
+            "position": 68,
             "movement": null,
             "status": "new"
           }
@@ -1942,49 +1985,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/64f822132d39a3677d59f745a248a2ce/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Ngozi",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 49,
-            "movement": -17
-          },
-          {
-            "country": "SC",
-            "name": "Seychelles",
-            "position": 96,
-            "movement": 77
-          },
-          {
-            "country": "TZ",
-            "name": "Tanzania",
-            "position": 137,
-            "movement": -16
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 142,
-            "movement": 11
-          },
-          {
-            "country": "MW",
-            "name": "Malawi",
-            "position": 185,
-            "movement": 9
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/12ca87c2ea2fa9506d6fc562bd8f5a01/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Misunderstood",
@@ -2163,8 +2163,8 @@
           {
             "country": "NA",
             "name": "Namibia",
-            "position": 14,
-            "movement": -5
+            "position": 15,
+            "movement": -6
           }
         ]
       }
@@ -2243,6 +2243,38 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/64f822132d39a3677d59f745a248a2ce/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "All The Love",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FJ",
+            "name": "Fiji",
+            "position": 132,
+            "movement": -54
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 5,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/d30dbeb4d445f5cc6f7f100b830731c4/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Comforter",
     "platforms": [
       {
@@ -2294,38 +2326,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/64f822132d39a3677d59f745a248a2ce/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "All The Love",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FJ",
-            "name": "Fiji",
-            "position": 132,
-            "movement": -54
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 18,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/d30dbeb4d445f5cc6f7f100b830731c4/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Beggie Beggie",
@@ -2451,25 +2451,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/64f822132d39a3677d59f745a248a2ce/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Overloading",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 200,
-            "movement": 0
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/7861d849c8157fbffc37ccebf0ee75c5/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Ayra Starr - EP",

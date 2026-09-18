@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-18";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-18T11:53Z";
+  export const liveChartsBuiltAt = "2026-09-18T16:32Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -238,14 +238,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 22,
-            "movement": -19
+            "position": 45,
+            "movement": -39
           },
           {
             "country": "TT",
             "name": "Trinidad and Tobago",
-            "position": 72,
-            "movement": -6
+            "position": 73,
+            "movement": -7
           }
         ]
       },
@@ -613,16 +613,16 @@
             "movement": 14
           },
           {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 147,
-            "movement": -13
-          },
-          {
             "country": "AE",
             "name": "United Arab Emirates",
             "position": 150,
             "movement": -21
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 150,
+            "movement": -13
           },
           {
             "country": "KY",
@@ -658,8 +658,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 161,
-            "movement": -61
+            "position": 164,
+            "movement": -64
           }
         ]
       },
@@ -765,32 +765,32 @@
       },
       {
         "platform": "iTunes",
-        "numberOnes": 1,
+        "numberOnes": 0,
         "entries": [
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 1,
+            "position": 2,
             "movement": null,
             "status": "new"
           },
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 23,
-            "movement": 15
-          },
-          {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 34,
-            "movement": -4
+            "position": 35,
+            "movement": -5
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 46,
+            "movement": 24
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 114,
-            "movement": -20
+            "position": 119,
+            "movement": -21
           }
         ]
       },
@@ -979,9 +979,8 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 65,
-            "movement": null,
-            "status": "new"
+            "position": 87,
+            "movement": -66
           }
         ]
       }
@@ -1104,8 +1103,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 165,
-            "movement": -119
+            "position": 186,
+            "movement": -108
           }
         ]
       },
@@ -1251,8 +1250,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 166,
-            "movement": -119
+            "position": 187,
+            "movement": -108
           }
         ]
       },
@@ -1724,8 +1723,8 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 51,
-            "movement": 4
+            "position": 52,
+            "movement": 3
           },
           {
             "country": "BF",
@@ -1736,8 +1735,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 190,
-            "movement": 4
+            "position": 196,
+            "movement": 2
           }
         ]
       },
@@ -1903,8 +1902,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 188,
-            "movement": -8
+            "position": 191,
+            "movement": -10
           }
         ]
       }
@@ -2112,8 +2111,8 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 54,
-            "movement": 4
+            "position": 55,
+            "movement": 3
           },
           {
             "country": "BF",
@@ -2125,13 +2124,13 @@
             "country": "UG",
             "name": "Uganda",
             "position": 82,
-            "movement": 1
+            "movement": 5
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 181,
-            "movement": 2
+            "position": 186,
+            "movement": 1
           }
         ]
       }
@@ -2269,14 +2268,14 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 68,
-            "movement": 0
+            "position": 71,
+            "movement": -1
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 185,
-            "movement": 5
+            "position": 190,
+            "movement": 4
           }
         ]
       }
@@ -2357,8 +2356,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 55,
-            "movement": -44
+            "position": 77,
+            "movement": -54
           }
         ]
       }
@@ -2451,6 +2450,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Return",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 22,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/50d12a3358fb88c810b8c9231ced0cd6/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "FEEL",
     "platforms": [
       {
@@ -2468,26 +2487,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/89d5885fe38a406504224ed98c1ab605/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Nwa Baby",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 42,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/74fb63756975ed8644a5519be4ad39fc/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Funds",
@@ -2508,26 +2507,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/28cbbe0064bd5b7494523e75b6ebeb95/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "High",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 53,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/08304eb172098540c635de98530d4929/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Like",
@@ -2628,6 +2607,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Nwa Baby",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 64,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/74fb63756975ed8644a5519be4ad39fc/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Tell Everybody",
     "platforms": [
       {
@@ -2646,6 +2645,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "High",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 75,
+            "movement": -53
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/08304eb172098540c635de98530d4929/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Ogechi",

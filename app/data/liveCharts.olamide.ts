@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-18";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-18T11:53Z";
+  export const liveChartsBuiltAt = "2026-09-18T16:32Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -224,14 +224,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 31,
-            "movement": -22
+            "position": 63,
+            "movement": -46
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 69,
-            "movement": -20
+            "position": 76,
+            "movement": -23
           }
         ]
       },
@@ -430,6 +430,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/1d54453224f17a5f5271d50f793fca7b/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Melo Melo",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 10,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6c243844bbecece7ab92e5f5799111a5/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Sometimes",
     "platforms": [
       {
@@ -526,25 +546,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Zion",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 192,
-            "movement": -126
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/2f5c91242bfb5ed7be4ccb2b435b6f7f/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Double Double",
     "platforms": [
       {
@@ -592,7 +593,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 113,
+            "position": 116,
             "movement": -5
           }
         ]
@@ -611,7 +612,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 119,
+            "position": 122,
             "movement": -5
           }
         ]
@@ -630,7 +631,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 158,
+            "position": 161,
             "movement": -7
           }
         ]
