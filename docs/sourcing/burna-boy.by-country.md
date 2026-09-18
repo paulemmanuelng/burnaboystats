@@ -63,7 +63,7 @@
 - Toni-Ann Singh [feat. Popcaan] — Silver
 - Talibans II [with Byron Messia] — Platinum
 - Lenu (Remix) — Silver
-- B.D'or [Bramsito ft. Burna Boy] — Platinum
+- B. D'OR [feat. Wizkid] — Platinum (TCSN: "B. D'Or — Burna Boy ft. Wizkid", certified 8 Jun 2023; filed under Bramsito's 2019 single until 18 Sep 2026, RETRACTIONS #12)
 
 ### UK — BPI (30)
 - African Giant — Gold

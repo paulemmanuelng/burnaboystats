@@ -67,7 +67,8 @@ describe("the compare picker misses nothing", () => {
     const burna = comparableArtists.find((a) => a.slug === "burna-boy")!;
     expect(pickerReleases(burna, "kampe").map((r) => r.title)).toContain("4 Kampé II");
     expect(pickerReleases(burna, "KAMPÉ").map((r) => r.title)).toContain("4 Kampé II");
-    expect(pickerReleases(burna, "b.d'or").map((r) => r.title)).toContain("B.D'or");
+    expect(pickerReleases(burna, "b. d'or").map((r) => r.title)).toContain("B. D'OR");
+    expect(pickerReleases(burna, "wizkid").map((r) => r.title)).toContain("B. D'OR");
     expect(pickerReleases(burna, "dave").map((r) => r.title)).toContain("Location");
     expect(pickerReleases(burna, "shakira").map((r) => r.title)).toContain("Dai Dai");
     const ckay = comparableArtists.find((a) => a.slug === "ckay")!;

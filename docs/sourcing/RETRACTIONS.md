@@ -351,3 +351,29 @@ a nomination the file never had, added.
 **Resynced:** 83 → 82 wins, 241 → 242 nominations; L.I.F.E's Headies 2014
 Album of the Year row now names the work. The like-to-party page's "2× nom"
 card was already right.
+
+## 12. "B.D'or" — a Nigerian Platinum filed under the wrong record (18 Sep 2026)
+
+certifications.ts carried `{ title: "B.D'or", credit: "Bramsito ft. Burna Boy",
+year: 2019, certs: [{ c: "NG", level: "Platinum" }] }` in the features list
+from the 20 June 2026 build (the "+28 songs" TurnTable catalogue import). That
+is the French rapper's 2019 single. **The row is now `B. D'OR`, `feat. Wizkid`,
+2021, in the singles list, with its Deezer sleeve.**
+
+**What the body says.** TCSN's register (the 21 Feb 2026 Wayback capture of
+turntablecharts.com/certification, `__NEXT_DATA__` → `certEntries`, read 18 Sep
+2026) has no Bramsito row at all. It holds three rows for the title, all
+Burna Boy's: id 184 — *B. D'Or*, "Burna Boy, Wizkid", Single, Platinum,
+Spaceship Entertainment Ltd., Atlantic Records, certified **8 June 2023**; ids
+612 and 1744 — "Burna Boy ft. Wizkid", Platinum, 5 Jan and 6 Feb 2025 (the
+relaunch re-listings). One plaque, at its current tier, per the counting rules.
+
+**How it surfaced.** The Nigeria chart sweep of the same day found *B. D'OR*
+(Burna Boy ft. Wizkid, Dec 2021) at No. 2 with no chart row on file, and the
+verifier flagged that the only "B.D'or" on the site was credited to someone
+else. Paul confirmed the record; the register confirmed the plaque.
+
+**Resynced:** the plaque count does not move (one row out, one row in); the
+covered-release count moves 82 → 83 (tests/certUnits); docs/sourcing/burna-boy.by-country.md
+row corrected. The Wizkid board already carried the song as his featured
+appearance (afrobeats.ts).
