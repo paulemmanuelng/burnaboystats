@@ -355,16 +355,16 @@ export const songs: Song[] = [
     storyOnly: true,
     tagline: "The On a Spaceship era, before the world caught on",
     blurb:
-      "Released as a single on 24 March 2016 from On a Spaceship — the album Burna Boy put out on 25 November 2015 through his own Spaceship Records with Universal. The record drew mixed reviews overall; Pulse Nigeria listed “Rizzla” among its good tracks and NotJustOk called it the one J Fem production that earned its place. It's a window into the Afro-fusion sound he was already building at home, three years before “Ye” took it worldwide.",
+      "Released as a single on 24 March 2016 from On a Spaceship — the album Burna Boy self-released on 25 November 2015 on his own Spaceship label. The record drew mixed reviews overall; Pulse Nigeria listed “Rizzla” among its good tracks and NotJustOk called it the one J Fem production that earned its place. It's a window into the Afro-fusion sound he was already building at home, three years before “Ye” took it worldwide.",
     extraFacts: [
       { v: "24 Mar 2016", l: "released as the album's third single" },
-      { v: "Spaceship", l: "from On a Spaceship (2015), on his own label with Universal" },
+      { v: "Spaceship", l: "from On a Spaceship (2015), self-released on his own Spaceship label" },
       { v: "Standout", l: "named among the album's good tracks by Pulse Nigeria and NotJustOk" },
     ],
     faqs: [
       {
         q: "What album is “Rizzla” on?",
-        a: "“Rizzla” is from On a Spaceship, Burna Boy's second studio album, released 25 November 2015 through Spaceship Records and Universal Music Group. The song followed as a single on 24 March 2016.",
+        a: "“Rizzla” is from On a Spaceship, Burna Boy's second studio album, self-released 25 November 2015 on his own Spaceship label. The song followed as a single on 24 March 2016.",
       },
       {
         q: "What were the singles from On a Spaceship?",

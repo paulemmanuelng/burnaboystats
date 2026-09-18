@@ -185,7 +185,10 @@ describe("chart data integrity", () => {
     // 17 Sep 2026: -2 again — "Alone" Sweden 33 (Sverigetopplistan's singles chart
     // never carried it, Heatseeker only) and the Jerusalema remix's South Africa
     // No. 1 (TOSAC did not exist before Sep 2021) — RETRACTIONS #9, #10.
-    expect(chartEntryCount).toBe(276); // 2 Sep 2026: -2, the unsupported Dominican and Salvadoran No. 1s removed (RETRACTIONS #7, #8)
+    // 18 Sep 2026: 276 → 284 — album peaks (Outside NG 41 joins too) read at the bodies: No Sign of
+    // Weakness CH 28 + PT 66; I Told Them... NZ 12 + DK 13 + AT 39; African
+    // Giant NL 12 + CH 64 + NG 23 in, DE 80 out (IE corrected 12 → 80).
+    expect(chartEntryCount).toBe(284); // 2 Sep 2026: -2, the unsupported Dominican and Salvadoran No. 1s removed (RETRACTIONS #7, #8)
     expect(numberOnes).toBe(46); // 2 Sep 2026: Poland took this to 49, then the Dominican and Salvadoran No. 1s came out (#7, #8); 17 Sep: Jerusalema ZA out (#10)
     expect(chartCountryCount).toBe(69); // -2: the Dominican Republic and El Salvador each left with their only entry
   });

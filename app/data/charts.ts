@@ -98,7 +98,7 @@ export const CHART_COUNTRIES: Record<string, ChartCountry> = {
   // Burna Boy's OWN rows here have not yet had that full walk (only the 16
   // peaks on file were re-read, Last Last's among them); the 47 plaqued titles
   // with no Nigerian entry are the next sweep, not a guess.
-  NG: { name: "Nigeria", flag: "🇳🇬", body: "TurnTable Top 100" },
+  NG: { name: "Nigeria", flag: "🇳🇬", body: "TurnTable Top 100 / Top 100 Albums" },
   ZA: { name: "South Africa", flag: "🇿🇦", body: "The Official SA Charts" },
   SR: { name: "Suriname", flag: "🇸🇷", body: "Nationale Top 40" },
   AR: { name: "Argentina", flag: "🇦🇷", body: "Billboard Argentina Hot 100" },
@@ -227,6 +227,11 @@ export const albumCharts: ChartRelease[] = [
     { c: "NG", peak: 1 }, { c: "UK", peak: 1 }, { c: "NL", peak: 2 }, { c: "FR", peak: 6 }, { c: "SE", peak: 7 },
     { c: "CA", peak: 18 }, { c: "BE", peak: 20 }, { c: "IE", peak: 25 }, { c: "US", peak: 31 },
     { c: "DE", peak: 46 }, { c: "AU", peak: 56 },
+    // Read 18 Sep 2026: RMNZ artist page (12, 13 weeks, first charted 1 Sep
+    // 2023); Hitlisten uge 35/2023 (13, new, 1 week); austriancharts.at (39,
+    // 5 Sep 2023, 1 week). Hung Medien's cross-table also shows CH 7 / NO 6,
+    // unread at those bodies — not added.
+    { c: "NZ", peak: 12 }, { c: "DK", peak: 13 }, { c: "AT", peak: 39 },
   ] },
   { title: "Love, Damini", year: 2022, entries: [
     { c: "UK", peak: 2 }, { c: "NG", peak: 3 }, { c: "NL", peak: 2 }, { c: "CA", peak: 6 }, { c: "SE", peak: 12 },
@@ -235,16 +240,36 @@ export const albumCharts: ChartRelease[] = [
   ] },
   { title: "Twice as Tall", year: 2020, entries: [
     { c: "NL", peak: 10 }, { c: "UK", peak: 11 }, { c: "CH", peak: 12 }, { c: "CA", peak: 19 }, { c: "BE", peak: 22 },
-    { c: "FR", peak: 29 }, { c: "IE", peak: 31 }, { c: "NO", peak: 34 }, { c: "NG", peak: 25 }, { c: "SE", peak: 47 }, { c: "US", peak: 54 },
+    // TurnTable Official Top 50 Albums (now Top 100 Albums): 17 on the 2 Feb 2023
+    // and 16 Feb 2023 issues; 25 was its debut on the chart's first issue,
+    // 2 Nov 2022. Every issue to 10 Sep 2026 read (26, 184 weeks, still charting).
+    { c: "FR", peak: 29 }, { c: "IE", peak: 31 }, { c: "NO", peak: 34 }, { c: "NG", peak: 17, note: "TurnTable Official Top 100 Albums — 17 on the 2 and 16 February 2023 issues; still charting." }, { c: "SE", peak: 47 }, { c: "US", peak: 54 },
     { c: "AT", peak: 69 },
   ] },
   { title: "African Giant", year: 2019, entries: [
-    { c: "IE", peak: 12 }, { c: "UK", peak: 16 }, { c: "CA", peak: 33 }, { c: "FR", peak: 54 },
-    { c: "BE", peak: 58 }, { c: "DE", peak: 80 }, { c: "US", peak: 104 },
+    // Re-read at the bodies 18 Sep 2026: Dutch Album Top 100 entry 3 Aug 2019
+    // at 12 (155 weeks); IRMA Top 100 issue of 2 Aug 2019 — 80, one week (the
+    // 12 this row carried was never Ireland's); Schweizer Hitparade entry 4 Aug
+    // 2019 at 64; TurnTable Official Top 100 Albums peak 23 on the 30 Jul 2026
+    // issue, still on the chart (36 on 10 Sep 2026, 158 weeks). Germany's 80
+    // was not on Offizielle Charts' run and is out.
+    { c: "NL", peak: 12 }, { c: "UK", peak: 16 }, { c: "NG", peak: 23, note: "Peak still open — read while the album is still on the Top 100, so it may yet climb." },
+    { c: "CA", peak: 33 }, { c: "FR", peak: 54 }, { c: "BE", peak: 58 }, { c: "CH", peak: 64 },
+    { c: "IE", peak: 80 }, { c: "US", peak: 104 },
+  ] },
+  // TurnTable Official Top 100 Albums: 51 issues from a No. 96 debut on the
+  // 14 Mar 2024 issue; peak 41 on the 4 Jul 2024 issue — the best rank in any
+  // of the 193 archive issues, 5 Jan 2023 → 10 Sep 2026 (89 on the last). Read
+  // at the ttc-proxy archive 18 Sep 2026. Outside had no chart row at all.
+  { title: "Outside", year: 2018, entries: [
+    { c: "NG", peak: 41 },
   ] },
   { title: "No Sign of Weakness", year: 2025, entries: [
-    { c: "NG", peak: 1 }, { c: "UK", peak: 6 }, { c: "NL", peak: 57 }, { c: "FR", peak: 58 }, { c: "CA", peak: 65 },
-    { c: "BE", peak: 136 }, { c: "US", peak: 200 },
+    // Schweizer Hitparade Alben Top 100, issue of 20 Jul 2025: 28, one week
+    // (swisscharts.com/charts/alben/20-07-2025); AFP/Audiogest TOP semana 29 de
+    // 2025, Top 200 Álbuns: 66, new, one week (audiogest.pt PDF). Read 18 Sep 2026.
+    { c: "NG", peak: 1 }, { c: "UK", peak: 6 }, { c: "CH", peak: 28 }, { c: "NL", peak: 57 }, { c: "FR", peak: 58 }, { c: "CA", peak: 65 },
+    { c: "PT", peak: 66 }, { c: "BE", peak: 136 }, { c: "US", peak: 200 },
   ] },
 ];
 

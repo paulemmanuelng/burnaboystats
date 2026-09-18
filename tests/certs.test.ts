@@ -117,13 +117,16 @@ describe("certHistory (certifications by year)", () => {
     expect(certHistory.filter((e) => e.year === 2025).length).toBe(29);
   });
 
-  it("2024 has the published count of 21 certifications", () => {
+  it("2024 has the published count of 20 certifications", () => {
     // 20 → 21 on 17 Sep 2026: City Boys NZ Gold (RMNZ via RadioScope, 2024-06-13),
-    // on the release row since the snapshot but never in this log.
-    expect(certHistory.filter((e) => e.year === 2024).length).toBe(21);
+    // on the release row since the snapshot but never in this log; 21 → 20 on
+    // 18 Sep 2026: I Told Them... UK Silver moved to 2023 (BPI: 22 Dec 2023).
+    expect(certHistory.filter((e) => e.year === 2024).length).toBe(20);
   });
 
-  it("2023 has the published count of 44 certifications", () => {
+  it("2023 has the published count of 45 certifications", () => {
+    // 44 -> 45 on 18 Sep 2026: "I Told Them..." UK Silver (BPI: 22 December
+    // 2023) moved here from 2024.
     // 39 + the four Swedish awards of 2023-08-16, read at GLF/Grammotex,
     // less "Gbona"'s Portuguese Gold, which moved to 2022 once AFP/Audiogest's
     // TOP Anual 2022 was read at the body: it is already OU there (1555), and
@@ -133,7 +136,7 @@ describe("certHistory (certifications by year)", () => {
     // (BPI: 01 December 2023 Gold) and "Alone" FR Gold (SNEP: date de constat
     // 26/10/2023) enter the log, and "Love, Damini" NL Gold leaves for 2022
     // (NVPI: 3-11-2022). Both bodies read that day.
-    expect(certHistory.filter((e) => e.year === 2023).length).toBe(44);
+    expect(certHistory.filter((e) => e.year === 2023).length).toBe(45);
   });
 
   it("the four Portuguese Golds are dated to the AFP report that shows them", () => {

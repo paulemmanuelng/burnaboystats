@@ -5,7 +5,7 @@ import BreadcrumbBar from "../../components/BreadcrumbBar";
 import MobileDeepPage from "../../components/MobileDeepPage";
 import GatedImage from "../../components/GatedImage";
 import { numberWord } from "../../lib/homeData";
-import { garage, currentCars, soldCars, unconfirmedCars, carCount, totalValueFormatted, conversionNote } from "../../data/cars";
+import { garage, currentCars, soldCars, unconfirmedCars, carCount, totalValueFormatted, conversionNote, CARS_LAST_SWEEP, valueWord } from "../../data/cars";
 import { usdFull, usdShort, rankLabel, modelShort, marqueTally } from "../../lib/garage";
 import { pageMetadata, datasetJsonLd } from "../../lib/seo";
 
@@ -36,7 +36,7 @@ const carsItemList = {
   itemListElement: garage.map((c) => ({
     "@type": "ListItem",
     position: c.rank,
-    name: `${c.make} ${c.model}${c.year ? ` (${c.year})` : ""}`,
+    name: `${c.make} ${c.model}${c.year && c.yearIs !== "acquired" ? ` (${c.year})` : ""}`,
     url: `https://burnaboystats.com/records/cars/${c.slug}`,
   })),
 };
@@ -55,6 +55,8 @@ const highlights = [
 // name a car the list no longer leads with.
 const topCar = garage[0];
 const topCarValue = usdShort(topCar.valueUsd);
+// The one dealer-stated price, read off the row rather than typed as "$2M".
+const senna = garage.find((c) => c.slug === "mclaren-senna")!;
 const topCarName = `${topCar.make} ${modelShort(topCar.model)}`;
 
 // The five no longer counted, by value — kept for the record, pictured never.
@@ -97,7 +99,7 @@ export default function CarsPage() {
           value: usdShort(c.valueUsd),
           lead: c.rank === 1,
           href: `/records/cars/${c.slug}`,
-          ariaLabel: `${c.make} ${c.model}, ranked ${c.rank}, reported value ${usdFull(c.valueUsd)} — open the car's page`,
+          ariaLabel: `${c.make} ${c.model}, ranked ${c.rank}, ${valueWord(c)} value ${usdFull(c.valueUsd)} — open the car's page`,
           tile: {
             src: c.image.preview.src,
             alt: c.image.alt,
@@ -147,8 +149,8 @@ export default function CarsPage() {
           </h1>
           <p className={styles.lede}>
             Burna Boy currently owns {carCount} confirmed cars — a collection worth a reported{" "}
-            {totalValueFormatted}+, led by a one-of-one ₦9 billion Bugatti Chiron and a $2
-            million McLaren Senna. Every car below opens to its own page: specifications, where
+            {totalValueFormatted}+, led by a one-of-one ₦9 billion Bugatti Chiron and a{" "}
+            {usdShort(senna.valueUsd)} McLaren Senna. Every car below opens to its own page: specifications, where
             it stands in the garage, and the source that put it on this list.
           </p>
 
@@ -195,7 +197,7 @@ export default function CarsPage() {
                 key={c.slug}
                 href={`/records/cars/${c.slug}`}
                 className={`${styles.tile} ${c.rank === 1 ? styles.tileLead : ""}`}
-                aria-label={`${c.make} ${c.model}, ranked ${c.rank}, reported value ${usdFull(c.valueUsd)} — open the car's page`}
+                aria-label={`${c.make} ${c.model}, ranked ${c.rank}, ${valueWord(c)} value ${usdFull(c.valueUsd)} — open the car's page`}
               >
                 <span className={styles.tileImg}>
                   <GatedImage
@@ -284,10 +286,11 @@ export default function CarsPage() {
                   {conversionNote.exceptions
                     .map((e) => `${e.name}, whose reported ${e.naira} is converted here at ${e.rate}`)
                     .join("; and the ")}
-                  {conversionNote.exceptions.length === 1 && ", the rate on the day the buy was announced"}
+                  {conversionNote.exceptions.length === 1 && ", the CBN rate on 3 July 2026, the last trading day before the reveal"}
                 </>
-              )}. The McLaren Senna is the one confirmed price — $2M, posted by Burna Boy
-              himself. Last fully re-verified July 2026.
+              )}. The McLaren Senna is the one price stated by the selling dealer — Abuja Car
+              Limited&apos;s June 2025 sale post priced it at ₦3.2 billion, about {usdShort(senna.valueUsd)}.
+              Last fully re-verified {CARS_LAST_SWEEP}.
             </p>
           </div>
         </section>

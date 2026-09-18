@@ -844,7 +844,7 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
-    "title": "Porsche 911 GT3 RS (Weissach)",
+    "title": "Porsche 911 GT3 RS",
     "path": "/records/cars/porsche-911-gt3-rs",
     "section": "Car",
     "description": "In Burna Boy's garage — its page: illustration, reported value and specifications.",
@@ -3872,7 +3872,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "African Giant",
     "path": "/music/albums/african-giant",
     "section": "Release",
-    "description": "7 certifications · 7 chart entries.",
+    "description": "7 certifications · 9 chart entries.",
     "keywords": [
       "song",
       "release"
@@ -4094,10 +4094,10 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Different Size",
     "path": "/certifications",
     "section": "Release",
-    "description": "feat. Vict0ny — 1 certification.",
+    "description": "feat. Victony — 1 certification.",
     "keywords": [
       "feat",
-      "vict0ny",
+      "victony",
       "song",
       "release"
     ],
@@ -4275,7 +4275,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "I Told Them...",
     "path": "/music/albums/i-told-them",
     "section": "Release",
-    "description": "4 certifications · 11 chart entries.",
+    "description": "4 certifications · 14 chart entries.",
     "keywords": [
       "song",
       "release"
@@ -4489,7 +4489,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "No Sign of Weakness",
     "path": "/music/albums/no-sign-of-weakness",
     "section": "Release",
-    "description": "7 chart entries.",
+    "description": "9 chart entries.",
     "keywords": [
       "song",
       "release"
@@ -4548,6 +4548,17 @@ export const generatedDocs: SearchDoc[] = [
     "path": "/certifications",
     "section": "Release",
     "description": "1 certification.",
+    "keywords": [
+      "song",
+      "release"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Outside",
+    "path": "/music/albums/outside",
+    "section": "Release",
+    "description": "1 chart entry.",
     "keywords": [
       "song",
       "release"

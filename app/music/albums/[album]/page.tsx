@@ -293,6 +293,9 @@ export default async function AlbumPage({ params }: { params: Promise<{ album: s
           <h2 id="album-tracks" className={styles.h2}>Tracklist</h2>
           <span className={styles.sectionMeta}>{record.tracks.length} tracks</span>
         </div>
+        {/* The standard-edition rule, stated where the count is: L.I.F.E's cover
+            reads "Deluxe Edition" and its Spotify link opens 19 tracks. */}
+        {record.editionNote && <p className={albumStyles.editionNote}>{record.editionNote}</p>}
         <ol className={albumStyles.trackList}>
           {record.tracks.map((t, i) => {
             const sp = songPageFor(t);

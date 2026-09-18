@@ -55,3 +55,7 @@
 .trackLink:hover .trackMore {
   opacity: 1;
 }
+
+/* The count above is the standard edition's; this line says so, in the same
+   muted italic the tracklist dialog uses (music.module.css .dialogEdition). */
+.editionNote { color: var(--text-muted); font-style: italic; font-size: var(--type-small); margin: 6px 0 12px; }

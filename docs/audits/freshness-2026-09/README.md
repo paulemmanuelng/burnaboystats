@@ -10,7 +10,7 @@ the body that publishes the figure before anything is changed.
 | 2 | /music, /live-charts, /analysis, /compare, /records/by-the-numbers, /records/tours/{revenue,festivals}, /dai-dai/es, /about, /faq, /methodology, /press | 34 | 32 | 2 | PR #270, 17 Sep |
 | 3 | /afrobeats + the 15 artist pages with their /charts and /live | 55 | 51 | 4 | PR #274, 17 Sep |
 | 4a | the 14 song pages under /music/<slug> | 59 (17 non-note) | 29 | 14 | PR #283, 17 Sep — verified one page at a time for four pages, then the remaining ten together (Paul's call); Ye NG Silver→Gold and Last Last ZA Platinum removal VETOED by Paul, everything else applied |
-| 4b | 8 album pages + 15 car pages | not yet run | | | |
+| 4b | 8 album pages + 15 car pages | 139 (26 non-note) | 104 | 31 (5 unverifiable) | PR #286, 18 Sep — find pass 7 parallel + 12 sequential + 4 parallel (Paul paced, then full speed); verify 19 + 4 in parallel |
 | 4c | /timeline, /records/visualized, /records/tours/map, /records, /search, /share, /contact, /curator, /api, /analysis/spotify-unmerge, 3 compare pairs | 79 (18 non-note) | 70 | 8 (1 unverifiable) | PR #285, 17 Sep — find pass 6 parallel + 7 sequential (Paul pacing credits), verify 13 in parallel after the 22:10 reset |
 
 Files: `audit-batch{N}-raw.json` is what the auditors reported (every finding,

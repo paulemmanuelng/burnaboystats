@@ -7,6 +7,9 @@ import { sameTitle } from "../lib/titleKey";
 // same way. Where the linked Spotify edition differs, `editionNote` says so
 // beside the count (both layouts and the tracklist dialog) rather than
 // changing the count.
+// `label` is the ℗ credit as the linked release prints it, in its order — Bad
+// Habit is on the four Atlantic-era albums from Twice as Tall on; Outside's
+// linked edition credits Spaceship Entertainment and Atlantic only.
 // `cover` = official album artwork served by Spotify (displayed unmodified,
 // attributed, and linked back to Spotify — see the Music page).
 export interface AlbumEntry {
@@ -71,7 +74,8 @@ export const albums: AlbumEntry[] = [
     spotify: "https://open.spotify.com/album/79lrrUvUyIuOD12b5taQVP",
     cover: "https://i.scdn.co/image/ab67616d0000b273a9c13c1a5538f87146ac8ca5",
     year: 2019,
-    label: "Atlantic · Spaceship",
+    // Spotify's © block (read 18 Sep 2026): Atlantic / Spaceship / Bad Habit.
+    label: "Atlantic · Bad Habit · Spaceship",
     tracks: [
       "African Giant", "Anybody", "Wetin Man Go Do", "Dangote",
       "Gum Body (feat. Jorja Smith)", "Killin Dem (with Zlatan)", "Omo",
@@ -86,7 +90,7 @@ export const albums: AlbumEntry[] = [
     spotify: "https://open.spotify.com/album/218CJKDCszsQQj7Amk7vIu",
     cover: "https://i.scdn.co/image/ab67616d0000b2733478524ed62d216a705c2424",
     year: 2020,
-    label: "Atlantic · Spaceship",
+    label: "Atlantic · Bad Habit · Spaceship",
     tracks: [
       "Level Up (feat. Youssou N'Dour)", "Alarm Clock", "Way Too Big", "Bebo",
       "Wonderful", "Onyeka", "Naughty by Nature (feat. Naughty by Nature)",
@@ -100,11 +104,14 @@ export const albums: AlbumEntry[] = [
     spotify: "https://open.spotify.com/album/6kgDkAupBVRSqbJPUaTJwQ",
     cover: "https://i.scdn.co/image/ab67616d0000b273d98e997eaad5f503b9e1f2f2",
     year: 2022,
-    label: "Atlantic · Spaceship",
+    label: "Atlantic · Bad Habit · Spaceship",
     tracks: [
       "Glory (feat. Ladysmith Black Mambazo)", "Science", "Cloak & Dagger (feat. J Hus)",
-      "Kilometre", "Jagele", "Dirty Secrets", "Whiskey", "Last Last",
-      "Different Size (feat. Vict0ny)", "It's Plenty", "Toni-Ann Singh (feat. Popcaan)",
+      // Order read at Spotify (embed 6kgDkAupBVRSqbJPUaTJwQ), Apple (1749165462)
+      // and Deezer (333197317) on 18 Sep 2026 — Wikipedia's listing puts Dirty
+      // Secrets at 6 and is the outlier. Victony is spelled as he spells it.
+      "Kilometre", "Jagele", "Whiskey", "Last Last", "Different Size (feat. Victony)",
+      "It's Plenty", "Dirty Secrets", "Toni-Ann Singh (feat. Popcaan)",
       "Solid (feat. Blxst & Kehlani)", "For My Hand (feat. Ed Sheeran)",
       "Rollercoaster (feat. J Balvin)", "Vanilla", "Common Person",
       "Wild Dreams (feat. Khalid)", "How Bad Could It Be",
@@ -116,7 +123,8 @@ export const albums: AlbumEntry[] = [
     spotify: "https://open.spotify.com/album/1JzjwUKkPsdHg1SQ7qa5hc",
     cover: "https://i.scdn.co/image/ab67616d0000b273c361f3720bafc0da36f14d96",
     year: 2023,
-    label: "Atlantic · Spaceship",
+    // Spotify's © block (read 18 Sep 2026): Atlantic / Spaceship / Bad Habit.
+    label: "Atlantic · Bad Habit · Spaceship",
     tracks: [
       "I Told Them (feat. GZA)", "Normal", "On Form",
       "Sittin' on Top of the World (feat. 21 Savage)", "Tested, Approved & Trusted",
@@ -130,7 +138,7 @@ export const albums: AlbumEntry[] = [
     spotify: "https://open.spotify.com/album/35EMM8QwKJ2qXmoUJnUSNf",
     cover: "https://i.scdn.co/image/ab67616d0000b273d00c3ad1a774c0e171939239",
     year: 2025,
-    label: "Atlantic · Spaceship · Bad Habit",
+    label: "Atlantic · Bad Habit · Spaceship",
     tracks: [
       "No Panic", "No Sign of Weakness", "Buy You Life", "Love",
       "TaTaTa (feat. Travis Scott)", "Come Gimme", "Dem Dey", "Sweet Love",

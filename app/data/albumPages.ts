@@ -9,6 +9,13 @@
 // circulate in fan graphics (e.g. "2.1B across all platforms") deliberately do
 // NOT appear: no body publishes them.
 
+import { tours } from "./tours";
+
+// The record tour by gross — "$30.46M" and "22 shows" were typed four times on
+// the I Told Them… page beside pages that derive them.
+const grossOf = (g?: string) => (g ? Number.parseFloat(g.replace(/[^0-9.]/g, "")) : 0);
+const recordTour = [...tours].sort((a, b) => grossOf(b.gross) - grossOf(a.gross))[0];
+
 import type { SongFact } from "./songs";
 import { sameTitle } from "../lib/titleKey";
 
@@ -32,7 +39,7 @@ export const albumPages: AlbumPage[] = [
       "Burna Boy's 2013 debut studio album on Aristokrat Records, its title an acronym for Leaving an Impact For Eternity. Carried by “Like to Party”, “Tonight” and “Run My Race”, it announced a sound already fluent in Fela's afrobeat and dancehall — and was an Album of the Year nominee at both The Headies and the Nigeria Entertainment Awards in 2014.",
     extraFacts: [
       { v: "2× nom", l: "Album of the Year — The Headies and the Nigeria Entertainment Awards, 2014" },
-      { v: "15", l: "tracks, with 2face Idibia, Timaya, Wizkid, Olamide and Reminisce among the guests" },
+      { v: "15", l: "tracks on the standard edition, with 2face Idibia, Timaya, Wizkid, Olamide and Reminisce among the guests" },
     ],
     faqs: [
       {
@@ -41,7 +48,7 @@ export const albumPages: AlbumPage[] = [
       },
       {
         q: "Which songs are on L.I.F.E?",
-        a: "The 15-track album carries “Like to Party” — his breakout lead single — alongside “Tonight”, “Run My Race”, “#Yawadey” and collaborations with 2face Idibia, Timaya, Wizkid, Olamide and Reminisce.",
+        a: "The 15-track standard edition carries “Like to Party” — his breakout lead single — alongside “Tonight”, “Run My Race”, “#Yawadey” and collaborations with 2face Idibia, Timaya, Wizkid, Olamide and Reminisce. (the linked Spotify release is the 19-track deluxe edition).",
       },
       {
         q: "Did L.I.F.E win any awards?",
@@ -59,7 +66,7 @@ export const albumPages: AlbumPage[] = [
     blurb:
       "Released in 2015 on his own Spaceship imprint, On a Spaceship is Burna Boy's second studio album — nineteen tracks with Wizkid, Phyno, Flavour, Wande Coal and South Africa's AKA among the guests. “Rizzla” endures as its cult favourite, and the self-released album marked the independence that still defines the Spaceship label credit on every record since.",
     extraFacts: [
-      { v: "19", l: "tracks — his longest album" },
+      { v: "19", l: "tracks — joint-longest with African Giant and Love, Damini" },
       { v: "2015", l: "self-released on his own Spaceship label" },
     ],
     faqs: [
@@ -89,7 +96,7 @@ export const albumPages: AlbumPage[] = [
     extraFacts: [
       { v: "2018", l: "Album of the Year — Nigeria Entertainment Awards" },
       { v: "13", l: "tracks, with J Hus, Lily Allen and Mabel featuring" },
-      { v: "“Ye”", l: "the breakout — over 330 million Spotify streams and counting" },
+      { v: "“Ye”", l: "the breakout — its full story on the Ye page" },
     ],
     faqs: [
       {
@@ -102,7 +109,7 @@ export const albumPages: AlbumPage[] = [
       },
       {
         q: "Did Outside win any awards?",
-        a: "Yes — Outside won Album of the Year at the 2018 Nigeria Entertainment Awards and earned a Best R&B/Pop Album nomination at the 2019 Headies.",
+        a: "Yes — Outside won Album of the Year at the 2018 Nigeria Entertainment Awards and was nominated for both Album of the Year and Best R&B/Pop Album at the 2019 Headies.",
       },
     ],
     metaTitle: "Outside — Burna Boy's 2018 Album, Home of “Ye”",
@@ -114,7 +121,7 @@ export const albumPages: AlbumPage[] = [
     title: "African Giant",
     tagline: "The statement — Grammy-nominated, Platinum in France",
     blurb:
-      "African Giant (2019) took its name from the billing he demanded and made it fact: nineteen tracks with Damian Marley, Angélique Kidjo, Future, Jorja Smith and YG, a first Grammy nomination (Best World Music Album), the Edison Award for Best World Album, and certifications in seven countries — Platinum in France with Gold in the UK, Canada, Sweden, the Netherlands, Switzerland and Denmark.",
+      "African Giant (2019) took its name from the billing he demanded and made it fact: nineteen tracks with Damian Marley, Angélique Kidjo, Future, Jorja Smith and YG, a first Grammy nomination (Best World Music Album), the Edison Jazz/World award in the World category, and certifications in seven countries — Platinum in France and Gold across Europe and Canada.",
     extraFacts: [
       { v: "2020", l: "Grammy-nominated — Best World Music Album — and Edison Award winner" },
       { v: "19", l: "tracks, with Damian Marley, Angélique Kidjo, Future, Jorja Smith and YG" },
@@ -130,7 +137,7 @@ export const albumPages: AlbumPage[] = [
       },
       {
         q: "How did African Giant chart?",
-        a: "African Giant charted in seven countries, peaking at No. 12 in Ireland, No. 16 in the UK and No. 104 on the US Billboard 200.",
+        a: "African Giant charted in nine countries, peaking at No. 12 in the Netherlands, No. 16 in the UK, No. 23 in Nigeria (where it is still charting) and No. 104 on the US Billboard 200.",
       },
     ],
     metaTitle: "African Giant — Burna Boy's Grammy-Nominated 2019 Album",
@@ -200,10 +207,10 @@ export const albumPages: AlbumPage[] = [
     title: "I Told Them…",
     tagline: "The UK No. 1 — the first Afrobeats album to top the British chart",
     blurb:
-      "I Told Them… (2023) debuted at No. 1 on the UK Official Albums Chart — the first Afrobeats album ever to do it — and topped the Nigerian chart too. Built around a hip-hop spine with GZA, RZA, 21 Savage, J. Cole and Dave, it earned a Grammy nomination, put him on the Grammys' main telecast stage in 2024, and its tour grossed $30.46M — the highest ever by an African artist.",
+      `I Told Them… (2023) debuted at No. 1 on the UK Official Albums Chart — the first Afrobeats album ever to do it — and topped the Nigerian chart too. Built around a hip-hop spine with GZA, RZA, 21 Savage, J. Cole and Dave, it earned a Grammy nomination, put him on the Grammys' main telecast stage in 2024, and its tour grossed ${recordTour.gross} — the highest ever by an African artist.`,
     extraFacts: [
       { v: "No. 1", l: "UK Official Albums Chart — the first Afrobeats album to top it — and No. 1 in Nigeria" },
-      { v: "$30.46M", l: "the I Told Them… Tour — the highest-grossing tour ever by an African artist" },
+      { v: recordTour.gross!, l: "the I Told Them… Tour — the highest-grossing tour ever by an African artist" },
       { v: "2024", l: "Grammy-nominated — Best Global Music Album — with a main-stage Grammys performance" },
     ],
     faqs: [
@@ -217,12 +224,12 @@ export const albumPages: AlbumPage[] = [
       },
       {
         q: "How successful was the I Told Them… Tour?",
-        a: "The I Told Them… Tour grossed $30.46M across 22 reported shows — the highest-grossing tour ever by an African artist, per Billboard Boxscore.",
+        a: `The I Told Them… Tour grossed ${recordTour.gross} across ${recordTour.shows} reported shows — the highest-grossing tour ever by an African artist, per Billboard Boxscore.`,
       },
     ],
     metaTitle: "I Told Them… — Burna Boy's UK No. 1 Album (2023)",
     metaDescription:
-      "I Told Them… (2023): the first Afrobeats album to top the UK chart, No. 1 in Nigeria, a Grammy nomination and the $30.46M record-breaking tour.",
+      `I Told Them… (2023): the first Afrobeats album to top the UK chart, No. 1 in Nigeria, a Grammy nomination and the ${recordTour.gross} record-breaking tour.`,
   },
   {
     slug: "no-sign-of-weakness",
@@ -231,14 +238,15 @@ export const albumPages: AlbumPage[] = [
     blurb:
       "No Sign of Weakness (2025) is the eighth studio album — No. 1 in Nigeria, No. 6 in the UK, with Travis Scott, Mick Jagger and Shaboozey across its sixteen tracks. It won Album of the Year at AFRIMA 2025, earned a Grammy nomination for Best Global Music Album, and in 2026 he followed it with “Dai Dai” alongside Shakira — the official FIFA World Cup song.",
     extraFacts: [
-      { v: "2025", l: "Album of the Year — AFRIMA — and a Grammy nomination for Best Global Music Album" },
+      { v: "2025", l: "Album of the Year — AFRIMA (9th edition)" },
+      { v: "2026", l: "Grammy-nominated — Best Global Music Album" },
       { v: "16", l: "tracks, with Travis Scott, Mick Jagger and Shaboozey featuring" },
       { v: "No. 1", l: "Nigeria — plus No. 6 in the UK" },
     ],
     faqs: [
       {
         q: "How did No Sign of Weakness chart?",
-        a: "No Sign of Weakness reached No. 1 in Nigeria and No. 6 in the UK, charting in seven countries including the US Billboard 200.",
+        a: "No Sign of Weakness reached No. 1 in Nigeria and No. 6 in the UK, charting in nine countries — Switzerland, the Netherlands, France, Canada, Portugal and Belgium among them, and No. 200 on the US Billboard 200.",
       },
       {
         q: "Who features on No Sign of Weakness?",

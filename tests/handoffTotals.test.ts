@@ -82,7 +82,7 @@ describe("handoff checklist — data integrity", () => {
   // retractions (RETRACTIONS #7, #8) moved the assertions and left the title
   // where it was. The title is a const now, and the last check in this block
   // recomposes it from the data, so it cannot drift again on its own.
-  const chartTitle = "counts 276 chart entries across 69 territories, 46 of them at No. 1";
+  const chartTitle = "counts 284 chart entries across 69 territories, 46 of them at No. 1";
 
   it(chartTitle, () => {
     const entries = allChartItems.reduce((n, r) => n + r.entries.length, 0);
@@ -98,7 +98,8 @@ describe("handoff checklist — data integrity", () => {
     // 17 Sep 2026: 278 → 276 and 47 → 46 — "Alone" SE 33 and the Jerusalema remix's
     // ZA No. 1 retracted at the bodies (RETRACTIONS #9, #10). Sweden and South
     // Africa keep other entries, so territories hold at 69.
-    expect(entries).toBe(276); // -2: unsupported Dominican and Salvadoran No. 1s removed
+    // 18 Sep 2026: 276 → 283, eight album peaks (one out, Germany) read at the bodies (see tests/charts.test.ts).
+    expect(entries).toBe(284); // -2: unsupported Dominican and Salvadoran No. 1s removed
     expect(territories).toBe(69);
     expect(ones).toBe(46); // + Poland 29 Aug, - Dominican Republic and El Salvador 2 Sep
 
@@ -179,8 +180,8 @@ describe("handoff checklist — data integrity", () => {
     expect(totalValueUsd).toBe(value);
     // $16.84M, up from $16.46M on 8 Sep 2026: the Bugatti's dollar figure is
     // DERIVED from its naira price, and it was being derived at the wrong rate.
-    // ₦9bn at ₦1,370.08/$ — the rate the day the purchase was announced,
-    // 5 July 2026 — is $6.57M, not the $6.19M that was there, which implied
+    // ₦9bn at CBN's ₦1,370.19/$ — 3 July 2026, the last trading day before
+    // the 4 July reveal — is $6.57M, not the $6.19M that was there, which implied
     // ₦1,454/$ and matches no date near the announcement.
     expect(`$${(value / 1e6).toFixed(2)}M`).toBe("$16.84M");
 

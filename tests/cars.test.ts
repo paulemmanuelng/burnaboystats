@@ -327,4 +327,43 @@ describe("the updates log's garage totals", () => {
       "no garage update states the collection total any more — removing the contradiction should not remove the fact"
     ).toBe(true);
   });
+
+  // "Last re-verified July 2026" was typed on the index and inside the shared
+  // car page (sixteen printed copies of one date) until 18 Sep 2026; both now
+  // print the constants in data/cars.ts, so a re-verification moves them once.
+  it("the re-verification dates are printed from data/cars.ts, never typed", () => {
+    for (const f of ["app/records/cars/page.tsx", "app/records/cars/[car]/page.tsx"]) {
+      const src = readFileSync(join(process.cwd(), f), "utf8");
+      expect(src, f).not.toMatch(/re-verified (January|February|March|April|May|June|July|August|September|October|November|December) \d{4}/);
+      expect(src, f).toContain("CARS_LAST_SWEEP");
+    }
+  });
+
+  it("the GLS 600 weight note borrows no kilogram figure from another sheet", () => {
+    const gls = garage.find((c) => c.slug === "mercedes-maybach-gls-600")!;
+    expect(gls.specs.note).not.toMatch(/\d[\d,]*\s?kg/);
+  });
+
+  it("an estimated value is labelled as one everywhere it prints", () => {
+    const gls = garage.find((c) => c.slug === "mercedes-maybach-gls-600")!;
+    expect(gls.valueBasis).toBe("estimate");
+    expect(carDescription(gls)).toContain("estimated at");
+    const reported = garage.find((c) => c.slug === "mclaren-senna")!;
+    expect(carDescription(reported)).toContain("reported at");
+  });
+
+  it("a car sharing its value with others says so, and a '>' top speed keeps its qualifier on the bar", () => {
+    const tied = garage.filter((c) => garage.some((o) => o !== c && o.valueUsd === c.valueUsd));
+    expect(tied.length).toBeGreaterThan(1); // five sit at $1,000,000 today
+    for (const c of tied) {
+      expect(c.jointWith, c.slug).toBeGreaterThan(0);
+      expect(carDescription(c), c.slug).toContain("joint with");
+    }
+    for (const c of garage) {
+      if (!(c.specs.topSpeed ?? "").trim().startsWith(">")) continue;
+      const bar = performanceBars(c).find((b) => b.key === "Top speed")!;
+      expect(bar.value, c.slug).toMatch(/^>/);
+      expect(bar.aria, c.slug).toContain("over ");
+    }
+  });
 });

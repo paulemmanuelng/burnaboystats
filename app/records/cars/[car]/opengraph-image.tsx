@@ -3,7 +3,7 @@ import { OgLockup, ogFonts } from "../../../lib/og-lockup";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ogId } from "../../../lib/og-image";
-import { carBySlug, carSlugs, garage } from "../../../data/cars";
+import { carBySlug, carSlugs, garage, valueWord } from "../../../data/cars";
 import { modelShort, usdFull, rankLabel } from "../../../lib/garage";
 
 export function generateStaticParams() {
@@ -15,7 +15,8 @@ export function generateStaticParams() {
 export async function generateImageMetadata({ params }: { params: Promise<{ car: string }> }) {
   const { car: slug } = await params;
   const car = carBySlug(slug);
-  return [{ id: ogId(`${slug}|${car?.valueUsd}|${car?.rank}|${garage.length}`), alt, size, contentType }];
+  // The value's basis word is in the id, so the one estimated card re-versions alone.
+  return [{ id: ogId(`${slug}|${car?.valueUsd}|${car ? valueWord(car) : ""}|${car?.rank}|${garage.length}`), alt, size, contentType }];
 }
 
 export const size = { width: 1200, height: 630 };
@@ -88,7 +89,7 @@ export default async function Image({ params }: { params: Promise<{ car: string 
                 and rendered as a tofu box; the page itself carries the naira,
                 where the site's own webfont has it. */}
             <div style={{ display: "flex", fontSize: 30, color: "#c9c9d0", marginTop: 26 }}>
-              {car ? `${usdFull(car.valueUsd)} reported` : ""}
+              {car ? `${usdFull(car.valueUsd)} ${valueWord(car)}` : ""}
             </div>
             <div style={{ display: "flex", fontSize: 17, color: "#9b9ba3", letterSpacing: 3, marginTop: 12, textTransform: "uppercase" }}>
               Illustration of the model

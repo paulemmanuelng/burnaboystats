@@ -355,7 +355,7 @@ export const ceremonies: Ceremony[] = [
       { year: 2019, category: "Best Recording of the Year", work: "Ye", won: false },
       { year: 2019, category: "Best Pop Single", won: false },
       { year: 2019, category: "Best R&B/Pop Album", work: "Outside", won: false },
-      { year: 2019, category: "Album of the Year", won: false },
+      { year: 2019, category: "Album of the Year", work: "Outside", won: false },
       { year: 2022, category: "Best African Artiste of the Year", won: true },
       { year: 2022, category: "Best Male Artiste of the Year", won: true },
       { year: 2023, category: "Best R&B Single", work: "For My Hand", won: true },
@@ -472,6 +472,10 @@ export const ceremonies: Ceremony[] = [
       // The same 2014 page lists Best Collaboration for Burna Boy ft. D'banj.
       { year: 2014, category: "Album of the Year", work: "L.I.F.E", won: false },
       { year: 2014, category: "Best Collaboration", work: "Won Da Mo (with D'banj)", won: false },
+      // Body publishes no list: neaawards.com was already parked (302 to
+      // HugeDomains) by 7 Aug 2018 and is for sale today. Rests on the press
+      // winners list for the 10 Nov 2018 Washington DC ceremony (ameyawdebrah.com,
+      // 18 Nov 2018: "Album of the Year: Outside (Burna Boy)"). Read 18 Sep 2026.
       { year: 2018, category: "Album of the Year", work: "Outside", won: true },
     ],
   },
@@ -532,9 +536,11 @@ export const ceremonies: Ceremony[] = [
     ],
   },
   {
+    // Edison Jazz/World 2020 — the category is "World" (edisons.nl/jazz/edities/2020/,
+    // read 18 Sep 2026), not "Best World Album".
     name: "Edison Awards",
     noms: [
-      { year: 2020, category: "Best World Album", work: "African Giant", won: true },
+      { year: 2020, category: "World", work: "African Giant", won: true },
     ],
   },
   {
