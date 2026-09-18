@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-18";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-18T01:19Z";
+  export const liveChartsBuiltAt = "2026-09-18T06:43Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -289,23 +289,16 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "ZW",
-            "name": "Zimbabwe",
-            "position": 65,
-            "movement": -5
-          },
-          {
             "country": "NG",
             "name": "Nigeria",
-            "position": 117,
-            "movement": -99
+            "position": 14,
+            "movement": 12
           },
           {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 176,
-            "movement": null,
-            "status": "new"
+            "country": "ZW",
+            "name": "Zimbabwe",
+            "position": 68,
+            "movement": -8
           }
         ]
       },
@@ -468,13 +461,13 @@
             "country": "UG",
             "name": "Uganda",
             "position": 26,
-            "movement": -8
+            "movement": -7
           },
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 64,
-            "movement": 0
+            "position": 69,
+            "movement": -5
           }
         ]
       },
@@ -546,8 +539,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 63,
-            "movement": -9
+            "position": 64,
+            "movement": -8
           },
           {
             "country": "KE",
@@ -834,7 +827,7 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 69,
+            "position": 71,
             "movement": -9
           },
           {
@@ -1074,39 +1067,39 @@
           {
             "country": "BG",
             "name": "Bulgaria",
-            "position": 10,
+            "position": 18,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "DO",
-            "name": "Dominican Republic",
-            "position": 21,
-            "movement": -19
           },
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 24,
-            "movement": 4
+            "position": 21,
+            "movement": 0
           },
           {
-            "country": "MX",
-            "name": "Mexico",
-            "position": 61,
-            "movement": null,
-            "status": "new"
+            "country": "DO",
+            "name": "Dominican Republic",
+            "position": 26,
+            "movement": -23
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 75,
-            "movement": -2
+            "position": 74,
+            "movement": -1
+          },
+          {
+            "country": "BE",
+            "name": "Belgium",
+            "position": 155,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 133,
+            "position": 166,
             "movement": null,
             "status": "new"
           }
@@ -1276,7 +1269,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 40,
+            "position": 49,
             "movement": null,
             "status": "new"
           }
@@ -1408,7 +1401,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 41,
+            "position": 50,
             "movement": null,
             "status": "new"
           }
@@ -1452,14 +1445,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 39,
-            "movement": -16
+            "position": 46,
+            "movement": -22
           },
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 56,
-            "movement": -4
+            "position": 58,
+            "movement": -2
           }
         ]
       },
@@ -1606,37 +1599,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/47d4b2f030cf6387a1f36dde2ce29e9b/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Fi Kan We Kan",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 153,
-            "movement": 44
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 98,
-            "movement": -14
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/e4c2c39678f951dd57f09d2e98cd4062/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Lalala",
     "platforms": [
       {
@@ -1668,6 +1630,37 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/0dd0b79a37a28f75ab7f61b38d0dccda/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Fi Kan We Kan",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 153,
+            "movement": 44
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 105,
+            "movement": -21
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/e4c2c39678f951dd57f09d2e98cd4062/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "RAVAGE - EP",
     "platforms": [
       {
@@ -1690,25 +1683,6 @@
       }
     ],
     "kind": "album"
-  },
-  {
-    "title": "KELEBU",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CV",
-            "name": "Cape Verde",
-            "position": 11,
-            "movement": -2
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/9762353430bf3c5816735dca5d916a96/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "AZAMAN",
@@ -1740,7 +1714,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 57,
+            "position": 68,
             "movement": null,
             "status": "new"
           }
@@ -1800,34 +1774,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 171,
-            "movement": -115
+            "position": 200,
+            "movement": -119
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/e43cc1d22a556fa87272c55c933bb4d7/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "VILLAIN",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 192,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/4891a944de9418f059cabda0c7699160/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Rave & Roses Ultra",
@@ -1858,7 +1812,7 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 70,
+            "position": 72,
             "movement": -9
           }
         ]
