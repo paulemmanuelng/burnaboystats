@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-18";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-18T01:19Z";
+  export const liveChartsBuiltAt = "2026-09-18T06:43Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -224,15 +224,15 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 22,
+            "position": 28,
             "movement": null,
             "status": "new"
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 63,
-            "movement": -16
+            "position": 70,
+            "movement": -22
           }
         ]
       },
@@ -546,26 +546,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/91bd55df947d6091381992f5d90241a2/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Zion",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 145,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/2f5c91242bfb5ed7be4ccb2b435b6f7f/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Double Double",
     "platforms": [
       {
@@ -583,6 +563,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/89e890e3a71c7cfb972a69c654ea3809/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Zion",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 183,
+            "movement": -128
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/2f5c91242bfb5ed7be4ccb2b435b6f7f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "UY Scuti",
@@ -613,8 +612,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 120,
-            "movement": -11
+            "position": 111,
+            "movement": -4
           }
         ]
       }
@@ -632,8 +631,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 126,
-            "movement": -11
+            "position": 117,
+            "movement": -4
           }
         ]
       }
@@ -651,8 +650,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 162,
-            "movement": -10
+            "position": 156,
+            "movement": -6
           }
         ]
       }

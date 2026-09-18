@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-18";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-18T01:19Z";
+  export const liveChartsBuiltAt = "2026-09-18T06:43Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -156,7 +156,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 1,
-            "movement": 6
+            "movement": 13
           }
         ]
       }
@@ -279,8 +279,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 114,
-            "movement": -3
+            "position": 108,
+            "movement": 2
           }
         ]
       }
@@ -316,8 +316,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 59,
-            "movement": -16
+            "position": 66,
+            "movement": -22
           }
         ]
       },
@@ -330,55 +330,6 @@
             "name": "Ghana",
             "position": 5,
             "movement": -1
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Forever",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 16,
-            "movement": 0
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 80,
-            "movement": -33
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 33,
-            "movement": -20
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 48,
-            "movement": -6
           }
         ]
       }
@@ -431,6 +382,55 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Forever",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 16,
+            "movement": 0
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 80,
+            "movement": -33
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 40,
+            "movement": -26
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 48,
+            "movement": -6
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Frontline",
     "platforms": [
       {
@@ -458,8 +458,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 24,
-            "movement": -20
+            "position": 31,
+            "movement": -26
           }
         ]
       },
@@ -507,8 +507,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 83,
-            "movement": -15
+            "position": 90,
+            "movement": -21
           }
         ]
       },
@@ -557,7 +557,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 56,
+            "position": 67,
             "movement": null,
             "status": "new"
           }
@@ -714,8 +714,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 122,
-            "movement": -13
+            "position": 129,
+            "movement": -20
           }
         ]
       }
@@ -878,8 +878,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 171,
-            "movement": -14
+            "position": 191,
+            "movement": -33
           }
         ]
       }
@@ -1068,8 +1068,8 @@
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 25,
-            "movement": 0
+            "position": 24,
+            "movement": 1
           }
         ]
       }

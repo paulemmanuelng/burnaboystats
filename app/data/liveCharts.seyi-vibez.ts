@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-18";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-18T01:19Z";
+  export const liveChartsBuiltAt = "2026-09-18T06:43Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -122,8 +122,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 109,
-            "movement": -99
+            "position": 143,
+            "movement": -126
           }
         ]
       },
@@ -227,8 +227,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 104,
-            "movement": -95
+            "position": 139,
+            "movement": -129
           }
         ]
       },
@@ -259,6 +259,78 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/625f9538bb2952a5b160aef95aeb7ed0/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "SWAGUU",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BJ",
+            "name": "Benin",
+            "position": 17,
+            "movement": 7
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 19,
+            "movement": 2
+          },
+          {
+            "country": "US",
+            "name": "United States",
+            "position": 84,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "CA",
+            "name": "Canada",
+            "position": 91,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 100,
+            "movement": 2
+          },
+          {
+            "country": "NE",
+            "name": "Niger",
+            "position": 137,
+            "movement": 40
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 144,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 178,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NO",
+            "name": "Norway",
+            "position": 192,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/4f0e7e1508278c9c558f8e0a6ea0de3b/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "FUJI MOTO",
@@ -375,18 +447,6 @@
         ]
       },
       {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 176,
-            "movement": -116
-          }
-        ]
-      },
-      {
         "platform": "YouTube",
         "numberOnes": 0,
         "entries": [
@@ -482,15 +542,15 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 22,
+            "position": 28,
             "movement": null,
             "status": "new"
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 63,
-            "movement": -16
+            "position": 70,
+            "movement": -22
           }
         ]
       },
@@ -558,99 +618,6 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/6954c3e880713a3d27089b7a0ad8570d/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "SWAGUU",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 17,
-            "movement": 7
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 19,
-            "movement": 2
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 100,
-            "movement": 2
-          },
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 137,
-            "movement": 40
-          },
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 178,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/4f0e7e1508278c9c558f8e0a6ea0de3b/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Karma",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 69,
-            "movement": 0
-          },
-          {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 74,
-            "movement": -20
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 55,
-            "movement": 29
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 178,
-            "movement": -117
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/c8ebad7f5af3f521ca579199d9e05150/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "AMA",
@@ -733,6 +700,43 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/6954c3e880713a3d27089b7a0ad8570d/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Karma",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 69,
+            "movement": 0
+          },
+          {
+            "country": "BJ",
+            "name": "Benin",
+            "position": 74,
+            "movement": -20
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 55,
+            "movement": 29
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/c8ebad7f5af3f521ca579199d9e05150/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Bad Vibes",
