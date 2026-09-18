@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-18";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-18T21:45Z";
+  export const liveChartsBuiltAt = "2026-09-18T23:39Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -144,7 +144,7 @@
             "country": "CA",
             "name": "Canada",
             "position": 176,
-            "movement": 2
+            "movement": 10
           },
           {
             "country": "KY",
@@ -578,8 +578,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 102,
-            "movement": -83
+            "position": 125,
+            "movement": -105
           }
         ]
       }
@@ -615,8 +615,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 77,
-            "movement": -6
+            "position": 78,
+            "movement": -4
           },
           {
             "country": "KY",
@@ -1351,7 +1351,7 @@
             "country": "ZA",
             "name": "South Africa",
             "position": 111,
-            "movement": -94
+            "movement": -86
           }
         ]
       }
@@ -1565,8 +1565,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 81,
-            "movement": -6
+            "position": 82,
+            "movement": -4
           },
           {
             "country": "UG",
@@ -1743,9 +1743,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 112,
-            "movement": null,
-            "status": "new"
+            "position": 134,
+            "movement": -103
           }
         ]
       },
@@ -1789,13 +1788,13 @@
             "country": "DM",
             "name": "Dominica",
             "position": 36,
-            "movement": -2
+            "movement": -3
           },
           {
             "country": "UG",
             "name": "Uganda",
             "position": 86,
-            "movement": 6
+            "movement": -5
           },
           {
             "country": "GH",
@@ -1888,8 +1887,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 142,
-            "movement": -2
+            "position": 147,
+            "movement": -7
           }
         ]
       }
@@ -2062,8 +2061,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 102,
-            "movement": -1
+            "position": 107,
+            "movement": -6
           }
         ]
       },
@@ -2305,7 +2304,7 @@
             "country": "UG",
             "name": "Uganda",
             "position": 18,
-            "movement": -6
+            "movement": -5
           }
         ]
       }
@@ -2335,8 +2334,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 7,
-            "movement": -2
+            "position": 8,
+            "movement": -3
           }
         ]
       }
@@ -2447,7 +2446,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Piece of My Heart",
+    "title": "Sweet One",
     "platforms": [
       {
         "platform": "iTunes",
@@ -2456,7 +2455,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 34,
+            "position": 40,
             "movement": null,
             "status": "new"
           }
@@ -2464,7 +2463,7 @@
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/23dec0c82a7bb91327d048b0019004bd/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Mood",
@@ -2485,6 +2484,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ad33274548de3455303618bb650b6d86/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Piece of My Heart",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 47,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/23dec0c82a7bb91327d048b0019004bd/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Alaye",
@@ -2516,7 +2535,7 @@
             "country": "UG",
             "name": "Uganda",
             "position": 64,
-            "movement": -8
+            "movement": -5
           }
         ]
       }
@@ -2534,9 +2553,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 89,
-            "movement": null,
-            "status": "new"
+            "position": 96,
+            "movement": -82
           }
         ]
       }
@@ -2574,8 +2592,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 134,
-            "movement": -93
+            "position": 156,
+            "movement": -108
           }
         ]
       }
@@ -2593,8 +2611,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 138,
-            "movement": -93
+            "position": 160,
+            "movement": -107
           }
         ]
       }
@@ -2612,8 +2630,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 159,
-            "movement": -104
+            "position": 181,
+            "movement": -117
           }
         ]
       }
@@ -2631,8 +2649,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 177,
-            "movement": -108
+            "position": 199,
+            "movement": -118
           }
         ]
       }
@@ -2669,8 +2687,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 160,
-            "movement": -111
+            "position": 182,
+            "movement": -124
           }
         ]
       }
@@ -2688,7 +2706,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 169,
+            "position": 191,
             "movement": null,
             "status": "new"
           }

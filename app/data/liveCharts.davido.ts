@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-18";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-18T21:45Z";
+  export const liveChartsBuiltAt = "2026-09-18T23:39Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -244,14 +244,14 @@
           {
             "country": "TT",
             "name": "Trinidad and Tobago",
-            "position": 78,
+            "position": 79,
             "movement": -11
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 86,
-            "movement": -77
+            "position": 109,
+            "movement": -100
           }
         ]
       },
@@ -621,8 +621,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 145,
-            "movement": -5
+            "position": 141,
+            "movement": -6
           },
           {
             "country": "ML",
@@ -646,8 +646,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 166,
-            "movement": -66
+            "position": 171,
+            "movement": -71
           }
         ]
       },
@@ -799,7 +799,7 @@
             "country": "ZA",
             "name": "South Africa",
             "position": 125,
-            "movement": -95
+            "movement": -86
           }
         ]
       }
@@ -1029,14 +1029,14 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 36,
-            "movement": -5
+            "position": 41,
+            "movement": -8
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 87,
-            "movement": 8
+            "position": 110,
+            "movement": 1
           },
           {
             "country": "GH",
@@ -1699,19 +1699,19 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 53,
-            "movement": 3
+            "position": 58,
+            "movement": -8
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
             "position": 66,
-            "movement": 0
+            "movement": 2
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 196,
+            "position": 195,
             "movement": null,
             "status": "new"
           }
@@ -1810,8 +1810,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 193,
-            "movement": -7
+            "position": 198,
+            "movement": -12
           }
         ]
       }
@@ -2078,22 +2078,22 @@
             "movement": 0
           },
           {
-            "country": "MZ",
-            "name": "Mozambique",
-            "position": 56,
-            "movement": 3
-          },
-          {
             "country": "BF",
             "name": "Burkina Faso",
             "position": 57,
-            "movement": -5
+            "movement": -2
+          },
+          {
+            "country": "MZ",
+            "name": "Mozambique",
+            "position": 61,
+            "movement": -8
           },
           {
             "country": "UG",
             "name": "Uganda",
             "position": 83,
-            "movement": 6
+            "movement": -5
           },
           {
             "country": "GH",
@@ -2270,8 +2270,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 71,
-            "movement": 0
+            "position": 70,
+            "movement": 1
           },
           {
             "country": "GH",
@@ -2369,37 +2369,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Assurance",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "MW",
-            "name": "Malawi",
-            "position": 110,
-            "movement": 28
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 117,
-            "movement": -86
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/a880bf2aaa27d39c446bd9b19effd22e/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Risky",
     "platforms": [
       {
@@ -2426,6 +2395,37 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/da0c3e984d1fa2b9c54158ee1a02fbd1/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Assurance",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "MW",
+            "name": "Malawi",
+            "position": 110,
+            "movement": 28
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 139,
+            "movement": -105
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/a880bf2aaa27d39c446bd9b19effd22e/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "High",
     "platforms": [
       {
@@ -2448,8 +2448,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 115,
-            "movement": -86
+            "position": 137,
+            "movement": -105
           }
         ]
       }
@@ -2497,6 +2497,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/89d5885fe38a406504224ed98c1ab605/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Like Dat",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 19,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/999b76908ce8d84c0ca25eb5e58dc505/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "On The Road",
     "platforms": [
       {
@@ -2516,6 +2536,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Dodo",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 30,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ad799330e6b536a01e1c30f5d2d98971/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "La La",
     "platforms": [
       {
@@ -2533,26 +2573,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Return",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 41,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/50d12a3358fb88c810b8c9231ced0cd6/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Funds",
@@ -2592,6 +2612,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/d50e6c1e1ff65a58b2ae4051876d7e7e/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Return",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 57,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/50d12a3358fb88c810b8c9231ced0cd6/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Constantly",
@@ -2660,8 +2700,8 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 87,
-            "movement": -30
+            "position": 88,
+            "movement": -31
           }
         ]
       }
@@ -2709,25 +2749,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/50d12a3358fb88c810b8c9231ced0cd6/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Nwa Baby",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 105,
-            "movement": -73
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/74fb63756975ed8644a5519be4ad39fc/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Confirm",
     "platforms": [
       {
@@ -2745,6 +2766,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/8fa8965d4b88e9dec3578d96d73c9572/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Nwa Baby",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 128,
+            "movement": -93
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/74fb63756975ed8644a5519be4ad39fc/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Activate",

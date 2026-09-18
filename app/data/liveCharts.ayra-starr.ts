@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-18";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-18T21:45Z";
+  export const liveChartsBuiltAt = "2026-09-18T23:39Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -466,13 +466,13 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 25,
-            "movement": -6
+            "movement": -4
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 93,
-            "movement": -2
+            "position": 116,
+            "movement": -9
           }
         ]
       },
@@ -836,8 +836,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 188,
-            "movement": -37
+            "position": 190,
+            "movement": -43
           }
         ]
       },
@@ -1131,7 +1131,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 29,
-            "movement": -6
+            "movement": -4
           }
         ]
       },
@@ -1245,8 +1245,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 82,
-            "movement": -78
+            "position": 105,
+            "movement": -101
           }
         ]
       },
@@ -1417,7 +1417,7 @@
             "country": "FR",
             "name": "France",
             "position": 119,
-            "movement": 0
+            "movement": 2
           },
           {
             "country": "CG",
@@ -1534,19 +1534,19 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 37,
-            "movement": -4
+            "movement": -2
           },
           {
             "country": "AG",
             "name": "Antigua and Barbuda",
             "position": 59,
-            "movement": -5
+            "movement": -6
           },
           {
             "country": "UG",
             "name": "Uganda",
             "position": 69,
-            "movement": 8
+            "movement": -5
           },
           {
             "country": "GH",
@@ -1722,8 +1722,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 49,
-            "movement": -4
+            "position": 50,
+            "movement": -2
           },
           {
             "country": "PG",
@@ -1814,14 +1814,14 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 22,
-            "movement": -5
+            "position": 27,
+            "movement": -8
           },
           {
             "country": "IT",
             "name": "Italy",
-            "position": 40,
-            "movement": -29
+            "position": 39,
+            "movement": -24
           }
         ]
       }
@@ -1840,7 +1840,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 51,
-            "movement": -19
+            "movement": -18
           },
           {
             "country": "UG",
@@ -1907,8 +1907,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 108,
-            "movement": -84
+            "position": 13,
+            "movement": 12
           }
         ]
       },
@@ -2149,37 +2149,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/e61faaeb59320961cbd17a1ef7f9e6e7/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Gimme Dat",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 142,
-            "movement": -59
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 7,
-            "movement": -2
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/2e52f4bf8bdb05c98002b714669ee2c2/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Commas",
     "platforms": [
       {
@@ -2201,14 +2170,45 @@
           {
             "country": "NA",
             "name": "Namibia",
-            "position": 16,
-            "movement": -7
+            "position": 18,
+            "movement": -9
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/d096ea1c1019d1af67c0a2e434890e1e/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Gimme Dat",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 142,
+            "movement": -59
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 8,
+            "movement": -3
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/2e52f4bf8bdb05c98002b714669ee2c2/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Bloody Samaritan",
@@ -2234,7 +2234,7 @@
             "country": "DM",
             "name": "Dominica",
             "position": 45,
-            "movement": -2
+            "movement": -3
           }
         ]
       }
@@ -2277,7 +2277,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 8,
+            "position": 9,
             "movement": 9
           }
         ]
@@ -2285,26 +2285,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/d30dbeb4d445f5cc6f7f100b830731c4/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Midnight in New York",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 38,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/64f822132d39a3677d59f745a248a2ce/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Comforter",
@@ -2324,6 +2304,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/e18f46f5169476d41ff6bf5f188e1127/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Midnight in New York",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 54,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/64f822132d39a3677d59f745a248a2ce/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Amazing",
