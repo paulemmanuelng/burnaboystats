@@ -3955,26 +3955,12 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "B. D'OR",
-    "path": "/records/charts",
+    "path": "/certifications",
     "section": "Release",
-    "description": "feat. Wizkid — 1 chart entry.",
+    "description": "feat. Wizkid — 1 certification · 1 chart entry.",
     "keywords": [
       "feat",
       "wizkid",
-      "song",
-      "release"
-    ],
-    "generated": true
-  },
-  {
-    "title": "B.D'or",
-    "path": "/certifications",
-    "section": "Release",
-    "description": "Bramsito ft. Burna Boy — 1 certification.",
-    "keywords": [
-      "bramsito",
-      "burna",
-      "boy",
       "song",
       "release"
     ],

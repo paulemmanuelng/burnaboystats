@@ -47,6 +47,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-09-18",
+    category: "Certifications",
+    text: "“B. D'OR” with Wizkid is Platinum in Nigeria — TurnTable certified the 2021 single on 8 June 2023, the same record that peaked at No. 2 on the Nigeria Top 100.",
+    href: "/certifications",
+  },
+  {
+    date: "2026-09-18",
     category: "Charts",
     text: "Every issue of Nigeria's Top 100 since November 2020 has now been read: 59 more Burna Boy releases charted at home, led by “B. D'OR”, “Bundle by Bundle” and “Laho II” at No. 2, and “Loved by You” reached No. 4 — 89 of his releases hold a Nigerian peak.",
     href: "/records/charts",

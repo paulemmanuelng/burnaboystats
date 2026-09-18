@@ -39,12 +39,14 @@ export interface Release {
    *  serve two different image sizes side by side.
    *
    *  Matched by artist AND title, never title alone, and every match required
-   *  Burna Boy to be a credited contributor on the Deezer record. Four releases
+   *  Burna Boy to be a credited contributor on the Deezer record. Three releases
    *  are deliberately WITHOUT art because Deezer carries no legitimate copy:
    *  "Be Honest" and "Tshwala Bam (Remix)" return only 8-Bit Arcade chiptune and
    *  karaoke re-recordings, whose titles contain the real artists' names and
-   *  therefore sail through a substring check; "B.D'or" is absent entirely; and
-   *  "Do I" returns only Phyno's remix, not a Burna lead. Undefined is the
+   *  therefore sail through a substring check, and "Do I" returns only Phyno's
+   *  remix, not a Burna lead. ("B.D'or" was a fourth until 18 Sep 2026, when the
+   *  plaque turned out to be Burna Boy's own "B. D'OR" ft. Wizkid, which Deezer
+   *  does carry.) Undefined is the
    *  correct answer there — a tribute sleeve would be a visible lie. */
   cover?: string;
   certs: Cert[];
@@ -337,6 +339,14 @@ export const singles: Release[] = [
   { title: "Bundle by Bundle", year: 2024, cover: "https://cdn-images.dzcdn.net/images/cover/210cc4c59e508f189c0f69ae6d01ba14/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Platinum" },
   ] },
+  // Filed under "B.D'or — Bramsito ft. Burna Boy, 2019" (the French single)
+  // from the June 2026 build until 18 Sep 2026. TCSN's register has no such row:
+  // its plaque is "B. D'Or — Burna Boy ft. Wizkid", Single, Platinum, certified
+  // 8 Jun 2023 (id 184; re-listed 5 Jan and 6 Feb 2025) — Burna Boy's own 2021
+  // single, which the Nigeria sweep found at No. 2. RETRACTIONS #12.
+  { title: "B. D'OR", credit: "feat. Wizkid", year: 2021, cover: "https://cdn-images.dzcdn.net/images/cover/22ffd179c90c11da9bbb429c9c13d4a4/500x500-000000-80-0-0.jpg", certs: [
+    { c: "NG", level: "Platinum" },
+  ] },
   { title: "Question", credit: "feat. Don Jazzy", year: 2021, cover: "https://cdn-images.dzcdn.net/images/cover/f1ded2f2f5b80c9b054ee9f742cce6fd/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Gold" },
   ] },
@@ -536,9 +546,6 @@ export const features: Release[] = [
   // 20,000; /compare prices it at today's 40,000 under the ‡ rule.
   { title: "All Eyes on Me", credit: "AKA ft. Burna Boy, Da L.E.S & JR", year: 2014, cover: "https://cdn-images.dzcdn.net/images/cover/51a425dcf87f37e33159744d5685471d/500x500-000000-80-0-0.jpg", certs: [
     { c: "ZA", level: "Platinum", x: 19 },
-  ] },
-  { title: "B.D'or", credit: "Bramsito ft. Burna Boy", year: 2019, certs: [
-    { c: "NG", level: "Platinum" },
   ] },
 ];
 

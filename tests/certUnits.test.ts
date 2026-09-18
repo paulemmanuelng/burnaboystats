@@ -563,7 +563,7 @@ describe("credits verified at the issuing body", () => {
 });
 
 describe("cover art", () => {
-  it("covers all but four of Burna's certified releases", () => {
+  it("covers all but three of Burna's certified releases", () => {
     const burna = bySlug("burna-boy");
     const without = burna.releases.filter((r) => !r.cover).map((r) => r.title).sort();
     // Deliberately uncovered: Deezer carries no legitimate copy of these. The
@@ -571,8 +571,10 @@ describe("cover art", () => {
     // whose titles contain the real artists' names and so pass a naive
     // substring check — both were caught and rejected. Pinned so a later fill
     // cannot quietly swap a tribute sleeve in.
-    expect(without).toEqual(["B.D'or", "Be Honest", "Tshwala Bam (Remix)"]);
-    expect(burna.releases.filter((r) => r.cover).length).toBe(82);
+    // "B.D'or" was the fourth until 18 Sep 2026: the plaque is Burna Boy's own
+    // "B. D'OR" ft. Wizkid (RETRACTIONS #12), which Deezer does carry.
+    expect(without).toEqual(["Be Honest", "Tshwala Bam (Remix)"]);
+    expect(burna.releases.filter((r) => r.cover).length).toBe(83);
   });
 
   it("serves one image size, so two sleeves never render at different scales", () => {
