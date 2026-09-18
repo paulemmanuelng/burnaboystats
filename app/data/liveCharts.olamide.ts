@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-18";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-18T19:15Z";
+  export const liveChartsBuiltAt = "2026-09-18T21:45Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -243,13 +243,13 @@
             "country": "GH",
             "name": "Ghana",
             "position": 76,
-            "movement": -19
+            "movement": -15
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 79,
-            "movement": -61
+            "position": 104,
+            "movement": -83
           }
         ]
       },
@@ -260,8 +260,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 69,
-            "movement": 11
+            "position": 79,
+            "movement": -10
           }
         ]
       }
@@ -279,8 +279,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 41,
-            "movement": 3
+            "position": 46,
+            "movement": -5
           }
         ]
       },
@@ -361,8 +361,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 148,
-            "movement": -20
+            "position": 149,
+            "movement": -1
           }
         ]
       },
@@ -392,8 +392,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 123,
-            "movement": 7
+            "position": 136,
+            "movement": -13
           }
         ]
       },
@@ -414,8 +414,21 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/498d4ae81da58e1fcf5e2704a99e0ed8/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Melo Melo",
+    "title": "Eyan Mayweather",
     "platforms": [
+      {
+        "platform": "Spotify Albums",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 197,
+            "movement": null,
+            "status": "re"
+          }
+        ]
+      },
       {
         "platform": "iTunes",
         "numberOnes": 0,
@@ -423,14 +436,13 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 10,
-            "movement": null,
-            "status": "new"
+            "position": 124,
+            "movement": -1
           }
         ]
       }
     ],
-    "kind": "song",
+    "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/6c243844bbecece7ab92e5f5799111a5/500x500-000000-80-0-0.jpg"
   },
   {
@@ -452,6 +464,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/900ae4fd64955e330abe387d23e31307/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Melo Melo",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 17,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6c243844bbecece7ab92e5f5799111a5/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Sometimes",
@@ -511,26 +543,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2f5c91242bfb5ed7be4ccb2b435b6f7f/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Omo Ope",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 187,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/636b24b8b52148a55ce3bf9c263ba19e/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Double Double",
@@ -619,33 +631,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 117,
-            "movement": -3
+            "position": 118,
+            "movement": -1
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/dc21daa177258ea29c084c4415c4db03/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Eyan Mayweather",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 123,
-            "movement": -3
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6c243844bbecece7ab92e5f5799111a5/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Baddest Guy Ever Liveth",
@@ -657,8 +650,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 162,
-            "movement": -5
+            "position": 163,
+            "movement": -4
           }
         ]
       }

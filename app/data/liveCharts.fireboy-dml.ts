@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-18";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-18T19:15Z";
+  export const liveChartsBuiltAt = "2026-09-18T21:45Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -153,8 +153,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 90,
-            "movement": 1
+            "position": 105,
+            "movement": -15
           }
         ]
       },
@@ -165,7 +165,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 13,
+            "position": 4,
             "movement": null,
             "status": "new"
           }
@@ -268,8 +268,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 32,
-            "movement": 0
+            "position": 31,
+            "movement": 1
           }
         ]
       }
@@ -419,8 +419,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 48,
-            "movement": 11
+            "position": 47,
+            "movement": 1
           }
         ]
       },
@@ -431,7 +431,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 2,
+            "position": 3,
             "movement": null,
             "status": "new"
           }
@@ -553,8 +553,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 102,
-            "movement": 10
+            "position": 103,
+            "movement": -1
           }
         ]
       }
@@ -610,8 +610,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 73,
-            "movement": 4
+            "position": 64,
+            "movement": 9
           }
         ]
       }
@@ -692,8 +692,8 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 92,
-            "movement": -29
+            "position": 93,
+            "movement": -30
           }
         ]
       }
@@ -729,8 +729,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 7,
-            "movement": 30
+            "position": 11,
+            "movement": 36
           }
         ]
       }
@@ -863,8 +863,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 171,
-            "movement": 21
+            "position": 193,
+            "movement": -22
           }
         ]
       }
@@ -883,26 +883,6 @@
             "country": "UG",
             "name": "Uganda",
             "position": 169,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/9b8ce8a62a6484f053bdd2cf80818a2d/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Like I Do",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 96,
             "movement": null,
             "status": "new"
           }
@@ -990,6 +970,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/bd9b968d69b674b887fc7e166af5ae23/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Like I Do",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 120,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/9b8ce8a62a6484f053bdd2cf80818a2d/500x500-000000-80-0-0.jpg"
   }
 ];
   

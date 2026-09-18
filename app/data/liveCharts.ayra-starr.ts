@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-18";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-18T19:15Z";
+  export const liveChartsBuiltAt = "2026-09-18T21:45Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -460,19 +460,19 @@
             "country": "GH",
             "name": "Ghana",
             "position": 16,
-            "movement": -14
+            "movement": -13
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
             "position": 25,
-            "movement": -7
+            "movement": -6
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 68,
-            "movement": 7
+            "position": 93,
+            "movement": -2
           }
         ]
       },
@@ -507,14 +507,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 31,
-            "movement": -1
+            "position": 35,
+            "movement": -4
           },
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 164,
-            "movement": -24
+            "position": 166,
+            "movement": -2
           }
         ]
       }
@@ -836,8 +836,34 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 179,
-            "movement": -28
+            "position": 188,
+            "movement": -37
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 2,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 60,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "TR",
+            "name": "Turkey",
+            "position": 87,
+            "movement": 80
           }
         ]
       },
@@ -848,14 +874,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 4,
-            "movement": 0
+            "position": 5,
+            "movement": -1
           },
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 120,
-            "movement": -46
+            "position": 169,
+            "movement": -49
           }
         ]
       }
@@ -976,8 +1002,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 68,
-            "movement": -9
+            "position": 75,
+            "movement": -7
           }
         ]
       },
@@ -1092,8 +1118,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 56,
-            "movement": -8
+            "position": 62,
+            "movement": -6
           }
         ]
       },
@@ -1105,7 +1131,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 29,
-            "movement": -7
+            "movement": -6
           }
         ]
       },
@@ -1207,8 +1233,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 17,
-            "movement": 1
+            "position": 18,
+            "movement": -1
           }
         ]
       },
@@ -1219,8 +1245,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 57,
-            "movement": -49
+            "position": 82,
+            "movement": -78
           }
         ]
       },
@@ -1341,8 +1367,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 150,
-            "movement": 16
+            "position": 161,
+            "movement": -11
           }
         ]
       }
@@ -1382,16 +1408,16 @@
             "movement": -25
           },
           {
-            "country": "FR",
-            "name": "France",
-            "position": 116,
-            "movement": 0
-          },
-          {
             "country": "BJ",
             "name": "Benin",
             "position": 117,
             "movement": -10
+          },
+          {
+            "country": "FR",
+            "name": "France",
+            "position": 119,
+            "movement": 0
           },
           {
             "country": "CG",
@@ -1508,19 +1534,19 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 37,
-            "movement": -5
+            "movement": -4
           },
           {
             "country": "AG",
             "name": "Antigua and Barbuda",
             "position": 59,
-            "movement": -6
+            "movement": -5
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 68,
-            "movement": 7
+            "position": 69,
+            "movement": 8
           },
           {
             "country": "GH",
@@ -1620,8 +1646,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 64,
-            "movement": -14
+            "position": 60,
+            "movement": 4
           }
         ]
       }
@@ -1739,8 +1765,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 134,
-            "movement": -10
+            "position": 146,
+            "movement": -12
           }
         ]
       }
@@ -1788,14 +1814,14 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 21,
+            "position": 22,
             "movement": -5
           },
           {
             "country": "IT",
             "name": "Italy",
-            "position": 47,
-            "movement": -39
+            "position": 40,
+            "movement": -29
           }
         ]
       }
@@ -1881,9 +1907,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 84,
-            "movement": null,
-            "status": "new"
+            "position": 108,
+            "movement": -84
           }
         ]
       },
@@ -2002,14 +2027,14 @@
           {
             "country": "PA",
             "name": "Panama",
-            "position": 178,
-            "movement": -28
+            "position": 155,
+            "movement": 23
           },
           {
             "country": "PE",
             "name": "Peru",
             "position": 197,
-            "movement": -4
+            "movement": 0
           }
         ]
       },
@@ -2028,49 +2053,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/965eeb50245f3178580ac5bda885e56b/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Gimme Dat",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 200,
-            "movement": -10
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 142,
-            "movement": -59
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 4,
-            "movement": 10
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/2e52f4bf8bdb05c98002b714669ee2c2/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Misunderstood",
@@ -2165,6 +2147,37 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/e61faaeb59320961cbd17a1ef7f9e6e7/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Gimme Dat",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 142,
+            "movement": -59
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 7,
+            "movement": -2
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/2e52f4bf8bdb05c98002b714669ee2c2/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Commas",
@@ -2264,9 +2277,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 5,
-            "movement": null,
-            "status": "new"
+            "position": 8,
+            "movement": 9
           }
         ]
       }
@@ -2284,7 +2296,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 27,
+            "position": 38,
             "movement": null,
             "status": "new"
           }

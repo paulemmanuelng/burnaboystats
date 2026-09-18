@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-18";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-18T19:15Z";
+  export const liveChartsBuiltAt = "2026-09-18T21:45Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -406,6 +406,39 @@
         ]
       },
       {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "PT",
+            "name": "Portugal",
+            "position": 26,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 81,
+            "movement": -13
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 100,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "FR",
+            "name": "France",
+            "position": 161,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
         "platform": "Deezer",
         "numberOnes": 0,
         "entries": [
@@ -438,40 +471,14 @@
         ]
       },
       {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "PT",
-            "name": "Portugal",
-            "position": 23,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 75,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 81,
-            "movement": -17
-          }
-        ]
-      },
-      {
         "platform": "Spotify",
         "numberOnes": 0,
         "entries": [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 21,
-            "movement": -2
+            "position": 24,
+            "movement": -3
           }
         ]
       }
@@ -685,8 +692,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 2,
-            "movement": 0
+            "position": 3,
+            "movement": -1
           }
         ]
       }
@@ -810,8 +817,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 59,
-            "movement": -3
+            "position": 57,
+            "movement": 2
           }
         ]
       },
@@ -822,9 +829,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 85,
-            "movement": null,
-            "status": "new"
+            "position": 109,
+            "movement": -84
           }
         ]
       },
@@ -878,8 +884,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 110,
-            "movement": -21
+            "position": 113,
+            "movement": -3
           }
         ]
       }
@@ -897,8 +903,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 38,
-            "movement": -2
+            "position": 36,
+            "movement": 2
           }
         ]
       },
@@ -929,43 +935,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/da22875a6742ba991e3fe3ed2a3f8bed/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "STARLIFE",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 92,
-            "movement": 40
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 144,
-            "movement": -26
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 148,
-            "movement": 27
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/4446cd79abcc87206d5e47417ba9bde7/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Risk",
@@ -999,6 +968,43 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/8ecef1fd19cf7846a2fe2cf0e3ef3532/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "STARLIFE",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 92,
+            "movement": 40
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 144,
+            "movement": -26
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 175,
+            "movement": -27
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/4446cd79abcc87206d5e47417ba9bde7/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Holy Father",
@@ -1062,46 +1068,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 118,
-            "movement": -12
+            "position": 134,
+            "movement": -16
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/8ecef1fd19cf7846a2fe2cf0e3ef3532/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "PITY THIS BOY",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 181,
-            "movement": -32
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 25,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/92d9434341384d2ebdca52fd613a18d6/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "2FRESH",
@@ -1127,6 +1101,38 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/720a729019b9a6c8873652d993302775/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "PITY THIS BOY",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 183,
+            "movement": -2
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 36,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/92d9434341384d2ebdca52fd613a18d6/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "TOO LIT",
@@ -1215,8 +1221,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 189,
-            "movement": -49
+            "position": 196,
+            "movement": -7
           }
         ]
       }
@@ -1242,25 +1248,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2222c3405fde64a7b5660d7d063f2971/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Hello",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 176,
-            "movement": -35
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/56bbf7807715d0374f6b8084268052e2/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Outlaw",

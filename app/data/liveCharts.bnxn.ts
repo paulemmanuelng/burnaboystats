@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-18";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-18T19:15Z";
+  export const liveChartsBuiltAt = "2026-09-18T21:45Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -122,8 +122,8 @@
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 198,
-            "movement": -141
+            "position": 199,
+            "movement": -142
           }
         ]
       },
@@ -170,8 +170,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 11,
-            "movement": 0
+            "position": 12,
+            "movement": -1
           }
         ]
       },
@@ -292,8 +292,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 28,
-            "movement": -3
+            "position": 21,
+            "movement": 7
           }
         ]
       },
@@ -406,6 +406,19 @@
         ]
       },
       {
+        "platform": "Spotify",
+        "numberOnes": 1,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 1,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
         "platform": "Shazam",
         "numberOnes": 0,
         "entries": [
@@ -492,8 +505,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 73,
-            "movement": -13
+            "position": 67,
+            "movement": 6
           }
         ]
       }
@@ -568,8 +581,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 12,
-            "movement": 0
+            "position": 10,
+            "movement": 2
           }
         ]
       }
@@ -623,8 +636,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 30,
-            "movement": 7
+            "position": 32,
+            "movement": -2
           }
         ]
       },
@@ -835,7 +848,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 18,
-            "movement": -2
+            "movement": 0
           }
         ]
       }
@@ -877,8 +890,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 92,
-            "movement": 12
+            "position": 88,
+            "movement": 4
           }
         ]
       }
@@ -920,14 +933,59 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 110,
-            "movement": -21
+            "position": 113,
+            "movement": -3
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/eae1950cf642fef40ae06c76d29dc1b8/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Outside",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 87,
+            "movement": -15
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 191,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 200,
+            "movement": -138
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 145,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/8b184fef895cad0601c7d3d8fedc215b/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "POE",
@@ -957,8 +1015,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 142,
-            "movement": 15
+            "position": 122,
+            "movement": 20
           }
         ]
       },
@@ -989,8 +1047,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 153,
-            "movement": 44
+            "position": 160,
+            "movement": -7
           }
         ]
       },
@@ -1002,7 +1060,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 110,
-            "movement": -18
+            "movement": -14
           }
         ]
       },
@@ -1022,6 +1080,50 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/e4c2c39678f951dd57f09d2e98cd4062/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Laye Mi",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 115,
+            "movement": 18
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 100,
+            "movement": -20
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 136,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/47b72924cef36764e12e24f894bb0bd9/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "GWAGWALADA",
@@ -1053,90 +1155,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 96,
-            "movement": 87
+            "position": 99,
+            "movement": -3
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/7f89da381e2508e30a82f7dc2d18287f/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Laye Mi",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 133,
-            "movement": -21
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 100,
-            "movement": -20
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 112,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/47b72924cef36764e12e24f894bb0bd9/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Outside",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 87,
-            "movement": -15
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 191,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 199,
-            "movement": -137
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/8b184fef895cad0601c7d3d8fedc215b/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Bad Since '97",
@@ -1148,8 +1174,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 96,
-            "movement": 1
+            "position": 104,
+            "movement": -8
           }
         ]
       },
@@ -1274,8 +1300,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 91,
-            "movement": -16
+            "position": 83,
+            "movement": 8
           }
         ]
       }
@@ -1312,8 +1338,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 23,
-            "movement": -7
+            "position": 24,
+            "movement": -6
           }
         ]
       }
@@ -1350,7 +1376,27 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 31,
+            "position": 46,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/47b72924cef36764e12e24f894bb0bd9/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "I Alone",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 162,
             "movement": null,
             "status": "new"
           }
@@ -1390,7 +1436,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 84,
-            "movement": -2
+            "movement": -1
           }
         ]
       }
@@ -1408,8 +1454,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 118,
-            "movement": 0
+            "position": 122,
+            "movement": -3
           }
         ]
       }

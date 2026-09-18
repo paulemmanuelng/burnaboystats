@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-18";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-18T19:15Z";
+  export const liveChartsBuiltAt = "2026-09-18T21:45Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -185,8 +185,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 9,
-            "movement": 0
+            "position": 12,
+            "movement": -3
           }
         ]
       }
@@ -327,7 +327,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 15,
+            "position": 16,
             "movement": -1
           }
         ]
@@ -406,27 +406,26 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 2,
-            "movement": null,
-            "status": "new"
+            "position": 3,
+            "movement": -2
           },
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 35,
+            "position": 36,
             "movement": -5
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 62,
-            "movement": 17
+            "position": 87,
+            "movement": 8
           },
           {
             "country": "GH",
             "name": "Ghana",
             "position": 119,
-            "movement": -18
+            "movement": -14
           }
         ]
       },
@@ -455,8 +454,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 136,
-            "movement": -17
+            "position": 151,
+            "movement": -15
           }
         ]
       },
@@ -582,8 +581,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 63,
-            "movement": -2
+            "position": 64,
+            "movement": -1
           }
         ]
       },
@@ -903,8 +902,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 134,
-            "movement": 55
+            "position": 149,
+            "movement": -15
           }
         ]
       }
@@ -966,7 +965,7 @@
           {
             "country": "EG",
             "name": "Egypt",
-            "position": 125,
+            "position": 134,
             "movement": null,
             "status": "new"
           }
@@ -1016,20 +1015,74 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 69,
-            "movement": 7
+            "position": 70,
+            "movement": 8
           },
           {
             "country": "GH",
             "name": "Ghana",
             "position": 184,
-            "movement": 4
+            "movement": 8
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ada9bcfee9900dd72f862562ae032550/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Company",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "PL",
+            "name": "Poland",
+            "position": 40,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 45,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "FR",
+            "name": "France",
+            "position": 133,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 102,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 197,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6d9ca878974f4d47b8d671a0ea95ecd2/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "MY HEALER",
@@ -1071,68 +1124,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 126,
-            "movement": 13
+            "position": 138,
+            "movement": -12
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ff869559b2b6b876cc2b7811bb7e4436/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Company",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 45,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "TR",
-            "name": "Turkey",
-            "position": 183,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "FI",
-            "name": "Finland",
-            "position": 196,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 102,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 197,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6d9ca878974f4d47b8d671a0ea95ecd2/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "As We Get High",
@@ -1168,8 +1167,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 49,
-            "movement": -15
+            "position": 54,
+            "movement": -5
           }
         ]
       }
@@ -1212,8 +1211,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 74,
-            "movement": 0
+            "position": 80,
+            "movement": -6
           }
         ]
       }
@@ -1302,8 +1301,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 90,
-            "movement": -4
+            "position": 91,
+            "movement": 0
           },
           {
             "country": "BE",
@@ -1353,8 +1352,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 128,
-            "movement": -12
+            "position": 147,
+            "movement": -19
           }
         ]
       },
