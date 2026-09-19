@@ -746,7 +746,7 @@
     "date": "2026-09-19",
     "release": "Dai Dai",
     "platform": "Shazam",
-    "position": 19
+    "position": 21
   },
   {
     "date": "2026-09-19",

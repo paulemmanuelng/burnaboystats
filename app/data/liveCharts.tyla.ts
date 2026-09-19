@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-19";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-19T06:42Z";
+  export const liveChartsBuiltAt = "2026-09-19T11:37Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -216,8 +216,8 @@
           {
             "country": "BR",
             "name": "Brazil",
-            "position": 200,
-            "movement": -36
+            "position": 196,
+            "movement": -14
           }
         ]
       },
@@ -234,8 +234,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 89,
-            "movement": -18
+            "position": 88,
+            "movement": -15
           }
         ]
       },
@@ -358,15 +358,9 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "HN",
-            "name": "Honduras",
-            "position": 98,
-            "movement": -26
-          },
-          {
             "country": "ZA",
             "name": "South Africa",
-            "position": 192,
+            "position": 19,
             "movement": null,
             "status": "new"
           }
@@ -435,8 +429,8 @@
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 58,
-            "movement": 1
+            "position": 48,
+            "movement": 10
           }
         ]
       },
@@ -466,20 +460,20 @@
           {
             "country": "HR",
             "name": "Croatia",
-            "position": 24,
-            "movement": 10
+            "position": 38,
+            "movement": -14
           },
           {
             "country": "RO",
             "name": "Romania",
-            "position": 73,
-            "movement": -2
+            "position": 74,
+            "movement": -1
           },
           {
             "country": "BG",
             "name": "Bulgaria",
-            "position": 169,
-            "movement": -4
+            "position": 168,
+            "movement": 1
           }
         ]
       },
@@ -488,10 +482,17 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 105,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "IN",
             "name": "India",
-            "position": 57,
-            "movement": -8
+            "position": 113,
+            "movement": -16
           }
         ]
       }
@@ -588,8 +589,8 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 160,
-            "movement": -124
+            "position": 172,
+            "movement": -111
           }
         ]
       }
@@ -598,16 +599,16 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Truth or Dare",
+    "title": "IS IT",
     "platforms": [
       {
         "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "MX",
-            "name": "Mexico",
-            "position": 155,
+            "country": "GR",
+            "name": "Greece",
+            "position": 35,
             "movement": null,
             "status": "new"
           }
@@ -615,7 +616,7 @@
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/1ae9486180d1f50e7dbbb099b1e66825/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Talk to Me",
@@ -627,8 +628,8 @@
           {
             "country": "FI",
             "name": "Finland",
-            "position": 137,
-            "movement": -8
+            "position": 117,
+            "movement": 20
           }
         ]
       }
