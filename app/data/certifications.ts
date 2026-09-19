@@ -199,6 +199,10 @@ export const singles: Release[] = [
     // "Shakira & Burna Boy | Dai Dai | Single | PLATIN | Sony | 03.09.2026",
     // one row and the credit matches. Austrian Platinum for a single is 30,000.
     { c: "AT", level: "Platinum" },
+    // Ultratop (BRMA) lists it at 10/08/2026: Goud on ultratop.be/nl/goud-platina/2026/singles;
+    // the page sits behind a Cloudflare bot check, so it was read 19 Sep 2026 from
+    // Paul's own browser (screenshot of the body's page, URL in frame).
+    { c: "BE", level: "Gold" },
   ] },
   { title: "Last Last", year: 2022, certs: [
     { c: "CA", level: "Platinum", x: 4 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum", x: 2 },
@@ -855,6 +859,12 @@ export const certHistory: CertEvent[] = [
   // worldwide total stays put; the GR Gold row above stays. The page is
   // overwritten weekly, so the row is preserved in docs/sourcing/GREECE-2026-W36.md.
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "GR", level: "Platinum", year: 2026 },
+  // 19 Sep 2026 — Belgium. Ultratop's 2026 singles award list prints "Shakira x
+  // Burna Boy / Dai dai / 10/08/2026: Goud". Ultratop is the only publisher of
+  // BRMA's awards and sits behind a Cloudflare "verify you are human" wall that
+  // this site's tooling never completes, so the row was read from Paul's own
+  // browser (ultratop.be/nl/goud-platina/2026/singles). Fourteenth country.
+  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "BE", level: "Gold", year: 2026 },
 ];
 
 // Helpers
@@ -884,7 +894,7 @@ export const intlCertHistory = certHistory.filter((e) => e.country !== "NG");
 /** The most recent day a certifying body's own register was read for this
  *  file. Printed on the page's sources line in place of a typed "as of" month
  *  — bump it on every body read, in the same edit as the row it changes. */
-export const CERTS_VERIFIED_ON = "2026-09-18";
+export const CERTS_VERIFIED_ON = "2026-09-19";
 
 /** "Dai Dai" Platinum plaques beyond the US Latin 2× — the "Platinum in N more"
  *  rail note on the story and its Spanish twin, counted rather than typed after

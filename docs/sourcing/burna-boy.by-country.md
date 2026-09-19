@@ -285,5 +285,6 @@
 - We Pray [Coldplay ft. Burna Boy & others] — Platinum
 - Dai Dai [Shakira & Burna Boy] — Gold (ZPAV, 31 Aug 2026)
 
-### BE — BEA (1)
+### BE — Ultratop/BRMA (2)
+- Dai Dai [Shakira & Burna Boy] — Gold (Ultratop 2026 singles list, "10/08/2026: Goud"; read 19 Sep 2026 from Paul's browser, the site is behind a Cloudflare bot check)
 - Jerusalema (Remix) [Master KG, Nomcebo & Burna Boy] — Platinum x2

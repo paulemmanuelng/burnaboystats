@@ -46,6 +46,13 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-09-19",
+    category: "Certifications",
+    text: "“Dai Dai” is Gold in Belgium — Ultratop dates the award 10 August 2026. That is a fourteenth country certifying the World Cup song, and Burna Boy's 236th plaque.",
+    href: "/dai-dai",
+    big: true,
+  },
+  {
     date: "2026-09-18",
     category: "Certifications",
     text: "“City Boys” is Gold in Portugal — AFP/Audiogest listed it in the April 2026 awards, the song's seventh plaque and its first Portuguese one, taking his certification count to 235 across 26 countries.",
