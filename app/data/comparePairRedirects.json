@@ -35,13 +35,13 @@
     "permanent": true
   },
   {
-    "source": "/compare/omah-lay-vs-burna-boy",
-    "destination": "/compare/burna-boy-vs-omah-lay",
+    "source": "/compare/tyla-vs-burna-boy",
+    "destination": "/compare/burna-boy-vs-tyla",
     "permanent": true
   },
   {
-    "source": "/compare/tyla-vs-burna-boy",
-    "destination": "/compare/burna-boy-vs-tyla",
+    "source": "/compare/omah-lay-vs-burna-boy",
+    "destination": "/compare/burna-boy-vs-omah-lay",
     "permanent": true
   },
   {
@@ -105,13 +105,13 @@
     "permanent": true
   },
   {
-    "source": "/compare/omah-lay-vs-wizkid",
-    "destination": "/compare/wizkid-vs-omah-lay",
+    "source": "/compare/tyla-vs-wizkid",
+    "destination": "/compare/wizkid-vs-tyla",
     "permanent": true
   },
   {
-    "source": "/compare/tyla-vs-wizkid",
-    "destination": "/compare/wizkid-vs-tyla",
+    "source": "/compare/omah-lay-vs-wizkid",
+    "destination": "/compare/wizkid-vs-omah-lay",
     "permanent": true
   },
   {
@@ -170,13 +170,13 @@
     "permanent": true
   },
   {
-    "source": "/compare/omah-lay-vs-seyi-vibez",
-    "destination": "/compare/seyi-vibez-vs-omah-lay",
+    "source": "/compare/tyla-vs-seyi-vibez",
+    "destination": "/compare/seyi-vibez-vs-tyla",
     "permanent": true
   },
   {
-    "source": "/compare/tyla-vs-seyi-vibez",
-    "destination": "/compare/seyi-vibez-vs-tyla",
+    "source": "/compare/omah-lay-vs-seyi-vibez",
+    "destination": "/compare/seyi-vibez-vs-omah-lay",
     "permanent": true
   },
   {
@@ -230,13 +230,13 @@
     "permanent": true
   },
   {
-    "source": "/compare/omah-lay-vs-davido",
-    "destination": "/compare/davido-vs-omah-lay",
+    "source": "/compare/tyla-vs-davido",
+    "destination": "/compare/davido-vs-tyla",
     "permanent": true
   },
   {
-    "source": "/compare/tyla-vs-davido",
-    "destination": "/compare/davido-vs-tyla",
+    "source": "/compare/omah-lay-vs-davido",
+    "destination": "/compare/davido-vs-omah-lay",
     "permanent": true
   },
   {
@@ -285,13 +285,13 @@
     "permanent": true
   },
   {
-    "source": "/compare/omah-lay-vs-rema",
-    "destination": "/compare/rema-vs-omah-lay",
+    "source": "/compare/tyla-vs-rema",
+    "destination": "/compare/rema-vs-tyla",
     "permanent": true
   },
   {
-    "source": "/compare/tyla-vs-rema",
-    "destination": "/compare/rema-vs-tyla",
+    "source": "/compare/omah-lay-vs-rema",
+    "destination": "/compare/rema-vs-omah-lay",
     "permanent": true
   },
   {
@@ -335,13 +335,13 @@
     "permanent": true
   },
   {
-    "source": "/compare/omah-lay-vs-asake",
-    "destination": "/compare/asake-vs-omah-lay",
+    "source": "/compare/tyla-vs-asake",
+    "destination": "/compare/asake-vs-tyla",
     "permanent": true
   },
   {
-    "source": "/compare/tyla-vs-asake",
-    "destination": "/compare/asake-vs-tyla",
+    "source": "/compare/omah-lay-vs-asake",
+    "destination": "/compare/asake-vs-omah-lay",
     "permanent": true
   },
   {
@@ -380,13 +380,13 @@
     "permanent": true
   },
   {
-    "source": "/compare/omah-lay-vs-tems",
-    "destination": "/compare/tems-vs-omah-lay",
+    "source": "/compare/tyla-vs-tems",
+    "destination": "/compare/tems-vs-tyla",
     "permanent": true
   },
   {
-    "source": "/compare/tyla-vs-tems",
-    "destination": "/compare/tems-vs-tyla",
+    "source": "/compare/omah-lay-vs-tems",
+    "destination": "/compare/tems-vs-omah-lay",
     "permanent": true
   },
   {
@@ -420,13 +420,13 @@
     "permanent": true
   },
   {
-    "source": "/compare/omah-lay-vs-bnxn",
-    "destination": "/compare/bnxn-vs-omah-lay",
+    "source": "/compare/tyla-vs-bnxn",
+    "destination": "/compare/bnxn-vs-tyla",
     "permanent": true
   },
   {
-    "source": "/compare/tyla-vs-bnxn",
-    "destination": "/compare/bnxn-vs-tyla",
+    "source": "/compare/omah-lay-vs-bnxn",
+    "destination": "/compare/bnxn-vs-omah-lay",
     "permanent": true
   },
   {
@@ -460,38 +460,8 @@
     "permanent": true
   },
   {
-    "source": "/compare/tyla-vs-omah-lay",
-    "destination": "/compare/omah-lay-vs-tyla",
-    "permanent": true
-  },
-  {
-    "source": "/compare/olamide-vs-omah-lay",
-    "destination": "/compare/omah-lay-vs-olamide",
-    "permanent": true
-  },
-  {
-    "source": "/compare/ayra-starr-vs-omah-lay",
-    "destination": "/compare/omah-lay-vs-ayra-starr",
-    "permanent": true
-  },
-  {
-    "source": "/compare/fireboy-dml-vs-omah-lay",
-    "destination": "/compare/omah-lay-vs-fireboy-dml",
-    "permanent": true
-  },
-  {
-    "source": "/compare/ckay-vs-omah-lay",
-    "destination": "/compare/omah-lay-vs-ckay",
-    "permanent": true
-  },
-  {
-    "source": "/compare/black-sherif-vs-omah-lay",
-    "destination": "/compare/omah-lay-vs-black-sherif",
-    "permanent": true
-  },
-  {
-    "source": "/compare/victony-vs-omah-lay",
-    "destination": "/compare/omah-lay-vs-victony",
+    "source": "/compare/omah-lay-vs-tyla",
+    "destination": "/compare/tyla-vs-omah-lay",
     "permanent": true
   },
   {
@@ -522,6 +492,36 @@
   {
     "source": "/compare/victony-vs-tyla",
     "destination": "/compare/tyla-vs-victony",
+    "permanent": true
+  },
+  {
+    "source": "/compare/olamide-vs-omah-lay",
+    "destination": "/compare/omah-lay-vs-olamide",
+    "permanent": true
+  },
+  {
+    "source": "/compare/ayra-starr-vs-omah-lay",
+    "destination": "/compare/omah-lay-vs-ayra-starr",
+    "permanent": true
+  },
+  {
+    "source": "/compare/fireboy-dml-vs-omah-lay",
+    "destination": "/compare/omah-lay-vs-fireboy-dml",
+    "permanent": true
+  },
+  {
+    "source": "/compare/ckay-vs-omah-lay",
+    "destination": "/compare/omah-lay-vs-ckay",
+    "permanent": true
+  },
+  {
+    "source": "/compare/black-sherif-vs-omah-lay",
+    "destination": "/compare/omah-lay-vs-black-sherif",
+    "permanent": true
+  },
+  {
+    "source": "/compare/victony-vs-omah-lay",
+    "destination": "/compare/omah-lay-vs-victony",
     "permanent": true
   },
   {

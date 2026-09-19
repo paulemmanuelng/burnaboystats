@@ -1997,23 +1997,6 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
-    "title": "Omah Lay vs Tyla",
-    "path": "/compare/omah-lay-vs-tyla",
-    "section": "Compare",
-    "description": "Omah Lay against Tyla by certified units — every plaque priced at its own body's threshold, country by country.",
-    "keywords": [
-      "omah lay",
-      "tyla",
-      "vs",
-      "versus",
-      "compare",
-      "certified units",
-      "head to head",
-      "who has more"
-    ],
-    "generated": true
-  },
-  {
     "title": "Omah Lay vs Victony",
     "path": "/compare/omah-lay-vs-victony",
     "section": "Compare",
@@ -2667,6 +2650,23 @@ export const generatedDocs: SearchDoc[] = [
     "keywords": [
       "tyla",
       "olamide",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Tyla vs Omah Lay",
+    "path": "/compare/tyla-vs-omah-lay",
+    "section": "Compare",
+    "description": "Tyla against Omah Lay by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "tyla",
+      "omah lay",
       "vs",
       "versus",
       "compare",
@@ -4171,7 +4171,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Dai Dai",
     "path": "/records/charts",
     "section": "Release",
-    "description": "Shakira & Burna Boy — 13 certifications · 68 chart entries.",
+    "description": "Shakira & Burna Boy — 14 certifications · 68 chart entries.",
     "keywords": [
       "shakira",
       "burna",

@@ -2,7 +2,7 @@
 
 **Method:** identical to burnaboystats.com — a certification counts when it appears in the issuing body's own records; one plaque per title per country at its **current** tier (a 4× Platinum is one plaque, not four); lead and featured artist credits both count, writer/producer-only credits do not; Wikipedia and fan lists are candidate hints, never evidence. Registers that publish every tier step (Music Canada, BVMI, IFPI Switzerland, IFPI Danmark, FIMI, Promusicae, Pro-Música Brasil, Ultratop, NVPI, AMPROFON, RMNZ, ZPAV, IFPI Norge, IFPI Greece) were collapsed to the highest tier per title per country. Body-side sweep 15 Aug 2026; **gap-closing pass 16 Aug 2026** added the national registers never queried in the first pass plus a full TurnTable archive read. ✓ = personally read in the issuing body's own register; no tick = Wikipedia-cited only, because that body was not swept or could not be reached.
 
-## Total: **62 certifications** across 23 countries
+## Total: **63 certifications** across 23 countries
 
 > **How the number moved: 65 claimed → 60 (first pass) → 62 (gap pass).**
 > The first pass *subtracted*: the fan/Wikipedia picture for Tyla was unusually accurate
@@ -17,7 +17,7 @@
 > **Water — TCSN Gold** (removed in the first pass on the strength of the live register
 > alone, now restored on register evidence) and **Dynamite — TCSN Gold**, credited
 > `Tyla & Wizkid` — the first and only register row anywhere that pairs Tyla with
-> another artist in this sweep family. Net: 60 + 2 = **62**.
+> another artist in this sweep family. Net: 60 + 2 = **62**; 19 Sep 2026: + Chanel 🇧🇪 Goud = **63**.
 >
 > The gap pass also **converted the document's last two unticked rows into verified
 > ones**: Norway's register was found and read (Water Platinum, Tyla+ Gold), and
@@ -33,18 +33,18 @@
 
 *Albums subtotal: 8 + 1 = **9*** ✓
 
-### Lead singles — 52
+### Lead singles — 53
 | song | certifications |
 |---|---|
 | Water (2023) | 🇧🇷 2× Diamond ✓ · 🇫🇷 Diamond ✓ · 🇺🇸 4× Platinum ✓ · 🇨🇦 4× Platinum ✓ · 🇵🇹 4× Platinum ✓ · 🇦🇺 4× Platinum ✓ · 🇳🇿 4× Platinum ✓ · 🇬🇧 2× Platinum ✓ · 🇨🇭 2× Platinum ✓ · 🇭🇺 2× Platinum ✓ · 🇬🇷 2× Platinum ✓ · 🇦🇹 Platinum ✓ · 🇩🇰 Platinum ✓ · 🇪🇸 Platinum ✓ · 🇧🇪 Platinum ✓ · 🇳🇱 Platinum ✓ · 🇳🇴 Platinum ✓ *(new tick)* · 🇵🇱 Platinum ✓ *(new tick)* · 🇩🇪 Gold ✓ · 🇸🇪 Gold ✓ · 🇮🇹 Gold ✓ · 🇲🇽 Gold ✓ · 🇳🇬 Gold ✓ *(RESTORED)* — **23** *(the 🇿🇦 4× Platinum remains REMOVED)* |
 | Push 2 Start (2024) | 🇺🇸 Platinum ✓ · 🇧🇷 Platinum ✓ · 🇳🇿 Platinum ✓ · 🇨🇦 Gold ✓ · 🇫🇷 Gold ✓ · 🇬🇷 Gold ✓ · 🇭🇺 Gold ✓ · 🇬🇧 Gold ✓ — **8** |
-| Chanel (2025) | 🇺🇸 Gold ✓ · 🇦🇺 Gold ✓ · 🇫🇷 Gold ✓ · 🇳🇿 Gold ✓ · 🇵🇹 Gold ✓ · 🇨🇭 Gold ✓ · 🇬🇧 Silver ✓ — **7** *(the 🇿🇦 Platinum was never Tyla's — see removals)* |
+| Chanel (2025) | 🇺🇸 Gold ✓ · 🇦🇺 Gold ✓ · 🇫🇷 Gold ✓ · 🇳🇿 Gold ✓ · 🇵🇹 Gold ✓ · 🇨🇭 Gold ✓ · 🇧🇪 Goud ✓ (10/08/2026, read 19 Sep 2026) · 🇬🇧 Silver ✓ — **8** *(the 🇿🇦 Platinum was never Tyla's — see removals)* |
 | Truth or Dare (2024) | 🇳🇿 Platinum ✓ · 🇺🇸 Gold ✓ · 🇧🇷 Gold ✓ · 🇨🇦 Gold ✓ · 🇵🇹 Gold ✓ · 🇬🇧 Silver ✓ — **6** |
 | Jump (w/ Gunna & Skillibeng) (2024) | 🇺🇸 Gold ✓ · 🇧🇷 Gold ✓ · 🇨🇦 Gold ✓ · 🇳🇿 Gold ✓ · 🇬🇧 Silver ✓ — **5** *(the 🇿🇦 Platinum was REMOVED)* |
 | Art (2024) | 🇺🇸 Gold ✓ · 🇳🇿 Gold ✓ — **2** *(the 🇿🇦 Platinum was REMOVED)* |
 | Dynamite — Tyla & Wizkid (2025) | 🇳🇬 Gold ✓ *(new)* — **1** |
 
-*Lead singles subtotal: 23 + 8 + 7 + 6 + 5 + 2 + 1 = **52*** ✓
+*Lead singles subtotal: 23 + 8 + 8 + 6 + 5 + 2 + 1 = **53*** ✓
 
 ### Featured appearances — 1
 | song | certifications |
@@ -56,16 +56,16 @@
 ### Tier split (arithmetic check)
 - **Diamond 2** — Water 🇧🇷 (2× Diamond) · Water 🇫🇷 (Diamond)
 - **Platinum tiers 24** — Water ×16 (US 4×, CA 4×, PT 4×, AU 4×, NZ 4×, UK 2×, CH 2×, HU 2×, GR 2×, AT, DK, ES, BE, NL, NO, PL) · Tyla album ×4 (CA, BR, NL, NZ) · Push 2 Start ×3 (US, BR, NZ) · Truth or Dare ×1 (NZ) → 16 + 4 + 3 + 1 = **24**
-- **Gold 33** — Water ×5 (DE, SE, IT, MX, **NG**) · Tyla album ×4 (US, UK, CH, DK) · Tyla + ×1 (NO) · Push 2 Start ×5 (CA, FR, GR, HU, UK) · Truth or Dare ×4 (US, BR, CA, PT) · Art ×2 (US, NZ) · Jump ×4 (US, BR, CA, NZ) · Chanel ×6 (US, AU, FR, NZ, PT, CH) · **Dynamite ×1 (NG)** · Show Me Love ×1 (GR) → 5+4+1+5+4+2+4+6+1+1 = **33**
+- **Gold 34** — Water ×5 (DE, SE, IT, MX, **NG**) · Tyla album ×4 (US, UK, CH, DK) · Tyla + ×1 (NO) · Push 2 Start ×5 (CA, FR, GR, HU, UK) · Truth or Dare ×4 (US, BR, CA, PT) · Art ×2 (US, NZ) · Jump ×4 (US, BR, CA, NZ) · Chanel ×7 (US, AU, FR, NZ, PT, CH, **BE**) · **Dynamite ×1 (NG)** · Show Me Love ×1 (GR) → 5+4+1+5+4+2+4+7+1+1 = **34**
 - **Silver 3** — Truth or Dare 🇬🇧 · Jump 🇬🇧 · Chanel 🇬🇧 (the UK is the only body in this sweep with a Silver tier that Tyla appears in; TCSN Nigeria also runs a Silver tier but holds no Tyla Silver row)
 
-2 + 24 + 33 + 3 = **62** ✓  ·  Sections: 9 albums + 52 lead + 1 featured = **62** ✓
+2 + 24 + 34 + 3 = **63** ✓  ·  Sections: 9 albums + 53 lead + 1 featured = **63** ✓
 
 ## Award events vs plaques
 
-This document counts **62 plaques** — one per title per country at its current highest tier, the burnaboystats.com convention that produces Burna Boy's 229. Fan trackers generally count **announcements** instead: every time a body publishes a new tier for a title, that is one more line on the tally. The two numbers are both defensible; they answer different questions. This section shows the arithmetic so nobody has to guess which convention a given figure came from.
+This document counts **63 plaques** — one per title per country at its current highest tier, the burnaboystats.com convention that produces Burna Boy's 236. Fan trackers generally count **announcements** instead: every time a body publishes a new tier for a title, that is one more line on the tally. The two numbers are both defensible; they answer different questions. This section shows the arithmetic so nobody has to guess which convention a given figure came from.
 
-**Documented award events: 78.** That is 62 plaques plus 16 additional announcements recorded on titles whose registers publish the full tier ladder:
+**Documented award events: 79.** That is 63 plaques plus 16 additional announcements recorded on titles whose registers publish the full tier ladder:
 
 | register | title | plaque (current tier) | announcements | extra beyond first |
 |---|---|---|---|---|
@@ -81,7 +81,7 @@ This document counts **62 plaques** — one per title per country at its current
 | Ultratop (Belgium) | Water | Platinum | 2 (Goud 09-01-2024 → Platina 29-03-2024) | +1 |
 | — every other entry | — | — | 1 each (52 plaques) | 0 |
 
-**62 + 16 = 78.**
+**63 + 16 = 79.**
 
 *Water* alone accounts for **23 plaques and at least 38 announcements**. That single ratio — 23 versus 38 — is the whole reconciliation in miniature: a tracker counting Canada's five rows and Brazil's four as nine separate certifications is not wrong about the register, it is using a different unit.
 
@@ -117,7 +117,7 @@ This document counts **62 plaques** — one per title per country at its current
 | GLF / IFPI Sverige | **swept ✓** (Sverigetopplistan badge register) | 1 entry — Water Guld. The album (#13) and Chanel (#2, her Swedish peak) are uncertified. Swedish certification is application-only at 6,000,000 streams for a Gold single. |
 | FIMI (Italy) | **swept ✓** (full dump, 2019–2026, both formats, 9,020 rows) | 1 entry — Water Oro, 2024 wk 20. No later tier step exists. |
 | PROMUSICAE (Spain) | **swept ✓** (all 4,395 artist strings enumerated) | 1 entry — Water, Gold (2024 wk 15) → Platinum (2025 wk 6). Zero Spanish album certifications. |
-| Ultratop / BRMA (Belgium) | **swept ✓** (1995–2026, both categories, both language sides, 128 pages) | 1 entry — Water, Goud 09/01/2024 → Platina 29/03/2024. Belgium is one national list rendered in two languages; counted once. |
+| Ultratop / BRMA (Belgium) | **swept ✓** (1995–2026, both categories, both language sides, 128 pages; 2026 singles list re-read 19 Sep 2026 from Paul's browser — the site now sits behind a Cloudflare bot check) | 2 entries — Water, Goud 09/01/2024 → Platina 29/03/2024; **Chanel, Goud 10/08/2026** (added 19 Sep 2026). Belgium is one national list rendered in two languages; counted once. |
 | AMPROFON (Mexico) | **swept ✓** (complete 8,540-row table, single page load) | 1 entry — Water Oro, 02/07/2024. Notable: AMPROFON holds no certification for any Nigerian Afrobeats artist, and Rema's *Calm Down* is absent entirely. |
 | TCSN / TurnTable (Nigeria) | **swept ✓** — *reversed from 0 entries* (live register **500 rows** + 44 of 47 Wayback captures, 2023-02 → 2026-07) | **2 entries, both archive-only** — Water (Tyla) Gold and Dynamite (Tyla) Gold, credited `Tyla & Wizkid`. **The live register is not the register.** Live shows exactly 500 rows (456 Platinum + 44 Gold, cut off mid-Gold, **zero Silver**); the 21 Feb 2026 capture holds **2,477 rows** (962 Platinum / 698 Gold / 817 Silver) and the Nov 2025 captures hold 1,203. Across all six sweep artists the live register shows 98 plaques against an archive union of 201. **Tyla is invisible on the live register entirely** — both her Nigerian plaques exist only in the archive. Silver is a real TCSN tier and the live 500-row cap serves none of it. Register dates are unreliable: every live row reads 2026-02-06 and the 2,477-row capture collapses onto six distinct dates — these are bulk re-dates at migration, not award dates, and must not be published as such. Request-based, so absence still proves nothing. |
 | RiSA (South Africa) | **swept ✓** (full 748-row consolidated table, via real browser) | **0 entries.** Four claims removed, plus the Chanel/Raindance copy-paste. See the verification notes — this remains the sweep's most consequential result and its most carefully checked one. |

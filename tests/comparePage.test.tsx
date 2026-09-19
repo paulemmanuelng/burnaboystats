@@ -85,7 +85,7 @@ describe("the one-side hint follows the featured switch", () => {
     expect(off).toContain("off · lead credits only");
     // The 19× Platinum on "All Eyes on Me" (a feature) is in the default view,
     // and so are the six Swedish plaques since Sweden is priced (§).
-    expect(on).toContain("168 counted"); // + City Boys PT Gold, 18 Sep 2026
+    expect(on).toContain("169 counted"); // + Dai Dai BE Gold (19 Sep), + City Boys PT Gold (18 Sep 2026)
   });
 });
 
