@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-19";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-19T01:41Z";
+  export const liveChartsBuiltAt = "2026-09-19T06:42Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -147,6 +147,12 @@
             "status": "new"
           },
           {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 6,
+            "movement": 138
+          },
+          {
             "country": "OM",
             "name": "Oman",
             "position": 8,
@@ -163,13 +169,6 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 8,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
             "position": 8,
             "movement": null,
             "status": "new"
@@ -203,23 +202,15 @@
             "status": "new"
           },
           {
+            "country": "CA",
+            "name": "Canada",
+            "position": 17,
+            "movement": 74
+          },
+          {
             "country": "CG",
             "name": "Republic of the Congo",
             "position": 17,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "US",
-            "name": "United States",
-            "position": 18,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "CA",
-            "name": "Canada",
-            "position": 19,
             "movement": null,
             "status": "new"
           },
@@ -236,6 +227,12 @@
             "position": 19,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "US",
+            "name": "United States",
+            "position": 20,
+            "movement": 64
           },
           {
             "country": "TR",
@@ -296,9 +293,8 @@
           {
             "country": "NO",
             "name": "Norway",
-            "position": 69,
-            "movement": null,
-            "status": "new"
+            "position": 71,
+            "movement": 121
           },
           {
             "country": "ZW",
@@ -317,7 +313,7 @@
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 78,
+            "position": 75,
             "movement": null,
             "status": "new"
           },
@@ -350,16 +346,16 @@
             "status": "new"
           },
           {
-            "country": "BG",
-            "name": "Bulgaria",
-            "position": 151,
+            "country": "FR",
+            "name": "France",
+            "position": 141,
             "movement": null,
             "status": "new"
           },
           {
-            "country": "FR",
-            "name": "France",
-            "position": 160,
+            "country": "BG",
+            "name": "Bulgaria",
+            "position": 151,
             "movement": null,
             "status": "new"
           },
@@ -401,12 +397,12 @@
       },
       {
         "platform": "iTunes",
-        "numberOnes": 0,
+        "numberOnes": 1,
         "entries": [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 7,
+            "position": 1,
             "movement": null,
             "status": "new"
           }
@@ -645,8 +641,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 4,
-            "movement": 100
+            "position": 5,
+            "movement": 140
           }
         ]
       },
@@ -1005,7 +1001,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 104,
+            "position": 127,
             "movement": null,
             "status": "new"
           }
@@ -1086,7 +1082,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 103,
+            "position": 126,
             "movement": null,
             "status": "new"
           }
@@ -1471,14 +1467,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 79,
-            "movement": -16
+            "position": 81,
+            "movement": -11
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 138,
-            "movement": -116
+            "position": 166,
+            "movement": -135
           }
         ]
       },
@@ -2041,6 +2037,38 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/0d3b3f15e7c633880a6653e97ab81cd2/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Cana",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 191,
+            "movement": -7
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 31,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/7811d182331cada5bb161fbb2edf0f40/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Where I'm from",
     "platforms": [
       {
@@ -2299,25 +2327,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/47b72924cef36764e12e24f894bb0bd9/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Cana",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 191,
-            "movement": -7
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/7811d182331cada5bb161fbb2edf0f40/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Bank Of America",

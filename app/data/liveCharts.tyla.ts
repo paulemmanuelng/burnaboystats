@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-19";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-19T01:41Z";
+  export const liveChartsBuiltAt = "2026-09-19T06:42Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -212,6 +212,12 @@
             "position": 188,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "BR",
+            "name": "Brazil",
+            "position": 200,
+            "movement": -36
           }
         ]
       },
@@ -228,8 +234,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 83,
-            "movement": -15
+            "position": 89,
+            "movement": -18
           }
         ]
       },
@@ -354,13 +360,13 @@
           {
             "country": "HN",
             "name": "Honduras",
-            "position": 94,
-            "movement": -24
+            "position": 98,
+            "movement": -26
           },
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 134,
+            "position": 192,
             "movement": null,
             "status": "new"
           }
@@ -484,8 +490,8 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 49,
-            "movement": 6
+            "position": 57,
+            "movement": -8
           }
         ]
       }
@@ -582,14 +588,34 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 145,
-            "movement": -110
+            "position": 160,
+            "movement": -124
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Truth or Dare",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "MX",
+            "name": "Mexico",
+            "position": 155,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/1ae9486180d1f50e7dbbb099b1e66825/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Talk to Me",

@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-19";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-19T01:41Z";
+  export const liveChartsBuiltAt = "2026-09-19T06:42Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -244,14 +244,14 @@
           {
             "country": "TT",
             "name": "Trinidad and Tobago",
-            "position": 80,
-            "movement": -12
+            "position": 82,
+            "movement": -11
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 122,
-            "movement": -113
+            "position": 150,
+            "movement": -138
           }
         ]
       },
@@ -601,6 +601,12 @@
             "status": "new"
           },
           {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 124,
+            "movement": 4
+          },
+          {
             "country": "IE",
             "name": "Ireland",
             "position": 129,
@@ -617,12 +623,6 @@
             "name": "Côte d'Ivoire",
             "position": 139,
             "movement": -7
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 141,
-            "movement": -6
           },
           {
             "country": "ML",
@@ -786,8 +786,8 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 154,
-            "movement": -115
+            "position": 164,
+            "movement": -124
           }
         ]
       }
@@ -1017,20 +1017,20 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 41,
-            "movement": -8
+            "position": 43,
+            "movement": -10
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 122,
-            "movement": -15
+            "position": 124,
+            "movement": -10
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 123,
-            "movement": -12
+            "position": 151,
+            "movement": -138
           }
         ]
       },
@@ -1682,26 +1682,25 @@
             "country": "SZ",
             "name": "Swaziland",
             "position": 10,
-            "movement": 2
+            "movement": 0
           },
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 51,
-            "movement": -1
+            "position": 53,
+            "movement": -3
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 64,
-            "movement": 4
+            "position": 63,
+            "movement": 3
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 197,
-            "movement": null,
-            "status": "new"
+            "position": 177,
+            "movement": 13
           }
         ]
       },
@@ -1798,8 +1797,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 186,
-            "movement": 3
+            "position": 188,
+            "movement": -2
           }
         ]
       }
@@ -1952,7 +1951,7 @@
             "country": "SZ",
             "name": "Swaziland",
             "position": 8,
-            "movement": 2
+            "movement": 0
           },
           {
             "country": "NE",
@@ -1963,14 +1962,14 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 47,
-            "movement": 8
+            "position": 46,
+            "movement": 11
           },
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 54,
-            "movement": -1
+            "position": 56,
+            "movement": -3
           },
           {
             "country": "BW",
@@ -1982,14 +1981,14 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 75,
-            "movement": 3
+            "position": 76,
+            "movement": 2
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 188,
-            "movement": 8
+            "position": 166,
+            "movement": 14
           }
         ]
       }
@@ -2260,20 +2259,19 @@
             "country": "GM",
             "name": "Gambia",
             "position": 29,
-            "movement": 1
+            "movement": 0
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 69,
-            "movement": 2
+            "position": 66,
+            "movement": 3
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 192,
-            "movement": null,
-            "status": "new"
+            "position": 173,
+            "movement": 11
           }
         ]
       }
@@ -2411,8 +2409,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 150,
-            "movement": -116
+            "position": 177,
+            "movement": -132
           }
         ]
       }
@@ -2443,8 +2441,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 148,
-            "movement": -116
+            "position": 175,
+            "movement": -132
           }
         ]
       }
@@ -2492,26 +2490,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/89d5885fe38a406504224ed98c1ab605/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Like Dat",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 21,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/999b76908ce8d84c0ca25eb5e58dc505/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "On The Road",
     "platforms": [
       {
@@ -2531,6 +2509,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Like Dat",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 26,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/999b76908ce8d84c0ca25eb5e58dc505/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Dodo",
     "platforms": [
       {
@@ -2540,7 +2538,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 29,
+            "position": 35,
             "movement": null,
             "status": "new"
           }
@@ -2579,7 +2577,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 38,
+            "position": 47,
             "movement": null,
             "status": "new"
           }
@@ -2657,7 +2655,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 60,
+            "position": 73,
             "movement": null,
             "status": "new"
           }
@@ -2764,25 +2762,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/8fa8965d4b88e9dec3578d96d73c9572/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Nwa Baby",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 139,
-            "movement": -104
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/74fb63756975ed8644a5519be4ad39fc/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Activate",
     "platforms": [
       {
@@ -2819,6 +2798,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/329ae36eecf839ca2e82a46203a10cbc/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Nwa Baby",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 167,
+            "movement": -135
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/74fb63756975ed8644a5519be4ad39fc/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Son of Mercy - EP",
