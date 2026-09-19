@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-18";
+  export const liveChartsUpdated = "2026-09-19";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-18T23:39Z";
+  export const liveChartsBuiltAt = "2026-09-19T01:41Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -62,8 +62,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 43,
-            "movement": -20
+            "position": 44,
+            "movement": -14
           },
           {
             "country": "QA",
@@ -141,12 +141,6 @@
             "movement": -30
           },
           {
-            "country": "CA",
-            "name": "Canada",
-            "position": 176,
-            "movement": 10
-          },
-          {
             "country": "KY",
             "name": "Cayman Islands",
             "position": 176,
@@ -170,6 +164,12 @@
             "name": "Switzerland",
             "position": 181,
             "movement": -10
+          },
+          {
+            "country": "CA",
+            "name": "Canada",
+            "position": 182,
+            "movement": 4
           },
           {
             "country": "ZA",
@@ -578,8 +578,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 125,
-            "movement": -105
+            "position": 136,
+            "movement": -116
           }
         ]
       }
@@ -717,14 +717,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 82,
-            "movement": 2
+            "position": 78,
+            "movement": 9
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 86,
-            "movement": -5
+            "position": 85,
+            "movement": -3
           }
         ]
       },
@@ -1350,8 +1350,8 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 111,
-            "movement": -86
+            "position": 140,
+            "movement": -115
           }
         ]
       }
@@ -1528,8 +1528,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 30,
-            "movement": -12
+            "position": 35,
+            "movement": -14
           }
         ]
       }
@@ -1743,8 +1743,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 134,
-            "movement": -103
+            "position": 145,
+            "movement": -114
           }
         ]
       },
@@ -1787,19 +1787,19 @@
           {
             "country": "DM",
             "name": "Dominica",
-            "position": 36,
-            "movement": -3
+            "position": 34,
+            "movement": -1
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 86,
-            "movement": -5
+            "position": 78,
+            "movement": 3
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 192,
+            "position": 194,
             "movement": null,
             "status": "new"
           }
@@ -1887,8 +1887,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 147,
-            "movement": -7
+            "position": 134,
+            "movement": 9
           }
         ]
       }
@@ -2053,16 +2053,16 @@
             "movement": -1
           },
           {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 95,
-            "movement": 0
-          },
-          {
             "country": "NG",
             "name": "Nigeria",
-            "position": 107,
-            "movement": -6
+            "position": 92,
+            "movement": 12
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 94,
+            "movement": 1
           }
         ]
       },
@@ -2334,8 +2334,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 8,
-            "movement": -3
+            "position": 9,
+            "movement": -4
           }
         ]
       }
@@ -2455,7 +2455,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 40,
+            "position": 44,
             "movement": null,
             "status": "new"
           }
@@ -2495,7 +2495,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 47,
+            "position": 51,
             "movement": null,
             "status": "new"
           }
@@ -2525,25 +2525,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/a4c216574fd4d381c73a4df2f512f599/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Kese",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 64,
-            "movement": -5
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b83e12a893bcd9bca6f6e84283dbedaa/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Bad Girl",
     "platforms": [
       {
@@ -2553,8 +2534,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 96,
-            "movement": -82
+            "position": 98,
+            "movement": -84
           }
         ]
       }
@@ -2592,8 +2573,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 156,
-            "movement": -108
+            "position": 167,
+            "movement": -119
           }
         ]
       }
@@ -2611,8 +2592,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 160,
-            "movement": -107
+            "position": 171,
+            "movement": -118
           }
         ]
       }
@@ -2630,33 +2611,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 181,
-            "movement": -117
+            "position": 192,
+            "movement": -128
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2e5bc56dd547bcc84a47089b865230cb/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "ABANGANI",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 199,
-            "movement": -118
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5b290018c14b243dc3cd77ef4166ee0f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Fake Love",
@@ -2687,34 +2649,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 182,
-            "movement": -124
+            "position": 193,
+            "movement": -135
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/76f42907d9ab6c5cd7a89b4c86806f1c/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Like That",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 191,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/904cf12b649b141254ed4bde749910c1/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "S2 - EP",

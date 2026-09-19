@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-18";
+  export const liveChartsUpdated = "2026-09-19";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-18T23:39Z";
+  export const liveChartsBuiltAt = "2026-09-19T01:41Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -401,12 +401,12 @@
       },
       {
         "platform": "iTunes",
-        "numberOnes": 1,
+        "numberOnes": 0,
         "entries": [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 1,
+            "position": 7,
             "movement": null,
             "status": "new"
           }
@@ -555,7 +555,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/4f0e7e1508278c9c558f8e0a6ea0de3b/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "BACK 2 U",
+    "title": "Back 2 U",
     "platforms": [
       {
         "platform": "Apple Music",
@@ -645,8 +645,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 3,
-            "movement": 101
+            "position": 4,
+            "movement": 100
           }
         ]
       },
@@ -658,7 +658,8 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 3,
-            "movement": 0
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -1004,7 +1005,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 91,
+            "position": 104,
             "movement": null,
             "status": "new"
           }
@@ -1085,7 +1086,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 90,
+            "position": 103,
             "movement": null,
             "status": "new"
           }
@@ -1470,14 +1471,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 76,
-            "movement": -15
+            "position": 79,
+            "movement": -16
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 127,
-            "movement": -105
+            "position": 138,
+            "movement": -116
           }
         ]
       },

@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-18";
+  export const liveChartsUpdated = "2026-09-19";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-18T23:39Z";
+  export const liveChartsBuiltAt = "2026-09-19T01:41Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -291,20 +291,20 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 71,
-            "movement": -6
+            "position": 74,
+            "movement": -9
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 111,
-            "movement": 6
+            "position": 124,
+            "movement": -7
           },
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 163,
-            "movement": 13
+            "position": 199,
+            "movement": -23
           }
         ]
       },
@@ -476,12 +476,6 @@
             "name": "Uganda",
             "position": 31,
             "movement": -5
-          },
-          {
-            "country": "BW",
-            "name": "Botswana",
-            "position": 95,
-            "movement": -31
           }
         ]
       },
@@ -1048,26 +1042,26 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 21,
-            "movement": 3
+            "position": 18,
+            "movement": 6
           },
           {
             "country": "DO",
             "name": "Dominican Republic",
-            "position": 45,
-            "movement": -24
+            "position": 51,
+            "movement": -30
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 73,
-            "movement": 2
+            "position": 72,
+            "movement": 3
           },
           {
             "country": "BG",
             "name": "Bulgaria",
-            "position": 77,
-            "movement": -69
+            "position": 85,
+            "movement": -75
           }
         ]
       },
@@ -1345,8 +1339,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 146,
-            "movement": -106
+            "position": 157,
+            "movement": -117
           }
         ]
       }
@@ -1414,8 +1408,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 147,
-            "movement": -106
+            "position": 158,
+            "movement": -117
           }
         ]
       }
@@ -1459,24 +1453,6 @@
         ]
       },
       {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 53,
-            "movement": -16
-          },
-          {
-            "country": "BW",
-            "name": "Botswana",
-            "position": 84,
-            "movement": -28
-          }
-        ]
-      },
-      {
         "platform": "Spotify",
         "numberOnes": 0,
         "entries": [
@@ -1485,6 +1461,18 @@
             "name": "Nigeria",
             "position": 179,
             "movement": -25
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 57,
+            "movement": -18
           }
         ]
       }
@@ -1717,8 +1705,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 110,
-            "movement": -14
+            "position": 113,
+            "movement": -15
           }
         ]
       }
@@ -1761,7 +1749,7 @@
           {
             "country": "TH",
             "name": "Thailand",
-            "position": 128,
+            "position": 141,
             "movement": null,
             "status": "new"
           }
@@ -1828,6 +1816,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/9f343b559a9382c0d35ba0c9eca79159/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Alien",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 74,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/dd11f8ffe79111fbeedfcd39cf8f3bb9/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "BENIN BOYS",
@@ -1898,8 +1906,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 164,
-            "movement": -107
+            "position": 175,
+            "movement": -118
           }
         ]
       }
