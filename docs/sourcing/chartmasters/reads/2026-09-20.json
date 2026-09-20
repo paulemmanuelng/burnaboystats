@@ -1,0 +1,26 @@
+{
+  "$comment": "Read 20 Sep 2026 in the site's Browser pane on Paul's signed-in ChartMasters account, Playcounts Tool, one page per date via ?valid_as_of=. Totals are the tool's own Total row; 'through' is its 'Streams updated through' date. Burna Boy's 14 and 15 Sep values reproduce the 17 Sep reading to the unit; the 17 Sep total sits 828,497 BELOW the 16 Sep total on ChartMasters' own history (a revision on their side, recorded as read, not smoothed). Prompted by the bot's rawJumpAlert of 19 Sep: kworb's raw fell 22,876,828 in one build.",
+  "readOn": "2026-09-20",
+  "artists": {
+    "burna-boy": {
+      "spotifyId": "3wcj11K77LjEY1PkEazffa",
+      "name": "Burna Boy",
+      "days": {
+        "September 14, 2026": 11002971256,
+        "September 15, 2026": 11010480657,
+        "September 16, 2026": 11019018361,
+        "September 17, 2026": 11018189864,
+        "September 18, 2026": 11033727620
+      },
+      "milestones": [
+        { "figure": "11B", "what": "Artist Streams", "on": "Sep 14, 2026" },
+        { "figure": "7.0B", "what": "Artist Streams", "on": "Sep 11, 2026" },
+        { "figure": "800M", "what": "Artist YouTube Views", "on": "Sep 6, 2026" }
+      ]
+    },
+    "wizkid": { "spotifyId": "3tVQdUvClmAT7URs9V3rsp", "name": "Wizkid", "days": { "September 18, 2026": 11783919650 } },
+    "tems": { "spotifyId": "687cZJR45JO7jhk1LHIbgq", "name": "Tems", "days": { "September 18, 2026": 6260065902 } },
+    "asake": { "spotifyId": "3a1tBryiczPAZpgoZN9Rzg", "name": "Asake", "days": { "September 18, 2026": 4381811091 } },
+    "tyla": { "spotifyId": "3SozjO3Lat463tQICI9LcE", "name": "Tyla", "days": { "September 18, 2026": 4836488509 } }
+  }
+}
