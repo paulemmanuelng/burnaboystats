@@ -21,3 +21,10 @@ One block per run of scripts/chartmasters-anchor.mjs — what was read, what was
 - Captured: `reads/2026-09-17-cities.json` — 50 cities with monthly listeners, 29 countries; Global Ranking #75; popularity 86; followers 17,810,103; monthly listeners 49,058,318 (trend −9,627,572)
 - Feeds: app/data/listeners.ts → /music/listeners ("Where the world listens"); tests/listeners.test.ts checks the file against this capture row for row
 - Re-read monthly and replace the whole list at once (the page prints the read date beside every figure)
+
+## 2026-09-20 — Artist Global Impact (cities), read by hand
+
+- Source: chartmasters.org/artists-global-performance/?artist_id=3wcj11K77LjEY1PkEazffa, signed in, in the site's own browser (same session as the Playcounts read above)
+- Captured: `reads/2026-09-20-cities.json` — the same 50 cities as 17 Sep, re-ranked; 29 countries; Global Ranking #78; popularity 85; followers 17,856,540; monthly listeners 48,227,381 (trend −9,300,495)
+- Feeds: app/data/listeners.ts (whole list replaced, LISTENERS_READ_ON 2026-09-20). Followers on the Africa's Biggest board NOT moved: that board is read whole, all five artists on one day, and only Burna Boy was read today.
+

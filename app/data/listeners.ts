@@ -5,7 +5,8 @@
 // sit behind Spotify for Artists). ChartMasters' Artist Global Impact tool
 // prints all 50 with their counts, and this file is a reading of that page
 // made signed in, in the site's own browser, on the date below — the raw
-// capture is docs/sourcing/chartmasters/reads/2026-09-17-cities.json.
+// capture is docs/sourcing/chartmasters/reads/2026-09-20-cities.json (the 17 Sep
+// read it replaced sits beside it).
 //
 // HAND-READ, deliberately: the tool sits behind a member login that must never
 // be automated from the bot (a fan's shared account). Re-read it monthly and
@@ -17,11 +18,11 @@
 // hand: the sum, the country count, the country groupings and the "most cities"
 // line all come from the rows.
 
-export const LISTENERS_READ_ON = "2026-09-17";
+export const LISTENERS_READ_ON = "2026-09-20";
 
 /** Spotify monthly listeners on the read date — the artist-page figure the 50
  *  cities are the top of, read the same minute. */
-export const MONTHLY_LISTENERS_ON_READ = 49_058_318;
+export const MONTHLY_LISTENERS_ON_READ = 48_227_381;
 
 export interface ListenerCity {
   rank: number;
@@ -39,56 +40,56 @@ export interface ListenerCity {
 // well under a pixel. Brooklyn is listed by Spotify separately from New York
 // City and sits on the same pixel; the ranked list is the accessible reading.
 export const listenerCities: ListenerCity[] = [
-  { rank: 1, city: "Lagos", country: "Nigeria", code: "NG", numeric: 566, flag: "🇳🇬", lon: 3.38, lat: 6.52, listeners: 1_429_129 },
-  { rank: 2, city: "London", country: "United Kingdom", code: "GB", numeric: 826, flag: "🇬🇧", lon: -0.13, lat: 51.51, listeners: 993_316 },
-  { rank: 3, city: "Port Harcourt", country: "Nigeria", code: "NG", numeric: 566, flag: "🇳🇬", lon: 7.01, lat: 4.82, listeners: 758_257 },
-  { rank: 4, city: "Abuja", country: "Nigeria", code: "NG", numeric: 566, flag: "🇳🇬", lon: 7.5, lat: 9.06, listeners: 631_665 },
-  { rank: 5, city: "Madrid", country: "Spain", code: "ES", numeric: 724, flag: "🇪🇸", lon: -3.7, lat: 40.42, listeners: 464_188 },
-  { rank: 6, city: "São Paulo", country: "Brazil", code: "BR", numeric: 76, flag: "🇧🇷", lon: -46.63, lat: -23.55, listeners: 434_497 },
-  { rank: 7, city: "Sydney", country: "Australia", code: "AU", numeric: 36, flag: "🇦🇺", lon: 151.21, lat: -33.87, listeners: 419_485 },
-  { rank: 8, city: "Frankfurt am Main", country: "Germany", code: "DE", numeric: 276, flag: "🇩🇪", lon: 8.68, lat: 50.11, listeners: 389_671 },
-  { rank: 9, city: "Mexico City", country: "Mexico", code: "MX", numeric: 484, flag: "🇲🇽", lon: -99.13, lat: 19.43, listeners: 361_909 },
-  { rank: 10, city: "Berlin", country: "Germany", code: "DE", numeric: 276, flag: "🇩🇪", lon: 13.41, lat: 52.52, listeners: 359_109 },
-  { rank: 11, city: "Santiago", country: "Chile", code: "CL", numeric: 152, flag: "🇨🇱", lon: -70.67, lat: -33.45, listeners: 355_942 },
-  { rank: 12, city: "Montreal", country: "Canada", code: "CA", numeric: 124, flag: "🇨🇦", lon: -73.57, lat: 45.5, listeners: 352_414 },
-  { rank: 13, city: "Toronto", country: "Canada", code: "CA", numeric: 124, flag: "🇨🇦", lon: -79.38, lat: 43.65, listeners: 332_895 },
-  { rank: 14, city: "Barcelona", country: "Spain", code: "ES", numeric: 724, flag: "🇪🇸", lon: 2.17, lat: 41.39, listeners: 332_138 },
-  { rank: 15, city: "New York City", country: "United States of America", code: "US", numeric: 840, flag: "🇺🇸", lon: -74.01, lat: 40.71, listeners: 328_990 },
-  { rank: 16, city: "Paris", country: "France", code: "FR", numeric: 250, flag: "🇫🇷", lon: 2.35, lat: 48.86, listeners: 326_207 },
-  { rank: 17, city: "Melbourne", country: "Australia", code: "AU", numeric: 36, flag: "🇦🇺", lon: 144.96, lat: -37.81, listeners: 316_460 },
-  { rank: 18, city: "Hamburg", country: "Germany", code: "DE", numeric: 276, flag: "🇩🇪", lon: 9.99, lat: 53.55, listeners: 314_116 },
-  { rank: 19, city: "Amsterdam", country: "Netherlands", code: "NL", numeric: 528, flag: "🇳🇱", lon: 4.9, lat: 52.37, listeners: 305_907 },
-  { rank: 20, city: "Nairobi", country: "Kenya", code: "KE", numeric: 404, flag: "🇰🇪", lon: 36.82, lat: -1.29, listeners: 290_883 },
-  { rank: 21, city: "Munich", country: "Germany", code: "DE", numeric: 276, flag: "🇩🇪", lon: 11.58, lat: 48.14, listeners: 281_096 },
-  { rank: 22, city: "Bogotá", country: "Colombia", code: "CO", numeric: 170, flag: "🇨🇴", lon: -74.07, lat: 4.71, listeners: 273_070 },
-  { rank: 23, city: "Stuttgart", country: "Germany", code: "DE", numeric: 276, flag: "🇩🇪", lon: 9.18, lat: 48.78, listeners: 266_069 },
-  { rank: 24, city: "Manchester", country: "United Kingdom", code: "GB", numeric: 826, flag: "🇬🇧", lon: -2.24, lat: 53.48, listeners: 264_532 },
-  { rank: 25, city: "Brisbane", country: "Australia", code: "AU", numeric: 36, flag: "🇦🇺", lon: 153.03, lat: -27.47, listeners: 258_196 },
-  { rank: 26, city: "Stockholm", country: "Sweden", code: "SE", numeric: 752, flag: "🇸🇪", lon: 18.07, lat: 59.33, listeners: 245_134 },
-  { rank: 27, city: "Warsaw", country: "Poland", code: "PL", numeric: 616, flag: "🇵🇱", lon: 21.01, lat: 52.23, listeners: 243_692 },
-  { rank: 28, city: "Los Angeles", country: "United States of America", code: "US", numeric: 840, flag: "🇺🇸", lon: -118.24, lat: 34.05, listeners: 238_580 },
-  { rank: 29, city: "Benin City", country: "Nigeria", code: "NG", numeric: 566, flag: "🇳🇬", lon: 5.6, lat: 6.34, listeners: 237_949 },
-  { rank: 30, city: "Oslo", country: "Norway", code: "NO", numeric: 578, flag: "🇳🇴", lon: 10.75, lat: 59.91, listeners: 236_289 },
-  { rank: 31, city: "Johannesburg", country: "South Africa", code: "ZA", numeric: 710, flag: "🇿🇦", lon: 28.05, lat: -26.2, listeners: 230_237 },
-  { rank: 32, city: "Birmingham", country: "United Kingdom", code: "GB", numeric: 826, flag: "🇬🇧", lon: -1.89, lat: 52.49, listeners: 223_770 },
-  { rank: 33, city: "Cologne", country: "Germany", code: "DE", numeric: 276, flag: "🇩🇪", lon: 6.96, lat: 50.94, listeners: 212_586 },
-  { rank: 34, city: "Istanbul", country: "Turkey", code: "TR", numeric: 792, flag: "🇹🇷", lon: 28.98, lat: 41.01, listeners: 205_849 },
-  { rank: 35, city: "Zurich", country: "Switzerland", code: "CH", numeric: 756, flag: "🇨🇭", lon: 8.54, lat: 47.38, listeners: 205_148 },
-  { rank: 36, city: "Chicago", country: "United States of America", code: "US", numeric: 840, flag: "🇺🇸", lon: -87.63, lat: 41.88, listeners: 203_212 },
-  { rank: 37, city: "Vienna", country: "Austria", code: "AT", numeric: 40, flag: "🇦🇹", lon: 16.37, lat: 48.21, listeners: 199_116 },
-  { rank: 38, city: "Buenos Aires", country: "Argentina", code: "AR", numeric: 32, flag: "🇦🇷", lon: -58.38, lat: -34.6, listeners: 195_746 },
-  { rank: 39, city: "Accra", country: "Ghana", code: "GH", numeric: 288, flag: "🇬🇭", lon: -0.19, lat: 5.6, listeners: 190_052 },
-  { rank: 40, city: "Singapore", country: "Singapore", code: "SG", numeric: 0, flag: "🇸🇬", lon: 103.82, lat: 1.35, listeners: 186_818 },
-  { rank: 41, city: "Lima", country: "Peru", code: "PE", numeric: 604, flag: "🇵🇪", lon: -77.04, lat: -12.05, listeners: 184_254 },
-  { rank: 42, city: "Dallas", country: "United States of America", code: "US", numeric: 840, flag: "🇺🇸", lon: -96.8, lat: 32.78, listeners: 180_794 },
-  { rank: 43, city: "Dublin", country: "Ireland", code: "IE", numeric: 372, flag: "🇮🇪", lon: -6.26, lat: 53.35, listeners: 180_319 },
-  { rank: 44, city: "Düsseldorf", country: "Germany", code: "DE", numeric: 276, flag: "🇩🇪", lon: 6.77, lat: 51.23, listeners: 176_224 },
-  { rank: 45, city: "Hanover", country: "Germany", code: "DE", numeric: 276, flag: "🇩🇪", lon: 9.73, lat: 52.38, listeners: 174_570 },
-  { rank: 46, city: "Houston", country: "United States of America", code: "US", numeric: 840, flag: "🇺🇸", lon: -95.37, lat: 29.76, listeners: 169_994 },
-  { rank: 47, city: "Athens", country: "Greece", code: "GR", numeric: 300, flag: "🇬🇷", lon: 23.73, lat: 37.98, listeners: 169_303 },
-  { rank: 48, city: "Brooklyn", country: "United States of America", code: "US", numeric: 840, flag: "🇺🇸", lon: -73.94, lat: 40.68, listeners: 163_839 },
-  { rank: 49, city: "Lisbon", country: "Portugal", code: "PT", numeric: 620, flag: "🇵🇹", lon: -9.14, lat: 38.72, listeners: 163_497 },
-  { rank: 50, city: "Kuala Lumpur", country: "Malaysia", code: "MY", numeric: 458, flag: "🇲🇾", lon: 101.69, lat: 3.14, listeners: 156_614 },
+  { rank: 1, city: "Lagos", country: "Nigeria", code: "NG", numeric: 566, flag: "🇳🇬", lon: 3.38, lat: 6.52, listeners: 1_422_025 },
+  { rank: 2, city: "London", country: "United Kingdom", code: "GB", numeric: 826, flag: "🇬🇧", lon: -0.13, lat: 51.51, listeners: 999_022 },
+  { rank: 3, city: "Port Harcourt", country: "Nigeria", code: "NG", numeric: 566, flag: "🇳🇬", lon: 7.01, lat: 4.82, listeners: 760_234 },
+  { rank: 4, city: "Abuja", country: "Nigeria", code: "NG", numeric: 566, flag: "🇳🇬", lon: 7.5, lat: 9.06, listeners: 635_035 },
+  { rank: 5, city: "Madrid", country: "Spain", code: "ES", numeric: 724, flag: "🇪🇸", lon: -3.7, lat: 40.42, listeners: 462_473 },
+  { rank: 6, city: "São Paulo", country: "Brazil", code: "BR", numeric: 76, flag: "🇧🇷", lon: -46.63, lat: -23.55, listeners: 425_161 },
+  { rank: 7, city: "Sydney", country: "Australia", code: "AU", numeric: 36, flag: "🇦🇺", lon: 151.21, lat: -33.87, listeners: 417_215 },
+  { rank: 8, city: "Frankfurt am Main", country: "Germany", code: "DE", numeric: 276, flag: "🇩🇪", lon: 8.68, lat: 50.11, listeners: 378_305 },
+  { rank: 9, city: "Berlin", country: "Germany", code: "DE", numeric: 276, flag: "🇩🇪", lon: 13.41, lat: 52.52, listeners: 350_562 },
+  { rank: 10, city: "Mexico City", country: "Mexico", code: "MX", numeric: 484, flag: "🇲🇽", lon: -99.13, lat: 19.43, listeners: 350_556 },
+  { rank: 11, city: "Santiago", country: "Chile", code: "CL", numeric: 152, flag: "🇨🇱", lon: -70.67, lat: -33.45, listeners: 349_461 },
+  { rank: 12, city: "Montreal", country: "Canada", code: "CA", numeric: 124, flag: "🇨🇦", lon: -73.57, lat: 45.5, listeners: 346_704 },
+  { rank: 13, city: "Toronto", country: "Canada", code: "CA", numeric: 124, flag: "🇨🇦", lon: -79.38, lat: 43.65, listeners: 330_337 },
+  { rank: 14, city: "Paris", country: "France", code: "FR", numeric: 250, flag: "🇫🇷", lon: 2.35, lat: 48.86, listeners: 326_246 },
+  { rank: 15, city: "New York City", country: "United States of America", code: "US", numeric: 840, flag: "🇺🇸", lon: -74.01, lat: 40.71, listeners: 325_489 },
+  { rank: 16, city: "Barcelona", country: "Spain", code: "ES", numeric: 724, flag: "🇪🇸", lon: 2.17, lat: 41.39, listeners: 322_457 },
+  { rank: 17, city: "Melbourne", country: "Australia", code: "AU", numeric: 36, flag: "🇦🇺", lon: 144.96, lat: -37.81, listeners: 315_000 },
+  { rank: 18, city: "Amsterdam", country: "Netherlands", code: "NL", numeric: 528, flag: "🇳🇱", lon: 4.9, lat: 52.37, listeners: 301_450 },
+  { rank: 19, city: "Hamburg", country: "Germany", code: "DE", numeric: 276, flag: "🇩🇪", lon: 9.99, lat: 53.55, listeners: 300_697 },
+  { rank: 20, city: "Nairobi", country: "Kenya", code: "KE", numeric: 404, flag: "🇰🇪", lon: 36.82, lat: -1.29, listeners: 285_331 },
+  { rank: 21, city: "Munich", country: "Germany", code: "DE", numeric: 276, flag: "🇩🇪", lon: 11.58, lat: 48.14, listeners: 276_390 },
+  { rank: 22, city: "Bogotá", country: "Colombia", code: "CO", numeric: 170, flag: "🇨🇴", lon: -74.07, lat: 4.71, listeners: 268_819 },
+  { rank: 23, city: "Manchester", country: "United Kingdom", code: "GB", numeric: 826, flag: "🇬🇧", lon: -2.24, lat: 53.48, listeners: 265_078 },
+  { rank: 24, city: "Stuttgart", country: "Germany", code: "DE", numeric: 276, flag: "🇩🇪", lon: 9.18, lat: 48.78, listeners: 261_496 },
+  { rank: 25, city: "Brisbane", country: "Australia", code: "AU", numeric: 36, flag: "🇦🇺", lon: 153.03, lat: -27.47, listeners: 257_367 },
+  { rank: 26, city: "Stockholm", country: "Sweden", code: "SE", numeric: 752, flag: "🇸🇪", lon: 18.07, lat: 59.33, listeners: 241_868 },
+  { rank: 27, city: "Los Angeles", country: "United States of America", code: "US", numeric: 840, flag: "🇺🇸", lon: -118.24, lat: 34.05, listeners: 236_581 },
+  { rank: 28, city: "Warsaw", country: "Poland", code: "PL", numeric: 616, flag: "🇵🇱", lon: 21.01, lat: 52.23, listeners: 236_457 },
+  { rank: 29, city: "Oslo", country: "Norway", code: "NO", numeric: 578, flag: "🇳🇴", lon: 10.75, lat: 59.91, listeners: 232_205 },
+  { rank: 30, city: "Birmingham", country: "United Kingdom", code: "GB", numeric: 826, flag: "🇬🇧", lon: -1.89, lat: 52.49, listeners: 232_008 },
+  { rank: 31, city: "Benin City", country: "Nigeria", code: "NG", numeric: 566, flag: "🇳🇬", lon: 5.6, lat: 6.34, listeners: 231_627 },
+  { rank: 32, city: "Johannesburg", country: "South Africa", code: "ZA", numeric: 710, flag: "🇿🇦", lon: 28.05, lat: -26.2, listeners: 229_703 },
+  { rank: 33, city: "Cologne", country: "Germany", code: "DE", numeric: 276, flag: "🇩🇪", lon: 6.96, lat: 50.94, listeners: 216_966 },
+  { rank: 34, city: "Zurich", country: "Switzerland", code: "CH", numeric: 756, flag: "🇨🇭", lon: 8.54, lat: 47.38, listeners: 202_761 },
+  { rank: 35, city: "Istanbul", country: "Turkey", code: "TR", numeric: 792, flag: "🇹🇷", lon: 28.98, lat: 41.01, listeners: 200_196 },
+  { rank: 36, city: "Chicago", country: "United States of America", code: "US", numeric: 840, flag: "🇺🇸", lon: -87.63, lat: 41.88, listeners: 199_550 },
+  { rank: 37, city: "Vienna", country: "Austria", code: "AT", numeric: 40, flag: "🇦🇹", lon: 16.37, lat: 48.21, listeners: 195_619 },
+  { rank: 38, city: "Accra", country: "Ghana", code: "GH", numeric: 288, flag: "🇬🇭", lon: -0.19, lat: 5.6, listeners: 192_466 },
+  { rank: 39, city: "Buenos Aires", country: "Argentina", code: "AR", numeric: 32, flag: "🇦🇷", lon: -58.38, lat: -34.6, listeners: 192_146 },
+  { rank: 40, city: "Singapore", country: "Singapore", code: "SG", numeric: 0, flag: "🇸🇬", lon: 103.82, lat: 1.35, listeners: 182_754 },
+  { rank: 41, city: "Lima", country: "Peru", code: "PE", numeric: 604, flag: "🇵🇪", lon: -77.04, lat: -12.05, listeners: 181_473 },
+  { rank: 42, city: "Dublin", country: "Ireland", code: "IE", numeric: 372, flag: "🇮🇪", lon: -6.26, lat: 53.35, listeners: 178_747 },
+  { rank: 43, city: "Dallas", country: "United States of America", code: "US", numeric: 840, flag: "🇺🇸", lon: -96.8, lat: 32.78, listeners: 178_429 },
+  { rank: 44, city: "Düsseldorf", country: "Germany", code: "DE", numeric: 276, flag: "🇩🇪", lon: 6.77, lat: 51.23, listeners: 174_439 },
+  { rank: 45, city: "Houston", country: "United States of America", code: "US", numeric: 840, flag: "🇺🇸", lon: -95.37, lat: 29.76, listeners: 170_750 },
+  { rank: 46, city: "Hanover", country: "Germany", code: "DE", numeric: 276, flag: "🇩🇪", lon: 9.73, lat: 52.38, listeners: 169_819 },
+  { rank: 47, city: "Brooklyn", country: "United States of America", code: "US", numeric: 840, flag: "🇺🇸", lon: -73.94, lat: 40.68, listeners: 162_604 },
+  { rank: 48, city: "Athens", country: "Greece", code: "GR", numeric: 300, flag: "🇬🇷", lon: 23.73, lat: 37.98, listeners: 162_354 },
+  { rank: 49, city: "Lisbon", country: "Portugal", code: "PT", numeric: 620, flag: "🇵🇹", lon: -9.14, lat: 38.72, listeners: 155_666 },
+  { rank: 50, city: "Kuala Lumpur", country: "Malaysia", code: "MY", numeric: 458, flag: "🇲🇾", lon: 101.69, lat: 3.14, listeners: 155_638 },
 ];
 
 /** Short display names where Spotify's are long — the map card and the phone
