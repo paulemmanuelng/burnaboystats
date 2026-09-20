@@ -9,8 +9,10 @@
 // produces. That is not a weakness — it is a floor for both sides under
 // identical rules, which is exactly what makes the comparison hold up.
 //
-// Thresholds, their provenance and the reason eight country/format pairs cannot
-// be priced at all: app/data/certThresholds.ts.
+// Thresholds, their provenance and the reason three country/format pairs cannot
+// be priced at all (Colombia both formats, Poland singles — recounted 20 Sep
+// 2026, when Greece was priced at IFPI's June 2013 level and left the list):
+// app/data/certThresholds.ts.
 //
 // THREE RULES THIS FILE EXISTS TO ENFORCE
 //
@@ -18,7 +20,7 @@
 //     same sales recertified, not three sales. Only the highest award a release
 //     holds in a country may count. The release arrays happen to carry one
 //     plaque per title per country today (audited 10 Sep 2026: zero duplicates
-//     across all 1,212), so the rule never fires — it is implemented and tested
+//     across all 1,212; 1,218 on 20 Sep), so the rule never fires — it is implemented and tested
 //     anyway, because `certHistory` is an APPEND-ONLY EVENT LOG where Gold and
 //     Platinum both sit as rows, and anything built off that instead would
 //     roughly double every figure on the page.
@@ -28,10 +30,16 @@
 //     is why this is written as threshold(tier) * x rather than the Platinum
 //     shortcut that would have quietly priced it as a single Diamond.
 //
-//  3. WHAT CANNOT BE PRICED MUST BE COUNTED AND NAMED. 35 of the 1,212 plaques
-//     sit in a country/format whose body publishes no usable threshold. Scoring
-//     them zero in silence penalises whoever holds more of them, so every total
-//     carries its own exclusion list.
+//  3. WHAT CANNOT BE PRICED MUST BE COUNTED AND NAMED. 10 of the 1,218 plaques
+//     sit in a country/format whose body publishes no usable threshold
+//     (recounted 20 Sep 2026, once Greece was priced at IFPI's 2013 level:
+//     Colombia 2, Poland 8). Scoring them zero in silence penalises whoever
+//     holds more of them, so every total carries its own exclusion list.
+//
+//  And one line that is priced at a figure nobody publishes today: Greece,
+//  at the last level IFPI ever published for it (June 2013). Every such line
+//  carries `historic` — footnote 5, the ¶ mark — so the reader knows the bar
+//  a 2026 plaque cleared may differ from the figure.
 // ============================================================================
 
 import {
@@ -229,6 +237,10 @@ export interface CountryLine {
   /** This line is priced at a stream-to-unit ratio the body does not publish
    *  (Sweden, Mexico) — footnote 4, on every line for the country. */
   assumed?: string;
+  /** This line is priced at the last level a body ever published for the
+   *  country, not a current one (Greece, IFPI's June 2013 list) — footnote 5
+   *  (¶), on every line for the country. */
+  historic?: string;
 }
 
 export interface Exclusion {
@@ -256,6 +268,8 @@ export interface ArtistUnits {
   vintages: string[];
   /** Bodies priced at a stream ratio they do not publish — footnote 4. */
   assumptions: string[];
+  /** Bodies priced at their last published level, not a current one — footnote 5 (¶). */
+  historics: string[];
   /** Plaques that counted toward `total`. */
   pricedPlaques: number;
 }
@@ -339,6 +353,7 @@ export function priceArtist(
         caveat: multiplied ? CERT_THRESHOLDS[cert.c]?.caveat : undefined,
         vintage: CERT_THRESHOLDS[cert.c]?.vintage,
         assumed: CERT_THRESHOLDS[cert.c]?.assumed,
+        historic: CERT_THRESHOLDS[cert.c]?.historic,
       });
     }
   }
@@ -399,6 +414,7 @@ export function priceArtist(
     caveats: [...new Set(byCountry.map((l) => l.caveat).filter(Boolean) as string[])],
     vintages: [...new Set(byCountry.map((l) => l.vintage).filter(Boolean) as string[])],
     assumptions: [...new Set(byCountry.map((l) => l.assumed).filter(Boolean) as string[])],
+    historics: [...new Set(byCountry.map((l) => l.historic).filter(Boolean) as string[])],
     nigeria: { units: nigeriaUnits, plaques: nigeriaPlaques },
     excluded: exclusions,
     excludedPlaques: exclusions.reduce((n, e) => n + e.plaques, 0),
@@ -541,6 +557,8 @@ export interface Comparison {
   vintages: string[];
   /** Footnote 4 — bodies priced at a stream ratio they do not publish. */
   assumptions: string[];
+  /** Footnote 5 — bodies priced at their last published level (¶). */
+  historics: string[];
 }
 
 /**
@@ -647,5 +665,6 @@ export function compare(
     caveats: [...new Set([...pa.caveats, ...pb.caveats])],
     vintages: [...new Set([...pa.vintages, ...pb.vintages])],
     assumptions: [...new Set([...pa.assumptions, ...pb.assumptions])],
+    historics: [...new Set([...pa.historics, ...pb.historics])],
   };
 }

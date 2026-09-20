@@ -226,7 +226,9 @@
 .nameShort { display: none; }
 /* Footnote marks share one face. Space Mono has no ‡ (the browser fell back to
    a larger, heavier glyph for that one mark) and its † lives in a latin-ext
-   subset the site never preloads — 27KB and two requests on this route alone. */
+   subset the site never preloads — 27KB and two requests on this route alone.
+   ¶ (added 20 Sep 2026 for Greece's historic level) is Latin-1 and renders
+   from the same face with nothing extra. */
 .mark { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-weight: 600; font-size: 1em; line-height: 1; }
 .nowrap { white-space: nowrap; }
 .metaSeg { white-space: normal; }

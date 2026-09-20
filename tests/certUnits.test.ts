@@ -79,8 +79,10 @@ describe("thresholds are sourced, never invented", () => {
     // Belgium, Czechia and Slovakia all left this list on 10-11 Sep 2026 once
     // their thresholds were found and independently verified — Belgium via
     // Ultratop, BRMA's awards operator; the other two in ČNS IFPI's own rules,
-    // which publish a download equivalence the way France's do.
-    for (const code of ["GR", "CO"]) {
+    // which publish a download equivalence the way France's do. Greece left
+    // on 20 Sep 2026: priced at IFPI's June 2013 level (¶, `historic`) —
+    // see "Greece is priced at IFPI's June 2013 level" below.
+    for (const code of ["CO"]) {
       expect(thresholdFor(code, "single", "Platinum")).toBeNull();
       expect(thresholdFor(code, "album", "Platinum")).toBeNull();
     }
@@ -397,12 +399,17 @@ describe("the comparison", () => {
     const unpriced = (r: (typeof c.rows)[number]) => (r.a && !r.a.counted) || (r.b && !r.b.counted) || r.a?.notCounted || r.b?.notCounted;
     const shownPricedExclusive = c.rows.filter((r) => !r.contested && r.a && r.country !== "NG" && !unpriced(r));
     expect(shownPricedExclusive.length).toBe(3);
-    // Burna's Polish, Greek and Colombian plaques are his alone and unpriced:
-    // on screen, never in the tail.
+    // Burna's Polish and Colombian plaques are his alone and unpriced: on
+    // screen, never in the tail. Greece left this pin on 20 Sep 2026 — his
+    // Dai Dai Platinum is priced at IFPI's 2013 level (6,000, ¶) and, ranking
+    // below the top three exclusives, folds into the tail like any priced row.
     const shownUnpriced = c.rows.filter((r) => !r.contested && r.a && r.country !== "NG" && unpriced(r));
-    expect(shownUnpriced.map((r) => r.country).sort()).toEqual(["CO", "GR", "PL"]);
+    expect(shownUnpriced.map((r) => r.country).sort()).toEqual(["CO", "PL"]);
     expect(tail!.rows.some(unpriced)).toBe(false);
     expect(tail!.units).toBeGreaterThan(0);
+    const gr = [...c.rows, ...(tail?.rows ?? [])].find((r) => r.country === "GR");
+    expect(gr?.a?.counted).toBe(true);
+    expect(gr?.a?.units).toBe(6_000);
   });
 
   it("is symmetric — neither side is the home team", () => {
@@ -445,9 +452,12 @@ describe("rule 4 — an award PROGRAMME overrides the country's own scale", () =
 
   it("a programme brings its own scale even where the country's is unpublished", () => {
     // Programme thresholds are published centrally, so they survive a country
-    // whose own body publishes nothing.
-    expect(thresholdFor("GR", "single", "Platinum")).toBeNull();
-    expect(thresholdFor("GR", "single", "Platinum", "RIAA Latin")).toBe(60_000);
+    // whose own body publishes nothing. The example was Greece until 20 Sep
+    // 2026, when it was priced at IFPI's 2013 level; Colombia still publishes
+    // nothing.
+    expect(thresholdFor("CO", "single", "Platinum")).toBeNull();
+    expect(thresholdFor("CO", "single", "Platinum", "RIAA Latin")).toBe(60_000);
+    expect(thresholdFor("GR", "single", "Platinum")).toBe(6_000);
   });
 });
 
@@ -771,14 +781,83 @@ describe("the RIAA Latin marker is visible on every surface", () => {
 
 describe("the unpriced singles are exactly the ones /methodology names", () => {
   // The methodology page's sentence "Poland measures singles in złoty of
-  // revenue, and Greece and Colombia publish no threshold" is derived from this
-  // set; if a body here gains a threshold (Belgium did, 10 Sep 2026) or a new
+  // revenue, and Colombia publishes no threshold" is derived from this set; if
+  // a body here gains a threshold (Belgium did, 10 Sep 2026; Greece did on
+  // 20 Sep 2026, priced at IFPI's June 2013 level and marked ¶) or a new
   // unpriced country arrives, the page follows and this pins what it says.
-  it("is CO, GR and PL", () => {
+  it("is CO and PL", () => {
     const unpriced = Object.values(CERT_THRESHOLDS)
       .filter((c) => c.single === null)
       .map((c) => c.code)
       .sort();
-    expect(unpriced).toEqual(["CO", "GR", "PL"]);
+    expect(unpriced).toEqual(["CO", "PL"]);
+  });
+});
+
+describe("Greece is priced at IFPI's June 2013 level (Paul, 20 Sep 2026)", () => {
+  // IFPI Greece publishes no current level. The last level ever published for
+  // it is IFPI's own "International Certification Award levels — Updated June
+  // 2013" (docs/sourcing/IFPI-AWARD-LEVELS-2013.md): singles Gold 3,000 /
+  // Platinum 6,000, international-repertoire albums the same. Carried as
+  // `historic`, rendered ¶ on every Greek line — never as ‡ or §.
+  const GR = CERT_THRESHOLDS.GR;
+
+  it("prices both formats at 3,000 / 6,000 and no other tier", () => {
+    for (const f of ["single", "album"] as const) {
+      expect(thresholdFor("GR", f, "Gold")).toBe(3_000);
+      expect(thresholdFor("GR", f, "Platinum")).toBe(6_000);
+      expect(thresholdFor("GR", f, "Silver")).toBeNull();
+      expect(thresholdFor("GR", f, "Diamond")).toBeNull();
+      expect(exclusionFor("GR", f)).toBeNull();
+    }
+    expect(unitsForCert({ c: "GR", level: "Platinum", x: 2 }, "single").units).toBe(12_000);
+  });
+
+  it("carries the historic note, the multiplier caveat and the Wayback source — and is not ‡ or §", () => {
+    expect(GR.historic).toMatch(/June 2013/);
+    expect(GR.historic).toMatch(/IFPI/);
+    expect(GR.caveat).toMatch(/N × Platinum/);
+    expect(GR.sourceUrl).toContain("web.archive.org/web/20140328112251id_/");
+    expect(GR.vintage).toBeUndefined();
+    expect(GR.assumed).toBeUndefined();
+    expect(GR.singleExcluded).toBeUndefined();
+    expect(GR.albumExcluded).toBeUndefined();
+  });
+
+  it("every Greek line on a compare summary is counted and carries the historic note", () => {
+    let seen = 0;
+    for (const a of comparableArtists) {
+      const p = priceArtist(a, { includeNigeria: false, includeFeatures: true });
+      expect(p.listed.some((l) => l.country === "GR"), `${a.slug} lists GR`).toBe(false);
+      const gr = p.byCountry.find((l) => l.country === "GR");
+      if (!gr) {
+        expect(p.historics).toEqual([]);
+        continue;
+      }
+      seen++;
+      expect(gr.counted).toBe(true);
+      expect(gr.historic).toBe(GR.historic);
+      expect(p.historics).toEqual([GR.historic]);
+    }
+    // Burna Boy, Wizkid, Rema, Tems and Tyla hold the seven Greek plaques.
+    expect(seen).toBe(5);
+    // A multiplied Greek plaque carries † beside ¶, as it does for Austria.
+    const tyla = priceRelease(bySlug("tyla"), "Water").byCountry.find((l) => l.country === "GR");
+    expect(tyla?.units).toBe(12_000);
+    expect(tyla?.historic).toBeTruthy();
+    expect(tyla?.caveat).toBe(GR.caveat);
+    expect(compare(bySlug("tyla"), bySlug("tems")).historics).toEqual([GR.historic]);
+  });
+
+  it("negative control: a country with `historic` unset produces none", () => {
+    const burna = priceArtist(bySlug("burna-boy"), { includeNigeria: false, includeFeatures: true });
+    for (const code of ["UK", "AU", "US", "FR"]) {
+      expect(CERT_THRESHOLDS[code].historic).toBeUndefined();
+      expect(burna.byCountry.find((l) => l.country === code)?.historic).toBeUndefined();
+    }
+    // Asake and Olamide hold no Greek plaque.
+    expect(priceArtist(bySlug("asake"), { includeNigeria: false, includeFeatures: true }).historics).toEqual([]);
+    expect(compare(bySlug("asake"), bySlug("olamide")).historics).toEqual([]);
+    expect(Object.values(CERT_THRESHOLDS).filter((c) => c.historic).map((c) => c.code)).toEqual(["GR"]);
   });
 });

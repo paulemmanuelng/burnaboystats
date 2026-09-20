@@ -35,6 +35,14 @@
 // exists elsewhere. A null with a reason is the correct answer; a plausible
 // invented number is the worst outcome this file can produce.
 //
+// THE ONE EXCEPTION (Paul, 20 Sep 2026): Greece. IFPI Greece publishes no
+// current level, so it is priced at the last level ever published for it —
+// IFPI's own "International Certification Award levels", updated June 2013
+// (the umbrella body's publication, grade C, not a secondary source; the
+// evidence is docs/sourcing/IFPI-AWARD-LEVELS-2013.md). That is carried in
+// `historic`, rendered as the ¶ footnote on every Greek line, and it is the
+// only country priced at a figure its body does not publish today.
+//
 // TODAY'S THRESHOLDS, FOR EVERY BODY (Paul, 11 Sep 2026). Twelve of the 27
 // bodies changed their levels inside the window the plaques span, and eleven
 // of them RAISED them. Two rules were weighed:
@@ -135,6 +143,14 @@ export interface CountryThresholds {
    *  ‡ footnote: it says the figure is today's level and that a plaque awarded
    *  before the rise may have cleared a lower bar. */
   vintage?: string;
+  /** Set where the body publishes no current level and this file prices at the
+   *  last level a body ever published — rendered as the ¶ footnote on every
+   *  line for the country. One body (Paul, 20 Sep 2026): IFPI Greece, at
+   *  IFPI's own International Certification Award levels list, updated June
+   *  2013 — docs/sourcing/IFPI-AWARD-LEVELS-2013.md. Distinct from `vintage`
+   *  (the body raised a level it still publishes) and `assumed` (a stream
+   *  ratio the body does not publish). */
+  historic?: string;
 }
 
 export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
@@ -263,13 +279,22 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
   GR: {
     code: "GR",
     body: "IFPI Greece",
-    sourceUrl: "https://ifpi.gr/",
-    single: null,
-    singleExcluded:
-      "IFPI Greece awards certifications and prints the codes on its own Digital Singles charts, but publishes no thresholds anywhere. All 15 pages of ifpi.gr were read in both Greek and English; there is no criteria page and no streaming conversion ratio.",
-    album: null,
-    albumExcluded:
-      "IFPI Greece awards certifications and prints the codes on its own Digital Singles charts, but publishes no thresholds anywhere. All 15 pages of ifpi.gr were read in both Greek and English; there is no criteria page and no streaming conversion ratio.",
+    // Priced 20 Sep 2026 (Paul's decision) at IFPI's own "International
+    // Certification Award levels — Updated June 2013", the last level ever
+    // published for Greece: singles Gold 3,000 / Platinum 6,000; albums the
+    // INTERNATIONAL-repertoire column, 3,000 / 6,000 (domestic is 6,000 /
+    // 12,000 and applies to nobody on this site). No Silver, no Diamond, no
+    // multiplier rule. Evidence: docs/sourcing/IFPI-AWARD-LEVELS-2013.md.
+    // Until then both formats were null: ifpi.gr (all 15 pages, Greek and
+    // English) publishes no criteria page and no streaming ratio, and still
+    // does not — hence `historic`, the ¶ footnote.
+    sourceUrl: "https://web.archive.org/web/20140328112251id_/http://ifpi.org/content/library/international-award-levels.pdf",
+    single: { silver: null, gold: 3_000, platinum: 6_000, diamond: null },
+    album: { silver: null, gold: 3_000, platinum: 6_000, diamond: null },
+    historic:
+      "IFPI Greece publishes no current level. Priced at IFPI's own International Certification Award levels list, updated June 2013 — the last figure ever published for Greece (singles Gold 3,000 / Platinum 6,000 unit sales; international-repertoire albums the same). The body now certifies from its streaming Digital Singles chart and states no ratio, so a plaque awarded today may sit on a different bar.",
+    caveat:
+      "IFPI’s June 2013 list sets Gold and Platinum only and gives no formula for multiples, although IFPI Greece’s own Digital Singles chart prints 2P and 3P in its Award column. An N× award is priced here as N × Platinum.",
   },
   HU: {
     code: "HU",
