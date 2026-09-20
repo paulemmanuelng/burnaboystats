@@ -33,6 +33,7 @@ const NAMES: Record<string, string[]> = {
   PL: ["Poland", "Polonia"],
   UK: ["the UK", "the United Kingdom", "el Reino Unido", "Reino Unido"],
   BE: ["Belgium", "Bélgica"],
+  SE: ["Sweden", "Suecia"],
 };
 
 /** Files that carry a hand-written enumeration, and the marker that finds one. */

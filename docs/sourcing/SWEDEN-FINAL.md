@@ -97,7 +97,22 @@ lookup for Location would close Sweden completely.**
 
 ## Confirmed absent (no Guld/Platina line on the record)
 
-Twice as Tall · I Told Them… · Dai Dai · Wild Dreams · City Boys · Cheat on Me ·
+Twice as Tall · I Told Them… · Dai Dai (*until 18 Sep 2026 — see below*) · Wild Dreams · City Boys · Cheat on Me ·
 We Pray · Black Panther: Wakanda Forever — eight records checked individually,
 not assumed. Note the register credits Dai Dai to *SHAKIRA & BURNA BOY*, We Pray
 to *COLDPLAY, LITTLE SIMZ…*, and Black Panther to *FILMMUSIK*.
+
+## Dai Dai — Platina, 18 September 2026 (read 20 Sep 2026)
+
+The record that carried no Guld/Platina line on 27 Aug now reads:
+
+    http://sys2.grammotex.se/netdata/grp006.MBR/artdata?sart=15311162&lang=en
+    Artist: SHAKIRA & BURNA BOY · Titel: DAI DAI · Prefix/Suffix: USQX92602558
+    Märke: ACE ENTERTAINMENT · Guld/Platina: Platina - cert.nr 11317 - 2026-09-18
+
+The `sart` came from Sverigetopplistan's own chart markup (`data-sart="15311162"`
+on the Veckolista Singlar item, read 16 Sep 2026), so the record was opened
+directly — no login, no guessing. No Guld step is listed; Ifpi Sverige's single
+Platina threshold is 12,000,000 streams. Ninth Swedish plaque on the site; the
+GLF-vs-Ifpi provenance caveat above applies to it as to the other eight.
+
