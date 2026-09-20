@@ -124,7 +124,9 @@ const certBodies = (() => {
 // The bodies whose SINGLE threshold cannot be priced at any ratio, Poland
 // aside (its złoty-of-revenue case is named separately). Typed, this sentence
 // said "Greece, Belgium, Colombia and the rest" while Belgium's thresholds had
-// been found at Ultratop and priced on 10 Sep 2026.
+// been found at Ultratop and priced on 10 Sep 2026. Greece left the list on
+// 20 Sep 2026, priced at IFPI's June 2013 level and marked ¶ (`historicBodies`
+// below) — which is when the verb had to start agreeing with a one-name list.
 const unpricedSingleNames = (() => {
   const names = Object.values(CERT_THRESHOLDS)
     .filter((c) => c.single === null && c.code !== "PL")
@@ -132,6 +134,8 @@ const unpricedSingleNames = (() => {
     .sort();
   return names.length > 1 ? `${names.slice(0, -1).join(", ")} and ${names[names.length - 1]}` : (names[0] ?? "");
 })();
+const unpricedSingleVerb =
+  Object.values(CERT_THRESHOLDS).filter((c) => c.single === null && c.code !== "PL").length === 1 ? "publishes" : "publish";
 
 const principles = [
   {
@@ -188,6 +192,12 @@ const shortBody = (b: string) => b.split(" (")[0].split(" — ")[0];
 const raisedBodies = Object.values(CERT_THRESHOLDS)
   .filter((c) => c.vintage)
   .sort((x, y) => countryMeta(x.code).name.localeCompare(countryMeta(y.code).name));
+/** Bodies priced at the last level ever published for them, not a current one — the ¶ mark (Greece, 20 Sep 2026). */
+const historicBodies = Object.values(CERT_THRESHOLDS)
+  .filter((c) => c.historic)
+  .sort((x, y) => countryMeta(x.code).name.localeCompare(countryMeta(y.code).name));
+const historicNames = historicBodies.map((c) => countryMeta(c.code).name);
+const joinNames = (xs: string[]) => (xs.length <= 1 ? xs.join("") : `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}`);
 const thresholdRows = Object.values(CERT_THRESHOLDS)
   .slice()
   .sort((x, y) => countryMeta(x.code).name.localeCompare(countryMeta(y.code).name));
@@ -538,12 +548,26 @@ export default function MethodologyPage() {
             <strong>Today&apos;s threshold, at every body.</strong> {movedBodies} of the{" "}
             {allBodies} bodies changed their levels inside the window these plaques span,
             and most raised them. Every plaque is priced at the level the body publishes
-            today — the figure a reader can check against the body&apos;s own page — and
-            wherever that body raised its levels, the page marks the figure with a
+            today — the figure a reader can check against the body&apos;s own page —
+            {historicBodies.length > 0 ? " with one exception marked ¶, below, " : " "}
+            and wherever that body raised its levels, the page marks the figure with a
             &ldquo;‡&rdquo; and says so: a plaque awarded before the rise may have cleared
             a lower bar than today&apos;s figure implies. A South African Platinum single
             is priced at RiSA&apos;s current 40,000 units; one earned in 2022 needed
-            20,000. The alternative — pricing at the lowest level each body has applied
+            20,000.
+            {historicBodies.length > 0 && (
+              <>
+                {" "}{historicBodies.length === 1 ? "One body" : `${historicBodies.length} bodies`} —{" "}
+                {joinNames(historicBodies.map((c) => shortBody(c.body)))} — {historicBodies.length === 1 ? "publishes" : "publish"} no
+                current level at all. Its plaques are priced at the last level ever published
+                for it: IFPI&apos;s own International Certification Award levels list, updated
+                June 2013 (singles Gold 3,000 / Platinum 6,000; international-repertoire albums
+                the same), and every such line carries a &ldquo;¶&rdquo; that says so, because
+                the body now certifies from its streaming Digital Singles chart and states no
+                ratio — a plaque awarded today may sit on a different bar.
+              </>
+            )}
+            {" "}The alternative — pricing at the lowest level each body has applied
             since 2015 — was established for every body and is kept in the data, but it
             would understate every plaque earned after a rise by as much as it protects
             the earlier ones, and it prices against numbers no body publishes any more.
@@ -561,9 +585,13 @@ export default function MethodologyPage() {
           <p className={styles.p}>
             <strong>Units are not a common currency, so some plaques cannot be
             priced.</strong> Of the {allBodies} bodies whose plaques appear here,{" "}
-            {pricedSingles} can price a single: {pricedSingles - streamBodies.length}{" "}
-            publish the threshold in sales-equivalent units and {streamBodies.length}{" "}
-            publish it in streams. {streamBodies.length - assumedBodies.length} of those
+            {pricedSingles} can price a single: {pricedSingles - streamBodies.length - historicBodies.length}{" "}
+            publish the threshold in sales-equivalent units,{" "}
+            {historicBodies.length > 0 && (
+              <>{historicBodies.length === 1 ? "one is" : `${historicBodies.length} are`} priced at a historic level (¶), </>
+            )}
+            and {streamBodies.length} publish it in streams.{" "}
+            {streamBodies.length - assumedBodies.length} of those
             publish their own download-equivalence, which is what this site converts with
             — France at 150 streams to a download, Denmark and Norway at 100, the
             Netherlands at 215, Czechia at 222, Slovakia at 217. {assumedBodies.length === 2 ? "Two" : String(assumedBodies.length)}{" "}
@@ -573,8 +601,17 @@ export default function MethodologyPage() {
             &ldquo;§&rdquo; that says so. It is the one place the page applies a ratio a
             body did not set, and it is there because a plaque that cannot be summed is
             a plaque that goes unseen. Sweden counts capped streams, so its figure is a
-            floor twice over. What remains cannot be converted at any ratio: Poland
-            measures singles in złoty of revenue, and {unpricedSingleNames} publish no
+            floor twice over.
+            {historicNames.length > 0 && (
+              <>
+                {" "}It is no longer the only departure from a body&apos;s own published
+                figure: {joinNames(historicNames)} {historicNames.length === 1 ? "is" : "are"} priced at
+                IFPI&apos;s June 2013 level — the last one ever published for{" "}
+                {historicNames.length === 1 ? "it" : "them"} — and marked &ldquo;¶&rdquo;.
+              </>
+            )}
+            {" "}What remains cannot be converted at any ratio: Poland
+            measures singles in złoty of revenue, and {unpricedSingleNames} {unpricedSingleVerb} no
             threshold. Those plaques are{" "}
             <strong>listed and never summed</strong> — and never folded out of sight —
             because scoring them zero in silence would penalise whoever holds more of
@@ -603,6 +640,21 @@ export default function MethodologyPage() {
               </li>
             ))}
           </ul>
+          {historicBodies.length > 0 && (
+            <>
+              <p className={styles.p}>
+                Wherever a figure carries a &ldquo;¶&rdquo;, the body publishes no current
+                level and the figure is the last level ever published for it. The record:
+              </p>
+              <ul className={styles.historyList}>
+                {historicBodies.map((c) => (
+                  <li key={c.code}>
+                    <strong>{countryMeta(c.code).flag} {shortBody(c.body)}</strong> — {c.historic}
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
 
           <h3 id="thresholds" className={styles.h3}>Every threshold the compare page uses</h3>
           <p className={styles.p}>
@@ -610,6 +662,12 @@ export default function MethodologyPage() {
             means the body does not award that tier; a row that says <em>listed</em> is a
             body whose plaques appear on the page but are never priced, for the reason
             given.
+            {historicBodies.length > 0 && (
+              <>
+                {" "}A row marked &ldquo;¶&rdquo; is not today&apos;s level but the last level
+                the body ever published (IFPI, June 2013), because the body publishes none now.
+              </>
+            )}
           </p>
           <div className={styles.tableScroll}>
             <table className={styles.thresholdTable}>
@@ -625,6 +683,7 @@ export default function MethodologyPage() {
                   <tr key={r.code}>
                     <th scope="row">
                       <span aria-hidden="true">{countryMeta(r.code).flag}</span> {shortBody(r.body)}
+                      {r.historic && <span title={r.historic} aria-label="historic level"> ¶</span>}
                       <span className={styles.thresholdCountry}>{countryMeta(r.code).name}</span>
                     </th>
                     {r.single ? (

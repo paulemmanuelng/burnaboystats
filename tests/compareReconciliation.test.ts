@@ -34,10 +34,12 @@ describe("the compare page counts what the certifications pages count", () => {
     }
   });
 
-  it("what cannot be priced is exactly Poland's singles (revenue), Greece and Colombia (no thresholds)", () => {
+  it("what cannot be priced is exactly Poland's singles (revenue) and Colombia (no thresholds)", () => {
+    // Greece (GR/single, 7 plaques) left this set on 20 Sep 2026 when it was
+    // priced at IFPI's June 2013 level and marked ¶ — see certThresholds.ts.
     const bodies = new Set<string>();
     for (const a of comparableArtists)
       for (const e of priceArtist(a, { includeNigeria: true, includeFeatures: true }).excluded) bodies.add(`${e.country}/${e.format}`);
-    expect([...bodies].sort()).toEqual(["CO/single", "GR/single", "PL/single"]);
+    expect([...bodies].sort()).toEqual(["CO/single", "PL/single"]);
   });
 });

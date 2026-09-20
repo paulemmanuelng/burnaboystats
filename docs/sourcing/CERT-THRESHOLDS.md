@@ -17,7 +17,7 @@ and a naive sum would add 30,000,000 French *streams* to 70,000 Australian *unit
 | raw **streams**, body publishes a download-equivalence → normalisable | 4: FR, DK, NO, NL |
 | raw **streams**, no ratio published → NOT normalisable | SE, MX |
 | **PLN revenue** → not normalisable (albums fine) | PL |
-| nothing published | 5: GR, BE, CO, CZ, SK |
+| nothing published | 5: GR, BE, CO, CZ, SK — (GR priced at IFPI's 2013 level from 20 Sep 2026, ¶; BE/CZ/SK found and priced 10–11 Sep) |
 
 **19 of 27 can be put on one scale for singles.** Every conversion below is the
 body's OWN published figure — nothing is invented.
@@ -47,7 +47,7 @@ body's OWN published figure — nothing is invented.
 - **SE** — singles are capped streams; downloads excluded since 2018 and NO download-equivalence published
 - **MX** — singles are raw audio streams; AMPROFON publishes no stream-to-unit ratio
 - **PL** — singles are measured in PLN REVENUE, not units (albums ARE units)
-- **GR** — IFPI Greece's site is fully reachable and was read in full — it simply does not publish its certification thresholds. Every page on ifpi.gr was fetche
+- **GR** — IFPI Greece's site is fully reachable and was read in full — it simply does not publish its certification thresholds. Every page on ifpi.gr was fetche **Priced from 20 Sep 2026 at IFPI's June 2013 level (grade C, historic, ¶) — see the dated section at the end of this file.**
 - **BE** — Two-part failure. (1) The certifying body's own site, brma.be, publishes NO certification criteria: I fetched https://www.brma.be/ and enumerated its 
 - **CO** — The site itself is fully readable — the body simply does not publish its unit thresholds anywhere. This is a 'does not publish', not a 'could not reac
 - **CZ** — Identical hard connectivity failure to SK — same server. ifpicr.cz resolves to 62.109.154.161, but curl times out after 25s on both https and http for
@@ -71,7 +71,7 @@ Raw, un-normalised. `—` = tier does not exist at that body, or is not publishe
 | **DK** | — | 4,500,000 | 9,000,000 | — | — | 10,000 | 20,000 | — |
 | **ES** | — | 50,000 | 100,000 | — | — | 20,000 | 40,000 | — |
 | **FR** | — | 15,000,000 | 30,000,000 | 50,000,000 | — | 50,000 | 100,000 | 500,000 |
-| **GR** | — | — | — | — | — | — | — | — |
+| **GR** ¶ | — | 3,000 | 6,000 | — | — | 3,000 | 6,000 | — |
 | **HU** | — | 5,000 | 10,000 | — | — | 2,000 | 4,000 | — |
 | **IT** | — | 100,000 | 200,000 | 2,000,000 | — | 25,000 | 50,000 | 500,000 |
 | **MX** | — | 22,000,000 | 44,000,000 | 220,000,000 | — | 70,000 | 140,000 | 700,000 |
@@ -86,6 +86,8 @@ Raw, un-normalised. `—` = tier does not exist at that body, or is not publishe
 | **UK** | 200,000 | 400,000 | 600,000 | — | 60,000 | 100,000 | 300,000 | — |
 | **US** | — | 500,000 | 1,000,000 | 10,000,000 | — | 500,000 | 1,000,000 | 10,000,000 |
 | **ZA** | — | 20,000 | 40,000 | — | — | 25,000 | 50,000 | — |
+
+¶ GR — IFPI's International Certification Award levels, June 2013 (international-repertoire albums); the body publishes no current level. Applied 20 Sep 2026 — see the dated section at the end.
 
 ## Verifier verdicts (six heaviest, re-derived independently)
 
@@ -149,7 +151,7 @@ publishable here.** Each was independently re-derived before being applied.
 | **Slovakia** | same rulebook: single 850k / 1.7M, album 1.75M / 3.5M, `1 download = 217` | **B** | ✅ normalised ÷217 |
 | Sweden | thresholds confirmed; the *absence* of any sale-equivalence is explicit and deliberate at the body | A | ✗ still unconvertible |
 | Poland | singles 125,000 zł / 250,000 zł; no revenue→units conversion exists | A | ✗ still unconvertible |
-| Greece | current levels are "stream points" from an unauthenticable screenshot of a private email; historic 2013 album levels are grade C but physical-era and marked historic | **D** | ✗ |
+| Greece | current levels are "stream points" from an unauthenticable screenshot of a private email; historic 2013 album levels are grade C but physical-era and marked historic | **D** | ✗ (11 Sep) → ✅ 20 Sep 2026 at the 2013 level, grade C historic, Paul's decision |
 | Colombia | album levels only, from IFPI's June 2013 list; **no singles threshold has ever existed at any grade**; ASINCOL is defunct | C (albums) | ✗ no board plaque is a Colombian album |
 
 **IFPI's consolidated "International Certification Award Levels" list exists and
@@ -225,6 +227,8 @@ absent from his total:
 3. **Unpriced rows never fold.** Poland (złoty of revenue), Greece and Colombia
    (no thresholds) still cannot be summed — 17 plaques across the board, Burna
    4 — but a row carrying one is always on screen, never in the collapsed tail.
+   (From 20 Sep 2026, Greece priced ¶: 10 across the board, Burna 3 — the
+   section at the end of this file.)
 
 ## Corrections landed from the compare-page audit (11 Sep 2026)
 
@@ -293,3 +297,51 @@ SE  unchanged
 (the latter down from the design's 6,340,000 only by the Essence 7× → 3× correction).
 Under the floor rule they would have read 808,333 / 6,086,666 — recorded in the
 tests for the trail.
+
+## 20 Sep 2026 — Greece priced at IFPI's June 2013 level (Paul's decision)
+
+**Grade C, historic.** Source: IFPI's own "International Certification Award
+levels — Updated June 2013", the umbrella body's publication and the last level
+ever published for Greece. Evidence file, with the verbatim rows:
+[IFPI-AWARD-LEVELS-2013.md](IFPI-AWARD-LEVELS-2013.md). Wayback capture of the
+PDF:
+https://web.archive.org/web/20140328112251id_/http://ifpi.org/content/library/international-award-levels.pdf
+
+Levels applied:
+
+| format | Gold | Platinum |
+|---|---|---|
+| Singles | 3,000 | 6,000 |
+| Albums — international repertoire | 3,000 | 6,000 |
+
+The domestic-repertoire album column (6,000 / 12,000) applies to no artist on
+this site. No Silver, no Diamond, and no multiplier rule — an N× award is priced
+as N × Platinum, carried as a `caveat` (†) in the same voice as Austria's and
+Mexico's. These are physical-era "unit sales required"; IFPI Greece now
+certifies from its streaming Digital Singles chart and states no ratio, so a
+plaque awarded today may sit on a different bar. That is what the new
+`historic` field on `CERT_THRESHOLDS.GR` says, rendered as the ¶ footnote on
+every Greek line of /compare and named on /methodology.
+
+This is a DIFFERENT source from the fan-DM 1M / 2M / 10M "stream points" table
+rejected on 11 Sep (grade D, above). That table stays rejected; nothing in it
+is used.
+
+Effect, recounted from the data (features on, Nigeria off): not-comparable
+plaques across the board **17 → 10** (Colombia 2, Poland 8 remain); Burna
+**4 → 3**. Unpriceable country/format pairs in the table 5 → 3 (CO/single,
+CO/album, PL/single). The seven Greek plaques, all singles, now priced:
+
+| artist | title | award | units |
+|---|---|---|---|
+| Burna Boy | Dai Dai | Platinum | 6,000 |
+| Wizkid | One Dance (feature) | 3× Platinum | 18,000 † |
+| Rema | Calm Down | Platinum | 6,000 |
+| Tems | Raindance (feature) | 2× Platinum | 12,000 † |
+| Tyla | Water | 2× Platinum | 12,000 † |
+| Tyla | Push 2 Start | Gold | 3,000 |
+| Tyla | Show Me Love (feature) | Gold | 3,000 |
+
+No Greek album plaque exists on the site, so the album column is exercised by
+nothing yet. Per-artist "not comparable" (features on, Nigeria off): Burna
+4 → 3, Wizkid 2 → 1, Rema 3 → 2, Tems 3 → 2, Tyla 4 → 1; CKay stays 1 (Poland).

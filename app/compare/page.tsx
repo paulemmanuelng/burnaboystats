@@ -17,9 +17,10 @@ const streamRatioNames = Object.values(CERT_THRESHOLDS)
   .sort((a, b) => a.replace(/^the /, "").localeCompare(b.replace(/^the /, "")));
 const streamRatioBodies = `${streamRatioNames.slice(0, -1).join(", ")} and ${streamRatioNames[streamRatioNames.length - 1]}`;
 
-// The method card's other three lists, derived the same way — "Sweden and
+// The method card's other four lists, derived the same way — "Sweden and
 // Mexico", "Poland" and "Greece and Colombia" were typed and would have stood
-// still the day a body joined or left a category.
+// still the day a body joined or left a category. (Greece did leave one on
+// 20 Sep 2026, when it was priced at IFPI's June 2013 level and marked ¶.)
 const nameOf = (code: string) => (code === "NL" ? "the Netherlands" : code === "CZ" ? "Czechia" : countryMeta(code).name);
 const joinNames = (xs: string[]) => (xs.length <= 1 ? xs.join("") : `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}`);
 const byName = (a: string, b: string) => a.replace(/^the /, "").localeCompare(b.replace(/^the /, ""));
@@ -27,8 +28,10 @@ const byName = (a: string, b: string) => a.replace(/^the /, "").localeCompare(b.
 const assumedNames = Object.values(CERT_THRESHOLDS).filter((t) => t.assumed).map((t) => nameOf(t.code)).sort(byName);
 /** Bodies that price albums but not singles (Poland: singles in złoty of revenue). */
 const revenueNames = Object.values(CERT_THRESHOLDS).filter((t) => t.singleExcluded && !t.albumExcluded).map((t) => nameOf(t.code)).sort(byName);
-/** Bodies that publish no threshold for either format — listed, never summed. */
+/** Bodies that publish no threshold for either format — listed, never summed. Colombia alone since 20 Sep 2026. */
 const noThresholdNames = Object.values(CERT_THRESHOLDS).filter((t) => t.singleExcluded && t.albumExcluded).map((t) => nameOf(t.code)).sort(byName);
+/** Bodies priced at the last level ever published for them — marked ¶ (Greece, IFPI's June 2013 list). */
+const historicNames = Object.values(CERT_THRESHOLDS).filter((t) => t.historic).map((t) => nameOf(t.code)).sort(byName);
 /** The ratio the § conversion applies, read off an assumed body's own raw and priced levels. */
 const assumedRatio = (() => {
   const t = Object.values(CERT_THRESHOLDS).find((x) => x.assumed && x.singleRaw?.platinum && x.single?.platinum);
@@ -464,7 +467,9 @@ function Cell({ line, lead, artistMode }: { line: CountryLine | null; lead: bool
   // No-break spaces: a mark on its own line inside a 104px phone chip read
   // as a stray glyph. The marks share one face (.mark) — Space Mono has no ‡,
   // and its † pulled a latin-ext subset the site never preloads.
-  const markList = [line.caveat ? "†" : null, line.vintage ? "‡" : null, line.assumed ? "§" : null].filter(Boolean);
+  // ¶ (U+00B6) is Latin-1 and sits in every face .mark names, so it needs
+  // no subset of its own.
+  const markList = [line.caveat ? "†" : null, line.vintage ? "‡" : null, line.assumed ? "§" : null, line.historic ? "¶" : null].filter(Boolean);
   const marks = markList.length ? <>{"\u00a0"}<span className={styles.mark}>{markList.join("\u00a0")}</span></> : null;
   const prog = program(line.top, line.country);
   if (!line.counted) {
@@ -661,10 +666,11 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
         caveats: [...new Set([...spa!.caveats, ...spb!.caveats])],
         vintages: [...new Set([...spa!.vintages, ...spb!.vintages])],
         assumptions: [...new Set([...spa!.assumptions, ...spb!.assumptions])],
+        historics: [...new Set([...spa!.historics, ...spb!.historics])],
       }
     : c
-      ? { notCounted: c.notCounted, caveats: c.caveats, vintages: c.vintages, assumptions: c.assumptions }
-      : { notCounted: [], caveats: [], vintages: [], assumptions: [] };
+      ? { notCounted: c.notCounted, caveats: c.caveats, vintages: c.vintages, assumptions: c.assumptions, historics: c.historics }
+      : { notCounted: [], caveats: [], vintages: [], assumptions: [], historics: [] };
   // ...and only the markers that are actually visible earn their footnote. With
   // every not-counted row folded into the tail, footnote 1 was naming six
   // countries under a four-row table that carried no marker anywhere.
@@ -672,6 +678,7 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
   const visibleCaveat = rows.some((r) => r.a?.caveat || r.b?.caveat);
   const visibleVintage = rows.some((r) => r.a?.vintage || r.b?.vintage);
   const visibleAssumed = rows.some((r) => r.a?.assumed || r.b?.assumed);
+  const visibleHistoric = rows.some((r) => r.a?.historic || r.b?.historic);
   // The collapse row counts PLAQUES it hides, not rows: a listed-only line is
   // every plaque on it, a priced line hides the unpriced half riding on it. It
   // was counting rows, so it said 3 beneath a header that said 8. Counted per
@@ -1032,6 +1039,13 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
                   Denmark and Norway publish for the same measure. {noteSource.assumptions.join(" ")}
                 </p>
               )}
+              {visibleHistoric && noteSource.historics.length > 0 && (
+                <p>
+                  <strong><span className={styles.mark}>¶</span> Historic level</strong> — the body publishes no
+                  current threshold; the figure is IFPI&apos;s last published level for it (June 2013), so a plaque
+                  awarded today may sit on a different bar. {noteSource.historics.join(" ")}
+                </p>
+              )}
             </div>
           </>
         )}
@@ -1059,7 +1073,17 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
               plaques are converted at {assumedRatio} streams to a unit, the ratio Denmark and Norway publish, and marked §.
               {" "}{joinNames(revenueNames)} {revenueNames.length === 1 ? "measures" : "measure"} singles in{" "}
               {revenueNames.length === 1 && revenueNames[0] === "Poland" ? "złoty of revenue" : "revenue"} and{" "}
-              {joinNames(noThresholdNames)} publish no thresholds: those plaques are listed, never summed, and never hidden.
+              {joinNames(noThresholdNames)} {noThresholdNames.length === 1 ? "publishes" : "publish"} no thresholds.
+              {/* The ¶ clause sits BEFORE "never hidden": tests/comparePage.test.tsx
+                  slices the card there. Greece, from 20 Sep 2026. */}
+              {historicNames.length > 0 && (
+                <>
+                  {" "}{joinNames(historicNames)} {historicNames.length === 1 ? "is" : "are"} priced at IFPI&apos;s June 2013
+                  level — the last the umbrella body ever published for {historicNames.length === 1 ? "it" : "them"} — and
+                  marked ¶.
+                </>
+              )}
+              {" "}The unpriced plaques are listed, never summed, and never hidden.
             </p>
           </div>
         </div>

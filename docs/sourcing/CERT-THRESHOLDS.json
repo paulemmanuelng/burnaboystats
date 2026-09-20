@@ -446,24 +446,25 @@
   {
    "code": "GR",
    "body": "IFPI Greece",
-   "sourceUrl": "https://ifpi.gr/",
-   "readable": false,
-   "albumGold": null,
-   "albumPlatinum": null,
+   "historic": "IFPI International Certification Award levels, updated June 2013 — the last level ever published for Greece; singles Gold 3,000 / Platinum 6,000, albums the international-repertoire column 3,000 / 6,000 (domestic 6,000 / 12,000 applies to nobody on this site). IFPI Greece publishes no current level, and the body now certifies from its streaming Digital Singles chart with no stated ratio, so these are physical-era unit-sales levels carried as a historic figure (grade C) and flagged ¶ on every Greek line. Applied 20 Sep 2026, Paul's decision — docs/sourcing/IFPI-AWARD-LEVELS-2013.md. The 10–11 Sep fields below (unitDefinition, multiplierRule, diamondRule, changedSince2015, notes) describe ifpi.gr and remain true: the body itself still publishes nothing, which is exactly why the level is historic rather than current.",
+   "sourceUrl": "https://web.archive.org/web/20140328112251id_/http://ifpi.org/content/library/international-award-levels.pdf",
+   "readable": true,
+   "albumGold": 3000,
+   "albumPlatinum": 6000,
    "albumDiamond": null,
    "albumSilver": null,
-   "singleGold": null,
-   "singlePlatinum": null,
+   "singleGold": 3000,
+   "singlePlatinum": 6000,
    "singleDiamond": null,
    "singleSilver": null,
    "unitDefinition": "NOT PUBLISHED. IFPI Greece states nowhere on its site whether certifications are based on pure sales or on sales plus streaming equivalents, and gives no conversion ratio. Its Digital Singles charts are plainly streaming-driven and carry certification codes, which implies streams count toward at least the digital-single awards, but the body never says so and never states a ratio — so nothing here can be reported as sourced.",
-   "multiplierRule": "NOT PUBLISHED as a rule, though multiples demonstrably exist: IFPI Greece's own Digital Singles Chart carries an \"Award\" column whose codes include G, P, 2P, 3P and D (e.g. a 3P and a D appear in the Local chart for week 35/2026). So the body does award 2x and 3x Platinum and a Diamond, but it publishes no threshold behind any of those codes and no statement that N-P equals N times the Platinum figure. The chart's own legend (\"επεξήγηση συμβόλων\") explains only the movement codes RE, NE, UP and DOWN — it does not decode the award column at all.",
+   "multiplierRule": "NOT PUBLISHED — neither IFPI's June 2013 list nor IFPI Greece gives a formula for multiples, though multiples demonstrably exist: IFPI Greece's own Digital Singles Chart carries an \"Award\" column whose codes include G, P, 2P, 3P and D (e.g. a 3P and a D appear in the Local chart for week 35/2026). The site prices an N× award as N × Platinum and says so (caveat †), as it does for Austria and Mexico. The chart's own legend (\"επεξήγηση συμβόλων\") explains only the movement codes RE, NE, UP and DOWN — it does not decode the award column at all.",
    "diamondRule": "Diamond is awarded — a \"D\" appears in the award column of IFPI Greece's own Digital Singles charts — but whether it is a distinct threshold or a multiple of Platinum is NOT PUBLISHED, and no number is attached to it anywhere on the body's site.",
    "silverExists": false,
    "changedSince2015": "NOT PUBLISHED. IFPI Greece publishes no current thresholds and therefore no threshold history, no change dates and no previous values. Widely repeated figures for Greece (e.g. album gold at 6 000 and platinum at 12 000, dated to a 2008 or 2009 reduction) trace to Wikipedia, press articles and chart blogs, NOT to IFPI Greece, and under the house rule none of them can be carried over. I have deliberately reported null rather than repeat them. The one thing the body's own pages do show is that certification codes were being printed on its digital singles charts through 2026, so the scheme is live — but its terms are unstated.",
    "notes": "THE SITE IS FULLY REACHABLE — this is not a blocking or availability problem, it is a publication gap. I enumerated every page on ifpi.gr and read them: index.html, structure_el.html, mission_el.html, resources_el.html, resources_en.html, links_el.html, news_el.html, isrc_el.html, history1_el.html, charts_el.html, charts_en.html, digital_el.html, digital_iel.html, airplay_el.html, terms_el.htm. None states a certification threshold. The only PDFs the entire site links are two ISRC guides (ISRCfaqGR.pdf, ISRCGuideGR.pdf), neither about certifications. There is no rules, regulation, awards or certifications page, linked or unlinked — I also probed awards_el.html, certifications_el.html, gold_el.html, platinum_el.html, rules_el.html, regulations_el.html, sitemap.xml and robots.txt, all 404. The site has no search facility. The terms page is served in a broken legacy encoding (mojibake) but is a website terms-of-use notice, copyright-dated 2018, with no certification content. PRACTICAL CONSEQUENCE FOR PRICING: Greek plaques can be verified as awarded — the award codes sit on IFPI Greece's own weekly charts against a specific ISRC, which is good provenance for the FACT of a certification — but they cannot be priced in units, because the body publishes no unit value for G, P, 2P, 3P or D. Any Greek unit figure on the site today came from a secondary source and should be treated as unsourced.",
-   "sourceQuote": "No threshold wording exists to quote. The closest the body comes to publishing anything about certifications is the unexplained \"Award\" column header on its Official IFPI Charts Digital Singles Chart, whose values are bare codes (\"G\", \"P\", \"2P\", \"3P\", \"D\"), accompanied by a legend that decodes only movement: \"επεξήγηση συμβόλων — RE: επανείσοδος, NE: νέα είσοδος\".",
-   "unreadableReason": "IFPI Greece's site is fully reachable and was read in full — it simply does not publish its certification thresholds. Every page on ifpi.gr was fetched and searched (all 15 pages reachable from the navigation, in both Greek and English); none contains a Gold, Platinum or Diamond threshold, a streaming conversion ratio, or a certification rulebook. The site links only two PDFs and both concern ISRC codes. No certifications/rules page exists at any probed path (all 404) and there is no sitemap. The body awards certifications and prints the resulting codes (G/P/2P/3P/D) in the Award column of its own Digital Singles charts, but publishes no numeric value behind any code and no legend decoding that column. So the thresholds are null for want of publication by the body, not for want of access.",
+   "sourceQuote": "IFPI, \"International Certification Award levels — Updated June 2013\" (7 pp.), Greece rows verbatim: albums [p.1] \"Greece 6,000 12,000 – 3,000 6,000 –\" (domestic Gold/Platinum/Diamond | international Gold/Platinum/Diamond); singles [p.4] \"Greece 3,000 6,000 –\"; music videos [p.6] \"Greece 3,000 6,000 –\". Column header: \"Unit sales required\". Before 20 Sep 2026 this field read: no threshold wording exists to quote on ifpi.gr — the closest the body comes is the unexplained \"Award\" column (G, P, 2P, 3P, D) on its Digital Singles Chart, whose legend decodes only movement (\"επεξήγηση συμβόλων — RE: επανείσοδος, NE: νέα είσοδος\").",
+   "unreadableReason": "",
    "verdict": null
   },
   {
@@ -672,13 +673,10 @@
    "DE",
    "NO",
    "HU",
-   "MX"
+   "MX",
+   "GR"
   ],
   "unsourced": [
-   {
-    "code": "GR",
-    "why": "IFPI Greece's site is fully reachable and was read in full — it simply does not publish its certification thresholds. Every page on ifpi.gr was fetched and searched (all 15 pages reachable from the navigation, in both Greek and English); none contains a Gold, Platinum or Diamond threshold, a streaming conversion ratio, or a certification rulebook. The site links only two PDFs and both concern ISRC codes. No certifications/rules page exists at any probed path (all 404) and there is no sitemap. The body awards certifications and prints the resulting codes (G/P/2P/3P/D) in the Award column of its own Digital Singles charts, but publishes no numeric value behind any code and no legend decoding that column. So the thresholds are null for want of publication by the body, not for want of access."
-   },
    {
     "code": "BE",
     "why": "Two-part failure. (1) The certifying body's own site, brma.be, publishes NO certification criteria: I fetched https://www.brma.be/ and enumerated its full sitemap (https://www.brma.be/sitemap.xml) — it contains only /en/home, /en/contact and news-blog posts. There is no thresholds, awards or criteria page anywhere on it. (2) The page that does carry the criteria, Ultratop's 'Goud & Platina' info page, is behind a Cloudflare interactive bot check. curl and WebFetch both return HTTP 403 on every content path (/nl/info_goud_platina.asp, /nl/goud-platina, /nl/goud-platina/2025, /nl/, /sitemap.xml, even /favicon.ico); only /robots.txt returns 200. Loading it in a real Chrome tab stalls on 'Performing security verification' with a 'Verify you are human' Turnstile checkbox after 30+ seconds of waiting. Completing a bot-detection challenge is not something I will do, so the value cannot be confirmed at the body. NO number is reported rather than carrying one over from Wikipedia or a chart blog."
