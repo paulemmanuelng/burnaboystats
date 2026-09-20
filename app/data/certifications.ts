@@ -203,6 +203,11 @@ export const singles: Release[] = [
     // the page sits behind a Cloudflare bot check, so it was read 19 Sep 2026 from
     // Paul's own browser (screenshot of the body's page, URL in frame).
     { c: "BE", level: "Gold" },
+    // Grammotex record for "SHAKIRA & BURNA BOY — DAI DAI" (ISRC USQX92602558, sart
+    // 15311162): "Guld/Platina: Platina - cert.nr 11317 - 2026-09-18", read 20 Sep
+    // 2026 at sys2.grammotex.se/netdata/grp006.MBR/artdata?sart=15311162 (http only).
+    // The record carried no Guld/Platina line on 27 Aug (docs/sourcing/SWEDEN-FINAL.md).
+    { c: "SE", level: "Platinum" },
   ] },
   { title: "Last Last", year: 2022, certs: [
     { c: "CA", level: "Platinum", x: 4 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum", x: 2 },
@@ -865,6 +870,12 @@ export const certHistory: CertEvent[] = [
   // this site's tooling never completes, so the row was read from Paul's own
   // browser (ultratop.be/nl/goud-platina/2026/singles). Fourteenth country.
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "BE", level: "Gold", year: 2026 },
+  // 20 Sep 2026 — Sweden. Grammotex (the GLF/Ifpi Sverige register, http only):
+  // "SHAKIRA & BURNA BOY — DAI DAI", Platina, cert.nr 11317, awarded 2026-09-18.
+  // The record id came from Sverigetopplistan's own chart markup (data-sart=
+  // 15311162), so the record was opened directly; no Guld step is listed.
+  // Fifteenth country. Provenance caveat as for every Swedish row (GLF ≠ Ifpi).
+  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "SE", level: "Platinum", year: 2026 },
 ];
 
 // Helpers
@@ -894,7 +905,7 @@ export const intlCertHistory = certHistory.filter((e) => e.country !== "NG");
 /** The most recent day a certifying body's own register was read for this
  *  file. Printed on the page's sources line in place of a typed "as of" month
  *  — bump it on every body read, in the same edit as the row it changes. */
-export const CERTS_VERIFIED_ON = "2026-09-19";
+export const CERTS_VERIFIED_ON = "2026-09-20";
 
 /** "Dai Dai" Platinum plaques beyond the US Latin 2× — the "Platinum in N more"
  *  rail note on the story and its Spanish twin, counted rather than typed after

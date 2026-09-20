@@ -46,6 +46,13 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-09-20",
+    category: "Certifications",
+    text: "“Dai Dai” is Platinum in Sweden — certificate no. 11317, dated 18 September 2026, in the Grammotex register. A fifteenth country for the song, two days after Belgium's Gold, and Burna Boy's 237th plaque.",
+    href: "/dai-dai",
+    big: true,
+  },
+  {
     date: "2026-09-19",
     category: "Certifications",
     text: "“Dai Dai” is Gold in Belgium — Ultratop dates the award 10 August 2026. That is a fourteenth country certifying the World Cup song, and Burna Boy's 236th plaque.",

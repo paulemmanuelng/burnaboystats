@@ -64,7 +64,7 @@ describe("certification data integrity", () => {
   });
 
   it("matches the published headline figures", () => {
-    expect(totalAwards()).toBe(236); // + "Dai Dai" Gold in Belgium (Ultratop 2026 list, read 19 Sep 2026)
+    expect(totalAwards()).toBe(237); // + "Dai Dai" Platinum in Sweden (Grammotex cert.nr 11317, 18 Sep 2026)
     expect(countryCount).toBe(26);
     expect(certifiedReleaseCount).toBe(85); // TaTaTa, Update, Love, Dem Dey join via TCSN
   });
@@ -95,12 +95,12 @@ describe("certHistory (certifications by year)", () => {
     ]);
   });
 
-  it("2026 logs 60 international certifications (68 events with Nigeria)", () => {
+  it("2026 logs 61 international certifications (69 events with Nigeria)", () => {
     // The by-year log is international-only: earlier years predate the TCSN
     // register, so Nigeria's 8 events would skew the comparison. They still
     // count in the totals. The log counts award EVENTS, so a Gold and a later
     // Platinum in the same country are two.
-    expect(intlCertHistory.filter((e) => e.year === 2026).length).toBe(60);
+    expect(intlCertHistory.filter((e) => e.year === 2026).length).toBe(61);
     // 54th and 55th: the French Diamant upgrade and Poland's Gold, both
     // awarded 31 Aug 2026 and both missing from this log until 3 Sep.
     // 56th: Austria's Platinum for "Dai Dai", read in IFPI Austria's own
@@ -113,7 +113,8 @@ describe("certHistory (certifications by year)", () => {
     // 59th: "City Boys" Portugal Gold — AFP's April 2026 award card (Audiogest's
     // post of 11 May 2026), read 18 Sep 2026 from the body's own card.
     // 60th: "Dai Dai" Belgium Gold — Ultratop's 2026 singles list, "10/08/2026: Goud", read 19 Sep 2026.
-    expect(certHistory.filter((e) => e.year === 2026).length).toBe(68);
+    // 61st: "Dai Dai" Sweden Platinum — Grammotex cert.nr 11317, 18 Sep 2026, read 20 Sep.
+    expect(certHistory.filter((e) => e.year === 2026).length).toBe(69);
   });
 
   it("2025 has the published count of 29 certifications", () => {
