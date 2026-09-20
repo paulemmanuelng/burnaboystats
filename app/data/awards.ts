@@ -142,7 +142,11 @@ export interface PendingCeremony {
 export const pendingResults: PendingCeremony[] = [
   // 19 Sep 2026 — the fourth edition, and the first held in the Caribbean after
   // three years at Brooklyn's Kings Theatre. Voting closed 10 Aug 2026.
-  { ceremony: "Caribbean Music Awards", year: 2026, date: "2026-09-19", where: "NAPA, Port of Spain" },
+  { ceremony: "Caribbean Music Awards", year: 2026, date: "2026-09-19", where: "NAPA, Port of Spain",
+    // Morning after: caribmusicawards.com still shows VOTE on every category
+    // and no winners page exists (/winners and /2026-winners 404); X has no
+    // Konpa result since the 19th. Dated snooze, not a silence.
+    checkedOn: "2026-09-20", checkedNote: "body site still shows VOTE on every category; no winners on X the morning after" },
   // Nominations announced 18 Aug 2026; ceremony 27 Sep 2026.
   { ceremony: "MTV Video Music Awards", year: 2026, date: "2026-09-27", where: "United States" },
   // 28th NRJ Music Awards — nominees published on NRJ's own site 16 Sep 2026;

@@ -197,7 +197,8 @@
 - Be Honest [Jorja Smith ft. Burna Boy] — Gold
 - Own It [Stormzy ft. Ed Sheeran & Burna Boy] — Platinum
 
-### SE — GLF (8)
+### SE — GLF/Grammotex (9)
+- Dai Dai [Shakira & Burna Boy] — Platinum (Grammotex cert.nr 11317, 2026-09-18, sart 15311162; read 20 Sep 2026)
 - African Giant — Gold
 - Love, Damini — Gold
 - Last Last — Platinum
