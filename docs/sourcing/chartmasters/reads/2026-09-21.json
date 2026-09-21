@@ -1,0 +1,11 @@
+{
+  "$comment": "Read 21 Sep 2026 in the site's Browser pane on Paul's signed-in ChartMasters account, Playcounts Tool, one page per date via ?valid_as_of=. Prompted by a fan table (@theowensblock, 19 Sep) whose totals a verifier suspected of running ahead of the 20 Sep reading for Tems: they do not — ChartMasters' own 18 Sep figure for Tems reproduces to the unit (6,260,065,902), and its 19 Sep figure (6,271,063,940) is the tweet's, i.e. the tool stepped +10,998,038 on the 19th and +4,840,269 on the 20th. Burna Boy's 19 Sep (11,041,813,621) and Wizkid's (11,790,150,044) are also the tweet's exactly. Recorded as read, not smoothed.",
+  "readOn": "2026-09-21",
+  "artists": {
+    "burna-boy": { "spotifyId": "3wcj11K77LjEY1PkEazffa", "name": "Burna Boy", "days": { "September 19, 2026": 11041813621, "September 20, 2026": 11048637922 } },
+    "wizkid": { "spotifyId": "3tVQdUvClmAT7URs9V3rsp", "name": "Wizkid", "days": { "September 19, 2026": 11790150044, "September 20, 2026": 11795511579 } },
+    "tems": { "spotifyId": "687cZJR45JO7jhk1LHIbgq", "name": "Tems", "days": { "September 18, 2026": 6260065902, "September 19, 2026": 6271063940, "September 20, 2026": 6275904209 } },
+    "asake": { "spotifyId": "3a1tBryiczPAZpgoZN9Rzg", "name": "Asake", "days": { "September 20, 2026": 4392647106 } },
+    "tyla": { "spotifyId": "3SozjO3Lat463tQICI9LcE", "name": "Tyla", "days": { "September 20, 2026": 4842757274 } }
+  }
+}

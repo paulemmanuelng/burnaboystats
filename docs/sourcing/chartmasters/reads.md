@@ -44,3 +44,11 @@ One block per run of scripts/chartmasters-anchor.mjs — what was read, what was
 - Source: chartmasters.org/artists-global-performance/?artist_id=3wcj11K77LjEY1PkEazffa, signed in, in the site's own browser (same session as the Playcounts read above)
 - Captured: `reads/2026-09-20-cities.json` — the same 50 cities as 17 Sep, re-ranked; 29 countries; Global Ranking #78; popularity 85; followers 17,856,540; monthly listeners 48,227,381 (trend −9,300,495)
 - Feeds: app/data/listeners.ts (whole list replaced, LISTENERS_READ_ON 2026-09-20). Followers on the Africa's Biggest board NOT moved: that board is read whole, all five artists on one day, and only Burna Boy was read today.
+
+## 2026-09-21
+
+- Playcounts Tool re-read on Paul's signed-in account (reads/2026-09-21.json): Burna Boy through 19 Sep 11,041,813,621 and 20 Sep 11,048,637,922; Wizkid 11,790,150,044 / 11,795,511,579; Tems 18 Sep 6,260,065,902 (reproduces the 20 Sep reading exactly), 19 Sep 6,271,063,940, 20 Sep 6,275,904,209; Asake 4,392,647,106 and Tyla 4,842,757,274 through 20 Sep.
+- The "Tems 18 Sep looks ~5.7M low" suspicion (21 Sep verifier, from a fan table and kworb's rate) is withdrawn: the tool's own series steps +11.0M on the 19th and +4.8M on the 20th. The fan table (@theowensblock, 19 Sep) prints ChartMasters' 19 Sep totals to the unit for all three.
+- No re-anchor possible today: kworb's Burna Boy page is still stamped 2026-09-18 (frozen since the 18th, daily column reading 611,670), so no ChartMasters-day ↔ kworb-page pair exists after the one used on 20 Sep. Re-run `node scripts/chartmasters-anchor.mjs docs/sourcing/chartmasters/reads/2026-09-21.json` when kworb's Burna page moves; the five 2026 ledgers publish together, so the Africa's Biggest 2026 rows stay at 16 Sep until then.
+- Spotify About panels read the same session (for the followers board): Burna Boy 17,870,932 · Wizkid 12,822,411 · Davido 12,001,372 · Rema 11,911,168 · Asake 10,726,832 · Ayra Starr 7,804,641 · Tyla 5,428,431.
+

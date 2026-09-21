@@ -361,14 +361,14 @@ export const statBoxes: LeaderboardBox[] = [
     layout: "list",
     entries: [
       { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: spotifyFollowersDisplay },
-      { name: "Wizkid", sub: "🇳🇬 Nigeria", value: "12.77M" },
-      { name: "Davido", sub: "🇳🇬 Nigeria", value: "11.96M" },
-      { name: "Rema", sub: "🇳🇬 Nigeria", value: "11.87M" },
-      { name: "Asake", sub: "🇳🇬 Nigeria", value: "10.66M" },
+      { name: "Wizkid", sub: "🇳🇬 Nigeria", value: "12.82M" },
+      { name: "Davido", sub: "🇳🇬 Nigeria", value: "12.00M" },
+      { name: "Rema", sub: "🇳🇬 Nigeria", value: "11.91M" },
+      { name: "Asake", sub: "🇳🇬 Nigeria", value: "10.73M" },
     ],
-    note: "Burna Boy is the most-followed African artist on Spotify — just over 5 million clear of Wizkid in second. Davido and Rema sit within a hundred thousand of each other for third, and Asake is past ten million too; Ayra Starr (7.77M) and Tyla (5.41M) are next.",
+    note: "Burna Boy is the most-followed African artist on Spotify — just over 5 million clear of Wizkid in second. Davido and Rema sit within a hundred thousand of each other for third, and Asake is past ten million too; Ayra Starr (7.80M) and Tyla (5.43M) are next.",
     source:
-      "Spotify follower counts, read directly from each artist's own Spotify page (the About panel prints the exact count) rather than a tracker, all on 17 September 2026 — Burna Boy 17,810,103, Wizkid 12,770,577, Davido 11,963,316, Rema 11,868,494, Asake 10,661,326. Burna Boy's figure matched ChartMasters' tracking history the same day. The 10 August reading of this board had left Rema and Ayra Starr unread; both are above Tyla, who dropped out of the five. They move continuously, so treat them as that day's reading.",
+      "Spotify follower counts, read directly from each artist's own Spotify page (the About panel prints the exact count) rather than a tracker, all on 21 September 2026 — Burna Boy 17,870,932, Wizkid 12,822,411, Davido 12,001,372, Rema 11,911,168, Asake 10,726,832 (Ayra Starr 7,804,641, Tyla 5,428,431). The 17 September reading had them at 17,810,103 / 12,770,577 / 11,963,316 / 11,868,494 / 10,661,326. The 10 August reading of this board had left Rema and Ayra Starr unread; both are above Tyla, who dropped out of the five. They move continuously, so treat them as that day's reading.",
   },
   {
     id: "highest-spotify-global-peak",
