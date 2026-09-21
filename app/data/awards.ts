@@ -723,17 +723,21 @@ export const honours: Honour[] = [
     year: 2024,
     note: "Named to TIME's 100 Most Influential People of 2024, with a tribute written by Angélique Kidjo.",
   },
+  // ONE BRIT Billion Award, not two. Read at the BPI itself on 21 Sep 2026 —
+  // brits.co.uk/brit-billion and bpi.co.uk/brit-billion, thresholds at
+  // certified-awards.bpi.co.uk/about: the award has a single level, 1 billion
+  // career UK streams as calculated by the Official Charts Company (a Gold
+  // version at 10 billion exists and is Ed Sheeran's alone). There is no
+  // 2-billion BRIT Billion; the "2 billion UK streams plaque" of July 2024
+  // lived only in press (Pulse, Channels TV) and the OCC publishes no career
+  // stream totals, so it cannot be read at any body. The BPI's recipient list
+  // has one entry each for Wizkid (30 Jul 2023) and Burna Boy (15 Jul 2024).
+  // RETRACTIONS.md #13.
   {
     title: "BRIT Billion Award",
     org: "BPI · United Kingdom",
     year: 2024,
-    note: "For surpassing 1 billion UK streams.",
-  },
-  {
-    title: "BRIT Billion Award",
-    org: "BPI · United Kingdom",
-    year: 2024,
-    note: "For 2 billion UK streams — the first African artist to reach it.",
+    note: "For surpassing 1 billion career UK streams, as calculated by the Official Charts Company — presented 15 July 2024, the second African artist to receive it after Wizkid (30 July 2023).",
   },
   {
     title: "\"Burna Boy Day\" Proclamation",

@@ -120,7 +120,11 @@ export const stats: {
   // YouTube figure is kept in sync with the YouTube Music leaderboard on data/africasBiggest.ts.
   { num: BURNA_YT_AUDIENCE, label: "YouTube Music monthly audience, at peak", sub: `first African artist ever past 900 million — set ${BURNA_YT_AUDIENCE_SET_ON_LONG}`, href: "/records/africas-biggest" },
   { num: `No. ${spotifyGlobalRank}`, label: "Global rank by Spotify listeners", sub: "where he currently sits among every artist worldwide", href: "/records/africas-biggest" },
-  { num: "2B+", label: "UK streams", sub: "the first African artist to pass two billion", href: "/records/firsts" },
+  // Was "2B+ … the first African artist to pass two billion". The BPI's BRIT
+  // Billion has one level, 1 billion career UK streams, and the OCC publishes
+  // no career totals — the 2 billion was press only, and Wizkid received the
+  // award first (RETRACTIONS.md #13, 21 Sep 2026).
+  { num: "1B+", label: "UK streams", sub: "a BRIT Billion award, July 2024 — the second African artist to receive one, after Wizkid", href: "/records/awards" },
   { num: `${performedCountryCount}`, label: "Countries performed in", sub: `live shows across ${regionCount} regions, on every continent but Antarctica`, href: "/records/tours/map" },
   { num: `${albums.length}`, label: "Studio albums", sub: "from L.I.F.E (2013) to No Sign of Weakness (2025)", href: "/music" },
   { num: "1st", label: "African artist to headline a World Cup opening", sub: "the 2026 FIFA World Cup, performing “Dai Dai” with Shakira", href: "/records/firsts", big: true },

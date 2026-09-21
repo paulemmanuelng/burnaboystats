@@ -398,7 +398,12 @@ describe("published figures do not claim to be live once they have stopped movin
   // is still caught. Put the wording back on the real lines and require all
   // four claims — both editions — to be named.
   it("still catches those claims if the ongoing wording comes back", () => {
-    const LATER = new Date("2026-09-30T12:00:00Z");
+    // Run forward from the anchors themselves, not from a typed date: a fixed
+    // "2026-09-30" stopped reaching the detector the day the anchors moved to
+    // 20 Sep 2026 (ten days short of the 14-day window), which would have
+    // failed this proof for a reason that had nothing to do with the wiring.
+    const newestAnchor = [DAI_DAI_SPOTIFY_CONFIRMED_THROUGH, DAI_DAI_SPOTIFY_NO1_DAYS_AS_OF].sort().pop()!;
+    const LATER = new Date(Date.parse(`${newestAnchor}T12:00:00Z`) + (LIVE_WINDOW_DAYS + 1) * 86_400_000);
     const relapsed = (text: string) => `${text}, and counting`;
     const claims: LiveClaim[] = [
       { id: "spotify-streak", text: relapsed(page("app/dai-dai/page.tsx", /straight days on the chart/)), movedOn: DAI_DAI_SPOTIFY_CONFIRMED_THROUGH },

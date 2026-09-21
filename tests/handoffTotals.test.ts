@@ -167,7 +167,11 @@ describe("handoff checklist — data integrity", () => {
     // Spotify (kworb's 16 Sep pages, every African artist on its index
     // counted), under Paul's ruling that Akon is an American artist and the
     // French rap school French — nationality, not birthplace.
-    expect(firstsCount).toBe(54);
+    // 54 -> 52 on 21 Sep 2026: both BRIT Billion "firsts" removed. The BPI's
+    // award has one level (1 billion career UK streams) — no 2-billion award
+    // exists and the OCC publishes no career totals — and Wizkid received the
+    // 1-billion award first, 30 Jul 2023 (RETRACTIONS #13).
+    expect(firstsCount).toBe(52);
   });
 
   it("values the current car collection at $16.84M — current only", () => {

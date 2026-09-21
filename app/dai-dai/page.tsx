@@ -215,7 +215,7 @@ export default function DaiDaiPage() {
       label: "The streaming streaks",
       intro: `The daily and weekly runs, as last read off each chart — the Spotify streak through ${DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG}, the days at No. 1 through ${DAI_DAI_SPOTIFY_NO1_READ_ON_LONG}.`,
       items: [
-        { v: "37 days", l: `in total at No. 1 on Spotify's Global Daily Top Songs chart — a first for an African artist, and the most days at No. 1 by any song in 2026, five clear of Djo's “End of Beginning” (32) and six of Justin Bieber & Nicki Minaj's “Beauty And A Beat” (31). A closed total, the first of them on the chart dated ${DAI_DAI_SPOTIFY_NO1_FIRST_LONG} and the last on ${DAI_DAI_SPOTIFY_NO1_LAST_LONG}, confirmed day by day through the chart dated ${DAI_DAI_SPOTIFY_NO1_READ_ON_LONG} — with ${DAI_DAI_SPOTIFY_TOP10_DAYS} days inside the global Top 10 in all, counted through that same chart` },
+        { v: "37 days", l: `in total at No. 1 on Spotify's Global Daily Top Songs chart — the first African artist to top it since Spotify began publishing the chart in 2017, and the most days at No. 1 by any song in 2026, five clear of Djo's “End of Beginning” (32) and six of Justin Bieber & Nicki Minaj's “Beauty And A Beat” (31). A closed total, the first of them on the chart dated ${DAI_DAI_SPOTIFY_NO1_FIRST_LONG} and the last on ${DAI_DAI_SPOTIFY_NO1_LAST_LONG}, confirmed day by day through the chart dated ${DAI_DAI_SPOTIFY_NO1_READ_ON_LONG} — with ${DAI_DAI_SPOTIFY_TOP10_DAYS} days inside the global Top 10 in all, counted through that same chart` },
         { v: "6 weeks", l: "at No. 1 on Spotify's Global Weekly Top Songs chart — a run that closed on the chart dated 27 August — in a 16-week stay counted through the chart dated 10 September 2026, peaking at 40.28M streams in a single week" },
         { v: "No. 114", l: `where it entered Spotify's Global Daily Top Songs chart on 15 May 2026, the day after release — it fell straight back off for ${cardinalWord(DAI_DAI_SPOTIFY_DAYS_OFF, "en")} days, returned on 22 May and has not left since: ${daiDaiSpotifyStraightDays} straight days on the chart and ${daiDaiSpotifyDaysOnChart} in all, counted through the chart dated ${DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG}, which prints both figures in its own columns (Spotify Charts)` },
         { v: "58 days", l: "at No. 1 on Apple Music's European songs chart — plus 11 days atop the worldwide Apple Music chart" },
@@ -257,7 +257,11 @@ export default function DaiDaiPage() {
         { v: "12 weeks", l: "at No. 1 on Mediatraffic's United World Chart — 246,000 points in the chart week dated 19 September, and the first Burna Boy song ever to top it" },
         { v: "No. 1", l: "iTunes song chart in 73 countries — the US, UK, Canada, France, Italy, New Zealand, India, Spain, Portugal, Hungary & dozens more, Belarus the newest" },
         { v: "No. 13", l: "Deezer Worldwide Top 100 — a new peak, charting in 57 countries and No. 1 in 23 of them" },
-        { v: "29 days", l: "at No. 1 on Spotify's Global Music Video chart — more than any other song has managed there, and not narrowly: the next-longest run on it is 3 days" },
+        // A hand count, and dated as one: the chart is a daily in-app playlist with
+        // no archive, so nothing can re-read it. The "next-longest run is 3 days"
+        // clause was dropped on 21 Sep 2026 — no log backs it. Do not adopt a
+        // fan tally in its place.
+        { v: "29 days", l: "at No. 1 on Spotify's Global Music Video chart — more than any other song has managed there, as last counted on the chart of 23 August; the chart is a daily playlist with no archive, so the count is kept by hand" },
         { v: "No. 14", l: "Burna Boy's position on the Global Digital Artist ranking (1,739 points) during the run" },
       ],
     },

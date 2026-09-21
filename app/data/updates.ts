@@ -47,6 +47,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-09-20",
+    category: "Charts",
+    text: "Back inside Spotify’s global Top 10: “Dai Dai” rose eight places to No. 7 on the chart dated 19 September with 2,934,986 streams — its 84th day in the Top 10 — and has now led Spotify Switzerland’s daily chart for 101 days, past the 99 that “One Dance” logged in 2016.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-09-20",
     category: "Certifications",
     text: "“Dai Dai” is Platinum in Sweden — certificate no. 11317, dated 18 September 2026, in the Grammotex register. A fifteenth country for the song, two days after Belgium's Gold, and Burna Boy's 237th plaque.",
     href: "/dai-dai",
@@ -1538,7 +1544,10 @@ export const updates: Update[] = [
   {
     date: "2026-07-22",
     category: "Streaming",
-    text: "A single-day record: “Dai Dai” drew a new high of 6.72 million Spotify streams in one day — the first time an African artist's song has crossed 6 million daily streams — as the song ran to a 16th day at No. 1 on the global chart.",
+    // "the first time an African artist's song has crossed 6 million daily
+    // streams" until 21 Sep 2026: "One Dance" (Wizkid featured) drew 7,196,287
+    // in 2016 on kworb's mirror, before Spotify's own archive begins.
+    text: "A single-day record: “Dai Dai” drew a new high of 6.72 million Spotify streams in one day — the biggest single day for an African artist's song since Spotify's published archive began in 2017 — as the song ran to a 16th day at No. 1 on the global chart.",
     href: "/dai-dai",
   },
   {
@@ -1928,13 +1937,17 @@ export const updates: Update[] = [
   {
     date: "2026-07-01",
     category: "Streaming",
-    text: "No other African artist has ever cracked the top 4 on Spotify's Global Daily chart — Burna Boy is the only one to ever reach No. 1.",
+    // Same qualification as the 1 Jul entry below, added 21 Sep 2026.
+    text: "No other African artist has cracked the top 4 on Spotify's Global Daily chart since Spotify began publishing it in 2017 — Burna Boy is the only one to reach No. 1 in that archive.",
     href: "/records/africas-biggest",
   },
   {
     date: "2026-07-01",
     category: "Firsts & Records",
-    text: "No. 1 on Spotify's Global Daily chart: “Dai Dai” just made Burna Boy the first African artist ever to top it — and the highest-peaking FIFA World Cup anthem in the chart's history.",
+    // "the first African artist ever to top it" until 21 Sep 2026: Wizkid's
+    // featured credit on "One Dance" led the chart for 101 days in 2016, on
+    // kworb's mirror, before Spotify's own published archive begins.
+    text: "No. 1 on Spotify's Global Daily chart: “Dai Dai” just made Burna Boy the first African artist to top it since Spotify began publishing the chart in 2017 — and the highest-peaking FIFA World Cup anthem in the chart's history.",
     href: "/records/firsts",
   },
   {
