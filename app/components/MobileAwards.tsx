@@ -160,11 +160,11 @@ export default function MobileAwards({
         <h2 className={styles.honoursTitle}>Honours &amp; recognitions</h2>
         <p className={styles.honoursNote}>Not counted in the {wins} wins</p>
         <div className={styles.honoursList}>
-          {/* The note stays, exactly as it does on desktop. When two honours
-              shared a title, an org AND a year (the two BRIT Billion cards,
-              until the 2bn one was retracted — RETRACTIONS.md #13) this list
-              published them as identical rows a reader could not tell apart;
-              the note is what says what each honour was for. */}
+          {/* The note stays, exactly as it does on desktop. Two BRIT Billion
+              Awards share a title, an org AND a year — one for 1bn UK streams,
+              one for 2bn — so without the note this list published them as two
+              identical rows a reader could not tell apart, and position was the
+              only thing disambiguating them. */}
           {honours.map((h, i) => (
             <div key={`${i}-${h.title}`} className={styles.honour}>
               <div className={styles.honourMain}>

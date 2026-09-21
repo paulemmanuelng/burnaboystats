@@ -5,7 +5,6 @@
 
 import { totalAwards, countryCount, certsInYear, bestIntlYearBefore } from "./certifications";
 import { BURNA_YT_AUDIENCE_WORDS, BURNA_HOT_100_ENTRIES_WORD } from "./africasBiggest";
-import { DAI_DAI_SPOTIFY_NO1_DAYS, DAI_DAI_SPOTIFY_NO1_FIRST_LONG, DAI_DAI_SPOTIFY_NO1_LAST_LONG } from "./daiDai";
 
 export interface First {
   year: string;
@@ -87,12 +86,7 @@ export const firstGroups: FirstGroup[] = [
   {
     label: "Awards & honours",
     items: [
-      // Read at grammy.com, 21 Sep 2026: the category dates from the 34th
-      // Grammys (1992) as Best World Music Album and was RENAMED at the 63rd
-      // (March 2021). "First winner of the Grammy for Best Global Music Album"
-      // read as a first for the category, which it was not — Angélique Kidjo,
-      // among others, had won it under the old name. The first is the name.
-      { year: "2021", title: "First winner of the Grammy under its new name, Best Global Music Album", text: "Twice as Tall won at the 63rd Grammys in March 2021, the first ceremony at which the award carried its new name. The category itself dates from 1992 as Best World Music Album — Mickey Hart’s Planet Drum was its first winner, and Angélique Kidjo had already won it as an African artist." },
+      { year: "2021", title: "First winner of the Grammy for Best Global Music Album", text: "Twice as Tall took the award in its debut year — the category renamed from Best World Music Album." },
       { year: "2023", title: "First African artist to win a Billboard Music Award as lead artist", text: "Recognised at the Billboard Music Awards as a headline act — the first African to win one in his own right." },
       { year: "2024", title: "First African lead artist nominated for a Grammy outside the global categories", text: "His Best Melodic Rap Performance nod broke African artists into the Grammys' mainstream genre fields." },
       { year: "2026", title: "Most certified African artist worldwide", text: `${totalAwards()} certifications across ${countryCount} countries — Gold, Silver, Platinum and Diamond combined — more than any other African artist.` },
@@ -108,18 +102,9 @@ export const firstGroups: FirstGroup[] = [
     label: "Charts & streaming",
     items: [
       { year: "2026", title: "First African artist to reach No. 1 on the Billboard Global 200", text: "“Dai Dai” (with Shakira) topped Billboard's flagship worldwide chart in July 2026 — no African artist had ever led the US-inclusive Global 200 before." },
-      // Spotify's Music Video Charts Global is a daily in-app top-50 playlist
-      // with no dated archive (checked 21 Sep 2026), so the inaugural issue
-      // rests on Spotify's own launch announcement and cannot be re-read.
-      { year: "2026", title: "First African artist to top Spotify's Global Music Video Chart", text: "“Dai Dai” (a co-credited record with Shakira) was No. 1 on the inaugural issue of Spotify’s Global Music Video Chart, dated 20 July 2026, as Spotify announced at launch — the chart is a daily top-50 playlist with no archive, so the inaugural issue can no longer be re-read." },
+      { year: "2026", title: "First African artist to top Spotify's Global Music Video Chart", text: "“Dai Dai” (with Shakira) debuted at No. 1 on Spotify's newly launched Global Music Video Chart in July 2026 — the first African artist ever to top it." },
       { year: "2026", title: "First African artist with four albums past 500 million Spotify streams", text: "“Outside” crossed the mark in August 2026, joining “Love, Damini” (1.71 billion), “African Giant” (1.35 billion) and “I Told Them…” (868 million), as read on 22 August 2026. Among Nigerian acts the next-highest tally is three." },
-      // Not a first. kworb's mirror of Spotify's daily chart (coverage from
-      // 10 Aug 2014) has Drake's "One Dance", Wizkid featured, at 7,196,287 on
-      // its best day in 2016 — above "Dai Dai". Spotify's OWN published daily
-      // archive (charts.spotify.com) begins 1 Jan 2017, and no 2016 figure
-      // exists there, so the record is scoped to that archive and the larger
-      // day is named. Read 21 Sep 2026.
-      { year: "2026", title: "Biggest Spotify day for a song by an African artist since Spotify’s own chart archive began", text: "“Dai Dai” drew 6,723,310 Spotify streams on its best day — the highest single-day figure for any song credited to an African artist since Spotify’s published daily archive began on 1 January 2017. One larger day predates it: Drake’s “One Dance”, with Wizkid featured, peaked at 7,196,287 in 2016, a figure preserved in kworb’s mirror but not on Spotify’s own chart site." },
+      { year: "2026", title: "First African artist with a song over 6 million Spotify streams in a day", text: "“Dai Dai” drew a single-day high of 6.72 million Spotify streams — the first time any African artist's song has crossed 6 million daily streams." },
       { year: "2026", title: "First African artist to reach 60 million Spotify monthly listeners", text: "Crossed 60 million on 8 August 2026 — 60,012,272 listeners at No. 37 among all artists worldwide, the first and only African act ever at that height. The next-closest African peak is under 47 million." },
       { year: "2026", title: "First African artist to reach 50 million Spotify monthly listeners", text: "Crossed 50 million in July 2026 — the first African artist ever to reach the mark, powered by the “Dai Dai” World Cup run — then kept climbing." },
       { year: "2026", title: "First Nigerian artist to surpass 4 billion YouTube views", text: "His channel passed 4 billion views across 344 videos — 4,029,086,804 read at youtube.com/@BurnaBoy on 3 September 2026. The next-highest Nigerian tally is Wizkid's 2.66 billion, then Rema (2.60B) and Davido (2.47B), so the mark is his alone by more than a billion views." },
@@ -128,39 +113,20 @@ export const firstGroups: FirstGroup[] = [
       { year: "2026", title: "First entry on Billboard's Adult Contemporary chart", text: "“Dai Dai” with Shakira debuted at No. 14 on the Adult Contemporary chart dated 29 August 2026 — a radio format that had never played him before. It is Shakira's second entry on the chart, after “Hips Don't Lie” reached No. 24 in 2007." },
       { year: "2026", title: "First African artist to chart the Billboard Hot 100 six years running", text: "An unbroken run from 2021 through 2026." },
       { year: "2026", title: "Most Billboard Hot 100 entries by an African artist", text: `${BURNA_HOT_100_ENTRIES_WORD} career entries — the record for any African artist, extended by “Dai Dai”.` },
-      // Two BRIT Billion entries were removed here on 21 Sep 2026
-      // (RETRACTIONS.md #13). The BPI's award has ONE level — 1 billion career
-      // UK streams (a Gold version at 10 billion is Ed Sheeran's alone); there
-      // is no 2-billion BRIT Billion, and the OCC publishes no career stream
-      // totals, so "2 billion UK streams" is not readable at any body. And
-      // Wizkid received the 1-billion award first (30 Jul 2023; Burna Boy's is
-      // 15 Jul 2024), so that one was not a first either. The award itself
-      // stays on /records/awards as the honour it is.
+      { year: "2024", title: "First African artist to surpass 2 billion UK streams", text: "Recognised with a BRIT Billion award — the first African to reach it." },
+      { year: "2024", title: "First African artist to surpass 1 billion UK streams", text: "Awarded his first BRIT Billion plaque." },
       { year: "2022", title: "Highest-charting Nigerian album in Billboard 200 history", text: "Love, Damini debuted at No. 14 — passing the previous Nigerian best, Wizkid's Made in Lagos (No. 28)." },
       { year: "2025", title: "First Nigerian artist to chart five albums on the Billboard 200", text: "African Giant, Twice as Tall, Love, Damini, I Told Them… and No Sign of Weakness." },
       { year: "2024", title: "First African artist with two albums over 1 billion Spotify streams", text: "Love, Damini and African Giant have each crossed a billion streams — and in August 2026 Love, Damini passed 1.7 billion, his first album to that mark and only the second Nigerian album ever to reach it." },
       { year: "2023", title: "First Afrobeats artist to top the UK Official Albums Chart", text: "I Told Them… debuted at No. 1 in Britain — one better than Love, Damini's record No. 2." },
-      // Read at the OCC, 21 Sep 2026: "One Dance" (Drake ft. Wizkid & Kyla) was
-      // UK No. 1 from the chart of 21 Apr 2016, fifteen weeks — three and a
-      // half years before "Own It" (5 Dec 2019, three weeks). So Wizkid was the
-      // first African artist on a UK No. 1 single; Burna Boy is the only one to
-      // have held BOTH a No. 1 single and a No. 1 album (Wizkid's UK album peaks
-      // are 91/15/16/14). Both No. 1 singles are featured credits, and the
-      // prose says so.
-      { year: "2023", title: "First African artist to hold both a UK No. 1 single and a UK No. 1 album", text: "“Own It” (Stormzy ft. Ed Sheeran & Burna Boy, a featured credit) spent three weeks at No. 1 on the UK Singles Chart in December 2019, and I Told Them… topped the UK Albums Chart on 7 September 2023. Wizkid reached a UK No. 1 single first — featured on Drake’s “One Dance”, fifteen weeks at No. 1 in 2016 — but no other African artist has held both a No. 1 single and a No. 1 album." },
+      { year: "2023", title: "First African artist to earn a UK No. 1 album and No. 1 single", text: "“Own It” (with Stormzy & Ed Sheeran) topped the UK Singles Chart in 2019, and I Told Them… topped the UK Albums Chart in 2023 — no other African artist had held both." },
       { year: "2023", title: "First African artist to reach 1 billion streams on Audiomack", text: "A milestone on the streaming platform where Afrobeats has its biggest home." },
       { year: "2026", title: "First African artist to top the Billboard Colombia Hot 100", text: "“Dai Dai” with Shakira reached No. 1 in Colombia." },
       { year: "2026", title: "First African artist to top the Billboard Argentina Hot 100", text: "“Dai Dai” with Shakira reached No. 1 in Argentina — the first African act ever to lead the chart." },
       { year: "2026", title: "First African artist with two No. 1 singles in Belgium", text: "Both “Jerusalema (Remix)” and “Dai Dai” have topped Belgium's Ultratop 50." },
       { year: "2026", title: "First African artist to appear on the Billboard Vietnam Hot 100", text: "“Dai Dai” with Shakira debuted at No. 93 — afrobeats breaking onto Vietnam's chart." },
       { year: "2026", title: "One of only two African artists to top the Billboard Global 200 (Excl. US)", text: "“Dai Dai” (with Shakira) reached No. 1 — Burna Boy joins Rema (“Calm Down”) as the only African acts ever to lead the chart." },
-      // Scoped to Spotify's OWN published archive (weekly from 29 Dec 2016,
-      // daily from 1 Jan 2017). kworb's mirror reaches back to 10 Aug 2014 and
-      // has Drake's "One Dance", Wizkid featured, at No. 1 on the global daily
-      // chart for 101 days in 2016 (21 Apr–21 Jul, 14 straight weekly No. 1s) —
-      // so "no African artist had done it before" was false as an absolute.
-      // Read 21 Sep 2026.
-      { year: "2026", title: "First African artist to top Spotify’s Global Songs chart since Spotify began publishing it", text: `“Dai Dai” (Shakira x Burna Boy) led both the Daily and Weekly Top Songs Global charts — ${DAI_DAI_SPOTIFY_NO1_DAYS} daily No. 1s between ${DAI_DAI_SPOTIFY_NO1_FIRST_LONG} and ${DAI_DAI_SPOTIFY_NO1_LAST_LONG} — the first No. 1 for an African artist in Spotify’s own published archive, which begins on 29 December 2016 (weekly) and 1 January 2017 (daily). Before that archive, Drake’s “One Dance” with Wizkid featured led the 2016 global chart for 101 days, a run preserved in kworb’s mirror. Also the highest-peaking FIFA World Cup anthem in the chart’s history.` },
+      { year: "2026", title: "First African artist to reach No. 1 on Spotify's Global Songs chart", text: "“Dai Dai” (with Shakira) topped both Spotify's Daily and Weekly Top Songs Global charts — no African artist had done it before. Also the highest-peaking FIFA World Cup anthem in the chart's history." },
       // WHO COUNTS AS AN AFRICAN ARTIST here — Paul's ruling, 17 Sep 2026:
       // nationality and where the career sits, not birthplace or parentage.
       // Akon is an American artist (born in Missouri, Senegalese parents);

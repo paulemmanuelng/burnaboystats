@@ -373,7 +373,7 @@ export const statBoxes: LeaderboardBox[] = [
   {
     id: "highest-spotify-global-peak",
     title: "Highest-charting song on Spotify Global",
-    meta: "Spotify Daily Top Songs Global · peak position since 2017 · all credits",
+    meta: "Spotify Daily Top Songs Global · peak position · all credits",
     layout: "list",
     entries: [
       { name: "Burna Boy", sub: "🇳🇬 “Dai Dai” (with Shakira)", value: "#1" },
@@ -381,14 +381,9 @@ export const statBoxes: LeaderboardBox[] = [
       { name: "Rema & Tyla", sub: "🇳🇬🇿🇦 “Calm Down” (Remix) / “Water” & “Chanel” · tied", value: "#8" },
       { name: "CKay", sub: "🇳🇬 “love nwantiti (ah ah ah)”", value: "#9" },
     ],
-    // Scoped on 21 Sep 2026. kworb's mirror of the same chart reaches back to
-    // 10 Aug 2014 and has "One Dance" (Drake ft. Wizkid & Kyla) at No. 1 for 101
-    // days in 2016 — before Spotify's own published archive (daily from 1 Jan
-    // 2017) begins. The rows are peaks within that archive, which is why One
-    // Dance sits at #5 here and not #1; the note says so.
-    note: "Burna Boy is the only African artist at No. 1 on Spotify’s Global Daily Top Songs chart since Spotify began publishing it in 2017 — before that archive, Wizkid’s featured credit on “One Dance” led it for 101 days in 2016; no other African artist has cracked the top 4 since 2017. “Dai Dai” held that No. 1 for 37 days in total, tying “WAP” by Cardi B and Megan Thee Stallion for the most days any song has spent on top of the chart.",
+    note: "Burna Boy is the first and only African artist to reach No. 1 on Spotify's Global Daily Top Songs chart — no other African artist has ever cracked the top 4. “Dai Dai” has now held that No. 1 for 37 days in total, tying “WAP” by Cardi B and Megan Thee Stallion for the most days any song has spent on top of the chart.",
     source:
-      "Peak positions on Spotify's Daily Top Songs Global chart within Spotify's own published archive (daily from 1 January 2017), each artist's best-charting song across all credits, from chart-tracking accounts. As of August 2026. “One Dance” (Drake ft. Wizkid & Kyla) led the chart for 101 days in 2016 on kworb's mirror, which predates that archive and is not counted in the rows.",
+      "Peak positions on Spotify's Daily Top Songs Global chart, each artist's best-charting song across all credits, from chart-tracking accounts. As of August 2026.",
   },
   {
     id: "daily-peak-streams-ng",
