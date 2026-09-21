@@ -65,11 +65,13 @@ export const DAI_DAI_1B_RANK_ES = `${daiDaiBillionRank}.º${daiDaiBillionTied ? 
 export const DAI_DAI_SPOTIFY_DEBUT = "2026-05-15"; // entered at No. 114, the day after release
 /**
  * Spotify's OWN columns, read off the Daily Top Songs Global chart dated
- * 15 Sep 2026 (charts.spotify.com, read the evening of 16 Sep — the chart page
- * opens without a login): Dai Dai — No. 20, Prev 20, Peak 1, **Streak 117**,
- * 2,430,949 streams, and in the expanded row **Total days on chart 118**,
- * first entry 15 May 2026 at No. 114, release 14 May 2026. The reads before
- * it — the 14 Sep chart (No. 20, Prev 9, Streak 116, 2,423,416, Total 117),
+ * 20 Sep 2026 (charts.spotify.com, read 21 Sep — the chart page opens without
+ * a login): Dai Dai — No. 11, Prev 7, Peak 1, **Streak 122**, 2,433,811
+ * streams, and in the expanded row **Total days on chart 123**, first entry
+ * 15 May 2026 at No. 114, release 14 May 2026. The 19 Sep chart, read the
+ * same evening: No. 7, Prev 15, Streak 121, 2,934,986 — the return to the top
+ * ten. The reads before it — the 15 Sep chart (No. 20, Prev 20, Streak 117,
+ * 2,430,949, Total 118), the 14 Sep chart (No. 20, Prev 9, Streak 116, 2,423,416, Total 117),
  * the 13 Sep chart (No. 9, Prev 4, Streak 115, 2,580,521, Total 116) and the
  * 7 Sep chart (No. 11, Prev 6, Streak 109, 2,631,577, Total 110) — are on the
  * same archive, by date in the URL.
@@ -80,13 +82,13 @@ export const DAI_DAI_SPOTIFY_DEBUT = "2026-05-15"; // entered at No. 114, the da
  * number nothing on this side could check.
  */
 export const DAI_DAI_SPOTIFY_BODY_READ = {
-  date: "2026-09-15",
-  streak: 117,
-  totalDaysOnChart: 118,
+  date: "2026-09-20",
+  streak: 122,
+  totalDaysOnChart: 123,
   debutPosition: 114,
 } as const;
-export const DAI_DAI_SPOTIFY_STREAK_SINCE = "2026-05-22"; // 117 days back from the body read
-export const DAI_DAI_SPOTIFY_CONFIRMED_THROUGH = "2026-09-15";
+export const DAI_DAI_SPOTIFY_STREAK_SINCE = "2026-05-22"; // 122 days back from the 20 Sep body read
+export const DAI_DAI_SPOTIFY_CONFIRMED_THROUGH = "2026-09-20";
 /**
  * Days it has dropped off the chart, ever. SIX, all of them in 16-21 May.
  *
@@ -151,7 +153,7 @@ export const daiDaiSpotifyDaysOnChart =
  * read at the body and confirmed through the 13 Sep chart.
  */
 export const DAI_DAI_SPOTIFY_NO1_DAYS = 37;
-export const DAI_DAI_SPOTIFY_NO1_DAYS_AS_OF = "2026-09-15"; // 15 Sep chart: No. 20
+export const DAI_DAI_SPOTIFY_NO1_DAYS_AS_OF = "2026-09-20"; // 20 Sep chart: No. 11 (19 Sep: No. 7) — the 37 stands
 export const DAI_DAI_SPOTIFY_NO1_FIRST_DAY = "2026-06-30";
 export const DAI_DAI_SPOTIFY_NO1_LAST_DAY = "2026-08-22";
 
@@ -208,9 +210,13 @@ export const DAI_DAI_SPOTIFY_NO1_ENDED_SEEN_ON = "2026-09-09";
  * arithmetic from the other direction, and an independent check on the 72.
  * Carry this forward only by reading the chart, and only ever as a total.
  */
-export const DAI_DAI_SPOTIFY_TOP10_DAYS = 83;
-// 15 Sep chart: No. 20 again, so the count did not move; the stamp did.
-export const DAI_DAI_SPOTIFY_TOP10_DAYS_AS_OF = "2026-09-15";
+// 84th on the chart dated 19 Sep 2026: No. 7 (Prev 15), 2,934,986 streams,
+// read at charts.spotify.com on 21 Sep; the 20 Sep chart has it back at No. 11,
+// so the count stops at 84 and the stamp at that chart. The charts in between
+// (16–18 Sep: 20, 20, 15) added nothing: 83 through the 15 Sep chart, 84
+// through the 19th.
+export const DAI_DAI_SPOTIFY_TOP10_DAYS = 84;
+export const DAI_DAI_SPOTIFY_TOP10_DAYS_AS_OF = "2026-09-20";
 
 const longDate = (iso: string, locale: "en-GB" | "es-ES") =>
   new Date(`${iso}T12:00:00Z`).toLocaleDateString(locale, {
