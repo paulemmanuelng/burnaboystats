@@ -190,9 +190,11 @@ export default function AwardsPage() {
               <span className="inkText">Honours &amp; special recognitions</span>
             </h2>
             <div className={styles.honourGrid}>
-              {/* The note stays. Two BRIT Billion Awards share a title, an
-                  org and a year — one for 1bn UK streams, one for 2bn — so
-                  without it they render as two identical cards. */}
+              {/* The note stays. It is the only field that told two honours
+                  apart when they shared a title, an org and a year (the two
+                  BRIT Billion cards, until the 2bn one was retracted — see
+                  RETRACTIONS.md #13), and it is what says what an honour was
+                  for. */}
               {honours.map((h, i) => (
                 <div key={`${h.title}-${h.year}-${i}`} className={styles.honourCard}>
                   <span className={styles.honourTitle}>{h.title}</span>

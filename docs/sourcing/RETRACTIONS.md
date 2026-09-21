@@ -377,3 +377,41 @@ else. Paul confirmed the record; the register confirmed the plaque.
 covered-release count moves 82 → 83 (tests/certUnits); docs/sourcing/burna-boy.by-country.md
 row corrected. The Wizkid board already carried the song as his featured
 appearance (afrobeats.ts).
+
+## 13. Two BRIT Billion Awards — one for a level the BPI does not have, the other a "first" Wizkid holds (21 Sep 2026)
+
+awards.ts carried two honours titled "BRIT Billion Award", both `BPI · United
+Kingdom`, both 2024: one "For surpassing 1 billion UK streams", one "For 2
+billion UK streams — the first African artist to reach it". firsts.ts repeated
+both as milestones ("First African artist to surpass 2 billion UK streams",
+"First African artist to surpass 1 billion UK streams"), /faq called him "the
+first African artist to surpass both 1 billion and 2 billion UK streams", and
+/records/by-the-numbers printed a "2B+ UK streams" tile. **The 2-billion card
+and both firsts are removed; the FAQ clause and the tile now state the award
+as it is.**
+
+**What the body says.** The BPI's own pages — brits.co.uk/brit-billion,
+bpi.co.uk/brit-billion, and the thresholds table at
+certified-awards.bpi.co.uk/about ("Career totals / Units: BRIT Billion 1
+Billion") — give the award ONE level: 1 billion career UK streams, as
+calculated by the Official Charts Company. A Gold version exists at 10 billion
+and Ed Sheeran alone holds it. There is no 2-billion BRIT Billion. The
+recipient list carries one entry each for Wizkid (30 July 2023) and Burna Boy
+(15 July 2024). The "2 billion UK streams plaque" of July 2024 exists in press
+(Pulse, Channels TV) and nowhere else: the OCC publishes no career stream
+totals, so the figure cannot be read at any body — omit, not caveat.
+
+**And the 1-billion "first" was Wizkid's.** 30 July 2023 against 15 July 2024,
+on the body's own list. The remaining card says so: second African artist to
+receive it, after Wizkid.
+
+**Resynced:** 8 → 7 honours (`honourCount`, the /records/awards headline and
+foot note, /api/v1/awards); 54 → 52 firsts (`firstsCount`, /records/firsts and
+its share card, the nav count, the search index); wins and nominations do not
+move (honours are not counted in either). tests/ui/awardsHonoursParity now pins
+ONE BRIT Billion row and no two honours sharing title/org/year — the collision
+it used to require was this error.
+
+**The lesson is #4's and #7's:** a plaque photographed at a ceremony is a press
+event, not a register entry. The register — the body's own list of who has the
+award and what the award is — is the only thing that can be read.

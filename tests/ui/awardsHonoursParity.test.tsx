@@ -26,13 +26,21 @@ import {
  * `honours` array, and the desktop one renders `h.note` while the mobile one
  * dropped it.
  *
- * That is not a cosmetic loss. Two honours in the array share a title, an org
- * AND a year — the BRIT Billion Award for 1 billion UK streams and the one for
- * 2 billion, both 2024, both BPI. The note is the ONLY field that separates
- * them, so on a phone the block published two identical rows and the second
- * looked like a duplicate someone had forgotten to delete.
+ * That was not a cosmetic loss. Two honours in the array then shared a title,
+ * an org AND a year — a BRIT Billion Award for 1 billion UK streams and one
+ * for 2 billion, both 2024, both BPI. The note was the ONLY field that
+ * separated them, so on a phone the block published two identical rows and
+ * the second looked like a duplicate someone had forgotten to delete.
  *
- * The invariant is asserted at the data both layouts receive, not at markup:
+ * It WAS a duplicate, of a kind. Read at the BPI on 21 Sep 2026, the award has
+ * one level (1 billion career UK streams) and Burna Boy received it once, on
+ * 15 Jul 2024; the 2-billion card was retracted (RETRACTIONS.md #13). So the
+ * pin flips: no two honours may share title/org/year any more — a second BRIT
+ * Billion row coming back is the retracted claim returning — and every note
+ * still has to render on the phone, because the note is what says what an
+ * honour was for.
+ *
+ * The invariants are asserted at the data both layouts receive, not at markup:
  * identical markup fed different fields is exactly what a structural diff
  * cannot see.
  */
@@ -56,9 +64,11 @@ const props = {
 };
 
 describe("the honours block on /records/awards", () => {
-  it("has honours that only their note tells apart", () => {
-    // Guard: if the data ever stops containing a collision, the tests below
-    // would pass for the wrong reason.
+  it("has no two honours that only their note could tell apart", () => {
+    // RETRACTIONS.md #13: the one collision the data ever held was a second
+    // BRIT Billion Award "for 2 billion UK streams", an award level the BPI
+    // does not have. A collision here now means a retracted row has come back
+    // — or a genuinely new same-year honour needs a note that says so.
     const seen = new Map<string, Honour[]>();
     for (const h of honours) {
       const k = withoutNote(h);
@@ -66,15 +76,13 @@ describe("the honours block on /records/awards", () => {
     }
     const collisions = [...seen.values()].filter((g) => g.length > 1);
     expect(
-      collisions.length,
-      "no two honours share title/org/year any more — this suite no longer proves anything",
-    ).toBeGreaterThan(0);
+      collisions.map((g) => withoutNote(g[0])),
+      "two honours share title/org/year — the 2bn BRIT Billion card was retracted on 21 Sep 2026",
+    ).toEqual([]);
 
-    // Every colliding group must be separable by its notes, or no layout can
-    // render them distinguishably however hard it tries.
-    for (const group of collisions) {
-      expect(new Set(group.map((h) => h.note)).size).toBe(group.length);
-    }
+    // And every honour carries a note, because the note is what the phone
+    // renders to say what an honour was for.
+    for (const h of honours) expect(h.note, `${h.title} (${h.year}) has no note`).toBeTruthy();
   });
 
   it("renders every honour's note on mobile, so no two rows read alike", () => {
@@ -91,16 +99,18 @@ describe("the honours block on /records/awards", () => {
     }
   });
 
-  it("renders both BRIT Billion Awards as distinguishable rows", () => {
+  it("renders exactly one BRIT Billion Award, with the note that dates it", () => {
     render(<MobileAwards {...props} />);
 
+    // One level, one presentation (15 Jul 2024), one row. Two rows here is
+    // RETRACTIONS #13 recurring; zero is the real honour gone.
     const brits = honours.filter((h) => h.title === "BRIT Billion Award");
-    expect(brits.length, "the two BRIT Billion Awards have been renamed or merged").toBe(2);
+    expect(brits.length, "the BRIT Billion Award has been renamed, removed or duplicated").toBe(1);
+    expect(brits[0].note).toMatch(/1 billion career UK streams/);
+    expect(brits[0].note).not.toMatch(/2 billion/);
 
-    // Two rows carrying the same title, and something on screen that separates
-    // them: the 1bn note and the 2bn note.
-    expect(screen.getAllByText("BRIT Billion Award")).toHaveLength(2);
-    for (const h of brits) expect(screen.getByText(h.note!)).toBeInTheDocument();
+    expect(screen.getAllByText("BRIT Billion Award")).toHaveLength(1);
+    expect(screen.getByText(brits[0].note!)).toBeInTheDocument();
   });
 
   it("keeps the note in both layouts", () => {

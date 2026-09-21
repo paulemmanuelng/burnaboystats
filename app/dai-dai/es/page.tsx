@@ -155,7 +155,7 @@ export default function DaiDaiPageES() {
       scene: "streaming",
       kicker: "En streaming",
       title: "La canción más escuchada del planeta",
-      body: "“Dai Dai” lideró la lista Global Top Songs de Spotify tanto en su versión diaria como en la semanal: 37 días como la canción más escuchada del mundo, una racha recuperada en agosto, y la primera vez que un artista africano la encabeza.",
+      body: "“Dai Dai” lideró la lista Global Top Songs de Spotify tanto en su versión diaria como en la semanal: 37 días como la canción más escuchada del mundo, una racha recuperada en agosto, y el primer artista africano que la encabeza desde que Spotify empezó a publicarla en 2017.",
     },
     {
       scene: "certs",
@@ -191,7 +191,7 @@ export default function DaiDaiPageES() {
       label: "Las rachas en streaming",
       intro: `Las rachas diarias y semanales, según la última lectura de cada lista — la racha en Spotify hasta la lista del ${DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG_ES}; los días en el número 1, hasta la del ${DAI_DAI_SPOTIFY_NO1_READ_ON_LONG_ES}.`,
       items: [
-        { v: "37 días", l: `en total en el número 1 de la lista Global Daily Top Songs de Spotify —algo inédito para un artista africano, y la canción con más días en el número 1 de todo 2026, cinco por delante de “End of Beginning” de Djo (32) y seis de “Beauty And A Beat” de Justin Bieber y Nicki Minaj (31)—. Es un total cerrado: el primero en la lista del ${DAI_DAI_SPOTIFY_NO1_FIRST_LONG_ES} y el último en la del ${DAI_DAI_SPOTIFY_NO1_LAST_LONG_ES}, confirmado día a día hasta la lista del ${DAI_DAI_SPOTIFY_NO1_READ_ON_LONG_ES} — con ${DAI_DAI_SPOTIFY_TOP10_DAYS} días dentro del top 10 mundial en total, contados hasta esa misma lista` },
+        { v: "37 días", l: `en total en el número 1 de la lista Global Daily Top Songs de Spotify —el primer artista africano que la encabeza desde que Spotify empezó a publicarla en 2017, y la canción con más días en el número 1 de todo 2026, cinco por delante de “End of Beginning” de Djo (32) y seis de “Beauty And A Beat” de Justin Bieber y Nicki Minaj (31)—. Es un total cerrado: el primero en la lista del ${DAI_DAI_SPOTIFY_NO1_FIRST_LONG_ES} y el último en la del ${DAI_DAI_SPOTIFY_NO1_LAST_LONG_ES}, confirmado día a día hasta la lista del ${DAI_DAI_SPOTIFY_NO1_READ_ON_LONG_ES} — con ${DAI_DAI_SPOTIFY_TOP10_DAYS} días dentro del top 10 mundial en total, contados hasta esa misma lista` },
         { v: "6 semanas", l: "en el número 1 de la lista Global Weekly Top Songs de Spotify — una racha cerrada en la lista del 27 de agosto — en una estancia de 16 semanas contada hasta la lista del 10 de septiembre de 2026, con un pico de 40,28 millones de reproducciones en una sola semana" },
         { v: "N.º 114", l: `puesto por el que entró en la lista Global Daily Top Songs de Spotify el 15 de mayo de 2026, un día después de su lanzamiento — cayó de ella durante ${cardinalWord(DAI_DAI_SPOTIFY_DAYS_OFF, "es")} días, volvió el 22 de mayo y no ha salido desde entonces: ${daiDaiSpotifyStraightDays} seguidos en la lista y ${daiDaiSpotifyDaysOnChart} en total, contados hasta la lista del ${DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG_ES}, que imprime ambas cifras en sus propias columnas (Spotify Charts)` },
         { v: "58 días", l: "en el número 1 de la lista europea de Apple Music, más 11 días en la cima de la lista mundial de Apple Music" },
@@ -230,7 +230,10 @@ export default function DaiDaiPageES() {
         { v: "12 semanas", l: "en el número 1 del United World Chart de Mediatraffic — 246.000 puntos en la semana del 19 de septiembre, y la primera canción de Burna Boy que lo lidera" },
         { v: "N.º 1", l: "en la lista de canciones de iTunes en 73 países — Estados Unidos, Reino Unido, Canadá, Francia, Italia, Nueva Zelanda, India, España, Portugal, Hungría y decenas más, Bielorrusia la más reciente" },
         { v: "N.º 13", l: "en el Deezer Worldwide Top 100 — un nuevo pico, con presencia en 57 países y el número 1 en 23 de ellos" },
-        { v: "29 días", l: "en el número 1 de la lista Global Music Video de Spotify — más que cualquier otra canción en esa lista, y no por poco: la siguiente racha más larga es de 3 días" },
+        // Recuento manual, y fechado como tal: la lista es una playlist diaria sin
+        // archivo, así que nada puede releerla. La cláusula "la siguiente racha más
+        // larga es de 3 días" se retiró el 21 Sep 2026 — ningún registro la respalda.
+        { v: "29 días", l: "en el número 1 de la lista Global Music Video de Spotify — más que cualquier otra canción en esa lista, según el último recuento en la lista del 23 de agosto; la lista es una playlist diaria sin archivo, así que el recuento se lleva a mano" },
         { v: "N.º 14", l: "la posición de Burna Boy en el ranking Global Digital Artist (1.739 puntos) durante el recorrido" },
       ],
     },
