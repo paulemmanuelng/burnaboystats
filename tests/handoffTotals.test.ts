@@ -33,18 +33,18 @@ import { cars, totalValueUsd } from "../app/data/cars";
  */
 
 describe("handoff checklist — data integrity", () => {
-  it("counts 237 certifications across 26 countries", () => {
+  it("counts 238 certifications across 26 countries", () => {
     const certs = allItems.reduce((n, item) => n + item.certs.length, 0);
     const countries = new Set(allItems.flatMap((i) => i.certs.map((c) => c.c))).size;
 
-    expect(certs).toBe(237); // + "Dai Dai" Platinum in Sweden (Grammotex, 18 Sep 2026)
+    expect(certs).toBe(238); // + "Dai Dai" 2× Platinum in Canada (Music Canada, 21 Sep 2026)
     expect(countries).toBe(26); // Czechia joins
     // The page-facing helpers must agree with the raw reduce.
     expect(totalAwards()).toBe(certs);
     expect(certCountryCount).toBe(Object.keys(CERT_COUNTRIES).length);
   });
 
-  it("splits into 7 Diamond / 102 Platinum / 97 Gold / 31 Silver", () => {
+  it("splits into 7 Diamond / 103 Platinum / 97 Gold / 31 Silver", () => {
     // 6 Aug 2026: “Dai Dai” Portugal upgraded Gold → Platinum (AFP week-31 PDF).
     const byLevel = (level: string) =>
       allItems.reduce((n, i) => n + i.certs.filter((c) => c.level === level).length, 0);
@@ -67,12 +67,12 @@ describe("handoff checklist — data integrity", () => {
     // as Gold; BPI's own register holds one Silver award (22 Aug 2025) and no
     // Gold — a downgrade back to the tier the snapshot originally held, before
     // a typed 2025 event list bumped it on 1 Jul 2026. Total unchanged.
-    expect(byLevel("Platinum")).toBe(102); // + Dai Dai SE, + Dai Dai AT, − Ginger CH, + Dai Dai GR
+    expect(byLevel("Platinum")).toBe(103); // + Dai Dai CA, + Dai Dai SE, + Dai Dai AT, − Ginger CH, + Dai Dai GR
     expect(byLevel("Gold")).toBe(97); // + Dai Dai BE, + City Boys PT, + "Dai Dai" in Poland (ZPAV), + Ginger CH, − Dai Dai GR, − My Oasis UK
     expect(byLevel("Silver")).toBe(31); // On the Low NG left this tier for Gold; My Oasis UK came back to it
 
     const sum = byLevel("Diamond") + byLevel("Platinum") + byLevel("Gold") + byLevel("Silver");
-    expect(sum).toBe(237);
+    expect(sum).toBe(238);
   });
 
   // A test NAME is not an assertion, which is how this one came to read "280

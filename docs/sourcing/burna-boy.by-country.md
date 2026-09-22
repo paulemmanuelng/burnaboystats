@@ -97,7 +97,8 @@
 - WGFT [Gunna ft. Burna Boy] — Gold
 - Rollin' [Mist ft. Burna Boy] — Silver
 
-### CA — Music Canada (22)
+### CA — Music Canada (23)
+- Dai Dai [Shakira & Burna Boy] — Platinum x2 (Music Canada database, "Double Platinum Single", 21 Sep 2026; read 22 Sep 2026)
 - African Giant — Gold
 - Love, Damini — Platinum
 - I Told Them... — Gold

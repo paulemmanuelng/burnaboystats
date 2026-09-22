@@ -206,7 +206,7 @@ export default function DaiDaiPage() {
     { v: `${daiDaiNumberOnes}`, l: "countries at No. 1 on their official singles chart — from France and Germany to the UAE" },
     { v: "No. 1", l: `on both Billboard global charts — a ${weeksGLB}th week atop the Global 200 (a first for an African artist, and Shakira's 2nd), the top retaken on the chart dated 22 August after a week at No. 3 and held to the chart dated 5 September, when the run closed (No. 3 on the 12 September issue), and ${weeksGLBX} consecutive weeks atop the Global 200 Excl. US, 4 July to 5 September (No. 2 on the 12 September issue)` },
     { v: DAI_DAI_SPOTIFY_STREAMS, l: "Spotify streams — his 8th song past 300 million, the most of any African act, after 37 days as the most-streamed song on Earth" },
-    { v: `${daiDaiCertCount}`, l: "certifications — Diamond in France, 2× Platinum (Latin) in the US, Platinum in Spain, Slovakia, Portugal, Hungary, Austria, Greece & Sweden, Gold in Colombia, the Czech Republic, Italy, Poland & Belgium, and Silver in the UK" },
+    { v: `${daiDaiCertCount}`, l: "certifications — Diamond in France, 2× Platinum in Canada and (Latin) in the US, Platinum in Spain, Slovakia, Portugal, Hungary, Austria, Greece & Sweden, Gold in Colombia, the Czech Republic, Italy, Poland & Belgium, and Silver in the UK" },
     { v: "19 Jul", l: "Shakira & Burna Boy performed “Dai Dai” live at the first-ever FIFA World Cup Final halftime show" },
   ];
 
@@ -303,7 +303,7 @@ export default function DaiDaiPage() {
     },
     {
       q: "How many certifications does “Dai Dai” have?",
-      a: `“Dai Dai” has ${daiDaiCertCount} certifications: Diamond in France from SNEP, 2× Platinum (Latin) in the US from the RIAA, Platinum in Spain, Slovakia, Portugal, Hungary, Austria, Greece and Sweden, Gold in Colombia, the Czech Republic, Italy, Poland and Belgium, and Silver in the UK from the BPI.`,
+      a: `“Dai Dai” has ${daiDaiCertCount} certifications: Diamond in France from SNEP, 2× Platinum in Canada from Music Canada and (Latin) in the US from the RIAA, Platinum in Spain, Slovakia, Portugal, Hungary, Austria, Greece and Sweden, Gold in Colombia, the Czech Republic, Italy, Poland and Belgium, and Silver in the UK from the BPI.`,
     },
   ];
 

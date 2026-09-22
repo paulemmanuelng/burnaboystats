@@ -46,6 +46,13 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-09-22",
+    category: "Certifications",
+    text: "“Dai Dai” is 2× Platinum in Canada — Music Canada certified it Double Platinum on 21 September 2026, 160,000 units, straight past Gold and Platinum. A sixteenth country for the song, and Burna Boy's 238th plaque.",
+    href: "/dai-dai",
+    big: true,
+  },
+  {
     date: "2026-09-20",
     category: "Charts",
     text: "Back inside Spotify’s global Top 10: “Dai Dai” rose eight places to No. 7 on the chart dated 19 September with 2,934,986 streams — its 84th day in the Top 10 — and has now led Spotify Switzerland’s daily chart for 101 days, past the 99 that “One Dance” logged in 2016.",
