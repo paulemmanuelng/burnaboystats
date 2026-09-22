@@ -578,3 +578,20 @@ ChartMasters.
 
 Re-read monthly and on any rawJumpAlert; the picker serves the last fifteen
 days, so a missed month cannot be back-filled.
+
+## 22 Sep 2026 — kworb froze; published ChartMasters directly
+
+kworb's Burna Boy artist page stopped rebuilding after its 18 Sep 2026 build (still
+stamped 2026/09/18 on 22 Sep, daily column stuck at 611,670) while every other
+artist's page rebuilt daily. With no page for any day after 18 Sep, no
+ChartMasters-day ↔ kworb-page pair could be made, and the bot — correctly —
+published nothing from 19 Sep. On Paul's instruction the career total was set to
+ChartMasters' own figure through 20 Sep, **11,048,637,922**, via
+`scripts/chartmasters-anchor.mjs --kworb-frozen` (reads/2026-09-22.json): the
+offset became 168,789,190 = 11,048,637,922 − 10,879,848,732 (the stale page's
+raw), which is bookkeeping, not a measurement. The five 2026 ledgers were anchored
+on the same ChartMasters day (Asake's and Tyla's 2025 closes derived that day in
+closes-2025.json). **When kworb's page moves, re-run the script without the flag**
+to restore a true pair; expect the offset to land near the 138–147M the 17–18 Sep
+pairs implied.
+

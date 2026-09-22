@@ -1,0 +1,11 @@
+{
+  "$comment": "Read 22 Sep 2026 on Paul's signed-in ChartMasters account (Playcounts Tool, ?valid_as_of=). Every artist's newest day is 20 Sep (the tool had not published 21 Sep yet); Asake's and Tyla's 15 Sep totals were read to derive their 2025 closes (closes-2025.json). Applied with --kworb-frozen: kworb's Burna Boy page has been stuck on its 18 Sep build since the 18th while every other artist's page rebuilt daily, so no ChartMasters-day ↔ kworb-page pair exists for him and the bot has had no green run since 19 Sep. Paul's instruction (22 Sep): update Burna Boy using ChartMasters' numbers.",
+  "readOn": "2026-09-22",
+  "artists": {
+    "burna-boy": { "spotifyId": "3wcj11K77LjEY1PkEazffa", "name": "Burna Boy", "days": { "September 19, 2026": 11041813621, "September 20, 2026": 11048637922 } },
+    "wizkid": { "spotifyId": "3tVQdUvClmAT7URs9V3rsp", "name": "Wizkid", "days": { "September 19, 2026": 11790150044, "September 20, 2026": 11795511579 } },
+    "tems": { "spotifyId": "687cZJR45JO7jhk1LHIbgq", "name": "Tems", "days": { "September 19, 2026": 6271063940, "September 20, 2026": 6275904209 } },
+    "asake": { "spotifyId": "3a1tBryiczPAZpgoZN9Rzg", "name": "Asake", "days": { "September 15, 2026": 4364327011, "September 20, 2026": 4392647106 } },
+    "tyla": { "spotifyId": "3SozjO3Lat463tQICI9LcE", "name": "Tyla", "days": { "September 15, 2026": 4826100609, "September 20, 2026": 4842757274 } }
+  }
+}

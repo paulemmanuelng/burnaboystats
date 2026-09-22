@@ -52,3 +52,20 @@ One block per run of scripts/chartmasters-anchor.mjs — what was read, what was
 - No re-anchor possible today: kworb's Burna Boy page is still stamped 2026-09-18 (frozen since the 18th, daily column reading 611,670), so no ChartMasters-day ↔ kworb-page pair exists after the one used on 20 Sep. Re-run `node scripts/chartmasters-anchor.mjs docs/sourcing/chartmasters/reads/2026-09-21.json` when kworb's Burna page moves; the five 2026 ledgers publish together, so the Africa's Biggest 2026 rows stay at 16 Sep until then.
 - Spotify About panels read the same session (for the followers board): Burna Boy 17,870,932 · Wizkid 12,822,411 · Davido 12,001,372 · Rema 11,911,168 · Asake 10,726,832 · Ayra Starr 7,804,641 · Tyla 5,428,431.
 
+
+## 2026-09-22
+
+- career total: offset 168,789,190 (ChartMasters through 2026-09-20 − kworb 2026-09-18 (frozen page; no 2026-09-21 page)); published 11,048,637,922 on kworb's 2026-09-18 page — KWORB FROZEN: the offset pairs ChartMasters with a stale page and must be re-measured with a plain run once kworb's page moves
+- burna-boy: 2026 ledger anchored at 1,849,085,248 through kworb's 2026-09-21 (was 1,810,927,983 through 2026-09-16)
+- wizkid: 2026 ledger anchored at 1,838,539,551 through kworb's 2026-09-21 (was 1,808,204,727 through 2026-09-16)
+- tems: 2026 ledger anchored at 1,834,679,231 through kworb's 2026-09-21 (was 1,807,644,361 through 2026-09-16)
+- asake: 2026 ledger anchored at 1,488,417,714 through kworb's 2026-09-21 (was 1,460,097,619 through 2026-09-16)
+- tyla: 2026 ledger anchored at 1,225,464,906 through kworb's 2026-09-21 (was 1,208,808,241 through 2026-09-16)
+- edit: app/data/streamingTotals.ts: "11.02B" → "11.05B"
+- edit: app/data/streamingTotals.ts: "11,018,189,864" → "11,048,637,922"
+- edit: app/data/africasBiggest.ts: /* live:streams-2026-tems */ 1.808B" → 1.835B"
+- edit: app/data/africasBiggest.ts: /* live:streams-2026-asof */ 2026-09-16 → 2026-09-21
+- edit: app/data/africasBiggest.ts: /* live:streams-2026-wizkid */ 1.808B" → 1.839B"
+- edit: app/data/africasBiggest.ts: /* live:streams-2026-burna */ 1.811B" → 1.849B"
+- edit: app/data/africasBiggest.ts: /* live:streams-2026-asake */ 1.460B" → 1.488B"
+- edit: app/data/africasBiggest.ts: /* live:streams-2026-tyla */ 1.209B" → 1.225B"
