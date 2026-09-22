@@ -161,7 +161,7 @@ export default function DaiDaiPageES() {
       scene: "certs",
       kicker: "Certificada en el mundo entero",
       title: "Llegaron los discos",
-      body: `La canción ganó sus propias certificaciones: diamante en Francia, doble platino (latino) en Estados Unidos, platino en España, Eslovaquia, Portugal, Hungría, Austria, Grecia y Suecia, oro en Colombia, Chequia, Italia, Polonia y Bélgica, y plata en el Reino Unido. Ya son ${daiDaiCertCount} certificaciones para la colaboración de Shakira y Burna Boy, y siguen sumando.`,
+      body: `La canción ganó sus propias certificaciones: diamante en Francia, doble platino en Canadá y (latino) en Estados Unidos, platino en España, Eslovaquia, Portugal, Hungría, Austria, Grecia y Suecia, oro en Colombia, Chequia, Italia, Polonia y Bélgica, y plata en el Reino Unido. Ya son ${daiDaiCertCount} certificaciones para la colaboración de Shakira y Burna Boy, y siguen sumando.`,
     },
     {
       scene: "worldsong",
@@ -182,7 +182,7 @@ export default function DaiDaiPageES() {
     { v: `${daiDaiNumberOnes}`, l: "países con la canción en el número 1 de su lista oficial de sencillos — de Francia y Alemania a Emiratos Árabes Unidos" },
     { v: "N.º 1", l: `en las dos listas globales de Billboard — ${ordinalWord(weeksGLB, "es")} semana en la cima del Global 200 (algo inédito para un artista africano, y el segundo de Shakira), cima recuperada en la lista del 22 de agosto tras una semana en el N.º 3 y mantenida hasta la lista del 5 de septiembre, cuando la racha se cerró (N.º 3 en la edición del 12 de septiembre), y ${cardinalWord(weeksGLBX, "es")} semanas consecutivas en la cima del Global 200 Excl. US, del 4 de julio al 5 de septiembre (N.º 2 en la edición del 12 de septiembre)` },
     { v: DAI_DAI_SPOTIFY_STREAMS, l: "reproducciones en Spotify — la octava canción de Burna Boy que supera los 300 millones, más que ningún otro artista africano, tras 37 días como la canción más escuchada del planeta" },
-    { v: `${daiDaiCertCount}`, l: "certificaciones — diamante en Francia, doble platino (latino) en EE. UU., platino en España, Eslovaquia, Portugal, Hungría, Austria, Grecia y Suecia, oro en Colombia, Chequia, Italia, Polonia y Bélgica, y plata en el Reino Unido" },
+    { v: `${daiDaiCertCount}`, l: "certificaciones — diamante en Francia, doble platino en Canadá y (latino) en EE. UU., platino en España, Eslovaquia, Portugal, Hungría, Austria, Grecia y Suecia, oro en Colombia, Chequia, Italia, Polonia y Bélgica, y plata en el Reino Unido" },
     { v: "19 jul", l: "Shakira y Burna Boy interpretaron “Dai Dai” en vivo en el primer show de medio tiempo de una Final del Mundial de la FIFA" },
   ];
 
@@ -267,7 +267,7 @@ export default function DaiDaiPageES() {
     },
     {
       q: "¿Cuántas certificaciones tiene “Dai Dai”?",
-      a: `“Dai Dai” tiene ${daiDaiCertCount} certificaciones: diamante en Francia por la SNEP, doble platino (latino) en Estados Unidos por la RIAA, platino en España, Eslovaquia, Portugal, Hungría, Austria, Grecia y Suecia, oro en Colombia, Chequia, Italia, Polonia y Bélgica, y plata en el Reino Unido por la BPI.`,
+      a: `“Dai Dai” tiene ${daiDaiCertCount} certificaciones: diamante en Francia por la SNEP, doble platino en Canadá por Music Canada y (latino) en Estados Unidos por la RIAA, platino en España, Eslovaquia, Portugal, Hungría, Austria, Grecia y Suecia, oro en Colombia, Chequia, Italia, Polonia y Bélgica, y plata en el Reino Unido por la BPI.`,
     },
     {
       q: "¿Cuándo fue el show de medio tiempo de la Final del Mundial 2026?",

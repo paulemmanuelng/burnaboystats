@@ -208,6 +208,11 @@ export const singles: Release[] = [
     // 2026 at sys2.grammotex.se/netdata/grp006.MBR/artdata?sart=15311162 (http only).
     // The record carried no Guld/Platina line on 27 Aug (docs/sourcing/SWEDEN-FINAL.md).
     { c: "SE", level: "Platinum" },
+    // Music Canada's database (musiccanada.com/gold-platinum, read 22 Sep 2026):
+    // "September 21, 2026 · Double Platinum Single · Shakira, Burna Boy · Dai Dai ·
+    // Sony Music Latin / Sony Music Entertainment Canada Inc." — the only row for
+    // the title, so it went straight to 2× (160,000 units at the body's levels).
+    { c: "CA", level: "Platinum", x: 2 },
   ] },
   { title: "Last Last", year: 2022, certs: [
     { c: "CA", level: "Platinum", x: 4 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum", x: 2 },
@@ -876,6 +881,11 @@ export const certHistory: CertEvent[] = [
   // 15311162), so the record was opened directly; no Guld step is listed.
   // Fifteenth country. Provenance caveat as for every Swedish row (GLF ≠ Ifpi).
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "SE", level: "Platinum", year: 2026 },
+  // 22 Sep 2026 — Canada. Music Canada's own database: "September 21, 2026 ·
+  // Double Platinum Single · Shakira, Burna Boy · Dai Dai · Sony Music Latin /
+  // Sony Music Entertainment Canada Inc." One row, straight to 2×. Sixteenth
+  // country for the song.
+  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "CA", level: "Platinum", x: 2, year: 2026 },
 ];
 
 // Helpers
@@ -905,7 +915,7 @@ export const intlCertHistory = certHistory.filter((e) => e.country !== "NG");
 /** The most recent day a certifying body's own register was read for this
  *  file. Printed on the page's sources line in place of a typed "as of" month
  *  — bump it on every body read, in the same edit as the row it changes. */
-export const CERTS_VERIFIED_ON = "2026-09-20";
+export const CERTS_VERIFIED_ON = "2026-09-22";
 
 /** "Dai Dai" Platinum plaques beyond the US Latin 2× — the "Platinum in N more"
  *  rail note on the story and its Spanish twin, counted rather than typed after
