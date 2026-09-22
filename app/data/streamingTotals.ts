@@ -16,6 +16,15 @@
 // to kworb's raw sum before writing this string. Never hand-edit either string —
 // the next bot run overwrites it. To move the figure, move the offset.
 //
+// 22 Sep 2026 — PUBLISHED DIRECTLY FROM CHARTMASTERS (Paul's instruction),
+// through 20 Sep: 11,048,637,922. kworb's Burna Boy page had not rebuilt since
+// its 18 Sep build (every other artist's page current), so no same-date pair
+// existed and the bot had published nothing since 19 Sep. The anchor script
+// was run with --kworb-frozen: the offset (168,789,190) is ChartMasters'
+// 20 Sep total against the stale 18 Sep page, which keeps the reconcile
+// invariant but is NOT a measured gap — re-run the script without the flag
+// the day kworb's page moves (docs/sourcing/chartmasters/reads/2026-09-22.json).
+//
 // RE-ANCHORED 17 Sep 2026 on a DIRECT read of ChartMasters' Playcounts Tool
 // (Paul's premium account, read in the site's own browser), eight same-date
 // pairs deep. ChartMasters' "streams updated through" day N pairs with kworb's
@@ -63,7 +72,7 @@
 // published figure.
 //
 // Method and full evidence: docs/sourcing/CAREER-STREAMS-OFFSET.md.
-export const spotifyTotalStreams = "11.02B";
+export const spotifyTotalStreams = "11.05B";
 
 // The same daily figure, unrounded.
 //
@@ -73,7 +82,7 @@ export const spotifyTotalStreams = "11.02B";
 // and rounding the one live input forced its derived figures to be rounded too.
 // Both are written by the SAME metric on the same daily run, so they cannot
 // disagree with each other.
-export const spotifyTotalStreamsExact = "11,018,189,864";
+export const spotifyTotalStreamsExact = "11,048,637,922";
 
 // Every Burna Boy video on YouTube, across his channel and others'. He leads
 // all Nigerian artists on this measure — 346 videos to 4.04 billion views,

@@ -99,7 +99,7 @@
       "extractor": "kworbTotalStreams",
       "kind": "peak",
       "threshold": 0.03,
-      "baseline": 11018189864,
+      "baseline": 11048637922,
       "note": "RE-ANCHORED 17 Sep 2026 on a DIRECT read of ChartMasters' Playcounts Tool (Paul's premium account, in the site's own browser) — eight same-date pairs, ChartMasters 'streams updated through' day N against kworb's page stamped N+1 (kworb stamps the page with the day it was built; the alignment is proven by the gap being stable to within 0.5M across 8–13 Sep under this pairing and wandering by 3M under same-number pairing): 8/09 112,305,806 · 9/10 112,611,573 · 10/11 112,418,311 · 11/12 112,753,238 · 12/13 112,673,462 · 13/14 112,276,678 · 14/15 114,914,869 · 15/16 115,177,863. The step of +2.6M on kworb's 09/15 page is kworb's cumulative moving only 4,694,787 while its own Daily read 7,319,821 — a roster removal on kworb's side that ChartMasters did not make. So the gap does NOT decay: it moves when kworb's roster changes, in either direction, and only a same-date re-read catches it. offset = ChartMasters through 15 Sep (11,010,480,657) − kworb 09/16 raw (10,895,302,794). ChartMasters' own milestone card dates the 11B crossing to 14 Sep 2026 (11,002,971,256 through that day). The 10 Sep anchor (offset 112,305,806) paired ChartMasters' 'through 8 Sep' figure with kworb's 09/09 page — the right alignment, described at the time as a same-number pairing. Wizkid's ChartMasters total through 15 Sep is 11,765,176,755, Tems's 6,248,869,339. Re-read at chartmasters.org/spotify-streaming-numbers-tool (the account is set to Burna Boy; the date picker serves the last 15 days) whenever the raw jumps or monthly; move offset and baseline together; never derive the offset from the published figure. Evidence: docs/sourcing/CAREER-STREAMS-OFFSET.md.",
       "live": true,
       "siteTargets": [
@@ -125,10 +125,10 @@
         "min": 5000000000,
         "max": 100000000000
       },
-      "lastChanged": "2026-09-20",
-      "offset": 138341132,
-      "lastSeenValue": 11018189864,
-      "lastSeenAt": "2026-09-20",
+      "lastChanged": "2026-09-22",
+      "offset": 168789190,
+      "lastSeenValue": 11048637922,
+      "lastSeenAt": "2026-09-22",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B.",
       "lastRawValue": 10879848732,
@@ -976,15 +976,15 @@
       "extractor": "kworbArtistPage",
       "group": "streams-2026",
       "kind": "peak",
-      "baseline": 1807644361,
+      "baseline": 1834679231,
       "anchor": {
-        "date": "2026-09-16",
-        "value": 1807644361,
-        "source": "ChartMasters Playcounts Tool, total through 2026-09-15 (6,248,869,339) minus the 2025 close (4,441,224,978, derived 17 Sep 2026: ChartMasters total through 15 Sep (6,248,869,339) minus @BurnaBoyStats' 2026 figure of the same day (1,807,644,361); replace with a direct read if one is ever served); read 2026-09-17"
+        "date": "2026-09-21",
+        "value": 1834679231,
+        "source": "ChartMasters Playcounts Tool, total through 2026-09-20 (6,275,904,209) minus the 2025 close (4,441,224,978, derived 17 Sep 2026: ChartMasters total through 15 Sep (6,248,869,339) minus @BurnaBoyStats' 2026 figure of the same day (1,807,644,361); replace with a direct read if one is ever served); read 2026-09-22 with --kworb-frozen (kworb's newest page was 2026-09-20; dailies resume from the first page stamped after 2026-09-21)"
       },
       "checkpoint": {
-        "date": "2026-09-16",
-        "value": 1807644361
+        "date": "2026-09-21",
+        "value": 1834679231
       },
       "readings": {},
       "dailyMax": 25000000,
@@ -1032,19 +1032,17 @@
       "extractor": "kworbArtistPage",
       "group": "streams-2026",
       "kind": "peak",
-      "baseline": 1808204727,
+      "baseline": 1838539551,
       "anchor": {
-        "date": "2026-09-16",
-        "value": 1808204727,
-        "source": "ChartMasters Playcounts Tool, total through 2026-09-15 (11,765,176,755) minus the 2025 close (9,956,972,028, derived 17 Sep 2026: ChartMasters total through 15 Sep (11,765,176,755) minus @BurnaBoyStats' 2026 figure of the same day (1,808,204,727); replace with a direct read of a 31 Dec 2025 total if one is ever served); read 2026-09-17"
+        "date": "2026-09-21",
+        "value": 1838539551,
+        "source": "ChartMasters Playcounts Tool, total through 2026-09-20 (11,795,511,579) minus the 2025 close (9,956,972,028, derived 17 Sep 2026: ChartMasters total through 15 Sep (11,765,176,755) minus @BurnaBoyStats' 2026 figure of the same day (1,808,204,727); replace with a direct read of a 31 Dec 2025 total if one is ever served); read 2026-09-22 with --kworb-frozen (kworb's newest page was 2026-09-20; dailies resume from the first page stamped after 2026-09-21)"
       },
       "checkpoint": {
-        "date": "2026-09-16",
-        "value": 1808204727
+        "date": "2026-09-21",
+        "value": 1838539551
       },
-      "readings": {
-        "2026-09-17": 5963713
-      },
+      "readings": {},
       "dailyMax": 25000000,
       "live": true,
       "sanity": {
@@ -1090,19 +1088,17 @@
       "extractor": "kworbArtistPage",
       "group": "streams-2026",
       "kind": "peak",
-      "baseline": 1810927983,
+      "baseline": 1849085248,
       "anchor": {
-        "date": "2026-09-16",
-        "value": 1810927983,
-        "source": "ChartMasters Playcounts Tool, total through 2026-09-15 (11,010,480,657) minus the 2025 close (9,199,552,674, this site's corrected 2025 close — 9,508,991,024 on 31 Dec 2025 less the 309,438,350 Spotify reallocated to two originals in Feb 2026 (/analysis/spotify-unmerge, 21 Aug 2026); ChartMasters through 15 Sep 2026 minus it reproduces the tracker's 1,810,927,983 to the unit); read 2026-09-17"
+        "date": "2026-09-21",
+        "value": 1849085248,
+        "source": "ChartMasters Playcounts Tool, total through 2026-09-20 (11,048,637,922) minus the 2025 close (9,199,552,674, this site's corrected 2025 close — 9,508,991,024 on 31 Dec 2025 less the 309,438,350 Spotify reallocated to two originals in Feb 2026 (/analysis/spotify-unmerge, 21 Aug 2026); ChartMasters through 15 Sep 2026 minus it reproduces the tracker's 1,810,927,983 to the unit); read 2026-09-22 with --kworb-frozen (kworb's newest page was 2026-09-18; dailies resume from the first page stamped after 2026-09-21)"
       },
       "checkpoint": {
-        "date": "2026-09-16",
-        "value": 1810927983
+        "date": "2026-09-21",
+        "value": 1849085248
       },
-      "readings": {
-        "2026-09-17": 7598557
-      },
+      "readings": {},
       "dailyMax": 25000000,
       "live": true,
       "sanity": {
@@ -1148,19 +1144,17 @@
       "extractor": "kworbArtistPage",
       "group": "streams-2026",
       "kind": "peak",
-      "baseline": 1460097619,
+      "baseline": 1488417714,
       "anchor": {
-        "date": "2026-09-16",
-        "value": 1460097619,
-        "source": "this site's own ledger through kworb's 2026/09/16 pages (checkpoint 14 Sep + the 15 and 16 Sep dailies) — the tracker's 17 Sep post prints the top three only"
+        "date": "2026-09-21",
+        "value": 1488417714,
+        "source": "ChartMasters Playcounts Tool, total through 2026-09-20 (4,392,647,106) minus the 2025 close (2,904,229,392, derived 22 Sep 2026: ChartMasters total through 15 Sep (4,364,327,011, read on Paul's account) minus this site's 2026 ledger checkpoint on kworb's 16 Sep page (1,460,097,619, itself the 17 Sep re-anchor to @BurnaBoyStats' 16 Sep table); replace with a direct read of a 31 Dec 2025 total if one is ever served); read 2026-09-22"
       },
       "checkpoint": {
-        "date": "2026-09-16",
-        "value": 1460097619
+        "date": "2026-09-21",
+        "value": 1488417714
       },
-      "readings": {
-        "2026-09-17": 5686456
-      },
+      "readings": {},
       "dailyMax": 25000000,
       "live": true,
       "sanity": {
@@ -1192,9 +1186,9 @@
       "lastSeenAt": "2026-09-18",
       "lastChanged": "2026-09-15",
       "lastStamp": {
-        "date": "2026-09-17",
-        "total": 4354174246,
-        "daily": 5686456
+        "date": "2026-09-21",
+        "total": 4378555617,
+        "daily": 5016525
       },
       "derived": []
     },
@@ -1206,19 +1200,17 @@
       "extractor": "kworbArtistPage",
       "group": "streams-2026",
       "kind": "peak",
-      "baseline": 1208808241,
+      "baseline": 1225464906,
       "anchor": {
-        "date": "2026-09-16",
-        "value": 1208808241,
-        "source": "this site's own ledger through kworb's 2026/09/16 pages (checkpoint 14 Sep + the 15 and 16 Sep dailies) — the tracker's 17 Sep post prints the top three only"
+        "date": "2026-09-21",
+        "value": 1225464906,
+        "source": "ChartMasters Playcounts Tool, total through 2026-09-20 (4,842,757,274) minus the 2025 close (3,617,292,368, derived 22 Sep 2026: ChartMasters total through 15 Sep (4,826,100,609, read on Paul's account) minus this site's 2026 ledger checkpoint on kworb's 16 Sep page (1,208,808,241, itself the 17 Sep re-anchor to @BurnaBoyStats' 16 Sep table); replace with a direct read of a 31 Dec 2025 total if one is ever served); read 2026-09-22 with --kworb-frozen (kworb's newest page was 2026-09-20; dailies resume from the first page stamped after 2026-09-21)"
       },
       "checkpoint": {
-        "date": "2026-09-16",
-        "value": 1208808241
+        "date": "2026-09-21",
+        "value": 1225464906
       },
-      "readings": {
-        "2026-09-17": 3408559
-      },
+      "readings": {},
       "dailyMax": 25000000,
       "live": true,
       "sanity": {

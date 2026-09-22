@@ -28,6 +28,17 @@
 //
 //   node scripts/chartmasters-anchor.mjs docs/sourcing/chartmasters/reads/2026-09-17.json
 //   node scripts/chartmasters-anchor.mjs --dry-run <file>   # print, write nothing
+//   node scripts/chartmasters-anchor.mjs --kworb-frozen <file>
+//     KWORB IS THE PACE-SETTER HERE, AND IT CAN FREEZE. On 18 Sep 2026 kworb's
+//     Burna Boy page stopped rebuilding (still stamped 2026/09/18 on the 22nd,
+//     every other artist's page current), so no ChartMasters-day ↔ kworb-page
+//     pair could be made and the bot could not publish anything. --kworb-frozen
+//     publishes ChartMasters' NEWEST day directly: the career total becomes
+//     that figure (the offset is set against whatever page kworb serves, so
+//     the reconcile invariant holds — it is NOT a same-date pair and must be
+//     re-measured with a plain run once kworb moves), and every ledger with a
+//     close is anchored on that day with kworb's N+1 page not required. The
+//     notes say so on every line, and reads.md carries them.
 //
 // The script refuses to write when the pairing it needs is missing (no kworb
 // page for N+1 yet — read again tomorrow) and when the new offset moves more
@@ -51,6 +62,7 @@ const dir = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.join(dir, "..");
 const args = process.argv.slice(2);
 const DRY = args.includes("--dry-run");
+const KWORB_FROZEN = args.includes("--kworb-frozen");
 const FORCE = args.includes("--force");
 const OFFSET_STEP_LIMIT = 25_000_000;
 
@@ -171,14 +183,21 @@ if (burna?.days && total) {
       console.log(`  ${d}  ${fmt(days[d])}  ↔  ${kd}  (no kworb page for that stamp in the bot's history)`);
     }
   }
-  const newest = pairs[pairs.length - 1];
+  let newest = pairs[pairs.length - 1];
+  if (!newest && KWORB_FROZEN) {
+    // No page for N+1 exists — pair the newest ChartMasters day with the page
+    // kworb serves NOW, whatever its stamp, so that published == ChartMasters.
+    const cm = cmDates[cmDates.length - 1];
+    newest = { cm, kw: `${live.date} (frozen page; no ${nextDay(cm)} page)`, cmTotal: days[cm], raw: live.total, gap: days[cm] - live.total, frozen: true };
+    console.log(`  --kworb-frozen: pairing ${cm} with kworb's ${live.date} page as served (gap ${fmt(newest.gap)}) — not a same-date pair; re-measure with a plain run once kworb moves`);
+  }
   if (!newest) {
-    console.error("\nNo pair could be made — kworb's page for the day after the newest ChartMasters day is not out yet. Read again tomorrow.");
+    console.error("\nNo pair could be made — kworb's page for the day after the newest ChartMasters day is not out yet. Read again tomorrow (or, if kworb's page has stopped rebuilding, re-run with --kworb-frozen).");
     process.exit(1);
   }
   const step = newest.gap - (total.offset ?? 0);
   console.log(`\noffset ${fmt(total.offset ?? 0)} → ${fmt(newest.gap)} (${step >= 0 ? "+" : ""}${fmt(step)}) from the ${newest.cm} ↔ ${newest.kw} pair`);
-  if (Math.abs(step) > OFFSET_STEP_LIMIT && !FORCE) {
+  if (Math.abs(step) > OFFSET_STEP_LIMIT && !FORCE && !newest.frozen) {
     console.error(`\nThe offset would move ${fmt(Math.abs(step))} — more than ${fmt(OFFSET_STEP_LIMIT)}. That is a roster change on one side; read the pairs above, then re-run with --force if it is real.`);
     process.exit(1);
   }
@@ -199,7 +218,7 @@ if (burna?.days && total) {
     setText(t.file, res.text);
     edits.push(`${t.file}: ${res.changedFrom ?? "(same)"} → ${t.template.replace("%s", formatted)}`);
   }
-  notes.push(`career total: offset ${fmt(newest.gap)} (ChartMasters through ${newest.cm} − kworb ${newest.kw}); published ${fmt(published)} on kworb's ${live.date} page`);
+  notes.push(`career total: offset ${fmt(newest.gap)} (ChartMasters through ${newest.cm} − kworb ${newest.kw}); published ${fmt(published)} on kworb's ${live.date} page${newest.frozen ? " — KWORB FROZEN: the offset pairs ChartMasters with a stale page and must be re-measured with a plain run once kworb's page moves" : ""}`);
   for (const ms of burna.milestones ?? []) notes.push(`ChartMasters milestone: ${ms.figure} ${ms.what} — ${ms.on}`);
 }
 
@@ -221,8 +240,8 @@ for (const [slug, id] of Object.entries(LEDGER_IDS)) {
   const kwDay = nextDay(cmDay);
   const value = days[cmDay] - close;
   const live = await kworbPage(a.spotifyId ?? m.sourceUrl.match(/artist\/([A-Za-z0-9]+)_/)[1]);
-  if (live.date < kwDay) { notes.push(`${slug}: kworb's ${kwDay} page is not out yet (newest ${live.date}) — ledger left alone`); continue; }
-  const source = `ChartMasters Playcounts Tool, total through ${cmDay} (${fmt(days[cmDay])}) minus the 2025 close (${fmt(close)}, ${closes[slug].source}); read ${reading.readOn}`;
+  if (live.date < kwDay && !KWORB_FROZEN) { notes.push(`${slug}: kworb's ${kwDay} page is not out yet (newest ${live.date}) — ledger left alone`); continue; }
+  const source = `ChartMasters Playcounts Tool, total through ${cmDay} (${fmt(days[cmDay])}) minus the 2025 close (${fmt(close)}, ${closes[slug].source}); read ${reading.readOn}${live.date < kwDay ? ` with --kworb-frozen (kworb's newest page was ${live.date}; dailies resume from the first page stamped after ${kwDay})` : ""}`;
   const rolled = rollLedger({ date: kwDay, value }, m.readings ?? {}, kwDay, value);
   const before = m.checkpoint;
   m.anchor = { date: kwDay, value, source };
