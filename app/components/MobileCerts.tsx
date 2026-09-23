@@ -251,19 +251,27 @@ export default function MobileCerts({
                 LONG axis — so the image paints ~783px wide and is cropped to 313.
                 Describing the box would let a DPR-1 phone pick the 320 rung for a
                 783px render: a soft hero where the background always fetched 640. */}
-            {/* Preload, media-gated to phones. React hoists this into <head>, which
-                is the earliest a fetch can possibly start — earlier even than the
-                scanner reaching this element. Worth doing because of an accident
+            {/* Preload, media-gated to phones. Worth doing because of an accident
                 this conversion removed: the desktop hero used to be an EAGER <img>
                 on the same URL, so phones were quietly riding its fetch. Now that
                 the desktop copy is correctly lazy and on a smaller rung, the phone
-                has to ask for its own, and this is what keeps that ask early. */}
+                has to ask for its own, and this is what keeps that ask early.
+
+                It has a srcset and no href, so React emits it here rather than
+                hoisting it into <head>. It is still in the first flight of HTML,
+                and it is the request the hero is painted from — so its priority
+                is the one that counts. An unhinted image preload goes out at Low:
+                on 23 Sep 2026 Lighthouse flagged /certifications and the board's
+                artist pages for an LCP portrait requested without a priority
+                hint, level with the Spotify row covers below it, although the
+                <img> already asked for high. */}
             <link
               rel="preload"
               as="image"
               imageSrcSet={spotifySrcSet(portrait)}
               imageSizes="190vw"
               media="(max-width: 900px)"
+              fetchPriority="high"
             />
             <picture style={{ display: "contents" }}>
               <source media="(max-width: 900px)" srcSet={spotifySrcSet(portrait)} sizes="190vw" />

@@ -96,14 +96,22 @@ export default function MobileAfrobeatsHub({
               this screen is display:none on desktop, where a hidden EAGER <img>
               would still be fetched though the old background never was. The
               scanner reads `media` before fetching, so desktop takes the 1x1. */}
-          {/* Same reasoning as the certs hero: hoisted into <head> by React, gated
-              to phones so desktop never fetches it. This is the board's LCP. */}
+          {/* Same reasoning as the certs hero: a preload gated to phones so
+              desktop never fetches it. This is the board's LCP. It has a srcset
+              and no href, so React emits it here rather than hoisting it into
+              <head>; it is still in the first flight of HTML, and it is the
+              request the door is painted from. The fetchPriority is what makes
+              it prompt: an unhinted image preload goes out at Low, and on 23
+              Sep 2026 Lighthouse flagged the door as requested without a
+              priority hint, level with the wall's tiles, although the <img>
+              below already asked for high. */}
           <link
             rel="preload"
             as="image"
             imageSrcSet={spotifySrcSet(burna.image)}
             imageSizes="calc(100vw - 36px)"
             media="(max-width: 900px)"
+            fetchPriority="high"
           />
           <picture style={{ display: "contents" }}>
             <source
@@ -153,6 +161,13 @@ export default function MobileAfrobeatsHub({
                   fetching these, so no media gate is needed here. `cover` on a
                   187x220 tile fits the square by HEIGHT, so it paints 220 wide,
                   not 187 — sizes describes the render, not the box. */}
+              {/* Low, because lazy does not hold back the tiles near the top:
+                  the browser starts a lazy image well before it scrolls in, so
+                  the upper wall loads alongside the door, from the same i.scdn.co
+                  connection. The tiles are greyed under a scrim; the door is the
+                  LCP. Added 23 Sep 2026 with the door's own hint — before them,
+                  Lighthouse had every image on this screen at Low, the door
+                  included, so nothing told the CDN which one to send first. */}
               {/* eslint-disable-next-line @next/next/no-img-element -- decorative CDN portrait */}
               <img
                 className={styles.art}
@@ -163,6 +178,7 @@ export default function MobileAfrobeatsHub({
                 aria-hidden="true"
                 loading="lazy"
                 decoding="async"
+                fetchPriority="low"
               />
               <span className={styles.scrim} aria-hidden="true" />
               <span className={styles.tileBody}>

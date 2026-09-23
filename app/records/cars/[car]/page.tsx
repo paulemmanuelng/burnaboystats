@@ -208,7 +208,10 @@ export default async function CarPage({ params }: { params: Promise<{ car: strin
           <span className={styles.heroStage} style={heroVars(car)}>
             <Ring />
             {/* The page's LCP element. One copy at every width, so it can be a
-                plain eager image with a preload. */}
+                plain eager image with a preload. `priority` alone writes the
+                preload with no hint, so it went out at Low — Lighthouse flagged
+                /records/cars/bugatti-chiron for it on 23 Sep 2026. fetchPriority
+                carries into both the preload and the <img>. */}
             <Image
               className={styles.heroImg}
               src={car.image.hero.src}
@@ -217,6 +220,7 @@ export default async function CarPage({ params }: { params: Promise<{ car: strin
               sizes="(min-width: 901px) 600px, 100vw"
               alt={car.image.alt}
               priority
+              fetchPriority="high"
             />
           </span>
           <figcaption className={styles.caption}>

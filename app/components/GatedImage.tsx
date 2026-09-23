@@ -12,9 +12,18 @@ import { BLANK_PIXEL } from "../lib/blankPixel";
  * <img> itself carries a 1x1 — see app/lib/blankPixel.ts. Same mechanism as
  * MobileCerts' portrait, for a next/image-generated srcset.
  *
- * Eager images also get a media-gated preload, which React hoists into <head>
- * — the earliest a fetch can start, and what keeps the first tiles prompt on
- * the layout that shows them.
+ * Eager images also get a media-gated preload. It has a srcset and no href,
+ * and React only hoists a preload into <head> when it has an href — so this
+ * one is emitted where it stands. It still arrives in the first flight of
+ * HTML, before the <picture> it serves, and it is the request the tile is
+ * painted from.
+ *
+ * That makes its priority the one that counts. An image preload with no hint
+ * goes out at Low, and on 23 Sep 2026 Lighthouse flagged /records/cars for
+ * exactly that: the phone's first tile, its LCP element, was requested
+ * without fetchpriority=high. So both the preload and the eager <img> carry
+ * it; lazy tiles carry none. The media gate is untouched, so each layout
+ * still fetches only its own tiles.
  */
 export default function GatedImage({
   src,
@@ -49,11 +58,24 @@ export default function GatedImage({
   return (
     <>
       {eager && srcSet && (
-        <link rel="preload" as="image" imageSrcSet={srcSet} imageSizes={sizes} media={media} />
+        <link
+          rel="preload"
+          as="image"
+          imageSrcSet={srcSet}
+          imageSizes={sizes}
+          media={media}
+          fetchPriority="high"
+        />
       )}
       <picture style={{ display: "contents" }}>
         <source media={media} srcSet={srcSet} sizes={sizes} />
-        <img {...img} src={BLANK_PIXEL} alt={alt} className={className} />
+        <img
+          {...img}
+          src={BLANK_PIXEL}
+          alt={alt}
+          className={className}
+          fetchPriority={eager ? "high" : undefined}
+        />
       </picture>
     </>
   );
