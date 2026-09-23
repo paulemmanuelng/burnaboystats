@@ -1,4 +1,5 @@
 import { statBoxes, HIGHLIGHT, rankOf, asOfLabel, type LeaderboardBox } from "../data/africasBiggest";
+import { afrobeatsArtists } from "../data/afrobeats";
 
 /**
  * The fourteen boards, shaped for mobile screen 16.
@@ -63,6 +64,13 @@ export interface Board {
 /**
  * Country flags aren't carried on the year boards, so they're borrowed from the
  * ranked boards, where every artist's `sub` already opens with one.
+ *
+ * That leaves a gap for an artist who wins a year without placing on any
+ * ranked board: Ayra Starr is third in 2024 and appears on no list here, so
+ * her row was the only one on the phone's year panels with no flag beside it
+ * (Paul, 23 Sep 2026). The Afrobeats Board's own roster knows every board
+ * artist's country, so it fills the gap — second, never first, so the flags
+ * this page already shows are unchanged.
  */
 function flagIndex(): Map<string, string> {
   const flags = new Map<string, string>();
@@ -72,6 +80,7 @@ function flagIndex(): Map<string, string> {
       if (flag && !flags.has(e.name)) flags.set(e.name, flag);
     }
   }
+  for (const a of afrobeatsArtists) if (a.flag && !flags.has(a.name)) flags.set(a.name, a.flag);
   return flags;
 }
 

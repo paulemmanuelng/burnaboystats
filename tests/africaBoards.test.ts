@@ -99,3 +99,22 @@ describe("a year board carries every year in full, not just its winner", () => {
     for (const b of yearBoards) expect(b.rows.length).toBe(b.years!.length);
   });
 });
+
+describe("every artist on a year panel has a flag beside their name", () => {
+  // Ayra Starr won third place in 2024 and places on no ranked board here, so
+  // the flag index — which borrows from those boards' `sub` strings — had
+  // nothing for her, and hers was the one row on the phone's year panels with
+  // a blank where every other row had a country (Paul, 23 Sep 2026).
+  it("has no blank flag, and Ayra Starr's is Nigeria's", () => {
+    const blanks: string[] = [];
+    for (const b of africaBoards)
+      for (const y of b.years ?? [])
+        for (const e of y.entries) if (!e.flag) blanks.push(`${b.id} ${y.label}: ${e.name}`);
+    expect(blanks).toEqual([]);
+    const ayra = africaBoards
+      .flatMap((b) => b.years ?? [])
+      .flatMap((y) => y.entries)
+      .find((e) => e.name === "Ayra Starr");
+    expect(ayra?.flag).toBe("🇳🇬");
+  });
+});
