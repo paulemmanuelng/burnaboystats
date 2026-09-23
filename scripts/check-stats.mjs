@@ -143,7 +143,7 @@ async function readConfig(file) {
 async function main() {
   const config = await readConfig(path.join(dir, "watched-metrics.json"));
 
-  // Live metrics (followers, peak listeners) are auto-published hourly by the
+  // Live metrics (followers, peak listeners) are auto-published several times a day by the
   // stats-live workflow — the weekly tripwire only covers the review-gated rest.
   // Ledger (`group`) metrics have no meaning off the live path — see
   // apply-stat-updates.mjs — so they are never reported here.

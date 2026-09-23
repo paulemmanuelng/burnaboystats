@@ -17,11 +17,13 @@ const CADENCE: Record<string, string> = { YouTube: "weekly", "Spotify Albums": "
 export const cadenceOf = (platform: string) => CADENCE[platform] ?? "daily";
 
 /**
- * How often the live boards are ACTUALLY rebuilt, stated once. The job is
- * scheduled every half hour (.github/workflows/stats-live.yml, "17,47 * * * *")
- * but GitHub runs `schedule` events on a best-effort basis, and this repo's
- * fire every two to six hours — four to ten runs a day across the 12–16 Sep
- * 2026 run history. The site said "hourly" in forty places until 16 Sep; it
+ * How often the live boards are ACTUALLY rebuilt, stated once. The job runs
+ * on four fixed slots a day (.github/workflows/stats-live.yml, 00:17, 06:17,
+ * 12:17 and 18:17 UTC, since 23 Sep 2026 — each run is a deploy, and each
+ * deploy starts the page cache cold). Before that it was scheduled every half
+ * hour, but GitHub runs `schedule` events on a best-effort basis, and this
+ * repo's fired every two to six hours — four to ten runs a day across the
+ * 12–16 Sep 2026 run history. The site said "hourly" in forty places until 16 Sep; it
  * says this instead, from one home, so the day the cadence is made real (an
  * external dispatcher on the workflow_dispatch trigger) is a one-line change.
  * tests/liveClaims.test.ts refuses "hourly" anywhere in rendered text.

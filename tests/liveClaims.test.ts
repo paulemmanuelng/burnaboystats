@@ -477,8 +477,9 @@ describe("published figures do not claim to be live once they have stopped movin
 });
 
 describe("the live boards' cadence is stated once, and truthfully", () => {
-  // .github/workflows/stats-live.yml is scheduled every half hour, and GitHub
-  // fires it every two to six hours: 4–10 runs a day across 12–16 Sep 2026.
+  // .github/workflows/stats-live.yml runs on four fixed slots a day (since 23
+  // Sep 2026; it was scheduled half-hourly and GitHub fired it every two to six
+  // hours: 4–10 runs a day across 12–16 Sep 2026).
   // The site said "hourly" in forty places. It now says LIVE_CADENCE from
   // app/lib/liveChartMeta.ts — this refuses the old word in anything rendered,
   // so it cannot creep back into one page while the rest tell the truth.
