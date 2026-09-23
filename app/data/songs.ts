@@ -287,7 +287,7 @@ export const songs: Song[] = [
     album: "Twice as Tall",
     cover: "https://i.scdn.co/image/ab67616d0000b2735b069390c128a4b4c3197d80",
     spotify: "https://open.spotify.com/track/7EqoATlXAKNwzv45LAlqRt",
-    ytViews: "50M",
+    ytViews: "51M",
     tagline: "The Jordan-numbered highlight of the Grammy album",
     blurb:
       "A standout from Twice as Tall (2020) — the album that won Burna Boy the Grammy for Best Global Music Album. Named for Michael Jordan's jersey number, “23” pairs a boastful, victory-lap energy with one of the record's most-played videos, and is certified Platinum in Nigeria.",
