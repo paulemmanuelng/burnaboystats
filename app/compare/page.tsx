@@ -1000,7 +1000,7 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
         {c && ready && (
           <section className={styles.ngStrip} aria-label="Nigeria">
             <h2 className={styles.ngHead}><span aria-hidden="true">🇳🇬</span> Nigeria — {ngOn ? "included" : "separated"}.</h2>
-            <p className={styles.ngText}>
+            <p className={`${styles.ngText} ${styles.ngWhy}`}>
               TCSN&apos;s register is request-based, so a title missing from it proves nothing about what it
               sold — only that nobody applied. A gap between two artists there can measure paperwork rather
               than sales, which is why it is counted on its own line.
