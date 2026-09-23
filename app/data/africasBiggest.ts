@@ -512,7 +512,10 @@ export const statBoxes: LeaderboardBox[] = [
  * silently redirect the daily write into the 2025 historical row. The note
  * carries a token instead, and nothing about the array shape changes.
  */
-const asOfLabel = (iso: string): string => {
+/** "2026-09-22" → "22 September 2026". Exported because the phone's year
+ *  board prints the same stamp beside the running year's figures, and a
+ *  second copy of this would be a second way to write a date. */
+export const asOfLabel = (iso: string): string => {
   const [y, m, d] = iso.split("-").map(Number);
   return `${d} ${["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][m - 1]} ${y}`;
 };

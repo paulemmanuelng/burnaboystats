@@ -264,6 +264,60 @@
    value. designs/desktop/App States.dc.html, panel E. */
 .rowValueNone { color: var(--dim); }
 
+/* ── a year board, one year at a time ─────────────────────────
+   The pills are the control AND the summary: gold marks a year he topped, so
+   the one thing the old collapsed card said at a glance is still said at a
+   glance. They scroll rather than wrap — five years fit at 375, more would
+   not, and a wrapped second row of pills reads as a second control. */
+.yearBoard { margin-top: 12px; }
+.yearPills {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: 2px;
+}
+.yearPills::-webkit-scrollbar { display: none; }
+.yearPill {
+  flex: none;
+  min-height: 36px;
+  padding: 7px 13px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-muted);
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+}
+.yearPillHis { color: var(--gold); border-color: color-mix(in srgb, var(--gold-wash-base) calc(38% * var(--wash-strength)), transparent); }
+.yearPillOn {
+  background: var(--text);
+  color: var(--bg);
+  border-color: var(--text);
+}
+/* The selected pill wins over the gold one: a year he took, while selected,
+   is still the selected pill. */
+.yearPillHis.yearPillOn { background: var(--gold); color: var(--bg); border-color: var(--gold); }
+.yearPill:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+.yearPanel { margin-top: 10px; }
+.yearState {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0;
+}
+/* Green, not gold — the desktop card's own rule: this flags an incomplete
+   year, not a win. */
+.yearRunning { color: var(--live); }
+.yearNote { font-size: 12px; line-height: 1.5; color: var(--text-muted); margin: 10px 0 0; }
+
 .boardNote { font-size: 12px; line-height: 1.5; color: var(--text-muted); margin: 11px 0 0; }
 
 .footNote {

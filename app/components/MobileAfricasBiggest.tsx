@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import styles from "./mobileAfricasBiggest.module.css";
 import ScrollRail from "./ScrollRail";
-import type { Board } from "../lib/africaBoards";
+import type { Board, BoardYear } from "../lib/africaBoards";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
 import MobileFaqSection from "./MobileFaqSection";
@@ -23,6 +23,80 @@ import type { Faq } from "./FaqList";
  */
 
 type Filter = null | "leads" | "other";
+
+/**
+ * A year board, one year at a time.
+ *
+ * WHAT THIS REPLACED, and why it was wrong: the phone drew a year board as
+ * five rows, one per year, each naming that year's winner — "01 Burna Boy ·
+ * 2026 · 1.856B so far". The ranking behind each year, which is the board, was
+ * not on the screen at all. The desktop's own StatBox has always drawn the
+ * full five per year; this brings the phone level (Paul, 23 Sep 2026).
+ *
+ * THE YEAR PILLS ARE ALSO THE SUMMARY. Gold marks a year he topped, so the
+ * thing the old card said at a glance — which years are his — is still said at
+ * a glance, by the control that moves between them. Nothing was traded away
+ * for the detail.
+ *
+ * It opens on the newest year, the way the certifications log does
+ * (CertHistoryByYear), because a card that opens on nothing wastes the fold.
+ */
+function YearBoard({ years }: { years: BoardYear[] }) {
+  const [at, setAt] = useState(0);
+  const year = years[at] ?? years[0];
+  if (!year) return null;
+  return (
+    <div className={styles.yearBoard}>
+      <div className={styles.yearPills} role="tablist" aria-label="Year">
+        {years.map((y, i) => (
+          <button
+            key={y.label}
+            type="button"
+            role="tab"
+            aria-selected={i === at}
+            className={`${styles.yearPill} ${i === at ? styles.yearPillOn : ""} ${
+              y.his ? styles.yearPillHis : ""
+            }`}
+            onClick={() => setAt(i)}
+          >
+            {y.label}
+          </button>
+        ))}
+      </div>
+      <div className={styles.yearPanel} role="tabpanel" aria-label={year.label}>
+        <p className={styles.yearState}>
+          {year.inProgress ? (
+            <>
+              <span className={styles.yearRunning}>In progress</span>
+              {year.asOf ? ` · read ${year.asOf}` : ""}
+            </>
+          ) : (
+            <>{year.his ? "He won the year" : `${year.entries[0]?.name ?? "—"} won the year`}</>
+          )}
+        </p>
+        <div className={styles.rows}>
+          {year.entries.map((e) => (
+            <div key={e.name} className={`${styles.row} ${e.his ? styles.rowHis : ""}`}>
+              <span className={styles.rank}>{e.rank}</span>
+              <span className={styles.rowMain}>
+                <span className={styles.rowName}>
+                  {e.flag ? `${e.flag} ` : ""}
+                  {e.name}
+                </span>
+              </span>
+              {/* Four of the five years are placings with no published total,
+                  which is a fact about the source, not a gap to fill. */}
+              <span className={`${styles.rowValue} ${e.value ? "" : styles.rowValueNone}`}>
+                {e.value ?? "—"}
+              </span>
+            </div>
+          ))}
+        </div>
+        {year.note && <p className={styles.yearNote}>{year.note}</p>}
+      </div>
+    </div>
+  );
+}
 
 export default function MobileAfricasBiggest({
   boards,
@@ -131,23 +205,29 @@ export default function MobileAfricasBiggest({
               {b.badge}
             </span>
           </div>
-          <div className={styles.rows}>
-            {b.rows.map((r, i) => (
-              <div
-                key={`${i}-${r.name}`}
-                className={`${styles.row} ${r.his ? styles.rowHis : ""}`}
-              >
-                <span className={styles.rank}>{r.rank}</span>
-                <span className={styles.rowMain}>
-                  <span className={styles.rowName}>{r.name}</span>
-                  {r.sub && <span className={styles.rowSub}>{r.sub}</span>}
-                </span>
-                <span className={`${styles.rowValue} ${r.value === "—" ? styles.rowValueNone : ""}`}>
-                  {r.value}
-                </span>
-              </div>
-            ))}
-          </div>
+          {/* A year board opens on one year in full, with the others a tap
+              away. Every other board is a single ranking and renders as one. */}
+          {b.years ? (
+            <YearBoard years={b.years} />
+          ) : (
+            <div className={styles.rows}>
+              {b.rows.map((r, i) => (
+                <div
+                  key={`${i}-${r.name}`}
+                  className={`${styles.row} ${r.his ? styles.rowHis : ""}`}
+                >
+                  <span className={styles.rank}>{r.rank}</span>
+                  <span className={styles.rowMain}>
+                    <span className={styles.rowName}>{r.name}</span>
+                    {r.sub && <span className={styles.rowSub}>{r.sub}</span>}
+                  </span>
+                  <span className={`${styles.rowValue} ${r.value === "—" ? styles.rowValueNone : ""}`}>
+                    {r.value}
+                  </span>
+                </div>
+              ))}
+            </div>
+          )}
           {b.note && <p className={styles.boardNote}>{b.note}</p>}
         </div>
       ))}

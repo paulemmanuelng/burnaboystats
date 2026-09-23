@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { africaBoards } from "../app/lib/africaBoards";
-import { statBoxes } from "../app/data/africasBiggest";
+import { statBoxes, HIGHLIGHT } from "../app/data/africasBiggest";
 
 /**
  * The phone's year boards are DERIVED from app/data/africasBiggest.ts, and
@@ -45,5 +45,76 @@ describe("mobile year boards honour the data's ties", () => {
     expect(row.his).toBe(data.entries[0].name === "Burna Boy");
     const closedWins = box.rows!.filter((r) => !r.inProgress && r.entries[0].name === "Burna Boy").length;
     expect(board.badge).toBe(`${closedWins} of ${box.rows!.length} yrs`);
+  });
+});
+
+describe("a year board carries every year in full, not just its winner", () => {
+  // The phone drew a year board as one row per year naming that year's winner,
+  // so the ranking behind each year — which is the board — was not on the
+  // screen at all. The desktop's StatBox has always drawn the full five per
+  // year; `years` carries the same detail to the phone, and the year pills
+  // keep the old summary by marking the years he took (Paul, 23 Sep 2026).
+  const yearBoards = africaBoards.filter((b) => b.years);
+
+  it("exists, and matches the data row for row", () => {
+    expect(yearBoards.length).toBeGreaterThan(0);
+    for (const b of yearBoards) {
+      const box = statBoxes.find((x) => x.id === b.id)!;
+      const rows = box.rows ?? [];
+      expect(b.years!.length, b.id).toBe(rows.length);
+      b.years!.forEach((y, i) => {
+        const r = rows[i];
+        expect(y.label, `${b.id} ${i}`).toBe(r.label);
+        expect(y.entries.map((e) => e.name), `${b.id} ${y.label}`).toEqual(r.entries.map((e) => e.name));
+        expect(y.entries.map((e) => e.value), `${b.id} ${y.label} values`).toEqual(
+          r.entries.map((e) => e.value),
+        );
+        // Ranks are 01..N in the data's own order; the board never re-sorts.
+        expect(y.entries.map((e) => e.rank)).toEqual(
+          r.entries.map((_, j) => String(j + 1).padStart(2, "0")),
+        );
+      });
+    }
+  });
+
+  it("marks his years, and marks his row inside each year", () => {
+    for (const b of yearBoards)
+      for (const y of b.years!) {
+        expect(y.his, `${b.id} ${y.label}`).toBe(y.entries[0]?.name === HIGHLIGHT);
+        for (const e of y.entries) expect(e.his, `${b.id} ${y.label} ${e.name}`).toBe(e.name === HIGHLIGHT);
+      }
+  });
+
+  it("prints the running year's read date in words, never as an ISO string", () => {
+    const running = yearBoards.flatMap((b) => b.years!).filter((y) => y.inProgress);
+    expect(running.length, "a year board should have a year in progress").toBeGreaterThan(0);
+    for (const y of running) {
+      if (!y.asOf) continue;
+      expect(y.asOf, `${y.label} read date`).not.toMatch(/^\d{4}-\d{2}-\d{2}$/);
+      expect(y.asOf).toMatch(/^\d{1,2} [A-Z][a-z]+ \d{4}$/);
+    }
+  });
+
+  it("keeps the one-row-per-year summary too, because the pills are built from it", () => {
+    for (const b of yearBoards) expect(b.rows.length).toBe(b.years!.length);
+  });
+});
+
+describe("every artist on a year panel has a flag beside their name", () => {
+  // Ayra Starr won third place in 2024 and places on no ranked board here, so
+  // the flag index — which borrows from those boards' `sub` strings — had
+  // nothing for her, and hers was the one row on the phone's year panels with
+  // a blank where every other row had a country (Paul, 23 Sep 2026).
+  it("has no blank flag, and Ayra Starr's is Nigeria's", () => {
+    const blanks: string[] = [];
+    for (const b of africaBoards)
+      for (const y of b.years ?? [])
+        for (const e of y.entries) if (!e.flag) blanks.push(`${b.id} ${y.label}: ${e.name}`);
+    expect(blanks).toEqual([]);
+    const ayra = africaBoards
+      .flatMap((b) => b.years ?? [])
+      .flatMap((y) => y.entries)
+      .find((e) => e.name === "Ayra Starr");
+    expect(ayra?.flag).toBe("🇳🇬");
   });
 });
