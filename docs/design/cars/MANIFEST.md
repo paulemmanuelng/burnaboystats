@@ -43,11 +43,18 @@ unreliable on every word and every number. See §3 and §4 of the handoff.
 
 ## Car 16 — SLS AMG (added 23 Sep 2026)
 
-Not a supplied page design like the fifteen above: the SLS arrived as a studio
-render plus a page mock, and neither is yet a usable hero. See
+Not a supplied page design like the fifteen above. Everything the designer needs
+travels as one bundle with a self-contained brief:
 [car-16-sls-amg-asset-handoff.md](../car-16-sls-amg-asset-handoff.md).
 
-| file | what it is | usable as the hero? |
-|---|---|---|
-| `car-16-sls-render-doors-closed.jpg` | 2000×1091 studio render, doors closed, right angle | not yet — its floor is 6x lighter than the site's background |
-| `car-16-sls-page-mock-doors-open.png` | 896×1195 whole-page mock, doors open, dimension lines over the car | no — doors open breaks the shared scale, and the page furniture is baked in |
+| file | what it is |
+|---|---|
+| `car-16-sls-render-doors-closed-2816.jpg` | the render to work from — Gemini-generated for this site, 2816×1536, doors closed. Right car and angle; its floor is 6x lighter than the site's background, so it needs re-staging or a cut-out |
+| `car-16-ref-1-rear-three-quarter-doors-up.jpeg` | dealer photo of his actual car (AbujaCar, Sep 2026) |
+| `car-16-ref-2-front-three-quarter-doors-closed.jpeg` | dealer photo — the angle the render must match |
+| `car-16-ref-3-front-three-quarter-doors-up.jpeg` | dealer photo — face, `6.3` fin vents, tan interior |
+| `car-16-ref-4-rear-square-doors-up.jpeg` | dealer photo — rear, badges, the dealer's plate bracket |
+| `car-16-sls-page-mock-doors-open.png` | an earlier whole-page concept, doors open — mood only, not a source |
+
+The four `ref` photographs were described in the car's first brief (PR #265) but
+never committed with it; they are here now.

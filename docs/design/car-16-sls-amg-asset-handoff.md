@@ -1,125 +1,150 @@
-# Car 16 — the SLS AMG hero asset
+# Car 16 — Mercedes-Benz SLS AMG: the hero asset
 
-**For:** Claude Design (fresh chat — this document is self-contained; attach the
-two files named in §2)
-**Site:** burnaboystats.com — a verified statistics reference for Burna Boy. Its
-car collection lives at `/records/cars`, one page per car, fifteen cars today.
-**Deliverable:** the SLS AMG on the **same stage as the other fifteen**, so the
-engineer can cut it out and stand it on the page's floor ring beside them. Two
-acceptable forms — §4.
+**For:** Claude Design (fresh chat)
+**Self-contained:** everything this document names is in `car-16-sls-handoff.zip`.
+Nothing here depends on another file, a repository or a link.
+**Deliverable:** the SLS AMG on the same near-black stage as the fifteen cars
+already on the site — §6.
 **Not the deliverable:** the page, the spec panel, the price, the copy. The site
-prints all of that from its own data; it is already written and waiting.
-
-The car itself is briefed in [car-16-sls-amg-gullwing.md](car-16-sls-amg-gullwing.md)
-— what the vehicle is, and the fidelity checklist. **Read that first.** This
-document is only about the asset: the stage it stands on and the geometry it
-ships in.
+prints all of those from its own data; they are written and waiting.
 
 ---
 
-## 1. Where this stands
+## 1. The site
 
-The render exists and it is good. What is wrong is its floor, and only its
-floor.
+burnaboystats.com is a verified statistics reference for Burna Boy. Its car
+collection lives at `/records/cars`: fifteen cars today, one page each, every car
+standing at the same scale on a gold floor ring drawn by the page. This is the
+sixteenth.
 
-## 2. What was supplied, and what each one is
+## 2. The car
 
-| file | what it is | verdict |
-|---|---|---|
-| `cars/car-16-sls-render-doors-closed.jpg` (2000×1091) | a clean studio render: gloss black, doors closed, front three-quarter facing the viewer's left, red front calipers, tan interior through the glass, no plate, no text | **the right car, the right angle, the wrong floor** |
-| `cars/car-16-sls-page-mock-doors-open.png` (896×1195) | a whole web page — nav bar, SPECIFICATIONS panel, performance bars, colour swatches, "BUILD YOURS", dimension lines drawn across the car, doors open | same class of asset as the fifteen shipped ones, but unusable here — §3 |
+A **2010 Mercedes-Benz SLS AMG coupé** — the gullwing — bought in September 2026
+from AbujaCar in Abuja. Gloss black over a **tan ("Sand") leather** interior,
+about 6,000 miles, **factory standard**: no body kit, no aftermarket wheels, no
+wrap. Nothing custom to get wrong, so everything stock has to be right.
 
-## 3. The measurement that decides this
+## 3. What is in the bundle
 
-Every shipped car was cut out of a supplied page design whose stage is
-**near-black**, within a couple of levels of the site's own background
-(`--bg: #0a0a0b`, luminance ≈ 10). That near-match is what makes the cut-out
-read as a cut-out rather than as a car on a grey rectangle.
-
-Stage brightness at the frame edges, measured 23 Sep 2026:
-
-| source | stage edges (luminance 0–255) |
+| file | what it is |
 |---|---|
-| Chiron page design — shipped | 6.7 – 8.7 |
-| 911 GT3 RS page design — shipped | 9.0 – 14.3 |
-| SLS page mock, doors open | 11.0 – 17.7 |
-| **SLS render, doors closed** | **14.7 at the top, 63–67 at the bottom** |
+| `car-16-sls-render-doors-closed-2816.jpg` | **the render to work from** — 2816×1536, generated for this site, doors closed, front three-quarter facing the viewer's left |
+| `car-16-ref-1-rear-three-quarter-doors-up.jpeg` | the actual car — rear, tan door cards and roof lining inside the open doors, `SLS` / star / `AMG` badges, twin chrome exhaust finishers |
+| `car-16-ref-2-front-three-quarter-doors-closed.jpeg` | the actual car — **the angle the render must match**: long bonnet, short tail |
+| `car-16-ref-3-front-three-quarter-doors-up.jpeg` | the actual car — the face, the finned wing vents, the wheels, tan interior through the open door |
+| `car-16-ref-4-rear-square-doors-up.jpeg` | the actual car — tail lamps, flush spoiler, badge layout, and the dealer's bare plate bracket (**not** part of the car) |
+| `car-16-sls-page-mock-doors-open.png` | an earlier concept: a whole web page with the car doors-open. Reference for mood only — **not** a source (§5) |
+
+The four `ref` files are dealer photographs of **his actual car**. They are the
+fidelity gate: whatever you deliver is checked against them item by item (§7).
+
+## 4. Where this stands
+
+The render is the right car, at the right angle, with the doors closed. **What is
+wrong is its floor, and only its floor.**
+
+## 5. Why the floor is the whole problem
+
+Every car on the site was cut out of a source whose stage is **near-black** —
+within a few levels of the site's own background, `#0a0a0b`. That near-match is
+what lets a cut-out read as a car standing on the page rather than a car on a
+grey slab. Stage brightness at the frame edges (luminance 0–255):
+
+| source | stage edges |
+|---|---|
+| Bugatti Chiron — already on the site | 6.7 – 8.7 |
+| Porsche 911 GT3 RS — already on the site | 9.0 – 14.3 |
+| the doors-open concept | 11.0 – 17.7 |
+| **the doors-closed render** | **14.3 at the top — 62 to 68 at the floor** |
 | the site's own background | 10.3 |
 
-The new render's **floor is six times lighter than the site's background**. Two
-things follow, and both are why it cannot simply be cropped in:
+The render's floor is **six times lighter than the page it would stand on**, and
+there is a second fact that rules out a quick fix: the **car's roof (28) is
+darker than the floor beneath it (60)**. A crop leaves a grey slab; a brightness
+cut-out that removes the floor removes the roof with it.
 
-- A rectangular crop puts a visible grey slab under the car.
-- A brightness-based cut-out fails too, because on this render the **car's roof
-  (27) is darker than the floor it stands on (61)**. Any threshold that removes
-  the floor also removes the roof.
+The doors-open concept has the right stage but cannot be the hero: every car
+shares one canvas at one scale, and an open gullwing doubles the car's height, so
+it would shrink to fit and stand smaller than the fifteen beside it. It also has
+dimension lines and page furniture drawn across the body.
 
-The doors-open mock has the right stage but cannot be the hero: the site pastes
-every car at one scale onto one canvas, and an open gullwing doubles the car's
-height, so it would shrink to fit and sit smaller than the fourteen beside it.
-It also carries dimension lines and page furniture across the body, and at
-896px it is below the working size.
+## 6. The deliverable — either of these
 
-## 4. The deliverable — either of these
+**Option A, preferred — the same render, re-staged.** Identical car, angle, pose
+and lighting, doors closed, on the stage the fifteen share:
 
-**Option A, preferred: the same render, re-staged.** The identical car, angle,
-lighting and doors-closed pose, on the stage the other fifteen use — a near-black
-studio floor and backdrop, edge luminance **≲15**, a single soft key light from
-upper left, and a soft reflection directly under the car. No perspective grid,
-no horizon, no lighter floor plane. ≥1600px wide, PNG or high-quality JPEG. The
-engineer cuts it out from there, exactly as for the fifteen.
+- near-black studio floor and backdrop — **edge luminance under 15**, nothing
+  close to the grey floor in the current render
+- a single soft key light from upper left
+- a soft reflection of the car in the floor directly beneath it
+- no perspective grid, no horizon line, no lighter floor plane
+- ≥1600px wide, PNG or high-quality JPEG; about 10% clear stage around the car
 
-**Option B: the finished cut-out.** The car isolated on transparency, no floor,
-no reflection, no backdrop — lossless PNG, ≥1600px wide, alpha feathered on the
-antialiased rim rather than hard-edged. If you can deliver a clean matte around
-the wheel arches, the grille mesh and the wing fins, this skips a step.
+**Option B — the finished cut-out.** The car alone on transparency: no floor, no
+reflection, no backdrop. Lossless PNG, ≥1600px wide, alpha feathered on the
+antialiased rim rather than hard-edged, with a clean matte around the wheel
+arches, the grille mesh and the wing fins.
 
-Either way: **no text, no badges, no panels, no wordmark, no dimension lines** in
-the frame.
+**Either way: nothing but the car in the frame** — no text, badges, panels,
+wordmark, watermark or dimension lines. The page supplies every label; a word
+drawn into the image can never be corrected.
 
-## 5. The geometry it ends up in — context, not a requirement
+## 7. The fidelity checklist
 
-You do not have to hit these numbers; the engineer re-canvases. They are here so
-the framing you deliver survives the process with room to spare.
+Checked against the four `ref` photographs before anything ships. Items 1–5 are
+the car's identity; the render already gets most of these right — keep them.
 
-- Hero: **898 × 660 PNG with a real alpha channel**, car centred on its own
-  silhouette.
-- **Ground line ≈ 0.66 of the canvas height** — the midpoint of the two wheel
-  contact lines, not the lowest pixel, because every render is a three-quarter
-  view and the near wheel sits 80–100px lower than the far one. Measured per car
-  by `scripts/measure-ground-line.mjs`.
-- Below that line the hero carries a **mirrored reflection, squashed and fading
-  fast** — alpha ~96 forty pixels down, ~25 at 120, ~2 at the canvas edge — plus
-  a hard contact shadow and a wide ambient occlusion, all derived from the car's
-  own silhouette. The engineer bakes these; they are not yours to draw.
-- Index tile: **640 × 400 JPEG**, the framed render. Its ground never shows, so
-  the stage is fine in this one.
+1. **Gullwing doors**, closed, with the seam line visible along the roof.
+2. **Gloss black paint** with sharp studio reflections — a black that reflects,
+   not matte or charcoal.
+3. **Tan interior** visible through the glass: seats, door cards, tunnel.
+4. **The SLS proportion** — very long bonnet with two soft power domes, cabin set
+   far back, short high tail, wide low stance.
+5. **The face** — wide grille of horizontal chrome slats, the large star on a
+   central bar; low black mesh apron with three intakes; bi-xenon headlamps with
+   an LED strip along their lower edge; **a vertical three-fin vent with a small
+   `6.3` badge behind each front wheel arch**.
+6. **Wheels** — AMG twin-five-spoke in titanium grey with machined faces,
+   staggered (rears wider, a size larger); **red front brake calipers**.
+7. **Rear** — slim wraparound tail lamps, `SLS` left, star centred, `AMG` right,
+   one wide chrome trapezoid exhaust each side, spoiler retracted flush.
+8. **US-market details** — amber side-markers in the front bumper corners.
+9. **No number plate, no plate bracket.** The bare aluminium bracket in ref 4 is
+   the dealer's, not the car's.
 
-Leave ~10% clear stage around the car so the cut-out is not clipped.
+The bar: someone who has seen the four photographs looks at it and says *"that's
+the car"* — not "that's an SLS", but *that* SLS.
 
-## 6. Two questions to answer with the delivery
+## 8. The geometry it lands in — context, not a requirement
 
-1. **Where did the doors-closed render come from?** It reads like an official
-   Mercedes studio photograph. If it is one, `car-artwork-process.md` rules it
-   out in as many words — *"no stock 3D models, no traced press photos of other
-   people's cars"* — and it would be the only car on the site not using an asset
-   made for it. If it was generated, say so and it ships.
-2. **The tyres.** The brief records the actual car on **Michelins**, from the
-   AbujaCar photographs. This render is on **Pirellis**. Minor, and below the
-   fidelity gate's line, but worth knowing which way it was decided.
+You do not need to hit these; the site's engineer re-canvases and grounds every
+car the same way. They are here so your framing survives it with room to spare.
 
-## 7. How it will be checked
+- hero: **898 × 660 PNG with a real alpha channel**, car centred on its own
+  silhouette
+- **ground line at about 0.66 of the height** — the *midpoint* of the two wheel
+  contact lines, not the lowest pixel, because in a three-quarter view the near
+  wheel sits 80–100px lower than the far one
+- below it, baked in by the engineer: a mirrored reflection squashed and fading
+  fast (alpha ~96 forty pixels down, ~2 at the canvas edge), a hard contact
+  shadow, and a wide ambient occlusion, all derived from the car's own silhouette
+- index tile: **640 × 400 JPEG**, the framed render
 
-The repository's own tests, before it can ship:
+## 9. Settled, and one open point
 
-- every hero is a PNG with a real alpha channel — an opaque file cannot quietly
-  put the floor back
-- two image files per car, at the declared sizes: `<slug>.png` 898×660 and
-  `<slug>-tile.jpg` 640×400
-- `garage.length === currentCars.length` — a current car ships complete or not
-  at all, so this asset is the only thing standing between the SLS and the page
+- **Settled — provenance.** The doors-closed render was generated for this site;
+  it is not a Mercedes press photograph and is fine to use as a source.
+- **Open — the tyres.** The render's sidewalls read **Pirelli**. The car's
+  original brief recorded Michelins, but no sidewall lettering is legible in any
+  of the four photographs at their resolution (checked 23 Sep 2026), so the
+  brand on the real car is **unconfirmed**. If you re-render (option A), leave
+  the sidewall lettering soft and unreadable rather than asserting either brand.
+  If you cut out (option B), leave the render as it is — this sits below the
+  fidelity gate's line.
 
-Then the human gate from the car's own brief: *a person who has seen the Abuja
-photos looks at it and says "that's the car"* — black gullwing, tan inside, the
-twin-five-spoke wheels, the finned wings with the `6.3`, the star in the grille —
-on the same stage as the Chiron and the Senna beside it.
+## 10. How it will be checked
+
+- the site's automated tests: the hero must be a PNG with a real alpha channel,
+  at exactly the declared size, beside a 640×400 tile — a car ships complete or
+  not at all, so this asset is the only thing between the SLS and its page
+- then the human gate in §7, against the four photographs
