@@ -11,15 +11,18 @@
 // THE FINDING THAT SHAPES THIS FILE: "units" is NOT a common currency. These 27
 // bodies do not all measure the same thing. France states a Gold single as
 // 15,000,000 STREAMS; Australia states one as 35,000 UNITS. Poland measures
-// singles in PLN REVENUE. Adding those together would produce a number that
-// means nothing, so this file puts everything it can on ONE scale —
+// singles in ZŁOTY OF REVENUE. Adding those together would produce a number
+// that means nothing, so this file puts everything it can on ONE scale —
 // sales-equivalent units — and refuses to price the rest.
 //
 // NORMALISATION USES THE BODY'S OWN ARITHMETIC, NEVER AN ESTIMATE. Six
 // countries publish in streams AND publish a sale-equivalence; those are divided
 // by it and the printed figure is kept alongside in `*Raw` so the conversion can
 // be checked. Where a body publishes thresholds in something other than units and
-// gives no conversion, the format is EXCLUDED rather than guessed.
+// has never published a conversion, the format is EXCLUDED rather than guessed.
+// (ZPAV's current rules print złoty and no rate; its rules from 1 March 2017 to
+// the end of 2024 put one single at 2 zł, and that is what Poland's singles are
+// divided by — see the second exception below.)
 //
 // null MEANS TWO DIFFERENT THINGS AND THE DIFFERENCE MATTERS:
 //   • a null TIER inside a present object = that body does not award that tier.
@@ -35,13 +38,22 @@
 // exists elsewhere. A null with a reason is the correct answer; a plausible
 // invented number is the worst outcome this file can produce.
 //
-// THE ONE EXCEPTION (Paul, 20 Sep 2026): Greece. IFPI Greece publishes no
-// current level, so it is priced at the last level ever published for it —
-// IFPI's own "International Certification Award levels", updated June 2013
-// (the umbrella body's publication, grade C, not a secondary source; the
-// evidence is docs/sourcing/IFPI-AWARD-LEVELS-2013.md). That is carried in
-// `historic`, rendered as the ¶ footnote on every Greek line, and it is the
-// only country priced at a figure its body does not publish today.
+// TWO EXCEPTIONS, both carried in `historic` and rendered as the ¶ footnote:
+//   • Greece (Paul, 20 Sep 2026). IFPI Greece publishes no current level, so it
+//     is priced at the last level ever published for it — IFPI's own
+//     "International Certification Award levels", updated June 2013 (the
+//     umbrella body's publication, grade C, not a secondary source; the
+//     evidence is docs/sourcing/IFPI-AWARD-LEVELS-2013.md). ¶ on every Greek
+//     line.
+//   • Poland's singles (Paul, 23 Sep 2026: "we have to use 62,500 until
+//     anything changes"). ZPAV publishes today's level — 125,000 zł for a Gold
+//     single — but prints it in złoty of revenue and states no rate. It is
+//     divided by 2 zł a single, the value ZPAV's own rules printed from 1 March
+//     2017 to the end of 2024, so the LEVEL is current and the RATE is the last
+//     one published. ¶ on Polish single lines only (`historicFormat`); its
+//     albums are units at today's level.
+// These are the only figures priced on something their body does not print
+// today.
 //
 // TODAY'S THRESHOLDS, FOR EVERY BODY (Paul, 11 Sep 2026). Twelve of the 27
 // bodies changed their levels inside the window the plaques span, and eleven
@@ -59,9 +71,10 @@
 // them cost three agent passes and the trail is worth keeping.
 //
 // Two facts from that work still shape the table under either rule:
-//   • A body that changed WHAT IT MEASURES — ZPAV to PLN revenue in Mar 2017,
-//     AMPROFON to raw streams in Nov 2020 — cannot have its singles priced from
-//     the old unit regime. Those stay excluded.
+//   • A body that changed WHAT IT MEASURES — ZPAV to złoty of revenue in Mar
+//     2017, AMPROFON to raw streams in Nov 2020 — is never priced at a unit
+//     level from the old regime. AMPROFON is priced at the § ratio (12 Sep
+//     2026); ZPAV's CURRENT złoty levels are divided by its own 2 zł (23 Sep).
 //   • BVMI keys single bands to RELEASE date; every German single here was
 //     released 2016 or later, so its band is the one that ever applied.
 // ============================================================================
@@ -143,14 +156,31 @@ export interface CountryThresholds {
    *  ‡ footnote: it says the figure is today's level and that a plaque awarded
    *  before the rise may have cleared a lower bar. */
   vintage?: string;
-  /** Set where the body publishes no current level and this file prices at the
-   *  last level a body ever published — rendered as the ¶ footnote on every
-   *  line for the country. One body (Paul, 20 Sep 2026): IFPI Greece, at
-   *  IFPI's own International Certification Award levels list, updated June
-   *  2013 — docs/sourcing/IFPI-AWARD-LEVELS-2013.md. Distinct from `vintage`
-   *  (the body raised a level it still publishes) and `assumed` (a stream
-   *  ratio the body does not publish). */
+  /** Set where a figure rests on something the body published once and no
+   *  longer prints — rendered as the ¶ footnote. Two bodies:
+   *    • IFPI Greece (Paul, 20 Sep 2026): no current LEVEL, so priced at IFPI's
+   *      own International Certification Award levels list, updated June 2013 —
+   *      docs/sourcing/IFPI-AWARD-LEVELS-2013.md. Every Greek line.
+   *    • ZPAV (Paul, 23 Sep 2026): today's single levels are printed in złoty
+   *      with no RATE, so they are divided by the 2 zł a single its rules
+   *      printed until the end of 2024 (`plnPerSingle`). Polish single lines
+   *      only — see `historicFormat`.
+   *  Distinct from `vintage` (the body raised a level it still publishes) and
+   *  `assumed` (a stream ratio the body never published). */
   historic?: string;
+  /** The one format `historic` speaks to, where it is not both. Poland: its
+   *  albums are units at the level ZPAV prints today, so an album-only Polish
+   *  line carries no ¶. */
+  historicFormat?: CertFormat;
+  /** What the body PRINTED where it sets a format's levels in złoty (ZPAV
+   *  singles, since 1 Jan 2025). Kept out of `singleRaw` on purpose: every
+   *  reader of `singleRaw` takes it to be STREAMS (the /compare method card's
+   *  "Streams-based bodies", /methodology's "publish it in streams"). */
+  singleRawPln?: Partial<Record<keyof TierUnits, number>>;
+  /** Złoty per single that `singleRawPln` is divided by — ZPAV's own figure,
+   *  «o wartości 2 zł», printed in its rules from 1 March 2017 to the end of
+   *  2024 and in none since. */
+  plnPerSingle?: number;
 }
 
 export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
@@ -388,13 +418,37 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
     code: "PL",
     body: "ZPAV (Związek Producentów Audio-Video)",
     sourceUrl: "https://www.olis.pl/terms_oliw",
+    // SINGLES priced 23 Sep 2026 (Paul: "we have to use 62,500 until anything
+    // changes"). Read on olis.pl/terms_oliw, which prints BOTH rulebooks:
+    //   • from 1 Jan 2025, «SINGLE AUDIO | Sprzedaż cyfrowa (PLN)»: Złota Płyta
+    //     125 000 zł, Platynowa 250 000 zł, Podwójna / Potrójna Platynowa
+    //     500 000 / 750 000 zł, Diamentowa 1 000 000 zł, Podwójna / Potrójna
+    //     Diamentowa 2 000 000 / 3 000 000 zł — złoty only, no rate;
+    //   • «(do końca 2024)», in force from 01.08.2021: «SINGLE CYFROWE (ilość /
+    //     wysokość przychodu) 25 000 / 50 000 zł | 50 000 / 100 000 zł |
+    //     250 000 / 500 000 zł», and item 4b values one single «o wartości 2 zł».
+    // 2 zł is in every rulebook from 1 March 2017 to the end of 2024 (Wayback
+    // captures of bestsellery.zpav.pl/wyroznienia/regulamin.php) and in none
+    // since. The printed 2× / 3× rows are exactly N × the base, as priced.
+    // Before 1 Aug 2021 the single levels were 10,000 / 20,000 / 100,000
+    // (20,000 / 40,000 / 200,000 zł from March 2017), but ZPAV's register
+    // dates every Polish single plaque on this roster 11 Aug 2021 or later,
+    // so `floor` holds the 2021 band. Evidence: docs/sourcing/CERT-THRESHOLDS.md.
+    normalised:
+      "SINGLES converted: ZPAV prints single levels in złoty of revenue (Złota Płyta 125,000 zł) and, since 1 January 2025, no rate. Divided by 2 zł a single — the value its own rules printed from 1 March 2017 to the end of 2024 — see `historic`. Albums were already units.",
+    historic:
+      "ZPAV sets single levels in złoty of revenue — Gold 125,000 zł, Platinum 250,000 zł, Diamond 1,000,000 zł — and its current rules state no rate. They are converted at 2 zł a single, the value its own rules printed from March 2017 to the end of 2024, so a Gold single is 62,500 units.",
+    historicFormat: "single",
     vintage:
-      "ZPAV raised album levels from 10,000 / 20,000 / 100,000 to 15,000 / 30,000 / 150,000 on 1 January 2025. Priced at today's level; a plaque awarded before then may have cleared the lower bar. Singles are not priced: measured in units only Aug 2015–Feb 2017 and in PLN wholesale revenue since 1 March 2017, and every Polish single here is from the revenue regime.",
-    single: null,
-    singleExcluded:
-      "ZPAV measures singles in PLN REVENUE, not units. Albums are units and ARE priced.",
+      "ZPAV raised its single levels on 1 August 2021, from 20,000 / 40,000 / 200,000 zł to 50,000 / 100,000 / 500,000 zł, and on 1 January 2025, to 125,000 / 250,000 / 1,000,000 zł; albums rose from 10,000 / 20,000 / 100,000 to 15,000 / 30,000 / 150,000 on the same 2025 date. Priced at today's level; a plaque awarded before then may have cleared the lower bar.",
+    single: { silver: null, gold: 62_500, platinum: 125_000, diamond: 500_000 },
+    singleRawPln: { gold: 125_000, platinum: 250_000, diamond: 1_000_000 },
+    plnPerSingle: 2,
     album: { silver: null, gold: 15_000, platinum: 30_000, diamond: 150_000 },
-    floor: { album: { silver: null, gold: 10_000, platinum: 20_000, diamond: 100_000 } },
+    floor: {
+      single: { silver: null, gold: 25_000, platinum: 50_000, diamond: 250_000 },
+      album: { silver: null, gold: 10_000, platinum: 20_000, diamond: 100_000 },
+    },
   },
   PT: {
     code: "PT",
@@ -505,6 +559,15 @@ export function exclusionFor(
   const c = CERT_THRESHOLDS[code];
   if (!c) return `No threshold record for ${code}.`;
   return (format === "single" ? c.singleExcluded : c.albumExcluded) ?? null;
+}
+
+/** The ¶ note a plaque of this format carries in this country, or undefined.
+ *  Greece's covers both formats; Poland's only its singles, which are the
+ *  figures divided by the 2 zł a single ZPAV no longer prints. */
+export function historicFor(code: string, format: CertFormat): string | undefined {
+  const c = CERT_THRESHOLDS[code];
+  if (!c?.historic) return undefined;
+  return !c.historicFormat || c.historicFormat === format ? c.historic : undefined;
 }
 
 /** Countries whose plaques can be priced at all, for a given format. */

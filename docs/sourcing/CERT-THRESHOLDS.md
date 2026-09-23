@@ -16,7 +16,7 @@ and a naive sum would add 30,000,000 French *streams* to 70,000 Australian *unit
 | sales-equivalent **units** — directly comparable | 15: NG, UK, US, CA, NZ, AT, CH, DE, IT, AU, ZA, PT, ES, BR, HU |
 | raw **streams**, body publishes a download-equivalence → normalisable | 4: FR, DK, NO, NL |
 | raw **streams**, no ratio published → NOT normalisable | SE, MX |
-| **PLN revenue** → not normalisable (albums fine) | PL |
+| **PLN revenue** → not normalisable (albums fine) | PL — **singles priced from 23 Sep 2026 at the 2 zł a single ZPAV's own 2017–2024 rules printed, ¶; see the dated section at the end** |
 | nothing published | 5: GR, BE, CO, CZ, SK — (GR priced at IFPI's 2013 level from 20 Sep 2026, ¶; BE/CZ/SK found and priced 10–11 Sep) |
 
 **19 of 27 can be put on one scale for singles.** Every conversion below is the
@@ -46,7 +46,7 @@ body's OWN published figure — nothing is invented.
 
 - **SE** — singles are capped streams; downloads excluded since 2018 and NO download-equivalence published
 - **MX** — singles are raw audio streams; AMPROFON publishes no stream-to-unit ratio
-- **PL** — singles are measured in PLN REVENUE, not units (albums ARE units)
+- **PL** — singles are measured in PLN REVENUE, not units (albums ARE units) **Priced from 23 Sep 2026: today's złoty levels ÷ 2 zł a single, the value ZPAV's own rules printed from 1 Mar 2017 to the end of 2024 (Paul's decision, ¶) — see the dated section at the end of this file.**
 - **GR** — IFPI Greece's site is fully reachable and was read in full — it simply does not publish its certification thresholds. Every page on ifpi.gr was fetche **Priced from 20 Sep 2026 at IFPI's June 2013 level (grade C, historic, ¶) — see the dated section at the end of this file.**
 - **BE** — Two-part failure. (1) The certifying body's own site, brma.be, publishes NO certification criteria: I fetched https://www.brma.be/ and enumerated its 
 - **CO** — The site itself is fully readable — the body simply does not publish its unit thresholds anywhere. This is a 'does not publish', not a 'could not reac
@@ -150,7 +150,7 @@ publishable here.** Each was independently re-derived before being applied.
 | **Czechia** | 9 Mar 2026 rules: single 2.5M / 5M, album 5M / 10M **subscription streams**, with the body's own `1 download = 222` | **A** | ✅ normalised ÷222 |
 | **Slovakia** | same rulebook: single 850k / 1.7M, album 1.75M / 3.5M, `1 download = 217` | **B** | ✅ normalised ÷217 |
 | Sweden | thresholds confirmed; the *absence* of any sale-equivalence is explicit and deliberate at the body | A | ✗ still unconvertible |
-| Poland | singles 125,000 zł / 250,000 zł; no revenue→units conversion exists | A | ✗ still unconvertible |
+| Poland | singles 125,000 zł / 250,000 zł; no revenue→units conversion exists | A | ✗ still unconvertible → ✅ 23 Sep 2026 at 2 zł a single — ZPAV's rules DID state one, 1 Mar 2017 to end-2024 (see end); Paul's decision |
 | Greece | current levels are "stream points" from an unauthenticable screenshot of a private email; historic 2013 album levels are grade C but physical-era and marked historic | **D** | ✗ (11 Sep) → ✅ 20 Sep 2026 at the 2013 level, grade C historic, Paul's decision |
 | Colombia | album levels only, from IFPI's June 2013 list; **no singles threshold has ever existed at any grade**; ASINCOL is defunct | C (albums) | ✗ no board plaque is a Colombian album |
 
@@ -185,6 +185,10 @@ before answering:
   regulamin. Treating złoty as units ("125k units") is a currency-to-units
   substitution; there is no per-unit price to divide by. **Not applied.**
   Poland singles stay listed, not priced; Polish albums are units and ARE priced.
+  *(23 Sep 2026: "no per-unit price" was wrong. ZPAV's own rules valued one
+  single at 2 zł from 1 Mar 2017 to the end of 2024, and the singles are now
+  priced at it — see the dated section at the end. "125k units" stays
+  rejected: 125,000 zł is 62,500 units.)*
 - Stream ≠ unit anywhere on this site. Where a body publishes stream levels
   and no ratio (Sweden, Mexico) the page converts at 100 streams per unit and
   marks it §; a body that publishes no levels at all cannot even get that.
@@ -345,3 +349,79 @@ CO/album, PL/single). The seven Greek plaques, all singles, now priced:
 No Greek album plaque exists on the site, so the album column is exercised by
 nothing yet. Per-artist "not comparable" (features on, Nigeria off): Burna
 4 → 3, Wizkid 2 → 1, Rema 3 → 2, Tems 3 → 2, Tyla 4 → 1; CKay stays 1 (Poland).
+
+## 23 Sep 2026 — Poland's singles priced at ZPAV's own 2 zł a single (Paul: "we have to use 62,500 until anything changes")
+
+Prompted by a fan table pricing Dai Dai's Polish Gold at 62,500 units and a
+group-chat request to make it 125,000 "because they changed the rule". Both
+numbers are real; only one is units.
+
+**The source, verbatim** — https://www.olis.pl/terms_oliw (fetched 23 Sep 2026)
+prints BOTH rulebooks:
+
+- *«REGULAMIN … (od stycznia 2025)»*, «Niniejszy Regulamin obowiązuje od 1
+  stycznia 2025», item 20, «SINGLE AUDIO | Sprzedaż cyfrowa (PLN)»: Złota Płyta
+  125 000 zł · Platynowa 250 000 zł · Podwójna Platynowa 500 000 zł · Potrójna
+  Platynowa 750 000 zł · Diamentowa 1 000 000 zł · Podwójna Diamentowa
+  2 000 000 zł · Potrójna Diamentowa 3 000 000 zł. Złoty only, **no rate**. Its
+  item 21 still counts pre-March-2017 sales as «1 płatne pobranie … lub 250 szt.
+  streamów … równoznaczne ze sprzedażą 1 singla» but puts no złoty value on one.
+- *«REGULAMIN … (do końca 2024)»*, «obowiązuje od 01.08.2021»: «SINGLE CYFROWE
+  (ilość / wysokość przychodu) | 25 000 / 50 000 zł | 50 000 / 100 000 zł |
+  250 000 / 500 000 zł», and item 4b: «… jest równoznaczna ze sprzedażą 1
+  singla, **o wartości 2 zł**».
+
+**The rate's history** (Wayback captures of
+bestsellery.zpav.pl/wyroznienia/regulamin.php, 27 of 51 read):
+
+| rulebook («obowiązuje od») | singles row | units at 2 zł |
+|---|---|---|
+| 01.06.2015 / 01.08.2015 | «SINGLE \| 10 000 \| 20 000 \| 100 000» (units; no zł) | 10k / 20k / 100k |
+| 01.03.2017 | «od 20 000 zł \| od 40 000 zł \| od 200 000 zł»; «o wartości 2 zł» first appears | 10k / 20k / 100k |
+| 08.11.2017 | «10 000 / 20 000 zł \| 20 000 / 40 000 zł \| 100 000 / 200 000 zł» | 10k / 20k / 100k |
+| 01.08.2021 | «25 000 / 50 000 zł \| 50 000 / 100 000 zł \| 250 000 / 500 000 zł» | 25k / 50k / 250k |
+| 1 Jan 2025 | 125 000 / 250 000 / 1 000 000 zł, złoty only | **62.5k / 125k / 500k** |
+
+So 2 zł is ZPAV's own figure, printed from 1 Mar 2017 to the end of 2024, and
+units sat beside złoty at exactly 2:1 in every table from Oct 2017. The 2025
+rules print no rate. The 11 Sep entry above ("no per-unit price to divide by")
+was wrong about that.
+
+**Applied** (`CERT_THRESHOLDS.PL`): `single` 62,500 / 125,000 / 500,000;
+`singleRawPln` 125,000 / 250,000 / 1,000,000 zł; `plnPerSingle` 2 — kept out of
+`singleRaw`, which /compare and /methodology read as streams. `historic` with
+`historicFormat: "single"` puts ¶ on Polish SINGLE lines only (the level is
+today's; the RATE is the last one published). `vintage` (‡) now covers both
+single rises (1 Aug 2021, 1 Jan 2025). `floor.single` is the 2021 band,
+25,000 / 50,000 / 250,000: ZPAV's register dates every Polish single plaque on
+the roster 11 Aug 2021 or later.
+
+**Register dates** (POST olis.pl/api/search, category 3, subcategories 6/7/8 =
+Złote/Platynowe/Diamentowe, `search_in: contractor`; needs the XHR,
+Referer and User-Agent headers or Cloudflare answers 302):
+
+| artist | plaque | ZPAV register | rulebook | units now | cleared then |
+|---|---|---|---|---|---|
+| Burna Boy | Dai Dai Gold | Gold 2026-08-26 | 2025 | 62,500 | 62,500 |
+| Burna Boy | We Pray Platinum (feature) | Gold 2025-07-09, Platinum 2026-06-24 | 2025 | 125,000 | 125,000 |
+| Tems | Raindance Gold (feature) | Gold 2026-08-05 | 2025 | 62,500 | 62,500 |
+| Tems | Wait For U Gold (feature) | Gold 2024-12-31 | 2021 | 62,500 ‡ | 25,000 |
+| Tyla | Water Platinum | Gold 2024-02-07, Platinum 2024-06-05 | 2021 | 125,000 ‡ | 50,000 |
+| Rema | Calm Down Diamond | Gold 2023-01-11, 4 Platinum rows 2023, Diamond 2024-01-10 | 2021 | 500,000 ‡ | 250,000 |
+| CKay | love nwantiti 4× Platinum | Platinum rows 2022-03-09, 2022-10-05, 2023-06-21, 2024-03-06 | 2021 | 500,000 ‡ | 200,000 |
+| Wizkid | One Dance **1× Platinum** (feature) | ONE Platinum row, 2021-08-11 | 2021 | 125,000 ‡ | 50,000 |
+
+**One Dance corrected 3× → 1×.** The 3× was Wikipedia-cited when the register
+was unreachable (wizkid-certifications-v1.md). Read today, ZPAV holds one row —
+"ONE DANCE | singiel", Platynowa, 2021-08-11 — and no Gold or Diamond row. The
+register files each step of a multiple as its own row (love nwantiti four,
+Calm Down four), so one row is 1×. Pricing Poland made the multiplier carry
+units: 3× would have added 250,000 units ZPAV never awarded.
+
+Effect (features on, Nigeria off): not-comparable plaques across the board
+**10 → 2** (Colombia only); unpriceable country/format pairs 3 → 2 (CO/single,
+CO/album). Poland's country board goes from 30,000 units (1 of 9 counted) to
+1,592,500 (9 of 9). Units added: Burna +187,500, Rema +500,000, CKay +500,000,
+Wizkid +125,000, Tems +125,000, Tyla +125,000. No artist-total rank changes and
+no pair leader flips.
+

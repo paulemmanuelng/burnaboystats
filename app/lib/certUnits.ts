@@ -9,9 +9,10 @@
 // produces. That is not a weakness — it is a floor for both sides under
 // identical rules, which is exactly what makes the comparison hold up.
 //
-// Thresholds, their provenance and the reason three country/format pairs cannot
-// be priced at all (Colombia both formats, Poland singles — recounted 20 Sep
-// 2026, when Greece was priced at IFPI's June 2013 level and left the list):
+// Thresholds, their provenance and the reason two country/format pairs cannot
+// be priced at all (Colombia, both formats — recounted 23 Sep 2026, when
+// Poland's singles were priced at ZPAV's own 2 zł a single and left the list;
+// Greece left it on 20 Sep, at IFPI's June 2013 level):
 // app/data/certThresholds.ts.
 //
 // THREE RULES THIS FILE EXISTS TO ENFORCE
@@ -30,22 +31,26 @@
 //     is why this is written as threshold(tier) * x rather than the Platinum
 //     shortcut that would have quietly priced it as a single Diamond.
 //
-//  3. WHAT CANNOT BE PRICED MUST BE COUNTED AND NAMED. 10 of the 1,218 plaques
+//  3. WHAT CANNOT BE PRICED MUST BE COUNTED AND NAMED. 2 of the 1,220 plaques
 //     sit in a country/format whose body publishes no usable threshold
-//     (recounted 20 Sep 2026, once Greece was priced at IFPI's 2013 level:
-//     Colombia 2, Poland 8). Scoring them zero in silence penalises whoever
-//     holds more of them, so every total carries its own exclusion list.
+//     (recounted 23 Sep 2026, once Poland's singles were priced: Colombia 2;
+//     it was 10 with Poland's 8). Scoring them zero in silence penalises
+//     whoever holds more of them, so every total carries its own exclusion
+//     list.
 //
-//  And one line that is priced at a figure nobody publishes today: Greece,
-//  at the last level IFPI ever published for it (June 2013). Every such line
-//  carries `historic` — footnote 5, the ¶ mark — so the reader knows the bar
-//  a 2026 plaque cleared may differ from the figure.
+//  And two kinds of line priced on a figure nobody prints today: Greece, at
+//  the last level IFPI ever published for it (June 2013), and Poland's
+//  singles, at ZPAV's current złoty levels divided by the 2 zł a single its
+//  rules printed until 2024. Every such line carries `historic` — footnote 5,
+//  the ¶ mark — so the reader knows the figure rests on a number the body no
+//  longer publishes.
 // ============================================================================
 
 import {
   CERT_PROGRAMS,
   CERT_THRESHOLDS,
   exclusionFor,
+  historicFor,
   thresholdFor,
   type CertFormat,
 } from "../data/certThresholds";
@@ -277,9 +282,9 @@ export interface CountryLine {
   /** This line is priced at a stream-to-unit ratio the body does not publish
    *  (Sweden, Mexico) — footnote 4, on every line for the country. */
   assumed?: string;
-  /** This line is priced at the last level a body ever published for the
-   *  country, not a current one (Greece, IFPI's June 2013 list) — footnote 5
-   *  (¶), on every line for the country. */
+  /** This line rests on a figure the body no longer prints — Greece's IFPI
+   *  June 2013 level, or the 2 zł a single Poland's singles are divided by —
+   *  footnote 5 (¶), on every line it applies to. */
   historic?: string;
 }
 
@@ -330,8 +335,8 @@ export function priceArtist(
   const best = new Map<string, { release: ComparableRelease; cert: ComparableCert; units: number }>();
   // Unpriceable plaques, also collapsed per release per country and ranked by
   // tier, so the chip shown is the HIGHEST one held there rather than the first
-  // one enumerated. Poland was showing Burna's Gold on "Dai Dai" while his
-  // Platinum on "We Pray" sat behind it.
+  // one enumerated. Poland, before its singles were priced, was showing
+  // Burna's Gold on "Dai Dai" while his Platinum on "We Pray" sat behind it.
   const unpriced = new Map<string, { release: ComparableRelease; cert: ComparableCert; why: string }>();
   const excluded = new Map<string, Exclusion>();
 
@@ -386,6 +391,9 @@ export function priceArtist(
         line.top = { title: release.title, level: cert.level, x: cert.x ?? 1, body: cert.body };
       }
       if (multiplied && !line.caveat) line.caveat = CERT_THRESHOLDS[cert.c]?.caveat;
+      // Like the caveat, the ¶ is the LINE's: Poland's is singles-only, and
+      // Rema's Polish line opens on his album before "Calm Down" joins it.
+      if (!program && !line.historic) line.historic = historicFor(cert.c, release.format);
     } else {
       lines.set(key, {
         country: cert.c,
@@ -404,7 +412,7 @@ export function priceArtist(
         caveat: program ? undefined : multiplied ? CERT_THRESHOLDS[cert.c]?.caveat : undefined,
         vintage: program ? undefined : CERT_THRESHOLDS[cert.c]?.vintage,
         assumed: program ? undefined : CERT_THRESHOLDS[cert.c]?.assumed,
-        historic: program ? undefined : CERT_THRESHOLDS[cert.c]?.historic,
+        historic: program ? undefined : historicFor(cert.c, release.format),
       });
     }
   }

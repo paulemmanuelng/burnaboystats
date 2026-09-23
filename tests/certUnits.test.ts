@@ -86,8 +86,10 @@ describe("thresholds are sourced, never invented", () => {
       expect(thresholdFor(code, "single", "Platinum")).toBeNull();
       expect(thresholdFor(code, "album", "Platinum")).toBeNull();
     }
-    // Poland is the split case: singles are PLN revenue, albums are units.
-    expect(thresholdFor("PL", "single", "Platinum")).toBeNull();
+    // Poland left on 23 Sep 2026: its singles are ZPAV's złoty levels divided
+    // by the 2 zł a single its own pre-2025 rules printed (¶, `historic`) —
+    // see "Poland's singles are priced at ZPAV's own 2 zł a single" below.
+    expect(thresholdFor("PL", "single", "Platinum")).toBe(125_000);
     expect(thresholdFor("PL", "album", "Platinum")).toBe(30_000);
   });
 
@@ -169,9 +171,12 @@ describe("rule 2 — a multiplier rides whatever tier it sits on", () => {
 
 describe("rule 3 — what cannot be priced is counted and named", () => {
   it("reports the excluded plaques rather than scoring them zero in silence", () => {
-    const wiz = priceArtist(bySlug("wizkid"), { includeNigeria: true, includeFeatures: true });
-    expect(wiz.excludedPlaques).toBeGreaterThan(0);
-    for (const e of wiz.excluded) {
+    // Burna, not Wizkid, since 23 Sep 2026: Wizkid's only unpriced plaque was
+    // Polish, and a loop over zero exclusions checks nothing. Burna holds
+    // Colombia's "Dai Dai" Gold.
+    const burna = priceArtist(bySlug("burna-boy"), { includeNigeria: true, includeFeatures: true });
+    expect(burna.excludedPlaques).toBeGreaterThan(0);
+    for (const e of burna.excluded) {
       // Long enough to be a reason a READER can act on. The first pass of this
       // file truncated each reason at its first full stop and shipped Belgium as
       // "Two-part failure." — true, and useless on screen.
@@ -182,9 +187,9 @@ describe("rule 3 — what cannot be priced is counted and named", () => {
   });
 
   it("excluded plaques never contribute units", () => {
-    // Poland measures singles in złoty of revenue; its albums are units.
-    expect(unitsForCert({ c: "PL", level: "Platinum" }, "single").units).toBeNull();
-    expect(unitsForCert({ c: "PL", level: "Platinum" }, "album").units).toBe(30_000);
+    // Colombia publishes no threshold for either format.
+    expect(unitsForCert({ c: "CO", level: "Gold" }, "single").units).toBeNull();
+    expect(unitsForCert({ c: "CO", level: "Gold" }, "album").units).toBeNull();
   });
 
   it("Sweden and Mexico are priced at the stated 100-streams-to-a-unit ratio, and say so", () => {
@@ -399,12 +404,13 @@ describe("the comparison", () => {
     const unpriced = (r: (typeof c.rows)[number]) => (r.a && !r.a.counted) || (r.b && !r.b.counted) || r.a?.notCounted || r.b?.notCounted;
     const shownPricedExclusive = c.rows.filter((r) => !r.contested && r.a && r.country !== "NG" && !unpriced(r));
     expect(shownPricedExclusive.length).toBe(3);
-    // Burna's Polish and Colombian plaques are his alone and unpriced: on
-    // screen, never in the tail. Greece left this pin on 20 Sep 2026 — his
-    // Dai Dai Platinum is priced at IFPI's 2013 level (6,000, ¶) and, ranking
-    // below the top three exclusives, folds into the tail like any priced row.
+    // Burna's Colombian plaque is his alone and unpriced: on screen, never in
+    // the tail. Greece left this pin on 20 Sep 2026 — his Dai Dai Platinum is
+    // priced at IFPI's 2013 level (6,000, ¶) and, ranking below the top three
+    // exclusives, folds into the tail like any priced row — and Poland on
+    // 23 Sep 2026, when its singles were priced at ZPAV's 2 zł a single.
     const shownUnpriced = c.rows.filter((r) => !r.contested && r.a && r.country !== "NG" && unpriced(r));
-    expect(shownUnpriced.map((r) => r.country).sort()).toEqual(["CO", "PL"]);
+    expect(shownUnpriced.map((r) => r.country).sort()).toEqual(["CO"]);
     expect(tail!.rows.some(unpriced)).toBe(false);
     expect(tail!.units).toBeGreaterThan(0);
     const gr = [...c.rows, ...(tail?.rows ?? [])].find((r) => r.country === "GR");
@@ -617,14 +623,24 @@ describe("audit fixes, 11 Sep 2026 — each one had a live counter-example", () 
   });
 
   it("a country holding both priced and unpriced plaques shows both, never drops one", () => {
-    // Rema's Polish album Platinum prices (ZPAV's albums are units); his
-    // "Calm Down" Polish Diamond does not (singles are złoty of revenue). The
-    // line must carry both, or the table says he holds one Polish plaque.
-    const p = priceArtist(bySlug("rema"), { includeNigeria: false, includeFeatures: true });
-    const pl = p.byCountry.find((l) => l.country === "PL");
-    expect(pl?.counted).toBe(true);
-    expect(pl?.notCounted?.plaques).toBe(1);
-    expect(pl?.notCounted?.reason).toMatch(/ZPAV|revenue/i);
+    // The live case was Rema's Poland — album Platinum priced, "Calm Down"
+    // Diamond not — until Poland's singles were priced on 23 Sep 2026. No
+    // line in the corpus mixes the two any more, so the rule is held on a
+    // fixture: a UK Platinum prices, a UK "Diamond" (a tier the BPI does not
+    // award) cannot. The line must carry both, or the table says one plaque.
+    const mixed: ComparableArtist = {
+      slug: "t", name: "T", image: "", href: "/", verifiedOn: "2026-09-23",
+      releases: [
+        { title: "Priced", format: "single", isFeature: false, certs: [{ c: "UK", level: "Platinum" }] },
+        { title: "Unpriced", format: "single", isFeature: false, certs: [{ c: "UK", level: "Diamond" }] },
+      ],
+    };
+    const p = priceArtist(mixed, { includeNigeria: false, includeFeatures: true });
+    const uk = p.byCountry.find((l) => l.country === "UK");
+    expect(uk?.counted).toBe(true);
+    expect(uk?.units).toBe(600_000);
+    expect(uk?.notCounted?.plaques).toBe(1);
+    expect(uk?.notCounted?.reason).toMatch(/no Diamond threshold/);
   });
 
   it("a row carrying an unpriced plaque never folds into the collapsed tail", () => {
@@ -637,11 +653,20 @@ describe("audit fixes, 11 Sep 2026 — each one had a live counter-example", () 
   });
 
   it("a listed-not-counted chip is the HIGHEST plaque held, not the first enumerated", () => {
-    // Poland: Burna holds a Gold (Dai Dai) and a Platinum (We Pray), both unpriceable.
-    const p = priceArtist(bySlug("burna-boy"), { includeNigeria: false, includeFeatures: true });
-    const pl = p.listed.find((l) => l.country === "PL");
-    expect(pl?.top?.level).toBe("Platinum");
-    expect(pl?.releases).toBe(2);
+    // The live case was Burna's Poland — Gold on "Dai Dai" enumerated before
+    // Platinum on "We Pray" — until Poland's singles were priced on 23 Sep
+    // 2026. Held on a fixture in the one body still unpriced, Colombia.
+    const two: ComparableArtist = {
+      slug: "t", name: "T", image: "", href: "/", verifiedOn: "2026-09-23",
+      releases: [
+        { title: "First", format: "single", isFeature: false, certs: [{ c: "CO", level: "Gold" }] },
+        { title: "Second", format: "single", isFeature: false, certs: [{ c: "CO", level: "Platinum" }] },
+      ],
+    };
+    const p = priceArtist(two, { includeNigeria: false, includeFeatures: true });
+    const co = p.listed.find((l) => l.country === "CO");
+    expect(co?.top?.level).toBe("Platinum");
+    expect(co?.releases).toBe(2);
   });
 
   it("attaches the multiplier caveat whenever ANY multiplied plaque contributes", () => {
@@ -728,6 +753,7 @@ describe("today's thresholds, with the floor kept beside them", () => {
       ["FR", "single", "Diamond", 333_333, 233_333],
       ["MX", "album", "Gold", 70_000, 30_000],
       ["PL", "album", "Gold", 15_000, 10_000],
+      ["PL", "single", "Gold", 62_500, 25_000],
     ];
     for (const [code, fmt, tier, today, floor] of pairs) {
       expect(thresholdFor(code, fmt, tier), `${code} ${fmt} ${tier}`).toBe(today);
@@ -736,13 +762,15 @@ describe("today's thresholds, with the floor kept beside them", () => {
     }
   });
 
-  it("a body that changed WHAT it measures cannot have singles priced from the old regime", () => {
-    // ZPAV certified singles in units only until Feb 2017 and in PLN revenue
-    // since; every Polish single on this roster is from the revenue regime,
-    // and revenue converts to units at no ratio. (Mexico moved to streams and
-    // is priced at the stated 100:1 since 12 Sep 2026 — see the § test.)
-    expect(thresholdFor("PL", "single", "Gold")).toBeNull();
-    expect(exclusionFor("PL", "single")).toMatch(/revenue/i);
+  it("a body that changed WHAT it measures is priced at its CURRENT level, never an old unit one", () => {
+    // ZPAV certified singles in units until Feb 2017 and in złoty of revenue
+    // since. Poland is priced at today's złoty level (Gold 125,000 zł) divided
+    // by ZPAV's own 2 zł a single — 62,500 — not at the 10,000 units its
+    // pre-2017 rules printed (Paul, 23 Sep 2026). Mexico moved to streams and
+    // is priced at the stated 100:1 since 12 Sep 2026 — see the § test.
+    const pl = CERT_THRESHOLDS.PL;
+    expect(thresholdFor("PL", "single", "Gold")).toBe(pl.singleRawPln!.gold! / pl.plnPerSingle!);
+    expect(exclusionFor("PL", "single")).toBeNull();
     expect(thresholdFor("MX", "single", "Gold")).toBe(220_000);
     expect(exclusionFor("MX", "single")).toBeNull();
   });
@@ -804,17 +832,18 @@ describe("the RIAA Latin marker is visible on every surface", () => {
 });
 
 describe("the unpriced singles are exactly the ones /methodology names", () => {
-  // The methodology page's sentence "Poland measures singles in złoty of
-  // revenue, and Colombia publishes no threshold" is derived from this set; if
-  // a body here gains a threshold (Belgium did, 10 Sep 2026; Greece did on
-  // 20 Sep 2026, priced at IFPI's June 2013 level and marked ¶) or a new
-  // unpriced country arrives, the page follows and this pins what it says.
-  it("is CO and PL", () => {
+  // The methodology page's sentence "What remains cannot be converted at any
+  // ratio: Colombia publishes no threshold" is derived from this set; if a body
+  // here gains a threshold (Belgium did, 10 Sep 2026; Greece did on 20 Sep
+  // 2026, priced at IFPI's June 2013 level and marked ¶; Poland did on 23 Sep
+  // 2026, at ZPAV's own 2 zł a single, ¶ too) or a new unpriced country
+  // arrives, the page follows and this pins what it says.
+  it("is CO alone", () => {
     const unpriced = Object.values(CERT_THRESHOLDS)
       .filter((c) => c.single === null)
       .map((c) => c.code)
       .sort();
-    expect(unpriced).toEqual(["CO", "PL"]);
+    expect(unpriced).toEqual(["CO"]);
   });
 });
 
@@ -849,19 +878,24 @@ describe("Greece is priced at IFPI's June 2013 level (Paul, 20 Sep 2026)", () =>
   });
 
   it("every Greek line on a compare summary is counted and carries the historic note", () => {
+    // Poland's singles carry a ¶ of their own since 23 Sep 2026, so an
+    // artist's ¶ list is Greece's note plus, where a Polish single is held,
+    // Poland's — never anything else.
     let seen = 0;
+    const allowed = [GR.historic, CERT_THRESHOLDS.PL.historic];
     for (const a of comparableArtists) {
       const p = priceArtist(a, { includeNigeria: false, includeFeatures: true });
       expect(p.listed.some((l) => l.country === "GR"), `${a.slug} lists GR`).toBe(false);
+      for (const h of p.historics) expect(allowed, `${a.slug} carries a stray ¶`).toContain(h);
       const gr = p.byCountry.find((l) => l.country === "GR");
       if (!gr) {
-        expect(p.historics).toEqual([]);
+        expect(p.historics).not.toContain(GR.historic);
         continue;
       }
       seen++;
       expect(gr.counted).toBe(true);
       expect(gr.historic).toBe(GR.historic);
-      expect(p.historics).toEqual([GR.historic]);
+      expect(p.historics).toContain(GR.historic);
     }
     // Burna Boy, Wizkid, Rema, Tems and Tyla hold the seven Greek plaques.
     expect(seen).toBe(5);
@@ -870,7 +904,7 @@ describe("Greece is priced at IFPI's June 2013 level (Paul, 20 Sep 2026)", () =>
     expect(tyla?.units).toBe(12_000);
     expect(tyla?.historic).toBeTruthy();
     expect(tyla?.caveat).toBe(GR.caveat);
-    expect(compare(bySlug("tyla"), bySlug("tems")).historics).toEqual([GR.historic]);
+    expect(compare(bySlug("tyla"), bySlug("tems")).historics).toContain(GR.historic);
   });
 
   it("negative control: a country with `historic` unset produces none", () => {
@@ -879,9 +913,79 @@ describe("Greece is priced at IFPI's June 2013 level (Paul, 20 Sep 2026)", () =>
       expect(CERT_THRESHOLDS[code].historic).toBeUndefined();
       expect(burna.byCountry.find((l) => l.country === code)?.historic).toBeUndefined();
     }
-    // Asake and Olamide hold no Greek plaque.
+    // Asake and Olamide hold no Greek or Polish plaque.
     expect(priceArtist(bySlug("asake"), { includeNigeria: false, includeFeatures: true }).historics).toEqual([]);
     expect(compare(bySlug("asake"), bySlug("olamide")).historics).toEqual([]);
-    expect(Object.values(CERT_THRESHOLDS).filter((c) => c.historic).map((c) => c.code)).toEqual(["GR"]);
+    expect(Object.values(CERT_THRESHOLDS).filter((c) => c.historic).map((c) => c.code).sort()).toEqual(["GR", "PL"]);
+  });
+});
+
+describe("Poland's singles are priced at ZPAV's own 2 zł a single (Paul, 23 Sep 2026)", () => {
+  // "We have to use 62,500 until anything changes." ZPAV's rules from 1 Jan
+  // 2025 print single levels in złoty only — Gold 125,000 zł, Platinum
+  // 250,000 zł, Diamond 1,000,000 zł — and no rate; its rules from 1 March 2017
+  // to the end of 2024 valued one single «o wartości 2 zł» and printed units
+  // beside złoty at exactly 2:1. Read on olis.pl/terms_oliw, which carries both.
+  const PL = CERT_THRESHOLDS.PL;
+
+  it("prices singles at ZPAV's printed złoty over 2 zł, and albums as before", () => {
+    expect(PL.plnPerSingle).toBe(2);
+    expect(PL.singleRawPln).toEqual({ gold: 125_000, platinum: 250_000, diamond: 1_000_000 });
+    for (const tier of ["gold", "platinum", "diamond"] as const)
+      expect(PL.single![tier], tier).toBe(PL.singleRawPln![tier]! / PL.plnPerSingle!);
+    expect(thresholdFor("PL", "single", "Gold")).toBe(62_500);
+    expect(thresholdFor("PL", "single", "Platinum")).toBe(125_000);
+    expect(thresholdFor("PL", "single", "Diamond")).toBe(500_000);
+    expect(thresholdFor("PL", "single", "Silver")).toBeNull();
+    expect(exclusionFor("PL", "single")).toBeNull();
+    expect(PL.singleExcluded).toBeUndefined();
+    // ZPAV prints 2× / 3× Platinum at 500,000 / 750,000 zł and 2× / 3× Diamond
+    // at 2,000,000 / 3,000,000 zł: exactly N × the level, as priced.
+    expect(unitsForCert({ c: "PL", level: "Platinum", x: 3 }, "single").units).toBe(750_000 / 2);
+    expect(unitsForCert({ c: "PL", level: "Diamond", x: 2 }, "single").units).toBe(2_000_000 / 2);
+    expect(thresholdFor("PL", "album", "Platinum")).toBe(30_000);
+  });
+
+  it("keeps the złoty out of `singleRaw`, which every reader takes to be streams", () => {
+    // /compare's "Streams-based bodies" and /methodology's "publish it in
+    // streams" both key on `singleRaw`; Poland in there would be named a
+    // streams body in two sentences.
+    expect(PL.singleRaw).toBeUndefined();
+  });
+
+  it("marks Polish SINGLE lines ¶ and a Polish album-only line not at all", () => {
+    expect(PL.historicFormat).toBe("single");
+    expect(PL.historic).toMatch(/2 zł/);
+    expect(PL.historic).toMatch(/125,000 zł/);
+    // Rema's Polish line opens on the album "Rave & Roses" and gains
+    // "Calm Down" after it: the ¶ is the LINE's, so it must still land.
+    const rema = priceArtist(bySlug("rema"), { includeNigeria: false, includeFeatures: true });
+    const pl = rema.byCountry.find((l) => l.country === "PL");
+    expect(pl?.units).toBe(30_000 + 500_000);
+    expect(pl?.historic).toBe(PL.historic);
+    const album = priceRelease(bySlug("rema"), "Rave & Roses", { includeNigeria: false, includeFeatures: true })!;
+    expect(album.byCountry.find((l) => l.country === "PL")?.historic).toBeUndefined();
+    const single = priceRelease(bySlug("rema"), "Calm Down", { includeNigeria: false, includeFeatures: true })!;
+    expect(single.byCountry.find((l) => l.country === "PL")?.historic).toBe(PL.historic);
+  });
+
+  it("counts every Polish plaque on the roster — none is left listed", () => {
+    for (const a of comparableArtists) {
+      const p = priceArtist(a, { includeNigeria: false, includeFeatures: true });
+      expect(p.listed.some((l) => l.country === "PL"), `${a.slug} lists PL`).toBe(false);
+      expect(p.byCountry.find((l) => l.country === "PL")?.notCounted, `${a.slug} PL`).toBeUndefined();
+    }
+    // Burna: "Dai Dai" Gold 62,500 + "We Pray" Platinum 125,000.
+    const burna = priceArtist(bySlug("burna-boy"), { includeNigeria: false, includeFeatures: true });
+    expect(burna.byCountry.find((l) => l.country === "PL")?.units).toBe(187_500);
+  });
+
+  it("One Dance is 1× Platinum in Poland, as ZPAV's register files it", () => {
+    // The 3× was Wikipedia-cited; ZPAV's register holds one Platinum row
+    // (11 Aug 2021) and no Gold or Diamond. See the note in afrobeats.ts.
+    const od = priceRelease(bySlug("wizkid"), "One Dance", { includeNigeria: false, includeFeatures: true })!;
+    const pl = od.byCountry.find((l) => l.country === "PL");
+    expect(pl?.top?.x).toBe(1);
+    expect(pl?.units).toBe(125_000);
   });
 });

@@ -86,7 +86,8 @@ describe("the one-side hint follows the featured switch", () => {
     // The 19× Platinum on "All Eyes on Me" (a feature) is in the default view,
     // and so are the six Swedish plaques since Sweden is priced (§).
     // 171: + Dai Dai GR Platinum (priced ¶ at IFPI's 2013 level, 20 Sep 2026), + Dai Dai SE Platinum (priced §, 20 Sep), + BE Gold (19 Sep), + City Boys PT Gold (18 Sep 2026)
-    expect(on).toContain("173 counted"); // + Dai Dai DE Gold, BVMI (read 23 Sep 2026); + Dai Dai CA 2× Platinum, Music Canada 21 Sep 2026
+    // 173: + Dai Dai DE Gold, BVMI (read 23 Sep 2026); + Dai Dai CA 2× Platinum, Music Canada 21 Sep 2026
+    expect(on).toContain("175 counted"); // + Dai Dai PL Gold and We Pray PL Platinum, Poland's singles priced at ZPAV's 2 zł (23 Sep 2026)
   });
 });
 
@@ -437,13 +438,19 @@ describe("the pair page derives its remaining typed figures", () => {
     const ts = Object.values(CERT_THRESHOLDS);
     for (const x of ts.filter((x) => x.assumed)) expect(card, `${x.code} assumed`).toContain(nameOf(x.code));
     for (const x of ts.filter((x) => x.singleExcluded && !x.albumExcluded)) expect(card, `${x.code} revenue`).toContain(nameOf(x.code));
+    // With no revenue-measured body left (Poland was priced on 23 Sep 2026)
+    // the loop above runs zero times, so hold the clause itself: rendered with
+    // an empty list it printed "…and marked §.  measure singles in revenue and
+    // Colombia publishes no thresholds." — a sentence with no subject.
+    if (!ts.some((x) => x.singleExcluded && !x.albumExcluded)) expect(card).not.toMatch(/measures? singles in revenue/);
     for (const x of ts.filter((x) => x.singleExcluded && x.albumExcluded)) expect(card, `${x.code} no threshold`).toContain(nameOf(x.code));
-    // ¶ — the historic-level bodies (Greece, from 20 Sep 2026), named in the
-    // card and marked; the clause sits before "never hidden" so the slice sees it.
+    // ¶ — the historic-level bodies (Greece, from 20 Sep 2026) and the
+    // historic-rate ones (Poland, 23 Sep 2026), named in the card and marked;
+    // the clauses sit before "never hidden" so the slice sees them.
     for (const x of ts.filter((x) => x.historic)) {
       expect(card, `${x.code} historic`).toContain(nameOf(x.code));
       expect(card).toContain("¶");
-      expect(card).toContain("June 2013");
+      expect(card).toContain(x.plnPerSingle ? `${x.plnPerSingle} zł a single` : "June 2013");
     }
     // Colombia is the one no-threshold body left, so the verb went singular.
     expect(card).not.toContain("Colombia publish no");
@@ -461,9 +468,10 @@ describe("the pair page derives its remaining typed figures", () => {
   it("the ¶ footnote renders where a Greek plaque is on screen, and nowhere else (20 Sep 2026)", async () => {
     // Burna Boy vs Wizkid: Greece is a contested priced row — Dai Dai Platinum
     // 6,000 against One Dance 3× Platinum 18,000 (†, the multiplier caveat) —
-    // so it is never folded and the ¶ block must show.
+    // so it is never folded and the ¶ block must show. (Its heading reads
+    // "Historic figure" since Poland joined ¶ on 23 Sep 2026.)
     const t = text(await html({ a: "burna-boy", b: "wizkid", all: "1" }));
-    expect(t).toContain("¶ Historic level");
+    expect(t).toContain("¶ Historic figure");
     expect(t).toContain("June 2013");
     // `text()` keeps entities, so match a fragment of the note with no apostrophe.
     expect(t).toContain("The body now certifies from its streaming Digital Singles chart and states no ratio");
@@ -485,12 +493,12 @@ describe("the pair page derives its remaining typed figures", () => {
     const foldedTable = folded.slice(folded.indexOf("Country by country"), folded.indexOf("How this is counted One plaque"));
     expect(foldedTable.length).toBeGreaterThan(20);
     expect(foldedTable).not.toContain("Greece GR");
-    expect(foldedTable).not.toContain("Historic level");
+    expect(foldedTable).not.toContain("Historic figure");
     expect(foldedTable).not.toContain("¶");
     const unfolded = text(await html({ a: "burna-boy", b: "davido", all: "1" }));
     const unfoldedTable = unfolded.slice(unfolded.indexOf("Country by country"), unfolded.indexOf("How this is counted One plaque"));
     expect(unfoldedTable).toContain("Greece GR");
-    expect(unfoldedTable).toContain("Historic level");
+    expect(unfoldedTable).toContain("Historic figure");
     expect(unfoldedTable).toContain("¶");
     // Greece is no longer in the ¹ list: it is priced, not listed.
     const note = t.slice(t.indexOf("¹ Not counted"), t.indexOf("Listed, never summed"));
@@ -502,7 +510,7 @@ describe("the pair page derives its remaining typed figures", () => {
     const none = text(await html({ a: "davido", b: "olamide", all: "1" }));
     const table = none.slice(none.indexOf("Country by country"), none.indexOf("How this is counted One plaque"));
     expect(table.length).toBeGreaterThan(20);
-    expect(table).not.toContain("Historic level");
+    expect(table).not.toContain("Historic figure");
     expect(table).not.toContain("¶");
   });
 
@@ -517,11 +525,16 @@ describe("the pair page derives its remaining typed figures", () => {
     const all = Object.values(CERT_THRESHOLDS);
     const priced = all.filter((c) => c.single !== null);
     const streams = priced.filter((c) => c.singleRaw);
-    const historic = priced.filter((c) => c.historic);
-    const sales = priced.length - streams.length - historic.length;
+    // Poland joined ¶ on 23 Sep 2026 as its own clause: its level is today's,
+    // in złoty, and its RATE is the historic figure — it is neither a
+    // sales-equivalent-units body nor a streams one.
+    const historic = priced.filter((c) => c.historic && !c.plnPerSingle);
+    const zloty = priced.filter((c) => c.plnPerSingle);
+    const sales = priced.length - streams.length - historic.length - zloty.length;
     expect(historic.map((c) => c.code)).toEqual(["GR"]);
-    for (const c of historic) expect(c.singleRaw, `${c.code} is ¶, not a streams body`).toBeUndefined();
-    expect(t).toContain(`${priced.length} can price a single: ${sales} publish the threshold in sales-equivalent units, one is priced at a historic level (¶), and ${streams.length} publish it in streams.`);
+    expect(zloty.map((c) => c.code)).toEqual(["PL"]);
+    for (const c of [...historic, ...zloty]) expect(c.singleRaw, `${c.code} is ¶, not a streams body`).toBeUndefined();
+    expect(t).toContain(`${priced.length} can price a single: ${sales} publish the threshold in sales-equivalent units, one is priced at a historic level (¶), one publishes it in złoty (¶), and ${streams.length} publish it in streams.`);
   });
 
   it("the ¹ footnote names the programme a Colombian plaque came from, and both sides' register dates print", async () => {
