@@ -31,10 +31,11 @@
 //     is why this is written as threshold(tier) * x rather than the Platinum
 //     shortcut that would have quietly priced it as a single Diamond.
 //
-//  3. WHAT CANNOT BE PRICED MUST BE COUNTED AND NAMED. 2 of the 1,220 plaques
+//  3. WHAT CANNOT BE PRICED MUST BE COUNTED AND NAMED. 2 of the 1,238 plaques
 //     sit in a country/format whose body publishes no usable threshold
 //     (recounted 23 Sep 2026, once Poland's singles were priced: Colombia 2;
-//     it was 10 with Poland's 8). Scoring them zero in silence penalises
+//     it was 10 with Poland's 8. The 18 plaques the 23 Sep register sweep
+//     added all price). Scoring them zero in silence penalises
 //     whoever holds more of them, so every total carries its own exclusion
 //     list.
 //
@@ -109,7 +110,7 @@ export interface ComparableArtist {
 
 /** Cover art for one of Burna's releases.
  *
- *  `certifications.ts` now carries its own `cover` for 81 of his 85 certified
+ *  `certifications.ts` now carries its own `cover` for 79 of his 93 certified
  *  releases; albums.ts and songs.ts remain as a fallback for the handful that
  *  already had Spotify art before the Deezer fill. Four releases have none on
  *  purpose — see the `cover` field's own note. Undefined is expected there. */

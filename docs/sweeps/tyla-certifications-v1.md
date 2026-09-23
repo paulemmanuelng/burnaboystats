@@ -2,7 +2,14 @@
 
 **Method:** identical to burnaboystats.com — a certification counts when it appears in the issuing body's own records; one plaque per title per country at its **current** tier (a 4× Platinum is one plaque, not four); lead and featured artist credits both count, writer/producer-only credits do not; Wikipedia and fan lists are candidate hints, never evidence. Registers that publish every tier step (Music Canada, BVMI, IFPI Switzerland, IFPI Danmark, FIMI, Promusicae, Pro-Música Brasil, Ultratop, NVPI, AMPROFON, RMNZ, ZPAV, IFPI Norge, IFPI Greece) were collapsed to the highest tier per title per country. Body-side sweep 15 Aug 2026; **gap-closing pass 16 Aug 2026** added the national registers never queried in the first pass plus a full TurnTable archive read. ✓ = personally read in the issuing body's own register; no tick = Wikipedia-cited only, because that body was not swept or could not be reached.
 
-## Total: **63 certifications** across 23 countries
+## Total: **64 certifications** across 23 countries
+
+> **23 Sep 2026 register sweep — Sweden, two records dated 18 Sep 2026** (63 → **64**; `docs/sweeps/sweep-2026-09-23.md`).
+> Both read at Ifpi Sverige's own record pages on `sys2.ifpi.se` — the host ifpi.se's Guld och Platina page links to — and byte-identical at `http://sys2.grammotex.se`:
+> - ***Water* — Guld → Platina** (an upgrade, so the count does not move): sart 12096186, `Artikel: USSM12305126 | TYLA - WATER | Ljudbärare: 3 - Download | Märke: FAX RECORDS/EPIC | Guld/Platina: Platina - cert.nr 11312 - 2026-09-18`. The Sverigetopplistan badge reads "Platina".
+> - ***Tyla* (album) — Guld** (new): sart 12429992, `Artikel: 19658876922 | TYLA - TYLA | Ljudbärare: 6 - CD | EAN-kod: 196588769221 | Märke: EPIC | Guld/Platina: Guld - cert.nr 11311 - 2026-09-18`. The Sverigetopplistan badge reads "Guld".
+>
+> Sweden is not a new country for her (Water was already Gold there).
 
 > **How the number moved: 65 claimed → 60 (first pass) → 62 (gap pass).**
 > The first pass *subtracted*: the fan/Wikipedia picture for Tyla was unusually accurate
@@ -17,7 +24,7 @@
 > **Water — TCSN Gold** (removed in the first pass on the strength of the live register
 > alone, now restored on register evidence) and **Dynamite — TCSN Gold**, credited
 > `Tyla & Wizkid` — the first and only register row anywhere that pairs Tyla with
-> another artist in this sweep family. Net: 60 + 2 = **62**; 19 Sep 2026: + Chanel 🇧🇪 Goud = **63**.
+> another artist in this sweep family. Net: 60 + 2 = **62**; 19 Sep 2026: + Chanel 🇧🇪 Goud = 63; 23 Sep 2026: + *Tyla* (album) 🇸🇪 Guld (Water 🇸🇪 Guld → Platina moves no count) = **64**.
 >
 > The gap pass also **converted the document's last two unticked rows into verified
 > ones**: Norway's register was found and read (Water Platinum, Tyla+ Gold), and
@@ -25,18 +32,18 @@
 > 62 entries below is now register-read.** Twelve further national registers were
 > queried for the first time and returned nothing — see Per-body coverage.
 
-### Albums — 9
+### Albums — 10
 | release | certifications |
 |---|---|
-| Tyla (2024) | 🇨🇦 Platinum ✓ · 🇧🇷 Platinum ✓ · 🇳🇱 Platinum ✓ · 🇳🇿 Platinum ✓ · 🇺🇸 Gold ✓ · 🇬🇧 Gold ✓ · 🇨🇭 Gold ✓ · 🇩🇰 Gold ✓ — **8** *(the 🇫🇷 Gold and 🇿🇦 Gold were REMOVED — see removals)* |
+| Tyla (2024) | 🇨🇦 Platinum ✓ · 🇧🇷 Platinum ✓ · 🇳🇱 Platinum ✓ · 🇳🇿 Platinum ✓ · 🇺🇸 Gold ✓ · 🇬🇧 Gold ✓ · 🇨🇭 Gold ✓ · 🇩🇰 Gold ✓ · 🇸🇪 Guld ✓ (cert.nr 11311, 18.09.2026, read 23.09.2026) — **9** *(the 🇫🇷 Gold and 🇿🇦 Gold were REMOVED — see removals)* |
 | Tyla + (deluxe, 2024) | 🇳🇴 Gold ✓ — **1** *(now register-read: IFPI Norge files it as `Tyla+`, the deluxe, not the standard album)* |
 
-*Albums subtotal: 8 + 1 = **9*** ✓
+*Albums subtotal: 9 + 1 = **10*** ✓
 
 ### Lead singles — 53
 | song | certifications |
 |---|---|
-| Water (2023) | 🇧🇷 2× Diamond ✓ · 🇫🇷 Diamond ✓ · 🇺🇸 4× Platinum ✓ · 🇨🇦 4× Platinum ✓ · 🇵🇹 4× Platinum ✓ · 🇦🇺 4× Platinum ✓ · 🇳🇿 4× Platinum ✓ · 🇬🇧 2× Platinum ✓ · 🇨🇭 2× Platinum ✓ · 🇭🇺 2× Platinum ✓ · 🇬🇷 2× Platinum ✓ · 🇦🇹 Platinum ✓ · 🇩🇰 Platinum ✓ · 🇪🇸 Platinum ✓ · 🇧🇪 Platinum ✓ · 🇳🇱 Platinum ✓ · 🇳🇴 Platinum ✓ *(new tick)* · 🇵🇱 Platinum ✓ *(new tick)* · 🇩🇪 Gold ✓ · 🇸🇪 Gold ✓ · 🇮🇹 Gold ✓ · 🇲🇽 Gold ✓ · 🇳🇬 Gold ✓ *(RESTORED)* — **23** *(the 🇿🇦 4× Platinum remains REMOVED)* |
+| Water (2023) | 🇧🇷 2× Diamond ✓ · 🇫🇷 Diamond ✓ · 🇺🇸 4× Platinum ✓ · 🇨🇦 4× Platinum ✓ · 🇵🇹 4× Platinum ✓ · 🇦🇺 4× Platinum ✓ · 🇳🇿 4× Platinum ✓ · 🇬🇧 2× Platinum ✓ · 🇨🇭 2× Platinum ✓ · 🇭🇺 2× Platinum ✓ · 🇬🇷 2× Platinum ✓ · 🇦🇹 Platinum ✓ · 🇩🇰 Platinum ✓ · 🇪🇸 Platinum ✓ · 🇧🇪 Platinum ✓ · 🇳🇱 Platinum ✓ · 🇳🇴 Platinum ✓ *(new tick)* · 🇵🇱 Platinum ✓ *(new tick)* · 🇸🇪 Platina ✓ (cert.nr 11312, 18.09.2026 — up from Guld; read 23.09.2026) · 🇩🇪 Gold ✓ · 🇮🇹 Gold ✓ · 🇲🇽 Gold ✓ · 🇳🇬 Gold ✓ *(RESTORED)* — **23** *(the 🇿🇦 4× Platinum remains REMOVED)* |
 | Push 2 Start (2024) | 🇺🇸 Platinum ✓ · 🇧🇷 Platinum ✓ · 🇳🇿 Platinum ✓ · 🇨🇦 Gold ✓ · 🇫🇷 Gold ✓ · 🇬🇷 Gold ✓ · 🇭🇺 Gold ✓ · 🇬🇧 Gold ✓ — **8** |
 | Chanel (2025) | 🇺🇸 Gold ✓ · 🇦🇺 Gold ✓ · 🇫🇷 Gold ✓ · 🇳🇿 Gold ✓ · 🇵🇹 Gold ✓ · 🇨🇭 Gold ✓ · 🇧🇪 Goud ✓ (10/08/2026, read 19 Sep 2026) · 🇬🇧 Silver ✓ — **8** *(the 🇿🇦 Platinum was never Tyla's — see removals)* |
 | Truth or Dare (2024) | 🇳🇿 Platinum ✓ · 🇺🇸 Gold ✓ · 🇧🇷 Gold ✓ · 🇨🇦 Gold ✓ · 🇵🇹 Gold ✓ · 🇬🇧 Silver ✓ — **6** |
@@ -55,17 +62,17 @@
 
 ### Tier split (arithmetic check)
 - **Diamond 2** — Water 🇧🇷 (2× Diamond) · Water 🇫🇷 (Diamond)
-- **Platinum tiers 24** — Water ×16 (US 4×, CA 4×, PT 4×, AU 4×, NZ 4×, UK 2×, CH 2×, HU 2×, GR 2×, AT, DK, ES, BE, NL, NO, PL) · Tyla album ×4 (CA, BR, NL, NZ) · Push 2 Start ×3 (US, BR, NZ) · Truth or Dare ×1 (NZ) → 16 + 4 + 3 + 1 = **24**
-- **Gold 34** — Water ×5 (DE, SE, IT, MX, **NG**) · Tyla album ×4 (US, UK, CH, DK) · Tyla + ×1 (NO) · Push 2 Start ×5 (CA, FR, GR, HU, UK) · Truth or Dare ×4 (US, BR, CA, PT) · Art ×2 (US, NZ) · Jump ×4 (US, BR, CA, NZ) · Chanel ×7 (US, AU, FR, NZ, PT, CH, **BE**) · **Dynamite ×1 (NG)** · Show Me Love ×1 (GR) → 5+4+1+5+4+2+4+7+1+1 = **34**
+- **Platinum tiers 25** — Water ×17 (US 4×, CA 4×, PT 4×, AU 4×, NZ 4×, UK 2×, CH 2×, HU 2×, GR 2×, AT, DK, ES, BE, NL, NO, PL, **SE**) · Tyla album ×4 (CA, BR, NL, NZ) · Push 2 Start ×3 (US, BR, NZ) · Truth or Dare ×1 (NZ) → 17 + 4 + 3 + 1 = **25**
+- **Gold 34** — Water ×4 (DE, IT, MX, **NG**) · Tyla album ×5 (US, UK, CH, DK, **SE**) · Tyla + ×1 (NO) · Push 2 Start ×5 (CA, FR, GR, HU, UK) · Truth or Dare ×4 (US, BR, CA, PT) · Art ×2 (US, NZ) · Jump ×4 (US, BR, CA, NZ) · Chanel ×7 (US, AU, FR, NZ, PT, CH, **BE**) · **Dynamite ×1 (NG)** · Show Me Love ×1 (GR) → 4+5+1+5+4+2+4+7+1+1 = **34**
 - **Silver 3** — Truth or Dare 🇬🇧 · Jump 🇬🇧 · Chanel 🇬🇧 (the UK is the only body in this sweep with a Silver tier that Tyla appears in; TCSN Nigeria also runs a Silver tier but holds no Tyla Silver row)
 
-2 + 24 + 34 + 3 = **63** ✓  ·  Sections: 9 albums + 53 lead + 1 featured = **63** ✓
+2 + 25 + 34 + 3 = **64** ✓  ·  Sections: 10 albums + 53 lead + 1 featured = **64** ✓
 
 ## Award events vs plaques
 
-This document counts **63 plaques** — one per title per country at its current highest tier, the burnaboystats.com convention that produces Burna Boy's 236. Fan trackers generally count **announcements** instead: every time a body publishes a new tier for a title, that is one more line on the tally. The two numbers are both defensible; they answer different questions. This section shows the arithmetic so nobody has to guess which convention a given figure came from.
+This document counts **64 plaques** — one per title per country at its current highest tier, the burnaboystats.com convention that produces Burna Boy's 236. Fan trackers generally count **announcements** instead: every time a body publishes a new tier for a title, that is one more line on the tally. The two numbers are both defensible; they answer different questions. This section shows the arithmetic so nobody has to guess which convention a given figure came from.
 
-**Documented award events: 79.** That is 63 plaques plus 16 additional announcements recorded on titles whose registers publish the full tier ladder:
+**Documented award events: 81.** That is 64 plaques plus 17 additional announcements recorded on titles whose registers publish the full tier ladder:
 
 | register | title | plaque (current tier) | announcements | extra beyond first |
 |---|---|---|---|---|
@@ -79,20 +86,21 @@ This document counts **63 plaques** — one per title per country at its current
 | IFPI Austria | Water | Platinum | 2 (Gold 2024 → Platin 05-08-2026) | +1 |
 | PROMUSICAE (Spain) | Water | Platinum | 2 (Gold 2024 wk15 → Platinum 2025 wk6) | +1 |
 | Ultratop (Belgium) | Water | Platinum | 2 (Goud 09-01-2024 → Platina 29-03-2024) | +1 |
-| — every other entry | — | — | 1 each (52 plaques) | 0 |
+| Ifpi Sverige (Sweden) | Water | Platinum | 2 (Guld → Platina 18-09-2026, cert.nr 11312) | +1 |
+| — every other entry | — | — | 1 each (53 plaques) | 0 |
 
-**63 + 16 = 79.**
+**64 + 17 = 81.**
 
-*Water* alone accounts for **23 plaques and at least 38 announcements**. That single ratio — 23 versus 38 — is the whole reconciliation in miniature: a tracker counting Canada's five rows and Brazil's four as nine separate certifications is not wrong about the register, it is using a different unit.
+*Water* alone accounts for **23 plaques and at least 39 announcements**. That single ratio — 23 versus 39 — is the whole reconciliation in miniature: a tracker counting Canada's five rows and Brazil's four as nine separate certifications is not wrong about the register, it is using a different unit.
 
-**78 is a floor, not a total, and the gap is on the announcement side only.** The plaque count of 62 is firm. The event count is understated for four documented reasons:
+**81 is a floor, not a total, and the gap is on the announcement side only.** The plaque count of 64 is firm. The event count is understated for four documented reasons:
 
 1. **RMNZ** returned "full tier histories" for all 7 New Zealand entries in the first pass but the steps were never enumerated into this document. Water is 4× Platinum there, so its true ladder is certainly longer than the 1 counted here.
 2. **RIAA, BPI, SNEP, AFP/Audiogest, IFPI Switzerland, FIMI, BVMI, NVPI, AMPROFON, MAHASZ and Sverigetopplistan** all publish dated rows, and several of Tyla's plaques with them are multi-tier (US 4× Platinum, Portugal 4× Platinum, UK and Switzerland 2× Platinum). Every one is counted at 1 here because the ladder was not transcribed. This is the single largest source of undercount.
 3. **ARIA is structurally incapable of a true count.** It publishes period snapshots, not a step-by-step ledger, so tier steps occurring inside one period collapse into one row. Its 2 is a documented floor by construction.
 4. **TCSN/TurnTable overwrites one row per title in place** rather than appending a dated row per tier. Both Nigerian entries read as 1 announcement each, but any upgrade between capture dates is invisible.
 
-**There is no published fan tally for Tyla to reconcile against**, unlike the "41 international certifications in 2026" figure circulating for Tems or the "113" for Wizkid. If one appears, the test is arithmetic: a number near **62** is counting plaques, a number near **78 or above** is counting announcements, and a number materially above ~95 is either counting the un-transcribed ladders above (legitimate, and this document should then be extended) or double-counting versions and remixes (not legitimate — see the *Water* remix and *Show Me Love* notes below).
+**There is no published fan tally for Tyla to reconcile against**, unlike the "41 international certifications in 2026" figure circulating for Tems or the "113" for Wizkid. If one appears, the test is arithmetic: a number near **64** is counting plaques, a number near **81 or above** is counting announcements, and a number materially above ~95 is either counting the un-transcribed ladders above (legitimate, and this document should then be extended) or double-counting versions and remixes (not legitimate — see the *Water* remix and *Show Me Love* notes below).
 
 ## Per-body coverage
 | body | status | result |
@@ -114,7 +122,7 @@ This document counts **63 plaques** — one per title per country at its current
 | ZPAV (Poland) | **swept ✓** — *was "unavailable"* (olis.pl "Oficjalna Lista Wyróżnień", authenticated `POST /api/search`) | **1 entry, now register-read**: Water — singiel — Gold 07-02-2024 → Platinum 05-06-2024, Sony Music PL. 2 announcements, 1 plaque. The first pass's dead end was correct but for the wrong reason: `bestsellery.zpav.pl` is **retired**, not geo-blocked (Apache 404 over HTTP, hard 403 over HTTPS with a mismatched cert), and the register moved to olis.pl. Register credits `Tyla` alone — no Travis Scott, so the remix adds no second plaque. |
 | BVMI (Germany) | **swept ✓** (musikindustrie.de POST form, all pages) | 1 entry — Water 1× Gold, 2025. Her only German certification; no album, no other single. |
 | IFPI Austria | **swept ✓** (ifpi.at FacetWP archive, 1990→) | 1 entry — Water, collapsed Gold (2024) → Platin (05.08.2026). Austria's *Show Me Love* 2-fach Platin is credited `WizTheMc & bees & honey`. |
-| GLF / IFPI Sverige | **swept ✓** (Sverigetopplistan badge register) | 1 entry — Water Guld. The album (#13) and Chanel (#2, her Swedish peak) are uncertified. Swedish certification is application-only at 6,000,000 streams for a Gold single. |
+| GLF / IFPI Sverige | **swept ✓** (Sverigetopplistan badge register; record pages on sys2.ifpi.se / sys2.grammotex.se, re-read 23 Sep 2026) | **2 entries** — Water **Platina** (cert.nr 11312, 18.09.2026 — up from the Guld read in August) and the album *Tyla* **Guld** (cert.nr 11311, 18.09.2026), both new on the register since the 15 Aug read. Chanel (#2, her Swedish peak) is still uncertified. Swedish certification is application-only at 6,000,000 streams for a Gold single. |
 | FIMI (Italy) | **swept ✓** (full dump, 2019–2026, both formats, 9,020 rows) | 1 entry — Water Oro, 2024 wk 20. No later tier step exists. |
 | PROMUSICAE (Spain) | **swept ✓** (all 4,395 artist strings enumerated) | 1 entry — Water, Gold (2024 wk 15) → Platinum (2025 wk 6). Zero Spanish album certifications. |
 | Ultratop / BRMA (Belgium) | **swept ✓** (1995–2026, both categories, both language sides, 128 pages; 2026 singles list re-read 19 Sep 2026 from Paul's browser — the site now sits behind a Cloudflare bot check) | 2 entries — Water, Goud 09/01/2024 → Platina 29/03/2024; **Chanel, Goud 10/08/2026** (added 19 Sep 2026). Belgium is one national list rendered in two languages; counted once. |
@@ -132,13 +140,13 @@ This document counts **63 plaques** — one per title per country at its current
 | CAPIF (Argentina) | **no public database** — *first queried in gap pass* | **0 entries.** The "Discos de Oro y Platino" database last served HTTP 200 on **29 Dec 2011** and 404s live today; its archived search form's year dropdowns stop at 2011 and its server-side backend is gone, so Wayback cannot be queried for later artists either. The modern site has no certification route (13 path probes, all 404) and its open WordPress REST API returns **0 hits** for Tyla and 0 for `platino`. Awards continue but are member-facing — CAPIF's own procedures document confirms lists are emailed to socios, with only the Top 10 published. **False-positive warning:** searching `oro` returns 12 hits, all "Gardel de Oro", an awards-show trophy, not a sales certification. |
 | ASINCOL (Colombia) | **no public database** — *first queried in gap pass* | **0 entries.** ASINCOL — the body Wikipedia's certification tables still name for Colombia — is **defunct since ~2008**; all its domains are dead with no DNS or HTTP response. ACINPRO took over as ISRC agency in 2022 but is a collecting society, not a certifying body, and publishes no register. Colombian "disco de oro" announcements are label-issued. **Trap:** Wikipedia's "List of music recording certifications" still lists ASINCOL thresholds with no indication the body no longer exists. |
 | UNIMPRO (Peru) | **no public database** — *first queried in gap pass* | **0 entries.** UNIMPRO is a royalty-collection society only; its WordPress search returns zero for `platino` and `galardon`, and its `/certificados-y-licencias/` page is about UNIMPRO's own institutional credentials, not artist awards. No Peruvian gold/platinum register exists. |
-| ČNS IFPI (Slovakia) | **no public database** — *first queried in gap pass* | **0 entries.** Slovakia has no standalone body — `ifpi.sk` refuses connections on 80 and 443 — and Slovak plaques are issued by ČNS IFPI in Prague under a separate SR ruleset. `ifpicr.cz/oceneni` contains **only six rules PDFs and no award list at all**, unchanged in Wayback back to May 2022. The current SR rules (effective 9 Mar 2026) confirm awards are request-based, emailed and privately certified, with **only two tiers** (Gold and Platinum — no multi-platinum, no Diamond) and a hard eligibility floor of releases from **1 Jan 2022 onward**. No Slovak plaque for anyone can ever carry `verified:true` from a public source. |
-| ČNS IFPI (Czech Republic) | **no public database** | The domain in the brief (`cnsifpi.cz`) is NXDOMAIN; the real body is ifpicr.cz, which publishes award *criteria* and never an award *list* — confirmed back to 2011 via the Wayback CDX index. Awards are request-based, Gold/Platinum only, and only titles released on or after 1 Jan 2022 are eligible. Recorded as structurally unavailable, **not** as swept-and-empty. |
+| ČNS IFPI (Slovakia) | **swept ✓ — 0 entries** — *corrected 23 Sep 2026 from "no public database"* | **0 entries, read.** ČNS IFPI prints the award as a badge in each row of its weekly SK Singles Digital Top 100 (`ifpicr.cz/hitparada/43`), and that badge is the register (it is how the site reads "Dai Dai" SK Platinum). Every SK issue since January 2022 was walked on 23 Sep 2026: *Water* charted in weeks 45/2023 to 3/2024 with no badge. A title awarded while off the chart would not show. The rest of this row is the gap-pass finding: Slovakia has no standalone body — `ifpi.sk` refuses connections on 80 and 443 — and Slovak plaques are issued by ČNS IFPI in Prague under a separate SR ruleset. `ifpicr.cz/oceneni` contains **only six rules PDFs and no award list at all**, unchanged in Wayback back to May 2022. The current SR rules (effective 9 Mar 2026) confirm awards are request-based, emailed and privately certified, with **only two tiers** (Gold and Platinum — no multi-platinum, no Diamond) and a hard eligibility floor of releases from **1 Jan 2022 onward**. No Slovak plaque for anyone can ever carry `verified:true` from a public source *(wrong — see the correction at the start of this row)*. |
+| ČNS IFPI (Czech Republic) | **swept ✓ — 0 entries** — *corrected 23 Sep 2026 from "no public database"* | **0 entries, read** — the CZ Singles Digital Top 100's chart-row badge (`ifpicr.cz/hitparada/30`) is the register, and no Tyla row carries one in any issue since January 2022; a title awarded off the chart would not show, and albums are never badged. The gap-pass finding follows: the domain in the brief (`cnsifpi.cz`) is NXDOMAIN; the real body is ifpicr.cz, which publishes award *criteria* and never an award *list* — confirmed back to 2011 via the Wayback CDX index. Awards are request-based, Gold/Platinum only, and only titles released on or after 1 Jan 2022 are eligible. Recorded as structurally unavailable, **not** as swept-and-empty *(superseded 23 Sep 2026: the chart badge is readable)*. |
 
 ## Verification notes — read before quoting
 
 - **Coverage, honestly stated.** **34 bodies have now been queried in their own records.** Twenty-two were read in the first pass (RIAA, BPI, SNEP, Music Canada, Pro-Música Brasil, RMNZ, AFP/Audiogest, IFPI Switzerland, IFPI Danmark, MAHASZ, NVPI, ARIA, IFPI Greece, BVMI, IFPI Austria, GLF/Sverigetopplistan, FIMI, PROMUSICAE, Ultratop, AMPROFON, RiSA and TCSN); the gap pass added twelve more (IFPI Norge, ZPAV, Musiikkituottajat, RIAS, PROFOVI/IFPI Chile, IRMA, RIM, IMI, Mü-Yap, HDU, CAPIF, ASINCOL, UNIMPRO and ČNS IFPI Slovakia) and re-read ARIA, IFPI Greece and TCSN to full depth. **Every one of the 62 entries in this document is now personally read off a register row — there are no Wikipedia-only entries left.** The two that carried no tick in the first pass (Poland ZPAV and Norway IFPI) were both found and verified.
-- **Twelve of the twelve newly-queried registers returned zero for Tyla, and eleven of those zeros carry no information.** Ireland, Malaysia, India, Turkey, Croatia, Argentina, Colombia, Peru, Slovakia and the Czech Republic publish **no certification register at all** — in most cases the register either never existed publicly or terminated years before Tyla's first release (Ireland 2013, Turkey 2009, Argentina 2011). Finland's register is frozen at 2015 and Singapore's at 2021. Only Singapore's is a genuine complete read of a published dataset, and even there the published window closes before *Water*. **None of these is a "confirmed zero", and none is a pending gap either** — re-running them will return the same result unless a body relaunches.
+- **Twelve of the twelve newly-queried registers returned zero for Tyla, and eleven of those zeros carry no information.** Ireland, Malaysia, India, Turkey, Croatia, Argentina, Colombia, Peru, Slovakia and the Czech Republic publish **no certification register at all** *(corrected 23 Sep 2026: Slovakia and the Czech Republic do — ČNS IFPI's weekly chart-row badge — and both were read, holding no Tyla plaque)* — in most cases the register either never existed publicly or terminated years before Tyla's first release (Ireland 2013, Turkey 2009, Argentina 2011). Finland's register is frozen at 2015 and Singapore's at 2021. Only Singapore's is a genuine complete read of a published dataset, and even there the published window closes before *Water*. **None of these is a "confirmed zero", and none is a pending gap either** — re-running them will return the same result unless a body relaunches.
 - **The restored Nigerian plaques, and the reversal that produced them.** The first pass removed *Water — TCSN Gold* on the reasoning that it "is not in the relaunched register", reading the live 500-row page. That reasoning was sound about the page and wrong about the register. TurnTable's live display is capped at 500 rows and cut off mid-Gold with **zero Silver rows served**, while its own archive holds up to 2,477. *Water (Tyla) — Gold* appears in three separate captures (12 Nov 2025, 28 Nov 2025, 21 Feb 2026) and *Dynamite (Tyla) — Gold*, credited `Tyla & Wizkid`, appears in the 21 Feb 2026 capture. Both are register rows, published by the register, and both are restored/added with ✓ and flagged **archive-only**. The lesson generalises beyond Tyla: across the six sweep artists the live register shows 98 plaques against an archive union of 201, and **51 of those 201 are Silver-tier rows that the live cap serves none of**.
   - Two counting traps that must be reapplied on any TCSN re-run or the tally inflates: the register renamed titles mid-life to add artist disambiguators (`Rush` and `Rush (Ayra Starr)` are one plaque), and `Platinum` / `Platinum_1` are the same tier across schema versions.
   - **Do not publish TCSN dates as award dates.** Every live row reads 2026-02-06 and the 2,477-row capture collapses onto six distinct dates — bulk re-dates applied at migration.

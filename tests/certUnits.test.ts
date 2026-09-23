@@ -597,7 +597,8 @@ describe("cover art", () => {
     // "B.D'or" was the third until 18 Sep 2026: the plaque is Burna Boy's own
     // "B. D'OR" ft. Wizkid (RETRACTIONS #12), which Deezer does carry.
     expect(without).toEqual([]);
-    expect(burna.releases.filter((r) => r.cover).length).toBe(85);
+    // 85 -> 93 on 23 Sep 2026: the eight new TCSN singles, all with a sleeve.
+    expect(burna.releases.filter((r) => r.cover).length).toBe(93);
   });
 
   it("serves one image size, so two sleeves never render at different scales", () => {
@@ -1005,4 +1006,52 @@ describe("Poland's singles are priced at ZPAV's own 2 zł a single (Paul, 23 Sep
     expect(pl?.top?.x).toBe(3);
     expect(pl?.units).toBe(3 * 125_000);
   });
+});
+
+// Paul, 23 Sep 2026: "Always ensure every new plaque is logged in the compare
+// page." Logged is not enough — each must be COUNTED, at a figure. These are
+// the twenty the 23 Sep 2026 register sweep applied (docs/sweeps/
+// sweep-2026-09-23.md), each held to its units at its own body's threshold.
+describe("the 23 Sep 2026 sweep's plaques are all priced", () => {
+  const SWEEP: [slug: string, title: string, format: CertFormat, country: string, level: string, units: number][] = [
+    ["tems", "Raindance", "single", "CZ", "Gold", 11_261],
+    ["tems", "Raindance", "single", "SK", "Platinum", 7_834],
+    ["tems", "Raindance", "single", "ZA", "Platinum", 40_000],
+    ["rema", "Calm Down", "single", "CZ", "Gold", 11_261],
+    ["rema", "Calm Down", "single", "SK", "Platinum", 7_834],
+    ["rema", "Smooth Criminal", "single", "NG", "Gold", 50_000],
+    ["tyla", "Water", "single", "SE", "Platinum", 120_000],
+    ["tyla", "Tyla", "album", "SE", "Gold", 15_000],
+    ["ayra-starr", "Many Roads", "single", "NG", "Silver", 25_000],
+    ["wizkid", "Boom", "single", "DK", "Platinum", 90_000],
+    ["burna-boy", "Ye", "single", "NG", "Gold", 50_000],
+    ["burna-boy", "No Panic", "single", "NG", "Gold", 50_000],
+    ["burna-boy", "Buy You Life", "single", "NG", "Gold", 50_000],
+    ["burna-boy", "28 Grams", "single", "NG", "Gold", 50_000],
+    ["burna-boy", "Born Winner", "single", "NG", "Gold", 50_000],
+    ["burna-boy", "No Sign of Weakness", "single", "NG", "Silver", 25_000],
+    ["burna-boy", "Change Your Mind", "single", "NG", "Silver", 25_000],
+    ["burna-boy", "Empty Chairs", "single", "NG", "Silver", 25_000],
+    ["burna-boy", "Sweet Love", "single", "NG", "Silver", 25_000],
+    ["burna-boy", "4 Kampé II", "single", "NG", "Silver", 25_000],
+  ];
+
+  it("lists twenty plaques, one per title per country", () => {
+    expect(SWEEP.length).toBe(20);
+    expect(new Set(SWEEP.map(([s, t, f, c]) => `${s}|${t}|${f}|${c}`)).size).toBe(20);
+  });
+
+  for (const [slug, title, format, country, level, units] of SWEEP) {
+    it(`${slug} — ${title} ${country} ${level}: ${units.toLocaleString("en-US")} units, counted`, () => {
+      const release = bySlug(slug).releases.find((r) => r.title === title && r.format === format);
+      expect(release, `${slug} has no ${format} "${title}"`).toBeTruthy();
+      const cert = release!.certs.find((c) => c.c === country);
+      expect(cert?.level, `${title} ${country}`).toBe(level);
+      expect(unitsForCert(cert!, format)).toEqual({ units, why: null });
+      // …and the engine sums it: nothing for this country and format lands in
+      // the unpriced list once Nigeria and features are both in.
+      const all = priceArtist(bySlug(slug), { includeNigeria: true, includeFeatures: true });
+      expect(all.excluded.filter((e) => e.country === country && e.format === format)).toEqual([]);
+    });
+  }
 });

@@ -8,9 +8,16 @@ import {
   tierOf,
   certHistory,
   intlCertHistory,
+  albums as certAlbums,
+  singles,
   type Release,
 } from "../app/data/certifications";
 import { matches, badgeWeight, byMostCertified, MARKET_WEIGHT } from "../app/lib/certs";
+import { albums as studioAlbums } from "../app/data/albums";
+import { albumCards } from "../app/lib/homeData";
+import { releasePageLinks, releasePathFor } from "../app/lib/releasePages";
+import { buildSearchDocs } from "../app/lib/buildSearchDocs";
+import { readFileSync } from "node:fs";
 
 describe("certification data integrity", () => {
   it("every cert references a known country code", () => {
@@ -64,9 +71,13 @@ describe("certification data integrity", () => {
   });
 
   it("matches the published headline figures", () => {
-    expect(totalAwards()).toBe(239); // + "Dai Dai" Gold in Germany (BVMI database, read 23 Sep 2026)
+    // 239 -> 248 and 85 -> 93 releases on 23 Sep 2026: TCSN's 21 Feb 2026
+    // capture holds nine plaques the live 500-row page cuts off — eight new
+    // singles (No Panic, Buy You Life, 28 Grams, Born Winner, No Sign of
+    // Weakness, Change Your Mind, Empty Chairs, Sweet Love) and "4 Kampé II" NG.
+    expect(totalAwards()).toBe(248);
     expect(countryCount).toBe(26);
-    expect(certifiedReleaseCount).toBe(85); // TaTaTa, Update, Love, Dem Dey join via TCSN
+    expect(certifiedReleaseCount).toBe(93); // TaTaTa, Update, Love, Dem Dey join via TCSN; + the eight above
   });
 });
 
@@ -95,7 +106,7 @@ describe("certHistory (certifications by year)", () => {
     ]);
   });
 
-  it("2026 logs 63 international certifications (71 events with Nigeria)", () => {
+  it("2026 logs 63 international certifications (81 events with Nigeria)", () => {
     // The by-year log is international-only: earlier years predate the TCSN
     // register, so Nigeria's 8 events would skew the comparison. They still
     // count in the totals. The log counts award EVENTS, so a Gold and a later
@@ -116,7 +127,10 @@ describe("certHistory (certifications by year)", () => {
     // 61st: "Dai Dai" Sweden Platinum — Grammotex cert.nr 11317, 18 Sep 2026, read 20 Sep.
     // 62nd: "Dai Dai" Canada 2× Platinum — Music Canada's database, 21 Sep 2026, read 22 Sep.
     // 63rd: "Dai Dai" Germany Gold — BVMI's Gold-/Platin-Datenbank, read 23 Sep 2026.
-    expect(certHistory.filter((e) => e.year === 2026).length).toBe(71);
+    // With Nigeria 71 -> 81 on 23 Sep 2026: the ten TCSN events of the Feb 2026
+    // batch (nine new plaques and Ye's Silver -> Gold), logged 2026 with no day.
+    // The international figure does not move.
+    expect(certHistory.filter((e) => e.year === 2026).length).toBe(81);
   });
 
   it("2025 has the published count of 29 certifications", () => {
@@ -300,5 +314,62 @@ describe("dated-log rows carry the release row's certifying body", () => {
         }
       }
     }
+  });
+});
+
+// "No Sign of Weakness" has been an album since 2025 and, since 23 Sep 2026, is
+// also a certified SINGLE — the title track holds a Nigerian Silver (TCSN id
+// 2247, format "Single"). Every join on the site that matches by title alone
+// would hand the song's plaque to the album: its page, its share card, its
+// homepage card, the ledger's link and the search index. The Nigeria sweep of
+// 18 Sep 2026 withheld the song's CHART row for exactly this reason.
+describe("No Sign of Weakness: the song and the album stay two releases", () => {
+  const NSOW = "No Sign of Weakness";
+
+  it("the plaque is the single's, and the album holds none", () => {
+    expect(singles.find((r) => r.title === NSOW)?.certs).toEqual([{ c: "NG", level: "Silver" }]);
+    expect(certAlbums.find((r) => r.title === NSOW)).toBeUndefined();
+    expect(studioAlbums.find((a) => a.title === NSOW)).toBeTruthy();
+  });
+
+  it("the album's homepage card carries no certification", () => {
+    expect(albumCards.find((a) => a.title === NSOW)?.certs).toBeNull();
+  });
+
+  it("the album page and its share card look up album plaques only", () => {
+    for (const f of ["app/music/albums/[album]/page.tsx", "app/music/albums/[album]/opengraph-image.tsx"]) {
+      const src = readFileSync(f, "utf8");
+      expect(src, f).not.toMatch(/allItems\.find/);
+      expect(src, f).toMatch(/certAlbums\.find\(/);
+    }
+  });
+
+  it("the ledger links the album row to the album page and the song row nowhere", () => {
+    const links = releasePageLinks();
+    expect(releasePathFor(links, NSOW, "album")).toBe("/music/albums/no-sign-of-weakness");
+    expect(releasePathFor(links, NSOW, "song")).toBeUndefined();
+    // A song with its own page still resolves as a song.
+    expect(releasePathFor(links, "Last Last", "song")).toMatch(/^\/music\//);
+  });
+
+  it("search keeps two records, and only the album's goes to the album page", () => {
+    const docs = buildSearchDocs().filter((d) => d.section === "Release" && d.title === NSOW);
+    expect(docs.map((d) => d.path).sort()).toEqual(["/certifications", "/music/albums/no-sign-of-weakness"]);
+    const album = docs.find((d) => d.path.startsWith("/music/albums/"))!;
+    const track = docs.find((d) => d.path === "/certifications")!;
+    expect(album.description).not.toMatch(/certification/);
+    expect(track.description).toMatch(/^The title track — 1 certification/);
+  });
+
+  it("the dated log carries the song's event as a single, not an album", () => {
+    const ev = certHistory.filter((e) => e.title === NSOW);
+    expect(ev).toEqual([{ title: NSOW, country: "NG", level: "Silver", year: 2026 }]);
+  });
+});
+
+describe("the dated log's corrections of 23 Sep 2026", () => {
+  it("logs Location's 2023 UK award as BPI's 4× Platinum, not a 4× Gold", () => {
+    const ev = certHistory.filter((e) => e.title === "Location" && e.country === "UK" && e.year === 2023);
+    expect(ev).toEqual([{ title: "Location", credit: "Dave ft. Burna Boy", country: "UK", level: "Platinum", x: 4, year: 2023 }]);
   });
 });

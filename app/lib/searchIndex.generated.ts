@@ -4341,9 +4341,9 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "28 Grams",
-    "path": "/records/charts",
+    "path": "/certifications",
     "section": "Release",
-    "description": "1 chart entry.",
+    "description": "1 certification · 1 chart entry.",
     "keywords": [
       "song",
       "release"
@@ -4352,9 +4352,9 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "4 Kampé II",
-    "path": "/records/charts",
+    "path": "/certifications",
     "section": "Release",
-    "description": "Joé Dwèt Filé ft. Burna Boy — 1 certification · 2 chart entries.",
+    "description": "Joé Dwèt Filé ft. Burna Boy — 2 certifications · 2 chart entries.",
     "keywords": [
       "fil",
       "burna",
@@ -4513,9 +4513,9 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Born Winner",
-    "path": "/records/charts",
+    "path": "/certifications",
     "section": "Release",
-    "description": "1 chart entry.",
+    "description": "1 certification · 1 chart entry.",
     "keywords": [
       "song",
       "release"
@@ -4535,9 +4535,9 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Buy You Life",
-    "path": "/records/charts",
+    "path": "/certifications",
     "section": "Release",
-    "description": "1 chart entry.",
+    "description": "1 certification · 1 chart entry.",
     "keywords": [
       "song",
       "release"
@@ -4546,9 +4546,9 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Change Your Mind",
-    "path": "/records/charts",
+    "path": "/certifications",
     "section": "Release",
-    "description": "feat. Shaboozey — 1 chart entry.",
+    "description": "feat. Shaboozey — 1 certification · 1 chart entry.",
     "keywords": [
       "feat",
       "shaboozey",
@@ -4742,9 +4742,9 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Empty Chairs",
-    "path": "/records/charts",
+    "path": "/certifications",
     "section": "Release",
-    "description": "feat. Mick Jagger — 1 chart entry.",
+    "description": "feat. Mick Jagger — 1 certification · 1 chart entry.",
     "keywords": [
       "feat",
       "mick",
@@ -5183,9 +5183,20 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "No Panic",
-    "path": "/records/charts",
+    "path": "/certifications",
     "section": "Release",
-    "description": "1 chart entry.",
+    "description": "1 certification · 1 chart entry.",
+    "keywords": [
+      "song",
+      "release"
+    ],
+    "generated": true
+  },
+  {
+    "title": "No Sign of Weakness",
+    "path": "/certifications",
+    "section": "Release",
+    "description": "The title track — 1 certification.",
     "keywords": [
       "song",
       "release"
@@ -5494,9 +5505,9 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Sweet Love",
-    "path": "/records/charts",
+    "path": "/certifications",
     "section": "Release",
-    "description": "1 chart entry.",
+    "description": "1 certification · 1 chart entry.",
     "keywords": [
       "song",
       "release"

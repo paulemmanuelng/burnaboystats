@@ -33,18 +33,22 @@ import { cars, totalValueUsd } from "../app/data/cars";
  */
 
 describe("handoff checklist — data integrity", () => {
-  it("counts 239 certifications across 26 countries", () => {
+  it("counts 248 certifications across 26 countries", () => {
     const certs = allItems.reduce((n, item) => n + item.certs.length, 0);
     const countries = new Set(allItems.flatMap((i) => i.certs.map((c) => c.c))).size;
 
-    expect(certs).toBe(239); // + "Dai Dai" Gold in Germany (BVMI database, read 23 Sep 2026)
+    // 239 -> 248 on 23 Sep 2026: nine Nigerian plaques in TCSN's own register,
+    // read in its 21 Feb 2026 capture below the live page's 500-row cap — eight
+    // new No Sign of Weakness-era singles and "4 Kampé II"'s NG Silver. "Ye" NG
+    // Silver -> Gold the same day is an upgrade and moves no total.
+    expect(certs).toBe(248);
     expect(countries).toBe(26); // Czechia joins
     // The page-facing helpers must agree with the raw reduce.
     expect(totalAwards()).toBe(certs);
     expect(certCountryCount).toBe(Object.keys(CERT_COUNTRIES).length);
   });
 
-  it("splits into 7 Diamond / 103 Platinum / 98 Gold / 31 Silver", () => {
+  it("splits into 7 Diamond / 103 Platinum / 103 Gold / 35 Silver", () => {
     // 6 Aug 2026: “Dai Dai” Portugal upgraded Gold → Platinum (AFP week-31 PDF).
     const byLevel = (level: string) =>
       allItems.reduce((n, i) => n + i.certs.filter((c) => c.level === level).length, 0);
@@ -68,11 +72,15 @@ describe("handoff checklist — data integrity", () => {
     // Gold — a downgrade back to the tier the snapshot originally held, before
     // a typed 2025 event list bumped it on 1 Jul 2026. Total unchanged.
     expect(byLevel("Platinum")).toBe(103); // + Dai Dai CA, + Dai Dai SE, + Dai Dai AT, − Ginger CH, + Dai Dai GR
-    expect(byLevel("Gold")).toBe(98); // + Dai Dai DE, + Dai Dai BE, + City Boys PT, + "Dai Dai" in Poland (ZPAV), + Ginger CH, − Dai Dai GR, − My Oasis UK
-    expect(byLevel("Silver")).toBe(31); // On the Low NG left this tier for Gold; My Oasis UK came back to it
+    // 23 Sep 2026 (TCSN, 21 Feb 2026 capture): Gold 98 -> 103 — No Panic, Buy
+    // You Life, 28 Grams and Born Winner new, "Ye" NG up from Silver. Silver
+    // 31 -> 35 — No Sign of Weakness (the song), Change Your Mind, Empty
+    // Chairs, Sweet Love and 4 Kampé II new, less Ye's Silver.
+    expect(byLevel("Gold")).toBe(103); // + 4 NG Golds, + Ye NG, + Dai Dai DE, + Dai Dai BE, + City Boys PT, + "Dai Dai" in Poland (ZPAV), + Ginger CH, − Dai Dai GR, − My Oasis UK
+    expect(byLevel("Silver")).toBe(35); // + 5 NG Silvers, − Ye NG; On the Low NG left this tier for Gold; My Oasis UK came back to it
 
     const sum = byLevel("Diamond") + byLevel("Platinum") + byLevel("Gold") + byLevel("Silver");
-    expect(sum).toBe(239);
+    expect(sum).toBe(248);
   });
 
   // A test NAME is not an assertion, which is how this one came to read "280

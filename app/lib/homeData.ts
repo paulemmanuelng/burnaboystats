@@ -286,7 +286,9 @@ export const albumCards = [...studioAlbums]
     const best = rec
       ? [...rec.entries].filter((e) => e.c !== "GLB" && e.c !== "GLBX").sort((x, y) => x.peak - y.peak)[0]
       : undefined;
-    const cert = allItems.find((i) => sameTitle(i.title, a.title));
+    // The album's OWN plaques: "No Sign of Weakness" the title track is a
+    // certified single, and a search of every release would hand it to the card.
+    const cert = certAlbums.find((i) => sameTitle(i.title, a.title));
     return {
       title: a.title,
       year: a.year,

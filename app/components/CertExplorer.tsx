@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import styles from "../certifications/certifications.module.css";
 import { tierOf, type Cert, type Country, type Release } from "../data/certifications";
 import { matches, badgeWeight, byMostCertified } from "../lib/certs";
-import { releasePathFor } from "../lib/releasePages";
+import { releasePathFor, type ReleaseKind } from "../lib/releasePages";
 import { coverFor } from "../lib/covers";
 import { spotifyImage } from "../lib/spotifyImage";
 import { track } from "../lib/analytics";
@@ -56,6 +56,7 @@ function Badge({ cert, countries, dim }: { cert: Cert; countries: Countries; dim
 
 function CertCard({
   item,
+  kind,
   countries,
   country,
   tier,
@@ -63,6 +64,9 @@ function CertCard({
   links,
 }: {
   item: Release;
+  /** Which page family the row may link into — an album row never lands on a
+   *  song page, nor a single on an album page (lib/releasePages). */
+  kind: ReleaseKind;
   countries: Countries;
   country: string | null;
   tier: string | null;
@@ -84,10 +88,10 @@ function CertCard({
         <span className={styles.certText}>
           {/* A row was a dead end: the best writing on the site lives on the
               song and album pages, and nothing here pointed at it. Linked only
-              where a page exists — 13 of the 85 certified titles — so the rest
+              where a page exists — 13 of the 93 certified titles — so the rest
               stay plain text rather than becoming links that go nowhere. */}
-          {releasePathFor(links, item.title) ? (
-            <Link href={releasePathFor(links, item.title)!} className={styles.certTitleLink}>
+          {releasePathFor(links, item.title, kind) ? (
+            <Link href={releasePathFor(links, item.title, kind)!} className={styles.certTitleLink}>
               {item.title}
             </Link>
           ) : (
@@ -329,7 +333,7 @@ export default function CertExplorer({
                   </div>
                   <div className={styles.groupList}>
                     {g.items.map((it) => (
-                      <CertCard key={it.title} item={it} countries={countries} country={country} tier={tier} covers={covers} links={links} />
+                      <CertCard key={it.title} item={it} kind={g.label === "Albums" ? "album" : "song"} countries={countries} country={country} tier={tier} covers={covers} links={links} />
                     ))}
                   </div>
                 </div>
