@@ -143,6 +143,9 @@ export const SEGMENT_LABELS: Record<string, string> = {
   music: "Music",
   certifications: "Certifications",
   compare: "Compare",
+  // /compare/in/<country> — "in" is a preposition in the URL and a section in
+  // the trail: Compare / By country / Canada.
+  in: "By country",
   records: "Career Records",
   "by-the-numbers": "By the Numbers",
   visualized: "Visualized",

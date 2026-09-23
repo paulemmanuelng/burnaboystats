@@ -841,3 +841,318 @@
 .moreToggle:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-radius: 999px; }
 .more[open] > .moreToggle { margin-bottom: 8px; }
 .more[open] .whenClosed, .more:not([open]) .whenOpen { display: none; }
+
+/* ── by country: one market, every artist ─────────────────────
+ *
+ * The country boards reuse this page's whole vocabulary — the tier chips, the
+ * units column, the footnote marks, the mode pill — and add a table of their
+ * own rather than borrowing .table, whose phone grid is built for the
+ * two-sides comparison (78px + 1fr + 1fr) and would put a four-column board
+ * into three columns.
+ */
+.featuredAside {
+  font-size: var(--type-small);
+  line-height: var(--type-small-lh);
+  color: var(--text-muted);
+  margin: 14px 0 0;
+}
+
+.cbIndexHead { margin-bottom: 18px; }
+.cbIndexTitle {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+  margin: 0 0 8px;
+}
+.cbIndexLead {
+  font-size: var(--type-small);
+  line-height: var(--type-small-lh);
+  color: var(--text-muted);
+  max-width: 62ch;
+  margin: 0;
+}
+.cbWrap { overflow-x: auto; margin-bottom: 20px; }
+.cbTable { width: 100%; border-collapse: collapse; }
+.cbTable th {
+  text-align: left;
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--rule);
+  white-space: nowrap;
+}
+.cbTable td {
+  padding: 13px 14px;
+  border-bottom: 1px solid var(--rule-soft);
+  vertical-align: middle;
+}
+.cbTable th.thNum, .cbTable td.tdNum { text-align: right; }
+.cbTable tr:hover td { background: var(--bg-raised); }
+
+.cbHeadMain { min-width: 0; }
+.cbNameCell, .cbMetaCell { min-width: 0; }
+.cbCountryLink { display: inline-flex; align-items: center; gap: 10px; min-height: 24px; }
+.cbCountryName { font-size: var(--type-small); }
+.cbCoverage {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-caption);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.cbUnitsCell { white-space: nowrap; }
+.cbFoot {
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
+  color: var(--text-muted);
+  margin: 0 0 34px;
+}
+
+/* the ranked board */
+.cbRankCell { width: 34px; }
+.cbRank {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-caption);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-muted);
+}
+.cbArtistCell { min-width: 0; }
+.cbArtistLink { display: inline-flex; align-items: center; gap: 11px; min-width: 0; }
+.cbFace {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--bg-raised);
+  flex: none;
+  display: inline-block;
+}
+.cbArtistName { font-size: var(--type-small); }
+.cbPlaqueCell { white-space: nowrap; }
+.cbTopTitle { text-transform: none; letter-spacing: 0; font-family: inherit; }
+.cbPlaqueCount {
+  display: block;
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+.cbBar {
+  display: block;
+  height: 4px;
+  background: var(--bg-raised);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 7px;
+  min-width: 96px;
+}
+.cbBarFill { display: block; height: 100%; background: var(--text); }
+
+/* the chosen country's headline + its threshold card */
+.cbHead {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: 28px;
+  align-items: start;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--rule-soft);
+  margin-bottom: 26px;
+}
+.cbCountryLine { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin: 0 0 12px; }
+.cbBigFlag { font-size: 24px; line-height: 1; }
+.cbHeadName {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+}
+.cbHeadBody {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-caption);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.cbChange {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 6px 13px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.cbChange:hover { background: var(--bg-raised); color: var(--text); }
+.cbFigureLabel {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 0 4px;
+}
+.cbFigure {
+  font-family: var(--font-anton), var(--font-display), sans-serif;
+  font-size: clamp(34px, 6.4vw, 72px);
+  line-height: 0.95;
+  font-variant-numeric: tabular-nums;
+  margin: 0 0 8px;
+  overflow-wrap: anywhere;
+}
+.cbFigureMeta {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-caption);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0;
+}
+.cbThresholds {
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 16px 18px;
+  display: grid;
+  gap: 10px;
+  justify-items: start;
+}
+.cbThHead {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+  margin: 0;
+}
+.cbThList { display: grid; gap: 8px; margin: 0; width: 100%; }
+.cbThRow { display: grid; grid-template-columns: 62px minmax(0, 1fr); gap: 10px; align-items: baseline; }
+.cbThRow dt {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.cbThRow dd {
+  margin: 0;
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
+  font-variant-numeric: tabular-nums;
+}
+.cbThNote {
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
+  color: var(--text-muted);
+  margin: 0;
+}
+.cbThNote:empty { display: none; }
+.cbRegister { color: var(--gold); font-size: var(--type-caption); }
+
+/* the biggest plaques in this market */
+.cbBiggest { margin-bottom: 28px; }
+.cbSectionHead {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+  margin: 0 0 12px;
+  padding-top: 22px;
+  border-top: 1px solid var(--rule);
+}
+.cbPlaqueList { list-style: none; margin: 0; padding: 0; display: grid; }
+.cbPlaqueRow {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr) auto auto;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.cbArt { width: 36px; height: 36px; border-radius: 3px; object-fit: cover; background: var(--bg-raised); display: block; }
+.cbPlaqueTitle { font-size: var(--type-small); min-width: 0; display: grid; gap: 2px; }
+.cbPlaqueBy {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+@media (max-width: 760px) {
+  /* Same treatment the comparison table gets: the markup stays a table —
+     headers, scopes and roles intact — and only the display changes, because a
+     four-column board's min-content runs past a 343px screen. The rank rides
+     in the name row rather than taking a column of its own. */
+  .cbWrap { overflow: visible; }
+  .cbTable, .cbTable thead, .cbTable tbody { display: block; }
+  .cbTable tr {
+    display: grid;
+    gap: 6px 10px;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .cbTable thead tr { padding: 0 0 8px; border-bottom: 2px solid var(--rule); }
+  /* A header naming a cell that has moved under the name would label the wrong
+     column, so it goes off screen — absolutely, which also takes it out of the
+     grid so the remaining headers land over the cells they name. Not
+     display:none: a screen reader still reads the table's own headers. */
+  .cbIndexTable thead th:nth-child(2),
+  .cbBoardTable thead th:nth-child(3) {
+    position: absolute;
+    left: 0;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+  .cbTable th, .cbTable td { display: block; padding: 0; border-bottom: 0; min-width: 0; }
+  .cbTable th.thNum, .cbTable td.tdNum { text-align: right; }
+  .cbTable tr:hover td { background: transparent; }
+  /* Index rows: country then units, the coverage line full-width beneath.
+     Placed explicitly, all of it: a cell that spans pushes every auto-placed
+     cell after it onto a row of its own, and the units landed under the
+     coverage line in the country column, left-aligned. */
+  .cbIndexTable tr { grid-template-columns: minmax(0, 1fr) auto; }
+  .cbIndexTable .cbNameCell { grid-area: 1 / 1; }
+  .cbIndexTable .cbUnitsCell { grid-area: 1 / 2; align-self: start; }
+  .cbIndexTable .cbMetaCell { grid-area: 2 / 1 / auto / -1; }
+  /* Board rows: rank, artist and units on one line, the plaque under them. */
+  .cbBoardTable tr { grid-template-columns: 20px minmax(0, 1fr) auto; }
+  .cbRankCell { width: auto; }
+  .cbBoardTable .cbRankCell { grid-area: 1 / 1; }
+  .cbBoardTable .cbArtistCell { grid-area: 1 / 2; }
+  .cbBoardTable .cbUnitsCell { grid-area: 1 / 3; align-self: start; }
+  .cbBoardTable .cbPlaqueCell { grid-area: 2 / 2 / auto / -1; white-space: normal; }
+  .cbPlaqueCount { margin-top: 2px; }
+  .cbBar { min-width: 0; width: 84px; margin-left: auto; }
+  .cbCountryName { font-size: var(--type-small); }
+
+  .cbHead { grid-template-columns: 1fr; gap: 18px; padding-bottom: 18px; }
+  .cbFigure { font-size: 40px; }
+  .cbChange { width: 44px; height: 44px; min-height: 44px; padding: 0; justify-content: center; border-radius: 50%; }
+  .cbChangeText { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .cbThresholds { padding: 12px 14px; background: var(--bg-soft); border-color: var(--line); border-radius: 0; }
+  .cbThRow { grid-template-columns: 54px minmax(0, 1fr); }
+  .cbPlaqueRow { grid-template-columns: 36px minmax(0, 1fr) auto; row-gap: 6px; }
+  /* The units drop under the title rather than squeezing a fourth column. */
+  .cbPlaqueRow .units { grid-column: 2 / -1; text-align: right; }
+}

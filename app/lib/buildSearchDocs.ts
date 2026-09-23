@@ -25,6 +25,7 @@ import { albumPages } from "../data/albumPages";
 import { garage } from "../data/cars";
 import { titleKey } from "./titleKey";
 import { allPairs, pairSlug } from "./comparePairs";
+import { certCountryCodes, countrySlug, priceCountry } from "./certCountry";
 import type { SearchDoc } from "./searchIndex";
 
 export function buildSearchDocs(): SearchDoc[] {
@@ -161,6 +162,29 @@ export function buildSearchDocs(): SearchDoc[] {
       section: "Compare",
       description: `${x.name} against ${y.name} by certified units — every plaque priced at its own body's threshold, country by country.`,
       keywords: [x.name.toLowerCase(), y.name.toLowerCase(), "vs", "versus", "compare", "certified units", "head to head", "who has more"],
+    });
+  }
+
+  // ── Certified units, market by market ───────────────────────────────────
+  // "certified units in canada" found nothing: the country docs above point at
+  // the CHART table, which is a different question about the same place.
+  for (const code of certCountryCodes()) {
+    const board = priceCountry(code);
+    add({
+      title: `Certified units in ${board.name}`,
+      path: `/compare/in/${countrySlug(code)}`,
+      section: "Compare",
+      description: `Every Afrobeats plaque awarded in ${board.name}, priced at ${board.body}'s own thresholds and ranked by artist.`,
+      keywords: [
+        board.name.toLowerCase(),
+        code.toLowerCase(),
+        board.body.toLowerCase(),
+        "certified units",
+        "certifications",
+        `certifications in ${board.name.toLowerCase()}`,
+        "plaques",
+        "by country",
+      ],
     });
   }
 
