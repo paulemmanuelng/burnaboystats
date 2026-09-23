@@ -14,7 +14,7 @@ import {
   type CountryPlaque,
   type CountryProgram,
 } from "../lib/certCountry";
-import { CERT_PROGRAMS, type TierUnits } from "../data/certThresholds";
+import { CERT_PROGRAMS, type CertFormat, type TierUnits } from "../data/certThresholds";
 
 /**
  * /compare in COUNTRY mode — one market, every artist, ranked by the units
@@ -278,6 +278,8 @@ export function CountryBoardView({
   // priced as N × Platinum". It is only a caveat where an N× award is actually
   // on the board — the Czech card carried it above a single Gold.
   const multiplied = board.programs.some((x) => x.lines.some((l) => l.plaqueList.some((p) => p.x > 1)));
+  const onBoard = (format?: CertFormat) =>
+    !format || board.programs.some((x) => x.lines.some((l) => l.plaqueList.some((p) => p.format === format)));
   const levelLists = board.programs.map((prog) => (
     <dl className={styles.cbThList} key={prog.name}>
       {board.programs.length > 1 && <p className={styles.cbThProgram}>{prog.name}</p>}
@@ -346,11 +348,11 @@ export function CountryBoardView({
               paragraphs of register provenance. */}
           {levelLists}
           <p className={styles.cbThNote}>
-            {t?.vintage ? <><span className={styles.mark}>‡</span> {t.vintage}{" "}</> : null}
-            {t?.assumed ? <><span className={styles.mark}>§</span> {t.assumed}{" "}</> : null}
-            {/* A format-scoped ¶ (Poland's singles) prints only where that format
-                is on the board. */}
-            {t?.historic && (!t.historicFormat || board.programs.some((x) => x.lines.some((l) => l.plaqueList.some((p) => p.format === t.historicFormat))))
+            {/* A format-scoped note — Poland's ¶, and the singles-only ‡ and §
+                (23 Sep 2026) — prints only where that format is on the board. */}
+            {t?.vintage && onBoard(t.vintageFormat) ? <><span className={styles.mark}>‡</span> {t.vintage}{" "}</> : null}
+            {t?.assumed && onBoard(t.assumedFormat) ? <><span className={styles.mark}>§</span> {t.assumed}{" "}</> : null}
+            {t?.historic && onBoard(t.historicFormat)
               ? <><span className={styles.mark}>¶</span> {t.historic}{" "}</>
               : null}
             {t?.caveat && multiplied ? <><span className={styles.mark}>†</span> {t.caveat}{" "}</> : null}

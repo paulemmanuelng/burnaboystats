@@ -174,6 +174,10 @@ export interface CountryThresholds {
    *  albums are units at the level ZPAV prints today, so an album-only Polish
    *  line carries no ¶. */
   historicFormat?: CertFormat;
+  /** The one format `vintage` speaks to, where it is not both. */
+  vintageFormat?: CertFormat;
+  /** The one format `assumed` speaks to, where it is not both. */
+  assumedFormat?: CertFormat;
   /** What the body PRINTED where it sets a format's levels in złoty (ZPAV
    *  singles, since 1 Jan 2025). Kept out of `singleRaw` on purpose: every
    *  reader of `singleRaw` takes it to be STREAMS (the /compare method card's
@@ -263,6 +267,7 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
   },
   DE: {
     code: "DE",
+    vintageFormat: "single",
     caveat:
       "BVMI’s ladder is NOT linear — it runs 1x Gold, 1x Platin, 3x Gold, 2x Platin, 5x Gold, skipping the even Gold multiples because they collide with Platinum. Multiples are priced here as N × that tier’s own threshold.",
     body: "BVMI (Bundesverband Musikindustrie e.V.)",
@@ -285,6 +290,7 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
   },
   ES: {
     code: "ES",
+    vintageFormat: "single",
     caveat:
       "Promusicae publishes Oro and Platino thresholds only and never states the arithmetic for a multiple. An N× award is priced here as N × Platinum.",
     body: "Promusicae (Productores de Música de España), publishing through its own portal El Portal de Música (EPDM)",
@@ -297,6 +303,7 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
   },
   FR: {
     code: "FR",
+    vintageFormat: "single",
     body: "SNEP — Syndicat National de l'Édition Phonographique",
     sourceUrl: "https://snepmusique.com/les-certifications/a-propos-des-certifications/",
     vintage:
@@ -340,6 +347,7 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
   },
   IT: {
     code: "IT",
+    vintageFormat: "single",
     body: "FIMI (Federazione Industria Musicale Italiana), with sales measurement by NIQ (formerly GfK) — 'Dal gennaio 2009 FIMI in collaborazione con NIQ … ufficializza le certificazioni di vendita di ogni singola registrazione musicale pubblicata e venduta in Italia.'",
     sourceUrl: "https://www.fimi.it/top-of-the-music/certificazioni/",
     vintage:
@@ -350,6 +358,7 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
   },
   MX: {
     code: "MX",
+    assumedFormat: "single",
     body: "AMPROFON — Asociación Mexicana de Productores de Fonogramas y Videogramas",
     sourceUrl: "https://amprofon.com.mx/es/media/documentos/antecedentes_criterios_certificaciones.pdf",
     vintage:
@@ -381,6 +390,7 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
   },
   NL: {
     code: "NL",
+    vintageFormat: "single",
     caveat:
       "NVPI abolished Meervoudig Platina on 1 January 2024 and replaced it with Diamant, so no multiplier rule is in force today. A pre-2024 N× Platina is priced here as N × Platinum.",
     body: "NVPI (Nederlandse Vereniging van Producenten en Importeurs van beeld- en geluidsdragers) — NVPI Muziek/Audio, which runs the official certification register at goudplatina.nl",
@@ -461,6 +471,7 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
   },
   PT: {
     code: "PT",
+    vintageFormat: "single",
     body: "Audiogest (issuer of the galardões under the AFP/Audiogest TOP regime; AFP – Associação Fonográfica Portuguesa has no live website)",
     sourceUrl: "https://audiogest.pt/documents/files/Regulamento%20_%20TOP%20e%20Galard%C3%A3o_novas%20altera%C3%A7%C3%B5es%20_%202025%281%29.pdf",
     vintage:
@@ -471,6 +482,8 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
   },
   SE: {
     code: "SE",
+    assumedFormat: "single",
+    vintageFormat: "single",
     body: "Ifpi Sverige (the former GLF, Grammofonleverantörernas förening) — 'Guld- och Platinacertifikat delas ut av Ifpi Sverige.'",
     sourceUrl: "https://www.ifpi.se/musikbolag/guld-och-platina/",
     // Songs: «Låt (enbart streams) 6 000 000 / 12 000 000» since 1 January 2024
@@ -577,6 +590,18 @@ export function historicFor(code: string, format: CertFormat): string | undefine
   const c = CERT_THRESHOLDS[code];
   if (!c?.historic) return undefined;
   return !c.historicFormat || c.historicFormat === format ? c.historic : undefined;
+}
+
+export function vintageFor(code: string, format: CertFormat): string | undefined {
+  const c = CERT_THRESHOLDS[code];
+  if (!c?.vintage) return undefined;
+  return !c.vintageFormat || c.vintageFormat === format ? c.vintage : undefined;
+}
+
+export function assumedFor(code: string, format: CertFormat): string | undefined {
+  const c = CERT_THRESHOLDS[code];
+  if (!c?.assumed) return undefined;
+  return !c.assumedFormat || c.assumedFormat === format ? c.assumed : undefined;
 }
 
 /** Countries whose plaques can be priced at all, for a given format. */
