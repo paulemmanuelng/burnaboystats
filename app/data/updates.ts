@@ -47,6 +47,13 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-09-23",
+    category: "Certifications",
+    text: "“Dai Dai” is Gold in Germany — BVMI's own database lists Shakira & Burna Boy's single at 1x Gold, 300,000 units. A seventeenth country for the song, and Burna Boy's 239th plaque.",
+    href: "/dai-dai",
+    big: true,
+  },
+  {
+    date: "2026-09-23",
     category: "Lifestyle",
     // Price: the $700,000 the car's page states (Paul, 23 Sep 2026: that
     // figure only). The count and total are the garage's own, interpolated.

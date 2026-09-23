@@ -261,9 +261,10 @@
 - Dai Dai [Shakira & Burna Boy] — Gold
 - Jerusalema (Remix) [Master KG, Nomcebo & Burna Boy] — Platinum x4
 
-### DE — BVMI (2)
+### DE — BVMI (3)
 - Location [Dave ft. Burna Boy] — Gold
 - Jerusalema (Remix) [Master KG, Nomcebo & Burna Boy] — Platinum
+- Dai Dai [Shakira & Burna Boy] — Gold (BVMI Gold-/Platin-Datenbank, "1x Gold", Sony Music Entertainment Germany GmbH / Epic; read 23 Sep 2026)
 
 ### CO — Sony Music Colombia (1)
 - Dai Dai [Shakira & Burna Boy] — Gold

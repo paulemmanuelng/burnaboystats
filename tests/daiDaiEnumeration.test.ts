@@ -35,6 +35,7 @@ const NAMES: Record<string, string[]> = {
   BE: ["Belgium", "Bélgica"],
   SE: ["Sweden", "Suecia"],
   CA: ["Canada", "Canadá"],
+  DE: ["Germany", "Alemania"],
 };
 
 /** Files that carry a hand-written enumeration, and the marker that finds one. */

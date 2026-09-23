@@ -213,6 +213,12 @@ export const singles: Release[] = [
     // Sony Music Latin / Sony Music Entertainment Canada Inc." — the only row for
     // the title, so it went straight to 2× (160,000 units at the body's levels).
     { c: "CA", level: "Platinum", x: 2 },
+    // BVMI's own Gold-/Platin-Datenbank, searched by title on 23 Sep 2026
+    // (musikindustrie.de …/datenbank/?action=suche&strTitel=Dai+Dai): "Shakira &
+    // Burna Boy | Dai Dai | 2026 | Single | 1x Gold | Sony Music Entertainment
+    // Germany GmbH | Epic" — one row, and the credit matches. A German single's
+    // Gold is 300,000 units since 30 June 2023.
+    { c: "DE", level: "Gold" },
   ] },
   { title: "Last Last", year: 2022, certs: [
     { c: "CA", level: "Platinum", x: 4 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum", x: 2 },
@@ -886,6 +892,10 @@ export const certHistory: CertEvent[] = [
   // Sony Music Entertainment Canada Inc." One row, straight to 2×. Sixteenth
   // country for the song.
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "CA", level: "Platinum", x: 2, year: 2026 },
+  // 23 Sep 2026 — Germany. BVMI's own database: "Shakira & Burna Boy | Dai Dai |
+  // 2026 | Single | 1x Gold | Sony Music Entertainment Germany GmbH | Epic".
+  // Seventeenth country for the song.
+  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "DE", level: "Gold", year: 2026 },
 ];
 
 // Helpers
