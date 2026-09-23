@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """Build a car's hero PNG and index tile from a cut-out.
 
-    python3 scripts/build-car-hero.py <cutout.png> <slug> --width <px> [--hue LO-HI]
+    python3 scripts/build-car-hero.py <cutout.png> <slug> --width <px> [--hue LO-HI] [--soften SIGMA]
     python3 scripts/build-car-hero.py --check <slug> [<slug> ...]
 
 The SLS AMG (car 16) was built with:
     python3 scripts/build-car-hero.py docs/design/cars/car-16-sls-amg-cutout.png \\
-        mercedes-sls-amg --width 758 --hue 18-45
+        mercedes-sls-amg --width 758 --hue 18-45 --soften 0.7
 
 The first form writes public/cars/<slug>.png (898 x 660 RGBA) and
 public/cars/<slug>-tile.jpg (640 x 400), then prints the numbers cars.ts
@@ -43,7 +43,7 @@ import os
 import sys
 
 import numpy as np
-from PIL import Image
+from PIL import Image, ImageFilter
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CARS = os.path.join(ROOT, "public", "cars")
@@ -140,6 +140,26 @@ def mirror(layer, k):
     out = resample_rows(layer, AXIS - (y - AXIS) / k)
     out[y < AXIS] = 0
     return out
+
+
+def soften(car_img, sigma):
+    """Blur the car's colour (not its outline) by `sigma` px.
+
+    The fifteen were cut at 1:1 from 1374 x 768 JPEG frames; a car cut from a
+    bigger render and shrunk carries detail none of them has — the SLS, from a
+    2816px render at 0.34x, measured 9.7 on the fine-detail scale (mean
+    |L - blur 1.5px| on the body) against a median 5.3 for the fifteen, the
+    sharpest car in the garage by a distance. Premultiplied, so no dark rim
+    bleeds in from the transparent pixels; alpha is left as cut.
+    """
+    a = np.asarray(car_img).astype(float) / 255
+    alpha = a[:, :, 3]
+    pre = a[:, :, :3] * alpha[:, :, None]
+    soft_pre = np.stack([blur(pre[:, :, c], sigma, sigma) for c in range(3)], 2)
+    soft_a = blur(alpha, sigma, sigma)
+    rgb = np.where(soft_a[:, :, None] > 1e-4, soft_pre / np.maximum(soft_a, 1e-4)[:, :, None], 0)
+    rgb = np.where(alpha[:, :, None] > 0, rgb, a[:, :, :3])
+    return Image.fromarray(np.round(np.dstack([np.clip(rgb, 0, 1), alpha]) * 255).astype(np.uint8), "RGBA")
 
 
 def ground_layers(car):
@@ -294,9 +314,20 @@ def build_tile(hero):
     return base.convert("RGB")
 
 
-def build(cutout_path, slug, width, hue_band):
+def detail(img):
+    """Fine detail on the body: mean |L - gaussian(L, 1.5px)| where alpha is solid."""
+    a = np.asarray(img.convert("RGBA")).astype(float)
+    solid = np.asarray(Image.fromarray(((a[:, :, 3] >= 250) * 255).astype(np.uint8)).filter(ImageFilter.MinFilter(7))) > 127
+    lum = a[:, :, :3] @ [0.299, 0.587, 0.114]
+    soft = np.asarray(Image.fromarray(np.clip(lum, 0, 255).astype(np.uint8)).filter(ImageFilter.GaussianBlur(1.5))).astype(float)
+    return float(np.abs(lum - soft)[solid].mean())
+
+
+def build(cutout_path, slug, width, hue_band, sigma=0.0):
     cutout = Image.open(cutout_path).convert("RGBA")
     car, scale = place(cutout, width)
+    if sigma:
+        car = soften(car, sigma)
     f = np.asarray(car).astype(float) / 255
     floor_a, floor_pre = ground_layers(f)
     a, pre = over(f[:, :, 3], f[:, :, :3] * f[:, :, 3:], floor_a, floor_pre)
@@ -321,6 +352,7 @@ def build(cutout_path, slug, width, hue_band):
     print(f"floor     {stray} rim pixels pushed over alpha {CAR} by the floor (bbox unchanged)")
     print(f"groundLine {ground_line(alpha8)}")
     print(f"palette   {palette(cutout, hue_band)}")
+    print(f"detail    {detail(hero):.2f} (fifteen: median 5.32, range 2.62-7.18)")
 
 
 def check(slug):
@@ -342,12 +374,14 @@ if __name__ == "__main__":
     p.add_argument("slug", nargs="?")
     p.add_argument("--width", type=int, help="the car's width in px (alpha > 200); the fifteen run 660-758")
     p.add_argument("--hue", metavar="LO-HI", help="one livery hue for the palette, in degrees, e.g. 18-45")
+    p.add_argument("--soften", type=float, default=0.0, metavar="SIGMA",
+                   help="blur the car's colour to the fifteen's detail level (see soften())")
     p.add_argument("--check", nargs="+", metavar="SLUG")
     args = p.parse_args()
     if args.check:
         for s in args.check:
             check(s)
     elif args.cutout and args.slug and args.width:
-        build(args.cutout, args.slug, args.width, args.hue)
+        build(args.cutout, args.slug, args.width, args.hue, args.soften)
     else:
         p.error("give <cutout> <slug> --width, or --check <slug> ...")
