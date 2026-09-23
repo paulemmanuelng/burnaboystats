@@ -159,6 +159,7 @@
   ],
   "app/components/mobileAfricasBiggest.module.css": [
     "--ember 16%",
+    "--gold-wash-base 38%",
     "--gold-wash-base 8%"
   ],
   "app/components/mobileAfrobeatsHub.module.css": [

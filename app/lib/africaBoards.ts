@@ -1,4 +1,4 @@
-import { statBoxes, HIGHLIGHT, rankOf, type LeaderboardBox } from "../data/africasBiggest";
+import { statBoxes, HIGHLIGHT, rankOf, asOfLabel, type LeaderboardBox } from "../data/africasBiggest";
 
 /**
  * The fourteen boards, shaped for mobile screen 16.
@@ -27,12 +27,34 @@ export interface BoardRow {
   his: boolean;
 }
 
+/** One year of a year board, in full.
+ *
+ *  The phone collapsed each year to its winner — five rows, five names, and
+ *  the ranking behind each one nowhere on the screen. The desktop's own
+ *  version of this card has never done that: its "year" layout draws the
+ *  ranked five for every year, with each one's figure. This carries the same
+ *  detail to the phone (Paul, 23 Sep 2026: "this just shows summary but i want
+ *  it to show the full details"). */
+export interface BoardYear {
+  label: string;
+  inProgress: boolean;
+  /** The day the running year's figures were read, already in the site's
+   *  words ("22 September 2026") — printed, never implied. */
+  asOf?: string;
+  note?: string;
+  /** He tops this year — a win on a closed year, a lead on the running one. */
+  his: boolean;
+  entries: { rank: string; name: string; flag: string; value?: string; his: boolean }[];
+}
+
 export interface Board {
   id: string;
   title: string;
   meta: string;
   note?: string;
   rows: BoardRow[];
+  /** Set on a year board only: every year's full ranking, newest first. */
+  years?: BoardYear[];
   badge: string;
   /** LEADS reads as a win and takes the filled gold pill; a position doesn't. */
   leads: boolean;
@@ -92,12 +114,30 @@ function yearBoard(box: LeaderboardBox, flags: Map<string, string>): Board {
   // Years WON — the badge counts closed years only; a lead in the running
   // year is gold on its row but not a year in the bag.
   const won = years.filter((r) => !r.inProgress && r.entries[0]?.name === HIGHLIGHT).length;
+  // The same years, uncollapsed. `rows` stays: it is the summary the year
+  // pills still carry, and two tests read it.
+  const detail: BoardYear[] = years.map((r) => ({
+    label: r.label ?? "",
+    inProgress: Boolean(r.inProgress),
+    asOf: r.asOf ? asOfLabel(r.asOf) : undefined,
+    note: r.note,
+    his: r.entries[0]?.name === HIGHLIGHT,
+    entries: r.entries.map((e, i) => ({
+      rank: String(i + 1).padStart(2, "0"),
+      name: e.name,
+      flag: flags.get(e.name) ?? "",
+      value: e.value,
+      his: e.name === HIGHLIGHT,
+    })),
+  }));
+
   return {
     id: box.id,
     title: box.title,
     meta: box.meta,
     note: box.note,
     rows,
+    years: detail,
     badge: `${won} of ${years.length} yrs`,
     leads: false,
   };
