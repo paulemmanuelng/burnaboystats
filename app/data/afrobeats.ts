@@ -459,7 +459,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       // artist, so a chart he has topped three times was missing entirely. Read
       // across all 200 published issues of the Official Top 100 Albums, from its
       // 2 Nov 2022 launch to 2026-08-27, and each peak re-verified at the body.
-      { title: "Olamide", kind: "Albums", entries: [{ c: "NG", peak: 1 }] },
+      { title: "Olamide", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 1 }] },
       { title: "Unruly", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/498d4ae81da58e1fcf5e2704a99e0ed8/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 1 }] },
       { title: "Ikigai, Vol. 1", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/1d54453224f17a5f5271d50f793fca7b/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 1 }] },
       { title: "Carpe Diem", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/2f5c91242bfb5ed7be4ccb2b435b6f7f/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 33 }] },
@@ -849,12 +849,12 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "One Condition", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/e53dccb976a98d09db9a195ce84162f2/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 4 }] },
       { title: "Bad Girl", kind: "Singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ad/12/b9/ad12b9d8-e896-5e36-6ef9-cec448a586e0/196872578911.jpg/300x300bb.jpg", entries: [{ c: "NG", peak: 2 }] },
       { title: "Alive", kind: "Singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/d3/1f/29/d31f2992-e357-c555-2dd9-29badd615242/820233484725.jpg/300x300bb.jpg", entries: [{ c: "NG", peak: 14 }] },
-      { title: "Oshe", kind: "Singles", entries: [{ c: "NG", peak: 14 }] },
+      { title: "Oshe", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/4736c99bdff7bc1dd1e332ce815c569c/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 14 }] },
       { title: "Man on a Mission", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/b75fdeb32e6f3fb0760933cda2de95c8/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 29 }] },
       // Nigeria, read from TurnTable's own archive route on 17 Sep 2026 — all 306 singles issues (5 Nov 2020 → 10 Sep 2026) and 201 album issues, matched on the artiste line (75 distinct Wizkid credit strings, every one genuine); peak = the best rank or highestPosition in any issue. Seventy-three closed runs the board never had, plus Nigerian entries on seven rows it did. "Mood" is titled as BNXN's board titles the same record; "Essence (Remix)" folds into Essence.
       { title: "IDK", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/24a4bbe1d6d25c216426e42587156a04/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 2 }] },
       { title: "Billionaires Club", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 2 }] },
-      { title: "Getting Paid", kind: "Singles", entries: [{ c: "NG", peak: 2 }] },
+      { title: "Getting Paid", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/77fc9f281aabc0cfb5c17649afe08c8c/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 2 }] },
       { title: "Reckless", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 3 }] },
       { title: "Kai!", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/6e7abbf5e01a1098d4c87eb7f5876232/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 3 }] },
       { title: "BIG TIME", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/0af8d1b7ecebd4fec1dbb6c048f2105f/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 3 }] },
@@ -877,11 +877,11 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Mood (Wizkid ft. BNXN)", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/ad33274548de3455303618bb650b6d86/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 12 }] },
       { title: "PAMI", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/bd76a1b1daca04cea85edf1c9b022a27/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 12 }] },
       { title: "Longtime", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 12 }] },
-      { title: "One Love (Bob Marley: One Love)", kind: "Singles", entries: [{ c: "NG", peak: 12 }] },
+      { title: "One Love (Bob Marley: One Love)", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/ec91c9f741208370ed9ab6b9029e90cc/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 12 }] },
       { title: "A Million Blessings", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 12 }] },
       { title: "Like That (bomboclatt)", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/904cf12b649b141254ed4bde749910c1/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 12 }] },
       { title: "Smile", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 13 }] },
-      { title: "Apres Minuit", kind: "Singles", entries: [{ c: "NG", peak: 13 }] },
+      { title: "Apres Minuit", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 13 }] },
       { title: "Wow", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/e4286ac8a38829b6cf5d225c311bccf7/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 15 }] },
       { title: "Apala Disco (Remix)", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/4e44b886a595181a9bc06efabd864b89/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 15 }] },
       { title: "Break Me Down", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 15 }] },
