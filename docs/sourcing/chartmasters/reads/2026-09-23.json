@@ -1,0 +1,11 @@
+{
+  "$comment": "Read 23 Sep 2026 on Paul's signed-in ChartMasters account (Playcounts Tool). KWORB HAS MOVED: its Burna Boy songs page is stamped 2026/09/22 after five days frozen on its 18 Sep build, so a true ChartMasters-day-21 ↔ kworb-page-22 pair exists again and this is applied with a PLAIN run — the 22 Sep reading's --kworb-frozen offset was bookkeeping against a stale page and is replaced here by a measured one. Every artist's newest day is 21 Sep. Each total's identity was confirmed from the page's own share link rather than the artist select, which keeps the previously-loaded artist's label: the tool switches on ?artist_spotify_id=, not ?artist_id=.",
+  "readOn": "2026-09-23",
+  "artists": {
+    "burna-boy": { "spotifyId": "3wcj11K77LjEY1PkEazffa", "name": "Burna Boy", "days": { "September 21, 2026": 11055651410 } },
+    "wizkid": { "spotifyId": "3tVQdUvClmAT7URs9V3rsp", "name": "Wizkid", "days": { "September 21, 2026": 11800999701 } },
+    "tems": { "spotifyId": "687cZJR45JO7jhk1LHIbgq", "name": "Tems", "days": { "September 21, 2026": 6281249665 } },
+    "asake": { "spotifyId": "3a1tBryiczPAZpgoZN9Rzg", "name": "Asake", "days": { "September 21, 2026": 4398010043 } },
+    "tyla": { "spotifyId": "3SozjO3Lat463tQICI9LcE", "name": "Tyla", "days": { "September 21, 2026": 4845985352 } }
+  }
+}
