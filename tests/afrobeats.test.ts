@@ -640,19 +640,34 @@ describe("cover art", () => {
   // (Remix)" sleeve — Asake's feature — while Omah Lay's is KAESTYLE's, on
   // "Kae's Study" (contributors: KAESTYLE, Omah Lay). Releases-only checking
   // could not see it, so this walks both lists.
+  // Seven pairs arrived with the 23 Sep 2026 cover fill (scripts/cover-fill.mjs),
+  // which reached the CHART rows the original fill never touched. Each was read
+  // off Deezer's own credits before being written, and each is one release that
+  // two board artists are both on:
+  //   ayra-starr+omah-lay  "People" — the same recording.
+  //   ayra-starr+tyla      "Girl Next Door" — Tyla's, with Ayra Starr on it.
+  //   bnxn+olamide         M.I Abaga's "The Guy": BNXN on "Oil", Olamide on
+  //                        "Bigger" — two tracks, one sleeve, which is what a
+  //                        shared ALBUM looks like on this list.
+  //   bnxn+victony         Victony's "STARLIFE": BNXN on "WHO THIS".
+  //   bnxn+wizkid          "Many Ways" — the same recording.
+  //   davido+wizkid        ODUMODUBLVCK's "INDUSTRY MACHINE": Wizkid on
+  //                        "BIG TIME", Davido on "Grooving".
+  //   seyi-vibez+wizkid    "Apala Disco (Remix)" — the same recording.
   const VERIFIED_SHARES_WITH_CHARTS = [
     "asake+ayra-starr", "asake+bnxn", "asake+davido", "asake+fireboy-dml",
     "asake+fireboy-dml+olamide", "asake+olamide", "asake+olamide", "asake+olamide",
     "asake+olamide+seyi-vibez+wizkid", "asake+rema", "asake+tems", "asake+victony",
-    "asake+wizkid", "asake+wizkid", "asake+wizkid", "ayra-starr+ckay",
+    "asake+wizkid", "asake+wizkid", "asake+wizkid", "ayra-starr+ckay", "ayra-starr+omah-lay",
     "ayra-starr+omah-lay", "ayra-starr+rema", "ayra-starr+rema", "ayra-starr+seyi-vibez",
-    "ayra-starr+wizkid", "black-sherif+davido", "black-sherif+fireboy-dml",
-    "black-sherif+fireboy-dml", "bnxn+fireboy-dml+olamide+rema", "bnxn+rema",
-    "bnxn+rema", "bnxn+seyi-vibez", "bnxn+seyi-vibez+victony", "bnxn+wizkid",
-    "bnxn+wizkid", "ckay+davido", "ckay+davido", "davido+omah-lay+victony",
-    "fireboy-dml+rema", "olamide+omah-lay", "olamide+seyi-vibez", "olamide+seyi-vibez",
-    "olamide+victony", "olamide+wizkid", "omah-lay+seyi-vibez", "omah-lay+tems",
-    "omah-lay+tyla", "omah-lay+wizkid", "rema+victony", "tems+wizkid", "tyla+victony",
+    "ayra-starr+tyla", "ayra-starr+wizkid", "black-sherif+davido", "black-sherif+fireboy-dml",
+    "black-sherif+fireboy-dml", "bnxn+fireboy-dml+olamide+rema", "bnxn+olamide", "bnxn+rema",
+    "bnxn+rema", "bnxn+seyi-vibez", "bnxn+seyi-vibez+victony", "bnxn+victony", "bnxn+wizkid",
+    "bnxn+wizkid", "bnxn+wizkid", "ckay+davido", "ckay+davido", "davido+omah-lay+victony",
+    "davido+wizkid", "fireboy-dml+rema", "olamide+omah-lay", "olamide+seyi-vibez",
+    "olamide+seyi-vibez", "olamide+victony", "olamide+wizkid", "omah-lay+seyi-vibez",
+    "omah-lay+tems", "omah-lay+tyla", "omah-lay+wizkid", "rema+victony", "seyi-vibez+wizkid",
+    "tems+wizkid", "tyla+victony",
   ];
 
   it("shares a cover across artists only where the recording is shared, charts included", () => {
