@@ -40,3 +40,14 @@ without any retouching. See §8.1 of the handoff.
 Concept frames, not production comps. Every string in them is generated pixels and
 several are misspelled. Correct on layout, hierarchy, palette and proportion;
 unreliable on every word and every number. See §3 and §4 of the handoff.
+
+## Car 16 — SLS AMG (added 23 Sep 2026)
+
+Not a supplied page design like the fifteen above: the SLS arrived as a studio
+render plus a page mock, and neither is yet a usable hero. See
+[car-16-sls-amg-asset-handoff.md](../car-16-sls-amg-asset-handoff.md).
+
+| file | what it is | usable as the hero? |
+|---|---|---|
+| `car-16-sls-render-doors-closed.jpg` | 2000×1091 studio render, doors closed, right angle | not yet — its floor is 6x lighter than the site's background |
+| `car-16-sls-page-mock-doors-open.png` | 896×1195 whole-page mock, doors open, dimension lines over the car | no — doors open breaks the shared scale, and the page furniture is baked in |
