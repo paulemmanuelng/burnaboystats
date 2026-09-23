@@ -228,3 +228,26 @@ describe("the compare section's own metadata fits the display limits", () => {
     expect(over).toEqual([]);
   });
 });
+
+describe("a lead shared three ways is named three ways (23 Sep 2026)", () => {
+  // The 23 Sep sweep gave Tems and Rema Czech Gold and Slovak Platinum, each
+  // level with Burna Boy's (11,261 and 7,834 units). The page said "Burna Boy
+  // and Rema lead the Czech Republic" — the string that shipped in review —
+  // and left out Tems on the same figure.
+  it.each([["czech-republic", "CZ"], ["slovakia", "SK"]])("%s", async (slug, code) => {
+    const board = priceCountry(code);
+    const top = board.lines.filter((l) => l.units === board.lines[0].units);
+    expect(top.length, "the three-way tie this guards").toBeGreaterThan(2);
+    const t = text(await html({ mode: "country", country: slug }));
+    const names = top.map((l) => l.artist.name);
+    expect(t).toContain(`${names.slice(0, -1).join(", ")} and ${names[names.length - 1]} share the lead in ${board.inSentence}.`);
+    expect(t).not.toContain(`${names[0]} and ${names[1]} lead ${board.inSentence}.`);
+  });
+
+  it("a two-way lead still reads as before", async () => {
+    const board = priceCountry("CA");
+    expect(board.lines[0].units).not.toBe(board.lines[2]?.units);
+    const t = text(await html({ mode: "country", country: "canada" }));
+    expect(t).toContain(`${board.lines[0].artist.name} and ${board.lines[1].artist.name} lead ${board.inSentence}.`);
+  });
+});

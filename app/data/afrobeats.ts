@@ -807,7 +807,8 @@ export const afrobeatsArtists: AfroArtist[] = [
       // does (docs/sweeps/wizkid-certifications-v1.md): IFPI Danmark's own row
       // cuts the credit off at "Major Lazer Feat. Moti Ty Dolla $ign...", so
       // Wizkid is not printed. Counted on Paul's ruling — one recording, and he
-      // is on it (Ifpi Sverige's record of the single prints the full credit).
+      // is on it (Ifpi Sverige's record of the single prints the full credit, and
+      // Paul checked Wizkid's credit on the Spotify track page, 23 Sep 2026).
       { title: "Boom", kind: "Featured appearances", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/20/05/17/200517ab-c3a3-b833-74b3-9bb3399c780c/886447834886.jpg/300x300bb.jpg", certs: [{ c: "FR", level: "Gold" }, { c: "DK", level: "Platinum" }] },
       { title: "Can't Believe", kind: "Featured appearances", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/85/55/bc/8555bcd7-ed37-030e-2d8d-96d5c04a5514/886449132409.jpg/300x300bb.jpg", certs: [{ c: "CA", level: "Gold" }] },
       { title: "Borrowed Love", kind: "Featured appearances", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/b1/e3/27/b1e3271b-b8cb-7d80-99e5-0ddd9d6e632e/00602577303210.rgb.jpg/300x300bb.jpg", certs: [{ c: "CA", level: "Gold" }] },

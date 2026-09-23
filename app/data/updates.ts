@@ -102,7 +102,10 @@ export const updates: Update[] = [
   {
     date: "2026-09-23",
     category: "Certifications",
-    text: "Counted market by market, Burna Boy leads the Afrobeats board's certified units in 10 of the 27 countries where it holds a plaque — the UK (at least 13,960,000), France, Canada, South Africa, New Zealand, Denmark, Switzerland, Austria, Czechia and Slovakia.",
+    // Rewritten the same day, after the 23 Sep register sweep: Wizkid's "Boom"
+    // Danish Platinum put him ahead in Denmark, and Tems's and Rema's new Czech
+    // and Slovak plaques drew level with Burna's there. Read off countryBoards().
+    text: "Counted market by market, Burna Boy leads the Afrobeats board's certified units outright in 7 of the 27 countries where it holds a plaque — the UK (at least 13,960,000), France, Canada, South Africa, New Zealand, Switzerland and Austria — and is level with Rema and Tems in Czechia and Slovakia.",
     href: "/compare/in",
   },
   {

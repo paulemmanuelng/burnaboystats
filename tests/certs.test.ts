@@ -108,7 +108,7 @@ describe("certHistory (certifications by year)", () => {
 
   it("2026 logs 63 international certifications (81 events with Nigeria)", () => {
     // The by-year log is international-only: earlier years predate the TCSN
-    // register, so Nigeria's 8 events would skew the comparison. They still
+    // register, so Nigeria's 18 events (8 until the 23 Sep 2026 sweep added ten) would skew the comparison. They still
     // count in the totals. The log counts award EVENTS, so a Gold and a later
     // Platinum in the same country are two.
     expect(intlCertHistory.filter((e) => e.year === 2026).length).toBe(63);
