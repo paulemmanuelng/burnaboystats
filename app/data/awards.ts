@@ -146,7 +146,9 @@ export const pendingResults: PendingCeremony[] = [
     // Morning after: caribmusicawards.com still shows VOTE on every category
     // and no winners page exists (/winners and /2026-winners 404); X has no
     // Konpa result since the 19th. Dated snooze, not a silence.
-    checkedOn: "2026-09-20", checkedNote: "body site still shows VOTE on every category; no winners on X the morning after" },
+    // Re-read 23 Sep 2026: caribmusicawards.com's WordPress API shows no page
+    // changed since 12 Sep, and /winners and /2026-winners still 404.
+    checkedOn: "2026-09-23", checkedNote: "no page on caribmusicawards.com changed since 12 Sep; /winners and /2026-winners still 404" },
   // Nominations announced 18 Aug 2026; ceremony 27 Sep 2026.
   { ceremony: "MTV Video Music Awards", year: 2026, date: "2026-09-27", where: "United States" },
   // 28th NRJ Music Awards — nominees published on NRJ's own site 16 Sep 2026;
@@ -154,6 +156,11 @@ export const pendingResults: PendingCeremony[] = [
   { ceremony: "NRJ Music Awards", year: 2026, date: "2026-10-23", where: "Palais des Festivals, Cannes" },
   // 18th Headies, nominations announced 26 Aug 2026.
   { ceremony: "The Headies", year: 2026, date: "2026-10-25", where: "Toronto" },
+  // BreakTudo Awards 2026 — nominees in the body's own post of 16 Sep 2026
+  // (breaktudoawards.com, "veja a lista completa de indicados"; read in the
+  // Wayback captures of 16 and 18 Sep, the live site serving a Cloudflare
+  // challenge). Public vote on vote.breaktudoawards.com.
+  { ceremony: "BreakTudo Awards", year: 2026, date: "2026-11-24", where: "São Paulo" },
 ];
 
 export const ceremonies: Ceremony[] = [
@@ -580,6 +587,11 @@ export const ceremonies: Ceremony[] = [
     name: "BreakTudo Awards",
     noms: [
       { year: 2023, category: "Global Artist", won: false },
+      // PENDING — ceremony 24 Nov 2026; see `pendingResults` above. Category
+      // names as the body's English list prints them ("International Male
+      // Artist", "International Hit of the Year: Dai Dai – Shakira, Burna Boy").
+      { year: 2026, category: "International Male Artist", won: false },
+      { year: 2026, category: "International Hit of the Year", work: "Dai Dai (with Shakira)", won: false },
     ],
   },
   {
@@ -599,6 +611,12 @@ export const ceremonies: Ceremony[] = [
     noms: [
       { year: 2021, category: "Pop Music Award", work: "Enjoy Yourself (Remix)", won: true },
       { year: 2024, category: "Music Award", work: "Sittin' on Top of the World", won: true },
+      // SESAC's dinner for the songwriters and publishers of the past year's top
+      // songs, Malibu, 22 Sep 2026 — "Burna Boy (“WGFT” recorded by Gunna feat.
+      // Burna Boy)" among the honorees (Billboard Pro, Paul Grein, 23 Sep 2026,
+      // with SESAC's chief creative officer quoted and SESAC's Mario Prins
+      // pictured). SESAC's own news page had not posted it on 23 Sep.
+      { year: 2026, category: "Top Songs honoree", work: "WGFT (with Gunna)", won: true },
     ],
   },
   {
