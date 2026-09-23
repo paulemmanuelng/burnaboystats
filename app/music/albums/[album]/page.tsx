@@ -17,6 +17,7 @@ import { allItems, COUNTRIES, tierOf } from "../../../data/certifications";
 import { sameTitle } from "../../../lib/titleKey";
 import MobileMenuButton from "../../../components/MobileMenuButton";
 import BackLink from "../../../components/BackLink";
+import { awardLabel } from "../../../lib/awardName";
 
 // Only the known album slugs are valid routes — anything else 404s.
 export const dynamicParams = false;
@@ -271,10 +272,10 @@ export default async function AlbumPage({ params }: { params: Promise<{ album: s
                 <span
                   key={cert.c}
                   className={`${styles.cert} ${styles[tierOf(cert.level)]}`}
-                  title={`${c?.name ?? cert.c} — ${cert.x ? `${cert.x}× ` : ""}${cert.level}`}
+                  title={`${c?.name ?? cert.c} — ${awardLabel(cert)}`}
                 >
                   <span className={styles.flag} aria-hidden="true">{c?.flag}</span>
-                  {cert.x ? `${cert.x}× ` : ""}{cert.level}
+                  {awardLabel(cert)}
                   <span className={styles.certCountry}>{c?.name ?? cert.c}</span>
                 </span>
               );

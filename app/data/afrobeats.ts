@@ -1,5 +1,6 @@
 import { COUNTRIES as BURNA_COUNTRIES } from "./certifications";
 import { CHART_COUNTRIES } from "./charts";
+import { awardLabel } from "../lib/awardName";
 
 // ─────────────────────────────────────────────────────────────────────────────
 //  THE AFROBEATS BOARD — /afrobeats
@@ -2391,7 +2392,9 @@ export const topAward = (a: AfroArtist) => {
  *  and the share cards, where a Latin plaque printed as plain Platinum would
  *  overstate it sixteen-fold with nothing on screen to say so. */
 export const plaqueLabel = (c: AfroCert) => {
-  const base = `${c.x && c.x > 1 ? `${c.x}× ` : ""}${c.level}`;
+  // The tier as the PROGRAMME names it — a RIAA Latin plaque is a Platino, not
+  // a Platinum (app/lib/awardName.ts).
+  const base = awardLabel(c);
   const own = countryMeta(c.c).body;
   if (!c.body || c.body === own) return base;
   return `${base} · ${c.body.replace(own, "").trim() || c.body}`;

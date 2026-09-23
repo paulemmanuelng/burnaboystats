@@ -11,6 +11,7 @@ import { coverFor } from "../lib/covers";
 import { spotifyImage } from "../lib/spotifyImage";
 import { track } from "../lib/analytics";
 import FilterEmpty from "./FilterEmpty";
+import { tierWord } from "../lib/awardName";
 
 const TIERS = ["Diamond", "Platinum", "Gold", "Silver"];
 
@@ -38,7 +39,7 @@ function Badge({ cert, countries, dim }: { cert: Cert; countries: Countries; dim
     >
       <span className={styles.flag}>{country.flag}</span>
       {cert.x ? `${cert.x}× ` : ""}
-      {cert.level}
+      {tierWord(cert.level, cert.body)}
       {/* A separate program is a different award, and a tooltip is not a
           distinction a phone can see. Dai Dai's US plaque is RIAA LATIN — a
           different register with different thresholds from the main program —

@@ -17,6 +17,7 @@ import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
 import MobileFaqSection from "./MobileFaqSection";
 import type { Faq } from "./FaqList";
+import { tierWord } from "../lib/awardName";
 
 /**
  * The mobile certifications screen.
@@ -424,7 +425,7 @@ export default function MobileCerts({
                     >
                       <span className={styles.flag}>{countries[c.c].flag}</span>
                       {c.x ? `${c.x}× ` : ""}
-                      {c.level}
+                      {tierWord(c.level, c.body)}
                       {c.body && c.body !== countries[c.c].body && (
                         <span className={styles.badgeProgram}>
                           {c.body.replace(countries[c.c].body, "").trim() || c.body}
@@ -547,7 +548,7 @@ export default function MobileCerts({
                 <span className={styles.badge} style={{ color: ink, borderColor: ink }}>
                   <span className={styles.flag}>{countries[e.country].flag}</span>
                   {e.x ? `${e.x}× ` : ""}
-                  {e.level}
+                  {tierWord(e.level, e.body)}
                 </span>
               </div>
             );
