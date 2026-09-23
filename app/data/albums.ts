@@ -17,18 +17,37 @@ export interface AlbumEntry {
   spotify?: string;
   cover?: string;
   year: number;
+  /**
+   * The day the STANDARD edition first came out, ISO "YYYY-MM-DD" — the
+   * original release, not a listening party, a deluxe or a re-upload (the
+   * linked Spotify edition can carry a later date; `editionNote` flags those).
+   * Set on every studio album, each read off at least two sources of
+   * different kinds; the album page prints it. `year` must agree with it.
+   */
+  released?: string;
   label: string;
   tracks: string[];
   /** When the Spotify release the card links to is not the standard edition. */
   editionNote?: string;
 }
 
+// Release dates: every Atlantic-era album dropped at midnight in Lagos and
+// London, which is still Thursday evening in the Americas — so Spotify, and
+// Atlantic's US-keyed listings, print the day BEFORE the release for Twice as
+// Tall, Love, Damini, I Told Them… and No Sign of Weakness. The dates here are
+// the release day itself, each read off 7+ sources (platform, label or artist,
+// chart body, press) and checked independently on 23 Sep 2026. Don't "correct"
+// one from a Spotify page.
 export const albums: AlbumEntry[] = [
   {
     title: "L.I.F.E",
     spotify: "https://open.spotify.com/album/7pqUKMWH6P7AJPIjUiphTS",
     cover: "https://i.scdn.co/image/ab67616d0000b273e3497b75e40ffc5bfffce8cf",
     year: 2013,
+    // 12 Aug 2013: the original Aristokrat iTunes listing ("Released: Aug 12,
+    // 2013"), the label's own date via BellaNaija, MTV Base that day. Deezer's
+    // 17 Sep is a re-delivery; mid-September was the Accra launch shows.
+    released: "2013-08-12",
     label: "Aristokrat Records",
     editionNote: "standard edition — the Spotify release is the 19-track deluxe edition",
     tracks: [
@@ -45,6 +64,10 @@ export const albums: AlbumEntry[] = [
     spotify: "https://open.spotify.com/album/6NW4thIIMVcb6Wedxqu6ev",
     cover: "https://i.scdn.co/image/ab67616d0000b2737e09ba6174aec9958461aa44",
     year: 2015,
+    // 25 Nov 2015: announced for that day (NotJustOk, 7 Nov), UK iTunes
+    // (captured Apr 2016) "Released: 25 November 2015", The FADER that day.
+    // The linked Spotify page says 13 Mar 2015 — a re-delivery's metadata.
+    released: "2015-11-25",
     label: "Spaceship",
     editionNote: "standard edition — the Spotify release adds “Soke” as a bonus track",
     tracks: [
@@ -61,6 +84,7 @@ export const albums: AlbumEntry[] = [
     spotify: "https://open.spotify.com/album/5SCK5p3Rqgg0FwTmAurrcp",
     cover: "https://i.scdn.co/image/ab67616d0000b2732135956e3ca0a183db8ac395",
     year: 2018,
+    released: "2018-01-26",
     label: "Atlantic · Spaceship",
     tracks: [
       "More Life", "Ph City Vibration", "Koni Baje", "Sekkle Down (feat. J Hus)",
@@ -74,6 +98,9 @@ export const albums: AlbumEntry[] = [
     spotify: "https://open.spotify.com/album/79lrrUvUyIuOD12b5taQVP",
     cover: "https://i.scdn.co/image/ab67616d0000b273a9c13c1a5538f87146ac8ca5",
     year: 2019,
+    // Friday 26 Jul 2019, Atlantic's own release. The linked Spotify page says
+    // the 24th, when the album was still in pre-order.
+    released: "2019-07-26",
     // Spotify's © block (read 18 Sep 2026): Atlantic / Spaceship / Bad Habit.
     label: "Atlantic · Bad Habit · Spaceship",
     tracks: [
@@ -90,6 +117,7 @@ export const albums: AlbumEntry[] = [
     spotify: "https://open.spotify.com/album/218CJKDCszsQQj7Amk7vIu",
     cover: "https://i.scdn.co/image/ab67616d0000b2733478524ed62d216a705c2424",
     year: 2020,
+    released: "2020-08-14",
     label: "Atlantic · Bad Habit · Spaceship",
     tracks: [
       "Level Up (feat. Youssou N'Dour)", "Alarm Clock", "Way Too Big", "Bebo",
@@ -104,6 +132,7 @@ export const albums: AlbumEntry[] = [
     spotify: "https://open.spotify.com/album/6kgDkAupBVRSqbJPUaTJwQ",
     cover: "https://i.scdn.co/image/ab67616d0000b273d98e997eaad5f503b9e1f2f2",
     year: 2022,
+    released: "2022-07-08",
     label: "Atlantic · Bad Habit · Spaceship",
     tracks: [
       "Glory (feat. Ladysmith Black Mambazo)", "Science", "Cloak & Dagger (feat. J Hus)",
@@ -123,6 +152,7 @@ export const albums: AlbumEntry[] = [
     spotify: "https://open.spotify.com/album/1JzjwUKkPsdHg1SQ7qa5hc",
     cover: "https://i.scdn.co/image/ab67616d0000b273c361f3720bafc0da36f14d96",
     year: 2023,
+    released: "2023-08-25",
     // Spotify's © block (read 18 Sep 2026): Atlantic / Spaceship / Bad Habit.
     label: "Atlantic · Bad Habit · Spaceship",
     tracks: [
@@ -138,6 +168,9 @@ export const albums: AlbumEntry[] = [
     spotify: "https://open.spotify.com/album/35EMM8QwKJ2qXmoUJnUSNf",
     cover: "https://i.scdn.co/image/ab67616d0000b273d00c3ad1a774c0e171939239",
     year: 2025,
+    // Friday 11 Jul 2025: Atlantic's release is datelined that day ("today's
+    // release"); the UK and US charts count its first week from it.
+    released: "2025-07-11",
     label: "Atlantic · Bad Habit · Spaceship",
     tracks: [
       "No Panic", "No Sign of Weakness", "Buy You Life", "Love",
@@ -215,3 +248,13 @@ export const albumYearByTitle = (title: string): number | undefined => {
   const key = title.replace(/\s*\(EP\)\s*$/i, "");
   return [...albums, ...eps, ...compilations].find((a) => sameTitle(a.title, key))?.year;
 };
+
+/** "2019-07-26" → "26 July 2019", the site's date style. Noon UTC, so no
+ *  viewer's timezone can move it a day. */
+export const releaseDateLabel = (iso: string) =>
+  new Date(`${iso}T12:00:00Z`).toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  });

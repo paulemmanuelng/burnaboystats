@@ -10,7 +10,7 @@ import FaqList from "../../../components/FaqList";
 import { pageMetadata, CANONICAL_ORIGIN } from "../../../lib/seo";
 import { spotifyImage, spotifySrcSet } from "../../../lib/spotifyImage";
 import { albumPageBySlug, albumPageSlugs, albumPages } from "../../../data/albumPages";
-import { albums } from "../../../data/albums";
+import { albums, releaseDateLabel } from "../../../data/albums";
 import { songs } from "../../../data/songs";
 import { albumCharts, CHART_COUNTRIES, chartTier } from "../../../data/charts";
 import { allItems, COUNTRIES, tierOf } from "../../../data/certifications";
@@ -104,7 +104,7 @@ export default async function AlbumPage({ params }: { params: Promise<{ album: s
     "@type": "MusicAlbum",
     name: page.title,
     byArtist: { "@type": "MusicGroup", name: "Burna Boy" },
-    datePublished: String(record.year),
+    datePublished: record.released ?? String(record.year),
     numTracks: record.tracks.length,
     url: `${CANONICAL_ORIGIN}/music/albums/${page.slug}`,
   };
@@ -172,7 +172,17 @@ export default async function AlbumPage({ params }: { params: Promise<{ album: s
               />
             )}
             <div>
-              <div className={styles.kicker}>Studio album · {record.year} · {record.label}</div>
+              <div className={styles.kicker}>
+                Studio album ·{" "}
+                {record.released ? (
+                  // Non-breaking spaces: the kicker wraps on a phone, and "11 July" must
+                  // never end one line with "2025" starting the next.
+                  <time dateTime={record.released}>{releaseDateLabel(record.released).replace(/ /g, "\u00a0")}</time>
+                ) : (
+                  record.year
+                )}{" "}
+                · {record.label}
+              </div>
               <h1 className={`${styles.title} ${page.title.length > 14 ? styles.titleLong : ""}`}>
                 {page.title}
               </h1>
