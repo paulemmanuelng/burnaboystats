@@ -86,7 +86,7 @@ describe("the one-side hint follows the featured switch", () => {
     // The 19× Platinum on "All Eyes on Me" (a feature) is in the default view,
     // and so are the six Swedish plaques since Sweden is priced (§).
     // 171: + Dai Dai GR Platinum (priced ¶ at IFPI's 2013 level, 20 Sep 2026), + Dai Dai SE Platinum (priced §, 20 Sep), + BE Gold (19 Sep), + City Boys PT Gold (18 Sep 2026)
-    expect(on).toContain("172 counted"); // + Dai Dai CA 2× Platinum, Music Canada 21 Sep 2026 (read 22 Sep)
+    expect(on).toContain("173 counted"); // + Dai Dai DE Gold, BVMI (read 23 Sep 2026); + Dai Dai CA 2× Platinum, Music Canada 21 Sep 2026
   });
 });
 
