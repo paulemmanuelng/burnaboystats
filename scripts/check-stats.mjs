@@ -11,6 +11,7 @@
 // workflow can open/update a GitHub issue.
 
 import { readFile, writeFile, appendFile } from "node:fs/promises";
+import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 import {
@@ -26,6 +27,23 @@ import {
 } from "./stats-lib.mjs";
 
 const dir = path.dirname(fileURLToPath(import.meta.url));
+
+/** Pages whose figures are read by a person, with the cadence each is meant to
+ *  be re-read on. `slack` is the grace the weekly issue allows before it says
+ *  anything, so a reading a few days late is not an alert every Monday. */
+const HAND_READS = [
+  {
+    label: "Where the world listens — top 50 Spotify cities",
+    file: "app/data/listeners.ts",
+    re: /LISTENERS_READ_ON = "([\d-]+)"/,
+    everyDays: 30,
+    // Three days, so the weekly issue asks first and the CI alarm at 45 days
+    // is genuinely the backstop it says it is — they used to fire on the same
+    // day, which made one of them noise.
+    slack: 3,
+    how: "Re-read ChartMasters' Artist Global Impact page signed in, then `node scripts/listeners-apply.mjs --snippet` and apply the capture.",
+  },
+];
 
 /**
  * Every extractor a watched metric may name.
@@ -204,6 +222,30 @@ async function main() {
   }
   const certHits = certWatchResults.filter((w) => w.status === "found");
 
+  // HAND-READ PAGES — the ones that go stale on a CALENDAR, not because a
+  // source changed shape.
+  //
+  // Everything above watches a figure the bot can fetch. /music/listeners
+  // cannot be fetched: its top-50 cities come from ChartMasters' member-only
+  // tool on a fan's shared account, which must never be automated from CI. So
+  // it is read by a person, and the only thing that can make it rot is nobody
+  // remembering. Nothing was watching that. The weekly issue is the right
+  // place for it — it fires on a schedule whether or not anyone pushes.
+  const handReads = HAND_READS.map((h) => {
+    let on = null;
+    try {
+      on = (readFileSync(path.join(process.cwd(), h.file), "utf8").match(h.re) ?? [])[1] ?? null;
+    } catch {
+      /* the file moved — reported as unavailable below */
+    }
+    // Both ends as UTC midnight: a reading made this morning against a
+    // midday stamp came out as "-1d old".
+    const today = new Date().toISOString().slice(0, 10);
+    const days = on ? Math.max(0, Math.round((Date.parse(today) - Date.parse(on)) / 86_400_000)) : null;
+    return { ...h, on, days, stale: days != null && days > h.everyDays + h.slack };
+  });
+  const staleReads = handReads.filter((h) => h.stale || h.on === null);
+
   // Build a report table.
   const lines = [];
   lines.push("| Metric | Baseline | Live | Change | Status |");
@@ -230,11 +272,18 @@ async function main() {
       : "✅ not listed yet";
     lines.push(`| ${w.label} | — | — | — | ${badge} |`);
   }
+  for (const h of handReads) {
+    const badge =
+      h.on === null ? "⏭️ read date not found"
+      : h.stale ? `⚠️ read ${h.days} days ago — re-read`
+      : "✅ current";
+    lines.push(`| ${h.label} | every ${h.everyDays}d | ${h.on ?? "—"} | ${h.days ?? "—"}d old | ${badge} |`);
+  }
   const table = lines.join("\n");
 
   let report = `## 📊 Burna Boy Stats — data monitor\n\n`;
-  if (actionable.length || certHits.length) {
-    report += `**${actionable.length + certHits.length} item(s) need a look.** Verify against the primary source, then update the site (and the baseline in \`scripts/watched-metrics.json\`).\n\n`;
+  if (actionable.length || certHits.length || staleReads.length) {
+    report += `**${actionable.length + certHits.length + staleReads.length} item(s) need a look.** Verify against the primary source, then update the site (and the baseline in \`scripts/watched-metrics.json\`).\n\n`;
   } else {
     report += `All watched figures are within tolerance. Nothing to do.\n\n`;
   }
@@ -245,6 +294,11 @@ async function main() {
   for (const w of certHits) {
     report += `- **${w.label}** is now IN the register. ${w.note ?? ""} (Register: ${w.sourceName} — ${w.sourceUrl})\n`;
   }
+  for (const h of staleReads) {
+    report += h.on === null
+      ? `- **${h.label}**: could not find the read date in \`${h.file}\` — has the export been renamed?\n`
+      : `- **${h.label}** was last read ${h.days} days ago (${h.on}), and is meant to be re-read every ${h.everyDays}. ${h.how}\n`;
+  }
 
   console.log(report);
 
@@ -253,7 +307,7 @@ async function main() {
     await appendFile(process.env.GITHUB_STEP_SUMMARY, report);
   }
   if (process.env.GITHUB_OUTPUT) {
-    await appendFile(process.env.GITHUB_OUTPUT, `has_drift=${actionable.length > 0 || certHits.length > 0}\n`);
+    await appendFile(process.env.GITHUB_OUTPUT, `has_drift=${actionable.length > 0 || certHits.length > 0 || staleReads.length > 0}\n`);
   }
   await writeFile(path.join(process.cwd(), "drift-report.md"), report);
 }

@@ -70,6 +70,13 @@ One block per run of scripts/chartmasters-anchor.mjs — what was read, what was
 - edit: app/data/africasBiggest.ts: /* live:streams-2026-asake */ 1.460B" → 1.488B"
 - edit: app/data/africasBiggest.ts: /* live:streams-2026-tyla */ 1.209B" → 1.225B"
 
+## 2026-09-23 — Artist Global Impact (cities), read by hand
+
+- Source: chartmasters.org/artists-global-performance/?artist_id=3wcj11K77LjEY1PkEazffa, signed in, in the site's own browser (same session as the Playcounts read above)
+- Captured: `reads/2026-09-23-cities.json` — the same 50 cities as 20 Sep, re-ranked; 29 countries; Global Ranking #82; popularity 85; followers 17,897,540; monthly listeners 47,645,686 (trend −8,784,501)
+- Feeds: app/data/listeners.ts (whole list replaced, LISTENERS_READ_ON 2026-09-23), applied with `node scripts/listeners-apply.mjs` rather than by hand for the first time. Followers on the Africa's Biggest board NOT moved: that board is read whole, all five artists on one day, and only Burna Boy was read today.
+- 18 rank moves and only 8 of the 50 cities up: Johannesburg 32→29, Montreal 12→10, Mexico City 10→9, Berlin 9→11. Lagos 1,425,699. The fall is real and visible elsewhere — the global listener rank published on /records/by-the-numbers moved 75 → 82 the same day.
+
 ## 2026-09-23
 
 - career total: offset 114,858,823 (ChartMasters through 2026-09-21 − kworb 2026-09-22); published 11,055,651,410 on kworb's 2026-09-22 page

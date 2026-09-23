@@ -89,6 +89,34 @@ describe("the top-50 listener cities", () => {
     }
   });
 
+  /** A DEADLINE ALARM, and it carries the same exemption as the other three
+   *  (tests/awardsPending.test.ts, tests/liveClaims.test.ts and the staleness
+   *  alarm): it is MEANT to go red on a date with nothing in the repo having
+   *  changed, so it must never be the thing that stops the stats bot
+   *  publishing. On 18 September the staleness alarm was not exempt and the
+   *  half-hourly publisher aborted for five days.
+   *
+   *  The weekly monitor issue asks first, at 33 days (scripts/check-stats.mjs,
+   *  HAND_READS: a 30-day cadence plus three days' slack) — that is the alarm
+   *  meant to be acted on. This one is the backstop for when nobody reads the
+   *  issue, so it sits well behind it at 45 days. Both used to be set at 35,
+   *  which meant the "gentle first" escalation described here did not exist:
+   *  they went off on the same day and one of them was just noise.
+   *
+   *  Paul, 23 September 2026: "ensure the listeners page always update to
+   *  date." It cannot be automated — the source is behind a member login on a
+   *  shared account — so what is automated is noticing. */
+  it.skipIf(process.env.PUBLISH_GATE === "1")("the reading has not gone stale — the page is re-read monthly", () => {
+    const today = new Date().toISOString().slice(0, 10);
+    const days = Math.round((Date.parse(today) - Date.parse(LISTENERS_READ_ON)) / 86_400_000);
+    expect(
+      days,
+      `/music/listeners was last read on ${LISTENERS_READ_ON}, ${days} days ago. Re-read ChartMasters' Artist Global Impact page signed in, then: node scripts/listeners-apply.mjs --snippet`,
+    ).toBeLessThanOrEqual(45);
+    // Nobody can date a reading into the future, and a bad parse lands here.
+    expect(days, `${LISTENERS_READ_ON} is in the future`).toBeGreaterThanOrEqual(0);
+  });
+
   it("the reading is dated ISO and the date is printed on both layouts", () => {
     expect(LISTENERS_READ_ON).toMatch(/^\d{4}-\d{2}-\d{2}$/);
     const desktop = readFileSync("app/music/listeners/page.tsx", "utf8");

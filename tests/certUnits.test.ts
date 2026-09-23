@@ -573,18 +573,23 @@ describe("credits verified at the issuing body", () => {
 });
 
 describe("cover art", () => {
-  it("covers all but three of Burna's certified releases", () => {
+  it("covers every one of Burna's certified releases", () => {
     const burna = bySlug("burna-boy");
     const without = burna.releases.filter((r) => !r.cover).map((r) => r.title).sort();
-    // Deliberately uncovered: Deezer carries no legitimate copy of these. The
-    // first two return only 8-Bit Arcade chiptune and karaoke re-recordings,
-    // whose titles contain the real artists' names and so pass a naive
-    // substring check — both were caught and rejected. Pinned so a later fill
-    // cannot quietly swap a tribute sleeve in.
-    // "B.D'or" was the fourth until 18 Sep 2026: the plaque is Burna Boy's own
+    // "Be Honest" and "Tshwala Bam (Remix)" were the last two, and they were
+    // never a DATA gap: Deezer carries no legitimate copy of either (both
+    // return 8-Bit Arcade chiptune and karaoke re-recordings, whose titles
+    // contain the real artists' names and so pass a naive substring check —
+    // rejected then, rejected now), but app/lib/covers.ts had resolved both by
+    // hand from the host record, and the /certifications page had been showing
+    // that art all along. This surface used a shorter lookup that stopped
+    // before those overrides, so one plaque had a sleeve on one page and a
+    // blank square on another (Paul, 23 Sep 2026). Both now run the same
+    // resolver.
+    // "B.D'or" was the third until 18 Sep 2026: the plaque is Burna Boy's own
     // "B. D'OR" ft. Wizkid (RETRACTIONS #12), which Deezer does carry.
-    expect(without).toEqual(["Be Honest", "Tshwala Bam (Remix)"]);
-    expect(burna.releases.filter((r) => r.cover).length).toBe(83);
+    expect(without).toEqual([]);
+    expect(burna.releases.filter((r) => r.cover).length).toBe(85);
   });
 
   it("serves one image size, so two sleeves never render at different scales", () => {
