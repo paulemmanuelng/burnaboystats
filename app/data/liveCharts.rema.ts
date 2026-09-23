@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-23";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-23T07:49Z";
+  export const liveChartsBuiltAt = "2026-09-23T13:42Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -222,7 +222,7 @@
             "country": "WW",
             "name": "Worldwide",
             "position": 46,
-            "movement": 23
+            "movement": 8
           },
           {
             "country": "KE",
@@ -287,7 +287,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 38,
+            "position": 86,
             "movement": null,
             "status": "new"
           }
@@ -940,6 +940,37 @@
     "title": "Calm Down",
     "platforms": [
       {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SZ",
+            "name": "Swaziland",
+            "position": 23,
+            "movement": -1
+          },
+          {
+            "country": "IE",
+            "name": "Ireland",
+            "position": 24,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 70,
+            "movement": -7
+          },
+          {
+            "country": "DO",
+            "name": "Dominican Republic",
+            "position": 166,
+            "movement": -19
+          }
+        ]
+      },
+      {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
@@ -961,30 +992,6 @@
             "name": "Maldives",
             "position": 157,
             "movement": -116
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SZ",
-            "name": "Swaziland",
-            "position": 23,
-            "movement": -2
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 68,
-            "movement": -4
-          },
-          {
-            "country": "DO",
-            "name": "Dominican Republic",
-            "position": 166,
-            "movement": -20
           }
         ]
       },
@@ -1307,13 +1314,13 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 1,
-            "movement": 0
+            "movement": 1
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 149,
-            "movement": -27
+            "position": 151,
+            "movement": -26
           }
         ]
       },
@@ -1550,6 +1557,26 @@
       }
     ],
     "kind": "album"
+  },
+  {
+    "title": "Peace of Mind",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 12,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/dcc05a9f00c838cb5af3784bb6932102/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Holiday",

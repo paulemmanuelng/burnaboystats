@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-23";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-23T07:50Z";
+  export const liveChartsBuiltAt = "2026-09-23T13:42Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -371,7 +371,7 @@
             "country": "WW",
             "name": "Worldwide",
             "position": 67,
-            "movement": -7
+            "movement": -2
           }
         ]
       },
@@ -393,41 +393,41 @@
             "status": "new"
           },
           {
-            "country": "FJ",
-            "name": "Fiji",
-            "position": 5,
-            "movement": -4
-          },
-          {
             "country": "KE",
             "name": "Kenya",
-            "position": 5,
+            "position": 9,
             "movement": null,
             "status": "new"
           },
           {
-            "country": "MZ",
-            "name": "Mozambique",
-            "position": 12,
-            "movement": -1
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 11,
+            "movement": -9
           },
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 25,
-            "movement": -17
+            "country": "FJ",
+            "name": "Fiji",
+            "position": 12,
+            "movement": -11
+          },
+          {
+            "country": "MZ",
+            "name": "Mozambique",
+            "position": 13,
+            "movement": -1
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 31,
-            "movement": -28
+            "position": 32,
+            "movement": -27
           },
           {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 68,
-            "movement": 10
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 74,
+            "movement": -44
           }
         ]
       },
@@ -825,8 +825,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 7,
-            "movement": -4
+            "position": 8,
+            "movement": -5
           }
         ]
       }
@@ -1046,9 +1046,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 21,
-            "movement": null,
-            "status": "new"
+            "position": 70,
+            "movement": -64
           }
         ]
       },
@@ -1109,13 +1108,13 @@
             "country": "SZ",
             "name": "Swaziland",
             "position": 20,
-            "movement": -2
+            "movement": -1
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 34,
-            "movement": -4
+            "position": 35,
+            "movement": -5
           },
           {
             "country": "BW",
@@ -1132,21 +1131,21 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 80,
-            "movement": 7
+            "position": 82,
+            "movement": 5
           },
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 89,
+            "position": 87,
             "movement": null,
             "status": "new"
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 190,
-            "movement": -10
+            "position": 192,
+            "movement": -9
           }
         ]
       },
@@ -1425,7 +1424,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 53,
+            "position": 102,
             "movement": null,
             "status": "new"
           }
@@ -1469,8 +1468,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 116,
-            "movement": 4
+            "position": 117,
+            "movement": -1
           },
           {
             "country": "CG",
@@ -1658,6 +1657,69 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/24407cf49fdf864463cb5ca5ad974630/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Ngozi",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 42,
+            "movement": -1
+          },
+          {
+            "country": "SC",
+            "name": "Seychelles",
+            "position": 96,
+            "movement": 19
+          },
+          {
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 114,
+            "movement": 29
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 172,
+            "movement": -35
+          },
+          {
+            "country": "MW",
+            "name": "Malawi",
+            "position": 183,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 183,
+            "movement": -38
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 16,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/12ca87c2ea2fa9506d6fc562bd8f5a01/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Hot Body",
     "platforms": [
       {
@@ -1706,7 +1768,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 6,
+            "position": 11,
             "movement": null,
             "status": "new"
           },
@@ -1721,69 +1783,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/4b5a287c8f574407dc5b1b03b5ae0c58/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Ngozi",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 42,
-            "movement": -3
-          },
-          {
-            "country": "SC",
-            "name": "Seychelles",
-            "position": 96,
-            "movement": 19
-          },
-          {
-            "country": "TZ",
-            "name": "Tanzania",
-            "position": 114,
-            "movement": 29
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 172,
-            "movement": -35
-          },
-          {
-            "country": "MW",
-            "name": "Malawi",
-            "position": 183,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 183,
-            "movement": -38
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 15,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/12ca87c2ea2fa9506d6fc562bd8f5a01/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Wo, man",
@@ -1825,13 +1824,13 @@
           {
             "country": "IT",
             "name": "Italy",
-            "position": 35,
-            "movement": -5
+            "position": 71,
+            "movement": -53
           },
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 70,
+            "position": 71,
             "movement": -21
           }
         ]
@@ -1943,7 +1942,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 40,
+            "position": 88,
             "movement": null,
             "status": "new"
           }
@@ -2218,8 +2217,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 193,
-            "movement": -8
+            "position": 195,
+            "movement": -7
           }
         ]
       }
