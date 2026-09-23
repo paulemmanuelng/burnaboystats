@@ -46,7 +46,7 @@ scripts/apply-stat-updates.mjs --dry-run` to preview with no writes.
 ## The live layer (fully automatic, sanity-gated)
 
 Some figures are safe to publish with **no review at all**. A metric marked
-`"live": true` is handled by `.github/workflows/stats-live.yml` (every 30 minutes), which
+`"live": true` is handled by `.github/workflows/stats-live.yml` (four fixed slots a day: 00:17, 06:17, 12:17, 18:17 UTC), which
 runs `apply-stat-updates.mjs --live` and **commits sane changes straight to
 main** — the site updates itself. The other (review-gated) metrics are excluded
 from this run and stay on the daily PR.

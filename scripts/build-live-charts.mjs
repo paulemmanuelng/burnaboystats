@@ -187,6 +187,10 @@ const hour = Number(process.env.SWEEP_HOUR ?? new Date().getUTCHours());
 // hour re-reads numbers that cannot have moved, which is the same argument that
 // throttles YouTube. So the sweeps stay hourly: they run on the first firing of
 // each hour and carry forward on the second.
+// Since 23 Sep 2026 the workflow runs on four fixed slots a day and passes
+// SWEEP_HOUR=0 and SWEEP_MINUTE=0, so every run sweeps: at four passes a day
+// there is nothing left to throttle, and a run GitHub starts late (into a
+// non-sixth hour) must not silently skip YouTube. The gates stay for local runs.
 // SWEEP_MINUTE exists for the same reason as SWEEP_HOUR — the second-firing
 // path would otherwise never be exercised outside production.
 // An empty string counts as unset. GitHub Actions cannot conditionally OMIT an

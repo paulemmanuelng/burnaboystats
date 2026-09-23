@@ -1,17 +1,30 @@
 name: Stats live
 
-# Fully-automatic half-hourly refresh for the "live" figures (Spotify followers +
-# peak monthly listeners). It fetches the sources, runs each value through the
-# sanity gate in scripts/apply-stat-updates.mjs, and commits any sane change
-# STRAIGHT TO main (no PR) — so the site stays current with no human action.
-# Vercel redeploys on the push. Implausible values are rejected, never committed.
+# Fully-automatic refresh for the "live" figures (Spotify followers + peak
+# monthly listeners) and the live chart boards, on FOUR FIXED SLOTS a day. It
+# fetches the sources, runs each value through the sanity gate in
+# scripts/apply-stat-updates.mjs, and commits any sane change STRAIGHT TO main
+# (no PR) — so the site stays current with no human action. Vercel redeploys on
+# the push. Implausible values are rejected, never committed.
+#
+# Why four slots and not every half hour (Paul, 23 Sep 2026): every push is a
+# production deploy, and every deploy starts the CDN and ISR cache for all ~800
+# pages cold. The bot was 19 of the 68 deploys in the week to 23 Sep, so the
+# first visitor to most pages in most regions paid the cold path (~0.35 s from
+# London). The site only ever promised figures "several times a day"
+# (app/lib/liveChartMeta.ts), and GitHub fired the half-hourly schedule every 2-6
+# hours anyway. workflow_dispatch is still "publish now".
 #
 # Followers needs SPOTIFY_CLIENT_ID / SPOTIFY_CLIENT_SECRET repo secrets; without
 # them that one metric is skipped (its value just holds), everything else runs.
 
 on:
   schedule:
-    - cron: "17,47 * * * *" # every 30 minutes, at :17 and :47 past
+    # 00:17, 06:17, 12:17 and 18:17 UTC (01:17, 07:17, 13:17, 19:17 in Lagos).
+    # The hours are multiples of six on purpose: they are the hours the YouTube
+    # sweep keys on — though every run now sweeps regardless (see SWEEP_* below),
+    # because GitHub often starts a scheduled run late, into the next hour.
+    - cron: "17 0,6,12,18 * * *"
   workflow_dispatch: {}
 
 permissions:
@@ -46,17 +59,17 @@ jobs:
       # figure, so it can't go through the anchored find/replace path above.
       # It refuses to write a suspiciously small result, so a reshaped source
       # page fails loudly instead of blanking the page.
-      # A MANUAL run always sweeps. The country sweeps are gated to the first
-      # firing of each hour so the twice-hourly schedule cannot double their
-      # ~204 requests a pass — but that gate also caught workflow_dispatch,
-      # which exists precisely to force a refresh NOW. Dispatching at, say,
-      # 09:30 silently carried the last sweep forward instead, so a manual
-      # "sync now" did nothing for half of every hour. Pinning the minute to 0
-      # on dispatch only tells the gate this is a first firing; the schedule is
-      # untouched and still sweeps once an hour.
+      # EVERY run sweeps the country charts. The gates in build-live-charts.mjs
+      # (first firing of the hour; YouTube only on hours divisible by six) were
+      # written for a half-hourly schedule, to keep ~204 requests a pass from
+      # running 48 times a day. At four slots a day there is nothing to
+      # throttle, and the gates would now do harm: a 06:17 run that GitHub starts
+      # at 07:05 would skip YouTube, and nothing would say so. Pinning the clock
+      # to 00:00 tells both gates "sweep". Manual runs sweep too, as before.
       - name: Rebuild live platform charts
         env:
-          SWEEP_MINUTE: ${{ github.event_name == 'workflow_dispatch' && '0' || '' }}
+          SWEEP_MINUTE: "0"
+          SWEEP_HOUR: "0"
         run: node scripts/build-live-charts.mjs
 
       # The Afrobeats Board's live boards, same pipeline and same sanity gate.
@@ -68,7 +81,8 @@ jobs:
         id: board
         continue-on-error: true
         env:
-          SWEEP_MINUTE: ${{ github.event_name == 'workflow_dispatch' && '0' || '' }}
+          SWEEP_MINUTE: "0"
+          SWEEP_HOUR: "0"
         run: node scripts/build-live-charts.mjs --artist=board
 
       # Gate on the working tree, not on one step's output: either generator
@@ -92,8 +106,8 @@ jobs:
         # changed — an award ceremony being held, a chart reading going stale.
         # They are notifications for a human, and they still fail in ci.yml on
         # every push and PR. Here they would instead stop the step below from
-        # running at all, so the half-hourly refresh would quietly stop
-        # publishing and look like a broken bot. Every other test still runs:
+        # running at all, so the refresh would quietly stop publishing and
+        # look like a broken bot. Every other test still runs:
         # this skips four alarms, not the verification.
         env:
           PUBLISH_GATE: "1"
