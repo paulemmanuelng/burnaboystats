@@ -59,6 +59,8 @@ import {
 import { afrobeatsArtists, BURNA } from "../data/afrobeats";
 import { albums as albumArt } from "../data/albums";
 import { songs } from "../data/songs";
+import { coverFor } from "./covers";
+import { artAt } from "./artAt";
 
 export interface ComparableCert {
   c: string;
@@ -116,7 +118,19 @@ const burnaCover = (title: string, own?: string): string | undefined => {
   const s = (songs as { title: string; cover?: string }[]).find(
     (x) => x.title.toLowerCase() === key,
   );
-  return s?.cover;
+  // …and finally the resolver the certifications page itself uses, which adds
+  // the tracklist lookup and the hand-resolved overrides for features on other
+  // artists' records. Without it "Be Honest" (Jorja Smith's) and "Tshwala Bam
+  // (Remix)" (TitoM & Yuppe's) carried art on /certifications and rendered
+  // blank on /compare — the same plaque, two answers (Paul, 23 Sep 2026).
+  //
+  // Normalised to 500px on the way through. That table holds 100px URLs,
+  // sized for the ledger's badges, and this side's invariant is that every
+  // sleeve is stored at one size so a row of them never renders at two
+  // scales — a test says so, and caught these the moment they arrived.
+  if (s?.cover) return s.cover;
+  const shared = coverFor(title);
+  return shared ? artAt(shared, 500) : undefined;
 };
 
 const burna: ComparableArtist = {
