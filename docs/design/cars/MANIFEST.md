@@ -50,6 +50,7 @@ travels as one bundle with a self-contained brief:
 | file | what it is |
 |---|---|
 | `car-16-sls-render-doors-closed-2816.jpg` | the render to work from — Gemini-generated for this site, 2816×1536, doors closed. Right car and angle; its floor is 6x lighter than the site's background, so it needs re-staging or a cut-out |
+| `car-16-sls-amg-cutout.png` | **the master the hero and tile are built from** — that render cut out onto transparency by the designer, 2299×958 RGBA, car only. One addition: the US amber side-marker his car has and the render lacked. Rebuild with `python3 scripts/build-car-hero.py docs/design/cars/car-16-sls-amg-cutout.png mercedes-sls-amg --width 758 --hue 18-45` |
 | `car-16-ref-1-rear-three-quarter-doors-up.jpeg` | dealer photo of his actual car (AbujaCar, Sep 2026) |
 | `car-16-ref-2-front-three-quarter-doors-closed.jpeg` | dealer photo — the angle the render must match |
 | `car-16-ref-3-front-three-quarter-doors-up.jpeg` | dealer photo — face, `6.3` fin vents, tan interior |
