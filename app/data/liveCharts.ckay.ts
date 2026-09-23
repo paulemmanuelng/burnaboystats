@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-19";
+  export const liveChartsUpdated = "2026-09-23";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-19T11:38Z";
+  export const liveChartsBuiltAt = "2026-09-23T07:50Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -56,15 +56,21 @@
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 121,
-            "movement": 19
+            "position": 96,
+            "movement": 17
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 134,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 150,
-            "movement": null,
-            "status": "new"
+            "position": 149,
+            "movement": 40
           }
         ]
       },
@@ -75,8 +81,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 119,
-            "movement": -7
+            "position": 113,
+            "movement": -3
           }
         ]
       }
@@ -94,14 +100,14 @@
           {
             "country": "RU",
             "name": "Russia",
-            "position": 12,
-            "movement": -6
+            "position": 7,
+            "movement": 2
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 49,
-            "movement": 11
+            "position": 56,
+            "movement": -4
           }
         ]
       },
@@ -112,14 +118,71 @@
           {
             "country": "MA",
             "name": "Morocco",
-            "position": 174,
-            "movement": -6
+            "position": 178,
+            "movement": -22
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ed3944c139089af1359c26d78843d435/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "La La",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 96,
+            "movement": 1
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Boyfriend",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 64,
+            "movement": -3
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ba3181c9fe6a8e7e725a04506efb1dda/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Felony",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 189,
+            "movement": -95
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ba3181c9fe6a8e7e725a04506efb1dda/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "BANGER BOY",
@@ -135,80 +198,10 @@
             "movement": -21
           }
         ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 152,
-            "movement": null,
-            "status": "new"
-          }
-        ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/1d0daaf8c0025c2d95c96beafe4e0a0b/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "La La",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 106,
-            "movement": 30
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Beggie Beggie",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 183,
-            "movement": -5
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b922c719d3a9901f749140e8f532a8d0/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Boyfriend",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 72,
-            "movement": -2
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ba3181c9fe6a8e7e725a04506efb1dda/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "forever",
