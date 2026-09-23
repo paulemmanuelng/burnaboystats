@@ -72,9 +72,11 @@
 //
 // Two facts from that work still shape the table under either rule:
 //   • A body that changed WHAT IT MEASURES — ZPAV to złoty of revenue in Mar
-//     2017, AMPROFON to raw streams in Nov 2020 — is never priced at a unit
-//     level from the old regime. AMPROFON is priced at the § ratio (12 Sep
-//     2026); ZPAV's CURRENT złoty levels are divided by its own 2 zł (23 Sep).
+//     2017, AMPROFON to raw streams in Nov 2020 — is priced at the level it
+//     sets TODAY, in today's measure: AMPROFON at the § ratio (12 Sep 2026),
+//     ZPAV's current złoty divided by the 2 zł its own 2017–2024 single tables
+//     paired with each unit (23 Sep). Its older unit bands stay in `floor`
+//     only, as they do for every body.
 //   • BVMI keys single bands to RELEASE date; every German single here was
 //     released 2016 or later, so its band is the one that ever applied.
 // ============================================================================
@@ -435,22 +437,25 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
     // raised the album rate from 20 zł to 35 zł (review, 23 Sep 2026). The
     // printed 2× / 3× rows are exactly N × the base, as priced.
     // Before 1 Aug 2021 the single levels were 10,000 / 20,000 / 100,000
-    // (20,000 / 40,000 / 200,000 zł from March 2017), but ZPAV's register
-    // dates every Polish single plaque on this roster 11 Aug 2021 or later,
-    // so `floor` holds the 2021 band. Evidence: docs/sourcing/CERT-THRESHOLDS.md.
+    // (20,000 / 40,000 / 200,000 zł from March 2017). ZPAV's register dates
+    // every Polish single plaque on this roster 11 Aug 2021 or later, but the
+    // earliest — One Dance's 3× Platinum, 11 Aug 2021 — sits in a batch of
+    // older records ten days into the new rules and may have been judged on
+    // July data, so `floor` holds the lowest band since 2015 (review, 23 Sep
+    // 2026). Evidence: docs/sourcing/CERT-THRESHOLDS.md.
     normalised:
       "SINGLES converted: ZPAV prints single levels in złoty of revenue (Złota Płyta 125,000 zł) and, since 1 January 2025, no rate. Divided by 2 zł a single — the rate its own single tables used from 2017 to the end of 2024 — see `historic`. Albums were already units.",
     historic:
       "ZPAV sets single levels in złoty of revenue — Gold 125,000 zł, Platinum 250,000 zł, Diamond 1,000,000 zł — and its current rules state no rate. They are converted at 2 zł a single, the rate its own tables used from 2017 to the end of 2024, printing every single level in units and złoty side by side, so a Gold single is 62,500 units. The same 2025 rules raised the album rate from 20 zł to 35 zł, so the units behind a złoty level may differ.",
     historicFormat: "single",
     vintage:
-      "ZPAV raised its single levels on 1 August 2021, from 20,000 / 40,000 / 200,000 zł to 50,000 / 100,000 / 500,000 zł, and on 1 January 2025, to 125,000 / 250,000 / 1,000,000 zł; foreign-repertoire albums rose from 10,000 / 20,000 / 100,000 to 15,000 / 30,000 / 150,000 on the same 2025 date. Priced at today's level; a plaque awarded before then may have cleared the lower bar.",
+      "ZPAV raised its single levels on 1 August 2021, from 20,000 / 40,000 / 200,000 zł to 50,000 / 100,000 / 500,000 zł, and on 1 January 2025, to 125,000 / 250,000 / 1,000,000 zł; foreign-repertoire albums rose from 10,000 / 20,000 / 100,000 to 15,000 / 30,000 / 150,000 on the same 2025 date. Priced at today's level; a plaque awarded before a rise may have cleared a lower bar.",
     single: { silver: null, gold: 62_500, platinum: 125_000, diamond: 500_000 },
     singleRawPln: { gold: 125_000, platinum: 250_000, diamond: 1_000_000 },
     plnPerSingle: 2,
     album: { silver: null, gold: 15_000, platinum: 30_000, diamond: 150_000 },
     floor: {
-      single: { silver: null, gold: 25_000, platinum: 50_000, diamond: 250_000 },
+      single: { silver: null, gold: 10_000, platinum: 20_000, diamond: 100_000 },
       album: { silver: null, gold: 10_000, platinum: 20_000, diamond: 100_000 },
     },
   },

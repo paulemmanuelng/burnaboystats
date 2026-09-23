@@ -313,7 +313,8 @@ export interface ArtistUnits {
   vintages: string[];
   /** Bodies priced at a stream ratio they do not publish — footnote 4. */
   assumptions: string[];
-  /** Bodies priced at their last published level, not a current one — footnote 5 (¶). */
+  /** Lines resting on a figure the body no longer prints — Greece's last LEVEL,
+   *  Poland's last single RATE — footnote 5 (¶). */
   historics: string[];
   /** Plaques that counted toward `total`. */
   pricedPlaques: number;
@@ -625,7 +626,7 @@ export interface Comparison {
   vintages: string[];
   /** Footnote 4 — bodies priced at a stream ratio they do not publish. */
   assumptions: string[];
-  /** Footnote 5 — bodies priced at their last published level (¶). */
+  /** Footnote 5 — lines resting on a figure the body no longer prints (¶). */
   historics: string[];
 }
 

@@ -695,6 +695,15 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
   const visibleVintage = rows.some((r) => r.a?.vintage || r.b?.vintage);
   const visibleAssumed = rows.some((r) => r.a?.assumed || r.b?.assumed);
   const visibleHistoric = rows.some((r) => r.a?.historic || r.b?.historic);
+  // ...and each footnote prints only the notes of the rows on screen. With
+  // Greece the only ¶ body, "a ¶ is visible" meant "the Greek row is visible";
+  // once Poland's singles joined ¶ (23 Sep 2026) a visible Polish row printed
+  // Greece's note under a table whose Greek row was folded (Burna Boy vs CKay).
+  const shown = (k: "caveat" | "assumed" | "historic") =>
+    new Set(rows.flatMap((r) => [r.a?.[k], r.b?.[k]]).filter(Boolean) as string[]);
+  const shownCaveats = noteSource.caveats.filter((x) => shown("caveat").has(x));
+  const shownAssumptions = noteSource.assumptions.filter((x) => shown("assumed").has(x));
+  const shownHistorics = noteSource.historics.filter((x) => shown("historic").has(x));
   // The collapse row counts PLAQUES it hides, not rows: a listed-only line is
   // every plaque on it, a priced line hides the unpriced half riding on it. It
   // was counting rows, so it said 3 beneath a header that said 8. Counted per
@@ -1104,8 +1113,8 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
                   as the rest.
                 </p>
               )}
-              {visibleCaveat && noteSource.caveats.length > 0 && (
-                <p><strong><span className={styles.mark}>†</span> Multiplier assumed</strong> — {noteSource.caveats.join(" ")}</p>
+              {visibleCaveat && shownCaveats.length > 0 && (
+                <p><strong><span className={styles.mark}>†</span> Multiplier assumed</strong> — {shownCaveats.join(" ")}</p>
               )}
               {visibleVintage && noteSource.vintages.length > 0 && (
                 <p>
@@ -1118,18 +1127,18 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
                   </Link>
                 </p>
               )}
-              {visibleAssumed && noteSource.assumptions.length > 0 && (
+              {visibleAssumed && shownAssumptions.length > 0 && (
                 <p>
                   <strong><span className={styles.mark}>§</span> Ratio assumed</strong> — the body publishes its levels in
                   streams and no download-equivalence, so this page converts at {assumedRatio} streams to a unit, the ratio
-                  Denmark and Norway publish for the same measure. {noteSource.assumptions.join(" ")}
+                  Denmark and Norway publish for the same measure. {shownAssumptions.join(" ")}
                 </p>
               )}
-              {visibleHistoric && noteSource.historics.length > 0 && (
+              {visibleHistoric && shownHistorics.length > 0 && (
                 <p>
                   <strong><span className={styles.mark}>¶</span> Historic figure</strong> — the line rests on a
                   figure the body published once and no longer prints, so the bar a plaque cleared may differ
-                  from it. {noteSource.historics.join(" ")}
+                  from it. {shownHistorics.join(" ")}
                 </p>
               )}
             </div>
@@ -1174,8 +1183,9 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
               {plnBodies.length > 0 && (
                 <>
                   {" "}{joinNames(plnBodies.map((t) => nameOf(t.code)))} {plnBodies.length === 1 ? "sets its" : "set their"} single
-                  levels in złoty of revenue and no rate; they are converted at {plnBodies[0].plnPerSingle} zł a single, the
-                  rate {plnBodies.length === 1 ? "its" : "their"} own single tables used until 2025, and marked ¶.
+                  levels in złoty of revenue and {plnBodies.length === 1 ? "states" : "state"} no rate; they are converted at{" "}
+                  {plnBodies[0].plnPerSingle} zł a single, the rate {plnBodies.length === 1 ? "its" : "their"} own single tables used
+                  until the end of 2024, and marked ¶.
                 </>
               )}
               {" "}The unpriced plaques are listed, never summed, and never hidden.

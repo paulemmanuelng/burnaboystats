@@ -565,8 +565,11 @@ export default function MethodologyPage() {
             {allBodies} bodies changed their levels inside the window these plaques span,
             and most raised them. Every plaque is priced at the level the body publishes
             today — the figure a reader can check against the body&apos;s own page —
-            {paragraphBodies.length > 0
-              ? ` with ${paragraphBodies.length === 1 ? "one exception" : `${numberWord(paragraphBodies.length).toLowerCase()} exceptions`} marked ¶, below, `
+            {/* Greece is the exception to TODAY'S LEVEL; Poland's level is today's
+                and only its rate is historic, so it is described after, not counted
+                here (review, 23 Sep 2026). */}
+            {historicBodies.length > 0
+              ? ` with ${historicBodies.length === 1 ? "one exception" : `${numberWord(historicBodies.length).toLowerCase()} exceptions`} marked ¶, below, `
               : " "}
             and wherever that body raised its levels, the page marks the figure with a
             &ldquo;‡&rdquo; and says so: a plaque awarded before the rise may have cleared
@@ -585,20 +588,21 @@ export default function MethodologyPage() {
                 ratio — a plaque awarded today may sit on a different bar.
               </>
             )}
+            {plnBodies.length > 0 && (
+              <>
+                {" "}{joinNames(plnNames)}&apos;s singles are priced at the level{" "}
+                {plnBodies.length === 1 ? "its body prints" : "their bodies print"} today, in złoty of revenue, divided
+                by {plnBodies[0].plnPerSingle} zł a single — the rate {plnBodies.length === 1 ? "its" : "their"} own single
+                tables used until the end of 2024 — and those lines carry a &ldquo;¶&rdquo; too, for the
+                rate rather than the level.
+              </>
+            )}
             {" "}The alternative — pricing at the lowest level each body has applied
             since 2015 — was established for every body and is kept in the data, but it
             would understate every plaque earned after a rise by as much as it protects
             the earlier ones, and it prices against numbers no body publishes any more.
-            Two refinements hold either way: a body that changed <em>what it measures</em>{" "}
-            is never priced at a unit level from its old regime{plnBodies.length > 0 && (
-              <>
-                {" "}— {joinNames(plnNames)}&apos;s singles are priced at the złoty level{" "}
-                {plnBodies.length === 1 ? "it prints" : "they print"} today, converted at its own{" "}
-                {plnBodies[0].plnPerSingle} zł a single, not at the unit counts{" "}
-                {plnBodies.length === 1 ? "it" : "they"} printed before
-              </>
-            )}; and for a body that keys thresholds to release date, the band a record
-            actually fell in is the one that applies.
+            One refinement holds either way: for a body that keys thresholds to release
+            date, the band a record actually fell in is the one that applies.
           </p>
           <p className={styles.p}>
             <strong>One plaque per release per country, at its current tier.</strong>
@@ -707,9 +711,9 @@ export default function MethodologyPage() {
             )}
             {plnBodies.length > 0 && (
               <>
-                {" "}{joinNames(plnNames)}&apos;s single row is today&apos;s złoty level divided by{" "}
+                {" "}{joinNames(plnNames)}&apos;s single figures are today&apos;s złoty levels divided by{" "}
                 {plnBodies[0].plnPerSingle} zł a single — the rate {plnBodies.length === 1 ? "its" : "their"} own single tables used until the end of
-                2024 and no longer state — and is marked &ldquo;¶&rdquo; too.
+                2024 and no longer state — and each carries a &ldquo;¶&rdquo;.
               </>
             )}
           </p>
@@ -727,16 +731,32 @@ export default function MethodologyPage() {
                   <tr key={r.code}>
                     <th scope="row">
                       <span aria-hidden="true">{countryMeta(r.code).flag}</span> {shortBody(r.body)}
-                      {r.historic && <span title={r.historic} aria-label={r.plnPerSingle ? "converted at a historic rate" : "historic level"}> ¶</span>}
+                      {/* A ¶ that covers one format sits on that format's figures, not
+                          on the body: Poland's album levels are today's units. */}
+                      {r.historic && !r.historicFormat && <span title={r.historic} aria-label="historic level"> ¶</span>}
                       <span className={styles.thresholdCountry}>{countryMeta(r.code).name}</span>
                     </th>
                     {r.single ? (
-                      TIERS.map((t) => <td key={t}>{fmtUnits(r.single![t])}</td>)
+                      TIERS.map((t) => (
+                        <td key={t}>
+                          {fmtUnits(r.single![t])}
+                          {r.historicFormat === "single" && r.single![t] != null && (
+                            <span title={r.historic} aria-label="converted at a historic rate"> ¶</span>
+                          )}
+                        </td>
+                      ))
                     ) : (
                       <td colSpan={4} className={styles.thresholdListed}>listed — {r.singleExcluded ?? "not priced"}</td>
                     )}
                     {r.album ? (
-                      TIERS.map((t) => <td key={t}>{fmtUnits(r.album![t])}</td>)
+                      TIERS.map((t) => (
+                        <td key={t}>
+                          {fmtUnits(r.album![t])}
+                          {r.historicFormat === "album" && r.album![t] != null && (
+                            <span title={r.historic} aria-label="converted at a historic rate"> ¶</span>
+                          )}
+                        </td>
+                      ))
                     ) : (
                       <td colSpan={4} className={styles.thresholdListed}>listed — {r.albumExcluded ?? "not priced"}</td>
                     )}

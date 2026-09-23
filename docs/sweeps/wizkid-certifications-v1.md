@@ -6,7 +6,7 @@
 - ✓ = confirmed in the issuing body's own live database
 - ✓ᴬ = confirmed in the issuing body's own database **via an archived capture of that database** (used only for TurnTable/Nigeria, whose live page truncates at 500 rows — see the TCSN row in Per-body coverage)
 - ✓* = confirmed body-side at the tier class, where the body's public record omits the exact multiplier
-- no mark = kept from Wikipedia because the body publishes no verifiable record (now only 🇳🇿 and 🇵🇱)
+- no mark = kept from Wikipedia because the body publishes no verifiable record (now only 🇳🇿; 🇵🇱 was read at ZPAV's register on 23 Sep 2026)
 
 ## Total: **156 certifications** across 21 countries
 
@@ -212,7 +212,7 @@ Nigeria's internal arithmetic, since it carries most of the movement: 71 plaques
 - **Dates.** TurnTable's `date` field is not an award date — the register bulk re-dated its catalogue at least twice (every live row now reads 2026-02-06). Only the 2022-11 → 2024-10 era captures carry plausible per-award dates. Greece's dates are "first capture showing that tier", i.e. upper bounds. Do not publish either as announcement dates.
 - **Know Your Worth** is not a Wizkid title and no Wizkid row is affected. For the record, the sweep confirmed rather than assumed the credit convention: ARIA's 2020 list reads `Khalid x Disclosure | Know Your Worth | SME | PLATINUM | 10-06-2020`, and IFPI Greece credits `Khalid, Disclosure`. No third artist is credited in either register.
 - One Dance is 17 of the 155 (11%) — down from 15% of the 117 and 23% of the original 75, because Nigeria and South Africa filled in.
-- **This remains a floor.** RMNZ and ZPAV are still unverified, AFP exposes only currently-charting titles, Chile has one documented window gap, Finland/Ireland/Slovakia/Argentina publish nothing that could ever be checked, and new certifications keep arriving (Ojuelegba's UK Silver landed 10.07.2026; TurnTable certifies in batches).
+- **This remains a floor.** RMNZ is still unverified (ZPAV was read on 23 Sep 2026), AFP exposes only currently-charting titles, Chile has one documented window gap, Finland/Ireland/Slovakia/Argentina publish nothing that could ever be checked, and new certifications keep arriving (Ojuelegba's UK Silver landed 10.07.2026; TurnTable certifies in batches).
 
 ### Context
 Counted under identical rules: **Burna Boy 229 across 26 countries** on burnaboystats.com. The other five artists in this sweep, at their own deliverables' current figures: **Tems 68**, **Rema 61**, **Davido 60**, **Tyla 60**, **Ayra Starr 34**. Wizkid's verified floor is now **155 across 21 countries** — second only to Burna Boy among the seven, and the gap has narrowed from 150 to 74. It narrows mainly through the Nigerian register, which certifies both artists heavily and whose archive holds more than twice what its live page shows.

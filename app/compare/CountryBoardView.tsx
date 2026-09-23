@@ -347,7 +347,11 @@ export function CountryBoardView({
           <p className={styles.cbThNote}>
             {t?.vintage ? <><span className={styles.mark}>‡</span> {t.vintage}{" "}</> : null}
             {t?.assumed ? <><span className={styles.mark}>§</span> {t.assumed}{" "}</> : null}
-            {t?.historic ? <><span className={styles.mark}>¶</span> {t.historic}{" "}</> : null}
+            {/* A format-scoped ¶ (Poland's singles) prints only where that format
+                is on the board. */}
+            {t?.historic && (!t.historicFormat || board.programs.some((x) => x.lines.some((l) => l.plaqueList.some((p) => p.format === t.historicFormat))))
+              ? <><span className={styles.mark}>¶</span> {t.historic}{" "}</>
+              : null}
             {t?.caveat && multiplied ? <><span className={styles.mark}>†</span> {t.caveat}{" "}</> : null}
           </p>
           {levelsLink}

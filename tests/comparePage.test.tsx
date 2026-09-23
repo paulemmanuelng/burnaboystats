@@ -452,6 +452,14 @@ describe("the pair page derives its remaining typed figures", () => {
       expect(card).toContain("¶");
       expect(card).toContain(x.plnPerSingle ? `${x.plnPerSingle} zł a single` : "June 2013");
     }
+    // Poland's ¶ is a RATE, not a level: the June 2013 sentence must never name
+    // it. Review, 23 Sep 2026: dropping the plnPerSingle filter rendered "Greece
+    // and Poland are priced at IFPI's June 2013 level" and every test passed.
+    const t = text(card);
+    const june = t.slice(t.indexOf("June 2013") - 120, t.indexOf("June 2013"));
+    for (const x of ts.filter((x) => x.plnPerSingle)) expect(june, `${x.code} named as a June 2013 body`).not.toContain(nameOf(x.code));
+    // Each clause starts after a space: a dropped {" "} rendered "…and marked ¶.Poland sets…".
+    expect(t).not.toMatch(/¶\.[A-Z]/);
     // Colombia is the one no-threshold body left, so the verb went singular.
     expect(card).not.toContain("Colombia publish no");
     expect(card).toContain("Colombia publishes no");
@@ -487,7 +495,7 @@ describe("the pair page derives its remaining typed figures", () => {
     expect(gr.split("¶").length - 1).toBe(2);
     // The gate has to see a Greek line ON SCREEN: Burna Boy vs Davido has a
     // Greek plaque on one side only, which folds into the collapsed tail
-    // without all=1, so neither the row nor the "¶ Historic level" block may
+    // without all=1, so neither the row nor the "¶ Historic figure" block may
     // render — and both must once all=1 unfolds it. (Review, 20 Sep 2026.)
     const folded = text(await html({ a: "burna-boy", b: "davido" }));
     const foldedTable = folded.slice(folded.indexOf("Country by country"), folded.indexOf("How this is counted One plaque"));
@@ -512,6 +520,36 @@ describe("the pair page derives its remaining typed figures", () => {
     expect(table.length).toBeGreaterThan(20);
     expect(table).not.toContain("Historic figure");
     expect(table).not.toContain("¶");
+  });
+
+  it("the ¶ footnote prints only the notes of rows on screen (23 Sep 2026)", async () => {
+    // Burna Boy vs CKay: both hold a Polish single (¶, on screen, contested)
+    // while Burna's Greek row folds into the collapsed tail. The footnote
+    // printed Greece's note under that table — the real string that shipped
+    // in review was "IFPI Greece publishes no current level." with no Greek row.
+    const t = text(await html({ a: "burna-boy", b: "ckay" }));
+    const table = t.slice(t.indexOf("Country by country"), t.indexOf("How this is counted One plaque"));
+    expect(table).toContain("Poland PL");
+    expect(table).toContain("¶ Historic figure");
+    expect(table).not.toContain("Greece GR");
+    expect(table).not.toContain("IFPI Greece publishes no current level.");
+    expect(table).toContain("ZPAV sets single levels in złoty of revenue");
+    // Negative control: unfold the tail and the Greek row, and its note, return.
+    const all = text(await html({ a: "burna-boy", b: "ckay", all: "1" }));
+    const allTable = all.slice(all.indexOf("Country by country"), all.indexOf("How this is counted One plaque"));
+    expect(allTable).toContain("Greece GR");
+    expect(allTable).toContain("IFPI Greece publishes no current level.");
+  });
+
+  it("/methodology describes Greece as the one exception to today's level and Poland's ¶ as a rate (23 Sep 2026)", async () => {
+    const { default: MethodologyPage } = await import("../app/methodology/page");
+    const t = text(renderToStaticMarkup(MethodologyPage()));
+    expect(t).toContain("with one exception marked ¶, below,");
+    expect(t).toContain("for the rate rather than the level");
+    // The removed claim contradicted `floor`, which keeps ZPAV's old unit bands.
+    expect(t).not.toContain("never priced at a unit level from its old regime");
+    // Clause joins: a dropped {" "} rendered "…marked “¶”.Poland sets…".
+    expect(t).not.toMatch(/¶”?\.[A-Z]/);
   });
 
   it("/methodology's count of bodies that can price a single adds up, with the ¶ bodies as their own clause (20 Sep 2026)", async () => {

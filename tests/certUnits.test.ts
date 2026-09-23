@@ -1,4 +1,6 @@
 import { describe, expect, it } from "vitest";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import {
   CERT_THRESHOLDS,
   exclusionFor,
@@ -626,19 +628,21 @@ describe("audit fixes, 11 Sep 2026 — each one had a live counter-example", () 
     // The live case was Rema's Poland — album Platinum priced, "Calm Down"
     // Diamond not — until Poland's singles were priced on 23 Sep 2026. No
     // line in the corpus mixes the two any more, so the rule is held on a
-    // fixture: a UK Platinum prices, a UK "Diamond" (a tier the BPI does not
-    // award) cannot. The line must carry both, or the table says one plaque.
+    // fixture of the same shape — a priced ALBUM and an unpriced SINGLE on one
+    // country line: a UK album Gold prices, a UK single "Diamond" (a tier the
+    // BPI does not award) cannot. The line must carry both, or the table says
+    // one plaque.
     const mixed: ComparableArtist = {
       slug: "t", name: "T", image: "", href: "/", verifiedOn: "2026-09-23",
       releases: [
-        { title: "Priced", format: "single", isFeature: false, certs: [{ c: "UK", level: "Platinum" }] },
+        { title: "Priced", format: "album", isFeature: false, certs: [{ c: "UK", level: "Gold" }] },
         { title: "Unpriced", format: "single", isFeature: false, certs: [{ c: "UK", level: "Diamond" }] },
       ],
     };
     const p = priceArtist(mixed, { includeNigeria: false, includeFeatures: true });
     const uk = p.byCountry.find((l) => l.country === "UK");
     expect(uk?.counted).toBe(true);
-    expect(uk?.units).toBe(600_000);
+    expect(uk?.units).toBe(100_000);
     expect(uk?.notCounted?.plaques).toBe(1);
     expect(uk?.notCounted?.reason).toMatch(/no Diamond threshold/);
   });
@@ -753,7 +757,7 @@ describe("today's thresholds, with the floor kept beside them", () => {
       ["FR", "single", "Diamond", 333_333, 233_333],
       ["MX", "album", "Gold", 70_000, 30_000],
       ["PL", "album", "Gold", 15_000, 10_000],
-      ["PL", "single", "Gold", 62_500, 25_000],
+      ["PL", "single", "Gold", 62_500, 10_000],
     ];
     for (const [code, fmt, tier, today, floor] of pairs) {
       expect(thresholdFor(code, fmt, tier), `${code} ${fmt} ${tier}`).toBe(today);
@@ -904,7 +908,8 @@ describe("Greece is priced at IFPI's June 2013 level (Paul, 20 Sep 2026)", () =>
     expect(tyla?.units).toBe(12_000);
     expect(tyla?.historic).toBeTruthy();
     expect(tyla?.caveat).toBe(GR.caveat);
-    expect(compare(bySlug("tyla"), bySlug("tems")).historics).toContain(GR.historic);
+    // Both hold Greek AND Polish singles, so the pair's ¶ list is exactly the two.
+    expect([...compare(bySlug("tyla"), bySlug("tems")).historics].sort()).toEqual([GR.historic, CERT_THRESHOLDS.PL.historic].sort());
   });
 
   it("negative control: a country with `historic` unset produces none", () => {
@@ -944,6 +949,17 @@ describe("Poland's singles are priced at ZPAV's own 2 zł a single (Paul, 23 Sep
     expect(unitsForCert({ c: "PL", level: "Platinum", x: 3 }, "single").units).toBe(750_000 / 2);
     expect(unitsForCert({ c: "PL", level: "Diamond", x: 2 }, "single").units).toBe(2_000_000 / 2);
     expect(thresholdFor("PL", "album", "Platinum")).toBe(30_000);
+  });
+
+  it("matches the rules ZPAV printed, as quoted in the sourcing record — not only this file", () => {
+    // Anchored outside certThresholds.ts: docs/sourcing/CERT-THRESHOLDS.md
+    // quotes olis.pl/terms_oliw verbatim. The 2025 Gold level and the pre-2025
+    // units / złoty pair must reproduce PL.singleRawPln and plnPerSingle.
+    const doc = readFileSync(join(process.cwd(), "docs/sourcing/CERT-THRESHOLDS.md"), "utf8").replace(/\s+/g, " ");
+    expect(doc).toContain("Złota Płyta 125 000 zł");
+    expect(doc, "the 2021 units / złoty pair is quoted").toContain("«SINGLE CYFROWE (ilość / wysokość przychodu) | 25 000 / 50 000 zł");
+    expect(PL.singleRawPln!.gold).toBe(125_000);
+    expect(50_000 / 25_000).toBe(PL.plnPerSingle);
   });
 
   it("keeps the złoty out of `singleRaw`, which every reader takes to be streams", () => {
