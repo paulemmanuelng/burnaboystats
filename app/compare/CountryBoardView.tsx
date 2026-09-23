@@ -12,6 +12,7 @@ import {
   type CountryArtistLine,
   type CountryBoard,
   type CountryPlaque,
+  type CountryProgram,
 } from "../lib/certCountry";
 import { CERT_PROGRAMS, type TierUnits } from "../data/certThresholds";
 
@@ -47,8 +48,11 @@ const tierRun = (t: TierUnits) =>
     .map(([name, n]) => `${name} ${fmt(n as number)}`)
     .join(" · ");
 
-function PlaqueChip({ p, code }: { p: CountryPlaque; code: string }) {
-  const prog = program(p, code);
+function PlaqueChip({ p, code, hideProgram = false }: { p: CountryPlaque; code: string; hideProgram?: boolean }) {
+  // Inside a programme's own table the marker is the table's title repeated on
+  // every row; in the mixed list below it is the only thing telling a 16×
+  // Platino worth 960,000 from a 5× Platinum worth 5,000,000.
+  const prog = hideProgram ? null : program(p, code);
   return (
     <span className={`${styles.tierChip} ${tierClass(p.level)}`}>
       <span className={styles.tierWord}>{plaque(p)}</span>
@@ -108,6 +112,10 @@ function CountryIndex({ options }: { options: { includeNigeria: boolean; include
                   ) : (
                     <span className={styles.notCounted}>not counted{" "}<span className={styles.mark}>¹</span></span>
                   )}
+                  {/* The row is a page: the chevron says so at rest, and moves
+                      with the uplift on hover. Decorative — the country's own
+                      link already carries the accessible name. */}
+                  <span className={styles.cbGo} aria-hidden="true">→</span>
                 </td>
               </tr>
             ))}
@@ -123,6 +131,8 @@ function CountryIndex({ options }: { options: { includeNigeria: boolean; include
 }
 
 function ArtistRow({ line, board, lead, place }: { line: CountryArtistLine; board: CountryBoard; lead: number; place: number }) {
+  // A row inside a programme's table carries that programme by definition.
+  const ownProgram = Boolean(line.program);
   const a = line.artist;
   return (
     <tr role="row">
@@ -150,7 +160,7 @@ function ArtistRow({ line, board, lead, place }: { line: CountryArtistLine; boar
         </Link>
       </td>
       <td role="cell" className={styles.cbPlaqueCell}>
-        {line.top && <PlaqueChip p={line.top} code={board.code} />}
+        {line.top && <PlaqueChip p={line.top} code={board.code} hideProgram={ownProgram} />}
         <span className={styles.notCounted}>
           {line.top ? <span className={styles.cbTopTitle}> {keepParens(line.top.title)}</span> : null}
         </span>
@@ -175,6 +185,48 @@ function ArtistRow({ line, board, lead, place }: { line: CountryArtistLine; boar
   );
 }
 
+/** One programme's ranked artists. A country with a single programme renders
+ *  exactly one of these and never names it; the United States renders two —
+ *  RIAA and RIAA Latin — each with its own subtotal, because a Platino at
+ *  60,000 units and a Platinum at 1,000,000 are not the same award and a
+ *  combined "United States" line reports plaques the RIAA never issued
+ *  (Paul, 23 Sep 2026). */
+function ProgramTable({ prog, board, split }: { prog: CountryProgram; board: CountryBoard; split: boolean }) {
+  const lead = prog.lines[0]?.units ?? 0;
+  if (prog.lines.length === 0) return null;
+  return (
+    <section className={styles.cbProgram} aria-label={split ? `${prog.name} awards` : undefined}>
+      {split && (
+        <p className={styles.cbProgramHead}>
+          <span className={styles.cbProgramName}>{prog.name}</span>
+          <span className={styles.cbProgramMeta}>
+            {prog.lines.length} artist{prog.lines.length === 1 ? "" : "s"} · {prog.plaques} plaque
+            {prog.plaques === 1 ? "" : "s"} · {prog.single?.platinum ? `Platinum ${fmt(prog.single.platinum)}` : "no published level"}
+          </span>
+          <span className={`${styles.units} ${styles.unitsLead} ${styles.cbProgramUnits}`}>{fmt(prog.units)}</span>
+        </p>
+      )}
+      <div className={styles.cbWrap}>
+        <table className={`${styles.cbTable} ${styles.cbBoardTable}`} role="table">
+          <thead role="rowgroup">
+            <tr role="row">
+              <th scope="col" role="columnheader" className={styles.cbRankCell}><span className="visuallyHidden">Rank</span><span aria-hidden="true">#</span></th>
+              <th scope="col" role="columnheader">Artist<span className={styles.thSep}> · </span><span className={styles.thCount}>{prog.lines.length}</span></th>
+              <th scope="col" role="columnheader">Highest plaque</th>
+              <th scope="col" role="columnheader" className={styles.thNum}>Certified units</th>
+            </tr>
+          </thead>
+          <tbody role="rowgroup">
+            {prog.lines.map((l, i) => (
+              <ArtistRow key={l.artist.slug} line={l} board={board} lead={lead} place={i + 1} />
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  );
+}
+
 export function CountryBoardView({
   sp,
   code,
@@ -193,22 +245,17 @@ export function CountryBoardView({
   if (!code) return <CountryIndex options={options} />;
 
   const board = priceCountry(code, options);
-  const lead = board.lines[0]?.units ?? 0;
   const t = board.thresholds;
   // Programmes whose plaques are on this board and are NOT the country's own
   // body — RIAA Latin in the US. Priced at that programme's levels, which is a
   // sixteen-fold difference and has to be said on the page.
-  const programmes = [
-    ...new Set(
-      board.lines.flatMap((l) => l.plaqueList.map((p) => p.body).filter((b): b is string => Boolean(b && b !== board.body))),
-    ),
-  ];
+  const programmes = board.programs.filter((p) => p.program).map((p) => p.name);
   // One row per RECORD, not per holder. "Essence" is Wizkid's plaque and Tems'
   // — the table above rightly counts it on both lines, but a list of the
   // biggest records in a market that printed it twice read as a duplicate, so
   // here the holders share the row.
   const byRecord = new Map<string, { p: CountryPlaque; holders: { name: string; featured: boolean }[] }>();
-  for (const line of board.lines) {
+  for (const line of board.programs.flatMap((x) => x.lines)) {
     for (const p of line.plaqueList) {
       if (p.units === null) continue;
       const key = `${p.title.toLowerCase()}|${p.format}`;
@@ -230,7 +277,7 @@ export function CountryBoardView({
   // The † says "this body publishes no multiplier rule, so an N× award is
   // priced as N × Platinum". It is only a caveat where an N× award is actually
   // on the board — the Czech card carried it above a single Gold.
-  const multiplied = board.lines.some((l) => l.plaqueList.some((p) => p.x > 1));
+  const multiplied = board.programs.some((x) => x.lines.some((l) => l.plaqueList.some((p) => p.x > 1)));
   const biggest = [...byRecord.values()]
     .sort((x, y) => (y.p.units ?? 0) - (x.p.units ?? 0) || x.p.title.localeCompare(y.p.title))
     .slice(0, 10);
@@ -260,27 +307,34 @@ export function CountryBoardView({
           <p className={styles.cbFigure}>{board.counted ? fmt(board.units) : <span aria-hidden="true">—</span>}</p>
           <p className={styles.cbFigureMeta}>
             {board.counted
-              ? `certified units · ${board.artists} of ${comparableArtists.length} artists certified · ${board.counted} of ${board.plaques} plaque${board.plaques === 1 ? "" : "s"} counted${board.notCounted ? ` · ${board.notCounted} not counted` : ""}`
+              ? `certified units · ${board.artists} of ${comparableArtists.length} artists certified · ${board.counted} of ${board.plaques} plaque${board.plaques === 1 ? "" : "s"} counted${board.notCounted ? ` · ${board.notCounted} not counted` : ""}${
+                  board.programs.length > 1
+                    ? ` · ${board.programs.map((p) => `${p.plaques} at ${p.name}`).join(", ")}`
+                    : ""
+                }`
               : `${board.plaques} plaque${board.plaques === 1 ? "" : "s"} held by ${board.artists} artist${board.artists === 1 ? "" : "s"} · none priceable`}
           </p>
         </div>
         <div className={styles.cbThresholds}>
           <p className={styles.cbThHead}>What one plaque is worth here</p>
-          <dl className={styles.cbThList}>
-            {/* An excluded format carries the MARK here and its body's own
-                words in the footnote below. The reasons run to three sentences
-                — Colombia's twice over, once per format — and a card built to
-                be read at a glance turned into two paragraphs of register
-                provenance. */}
-            <div className={styles.cbThRow}>
-              <dt>Single</dt>
-              <dd>{t?.single ? tierRun(t.single) : <>not priced{"\u00a0"}<span className={styles.mark}>¹</span></>}</dd>
-            </div>
-            <div className={styles.cbThRow}>
-              <dt>Album</dt>
-              <dd>{t?.album ? tierRun(t.album) : <>not priced{"\u00a0"}<span className={styles.mark}>¹</span></>}</dd>
-            </div>
-          </dl>
+          {/* One block per programme awarded here. An excluded format carries
+              the MARK and its body's own words in the footnote below: the
+              reasons run to three sentences — Colombia's twice over, once per
+              format — and a card built to be read at a glance turned into two
+              paragraphs of register provenance. */}
+          {board.programs.map((prog) => (
+            <dl className={styles.cbThList} key={prog.name}>
+              {board.programs.length > 1 && <p className={styles.cbThProgram}>{prog.name}</p>}
+              <div className={styles.cbThRow}>
+                <dt>Single</dt>
+                <dd>{prog.single ? tierRun(prog.single) : <>not priced{"\u00a0"}<span className={styles.mark}>¹</span></>}</dd>
+              </div>
+              <div className={styles.cbThRow}>
+                <dt>Album</dt>
+                <dd>{prog.album ? tierRun(prog.album) : <>not priced{"\u00a0"}<span className={styles.mark}>¹</span></>}</dd>
+              </div>
+            </dl>
+          ))}
           <p className={styles.cbThNote}>
             {t?.vintage ? <><span className={styles.mark}>‡</span> {t.vintage}{" "}</> : null}
             {t?.assumed ? <><span className={styles.mark}>§</span> {t.assumed}{" "}</> : null}
@@ -310,23 +364,9 @@ export function CountryBoardView({
       )}
 
       <h2 className="visuallyHidden" id="country-board">Artists ranked in {board.inSentence}</h2>
-      <div className={styles.cbWrap}>
-        <table className={`${styles.cbTable} ${styles.cbBoardTable}`} role="table">
-          <thead role="rowgroup">
-            <tr role="row">
-              <th scope="col" role="columnheader" className={styles.cbRankCell}><span className="visuallyHidden">Rank</span><span aria-hidden="true">#</span></th>
-              <th scope="col" role="columnheader">Artist<span className={styles.thSep}> · </span><span className={styles.thCount}>{board.lines.length}</span></th>
-              <th scope="col" role="columnheader">Highest plaque</th>
-              <th scope="col" role="columnheader" className={styles.thNum}>Certified units</th>
-            </tr>
-          </thead>
-          <tbody role="rowgroup">
-            {board.lines.map((l, i) => (
-              <ArtistRow key={l.artist.slug} line={l} board={board} lead={lead} place={i + 1} />
-            ))}
-          </tbody>
-        </table>
-      </div>
+      {board.programs.map((prog) => (
+        <ProgramTable key={prog.name} prog={prog} board={board} split={board.programs.length > 1} />
+      ))}
 
       {biggest.length > 0 && (
         <section className={styles.cbBiggest} aria-labelledby="biggest-plaques">
@@ -370,8 +410,10 @@ export function CountryBoardView({
         )}
         {programmes.length > 0 && (
           <p>
-            <strong>More than one programme</strong> — {programmes.join(", ")} {programmes.length === 1 ? "runs" : "run"} beside{" "}
-            {board.body} here, at {programmes.length === 1 ? "its" : "their"} own levels.{" "}
+            <strong>Counted separately</strong> — {programmes.join(", ")}{" "}
+            {programmes.length === 1 ? "runs" : "run"} beside {board.body} here at {programmes.length === 1 ? "its" : "their"} own
+            levels, so {programmes.length === 1 ? "its plaques have" : "their plaques have"} a table of their own: summing them into
+            the {board.body} line would report awards {board.body} never issued.{" "}
             {programmes.map((p) => CERT_PROGRAMS[p]?.note).filter(Boolean).join(" ")}
           </p>
         )}

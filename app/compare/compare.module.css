@@ -756,7 +756,8 @@
    squared every pill here the moment it was tapped (on iOS a text field
    always matches :focus-visible). The rings keep the pills' own radius. */
 .searchInput:focus-visible, .searchBtn:focus-visible, .chip:focus-visible, .segItem:focus-visible,
-.switch:focus-visible, .showAll:focus-visible, .ngAction:focus-visible, .boardBtn:focus-visible { border-radius: 999px; }
+.switch:focus-visible, .showAll:focus-visible, .ngAction:focus-visible, .boardBtn:focus-visible,
+.cbChange:focus-visible { border-radius: 999px; }
 .slotClear:focus-visible { border-radius: 50%; }
 .searchBtn {
   min-height: 44px;
@@ -893,11 +894,16 @@
   vertical-align: middle;
 }
 .cbTable th.thNum, .cbTable td.tdNum { text-align: right; }
-.cbTable tr:hover td { background: var(--bg-raised); }
+/* The board table's own row hint — it has no page behind it, so it lifts
+   nothing; only the index rows are links. */
+.cbBoardTable tbody tr:hover td { background: var(--bg-raised); }
 
 .cbHeadMain { min-width: 0; }
 .cbNameCell, .cbMetaCell { min-width: 0; }
 .cbCountryLink { display: inline-flex; align-items: center; gap: 10px; min-height: 24px; }
+/* The row highlights on hover, which reads as "this is clickable" — so the
+   thing that IS clickable has to say so too, or the reader hunts for it. */
+.cbCountryLink:hover .cbCountryName, .cbArtistLink:hover .cbArtistName { text-decoration: underline; }
 .cbCountryName { font-size: var(--type-small); }
 .cbCoverage {
   font-family: var(--font-mono), monospace;
@@ -955,6 +961,97 @@
   min-width: 96px;
 }
 .cbBarFill { display: block; height: 100%; background: var(--text); }
+
+/* A market row is a PAGE, and it has to look like one. Paul, 23 Sep 2026:
+   "as someone hovers on Nigeria it should have a little uplift … people should
+   understand they need to click on the country to see the full picture."
+
+   The whole row is the target, not just the eight characters of the country's
+   name: the link in the first cell stretches over the row with ::after, so
+   there is still exactly ONE link in the markup for a screen reader and a
+   keyboard, and the pointer gets the whole band. The chevron sits at rest at
+   low contrast and firms up on hover, so the row reads as navigable before
+   anybody touches it. */
+.cbIndexTable tbody tr {
+  position: relative;
+  transition: transform var(--dur) var(--ease), background-color var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease);
+}
+/* The raise goes on the ROW, not the cells: under 760px the row is a grid with
+   gaps between the cells, and a per-cell background broke one row into three
+   floating bands. */
+.cbIndexTable tbody tr:hover,
+.cbIndexTable tbody tr:focus-within {
+  background: var(--bg-raised);
+  transform: translateY(-2px);
+  /* The site's shadow pair: the colour themes, the ALPHA is scaled, because a
+     45%-black shadow that reads as depth on black reads as dirt on paper. */
+  box-shadow: 0 8px 22px color-mix(in srgb, var(--shadow-base) calc(45% * var(--shadow-strength)), transparent);
+}
+.cbIndexTable tbody tr:active { transform: translateY(0); }
+/* The stretched hit area. Inset by the row's own padding so neighbouring rows
+   never overlap, and under nothing — the row holds no other link. */
+.cbCountryLink::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+.cbGo {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  color: var(--text-muted);
+  opacity: 0.55;
+  transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
+  margin-left: 10px;
+}
+.cbIndexTable tbody tr:hover .cbGo,
+.cbIndexTable tbody tr:focus-within .cbGo { opacity: 1; transform: translateX(3px); }
+@media (prefers-reduced-motion: reduce) {
+  .cbIndexTable tbody tr,
+  .cbGo { transition: none; }
+  .cbIndexTable tbody tr:hover,
+  .cbIndexTable tbody tr:focus-within { transform: none; }
+  .cbIndexTable tbody tr:hover .cbGo,
+  .cbIndexTable tbody tr:focus-within .cbGo { transform: none; }
+}
+
+/* one block per award programme (the United States has two) */
+.cbProgram { margin-bottom: 8px; }
+.cbProgramHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+  margin: 18px 0 8px;
+  padding-top: 14px;
+  border-top: 1px solid var(--rule);
+}
+.cbProgramName {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+}
+.cbProgramMeta {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-caption);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.cbProgramUnits { margin-left: auto; }
+.cbThProgram {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 0 6px;
+}
+.cbThList + .cbThList { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--rule-soft); }
 
 /* the chosen country's headline + its threshold card */
 .cbHead {
@@ -1126,7 +1223,7 @@
   }
   .cbTable th, .cbTable td { display: block; padding: 0; border-bottom: 0; min-width: 0; }
   .cbTable th.thNum, .cbTable td.tdNum { text-align: right; }
-  .cbTable tr:hover td { background: transparent; }
+  .cbBoardTable tbody tr:hover td { background: transparent; }
   /* Index rows: country then units, the coverage line full-width beneath.
      Placed explicitly, all of it: a cell that spans pushes every auto-placed
      cell after it onto a row of its own, and the units landed under the
@@ -1148,7 +1245,7 @@
 
   .cbHead { grid-template-columns: 1fr; gap: 18px; padding-bottom: 18px; }
   .cbFigure { font-size: 40px; }
-  .cbChange { width: 44px; height: 44px; min-height: 44px; padding: 0; justify-content: center; border-radius: 50%; }
+  .cbChange, .cbChange:focus-visible { width: 44px; height: 44px; min-height: 44px; padding: 0; justify-content: center; border-radius: 50%; }
   .cbChangeText { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   .cbThresholds { padding: 12px 14px; background: var(--bg-soft); border-color: var(--line); border-radius: 0; }
   .cbThRow { grid-template-columns: 54px minmax(0, 1fr); }

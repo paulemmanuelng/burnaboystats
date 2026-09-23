@@ -120,6 +120,38 @@ describe("a country board", () => {
   });
 });
 
+describe("country mode renders one page, not two", () => {
+  // A hand-edited URL, or a link that predates the mode, can still carry a=
+  // and b=. The first version rendered the whole Burna vs Wizkid comparison
+  // UNDER the Canadian board: two headline cards, a second country-by-country
+  // table and a second exit card.
+  it("ignores stale artist params instead of stacking a comparison underneath", async () => {
+    for (const sp of [
+      { mode: "country", country: "canada", a: "burna-boy" },
+      { mode: "country", country: "canada", a: "burna-boy", b: "wizkid" },
+      { mode: "country", country: "canada", a: "burna-boy", b: "burna-boy" },
+    ]) {
+      const t = text(await html(sp));
+      const where = JSON.stringify(sp);
+      expect(t, where).toContain("Certified units in Canada");
+      expect(t, where).not.toContain("leads by at least");
+      expect(t, where).not.toContain("on both sides");
+      expect(t, where).not.toContain("The country-by-country table appears");
+      // one headline figure on the page: the country's
+      expect(t.match(/at least/g)?.length ?? 0, where).toBeLessThan(3);
+      // and the mode's own control is still there
+      expect(t, where).toContain("every plaque held");
+    }
+  });
+
+  it("switching modes from a market drops the market, the way it drops a chosen song", async () => {
+    const h = await html({ mode: "country", country: "canada" });
+    const switches = hrefs(h).filter((x) => /mode=(songs|albums|artists)/.test(x));
+    expect(switches.length).toBeGreaterThan(0);
+    for (const x of switches) expect(x, x).not.toMatch(/country=/);
+  });
+});
+
 describe("the country pages' own trail", () => {
   it("lists By country between Compare and the market, in both the bar and the BreadcrumbList", async () => {
     const { CompareView } = await import("../app/compare/page");
@@ -160,5 +192,39 @@ describe("the boards fit a phone", () => {
   it("hides a header only where its column has moved, and never with display:none", () => {
     expect(phone).toMatch(/\.cbIndexTable thead th:nth-child\(2\),\s*\n?\s*\.cbBoardTable thead th:nth-child\(3\) \{[^}]*clip: rect/);
     expect(phone).not.toMatch(/thead th:nth-child\(\d\)[^{]*\{[^}]*display: none/);
+  });
+});
+
+describe("the compare section's own metadata fits the display limits", () => {
+  // scripts/check-seo.mjs reads PRERENDERED html, and /compare is
+  // server-rendered on demand — so nothing checked the hub's own title and
+  // description until a sweep measured them off the dev server and found the
+  // description at 179 characters, truncated in every result it appeared in.
+  const LIMITS = { title: 60, description: 160 };
+
+  it("holds every state /compare can render inside them", async () => {
+    const { generateMetadata } = await import("../app/compare/page");
+    const states: Record<string, string>[] = [
+      {},
+      { mode: "songs" },
+      { mode: "albums" },
+      { mode: "country" },
+      { mode: "country", country: "canada" },
+      { mode: "country", country: "united-states" },
+      { mode: "country", country: "bogus" },
+      { a: "burna-boy" },
+      { a: "burna-boy", b: "wizkid" },
+      { mode: "songs", a: "burna-boy", sa: "Ye", b: "wizkid", sb: "Essence" },
+    ];
+    const over: string[] = [];
+    for (const sp of states) {
+      const m = await generateMetadata({ searchParams: Promise.resolve(sp) });
+      const title = String(m.title ?? "");
+      const description = String(m.description ?? "");
+      const where = JSON.stringify(sp);
+      if (!title || title.length > LIMITS.title) over.push(`${where}: title ${title.length}`);
+      if (!description || description.length > LIMITS.description) over.push(`${where}: description ${description.length}`);
+    }
+    expect(over).toEqual([]);
   });
 });

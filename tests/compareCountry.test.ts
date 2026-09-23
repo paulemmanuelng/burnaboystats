@@ -7,7 +7,7 @@ import {
   countrySlug,
   priceCountry,
 } from "../app/lib/certCountry";
-import { comparableArtists, priceArtist } from "../app/lib/certUnits";
+import { comparableArtists, compare, priceArtist } from "../app/lib/certUnits";
 import { CERT_THRESHOLDS } from "../app/data/certThresholds";
 
 /**
@@ -19,30 +19,50 @@ import { CERT_THRESHOLDS } from "../app/data/certThresholds";
 const OPTS = { includeNigeria: true, includeFeatures: true };
 
 describe("one country, every artist — reconciled against priceArtist", () => {
-  it("agrees line for line with the compare engine, in every country", () => {
+  it("agrees line for line with the compare engine, in every country and every programme", () => {
+    // Both engines split a separately-priced programme onto its own line
+    // (RIAA Latin), so the reconciliation is per MARKET — country plus
+    // programme — not per country. Matching on the country alone would let
+    // the two disagree about which side of the split a plaque falls on and
+    // still pass.
     const mismatches: string[] = [];
     for (const code of certCountryCodes()) {
       const board = priceCountry(code, OPTS);
       for (const artist of comparableArtists) {
         const priced = priceArtist(artist, OPTS);
-        const counted = priced.byCountry.find((l) => l.country === code) ?? null;
-        const listed = priced.listed.find((l) => l.country === code) ?? null;
-        const line = board.lines.find((l) => l.artist.slug === artist.slug) ?? null;
+        const programs = [
+          ...new Set([
+            ...board.programs.map((p) => p.program ?? ""),
+            ...priced.byCountry.filter((l) => l.country === code).map((l) => l.program ?? ""),
+            ...priced.listed.filter((l) => l.country === code).map((l) => l.program ?? ""),
+          ]),
+        ];
+        for (const program of programs) {
+          const same = (l: { country: string; program?: string }) =>
+            l.country === code && (l.program ?? "") === program;
+          const counted = priced.byCountry.find(same) ?? null;
+          const listed = priced.listed.find(same) ?? null;
+          const line =
+            board.programs
+              .find((p) => (p.program ?? "") === program)
+              ?.lines.find((l) => l.artist.slug === artist.slug) ?? null;
+          const where = `${code}${program ? `/${program}` : ""}/${artist.slug}`;
 
-        if (!counted && !listed) {
-          if (line) mismatches.push(`${code}/${artist.slug}: country view has a line the compare engine does not`);
-          continue;
+          if (!counted && !listed) {
+            if (line) mismatches.push(`${where}: country view has a line the compare engine does not`);
+            continue;
+          }
+          if (!line) {
+            mismatches.push(`${where}: compare engine has a line the country view drops`);
+            continue;
+          }
+          const units = counted?.units ?? 0;
+          const countedPlaques = counted?.releases ?? 0;
+          const unpriced = (counted?.notCounted?.plaques ?? 0) + (listed?.releases ?? 0);
+          if (line.units !== units) mismatches.push(`${where}: units ${line.units} vs ${units}`);
+          if (line.counted !== countedPlaques) mismatches.push(`${where}: counted ${line.counted} vs ${countedPlaques}`);
+          if (line.notCounted !== unpriced) mismatches.push(`${where}: not counted ${line.notCounted} vs ${unpriced}`);
         }
-        if (!line) {
-          mismatches.push(`${code}/${artist.slug}: compare engine has a line the country view drops`);
-          continue;
-        }
-        const units = counted?.units ?? 0;
-        const countedPlaques = counted?.releases ?? 0;
-        const unpriced = (counted?.notCounted?.plaques ?? 0) + (listed?.releases ?? 0);
-        if (line.units !== units) mismatches.push(`${code}/${artist.slug}: units ${line.units} vs ${units}`);
-        if (line.counted !== countedPlaques) mismatches.push(`${code}/${artist.slug}: counted ${line.counted} vs ${countedPlaques}`);
-        if (line.notCounted !== unpriced) mismatches.push(`${code}/${artist.slug}: not counted ${line.notCounted} vs ${unpriced}`);
       }
     }
     expect(mismatches).toEqual([]);
@@ -99,5 +119,76 @@ describe("the country pages' copy", () => {
       if (c.description.length > 160) over.push(`${b.name}: description ${c.description.length}`);
     }
     expect(over).toEqual([]);
+  });
+});
+
+describe("a separately-priced programme is its own line (Paul, 23 Sep 2026)", () => {
+  // RIAA Latin certifies a Platino at 60,000 units where RIAA certifies a
+  // Platinum at 1,000,000. Both are United States plaques and both count
+  // toward an artist's total — but a "United States" line that sums them
+  // reports awards the RIAA never issued, which is the bug this pins.
+  const burna = comparableArtists.find((a) => a.slug === "burna-boy")!;
+  const ayra = comparableArtists.find((a) => a.slug === "ayra-starr")!;
+
+  it("keeps the Platinos out of the RIAA line, and still counts them in the total", () => {
+    const p = priceArtist(burna, OPTS);
+    const us = p.byCountry.filter((l) => l.country === "US");
+    const riaa = us.find((l) => !l.program)!;
+    const latin = us.find((l) => l.program === "RIAA Latin")!;
+    expect(riaa).toBeDefined();
+    expect(latin).toBeDefined();
+    expect(latin.body).toBe("RIAA Latin");
+    expect(latin.units).toBe(120_000);
+    expect(latin.releases).toBe(1);
+    // Not inside the RIAA line…
+    expect(riaa.units % 500_000).toBe(0);
+    expect(riaa.units).toBe(4_500_000);
+    // …but inside the artist's total, which is the sum of every line.
+    expect(p.total).toBe(p.byCountry.reduce((n, l) => n + l.units, 0));
+    expect(p.byCountry).toContain(latin);
+  });
+
+  it("gives the programme its own row in a head-to-head", () => {
+    const c = compare(burna, ayra, { includeFeatures: true });
+    const rows = [...c.rows, ...c.collapsed.flatMap((t) => t.rows)];
+    const riaa = rows.find((r) => r.country === "US" && !r.program)!;
+    const latin = rows.find((r) => r.country === "US" && r.program === "RIAA Latin")!;
+    expect(riaa.a?.units).toBe(4_500_000);
+    // Ayra Starr's only US plaque is a Platino: she is on the Latin row and
+    // has no RIAA line at all.
+    expect(riaa.b).toBe(null);
+    expect(latin.a?.units).toBe(120_000);
+    expect(latin.b?.units).toBe(960_000);
+    expect(latin.contested).toBe(true);
+  });
+
+  it("splits the US board in two and leaves every other market whole", () => {
+    const us = priceCountry("US", OPTS);
+    expect(us.programs.map((p) => p.name)).toEqual(["RIAA", "RIAA Latin"]);
+    const [riaa, latin] = us.programs;
+    expect(riaa.plaques).toBe(45);
+    expect(latin.plaques).toBe(3);
+    expect(latin.units).toBe(1_200_000);
+    expect(latin.single?.platinum).toBe(60_000);
+    expect(riaa.single?.platinum).toBe(1_000_000);
+    // The country's own figures are the programmes' sum, and its artist count
+    // counts a person once however many programmes certified them.
+    expect(us.units).toBe(riaa.units + latin.units);
+    expect(us.plaques).toBe(riaa.plaques + latin.plaques);
+    expect(us.artists).toBe(13);
+    expect(riaa.lines.length + latin.lines.length).toBe(15);
+    for (const code of certCountryCodes().filter((c) => c !== "US")) {
+      expect(priceCountry(code, OPTS).programs.length, code).toBe(1);
+    }
+  });
+
+  it("does not split on an issuer that has no scale of its own", () => {
+    // Colombia's plaque names "Sony Music Colombia" — an issuer, not a
+    // programme with published levels — so it stays on Colombia's own line and
+    // is listed-not-counted like the rest of the country.
+    const co = priceCountry("CO", OPTS);
+    expect(co.programs.length).toBe(1);
+    expect(co.programs[0].program).toBeUndefined();
+    expect(co.counted).toBe(0);
   });
 });

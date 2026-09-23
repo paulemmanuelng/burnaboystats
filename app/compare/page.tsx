@@ -47,6 +47,16 @@ import { PICKER_FOLD, fold, pickerArtists, pickerReleases } from "../lib/compare
 import { featuredPairs, pairCopy, pairSlug } from "../lib/comparePairs";
 import { href, one, type SP } from "../lib/compareUrl";
 import { fmt, keepParens, plaque, program, shortProgram, tierClass } from "./chips";
+import { marketKey } from "../lib/certUnits";
+
+/** "RIAA Latin" in the US code column reads as "US · LATIN" — the country is
+ *  already spelled beside it, so the column carries what makes this row a
+ *  different line from the one above it. */
+const programShort = (name: string, country: string) => {
+  const own = countryMeta(country).body;
+  const tail = name.startsWith(own) ? name.slice(own.length).trim() : name;
+  return `${country} · ${(tail || name).toUpperCase()}`;
+};
 import { CountryBoardView } from "./CountryBoardView";
 import { countryCopy, countryFromSlug, countrySlug, priceCountry } from "../lib/certCountry";
 import { artAt, artSrcSet } from "../lib/artAt";
@@ -85,8 +95,12 @@ import {
 
 const BASE_METADATA = pageMetadata({
   title: "Compare Certified Units — Burna Boy vs Wizkid & More",
+  // 159 characters, and a test holds it there. The previous one ran to 179 and
+  // was being truncated in results: /compare is server-rendered, so
+  // scripts/check-seo.mjs — which reads prerendered HTML — never saw it, and
+  // nothing else looked until the 23 Sep sweep.
   description:
-    "Compare two Afrobeats artists, two songs or two albums by the units behind their certifications — every plaque priced at its own body's published threshold, under identical rules.",
+    "Compare two Afrobeats artists, two songs or two albums by the units behind their plaques — or one market at a time, at each body's published threshold.",
   path: "/compare",
   shareTitle: "Certified units, compared",
   shareDescription:
@@ -448,7 +462,9 @@ function Cell({ line, lead, artistMode }: { line: CountryLine | null; lead: bool
   // no subset of its own.
   const markList = [line.caveat ? "†" : null, line.vintage ? "‡" : null, line.assumed ? "§" : null, line.historic ? "¶" : null].filter(Boolean);
   const marks = markList.length ? <>{"\u00a0"}<span className={styles.mark}>{markList.join("\u00a0")}</span></> : null;
-  const prog = program(line.top, line.country);
+  // A programme line already says which programme it is, in the country column
+  // — the chip repeating "Latin" beside it was saying it twice.
+  const prog = line.program ? null : program(line.top, line.country);
   if (!line.counted) {
     return (
       <div className={styles.cell}>
@@ -561,7 +577,12 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
   // longer offers it, but a URL can still say so.
   const sameArtist = Boolean(a && b && a.slug === b.slug);
 
-  const c = both && !sameRecording && !sameArtist
+  // Country mode never computes a pairwise comparison, whatever the URL says.
+  // `/compare?mode=country&country=canada&a=burna-boy&b=wizkid` — a hand-edited
+  // URL, or an old link that predates the mode — rendered the whole Burna vs
+  // Wizkid page UNDER the Canadian board: two headline cards, a second
+  // country-by-country table and a second exit.
+  const c = !countryMode && both && !sameRecording && !sameArtist
     ? compare(a!, b!, {
         ...(ngParam ? { includeNigeria: ngParam === "1" } : {}),
         includeFeatures,
@@ -574,7 +595,7 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
   const soloNg = ngParam === "1";
   // Solo pricing also backs the slots on a REFUSED pairing (same artist twice),
   // so they never print "· · 0 countries" for an artist with a real catalogue.
-  const soloPriced = a && (!both || sameArtist) ? priceArtist(a, { includeNigeria: soloNg, includeFeatures }) : null;
+  const soloPriced = a && !countryMode && (!both || sameArtist) ? priceArtist(a, { includeNigeria: soloNg, includeFeatures }) : null;
   const refused = Boolean(sameArtist || sameRecording);
 
   const songPriced = (art: ComparableArtist | null, rel: ComparableRelease | null, ngIn: boolean) =>
@@ -588,11 +609,11 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
   // real bug: in song mode with no song picked yet, the page fell through to
   // ARTIST totals and printed them under the artists' names. In song mode
   // nothing renders until BOTH songs are chosen.
-  const ready = record ? useSongs : both && !refused;
+  const ready = countryMode ? false : record ? useSongs : both && !refused;
   // A refused pairing renders its refusal and nothing else — no card, no hint.
   // It was printing "at least 0 certified units" beneath "That is Burna Boy on
   // both sides", which is a number the page never established.
-  const partial = refused ? false : record ? Boolean(spa || spb) : Boolean(a);
+  const partial = countryMode || refused ? false : record ? Boolean(spa || spb) : Boolean(a);
 
   // The side being described, whichever mode is on — and in song mode with one
   // song chosen, that side is the SONG, never the artist. The header card was
@@ -616,18 +637,23 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
 
   const rows: ComparisonRow[] = useSongs
     ? (() => {
+        // Rule 5 applies here too: "Dai Dai" holds a RIAA Latin Platino and a
+        // song table keyed on the country would have summed it into a US line
+        // the RIAA never awarded.
+        const keyOf = (l: CountryLine) => marketKey(l.country, l.program);
         const codes = [...new Set([
-          ...spa!.byCountry.map((l) => l.country), ...spa!.listed.map((l) => l.country),
-          ...spb!.byCountry.map((l) => l.country), ...spb!.listed.map((l) => l.country),
+          ...spa!.byCountry.map(keyOf), ...spa!.listed.map(keyOf),
+          ...spb!.byCountry.map(keyOf), ...spb!.listed.map(keyOf),
         ])];
-        const find = (p: typeof spa, code: string) =>
-          p!.byCountry.find((l) => l.country === code) ?? p!.listed.find((l) => l.country === code) ?? null;
+        const find = (p: typeof spa, key: string) =>
+          p!.byCountry.find((l) => keyOf(l) === key) ?? p!.listed.find((l) => keyOf(l) === key) ?? null;
         return pinNg(
           codes
-            .map((country) => {
-              const la = find(spa, country);
-              const lb = find(spb, country);
-              return { country, body: countryMeta(country).body, a: la, b: lb, contested: Boolean(la && lb) };
+            .map((key) => {
+              const la = find(spa, key);
+              const lb = find(spb, key);
+              const line = (la ?? lb)!;
+              return { country: line.country, program: line.program, body: line.body, a: la, b: lb, contested: Boolean(la && lb) };
             })
             .sort(byMax),
           ngForSongs,
@@ -794,7 +820,10 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
                     ? includeFeatures
                       ? "/compare/in"
                       : "/compare?mode=country&feat=0"
-                    : href(sp, { mode: m.key, sa: null, sb: null, qa: null, qb: null })
+                    : // `country` goes with the record params: a market is not a
+                      // state of the song or artist modes, and leaving it in
+                      // put "&country=canada" in every URL shared from a board.
+                      href(sp, { mode: m.key, sa: null, sb: null, qa: null, qb: null, country: null })
                 }
                 className={styles.segItem}
               >
@@ -824,7 +853,7 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
 
         {/* Refusals come first: on a phone they were explaining themselves
             below the fold, under controls that had nothing to switch. */}
-        {sameArtist && (
+        {sameArtist && !countryMode && (
           <p className={styles.why}>
             <strong>That is {a!.name} on both sides.</strong> Pick a different artist for one of them.
           </p>
@@ -836,7 +865,7 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
           </p>
         )}
 
-        {!refused && (
+        {(!refused || countryMode) && (
         <div className={styles.controls}>
           {/* Country mode honours the features switch — a plaque the artist
               holds is a plaque — and has no Nigeria switch: there Nigeria is
@@ -1014,12 +1043,15 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
                     const av = r.a?.units ?? 0;
                     const bv = r.b?.units ?? 0;
                     return (
-                      <tr key={r.country} role="row" className={r.country === "NG" && ngOn ? styles.ngRow : undefined}>
+                      <tr key={marketKey(r.country, r.program)} role="row" className={r.country === "NG" && ngOn ? styles.ngRow : undefined}>
                         <td role="cell">
                           <span className={styles.country}>
                             <span className={styles.flag} aria-hidden="true">{m.flag}</span>
                             <span className={styles.countryName}>{m.name}</span>
-                            <span className={styles.countryCode}>{r.country}</span>
+                            {/* A programme row is the programme's, so the code
+                                column says which one: two US rows that both
+                                read "US" would look like a duplicate. */}
+                            <span className={styles.countryCode}>{r.program ? programShort(r.program, r.country) : r.country}</span>
                           </span>
                         </td>
                         <td role="cell" className={styles.tdNum}><Cell line={r.a} lead={av >= bv} artistMode={!useSongs} /></td>
