@@ -20,18 +20,24 @@ const streamRatioBodies = `${streamRatioNames.slice(0, -1).join(", ")} and ${str
 // The method card's other four lists, derived the same way — "Sweden and
 // Mexico", "Poland" and "Greece and Colombia" were typed and would have stood
 // still the day a body joined or left a category. (Greece did leave one on
-// 20 Sep 2026, when it was priced at IFPI's June 2013 level and marked ¶.)
+// 20 Sep 2026, when it was priced at IFPI's June 2013 level and marked ¶, and
+// Poland left the revenue list on 23 Sep 2026, when its złoty were divided by
+// ZPAV's own 2 zł a single — ¶ too.)
 const nameOf = (code: string) => (code === "NL" ? "the Netherlands" : code === "CZ" ? "Czechia" : countryMeta(code).name);
 const joinNames = (xs: string[]) => (xs.length <= 1 ? xs.join("") : `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}`);
 const byName = (a: string, b: string) => a.replace(/^the /, "").localeCompare(b.replace(/^the /, ""));
 /** Bodies whose song levels are streams with no download-equivalence — priced at an assumed ratio, marked §. */
 const assumedNames = Object.values(CERT_THRESHOLDS).filter((t) => t.assumed).map((t) => nameOf(t.code)).sort(byName);
-/** Bodies that price albums but not singles (Poland: singles in złoty of revenue). */
+/** Bodies that price albums but not singles — none since 23 Sep 2026, when
+ *  Poland's singles were priced; the clause renders only while one exists. */
 const revenueNames = Object.values(CERT_THRESHOLDS).filter((t) => t.singleExcluded && !t.albumExcluded).map((t) => nameOf(t.code)).sort(byName);
 /** Bodies that publish no threshold for either format — listed, never summed. Colombia alone since 20 Sep 2026. */
 const noThresholdNames = Object.values(CERT_THRESHOLDS).filter((t) => t.singleExcluded && t.albumExcluded).map((t) => nameOf(t.code)).sort(byName);
-/** Bodies priced at the last level ever published for them — marked ¶ (Greece, IFPI's June 2013 list). */
-const historicNames = Object.values(CERT_THRESHOLDS).filter((t) => t.historic).map((t) => nameOf(t.code)).sort(byName);
+/** Bodies priced at the last LEVEL ever published for them — marked ¶ (Greece, IFPI's June 2013 list). */
+const historicNames = Object.values(CERT_THRESHOLDS).filter((t) => t.historic && !t.plnPerSingle).map((t) => nameOf(t.code)).sort(byName);
+/** Bodies that print single levels in złoty and no rate, divided by the złoty a
+ *  single their own rules last printed — also marked ¶ (Poland, 2 zł). */
+const plnBodies = Object.values(CERT_THRESHOLDS).filter((t) => t.plnPerSingle).sort((a, b) => byName(nameOf(a.code), nameOf(b.code)));
 /** The ratio the § conversion applies, read off an assumed body's own raw and priced levels. */
 const assumedRatio = (() => {
   const t = Object.values(CERT_THRESHOLDS).find((x) => x.assumed && x.singleRaw?.platinum && x.single?.platinum);
@@ -689,6 +695,15 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
   const visibleVintage = rows.some((r) => r.a?.vintage || r.b?.vintage);
   const visibleAssumed = rows.some((r) => r.a?.assumed || r.b?.assumed);
   const visibleHistoric = rows.some((r) => r.a?.historic || r.b?.historic);
+  // ...and each footnote prints only the notes of the rows on screen. With
+  // Greece the only ¶ body, "a ¶ is visible" meant "the Greek row is visible";
+  // once Poland's singles joined ¶ (23 Sep 2026) a visible Polish row printed
+  // Greece's note under a table whose Greek row was folded (Burna Boy vs CKay).
+  const shown = (k: "caveat" | "assumed" | "historic") =>
+    new Set(rows.flatMap((r) => [r.a?.[k], r.b?.[k]]).filter(Boolean) as string[]);
+  const shownCaveats = noteSource.caveats.filter((x) => shown("caveat").has(x));
+  const shownAssumptions = noteSource.assumptions.filter((x) => shown("assumed").has(x));
+  const shownHistorics = noteSource.historics.filter((x) => shown("historic").has(x));
   // The collapse row counts PLAQUES it hides, not rows: a listed-only line is
   // every plaque on it, a priced line hides the unpriced half riding on it. It
   // was counting rows, so it said 3 beneath a header that said 8. Counted per
@@ -1098,8 +1113,8 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
                   as the rest.
                 </p>
               )}
-              {visibleCaveat && noteSource.caveats.length > 0 && (
-                <p><strong><span className={styles.mark}>†</span> Multiplier assumed</strong> — {noteSource.caveats.join(" ")}</p>
+              {visibleCaveat && shownCaveats.length > 0 && (
+                <p><strong><span className={styles.mark}>†</span> Multiplier assumed</strong> — {shownCaveats.join(" ")}</p>
               )}
               {visibleVintage && noteSource.vintages.length > 0 && (
                 <p>
@@ -1112,18 +1127,18 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
                   </Link>
                 </p>
               )}
-              {visibleAssumed && noteSource.assumptions.length > 0 && (
+              {visibleAssumed && shownAssumptions.length > 0 && (
                 <p>
                   <strong><span className={styles.mark}>§</span> Ratio assumed</strong> — the body publishes its levels in
                   streams and no download-equivalence, so this page converts at {assumedRatio} streams to a unit, the ratio
-                  Denmark and Norway publish for the same measure. {noteSource.assumptions.join(" ")}
+                  Denmark and Norway publish for the same measure. {shownAssumptions.join(" ")}
                 </p>
               )}
-              {visibleHistoric && noteSource.historics.length > 0 && (
+              {visibleHistoric && shownHistorics.length > 0 && (
                 <p>
-                  <strong><span className={styles.mark}>¶</span> Historic level</strong> — the body publishes no
-                  current threshold; the figure is IFPI&apos;s last published level for it (June 2013), so a plaque
-                  awarded today may sit on a different bar. {noteSource.historics.join(" ")}
+                  <strong><span className={styles.mark}>¶</span> Historic figure</strong> — the line rests on a
+                  figure the body published once and no longer prints, so the bar a plaque cleared may differ
+                  from it. {shownHistorics.join(" ")}
                 </p>
               )}
             </div>
@@ -1151,9 +1166,10 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
             <p className={styles.methodBody}>
               {joinNames(assumedNames)} publish their song levels in streams and no download-equivalence — those
               plaques are converted at {assumedRatio} streams to a unit, the ratio Denmark and Norway publish, and marked §.
-              {" "}{joinNames(revenueNames)} {revenueNames.length === 1 ? "measures" : "measure"} singles in{" "}
-              {revenueNames.length === 1 && revenueNames[0] === "Poland" ? "złoty of revenue" : "revenue"} and{" "}
-              {joinNames(noThresholdNames)} {noThresholdNames.length === 1 ? "publishes" : "publish"} no thresholds.
+              {revenueNames.length > 0 && (
+                <>{" "}{joinNames(revenueNames)} {revenueNames.length === 1 ? "measures" : "measure"} singles in revenue and</>
+              )}
+              {" "}{joinNames(noThresholdNames)} {noThresholdNames.length === 1 ? "publishes" : "publish"} no thresholds.
               {/* The ¶ clause sits BEFORE "never hidden": tests/comparePage.test.tsx
                   slices the card there. Greece, from 20 Sep 2026. */}
               {historicNames.length > 0 && (
@@ -1161,6 +1177,15 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
                   {" "}{joinNames(historicNames)} {historicNames.length === 1 ? "is" : "are"} priced at IFPI&apos;s June 2013
                   level — the last the umbrella body ever published for {historicNames.length === 1 ? "it" : "them"} — and
                   marked ¶.
+                </>
+              )}
+              {/* Poland, from 23 Sep 2026: its level is today's, its rate is not. */}
+              {plnBodies.length > 0 && (
+                <>
+                  {" "}{joinNames(plnBodies.map((t) => nameOf(t.code)))} {plnBodies.length === 1 ? "sets its" : "set their"} single
+                  levels in złoty of revenue and {plnBodies.length === 1 ? "states" : "state"} no rate; they are converted at{" "}
+                  {plnBodies[0].plnPerSingle} zł a single, the rate {plnBodies.length === 1 ? "its" : "their"} own single tables used
+                  until the end of 2024, and marked ¶.
                 </>
               )}
               {" "}The unpriced plaques are listed, never summed, and never hidden.

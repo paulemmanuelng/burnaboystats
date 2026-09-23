@@ -6,7 +6,7 @@
 - ✓ = confirmed in the issuing body's own live database
 - ✓ᴬ = confirmed in the issuing body's own database **via an archived capture of that database** (used only for TurnTable/Nigeria, whose live page truncates at 500 rows — see the TCSN row in Per-body coverage)
 - ✓* = confirmed body-side at the tier class, where the body's public record omits the exact multiplier
-- no mark = kept from Wikipedia because the body publishes no verifiable record (now only 🇳🇿 and 🇵🇱)
+- no mark = kept from Wikipedia because the body publishes no verifiable record (now only 🇳🇿; 🇵🇱 was read at ZPAV's register on 23 Sep 2026)
 
 ## Total: **156 certifications** across 21 countries
 
@@ -84,7 +84,7 @@
 ### Featured appearances — 59
 | song | certifications |
 |---|---|
-| One Dance (Drake ft. Wizkid & Kyla) | 🇦🇺 17× Platinum ✓ *(now register-confirmed)* · 🇺🇸 Diamond (11× Platinum) ✓ · 🇳🇿 10× Platinum · 🇬🇧 8× Platinum ✓ · 🇵🇹 8× Platinum ✓ · 🇸🇪 7× Platinum ✓ · 🇮🇹 6× Platinum ✓ · 🇪🇸 5× Platinum ✓ · 🇩🇰 5× Platinum ✓ · 🇲🇽 4× Platinum+Gold ✓ · 🇧🇪 3× Platinum ✓ · 🇵🇱 3× Platinum · 🇬🇷 3× Platinum ✓ *(now register-confirmed)* · 🇨🇦 Diamond ✓ · 🇩🇪 Diamond ✓ · 🇫🇷 Diamond ✓ · 🇧🇷 Diamond ✓ — **17** |
+| One Dance (Drake ft. Wizkid & Kyla) | 🇦🇺 17× Platinum ✓ *(now register-confirmed)* · 🇺🇸 Diamond (11× Platinum) ✓ · 🇳🇿 10× Platinum · 🇬🇧 8× Platinum ✓ · 🇵🇹 8× Platinum ✓ · 🇸🇪 7× Platinum ✓ · 🇮🇹 6× Platinum ✓ · 🇪🇸 5× Platinum ✓ · 🇩🇰 5× Platinum ✓ · 🇲🇽 4× Platinum+Gold ✓ · 🇧🇪 3× Platinum ✓ · 🇵🇱 3× Platinum ✓ *(register-confirmed 23 Sep 2026)* · 🇬🇷 3× Platinum ✓ *(now register-confirmed)* · 🇨🇦 Diamond ✓ · 🇩🇪 Diamond ✓ · 🇫🇷 Diamond ✓ · 🇧🇷 Diamond ✓ — **17** |
 | Call Me Every Day (Chris Brown ft. Wizkid) | 🇺🇸 **Platinum** ✓ · 🇳🇬 Gold ✓ᴬ *(new)* · 🇨🇦 Gold ✓ · 🇨🇭 Gold ✓ · 🇳🇿 Gold · 🇬🇧 Silver ✓ — **6** |
 | Brown Skin Girl (Beyoncé, Wizkid & SAINt JHN ft. Blue Ivy Carter) | 🇺🇸 Gold ✓ · 🇦🇺 Gold ✓ *(now register-confirmed, 19.04.2023)* · 🇨🇦 Gold ✓ · 🇳🇿 Gold · 🇬🇧 Silver ✓ — **5** |
 | Soco (Starboy ft. Wizkid…) | 🇺🇸 Gold ✓ · 🇨🇦 Gold ✓ · 🇬🇧 Silver ✓ — **3** |
@@ -180,7 +180,7 @@ Nigeria's internal arithmetic, since it carries most of the movement: 71 plaques
 | FIMI (Italy) | **swept ✓** (12 Aug) | 1 entry — One Dance 6× Platino, 8 award events |
 | Promusicae (Spain) | **swept ✓** (12 Aug) | 1 entry — One Dance 5× Platino |
 | AFP / Audiogest (Portugal) | **swept ✓ (with caveat)** (12 Aug) | One Dance **8PL**. Caveat: no searchable historical DB — a certified title no longer charting is invisible. |
-| ZPAV (Poland) | **unreachable** | bestsellery.zpav.pl 403s non-Polish traffic; Wayback has zero captures of the "cyfrowe" digital-singles pages. **1 entry kept as Wikipedia-cited.** |
+| ZPAV (Poland) | **unreachable** → **read 23 Sep 2026** | bestsellery.zpav.pl 403s non-Polish traffic; Wayback has zero captures of the "cyfrowe" digital-singles pages. **1 entry kept as Wikipedia-cited.** *23 Sep 2026: ZPAV's register is readable at olis.pl (POST /api/search, category 3). It holds one One Dance row — Platynowa, filed at step 3 (`date_3` 2021-08-11), which olis.pl prints as Platinum "3" — so the Wikipedia 3× is **confirmed at the body**. One row can be a multiple; see docs/sourcing/CERT-THRESHOLDS.md, 23 Sep 2026.* |
 | Pro-Música Brasil | **swept ✓** (12 Aug) | 2 entries — One Dance **Diamante** (2024, filed under "Drake" alone) + Checklist Ouro 2021 |
 | RISA (South Africa) | **swept ✓** (12 Aug, full 748-row dataset) | 13 entries — 9 found only body-side. Essence/Come Closer confirmed at multi-Platinum class (generic icon; multipliers ✓*). |
 | **TCSN / TurnTable (Nigeria)** | **swept ✓ — live register + 44 of 47 archived captures (16 Aug)** | **71 entries, up from 30.** The live page (`turntablecharts.com/certification`) is **capped at exactly 500 rows — 456 Platinum, 44 Gold, and zero Silver** — and shows only 30 of Wizkid's 71 plaques. The register itself was far larger: the **2026-02-21 capture holds 2,477 rows** (962 Platinum / 698 Gold / 817 Silver), the 2025-11 captures 1,203, and earlier captures 206 / 103 / 2. Reading the union recovers **41 additional Wizkid plaques, including all 20 of his Silvers, every one of which is archive-only.** 3 captures were permanently 503 from Wayback; each sits inside a run of same-era captures whose row sets diff identically, so the union is unaffected. Data lives in `props.pageProps.certEntries` of a ~10 MB `__NEXT_DATA__` payload — a naive fetch truncates and silently loses rows. **Dates are not award dates:** every live row reads 2026-02-06 and the 2,477-row capture uses six distinct dates across the whole register — these are bulk re-dates from migration. |
@@ -212,7 +212,7 @@ Nigeria's internal arithmetic, since it carries most of the movement: 71 plaques
 - **Dates.** TurnTable's `date` field is not an award date — the register bulk re-dated its catalogue at least twice (every live row now reads 2026-02-06). Only the 2022-11 → 2024-10 era captures carry plausible per-award dates. Greece's dates are "first capture showing that tier", i.e. upper bounds. Do not publish either as announcement dates.
 - **Know Your Worth** is not a Wizkid title and no Wizkid row is affected. For the record, the sweep confirmed rather than assumed the credit convention: ARIA's 2020 list reads `Khalid x Disclosure | Know Your Worth | SME | PLATINUM | 10-06-2020`, and IFPI Greece credits `Khalid, Disclosure`. No third artist is credited in either register.
 - One Dance is 17 of the 155 (11%) — down from 15% of the 117 and 23% of the original 75, because Nigeria and South Africa filled in.
-- **This remains a floor.** RMNZ and ZPAV are still unverified, AFP exposes only currently-charting titles, Chile has one documented window gap, Finland/Ireland/Slovakia/Argentina publish nothing that could ever be checked, and new certifications keep arriving (Ojuelegba's UK Silver landed 10.07.2026; TurnTable certifies in batches).
+- **This remains a floor.** RMNZ is still unverified (ZPAV was read on 23 Sep 2026), AFP exposes only currently-charting titles, Chile has one documented window gap, Finland/Ireland/Slovakia/Argentina publish nothing that could ever be checked, and new certifications keep arriving (Ojuelegba's UK Silver landed 10.07.2026; TurnTable certifies in batches).
 
 ### Context
 Counted under identical rules: **Burna Boy 229 across 26 countries** on burnaboystats.com. The other five artists in this sweep, at their own deliverables' current figures: **Tems 68**, **Rema 61**, **Davido 60**, **Tyla 60**, **Ayra Starr 34**. Wizkid's verified floor is now **155 across 21 countries** — second only to Burna Boy among the seven, and the gap has narrowed from 150 to 74. It narrows mainly through the Nigerian register, which certifies both artists heavily and whose archive holds more than twice what its live page shows.

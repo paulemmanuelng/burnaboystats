@@ -121,21 +121,22 @@ const certBodies = (() => {
   return [...byBody.values()].sort((a, b) => a.body.localeCompare(b.body));
 })();
 
-// The bodies whose SINGLE threshold cannot be priced at any ratio, Poland
-// aside (its złoty-of-revenue case is named separately). Typed, this sentence
-// said "Greece, Belgium, Colombia and the rest" while Belgium's thresholds had
-// been found at Ultratop and priced on 10 Sep 2026. Greece left the list on
-// 20 Sep 2026, priced at IFPI's June 2013 level and marked ¶ (`historicBodies`
-// below) — which is when the verb had to start agreeing with a one-name list.
+// The bodies whose SINGLE threshold cannot be priced at any ratio. Typed, this
+// sentence said "Greece, Belgium, Colombia and the rest" while Belgium's
+// thresholds had been found at Ultratop and priced on 10 Sep 2026. Greece left
+// the list on 20 Sep 2026, priced at IFPI's June 2013 level and marked ¶
+// (`historicBodies` below) — which is when the verb had to start agreeing with
+// a one-name list — and Poland, which this sentence used to name separately,
+// on 23 Sep 2026, when its złoty were divided by ZPAV's own 2 zł a single.
 const unpricedSingleNames = (() => {
   const names = Object.values(CERT_THRESHOLDS)
-    .filter((c) => c.single === null && c.code !== "PL")
+    .filter((c) => c.single === null)
     .map((c) => countryMeta(c.code).name)
     .sort();
   return names.length > 1 ? `${names.slice(0, -1).join(", ")} and ${names[names.length - 1]}` : (names[0] ?? "");
 })();
 const unpricedSingleVerb =
-  Object.values(CERT_THRESHOLDS).filter((c) => c.single === null && c.code !== "PL").length === 1 ? "publishes" : "publish";
+  Object.values(CERT_THRESHOLDS).filter((c) => c.single === null).length === 1 ? "publishes" : "publish";
 
 const principles = [
   {
@@ -193,10 +194,23 @@ const raisedBodies = Object.values(CERT_THRESHOLDS)
   .filter((c) => c.vintage)
   .sort((x, y) => countryMeta(x.code).name.localeCompare(countryMeta(y.code).name));
 /** Bodies priced at the last level ever published for them, not a current one — the ¶ mark (Greece, 20 Sep 2026). */
+// Two kinds of ¶ (see `historic` in certThresholds.ts): a body with no current
+// LEVEL, priced at the last one ever published (Greece, IFPI June 2013), and a
+// body whose current level is in złoty with no RATE, divided by the złoty a
+// single its own rules last printed (Poland, 2 zł, 23 Sep 2026). The prose
+// below says different things about each, so they are derived apart.
 const historicBodies = Object.values(CERT_THRESHOLDS)
-  .filter((c) => c.historic)
+  .filter((c) => c.historic && !c.plnPerSingle)
   .sort((x, y) => countryMeta(x.code).name.localeCompare(countryMeta(y.code).name));
 const historicNames = historicBodies.map((c) => countryMeta(c.code).name);
+const plnBodies = Object.values(CERT_THRESHOLDS)
+  .filter((c) => c.plnPerSingle)
+  .sort((x, y) => countryMeta(x.code).name.localeCompare(countryMeta(y.code).name));
+const plnNames = plnBodies.map((c) => countryMeta(c.code).name);
+/** Every ¶ body, for the record list and the table's marks. */
+const paragraphBodies = [...historicBodies, ...plnBodies].sort((x, y) =>
+  countryMeta(x.code).name.localeCompare(countryMeta(y.code).name),
+);
 const joinNames = (xs: string[]) => (xs.length <= 1 ? xs.join("") : `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}`);
 const thresholdRows = Object.values(CERT_THRESHOLDS)
   .slice()
@@ -551,7 +565,12 @@ export default function MethodologyPage() {
             {allBodies} bodies changed their levels inside the window these plaques span,
             and most raised them. Every plaque is priced at the level the body publishes
             today — the figure a reader can check against the body&apos;s own page —
-            {historicBodies.length > 0 ? " with one exception marked ¶, below, " : " "}
+            {/* Greece is the exception to TODAY'S LEVEL; Poland's level is today's
+                and only its rate is historic, so it is described after, not counted
+                here (review, 23 Sep 2026). */}
+            {historicBodies.length > 0
+              ? ` with ${historicBodies.length === 1 ? "one exception" : `${numberWord(historicBodies.length).toLowerCase()} exceptions`} marked ¶, below, `
+              : " "}
             and wherever that body raised its levels, the page marks the figure with a
             &ldquo;‡&rdquo; and says so: a plaque awarded before the rise may have cleared
             a lower bar than today&apos;s figure implies. A South African Platinum single
@@ -569,15 +588,21 @@ export default function MethodologyPage() {
                 ratio — a plaque awarded today may sit on a different bar.
               </>
             )}
+            {plnBodies.length > 0 && (
+              <>
+                {" "}{joinNames(plnNames)}&apos;s singles are priced at the level{" "}
+                {plnBodies.length === 1 ? "its body prints" : "their bodies print"} today, in złoty of revenue, divided
+                by {plnBodies[0].plnPerSingle} zł a single — the rate {plnBodies.length === 1 ? "its" : "their"} own single
+                tables used until the end of 2024 — and those lines carry a &ldquo;¶&rdquo; too, for the
+                rate rather than the level.
+              </>
+            )}
             {" "}The alternative — pricing at the lowest level each body has applied
             since 2015 — was established for every body and is kept in the data, but it
             would understate every plaque earned after a rise by as much as it protects
             the earlier ones, and it prices against numbers no body publishes any more.
-            Two refinements hold either way: a body that changed <em>what it measures</em>
-            — Poland to złoty of revenue — cannot have its singles priced from the old
-            unit regime, so those stay listed and unsummed; and for a body that keys
-            thresholds to release date, the band a record actually fell in is the one
-            that applies.
+            One refinement holds either way: for a body that keys thresholds to release
+            date, the band a record actually fell in is the one that applies.
           </p>
           <p className={styles.p}>
             <strong>One plaque per release per country, at its current tier.</strong>
@@ -587,10 +612,13 @@ export default function MethodologyPage() {
           <p className={styles.p}>
             <strong>Units are not a common currency, so some plaques cannot be
             priced.</strong> Of the {allBodies} bodies whose plaques appear here,{" "}
-            {pricedSingles} can price a single: {pricedSingles - streamBodies.length - historicBodies.length}{" "}
+            {pricedSingles} can price a single: {pricedSingles - streamBodies.length - historicBodies.length - plnBodies.length}{" "}
             publish the threshold in sales-equivalent units,{" "}
             {historicBodies.length > 0 && (
               <>{historicBodies.length === 1 ? "one is" : `${historicBodies.length} are`} priced at a historic level (¶), </>
+            )}
+            {plnBodies.length > 0 && (
+              <>{plnBodies.length === 1 ? "one publishes" : `${plnBodies.length} publish`} it in złoty (¶), </>
             )}
             and {streamBodies.length} publish it in streams.{" "}
             {streamBodies.length - assumedBodies.length} of those
@@ -612,9 +640,18 @@ export default function MethodologyPage() {
                 {historicNames.length === 1 ? "it" : "them"} — and marked &ldquo;¶&rdquo;.
               </>
             )}
-            {" "}What remains cannot be converted at any ratio: Poland
-            measures singles in złoty of revenue, and {unpricedSingleNames} {unpricedSingleVerb} no
-            threshold. Those plaques are{" "}
+            {plnBodies.length > 0 && (
+              <>
+                {" "}{joinNames(plnNames)} {plnBodies.length === 1 ? "sets its" : "set their"} single levels in złoty of
+                revenue — Gold is {fmtUnits(plnBodies[0].singleRawPln?.gold ?? null)} zł — and{" "}
+                {plnBodies.length === 1 ? "its" : "their"} current rules state no rate, so they are divided by{" "}
+                {plnBodies[0].plnPerSingle} zł a single, the rate {plnBodies.length === 1 ? "its" : "their"} own single
+                tables used from 2017 to the end of 2024: a Gold single is{" "}
+                {fmtUnits(plnBodies[0].single?.gold ?? null)} units, and those lines carry a &ldquo;¶&rdquo; too.
+              </>
+            )}
+            {" "}What remains cannot be converted at any ratio: {unpricedSingleNames}{" "}
+            {unpricedSingleVerb} no threshold. Those plaques are{" "}
             <strong>listed and never summed</strong> — and never folded out of sight —
             because scoring them zero in silence would penalise whoever holds more of
             them.
@@ -642,14 +679,15 @@ export default function MethodologyPage() {
               </li>
             ))}
           </ul>
-          {historicBodies.length > 0 && (
+          {paragraphBodies.length > 0 && (
             <>
               <p className={styles.p}>
-                Wherever a figure carries a &ldquo;¶&rdquo;, the body publishes no current
-                level and the figure is the last level ever published for it. The record:
+                Wherever a figure carries a &ldquo;¶&rdquo;, it rests on something the body
+                published once and no longer prints — the level itself, or the rate its
+                level is converted at. The record:
               </p>
               <ul className={styles.historyList}>
-                {historicBodies.map((c) => (
+                {paragraphBodies.map((c) => (
                   <li key={c.code}>
                     <strong>{countryMeta(c.code).flag} {shortBody(c.body)}</strong> — {c.historic}
                   </li>
@@ -666,8 +704,16 @@ export default function MethodologyPage() {
             given.
             {historicBodies.length > 0 && (
               <>
-                {" "}A row marked &ldquo;¶&rdquo; is not today&apos;s level but the last level
-                the body ever published (IFPI, June 2013), because the body publishes none now.
+                {" "}{historicBodies.length === 1 ? "A row" : "Rows"} marked &ldquo;¶&rdquo; for{" "}
+                {joinNames(historicNames)} {historicBodies.length === 1 ? "is" : "are"} not today&apos;s level but the
+                last level the body ever published (IFPI, June 2013), because the body publishes none now.
+              </>
+            )}
+            {plnBodies.length > 0 && (
+              <>
+                {" "}{joinNames(plnNames)}&apos;s single figures are today&apos;s złoty levels divided by{" "}
+                {plnBodies[0].plnPerSingle} zł a single — the rate {plnBodies.length === 1 ? "its" : "their"} own single tables used until the end of
+                2024 and no longer state — and each carries a &ldquo;¶&rdquo;.
               </>
             )}
           </p>
@@ -685,16 +731,32 @@ export default function MethodologyPage() {
                   <tr key={r.code}>
                     <th scope="row">
                       <span aria-hidden="true">{countryMeta(r.code).flag}</span> {shortBody(r.body)}
-                      {r.historic && <span title={r.historic} aria-label="historic level"> ¶</span>}
+                      {/* A ¶ that covers one format sits on that format's figures, not
+                          on the body: Poland's album levels are today's units. */}
+                      {r.historic && !r.historicFormat && <span title={r.historic} aria-label="historic level"> ¶</span>}
                       <span className={styles.thresholdCountry}>{countryMeta(r.code).name}</span>
                     </th>
                     {r.single ? (
-                      TIERS.map((t) => <td key={t}>{fmtUnits(r.single![t])}</td>)
+                      TIERS.map((t) => (
+                        <td key={t}>
+                          {fmtUnits(r.single![t])}
+                          {r.historicFormat === "single" && r.single![t] != null && (
+                            <span title={r.historic} aria-label="converted at a historic rate"> ¶</span>
+                          )}
+                        </td>
+                      ))
                     ) : (
                       <td colSpan={4} className={styles.thresholdListed}>listed — {r.singleExcluded ?? "not priced"}</td>
                     )}
                     {r.album ? (
-                      TIERS.map((t) => <td key={t}>{fmtUnits(r.album![t])}</td>)
+                      TIERS.map((t) => (
+                        <td key={t}>
+                          {fmtUnits(r.album![t])}
+                          {r.historicFormat === "album" && r.album![t] != null && (
+                            <span title={r.historic} aria-label="converted at a historic rate"> ¶</span>
+                          )}
+                        </td>
+                      ))
                     ) : (
                       <td colSpan={4} className={styles.thresholdListed}>listed — {r.albumExcluded ?? "not priced"}</td>
                     )}

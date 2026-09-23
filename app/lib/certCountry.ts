@@ -25,7 +25,7 @@
 //     exactly what a reader of the Nigerian page needs to know.
 //
 //  2. THE UNIT OF RANKING IS THE ARTIST, not the country. So a plaque that
-//     cannot be priced (Colombia, Poland's singles) does not sink an artist to
+//     cannot be priced (Colombia; Poland's singles until 23 Sep 2026) does not sink an artist to
 //     the bottom in silence: their line carries the plaque, says it is not
 //     counted, and ranks on what could be priced.
 // ============================================================================

@@ -27,6 +27,9 @@
 // Figures a log entry shares with a page are imported, never retyped: the
 // garage entries below stated three different collection sizes for one garage.
 import { carCount, totalValueFormatted } from "./cars";
+import { CERT_THRESHOLDS } from "./certThresholds";
+
+const plSingle = CERT_THRESHOLDS.PL.single!;
 
 export type UpdateCategory = "Charts" | "Certifications" | "Streaming" | "Firsts & Records" | "Awards" | "Tours" | "Lifestyle";
 
@@ -45,6 +48,14 @@ export interface Update {
 }
 
 export const updates: Update[] = [
+  {
+    date: "2026-09-23",
+    category: "Certifications",
+    // Poland's singles priced (Paul, 23 Sep 2026: "we have to use 62,500 until
+    // anything changes"). The unit figures are the threshold table's own.
+    text: `Poland's plaques now count toward Burna Boy's certified units: ZPAV sets single levels in złoty, converted at the 2 zł a single its own tables used until the end of 2024, so “Dai Dai”'s Gold is ${plSingle.gold!.toLocaleString("en-US")} units and “We Pray”'s Platinum ${plSingle.platinum!.toLocaleString("en-US")}.`,
+    href: "/compare/in/poland",
+  },
   {
     date: "2026-09-23",
     category: "Certifications",
