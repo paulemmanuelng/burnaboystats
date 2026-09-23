@@ -1,5 +1,6 @@
 import styles from "./compare.module.css";
 import { countryMeta } from "../data/afrobeats";
+import { awardLabel } from "../lib/awardName";
 
 /**
  * The compare section's shared display atoms — the tier chip's class, the
@@ -26,8 +27,8 @@ export const keepParens = (title: string) => {
   return m ? <>{m[1]}<span className={styles.nowrap}>{m[2]}</span></> : title;
 };
 
-export const plaque = (top: { level: string; x: number } | null) =>
-  top ? `${top.x > 1 ? `${top.x}× ` : ""}${top.level}` : "";
+export const plaque = (top: { level: string; x: number; body?: string } | null) =>
+  top ? awardLabel(top) : "";
 
 /** The marker's short form for a phone chip: "Latin" stays; a whole other
  *  issuer ("Sony Music Colombia") becomes its first word, the full name in

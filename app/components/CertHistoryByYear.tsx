@@ -10,6 +10,7 @@ import {
   type CertEvent,
   type Country,
 } from "../data/certifications";
+import { tierWord } from "../lib/awardName";
 
 const YEARS = certHistoryYears;
 
@@ -40,7 +41,7 @@ function EventBadge({ event, countries }: { event: CertEvent; countries: Record<
     <span className={`${styles.cBadge} ${styles[tierOf(event.level)]}`} title={`${country.name} — ${event.body ?? country.body}`}>
       <span className={styles.flag}>{country.flag}</span>
       {event.x ? `${event.x}× ` : ""}
-      {event.level}
+      {tierWord(event.level, event.body)}
     </span>
   );
 }

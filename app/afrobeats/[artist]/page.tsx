@@ -31,6 +31,7 @@ import {
   type Tier,
 } from "../../data/afrobeats";
 import { LIVE_CADENCE_ADVERB } from "../../lib/liveChartMeta";
+import { tierWord } from "../../lib/awardName";
 
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -355,7 +356,7 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
               <span key={code} className={`${styles.cert} ${styles[tierOf(t.level)]}`} title={`${c.name} — ${t.body ?? c.body}`}>
                 <span className={styles.flag} aria-hidden="true">{c.flag}</span>
                 {t.x && t.x > 1 ? `${t.x}× ` : ""}
-                {t.level}
+                {tierWord(t.level, t.body)}
                 {/* A separate programme is a different award — derived, as on
                     Burna's page: whatever the override adds beyond the country's
                     default body. Reads "Latin" for RIAA Latin. */}

@@ -763,12 +763,31 @@ describe("today's thresholds, with the floor kept beside them", () => {
 });
 
 describe("the RIAA Latin marker is visible on every surface", () => {
-  it("the board's label function carries the programme", async () => {
+  it("the board's label function carries the programme, under the programme's own name", async () => {
     const { plaqueLabel } = await import("../app/data/afrobeats");
-    expect(plaqueLabel({ c: "US", level: "Platinum", x: 16, body: "RIAA Latin" })).toBe("16× Platinum · Latin");
+    // Premios de Oro y Platino awards a PLATINO, not a Platinum (Paul, 23 Sep
+    // 2026). The tier stays canonical in the data so everything can sort and
+    // count by it; app/lib/awardName.ts renames it at the point of display.
+    expect(plaqueLabel({ c: "US", level: "Platinum", x: 16, body: "RIAA Latin" })).toBe("16× Platino · Latin");
+    expect(plaqueLabel({ c: "US", level: "Gold", body: "RIAA Latin" })).toBe("Oro · Latin");
     expect(plaqueLabel({ c: "US", level: "Platinum", x: 5 })).toBe("5× Platinum");
-    // A body that IS the country's default adds nothing.
+    // A body that IS the country's default adds nothing, and renames nothing.
     expect(plaqueLabel({ c: "US", level: "Gold", body: "RIAA" })).toBe("Gold");
+  });
+
+  it("renames the tier only where a programme publishes its own word", async () => {
+    const { tierWord, awardLabel, PROGRAM_TIER_NAMES } = await import("../app/lib/awardName");
+    expect(tierWord("Platinum", "RIAA Latin")).toBe("Platino");
+    expect(tierWord("Diamond", "RIAA Latin")).toBe("Diamante");
+    // No Plata: the programme awards no silver tier, so nothing is invented.
+    expect(tierWord("Silver", "RIAA Latin")).toBe("Silver");
+    // Every other body keeps the canonical words — including an issuer that
+    // merely names itself, like Colombia's Sony Music Colombia.
+    expect(tierWord("Platinum", "Sony Music Colombia")).toBe("Platinum");
+    expect(tierWord("Platinum", undefined)).toBe("Platinum");
+    expect(Object.keys(PROGRAM_TIER_NAMES)).toEqual(["RIAA Latin"]);
+    expect(awardLabel({ level: "Platinum", x: 2, body: "RIAA Latin" })).toBe("2× Platino");
+    expect(awardLabel({ level: "Platinum", x: 1 })).toBe("Platinum");
   });
 
   it("the compare engine exposes the programme on the line it prices", () => {
