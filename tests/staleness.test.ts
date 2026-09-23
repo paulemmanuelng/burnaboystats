@@ -66,7 +66,27 @@ describe("staleness alarm", () => {
     expect(missing, `live metrics with no lastChanged: ${missing.join(", ")}`).toEqual([]);
   });
 
-  it("the real config is not already stale", () => {
+  /** THE DEADLOCK THIS PREVENTS, found 23 September 2026.
+   *
+   *  This assertion is a DEADLINE ALARM, like the two in
+   *  tests/awardsPending.test.ts and tests/liveClaims.test.ts: it is designed
+   *  to go red on a date with nothing in the repo having changed, because time
+   *  passed and a figure stopped moving. Those two are skipped on the
+   *  publishing path for exactly that reason. This one was not, and the
+   *  consequence was worse than a noisy alert.
+   *
+   *  .github/workflows/stats-live.yml runs the suite as a gate BEFORE its
+   *  commit step. When kworb's Burna Boy page froze on 18 September this went
+   *  red, so every half-hourly run aborted before publishing — and the alarm
+   *  that exists to warn that figures have stopped moving became the reason
+   *  they could not start again. It took five days and eleven metrics that
+   *  never touched kworb at all (the YouTube view counts come from
+   *  youtube.com) to make the loop visible.
+   *
+   *  It still fails in ci.yml, on every push and every pull request, which is
+   *  where a human reads it. It no longer stops the bot from publishing the
+   *  values that would clear it. */
+  it.skipIf(process.env.PUBLISH_GATE === "1")("the real config is not already stale", () => {
     const stale = staleMetrics(config.metrics).map((s: { id: string }) => s.id);
     expect(stale, `figures that have stopped moving: ${stale.join(", ")}`).toEqual([]);
   });

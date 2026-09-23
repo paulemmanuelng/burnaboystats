@@ -51,25 +51,30 @@ describe("a running-year total is a ledger of dated dailies, never a run-date su
     }
   });
 
-  it("the anchor is ChartMasters through 20 Sep 2026 minus each 2025 close, and the ledger only ever moves forward from it", () => {
-    // Re-anchored 22 Sep 2026 on ChartMasters' Playcounts Tool (Paul's
-    // account, docs/sourcing/chartmasters/reads/2026-09-22.json) with
-    // --kworb-frozen: kworb's Burna Boy page had not rebuilt since 18 Sep, so
-    // the five were anchored on ChartMasters' 20 Sep totals minus the 2025
-    // closes in docs/sourcing/chartmasters/closes-2025.json (Asake's and
-    // Tyla's derived that day), dated by the kworb-stamp convention (N+1).
-    // The previous anchor was @BurnaBoyStats' 16 Sep table, re-anchored 17
-    // Sep (1,810,927,983 / 1,808,204,727 / 1,807,644,361 / 1,460,097,619 /
-    // 1,208,808,241); the 10 Sep one is in docs/sourcing/STREAMS-2026-ANCHOR.md.
+  it("the anchor is ChartMasters through 21 Sep 2026 minus each 2025 close, and the ledger only ever moves forward from it", () => {
+    // Re-anchored 23 Sep 2026 on ChartMasters' Playcounts Tool (Paul's
+    // account, docs/sourcing/chartmasters/reads/2026-09-23.json) — a PLAIN
+    // run, because kworb's Burna Boy page rebuilt that morning after five
+    // days frozen on its 18 Sep build, so a true ChartMasters-21 ↔ kworb-22
+    // pair exists again. The five are ChartMasters' 21 Sep totals minus the
+    // 2025 closes in docs/sourcing/chartmasters/closes-2025.json, dated by
+    // the kworb-stamp convention (N+1).
+    //
+    // The 22 Sep anchor it replaces was the --kworb-frozen one (ChartMasters
+    // through 20 Sep: 1,849,085,248 / 1,838,539,551 / 1,834,679,231 /
+    // 1,488,417,714 / 1,225,464,906); before that @BurnaBoyStats' 16 Sep
+    // table, re-anchored 17 Sep (1,810,927,983 / 1,808,204,727 /
+    // 1,807,644,361 / 1,460,097,619 / 1,208,808,241); the 10 Sep one is in
+    // docs/sourcing/STREAMS-2026-ANCHOR.md.
     const tracker: Record<string, number> = {
-      "streams-2026-burna": 1_849_085_248,
-      "streams-2026-wizkid": 1_838_539_551,
-      "streams-2026-tems": 1_834_679_231,
-      "streams-2026-asake": 1_488_417_714,
-      "streams-2026-tyla": 1_225_464_906,
+      "streams-2026-burna": 1_856_098_736,
+      "streams-2026-wizkid": 1_844_027_673,
+      "streams-2026-tems": 1_840_024_687,
+      "streams-2026-asake": 1_493_780_651,
+      "streams-2026-tyla": 1_228_692_984,
     };
     for (const m of group) {
-      expect(m.anchor, m.id).toMatchObject({ date: "2026-09-21", value: tracker[m.id] });
+      expect(m.anchor, m.id).toMatchObject({ date: "2026-09-22", value: tracker[m.id] });
       expect(m.checkpoint.date >= m.anchor.date, `${m.id}: the checkpoint cannot precede the anchor`).toBe(true);
       expect(m.checkpoint.value >= m.anchor.value, m.id).toBe(true);
       for (const d of Object.keys(m.readings ?? {})) expect(d > m.checkpoint.date, `${m.id}: a daily on or before the checkpoint is already inside it`).toBe(true);
