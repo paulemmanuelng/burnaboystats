@@ -237,6 +237,13 @@ export const searchIndex: SearchDoc[] = [
     description: "Two artists, two songs or two albums, priced by the units behind their plaques at each body's own threshold.",
     keywords: ["compare", "versus", "vs", "certified units", "burna boy vs wizkid", "head to head", "units", "plaques", "who has more"],
   },
+  {
+    title: "Certified units by country",
+    path: "/compare/in",
+    section: "Music",
+    description: "One market, every artist — who is most certified in Canada, the UK, France, Nigeria and 23 more.",
+    keywords: ["by country", "certified units", "canada", "uk", "france", "nigeria", "market", "who is most certified in", "certifications by country"],
+  },
   // The head-to-head pair pages (/compare/<a>-vs-<b>) are generated docs —
   // see buildSearchDocs.ts; this file imports no datasets.
   {

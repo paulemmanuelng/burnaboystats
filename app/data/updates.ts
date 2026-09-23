@@ -46,6 +46,12 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-09-23",
+    category: "Certifications",
+    text: "Counted market by market, Burna Boy leads the Afrobeats board's certified units in 10 of the 27 countries where it holds a plaque — the UK (at least 13,960,000), France, Canada, South Africa, New Zealand, Denmark, Switzerland, Austria, Czechia and Slovakia.",
+    href: "/compare/in",
+  },
+  {
     date: "2026-09-22",
     category: "Certifications",
     text: "“Dai Dai” is 2× Platinum in Canada — Music Canada certified it Double Platinum on 21 September 2026, 160,000 units, straight past Gold and Platinum. A sixteenth country for the song, and Burna Boy's 238th plaque.",

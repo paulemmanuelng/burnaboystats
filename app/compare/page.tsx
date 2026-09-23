@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styles from "./compare.module.css";
 import BreadcrumbBar from "../components/BreadcrumbBar";
-import { pageMetadata, datasetJsonLd } from "../lib/seo";
+import { pageMetadata, datasetJsonLd, SEGMENT_LABELS } from "../lib/seo";
 import { siteUrl } from "../site";
 import { countryMeta } from "../data/afrobeats";
 import { CERT_THRESHOLDS } from "../data/certThresholds";
@@ -45,6 +45,10 @@ const ukPlatinum = CERT_THRESHOLDS.UK.single!.platinum!;
 import type { Metadata } from "next";
 import { PICKER_FOLD, fold, pickerArtists, pickerReleases } from "../lib/comparePicker";
 import { featuredPairs, pairCopy, pairSlug } from "../lib/comparePairs";
+import { href, one, type SP } from "../lib/compareUrl";
+import { fmt, keepParens, plaque, program, shortProgram, tierClass } from "./chips";
+import { CountryBoardView } from "./CountryBoardView";
+import { countryCopy, countryFromSlug, countrySlug, priceCountry } from "../lib/certCountry";
 import { artAt, artSrcSet } from "../lib/artAt";
 import {
   artistBySlug,
@@ -100,6 +104,26 @@ const BASE_METADATA = pageMetadata({
 export async function generateMetadata({ searchParams }: { searchParams: Promise<SP> }): Promise<Metadata> {
   const sp = await searchParams;
   const mode = readMode(one(sp.mode));
+  // Country mode canonicals to the pretty route the same way a filled pair
+  // does: /compare?mode=country&country=canada and /compare/in/canada are one
+  // board, and only one of them should be indexed.
+  if (mode === "country") {
+    const code = countryFromSlug(one(sp.country) ?? "");
+    if (!code) {
+      return { ...BASE_METADATA, alternates: { canonical: "/compare/in" } };
+    }
+    const board = priceCountry(code);
+    const copy = countryCopy(board);
+    const url = `/compare/in/${countrySlug(code)}`;
+    return {
+      ...BASE_METADATA,
+      title: copy.title,
+      description: copy.description,
+      alternates: { canonical: url },
+      openGraph: { ...BASE_METADATA.openGraph, title: copy.title, description: copy.sub, url },
+      twitter: { ...BASE_METADATA.twitter, title: copy.title, description: copy.sub },
+    };
+  }
   const a = artistBySlug(one(sp.a) ?? "") ?? null;
   const b = artistBySlug(one(sp.b) ?? "") ?? null;
   if (mode === "artists" && a && b && a.slug !== b.slug) {
@@ -128,65 +152,18 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
   return BASE_METADATA;
 }
 
-type SP = Record<string, string | string[] | undefined>;
-const one = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v);
 
 /** Three modes: two record modes (a single against a single, an album against
  *  an album) and artist totals. The record modes share every mechanism and
  *  differ only in which format the pickers list and the chosen title must be. */
-type Mode = "songs" | "albums" | "artists";
-const readMode = (v: string | undefined): Mode => (v === "songs" ? "songs" : v === "albums" ? "albums" : "artists");
-const isRecordMode = (m: Mode) => m !== "artists";
+type Mode = "songs" | "albums" | "artists" | "country";
+const readMode = (v: string | undefined): Mode =>
+  v === "songs" ? "songs" : v === "albums" ? "albums" : v === "country" ? "country" : "artists";
+const isRecordMode = (m: Mode) => m === "songs" || m === "albums";
 const formatOf = (m: Mode) => (m === "albums" ? "album" : "single") as "album" | "single";
 /** Words for the record mode: "song"/"songs" or "album"/"albums". */
 const noun = (m: Mode, plural = false) => (m === "albums" ? (plural ? "albums" : "album") : plural ? "songs" : "song");
 
-const fmt = (n: number) => n.toLocaleString("en-US");
-const tierClass = (level: string) =>
-  level === "Diamond" ? styles.tDiamond
-  : level === "Platinum" ? styles.tPlatinum
-  : level === "Gold" ? styles.tGold
-  : styles.tSilver;
-/** A title's trailing "(…)" stays on one line — "love nwantiti (ah ah / ah)"
- *  split its own parenthetical at 375. */
-const keepParens = (title: string) => {
-  const m = title.match(/^(.*?)(\s*\([^()]*\))$/);
-  return m ? <>{m[1]}<span className={styles.nowrap}>{m[2]}</span></> : title;
-};
-const plaque = (top: { level: string; x: number } | null) =>
-  top ? `${top.x > 1 ? `${top.x}× ` : ""}${top.level}` : "";
-/** The programme marker, derived exactly as Burna's explorer derives it:
- *  whatever the override adds beyond the country's default body. "RIAA Latin"
- *  against RIAA reads "Latin". Without it a 16× Platino worth 960,000 sat
- *  beside a 5× Platinum worth 5,000,000 with nothing to say why. */
-/** The marker's short form for a phone chip: "Latin" stays; a whole other
- *  issuer ("Sony Music Colombia") becomes its first word, the full name in
- *  the chip's title and in the desktop run. */
-const shortProgram = (p: string) => (p.length > 12 ? p.split(" ")[0] : p);
-const program = (top: { body?: string } | null, country: string) => {
-  const own = countryMeta(country).body;
-  if (!top?.body || top.body === own) return null;
-  return top.body.replace(own, "").trim() || top.body;
-};
-
-/** Rebuild the URL with one thing changed. Every control on this page is a link,
- *  so this is the only state setter there is. */
-function href(sp: SP, patch: Record<string, string | null>) {
-  const q = new URLSearchParams();
-  // An expanded table is a property of one pair. Changing either side, the
-  // mode, or a song drops it, so "Show all" does not follow the reader around.
-  if (["a", "b", "sa", "sb", "mode"].some((k) => k in patch)) patch = { all: null, ...patch };
-  for (const [k, v] of Object.entries(sp)) {
-    const s = one(v);
-    if (s) q.set(k, s);
-  }
-  for (const [k, v] of Object.entries(patch)) {
-    if (v === null) q.delete(k);
-    else q.set(k, v);
-  }
-  const s = q.toString();
-  return s ? `/compare?${s}` : "/compare";
-}
 
 /** A chip list that shows the first PICKER_FOLD and folds the rest behind a
  *  native disclosure — no script, no navigation, nothing dropped. The whole
@@ -545,6 +522,13 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
   const mode = readMode(one(sp.mode));
   const record = isRecordMode(mode);
   const format = formatOf(mode);
+  // COUNTRY MODE. One market, every artist — the pivot of the rest of the page.
+  // The param takes the country's NAME ("canada"), which is what the pretty
+  // route spells, and its ISO code as well, so a hand-edited ?country=CA
+  // resolves rather than dropping the reader back at the picker.
+  const countryMode = mode === "country";
+  const countryCode = countryMode ? countryFromSlug(one(sp.country) ?? "") : null;
+  const countryBoard = countryCode ? priceCountry(countryCode, { includeNigeria: true, includeFeatures: one(sp.feat) !== "0" }) : null;
   const a = artistBySlug(one(sp.a) ?? "") ?? null;
   const b = artistBySlug(one(sp.b) ?? "") ?? null;
   const showAll = one(sp.all) === "1";
@@ -703,15 +687,24 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
   // The ONE breadcrumb trail this page emits (the site-wide one stands down
   // for /compare — see OWN_BREADCRUMB): Home › Certifications › Compare, and
   // on a pair page the pair itself as the leaf.
+  // Derived from the same path and the same label map the visible bar reads,
+  // rather than typed at three levels deep: /compare/in/<country> is four, and
+  // the typed version silently dropped "By country" out of the structured
+  // trail while the bar above it showed five crumbs.
+  const trail: { name: string; item: string }[] = [
+    { name: "Home", item: siteUrl },
+    { name: "Certifications", item: `${siteUrl}/certifications` },
+  ];
+  let acc = "";
+  for (const seg of path.split("/").filter(Boolean)) {
+    acc += `/${seg}`;
+    trail.push({ name: SEGMENT_LABELS[seg] ?? seg, item: `${siteUrl}${acc}` });
+  }
+  if (leaf) trail[trail.length - 1].name = leaf;
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
-      { "@type": "ListItem", position: 2, name: "Certifications", item: `${siteUrl}/certifications` },
-      { "@type": "ListItem", position: 3, name: "Compare", item: `${siteUrl}/compare` },
-      ...(leaf ? [{ "@type": "ListItem", position: 4, name: leaf, item: `${siteUrl}${path}` }] : []),
-    ],
+    itemListElement: trail.map((t, i) => ({ "@type": "ListItem", position: i + 1, name: t.name, item: t.item })),
   };
   // A comparison of two artists is a dataset in its own right: two floors
   // and a country-by-country table, priced at published thresholds.
@@ -736,11 +729,39 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
       <BreadcrumbBar path={path} leaf={leaf} parents={[{ label: "Certifications", href: "/certifications" }]} />
       <main id="content" className={styles.wrap}>
         <p className={styles.kicker}>Certifications › Compare</p>
-        <h1 className={styles.h1}>Certified units, compared</h1>
+        <h1 className={styles.h1}>
+          {countryBoard ? `Certified units in ${countryBoard.inSentence}` : countryMode ? "Certified units by country" : "Certified units, compared"}
+        </h1>
         <p className={styles.lede}>
-          Every plaque is a floor — a Platinum single in the UK means <em>at least</em> {fmt(ukPlatinum)}, and could
-          be {fmt(ukPlatinum * 2 - 10_000)}. This page adds those floors up for two records or two artists, at each certifying
-          body&apos;s own published threshold, under identical rules.
+          {countryBoard ? (
+            countryBoard.counted ? (
+              <>
+                Every plaque the sixteen artists hold in {countryBoard.inSentence}, priced at{" "}
+                {countryBoard.body}&apos;s own published threshold and ranked. Each figure is a floor — a plaque
+                says <em>at least</em>, never what a record sold.
+              </>
+            ) : (
+              // A body that publishes no threshold cannot have "its own
+              // published threshold" quoted back at it, which is what the
+              // one-size lede was doing on Colombia.
+              <>
+                Every plaque the sixteen artists hold in {countryBoard.inSentence}. {countryBoard.body} publishes
+                no unit threshold, so these plaques are listed here and never summed — the award is real, the
+                scale is not published.
+              </>
+            )
+          ) : countryMode ? (
+            <>
+              The rest of this page asks who has more. This asks who has more <em>where</em> — one market, every
+              artist, priced at that country&apos;s own certifying body&apos;s published threshold.
+            </>
+          ) : (
+            <>
+              Every plaque is a floor — a Platinum single in the UK means <em>at least</em> {fmt(ukPlatinum)}, and could
+              be {fmt(ukPlatinum * 2 - 10_000)}. This page adds those floors up for two records or two artists, at each certifying
+              body&apos;s own published threshold, under identical rules.
+            </>
+          )}
         </p>
 
         <nav className={styles.seg} aria-label="Comparison mode">
@@ -753,6 +774,7 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
               { key: "songs", long: "Song vs song", short: "Songs" },
               { key: "albums", long: "Album vs album", short: "Albums" },
               { key: "artists", long: "Artist totals", short: "Artists" },
+              { key: "country", long: "By country", short: "Country" },
             ] as const
           ).map((m) =>
             mode === m.key ? (
@@ -763,7 +785,17 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
             ) : (
               <Link
                 key={m.key}
-                href={href(sp, { mode: m.key, sa: null, sb: null, qa: null, qb: null })}
+                // Country mode has a page of its own, and it is where the 27
+                // boards are linked from — so the segment points at the pretty
+                // index rather than the query-string twin it canonicals to.
+                // The features choice is the reader's, so it carries over.
+                href={
+                  m.key === "country"
+                    ? includeFeatures
+                      ? "/compare/in"
+                      : "/compare?mode=country&feat=0"
+                    : href(sp, { mode: m.key, sa: null, sb: null, qa: null, qb: null })
+                }
                 className={styles.segItem}
               >
                 <span className={styles.segLong}>{m.long}</span>
@@ -773,11 +805,15 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
           )}
         </nav>
 
-        <div className={styles.slots}>
-          <Slot artist={a} release={songA} priced={c?.a ?? soloPriced ?? null} sp={sp} side="a" mode={mode} refused={sameArtist} />
-          <span className={styles.vs}>vs</span>
-          <Slot artist={b} release={songB} priced={c?.b ?? (sameArtist ? soloPriced : null) ?? null} sp={sp} side="b" mode={mode} refused={sameArtist} />
-        </div>
+        {/* The two slots are the pairwise modes' control. Country mode has one
+            subject, not two, and carries its own picker below. */}
+        {!countryMode && (
+          <div className={styles.slots}>
+            <Slot artist={a} release={songA} priced={c?.a ?? soloPriced ?? null} sp={sp} side="a" mode={mode} refused={sameArtist} />
+            <span className={styles.vs}>vs</span>
+            <Slot artist={b} release={songB} priced={c?.b ?? (sameArtist ? soloPriced : null) ?? null} sp={sp} side="b" mode={mode} refused={sameArtist} />
+          </div>
+        )}
 
         {record && a && !songA && (
           <SongPicker artist={a} side="a" sp={sp} query={one(sp.qa) ?? ""} mode={mode} landing={songB ? "result" : b ? "pick-b" : "slot-b"} />
@@ -802,7 +838,10 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
 
         {!refused && (
         <div className={styles.controls}>
-          {mode === "artists" && (
+          {/* Country mode honours the features switch — a plaque the artist
+              holds is a plaque — and has no Nigeria switch: there Nigeria is
+              the subject of the page rather than a term in a sum. */}
+          {(mode === "artists" || countryMode) && (
             <span className={styles.control}>
               {/* "Features" on the phone (the design's label); the full name
                   stays for desktop and for assistive tech. */}
@@ -821,14 +860,16 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
               </Link>
             </span>
           )}
-          <span className={styles.control}>
-            <span className={styles.controlName}>Nigeria</span>
-            <Link href={href(sp, { ng: ngOn ? (ngDefault ? "0" : null) : ngDefault ? null : "1" })} scroll={false} className={`${styles.switch} ${ngOn ? styles.switchOn : ""}`}>
-              <span className={`${styles.dot} ${ngOn ? styles.dotOn : ""}`} />
-              <span className="visuallyHidden">Nigeria: </span>
-              {ngOn ? (ngParam ? "included" : "included · by default") : "separated"}
-            </Link>
-          </span>
+          {!countryMode && (
+            <span className={styles.control}>
+              <span className={styles.controlName}>Nigeria</span>
+              <Link href={href(sp, { ng: ngOn ? (ngDefault ? "0" : null) : ngDefault ? null : "1" })} scroll={false} className={`${styles.switch} ${ngOn ? styles.switchOn : ""}`}>
+                <span className={`${styles.dot} ${ngOn ? styles.dotOn : ""}`} />
+                <span className="visuallyHidden">Nigeria: </span>
+                {ngOn ? (ngParam ? "included" : "included · by default") : "separated"}
+              </Link>
+            </span>
+          )}
           <Link href="/methodology#certified-units" className={`${styles.howLink} ${styles.howLinkTop}`}>How this is counted <span aria-hidden="true">↗</span></Link>
         </div>
         )}
@@ -848,6 +889,11 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
                 </li>
               ))}
             </ul>
+            {/* The other way into the same corpus, and the crawl path to the
+                27 country boards. */}
+            <p className={styles.featuredAside}>
+              Or pick a market — <Link href="/compare/in" className={styles.noteLink}>certified units country by country ↗</Link>
+            </p>
           </section>
         )}
 
@@ -856,6 +902,8 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
             <strong>Nigeria included by default</strong> — {c.nigeria.reason.replace(/^Nigeria included: /, "")}
           </p>
         )}
+
+        {countryMode && <CountryBoardView sp={sp} code={countryCode} includeFeatures={includeFeatures} />}
 
         {(ready || partial) && (
           <>

@@ -7,6 +7,8 @@ import { LIVE_BOARDS } from "../app/data/liveBoards";
 import { liveChartsUpdated } from "../app/data/liveCharts";
 import { LISTENERS_READ_ON } from "../app/data/listeners";
 import { allPairs, pairSlug } from "../app/lib/comparePairs";
+import { certCountryCodes, countrySlug } from "../app/lib/certCountry";
+import { comparableArtists } from "../app/lib/certUnits";
 import { siteUrl } from "../app/site";
 
 /**
@@ -54,6 +56,17 @@ function evidenceFor(path: string): string[] {
   if (path === "/music/listeners") dates.push(LISTENERS_READ_ON);
   const pair = allPairs().find(([a, b]) => `/compare/${pairSlug(a, b)}` === path);
   if (pair) dates.push([pair[0].verifiedOn, pair[1].verifiedOn].sort().at(-1)!);
+  // A country board is dated by the artists certified THERE — derived from the
+  // plaques themselves here, not from the board builder the sitemap calls.
+  const code = certCountryCodes().find((c) => `/compare/in/${countrySlug(c)}` === path);
+  if (code)
+    dates.push(
+      comparableArtists
+        .filter((a) => a.releases.some((r) => r.certs.some((x) => x.c === code)))
+        .map((a) => a.verifiedOn)
+        .sort()
+        .at(-1),
+    );
   if (path === "/updates") dates.push([...updates.map((u) => u.date)].sort().at(-1));
   if (path === "/afrobeats") dates.push([...swept.map((a) => a.verifiedOn)].sort().at(-1));
   const board = LIVE_BOARDS.find((b) => `/afrobeats/${b.slug}/live` === path);

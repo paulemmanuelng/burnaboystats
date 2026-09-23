@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { allPairs, pairSlug } from "./lib/comparePairs";
+import { certCountryCodes, countrySlug, priceCountry } from "./lib/certCountry";
 import { siteUrl } from "./site";
 import { updates } from "./data/updates";
 import { songs } from "./data/songs";
@@ -111,6 +112,15 @@ const contentStamp: Record<string, string> = {
   ...Object.fromEntries(
     allPairs().map(([a, b]) => [`/compare/${pairSlug(a, b)}`, [a.verifiedOn, b.verifiedOn].sort().at(-1)!]),
   ),
+  // A country board changes when any artist certified THERE is re-read — not
+  // when the roster is, so a sweep of an artist with no Canadian plaque does
+  // not restamp Canada.
+  ...Object.fromEntries(
+    certCountryCodes().map((code) => [
+      `/compare/in/${countrySlug(code)}`,
+      priceCountry(code).lines.map((l) => l.artist.verifiedOn).sort().at(-1)!,
+    ]),
+  ),
 };
 
 /**
@@ -174,6 +184,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/compare", priority: 0.7, changeFrequency: "weekly" },
     // One page per pair of the sixteen artists, canonical order only.
     ...allPairs().map(([a, b]) => ({ path: `/compare/${pairSlug(a, b)}`, priority: 0.6, changeFrequency: "weekly" as const })),
+    { path: "/compare/in", priority: 0.7, changeFrequency: "weekly" },
+    // One board per market the roster holds a plaque in.
+    ...certCountryCodes().map((code) => ({ path: `/compare/in/${countrySlug(code)}`, priority: 0.6, changeFrequency: "weekly" as const })),
     { path: "/music", priority: 0.8, changeFrequency: "weekly" },
     { path: "/music/listeners", priority: 0.6, changeFrequency: "monthly" },
     ...songs.map((sg) => ({ path: `/music/${sg.slug}`, priority: 0.8, changeFrequency: "weekly" as const })),

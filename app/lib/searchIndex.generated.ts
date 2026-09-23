@@ -1538,6 +1538,465 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "Certified units in Australia",
+    "path": "/compare/in/australia",
+    "section": "Compare",
+    "description": "Every Afrobeats plaque awarded in Australia, priced at ARIA's own thresholds and ranked by artist.",
+    "keywords": [
+      "australia",
+      "au",
+      "aria",
+      "certified units",
+      "certifications",
+      "certifications in australia",
+      "plaques",
+      "by country"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Certified units in Austria",
+    "path": "/compare/in/austria",
+    "section": "Compare",
+    "description": "Every Afrobeats plaque awarded in Austria, priced at IFPI Austria's own thresholds and ranked by artist.",
+    "keywords": [
+      "austria",
+      "at",
+      "ifpi austria",
+      "certified units",
+      "certifications",
+      "certifications in austria",
+      "plaques",
+      "by country"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Certified units in Belgium",
+    "path": "/compare/in/belgium",
+    "section": "Compare",
+    "description": "Every Afrobeats plaque awarded in Belgium, priced at Ultratop's own thresholds and ranked by artist.",
+    "keywords": [
+      "belgium",
+      "be",
+      "ultratop",
+      "certified units",
+      "certifications",
+      "certifications in belgium",
+      "plaques",
+      "by country"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Certified units in Brazil",
+    "path": "/compare/in/brazil",
+    "section": "Compare",
+    "description": "Every Afrobeats plaque awarded in Brazil, priced at Pro-Música Brasil's own thresholds and ranked by artist.",
+    "keywords": [
+      "brazil",
+      "br",
+      "pro-música brasil",
+      "certified units",
+      "certifications",
+      "certifications in brazil",
+      "plaques",
+      "by country"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Certified units in Canada",
+    "path": "/compare/in/canada",
+    "section": "Compare",
+    "description": "Every Afrobeats plaque awarded in Canada, priced at Music Canada's own thresholds and ranked by artist.",
+    "keywords": [
+      "canada",
+      "ca",
+      "music canada",
+      "certified units",
+      "certifications",
+      "certifications in canada",
+      "plaques",
+      "by country"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Certified units in Colombia",
+    "path": "/compare/in/colombia",
+    "section": "Compare",
+    "description": "Every Afrobeats plaque awarded in Colombia, priced at Pro Musica Colombia's own thresholds and ranked by artist.",
+    "keywords": [
+      "colombia",
+      "co",
+      "pro musica colombia",
+      "certified units",
+      "certifications",
+      "certifications in colombia",
+      "plaques",
+      "by country"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Certified units in Czech Republic",
+    "path": "/compare/in/czech-republic",
+    "section": "Compare",
+    "description": "Every Afrobeats plaque awarded in Czech Republic, priced at ČNS IFPI (Czechia)'s own thresholds and ranked by artist.",
+    "keywords": [
+      "czech republic",
+      "cz",
+      "čns ifpi (czechia)",
+      "certified units",
+      "certifications",
+      "certifications in czech republic",
+      "plaques",
+      "by country"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Certified units in Denmark",
+    "path": "/compare/in/denmark",
+    "section": "Compare",
+    "description": "Every Afrobeats plaque awarded in Denmark, priced at IFPI Denmark's own thresholds and ranked by artist.",
+    "keywords": [
+      "denmark",
+      "dk",
+      "ifpi denmark",
+      "certified units",
+      "certifications",
+      "certifications in denmark",
+      "plaques",
+      "by country"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Certified units in France",
+    "path": "/compare/in/france",
+    "section": "Compare",
+    "description": "Every Afrobeats plaque awarded in France, priced at SNEP's own thresholds and ranked by artist.",
+    "keywords": [
+      "france",
+      "fr",
+      "snep",
+      "certified units",
+      "certifications",
+      "certifications in france",
+      "plaques",
+      "by country"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Certified units in Germany",
+    "path": "/compare/in/germany",
+    "section": "Compare",
+    "description": "Every Afrobeats plaque awarded in Germany, priced at BVMI's own thresholds and ranked by artist.",
+    "keywords": [
+      "germany",
+      "de",
+      "bvmi",
+      "certified units",
+      "certifications",
+      "certifications in germany",
+      "plaques",
+      "by country"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Certified units in Greece",
+    "path": "/compare/in/greece",
+    "section": "Compare",
+    "description": "Every Afrobeats plaque awarded in Greece, priced at IFPI Greece's own thresholds and ranked by artist.",
+    "keywords": [
+      "greece",
+      "gr",
+      "ifpi greece",
+      "certified units",
+      "certifications",
+      "certifications in greece",
+      "plaques",
+      "by country"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Certified units in Hungary",
+    "path": "/compare/in/hungary",
+    "section": "Compare",
+    "description": "Every Afrobeats plaque awarded in Hungary, priced at MAHASZ's own thresholds and ranked by artist.",
+    "keywords": [
+      "hungary",
+      "hu",
+      "mahasz",
+      "certified units",
+      "certifications",
+      "certifications in hungary",
+      "plaques",
+      "by country"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Certified units in Italy",
+    "path": "/compare/in/italy",
+    "section": "Compare",
+    "description": "Every Afrobeats plaque awarded in Italy, priced at FIMI's own thresholds and ranked by artist.",
+    "keywords": [
+      "italy",
+      "it",
+      "fimi",
+      "certified units",
+      "certifications",
+      "certifications in italy",
+      "plaques",
+      "by country"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Certified units in Mexico",
+    "path": "/compare/in/mexico",
+    "section": "Compare",
+    "description": "Every Afrobeats plaque awarded in Mexico, priced at AMPROFON's own thresholds and ranked by artist.",
+    "keywords": [
+      "mexico",
+      "mx",
+      "amprofon",
+      "certified units",
+      "certifications",
+      "certifications in mexico",
+      "plaques",
+      "by country"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Certified units in Netherlands",
+    "path": "/compare/in/netherlands",
+    "section": "Compare",
+    "description": "Every Afrobeats plaque awarded in Netherlands, priced at NVPI's own thresholds and ranked by artist.",
+    "keywords": [
+      "netherlands",
+      "nl",
+      "nvpi",
+      "certified units",
+      "certifications",
+      "certifications in netherlands",
+      "plaques",
+      "by country"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Certified units in New Zealand",
+    "path": "/compare/in/new-zealand",
+    "section": "Compare",
+    "description": "Every Afrobeats plaque awarded in New Zealand, priced at RMNZ's own thresholds and ranked by artist.",
+    "keywords": [
+      "new zealand",
+      "nz",
+      "rmnz",
+      "certified units",
+      "certifications",
+      "certifications in new zealand",
+      "plaques",
+      "by country"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Certified units in Nigeria",
+    "path": "/compare/in/nigeria",
+    "section": "Compare",
+    "description": "Every Afrobeats plaque awarded in Nigeria, priced at TurnTable (TCSN)'s own thresholds and ranked by artist.",
+    "keywords": [
+      "nigeria",
+      "ng",
+      "turntable (tcsn)",
+      "certified units",
+      "certifications",
+      "certifications in nigeria",
+      "plaques",
+      "by country"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Certified units in Norway",
+    "path": "/compare/in/norway",
+    "section": "Compare",
+    "description": "Every Afrobeats plaque awarded in Norway, priced at IFPI Norway's own thresholds and ranked by artist.",
+    "keywords": [
+      "norway",
+      "no",
+      "ifpi norway",
+      "certified units",
+      "certifications",
+      "certifications in norway",
+      "plaques",
+      "by country"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Certified units in Poland",
+    "path": "/compare/in/poland",
+    "section": "Compare",
+    "description": "Every Afrobeats plaque awarded in Poland, priced at ZPAV's own thresholds and ranked by artist.",
+    "keywords": [
+      "poland",
+      "pl",
+      "zpav",
+      "certified units",
+      "certifications",
+      "certifications in poland",
+      "plaques",
+      "by country"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Certified units in Portugal",
+    "path": "/compare/in/portugal",
+    "section": "Compare",
+    "description": "Every Afrobeats plaque awarded in Portugal, priced at AFP's own thresholds and ranked by artist.",
+    "keywords": [
+      "portugal",
+      "pt",
+      "afp",
+      "certified units",
+      "certifications",
+      "certifications in portugal",
+      "plaques",
+      "by country"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Certified units in Slovakia",
+    "path": "/compare/in/slovakia",
+    "section": "Compare",
+    "description": "Every Afrobeats plaque awarded in Slovakia, priced at ČNS IFPI (Slovakia)'s own thresholds and ranked by artist.",
+    "keywords": [
+      "slovakia",
+      "sk",
+      "čns ifpi (slovakia)",
+      "certified units",
+      "certifications",
+      "certifications in slovakia",
+      "plaques",
+      "by country"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Certified units in South Africa",
+    "path": "/compare/in/south-africa",
+    "section": "Compare",
+    "description": "Every Afrobeats plaque awarded in South Africa, priced at RiSA's own thresholds and ranked by artist.",
+    "keywords": [
+      "south africa",
+      "za",
+      "risa",
+      "certified units",
+      "certifications",
+      "certifications in south africa",
+      "plaques",
+      "by country"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Certified units in Spain",
+    "path": "/compare/in/spain",
+    "section": "Compare",
+    "description": "Every Afrobeats plaque awarded in Spain, priced at Promusicae's own thresholds and ranked by artist.",
+    "keywords": [
+      "spain",
+      "es",
+      "promusicae",
+      "certified units",
+      "certifications",
+      "certifications in spain",
+      "plaques",
+      "by country"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Certified units in Sweden",
+    "path": "/compare/in/sweden",
+    "section": "Compare",
+    "description": "Every Afrobeats plaque awarded in Sweden, priced at GLF's own thresholds and ranked by artist.",
+    "keywords": [
+      "sweden",
+      "se",
+      "glf",
+      "certified units",
+      "certifications",
+      "certifications in sweden",
+      "plaques",
+      "by country"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Certified units in Switzerland",
+    "path": "/compare/in/switzerland",
+    "section": "Compare",
+    "description": "Every Afrobeats plaque awarded in Switzerland, priced at IFPI's own thresholds and ranked by artist.",
+    "keywords": [
+      "switzerland",
+      "ch",
+      "ifpi",
+      "certified units",
+      "certifications",
+      "certifications in switzerland",
+      "plaques",
+      "by country"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Certified units in United Kingdom",
+    "path": "/compare/in/united-kingdom",
+    "section": "Compare",
+    "description": "Every Afrobeats plaque awarded in United Kingdom, priced at BPI's own thresholds and ranked by artist.",
+    "keywords": [
+      "united kingdom",
+      "uk",
+      "bpi",
+      "certified units",
+      "certifications",
+      "certifications in united kingdom",
+      "plaques",
+      "by country"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Certified units in United States",
+    "path": "/compare/in/united-states",
+    "section": "Compare",
+    "description": "Every Afrobeats plaque awarded in United States, priced at RIAA's own thresholds and ranked by artist.",
+    "keywords": [
+      "united states",
+      "us",
+      "riaa",
+      "certified units",
+      "certifications",
+      "certifications in united states",
+      "plaques",
+      "by country"
+    ],
+    "generated": true
+  },
+  {
     "title": "CKay vs Black Sherif",
     "path": "/compare/ckay-vs-black-sherif",
     "section": "Compare",
