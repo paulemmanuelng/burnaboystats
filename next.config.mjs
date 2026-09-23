@@ -133,6 +133,12 @@ const nextConfig = {
       // back to a meta-refresh served with 200 — which left /tour looking like
       // a live page carrying the *homepage's* canonical.
       { source: "/tour", destination: "/records/tours", permanent: true },
+      // Three pages that were live for under two hours in June and July 2026,
+      // each in the sitemap while they stood, and 404s since (the 23 Sep 2026
+      // Search Console check). Each goes to the page that replaced it.
+      { source: "/music/gbona", destination: "/music/albums/african-giant", permanent: true },
+      { source: "/music/kilometre", destination: "/music/albums/love-damini", permanent: true },
+      { source: "/records/tours/shows", destination: "/records/tours", permanent: true },
       // /compare/<a>-vs-<b> has one canonical order per pair; the other order
       // redirects here, for the same reason as /tour. Generated from the data
       // by scripts/build-compare-redirects.mjs.

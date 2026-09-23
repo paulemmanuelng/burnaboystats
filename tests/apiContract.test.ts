@@ -274,3 +274,21 @@ describe("the envelope the docs page draws", () => {
       expect(readFileSync(f, "utf8"), `${f} does not print the shared envelope note`).toContain("ENVELOPE_NOTE");
   });
 });
+
+describe("/api/v1/afrobeats — a programme plaque names its programme (23 Sep 2026)", () => {
+  it("serves Santa and Bubalu as RIAA Latin, not RIAA", async () => {
+    // The route read the country's default body and dropped the per-cert
+    // `body`, so both came out "RIAA" — a programme that certifies at 1,000,000
+    // where Premios de Oro y Platino certifies at 60,000.
+    const d = (await body(afrobeats())).data;
+    const us = (slug: string, title: string) =>
+      d.artists
+        .find((a: { slug: string }) => a.slug === slug)
+        .releases.find((r: { title: string }) => r.title === title)
+        .certifications.find((c: { countryCode: string }) => c.countryCode === "US");
+    expect(us("ayra-starr", "Santa").body).toBe("RIAA Latin");
+    expect(us("rema", "Bubalu").body).toBe("RIAA Latin");
+    // Negative control: a standard-programme plaque keeps the country's body.
+    expect(us("tyla", "Water").body).not.toBe("RIAA Latin");
+  });
+});
