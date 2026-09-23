@@ -1,4 +1,5 @@
 import styles from "./hubScatter.module.css";
+import { plaqueDomain } from "../lib/hubScatterScale";
 
 /**
  * "The shape of the field" — the board's ten careers on two axes.
@@ -26,7 +27,8 @@ export interface ScatterDot {
 // domain — x to 1240 though 26 countries lands at 1220, y up to 20 though 240
 // plaques lands at 30 — so no dot ever sits on the frame.
 const X = (c: number) => 70 + (c / 26) * 1150;
-const Y = (p: number) => 280 - (p / 240) * 250;
+// y: the design's 240, until the data outgrows it — lib/hubScatterScale.ts.
+const yScale = (domain: number) => (p: number) => 280 - (p / domain) * 250;
 
 const GRID_X = [0, 5, 10, 15, 20, 25];
 
@@ -54,6 +56,7 @@ const FALLBACK = { anchor: "start" as const, dx: 14, dy: -6 };
 export default function HubScatter({ dots }: { dots: ScatterDot[] }) {
   // Descending plaques, so the reading order of the labels matches the board's.
   const plotted = [...dots].sort((a, b) => b.plaques - a.plaques);
+  const Y = yScale(plaqueDomain(plotted[0]?.plaques ?? 0));
 
   return (
     <section className={styles.wrap} aria-labelledby="shape">

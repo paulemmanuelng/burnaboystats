@@ -4,7 +4,7 @@ import { OgLockup, ogFonts } from "../../../lib/og-lockup";
 import { albumPageBySlug, albumPageSlugs } from "../../../data/albumPages";
 import { albums } from "../../../data/albums";
 import { albumCharts } from "../../../data/charts";
-import { allItems } from "../../../data/certifications";
+import { albums as certAlbums } from "../../../data/certifications";
 import { sameTitle } from "../../../lib/titleKey";
 
 export function generateStaticParams() {
@@ -18,7 +18,8 @@ function albumStats(slug: string) {
   const page = albumPageBySlug(slug);
   const record = page && albums.find((a) => sameTitle(a.title, page.title));
   const chart = page && albumCharts.find((r) => sameTitle(r.title, page.title));
-  const cert = page && allItems.find((r) => sameTitle(r.title, page.title));
+  // Album plaques only — the title track is a separate release (see page.tsx).
+  const cert = page && certAlbums.find((r) => sameTitle(r.title, page.title));
   const entries = chart ? chart.entries : [];
   const countries = entries.filter((e) => e.c !== "GLB" && e.c !== "GLBX").length;
   const best = entries.length ? Math.min(...entries.map((e) => e.peak)) : null;

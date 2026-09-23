@@ -28,6 +28,7 @@
 // garage entries below stated three different collection sizes for one garage.
 import { carCount, totalValueFormatted } from "./cars";
 import { CERT_THRESHOLDS } from "./certThresholds";
+import { totalAwards } from "./certifications";
 
 const plSingle = CERT_THRESHOLDS.PL.single!;
 
@@ -48,6 +49,15 @@ export interface Update {
 }
 
 export const updates: Update[] = [
+  {
+    date: "2026-09-23",
+    category: "Certifications",
+    // TCSN's own register, read in its 21 Feb 2026 capture: rows added between
+    // 8 and 21 Feb 2026, below the live page's 500-row cap. Hence past tense.
+    text: `Nine more Nigerian plaques, from TurnTable's own register: “No Panic”, “Buy You Life”, “28 Grams” and “Born Winner” were certified Gold, the title track “No Sign of Weakness”, “Change Your Mind”, “Empty Chairs”, “Sweet Love” and “4 Kampé II” Silver, and “Ye” rose to Gold — ${totalAwards()} plaques in all.`,
+    href: "/certifications",
+    big: true,
+  },
   {
     date: "2026-09-23",
     category: "Awards",
@@ -92,7 +102,10 @@ export const updates: Update[] = [
   {
     date: "2026-09-23",
     category: "Certifications",
-    text: "Counted market by market, Burna Boy leads the Afrobeats board's certified units in 10 of the 27 countries where it holds a plaque — the UK (at least 13,960,000), France, Canada, South Africa, New Zealand, Denmark, Switzerland, Austria, Czechia and Slovakia.",
+    // Rewritten the same day, after the 23 Sep register sweep: Wizkid's "Boom"
+    // Danish Platinum put him ahead in Denmark, and Tems's and Rema's new Czech
+    // and Slovak plaques drew level with Burna's there. Read off countryBoards().
+    text: "Counted market by market, Burna Boy leads the Afrobeats board's certified units outright in 7 of the 27 countries where it holds a plaque — the UK (at least 13,960,000), France, Canada, South Africa, New Zealand, Switzerland and Austria — and is level with Rema and Tems in Czechia and Slovakia.",
     href: "/compare/in",
   },
   {

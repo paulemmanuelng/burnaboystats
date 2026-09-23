@@ -13,7 +13,7 @@ import { albumPageBySlug, albumPageSlugs, albumPages } from "../../../data/album
 import { albums, releaseDateLabel } from "../../../data/albums";
 import { songs } from "../../../data/songs";
 import { albumCharts, CHART_COUNTRIES, chartTier } from "../../../data/charts";
-import { allItems, COUNTRIES, tierOf } from "../../../data/certifications";
+import { albums as certAlbums, COUNTRIES, tierOf } from "../../../data/certifications";
 import { sameTitle } from "../../../lib/titleKey";
 import MobileMenuButton from "../../../components/MobileMenuButton";
 import BackLink from "../../../components/BackLink";
@@ -33,7 +33,10 @@ function albumData(title: string) {
   // while charts.ts/certifications.ts write "..." — see lib/titleKey.ts.
   const record = albums.find((a) => sameTitle(a.title, title));
   const chart = albumCharts.find((r) => sameTitle(r.title, title));
-  const cert = allItems.find((r) => sameTitle(r.title, title));
+  // ALBUM certifications only. Since 23 Sep 2026 the title track "No Sign of
+  // Weakness" holds a Nigerian Silver as a SINGLE; searching every release by
+  // title printed that plaque on the album's page as the album's own.
+  const cert = certAlbums.find((r) => sameTitle(r.title, title));
 
   const entries = chart ? [...chart.entries].sort((a, b) => a.peak - b.peak) : [];
   const countryEntries = entries.filter((e) => e.c !== "GLB" && e.c !== "GLBX");

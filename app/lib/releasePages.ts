@@ -18,18 +18,28 @@ import { songs } from "../data/songs";
 import { albumPages } from "../data/albumPages";
 import { titleKey } from "./titleKey";
 
-/** title (as any file writes it) → the release's own page, when it has one. */
+//
+// KEYED BY KIND AS WELL. An album row looks up album pages and a single or
+// feature row looks up song pages, never the other way round: "No Sign of
+// Weakness" is both an album (with a page) and, since 23 Sep 2026, a certified
+// title track (without one), and a title-only map sent the single's row to the
+// album's page.
+
+export type ReleaseKind = "album" | "song";
+
+const linkKey = (kind: ReleaseKind, title: string) => `${kind}|${titleKey(title)}`;
+
+/** kind + title (as any file writes it) → the release's own page, when it has one. */
 export function releasePageLinks(): Record<string, string> {
   const out: Record<string, string> = {};
-  for (const a of albumPages) out[titleKey(a.title)] = `/music/albums/${a.slug}`;
-  // Songs second: a title that is somehow both should resolve to the song page,
-  // which is the more specific of the two.
-  for (const s of songs) out[titleKey(s.title)] = `/music/${s.slug}`;
+  for (const a of albumPages) out[linkKey("album", a.title)] = `/music/albums/${a.slug}`;
+  for (const s of songs) out[linkKey("song", s.title)] = `/music/${s.slug}`;
   return out;
 }
 
-/** Look a title up in a map built by releasePageLinks(). */
+/** Look a release up in a map built by releasePageLinks(). */
 export const releasePathFor = (
   links: Record<string, string> | undefined,
-  title: string
-): string | undefined => (links ? links[titleKey(title)] : undefined);
+  title: string,
+  kind: ReleaseKind
+): string | undefined => (links ? links[linkKey(kind, title)] : undefined);

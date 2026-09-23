@@ -75,3 +75,53 @@ Canada's register returned *absent* for it.
 - Point the UK country link at `certified-awards.bpi.co.uk`, which has real
   per-title permalinks, rather than the BPI page one level up.
 - The other 11 board artists.
+
+## 23 Sep 2026 — nine Nigerian plaques this pass never saw, and why
+
+TCSN's own register holds **nine Burna Boy plaques and one upgrade that no
+earlier pass found**. Each was read ✓ᴬ, in the raw Wayback capture of the
+register page of 21 Feb 2026 (`20260221224010id_`, 39,322,478 bytes = its ETag,
+2,477 rows, ids 4–2634; the `_next/data` JSON capture `20260221213029id_` holds
+identical rows):
+
+| title | TCSN id | row (milestone · artiste) | site |
+|---|---|---|---|
+| Ye | 1956 | Gold · Burna Boy (supersedes Silver id 970) | Silver → **Gold** |
+| 28 Grams | 1996 | Gold · Burna Boy | new |
+| Buy You Life | 2038 | Gold · Burna Boy | new |
+| Born Winner | 2101 | Gold · Burna Boy | new |
+| No Panic | 2116 | Gold · Burna Boy | new |
+| No Sign Of Weakness (the song) | 2247 | Silver · Burna Boy, format Single | new |
+| Change Your Mind | 2316 | Silver · Burna Boy ft. Shaboozey | new |
+| Empty Chairs | 2423 | Silver · Burna Boy ft. Mick Jagger | new |
+| Sweet Love (Burna Boy) | 2522 | Silver · Burna Boy | new |
+| 4 Kampe Ii | 2562 | Silver · Joe Dwet File & Burna Boy | new (NG beside the FR Gold) |
+
+**None was read and rejected. Every pass read only the live 500-row page.**
+
+- The live register serves exactly 500 rows (456 Platinum, 44 Gold, 0 Silver):
+  the first 500 rows of the February 2026 batch (ids 1361–1860), in id order.
+  These ten sit at batch positions 595–1201, below the cap.
+- **This pass (27 Aug)** loaded the live page once, as its brief told it to,
+  and logged Ye NG as `"status":"unreadable"` (`results/burna-raw.json`). The
+  eight new titles were never on its worklist, because the worklist was the
+  site's own rows.
+- **PR #97 (12 Aug)** read the same 500 rows ("34 Burna Boy entries") and
+  called the Wayback captures "empty shells". They are not: the 21 Feb capture
+  is complete.
+- **The B. D'OR fix (18 Sep, RETRACTIONS #12)** did read the 21 Feb capture,
+  but for that one title.
+
+**Award dates.** None is published. The 8 Feb 2026 capture (1,203 rows, top id
+1315) holds only the earlier Ye Silver, so the ten were added between 8 and
+21 Feb 2026. The capture stamps them "2025-02-06" and the live page
+"2026-02-06"; both are batch stamps (finding 5 above), and the batch includes
+No Sign of Weakness tracks released on 11 Jul 2025. The dated log carries them
+as **2026, no day**, PR #97's convention for this batch.
+
+**No Sign of Weakness** is the title track, not the album: all 1,274 rows of
+the February batch are format "Single", and no album-only title appears in it.
+The site keeps the song (a single) and the album (albums.ts, no certification)
+apart in every title-keyed join; `tests/certs.test.ts` holds them apart.
+
+Full record: `docs/sweeps/sweep-2026-09-23.md`.

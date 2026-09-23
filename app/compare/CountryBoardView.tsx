@@ -304,6 +304,7 @@ export function CountryBoardView({
     .slice(0, 10);
   // The two leaders, in the pair pages' own canonical order.
   const top2 = board.lines.slice(0, 2).map((l) => l.artist);
+  const tiedTop = board.lines.filter((l) => l.units === board.lines[0]?.units);
   const pair = top2.length === 2 ? canonicalPair(top2[0], top2[1]) : null;
 
   return (
@@ -444,7 +445,12 @@ export function CountryBoardView({
         {pair ? (
           <>
             <p className={styles.exitLead}>
-              {board.counted
+              {/* Three or more level at the top share it: "Burna Boy and Rema lead
+                  the Czech Republic" left out Tems on the same 11,261 units
+                  (23 Sep 2026). The pair link still takes the first two. */}
+              {board.counted && tiedTop.length > 2
+                ? `${tiedTop.slice(0, -1).map((l) => l.artist.name).join(", ")} and ${tiedTop[tiedTop.length - 1].artist.name} share the lead in ${board.inSentence}. The head-to-head puts ${board.lines[0].artist.name} and ${board.lines[1].artist.name} side by side in every country at once.`
+                : board.counted
                 ? `${board.lines[0].artist.name} and ${board.lines[1].artist.name} lead ${board.inSentence}. The head-to-head puts them side by side in every country at once.`
                 : `No plaque here can be priced, so nobody leads ${board.inSentence}. The head-to-head compares ${board.lines[0].artist.name} and ${board.lines[1].artist.name} everywhere one can.`}
             </p>

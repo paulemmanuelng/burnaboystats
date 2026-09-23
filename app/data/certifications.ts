@@ -251,10 +251,15 @@ export const singles: Release[] = [
     { c: "US", level: "Gold" }, { c: "AU", level: "Gold" }, { c: "DK", level: "Gold" },
     { c: "NG", level: "Gold" },
   ] },
+  // NG is GOLD since 23 Sep 2026: TCSN's own register, read in the raw Wayback
+  // capture of 21 Feb 2026 (20260221224010id_), holds id 1956 "Ye | Burna Boy |
+  // Single | Gold", superseding the Silver (id 970) the site carried. The live
+  // page serves only the first 500 rows of that batch; this row is below the
+  // cap. docs/sweeps/sweep-2026-09-23.md.
   { title: "Ye", year: 2018, certs: [
     { c: "US", level: "Platinum" }, { c: "UK", level: "Platinum" }, { c: "SE", level: "Platinum" },
     { c: "CA", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "FR", level: "Platinum" },
-    { c: "CH", level: "Platinum" }, { c: "NG", level: "Silver" },
+    { c: "CH", level: "Platinum" }, { c: "NG", level: "Gold" },
   ] },
   { title: "For My Hand", credit: "feat. Ed Sheeran", year: 2022, cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Platinum", x: 4 }, { c: "CA", level: "Platinum", x: 2 }, { c: "UK", level: "Platinum" },
@@ -397,6 +402,26 @@ export const singles: Release[] = [
   { title: "Cheat on Me", credit: "feat. Dave", year: 2023, cover: "https://cdn-images.dzcdn.net/images/cover/1120c9c53e59dcbaffb9d7f77908db16/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Gold" }, { c: "UK", level: "Silver" },
   ] },
+  // No Sign of Weakness tracks (2025), added 23 Sep 2026 — the four Golds here
+  // and the four Silvers below. TCSN's own register, read in the raw Wayback
+  // capture of 21 Feb 2026 (20260221224010id_; ids 2116, 2038, 1996, 2101),
+  // which the live page's 500-row cap cuts off. No award date is published: the
+  // rows arrived between 8 and 21 Feb 2026, so the dated log carries them as
+  // 2026 with no day. Sleeve: the album's, which is what Deezer's record of
+  // each track carries (album 784874611) and what "Dem Dey" already uses.
+  // docs/sweeps/sweep-2026-09-23.md, docs/sourcing/BURNA-FINDINGS.md.
+  { title: "No Panic", year: 2025, cover: "https://cdn-images.dzcdn.net/images/cover/af66f2a3785c256727e0a2b234a3b90a/500x500-000000-80-0-0.jpg", certs: [
+    { c: "NG", level: "Gold" },
+  ] },
+  { title: "Buy You Life", year: 2025, cover: "https://cdn-images.dzcdn.net/images/cover/af66f2a3785c256727e0a2b234a3b90a/500x500-000000-80-0-0.jpg", certs: [
+    { c: "NG", level: "Gold" },
+  ] },
+  { title: "28 Grams", year: 2025, cover: "https://cdn-images.dzcdn.net/images/cover/af66f2a3785c256727e0a2b234a3b90a/500x500-000000-80-0-0.jpg", certs: [
+    { c: "NG", level: "Gold" },
+  ] },
+  { title: "Born Winner", year: 2025, cover: "https://cdn-images.dzcdn.net/images/cover/af66f2a3785c256727e0a2b234a3b90a/500x500-000000-80-0-0.jpg", certs: [
+    { c: "NG", level: "Gold" },
+  ] },
   { title: "Wild Dreams", credit: "feat. Khalid", year: 2022, cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Silver" },
   ] },
@@ -437,6 +462,27 @@ export const singles: Release[] = [
     { c: "NG", level: "Silver" },
   ] },
   { title: "Virgil", year: 2023, cover: "https://cdn-images.dzcdn.net/images/cover/1120c9c53e59dcbaffb9d7f77908db16/500x500-000000-80-0-0.jpg", certs: [
+    { c: "NG", level: "Silver" },
+  ] },
+  // The TITLE TRACK, not the album. TCSN id 2247 reads "No Sign Of Weakness |
+  // Burna Boy | Single | Silver", and every row of that February batch is a
+  // single. The album of the same name holds no certification and is not in
+  // `albums` above — so every title-keyed join (the album page, the homepage
+  // album cards, the ledger's page links, search, /compare) must look in the
+  // array for its own kind. tests/certs.test.ts holds the two apart.
+  { title: "No Sign of Weakness", year: 2025, cover: "https://cdn-images.dzcdn.net/images/cover/af66f2a3785c256727e0a2b234a3b90a/500x500-000000-80-0-0.jpg", certs: [
+    { c: "NG", level: "Silver" },
+  ] },
+  // TCSN ids 2316 ("Burna Boy ft. Shaboozey"), 2423 ("Burna Boy ft. Mick
+  // Jagger") and 2522 ("Sweet Love (Burna Boy)" — the parenthesis is TCSN's
+  // owner tag; no other "Sweet Love" row exists).
+  { title: "Change Your Mind", credit: "feat. Shaboozey", year: 2025, cover: "https://cdn-images.dzcdn.net/images/cover/af66f2a3785c256727e0a2b234a3b90a/500x500-000000-80-0-0.jpg", certs: [
+    { c: "NG", level: "Silver" },
+  ] },
+  { title: "Empty Chairs", credit: "feat. Mick Jagger", year: 2025, cover: "https://cdn-images.dzcdn.net/images/cover/af66f2a3785c256727e0a2b234a3b90a/500x500-000000-80-0-0.jpg", certs: [
+    { c: "NG", level: "Silver" },
+  ] },
+  { title: "Sweet Love", year: 2025, cover: "https://cdn-images.dzcdn.net/images/cover/af66f2a3785c256727e0a2b234a3b90a/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Silver" },
   ] },
   { title: "Collateral Damage", year: 2019, cover: "https://cdn-images.dzcdn.net/images/cover/3cfb4e9b823e7c1c610382ee27cb7575/500x500-000000-80-0-0.jpg", certs: [
@@ -528,8 +574,13 @@ export const features: Release[] = [
     // sits here and not in the dated log.
     { c: "NG", level: "Platinum" },
   ] },
+  // NG Silver since 23 Sep 2026: TCSN id 2562, "4 Kampe Ii | Joe Dwet File &
+  // Burna Boy | Single | Silver", read in the register's 21 Feb 2026 capture.
+  // The register bills it "A & B", which under the "Do I" convention above
+  // would read as a co-lead; it stays filed as a feature, as the French Gold
+  // is. The plaque is the same either way.
   { title: "4 Kampé II", credit: "Joé Dwèt Filé ft. Burna Boy", year: 2025, cover: "https://cdn-images.dzcdn.net/images/cover/9817ac9ada270ea7c1f56753c0cabf33/500x500-000000-80-0-0.jpg", certs: [
-    { c: "FR", level: "Gold" },
+    { c: "FR", level: "Gold" }, { c: "NG", level: "Silver" },
   ] },
   { title: "Loved by You", credit: "Justin Bieber ft. Burna Boy", year: 2021, cover: "https://cdn-images.dzcdn.net/images/cover/87468622c8e7ac9dce7b541be136aa4c/500x500-000000-80-0-0.jpg", certs: [
     { c: "AU", level: "Gold" }, { c: "BR", level: "Gold" },
@@ -601,6 +652,21 @@ export const certHistory: CertEvent[] = [
   { title: "Bundle by Bundle", country: "NG", level: "Platinum", year: 2026 },
   { title: "Location", credit: "Dave ft. Burna Boy", country: "NG", level: "Platinum", year: 2026 },
   { title: "Talibans II", credit: "with Byron Messia", country: "NG", level: "Platinum", year: 2026 },
+  // The same February 2026 TCSN batch, read 23 Sep 2026 in the register's own
+  // 21 Feb 2026 capture — below the live page's 500-row cap, which is why the
+  // 12 Aug read above never saw them. Year 2026, no day: the rows arrived
+  // between 8 and 21 Feb 2026 and TCSN publishes no award date. Ye's Gold is an
+  // upgrade from a Silver never logged here; the other nine are new plaques.
+  { title: "Ye", country: "NG", level: "Gold", year: 2026 },
+  { title: "No Panic", country: "NG", level: "Gold", year: 2026 },
+  { title: "Buy You Life", country: "NG", level: "Gold", year: 2026 },
+  { title: "28 Grams", country: "NG", level: "Gold", year: 2026 },
+  { title: "Born Winner", country: "NG", level: "Gold", year: 2026 },
+  { title: "No Sign of Weakness", country: "NG", level: "Silver", year: 2026 },
+  { title: "Change Your Mind", credit: "feat. Shaboozey", country: "NG", level: "Silver", year: 2026 },
+  { title: "Empty Chairs", credit: "feat. Mick Jagger", country: "NG", level: "Silver", year: 2026 },
+  { title: "Sweet Love", country: "NG", level: "Silver", year: 2026 },
+  { title: "4 Kampé II", credit: "Joé Dwèt Filé ft. Burna Boy", country: "NG", level: "Silver", year: 2026 },
   // APPEND upgrades, never rewrite them. This is a log of award EVENTS, not of
   // current status: when a release moves Gold → Platinum, the Gold stays and the
   // Platinum is added as its own row. The page says so in its own words ("a
@@ -764,7 +830,10 @@ export const certHistory: CertEvent[] = [
   { title: "Collateral Damage", country: "FR", level: "Gold", year: 2023 },
   { title: "On the Low", country: "UK", level: "Gold", year: 2023 },
   { title: "For My Hand", credit: "feat. Ed Sheeran", country: "UK", level: "Gold", year: 2023 },
-  { title: "Location", credit: "Dave ft. Burna Boy", country: "UK", level: "Gold", x: 4, year: 2023 },
+  // BPI's title page (re-read 23 Sep 2026) prints the ladder: 07 Jun 2019 Gold,
+  // 02 Aug 2019 Platinum, 10 Apr 2020 2x, 08 Oct 2021 3x, 05 May 2023 4x,
+  // 23 May 2025 5x. The 2023 event is the 4x PLATINUM; this row said "4x Gold".
+  { title: "Location", credit: "Dave ft. Burna Boy", country: "UK", level: "Platinum", x: 4, year: 2023 },
   { title: "For My Hand", credit: "feat. Ed Sheeran", country: "CA", level: "Platinum", year: 2023 },
   { title: "Gum Body", credit: "feat. Jorja Smith", country: "CA", level: "Gold", year: 2023 },
   { title: "Love, Damini", album: true, country: "CA", level: "Gold", year: 2023 },
@@ -917,7 +986,7 @@ export function totalAwards() {
 // Boy's artist-wide 2026 total. Counts distinct country certs for the song.
 // The dated by-year log counts INTERNATIONAL certifications only. The logs
 // for earlier years predate Nigeria's TCSN register (relaunched Feb 2026) and
-// carry international awards alone, so mixing the 8 NG events into 2026 would
+// carry international awards alone, so mixing the NG events into 2026 would
 // make the year-on-year comparison read high. Nigerian plaques still count
 // everywhere else: the worldwide total, the country grid, every release's row.
 export const intlCertHistory = certHistory.filter((e) => e.country !== "NG");
@@ -925,7 +994,7 @@ export const intlCertHistory = certHistory.filter((e) => e.country !== "NG");
 /** The most recent day a certifying body's own register was read for this
  *  file. Printed on the page's sources line in place of a typed "as of" month
  *  — bump it on every body read, in the same edit as the row it changes. */
-export const CERTS_VERIFIED_ON = "2026-09-22";
+export const CERTS_VERIFIED_ON = "2026-09-23";
 
 /** "Dai Dai" Platinum plaques beyond the US Latin 2× — the "Platinum in N more"
  *  rail note on the story and its Spanish twin, counted rather than typed after

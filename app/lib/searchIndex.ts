@@ -445,7 +445,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Wizkid",
     path: "/afrobeats/wizkid",
     section: "Afrobeats",
-    description: "Wizkid's 156 certifications across 21 countries and his official chart peaks, verified at source.",
+    description: "Wizkid's 157 certifications across 21 countries and his official chart peaks, verified at source.",
     keywords: ["wizkid", "wizzy", "star boy", "starboy", "ayodeji balogun", "big wiz", "made in lagos", "wizkid certifications", "wizkid plaques", "wizkid awards"],
   },
   {
@@ -473,7 +473,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Rema",
     path: "/afrobeats/rema",
     section: "Afrobeats",
-    description: "Rema's 82 certifications across 21 countries and his official chart peaks, verified at source.",
+    description: "Rema's 85 certifications across 23 countries and his official chart peaks, verified at source.",
     keywords: ["rema", "calm down", "divine ikubor", "heis", "ravage", "rema certifications", "rema plaques", "rema awards"],
   },
   {
@@ -487,7 +487,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Tems",
     path: "/afrobeats/tems",
     section: "Afrobeats",
-    description: "Tems's 72 certifications across 19 countries and her official chart peaks, verified at source.",
+    description: "Tems's 75 certifications across 21 countries and her official chart peaks, verified at source.",
     keywords: ["tems", "temilade openiyi", "born in the wild", "free mind", "tems certifications", "tems plaques", "tems awards"],
   },
   {
@@ -501,7 +501,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Tyla",
     path: "/afrobeats/tyla",
     section: "Afrobeats",
-    description: "Tyla's 63 certifications across 23 countries and her official chart peaks, verified at source.",
+    description: "Tyla's 64 certifications across 23 countries and her official chart peaks, verified at source.",
     keywords: ["tyla", "water", "amapiano", "tyla seethal", "push 2 start", "tyla certifications", "tyla plaques", "tyla awards"],
   },
   {
@@ -515,7 +515,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Ayra Starr",
     path: "/afrobeats/ayra-starr",
     section: "Afrobeats",
-    description: "Ayra Starr's 41 certifications across 12 countries and her official chart peaks, verified at source.",
+    description: "Ayra Starr's 42 certifications across 12 countries and her official chart peaks, verified at source.",
     keywords: ["ayra starr", "rush", "sability", "commas", "oyinkansola", "ayra starr certifications", "ayra starr plaques", "ayra starr awards"],
   },
   {

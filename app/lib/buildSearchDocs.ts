@@ -17,8 +17,8 @@
 // description. The page each one points at owns the numbers; a second copy here
 // would drift.
 
-import { allItems, COUNTRIES } from "../data/certifications";
-import { allChartItems, CHART_COUNTRIES } from "../data/charts";
+import { allItems, albums as certAlbums, COUNTRIES } from "../data/certifications";
+import { albumCharts, allChartItems, CHART_COUNTRIES } from "../data/charts";
 import { ceremonies } from "../data/awards";
 import { songs } from "../data/songs";
 import { albumPages } from "../data/albumPages";
@@ -32,12 +32,14 @@ export function buildSearchDocs(): SearchDoc[] {
   const songSlug = new Map(songs.map((s) => [titleKey(s.title), s.slug]));
   const albumSlug = new Map(albumPages.map((a) => [titleKey(a.title), a.slug]));
 
-  /** A release's own page, when it has one. */
-  const pathFor = (title: string): string | null => {
+  /** A release's own page, when it has one — an album's among the album
+   *  pages, a single's among the song pages. "No Sign of Weakness" is both an
+   *  album and (since 23 Sep 2026) a certified title track, and a title-only
+   *  lookup folded the track's plaque into the album's entry. */
+  const pathFor = (title: string, album: boolean): string | null => {
     const k = titleKey(title);
-    if (songSlug.has(k)) return `/music/${songSlug.get(k)}`;
-    if (albumSlug.has(k)) return `/music/albums/${albumSlug.get(k)}`;
-    return null;
+    if (album) return albumSlug.has(k) ? `/music/albums/${albumSlug.get(k)}` : null;
+    return songSlug.has(k) ? `/music/${songSlug.get(k)}` : null;
   };
 
   const docs: SearchDoc[] = [];
@@ -54,34 +56,35 @@ export function buildSearchDocs(): SearchDoc[] {
   // ── Releases ────────────────────────────────────────────────────────────
   // Worth finding whether certified, charted or both. Its own page when it has
   // one; otherwise the ledger or chart table where its figures actually are.
-  type Agg = { title: string; credit?: string; certs: number; entries: number };
+  // Keyed by kind AND title, so an album and its title track stay two records.
+  type Agg = { title: string; credit?: string; album: boolean; certs: number; entries: number };
   const releases = new Map<string, Agg>();
-  for (const r of allItems) {
-    const k = titleKey(r.title);
-    const e = releases.get(k) ?? { title: r.title, credit: r.credit, certs: 0, entries: 0 };
-    e.certs += r.certs.length;
-    e.credit ??= r.credit;
+  const certAlbum = new Set<unknown>(certAlbums);
+  const chartAlbum = new Set<unknown>(albumCharts);
+  const aggFor = (title: string, credit: string | undefined, album: boolean) => {
+    const k = `${album ? "album" : "track"}|${titleKey(title)}`;
+    const e = releases.get(k) ?? { title, credit, album, certs: 0, entries: 0 };
+    e.credit ??= credit;
     releases.set(k, e);
-  }
-  for (const r of allChartItems) {
-    const k = titleKey(r.title);
-    const e = releases.get(k) ?? { title: r.title, credit: r.credit, certs: 0, entries: 0 };
-    e.entries += r.entries.length;
-    e.credit ??= r.credit;
-    releases.set(k, e);
-  }
+    return e;
+  };
+  for (const r of allItems) aggFor(r.title, r.credit, certAlbum.has(r)).certs += r.certs.length;
+  for (const r of allChartItems) aggFor(r.title, r.credit, chartAlbum.has(r)).entries += r.entries.length;
 
   for (const r of releases.values()) {
-    const own = pathFor(r.title);
+    const own = pathFor(r.title, r.album);
     const where = own ?? (r.certs >= r.entries ? "/certifications" : "/records/charts");
     const bits: string[] = [];
     if (r.certs) bits.push(`${r.certs} certification${r.certs === 1 ? "" : "s"}`);
     if (r.entries) bits.push(`${r.entries} chart entr${r.entries === 1 ? "y" : "ies"}`);
+    // Two results share the title when a track is named after its album; say
+    // which one this is.
+    const titleTrack = !r.album && releases.has(`album|${titleKey(r.title)}`);
     add({
       title: r.title,
       path: where,
       section: "Release",
-      description: `${r.credit ? `${r.credit} — ` : ""}${bits.join(" · ") || "On the record"}.`,
+      description: `${titleTrack ? "The title track — " : ""}${r.credit ? `${r.credit} — ` : ""}${bits.join(" · ") || "On the record"}.`,
       // The credit carries the collaborators, which is how "coldplay" or
       // "justin bieber" reaches the record they are on.
       keywords: [

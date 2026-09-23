@@ -284,8 +284,17 @@ export const AFROBEATS_VERIFIED_ON_8 = "2026-09-18";
 
 /** Tyla, re-read 19 Sep 2026 at Ultratop's 2026 singles award list (BRMA's
  *  only publisher): "Tyla / Chanel / 10/08/2026: Goud". The page is behind a
- *  Cloudflare bot check, so it was read from Paul's own browser. */
+ *  Cloudflare bot check, so it was read from Paul's own browser. Superseded
+ *  for Tyla by ON_10 on 23 Sep 2026. */
 export const AFROBEATS_VERIFIED_ON_9 = "2026-09-19";
+
+/** Tems, Rema, Tyla, Ayra Starr and Wizkid — the five artists whose plaques
+ *  moved in the 23 Sep 2026 register sweep (docs/sweeps/sweep-2026-09-23.md):
+ *  ČNS IFPI's chart-row badges (CZ/SK), RiSA's live table via Wayback, Ifpi
+ *  Sverige's record pages, IFPI Danmark in full and TCSN's 21 Feb 2026 capture.
+ *  Certifications only. The sweep re-read every body for all fifteen artists;
+ *  the other ten came back unchanged and keep the dates they had. */
+export const AFROBEATS_VERIFIED_ON_10 = "2026-09-23";
 
 export const afrobeatsArtists: AfroArtist[] = [
   {
@@ -723,7 +732,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     spotifyId: "3tVQdUvClmAT7URs9V3rsp",
     wikipedia: "https://en.wikipedia.org/wiki/Wizkid",
     image: "https://i.scdn.co/image/ab6761610000e5ebe6ef803356b45ee5a9fa7a8a",
-    verifiedOn: AFROBEATS_VERIFIED_ON_7,
+    verifiedOn: AFROBEATS_VERIFIED_ON_10,
     swept: true,
     chartPublished: { entries: 237, territories: 32, no1s: 25 },
     releases: [
@@ -794,7 +803,13 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "G Love", kind: "Featured appearances", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/9e/a9/4e/9ea94e1e-4660-1d37-6296-389df09e4085/888915614945_cover.jpg/300x300bb.jpg", certs: [{ c: "UK", level: "Gold" }] },
       { title: "Mamacita", kind: "Featured appearances", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/d7/33/bb/d733bb70-e88f-cd73-2466-f8867f1e522b/0235.jpg/300x300bb.jpg", certs: [{ c: "UK", level: "Silver" }] },
       { title: "I Like", kind: "Featured appearances", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/e0/b5/1f/e0b51fd9-77ff-5696-26c7-f2a47cd7d9d0/190295392284.jpg/300x300bb.jpg", certs: [{ c: "UK", level: "Silver" }] },
-      { title: "Boom", kind: "Featured appearances", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/20/05/17/200517ab-c3a3-b833-74b3-9bb3399c780c/886447834886.jpg/300x300bb.jpg", certs: [{ c: "FR", level: "Gold" }] },
+      // DK Platinum, 23 Sep 2026 — carries the ⚠ that Rema's "Secondhand" CA Gold
+      // does (docs/sweeps/wizkid-certifications-v1.md): IFPI Danmark's own row
+      // cuts the credit off at "Major Lazer Feat. Moti Ty Dolla $ign...", so
+      // Wizkid is not printed. Counted on Paul's ruling — one recording, and he
+      // is on it (Ifpi Sverige's record of the single prints the full credit, and
+      // Paul checked Wizkid's credit on the Spotify track page, 23 Sep 2026).
+      { title: "Boom", kind: "Featured appearances", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/20/05/17/200517ab-c3a3-b833-74b3-9bb3399c780c/886447834886.jpg/300x300bb.jpg", certs: [{ c: "FR", level: "Gold" }, { c: "DK", level: "Platinum" }] },
       { title: "Can't Believe", kind: "Featured appearances", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/85/55/bc/8555bcd7-ed37-030e-2d8d-96d5c04a5514/886449132409.jpg/300x300bb.jpg", certs: [{ c: "CA", level: "Gold" }] },
       { title: "Borrowed Love", kind: "Featured appearances", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/b1/e3/27/b1e3271b-b8cb-7d80-99e5-0ddd9d6e632e/00602577303210.rgb.jpg/300x300bb.jpg", certs: [{ c: "CA", level: "Gold" }] },
       { title: "Checklist", kind: "Featured appearances", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/e3/6a/7f/e36a7feb-468a-d7d0-4431-97bc75f6455e/886447381151.jpg/300x300bb.jpg", certs: [{ c: "BR", level: "Gold" }] },
@@ -1164,17 +1179,17 @@ export const afrobeatsArtists: AfroArtist[] = [
     fullName: "Divine Ikubor",
     country: "Nigeria",
     flag: "🇳🇬",
-    hook: "“Calm Down” is certified in twenty countries — a French Diamond, 9× Platinum in Portugal.",
+    hook: "“Calm Down” is certified in twenty-two countries — a French Diamond, 9× Platinum in Portugal.",
     spotifyId: "46pWGuE3dSwY3bMMXGBvVS",
     wikipedia: "https://en.wikipedia.org/wiki/Rema_(musician)",
     image: "https://i.scdn.co/image/ab6761610000e5ebe3b85a0f16eaab80965c6ef3",
-    verifiedOn: AFROBEATS_VERIFIED_ON_7,
+    verifiedOn: AFROBEATS_VERIFIED_ON_10,
     swept: true,
     chartPublished: { entries: 119, territories: 53, no1s: 17 },
     releases: [
       { title: "Rave & Roses", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/1d4942d3e1817e9b723eceb6dae28636/500x500-000000-80-0-0.jpg", certs: [{ c: "CA", level: "Platinum" }, { c: "CH", level: "Platinum" }, { c: "FR", level: "Platinum" }, { c: "PL", level: "Platinum" }, { c: "UK", level: "Silver" }] },
       { title: "Rave & Roses Ultra", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/1d4942d3e1817e9b723eceb6dae28636/500x500-000000-80-0-0.jpg", certs: [{ c: "BR", level: "Platinum", x: 2 }, { c: "US", level: "Gold" }] },
-      { title: "Calm Down", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/ee/f1/dc/eef1dc82-f516-fd0f-581c-3f952a0e2243/22UMGIM92113.rgb.jpg/300x300bb.jpg", certs: [{ c: "FR", level: "Diamond" }, { c: "CA", level: "Diamond" }, { c: "BR", level: "Diamond" }, { c: "PL", level: "Diamond" }, { c: "PT", level: "Platinum", x: 9 }, { c: "AU", level: "Platinum", x: 8 }, { c: "US", level: "Platinum", x: 5 }, { c: "CH", level: "Platinum", x: 4 }, { c: "ES", level: "Platinum", x: 4 }, { c: "NZ", level: "Platinum", x: 4 }, { c: "IT", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum", x: 3 }, { c: "BE", level: "Platinum", x: 2 }, { c: "NG", level: "Platinum", x: 2 }, { c: "DE", level: "Platinum" }, { c: "DK", level: "Platinum" }, { c: "GR", level: "Platinum" }, { c: "NO", level: "Platinum" }, { c: "AT", level: "Gold" }, { c: "NL", level: "Gold" }] },
+      { title: "Calm Down", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/ee/f1/dc/eef1dc82-f516-fd0f-581c-3f952a0e2243/22UMGIM92113.rgb.jpg/300x300bb.jpg", certs: [{ c: "FR", level: "Diamond" }, { c: "CA", level: "Diamond" }, { c: "BR", level: "Diamond" }, { c: "PL", level: "Diamond" }, { c: "PT", level: "Platinum", x: 9 }, { c: "AU", level: "Platinum", x: 8 }, { c: "US", level: "Platinum", x: 5 }, { c: "CH", level: "Platinum", x: 4 }, { c: "ES", level: "Platinum", x: 4 }, { c: "NZ", level: "Platinum", x: 4 }, { c: "IT", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum", x: 3 }, { c: "BE", level: "Platinum", x: 2 }, { c: "NG", level: "Platinum", x: 2 }, { c: "DE", level: "Platinum" }, { c: "DK", level: "Platinum" }, { c: "GR", level: "Platinum" }, { c: "NO", level: "Platinum" }, { c: "SK", level: "Platinum" }, { c: "AT", level: "Gold" }, { c: "NL", level: "Gold" }, { c: "CZ", level: "Gold" }] },
       { title: "Soundgasm", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/813c9474be279f125aba17ccd6e2cea0/500x500-000000-80-0-0.jpg", certs: [{ c: "FR", level: "Platinum" }, { c: "CH", level: "Gold" }, { c: "NL", level: "Gold" }, { c: "NG", level: "Gold" }, { c: "UK", level: "Silver" }] },
       { title: "Charm", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/1d4942d3e1817e9b723eceb6dae28636/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 3 }, { c: "FR", level: "Platinum" }, { c: "UK", level: "Silver" }] },
       { title: "Dumebi", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/e01c854fc22ac6a5c685a89bd686d36d/500x500-000000-80-0-0.jpg", certs: [{ c: "FR", level: "Platinum" }, { c: "CH", level: "Gold" }, { c: "UK", level: "Silver" }] },
@@ -1201,6 +1216,11 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "March Am", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/4891a944de9418f059cabda0c7699160/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Reason You", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/d4f61945703f34bba42311d1ec703f94/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Red Potion", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/9f343b559a9382c0d35ba0c9eca79159/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
+      // 23 Sep 2026 — TCSN id 2178 (Gold, after Silver id 964), read in the
+      // register's 21 Feb 2026 capture. Its `artiste` field repeats the title;
+      // the "(Rema)" owner tag and TurnTable's own chart ("Smooth Criminal —
+      // Rema", issue 44/2023) name him. Applied on Paul's ruling. RAVAGE sleeve.
+      { title: "Smooth Criminal", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/9f343b559a9382c0d35ba0c9eca79159/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Bounce", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/e26def467fccdcadca010b8c0f00fd0f/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Don't Leave", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/9f343b559a9382c0d35ba0c9eca79159/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Egungun", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/4891a944de9418f059cabda0c7699160/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
@@ -1261,7 +1281,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     spotifyId: "687cZJR45JO7jhk1LHIbgq",
     wikipedia: "https://en.wikipedia.org/wiki/Tems_(singer)",
     image: "https://i.scdn.co/image/ab6761610000e5eb22d7d6f8981c7a27bf68a382",
-    verifiedOn: AFROBEATS_VERIFIED_ON_8,
+    verifiedOn: AFROBEATS_VERIFIED_ON_10,
     swept: true,
     chartPublished: { entries: 124, territories: 44, no1s: 7 },
     releases: [
@@ -1275,7 +1295,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Isaka", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/d015c74bed325b8928343913858fb3c2/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Replay", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/b3aea8ba7c55e2eafd6672ff29668bdb/500x500-000000-80-0-0.jpg", certs: [{ c: "NZ", level: "Gold" }] },
       { title: "Get It Right (ft. Asake)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/66c0e3ff739ce671cee90fea6eb1047c/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
-      { title: "Raindance", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/02552930a9bbf685ec4f683ff0ca2029/500x500-000000-80-0-0.jpg", certs: [{ c: "UK", level: "Platinum", x: 2 }, { c: "PT", level: "Platinum", x: 3 }, { c: "BR", level: "Platinum", x: 2 }, { c: "GR", level: "Platinum", x: 2 }, { c: "FR", level: "Platinum" }, { c: "CA", level: "Platinum" }, { c: "BE", level: "Platinum" }, { c: "NL", level: "Platinum" }, { c: "NZ", level: "Platinum", x: 2 }, { c: "AU", level: "Platinum" }, { c: "DK", level: "Platinum" }, { c: "IT", level: "Gold" }, { c: "NG", level: "Gold" }, { c: "PL", level: "Gold" }] },
+      { title: "Raindance", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/02552930a9bbf685ec4f683ff0ca2029/500x500-000000-80-0-0.jpg", certs: [{ c: "UK", level: "Platinum", x: 2 }, { c: "PT", level: "Platinum", x: 3 }, { c: "BR", level: "Platinum", x: 2 }, { c: "GR", level: "Platinum", x: 2 }, { c: "FR", level: "Platinum" }, { c: "CA", level: "Platinum" }, { c: "BE", level: "Platinum" }, { c: "NL", level: "Platinum" }, { c: "NZ", level: "Platinum", x: 2 }, { c: "AU", level: "Platinum" }, { c: "DK", level: "Platinum" }, { c: "SK", level: "Platinum" }, { c: "ZA", level: "Platinum" }, { c: "IT", level: "Gold" }, { c: "NG", level: "Gold" }, { c: "PL", level: "Gold" }, { c: "CZ", level: "Gold" }] },
       { title: "Wait For U", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/d1bd3da6698dd5eafc5b4514317039c4/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Diamond" }, { c: "NZ", level: "Platinum", x: 4 }, { c: "UK", level: "Platinum", x: 2 }, { c: "CA", level: "Platinum", x: 2 }, { c: "NG", level: "Platinum", x: 2 }, { c: "AU", level: "Platinum", x: 2 }, { c: "PT", level: "Platinum", x: 2 }, { c: "DK", level: "Platinum" }, { c: "FR", level: "Gold" }, { c: "AT", level: "Gold" }, { c: "IT", level: "Gold" }, { c: "ES", level: "Gold" }, { c: "PL", level: "Gold" }] },
       { title: "Essence", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Platinum", x: 5 }, { c: "CA", level: "Platinum", x: 3 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "NG", level: "Platinum", x: 2 }, { c: "ZA", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum" }, { c: "CH", level: "Platinum" }, { c: "FR", level: "Gold" }] },
       { title: "Fountains", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/ea8f80f2edb20885ac8aed8751716794/500x500-000000-80-0-0.jpg", certs: [{ c: "NZ", level: "Gold" }, { c: "AU", level: "Gold" }, { c: "PT", level: "Gold" }, { c: "UK", level: "Silver" }] },
@@ -1310,13 +1330,13 @@ export const afrobeatsArtists: AfroArtist[] = [
     spotifyId: "3SozjO3Lat463tQICI9LcE",
     wikipedia: "https://en.wikipedia.org/wiki/Tyla",
     image: "https://i.scdn.co/image/ab6761610000e5eb69719e4164b893213a525d25",
-    verifiedOn: AFROBEATS_VERIFIED_ON_9,
+    verifiedOn: AFROBEATS_VERIFIED_ON_10,
     swept: true,
     chartPublished: { entries: 184, territories: 52, no1s: 3 },
     releases: [
-      { title: "Tyla", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/33cc78686fd6ca7863758a5408d6eabe/500x500-000000-80-0-0.jpg", certs: [{ c: "CA", level: "Platinum" }, { c: "BR", level: "Platinum" }, { c: "NL", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "UK", level: "Gold" }, { c: "CH", level: "Gold" }, { c: "DK", level: "Gold" }] },
+      { title: "Tyla", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/33cc78686fd6ca7863758a5408d6eabe/500x500-000000-80-0-0.jpg", certs: [{ c: "CA", level: "Platinum" }, { c: "BR", level: "Platinum" }, { c: "NL", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "UK", level: "Gold" }, { c: "CH", level: "Gold" }, { c: "DK", level: "Gold" }, { c: "SE", level: "Gold" }] },
       { title: "Tyla +", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/33cc78686fd6ca7863758a5408d6eabe/500x500-000000-80-0-0.jpg", certs: [{ c: "NO", level: "Gold" }] },
-      { title: "Water", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg", certs: [{ c: "BR", level: "Diamond", x: 2 }, { c: "FR", level: "Diamond" }, { c: "US", level: "Platinum", x: 4 }, { c: "CA", level: "Platinum", x: 4 }, { c: "PT", level: "Platinum", x: 4 }, { c: "AU", level: "Platinum", x: 4 }, { c: "NZ", level: "Platinum", x: 4 }, { c: "UK", level: "Platinum", x: 2 }, { c: "CH", level: "Platinum", x: 2 }, { c: "HU", level: "Platinum", x: 2 }, { c: "GR", level: "Platinum", x: 2 }, { c: "AT", level: "Platinum" }, { c: "DK", level: "Platinum" }, { c: "ES", level: "Platinum" }, { c: "BE", level: "Platinum" }, { c: "NL", level: "Platinum" }, { c: "NO", level: "Platinum" }, { c: "PL", level: "Platinum" }, { c: "DE", level: "Gold" }, { c: "SE", level: "Gold" }, { c: "IT", level: "Gold" }, { c: "MX", level: "Gold" }, { c: "NG", level: "Gold" }] },
+      { title: "Water", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg", certs: [{ c: "BR", level: "Diamond", x: 2 }, { c: "FR", level: "Diamond" }, { c: "US", level: "Platinum", x: 4 }, { c: "CA", level: "Platinum", x: 4 }, { c: "PT", level: "Platinum", x: 4 }, { c: "AU", level: "Platinum", x: 4 }, { c: "NZ", level: "Platinum", x: 4 }, { c: "UK", level: "Platinum", x: 2 }, { c: "CH", level: "Platinum", x: 2 }, { c: "HU", level: "Platinum", x: 2 }, { c: "GR", level: "Platinum", x: 2 }, { c: "AT", level: "Platinum" }, { c: "DK", level: "Platinum" }, { c: "ES", level: "Platinum" }, { c: "BE", level: "Platinum" }, { c: "NL", level: "Platinum" }, { c: "NO", level: "Platinum" }, { c: "PL", level: "Platinum" }, { c: "SE", level: "Platinum" }, { c: "DE", level: "Gold" }, { c: "IT", level: "Gold" }, { c: "MX", level: "Gold" }, { c: "NG", level: "Gold" }] },
       { title: "Push 2 Start", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Platinum" }, { c: "BR", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "CA", level: "Gold" }, { c: "FR", level: "Gold" }, { c: "GR", level: "Gold" }, { c: "HU", level: "Gold" }, { c: "UK", level: "Gold" }] },
       { title: "Chanel", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Gold" }, { c: "AU", level: "Gold" }, { c: "FR", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "PT", level: "Gold" }, { c: "CH", level: "Gold" }, { c: "BE", level: "Gold" }, { c: "UK", level: "Silver" }] }, // BE: Ultratop 2026 singles list, "10/08/2026: Goud", read 19 Sep 2026
       { title: "Truth or Dare", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/1ae9486180d1f50e7dbbb099b1e66825/500x500-000000-80-0-0.jpg", certs: [{ c: "NZ", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "BR", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "PT", level: "Gold" }, { c: "UK", level: "Silver" }] },
@@ -1369,12 +1389,12 @@ export const afrobeatsArtists: AfroArtist[] = [
     // a date of birth, so no test can hold this claim; the board expansion
     // checklist has to. The earlier hook also called her "the fastest-rising",
     // which is not a measurable claim and is gone.
-    hook: "The youngest artist on this board, and “Rush” went Diamond in France — one of 41 plaques across twelve countries.",
+    hook: "The youngest artist on this board, and “Rush” went Diamond in France — one of 42 plaques across twelve countries.",
     spotifyId: "3ZpEKRjHaHANcpk10u6Ntq",
     wikipedia: "https://en.wikipedia.org/wiki/Ayra_Starr",
     image: "https://i.scdn.co/image/ab6761610000e5ebc2074e9ac0e35662936cde67",
     brand: "starrgirl",
-    verifiedOn: AFROBEATS_VERIFIED_ON_7,
+    verifiedOn: AFROBEATS_VERIFIED_ON_10,
     swept: true,
     chartPublished: { entries: 110, territories: 30, no1s: 10 },
     releases: [
@@ -1404,6 +1424,10 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Escaladizzy II", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/d47d959a99da468afdd69a8f855be482/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Love Don't Cost a Dime", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/1421f8aa54dc60efbd0ab4034f7ba7f8/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "People", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/0dda3f7dc6c530814d51c9cb6eca57be/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
+      // 23 Sep 2026 — TCSN ids 1050 and 2283 (Silver), credit printed
+      // "Zinoleesky ft. Ayra Staar" [sic]; TurnTable's own chart prints "Ayra
+      // Starr" for the same record. Applied on Paul's ruling.
+      { title: "Many Roads", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/3772b0b5eabc8b7efd2ba401dd555fc4/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
     ],
     charts: [
       { title: "Rush", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/a73bed954d61b52564118ac926925d76/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 1 }, { c: "SR", peak: 1 }, { c: "LB", peak: 3 }, { c: "FR", peak: 5 }, { c: "ZA", peak: 6 }, { c: "LU", peak: 8 }, { c: "BE", peak: 16 }, { c: "NL", peak: 17 }, { c: "CH", peak: 18 }, { c: "HU", peak: 18 }, { c: "UK", peak: 24 }, { c: "IE", peak: 56 }, { c: "SE", peak: 56 }, { c: "CA", peak: 63 }, { c: "GLBX", peak: 87 }, { c: "GLB", peak: 115 }] },

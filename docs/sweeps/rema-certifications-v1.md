@@ -2,7 +2,11 @@
 
 **Method:** identical to burnaboystats.com — a certification counts when it appears in the issuing body's own records; **one plaque per title per country at its current tier** (a 5× Platinum is one plaque, not five); lead **and** featured artist credits both count, writer/producer-only credits do not. Registers that publish every tier step (Music Canada, BVMI, IFPI Switzerland, IFPI Danmark, FIMI, Promusicae, Ultratop, Pro-Música Brasil, AMPROFON, SNEP, NVPI, ZPAV, IFPI Norge, IFPI Greece) were collapsed to the highest tier per title per country. Wikipedia and fan lists were used only as candidate hints — the register is the truth. First body-side sweep **15 Aug 2026**; **gap sweep 16 Aug 2026** adding the national registers never queried in pass one plus a full TurnTable archive read. ✓ = personally read in the issuing body's own database; **⚠** = the register row was read but its credit line names only the lead artist (see verification notes); **▲** = read in an archived capture of the register itself, not in its currently-displayed rows (see the TurnTable note).
 
-## Total: **82 certifications** across **21 countries**
+## Total: **85 certifications** across **23 countries**
+
+> **23 Sep 2026 register sweep — three new plaques** (82 → **85**, 21 → **23** countries; `docs/sweeps/sweep-2026-09-23.md`).
+> - ***Calm Down* 🇨🇿 Gold and 🇸🇰 Platinum** — ČNS IFPI's own weekly Singles Digital Top 100. The body publishes no award *list*, but the badge in each chart row IS the award ("Zlatý singl" / "Platinový singl"), and every CZ and SK issue since January 2022 was walked. CZ chart 30, week 31/2023 (weekId 2852): `70. -17 | Calm Down | REMA & GOMEZ SELENA - UNIVERSAL MUSIC | Zlatý singl Počet kol: 21 Nejvýše: 36`. SK chart 43, same week: `38. -16 | Calm Down | REMA & GOMEZ SELENA - UNIVERSAL MUSIC | Platinový singl Počet kol: 40 Nejvýše: 10` (Gold from week 12/2023). The "no public database" rows below were wrong and are corrected. *Calm Down* is now certified in **22** countries.
+> - ***Smooth Criminal* 🇳🇬 Gold** — TCSN's own register, read ▲ in the 21 Feb 2026 capture (`20260221224010id_`): `{"id":2178,"milestone":"Gold","title":"Smooth Criminal (Rema)","artiste":"Smooth Criminal","format":"Single"}`, after Silver (id 964). The `artiste` field repeats the title — a data-entry error — but the "(Rema)" owner tag is the one on his DND, Holiday, Azaman and Don't Leave rows, and TurnTable's own chart prints `Smooth Criminal | Rema` (issue 44/2023, rank 2). Earlier archive passes keyed on `artiste`, which is why it was missed. Applied on Paul's ruling, 23 Sep 2026.
 
 > ***Secondhand* 🇵🇹 Gold — RETRACTED REFUTATION, 28 Aug 2026. The plaque is
 > real and is now counted.** On 27 Aug this file refuted the claim. That was
@@ -64,10 +68,10 @@
 
 *The **HEIS** album (2024) remains uncertified in every register swept. The Nigerian **Gold** listed below under lead singles is for the **title track**, not the album — TurnTable's register is singles-only.*
 
-### Lead singles — 62
+### Lead singles — 66
 | song | certifications |
 |---|---|
-| Calm Down (2022) | 🇵🇹 9× Platinum ✓ · 🇦🇺 8× Platinum ✓ · 🇺🇸 5× Platinum ✓ · 🇨🇭 4× Platinum ✓ · 🇪🇸 4× Platinum ✓ · 🇳🇿 4× Platinum ✓ · 🇮🇹 3× Platinum ✓ · 🇬🇧 3× Platinum ✓ · 🇧🇪 2× Platinum ✓ · 🇳🇬 2× Platinum ✓ · 🇫🇷 Diamond ✓ · 🇨🇦 Diamond ✓ · 🇧🇷 Diamond ✓ · 🇵🇱 Diamond ✓ *(now verified)* · 🇩🇪 Platinum ✓ · 🇩🇰 Platinum ✓ · 🇬🇷 Platinum ✓ · 🇳🇴 Platinum ✓ *(now verified)* · 🇦🇹 Gold ✓ · 🇳🇱 Gold ✓ — **20** |
+| Calm Down (2022) | 🇵🇹 9× Platinum ✓ · 🇦🇺 8× Platinum ✓ · 🇺🇸 5× Platinum ✓ · 🇨🇭 4× Platinum ✓ · 🇪🇸 4× Platinum ✓ · 🇳🇿 4× Platinum ✓ · 🇮🇹 3× Platinum ✓ · 🇬🇧 3× Platinum ✓ · 🇧🇪 2× Platinum ✓ · 🇳🇬 2× Platinum ✓ · 🇫🇷 Diamond ✓ · 🇨🇦 Diamond ✓ · 🇧🇷 Diamond ✓ · 🇵🇱 Diamond ✓ *(now verified)* · 🇩🇪 Platinum ✓ · 🇩🇰 Platinum ✓ · 🇬🇷 Platinum ✓ · 🇳🇴 Platinum ✓ *(now verified)* · 🇸🇰 Platinový ✓ *(new, 23 Sep — wk 31/2023)* · 🇦🇹 Gold ✓ · 🇳🇱 Gold ✓ · 🇨🇿 Zlatý ✓ *(new, 23 Sep — wk 31/2023)* — **22** |
 | Soundgasm (2021) | 🇫🇷 Platinum ✓ · 🇨🇭 Gold ✓ · 🇳🇱 Gold ✓ · 🇳🇬 Gold ✓▲ *(reinstated)* · 🇬🇧 Silver ✓ — **5** |
 | Charm (2023) | 🇳🇬 3× Platinum ✓ *(Wikipedia says 2×)* · 🇫🇷 Platinum ✓ · 🇬🇧 Silver ✓ — **3** |
 | Dumebi (2019) | 🇫🇷 Platinum ✓ · 🇨🇭 Gold ✓ · 🇬🇧 Silver ✓ — **3** |
@@ -94,6 +98,7 @@
 | March Am (2023) *(new)* | 🇳🇬 Gold ✓▲ — **1** |
 | Reason You (2022) *(new)* | 🇳🇬 Gold ✓▲ — **1** |
 | Red Potion (2022) *(new)* | 🇳🇬 Gold ✓▲ — **1** |
+| Smooth Criminal (2023) *(new, 23 Sep 2026)* | 🇳🇬 Gold ✓▲ *(register artiste field mis-entered — see the note at the top)* — **1** |
 | Bounce (2021) *(new)* | 🇳🇬 Silver ✓▲ — **1** |
 | Don't Leave (2021) *(new)* | 🇳🇬 Silver ✓▲ — **1** |
 | Egungun (2022) *(new)* | 🇳🇬 Silver ✓▲ — **1** |
@@ -101,9 +106,9 @@
 | Now I Know (2022) *(new)* | 🇳🇬 Silver ✓▲ — **1** |
 | Time N Affection (w/ Chris Brown) (2023) *(new)* | 🇳🇬 Silver ✓▲ — **1** |
 
-*Lead singles subtotal: 20 + 5 + 3 + 3 + 2 + 2 = 35, plus 27 single-entry rows = **62*** ✓
+*Lead singles subtotal: 22 + 5 + 3 + 3 + 2 + 3 = 38, plus 28 single-entry rows = **66*** ✓
 
-### Featured appearances — 11
+### Featured appearances — 12
 | song | certifications |
 |---|---|
 | Fi Kan We Kan (Bnxn & Rema) (2024) | 🇳🇬 3× Platinum ✓ — **1** |
@@ -118,39 +123,46 @@
 | Mukulu (Olamide & Rema) (2022) *(new)* | 🇳🇬 Silver ✓▲ — **1** |
 | Too Correct (Crayon & Rema) (2022) *(new)* | 🇳🇬 Silver ✓▲ — **1** |
 
-*Featured subtotal: 11 single-entry rows = **11*** ✓
+*Featured subtotal: 2 (Secondhand) + 10 single-entry rows = **12*** ✓
 
 ### Tier split (arithmetic check)
 - **Diamond 5** — Calm Down 🇫🇷 🇨🇦 🇧🇷 🇵🇱 · Bubalu 🇨🇴
-- **Platinum tiers 41** — Calm Down ×14 (PT, AU, US, CH, ES, NZ, IT, UK, BE, NG, DE, DK, GR, NO) · Rave & Roses ×4 (CA, CH, FR, PL) · Rave & Roses Ultra ×1 (BR) · Charm ×2 (NG, FR) · Bubalu ×2 (US, ES) · one each for Soundgasm (FR), Dumebi (FR), Soweto (NG) = 3 · **15** single-country platinum rows: Ozeba, Fun, Benin Boys, HeHeHe, Baby (Is It a Crime), DND, Holiday, 44, Bout U, Azaman, Yayo (11 lead) + Fi Kan We Kan, Favourite Girl, Who's Dat Girl, Won Da Mo (4 featured) → 14+4+1+2+2+3+15 = **41**
-- **Gold 23** — Calm Down (AT, NL) 2 · Rave & Roses Ultra (US) 1 · Soundgasm (CH, NL, **NG**) 3 · Dumebi (CH) 1 · Soweto (UK) 1 · lead single-country golds: Trouble Maker 🇳🇬, Corny 🇫🇷, Fame – A COLORS ENCORE 🇧🇷, **Ginger Me 🇳🇬, HEIS 🇳🇬, War Machine 🇳🇬, Kelebu 🇳🇬, March Am 🇳🇬, Reason You 🇳🇬, Red Potion 🇳🇬** = 10 · featured golds: Secondhand 🇨🇦, **Secondhand 🇵🇹**, Toxic 🇫🇷, **Compromise 🇳🇬, Lalala 🇳🇬** = 5 → 2+1+3+1+1+10+5 = **23**
+- **Platinum tiers 42** — Calm Down ×15 (PT, AU, US, CH, ES, NZ, IT, UK, BE, NG, DE, DK, GR, NO, **SK**) · Rave & Roses ×4 (CA, CH, FR, PL) · Rave & Roses Ultra ×1 (BR) · Charm ×2 (NG, FR) · Bubalu ×2 (US, ES) · one each for Soundgasm (FR), Dumebi (FR), Soweto (NG) = 3 · **15** single-country platinum rows: Ozeba, Fun, Benin Boys, HeHeHe, Baby (Is It a Crime), DND, Holiday, 44, Bout U, Azaman, Yayo (11 lead) + Fi Kan We Kan, Favourite Girl, Who's Dat Girl, Won Da Mo (4 featured) → 15+4+1+2+2+3+15 = **42**
+- **Gold 25** — Calm Down (AT, NL, **CZ**) 3 · Rave & Roses Ultra (US) 1 · Soundgasm (CH, NL, **NG**) 3 · Dumebi (CH) 1 · Soweto (UK) 1 · lead single-country golds: Trouble Maker 🇳🇬, Corny 🇫🇷, Fame – A COLORS ENCORE 🇧🇷, **Ginger Me 🇳🇬, HEIS 🇳🇬, War Machine 🇳🇬, Kelebu 🇳🇬, March Am 🇳🇬, Reason You 🇳🇬, Red Potion 🇳🇬, Smooth Criminal 🇳🇬** = 11 · featured golds: Secondhand 🇨🇦, **Secondhand 🇵🇹**, Toxic 🇫🇷, **Compromise 🇳🇬, Lalala 🇳🇬** = 5 → 3+1+3+1+1+11+5 = **25**
 - **Silver 13** — 🇬🇧 ×4: Rave & Roses, Soundgasm, Charm, Dumebi · 🇳🇬 ×9: Bounce, Don't Leave, Egungun, Hov, Now I Know, Time N Affection (lead, 6) + Dimension, Mukulu, Too Correct (featured, 3) → **13**
 
-5 + 41 + 23 + 13 = **82** ✓ · Sections: 7 albums + 63 lead + 12 featured = **82** ✓
+5 + 42 + 25 + 13 = **85** ✓ · Sections: 7 albums + 66 lead + 12 featured = **85** ✓
 
 > Two rows landed after this decomposition was first written and are included
 > above: **Colombia — Diamond** (added 26 Aug, taking Diamond 4 → 5 and lead
 > singles 62 → 63) and ***Secondhand* 🇵🇹 Gold** (the retracted refutation,
 > reinstated 28 Aug, taking Gold 22 → 23 and featured 11 → 12). The tier and
 > section splits above are derived from the data as it stands today.
+>
+> Three more landed on **23 Sep 2026** and are included too: *Calm Down* 🇨🇿 Gold
+> and 🇸🇰 Platinum (Gold 23 → 25 with *Smooth Criminal*, Platinum 41 → 42, lead
+> singles 63 → 66) and *Smooth Criminal* 🇳🇬 Gold. The lead-singles and featured
+> headers, which had not caught up with the two August rows, were corrected in
+> the same edit.
 
 ## Award events vs plaques
 
 This section exists because fan trackers and the site count different things, and the difference is arithmetic rather than disagreement about facts.
 
-- **Plaque convention (this file, and burnaboystats.com):** one plaque per title per country, at its **current highest tier**. Rema = **82**.
-- **Award-event convention (most fan trackers):** every separate dated announcement the register published — Gold, then Platinum, then 2×, then Diamond all count individually. Rema = **at least 119**.
+- **Plaque convention (this file, and burnaboystats.com):** one plaque per title per country, at its **current highest tier**. Rema = **85**.
+- **Award-event convention (most fan trackers):** every separate dated announcement the register published — Gold, then Platinum, then 2×, then Diamond all count individually. Rema = **at least 126**.
 
 ### Where the events are documented
 
 | register | plaques | award announcements | notes |
 |---|---|---|---|
-| TCSN / TurnTable (Nigeria) | 37 | **52** *(floor)* | TurnTable overwrites one row per title in place rather than appending a dated row per tier, so steps are only visible where two captures straddle an upgrade. Deepest ladders seen: *Favourite Girl* Gold → 2× → 3× (3), *Ozeba* Platinum → 2× → 3× (3). |
+| TCSN / TurnTable (Nigeria) | 38 | **54** *(floor)* | TurnTable overwrites one row per title in place rather than appending a dated row per tier, so steps are only visible where two captures straddle an upgrade. Deepest ladders seen: *Favourite Girl* Gold → 2× → 3× (3), *Ozeba* Platinum → 2× → 3× (3). |
 | ZPAV (Poland) | 2 | **8** | *Calm Down* alone is **6** announcements — Gold 11.01.2023, then Platinum awarded four separate times (22.02, 26.04, 05.07, 06.09.2023), then Diamond 10.01.2024 — for **one** Diamond plaque. *Rave & Roses* Gold 10.05.2023 → Platinum 10.01.2024 = 2. |
 | IFPI Greece | 1 | **2** | *Calm Down* Gold (first seen 08.02.2023) → Platinum (17.05.2023). |
 | ARIA (Australia) | 1 | **2** *(floor)* | *Calm Down* 4× Platinum 31.05.2023 → 8× Platinum (2024 list). ARIA publishes period snapshots, so steps inside one period collapse. |
 | IFPI Norge (Norway) | 1 | **1** | *Calm Down* Platinum 11.12.2024. No preceding Gold row — a genuine 1:1. |
-| **subtotal** | **42** | **65** | |
+| ČNS IFPI (Czechia, Slovakia) — weekly chart badges *(23 Sep 2026)* | 2 | **3** | *Calm Down* SK Zlatý wk 12/2023 → Platinový wk 31/2023 (2); CZ Zlatý wk 31/2023 (1). |
+| **subtotal** | **45** | **70** | |
 
 ### Ladders described in pass one but never tallied
 
@@ -166,14 +178,14 @@ This section exists because fan trackers and the site count different things, an
 ### The arithmetic
 
 ```
- 42 plaques with events counted this pass ....................  65 announcements
+ 45 plaques with events counted this pass ....................  70 announcements
   5 plaques with pass-one ladders described ..................  ≥21 announcements
  35 remaining plaques, no step history recorded (≥1 each) ....  ≥35 announcements
  ---                                                            ---
- 82 plaques                                                     ≥121 announcements
+ 85 plaques                                                     ≥126 announcements
 ```
 
-42 + 5 + 35 = **82** ✓ · 65 + 21 + 35 = **121** ✓
+45 + 5 + 35 = **85** ✓ · 70 + 21 + 35 = **126** ✓
 
 > The Colombian Diamond and the reinstated *Secondhand* 🇵🇹 Gold both sit in the
 > no-step-history bucket: neither register publishes the ladder behind them, so
@@ -181,15 +193,15 @@ This section exists because fan trackers and the site count different things, an
 
 ### Honest limits on the event number
 
-**119 is a floor, not a total, and it is a soft floor.** Three registers make that unavoidable:
+**126 is a floor, not a total, and it is a soft floor.** Three registers make that unavoidable:
 
-1. **TurnTable does not keep a ledger.** It rewrites a title's single row when the tier changes. A *Gold → Platinum → 2× Platinum* climb that happened entirely between two Wayback captures reads as **two** events, not three — and the capture cadence has a fourteen-month hole (Sep 2023 → Oct 2024) and another gap between Feb and Apr 2026. Nigeria's true announcement count is materially above 52.
+1. **TurnTable does not keep a ledger.** It rewrites a title's single row when the tier changes. A *Gold → Platinum → 2× Platinum* climb that happened entirely between two Wayback captures reads as **two** events, not three — and the capture cadence has a fourteen-month hole (Sep 2023 → Oct 2024) and another gap between Feb and Apr 2026. Nigeria's true announcement count is materially above 54.
 2. **ARIA publishes snapshots.** Its 2016–2023 year lists show a title's highest tier *reached in that period*, so every intra-period step is invisible.
 3. **Thirty-three plaques carry no recorded step history at all** — chiefly RIAA, BPI, SNEP, Promusicae, Ultratop, NVPI, Pro-Música Brasil and AFP rows that were collapsed in pass one without the ladder being written down. Each is counted at 1. Several are certainly higher: the US *Calm Down* passed through Gold, Platinum, 2×, 3× and 4× before its 5×, and the Portuguese 9× Platina passed through eight prior steps. Counted properly, *Calm Down*'s twenty plaques alone would likely contribute sixty-plus announcements.
 
-**Can this sweep reach a fan-tracker headline figure?** For Rema, the circulating fan tallies are *smaller* than this sweep, not larger — Wikipedia and the trackers carry ~60 claims against **80** register-confirmed plaques, because they miss Nigeria's Silver and archival Gold tiers entirely. So no reconciliation problem arises for Rema in the direction it does for Tems, whose "41 international certifications in 2026" headline is an **announcement** count and cannot be matched by a plaque count by construction. If Rema's total is ever restated on the announcement convention it should be quoted as **"at least 119"**, never as a precise figure, and the three limits above quoted with it.
+**Can this sweep reach a fan-tracker headline figure?** For Rema, the circulating fan tallies are *smaller* than this sweep, not larger — Wikipedia and the trackers carry ~60 claims against **80** register-confirmed plaques, because they miss Nigeria's Silver and archival Gold tiers entirely. So no reconciliation problem arises for Rema in the direction it does for Tems, whose "41 international certifications in 2026" headline is an **announcement** count and cannot be matched by a plaque count by construction. If Rema's total is ever restated on the announcement convention it should be quoted as **"at least 126"**, never as a precise figure, and the three limits above quoted with it.
 
-**What is still unswept and would move either number:** Portugal's off-chart monthly award batches (Audiogest publishes most as social-media image carousels); the full step history of the 33 collapsed plaques above; any TurnTable capture between Sep 2023 and Oct 2024; and Ireland, Finland, Singapore, Malaysia, India, Turkey, Croatia, Argentina, Colombia, Peru and Slovakia — none of which can ever be swept, for the structural reasons in the coverage table.
+**What is still unswept and would move either number:** Portugal's off-chart monthly award batches (Audiogest publishes most as social-media image carousels); the full step history of the 33 collapsed plaques above; any TurnTable capture between Sep 2023 and Oct 2024; and Ireland, Finland, Singapore, Malaysia, India, Turkey, Croatia, Argentina, Colombia and Peru — none of which can ever be swept, for the structural reasons in the coverage table. (Slovakia was on this list until 23 Sep 2026; its register is ČNS IFPI's weekly chart badge, and it was swept.)
 
 ## Per-body coverage
 | body | status | result |
@@ -208,7 +220,7 @@ This section exists because fan trackers and the site count different things, an
 | AFP / Audiogest (Portugal) | **partial** (449 weekly PDFs 2018–2026 + Feb/Mar 2026 award tables) | 1 entry — Calm Down **9× Platina**, held since wk 24/2025. Soweto's Portuguese Platina is credited `Victony & Tempoe`. Gap: awards to *non-charting* titles appear only in monthly announcements, most published as social-media image carousels. |
 | Pro-Música Brasil | **swept ✓** (all 374 pages, 14,930 rows) | 3 entries — Calm Down Diamante, Rave & Roses **Ultra** 2× Platina, Fame – A COLORS ENCORE Gold. Brazil certifies standard and deluxe albums separately. |
 | RiSA (South Africa) | **swept ✓** (full 748-row table, via browser) | **0 entries.** RiSA is member-label and request-based; the site serves a crawler tarpit to non-browser clients, so a curl/WebFetch sweep fails *open*, returning fiction. |
-| **TCSN / TurnTable (Nigeria)** | **swept ✓ — live + full archive** *(gap sweep)* | **37 entries**, up from 18. The **live** register at `turntablecharts.com/certification` is capped at exactly **500 rows** (456 Platinum + 44 Gold, **zero Silver**) and shows only **18** Rema plaques. Reading the register's own Wayback captures — 44 of 47 parsed, the richest being **21 Feb 2026 with 2,477 rows** (962 Platinum / 698 Gold / 817 Silver) — recovers **37**. **Silver is a real TCSN tier and every one of Rema's 9 Silvers is archive-only**, cut off by the live 500-row truncation; ten further Golds are likewise archive-only. Register is **singles-only**, so no Rema album can appear. Dates are unreliable: the register bulk re-dated its catalogue at least twice (every live row now reads 06.02.2026), so `date` values are provenance, not award dates. |
+| **TCSN / TurnTable (Nigeria)** | **swept ✓ — live + full archive** *(gap sweep)* | **38 entries** (37 at the gap sweep, up from 18; *Smooth Criminal* Gold added 23 Sep 2026 from the same 21 Feb capture). The **live** register at `turntablecharts.com/certification` is capped at exactly **500 rows** (456 Platinum + 44 Gold, **zero Silver**) and shows only **18** Rema plaques. Reading the register's own Wayback captures — 44 of 47 parsed, the richest being **21 Feb 2026 with 2,477 rows** (962 Platinum / 698 Gold / 817 Silver) — recovers **37**. **Silver is a real TCSN tier and every one of Rema's 9 Silvers is archive-only**, cut off by the live 500-row truncation; ten further Golds are likewise archive-only. Register is **singles-only**, so no Rema album can appear. Dates are unreliable: the register bulk re-dated its catalogue at least twice (every live row now reads 06.02.2026), so `date` values are provenance, not award dates. |
 | Ultratop / BEA (Belgium) | **swept ✓** (1995–2026, both language sides, 128 pages) | 1 entry — Calm Down 2× Platina. NL and FR pages are one national list in two languages; do not double-count. |
 | NVPI (Netherlands) | **swept ✓** (goudplatina.nl, all 6,465 rows) | 2 entries — Calm Down Goud, Soundgasm Goud. Register moved: `nvpi.nl/goud-platina/` now 404s. |
 | AMPROFON (Mexico) | **swept ✓** (full 8,540-row table) | **0 entries.** Calm Down is **entirely absent**, as is Bubalu despite Feid holding 17 rows. Mexico certifies this cohort only on Spanish-language Latin records. |
@@ -219,8 +231,8 @@ This section exists because fan trackers and the site count different things, an
 | **ZPAV (Poland)** | **swept ✓** *(was unreachable — gap sweep)* | 2 entries, both now verified. Calm Down **Diamond** (10.01.2024) and Rave & Roses **Platinum** (10.01.2024). `bestsellery.zpav.pl` is **retired**, not geo-blocked — Apache 404 over HTTP, hard 403 over HTTPS with a mismatched cert. The register moved to **`olis.pl/charts/oficjalna-lista-wyroznien`** (footer `© ZPAV`), a Vue shell over `POST /api/search` (`category_id:3`; `subcategory_id` 6=Gold, 7=Platinum, 8=Diamond; `search_in` accepts both `contractor` and `title`). Each record carries a per-award `ack_date`, which is what makes the 6-announcement Calm Down ladder visible. |
 | **IFPI Norge (Norway)** | **swept ✓** *(was not swept — gap sweep)* | 1 entry — Calm Down **Platinum**, 11.12.2024, Interscope/UMG, format *Singel*, credited **`Rema & Selena Gomez`** (which is why an artist-name search for the solo release finds nothing — this was caught title-side). One announcement, no preceding Gold. Full crawl of all 29 pages (**2,817 rows**, 2005–Aug 2026) plus the site's own `searchterm` query, two passes agreeing exactly. **Tier is carried by an image** (`Trofe_GULL_…` / `Trofe_PLATINA_…`), never as text — a naive text scrape silently drops it. **No other Rema title is certified in Norway** (Rave & Roses, Dumebi, Ozeba, Charm, HEIS and ~35 more all nil; note a `HEIS` search returns Macklemore's *The Heist* as a substring false positive). Register is **request-based** — absence means no plaque on record, not below threshold. |
 | IMI (India) | **no public database** | IMI runs a Gold & Platinum scheme but publishes **no register** — only a promotional gallery of **19 plaque artworks**, frozen since 2021 and holding none of the six artists (it does carry Post Malone, Katy Perry and DJ Snake, so foreign repertoire is not excluded). A full dump of IMI's **897-item media library** returned zero files matching Rema or Calm Down; all 414 news posts carry no certification announcements. Scheme is member-gated and paid (Rs. 11,400 + tax per plaque). **The "Calm Down 13× IMI Platinum" claim is rejected — see removals.** |
-| ČNS IFPI (Czech Republic) | **no public database** | `cnsifpi.cz` is NXDOMAIN; the real body `ifpicr.cz` publishes award *rules* only and never has published a recipient list (verified to 2011 via Wayback). Request-based, Gold/Platinum only, restricted to titles released on or after 1 Jan 2022. A zero here carries no information. |
-| **ČNS IFPI (Slovakia)** | **no public database** *(gap sweep)* | `ifpi.sk` is offline (connection refused on 80 and 443). Slovak awards are administered by ČNS IFPI Prague under a separate SR ruleset; `ifpicr.cz/oceneni` contains **six rules PDFs and nothing else** — no table, no search, no names. Awards are issued privately on label request. Current SR rules (eff. 09.03.2026): **only Gold and Platinum exist** (no multi-platinum, no diamond), and eligibility requires release **on or after 1 Jan 2022**. **No Slovak row for Rema can ever be marked verified.** |
+| ČNS IFPI (Czech Republic) | **swept ✓** — *corrected 23 Sep 2026 from "no public database"* | 1 entry — Calm Down **Gold** ("Zlatý singl", CZ Singles Digital Top 100, first printed week 31/2023, last seen week 45/2023). `cnsifpi.cz` is NXDOMAIN and `ifpicr.cz` publishes no recipient *list* — but it prints the award as a badge in each row of its weekly singles chart (`ifpicr.cz/hitparada/30`), and that badge is the register: across 111,400 rows it is only ever the rules' two award names, and no pre-2022 title carries one. Every CZ issue since January 2022 was walked. Limit: a Platinum awarded after the title left the Top 100 would not show, and albums are never badged. Request-based, Gold/Platinum only, titles released on or after 1 Jan 2022. |
+| **ČNS IFPI (Slovakia)** | **swept ✓** — *corrected 23 Sep 2026 from "no public database"* | 1 entry — Calm Down **Platinum** ("Platinový singl", SK Singles Digital Top 100 from week 31/2023; "Zlatý singl" from week 12/2023; still Platinový in week 3/2024 and Měsíc 1/2024). `ifpi.sk` is offline and ČNS IFPI Prague publishes no award list, but its weekly SK chart (`ifpicr.cz/hitparada/43`) prints the award in each row, separately from the Czech chart — the same week reads Zlatý in CZ and Platinový in SK. The earlier line here, "No Slovak row for Rema can ever be marked verified", was wrong. SR rules (eff. 09.03.2026): **only Gold and Platinum exist**, release **on or after 1 Jan 2022**. |
 | **IRMA (Ireland)** | **no public database** *(gap sweep)* | Ireland has **no public certification register covering the streaming era**. The register Wikipedia cites, `irishcharts.ie/awards/`, now 301-redirects to the IRMA homepage; Wayback shows live year files only for `gold06`–`gold13` / `platinum06`–`platinum13`, with `gold14` onward 404. The terminal file `gold13.htm` carries the footer `© IRMA 2006 - 2013`. The current irma.ie has no awards page in its 19-page sitemap, no certification hits in 60 news posts, and the Official Charts Irish pages carry **no certification badges** (OCC surfaces BPI badges on UK pages only). Silver is a genuine IRMA tier. **Record Ireland as structurally unavailable, not as a pending gap.** |
 | **Musiikkituottajat / IFPI Finland** | **not covered** *(gap sweep)* | The certification database (`ifpi.fi/tilastot/…/kulta-ja-platinalevyt/artistit/`, 766 artists) is **frozen at 2015** — `/2016/` through `/2025/` all 404, and no post-2015 breakthrough artist of any nationality is indexed (Billie Eilish, The Weeknd, Dua Lipa, Taylor Swift, Drake all zero). Every Rema release postdates it. **Two traps:** ifpi.fi has a *separate* charts artist database that returns hits for uncertified artists; and the per-artist certification URL is a catch-all returning HTTP 200 for nonsense slugs, so only page **content** distinguishes empty from real. Record Finland as **not covered**, not as a confirmed zero. |
 | **RIAS (Singapore)** | **swept ✓ — 0 entries** *(gap sweep)* | All **329 published rows** read directly via the Ninja Tables AJAX endpoint (table IDs 1412=2019, 1894=2020, 2421=2021). Zero rows for Rema; zero for Calm Down. Probed IDs 2422 and 2500–3200 for an unlinked newer table — all empty. RIAS published **2019–2021 only** and stopped (page last modified 24.01.2023), and is overwhelmingly album-based (2 singles in 329 rows). Calm Down (2022) falls entirely outside the published window. Re-check annually — this is a live gap, not a settled nil. |
@@ -250,9 +262,9 @@ This section exists because fan trackers and the site count different things, an
   - **Calm Down — 🇨🇱 "Chile Gold": NOT COUNTED.** Sourced to a Universal Music Chile Instagram post. Chile's real register (PROFOVI) was swept in the gap pass and holds no Rema row in any recovered window.
   - **Bubalu — "Central America Platinum": NOT COUNTED.** No certifying body exists for that territory.
   - **Calm Down (remix) — "worldwide 1,890,000,000 units": NOT A CERTIFICATION.** A streams/sales statistic, tagged `nocert` in Wikipedia's own wikitext.
-- **Absence is not disproof — and eleven registers can never disprove anything.** Ireland, Finland, Singapore, Malaysia, India, Turkey, Croatia, Argentina, Colombia, Peru and Slovakia all returned zero, but **not one** of those zeroes is evidence Rema fell short: Ireland's register ended in 2013, Finland's in 2015, Turkey's in 2009, Argentina's in 2011, Singapore's in 2021; Malaysia's has never launched; India, Croatia, Colombia and Peru have no register at all; and Slovakia issues certificates privately on label request. Nigeria's TCSN and Norway's IFPI Norge are **also** request-based, so their zeroes are likewise "no plaque on record", not "did not sell". Norway makes the point vividly: its register contains **no Drake rows whatsoever**, which reads as absent licensee filings rather than absent consumption.
+- **Absence is not disproof — and eleven registers can never disprove anything.** Ireland, Finland, Singapore, Malaysia, India, Turkey, Croatia, Argentina, Colombia, Peru and Slovakia all returned zero at the gap sweep (Slovakia's zero was itself wrong — see the 23 Sep 2026 note), but **not one** of those zeroes is evidence Rema fell short: Ireland's register ended in 2013, Finland's in 2015, Turkey's in 2009, Argentina's in 2011, Singapore's in 2021; Malaysia's has never launched; India, Croatia, Colombia and Peru have no register at all; and Slovakia issues certificates privately on label request. Nigeria's TCSN and Norway's IFPI Norge are **also** request-based, so their zeroes are likewise "no plaque on record", not "did not sell". Norway makes the point vividly: its register contains **no Drake rows whatsoever**, which reads as absent licensee filings rather than absent consumption.
 - **Tier corrections a reader must not quote the old way.** US *Calm Down* is **5× Platinum** (27 Sep 2024), not the 4× on the discography page. Nigerian *Charm* is **3×** (Wikipedia: 2×), *Ozeba* **3×** (Wikipedia: Platinum), *HeHeHe* **2×** (Wikipedia: Platinum). French *Charm* and *Rave & Roses* are both **Platine**.
-- **One plaque per title, verified rather than assumed.** No register in either pass files the Selena Gomez remix of *Calm Down* as a separate certification. Belgium, Switzerland, Italy, Denmark, Austria, Germany, France, Brazil, the UK, Spain, Poland and Nigeria carry a single row; Canada, New Zealand and Greece carry solo and remix rows that collapse to one plaque each; and Australia and Norway file the title **only** under the `Rema & Selena Gomez` billing, with no solo row at all. Twenty countries, twenty plaques, one title.
+- **One plaque per title, verified rather than assumed.** No register in either pass files the Selena Gomez remix of *Calm Down* as a separate certification. Belgium, Switzerland, Italy, Denmark, Austria, Germany, France, Brazil, the UK, Spain, Poland and Nigeria carry a single row; Canada, New Zealand and Greece carry solo and remix rows that collapse to one plaque each; and Australia and Norway file the title **only** under the `Rema & Selena Gomez` billing, with no solo row at all. Twenty countries, twenty plaques, one title — twenty-two since 23 Sep 2026, when ČNS IFPI's chart badges added Czechia and Slovakia (each a single row credited `REMA & GOMEZ SELENA`).
 - **Search traps worth recording.** Ultratop serves ISO-8859-1, so a default UTF-8 read mangles accented titles. RiSA serves generated filler prose to non-browser HTTP clients at HTTP 200 — a curl sweep there returns plausible fiction rather than an error. IFPI Norge carries its tier as an **image**, invisible to text extraction. Finland's certification and charts databases are **different systems**, and its per-artist URL returns 200 for nonsense slugs. Croatia's site search returns 357 `Rema` hits that are all Croatian-word substrings. Singapore's 2019 table contains a `Starboy` row that is **The Weeknd's album**, not a Wizkid-imprint entry. Argentina's `oro` search hits are all *Gardel de Oro*, an awards show.
 - **This is still a floor, but a much firmer one.** Portugal's off-chart awards remain largely unpublished; Chile has a ~7-month capture gap overlapping *Calm Down*'s peak; TurnTable's archive has a fourteen-month capture hole and grows between visits because it is request-driven; and eleven territories are permanently unsweepable. Nothing outstanding is likely to be large: the only unswept surface with real volume is Nigeria's own future filings.
 

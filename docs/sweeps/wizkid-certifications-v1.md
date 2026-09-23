@@ -6,15 +6,19 @@
 - ✓ = confirmed in the issuing body's own live database
 - ✓ᴬ = confirmed in the issuing body's own database **via an archived capture of that database** (used only for TurnTable/Nigeria, whose live page truncates at 500 rows — see the TCSN row in Per-body coverage)
 - ✓* = confirmed body-side at the tier class, where the body's public record omits the exact multiplier
+- **⚠** = the register row was read, but its credit line does not print Wizkid's name (the lead act only, or a credit the body itself cuts off). Counted only where there is one recording and Wizkid is on it — the treatment Rema's *Secondhand* 🇨🇦 Gold carries in his file. One row: *Boom* 🇩🇰 (see Verification notes)
 - no mark = kept from Wikipedia because the body publishes no verifiable record (now only 🇳🇿; 🇵🇱 was read at ZPAV's register on 23 Sep 2026)
 
-## Total: **156 certifications** across 21 countries
+## Total: **157 certifications** across 21 countries
+
+> **23 Sep 2026 register sweep — one new plaque, with a ⚠** (156 → **157**; `docs/sweeps/sweep-2026-09-23.md`).
+> ***Boom* (Major Lazer & MOTi ft. Ty Dolla $ign, Wizkid & Kranium) — 🇩🇰 Platin ✓⚠.** IFPI Danmark's own register (`http://ifpi.dk/certificeringer-0`, read in full on 23 Sep 2026 by unioning seven sort orders — its pager reshuffles tied rows, so any single crawl drops about 7%): `01.08.2017. | Major Lazer Feat. Moti Ty Dolla $ign... | Boom | Warner Music | Track | Platin` (node 4291), after `24.05.2016. | … | Boom | Warner Music | Track | Guld` (node 4795). The credit is cut off **in the body's own data** — the node pages, ifpi.dk's site search and its Hitlisten 2016 year-end list all stop at "Ty Dolla $ign..." — so Wizkid is not printed. Counted, on Paul's ruling of 23 Sep 2026, because lead, title, Warner and Track identify one recording and there is only one *Boom*, with Wizkid on it: Ifpi Sverige's record of the same single (ISRC QMUY41500191) reads `MAJOR LAZER - BOOM (FEAT. MOTI, TY DOLLA $IGN, WIZKID & KRANIUM)`, and Paul confirmed Wizkid's credit on the track's Spotify page the same day. Denmark is not a new country for him (*One Dance*).
 
 > **Why the number moved from 117 → 155.** The second pass did two things. It **closed two of the four unverifiable bodies**: ARIA's register turned out to be alive inside a Dropbox folder of 68 accreditation PDFs (One Dance 17× Platinum and Brown Skin Girl Gold both confirmed at source), and IFPI Greece's certifications turned out to live in an unlabelled `Award` column inside the weekly digital-singles chart, reconstructible from 512 Wayback captures (One Dance 3× Platinum confirmed). Neither changed the count — both upgraded Wikipedia-cited rows to register-confirmed.
 >
 > The count moved almost entirely on **TurnTable (Nigeria)**. The live register is capped at 500 rows and serves **no Silver tier at all**; the register's own archived captures hold far more. Reading 44 of 47 captures plus the live page raises Wizkid from **30 Nigerian rows to 71** — 20 of them Silver, every one of which exists only in the archive. Net: 117 + 39 found − 1 removed (Joro's Nigerian 2× Platinum, which is in no capture) = **155**.
 >
-> Eleven further registers were opened for the first time — Norway, Finland, Ireland, Singapore, Malaysia, India, Turkey, Croatia, Slovakia, Argentina, Chile/Colombia/Peru — and **all returned zero**. Nine of them publish no usable register at all. That is a real finding, not a gap: see Per-body coverage.
+> Eleven further registers were opened for the first time — Norway, Finland, Ireland, Singapore, Malaysia, India, Turkey, Croatia, Slovakia, Argentina, Chile/Colombia/Peru — and **all returned zero**. Nine of them publish no usable register at all *(corrected 23 Sep 2026: Slovakia does — ČNS IFPI's weekly chart-row badge — and it holds no Wizkid plaque)*. That is a real finding, not a gap: see Per-body coverage.
 
 ### Albums — 7
 | release | certifications |
@@ -81,7 +85,7 @@
 
 *Lead singles subtotal: 8+7+6+5+4+3 = 33, plus ten 2-entry rows = 20, plus thirty-six 1-entry rows = 36 → 33+20+36 = **89*** ✓
 
-### Featured appearances — 59
+### Featured appearances — 60
 | song | certifications |
 |---|---|
 | One Dance (Drake ft. Wizkid & Kyla) | 🇦🇺 17× Platinum ✓ *(now register-confirmed)* · 🇺🇸 Diamond (11× Platinum) ✓ · 🇳🇿 10× Platinum · 🇬🇧 8× Platinum ✓ · 🇵🇹 8× Platinum ✓ · 🇸🇪 7× Platinum ✓ · 🇮🇹 6× Platinum ✓ · 🇪🇸 5× Platinum ✓ · 🇩🇰 5× Platinum ✓ · 🇲🇽 4× Platinum+Gold ✓ · 🇧🇪 3× Platinum ✓ · 🇵🇱 3× Platinum ✓ *(register-confirmed 23 Sep 2026)* · 🇬🇷 3× Platinum ✓ *(now register-confirmed)* · 🇨🇦 Diamond ✓ · 🇩🇪 Diamond ✓ · 🇫🇷 Diamond ✓ · 🇧🇷 Diamond ✓ — **17** |
@@ -92,7 +96,7 @@
 | G Love (Krept & Konan ft. Wizkid) | 🇬🇧 Gold ✓ — **1** |
 | Mamacita (Tinie Tempah ft. Wizkid) | 🇬🇧 Silver ✓ — **1** |
 | I Like (Kojo Funds ft. Wizkid) | 🇬🇧 Silver ✓ — **1** |
-| Boom (Major Lazer ft. MOTi, Ty Dolla $ign, Wizkid & Kranium) | 🇫🇷 Gold ✓ — **1** |
+| Boom (Major Lazer ft. MOTi, Ty Dolla $ign, Wizkid & Kranium) | 🇩🇰 Platin ✓⚠ (01.08.2017; Guld 24.05.2016 — read 23.09.2026) · 🇫🇷 Gold ✓ — **2** |
 | Can't Believe (Kranium ft. Ty Dolla $ign & Wizkid) | 🇨🇦 Gold ✓ (13.10.2020) — **1** |
 | Borrowed Love (Metro Boomin ft. Swae Lee & Wizkid) | 🇨🇦 Gold ✓ (24.09.2020) — **1** |
 | Checklist (Normani x Calvin Harris ft. WizKid) | 🇧🇷 Gold ✓ (2021) — **1** |
@@ -117,22 +121,24 @@
 | IDG (Asa ft. Wizkid) *(new)* | 🇳🇬 Silver ✓ᴬ — **1** |
 | Like That (Bomboclatt) (Shallipopi ft. Wizkid) *(new)* | 🇳🇬 Silver ✓ᴬ — **1** |
 
-*Featured subtotal: 17+6+5+3 = 31, plus twenty-eight 1-entry rows = 28 → **59*** ✓
+*Featured subtotal: 17+6+5+3+2 = 33, plus twenty-seven 1-entry rows = 27 → **60*** ✓
 
 ### Tier split (arithmetic check)
 - **Diamond 6** — One Dance US/CA/DE/FR/BR + Bella FR
-- **Platinum tiers 60** — Essence ×7 (US, ZA, CA, NZ, NG, UK, CH) · Come Closer ×4 (ZA, CA, UK, US) · Joro ×2 (FR, CH) · Ginger ×2 (ZA, NG) · One Dance ×12 (AU, NZ, UK, PT, SE, IT, ES, DK, MX, BE, PL, GR) · one each for Smile (ZA), Energy (UK), Mood (NG), 2 Sugar (NG), Call Me Every Day (US) = 5 · **28** single-country Platinum rows: Kese, Bad Girl, IDK, Fever, Longtime, True Love, No Stress, Piece of My Heart, Bad To Me, Jogodo, Money & Love, Slow, Troubled Mind, A Million Blessings (14 lead) + MMS, One Condition, Billionaires Club, Money Constant, Abracadabra, Getting Paid, Kai!, Pami, Big Time, Forever Be Mine, Gimme Dat, Apala Disco, Cash Flow, B. D'Or (14 featured) → 7+4+2+2+12+5+28 = **60**
-- **Gold 60** — Made in Lagos (US, UK, CA, NZ, CH, NL, **NG**) 7 · Essence FR 1 · Come Closer (FR, CH) 2 · Joro (US, CA) 2 · Ginger (US, CA, CH) 3 · Mood (US, CA) 2 · Energy NZ 1 · 2 Sugar CA 1 · Brown Skin Girl (US, AU, CA, NZ) 4 · Call Me Every Day (CA, CH, NZ) 3 · Soco (US, CA) 2 · G Love UK 1 · Boom FR 1 · Can't Believe CA 1 · Borrowed Love CA 1 · Checklist BR 1 · Gyrate ZA 1 · Reckless ZA 1 · Mighty Wine ZA 1 · Roma ZA 1 · Sweet One ZA 1 · Diamonds NG 1 · Many Ways NG 1 → subtotal 40 · plus **20 new 🇳🇬 Golds**: Ojuelegba, Alaye, Anoti, Après Minuit, Bad For You, Bend, Blessed, Break Me Down, Call Me Every Day, Dynamite, Easy With Me, Ebelebe, Karamo, No Stress, Ololufé, Pray, Reckless, Time, Turbulence, Wow → 40 + 20 = **60**
+- **Platinum tiers 62** — Essence ×7 (US, ZA, CA, NZ, NG, UK, CH) · Come Closer ×4 (ZA, CA, UK, US) · Joro ×2 (FR, CH) · Ginger ×2 (ZA, NG) · One Dance ×12 (AU, NZ, UK, PT, SE, IT, ES, DK, MX, BE, PL, GR) · one each for Smile (ZA), Energy (UK), Mood (NG), 2 Sugar (NG) = 4 · Call Me Every Day ×2 (US, and NZ since its 8 Jan 2026 upgrade) · **Boom (DK) ⚠ ×1** · **28** single-country Platinum rows: Kese, Bad Girl, IDK, Fever, Longtime, True Love, No Stress, Piece of My Heart, Bad To Me, Jogodo, Money & Love, Slow, Troubled Mind, A Million Blessings (14 lead) + MMS, One Condition, Billionaires Club, Money Constant, Abracadabra, Getting Paid, Kai!, Pami, Big Time, Forever Be Mine, Gimme Dat, Apala Disco, Cash Flow, B. D'Or (14 featured) → 7+4+2+2+12+4+2+1+28 = **62**
+- **Gold 60** — Made in Lagos (US, UK, CA, NZ, CH, NL, **NG**) 7 · Essence FR 1 · Come Closer (FR, CH) 2 · Joro (US, CA) 2 · Ginger (US, CA, CH) 3 · Mood (US, CA, NZ) 3 · Energy NZ 1 · 2 Sugar CA 1 · Brown Skin Girl (US, AU, CA, NZ) 4 · Call Me Every Day (CA, CH) 2 · Soco (US, CA) 2 · G Love UK 1 · Boom FR 1 · Can't Believe CA 1 · Borrowed Love CA 1 · Checklist BR 1 · Gyrate ZA 1 · Reckless ZA 1 · Mighty Wine ZA 1 · Roma ZA 1 · Sweet One ZA 1 · Diamonds NG 1 · Many Ways NG 1 → subtotal 40 · plus **20 new 🇳🇬 Golds**: Ojuelegba, Alaye, Anoti, Après Minuit, Bad For You, Bend, Blessed, Break Me Down, Call Me Every Day, Dynamite, Easy With Me, Ebelebe, Karamo, No Stress, Ololufé, Pray, Reckless, Time, Turbulence, Wow → 40 + 20 = **60**
 - **Silver 29** — 🇬🇧 ×9 (Joro, Ginger, Mood, Brown Skin Girl, Call Me Every Day, Soco, Mamacita, I Like, Ojuelegba) + 🇳🇬 ×20 (Balance, Come Closer, Don't Care, Energy, Everyday, Flower Pads, Frames, IDG, Iskolodo, Like That, Longtime, Lose, Love My Baby, Mighty Wine, Piece of Me, Roma, Smile, Soji, Sweet One, True Love) → **29**
 
-6 + 61 + 60 + 29 = **156** ✓  ·  Sections: 7 albums + 90 lead + 59 featured = **156** ✓
+6 + 62 + 60 + 29 = **157** ✓  ·  Sections: 7 albums + 90 lead + 60 featured = **157** ✓
+
+*(Re-derived 23 Sep 2026. The Platinum and Gold lists had not taken in the 26 Aug refresh — Call Me Every Day 🇳🇿 Gold → Platinum, Mood 🇳🇿 Gold new — although both totals had; they do now, and Boom 🇩🇰 joins Platinum.)*
 
 ## Award events vs plaques
 
 Two conventions produce two very different numbers from the same registers. This section states both and shows the arithmetic, because fan trackers and this document are not counting the same thing.
 
 **Convention A — plaques (the site's rule, the one used above).**
-One plaque per title per country at its current tier. A Gold that later became Platinum is one plaque. **Wizkid = 156.** Comparable to Burna Boy's 229 on burnaboystats.com.
+One plaque per title per country at its current tier. A Gold that later became Platinum is one plaque. **Wizkid = 157.** Comparable to Burna Boy's 229 on burnaboystats.com.
 
 **Convention B — award events.**
 Every separate announcement the register made, so a Gold→Platinum→2× ladder counts as three. This is what fan tallies count, usually without saying so.
@@ -147,15 +153,16 @@ Award events can only be counted where the register actually exposes the ladder.
 | Music Canada — Essence listed G→P→2×→3× | 1 | 4 | +3 |
 | FIMI (IT) — One Dance listed 8 times | 1 | 8 | +7 |
 | IFPI Danmark — One Dance listed 6 times | 1 | 6 | +5 |
+| IFPI Danmark — Boom Guld → Platin *(23 Sep 2026)* | 1 | 2 | +1 |
 | Ultratop (BE) — One Dance G→P→2×→3× | 1 | 4 | +3 |
 | BVMI (DE) — One Dance listed 3 times | 1 | 3 | +2 |
-| **documented excess** | | | **+38** |
+| **documented excess** | | | **+39** |
 
-**155 plaques + 38 documented extra announcements = 193 award events, documented floor.**
+**157 plaques + 39 documented extra announcements = 196 award events, documented floor.**
 
 Nigeria's internal arithmetic, since it carries most of the movement: 71 plaques → 82 events. The +11 comes from MMS (Platinum→3×→6×, +2), Apala Disco, A Million Blessings, Slow, Troubled Mind, Kese, Bad Girl, Essence, IDK (+1 each) and Ojuelegba (Silver→Gold, +1).
 
-**193 is a floor, and a soft one.** Every remaining multi-tier row was never enumerated step by step: One Dance's climb to Diamond at the RIAA, to 8× Platinum at the BPI, to 8× Platina at AFP, to 7× at Sverigetopplistan, to Diamante at Pro-Música Brasil, to Diamond at Music Canada / BVMI / SNEP; Essence's ladders at RIAA and RiSA; Come Closer's at RiSA. Counted properly, One Dance alone would likely contribute 60–80 announcements. A full award-event figure for Wizkid is plausibly in the 300s, but this sweep did not measure it and will not assert it.
+**196 is a floor, and a soft one.** Every remaining multi-tier row was never enumerated step by step: One Dance's climb to Diamond at the RIAA, to 8× Platinum at the BPI, to 8× Platina at AFP, to 7× at Sverigetopplistan, to Diamante at Pro-Música Brasil, to Diamond at Music Canada / BVMI / SNEP; Essence's ladders at RIAA and RiSA; Come Closer's at RiSA. Counted properly, One Dance alone would likely contribute 60–80 announcements. A full award-event figure for Wizkid is plausibly in the 300s, but this sweep did not measure it and will not assert it.
 
 **Two register limits also cap the event count.** ARIA publishes period snapshots, not a step ledger — tier steps inside one period collapse into one row, so One Dance's five ARIA events are certainly an undercount (it must have passed Gold through 4× Platinum during 2016 alone). TurnTable overwrites one row per title in place rather than appending a dated row per tier, so its 82 is only what two adjacent captures happened to straddle; capture cadence has 14-month gaps.
 
@@ -175,7 +182,7 @@ Nigeria's internal arithmetic, since it carries most of the movement: 71 plaques
 | BVMI (Germany) | **swept ✓** (12 Aug, musikindustrie.de G/P-Datenbank) | 1 entry — One Dance Diamond (2025), listed across 3 award events |
 | IFPI Switzerland (hitparade.ch Edelmetall) | **swept ✓** (12 Aug) | 6 entries — all confirmed. One Dance has no Swiss cert. |
 | IFPI Austria (ifpi.at) | **swept clean ✓** (12 Aug) | 0 entries — "Wiz" returns only Wiz Khalifa and WizTheMc |
-| IFPI Danmark (ifpi.dk) | **swept ✓** (12 Aug) | 1 entry — One Dance 5× Platin (2024-SD354), 6 award events |
+| IFPI Danmark (ifpi.dk) | **swept ✓** (12 Aug; full re-read 23 Sep 2026, 13,508 rows) | 2 entries — One Dance 5× Platin (2024-SD354), 6 award events; **Boom Platin ✓⚠** (01.08.2017, after Guld 24.05.2016), credit cut off in the register at "Major Lazer Feat. Moti Ty Dolla $ign...". The 23 Sep read unioned seven sort orders: ifpi.dk's pager reshuffles rows that tie on the sort key, so a single-order crawl silently drops about 7% — which is how *Boom* was missed on 12 Aug. |
 | GLF / Sverigetopplistan (Sweden) | **swept ✓** (12 Aug) | 1 entry — One Dance Platina ×7 |
 | FIMI (Italy) | **swept ✓** (12 Aug) | 1 entry — One Dance 6× Platino, 8 award events |
 | Promusicae (Spain) | **swept ✓** (12 Aug) | 1 entry — One Dance 5× Platino |
@@ -195,13 +202,15 @@ Nigeria's internal arithmetic, since it carries most of the movement: 71 plaques
 | **IMI (India)** *(new)* | **no public database** (16 Aug) | **0 entries.** IMI publishes a static **gallery of ~19 plaque images** with no dates, tiers, units or search — frozen since 2021. Full WordPress media library dumped (893 of 897 items) and grepped: zero hits for Wizkid, Essence, One Dance, Drake, Brown Skin Girl. Site-wide REST search for "wizkid" returns 0 results. Scheme is member-gated and fee-based (Rs. 11,400 + taxes), so absence ≠ uncertified — but no register row exists to cite either way. |
 | **Mü-Yap (Turkey)** *(new)* | **no public database** (16 Aug) | **0 entries.** No search, no archive; certification data survives only as static award-night tables for 2003–**2009**. Full WP REST corpus of both language sites (303 documents) grepped — zero Wizkid hits. Mü-Yap certifies **albums only**, on **physical sales only**. Closed question, not a pending gap. |
 | **HDU (Croatia)** *(new)* | **no public database** (16 Aug) | **0 entries.** hdu-toplista.com is now a parked domain; a 3,000-URL Wayback CDX crawl of it matched **zero** paths for naklad/zlat/platin/certif — it was always charts-only. HDU sets thresholds (Silver 1,000 / Gold 3,000 / Platinum 5,000 / Diamond 10,000, **physical sales only**) but publishes no register and has **no streaming certification programme**. The Wizkid hits on top-lista.hr are chart posts (A7S x David Guetta x Wizkid, "Lighter"), not plaques. |
-| **ČNS IFPI (Slovakia)** *(new)* | **no public database** (16 Aug) | **0 entries.** ifpi.sk is offline (connection refused). Slovak awards are administered from Prague; ifpicr.cz/oceneni contains **only six rules PDFs** and no listing, and never has in any Wayback capture. Awards are request-based, issued privately by email, tiers cap at **Platinum** (no multi-platinum, no diamond), and **only releases from 1 Jan 2022 onward are eligible**. No Slovak row can ever be marked verified from a public source. |
+| **ČNS IFPI (Slovakia)** *(new)* | **swept ✓ — 0** — *corrected 23 Sep 2026 from "no public database"* | **0 entries, read.** ČNS IFPI prints the award as a badge in each row of its weekly SK Singles Digital Top 100 (`ifpicr.cz/hitparada/43`) — the route the site reads "Dai Dai" SK Platinum on — and every issue since January 2022 was walked on 23 Sep 2026 with no Wizkid badge; his big records predate the 1 Jan 2022 eligibility floor. The gap-pass text follows: ifpi.sk is offline (connection refused). Slovak awards are administered from Prague; ifpicr.cz/oceneni contains **only six rules PDFs** and no listing, and never has in any Wayback capture. Awards are request-based, issued privately by email, tiers cap at **Platinum** (no multi-platinum, no diamond), and **only releases from 1 Jan 2022 onward are eligible**. No Slovak row can ever be marked verified from a public source *(wrong — see the correction at the start of this row)*. |
 | **CAPIF (Argentina)** *(new)* | **no public database** (16 Aug) | **0 entries.** The "Discos de Oro y Platino" ASP database last served HTTP 200 on **29 Dec 2011** and 404s today; its archived search form's year dropdowns stop at 2011 and its backend is gone, so Wayback cannot be queried for later artists. The modern site has no certification route (13 paths probed, all 404) and its WordPress REST API returns 0 for Wizkid and 0 for "platino". Certifications continue but are distributed to members by email. |
 | **PROFOVI / IFPI Chile** *(new)* | **swept (partial)** (16 Aug) | **0 entries.** ifpichile.cl publishes nothing; the register is profovi.cl/galardones.html — a **rolling latest-20-row window** with no search, pagination or API. Reconstructed from 62 Wayback captures into six distinct published windows (2017 / Apr–Jun 2020 / May–Nov 2022 / Dec 2022–Jan 2023 / Sep–Nov 2023 / Apr–May 2025). Zero Wizkid matches. **Honest gap:** awards dated ~Feb–24 Sep 2023 were never displayed in any captured window. |
 | **ASINCOL / ACINPRO (Colombia)** *(new)* | **no certifying body** (16 Aug) | **0 entries.** ASINCOL closed ~2008 and all its domains are dead. ACINPRO is an ISRC registrar and collecting society, not a certification authority. **Warning:** Wikipedia's certification-thresholds page still lists ASINCOL as though it were live. |
 | **UNIMPRO (Peru)** *(new)* | **no certification register** (16 Aug) | **0 entries.** Collective-management society only; WP search returns zero for "platino" and "galardon". `/institucional/certificados-y-licencias/` is UNIMPRO's own institutional credentials, not artist awards. |
 
 ## Verification notes — read before quoting
+
+- **The ⚠ on *Boom* 🇩🇰 (added 23 Sep 2026).** IFPI Danmark's Platin row reads `Major Lazer Feat. Moti Ty Dolla $ign...` — the register itself truncates the credit before Wizkid, and a site search for "wizkid" there returns only *One Dance* nodes. It is counted because there is only **one** recording of *Boom* and it is the Major Lazer single Wizkid features on (Ifpi Sverige's record of the same single, ISRC QMUY41500191, prints the full credit); the register is cutting a long credit, not filing a different version. That differs from Libianca's *People*, which stays excluded because a version without the featured artists exists. Quote the caveat with the entry. Paul's ruling, 23 Sep 2026.
 
 - **Coverage, honestly stated.** 35 bodies are now on the table. **23 were swept in the bodies' own records**: RIAA, SNEP, BPI, Music Canada, **ARIA**, BVMI, IFPI Switzerland, IFPI Austria (clean), IFPI Danmark, GLF/Sverigetopplistan, FIMI, Promusicae, AFP/Audiogest (current weekly register only), Pro-Música Brasil, RISA, TCSN/TurnTable, Ultratop, NVPI, AMPROFON, **IFPI Greece**, **IFPI Norge** (clean), **RIAS Singapore** (clean), **PROFOVI Chile** (clean, one documented window gap). **10 publish no usable register at all** — Ireland, Finland (frozen at 2015), Malaysia, India, Turkey, Croatia, Slovakia, Argentina, Colombia, Peru — and returned zero not because Wizkid is uncertified there but because nothing is published to check. **2 remain genuinely unverifiable with entries still riding on Wikipedia**: RMNZ (6 entries) and ZPAV (1 entry). That is **7 unverified entries out of 155**, down from 10 out of 117.
 - **What the second pass removed.** Joro's 🇳🇬 2× Platinum. It appears in **none of the 44 TurnTable captures**, which reach back to Nov 2022 — the same era the award was supposedly made. Removed on the same principle that removed its Belgian Gold: the register is the truth, and the register has no such row. Joro is now 5, down from 6.
@@ -212,7 +221,7 @@ Nigeria's internal arithmetic, since it carries most of the movement: 71 plaques
 - **Dates.** TurnTable's `date` field is not an award date — the register bulk re-dated its catalogue at least twice (every live row now reads 2026-02-06). Only the 2022-11 → 2024-10 era captures carry plausible per-award dates. Greece's dates are "first capture showing that tier", i.e. upper bounds. Do not publish either as announcement dates.
 - **Know Your Worth** is not a Wizkid title and no Wizkid row is affected. For the record, the sweep confirmed rather than assumed the credit convention: ARIA's 2020 list reads `Khalid x Disclosure | Know Your Worth | SME | PLATINUM | 10-06-2020`, and IFPI Greece credits `Khalid, Disclosure`. No third artist is credited in either register.
 - One Dance is 17 of the 155 (11%) — down from 15% of the 117 and 23% of the original 75, because Nigeria and South Africa filled in.
-- **This remains a floor.** RMNZ is still unverified (ZPAV was read on 23 Sep 2026), AFP exposes only currently-charting titles, Chile has one documented window gap, Finland/Ireland/Slovakia/Argentina publish nothing that could ever be checked, and new certifications keep arriving (Ojuelegba's UK Silver landed 10.07.2026; TurnTable certifies in batches).
+- **This remains a floor.** RMNZ is still unverified (ZPAV was read on 23 Sep 2026), AFP exposes only currently-charting titles, Chile has one documented window gap, Finland/Ireland/Argentina publish nothing that could ever be checked (Slovakia was on this list until 23 Sep 2026 — its chart-row badge is readable), and new certifications keep arriving (Ojuelegba's UK Silver landed 10.07.2026; TurnTable certifies in batches).
 
 ### Context
 Counted under identical rules: **Burna Boy 229 across 26 countries** on burnaboystats.com. The other five artists in this sweep, at their own deliverables' current figures: **Tems 68**, **Rema 61**, **Davido 60**, **Tyla 60**, **Ayra Starr 34**. Wizkid's verified floor is now **155 across 21 countries** — second only to Burna Boy among the seven, and the gap has narrowed from 150 to 74. It narrows mainly through the Nigerian register, which certifies both artists heavily and whose archive holds more than twice what its live page shows.

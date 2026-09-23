@@ -1,11 +1,11 @@
 # Burna Boy — certifications to source, by body
 
-### NG — TurnTable (TCSN) (63)
+### NG — TurnTable (TCSN) (72)
 - Love, Damini — Platinum x5
 - I Told Them... — Platinum
 - Last Last — Platinum x5
 - On the Low — Gold
-- Ye — Silver
+- Ye — Gold (TCSN id 1956, milestone Gold, superseding Silver id 970 — read ✓ᴬ in the register's 21 Feb 2026 capture, 23 Sep 2026)
 - For My Hand [feat. Ed Sheeran] — Platinum x4
 - City Boys — Platinum x4
 - It's Plenty — Platinum x3
@@ -53,6 +53,14 @@
 - Level Up — Silver
 - Wonderful — Silver
 - Virgil — Silver
+- No Panic — Gold (TCSN id 2116; ✓ᴬ 21 Feb 2026 capture, read 23 Sep 2026)
+- Buy You Life — Gold (TCSN id 2038; ✓ᴬ, read 23 Sep 2026)
+- 28 Grams — Gold (TCSN id 1996; ✓ᴬ, read 23 Sep 2026)
+- Born Winner — Gold (TCSN id 2101; ✓ᴬ, read 23 Sep 2026)
+- No Sign of Weakness — Silver (the SONG, not the album: TCSN id 2247, "No Sign Of Weakness", format "Single"; ✓ᴬ, read 23 Sep 2026)
+- Change Your Mind [feat. Shaboozey] — Silver (TCSN id 2316, "Burna Boy ft. Shaboozey"; ✓ᴬ, read 23 Sep 2026)
+- Empty Chairs [feat. Mick Jagger] — Silver (TCSN id 2423, "Burna Boy ft. Mick Jagger"; ✓ᴬ, read 23 Sep 2026)
+- Sweet Love — Silver (TCSN id 2522, title printed "Sweet Love (Burna Boy)" — TCSN's owner tag; ✓ᴬ, read 23 Sep 2026)
 - Location [Dave ft. Burna Boy] — Platinum
 - Ginger [Wizkid ft. Burna Boy] — Platinum
 - Sungba (Remix) [Asake ft. Burna Boy] — Platinum x4
@@ -64,6 +72,15 @@
 - Talibans II [with Byron Messia] — Platinum
 - Lenu (Remix) — Silver
 - B. D'OR [feat. Wizkid] — Platinum (TCSN: "B. D'Or — Burna Boy ft. Wizkid", certified 8 Jun 2023; filed under Bramsito's 2019 single until 18 Sep 2026, RETRACTIONS #12)
+- 4 Kampé II [Joé Dwèt Filé ft. Burna Boy] — Silver (TCSN id 2562, "4 Kampe Ii", "Joe Dwet File & Burna Boy"; ✓ᴬ, read 23 Sep 2026 — kept filed as a feature, as the French Gold is)
+
+> **23 Sep 2026 — nine new Nigerian plaques and one upgrade** (63 → 72). All ten
+> rows sit in TCSN's own register in the raw Wayback capture of 21 Feb 2026
+> (`20260221224010id_`, 2,477 rows; the `_next/data` JSON of `20260221213029id_`
+> carries identical rows). The live page serves only the first 500 rows of the
+> February batch; these are at batch positions 595–1201. No award date is
+> published — see BURNA-FINDINGS.md, "23 Sep 2026". Record:
+> `docs/sweeps/sweep-2026-09-23.md`.
 
 ### UK — BPI (30)
 - African Giant — Gold

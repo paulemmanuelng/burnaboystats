@@ -23,6 +23,7 @@ import {
 import { countryMeta, chartCountryMeta } from "../app/data/afrobeats";
 import { COUNTRIES as CERT_COUNTRIES } from "../app/data/certifications";
 import { readFileSync, readdirSync } from "node:fs";
+import { plaqueDomain, PLAQUE_DOMAIN_FLOOR } from "../app/lib/hubScatterScale";
 
 // These totals are the published output of the 15–17 Aug 2026 register sweeps.
 // They are pinned because the data file is GENERATED from those documents, and
@@ -34,14 +35,14 @@ const EXPECTED = {
   asake: { total: 80, diamond: 0 },
   "omah-lay": { total: 62, diamond: 2 }, // + "understand" 🇵🇹 Ouro, AFP March 2026 card
   "seyi-vibez": { total: 102, diamond: 0 },
-  wizkid: { total: 156, diamond: 6 },
+  wizkid: { total: 157, diamond: 6 }, // 23 Sep 2026: + "Boom" 🇩🇰 Platin ⚠ (IFPI Danmark truncates the credit; Paul's ruling)
   victony: { total: 24, diamond: 0 }, // + "Soweto" 🇫🇷 Or, SNEP constat 27 Aug 2026
   "fireboy-dml": { total: 36, diamond: 1 },
   davido: { total: 91, diamond: 0 },
-  rema: { total: 82, diamond: 5 }, // + "Secondhand" 🇵🇹 Ouro, AFP's own July 2026 award card
-  tems: { total: 72, diamond: 1 }, // + "Fountains" 🇵🇹 Ouro (AFP March 2026 card), + "Love Me JeJe" 🇵🇹 Ouro (May 2026 card, read 18 Sep)
-  tyla: { total: 63, diamond: 2 }, // + "Chanel" 🇧🇪 Goud, Ultratop 2026 list (10 Aug 2026), read 19 Sep 2026
-  "ayra-starr": { total: 41, diamond: 2 },
+  rema: { total: 85, diamond: 5 }, // + "Secondhand" 🇵🇹 Ouro, AFP's own July 2026 award card; 23 Sep 2026: + "Calm Down" 🇨🇿 Gold and 🇸🇰 Platinum (ČNS IFPI chart badges), + "Smooth Criminal" 🇳🇬 Gold (TCSN 21 Feb 2026 capture)
+  tems: { total: 75, diamond: 1 }, // + "Fountains" 🇵🇹 Ouro (AFP March 2026 card), + "Love Me JeJe" 🇵🇹 Ouro (May 2026 card, read 18 Sep); 23 Sep 2026: "Raindance" + 🇨🇿 Gold, 🇸🇰 Platinum (ČNS IFPI), 🇿🇦 Platinum (RiSA)
+  tyla: { total: 64, diamond: 2 }, // + "Chanel" 🇧🇪 Goud, Ultratop 2026 list (10 Aug 2026), read 19 Sep 2026; 23 Sep 2026: + "Tyla" 🇸🇪 Guld (cert.nr 11311); "Water" 🇸🇪 Guld → Platina is an upgrade
+  "ayra-starr": { total: 42, diamond: 2 }, // 23 Sep 2026: + "Many Roads" 🇳🇬 Silver (TCSN; "Ayra Staar" [sic], Paul's ruling)
   ckay: { total: 29, diamond: 2 }, // + "Emiliana" 🇵🇹 Ouro, AFP April 2026 card, read 18 Sep 2026
   // Added 28 Aug 2026 as artists 13, 14 and 15. Nigeria read deterministically
   // from all 303 weekly issues TurnTable has published; internationals read at
@@ -518,7 +519,6 @@ describe("head-to-head pairings", () => {
 // numbers the tiles show, and they must fall inside the axes the design draws.
 describe("hub scatter", () => {
   const X_MAX = 26;
-  const Y_MAX = 240;
 
   it("plots every swept artist plus Burna Boy", () => {
     expect(sweptArtists.length + 1).toBe(16);
@@ -529,12 +529,24 @@ describe("hub scatter", () => {
       ["Burna Boy", burnaCountryCount, totalAwards()],
       ...sweptArtists.map((a) => [a.name, countryCount(a), certCount(a)] as [string, number, number]),
     ];
+    // The plaque axis was the design's fixed 240 until 23 Sep 2026, when Burna
+    // Boy reached 248 and this check failed exactly as it should. It is now
+    // derived (lib/hubScatterScale.ts) and must stay strictly above the deepest
+    // dot, so no dot ever sits on the frame.
+    const Y_MAX = plaqueDomain(Math.max(...pairs.map(([, , y]) => y)));
     for (const [name, x, y] of pairs) {
       expect(x, `${name} x`).toBeGreaterThanOrEqual(0);
       expect(x, `${name} x past the axis`).toBeLessThanOrEqual(X_MAX);
       expect(y, `${name} y`).toBeGreaterThanOrEqual(0);
-      expect(y, `${name} y past the axis`).toBeLessThanOrEqual(Y_MAX);
+      expect(y, `${name} y past the axis`).toBeLessThan(Y_MAX);
     }
+  });
+
+  it("keeps the design's 240 until the data outgrows it", () => {
+    expect(plaqueDomain(239)).toBe(PLAQUE_DOMAIN_FLOOR);
+    expect(PLAQUE_DOMAIN_FLOOR).toBe(240);
+    expect(plaqueDomain(248)).toBe(260);
+    expect(plaqueDomain(260)).toBe(280);
   });
 
   it("leaves Burna Boy the deepest and widest dot on the board", () => {
@@ -606,8 +618,13 @@ describe("cover art", () => {
     "asake+ayra-starr", "asake+davido", "asake+fireboy-dml", "asake+fireboy-dml+olamide",
     "asake+olamide", "asake+olamide", "asake+olamide", "asake+olamide+seyi-vibez+wizkid",
     "asake+rema", "asake+tems", "asake+victony", "asake+wizkid", "asake+wizkid",
-    "asake+wizkid", "ayra-starr+ckay", "ayra-starr+omah-lay", "ayra-starr+rema",
-    "ayra-starr+rema", "ayra-starr+seyi-vibez", "ayra-starr+wizkid",
+    "asake+wizkid", "ayra-starr+ckay", "ayra-starr+omah-lay",
+    // 23 Sep 2026: a second ayra-starr+omah-lay. Ayra Starr's new "Many Roads"
+    // plaque and Omah Lay's "Last Time" are two tracks of Zinoleesky's album
+    // "Grit & Lust" (Deezer album 379954787: "Many Roads", "Last Time"), so
+    // they share its sleeve — the shared-ALBUM case, as M.I Abaga's is below.
+    "ayra-starr+omah-lay",
+    "ayra-starr+rema", "ayra-starr+rema", "ayra-starr+seyi-vibez", "ayra-starr+wizkid",
     "black-sherif+fireboy-dml", "bnxn+fireboy-dml+olamide+rema", "bnxn+rema",
     "bnxn+seyi-vibez", "bnxn+seyi-vibez+victony", "bnxn+wizkid", "bnxn+wizkid",
     "ckay+davido", "ckay+davido", "davido+omah-lay+victony", "fireboy-dml+rema",
