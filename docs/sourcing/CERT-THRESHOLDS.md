@@ -382,9 +382,12 @@ bestsellery.zpav.pl/wyroznienia/regulamin.php, 27 of 51 read):
 | 01.08.2021 | «25 000 / 50 000 zł \| 50 000 / 100 000 zł \| 250 000 / 500 000 zł» | 25k / 50k / 250k |
 | 1 Jan 2025 | 125 000 / 250 000 / 1 000 000 zł, złoty only | **62.5k / 125k / 500k** |
 
-So 2 zł is ZPAV's own figure, printed from 1 Mar 2017 to the end of 2024, and
-units sat beside złoty at exactly 2:1 in every table from Oct 2017. The 2025
-rules print no rate. The 11 Sep entry above ("no per-unit price to divide by")
+So 2 zł is ZPAV's own figure, printed from 1 Mar 2017 to the end of 2024 —
+the sentence itself sits under the clause for sales before 28 Feb 2017, but
+units sat beside złoty at exactly 2:1 in every single table from Oct 2017
+(the 20171003 capture, still under the 01.03.2017 rules), and that table is
+the rate applied. The 2025 rules print no rate, and they raised the album
+rate from 20 zł to 35 zł, so the single rate may have moved too. The 11 Sep entry above ("no per-unit price to divide by")
 was wrong about that.
 
 **Applied** (`CERT_THRESHOLDS.PL`): `single` 62,500 / 125,000 / 500,000;
@@ -409,19 +412,22 @@ Referer and User-Agent headers or Cloudflare answers 302):
 | Tyla | Water Platinum | Gold 2024-02-07, Platinum 2024-06-05 | 2021 | 125,000 ‡ | 50,000 |
 | Rema | Calm Down Diamond | Gold 2023-01-11, 4 Platinum rows 2023, Diamond 2024-01-10 | 2021 | 500,000 ‡ | 250,000 |
 | CKay | love nwantiti 4× Platinum | Platinum rows 2022-03-09, 2022-10-05, 2023-06-21, 2024-03-06 | 2021 | 500,000 ‡ | 200,000 |
-| Wizkid | One Dance **1× Platinum** (feature) | ONE Platinum row, 2021-08-11 | 2021 | 125,000 ‡ | 50,000 |
+| Wizkid | One Dance 3× Platinum (feature) | ONE Platinum row, filed at step 3 (`date_3` 2021-08-11; olis.pl prints "3") | 2021 | 375,000 ‡ | 150,000 |
 
-**One Dance corrected 3× → 1×.** The 3× was Wikipedia-cited when the register
-was unreachable (wizkid-certifications-v1.md). Read today, ZPAV holds one row —
-"ONE DANCE | singiel", Platynowa, 2021-08-11 — and no Gold or Diamond row. The
-register files each step of a multiple as its own row (love nwantiti four,
-Calm Down four), so one row is 1×. Pricing Poland made the multiplier carry
-units: 3× would have added 250,000 units ZPAV never awarded.
+**One Dance is 3× — register-confirmed, and a trap worth recording.** ZPAV
+holds ONE One Dance row, "ONE DANCE | singiel", Platynowa — and one row can be
+a multiple. Each row carries `date_1` … `date_7`, one per step, and olis.pl's
+own front end prints the step it fills (`date_3?n("span",[e._v(" 3 ")])`).
+One Dance's is `date_3` = 2021-08-11, so the site shows Platinum "3"; God's
+Plan and Work sit in the same batch the same way, and Calm Down's and love
+nwantiti's four rows are `date_1` … `date_4`. This change first read the one row
+as 1× and cut the Wikipedia 3×; the sequential review caught it before merge.
+The 3× (Wikipedia: `number=3`, 2021/8) stands, now confirmed at the body.
 
 Effect (features on, Nigeria off): not-comparable plaques across the board
 **10 → 2** (Colombia only); unpriceable country/format pairs 3 → 2 (CO/single,
 CO/album). Poland's country board goes from 30,000 units (1 of 9 counted) to
-1,592,500 (9 of 9). Units added: Burna +187,500, Rema +500,000, CKay +500,000,
-Wizkid +125,000, Tems +125,000, Tyla +125,000. No artist-total rank changes and
+1,842,500 (9 of 9). Units added: Burna +187,500, Rema +500,000, CKay +500,000,
+Wizkid +375,000, Tems +125,000, Tyla +125,000. No artist-total rank changes and
 no pair leader flips.
 

@@ -980,12 +980,13 @@ describe("Poland's singles are priced at ZPAV's own 2 zł a single (Paul, 23 Sep
     expect(burna.byCountry.find((l) => l.country === "PL")?.units).toBe(187_500);
   });
 
-  it("One Dance is 1× Platinum in Poland, as ZPAV's register files it", () => {
-    // The 3× was Wikipedia-cited; ZPAV's register holds one Platinum row
-    // (11 Aug 2021) and no Gold or Diamond. See the note in afrobeats.ts.
+  it("One Dance is 3× Platinum in Poland — one register row, filed at step 3", () => {
+    // ZPAV's register holds one One Dance row, and it is a MULTIPLE: its
+    // date_3 is 2021-08-11 and olis.pl prints it as Platinum "3". A review on
+    // 23 Sep 2026 caught this file reading that row as 1x; see afrobeats.ts.
     const od = priceRelease(bySlug("wizkid"), "One Dance", { includeNigeria: false, includeFeatures: true })!;
     const pl = od.byCountry.find((l) => l.country === "PL");
-    expect(pl?.top?.x).toBe(1);
-    expect(pl?.units).toBe(125_000);
+    expect(pl?.top?.x).toBe(3);
+    expect(pl?.units).toBe(3 * 125_000);
   });
 });

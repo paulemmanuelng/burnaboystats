@@ -53,7 +53,7 @@ export const updates: Update[] = [
     category: "Certifications",
     // Poland's singles priced (Paul, 23 Sep 2026: "we have to use 62,500 until
     // anything changes"). The unit figures are the threshold table's own.
-    text: `Burna Boy's Polish plaques now count toward his certified units: ZPAV sets single levels in złoty, converted at the 2 zł a single its own rules printed, so “Dai Dai”'s Gold is ${plSingle.gold!.toLocaleString("en-US")} units and “We Pray”'s Platinum ${plSingle.platinum!.toLocaleString("en-US")}.`,
+    text: `Burna Boy's Polish plaques now count toward his certified units: ZPAV sets single levels in złoty, converted at the 2 zł a single its own tables used until 2024, so “Dai Dai”'s Gold is ${plSingle.gold!.toLocaleString("en-US")} units and “We Pray”'s Platinum ${plSingle.platinum!.toLocaleString("en-US")}.`,
     href: "/compare/in/poland",
   },
   {

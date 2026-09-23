@@ -427,20 +427,24 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
     //   • «(do końca 2024)», in force from 01.08.2021: «SINGLE CYFROWE (ilość /
     //     wysokość przychodu) 25 000 / 50 000 zł | 50 000 / 100 000 zł |
     //     250 000 / 500 000 zł», and item 4b values one single «o wartości 2 zł».
-    // 2 zł is in every rulebook from 1 March 2017 to the end of 2024 (Wayback
-    // captures of bestsellery.zpav.pl/wyroznienia/regulamin.php) and in none
-    // since. The printed 2× / 3× rows are exactly N × the base, as priced.
+    // «o wartości 2 zł» is in every rulebook from 1 March 2017 to the end of
+    // 2024 (Wayback captures of bestsellery.zpav.pl/wyroznienia/regulamin.php),
+    // under the clause for sales before 28 Feb 2017; from October 2017 the
+    // single table itself pairs units with złoty at exactly 2:1, which is the
+    // rate applied here. None of it survives in the 2025 rules — which also
+    // raised the album rate from 20 zł to 35 zł (review, 23 Sep 2026). The
+    // printed 2× / 3× rows are exactly N × the base, as priced.
     // Before 1 Aug 2021 the single levels were 10,000 / 20,000 / 100,000
     // (20,000 / 40,000 / 200,000 zł from March 2017), but ZPAV's register
     // dates every Polish single plaque on this roster 11 Aug 2021 or later,
     // so `floor` holds the 2021 band. Evidence: docs/sourcing/CERT-THRESHOLDS.md.
     normalised:
-      "SINGLES converted: ZPAV prints single levels in złoty of revenue (Złota Płyta 125,000 zł) and, since 1 January 2025, no rate. Divided by 2 zł a single — the value its own rules printed from 1 March 2017 to the end of 2024 — see `historic`. Albums were already units.",
+      "SINGLES converted: ZPAV prints single levels in złoty of revenue (Złota Płyta 125,000 zł) and, since 1 January 2025, no rate. Divided by 2 zł a single — the rate its own single tables used from 2017 to the end of 2024 — see `historic`. Albums were already units.",
     historic:
-      "ZPAV sets single levels in złoty of revenue — Gold 125,000 zł, Platinum 250,000 zł, Diamond 1,000,000 zł — and its current rules state no rate. They are converted at 2 zł a single, the value its own rules printed from March 2017 to the end of 2024, so a Gold single is 62,500 units.",
+      "ZPAV sets single levels in złoty of revenue — Gold 125,000 zł, Platinum 250,000 zł, Diamond 1,000,000 zł — and its current rules state no rate. They are converted at 2 zł a single, the rate its own tables used from 2017 to the end of 2024, printing every single level in units and złoty side by side, so a Gold single is 62,500 units. The same 2025 rules raised the album rate from 20 zł to 35 zł, so the units behind a złoty level may differ.",
     historicFormat: "single",
     vintage:
-      "ZPAV raised its single levels on 1 August 2021, from 20,000 / 40,000 / 200,000 zł to 50,000 / 100,000 / 500,000 zł, and on 1 January 2025, to 125,000 / 250,000 / 1,000,000 zł; albums rose from 10,000 / 20,000 / 100,000 to 15,000 / 30,000 / 150,000 on the same 2025 date. Priced at today's level; a plaque awarded before then may have cleared the lower bar.",
+      "ZPAV raised its single levels on 1 August 2021, from 20,000 / 40,000 / 200,000 zł to 50,000 / 100,000 / 500,000 zł, and on 1 January 2025, to 125,000 / 250,000 / 1,000,000 zł; foreign-repertoire albums rose from 10,000 / 20,000 / 100,000 to 15,000 / 30,000 / 150,000 on the same 2025 date. Priced at today's level; a plaque awarded before then may have cleared the lower bar.",
     single: { silver: null, gold: 62_500, platinum: 125_000, diamond: 500_000 },
     singleRawPln: { gold: 125_000, platinum: 250_000, diamond: 1_000_000 },
     plnPerSingle: 2,

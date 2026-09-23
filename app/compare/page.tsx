@@ -1175,7 +1175,7 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
                 <>
                   {" "}{joinNames(plnBodies.map((t) => nameOf(t.code)))} {plnBodies.length === 1 ? "sets its" : "set their"} single
                   levels in złoty of revenue and no rate; they are converted at {plnBodies[0].plnPerSingle} zł a single, the
-                  value {plnBodies.length === 1 ? "its" : "their"} own rules printed until 2025, and marked ¶.
+                  rate {plnBodies.length === 1 ? "its" : "their"} own single tables used until 2025, and marked ¶.
                 </>
               )}
               {" "}The unpriced plaques are listed, never summed, and never hidden.

@@ -641,8 +641,8 @@ export default function MethodologyPage() {
                 {" "}{joinNames(plnNames)} {plnBodies.length === 1 ? "sets its" : "set their"} single levels in złoty of
                 revenue — Gold is {fmtUnits(plnBodies[0].singleRawPln?.gold ?? null)} zł — and{" "}
                 {plnBodies.length === 1 ? "its" : "their"} current rules state no rate, so they are divided by{" "}
-                {plnBodies[0].plnPerSingle} zł a single, the value {plnBodies.length === 1 ? "its" : "their"} own rules
-                printed from March 2017 to the end of 2024: a Gold single is{" "}
+                {plnBodies[0].plnPerSingle} zł a single, the rate {plnBodies.length === 1 ? "its" : "their"} own single
+                tables used from 2017 to the end of 2024: a Gold single is{" "}
                 {fmtUnits(plnBodies[0].single?.gold ?? null)} units, and those lines carry a &ldquo;¶&rdquo; too.
               </>
             )}
@@ -708,7 +708,7 @@ export default function MethodologyPage() {
             {plnBodies.length > 0 && (
               <>
                 {" "}{joinNames(plnNames)}&apos;s single row is today&apos;s złoty level divided by{" "}
-                {plnBodies[0].plnPerSingle} zł a single — the rate {plnBodies.length === 1 ? "its" : "their"} own rules printed until the end of
+                {plnBodies[0].plnPerSingle} zł a single — the rate {plnBodies.length === 1 ? "its" : "their"} own single tables used until the end of
                 2024 and no longer state — and is marked &ldquo;¶&rdquo; too.
               </>
             )}
