@@ -50,6 +50,24 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-09-23",
+    category: "Awards",
+    text: "Honoured by SESAC as a songwriter on “WGFT”, Gunna's hit featuring him — one of the past year's top songs, celebrated at SESAC's dinner in Malibu on 22 September alongside Ariana Grande, Dixson and Dahi. His third SESAC award.",
+    href: "/records/awards",
+  },
+  {
+    date: "2026-09-23",
+    category: "Awards",
+    text: "Two BreakTudo Awards 2026 nominations, on the Brazilian ceremony's own list: International Male Artist, and International Hit of the Year for “Dai Dai” with Shakira. Winners are named on 24 November in São Paulo.",
+    href: "/records/awards",
+  },
+  {
+    date: "2026-09-23",
+    category: "Charts",
+    text: "A 13th week atop Mediatraffic's United World Chart: “Dai Dai” holds No. 1 on the global ranking in the chart week dated 26 September, on 230,000 points — an unbroken run since the week dated 4 July.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-09-23",
     category: "Certifications",
     // Poland's singles priced (Paul, 23 Sep 2026: "we have to use 62,500 until
     // anything changes"). The unit figures are the threshold table's own.

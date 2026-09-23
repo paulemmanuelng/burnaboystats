@@ -115,7 +115,7 @@ describe("handoff checklist — data integrity", () => {
     ).toBe(chartTitle);
   });
 
-  it("counts 82 award wins from 242 nominations across 47 bodies", () => {
+  it("counts 83 award wins from 245 nominations across 47 bodies", () => {
     const wins = allNoms.filter((n) => n.won).length;
 
     // 4 Aug 2026 year-by-year pass: +2 wins (Headies 2012 Rookie of the
@@ -146,12 +146,17 @@ describe("handoff checklist — data integrity", () => {
     // not list it; the 2014 page lists it as a NOMINEE, so the row moved to
     // 2014, won: false. Same page: Best Collaboration, Burna Boy ft. D'banj —
     // a 2014 nomination the file never had, 241 → 242 (RETRACTIONS #11).
-    expect(wins).toBe(82);
+    // 82 → 83 and 242 → 243 on 23 Sep 2026: SESAC's top-songs honour for
+    // "WGFT" (Gunna feat. Burna Boy), Malibu, 22 Sep (Billboard Pro).
+    expect(wins).toBe(83);
     // 242 -> 241 on 17 Sep 2026: the Headies' Music Video of the Year row for
     // "Bundle by Bundle" dropped — the body presents that award to the video's
     // director and its card names DK, the same rule that keeps producer
     // credits out. Four Headies rows for 2026 stand.
-    expect(allNoms.length).toBe(236 + 4 + 1 + 1 - 1 + 1);
+    // 243 -> 245 on 23 Sep 2026: two BreakTudo Awards 2026 nominations
+    // (International Male Artist; International Hit of the Year, "Dai Dai"),
+    // read in the body's own nominee post. Ceremony 24 Nov — pending.
+    expect(allNoms.length).toBe(236 + 4 + 1 + 1 - 1 + 1 + 1 + 2);
     expect(totalWins).toBe(wins);
     expect(totalNominations).toBe(allNoms.length);
     expect(ceremonyCount).toBe(47);

@@ -153,7 +153,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "BreakTudo Awards",
     "path": "/records/awards",
     "section": "Awards",
-    "description": "0 wins from 1 nomination.",
+    "description": "0 wins from 3 nominations.",
     "keywords": [
       "award",
       "awards",
@@ -545,7 +545,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "SESAC Awards",
     "path": "/records/awards",
     "section": "Awards",
-    "description": "2 wins from 2 nominations.",
+    "description": "3 wins from 3 nominations.",
     "keywords": [
       "award",
       "awards",
