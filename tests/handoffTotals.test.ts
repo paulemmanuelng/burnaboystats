@@ -170,7 +170,7 @@ describe("handoff checklist — data integrity", () => {
     expect(firstsCount).toBe(54);
   });
 
-  it("values the current car collection at $16.84M — current only", () => {
+  it("values the current car collection at $17.54M — current only", () => {
     // "Current only" is the operative rule, and it is stricter than the
     // checklist's shorthand "exclude sold": a car is in the headline total
     // only when it carries NO status at all. Excluding just `sold` leaves the
@@ -184,7 +184,9 @@ describe("handoff checklist — data integrity", () => {
     // ₦9bn at CBN's ₦1,370.19/$ — 3 July 2026, the last trading day before
     // the 4 July reveal — is $6.57M, not the $6.19M that was there, which implied
     // ₦1,454/$ and matches no date near the announcement.
-    expect(`$${(value / 1e6).toFixed(2)}M`).toBe("$16.84M");
+    // $17.54M from 23 Sep 2026: the 2010 SLS AMG joins at its reported
+    // $700,000 — the first car added since the July re-pricing.
+    expect(`$${(value / 1e6).toFixed(2)}M`).toBe("$17.54M");
 
     // Both excluded pools are non-empty, so the filter is doing real work.
     expect(cars.filter((c) => c.status === "sold").length).toBeGreaterThan(0);

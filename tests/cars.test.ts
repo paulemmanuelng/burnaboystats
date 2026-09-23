@@ -38,10 +38,10 @@ function imageSize(buf: Buffer) {
  *  floor and grid back under the car. */
 const pngHasAlpha = (buf: Buffer) => buf[25] === 4 || buf[25] === 6;
 
-describe("the garage — the fifteen current cars as pages", () => {
+describe("the garage — the sixteen current cars as pages", () => {
   it("every current car has a page, and only current cars do", () => {
     expect(garage.length).toBe(currentCars.length);
-    expect(garage.length).toBe(15);
+    expect(garage.length).toBe(16);
     for (const c of cars) {
       if (c.status) {
         expect(c.slug, `${c.make} ${c.model} is ${c.status} and must not have a slug`).toBeUndefined();

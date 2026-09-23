@@ -28,7 +28,7 @@
 // Two rules the pages enforce, and a test guards:
 //   • Every image is an ILLUSTRATION OF THE MODEL, not his car — an audit
 //     against reference photography confirmed zero of fifteen renders as his
-//     actual vehicle (handoff §5.6). `image.depicts` is "model" on all fifteen
+//     actual vehicle (handoff §5.6). `image.depicts` is "model" on every car
 //     and may only become "actual" alongside a `sources` entry proving it.
 //   • Specifications are VERIFIED. All fifteen were read off the manufacturer's
 //     own page in September 2026 and independently re-checked against a second
@@ -166,6 +166,10 @@ export interface CarSpecs {
   note?: string;
   /** Set only after a person read each row off `source`. Never inferred. */
   verified: boolean;
+  /** When THIS panel was read, for a car added after the last garage-wide
+   *  pass (CARS_SPECS_CHECKED) — otherwise its page would claim a reading
+   *  that predates the car. */
+  readOn?: string;
 }
 
 /** Numeric twins of the specs, for the performance bars. Kept in step — and
@@ -420,6 +424,32 @@ export const cars: Car[] = [
     palette: ["#585958", "#767776", "#989896", "#f7f7f6", "#252729"],
     heroSize: [898, 660],
     groundLine: 0.6568,
+  },
+  {
+    // Car 16 (docs/sourcing/CAR-16-SLS-AMG.md). Two fan posts on 9 Sep 2026
+    // put it at $700K+ and about $1M; neither is the dealer's. Paul chose
+    // $700,000 on 23 Sep and ruled the page states that figure only — the $1M
+    // report stays in the sourcing doc, not on the site. ₦ at CBN's NFEM rate
+    // that day, ₦1,329.2129/$. Hero and tile: scripts/build-car-hero.py (#306).
+    make: "Mercedes-Benz", model: "SLS AMG", year: 2010, yearIs: "model",
+    valueUsd: 700_000, valueNaira: "₦930 million", valueBasis: "reported",
+    desc: "The gullwing — a 2010 SLS AMG coupé in black over tan, showing about 6,000 miles, bought in September 2026 from AbujaCar in Abuja, the dealer that also supplied the Chiron and the Senna, whose own video carries the car marked SOLD and off to Lagos. Reported at over $700,000 on 9 September 2026; neither AbujaCar nor Burna Boy has published a figure.",
+    slug: "mercedes-sls-amg",
+    subtitle: "THE GULLWING — 2010 SLS AMG, ABOUT 6,000 MILES",
+    // Spec check 23 Sep 2026, read in a browser off the archived release: "The
+    // fine-tuned 6.3-litre V8 engine develops 420 kW (571 hp) at 6800 rpm", the
+    // M 159; "0 to 100 km/h in 3.8 seconds … a top speed of 317 km/h
+    // (electronically limited)"; power "to the rear axle", "AMG SPEEDSHIFT DCT
+    // 7-speed"; "the DIN kerb weight of 1620 kilograms". The oid=9905144 link
+    // the sourcing doc named is gone; this is the same release, reissued in
+    // Mercedes' Auto China 2010 press kit (23 Apr 2010), and the one capture
+    // the Wayback Machine holds of it. Mercedes' own press-drive technical data
+    // sheet (Mercedes-Benz Media, MARS 9245816) gives the same six figures.
+    specs: { engine: "6.3L V8 (M159)", power: "563 hp", zeroToHundred: "3.8 s", topSpeed: "317 km/h", drivetrain: "RWD", weight: "1,620 kg (DIN)", basis: "as built", source: "https://web.archive.org/web/20230208142021/https://group-media.mercedes-benz.com/marsMediaSite/en/instance/ko/Mercedes-Benz-SLS-AMG-fascination-and-high-tech-New-legend-with-unrivalled-performance--the-Gullwing-super-sports-car-from-Mercedes-Benz-and-AMG.xhtml?oid=9271560&ls=L2VuL2luc3RhbmNlL2tvL1R3by13b3JsZC1hbmQtdHdvLUFzaWEtcHJlbWllcmVzLU1lcmNlZGVzLUJlbnotYXQtQXV0by1DaGluYS0yMDEwLnhodG1sP29pZD05OTA2NTkwJnJlbElkPTYwODIyJmZyb21PaWQ9OTkwNjU5MCZyZXN1bHRJbmZvVHlwZUlkPTQwNjI3JnZpZXdUeXBlPWxpc3Qmc29ydERlZmluaXRpb249UFVCTElTSEVEX0FULTImdGh1bWJTY2FsZUluZGV4PTEmcm93Q291bnRzSW5kZXg9NSZmcm9tSW5mb1R5cGVJZD00MDYzMA!!&rs=1", note: "Mercedes no longer serves the release, so the source is an archived copy of its own Group Media press text (April 2010). It states 420 kW/571 PS; 563 hp is that output in imperial terms, the unit this panel uses throughout. Top speed is electronically limited, and 1,620 kg is Mercedes' DIN kerb weight. Drive is to the rear through a seven-speed dual-clutch transaxle.", verified: true, readOn: "23 September 2026" },
+    num: { hp: 563, kg: 1620, acc: 3.8, vmax: 317 },
+    palette: ["#7a482e", "#56585d", "#96979d", "#f5f5f7", "#252629"],
+    heroSize: [898, 660],
+    groundLine: 0.6598,
   },
   {
     // Weissach pack: no dated source shows it (the delivery clip is at night);

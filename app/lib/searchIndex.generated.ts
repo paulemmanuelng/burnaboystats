@@ -813,6 +813,21 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "Mercedes-Benz SLS AMG",
+    "path": "/records/cars/mercedes-sls-amg",
+    "section": "Car",
+    "description": "In Burna Boy's garage — its page: illustration, reported value and specifications.",
+    "keywords": [
+      "mercedes-benz",
+      "mercedes",
+      "sls",
+      "amg",
+      "car",
+      "garage"
+    ],
+    "generated": true
+  },
+  {
     "title": "Mercedes-Maybach GLS 600",
     "path": "/records/cars/mercedes-maybach-gls-600",
     "section": "Car",

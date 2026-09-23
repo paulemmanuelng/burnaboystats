@@ -13,6 +13,9 @@ the same Abuja dealer that supplied the Chiron and the Senna. Two posts on
 
 ## The price: two claims, one origin, no dealer figure
 
+**Decided 23 Sep 2026 (Paul):** the site carries **$700,000** and states that
+figure only; the ~$1M claim is recorded here and does not appear on the page.
+
 | Claim | Who | When |
 |---|---|---|
 | "$700K+" | @Toluwase_x (X) | 9 Sep 2026 |
@@ -65,7 +68,17 @@ Mercedes' own wording, but they were read from a search engine's index of that
 page, **not off the page itself** — so `verified: true`, which this repo defines
 as "a person read each row off `source`", is not mine to set.
 
-Two honest ways to close it, in preference order:
+**Resolved 23 Sep 2026 — the second way.** The same release text survives
+under another id: Mercedes reissued "Mercedes-Benz SLS AMG: fascination and
+high tech" in its Auto China 2010 press kit (oid=9271560, 23 Apr 2010), and the
+Wayback Machine holds one capture of it (8 Feb 2023). All six rows were read
+off that page in a browser, and `specs.source` cites it. Two live Mercedes
+documents agree figure for figure: the press-drive technical data sheet on
+Mercedes-Benz Media (MARS 9245816, "Kerb weight acc. to DIN kg 1620") and
+Mercedes-Benz USA's 2011 technical data (563 hp). The Mercedes-Benz Classic
+archive's IAA 2009 press kit carries them too, as provisional figures.
+
+The two ways it could have been closed, in preference order:
 
 1. Open the release in a normal browser (it is not blocked for everyone — this
    machine is) and read the eight rows off it. Then `verified: true` with the

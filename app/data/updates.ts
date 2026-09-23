@@ -47,6 +47,14 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-09-23",
+    category: "Lifestyle",
+    // Price: the $700,000 the car's page states (Paul, 23 Sep 2026: that
+    // figure only). The count and total are the garage's own, interpolated.
+    text: `A 2010 Mercedes-Benz SLS AMG — the gullwing, black over tan, about 6,000 miles — joined the garage in September, bought from AbujaCar in Abuja at a reported $700,000. The collection now stands at ${carCount} cars worth a reported ${totalValueFormatted}.`,
+    href: "/records/cars/mercedes-sls-amg",
+  },
+  {
+    date: "2026-09-23",
     category: "Certifications",
     text: "Counted market by market, Burna Boy leads the Afrobeats board's certified units in 10 of the 27 countries where it holds a plaque — the UK (at least 13,960,000), France, Canada, South Africa, New Zealand, Denmark, Switzerland, Austria, Czechia and Slovakia.",
     href: "/compare/in",

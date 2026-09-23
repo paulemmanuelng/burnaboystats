@@ -19,7 +19,7 @@ import {
   heroVars,
 } from "../../../lib/garage";
 
-// Only the fifteen current cars are routes — anything else 404s. The five no
+// Only current cars are routes — anything else 404s. The five no
 // longer counted have no slug, no image and no page (spec §7.3).
 export const dynamicParams = false;
 
@@ -329,7 +329,7 @@ export default async function CarPage({ params }: { params: Promise<{ car: strin
                 {car.jointWith ? ` — joint with ${car.jointWith} ${car.jointWith === 1 ? "other" : "others"} at ${usdFull(car.valueUsd)}` : ""}
               </span>
               <span>{yearLine}</span>
-              <span>List re-verified {CARS_LAST_SWEEP} · specs read at the maker {CARS_SPECS_CHECKED}</span>
+              <span>List re-verified {CARS_LAST_SWEEP} · specs read at the maker {car.specs.readOn ?? CARS_SPECS_CHECKED}</span>
             </div>
           </div>
 
