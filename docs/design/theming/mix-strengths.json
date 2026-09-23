@@ -479,11 +479,6 @@
     "--silver 40%",
     "--text 7%"
   ],
-  "app/records/charts/chartsLoading.module.css": [
-    "--text 5%",
-    "--text 5%",
-    "--text 9%"
-  ],
   "app/records/firsts/firsts.module.css": [
     "--gold-wash-base 5%"
   ],

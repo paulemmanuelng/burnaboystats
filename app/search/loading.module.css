@@ -1,5 +1,5 @@
-/* Route-level loading skeleton.
-   designs/desktop/App States.dc.html, panel C.
+/* /search's loading skeleton (the whole site's until 23 Sep 2026 — see
+   loading.tsx for why it moved). designs/desktop/App States.dc.html, panel C.
 
    The skeleton MIRRORS the real page — kicker, headline, lede, a four-cell stat
    row, then rows — so nothing jumps when data lands. Shimmer only on blocks
