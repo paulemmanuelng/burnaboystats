@@ -1193,6 +1193,11 @@
 }
 
 @media (max-width: 760px) {
+  /* On a phone the plaque-value card is the levels and the body's own link,
+     nothing more (Paul, 23 Sep 2026): the ‡ § ¶ † paragraphs of level history
+     and pricing caveats turned a glance card into a wall. Desktop keeps them,
+     and /methodology carries them for everyone. */
+  .cbThNote { display: none; }
   /* Same treatment the comparison table gets: the markup stays a table —
      headers, scopes and roles intact — and only the display changes, because a
      four-column board's min-content runs past a 343px screen. The rank rides
