@@ -7,7 +7,8 @@ import { badgeWeight, byMostCertified } from "../lib/certs";
 import ScrollRail from "./ScrollRail";
 import { titleKey } from "../lib/titleKey";
 import { coverFor } from "../lib/covers";
-import { spotifyImage, spotifySrcSet } from "../lib/spotifyImage";
+import { spotifySrcSet } from "../lib/spotifyImage";
+import { artAt } from "../lib/artAt";
 import { count } from "../lib/plural";
 import { BLANK_PIXEL } from "../lib/blankPixel";
 import { portraitArtFor } from "../lib/portraitArt";
@@ -385,7 +386,9 @@ export default function MobileCerts({
               <span
                 className={styles.rowCover}
                 aria-hidden="true"
-                style={{ backgroundImage: `url(${spotifyImage(art(r.title) ?? "", 300)})` }}
+                /* 102 = 3x the 34px tile, not a board artist's 500px Deezer
+                   or 300px Apple art (23 Sep 2026). */
+                style={{ backgroundImage: `url(${artAt(art(r.title) ?? "", 102)})` }}
               />
               <div className={styles.rowMain}>
                 <div className={styles.rowTitle}>

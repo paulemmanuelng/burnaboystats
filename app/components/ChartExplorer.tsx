@@ -6,6 +6,7 @@ import { chartTier, type ChartCountry } from "../data/charts";
 import { track } from "../lib/analytics";
 import { coverFor } from "../lib/covers";
 import { spotifyImage } from "../lib/spotifyImage";
+import { artAt } from "../lib/artAt";
 import FilterEmpty from "./FilterEmpty";
 import { byReachOrder } from "../lib/chartOrder";
 
@@ -59,7 +60,10 @@ function Row({
         <span
           className={styles.rowCover}
           aria-hidden="true"
-          style={{ backgroundImage: `url(${spotifyImage(cover(item.title) ?? "", 300)})` }}
+          /* 114 = 3x the 38px tile. A board artist's Deezer (500px) and
+             Apple (300px) art arrived as it was, 2.9 MB of cards for 0.4 MB
+             of pixels on /afrobeats/wizkid/charts (23 Sep 2026). */
+          style={{ backgroundImage: `url(${artAt(cover(item.title) ?? "", 114)})` }}
         />
         <span className={styles.rowText}>
         <span className={styles.title}>{item.title}</span>
