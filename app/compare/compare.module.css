@@ -1152,6 +1152,29 @@
   line-height: var(--type-caption-lh);
   font-variant-numeric: tabular-nums;
 }
+/* The phone twin of .cbThresholds — see the 760px block below. */
+.cbThFold {
+  display: none;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+}
+.cbThSummary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 44px;
+  padding: 12px 18px;
+  user-select: none;
+}
+.cbThSummary::-webkit-details-marker { display: none; }
+.cbThSummary:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.cbThChevron { color: var(--gold); transition: transform 0.2s ease; }
+.cbThFold[open] .cbThChevron { transform: rotate(180deg); }
+@media (prefers-reduced-motion: reduce) { .cbThChevron { transition: none; } }
+.cbThFoldBody { display: grid; gap: 10px; justify-items: start; padding: 0 18px 16px; }
 .cbThNote {
   font-size: var(--type-caption);
   line-height: var(--type-caption-lh);
@@ -1193,11 +1216,17 @@
 }
 
 @media (max-width: 760px) {
-  /* On a phone the plaque-value card is the levels and the body's own link,
-     nothing more (Paul, 23 Sep 2026): the ‡ § ¶ † paragraphs of level history
-     and pricing caveats turned a glance card into a wall. Desktop keeps them,
-     and /methodology carries them for everyone. */
-  .cbThNote { display: none; }
+  /* On a phone the plaque-value card is a fold, shut until tapped, holding the
+     levels and the body's own link and nothing more (Paul, 23 Sep 2026): the
+     ‡ § ¶ † paragraphs of level history and pricing caveats turned a glance
+     card into a wall. Desktop keeps the open card with its footnotes, and
+     /methodology carries them for everyone. */
+  .cbThresholds { display: none; }
+  .cbThFold { display: block; }
+  /* The head-to-head page's Nigeria strip keeps its heading, both artists'
+     figures and the include/separate switch on a phone; the paragraph on why
+     TCSN is counted apart is a desktop thing (Paul, 23 Sep 2026). */
+  .ngWhy { display: none; }
   /* Same treatment the comparison table gets: the markup stays a table —
      headers, scopes and roles intact — and only the display changes, because a
      four-column board's min-content runs past a 343px screen. The rank rides

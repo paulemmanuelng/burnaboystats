@@ -278,6 +278,27 @@ export function CountryBoardView({
   // priced as N × Platinum". It is only a caveat where an N× award is actually
   // on the board — the Czech card carried it above a single Gold.
   const multiplied = board.programs.some((x) => x.lines.some((l) => l.plaqueList.some((p) => p.x > 1)));
+  const levelLists = board.programs.map((prog) => (
+    <dl className={styles.cbThList} key={prog.name}>
+      {board.programs.length > 1 && <p className={styles.cbThProgram}>{prog.name}</p>}
+      <div className={styles.cbThRow}>
+        <dt>Single</dt>
+        <dd>{prog.single ? tierRun(prog.single) : <>not priced{"\u00a0"}<span className={styles.mark}>¹</span></>}</dd>
+      </div>
+      <div className={styles.cbThRow}>
+        <dt>Album</dt>
+        <dd>{prog.album ? tierRun(prog.album) : <>not priced{"\u00a0"}<span className={styles.mark}>¹</span></>}</dd>
+      </div>
+    </dl>
+  ));
+  const levelsLink = t?.sourceUrl && (
+    <a href={t.sourceUrl} className={styles.cbRegister} target="_blank" rel="noopener noreferrer">
+      {/* "Its own levels" is a promise the link has to keep: a body
+          that publishes none is linked as a register instead. */}
+      {t.single || t.album ? `${board.body}'s own levels` : `${board.body}'s register`}{" "}
+      <span aria-hidden="true">↗</span>
+    </a>
+  );
   const biggest = [...byRecord.values()]
     .sort((x, y) => (y.p.units ?? 0) - (x.p.units ?? 0) || x.p.title.localeCompare(y.p.title))
     .slice(0, 10);
@@ -322,34 +343,29 @@ export function CountryBoardView({
               reasons run to three sentences — Colombia's twice over, once per
               format — and a card built to be read at a glance turned into two
               paragraphs of register provenance. */}
-          {board.programs.map((prog) => (
-            <dl className={styles.cbThList} key={prog.name}>
-              {board.programs.length > 1 && <p className={styles.cbThProgram}>{prog.name}</p>}
-              <div className={styles.cbThRow}>
-                <dt>Single</dt>
-                <dd>{prog.single ? tierRun(prog.single) : <>not priced{"\u00a0"}<span className={styles.mark}>¹</span></>}</dd>
-              </div>
-              <div className={styles.cbThRow}>
-                <dt>Album</dt>
-                <dd>{prog.album ? tierRun(prog.album) : <>not priced{"\u00a0"}<span className={styles.mark}>¹</span></>}</dd>
-              </div>
-            </dl>
-          ))}
+          {levelLists}
           <p className={styles.cbThNote}>
             {t?.vintage ? <><span className={styles.mark}>‡</span> {t.vintage}{" "}</> : null}
             {t?.assumed ? <><span className={styles.mark}>§</span> {t.assumed}{" "}</> : null}
             {t?.historic ? <><span className={styles.mark}>¶</span> {t.historic}{" "}</> : null}
             {t?.caveat && multiplied ? <><span className={styles.mark}>†</span> {t.caveat}{" "}</> : null}
           </p>
-          {t?.sourceUrl && (
-            <a href={t.sourceUrl} className={styles.cbRegister} target="_blank" rel="noopener noreferrer">
-              {/* "Its own levels" is a promise the link has to keep: a body
-                  that publishes none is linked as a register instead. */}
-              {t.single || t.album ? `${board.body}'s own levels` : `${board.body}'s register`}{" "}
-              <span aria-hidden="true">↗</span>
-            </a>
-          )}
+          {levelsLink}
         </div>
+        {/* The same card on a phone, folded shut (Paul, 23 Sep 2026): a native
+            <details>, like this page's "+ N more" folds, so it needs no script.
+            CSS shows exactly one of the two per layout; the footnotes stay a
+            desktop thing (see the 760px block in compare.module.css). */}
+        <details className={styles.cbThFold}>
+          <summary className={styles.cbThSummary}>
+            <span className={styles.cbThHead}>What one plaque is worth here</span>
+            <span className={styles.cbThChevron} aria-hidden="true">↓</span>
+          </summary>
+          <div className={styles.cbThFoldBody}>
+            {levelLists}
+            {levelsLink}
+          </div>
+        </details>
       </div>
 
       {board.code === "NG" && (
