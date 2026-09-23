@@ -43,6 +43,7 @@
 // ============================================================================
 
 import {
+  CERT_PROGRAMS,
   CERT_THRESHOLDS,
   exclusionFor,
   thresholdFor,
@@ -208,8 +209,33 @@ export function unitsForCert(
   return { units: base * (cert.x ?? 1), why: null };
 }
 
+/** The programme a plaque was awarded under, when the body runs more than one
+ *  and the threshold table prices them separately — today that is RIAA Latin
+ *  and nothing else.
+ *
+ *  RULE 5, and Paul's (23 Sep 2026): A SEPARATELY-PRICED PROGRAMME IS A
+ *  SEPARATE LINE. RIAA Latin certifies a Platino at 60,000 units where RIAA
+ *  certifies a Platinum at 1,000,000; the two are not the same award and a
+ *  "United States" line that sums them reports three plaques RIAA never
+ *  issued. The units are still US units and still count toward the artist's
+ *  total — they simply never sit inside the RIAA line.
+ *
+ *  A `body` that merely names a different ISSUER is not a programme: Colombia's
+ *  "Sony Music Colombia" plaque has no published scale of its own, which is why
+ *  this asks CERT_PROGRAMS rather than testing for a body override. */
+export const programOf = (cert: { body?: string }): string | undefined =>
+  cert.body && CERT_PROGRAMS[cert.body] ? cert.body : undefined;
+
+/** The line a plaque belongs on: its country, and its programme when that
+ *  programme is priced separately. */
+export const marketKey = (country: string, program?: string) =>
+  program ? `${country}|${program}` : country;
+
 export interface CountryLine {
   country: string;
+  /** Set when this line is a separately-priced programme rather than the
+   *  country's own body — see `programOf`. */
+  program?: string;
   body: string;
   units: number;
   /** How many releases contributed — not how many awards, see rule 1. */
@@ -332,7 +358,12 @@ export function priceArtist(
     // enumerated first. Burna's New Zealand line opened on an unmultiplied
     // plaque and his 3x Platinum on "Last Last" then shipped with no dagger.
     const multiplied = (cert.x ?? 1) > 1;
-    const line = lines.get(cert.c);
+    // Rule 5: a separately-priced programme is its own line. Everything below
+    // keys on the MARKET, not the country, so RIAA Latin's Platinos never land
+    // inside the RIAA line.
+    const program = programOf(cert);
+    const key = marketKey(cert.c, program);
+    const line = lines.get(key);
     if (line) {
       line.units += units;
       line.releases += 1;
@@ -342,18 +373,24 @@ export function priceArtist(
       }
       if (multiplied && !line.caveat) line.caveat = CERT_THRESHOLDS[cert.c]?.caveat;
     } else {
-      lines.set(cert.c, {
+      lines.set(key, {
         country: cert.c,
-        body: CERT_THRESHOLDS[cert.c]?.body ?? cert.c,
+        program,
+        // A programme line is the PROGRAMME's, so it names it — the country's
+        // default body never awarded these.
+        body: program ?? CERT_THRESHOLDS[cert.c]?.body ?? cert.c,
         units,
         releases: 1,
         top: { title: release.title, level: cert.level, x: cert.x ?? 1, body: cert.body },
         topUnits: units,
         counted: true,
-        caveat: multiplied ? CERT_THRESHOLDS[cert.c]?.caveat : undefined,
-        vintage: CERT_THRESHOLDS[cert.c]?.vintage,
-        assumed: CERT_THRESHOLDS[cert.c]?.assumed,
-        historic: CERT_THRESHOLDS[cert.c]?.historic,
+        // A programme publishes its own scale, so the country's threshold
+        // notes — the raised-levels ‡, the assumed-ratio §, the historic ¶ —
+        // are not statements about it.
+        caveat: program ? undefined : multiplied ? CERT_THRESHOLDS[cert.c]?.caveat : undefined,
+        vintage: program ? undefined : CERT_THRESHOLDS[cert.c]?.vintage,
+        assumed: program ? undefined : CERT_THRESHOLDS[cert.c]?.assumed,
+        historic: program ? undefined : CERT_THRESHOLDS[cert.c]?.historic,
       });
     }
   }
@@ -365,7 +402,12 @@ export function priceArtist(
   for (const { release, cert, why } of unpriced.values()) {
     if (cert.c === "NG" && !options.includeNigeria) continue;
     const top = { title: release.title, level: cert.level, x: cert.x ?? 1, body: cert.body };
-    const priced = lines.get(cert.c);
+    // Keyed on the market for the same reason the priced lines are: a tier a
+    // PROGRAMME does not award (there is no Silver Platino) must not attach
+    // itself to the country's line.
+    const program = programOf(cert);
+    const key = marketKey(cert.c, program);
+    const priced = lines.get(key);
     if (priced) {
       const nc = priced.notCounted;
       if (!nc) priced.notCounted = { plaques: 1, top, reason: why };
@@ -375,7 +417,7 @@ export function priceArtist(
       }
       continue;
     }
-    const held = listedLines.get(cert.c);
+    const held = listedLines.get(key);
     if (held) {
       held.releases += 1;
       if (rank(cert) > held.topRank) {
@@ -384,9 +426,10 @@ export function priceArtist(
       }
       continue;
     }
-    listedLines.set(cert.c, {
+    listedLines.set(key, {
       country: cert.c,
-      body: CERT_THRESHOLDS[cert.c]?.body ?? cert.c,
+      program,
+      body: program ?? CERT_THRESHOLDS[cert.c]?.body ?? cert.c,
       units: 0,
       releases: 1,
       top,
@@ -517,6 +560,9 @@ export function nigeriaDefault(
 
 export interface ComparisonRow {
   country: string;
+  /** Set when the row is a separately-priced programme rather than the
+   *  country's own body (RIAA Latin) — see `programOf`. */
+  program?: string;
   body: string;
   a: CountryLine | null;
   b: CountryLine | null;
@@ -584,22 +630,28 @@ export function compare(
   const pa = priceArtist(a, opts);
   const pb = priceArtist(b, opts);
 
-  const lineFor = (p: ArtistUnits, code: string) =>
-    p.byCountry.find((l) => l.country === code) ?? p.listed.find((l) => l.country === code) ?? null;
+  // Rows are MARKETS, not countries: rule 5 gives a separately-priced
+  // programme a line of its own, so the United States can appear twice — once
+  // as RIAA, once as RIAA Latin — and neither figure includes the other.
+  const keyOf = (l: CountryLine) => marketKey(l.country, l.program);
+  const lineFor = (p: ArtistUnits, key: string) =>
+    p.byCountry.find((l) => keyOf(l) === key) ?? p.listed.find((l) => keyOf(l) === key) ?? null;
 
   const codes = [
     ...new Set(
-      [...pa.byCountry, ...pa.listed, ...pb.byCountry, ...pb.listed].map((l) => l.country),
+      [...pa.byCountry, ...pa.listed, ...pb.byCountry, ...pb.listed].map(keyOf),
     ),
   ];
 
   const all: ComparisonRow[] = codes
-    .map((country) => {
-      const la = lineFor(pa, country);
-      const lb = lineFor(pb, country);
+    .map((key) => {
+      const la = lineFor(pa, key);
+      const lb = lineFor(pb, key);
+      const line = la ?? lb!;
       return {
-        country,
-        body: CERT_THRESHOLDS[country]?.body ?? country,
+        country: line.country,
+        program: line.program,
+        body: line.body,
         a: la,
         b: lb,
         contested: Boolean(la && lb),
@@ -610,7 +662,8 @@ export function compare(
     .sort(
       (x, y) =>
         Math.max(y.a?.units ?? 0, y.b?.units ?? 0) - Math.max(x.a?.units ?? 0, x.b?.units ?? 0) ||
-        x.country.localeCompare(y.country),
+        x.country.localeCompare(y.country) ||
+        (x.program ?? "").localeCompare(y.program ?? ""),
     );
 
   // Rule 3: Nigeria pins to the top when it is in scope, so an included Nigeria
