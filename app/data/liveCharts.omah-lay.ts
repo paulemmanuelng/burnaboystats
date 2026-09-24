@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-23";
+  export const liveChartsUpdated = "2026-09-24";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-23T21:33Z";
+  export const liveChartsBuiltAt = "2026-09-24T04:56Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","iTunes"];
@@ -251,8 +251,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 51,
-            "movement": -3
+            "position": 50,
+            "movement": 1
           },
           {
             "country": "GH",
@@ -611,6 +611,19 @@
             "movement": -24
           }
         ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 34,
+            "movement": null,
+            "status": "new"
+          }
+        ]
       }
     ],
     "kind": "song",
@@ -670,20 +683,20 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 3,
-            "movement": 11
+            "position": 9,
+            "movement": -4
           },
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 40,
-            "movement": -8
+            "position": 43,
+            "movement": -5
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 189,
-            "movement": -167
+            "position": 190,
+            "movement": -161
           }
         ]
       },
@@ -784,6 +797,44 @@
             "movement": 12
           }
         ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/e51306cd0211b33a043b1fef073026e5/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "soso",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 154,
+            "movement": -13
+          },
+          {
+            "country": "OM",
+            "name": "Oman",
+            "position": 157,
+            "movement": 18
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 161,
+            "movement": 25
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 181,
+            "movement": null,
+            "status": "new"
+          }
+        ]
       },
       {
         "platform": "iTunes",
@@ -792,7 +843,20 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 175,
+            "position": 42,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "AZ",
+            "name": "Azerbaijan",
+            "position": 64,
+            "movement": -20
+          },
+          {
+            "country": "GT",
+            "name": "Guatemala",
+            "position": 72,
             "movement": null,
             "status": "new"
           }
@@ -860,63 +924,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/2f5c91242bfb5ed7be4ccb2b435b6f7f/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "soso",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TZ",
-            "name": "Tanzania",
-            "position": 154,
-            "movement": -13
-          },
-          {
-            "country": "OM",
-            "name": "Oman",
-            "position": 157,
-            "movement": 18
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 161,
-            "movement": 25
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 181,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GT",
-            "name": "Guatemala",
-            "position": 49,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "AZ",
-            "name": "Azerbaijan",
-            "position": 57,
-            "movement": -15
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/e51306cd0211b33a043b1fef073026e5/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Forever",
     "platforms": [
       {
@@ -950,14 +957,14 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 85,
-            "movement": 5
+            "position": 82,
+            "movement": -1
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 186,
-            "movement": -5
+            "position": 185,
+            "movement": -12
           }
         ]
       }
@@ -1221,7 +1228,7 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 76,
+            "position": 77,
             "movement": 11
           },
           {
@@ -1260,7 +1267,7 @@
           {
             "country": "GT",
             "name": "Guatemala",
-            "position": 50,
+            "position": 73,
             "movement": null,
             "status": "new"
           }
@@ -1373,6 +1380,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/d9cbcfdbfb5dab6a1a37aeae7039d83c/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Moving",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 87,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/f913fed89932ceb56f7809aa7f811c0c/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "joanna",
     "platforms": [
       {
@@ -1413,25 +1440,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/909acf24c4e836b2483bee0e8cb939d2/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Hello Brother",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 197,
-            "movement": -148
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ef0cdba98ec2ded511a923054520c656/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "What Have We Done - EP",
     "platforms": [
       {
@@ -1442,7 +1450,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 68,
-            "movement": -3
+            "movement": 0
           }
         ]
       }
