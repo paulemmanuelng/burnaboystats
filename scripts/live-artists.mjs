@@ -32,6 +32,11 @@
  * @property {string} [runOut]    Append-only daily run history, if kept.
  * @property {boolean} [covers]   Resolve artwork per release at build time.
  * @property {boolean} [mayChartNowhere]  Exempt from the 25-placement floor.
+ *   ONLY for an artist who can genuinely hold no placement on a given day.
+ * @property {number} [minPlacements]  A lower "is this file real" floor for an
+ *   artist who does chart, but sits near 25 on an ordinary day — so a quiet
+ *   hour doesn't fail the build. Use this, not mayChartNowhere, for anyone
+ *   who charts.
  * @property {boolean} [staged]   Built, but not on the board yet: its
  *   app/data/liveBoards.ts row waits on the artist's certification verify.
  *   `--artist=board` (the hourly job) skips a staged artist, so the set the job
@@ -428,7 +433,7 @@ export const LIVE_ARTISTS = {
     out: "liveCharts.kizz-daniel.ts",
     runOut: "runHistory.kizz-daniel.ts",
     covers: true,
-    mayChartNowhere: true,
+    minPlacements: 10,
     staged: true,
   },
   "mr-eazi": {
@@ -491,7 +496,7 @@ export const LIVE_ARTISTS = {
     out: "liveCharts.ruger.ts",
     runOut: "runHistory.ruger.ts",
     covers: true,
-    mayChartNowhere: true,
+    minPlacements: 10,
     staged: true,
   },
   stonebwoy: {
@@ -515,7 +520,7 @@ export const LIVE_ARTISTS = {
     out: "liveCharts.stonebwoy.ts",
     runOut: "runHistory.stonebwoy.ts",
     covers: true,
-    mayChartNowhere: true,
+    minPlacements: 5,
     staged: true,
   },
   sarkodie: {
@@ -533,7 +538,7 @@ export const LIVE_ARTISTS = {
     out: "liveCharts.sarkodie.ts",
     runOut: "runHistory.sarkodie.ts",
     covers: true,
-    mayChartNowhere: true,
+    minPlacements: 10,
     staged: true,
   },
 };
@@ -546,4 +551,26 @@ export const liveArtist = (slug) => {
     );
   }
   return a;
+};
+
+/** The "is this file real" floor for one artist's build — read by the builder
+ *  AND by tests/liveBoards.test.ts, so the two cannot drift. */
+export const placementFloor = (artist) =>
+  artist.mayChartNowhere ? 0 : artist.minPlacements ?? (artist.slug === "burna-boy" ? 50 : 25);
+
+/** How much of the previous file may vanish before a build is a source failure
+ *  rather than a quiet hour. Chart churn moves these files by a few per cent an
+ *  hour, so a 40% fall on a big board is a half-scraped page. On a small board
+ *  a percentage alone misfires: Yemi Alade going from 4 placements to 2 is a
+ *  "50% drop" and ordinary. So a build is refused only when the fall is BOTH
+ *  over 40% AND more than 10 placements. Returns the reason to refuse, or null. */
+export const MAX_DROP = 0.4;
+export const MIN_LOSS = 10;
+export const dropRefusal = (before, after) => {
+  if (!(before > 0)) return null;
+  const drop = (before - after) / before;
+  if (drop > MAX_DROP && before - after > MIN_LOSS) {
+    return `${after} placements against ${before} last time — a ${Math.round(drop * 100)}% drop (${before - after} placements), over the ${Math.round(MAX_DROP * 100)}% and ${MIN_LOSS}-placement limits`;
+  }
+  return null;
 };
