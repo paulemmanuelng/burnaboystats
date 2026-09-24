@@ -51,6 +51,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-09-24",
+    category: "Streaming",
+    text: "17.91 million Spotify followers, the most of any African artist and just over five million clear of Wizkid (12.86M) — with Davido (12.03M), Rema (11.94M) and Asake (10.77M) completing the five. Every count read at Spotify itself on 24 September.",
+    href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-09-24",
     category: "Charts",
     // Billboard's Luxembourg Songs page, week of 26 Sep 2026: "LW 1 PEAK 1 WEEKS
     // AT NO. 1 12 WEEKS ON CHART 17". Spotify Switzerland daily chart dated
@@ -259,12 +265,6 @@ export const updates: Update[] = [
     category: "Charts",
     text: "Two song-page corrections: “Last Last” peaked at No. 3 on TurnTable's Nigeria chart (its Top 50 debut, May 2022), not No. 2 — 46 weekly issues re-read at the body; and “On the Low” is a 2018 single, released 16 November 2018, not a 2019 one.",
     href: "/music/last-last",
-  },
-  {
-    date: "2026-09-17",
-    category: "Streaming",
-    text: "17.81 million Spotify followers, the most of any African artist and just over five million clear of Wizkid (12.77M) — with Davido (11.96M), Rema (11.87M) and Asake (10.66M) completing the five. Every count read at Spotify itself on 17 September.",
-    href: "/records/africas-biggest",
   },
   {
     date: "2026-09-17",

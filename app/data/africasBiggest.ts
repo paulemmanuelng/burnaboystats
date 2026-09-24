@@ -361,14 +361,14 @@ export const statBoxes: LeaderboardBox[] = [
     layout: "list",
     entries: [
       { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: spotifyFollowersDisplay },
-      { name: "Wizkid", sub: "🇳🇬 Nigeria", value: "12.82M" },
-      { name: "Davido", sub: "🇳🇬 Nigeria", value: "12.00M" },
-      { name: "Rema", sub: "🇳🇬 Nigeria", value: "11.91M" },
-      { name: "Asake", sub: "🇳🇬 Nigeria", value: "10.73M" },
+      { name: "Wizkid", sub: "🇳🇬 Nigeria", value: "12.86M" },
+      { name: "Davido", sub: "🇳🇬 Nigeria", value: "12.03M" },
+      { name: "Rema", sub: "🇳🇬 Nigeria", value: "11.94M" },
+      { name: "Asake", sub: "🇳🇬 Nigeria", value: "10.77M" },
     ],
-    note: "Burna Boy is the most-followed African artist on Spotify — just over 5 million clear of Wizkid in second. Davido and Rema sit within a hundred thousand of each other for third, and Asake is past ten million too; Ayra Starr (7.80M) and Tyla (5.43M) are next.",
+    note: "Burna Boy is the most-followed African artist on Spotify — just over 5 million clear of Wizkid in second. Davido and Rema sit within a hundred thousand of each other for third, and Asake is past ten million too; Omah Lay (8.02M) and Ayra Starr (7.83M) are next.",
     source:
-      "Spotify follower counts, read directly from each artist's own Spotify page (the About panel prints the exact count) rather than a tracker, all on 21 September 2026 — Burna Boy 17,870,932, Wizkid 12,822,411, Davido 12,001,372, Rema 11,911,168, Asake 10,726,832 (Ayra Starr 7,804,641, Tyla 5,428,431). The 17 September reading had them at 17,810,103 / 12,770,577 / 11,963,316 / 11,868,494 / 10,661,326. The 10 August reading of this board had left Rema and Ayra Starr unread; both are above Tyla, who dropped out of the five. They move continuously, so treat them as that day's reading.",
+      "Spotify follower counts, read directly from each artist's own Spotify page (the About panel prints the exact count) rather than a tracker, all on 24 September 2026 — Burna Boy 17,911,287, Wizkid 12,855,789, Davido 12,027,276, Rema 11,939,386, Asake 10,773,557 (then Omah Lay 8,022,983 and Ayra Starr 7,828,789; Fireboy DML 5,736,488, Olamide 5,549,083, Tyla 5,439,165 and Tems 5,094,181 follow, and Diamond Platnumz and Black Coffee are under 2 million). The 21 September reading had them at 17,870,932 / 12,822,411 / 12,001,372 / 11,911,168 / 10,726,832.",
   },
   {
     id: "highest-spotify-global-peak",
