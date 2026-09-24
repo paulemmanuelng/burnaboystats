@@ -1,10 +1,9 @@
 import { describe, it, expect } from "vitest";
-import { readFileSync } from "node:fs";
-import { join } from "node:path";
 import { allFirsts } from "../app/data/firsts";
 import { honours } from "../app/data/awards";
 import { timelineEras } from "../app/data/timeline";
 import { updates } from "../app/data/updates";
+import { faqs } from "../app/data/faqs";
 
 // Two UK claims the site printed wrong, corrected 24 Sep 2026 (RETRACTIONS #13):
 //
@@ -21,14 +20,15 @@ import { updates } from "../app/data/updates";
 
 const ONE_BILLION_FIRST = /first african artist to surpass (both )?1 billion/i;
 const OWN_IT_2019 = /Own It.{0,80}topped the UK Singles Chart in 2019/;
-const read = (p: string) => readFileSync(join(__dirname, "..", p), "utf8");
 
 describe("UK streams and UK No. 1 firsts", () => {
   it("claims no 1-billion UK streams first anywhere it was printed", () => {
     for (const f of allFirsts) expect(`${f.title} ${f.text}`).not.toMatch(ONE_BILLION_FIRST);
     for (const h of honours) expect(h.note ?? "").not.toMatch(ONE_BILLION_FIRST);
     for (const u of updates) expect(u.text).not.toMatch(ONE_BILLION_FIRST);
-    const faq = read("app/faq/page.tsx");
+    // The FAQ answers live in data/faqs.ts since the root-layout CSS split.
+    const faq = faqs.map((f) => f.a).join("\n");
+    expect(faq).toMatch(/first African artist to pass 2 billion UK streams/);
     expect(faq).not.toMatch(ONE_BILLION_FIRST);
     expect(faq).not.toMatch(/both 1 billion and 2 billion/);
   });
