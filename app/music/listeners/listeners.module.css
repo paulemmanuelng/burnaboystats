@@ -121,7 +121,12 @@
 }
 .table td { padding: 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
 .table tbody tr:hover td { background: color-mix(in srgb, var(--gold-wash-base) calc(5% * var(--wash-strength)), transparent); }
-.regionCell {
+/* The row header: the region in the heading face, on the row's top line with
+   its cells. Written as ".table th.regionCell" (0,2,1) because ".table th"
+   above is 0,1,1 and outranked a bare .regionCell — so until 24 Sep 2026 the
+   header rendered as the column heads' 11px muted mono, and sat about 13px
+   below its row at the table default, vertical-align: middle. */
+.table th.regionCell {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
   font-size: 17px;
@@ -132,13 +137,8 @@
   padding: 14px;
   white-space: nowrap;
   text-align: left;
+  vertical-align: top;
 }
-/* The row header sits on the row's top line with its cells. ".table th" above
-   is 0,1,1 and outranks .regionCell, so the th fell back to the table
-   default, vertical-align: middle, about 13px below the cells beside it. Only
-   the alignment is raised here; the rest of .regionCell still loses to
-   ".table th", as it always has. */
-.table th.regionCell { vertical-align: top; }
 .numCol {
   text-align: right;
   font-family: var(--font-geist-sans), system-ui, sans-serif;

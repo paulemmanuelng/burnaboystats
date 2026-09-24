@@ -26,7 +26,11 @@ export interface PerformedCountry {
   more?: boolean; // true when there are further appearances beyond those listed
   // For tiny island nations too small to have a shape in the 110m base map, a
   // pre-projected dot position (same projection as worldShapes) so they still
-  // appear and are hoverable.
+  // appear and are hoverable. St Kitts & Nevis and Antigua & Barbuda sit 2.4
+  // units apart at true position, inside one r=3.2 dot, so St Kitts was all but
+  // hidden and could not be hovered. Both are nudged apart along the line
+  // between them — same direction, 7.4 units apart, so the two dots (stroke
+  // included) no longer overlap (24 Sep 2026). Nothing else moved.
   marker?: { x: number; y: number };
 }
 
@@ -93,12 +97,12 @@ export const performedCountries: PerformedCountry[] = [
   { name: "Curaçao", code: 531, region: "Caribbean", flag: "🇨🇼", events: ["Festival Center Brievengat, Willemstad (2022)"], marker: { x: 273.5, y: 194 } },
   { name: "Barbados", code: 52, region: "Caribbean", flag: "🇧🇧", events: ["Tipsy Beach Party, Bridgetown (2022)"], marker: { x: 303, y: 190.8 } },
   { name: "Bahamas", code: 44, region: "Caribbean", flag: "🇧🇸", events: ["Spilligate Festival, Nassau (2024)"] },
-  { name: "St Kitts & Nevis", code: 659, region: "Caribbean", flag: "🇰🇳", events: ["St Kitts Music Festival (2023)"], marker: { x: 296.5, y: 177.1 } },
+  { name: "St Kitts & Nevis", code: 659, region: "Caribbean", flag: "🇰🇳", events: ["St Kitts Music Festival (2023)"], marker: { x: 294.1, y: 176.4 } },
   { name: "Dominica", code: 212, region: "Caribbean", flag: "🇩🇲", events: ["World Creole Music Festival, Roseau (2022)"], marker: { x: 299.2, y: 183.4 } },
   { name: "Trinidad & Tobago", code: 780, region: "Caribbean", flag: "🇹🇹", events: ["O2 Park, Trinidad (2022)", "TOMAC Festival, Tobago (2022)"] },
   { name: "Haiti", code: 332, region: "Caribbean", flag: "🇭🇹", events: ["Live in Haiti (2020)"] },
   { name: "Saint Lucia", code: 662, region: "Caribbean", flag: "🇱🇨", events: ["Taste the Rhythms with Burna Boy, Castries (2024)"], marker: { x: 299.7, y: 188.4 } },
-  { name: "Antigua & Barbuda", code: 28, region: "Caribbean", flag: "🇦🇬", events: ["Sir Vivian Richards Stadium (2022)"], marker: { x: 298.8, y: 177.8 } },
+  { name: "Antigua & Barbuda", code: 28, region: "Caribbean", flag: "🇦🇬", events: ["Sir Vivian Richards Stadium (2022)"], marker: { x: 301.2, y: 178.5 } },
 
   // ── Oceania ──
   { name: "Australia", code: 36, region: "Oceania", flag: "🇦🇺", events: ["Qudos Bank Arena, Sydney (2025)", "Sidney Myer Music Bowl, Melbourne (2025)"], more: true },
