@@ -8,8 +8,8 @@ import {
   BURNA_HOT_100_ENTRIES_WORD,
 } from "../app/data/africasBiggest";
 import { firstGroups } from "../app/data/firsts";
-import { faqs } from "../app/faq/page";
-import { stats as byTheNumbers } from "../app/records/by-the-numbers/page";
+import { faqs } from "../app/data/faqs";
+import { stats as byTheNumbers } from "../app/data/byTheNumbers";
 import { pageFaqs } from "../app/records/africas-biggest/page";
 
 // His career Billboard Hot 100 entry count is published in eight places across
@@ -72,16 +72,21 @@ const HOMES: { where: string; text: string; spelling: "numeral" | "word" }[] = [
 // The files allowed to state it. A new one has to be added here — and to HOMES
 // above — deliberately, which is the tripwire the old hand-typed spread had no
 // version of.
+//
+// The FAQ answers and the By-the-numbers stats moved out of their pages into
+// app/data on 23 Sep 2026, so the root layout's nav could count them without
+// importing the pages' CSS; the FAQ page keeps the record in its meta
+// description, with no count.
 const PUBLISHING_FILES = [
   "app/data/africasBiggest.ts",
+  "app/data/byTheNumbers.ts",
+  "app/data/faqs.ts",
   "app/data/firsts.ts",
-  "app/faq/page.tsx",
   "app/records/africas-biggest/page.tsx",
-  "app/records/by-the-numbers/page.tsx",
 ];
 
 /** Files that name the record but state no number, so they cannot drift. */
-const MENTIONS_WITHOUT_A_COUNT = ["app/data/updates.ts"];
+const MENTIONS_WITHOUT_A_COUNT = ["app/data/updates.ts", "app/faq/page.tsx"];
 
 describe("the Billboard Hot 100 entry count agrees with itself everywhere", () => {
   it("is still stated in every home the site publishes it in", () => {

@@ -31,8 +31,8 @@ import { recordBooks } from "./recordBooks";
 import { africaBoards } from "./africaBoards";
 import { findings } from "./analysisFindings";
 import { API_VERSION, lastUpdated } from "./api";
-import { faqs } from "../faq/page";
-import { stats as byTheNumbers } from "../records/by-the-numbers/page";
+import { faqs } from "../data/faqs";
+import { stats as byTheNumbers } from "../data/byTheNumbers";
 import { JUMP as visualizedCharts } from "./visualizedSections";
 
 export interface NavRow {

@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { GET } from "../app/llms.txt/route";
-import { faqs } from "../app/faq/page";
+import { faqs } from "../app/data/faqs";
 import { albums } from "../app/data/albums";
 
 /**

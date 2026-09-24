@@ -19,7 +19,7 @@ vi.mock("next/link", () => ({
 
 import AfricasBiggestPage from "../app/records/africas-biggest/page";
 import AwardsPage from "../app/records/awards/page";
-import { stats as byTheNumbers } from "../app/records/by-the-numbers/page";
+import { stats as byTheNumbers } from "../app/data/byTheNumbers";
 import {
   BURNA_YT_AUDIENCE,
   BURNA_YT_AUDIENCE_SET_ON_LONG,
