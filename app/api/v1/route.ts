@@ -1,6 +1,7 @@
 import { apiJson, API_VERSION } from "../../lib/api";
 import { sweptArtists } from "../../data/afrobeats";
 import { LIVE_CADENCE_REBUILT } from "../../lib/liveChartMeta";
+import { DATA_DOWNLOADS } from "../../lib/dataDownloads";
 
 // Prerendered at build time — these are static datasets, not live queries.
 export const dynamic = "force-static";
@@ -49,11 +50,22 @@ const endpoints = [
   },
 ];
 
+// The CSV files sit beside the endpoints rather than among them: they are not
+// JSON and carry no envelope, so a consumer iterating `endpoints` for JSON
+// should never be handed one. Same data, same licence.
+const downloads = DATA_DOWNLOADS.map((d) => ({
+  path: d.path,
+  format: "text/csv",
+  rows: d.count,
+  rowsOf: d.countOf,
+  description: d.what,
+}));
+
 export function GET() {
   return apiJson({
     endpoint: "",
     description:
       "Open, verified Burna Boy chart and certification data. Free to use with attribution.",
-    data: { endpoints },
+    data: { endpoints, downloads },
   });
 }

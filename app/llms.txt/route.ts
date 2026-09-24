@@ -15,6 +15,7 @@ import { CANONICAL_ORIGIN } from "../lib/seo";
 import { faqs } from "../data/faqs";
 import { albums } from "../data/albums";
 import { LIVE_CADENCE_REBUILT } from "../lib/liveChartMeta";
+import { DATA_DOWNLOADS } from "../lib/dataDownloads";
 
 /**
  * /llms.txt — a plain-text map of the site for answer engines.
@@ -62,6 +63,7 @@ export function GET() {
 Last updated: ${lastUpdated}
 Licence: data is CC BY 4.0 — reuse it with attribution to ${CANONICAL_ORIGIN}
 Open API: ${CANONICAL_ORIGIN}/api/v1
+CSV downloads: ${DATA_DOWNLOADS.map((d) => `${CANONICAL_ORIGIN}${d.path} (${d.count} ${d.countOf})`).join(", ")}
 
 ## How the headline figures are counted
 

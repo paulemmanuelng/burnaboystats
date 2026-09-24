@@ -16,6 +16,7 @@ import { tours } from "../data/tours";
 import { sweptArtists } from "../data/afrobeats";
 import { LIVE_CADENCE_REBUILT } from "../lib/liveChartMeta";
 import { livePlacementCount } from "../data/liveCharts";
+import { DATA_DOWNLOADS, downloadFilename } from "../lib/dataDownloads";
 
 export const metadata = pageMetadata({
   title: "Burna Boy Open Data API — Free Chart & Certification Dataset",
@@ -75,6 +76,17 @@ const endpoints = [
   },
 ];
 
+// The same data as spreadsheets — the CSV files /press offers. Listed apart
+// from the endpoints because they are not JSON and carry no envelope; the path
+// is relative to /api/{version}, like an endpoint's, so both layouts print them
+// with the same row markup.
+const downloads = DATA_DOWNLOADS.map((d) => ({
+  path: `/${d.slug}.csv`,
+  what: d.what,
+  size: `${d.count.toLocaleString("en-GB")} rows`,
+  filename: downloadFilename(d.slug),
+}));
+
 const ATTRIBUTION = `Data from Burna Boy Stats — ${CANONICAL_ORIGIN}`;
 const CURL = `curl ${base}/charts`;
 
@@ -105,12 +117,20 @@ export default function ApiPage() {
     creator: { "@type": "Organization", name: SITE_NAME, url: CANONICAL_ORIGIN },
     about: { "@type": "MusicGroup", name: "Burna Boy" },
     keywords: ["Burna Boy", "charts", "certifications", "Afrobeats", "music data", "open data"],
-    distribution: endpoints.map((e) => ({
-      "@type": "DataDownload",
-      encodingFormat: "application/json",
-      contentUrl: `${base}${e.path}`,
-      name: e.path,
-    })),
+    distribution: [
+      ...endpoints.map((e) => ({
+        "@type": "DataDownload",
+        encodingFormat: "application/json",
+        contentUrl: `${base}${e.path}`,
+        name: e.path,
+      })),
+      ...downloads.map((d) => ({
+        "@type": "DataDownload",
+        encodingFormat: "text/csv",
+        contentUrl: `${base}${d.path}`,
+        name: d.path,
+      })),
+    ],
   };
 
   return (
@@ -142,6 +162,7 @@ export default function ApiPage() {
           "CC BY 4.0",
         ]}
         endpoints={endpoints}
+        downloads={downloads}
         caveats={caveats}
         curl={CURL}
         attribution={ATTRIBUTION}
@@ -204,8 +225,25 @@ export default function ApiPage() {
               </a>
             ))}
           </div>
+          <p className={styles.body}>
+            The same data as spreadsheets — CSV, UTF-8, one row per record, under the same
+            licence — for Excel, Google Sheets or Numbers:
+          </p>
+          <div className={styles.endpointList}>
+            {downloads.map((d) => (
+              <a key={d.path} href={`/api/${API_VERSION}${d.path}`} download={d.filename} className={styles.endpoint}>
+                <span className={styles.endpointTop}>
+                  <code className={styles.method}>GET</code>
+                  <code className={styles.path}>/api/{API_VERSION}{d.path}</code>
+                  <span className={styles.size}>{d.size}</span>
+                </span>
+                <span className={styles.endpointWhat}>{d.what}</span>
+              </a>
+            ))}
+          </div>
           <p className={styles.note}>
-            A directory of all {endpoints.length} endpoints lives at{" "}
+            A directory of all {endpoints.length} endpoints and the {downloads.length} CSV
+            files lives at{" "}
             <a href={`/api/${API_VERSION}`} target="_blank" rel="noreferrer">
               /api/{API_VERSION}
             </a>
