@@ -111,7 +111,8 @@ export type Tier = "Diamond" | "Platinum" | "Gold" | "Silver";
  *  spellings and collaborator credit strings (RIAA files an award under the
  *  credit on the release, so a featured act can sit inside someone else's
  *  string). EXACTLY THREE Latin awards exist across the whole board and all
- *  three are tagged: Burna Boy "Dai Dai" (2x Platino, 9 Jul 2026, in
+ *  three are tagged: Burna Boy "Dai Dai" (2x Platino 9 Jul 2026; 6x per RIAA's
+ *  own Instagram, 23 Sep 2026 — in
  *  certifications.ts), Rema "Bubalu", Ayra Starr "Santa". The other thirteen
  *  artists returned RIAA's literal "No matching results" — each with a negative
  *  control proving the query works, since the same search on the STANDARD tab

@@ -140,7 +140,7 @@ const ES_NUMERALS: Record<string, string> = {
   // "2x Platinum" is "doble platino", and neither carries a digit. Missing
   // these read as the Spanish edition having dropped a figure it states
   // perfectly well — it was only hidden until the card alignment was fixed.
-  doble: "2", triple: "3", cuádruple: "4", quíntuple: "5",
+  doble: "2", triple: "3", cuádruple: "4", quíntuple: "5", séxtuple: "6",
   primer: "1", primera: "1", primero: "1",
   segundo: "2", segunda: "2", dos: "2",
   tercer: "3", tercera: "3", tercero: "3", tres: "3",

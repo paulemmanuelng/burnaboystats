@@ -455,7 +455,8 @@ describe("rule 4 — an award PROGRAMME overrides the country's own scale", () =
       includeFeatures: true,
     });
     expect(daiDai).not.toBeNull();
-    expect(daiDai!.byCountry.find((l) => l.country === "US")?.units).toBe(120_000);
+    // 6× Platino since 24 Sep 2026 (RIAA's own post): 6 × 60,000, not 6,000,000.
+    expect(daiDai!.byCountry.find((l) => l.country === "US")?.units).toBe(360_000);
   });
 
   it("a programme brings its own scale even where the country's is unpublished", () => {

@@ -74,7 +74,7 @@ const EN_SCENE: SceneCopy = {
   no1sLink: "See every Dai Dai chart position →",
   streamingNote: "Daily & Weekly · 37 days as Earth's most-streamed song",
   certsLabel: "certifications for Dai Dai",
-  certsNote: `2× Platinum (Latin) US · Platinum in ${daiDaiPlatinumMore} more`,
+  certsNote: `6× Platinum (Latin) US · Platinum in ${daiDaiPlatinumMore} more`,
   certsLink: "See the Dai Dai certifications →",
   worldsongWord: "BIGGEST\nWORLD CUP\nANTHEM EVER",
   worldsongLabel: "Highest-peaking on Spotify Global",
@@ -122,7 +122,7 @@ function buildSteps(p: Props): Step[] {
       scene: "certs",
       kicker: "Certified worldwide",
       title: "The plaques rolled in",
-      body: `The song earned its own plaques — Diamond in France, 2× Platinum in Canada and (Latin) in the US, Platinum in Spain, Slovakia, Portugal, Hungary, Austria, Greece and Sweden, Gold in Colombia, the Czech Republic, Italy, Poland, Belgium and Germany, and Silver in the UK. ${p.daiDaiCerts} certifications for Shakira and Burna Boy's collaboration, and counting.`,
+      body: `The song earned its own plaques — Diamond in France, 2× Platinum in Canada, 6× Platinum (Latin) in the US, Platinum in Spain, Slovakia, Portugal, Hungary, Austria, Greece and Sweden, Gold in Colombia, the Czech Republic, Italy, Poland, Belgium and Germany, and Silver in the UK. ${p.daiDaiCerts} certifications for Shakira and Burna Boy's collaboration, and counting.`,
     },
     {
       scene: "worldsong",
