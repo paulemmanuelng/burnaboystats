@@ -25,7 +25,8 @@ import { AdapterError } from "./adapters/base.mjs";
 import { createHttp, createFixtureHttp, USER_AGENT } from "./http.mjs";
 import { buildSiteIndex, hydrateSiteIndex, holdingFor, holdingLabel } from "./site.mjs";
 import { evaluateRows, identifyRow, normTitle } from "./match.mjs";
-import { extractState, readTicks, readManualTicks, isoWeek, mergeRun, applyTicks, encodeState, stateBlock, StateTooLarge } from "./state.mjs";
+import { verdict, isClean, matchedVerdict } from "./health.mjs";
+import { extractState, readTicks, readManualTicks, isoWeek, mergeRun, applyTicks, encodeState, stateBlock, StateTooLarge, watchVerdict } from "./state.mjs";
 import { renderBodyWithin, renderReport, renderComment, githubOutputs } from "./report.mjs";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
@@ -33,6 +34,9 @@ export const REPO = path.resolve(HERE, "../..");
 export const FIXTURES = path.join(REPO, "tests/fixtures/cert-watch");
 
 export class ConfigError extends Error {}
+
+/** How many of an untrusted read's would-be candidates the body shows (§5.1). */
+const QUARANTINE_EXAMPLES = 3;
 
 // ── CLI ─────────────────────────────────────────────────────────────────────
 const FLAGS = new Set([
@@ -112,24 +116,27 @@ export function parseArgs(argv) {
 
 // ── Config ──────────────────────────────────────────────────────────────────
 const TOP_KEYS = [
-  "version", "issueTitle", "userAgent", "weeklyTodo", "budget", "hosts", "adapters", "searchTerms", "watchlist",
-  "knownDivergences", "heldRows", "leadAliases", "creditTypos", "namesakes", "titleAliases", "manualChecks", "coverageNotes",
+  "version", "issueTitle", "userAgent", "weeklyTodo", "budget", "hosts", "adapters", "staleAfterDays", "controls", "searchTerms", "watchlist",
+  "knownDivergences", "heldRows", "leadAliases", "chartOnlyAliases", "creditTypos", "namesakes", "titleAliases", "manualChecks", "coverageNotes",
 ];
+const TIERS = ["Silver", "Gold", "Platinum", "Diamond"];
 const ENTRY_KEYS = {
-  watchlist: ["id", "artist", "title", "country", "programme", "adapter", "rowId", "expect", "lead", "on", "lastHumanReading"],
-  knownDivergences: ["adapter", "artist", "title", "readingRaw", "why", "ruledBy", "on"],
+  watchlist: ["id", "artist", "title", "country", "programme", "adapter", "rowId", "until", "lead", "on", "lastHumanReading"],
+  knownDivergences: ["adapter", "artist", "title", "printed", "credit", "readingRaw", "why", "ruledBy", "on"],
   heldRows: ["adapter", "credit", "title", "why", "ruledBy", "on"],
   leadAliases: ["artist", "lead", "title", "release", "why", "ruledBy", "on"],
-  creditTypos: ["register", "printed", "artist", "why", "on"],
+  chartOnlyAliases: ["artist", "lead", "title", "why", "ruledBy", "on"],
+  creditTypos: ["register", "printed", "artist", "why", "ruledBy", "on"],
   namesakes: ["artist", "names", "why"],
-  titleAliases: ["artist", "printed", "release", "duplicateOk", "why", "on"],
+  titleAliases: ["register", "artist", "printed", "release", "duplicateOk", "why", "ruledBy", "on"],
   manualChecks: ["id", "flag", "body", "url", "check"],
 };
 const REQUIRED = {
-  watchlist: ["id", "artist", "title", "country", "adapter", "expect", "lead", "on"],
+  watchlist: ["id", "artist", "title", "country", "adapter", "until", "lead", "on"],
   knownDivergences: ["adapter", "artist", "title", "readingRaw", "why", "ruledBy", "on"],
   heldRows: ["adapter", "credit", "title", "why", "ruledBy", "on"],
   leadAliases: ["artist", "lead", "title", "why", "ruledBy", "on"],
+  chartOnlyAliases: ["artist", "lead", "title", "why", "ruledBy", "on"],
   creditTypos: ["register", "printed", "artist", "why", "on"],
   namesakes: ["artist", "names", "why"],
   titleAliases: ["artist", "printed", "release", "why", "on"],
@@ -161,7 +168,12 @@ export function configProblems(config, index = null) {
     (config[list] ?? []).forEach((e, i) => {
       if (e[field] && !artistKeys.has(e[field])) p.push(`${list}[${i}]: unknown artist "${e[field]}"`);
     });
-  ["watchlist", "knownDivergences", "leadAliases", "creditTypos", "namesakes", "titleAliases"].forEach((l) => needArtist(l));
+  ["watchlist", "knownDivergences", "leadAliases", "chartOnlyAliases", "creditTypos", "namesakes", "titleAliases"].forEach((l) => needArtist(l));
+  // A chart-only ruling names a chart alias that exists (live-artists.mjs).
+  (config.chartOnlyAliases ?? []).forEach((e, i) => {
+    const al = (LIVE_ARTISTS[e.artist]?.aliases ?? []).find((a) => a.artist === e.lead && normTitle(a.title) === normTitle(e.title ?? ""));
+    if (e.artist && LIVE_ARTISTS[e.artist] && !al) p.push(`chartOnlyAliases[${i}]: live-artists.mjs has no chart alias (${e.lead}, "${e.title}") for ${e.artist}`);
+  });
   for (const list of ["watchlist", "knownDivergences", "heldRows"]) {
     (config[list] ?? []).forEach((e, i) => {
       if (e.adapter && !adapterIds.has(e.adapter)) p.push(`${list}[${i}]: unknown adapter "${e.adapter}"`);
@@ -170,26 +182,97 @@ export function configProblems(config, index = null) {
   (config.creditTypos ?? []).forEach((e, i) => {
     if (!adapterIds.has(e.register)) p.push(`creditTypos[${i}]: unknown register "${e.register}"`);
   });
+  // A divergence ruled on a row printed under another title (a remix the
+  // site counts as its original) names that title and credit exactly as the
+  // register prints them; `title` stays the site release it is counted as.
+  (config.knownDivergences ?? []).forEach((e, i) => {
+    for (const k of ["printed", "credit"]) {
+      if (e[k] !== undefined && (typeof e[k] !== "string" || !e[k].trim())) p.push(`knownDivergences[${i}]: "${k}" must be the register's own text`);
+    }
+    if (e.printed !== undefined && e.credit === undefined) p.push(`knownDivergences[${i}]: a divergence on a printed title needs the row's "credit" too`);
+  });
+  (config.titleAliases ?? []).forEach((e, i) => {
+    if (e.register !== undefined && !adapterIds.has(e.register)) p.push(`titleAliases[${i}]: unknown register "${e.register}"`);
+  });
   const ids = (config.watchlist ?? []).map((w) => w.id);
   if (new Set(ids).size !== ids.length) p.push("watchlist ids must be unique");
+  // `until` (SPEC §5.4): when the item lands, in one of two known shapes.
+  (config.watchlist ?? []).forEach((w, i) => {
+    const u = w.until;
+    if (u === undefined) return;
+    const keys = u && typeof u === "object" ? Object.keys(u) : [];
+    const okRegister = keys.length === 1 && u.register === "atLeastSite";
+    const okSite =
+      keys.length === 1 &&
+      u.site &&
+      typeof u.site === "object" &&
+      Object.keys(u.site).every((k) => k === "tier" || k === "x") &&
+      TIERS.includes(u.site.tier) &&
+      (u.site.x === undefined || (Number.isInteger(u.site.x) && u.site.x >= 1));
+    if (!okRegister && !okSite) p.push(`watchlist[${i}]: "until" must be {"register": "atLeastSite"} or {"site": {"tier", "x"}}`);
+  });
+  // staleAfterDays: registry ids → days (a positive number), plus "why".
+  if (config.staleAfterDays !== undefined) {
+    const sa = config.staleAfterDays;
+    if (!sa || typeof sa !== "object" || Array.isArray(sa)) p.push("staleAfterDays must be an object");
+    else {
+      if (!sa.why) p.push('staleAfterDays: missing "why"');
+      for (const [k, v] of Object.entries(sa)) {
+        if (k === "why") continue;
+        if (!adapterIds.has(k)) p.push(`staleAfterDays.${k}: unknown adapter`);
+        else if (typeof v !== "number" || !(v > 0)) p.push(`staleAfterDays.${k}: must be a positive number of days`);
+      }
+    }
+  }
+  // controls: a live control row named in config (after a year rollover). It
+  // must come from a saved fixture, so it says why and when.
+  if (config.controls !== undefined) {
+    if (!config.controls || typeof config.controls !== "object" || Array.isArray(config.controls)) p.push("controls must be an object");
+    else {
+      for (const [id, c] of Object.entries(config.controls)) {
+        if (!adapterIds.has(id)) p.push(`controls.${id}: unknown adapter`);
+        for (const k of Object.keys(c ?? {})) if (!["rowId", "credit", "title", "tierRaw", "year", "when", "why", "on"].includes(k)) p.push(`controls.${id}: unknown key "${k}"`);
+        if (!c?.why || !c?.on) p.push(`controls.${id}: needs "why" and "on"`);
+        if (!["rowId", "credit", "title"].some((k) => c?.[k])) p.push(`controls.${id}: name the row by rowId, credit or title`);
+        if (c?.when !== undefined && !["daily", "deep"].includes(c.when)) p.push(`controls.${id}: "when" must be "daily" or "deep"`);
+        if (c?.year !== undefined && !Number.isInteger(c.year)) p.push(`controls.${id}: "year" must be a year`);
+      }
+    }
+  }
   const mids = (config.manualChecks ?? []).map((m) => m.id);
   if (new Set(mids).size !== mids.length) p.push("manualChecks ids must be unique");
   for (const [id, a] of Object.entries(config.adapters ?? {})) {
     if (!adapterIds.has(id)) p.push(`adapters.${id}: unknown adapter`);
-    for (const k of Object.keys(a)) if (!["enabled", "why", "permission"].includes(k)) p.push(`adapters.${id}: unknown key "${k}"`);
+    for (const k of Object.keys(a)) if (!["enabled", "why", "permission", "permanent", "ruledBy", "on"].includes(k)) p.push(`adapters.${id}: unknown key "${k}"`);
     if (typeof a.enabled !== "boolean") p.push(`adapters.${id}: "enabled" must be true or false`);
     if (!a.why) p.push(`adapters.${id}: missing "why"`);
-    // A register held by its robots.txt is enabled only by a WRITTEN
-    // permission record (SPEC §11.1) — never by a code change.
     const reg = REGISTRY.find((r) => r.id === id);
-    if (reg?.heldBy === "robots" && a.enabled === true) {
+    // An owner ruling that a register stays manual FOR GOOD (RiSA and FIMI,
+    // Paul, 24 Sep 2026: both ask not to be read by AI tools — SPEC §0.4). It
+    // says who ruled and when, and nothing — no permission record, no code
+    // change — enables it.
+    if (a.permanent !== undefined) {
+      if (a.permanent !== true) p.push(`adapters.${id}: "permanent" may only be true`);
+      if (!a.ruledBy || !a.on) p.push(`adapters.${id}: a permanent ruling needs "ruledBy" and "on"`);
+      if (a.enabled !== false || a.permission) p.push(`adapters.${id}: permanently manual by owner ruling (${a.ruledBy ?? "?"}, ${a.on ?? "?"}) — it can never be enabled`);
+      if (reg && reg.class !== "MANUAL") p.push(`adapters.${id}: a permanently manual register must be a MANUAL row in the registry`);
+    }
+    // A register held by its robots.txt, or by a policy awaiting Paul's
+    // ruling, is enabled only by a WRITTEN permission record (SPEC §11.1) —
+    // never by a code change.
+    if ((reg?.heldBy === "robots" || reg?.heldBy === "policy") && a.enabled === true) {
       const perm = a.permission;
-      if (!perm || !perm.from || !perm.on || !perm.scope) p.push(`adapters.${id}: enabling a register its robots.txt disallows needs "permission": {from, on, scope}`);
+      const what = reg.heldBy === "robots" ? "a register its robots.txt disallows" : "a register held awaiting a ruling";
+      if (!perm || !perm.from || !perm.on || !perm.scope) p.push(`adapters.${id}: enabling ${what} needs "permission": {from, on, scope}`);
     }
   }
   for (const [host, h] of Object.entries(config.hosts ?? {})) {
+    for (const k of Object.keys(h)) if (!["minGapMs", "why", "cookies"].includes(k)) p.push(`hosts.${host}: unknown key "${k}"`);
     if (typeof h.minGapMs !== "number" || h.minGapMs < 1100) p.push(`hosts.${host}: minGapMs must be a number ≥ 1100`);
     if (host !== "*" && !h.why) p.push(`hosts.${host}: missing "why"`);
+    // A session cookie lives in memory for ONE run and is never written.
+    if (h.cookies !== undefined && h.cookies !== "run") p.push(`hosts.${host}: "cookies" may only be "run" (kept in memory for one run, never written)`);
+    if (host === "*" && h.cookies !== undefined) p.push('hosts.*: cookies are opt-in per host, never for "*"');
   }
   if (!config.hosts?.["*"]) p.push('hosts must set "*"');
   if (index) {
@@ -273,10 +356,11 @@ function artistNames() {
   return Object.values(LIVE_ARTISTS).map((a) => a.name);
 }
 
-/** Lead acts (SPEC §3): the distinct leads of the index's lead aliases —
- *  LIVE_ARTISTS aliases, the lead of each Burna Boy feature credit, and
- *  config.leadAliases — less the sixteen themselves. Sorted, so a rotation
- *  over them is stable from run to run. */
+/** Lead acts (SPEC §3): the distinct leads of ALL the index's lead aliases —
+ *  LIVE_ARTISTS aliases (chart-only ones included: a search term only widens
+ *  the read, and a row still has to match a certification alias), the lead
+ *  of each Burna Boy feature credit, and config.leadAliases — less the
+ *  sixteen themselves. Sorted, so a rotation over them is stable. */
 export function leadActsOf(index, names) {
   const own = new Set(names.map((n) => n.toLowerCase()));
   const leads = new Map();
@@ -285,6 +369,17 @@ export function leadActsOf(index, names) {
     if (!own.has(k) && !leads.has(k)) leads.set(k, al.lead);
   }
   return [...leads.values()].sort((x, y) => x.localeCompare(y, "en"));
+}
+
+/** An adapter's search terms: the sixteen names and config.searchTerms, plus
+ *  the credit a register misspells in a typo scoped to it — Pro-Música
+ *  Brasil files Tems as "Teams", and a name search for "Tems" never finds
+ *  that card. Other registers never see another register's typo. */
+export function searchTermsFor(adapterId, base, config) {
+  const typos = (config.creditTypos ?? []).filter((t) => t.register === adapterId).map((t) => t.printed);
+  const terms = new Map();
+  for (const t of [...base, ...typos]) if (!terms.has(t.toLowerCase())) terms.set(t.toLowerCase(), t);
+  return [...terms.values()];
 }
 
 async function runAdapters({ opts, config, index, http, prevState, startedAt }) {
@@ -302,11 +397,15 @@ async function runAdapters({ opts, config, index, http, prevState, startedAt }) 
       health[r.id] = { status: "skipped", detail: "not in --only" };
       continue;
     }
-    if (r.class === "MANUAL" && r.heldBy !== "robots") {
+    const conf = config.adapters?.[r.id];
+    if (r.heldBy === "policy" && conf?.enabled !== true) {
+      health[r.id] = { status: "held-policy", detail: conf?.why ?? r.note };
+      continue;
+    }
+    if (r.class === "MANUAL" && !r.heldBy) {
       health[r.id] = { status: "manual", detail: r.note };
       continue;
     }
-    const conf = config.adapters?.[r.id];
     if (r.heldBy === "robots" && conf?.enabled === false) {
       health[r.id] = { status: "held-robots", detail: conf.why };
       continue;
@@ -335,7 +434,7 @@ async function runAdapters({ opts, config, index, http, prevState, startedAt }) 
     const ctx = {
       deep,
       cursor: prevState?.cursors?.[a.id] ?? null,
-      searchTerms,
+      searchTerms: searchTermsFor(a.id, searchTerms, config),
       artistNames: names,
       leadActs,
       now: opts.now,
@@ -346,7 +445,7 @@ async function runAdapters({ opts, config, index, http, prevState, startedAt }) 
       // Does a register row name one of the sixteen (artist AND title)? For
       // adapters that must choose which pages to open (Ifpi Sverige records).
       matches: (row) => {
-        const id = identifyRow(row, { adapterId: a.id, liveArtists: LIVE_ARTISTS, config, leadAliases: index.leadAliases, ownerTags: !!a.ownerTags });
+        const id = identifyRow(row, { adapterId: a.id, liveArtists: LIVE_ARTISTS, config, leadAliases: index.certAliases, ownerTags: !!a.ownerTags });
         return !id.reject && !id.held && id.matches.length > 0;
       },
       request: (req) => {
@@ -361,25 +460,37 @@ async function runAdapters({ opts, config, index, http, prevState, startedAt }) 
     try {
       const got = await a.read(ctx);
       const rows = got.rows ?? [];
-      const unparsed = rows.filter((r) => !r.reading).length;
-      let status = "ok";
-      let detail = null;
-      if (rows.length < (a.minRows ?? 1)) {
-        status = "format";
-        detail = `${rows.length} rows parsed (fewer than ${a.minRows ?? 1})`;
-      } else if (rows.length && unparsed / rows.length > 0.05) {
-        status = "format";
-        detail = `${unparsed} of ${rows.length} rows have a tier this parser does not know`;
-      } else if (deep && a.control?.deep && !rows.some(a.control.find)) {
-        status = "format";
-        detail = `control row missing (${a.control.rowId})`;
-      }
+      // The verdict (health.mjs): structure, the control due today, the
+      // learned floor, and the register's cadence.
+      const v = verdict({
+        adapter: a,
+        got,
+        deep,
+        prev: prevState?.health?.[a.id] ?? null,
+        staleAfterDays: config.staleAfterDays?.[a.id],
+        now: opts.now,
+        config,
+      });
       outputs[a.id] = got;
-      health[a.id] = { status, detail, rows: rows.length, newest: got.newest ?? null, notes: got.notes ?? [], requests, ms: Date.now() - t0 };
+      health[a.id] = {
+        status: v.status,
+        detail: v.detail,
+        rows: rows.length,
+        total: typeof got.total === "number" ? got.total : null,
+        newest: got.newest ?? null,
+        newestDate: got.newestDate ?? null,
+        // The health verdict's own notes (control present, floor reset…)
+        // first, so a long adapter note never cuts them off the table cell.
+        notes: [...v.notes, ...(got.notes ?? [])],
+        track: v.track,
+        events: v.events,
+        requests,
+        ms: Date.now() - t0,
+      };
     } catch (e) {
       if (e instanceof AdapterError) {
         const status = e.kind === "robots" ? "held-robots" : e.kind === "budget" ? "not-reached" : e.kind;
-        health[a.id] = { status, detail: e.message, reason: e.reason, http: e.http, requests, ms: Date.now() - t0 };
+        health[a.id] = { status, detail: e.message, reason: e.reason, http: e.http, decoy: !!e.decoy, requests, ms: Date.now() - t0 };
       } else {
         health[a.id] = { status: "error", detail: e?.message ?? String(e), stack: e?.stack ?? null, requests, ms: Date.now() - t0 };
       }
@@ -395,7 +506,11 @@ async function runAdapters({ opts, config, index, http, prevState, startedAt }) 
     if (!byHost.has(h)) byHost.set(h, []);
     byHost.get(h).push(a);
   }
-  const groups = [...byHost.values()];
+  // Longest first (by each group's adapter budget), so the slow walkers —
+  // Pro-Música Brasil, Ifpi Sverige, BVMI — never start last and run out the
+  // run budget; ties keep the registry order.
+  const cost = (g) => Math.max(...g.map((a) => (budget.overrides ?? {})[a.id] ?? budget.adapterSeconds ?? 90));
+  const groups = [...byHost.values()].map((g, i) => ({ g, i })).sort((x, y) => cost(y.g) - cost(x.g) || x.i - y.i).map((x) => x.g);
   const workers = Array.from({ length: Math.min(6, groups.length) }, async () => {
     while (groups.length) {
       for (const a of groups.shift()) await runOne(a);
@@ -408,41 +523,74 @@ async function runAdapters({ opts, config, index, http, prevState, startedAt }) 
   return { health: inOrder(health), outputs: inOrder(outputs) };
 }
 
-/** The watchlist's readings today. */
-function readWatch(config, outputs, health, index) {
+/** The watchlist's readings today, and whether each item has landed (§5.4).
+ *  Every target is derived at run time from the site index — never typed. */
+function readWatch(config, outputs, health, index, prevState) {
   const out = [];
   const readings = {};
   for (const w of config.watchlist ?? []) {
+    const adapter = REGISTRY.find((r) => r.id === w.adapter);
+    const ladder = adapter?.ladder ?? "standard";
     const got = outputs[w.adapter];
+    const readClean = !!got && isClean(health[w.adapter]?.status);
     let reading = null;
-    if (got && health[w.adapter]?.status === "ok") {
-      const adapter = REGISTRY.find((r) => r.id === w.adapter);
-      const row =
+    let row = null;
+    if (readClean) {
+      row =
         (w.rowId && got.rows.find((r) => r.rowId === w.rowId)) ||
         got.rows.find((r) => {
-          const id = identifyRow(r, { adapterId: w.adapter, liveArtists: LIVE_ARTISTS, config, leadAliases: index.leadAliases, ownerTags: !!adapter?.ownerTags });
+          const id = identifyRow(r, { adapterId: w.adapter, liveArtists: LIVE_ARTISTS, config, leadAliases: index.certAliases, ownerTags: !!adapter?.ownerTags });
           return id.matches.some((m) => m.artist === w.artist) && normTitle(id.title) === normTitle(w.title);
-        });
+        }) ||
+        null;
       if (row) {
         const hist = row.extra?.history;
         reading = {
           label: hist?.current?.label ?? row.extra?.badgeTitle ?? null,
           raw: row.tierRaw,
+          parsed: row.reading ?? null,
           rowId: row.rowId ?? null,
           date: hist?.current?.date ?? row.dateRaw ?? null,
         };
       }
     }
     const { release, holding } = holdingFor(index, w.artist, w.title, w.country, w.programme);
+    const v = watchVerdict(w, { reading: reading?.parsed ?? null, readClean: readClean && !!reading, holding, ladder, body: adapter?.body ?? w.adapter });
+    const was = prevState?.watch?.[w.id] ?? null;
     out.push({
       ...w,
       releaseCredit: release?.credit ?? null,
       reading,
       siteHolding: holding ? holdingLabel(holding) : null,
+      siteAhead: v.siteAhead,
+      landsWhen: v.landsWhen,
+      landedNow: v.landed,
+      lastReading: was?.raw ? { raw: was.raw, since: was.since ?? null } : null,
     });
-    readings[w.id] = reading ? { raw: reading.raw } : null;
+    readings[w.id] = { raw: reading?.raw ?? null, landedNow: v.landed, landedText: v.landedText };
   }
   return { watch: out, readings };
+}
+
+/** Per host: the first register response (status, server, cf-ray, marker) and
+ *  the smallest gap between two requests — what the first Actions run shows
+ *  host by host, and how the politeness gaps are checked (§2.4, §10). */
+export function hostSummary(log) {
+  const first = {};
+  const minGapMs = {};
+  const last = {};
+  for (const l of [...log].sort((a, b) => String(a.at).localeCompare(String(b.at)))) {
+    const t0 = Date.parse(l.at);
+    if (l.kind !== "offline" && last[l.host] != null && Number.isFinite(t0)) {
+      const gap = t0 - last[l.host];
+      minGapMs[l.host] = Math.min(minGapMs[l.host] ?? Infinity, gap);
+    }
+    if (Number.isFinite(t0)) last[l.host] = t0 + (l.ms ?? 0);
+    if (l.kind === "robots" || first[l.host]) continue;
+    first[l.host] = { status: l.status ?? null, kind: l.kind, server: l.server ?? null, cfRay: !!l.cfRay, marker: l.marker ?? null };
+  }
+  const sorted = (o) => Object.fromEntries(Object.keys(o).sort((a, b) => a.localeCompare(b, "en")).map((k) => [k, o[k]]));
+  return { first: sorted(first), minGapMs: sorted(minGapMs) };
 }
 
 // Formatted by hand, not by Intl: ICU versions disagree ("Sep" vs "Sept"),
@@ -519,7 +667,9 @@ export async function main(argv = process.argv.slice(2)) {
       `certifications.ts: ${t.burnaReleases.albums} albums, ${t.burnaReleases.singles} singles, ${t.burnaReleases.features} features, ${t.burnaPlaques} plaques`
     );
     console.log(`afrobeats.ts: ${t.boardArtists} artists, ${t.boardReleases} releases, ${t.boardPlaques} plaques`);
-    console.log(`index: ${t.releases} releases, ${t.plaques} plaques, ${indexJson.leadAliases.length} lead aliases; registry: ${REGISTRY.length} registers (${AUTOMATED.length} automated)`);
+    console.log(
+      `index: ${t.releases} releases, ${t.plaques} plaques, ${indexJson.leadAliases.length} lead aliases (${index.certAliases.length} valid for certifications, ${index.chartOnlyAliases.length} chart only); registry: ${REGISTRY.length} registers (${AUTOMATED.length} automated)`
+    );
     return 0;
   }
 
@@ -548,21 +698,61 @@ export async function main(argv = process.argv.slice(2)) {
 
   const { health, outputs } = await runAdapters({ opts, config, index, http, prevState, startedAt });
 
-  // Evaluate every adapter that returned rows — a "format changed" register
-  // still lists its matched rows individually.
+  // Evaluate every adapter that returned rows. Only a CLEAN read (ok or
+  // stale) is data: its candidates become leads. A read that came back but
+  // is not trusted — format changed, a missing control, shrank, matched rows
+  // dropped — says nothing about today (§7), so its would-be candidates are
+  // QUARANTINED: listed under "Held back" as plain text, never as a lead
+  // with a box to tick, never remembered in state and never notified. They
+  // return as leads on the register's next clean read.
   const today = [];
+  const quarantined = [];
   const suppressed = { divergences: [], held: [], tribute: [] };
   for (const r of REGISTRY) {
     const got = outputs[r.id];
     if (!got) continue;
     const ev = evaluateRows(r, got.rows ?? [], { index, liveArtists: LIVE_ARTISTS, config });
-    for (const c of ev.candidates) today.push(c);
-    for (const k of Object.keys(suppressed)) suppressed[k].push(...ev.suppressed[k]);
-    health[r.id].matched = ev.counts.matched;
-    health[r.id].inSync = ev.counts.inSync;
+    const h = health[r.id];
+    h.matched = ev.counts.matched;
+    h.inSync = ev.counts.inSync;
+    // Rows naming the sixteen against the peak of clean reads of the same
+    // kind (health.mjs matchedVerdict): a clean-looking read that suddenly
+    // names none of them is `unmatched`, never "✅ read" (§7).
+    if (isClean(h.status)) {
+      const mv = matchedVerdict({ adapter: r, matched: ev.counts.matched, deep: opts.deep || opts.offline, prev: prevState?.health?.[r.id] ?? null, year: got.totalYear ?? null });
+      h.track = { ...(h.track ?? {}), ...mv.track };
+      h.events = [...(h.events ?? []), ...mv.events];
+      h.notes = [...mv.notes, ...(h.notes ?? [])];
+      if (mv.status !== "ok") {
+        h.status = mv.status;
+        h.detail = mv.detail;
+      }
+    }
+    if (isClean(h.status)) {
+      for (const c of ev.candidates) today.push(c);
+      for (const k of Object.keys(suppressed)) suppressed[k].push(...ev.suppressed[k]);
+    } else if (ev.candidates.length) {
+      h.quarantined = ev.candidates.length;
+      quarantined.push({
+        adapter: r.id,
+        status: h.status,
+        detail: h.detail ?? null,
+        count: ev.candidates.length,
+        // A few, for a human to see what the untrusted read produced — as
+        // text only, with no fingerprint and no box.
+        examples: ev.candidates.slice(0, QUARANTINE_EXAMPLES).map((c) => ({
+          artistName: c.artistName,
+          release: c.release ?? null,
+          title: c.title,
+          kind: c.kind,
+          tierRaw: c.tierRaw ?? null,
+          row: c.rows?.[0] ?? null,
+        })),
+      });
+    }
   }
 
-  const { watch, readings } = readWatch(config, outputs, health, index);
+  const { watch, readings } = readWatch(config, outputs, health, index, prevState);
   const ladders = Object.fromEntries(REGISTRY.map((r) => [r.id, r.ladder ?? "standard"]));
   const merged = mergeRun({
     prev: prevState,
@@ -580,12 +770,15 @@ export async function main(argv = process.argv.slice(2)) {
   });
   for (const w of watch) {
     const was = prevState?.watch?.[w.id];
-    w.changed = !!(was && w.reading && was.raw !== w.reading.raw);
+    w.changed = !!(was?.raw && w.reading && was.raw !== w.reading.raw);
+    const now = merged.next.watch[w.id];
+    w.since = now?.since ?? null;
+    w.landed = now?.landed ?? null;
   }
 
   const notifyReasons = [...merged.notifyReasons];
   const automated = AUTOMATED.filter((r) => !opts.only || opts.only.includes(r.id));
-  const clean = AUTOMATED.filter((r) => health[r.id]?.status === "ok");
+  const clean = AUTOMATED.filter((r) => isClean(health[r.id]?.status));
   const warnings = [];
   if (automated.length && clean.length === 0) {
     notifyReasons.push("No register was read today — this run says nothing");
@@ -610,6 +803,7 @@ export async function main(argv = process.argv.slice(2)) {
   // happened to answer them.
   const byHost = {};
   for (const l of [...http.log].sort((a, b) => a.host.localeCompare(b.host, "en"))) byHost[l.host] = (byHost[l.host] ?? 0) + 1;
+  const hosts = hostSummary(http.log);
   const week = isoWeek(opts.now);
   const results = {
     v: 1,
@@ -638,12 +832,16 @@ export async function main(argv = process.argv.slice(2)) {
         registerUrl: r.registerUrl,
         humanCheck: r.humanCheck ?? null,
         manualCheckText: manual ? `open ${manual.url}, ${manual.check}` : null,
-        heldWhy: r.heldBy === "robots" ? config.adapters?.[r.id]?.why ?? null : null,
+        heldBy: r.heldBy ?? null,
+        staleAfterDays: config.staleAfterDays?.[r.id] ?? null,
+        caveat: r.caveat ?? null,
+        heldWhy: r.heldBy ? config.adapters?.[r.id]?.why ?? null : null,
         note: r.note ?? null,
       };
     }),
     health,
     candidates: merged.candidates,
+    quarantined,
     cleared: merged.cleared,
     dismissedCount: merged.dismissedCount,
     suppressed,
@@ -655,7 +853,7 @@ export async function main(argv = process.argv.slice(2)) {
     notify,
     notifyReasons,
     writeIssue,
-    requests: { total: http.log.length, byHost },
+    requests: { total: http.log.length, byHost, first: hosts.first, minGapMs: opts.offline ? {} : hosts.minGapMs },
     warnings,
   };
 

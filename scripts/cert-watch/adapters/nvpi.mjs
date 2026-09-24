@@ -83,7 +83,12 @@ export const nvpi = {
   minRows: 1,
   // DAVE | Location | Single | Platina | 21-5-2026, metadata artists Dave,
   // Burna Boy: checked in the tests; it falls out of the newest 500 in time.
-  control: { deep: false, rowId: "2026_dave_location_single_platina", find: (r) => r.rowId === "2026_dave_location_single_platina" },
+  total: "register",
+  control: { when: "tests", rowId: "2026_dave_location_single_platina", find: (r) => r.rowId === "2026_dave_location_single_platina" },
+  // The newest 500 of 6,493 move slowly (NVPI adds a few hundred a year), so
+  // the rows naming the sixteen stay from run to run: a read naming under
+  // half as many is `unmatched` (health.mjs matchedVerdict).
+  matchedFloor: { daily: true, deep: true },
   parse: { filter: parseFilter, status: parseStatus },
   async read(ctx) {
     const res = expectOk(await ctx.request({ url: URL_, success: /"items"/ }), "NVPI filter");
@@ -93,6 +98,8 @@ export const nvpi = {
     const topRow = rows.find((r) => isoOf(r.dateRaw) === top);
     return {
       rows,
+      total: count,
+      newestDate: top,
       newest: `${String(count).replace(/\B(?=(\d{3})+$)/g, ",")} awards in the register; newest ${topRow?.dateRaw ?? "?"} (NVPI publishes late)`,
       notes: [`${rows.length} newest read, back to ${rows.length ? rows.map((r) => isoOf(r.dateRaw)).filter(Boolean).sort()[0] : "?"}`],
       cursor: { lastDate: top ?? ctx.cursor?.lastDate ?? null },

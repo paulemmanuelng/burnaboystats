@@ -1,0 +1,12 @@
+HTTP/1.1 200
+cache-control: s-maxage=1800, stale-while-revalidate
+content-encoding: br
+content-type: text/html; charset=utf-8
+date: Thu, 24 Sep 2026 12:45:24 GMT
+etag: "98eb3a-+KFMSnGwZzfa31wMo5S0a28ji7I"
+strict-transport-security: max-age=31536000; includeSubDomains
+transfer-encoding: chunked
+vary: Accept-Encoding,Accept-Encoding
+x-ms-middleware-request-id: 3a44205f-dac3-40b7-856f-200453a9b336
+x-nextjs-cache: STALE
+x-powered-by: Next.js

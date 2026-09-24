@@ -45,7 +45,6 @@ export const timelineEras: TimelineEra[] = [
       { date: "2018", title: "Outside — and “Ye” goes global", text: "His major-label debut wins Album of the Year at the Nigeria Entertainment Awards, and “Ye” becomes his international calling card.", href: "/music/albums/outside", kind: "album" },
       { date: "2019", title: "African Giant", text: "The statement album — his first Grammy nomination followed, plus the Edison Award and certifications across Europe and North America.", href: "/music/albums/african-giant", kind: "album" },
       { date: "2019", title: "First Afrobeats artist to sell out the SSE Arena, Wembley", text: "The London arena sellout that announced the live draw — and the BET Award for Best International Act arrives the same year.", href: "/records/firsts", kind: "tour" },
-      { date: "2019", title: "A UK No. 1 single — “Own It”", text: "With Stormzy and Ed Sheeran, Burna Boy tops the UK Singles Chart.", href: "/records/charts", kind: "chart" },
     ],
   },
   {
@@ -53,6 +52,8 @@ export const timelineEras: TimelineEra[] = [
     span: "2020 – 2021",
     intro: "Recorded in lockdown, crowned on the Grammy stage.",
     entries: [
+      // Top of the chart dated 3 Jan 2020 — No. 2 at Christmas 2019 (OCC).
+      { date: "Jan 2020", title: "A UK No. 1 single — “Own It”", text: "With Stormzy and Ed Sheeran, Burna Boy tops the UK Singles Chart — the first No. 1 of 2020.", href: "/records/charts", kind: "chart" },
       { date: "Aug 2020", title: "Twice as Tall", text: "The fifth album, executive-produced by his mother and manager, Bose Ogulu — features reaching from Youssou N'Dour to Stormzy.", href: "/music/albums/twice-as-tall", kind: "album" },
       { date: "Mar 2021", title: "The Grammy", text: "Twice as Tall wins Best Global Music Album — the first winner of the category under that name.", href: "/records/awards", kind: "award" },
       { date: "2021", title: "First African artist to headline the Hollywood Bowl", text: "The Los Angeles landmark joins the list of firsts.", href: "/records/firsts", kind: "tour" },
@@ -67,7 +68,8 @@ export const timelineEras: TimelineEra[] = [
       { date: "Apr 2022", title: "First Nigerian artist to headline & sell out Madison Square Garden", text: "One night at the Garden — and the Ziggo Dome sellout follows the same year.", href: "/records/firsts", kind: "tour" },
       { date: "Jul 2022", title: "Love, Damini — and “Last Last”", text: "The personal album reaches No. 2 in the UK and the Netherlands — the highest-charting Nigerian album in Billboard 200 history at No. 14 — while “Last Last” becomes one of the most-certified African songs ever.", href: "/music/albums/love-damini", kind: "album" },
       { date: "Jun 2023", title: "First African artist to perform at a UEFA Champions League final", text: "Istanbul, before Manchester City vs Inter — his first global football stage.", href: "/records/firsts", kind: "milestone" },
-      { date: "Aug 2023", title: "I Told Them… debuts at UK No. 1", text: "The first Afrobeats album ever to top the UK Official Albums Chart — and a No. 1 in Nigeria.", href: "/music/albums/i-told-them", kind: "album" },
+      // No. 1 on the Official Albums Chart dated 1 Sep 2023 (released 25 Aug).
+      { date: "Sep 2023", title: "I Told Them… debuts at UK No. 1", text: "The first Afrobeats album ever to top the UK Official Albums Chart — and a No. 1 in Nigeria.", href: "/music/albums/i-told-them", kind: "album" },
       { date: "2023", title: "Stadium history, twice", text: "First African artist to headline and sell out a UK stadium (London Stadium) and a US stadium (Citi Field) — in the same year.", href: "/records/firsts", kind: "tour" },
       { date: "2023–25", title: "The I Told Them… Tour", text: "The arena-and-stadium run behind the album, November 2023 to July 2025. When Billboard Boxscore published the full tally in 2025, it stood at $30.46M and 302,801 tickets — the highest-grossing tour ever by an African artist.", href: "/records/tours", kind: "tour" },
       { date: "Feb 2024", title: "First African artist on the Grammys' main telecast stage", text: "A medley from I Told Them… with Brandy and 21 Savage.", href: "/records/firsts", kind: "milestone" },

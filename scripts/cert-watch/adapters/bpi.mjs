@@ -122,7 +122,7 @@ export const bpi = {
   dateKind: "certification date",
   humanCheck: "Open https://certified-awards.bpi.co.uk/, search the title, open its detail page and read \"Most Recent Certification\".",
   minRows: 0,
-  control: { deep: false, rowId: "/format/2/artist/6930/title/22159", find: (r) => r.rowId === "/format/2/artist/6930/title/22159" },
+  control: { when: "tests", rowId: "/format/2/artist/6930/title/22159", find: (r) => r.rowId === "/format/2/artist/6930/title/22159" },
   parse: { list: parseList, detail: parseDetail, tier: parseTier },
   async read(ctx) {
     const today = (ctx.now ?? new Date()).toISOString().slice(0, 10);

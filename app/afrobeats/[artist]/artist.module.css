@@ -547,7 +547,13 @@
 /* Hero actions — the chart board and the live board, named with their own
    figures so the button says what is behind it. */
 .heroActions { display: flex; flex-wrap: wrap; gap: 12px; }
-.heroLive { display: inline-flex; align-items: center; gap: 9px; }
+/* No gap of its own: the dot sits .btn's 6px from the label, which is what it
+   has always painted. This rule said 9px, but until 23 Sep 2026 its sheet
+   loaded before globals.css and .btn won the tie. Since the root layout
+   stopped importing the FAQ and By-the-numbers pages (lib/navGroups.ts),
+   globals.css is bundled into the first sheet and this one follows it, where
+   9px would win. tests/rootLayoutCss.test.ts. */
+.heroLive { display: inline-flex; align-items: center; }
 @media (max-width: 760px) {
   .heroActions { flex-direction: column; align-items: stretch; }
   .heroActions a { justify-content: center; text-align: center; }

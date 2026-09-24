@@ -15,6 +15,7 @@
 
 import { AdapterError, expectOk, decodeEntities, stripTags, collapse, cap } from "./base.mjs";
 import { classifyPage } from "../http.mjs";
+import { isoWeekMonday } from "../health.mjs";
 
 export const BASE = "https://ifpicr.cz/hitparada/";
 const SUCCESS = /class="chart-full-row"/;
@@ -99,7 +100,7 @@ function make(id, country, chart) {
     country,
     body: `ČNS IFPI (chart ${chart})`,
     programme: null,
-    class: "AUTOMATE",
+    class: "WITH-CARE",
     step: 2,
     hosts: ["ifpicr.cz"],
     registerUrl: `${BASE}${chart}`,
@@ -111,8 +112,10 @@ function make(id, country, chart) {
     // Dai Dai, week 38/2026: "Zlatý singl" at 15 on chart 30, "Platinový
     // singl" at 5 on chart 43. Checked in the tests only — a badge leaves the
     // page when the title stops charting.
+    // Rows on the chart page itself (100).
+    total: "page",
     control: {
-      deep: false,
+      when: "tests",
       rowId: `/hitparada/${chart}/shakira-burna-boy/dai-dai/180018`,
       find: (r) => r.rowId === `/hitparada/${chart}/shakira-burna-boy/dai-dai/180018` && r.tierRaw === (chart === 30 ? "Zlatý singl" : "Platinový singl"),
     },
@@ -126,7 +129,16 @@ function make(id, country, chart) {
         rows.push(...prev.rows);
         notes.push(`previous week (${weekLabel(prev.week.label)}): ${prev.rows.length} badge(s)`);
       }
-      return { rows, newest: `${weekLabel(now.week.label)} (week id ${now.week.id})`, notes, cursor: { weekId: now.week.id } };
+      const wk = String(now.week.label ?? "").match(/^(\d+)\. týden (\d{4})$/);
+      return {
+        rows,
+        total: now.count,
+        // A chart week's Monday: the page's own week label, read as an ISO week.
+        newestDate: wk ? isoWeekMonday(Number(wk[2]), Number(wk[1])) : null,
+        newest: `${weekLabel(now.week.label)} (week id ${now.week.id})`,
+        notes,
+        cursor: { weekId: now.week.id },
+      };
     },
   };
 }

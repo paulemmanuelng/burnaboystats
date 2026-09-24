@@ -1,6 +1,6 @@
 "use client"; // record picker, ratio toggle, and a blob download
 
-import { useState, useSyncExternalStore } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import styles from "./mobileStatCards.module.css";
 import ScrollRail from "./ScrollRail";
@@ -10,6 +10,7 @@ import type { CardChoice } from "./StatCardMaker";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
 import { saveCard, canShareFiles, subscribeNever } from "../lib/saveCard";
+import { BLANK_PIXEL } from "../lib/blankPixel";
 
 /**
  * Mobile screen 24 — Stat cards.
@@ -51,6 +52,18 @@ export default function MobileStatCards({
   const [failed, setFailed] = useState(false);
   const [attempt, setAttempt] = useState(0);
   const [downloading, setDownloading] = useState(false);
+  const cardRef = useRef<HTMLImageElement>(null);
+
+  // React listens for the preview's load from hydration on and does not
+  // replay one that came first, so a card the browser had already finished
+  // stayed dimmed at 35% for good. On 23 Sep 2026 production's phone card did
+  // on a cold load and on every repeat visit, and gating the desktop PNG out
+  // (below) lets the card finish sooner still. So the mount hands a load that
+  // beat hydration to the same handlers, once.
+  useEffect(() => {
+    const img = cardRef.current;
+    if (img?.complete) img.dispatchEvent(new Event(img.naturalWidth > 0 ? "load" : "error"));
+  }, []);
 
   const card = cards.find((c) => c.id === id) ?? cards[0];
   const src = `/stat-card?stat=${id}&ratio=${ratio}${attempt ? `&r=${attempt}` : ""}`;
@@ -116,27 +129,41 @@ export default function MobileStatCards({
       </ScrollRail>
 
       <div className={styles.stage}>
-        {/* eslint-disable-next-line @next/next/no-img-element -- dynamic image route, not a static asset (next/image can't optimise it) */}
-        <img
-          className={`${styles.card} ${ratio === "story" ? styles.cardStory : styles.cardSquare} ${
-            loading ? styles.cardLoading : ""
-          }`}
-          src={src}
-          alt={`Stat card: ${card.value} ${card.label}`}
-          width={size.width}
-          height={size.height}
-          onLoad={() => {
-            setLoading(false);
-            // Warm the other shape, so the ratio toggle is instant — the
-            // route is cacheable, so this is one background request.
-            const other = ratio === "story" ? "square" : "story";
-            new window.Image().src = `/stat-card?stat=${id}&ratio=${other}`;
-          }}
-          onError={() => {
-            setLoading(false);
-            setFailed(true);
-          }}
-        />
+        {/* Gated to this layout. Both layouts' previews sit in every /share
+            document, and an eager <img> is fetched even under display:none,
+            so every phone downloaded the desktop maker's 767 KB square
+            beside this 856 KB story, inside the LCP window (curl, 23 Sep
+            2026). The preload scanner reads <source media> before it
+            fetches: the hidden layout now gets the 1x1 and nothing else.
+            display:contents keeps the <img> the stage's own child. */}
+        <picture style={{ display: "contents" }}>
+          <source media="(max-width: 900px)" srcSet={src} />
+          <img
+            ref={cardRef}
+            className={`${styles.card} ${ratio === "story" ? styles.cardStory : styles.cardSquare} ${
+              loading ? styles.cardLoading : ""
+            }`}
+            src={BLANK_PIXEL}
+            fetchPriority="high"
+            alt={`Stat card: ${card.value} ${card.label}`}
+            width={size.width}
+            height={size.height}
+            onLoad={(e) => {
+              // Above 900px this is the 1x1 standing in for the card. It must
+              // not clear the loading state or warm a card nobody can see.
+              if (e.currentTarget.currentSrc.startsWith("data:")) return;
+              setLoading(false);
+              // Warm the other shape, so the ratio toggle is instant — the
+              // route is cacheable, so this is one background request.
+              const other = ratio === "story" ? "square" : "story";
+              new window.Image().src = `/stat-card?stat=${id}&ratio=${other}`;
+            }}
+            onError={() => {
+              setLoading(false);
+              setFailed(true);
+            }}
+          />
+        </picture>
         {failed && (
           <div className={styles.failed} role="alert">
             <span>The card didn&apos;t render.</span>

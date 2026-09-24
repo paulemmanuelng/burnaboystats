@@ -232,12 +232,16 @@ async function newest(ctx, tab, cutoffFor, maxPages = 20) {
   const top = dates().at(-1) ?? null;
   const cutoff = cutoffFor(top);
   let more = page.hasMore && page.queryParams;
+  // The register's own total comes with a load-more page; a quiet day that
+  // needs none has no total, and the floor is simply not checked that day.
+  let total = null;
   for (let n = 2; more && n <= maxPages && cutoff && (dates()[0] ?? "") >= cutoff; n++) {
     const m = await loadMore(ctx, page.queryParams, n);
     rows.push(...m.rows);
     more = m.hasMore;
+    if (m.total) total = m.total;
   }
-  return { rows, url };
+  return { rows, url, total };
 }
 
 const minusDays = (iso, n) => {
@@ -285,12 +289,19 @@ export const riaa = {
   dateKind: "certification date",
   humanCheck: "Open https://www.riaa.com/gold-platinum/, search the title, and read the badge on the RIAA Gold & Platinum Program tab.",
   minRows: 1,
-  control: { deep: true, rowId: "default_424119", find: (r) => r.rowId === "default_424119" },
+  // One Dance (badge DI level 11) — on the "Wizkid" search, read on deep runs.
+  control: { when: "deep", rowId: "default_424119", find: (r) => r.rowId === "default_424119" },
+  // The deep read (artist searches / the whole register or year) keeps its
+  // rows naming the sixteen from week to week; the daily newest-first window
+  // does not, so only deep reads are judged (health.mjs matchedVerdict).
+  matchedFloor: { deep: true },
+  // RIAA's own award count, from a load-more page (30,179 on 24 Sep 2026).
+  total: "register",
   parse: { rows: parseRows, page: parsePage, loadMore: parseLoadMore, history: parseHistory, badge: parseBadge },
   async read(ctx) {
     const notes = [];
     const cursor = ctx.cursor ?? {};
-    const { rows: listRows } = await newest(ctx, "default-award", (top) => minusDays(cursor.lastDate ?? top, 3));
+    const { rows: listRows, total } = await newest(ctx, "default-award", (top) => minusDays(cursor.lastDate ?? top, 3));
     let rows = [...listRows];
     if (ctx.deep) {
       for (const term of ctx.searchTerms) rows.push(...(await search(ctx, "default-award", term)));
@@ -302,8 +313,11 @@ export const riaa = {
     const h = await enrich(ctx, rows);
     if (h) notes.push(`${h} award histor${h === 1 ? "y" : "ies"} read`);
     const top = newestDate(listRows);
+    if (total) notes.push(`${String(total).replace(/\B(?=(\d{3})+$)/g, ",")} awards in the register`);
     return {
       rows,
+      total: total ?? undefined,
+      newestDate: top,
       newest: top ? `newest award ${listRows.find((r) => isoDate(r.dateRaw) === top)?.dateRaw}` : null,
       notes,
       cursor: { lastDate: top ?? cursor.lastDate ?? null },
@@ -324,7 +338,14 @@ export const riaaLatin = {
   dateKind: "certification date",
   humanCheck: "Open the RIAA Gold & Platinum page, Latin tab (Premios de Oro y Platino), search the title; read the badge.",
   minRows: 1,
-  control: { deep: true, rowId: "default_451299", find: (r) => r.rowId === "default_451299" },
+  // Dai Dai, badge LA level 2 — on the daily "Burna Boy" Latin search, so it
+  // is checked every run (SPEC §3.4).
+  control: { when: "daily", rowId: "default_451299", find: (r) => r.rowId === "default_451299" },
+  // The daily read is the whole register (or year, or the fixed name
+  // searches), so its rows naming the sixteen persist between runs: a read
+  // naming under half as many is `unmatched` (health.mjs matchedVerdict).
+  matchedFloor: { daily: true, deep: true },
+  total: null,
   parse: { rows: parseRows, page: parsePage, loadMore: parseLoadMore, history: parseHistory, badge: parseBadge },
   async read(ctx) {
     const notes = [];
@@ -348,6 +369,9 @@ export const riaaLatin = {
     const topRow = rows.find((r) => isoDate(r.dateRaw) === top);
     return {
       rows,
+      // The Latin tab's own newest date is read on deep runs; between them the
+      // last deep run's date stands (the sixteen's rows are not the register's).
+      newestDate: listTop ?? cursor.lastDate ?? null,
       newest: `${rows.length} row(s) for the ${ctx.artistNames.length} names${topRow ? ` (newest: ${topRow.title}, ${topRow.dateRaw})` : ""}`,
       notes,
       cursor: { lastDate: listTop ?? cursor.lastDate ?? null },

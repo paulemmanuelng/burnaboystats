@@ -130,9 +130,12 @@
 
 /* ── Questions ────────────────────────────────────────────────────────── */
 .list { border-top: 1px solid var(--line); }
-.item {
-  /* Clears the sticky back bar when a chip jumps to this group. */
-  scroll-margin-top: 84px; padding: 18px; border-bottom: 1px solid var(--line); }
+/* A chip's jump clears the sticky back bar through globals.css's [id] rule
+   (88px + safe area). This rule also said 84px, which lost that tie until
+   23 Sep 2026; since the root layout stopped importing the FAQ page
+   (lib/navGroups.ts) this sheet loads after globals.css, where 84px would
+   win, so it is gone. tests/rootLayoutCss.test.ts. */
+.item { padding: 18px; border-bottom: 1px solid var(--line); }
 /* The group label repeats per item rather than being a section heading —
    a phone scrolls past headings, so each answer says where it belongs. */
 .itemGroup {

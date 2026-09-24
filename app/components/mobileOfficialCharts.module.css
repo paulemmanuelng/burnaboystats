@@ -398,3 +398,22 @@
   background-color: var(--bg-soft);
   border: 1px solid var(--line);
 }
+/* The box each cover tile sits in, so the art waits for its row. A background
+   is fetched as soon as its element is styled, wherever it sits on the page,
+   so /records/charts downloaded all 37 of its covers (466 KB) on arrival, most
+   of them several screens down (23 Sep 2026). A content-visibility: auto
+   element's contents are not styled until it nears the viewport (about 1.5
+   screens ahead in Chrome), and the tile inside keeps its own url() and
+   painting unchanged. A lazy <img> would defer the same covers but not draw
+   the same pixels: a background repeats under the tile's translucent
+   hairline, an <img> leaves --bg-soft there. The explicit size keeps a
+   skipped slot the tile's size, and it takes over the tile's place in the
+   row, align-self included. */
+.coverSlot {
+  display: flex;
+  width: 34px;
+  height: 34px;
+  flex: none;
+  align-self: center;
+  content-visibility: auto;
+}

@@ -50,20 +50,29 @@ export const safeUrl = (u) => (/^https?:\/\/[^\s<>()[\]`"'*_|]+$/.test(String(u 
 
 // ── Labels ──────────────────────────────────────────────────────────────────
 export function statusLabel(h, r) {
-  const d = h?.detail ? ` — ${h.detail}` : "";
+  // Details can quote register rows ("A | B | 2026"): escaped for the table.
+  const d = h?.detail ? ` — ${plain(h.detail, 200)}` : "";
   switch (h?.status) {
     case "ok":
       return "✅ read";
+    case "stale":
+      return `⌛ read — source stale${h.track?.staleSince ? ` since ${h.track.staleSince}` : ""}`;
+    case "shrank":
+      return `⚠️ ${plain(h.detail ?? "register shrank", 200)}`;
+    case "unmatched":
+      return `⚠️ matched rows dropped${d}`;
     case "unreachable":
       return `⏭️ not read — ${h.reason ?? "network"}${h.fails > 1 ? ` · day ${h.fails}` : ""}`;
     case "challenge":
-      return `⏭️ not read — bot challenge${h.http ? ` (HTTP ${h.http})` : ""}${h.fails > 1 ? ` · day ${h.fails}` : " · 1st day"}`;
+      return `⏭️ not read — ${h.decoy ? "decoy page" : "bot challenge"}${h.http ? ` (HTTP ${h.http})` : ""}${h.fails > 1 ? ` · day ${h.fails}` : " · 1st day"}`;
     case "format":
       return `⚠️ format changed${d}`;
     case "mismatch":
       return `⚠️ served a different page${d}`;
     case "held-robots":
       return "⏸️ held — robots.txt";
+    case "held-policy":
+      return "⏸️ held — awaiting Paul's ruling";
     case "robots":
       return "⏸️ held — robots.txt";
     case "manual":
@@ -88,9 +97,13 @@ const shortReason = (h, r) => {
     case "unreachable":
       return h.reason ?? "network";
     case "challenge":
-      return "bot challenge";
+      return h.decoy ? "decoy page" : "bot challenge";
     case "format":
       return "format changed";
+    case "shrank":
+      return "register shrank";
+    case "unmatched":
+      return "matched rows dropped";
     case "mismatch":
       return "served a different page";
     case "not-built":
@@ -109,11 +122,15 @@ const shortReason = (h, r) => {
 
 const regName = (r) => `${r.flag} ${r.programme ?? r.body}`;
 
+/** "Read cleanly": ok, or read but stale (§7). Everything else says nothing. */
+const cleanStatus = (st) => st === "ok" || st === "stale";
+
 /** The headline's counts, all derived from the results. */
 export function counts(results, shown) {
   const automated = results.registry.filter((r) => r.class === "AUTOMATE" || r.class === "WITH-CARE");
-  const clean = automated.filter((r) => results.health[r.id]?.status === "ok");
-  const notRead = automated.filter((r) => results.health[r.id]?.status !== "ok");
+  const clean = automated.filter((r) => cleanStatus(results.health[r.id]?.status));
+  const notRead = automated.filter((r) => !cleanStatus(results.health[r.id]?.status));
+  const stale = automated.filter((r) => results.health[r.id]?.status === "stale");
   const list = shown ?? results.candidates;
   return {
     open: list.length,
@@ -121,9 +138,22 @@ export function counts(results, shown) {
     automated: automated.length,
     clean: clean.length,
     notRead,
+    stale,
     manual: results.manual.checks.length,
     watch: results.watch.length,
   };
+}
+
+/** "Stale: 🇳🇱 NVPI — read, but nothing newer than 2026-07-16 (usual gap ≤ 90
+ *  days); … says nothing about the weeks since." */
+export function staleSentence(results, stale) {
+  if (!stale.length) return null;
+  const parts = stale.map((r) => {
+    const h = results.health[r.id];
+    const days = r.staleAfterDays;
+    return `${regName(r)} — read, but nothing newer than ${h?.newestDate ?? "?"}${days ? ` (usual gap ≤ ${days} days)` : ""}`;
+  });
+  return `Stale: ${parts.join("; ")}; ${stale.length === 1 ? "that register says" : "those registers say"} nothing about the weeks since.`;
 }
 
 /** "Not read today: … — those registers say nothing about today." Grouped
@@ -142,11 +172,16 @@ export function notReadSentence(results, notRead) {
 
 const kindLine = (c) => {
   if (c.kind === "UPGRADE") return `**UPGRADE** ${tierLabel(c.holding)} → ${tierLabel(c.reading)}`;
+  if (c.kind === "AMBIGUOUS" && c.alternatives?.length) return `**AMBIGUOUS** — ${[...new Set(c.alternatives.map((a) => a.format))].join(" or ")}?`;
   return `**${c.kind}**`;
 };
 
 const holdingText = (c, country) => {
   if (c.kind === "NEW RELEASE") return `no release titled like this on ${plain(c.artistName)}'s page`;
+  if (c.alternatives?.length)
+    return c.alternatives
+      .map((a) => `${a.format} "${plain(a.title)}": ${a.holding ? `${tierLabel(a.holding)}${a.holding.body ? ` (${a.holding.body})` : ""}` : `nothing in ${country}`}`)
+      .join(" · ");
   if (!c.holding) return `nothing in ${country} for this release`;
   return `${tierLabel(c.holding)}${c.holding.body ? ` (${c.holding.body})` : ""}`;
 };
@@ -167,8 +202,34 @@ function candidateBlock(c, reg) {
   const read = c.readUrl ? `Read via: ${code(c.readUrl, 200)}` : c.url ? `Row link: ${safeUrl(c.url)}` : null;
   if (check || read) lines.push(`  - ${[check, read].filter(Boolean).join(" · ")}`);
   for (const f of c.flags ?? []) lines.push(`  - ⚠ ${plain(f, 200)}`);
+  // A register's standing caveat (TCSN) rides on every one of its lines.
+  if (reg?.caveat) lines.push(`  - ℹ ${plain(reg.caveat, 240)}`);
   if (c.notReRead) lines.push(`  - ${c.notReRead}`);
   lines.push(`  - First seen: ${c.firstSeen}`);
+  return lines.join("\n");
+}
+
+/** Rows from reads that were NOT clean (§7): not leads. Plain bullets — no
+ *  box to tick, no fingerprint — so nothing here can be dismissed, notified
+ *  or remembered; they come back as leads on the register's next clean read. */
+export function heldBackSection(results) {
+  const q = results.quarantined ?? [];
+  if (!q.length) return null;
+  const regOf = (id) => results.registry.find((r) => r.id === id);
+  const lines = [
+    "### Held back — rows from reads not trusted today",
+    "",
+    "_Not leads. These registers came back but were not read cleanly, so they say nothing about today: the rows below that would have been candidates are held back — not listed as leads, not remembered, not notified. They return as leads on the register's next clean read._",
+    "",
+  ];
+  for (const g of q) {
+    const reg = regOf(g.adapter);
+    const ex = (g.examples ?? [])
+      .map((e) => `${plain(e.artistName)} — "${plain(e.release ?? e.title)}" ${e.kind} ${e.tierRaw ? code(e.tierRaw, 60) : "`(no tier)`"}${e.row ? ` (${code(e.row, 160)})` : ""}`)
+      .join("; ");
+    const more = g.count > (g.examples ?? []).length ? `; and ${g.count - g.examples.length} more` : "";
+    lines.push(`- ${reg ? regName(reg) : plain(g.adapter)} · ${statusLabel({ status: g.status, detail: g.detail }, reg)} · ${g.count} row${g.count === 1 ? "" : "s"} held back: ${ex}${more}`);
+  }
   return lines.join("\n");
 }
 
@@ -177,36 +238,53 @@ function watchLine(w, results) {
   const h = results.health[w.adapter];
   const name = `${plain(w.title)}${w.releaseCredit ? ` (${plain(w.releaseCredit)})` : ""} — ${reg?.flag ?? ""} ${plain(w.programme ?? reg?.body ?? w.adapter)}`;
   const site = w.siteHolding ?? "nothing";
-  if (h?.status === "ok" && w.reading) {
-    const r = w.reading;
+  const lands = w.landsWhen ? ` · lands when: ${plain(w.landsWhen, 200)}` : "";
+  const lead = ` · lead: ${plain(w.lead, 240)}`;
+  const readingText = (r) => {
     const bits = [r.label ? code(r.label, 60) : null, r.raw ? code(r.raw, 60) : null, r.rowId ? `award ${code(r.rowId, 40)}` : null, r.date ? `certification date ${plain(r.date, 40)}` : null].filter(Boolean);
-    const changed = w.changed ? " · 🔔 reading changed since the last run" : "";
-    return `- ⏳ **${name}** · register: ${bits[0] ?? "?"}${bits.length > 1 ? ` (${bits.slice(1).join(", ")})` : ""} · site: ${site} · waiting for: ${plain(w.expect)} · lead: ${plain(w.lead, 240)} · read ✅ today${changed}`;
+    return `${bits[0] ?? "?"}${bits.length > 1 ? ` (${bits.slice(1).join(", ")})` : ""}`;
+  };
+  if (w.landed) {
+    const now = w.reading ? ` · register: ${readingText(w.reading)}` : "";
+    return `- ✅ **${name}** · landed ${w.landed} — remove \`${plain(w.id, 60)}\` from config.json${now} · site: ${site}${lead}`;
   }
-  if (h?.status === "ok" && !w.reading) {
-    return `- ⚠️ **${name}** · the register was read but the watched row was not found${w.rowId ? ` (${code(w.rowId, 40)})` : ""} · site: ${site} · waiting for: ${plain(w.expect)} · lead: ${plain(w.lead, 240)}`;
+  const clean = h?.status === "ok" || h?.status === "stale";
+  if (clean && w.reading) {
+    const ahead = w.siteAhead ? " — **the site is ahead of the register**" : "";
+    const when = w.changed ? "🔔 reading changed since the last run" : `unchanged since ${w.since ?? "today"}`;
+    return `- ⏳ **${name}** · register: ${readingText(w.reading)} · site: ${site}${ahead}${lands}${lead} · read ✅ today, ${when}`;
   }
-  const last = w.lastHumanReading
-    ? ` · last reading (${plain(w.lastHumanReading.source, 80)}): ${code(w.lastHumanReading.raw, 160)}`
-    : "";
-  const icon = h?.status === "held-robots" || h?.status === "robots" ? "⏸️" : "⏭️";
+  if (clean && !w.reading) {
+    return `- ⚠️ **${name}** · the register was read but the watched row was not found${w.rowId ? ` (${code(w.rowId, 40)})` : ""} · site: ${site}${lands}${lead}`;
+  }
+  // Not machine-read today: the last reading and its date, never "unchanged".
+  const last = w.lastReading
+    ? ` · last reading: ${code(w.lastReading.raw, 160)}${w.lastReading.since ? ` (since ${plain(w.lastReading.since, 20)})` : ""}`
+    : w.lastHumanReading
+      ? ` · last reading (${plain(w.lastHumanReading.source, 80)}): ${code(w.lastHumanReading.raw, 160)}`
+      : "";
+  const icon = h?.status === "held-robots" || h?.status === "robots" || h?.status === "held-policy" ? "⏸️" : "⏭️";
   const human = reg?.manualCheckText ? ` · human check: ${plain(reg.manualCheckText, 300)}` : reg?.humanCheck ? ` · human check: ${plain(reg.humanCheck, 300)}` : "";
-  return `- ${icon} **${name}** · not machine-read today: ${statusLabel(h, reg)}${reg?.heldWhy ? ` (${plain(reg.heldWhy, 160)})` : ""}${last} · site: ${site} · waiting for: ${plain(w.expect)} · lead: ${plain(w.lead, 240)}${human}`;
+  return `- ${icon} **${name}** · not machine-read today: ${statusLabel(h, reg)}${reg?.heldWhy ? ` (${plain(reg.heldWhy, 160)})` : ""}${last} · site: ${site}${lands}${lead}${human}`;
 }
 
 function healthTable(results) {
   const rows = ["| Register | Class | Today | Newest seen / note |", "|---|---|---|---|"];
-  for (const r of results.registry) {
+  // Automated registers first, then the manual and held ones (§5.2).
+  const auto = results.registry.filter((r) => r.class !== "MANUAL");
+  const manual = results.registry.filter((r) => r.class === "MANUAL");
+  for (const r of [...auto, ...manual]) {
     const h = results.health[r.id] ?? { status: "unknown" };
     const note =
-      h.status === "ok"
+      h.status === "ok" || h.status === "stale" || h.status === "shrank" || h.status === "unmatched"
         ? [h.newest, ...(h.notes ?? [])].filter(Boolean).join(" · ")
-        : h.status === "manual" || h.status === "held-robots"
+        : h.status === "manual" || h.status === "held-robots" || h.status === "held-policy"
           ? [r.note, "human check below"].filter(Boolean).join(" · ")
           : h.status === "not-built"
             ? `human check: ${r.humanCheck ?? "see manual checks"}`
             : h.detail ?? "";
-    rows.push(`| ${regName(r)} | ${r.class} | ${statusLabel(h, r)} | ${plain(note, 220).replace(/\|/g, "\\|")} |`);
+    // plain() already escapes "|" for the table.
+    rows.push(`| ${regName(r)} | ${r.class} | ${statusLabel(h, r)} | ${plain(note, 320)} |`);
   }
   return rows.join("\n");
 }
@@ -236,13 +314,27 @@ function runDetails(results, hiddenCount) {
   const cleared = results.cleared.length
     ? results.cleared.map((c) => `${plain(c.artistName ?? c.artist)} — "${plain(c.release ?? c.title)}" (${c.adapter})`).join("; ")
     : "none";
+  const first = Object.entries(results.requests?.first ?? {})
+    .map(([host, f]) => `${host} ${f.status ?? f.kind}${f.server ? ` ${plain(f.server, 30)}` : ""}${f.cfRay ? " cf-ray" : ""}${f.marker === true ? " marker ✓" : f.marker === false ? " marker ✗" : ""}`)
+    .join(" · ");
+  const gaps = Object.entries(results.requests?.minGapMs ?? {})
+    .map(([host, ms]) => `${host} ${(ms / 1000).toFixed(1)} s`)
+    .join(" · ");
+  const floors = Object.entries(results.health)
+    .flatMap(([id, h]) => (h.events ?? []).map((e) => `${id}: ${e.text}`))
+    .join(" · ");
   const lines = [
     "<details><summary>Run details</summary>",
     "",
     `Run ${results.date.replace("T", " ").slice(0, 16)} UTC${results.runUrl ? ` · ${results.runUrl}` : ""} · ${dur} · ${results.requests?.total ?? 0} requests${byHost ? ` (${byHost})` : ""}${results.offline ? " · OFFLINE (saved responses)" : ""}${results.deep ? " · deep reads" : ""}${results.dryRun ? " · dry run" : ""}`,
     "",
-    `Suppressed: ${div}, ${held}, ${s.tribute.length} tribute reject${s.tribute.length === 1 ? "" : "s"}, ${hiddenCount} dismissed · cleared since the last run (the site caught up): ${cleared}`,
+    `First response per host: ${first || "none"}`,
   ];
+  if (gaps) lines.push("", `Smallest gap between two requests, per host: ${gaps}`);
+  lines.push(
+    "",
+    `Suppressed: ${div}, ${held}, ${s.tribute.length} tribute reject${s.tribute.length === 1 ? "" : "s"}, ${hiddenCount} dismissed · floors: ${floors || "none learned or lowered"} · cleared since the last run (the site caught up): ${cleared}`
+  );
   for (const w of results.warnings ?? []) lines.push("", `⚠️ ${plain(w, 300)}`);
   const errs = Object.entries(results.health).filter(([, h]) => h.status === "error" && h.stack);
   for (const [id, h] of errs) lines.push("", `Adapter ${id} threw:`, "", "```", String(h.stack).replace(/```/g, "ʼʼʼ").slice(0, 1500), "```");
@@ -263,15 +355,20 @@ export function renderBody(results, view, { withState = true } = {}) {
     n.open === 0
       ? `**0 candidates**`
       : `**${n.open} candidate${n.open === 1 ? "" : "s"} to verify** (${n.new} new since the last run)`;
+  const heldBack = (results.quarantined ?? []).reduce((a, g) => a + g.count, 0);
   out.push(
-    `${lead} · ${n.clean} of ${n.automated} automated registers read cleanly · ${n.manual} manual checks this week · ${n.watch} on the watchlist`
+    `${lead} · ${n.clean} of ${n.automated} automated registers read cleanly · ${n.stale.length} stale · ${n.manual} manual checks this week · ${n.watch} on the watchlist${heldBack ? ` · ${heldBack} row${heldBack === 1 ? "" : "s"} held back from reads not trusted today` : ""}`
   );
   const nr = notReadSentence(results, n.notRead);
+  const st = staleSentence(results, n.stale);
+  // The not-read and stale lists always sit beside the one sentence that may
+  // say "no new certification leads" (§5.2, §7).
+  const beside = [nr, st].filter(Boolean).map((x) => ` **${x}**`).join("");
   if (n.clean === 0) out.push("", "**No register was read today — this run says nothing.**");
   if (n.open === 0 && n.clean > 0) {
-    out.push("", `No new certification leads in the ${n.clean} register${n.clean === 1 ? "" : "s"} read cleanly.${nr ? ` **${nr}**` : ""}`);
-  } else if (nr) {
-    out.push("", `**${nr}**`);
+    out.push("", `No new certification leads in the ${n.clean} register${n.clean === 1 ? "" : "s"} read cleanly.${beside}`);
+  } else if (beside) {
+    out.push("", beside.trim());
   }
   if (results.stateError) out.push("", `⚠️ ${plain(results.stateError, 300)} — the previous state was kept.`);
   if (results.state?.reset) out.push("", "ℹ️ No previous state was found, so every open candidate is listed as new.");
@@ -299,6 +396,9 @@ export function renderBody(results, view, { withState = true } = {}) {
     }
     out.push("");
   }
+
+  const held = heldBackSection(results);
+  if (held) out.push(held, "");
 
   out.push("### Watchlist — reported every run until it lands", "");
   for (const w of results.watch) out.push(watchLine(w, results));
@@ -380,6 +480,7 @@ export function githubOutputs(results, view) {
     open: String(n.open),
     new: String(n.new),
     not_read: String(n.notRead.length),
+    stale: String(n.stale.length),
     has_drift: String(!!results.notify),
   };
 }

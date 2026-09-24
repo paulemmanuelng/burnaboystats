@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-24";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-24T04:56Z";
+  export const liveChartsBuiltAt = "2026-09-24T11:50Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","iTunes"];
@@ -262,7 +262,7 @@
             "country": "MZ",
             "name": "Mozambique",
             "position": 98,
-            "movement": -87
+            "movement": -86
           }
         ]
       }
@@ -278,64 +278,92 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NO",
-            "name": "Norway",
-            "position": 66,
-            "movement": -8
+            "country": "AU",
+            "name": "Australia",
+            "position": 23,
+            "movement": 57
           },
           {
             "country": "IT",
             "name": "Italy",
-            "position": 67,
-            "movement": -42
+            "position": 23,
+            "movement": 2
           },
           {
             "country": "CH",
             "name": "Switzerland",
-            "position": 69,
-            "movement": -25
+            "position": 26,
+            "movement": 18
+          },
+          {
+            "country": "NO",
+            "name": "Norway",
+            "position": 30,
+            "movement": 28
           },
           {
             "country": "SE",
             "name": "Sweden",
-            "position": 70,
-            "movement": -7
-          },
-          {
-            "country": "DK",
-            "name": "Denmark",
-            "position": 75,
-            "movement": -9
+            "position": 31,
+            "movement": 32
           },
           {
             "country": "AT",
             "name": "Austria",
-            "position": 78,
-            "movement": -34
+            "position": 36,
+            "movement": 8
           },
           {
-            "country": "AU",
-            "name": "Australia",
-            "position": 86,
-            "movement": -6
+            "country": "DK",
+            "name": "Denmark",
+            "position": 38,
+            "movement": 28
           },
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 89,
-            "movement": -12
-          },
-          {
-            "country": "DE",
-            "name": "Germany",
-            "position": 99,
-            "movement": -31
+            "position": 47,
+            "movement": 30
           },
           {
             "country": "BE",
             "name": "Belgium",
-            "position": 100,
-            "movement": -44
+            "position": 50,
+            "movement": 6
+          },
+          {
+            "country": "DE",
+            "name": "Germany",
+            "position": 54,
+            "movement": 14
+          },
+          {
+            "country": "CA",
+            "name": "Canada",
+            "position": 60,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "WW",
+            "name": "Worldwide",
+            "position": 67,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 74,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "IE",
+            "name": "Ireland",
+            "position": 89,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -414,21 +442,8 @@
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 67,
-            "movement": 2
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SN",
-            "name": "Senegal",
-            "position": 57,
-            "movement": null,
-            "status": "new"
+            "position": 54,
+            "movement": 13
           }
         ]
       }
@@ -444,22 +459,22 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "HR",
-            "name": "Croatia",
-            "position": 102,
-            "movement": -50
-          },
-          {
             "country": "RO",
             "name": "Romania",
-            "position": 106,
-            "movement": 0
+            "position": 99,
+            "movement": 7
           },
           {
             "country": "BG",
             "name": "Bulgaria",
-            "position": 140,
-            "movement": 6
+            "position": 146,
+            "movement": -6
+          },
+          {
+            "country": "HR",
+            "name": "Croatia",
+            "position": 161,
+            "movement": -59
           }
         ]
       },
@@ -489,7 +504,7 @@
           {
             "country": "SE",
             "name": "Sweden",
-            "position": 139,
+            "position": 169,
             "movement": null,
             "status": "new"
           }
@@ -498,6 +513,38 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Talk to Me",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FI",
+            "name": "Finland",
+            "position": 143,
+            "movement": -15
+          },
+          {
+            "country": "RO",
+            "name": "Romania",
+            "position": 168,
+            "movement": 5
+          },
+          {
+            "country": "HR",
+            "name": "Croatia",
+            "position": 187,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/cd07d0b83bcc8a17928619b3771e42df/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "TYLA +",
@@ -547,13 +594,13 @@
         ]
       },
       {
-        "platform": "Deezer",
+        "platform": "Shazam",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "AU",
-            "name": "Australia",
-            "position": 88,
+            "country": "US",
+            "name": "United States",
+            "position": 188,
             "movement": null,
             "status": "new"
           }
@@ -562,32 +609,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Talk to Me",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FI",
-            "name": "Finland",
-            "position": 128,
-            "movement": 3
-          },
-          {
-            "country": "RO",
-            "name": "Romania",
-            "position": 173,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/cd07d0b83bcc8a17928619b3771e42df/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "WWP - Single",
@@ -614,6 +635,26 @@
       }
     ],
     "kind": "album"
+  },
+  {
+    "title": "MR. NONCHALANT",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "PT",
+            "name": "Portugal",
+            "position": 31,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "TYLA",

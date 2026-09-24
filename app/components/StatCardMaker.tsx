@@ -1,11 +1,12 @@
 "use client"; // interactive picker + ratio toggle + Download (blob)
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import styles from "./StatCardMaker.module.css";
 import { track } from "../lib/analytics";
 import { CARD_SIZES, type CardRatio } from "../lib/cardSizes";
 import { saveCard } from "../lib/saveCard";
+import { BLANK_PIXEL } from "../lib/blankPixel";
 
 /**
  * The stat-card builder, from designs/desktop/Share.dc.html and mobile
@@ -53,6 +54,17 @@ export default function StatCardMaker({
   // Bumped by Retry so the <img> re-requests a URL the browser just marked bad.
   const [attempt, setAttempt] = useState(0);
   const [downloading, setDownloading] = useState(false);
+  const cardRef = useRef<HTMLImageElement>(null);
+
+  // A preview that finished before hydration never reached onLoad (React
+  // does not replay it) and stayed dimmed at 35%: production's did on one of
+  // two cold desktop loads on 23 Sep 2026. Gating the phone's PNG out lets
+  // this card finish sooner, so the race would be lost more often. The phone
+  // screen carries the same guard (MobileStatCards.tsx).
+  useEffect(() => {
+    const img = cardRef.current;
+    if (img?.complete) img.dispatchEvent(new Event(img.naturalWidth > 0 ? "load" : "error"));
+  }, []);
 
   const card = cards.find((c) => c.id === id) ?? cards[0];
   const src = `/stat-card?stat=${id}&ratio=${ratio}${attempt ? `&r=${attempt}` : ""}`;
@@ -134,30 +146,45 @@ export default function StatCardMaker({
             </div>
 
             <div className={styles.stage}>
-              {/* eslint-disable-next-line @next/next/no-img-element -- dynamic image route, not a static asset (next/image can't optimise it) */}
-              <img
-                className={`${styles.card} ${
-                  ratio === "story" ? styles.cardStory : styles.cardSquare
-                } ${loading ? styles.cardLoading : ""}`}
-                src={src}
-                alt={`Stat card: ${card.value} ${card.label}`}
-                width={size.width}
-                height={size.height}
-                onLoad={() => {
-                  setLoading(false);
-                  // Warm the other shape of this card, so flipping the ratio
-                  // is instant instead of a fresh server render. The route is
-                  // cacheable now, so this costs one background request.
-                  const other = ratio === "square" ? "story" : "square";
-                  new window.Image().src = `/stat-card?stat=${id}&ratio=${other}`;
-                }}
-                onError={() => {
-                  // Without this, a failed render left the preview dimmed at
-                  // 35% forever with no way out.
-                  setLoading(false);
-                  setFailed(true);
-                }}
-              />
+              {/* Gated to this layout, as the phone screen's preview is:
+                  both sit in every /share document, and an eager <img> is
+                  fetched even under display:none. A desktop paid for the
+                  phone's 856 KB story before its own 767 KB square, and a
+                  phone for this square beside its story (curl, 23 Sep 2026).
+                  The hidden layout now gets the 1x1. display:contents keeps
+                  the <img> the stage's flex item, so it centres as before. */}
+              <picture style={{ display: "contents" }}>
+                <source media="(min-width: 901px)" srcSet={src} />
+                <img
+                  ref={cardRef}
+                  className={`${styles.card} ${
+                    ratio === "story" ? styles.cardStory : styles.cardSquare
+                  } ${loading ? styles.cardLoading : ""}`}
+                  src={BLANK_PIXEL}
+                  fetchPriority="high"
+                  alt={`Stat card: ${card.value} ${card.label}`}
+                  width={size.width}
+                  height={size.height}
+                  onLoad={(e) => {
+                    // At 900px and below this is the 1x1 standing in for the
+                    // card: it must not clear the loading state or warm a
+                    // card nobody can see.
+                    if (e.currentTarget.currentSrc.startsWith("data:")) return;
+                    setLoading(false);
+                    // Warm the other shape of this card, so flipping the ratio
+                    // is instant instead of a fresh server render. The route is
+                    // cacheable now, so this costs one background request.
+                    const other = ratio === "square" ? "story" : "square";
+                    new window.Image().src = `/stat-card?stat=${id}&ratio=${other}`;
+                  }}
+                  onError={() => {
+                    // Without this, a failed render left the preview dimmed at
+                    // 35% forever with no way out.
+                    setLoading(false);
+                    setFailed(true);
+                  }}
+                />
+              </picture>
               {failed && (
                 <div className={`${styles.failed} photoTile`} role="alert">
                   <span>The preview didn&apos;t render.</span>

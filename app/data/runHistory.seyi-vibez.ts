@@ -36,21 +36,27 @@
   },
   {
     "date": "2026-09-24",
-    "release": "BACK 2 U",
+    "release": "Back 2 U",
     "platform": "Shazam",
-    "position": 159
+    "position": 131
   },
   {
     "date": "2026-09-24",
     "release": "ILOME",
     "platform": "Shazam",
-    "position": 96
+    "position": 68
+  },
+  {
+    "date": "2026-09-24",
+    "release": "Pansa",
+    "platform": "Shazam",
+    "position": 193
   },
   {
     "date": "2026-09-24",
     "release": "VOLUME",
     "platform": "Shazam",
-    "position": 77
+    "position": 63
   }
 ];
   

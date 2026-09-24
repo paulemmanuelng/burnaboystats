@@ -10,6 +10,17 @@ import { parseCertField as seCert } from "../scripts/cert-watch/adapters/ifpi-sv
 import { parseStatus as dkStatus } from "../scripts/cert-watch/adapters/ifpi-danmark.mjs";
 import { parseStatus as nvpiStatus } from "../scripts/cert-watch/adapters/nvpi.mjs";
 import { parseBadge as cnsBadge } from "../scripts/cert-watch/adapters/cns-ifpi.mjs";
+import { parseTier as atTier } from "../scripts/cert-watch/adapters/ifpi-austria.mjs";
+import { parseAward as huAward } from "../scripts/cert-watch/adapters/mahasz.mjs";
+import { parseTrophy as noTrophy } from "../scripts/cert-watch/adapters/ifpi-norge.mjs";
+import { parseAward as esAward } from "../scripts/cert-watch/adapters/promusicae.mjs";
+import { parsePreis as dePreis } from "../scripts/cert-watch/adapters/bvmi.mjs";
+import { parseAward as grAward } from "../scripts/cert-watch/adapters/ifpi-greece.mjs";
+import { parseCardTier as chTier } from "../scripts/cert-watch/adapters/swisscharts.mjs";
+import { parseLevel as nzLevel } from "../scripts/cert-watch/adapters/rmnz.mjs";
+import { parseCert as mxCert } from "../scripts/cert-watch/adapters/amprofon.mjs";
+import { parseMilestone as ngMilestone } from "../scripts/cert-watch/adapters/tcsn.mjs";
+import { parseBadge as brBadge } from "../scripts/cert-watch/adapters/promusica-br.mjs";
 
 /**
  * Multiples are read in each register's OWN steps (SPEC §4.4). Every form
@@ -54,8 +65,14 @@ describe("Music Canada classes (each step its own id)", () => {
     expect(parseCertClass(["award_cert-gold-albums"])).toMatchObject({ reading: { tier: "Gold", x: 1 }, format: "album" });
   });
 
-  it("gives null for a tier word it has never seen", () => {
-    expect(parseCertClass(["award_cert-double-diamond-single"]).reading).toBeNull();
+  it("reads double-diamond as Diamond ×2 (id 59901, Adele / 21, as served in the 23 Sep sweep's dump)", () => {
+    expect(parseCertClass(["award_canadian-n", "award_cert-double-diamond-albums", "award_type-album"])).toMatchObject({ reading: { tier: "Diamond", x: 2 }, format: "album" });
+  });
+
+  it("gives null for a tier word it does not know", () => {
+    // Real classes from the 23 Sep sweep's full dump: "gold-physical" (627
+    // physical-single rows) is a word this parser was never taught.
+    expect(parseCertClass(["award_cert-gold-physical-singles"]).reading).toBeNull();
     expect(parseCertClass(["award_type-single"]).reading).toBeNull();
   });
 });
@@ -154,5 +171,69 @@ describe("step 2 tier forms, read in each register's own steps", () => {
     expect(compareHolding("standard", { tier: "Gold", x: 3 }, { tier: "Platinum", x: 1 })).toBe("UPGRADE");
     expect(compareHolding("standard", { tier: "Diamond", x: 1 }, { tier: "Diamond", x: 2 })).toBe("UPGRADE");
     expect(compareHolding("standard", { tier: "Diamond", x: 1 }, { tier: "Platinum", x: 4 })).toBeNull();
+  });
+});
+
+describe("step 3b forms (each from a row its register served)", () => {
+  it("IFPI Austria: GOLD, PLATIN, N-fach PLATIN, N-fach GOLD", () => {
+    expect(atTier("2-fach PLATIN")).toEqual({ tier: "Platinum", x: 2 });
+    expect(atTier("GOLD")).toEqual({ tier: "Gold", x: 1 });
+    expect(atTier("3-fach GOLD")).toEqual({ tier: "Gold", x: 3 });
+    // 3-fach GOLD is below PLATIN on the standard ladder.
+    expect(compareHolding("standard", { tier: "Gold", x: 3 }, atTier("PLATIN"))).toBe("UPGRADE");
+  });
+
+  it("MAHASZ: fa-circle = Arany; fa-play + arany_platina_db N = Platina ×N", () => {
+    expect(huAward('<i class="fas fa-circle"></i>').reading).toEqual({ tier: "Gold", x: 1 });
+    expect(huAward('<i class="fas fa-play fa-rotate-270"></i><span class="arany_platina_db">12</span>').reading).toEqual({ tier: "Platinum", x: 12 });
+  });
+
+  it("IFPI Norge: Nivå x1 / X2 / blank", () => {
+    expect(noTrophy("Trofe_PLATINA_minimini_grey.png", "x1")).toEqual({ tier: "Platinum", x: 1 });
+    expect(noTrophy("Trofe_PLATINA_minimini_grey.png", "X2")).toEqual({ tier: "Platinum", x: 2 });
+    expect(noTrophy("Trofe_GULL_minimini_yellow.png", "")).toEqual({ tier: "Gold", x: 1 });
+  });
+
+  it("PROMUSICAE: N × Discos de Oro / Platino", () => {
+    expect(esAward("3 ×", "platinum", "Discos de Platino")).toEqual({ tier: "Platinum", x: 3 });
+    expect(esAward("1 ×", "golden", "Discos de Oro")).toEqual({ tier: "Gold", x: 1 });
+  });
+});
+
+describe("step 3c forms (each from a row its register served)", () => {
+  it("BVMI: 1x Gold, 3x Gold (a Gold multiple), 2x Platin, 1x Diamond", () => {
+    expect(dePreis("3x Gold")).toEqual({ tier: "Gold", x: 3 });
+    expect(compareHolding("standard", dePreis("3x Gold"), dePreis("1x Platin"))).toBe("UPGRADE");
+    expect(compareHolding("standard", dePreis("1x Platin"), dePreis("3x Gold"))).toBeNull();
+  });
+
+  it("IFPI Greece: G / P / 2P / D", () => {
+    expect(grAward("2P")).toEqual({ tier: "Platinum", x: 2 });
+    expect(grAward("D")).toEqual({ tier: "Diamond", x: 1 });
+  });
+
+  it("swisscharts.com: the image, or the word on older cards", () => {
+    expect(chTier("award_platin_3.svg", "Dreifach-Platin")).toEqual({ tier: "Platinum", x: 3 });
+    expect(chTier(null, "Vierfachplatin")).toEqual({ tier: "Platinum", x: 4 });
+  });
+
+  it("RMNZ: Gold, Plat x2, Plat (×1)", () => {
+    expect(nzLevel("Plat x2")).toEqual({ tier: "Platinum", x: 2 });
+    expect(nzLevel("Plat")).toEqual({ tier: "Platinum", x: 1 });
+  });
+
+  it("AMPROFON: PLATINO & ORO / 3 & 1 is [Platinum, 3], the Oro half-step kept verbatim", () => {
+    expect(mxCert("PLATINO & ORO", "3 & 1")).toEqual({ tier: "Platinum", x: 3 });
+    expect(mxCert("DIAMANTE & PLATINO", "1 & 3")).toEqual({ tier: "Diamond", x: 1 });
+  });
+
+  it("TCSN: Platinum_8, Gold_1 (Silver_1 would be Silver)", () => {
+    expect(ngMilestone("Platinum_8")).toEqual({ tier: "Platinum", x: 8 });
+    expect(ngMilestone("Gold_1")).toEqual({ tier: "Gold", x: 1 });
+  });
+
+  it("Pro-Música Brasil: Ouro, Platina 3x, Diamante 2x", () => {
+    expect(brBadge("Platina 3x")).toEqual({ tier: "Platinum", x: 3 });
+    expect(brBadge("Diamante 2x")).toEqual({ tier: "Diamond", x: 2 });
   });
 });

@@ -118,10 +118,14 @@ export const snep = {
   // SHAKIRA & BURNA BOY | DAI DAI | Diamant | constat 27/08/2026 — on the
   // "Burna Boy" interprete search, read on deep runs.
   control: {
-    deep: true,
+    when: "deep",
     rowId: "DAI DAI · Diamant · 27/08/2026",
     find: (r) => r.title === "DAI DAI" && r.credit === "SHAKIRA & BURNA BOY" && r.tierRaw === "Diamant" && r.dateRaw === "27/08/2026",
   },
+  // The deep read (artist searches / the whole register or year) keeps its
+  // rows naming the sixteen from week to week; the daily newest-first window
+  // does not, so only deep reads are judged (health.mjs matchedVerdict).
+  matchedFloor: { deep: true },
   parse: { cards: parseCards, page: parsePage, tier: parseTier },
   async read(ctx) {
     const notes = [];
@@ -154,6 +158,7 @@ export const snep = {
     const top = newestIso(listRows);
     const topRow = listRows.find((r) => isoOf(r.dateRaw) === top);
     return {
+      newestDate: top,
       // A card read twice (the newest page and a search) is one card.
       rows: [...new Map(rows.map((r) => [r.raw, r])).values()],
       newest: top ? `newest date de constat ${topRow.dateRaw}` : null,

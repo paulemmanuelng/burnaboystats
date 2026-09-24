@@ -3,8 +3,12 @@
 // with its human check — nothing is silently missing between build steps.
 //
 // class: AUTOMATE | WITH-CARE | MANUAL. "Automated registers" are the first
-// two (23 rows); the headline counts clean reads out of those, derived from
-// this list, never typed.
+// two (21 rows since the 24 Sep afternoon re-test); the headline counts clean
+// reads out of those, derived from this list, never typed. A MANUAL row may be
+// `heldBy` "robots" (BPI: enabled only by a written permission record) or
+// "policy" (a register awaiting a ruling — none since 24 Sep 2026). RiSA and
+// FIMI are plain MANUAL rows for good: owner ruling (SPEC §0.4), both ask not
+// to be read by AI tools.
 
 import { riaa, riaaLatin } from "./riaa.mjs";
 import { musiccanada } from "./musiccanada.mjs";
@@ -15,6 +19,17 @@ import { ifpiSverige } from "./ifpi-sverige.mjs";
 import { ifpiDanmark } from "./ifpi-danmark.mjs";
 import { nvpi } from "./nvpi.mjs";
 import { cnsIfpiCz, cnsIfpiSk } from "./cns-ifpi.mjs";
+import { ifpiAustria } from "./ifpi-austria.mjs";
+import { mahasz } from "./mahasz.mjs";
+import { ifpiNorge } from "./ifpi-norge.mjs";
+import { promusicae } from "./promusicae.mjs";
+import { bvmi } from "./bvmi.mjs";
+import { ifpiGreece } from "./ifpi-greece.mjs";
+import { swisscharts } from "./swisscharts.mjs";
+import { rmnz } from "./rmnz.mjs";
+import { amprofon } from "./amprofon.mjs";
+import { tcsn } from "./tcsn.mjs";
+import { promusicaBr } from "./promusica-br.mjs";
 import { MANUAL } from "./manual.mjs";
 
 export const COUNTRY = {
@@ -47,31 +62,25 @@ export const COUNTRY = {
   ZA: { flag: "🇿🇦", name: "South Africa" },
 };
 
-/** Rows 12–24, which step 3 delivers. Each carries what a human needs today. */
-const LATER = [
-  { id: "bvmi", country: "DE", body: "BVMI", class: "AUTOMATE", step: 3, hosts: ["www.musikindustrie.de"], registerUrl: "https://www.musikindustrie.de/markt-bestseller/gold-/platin-und-diamond-auszeichnungen/datenbank", humanCheck: "Search the BVMI Gold/Platin database for each name." },
-  { id: "ifpi-austria", country: "AT", body: "IFPI Austria", class: "AUTOMATE", step: 3, hosts: ["ifpi.at"], registerUrl: "https://ifpi.at/auszeichnungen/", humanCheck: "Open https://ifpi.at/auszeichnungen/?fwp_per_page=100 and read the newest rows." },
-  { id: "mahasz", country: "HU", body: "MAHASZ", class: "AUTOMATE", step: 3, hosts: ["slagerlistak.hu"], registerUrl: "https://slagerlistak.hu/arany-es-platinalemezek/adatbazis", humanCheck: "Open this year's MAHASZ database page and read the rows for the 16 names." },
-  { id: "ifpi-greece", country: "GR", body: "IFPI Greece", class: "AUTOMATE", step: 3, hosts: ["www.ifpi.gr"], registerUrl: "https://ifpi.gr/digital_ien.html", humanCheck: "Open https://ifpi.gr/digital_ien.html and read the Award column for charting titles." },
-  { id: "ifpi-norge", country: "NO", body: "IFPI Norge", class: "AUTOMATE", step: 3, hosts: ["ifpi.no"], registerUrl: "https://ifpi.no/trofe/trofeoversikt/", humanCheck: "Open https://ifpi.no/trofe/trofeoversikt/?pg=1 and read the newest trophies." },
-  { id: "promusicae", country: "ES", body: "PROMUSICAE", class: "AUTOMATE", step: 3, hosts: ["www.elportaldemusica.es"], registerUrl: "https://www.elportaldemusica.es/awards/index", humanCheck: "Open https://www.elportaldemusica.es/awards/index for this week and last." },
-  { id: "swisscharts", country: "CH", body: "IFPI Schweiz (swisscharts.com)", class: "WITH-CARE", step: 3, hosts: ["swisscharts.com"], registerUrl: "https://swisscharts.com/edelmetall/2026", humanCheck: "Open https://swisscharts.com/edelmetall/2026 (never hitparade.ch) and read the award cards." },
-  { id: "rmnz", country: "NZ", body: "RMNZ (RadioScope)", class: "WITH-CARE", step: 3, hosts: ["www.radioscope.co.nz"], registerUrl: "https://www.radioscope.co.nz/2024/00/00/single-cert-search/", humanCheck: "Search RadioScope's single and album cert tables for each name; the latest row is the current tier." },
-  { id: "promusica-co", country: "CO", body: "Pro Música Colombia", class: "WITH-CARE", step: 3, hosts: ["pro-musica.co"], registerUrl: "https://pro-musica.co/certificaciones-2/", humanCheck: "Open https://pro-musica.co/certificaciones-2/ and check whether a newer register PDF is linked (frozen since 21/02/2025)." },
-  { id: "amprofon", country: "MX", body: "AMPROFON", class: "WITH-CARE", step: 3, hosts: ["amprofon.com.mx"], registerUrl: "https://amprofon.com.mx/es/pages/certificaciones.php", humanCheck: "Open https://amprofon.com.mx/es/pages/certificaciones.php in a browser and filter by artist." },
-  { id: "fimi", country: "IT", body: "FIMI", class: "WITH-CARE", step: 3, hosts: ["www.fimi.it"], registerUrl: "https://www.fimi.it/top-of-the-music/certificazioni/", humanCheck: "Search FIMI's certificazioni page for each name, singles and albums, this year." },
-  { id: "tcsn", country: "NG", body: "TurnTable (TCSN)", class: "WITH-CARE", step: 3, hosts: ["turntablecharts.com"], registerUrl: "https://turntablecharts.com/certification", humanCheck: "Open https://turntablecharts.com/certification (500-row cap, no Silver shown) and read the rows for the 16 names." },
-  { id: "promusica-br", country: "BR", body: "Pro-Música Brasil", class: "WITH-CARE", step: 3, hosts: ["pro-musicabr.org.br"], registerUrl: "https://pro-musicabr.org.br/home-2/certificados/", humanCheck: "Search https://pro-musicabr.org.br/home-2/certificados/?busca_artista=<name> for each name." },
+const BUILT = [
+  riaa, riaaLatin, musiccanada, bpi, snep, zpav, ifpiSverige, ifpiDanmark, nvpi, cnsIfpiCz, cnsIfpiSk,
+  ifpiAustria, mahasz, ifpiNorge, promusicae,
+  bvmi, ifpiGreece, swisscharts, rmnz, amprofon, tcsn, promusicaBr,
 ];
 
-const BUILT = [riaa, riaaLatin, musiccanada, bpi, snep, zpav, ifpiSverige, ifpiDanmark, nvpi, cnsIfpiCz, cnsIfpiSk];
+/** The spec's order (SPEC §3): rows 1–22 automated or BPI, then the manual
+ *  and held rows. */
+const ORDER = [
+  "riaa", "riaa-latin", "musiccanada", "bpi", "snep", "zpav", "ifpi-sverige", "ifpi-danmark", "nvpi", "cns-ifpi-cz", "cns-ifpi-sk",
+  "ifpi-austria", "mahasz", "ifpi-norge", "promusicae", "bvmi", "ifpi-greece", "swisscharts", "rmnz", "amprofon", "tcsn", "promusica-br",
+  "risa", "fimi", "promusica-co", "ultratop", "aria", "afp",
+];
 
-/** All 28 rows, in the spec's order: built adapters, later rows, manual rows. */
+/** All 28 rows, in the spec's order. */
 export const REGISTRY = [
   ...BUILT.map((a) => ({ ...a, built: true })),
-  ...LATER.map((a) => ({ ...a, built: false, programme: null })),
   ...MANUAL.map((a) => ({ ...a, built: false, programme: null })),
-];
+].sort((a, b) => ORDER.indexOf(a.id) - ORDER.indexOf(b.id));
 
 export const AUTOMATED = REGISTRY.filter((r) => r.class === "AUTOMATE" || r.class === "WITH-CARE");
 export const byId = (id) => REGISTRY.find((r) => r.id === id);

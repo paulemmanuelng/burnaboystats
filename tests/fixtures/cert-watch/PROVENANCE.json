@@ -1178,7 +1178,7 @@
   "source": "23 Sep 2026 sweep (sweep-2026-09-23/nordics-pl/se/search/tyla.html)",
   "fetched": "2026-09-23T17:26:21Z",
   "url": "https://sverigetopplistan.se/search/?query=tyla",
-  "note": "Sverigetopplistan search 'tyla': 8 items, WATER badge SWE,Platina",
+  "note": "Sverigetopplistan search 'tyla': 8 items, WATER badge SWE,Platina · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "a browser User-Agent (Chrome 128)"
  },
  {
@@ -1186,7 +1186,7 @@
   "source": "23 Sep 2026 sweep (sweep-2026-09-23/nordics-pl/se/search/burna_boy.html)",
   "fetched": "2026-09-23T17:25:24Z",
   "url": "https://sverigetopplistan.se/search/?query=burna+boy",
-  "note": "Sverigetopplistan search 'burna boy': 11 items, DAI DAI sart 15311162 badge SWE,Platina",
+  "note": "Sverigetopplistan search 'burna boy': 11 items, DAI DAI sart 15311162 badge SWE,Platina · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "a browser User-Agent (Chrome 128)"
  },
  {
@@ -1194,7 +1194,7 @@
   "source": "23 Sep 2026 sweep (sweep-2026-09-23/nordics-pl/se/ifpi_sart_15311162.html)",
   "fetched": "2026-09-23T17:20:29Z",
   "url": "https://sys2.ifpi.se/netdata/grp006.MBR/artdata?sart=15311162",
-  "note": "Ifpi Sverige record, SHAKIRA & BURNA BOY - DAI DAI: Guld/Platina: Platina - cert.nr 11317 - 2026-09-18 · ISO-8859-1 bytes as served",
+  "note": "Ifpi Sverige record, SHAKIRA & BURNA BOY - DAI DAI: Guld/Platina: Platina - cert.nr 11317 - 2026-09-18 · ISO-8859-1 bytes as served · redacted 24 Sep 2026 (SPEC §0.5): 4 address occurrences → \"(redacted)\"; every other byte as served",
   "userAgent": "a browser User-Agent (Chrome 128)"
  },
  {
@@ -1202,7 +1202,7 @@
   "source": "23 Sep 2026 sweep (sweep-2026-09-23/nordics-pl/se/rec/ifpi_12096186.html)",
   "fetched": "2026-09-23T17:28:30Z",
   "url": "https://sys2.ifpi.se/netdata/grp006.MBR/artdata?sart=12096186",
-  "note": "Ifpi Sverige record, TYLA - WATER: Platina - cert.nr 11312 - 2026-09-18 · ISO-8859-1",
+  "note": "Ifpi Sverige record, TYLA - WATER: Platina - cert.nr 11312 - 2026-09-18 · ISO-8859-1 · redacted 24 Sep 2026 (SPEC §0.5): 4 address occurrences → \"(redacted)\"; every other byte as served",
   "userAgent": "a browser User-Agent (Chrome 128)"
  },
  {
@@ -1210,7 +1210,7 @@
   "source": "23 Sep 2026 sweep (sweep-2026-09-23/nordics-pl/se/rec/ifpi_6775561.html)",
   "fetched": "2026-09-23T17:28:26Z",
   "url": "https://sys2.ifpi.se/netdata/grp006.MBR/artdata?sart=6775561",
-  "note": "Ifpi Sverige record, MAJOR LAZER - BOOM (FEAT. MOTI, TY DOLLA $IGN, WIZKID & KRANIUM): no Guld/Platina field · ISO-8859-1",
+  "note": "Ifpi Sverige record, MAJOR LAZER - BOOM (FEAT. MOTI, TY DOLLA $IGN, WIZKID & KRANIUM): no Guld/Platina field · ISO-8859-1 · redacted 24 Sep 2026 (SPEC §0.5): 4 address occurrences → \"(redacted)\"; every other byte as served",
   "userAgent": "a browser User-Agent (Chrome 128)"
  },
  {
@@ -1218,7 +1218,7 @@
   "source": "23 Sep 2026 sweep (sweep-2026-09-23/nordics-pl/se/rec/ifpi_7549193.html)",
   "fetched": "2026-09-23T17:28:19Z",
   "url": "https://sys2.ifpi.se/netdata/grp006.MBR/artdata?sart=7549193",
-  "note": "Ifpi Sverige record, DRAKE FEAT. WIZKID & KYLA - ONE DANCE: Platina x7 - cert.nr 7257 - 2016-11-11 · ISO-8859-1",
+  "note": "Ifpi Sverige record, DRAKE FEAT. WIZKID & KYLA - ONE DANCE: Platina x7 - cert.nr 7257 - 2016-11-11 · ISO-8859-1 · redacted 24 Sep 2026 (SPEC §0.5): 4 address occurrences → \"(redacted)\"; every other byte as served",
   "userAgent": "a browser User-Agent (Chrome 128)"
  },
  {
@@ -1226,7 +1226,7 @@
   "source": "23 Sep 2026 sweep (sweep-2026-09-23/nordics-pl/dk/p0.html)",
   "fetched": "2026-09-23T16:56:08Z",
   "url": "http://ifpi.dk/certificeringer-0?page=0",
-  "note": "IFPI Danmark page 0 (50 rows, newest 16.09.2026) · gzipped here",
+  "note": "IFPI Danmark page 0 (50 rows, newest 16.09.2026) · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\"; every other byte as served",
   "userAgent": "a browser User-Agent (Chrome 128)"
  },
  {
@@ -1234,7 +1234,7 @@
   "source": "23 Sep 2026 sweep (sweep-2026-09-23/nordics-pl/dk/pages/p6.html)",
   "fetched": "2026-09-23T16:56:41Z",
   "url": "http://ifpi.dk/certificeringer-0?page=6",
-  "note": "IFPI Danmark page 6: Dave feat. Tems | Raindance | Track | Platin | 07.07.2026 · gzipped here",
+  "note": "IFPI Danmark page 6: Dave feat. Tems | Raindance | Track | Platin | 07.07.2026 · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\"; every other byte as served",
   "userAgent": "a browser User-Agent (Chrome 128)"
  },
  {
@@ -1242,7 +1242,7 @@
   "source": "23 Sep 2026 sweep (sweep-2026-09-23/nordics-pl/dk/recheck_boom_pa.html)",
   "fetched": "2026-09-23T17:52:17Z",
   "url": "http://ifpi.dk/certificeringer-0?order=field_certartist&sort=asc&page=158",
-  "note": "IFPI Danmark, artist A–Z, the page after 157: Major Lazer Feat. Moti Ty Dolla $ign... | Boom | Platin 01.08.2017 and Guld 24.05.2016 · gzipped here",
+  "note": "IFPI Danmark, artist A–Z, the page after 157: Major Lazer Feat. Moti Ty Dolla $ign... | Boom | Platin 01.08.2017 and Guld 24.05.2016 · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\"; every other byte as served",
   "userAgent": "a browser User-Agent (Chrome 128)"
  },
  {
@@ -1258,7 +1258,7 @@
   "source": "23 Sep 2026 sweep (sweep-2026-09-23/de-at-ch-cz-sk-hu/cz/raw/c30_w3036.html.gz)",
   "fetched": "2026-09-23T17:05:26Z",
   "url": "https://ifpicr.cz/hitparada/30?weekId=3036",
-  "note": "ČNS IFPI CZ Singles Digital Top 100, week 38/2026: Dai Dai Zlatý singl at 15 · gzipped by the sweep",
+  "note": "ČNS IFPI CZ Singles Digital Top 100, week 38/2026: Dai Dai Zlatý singl at 15 · gzipped by the sweep · redacted 24 Sep 2026 (SPEC §0.5): 4 address occurrences → \"(redacted)\", 4 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "a browser User-Agent (Chrome 128)"
  },
  {
@@ -1266,7 +1266,7 @@
   "source": "23 Sep 2026 sweep (sweep-2026-09-23/de-at-ch-cz-sk-hu/cz/raw/c43_w3036.html.gz)",
   "fetched": "2026-09-23T17:04:48Z",
   "url": "https://ifpicr.cz/hitparada/43?weekId=3036",
-  "note": "ČNS IFPI SK Singles Digital Top 100, week 38/2026: Dai Dai Platinový singl at 5 · gzipped by the sweep",
+  "note": "ČNS IFPI SK Singles Digital Top 100, week 38/2026: Dai Dai Platinový singl at 5 · gzipped by the sweep · redacted 24 Sep 2026 (SPEC §0.5): 4 address occurrences → \"(redacted)\", 4 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "a browser User-Agent (Chrome 128)"
  },
  {
@@ -1296,7 +1296,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
   "fetched": "2026-09-24T09:08:05Z",
   "url": "https://ifpicr.cz/hitparada/30",
-  "note": "ČNS IFPI chart 30, the current week · gzipped here",
+  "note": "ČNS IFPI chart 30, the current week · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 4 address occurrences → \"(redacted)\", 4 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -1324,7 +1324,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
   "fetched": "2026-09-24T09:08:06Z",
   "url": "https://ifpicr.cz/hitparada/30?weekId=3033",
-  "note": "ČNS IFPI chart 30, week id 3033 · gzipped here",
+  "note": "ČNS IFPI chart 30, week id 3033 · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 4 address occurrences → \"(redacted)\", 4 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -1367,7 +1367,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
   "fetched": "2026-09-24T09:08:08Z",
   "url": "https://ifpicr.cz/hitparada/43",
-  "note": "ČNS IFPI chart 43, the current week · gzipped here",
+  "note": "ČNS IFPI chart 43, the current week · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 4 address occurrences → \"(redacted)\", 4 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -1381,7 +1381,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
   "fetched": "2026-09-24T09:08:09Z",
   "url": "https://ifpicr.cz/hitparada/43?weekId=3033",
-  "note": "ČNS IFPI chart 43, week id 3033 · gzipped here",
+  "note": "ČNS IFPI chart 43, week id 3033 · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 4 address occurrences → \"(redacted)\", 4 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -2397,7 +2397,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --only=ifpi-danmark --save-raw (re-captured after the two-order union)",
   "fetched": "2026-09-24T09:12:56Z",
   "url": "http://ifpi.dk/certificeringer-0?page=0",
-  "note": "IFPI Danmark page 0, default order · gzipped here",
+  "note": "IFPI Danmark page 0, default order · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\"; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -2412,7 +2412,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --only=ifpi-danmark --save-raw (re-captured after the two-order union)",
   "fetched": "2026-09-24T09:12:57Z",
   "url": "http://ifpi.dk/certificeringer-0?page=1",
-  "note": "IFPI Danmark page 1, default order · gzipped here",
+  "note": "IFPI Danmark page 1, default order · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\"; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -2427,7 +2427,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --only=ifpi-danmark --save-raw (re-captured after the two-order union)",
   "fetched": "2026-09-24T09:12:58Z",
   "url": "http://ifpi.dk/certificeringer-0?page=2",
-  "note": "IFPI Danmark page 2, default order · gzipped here",
+  "note": "IFPI Danmark page 2, default order · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\"; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -2442,7 +2442,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --only=ifpi-danmark --save-raw (re-captured after the two-order union)",
   "fetched": "2026-09-24T09:12:59Z",
   "url": "http://ifpi.dk/certificeringer-0?order=field_certdato&sort=desc&page=0",
-  "note": "IFPI Danmark page 0, explicit date-descending order · gzipped here",
+  "note": "IFPI Danmark page 0, explicit date-descending order · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\"; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -2457,7 +2457,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --only=ifpi-danmark --save-raw (re-captured after the two-order union)",
   "fetched": "2026-09-24T09:13:01Z",
   "url": "http://ifpi.dk/certificeringer-0?order=field_certdato&sort=desc&page=1",
-  "note": "IFPI Danmark page 1, explicit date-descending order · gzipped here",
+  "note": "IFPI Danmark page 1, explicit date-descending order · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\"; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -2472,7 +2472,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --only=ifpi-danmark --save-raw (re-captured after the two-order union)",
   "fetched": "2026-09-24T09:13:02Z",
   "url": "http://ifpi.dk/certificeringer-0?order=field_certdato&sort=desc&page=2",
-  "note": "IFPI Danmark page 2, explicit date-descending order · gzipped here",
+  "note": "IFPI Danmark page 2, explicit date-descending order · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\"; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -2487,7 +2487,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --only=ifpi-danmark --save-raw (re-captured after the two-order union)",
   "fetched": "2026-09-24T09:13:03Z",
   "url": "http://ifpi.dk/certificeringer-0?page=0",
-  "note": "IFPI Danmark page 0, default order, read 2× (the deliberate re-read) · gzipped here",
+  "note": "IFPI Danmark page 0, default order, read 2× (the deliberate re-read) · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\"; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -2502,7 +2502,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --only=ifpi-danmark --save-raw (re-captured after the two-order union)",
   "fetched": "2026-09-24T09:13:04Z",
   "url": "http://ifpi.dk/certificeringer-0?page=1",
-  "note": "IFPI Danmark page 1, default order, read 2× (the deliberate re-read) · gzipped here",
+  "note": "IFPI Danmark page 1, default order, read 2× (the deliberate re-read) · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\"; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -2517,7 +2517,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --only=ifpi-danmark --save-raw (re-captured after the two-order union)",
   "fetched": "2026-09-24T09:13:05Z",
   "url": "http://ifpi.dk/certificeringer-0?page=2",
-  "note": "IFPI Danmark page 2, default order, read 2× (the deliberate re-read) · gzipped here",
+  "note": "IFPI Danmark page 2, default order, read 2× (the deliberate re-read) · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\"; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -2532,7 +2532,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:17:34Z",
   "url": "https://sverigetopplistan.se/search/?query=Burna+Boy",
-  "note": "Sverigetopplistan search 'Burna Boy' · gzipped here",
+  "note": "Sverigetopplistan search 'Burna Boy' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -2546,7 +2546,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:17:36Z",
   "url": "https://sverigetopplistan.se/search/?query=Wizkid",
-  "note": "Sverigetopplistan search 'Wizkid' · gzipped here",
+  "note": "Sverigetopplistan search 'Wizkid' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -2560,7 +2560,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:17:37Z",
   "url": "https://sverigetopplistan.se/search/?query=Davido",
-  "note": "Sverigetopplistan search 'Davido' · gzipped here",
+  "note": "Sverigetopplistan search 'Davido' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -2574,7 +2574,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:17:38Z",
   "url": "https://sverigetopplistan.se/search/?query=Rema",
-  "note": "Sverigetopplistan search 'Rema' · gzipped here",
+  "note": "Sverigetopplistan search 'Rema' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -2588,7 +2588,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:17:39Z",
   "url": "https://sverigetopplistan.se/search/?query=Tems",
-  "note": "Sverigetopplistan search 'Tems' · gzipped here",
+  "note": "Sverigetopplistan search 'Tems' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -2602,7 +2602,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:17:41Z",
   "url": "https://sverigetopplistan.se/search/?query=Tyla",
-  "note": "Sverigetopplistan search 'Tyla' · gzipped here",
+  "note": "Sverigetopplistan search 'Tyla' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -2616,7 +2616,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:17:42Z",
   "url": "https://sverigetopplistan.se/search/?query=Ayra+Starr",
-  "note": "Sverigetopplistan search 'Ayra Starr' · gzipped here",
+  "note": "Sverigetopplistan search 'Ayra Starr' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -2630,7 +2630,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:17:43Z",
   "url": "https://sverigetopplistan.se/search/?query=Asake",
-  "note": "Sverigetopplistan search 'Asake' · gzipped here",
+  "note": "Sverigetopplistan search 'Asake' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -2644,7 +2644,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:17:44Z",
   "url": "https://sverigetopplistan.se/search/?query=Omah+Lay",
-  "note": "Sverigetopplistan search 'Omah Lay' · gzipped here",
+  "note": "Sverigetopplistan search 'Omah Lay' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -2658,7 +2658,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:17:46Z",
   "url": "https://sverigetopplistan.se/search/?query=CKay",
-  "note": "Sverigetopplistan search 'CKay' · gzipped here",
+  "note": "Sverigetopplistan search 'CKay' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -2672,7 +2672,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:17:47Z",
   "url": "https://sverigetopplistan.se/search/?query=Olamide",
-  "note": "Sverigetopplistan search 'Olamide' · gzipped here",
+  "note": "Sverigetopplistan search 'Olamide' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -2686,7 +2686,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:17:48Z",
   "url": "https://sverigetopplistan.se/search/?query=Black+Sherif",
-  "note": "Sverigetopplistan search 'Black Sherif' · gzipped here",
+  "note": "Sverigetopplistan search 'Black Sherif' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -2700,7 +2700,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:17:49Z",
   "url": "https://sverigetopplistan.se/search/?query=BNXN",
-  "note": "Sverigetopplistan search 'BNXN' · gzipped here",
+  "note": "Sverigetopplistan search 'BNXN' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -2714,7 +2714,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:17:51Z",
   "url": "https://sverigetopplistan.se/search/?query=Victony",
-  "note": "Sverigetopplistan search 'Victony' · gzipped here",
+  "note": "Sverigetopplistan search 'Victony' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -2728,7 +2728,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:17:52Z",
   "url": "https://sverigetopplistan.se/search/?query=Fireboy+DML",
-  "note": "Sverigetopplistan search 'Fireboy DML' · gzipped here",
+  "note": "Sverigetopplistan search 'Fireboy DML' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -2742,7 +2742,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:17:53Z",
   "url": "https://sverigetopplistan.se/search/?query=Seyi+Vibez",
-  "note": "Sverigetopplistan search 'Seyi Vibez' · gzipped here",
+  "note": "Sverigetopplistan search 'Seyi Vibez' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -2756,7 +2756,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:17:54Z",
   "url": "https://sverigetopplistan.se/search/?query=Wiz+Kid",
-  "note": "Sverigetopplistan search 'Wiz Kid' · gzipped here",
+  "note": "Sverigetopplistan search 'Wiz Kid' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -2770,7 +2770,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:17:56Z",
   "url": "https://sverigetopplistan.se/search/?query=Buju",
-  "note": "Sverigetopplistan search 'Buju' · gzipped here",
+  "note": "Sverigetopplistan search 'Buju' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -2784,7 +2784,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:17:57Z",
   "url": "https://sverigetopplistan.se/search/?query=Burna",
-  "note": "Sverigetopplistan search 'Burna' · gzipped here",
+  "note": "Sverigetopplistan search 'Burna' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -2798,7 +2798,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:17:58Z",
   "url": "https://sverigetopplistan.se/search/?query=AKA",
-  "note": "Sverigetopplistan search 'AKA' · gzipped here",
+  "note": "Sverigetopplistan search 'AKA' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -2812,7 +2812,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:18:00Z",
   "url": "https://sverigetopplistan.se/search/?query=Asa",
-  "note": "Sverigetopplistan search 'Asa' · gzipped here",
+  "note": "Sverigetopplistan search 'Asa' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -2826,7 +2826,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:18:01Z",
   "url": "https://sverigetopplistan.se/search/?query=Beyonce",
-  "note": "Sverigetopplistan search 'Beyonce' · gzipped here",
+  "note": "Sverigetopplistan search 'Beyonce' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -2840,7 +2840,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:18:03Z",
   "url": "https://sverigetopplistan.se/search/?query=Blaqbonez",
-  "note": "Sverigetopplistan search 'Blaqbonez' · gzipped here",
+  "note": "Sverigetopplistan search 'Blaqbonez' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -2854,7 +2854,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:18:04Z",
   "url": "https://sverigetopplistan.se/search/?query=BNXN+fka+Buju",
-  "note": "Sverigetopplistan search 'BNXN fka Buju' · gzipped here",
+  "note": "Sverigetopplistan search 'BNXN fka Buju' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -2868,7 +2868,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:18:05Z",
   "url": "https://sverigetopplistan.se/search/?query=Cheque",
-  "note": "Sverigetopplistan search 'Cheque' · gzipped here",
+  "note": "Sverigetopplistan search 'Cheque' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -2882,7 +2882,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:18:06Z",
   "url": "https://sverigetopplistan.se/search/?query=Coldplay",
-  "note": "Sverigetopplistan search 'Coldplay' · gzipped here",
+  "note": "Sverigetopplistan search 'Coldplay' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -2896,7 +2896,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:18:08Z",
   "url": "https://sverigetopplistan.se/search/?query=Crayon",
-  "note": "Sverigetopplistan search 'Crayon' · gzipped here",
+  "note": "Sverigetopplistan search 'Crayon' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -2910,7 +2910,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:18:09Z",
   "url": "https://sverigetopplistan.se/search/?query=Dadju",
-  "note": "Sverigetopplistan search 'Dadju' · gzipped here",
+  "note": "Sverigetopplistan search 'Dadju' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -2924,7 +2924,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:18:10Z",
   "url": "https://sverigetopplistan.se/search/?query=Damiano+David",
-  "note": "Sverigetopplistan search 'Damiano David' · gzipped here",
+  "note": "Sverigetopplistan search 'Damiano David' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -2938,7 +2938,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:18:11Z",
   "url": "https://sverigetopplistan.se/search/?query=Dave",
-  "note": "Sverigetopplistan search 'Dave' · gzipped here",
+  "note": "Sverigetopplistan search 'Dave' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -2952,7 +2952,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:18:13Z",
   "url": "https://sverigetopplistan.se/search/?query=DJ+Tarico",
-  "note": "Sverigetopplistan search 'DJ Tarico' · gzipped here",
+  "note": "Sverigetopplistan search 'DJ Tarico' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -2966,7 +2966,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:18:14Z",
   "url": "https://sverigetopplistan.se/search/?query=DJ+Tunez",
-  "note": "Sverigetopplistan search 'DJ Tunez' · gzipped here",
+  "note": "Sverigetopplistan search 'DJ Tunez' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -2980,7 +2980,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:18:15Z",
   "url": "https://sverigetopplistan.se/search/?query=Don+Toliver",
-  "note": "Sverigetopplistan search 'Don Toliver' · gzipped here",
+  "note": "Sverigetopplistan search 'Don Toliver' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -2994,7 +2994,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:18:16Z",
   "url": "https://sverigetopplistan.se/search/?query=Drake",
-  "note": "Sverigetopplistan search 'Drake' · gzipped here",
+  "note": "Sverigetopplistan search 'Drake' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -3008,7 +3008,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:18:18Z",
   "url": "https://sverigetopplistan.se/search/?query=FOLA",
-  "note": "Sverigetopplistan search 'FOLA' · gzipped here",
+  "note": "Sverigetopplistan search 'FOLA' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -3022,7 +3022,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:18:19Z",
   "url": "https://sverigetopplistan.se/search/?query=Future",
-  "note": "Sverigetopplistan search 'Future' · gzipped here",
+  "note": "Sverigetopplistan search 'Future' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -3036,7 +3036,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:18:20Z",
   "url": "https://sverigetopplistan.se/search/?query=Gunna",
-  "note": "Sverigetopplistan search 'Gunna' · gzipped here",
+  "note": "Sverigetopplistan search 'Gunna' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -3050,7 +3050,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:18:22Z",
   "url": "https://sverigetopplistan.se/search/?query=Iyanya",
-  "note": "Sverigetopplistan search 'Iyanya' · gzipped here",
+  "note": "Sverigetopplistan search 'Iyanya' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -3064,7 +3064,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:18:23Z",
   "url": "https://sverigetopplistan.se/search/?query=J+Hus",
-  "note": "Sverigetopplistan search 'J Hus' · gzipped here",
+  "note": "Sverigetopplistan search 'J Hus' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -3078,7 +3078,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:18:24Z",
   "url": "https://sverigetopplistan.se/search/?query=JAE5",
-  "note": "Sverigetopplistan search 'JAE5' · gzipped here",
+  "note": "Sverigetopplistan search 'JAE5' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -3092,7 +3092,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:18:25Z",
   "url": "https://sverigetopplistan.se/search/?query=Joe+Dwet+File",
-  "note": "Sverigetopplistan search 'Joe Dwet File' · gzipped here",
+  "note": "Sverigetopplistan search 'Joe Dwet File' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -3106,7 +3106,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:18:27Z",
   "url": "https://sverigetopplistan.se/search/?query=Johnny+Drille",
-  "note": "Sverigetopplistan search 'Johnny Drille' · gzipped here",
+  "note": "Sverigetopplistan search 'Johnny Drille' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -3120,7 +3120,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:18:28Z",
   "url": "https://sverigetopplistan.se/search/?query=Jorja+Smith",
-  "note": "Sverigetopplistan search 'Jorja Smith' · gzipped here",
+  "note": "Sverigetopplistan search 'Jorja Smith' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -3134,7 +3134,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:18:29Z",
   "url": "https://sverigetopplistan.se/search/?query=Justin+Bieber",
-  "note": "Sverigetopplistan search 'Justin Bieber' · gzipped here",
+  "note": "Sverigetopplistan search 'Justin Bieber' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -3148,7 +3148,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:18:30Z",
   "url": "https://sverigetopplistan.se/search/?query=Ladipoe",
-  "note": "Sverigetopplistan search 'Ladipoe' · gzipped here",
+  "note": "Sverigetopplistan search 'Ladipoe' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -3162,7 +3162,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:18:32Z",
   "url": "https://sverigetopplistan.se/search/?query=Lil+Kesh",
-  "note": "Sverigetopplistan search 'Lil Kesh' · gzipped here",
+  "note": "Sverigetopplistan search 'Lil Kesh' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -3176,7 +3176,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:18:33Z",
   "url": "https://sverigetopplistan.se/search/?query=Mahalia",
-  "note": "Sverigetopplistan search 'Mahalia' · gzipped here",
+  "note": "Sverigetopplistan search 'Mahalia' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -3190,7 +3190,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:18:34Z",
   "url": "https://sverigetopplistan.se/search/?query=Major+Lazer",
-  "note": "Sverigetopplistan search 'Major Lazer' · gzipped here",
+  "note": "Sverigetopplistan search 'Major Lazer' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -3204,7 +3204,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:18:36Z",
   "url": "https://sverigetopplistan.se/search/?query=Master+KG",
-  "note": "Sverigetopplistan search 'Master KG' · gzipped here",
+  "note": "Sverigetopplistan search 'Master KG' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -3218,7 +3218,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:18:37Z",
   "url": "https://sverigetopplistan.se/search/?query=Mavo",
-  "note": "Sverigetopplistan search 'Mavo' · gzipped here",
+  "note": "Sverigetopplistan search 'Mavo' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -3232,7 +3232,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:18:38Z",
   "url": "https://sverigetopplistan.se/search/?query=Mayorkun",
-  "note": "Sverigetopplistan search 'Mayorkun' · gzipped here",
+  "note": "Sverigetopplistan search 'Mayorkun' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -3246,7 +3246,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:18:39Z",
   "url": "https://sverigetopplistan.se/search/?query=Mist",
-  "note": "Sverigetopplistan search 'Mist' · gzipped here",
+  "note": "Sverigetopplistan search 'Mist' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -3260,7 +3260,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:18:40Z",
   "url": "https://sverigetopplistan.se/search/?query=Naira+Marley",
-  "note": "Sverigetopplistan search 'Naira Marley' · gzipped here",
+  "note": "Sverigetopplistan search 'Naira Marley' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -3274,7 +3274,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:18:42Z",
   "url": "https://sverigetopplistan.se/search/?query=Ninho",
-  "note": "Sverigetopplistan search 'Ninho' · gzipped here",
+  "note": "Sverigetopplistan search 'Ninho' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -3288,7 +3288,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:18:43Z",
   "url": "https://sverigetopplistan.se/search/?query=ODUMODUBLVCK",
-  "note": "Sverigetopplistan search 'ODUMODUBLVCK' · gzipped here",
+  "note": "Sverigetopplistan search 'ODUMODUBLVCK' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -3302,7 +3302,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:18:44Z",
   "url": "https://sverigetopplistan.se/search/?query=Patoranking",
-  "note": "Sverigetopplistan search 'Patoranking' · gzipped here",
+  "note": "Sverigetopplistan search 'Patoranking' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -3316,7 +3316,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:18:45Z",
   "url": "https://sverigetopplistan.se/search/?query=Peruzzi",
-  "note": "Sverigetopplistan search 'Peruzzi' · gzipped here",
+  "note": "Sverigetopplistan search 'Peruzzi' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -3330,7 +3330,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:18:47Z",
   "url": "https://sverigetopplistan.se/search/?query=Pheelz",
-  "note": "Sverigetopplistan search 'Pheelz' · gzipped here",
+  "note": "Sverigetopplistan search 'Pheelz' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -3344,7 +3344,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:18:48Z",
   "url": "https://sverigetopplistan.se/search/?query=Pop+Smoke",
-  "note": "Sverigetopplistan search 'Pop Smoke' · gzipped here",
+  "note": "Sverigetopplistan search 'Pop Smoke' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -3358,7 +3358,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:18:49Z",
   "url": "https://sverigetopplistan.se/search/?query=Ruger",
-  "note": "Sverigetopplistan search 'Ruger' · gzipped here",
+  "note": "Sverigetopplistan search 'Ruger' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -3372,7 +3372,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:18:50Z",
   "url": "https://sverigetopplistan.se/search/?query=Rvssian",
-  "note": "Sverigetopplistan search 'Rvssian' · gzipped here",
+  "note": "Sverigetopplistan search 'Rvssian' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -3386,7 +3386,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:18:52Z",
   "url": "https://sverigetopplistan.se/search/?query=Sam+Smith",
-  "note": "Sverigetopplistan search 'Sam Smith' · gzipped here",
+  "note": "Sverigetopplistan search 'Sam Smith' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -3400,7 +3400,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:18:53Z",
   "url": "https://sverigetopplistan.se/search/?query=Sarz",
-  "note": "Sverigetopplistan search 'Sarz' · gzipped here",
+  "note": "Sverigetopplistan search 'Sarz' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -3414,7 +3414,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:18:54Z",
   "url": "https://sverigetopplistan.se/search/?query=Shakira",
-  "note": "Sverigetopplistan search 'Shakira' · gzipped here",
+  "note": "Sverigetopplistan search 'Shakira' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -3428,7 +3428,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:18:55Z",
   "url": "https://sverigetopplistan.se/search/?query=Shallipopi",
-  "note": "Sverigetopplistan search 'Shallipopi' · gzipped here",
+  "note": "Sverigetopplistan search 'Shallipopi' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -3442,7 +3442,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:18:57Z",
   "url": "https://sverigetopplistan.se/search/?query=Stonebwoy",
-  "note": "Sverigetopplistan search 'Stonebwoy' · gzipped here",
+  "note": "Sverigetopplistan search 'Stonebwoy' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -3456,7 +3456,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:18:58Z",
   "url": "https://sverigetopplistan.se/search/?query=Stormzy",
-  "note": "Sverigetopplistan search 'Stormzy' · gzipped here",
+  "note": "Sverigetopplistan search 'Stormzy' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -3470,7 +3470,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:18:59Z",
   "url": "https://sverigetopplistan.se/search/?query=Timaya",
-  "note": "Sverigetopplistan search 'Timaya' · gzipped here",
+  "note": "Sverigetopplistan search 'Timaya' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -3484,7 +3484,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:19:00Z",
   "url": "https://sverigetopplistan.se/search/?query=TitoM",
-  "note": "Sverigetopplistan search 'TitoM' · gzipped here",
+  "note": "Sverigetopplistan search 'TitoM' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -3498,7 +3498,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:19:02Z",
   "url": "https://sverigetopplistan.se/search/?query=TxC",
-  "note": "Sverigetopplistan search 'TxC' · gzipped here",
+  "note": "Sverigetopplistan search 'TxC' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -3512,7 +3512,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:19:03Z",
   "url": "https://sverigetopplistan.se/search/?query=Wande+Coal",
-  "note": "Sverigetopplistan search 'Wande Coal' · gzipped here",
+  "note": "Sverigetopplistan search 'Wande Coal' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -3526,7 +3526,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:19:04Z",
   "url": "https://sverigetopplistan.se/search/?query=Young+Jonn",
-  "note": "Sverigetopplistan search 'Young Jonn' · gzipped here",
+  "note": "Sverigetopplistan search 'Young Jonn' · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 address occurrences → \"(redacted)\", 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -3540,7 +3540,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:19:06Z",
   "url": "https://sys2.ifpi.se/netdata/grp006.MBR/artdata?sart=15311162",
-  "note": "Ifpi Sverige record page sart 15311162 · ISO-8859-1 bytes as served",
+  "note": "Ifpi Sverige record page sart 15311162 · ISO-8859-1 bytes as served · redacted 24 Sep 2026 (SPEC §0.5): 4 address occurrences → \"(redacted)\"; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -3555,7 +3555,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:19:07Z",
   "url": "https://sys2.ifpi.se/netdata/grp006.MBR/artdata?sart=11416611",
-  "note": "Ifpi Sverige record page sart 11416611 · ISO-8859-1 bytes as served",
+  "note": "Ifpi Sverige record page sart 11416611 · ISO-8859-1 bytes as served · redacted 24 Sep 2026 (SPEC §0.5): 4 address occurrences → \"(redacted)\"; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -3570,7 +3570,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:19:08Z",
   "url": "https://sys2.ifpi.se/netdata/grp006.MBR/artdata?sart=11335418",
-  "note": "Ifpi Sverige record page sart 11335418 · ISO-8859-1 bytes as served",
+  "note": "Ifpi Sverige record page sart 11335418 · ISO-8859-1 bytes as served · redacted 24 Sep 2026 (SPEC §0.5): 4 address occurrences → \"(redacted)\"; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -3585,7 +3585,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:19:09Z",
   "url": "https://sys2.ifpi.se/netdata/grp006.MBR/artdata?sart=11417053",
-  "note": "Ifpi Sverige record page sart 11417053 · ISO-8859-1 bytes as served",
+  "note": "Ifpi Sverige record page sart 11417053 · ISO-8859-1 bytes as served · redacted 24 Sep 2026 (SPEC §0.5): 4 address occurrences → \"(redacted)\"; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -3600,7 +3600,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:19:11Z",
   "url": "https://sys2.ifpi.se/netdata/grp006.MBR/artdata?sart=7549193",
-  "note": "Ifpi Sverige record page sart 7549193 · ISO-8859-1 bytes as served",
+  "note": "Ifpi Sverige record page sart 7549193 · ISO-8859-1 bytes as served · redacted 24 Sep 2026 (SPEC §0.5): 4 address occurrences → \"(redacted)\"; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -3615,7 +3615,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:19:12Z",
   "url": "https://sys2.ifpi.se/netdata/grp006.MBR/artdata?sart=12096186",
-  "note": "Ifpi Sverige record page sart 12096186 · ISO-8859-1 bytes as served",
+  "note": "Ifpi Sverige record page sart 12096186 · ISO-8859-1 bytes as served · redacted 24 Sep 2026 (SPEC §0.5): 4 address occurrences → \"(redacted)\"; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -3630,7 +3630,7 @@
   "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
   "fetched": "2026-09-24T09:19:13Z",
   "url": "https://sys2.ifpi.se/netdata/grp006.MBR/artdata?sart=12429992",
-  "note": "Ifpi Sverige record page sart 12429992 · ISO-8859-1 bytes as served",
+  "note": "Ifpi Sverige record page sart 12429992 · ISO-8859-1 bytes as served · redacted 24 Sep 2026 (SPEC §0.5): 4 address occurrences → \"(redacted)\"; every other byte as served",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "replay": true,
   "request": {
@@ -3639,5 +3639,1898 @@
    "status": 200,
    "encoding": "latin1"
   }
+ },
+ {
+  "file": "challenge/co-hostinger-2026-09-24.html",
+  "source": "24 Sep 2026 afternoon recipe re-test (cert-watch-recipes/out/co_page.s.body)",
+  "fetched": "2026-09-24T11:19:44Z",
+  "url": "https://pro-musica.co/certificaciones-2/",
+  "note": "Hostinger CDN 403 'Checking your browser before accessing' (server: hcdn), served to the honest User-Agent; why Pro Música Colombia is MANUAL",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "headers": "headers/co-hostinger-2026-09-24.txt"
+ },
+ {
+  "file": "headers/co-hostinger-2026-09-24.txt",
+  "source": "24 Sep 2026 afternoon recipe re-test (cert-watch-recipes/out/co_page.s.hdr)",
+  "fetched": "2026-09-24T11:19:44Z",
+  "url": "(response headers)",
+  "note": "response headers as served; set-cookie lines removed (none were sent)",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "decoy/za-risa-ajax-browser.html",
+  "source": "24 Sep 2026 afternoon recipe re-test (cert-watch-recipes/out/risa_ajax.b.body)",
+  "fetched": "2026-09-24T11:19:39Z",
+  "url": "https://risa.org.za/wp-admin/admin-ajax.php?action=wp_ajax_ninja_tables_public_action&table_id=15622&target_action=get-all-data&default_sorting=old_first&skip_rows=0&limit_rows=0&ninja_table_public_nonce=… with a browser User-Agent",
+  "note": "the 1,311-byte decoy (<title>ai/wp-admin/admin-ajax.php…) RiSA serves to a browser User-Agent with HTTP 200",
+  "userAgent": "a browser User-Agent (Chrome 128)",
+  "headers": "headers/za-risa-ajax-browser.txt"
+ },
+ {
+  "file": "headers/za-risa-ajax-browser.txt",
+  "source": "24 Sep 2026 afternoon recipe re-test (cert-watch-recipes/out/risa_ajax.b.hdr)",
+  "fetched": "2026-09-24T11:19:39Z",
+  "url": "(response headers)",
+  "note": "response headers as served; set-cookie lines removed (none were sent)",
+  "userAgent": "a browser User-Agent (Chrome 128)"
+ },
+ {
+  "file": "mahasz/run-2026-09-24/adatbazis-2026.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-austria,mahasz,ifpi-norge,promusicae --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:21:38Z",
+  "url": "https://slagerlistak.hu/arany-es-platinalemezek/adatbazis/2026",
+  "note": "MAHASZ database, year 2026 · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://slagerlistak.hu/arany-es-platinalemezek/adatbazis/2026",
+   "status": 200
+  }
+ },
+ {
+  "file": "mahasz/run-2026-09-24/kereso__burna-boy.html",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-austria,mahasz,ifpi-norge,promusicae --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:21:40Z",
+  "url": "https://slagerlistak.hu/arany-es-platinalemezek/kereso",
+  "note": "MAHASZ Kereső, eloado=\"Burna Boy\"",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://slagerlistak.hu/arany-es-platinalemezek/kereso",
+   "body": "eloado=Burna+Boy&album=&minosites=&ev=&submit=Keres%C3%A9s",
+   "status": 200
+  }
+ },
+ {
+  "file": "austria/run-2026-09-24/pp100.html",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-austria,mahasz,ifpi-norge,promusicae --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:21:40Z",
+  "url": "https://ifpi.at/auszeichnungen/?fwp_per_page=100",
+  "note": "IFPI Austria awards list, fwp_per_page=100 (the newest-added 100)",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://ifpi.at/auszeichnungen/?fwp_per_page=100",
+   "status": 200
+  }
+ },
+ {
+  "file": "mahasz/run-2026-09-24/kereso__wizkid.html",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-austria,mahasz,ifpi-norge,promusicae --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:21:41Z",
+  "url": "https://slagerlistak.hu/arany-es-platinalemezek/kereso",
+  "note": "MAHASZ Kereső, eloado=\"Wizkid\"",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://slagerlistak.hu/arany-es-platinalemezek/kereso",
+   "body": "eloado=Wizkid&album=&minosites=&ev=&submit=Keres%C3%A9s",
+   "status": 200
+  }
+ },
+ {
+  "file": "mahasz/run-2026-09-24/kereso__davido.html",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-austria,mahasz,ifpi-norge,promusicae --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:21:42Z",
+  "url": "https://slagerlistak.hu/arany-es-platinalemezek/kereso",
+  "note": "MAHASZ Kereső, eloado=\"Davido\"",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://slagerlistak.hu/arany-es-platinalemezek/kereso",
+   "body": "eloado=Davido&album=&minosites=&ev=&submit=Keres%C3%A9s",
+   "status": 200
+  }
+ },
+ {
+  "file": "norge/run-2026-09-24/pg-1.html",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-austria,mahasz,ifpi-norge,promusicae --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:21:42Z",
+  "url": "https://ifpi.no/trofe/trofeoversikt/?pg=1",
+  "note": "IFPI Norge trophy list, ?pg=1",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://ifpi.no/trofe/trofeoversikt/?pg=1",
+   "status": 200
+  }
+ },
+ {
+  "file": "mahasz/run-2026-09-24/kereso__rema.html",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-austria,mahasz,ifpi-norge,promusicae --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:21:44Z",
+  "url": "https://slagerlistak.hu/arany-es-platinalemezek/kereso",
+  "note": "MAHASZ Kereső, eloado=\"Rema\"",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://slagerlistak.hu/arany-es-platinalemezek/kereso",
+   "body": "eloado=Rema&album=&minosites=&ev=&submit=Keres%C3%A9s",
+   "status": 200
+  }
+ },
+ {
+  "file": "mahasz/run-2026-09-24/kereso__tems.html",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-austria,mahasz,ifpi-norge,promusicae --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:21:45Z",
+  "url": "https://slagerlistak.hu/arany-es-platinalemezek/kereso",
+  "note": "MAHASZ Kereső, eloado=\"Tems\"",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://slagerlistak.hu/arany-es-platinalemezek/kereso",
+   "body": "eloado=Tems&album=&minosites=&ev=&submit=Keres%C3%A9s",
+   "status": 200
+  }
+ },
+ {
+  "file": "norge/run-2026-09-24/aar-2026.html",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-austria,mahasz,ifpi-norge,promusicae --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:21:45Z",
+  "url": "https://ifpi.no/trofe/trofeoversikt/?aar=2026",
+  "note": "IFPI Norge trophy list, ?aar=2026",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://ifpi.no/trofe/trofeoversikt/?aar=2026",
+   "status": 200
+  }
+ },
+ {
+  "file": "austria/run-2026-09-24/pp7000.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-austria,mahasz,ifpi-norge,promusicae --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:21:46Z",
+  "url": "https://ifpi.at/auszeichnungen/?fwp_per_page=7000",
+  "note": "IFPI Austria awards list, fwp_per_page=7000 (the full register) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://ifpi.at/auszeichnungen/?fwp_per_page=7000",
+   "status": 200
+  }
+ },
+ {
+  "file": "mahasz/run-2026-09-24/kereso__tyla.html",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-austria,mahasz,ifpi-norge,promusicae --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:21:46Z",
+  "url": "https://slagerlistak.hu/arany-es-platinalemezek/kereso",
+  "note": "MAHASZ Kereső, eloado=\"Tyla\"",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://slagerlistak.hu/arany-es-platinalemezek/kereso",
+   "body": "eloado=Tyla&album=&minosites=&ev=&submit=Keres%C3%A9s",
+   "status": 200
+  }
+ },
+ {
+  "file": "mahasz/run-2026-09-24/kereso__ayra-starr.html",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-austria,mahasz,ifpi-norge,promusicae --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:21:48Z",
+  "url": "https://slagerlistak.hu/arany-es-platinalemezek/kereso",
+  "note": "MAHASZ Kereső, eloado=\"Ayra Starr\"",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://slagerlistak.hu/arany-es-platinalemezek/kereso",
+   "body": "eloado=Ayra+Starr&album=&minosites=&ev=&submit=Keres%C3%A9s",
+   "status": 200
+  }
+ },
+ {
+  "file": "mahasz/run-2026-09-24/kereso__asake.html",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-austria,mahasz,ifpi-norge,promusicae --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:21:49Z",
+  "url": "https://slagerlistak.hu/arany-es-platinalemezek/kereso",
+  "note": "MAHASZ Kereső, eloado=\"Asake\"",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://slagerlistak.hu/arany-es-platinalemezek/kereso",
+   "body": "eloado=Asake&album=&minosites=&ev=&submit=Keres%C3%A9s",
+   "status": 200
+  }
+ },
+ {
+  "file": "mahasz/run-2026-09-24/kereso__omah-lay.html",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-austria,mahasz,ifpi-norge,promusicae --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:21:51Z",
+  "url": "https://slagerlistak.hu/arany-es-platinalemezek/kereso",
+  "note": "MAHASZ Kereső, eloado=\"Omah Lay\"",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://slagerlistak.hu/arany-es-platinalemezek/kereso",
+   "body": "eloado=Omah+Lay&album=&minosites=&ev=&submit=Keres%C3%A9s",
+   "status": 200
+  }
+ },
+ {
+  "file": "mahasz/run-2026-09-24/kereso__ckay.html",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-austria,mahasz,ifpi-norge,promusicae --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:21:52Z",
+  "url": "https://slagerlistak.hu/arany-es-platinalemezek/kereso",
+  "note": "MAHASZ Kereső, eloado=\"CKay\"",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://slagerlistak.hu/arany-es-platinalemezek/kereso",
+   "body": "eloado=CKay&album=&minosites=&ev=&submit=Keres%C3%A9s",
+   "status": 200
+  }
+ },
+ {
+  "file": "mahasz/run-2026-09-24/kereso__olamide.html",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-austria,mahasz,ifpi-norge,promusicae --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:21:53Z",
+  "url": "https://slagerlistak.hu/arany-es-platinalemezek/kereso",
+  "note": "MAHASZ Kereső, eloado=\"Olamide\"",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://slagerlistak.hu/arany-es-platinalemezek/kereso",
+   "body": "eloado=Olamide&album=&minosites=&ev=&submit=Keres%C3%A9s",
+   "status": 200
+  }
+ },
+ {
+  "file": "mahasz/run-2026-09-24/kereso__black-sherif.html",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-austria,mahasz,ifpi-norge,promusicae --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:21:55Z",
+  "url": "https://slagerlistak.hu/arany-es-platinalemezek/kereso",
+  "note": "MAHASZ Kereső, eloado=\"Black Sherif\"",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://slagerlistak.hu/arany-es-platinalemezek/kereso",
+   "body": "eloado=Black+Sherif&album=&minosites=&ev=&submit=Keres%C3%A9s",
+   "status": 200
+  }
+ },
+ {
+  "file": "mahasz/run-2026-09-24/kereso__bnxn.html",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-austria,mahasz,ifpi-norge,promusicae --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:21:56Z",
+  "url": "https://slagerlistak.hu/arany-es-platinalemezek/kereso",
+  "note": "MAHASZ Kereső, eloado=\"BNXN\"",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://slagerlistak.hu/arany-es-platinalemezek/kereso",
+   "body": "eloado=BNXN&album=&minosites=&ev=&submit=Keres%C3%A9s",
+   "status": 200
+  }
+ },
+ {
+  "file": "mahasz/run-2026-09-24/kereso__victony.html",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-austria,mahasz,ifpi-norge,promusicae --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:21:57Z",
+  "url": "https://slagerlistak.hu/arany-es-platinalemezek/kereso",
+  "note": "MAHASZ Kereső, eloado=\"Victony\"",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://slagerlistak.hu/arany-es-platinalemezek/kereso",
+   "body": "eloado=Victony&album=&minosites=&ev=&submit=Keres%C3%A9s",
+   "status": 200
+  }
+ },
+ {
+  "file": "mahasz/run-2026-09-24/kereso__fireboy-dml.html",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-austria,mahasz,ifpi-norge,promusicae --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:21:59Z",
+  "url": "https://slagerlistak.hu/arany-es-platinalemezek/kereso",
+  "note": "MAHASZ Kereső, eloado=\"Fireboy DML\"",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://slagerlistak.hu/arany-es-platinalemezek/kereso",
+   "body": "eloado=Fireboy+DML&album=&minosites=&ev=&submit=Keres%C3%A9s",
+   "status": 200
+  }
+ },
+ {
+  "file": "mahasz/run-2026-09-24/kereso__seyi-vibez.html",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-austria,mahasz,ifpi-norge,promusicae --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:22:00Z",
+  "url": "https://slagerlistak.hu/arany-es-platinalemezek/kereso",
+  "note": "MAHASZ Kereső, eloado=\"Seyi Vibez\"",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://slagerlistak.hu/arany-es-platinalemezek/kereso",
+   "body": "eloado=Seyi+Vibez&album=&minosites=&ev=&submit=Keres%C3%A9s",
+   "status": 200
+  }
+ },
+ {
+  "file": "mahasz/run-2026-09-24/kereso__wiz-kid.html",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-austria,mahasz,ifpi-norge,promusicae --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:22:01Z",
+  "url": "https://slagerlistak.hu/arany-es-platinalemezek/kereso",
+  "note": "MAHASZ Kereső, eloado=\"Wiz Kid\"",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://slagerlistak.hu/arany-es-platinalemezek/kereso",
+   "body": "eloado=Wiz+Kid&album=&minosites=&ev=&submit=Keres%C3%A9s",
+   "status": 200
+  }
+ },
+ {
+  "file": "mahasz/run-2026-09-24/kereso__buju.html",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-austria,mahasz,ifpi-norge,promusicae --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:22:03Z",
+  "url": "https://slagerlistak.hu/arany-es-platinalemezek/kereso",
+  "note": "MAHASZ Kereső, eloado=\"Buju\"",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://slagerlistak.hu/arany-es-platinalemezek/kereso",
+   "body": "eloado=Buju&album=&minosites=&ev=&submit=Keres%C3%A9s",
+   "status": 200
+  }
+ },
+ {
+  "file": "mahasz/run-2026-09-24/kereso__burna.html",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-austria,mahasz,ifpi-norge,promusicae --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:22:04Z",
+  "url": "https://slagerlistak.hu/arany-es-platinalemezek/kereso",
+  "note": "MAHASZ Kereső, eloado=\"Burna\"",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://slagerlistak.hu/arany-es-platinalemezek/kereso",
+   "body": "eloado=Burna&album=&minosites=&ev=&submit=Keres%C3%A9s",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusicae/run-2026-09-24/week-2026-39-p1.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusicae --save-raw, Accept-Language: es-ES (24 Sep 2026)",
+  "fetched": "2026-09-24T12:23:12Z",
+  "url": "https://www.elportaldemusica.es/awards/index?AwardsSearch%5Byear%5D=2026&AwardsSearch%5Bweek%5D=39",
+  "note": "PROMUSICAE awards, year 2026 week 39, page 1 (Spanish locale) · gzipped here · the footer's \"EX-IP\" (the fetching machine's own address) redacted to \"(redacted)\"; every other byte as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.elportaldemusica.es/awards/index?AwardsSearch%5Byear%5D=2026&AwardsSearch%5Bweek%5D=39",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusicae/run-2026-09-24/week-2026-38-p1.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusicae --save-raw, Accept-Language: es-ES (24 Sep 2026)",
+  "fetched": "2026-09-24T12:23:14Z",
+  "url": "https://www.elportaldemusica.es/awards/index?AwardsSearch%5Byear%5D=2026&AwardsSearch%5Bweek%5D=38",
+  "note": "PROMUSICAE awards, year 2026 week 38, page 1 (Spanish locale) · gzipped here · the footer's \"EX-IP\" (the fetching machine's own address) redacted to \"(redacted)\"; every other byte as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.elportaldemusica.es/awards/index?AwardsSearch%5Byear%5D=2026&AwardsSearch%5Bweek%5D=38",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusicae/run-2026-09-24/week-2026-38-p2.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusicae --save-raw, Accept-Language: es-ES (24 Sep 2026)",
+  "fetched": "2026-09-24T12:23:16Z",
+  "url": "https://www.elportaldemusica.es/awards/index?AwardsSearch%5Byear%5D=2026&AwardsSearch%5Bweek%5D=38&page=2&per-page=10",
+  "note": "PROMUSICAE awards, year 2026 week 38, page 2 (Spanish locale) · gzipped here · the footer's \"EX-IP\" (the fetching machine's own address) redacted to \"(redacted)\"; every other byte as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.elportaldemusica.es/awards/index?AwardsSearch%5Byear%5D=2026&AwardsSearch%5Bweek%5D=38&page=2&per-page=10",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusicae/run-2026-09-24/artist__ayra-starr-p1.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusicae --save-raw, Accept-Language: es-ES (24 Sep 2026)",
+  "fetched": "2026-09-24T12:23:18Z",
+  "url": "https://www.elportaldemusica.es/awards/index?AwardsSearch%5Bartist%5D=AYRA+STARR",
+  "note": "PROMUSICAE awards, AwardsSearch[artist]=\"AYRA STARR\", page 1 (Spanish locale) · gzipped here · the footer's \"EX-IP\" (the fetching machine's own address) redacted to \"(redacted)\"; every other byte as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.elportaldemusica.es/awards/index?AwardsSearch%5Bartist%5D=AYRA+STARR",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusicae/run-2026-09-24/artist__bad-gyal-rema-p1.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusicae --save-raw, Accept-Language: es-ES (24 Sep 2026)",
+  "fetched": "2026-09-24T12:23:19Z",
+  "url": "https://www.elportaldemusica.es/awards/index?AwardsSearch%5Bartist%5D=BAD+GYAL+%2F+REMA",
+  "note": "PROMUSICAE awards, AwardsSearch[artist]=\"BAD GYAL / REMA\", page 1 (Spanish locale) · gzipped here · the footer's \"EX-IP\" (the fetching machine's own address) redacted to \"(redacted)\"; every other byte as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.elportaldemusica.es/awards/index?AwardsSearch%5Bartist%5D=BAD+GYAL+%2F+REMA",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusicae/run-2026-09-24/artist__ckay-p1.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusicae --save-raw, Accept-Language: es-ES (24 Sep 2026)",
+  "fetched": "2026-09-24T12:23:21Z",
+  "url": "https://www.elportaldemusica.es/awards/index?AwardsSearch%5Bartist%5D=CKAY",
+  "note": "PROMUSICAE awards, AwardsSearch[artist]=\"CKAY\", page 1 (Spanish locale) · gzipped here · the footer's \"EX-IP\" (the fetching machine's own address) redacted to \"(redacted)\"; every other byte as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.elportaldemusica.es/awards/index?AwardsSearch%5Bartist%5D=CKAY",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusicae/run-2026-09-24/artist__ckay-axel-dj-yo-p1.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusicae --save-raw, Accept-Language: es-ES (24 Sep 2026)",
+  "fetched": "2026-09-24T12:23:23Z",
+  "url": "https://www.elportaldemusica.es/awards/index?AwardsSearch%5Bartist%5D=CKAY+%2F+AXEL+%2F+DJ+YO",
+  "note": "PROMUSICAE awards, AwardsSearch[artist]=\"CKAY / AXEL / DJ YO\", page 1 (Spanish locale) · gzipped here · the footer's \"EX-IP\" (the fetching machine's own address) redacted to \"(redacted)\"; every other byte as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.elportaldemusica.es/awards/index?AwardsSearch%5Bartist%5D=CKAY+%2F+AXEL+%2F+DJ+YO",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusicae/run-2026-09-24/artist__coldplay-little-simz-burna-boy-elyanna-tini-p1.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusicae --save-raw, Accept-Language: es-ES (24 Sep 2026)",
+  "fetched": "2026-09-24T12:23:24Z",
+  "url": "https://www.elportaldemusica.es/awards/index?AwardsSearch%5Bartist%5D=COLDPLAY+%2F+LITTLE+SIMZ+%2F+BURNA+BOY+%2F+ELYANNA+%2F+TINI",
+  "note": "PROMUSICAE awards, AwardsSearch[artist]=\"COLDPLAY / LITTLE SIMZ / BURNA BOY / ELYANNA / TINI\", page 1 (Spanish locale) · gzipped here · the footer's \"EX-IP\" (the fetching machine's own address) redacted to \"(redacted)\"; every other byte as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.elportaldemusica.es/awards/index?AwardsSearch%5Bartist%5D=COLDPLAY+%2F+LITTLE+SIMZ+%2F+BURNA+BOY+%2F+ELYANNA+%2F+TINI",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusicae/run-2026-09-24/artist__drake-wizkid-kyla-p1.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusicae --save-raw, Accept-Language: es-ES (24 Sep 2026)",
+  "fetched": "2026-09-24T12:23:27Z",
+  "url": "https://www.elportaldemusica.es/awards/index?AwardsSearch%5Bartist%5D=DRAKE+%2F+WIZKID+%2F+KYLA",
+  "note": "PROMUSICAE awards, AwardsSearch[artist]=\"DRAKE / WIZKID / KYLA\", page 1 (Spanish locale) · gzipped here · the footer's \"EX-IP\" (the fetching machine's own address) redacted to \"(redacted)\"; every other byte as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.elportaldemusica.es/awards/index?AwardsSearch%5Bartist%5D=DRAKE+%2F+WIZKID+%2F+KYLA",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusicae/run-2026-09-24/artist__feid-rema-p1.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusicae --save-raw, Accept-Language: es-ES (24 Sep 2026)",
+  "fetched": "2026-09-24T12:23:29Z",
+  "url": "https://www.elportaldemusica.es/awards/index?AwardsSearch%5Bartist%5D=FEID+%2F+REMA",
+  "note": "PROMUSICAE awards, AwardsSearch[artist]=\"FEID / REMA\", page 1 (Spanish locale) · gzipped here · the footer's \"EX-IP\" (the fetching machine's own address) redacted to \"(redacted)\"; every other byte as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.elportaldemusica.es/awards/index?AwardsSearch%5Bartist%5D=FEID+%2F+REMA",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusicae/run-2026-09-24/artist__future-drake-tems-p1.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusicae --save-raw, Accept-Language: es-ES (24 Sep 2026)",
+  "fetched": "2026-09-24T12:23:31Z",
+  "url": "https://www.elportaldemusica.es/awards/index?AwardsSearch%5Bartist%5D=FUTURE+%2F+DRAKE+%26+TEMS",
+  "note": "PROMUSICAE awards, AwardsSearch[artist]=\"FUTURE / DRAKE & TEMS\", page 1 (Spanish locale) · gzipped here · the footer's \"EX-IP\" (the fetching machine's own address) redacted to \"(redacted)\"; every other byte as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.elportaldemusica.es/awards/index?AwardsSearch%5Bartist%5D=FUTURE+%2F+DRAKE+%26+TEMS",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusicae/run-2026-09-24/artist__omah-lay-p1.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusicae --save-raw, Accept-Language: es-ES (24 Sep 2026)",
+  "fetched": "2026-09-24T12:23:33Z",
+  "url": "https://www.elportaldemusica.es/awards/index?AwardsSearch%5Bartist%5D=OMAH+LAY",
+  "note": "PROMUSICAE awards, AwardsSearch[artist]=\"OMAH LAY\", page 1 (Spanish locale) · gzipped here · the footer's \"EX-IP\" (the fetching machine's own address) redacted to \"(redacted)\"; every other byte as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.elportaldemusica.es/awards/index?AwardsSearch%5Bartist%5D=OMAH+LAY",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusicae/run-2026-09-24/artist__ozuna-davido-p1.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusicae --save-raw, Accept-Language: es-ES (24 Sep 2026)",
+  "fetched": "2026-09-24T12:23:34Z",
+  "url": "https://www.elportaldemusica.es/awards/index?AwardsSearch%5Bartist%5D=OZUNA+%2F+DAVIDO",
+  "note": "PROMUSICAE awards, AwardsSearch[artist]=\"OZUNA / DAVIDO\", page 1 (Spanish locale) · gzipped here · the footer's \"EX-IP\" (the fetching machine's own address) redacted to \"(redacted)\"; every other byte as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.elportaldemusica.es/awards/index?AwardsSearch%5Bartist%5D=OZUNA+%2F+DAVIDO",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusicae/run-2026-09-24/artist__rema-p1.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusicae --save-raw, Accept-Language: es-ES (24 Sep 2026)",
+  "fetched": "2026-09-24T12:23:36Z",
+  "url": "https://www.elportaldemusica.es/awards/index?AwardsSearch%5Bartist%5D=REMA",
+  "note": "PROMUSICAE awards, AwardsSearch[artist]=\"REMA\", page 1 (Spanish locale) · gzipped here · the footer's \"EX-IP\" (the fetching machine's own address) redacted to \"(redacted)\"; every other byte as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.elportaldemusica.es/awards/index?AwardsSearch%5Bartist%5D=REMA",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusicae/run-2026-09-24/artist__rvssian-rauw-alejandro-ayra-starr-p1.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusicae --save-raw, Accept-Language: es-ES (24 Sep 2026)",
+  "fetched": "2026-09-24T12:23:37Z",
+  "url": "https://www.elportaldemusica.es/awards/index?AwardsSearch%5Bartist%5D=RVSSIAN+%2F+RAUW+ALEJANDRO+%2F+AYRA+STARR",
+  "note": "PROMUSICAE awards, AwardsSearch[artist]=\"RVSSIAN / RAUW ALEJANDRO / AYRA STARR\", page 1 (Spanish locale) · gzipped here · the footer's \"EX-IP\" (the fetching machine's own address) redacted to \"(redacted)\"; every other byte as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.elportaldemusica.es/awards/index?AwardsSearch%5Bartist%5D=RVSSIAN+%2F+RAUW+ALEJANDRO+%2F+AYRA+STARR",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusicae/run-2026-09-24/artist__shakira-burna-boy-p1.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusicae --save-raw, Accept-Language: es-ES (24 Sep 2026)",
+  "fetched": "2026-09-24T12:23:39Z",
+  "url": "https://www.elportaldemusica.es/awards/index?AwardsSearch%5Bartist%5D=SHAKIRA+%2F+BURNA+BOY",
+  "note": "PROMUSICAE awards, AwardsSearch[artist]=\"SHAKIRA / BURNA BOY\", page 1 (Spanish locale) · gzipped here · the footer's \"EX-IP\" (the fetching machine's own address) redacted to \"(redacted)\"; every other byte as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.elportaldemusica.es/awards/index?AwardsSearch%5Bartist%5D=SHAKIRA+%2F+BURNA+BOY",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusicae/run-2026-09-24/artist__tyla-p1.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusicae --save-raw, Accept-Language: es-ES (24 Sep 2026)",
+  "fetched": "2026-09-24T12:23:41Z",
+  "url": "https://www.elportaldemusica.es/awards/index?AwardsSearch%5Bartist%5D=TYLA",
+  "note": "PROMUSICAE awards, AwardsSearch[artist]=\"TYLA\", page 1 (Spanish locale) · gzipped here · the footer's \"EX-IP\" (the fetching machine's own address) redacted to \"(redacted)\"; every other byte as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.elportaldemusica.es/awards/index?AwardsSearch%5Bartist%5D=TYLA",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusicae/run-2026-09-24/artist__victony-tempoe-p1.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusicae --save-raw, Accept-Language: es-ES (24 Sep 2026)",
+  "fetched": "2026-09-24T12:23:42Z",
+  "url": "https://www.elportaldemusica.es/awards/index?AwardsSearch%5Bartist%5D=VICTONY+%26+TEMPOE",
+  "note": "PROMUSICAE awards, AwardsSearch[artist]=\"VICTONY & TEMPOE\", page 1 (Spanish locale) · gzipped here · the footer's \"EX-IP\" (the fetching machine's own address) redacted to \"(redacted)\"; every other byte as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.elportaldemusica.es/awards/index?AwardsSearch%5Bartist%5D=VICTONY+%26+TEMPOE",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusicae/english/week-2026-39-p1.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-austria,mahasz,ifpi-norge,promusicae --save-raw, before Accept-Language was set (24 Sep 2026)",
+  "fetched": "2026-09-24T12:21:38Z",
+  "url": "https://www.elportaldemusica.es/awards/index?AwardsSearch%5Byear%5D=2026&AwardsSearch%5Bweek%5D=39",
+  "note": "PROMUSICAE awards, year 2026 week 39, page 1, as served with NO Accept-Language (English locale) — kept to prove the parser reads either language · gzipped here · the footer's \"EX-IP\" (the fetching machine's own address) redacted to \"(redacted)\"; every other byte as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "promusicae/english/week-2026-38-p1.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-austria,mahasz,ifpi-norge,promusicae --save-raw, before Accept-Language was set (24 Sep 2026)",
+  "fetched": "2026-09-24T12:21:40Z",
+  "url": "https://www.elportaldemusica.es/awards/index?AwardsSearch%5Byear%5D=2026&AwardsSearch%5Bweek%5D=38",
+  "note": "PROMUSICAE awards, year 2026 week 38, page 1, as served with NO Accept-Language (English locale) — kept to prove the parser reads either language · gzipped here · the footer's \"EX-IP\" (the fetching machine's own address) redacted to \"(redacted)\"; every other byte as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "austria/default-stale-2026-09-24.html",
+  "source": "24 Sep 2026 afternoon recipe re-test (cert-watch-recipes/out/ifpiat_default.s.body)",
+  "fetched": "2026-09-24T11:17:06Z",
+  "url": "https://ifpi.at/auszeichnungen/ (no fwp_per_page)",
+  "note": "the stale default page: FacetWP pager per_page 4, total_rows 5982 while the register held 5,994 — the negative control for 'served a different page'",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "greece/run-2026-09-24/digital_ien.html.headers.txt",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=bvmi,ifpi-greece,swisscharts,rmnz,amprofon,tcsn,promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:45:20Z",
+  "url": "(response headers)",
+  "note": "response headers as served; set-cookie lines removed",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "greece/run-2026-09-24/digital_ien.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=bvmi,ifpi-greece,swisscharts,rmnz,amprofon,tcsn,promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:45:20Z",
+  "url": "https://www.ifpi.gr/digital_ien.html",
+  "note": "IFPI Greece digital singles chart (International), week 37/2026 · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.ifpi.gr/digital_ien.html",
+   "status": 200
+  },
+  "headers": "greece/run-2026-09-24/digital_ien.html.headers.txt"
+ },
+ {
+  "file": "bvmi/run-2026-09-24/2026-p1.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=bvmi,ifpi-greece,swisscharts,rmnz,amprofon,tcsn,promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:45:21Z",
+  "url": "https://www.musikindustrie.de/wie-musik-zur-karriere-werden-kann/markt-bestseller/gold-/platin-und-diamond-auszeichnung/datenbank/?action=suche&strJahr=2026&intseite=1",
+  "note": "BVMI Gold-/Platin-Datenbank, year 2026, page 1 (machine-address header dropped by --save-raw) · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked, 4 contact name/job-title fields blanked; every other byte as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.musikindustrie.de/wie-musik-zur-karriere-werden-kann/markt-bestseller/gold-/platin-und-diamond-auszeichnung/datenbank/?action=suche&strJahr=2026&intseite=1",
+   "status": 200
+  }
+ },
+ {
+  "file": "greece/run-2026-09-24/digital_en.html.headers.txt",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=bvmi,ifpi-greece,swisscharts,rmnz,amprofon,tcsn,promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:45:22Z",
+  "url": "(response headers)",
+  "note": "response headers as served; set-cookie lines removed",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "greece/run-2026-09-24/digital_en.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=bvmi,ifpi-greece,swisscharts,rmnz,amprofon,tcsn,promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:45:22Z",
+  "url": "https://www.ifpi.gr/digital_en.html",
+  "note": "IFPI Greece digital singles chart (Local), week 37/2026 · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.ifpi.gr/digital_en.html",
+   "status": 200
+  },
+  "headers": "greece/run-2026-09-24/digital_en.html.headers.txt"
+ },
+ {
+  "file": "bvmi/run-2026-09-24/2026-p2.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=bvmi,ifpi-greece,swisscharts,rmnz,amprofon,tcsn,promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:45:23Z",
+  "url": "https://www.musikindustrie.de/wie-musik-zur-karriere-werden-kann/markt-bestseller/gold-/platin-und-diamond-auszeichnung/datenbank/?action=suche&strJahr=2026&intseite=2",
+  "note": "BVMI Gold-/Platin-Datenbank, year 2026, page 2 (machine-address header dropped by --save-raw) · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked, 4 contact name/job-title fields blanked; every other byte as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.musikindustrie.de/wie-musik-zur-karriere-werden-kann/markt-bestseller/gold-/platin-und-diamond-auszeichnung/datenbank/?action=suche&strJahr=2026&intseite=2",
+   "status": 200
+  }
+ },
+ {
+  "file": "rmnz/run-2026-09-24/singles-page.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=bvmi,ifpi-greece,swisscharts,rmnz,amprofon,tcsn,promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:45:24Z",
+  "url": "https://www.radioscope.co.nz/2024/04/06/single-cert-search/",
+  "note": "RadioScope singles certification search page (its DT_TP block carries the SSP ajax URL and token) · gzipped here · a person's mailto: address in the page's social links redacted to \"mailto:(redacted)\" (personal data); every other byte as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.radioscope.co.nz/2024/04/06/single-cert-search/",
+   "status": 200
+  }
+ },
+ {
+  "file": "bvmi/run-2026-09-24/2026-p3.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=bvmi,ifpi-greece,swisscharts,rmnz,amprofon,tcsn,promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:45:25Z",
+  "url": "https://www.musikindustrie.de/wie-musik-zur-karriere-werden-kann/markt-bestseller/gold-/platin-und-diamond-auszeichnung/datenbank/?action=suche&strJahr=2026&intseite=3",
+  "note": "BVMI Gold-/Platin-Datenbank, year 2026, page 3 (machine-address header dropped by --save-raw) · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked, 4 contact name/job-title fields blanked; every other byte as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.musikindustrie.de/wie-musik-zur-karriere-werden-kann/markt-bestseller/gold-/platin-und-diamond-auszeichnung/datenbank/?action=suche&strJahr=2026&intseite=3",
+   "status": 200
+  }
+ },
+ {
+  "file": "tcsn/run-2026-09-24/certification.headers.txt",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=bvmi,ifpi-greece,swisscharts,rmnz,amprofon,tcsn,promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:45:25Z",
+  "url": "(response headers)",
+  "note": "response headers as served; set-cookie lines removed",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "tcsn/run-2026-09-24/certification.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=bvmi,ifpi-greece,swisscharts,rmnz,amprofon,tcsn,promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:45:25Z",
+  "url": "https://turntablecharts.com/certification",
+  "note": "TCSN certification page (the __NEXT_DATA__ holds the 500 live rows) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://turntablecharts.com/certification",
+   "status": 200
+  },
+  "headers": "tcsn/run-2026-09-24/certification.headers.txt"
+ },
+ {
+  "file": "bvmi/run-2026-09-24/2026-p4.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=bvmi,ifpi-greece,swisscharts,rmnz,amprofon,tcsn,promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:45:26Z",
+  "url": "https://www.musikindustrie.de/wie-musik-zur-karriere-werden-kann/markt-bestseller/gold-/platin-und-diamond-auszeichnung/datenbank/?action=suche&strJahr=2026&intseite=4",
+  "note": "BVMI Gold-/Platin-Datenbank, year 2026, page 4 (machine-address header dropped by --save-raw) · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked, 4 contact name/job-title fields blanked; every other byte as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.musikindustrie.de/wie-musik-zur-karriere-werden-kann/markt-bestseller/gold-/platin-und-diamond-auszeichnung/datenbank/?action=suche&strJahr=2026&intseite=4",
+   "status": 200
+  }
+ },
+ {
+  "file": "rmnz/run-2026-09-24/ssp-2052-newest500.json.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=bvmi,ifpi-greece,swisscharts,rmnz,amprofon,tcsn,promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:45:27Z",
+  "url": "https://www.radioscope.co.nz/wp-json/tablepress/v1/ssp/2052?r=-AwP_-MVOYpEdowL_gzTX4mjaedkzhoF4Q84UvQ0o8PABXKHaeKAM_lTi9XJlX3NMMBpCbVeL7jUcO9_XsfRBM6K-_xXAwJWnohPwNGycmovcoddW7qqm8Cs85XsW6TfXW9DSPhEWyoTKYzXDFZreIUtdieBqD30picUgAsUARXZqaIxy6EwVsHNWZ0ZKei7RY37CJkPyVvm6rkaKsoQZTFWmpXMW02Qu5mIA8H3o_hcDRLNjjLGuWy3REdxQBBtQDTUkJZmL0dslKkC7A2dy03bQbOeL5iadem59zp1-B-0kOazKs7HpCIUuE1zxmajB-91Lcb0Jkdx8_lSzm7eWLtEtZKPs5Uz_qqMsyF1-pCvCuFB8cZ09nXQQkmeH_0xfiyQmbjPUlRmMGoM4QrIQNRXqGLEdSlvl95db21zEVE9RHvti_v9iiWPRp7FzgntNERg-IbHDPmC2pSprP0FDm3nXuoKPndM_fZHh7bYN5v-sE7ixxcr1A_oLi5m&n=LTUJLfmxwL5Bf3azyPCHbZ0qcGRoYbd6&draw=1&columns%5B0%5D%5Bdata%5D=0&columns%5B0%5D%5Bname%5D=&columns%5B0%5D%5Bsearchable%5D=true&columns%5B0%5D%5Borderable%5D=true&columns%5B0%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B0%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B1%5D%5Bdata%5D=1&columns%5B1%5D%5Bname%5D=&columns%5B1%5D%5Bsearchable%5D=true&columns%5B1%5D%5Borderable%5D=true&columns%5B1%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B1%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B2%5D%5Bdata%5D=2&columns%5B2%5D%5Bname%5D=&columns%5B2%5D%5Bsearchable%5D=true&columns%5B2%5D%5Borderable%5D=true&columns%5B2%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B2%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B3%5D%5Bdata%5D=3&columns%5B3%5D%5Bname%5D=&columns%5B3%5D%5Bsearchable%5D=true&columns%5B3%5D%5Borderable%5D=true&columns%5B3%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B3%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B4%5D%5Bdata%5D=4&columns%5B4%5D%5Bname%5D=&columns%5B4%5D%5Bsearchable%5D=true&columns%5B4%5D%5Borderable%5D=true&columns%5B4%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B4%5D%5Bsearch%5D%5Bregex%5D=false&order%5B0%5D%5Bcolumn%5D=4&order%5B0%5D%5Bdir%5D=desc&start=0&length=500&search%5Bvalue%5D=&search%5Bregex%5D=false",
+  "note": "RadioScope TablePress 2052 SSP answer, newest 500 by date certified (the per-load token is in the URL) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.radioscope.co.nz/wp-json/tablepress/v1/ssp/2052?r=-AwP_-MVOYpEdowL_gzTX4mjaedkzhoF4Q84UvQ0o8PABXKHaeKAM_lTi9XJlX3NMMBpCbVeL7jUcO9_XsfRBM6K-_xXAwJWnohPwNGycmovcoddW7qqm8Cs85XsW6TfXW9DSPhEWyoTKYzXDFZreIUtdieBqD30picUgAsUARXZqaIxy6EwVsHNWZ0ZKei7RY37CJkPyVvm6rkaKsoQZTFWmpXMW02Qu5mIA8H3o_hcDRLNjjLGuWy3REdxQBBtQDTUkJZmL0dslKkC7A2dy03bQbOeL5iadem59zp1-B-0kOazKs7HpCIUuE1zxmajB-91Lcb0Jkdx8_lSzm7eWLtEtZKPs5Uz_qqMsyF1-pCvCuFB8cZ09nXQQkmeH_0xfiyQmbjPUlRmMGoM4QrIQNRXqGLEdSlvl95db21zEVE9RHvti_v9iiWPRp7FzgntNERg-IbHDPmC2pSprP0FDm3nXuoKPndM_fZHh7bYN5v-sE7ixxcr1A_oLi5m&n=LTUJLfmxwL5Bf3azyPCHbZ0qcGRoYbd6&draw=1&columns%5B0%5D%5Bdata%5D=0&columns%5B0%5D%5Bname%5D=&columns%5B0%5D%5Bsearchable%5D=true&columns%5B0%5D%5Borderable%5D=true&columns%5B0%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B0%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B1%5D%5Bdata%5D=1&columns%5B1%5D%5Bname%5D=&columns%5B1%5D%5Bsearchable%5D=true&columns%5B1%5D%5Borderable%5D=true&columns%5B1%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B1%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B2%5D%5Bdata%5D=2&columns%5B2%5D%5Bname%5D=&columns%5B2%5D%5Bsearchable%5D=true&columns%5B2%5D%5Borderable%5D=true&columns%5B2%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B2%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B3%5D%5Bdata%5D=3&columns%5B3%5D%5Bname%5D=&columns%5B3%5D%5Bsearchable%5D=true&columns%5B3%5D%5Borderable%5D=true&columns%5B3%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B3%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B4%5D%5Bdata%5D=4&columns%5B4%5D%5Bname%5D=&columns%5B4%5D%5Bsearchable%5D=true&columns%5B4%5D%5Borderable%5D=true&columns%5B4%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B4%5D%5Bsearch%5D%5Bregex%5D=false&order%5B0%5D%5Bcolumn%5D=4&order%5B0%5D%5Bdir%5D=desc&start=0&length=500&search%5Bvalue%5D=&search%5Bregex%5D=false",
+   "status": 200
+  }
+ },
+ {
+  "file": "bvmi/run-2026-09-24/2026-p5.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=bvmi,ifpi-greece,swisscharts,rmnz,amprofon,tcsn,promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:45:28Z",
+  "url": "https://www.musikindustrie.de/wie-musik-zur-karriere-werden-kann/markt-bestseller/gold-/platin-und-diamond-auszeichnung/datenbank/?action=suche&strJahr=2026&intseite=5",
+  "note": "BVMI Gold-/Platin-Datenbank, year 2026, page 5 (machine-address header dropped by --save-raw) · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked, 4 contact name/job-title fields blanked; every other byte as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.musikindustrie.de/wie-musik-zur-karriere-werden-kann/markt-bestseller/gold-/platin-und-diamond-auszeichnung/datenbank/?action=suche&strJahr=2026&intseite=5",
+   "status": 200
+  }
+ },
+ {
+  "file": "rmnz/run-2026-09-24/albums-page.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=bvmi,ifpi-greece,swisscharts,rmnz,amprofon,tcsn,promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:45:29Z",
+  "url": "https://www.radioscope.co.nz/2024/04/06/album-cert-search/",
+  "note": "RadioScope albums certification search page (its DT_TP block carries the SSP ajax URL and token) · gzipped here · a person's mailto: address in the page's social links redacted to \"mailto:(redacted)\" (personal data); every other byte as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.radioscope.co.nz/2024/04/06/album-cert-search/",
+   "status": 200
+  }
+ },
+ {
+  "file": "swisscharts/run-2026-09-24/edelmetall-2026.html",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=bvmi,ifpi-greece,swisscharts,rmnz,amprofon,tcsn,promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:45:29Z",
+  "url": "https://swisscharts.com/edelmetall/2026",
+  "note": "swisscharts.com Edelmetall 2026 · ISO-8859-1 bytes as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://swisscharts.com/edelmetall/2026",
+   "status": 200,
+   "encoding": "latin1"
+  }
+ },
+ {
+  "file": "bvmi/run-2026-09-24/2026-p6.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=bvmi,ifpi-greece,swisscharts,rmnz,amprofon,tcsn,promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:45:30Z",
+  "url": "https://www.musikindustrie.de/wie-musik-zur-karriere-werden-kann/markt-bestseller/gold-/platin-und-diamond-auszeichnung/datenbank/?action=suche&strJahr=2026&intseite=6",
+  "note": "BVMI Gold-/Platin-Datenbank, year 2026, page 6 (machine-address header dropped by --save-raw) · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked, 4 contact name/job-title fields blanked; every other byte as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.musikindustrie.de/wie-musik-zur-karriere-werden-kann/markt-bestseller/gold-/platin-und-diamond-auszeichnung/datenbank/?action=suche&strJahr=2026&intseite=6",
+   "status": 200
+  }
+ },
+ {
+  "file": "amprofon/run-2026-09-24/certificaciones.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=bvmi,ifpi-greece,swisscharts,rmnz,amprofon,tcsn,promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:45:31Z",
+  "url": "https://amprofon.com.mx/es/pages/certificaciones.php",
+  "note": "AMPROFON certificaciones.php, the whole #filtertable · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://amprofon.com.mx/es/pages/certificaciones.php",
+   "status": 200
+  }
+ },
+ {
+  "file": "rmnz/run-2026-09-24/ssp-2051-newest500.json.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=bvmi,ifpi-greece,swisscharts,rmnz,amprofon,tcsn,promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:45:32Z",
+  "url": "https://www.radioscope.co.nz/wp-json/tablepress/v1/ssp/2051?r=rS3tZtz5YPQ5LWUYufKLAWjQ1sQcRGCw4j7LRvlbtGNFoI9aeq-kXRqiZsyxMrpC-OVocu91n9r0TUtggnUx3UjezFDkTXF9JTs-OVeduTrg4sJ0GcwL1czWSzE1UwZ3fgomAgyaT3K3gTCuPT4TfNrlQevd_iJXxRxpp87au0-TI4PyIuqOAQvD8K46g8_T4gJEOJwXshUIjkbtN83WqN_8m9SJMklsmGM91edwG664byPJ3f7fS6casN3CI_OLToXImD0ObSqVfpCTnBKOF0-5-UyldE1YKJSQWdG59lDGdRHq36FtBxvp-5sXF2DuEVvuinFD4hLYigOFF5qLjIOtYfbEuVdmvJwHLBkoaBzIGuHecx4RM-qmeLdM71weZlpfF3Tio7imbBSYtIvyzNShglZAVvgOyrzdVFz6e9r758qZXBXYLjbWLScPpXMBU_EHxjR_SN4zf-mXBIuLI5Ec8OUA81ICJ0dspK8fwo8VaWDmaiRSeNd_bT7Q&n=PO--V30ofbCM0c6nfz_AmepFh8iWfs_D&draw=1&columns%5B0%5D%5Bdata%5D=0&columns%5B0%5D%5Bname%5D=&columns%5B0%5D%5Bsearchable%5D=true&columns%5B0%5D%5Borderable%5D=true&columns%5B0%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B0%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B1%5D%5Bdata%5D=1&columns%5B1%5D%5Bname%5D=&columns%5B1%5D%5Bsearchable%5D=true&columns%5B1%5D%5Borderable%5D=true&columns%5B1%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B1%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B2%5D%5Bdata%5D=2&columns%5B2%5D%5Bname%5D=&columns%5B2%5D%5Bsearchable%5D=true&columns%5B2%5D%5Borderable%5D=true&columns%5B2%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B2%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B3%5D%5Bdata%5D=3&columns%5B3%5D%5Bname%5D=&columns%5B3%5D%5Bsearchable%5D=true&columns%5B3%5D%5Borderable%5D=true&columns%5B3%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B3%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B4%5D%5Bdata%5D=4&columns%5B4%5D%5Bname%5D=&columns%5B4%5D%5Bsearchable%5D=true&columns%5B4%5D%5Borderable%5D=true&columns%5B4%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B4%5D%5Bsearch%5D%5Bregex%5D=false&order%5B0%5D%5Bcolumn%5D=4&order%5B0%5D%5Bdir%5D=desc&start=0&length=500&search%5Bvalue%5D=&search%5Bregex%5D=false",
+  "note": "RadioScope TablePress 2051 SSP answer, newest 500 by date certified (the per-load token is in the URL) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.radioscope.co.nz/wp-json/tablepress/v1/ssp/2051?r=rS3tZtz5YPQ5LWUYufKLAWjQ1sQcRGCw4j7LRvlbtGNFoI9aeq-kXRqiZsyxMrpC-OVocu91n9r0TUtggnUx3UjezFDkTXF9JTs-OVeduTrg4sJ0GcwL1czWSzE1UwZ3fgomAgyaT3K3gTCuPT4TfNrlQevd_iJXxRxpp87au0-TI4PyIuqOAQvD8K46g8_T4gJEOJwXshUIjkbtN83WqN_8m9SJMklsmGM91edwG664byPJ3f7fS6casN3CI_OLToXImD0ObSqVfpCTnBKOF0-5-UyldE1YKJSQWdG59lDGdRHq36FtBxvp-5sXF2DuEVvuinFD4hLYigOFF5qLjIOtYfbEuVdmvJwHLBkoaBzIGuHecx4RM-qmeLdM71weZlpfF3Tio7imbBSYtIvyzNShglZAVvgOyrzdVFz6e9r758qZXBXYLjbWLScPpXMBU_EHxjR_SN4zf-mXBIuLI5Ec8OUA81ICJ0dspK8fwo8VaWDmaiRSeNd_bT7Q&n=PO--V30ofbCM0c6nfz_AmepFh8iWfs_D&draw=1&columns%5B0%5D%5Bdata%5D=0&columns%5B0%5D%5Bname%5D=&columns%5B0%5D%5Bsearchable%5D=true&columns%5B0%5D%5Borderable%5D=true&columns%5B0%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B0%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B1%5D%5Bdata%5D=1&columns%5B1%5D%5Bname%5D=&columns%5B1%5D%5Bsearchable%5D=true&columns%5B1%5D%5Borderable%5D=true&columns%5B1%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B1%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B2%5D%5Bdata%5D=2&columns%5B2%5D%5Bname%5D=&columns%5B2%5D%5Bsearchable%5D=true&columns%5B2%5D%5Borderable%5D=true&columns%5B2%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B2%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B3%5D%5Bdata%5D=3&columns%5B3%5D%5Bname%5D=&columns%5B3%5D%5Bsearchable%5D=true&columns%5B3%5D%5Borderable%5D=true&columns%5B3%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B3%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B4%5D%5Bdata%5D=4&columns%5B4%5D%5Bname%5D=&columns%5B4%5D%5Bsearchable%5D=true&columns%5B4%5D%5Borderable%5D=true&columns%5B4%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B4%5D%5Bsearch%5D%5Bregex%5D=false&order%5B0%5D%5Bcolumn%5D=4&order%5B0%5D%5Bdir%5D=desc&start=0&length=500&search%5Bvalue%5D=&search%5Bregex%5D=false",
+   "status": 200
+  }
+ },
+ {
+  "file": "bvmi/run-2026-09-24/2026-p7.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=bvmi,ifpi-greece,swisscharts,rmnz,amprofon,tcsn,promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:45:32Z",
+  "url": "https://www.musikindustrie.de/wie-musik-zur-karriere-werden-kann/markt-bestseller/gold-/platin-und-diamond-auszeichnung/datenbank/?action=suche&strJahr=2026&intseite=7",
+  "note": "BVMI Gold-/Platin-Datenbank, year 2026, page 7 (machine-address header dropped by --save-raw) · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked, 4 contact name/job-title fields blanked; every other byte as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.musikindustrie.de/wie-musik-zur-karriere-werden-kann/markt-bestseller/gold-/platin-und-diamond-auszeichnung/datenbank/?action=suche&strJahr=2026&intseite=7",
+   "status": 200
+  }
+ },
+ {
+  "file": "bvmi/run-2026-09-24/2026-p8.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=bvmi,ifpi-greece,swisscharts,rmnz,amprofon,tcsn,promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:45:33Z",
+  "url": "https://www.musikindustrie.de/wie-musik-zur-karriere-werden-kann/markt-bestseller/gold-/platin-und-diamond-auszeichnung/datenbank/?action=suche&strJahr=2026&intseite=8",
+  "note": "BVMI Gold-/Platin-Datenbank, year 2026, page 8 (machine-address header dropped by --save-raw) · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked, 4 contact name/job-title fields blanked; every other byte as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.musikindustrie.de/wie-musik-zur-karriere-werden-kann/markt-bestseller/gold-/platin-und-diamond-auszeichnung/datenbank/?action=suche&strJahr=2026&intseite=8",
+   "status": 200
+  }
+ },
+ {
+  "file": "bvmi/run-2026-09-24/2026-p9.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=bvmi,ifpi-greece,swisscharts,rmnz,amprofon,tcsn,promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:45:35Z",
+  "url": "https://www.musikindustrie.de/wie-musik-zur-karriere-werden-kann/markt-bestseller/gold-/platin-und-diamond-auszeichnung/datenbank/?action=suche&strJahr=2026&intseite=9",
+  "note": "BVMI Gold-/Platin-Datenbank, year 2026, page 9 (machine-address header dropped by --save-raw) · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked, 4 contact name/job-title fields blanked; every other byte as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.musikindustrie.de/wie-musik-zur-karriere-werden-kann/markt-bestseller/gold-/platin-und-diamond-auszeichnung/datenbank/?action=suche&strJahr=2026&intseite=9",
+   "status": 200
+  }
+ },
+ {
+  "file": "bvmi/run-2026-09-24/2026-p10.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=bvmi,ifpi-greece,swisscharts,rmnz,amprofon,tcsn,promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:45:37Z",
+  "url": "https://www.musikindustrie.de/wie-musik-zur-karriere-werden-kann/markt-bestseller/gold-/platin-und-diamond-auszeichnung/datenbank/?action=suche&strJahr=2026&intseite=10",
+  "note": "BVMI Gold-/Platin-Datenbank, year 2026, page 10 (machine-address header dropped by --save-raw) · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked, 4 contact name/job-title fields blanked; every other byte as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.musikindustrie.de/wie-musik-zur-karriere-werden-kann/markt-bestseller/gold-/platin-und-diamond-auszeichnung/datenbank/?action=suche&strJahr=2026&intseite=10",
+   "status": 200
+  }
+ },
+ {
+  "file": "rmnz/run-2026-09-24/ssp-2052-search-raindance.json.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=bvmi,ifpi-greece,swisscharts,rmnz,amprofon,tcsn,promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:45:37Z",
+  "url": "https://www.radioscope.co.nz/wp-json/tablepress/v1/ssp/2052?r=-AwP_-MVOYpEdowL_gzTX4mjaedkzhoF4Q84UvQ0o8PABXKHaeKAM_lTi9XJlX3NMMBpCbVeL7jUcO9_XsfRBM6K-_xXAwJWnohPwNGycmovcoddW7qqm8Cs85XsW6TfXW9DSPhEWyoTKYzXDFZreIUtdieBqD30picUgAsUARXZqaIxy6EwVsHNWZ0ZKei7RY37CJkPyVvm6rkaKsoQZTFWmpXMW02Qu5mIA8H3o_hcDRLNjjLGuWy3REdxQBBtQDTUkJZmL0dslKkC7A2dy03bQbOeL5iadem59zp1-B-0kOazKs7HpCIUuE1zxmajB-91Lcb0Jkdx8_lSzm7eWLtEtZKPs5Uz_qqMsyF1-pCvCuFB8cZ09nXQQkmeH_0xfiyQmbjPUlRmMGoM4QrIQNRXqGLEdSlvl95db21zEVE9RHvti_v9iiWPRp7FzgntNERg-IbHDPmC2pSprP0FDm3nXuoKPndM_fZHh7bYN5v-sE7ixxcr1A_oLi5m&n=LTUJLfmxwL5Bf3azyPCHbZ0qcGRoYbd6&draw=1&columns%5B0%5D%5Bdata%5D=0&columns%5B0%5D%5Bname%5D=&columns%5B0%5D%5Bsearchable%5D=true&columns%5B0%5D%5Borderable%5D=true&columns%5B0%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B0%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B1%5D%5Bdata%5D=1&columns%5B1%5D%5Bname%5D=&columns%5B1%5D%5Bsearchable%5D=true&columns%5B1%5D%5Borderable%5D=true&columns%5B1%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B1%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B2%5D%5Bdata%5D=2&columns%5B2%5D%5Bname%5D=&columns%5B2%5D%5Bsearchable%5D=true&columns%5B2%5D%5Borderable%5D=true&columns%5B2%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B2%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B3%5D%5Bdata%5D=3&columns%5B3%5D%5Bname%5D=&columns%5B3%5D%5Bsearchable%5D=true&columns%5B3%5D%5Borderable%5D=true&columns%5B3%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B3%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B4%5D%5Bdata%5D=4&columns%5B4%5D%5Bname%5D=&columns%5B4%5D%5Bsearchable%5D=true&columns%5B4%5D%5Borderable%5D=true&columns%5B4%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B4%5D%5Bsearch%5D%5Bregex%5D=false&order%5B0%5D%5Bcolumn%5D=4&order%5B0%5D%5Bdir%5D=desc&start=0&length=100&search%5Bvalue%5D=Raindance&search%5Bregex%5D=false",
+  "note": "RadioScope TablePress 2052 SSP answer, search 'Raindance' (the per-load token is in the URL) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.radioscope.co.nz/wp-json/tablepress/v1/ssp/2052?r=-AwP_-MVOYpEdowL_gzTX4mjaedkzhoF4Q84UvQ0o8PABXKHaeKAM_lTi9XJlX3NMMBpCbVeL7jUcO9_XsfRBM6K-_xXAwJWnohPwNGycmovcoddW7qqm8Cs85XsW6TfXW9DSPhEWyoTKYzXDFZreIUtdieBqD30picUgAsUARXZqaIxy6EwVsHNWZ0ZKei7RY37CJkPyVvm6rkaKsoQZTFWmpXMW02Qu5mIA8H3o_hcDRLNjjLGuWy3REdxQBBtQDTUkJZmL0dslKkC7A2dy03bQbOeL5iadem59zp1-B-0kOazKs7HpCIUuE1zxmajB-91Lcb0Jkdx8_lSzm7eWLtEtZKPs5Uz_qqMsyF1-pCvCuFB8cZ09nXQQkmeH_0xfiyQmbjPUlRmMGoM4QrIQNRXqGLEdSlvl95db21zEVE9RHvti_v9iiWPRp7FzgntNERg-IbHDPmC2pSprP0FDm3nXuoKPndM_fZHh7bYN5v-sE7ixxcr1A_oLi5m&n=LTUJLfmxwL5Bf3azyPCHbZ0qcGRoYbd6&draw=1&columns%5B0%5D%5Bdata%5D=0&columns%5B0%5D%5Bname%5D=&columns%5B0%5D%5Bsearchable%5D=true&columns%5B0%5D%5Borderable%5D=true&columns%5B0%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B0%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B1%5D%5Bdata%5D=1&columns%5B1%5D%5Bname%5D=&columns%5B1%5D%5Bsearchable%5D=true&columns%5B1%5D%5Borderable%5D=true&columns%5B1%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B1%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B2%5D%5Bdata%5D=2&columns%5B2%5D%5Bname%5D=&columns%5B2%5D%5Bsearchable%5D=true&columns%5B2%5D%5Borderable%5D=true&columns%5B2%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B2%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B3%5D%5Bdata%5D=3&columns%5B3%5D%5Bname%5D=&columns%5B3%5D%5Bsearchable%5D=true&columns%5B3%5D%5Borderable%5D=true&columns%5B3%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B3%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B4%5D%5Bdata%5D=4&columns%5B4%5D%5Bname%5D=&columns%5B4%5D%5Bsearchable%5D=true&columns%5B4%5D%5Borderable%5D=true&columns%5B4%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B4%5D%5Bsearch%5D%5Bregex%5D=false&order%5B0%5D%5Bcolumn%5D=4&order%5B0%5D%5Bdir%5D=desc&start=0&length=100&search%5Bvalue%5D=Raindance&search%5Bregex%5D=false",
+   "status": 200
+  }
+ },
+ {
+  "file": "bvmi/run-2026-09-24/2026-p11.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=bvmi,ifpi-greece,swisscharts,rmnz,amprofon,tcsn,promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:45:39Z",
+  "url": "https://www.musikindustrie.de/wie-musik-zur-karriere-werden-kann/markt-bestseller/gold-/platin-und-diamond-auszeichnung/datenbank/?action=suche&strJahr=2026&intseite=11",
+  "note": "BVMI Gold-/Platin-Datenbank, year 2026, page 11 (machine-address header dropped by --save-raw) · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked, 4 contact name/job-title fields blanked; every other byte as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.musikindustrie.de/wie-musik-zur-karriere-werden-kann/markt-bestseller/gold-/platin-und-diamond-auszeichnung/datenbank/?action=suche&strJahr=2026&intseite=11",
+   "status": 200
+  }
+ },
+ {
+  "file": "bvmi/run-2026-09-24/2026-p12.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=bvmi,ifpi-greece,swisscharts,rmnz,amprofon,tcsn,promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:45:40Z",
+  "url": "https://www.musikindustrie.de/wie-musik-zur-karriere-werden-kann/markt-bestseller/gold-/platin-und-diamond-auszeichnung/datenbank/?action=suche&strJahr=2026&intseite=12",
+  "note": "BVMI Gold-/Platin-Datenbank, year 2026, page 12 (machine-address header dropped by --save-raw) · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked, 4 contact name/job-title fields blanked; every other byte as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.musikindustrie.de/wie-musik-zur-karriere-werden-kann/markt-bestseller/gold-/platin-und-diamond-auszeichnung/datenbank/?action=suche&strJahr=2026&intseite=12",
+   "status": 200
+  }
+ },
+ {
+  "file": "bvmi/run-2026-09-24/2026-p13.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=bvmi,ifpi-greece,swisscharts,rmnz,amprofon,tcsn,promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:45:42Z",
+  "url": "https://www.musikindustrie.de/wie-musik-zur-karriere-werden-kann/markt-bestseller/gold-/platin-und-diamond-auszeichnung/datenbank/?action=suche&strJahr=2026&intseite=13",
+  "note": "BVMI Gold-/Platin-Datenbank, year 2026, page 13 (machine-address header dropped by --save-raw) · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked, 4 contact name/job-title fields blanked; every other byte as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.musikindustrie.de/wie-musik-zur-karriere-werden-kann/markt-bestseller/gold-/platin-und-diamond-auszeichnung/datenbank/?action=suche&strJahr=2026&intseite=13",
+   "status": 200
+  }
+ },
+ {
+  "file": "bvmi/run-2026-09-24/2026-p14.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=bvmi,ifpi-greece,swisscharts,rmnz,amprofon,tcsn,promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:45:44Z",
+  "url": "https://www.musikindustrie.de/wie-musik-zur-karriere-werden-kann/markt-bestseller/gold-/platin-und-diamond-auszeichnung/datenbank/?action=suche&strJahr=2026&intseite=14",
+  "note": "BVMI Gold-/Platin-Datenbank, year 2026, page 14 (machine-address header dropped by --save-raw) · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked, 4 contact name/job-title fields blanked; every other byte as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.musikindustrie.de/wie-musik-zur-karriere-werden-kann/markt-bestseller/gold-/platin-und-diamond-auszeichnung/datenbank/?action=suche&strJahr=2026&intseite=14",
+   "status": 200
+  }
+ },
+ {
+  "file": "bvmi/run-2026-09-24/2026-p15.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=bvmi,ifpi-greece,swisscharts,rmnz,amprofon,tcsn,promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:45:46Z",
+  "url": "https://www.musikindustrie.de/wie-musik-zur-karriere-werden-kann/markt-bestseller/gold-/platin-und-diamond-auszeichnung/datenbank/?action=suche&strJahr=2026&intseite=15",
+  "note": "BVMI Gold-/Platin-Datenbank, year 2026, page 15 (machine-address header dropped by --save-raw) · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked, 4 contact name/job-title fields blanked; every other byte as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.musikindustrie.de/wie-musik-zur-karriere-werden-kann/markt-bestseller/gold-/platin-und-diamond-auszeichnung/datenbank/?action=suche&strJahr=2026&intseite=15",
+   "status": 200
+  }
+ },
+ {
+  "file": "bvmi/run-2026-09-24/2026-p16.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=bvmi,ifpi-greece,swisscharts,rmnz,amprofon,tcsn,promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:45:48Z",
+  "url": "https://www.musikindustrie.de/wie-musik-zur-karriere-werden-kann/markt-bestseller/gold-/platin-und-diamond-auszeichnung/datenbank/?action=suche&strJahr=2026&intseite=16",
+  "note": "BVMI Gold-/Platin-Datenbank, year 2026, page 16 (machine-address header dropped by --save-raw) · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked, 4 contact name/job-title fields blanked; every other byte as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.musikindustrie.de/wie-musik-zur-karriere-werden-kann/markt-bestseller/gold-/platin-und-diamond-auszeichnung/datenbank/?action=suche&strJahr=2026&intseite=16",
+   "status": 200
+  }
+ },
+ {
+  "file": "bvmi/run-2026-09-24/2026-p17.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=bvmi,ifpi-greece,swisscharts,rmnz,amprofon,tcsn,promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:45:49Z",
+  "url": "https://www.musikindustrie.de/wie-musik-zur-karriere-werden-kann/markt-bestseller/gold-/platin-und-diamond-auszeichnung/datenbank/?action=suche&strJahr=2026&intseite=17",
+  "note": "BVMI Gold-/Platin-Datenbank, year 2026, page 17 (machine-address header dropped by --save-raw) · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked, 4 contact name/job-title fields blanked; every other byte as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.musikindustrie.de/wie-musik-zur-karriere-werden-kann/markt-bestseller/gold-/platin-und-diamond-auszeichnung/datenbank/?action=suche&strJahr=2026&intseite=17",
+   "status": 200
+  }
+ },
+ {
+  "file": "bvmi/run-2026-09-24/2026-p18.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=bvmi,ifpi-greece,swisscharts,rmnz,amprofon,tcsn,promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:45:51Z",
+  "url": "https://www.musikindustrie.de/wie-musik-zur-karriere-werden-kann/markt-bestseller/gold-/platin-und-diamond-auszeichnung/datenbank/?action=suche&strJahr=2026&intseite=18",
+  "note": "BVMI Gold-/Platin-Datenbank, year 2026, page 18 (machine-address header dropped by --save-raw) · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked, 4 contact name/job-title fields blanked; every other byte as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.musikindustrie.de/wie-musik-zur-karriere-werden-kann/markt-bestseller/gold-/platin-und-diamond-auszeichnung/datenbank/?action=suche&strJahr=2026&intseite=18",
+   "status": 200
+  }
+ },
+ {
+  "file": "bvmi/run-2026-09-24/2026-p19.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=bvmi,ifpi-greece,swisscharts,rmnz,amprofon,tcsn,promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:45:53Z",
+  "url": "https://www.musikindustrie.de/wie-musik-zur-karriere-werden-kann/markt-bestseller/gold-/platin-und-diamond-auszeichnung/datenbank/?action=suche&strJahr=2026&intseite=19",
+  "note": "BVMI Gold-/Platin-Datenbank, year 2026, page 19 (machine-address header dropped by --save-raw) · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked, 4 contact name/job-title fields blanked; every other byte as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.musikindustrie.de/wie-musik-zur-karriere-werden-kann/markt-bestseller/gold-/platin-und-diamond-auszeichnung/datenbank/?action=suche&strJahr=2026&intseite=19",
+   "status": 200
+  }
+ },
+ {
+  "file": "bvmi/run-2026-09-24/2026-p20.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=bvmi,ifpi-greece,swisscharts,rmnz,amprofon,tcsn,promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:45:55Z",
+  "url": "https://www.musikindustrie.de/wie-musik-zur-karriere-werden-kann/markt-bestseller/gold-/platin-und-diamond-auszeichnung/datenbank/?action=suche&strJahr=2026&intseite=20",
+  "note": "BVMI Gold-/Platin-Datenbank, year 2026, page 20 (machine-address header dropped by --save-raw) · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked, 4 contact name/job-title fields blanked; every other byte as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.musikindustrie.de/wie-musik-zur-karriere-werden-kann/markt-bestseller/gold-/platin-und-diamond-auszeichnung/datenbank/?action=suche&strJahr=2026&intseite=20",
+   "status": 200
+  }
+ },
+ {
+  "file": "bvmi/run-2026-09-24/2026-p21.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=bvmi,ifpi-greece,swisscharts,rmnz,amprofon,tcsn,promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:45:57Z",
+  "url": "https://www.musikindustrie.de/wie-musik-zur-karriere-werden-kann/markt-bestseller/gold-/platin-und-diamond-auszeichnung/datenbank/?action=suche&strJahr=2026&intseite=21",
+  "note": "BVMI Gold-/Platin-Datenbank, year 2026, page 21 (machine-address header dropped by --save-raw) · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked, 4 contact name/job-title fields blanked; every other byte as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.musikindustrie.de/wie-musik-zur-karriere-werden-kann/markt-bestseller/gold-/platin-und-diamond-auszeichnung/datenbank/?action=suche&strJahr=2026&intseite=21",
+   "status": 200
+  }
+ },
+ {
+  "file": "bvmi/run-2026-09-24/2026-p22.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=bvmi,ifpi-greece,swisscharts,rmnz,amprofon,tcsn,promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:45:58Z",
+  "url": "https://www.musikindustrie.de/wie-musik-zur-karriere-werden-kann/markt-bestseller/gold-/platin-und-diamond-auszeichnung/datenbank/?action=suche&strJahr=2026&intseite=22",
+  "note": "BVMI Gold-/Platin-Datenbank, year 2026, page 22 (machine-address header dropped by --save-raw) · gzipped here · redacted 24 Sep 2026 (SPEC §0.5): 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked, 4 contact name/job-title fields blanked; every other byte as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.musikindustrie.de/wie-musik-zur-karriere-werden-kann/markt-bestseller/gold-/platin-und-diamond-auszeichnung/datenbank/?action=suche&strJahr=2026&intseite=22",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/artist__burna-boy-p1.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:49:39Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/?busca_artista=Burna+Boy&busca_tipo_produto=&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=0",
+  "note": "Pro-Música Brasil search busca_artista=\"Burna Boy\", page 1 (Accept-Language: pt-BR) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/?busca_artista=Burna+Boy&busca_tipo_produto=&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=0",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/artist__wizkid-p1.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:49:41Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/?busca_artista=Wizkid&busca_tipo_produto=&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=0",
+  "note": "Pro-Música Brasil search busca_artista=\"Wizkid\", page 1 (Accept-Language: pt-BR) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/?busca_artista=Wizkid&busca_tipo_produto=&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=0",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/artist__davido-p1.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:49:44Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/?busca_artista=Davido&busca_tipo_produto=&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=0",
+  "note": "Pro-Música Brasil search busca_artista=\"Davido\", page 1 (Accept-Language: pt-BR) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/?busca_artista=Davido&busca_tipo_produto=&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=0",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/artist__rema-p1.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:49:46Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/?busca_artista=Rema&busca_tipo_produto=&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=0",
+  "note": "Pro-Música Brasil search busca_artista=\"Rema\", page 1 (Accept-Language: pt-BR) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/?busca_artista=Rema&busca_tipo_produto=&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=0",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/artist__tems-p1.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:49:48Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/?busca_artista=Tems&busca_tipo_produto=&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=0",
+  "note": "Pro-Música Brasil search busca_artista=\"Tems\", page 1 (Accept-Language: pt-BR) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/?busca_artista=Tems&busca_tipo_produto=&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=0",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/artist__teams-p1.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --only=promusica-br --save-raw (24 Sep 2026, 16:34 UTC), after the promusica-br credit typo \"Teams\" (Tems) made \"Teams\" one of its name searches",
+  "fetched": "2026-09-24T16:35:00Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/?busca_artista=Teams&busca_tipo_produto=&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=0",
+  "note": "Pro-Música Brasil search busca_artista=\"Teams\", page 1 (Accept-Language: pt-BR): one certificate, \"(2024) SINGLE | Beyoncé feat.Grace Jones and Teams | MOVE | Sony Music | Platina (disco_platina.png)\" — the register misspelling Tems · passed through --save-raw redaction (it held no address) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/?busca_artista=Teams&busca_tipo_produto=&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=0",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/artist__tyla-p1.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:49:51Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/?busca_artista=Tyla&busca_tipo_produto=&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=0",
+  "note": "Pro-Música Brasil search busca_artista=\"Tyla\", page 1 (Accept-Language: pt-BR) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/?busca_artista=Tyla&busca_tipo_produto=&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=0",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/artist__ayra-starr-p1.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:49:53Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/?busca_artista=Ayra+Starr&busca_tipo_produto=&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=0",
+  "note": "Pro-Música Brasil search busca_artista=\"Ayra Starr\", page 1 (Accept-Language: pt-BR) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/?busca_artista=Ayra+Starr&busca_tipo_produto=&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=0",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/artist__asake-p1.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:49:55Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/?busca_artista=Asake&busca_tipo_produto=&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=0",
+  "note": "Pro-Música Brasil search busca_artista=\"Asake\", page 1 (Accept-Language: pt-BR) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/?busca_artista=Asake&busca_tipo_produto=&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=0",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/artist__omah-lay-p1.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:49:58Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/?busca_artista=Omah+Lay&busca_tipo_produto=&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=0",
+  "note": "Pro-Música Brasil search busca_artista=\"Omah Lay\", page 1 (Accept-Language: pt-BR) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/?busca_artista=Omah+Lay&busca_tipo_produto=&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=0",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/artist__ckay-p1.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:50:00Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/?busca_artista=CKay&busca_tipo_produto=&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=0",
+  "note": "Pro-Música Brasil search busca_artista=\"CKay\", page 1 (Accept-Language: pt-BR) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/?busca_artista=CKay&busca_tipo_produto=&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=0",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/artist__olamide-p1.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:50:04Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/?busca_artista=Olamide&busca_tipo_produto=&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=0",
+  "note": "Pro-Música Brasil search busca_artista=\"Olamide\", page 1 (Accept-Language: pt-BR) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/?busca_artista=Olamide&busca_tipo_produto=&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=0",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/artist__black-sherif-p1.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:50:07Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/?busca_artista=Black+Sherif&busca_tipo_produto=&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=0",
+  "note": "Pro-Música Brasil search busca_artista=\"Black Sherif\", page 1 (Accept-Language: pt-BR) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/?busca_artista=Black+Sherif&busca_tipo_produto=&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=0",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/artist__bnxn-p1.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:50:09Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/?busca_artista=BNXN&busca_tipo_produto=&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=0",
+  "note": "Pro-Música Brasil search busca_artista=\"BNXN\", page 1 (Accept-Language: pt-BR) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/?busca_artista=BNXN&busca_tipo_produto=&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=0",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/artist__victony-p1.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:50:12Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/?busca_artista=Victony&busca_tipo_produto=&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=0",
+  "note": "Pro-Música Brasil search busca_artista=\"Victony\", page 1 (Accept-Language: pt-BR) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/?busca_artista=Victony&busca_tipo_produto=&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=0",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/artist__fireboy-dml-p1.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:50:14Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/?busca_artista=Fireboy+DML&busca_tipo_produto=&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=0",
+  "note": "Pro-Música Brasil search busca_artista=\"Fireboy DML\", page 1 (Accept-Language: pt-BR) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/?busca_artista=Fireboy+DML&busca_tipo_produto=&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=0",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/artist__seyi-vibez-p1.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:50:16Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/?busca_artista=Seyi+Vibez&busca_tipo_produto=&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=0",
+  "note": "Pro-Música Brasil search busca_artista=\"Seyi Vibez\", page 1 (Accept-Language: pt-BR) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/?busca_artista=Seyi+Vibez&busca_tipo_produto=&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=0",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/artist__wiz-kid-p1.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:50:19Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/?busca_artista=Wiz+Kid&busca_tipo_produto=&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=0",
+  "note": "Pro-Música Brasil search busca_artista=\"Wiz Kid\", page 1 (Accept-Language: pt-BR) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/?busca_artista=Wiz+Kid&busca_tipo_produto=&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=0",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/artist__buju-p1.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:50:21Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/?busca_artista=Buju&busca_tipo_produto=&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=0",
+  "note": "Pro-Música Brasil search busca_artista=\"Buju\", page 1 (Accept-Language: pt-BR) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/?busca_artista=Buju&busca_tipo_produto=&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=0",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/artist__burna-p1.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:50:24Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/?busca_artista=Burna&busca_tipo_produto=&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=0",
+  "note": "Pro-Música Brasil search busca_artista=\"Burna\", page 1 (Accept-Language: pt-BR) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/?busca_artista=Burna&busca_tipo_produto=&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=0",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/year-2026-p1.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:50:26Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/?busca_artista=&busca_tipo_produto=&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+  "note": "Pro-Música Brasil search busca_ano=2026, page 1 (Accept-Language: pt-BR) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/?busca_artista=&busca_tipo_produto=&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/year-2026-p2.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:50:31Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/page/2/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+  "note": "Pro-Música Brasil search busca_ano=2026, page 2 (Accept-Language: pt-BR) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/page/2/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/year-2026-p3.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:50:35Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/page/3/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+  "note": "Pro-Música Brasil search busca_ano=2026, page 3 (Accept-Language: pt-BR) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/page/3/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/year-2026-p4.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:50:40Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/page/4/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+  "note": "Pro-Música Brasil search busca_ano=2026, page 4 (Accept-Language: pt-BR) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/page/4/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/year-2026-p5.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:50:44Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/page/5/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+  "note": "Pro-Música Brasil search busca_ano=2026, page 5 (Accept-Language: pt-BR) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/page/5/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/year-2026-p6.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:50:49Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/page/6/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+  "note": "Pro-Música Brasil search busca_ano=2026, page 6 (Accept-Language: pt-BR) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/page/6/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/year-2026-p7.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:50:53Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/page/7/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+  "note": "Pro-Música Brasil search busca_ano=2026, page 7 (Accept-Language: pt-BR) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/page/7/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/year-2026-p8.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:50:57Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/page/8/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+  "note": "Pro-Música Brasil search busca_ano=2026, page 8 (Accept-Language: pt-BR) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/page/8/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/year-2026-p9.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:51:02Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/page/9/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+  "note": "Pro-Música Brasil search busca_ano=2026, page 9 (Accept-Language: pt-BR) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/page/9/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/year-2026-p10.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:51:06Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/page/10/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+  "note": "Pro-Música Brasil search busca_ano=2026, page 10 (Accept-Language: pt-BR) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/page/10/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/year-2026-p11.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:51:11Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/page/11/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+  "note": "Pro-Música Brasil search busca_ano=2026, page 11 (Accept-Language: pt-BR) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/page/11/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/year-2026-p12.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:51:15Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/page/12/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+  "note": "Pro-Música Brasil search busca_ano=2026, page 12 (Accept-Language: pt-BR) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/page/12/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/year-2026-p13.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:51:20Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/page/13/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+  "note": "Pro-Música Brasil search busca_ano=2026, page 13 (Accept-Language: pt-BR) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/page/13/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/year-2026-p14.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:51:25Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/page/14/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+  "note": "Pro-Música Brasil search busca_ano=2026, page 14 (Accept-Language: pt-BR) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/page/14/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/year-2026-p15.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:51:31Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/page/15/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+  "note": "Pro-Música Brasil search busca_ano=2026, page 15 (Accept-Language: pt-BR) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/page/15/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/year-2026-p16.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:51:40Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/page/16/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+  "note": "Pro-Música Brasil search busca_ano=2026, page 16 (Accept-Language: pt-BR) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/page/16/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/year-2026-p17.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:51:44Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/page/17/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+  "note": "Pro-Música Brasil search busca_ano=2026, page 17 (Accept-Language: pt-BR) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/page/17/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/year-2026-p18.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:51:49Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/page/18/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+  "note": "Pro-Música Brasil search busca_ano=2026, page 18 (Accept-Language: pt-BR) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/page/18/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/year-2026-p19.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:51:53Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/page/19/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+  "note": "Pro-Música Brasil search busca_ano=2026, page 19 (Accept-Language: pt-BR) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/page/19/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/year-2026-p20.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:51:57Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/page/20/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+  "note": "Pro-Música Brasil search busca_ano=2026, page 20 (Accept-Language: pt-BR) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/page/20/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/year-2026-p21.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:52:04Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/page/21/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+  "note": "Pro-Música Brasil search busca_ano=2026, page 21 (Accept-Language: pt-BR) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/page/21/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/year-2026-p22.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:52:08Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/page/22/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+  "note": "Pro-Música Brasil search busca_ano=2026, page 22 (Accept-Language: pt-BR) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/page/22/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/year-2026-p23.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:52:13Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/page/23/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+  "note": "Pro-Música Brasil search busca_ano=2026, page 23 (Accept-Language: pt-BR) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/page/23/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/year-2026-p24.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:52:17Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/page/24/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+  "note": "Pro-Música Brasil search busca_ano=2026, page 24 (Accept-Language: pt-BR) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/page/24/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/year-2026-p25.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:52:21Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/page/25/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+  "note": "Pro-Música Brasil search busca_ano=2026, page 25 (Accept-Language: pt-BR) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/page/25/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/year-2026-p26.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:52:26Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/page/26/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+  "note": "Pro-Música Brasil search busca_ano=2026, page 26 (Accept-Language: pt-BR) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/page/26/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/year-2026-p27.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:52:31Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/page/27/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+  "note": "Pro-Música Brasil search busca_ano=2026, page 27 (Accept-Language: pt-BR) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/page/27/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/year-2026-p28.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:52:35Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/page/28/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+  "note": "Pro-Música Brasil search busca_ano=2026, page 28 (Accept-Language: pt-BR) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/page/28/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/year-2026-p29.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:52:39Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/page/29/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+  "note": "Pro-Música Brasil search busca_ano=2026, page 29 (Accept-Language: pt-BR) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/page/29/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/year-2026-p30.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:52:43Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/page/30/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+  "note": "Pro-Música Brasil search busca_ano=2026, page 30 (Accept-Language: pt-BR) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/page/30/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/year-2026-p31.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:52:48Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/page/31/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+  "note": "Pro-Música Brasil search busca_ano=2026, page 31 (Accept-Language: pt-BR) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/page/31/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+   "status": 200
+  }
+ },
+ {
+  "file": "promusica-br/run-2026-09-24/year-2026-p32.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=promusica-br --save-raw (24 Sep 2026)",
+  "fetched": "2026-09-24T12:52:52Z",
+  "url": "https://pro-musicabr.org.br/home-2/certificados/page/32/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+  "note": "Pro-Música Brasil search busca_ano=2026, page 32 (Accept-Language: pt-BR) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://pro-musicabr.org.br/home-2/certificados/page/32/?busca_artista&busca_tipo_produto&busca_tipo_certificado=0&busca_pela_gravadora=0&busca_ano=2026",
+   "status": 200
+  }
+ },
+ {
+  "file": "bvmi/name-search-empty-2026-09-24.html",
+  "source": "24 Sep 2026 afternoon recipe re-test (cert-watch-recipes/out/bvmi_artist.s.body)",
+  "fetched": "2026-09-24T11:17:04Z",
+  "url": "https://www.musikindustrie.de/…/datenbank/ with an strInterpret name search (URL from the §3 recipe; the exact query was not logged)",
+  "note": "the BVMI name search answering with NO rows and no year selected — why the name search is never used, and never read as 'not certified' · redacted 24 Sep 2026 (SPEC §0.5): 2 phone-number occurrences (tel: link values, link texts, hCard tel) blanked, 4 contact name/job-title fields blanked; every other byte as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "tcsn/nextdata-2026-09-23.json",
+  "source": "23 Sep 2026 sweep (sweep-2026-09-23/ng/live-certification.html)",
+  "fetched": "2026-09-23T17:27:23Z",
+  "url": "https://turntablecharts.com/certification",
+  "note": "the <script id=\"__NEXT_DATA__\"> text cut verbatim from the 10 MB page served 23 Sep 17:27 UTC (build 34rN-IwkSfDR60dD2OaG2) — the rows-hash test compares it with the 24 Sep page (build 9FLVyEQ3OX_KP6OGJD8nk)",
+  "userAgent": "not recorded by the 23 Sep sweep"
+ },
+ {
+  "file": "tcsn/cdx-2026-09-23.json",
+  "source": "23 Sep 2026 sweep (sweep-2026-09-23/ng/cdx-www_turntablecharts_com_certification.json)",
+  "fetched": "2026-09-23T17:30:00Z",
+  "url": "https://web.archive.org/cdx/search/cdx?url=www.turntablecharts.com/certification&output=json (query as the sweep ran it)",
+  "note": "the Wayback Machine's CDX answer (output=json) for the TCSN certification page — the shape the deep read's lead parses",
+  "userAgent": "not recorded by the 23 Sep sweep"
  }
 ]

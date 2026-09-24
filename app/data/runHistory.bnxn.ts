@@ -15,7 +15,14 @@
     position: number;
   }
   
-  export const runHistory: RunPoint[] = [];
+  export const runHistory: RunPoint[] = [
+  {
+    "date": "2026-09-24",
+    "release": "Online",
+    "platform": "Shazam",
+    "position": 174
+  }
+];
   
   /** The dated series for one release on one platform, oldest first. */
   export const runSeries = (release: string, platform: string) =>

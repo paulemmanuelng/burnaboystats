@@ -4,7 +4,7 @@ import { spawnSync } from "node:child_process";
 import { mkdtempSync, readFileSync, writeFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
-import { ROOT } from "./certWatchHelpers";
+import { ROOT, configBeforeRulings } from "./certWatchHelpers";
 
 /**
  * The runner's exit-code contract, through the shipped script (SPEC §7):
@@ -82,7 +82,10 @@ describe("an unreachable register", () => {
   });
 
   it("renders again from results.json with the latest ticks, without the network", () => {
-    const first = run(["--offline", "--dry-run", "--site-json", SITE, "--now", "2026-09-24T06:17:00Z"]);
+    // The saved responses hold no lead since Paul's rulings of 24 Sep 2026:
+    // the config as it stood before them (LABELLED EDIT) gives two to tick.
+    const cfgDir = mkdtempSync(join(tmpdir(), "cert-watch-pipe-cfg-"));
+    const first = run(["--offline", "--dry-run", "--site-json", SITE, "--now", "2026-09-24T06:17:00Z", "--config", configBeforeRulings(cfgDir)]);
     const results = JSON.parse(readFileSync(join(first.dir, "out", "results.json"), "utf8"));
     const fp = results.candidates[0].fp;
     const latest = join(first.dir, "latest-body.md");

@@ -78,6 +78,7 @@ describe("read", () => {
     const wall = { ok: true, status: 200, headers: {}, body: fixture("decoy/za-risa-browser.html") };
     const err = await snep.read({ cursor: null, deep: false, searchTerms: [], request: async () => wall }).catch((e: unknown) => e);
     expect(err).toBeInstanceOf(AdapterError);
-    expect((err as AdapterError).kind).toBe("mismatch");
+    // RiSA's `<title>ai/…` decoy is a bot wall, read as a challenge (SPEC §7).
+    expect((err as AdapterError).kind).toBe("challenge");
   });
 });

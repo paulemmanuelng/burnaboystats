@@ -1,5 +1,6 @@
 // @vitest-environment node
 import { describe, it, expect } from "vitest";
+import { verdict } from "../scripts/cert-watch/health.mjs";
 import { join } from "node:path";
 import { zpav, parseSearch, bodyFor, API } from "../scripts/cert-watch/adapters/zpav.mjs";
 import { AdapterError } from "../scripts/cert-watch/adapters/base.mjs";
@@ -107,5 +108,23 @@ describe("diff", () => {
 
   it("Dai Dai Gold is in sync with the site", () => {
     expect(run(parseSearch(fixture("zpav/zlote-burna.json"), 6)).candidates).toEqual([]);
+  });
+});
+
+describe("the live control (review, 24 Sep 2026)", () => {
+  it("is checked on the daily read while the newest 100 Gold awards reach back past 2026-08-26", async () => {
+    const request = async (req: { body: string }) => {
+      const sub = JSON.parse(req.body).subcategory_id as 6 | 7 | 8;
+      return { ok: true, status: 200, headers: {}, body: fixture(`zpav/run-2026-09-24/${{ 6: "zlote", 7: "platynowe", 8: "diamentowe" }[sub]}__newest.json.gz`) };
+    };
+    const got = await zpav.read({ deep: false, artistNames: [], request });
+    expect(got.window.oldest[6]).toBe("2026-05-13");
+    const now = new Date("2026-09-24T06:17:00Z");
+    const v = verdict({ adapter: zpav, got, deep: false, now, config });
+    expect(v.status).toBe("ok");
+    expect(v.notes).toContain("control 6:31629 present");
+    // LABELLED EDIT of the read: Dai Dai's Gold row gone from the newest 100.
+    const lost = verdict({ adapter: zpav, got: { ...got, rows: got.rows.filter((r) => !zpav.control.find(r)) }, deep: false, now, config });
+    expect(lost).toMatchObject({ status: "format", detail: "control row missing (6:31629)" });
   });
 });

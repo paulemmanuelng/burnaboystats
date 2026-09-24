@@ -109,10 +109,12 @@ describe("page-level checks on real bodies", () => {
     }
   });
 
-  it("calls RiSA's browser decoy and olis.pl's bare 302 a different page", () => {
+  it("calls RiSA's browser decoy a bot wall and olis.pl's bare 302 a different page", () => {
     const decoy = { status: 200, headers: headersOf("headers/ZA_risa_org_za_browser.txt"), body: fixture("decoy/za-risa-browser.html") };
     expect(Buffer.byteLength(decoy.body)).toBe(1099); // the 1,099-byte decoy, as served
-    expect(classifyPage(decoy, RIAA_MARKERS).kind).toBe("mismatch");
+    // A `<title>ai/…` decoy served with HTTP 200 is a bot wall (SPEC §2.4, §7),
+    // not merely "another page": the report says "decoy page", never "none".
+    expect(classifyPage(decoy, RIAA_MARKERS).kind).toBe("challenge");
     const hdr = headersOf("headers/PL_olis_bare_site.txt");
     const bare = { ok: false, kind: "http", status: statusOf("headers/PL_olis_bare_site.txt"), redirectTo: hdr.location, detail: `redirected to ${hdr.location}` };
     expect(bare.status).toBe(302);

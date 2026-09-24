@@ -166,7 +166,12 @@ export const ifpiSverige = {
   // A quiet day reads no record page (no badge changed), so zero rows is a
   // clean read here; the format checks live on the search pages instead.
   minRows: 0,
-  control: { deep: true, rowId: "15311162", find: (r) => r.rowId === "15311162" },
+  control: { when: "deep", rowId: "15311162", find: (r) => r.rowId === "15311162" },
+  // The deep read (artist searches / the whole register or year) keeps its
+  // rows naming the sixteen from week to week; the daily newest-first window
+  // does not, so only deep reads are judged (health.mjs matchedVerdict).
+  matchedFloor: { deep: true },
+  total: null,
   parse: { search: parseSearch, record: parseRecord, certField: parseCertField, badge: parseBadge },
   async read(ctx) {
     const notes = [];

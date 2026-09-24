@@ -6,7 +6,9 @@ import { musiccanada, parseAwards } from "../scripts/cert-watch/adapters/musicca
 import { snep, parseCards } from "../scripts/cert-watch/adapters/snep.mjs";
 import { ifpiSverige, parseRecord } from "../scripts/cert-watch/adapters/ifpi-sverige.mjs";
 import { ifpiDanmark, parsePage as parseDkPage } from "../scripts/cert-watch/adapters/ifpi-danmark.mjs";
-import { hydrateSiteIndex } from "../scripts/cert-watch/site.mjs";
+import { hydrateSiteIndex, buildSiteIndex } from "../scripts/cert-watch/site.mjs";
+import * as certs from "../app/data/certifications";
+import * as afro from "../app/data/afrobeats";
 import { LIVE_ARTISTS, config, fixture, frozenIndex, releaseOf } from "./certWatchHelpers";
 
 /**
@@ -112,15 +114,23 @@ describe("RIAA", () => {
     expect(run(riaa, rows.filter((r) => r.programme === null)).candidates).toEqual([]);
   });
 
-  it("lists a lead-alias match as a flagged lead (Victony's Soweto, Rema featured)", () => {
+  it("Victony & Tempoe's Soweto (the original) is Victony's plaque, never a Rema lead", () => {
     // RIAA default_442609 "VICTONY X TEMPOE | SOWETO": the credit does not name
-    // Rema; live-artists.mjs lists (Victony, Soweto) as a record he is on.
+    // Rema, and it is the 2022 original he is not on (the Rema sweep removed
+    // the Spanish Gold on the same credit). live-artists.mjs lists (Victony,
+    // Soweto) for the CHARTS; config.chartOnlyAliases keeps it out of
+    // certification matching.
     const rows = parseRows(fixture("riaa/run-2026-09-24/std__victony.html.gz")).filter((r) => r.rowId === "default_442609");
     const got = run(riaa, rows);
-    const rema = got.candidates.find((c) => c.artist === "rema");
+    expect(got.candidates).toEqual([]);
+    expect(got.counts.inSync).toBe(1); // Victony's own US Gold
+    // It FIRES with the chart aliases (LABELLED EDIT: every dumped alias used
+    // for certifications, as before the review): the first live run's lead.
+    const idx = frozenIndex();
+    const before = run(riaa, rows, { ...idx, certAliases: idx.leadAliases });
+    const rema = before.candidates.find((c) => c.artist === "rema");
     expect(rema).toMatchObject({ kind: "NEW PLAQUE", release: "Soweto" });
     expect(rema!.flags.join(" ")).toMatch(/credit does not name Rema/);
-    expect(got.candidates.find((c) => c.artist === "victony")).toBeUndefined();
   });
 });
 
@@ -203,6 +213,21 @@ describe("Ifpi Sverige: Tyla's Water (step 2)", () => {
     const c = run(before).candidates;
     expect(c).toHaveLength(1);
     expect(c[0]).toMatchObject({ kind: "UPGRADE", artist: "tyla", release: "Water", country: "SE", tierRaw: "Platina - cert.nr 11312 - 2026-09-18", holding: { tier: "Gold", x: 1 } });
+  });
+});
+
+describe("the site ahead of the register (step 3)", () => {
+  it("the real 24 Sep Latin row (badge LA level 2) against the REAL site (×6 since PR #320) is never a candidate", () => {
+    const real = hydrateSiteIndex(buildSiteIndex(certs, afro, LIVE_ARTISTS, config), LIVE_ARTISTS, config);
+    const us = real.artists["burna-boy"].byTitle.get("dai dai")[0].holdings["US|RIAA Latin"];
+    // Derived: whatever certifications.ts holds, it is above level 2.
+    expect(us.tier).toBe("Platinum");
+    expect(us.x).toBeGreaterThan(2);
+    const latinRow = parseRows(fixture("riaa/latin-search-burna-2026-09-24.html.gz")).filter((r) => r.rowId === "default_451299");
+    expect(latinRow[0].tierRaw).toBe("badge LA level 2");
+    const got = run(riaaLatin, latinRow, real);
+    expect(got.candidates).toEqual([]);
+    expect(got.counts.inSync).toBe(1);
   });
 });
 

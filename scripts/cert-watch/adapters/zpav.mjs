@@ -84,7 +84,7 @@ export const zpav = {
   country: "PL",
   body: "ZPAV",
   programme: null,
-  class: "WITH-CARE",
+  class: "AUTOMATE",
   step: 2,
   hosts: ["www.olis.pl"],
   registerUrl: "https://www.olis.pl/charts/oficjalna-lista-wyroznien",
@@ -93,17 +93,36 @@ export const zpav = {
   humanCheck: "Open https://www.olis.pl/charts/oficjalna-lista-wyroznien, filter by performer, and read the award, its step number and its date.",
   minRows: 1,
   // Shakira, Burna Boy | Dai Dai | złote płyty | date_1 2026-08-26 — on the
-  // "Burna Boy" Gold search, read on deep runs.
-  control: { deep: true, rowId: "6:31629", find: (r) => r.rowId === "6:31629" && r.dateRaw === "2026-08-26" },
+  // "Burna Boy" Gold search, read on deep runs; and on every run whose newest
+  // 100 Gold awards (date-descending) still reach back past 2026-08-26 — they
+  // went back to 2026-05-13 on 24 Sep 2026, with Dai Dai 26th.
+  control: {
+    when: "deep",
+    window: (got) => (got.window?.oldest?.[6] ?? "9999") < "2026-08-26",
+    rowId: "6:31629",
+    find: (r) => r.rowId === "6:31629" && r.dateRaw === "2026-08-26",
+  },
+  // The deep read (artist searches / the whole register or year) keeps its
+  // rows naming the sixteen from week to week; the daily newest-first window
+  // does not, so only deep reads are judged (health.mjs matchedVerdict).
+  matchedFloor: { deep: true },
+
+  // Rows served by the three newest reads (limit 100 each).
+  total: "page",
   parse: { search: parseSearch, step: stepOf },
   async read(ctx) {
     const notes = [];
     const rows = [];
     const newest = {};
+    const oldest = {};
+    let served = 0;
     for (const sub of [6, 7, 8]) {
       const got = await search(ctx, sub, null);
       rows.push(...got);
-      newest[sub] = got.map((r) => r.dateRaw).filter(Boolean).sort().at(-1) ?? null;
+      served += got.length;
+      const dates = got.map((r) => r.dateRaw).filter(Boolean).sort();
+      newest[sub] = dates.at(-1) ?? null;
+      oldest[sub] = dates[0] ?? null;
     }
     if (ctx.deep) {
       for (const name of ctx.artistNames) for (const sub of [6, 7, 8]) rows.push(...(await search(ctx, sub, name)));
@@ -111,6 +130,10 @@ export const zpav = {
     }
     const top = Object.values(newest).filter(Boolean).sort().at(-1) ?? null;
     return {
+      total: served,
+      // How far back each newest-first list reaches (the control's window).
+      window: { oldest },
+      newestDate: top,
       rows: [...new Map(rows.map((r) => [`${r.rowId}|${r.tierRaw}`, r])).values()],
       newest: top ? `newest award ${top}` : null,
       notes,

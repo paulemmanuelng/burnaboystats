@@ -4,7 +4,7 @@
 // register text can never close the comment it sits in. The body is rewritten
 // every run; ticks Paul makes in it are read back from it.
 
-import { readingId, rankOf, compareRank, normTitle } from "./match.mjs";
+import { readingId, rankOf, compareRank, normTitle, tierLabel } from "./match.mjs";
 
 export const STATE_TAG = "cert-watch:state:v1";
 export const STATE_CAP = 30000; // characters of base64
@@ -70,19 +70,25 @@ export function isoWeek(date) {
   return `${d.getUTCFullYear()}-W${String(week).padStart(2, "0")}`;
 }
 
-/** Does the site now hold at least `reading` for this candidate? */
+/** Does the site now hold at least `reading` for this candidate? Where the
+ *  candidate's title fits more than one release (no format, an album and a
+ *  single alike — an AMBIGUOUS lead), every one of them must hold it: that
+ *  is the only state in which evaluateRows would not have raised it. */
 export function siteCaughtUp(index, cand, ladder) {
   const a = index.artists[cand.artist];
   if (!a) return false;
   const nt = cand.normTitle ?? normTitle(cand.release ?? cand.title);
-  const rel = (a.byTitle.get(nt) ?? a.byAlt.get(nt) ?? []).find((r) => !cand.format || cand.format === "unknown" || r.format === cand.format);
-  if (!rel) return false;
-  const h = rel.holdings[`${cand.country}|${cand.programme ?? ""}`];
-  if (!h) return false;
+  const fits = (r) => !cand.format || cand.format === "unknown" || r.format === cand.format;
+  const own = (a.byTitle.get(nt) ?? []).filter(fits);
+  const rels = [...new Set(own.length ? own : (a.byAlt.get(nt) ?? []).filter(fits))];
+  if (!rels.length) return false;
   if (!cand.reading) return false; // an unreadable tier is resolved by a human, never inferred
-  const hr = rankOf(ladder, h);
   const rr = rankOf(ladder, cand.reading);
-  return !!hr && !!rr && compareRank(hr, rr) >= 0;
+  return rels.every((rel) => {
+    const h = rel.holdings[`${cand.country}|${cand.programme ?? ""}`];
+    const hr = h ? rankOf(ladder, h) : null;
+    return !!hr && !!rr && compareRank(hr, rr) >= 0;
+  });
 }
 
 const STREAK_NOTIFY = 3;
@@ -162,7 +168,7 @@ export function mergeRun(input) {
       key,
       status: "open",
       carried: true,
-      notReRead: st === "ok" ? "not re-read today (outside today's window)" : "register not read today",
+      notReRead: st === "ok" || st === "stale" ? "not re-read today (outside today's window)" : "register not read today",
     });
   }
 
@@ -188,36 +194,65 @@ export function mergeRun(input) {
     };
   }
 
-  // Register health streaks — automated registers that were actually run.
+  // Register health — automated registers that were actually run: streaks
+  // of reads that were not clean, floors, and staleness (§6.1, §6.4, §7).
+  // A read that was not clean keeps the floor it had; only a clean read
+  // (health.mjs's `track`) moves it.
+  const FIRST_TIME = { format: "format changed", mismatch: "served a different page", shrank: "register shrank", unmatched: "matched rows dropped" };
   for (const [id, h] of Object.entries(health)) {
     if (!automated.has(id)) continue;
-    if (["not-built", "held-robots", "skipped", "manual"].includes(h.status)) {
+    if (["not-built", "held-robots", "held-policy", "skipped", "manual"].includes(h.status)) {
       if (prev.health[id]) next.health[id] = prev.health[id];
       continue;
     }
     const was = prev.health[id] ?? { status: "ok", fails: 0 };
-    if (h.status === "ok") {
+    const keep = {
+      floor: was.floor ?? null,
+      low: was.low ?? null,
+      floorYear: was.floorYear ?? null,
+      newest: was.newest ?? null,
+      staleSince: null,
+      matched: was.matched ?? null,
+      matchedLow: was.matchedLow ?? null,
+      matchedYear: was.matchedYear ?? null,
+    };
+    const track = h.track ? { ...keep, ...h.track } : keep;
+    const clean = h.status === "ok" || h.status === "stale";
+    const tracked = Object.fromEntries(Object.entries(track).filter(([, v]) => v !== null && v !== undefined));
+    if (clean) {
       if ((was.fails ?? 0) >= STREAK_NOTIFY) notify.push(`recovered: ${id} read cleanly again after ${was.fails} runs`);
-      next.health[id] = { status: "ok", since: was.status === "ok" ? was.since ?? day : day, fails: 0 };
+      const sameStatus = was.status === h.status;
+      next.health[id] = { status: h.status, since: sameStatus ? was.since ?? day : day, fails: 0, ...tracked };
+      if (h.status === "stale" && was.status !== "stale") notify.push(`${id}: stale — ${h.detail ?? "nothing newer than its usual gap"}`);
+      if (h.status === "ok" && was.status === "stale") notify.push(`${id}: no longer stale (newest ${track.newest ?? "?"})`);
     } else {
       const fails = (was.fails ?? 0) + 1;
-      next.health[id] = { status: h.status, since: was.status === "ok" ? day : was.since ?? day, fails };
+      const wasClean = was.status === "ok" || was.status === "stale";
+      next.health[id] = { status: h.status, since: wasClean ? day : was.since ?? day, fails, ...tracked };
       if (fails === STREAK_NOTIFY) notify.push(`not read ${STREAK_NOTIFY} runs running: ${id} (${h.status})`);
-      if ((h.status === "format" || h.status === "mismatch") && was.status !== h.status) {
-        notify.push(`${id}: ${h.status === "format" ? "format changed" : "served a different page"} — first time`);
+      if (FIRST_TIME[h.status] && was.status !== h.status) {
+        notify.push(`${id}: ${FIRST_TIME[h.status]}${(h.status === "shrank" || h.status === "unmatched") && h.detail ? ` — ${h.detail}` : ""} — first time`);
       }
     }
+    for (const e of h.events ?? []) if (e.type === "floor-lowered") notify.push(`${id}: ${e.text}`);
   }
 
-  // Watchlist readings.
+  // Watchlist readings and landings (§5.4). A change in the reading
+  // notifies whether or not the item lands; a landing notifies once and is
+  // kept (the item renders "landed" until someone removes it from config).
   for (const [id, w] of Object.entries(watchReadings ?? {})) {
-    const was = prev.watch[id];
-    if (!w || !w.raw) {
-      if (was) next.watch[id] = was;
-      continue;
+    const was = prev.watch[id] ?? null;
+    const entry = { raw: was?.raw ?? null, since: was?.since ?? null, landed: was?.landed ?? null };
+    if (w?.raw) {
+      if (was?.raw && was.raw !== w.raw) notify.push(`watchlist ${id}: ${was.raw} → ${w.raw}`);
+      entry.since = was?.raw === w.raw ? was.since ?? day : day;
+      entry.raw = w.raw;
     }
-    if (was && was.raw !== w.raw) notify.push(`watchlist ${id}: ${was.raw} → ${w.raw}`);
-    next.watch[id] = { raw: w.raw, since: was && was.raw === w.raw ? was.since : day };
+    if (w?.landedNow && !entry.landed) {
+      entry.landed = day;
+      notify.push(`watchlist ${id}: landed — ${w.landedText ?? "its target is met"}; remove it from config.json`);
+    }
+    if (entry.raw || entry.landed) next.watch[id] = entry;
   }
 
   // Manual-check ticks: carried; finalize() resets them when the ISO week turns.
@@ -229,6 +264,45 @@ export function mergeRun(input) {
   for (const [id, cur] of Object.entries(cursors ?? {})) if (health[id]?.status === "ok" && cur) next.cursors[id] = cur;
 
   return { next, candidates, cleared, dismissedCount, notifyReasons: notify };
+}
+
+/**
+ * A watchlist item against today's reading and the site (§5.4). Both targets
+ * are derived at run time, never typed:
+ *   until {register: "atLeastSite"}  the site published ahead of the register;
+ *        lands when the register's reading ranks at or above the site holding.
+ *   until {site: {tier, x}}          a lead the site has not confirmed; lands
+ *        when the site's holding ranks at or above the target.
+ * Returns { landed, siteAhead, landsWhen, landedText }.
+ */
+export function watchVerdict(w, { reading, readClean, holding, ladder, body }) {
+  const u = w.until ?? {};
+  if (u.site) {
+    const target = { tier: u.site.tier, x: u.site.x ?? 1 };
+    const hr = holding ? rankOf(ladder, holding) : null;
+    const tr = rankOf(ladder, target);
+    const landed = !!hr && !!tr && compareRank(hr, tr) >= 0;
+    return {
+      landed,
+      siteAhead: false,
+      landsWhen: `the site holds ${tierLabel(target)} (added by hand after a human confirms it at the ${body})`,
+      landedText: `the site now holds ${tierLabel(holding)}`,
+    };
+  }
+  if (u.register === "atLeastSite") {
+    const hr = holding ? rankOf(ladder, holding) : null;
+    const rr = reading ? rankOf(ladder, reading) : null;
+    const landed = !!readClean && !!rr && (!hr || compareRank(rr, hr) >= 0);
+    const siteAhead = !!hr && !!rr && compareRank(hr, rr) > 0;
+    let landsWhen = "the register's reading ranks at or above the site's holding";
+    if (holding && ladder === "riaa" && hr) {
+      landsWhen = hr[0] === 0.5 ? "the register reads Gold (level 0) or more" : `the register reads level ${hr[0]} or more`;
+    } else if (holding) {
+      landsWhen = `the register reads ${tierLabel(holding)} or more`;
+    }
+    return { landed, siteAhead, landsWhen, landedText: `the register now matches the site (${holding ? tierLabel(holding) : "nothing held"})` };
+  }
+  return { landed: false, siteAhead: false, landsWhen: "?", landedText: "" };
 }
 
 /** Apply ticks from a body to finished results (render time, idempotent):

@@ -27,18 +27,26 @@ export const TRIBUTE_RE =
   /\b(8[- ]?bit|karaoke|tribute|made popular by|in the style of|backing track|emulation|lullaby renditions?)\b/i;
 
 // ── Normalisation (comparison only) ─────────────────────────────────────────
-/** NFKD, strip diacritics, lowercase, fold quotes, `&` → "and", collapse
- *  whitespace, trim edge punctuation. For comparison only; never printed. */
+/** Every dash registers and the site print for the same "-": U+2010–U+2015
+ *  (hyphen, non-breaking hyphen, figure dash, en dash, em dash, horizontal
+ *  bar) and U+2212 (minus sign). Pro-Música Brasil prints "Fame - A COLORS
+ *  ENCORE"; the site ships "Fame – A COLORS ENCORE" (afrobeats.ts, Rema). */
+export const DASH_RE = /[\u2010-\u2015\u2212]/g;
+
+/** NFKD, strip diacritics, fold every dash to "-", lowercase, fold quotes,
+ *  `&` → "and", collapse whitespace, trim edge punctuation. For comparison
+ *  only; never printed. */
 export function normalise(s) {
   return String(s ?? "")
     .normalize("NFKD")
     .replace(/[\u0300-\u036f]/g, "")
+    .replace(DASH_RE, "-")
     .toLowerCase()
     .replace(/[’‘´`]/g, "'")
     .replace(/&/g, " and ")
     .replace(/\s+/g, " ")
     .trim()
-    .replace(/^[\s.,;:!?'"\u2010-\u2015-]+|[\s.,;:!?'"\u2010-\u2015-]+$/g, "");
+    .replace(/^[\s.,;:!?'"-]+|[\s.,;:!?'"-]+$/g, "");
 }
 
 /** Words that open a FEATURE qualifier — "(feat. X)", "[ft. X]", " - with X". */
@@ -93,6 +101,15 @@ function stripNames(credit, names) {
   return out;
 }
 
+/** The namesakes to subtract before testing a lead alias's LEAD: those of
+ *  each of the sixteen the lead names ("Tyla" → "Tyla Yaweh", "BNXN fka
+ *  Buju" → "Buju Banton"). A lead outside the sixteen ("Drake") has none. */
+function namesakesOfLead(lead, liveArtists, namesakes) {
+  const out = [];
+  for (const [slug, a] of Object.entries(liveArtists)) if (a.credit.test(lead)) out.push(...(namesakes[slug] ?? []));
+  return out;
+}
+
 // ── Identify ────────────────────────────────────────────────────────────────
 /**
  * Which of the sixteen does a register row belong to? §4.2, in order, keeping
@@ -108,9 +125,12 @@ export function identifyRow(row, ctx) {
   const rawTitle = String(row.title ?? "");
   const out = { reject: null, held: null, matches: [], creditField: credit, title: rawTitle, ownerTag: null };
 
-  // 1. Tribute and karaoke acts.
+  // 1. Tribute and karaoke acts. `namesOurs` says whether the rejected row
+  //    carried one of the sixteen's names (the run details count only those:
+  //    John Newman's "Tribute" is not a trap, 8-Bit Arcade's Burna Boy is).
   if (TRIBUTE_RE.test(credit) || TRIBUTE_RE.test(rawTitle)) {
     out.reject = "tribute";
+    out.namesOurs = Object.values(liveArtists).some((a) => a.credit.test(credit) || a.credit.test(rawTitle));
     return out;
   }
 
@@ -191,11 +211,13 @@ export function identifyRow(row, ctx) {
   }
 
   // 7. Lead aliases: the credit names a known LEAD and the title is that
-  //    alias's title. The Boom DK precedent.
+  //    alias's title. The Boom DK precedent. The lead is tested with ITS
+  //    namesakes subtracted, as in step 3: a lead that is one of the sixteen
+  //    ("Tyla" on Wizkid's Dynamite) must not fire on "TYLA YAWEH".
   const nt = normTitle(title);
   for (const al of leadAliases) {
     if (matched.has(al.artist)) continue;
-    if (!nameRe(al.lead).test(creditField)) continue;
+    if (!nameRe(al.lead).test(stripNames(creditField, namesakesOfLead(al.lead, liveArtists, namesakes)))) continue;
     if (normTitle(al.title) !== nt && normTitle(al.release ?? al.title) !== nt) continue;
     const truncated = /(\.\.\.|…)\s*$/.test(credit);
     const artistName = liveArtists[al.artist]?.name ?? al.artist;
@@ -267,22 +289,33 @@ export const fingerprint = (key, reading, tierRaw) =>
   createHash("sha256").update(`${key}|${readingId(reading, tierRaw)}`).digest("hex").slice(0, 16);
 
 // ── Locate ──────────────────────────────────────────────────────────────────
-/** The site release for (artist, title, format), or null. `index` is a
- *  hydrated site index (site.mjs). A known register format that disagrees
- *  (album vs single) is no match. */
-export function locateRelease(index, artist, title, format, releaseHint) {
+/** EVERY site release that fits (artist, title, format), at the first level
+ *  that has any: the hint's own title, the title's own title, then the
+ *  alternates. `index` is a hydrated site index (site.mjs). A known register
+ *  format that disagrees (album vs single) is no match. More than one hit
+ *  means the row could be either — IFPI-style "no format" against Burna Boy's
+ *  "I Told Them..." album and "I Told Them" single — and the caller must say
+ *  so rather than pick one. */
+export function locateAll(index, artist, title, format, releaseHint) {
   const a = index.artists[artist];
-  if (!a) return null;
+  if (!a) return [];
   const keys = [normTitle(title)];
   if (releaseHint) keys.unshift(normTitle(releaseHint));
   const fits = (r) => format === "unknown" || !format || r.format === format;
   for (const map of [a.byTitle, a.byAlt]) {
     for (const k of keys) {
-      const hits = (map.get(k) ?? []).filter(fits);
-      if (hits.length) return hits[0];
+      const hits = [...new Set((map.get(k) ?? []).filter(fits))];
+      if (hits.length) return hits;
     }
   }
-  return null;
+  return [];
+}
+
+/** The site release for (artist, title, format), or null — the first of
+ *  locateAll's hits. Callers that compare holdings use locateAll, so an
+ *  ambiguous title is never silently settled on one release. */
+export function locateRelease(index, artist, title, format, releaseHint) {
+  return locateAll(index, artist, title, format, releaseHint)[0] ?? null;
 }
 
 // ── Evaluate one adapter's rows ─────────────────────────────────────────────
@@ -307,11 +340,13 @@ export function evaluateRows(adapter, rows, ctx) {
       adapterId: adapter.id,
       liveArtists,
       config,
-      leadAliases: index.leadAliases,
+      // Only the aliases valid for CERTIFICATIONS (site.mjs certAliases): a
+      // chart alias with no certified release behind it never matches here.
+      leadAliases: index.certAliases ?? index.leadAliases,
       ownerTags: !!adapter.ownerTags,
     });
     if (id.reject === "tribute") {
-      suppressed.tribute.push({ credit: row.credit, title: row.title });
+      if (id.namesOurs) suppressed.tribute.push({ credit: row.credit, title: row.title });
       continue;
     }
     if (id.held) {
@@ -323,11 +358,27 @@ export function evaluateRows(adapter, rows, ctx) {
     const programme = row.programme !== undefined ? row.programme : adapter.programme ?? null;
     const format = row.format ?? "unknown";
     for (const m of id.matches) {
-      const release = locateRelease(index, m.artist, id.title, format, m.release);
-      const nt = release ? release.normTitle : normTitle(id.title);
+      // A title alias scoped to this register ("TCSN prints the remix as
+      // Sungba"): config.titleAliases entries with `register`, a list — never
+      // a rule — each with its why.
+      const scoped = (config.titleAliases ?? []).find(
+        (t) => t.register === adapter.id && t.artist === m.artist && (normTitle(t.printed) === normTitle(id.title) || normTitle(t.printed) === normTitle(row.title))
+      );
+      // The title without its owner tag first; then as printed, because the
+      // site itself files some TCSN records with the tag ("Stubborn (Victony)",
+      // "Everyday (Fireboy Dml)") — the tag already had to name a credited act.
+      let hits = locateAll(index, m.artist, id.title, format, scoped?.release ?? m.release);
+      if (!hits.length && id.ownerTag) hits = locateAll(index, m.artist, row.title, format);
+      // More than one release fits: the register gives no format and the
+      // site has an album and a single titled alike ("I Told Them..." and
+      // "I Told Them"). Never settle on one silently — compare with each and
+      // flag it (§4.3).
+      const ambiguous = hits.length > 1 ? hits : null;
+      const release = ambiguous ? null : hits[0] ?? null;
+      const nt = release ? release.normTitle : ambiguous ? ambiguous[0].normTitle : normTitle(id.title);
       const fmt = release ? release.format : format;
       const gkey = keyOf({ adapter: adapter.id, country: adapter.country, programme, artist: m.artist, normTitle: nt, format: fmt });
-      const g = groups.get(gkey) ?? { key: gkey, artist: m.artist, release, programme, format: fmt, normTitle: nt, rows: [], flags: new Set(), best: null };
+      const g = groups.get(gkey) ?? { key: gkey, artist: m.artist, release, ambiguous, programme, format: fmt, normTitle: nt, rows: [], flags: new Set(), best: null };
       for (const f of m.flags) g.flags.add(f);
       g.rows.push(row);
       // Fold: keep the HIGHEST reading; an unparsed tier never outranks a parsed one.
@@ -343,27 +394,48 @@ export function evaluateRows(adapter, rows, ctx) {
   const candidates = [];
   const readings = [];
   let inSync = 0;
+  const holdingOf = (release, programme) => release.holdings[`${adapter.country}|${programme ?? ""}`] ?? null;
   for (const g of groups.values()) {
     const row = g.best;
-    const holding = g.release ? g.release.holdings[`${adapter.country}|${g.programme ?? ""}`] ?? null : null;
+    const holding = g.release ? holdingOf(g.release, g.programme) : null;
     readings.push({ key: g.key, artist: g.artist, release: g.release?.title ?? null, reading: row.reading, tierRaw: row.tierRaw, row, holding });
     let kind;
-    if (!g.release) kind = "NEW RELEASE";
+    let alternatives = null;
+    if (g.ambiguous) {
+      // In sync with EVERY release it could be: nothing to decide. Otherwise
+      // a lead that names each release and what the site holds on it.
+      alternatives = g.ambiguous.map((r) => ({ title: r.title, format: r.format, holding: holdingOf(r, g.programme) }));
+      const behind = !row.reading || alternatives.some((a) => compareHolding(adapter.ladder, a.holding, row.reading));
+      kind = behind ? "AMBIGUOUS" : null;
+      if (kind) {
+        const list = alternatives.map((a) => `${a.format} "${a.title}"`).join(" and ");
+        const why = g.format === "unknown" ? "the register gives no format, and the site has" : "the site has";
+        g.flags.add(`${why} ${alternatives.length} releases this title fits (${list}) — decide which one the register certifies before adding`);
+      }
+    } else if (!g.release) kind = "NEW RELEASE";
     else if (!row.reading) kind = "UNREADABLE TIER";
     else kind = compareHolding(adapter.ladder, holding, row.reading);
     if (!kind) {
       inSync++;
       continue;
     }
+    // A known divergence: a reading the site deliberately does not follow,
+    // ruled with its why. It holds for that exact reading only — a changed
+    // tier fires again. `printed` names a row that locates no site release
+    // by the register's own title (PROMUSICAE's "LOVE NWANTITI (REMIX)",
+    // which the site counts as its original, "love nwantiti (ah ah ah)");
+    // `credit`, when given, must be the credit of EVERY row in the group, so
+    // another act's row of the same title is never swept up with it.
     const div = (config.knownDivergences ?? []).find(
       (d) =>
         d.adapter === adapter.id &&
         d.artist === g.artist &&
-        normTitle(d.title) === g.normTitle &&
+        normTitle(d.printed ?? d.title) === g.normTitle &&
+        (d.credit === undefined || g.rows.every((r) => r.credit === d.credit)) &&
         d.readingRaw === row.tierRaw
     );
     if (div) {
-      suppressed.divergences.push({ adapter: adapter.id, artist: g.artist, title: div.title, readingRaw: row.tierRaw, why: div.why });
+      suppressed.divergences.push({ adapter: adapter.id, artist: g.artist, title: div.printed ?? div.title, readingRaw: row.tierRaw, why: div.why });
       continue;
     }
     const fp = fingerprint(g.key, row.reading, row.tierRaw);
@@ -391,6 +463,7 @@ export function evaluateRows(adapter, rows, ctx) {
       readUrl: row.readUrl ?? null,
       rows: g.rows.slice(0, 3).map((r) => r.raw),
       holding,
+      ...(alternatives ? { alternatives } : {}),
       flags: [...g.flags],
     });
   }

@@ -172,12 +172,19 @@ export const singles: Release[] = [
   // interchangeable with the main one: RIAA Latin (Premios de Oro y Platino)
   // certifies at 30,000 units for Oro, 60,000 for Platino and 120,000 for 2x —
   // against 500,000 and 1,000,000 for the standard awards — and needs a
-  // recording that is at least 51% Spanish. So this 2x Platino is ~120,000
-  // units, NOT 2,000,000, which is why `body` overrides it to "RIAA Latin" and
-  // the explorer paints a program marker beside the tier. Never total it against
-  // standard-programme plaques as if the tiers meant the same thing.
+  // recording that is at least 51% Spanish. So this 6x Platino is ~360,000
+  // units (6 x 60,000), NOT 6,000,000, which is why `body` overrides it to "RIAA
+  // Latin" and the explorer paints a program marker beside the tier. Never total
+  // it against standard-programme plaques as if the tiers meant the same thing.
+  //
+  // 6x is RIAA's own statement: its verified @riaa_awards Instagram post of
+  // 23 Sep 2026, 20:24 UTC (instagram.com/p/DdpKVUjjFVf, "RIAA's 2026 Songs of
+  // the Summer"), slide 3, badge "RIAA LATIN PLATINUM 6X". The database still
+  // read "2X PLATINO, July 9, 2026" on 24 Sep (award 451299) — its Latin rows
+  // lag; the same post's other three badges (Zara Larsson 1X, Ariana Grande 1X,
+  // Ella Langley 6X Platinum) all match the database. Paul, 24 Sep 2026: add it.
   { title: "Dai Dai", credit: "Shakira & Burna Boy", year: 2026, cover: "https://cdn-images.dzcdn.net/images/cover/a7f9bae0243c512059298a68d09f45a1/500x500-000000-80-0-0.jpg", certs: [
-    { c: "US", level: "Platinum", x: 2, body: "RIAA Latin" },
+    { c: "US", level: "Platinum", x: 6, body: "RIAA Latin" },
     // Colombia ran no national certifier for years — ASINCOL closed around 2008 —
     // so Colombian "disco de oro" announcements were label-issued, and this one is.
     // Pro Musica Colombia (the IFPI national group) DOES publish a register, but its
@@ -715,6 +722,9 @@ export const certHistory: CertEvent[] = [
   // had only the Silver step.
   { title: "We Pray", credit: "Coldplay ft. Burna Boy & others", country: "UK", level: "Gold", year: 2026 },
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "US", level: "Platinum", x: 2, year: 2026, body: "RIAA Latin" },
+  // RIAA's @riaa_awards post, 23 Sep 2026: "RIAA LATIN PLATINUM 6X" (see the
+  // release row). The database had not yet logged the step on 24 Sep.
+  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "US", level: "Platinum", x: 6, year: 2026, body: "RIAA Latin" },
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "CO", level: "Gold", year: 2026, body: "Sony Music Colombia" },
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "ES", level: "Gold", year: 2026 },
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "FR", level: "Gold", year: 2026 },

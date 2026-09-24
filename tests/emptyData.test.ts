@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { spotifyImage, spotifySrcSet } from "../app/lib/spotifyImage";
+import { artAt, artSrcSet } from "../app/lib/artAt";
 import { albums, eps, compilations } from "../app/data/albums";
 import { updates } from "../app/data/updates";
 import { lastUpdated } from "../app/lib/api";
@@ -26,6 +27,14 @@ describe("a release whose cover art has not landed yet", () => {
 
   it("still leaves srcSet off entirely, so there is nothing to resolve", () => {
     expect(spotifySrcSet("")).toBeUndefined();
+  });
+
+  // artAt joined those call sites on 23 Sep 2026: the board pages' row covers
+  // now size Deezer and Apple art through it, and they pass `cover ?? ""` the
+  // same way. Its first line used to hand the empty string straight back.
+  it("artAt never yields an empty url either", () => {
+    expect(artAt("", 102)).toMatch(/^data:image\//);
+    expect(artSrcSet("", 34)).toBeUndefined();
   });
 
   it("passes a real cover through untouched", () => {

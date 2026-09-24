@@ -24,7 +24,12 @@ describe("buildSiteIndex over the real app/data", () => {
 
   it("keys a plaque by (country, programme): Dai Dai US is RIAA Latin, CO is label-issued", () => {
     const dai = index.artists["burna-boy"].byTitle.get("dai dai")[0];
-    expect(dai.holdings["US|RIAA Latin"]).toMatchObject({ tier: "Platinum", x: 2, body: "RIAA Latin" });
+    // The multiple is READ from certifications.ts, never typed: PR #320 moved
+    // it from 2 to 6 (RIAA's own post of 23 Sep 2026), and a typed 2 went red.
+    const us = certs.singles.find((r) => r.title === "Dai Dai")!.certs.find((c) => c.c === "US" && c.body === "RIAA Latin")!;
+    expect(us).toBeTruthy();
+    expect(dai.holdings["US|RIAA Latin"]).toEqual({ tier: us.level, x: us.x ?? 1, body: "RIAA Latin" });
+    expect(dai.holdings["US|RIAA Latin"].tier).toBe("Platinum");
     expect(dai.holdings["US|"]).toBeUndefined();
     expect(dai.holdings["CO|Sony Music Colombia"]).toMatchObject({ tier: "Gold" });
     // So a Pro Música Colombia row (programme null) can never compare with it.
@@ -55,6 +60,23 @@ describe("buildSiteIndex over the real app/data", () => {
   it("finds a release by an alias title, but a release's own title wins", () => {
     // live-artists.mjs: { artist: "Wizkid", title: "Mood", release: "Mood (Wizkid ft. BNXN)" }
     expect(holdingFor(index, "bnxn", "MOOD", "US", null).release?.title).toBe("Mood (Wizkid ft. BNXN)");
+  });
+
+  it("decides which aliases match CERTIFICATIONS the same way for a fresh build and the frozen dump", () => {
+    const fresh = hydrateSiteIndex(json, LIVE_ARTISTS, config);
+    const frozen = hydrateSiteIndex(JSON.parse(fixture("site-index.2026-09-24.json")), LIVE_ARTISTS, config);
+    const ids = (l: { artist: string; lead: string; title: string }[]) => l.map((a) => `${a.artist}|${a.lead}|${a.title}`).sort();
+    expect(ids(frozen.certAliases)).toEqual(ids(fresh.certAliases));
+    expect(ids(frozen.chartOnlyAliases)).toEqual(ids(fresh.chartOnlyAliases));
+    // Every chart-only alias is a chart alias (live-artists.mjs); the site's
+    // own feature credits and config's rulings are never gated.
+    expect(fresh.chartOnlyAliases.every((a: { source: string }) => a.source === "live-artists.mjs")).toBe(true);
+    // The frozen dump still carries the alternate the barred Second Sermon
+    // alias taught it; hydration drops it (a fresh build never adds it).
+    const raw = JSON.parse(fixture("site-index.2026-09-24.json")).releases.find((r: { artist: string; title: string }) => r.artist === "black-sherif" && r.title === "Second Sermon (Remix)");
+    expect(raw.altTitles).toEqual(["second sermon"]);
+    expect(frozen.artists["black-sherif"].byAlt.has("second sermon")).toBe(false);
+    expect(json.releases.find((r: { artist: string; title: string }) => r.artist === "black-sherif" && r.title === "Second Sermon (Remix)").altTitles).toEqual([]);
   });
 
   it("the frozen site-index fixture has the shape of a fresh build", () => {

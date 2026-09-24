@@ -131,4 +131,28 @@ describe("state", () => {
     expect(reasons[2].join(" ")).toMatch(/not read 3 runs running/);
     expect(reasons[3].join(" ")).toMatch(/recovered/);
   });
+
+  it("round-trips floors and low streaks through the issue body; a read that is not clean keeps them", () => {
+    // Music Canada's X-WP-Total on 24 Sep 2026 was 31,858; the second run's
+    // lower total is a LABELLED EDIT (one row removed).
+    const first = merge(null, [], { health: { musiccanada: { status: "ok", track: { floor: 31858, low: null, floorYear: null, newest: "2026-09-23", staleSince: null } } } });
+    expect(first.next.health.musiccanada).toMatchObject({ status: "ok", floor: 31858, newest: "2026-09-23" });
+    const second = merge(first.next, [], { health: { musiccanada: { status: "shrank", detail: "register shrank (31,858 → 31,857)", track: { floor: 31858, low: { n: 31857, runs: 1 }, floorYear: null, newest: "2026-09-23", staleSince: null } } } });
+    expect(second.notifyReasons).toContain("musiccanada: register shrank — register shrank (31,858 → 31,857) — first time");
+    const back = extractState(`${stateBlock(encodeState(second.next))}\n`);
+    expect(back.state!.health.musiccanada).toMatchObject({ status: "shrank", floor: 31858, low: { n: 31857, runs: 1 }, fails: 1 });
+    // A challenge the next day keeps the floor and the streak it had.
+    const third = merge(back.state, [], { health: { musiccanada: { status: "challenge" } } });
+    expect(third.next.health.musiccanada).toMatchObject({ status: "challenge", floor: 31858, low: { n: 31857, runs: 1 }, fails: 2 });
+  });
+
+  it("notifies when a register first goes stale, and when it recovers", () => {
+    const track = { floor: null, low: null, floorYear: null, newest: "2026-09-11", staleSince: "2026-09-21" };
+    const a = merge(emptyState(), [], { health: { musiccanada: { status: "stale", detail: "source stale since 2026-09-21", track } } });
+    expect(a.notifyReasons).toEqual(["musiccanada: stale — source stale since 2026-09-21"]);
+    const b = merge(a.next, [], { health: { musiccanada: { status: "stale", detail: "source stale since 2026-09-21", track } } });
+    expect(b.notifyReasons).toEqual([]);
+    const c = merge(b.next, [], { health: { musiccanada: { status: "ok", track: { ...track, newest: "2026-09-23", staleSince: null } } } });
+    expect(c.notifyReasons).toEqual(["musiccanada: no longer stale (newest 2026-09-23)"]);
+  });
 });

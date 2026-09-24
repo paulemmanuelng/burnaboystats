@@ -4,6 +4,7 @@ import StatGlyph from "./StatGlyph";
 import styles from "./mobileHome.module.css";
 import { liveHeadline } from "../lib/liveHeadline";
 import { spotifyImage } from "../lib/spotifyImage";
+import { artAt, artSrcSet } from "../lib/artAt";
 import { coverFor } from "../lib/covers";
 import { sameTitle } from "../lib/titleKey";
 import { numberOneTitleFor, ukSinglesCell, ukAlbumsCell, careerNumberOnes } from "../lib/homeData";
@@ -76,7 +77,8 @@ const allCells = [...numberOneCountries].reverse().map((code) => {
     // exceptions; the board wants the body's name alone.
     chart: meta.body.replace(/\s*\(.*\)$/, ""),
     isNew,
-    cover: art ? spotifyImage(art, 300) : undefined,
+    // The art as stored; the thumbnail below picks its own size.
+    cover: art,
     coverTitle: title,
   };
 });
@@ -256,10 +258,20 @@ export default function MobileHome() {
               <div className={styles.boardName}>{c.name}</div>
               <div className={styles.boardChart}>{c.chart}</div>
               {c.cover && (
+                // Spotify's 300 rung for a 24px square: I Told Them...,
+                // Jerusalema and Last Last were 118 KB of the phone home's art
+                // against 10 KB at the 64 rung (curl, 23 Sep 2026), while the
+                // desktop board beside it had asked for 64 all along. The
+                // srcset is /compare's: the 64 rung covers a 24px box up to
+                // DPR 2.67, and Deezer's Own It comes at 24/48/72 for 1x-3x.
+                // The UK cells arrive pre-sized from homeData; artAt reads any
+                // rung, so they resolve the same.
                 // eslint-disable-next-line @next/next/no-img-element -- 24px thumb, CDN-sized
                 <img
                   className={styles.boardCover}
-                  src={c.cover}
+                  src={artAt(c.cover, 72)}
+                  srcSet={artSrcSet(c.cover, 24)}
+                  sizes="24px"
                   alt={`${c.coverTitle} cover`}
                   loading="lazy"
                   width={24}

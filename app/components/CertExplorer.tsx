@@ -8,7 +8,7 @@ import { tierOf, type Cert, type Country, type Release } from "../data/certifica
 import { matches, badgeWeight, byMostCertified } from "../lib/certs";
 import { releasePathFor, type ReleaseKind } from "../lib/releasePages";
 import { coverFor } from "../lib/covers";
-import { spotifyImage } from "../lib/spotifyImage";
+import { artAt } from "../lib/artAt";
 import { track } from "../lib/analytics";
 import FilterEmpty from "./FilterEmpty";
 import { tierWord } from "../lib/awardName";
@@ -82,8 +82,10 @@ function CertCard({
           className={styles.certCover}
           aria-hidden="true"
           /* The site's own lookup knows Burna's catalogue only — a board artist
-             passes their covers in, exactly as MobileCerts does. */
-          style={{ backgroundImage: `url(${spotifyImage((covers ? covers[item.title] : coverFor(item.title)) ?? "", 300)})` }}
+             passes their covers in, exactly as MobileCerts does. Sized at 114,
+             3x the 38px tile: those covers are Deezer 500px and Apple 300px
+             files, 1.9 MB on /afrobeats/wizkid for 0.3 MB of pixels (23 Sep 2026). */
+          style={{ backgroundImage: `url(${artAt((covers ? covers[item.title] : coverFor(item.title)) ?? "", 114)})` }}
         />
         <span className={styles.certText}>
           {/* A row was a dead end: the best writing on the site lives on the

@@ -40,10 +40,10 @@
   export const liveChartsUpdated = "2026-09-24";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-24T04:56Z";
+  export const liveChartsBuiltAt = "2026-09-24T11:51Z";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Deezer","Spotify","Spotify Albums","YouTube","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Spotify","Spotify Albums","YouTube","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -56,21 +56,21 @@
           {
             "country": "AZ",
             "name": "Azerbaijan",
-            "position": 4,
+            "position": 6,
             "movement": null,
             "status": "new"
           },
           {
             "country": "RU",
             "name": "Russia",
-            "position": 7,
-            "movement": 0
+            "position": 9,
+            "movement": -2
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
             "position": 50,
-            "movement": 5
+            "movement": 7
           }
         ]
       },
@@ -210,26 +210,6 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ba3181c9fe6a8e7e725a04506efb1dda/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "love nwantiti (feat. ElGrande Toto) (North African Remix)",
-    "kind": "song",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "MA",
-            "name": "Morocco",
-            "position": 7,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "cover": "https://cdn-images.dzcdn.net/images/cover/330629fb8b6242beb5a119f17ff52c9c/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "BODY (danz)",

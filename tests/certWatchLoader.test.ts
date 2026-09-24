@@ -5,7 +5,8 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import * as certs from "../app/data/certifications";
 import * as afro from "../app/data/afrobeats";
-import { ROOT } from "./certWatchHelpers";
+import { buildSiteIndex, hydrateSiteIndex } from "../scripts/cert-watch/site.mjs";
+import { ROOT, LIVE_ARTISTS, config } from "./certWatchHelpers";
 
 /**
  * The workflow loads app/data/*.ts with Node's own type stripping (≥ 22.18;
@@ -35,6 +36,8 @@ describe("load-site.mjs", () => {
       `certifications.ts: ${certs.albums.length} albums, ${certs.singles.length} singles, ${certs.features.length} features, ${certs.totalAwards()} plaques`
     );
     expect(r.stdout).toContain(`afrobeats.ts: ${afro.afrobeatsArtists.length} artists, ${releases} releases, ${plaques} plaques`);
+    const idx = hydrateSiteIndex(buildSiteIndex(certs, afro, LIVE_ARTISTS, config), LIVE_ARTISTS, config);
+    expect(r.stdout).toContain(`${idx.leadAliases.length} lead aliases (${idx.certAliases.length} valid for certifications, ${idx.chartOnlyAliases.length} chart only)`);
   });
 
   it("refuses, by name, to load on a Node that cannot strip types", () => {

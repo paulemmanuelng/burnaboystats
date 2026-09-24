@@ -19,7 +19,7 @@
 // Feat. Moti Ty Dolla $ign..." | "Boom" is Wizkid's record, matched through
 // config.leadAliases and flagged.
 
-import { AdapterError, expectOk, decodeEntities, stripTags, collapse, cap } from "./base.mjs";
+import { AdapterError, expectOk, decodeEntities, stripTags, collapse, cap, rowDigest } from "./base.mjs";
 import { classifyPage } from "../http.mjs";
 
 export const PAGE = "http://ifpi.dk/certificeringer-0";
@@ -73,6 +73,38 @@ export function parsePage(html) {
 
 const idOf = (r) => r.raw;
 
+/** The rolling control: how many rows the cursor carries, and what is digested. */
+export const ROLLING_ROWS = 3;
+export const ROLLING_FIELDS = ["raw"];
+
+/** Is a carried row surely in a read that reaches back to `oldest`? A row
+ *  whose date others share only once the read goes PAST that date: on the
+ *  date itself, its batch may run over the end of page 2. */
+export const rollingDue = (p, oldest) => !!oldest && (p.tie ? oldest < p.iso : oldest <= p.iso);
+
+/** The rows to carry: one from each of the read's three newest dates (the
+ *  first by its verbatim text), so no single page boundary can hide them
+ *  all. IFPI Danmark certifies in dated batches — on 24 Sep 2026 every date
+ *  in pages 0–2 was shared — so a row whose date others share is marked
+ *  `tie`: it is only surely in a later read that goes past its date. */
+export function rollingRows(rows) {
+  const byDate = new Map();
+  for (const r of rows) {
+    const iso = r.extra?.iso;
+    if (!iso) continue;
+    if (!byDate.has(iso)) byDate.set(iso, []);
+    byDate.get(iso).push(r);
+  }
+  return [...byDate.keys()]
+    .sort()
+    .reverse()
+    .slice(0, ROLLING_ROWS)
+    .map((iso) => {
+      const group = byDate.get(iso).sort((a, b) => a.raw.localeCompare(b.raw));
+      return { iso, h: rowDigest(group[0], ROLLING_FIELDS), ...(group.length > 1 ? { tie: true } : {}) };
+    });
+}
+
 export const ifpiDanmark = {
   id: "ifpi-danmark",
   country: "DK",
@@ -86,12 +118,28 @@ export const ifpiDanmark = {
   dateKind: "certification date",
   humanCheck: "Open http://ifpi.dk/certificeringer-0 (http only) and read the newest pages for the 16 names.",
   minRows: 1,
-  // Dave feat. Tems | Raindance | Track | Platin | 07.07.2026 (page 6 on
-  // 23 Sep 2026): checked in the tests only, since it scrolls off the pages
-  // the daily read covers.
-  control: { deep: false, rowId: "07.07.2026. | Dave feat. Tems | Raindance", find: (r) => r.dateRaw === "07.07.2026." && r.credit === "Dave feat. Tems" && r.title === "Raindance" && r.tierRaw === "Platin" },
+  // The fixed control: Dave feat. Tems | Raindance | Track | Platin |
+  // 07.07.2026 (page 6 on 23 Sep 2026), checked in the tests. Pages 0–2 are
+  // the newest ~150 rows, and they only ever move forward in time: on
+  // 24 Sep they reached back to 11.08.2026, so this row had already scrolled
+  // off and no daily read will reach it again. The `window` test stays so
+  // that a read which does reach back past 07.07.2026 must hold it — but the
+  // LIVE check is the rolling control below.
+  control: {
+    when: "tests",
+    window: (got) => (got.window?.oldest ?? "9999") < "2026-07-07",
+    rowId: "07.07.2026. | Dave feat. Tems | Raindance",
+    find: (r) => r.dateRaw === "07.07.2026." && r.credit === "Dave feat. Tems" && r.title === "Raindance" && r.tierRaw === "Platin",
+  },
+  // The rolling control (review, 24 Sep 2026): one row from each of the last
+  // clean read's three newest dates, carried in the cursor as (date, digest
+  // of the verbatim row). Today's pages 0–2 reach back about six weeks, so
+  // they hold yesterday's newest rows unless ~150 awards arrive in a day;
+  // one of the three present is enough (see rollingRows for ties).
+  rollingControl: true,
   parse: { page: parsePage, status: parseStatus },
   async read(ctx) {
+    const prevRolling = Array.isArray(ctx.cursor?.rolling) ? ctx.cursor.rolling : null;
     const union = new Map();
     let requests = 0;
     let rounds = 0;
@@ -129,9 +177,21 @@ export const ifpiDanmark = {
     if (last && oldest && oldest > last) notes.push(`the pages read end at ${oldest}, after the last run's newest ${last} — rows in between were not read`);
     return {
       rows,
+      // How far back pages 0–2 reach (the control's window).
+      window: { oldest },
+      rolling: prevRolling
+        ? {
+            checks: prevRolling.map((p) => ({
+              label: `the ${p.iso} row ${p.h.slice(0, 8)}`,
+              due: rollingDue(p, oldest),
+              find: (r) => r.extra?.iso === p.iso && rowDigest(r, ROLLING_FIELDS) === p.h,
+            })),
+          }
+        : null,
+      newestDate: top,
       newest: top ? `newest ${rows.find((r) => r.extra.iso === top).dateRaw.replace(/\.$/, "")}` : null,
       notes,
-      cursor: { lastDate: top ?? last },
+      cursor: { lastDate: top ?? last, rolling: rows.length ? rollingRows(rows) : prevRolling },
     };
   },
 };
