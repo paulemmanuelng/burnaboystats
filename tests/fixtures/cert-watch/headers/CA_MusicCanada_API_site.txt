@@ -1,0 +1,17 @@
+HTTP/1.1 200 OK
+Date: Thu, 24 Sep 2026 06:50:11 GMT
+Server: Apache
+X-Frame-Options: SAMEORIGIN
+Vary: accept,content-type,Origin,Accept-Encoding,User-Agent
+X-Robots-Tag: noindex
+X-Content-Type-Options: nosniff
+Access-Control-Expose-Headers: X-WP-Total, X-WP-TotalPages, Link
+Access-Control-Allow-Headers: Authorization, X-WP-Nonce, Content-Disposition, Content-MD5, Content-Type
+X-WP-Total: 31859
+X-WP-TotalPages: 6372
+Link: <https://musiccanada.com/wp-json/wp/v2/award?per_page=5&orderby=id&order=desc&_fields=id%2Cdate%2Ctitle%2Ccontent%2Cclass_list&page=2>; rel="next"
+Allow: GET
+Content-Encoding: gzip
+Content-Length: 403
+Content-Type: application/json; charset=UTF-8
+

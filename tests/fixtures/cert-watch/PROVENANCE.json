@@ -1,0 +1,1096 @@
+[
+ {
+  "file": "challenge/be-ultratop.html",
+  "source": "24 Sep 2026 endpoint re-test (certwatch-retest/body/BE_Ultratop_site)",
+  "fetched": "2026-09-24T06:50:23Z",
+  "url": "https://www.ultratop.be/ (re-test)",
+  "note": "Cloudflare 403 challenge (cf-mitigated: challenge)",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "challenge/ch-hitparade.html",
+  "source": "24 Sep 2026 endpoint re-test (certwatch-retest/body/CH_hitparade_site)",
+  "fetched": "2026-09-24T06:49:14Z",
+  "url": "https://hitparade.ch/ (re-test)",
+  "note": "Cloudflare 403 challenge",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "challenge/co-hcdn.html",
+  "source": "24 Sep 2026 endpoint re-test (certwatch-retest/body/CO_media_API_site)",
+  "fetched": "2026-09-24T06:49:48Z",
+  "url": "https://pro-musica.co/wp-json/wp/v2/media?mime_type=application/pdf&per_page=5&orderby=date&order=desc&_fields=id,date,source_url",
+  "note": "Hostinger CDN 403 'Checking your browser' (server: hcdn)",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "challenge/pl-olis-bare.txt",
+  "source": "24 Sep 2026 endpoint re-test (certwatch-retest/body/PL_olis_bare_site)",
+  "fetched": "2026-09-24T06:50:49Z",
+  "url": "POST https://www.olis.pl/api/search without the page's XHR headers",
+  "note": "Cloudflare 302 to http://google.com/ (143 bytes)",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "decoy/za-risa-browser.html",
+  "source": "24 Sep 2026 endpoint re-test (certwatch-retest/body/ZA_risa_org_za_browser)",
+  "fetched": "2026-09-24T06:49:35Z",
+  "url": "https://risa.org.za/ with a browser User-Agent",
+  "note": "the 1,099-byte decoy RiSA serves to a browser User-Agent",
+  "userAgent": "a browser User-Agent (Chrome 128)"
+ },
+ {
+  "file": "expected-issue-body.md",
+  "source": "rendered by scripts/cert-watch/index.mjs --offline --dry-run --site-json site-index.2026-09-24.json --now 2026-09-24T06:17:00Z",
+  "fetched": "2026-09-24T06:17:00Z",
+  "url": "(not a register response)",
+  "note": "the golden issue body certWatchReport.test.ts compares against; the run duration is normalised to <duration>. Regenerate it only by re-running that command, never by hand."
+ },
+ {
+  "file": "headers/BE_Ultratop_site.txt",
+  "source": "24 Sep 2026 endpoint re-test (certwatch-retest/hdr/BE_Ultratop_site)",
+  "fetched": "2026-09-24T06:50:23Z",
+  "url": "(response headers)",
+  "note": "response headers as served; set-cookie lines removed",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "headers/CA_MusicCanada_API_site.txt",
+  "source": "24 Sep 2026 endpoint re-test (certwatch-retest/hdr/CA_MusicCanada_API_site)",
+  "fetched": "2026-09-24T06:50:11Z",
+  "url": "(response headers)",
+  "note": "response headers as served; set-cookie lines removed",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "headers/CH_hitparade_site.txt",
+  "source": "24 Sep 2026 endpoint re-test (certwatch-retest/hdr/CH_hitparade_site)",
+  "fetched": "2026-09-24T06:49:14Z",
+  "url": "(response headers)",
+  "note": "response headers as served; set-cookie lines removed",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "headers/CO_media_API_site.txt",
+  "source": "24 Sep 2026 endpoint re-test (certwatch-retest/hdr/CO_media_API_site)",
+  "fetched": "2026-09-24T06:49:48Z",
+  "url": "(response headers)",
+  "note": "response headers as served; set-cookie lines removed",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "headers/PL_olis_bare_site.txt",
+  "source": "24 Sep 2026 endpoint re-test (certwatch-retest/hdr/PL_olis_bare_site)",
+  "fetched": "2026-09-24T06:50:49Z",
+  "url": "(response headers)",
+  "note": "response headers as served; set-cookie lines removed",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "headers/US_RIAA_Latin_site.txt",
+  "source": "24 Sep 2026 endpoint re-test (certwatch-retest/hdr/US_RIAA_Latin_site)",
+  "fetched": "2026-09-24T06:50:04Z",
+  "url": "(response headers)",
+  "note": "response headers as served; set-cookie lines removed",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "headers/US_RIAA_timeline_site.txt",
+  "source": "24 Sep 2026 endpoint re-test (certwatch-retest/hdr/US_RIAA_timeline_site)",
+  "fetched": "2026-09-24T06:50:08Z",
+  "url": "(response headers)",
+  "note": "response headers as served; set-cookie lines removed",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "headers/ZA_risa_org_za_browser.txt",
+  "source": "24 Sep 2026 endpoint re-test (certwatch-retest/hdr/ZA_risa_org_za_browser)",
+  "fetched": "2026-09-24T06:49:35Z",
+  "url": "(response headers)",
+  "note": "response headers as served; set-cookie lines removed",
+  "userAgent": "a browser User-Agent (Chrome 128)"
+ },
+ {
+  "file": "musiccanada/awards-p1-2026-09-23.json",
+  "source": "23 Sep 2026 sweep (sweep-2026-09-23/us-ca-mx/mc/dump/p1.json)",
+  "fetched": "2026-09-23T17:19:23Z",
+  "url": "https://musiccanada.com/wp-json/wp/v2/award?per_page=100&orderby=id&order=desc (sweep dump, page 1)",
+  "note": "100 awards incl. 89702 Shakira, Burna Boy / Dai Dai (double-platinum-single) and 89706 seven-times-platinum-single",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "musiccanada/newest5-2026-09-24.json",
+  "source": "24 Sep 2026 endpoint re-test (certwatch-retest/body/CA_MusicCanada_API_site)",
+  "fetched": "2026-09-24T06:50:11Z",
+  "url": "https://musiccanada.com/wp-json/wp/v2/award?per_page=5&orderby=id&order=desc&_fields=id,date,title,content,class_list",
+  "note": "the five newest awards on 24 Sep (89710 first)",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "musiccanada/run-2026-09-24/awards-p1.headers.txt",
+  "source": "live dry run, scripts/cert-watch --save-raw (.meta.txt)",
+  "fetched": "2026-09-24T08:30:56Z",
+  "url": "https://musiccanada.com/wp-json/wp/v2/award?per_page=100&orderby=id&order=desc&_fields=id,date,title,content,class_list,link",
+  "note": "request line, status and response headers as served (set-cookie removed)",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "musiccanada/run-2026-09-24/awards-p1.json",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --save-raw",
+  "fetched": "2026-09-24T08:30:56Z",
+  "url": "https://musiccanada.com/wp-json/wp/v2/award?per_page=100&orderby=id&order=desc&_fields=id,date,title,content,class_list,link",
+  "note": "the newest 100 awards (89710 first; 89702 Dai Dai among them)",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://musiccanada.com/wp-json/wp/v2/award?per_page=100&orderby=id&order=desc&_fields=id,date,title,content,class_list,link",
+   "status": 200
+  },
+  "headers": "musiccanada/run-2026-09-24/awards-p1.headers.txt"
+ },
+ {
+  "file": "riaa/history-451299-2026-09-24.json",
+  "source": "24 Sep 2026 endpoint re-test (certwatch-retest/body/US_RIAA_timeline_site)",
+  "fetched": "2026-09-24T06:50:08Z",
+  "url": "POST https://www.riaa.com/wp-admin/admin-ajax.php action=load_detail_from_recent_timeline&id=451299",
+  "note": "the same award history re-read on 24 Sep (byte-identical)",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "riaa/history-451299.json",
+  "source": "23 Sep 2026 sweep (sweep-2026-09-23/us-ca-mx/riaa/timeline/451299.json)",
+  "fetched": "2026-09-23T17:08:03Z",
+  "url": "POST https://www.riaa.com/wp-admin/admin-ajax.php action=load_detail_from_recent_timeline&id=451299",
+  "note": "Dai Dai award history: Current Certification 2X PLATINO",
+  "userAgent": "a browser User-Agent (Chrome 128)"
+ },
+ {
+  "file": "riaa/latin-search-burna-2026-09-24.html.gz",
+  "source": "24 Sep 2026 endpoint re-test (certwatch-retest/body/US_RIAA_Latin_site)",
+  "fetched": "2026-09-24T06:50:04Z",
+  "url": "https://www.riaa.com/gold-platinum/?tab_active=platinum-latin&se=burna+boy",
+  "note": "the Dai Dai Latin row default_451299; also carries the harmless challenge-platform script · gzipped as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "riaa/latin-search-shakira.html.gz",
+  "source": "23 Sep 2026 sweep (sweep-2026-09-23/us-ca-mx/riaa/raw_latin/shakira.html)",
+  "fetched": "2026-09-23T17:24:52Z",
+  "url": "https://www.riaa.com/gold-platinum/?tab_active=platinum-latin&se=shakira",
+  "note": "28 Latin rows: Oro, N× Platino and N× Diamante badge forms (levels 0–43) · gzipped as served",
+  "userAgent": "a browser User-Agent (Chrome 128)"
+ },
+ {
+  "file": "riaa/load-more-end.json",
+  "source": "23 Sep 2026 sweep (sweep-2026-09-23/us-ca-mx/riaa/burna_p2.json)",
+  "fetched": "2026-09-23T16:56:28Z",
+  "url": "POST https://www.riaa.com/wp-admin/admin-ajax.php?<queryParams for se=burna> action=load_more_search_default&page=2",
+  "note": "the 'no more rows' load-more response",
+  "userAgent": "a browser User-Agent (Chrome 128)"
+ },
+ {
+  "file": "riaa/newest-default.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --save-raw",
+  "fetched": "2026-09-24T08:30:25Z",
+  "url": "https://www.riaa.com/gold-platinum/?tab_active=default-award&ord=desc&col=certification_date",
+  "note": "copy of riaa/run-2026-09-24/std__newest.html.gz under the spec's name (SPEC §9.1)",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "riaa/newest-latin.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --save-raw",
+  "fetched": "2026-09-24T08:31:50Z",
+  "url": "https://www.riaa.com/gold-platinum/?tab_active=platinum-latin&ord=desc&col=certification_date",
+  "note": "copy of riaa/run-2026-09-24/latin__newest.html.gz under the spec's name (SPEC §9.1)",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "riaa/run-2026-09-24/history-274720.json",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --save-raw",
+  "fetched": "2026-09-24T08:31:17Z",
+  "url": "https://www.riaa.com/wp-admin/admin-ajax.php",
+  "note": "award history for 274720",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.riaa.com/wp-admin/admin-ajax.php",
+   "body": "action=load_detail_from_recent_timeline&id=274720",
+   "status": 200
+  }
+ },
+ {
+  "file": "riaa/run-2026-09-24/history-283162.json",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --save-raw",
+  "fetched": "2026-09-24T08:31:15Z",
+  "url": "https://www.riaa.com/wp-admin/admin-ajax.php",
+  "note": "award history for 283162",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.riaa.com/wp-admin/admin-ajax.php",
+   "body": "action=load_detail_from_recent_timeline&id=283162",
+   "status": 200
+  }
+ },
+ {
+  "file": "riaa/run-2026-09-24/history-352312.json",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --save-raw",
+  "fetched": "2026-09-24T08:31:14Z",
+  "url": "https://www.riaa.com/wp-admin/admin-ajax.php",
+  "note": "award history for 352312",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.riaa.com/wp-admin/admin-ajax.php",
+   "body": "action=load_detail_from_recent_timeline&id=352312",
+   "status": 200
+  }
+ },
+ {
+  "file": "riaa/run-2026-09-24/history-442609.json",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --save-raw",
+  "fetched": "2026-09-24T08:31:19Z",
+  "url": "https://www.riaa.com/wp-admin/admin-ajax.php",
+  "note": "award history for 442609",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.riaa.com/wp-admin/admin-ajax.php",
+   "body": "action=load_detail_from_recent_timeline&id=442609",
+   "status": 200
+  }
+ },
+ {
+  "file": "riaa/run-2026-09-24/history-451299.json",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --save-raw",
+  "fetched": "2026-09-24T08:31:51Z",
+  "url": "https://www.riaa.com/wp-admin/admin-ajax.php",
+  "note": "award history for 451299",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.riaa.com/wp-admin/admin-ajax.php",
+   "body": "action=load_detail_from_recent_timeline&id=451299",
+   "status": 200
+  }
+ },
+ {
+  "file": "riaa/run-2026-09-24/latin__asake.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --save-raw",
+  "fetched": "2026-09-24T08:31:34Z",
+  "url": "https://www.riaa.com/gold-platinum/?tab_active=platinum-latin&se=Asake",
+  "note": "search 'Asake' on the Latin tab · gzipped as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.riaa.com/gold-platinum/?tab_active=platinum-latin&se=Asake",
+   "status": 200
+  }
+ },
+ {
+  "file": "riaa/run-2026-09-24/latin__ayra-starr.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --save-raw",
+  "fetched": "2026-09-24T08:31:32Z",
+  "url": "https://www.riaa.com/gold-platinum/?tab_active=platinum-latin&se=Ayra+Starr",
+  "note": "search 'Ayra Starr' on the Latin tab · gzipped as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.riaa.com/gold-platinum/?tab_active=platinum-latin&se=Ayra+Starr",
+   "status": 200
+  }
+ },
+ {
+  "file": "riaa/run-2026-09-24/latin__black-sherif.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --save-raw",
+  "fetched": "2026-09-24T08:31:41Z",
+  "url": "https://www.riaa.com/gold-platinum/?tab_active=platinum-latin&se=Black+Sherif",
+  "note": "search 'Black Sherif' on the Latin tab · gzipped as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.riaa.com/gold-platinum/?tab_active=platinum-latin&se=Black+Sherif",
+   "status": 200
+  }
+ },
+ {
+  "file": "riaa/run-2026-09-24/latin__bnxn.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --save-raw",
+  "fetched": "2026-09-24T08:31:42Z",
+  "url": "https://www.riaa.com/gold-platinum/?tab_active=platinum-latin&se=BNXN",
+  "note": "search 'BNXN' on the Latin tab · gzipped as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.riaa.com/gold-platinum/?tab_active=platinum-latin&se=BNXN",
+   "status": 200
+  }
+ },
+ {
+  "file": "riaa/run-2026-09-24/latin__burna-boy.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --save-raw",
+  "fetched": "2026-09-24T08:31:21Z",
+  "url": "https://www.riaa.com/gold-platinum/?tab_active=platinum-latin&se=Burna+Boy",
+  "note": "search 'Burna Boy' on the Latin tab · gzipped as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.riaa.com/gold-platinum/?tab_active=platinum-latin&se=Burna+Boy",
+   "status": 200
+  }
+ },
+ {
+  "file": "riaa/run-2026-09-24/latin__ckay.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --save-raw",
+  "fetched": "2026-09-24T08:31:38Z",
+  "url": "https://www.riaa.com/gold-platinum/?tab_active=platinum-latin&se=CKay",
+  "note": "search 'CKay' on the Latin tab · gzipped as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.riaa.com/gold-platinum/?tab_active=platinum-latin&se=CKay",
+   "status": 200
+  }
+ },
+ {
+  "file": "riaa/run-2026-09-24/latin__davido.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --save-raw",
+  "fetched": "2026-09-24T08:31:25Z",
+  "url": "https://www.riaa.com/gold-platinum/?tab_active=platinum-latin&se=Davido",
+  "note": "search 'Davido' on the Latin tab · gzipped as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.riaa.com/gold-platinum/?tab_active=platinum-latin&se=Davido",
+   "status": 200
+  }
+ },
+ {
+  "file": "riaa/run-2026-09-24/latin__fireboy-dml.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --save-raw",
+  "fetched": "2026-09-24T08:31:46Z",
+  "url": "https://www.riaa.com/gold-platinum/?tab_active=platinum-latin&se=Fireboy+DML",
+  "note": "search 'Fireboy DML' on the Latin tab · gzipped as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.riaa.com/gold-platinum/?tab_active=platinum-latin&se=Fireboy+DML",
+   "status": 200
+  }
+ },
+ {
+  "file": "riaa/run-2026-09-24/latin__newest.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --save-raw",
+  "fetched": "2026-09-24T08:31:50Z",
+  "url": "https://www.riaa.com/gold-platinum/?tab_active=platinum-latin&ord=desc&col=certification_date",
+  "note": "newest list on the Latin tab · gzipped as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.riaa.com/gold-platinum/?tab_active=platinum-latin&ord=desc&col=certification_date",
+   "status": 200
+  }
+ },
+ {
+  "file": "riaa/run-2026-09-24/latin__olamide.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --save-raw",
+  "fetched": "2026-09-24T08:31:39Z",
+  "url": "https://www.riaa.com/gold-platinum/?tab_active=platinum-latin&se=Olamide",
+  "note": "search 'Olamide' on the Latin tab · gzipped as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.riaa.com/gold-platinum/?tab_active=platinum-latin&se=Olamide",
+   "status": 200
+  }
+ },
+ {
+  "file": "riaa/run-2026-09-24/latin__omah-lay.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --save-raw",
+  "fetched": "2026-09-24T08:31:36Z",
+  "url": "https://www.riaa.com/gold-platinum/?tab_active=platinum-latin&se=Omah+Lay",
+  "note": "search 'Omah Lay' on the Latin tab · gzipped as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.riaa.com/gold-platinum/?tab_active=platinum-latin&se=Omah+Lay",
+   "status": 200
+  }
+ },
+ {
+  "file": "riaa/run-2026-09-24/latin__rema.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --save-raw",
+  "fetched": "2026-09-24T08:31:26Z",
+  "url": "https://www.riaa.com/gold-platinum/?tab_active=platinum-latin&se=Rema",
+  "note": "search 'Rema' on the Latin tab · gzipped as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.riaa.com/gold-platinum/?tab_active=platinum-latin&se=Rema",
+   "status": 200
+  }
+ },
+ {
+  "file": "riaa/run-2026-09-24/latin__seyi-vibez.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --save-raw",
+  "fetched": "2026-09-24T08:31:47Z",
+  "url": "https://www.riaa.com/gold-platinum/?tab_active=platinum-latin&se=Seyi+Vibez",
+  "note": "search 'Seyi Vibez' on the Latin tab · gzipped as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.riaa.com/gold-platinum/?tab_active=platinum-latin&se=Seyi+Vibez",
+   "status": 200
+  }
+ },
+ {
+  "file": "riaa/run-2026-09-24/latin__tems.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --save-raw",
+  "fetched": "2026-09-24T08:31:28Z",
+  "url": "https://www.riaa.com/gold-platinum/?tab_active=platinum-latin&se=Tems",
+  "note": "search 'Tems' on the Latin tab · gzipped as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.riaa.com/gold-platinum/?tab_active=platinum-latin&se=Tems",
+   "status": 200
+  }
+ },
+ {
+  "file": "riaa/run-2026-09-24/latin__tyla.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --save-raw",
+  "fetched": "2026-09-24T08:31:30Z",
+  "url": "https://www.riaa.com/gold-platinum/?tab_active=platinum-latin&se=Tyla",
+  "note": "search 'Tyla' on the Latin tab · gzipped as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.riaa.com/gold-platinum/?tab_active=platinum-latin&se=Tyla",
+   "status": 200
+  }
+ },
+ {
+  "file": "riaa/run-2026-09-24/latin__victony.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --save-raw",
+  "fetched": "2026-09-24T08:31:44Z",
+  "url": "https://www.riaa.com/gold-platinum/?tab_active=platinum-latin&se=Victony",
+  "note": "search 'Victony' on the Latin tab · gzipped as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.riaa.com/gold-platinum/?tab_active=platinum-latin&se=Victony",
+   "status": 200
+  }
+ },
+ {
+  "file": "riaa/run-2026-09-24/latin__wizkid.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --save-raw",
+  "fetched": "2026-09-24T08:31:23Z",
+  "url": "https://www.riaa.com/gold-platinum/?tab_active=platinum-latin&se=Wizkid",
+  "note": "search 'Wizkid' on the Latin tab · gzipped as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.riaa.com/gold-platinum/?tab_active=platinum-latin&se=Wizkid",
+   "status": 200
+  }
+ },
+ {
+  "file": "riaa/run-2026-09-24/std__asake.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --save-raw",
+  "fetched": "2026-09-24T08:30:49Z",
+  "url": "https://www.riaa.com/gold-platinum/?tab_active=default-award&se=Asake",
+  "note": "search 'Asake' on the standard tab · gzipped as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.riaa.com/gold-platinum/?tab_active=default-award&se=Asake",
+   "status": 200
+  }
+ },
+ {
+  "file": "riaa/run-2026-09-24/std__ayra-starr.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --save-raw",
+  "fetched": "2026-09-24T08:30:48Z",
+  "url": "https://www.riaa.com/gold-platinum/?tab_active=default-award&se=Ayra+Starr",
+  "note": "search 'Ayra Starr' on the standard tab · gzipped as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.riaa.com/gold-platinum/?tab_active=default-award&se=Ayra+Starr",
+   "status": 200
+  }
+ },
+ {
+  "file": "riaa/run-2026-09-24/std__black-sherif.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --save-raw",
+  "fetched": "2026-09-24T08:30:57Z",
+  "url": "https://www.riaa.com/gold-platinum/?tab_active=default-award&se=Black+Sherif",
+  "note": "search 'Black Sherif' on the standard tab · gzipped as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.riaa.com/gold-platinum/?tab_active=default-award&se=Black+Sherif",
+   "status": 200
+  }
+ },
+ {
+  "file": "riaa/run-2026-09-24/std__bnxn.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --save-raw",
+  "fetched": "2026-09-24T08:30:59Z",
+  "url": "https://www.riaa.com/gold-platinum/?tab_active=default-award&se=BNXN",
+  "note": "search 'BNXN' on the standard tab · gzipped as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.riaa.com/gold-platinum/?tab_active=default-award&se=BNXN",
+   "status": 200
+  }
+ },
+ {
+  "file": "riaa/run-2026-09-24/std__buju.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --save-raw",
+  "fetched": "2026-09-24T08:31:09Z",
+  "url": "https://www.riaa.com/gold-platinum/?tab_active=default-award&se=Buju",
+  "note": "search 'Buju' on the standard tab · gzipped as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.riaa.com/gold-platinum/?tab_active=default-award&se=Buju",
+   "status": 200
+  }
+ },
+ {
+  "file": "riaa/run-2026-09-24/std__burna-boy.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --save-raw",
+  "fetched": "2026-09-24T08:30:30Z",
+  "url": "https://www.riaa.com/gold-platinum/?tab_active=default-award&se=Burna+Boy",
+  "note": "search 'Burna Boy' on the standard tab · gzipped as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.riaa.com/gold-platinum/?tab_active=default-award&se=Burna+Boy",
+   "status": 200
+  }
+ },
+ {
+  "file": "riaa/run-2026-09-24/std__burna.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --save-raw",
+  "fetched": "2026-09-24T08:31:12Z",
+  "url": "https://www.riaa.com/gold-platinum/?tab_active=default-award&se=Burna",
+  "note": "search 'Burna' on the standard tab · gzipped as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.riaa.com/gold-platinum/?tab_active=default-award&se=Burna",
+   "status": 200
+  }
+ },
+ {
+  "file": "riaa/run-2026-09-24/std__ckay.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --save-raw",
+  "fetched": "2026-09-24T08:30:53Z",
+  "url": "https://www.riaa.com/gold-platinum/?tab_active=default-award&se=CKay",
+  "note": "search 'CKay' on the standard tab · gzipped as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.riaa.com/gold-platinum/?tab_active=default-award&se=CKay",
+   "status": 200
+  }
+ },
+ {
+  "file": "riaa/run-2026-09-24/std__davido.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --save-raw",
+  "fetched": "2026-09-24T08:30:40Z",
+  "url": "https://www.riaa.com/gold-platinum/?tab_active=default-award&se=Davido",
+  "note": "search 'Davido' on the standard tab · gzipped as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.riaa.com/gold-platinum/?tab_active=default-award&se=Davido",
+   "status": 200
+  }
+ },
+ {
+  "file": "riaa/run-2026-09-24/std__fireboy-dml.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --save-raw",
+  "fetched": "2026-09-24T08:31:03Z",
+  "url": "https://www.riaa.com/gold-platinum/?tab_active=default-award&se=Fireboy+DML",
+  "note": "search 'Fireboy DML' on the standard tab · gzipped as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.riaa.com/gold-platinum/?tab_active=default-award&se=Fireboy+DML",
+   "status": 200
+  }
+ },
+ {
+  "file": "riaa/run-2026-09-24/std__newest.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --save-raw",
+  "fetched": "2026-09-24T08:30:25Z",
+  "url": "https://www.riaa.com/gold-platinum/?tab_active=default-award&ord=desc&col=certification_date",
+  "note": "newest list on the standard tab · gzipped as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.riaa.com/gold-platinum/?tab_active=default-award&ord=desc&col=certification_date",
+   "status": 200
+  }
+ },
+ {
+  "file": "riaa/run-2026-09-24/std__olamide.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --save-raw",
+  "fetched": "2026-09-24T08:30:55Z",
+  "url": "https://www.riaa.com/gold-platinum/?tab_active=default-award&se=Olamide",
+  "note": "search 'Olamide' on the standard tab · gzipped as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.riaa.com/gold-platinum/?tab_active=default-award&se=Olamide",
+   "status": 200
+  }
+ },
+ {
+  "file": "riaa/run-2026-09-24/std__omah-lay.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --save-raw",
+  "fetched": "2026-09-24T08:30:51Z",
+  "url": "https://www.riaa.com/gold-platinum/?tab_active=default-award&se=Omah+Lay",
+  "note": "search 'Omah Lay' on the standard tab · gzipped as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.riaa.com/gold-platinum/?tab_active=default-award&se=Omah+Lay",
+   "status": 200
+  }
+ },
+ {
+  "file": "riaa/run-2026-09-24/std__rema.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --save-raw",
+  "fetched": "2026-09-24T08:30:43Z",
+  "url": "https://www.riaa.com/gold-platinum/?tab_active=default-award&se=Rema",
+  "note": "search 'Rema' on the standard tab · gzipped as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.riaa.com/gold-platinum/?tab_active=default-award&se=Rema",
+   "status": 200
+  }
+ },
+ {
+  "file": "riaa/run-2026-09-24/std__seyi-vibez.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --save-raw",
+  "fetched": "2026-09-24T08:31:05Z",
+  "url": "https://www.riaa.com/gold-platinum/?tab_active=default-award&se=Seyi+Vibez",
+  "note": "search 'Seyi Vibez' on the standard tab · gzipped as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.riaa.com/gold-platinum/?tab_active=default-award&se=Seyi+Vibez",
+   "status": 200
+  }
+ },
+ {
+  "file": "riaa/run-2026-09-24/std__tems.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --save-raw",
+  "fetched": "2026-09-24T08:30:44Z",
+  "url": "https://www.riaa.com/gold-platinum/?tab_active=default-award&se=Tems",
+  "note": "search 'Tems' on the standard tab · gzipped as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.riaa.com/gold-platinum/?tab_active=default-award&se=Tems",
+   "status": 200
+  }
+ },
+ {
+  "file": "riaa/run-2026-09-24/std__tyla.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --save-raw",
+  "fetched": "2026-09-24T08:30:46Z",
+  "url": "https://www.riaa.com/gold-platinum/?tab_active=default-award&se=Tyla",
+  "note": "search 'Tyla' on the standard tab · gzipped as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.riaa.com/gold-platinum/?tab_active=default-award&se=Tyla",
+   "status": 200
+  }
+ },
+ {
+  "file": "riaa/run-2026-09-24/std__victony.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --save-raw",
+  "fetched": "2026-09-24T08:31:01Z",
+  "url": "https://www.riaa.com/gold-platinum/?tab_active=default-award&se=Victony",
+  "note": "search 'Victony' on the standard tab · gzipped as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.riaa.com/gold-platinum/?tab_active=default-award&se=Victony",
+   "status": 200
+  }
+ },
+ {
+  "file": "riaa/run-2026-09-24/std__wiz-kid.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --save-raw",
+  "fetched": "2026-09-24T08:31:07Z",
+  "url": "https://www.riaa.com/gold-platinum/?tab_active=default-award&se=Wiz+Kid",
+  "note": "search 'Wiz Kid' on the standard tab · gzipped as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.riaa.com/gold-platinum/?tab_active=default-award&se=Wiz+Kid",
+   "status": 200
+  }
+ },
+ {
+  "file": "riaa/run-2026-09-24/std__wizkid.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --save-raw",
+  "fetched": "2026-09-24T08:30:36Z",
+  "url": "https://www.riaa.com/gold-platinum/?tab_active=default-award&se=Wizkid",
+  "note": "search 'Wizkid' on the standard tab · gzipped as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.riaa.com/gold-platinum/?tab_active=default-award&se=Wizkid",
+   "status": 200
+  }
+ },
+ {
+  "file": "riaa/search-buju.html.gz",
+  "source": "23 Sep 2026 sweep (sweep-2026-09-23/us-ca-mx/riaa/raw/buju.html)",
+  "fetched": "2026-09-23T17:01:07Z",
+  "url": "https://www.riaa.com/gold-platinum/?tab_active=default-award&se=buju",
+  "note": "the BUJU BANTON | TIL SHILOH negative control · default_36107 · badge ST level 0 · gzipped as served",
+  "userAgent": "a browser User-Agent (Chrome 128)"
+ },
+ {
+  "file": "riaa/search-burna.html.gz",
+  "source": "23 Sep 2026 sweep (sweep-2026-09-23/us-ca-mx/riaa/raw/burna.html)",
+  "fetched": "2026-09-23T17:00:37Z",
+  "url": "https://www.riaa.com/gold-platinum/?tab_active=default-award&se=burna",
+  "note": "standard-tab search 'burna': 8 rows incl. the Latin DAI DAI row (badge LA level 2) · gzipped as served",
+  "userAgent": "a browser User-Agent (Chrome 128)"
+ },
+ {
+  "file": "riaa/search-location.html.gz",
+  "source": "23 Sep 2026 sweep (sweep-2026-09-23/us-ca-mx/riaa/raw/location.html)",
+  "fetched": "2026-09-23T17:06:15Z",
+  "url": "https://www.riaa.com/gold-platinum/?tab_active=default-award&se=location",
+  "note": "five LOCATION rows: KHALID | LOCATION (default_291948, badge DI level 10) is the title-only trap for Burna Boy's 'Location' (Dave ft. Burna Boy, default_428226) · gzipped as served",
+  "userAgent": "a browser User-Agent (Chrome 128)"
+ },
+ {
+  "file": "riaa/search-one-dance.html.gz",
+  "source": "23 Sep 2026 sweep (sweep-2026-09-23/us-ca-mx/riaa/raw/one_dance.html)",
+  "fetched": "2026-09-23T17:06:33Z",
+  "url": "https://www.riaa.com/gold-platinum/?tab_active=default-award&se=one+dance",
+  "note": "DRAKE | ONE DANCE (FEAT. WIZKID & KYLA) · default_424119 · badge DI level 11 · gzipped as served",
+  "userAgent": "a browser User-Agent (Chrome 128)"
+ },
+ {
+  "file": "riaa/search-tems.html.gz",
+  "source": "23 Sep 2026 sweep (sweep-2026-09-23/us-ca-mx/riaa/raw/tems.html)",
+  "fetched": "2026-09-23T17:00:47Z",
+  "url": "https://www.riaa.com/gold-platinum/?tab_active=default-award&se=tems",
+  "note": "7 rows incl. Wait For U, MOVE (FT. GRACE JONES, TEMS) · gzipped as served",
+  "userAgent": "a browser User-Agent (Chrome 128)"
+ },
+ {
+  "file": "riaa/search-wait-for-u.html.gz",
+  "source": "23 Sep 2026 sweep (sweep-2026-09-23/us-ca-mx/riaa/raw/wait_for_u.html)",
+  "fetched": "2026-09-23T17:06:35Z",
+  "url": "https://www.riaa.com/gold-platinum/?tab_active=default-award&se=wait+for+u",
+  "note": "FUTURE | WAIT FOR U (FEAT. DRAKE & TEMS) · default_451587 · badge DI level 11 · gzipped as served",
+  "userAgent": "a browser User-Agent (Chrome 128)"
+ },
+ {
+  "file": "riaa/search-wizkid.html.gz",
+  "source": "23 Sep 2026 sweep (sweep-2026-09-23/us-ca-mx/riaa/raw/wizkid.html)",
+  "fetched": "2026-09-23T17:00:39Z",
+  "url": "https://www.riaa.com/gold-platinum/?tab_active=default-award&se=wizkid",
+  "note": "10 rows incl. One Dance, Essence, Mood (FEAT. BNXN), SOCO · gzipped as served",
+  "userAgent": "a browser User-Agent (Chrome 128)"
+ },
+ {
+  "file": "robots/amprofon.com.mx.txt",
+  "source": "24 Sep 2026 endpoint re-test (certwatch-retest/robots/amprofon.com.mx.txt)",
+  "fetched": "2026-09-24T06:53:14Z",
+  "url": "https://amprofon.com.mx/robots.txt",
+  "note": "robots.txt as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "robots/certified-awards.bpi.co.uk.txt",
+  "source": "24 Sep 2026 endpoint re-test (certwatch-retest/robots/certified-awards.bpi.co.uk.txt)",
+  "fetched": "2026-09-24T06:53:15Z",
+  "url": "https://certified-awards.bpi.co.uk/robots.txt",
+  "note": "robots.txt as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "robots/ifpi.at.txt",
+  "source": "24 Sep 2026 endpoint re-test (certwatch-retest/robots/ifpi.at.txt)",
+  "fetched": "2026-09-24T06:53:07Z",
+  "url": "https://ifpi.at/robots.txt",
+  "note": "robots.txt as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "robots/ifpi.dk.txt",
+  "source": "24 Sep 2026 endpoint re-test (certwatch-retest/robots/ifpi.dk.txt)",
+  "fetched": "2026-09-24T06:53:16Z",
+  "url": "https://ifpi.dk/robots.txt",
+  "note": "robots.txt as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "robots/ifpi.no.txt",
+  "source": "24 Sep 2026 endpoint re-test (certwatch-retest/robots/ifpi.no.txt)",
+  "fetched": "2026-09-24T06:53:19Z",
+  "url": "https://ifpi.no/robots.txt",
+  "note": "robots.txt as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "robots/ifpicr.cz.txt",
+  "source": "24 Sep 2026 endpoint re-test (certwatch-retest/robots/ifpicr.cz.txt)",
+  "fetched": "2026-09-24T06:53:08Z",
+  "url": "https://ifpicr.cz/robots.txt",
+  "note": "robots.txt as served (empty body)",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "robots/musiccanada.com.txt",
+  "source": "24 Sep 2026 endpoint re-test (certwatch-retest/robots/musiccanada.com.txt)",
+  "fetched": "2026-09-24T06:53:14Z",
+  "url": "https://musiccanada.com/robots.txt",
+  "note": "robots.txt as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "robots/pro-musica.co.txt",
+  "source": "24 Sep 2026 endpoint re-test (certwatch-retest/robots/pro-musica.co.txt)",
+  "fetched": "2026-09-24T06:53:13Z",
+  "url": "https://pro-musica.co/robots.txt",
+  "note": "robots.txt as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "robots/pro-musicabr.org.br.txt",
+  "source": "24 Sep 2026 endpoint re-test (certwatch-retest/robots/pro-musicabr.org.br.txt)",
+  "fetched": "2026-09-24T06:53:23Z",
+  "url": "https://pro-musicabr.org.br/robots.txt",
+  "note": "robots.txt as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "robots/risa-prod.trafficmanager.net.txt",
+  "source": "24 Sep 2026 endpoint re-test (certwatch-retest/robots/risa-prod.trafficmanager.net.txt)",
+  "fetched": "2026-09-24T06:53:12Z",
+  "url": "https://risa-prod.trafficmanager.net/robots.txt",
+  "note": "robots.txt as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "robots/risa.org.za.txt",
+  "source": "24 Sep 2026 endpoint re-test (certwatch-retest/risa-robots.txt)",
+  "fetched": "2026-09-24T06:52:25Z",
+  "url": "https://risa.org.za/robots.txt",
+  "note": "robots.txt as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "robots/slagerlistak.hu.txt",
+  "source": "24 Sep 2026 endpoint re-test (certwatch-retest/robots/slagerlistak.hu.txt)",
+  "fetched": "2026-09-24T06:53:08Z",
+  "url": "https://slagerlistak.hu/robots.txt",
+  "note": "robots.txt as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "robots/snepmusique.com.txt",
+  "source": "24 Sep 2026 endpoint re-test (certwatch-retest/robots/snepmusique.com.txt)",
+  "fetched": "2026-09-24T06:53:16Z",
+  "url": "https://snepmusique.com/robots.txt",
+  "note": "robots.txt as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "robots/sverigetopplistan.se.txt",
+  "source": "24 Sep 2026 endpoint re-test (certwatch-retest/robots/sverigetopplistan.se.txt)",
+  "fetched": "2026-09-24T06:53:19Z",
+  "url": "https://sverigetopplistan.se/robots.txt",
+  "note": "robots.txt as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "robots/swisscharts.com.txt",
+  "source": "24 Sep 2026 endpoint re-test (certwatch-retest/robots/swisscharts.com.txt)",
+  "fetched": "2026-09-24T06:53:07Z",
+  "url": "https://swisscharts.com/robots.txt",
+  "note": "robots.txt as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "robots/sys2.ifpi.se.txt",
+  "source": "24 Sep 2026 endpoint re-test (certwatch-retest/robots/sys2.ifpi.se.txt)",
+  "fetched": "2026-09-24T06:53:20Z",
+  "url": "https://sys2.ifpi.se/robots.txt",
+  "note": "robots.txt as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "robots/turntablecharts.com.txt",
+  "source": "24 Sep 2026 endpoint re-test (certwatch-retest/robots/turntablecharts.com.txt)",
+  "fetched": "2026-09-24T06:53:21Z",
+  "url": "https://turntablecharts.com/robots.txt",
+  "note": "robots.txt as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "robots/web.archive.org.txt",
+  "source": "24 Sep 2026 endpoint re-test (certwatch-retest/robots/web.archive.org.txt)",
+  "fetched": "2026-09-24T06:53:24Z",
+  "url": "https://web.archive.org/robots.txt",
+  "note": "robots.txt as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "robots/www.aria.com.au.txt",
+  "source": "24 Sep 2026 endpoint re-test (certwatch-retest/robots/www.aria.com.au.txt)",
+  "fetched": "2026-09-24T06:53:09Z",
+  "url": "https://www.aria.com.au/robots.txt",
+  "note": "robots.txt as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "robots/www.audiogest.pt.txt",
+  "source": "24 Sep 2026 endpoint re-test (certwatch-retest/robots/www.audiogest.pt.txt)",
+  "fetched": "2026-09-24T06:53:22Z",
+  "url": "https://www.audiogest.pt/robots.txt",
+  "note": "robots.txt as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "robots/www.dropbox.com.txt",
+  "source": "24 Sep 2026 endpoint re-test (certwatch-retest/robots/www.dropbox.com.txt)",
+  "fetched": "2026-09-24T06:53:09Z",
+  "url": "https://www.dropbox.com/robots.txt",
+  "note": "robots.txt as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "robots/www.elportaldemusica.es.txt",
+  "source": "24 Sep 2026 endpoint re-test (certwatch-retest/robots/www.elportaldemusica.es.txt)",
+  "fetched": "2026-09-24T06:53:22Z",
+  "url": "https://www.elportaldemusica.es/robots.txt",
+  "note": "robots.txt as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "robots/www.fimi.it.txt",
+  "source": "24 Sep 2026 endpoint re-test (certwatch-retest/robots/www.fimi.it.txt)",
+  "fetched": "2026-09-24T06:53:21Z",
+  "url": "https://www.fimi.it/robots.txt",
+  "note": "robots.txt as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "robots/www.goudplatina.nl.txt",
+  "source": "24 Sep 2026 endpoint re-test (certwatch-retest/robots/www.goudplatina.nl.txt)",
+  "fetched": "2026-09-24T06:53:16Z",
+  "url": "https://www.goudplatina.nl/robots.txt",
+  "note": "robots.txt as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "robots/www.ifpi.gr.txt",
+  "source": "24 Sep 2026 endpoint re-test (certwatch-retest/robots/www.ifpi.gr.txt)",
+  "fetched": "2026-09-24T06:53:13Z",
+  "url": "https://www.ifpi.gr/robots.txt",
+  "note": "robots.txt as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "robots/www.musikindustrie.de.txt",
+  "source": "24 Sep 2026 endpoint re-test (certwatch-retest/robots/www.musikindustrie.de.txt)",
+  "fetched": "2026-09-24T06:53:06Z",
+  "url": "https://www.musikindustrie.de/robots.txt",
+  "note": "robots.txt as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "robots/www.olis.pl.txt",
+  "source": "24 Sep 2026 endpoint re-test (certwatch-retest/robots/www.olis.pl.txt)",
+  "fetched": "2026-09-24T06:53:20Z",
+  "url": "https://www.olis.pl/robots.txt",
+  "note": "robots.txt as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "robots/www.radioscope.co.nz.txt",
+  "source": "24 Sep 2026 endpoint re-test (certwatch-retest/robots/www.radioscope.co.nz.txt)",
+  "fetched": "2026-09-24T06:53:12Z",
+  "url": "https://www.radioscope.co.nz/robots.txt",
+  "note": "robots.txt as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "robots/www.riaa.com.txt",
+  "source": "24 Sep 2026 endpoint re-test (certwatch-retest/robots/www.riaa.com.txt)",
+  "fetched": "2026-09-24T06:53:13Z",
+  "url": "https://www.riaa.com/robots.txt",
+  "note": "robots.txt as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "site-index.2026-09-24.json",
+  "source": "node --no-warnings scripts/cert-watch/index.mjs --dump-site-index (the real app/data at build time)",
+  "fetched": "2026-09-24T08:33:00Z",
+  "url": "(not a register response)",
+  "note": "the site index frozen at build time: 4 albums, 65 singles, 24 features and 248 plaques for Burna Boy; 15 artists, 664 releases and 990 plaques on the board"
+ }
+]

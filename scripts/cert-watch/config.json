@@ -1,0 +1,146 @@
+{
+  "version": 1,
+  "issueTitle": "🏅 New certifications found — verify & add",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "weeklyTodo": true,
+  "budget": { "runSeconds": 540, "adapterSeconds": 90, "overrides": { "musiccanada": 150, "bvmi": 150 } },
+  "hosts": {
+    "*": { "minGapMs": 1100 },
+    "musiccanada.com": { "minGapMs": 30000, "why": "robots.txt Crawl-delay: 30 (read 24 Sep 2026)" },
+    "swisscharts.com": { "minGapMs": 10000, "why": "robots.txt Crawl-delay: 10 (read 24 Sep 2026)" }
+  },
+  "adapters": {
+    "bpi": { "enabled": false, "why": "robots.txt User-agent: * / Disallow: / (read 24 Sep 2026); Paul to rule" }
+  },
+  "searchTerms": ["Wiz Kid", "Buju", "Burna"],
+  "watchlist": [
+    {
+      "id": "dai-dai-riaa-latin",
+      "artist": "burna-boy",
+      "title": "Dai Dai",
+      "country": "US",
+      "programme": "RIAA Latin",
+      "adapter": "riaa-latin",
+      "rowId": "default_451299",
+      "expect": "above 2X PLATINO",
+      "lead": "RIAA's Instagram (@riaa_awards) showed a \"6X Latin Platinum\" badge on 23 Sep 2026; the database read 2X Platino (9 Jul 2026)",
+      "on": "2026-09-23"
+    },
+    {
+      "id": "dai-dai-bpi-gold",
+      "artist": "burna-boy",
+      "title": "Dai Dai",
+      "country": "UK",
+      "programme": null,
+      "adapter": "bpi",
+      "expect": "Gold",
+      "lastHumanReading": {
+        "raw": "Most Recent Certification Silver · Most Recent Certification Date 07 August 2026",
+        "on": "2026-09-23",
+        "source": "23 Sep sweep, BPI detail page"
+      },
+      "lead": "fan lead; the BPI's public list stopped at the 04.09.2026 batch",
+      "on": "2026-09-23"
+    }
+  ],
+  "knownDivergences": [
+    {
+      "adapter": "riaa",
+      "artist": "wizkid",
+      "title": "One Dance",
+      "readingRaw": "badge DI level 11",
+      "why": "site holds US Diamond as a floor by design (afrobeats.ts note, 10 Sep 2026); RIAA prints 11X",
+      "ruledBy": "site modelling note",
+      "on": "2026-09-10"
+    },
+    {
+      "adapter": "riaa",
+      "artist": "tems",
+      "title": "Wait For U",
+      "readingRaw": "badge DI level 11",
+      "why": "same modelling note",
+      "ruledBy": "site modelling note",
+      "on": "2026-09-10"
+    }
+  ],
+  "heldRows": [
+    {
+      "adapter": "tcsn",
+      "credit": "Asake",
+      "title": "Bad Influence",
+      "why": "Omah Lay's song (Get Layd, track 4); TCSN's artiste field is wrong; plaque HELD, published for neither",
+      "ruledBy": "Paul",
+      "on": "2026-08"
+    }
+  ],
+  "leadAliases": [
+    {
+      "artist": "wizkid",
+      "lead": "Major Lazer",
+      "title": "Boom",
+      "why": "IFPI Danmark truncates the credit; Spotify and Ifpi Sverige sart 6775561 confirm Wizkid",
+      "ruledBy": "Paul",
+      "on": "2026-09-23"
+    }
+  ],
+  "creditTypos": [
+    {
+      "register": "tcsn",
+      "printed": "Ayra Staar",
+      "artist": "ayra-starr",
+      "why": "TCSN typo; Many Roads added on Paul's call",
+      "on": "2026-09-23"
+    }
+  ],
+  "namesakes": [
+    { "artist": "olamide", "names": ["Olamide Badoo", "Tijani Olamide", "Yusuf Olamide Olotu"], "why": "live-artists.mjs note" },
+    { "artist": "bnxn", "names": ["Buju Banton"], "why": "a different artist" },
+    { "artist": "black-sherif", "names": ["I Shot The Sheriff", "SHERIFF"], "why": "live-artists.mjs note" },
+    { "artist": "tyla", "names": ["Tyla Yaweh"], "why": "a different artist (the American rapper); RIAA files him as TYLA YAWEH — HIGH RIGHT NOW, TOMMY LEE, STUNTIN' ON YOU — which /\\btyla\\b/ matches (first live dry run, 24 Sep 2026)" }
+  ],
+  "titleAliases": [],
+  "manualChecks": [
+    {
+      "id": "uk",
+      "flag": "🇬🇧",
+      "body": "BPI",
+      "url": "https://certified-awards.bpi.co.uk/",
+      "check": "set \"certified date from\" to last Monday; search the 16 names plus \"Buju\"; for Dai Dai open its detail page and read \"Most Recent Certification\""
+    },
+    {
+      "id": "be",
+      "flag": "🇧🇪",
+      "body": "Ultratop",
+      "url": "https://www.ultratop.be/nl/goud-platina/2026/singles",
+      "check": "in a browser (the page is behind a bot check), Ctrl-F the 16 names there and on /albums, and screenshot any row with the URL in frame"
+    },
+    {
+      "id": "au",
+      "flag": "🇦🇺",
+      "body": "ARIA",
+      "url": "https://www.aria.com.au/accreditations",
+      "check": "download the current list and search credit AND title; \"Loved by You\" and \"Enjoy Yourself (Remix)\" are kept plaques — don't re-flag them"
+    },
+    {
+      "id": "pt",
+      "flag": "🇵🇹",
+      "body": "AFP",
+      "url": "https://www.audiogest.pt/tops-semanais-2026",
+      "check": "read the newest weekly PDF's Gal. column for the 16 names, then this month's award cards at instagram.com/audiogest (a frame proves only its own rows)"
+    },
+    {
+      "id": "za",
+      "flag": "🇿🇦",
+      "body": "RiSA",
+      "url": "https://risa.org.za/",
+      "check": "go to its certifications page in a browser and search the 16 names; the badge is the tier (Multi-Platinum = at least 3×)"
+    }
+  ],
+  "coverageNotes": [
+    "🇳🇬 TCSN shows only 500 rows and no Silver (check for a new Wayback capture)",
+    "🇨🇿🇸🇰 albums and off-chart titles carry no badge",
+    "🇬🇷 non-charting titles carry no award",
+    "🇸🇪 never-charted titles have no record id",
+    "🇳🇱 NVPI runs about 2 months behind"
+  ]
+}

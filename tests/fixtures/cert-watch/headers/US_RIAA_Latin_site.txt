@@ -1,0 +1,26 @@
+HTTP/2 200 
+date: Thu, 24 Sep 2026 06:50:04 GMT
+content-type: text/html; charset=UTF-8
+server: cloudflare
+vary: Accept-Encoding
+vary: Accept-Encoding,Cookie
+link: <https://www.riaa.com/wp-json/>; rel="https://api.w.org/"
+link: <https://www.riaa.com/wp-json/wp/v2/pages/33>; rel="alternate"; title="JSON"; type="application/json"
+link: <https://www.riaa.com/?p=33>; rel=shortlink
+x-powered-by: WP Engine
+x-cacheable: SHORT
+cache-control: max-age=600, must-revalidate
+x-cache: MISS
+x-cache-group: normal
+last-modified: Thu, 24 Sep 2026 06:50:03 GMT
+cf-cache-status: HIT
+permissions-policy: geolocation=(), midi=(), sync-xhr=(), microphone=(),camera=(), magnetometer=(), gyroscope=(), fullscreen=(self), payment=()
+referrer-policy: origin
+strict-transport-security: max-age=31536000
+x-content-type-options: nosniff
+x-frame-options: SAMEORIGIN
+age: 1
+content-encoding: gzip
+cf-ray: a3ffda51e97cefe0-LHR
+alt-svc: h3=":443"; ma=86400
+

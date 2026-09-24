@@ -63,3 +63,9 @@ design_handoff_burnaboystats/
 .claude/worktrees/
 digest-preview.*
 .turntable-walk/
+
+# Cert watcher local output and caches (scripts/cert-watch)
+cert-watch-out/
+.cert-watch-cache/
+prev-body.md
+latest-body.md
