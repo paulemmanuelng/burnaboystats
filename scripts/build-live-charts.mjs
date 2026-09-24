@@ -41,11 +41,16 @@ import { liveArtist, LIVE_ARTISTS } from "./live-artists.mjs";
 // registry except Burna Boy, whose live charts are the site's own page. The
 // hourly job passes that rather than a hardcoded list, so adding an artist to
 // the registry is genuinely one edit.
+// A `staged` artist (built ahead of its liveBoards.ts row) is left out of
+// "board", so the hourly job refreshes exactly the boards that have a page.
+// Naming a staged artist explicitly still builds it.
 const requested = (
   process.argv.find((a) => a.startsWith("--artist="))?.slice("--artist=".length) ?? "burna-boy"
 ).split(",").map((x) => x.trim()).filter(Boolean);
 const SLUGS = requested.flatMap((slug) =>
-  slug === "board" ? Object.keys(LIVE_ARTISTS).filter((s) => s !== "burna-boy") : [slug]
+  slug === "board"
+    ? Object.keys(LIVE_ARTISTS).filter((s) => s !== "burna-boy" && !LIVE_ARTISTS[s].staged)
+    : [slug]
 );
 const ARTISTS = SLUGS.map(liveArtist);
 const UA = { "user-agent": "burnaboystats-bot" };

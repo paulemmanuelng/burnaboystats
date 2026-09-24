@@ -189,6 +189,22 @@ describe("credit matchers", () => {
       ["Davido", "davido", true],
       ["WizKid", "wizkid", true],
       ["Burna Boy", "burna-boy", true],
+      // The eight staged on 24 Sep 2026. Every string is a real credit: a
+      // chart line kworb printed that day, or an artist profile on Deezer.
+      ["21 Savage", "tiwa-savage", false],
+      ["Savage Garden", "tiwa-savage", false],
+      ["Spyro & Tiwa Savage", "tiwa-savage", true],
+      ["Kiss Daniel", "kizz-daniel", true],
+      ["Kizz Daniel & Tekno", "kizz-daniel", true],
+      ["Kizzy Daniels", "kizz-daniel", false],
+      ["Mr. Eazi", "mr-eazi", true],
+      ["Eugy Official & Mr Eazi", "mr-eazi", true],
+      ["Ruger Hauer", "ruger", false],
+      ["Ruger", "ruger", true],
+      ["Yo Maps & Stonebwoy", "stonebwoy", true],
+      ["Yanga Chief, Oxlade & Thatohatsi", "oxlade", true],
+      ["Yemi Alade", "yemi-alade", true],
+      ["Sarkodie", "sarkodie", true],
     ];
     for (const [credit, slug, want] of cases)
       expect((LIVE_ARTISTS as Record<string, { credit: RegExp }>)[slug].credit.test(credit), `${credit} → ${slug}`).toBe(want);
@@ -201,7 +217,12 @@ describe("credit matchers", () => {
 describe("the hourly refresh", () => {
   it("builds every board artist, and the registry matches the pages", async () => {
     const { LIVE_ARTISTS } = await import("../scripts/live-artists.mjs");
-    const registry = Object.keys(LIVE_ARTISTS).filter((s) => s !== "burna-boy").sort();
+    // A `staged` artist is built but has no page yet, and "--artist=board"
+    // skips it (build-live-charts.mjs), so it is outside both ends here too.
+    const artists = LIVE_ARTISTS as Record<string, { staged?: boolean }>;
+    const registry = Object.keys(artists)
+      .filter((s) => s !== "burna-boy" && !artists[s].staged)
+      .sort();
     expect(registry).toEqual(LIVE_BOARDS.map((b) => b.slug).sort());
 
     const workflow = readFileSync(join(process.cwd(), ".github/workflows/stats-live.yml"), "utf8");
