@@ -158,7 +158,7 @@ export const albums: Release[] = [
   // before Grammotex was read, and On the Low's Platinum is independently
   // asserted elsewhere. Treat the certificate numbers as strong corroboration
   // and not yet as a body reading. Closing it properly means one email to
-  // info@ifpi.se, who answer certification enquiries.
+  // Ifpi Sverige's certification desk.
 
 // Burna Boy's own (lead) singles.
 export const singles: Release[] = [
