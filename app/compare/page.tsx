@@ -64,7 +64,7 @@ const programShort = (name: string, country: string) => {
   return `${country} · ${(tail || name).toUpperCase()}`;
 };
 import { CountryBoardView } from "./CountryBoardView";
-import { countryCopy, countryFromSlug, countrySlug, priceCountry } from "../lib/certCountry";
+import { countryCopy, countryFromSlug, countrySlug, priceCountry, pricingPhrase } from "../lib/certCountry";
 import { artAt, artSrcSet } from "../lib/artAt";
 import {
   artistBySlug,
@@ -781,7 +781,7 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
             countryBoard.counted ? (
               <>
                 Every plaque the sixteen artists hold in {countryBoard.inSentence}, priced at{" "}
-                {countryBoard.body}&apos;s own published threshold and ranked. Each figure is a floor — a plaque
+                {pricingPhrase(countryBoard, "own published threshold")} and ranked. Each figure is a floor — a plaque
                 says <em>at least</em>, never what a record sold.
               </>
             ) : (

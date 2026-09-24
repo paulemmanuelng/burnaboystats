@@ -10,7 +10,10 @@
 // fails if the layout reaches a page module again.
 import { totalAwards, countryCount } from "./certifications";
 import { totalWins, totalNominations, ceremonyCount, ceremonies } from "./awards";
-import { numberOnes, numberOneReleases, daiDaiNumberOnes } from "./charts";
+import { daiDaiNumberOnes } from "./charts";
+// Country charts only: charts.ts's numberOnes also counts Billboard's two
+// global charts, which this answer's "official national chart" does not cover.
+import { countryNumberOnes, countryNumberOneReleases } from "../lib/analysis";
 import { countryCount as performedCountryCount, regionCount } from "./performedCountries";
 import { festivals } from "./tours";
 import { carCount, totalValueFormatted, topCarValueFormatted } from "./cars";
@@ -111,7 +114,7 @@ export const faqs: { g: GroupId; q: string; a: string }[] = [
   {
     g: "music",
     q: "How many number-one songs does Burna Boy have?",
-    a: `Burna Boy has ${numberOneReleases} releases that have reached No. 1 on an official national chart — ${numberOnes} chart-topping placements in all, since several reached No. 1 in more than one country at once. His No. 1s span Nigeria, the UK, South Africa, the Netherlands, Switzerland and Colombia, among others.`,
+    a: `Burna Boy has ${countryNumberOneReleases} releases that have reached No. 1 on an official national chart — ${countryNumberOnes} chart-topping placements in all, since several reached No. 1 in more than one country at once. His No. 1s span Nigeria, the UK, South Africa, the Netherlands, Switzerland and Colombia, among others.`,
   },
   {
     g: "worldcup",

@@ -170,6 +170,11 @@ export interface CountryThresholds {
    *  Distinct from `vintage` (the body raised a level it still publishes) and
    *  `assumed` (a stream ratio the body never published). */
   historic?: string;
+  /** What prices this country's plaques, as a phrase after "priced at", where
+   *  it is NOT simply the body's own thresholds. The country boards' meta
+   *  description, lede and search entry read it; without it they said "IFPI
+   *  Greece's own thresholds" of a body that publishes none. */
+  pricedAt?: string;
   /** The one format `historic` speaks to, where it is not both. Poland: its
    *  albums are units at the level ZPAV prints today, so an album-only Polish
    *  line carries no ¶. */
@@ -330,6 +335,7 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
     sourceUrl: "https://web.archive.org/web/20140328112251id_/http://ifpi.org/content/library/international-award-levels.pdf",
     single: { silver: null, gold: 3_000, platinum: 6_000, diamond: null },
     album: { silver: null, gold: 3_000, platinum: 6_000, diamond: null },
+    pricedAt: "IFPI's last published level (June 2013)",
     historic:
       "IFPI Greece publishes no current level. Priced at IFPI's own International Certification Award levels list, updated June 2013 — the last figure ever published for Greece (singles Gold 3,000 / Platinum 6,000 unit sales; international-repertoire albums the same). The body now certifies from its streaming Digital Singles chart and states no ratio, so a plaque awarded today may sit on a different bar.",
     caveat:

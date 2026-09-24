@@ -2231,7 +2231,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     fullName: "Chukwuka Ekweani",
     country: "Nigeria",
     flag: "🇳🇬",
-    hook: "France certified two of his records Diamond — the only country that has given him anything above Platinum, and it did it twice.",
+    hook: "France certified two of his records Diamond — the only country to certify him Diamond, and it did it twice.",
     spotifyId: "048LktY5zMnakWq7PTtFrz",
     wikipedia: "https://en.wikipedia.org/wiki/CKay",
     image: "https://i.scdn.co/image/ab6761610000e5ebff101c2e561cfcff3f6195aa",

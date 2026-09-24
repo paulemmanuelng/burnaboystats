@@ -25,7 +25,7 @@ import { albumPages } from "../data/albumPages";
 import { garage } from "../data/cars";
 import { titleKey } from "./titleKey";
 import { allPairs, pairSlug } from "./comparePairs";
-import { certCountryCodes, countrySlug, priceCountry } from "./certCountry";
+import { certCountryCodes, countrySlug, priceCountry, pricingPhrase } from "./certCountry";
 import type { SearchDoc } from "./searchIndex";
 
 export function buildSearchDocs(): SearchDoc[] {
@@ -177,7 +177,9 @@ export function buildSearchDocs(): SearchDoc[] {
       title: `Certified units in ${board.name}`,
       path: `/compare/in/${countrySlug(code)}`,
       section: "Compare",
-      description: `Every Afrobeats plaque awarded in ${board.name}, priced at ${board.body}'s own thresholds and ranked by artist.`,
+      description: pricingPhrase(board)
+        ? `Every Afrobeats plaque awarded in ${board.inSentence}, priced at ${pricingPhrase(board)} and ranked by artist.`
+        : `Every Afrobeats plaque awarded in ${board.inSentence}, listed, not priced: ${board.body} publishes no unit threshold.`,
       keywords: [
         board.name.toLowerCase(),
         code.toLowerCase(),

@@ -66,7 +66,7 @@ export const metadata = pageMetadata({
 export const pageFaqs = [
   {
     q: "What is the highest-charting African song on the Billboard Global 200?",
-    a: "Shakira and Burna Boy's “Dai Dai” — the first and only African song to reach No. 1 on Billboard's US-inclusive Global 200. The next-highest are CKay's “Love Nwantiti” (No. 2), Rema and Selena Gomez's “Calm Down” (No. 3), Tyla's “Water” (No. 9) and Libianca's “People” (No. 20).",
+    a: "Shakira and Burna Boy's “Dai Dai” — the first and only African song to reach No. 1 on Billboard's US-inclusive Global 200. The next-highest are CKay's “Love Nwantiti” and Future's “Wait for U” with Drake and Tems (both No. 2), Rema and Selena Gomez's “Calm Down” (No. 3) and Tyla's “Water” (No. 6).",
   },
   {
     q: "Which African artists have reached No. 1 on the Billboard Hot 100?",

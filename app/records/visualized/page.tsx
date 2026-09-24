@@ -655,7 +655,7 @@ export default function VisualizedPage() {
           </div>
           <p className={`${styles.caption} ${styles.captionNarrow}`}>
             Each dot is a show — <span className={styles.captionLead}>gold is Burna Boy</span>.
-            Revenue tracks ticket count closely, but higher-priced rooms sit above the line:
+            Revenue tracks ticket count closely, but higher-priced rooms sit above the line:{" "}
             {topShowRow.venue} turned ~{Math.round(num(topShowRow.tickets) / 1000)},000 tickets into $
             {(topShowRow.revenue / 1e6).toFixed(2)}M.
           </p>

@@ -7,7 +7,7 @@ import MobileMenuButton from "../../../components/MobileMenuButton";
 import BackLink from "../../../components/BackLink";
 import { pageMetadata, CANONICAL_ORIGIN } from "../../../lib/seo";
 import { carImages } from "../../../lib/carImageAssets";
-import { carBySlug, carSlugs, garage, CARS_LAST_SWEEP, CARS_SPECS_CHECKED, valueWord } from "../../../data/cars";
+import { carBySlug, carSlugs, garage, CARS_LAST_SWEEP, CARS_SPECS_CHECKED, valueWord, addedOnLabel } from "../../../data/cars";
 import {
   modelShort,
   usdFull,
@@ -334,7 +334,11 @@ export default async function CarPage({ params }: { params: Promise<{ car: strin
                 {car.jointWith ? ` — joint with ${car.jointWith} ${car.jointWith === 1 ? "other" : "others"} at ${usdFull(car.valueUsd)}` : ""}
               </span>
               <span>{yearLine}</span>
-              <span>List re-verified {CARS_LAST_SWEEP} · specs read at the maker {car.specs.readOn ?? CARS_SPECS_CHECKED}</span>
+              <span>
+                List re-verified {CARS_LAST_SWEEP}
+                {car.addedOn ? ` · ${car.model} added ${addedOnLabel(car)}` : ""} · specs read at the maker{" "}
+                {car.specs.readOn ?? CARS_SPECS_CHECKED}
+              </span>
             </div>
           </div>
 

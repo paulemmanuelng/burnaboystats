@@ -605,7 +605,7 @@ export default function MethodologyPage() {
             date, the band a record actually fell in is the one that applies.
           </p>
           <p className={styles.p}>
-            <strong>One plaque per release per country, at its current tier.</strong>
+            <strong>One plaque per release per country, at its current tier.</strong>{" "}
             Gold → Platinum → 2× Platinum is the same sales recertified, not three
             sales. A release&apos;s own upgrades are never added together.
           </p>

@@ -6,7 +6,7 @@ import MobileDeepPage from "../../components/MobileDeepPage";
 import GatedImage from "../../components/GatedImage";
 import { carImages } from "../../lib/carImageAssets";
 import { numberWord } from "../../lib/homeData";
-import { garage, currentCars, soldCars, unconfirmedCars, carCount, totalValueFormatted, conversionNote, CARS_LAST_SWEEP, valueWord } from "../../data/cars";
+import { garage, currentCars, soldCars, unconfirmedCars, carCount, totalValueFormatted, conversionNote, CARS_LAST_SWEEP, valueWord, addedOnLabel } from "../../data/cars";
 import { usdFull, usdShort, rankLabel, modelShort, marqueTally } from "../../lib/garage";
 import { pageMetadata, datasetJsonLd } from "../../lib/seo";
 
@@ -293,7 +293,12 @@ export default function CarsPage() {
                 </>
               )}. The McLaren Senna is the one price stated by the selling dealer — Abuja Car
               Limited&apos;s June 2025 sale post priced it at ₦3.2 billion, about {usdShort(senna.valueUsd)}.
-              Last fully re-verified {CARS_LAST_SWEEP}.
+              Last fully re-verified {CARS_LAST_SWEEP}
+              {currentCars
+                .filter((c) => c.addedOn)
+                .map((c) => `; the ${c.model} was added on ${addedOnLabel(c)}`)
+                .join("")}
+              .
             </p>
           </div>
         </section>

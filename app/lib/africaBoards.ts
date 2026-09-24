@@ -122,7 +122,10 @@ function yearBoard(box: LeaderboardBox, flags: Map<string, string>): Board {
   });
   // Years WON — the badge counts closed years only; a lead in the running
   // year is gold on its row but not a year in the bag.
-  const won = years.filter((r) => !r.inProgress && r.entries[0]?.name === HIGHLIGHT).length;
+  // The denominator is closed years too: "3 of 5 yrs" set three closed wins
+  // against five years, one of them still running (24 Sep 2026).
+  const closed = years.filter((r) => !r.inProgress);
+  const won = closed.filter((r) => r.entries[0]?.name === HIGHLIGHT).length;
   // The same years, uncollapsed. `rows` stays: it is the summary the year
   // pills still carry, and two tests read it.
   const detail: BoardYear[] = years.map((r) => ({
@@ -147,7 +150,7 @@ function yearBoard(box: LeaderboardBox, flags: Map<string, string>): Board {
     note: box.note,
     rows,
     years: detail,
-    badge: `${won} of ${years.length} yrs`,
+    badge: `${won} of ${closed.length} yrs`,
     leads: false,
   };
 }

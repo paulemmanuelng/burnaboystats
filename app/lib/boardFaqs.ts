@@ -91,7 +91,23 @@ function topPlaque(a: AfroArtist): string | undefined {
 export function artistFaqs(a: AfroArtist): Faq[] {
   const total = certCount(a);
   const countries = countryCount(a);
+  // chartNo1s counts every peak-1 entry, Billboard's two global charts
+  // included. The answer below says "official national charts", so it counts
+  // country charts only and names a global No. 1 separately — Rema's read
+  // "17 No. 1 placements on official national charts" with the Global 200
+  // Excl. US No. 1 for "Calm Down" folded into the 17.
   const no1s = chartNo1s(a);
+  const globalOnes = a.charts
+    .flatMap((r) => r.entries)
+    .filter((e) => e.peak === 1 && (e.c === "GLB" || e.c === "GLBX"));
+  const nationalNo1s = no1s - globalOnes.length;
+  const globalNo1s = [...new Set(globalOnes.map((e) => e.c))];
+  const globalPhrase =
+    globalNo1s.length === 2
+      ? "both of Billboard's global charts"
+      : globalNo1s[0] === "GLB"
+        ? "Billboard's Global 200"
+        : "Billboard's Global 200 Excl. US";
   const entries = chartEntries(a);
   const plaque = topPlaque(a);
 
@@ -112,8 +128,9 @@ export function artistFaqs(a: AfroArtist): Faq[] {
             `${count(entries, "entry", "entries")} in total. Peaks are read from each country's own ` +
             `principal singles or albums chart — platform charts like Spotify or Apple Music are ` +
             `counted separately, on the live board.`
-          : `${a.name} has ${count(no1s, "No. 1 placement", "No. 1 placements")} on official national ` +
-            `charts, from ${count(entries, "entry", "entries")} in total. A No. 1 counts each time a ` +
+          : `${a.name} has ${count(nationalNo1s, "No. 1 placement", "No. 1 placements")} on official national ` +
+            `charts, from ${count(entries, "entry", "entries")} in total` +
+            `${globalNo1s.length ? `, plus No. 1 on ${globalPhrase}` : ""}. A No. 1 counts each time a ` +
             `release reaches the top of a country's chart, not the number of releases that have done ` +
             `it, and platform charts are counted separately on the live board.`,
     },

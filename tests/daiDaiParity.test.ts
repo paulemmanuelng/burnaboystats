@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
-import { cardinalWord, ordinalWord } from "../app/lib/plural";
+import { cardinalWord, ordinalWord, millonesEs } from "../app/lib/plural";
+import { cadenceOf, LIVE_CADENCE_ES } from "../app/lib/liveChartMeta";
 import { weeksAtPeak, weeksOnChart, daiDaiChartEntryCount, daiDaiNumberOnes } from "../app/data/charts";
 import { daiDaiCertCount } from "../app/data/certifications";
 import { daiDaiSpotifyDaysOnChart, daiDaiSpotifyStraightDays, daiDaiYouTubeDaysAtNo1, DAI_DAI_1B_DAYS, DAI_DAI_1B_RANK_EN, DAI_DAI_1B_RANK_ES, DAI_DAI_SPOTIFY_CONFIRMED_THROUGH, DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG, DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_NO1_READ_ON_LONG, DAI_DAI_SPOTIFY_NO1_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_NO1_FIRST_LONG, DAI_DAI_SPOTIFY_NO1_FIRST_LONG_ES, DAI_DAI_SPOTIFY_NO1_LAST_LONG, DAI_DAI_SPOTIFY_NO1_LAST_LONG_ES, DAI_DAI_SPOTIFY_TOP10_DAYS, DAI_DAI_SPOTIFY_DAYS_OFF } from "../app/data/daiDai";
@@ -274,5 +275,58 @@ describe("the Spotify chart run stays derived", () => {
     const today = new Date().toISOString().slice(0, 10);
     expect(DAI_DAI_SPOTIFY_CONFIRMED_THROUGH <= today).toBe(true);
     expect(daiDaiSpotifyDaysOnChart).toBeGreaterThan(0);
+  });
+});
+
+// Debug fixes, 24 Sep 2026. The site gave two release dates: the story's
+// "15 May 2026" and /timeline's "released 14 May", with the Spotify card
+// saying the song entered "on 15 May 2026, the day after release". 15 May 2026
+// is a Friday, and Spotify prints the day BEFORE for a Friday drop — so 14 May
+// was Spotify's artefact, not the release.
+describe("Dai Dai has one release date", () => {
+  const STORY = read("app/components/DaiDaiStory.tsx");
+  const TIMELINE = read("app/data/timeline.ts");
+
+  it("is 15 May 2026 on the story, the timeline and both Spotify cards", () => {
+    expect(new Date("2026-05-15T12:00:00Z").getUTCDay()).toBe(5); // a Friday
+    expect(STORY).toContain('kicker: "15 May 2026"');
+    expect(TIMELINE).toMatch(/“Dai Dai” arrives"[^}]*released 15 May\./);
+    expect(EN).toContain("on 15 May 2026, its release day");
+    expect(ES).toContain("el 15 de mayo de 2026, el mismo día de su lanzamiento");
+  });
+
+  it("refuses the lines the site shipped", () => {
+    for (const src of [EN, ES, TIMELINE]) {
+      expect(src).not.toContain("the day after release");
+      expect(src).not.toContain("un día después de su lanzamiento");
+      expect(src).not.toContain("released 14 May");
+    }
+  });
+});
+
+describe("the Spanish edition writes its figures in Spanish", () => {
+  it("prints the bot's compact figures as millones, and says 'e hizo historia'", () => {
+    expect(ES).toContain("millonesEs(DAI_DAI_VIDEO_VIEWS)");
+    expect(ES).toContain("millonesEs(DAI_DAI_SPOTIFY_STREAMS)");
+    expect(millonesEs("1.13B")).toBe("1130 millones");
+    expect(millonesEs("468M")).toBe("468 millones");
+    expect(millonesEs("40.28M")).toBe("40,28 millones");
+    expect(ES).toContain("e hizo historia en el primer show");
+    expect(ES).not.toContain("— y en historia en el primer show");
+  });
+});
+
+describe("the live No. 1 line states no cadence the charts do not have", () => {
+  it("does not call YouTube's weekly country charts daily, in either edition", () => {
+    // "No. 1 right now on the daily charts of YouTube (21 countries)…" — YouTube's
+    // are weekly (cadenceOf), and YouTube supplies most of those No. 1s.
+    expect(cadenceOf("YouTube")).toBe("weekly");
+    expect(EN).not.toContain("right now on the daily charts of");
+    expect(ES).not.toContain("ahora mismo en las listas diarias de");
+  });
+
+  it("the Spanish line says the board's real cadence, from its one home", () => {
+    expect(ES).toContain("${LIVE_CADENCE_ES} desde el panel en vivo");
+    expect(LIVE_CADENCE_ES).toBe("actualizado varias veces al día");
   });
 });

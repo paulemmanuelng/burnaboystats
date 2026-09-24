@@ -3,6 +3,7 @@ import { readFileSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { tours } from "../app/data/tours";
 import { revenueShows, revenueStands } from "../app/data/tourRevenue";
+import { allFirsts } from "../app/data/firsts";
 
 /**
  * The record tour gross, and the record single-show gross, agree everywhere.
@@ -146,5 +147,28 @@ describe("multi-night stands are carried as the body prints them", () => {
     const montreal = revenueStands.find((s) => s.city === "Montreal")!;
     expect([toronto.revenue, toronto.tickets, toronto.shows]).toEqual([2801928, "29,579", 2]);
     expect([montreal.revenue, montreal.tickets, montreal.shows]).toEqual([1904384, "26,303", 2]);
+  });
+});
+
+// ── Debug fixes, 24 Sep 2026 ───────────────────────────────────────────────
+describe("the biggest-concert tile and the Oceania firsts agree with the data", () => {
+  it("the /records/tours tile prints the single-show gross at two places, like the hero", () => {
+    // topShowM(1) re-rounded $6,147,209 to "$6.1M" beside a hero reading $6.15M.
+    const src = readFileSync(join(ROOT, "app/records/tours/page.tsx"), "utf8");
+    expect(src).not.toMatch(/topShowM\(1\)/);
+    expect(`$${(topShow.revenue / 1e6).toFixed(2)}M`).toBe("$6.15M");
+  });
+
+  it("dates the Oceania firsts to the year the Oceania shows were played", () => {
+    // All three were stamped 2026; the four arena dates are October 2025.
+    // The run the firsts name: the No Sign of Weakness tour's Oceania leg.
+    const run = tours.find((t) => /No Sign of Weakness/.test(t.name))!;
+    const oceania = (run.dates ?? []).filter((s) => s.country === "Australia" || s.country === "New Zealand");
+    expect(oceania.length).toBe(4);
+    const years = new Set(oceania.map((s) => s.date.slice(-4)));
+    expect(years.size, "the Oceania run spans one year").toBe(1);
+    const firsts = allFirsts.filter((f) => /Oceania/.test(f.title));
+    expect(firsts.length).toBe(3);
+    for (const f of firsts) expect(f.year, f.title).toBe([...years][0]);
   });
 });

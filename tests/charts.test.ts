@@ -12,6 +12,8 @@ import {
   numberOneCountryCount,
   chartSourceSplit,
 } from "../app/data/charts";
+import { faqs } from "../app/data/faqs";
+import { countryNumberOnes, countryNumberOneReleases } from "../app/lib/analysis";
 
 // The chart dataset drives the headline numbers on the homepage, /records/charts,
 // /records/by-the-numbers, /faq, /methodology, the Dai Dai story and the stat
@@ -354,5 +356,26 @@ describe("every charting country can be drawn on the map", () => {
       .filter((c) => c !== "GLB" && c !== "GLBX")
       .filter((c) => !(c in A2_TO_ISO));
     expect(missing, `chart codes missing from A2_TO_ISO: ${missing.join(", ")}`).toEqual([]);
+  });
+});
+
+// ── Debug fixes, 24 Sep 2026 ───────────────────────────────────────────────
+
+describe("the FAQ's No. 1 answer counts national charts only", () => {
+  // It said "14 releases that have reached No. 1 on an official national chart
+  // — 46 chart-topping placements in all" from numberOnes, which folds in
+  // Billboard's two global charts. /records/by-the-numbers splits the same 46
+  // as 44 national plus the two globals.
+  const answer = faqs.find((f) => f.q === "How many number-one songs does Burna Boy have?")!.a;
+
+  it("reads the country-chart counts", () => {
+    expect(answer).toContain(
+      `${countryNumberOneReleases} releases that have reached No. 1 on an official national chart — ${countryNumberOnes} chart-topping placements`,
+    );
+  });
+
+  it("never pairs the global-inclusive total with the word national", () => {
+    expect(numberOnes).toBeGreaterThan(countryNumberOnes);
+    expect(answer).not.toContain(`${numberOnes} chart-topping placements`);
   });
 });

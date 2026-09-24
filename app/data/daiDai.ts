@@ -62,13 +62,15 @@ export const DAI_DAI_1B_RANK_ES = `${daiDaiBillionRank}.º${daiDaiBillionTied ? 
 // Read as streaks they are all wrong by one, which is what produced the drift
 // there was then a paragraph explaining. Read as totals they are all right, and
 // they have been quietly stating DAYS_OFF = 6 since August.
-export const DAI_DAI_SPOTIFY_DEBUT = "2026-05-15"; // entered at No. 114, the day after release
+export const DAI_DAI_SPOTIFY_DEBUT = "2026-05-15"; // entered at No. 114 on release day, Friday 15 May
 /**
  * Spotify's OWN columns, read off the Daily Top Songs Global chart dated
  * 20 Sep 2026 (charts.spotify.com, read 21 Sep — the chart page opens without
  * a login): Dai Dai — No. 11, Prev 7, Peak 1, **Streak 122**, 2,433,811
  * streams, and in the expanded row **Total days on chart 123**, first entry
- * 15 May 2026 at No. 114, release 14 May 2026. The 19 Sep chart, read the
+ * 15 May 2026 at No. 114, release 14 May 2026 (Spotify prints the day before
+ * for a Friday drop; the song was released on Friday 15 May, the date of
+ * Billboard's release story). The 19 Sep chart, read the
  * same evening: No. 7, Prev 15, Streak 121, 2,934,986 — the return to the top
  * ten. The reads before it — the 15 Sep chart (No. 20, Prev 20, Streak 117,
  * 2,430,949, Total 118), the 14 Sep chart (No. 20, Prev 9, Streak 116, 2,423,416, Total 117),

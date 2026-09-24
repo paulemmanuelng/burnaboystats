@@ -1081,3 +1081,30 @@ describe("the board's chart pages hand the phone the explorer's order", () => {
     expect([...fireboy.charts.filter((r) => r.kind === "Singles")].sort(byReachOrder)[0].title).toBe("Peru");
   });
 });
+
+// Debug fixes, 24 Sep 2026. The No. 1 answer said "Rema has 17 No. 1
+// placements on official national charts" with the Global 200 Excl. US No. 1
+// for "Calm Down" folded into the 17. Billboard's global charts are not
+// national; the answer counts country charts and names a global No. 1 apart.
+describe("board FAQ No. 1 answers count national charts only", () => {
+  const isGlobal = (c: string) => c === "GLB" || c === "GLBX";
+  const answerOf = (slug: string) =>
+    artistFaqs(artistBySlug(slug)!).find((f) => f.q.startsWith("How many No. 1s"))!.a;
+
+  it("states each artist's country-chart No. 1s and nothing more under that name", () => {
+    for (const a of afrobeatsArtists) {
+      const national = a.charts.flatMap((r) => r.entries).filter((e) => e.peak === 1 && !isGlobal(e.c)).length;
+      const global = a.charts.flatMap((r) => r.entries).filter((e) => e.peak === 1 && isGlobal(e.c)).length;
+      const ans = answerOf(a.slug);
+      if (national + global === 0) continue;
+      expect(ans, a.slug).toMatch(new RegExp(`^${a.name} has ${national} No\\. 1 placements? on official national charts`));
+      expect(ans.includes("plus No. 1 on Billboard's"), a.slug).toBe(global > 0);
+    }
+  });
+
+  it("splits Rema's global No. 1 out, and refuses the line the site shipped", () => {
+    const ans = answerOf("rema");
+    expect(ans).toContain("plus No. 1 on Billboard's Global 200 Excl. US");
+    expect(ans).not.toContain("Rema has 17 No. 1 placements on official national charts");
+  });
+});

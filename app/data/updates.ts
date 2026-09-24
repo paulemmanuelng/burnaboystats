@@ -170,6 +170,12 @@ export const updates: Update[] = [
   {
     date: "2026-09-20",
     category: "Charts",
+    text: "A 15th straight week at No. 1 in Switzerland: the Schweizer Hitparade dated 20 September kept “Dai Dai” at the top in its 18th week on the chart, and Austria's Ö3 Top 40 of 18 September gave it a 13th week at No. 1 there.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-09-20",
+    category: "Charts",
     text: "Back inside Spotify’s global Top 10: “Dai Dai” rose eight places to No. 7 on the chart dated 19 September with 2,934,986 streams — its 84th day in the Top 10 — and has now led Spotify Switzerland’s daily chart for 101 days, past the 99 that “One Dance” logged in 2016.",
     href: "/dai-dai",
   },
@@ -713,7 +719,7 @@ export const updates: Update[] = [
   {
     date: "2026-08-22",
     category: "Streaming",
-    text: "A 37th day as the most-streamed song on Earth — and a record equalled. “Dai Dai” holds No. 1 on Spotify's Global Daily Top Songs chart with 3,898,249 streams, drawing level with “WAP” by Cardi B and Megan Thee Stallion for the most days any song has ever spent atop the chart.",
+    text: "A 37th day as the most-streamed song on Earth — the most days at No. 1 by any song in 2026. “Dai Dai” holds No. 1 on Spotify's Global Daily Top Songs chart with 3,898,249 streams.",
     href: "/dai-dai",
   },
   {

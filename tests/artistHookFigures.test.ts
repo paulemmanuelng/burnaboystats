@@ -215,3 +215,28 @@ describe("hooks do not claim a rank the data denies", () => {
     expect(wrong).toEqual([]);
   });
 });
+
+// Debug fixes, 24 Sep 2026. CKay's hook said France was "the only country that
+// has given him anything above Platinum" beside his own 8× Platinum in the US,
+// 6× in Portugal and 4× in Canada and Poland. A multi-Platinum plaque is above
+// Platinum, as the site's own labels ("8× Platinum") say.
+describe("hooks that single out one country hold against the plaques", () => {
+  const ckay = afrobeatsArtists.find((a) => a.slug === "ckay")!;
+  const certs = ckay.releases.flatMap((r) => r.certs);
+  const abovePlatinum = (c: (typeof certs)[number]) =>
+    c.level === "Diamond" || (c.level === "Platinum" && (c.x ?? 1) > 1);
+
+  it("France is the only country to certify CKay Diamond, twice", () => {
+    expect(ckay.hook).toMatch(/only country to certify him Diamond/);
+    const diamonds = certs.filter((c) => c.level === "Diamond");
+    expect(new Set(diamonds.map((c) => c.c))).toEqual(new Set(["FR"]));
+    expect(diamonds.length).toBe(2);
+  });
+
+  it("the line the site shipped is false against the same rows", () => {
+    // "the only country that has given him anything above Platinum"
+    const countries = new Set(certs.filter(abovePlatinum).map((c) => c.c));
+    expect(countries.size).toBeGreaterThan(1);
+    expect(ckay.hook).not.toContain("anything above Platinum");
+  });
+});

@@ -72,7 +72,9 @@ const liveOnes = (platform: string) =>
 const platformOnes = ["YouTube", "Apple Music", "Deezer", "Spotify", "iTunes", "Shazam"]
   .map((p) => [p, liveOnes(p)] as const)
   .filter(([, n]) => n > 0);
-const liveOnesLabel = `right now on the daily charts of ${platformOnes
+// Not "daily": YouTube's country charts, which supply most of these No. 1s,
+// are weekly (cadenceOf in lib/liveChartMeta.ts).
+const liveOnesLabel = `right now on the country charts of ${platformOnes
   .map(([p, n], i) => (i === 0 ? `${p} (${n} countries)` : `${p} (${n})`))
   .join(", ")
   .replace(/, ([^,]*)$/, " and $1")} — ${LIVE_CADENCE} from the live board`;
@@ -217,7 +219,7 @@ export default function DaiDaiPage() {
       items: [
         { v: "37 days", l: `in total at No. 1 on Spotify's Global Daily Top Songs chart — a first for an African artist, and the most days at No. 1 by any song in 2026, five clear of Djo's “End of Beginning” (32) and six of Justin Bieber & Nicki Minaj's “Beauty And A Beat” (31). A closed total, the first of them on the chart dated ${DAI_DAI_SPOTIFY_NO1_FIRST_LONG} and the last on ${DAI_DAI_SPOTIFY_NO1_LAST_LONG}, confirmed day by day through the chart dated ${DAI_DAI_SPOTIFY_NO1_READ_ON_LONG} — with ${DAI_DAI_SPOTIFY_TOP10_DAYS} days inside the global Top 10 in all, counted through that same chart` },
         { v: "6 weeks", l: "at No. 1 on Spotify's Global Weekly Top Songs chart — a run that closed on the chart dated 27 August — in a 16-week stay counted through the chart dated 10 September 2026, peaking at 40.28M streams in a single week" },
-        { v: "No. 114", l: `where it entered Spotify's Global Daily Top Songs chart on 15 May 2026, the day after release — it fell straight back off for ${cardinalWord(DAI_DAI_SPOTIFY_DAYS_OFF, "en")} days, returned on 22 May and has not left since: ${daiDaiSpotifyStraightDays} straight days on the chart and ${daiDaiSpotifyDaysOnChart} in all, counted through the chart dated ${DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG}, which prints both figures in its own columns (Spotify Charts)` },
+        { v: "No. 114", l: `where it entered Spotify's Global Daily Top Songs chart on 15 May 2026, its release day — it fell straight back off for ${cardinalWord(DAI_DAI_SPOTIFY_DAYS_OFF, "en")} days, returned on 22 May and has not left since: ${daiDaiSpotifyStraightDays} straight days on the chart and ${daiDaiSpotifyDaysOnChart} in all, counted through the chart dated ${DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG}, which prints both figures in its own columns (Spotify Charts)` },
         { v: "58 days", l: "at No. 1 on Apple Music's European songs chart — plus 11 days atop the worldwide Apple Music chart" },
         { v: "40 days", l: "at No. 1 on the worldwide iTunes songs chart, and 15 days atop the European iTunes chart" },
         { v: "No. 1", l: liveOnesLabel },
@@ -243,7 +245,7 @@ export default function DaiDaiPage() {
         // publishing a chart week nobody had read. The peak stands; the currency
         // claim does not.
         { v: "No. 1", l: "Official MENA Chart Top 20 — and Billboard's US World Digital Song Sales chart" },
-        { v: "No. 2", l: `UK Official Singles Chart — ${cardinalWord(weeksUK, "en")} weeks at that peak, 30 July to 27 August 2026, in a ${runUK}-week stay counted through the chart of 17 September (No. 19). The first FIFA World Cup song ever to reach the UK Top 10, and by far the highest-charting World Cup song in UK history, beating Shakira's own “Waka Waka” (No. 21)` },
+        { v: "No. 2", l: `UK Official Singles Chart — ${cardinalWord(weeksUK, "en")} weeks at that peak, 30 July to 27 August 2026, in a ${runUK}-week stay counted through the chart of 24 September (No. 31). The first FIFA World Cup song ever to reach the UK Top 10, and by far the highest-charting World Cup song in UK history, beating Shakira's own “Waka Waka” (No. 21)` },
         { v: "No. 3", l: "Billboard Canadian Hot 100 — a new peak and Burna Boy's first-ever top 10 in Canada, where his best song placing had been No. 14. It is also Shakira's first Canadian top 10 since “She Wolf” in 2009" },
         { v: "No. 17", l: "Billboard Hot 100 (US) — a 42-to-17 jump on the chart dated 1 August, the highest-charting World Cup song in Hot 100 history. Luminate logged 8.6M US streams (+69%), 13.9M radio airplay audience (+11%) and 7,000 sold (+322%) in the 17–23 July tracking week" },
         { v: "4 weeks", l: "at No. 1 on the UK's Big Top 40 (the charts of 9 to 30 August 2026) — the Capital and Heart networks' national countdown, with Burna Boy presented the No. 1 plaque" },

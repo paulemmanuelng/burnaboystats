@@ -1,6 +1,11 @@
 import { describe, it, expect } from "vitest";
 import { africaBoards } from "../app/lib/africaBoards";
 import { statBoxes, HIGHLIGHT } from "../app/data/africasBiggest";
+import { readFileSync } from "node:fs";
+import { afrobeatsArtists } from "../app/data/afrobeats";
+import { allChartItems } from "../app/data/charts";
+import { DAI_DAI_SPOTIFY_NO1_DAYS } from "../app/data/daiDai";
+import { updates } from "../app/data/updates";
 
 /**
  * The phone's year boards are DERIVED from app/data/africasBiggest.ts, and
@@ -44,7 +49,10 @@ describe("mobile year boards honour the data's ties", () => {
     expect(row.sub).toBe(`🇳🇬 2026 · ${data.entries[0].value} so far · in progress`);
     expect(row.his).toBe(data.entries[0].name === "Burna Boy");
     const closedWins = box.rows!.filter((r) => !r.inProgress && r.entries[0].name === "Burna Boy").length;
-    expect(board.badge).toBe(`${closedWins} of ${box.rows!.length} yrs`);
+    const closedYears = box.rows!.filter((r) => !r.inProgress).length;
+    // Both sides count closed years. The phone shipped "3 of 5 yrs": three
+    // closed wins over five years, the running one among them.
+    expect(board.badge).toBe(`${closedWins} of ${closedYears} yrs`);
   });
 });
 
@@ -116,5 +124,72 @@ describe("every artist on a year panel has a flag beside their name", () => {
       .flatMap((y) => y.entries)
       .find((e) => e.name === "Ayra Starr");
     expect(ayra?.flag).toBe("🇳🇬");
+  });
+});
+
+// ── Debug fixes, 24 Sep 2026 ───────────────────────────────────────────────
+
+describe("the Global 200 board agrees with the chart data under it", () => {
+  // The board typed Tyla's "Water" at No. 9 while her own chart page, reading
+  // afrobeats.ts, said No. 6 (Billboard's chart history: peak 6, 2 Dec 2023),
+  // and it left out Tems, whose featured turn on "Wait For U" peaked at No. 2
+  // — though the Hot 100 board on the same page counts featured credits.
+  const box = statBoxes.find((b) => b.id === "billboard-global-200-peak")!;
+  const peakOf = (name: string): number | undefined => {
+    const rows =
+      name === HIGHLIGHT
+        ? allChartItems.flatMap((r) => r.entries)
+        : afrobeatsArtists.find((a) => a.name === name)?.charts.flatMap((r) => r.entries);
+    const glb = (rows ?? []).filter((e) => e.c === "GLB").map((e) => e.peak);
+    return glb.length ? Math.min(...glb) : undefined;
+  };
+
+  it("prints each artist's best Global 200 peak from the data", () => {
+    for (const e of box.entries!) {
+      const peak = peakOf(e.name);
+      if (peak === undefined) continue; // Libianca and others off the board carry no rows here
+      expect(e.value, e.name).toBe(`No. ${peak}`);
+    }
+  });
+
+  it("leaves out no board artist who peaked higher than its last entry", () => {
+    const last = Number(box.entries!.at(-1)!.value!.replace(/\D/g, ""));
+    const missing = afrobeatsArtists
+      .filter((a) => (peakOf(a.name) ?? Infinity) <= last)
+      .filter((a) => !box.entries!.some((e) => e.name === a.name))
+      .map((a) => `${a.name} (No. ${peakOf(a.name)})`);
+    expect(missing).toEqual([]);
+  });
+
+  it("the FAQ answer states the same peaks as the board", () => {
+    const page = readFileSync("app/records/africas-biggest/page.tsx", "utf8");
+    const faq = page.match(/q: "What is the highest-charting African song on the Billboard Global 200\?",\s*a: "([^"]*)"/)?.[1] ?? "";
+    expect(faq).toContain(`Tyla's “Water” (No. ${peakOf("Tyla")})`);
+    expect(faq).toContain("Tems");
+    // The line the site shipped, which this guard must refuse.
+    expect(faq).not.toContain("Tyla's “Water” (No. 9)");
+  });
+});
+
+describe("the Spotify Global note makes no all-time record claim", () => {
+  // Owner-approved (24 Sep 2026): 37 days ties "WAP" but is nowhere near the
+  // most days any song has spent at No. 1 on the chart; kworb's totals list
+  // dozens above it. What the run holds is the 2026 record.
+  const REFUSED = /WAP|most days any song has (ever )?spent/;
+  const note = statBoxes.find((b) => b.id === "highest-spotify-global-peak")!.note ?? "";
+
+  it("says the 2026 record, from the same total the Dai Dai page reads", () => {
+    expect(note).toContain(`${DAI_DAI_SPOTIFY_NO1_DAYS} days in total`);
+    expect(note).toContain("the most days at No. 1 by any song in 2026");
+    expect(note).toContain("first and only African artist to reach No. 1");
+    expect(note).not.toMatch(REFUSED);
+  });
+
+  it("refuses the lines the site shipped, on the board and in the feed", () => {
+    expect(
+      "tying “WAP” by Cardi B and Megan Thee Stallion for the most days any song has spent on top of the chart.",
+    ).toMatch(REFUSED);
+    const feed = updates.filter((u) => u.text.includes("Spotify") && REFUSED.test(u.text));
+    expect(feed.map((u) => u.date)).toEqual([]);
   });
 });

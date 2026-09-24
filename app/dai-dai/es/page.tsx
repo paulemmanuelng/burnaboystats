@@ -15,6 +15,7 @@ import {
   weeksOnChart,
 } from "../../data/charts";
 import { liveCharts } from "../../data/liveCharts";
+import { LIVE_CADENCE_ES } from "../../lib/liveChartMeta";
 import { daiDaiCertCount, daiDaiPlatinumMore } from "../../data/certifications";
 import { DAI_DAI_VIDEO_VIEWS, DAI_DAI_1B_DAYS, DAI_DAI_1B_RANK_ES, DAI_DAI_SPOTIFY_STREAMS, DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_NO1_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_NO1_FIRST_LONG_ES, DAI_DAI_SPOTIFY_NO1_LAST_LONG_ES, DAI_DAI_SPOTIFY_TOP10_DAYS, DAI_DAI_SPOTIFY_DAYS_OFF, daiDaiSpotifyDaysOnChart, daiDaiSpotifyStraightDays, daiDaiYouTubeDaysAtNo1 } from "../../data/daiDai";
 import { spotifyImage, spotifySrcSet } from "../../lib/spotifyImage";
@@ -51,7 +52,7 @@ const conquestTotal = conquestCountries.length;
 const conquestNo1 = conquestCountries.filter((c) => c.peak === 1).length;
 // Las semanas se leen de los datos, igual que en la edición inglesa — una cifra
 // escrita a mano en dos idiomas se desincroniza el doble de rápido.
-import { cardinalWord, ordinalWord } from "../../lib/plural";
+import { cardinalWord, ordinalWord, millonesEs } from "../../lib/plural";
 
 const weeksDE = weeksAtPeak("Dai Dai", "DE");
 const weeksCH = weeksAtPeak("Dai Dai", "CH");
@@ -84,10 +85,10 @@ const liveOnes = (platform: string) =>
 const platformOnes = ["YouTube", "Apple Music", "Deezer", "Spotify", "iTunes", "Shazam"]
   .map((p) => [p, liveOnes(p)] as const)
   .filter(([, n]) => n > 0);
-const liveOnesLabel = `ahora mismo en las listas diarias de ${platformOnes
+const liveOnesLabel = `ahora mismo en las listas por país de ${platformOnes
   .map(([p, n], i) => (i === 0 ? `${p} (${n} países)` : `${p} (${n})`))
   .join(", ")
-  .replace(/, ([^,]*)$/, " y $1")} — actualizado cada hora desde el panel en vivo`;
+  .replace(/, ([^,]*)$/, " y $1")} — ${LIVE_CADENCE_ES} desde el panel en vivo`;
 
 export const metadata = pageMetadata({
   title: "Dai Dai — el himno del Mundial 2026 de Shakira y Burna Boy",
@@ -181,7 +182,7 @@ export default function DaiDaiPageES() {
     { v: `${daiDaiChartEntryCount}`, l: "entradas en listas oficiales de todo el mundo — en listas nacionales de sencillos, más las dos listas globales de Billboard" },
     { v: `${daiDaiNumberOnes}`, l: "países con la canción en el número 1 de su lista oficial de sencillos — de Francia y Alemania a Emiratos Árabes Unidos" },
     { v: "N.º 1", l: `en las dos listas globales de Billboard — ${ordinalWord(weeksGLB, "es")} semana en la cima del Global 200 (algo inédito para un artista africano, y el segundo de Shakira), cima recuperada en la lista del 22 de agosto tras una semana en el N.º 3 y mantenida hasta la lista del 5 de septiembre, cuando la racha se cerró (N.º 3 en la edición del 12 de septiembre), y ${cardinalWord(weeksGLBX, "es")} semanas consecutivas en la cima del Global 200 Excl. US, del 4 de julio al 5 de septiembre (N.º 2 en la edición del 12 de septiembre)` },
-    { v: DAI_DAI_SPOTIFY_STREAMS, l: "reproducciones en Spotify — la octava canción de Burna Boy que supera los 300 millones, más que ningún otro artista africano, tras 37 días como la canción más escuchada del planeta" },
+    { v: millonesEs(DAI_DAI_SPOTIFY_STREAMS), l: "reproducciones en Spotify — la octava canción de Burna Boy que supera los 300 millones, más que ningún otro artista africano, tras 37 días como la canción más escuchada del planeta" },
     { v: `${daiDaiCertCount}`, l: "certificaciones — diamante en Francia, doble platino en Canadá, séxtuple platino (latino) en EE. UU., platino en España, Eslovaquia, Portugal, Hungría, Austria, Grecia y Suecia, oro en Colombia, Chequia, Italia, Polonia, Bélgica y Alemania, y plata en el Reino Unido" },
     { v: "19 jul", l: "Shakira y Burna Boy interpretaron “Dai Dai” en vivo en el primer show de medio tiempo de una Final del Mundial de la FIFA" },
   ];
@@ -193,7 +194,7 @@ export default function DaiDaiPageES() {
       items: [
         { v: "37 días", l: `en total en el número 1 de la lista Global Daily Top Songs de Spotify —algo inédito para un artista africano, y la canción con más días en el número 1 de todo 2026, cinco por delante de “End of Beginning” de Djo (32) y seis de “Beauty And A Beat” de Justin Bieber y Nicki Minaj (31)—. Es un total cerrado: el primero en la lista del ${DAI_DAI_SPOTIFY_NO1_FIRST_LONG_ES} y el último en la del ${DAI_DAI_SPOTIFY_NO1_LAST_LONG_ES}, confirmado día a día hasta la lista del ${DAI_DAI_SPOTIFY_NO1_READ_ON_LONG_ES} — con ${DAI_DAI_SPOTIFY_TOP10_DAYS} días dentro del top 10 mundial en total, contados hasta esa misma lista` },
         { v: "6 semanas", l: "en el número 1 de la lista Global Weekly Top Songs de Spotify — una racha cerrada en la lista del 27 de agosto — en una estancia de 16 semanas contada hasta la lista del 10 de septiembre de 2026, con un pico de 40,28 millones de reproducciones en una sola semana" },
-        { v: "N.º 114", l: `puesto por el que entró en la lista Global Daily Top Songs de Spotify el 15 de mayo de 2026, un día después de su lanzamiento — cayó de ella durante ${cardinalWord(DAI_DAI_SPOTIFY_DAYS_OFF, "es")} días, volvió el 22 de mayo y no ha salido desde entonces: ${daiDaiSpotifyStraightDays} seguidos en la lista y ${daiDaiSpotifyDaysOnChart} en total, contados hasta la lista del ${DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG_ES}, que imprime ambas cifras en sus propias columnas (Spotify Charts)` },
+        { v: "N.º 114", l: `puesto por el que entró en la lista Global Daily Top Songs de Spotify el 15 de mayo de 2026, el mismo día de su lanzamiento — cayó de ella durante ${cardinalWord(DAI_DAI_SPOTIFY_DAYS_OFF, "es")} días, volvió el 22 de mayo y no ha salido desde entonces: ${daiDaiSpotifyStraightDays} seguidos en la lista y ${daiDaiSpotifyDaysOnChart} en total, contados hasta la lista del ${DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG_ES}, que imprime ambas cifras en sus propias columnas (Spotify Charts)` },
         { v: "58 días", l: "en el número 1 de la lista europea de Apple Music, más 11 días en la cima de la lista mundial de Apple Music" },
         { v: "40 días", l: "en el número 1 de la lista mundial de canciones de iTunes, y 15 días en la cima de la lista europea de iTunes" },
         { v: "N.º 1", l: liveOnesLabel },
@@ -216,7 +217,7 @@ export default function DaiDaiPageES() {
         // que no se releía desde el 4 de agosto y no puede fecharse sin publicar
         // una semana de lista que nadie ha leído. El pico se mantiene.
         { v: "N.º 1", l: "en el Official MENA Chart Top 20 y en la lista US World Digital Song Sales de Billboard" },
-        { v: "N.º 2", l: `en la lista oficial de sencillos del Reino Unido — ${cardinalWord(weeksUK, "es")} semanas en ese pico, del 30 de julio al 27 de agosto de 2026, en una estancia de ${runUK} semanas contada hasta la lista del 17 de septiembre (N.º 19). La primera canción de un Mundial de la FIFA que entra en el top 10 británico, muy por encima del N.º 21 que alcanzó “Waka Waka” de la propia Shakira` },
+        { v: "N.º 2", l: `en la lista oficial de sencillos del Reino Unido — ${cardinalWord(weeksUK, "es")} semanas en ese pico, del 30 de julio al 27 de agosto de 2026, en una estancia de ${runUK} semanas contada hasta la lista del 24 de septiembre (N.º 31). La primera canción de un Mundial de la FIFA que entra en el top 10 británico, muy por encima del N.º 21 que alcanzó “Waka Waka” de la propia Shakira` },
         { v: "N.º 3", l: "en el Billboard Canadian Hot 100 — un nuevo pico y el primer top 10 de Burna Boy en Canadá, donde su mejor posición había sido el N.º 14. Es también el primer top 10 canadiense de Shakira desde “She Wolf” en 2009" },
         { v: "N.º 17", l: "en el Billboard Hot 100 de Estados Unidos — un salto del 42 al 17 en la lista del 1 de agosto, el pico más alto de una canción mundialista en la historia del Hot 100. Luminate registró 8,6 millones de reproducciones en Estados Unidos (+69 %), 13,9 millones de audiencia radial (+11 %) y 7.000 copias vendidas (+322 %) en la semana de seguimiento del 17 al 23 de julio" },
         { v: "4 semanas", l: "en el número 1 del Big Top 40 del Reino Unido (las listas del 9 al 30 de agosto de 2026) — la cuenta atrás nacional de las cadenas Capital y Heart, con Burna Boy recibiendo la placa de número 1" },
@@ -238,7 +239,7 @@ export default function DaiDaiPageES() {
       label: "El video",
       intro: "El video de “Dai Dai”, con carrera propia.",
       items: [
-        { v: DAI_DAI_VIDEO_VIEWS, l: `visualizaciones en YouTube — mil millones en ${DAI_DAI_1B_DAYS} días, el ${DAI_DAI_1B_RANK_ES} más rápido de la historia de YouTube y el primer video de 2026 en alcanzarlos. Antes: 500 millones en 59,4 días, 600 millones en 67 días (el más rápido de la carrera de ambos artistas hasta esa cifra) y 700 millones en 74,8 días` },
+        { v: millonesEs(DAI_DAI_VIDEO_VIEWS), l: `visualizaciones en YouTube — mil millones en ${DAI_DAI_1B_DAYS} días, el ${DAI_DAI_1B_RANK_ES} más rápido de la historia de YouTube y el primer video de 2026 en alcanzarlos. Antes: 500 millones en 59,4 días, 600 millones en 67 días (el más rápido de la carrera de ambos artistas hasta esa cifra) y 700 millones en 74,8 días` },
         { v: `${daiDaiYouTubeDaysAtNo1} días`, l: "seguidos en el número 1 como el video musical más visto del mundo en YouTube, del 9 de junio a la lista del 27 de agosto. Esa racha se cortó —el video quedó en el número 2 en las listas del 5 y el 6 de septiembre— y recuperó la cima: número 1 otra vez en la lista del 7 de septiembre de 2026, en su día 108 en la lista. Ese segundo tramo también terminó —número 2 en la lista del 14 de septiembre, tras una nueva entrada—. Los 80 son un total cerrado, no una racha en curso" },
       ],
     },
@@ -312,7 +313,7 @@ export default function DaiDaiPageES() {
         </h1>
         <p className={styles.lede}>
           Cómo el himno mundialista de Shakira y Burna Boy se convirtió en la canción más
-          grande del mundo — y en historia en el primer show de medio tiempo de una Final
+          grande del mundo — e hizo historia en el primer show de medio tiempo de una Final
           del Mundial. Desplázate para seguir el recorrido.
         </p>
         <div className={styles.heroActions}>

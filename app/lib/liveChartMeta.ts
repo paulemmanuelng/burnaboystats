@@ -32,6 +32,9 @@ export const LIVE_CADENCE_ADVERB = "several times a day";
 export const LIVE_CADENCE = `refreshed ${LIVE_CADENCE_ADVERB}`;
 export const LIVE_CADENCE_REBUILT = `rebuilt ${LIVE_CADENCE_ADVERB}`;
 export const LIVE_CADENCE_LABEL = `Refreshed ${LIVE_CADENCE_ADVERB}`;
+/** The Spanish edition's LIVE_CADENCE. /dai-dai/es typed "actualizado cada
+ *  hora" beside an English page that said "several times a day". */
+export const LIVE_CADENCE_ES = "actualizado varias veces al día";
 
 /** Total placements for a release, across every platform it charts on. */
 export const reachOf = (r: { platforms: { entries: unknown[] }[] }) =>

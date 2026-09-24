@@ -79,7 +79,10 @@ export default function MobileTours({
           Tours &amp; <span className={styles.gold}>live</span>
         </h1>
         <p className={styles.lede}>
-          {spell(tours.length)} tours across {countryCount} countries — and the
+          {/* Two measures, kept apart: countryCount is every country he has
+              performed in (tours, festivals and one-off shows), not the six
+              tours' own footprint. */}
+          {spell(tours.length)} tours, and live shows in {countryCount} countries — and the
           highest-grossing tour by any African artist. Tap a tour for its dates.
         </p>
       </div>

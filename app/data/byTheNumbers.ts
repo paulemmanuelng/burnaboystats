@@ -80,7 +80,7 @@ export const stats: {
   { num: `${BURNA_HOT_100_ENTRIES}`, label: "Billboard Hot 100 entries", sub: "the most by any African artist, six years running", href: "/records/charts" },
   { num: BURNA_PEAK_LISTENERS, label: "Spotify monthly listeners, at peak", sub: "the first African artist ever to reach 60 million", href: "/records/africas-biggest", big: true },
   { num: spotifyTotalStreams, label: "Spotify streams, all-time", sub: "every song, lead and featured credits combined", href: "/music" },
-  { num: youtubeTotalViews, label: "YouTube views, all-time", sub: `every video, across his channel and others' — counted by hand on ${ytCountedOn}`, href: "/music" },
+  { num: youtubeTotalViews, label: "YouTube views, all-time", sub: `every video on his YouTube channel — counted by hand on ${ytCountedOn}`, href: "/music" },
   // YouTube figure is kept in sync with the YouTube Music leaderboard on data/africasBiggest.ts.
   { num: BURNA_YT_AUDIENCE, label: "YouTube Music monthly audience, at peak", sub: `first African artist ever past 900 million — set ${BURNA_YT_AUDIENCE_SET_ON_LONG}`, href: "/records/africas-biggest" },
   { num: `No. ${spotifyGlobalRank}`, label: "Global rank by Spotify listeners", sub: "where he currently sits among every artist worldwide", href: "/records/africas-biggest" },

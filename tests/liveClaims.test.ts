@@ -488,7 +488,9 @@ describe("the live boards' cadence is stated once, and truthfully", () => {
       d.isDirectory() ? walk(`${dir}/${d.name}`) : /\.(ts|tsx)$/.test(d.name) ? [`${dir}/${d.name}`] : [],
     );
 
-  it("never says 'hourly' or 'every hour' in rendered text under app/", () => {
+  // "cada hora" since 24 Sep 2026: /dai-dai/es said "actualizado cada hora"
+  // while this guard read only English, so the Spanish edition kept the claim.
+  it("never says 'hourly', 'every hour' or 'cada hora' in rendered text under app/", () => {
     const hits: string[] = [];
     for (const file of walk("app")) {
       if (/app\/data\/liveCharts(\.[a-z-]+)?\.ts$/.test(file)) continue; // generated headers
@@ -506,7 +508,7 @@ describe("the live boards' cadence is stated once, and truthfully", () => {
         }
         if (t.startsWith("//") || t.startsWith("*")) return;
         const code = line.replace(/\/\/.*$/, "");
-        if (/\bhourly\b|\bevery hour\b/i.test(code)) hits.push(`${file}:${i + 1}: ${t.slice(0, 90)}`);
+        if (/\bhourly\b|\bevery hour\b|\bcada hora\b/i.test(code)) hits.push(`${file}:${i + 1}: ${t.slice(0, 90)}`);
       });
     }
     expect(hits, "rendered text still promises an hourly refresh").toEqual([]);

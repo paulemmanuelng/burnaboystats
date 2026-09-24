@@ -1641,7 +1641,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Certified units in Colombia",
     "path": "/compare/in/colombia",
     "section": "Compare",
-    "description": "Every Afrobeats plaque awarded in Colombia, priced at Pro Musica Colombia's own thresholds and ranked by artist.",
+    "description": "Every Afrobeats plaque awarded in Colombia, listed, not priced: Pro Musica Colombia publishes no unit threshold.",
     "keywords": [
       "colombia",
       "co",
@@ -1658,7 +1658,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Certified units in Czech Republic",
     "path": "/compare/in/czech-republic",
     "section": "Compare",
-    "description": "Every Afrobeats plaque awarded in Czech Republic, priced at ČNS IFPI (Czechia)'s own thresholds and ranked by artist.",
+    "description": "Every Afrobeats plaque awarded in the Czech Republic, priced at ČNS IFPI (Czechia)'s own thresholds and ranked by artist.",
     "keywords": [
       "czech republic",
       "cz",
@@ -1726,7 +1726,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Certified units in Greece",
     "path": "/compare/in/greece",
     "section": "Compare",
-    "description": "Every Afrobeats plaque awarded in Greece, priced at IFPI Greece's own thresholds and ranked by artist.",
+    "description": "Every Afrobeats plaque awarded in Greece, priced at IFPI's last published level (June 2013) and ranked by artist.",
     "keywords": [
       "greece",
       "gr",
@@ -1794,7 +1794,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Certified units in Netherlands",
     "path": "/compare/in/netherlands",
     "section": "Compare",
-    "description": "Every Afrobeats plaque awarded in Netherlands, priced at NVPI's own thresholds and ranked by artist.",
+    "description": "Every Afrobeats plaque awarded in the Netherlands, priced at NVPI's own thresholds and ranked by artist.",
     "keywords": [
       "netherlands",
       "nl",
@@ -1862,7 +1862,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Certified units in Poland",
     "path": "/compare/in/poland",
     "section": "Compare",
-    "description": "Every Afrobeats plaque awarded in Poland, priced at ZPAV's own thresholds and ranked by artist.",
+    "description": "Every Afrobeats plaque awarded in Poland, priced at ZPAV's levels (singles at 2 zł each) and ranked by artist.",
     "keywords": [
       "poland",
       "pl",
@@ -1981,7 +1981,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Certified units in United Kingdom",
     "path": "/compare/in/united-kingdom",
     "section": "Compare",
-    "description": "Every Afrobeats plaque awarded in United Kingdom, priced at BPI's own thresholds and ranked by artist.",
+    "description": "Every Afrobeats plaque awarded in the United Kingdom, priced at BPI's own thresholds and ranked by artist.",
     "keywords": [
       "united kingdom",
       "uk",
@@ -1998,7 +1998,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Certified units in United States",
     "path": "/compare/in/united-states",
     "section": "Compare",
-    "description": "Every Afrobeats plaque awarded in United States, priced at RIAA's own thresholds and ranked by artist.",
+    "description": "Every Afrobeats plaque awarded in the United States, priced at RIAA's own thresholds and ranked by artist.",
     "keywords": [
       "united states",
       "us",
