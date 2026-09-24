@@ -18,6 +18,11 @@ import { totalWins, totalNominations } from "../data/awards";
 import { countryCount as performedCountryCount, regionCount } from "../data/performedCountries";
 import { spotifyTotalStreams } from "../data/streamingTotals";
 import { updates } from "../data/updates";
+import {
+  DATA_DOWNLOADS,
+  DATASET_CITATION,
+  downloadFilename,
+} from "../lib/dataDownloads";
 
 export const metadata = pageMetadata({
   title: "Press & Data Kit — Cite Burna Boy Stats",
@@ -149,6 +154,61 @@ export default function PressPage() {
           — free for articles, visualisations, bots and research, with attribution. If you
           build something with it, tell us and we&apos;ll share it.
         </p>
+      </section>
+
+      {/* ── Download the data ───────────────────────────────── */}
+      {/* The same records as the API, flattened for a spreadsheet. Every count
+          and the citation's date are derived (app/lib/dataDownloads.ts), and a
+          plain <a download>, not <Link>: these are files, not pages to
+          prefetch. */}
+      <section className={`${styles.wrap} ${styles.sectionPad}`} aria-labelledby="downloads">
+        <h2 id="downloads" className={styles.h2}>Download the data</h2>
+        <p className={styles.p}>
+          The dataset as three spreadsheets — CSV, one row per record — that open straight
+          in Excel, Google Sheets or Numbers. They are built from the same data as these
+          pages, so a download always matches the site.
+        </p>
+        {DATA_DOWNLOADS.map((d) => (
+          <div key={d.slug}>
+            <div className={styles.citeRow}>
+              <code className={styles.citeCode}>
+                {d.slug}.csv · {d.count.toLocaleString("en-GB")} {d.countOf}
+              </code>
+              <a
+                href={d.path}
+                download={downloadFilename(d.slug)}
+                className={styles.copyBtn}
+                aria-label={`Download ${d.slug}.csv (${d.count.toLocaleString("en-GB")} ${d.countOf})`}
+              >
+                Download
+              </a>
+            </div>
+            <p className={styles.small}>{d.what}</p>
+          </div>
+        ))}
+        <div className={styles.citeBlock}>
+          <h3 className={styles.kicker}>How to cite</h3>
+          <div className={styles.citeRow}>
+            <code className={styles.citeCode}>{DATASET_CITATION}</code>
+            <CopyButton value={DATASET_CITATION} className={styles.copyBtn} />
+          </div>
+          {/* Every clause here is held to the file by tests/dataDownloads.test.tsx:
+              units are blank only where the plaque cannot be priced, and
+              units_note carries the same notes /compare prints. */}
+          <p className={styles.small}>
+            A certification is a floor, not a sale: the release passed that body&apos;s
+            threshold for the tier, and certified units price each plaque at that threshold.
+            The units_note column flags each figure that rests on more than the body prints
+            today — a rule for multiples it never wrote or no longer runs, a stream-to-unit ratio it never
+            published, a level or rate from an older rulebook — or is today&apos;s level at a
+            body that has since raised it, in the words the{" "}
+            <Link href="/compare" className={styles.link}>comparison tool</Link> prints beside
+            the same figure. Units are blank only where a body publishes no threshold at all,
+            and unpriced_reason says why. Nigeria&apos;s TCSN register is request-based, so a
+            missing Nigerian plaque is not evidence of none. The full rules are on the{" "}
+            <Link href="/methodology" className={styles.link}>methodology page</Link>.
+          </p>
+        </div>
       </section>
 
       {/* ── Stat cards ──────────────────────────────────────── */}

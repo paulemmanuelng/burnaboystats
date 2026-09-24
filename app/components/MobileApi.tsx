@@ -23,6 +23,7 @@ export default function MobileApi({
   lede,
   pills,
   endpoints,
+  downloads,
   caveats,
   curl,
   attribution,
@@ -33,6 +34,8 @@ export default function MobileApi({
   /** First pill is the live one and takes the green dot. */
   pills: string[];
   endpoints: { path: string; what: string; size: string }[];
+  /** The CSV files — same row markup, but a download rather than a new tab. */
+  downloads: { path: string; what: string; size: string; filename: string }[];
   caveats: { h: string; p: string }[];
   curl: string;
   attribution: string;
@@ -97,6 +100,22 @@ export default function MobileApi({
               <span className={styles.size}>{e.size}</span>
             </span>
             <span className={styles.what}>{e.what}</span>
+          </a>
+        ))}
+        <p className={styles.blockIntro}>
+          The same data as spreadsheets — CSV, UTF-8, one row per record, same licence:
+        </p>
+        {downloads.map((d) => (
+          <a key={d.path} href={`${base}${d.path}`} download={d.filename} className={styles.endpoint}>
+            <span className={styles.endpointTop}>
+              <span className={styles.verb}>GET</span>
+              <span className={styles.path}>
+                /api/{version}
+                {d.path}
+              </span>
+              <span className={styles.size}>{d.size}</span>
+            </span>
+            <span className={styles.what}>{d.what}</span>
           </a>
         ))}
       </div>

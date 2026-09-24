@@ -411,8 +411,8 @@ export const searchIndex: SearchDoc[] = [
     title: "Press & Data Kit",
     path: "/press",
     section: "Site",
-    description: "Verified figures free to use with attribution — citations, API, stat cards.",
-    keywords: ["press", "data kit", "cite", "citation", "attribution", "media", "journalists"],
+    description: "Verified figures free to use with attribution — citations, CSV downloads, API, stat cards.",
+    keywords: ["press", "data kit", "cite", "citation", "attribution", "media", "journalists", "csv", "download data", "spreadsheet", "excel"],
   },
   {
     title: "About Burna Boy",

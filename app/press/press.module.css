@@ -120,3 +120,14 @@
   .lede { font-size: 16.5px; }
   .figures { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+
+/* Download rows reuse the citation row and its button; an <a> needs the
+   button's box made explicit, since min-height does nothing inline. Scoped to
+   anchors so the Copy buttons above are untouched. */
+a.copyBtn {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+.citeBlock { margin: 28px 0 0; }
+.citeBlock .kicker { margin: 0; }

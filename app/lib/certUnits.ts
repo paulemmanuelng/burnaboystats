@@ -253,6 +253,48 @@ export const programOf = (cert: { body?: string }): string | undefined =>
 export const marketKey = (country: string, program?: string) =>
   program ? `${country}|${program}` : country;
 
+/** The four notes a priced figure can carry — /compare's †, ‡, § and ¶. */
+export interface PlaqueNotes {
+  /** † — a multiple priced by a rule the body does not publish. */
+  caveat?: string;
+  /** ‡ — the body raised its thresholds, and this is today's level. */
+  vintage?: string;
+  /** § — a stream-to-unit ratio the body does not publish. */
+  assumed?: string;
+  /** ¶ — a level or rate the body published once and no longer prints. */
+  historic?: string;
+}
+
+/** The notes in the order /compare prints their marks: † ‡ § ¶. */
+export const PLAQUE_NOTE_ORDER = ["caveat", "vintage", "assumed", "historic"] as const;
+
+/** The headings /compare prints over those footnotes. The CSV's `units_note`
+ *  (app/lib/dataDownloads.ts) names a figure's notes in these same words, so a
+ *  download can never describe a figure differently from the page. */
+export const PLAQUE_NOTE_HEADINGS: Record<keyof PlaqueNotes, string> = {
+  caveat: "Multiplier assumed",
+  vintage: "This body raised its thresholds since 2015",
+  assumed: "Ratio assumed",
+  historic: "Historic figure",
+};
+
+/** The notes ONE priced plaque carries — the rule priceArtist applies to every
+ *  line, and the CSV to every row.
+ *
+ *  A separately-priced programme publishes its own scale, so the country's
+ *  threshold notes are not statements about it (rule 5): RIAA Latin's
+ *  Platinos carry none. The multiplier note needs a multiple — a single Gold
+ *  assumes no rule for multiples, however the body writes them. */
+export function plaqueNotes(cert: ComparableCert, format: CertFormat): PlaqueNotes {
+  const own = !programOf(cert);
+  return {
+    caveat: own && (cert.x ?? 1) > 1 ? CERT_THRESHOLDS[cert.c]?.caveat : undefined,
+    vintage: own ? vintageFor(cert.c, format) : undefined,
+    assumed: own ? assumedFor(cert.c, format) : undefined,
+    historic: own ? historicFor(cert.c, format) : undefined,
+  };
+}
+
 export interface CountryLine {
   country: string;
   /** Set when this line is a separately-priced programme rather than the
@@ -376,11 +418,13 @@ export function priceArtist(
       nigeriaPlaques += 1;
       if (!options.includeNigeria) continue;
     }
-    // The caveat is a property of the LINE: it applies whenever any multiplied
-    // plaque contributes, not only when the multiplied one happened to be
+    // The notes are a property of the LINE: each applies whenever any plaque
+    // that earns it contributes, not only when that plaque happened to be
     // enumerated first. Burna's New Zealand line opened on an unmultiplied
     // plaque and his 3x Platinum on "Last Last" then shipped with no dagger.
-    const multiplied = (cert.x ?? 1) > 1;
+    // What each plaque earns is plaqueNotes' call — one rule, shared with the
+    // CSV download.
+    const notes = plaqueNotes(cert, release.format);
     // Rule 5: a separately-priced programme is its own line. Everything below
     // keys on the MARKET, not the country, so RIAA Latin's Platinos never land
     // inside the RIAA line.
@@ -394,12 +438,9 @@ export function priceArtist(
         line.topUnits = units;
         line.top = { title: release.title, level: cert.level, x: cert.x ?? 1, body: cert.body };
       }
-      if (multiplied && !line.caveat) line.caveat = CERT_THRESHOLDS[cert.c]?.caveat;
       // Like the caveat, the ¶ is the LINE's: Poland's is singles-only, and
       // Rema's Polish line opens on his album before "Calm Down" joins it.
-      if (!program && !line.historic) line.historic = historicFor(cert.c, release.format);
-      if (!program && !line.vintage) line.vintage = vintageFor(cert.c, release.format);
-      if (!program && !line.assumed) line.assumed = assumedFor(cert.c, release.format);
+      for (const k of PLAQUE_NOTE_ORDER) if (!line[k]) line[k] = notes[k];
     } else {
       lines.set(key, {
         country: cert.c,
@@ -414,11 +455,8 @@ export function priceArtist(
         counted: true,
         // A programme publishes its own scale, so the country's threshold
         // notes — the raised-levels ‡, the assumed-ratio §, the historic ¶ —
-        // are not statements about it.
-        caveat: program ? undefined : multiplied ? CERT_THRESHOLDS[cert.c]?.caveat : undefined,
-        vintage: program ? undefined : vintageFor(cert.c, release.format),
-        assumed: program ? undefined : assumedFor(cert.c, release.format),
-        historic: program ? undefined : historicFor(cert.c, release.format),
+        // are not statements about it; plaqueNotes returns none for one.
+        ...notes,
       });
     }
   }
