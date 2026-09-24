@@ -595,3 +595,38 @@ describe("the pair page derives its remaining typed figures", () => {
     expect(visible).toEqual(ld.itemListElement.map((i: { name: string }) => i.name));
   });
 });
+
+describe("singles-only ‡ and § stay off album lines (23 Sep 2026)", () => {
+  // Ifpi Sverige's ‡ (raised song levels) and § (capped streams at 100 to a
+  // unit) describe SONGS; its albums are units at a level that never moved.
+  // Album mode printed "Gold ‡ § 15,000" on Tyla's album in Sweden, and the §
+  // footnote beneath it — the string that shipped.
+  it("an album line carries no singles-only mark", async () => {
+    const t = text(await html({ mode: "albums", a: "tyla", sa: "Tyla", b: "wizkid", sb: "Made in Lagos" }));
+    const table = t.slice(t.indexOf("Country by country"), t.indexOf("How this is counted One plaque"));
+    expect(table).toContain("Sweden SE Gold 15,000");
+    expect(table).not.toContain("Gold ‡ § 15,000");
+    expect(table).not.toContain("§ Ratio assumed");
+  });
+
+  it("a song line keeps them", async () => {
+    const t = text(await html({ mode: "songs", a: "tyla", sa: "Water", b: "wizkid", sb: "Essence" }));
+    expect(t).toContain("Platinum ‡ § 120,000");
+  });
+
+  it("an artist's line that opens on an album still gains them when a single joins", async () => {
+    const t = text(await html({ a: "burna-boy", b: "wizkid", all: "1" }));
+    const se = t.slice(t.indexOf("Sweden SE"), t.indexOf("Sweden SE") + 60);
+    expect(se).toContain("‡");
+    expect(se).toContain("§");
+  });
+});
+
+describe("with only side B's record picked, the header describes side B (23 Sep 2026)", () => {
+  it("names the record on the right, not an empty left side", async () => {
+    const t = text(await html({ mode: "songs", a: "burna-boy", b: "rema", sb: "Smooth Criminal" }));
+    // The string that shipped: the header described side A, which had no song.
+    expect(t).not.toContain("Burna Boy · at least 0 certified units");
+    expect(t).toMatch(/Smooth Criminal · at least [\d,]+ certified units/);
+  });
+});

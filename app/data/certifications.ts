@@ -306,7 +306,8 @@ export const singles: Release[] = [
   { title: "Common Person", year: 2022, cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Platinum", x: 3 },
   ] },
-  { title: "TaTaTa", credit: "feat. Travis Scott", year: 2025, certs: [
+  // Sleeve added 23 Sep 2026 — the row had none: Deezer's single 760108371.
+  { title: "TaTaTa", credit: "feat. Travis Scott", year: 2025, cover: "https://cdn-images.dzcdn.net/images/cover/370a2314959d2766aad3d693279f0220/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Platinum" },
   ] },
   { title: "Update", year: 2025, cover: "https://cdn-images.dzcdn.net/images/cover/ff3c52d12ace7d1e6d256b73e163edcb/500x500-000000-80-0-0.jpg", certs: [
@@ -407,8 +408,11 @@ export const singles: Release[] = [
   // capture of 21 Feb 2026 (20260221224010id_; ids 2116, 2038, 1996, 2101),
   // which the live page's 500-row cap cuts off. No award date is published: the
   // rows arrived between 8 and 21 Feb 2026, so the dated log carries them as
-  // 2026 with no day. Sleeve: the album's, which is what Deezer's record of
-  // each track carries (album 784874611) and what "Dem Dey" already uses.
+  // 2026 with no day. Sleeve: the album's (Deezer 784874611), as "Dem Dey"
+  // uses, for the tracks that were only ever album tracks. "Sweet Love" was
+  // released as a single on 1 May 2025 with its own sleeve, so it carries that
+  // one, the way "Update" and "Love" do; "Change Your Mind"'s single reuses the
+  // album picture, so the album sleeve stands (cover check, 23 Sep 2026).
   // docs/sweeps/sweep-2026-09-23.md, docs/sourcing/BURNA-FINDINGS.md.
   { title: "No Panic", year: 2025, cover: "https://cdn-images.dzcdn.net/images/cover/af66f2a3785c256727e0a2b234a3b90a/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Gold" },
@@ -482,7 +486,7 @@ export const singles: Release[] = [
   { title: "Empty Chairs", credit: "feat. Mick Jagger", year: 2025, cover: "https://cdn-images.dzcdn.net/images/cover/af66f2a3785c256727e0a2b234a3b90a/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Silver" },
   ] },
-  { title: "Sweet Love", year: 2025, cover: "https://cdn-images.dzcdn.net/images/cover/af66f2a3785c256727e0a2b234a3b90a/500x500-000000-80-0-0.jpg", certs: [
+  { title: "Sweet Love", year: 2025, cover: "https://cdn-images.dzcdn.net/images/cover/144e7407b7ce92a7a741d3fceaf8ccb8/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Silver" },
   ] },
   { title: "Collateral Damage", year: 2019, cover: "https://cdn-images.dzcdn.net/images/cover/3cfb4e9b823e7c1c610382ee27cb7575/500x500-000000-80-0-0.jpg", certs: [

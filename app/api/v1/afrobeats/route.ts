@@ -54,7 +54,9 @@ const artists = sweptArtists.map((a) => ({
     certifications: r.certs.map((c) => ({
       countryCode: c.c,
       country: countryMeta(c.c).name,
-      body: countryMeta(c.c).body,
+      // The per-cert programme wins, as it does for the subject below: Santa and
+      // Bubalu are RIAA Latin plaques, and this said "RIAA" (23 Sep 2026).
+      body: c.body ?? countryMeta(c.c).body,
       level: c.level,
       multiplier: c.x ?? 1,
     })),

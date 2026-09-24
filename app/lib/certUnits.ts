@@ -52,6 +52,8 @@ import {
   CERT_THRESHOLDS,
   exclusionFor,
   historicFor,
+  vintageFor,
+  assumedFor,
   thresholdFor,
   type CertFormat,
 } from "../data/certThresholds";
@@ -396,6 +398,8 @@ export function priceArtist(
       // Like the caveat, the ¶ is the LINE's: Poland's is singles-only, and
       // Rema's Polish line opens on his album before "Calm Down" joins it.
       if (!program && !line.historic) line.historic = historicFor(cert.c, release.format);
+      if (!program && !line.vintage) line.vintage = vintageFor(cert.c, release.format);
+      if (!program && !line.assumed) line.assumed = assumedFor(cert.c, release.format);
     } else {
       lines.set(key, {
         country: cert.c,
@@ -412,8 +416,8 @@ export function priceArtist(
         // notes — the raised-levels ‡, the assumed-ratio §, the historic ¶ —
         // are not statements about it.
         caveat: program ? undefined : multiplied ? CERT_THRESHOLDS[cert.c]?.caveat : undefined,
-        vintage: program ? undefined : CERT_THRESHOLDS[cert.c]?.vintage,
-        assumed: program ? undefined : CERT_THRESHOLDS[cert.c]?.assumed,
+        vintage: program ? undefined : vintageFor(cert.c, release.format),
+        assumed: program ? undefined : assumedFor(cert.c, release.format),
         historic: program ? undefined : historicFor(cert.c, release.format),
       });
     }

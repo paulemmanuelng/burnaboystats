@@ -625,11 +625,14 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
   // song chosen, that side is the SONG, never the artist. The header card was
   // printing "Essence · 6,340,000 · 47 of 47 plaques counted": the song's figure
   // beside the artist's plaque count.
-  const sideA: ArtistUnits | null = record ? spa : c?.a ?? soloPriced ?? null;
+  // With only side B's record picked, the one header card describes THAT
+  // record: it read "Burna Boy · at least 0 certified units" beside a Smooth
+  // Criminal chosen on the right (review, 23 Sep 2026).
+  const sideA: ArtistUnits | null = record ? spa ?? (ready ? null : spb) : c?.a ?? soloPriced ?? null;
   const sideB: ArtistUnits | null = record ? spb : c?.b ?? null;
   const totalA = sideA?.total ?? 0;
   const totalB = sideB?.total ?? 0;
-  const nameA = record && songA ? songA.title : a?.name ?? "";
+  const nameA = record && songA ? songA.title : record && songB && !spa ? songB.title : a?.name ?? "";
   const nameB = record && songB ? songB.title : b?.name ?? "";
 
   const byMax = (x: ComparisonRow, y: ComparisonRow) =>

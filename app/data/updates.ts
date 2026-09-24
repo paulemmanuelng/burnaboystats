@@ -52,6 +52,16 @@ export const updates: Update[] = [
   {
     date: "2026-09-23",
     category: "Certifications",
+    // RIAA's own post (@riaa_awards on Instagram, 23 Sep 2026, 20:24 UTC). Its
+    // Dai Dai slide carries a 6X Latin Platinum badge that RIAA's database does
+    // not show (2X Platino, 9 Jul 2026) — the site keeps the database's tier
+    // until it changes (Paul, 23 Sep 2026), so no level is claimed here.
+    text: "RIAA names “Dai Dai” one of its 2026 Songs of the Summer: Shakira and Burna Boy's World Cup anthem is one of four records in the certifying body's summer wrap-up of songs that made waves in its Gold & Platinum Program, beside Zara Larsson, Ariana Grande and Ella Langley.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-09-23",
+    category: "Certifications",
     // TCSN's own register, read in its 21 Feb 2026 capture: rows added between
     // 8 and 21 Feb 2026, below the live page's 500-row cap. Hence past tense.
     text: `Nine more Nigerian plaques, from TurnTable's own register: “No Panic”, “Buy You Life”, “28 Grams” and “Born Winner” were certified Gold, the title track “No Sign of Weakness”, “Change Your Mind”, “Empty Chairs”, “Sweet Love” and “4 Kampé II” Silver, and “Ye” rose to Gold — ${totalAwards()} plaques in all.`,
