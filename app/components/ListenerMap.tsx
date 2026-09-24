@@ -11,6 +11,7 @@ import {
   type ListenerCity,
 } from "../data/listeners";
 import { projectEqualEarth } from "../lib/equalEarth";
+import { keyboardFocused } from "../lib/mapFocus";
 import mapStyles from "../records/tours/map/map.module.css";
 import styles from "./ListenerMap.module.css";
 
@@ -134,15 +135,23 @@ export default function ListenerMap() {
   }, [zoom]);
 
   // The card is fixed to where the dot sat at tap time; a scroll would leave
-  // it floating, so it goes on scroll (same rule as the performance map).
+  // it floating, so it goes on scroll (same rule as the performance map) —
+  // unless a Tab stop is what scrolled, which dismissed the card of the dot
+  // just focused: five of eight at zoom 2, and Sydney at zoom 1 (24 Sep 2026).
+  // A focused dot re-anchors to where it now sits instead.
   useEffect(() => {
     if (active == null) return;
     const vp = viewportRef.current;
-    window.addEventListener("scroll", clear, { passive: true });
-    vp?.addEventListener("scroll", clear, { passive: true });
+    const onScroll = () => {
+      const el = keyboardFocused(vp);
+      if (el) show(Number(el.dataset.code), el.getBoundingClientRect());
+      else clear();
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    vp?.addEventListener("scroll", onScroll, { passive: true });
     return () => {
-      window.removeEventListener("scroll", clear);
-      vp?.removeEventListener("scroll", clear);
+      window.removeEventListener("scroll", onScroll);
+      vp?.removeEventListener("scroll", onScroll);
     };
   }, [active]);
 
@@ -151,6 +160,7 @@ export default function ListenerMap() {
   const wire = (c: ListenerCity) => ({
     tabIndex: 0,
     role: "button" as const,
+    "data-code": c.rank,
     "aria-label": `${c.city}, ${countryName(c)}: ${formatListeners(c.listeners)} monthly listeners, No. ${c.rank} of ${cityCount}`,
     onFocus: (e: React.FocusEvent<SVGElement>) => show(c.rank, e.currentTarget.getBoundingClientRect()),
     onBlur: clear,

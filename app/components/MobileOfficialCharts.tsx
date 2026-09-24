@@ -1,6 +1,6 @@
 "use client"; // the peak and country filters are live
 
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import styles from "./mobileOfficialCharts.module.css";
 import ScrollRail from "./ScrollRail";
@@ -11,6 +11,7 @@ import type { ChartCountry } from "../data/charts";
 import type { ExplorerRelease, CoverMap } from "./ChartExplorer";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
+import { dropDeepLink, onDeepLinkChange, readDeepLink, readSavedView, saveView } from "../lib/deepLink";
 
 /**
  * The mobile official-charts screen.
@@ -54,6 +55,8 @@ const COUNTRY_RAIL = [
 ];
 /** Pills shown per release before the overflow marker. */
 const PILLS_SHOWN = 12;
+/** This screen's key in the history entry's saved filters (lib/deepLink.ts). */
+const VIEW_ID = "charts-m";
 
 // Peak bands. These carry meaning and are never recoloured: No. 1 gold,
 // Top 10 cyan, Top 40 silver, beyond muted.
@@ -124,10 +127,11 @@ export default function MobileOfficialCharts({
   const cover = (title: string) => (covers ? covers[title] : coverFor(title));
   const [peakMax, setPeakMax] = useState<number | null>(null);
   const [only, setOnly] = useState<string | null>(null);
-  // A single-release focus, deep-linked via ?song=… — the same param the Dai Dai
-  // story's "every chart position" link carries. ChartExplorer has read it since
-  // that link shipped, but this screen never did, so tapping it on a phone landed
-  // on the whole unfiltered list with nothing to say a filter was ever meant.
+  // A single-release focus, deep-linked via #song=… (or an older ?song=…) —
+  // the key the Dai Dai story's "every chart position" link carries.
+  // ChartExplorer has read it since that link shipped, but this screen never
+  // did, so tapping it on a phone landed on the whole unfiltered list with
+  // nothing to say a filter was ever meant.
   const [focus, setFocus] = useState<string | null>(null);
   // Releases whose full chart list is unfolded. Dai Dai runs to 59 entries,
   // so each row starts at PILLS_SHOWN and the "+47" opens the rest in place.
@@ -140,22 +144,62 @@ export default function MobileOfficialCharts({
       return next;
     });
 
-  // Read the ?song= deep-link once on mount — client-only, exactly as
-  // ChartExplorer does it, so the page stays statically rendered. The focused
-  // release is unfolded at the same time: the bar promises "every chart entry",
-  // and Dai Dai's 59 would otherwise still be folded away behind the "+47".
-  useEffect(() => {
-    const s = new URLSearchParams(window.location.search).get("song");
-    if (!s) return;
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time mount read of a browser-only URL param
-    setFocus(s);
-    setUnfolded(new Set([s]));
-  }, []);
-
   const all = [...albums, ...singles, ...features];
 
   const charted = new Set(all.flatMap((r) => r.entries.map((e) => e.c)));
   const countryChips = (countryRail ?? COUNTRY_RAIL).filter((c) => charted.has(c));
+  const chipKey = countryChips.join(",");
+
+  // Read the deep link on mount — client-only, exactly as ChartExplorer does
+  // it, so the page stays statically rendered — and again whenever the
+  // fragment changes. The FRAGMENT first: #song= is the form every link on
+  // the site carries now, and this screen read only ?song=, so the Dai Dai
+  // story's link focused the desktop explorer and not the phone (24 Sep
+  // 2026). The focused release is unfolded at the same time: the bar
+  // promises "every chart entry", and Dai Dai's 59 would otherwise still be
+  // folded away behind the "+47". #country= selects that chip when the rail
+  // has one. The rails come back from this history entry on Back.
+  useLayoutEffect(() => {
+    const chips = chipKey.split(",");
+    const saved = readSavedView<{ peakMax: number | null; only: string | null }>(VIEW_ID);
+    const read = (initial: boolean) => {
+      const s = readDeepLink("song", initial);
+      setFocus(s);
+      if (s) setUnfolded(new Set([s]));
+      const c = readDeepLink("country", false);
+      if (!initial || c) setOnly(c && chips.includes(c) ? c : null);
+      if (initial && saved) {
+        setPeakMax(PEAKS.some((p) => p.key === saved.peakMax) ? saved.peakMax : null);
+        setOnly(saved.only && chips.includes(saved.only) ? saved.only : null);
+      }
+    };
+    read(true);
+    return onDeepLinkChange(() => read(false));
+  }, [chipKey]);
+
+  useEffect(() => {
+    saveView(VIEW_ID, { peakMax, only });
+  }, [peakMax, only]);
+
+  // Clearing the focus or the country takes it out of the address bar too,
+  // or a reload puts it back.
+  const clearFocus = () => {
+    setFocus(null);
+    dropDeepLink("song");
+  };
+  const pickOnly = (c: string | null) => {
+    setOnly(c);
+    dropDeepLink("country");
+  };
+
+  // Whether the focus names a release this screen carries — ChartExplorer's
+  // test. A #song= naming nothing here is a broken link, and the empty state
+  // said "That's a real gap in the record" about it.
+  const knownTitles = useMemo(
+    () => new Set([...albums, ...singles, ...features].map((r) => r.title)),
+    [albums, singles, features]
+  );
+  const unknownFocus = !!focus && !knownTitles.has(focus);
 
   const sections = [
     { name: "Albums", list: albums },
@@ -254,7 +298,7 @@ export default function MobileOfficialCharts({
           <span>
             Showing every chart entry for <b>{focus}</b>
           </span>
-          <button type="button" className={styles.focusClear} onClick={() => setFocus(null)}>
+          <button type="button" className={styles.focusClear} onClick={clearFocus}>
             Show all releases ✕
           </button>
         </div>
@@ -283,7 +327,7 @@ export default function MobileOfficialCharts({
             type="button"
             aria-pressed={only === null}
             className={`${styles.chip} ${only === null ? styles.chipOn : ""}`}
-            onClick={() => setOnly(null)}
+            onClick={() => pickOnly(null)}
           >
             All
           </button>
@@ -294,7 +338,7 @@ export default function MobileOfficialCharts({
               aria-pressed={only === code}
               title={countries[code]?.name ?? code}
               className={`${styles.chip} ${only === code ? styles.chipOn : ""}`}
-              onClick={() => setOnly(only === code ? null : code)}
+              onClick={() => pickOnly(only === code ? null : code)}
             >
               <span className={styles.chipFlag} aria-hidden="true">{countries[code]?.flag ?? "🏳"}</span>
               {code}
@@ -324,26 +368,36 @@ export default function MobileOfficialCharts({
 
       {/* Groups */}
       {shown === 0 && (
-        // The country is the narrower of the two rails, so it is what the
-        // second button drops.
+        // The focus is the narrowest filter, then the country rail, then the
+        // peak — the order ChartExplorer drops them in. "Clear filters" left
+        // the focus standing, so on a ?song= that matched nothing it did
+        // nothing at all (24 Sep 2026).
         <FilterEmpty
-          body={`There's no ${[
-            peakMax && PEAKS.find((p) => p.key === peakMax)!.label,
-            "chart entry",
-            only && `in ${countries[only]?.name ?? only}`,
-          ]
-            .filter(Boolean)
-            .join(" ")}. That's a real gap in the record, not a missing page.`}
+          body={
+            unknownFocus
+              ? `No release on this page is called “${focus}”. That's a broken link, not a gap in the record.`
+              : `There's no ${[
+                  peakMax && PEAKS.find((p) => p.key === peakMax)!.label,
+                  "chart entry",
+                  focus && `for ${focus}`,
+                  only && `in ${countries[only]?.name ?? only}`,
+                ]
+                  .filter(Boolean)
+                  .join(" ")}. That's a real gap in the record, not a missing page.`
+          }
           onClear={() => {
             setPeakMax(null);
-            setOnly(null);
+            pickOnly(null);
+            clearFocus();
           }}
           narrowest={
-            only
-              ? { label: countries[only]?.name ?? only, drop: () => setOnly(null) }
-              : peakMax
-                ? { label: PEAKS.find((p) => p.key === peakMax)!.label, drop: () => setPeakMax(null) }
-                : undefined
+            focus
+              ? { label: focus, drop: clearFocus }
+              : only
+                ? { label: countries[only]?.name ?? only, drop: () => pickOnly(null) }
+                : peakMax
+                  ? { label: PEAKS.find((p) => p.key === peakMax)!.label, drop: () => setPeakMax(null) }
+                  : undefined
           }
         />
       )}

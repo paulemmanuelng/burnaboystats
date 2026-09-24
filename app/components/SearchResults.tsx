@@ -2,9 +2,11 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import styles from "../search/search.module.css";
 import { searchDocs, searchIndex } from "../lib/searchIndex";
 import { track } from "../lib/analytics";
+import { replaceUrl } from "../lib/deepLink";
 
 /**
  * The /search body — also the target of the WebSite SearchAction.
@@ -36,6 +38,14 @@ const SUGGESTIONS = ["Charts", "Certifications", "Tours", "Awards", "Dai Dai", "
 // rest, along with their filter chips, until 17 Sep 2026.
 const LIMIT = 1000;
 
+/** Put the field's query in the address bar. Replaced, never pushed: one
+ *  history entry per visit, not one per keystroke. */
+function syncUrl(value: string) {
+  const want = value.trim();
+  if ((new URLSearchParams(window.location.search).get("q") ?? "") === want) return;
+  replaceUrl(want ? `/search?q=${encodeURIComponent(want)}` : "/search");
+}
+
 export default function SearchResults({
   initialQuery,
   stats,
@@ -43,7 +53,12 @@ export default function SearchResults({
   initialQuery: string;
   stats: Record<string, string>;
 }) {
-  const [q, setQ] = useState(initialQuery);
+  // The address bar, not the server's prop, seeds the field. The field writes
+  // its query back to the URL as you type (below), and on Back the router can
+  // hand this page the tree it first rendered — with the query it first
+  // rendered — while the URL holds the one the reader last saw.
+  const params = useSearchParams();
+  const [q, setQ] = useState(() => params?.get("q") ?? initialQuery);
   const [section, setSection] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -51,7 +66,6 @@ export default function SearchResults({
   // An empty query lists everything rather than nothing — the design's default
   // state is a browsable index, not a blank page.
   const base = q.trim() === "" ? searchIndex : matched;
-  const results = section ? base.filter((d) => d.section === section) : base;
 
   // Counts come from the query match, not the filtered set, so a chip always
   // says how many it would show.
@@ -61,9 +75,25 @@ export default function SearchResults({
   }, {});
   const sections = Object.keys(counts).sort((a, b) => counts[b] - counts[a]);
 
+  // The chip filters only while the query still has results in its section.
+  // It was kept as chosen, so a new query could leave it filtering to a
+  // section with nothing in it: "Browse 0 pages" beside "All 101", or "0
+  // results … Nothing matches" while the chips offered "Records 1", with no
+  // chip pressed to undo it (24 Sep 2026).
+  const active = section && counts[section] ? section : null;
+  const results = active ? base.filter((d) => d.section === active) : base;
+
   useEffect(() => {
     inputRef.current?.focus();
   }, []);
+
+  // Keep the address bar on the query in the field, so Back from a result,
+  // a reload and a copied link all show what the reader was looking at. It
+  // stayed on the query the page was opened with (24 Sep 2026).
+  useEffect(() => {
+    const t = window.setTimeout(() => syncUrl(q), 300);
+    return () => window.clearTimeout(t);
+  }, [q]);
 
   // Record the query that landed here (from the palette's "see all" or an
   // external SearchAction link), so we can see what people actually look for.
@@ -74,6 +104,7 @@ export default function SearchResults({
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    syncUrl(q);
     const t = q.trim().toLowerCase();
     if (t) track("search", { q: t, results: results.length });
   };
@@ -126,16 +157,16 @@ export default function SearchResults({
           <span className={styles.filterLabel}>Filter</span>
           <button
             type="button"
-            aria-pressed={section === null}
+            aria-pressed={active === null}
             onClick={() => setSection(null)}
             className={styles.chip}
-            style={section === null ? { borderColor: "var(--gold)", color: "var(--gold)" } : undefined}
+            style={active === null ? { borderColor: "var(--gold)", color: "var(--gold)" } : undefined}
           >
             All
             <span className={styles.chipCount}>{base.length}</span>
           </button>
           {sections.map((s) => {
-            const on = section === s;
+            const on = active === s;
             const [color, border] = inkFor(s);
             return (
               <button

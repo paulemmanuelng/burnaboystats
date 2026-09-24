@@ -57,7 +57,21 @@ export function buildSearchDocs(): SearchDoc[] {
   // Worth finding whether certified, charted or both. Its own page when it has
   // one; otherwise the ledger or chart table where its figures actually are.
   // Keyed by kind AND title, so an album and its title track stay two records.
-  type Agg = { title: string; credit?: string; album: boolean; certs: number; entries: number };
+  //
+  // Without a page of its own, a release points at its row: the ledger's
+  // #release= or the chart table's #song=, each spelled exactly as THAT
+  // dataset spells it, because the explorers match the focus to the letter.
+  // A bare /certifications left "gbona" + Enter on the whole ledger with
+  // nothing to say which of 93 releases had been asked for (24 Sep 2026).
+  type Agg = {
+    title: string;
+    credit?: string;
+    album: boolean;
+    certs: number;
+    entries: number;
+    certTitle?: string;
+    chartTitle?: string;
+  };
   const releases = new Map<string, Agg>();
   const certAlbum = new Set<unknown>(certAlbums);
   const chartAlbum = new Set<unknown>(albumCharts);
@@ -68,12 +82,24 @@ export function buildSearchDocs(): SearchDoc[] {
     releases.set(k, e);
     return e;
   };
-  for (const r of allItems) aggFor(r.title, r.credit, certAlbum.has(r)).certs += r.certs.length;
-  for (const r of allChartItems) aggFor(r.title, r.credit, chartAlbum.has(r)).entries += r.entries.length;
+  for (const r of allItems) {
+    const e = aggFor(r.title, r.credit, certAlbum.has(r));
+    e.certs += r.certs.length;
+    e.certTitle ??= r.title;
+  }
+  for (const r of allChartItems) {
+    const e = aggFor(r.title, r.credit, chartAlbum.has(r));
+    e.entries += r.entries.length;
+    e.chartTitle ??= r.title;
+  }
 
   for (const r of releases.values()) {
     const own = pathFor(r.title, r.album);
-    const where = own ?? (r.certs >= r.entries ? "/certifications" : "/records/charts");
+    const where =
+      own ??
+      (r.certs >= r.entries
+        ? `/certifications#release=${encodeURIComponent(r.certTitle ?? r.title)}`
+        : `/records/charts#song=${encodeURIComponent(r.chartTitle ?? r.title)}`);
     const bits: string[] = [];
     if (r.certs) bits.push(`${r.certs} certification${r.certs === 1 ? "" : "s"}`);
     if (r.entries) bits.push(`${r.entries} chart entr${r.entries === 1 ? "y" : "ies"}`);
@@ -98,11 +124,13 @@ export function buildSearchDocs(): SearchDoc[] {
   }
 
   // ── Award bodies ────────────────────────────────────────────────────────
+  // #body= filters the desktop explorer to that body and scrolls the phone
+  // screen, which has no body filter, to its heading.
   for (const c of ceremonies) {
     const wins = c.noms.filter((n) => n.won).length;
     add({
       title: c.name,
-      path: "/records/awards",
+      path: `/records/awards#body=${encodeURIComponent(c.name)}`,
       section: "Awards",
       description: `${wins} win${wins === 1 ? "" : "s"} from ${c.noms.length} nomination${c.noms.length === 1 ? "" : "s"}.`,
       keywords: ["award", "awards", "ceremony", "won", "nomination"],
@@ -124,7 +152,8 @@ export function buildSearchDocs(): SearchDoc[] {
 
   // ── Countries ───────────────────────────────────────────────────────────
   // Certifying countries point at the ledger, charting territories at the chart
-  // table. A country in both is listed once, at the ledger.
+  // table. A country in both is listed once, at the ledger. #country= sets
+  // that page's country filter where the screen has one.
   const certCountries = new Set(allItems.flatMap((r) => r.certs.map((c) => c.c)));
   const chartCountries = new Set(
     allChartItems
@@ -136,7 +165,7 @@ export function buildSearchDocs(): SearchDoc[] {
     if (!meta) continue;
     add({
       title: meta.name,
-      path: "/certifications",
+      path: `/certifications#country=${code}`,
       section: "Country",
       description: `Certifications awarded in ${meta.name} by ${meta.body}.`,
       keywords: [code.toLowerCase(), "country", "certified", meta.body.toLowerCase()],
@@ -148,7 +177,7 @@ export function buildSearchDocs(): SearchDoc[] {
     if (!meta) continue;
     add({
       title: meta.name,
-      path: "/records/charts",
+      path: `/records/charts#country=${code}`,
       section: "Country",
       description: `Chart peaks in ${meta.name} on ${meta.body}.`,
       keywords: [code.toLowerCase(), "country", "chart", "peak", meta.body.toLowerCase()],

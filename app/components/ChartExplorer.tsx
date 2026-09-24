@@ -1,6 +1,6 @@
 "use client"; // interactive: filter chart entries + toggle a sortable table view
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useState } from "react";
 import styles from "../records/charts/charts.module.css";
 import { chartTier, type ChartCountry } from "../data/charts";
 import { track } from "../lib/analytics";
@@ -9,6 +9,7 @@ import { spotifyImage } from "../lib/spotifyImage";
 import { artAt } from "../lib/artAt";
 import FilterEmpty from "./FilterEmpty";
 import { byReachOrder } from "../lib/chartOrder";
+import { dropDeepLink, onDeepLinkChange, readDeepLink, readSavedView, saveView } from "../lib/deepLink";
 
 type Countries = Record<string, ChartCountry>;
 
@@ -29,6 +30,9 @@ export interface ExplorerRelease {
  *  server page cannot hand a function to a client component. Omitted means
  *  "use Burna's own catalogue lookup". */
 export type CoverMap = Record<string, string | undefined>;
+
+/** This explorer's key in the history entry's saved filters (lib/deepLink.ts). */
+const VIEW_ID = "charts";
 
 const PEAKS = [
   { key: "one", label: "No. 1", max: 1 },
@@ -147,7 +151,7 @@ export default function ChartExplorer({
   // long time did not treat it as one.
   const [focus, setFocus] = useState<string | null>(null);
 
-  // Read the deep-link once on mount (client-only, so the page stays static).
+  // Read the deep-link on mount (client-only, so the page stays static).
   // When present, focus that release and open the per-entry table view.
   //
   // The FRAGMENT is read first and the query string second, matching
@@ -157,14 +161,44 @@ export default function ChartExplorer({
   // run can clear while the URL exists. A fragment is never sent to the server,
   // so it is not a URL at all to a crawler. Both are read because every
   // ?song= link already in the wild has to keep working.
+  //
+  // Read again whenever the fragment changes, and #country= — search's link
+  // for a chart-only territory — sets the country filter. The chips and the
+  // view come back from this history entry on Back; they were plain state, so
+  // Back from Dai Dai rebuilt the list unfiltered under the old scroll offset.
+  // A layout effect, so all of it lands before the first paint.
+  useLayoutEffect(() => {
+    const saved = readSavedView<{ country: string | null; peak: string | null; view: "cards" | "table" }>(VIEW_ID);
+    const read = (initial: boolean) => {
+      const s = readDeepLink("song", initial);
+      setFocus(s);
+      if (s) setView("table");
+      const c = readDeepLink("country", false);
+      if (!initial || c) setCountry(c && countries[c] ? c : null);
+      if (initial && saved) {
+        setCountry(saved.country && countries[saved.country] ? saved.country : null);
+        setPeak(saved.peak && PEAKS.some((p) => p.key === saved.peak) ? saved.peak : null);
+        setView(saved.view === "table" ? "table" : "cards");
+      }
+    };
+    read(true);
+    return onDeepLinkChange(() => read(false));
+  }, [countries]);
+
   useEffect(() => {
-    const fromHash = new URLSearchParams(window.location.hash.replace(/^#/, "")).get("song");
-    const s = fromHash ?? new URLSearchParams(window.location.search).get("song");
-    if (!s) return;
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time mount read of a browser-only URL param
-    setFocus(s);
-    setView("table");
-  }, []);
+    saveView(VIEW_ID, { country, peak, view });
+  }, [country, peak, view]);
+
+  // Clearing the focus or the country takes it out of the address bar too;
+  // "Show all releases" left #song= standing, so a reload put it back.
+  const clearFocus = () => {
+    setFocus(null);
+    dropDeepLink("song");
+  };
+  const pickCountry = (c: string | null) => {
+    setCountry(c);
+    dropDeepLink("country");
+  };
 
   // Track filter engagement (fires once per change; skips the empty initial state).
   useEffect(() => {
@@ -203,17 +237,17 @@ export default function ChartExplorer({
   // set and is least likely to suspect.
   const emptyProps = {
     onClear: () => {
-      setCountry(null);
+      pickCountry(null);
       setPeak(null);
       // The deep-link focus IS a filter, and "Clear filters" left it standing.
       // On a ?song= link that matched nothing the button was a no-op — the
       // reader pressed the one control offered and the page did not move.
-      setFocus(null);
+      clearFocus();
     },
     narrowest: focus
-      ? { label: focus, drop: () => setFocus(null) }
+      ? { label: focus, drop: clearFocus }
       : country
-        ? { label: countries[country]?.name ?? country, drop: () => setCountry(null) }
+        ? { label: countries[country]?.name ?? country, drop: () => pickCountry(null) }
         : peak
           ? { label: PEAKS.find((p) => p.key === peak)!.label, drop: () => setPeak(null) }
           : undefined,
@@ -305,7 +339,7 @@ export default function ChartExplorer({
           <span>
             Showing every chart entry for <b>{focus}</b>
           </span>
-          <button type="button" className={styles.clearBtn} onClick={() => setFocus(null)}>
+          <button type="button" className={styles.clearBtn} onClick={clearFocus}>
             Show all releases ✕
           </button>
         </div>
@@ -402,14 +436,14 @@ export default function ChartExplorer({
           </div>
           <div className={styles.filterRow}>
             <span className={styles.filterLabel}>Country</span>
-            <button aria-pressed={!country} className={`${styles.fChip} ${!country ? styles.fChipOn : ""}`} onClick={() => setCountry(null)}>All</button>
+            <button aria-pressed={!country} className={`${styles.fChip} ${!country ? styles.fChipOn : ""}`} onClick={() => pickCountry(null)}>All</button>
             {Object.entries(countries).map(([code, c]) => (
               <button
                 key={code}
                 className={`${styles.fChip} ${country === code ? styles.fChipOn : ""}`}
                 aria-pressed={country === code}
                 title={`${c.name} — ${c.body}`}
-                onClick={() => setCountry(country === code ? null : code)}
+                onClick={() => pickCountry(country === code ? null : code)}
               >
                 <span className={styles.flag}>{c.flag}</span>
                 {code}
@@ -420,7 +454,7 @@ export default function ChartExplorer({
             <div className={styles.filterMeta}>
               Showing <b>{view === "table" ? flatRows.length : totalShown}</b> of{" "}
               {view === "table" ? "all" : totalAll} {view === "table" ? "chart entries" : "releases"}
-              <button className={styles.clearBtn} onClick={() => { setCountry(null); setPeak(null); }}>
+              <button className={styles.clearBtn} onClick={() => { pickCountry(null); setPeak(null); }}>
                 Clear ✕
               </button>
             </div>

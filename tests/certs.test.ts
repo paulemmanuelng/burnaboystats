@@ -356,9 +356,14 @@ describe("No Sign of Weakness: the song and the album stay two releases", () => 
 
   it("search keeps two records, and only the album's goes to the album page", () => {
     const docs = buildSearchDocs().filter((d) => d.section === "Release" && d.title === NSOW);
-    expect(docs.map((d) => d.path).sort()).toEqual(["/certifications", "/music/albums/no-sign-of-weakness"]);
+    // The track has no page of its own, so it points at its own row in the
+    // ledger — a #release= focus since 24 Sep 2026, not the bare ledger.
+    expect(docs.map((d) => d.path).sort()).toEqual([
+      "/certifications#release=No%20Sign%20of%20Weakness",
+      "/music/albums/no-sign-of-weakness",
+    ]);
     const album = docs.find((d) => d.path.startsWith("/music/albums/"))!;
-    const track = docs.find((d) => d.path === "/certifications")!;
+    const track = docs.find((d) => d.path.startsWith("/certifications#"))!;
     expect(album.description).not.toMatch(/certification/);
     expect(track.description).toMatch(/^The title track — 1 certification/);
   });

@@ -150,10 +150,14 @@ describe("search rows carry a key that identifies the doc, not the destination",
   });
 
   it("still returns many rows per destination — dedupe would gut this", () => {
-    // Guards the fix from being "simplified" into a path dedupe later.
+    // Guards the fix from being "simplified" into a path dedupe later. The
+    // destination is the PAGE: since 24 Sep 2026 each award body links to
+    // /records/awards#body=<name>, so the fragment is set aside here — the 47
+    // bodies are still 47 rows onto one page, which a dedupe on the page
+    // would collapse to one.
     const rows = searchDocs("award", 60);
     expect(rows.length).toBeGreaterThan(20);
-    expect(new Set(rows.map((d) => d.path)).size).toBeLessThan(rows.length);
+    expect(new Set(rows.map((d) => d.path.split("#")[0])).size).toBeLessThan(rows.length);
   });
 
   it("keys the rendered lists on the composite, not on path", () => {
@@ -162,5 +166,48 @@ describe("search rows carry a key that identifies the doc, not the destination",
       expect(src, `${f} must not key a list on d.path alone`).not.toMatch(/key=\{d\.path\}/);
       expect(src).toMatch(/key=\{`\$\{d\.section\}\|\$\{d\.title\}\|\$\{d\.path\}`\}/);
     }
+  });
+});
+
+// C-11 (debug pass, 24 Sep 2026). A generated doc's exact keyword — its own
+// name, like "uk" on the United Kingdom — scored below a mere title prefix or
+// substring, so "uk" put Ukraine 2nd and the United Kingdom 7th, and "us" led
+// with Jerusalema (Remix), whose title merely contains the letters. And a
+// plural matched nothing its singular did: "grammys" dropped Grammy Awards.
+describe("a record's own name outranks a word that merely contains it", () => {
+  const rank = (q: string, title: string) => searchDocs(q, 8).findIndex((d) => d.title === title);
+
+  it("\"uk\" ranks the United Kingdom above Ukraine", () => {
+    expect(rank("uk", "United Kingdom")).toBeGreaterThanOrEqual(0);
+    expect(rank("uk", "United Kingdom")).toBeLessThan(rank("uk", "Ukraine"));
+  });
+
+  it("\"us\" ranks the United States above Jerusalema (Remix)", () => {
+    expect(rank("US", "United States")).toBeGreaterThanOrEqual(0);
+    expect(rank("US", "United States")).toBeLessThan(rank("US", "Jerusalema (Remix)"));
+  });
+
+  it("a category keyword does not flood the palette", () => {
+    // "chart" is a keyword of every charting country; only a name is promoted.
+    expect(searchDocs("chart", 8).filter((d) => d.section === "Country")).toEqual([]);
+  });
+});
+
+describe("a plural finds what its singular finds", () => {
+  it("\"grammys\" reaches Grammy Awards", () => {
+    expect(searchDocs("grammys").some((d) => d.title === "Grammy Awards")).toBe(true);
+  });
+
+  it("\"cars\" reaches the cars, not the career pages", () => {
+    const hits = searchDocs("cars", 20);
+    expect(hits[0].path).toBe("/records/cars");
+    expect(hits.some((d) => d.section === "Car")).toBe(true);
+    expect(hits.some((d) => d.title.startsWith("Career"))).toBe(false);
+  });
+
+  it("the word as typed still leads its singular", () => {
+    // Live Charts matches "charts" itself; Chart Analysis only "chart".
+    const top = searchDocs("charts", 8).map((d) => d.title);
+    expect(top[0]).toBe("Live Charts");
   });
 });

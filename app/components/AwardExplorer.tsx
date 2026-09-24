@@ -1,10 +1,11 @@
 "use client"; // interactive: filter awards by result (won / nominated)
 
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import styles from "../records/awards/awards.module.css";
 import { ceremonies, ceremonyWins, type AwardNom } from "../data/awards";
 import { track } from "../lib/analytics";
 import FilterEmpty from "./FilterEmpty";
+import { dropDeepLink, onDeepLinkChange, readDeepLink } from "../lib/deepLink";
 
 const RESULTS = [
   { key: "won", label: "Won" },
@@ -39,6 +40,25 @@ export default function AwardExplorer() {
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [showAllBodies, setShowAllBodies] = useState(false);
 
+  // #body=<name> — search's link for an award body — sets the body filter,
+  // on arrival and whenever the fragment changes. Search sent all 47 bodies to
+  // a bare /records/awards, so "BET Awards" + Enter changed nothing on screen
+  // (24 Sep 2026). A layout effect, so the list is right before first paint.
+  useLayoutEffect(() => {
+    const read = (initial: boolean) => {
+      const b = readDeepLink("body", false);
+      if (!initial || b) setCeremony(b && ceremonies.some((c) => c.name === b) ? b : null);
+    };
+    read(true);
+    return onDeepLinkChange(() => read(false));
+  }, []);
+  // Choosing another body takes the link's out of the address bar, so a
+  // reload does not put it back.
+  const pickCeremony = (name: string | null) => {
+    setCeremony(name);
+    dropDeepLink("body");
+  };
+
   // Track filter engagement (fires once per change; skips the empty initial state).
   useEffect(() => {
     if (result || year || ceremony) {
@@ -61,7 +81,7 @@ export default function AwardExplorer() {
   const clearAll = () => {
     setResult(null);
     setYear(null);
-    setCeremony(null);
+    pickCeremony(null);
   };
 
   return (
@@ -122,7 +142,7 @@ export default function AwardExplorer() {
           </div>
           <div className={styles.filterRow}>
             <span className={styles.filterLabel}>Award body</span>
-            <button aria-pressed={!ceremony} className={`${styles.fChip} ${!ceremony ? styles.fChipOn : ""}`} onClick={() => setCeremony(null)}>All</button>
+            <button aria-pressed={!ceremony} className={`${styles.fChip} ${!ceremony ? styles.fChipOn : ""}`} onClick={() => pickCeremony(null)}>All</button>
             {(showAllBodies
               ? ceremonies
               : ceremonies.filter((c, i) => i < BODY_PREVIEW || c.name === ceremony)
@@ -131,7 +151,7 @@ export default function AwardExplorer() {
                 key={c.name}
                 className={`${styles.fChip} ${ceremony === c.name ? styles.fChipOn : ""}`}
                 aria-pressed={ceremony === c.name}
-                onClick={() => setCeremony(ceremony === c.name ? null : c.name)}
+                onClick={() => pickCeremony(ceremony === c.name ? null : c.name)}
               >
                 {c.name}
               </button>
@@ -172,7 +192,7 @@ export default function AwardExplorer() {
             year
               ? { label: String(year), drop: () => setYear(null) }
               : ceremony
-                ? { label: ceremony, drop: () => setCeremony(null) }
+                ? { label: ceremony, drop: () => pickCeremony(null) }
                 : result
                   ? { label: result === "won" ? "Won" : "Nominated", drop: () => setResult(null) }
                   : undefined

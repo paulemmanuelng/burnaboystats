@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useState } from "react";
 import styles from "../certifications/certifications.module.css";
 import { tierOf, type Cert, type Country, type Release } from "../data/certifications";
 import { matches, badgeWeight, byMostCertified } from "../lib/certs";
@@ -12,8 +12,11 @@ import { artAt } from "../lib/artAt";
 import { track } from "../lib/analytics";
 import FilterEmpty from "./FilterEmpty";
 import { tierWord } from "../lib/awardName";
+import { dropDeepLink, onDeepLinkChange, readDeepLink, readSavedView, saveView } from "../lib/deepLink";
 
 const TIERS = ["Diamond", "Platinum", "Gold", "Silver"];
+/** This explorer's key in the history entry's saved filters. */
+const VIEW_ID = "certs";
 
 // Tier colours carry data meaning and are never recoloured to gold.
 // A tier's colour IS the tier. These read --cyan for Diamond and --silver for
@@ -147,7 +150,7 @@ export default function CertExplorer({
   // A single-release focus, deep-linked via ?release=… (e.g. from the Dai Dai story).
   const [focus, setFocus] = useState<string | null>(null);
 
-  // Read the deep-link once on mount (client-only, keeps the page static).
+  // Read the deep-link on mount (client-only, keeps the page static).
   //
   // The FRAGMENT is the live form; the query string is still read so older
   // links keep working. They behave identically for a reader — this component
@@ -159,13 +162,45 @@ export default function CertExplorer({
   // while the URL exists, so every validation run on it failed. A fragment is
   // never sent to the server and is not a separate URL, so the variant simply
   // stops existing to a crawler.
+  //
+  // It is read again whenever the fragment changes (a search result on this
+  // same page, Back between two focuses), and #country= — search's link for a
+  // country — sets the country filter. A layout effect, so the list is right
+  // before the first paint: on Back, the browser restores the scroll offset
+  // against whatever is on screen.
+  useLayoutEffect(() => {
+    // The filters this entry last showed, when the reader is coming Back to
+    // it. They win over the fragment, which only says how the visit began.
+    const saved = readSavedView<{ tier: string | null; country: string | null }>(VIEW_ID);
+    const read = (initial: boolean) => {
+      setFocus(readDeepLink("release", initial));
+      const c = readDeepLink("country", false);
+      if (!initial || c) setCountry(c && countries[c] ? c : null);
+      if (initial && saved) {
+        setTier(saved.tier && TIERS.includes(saved.tier) ? saved.tier : null);
+        setCountry(saved.country && countries[saved.country] ? saved.country : null);
+      }
+    };
+    read(true);
+    return onDeepLinkChange(() => read(false));
+  }, [countries]);
+
+  // Remember the chips in this history entry, for Back (lib/deepLink.ts).
   useEffect(() => {
-    const hash = window.location.hash.replace(/^#/, "");
-    const fromHash = new URLSearchParams(hash).get("release");
-    const r = fromHash ?? new URLSearchParams(window.location.search).get("release");
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time mount read of a browser-only URL param
-    if (r) setFocus(r);
-  }, []);
+    saveView(VIEW_ID, { tier, country });
+  }, [tier, country]);
+
+  // Every control that changes the focus or the country also takes the
+  // matching key out of the address bar. Clearing the focus left
+  // #release=Dai%20Dai standing, so a reload put Dai Dai back.
+  const clearFocus = () => {
+    setFocus(null);
+    dropDeepLink("release");
+  };
+  const pickCountry = (c: string | null) => {
+    setCountry(c);
+    dropDeepLink("country");
+  };
 
   // Track filter engagement (fires once per change; skips the empty initial state).
   useEffect(() => {
@@ -189,6 +224,15 @@ export default function CertExplorer({
   );
   const active = country || tier;
 
+  // Whether the deep-linked focus names a release this page carries — the
+  // same test ChartExplorer makes. When it doesn't, the empty state has to say
+  // the link is wrong, not that the record has a gap.
+  const knownTitles = useMemo(
+    () => new Set([...albums, ...singles, ...features].map((r) => r.title)),
+    [albums, singles, features]
+  );
+  const unknownFocus = !!focus && !knownTitles.has(focus);
+
   return (
     <>
       <section className={styles.filterBand}>
@@ -198,7 +242,7 @@ export default function CertExplorer({
           <span>
             Showing every certification for <b>{focus}</b>
           </span>
-          <button type="button" className={styles.clearBtn} onClick={() => setFocus(null)}>
+          <button type="button" className={styles.clearBtn} onClick={clearFocus}>
             Show all releases ✕
           </button>
         </div>
@@ -263,7 +307,7 @@ export default function CertExplorer({
               type="button"
               className={`${styles.fChip} ${!country ? styles.fChipOn : ""}`}
               aria-pressed={!country}
-              onClick={() => setCountry(null)}
+              onClick={() => pickCountry(null)}
             >
               All
             </button>
@@ -274,7 +318,7 @@ export default function CertExplorer({
                 className={`${styles.fChip} ${country === code ? styles.fChipOn : ""}`}
                 aria-pressed={country === code}
                 title={`${c.name} — ${c.body}`}
-                onClick={() => setCountry(country === code ? null : code)}
+                onClick={() => pickCountry(country === code ? null : code)}
               >
                 <span className={styles.flag}>{c.flag}</span>
                 {code}
@@ -289,7 +333,7 @@ export default function CertExplorer({
               type="button"
               className={styles.clearBtn}
               onClick={() => {
-                setCountry(null);
+                pickCountry(null);
                 setTier(null);
               }}
             >
@@ -303,22 +347,40 @@ export default function CertExplorer({
       </section>
 
       {totalShown === 0 ? (
-        // The country is the narrower of the two, so it is what the second
-        // button drops — a tier alone almost always still has matches.
+        // The focus is the narrowest filter — one release of ninety-odd, and
+        // the one a deep-linked reader never set — then the country, then the
+        // tier, which alone almost always still has matches. The sentence is a
+        // claim about the record, so it names the focus, and a focus this page
+        // does not carry is a broken link, not a gap: "There's no
+        // certification from Nigeria. That's a real gap in the record" was
+        // printed about Dai Dai alone, and "There's no certification" about a
+        // #release= naming nothing at all (24 Sep 2026).
         <FilterEmpty
-          body={`There's no ${[tier, "certification", country && `from ${countries[country]?.name ?? country}`]
-            .filter(Boolean)
-            .join(" ")}. That's a real gap in the record, not a missing page.`}
+          body={
+            unknownFocus
+              ? `No release on this page is called “${focus}”. That's a broken link, not a gap in the record.`
+              : `There's no ${[
+                  tier,
+                  "certification",
+                  focus && `for ${focus}`,
+                  country && `from ${countries[country]?.name ?? country}`,
+                ]
+                  .filter(Boolean)
+                  .join(" ")}. That's a real gap in the record, not a missing page.`
+          }
           onClear={() => {
-            setCountry(null);
+            pickCountry(null);
             setTier(null);
+            clearFocus();
           }}
           narrowest={
-            country
-              ? { label: countries[country]?.name ?? country, drop: () => setCountry(null) }
-              : tier
-                ? { label: tier, drop: () => setTier(null) }
-                : undefined
+            focus
+              ? { label: focus, drop: clearFocus }
+              : country
+                ? { label: countries[country]?.name ?? country, drop: () => pickCountry(null) }
+                : tier
+                  ? { label: tier, drop: () => setTier(null) }
+                  : undefined
           }
         />
       ) : (
