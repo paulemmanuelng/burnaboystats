@@ -44,7 +44,9 @@
 }
 .p { font-size: 16px; line-height: 1.7; color: var(--text-muted); max-width: 72ch; margin: 16px 0 0; }
 .p strong { color: var(--text); }
-.link { color: var(--gold); text-decoration: none; }
+/* In prose, so it takes the site's in-text underline (globals.css) rather than
+   switching it off. */
+.link { color: var(--gold); }
 .link:hover { text-decoration: underline; }
 
 /* The sum. A definition list because that is what it is, and monospaced figures

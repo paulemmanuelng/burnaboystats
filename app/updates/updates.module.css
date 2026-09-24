@@ -134,7 +134,7 @@
 }
 .chip:hover { border-color: var(--gold); color: var(--gold); }
 .chipDot { width: 8px; height: 8px; border-radius: 50%; flex: none; display: block; }
-.chipCount { font-family: var(--font-mono), monospace; font-size: 11px; opacity: 0.75; }
+.chipCount { font-family: var(--font-mono), monospace; font-size: 11px; opacity: var(--text-fade); }
 .shown {
   margin-left: auto;
   font-family: var(--font-mono), monospace;

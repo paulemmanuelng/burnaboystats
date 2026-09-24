@@ -196,7 +196,7 @@
 .formerRow {
   display: grid; grid-template-columns: 1fr 200px; gap: 24px;
   padding: 20px 8px; border-bottom: 1px solid var(--line);
-  align-items: start; opacity: 0.72;
+  align-items: start; opacity: var(--text-fade);
 }
 .tag {
   display: inline-flex; align-items: center; padding: 4px 11px; border-radius: 999px;
@@ -343,7 +343,7 @@
 .mFormerList { border-top: 1px solid var(--line); margin-top: 12px; }
 .mFormerRow {
   display: flex; align-items: center; gap: 12px;
-  padding: 12px 0; border-bottom: 1px solid var(--line); opacity: 0.75;
+  padding: 12px 0; border-bottom: 1px solid var(--line); opacity: var(--text-fade);
 }
 .mFormerMain { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
 .mFormerTag {

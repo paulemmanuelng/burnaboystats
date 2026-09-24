@@ -89,7 +89,7 @@
   letter-spacing: 0.09em;
   text-transform: uppercase;
   color: var(--gold);
-  opacity: 0.85;
+  opacity: var(--text-fade);
 }
 
 /* ── The door ───────────────────────────────────────────────────────────── */
@@ -347,7 +347,8 @@
   padding-top: 14px;
 }
 .foot p { margin: 0; font-size: 12px; line-height: 1.5; color: var(--text-muted); }
-.foot a { color: var(--gold); text-decoration: none; }
+/* In prose, so it keeps the site's in-text underline (globals.css). */
+.foot a { color: var(--gold); }
 
 /* Nine artists in two columns leaves the last row half empty. The desktop grid
    fills its orphan with the rule and provenance cards, but on mobile those are

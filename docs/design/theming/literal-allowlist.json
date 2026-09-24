@@ -319,12 +319,6 @@
   },
   {
     "file": "app/page.module.css",
-    "line": 636,
-    "literal": "rgba(255, 246, 214, 0.5)",
-    "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
-  },
-  {
-    "file": "app/page.module.css",
     "line": 637,
     "literal": "rgba(150, 42, 18, 0.4)",
     "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
@@ -333,18 +327,6 @@
     "file": "app/page.module.css",
     "line": 638,
     "literal": "rgba(196, 70, 16, 0.26)",
-    "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
-  },
-  {
-    "file": "app/page.module.css",
-    "line": 639,
-    "literal": "#f08a12",
-    "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
-  },
-  {
-    "file": "app/page.module.css",
-    "line": 639,
-    "literal": "#d96c0c",
     "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
   },
   {

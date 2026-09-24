@@ -349,7 +349,7 @@ export default function MethodologyPage() {
             The target is WCAG 2.1 AA. In practice that means every page works from the
             keyboard alone with a visible focus ring, the interactive parts — search, the
             filters, the tour map — are operable without a mouse, text meets AA contrast
-            against the dark ground, images that carry meaning have alt text while
+            in both the dark and the light theme, images that carry meaning have alt text while
             decorative ones are hidden from screen readers, motion respects
             <code> prefers-reduced-motion</code>, and controls meet the 44px touch
             target — some of them through an extended hit area rather than a larger

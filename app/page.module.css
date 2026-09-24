@@ -689,10 +689,10 @@
   color: var(--ink-on-gold);
   background-color: var(--gold-fill);
   background-image:
-    radial-gradient(52% 78% at 8% -6%, rgba(255, 246, 214, 0.5), transparent 62%),
+    radial-gradient(52% 78% at 8% -6%, var(--gold-band-sheen), transparent 62%),
     radial-gradient(62% 96% at 100% 112%, rgba(150, 42, 18, 0.4), transparent 64%),
     radial-gradient(80% 70% at 68% 118%, rgba(196, 70, 16, 0.26), transparent 68%),
-    linear-gradient(122deg, var(--gold-bright) 0%, var(--gold-fill) 40%, #f08a12 76%, #d96c0c 100%);
+    linear-gradient(122deg, var(--gold-bright) 0%, var(--gold-fill) 40%, var(--gold-band-a) 76%, var(--gold-band-b) 100%);
 }
 .closerGlyphs {
   position: absolute;

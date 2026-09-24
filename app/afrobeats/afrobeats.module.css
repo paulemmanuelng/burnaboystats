@@ -44,7 +44,7 @@
   letter-spacing: 0.09em;
   text-transform: uppercase;
   color: var(--gold);
-  opacity: 0.85;
+  opacity: var(--text-fade);
 }
 
 /* ── Grid ──────────────────────────────────────────────────── */
@@ -142,6 +142,11 @@
   color: var(--muted);
 }
 .anchorTag { color: var(--gold); border-color: var(--gold); }
+/* The tier badge sits on an artist photo, and a 55% veil let a bright shot
+   through: the 11px muted label read about 3.7:1. Its pill is solid instead.
+   Every board tile is a .photoTile, which pins the dark palette, so --bg is
+   the dark ground here in both themes. Same size, same place. */
+.topBadge { background: var(--bg); }
 
 .tileName {
   margin-top: auto;
