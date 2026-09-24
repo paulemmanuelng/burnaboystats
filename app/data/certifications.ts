@@ -599,7 +599,7 @@ export const features: Release[] = [
   { title: "Enjoy Yourself (Remix)", credit: "Pop Smoke ft. Burna Boy", year: 2020, cover: "https://cdn-images.dzcdn.net/images/cover/337e152ccbf267774a30a08fbceae106/500x500-000000-80-0-0.jpg", certs: [
     { c: "NZ", level: "Gold" }, { c: "AU", level: "Gold" },
   ] },
-  { title: "Yaba Buluku (Remix)", credit: "DJ Tarico & Burna Boy", year: 2021, cover: "https://cdn-images.dzcdn.net/images/cover/838ae1b6384d70287eb799afdb50512c/500x500-000000-80-0-0.jpg", certs: [
+  { title: "Yaba Buluku (Remix)", credit: "DJ Tárico & Burna Boy", year: 2021, cover: "https://cdn-images.dzcdn.net/images/cover/838ae1b6384d70287eb799afdb50512c/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Gold" },
   ] },
   { title: "Toni-Ann Singh", credit: "feat. Popcaan", year: 2022, cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [

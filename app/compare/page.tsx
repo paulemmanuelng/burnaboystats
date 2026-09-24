@@ -51,7 +51,7 @@ const ukPlatinum = CERT_THRESHOLDS.UK.single!.platinum!;
 import type { Metadata } from "next";
 import { PICKER_FOLD, fold, pickerArtists, pickerReleases } from "../lib/comparePicker";
 import { featuredPairs, pairCopy, pairSlug } from "../lib/comparePairs";
-import { href, one, type SP } from "../lib/compareUrl";
+import { carried, href, one, type SP } from "../lib/compareUrl";
 import { fmt, keepParens, plaque, program, shortProgram, tierClass } from "./chips";
 import { marketKey, PLAQUE_NOTE_HEADINGS } from "../lib/certUnits";
 
@@ -394,9 +394,7 @@ function SongPicker({
 
   // Everything except this side's own query, so submitting replaces rather than
   // stacks it.
-  const carried = Object.entries(sp)
-    .map(([k, v]) => [k, one(v)] as const)
-    .filter(([k, v]) => v && k !== field);
+  const kept = carried(sp).filter(([k]) => k !== field);
 
   return (
     <div className={styles.pickWrap} id={`pick-${side}`}>
@@ -416,8 +414,8 @@ function SongPicker({
             it builds the query, so the reload lands on the results, not the
             title. */}
         <form method="get" action={`/compare#pick-${side}`} className={styles.search} role="search">
-          {carried.map(([k, v]) => (
-            <input key={k} type="hidden" name={k} value={v as string} />
+          {kept.map(([k, v]) => (
+            <input key={k} type="hidden" name={k} value={v} />
           ))}
           <input
             type="search"

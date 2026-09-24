@@ -12,6 +12,11 @@ export const signEmail = (email: string) =>
   createHmac("sha256", secret()).update(email.toLowerCase()).digest("hex").slice(0, 32);
 
 export const verifyEmail = (email: string, token: string) => {
+  // A real token is 32 hex characters, so anything else is refused here. The
+  // length check below counts UTF-16 units and timingSafeEqual compares bytes:
+  // "é" plus 31 "a" is 32 characters but 33 bytes, timingSafeEqual threw, and
+  // the confirm link answered a bare HTTP 500 (24 Sep 2026).
+  if (!/^[0-9a-f]{32}$/.test(token)) return false;
   const expect = signEmail(email);
   if (token.length !== expect.length) return false;
   return timingSafeEqual(Buffer.from(expect), Buffer.from(token));

@@ -1,6 +1,6 @@
 import { LIVE_BOARDS, liveBoardFor } from "../../../../data/liveBoards";
 import { apiHeaders, API_VERSION, LIVE_CACHE_CONTROL, provenance } from "../../../../lib/api";
-import { LIVE_CADENCE_REBUILT } from "../../../../lib/liveChartMeta";
+import { LIVE_CADENCE_REBUILT, withApiCountryCodes } from "../../../../lib/liveChartMeta";
 
 // dynamicParams stays TRUE so this handler runs for a slug that is not on the
 // board. It was false, which made Next answer an unknown artist with the
@@ -49,12 +49,20 @@ export async function GET(_req: Request, { params }: { params: Promise<{ artist:
     const echoed = artist.length > 64 ? `${artist.slice(0, 64)}…` : artist;
     // Name every board, so a consumer that guessed wrong can correct itself from
     // the error alone rather than having to go and read the docs page.
+    // The site's own subject is not a board artist, so /live-charts/burna-boy
+    // was a 404 that said nothing about where his board is. His snapshot is
+    // the endpoint one level up; every 404 names it beside the board slugs.
+    const subject = `/api/${API_VERSION}/live-charts`;
     return Response.json(
       {
         error: "not_found",
-        message: `No live-charts board for "${echoed}".`,
+        message:
+          artist === "burna-boy"
+            ? `Burna Boy's live-charts board is ${subject}.`
+            : `No live-charts board for "${echoed}".`,
         artist: echoed,
         known: LIVE_BOARDS.map((b) => b.slug),
+        "burna-boy": subject,
       },
       // No provenance block on the error: it carries no data to licence, and
       // this body is deliberately tiny — it replaced a 61KB HTML 404.
@@ -76,7 +84,7 @@ export async function GET(_req: Request, { params }: { params: Promise<{ artist:
       count: board.releases.length,
       countOf: "releases",
       ...provenance,
-      releases: board.releases,
+      releases: withApiCountryCodes(board.releases),
     },
     { headers: HEADERS }
   );

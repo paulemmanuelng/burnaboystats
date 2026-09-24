@@ -5,7 +5,7 @@ import BreadcrumbBar from "../components/BreadcrumbBar";
 import CopyButton from "../components/CopyButton";
 import MobileApi from "../components/MobileApi";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime } from "../lib/seo";
-import { API_VERSION, lastUpdated, ENVELOPE_NOTE, UPDATED_NOTE } from "../lib/api";
+import { API_VERSION, lastUpdated, ENVELOPE_NOTE, UPDATED_NOTE, CREDIT_NOTE } from "../lib/api";
 import { chartsSample } from "../lib/chartsPayload";
 import { chartEntryCount, chartCountryCount, numberOnes, CHART_COUNTRIES, allChartItems } from "../data/charts";
 import { totalAwards } from "../data/certifications";
@@ -275,7 +275,7 @@ export default function ApiPage() {
             <code>count</code> is the endpoint&apos;s headline size and{" "}
             <code>countOf</code> names its unit — it is not always the length of the array
             in <code>data</code>, and where the two differ the array&apos;s own length is
-            published under <code>data.totals</code>.
+            published under <code>data.totals</code>. {CREDIT_NOTE}
           </p>
         </section>
 

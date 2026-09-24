@@ -7,8 +7,11 @@ import type { MetadataRoute } from "next";
 // Icons are the crown mark from docs/design (LOGO.md): five chart bars on a
 // base rule with the live dot as the jewel. Pure geometry, so it needs no font
 // and survives at 16px — the icon it replaced was the word "BB" set in Arial.
-// The maskable 512 lets Android crop to its own shape without clipping the
-// crown, because the tile already carries the clear space the spec requires.
+// The maskable icon is its own file. It pointed at icon-512.png, whose crown
+// reaches 245px from the centre against a 204.8px safe zone, on a tile with
+// transparent rounded corners: Android's circle mask cut the outer bars and
+// the base rule (24 Sep 2026). icon-maskable-512.png is the same art at 80%
+// on a full-bleed #0a0a0b square, so every mask shape keeps the whole crown.
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "Burna Boy Stats — Certifications, Charts, Awards & Records",
@@ -29,7 +32,7 @@ export default function manifest(): MetadataRoute.Manifest {
       { src: "/apple-icon.png", sizes: "180x180", type: "image/png" },
       { src: "/icon-192.png", sizes: "192x192", type: "image/png" },
       { src: "/icon-512.png", sizes: "512x512", type: "image/png" },
-      { src: "/icon-512.png", sizes: "512x512", type: "image/png", purpose: "maskable" },
+      { src: "/icon-maskable-512.png", sizes: "512x512", type: "image/png", purpose: "maskable" },
     ],
   };
 }

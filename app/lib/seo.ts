@@ -17,6 +17,15 @@ export const CANONICAL_ORIGIN = "https://burnaboystats.com";
  */
 export const asDateTime = (isoDate: string) => `${isoDate}T12:00:00+00:00`;
 
+/**
+ * The RSS feed, as an `alternates.types` entry: <link rel="alternate"
+ * type="application/rss+xml"> in the head, which is how a reader finds a feed.
+ * It was on /updates only. Next does not merge `alternates`: a page that sets
+ * its own replaces the root layout's whole block, so the link has to ride in
+ * both the root metadata and pageMetadata() for most pages to carry it.
+ */
+export const FEED_ALTERNATE = { "application/rss+xml": "/rss.xml" } as const;
+
 // Build a full Metadata object for a page: title + description + canonical, plus
 // a matching Open Graph and Twitter card so social/search previews are unique
 // per page (Next does not copy the page title into og:title automatically).
@@ -55,6 +64,7 @@ export function pageMetadata(opts: {
     alternates: {
       canonical: opts.path,
       ...(opts.languages ? { languages: opts.languages } : {}),
+      types: FEED_ALTERNATE,
     },
     openGraph: {
       title: ogTitle,

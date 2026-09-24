@@ -7,7 +7,7 @@ import { songs } from "./data/songs";
 import { albumPages } from "./data/albumPages";
 import { afrobeatsArtists } from "./data/afrobeats";
 import { LIVE_BOARDS } from "./data/liveBoards";
-import { liveChartsUpdated } from "./data/liveCharts";
+import { liveChartsBuiltAt } from "./data/liveCharts";
 import { carSlugs } from "./data/cars";
 import { LISTENERS_READ_ON } from "./data/listeners";
 
@@ -42,7 +42,14 @@ import { LISTENERS_READ_ON } from "./data/listeners";
  * say, and it costs nothing but a recrawl heuristic. Inventing a date costs the
  * whole file's credibility.
  */
-const toDate = (iso: string) => new Date(`${iso}T12:00:00Z`);
+/**
+ * A day ("2026-09-24") is read as the START of that day; a stamp that already
+ * carries a time ("2026-09-24T11:50Z", a live board's builtAt) is read as is.
+ * Noon put every entry logged that day in the future until midday: at 05:28
+ * UTC on 24 Sep 2026 /live-charts advertised 12:00 that day, and later a board
+ * rebuilt at 11:50 still claimed 12:00.
+ */
+const toDate = (iso: string) => new Date(iso.length === 10 ? `${iso}T00:00:00Z` : iso);
 
 /** Newest feed entry naming this route or anything beneath it. */
 const feedDate = (path: string | undefined): string | undefined =>
@@ -93,8 +100,10 @@ const sweptArtists = afrobeatsArtists.filter((a) => a.swept);
  * these still counts.
  */
 const contentStamp: Record<string, string> = {
-  "/live-charts": liveChartsUpdated,
-  ...Object.fromEntries(LIVE_BOARDS.map((b) => [`/afrobeats/${b.slug}/live`, b.updated])),
+  // The minute the board was rebuilt, not its day: the day read as noon ran
+  // ahead of the build, and the minute is what the API publishes as builtAt.
+  "/live-charts": liveChartsBuiltAt,
+  ...Object.fromEntries(LIVE_BOARDS.map((b) => [`/afrobeats/${b.slug}/live`, b.builtAt])),
   ...Object.fromEntries(
     sweptArtists.flatMap((a): [string, string][] => [
       [`/afrobeats/${a.slug}`, a.verifiedOn],

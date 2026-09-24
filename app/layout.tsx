@@ -14,6 +14,7 @@ import BirthdayCelebration from "./components/BirthdayCelebration";
 import FooterNav from "./components/FooterNav";
 import { siteUrl } from "./site";
 import { PRE_PAINT_LANG } from "./lib/documentLang";
+import { FEED_ALTERNATE } from "./lib/seo";
 import "./globals.css";
 import FlagEmojiPolyfill from "./components/FlagEmojiPolyfill";
 
@@ -39,7 +40,7 @@ const spaceMono = Space_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  alternates: { canonical: "/" },
+  alternates: { canonical: "/", types: FEED_ALTERNATE },
   /**
    * Icons declared as plain paths, from public/, rather than left to the
    * app/ file convention.

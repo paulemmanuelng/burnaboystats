@@ -1,4 +1,4 @@
-import { ENVELOPE_NOTE, UPDATED_NOTE } from "../lib/api";
+import { CREDIT_NOTE, ENVELOPE_NOTE, UPDATED_NOTE } from "../lib/api";
 import Link from "next/link";
 import styles from "./mobileApi.module.css";
 import CopyButton from "./CopyButton";
@@ -129,7 +129,7 @@ export default function MobileApi({
           <code className={styles.codeLine}>{curl}</code>
         </div>
         <p className={styles.blockBody}>
-          {ENVELOPE_NOTE} {UPDATED_NOTE}
+          {ENVELOPE_NOTE} {UPDATED_NOTE} {CREDIT_NOTE}
         </p>
       </div>
 

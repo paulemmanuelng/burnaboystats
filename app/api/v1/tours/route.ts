@@ -1,5 +1,5 @@
 import { apiJson } from "../../../lib/api";
-import { tours, festivals, otherShows } from "../../../data/tours";
+import { tours, festivals, otherShows, concerts } from "../../../data/tours";
 import { revenueShows, revenueStands } from "../../../data/tourRevenue";
 import { countryCount as performedCountryCount } from "../../../data/performedCountries";
 
@@ -17,7 +17,10 @@ const runs = tours.map((t) => ({
   gross: t.gross ?? null,
   tickets: t.tickets ?? null,
   shows: t.shows ?? t.dates?.length ?? null,
-  // A run still in progress: its totals are a floor, not a final figure.
+  // data/tours.ts's own meaning: the full itinerary was never documented or
+  // the routing changed, so only confirmed shows are listed and the show count
+  // is a floor. It said "a run still in progress", which Space Drift (2021–22)
+  // is not.
   partial: t.partial ?? false,
   note: t.note,
   dates:
@@ -34,7 +37,7 @@ export function GET() {
   return apiJson({
     endpoint: "/tours",
     description:
-      "Tours, festival sets and one-off shows, with box-office figures where a source publishes them. `gross` and `tickets` are kept as the strings the box-office source published — they arrive rounded and qualified, and parsing them to numbers would invent precision the source never claimed. `partial: true` marks a run still in progress, whose totals are a floor.",
+      "Tours, festival sets and one-off shows, with box-office figures where a source publishes them. `gross` and `tickets` are kept as the strings the box-office source published — they arrive rounded and qualified, and parsing them to numbers would invent precision the source never claimed. `partial: true` marks a run listed from its confirmed shows only, because its full itinerary was never documented or its routing changed, so its show count is a floor. `concerts` are his solo headline shows outside a routed tour.",
     count: runs.length,
     countOf: "tours",
     data: {
@@ -42,6 +45,9 @@ export function GET() {
         tours: runs.length,
         festivals: festivals.length,
         otherShows: otherShows.length,
+        // The festivals page counts these in its appearances; the API left
+        // all of them out.
+        concerts: concerts.length,
         countriesPerformedIn: performedCountryCount,
       },
       tours: runs,
@@ -52,6 +58,12 @@ export function GET() {
         note: f.note ?? null,
       })),
       otherShows: otherShows.map((f) => ({
+        year: f.year,
+        name: f.name,
+        location: f.location,
+        note: f.note ?? null,
+      })),
+      concerts: concerts.map((f) => ({
         year: f.year,
         name: f.name,
         location: f.location,

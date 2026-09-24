@@ -7,6 +7,7 @@ import styles from "../search/search.module.css";
 import { searchDocs, searchIndex } from "../lib/searchIndex";
 import { track } from "../lib/analytics";
 import { replaceUrl } from "../lib/deepLink";
+import { cleanQuery } from "../lib/searchQuery";
 
 /**
  * The /search body — also the target of the WebSite SearchAction.
@@ -58,7 +59,12 @@ export default function SearchResults({
   // hand this page the tree it first rendered — with the query it first
   // rendered — while the URL holds the one the reader last saw.
   const params = useSearchParams();
-  const [q, setQ] = useState(() => params?.get("q") ?? initialQuery);
+  // Cleaned the same way the server cleans initialQuery: a control character
+  // read raw from the address bar is text the browser and server disagree on.
+  const [q, setQ] = useState(() => {
+    const fromUrl = params?.get("q");
+    return fromUrl == null ? initialQuery : cleanQuery(fromUrl);
+  });
   const [section, setSection] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 

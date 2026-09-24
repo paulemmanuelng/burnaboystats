@@ -113,9 +113,16 @@ export function buildSearchDocs(): SearchDoc[] {
       description: `${titleTrack ? "The title track — " : ""}${r.credit ? `${r.credit} — ` : ""}${bits.join(" · ") || "On the record"}.`,
       // The credit carries the collaborators, which is how "coldplay" or
       // "justin bieber" reaches the record they are on.
+      // Accents are folded off first: the split is ASCII, so "DJ Tárico" was
+      // cut into "t" and "rico", and "tarico" stopped finding the record.
       keywords: [
         ...(r.credit
-          ? r.credit.toLowerCase().split(/[^a-z0-9']+/i).filter((w) => w.length > 2)
+          ? r.credit
+              .normalize("NFD")
+              .replace(/[̀-ͯ]/g, "")
+              .toLowerCase()
+              .split(/[^a-z0-9']+/i)
+              .filter((w) => w.length > 2)
           : []),
         "song",
         "release",

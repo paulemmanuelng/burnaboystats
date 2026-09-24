@@ -4356,7 +4356,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "Release",
     "description": "Joé Dwèt Filé ft. Burna Boy — 2 certifications · 2 chart entries.",
     "keywords": [
-      "fil",
+      "joe",
+      "dwet",
+      "file",
       "burna",
       "boy",
       "song",
@@ -5750,7 +5752,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Yaba Buluku (Remix)",
     "path": "/certifications#release=Yaba%20Buluku%20(Remix)",
     "section": "Release",
-    "description": "DJ Tarico & Burna Boy — 1 certification · 1 chart entry.",
+    "description": "DJ Tárico & Burna Boy — 1 certification · 1 chart entry.",
     "keywords": [
       "tarico",
       "burna",

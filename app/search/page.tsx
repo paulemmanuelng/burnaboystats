@@ -3,6 +3,7 @@ import SearchResults from "../components/SearchResults";
 import { SITE_NAME } from "../lib/seo";
 import { searchStats } from "../lib/searchStats";
 import { ROOT_OG_IMAGE } from "../lib/og-image";
+import { cleanQuery } from "../lib/searchQuery";
 
 const DESCRIPTION =
   "Search Burna Boy's charts, awards, certifications, tours, cars and career records.";
@@ -51,9 +52,11 @@ export const metadata: Metadata = {
 export default async function SearchPage({
   searchParams,
 }: {
-  searchParams: Promise<{ q?: string }>;
+  searchParams: Promise<{ q?: string | string[] }>;
 }) {
-  const { q = "" } = await searchParams;
+  // ?q=a&q=b arrives as an array and ?q=%00 as a control character; both
+  // broke the page. See lib/searchQuery.
+  const q = cleanQuery((await searchParams).q);
 
   return (
     <main id="content">
