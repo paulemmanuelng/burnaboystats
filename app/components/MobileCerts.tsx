@@ -211,8 +211,9 @@ export default function MobileCerts({
     .filter((r) => (!focus || r.title === focus) && (!tier || r.certs.some((c) => c.level === tier)))
     .slice()
     // Albums lead, then the songs — each block running most-certified to
-    // least. The blocks aren't labelled; the ALBUM tag on each album row is
-    // what carries the split.
+    // least, labelled and numbered from 01 on its own (see isAlbumRow below).
+    // Albums first is deliberate; until 24 Sep 2026 the blocks ran unlabelled
+    // under one count, so Dai Dai (17 certs) was "05" below Twice as Tall (1).
     // The same comparator the desktop uses (count, then the summed weight of
     // the tiers), so the two layouts rank identically: the phone used to break
     // ties by nothing, and Seyi Vibez's list put Bullion Van (one Gold) at 09
@@ -224,6 +225,16 @@ export default function MobileCerts({
     });
   const rows = expanded ? matching : matching.slice(0, ROWS_SHOWN);
   const hidden = matching.length - rows.length;
+  const isAlbumRow = (r: Release) => albumTitles.has(titleKey(r.title));
+  // The filters leave nothing: the phone's own empty state, which clears what
+  // the desktop's "Clear filters" clears — the tier AND the release focus.
+  const clearFilters = () => {
+    setTier(null);
+    if (focus) {
+      setFocus(null);
+      dropDeepLink("release");
+    }
+  };
 
   const events = history.filter((e) => e.year === year);
   const yearCounts = history.reduce<Record<number, number>>((acc, e) => {
@@ -406,15 +417,33 @@ export default function MobileCerts({
 
       <div className={styles.listLabel}>Most-certified releases</div>
 
+      {matching.length === 0 && (
+        <div className={styles.empty} role="status">
+          <p className={styles.emptyText}>Nothing matches these filters.</p>
+          <button type="button" className={styles.emptyClear} onClick={clearFilters}>
+            Clear filters
+          </button>
+        </div>
+      )}
+
+      {rows.length > 0 && (
       <div className={styles.list}>
-        {rows.map((r, i) => (
-          // Deliberately not interactive: the row already shows every one of
-          // the release's certifications, so a tap has nothing to reveal. It
-          // linked to /certifications?release=… for a while, which on a phone
-          // only re-navigated the same page and jumped to the top.
-          <div key={r.title} className={styles.row}>
+        {rows.map((r, i) => {
+          // Each block — albums, then songs — is labelled where it starts and
+          // numbered from 01 within itself.
+          const album = isAlbumRow(r);
+          const startsBlock = i === 0 || isAlbumRow(rows[i - 1]) !== album;
+          const n = rows.slice(0, i + 1).filter((x) => isAlbumRow(x) === album).length;
+          return (
+          <Fragment key={r.title}>
+          {startsBlock && <div className={styles.blockLabel}>{album ? "Albums" : "Songs"}</div>}
+          {/* Deliberately not interactive: the row already shows every one of
+              the release's certifications, so a tap has nothing to reveal. It
+              linked to /certifications?release=… for a while, which on a phone
+              only re-navigated the same page and jumped to the top. */}
+          <div className={styles.row}>
             <div className={styles.rowTop}>
-              <span className={styles.rank}>{String(i + 1).padStart(2, "0")}</span>
+              <span className={styles.rank}>{String(n).padStart(2, "0")}</span>
               {/* Same treatment as the live-charts rows: the release's art,
                   resolved by title, riding between rank and name. The slot
                   holds it back until the row nears the screen; see
@@ -494,8 +523,11 @@ export default function MobileCerts({
               )}
             </div>
           </div>
-        ))}
+          </Fragment>
+          );
+        })}
       </div>
+      )}
 
       {/* The whole ledger is here — the button opens the rest in place rather
           than sending a phone reader to the desktop table. It only appears
