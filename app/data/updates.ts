@@ -1426,7 +1426,11 @@ export const updates: Update[] = [
   {
     date: "2026-07-27",
     category: "Streaming",
-    text: "Over 20 days at the summit: “Dai Dai” holds a 21st day at No. 1 on Spotify's Global Daily chart, joining BTS's “Swim” as the only songs to spend more than 20 days atop the chart this year.",
+    // Corrected 24 Sep 2026. It said "holds a 21st day" — a day the 26 Jul entry
+    // already logged, on the date a sibling entry logs the 22nd — and "the only
+    // songs … this year", though Djo's "End of Beginning" (32) and "Beauty And A
+    // Beat" (31) also passed 20 days in 2026. Neither is a 2026 release.
+    text: "Over 20 days at the summit: “Dai Dai” joins BTS's “Swim” as the only 2026 releases to spend more than 20 days at No. 1 on Spotify's Global Daily chart.",
     href: "/dai-dai",
   },
   {
@@ -1738,19 +1742,19 @@ export const updates: Update[] = [
   {
     date: "2026-07-19",
     category: "Charts",
-    text: "More new charts for “Dai Dai”: No.10 on the global Apple Music Top Songs chart — Burna Boy's second straight year in the global Apple Music Top 10, after Gunna's “WGFT” (No.8, 2025) — and a No.17 debut in Malaysia (RIM).",
+    text: "More new charts for “Dai Dai”: No. 10 on the global Apple Music Top Songs chart — Burna Boy's second straight year in the global Apple Music Top 10, after Gunna's “WGFT” (No. 8, 2025) — and a No. 17 debut in Malaysia (RIM).",
     href: "/dai-dai",
   },
   {
     date: "2026-07-18",
     category: "Charts",
-    text: "A UK first: “Dai Dai” becomes the first FIFA World Cup song ever to reach the Official Singles Top 10, peaking at No.5 — the highest-charting World Cup song in UK history, surpassing Shakira's own “Waka Waka” (No.21 in 2010).",
+    text: "A UK first: “Dai Dai” becomes the first FIFA World Cup song ever to reach the Official Singles Top 10, peaking at No. 5 — the highest-charting World Cup song in UK history, surpassing Shakira's own “Waka Waka” (No. 21 in 2010).",
     href: "/dai-dai",
   },
   {
     date: "2026-07-17",
     category: "Charts",
-    text: "More “Dai Dai” climbs: the World Cup anthem hits new peaks of No.5 in the UK, No.6 in Italy, No.14 in Ireland and No.35 in Finland on their official singles charts.",
+    text: "More “Dai Dai” climbs: the World Cup anthem hits new peaks of No. 5 in the UK, No. 6 in Italy, No. 14 in Ireland and No. 35 in Finland on their official singles charts.",
     href: "/dai-dai",
   },
   {
@@ -1762,7 +1766,7 @@ export const updates: Update[] = [
   {
     date: "2026-07-16",
     category: "Charts",
-    text: "Fresh “Dai Dai” peaks confirmed: the World Cup anthem reaches No.2 in Lithuania, No.3 in Nigeria and Uruguay, No.9 in Poland and No.12 in South Africa, and debuts at No.15 in New Zealand — now a No.1 in 15 countries.",
+    text: "Fresh “Dai Dai” peaks confirmed: the World Cup anthem reaches No. 2 in Lithuania, No. 3 in Nigeria and Uruguay, No. 9 in Poland and No. 12 in South Africa, and debuts at No. 15 in New Zealand — now a No. 1 in 15 countries.",
     href: "/dai-dai",
   },
   {
@@ -1774,7 +1778,7 @@ export const updates: Update[] = [
   {
     date: "2026-07-16",
     category: "Charts",
-    text: "No.1 in the Middle East and Luxembourg: “Dai Dai” tops the Official MENA Chart's Top 20 and Luxembourg's Billboard chart, debuts at No.14 in Egypt and climbs to new peaks of No.26 in Hungary and No.21 in Israel.",
+    text: "No. 1 in the Middle East and Luxembourg: “Dai Dai” tops the Official MENA Chart's Top 20 and Luxembourg's Billboard chart, debuts at No. 14 in Egypt and climbs to new peaks of No. 26 in Hungary and No. 21 in Israel.",
     href: "/records/charts",
   },
   {
@@ -1792,19 +1796,19 @@ export const updates: Update[] = [
   {
     date: "2026-07-14",
     category: "Charts",
-    text: "#55 on the Billboard Hot 100: “Dai Dai” climbs 12 places to a new peak in its fourth week — and the Shakira & Burna Boy World Cup anthem is still rising elsewhere, hitting new highs on the Canadian Hot 100 (No.16), in the Czech Republic (No.8) and Singapore (No.20), plus a No.10 debut in Latvia.",
+    text: "#55 on the Billboard Hot 100: “Dai Dai” climbs 12 places to a new peak in its fourth week — and the Shakira & Burna Boy World Cup anthem is still rising elsewhere, hitting new highs on the Canadian Hot 100 (No. 16), in the Czech Republic (No. 8) and Singapore (No. 20), plus a No. 10 debut in Latvia.",
     href: "/records/charts",
   },
   {
     date: "2026-07-13",
     category: "Firsts & Records",
-    text: "No.1 on the Billboard Global 200: “Dai Dai” becomes the first song by an African artist to top Billboard's flagship worldwide chart, per Billboard — Burna Boy's third week atop the Global 200 Excl. US too.",
+    text: "No. 1 on the Billboard Global 200: “Dai Dai” becomes the first song by an African artist to top Billboard's flagship worldwide chart, per Billboard — Burna Boy's third week atop the Global 200 Excl. US too.",
     href: "/records/firsts",
   },
   {
     date: "2026-07-13",
     category: "Charts",
-    text: "No.1 in France: “Dai Dai” climbs to the top of France's official SNEP Singles Chart (+2 from No.3) — a major-market chart-topper for the Shakira & Burna Boy anthem, which also just went Gold there.",
+    text: "No. 1 in France: “Dai Dai” climbs to the top of France's official SNEP Singles Chart (+2 from No. 3) — a major-market chart-topper for the Shakira & Burna Boy anthem, which also just went Gold there.",
     href: "/records/charts",
   },
   {
@@ -1816,7 +1820,7 @@ export const updates: Update[] = [
   {
     date: "2026-07-13",
     category: "Charts",
-    text: "iTunes domination: the World Cup anthem “Dai Dai” has topped Apple's Worldwide iTunes Song chart and reached No.1 on national iTunes download charts in more than 55 countries, from Argentina and Canada to Nigeria and the UAE.",
+    text: "iTunes domination: the World Cup anthem “Dai Dai” has topped Apple's Worldwide iTunes Song chart and reached No. 1 on national iTunes download charts in more than 55 countries, from Argentina and Canada to Nigeria and the UAE.",
     href: "/records/charts",
   },
   {
@@ -1840,13 +1844,13 @@ export const updates: Update[] = [
   {
     date: "2026-07-11",
     category: "Charts",
-    text: "Uruguay joins the map for “Dai Dai”: the Shakira collaboration debuts at No.5 on the CUD Monthly Digital Chart for June.",
+    text: "Uruguay joins the map for “Dai Dai”: the Shakira collaboration debuts at No. 5 on the CUD Monthly Digital Chart for June.",
     href: "/records/charts",
   },
   {
     date: "2026-07-09",
     category: "Charts",
-    text: "Fresh “Dai Dai” peaks: No.8 in Italy, No.13 in the UK, No.16 in Ireland, No.10 on Poland's streaming chart and No.32 in Australia — plus a No.44 debut in Finland.",
+    text: "Fresh “Dai Dai” peaks: No. 8 in Italy, No. 13 in the UK, No. 16 in Ireland, No. 10 on Poland's streaming chart and No. 32 in Australia — plus a No. 44 debut in Finland.",
     href: "/records/charts",
   },
   {
@@ -1858,13 +1862,13 @@ export const updates: Update[] = [
   {
     date: "2026-07-09",
     category: "Charts",
-    text: "Argentina makes 13: “Dai Dai” hits No.1 on the Billboard Argentina Hot 100 — a 13th country where the Shakira collaboration has topped the chart.",
+    text: "Argentina makes 13: “Dai Dai” hits No. 1 on the Billboard Argentina Hot 100 — a 13th country where the Shakira collaboration has topped the chart.",
     href: "/records/charts",
   },
   {
     date: "2026-07-09",
     category: "Streaming",
-    text: "New No.1 on YouTube Music: Burna Boy's 662 million monthly audience peak is now the highest of any African artist, overtaking Tyla.",
+    text: "New No. 1 on YouTube Music: Burna Boy's 662 million monthly audience peak is now the highest of any African artist, overtaking Tyla.",
     href: "/records/africas-biggest",
   },
   {
@@ -1882,25 +1886,25 @@ export const updates: Update[] = [
   {
     date: "2026-07-05",
     category: "Charts",
-    text: "Another No.1 for “Dai Dai”: it tops Greece's official IFPI singles chart — a 12th chart-topping country.",
+    text: "Another No. 1 for “Dai Dai”: it tops Greece's official IFPI singles chart — a 12th chart-topping country.",
     href: "/records/charts",
   },
   {
     date: "2026-07-05",
     category: "Charts",
-    text: "More climbs for “Dai Dai”: up to No.3 in Portugal, No.15 in the Czech Republic and No.26 in Israel, plus a debut at No.22 in Denmark.",
+    text: "More climbs for “Dai Dai”: up to No. 3 in Portugal, No. 15 in the Czech Republic and No. 26 in Israel, plus a debut at No. 22 in Denmark.",
     href: "/records/charts",
   },
   {
     date: "2026-07-05",
     category: "Charts",
-    text: "A new market for “Dai Dai”: a debut at No.25 on Singapore's official RIAS chart.",
+    text: "A new market for “Dai Dai”: a debut at No. 25 on Singapore's official RIAS chart.",
     href: "/records/charts",
   },
   {
     date: "2026-07-05",
     category: "Charts",
-    text: "More new peaks for “Dai Dai”: No.6 in Portugal, No.19 in Canada, No.39 in Brazil and No.67 on the US Billboard Hot 100.",
+    text: "More new peaks for “Dai Dai”: No. 6 in Portugal, No. 19 in Canada, No. 39 in Brazil and No. 67 on the US Billboard Hot 100.",
     href: "/records/charts",
   },
   {
@@ -1912,13 +1916,13 @@ export const updates: Update[] = [
   {
     date: "2026-07-05",
     category: "Charts",
-    text: "A new peak of No.3 on the Billboard Global 200 — “Dai Dai” jumps six places on the world's biggest chart.",
+    text: "A new peak of No. 3 on the Billboard Global 200 — “Dai Dai” jumps six places on the world's biggest chart.",
     href: "/records/charts",
   },
   {
     date: "2026-07-05",
     category: "Charts",
-    text: "New peaks for “Dai Dai”: No.1 in Lebanon and a new high of No.2 in India.",
+    text: "New peaks for “Dai Dai”: No. 1 in Lebanon and a new high of No. 2 in India.",
     href: "/records/charts",
   },
   {
@@ -1936,13 +1940,13 @@ export const updates: Update[] = [
   {
     date: "2026-07-05",
     category: "Charts",
-    text: "Up to No.3 in France: “Dai Dai” climbs to a new peak on the SNEP official singles chart.",
+    text: "Up to No. 3 in France: “Dai Dai” climbs to a new peak on the SNEP official singles chart.",
     href: "/records/charts",
   },
   {
     date: "2026-07-05",
     category: "Charts",
-    text: "Now No.1 on both of Belgium's regional charts at once: “Dai Dai” tops the Flanders Top 50 after already leading Wallonia.",
+    text: "Now No. 1 on both of Belgium's regional charts at once: “Dai Dai” tops the Flanders Top 50 after already leading Wallonia.",
     href: "/records/charts",
   },
   {
@@ -1984,25 +1988,25 @@ export const updates: Update[] = [
   {
     date: "2026-07-03",
     category: "Charts",
-    text: "A jump of nine in Italy: “Dai Dai” reaches a new peak of No.10 on the FIMI Official Singles Chart.",
+    text: "A jump of nine in Italy: “Dai Dai” reaches a new peak of No. 10 on the FIMI Official Singles Chart.",
     href: "/records/charts",
   },
   {
     date: "2026-07-03",
     category: "Charts",
-    text: "Up to No.18 in the UK: “Dai Dai” climbs again on the Official Singles Chart, its 5th week there.",
+    text: "Up to No. 18 in the UK: “Dai Dai” climbs again on the Official Singles Chart, its 5th week there.",
     href: "/records/charts",
   },
   {
     date: "2026-07-03",
     category: "Charts",
-    text: "No.1 in Germany: “Dai Dai” tops the Top 100 Singles Chart there this week.",
+    text: "No. 1 in Germany: “Dai Dai” tops the Top 100 Singles Chart there this week.",
     href: "/records/charts",
   },
   {
     date: "2026-07-03",
     category: "Charts",
-    text: "Up five spots in Ireland: “Dai Dai” climbs to No.27 on the Official Irish Singles Chart, its 5th week there.",
+    text: "Up five spots in Ireland: “Dai Dai” climbs to No. 27 on the Official Irish Singles Chart, its 5th week there.",
     href: "/records/charts",
   },
   {
@@ -2014,13 +2018,13 @@ export const updates: Update[] = [
   {
     date: "2026-07-03",
     category: "Charts",
-    text: "A leap from No.60 to No.5 in Lithuania: “Dai Dai” makes its biggest jump yet, now in its 5th week on the AGATA chart.",
+    text: "A leap from No. 60 to No. 5 in Lithuania: “Dai Dai” makes its biggest jump yet, now in its 5th week on the AGATA chart.",
     href: "/records/charts",
   },
   {
     date: "2026-07-03",
     category: "Charts",
-    text: "Up to No.2 in Norway: “Dai Dai” climbs again in its 6th week on the VG-lista chart.",
+    text: "Up to No. 2 in Norway: “Dai Dai” climbs again in its 6th week on the VG-lista chart.",
     href: "/records/charts",
   },
   {
@@ -2032,13 +2036,13 @@ export const updates: Update[] = [
   {
     date: "2026-07-03",
     category: "Charts",
-    text: "A new high for “Dai Dai” in Australia: No.47 on the ARIA Top 50.",
+    text: "A new high for “Dai Dai” in Australia: No. 47 on the ARIA Top 50.",
     href: "/records/charts",
   },
   {
     date: "2026-07-03",
     category: "Charts",
-    text: "A new market for “Dai Dai”: a debut at No.7 in Ecuador.",
+    text: "A new market for “Dai Dai”: a debut at No. 7 in Ecuador.",
     href: "/records/charts",
   },
   {
@@ -2074,13 +2078,13 @@ export const updates: Update[] = [
   {
     date: "2026-07-01",
     category: "Charts",
-    text: "A brand-new market: “Dai Dai” debuted at No.60 on the Billboard Japan Hot 100.",
+    text: "A brand-new market: “Dai Dai” debuted at No. 60 on the Billboard Japan Hot 100.",
     href: "/records/charts",
   },
   {
     date: "2026-07-01",
     category: "Charts",
-    text: "Six new chart peaks in one week for “Dai Dai”: No.3 in Spain, No.14 in Hungary, No.38 in Israel, No.24 in Canada, No.63 in Brazil and No.74 in the US.",
+    text: "Six new chart peaks in one week for “Dai Dai”: No. 3 in Spain, No. 14 in Hungary, No. 38 in Israel, No. 24 in Canada, No. 63 in Brazil and No. 74 in the US.",
     href: "/records/charts",
   },
   {
@@ -2092,7 +2096,7 @@ export const updates: Update[] = [
   {
     date: "2026-07-01",
     category: "Firsts & Records",
-    text: "No other African artist has held both a UK No.1 album and a UK No.1 single — until Burna Boy, now also the most certified African artist worldwide.",
+    text: "No other African artist has held both a UK No. 1 album and a UK No. 1 single — until Burna Boy, now also the most certified African artist worldwide.",
     href: "/records/firsts",
   },
 ];

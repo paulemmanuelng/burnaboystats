@@ -19,13 +19,13 @@ describe("generated metadata plurals", () => {
     const wrong: string[] = [];
     for (const a of sweptArtists as any[]) {
       const strings = [
-        count(chartNo1s(a), "No.1", "No.1s"),
+        count(chartNo1s(a), "No. 1", "No. 1s"),
         count(chartEntries(a), "entry", "entries"),
         count(chartTerritories(a), "territory", "territories"),
       ];
       for (const s of strings) {
         // "1 entries" / "1 No.1s" / "2 entry" all fail; "1 entry" passes.
-        if (/^1 \w+(s|ies)$/.test(s) || /^(?!1 )\d+ (entry|territory|No\.1)$/.test(s))
+        if (/^1 (\w+(s|ies)|No\. 1s)$/.test(s) || /^(?!1 )\d+ (entry|territory|No\. 1)$/.test(s))
           wrong.push(`${a.slug}: "${s}"`);
       }
     }

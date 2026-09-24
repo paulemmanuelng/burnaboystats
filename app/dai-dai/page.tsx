@@ -85,7 +85,7 @@ export const metadata = pageMetadata({
   description: `Shakira & Burna Boy's “Dai Dai” — the World Cup anthem: 37 days as Earth's most-streamed song, No. 1 in ${daiDaiNumberOnes} countries, and the Final halftime show.`,
   path: "/dai-dai",
   shareTitle: "The Dai Dai Story — Shakira & Burna Boy",
-  shareDescription: "Shakira & Burna Boy's World Cup anthem — No.1 worldwide, and performed at the Final halftime show.",
+  shareDescription: "Shakira & Burna Boy's World Cup anthem — No. 1 worldwide, and performed at the Final halftime show.",
   languages: { en: "/dai-dai", es: "/dai-dai/es", "x-default": "/dai-dai" },
 });
 

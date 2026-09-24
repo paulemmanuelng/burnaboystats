@@ -16,7 +16,7 @@
  */
 
 import { totalAwards } from "../data/certifications";
-import { afrobeatsArtists } from "../data/afrobeats";
+import { sweptArtists } from "../data/afrobeats";
 import { timelineEntryCount } from "../data/timeline";
 import { chartEntryCount } from "../data/charts";
 import { totalWins } from "../data/awards";
@@ -73,7 +73,10 @@ export const navGroups: NavGroup[] = [
       // the hub can never disagree (they did: 8 here, 14 there).
       { label: "Records", href: "/records", meta: `${recordBooks.length} books` },
       { label: "Live charts", href: "/live-charts", meta: `${liveNumberOnes} No. 1s` },
-      { label: "The Afrobeats Board", href: "/afrobeats", meta: String(afrobeatsArtists.length) },
+      // The board's own count: the swept artists plus Burna Boy, as /afrobeats
+      // prints "One rule, 16 verified artists". This read 15 beside Compare's
+      // "16 artists" until 24 Sep 2026.
+      { label: "The Afrobeats Board", href: "/afrobeats", meta: String(sweptArtists.length + 1) },
       // 12 Sep 2026: +/compare. Paul asked for it in the mobile nav; the row
       // advertises the artists it can set against each other, derived.
       { label: "Compare", href: "/compare", meta: `${comparableArtists.length} artists` },

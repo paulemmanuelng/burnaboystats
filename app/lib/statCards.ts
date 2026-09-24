@@ -3,7 +3,7 @@ import { firstGroups } from "../data/firsts";
 import { titleKey } from "./titleKey";
 import { badgeWeight } from "./certs";
 import { numberOnes, chartEntryCount, daiDaiNumberOnes, daiDaiChartEntryCount } from "../data/charts";
-import { chartedCountryCount, numberOneCountryCount } from "./analysis";
+import { numberOneCountryCount } from "./analysis";
 import { totalWins, totalNominations, ceremonyCount } from "../data/awards";
 import { spotifyFollowersDisplay } from "../data/spotify";
 import { BURNA_PEAK_LISTENERS } from "../data/africasBiggest";
@@ -80,9 +80,10 @@ export function getStatCards(): StatCard[] {
       href: "/records/charts",
       // "alongside ${chartCountryCount}" double-counted the globals: that
       // figure already includes them, so the sentence added them a second time
-      // and read two territories high. The countries figure is the one that
-      // sits "alongside" the two global charts.
-      detail: `Counted as placements: a song topping five countries adds five. Includes both Billboard Global charts alongside ${chartedCountryCount} charting countries.`,
+      // and read two territories high. Then "alongside 67 charting countries"
+      // set a charted-countries figure beside a No. 1 count; since 24 Sep 2026
+      // it is the countries with a No. 1, the figure this card is about.
+      detail: `Counted as placements: a song topping five countries adds five. Includes both Billboard Global charts alongside No. 1s in ${numberOneCountryCount} countries.`,
       value: `${numberOnes}`,
       label: "No. 1 chart placements worldwide",
       kicker: "Nigeria, the UK, the Netherlands, Colombia & more",

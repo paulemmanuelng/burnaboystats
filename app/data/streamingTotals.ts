@@ -74,6 +74,17 @@
 // Method and full evidence: docs/sourcing/CAREER-STREAMS-OFFSET.md.
 export const spotifyTotalStreams = "11.06B";
 
+/**
+ * The day ChartMasters' Playcounts Tool was last read to anchor the offset —
+ * the newest docs/sourcing/chartmasters/reads/<date>.json. 23 Sep 2026: kworb's
+ * page moved after five frozen days, and a ChartMasters-21 ↔ kworb-22 pair
+ * re-measured the offset at 114,858,823 (the 22 Sep --kworb-frozen note above
+ * is superseded). /methodology prints this date; it still said "17 September"
+ * after four newer reads. Move it with every anchor read, and
+ * tests/siteDebugWording.test.ts holds it to the newest read on file.
+ */
+export const CAREER_STREAMS_ANCHOR_READ_ON = "2026-09-23";
+
 // The same daily figure, unrounded.
 //
 // The compact string above is what the site shows nearly everywhere, and it is

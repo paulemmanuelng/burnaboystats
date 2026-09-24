@@ -157,8 +157,10 @@ export default function ApiPage() {
           // "countries" over the territory figure, which counts Billboard's
           // Global 200 and Global 200 Excl. US. Neither is a country, so the
           // pill read two higher than the desktop badge beside it on the same
-          // page. Both layouts now take the same country figure.
-          `${chartedCountryCount} countries`,
+          // page. Both layouts now take the same country figure — and the same
+          // noun: beside "248 certifications", a bare "67 countries" read as
+          // the certified countries.
+          `${chartedCountryCount} countries charted`,
           "CC BY 4.0",
         ]}
         endpoints={endpoints}

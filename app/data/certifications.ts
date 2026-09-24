@@ -116,7 +116,7 @@ export const albums: Release[] = [
     { c: "FR", level: "Gold" }, { c: "NL", level: "Gold" }, { c: "DK", level: "Platinum" },
     { c: "NZ", level: "Platinum" }, { c: "NG", level: "Platinum", x: 5 },
   ] },
-  { title: "I Told Them...", year: 2023, cover: "https://cdn-images.dzcdn.net/images/cover/1120c9c53e59dcbaffb9d7f77908db16/500x500-000000-80-0-0.jpg", certs: [
+  { title: "I Told Them…", year: 2023, cover: "https://cdn-images.dzcdn.net/images/cover/1120c9c53e59dcbaffb9d7f77908db16/500x500-000000-80-0-0.jpg", certs: [
     { c: "UK", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "NG", level: "Platinum" },
   ] },
   { title: "Twice as Tall", year: 2020, certs: [
@@ -454,7 +454,7 @@ export const singles: Release[] = [
   { title: "If I'm Lying", year: 2023, cover: "https://cdn-images.dzcdn.net/images/cover/1120c9c53e59dcbaffb9d7f77908db16/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Silver" },
   ] },
-  { title: "No Fit Vex", cover: "https://cdn-images.dzcdn.net/images/cover/fd271b2967aa9a67f7cb23f956c58b10/500x500-000000-80-0-0.jpg", certs: [
+  { title: "No Fit Vex", year: 2020, cover: "https://cdn-images.dzcdn.net/images/cover/fd271b2967aa9a67f7cb23f956c58b10/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Silver" },
   ] },
   { title: "Thanks", credit: "feat. J. Cole", year: 2023, cover: "https://cdn-images.dzcdn.net/images/cover/1120c9c53e59dcbaffb9d7f77908db16/500x500-000000-80-0-0.jpg", certs: [
@@ -466,7 +466,7 @@ export const singles: Release[] = [
   { title: "How Bad Could It Be", year: 2022, cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Silver" },
   ] },
-  { title: "Level Up", cover: "https://cdn-images.dzcdn.net/images/cover/fd271b2967aa9a67f7cb23f956c58b10/500x500-000000-80-0-0.jpg", certs: [
+  { title: "Level Up", year: 2020, cover: "https://cdn-images.dzcdn.net/images/cover/fd271b2967aa9a67f7cb23f956c58b10/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Silver" },
   ] },
   { title: "Wonderful", year: 2020, cover: "https://cdn-images.dzcdn.net/images/cover/2fff7aefcfa8eaed5d2843521c2b0d55/500x500-000000-80-0-0.jpg", certs: [
@@ -611,7 +611,11 @@ export const features: Release[] = [
   { title: "Rollin'", credit: "Mist ft. Burna Boy", year: 2021, cover: "https://cdn-images.dzcdn.net/images/cover/123c9286e946a0ad60a4126acbee6f60/500x500-000000-80-0-0.jpg", certs: [
     { c: "UK", level: "Silver" },
   ] },
-  { title: "Lenu (Remix)", cover: "https://cdn-images.dzcdn.net/images/cover/aef7ccf16f0481793eea256ab167aa88/500x500-000000-80-0-0.jpg", certs: [
+  // BNXN's record, Burna Boy featured: Deezer's release page for this cover
+  // (album 139323502, Spaceship) dates it 16 Apr 2020 and lists both artists;
+  // TCSN's row reads "BNXN & Burna Boy". Read 24 Sep 2026. No Fit Vex and
+  // Level Up above are Twice as Tall cuts (Deezer album 166840522, 2020).
+  { title: "Lenu (Remix)", credit: "BNXN ft. Burna Boy", year: 2020, cover: "https://cdn-images.dzcdn.net/images/cover/aef7ccf16f0481793eea256ab167aa88/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Silver" },
   ] },
   // ZA Gold from the 19 Jun 2026 import with no body read on file: RiSA's
@@ -688,7 +692,7 @@ export const certHistory: CertEvent[] = [
   { title: "Location", credit: "Dave ft. Burna Boy", country: "NL", level: "Platinum", year: 2026 },
   { title: "We Pray", credit: "Coldplay ft. Burna Boy & others", country: "ES", level: "Platinum", year: 2026 },
   { title: "Love, Damini", album: true, country: "CA", level: "Platinum", year: 2026 },
-  { title: "I Told Them...", album: true, country: "CA", level: "Gold", year: 2026 },
+  { title: "I Told Them…", album: true, country: "CA", level: "Gold", year: 2026 },
   { title: "Last Last", country: "CA", level: "Platinum", x: 4, year: 2026 },
   { title: "For My Hand", credit: "feat. Ed Sheeran", country: "CA", level: "Platinum", x: 2, year: 2026 },
   { title: "It's Plenty", country: "CA", level: "Platinum", year: 2026 },
@@ -760,14 +764,14 @@ export const certHistory: CertEvent[] = [
   { title: "City Boys", country: "US", level: "Gold", year: 2025 },
   { title: "Real Life", credit: "feat. Stormzy", country: "AU", level: "Gold", year: 2025 },
   { title: "We Pray", credit: "Coldplay ft. Burna Boy & others", country: "AU", level: "Gold", year: 2025 },
-  { title: "I Told Them...", album: true, country: "NZ", level: "Gold", year: 2025 },
+  { title: "I Told Them…", album: true, country: "NZ", level: "Gold", year: 2025 },
   { title: "Alone", country: "NZ", level: "Gold", year: 2025 },
   { title: "We Pray", credit: "Coldplay ft. Burna Boy & others", country: "NZ", level: "Gold", year: 2025 },
   { title: "WGFT", credit: "Gunna ft. Burna Boy", country: "UK", level: "Silver", year: 2025 },
 
   { title: "We Pray", credit: "Coldplay ft. Burna Boy & others", country: "ES", level: "Gold", year: 2024 },
   { title: "Love, Damini", album: true, country: "DK", level: "Platinum", year: 2024 },
-  { title: "I Told Them...", album: true, country: "UK", level: "Gold", year: 2024 },
+  { title: "I Told Them…", album: true, country: "UK", level: "Gold", year: 2024 },
   { title: "African Giant", album: true, country: "CH", level: "Gold", year: 2024 },
   { title: "Anybody", country: "CH", level: "Gold", year: 2024 },
   { title: "Location", credit: "Dave ft. Burna Boy", country: "US", level: "Gold", year: 2024 },
@@ -830,7 +834,7 @@ export const certHistory: CertEvent[] = [
   { title: "Love, Damini", album: true, country: "UK", level: "Silver", year: 2023 },
   // BPI title/9614: certification history "22 December 2023 — Silver" (read
   // 18 Sep 2026); the log had it under 2024.
-  { title: "I Told Them...", album: true, country: "UK", level: "Silver", year: 2023 },
+  { title: "I Told Them…", album: true, country: "UK", level: "Silver", year: 2023 },
   // BPI album page, read 16 Sep 2026: "01 December 2023 Gold | 10 February
   // 2023 Silver" — the Gold step was on the release row but never in this log.
   { title: "Love, Damini", album: true, country: "UK", level: "Gold", year: 2023 },

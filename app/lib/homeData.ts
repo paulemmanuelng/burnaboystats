@@ -226,7 +226,7 @@ const allBoardCells: BoardCell[] = [...officialOnes].reverse().map((code) => {
 // Panama and Luxembourg (the board's two most marginal charts) give up their
 // visible slots so the UK, the biggest chart the catalogue has topped, can
 // show both of its No. 1s: "Own It" on the Official Singles Chart and the
-// "I Told Them..." album on the Official Albums Chart. All three remain real
+// "I Told Them…" album on the Official Albums Chart. All three remain real
 // No. 1 countries and stay in the 31-count — they are just not among the 24
 // cells shown. The board otherwise keeps its natural order.
 function specialCell(title: string, chart: string): BoardCell {
@@ -242,7 +242,7 @@ function specialCell(title: string, chart: string): BoardCell {
   };
 }
 export const ukSinglesCell = specialCell("Own It", "Official Singles Chart");
-export const ukAlbumsCell = specialCell("I Told Them...", "Official Albums Chart");
+export const ukAlbumsCell = specialCell("I Told Them…", "Official Albums Chart");
 
 function withOverrides(cell: BoardCell): BoardCell {
   if (cell.code === "LB") {
@@ -259,6 +259,10 @@ export const boardCells: BoardCell[] = allBoardCells
   .map(withOverrides)
   // The tail already held a UK cell; the curation must never render it twice.
   .filter((c, i, arr) => arr.findIndex((x) => x.code === c.code && x.coverTitle === c.coverTitle) === i);
+
+/** Countries the board shows, not cells: the UK holds two cells (a single and
+ *  an album), so "Showing 24 of 30" counted it twice beside a country total. */
+export const boardCountriesShown = new Set(boardCells.map((c) => c.code)).size;
 
 // ── The catalogue ──────────────────────────────────────────────────────────
 /**

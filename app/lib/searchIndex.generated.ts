@@ -4915,7 +4915,7 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
-    "title": "I Told Them...",
+    "title": "I Told Them…",
     "path": "/music/albums/i-told-them",
     "section": "Release",
     "description": "4 certifications · 14 chart entries.",
@@ -5040,8 +5040,11 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Lenu (Remix)",
     "path": "/certifications",
     "section": "Release",
-    "description": "1 certification.",
+    "description": "BNXN ft. Burna Boy — 1 certification.",
     "keywords": [
+      "bnxn",
+      "burna",
+      "boy",
       "song",
       "release"
     ],

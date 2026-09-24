@@ -9,7 +9,7 @@ import PeakMap, { type PeakInfo } from "../../components/PeakMap";
 import KeepExploring from "../../components/KeepExploring";
 import TimeSeriesChart, { type SeriesAnnotation } from "../../components/TimeSeriesChart";
 import { pageMetadata, datasetJsonLd } from "../../lib/seo";
-import { JUMP } from "../../lib/visualizedSections";
+import { JUMP, listenersLabel } from "../../lib/visualizedSections";
 import { revenueShows } from "../../data/tourRevenue";
 import { COUNTRIES, albums, singles, features, totalAwards } from "../../data/certifications";
 import { ceremonies, totalWins, pendingNominations as pendingNoms, decidedNominations as decidedNoms } from "../../data/awards";
@@ -97,7 +97,7 @@ const listenerGain = (listenerLast.value - listenerFirst.value).toFixed(2);
 const listenerDays = Math.round(
   (new Date(listenerLast.date).getTime() - new Date(listenerFirst.date).getTime()) / 86_400_000
 );
-const formatListeners = (v: number) => `${v.toFixed(1)}M`;
+const formatListeners = listenersLabel;
 // The series is a PEAK metric (watched-metrics.json → spotify-peak-listeners,
 // kind: "peak"), so it only extends when a new high is set — it does not run to
 // today, and both labels claimed it did. Derived from the series' own ends, so
@@ -534,7 +534,7 @@ export default function VisualizedPage() {
             {certYearRecord ? (
               <>
                 <span className={styles.captionLead}>{thisYear} is already his biggest year</span>{" "}
-                — {certYearPeak} certifications with the year still running. Counted as logged;
+                — {certYearPeak} international certifications with the year still running. Counted as logged;
                 the log is complete from 2023.
               </>
             ) : (

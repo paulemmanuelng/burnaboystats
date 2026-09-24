@@ -348,7 +348,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Dai Dai — the World Cup Anthem",
     path: "/dai-dai",
     section: "Records",
-    description: "Shakira & Burna Boy's World Cup anthem — No.1 worldwide, and live at the 2026 Final halftime show.",
+    description: "Shakira & Burna Boy's World Cup anthem — No. 1 worldwide, and live at the 2026 Final halftime show.",
     keywords: ["dai dai", "dai dai story", "world cup song", "world cup halftime show", "world cup halftime 2026", "who is performing at the world cup halftime", "shakira burna boy halftime", "world cup final performers", "shakira burna boy", "fifa world cup 2026", "biggest song in the world", "global 200"],
   },
   {
@@ -362,8 +362,10 @@ export const searchIndex: SearchDoc[] = [
     title: "FAQ",
     path: "/faq",
     section: "Site",
-    description: "Burna Boy's real name, net worth, Grammys and more — answered.",
-    keywords: ["faq", "questions", "real name", "damini ogulu", "net worth", "how many grammys", "age", "born"],
+    // No "net worth": the FAQ has no such answer (its money question is the car
+    // collection's worth, which /records/cars answers under that keyword).
+    description: "Burna Boy's real name, age, Grammys, No. 1s and more — answered.",
+    keywords: ["faq", "questions", "real name", "damini ogulu", "how many grammys", "age", "born"],
   },
   {
     title: "Live Charts",

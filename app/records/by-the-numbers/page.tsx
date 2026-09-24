@@ -49,7 +49,7 @@ const PROOF: Record<string, string> = {
 };
 
 const pageUrl = `${CANONICAL_ORIGIN}/records/by-the-numbers`;
-const shareText = `Burna Boy by the numbers: ${totalAwards()} certifications, ${totalWins} award wins, ${numberOnes} No.1s and the biggest tour in African history 🇳🇬`;
+const shareText = `Burna Boy by the numbers: ${totalAwards()} certifications, ${totalWins} award wins, ${numberOnes} No. 1s and the biggest tour in African history 🇳🇬`;
 const shareLinks = [
   { name: "Share on X", href: `https://x.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(pageUrl)}` },
   { name: "WhatsApp", href: `https://wa.me/?text=${encodeURIComponent(`${shareText} ${pageUrl}`)}` },

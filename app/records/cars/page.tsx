@@ -56,8 +56,11 @@ const highlights = [
 // name a car the list no longer leads with.
 const topCar = garage[0];
 const topCarValue = usdShort(topCar.valueUsd);
-// The one dealer-stated price, read off the row rather than typed as "$2M".
+// The two dealer-stated prices, read off the rows rather than typed as "$2M".
+// The note called the Senna's the only dealer-stated price, beside a Chiron
+// whose ₦9 billion is the same dealer's figure (until 24 Sep 2026).
 const senna = garage.find((c) => c.slug === "mclaren-senna")!;
+const chiron = garage.find((c) => c.slug === "bugatti-chiron")!;
 const topCarName = `${topCar.make} ${modelShort(topCar.model)}`;
 
 // The five no longer counted, by value — kept for the record, pictured never.
@@ -291,8 +294,10 @@ export default function CarsPage() {
                     .join("; and the ")}
                   {conversionNote.exceptions.length === 1 && ", the CBN rate on 3 July 2026, the last trading day before the reveal"}
                 </>
-              )}. The McLaren Senna is the one price stated by the selling dealer — Abuja Car
-              Limited&apos;s June 2025 sale post priced it at ₦3.2 billion, about {usdShort(senna.valueUsd)}.
+              )}. Two prices come from the selling dealer, Abuja Car: its June 2025 sale post
+              priced the McLaren Senna at ₦3.2 billion, about {usdShort(senna.valueUsd)} (the{" "}
+              {senna.valueNaira} listed is the fan breakdown&apos;s import-inclusive figure), and
+              its CEO put the Bugatti Chiron at {chiron.valueNaira}.
               Last fully re-verified {CARS_LAST_SWEEP}
               {currentCars
                 .filter((c) => c.addedOn)

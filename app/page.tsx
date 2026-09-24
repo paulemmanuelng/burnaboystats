@@ -18,6 +18,7 @@ import {
   largestTier,
   diamondNote,
   boardCells,
+  boardCountriesShown,
   boardCountryTotal,
   careerNumberOnes,
   albumCards,
@@ -27,6 +28,7 @@ import {
   numberWord,
 } from "./lib/homeData";
 import { updates } from "./data/updates";
+import { DAI_DAI_SPOTIFY_NO1_DAYS } from "./data/daiDai";
 import NotReported from "./components/NotReported";
 
 /**
@@ -162,7 +164,7 @@ export default function Home() {
             <div className={styles.historyRow}>
               <p className={styles.historyText}>
                 The first-ever FIFA World Cup Final halftime show, and the first African
-                artist to perform at it. Their anthem has now spent 37 days as the most-streamed song on Earth — back on top in August.
+                artist to perform at it. Their anthem spent {DAI_DAI_SPOTIFY_NO1_DAYS} days as the most-streamed song on Earth — back on top in August.
               </p>
               <Link href="/dai-dai" className={`btn btnPrimary ${styles.historyCta}`}>
                 Read the story ↗
@@ -243,7 +245,7 @@ export default function Home() {
             </div>
 
             <div className={styles.boardCount}>
-              Showing {boardCells.length} of {boardCountryTotal} · official national charts
+              Showing {boardCountriesShown} of {boardCountryTotal} · official national charts
             </div>
 
             <div className={styles.boardGrid}>

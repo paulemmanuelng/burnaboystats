@@ -48,9 +48,10 @@
 // ── JULY 2026 UPDATE — top-fan re-pricing pass ──────────────────────────────
 // Re-priced against a researched breakdown from a top Burna Boy fan/collector
 // (@turntupnaza), who tracked each car's buy price + Nigerian import duties.
-// Only the McLaren Senna price is dealer-stated (Abuja Car Limited's June 2025
-// sale post, ₦3.2bn / about $2M); the Bugatti, Cullinan and Aventador SVJ are
-// high-confidence, the rest estimates.
+// Only the McLaren Senna price was dealer-stated then (Abuja Car Limited's June
+// 2025 sale post, ₦3.2bn / about $2M — the row keeps the fan breakdown's
+// ₦2.9bn); the Bugatti, Cullinan and Aventador SVJ are high-confidence, the
+// rest estimates. The Chiron's ₦9bn, added later, is the same dealer's figure.
 //   • Ferrari 458 Italia + 488 Spider → SOLD (kept here, not dropped).
 //   • Bentley Continental GT + Range Rover Autobiography → UNCONFIRMED (not
 //     sighted with him in years).

@@ -176,7 +176,7 @@ export const ceremonies: Ceremony[] = [
       { year: 2024, category: "Best Melodic Rap Performance", work: "Sittin' on Top of the World", won: false },
       { year: 2024, category: "Best Global Music Performance", work: "Alone", won: false },
       { year: 2024, category: "Best African Music Performance", work: "City Boys", won: false },
-      { year: 2024, category: "Best Global Music Album", work: "I Told Them...", won: false },
+      { year: 2024, category: "Best Global Music Album", work: "I Told Them…", won: false },
       { year: 2025, category: "Best African Music Performance", work: "Higher", won: false },
       { year: 2026, category: "Best Global Music Album", work: "No Sign of Weakness", won: false },
       { year: 2026, category: "Best African Music Performance", work: "Love", won: false },
@@ -239,7 +239,7 @@ export const ceremonies: Ceremony[] = [
     name: "NAACP Image Awards",
     noms: [
       { year: 2024, category: "Outstanding Male Artist", won: false },
-      { year: 2024, category: "Outstanding Album", work: "I Told Them...", won: false },
+      { year: 2024, category: "Outstanding Album", work: "I Told Them…", won: false },
       { year: 2024, category: "Outstanding Duo, Group or Collaboration", work: "Sittin' on Top of the World", won: false },
       { year: 2024, category: "Outstanding Hip Hop/Rap Song", won: false },
       { year: 2024, category: "Outstanding International Song", work: "City Boys", won: false },
@@ -564,7 +564,7 @@ export const ceremonies: Ceremony[] = [
     name: "Trace Awards",
     noms: [
       { year: 2023, category: "Album of the Year", work: "Love, Damini", won: true },
-      { year: 2025, category: "Album of the Year", work: "I Told Them...", won: false },
+      { year: 2025, category: "Album of the Year", work: "I Told Them…", won: false },
       { year: 2025, category: "Song of the Year", work: "Active (with Travis Scott)", won: false },
       { year: 2025, category: "Best Collaboration", work: "Tshwala Bam (Remix)", won: false },
       { year: 2025, category: "Best Live Performance", won: false },

@@ -77,7 +77,7 @@ export const stats: {
   { num: `${numberOnes}`, label: "No. 1 chart placements", sub: `${nationalOnes} on national charts, plus both Billboard global charts — in ${numberOneCountryCount} countries`, href: "/records/charts" },
   { num: "$30.46M", label: "Highest-grossing African tour", sub: "the I Told Them… Tour — a world record for an African act", href: "/records/tours", big: true },
   { num: "$6.15M", label: "Biggest concert by an African artist", sub: "London Stadium, June 2024 — 58,973 fans", href: "/records/tours" },
-  { num: `${BURNA_HOT_100_ENTRIES}`, label: "Billboard Hot 100 entries", sub: "the most by any African artist, six years running", href: "/records/charts" },
+  { num: `${BURNA_HOT_100_ENTRIES}`, label: "Billboard Hot 100 entries", sub: "the most by any African artist, and on the chart six years running", href: "/records/charts" },
   { num: BURNA_PEAK_LISTENERS, label: "Spotify monthly listeners, at peak", sub: "the first African artist ever to reach 60 million", href: "/records/africas-biggest", big: true },
   { num: spotifyTotalStreams, label: "Spotify streams, all-time", sub: "every song, lead and featured credits combined", href: "/music" },
   { num: youtubeTotalViews, label: "YouTube views, all-time", sub: `every video on his YouTube channel — counted by hand on ${ytCountedOn}`, href: "/music" },

@@ -1008,7 +1008,9 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
               <span className={styles.scope}>
                 {scope}
                 {ready && a && b && !record
-                  ? ` · registers read ${longDate(a.verifiedOn)} (${a.name}) and ${longDate(b.verifiedOn)} (${b.name})`
+                  ? a.verifiedOn === b.verifiedOn
+                    ? ` · both registers read ${longDate(a.verifiedOn)}`
+                    : ` · registers read ${longDate(a.verifiedOn)} (${a.name}) and ${longDate(b.verifiedOn)} (${b.name})`
                   : ""}
               </span>
             </div>

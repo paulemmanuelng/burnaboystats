@@ -9,7 +9,7 @@ import { daiDaiOgId, ogStats as stats, DAYS_AT_NO1 } from "./ogId";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 export const alt =
-  "Dai Dai — Shakira & Burna Boy's 2026 FIFA World Cup anthem: No.1 worldwide, live at the Final halftime show on 19 July";
+  "Dai Dai — Shakira & Burna Boy's 2026 FIFA World Cup anthem: No. 1 worldwide, live at the Final halftime show on 19 July";
 
 const COVER = "https://i.scdn.co/image/ab67616d0000b27303cadf1b3fe324c1dc710ed4";
 const GOLD = "#ffb627";

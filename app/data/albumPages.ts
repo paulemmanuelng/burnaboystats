@@ -48,7 +48,7 @@ export const albumPages: AlbumPage[] = [
       },
       {
         q: "Which songs are on L.I.F.E?",
-        a: "The 15-track standard edition carries “Like to Party” — his breakout lead single — alongside “Tonight”, “Run My Race”, “#Yawadey” and collaborations with 2face Idibia, Timaya, Wizkid, Olamide and Reminisce. (the linked Spotify release is the 19-track deluxe edition).",
+        a: "The 15-track standard edition carries “Like to Party” — his breakout lead single — alongside “Tonight”, “Run My Race”, “#Yawadey” and collaborations with 2face Idibia, Timaya, Wizkid, Olamide and Reminisce (the linked Spotify release is the 19-track deluxe edition).",
       },
       {
         q: "Did L.I.F.E win any awards?",
@@ -236,11 +236,11 @@ export const albumPages: AlbumPage[] = [
     title: "No Sign of Weakness",
     tagline: "The eighth album — and the springboard for “Dai Dai”",
     blurb:
-      "No Sign of Weakness (2025) is the eighth studio album — No. 1 in Nigeria, No. 6 in the UK, with Travis Scott, Mick Jagger and Shaboozey across its sixteen tracks. It won Album of the Year at AFRIMA 2025, earned a Grammy nomination for Best Global Music Album, and in 2026 he followed it with “Dai Dai” alongside Shakira — the official FIFA World Cup song.",
+      "No Sign of Weakness (2025) is the eighth studio album — No. 1 in Nigeria, No. 6 in the UK, with Travis Scott, Mick Jagger, Stromae and Shaboozey across its sixteen tracks. It won Album of the Year at AFRIMA 2025, earned a Grammy nomination for Best Global Music Album, and in 2026 he followed it with “Dai Dai” alongside Shakira — the official FIFA World Cup song.",
     extraFacts: [
       { v: "2025", l: "Album of the Year — AFRIMA (9th edition)" },
       { v: "2026", l: "Grammy-nominated — Best Global Music Album" },
-      { v: "16", l: "tracks, with Travis Scott, Mick Jagger and Shaboozey featuring" },
+      { v: "16", l: "tracks, with Travis Scott, Mick Jagger, Stromae and Shaboozey featuring" },
       { v: "No. 1", l: "Nigeria — plus No. 6 in the UK" },
     ],
     faqs: [
@@ -250,7 +250,7 @@ export const albumPages: AlbumPage[] = [
       },
       {
         q: "Who features on No Sign of Weakness?",
-        a: "The album features Travis Scott (TaTaTa), Mick Jagger of the Rolling Stones (Empty Chairs) and Shaboozey (Change Your Mind) across its 16 tracks.",
+        a: "The album features Travis Scott (TaTaTa), Mick Jagger of the Rolling Stones (Empty Chairs), Stromae (Pardon) and Shaboozey (Change Your Mind) across its 16 tracks.",
       },
       {
         q: "Is “Dai Dai” on No Sign of Weakness?",

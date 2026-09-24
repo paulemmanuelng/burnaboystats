@@ -229,8 +229,8 @@ export interface ChartRelease {
 }
 
 export const albumCharts: ChartRelease[] = [
-  { title: "I Told Them...", year: 2023, entries: [
-    { c: "NG", peak: 1, note: "Peak still open — read while the release is still on the chart, so it may yet climb." }, { c: "UK", peak: 1 }, { c: "NL", peak: 2 }, { c: "FR", peak: 6 }, { c: "SE", peak: 7 },
+  { title: "I Told Them…", year: 2023, entries: [
+    { c: "NG", peak: 1 }, { c: "UK", peak: 1 }, { c: "NL", peak: 2 }, { c: "FR", peak: 6 }, { c: "SE", peak: 7 },
     { c: "CA", peak: 18 }, { c: "BE", peak: 20 }, { c: "IE", peak: 25 }, { c: "US", peak: 31 },
     { c: "DE", peak: 46 }, { c: "AU", peak: 56 },
     // Read 18 Sep 2026: RMNZ artist page (12, 13 weeks, first charted 1 Sep
@@ -274,7 +274,7 @@ export const albumCharts: ChartRelease[] = [
     // Schweizer Hitparade Alben Top 100, issue of 20 Jul 2025: 28, one week
     // (swisscharts.com/charts/alben/20-07-2025); AFP/Audiogest TOP semana 29 de
     // 2025, Top 200 Álbuns: 66, new, one week (audiogest.pt PDF). Read 18 Sep 2026.
-    { c: "NG", peak: 1, note: "Peak still open — read while the release is still on the chart, so it may yet climb." }, { c: "UK", peak: 6 }, { c: "CH", peak: 28 }, { c: "NL", peak: 57 }, { c: "FR", peak: 58 }, { c: "CA", peak: 65 },
+    { c: "NG", peak: 1 }, { c: "UK", peak: 6 }, { c: "CH", peak: 28 }, { c: "NL", peak: 57 }, { c: "FR", peak: 58 }, { c: "CA", peak: 65 },
     { c: "PT", peak: 66 }, { c: "BE", peak: 136 }, { c: "US", peak: 200 },
   ] },
 ];

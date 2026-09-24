@@ -29,7 +29,7 @@ export const sectionLinks: Record<string, SectionLink> = {
   charts: {
     href: "/records/charts",
     title: "Chart Records",
-    desc: `${chartEntryCount} chart entries · ${numberOnes} No.1s worldwide`,
+    desc: `${chartEntryCount} chart entries · ${numberOnes} No. 1s worldwide`,
   },
   tours: { href: "/records/tours", title: "Tours & Live", desc: `${topTour.gross} — the biggest African tour` },
   about: { href: "/about", title: "About Burna Boy", desc: "Bio & career timeline" },

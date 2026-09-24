@@ -29,6 +29,7 @@ import { albums as studioAlbums } from "../data/albums";
 import { tours } from "../data/tours";
 import { MARKET_WEIGHT } from "../lib/certs";
 import { LIVE_CADENCE } from "../lib/liveChartMeta";
+import { DAI_DAI_SPOTIFY_NO1_DAYS } from "../data/daiDai";
 
 const DAI_DAI_COVER = "https://i.scdn.co/image/ab67616d0000b27303cadf1b3fe324c1dc710ed4";
 
@@ -325,8 +326,8 @@ export default function MobileHome() {
           Burna Boy
         </h2>
         <p className={styles.historyText}>
-          First African artist to perform at a World Cup Final halftime show. “Dai Dai” spent
-          37 days as the most-streamed song on Earth — back on top in August.
+          First African artist to perform at a World Cup Final halftime show. “Dai Dai” spent{" "}
+          {DAI_DAI_SPOTIFY_NO1_DAYS} days as the most-streamed song on Earth — back on top in August.
         </p>
         <Link href="/dai-dai" className={styles.historyCta}>
           Read the story ↗

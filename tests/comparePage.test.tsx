@@ -582,7 +582,33 @@ describe("the pair page derives its remaining typed figures", () => {
     const burna = comparableArtists.find((x) => x.slug === "burna-boy")!;
     const wiz = comparableArtists.find((x) => x.slug === "wizkid")!;
     const long = (iso: string) => new Date(`${iso}T12:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
-    expect(t).toContain(`registers read ${long(burna.verifiedOn)} (Burna Boy) and ${long(wiz.verifiedOn)} (Wizkid)`);
+    if (burna.verifiedOn === wiz.verifiedOn) {
+      expect(t).toContain(`both registers read ${long(burna.verifiedOn)}`);
+    } else {
+      expect(t).toContain(`registers read ${long(burna.verifiedOn)} (Burna Boy) and ${long(wiz.verifiedOn)} (Wizkid)`);
+    }
+  });
+
+  it("prints one date when both sides' registers were read the same day, and two when not", async () => {
+    // Shipped 24 Sep 2026: "registers read 23 September 2026 (Burna Boy) and
+    // 23 September 2026 (Wizkid)" — the same date twice.
+    const byDate = new Map<string, string[]>();
+    for (const x of comparableArtists) byDate.set(x.verifiedOn, [...(byDate.get(x.verifiedOn) ?? []), x.slug]);
+    const same = [...byDate.values()].find((slugs) => slugs.length >= 2);
+    expect(same, "no two artists share a register date to test with").toBeTruthy();
+    const t = text(await html({ a: same![0], b: same![1], all: "1" }));
+    const x = comparableArtists.find((c) => c.slug === same![0])!;
+    const long = (iso: string) => new Date(`${iso}T12:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
+    expect(t).toContain(`both registers read ${long(x.verifiedOn)}`);
+    expect(t).not.toContain(`${long(x.verifiedOn)} (${x.name}) and ${long(x.verifiedOn)}`);
+    const dates = [...byDate.keys()];
+    if (dates.length >= 2) {
+      const [p, q] = [byDate.get(dates[0])![0], byDate.get(dates[1])![0]];
+      const pa = comparableArtists.find((c) => c.slug === p)!;
+      const qa = comparableArtists.find((c) => c.slug === q)!;
+      const u = text(await html({ a: p, b: q, all: "1" }));
+      expect(u).toContain(`registers read ${long(pa.verifiedOn)} (${pa.name}) and ${long(qa.verifiedOn)} (${qa.name})`);
+    }
   });
 
   it("the visible breadcrumb bar lists the same trail as the BreadcrumbList", async () => {

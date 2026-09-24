@@ -12,6 +12,7 @@ import { afrobeatsArtists, countryMeta } from "../data/afrobeats";
 import { chartEntryCount, numberOnes, chartSourceSplit, chartCountryCount } from "../data/charts";
 import { ceremonyCount } from "../data/awards";
 import { tours } from "../data/tours";
+import { CAREER_STREAMS_ANCHOR_READ_ON } from "../data/streamingTotals";
 import { numberWord } from "../lib/homeData";
 
 export const metadata = pageMetadata({
@@ -33,6 +34,15 @@ const reviewedLabel = new Date(`${lastReviewed}T12:00:00Z`).toLocaleDateString("
   day: "numeric",
   month: "long",
   year: "numeric",
+});
+
+// The career-streams anchor's last ChartMasters read — one constant, so the
+// date cannot fall behind the reads again (it said 17 September on 24 Sep).
+const anchorReadLabel = new Date(`${CAREER_STREAMS_ANCHOR_READ_ON}T12:00:00Z`).toLocaleDateString("en-GB", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+  timeZone: "UTC",
 });
 
 // Primary sources, grouped by what they verify. Deliberately names the chart
@@ -62,7 +72,7 @@ const sources = [
     count: "live",
     tag: "Spotify · YouTube · in-app figures",
     detail:
-      "Spotify and YouTube's own in-app figures for monthly listeners, followers and view counts, cross-checked against the platforms directly. The one figure Spotify never publishes — a career stream total — is built from its per-track counts: kworb's mirror of them, summed daily, anchored to a dated read of ChartMasters' Playcounts Tool (last 17 September 2026), the method streamingTotals.ts documents.",
+      `Spotify and YouTube's own in-app figures for monthly listeners, followers and view counts, cross-checked against the platforms directly. The one figure Spotify never publishes — a career stream total — is built from its per-track counts: kworb's mirror of them, summed daily, anchored to a dated read of ChartMasters' Playcounts Tool (last ${anchorReadLabel}), the method streamingTotals.ts documents.`,
   },
   {
     area: "Awards",
@@ -451,8 +461,9 @@ export default function MethodologyPage() {
             <div className={styles.block}>
               <h2 className={styles.blockH}>How often it&apos;s updated</h2>
               <p className={styles.blockP}>
-                Fast-moving streaming figures — Spotify monthly listeners, follower counts,
-                YouTube views — are tracked live and updated as they move. Slower records
+                Fast-moving streaming figures — Spotify monthly listeners, song streams and
+                video views — are tracked live and updated as they move; follower counts and
+                his channel&apos;s all-time YouTube total are read by hand every few weeks. Slower records
                 such as certifications, chart peaks and awards are updated as each new
                 milestone is confirmed. Every change worth noting is logged on the Latest
                 Updates feed, so you can always see what changed and when.
