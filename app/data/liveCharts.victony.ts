@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-24";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-24T04:56Z";
+  export const liveChartsBuiltAt = "2026-09-24T11:51Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -241,106 +241,106 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 28,
-            "movement": -1
-          },
-          {
             "country": "CM",
             "name": "Cameroon",
-            "position": 30,
+            "position": 32,
             "movement": -2
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 34,
-            "movement": -3
+            "position": 33,
+            "movement": 1
           },
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 36,
-            "movement": -4
+            "position": 35,
+            "movement": 1
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 37,
+            "movement": -9
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 43,
-            "movement": -3
+            "position": 44,
+            "movement": -1
           },
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 48,
-            "movement": -5
+            "position": 49,
+            "movement": -1
           },
           {
             "country": "ZM",
             "name": "Zambia",
-            "position": 68,
-            "movement": -5
-          },
-          {
-            "country": "WW",
-            "name": "Worldwide",
-            "position": 71,
-            "movement": -3
+            "position": 69,
+            "movement": -1
           },
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 76,
+            "position": 72,
+            "movement": 4
+          },
+          {
+            "country": "WW",
+            "name": "Worldwide",
+            "position": 77,
+            "movement": -6
+          },
+          {
+            "country": "CI",
+            "name": "Côte d'Ivoire",
+            "position": 89,
             "movement": -1
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 86,
-            "movement": 4
-          },
-          {
-            "country": "CI",
-            "name": "Côte d'Ivoire",
-            "position": 88,
-            "movement": -1
+            "position": 90,
+            "movement": -4
           },
           {
             "country": "TZ",
             "name": "Tanzania",
-            "position": 113,
-            "movement": -4
+            "position": 108,
+            "movement": 5
           },
           {
             "country": "FR",
             "name": "France",
-            "position": 120,
-            "movement": -4
-          },
-          {
-            "country": "AE",
-            "name": "United Arab Emirates",
-            "position": 138,
-            "movement": 12
+            "position": 112,
+            "movement": 8
           },
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 148,
-            "movement": -20
+            "position": 136,
+            "movement": 12
+          },
+          {
+            "country": "AE",
+            "name": "United Arab Emirates",
+            "position": 137,
+            "movement": 1
           },
           {
             "country": "CA",
             "name": "Canada",
-            "position": 160,
-            "movement": 0
+            "position": 156,
+            "movement": 4
           },
           {
             "country": "BE",
             "name": "Belgium",
-            "position": 191,
-            "movement": 7
+            "position": 187,
+            "movement": 4
           }
         ]
       },
@@ -415,23 +415,22 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 50,
-            "movement": 4
+            "country": "CI",
+            "name": "Côte d'Ivoire",
+            "position": 19,
+            "movement": 67
           },
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 73,
-            "movement": 13
+            "position": 31,
+            "movement": 55
           },
           {
-            "country": "JM",
-            "name": "Jamaica",
-            "position": 77,
-            "movement": null,
-            "status": "new"
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 32,
+            "movement": 22
           }
         ]
       },
@@ -454,8 +453,8 @@
           {
             "country": "LK",
             "name": "Sri Lanka",
-            "position": 72,
-            "movement": -32
+            "position": 73,
+            "movement": -27
           }
         ]
       }
@@ -619,6 +618,13 @@
             "name": "Mauritania",
             "position": 146,
             "movement": -23
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 147,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "BW",
@@ -805,6 +811,18 @@
         ]
       },
       {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 87,
+            "movement": -15
+          }
+        ]
+      },
+      {
         "platform": "YouTube",
         "numberOnes": 0,
         "entries": [
@@ -979,7 +997,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 53,
+            "position": 55,
             "movement": -2
           }
         ]
@@ -1070,6 +1088,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/7c44504f57343c69b9a6e2219cb857ab/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "PINO",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 13,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/eae1950cf642fef40ae06c76d29dc1b8/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Soweto(Remix)",
