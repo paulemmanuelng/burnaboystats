@@ -106,12 +106,12 @@ describe("certHistory (certifications by year)", () => {
     ]);
   });
 
-  it("2026 logs 63 international certifications (81 events with Nigeria)", () => {
+  it("2026 logs 64 international certifications (82 events with Nigeria)", () => {
     // The by-year log is international-only: earlier years predate the TCSN
     // register, so Nigeria's 18 events (8 until the 23 Sep 2026 sweep added ten) would skew the comparison. They still
     // count in the totals. The log counts award EVENTS, so a Gold and a later
     // Platinum in the same country are two.
-    expect(intlCertHistory.filter((e) => e.year === 2026).length).toBe(63);
+    expect(intlCertHistory.filter((e) => e.year === 2026).length).toBe(64);
     // 54th and 55th: the French Diamant upgrade and Poland's Gold, both
     // awarded 31 Aug 2026 and both missing from this log until 3 Sep.
     // 56th: Austria's Platinum for "Dai Dai", read in IFPI Austria's own
@@ -127,10 +127,12 @@ describe("certHistory (certifications by year)", () => {
     // 61st: "Dai Dai" Sweden Platinum — Grammotex cert.nr 11317, 18 Sep 2026, read 20 Sep.
     // 62nd: "Dai Dai" Canada 2× Platinum — Music Canada's database, 21 Sep 2026, read 22 Sep.
     // 63rd: "Dai Dai" Germany Gold — BVMI's Gold-/Platin-Datenbank, read 23 Sep 2026.
+    // 64th: "Dai Dai" US 6× Platino (RIAA Latin) — the badge on RIAA's own
+    // @riaa_awards post of 23 Sep 2026; its database still read 2× on 24 Sep.
     // With Nigeria 71 -> 81 on 23 Sep 2026: the ten TCSN events of the Feb 2026
     // batch (nine new plaques and Ye's Silver -> Gold), logged 2026 with no day.
-    // The international figure does not move.
-    expect(certHistory.filter((e) => e.year === 2026).length).toBe(81);
+    // The international figure does not move. 81 -> 82 with the 64th above.
+    expect(certHistory.filter((e) => e.year === 2026).length).toBe(82);
   });
 
   it("2025 has the published count of 29 certifications", () => {

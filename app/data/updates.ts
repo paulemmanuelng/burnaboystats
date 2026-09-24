@@ -50,12 +50,21 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-09-24",
+    category: "Certifications",
+    // RIAA's verified @riaa_awards Instagram, 23 Sep 2026 (post DdpKVUjjFVf,
+    // slide 3): "RIAA LATIN PLATINUM 6X". Its database still read 2X Platino
+    // (9 Jul 2026) on 24 Sep; Paul called it confirmed. See certifications.ts.
+    text: "“Dai Dai” with Shakira is now 6× Platinum in the RIAA's Latin programme: the certifying body's own Songs of the Summer post carries a 6X Latin Platinum badge for the World Cup anthem — 360,000 units at the programme's levels, three times the 2× it earned in July.",
+    href: "/dai-dai",
+  },
+  {
     date: "2026-09-23",
     category: "Certifications",
     // RIAA's own post (@riaa_awards on Instagram, 23 Sep 2026, 20:24 UTC). Its
     // Dai Dai slide carries a 6X Latin Platinum badge that RIAA's database does
-    // not show (2X Platino, 9 Jul 2026) — the site keeps the database's tier
-    // until it changes (Paul, 23 Sep 2026), so no level is claimed here.
+    // not show (2X Platino, 9 Jul 2026). No level is claimed in this entry; the
+    // 6X went on the site on 24 Sep 2026 by Paul's call (the entry above).
     text: "RIAA names “Dai Dai” one of its 2026 Songs of the Summer: Shakira and Burna Boy's World Cup anthem is one of four records in the certifying body's summer wrap-up of songs that made waves in its Gold & Platinum Program, beside Zara Larsson, Ariana Grande and Ella Langley.",
     href: "/dai-dai",
   },
