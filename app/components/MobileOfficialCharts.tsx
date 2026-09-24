@@ -366,15 +366,19 @@ export default function MobileOfficialCharts({
                   aria-expanded={unfolded.has(r.title)}
                   onClick={() => toggleRow(r.title)}
                 >
-                  <span
-                    className={styles.rowCover}
-                    aria-hidden="true"
-                    /* 102 = 3x the 34px tile. A board artist's art arrived as
-                       Deezer's 500px and Apple's 300px files here, 2.9 MB of
-                       /afrobeats/wizkid/charts on a phone for 0.3 MB of pixels
-                       (23 Sep 2026). Spotify covers still resolve to 300. */
-                    style={{ backgroundImage: `url(${artAt(cover(r.title) ?? "", 102)})` }}
-                  />
+                  {/* The slot holds the art back until the row nears the
+                      screen; see .coverSlot (23 Sep 2026). */}
+                  <span className={styles.coverSlot}>
+                    <span
+                      className={styles.rowCover}
+                      aria-hidden="true"
+                      /* 102 = 3x the 34px tile. A board artist's art arrived as
+                         Deezer's 500px and Apple's 300px files here, 2.9 MB of
+                         /afrobeats/wizkid/charts on a phone for 0.3 MB of pixels
+                         (23 Sep 2026). Spotify covers still resolve to 300. */
+                      style={{ backgroundImage: `url(${artAt(cover(r.title) ?? "", 102)})` }}
+                    />
+                  </span>
                   <span className={styles.rowMain}>
                     <span className={styles.rowTitle}>{r.title}</span>
                     <span className={styles.rowCredit}>{r.credit}</span>
@@ -388,11 +392,13 @@ export default function MobileOfficialCharts({
                 </button>
               ) : (
                 <div className={styles.rowTop}>
-                  <div
-                    className={styles.rowCover}
-                    aria-hidden="true"
-                    style={{ backgroundImage: `url(${artAt(cover(r.title) ?? "", 102)})` }}
-                  />
+                  <div className={styles.coverSlot}>
+                    <div
+                      className={styles.rowCover}
+                      aria-hidden="true"
+                      style={{ backgroundImage: `url(${artAt(cover(r.title) ?? "", 102)})` }}
+                    />
+                  </div>
                   <div className={styles.rowMain}>
                     <div className={styles.rowTitle}>{r.title}</div>
                     <div className={styles.rowCredit}>{r.credit}</div>

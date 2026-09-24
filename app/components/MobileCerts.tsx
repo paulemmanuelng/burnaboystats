@@ -390,14 +390,18 @@ export default function MobileCerts({
             <div className={styles.rowTop}>
               <span className={styles.rank}>{String(i + 1).padStart(2, "0")}</span>
               {/* Same treatment as the live-charts rows: the release's art,
-                  resolved by title, riding between rank and name. */}
-              <span
-                className={styles.rowCover}
-                aria-hidden="true"
-                /* 102 = 3x the 34px tile, not a board artist's 500px Deezer
-                   or 300px Apple art (23 Sep 2026). */
-                style={{ backgroundImage: `url(${artAt(art(r.title) ?? "", 102)})` }}
-              />
+                  resolved by title, riding between rank and name. The slot
+                  holds it back until the row nears the screen; see
+                  .coverSlot (23 Sep 2026). */}
+              <span className={styles.coverSlot}>
+                <span
+                  className={styles.rowCover}
+                  aria-hidden="true"
+                  /* 102 = 3x the 34px tile, not a board artist's 500px Deezer
+                     or 300px Apple art (23 Sep 2026). */
+                  style={{ backgroundImage: `url(${artAt(art(r.title) ?? "", 102)})` }}
+                />
+              </span>
               <div className={styles.rowMain}>
                 <div className={styles.rowTitle}>
                   {r.title}

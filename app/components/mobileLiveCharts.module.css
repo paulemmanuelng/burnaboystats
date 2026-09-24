@@ -236,6 +236,18 @@
   background-size: cover;
   background-position: center;
 }
+/* Holds a tile that has art, so the art waits until the row nears the
+   viewport: /live-charts fetched all 23 of its covers (403 KB) on arrival
+   (23 Sep 2026). Same slot as the charts screen (mobileOfficialCharts.module.css,
+   .coverSlot); the tile keeps its url() and painting, the slot takes its
+   size. The monogram tile has no art to wait for and is not wrapped. */
+.coverSlot {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  flex: none;
+  content-visibility: auto;
+}
 /* The monogram tile, mirroring the desktop's .coverFallback. */
 .rowCover[data-letter] {
   display: inline-flex;
