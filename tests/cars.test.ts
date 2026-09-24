@@ -357,7 +357,9 @@ describe("the updates log's garage totals", () => {
     expect(tied.length).toBeGreaterThan(1); // five sit at $1,000,000 today
     for (const c of tied) {
       expect(c.jointWith, c.slug).toBeGreaterThan(0);
-      expect(carDescription(c), c.slug).toContain("joint with");
+      // Says the tie in the rank itself since 24 Sep 2026 ("joint 3rd"), and
+      // how many share it (tests/designItems.test.tsx holds the shared rank).
+      expect(carDescription(c), c.slug).toMatch(/ranked joint \d+(st|nd|rd|th) of \d+ .* \(tied with \d+ others?\)/);
     }
     for (const c of garage) {
       if (!(c.specs.topSpeed ?? "").trim().startsWith(">")) continue;

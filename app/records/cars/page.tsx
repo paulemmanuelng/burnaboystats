@@ -7,7 +7,7 @@ import GatedImage from "../../components/GatedImage";
 import { carImages } from "../../lib/carImageAssets";
 import { numberWord } from "../../lib/homeData";
 import { garage, currentCars, soldCars, unconfirmedCars, carCount, totalValueFormatted, conversionNote, CARS_LAST_SWEEP, valueWord, addedOnLabel } from "../../data/cars";
-import { usdFull, usdShort, rankLabel, modelShort, marqueTally } from "../../lib/garage";
+import { usdFull, usdShort, rankLabel, rankText, valueRank, modelShort, marqueTally } from "../../lib/garage";
 import { pageMetadata, datasetJsonLd } from "../../lib/seo";
 
 export const metadata = pageMetadata({
@@ -97,13 +97,13 @@ export default function CarsPage() {
         listTitle="Ranked by what each cost"
         listMeta="illustrations"
         rows={garage.map((c) => ({
-          rank: rankLabel(c.rank),
+          rank: rankLabel(valueRank(c)),
           title: c.model,
           sub: c.make,
           value: usdShort(c.valueUsd),
           lead: c.rank === 1,
           href: `/records/cars/${c.slug}`,
-          ariaLabel: `${c.make} ${c.model}, ranked ${c.rank}, ${valueWord(c)} value ${usdFull(c.valueUsd)} — open the car's page`,
+          ariaLabel: `${c.make} ${c.model}, ranked ${rankText(c)}, ${valueWord(c)} value ${usdFull(c.valueUsd)} — open the car's page`,
           tile: {
             // The static import, not c.image.preview.src: same file, but a URL
             // that survives a deploy — see app/lib/carImageAssets.ts.
@@ -203,7 +203,7 @@ export default function CarsPage() {
                 key={c.slug}
                 href={`/records/cars/${c.slug}`}
                 className={`${styles.tile} ${c.rank === 1 ? styles.tileLead : ""}`}
-                aria-label={`${c.make} ${c.model}, ranked ${c.rank}, ${valueWord(c)} value ${usdFull(c.valueUsd)} — open the car's page`}
+                aria-label={`${c.make} ${c.model}, ranked ${rankText(c)}, ${valueWord(c)} value ${usdFull(c.valueUsd)} — open the car's page`}
               >
                 <span className={styles.tileImg}>
                   <GatedImage
@@ -220,7 +220,7 @@ export default function CarsPage() {
                 </span>
                 <span className={styles.tileMeta}>
                   <span className={styles.tileRow}>
-                    <span className={styles.tileRank}>{rankLabel(c.rank)}</span>
+                    <span className={styles.tileRank}>{rankLabel(valueRank(c))}</span>
                     <span className={styles.tileMake}>{c.make}</span>
                   </span>
                   <span className={`${styles.tileModel} ${c.model.length > 22 ? styles.tileModelLong : ""}`}>

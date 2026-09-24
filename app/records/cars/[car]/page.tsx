@@ -12,6 +12,8 @@ import {
   modelShort,
   usdFull,
   rankLabel,
+  rankText,
+  valueRank,
   carTitle,
   carDescription,
   performanceBars,
@@ -37,7 +39,7 @@ export async function generateMetadata({ params }: { params: Promise<{ car: stri
     description: carDescription(car),
     path: `/records/cars/${car.slug}`,
     shareTitle: `${car.make} ${modelShort(car.model)} — Burna Boy's cars`,
-    shareDescription: `${car.valueBasis === "estimate" ? "Estimated" : "Reported"} value ${usdFull(car.valueUsd)} · ${car.valueNaira}. Ranked ${car.rank} of ${garage.length} in the garage${car.jointWith ? `, joint with ${car.jointWith} ${car.jointWith === 1 ? "other" : "others"}` : ""}.`,
+    shareDescription: `${car.valueBasis === "estimate" ? "Estimated" : "Reported"} value ${usdFull(car.valueUsd)} · ${car.valueNaira}. Ranked ${rankText(car)} of ${garage.length} in the garage${car.jointWith ? `, tied with ${car.jointWith} ${car.jointWith === 1 ? "other" : "others"}` : ""}.`,
   });
 }
 
@@ -138,7 +140,7 @@ export default async function CarPage({ params }: { params: Promise<{ car: strin
     <Link
       href={`/records/cars/${c.slug}`}
       className={`${styles.navCell} ${dir === "next" ? styles.navNext : ""}`}
-      aria-label={`${dir === "prev" ? "Previous" : "Next"} car: ${c.make} ${modelShort(c.model)}, ranked ${c.rank}`}
+      aria-label={`${dir === "prev" ? "Previous" : "Next"} car: ${c.make} ${modelShort(c.model)}, ranked ${rankText(c)}`}
     >
       <Image
         className={styles.navThumb}
@@ -151,7 +153,7 @@ export default async function CarPage({ params }: { params: Promise<{ car: strin
       />
       <span className={styles.navText}>
         <span className={styles.navRank}>
-          {dir === "prev" ? `← ${rankLabel(c.rank)}` : `${rankLabel(c.rank)} →`}
+          {dir === "prev" ? `← ${rankLabel(valueRank(c))}` : `${rankLabel(valueRank(c))} →`}
         </span>
         <span className={styles.navName}>{c.make} {modelShort(c.model)}</span>
       </span>
@@ -178,7 +180,7 @@ export default async function CarPage({ params }: { params: Promise<{ car: strin
           </svg>
         </BackLink>
         <span className={styles.mobileBackLabel}>{name}</span>
-        <span className={styles.mobileBackRank}>{rankLabel(car.rank)} / {total}</span>
+        <span className={styles.mobileBackRank}>{rankLabel(valueRank(car))} / {total}</span>
         <MobileMenuButton />
       </div>
 
@@ -239,9 +241,9 @@ export default async function CarPage({ params }: { params: Promise<{ car: strin
           </div>
           <div className={styles.statCell}>
             <div className={`${styles.statValue} ${styles.statGold}`}>
-              {rankLabel(car.rank)}<span className={styles.statOf}> / {total}</span>
+              {rankLabel(valueRank(car))}<span className={styles.statOf}> / {total}</span>
             </div>
-            <div className={styles.statLabel}>{car.jointWith ? "Position by value" : "Rank by value"}</div>
+            <div className={styles.statLabel}>{car.jointWith ? "Joint rank by value" : "Rank by value"}</div>
           </div>
         </div>
 
@@ -330,7 +332,7 @@ export default async function CarPage({ params }: { params: Promise<{ car: strin
             <p className={styles.provText}>{car.desc}</p>
             <div className={styles.provMeta}>
               <span>
-                Rank <b className={styles.provRank}>{rankLabel(car.rank)}</b> of {total} by {valueWord(car)} value
+                Rank <b className={styles.provRank}>{rankLabel(valueRank(car))}</b> of {total} by {valueWord(car)} value
                 {car.jointWith ? ` — joint with ${car.jointWith} ${car.jointWith === 1 ? "other" : "others"} at ${usdFull(car.valueUsd)}` : ""}
               </span>
               <span>{yearLine}</span>

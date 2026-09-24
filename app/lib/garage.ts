@@ -36,6 +36,21 @@ export const usdFull = (n: number) => `$${n.toLocaleString("en-US")}`;
 export const usdShort = (n: number) => `$${(n / 1e6).toFixed(2)}M`;
 export const rankLabel = (rank: number) => String(rank).padStart(2, "0");
 
+/**
+ * The rank the pages PRINT: standard competition ranking by value, so cars at
+ * the same price share the rank of the first of them — the five $1,000,000
+ * cars are all 3rd and the three at $700,000 all 8th, where they used to read
+ * 03 to 07 and 08 to 10 beside "joint with 4 others". `car.rank` stays the
+ * car's place in the value-sorted list: the order, the previous/next links and
+ * the ItemList positions need a place, not a shared rank.
+ */
+export const valueRank = (car: Pick<GarageCar, "valueUsd">) => garage.findIndex((o) => o.valueUsd === car.valueUsd) + 1;
+const ordinal = (n: number) => `${n}${["th", "st", "nd", "rd"][(n % 100 > 10 && n % 100 < 14) || n % 10 > 3 ? 0 : n % 10]}`;
+/** The rank as a sentence says it: "joint 3rd" for a tied car, the plain
+ *  number for the rest, as those have always read. */
+export const rankText = (car: Pick<GarageCar, "valueUsd" | "jointWith">) =>
+  car.jointWith ? `joint ${ordinal(valueRank(car))}` : String(valueRank(car));
+
 /** The page <title>.
  *
  *  §4.2 asks for `{make} {model} — Burna Boy's car collection`, which runs to
@@ -47,7 +62,7 @@ export const carTitle = (car: GarageCar) => `${car.make} ${car.model} — Burna 
 
 /** The meta description — the gate caps it at 160 characters. */
 export const carDescription = (car: GarageCar) =>
-  `${car.make} ${modelShort(car.model)}: ranked ${car.rank} of ${garage.length} in Burna Boy's garage${car.jointWith ? ` (joint with ${car.jointWith} others)` : ""}, ${car.valueBasis === "estimate" ? "estimated" : "reported"} at ${usdFull(car.valueUsd)}. Specs, illustration and ${car.link ? "source" : "sourcing"}.`;
+  `${car.make} ${modelShort(car.model)}: ranked ${rankText(car)} of ${garage.length} in Burna Boy's garage${car.jointWith ? ` (tied with ${car.jointWith} ${car.jointWith === 1 ? "other" : "others"})` : ""}, ${car.valueBasis === "estimate" ? "estimated" : "reported"} at ${usdFull(car.valueUsd)}. Specs, illustration and ${car.link ? "source" : "sourcing"}.`;
 
 /** The strongest figure in the collection on each axis — the bars' 100%. */
 export const garageBest = {
