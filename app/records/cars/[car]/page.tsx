@@ -6,6 +6,7 @@ import KeepExploring from "../../../components/KeepExploring";
 import MobileMenuButton from "../../../components/MobileMenuButton";
 import BackLink from "../../../components/BackLink";
 import { pageMetadata, CANONICAL_ORIGIN } from "../../../lib/seo";
+import { carImages } from "../../../lib/carImageAssets";
 import { carBySlug, carSlugs, garage, CARS_LAST_SWEEP, CARS_SPECS_CHECKED, valueWord } from "../../../data/cars";
 import {
   modelShort,
@@ -141,7 +142,7 @@ export default async function CarPage({ params }: { params: Promise<{ car: strin
     >
       <Image
         className={styles.navThumb}
-        src={c.image.preview.src}
+        src={carImages(c.slug).tile}
         width={84}
         height={52}
         sizes="84px"
@@ -208,15 +209,19 @@ export default async function CarPage({ params }: { params: Promise<{ car: strin
           <span className={styles.heroStage} style={heroVars(car)}>
             <Ring />
             {/* The page's LCP element. One copy at every width, so it can be a
-                plain eager image with a preload. */}
+                plain eager image with a preload. `priority` alone writes the
+                preload with no hint, so it went out at Low — Lighthouse flagged
+                /records/cars/bugatti-chiron for it on 23 Sep 2026. fetchPriority
+                carries into both the preload and the <img>. */}
             <Image
               className={styles.heroImg}
-              src={car.image.hero.src}
+              src={carImages(car.slug).hero}
               width={car.image.hero.width}
               height={car.image.hero.height}
               sizes="(min-width: 901px) 600px, 100vw"
               alt={car.image.alt}
               priority
+              fetchPriority="high"
             />
           </span>
           <figcaption className={styles.caption}>

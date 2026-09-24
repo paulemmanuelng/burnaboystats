@@ -74,7 +74,7 @@ describe("rejected claims are still rejected", () => {
   // and the timeline said "headline" until 17 Sep 2026. No sentence may pair
   // the two again.
   it("never calls the World Cup Final halftime appearance a headline slot", () => {
-    const files = ["app/data/timeline.ts", "app/page.tsx", "app/components/MobileHome.tsx", "app/faq/page.tsx", "app/data/firsts.ts", "app/data/tours.ts", "app/about/page.tsx"];
+    const files = ["app/data/timeline.ts", "app/page.tsx", "app/components/MobileHome.tsx", "app/faq/page.tsx", "app/data/faqs.ts", "app/data/firsts.ts", "app/data/tours.ts", "app/about/page.tsx"];
     const offenders: string[] = [];
     for (const f of files) {
       const text = readFileSync(join(process.cwd(), f), "utf8");

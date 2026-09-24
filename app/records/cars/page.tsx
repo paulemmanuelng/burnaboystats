@@ -4,6 +4,7 @@ import KeepExploring from "../../components/KeepExploring";
 import BreadcrumbBar from "../../components/BreadcrumbBar";
 import MobileDeepPage from "../../components/MobileDeepPage";
 import GatedImage from "../../components/GatedImage";
+import { carImages } from "../../lib/carImageAssets";
 import { numberWord } from "../../lib/homeData";
 import { garage, currentCars, soldCars, unconfirmedCars, carCount, totalValueFormatted, conversionNote, CARS_LAST_SWEEP, valueWord } from "../../data/cars";
 import { usdFull, usdShort, rankLabel, modelShort, marqueTally } from "../../lib/garage";
@@ -101,7 +102,9 @@ export default function CarsPage() {
           href: `/records/cars/${c.slug}`,
           ariaLabel: `${c.make} ${c.model}, ranked ${c.rank}, ${valueWord(c)} value ${usdFull(c.valueUsd)} — open the car's page`,
           tile: {
-            src: c.image.preview.src,
+            // The static import, not c.image.preview.src: same file, but a URL
+            // that survives a deploy — see app/lib/carImageAssets.ts.
+            src: carImages(c.slug).tile,
             alt: c.image.alt,
             width: c.image.preview.width,
             height: c.image.preview.height,
@@ -201,7 +204,7 @@ export default function CarsPage() {
               >
                 <span className={styles.tileImg}>
                   <GatedImage
-                    src={c.image.preview.src}
+                    src={carImages(c.slug).tile}
                     alt={c.image.alt}
                     width={c.image.preview.width}
                     height={c.image.preview.height}

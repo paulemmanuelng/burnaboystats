@@ -72,8 +72,14 @@ export default function KeepExploring({ current }: { current: string }) {
   const keys = exploreFor[current] || DEFAULT_EXPLORE;
   const links = keys.map((k) => sectionLinks[k]).filter(Boolean);
 
+  // Its margin is .container's `0 auto` and nothing else. The module's own
+  // .wrap margins (64px/80px, 36px/56px on phones) lost that tie on every page
+  // until 23 Sep 2026, because this stylesheet was linked ahead of globals.css.
+  // Since the root layout stopped importing the FAQ and By-the-numbers pages
+  // (lib/navGroups.ts) it loads after globals.css, where they would win, so
+  // they were removed rather than brought to life. tests/rootLayoutCss.test.ts.
   return (
-    <nav className={`container ${styles.wrap}`} aria-label="Explore more pages">
+    <nav className="container" aria-label="Explore more pages">
       <p className={styles.eyebrow}>Keep exploring</p>
       <div className={styles.grid}>
         {links.map((l) => (

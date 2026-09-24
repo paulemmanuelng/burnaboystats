@@ -28,7 +28,7 @@ const HOMES: Home[] = [
   { file: "app/components/MobileHome.tsx", label: "mobile home", re: /(\d+) days as the most-streamed song on Earth/ },
   { file: "app/components/DaiDaiStory.tsx", label: "story rail note", re: /(\d+) days as Earth/ },
   { file: "app/components/DaiDaiStory.tsx", label: "story rail body", re: /(\d+) days as the single most-streamed/ },
-  { file: "app/faq/page.tsx", label: "FAQ answer", re: /spent (\d+) days at No\. 1/ },
+  { file: "app/data/faqs.ts", label: "FAQ answer", re: /spent (\d+) days at No\. 1/ },
   { file: "app/dai-dai/page.tsx", label: "EN page description", re: /anthem: (\d+) days as Earth/ },
   { file: "app/dai-dai/page.tsx", label: "EN hero card", re: /after (\d+) days as the most-streamed/ },
   { file: "app/dai-dai/page.tsx", label: "EN streak card", re: /\{ v: "(\d+) days", l: ["`]in total at No\. 1 on Spotify/ },

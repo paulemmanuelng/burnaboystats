@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import styles from "./mobileLiveCharts.module.css";
-import { spotifyImage } from "../lib/spotifyImage";
+import { artAt } from "../lib/artAt";
 import { coverFor, monogramFor } from "../lib/covers";
 import { cadenceOf, LIVE_CADENCE } from "../lib/liveChartMeta";
 import { useLiveRelease } from "../lib/useLiveRelease";
@@ -189,10 +189,16 @@ export default function MobileLiveCharts({
                   {/* No art on file → the release's initial, as the desktop
                       draws it, rather than a blank tinted square. */}
                   {(r.cover ?? coverFor(r.title)) ? (
-                    <span
-                      className={styles.rowCover}
-                      style={{ backgroundImage: `url(${spotifyImage(r.cover ?? coverFor(r.title) ?? "", 300)})` }}
-                    />
+                    // The slot holds the art back until the row nears the
+                    // screen; see .coverSlot (23 Sep 2026).
+                    <span className={styles.coverSlot}>
+                      <span
+                        className={styles.rowCover}
+                        /* 120 = 3x the 40px tile, not a board artist's 500px
+                           Deezer art (23 Sep 2026). */
+                        style={{ backgroundImage: `url(${artAt(r.cover ?? coverFor(r.title) ?? "", 120)})` }}
+                      />
+                    </span>
                   ) : (
                     <span className={styles.rowCover} data-letter={monogramFor(r.title)} aria-hidden="true" />
                   )}

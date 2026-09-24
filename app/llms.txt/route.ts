@@ -10,9 +10,9 @@ import { afrobeatsArtists, certCount } from "../data/afrobeats";
 import { lastUpdated } from "../lib/api";
 import { CANONICAL_ORIGIN } from "../lib/seo";
 // The FAQ list itself, so the count below is derived like every other figure
-// here. lib/navGroups.ts already imports it from the page for its nav badge,
-// so this is the established way to read it.
-import { faqs } from "../faq/page";
+// here — the same array the page renders and lib/navGroups.ts counts for its
+// nav badge.
+import { faqs } from "../data/faqs";
 import { albums } from "../data/albums";
 import { LIVE_CADENCE_REBUILT } from "../lib/liveChartMeta";
 
