@@ -166,3 +166,113 @@ After you verify and update a number on the site, **bump its `baseline`** in
 Add an entry to `watched-metrics.json`. If it needs a new source format, add an
 extractor to the `extractors` map in `check-stats.mjs` and a pure helper (with a
 test) in `stats-lib.mjs`.
+
+# Cert watcher
+
+A daily, read-only tripwire for certifications: it reads every certification
+register a machine may read, compares each row that names one of the sixteen
+artists (Burna Boy and the board) with the site's own plaque data
+(`app/data/certifications.ts`, `app/data/afrobeats.ts`), and keeps **one**
+GitHub issue current — "🏅 New certifications found — verify & add". Full
+design: `docs/cert-watcher/SPEC.md`; a real run: `docs/cert-watcher/sample-report.md`.
+
+## What it never does
+
+- **Edit site data, commit, push or open a PR.** The job has `contents: read`.
+  Every line in the issue is a *lead*: confirm it at the certifying body, then
+  add the plaque by hand (data file, `/compare` pricing, the country's register
+  link, the updates feed).
+- **Say "no new certifications" for a register it did not read cleanly.** A
+  bot challenge, a decoy page (`<title>ai/…`), a changed page, a page other
+  than the one asked for, a register that shrank below its learned floor, a
+  read whose rows naming the sixteen fell under half their peak
+  (`unmatched`), a newest-first read that no longer holds the last run's
+  newest rows (its rolling control) — each is named in the headline as "not
+  read", says nothing about today, and posts **no leads**: rows that would
+  have been candidates are listed under "Held back" as plain text only. A
+  register read cleanly but quiet for longer than its cadence is **stale**.
+- **Match on a title alone**, or report a register row the site is *ahead* of.
+  Absence, a lower tier or a missing row is never evidence of anything.
+- **Get round a bot wall** (no retries, no header changes, no browser
+  User-Agent, no origin hosts or mirrors), read a path robots.txt disallows,
+  or keep a cookie past one run. The User-Agent is always
+  `burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)`.
+
+## How it runs
+
+- **`.github/workflows/cert-watch.yml`** — daily at 06:17 UTC; Mondays add the
+  deep reads. It reads the previous issue body (state and your ticks), runs the
+  watcher, and edits the issue — commenting only when something is new or
+  changed. `workflow_dispatch` has `dry_run`, `deep` and `only` inputs.
+- **`scripts/cert-watch/index.mjs`** — the runner; `http.mjs` — the only other
+  I/O (honest User-Agent, per-host queue with at least 1.1 s between requests
+  and each host's robots.txt Crawl-delay, typed results, conditional GET).
+- **`scripts/cert-watch/adapters/`** — one file per register, each with pure
+  parsers tested on real saved responses (`tests/certWatch*.test.ts`,
+  `tests/fixtures/cert-watch/`). `adapters/index.mjs` is the registry: every
+  register row, automated, held or manual, so the report is always complete.
+- **`match.mjs`** (who a row belongs to, and whether the site lacks it),
+  **`health.mjs`** (clean / stale / shrank / unmatched / format / challenge), **`state.mjs`**
+  (dedupe through a hidden block in the issue body), **`report.mjs`** — pure.
+- **`config.json`** — every ruling, each with its `why` and `on`.
+
+## Run it locally
+
+```bash
+npm run check:certs                                                   # every register, live, prints the report; never touches an issue
+node --no-warnings scripts/cert-watch/index.mjs --dry-run --only=riaa-latin   # one register
+node --no-warnings scripts/cert-watch/index.mjs --dry-run --deep              # with the Monday deep reads
+node --no-warnings scripts/cert-watch/index.mjs --offline --dry-run           # the saved responses only, no network
+node --no-warnings scripts/cert-watch/index.mjs --self-test                   # load the site data and print its counts
+```
+
+Node 24 loads the `.ts` data files directly (no `tsx`, no `npm ci`). The
+report also goes to `cert-watch-out/`; robots copies, validators and kept
+bodies go to `.cert-watch-cache/` (both gitignored).
+
+## Working the issue
+
+- **Tick a candidate's box** to dismiss it; it comes back only if its reading
+  changes. When you add the plaque, do nothing else — the next run sees the
+  site caught up and lists it once as "cleared".
+- **Manual checks** (BPI, RiSA, FIMI, Pro Música Colombia, Ultratop, ARIA,
+  AFP): tick them as you do them; the ticks reset each ISO week. RiSA and FIMI
+  are manual for good: both ask not to be read by AI tools (Paul's ruling,
+  24 Sep 2026).
+- **"Held back"** lists rows from a register that came back but was not read
+  cleanly. They are not leads and cannot be ticked; they return as leads on
+  the register's next clean read.
+- **The watchlist** reports its items every run until they land: an item with
+  `until: {"register": "atLeastSite"}` lands when the register catches up with
+  the site; `until: {"site": {…}}` lands when the site holds the target. A
+  landed item says "remove it from config.json" — the watcher never edits config.
+
+## Rulings in `config.json`
+
+| Key | Use it when |
+|---|---|
+| `knownDivergences` | the site holds a reading on purpose that differs from the register's exact reading (One Dance, Wait For U at RIAA `DI level 11`) |
+| `heldRows` | a register row must never become a lead (TCSN's `Asake \| Bad Influence`) |
+| `titleAliases` | a register prints a release's title differently; add `register` to scope it to that register's rows only (the TCSN aliases) |
+| `leadAliases` | a register credits only the lead act on a record one of the sixteen is on |
+| `chartOnlyAliases` | a chart alias (`live-artists.mjs`) must not match certification rows: the registers certify a different recording under the lead (Victony's Soweto for Rema). Chart aliases with no plaque on the site behind them are left out on their own |
+| `creditTypos`, `namesakes` | a register misspells a credit (scoped to that register; its name searches then also ask for the misspelling — Pro-Música Brasil's "Teams" for Tems); a different artist shares a name |
+| `watchlist` | a single plaque to follow until it lands |
+| `staleAfterDays`, `controls` | a register's usual cadence; a new positive-control row after a year rollover (from a saved fixture) |
+| `adapters.<id>` | a register held by robots.txt (BPI): enabling it needs a written `permission` record. `permanent: true` (with `ruledBy` and `on`) keeps a register manual for good — RiSA and FIMI — and nothing enables it |
+
+## Adding or refreshing a register's fixtures
+
+Capture real responses with a one-off live run: `--dry-run --only=<id> --deep
+--save-raw <dir>`. `--save-raw` keeps the bytes as served, less anything that
+names the machine that fetched (`set-cookie`, `X-Remote-Addr` and the other
+client-address headers, PROMUSICAE's footer `IP:` / `EX-IP:`) or a person:
+every address, however it is written — `mailto:`, plain, `[at]` / `(at)` /
+` at `, `&#64;`, `%40` — and TYPO3's encrypted `data-mailto-token` /
+`data-mailto-vector` pairs (BVMI's contact block), which are blanked. Copy
+what the tests need into `tests/fixtures/cert-watch/` with a
+`PROVENANCE.json` entry each (a replayed response carries its exact
+request). The config tests fail on any fixture without an entry, and on any
+address in one, in any of those shapes (`.gz` files decompressed), or a
+labelled machine address — redact a person's address from a real page and
+say so in the entry's note.

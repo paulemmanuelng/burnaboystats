@@ -1,0 +1,21 @@
+GET https://musiccanada.com/wp-json/wp/v2/award?per_page=100&orderby=id&order=desc&_fields=id,date,title,content,class_list,link
+status: 200
+fetched: 2026-09-24T08:30:56.332Z
+
+access-control-allow-headers: Authorization, X-WP-Nonce, Content-Disposition, Content-MD5, Content-Type
+access-control-expose-headers: X-WP-Total, X-WP-TotalPages, Link
+allow: GET
+connection: Keep-Alive
+content-encoding: gzip
+content-length: 4113
+content-type: application/json; charset=UTF-8
+date: Thu, 24 Sep 2026 08:30:55 GMT
+keep-alive: timeout=5, max=100
+link: <https://musiccanada.com/wp-json/wp/v2/award?per_page=100&orderby=id&order=desc&_fields=id%2Cdate%2Ctitle%2Ccontent%2Cclass_list%2Clink&page=2>; rel="next"
+server: Apache
+vary: accept,content-type,Origin,Accept-Encoding,User-Agent
+x-content-type-options: nosniff
+x-frame-options: SAMEORIGIN
+x-robots-tag: noindex
+x-wp-total: 31859
+x-wp-totalpages: 319

@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+sitemap: https://sverigetopplistan.se/sitemap550.xml
+sitemap: https://sverigetopplistan.se/sitemap677.xml
+sitemap: https://sverigetopplistan.se/sitemap85.xml
+sitemap: https://sverigetopplistan.se/sitemap707.xml
+sitemap: https://sverigetopplistan.se/sitemap188.xml

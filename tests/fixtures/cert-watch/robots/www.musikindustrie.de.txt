@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /typo3/
+Disallow: /typo3_src/
+Allow: /typo3/sysext/frontend/Resources/Public/*
+Sitemap: www.musikindustrie.de/?sitemap=news&type=1533906435
+Sitemap: www.musikindustrie.de/?sitemap=news&type=1533906435

@@ -1,0 +1,11 @@
+HTTP/1.1 200
+accept-ranges: bytes
+connection: Keep-Alive
+content-encoding: br
+content-type: text/html
+date: Thu, 24 Sep 2026 12:45:20 GMT
+keep-alive: timeout=5, max=99
+last-modified: Wed, 23 Sep 2026 05:48:30 GMT
+server: Apache
+transfer-encoding: chunked
+vary: Accept-Encoding

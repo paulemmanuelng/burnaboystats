@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /wp-admin/
+Allow: /wp-admin/admin-ajax.php
+
+Sitemap: https://ifpi.no/sitemap_index.xml
