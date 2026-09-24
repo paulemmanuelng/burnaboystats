@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-24";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-24T11:51Z";
+  export const liveChartsBuiltAt = "2026-09-24T17:15Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -150,16 +150,16 @@
             "movement": 0
           },
           {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 9,
+            "movement": 1
+          },
+          {
             "country": "MT",
             "name": "Malta",
             "position": 11,
             "movement": 11
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 11,
-            "movement": -2
           },
           {
             "country": "AE",
@@ -192,28 +192,28 @@
             "movement": 8
           },
           {
-            "country": "CA",
-            "name": "Canada",
-            "position": 26,
-            "movement": -2
-          },
-          {
             "country": "MZ",
             "name": "Mozambique",
             "position": 26,
             "movement": 8
           },
           {
-            "country": "TR",
-            "name": "Turkey",
-            "position": 29,
+            "country": "CA",
+            "name": "Canada",
+            "position": 27,
             "movement": -3
           },
           {
             "country": "US",
             "name": "United States",
-            "position": 35,
-            "movement": -2
+            "position": 32,
+            "movement": -1
+          },
+          {
+            "country": "TR",
+            "name": "Turkey",
+            "position": 33,
+            "movement": -7
           },
           {
             "country": "CG",
@@ -235,28 +235,10 @@
             "movement": -52
           },
           {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 67,
-            "movement": 10
-          },
-          {
-            "country": "SE",
-            "name": "Sweden",
-            "position": 74,
-            "movement": 20
-          },
-          {
             "country": "NA",
             "name": "Namibia",
             "position": 75,
             "movement": -10
-          },
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 82,
-            "movement": -21
           },
           {
             "country": "LT",
@@ -265,16 +247,34 @@
             "movement": -43
           },
           {
-            "country": "NO",
-            "name": "Norway",
-            "position": 92,
-            "movement": -70
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 86,
+            "movement": -9
           },
           {
             "country": "ZW",
             "name": "Zimbabwe",
             "position": 93,
             "movement": -15
+          },
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 100,
+            "movement": -39
+          },
+          {
+            "country": "NO",
+            "name": "Norway",
+            "position": 104,
+            "movement": -77
+          },
+          {
+            "country": "SE",
+            "name": "Sweden",
+            "position": 106,
+            "movement": -12
           },
           {
             "country": "SA",
@@ -600,7 +600,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 2,
+            "position": 9,
             "movement": null,
             "status": "new"
           }
@@ -963,8 +963,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 36,
-            "movement": -33
+            "position": 71,
+            "movement": -64
           }
         ]
       },
@@ -1817,6 +1817,64 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/6954c3e880713a3d27089b7a0ad8570d/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "99",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 130,
+            "movement": 4
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 157,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 198,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 91,
+            "movement": -1
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 10,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Loseyi Professor",
     "platforms": [
       {
@@ -1904,51 +1962,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/e61faaeb59320961cbd17a1ef7f9e6e7/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "99",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 130,
-            "movement": 4
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 157,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 198,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 91,
-            "movement": -1
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Karma",
@@ -2507,26 +2520,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5e37e124be45628fb7dfd24df7f1673d/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "SHAOLIN",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 125,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/aa8d9ee07662959c9f52b4e9282a0f54/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "APALA DISCO",
     "platforms": [
       {
@@ -2545,6 +2538,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/4e44b886a595181a9bc06efabd864b89/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "SHAOLIN",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 160,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/aa8d9ee07662959c9f52b4e9282a0f54/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Billion Dollar Baby",
@@ -2582,7 +2595,8 @@
           }
         ]
       }
-    ]
+    ],
+    "cover": "https://cdn-images.dzcdn.net/images/cover/cf3225fd6ccebd61ef2d071f59b1a5d9/500x500-000000-80-0-0.jpg"
   }
 ];
   

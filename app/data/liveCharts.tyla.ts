@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-24";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-24T11:50Z";
+  export const liveChartsBuiltAt = "2026-09-24T17:15Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","iTunes"];
@@ -56,8 +56,8 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 7,
-            "movement": 0
+            "position": 8,
+            "movement": -1
           },
           {
             "country": "KE",
@@ -215,13 +215,6 @@
             "status": "new"
           },
           {
-            "country": "LU",
-            "name": "Luxembourg",
-            "position": 153,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "AE",
             "name": "United Arab Emirates",
             "position": 168,
@@ -237,6 +230,13 @@
             "country": "MV",
             "name": "Maldives",
             "position": 194,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "SE",
+            "name": "Sweden",
+            "position": 199,
             "movement": null,
             "status": "new"
           }
@@ -261,8 +261,8 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 98,
-            "movement": -86
+            "position": 99,
+            "movement": -87
           }
         ]
       }
@@ -431,7 +431,7 @@
             "country": "BW",
             "name": "Botswana",
             "position": 23,
-            "movement": -5
+            "movement": -3
           }
         ]
       },
@@ -502,9 +502,9 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "SE",
-            "name": "Sweden",
-            "position": 169,
+            "country": "NO",
+            "name": "Norway",
+            "position": 176,
             "movement": null,
             "status": "new"
           }
@@ -637,6 +637,46 @@
     "kind": "album"
   },
   {
+    "title": "Water",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BS",
+            "name": "The Bahamas",
+            "position": 8,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "PUSH 2 START",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NO",
+            "name": "Norway",
+            "position": 174,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "MR. NONCHALANT",
     "platforms": [
       {
@@ -646,7 +686,7 @@
           {
             "country": "PT",
             "name": "Portugal",
-            "position": 31,
+            "position": 90,
             "movement": null,
             "status": "new"
           }

@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-24";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-24T11:51Z";
+  export const liveChartsBuiltAt = "2026-09-24T17:15Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","iTunes"];
@@ -251,8 +251,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 50,
-            "movement": 1
+            "position": 51,
+            "movement": 0
           },
           {
             "country": "GH",
@@ -632,7 +632,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 55,
+            "position": 89,
             "movement": null,
             "status": "new"
           }
@@ -694,22 +694,22 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 30,
-            "movement": 4
-          },
-          {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 45,
-            "movement": -9
+            "position": 48,
+            "movement": -13
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 53,
-            "movement": 128
+            "position": 57,
+            "movement": 127
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 65,
+            "movement": -63
           }
         ]
       },
@@ -854,23 +854,30 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 64,
+            "country": "HU",
+            "name": "Hungary",
+            "position": 31,
             "movement": null,
             "status": "new"
           },
           {
             "country": "AZ",
             "name": "Azerbaijan",
-            "position": 65,
-            "movement": -19
+            "position": 69,
+            "movement": -20
           },
           {
             "country": "GT",
             "name": "Guatemala",
-            "position": 89,
-            "movement": -43
+            "position": 93,
+            "movement": -46
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 98,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -934,6 +941,65 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2f5c91242bfb5ed7be4ccb2b435b6f7f/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Company",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 4,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "AT",
+            "name": "Austria",
+            "position": 68,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "VN",
+            "name": "Vietnam",
+            "position": 119,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "MR",
+            "name": "Mauritania",
+            "position": 164,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 89,
+            "movement": 8
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6d9ca878974f4d47b8d671a0ea95ecd2/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Get Layd - EP",
@@ -1073,58 +1139,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/b4d2ad60759dd994a1a8440baa1c61e8/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Company",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 3,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "VN",
-            "name": "Vietnam",
-            "position": 70,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "MR",
-            "name": "Mauritania",
-            "position": 164,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 89,
-            "movement": 8
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6d9ca878974f4d47b8d671a0ea95ecd2/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "DON'T LOVE ME",
     "platforms": [
       {
@@ -1180,14 +1194,14 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 83,
-            "movement": -2
+            "position": 84,
+            "movement": 1
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 188,
-            "movement": -10
+            "position": 192,
+            "movement": -11
           }
         ]
       },
@@ -1260,8 +1274,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 70,
-            "movement": 8
+            "position": 75,
+            "movement": 1
           },
           {
             "country": "BE",
@@ -1356,8 +1370,8 @@
           {
             "country": "GT",
             "name": "Guatemala",
-            "position": 90,
-            "movement": -43
+            "position": 94,
+            "movement": -46
           }
         ]
       }
@@ -1481,7 +1495,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 111,
+            "position": 145,
             "movement": null,
             "status": "new"
           }
@@ -1501,8 +1515,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 68,
-            "movement": 0
+            "position": 69,
+            "movement": -1
           }
         ]
       }

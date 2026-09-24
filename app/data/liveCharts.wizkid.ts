@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-24";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-24T11:50Z";
+  export const liveChartsBuiltAt = "2026-09-24T17:15Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -158,12 +158,6 @@
             "movement": 30
           },
           {
-            "country": "CA",
-            "name": "Canada",
-            "position": 173,
-            "movement": -2
-          },
-          {
             "country": "SL",
             "name": "Sierra Leone",
             "position": 173,
@@ -183,10 +177,23 @@
             "movement": 24
           },
           {
+            "country": "NZ",
+            "name": "New Zealand",
+            "position": 180,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "UZ",
             "name": "Uzbekistan",
             "position": 180,
             "movement": -35
+          },
+          {
+            "country": "CA",
+            "name": "Canada",
+            "position": 186,
+            "movement": -3
           },
           {
             "country": "AO",
@@ -329,14 +336,14 @@
           {
             "country": "EC",
             "name": "Ecuador",
-            "position": 4,
+            "position": 5,
             "movement": null,
             "status": "new"
           },
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 13,
+            "position": 16,
             "movement": null,
             "status": "new"
           }
@@ -931,7 +938,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 76,
+            "position": 110,
             "movement": null,
             "status": "new"
           }
@@ -963,8 +970,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 84,
-            "movement": 0
+            "position": 85,
+            "movement": -1
           },
           {
             "country": "CI",
@@ -1036,8 +1043,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 74,
-            "movement": -2
+            "position": 75,
+            "movement": -3
           },
           {
             "country": "KE",
@@ -1267,8 +1274,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 87,
-            "movement": 0
+            "position": 88,
+            "movement": -1
           },
           {
             "country": "SL",
@@ -1589,23 +1596,23 @@
             "movement": 0
           },
           {
+            "country": "BW",
+            "name": "Botswana",
+            "position": 77,
+            "movement": 2
+          },
+          {
             "country": "NG",
             "name": "Nigeria",
-            "position": 42,
+            "position": 77,
             "movement": null,
             "status": "new"
           },
           {
-            "country": "BW",
-            "name": "Botswana",
-            "position": 77,
-            "movement": 1
-          },
-          {
             "country": "GH",
             "name": "Ghana",
-            "position": 196,
-            "movement": -9
+            "position": 200,
+            "movement": -10
           }
         ]
       },
@@ -1846,8 +1853,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 39,
-            "movement": -6
+            "position": 40,
+            "movement": -3
           }
         ]
       }
@@ -1968,8 +1975,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 56,
-            "movement": -2
+            "position": 57,
+            "movement": -3
           },
           {
             "country": "NG",
@@ -1986,7 +1993,7 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 94,
+            "position": 95,
             "movement": 1
           }
         ]
@@ -2204,6 +2211,38 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/b6c9342dc0ab40a9e837ebb16a8b24dd/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "BROWN SKIN GIRL",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 10,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BW",
+            "name": "Botswana",
+            "position": 78,
+            "movement": 2
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/38dc027b0eae49a8e7fd7af3312a00a6/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Gimme Dat",
     "platforms": [
       {
@@ -2252,8 +2291,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 73,
-            "movement": -6
+            "position": 74,
+            "movement": -3
           }
         ]
       }
@@ -2262,17 +2301,18 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Alaye",
+    "title": "Blessed",
     "platforms": [
       {
-        "platform": "Spotify",
+        "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 172,
-            "movement": -5
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 200,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -2281,9 +2321,9 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 115,
+            "country": "RO",
+            "name": "Romania",
+            "position": 34,
             "movement": null,
             "status": "new"
           }
@@ -2291,7 +2331,7 @@
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/a4c216574fd4d381c73a4df2f512f599/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "BIG TIME",
@@ -2324,6 +2364,38 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/0af8d1b7ecebd4fec1dbb6c048f2105f/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Alaye",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 172,
+            "movement": -5
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 149,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/a4c216574fd4d381c73a4df2f512f599/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Bella",
@@ -2374,33 +2446,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 31,
-            "movement": -29
+            "position": 66,
+            "movement": -63
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "BROWN SKIN GIRL",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BW",
-            "name": "Botswana",
-            "position": 78,
-            "movement": 1
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/38dc027b0eae49a8e7fd7af3312a00a6/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Wine to the Top",
@@ -2431,54 +2484,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 83,
-            "movement": -69
+            "position": 117,
+            "movement": -90
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Blessed",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 200,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Everyday",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 113,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/e4286ac8a38829b6cf5d225c311bccf7/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "APALA DISCO",
@@ -2501,6 +2514,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/4e44b886a595181a9bc06efabd864b89/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Everyday",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 147,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/e4286ac8a38829b6cf5d225c311bccf7/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Stay For The Night",
     "platforms": [
       {
@@ -2510,7 +2543,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 134,
+            "position": 165,
             "movement": null,
             "status": "new"
           }
