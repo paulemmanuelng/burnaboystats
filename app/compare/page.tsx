@@ -53,7 +53,7 @@ import { PICKER_FOLD, fold, pickerArtists, pickerReleases } from "../lib/compare
 import { featuredPairs, pairCopy, pairSlug } from "../lib/comparePairs";
 import { href, one, type SP } from "../lib/compareUrl";
 import { fmt, keepParens, plaque, program, shortProgram, tierClass } from "./chips";
-import { marketKey } from "../lib/certUnits";
+import { marketKey, PLAQUE_NOTE_HEADINGS } from "../lib/certUnits";
 
 /** "RIAA Latin" in the US code column reads as "US · LATIN" — the country is
  *  already spelled beside it, so the column carries what makes this row a
@@ -1117,11 +1117,11 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
                 </p>
               )}
               {visibleCaveat && shownCaveats.length > 0 && (
-                <p><strong><span className={styles.mark}>†</span> Multiplier assumed</strong> — {shownCaveats.join(" ")}</p>
+                <p><strong><span className={styles.mark}>†</span> {PLAQUE_NOTE_HEADINGS.caveat}</strong> — {shownCaveats.join(" ")}</p>
               )}
               {visibleVintage && noteSource.vintages.length > 0 && (
                 <p>
-                  <strong><span className={styles.mark}>‡</span> This body raised its thresholds since 2015</strong> — the figure is today&apos;s level, and a
+                  <strong><span className={styles.mark}>‡</span> {PLAQUE_NOTE_HEADINGS.vintage}</strong> — the figure is today&apos;s level, and a
                   plaque awarded before the rise may have cleared a lower bar.{" "}
                   {/* The body-by-body record lives on the methodology page (Paul, 11
                       Sep): twelve of them here were a 40-line wall on a phone. */}
@@ -1132,14 +1132,14 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
               )}
               {visibleAssumed && shownAssumptions.length > 0 && (
                 <p>
-                  <strong><span className={styles.mark}>§</span> Ratio assumed</strong> — the body publishes its levels in
+                  <strong><span className={styles.mark}>§</span> {PLAQUE_NOTE_HEADINGS.assumed}</strong> — the body publishes its levels in
                   streams and no download-equivalence, so this page converts at {assumedRatio} streams to a unit, the ratio
                   Denmark and Norway publish for the same measure. {shownAssumptions.join(" ")}
                 </p>
               )}
               {visibleHistoric && shownHistorics.length > 0 && (
                 <p>
-                  <strong><span className={styles.mark}>¶</span> Historic figure</strong> — the line rests on a
+                  <strong><span className={styles.mark}>¶</span> {PLAQUE_NOTE_HEADINGS.historic}</strong> — the line rests on a
                   figure the body published once and no longer prints, so the bar a plaque cleared may differ
                   from it. {shownHistorics.join(" ")}
                 </p>

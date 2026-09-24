@@ -26,7 +26,13 @@
 // ============================================================================
 
 import { apiHeaders, lastUpdated, API_VERSION } from "./api";
-import { unitsForCert } from "./certUnits";
+import {
+  unitsForCert,
+  plaqueNotes,
+  programOf,
+  PLAQUE_NOTE_ORDER,
+  PLAQUE_NOTE_HEADINGS,
+} from "./certUnits";
 import type { CertFormat } from "../data/certThresholds";
 import {
   albums as burnaAlbums,
@@ -74,8 +80,17 @@ export function toCsv(header: readonly string[], rows: readonly Cell[][]): strin
 }
 
 // ---------------------------------------------------------------------------
-// The kinds, in the vocabulary /api/v1/afrobeats already publishes, so a row
-// here joins against the JSON without a lookup table.
+// `kind` is the category each ledger itself records, and the two files differ:
+//
+//  • certifications.csv — ONE vocabulary. Burna Boy's three ledgers and the
+//    board's releases both split Albums / Lead singles / Featured appearances,
+//    the same values /api/v1/afrobeats publishes for both, so a row joins
+//    against that JSON without a lookup table.
+//  • chart-peaks.csv — TWO. His chart ledgers split the same three ways; the
+//    board's chart data records only Singles / Albums, with no lead-or-featured
+//    split to read. Nothing here invents one. `format` (single / album) is the
+//    column that means the same on every row, and the file's description says
+//    so where it is offered.
 // ---------------------------------------------------------------------------
 
 type CertKind = "Albums" | "Lead singles" | "Featured appearances";
@@ -110,6 +125,7 @@ export const CERT_HEADER = [
   "level",
   "multiplier",
   "certified_units",
+  "units_note",
   "priced",
   "unpriced_reason",
   "register_url",
@@ -124,6 +140,27 @@ interface PlaqueInput {
   cert: { c: string; level: "Diamond" | "Platinum" | "Gold" | "Silver"; x?: number; body?: string };
   country: { name: string; body: string; url?: string };
   verifiedOn: string;
+}
+
+/** The notes /compare prints beside a priced figure, in its own headings and
+ *  in the order its marks run († ‡ § ¶), joined "; ". Blank for a figure that
+ *  needs none, and for an unpriced plaque, which has no figure to qualify. */
+export function unitsNote(cert: PlaqueInput["cert"], format: CertFormat): string | null {
+  if (unitsForCert(cert, format).units === null) return null;
+  const notes = plaqueNotes(cert, format);
+  const labels = PLAQUE_NOTE_ORDER.filter((k) => notes[k]).map((k) => PLAQUE_NOTE_HEADINGS[k]);
+  return labels.length ? labels.join("; ") : null;
+}
+
+/** The register a reader can check this plaque in. A per-cert `body` that is
+ *  NOT a separately priced programme names a different ISSUER — Dai Dai's
+ *  Colombian Gold is Sony Music Colombia's, not Pro Música's — and the
+ *  country's register cannot show an award it never made, so the link is
+ *  blank rather than a dead end. A programme (RIAA Latin) is the country
+ *  body's own scheme and keeps its register. */
+export function registerUrl(cert: PlaqueInput["cert"], country: PlaqueInput["country"]): string | null {
+  const otherIssuer = cert.body !== undefined && cert.body !== country.body && !programOf(cert);
+  return otherIssuer ? null : (country.url ?? null);
 }
 
 function plaqueRow(p: PlaqueInput): Cell[] {
@@ -146,9 +183,12 @@ function plaqueRow(p: PlaqueInput): Cell[] {
     p.cert.level,
     p.cert.x ?? 1,
     units,
+    // What the figure leans on, in /compare's words — the same plaqueNotes
+    // call priceArtist makes, so the two can never disagree.
+    unitsNote(p.cert, format),
     units !== null,
     units === null ? why : null,
-    p.country.url ?? null,
+    registerUrl(p.cert, p.country),
     p.verifiedOn,
   ];
 }
@@ -279,9 +319,11 @@ export const chartCounts = {
 
 export const AWARD_HEADER = ["ceremony", "year", "category", "work", "result"] as const;
 
-/** won / pending / nominated. `won: false` alone cannot tell a loss from a
- *  ceremony that has not happened; pendingResults can, by the same test
- *  awards.ts uses for `pendingNominations`. */
+/** won / pending / nominated — the awards pages' own words. "nominated" is a
+ *  DECIDED nomination he did not win (the pages print "Nominated" beside it);
+ *  "pending" is one whose result is not yet known. `won: false` alone cannot
+ *  tell the two apart; pendingResults can, by the same test awards.ts uses for
+ *  `pendingNominations`. */
 export function nominationResult(ceremony: string, n: AwardNom): "won" | "pending" | "nominated" {
   if (n.won) return "won";
   return pendingResults.some((p) => p.ceremony === ceremony && p.year === n.year)
@@ -322,7 +364,7 @@ export const DATA_DOWNLOADS: DataDownload[] = [
     rows: certificationRows,
     count: certificationCounts.burna + certificationCounts.board,
     countOf: "plaques",
-    what: `Every plaque for Burna Boy and the ${sweptArtists.length} artists on the Afrobeats Board — body, level, multiplier, certified units and the register to check it in.`,
+    what: `Every plaque for Burna Boy and the ${sweptArtists.length} artists on the Afrobeats Board — body, level, multiplier, certified units with any note the figure leans on, and the register to check it in.`,
   },
   {
     slug: "chart-peaks",
@@ -331,7 +373,7 @@ export const DATA_DOWNLOADS: DataDownload[] = [
     rows: chartPeakRows,
     count: chartCounts.burna + chartCounts.board,
     countOf: "chart entries",
-    what: `Every official chart entry for the same ${chartCounts.artists} artists — country, chart, peak, and weeks at peak and on chart where the body publishes them.`,
+    what: `Every official chart entry for the same ${chartCounts.artists} artists — country, chart, peak, and weeks at peak and on chart where the body publishes them. Filter across artists on format (single or album): kind splits Burna Boy's singles into lead and featured, which the board's chart data does not record.`,
   },
   {
     slug: "awards",
@@ -340,7 +382,7 @@ export const DATA_DOWNLOADS: DataDownload[] = [
     rows: awardRows,
     count: totalNominations,
     countOf: "nominations",
-    what: "Burna Boy's competitive nominations — ceremony, year, category, work, and whether it was won, lost or is still pending.",
+    what: "Burna Boy's competitive nominations — ceremony, year, category, work, and the result: won, nominated (decided, not won) or pending (no result yet).",
   },
 ];
 

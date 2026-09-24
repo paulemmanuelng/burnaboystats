@@ -192,12 +192,20 @@ export default function PressPage() {
             <code className={styles.citeCode}>{DATASET_CITATION}</code>
             <CopyButton value={DATASET_CITATION} className={styles.copyBtn} />
           </div>
+          {/* Every clause here is held to the file by tests/dataDownloads.test.tsx:
+              units are blank only where the plaque cannot be priced, and
+              units_note carries the same notes /compare prints. */}
           <p className={styles.small}>
             A certification is a floor, not a sale: the release passed that body&apos;s
-            threshold for the tier, and certified units price each plaque at its own
-            body&apos;s threshold (blank where the body publishes none). Nigeria&apos;s TCSN
-            register is request-based, so a missing Nigerian plaque is not evidence of none.
-            The full rules are on the{" "}
+            threshold for the tier, and certified units price each plaque at that threshold.
+            The units_note column flags each figure that rests on more than the body prints
+            today — a rule for multiples it never wrote, a stream-to-unit ratio it never
+            published, a level or rate from an older rulebook — or is today&apos;s level at a
+            body that has since raised it, in the words the{" "}
+            <Link href="/compare" className={styles.link}>comparison tool</Link> prints beside
+            the same figure. Units are blank only where a body publishes no threshold at all,
+            and unpriced_reason says why. Nigeria&apos;s TCSN register is request-based, so a
+            missing Nigerian plaque is not evidence of none. The full rules are on the{" "}
             <Link href="/methodology" className={styles.link}>methodology page</Link>.
           </p>
         </div>

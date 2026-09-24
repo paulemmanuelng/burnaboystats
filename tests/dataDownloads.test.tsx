@@ -33,13 +33,21 @@ import {
   DATASET_CITATION,
   csvCell,
   dataDateLabel,
+  downloadBySlug,
   downloadFilename,
 } from "../app/lib/dataDownloads";
 import { API_CACHE_CONTROL, lastUpdated } from "../app/lib/api";
-import { totalAwards } from "../app/data/certifications";
+import { totalAwards, COUNTRIES as BURNA_COUNTRIES } from "../app/data/certifications";
 import { chartEntryCount } from "../app/data/charts";
 import { totalNominations, totalWins, pendingNominations } from "../app/data/awards";
-import { sweptArtists, certCount, chartEntries } from "../app/data/afrobeats";
+import { sweptArtists, certCount, chartEntries, countryMeta } from "../app/data/afrobeats";
+import { CERT_PROGRAMS, exclusionFor, type CertFormat } from "../app/data/certThresholds";
+import {
+  comparableArtists,
+  priceArtist,
+  PLAQUE_NOTE_HEADINGS,
+  PLAQUE_NOTE_ORDER,
+} from "../app/lib/certUnits";
 
 /**
  * The CSV downloads on /press — the dataset for someone who works in Excel.
@@ -127,7 +135,7 @@ describe("the three files", () => {
   it("carry exactly the published headers", async () => {
     const HEADERS = {
       certifications:
-        "artist,release,credit,format,kind,country_code,country,certifying_body,level,multiplier,certified_units,priced,unpriced_reason,register_url,verified_on",
+        "artist,release,credit,format,kind,country_code,country,certifying_body,level,multiplier,certified_units,units_note,priced,unpriced_reason,register_url,verified_on",
       "chart-peaks":
         "artist,release,credit,format,kind,country_code,country,chart,peak,weeks_at_peak,weeks_on_chart,note",
       awards: "ceremony,year,category,work,result",
@@ -216,7 +224,7 @@ describe("RFC 4180 quoting", () => {
 });
 
 describe("figures match /api/v1", () => {
-  it("Dai Dai's US plaque is RIAA Latin 2x Platinum, 120,000 units — as the JSON says", async () => {
+  it("Dai Dai's US plaque is RIAA Latin 6x Platinum, 360,000 units — as the JSON says", async () => {
     const { rows } = await fetchCsv("certifications");
     const [h, ...body] = rows;
     const col = (r: string[], k: string) => r[h.indexOf(k)];
@@ -229,9 +237,11 @@ describe("figures match /api/v1", () => {
     expect(Number(col(csv, "multiplier"))).toBe(api.multiplier);
     expect(col(csv, "country")).toBe(api.country);
     expect(col(csv, "credit")).toBe("Shakira & Burna Boy");
-    // RIAA Latin's 2x Platino is 120,000 units (60,000 each), never the
-    // standard programme's 2,000,000.
-    expect(col(csv, "certified_units")).toBe("120000");
+    // Anchored to the RIAA's own register (6× Platino, 23 Sep 2026, #320), not
+    // to the data module: RIAA Latin's 6x Platino is 360,000 units (60,000
+    // each), never the standard programme's 6,000,000.
+    expect(col(csv, "multiplier")).toBe("6");
+    expect(col(csv, "certified_units")).toBe("360000");
     expect(col(csv, "priced")).toBe("true");
   });
 
@@ -302,6 +312,212 @@ describe("figures match /api/v1", () => {
   });
 });
 
+/** certifications.csv, read the way a spreadsheet reads it, with a by-name
+ *  column getter. */
+async function certSheet() {
+  const [h, ...body] = (await fetchCsv("certifications")).rows;
+  const col = (r: string[], k: string) => {
+    const i = h.indexOf(k);
+    if (i < 0) throw new Error(`no ${k} column`);
+    return r[i];
+  };
+  const find = (artist: string, release: string, country: string) => {
+    const hits = body.filter((r) => col(r, "artist") === artist && col(r, "release") === release && col(r, "country_code") === country);
+    expect(hits.length, `${artist} / ${release} / ${country}`).toBe(1);
+    return hits[0];
+  };
+  return { h, body, col, find };
+}
+
+describe("units_note carries the notes /compare prints beside the same figure", () => {
+  type NoteKey = (typeof PLAQUE_NOTE_ORDER)[number];
+  // The artists the file carries: Burna Boy and the swept board.
+  const inFile = comparableArtists.filter(
+    (a) => a.slug === "burna-boy" || sweptArtists.some((s) => s.slug === a.slug),
+  );
+  const plaqueKey = (artist: string, release: string, format: string, country: string, program: string) =>
+    [artist, release, format, country, program].join("|");
+
+  /** What the ENGINE flags, read off its own lines: price each release alone,
+   *  Nigeria and features in — /compare's song-against-song view, where a line
+   *  is one plaque — and collect the lines carrying each mark. Nothing here
+   *  calls the helper the CSV calls; a disagreement between the two paths is
+   *  exactly what this is for. */
+  const engine = (() => {
+    const sets = Object.fromEntries(PLAQUE_NOTE_ORDER.map((k) => [k, new Set<string>()])) as Record<NoteKey, Set<string>>;
+    for (const a of inFile)
+      for (const r of a.releases) {
+        const p = priceArtist({ ...a, releases: [r] }, { includeNigeria: true, includeFeatures: true });
+        for (const line of p.byCountry)
+          for (const k of PLAQUE_NOTE_ORDER)
+            if (line[k]) sets[k].add(plaqueKey(a.name, r.title, r.format, line.country, line.program ?? ""));
+      }
+    return sets;
+  })();
+
+  it("flags exactly the plaques the engine flags, note by note", async () => {
+    const { body, col } = await certSheet();
+    for (const k of PLAQUE_NOTE_ORDER) {
+      const label = PLAQUE_NOTE_HEADINGS[k];
+      const csv = new Set(
+        body
+          .filter((r) => col(r, "units_note").split("; ").includes(label))
+          .map((r) => {
+            const b = col(r, "certifying_body");
+            return plaqueKey(col(r, "artist"), col(r, "release"), col(r, "format"), col(r, "country_code"), CERT_PROGRAMS[b] ? b : "");
+          }),
+      );
+      // Each note is live in the data — otherwise the equality below is vacuous.
+      expect(engine[k].size, `the engine flags no ${k}`).toBeGreaterThan(0);
+      expect([...csv].sort(), label).toEqual([...engine[k]].sort());
+    }
+  });
+
+  it("uses /compare's own headings, in the order its marks run, and nothing else", async () => {
+    const src = readFileSync("app/compare/page.tsx", "utf8");
+    for (const k of PLAQUE_NOTE_ORDER) expect(src).toContain(`{PLAQUE_NOTE_HEADINGS.${k}}`);
+    const { body, col } = await certSheet();
+    const order = PLAQUE_NOTE_ORDER.map((k) => PLAQUE_NOTE_HEADINGS[k]);
+    for (const r of body) {
+      const note = col(r, "units_note");
+      if (!note) continue;
+      const parts = note.split("; ");
+      for (const p of parts) expect(order, note).toContain(p);
+      expect(parts, note).toEqual([...parts].sort((x, y) => order.indexOf(x) - order.indexOf(y)));
+    }
+  });
+
+  it("real rows: the Greek, Swedish, Polish and New Zealand plaques /compare marks", async () => {
+    const { col, find } = await certSheet();
+    // Greece is priced at IFPI's June 2013 level — ¶, and nothing else here.
+    expect(col(find("Burna Boy", "Dai Dai", "GR"), "units_note")).toBe(PLAQUE_NOTE_HEADINGS.historic);
+    // Sweden's § is its SINGLES' stream ratio: Gbona carries it, his album
+    // Gold does not.
+    expect(col(find("Burna Boy", "Gbona", "SE"), "units_note")).toContain(PLAQUE_NOTE_HEADINGS.assumed);
+    expect(col(find("Burna Boy", "Love, Damini", "SE"), "units_note")).toBe("");
+    // Poland's ¶ is its singles' 2 zł rate: Dai Dai carries it, Rema's album
+    // does not (its ‡ stands — ZPAV raised its album levels in 2025).
+    expect(col(find("Burna Boy", "Dai Dai", "PL"), "units_note")).toContain(PLAQUE_NOTE_HEADINGS.historic);
+    expect(col(find("Rema", "Rave & Roses", "PL"), "units_note")).not.toContain(PLAQUE_NOTE_HEADINGS.historic);
+    expect(col(find("Rema", "Rave & Roses", "PL"), "units_note")).toContain(PLAQUE_NOTE_HEADINGS.vintage);
+    // RMNZ defines no multiple: Last Last's 3x Platinum is priced as 3 × base.
+    const lastLast = find("Burna Boy", "Last Last", "NZ");
+    expect(col(lastLast, "multiplier")).toBe("3");
+    expect(col(lastLast, "units_note")).toBe(PLAQUE_NOTE_HEADINGS.caveat);
+  });
+
+  it("stays blank on a programme's plaque and on an unpriced one", async () => {
+    const { col, find } = await certSheet();
+    // RIAA Latin publishes its own scale for multiples, so a 6x Platino
+    // assumes nothing.
+    const us = find("Burna Boy", "Dai Dai", "US");
+    expect(Number(col(us, "multiplier"))).toBeGreaterThan(1);
+    expect(col(us, "units_note")).toBe("");
+    // No figure, nothing to qualify — unpriced_reason speaks for it.
+    const co = find("Burna Boy", "Dai Dai", "CO");
+    expect(col(co, "certified_units")).toBe("");
+    expect(col(co, "units_note")).toBe("");
+  });
+
+  it("units are blank ONLY where the body publishes no threshold, as /press says", async () => {
+    const { body, col } = await certSheet();
+    for (const r of body) {
+      const blank = col(r, "certified_units") === "";
+      expect(col(r, "priced"), `${col(r, "release")} ${col(r, "country_code")}`).toBe(blank ? "false" : "true");
+      expect(col(r, "unpriced_reason") !== "", `${col(r, "release")} ${col(r, "country_code")}`).toBe(blank);
+      if (blank) {
+        const b = col(r, "certifying_body");
+        expect(
+          exclusionFor(col(r, "country_code"), col(r, "format") as CertFormat, CERT_PROGRAMS[b] ? b : undefined),
+          `${col(r, "release")} ${col(r, "country_code")} is blank but its body publishes a threshold`,
+        ).not.toBeNull();
+      }
+    }
+  });
+});
+
+describe("register_url links only a register that can show the plaque", () => {
+  it("Dai Dai's Colombian Gold, issued by Sony Music Colombia, gets no Pro Música link", async () => {
+    const { col, find } = await certSheet();
+    const co = find("Burna Boy", "Dai Dai", "CO");
+    expect(col(co, "certifying_body")).toBe("Sony Music Colombia");
+    // Negative control: the country's own register exists and is Pro
+    // Música's — the blank is the issuer override's doing, not a missing link.
+    expect(BURNA_COUNTRIES.CO.url).toMatch(/pro-musica\.co/);
+    expect(col(co, "register_url")).toBe("");
+    // A Colombian plaque Pro Música did award keeps its register.
+    expect(col(find("Rema", "Bubalu", "CO"), "register_url")).toBe(countryMeta("CO").url);
+  });
+
+  it("RIAA Latin, a programme of the RIAA's own, keeps the RIAA register", async () => {
+    const { col, find } = await certSheet();
+    const us = find("Burna Boy", "Dai Dai", "US");
+    expect(col(us, "certifying_body")).toBe("RIAA Latin");
+    expect(col(us, "register_url")).toBe(BURNA_COUNTRIES.US.url);
+    expect(col(find("Ayra Starr", "Santa", "US"), "register_url")).toBe(countryMeta("US").url);
+  });
+
+  it("every other row carries its country's register", async () => {
+    const { body, col } = await certSheet();
+    for (const r of body) {
+      const c = col(r, "country_code");
+      const country = col(r, "artist") === "Burna Boy" ? BURNA_COUNTRIES[c] : countryMeta(c);
+      const b = col(r, "certifying_body");
+      const otherIssuer = b !== country.body && !CERT_PROGRAMS[b];
+      expect(col(r, "register_url"), `${col(r, "release")} ${c}`).toBe(otherIssuer ? "" : (country.url ?? ""));
+    }
+  });
+});
+
+describe("kind, and the column that filters across artists", () => {
+  const SPLIT = new Set(["Albums", "Lead singles", "Featured appearances"]);
+
+  it("certifications.csv uses one vocabulary for everyone", async () => {
+    const { body, col } = await certSheet();
+    expect(new Set(body.map((r) => col(r, "kind")))).toEqual(SPLIT);
+    for (const r of body) expect(col(r, "format")).toBe(col(r, "kind") === "Albums" ? "album" : "single");
+  });
+
+  it("chart-peaks.csv: his rows split lead from featured, the board's cannot, and says so", async () => {
+    const [h, ...body] = (await fetchCsv("chart-peaks")).rows;
+    const col = (r: string[], k: string) => r[h.indexOf(k)];
+    const kinds = (burna: boolean) => new Set(body.filter((r) => (col(r, "artist") === "Burna Boy") === burna).map((r) => col(r, "kind")));
+    expect(kinds(true)).toEqual(SPLIT);
+    // The board's chart data records Singles / Albums only. If it ever gains a
+    // lead-or-featured split, this fails and the description below is rewritten.
+    expect(kinds(false)).toEqual(new Set(["Singles", "Albums"]));
+    // format is the same two values on every row, whoever's it is.
+    for (const r of body) expect(col(r, "format")).toBe(col(r, "kind") === "Albums" ? "album" : "single");
+    const what = downloadBySlug("chart-peaks").what;
+    expect(what).toMatch(/Filter across artists on format/);
+    expect(what).toMatch(/kind splits Burna Boy's singles into lead and featured/);
+  });
+});
+
+describe("awards: the description and the values agree", () => {
+  it("names every result the file holds, and no result it does not", async () => {
+    const { rows } = await fetchCsv("awards");
+    const values = new Set(rows.slice(1).map((r) => r[4]));
+    const what = downloadBySlug("awards").what;
+    for (const v of values) expect(what).toMatch(new RegExp(`\\b${v}\\b`));
+    // Negative control: the line the file first shipped with promised a
+    // "lost" the file never writes.
+    expect(values.has("lost")).toBe(false);
+    expect(what).not.toContain("won, lost or is still pending");
+    expect(what).not.toMatch(/\blost\b/);
+  });
+
+  it("/api/v1/awards says what ITS rows do, and points to the file that splits them", async () => {
+    const res = await json(awardsJson());
+    // The JSON carries `won` alone — no result field to separate a loss from a
+    // pending one — so it must say it does not, and not that nothing can.
+    expect(res.data.nominations.every((n: any) => !("result" in n))).toBe(true);
+    expect(res.description).not.toContain("the dataset does not distinguish them");
+    expect(res.description).toContain("this endpoint does not separate the two");
+    expect(res.description).toContain(downloadBySlug("awards").path);
+  });
+});
+
 describe("/press offers the downloads", () => {
   // /press is ONE responsive tree — no desktopOnly wrapper, no mobile screen —
   // so the section it renders is the section both widths get. Held here so a
@@ -337,6 +553,23 @@ describe("/press offers the downloads", () => {
     expect(section.querySelector('a[href="/methodology"]')).not.toBeNull();
     expect(section.textContent).toMatch(/floor/);
     expect(section.textContent).toMatch(/TCSN/);
+  });
+
+  it("says truthfully when units are blank, and points to units_note", () => {
+    const { container } = render(<PressPage />);
+    const section = container.querySelector('section[aria-labelledby="downloads"]') as HTMLElement;
+    const text = section.textContent!.replace(/\s+/g, " ");
+    // Negative control, the line this section first shipped: Greece, Poland's
+    // singles, Sweden and Mexico are all priced on a figure their body does not
+    // print today, and none of them is blank.
+    expect(text).not.toContain("blank where the body publishes none");
+    // The columns it names are real columns of the file.
+    for (const c of ["units_note", "unpriced_reason"]) {
+      expect(text).toContain(`${c} `);
+      expect(downloadBySlug("certifications").header).toContain(c);
+    }
+    expect(text).toContain("Units are blank only where a body publishes no threshold at all");
+    expect(section.querySelector('a[href="/compare"]')).not.toBeNull();
   });
 
   it("dates the citation from the data, the same day the page says it was reviewed", () => {
