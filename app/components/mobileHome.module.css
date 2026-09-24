@@ -440,6 +440,10 @@
   overflow-x: auto;
   padding: 16px 18px 4px;
   scroll-snap-type: x mandatory;
+  /* Snap to the 18px gutter, not the rail's edge. With scroll-padding left at
+     auto, mandatory snapping pulled the first cover flush to the screen edge
+     on load (scrollLeft 18), out of line with the heading above it. */
+  scroll-padding-inline: 18px;
   scrollbar-width: none;
 }
 .rail::-webkit-scrollbar { display: none; }

@@ -133,8 +133,14 @@
   text-transform: uppercase;
   color: var(--gold);
 }
+/* The hint echoes the query, so it can hold one unbroken token as long as a
+   pasted URL. min-width: 0 lets the flex item shrink and anywhere lets that
+   token break; without them a Spotify link laid a 375px phone out 783px wide.
+   The empty-state heading below echoes it too. */
 .resultsHint {
   margin-left: auto;
+  min-width: 0;
+  overflow-wrap: anywhere;
   font-family: var(--font-mono), monospace;
   font-size: 11px;
   letter-spacing: 0.1em;
@@ -194,6 +200,7 @@
   letter-spacing: 0.01em;
   text-transform: uppercase;
   color: var(--text-muted);
+  overflow-wrap: anywhere;
 }
 .emptyP { font-size: 14.5px; color: var(--dim); margin: 12px 0 0; }
 .suggestions { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }

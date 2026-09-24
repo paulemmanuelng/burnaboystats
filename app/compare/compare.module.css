@@ -596,7 +596,10 @@
   .thCount { display: block; }
   .table th.thNum, .tdNum { text-align: left; }
   .cell { align-items: flex-start; gap: 4px; }
-  .country { gap: 6px; }
+  /* Wraps here: "US · LATIN" (the RIAA Latin line, 24 pair pages) is wider
+     than the 78px column, and nowrap ran its "N" under the tier pill beside
+     it. It breaks to "US ·" / "LATIN"; two-letter codes are unaffected. */
+  .country { gap: 6px; white-space: normal; }
   .flag { font-size: 16px; }
   /* Off-screen, not display:none: a screen reader still hears "Switzerland",
      not "C-H", and can match the row to the footnote that names it. */

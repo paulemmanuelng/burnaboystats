@@ -369,7 +369,7 @@ export default function MethodologyPage() {
             {numberWord(correctionsMade.length).toLowerCase()} of them changed figures on this site.
           </p>
 
-          <h3 className={styles.blockH}>No primary source names him</h3>
+          <h3 className={`${styles.blockH} ${styles.rejectH}`}>No primary source names him</h3>
           <dl className={styles.rejectList}>
             {unsourcedBodies.map((r) => (
               <div key={r.claim} className={styles.rejectRow}>
@@ -379,7 +379,7 @@ export default function MethodologyPage() {
             ))}
           </dl>
 
-          <h3 className={styles.blockH}>Counts that circulate higher than ours</h3>
+          <h3 className={`${styles.blockH} ${styles.rejectH}`}>Counts that circulate higher than ours</h3>
           <dl className={styles.rejectList}>
             {disputedCounts.map((r) => (
               <div key={r.claim} className={styles.rejectRow}>
@@ -389,7 +389,7 @@ export default function MethodologyPage() {
             ))}
           </dl>
 
-          <h3 className={styles.blockH}>Checks that changed our own figures</h3>
+          <h3 className={`${styles.blockH} ${styles.rejectH}`}>Checks that changed our own figures</h3>
           <dl className={styles.rejectList}>
             {correctionsMade.map((r) => (
               <div key={r.claim} className={styles.rejectRow}>

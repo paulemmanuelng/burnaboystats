@@ -16,7 +16,9 @@ export interface PeakInfo {
 
 // Continuous warm ramp so every distinct peak gets its own shade (a #2 reads
 // apart from a #6 from a #14) instead of big flat bands. Log scale, because the
-// peaks bunch up at the top (most are 1–10). Brighter = higher.
+// peaks bunch up at the top (most are 1–10). Gold = higher, red = lower — in
+// both themes. "Brighter = higher" holds on black only: on paper the ramp's
+// lightness runs the other way (see RAMP_LIGHT), so captions name the hue.
 type Stop = [number, [number, number, number]];
 const RAMP_DARK: Stop[] = [
   [0.0, [255, 226, 122]], // peak 1   — bright gold

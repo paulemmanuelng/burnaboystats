@@ -53,8 +53,7 @@ export default function TodaysNumber() {
         <div className={styles.figureWrap}>
           <div className={styles.figure}>{live.countries}</div>
           <div className={styles.caption}>
-            {live.countries === 1 ? "country" : "countries"} at No.&nbsp;1 with
-            &nbsp;&ldquo;{title}&rdquo; right now
+            {live.countries === 1 ? "country" : "countries"} at No.&nbsp;1 with &ldquo;{title}&rdquo; right now
           </div>
         </div>
         <Link href="/dai-dai" className={styles.cover}>

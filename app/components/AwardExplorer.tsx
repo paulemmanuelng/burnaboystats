@@ -86,6 +86,10 @@ export default function AwardExplorer() {
 
   return (
     <div>
+      {/* Inside the page container, like the ceremonies below it and the
+          /records/charts filter bar: a bare filterBar ran edge to edge
+          (0–1920 at 1920) while the lists started at 320. */}
+      <div className={styles.wide}>
       <div className={styles.filterBar}>
         <button
           type="button"
@@ -174,6 +178,7 @@ export default function AwardExplorer() {
             </div>
           )}
         </div>
+      </div>
       </div>
 
       {totalShown === 0 ? (

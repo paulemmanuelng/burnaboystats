@@ -382,7 +382,7 @@ export default function VisualizedPage() {
           },
           {
             title: "Best chart peak by country",
-            note: "Brighter gold is a higher peak — tap a country for the song that got there.",
+            note: "Gold is a higher peak, red a lower one — tap a country for the song that got there.",
             chart: (
               <PeakMap
                 data={peakByISO}
@@ -708,14 +708,14 @@ export default function VisualizedPage() {
               legends, one of them describing bands the map doesn't use, would
               mislabel the thing they sit above. */}
           <div className={styles.heatHead}>
-            <span className={styles.heatHint}>Brighter = higher peak</span>
+            <span className={styles.heatHint}>Gold = higher peak, red = lower</span>
           </div>
           <div className={styles.chartBody}>
             <PeakMap data={peakByISO} ariaLabel="World map coloured by Burna Boy's best official chart peak in each country" />
           </div>
           <p className={styles.caption}>
             His best official chart position in each of {peakCountryCount} countries —
-            brighter means higher. No. 1s span Nigeria, the UK, the Netherlands, Belgium,
+            gold means higher, red lower. No. 1s span Nigeria, the UK, the Netherlands, Belgium,
             Germany, Switzerland, Colombia, Argentina and more.
           </p>
           <Link href="/records/charts" className={`btn btnSecondary ${styles.cta}`}>
