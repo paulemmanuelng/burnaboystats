@@ -61,6 +61,19 @@ export const sectionLinks: Record<string, SectionLink> = {
   },
 };
 
+/** The Spanish edition's words for the sections /dai-dai/es sends readers to
+ *  (A-24, Paul, 24 Sep 2026). The pages behind them are English; only the rail
+ *  is translated, as the outro buttons beside it are. A key with no entry here
+ *  falls back to the English card. Figures come from the same data. */
+export const sectionLinksEs: Record<string, { title: string; desc: string }> = {
+  "live-charts": { title: "Listas en vivo", desc: "Dónde está en las listas ahora mismo" },
+  charts: {
+    title: "Récords en listas",
+    desc: `${chartEntryCount} entradas en listas · ${numberOnes} números 1 en el mundo`,
+  },
+  share: { title: "Tarjetas de cifras", desc: "Descarga una tarjeta y comparte las cifras" },
+};
+
 /** Where a page with no `exploreFor` list of its own is sent. Named and exported
  *  so the link-integrity test can hold the fallback to the same rules as the
  *  authored lists — a page falling through to it must not be one of these three. */
@@ -68,9 +81,11 @@ export const DEFAULT_EXPLORE = ["music", "certifications", "records"];
 
 // A "what to look at next" block — shown at the bottom of each page so
 // visitors click deeper into the site instead of leaving after one page.
-export default function KeepExploring({ current }: { current: string }) {
+export default function KeepExploring({ current, lang = "en" }: { current: string; lang?: "en" | "es" }) {
   const keys = exploreFor[current] || DEFAULT_EXPLORE;
-  const links = keys.map((k) => sectionLinks[k]).filter(Boolean);
+  const links = keys
+    .map((k) => (sectionLinks[k] ? { ...sectionLinks[k], ...(lang === "es" ? sectionLinksEs[k] : {}) } : undefined))
+    .filter((l): l is SectionLink => Boolean(l));
 
   // Its margin is .container's `0 auto` and nothing else. The module's own
   // .wrap margins (64px/80px, 36px/56px on phones) lost that tie on every page
@@ -79,8 +94,8 @@ export default function KeepExploring({ current }: { current: string }) {
   // (lib/navGroups.ts) it loads after globals.css, where they would win, so
   // they were removed rather than brought to life. tests/rootLayoutCss.test.ts.
   return (
-    <nav className="container" aria-label="Explore more pages">
-      <p className={styles.eyebrow}>Keep exploring</p>
+    <nav className="container" aria-label={lang === "es" ? "Explora más páginas" : "Explore more pages"}>
+      <p className={styles.eyebrow}>{lang === "es" ? "Sigue explorando" : "Keep exploring"}</p>
       <div className={styles.grid}>
         {links.map((l) => (
           <TrackedLink

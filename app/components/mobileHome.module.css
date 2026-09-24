@@ -369,6 +369,18 @@
   text-decoration: none;
   white-space: nowrap;
 }
+/* The No. 1 board's link says where its count comes from ("46 No. 1s,
+   including Billboard's global charts" — Paul, 24 Sep 2026), too long for
+   one line beside the title on a phone: unwrapped it pushed the page to 489px
+   and crushed the title into a column. It takes the space the title leaves
+   and wraps there, right-aligned; the title keeps its own width. */
+.sectionLinkWrap {
+  flex: 1 1 0;
+  min-width: 0;
+  justify-content: flex-end;
+  text-align: right;
+  white-space: normal;
+}
 
 /* ── No. 1 board ──────────────────────────────────────────────────────── */
 .boardGrid {

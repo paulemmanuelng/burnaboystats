@@ -211,9 +211,10 @@ describe("rule 3 — what cannot be priced is counted and named", () => {
     const p = priceArtist(bySlug("burna-boy"), { includeNigeria: false, includeFeatures: true });
     const se = p.byCountry.find((l) => l.country === "SE");
     expect(se?.counted).toBe(true);
-    expect(se?.assumed).toMatch(/Ifpi Sverige/);
+    // One name for Sweden's certifier: IFPI Sverige (Paul, 24 Sep 2026).
+    expect(se?.assumed).toMatch(/IFPI Sverige/);
     expect(se?.notCounted).toBeUndefined();
-    expect(p.assumptions.some((a) => /Ifpi Sverige/.test(a))).toBe(true);
+    expect(p.assumptions.some((a) => /IFPI Sverige/.test(a))).toBe(true);
   });
 });
 

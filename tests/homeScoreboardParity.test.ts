@@ -2,6 +2,7 @@ import { describe, it, expect } from "vitest";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { homeScoreboard } from "../app/lib/homeScoreboard";
+import { careerNumberOnes, careerNumberOnesLabel } from "../app/lib/homeData";
 import { numberOnes, chartCountryCount } from "../app/data/charts";
 import { numberOneCountryCount, countryNumberOnes, globalChartsTopped, isGlobalChart } from "../app/lib/analysis";
 import { allChartItems } from "../app/data/charts";
@@ -122,13 +123,50 @@ describe("the homepage No. 1s tile", () => {
   // board CTA read "All 47 career No. 1s" (placements); mobile's read "All 30"
   // (countries) with no noun at all — two different facts behind one link,
   // one click apart. Both now render careerNumberOnes with its noun.
+  //
+  // Paul, 24 Sep 2026: the label says where the placements beyond the country
+  // tally come from — "46 No. 1s, including Billboard's global charts" — under
+  // a "Career total: 44 No. 1s across 30 countries" line that counted
+  // differently. One derived label, rendered by both layouts.
   it("both layouts label the No. 1 board link with the same figure", () => {
     const desktop = read("app/page.tsx");
     const mobile = read("app/components/MobileHome.tsx");
-    const LABEL = /All \{careerNumberOnes\} career No\. 1s/;
+    const LABEL = /\{careerNumberOnesLabel\} ↗/;
     expect(desktop, "app/page.tsx no longer renders the board CTA as expected").toMatch(LABEL);
     expect(mobile, "MobileHome's board CTA must say the same thing as desktop's").toMatch(LABEL);
     // The shape that was wrong: a bare count with no noun.
     expect(mobile).not.toMatch(/All \{numberOneCountries\.length\}/);
+  });
+
+  it("the label is both counts' own, and names the Billboard globals", () => {
+    const globals = allChartItems.reduce(
+      (n, r) => n + r.entries.filter((e) => e.peak === 1 && (e.c === "GLB" || e.c === "GLBX")).length,
+      0,
+    );
+    expect(globals).toBeGreaterThan(0);
+    expect(careerNumberOnes).toBe(countryNumberOnes + globals);
+    expect(careerNumberOnesLabel).toBe(`${careerNumberOnes} No. 1s, including Billboard's global charts`);
+    // Negative control: the label the site shipped, a placements count under
+    // a country-chart count with nothing to say they differ.
+    for (const src of [read("app/page.tsx"), read("app/components/MobileHome.tsx")]) {
+      expect(src).not.toContain("All {careerNumberOnes} career No. 1s");
+    }
+  });
+
+  // The longer label on the shared nowrap .sectionLink pushed the 390px phone
+  // home to 489px and squeezed "The No. 1 board" into a column (24 Sep 2026,
+  // local build). The board link wraps beside the title instead.
+  it("the phone's board link may wrap, and only that link", () => {
+    const tsx = read("app/components/MobileHome.tsx");
+    expect(tsx).toMatch(
+      /<Link href="\/records\/charts" className=\{`\$\{styles\.sectionLink\} \$\{styles\.sectionLinkWrap\}`\}>\s*\{careerNumberOnesLabel\} ↗/,
+    );
+    expect(tsx.match(/styles\.sectionLinkWrap/g)).toHaveLength(1);
+    const css = read("app/components/mobileHome.module.css");
+    const rule = css.match(/\.sectionLinkWrap \{([^}]*)\}/)?.[1] ?? "";
+    expect(rule).toMatch(/white-space: normal;/);
+    expect(rule).toMatch(/min-width: 0;/);
+    // The shared rule keeps nowrap for the short links (the music section's).
+    expect(css.match(/\.sectionLink \{([^}]*)\}/)?.[1]).toMatch(/white-space: nowrap;/);
   });
 });

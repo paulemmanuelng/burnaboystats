@@ -389,15 +389,27 @@ describe("E-11: the article pages say og:type article", () => {
     expect(src).toMatch(/"@type": "Article",[\s\S]*?datePublished: PUBLISHED,/);
   });
 
-  it("every other page stays website, and nothing adds twitter:site/creator (Paul's call)", () => {
+  it("every other page stays website", () => {
     expect((methodologyMeta.openGraph as { type?: string }).type).toBe("website");
     const plain = pageMetadata({ title: "t", description: "d", path: "/x" });
     expect((plain.openGraph as { type?: string }).type).toBe("website");
-    for (const m of [daiDaiMeta, daiDaiEsMeta, unmergeMeta]) {
+  });
+
+  // Paul ruled on 24 Sep 2026: twitter:creator is his own account on every
+  // page, and never @BurnaBoyStats, a fan page he does not run. No
+  // twitter:site — the site has no account of its own.
+  it("carries twitter:creator @paulemmanuelng, and no twitter:site", () => {
+    const plain = pageMetadata({ title: "t", description: "d", path: "/x" });
+    for (const m of [plain, methodologyMeta, daiDaiMeta, daiDaiEsMeta, unmergeMeta]) {
       const tw = m.twitter as Record<string, unknown>;
+      expect(tw.creator).toBe("@paulemmanuelng");
       expect(tw.site).toBeUndefined();
-      expect(tw.creator).toBeUndefined();
+      expect(JSON.stringify(tw)).not.toContain("@BurnaBoyStats");
     }
+    // The pages that set no metadata of their own inherit the root layout's.
+    const layout = read("app/layout.tsx");
+    expect(layout).toMatch(/twitter: \{[\s\S]*?creator: TWITTER_CREATOR,[\s\S]*?\}/);
+    expect(read("app/search/page.tsx")).toContain("creator: TWITTER_CREATOR");
   });
 });
 

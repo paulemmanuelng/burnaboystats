@@ -55,7 +55,7 @@ export function getStatCards(): StatCard[] {
       source: "RIAA · BPI · SNEP · IFPI",
       watermark: "GOLD",
       href: "/certifications",
-      detail: `Every award is counted once it appears in the issuing body's own searchable database. ${diamond} of them are Diamond${diamondBodies.length === 1 ? `, all awarded by ${diamondBodies[0]}` : `, across ${diamondBodies.join(" · ")}`}.`,
+      detail: `Every award is counted once it appears in the issuing body's own searchable database, or, in a market with no current public register, on the label's own plaque. ${diamond} of them are Diamond${diamondBodies.length === 1 ? `, all awarded by ${diamondBodies[0]}` : `, across ${diamondBodies.join(" · ")}`}.`,
       value: `${totalAwards()}`,
       label: `certifications across ${countryCount} countries`,
       kicker: "The most-certified African artist in history",

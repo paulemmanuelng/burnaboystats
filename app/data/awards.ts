@@ -622,7 +622,7 @@ export const ceremonies: Ceremony[] = [
   {
     name: "Caribbean Music Awards",
     noms: [
-      { year: 2024, category: "Collaboration of the Year (Dancehall)", work: "Talibans II (with Byron Messia)", won: true },
+      { year: 2024, category: "Collaboration of the Year (Dancehall)", work: "Talibans II (Byron Messia ft. Burna Boy)", won: true },
       // PENDING — the 2026 ceremony is 19 Sep; see `pendingResults` above.
       { year: 2026, category: "Konpa — Song of the Year", work: "4 Kampé II (Remix)", won: false },
     ],

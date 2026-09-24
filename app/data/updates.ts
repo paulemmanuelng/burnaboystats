@@ -695,7 +695,7 @@ export const updates: Update[] = [
   {
     date: "2026-08-27",
     category: "Certifications",
-    text: "“On The Low” gains a plaque and corrects one: Sweden is added (GLF, Platinum, certificate no. 10448, awarded 16 August 2023) and Nigeria is corrected from Silver to Gold, the tier TCSN gives. That is ten countries for the song; the catalogue stands at 231.",
+    text: "“On The Low” gains a plaque and corrects one: Sweden is added (IFPI Sverige, Platinum, certificate no. 10448, awarded 16 August 2023) and Nigeria is corrected from Silver to Gold, the tier TCSN gives. That is ten countries for the song; the catalogue stands at 231.",
     href: "/certifications",
   },
   {
@@ -1204,7 +1204,7 @@ export const updates: Update[] = [
   {
     date: "2026-08-03",
     category: "Certifications",
-    text: "Platinum in Sweden: “Location”, the Dave collaboration, is certified Platinum by IFPI Sweden for 12 million on-demand streams — its 14th country, and certification No. 223 worldwide.",
+    text: "Platinum in Sweden: “Location”, the Dave collaboration, is certified Platinum by IFPI Sverige for 12 million on-demand streams — its 14th country, and certification No. 223 worldwide.",
     href: "/certifications",
   },
   {

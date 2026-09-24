@@ -133,8 +133,11 @@ export const UPDATED_NOTE =
   "updated is the date of the newest entry in the site's news log, not the last deploy. Figures refreshed between entries, such as streaming counts, can change without moving it, so to tell whether a payload has changed, send the ETag from your last fetch back as If-None-Match: an unchanged payload answers 304. The two live-charts snapshots also carry builtAt, the minute the board was rebuilt: use that, not updated, to detect a new snapshot.";
 /**
  * How the `credit` field reads, in /charts and /certifications alike. Both
- * datasets write it from Burna Boy's side, and "with Byron Messia" read to a
- * reviewer as a stray fragment: it is the style for a release he leads.
+ * datasets write it from Burna Boy's side, and a bare "with Stromae" read to a
+ * reviewer as a stray fragment: it is the style for a release he leads. (The
+ * fragment the reviewer met, Talibans II's "with Byron Messia", is gone: that
+ * record is Byron Messia's, credited "Byron Messia ft. Burna Boy" in both
+ * files — F-10, Paul, 24 Sep 2026.)
  */
 export const CREDIT_NOTE =
   "credit is written from Burna Boy's side: a value that starts with “feat.” or “with” (“feat. Wizkid”, “with Stromae”) names the guests on a release he leads, any other value names the release's own acts with the lead act first, and a release with no guest reads “Burna Boy”.";

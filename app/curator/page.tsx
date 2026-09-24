@@ -59,7 +59,7 @@ const sections = [
   },
   {
     h: "How I work",
-    p: "Nothing goes up unverified. A certification is counted when it appears in the certifying body's own database, a chart peak when the chart's owner publishes it, a streaming figure from the platform's own screen where the platform publishes one — monthly listeners, followers, per-track counts — and, for the career total Spotify never publishes, from kworb's per-track sum anchored on a dated ChartMasters read (the methodology page sets the method out). When a fan tally and a primary source disagree, the primary source wins — even when the fan number is better. The full standard is on the methodology page, and every change worth noting is logged on the updates feed.",
+    p: "Nothing goes up unverified. A certification is counted when it appears in the certifying body's own database (or, in a market with no current public register, on the label's own plaque), a chart peak when the chart's owner publishes it, a streaming figure from the platform's own screen where the platform publishes one — monthly listeners, followers, per-track counts — and, for the career total Spotify never publishes, from kworb's per-track sum anchored on a dated ChartMasters read (the methodology page sets the method out). When a fan tally and a primary source disagree, the primary source wins — even when the fan number is better. The full standard is on the methodology page, and every change worth noting is logged on the updates feed.",
   },
   {
     h: "Independence",

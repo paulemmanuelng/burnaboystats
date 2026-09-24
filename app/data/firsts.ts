@@ -5,6 +5,7 @@
 
 import { totalAwards, countryCount, certsInYear, bestIntlYearBefore } from "./certifications";
 import { BURNA_YT_AUDIENCE_WORDS, BURNA_HOT_100_ENTRIES_WORD } from "./africasBiggest";
+import { revenueShows } from "./tourRevenue";
 
 export interface First {
   year: string;
@@ -57,13 +58,20 @@ const dayMonthYear = (iso: string) =>
     timeZone: "UTC",
   });
 
+// The Stade de France night, read off the Boxscore row rather than typed. The
+// first said "sell out" and "the 80,000-capacity Paris stadium" beside the
+// site's own row of 43,881 tickets; Paul ruled on 24 Sep 2026 that the first is
+// the headline, not a sell-out (NPC-03).
+const stadeDeFrance = revenueShows.find((r) => r.artist === "Burna Boy" && r.venue === "Stade de France");
+const stadeDeFranceGross = stadeDeFrance ? ` — a $${(stadeDeFrance.revenue / 1e6).toFixed(2)}M night` : "";
+
 export const firstGroups: FirstGroup[] = [
   {
     label: "Stadiums & arenas",
     items: [
       { year: "2025", title: "First Nigerian artist to headline Red Rocks Amphitheatre", text: "Opening the North American leg of the No Sign of Weakness tour at the iconic Colorado venue (12 November 2025)." },
       { year: "2025", title: "First African artist to headline a stadium concert in New Zealand", text: "Headlining the inaugural Afrosoul Festival at Auckland's Go Media Stadium." },
-      { year: "2025", title: "First African artist to sell out the Stade de France", text: "Headlining the 80,000-capacity Paris stadium (April 2025) — a $4.53M night." },
+      { year: "2025", title: "First African artist to headline the Stade de France", text: `The Paris stadium, April 2025${stadeDeFranceGross}.` },
       { year: "2023", title: "First African artist to headline & sell out a UK stadium", text: "London Stadium, to around 60,000 fans, on the Love, Damini tour." },
       { year: "2023", title: "First African artist to headline & sell out a US stadium", text: "Citi Field, New York." },
       { year: "2022", title: "First Nigerian artist to headline & sell out Madison Square Garden", text: "His “One Night in Space” show — the Space Drift World Tour finale." },

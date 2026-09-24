@@ -17,7 +17,7 @@
 // description. The page each one points at owns the numbers; a second copy here
 // would drift.
 
-import { allItems, albums as certAlbums, COUNTRIES } from "../data/certifications";
+import { allItems, albums as certAlbums, COUNTRIES, certIssuerIn } from "../data/certifications";
 import { albumCharts, allChartItems, CHART_COUNTRIES } from "../data/charts";
 import { ceremonies } from "../data/awards";
 import { songs } from "../data/songs";
@@ -174,8 +174,9 @@ export function buildSearchDocs(): SearchDoc[] {
       title: meta.name,
       path: `/certifications#country=${code}`,
       section: "Country",
-      description: `Certifications awarded in ${meta.name} by ${meta.body}.`,
-      keywords: [code.toLowerCase(), "country", "certified", meta.body.toLowerCase()],
+      // The issuer, not the register: Colombia's plaque is Sony Music Colombia's.
+      description: `Certifications awarded in ${meta.name} by ${certIssuerIn(code)}.`,
+      keywords: [code.toLowerCase(), "country", "certified", certIssuerIn(code).toLowerCase()],
     });
   }
   for (const code of chartCountries) {

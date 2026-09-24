@@ -7,7 +7,7 @@ import { spotifyImage } from "../lib/spotifyImage";
 import { artAt, artSrcSet } from "../lib/artAt";
 import { coverFor } from "../lib/covers";
 import { sameTitle } from "../lib/titleKey";
-import { numberOneTitleFor, ukSinglesCell, ukAlbumsCell, careerNumberOnes } from "../lib/homeData";
+import { numberOneTitleFor, ukSinglesCell, ukAlbumsCell, careerNumberOnesLabel } from "../lib/homeData";
 import {
   isRecentNumberOne,
   recentNumberOneTitle,
@@ -247,8 +247,8 @@ export default function MobileHome() {
               CTA. Mobile printed the COUNTRY count (30) with no noun at all
               while desktop printed career placements (47) — two different
               facts behind one label, one click apart. */}
-          <Link href="/records/charts" className={styles.sectionLink}>
-            All {careerNumberOnes} career No. 1s ↗
+          <Link href="/records/charts" className={`${styles.sectionLink} ${styles.sectionLinkWrap}`}>
+            {careerNumberOnesLabel} ↗
           </Link>
         </div>
         <div className={styles.boardGrid}>

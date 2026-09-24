@@ -160,7 +160,7 @@ export const albums: AlbumEntry[] = [
       "Sittin' on Top of the World (feat. 21 Savage)", "Tested, Approved & Trusted",
       "Cheat on Me (feat. Dave)", "Virgil", "Big 7", "Dey Play", "City Boys",
       "Giza (feat. Seyi Vibez)", "12 Jewels (feat. RZA)", "If I'm Lying",
-      "Thanks (feat. J. Cole)", "Talibans II (with Byron Messia)",
+      "Thanks (feat. J. Cole)", "Talibans II (Byron Messia ft. Burna Boy)",
     ],
   },
   {

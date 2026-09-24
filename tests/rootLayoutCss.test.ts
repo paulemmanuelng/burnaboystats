@@ -132,7 +132,9 @@ const setsScrollMargin = (d: string) => /^scroll-margin(-[a-z-]+)?\s*:/.test(d);
 describe("rules that never painted stay unpainted", () => {
   it("'Keep exploring' takes its margin from .container alone", () => {
     const tsx = readFileSync(join(ROOT, "app/components/KeepExploring.tsx"), "utf8");
-    expect(tsx).toMatch(/<nav className="container" aria-label="Explore more pages">/);
+    // The label is the edition's own since /dai-dai/es got the rail (A-24,
+    // 24 Sep 2026); the class is still .container and nothing else.
+    expect(tsx).toMatch(/<nav className="container" aria-label=\{lang === "es" \? "Explora más páginas" : "Explore more pages"\}>/);
     const css = readFileSync(join(ROOT, "app/components/KeepExploring.module.css"), "utf8");
     expect(
       declarationsOf(css, "wrap").filter(setsMargin),

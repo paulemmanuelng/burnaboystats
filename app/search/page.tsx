@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import SearchResults from "../components/SearchResults";
-import { SITE_NAME } from "../lib/seo";
+import { SITE_NAME, TWITTER_CREATOR } from "../lib/seo";
 import { searchStats } from "../lib/searchStats";
 import { ROOT_OG_IMAGE } from "../lib/og-image";
 import { cleanQuery } from "../lib/searchQuery";
@@ -46,6 +46,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `Search — ${SITE_NAME}`,
     description: DESCRIPTION,
+    creator: TWITTER_CREATOR,
   },
 };
 

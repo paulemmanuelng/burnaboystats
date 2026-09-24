@@ -20,7 +20,7 @@ import {
   boardCells,
   boardCountriesShown,
   boardCountryTotal,
-  careerNumberOnes,
+  careerNumberOnesLabel,
   albumCards,
   topShows,
   topTour,
@@ -240,7 +240,7 @@ export default function Home() {
                 )}
               </p>
               <Link href="/records/charts" className={`btn btnSecondary ${styles.headBtn}`}>
-                All {careerNumberOnes} career No. 1s ↗
+                {careerNumberOnesLabel} ↗
               </Link>
             </div>
 

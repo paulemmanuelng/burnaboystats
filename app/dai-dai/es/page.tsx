@@ -4,6 +4,7 @@ import DaiDaiStory, { type Step } from "../../components/DaiDaiStory";
 import DaiDaiConquest, { type ConquestCountry } from "../../components/DaiDaiConquest";
 import DaiDaiNumbers from "../../components/DaiDaiNumbers";
 import FaqList from "../../components/FaqList";
+import KeepExploring from "../../components/KeepExploring";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime } from "../../lib/seo";
 import { lastUpdated } from "../../lib/api";
 import {
@@ -175,11 +176,13 @@ export default function DaiDaiPageES() {
       title: "El himno mundialista más grande de la historia",
       body: "Ninguna canción de un Mundial de la FIFA había llegado tan alto: “Dai Dai” es el himno mundialista con el pico más alto en la historia del Spotify Global — el pop latino de Shakira y el afrobeats de Burna Boy encontrándose en la cumbre.",
     },
+    // Chapter 07 carries the English chapter's facts (A-24, Paul, 24 Sep 2026):
+    // the stage, the date, the audience and the co-headliners it names.
     {
       scene: "halftime",
-      kicker: "19 de julio de 2026",
-      title: "El show de medio tiempo de la Final",
-      body: "Shakira y Burna Boy interpretaron “Dai Dai” en el primer show de medio tiempo de una Final del Mundial, en el MetLife Stadium, acompañados en el escenario por los Triplets Ghetto Kids de Uganda.",
+      kicker: "Historia · 19 de julio",
+      title: "Historia en el escenario de la Final del Mundial",
+      body: "Shakira y Burna Boy llevaron “Dai Dai” al primer show de medio tiempo de una Final del Mundial de la FIFA, en el MetLife Stadium, el 19 de julio — ante una audiencia global de miles de millones, junto a Madonna, BTS y Justin Bieber.",
     },
   ];
 
@@ -235,7 +238,8 @@ export default function DaiDaiPageES() {
       items: [
         { v: "13 semanas", l: "en el número 1 del United World Chart de Mediatraffic — 230.000 puntos en la semana del 26 de septiembre, y la primera canción de Burna Boy que lo lidera" },
         { v: "N.º 1", l: "en la lista de canciones de iTunes en 73 países — Estados Unidos, Reino Unido, Canadá, Francia, Italia, Nueva Zelanda, India, España, Portugal, Hungría y decenas más, Bielorrusia la más reciente" },
-        { v: "N.º 13", l: "en el Deezer Worldwide Top 100 — un nuevo pico, con presencia en 57 países y el número 1 en 23 de ellos" },
+        // Igual que en la edición inglesa: pico fechado, en pasado, sin el "23".
+        { v: "N.º 13", l: "en el Deezer Worldwide Top 100 — su pico, alcanzado el 26 de julio de 2026, cuando estaba en las listas de 57 países" },
         { v: "29 días", l: "en el número 1 de la lista Global Music Video de Spotify, según el último recuento en la lista del 23 de agosto — es una playlist diaria sin archivo, así que el recuento se lleva a mano" },
         { v: "N.º 14", l: "la posición de Burna Boy en el ranking Global Digital Artist (1.739 puntos) durante el recorrido" },
       ],
@@ -330,6 +334,7 @@ export default function DaiDaiPageES() {
           >
             ▶ Ver el show de medio tiempo ↗
           </a>
+          <a className="btn btnSecondary" href="#numbers">Saltar a las cifras</a>
           <Link className="btn btnSecondary" href={EN_PATH} hrefLang="en">
             Read in English
           </Link>
@@ -434,8 +439,8 @@ export default function DaiDaiPageES() {
             in Spanish, which is the reason this edition exists at all, and a
             Spanish-language search for "¿quiénes son los Ghetto Kids?" arrives
             on a phone. Flat list on a laptop, every answer open.
-            This page has no Keep-exploring rail to leave behind — see the EN/ES
-            drift note; the English edition renders one and this one does not.
+            The Keep-exploring rail at the foot of this file stays .desktopOnly,
+            exactly as on the English edition.
             The phone fold is FaqList, exactly as on the English edition —
             rendered open on the server and collapsed after mount, so a Spanish
             reader whose JavaScript never arrives still gets all eight answers.
@@ -466,6 +471,12 @@ export default function DaiDaiPageES() {
             <Link href="/records/charts?song=Dai%20Dai" className="btn btnPrimary">
               Todas las posiciones ↗
             </Link>
+            <Link href="/records/africas-biggest" className="btn btnSecondary">
+              Lo más grande de África ↗
+            </Link>
+            <Link href="/music" className="btn btnSecondary">
+              Discografía de Burna Boy ↗
+            </Link>
             <Link href={EN_PATH} className="btn btnSecondary" hrefLang="en">
               Read in English ↗
             </Link>
@@ -473,6 +484,11 @@ export default function DaiDaiPageES() {
         </section>
       </div>
 
+      {/* The English edition's rail, translated — desktop only there too: the
+          five-tab bar is how a phone moves around this site. */}
+      <div className={styles.desktopOnly}>
+        <KeepExploring current="/dai-dai/es" lang="es" />
+      </div>
     </main>
   );
 }

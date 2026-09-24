@@ -36,7 +36,7 @@ describe("/share — the verified date", () => {
   // the one piece of provenance that matters at the moment of posting.
   it("shows the date the figures were last checked", () => {
     render(
-      <MobileStatCards cards={CARDS} verified="3 September 2026" pageUrl="https://example.com/share" />
+      <MobileStatCards cards={CARDS} verified="3 September 2026" origin="https://example.com" />
     );
     expect(screen.getByText("3 September 2026")).toBeInTheDocument();
   });

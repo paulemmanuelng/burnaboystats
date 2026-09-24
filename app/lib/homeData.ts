@@ -198,6 +198,15 @@ export const liveNumberOneCountries = (() => {
 /** Countries where a release topped that country's own official chart. */
 export const boardCountryTotal = officialOnes.length;
 export const careerNumberOnes = numberOnes;
+// The No. 1 board's button, both layouts (Paul, 24 Sep 2026). It read "All 46
+// career No. 1s" directly under "Career total: 44 No. 1s across 30 countries",
+// two different counts one line apart; it now says where the extra two come
+// from. Both counts are the data's, and the clause goes when the globals do.
+const globalNumberOnes = allChartItems.reduce(
+  (n, r) => n + r.entries.filter((e) => e.peak === 1 && (e.c === "GLB" || e.c === "GLBX")).length,
+  0,
+);
+export const careerNumberOnesLabel = `${careerNumberOnes} No. 1s${globalNumberOnes > 0 ? ", including Billboard's global charts" : ""}`;
 
 // Countries the feed just reported topping lead the board — they are the reason
 // to look at it — and only they carry the NEW mark.

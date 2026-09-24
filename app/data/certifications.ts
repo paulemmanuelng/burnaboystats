@@ -1,6 +1,6 @@
 // ============================================================
 //  GLOBAL CERTIFICATIONS DATA
-//  Sources: RIAA, BPI, Music Canada, SNEP, GLF, NVPI, ARIA,
+//  Sources: RIAA, BPI, Music Canada, SNEP, IFPI Sverige, NVPI, ARIA,
 //  RMNZ, Promusicae, IFPI (DK/NO/CH/AT), RiSA, TCSN (TurnTable),
 //  ZPAV, AFP, BVMI (Germany), FIMI (Italy), BEA (Belgium),
 //  Pro-Música Brasil — cross-checked against each body's cited
@@ -62,7 +62,10 @@ export const COUNTRIES: Record<string, Country> = {
   // BEA renamed to BRMA and publishes no register; Ultratop keeps the Belgian roster.
   BE: { name: "Belgium", flag: "🇧🇪", body: "Ultratop", url: "https://www.ultratop.be/fr/or-platine" },
   // http:// only — https times out, which is what made earlier sweeps call it dead.
-  SE: { name: "Sweden", flag: "🇸🇪", body: "GLF", url: "http://www.grammotex.se/catalogue.php?lang=en" },
+  // Sweden's certifier is IFPI Sverige (Paul, 24 Sep 2026). GLF is named only
+  // as the operator of the register the plaques are read in, Grammotex, which
+  // is where the link goes — see the provenance caveat below.
+  SE: { name: "Sweden", flag: "🇸🇪", body: "IFPI Sverige", url: "http://www.grammotex.se/catalogue.php?lang=en" },
   NL: { name: "Netherlands", flag: "🇳🇱", body: "NVPI", url: "https://www.goudplatina.nl/database" },
   AU: { name: "Australia", flag: "🇦🇺", body: "ARIA", url: "https://www.aria.com.au/accreditations" },
   // RMNZ publishes no standalone register: certifications ride on chart rows.
@@ -605,7 +608,12 @@ export const features: Release[] = [
   { title: "Toni-Ann Singh", credit: "feat. Popcaan", year: 2022, cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [
     { c: "CA", level: "Gold" }, { c: "NG", level: "Silver" },
   ] },
-  { title: "Talibans II", credit: "with Byron Messia", year: 2023, cover: "https://cdn-images.dzcdn.net/images/cover/249b9a8dd169969947e57d554945f48b/500x500-000000-80-0-0.jpg", certs: [
+  // Byron Messia's record, Burna Boy featured — the credit charts.ts carries,
+  // with the lead act Official Charts prints ("TALIBANS by BYRON MESSIA", read
+  // 24 Sep 2026). It read "with Byron Messia" here, which by the credit
+  // convention (lib/api.ts CREDIT_NOTE) made it a release Burna Boy leads
+  // (F-10, Paul, 24 Sep 2026). The dated log below carries the same credit.
+  { title: "Talibans II", credit: "Byron Messia ft. Burna Boy", year: 2023, cover: "https://cdn-images.dzcdn.net/images/cover/249b9a8dd169969947e57d554945f48b/500x500-000000-80-0-0.jpg", certs: [
     { c: "CA", level: "Gold" }, { c: "NG", level: "Platinum" },
   ] },
   { title: "Rollin'", credit: "Mist ft. Burna Boy", year: 2021, cover: "https://cdn-images.dzcdn.net/images/cover/123c9286e946a0ad60a4126acbee6f60/500x500-000000-80-0-0.jpg", certs: [
@@ -666,7 +674,7 @@ export const certHistory: CertEvent[] = [
   { title: "Giza", credit: "feat. Seyi Vibez", country: "NG", level: "Platinum", x: 3, year: 2026 },
   { title: "Bundle by Bundle", country: "NG", level: "Platinum", year: 2026 },
   { title: "Location", credit: "Dave ft. Burna Boy", country: "NG", level: "Platinum", year: 2026 },
-  { title: "Talibans II", credit: "with Byron Messia", country: "NG", level: "Platinum", year: 2026 },
+  { title: "Talibans II", credit: "Byron Messia ft. Burna Boy", country: "NG", level: "Platinum", year: 2026 },
   // The same February 2026 TCSN batch, read 23 Sep 2026 in the register's own
   // 21 Feb 2026 capture — below the live page's 500-row cap, which is why the
   // 12 Aug read above never saw them. Year 2026, no day: the rows arrived
@@ -703,7 +711,7 @@ export const certHistory: CertEvent[] = [
   { title: "On the Low", country: "CA", level: "Platinum", x: 2, year: 2026 },
   { title: "Gbona", country: "CA", level: "Platinum", year: 2026 },
   { title: "City Boys", country: "CA", level: "Platinum", year: 2026 },
-  { title: "Talibans II", credit: "with Byron Messia", country: "CA", level: "Gold", year: 2026 },
+  { title: "Talibans II", credit: "Byron Messia ft. Burna Boy", country: "CA", level: "Gold", year: 2026 },
   { title: "Tested, Approved & Trusted", country: "CA", level: "Gold", year: 2026 },
   { title: "Sittin' on Top of the World", credit: "feat. 21 Savage", country: "CA", level: "Gold", year: 2026 },
   { title: "Gbona", country: "DK", level: "Gold", year: 2026 },
@@ -1026,11 +1034,25 @@ export const daiDaiPlatinumMore = (allItems.find((r) => r.title === "Dai Dai")?.
  *  a retype. National IFPI groups fold into one "IFPI (Denmark, Norway, …)"
  *  item; a body that already carries its country's name ("Music Canada",
  *  "Pro-Música Brasil") prints alone. Nigeria's TCSN is listed like the rest. */
+/** The body that actually issued his plaques in one country. Where every one
+ *  of them names the same other issuer, that issuer is the source: Colombia's
+ *  only plaque is "Dai Dai"'s Gold from Sony Music Colombia, and the sources
+ *  line and the search entry named Pro Musica Colombia (its register, which
+ *  lists no such award) while the row beside them said Sony (A-13, Paul,
+ *  24 Sep 2026). The US keeps "RIAA": its plaques name two programmes, not one
+ *  issuer. The country's own body stays in COUNTRIES, for the register link. */
+export const certIssuerIn = (code: string): string => {
+  const country = COUNTRIES[code];
+  const issuers = new Set(allItems.flatMap((r) => r.certs.filter((x) => x.c === code).map((x) => x.body ?? country?.body)));
+  return issuers.size === 1 ? ([...issuers][0] ?? country?.body ?? code) : (country?.body ?? code);
+};
+
 export const certSources = (): string => {
   const items: string[] = [];
   const ifpi: string[] = [];
   const cns: string[] = [];
-  for (const c of Object.values(COUNTRIES)) {
+  for (const [code, country] of Object.entries(COUNTRIES)) {
+    const c = { ...country, body: certIssuerIn(code) };
     const acronym = c.body.match(/\(([^)]+)\)/)?.[1]; // "TurnTable (TCSN)" → TCSN
     if (/^ČNS IFPI/.test(c.body)) cns.push(c.name);
     else if (/^IFPI( |$)/.test(c.body)) ifpi.push(c.name);

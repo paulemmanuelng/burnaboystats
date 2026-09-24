@@ -490,7 +490,11 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
     code: "SE",
     assumedFormat: "single",
     vintageFormat: "single",
-    body: "Ifpi Sverige (the former GLF, Grammofonleverantörernas förening) — 'Guld- och Platinacertifikat delas ut av Ifpi Sverige.'",
+    // IFPI Sverige certifies; GLF (Grammofonleverantörernas förening) is a
+    // separate legal person and is named only as the operator of Grammotex,
+    // the register the plaques are read in (Paul, 24 Sep 2026). The quote is
+    // the body's own words, in its own spelling.
+    body: "IFPI Sverige — 'Guld- och Platinacertifikat delas ut av Ifpi Sverige.'",
     sourceUrl: "https://www.ifpi.se/musikbolag/guld-och-platina/",
     // Songs: «Låt (enbart streams) 6 000 000 / 12 000 000» since 1 January 2024
     // (ifpi.se, read 12 Sep 2026); 4 / 8 million from 1 January 2018 (the
@@ -499,11 +503,11 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
     // 2017-12). «Enbart streams får räknas» — and capped streams at that, per
     // its Guld och Platina-guide.
     normalised:
-      "SINGLES converted: Ifpi Sverige publishes song levels in capped streams (Guld 6,000,000) and no download-equivalence. Divided by 100 streams to a unit — the ratio IFPI Danmark and IFPI Norge publish — see `assumed`. Albums were already units.",
+      "SINGLES converted: IFPI Sverige publishes song levels in capped streams (Guld 6,000,000) and no download-equivalence. Divided by 100 streams to a unit — the ratio IFPI Danmark and IFPI Norge publish — see `assumed`. Albums were already units.",
     assumed:
-      "Ifpi Sverige counts songs in capped streams only (since 1 January 2018) and publishes no stream-to-unit ratio. Its plaques are converted at 100 streams to a unit, the ratio IFPI Danmark and IFPI Norge publish for the same measure; capped streams undercount plays, so the figure is a floor.",
+      "IFPI Sverige counts songs in capped streams only (since 1 January 2018) and publishes no stream-to-unit ratio. Its plaques are converted at 100 streams to a unit, the ratio IFPI Danmark and IFPI Norge publish for the same measure; capped streams undercount plays, so the figure is a floor.",
     vintage:
-      "Ifpi Sverige raised its song levels on 1 January 2024 from 4 and 8 million streams to 6 and 12 million — 40,000 / 80,000 to 60,000 / 120,000 units at 100 streams to a unit. Priced at today's level; a plaque awarded before then may have cleared the lower bar.",
+      "IFPI Sverige raised its song levels on 1 January 2024 from 4 and 8 million streams to 6 and 12 million — 40,000 / 80,000 to 60,000 / 120,000 units at 100 streams to a unit. Priced at today's level; a plaque awarded before then may have cleared the lower bar.",
     single: { silver: null, gold: 60_000, platinum: 120_000, diamond: null },
     singleRaw: { gold: 6_000_000, platinum: 12_000_000 },
     floor: { single: { silver: null, gold: 40_000, platinum: 80_000, diamond: null } },

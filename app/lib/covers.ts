@@ -142,13 +142,21 @@ const withCover = (rows: { title: string; cover?: string }[]) =>
 // the original release's art wins over the later collection.
 const allReleases = [...albums, ...eps, ...compilations];
 
+/** A tracklist entry's title, without its credit bracket. key() strips a
+ *  "(feat. X)" or "(with X)" bracket; a track another act leads is written
+ *  with its full credit line — "Talibans II (Byron Messia ft. Burna Boy)"
+ *  (F-10, Paul, 24 Sep 2026) — and that bracket is a credit too. Scoped to
+ *  tracklists: widening key() itself would rekey thirty board titles such as
+ *  "Money (Zlatan ft. Davido)" onto Burna Boy's own "money". */
+const trackTitle = (track: string) => track.replace(/\s*\([^)]*\s(?:ft|feat)\.\s[^)]*\)$/i, "");
+
 /** Song title → the cover of the release whose tracklist contains it. */
 const TRACK_COVERS: Record<string, string> = {};
 for (const album of allReleases) {
   if (!album.cover) continue;
   for (const track of album.tracks) {
     // First album wins, so an original release beats a later compilation.
-    TRACK_COVERS[key(track)] ??= album.cover;
+    TRACK_COVERS[key(trackTitle(track))] ??= album.cover;
   }
 }
 

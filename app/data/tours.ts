@@ -6,6 +6,14 @@
 // documented (early tours) or a routing changed (cancellations), only confirmed
 // shows are listed — `partial: true` flags those.
 
+import { revenueShows } from "./tourRevenue";
+
+// The Stade de France gross, read off the Boxscore row the leaderboard prints
+// rather than typed a second time (NPC-03, Paul, 24 Sep 2026: the first is the
+// headline — the row is 43,881 tickets, not a sell-out).
+const stadeDeFranceRow = revenueShows.find((r) => r.artist === "Burna Boy" && r.venue === "Stade de France");
+const stadeDeFranceGross = stadeDeFranceRow ? ` — a $${(stadeDeFranceRow.revenue / 1e6).toFixed(2)}M gross` : "";
+
 export interface Show {
   date: string;
   venue: string;
@@ -260,7 +268,7 @@ export const liveMoments: LiveMoment[] = [
   { year: "2026", title: "FIFA World Cup Final halftime show", text: "Performed at the 2026 final's halftime show (19 July) — the first African artist to do so — on a bill with Madonna, Shakira, BTS, Justin Bieber and Coldplay.", record: true },
   { year: "2026", title: "FIFA World Cup Opening Ceremony", text: "Headlined the opener in Mexico City with Shakira, performing the official tournament song “Dai Dai.”" },
   { year: "2026", title: "AFCON 2025 Fan Zone grand finale", text: "Headlined “The AFCON Last Dance” in Rabat (16 Jan 2026), closing out the Africa Cup of Nations hosted by Morocco — on a bill with Stormzy, Stonebwoy and Jaylann." },
-  { year: "2025", title: "Stade de France, Paris", text: "First African artist to headline the Stade de France (April 2025) — a $4.53M gross." },
+  { year: "2025", title: "Stade de France, Paris", text: `First African artist to headline the Stade de France (April 2025)${stadeDeFranceGross}.` },
   { year: "2025", title: "Red Rocks Amphitheatre", text: "First Nigerian artist to headline the iconic Colorado venue, opening the North American leg of the No Sign of Weakness tour." },
   { year: "2025", title: "England Lionesses' Euro victory parade", text: "Surprise-performed “For My Hand” for a crowd the FA put at 65,000 at Buckingham Palace as the Lionesses celebrated retaining the UEFA Women's Euro (July 2025) — manager Sarina Wiegman, a self-professed fan, sang along." },
   { year: "2024", title: "London Stadium — African concert record", text: "$6.15M from 58,973 tickets: the highest-grossing single concert by any African artist.", record: true },

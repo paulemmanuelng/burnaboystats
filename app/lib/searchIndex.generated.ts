@@ -1947,11 +1947,11 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Certified units in Sweden",
     "path": "/compare/in/sweden",
     "section": "Compare",
-    "description": "Every Afrobeats plaque awarded in Sweden, priced at GLF's own thresholds and ranked by artist.",
+    "description": "Every Afrobeats plaque awarded in Sweden, priced at IFPI Sverige's own thresholds and ranked by artist.",
     "keywords": [
       "sweden",
       "se",
-      "glf",
+      "ifpi sverige",
       "certified units",
       "certifications",
       "certifications in sweden",
@@ -3530,12 +3530,12 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Colombia",
     "path": "/certifications#country=CO",
     "section": "Country",
-    "description": "Certifications awarded in Colombia by Pro Musica Colombia.",
+    "description": "Certifications awarded in Colombia by Sony Music Colombia.",
     "keywords": [
       "co",
       "country",
       "certified",
-      "pro musica colombia"
+      "sony music colombia"
     ],
     "generated": true
   },
@@ -4185,12 +4185,12 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Sweden",
     "path": "/certifications#country=SE",
     "section": "Country",
-    "description": "Certifications awarded in Sweden by GLF.",
+    "description": "Certifications awarded in Sweden by IFPI Sverige.",
     "keywords": [
       "se",
       "country",
       "certified",
-      "glf"
+      "ifpi sverige"
     ],
     "generated": true
   },
@@ -5523,11 +5523,12 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Talibans II",
     "path": "/records/charts#song=Talibans%20II",
     "section": "Release",
-    "description": "with Byron Messia — 2 certifications · 3 chart entries.",
+    "description": "Byron Messia ft. Burna Boy — 2 certifications · 3 chart entries.",
     "keywords": [
-      "with",
       "byron",
       "messia",
+      "burna",
+      "boy",
       "song",
       "release"
     ],

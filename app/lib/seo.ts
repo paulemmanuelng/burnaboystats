@@ -6,6 +6,11 @@ export const SITE_NAME = "Burna Boy Stats";
 // Canonical production origin (stable — used for absolute URLs in structured data).
 export const CANONICAL_ORIGIN = "https://burnaboystats.com";
 
+/** twitter:creator on every page: the site's maker, Paul's own account (E-11,
+ *  Paul, 24 Sep 2026). NEVER @BurnaBoyStats — that is a fan page Paul does not
+ *  run. No twitter:site: the site has no account of its own. */
+export const TWITTER_CREATOR = "@paulemmanuelng";
+
 /**
  * A feed date ("2026-08-09") as a full ISO 8601 datetime.
  *
@@ -78,6 +83,7 @@ export function pageMetadata(opts: {
       card: "summary_large_image",
       title: ogTitle,
       description: ogDescription,
+      creator: TWITTER_CREATOR,
     },
   };
 }

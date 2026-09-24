@@ -515,3 +515,18 @@ export const songs: Song[] = [
 
 export const songBySlug = (slug: string) => songs.find((s) => s.slug === slug);
 export const songSlugs = songs.map((s) => s.slug);
+
+/** "Dai Dai"'s story page. It stays at /dai-dai, but it is a song page all the
+ *  same: /music's song grid lists it first, and the cover picker on every
+ *  /music/[song] page carries it as well (A-38, Paul, 24 Sep 2026). The hub
+ *  said "15 pages" while the picker said "All 14 song pages" one click away. */
+export const daiDaiStoryPage = {
+  href: "/dai-dai",
+  title: "Dai Dai",
+  year: 2026,
+  cover: "https://i.scdn.co/image/ab67616d0000b27303cadf1b3fe324c1dc710ed4",
+  tag: "The 2026 FIFA World Cup anthem, with Shakira",
+} as const;
+
+/** Every song page, the Dai Dai story included — what the hub and the picker count. */
+export const songPageCount = songs.length + 1;

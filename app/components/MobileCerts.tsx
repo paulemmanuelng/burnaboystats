@@ -1,6 +1,6 @@
 "use client"; // the tier rail filters the list
 
-import { useState, useEffect, useLayoutEffect, type CSSProperties } from "react";
+import { Fragment, useState, useEffect, useLayoutEffect, type CSSProperties } from "react";
 import Link from "next/link";
 import styles from "./mobileCerts.module.css";
 import { badgeWeight, byMostCertified } from "../lib/certs";
@@ -96,6 +96,7 @@ export default function MobileCerts({
   faqs,
   showActionBar = true,
   compareSlug = "burna-boy",
+  compareWith,
 }: {
   releases: Release[];
   albums: Release[];
@@ -146,6 +147,9 @@ export default function MobileCerts({
   showActionBar?: boolean;
   /** Which artist the Compare button pre-fills side A with. */
   compareSlug?: string;
+  /** Every head-to-head page this artist is on, canonical URLs — the plain
+   *  "Compare with…" list under the boards (lib/comparePairs.compareWithLinks). */
+  compareWith?: { name: string; href: string }[];
 }) {
   const art = (title: string) => (covers ? covers[title] : coverFor(title));
   // The list runs albums, singles and features together, so an album needs
@@ -537,6 +541,23 @@ export default function MobileCerts({
             </Link>
           )}
         </div>
+      )}
+
+      {/* The pair pages, linked by their own URLs — the desktop half carries
+          the same list. Plain links in the screen's existing label and lede
+          styles (E-10, Paul, 24 Sep 2026). */}
+      {compareWith && compareWith.length > 0 && (
+        <nav className={styles.logHead} aria-label={`Compare ${subject} with…`}>
+          <div className={styles.logKicker}>Compare with…</div>
+          <p className={styles.logLede}>
+            {compareWith.map((c, i) => (
+              <Fragment key={c.href}>
+                {i > 0 && " · "}
+                <Link href={c.href} className="wikiLink">{c.name}</Link>
+              </Fragment>
+            ))}
+          </p>
+        </nav>
       )}
 
       {/* ── The dated log ─────────────────────────────────────────── */}

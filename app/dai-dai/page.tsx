@@ -265,7 +265,10 @@ export default function DaiDaiPage() {
       items: [
         { v: "13 weeks", l: "at No. 1 on Mediatraffic's United World Chart — 230,000 points in the chart week dated 26 September, and the first Burna Boy song ever to top it" },
         { v: "No. 1", l: "iTunes song chart in 73 countries — the US, UK, Canada, France, Italy, New Zealand, India, Spain, Portugal, Hungary & dozens more, Belarus the newest" },
-        { v: "No. 13", l: "Deezer Worldwide Top 100 — a new peak, charting in 57 countries and No. 1 in 23 of them" },
+        // A dated, past-tense peak: the site's own log of 26 Jul 2026 is the read,
+        // and the chart has not bettered No. 13 since (runHistory, from 9 Aug).
+        // "No. 1 in 23 of them" had no source and is gone (Paul, 24 Sep 2026).
+        { v: "No. 13", l: "Deezer Worldwide Top 100 — its peak, reached on 26 July 2026, when it was charting in 57 countries" },
         { v: "29 days", l: "at No. 1 on Spotify's Global Music Video chart, as last counted on the chart of 23 August — the chart is a daily playlist with no archive, so the count is kept by hand" },
         { v: "No. 14", l: "Burna Boy's position on the Global Digital Artist ranking (1,739 points) during the run" },
       ],

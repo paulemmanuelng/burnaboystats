@@ -14,7 +14,7 @@ import BirthdayCelebration from "./components/BirthdayCelebration";
 import FooterNav from "./components/FooterNav";
 import { siteUrl } from "./site";
 import { PRE_PAINT_LANG } from "./lib/documentLang";
-import { FEED_ALTERNATE } from "./lib/seo";
+import { FEED_ALTERNATE, TWITTER_CREATOR } from "./lib/seo";
 import "./globals.css";
 import FlagEmojiPolyfill from "./components/FlagEmojiPolyfill";
 
@@ -96,6 +96,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Burna Boy Stats",
     description: "Certifications, discography and milestones of the African Giant.",
+    // The pages that set no metadata of their own inherit this block; the rest
+    // carry the same creator through pageMetadata (lib/seo.ts).
+    creator: TWITTER_CREATOR,
   },
 };
 

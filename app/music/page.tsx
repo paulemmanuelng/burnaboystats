@@ -8,7 +8,7 @@ import styles from "./music.module.css";
 import { albums, eps, compilations } from "../data/albums";
 import KeepExploring from "../components/KeepExploring";
 import { spotifyImage, spotifySrcSet } from "../lib/spotifyImage";
-import { songs as songPages } from "../data/songs";
+import { songs as songPages, daiDaiStoryPage } from "../data/songs";
 import { siteUrl } from "../site";
 import { numberWord } from "../lib/homeData";
 import { pageMetadata } from "../lib/seo";
@@ -16,12 +16,7 @@ import { spotifyTotalStreams } from "../data/streamingTotals";
 
 // Deep-dive song pages, Dai Dai (its own bespoke page) featured first.
 const songStories = [
-  {
-    href: "/dai-dai",
-    cover: "https://i.scdn.co/image/ab67616d0000b27303cadf1b3fe324c1dc710ed4",
-    title: "Dai Dai",
-    tag: "The 2026 FIFA World Cup anthem, with Shakira",
-  },
+  { href: daiDaiStoryPage.href, cover: daiDaiStoryPage.cover, title: daiDaiStoryPage.title, tag: daiDaiStoryPage.tag },
   ...songPages.map((s) => ({ href: `/music/${s.slug}`, cover: s.cover, title: s.title, tag: s.tagline })),
 ];
 

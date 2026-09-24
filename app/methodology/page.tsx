@@ -45,6 +45,21 @@ const anchorReadLabel = new Date(`${CAREER_STREAMS_ANCHOR_READ_ON}T12:00:00Z`).t
   timeZone: "UTC",
 });
 
+// The plaques that name an ISSUER rather than a separately priced programme —
+// a label's own plaque. Paul, 24 Sep 2026: "Dai Dai"'s Colombian Gold, issued
+// by Sony Music Colombia, stays counted, because Colombia's certifier keeps no
+// current public register (its roster stops in 2024). The rule below said
+// "only once it appears in the awarding body's own searchable database", which
+// that plaque never can; the exception is stated, and read off the data.
+const labelPlaques = allItems.flatMap((r) =>
+  r.certs
+    .filter((c) => c.body && !CERT_PROGRAMS[c.body])
+    .map((c) => `“${r.title}”'s ${c.level} in ${COUNTRIES[c.c]?.name ?? c.c}, issued by ${c.body}`),
+);
+const labelPlaqueClause = labelPlaques.length
+  ? ` The one exception is a market with no current public register, where the label's own plaque stands: ${labelPlaques.join("; ")}.`
+  : "";
+
 // Primary sources, grouped by what they verify. Deliberately names the chart
 // bodies and databases so readers (and search engines) can see the numbers are
 // traceable to authoritative origins, not blogs or aggregators.
@@ -54,7 +69,7 @@ const sources = [
     count: String(countryCount),
     tag: "RIAA · BPI · SNEP · BVMI",
     detail:
-      "Official certification databases of each market — the RIAA (US), BPI (UK), SNEP (France), BVMI (Germany), FIMI (Italy) and others. A certification is only counted once it appears in the awarding body's own searchable database.",
+      `Official certification databases of each market — the RIAA (US), BPI (UK), SNEP (France), BVMI (Germany), FIMI (Italy) and others. A certification is only counted once it appears in the awarding body's own searchable database.${labelPlaqueClause}`,
   },
   {
     area: "Charts",
