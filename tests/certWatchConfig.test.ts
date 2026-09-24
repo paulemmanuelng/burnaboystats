@@ -1,5 +1,5 @@
 // @vitest-environment node
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
 import { join, relative } from "node:path";
@@ -14,6 +14,11 @@ import { parseSearch as sverigeParseSearch, parseRecord as sverigeParseRecord } 
 import { parseChart as cnsParseChart } from "../scripts/cert-watch/adapters/cns-ifpi.mjs";
 import { parsePage as danmarkParsePage } from "../scripts/cert-watch/adapters/ifpi-danmark.mjs";
 import { LIVE_ARTISTS, config, FIX, ROOT, fixture } from "./certWatchHelpers";
+
+// These tests read hundreds of saved register pages (many gzipped) from
+// tests/fixtures/cert-watch. On GitHub's two-core runners several take longer
+// than vitest's 5 s default, so this file gets a longer per-test limit.
+vi.setConfig({ testTimeout: 60_000 });
 
 const index = hydrateSiteIndex(buildSiteIndex(certs, afro, LIVE_ARTISTS, config), LIVE_ARTISTS);
 

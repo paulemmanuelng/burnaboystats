@@ -1,9 +1,14 @@
 // @vitest-environment node
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { ifpiSverige, parseSearch, parseRecord, searchUrl, recordUrl, queryFor, leadActsFor } from "../scripts/cert-watch/adapters/ifpi-sverige.mjs";
 import { AdapterError } from "../scripts/cert-watch/adapters/base.mjs";
 import { identifyRow } from "../scripts/cert-watch/match.mjs";
 import { LIVE_ARTISTS, config, fixture, frozenIndex } from "./certWatchHelpers";
+
+// The watcher suite reads hundreds of saved register pages (many gzipped) from
+// tests/fixtures/cert-watch. On GitHub's two-core runners some tests take longer
+// than vitest's 5 s default, so every watcher test file gets a longer limit.
+vi.setConfig({ testTimeout: 60_000 });
 
 /**
  * Ifpi Sverige: Sverigetopplistan search (a pointer) → sys2.ifpi.se record

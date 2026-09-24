@@ -1,10 +1,15 @@
 // @vitest-environment node
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { spawnSync } from "node:child_process";
 import { mkdtempSync, readFileSync, writeFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 import { ROOT, configBeforeRulings } from "./certWatchHelpers";
+
+// These tests read hundreds of saved register pages (many gzipped) from
+// tests/fixtures/cert-watch. On GitHub's two-core runners several take longer
+// than vitest's 5 s default, so this file gets a longer per-test limit.
+vi.setConfig({ testTimeout: 60_000 });
 
 /**
  * The runner's exit-code contract, through the shipped script (SPEC §7):

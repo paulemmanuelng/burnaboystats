@@ -1,5 +1,5 @@
 // @vitest-environment node
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { verdict } from "../scripts/cert-watch/health.mjs";
 import { join } from "node:path";
 import { zpav, parseSearch, bodyFor, API } from "../scripts/cert-watch/adapters/zpav.mjs";
@@ -7,6 +7,11 @@ import { AdapterError } from "../scripts/cert-watch/adapters/base.mjs";
 import { createFixtureHttp } from "../scripts/cert-watch/http.mjs";
 import { evaluateRows } from "../scripts/cert-watch/match.mjs";
 import { FIX, LIVE_ARTISTS, config, fixture, frozenIndex, releaseOf } from "./certWatchHelpers";
+
+// The watcher suite reads hundreds of saved register pages (many gzipped) from
+// tests/fixtures/cert-watch. On GitHub's two-core runners some tests take longer
+// than vitest's 5 s default, so every watcher test file gets a longer limit.
+vi.setConfig({ testTimeout: 60_000 });
 
 /** ZPAV (olis.pl's award API) on real saved responses. */
 describe("parse", () => {

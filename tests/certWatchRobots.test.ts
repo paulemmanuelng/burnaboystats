@@ -1,7 +1,12 @@
 // @vitest-environment node
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { parseRobots, robotsVerdict, agentVerdict } from "../scripts/cert-watch/robots.mjs";
 import { fixture } from "./certWatchHelpers";
+
+// The watcher suite reads hundreds of saved register pages (many gzipped) from
+// tests/fixtures/cert-watch. On GitHub's two-core runners some tests take longer
+// than vitest's 5 s default, so every watcher test file gets a longer limit.
+vi.setConfig({ testTimeout: 60_000 });
 
 /** The parser on the robots.txt files the registers really served (24 Sep 2026). */
 const rules = (host: string) => parseRobots(fixture(`robots/${host}.txt`));

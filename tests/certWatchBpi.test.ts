@@ -1,11 +1,16 @@
 // @vitest-environment node
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { join } from "node:path";
 import { bpi, parseList, parseDetail, listUrl } from "../scripts/cert-watch/adapters/bpi.mjs";
 import { AdapterError } from "../scripts/cert-watch/adapters/base.mjs";
 import { createFixtureHttp } from "../scripts/cert-watch/http.mjs";
 import { configProblems } from "../scripts/cert-watch/index.mjs";
 import { FIX, fixture, config } from "./certWatchHelpers";
+
+// The watcher suite reads hundreds of saved register pages (many gzipped) from
+// tests/fixtures/cert-watch. On GitHub's two-core runners some tests take longer
+// than vitest's 5 s default, so every watcher test file gets a longer limit.
+vi.setConfig({ testTimeout: 60_000 });
 
 /**
  * BPI is HELD by its robots.txt (`User-agent: *` / `Disallow: /`, read 24 Sep

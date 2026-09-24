@@ -1,5 +1,5 @@
 // @vitest-environment node
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import {
   mergeRun,
   extractState,
@@ -15,6 +15,11 @@ import {
 import { evaluateRows } from "../scripts/cert-watch/match.mjs";
 import { musiccanada, parseAwards } from "../scripts/cert-watch/adapters/musiccanada.mjs";
 import { LIVE_ARTISTS, config, fixture, frozenIndex, releaseOf } from "./certWatchHelpers";
+
+// The watcher suite reads hundreds of saved register pages (many gzipped) from
+// tests/fixtures/cert-watch. On GitHub's two-core runners some tests take longer
+// than vitest's 5 s default, so every watcher test file gets a longer limit.
+vi.setConfig({ testTimeout: 60_000 });
 
 /**
  * Dedupe with no repo writes (SPEC §6). The candidate used throughout is the

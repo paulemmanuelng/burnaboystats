@@ -1,5 +1,5 @@
 // @vitest-environment node
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { spawnSync } from "node:child_process";
 import { mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
@@ -10,6 +10,11 @@ import { buildSiteIndex, hydrateSiteIndex, holdingFor } from "../scripts/cert-wa
 import { watchVerdict, mergeRun, emptyState } from "../scripts/cert-watch/state.mjs";
 import { parseRows } from "../scripts/cert-watch/adapters/riaa.mjs";
 import { ROOT, LIVE_ARTISTS, config, fixture, frozenIndex, releaseOf } from "./certWatchHelpers";
+
+// These tests read hundreds of saved register pages (many gzipped) from
+// tests/fixtures/cert-watch. On GitHub's two-core runners several take longer
+// than vitest's 5 s default, so this file gets a longer per-test limit.
+vi.setConfig({ testTimeout: 60_000 });
 
 /**
  * The watchlist (SPEC §5.4). Both targets are derived at run time from the

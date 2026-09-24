@@ -1,5 +1,5 @@
 // @vitest-environment node
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { spawnSync } from "node:child_process";
 import { mkdtempSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
@@ -16,6 +16,11 @@ import { riaaLatin, parseRows } from "../scripts/cert-watch/adapters/riaa.mjs";
 import { nvpi, parseFilter } from "../scripts/cert-watch/adapters/nvpi.mjs";
 import { statusLabel, counts, staleSentence } from "../scripts/cert-watch/report.mjs";
 import { ROOT, FIX, fixture, config, frozenIndex, LIVE_ARTISTS } from "./certWatchHelpers";
+
+// The watcher suite reads hundreds of saved register pages (many gzipped) from
+// tests/fixtures/cert-watch. On GitHub's two-core runners some tests take longer
+// than vitest's 5 s default, so every watcher test file gets a longer limit.
+vi.setConfig({ testTimeout: 60_000 });
 
 /**
  * health.mjs — the per-register verdict (SPEC §3.4, §7). Every input is a

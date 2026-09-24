@@ -1,9 +1,14 @@
 // @vitest-environment node
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { bvmi, parseRows, parsePreis, readPage, selectedYear, pageUrl, MAIN_SECTION } from "../scripts/cert-watch/adapters/bvmi.mjs";
 import { AdapterError } from "../scripts/cert-watch/adapters/base.mjs";
 import { evaluateRows } from "../scripts/cert-watch/match.mjs";
 import { LIVE_ARTISTS, config, fixture, frozenIndex, releaseOf } from "./certWatchHelpers";
+
+// The watcher suite reads hundreds of saved register pages (many gzipped) from
+// tests/fixtures/cert-watch. On GitHub's two-core runners some tests take longer
+// than vitest's 5 s default, so every watcher test file gets a longer limit.
+vi.setConfig({ testTimeout: 60_000 });
 
 /**
  * BVMI on REAL saved pages (PROVENANCE.json): the whole 2026 walk from the

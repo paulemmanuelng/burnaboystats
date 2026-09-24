@@ -1,5 +1,5 @@
 // @vitest-environment node
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { spawnSync } from "node:child_process";
 import { mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
@@ -10,6 +10,11 @@ import { extractState, encodeState, stateBlock } from "../scripts/cert-watch/sta
 import { evaluateRows } from "../scripts/cert-watch/match.mjs";
 import { tcsn, toRows as tcsnRows } from "../scripts/cert-watch/adapters/tcsn.mjs";
 import { ROOT, fixture, frozenIndex, releaseOf, LIVE_ARTISTS, config, configBeforeRulings } from "./certWatchHelpers";
+
+// These tests read hundreds of saved register pages (many gzipped) from
+// tests/fixtures/cert-watch. On GitHub's two-core runners several take longer
+// than vitest's 5 s default, so this file gets a longer per-test limit.
+vi.setConfig({ testTimeout: 60_000 });
 
 /**
  * The issue body. The golden render is a full offline run over the saved

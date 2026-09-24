@@ -1,10 +1,15 @@
 // @vitest-environment node
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { promusicaBr, parseCards, parseBadge, parseCounter, servedQuery, searchUrl } from "../scripts/cert-watch/adapters/promusica-br.mjs";
 import { AdapterError } from "../scripts/cert-watch/adapters/base.mjs";
 import { evaluateRows, identifyRow } from "../scripts/cert-watch/match.mjs";
 import { searchTermsFor } from "../scripts/cert-watch/index.mjs";
 import { LIVE_ARTISTS, config, fixture, frozenIndex, releaseOf } from "./certWatchHelpers";
+
+// The watcher suite reads hundreds of saved register pages (many gzipped) from
+// tests/fixtures/cert-watch. On GitHub's two-core runners some tests take longer
+// than vitest's 5 s default, so every watcher test file gets a longer limit.
+vi.setConfig({ testTimeout: 60_000 });
 
 /**
  * Pro-Música Brasil on REAL saved pages from the live dry run of 24 Sep 2026:

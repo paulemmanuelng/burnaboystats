@@ -1,5 +1,5 @@
 // @vitest-environment node
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { evaluateRows } from "../scripts/cert-watch/match.mjs";
 import { riaa, riaaLatin, parseRows } from "../scripts/cert-watch/adapters/riaa.mjs";
 import { musiccanada, parseAwards } from "../scripts/cert-watch/adapters/musiccanada.mjs";
@@ -10,6 +10,11 @@ import { hydrateSiteIndex, buildSiteIndex } from "../scripts/cert-watch/site.mjs
 import * as certs from "../app/data/certifications";
 import * as afro from "../app/data/afrobeats";
 import { LIVE_ARTISTS, config, fixture, frozenIndex, releaseOf } from "./certWatchHelpers";
+
+// The watcher suite reads hundreds of saved register pages (many gzipped) from
+// tests/fixtures/cert-watch. On GitHub's two-core runners some tests take longer
+// than vitest's 5 s default, so every watcher test file gets a longer limit.
+vi.setConfig({ testTimeout: 60_000 });
 
 /**
  * Replays of REAL register rows against the site index frozen at build time
