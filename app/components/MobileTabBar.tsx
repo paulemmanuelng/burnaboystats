@@ -63,8 +63,11 @@ export default function MobileTabBar() {
   // action bar or nothing at all — either way this must not stack on top.
   if (hasOwnActionBar(pathname)) return null;
 
+  // Its own name, not "Primary": the top nav is also on screen at phone width
+  // on most pages, and two landmarks both called "Primary navigation" leave a
+  // screen-reader user unable to tell which one they are in.
   return (
-    <nav className={`${styles.bar} mobileTabBarPresent`} aria-label="Primary">
+    <nav className={`${styles.bar} mobileTabBarPresent`} aria-label="Tab bar">
       {TABS.map((t) => {
         // "/" only matches exactly; the rest match their whole section, so a
         // song page still shows Music as the active tab.

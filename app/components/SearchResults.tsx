@@ -136,10 +136,14 @@ export default function SearchResults({
             <circle cx="11" cy="11" r="7" />
             <path d="m20 20-3.5-3.5" />
           </svg>
+          {/* name="q": a field with neither id nor name was the one Chrome
+              flagged on /search, and it is what the form falls back to
+              without JavaScript (/search?q=…), the URL the page reads. */}
           <input
             ref={inputRef}
             className={styles.input}
             type="search"
+            name="q"
             value={q}
             onChange={(e) => setQ(e.target.value)}
             placeholder="Songs, records, countries, awards, pages…"

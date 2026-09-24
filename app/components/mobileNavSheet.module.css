@@ -4,7 +4,9 @@
 .root {
   position: fixed;
   inset: 0;
-  z-index: 60; /* over the tab bar (40) and every sticky back bar (45) */
+  /* Over the tab bar (60, which now follows the page in the DOM, so a tie
+     would paint the bar on top) and every sticky back bar (45). */
+  z-index: 61;
 }
 /* The sheet stays in the DOM while closed so its links are crawlable, and
    `hidden` does the hiding. Stated explicitly rather than leaning on the UA

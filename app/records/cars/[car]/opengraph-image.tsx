@@ -16,7 +16,9 @@ export async function generateImageMetadata({ params }: { params: Promise<{ car:
   const { car: slug } = await params;
   const car = carBySlug(slug);
   // The value's basis word is in the id, so the one estimated card re-versions alone.
-  return [{ id: ogId(`${slug}|${car?.valueUsd}|${car ? valueWord(car) : ""}|${car?.rank}|${garage.length}`), alt, size, contentType }];
+  // The alt names the model; every car card carried the one generic alt below.
+  const carAlt = car ? `${car.make} ${car.model} from Burna Boy's collection — an illustration of the model, its reported value and rank` : alt;
+  return [{ id: ogId(`${slug}|${car?.valueUsd}|${car ? valueWord(car) : ""}|${car?.rank}|${garage.length}`), alt: carAlt, size, contentType }];
 }
 
 export const size = { width: 1200, height: 630 };

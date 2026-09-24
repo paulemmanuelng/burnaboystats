@@ -45,7 +45,9 @@ export default function ScatterChart({
   const sorted = [...points].sort((a) => (a.tone === "muted" ? -1 : 1)); // gold last
 
   return (
-    <div className={styles.wrap}>
+    // Focusable: under 460px the chart scrolls sideways, and a scroll box with
+    // nothing focusable inside it cannot be scrolled from a keyboard.
+    <div className={styles.wrap} tabIndex={0} role="region" aria-label={`Scatter chart: ${xLabel} against ${yLabel.toLowerCase()}`}>
       <svg viewBox={`0 0 ${W} ${H}`} className={styles.svg} role="img" aria-label={ariaLabel}>
         {/* horizontal gridlines + y labels */}
         {yTicks.map((t, i) => (

@@ -445,10 +445,13 @@ export default function MethodologyPage() {
           <dl className={styles.sourceList}>
             {sources.map((s) => (
               <div key={s.area} className={styles.sourceRow}>
-                <div>
-                  <dt className={styles.sourceArea}>{s.area}</dt>
-                  <div className={styles.sourceTag}>{s.tag}</div>
-                </div>
+                {/* One <dt> holding both lines: a <div> between the row and its
+                    <dt> is not a definition-list group, so the five terms were
+                    orphaned from their descriptions in the accessibility tree. */}
+                <dt>
+                  <span className={styles.sourceArea}>{s.area}</span>
+                  <span className={styles.sourceTag}>{s.tag}</span>
+                </dt>
                 <dd className={styles.sourceDetail}>{s.detail}</dd>
               </div>
             ))}
@@ -728,7 +731,8 @@ export default function MethodologyPage() {
               </>
             )}
           </p>
-          <div className={styles.tableScroll}>
+          {/* Focusable, so a keyboard can scroll the 720px table on a phone. */}
+          <div className={styles.tableScroll} tabIndex={0} role="region" aria-label="Threshold table">
             <table className={styles.thresholdTable}>
               <thead>
                 <tr>

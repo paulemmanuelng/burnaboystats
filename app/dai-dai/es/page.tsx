@@ -90,6 +90,10 @@ const liveOnesLabel = `ahora mismo en las listas por país de ${platformOnes
   .join(", ")
   .replace(/, ([^,]*)$/, " y $1")} — ${LIVE_CADENCE_ES} desde el panel en vivo`;
 
+// Same date as the English edition's PUBLISHED: the Article node's
+// datePublished and the og:type "article" date.
+const PUBLISHED = "2026-07-16";
+
 export const metadata = pageMetadata({
   title: "Dai Dai — el himno del Mundial 2026 de Shakira y Burna Boy",
   description: `“Dai Dai”, de Shakira y Burna Boy: 37 días como la canción más escuchada del mundo, número 1 en ${daiDaiNumberOnes} países y el show de medio tiempo de la Final del Mundial.`,
@@ -99,6 +103,7 @@ export const metadata = pageMetadata({
     "El himno del Mundial 2026 de Shakira y Burna Boy — número 1 en el mundo entero.",
   locale: "es_ES",
   languages: { en: EN_PATH, es: ES_PATH, "x-default": EN_PATH },
+  article: { publishedTime: PUBLISHED },
 });
 
 export default function DaiDaiPageES() {
@@ -110,7 +115,7 @@ export default function DaiDaiPageES() {
     headline: "Dai Dai — el himno oficial del Mundial de la FIFA 2026",
     description:
       "La historia de “Dai Dai”, el himno oficial del Mundial de la FIFA 2026 de Shakira y Burna Boy — su recorrido histórico en listas, streaming y certificaciones, y su actuación en el show de medio tiempo de la Final.",
-    datePublished: "2026-07-16",
+    datePublished: PUBLISHED,
     dateModified: asDateTime(lastUpdated),
     // The id segment is not optional: generateImageMetadata puts it in the
     // path, so the bare route 404s and this field would cite a dead URL.

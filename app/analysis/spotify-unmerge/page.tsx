@@ -127,6 +127,8 @@ export const metadata = pageMetadata({
   shareTitle: "The February 2026 Spotify correction, explained",
   shareDescription:
     "Not a bot purge — an un-merge. ~309M streams moved to the recordings that earned them, and the numbers add up.",
+  // An Article (and ClaimReview) in its structured data, so an article card too.
+  article: { publishedTime: PUBLISHED },
 });
 
 export default function SpotifyUnmergePage() {

@@ -33,7 +33,9 @@ export async function generateImageMetadata({
   const { song, countries, best, certCount } = songStats(slug);
   // The credit is part of the id: the five credited cards changed text on
   // 17 Sep 2026 without any art change, so they re-version alone (no OG_ART bump).
-  return [{ id: ogId(`${slug}|${song?.credit ?? ""}|${best}|${countries}|${certCount}|${cardUrl(`/music/${slug}`)}`), alt, size, contentType }];
+  // The alt names the song and its credit; every song card carried the one generic alt below.
+  const songAlt = song ? `${song.title} by ${song.credit ?? "Burna Boy"} — chart peaks, certifications and stats` : alt;
+  return [{ id: ogId(`${slug}|${song?.credit ?? ""}|${best}|${countries}|${certCount}|${cardUrl(`/music/${slug}`)}`), alt: songAlt, size, contentType }];
 }
 
 export const size = { width: 1200, height: 630 };

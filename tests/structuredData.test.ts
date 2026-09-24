@@ -68,6 +68,18 @@ describe("BreadcrumbList structured data", () => {
     expect(items.map((it) => it.name)).toEqual(["Home", "Music", "Where the World Listens"]);
     expect(String(items[2].item)).toBe("https://burnaboystats.com/music/listeners");
   });
+
+  // Debug of 24 Sep 2026 (E-02): all 27 /compare/in/<country> boards shipped
+  // two BreadcrumbLists — the page's own, and a generated one ending in the
+  // raw slug ("united-kingdom"). The board writes its own, so the site-wide
+  // one stands down there too.
+  it("a country board keeps only its own trail", () => {
+    expect(hasOwnBreadcrumb("/compare/in/canada")).toBe(true);
+    expect(hasOwnBreadcrumb("/compare/in/united-kingdom")).toBe(true);
+    expect(hasOwnBreadcrumb("/compare/in")).toBe(true);
+    // Negative control: the one-segment pattern that shipped did not reach it.
+    expect(/^\/compare\/[^/]+$/.test("/compare/in/united-kingdom")).toBe(false);
+  });
 });
 
 // Six artists were added to the board without a SEGMENT_LABELS entry, so their

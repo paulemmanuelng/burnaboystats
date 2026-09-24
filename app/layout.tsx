@@ -13,6 +13,7 @@ import Breadcrumbs from "./components/Breadcrumbs";
 import BirthdayCelebration from "./components/BirthdayCelebration";
 import FooterNav from "./components/FooterNav";
 import { siteUrl } from "./site";
+import { PRE_PAINT_LANG } from "./lib/documentLang";
 import "./globals.css";
 import FlagEmojiPolyfill from "./components/FlagEmojiPolyfill";
 
@@ -219,10 +220,15 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             open; anything unrecognised — including nothing stored at all —
             is dark, which is the site as it has always looked. That is why
             the attribute is always written: "no preference yet" and "follow
-            the device" must not collapse into the same CSS state. */}
+            the device" must not collapse into the same CSS state.
+
+            It also gives /dai-dai/es its document language before paint
+            (PRE_PAINT_LANG, lib/documentLang.ts): this element says "en" for
+            every route, and the route's own effect only ran after hydration. */}
         <script
           dangerouslySetInnerHTML={{
             __html:
+              PRE_PAINT_LANG +
               'try{var c=localStorage.getItem("theme");' +
               'var t=c==="light"||c==="dark"?c:' +
               'c==="system"&&matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";' +
@@ -261,10 +267,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         {/* NAVIGATION BAR — shown on every page */}
         <Nav />
 
-        {/* The mobile spine: a fixed five-tab bar on every phone screen.
-            Hidden above the mobile breakpoint, where the sticky nav does it. */}
-        <MobileTabBar />
-
         {/* The hamburger's open state. Mounted once here rather than per
             screen: it is opened by an event, so every back bar's menu button
             reaches this one instance. The groups are built on the server, so
@@ -280,6 +282,16 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
         {/* THE ACTUAL PAGE CONTENT gets slotted in here */}
         {children}
+
+        {/* The mobile spine: a fixed five-tab bar on every phone screen.
+            Hidden above the mobile breakpoint, where the sticky nav does it.
+            After the content in source order, where it sits on screen: ahead
+            of it, a keyboard's first five stops after "Skip to content" were
+            the tabs at the foot of the screen. Its CSS hooks use :has() and
+            descendant selectors, so they do not depend on the order; the
+            fixed layers that share its z-index 60 and must cover it (nav
+            sheet, birthday banner, map tooltip) are 61 for that reason. */}
+        <MobileTabBar />
 
         {/* Floating "back to top" — appears after scrolling down a long page */}
         <BackToTop />

@@ -38,9 +38,16 @@ export function pageMetadata(opts: {
    *  near-identical "sweep scheduled" pages are thin content until they carry
    *  figures, and this flips off on its own the week they do. */
   noindex?: boolean;
+  /** An article page — one whose structured data is an Article — declares
+   *  og:type "article" with the same publication date, rather than the
+   *  "website" every other page carries. */
+  article?: { publishedTime: string };
 }): Metadata {
   const ogTitle = opts.shareTitle ?? opts.title;
   const ogDescription = opts.shareDescription ?? opts.description;
+  const ogType = opts.article
+    ? { type: "article" as const, publishedTime: opts.article.publishedTime }
+    : { type: "website" as const };
   return {
     title: opts.title,
     description: opts.description,
@@ -54,7 +61,7 @@ export function pageMetadata(opts: {
       description: ogDescription,
       url: opts.path,
       siteName: SITE_NAME,
-      type: "website",
+      ...ogType,
       locale: opts.locale ?? "en_US",
     },
     twitter: {
@@ -133,6 +140,11 @@ const OWN_BREADCRUMB = [
   // leaf is "Burna Boy vs Wizkid", which the slug cannot spell.
   /^\/compare$/,
   /^\/compare\/[^/]+$/,
+  // A country board is the same view one level deeper, and writes the same
+  // five-crumb trail with the market's name ("United Kingdom"). The pattern
+  // above stops at one segment, so all 27 boards also shipped the generated
+  // trail, ending in the raw slug "united-kingdom".
+  /^\/compare\/in\/[^/]+$/,
 ];
 
 /** True where the page emits its own trail and the site-wide one must not. */

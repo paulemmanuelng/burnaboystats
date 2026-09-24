@@ -14,7 +14,7 @@ export async function generateImageMetadata({ params }: { params: Promise<{ arti
   const sig = a
     ? `${slug}|charts|${chartEntries(a)}|${chartTerritories(a)}|${chartNo1s(a)}|${cardUrl(`/afrobeats/${slug}/charts`)}`
     : `${slug}`;
-  return [{ id: ogId(sig), alt, size, contentType }];
+  return [{ id: ogId(sig), alt: a ? `${a.name} — official chart peaks by country, read from each country's own chart` : alt, size, contentType }];
 }
 
 export const size = { width: 1200, height: 630 };

@@ -88,7 +88,8 @@ export default function MobileAbout({
             <div key={t.year + t.title} className={styles.tRow}>
               <span className={styles.tDot} aria-hidden="true" />
               <div className={styles.tYear}>{t.year}</div>
-              <h3 className={styles.tTitle}>{t.title}</h3>
+              {/* h2: nothing sits between the screen's <h1> and these rows. */}
+              <h2 className={styles.tTitle}>{t.title}</h2>
               <p className={styles.tText}>{t.text}</p>
             </div>
           ))}

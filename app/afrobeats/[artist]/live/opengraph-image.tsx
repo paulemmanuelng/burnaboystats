@@ -18,7 +18,8 @@ export async function generateImageMetadata({ params }: { params: Promise<{ arti
   const sig = b
     ? `${slug}|live|${b.updated}|${b.placements}|${b.countries}|${b.numberOnes}|${cardUrl(`/afrobeats/${slug}/live`)}`
     : `${slug}`;
-  return [{ id: ogId(sig), alt, size, contentType }];
+  const artist = artistBySlug(slug);
+  return [{ id: ogId(sig), alt: artist ? `${artist.name} — live platform chart placements, ${LIVE_CADENCE}` : alt, size, contentType }];
 }
 
 export const size = { width: 1200, height: 630 };

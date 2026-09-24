@@ -80,6 +80,10 @@ const liveOnesLabel = `right now on the country charts of ${platformOnes
   .replace(/, ([^,]*)$/, " and $1")} — ${LIVE_CADENCE} from the live board`;
 
 
+// The story's publication date: the Article node's datePublished and the
+// og:type "article" date both read it. The Spanish edition carries the same.
+const PUBLISHED = "2026-07-16";
+
 export const metadata = pageMetadata({
   title: "Dai Dai — Shakira & Burna Boy's 2026 World Cup Anthem",
   description: `Shakira & Burna Boy's “Dai Dai” — the World Cup anthem: 37 days as Earth's most-streamed song, No. 1 in ${daiDaiNumberOnes} countries, and the Final halftime show.`,
@@ -87,6 +91,7 @@ export const metadata = pageMetadata({
   shareTitle: "The Dai Dai Story — Shakira & Burna Boy",
   shareDescription: "Shakira & Burna Boy's World Cup anthem — No. 1 worldwide, and performed at the Final halftime show.",
   languages: { en: "/dai-dai", es: "/dai-dai/es", "x-default": "/dai-dai" },
+  article: { publishedTime: PUBLISHED },
 });
 
 export default function DaiDaiPage() {
@@ -101,7 +106,7 @@ export default function DaiDaiPage() {
     headline: "Dai Dai — Shakira & Burna Boy's 2026 FIFA World Cup Anthem",
     description:
       "The story of “Dai Dai”, the 2026 FIFA World Cup anthem by Shakira and Burna Boy — its record-breaking chart, streaming and certification run, and its live performance at the World Cup Final halftime show.",
-    datePublished: "2026-07-16",
+    datePublished: PUBLISHED,
     dateModified: asDateTime(lastUpdated),
     inLanguage: "en",
     author: { "@type": "Organization", name: SITE_NAME, url: CANONICAL_ORIGIN },
@@ -128,7 +133,9 @@ export default function DaiDaiPage() {
     name: "2026 FIFA World Cup Final Halftime Show",
     startDate: "2026-07-19",
     eventStatus: "https://schema.org/EventScheduled",
-    eventAttendanceMode: "https://schema.org/MixedEventAttendanceMode",
+    // Offline: the location is the stadium alone. "Mixed" also asks for a
+    // VirtualLocation, and the node names no sourced broadcast URL to give one.
+    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
     location: {
       "@type": "Place",
       name: "MetLife Stadium",

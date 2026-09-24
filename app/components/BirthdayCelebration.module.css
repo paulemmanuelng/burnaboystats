@@ -43,7 +43,7 @@
   left: 50%;
   bottom: 22px;
   transform: translateX(-50%);
-  z-index: 60;
+  z-index: 61; /* over the tab bar (60), which follows the page in the DOM */
   display: flex;
   align-items: center;
   gap: 14px;

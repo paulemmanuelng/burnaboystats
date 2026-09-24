@@ -1216,17 +1216,19 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
             <Link href="/afrobeats" className="btn btnPrimary">The Afrobeats Board <span aria-hidden="true">↗</span></Link>
           </section>
         )}
+        {/* Phone only: the design's sticky bar above the five-tab bar, once both
+            sides are filled. The desktop foot strip above hides under 760px.
+            Inside <main> so its link belongs to a landmark; it is fixed, and
+            .wrap sets no transform, so it sits exactly where it did. */}
+        {ready && (
+          <div className={`${styles.boardBar} compareBoardBar`}>
+            <Link href="/afrobeats" className={styles.boardBtn}>
+              <span>The Afrobeats Board</span>
+              <span aria-hidden="true">↗</span>
+            </Link>
+          </div>
+        )}
       </main>
-      {/* Phone only: the design's sticky bar above the five-tab bar, once both
-          sides are filled. The desktop foot strip above hides under 760px. */}
-      {ready && (
-        <div className={`${styles.boardBar} compareBoardBar`}>
-          <Link href="/afrobeats" className={styles.boardBtn}>
-            <span>The Afrobeats Board</span>
-            <span aria-hidden="true">↗</span>
-          </Link>
-        </div>
-      )}
       {/* No "Keep exploring" here (Paul, 11 Sep): the Afrobeats Board action
           is the one way onward this page offers. */}
       {ready && <div className={styles.barSpacer} aria-hidden="true" />}

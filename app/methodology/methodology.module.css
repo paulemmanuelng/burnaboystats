@@ -157,6 +157,7 @@
   align-items: start;
 }
 .sourceArea {
+  display: block; /* a span now, inside the row's one <dt> */
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
   font-size: 22px;
@@ -167,6 +168,7 @@
   margin: 0;
 }
 .sourceTag {
+  display: block;
   font-family: var(--font-mono), monospace;
   font-size: var(--type-label);
   letter-spacing: var(--type-label-tracking);

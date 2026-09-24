@@ -33,8 +33,10 @@ export async function generateImageMetadata({
   params: Promise<{ album: string }>;
 }) {
   const { album: slug } = await params;
-  const { countries, best, certCount } = albumStats(slug);
-  return [{ id: ogId(`${slug}|${best}|${countries}|${certCount}|${cardUrl(`/music/albums/${slug}`)}`), alt, size, contentType }];
+  const { page, countries, best, certCount } = albumStats(slug);
+  // The alt names the album; every album card carried the one generic alt below.
+  const albumAlt = page ? `${page.title}, the Burna Boy album — chart peaks, certifications and stats` : alt;
+  return [{ id: ogId(`${slug}|${best}|${countries}|${certCount}|${cardUrl(`/music/albums/${slug}`)}`), alt: albumAlt, size, contentType }];
 }
 
 export const size = { width: 1200, height: 630 };

@@ -103,7 +103,7 @@ export default function SubscribeBox({
     return (
       <div id={id} className={`${root} ${styles.ticket}`} role="status">
         <div className={styles.ticketKicker}>The Saturday digest · confirmed</div>
-        <h3 className={styles.ticketHead}>You&apos;re in.</h3>
+        <h2 className={styles.ticketHead}>You&apos;re in.</h2>
         <p className={styles.ticketText}>
           The next digest lands <b>{nextDigestLabel()} at 18:00 London</b> — if the week gives us
           something to send. A quiet week sends nothing.
@@ -137,7 +137,9 @@ export default function SubscribeBox({
         </div>
       )}
       <div className={styles.kicker}>The Saturday digest</div>
-      <h3 className={styles.head}>The week&apos;s numbers, in one email.</h3>
+      {/* h2: on /updates the box follows the page's <h1> directly, and an h3
+          there skipped a level. .head sets its own face, size and margin. */}
+      <h2 className={styles.head}>The week&apos;s numbers, in one email.</h2>
       {compact ? (
         <div className={styles.factsStack}>
           <span>Saturdays · 18:00 London · one a week, at most</span>
