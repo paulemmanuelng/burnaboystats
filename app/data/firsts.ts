@@ -113,13 +113,36 @@ export const firstGroups: FirstGroup[] = [
       { year: "2026", title: "First entry on Billboard's Adult Contemporary chart", text: "“Dai Dai” with Shakira debuted at No. 14 on the Adult Contemporary chart dated 29 August 2026 — a radio format that had never played him before. It is Shakira's second entry on the chart, after “Hips Don't Lie” reached No. 24 in 2007." },
       { year: "2026", title: "First African artist to chart the Billboard Hot 100 six years running", text: "An unbroken run from 2021 through 2026." },
       { year: "2026", title: "Most Billboard Hot 100 entries by an African artist", text: `${BURNA_HOT_100_ENTRIES_WORD} career entries — the record for any African artist, extended by “Dai Dai”.` },
-      { year: "2024", title: "First African artist to surpass 2 billion UK streams", text: "Recognised with a BRIT Billion award — the first African to reach it." },
-      { year: "2024", title: "First African artist to surpass 1 billion UK streams", text: "Awarded his first BRIT Billion plaque." },
+      // The BPI/BRITs BRIT Billion list carries one Burna Boy entry, "Date
+      // Awarded: 15/07/2024" (brits.co.uk/brit-billion, Wayback 18 Jul 2024) —
+      // the KOKO Camden show for five years of African Giant, where the special
+      // 2-billion trophy ("2,000,000,000 UK STREAMS") was presented. The BPI has
+      // no 2-billion tier; "first African artist to reach this milestone" is
+      // @chartdata's (17 Jul 2024), not the BPI's. Read 24 Sep 2026.
+      { year: "2024", title: "First African artist to surpass 2 billion UK streams", text: "Presented with a special BRIT Billion award for over 2 billion UK streams, backstage at KOKO Camden on 15 July 2024 — the first African artist to reach the milestone." },
+      // Not a first, by Paul's choice (24 Sep 2026). "First African artist to
+      // surpass 1 billion UK streams (2024)" could not stand as dated: the BPI
+      // verified Wizkid over 1 billion when it presented his award on 30 Jul
+      // 2023. Presentation is not crossing — the award is given when a label
+      // chooses (Eminem's came at 7 billion; Drake and Taylor Swift have none) —
+      // but no body publishes crossing dates, so who crossed first cannot be
+      // shown either way. What can: Atlantic Records UK's Austin Daboh told
+      // Music Week on 6 Sep 2023 that Burna had over two billion UK streams (a
+      // label figure), and his 1-billion plaque came at London Stadium on
+      // 29 Jun 2024 (Music In Africa, 1 Jul 2024; OkayAfrica, 2 Jul 2024).
+      { year: "2024", title: "Past 2 billion UK streams before his first BRIT Billion", text: "His label, Atlantic Records UK, put his UK total at over 2 billion streams in September 2023 — nearly ten months before his first BRIT Billion plaque, for 1 billion, was presented at his London Stadium show on 29 June 2024. The BPI presents the award when a label chooses, not on the day the mark is crossed." },
       { year: "2022", title: "Highest-charting Nigerian album in Billboard 200 history", text: "Love, Damini debuted at No. 14 — passing the previous Nigerian best, Wizkid's Made in Lagos (No. 28)." },
       { year: "2025", title: "First Nigerian artist to chart five albums on the Billboard 200", text: "African Giant, Twice as Tall, Love, Damini, I Told Them… and No Sign of Weakness." },
       { year: "2024", title: "First African artist with two albums over 1 billion Spotify streams", text: "Love, Damini and African Giant have each crossed a billion streams — and in August 2026 Love, Damini passed 1.7 billion, his first album to that mark and only the second Nigerian album ever to reach it." },
       { year: "2023", title: "First Afrobeats artist to top the UK Official Albums Chart", text: "I Told Them… debuted at No. 1 in Britain — one better than Love, Damini's record No. 2." },
-      { year: "2023", title: "First African artist to earn a UK No. 1 album and No. 1 single", text: "“Own It” (with Stormzy & Ed Sheeran) topped the UK Singles Chart in 2019, and I Told Them… topped the UK Albums Chart in 2023 — no other African artist had held both." },
+      // OCC: "Own It" reached No. 1 on the singles chart dated 3 Jan 2020 (5→1,
+      // "the UK's first Number 1 single of 2020", three weeks); its 2019 peak was
+      // No. 2, behind LadBaby at Christmas. I Told Them… was No. 1 on the albums
+      // chart dated 1 Sep 2023. "African" is by nationality (Paul, 17 Sep 2026):
+      // Akon, who has both, is American; Sade and Seal are British. Wizkid's best
+      // UK album is No. 14 and Tems' is No. 25, though both have a No. 1 single
+      // ("One Dance", 2016; "Raindance" with Dave, 2026). Read 24 Sep 2026.
+      { year: "2023", title: "First African artist to earn a UK No. 1 album and No. 1 single", text: "“Own It” (with Stormzy & Ed Sheeran) topped the UK Singles Chart in January 2020, and I Told Them… topped the UK Albums Chart in 2023 — no other African artist had held both." },
       { year: "2023", title: "First African artist to reach 1 billion streams on Audiomack", text: "A milestone on the streaming platform where Afrobeats has its biggest home." },
       { year: "2026", title: "First African artist to top the Billboard Colombia Hot 100", text: "“Dai Dai” with Shakira reached No. 1 in Colombia." },
       { year: "2026", title: "First African artist to top the Billboard Argentina Hot 100", text: "“Dai Dai” with Shakira reached No. 1 in Argentina — the first African act ever to lead the chart." },

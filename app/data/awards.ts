@@ -745,13 +745,19 @@ export const honours: Honour[] = [
     title: "BRIT Billion Award",
     org: "BPI · United Kingdom",
     year: 2024,
-    note: "For surpassing 1 billion UK streams.",
+    // Press-dated: Music In Africa (1 Jul 2024) and OkayAfrica (2 Jul 2024).
+    // The BPI/BRITs list's one Burna Boy entry, 15/07/2024, is the 2-billion
+    // award below, not this one.
+    note: "For surpassing 1 billion UK streams — presented at his London Stadium show, 29 June 2024.",
   },
   {
     title: "BRIT Billion Award",
     org: "BPI · United Kingdom",
     year: 2024,
-    note: "For 2 billion UK streams — the first African artist to reach it.",
+    // BPI/BRITs list: "Burna Boy — Date Awarded: 15/07/2024" (brits.co.uk
+    // /brit-billion, Wayback 18 Jul 2024). A one-off: the BPI has no 2-billion
+    // tier. "First African artist" is @chartdata's (17 Jul 2024). Read 24 Sep 2026.
+    note: "A special award for over 2 billion UK streams, presented at KOKO Camden on 15 July 2024 — the first African artist to reach the milestone.",
   },
   {
     title: "\"Burna Boy Day\" Proclamation",

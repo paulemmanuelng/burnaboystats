@@ -59,12 +59,21 @@ export const updates: Update[] = [
     href: "/dai-dai",
   },
   {
+    date: "2026-09-24",
+    category: "Firsts & Records",
+    // Music Week, 6 Sep 2023 (Austin Daboh, Atlantic Records UK — a label
+    // figure); Music In Africa, 1 Jul 2024 (London Stadium plaque); BPI/BRITs
+    // BRIT Billion list, "Date Awarded: 15/07/2024" (KOKO). See firsts.ts.
+    text: "Past 2 billion UK streams before his first BRIT Billion: Atlantic Records UK put his UK total over 2 billion in September 2023, nearly ten months before the 1 billion plaque at London Stadium on 29 June 2024. The special 2 billion award followed at KOKO Camden on 15 July.",
+    href: "/records/firsts",
+  },
+  {
     date: "2026-09-23",
     category: "Certifications",
     // RIAA's own post (@riaa_awards on Instagram, 23 Sep 2026, 20:24 UTC). Its
     // Dai Dai slide carries a 6X Latin Platinum badge that RIAA's database does
     // not show (2X Platino, 9 Jul 2026). No level is claimed in this entry; the
-    // 6X went on the site on 24 Sep 2026 by Paul's call (the entry above).
+    // 6X went on the site on 24 Sep 2026 by Paul's call (its 24 Sep entry).
     text: "RIAA names “Dai Dai” one of its 2026 Songs of the Summer: Shakira and Burna Boy's World Cup anthem is one of four records in the certifying body's summer wrap-up of songs that made waves in its Gold & Platinum Program, beside Zara Larsson, Ariana Grande and Ella Langley.",
     href: "/dai-dai",
   },

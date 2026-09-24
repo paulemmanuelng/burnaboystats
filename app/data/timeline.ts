@@ -45,7 +45,6 @@ export const timelineEras: TimelineEra[] = [
       { date: "2018", title: "Outside — and “Ye” goes global", text: "His major-label debut wins Album of the Year at the Nigeria Entertainment Awards, and “Ye” becomes his international calling card.", href: "/music/albums/outside", kind: "album" },
       { date: "2019", title: "African Giant", text: "The statement album — his first Grammy nomination followed, plus the Edison Award and certifications across Europe and North America.", href: "/music/albums/african-giant", kind: "album" },
       { date: "2019", title: "First Afrobeats artist to sell out the SSE Arena, Wembley", text: "The London arena sellout that announced the live draw — and the BET Award for Best International Act arrives the same year.", href: "/records/firsts", kind: "tour" },
-      { date: "2019", title: "A UK No. 1 single — “Own It”", text: "With Stormzy and Ed Sheeran, Burna Boy tops the UK Singles Chart.", href: "/records/charts", kind: "chart" },
     ],
   },
   {
@@ -53,6 +52,8 @@ export const timelineEras: TimelineEra[] = [
     span: "2020 – 2021",
     intro: "Recorded in lockdown, crowned on the Grammy stage.",
     entries: [
+      // Top of the chart dated 3 Jan 2020 — No. 2 at Christmas 2019 (OCC).
+      { date: "Jan 2020", title: "A UK No. 1 single — “Own It”", text: "With Stormzy and Ed Sheeran, Burna Boy tops the UK Singles Chart — the first No. 1 of 2020.", href: "/records/charts", kind: "chart" },
       { date: "Aug 2020", title: "Twice as Tall", text: "The fifth album, executive-produced by his mother and manager, Bose Ogulu — features reaching from Youssou N'Dour to Stormzy.", href: "/music/albums/twice-as-tall", kind: "album" },
       { date: "Mar 2021", title: "The Grammy", text: "Twice as Tall wins Best Global Music Album — the first winner of the category under that name.", href: "/records/awards", kind: "award" },
       { date: "2021", title: "First African artist to headline the Hollywood Bowl", text: "The Los Angeles landmark joins the list of firsts.", href: "/records/firsts", kind: "tour" },

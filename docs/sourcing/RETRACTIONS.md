@@ -377,3 +377,45 @@ else. Paul confirmed the record; the register confirmed the plaque.
 covered-release count moves 82 → 83 (tests/certUnits); docs/sourcing/burna-boy.by-country.md
 row corrected. The Wizkid board already carried the song as his featured
 appearance (afrobeats.ts).
+
+## 13. "First African artist to surpass 1 billion UK streams" — a first dated to the year it could not be (24 Sep 2026)
+
+firsts.ts carried two BRIT Billion milestones dated 2024: "First African artist
+to surpass 2 billion UK streams" and "First African artist to surpass 1 billion
+UK streams — Awarded his first BRIT Billion plaque", repeated in the FAQ as "the
+first African artist to surpass both 1 billion and 2 billion UK streams".
+**The 1-billion first is now "Past 2 billion UK streams before his first BRIT
+Billion" (Paul's choice, 24 Sep 2026); the 2-billion first stands, dated.**
+
+**What the body says.** The BPI/BRITs BRIT Billion list (brits.co.uk/brit-billion,
+Wayback captures of 4, 17 and 18 Jul 2024 and 12 Jul 2026) has one Burna Boy
+entry, "Date Awarded: 15/07/2024" — the KOKO Camden show for five years of
+African Giant, where a special trophy printed "2,000,000,000 UK STREAMS" was
+presented. The award has one published level, 1 billion (a Gold version at 10
+billion is Ed Sheeran's), so the 2-billion award was a one-off; "the first
+African artist to reach this milestone" is @chartdata's wording (17 Jul 2024),
+not the BPI's, and no African act is on record near 2 billion before it. Wizkid's
+entry is dated 30/07/2023.
+
+**Why the 1-billion line could not stand.** If Burna Boy crossed 1 billion in
+2024, he was not first: the BPI had verified Wizkid past it by 30 July 2023. If
+he crossed earlier, "2024" is wrong and the plaque is not the evidence. Earlier
+is likely — Atlantic Records UK told Music Week on 6 Sep 2023 that he had over
+two billion UK streams, and the BPI presents the award when a label chooses
+(Eminem's came at 7 billion; Drake, Taylor Swift, Stormzy and Dave are not on
+the list at all). But Wizkid's crossing is undated too, and no body publishes
+crossing dates, so who crossed first cannot be shown either way. The entry now
+states what can: past 2 billion (label figure, Sep 2023) nearly ten months
+before the 1-billion plaque at London Stadium (29 Jun 2024, Music In Africa,
+OkayAfrica).
+
+**Also corrected.** "Own It" topped the UK Singles Chart in January 2020, not
+2019 — No. 1 on the chart dated 3 Jan 2020, "the UK's first Number 1 single of
+2020", after No. 2 at Christmas 2019 (OCC). firsts.ts and the timeline (moved
+into the 2020–2021 era) now say so. The honours rows carry each plaque's date
+and venue.
+
+**Resynced:** firsts count unchanged (one entry reworded, none removed); honours
+unchanged at 8; FAQ clause reads "the first African artist to pass 2 billion UK
+streams". The reverted #296 (21 Sep) had removed the 2-billion award as
+press-only; the BPI's own dated entry shows it was not.
