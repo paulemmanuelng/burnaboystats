@@ -29,7 +29,7 @@ type Json = any;
 export function frozenIndex(edit?: (json: Json) => void) {
   const json = JSON.parse(fixture("site-index.2026-09-24.json"));
   if (edit) edit(json);
-  return hydrateSiteIndex(json, LIVE_ARTISTS);
+  return hydrateSiteIndex(json, LIVE_ARTISTS, config);
 }
 
 /** A release in a JSON index, for labelled edits. */

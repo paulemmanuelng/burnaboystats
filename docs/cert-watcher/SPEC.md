@@ -1,7 +1,7 @@
 # Cert watcher — build spec
 
 File: `docs/cert-watcher/SPEC.md` (worktree `~/burnaboy-sweep`, branch `feat/cert-watcher`).
-Written 24 Sep 2026. Status: **spec only, nothing built.** Paul picked this as "what to build next" #1 on 24 Sep 2026.
+Written 24 Sep 2026. Status: **steps 1 and 2 built** (local commits on `feat/cert-watcher`; step 3 not yet; §3.2.1 records what step 2 changed). Paul picked this as "what to build next" #1 on 24 Sep 2026.
 
 This spec draws on four things: the monitor code in this repo, the 23 Sep sweep's saved register responses (`$SWEEP` below), the 24 Sep endpoint re-test (`$RETEST`), and the memory notes. Two paths are used throughout:
 
@@ -334,6 +334,18 @@ Rows 25–28, and `bpi` while held, render as human checks (§5.2). The registry
 - **NVPI.** `{count, items[]}`, newest first. `metadata.artists[]` lists featured credits, so read it alongside the headline credit. Newest award on 24 Sep: 16-7-2026.
 - **ČNS IFPI.** Parse `div.chart-full-row`. The badge is the `<strong>` inside `chart-full-row__details`, and the credit reads `ARTIST - LABEL`. Check that the page's week id is the one requested. **A missing badge is not evidence of no award.**
 - **Deep read for DK.** None. A full union of all 7 sort orders (13,508 rows) would break the 10-minute budget. New awards appear at the top by date, and the daily three-way union covers them.
+
+#### 3.2.1 As built (step 2, 24 Sep 2026)
+
+What the live dry run of the step-2 adapters (1 m 48 s, 168 requests, all seven read cleanly) changed from the notes above:
+
+- **IFPI Danmark.** Re-reading the same three URLs does **not** recover the shuffled rows: pages 0–2 gave 150 rows but 140 distinct, twice over, because tied rows at a page boundary print on both pages. The explicit date-descending order (`?order=field_certdato&sort=desc&page=N`) breaks the ties differently (134 distinct, 12 new; 152 together). So the three rounds are: default order, date-descending, default again (via `request({repeat})`), stopping after a round that adds nothing — 9 requests. The notes say how many rows printed twice.
+- **Ifpi Sverige.** Sverigetopplistan finds nothing for "Beyoncé" or "Joé Dwèt Filé" and finds "Beyonce", so queries fold diacritics. Lead acts (53 on 24 Sep) rotate: a seventh a day, all of them on deep runs, so a daily read is ≈ 27 searches. Records open only for matched items whose badge changed since the cursor (≤ 15; ≤ 60 on deep runs); a quiet day reads no record and is a clean read (`minRows: 0`). The list id gives the format (41 singles, 54 albums).
+- **ZPAV.** The minimal body `{"category_id":3,"subcategory_id":N,"limit":100}` returns the newest 100; the artist search adds `search_in: "contractor"` and `keyword`. Every one of 900 saved rows has exactly one `date_N` filled and its own subcategory; a row that does not is unparsed, and a served subcategory that differs is `mismatch`.
+- **NVPI.** `metadata.artists` is read as a `featured` field beside the verbatim credit (`match.mjs` adds it to the credit field), so `DAVE | Location` matches Burna Boy without rewriting the credit.
+- **BPI.** `read()` asks `ctx.robotsCheck` before any request. Enabling it needs `adapters.bpi.permission {from, on, scope}` (validated), and even then the robots gate holds it while robots.txt says Disallow.
+- **Title aliases** are applied when the index is hydrated as well as when it is built, so an alias reaches a `--site-json` index dumped before it. Two were added from the live run for Paul to confirm: SNEP's `JERUSALEMA` (the remix, the only version crediting Burna Boy) and `love nwantiti` (CKay's title without "(ah ah ah)").
+- **Offline replay** matches a re-read URL by `request.nth`, and `--save-raw` now keeps the bytes as served (the Swedish records stay latin-1).
 
 ### 3.3 Step 3 notes
 

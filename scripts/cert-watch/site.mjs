@@ -159,8 +159,11 @@ export function buildSiteIndex(certModule, afroModule, liveArtists, config) {
   };
 }
 
-/** Add the lookup maps the matcher needs to a JSON site index. */
-export function hydrateSiteIndex(json, liveArtists) {
+/** Add the lookup maps the matcher needs to a JSON site index. With
+ *  `config`, its titleAliases are applied here too — so an alias added to
+ *  config.json reaches an index dumped before it (--site-json) without a
+ *  re-dump. Idempotent with the ones buildSiteIndex already applied. */
+export function hydrateSiteIndex(json, liveArtists, config = null) {
   const artists = {};
   for (const slug of Object.keys(liveArtists)) {
     artists[slug] = { slug, name: liveArtists[slug].name, releases: [], byTitle: new Map(), byAlt: new Map() };
@@ -169,9 +172,17 @@ export function hydrateSiteIndex(json, liveArtists) {
     if (!map.has(t)) map.set(t, []);
     map.get(t).push(r);
   };
-  for (const r of json.releases) {
-    const a = artists[r.artist];
+  const aliasFor = new Map();
+  for (const t of config?.titleAliases ?? []) {
+    const k = `${t.artist}|${normTitle(t.release)}`;
+    if (!aliasFor.has(k)) aliasFor.set(k, []);
+    aliasFor.get(k).push(normTitle(t.printed));
+  }
+  for (const r0 of json.releases) {
+    const a = artists[r0.artist];
     if (!a) continue;
+    const extraAlt = (aliasFor.get(`${r0.artist}|${r0.normTitle}`) ?? []).filter((t) => t !== r0.normTitle && !(r0.altTitles ?? []).includes(t));
+    const r = extraAlt.length ? { ...r0, altTitles: [...(r0.altTitles ?? []), ...extraAlt] } : r0;
     a.releases.push(r);
     // A release's own title always wins over another release's alternate.
     put(a.byTitle, r.normTitle, r);

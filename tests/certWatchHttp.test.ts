@@ -1,7 +1,10 @@
 // @vitest-environment node
 import { describe, it, expect } from "vitest";
-import { createHttp, USER_AGENT } from "../scripts/cert-watch/http.mjs";
-import { fixture, config } from "./certWatchHelpers";
+import { mkdtempSync, readFileSync, readdirSync } from "node:fs";
+import { join } from "node:path";
+import { tmpdir } from "node:os";
+import { createHttp, createFixtureHttp, USER_AGENT } from "../scripts/cert-watch/http.mjs";
+import { FIX, fixture, config } from "./certWatchHelpers";
 
 /**
  * http.mjs with a scripted fetch and a fake clock: typed results, the robots
@@ -109,6 +112,47 @@ describe("http.mjs", () => {
     const { http, calls } = harness((url) => (url.endsWith("/robots.txt") ? { status: 404 } : { status: 200, body: "x" }));
     await Promise.all([http.request({ url: "https://www.riaa.com/a" }), http.request({ url: "https://www.riaa.com/a" })]);
     expect(calls.filter((c) => c.url.endsWith("/a"))).toHaveLength(1);
+  });
+
+  it("re-reads a URL only when asked to (repeat), and replays such re-reads in order offline", async () => {
+    const { http, calls } = harness((url) => (url.endsWith("/robots.txt") ? { status: 404 } : { status: 200, body: "x" }));
+    const url = "http://ifpi.dk/certificeringer-0?page=0";
+    await http.request({ url });
+    await http.request({ url });
+    await http.request({ url, repeat: 1 });
+    expect(calls.filter((c) => c.url === url)).toHaveLength(2);
+    // Offline: the nth request for one URL gets the response saved as nth.
+    const off = createFixtureHttp({
+      root: FIX,
+      robotsDir: join(FIX, "robots"),
+      routes: [
+        { method: "GET", match: (u: string) => u === url, file: "danmark/run-2026-09-24/page0__default.html.gz", nth: 1 },
+        { method: "GET", match: (u: string) => u === url, file: "danmark/run-2026-09-24/page0__default__2.html.gz", nth: 2 },
+      ],
+    });
+    const a = await off.request({ url });
+    const b = await off.request({ url, repeat: 1 });
+    expect(a.body).toBe(fixture("danmark/run-2026-09-24/page0__default.html.gz"));
+    expect(b.body).toBe(fixture("danmark/run-2026-09-24/page0__default__2.html.gz"));
+  });
+
+  it("saves the bytes as served, and decodes a latin-1 register as latin-1", async () => {
+    const bytes = readFileSync(join(FIX, "sverige/record-15311162.html"));
+    const dir = mkdtempSync(join(tmpdir(), "cert-watch-raw-"));
+    let t = 0;
+    const http = createHttp({
+      config,
+      saveRawDir: dir,
+      now: () => t,
+      sleep: async (ms: number) => {
+        t += ms;
+      },
+      fetchImpl: async (url: string) => (url.endsWith("/robots.txt") ? new Response("", { status: 404 }) : new Response(bytes, { status: 200 })),
+    });
+    const r = await http.request({ url: "https://sys2.ifpi.se/netdata/grp006.MBR/artdata?sart=15311162", encoding: "latin1" });
+    expect(r.body).toContain("Ljudbärare:");
+    const saved = readdirSync(dir).find((f) => f.endsWith(".body"))!;
+    expect(Buffer.compare(readFileSync(join(dir, saved)), bytes)).toBe(0);
   });
 
   it("stops at the run budget", async () => {

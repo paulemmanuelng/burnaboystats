@@ -39,10 +39,14 @@ describe("config.json", () => {
 describe("no personal data", () => {
   // An email address, the pattern SPEC §9 names.
   const EMAIL = /[\w.+-]+@[\w-]+\.[\w.]+/g;
-  // Third-party addresses printed on real register pages, allowed by EXACT
-  // string only. None is in the step-1 fixtures; Grammotex's is listed for
-  // the Swedish pages step 2 will save.
-  const KNOWN_THIRD_PARTY = new Set(["cd@grammotex.se"]);
+  // Third-party ORGANISATION addresses printed on real register pages,
+  // allowed by EXACT string only — never a person's:
+  //   cd@grammotex.se, konvolut@grammotex.se  footer and cover-report links on
+  //                                            every sys2.ifpi.se record page
+  //   sverigetopplistan@ifpi.se                Sverigetopplistan's page footer
+  //   ifpi@ifpi.dk                             IFPI Danmark's page footer
+  //   ifpicr@ifpicr.cz                         ČNS IFPI's page footer
+  const KNOWN_THIRD_PARTY = new Set(["cd@grammotex.se", "konvolut@grammotex.se", "sverigetopplistan@ifpi.se", "ifpi@ifpi.dk", "ifpicr@ifpicr.cz"]);
 
   const walk = (dir: string): string[] =>
     readdirSync(dir).flatMap((f) => {

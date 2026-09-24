@@ -176,8 +176,16 @@ export function configProblems(config, index = null) {
   if (new Set(mids).size !== mids.length) p.push("manualChecks ids must be unique");
   for (const [id, a] of Object.entries(config.adapters ?? {})) {
     if (!adapterIds.has(id)) p.push(`adapters.${id}: unknown adapter`);
+    for (const k of Object.keys(a)) if (!["enabled", "why", "permission"].includes(k)) p.push(`adapters.${id}: unknown key "${k}"`);
     if (typeof a.enabled !== "boolean") p.push(`adapters.${id}: "enabled" must be true or false`);
     if (!a.why) p.push(`adapters.${id}: missing "why"`);
+    // A register held by its robots.txt is enabled only by a WRITTEN
+    // permission record (SPEC §11.1) — never by a code change.
+    const reg = REGISTRY.find((r) => r.id === id);
+    if (reg?.heldBy === "robots" && a.enabled === true) {
+      const perm = a.permission;
+      if (!perm || !perm.from || !perm.on || !perm.scope) p.push(`adapters.${id}: enabling a register its robots.txt disallows needs "permission": {from, on, scope}`);
+    }
   }
   for (const [host, h] of Object.entries(config.hosts ?? {})) {
     if (typeof h.minGapMs !== "number" || h.minGapMs < 1100) p.push(`hosts.${host}: minGapMs must be a number ≥ 1100`);
@@ -254,6 +262,8 @@ export async function offlineRoutes() {
       file: e.file,
       status: e.request.status ?? 200,
       headersFile: e.headers ?? null,
+      encoding: e.request.encoding ?? undefined,
+      nth: e.request.nth ?? undefined,
     }));
 }
 
@@ -261,6 +271,20 @@ export async function offlineRoutes() {
 
 function artistNames() {
   return Object.values(LIVE_ARTISTS).map((a) => a.name);
+}
+
+/** Lead acts (SPEC §3): the distinct leads of the index's lead aliases —
+ *  LIVE_ARTISTS aliases, the lead of each Burna Boy feature credit, and
+ *  config.leadAliases — less the sixteen themselves. Sorted, so a rotation
+ *  over them is stable from run to run. */
+export function leadActsOf(index, names) {
+  const own = new Set(names.map((n) => n.toLowerCase()));
+  const leads = new Map();
+  for (const al of index.leadAliases ?? []) {
+    const k = String(al.lead).toLowerCase();
+    if (!own.has(k) && !leads.has(k)) leads.set(k, al.lead);
+  }
+  return [...leads.values()].sort((x, y) => x.localeCompare(y, "en"));
 }
 
 async function runAdapters({ opts, config, index, http, prevState, startedAt }) {
@@ -299,6 +323,7 @@ async function runAdapters({ opts, config, index, http, prevState, startedAt }) 
   }
 
   const evalCtx = { index, liveArtists: LIVE_ARTISTS, config };
+  const leadActs = leadActsOf(index, names);
   const runOne = async (a) => {
     const t0 = Date.now();
     if (Date.now() > runDeadline) {
@@ -312,8 +337,18 @@ async function runAdapters({ opts, config, index, http, prevState, startedAt }) 
       cursor: prevState?.cursors?.[a.id] ?? null,
       searchTerms,
       artistNames: names,
+      leadActs,
+      now: opts.now,
       watch: (config.watchlist ?? []).filter((w) => w.adapter === a.id),
       config,
+      // The robots verdict for a URL, without fetching it (BPI asks first).
+      robotsCheck: (url) => http.robotsCheck(url),
+      // Does a register row name one of the sixteen (artist AND title)? For
+      // adapters that must choose which pages to open (Ifpi Sverige records).
+      matches: (row) => {
+        const id = identifyRow(row, { adapterId: a.id, liveArtists: LIVE_ARTISTS, config, leadAliases: index.leadAliases, ownerTags: !!a.ownerTags });
+        return !id.reject && !id.held && id.matches.length > 0;
+      },
       request: (req) => {
         requests++;
         if (opts.offline && opts.offlineFail.includes(a.id)) {
@@ -367,7 +402,10 @@ async function runAdapters({ opts, config, index, http, prevState, startedAt }) 
     }
   });
   await Promise.all(workers);
-  return { health, outputs };
+  // Registry order, whatever order the hosts finished in: the state block and
+  // the golden render must not depend on network timing.
+  const inOrder = (o) => Object.fromEntries(REGISTRY.filter((r) => r.id in o).map((r) => [r.id, o[r.id]]));
+  return { health: inOrder(health), outputs: inOrder(outputs) };
 }
 
 /** The watchlist's readings today. */
@@ -466,7 +504,7 @@ export async function main(argv = process.argv.slice(2)) {
   }
 
   const indexJson = await loadIndex(opts, config);
-  const index = hydrateSiteIndex(indexJson, LIVE_ARTISTS);
+  const index = hydrateSiteIndex(indexJson, LIVE_ARTISTS, config);
   const siteProblems = configProblems(config, index);
   if (siteProblems.length) throw new ConfigError(`config.json: ${siteProblems.join("; ")}`);
 
@@ -568,8 +606,10 @@ export async function main(argv = process.argv.slice(2)) {
   const notify = notifyReasons.length > 0;
   const writeIssue = !opts.dryRun && (!!opts.issueNumber || notify || (isMonday && config.weeklyTodo !== false));
 
+  // Hosts in a fixed order (alphabetical), not in the order the network
+  // happened to answer them.
   const byHost = {};
-  for (const l of http.log) byHost[l.host] = (byHost[l.host] ?? 0) + 1;
+  for (const l of [...http.log].sort((a, b) => a.host.localeCompare(b.host, "en"))) byHost[l.host] = (byHost[l.host] ?? 0) + 1;
   const week = isoWeek(opts.now);
   const results = {
     v: 1,

@@ -115,9 +115,11 @@ export function identifyRow(row, ctx) {
   }
 
   // 2. The credit field: the register's credit plus any feature qualifier
-  //    lifted from the title.
+  //    lifted from the title, plus credits the register prints in a field of
+  //    their own (NVPI's metadata.artists → row.featured).
   const { lifted } = liftFeatures(rawTitle);
-  const creditField = [credit, ...lifted].filter(Boolean).join(" · ");
+  const featured = Array.isArray(row.featured) ? row.featured.map(String) : [];
+  const creditField = [credit, ...lifted, ...featured].filter(Boolean).join(" · ");
   out.creditField = creditField;
 
   // 6 (read early, applied below). TCSN's owner tag: "Reason (Omah Lay)".

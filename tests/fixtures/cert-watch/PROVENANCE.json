@@ -1092,5 +1092,2552 @@
   "fetched": "2026-09-24T08:33:00Z",
   "url": "(not a register response)",
   "note": "the site index frozen at build time: 4 albums, 65 singles, 24 features and 248 plaques for Burna Boy; 15 artists, 664 releases and 990 plaques on the board"
+ },
+ {
+  "file": "bpi/newest-page1.html",
+  "source": "23 Sep 2026 sweep (sweep-2026-09-23/uk-nl-be-fr/bpi/newest-page1.html)",
+  "fetched": "2026-09-23T16:57:15Z",
+  "url": "https://certified-awards.bpi.co.uk/?sort=certificationDate%20desc&view=list",
+  "note": "BPI list view (htmx fragment), newest first, page 1 — saved by the sweep BEFORE BPI's robots.txt was read; parse tests only, never replayed",
+  "userAgent": "a browser User-Agent (Chrome 128)"
+ },
+ {
+  "file": "bpi/q-burna.html",
+  "source": "23 Sep 2026 sweep (sweep-2026-09-23/uk-nl-be-fr/bpi/q-burna.html)",
+  "fetched": "2026-09-23T16:56:10Z",
+  "url": "https://certified-awards.bpi.co.uk/?search=burna&sort=certificationDate%20desc&view=list",
+  "note": "BPI list view, search 'burna': 24 rows incl. SHAKIRA & BURNA BOY | DAI DAI | Silver — saved before robots.txt was read; parse tests only",
+  "userAgent": "a browser User-Agent (Chrome 128)"
+ },
+ {
+  "file": "bpi/detail-daidai.html",
+  "source": "23 Sep 2026 sweep (sweep-2026-09-23/uk-nl-be-fr/bpi/detail-daidai.html)",
+  "fetched": "2026-09-23T16:57:25Z",
+  "url": "https://certified-awards.bpi.co.uk/format/2/artist/6930/title/22159",
+  "note": "BPI detail, SHAKIRA & BURNA BOY / DAI DAI: Most Recent Certification Silver, 07 August 2026 — parse tests only",
+  "userAgent": "a browser User-Agent (Chrome 128)"
+ },
+ {
+  "file": "bpi/detail-sungba.html",
+  "source": "23 Sep 2026 sweep (sweep-2026-09-23/uk-nl-be-fr/bpi/detail-sungba.html)",
+  "fetched": "2026-09-23T17:45:00Z",
+  "url": "https://certified-awards.bpi.co.uk/ (detail ASAKE / SUNGBA)",
+  "note": "BPI detail, ASAKE / SUNGBA: Most Recent Certification Silver, 17 January 2025 (the kept-plaque negative control) — parse tests only",
+  "userAgent": "a browser User-Agent (Chrome 128)"
+ },
+ {
+  "file": "snep/page1-default.html.gz",
+  "source": "23 Sep 2026 sweep (sweep-2026-09-23/uk-nl-be-fr/snep/page1-default.html)",
+  "fetched": "2026-09-23T17:30:03Z",
+  "url": "https://snepmusique.com/les-certifications/",
+  "note": "SNEP register page 1 (30 cards, newest date de constat 17/09/2026) · gzipped here",
+  "userAgent": "a browser User-Agent (Chrome 128)"
+ },
+ {
+  "file": "snep/q-burna.html.gz",
+  "source": "23 Sep 2026 sweep (sweep-2026-09-23/uk-nl-be-fr/snep/q-burna.html)",
+  "fetched": "2026-09-23T17:15:45Z",
+  "url": "https://snepmusique.com/les-certifications/?interprete=burna&titre=&editeur=",
+  "note": "SNEP interprete search 'burna': 21 cards incl. DAI DAI | SHAKIRA & BURNA BOY | Diamant | 27/08/2026 and the superseded Platine card (30/07/2026) · gzipped here",
+  "userAgent": "a browser User-Agent (Chrome 128)"
+ },
+ {
+  "file": "snep/page1-2026-09-24.html.gz",
+  "source": "24 Sep 2026 endpoint re-test (certwatch-retest/body/FR_SNEP_site)",
+  "fetched": "2026-09-24T06:50:25Z",
+  "url": "https://snepmusique.com/les-certifications/",
+  "note": "SNEP register page 1 as served to the watcher's own User-Agent (24 Sep re-test) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)"
+ },
+ {
+  "file": "zpav/zlote-burna.json",
+  "source": "23 Sep 2026 sweep (sweep-2026-09-23/nordics-pl/pl/a_6_Burna.json)",
+  "fetched": "2026-09-23T17:32:12Z",
+  "url": "POST https://www.olis.pl/api/search (category_id 3, subcategory_id 6, keyword Burna)",
+  "note": "ZPAV Gold (złote płyty) search 'Burna': Shakira, Burna Boy | Dai Dai | date_1 2026-08-26",
+  "userAgent": "a browser User-Agent (Chrome 128)"
+ },
+ {
+  "file": "zpav/platynowe-drake.json",
+  "source": "23 Sep 2026 sweep (sweep-2026-09-23/nordics-pl/pl/t_7_drake.json)",
+  "fetched": "2026-09-23T17:31:54Z",
+  "url": "POST https://www.olis.pl/api/search (category_id 3, subcategory_id 7, keyword Drake)",
+  "note": "ZPAV Platinum search 'Drake': DRAKE | ONE DANCE is ONE row with date_3 (3× Platinum)",
+  "userAgent": "a browser User-Agent (Chrome 128)"
+ },
+ {
+  "file": "zpav/platynowe-rema.json",
+  "source": "23 Sep 2026 sweep (sweep-2026-09-23/nordics-pl/pl/a_7_Rema.json)",
+  "fetched": "2026-09-23T17:32:30Z",
+  "url": "POST https://www.olis.pl/api/search (category_id 3, subcategory_id 7, keyword Rema)",
+  "note": "ZPAV Platinum search 'Rema': Calm Down listed at date_1 … date_4 (the highest step is 4× Platinum)",
+  "userAgent": "a browser User-Agent (Chrome 128)"
+ },
+ {
+  "file": "sverige/stl-search-tyla.html",
+  "source": "23 Sep 2026 sweep (sweep-2026-09-23/nordics-pl/se/search/tyla.html)",
+  "fetched": "2026-09-23T17:26:21Z",
+  "url": "https://sverigetopplistan.se/search/?query=tyla",
+  "note": "Sverigetopplistan search 'tyla': 8 items, WATER badge SWE,Platina",
+  "userAgent": "a browser User-Agent (Chrome 128)"
+ },
+ {
+  "file": "sverige/stl-search-burna-boy.html",
+  "source": "23 Sep 2026 sweep (sweep-2026-09-23/nordics-pl/se/search/burna_boy.html)",
+  "fetched": "2026-09-23T17:25:24Z",
+  "url": "https://sverigetopplistan.se/search/?query=burna+boy",
+  "note": "Sverigetopplistan search 'burna boy': 11 items, DAI DAI sart 15311162 badge SWE,Platina",
+  "userAgent": "a browser User-Agent (Chrome 128)"
+ },
+ {
+  "file": "sverige/record-15311162.html",
+  "source": "23 Sep 2026 sweep (sweep-2026-09-23/nordics-pl/se/ifpi_sart_15311162.html)",
+  "fetched": "2026-09-23T17:20:29Z",
+  "url": "https://sys2.ifpi.se/netdata/grp006.MBR/artdata?sart=15311162",
+  "note": "Ifpi Sverige record, SHAKIRA & BURNA BOY - DAI DAI: Guld/Platina: Platina - cert.nr 11317 - 2026-09-18 · ISO-8859-1 bytes as served",
+  "userAgent": "a browser User-Agent (Chrome 128)"
+ },
+ {
+  "file": "sverige/record-12096186.html",
+  "source": "23 Sep 2026 sweep (sweep-2026-09-23/nordics-pl/se/rec/ifpi_12096186.html)",
+  "fetched": "2026-09-23T17:28:30Z",
+  "url": "https://sys2.ifpi.se/netdata/grp006.MBR/artdata?sart=12096186",
+  "note": "Ifpi Sverige record, TYLA - WATER: Platina - cert.nr 11312 - 2026-09-18 · ISO-8859-1",
+  "userAgent": "a browser User-Agent (Chrome 128)"
+ },
+ {
+  "file": "sverige/record-6775561.html",
+  "source": "23 Sep 2026 sweep (sweep-2026-09-23/nordics-pl/se/rec/ifpi_6775561.html)",
+  "fetched": "2026-09-23T17:28:26Z",
+  "url": "https://sys2.ifpi.se/netdata/grp006.MBR/artdata?sart=6775561",
+  "note": "Ifpi Sverige record, MAJOR LAZER - BOOM (FEAT. MOTI, TY DOLLA $IGN, WIZKID & KRANIUM): no Guld/Platina field · ISO-8859-1",
+  "userAgent": "a browser User-Agent (Chrome 128)"
+ },
+ {
+  "file": "sverige/record-7549193.html",
+  "source": "23 Sep 2026 sweep (sweep-2026-09-23/nordics-pl/se/rec/ifpi_7549193.html)",
+  "fetched": "2026-09-23T17:28:19Z",
+  "url": "https://sys2.ifpi.se/netdata/grp006.MBR/artdata?sart=7549193",
+  "note": "Ifpi Sverige record, DRAKE FEAT. WIZKID & KYLA - ONE DANCE: Platina x7 - cert.nr 7257 - 2016-11-11 · ISO-8859-1",
+  "userAgent": "a browser User-Agent (Chrome 128)"
+ },
+ {
+  "file": "danmark/page0.html.gz",
+  "source": "23 Sep 2026 sweep (sweep-2026-09-23/nordics-pl/dk/p0.html)",
+  "fetched": "2026-09-23T16:56:08Z",
+  "url": "http://ifpi.dk/certificeringer-0?page=0",
+  "note": "IFPI Danmark page 0 (50 rows, newest 16.09.2026) · gzipped here",
+  "userAgent": "a browser User-Agent (Chrome 128)"
+ },
+ {
+  "file": "danmark/page6.html.gz",
+  "source": "23 Sep 2026 sweep (sweep-2026-09-23/nordics-pl/dk/pages/p6.html)",
+  "fetched": "2026-09-23T16:56:41Z",
+  "url": "http://ifpi.dk/certificeringer-0?page=6",
+  "note": "IFPI Danmark page 6: Dave feat. Tems | Raindance | Track | Platin | 07.07.2026 · gzipped here",
+  "userAgent": "a browser User-Agent (Chrome 128)"
+ },
+ {
+  "file": "danmark/boom-recheck.html.gz",
+  "source": "23 Sep 2026 sweep (sweep-2026-09-23/nordics-pl/dk/recheck_boom_pa.html)",
+  "fetched": "2026-09-23T17:52:17Z",
+  "url": "http://ifpi.dk/certificeringer-0?order=field_certartist&sort=asc&page=158",
+  "note": "IFPI Danmark, artist A–Z, the page after 157: Major Lazer Feat. Moti Ty Dolla $ign... | Boom | Platin 01.08.2017 and Guld 24.05.2016 · gzipped here",
+  "userAgent": "a browser User-Agent (Chrome 128)"
+ },
+ {
+  "file": "nvpi/filter-skip0.json",
+  "source": "23 Sep 2026 sweep (sweep-2026-09-23/uk-nl-be-fr/nvpi/filter-skip0.json)",
+  "fetched": "2026-09-23T17:02:45Z",
+  "url": "https://www.goudplatina.nl/api/filter?skip=0",
+  "note": "NVPI filter API, first 25 items (count 6493; newest 16-7-2026)",
+  "userAgent": "a browser User-Agent (Chrome 128)"
+ },
+ {
+  "file": "cns/cz-w3036.html.gz",
+  "source": "23 Sep 2026 sweep (sweep-2026-09-23/de-at-ch-cz-sk-hu/cz/raw/c30_w3036.html.gz)",
+  "fetched": "2026-09-23T17:05:26Z",
+  "url": "https://ifpicr.cz/hitparada/30?weekId=3036",
+  "note": "ČNS IFPI CZ Singles Digital Top 100, week 38/2026: Dai Dai Zlatý singl at 15 · gzipped by the sweep",
+  "userAgent": "a browser User-Agent (Chrome 128)"
+ },
+ {
+  "file": "cns/sk-w3036.html.gz",
+  "source": "23 Sep 2026 sweep (sweep-2026-09-23/de-at-ch-cz-sk-hu/cz/raw/c43_w3036.html.gz)",
+  "fetched": "2026-09-23T17:04:48Z",
+  "url": "https://ifpicr.cz/hitparada/43?weekId=3036",
+  "note": "ČNS IFPI SK Singles Digital Top 100, week 38/2026: Dai Dai Platinový singl at 5 · gzipped by the sweep",
+  "userAgent": "a browser User-Agent (Chrome 128)"
+ },
+ {
+  "file": "nvpi/item-dave-location.json",
+  "source": "23 Sep 2026 sweep (sweep-2026-09-23/uk-nl-be-fr/nvpi/full-dump.json)",
+  "fetched": "2026-09-23T17:03:16Z",
+  "url": "https://www.goudplatina.nl/api/filter?skip=0&take=500 (paged dump)",
+  "note": "one item, verbatim, wrapped as a filter response: DAVE | Location | Single | Platina | 21-5-2026, metadata.artists Dave, Burna Boy",
+  "userAgent": "a browser User-Agent (Chrome 128)"
+ },
+ {
+  "file": "snep/run-2026-09-24/newest.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:04Z",
+  "url": "https://snepmusique.com/les-certifications/",
+  "note": "SNEP register page 1 · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://snepmusique.com/les-certifications/",
+   "status": 200
+  }
+ },
+ {
+  "file": "cns/run-2026-09-24/cz-current.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:05Z",
+  "url": "https://ifpicr.cz/hitparada/30",
+  "note": "ČNS IFPI chart 30, the current week · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://ifpicr.cz/hitparada/30",
+   "status": 200
+  }
+ },
+ {
+  "file": "nvpi/run-2026-09-24/filter-take500.json.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:06Z",
+  "url": "https://www.goudplatina.nl/api/filter?skip=0&take=500",
+  "note": "NVPI filter API, the newest 500 items · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://www.goudplatina.nl/api/filter?skip=0&take=500",
+   "status": 200
+  }
+ },
+ {
+  "file": "cns/run-2026-09-24/cz-week3033.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:06Z",
+  "url": "https://ifpicr.cz/hitparada/30?weekId=3033",
+  "note": "ČNS IFPI chart 30, week id 3033 · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://ifpicr.cz/hitparada/30?weekId=3033",
+   "status": 200
+  }
+ },
+ {
+  "file": "zpav/run-2026-09-24/zlote__newest.json.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:07Z",
+  "url": "https://www.olis.pl/api/search",
+  "note": "ZPAV zlote płyty, newest 100 · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.olis.pl/api/search",
+   "body": "{\"category_id\":3,\"subcategory_id\":6,\"limit\":100}",
+   "status": 200
+  }
+ },
+ {
+  "file": "snep/run-2026-09-24/q__burna-boy.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:08Z",
+  "url": "https://snepmusique.com/les-certifications/?interprete=Burna+Boy&titre=&editeur=",
+  "note": "SNEP interprète search 'Burna Boy' page 1 · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://snepmusique.com/les-certifications/?interprete=Burna+Boy&titre=&editeur=",
+   "status": 200
+  }
+ },
+ {
+  "file": "cns/run-2026-09-24/sk-current.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:08Z",
+  "url": "https://ifpicr.cz/hitparada/43",
+  "note": "ČNS IFPI chart 43, the current week · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://ifpicr.cz/hitparada/43",
+   "status": 200
+  }
+ },
+ {
+  "file": "cns/run-2026-09-24/sk-week3033.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:09Z",
+  "url": "https://ifpicr.cz/hitparada/43?weekId=3033",
+  "note": "ČNS IFPI chart 43, week id 3033 · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://ifpicr.cz/hitparada/43?weekId=3033",
+   "status": 200
+  }
+ },
+ {
+  "file": "snep/run-2026-09-24/q__wizkid.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:11Z",
+  "url": "https://snepmusique.com/les-certifications/?interprete=Wizkid&titre=&editeur=",
+  "note": "SNEP interprète search 'Wizkid' page 1 · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://snepmusique.com/les-certifications/?interprete=Wizkid&titre=&editeur=",
+   "status": 200
+  }
+ },
+ {
+  "file": "zpav/run-2026-09-24/platynowe__newest.json.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:12Z",
+  "url": "https://www.olis.pl/api/search",
+  "note": "ZPAV platynowe płyty, newest 100 · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.olis.pl/api/search",
+   "body": "{\"category_id\":3,\"subcategory_id\":7,\"limit\":100}",
+   "status": 200
+  }
+ },
+ {
+  "file": "snep/run-2026-09-24/q__davido.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:13Z",
+  "url": "https://snepmusique.com/les-certifications/?interprete=Davido&titre=&editeur=",
+  "note": "SNEP interprète search 'Davido' page 1 · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://snepmusique.com/les-certifications/?interprete=Davido&titre=&editeur=",
+   "status": 200
+  }
+ },
+ {
+  "file": "zpav/run-2026-09-24/diamentowe__newest.json.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:16Z",
+  "url": "https://www.olis.pl/api/search",
+  "note": "ZPAV diamentowe płyty, newest 100 · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.olis.pl/api/search",
+   "body": "{\"category_id\":3,\"subcategory_id\":8,\"limit\":100}",
+   "status": 200
+  }
+ },
+ {
+  "file": "snep/run-2026-09-24/q__rema.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:16Z",
+  "url": "https://snepmusique.com/les-certifications/?interprete=Rema&titre=&editeur=",
+  "note": "SNEP interprète search 'Rema' page 1 · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://snepmusique.com/les-certifications/?interprete=Rema&titre=&editeur=",
+   "status": 200
+  }
+ },
+ {
+  "file": "zpav/run-2026-09-24/zlote__burna-boy.json.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:18Z",
+  "url": "https://www.olis.pl/api/search",
+  "note": "ZPAV zlote płyty, artist search 'Burna Boy' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.olis.pl/api/search",
+   "body": "{\"category_id\":3,\"subcategory_id\":6,\"search_in\":\"contractor\",\"keyword\":\"Burna Boy\",\"limit\":100}",
+   "status": 200
+  }
+ },
+ {
+  "file": "snep/run-2026-09-24/q__tems.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:19Z",
+  "url": "https://snepmusique.com/les-certifications/?interprete=Tems&titre=&editeur=",
+  "note": "SNEP interprète search 'Tems' page 1 · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://snepmusique.com/les-certifications/?interprete=Tems&titre=&editeur=",
+   "status": 200
+  }
+ },
+ {
+  "file": "zpav/run-2026-09-24/platynowe__burna-boy.json.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:19Z",
+  "url": "https://www.olis.pl/api/search",
+  "note": "ZPAV platynowe płyty, artist search 'Burna Boy' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.olis.pl/api/search",
+   "body": "{\"category_id\":3,\"subcategory_id\":7,\"search_in\":\"contractor\",\"keyword\":\"Burna Boy\",\"limit\":100}",
+   "status": 200
+  }
+ },
+ {
+  "file": "zpav/run-2026-09-24/diamentowe__burna-boy.json",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:21Z",
+  "url": "https://www.olis.pl/api/search",
+  "note": "ZPAV diamentowe płyty, artist search 'Burna Boy'",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.olis.pl/api/search",
+   "body": "{\"category_id\":3,\"subcategory_id\":8,\"search_in\":\"contractor\",\"keyword\":\"Burna Boy\",\"limit\":100}",
+   "status": 200
+  }
+ },
+ {
+  "file": "snep/run-2026-09-24/q__tyla.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:21Z",
+  "url": "https://snepmusique.com/les-certifications/?interprete=Tyla&titre=&editeur=",
+  "note": "SNEP interprète search 'Tyla' page 1 · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://snepmusique.com/les-certifications/?interprete=Tyla&titre=&editeur=",
+   "status": 200
+  }
+ },
+ {
+  "file": "zpav/run-2026-09-24/zlote__wizkid.json",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:22Z",
+  "url": "https://www.olis.pl/api/search",
+  "note": "ZPAV zlote płyty, artist search 'Wizkid'",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.olis.pl/api/search",
+   "body": "{\"category_id\":3,\"subcategory_id\":6,\"search_in\":\"contractor\",\"keyword\":\"Wizkid\",\"limit\":100}",
+   "status": 200
+  }
+ },
+ {
+  "file": "snep/run-2026-09-24/q__ayra-starr.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:23Z",
+  "url": "https://snepmusique.com/les-certifications/?interprete=Ayra+Starr&titre=&editeur=",
+  "note": "SNEP interprète search 'Ayra Starr' page 1 · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://snepmusique.com/les-certifications/?interprete=Ayra+Starr&titre=&editeur=",
+   "status": 200
+  }
+ },
+ {
+  "file": "zpav/run-2026-09-24/platynowe__wizkid.json",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:24Z",
+  "url": "https://www.olis.pl/api/search",
+  "note": "ZPAV platynowe płyty, artist search 'Wizkid'",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.olis.pl/api/search",
+   "body": "{\"category_id\":3,\"subcategory_id\":7,\"search_in\":\"contractor\",\"keyword\":\"Wizkid\",\"limit\":100}",
+   "status": 200
+  }
+ },
+ {
+  "file": "snep/run-2026-09-24/q__asake.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:24Z",
+  "url": "https://snepmusique.com/les-certifications/?interprete=Asake&titre=&editeur=",
+  "note": "SNEP interprète search 'Asake' page 1 · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://snepmusique.com/les-certifications/?interprete=Asake&titre=&editeur=",
+   "status": 200
+  }
+ },
+ {
+  "file": "zpav/run-2026-09-24/diamentowe__wizkid.json",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:26Z",
+  "url": "https://www.olis.pl/api/search",
+  "note": "ZPAV diamentowe płyty, artist search 'Wizkid'",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.olis.pl/api/search",
+   "body": "{\"category_id\":3,\"subcategory_id\":8,\"search_in\":\"contractor\",\"keyword\":\"Wizkid\",\"limit\":100}",
+   "status": 200
+  }
+ },
+ {
+  "file": "snep/run-2026-09-24/q__omah-lay.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:26Z",
+  "url": "https://snepmusique.com/les-certifications/?interprete=Omah+Lay&titre=&editeur=",
+  "note": "SNEP interprète search 'Omah Lay' page 1 · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://snepmusique.com/les-certifications/?interprete=Omah+Lay&titre=&editeur=",
+   "status": 200
+  }
+ },
+ {
+  "file": "zpav/run-2026-09-24/zlote__davido.json",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:27Z",
+  "url": "https://www.olis.pl/api/search",
+  "note": "ZPAV zlote płyty, artist search 'Davido'",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.olis.pl/api/search",
+   "body": "{\"category_id\":3,\"subcategory_id\":6,\"search_in\":\"contractor\",\"keyword\":\"Davido\",\"limit\":100}",
+   "status": 200
+  }
+ },
+ {
+  "file": "snep/run-2026-09-24/q__ckay.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:28Z",
+  "url": "https://snepmusique.com/les-certifications/?interprete=CKay&titre=&editeur=",
+  "note": "SNEP interprète search 'CKay' page 1 · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://snepmusique.com/les-certifications/?interprete=CKay&titre=&editeur=",
+   "status": 200
+  }
+ },
+ {
+  "file": "zpav/run-2026-09-24/platynowe__davido.json",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:29Z",
+  "url": "https://www.olis.pl/api/search",
+  "note": "ZPAV platynowe płyty, artist search 'Davido'",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.olis.pl/api/search",
+   "body": "{\"category_id\":3,\"subcategory_id\":7,\"search_in\":\"contractor\",\"keyword\":\"Davido\",\"limit\":100}",
+   "status": 200
+  }
+ },
+ {
+  "file": "zpav/run-2026-09-24/diamentowe__davido.json",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:30Z",
+  "url": "https://www.olis.pl/api/search",
+  "note": "ZPAV diamentowe płyty, artist search 'Davido'",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.olis.pl/api/search",
+   "body": "{\"category_id\":3,\"subcategory_id\":8,\"search_in\":\"contractor\",\"keyword\":\"Davido\",\"limit\":100}",
+   "status": 200
+  }
+ },
+ {
+  "file": "snep/run-2026-09-24/q__olamide.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:30Z",
+  "url": "https://snepmusique.com/les-certifications/?interprete=Olamide&titre=&editeur=",
+  "note": "SNEP interprète search 'Olamide' page 1 · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://snepmusique.com/les-certifications/?interprete=Olamide&titre=&editeur=",
+   "status": 200
+  }
+ },
+ {
+  "file": "snep/run-2026-09-24/q__black-sherif.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:32Z",
+  "url": "https://snepmusique.com/les-certifications/?interprete=Black+Sherif&titre=&editeur=",
+  "note": "SNEP interprète search 'Black Sherif' page 1 · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://snepmusique.com/les-certifications/?interprete=Black+Sherif&titre=&editeur=",
+   "status": 200
+  }
+ },
+ {
+  "file": "zpav/run-2026-09-24/zlote__rema.json.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:32Z",
+  "url": "https://www.olis.pl/api/search",
+  "note": "ZPAV zlote płyty, artist search 'Rema' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.olis.pl/api/search",
+   "body": "{\"category_id\":3,\"subcategory_id\":6,\"search_in\":\"contractor\",\"keyword\":\"Rema\",\"limit\":100}",
+   "status": 200
+  }
+ },
+ {
+  "file": "zpav/run-2026-09-24/platynowe__rema.json.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:34Z",
+  "url": "https://www.olis.pl/api/search",
+  "note": "ZPAV platynowe płyty, artist search 'Rema' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.olis.pl/api/search",
+   "body": "{\"category_id\":3,\"subcategory_id\":7,\"search_in\":\"contractor\",\"keyword\":\"Rema\",\"limit\":100}",
+   "status": 200
+  }
+ },
+ {
+  "file": "snep/run-2026-09-24/q__bnxn.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:34Z",
+  "url": "https://snepmusique.com/les-certifications/?interprete=BNXN&titre=&editeur=",
+  "note": "SNEP interprète search 'BNXN' page 1 · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://snepmusique.com/les-certifications/?interprete=BNXN&titre=&editeur=",
+   "status": 200
+  }
+ },
+ {
+  "file": "zpav/run-2026-09-24/diamentowe__rema.json.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:35Z",
+  "url": "https://www.olis.pl/api/search",
+  "note": "ZPAV diamentowe płyty, artist search 'Rema' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.olis.pl/api/search",
+   "body": "{\"category_id\":3,\"subcategory_id\":8,\"search_in\":\"contractor\",\"keyword\":\"Rema\",\"limit\":100}",
+   "status": 200
+  }
+ },
+ {
+  "file": "snep/run-2026-09-24/q__victony.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:36Z",
+  "url": "https://snepmusique.com/les-certifications/?interprete=Victony&titre=&editeur=",
+  "note": "SNEP interprète search 'Victony' page 1 · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://snepmusique.com/les-certifications/?interprete=Victony&titre=&editeur=",
+   "status": 200
+  }
+ },
+ {
+  "file": "zpav/run-2026-09-24/zlote__tems.json.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:37Z",
+  "url": "https://www.olis.pl/api/search",
+  "note": "ZPAV zlote płyty, artist search 'Tems' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.olis.pl/api/search",
+   "body": "{\"category_id\":3,\"subcategory_id\":6,\"search_in\":\"contractor\",\"keyword\":\"Tems\",\"limit\":100}",
+   "status": 200
+  }
+ },
+ {
+  "file": "zpav/run-2026-09-24/platynowe__tems.json",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:39Z",
+  "url": "https://www.olis.pl/api/search",
+  "note": "ZPAV platynowe płyty, artist search 'Tems'",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.olis.pl/api/search",
+   "body": "{\"category_id\":3,\"subcategory_id\":7,\"search_in\":\"contractor\",\"keyword\":\"Tems\",\"limit\":100}",
+   "status": 200
+  }
+ },
+ {
+  "file": "snep/run-2026-09-24/q__fireboy-dml.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:39Z",
+  "url": "https://snepmusique.com/les-certifications/?interprete=Fireboy+DML&titre=&editeur=",
+  "note": "SNEP interprète search 'Fireboy DML' page 1 · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://snepmusique.com/les-certifications/?interprete=Fireboy+DML&titre=&editeur=",
+   "status": 200
+  }
+ },
+ {
+  "file": "snep/run-2026-09-24/q__seyi-vibez.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:40Z",
+  "url": "https://snepmusique.com/les-certifications/?interprete=Seyi+Vibez&titre=&editeur=",
+  "note": "SNEP interprète search 'Seyi Vibez' page 1 · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://snepmusique.com/les-certifications/?interprete=Seyi+Vibez&titre=&editeur=",
+   "status": 200
+  }
+ },
+ {
+  "file": "zpav/run-2026-09-24/diamentowe__tems.json",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:40Z",
+  "url": "https://www.olis.pl/api/search",
+  "note": "ZPAV diamentowe płyty, artist search 'Tems'",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.olis.pl/api/search",
+   "body": "{\"category_id\":3,\"subcategory_id\":8,\"search_in\":\"contractor\",\"keyword\":\"Tems\",\"limit\":100}",
+   "status": 200
+  }
+ },
+ {
+  "file": "zpav/run-2026-09-24/zlote__tyla.json.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:42Z",
+  "url": "https://www.olis.pl/api/search",
+  "note": "ZPAV zlote płyty, artist search 'Tyla' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.olis.pl/api/search",
+   "body": "{\"category_id\":3,\"subcategory_id\":6,\"search_in\":\"contractor\",\"keyword\":\"Tyla\",\"limit\":100}",
+   "status": 200
+  }
+ },
+ {
+  "file": "snep/run-2026-09-24/q__wiz-kid.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:42Z",
+  "url": "https://snepmusique.com/les-certifications/?interprete=Wiz+Kid&titre=&editeur=",
+  "note": "SNEP interprète search 'Wiz Kid' page 1 · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://snepmusique.com/les-certifications/?interprete=Wiz+Kid&titre=&editeur=",
+   "status": 200
+  }
+ },
+ {
+  "file": "zpav/run-2026-09-24/platynowe__tyla.json.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:44Z",
+  "url": "https://www.olis.pl/api/search",
+  "note": "ZPAV platynowe płyty, artist search 'Tyla' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.olis.pl/api/search",
+   "body": "{\"category_id\":3,\"subcategory_id\":7,\"search_in\":\"contractor\",\"keyword\":\"Tyla\",\"limit\":100}",
+   "status": 200
+  }
+ },
+ {
+  "file": "zpav/run-2026-09-24/diamentowe__tyla.json",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:45Z",
+  "url": "https://www.olis.pl/api/search",
+  "note": "ZPAV diamentowe płyty, artist search 'Tyla'",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.olis.pl/api/search",
+   "body": "{\"category_id\":3,\"subcategory_id\":8,\"search_in\":\"contractor\",\"keyword\":\"Tyla\",\"limit\":100}",
+   "status": 200
+  }
+ },
+ {
+  "file": "snep/run-2026-09-24/q__buju.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:45Z",
+  "url": "https://snepmusique.com/les-certifications/?interprete=Buju&titre=&editeur=",
+  "note": "SNEP interprète search 'Buju' page 1 · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://snepmusique.com/les-certifications/?interprete=Buju&titre=&editeur=",
+   "status": 200
+  }
+ },
+ {
+  "file": "zpav/run-2026-09-24/zlote__ayra-starr.json",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:47Z",
+  "url": "https://www.olis.pl/api/search",
+  "note": "ZPAV zlote płyty, artist search 'Ayra Starr'",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.olis.pl/api/search",
+   "body": "{\"category_id\":3,\"subcategory_id\":6,\"search_in\":\"contractor\",\"keyword\":\"Ayra Starr\",\"limit\":100}",
+   "status": 200
+  }
+ },
+ {
+  "file": "snep/run-2026-09-24/q__burna.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:48Z",
+  "url": "https://snepmusique.com/les-certifications/?interprete=Burna&titre=&editeur=",
+  "note": "SNEP interprète search 'Burna' page 1 · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://snepmusique.com/les-certifications/?interprete=Burna&titre=&editeur=",
+   "status": 200
+  }
+ },
+ {
+  "file": "zpav/run-2026-09-24/platynowe__ayra-starr.json",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:48Z",
+  "url": "https://www.olis.pl/api/search",
+  "note": "ZPAV platynowe płyty, artist search 'Ayra Starr'",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.olis.pl/api/search",
+   "body": "{\"category_id\":3,\"subcategory_id\":7,\"search_in\":\"contractor\",\"keyword\":\"Ayra Starr\",\"limit\":100}",
+   "status": 200
+  }
+ },
+ {
+  "file": "zpav/run-2026-09-24/diamentowe__ayra-starr.json",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:50Z",
+  "url": "https://www.olis.pl/api/search",
+  "note": "ZPAV diamentowe płyty, artist search 'Ayra Starr'",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.olis.pl/api/search",
+   "body": "{\"category_id\":3,\"subcategory_id\":8,\"search_in\":\"contractor\",\"keyword\":\"Ayra Starr\",\"limit\":100}",
+   "status": 200
+  }
+ },
+ {
+  "file": "zpav/run-2026-09-24/zlote__asake.json",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:51Z",
+  "url": "https://www.olis.pl/api/search",
+  "note": "ZPAV zlote płyty, artist search 'Asake'",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.olis.pl/api/search",
+   "body": "{\"category_id\":3,\"subcategory_id\":6,\"search_in\":\"contractor\",\"keyword\":\"Asake\",\"limit\":100}",
+   "status": 200
+  }
+ },
+ {
+  "file": "zpav/run-2026-09-24/platynowe__asake.json",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:53Z",
+  "url": "https://www.olis.pl/api/search",
+  "note": "ZPAV platynowe płyty, artist search 'Asake'",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.olis.pl/api/search",
+   "body": "{\"category_id\":3,\"subcategory_id\":7,\"search_in\":\"contractor\",\"keyword\":\"Asake\",\"limit\":100}",
+   "status": 200
+  }
+ },
+ {
+  "file": "zpav/run-2026-09-24/diamentowe__asake.json",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:55Z",
+  "url": "https://www.olis.pl/api/search",
+  "note": "ZPAV diamentowe płyty, artist search 'Asake'",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.olis.pl/api/search",
+   "body": "{\"category_id\":3,\"subcategory_id\":8,\"search_in\":\"contractor\",\"keyword\":\"Asake\",\"limit\":100}",
+   "status": 200
+  }
+ },
+ {
+  "file": "zpav/run-2026-09-24/zlote__omah-lay.json",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:56Z",
+  "url": "https://www.olis.pl/api/search",
+  "note": "ZPAV zlote płyty, artist search 'Omah Lay'",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.olis.pl/api/search",
+   "body": "{\"category_id\":3,\"subcategory_id\":6,\"search_in\":\"contractor\",\"keyword\":\"Omah Lay\",\"limit\":100}",
+   "status": 200
+  }
+ },
+ {
+  "file": "zpav/run-2026-09-24/platynowe__omah-lay.json",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:08:58Z",
+  "url": "https://www.olis.pl/api/search",
+  "note": "ZPAV platynowe płyty, artist search 'Omah Lay'",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.olis.pl/api/search",
+   "body": "{\"category_id\":3,\"subcategory_id\":7,\"search_in\":\"contractor\",\"keyword\":\"Omah Lay\",\"limit\":100}",
+   "status": 200
+  }
+ },
+ {
+  "file": "zpav/run-2026-09-24/diamentowe__omah-lay.json",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:09:00Z",
+  "url": "https://www.olis.pl/api/search",
+  "note": "ZPAV diamentowe płyty, artist search 'Omah Lay'",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.olis.pl/api/search",
+   "body": "{\"category_id\":3,\"subcategory_id\":8,\"search_in\":\"contractor\",\"keyword\":\"Omah Lay\",\"limit\":100}",
+   "status": 200
+  }
+ },
+ {
+  "file": "zpav/run-2026-09-24/zlote__ckay.json",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:09:02Z",
+  "url": "https://www.olis.pl/api/search",
+  "note": "ZPAV zlote płyty, artist search 'CKay'",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.olis.pl/api/search",
+   "body": "{\"category_id\":3,\"subcategory_id\":6,\"search_in\":\"contractor\",\"keyword\":\"CKay\",\"limit\":100}",
+   "status": 200
+  }
+ },
+ {
+  "file": "zpav/run-2026-09-24/platynowe__ckay.json.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:09:04Z",
+  "url": "https://www.olis.pl/api/search",
+  "note": "ZPAV platynowe płyty, artist search 'CKay' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.olis.pl/api/search",
+   "body": "{\"category_id\":3,\"subcategory_id\":7,\"search_in\":\"contractor\",\"keyword\":\"CKay\",\"limit\":100}",
+   "status": 200
+  }
+ },
+ {
+  "file": "zpav/run-2026-09-24/diamentowe__ckay.json",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:09:05Z",
+  "url": "https://www.olis.pl/api/search",
+  "note": "ZPAV diamentowe płyty, artist search 'CKay'",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.olis.pl/api/search",
+   "body": "{\"category_id\":3,\"subcategory_id\":8,\"search_in\":\"contractor\",\"keyword\":\"CKay\",\"limit\":100}",
+   "status": 200
+  }
+ },
+ {
+  "file": "zpav/run-2026-09-24/zlote__olamide.json",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:09:07Z",
+  "url": "https://www.olis.pl/api/search",
+  "note": "ZPAV zlote płyty, artist search 'Olamide'",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.olis.pl/api/search",
+   "body": "{\"category_id\":3,\"subcategory_id\":6,\"search_in\":\"contractor\",\"keyword\":\"Olamide\",\"limit\":100}",
+   "status": 200
+  }
+ },
+ {
+  "file": "zpav/run-2026-09-24/platynowe__olamide.json",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:09:09Z",
+  "url": "https://www.olis.pl/api/search",
+  "note": "ZPAV platynowe płyty, artist search 'Olamide'",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.olis.pl/api/search",
+   "body": "{\"category_id\":3,\"subcategory_id\":7,\"search_in\":\"contractor\",\"keyword\":\"Olamide\",\"limit\":100}",
+   "status": 200
+  }
+ },
+ {
+  "file": "zpav/run-2026-09-24/diamentowe__olamide.json",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:09:10Z",
+  "url": "https://www.olis.pl/api/search",
+  "note": "ZPAV diamentowe płyty, artist search 'Olamide'",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.olis.pl/api/search",
+   "body": "{\"category_id\":3,\"subcategory_id\":8,\"search_in\":\"contractor\",\"keyword\":\"Olamide\",\"limit\":100}",
+   "status": 200
+  }
+ },
+ {
+  "file": "zpav/run-2026-09-24/zlote__black-sherif.json",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:09:12Z",
+  "url": "https://www.olis.pl/api/search",
+  "note": "ZPAV zlote płyty, artist search 'Black Sherif'",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.olis.pl/api/search",
+   "body": "{\"category_id\":3,\"subcategory_id\":6,\"search_in\":\"contractor\",\"keyword\":\"Black Sherif\",\"limit\":100}",
+   "status": 200
+  }
+ },
+ {
+  "file": "zpav/run-2026-09-24/platynowe__black-sherif.json",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:09:14Z",
+  "url": "https://www.olis.pl/api/search",
+  "note": "ZPAV platynowe płyty, artist search 'Black Sherif'",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.olis.pl/api/search",
+   "body": "{\"category_id\":3,\"subcategory_id\":7,\"search_in\":\"contractor\",\"keyword\":\"Black Sherif\",\"limit\":100}",
+   "status": 200
+  }
+ },
+ {
+  "file": "zpav/run-2026-09-24/diamentowe__black-sherif.json",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:09:15Z",
+  "url": "https://www.olis.pl/api/search",
+  "note": "ZPAV diamentowe płyty, artist search 'Black Sherif'",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.olis.pl/api/search",
+   "body": "{\"category_id\":3,\"subcategory_id\":8,\"search_in\":\"contractor\",\"keyword\":\"Black Sherif\",\"limit\":100}",
+   "status": 200
+  }
+ },
+ {
+  "file": "zpav/run-2026-09-24/zlote__bnxn.json",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:09:17Z",
+  "url": "https://www.olis.pl/api/search",
+  "note": "ZPAV zlote płyty, artist search 'BNXN'",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.olis.pl/api/search",
+   "body": "{\"category_id\":3,\"subcategory_id\":6,\"search_in\":\"contractor\",\"keyword\":\"BNXN\",\"limit\":100}",
+   "status": 200
+  }
+ },
+ {
+  "file": "zpav/run-2026-09-24/platynowe__bnxn.json",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:09:18Z",
+  "url": "https://www.olis.pl/api/search",
+  "note": "ZPAV platynowe płyty, artist search 'BNXN'",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.olis.pl/api/search",
+   "body": "{\"category_id\":3,\"subcategory_id\":7,\"search_in\":\"contractor\",\"keyword\":\"BNXN\",\"limit\":100}",
+   "status": 200
+  }
+ },
+ {
+  "file": "zpav/run-2026-09-24/diamentowe__bnxn.json",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:09:20Z",
+  "url": "https://www.olis.pl/api/search",
+  "note": "ZPAV diamentowe płyty, artist search 'BNXN'",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.olis.pl/api/search",
+   "body": "{\"category_id\":3,\"subcategory_id\":8,\"search_in\":\"contractor\",\"keyword\":\"BNXN\",\"limit\":100}",
+   "status": 200
+  }
+ },
+ {
+  "file": "zpav/run-2026-09-24/zlote__victony.json",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:09:22Z",
+  "url": "https://www.olis.pl/api/search",
+  "note": "ZPAV zlote płyty, artist search 'Victony'",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.olis.pl/api/search",
+   "body": "{\"category_id\":3,\"subcategory_id\":6,\"search_in\":\"contractor\",\"keyword\":\"Victony\",\"limit\":100}",
+   "status": 200
+  }
+ },
+ {
+  "file": "zpav/run-2026-09-24/platynowe__victony.json",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:09:23Z",
+  "url": "https://www.olis.pl/api/search",
+  "note": "ZPAV platynowe płyty, artist search 'Victony'",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.olis.pl/api/search",
+   "body": "{\"category_id\":3,\"subcategory_id\":7,\"search_in\":\"contractor\",\"keyword\":\"Victony\",\"limit\":100}",
+   "status": 200
+  }
+ },
+ {
+  "file": "zpav/run-2026-09-24/diamentowe__victony.json",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:09:25Z",
+  "url": "https://www.olis.pl/api/search",
+  "note": "ZPAV diamentowe płyty, artist search 'Victony'",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.olis.pl/api/search",
+   "body": "{\"category_id\":3,\"subcategory_id\":8,\"search_in\":\"contractor\",\"keyword\":\"Victony\",\"limit\":100}",
+   "status": 200
+  }
+ },
+ {
+  "file": "zpav/run-2026-09-24/zlote__fireboy-dml.json",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:09:26Z",
+  "url": "https://www.olis.pl/api/search",
+  "note": "ZPAV zlote płyty, artist search 'Fireboy DML'",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.olis.pl/api/search",
+   "body": "{\"category_id\":3,\"subcategory_id\":6,\"search_in\":\"contractor\",\"keyword\":\"Fireboy DML\",\"limit\":100}",
+   "status": 200
+  }
+ },
+ {
+  "file": "zpav/run-2026-09-24/platynowe__fireboy-dml.json",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:09:28Z",
+  "url": "https://www.olis.pl/api/search",
+  "note": "ZPAV platynowe płyty, artist search 'Fireboy DML'",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.olis.pl/api/search",
+   "body": "{\"category_id\":3,\"subcategory_id\":7,\"search_in\":\"contractor\",\"keyword\":\"Fireboy DML\",\"limit\":100}",
+   "status": 200
+  }
+ },
+ {
+  "file": "zpav/run-2026-09-24/diamentowe__fireboy-dml.json",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:09:30Z",
+  "url": "https://www.olis.pl/api/search",
+  "note": "ZPAV diamentowe płyty, artist search 'Fireboy DML'",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.olis.pl/api/search",
+   "body": "{\"category_id\":3,\"subcategory_id\":8,\"search_in\":\"contractor\",\"keyword\":\"Fireboy DML\",\"limit\":100}",
+   "status": 200
+  }
+ },
+ {
+  "file": "zpav/run-2026-09-24/zlote__seyi-vibez.json",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:09:31Z",
+  "url": "https://www.olis.pl/api/search",
+  "note": "ZPAV zlote płyty, artist search 'Seyi Vibez'",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.olis.pl/api/search",
+   "body": "{\"category_id\":3,\"subcategory_id\":6,\"search_in\":\"contractor\",\"keyword\":\"Seyi Vibez\",\"limit\":100}",
+   "status": 200
+  }
+ },
+ {
+  "file": "zpav/run-2026-09-24/platynowe__seyi-vibez.json",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:09:33Z",
+  "url": "https://www.olis.pl/api/search",
+  "note": "ZPAV platynowe płyty, artist search 'Seyi Vibez'",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.olis.pl/api/search",
+   "body": "{\"category_id\":3,\"subcategory_id\":7,\"search_in\":\"contractor\",\"keyword\":\"Seyi Vibez\",\"limit\":100}",
+   "status": 200
+  }
+ },
+ {
+  "file": "zpav/run-2026-09-24/diamentowe__seyi-vibez.json",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=<step-2 adapters> --save-raw",
+  "fetched": "2026-09-24T09:09:34Z",
+  "url": "https://www.olis.pl/api/search",
+  "note": "ZPAV diamentowe płyty, artist search 'Seyi Vibez'",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "POST",
+   "url": "https://www.olis.pl/api/search",
+   "body": "{\"category_id\":3,\"subcategory_id\":8,\"search_in\":\"contractor\",\"keyword\":\"Seyi Vibez\",\"limit\":100}",
+   "status": 200
+  }
+ },
+ {
+  "file": "danmark/run-2026-09-24/page0__default.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --only=ifpi-danmark --save-raw (re-captured after the two-order union)",
+  "fetched": "2026-09-24T09:12:56Z",
+  "url": "http://ifpi.dk/certificeringer-0?page=0",
+  "note": "IFPI Danmark page 0, default order · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "http://ifpi.dk/certificeringer-0?page=0",
+   "status": 200,
+   "nth": 1
+  }
+ },
+ {
+  "file": "danmark/run-2026-09-24/page1__default.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --only=ifpi-danmark --save-raw (re-captured after the two-order union)",
+  "fetched": "2026-09-24T09:12:57Z",
+  "url": "http://ifpi.dk/certificeringer-0?page=1",
+  "note": "IFPI Danmark page 1, default order · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "http://ifpi.dk/certificeringer-0?page=1",
+   "status": 200,
+   "nth": 1
+  }
+ },
+ {
+  "file": "danmark/run-2026-09-24/page2__default.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --only=ifpi-danmark --save-raw (re-captured after the two-order union)",
+  "fetched": "2026-09-24T09:12:58Z",
+  "url": "http://ifpi.dk/certificeringer-0?page=2",
+  "note": "IFPI Danmark page 2, default order · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "http://ifpi.dk/certificeringer-0?page=2",
+   "status": 200,
+   "nth": 1
+  }
+ },
+ {
+  "file": "danmark/run-2026-09-24/page0__datedesc.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --only=ifpi-danmark --save-raw (re-captured after the two-order union)",
+  "fetched": "2026-09-24T09:12:59Z",
+  "url": "http://ifpi.dk/certificeringer-0?order=field_certdato&sort=desc&page=0",
+  "note": "IFPI Danmark page 0, explicit date-descending order · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "http://ifpi.dk/certificeringer-0?order=field_certdato&sort=desc&page=0",
+   "status": 200,
+   "nth": 1
+  }
+ },
+ {
+  "file": "danmark/run-2026-09-24/page1__datedesc.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --only=ifpi-danmark --save-raw (re-captured after the two-order union)",
+  "fetched": "2026-09-24T09:13:01Z",
+  "url": "http://ifpi.dk/certificeringer-0?order=field_certdato&sort=desc&page=1",
+  "note": "IFPI Danmark page 1, explicit date-descending order · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "http://ifpi.dk/certificeringer-0?order=field_certdato&sort=desc&page=1",
+   "status": 200,
+   "nth": 1
+  }
+ },
+ {
+  "file": "danmark/run-2026-09-24/page2__datedesc.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --only=ifpi-danmark --save-raw (re-captured after the two-order union)",
+  "fetched": "2026-09-24T09:13:02Z",
+  "url": "http://ifpi.dk/certificeringer-0?order=field_certdato&sort=desc&page=2",
+  "note": "IFPI Danmark page 2, explicit date-descending order · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "http://ifpi.dk/certificeringer-0?order=field_certdato&sort=desc&page=2",
+   "status": 200,
+   "nth": 1
+  }
+ },
+ {
+  "file": "danmark/run-2026-09-24/page0__default__2.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --only=ifpi-danmark --save-raw (re-captured after the two-order union)",
+  "fetched": "2026-09-24T09:13:03Z",
+  "url": "http://ifpi.dk/certificeringer-0?page=0",
+  "note": "IFPI Danmark page 0, default order, read 2× (the deliberate re-read) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "http://ifpi.dk/certificeringer-0?page=0",
+   "status": 200,
+   "nth": 2
+  }
+ },
+ {
+  "file": "danmark/run-2026-09-24/page1__default__2.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --only=ifpi-danmark --save-raw (re-captured after the two-order union)",
+  "fetched": "2026-09-24T09:13:04Z",
+  "url": "http://ifpi.dk/certificeringer-0?page=1",
+  "note": "IFPI Danmark page 1, default order, read 2× (the deliberate re-read) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "http://ifpi.dk/certificeringer-0?page=1",
+   "status": 200,
+   "nth": 2
+  }
+ },
+ {
+  "file": "danmark/run-2026-09-24/page2__default__2.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --only=ifpi-danmark --save-raw (re-captured after the two-order union)",
+  "fetched": "2026-09-24T09:13:05Z",
+  "url": "http://ifpi.dk/certificeringer-0?page=2",
+  "note": "IFPI Danmark page 2, default order, read 2× (the deliberate re-read) · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "http://ifpi.dk/certificeringer-0?page=2",
+   "status": 200,
+   "nth": 2
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__burna-boy.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:17:34Z",
+  "url": "https://sverigetopplistan.se/search/?query=Burna+Boy",
+  "note": "Sverigetopplistan search 'Burna Boy' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Burna+Boy",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__wizkid.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:17:36Z",
+  "url": "https://sverigetopplistan.se/search/?query=Wizkid",
+  "note": "Sverigetopplistan search 'Wizkid' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Wizkid",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__davido.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:17:37Z",
+  "url": "https://sverigetopplistan.se/search/?query=Davido",
+  "note": "Sverigetopplistan search 'Davido' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Davido",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__rema.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:17:38Z",
+  "url": "https://sverigetopplistan.se/search/?query=Rema",
+  "note": "Sverigetopplistan search 'Rema' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Rema",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__tems.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:17:39Z",
+  "url": "https://sverigetopplistan.se/search/?query=Tems",
+  "note": "Sverigetopplistan search 'Tems' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Tems",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__tyla.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:17:41Z",
+  "url": "https://sverigetopplistan.se/search/?query=Tyla",
+  "note": "Sverigetopplistan search 'Tyla' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Tyla",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__ayra-starr.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:17:42Z",
+  "url": "https://sverigetopplistan.se/search/?query=Ayra+Starr",
+  "note": "Sverigetopplistan search 'Ayra Starr' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Ayra+Starr",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__asake.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:17:43Z",
+  "url": "https://sverigetopplistan.se/search/?query=Asake",
+  "note": "Sverigetopplistan search 'Asake' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Asake",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__omah-lay.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:17:44Z",
+  "url": "https://sverigetopplistan.se/search/?query=Omah+Lay",
+  "note": "Sverigetopplistan search 'Omah Lay' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Omah+Lay",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__ckay.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:17:46Z",
+  "url": "https://sverigetopplistan.se/search/?query=CKay",
+  "note": "Sverigetopplistan search 'CKay' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=CKay",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__olamide.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:17:47Z",
+  "url": "https://sverigetopplistan.se/search/?query=Olamide",
+  "note": "Sverigetopplistan search 'Olamide' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Olamide",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__black-sherif.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:17:48Z",
+  "url": "https://sverigetopplistan.se/search/?query=Black+Sherif",
+  "note": "Sverigetopplistan search 'Black Sherif' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Black+Sherif",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__bnxn.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:17:49Z",
+  "url": "https://sverigetopplistan.se/search/?query=BNXN",
+  "note": "Sverigetopplistan search 'BNXN' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=BNXN",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__victony.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:17:51Z",
+  "url": "https://sverigetopplistan.se/search/?query=Victony",
+  "note": "Sverigetopplistan search 'Victony' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Victony",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__fireboy-dml.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:17:52Z",
+  "url": "https://sverigetopplistan.se/search/?query=Fireboy+DML",
+  "note": "Sverigetopplistan search 'Fireboy DML' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Fireboy+DML",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__seyi-vibez.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:17:53Z",
+  "url": "https://sverigetopplistan.se/search/?query=Seyi+Vibez",
+  "note": "Sverigetopplistan search 'Seyi Vibez' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Seyi+Vibez",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__wiz-kid.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:17:54Z",
+  "url": "https://sverigetopplistan.se/search/?query=Wiz+Kid",
+  "note": "Sverigetopplistan search 'Wiz Kid' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Wiz+Kid",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__buju.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:17:56Z",
+  "url": "https://sverigetopplistan.se/search/?query=Buju",
+  "note": "Sverigetopplistan search 'Buju' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Buju",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__burna.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:17:57Z",
+  "url": "https://sverigetopplistan.se/search/?query=Burna",
+  "note": "Sverigetopplistan search 'Burna' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Burna",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__aka.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:17:58Z",
+  "url": "https://sverigetopplistan.se/search/?query=AKA",
+  "note": "Sverigetopplistan search 'AKA' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=AKA",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__asa.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:18:00Z",
+  "url": "https://sverigetopplistan.se/search/?query=Asa",
+  "note": "Sverigetopplistan search 'Asa' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Asa",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__beyonce.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:18:01Z",
+  "url": "https://sverigetopplistan.se/search/?query=Beyonce",
+  "note": "Sverigetopplistan search 'Beyonce' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Beyonce",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__blaqbonez.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:18:03Z",
+  "url": "https://sverigetopplistan.se/search/?query=Blaqbonez",
+  "note": "Sverigetopplistan search 'Blaqbonez' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Blaqbonez",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__bnxn-fka-buju.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:18:04Z",
+  "url": "https://sverigetopplistan.se/search/?query=BNXN+fka+Buju",
+  "note": "Sverigetopplistan search 'BNXN fka Buju' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=BNXN+fka+Buju",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__cheque.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:18:05Z",
+  "url": "https://sverigetopplistan.se/search/?query=Cheque",
+  "note": "Sverigetopplistan search 'Cheque' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Cheque",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__coldplay.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:18:06Z",
+  "url": "https://sverigetopplistan.se/search/?query=Coldplay",
+  "note": "Sverigetopplistan search 'Coldplay' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Coldplay",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__crayon.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:18:08Z",
+  "url": "https://sverigetopplistan.se/search/?query=Crayon",
+  "note": "Sverigetopplistan search 'Crayon' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Crayon",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__dadju.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:18:09Z",
+  "url": "https://sverigetopplistan.se/search/?query=Dadju",
+  "note": "Sverigetopplistan search 'Dadju' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Dadju",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__damiano-david.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:18:10Z",
+  "url": "https://sverigetopplistan.se/search/?query=Damiano+David",
+  "note": "Sverigetopplistan search 'Damiano David' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Damiano+David",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__dave.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:18:11Z",
+  "url": "https://sverigetopplistan.se/search/?query=Dave",
+  "note": "Sverigetopplistan search 'Dave' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Dave",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__dj-tarico.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:18:13Z",
+  "url": "https://sverigetopplistan.se/search/?query=DJ+Tarico",
+  "note": "Sverigetopplistan search 'DJ Tarico' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=DJ+Tarico",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__dj-tunez.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:18:14Z",
+  "url": "https://sverigetopplistan.se/search/?query=DJ+Tunez",
+  "note": "Sverigetopplistan search 'DJ Tunez' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=DJ+Tunez",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__don-toliver.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:18:15Z",
+  "url": "https://sverigetopplistan.se/search/?query=Don+Toliver",
+  "note": "Sverigetopplistan search 'Don Toliver' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Don+Toliver",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__drake.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:18:16Z",
+  "url": "https://sverigetopplistan.se/search/?query=Drake",
+  "note": "Sverigetopplistan search 'Drake' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Drake",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__fola.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:18:18Z",
+  "url": "https://sverigetopplistan.se/search/?query=FOLA",
+  "note": "Sverigetopplistan search 'FOLA' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=FOLA",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__future.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:18:19Z",
+  "url": "https://sverigetopplistan.se/search/?query=Future",
+  "note": "Sverigetopplistan search 'Future' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Future",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__gunna.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:18:20Z",
+  "url": "https://sverigetopplistan.se/search/?query=Gunna",
+  "note": "Sverigetopplistan search 'Gunna' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Gunna",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__iyanya.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:18:22Z",
+  "url": "https://sverigetopplistan.se/search/?query=Iyanya",
+  "note": "Sverigetopplistan search 'Iyanya' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Iyanya",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__j-hus.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:18:23Z",
+  "url": "https://sverigetopplistan.se/search/?query=J+Hus",
+  "note": "Sverigetopplistan search 'J Hus' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=J+Hus",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__jae5.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:18:24Z",
+  "url": "https://sverigetopplistan.se/search/?query=JAE5",
+  "note": "Sverigetopplistan search 'JAE5' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=JAE5",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__joe-dwet-file.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:18:25Z",
+  "url": "https://sverigetopplistan.se/search/?query=Joe+Dwet+File",
+  "note": "Sverigetopplistan search 'Joe Dwet File' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Joe+Dwet+File",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__johnny-drille.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:18:27Z",
+  "url": "https://sverigetopplistan.se/search/?query=Johnny+Drille",
+  "note": "Sverigetopplistan search 'Johnny Drille' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Johnny+Drille",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__jorja-smith.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:18:28Z",
+  "url": "https://sverigetopplistan.se/search/?query=Jorja+Smith",
+  "note": "Sverigetopplistan search 'Jorja Smith' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Jorja+Smith",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__justin-bieber.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:18:29Z",
+  "url": "https://sverigetopplistan.se/search/?query=Justin+Bieber",
+  "note": "Sverigetopplistan search 'Justin Bieber' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Justin+Bieber",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__ladipoe.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:18:30Z",
+  "url": "https://sverigetopplistan.se/search/?query=Ladipoe",
+  "note": "Sverigetopplistan search 'Ladipoe' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Ladipoe",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__lil-kesh.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:18:32Z",
+  "url": "https://sverigetopplistan.se/search/?query=Lil+Kesh",
+  "note": "Sverigetopplistan search 'Lil Kesh' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Lil+Kesh",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__mahalia.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:18:33Z",
+  "url": "https://sverigetopplistan.se/search/?query=Mahalia",
+  "note": "Sverigetopplistan search 'Mahalia' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Mahalia",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__major-lazer.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:18:34Z",
+  "url": "https://sverigetopplistan.se/search/?query=Major+Lazer",
+  "note": "Sverigetopplistan search 'Major Lazer' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Major+Lazer",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__master-kg.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:18:36Z",
+  "url": "https://sverigetopplistan.se/search/?query=Master+KG",
+  "note": "Sverigetopplistan search 'Master KG' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Master+KG",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__mavo.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:18:37Z",
+  "url": "https://sverigetopplistan.se/search/?query=Mavo",
+  "note": "Sverigetopplistan search 'Mavo' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Mavo",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__mayorkun.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:18:38Z",
+  "url": "https://sverigetopplistan.se/search/?query=Mayorkun",
+  "note": "Sverigetopplistan search 'Mayorkun' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Mayorkun",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__mist.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:18:39Z",
+  "url": "https://sverigetopplistan.se/search/?query=Mist",
+  "note": "Sverigetopplistan search 'Mist' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Mist",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__naira-marley.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:18:40Z",
+  "url": "https://sverigetopplistan.se/search/?query=Naira+Marley",
+  "note": "Sverigetopplistan search 'Naira Marley' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Naira+Marley",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__ninho.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:18:42Z",
+  "url": "https://sverigetopplistan.se/search/?query=Ninho",
+  "note": "Sverigetopplistan search 'Ninho' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Ninho",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__odumodublvck.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:18:43Z",
+  "url": "https://sverigetopplistan.se/search/?query=ODUMODUBLVCK",
+  "note": "Sverigetopplistan search 'ODUMODUBLVCK' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=ODUMODUBLVCK",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__patoranking.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:18:44Z",
+  "url": "https://sverigetopplistan.se/search/?query=Patoranking",
+  "note": "Sverigetopplistan search 'Patoranking' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Patoranking",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__peruzzi.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:18:45Z",
+  "url": "https://sverigetopplistan.se/search/?query=Peruzzi",
+  "note": "Sverigetopplistan search 'Peruzzi' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Peruzzi",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__pheelz.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:18:47Z",
+  "url": "https://sverigetopplistan.se/search/?query=Pheelz",
+  "note": "Sverigetopplistan search 'Pheelz' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Pheelz",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__pop-smoke.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:18:48Z",
+  "url": "https://sverigetopplistan.se/search/?query=Pop+Smoke",
+  "note": "Sverigetopplistan search 'Pop Smoke' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Pop+Smoke",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__ruger.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:18:49Z",
+  "url": "https://sverigetopplistan.se/search/?query=Ruger",
+  "note": "Sverigetopplistan search 'Ruger' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Ruger",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__rvssian.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:18:50Z",
+  "url": "https://sverigetopplistan.se/search/?query=Rvssian",
+  "note": "Sverigetopplistan search 'Rvssian' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Rvssian",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__sam-smith.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:18:52Z",
+  "url": "https://sverigetopplistan.se/search/?query=Sam+Smith",
+  "note": "Sverigetopplistan search 'Sam Smith' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Sam+Smith",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__sarz.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:18:53Z",
+  "url": "https://sverigetopplistan.se/search/?query=Sarz",
+  "note": "Sverigetopplistan search 'Sarz' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Sarz",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__shakira.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:18:54Z",
+  "url": "https://sverigetopplistan.se/search/?query=Shakira",
+  "note": "Sverigetopplistan search 'Shakira' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Shakira",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__shallipopi.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:18:55Z",
+  "url": "https://sverigetopplistan.se/search/?query=Shallipopi",
+  "note": "Sverigetopplistan search 'Shallipopi' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Shallipopi",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__stonebwoy.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:18:57Z",
+  "url": "https://sverigetopplistan.se/search/?query=Stonebwoy",
+  "note": "Sverigetopplistan search 'Stonebwoy' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Stonebwoy",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__stormzy.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:18:58Z",
+  "url": "https://sverigetopplistan.se/search/?query=Stormzy",
+  "note": "Sverigetopplistan search 'Stormzy' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Stormzy",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__timaya.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:18:59Z",
+  "url": "https://sverigetopplistan.se/search/?query=Timaya",
+  "note": "Sverigetopplistan search 'Timaya' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Timaya",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__titom.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:19:00Z",
+  "url": "https://sverigetopplistan.se/search/?query=TitoM",
+  "note": "Sverigetopplistan search 'TitoM' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=TitoM",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__txc.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:19:02Z",
+  "url": "https://sverigetopplistan.se/search/?query=TxC",
+  "note": "Sverigetopplistan search 'TxC' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=TxC",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__wande-coal.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:19:03Z",
+  "url": "https://sverigetopplistan.se/search/?query=Wande+Coal",
+  "note": "Sverigetopplistan search 'Wande Coal' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Wande+Coal",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/search__young-jonn.html.gz",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:19:04Z",
+  "url": "https://sverigetopplistan.se/search/?query=Young+Jonn",
+  "note": "Sverigetopplistan search 'Young Jonn' · gzipped here",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sverigetopplistan.se/search/?query=Young+Jonn",
+   "status": 200
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/record-15311162.html",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:19:06Z",
+  "url": "https://sys2.ifpi.se/netdata/grp006.MBR/artdata?sart=15311162",
+  "note": "Ifpi Sverige record page sart 15311162 · ISO-8859-1 bytes as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sys2.ifpi.se/netdata/grp006.MBR/artdata?sart=15311162",
+   "status": 200,
+   "encoding": "latin1"
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/record-11416611.html",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:19:07Z",
+  "url": "https://sys2.ifpi.se/netdata/grp006.MBR/artdata?sart=11416611",
+  "note": "Ifpi Sverige record page sart 11416611 · ISO-8859-1 bytes as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sys2.ifpi.se/netdata/grp006.MBR/artdata?sart=11416611",
+   "status": 200,
+   "encoding": "latin1"
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/record-11335418.html",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:19:08Z",
+  "url": "https://sys2.ifpi.se/netdata/grp006.MBR/artdata?sart=11335418",
+  "note": "Ifpi Sverige record page sart 11335418 · ISO-8859-1 bytes as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sys2.ifpi.se/netdata/grp006.MBR/artdata?sart=11335418",
+   "status": 200,
+   "encoding": "latin1"
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/record-11417053.html",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:19:09Z",
+  "url": "https://sys2.ifpi.se/netdata/grp006.MBR/artdata?sart=11417053",
+  "note": "Ifpi Sverige record page sart 11417053 · ISO-8859-1 bytes as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sys2.ifpi.se/netdata/grp006.MBR/artdata?sart=11417053",
+   "status": 200,
+   "encoding": "latin1"
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/record-7549193.html",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:19:11Z",
+  "url": "https://sys2.ifpi.se/netdata/grp006.MBR/artdata?sart=7549193",
+  "note": "Ifpi Sverige record page sart 7549193 · ISO-8859-1 bytes as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sys2.ifpi.se/netdata/grp006.MBR/artdata?sart=7549193",
+   "status": 200,
+   "encoding": "latin1"
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/record-12096186.html",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:19:12Z",
+  "url": "https://sys2.ifpi.se/netdata/grp006.MBR/artdata?sart=12096186",
+  "note": "Ifpi Sverige record page sart 12096186 · ISO-8859-1 bytes as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sys2.ifpi.se/netdata/grp006.MBR/artdata?sart=12096186",
+   "status": 200,
+   "encoding": "latin1"
+  }
+ },
+ {
+  "file": "sverige/run-2026-09-24/record-12429992.html",
+  "source": "live dry run, scripts/cert-watch --dry-run --deep --only=ifpi-sverige --save-raw (re-captured with diacritic-folded queries)",
+  "fetched": "2026-09-24T09:19:13Z",
+  "url": "https://sys2.ifpi.se/netdata/grp006.MBR/artdata?sart=12429992",
+  "note": "Ifpi Sverige record page sart 12429992 · ISO-8859-1 bytes as served",
+  "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
+  "replay": true,
+  "request": {
+   "method": "GET",
+   "url": "https://sys2.ifpi.se/netdata/grp006.MBR/artdata?sart=12429992",
+   "status": 200,
+   "encoding": "latin1"
+  }
  }
 ]

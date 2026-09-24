@@ -8,6 +8,13 @@
 
 import { riaa, riaaLatin } from "./riaa.mjs";
 import { musiccanada } from "./musiccanada.mjs";
+import { bpi } from "./bpi.mjs";
+import { snep } from "./snep.mjs";
+import { zpav } from "./zpav.mjs";
+import { ifpiSverige } from "./ifpi-sverige.mjs";
+import { ifpiDanmark } from "./ifpi-danmark.mjs";
+import { nvpi } from "./nvpi.mjs";
+import { cnsIfpiCz, cnsIfpiSk } from "./cns-ifpi.mjs";
 import { MANUAL } from "./manual.mjs";
 
 export const COUNTRY = {
@@ -40,16 +47,8 @@ export const COUNTRY = {
   ZA: { flag: "🇿🇦", name: "South Africa" },
 };
 
-/** Rows 4–24 that later steps deliver. Each carries what a human needs today. */
+/** Rows 12–24, which step 3 delivers. Each carries what a human needs today. */
 const LATER = [
-  { id: "bpi", country: "UK", body: "BPI", class: "MANUAL", step: 2, hosts: ["certified-awards.bpi.co.uk"], registerUrl: "https://certified-awards.bpi.co.uk/", heldBy: "robots", manualCheck: "uk" },
-  { id: "snep", country: "FR", body: "SNEP", class: "AUTOMATE", step: 2, hosts: ["snepmusique.com"], registerUrl: "https://snepmusique.com/les-certifications/", humanCheck: "Open https://snepmusique.com/les-certifications/?interprete=<name> for each name; read categorie, certif and date de constat." },
-  { id: "zpav", country: "PL", body: "ZPAV", class: "WITH-CARE", step: 2, hosts: ["www.olis.pl"], registerUrl: "https://www.olis.pl/charts/oficjalna-lista-wyroznien", humanCheck: "Open https://www.olis.pl/charts/oficjalna-lista-wyroznien, filter by performer, and read the award and its date." },
-  { id: "ifpi-sverige", country: "SE", body: "Ifpi Sverige", class: "WITH-CARE", step: 2, hosts: ["sverigetopplistan.se", "sys2.ifpi.se"], registerUrl: "https://sverigetopplistan.se/", humanCheck: "Search https://sverigetopplistan.se/ for each name, open the record page, and read \"Guld/Platina\"." },
-  { id: "ifpi-danmark", country: "DK", body: "IFPI Danmark", class: "WITH-CARE", step: 2, hosts: ["ifpi.dk"], registerUrl: "http://ifpi.dk/certificeringer-0", humanCheck: "Open http://ifpi.dk/certificeringer-0 (http only) and read the newest pages for the 16 names." },
-  { id: "nvpi", country: "NL", body: "NVPI", class: "AUTOMATE", step: 2, hosts: ["www.goudplatina.nl"], registerUrl: "https://www.goudplatina.nl/database", humanCheck: "Search https://www.goudplatina.nl/database for each name." },
-  { id: "cns-ifpi-cz", country: "CZ", body: "ČNS IFPI (chart 30)", class: "AUTOMATE", step: 2, hosts: ["ifpicr.cz"], registerUrl: "https://ifpicr.cz/hitparada/30", humanCheck: "Open https://ifpicr.cz/hitparada/30 and read the badge on each charting row by the 16 names." },
-  { id: "cns-ifpi-sk", country: "SK", body: "ČNS IFPI (chart 43)", class: "AUTOMATE", step: 2, hosts: ["ifpicr.cz"], registerUrl: "https://ifpicr.cz/hitparada/43", humanCheck: "Open https://ifpicr.cz/hitparada/43 and read the badge on each charting row by the 16 names." },
   { id: "bvmi", country: "DE", body: "BVMI", class: "AUTOMATE", step: 3, hosts: ["www.musikindustrie.de"], registerUrl: "https://www.musikindustrie.de/markt-bestseller/gold-/platin-und-diamond-auszeichnungen/datenbank", humanCheck: "Search the BVMI Gold/Platin database for each name." },
   { id: "ifpi-austria", country: "AT", body: "IFPI Austria", class: "AUTOMATE", step: 3, hosts: ["ifpi.at"], registerUrl: "https://ifpi.at/auszeichnungen/", humanCheck: "Open https://ifpi.at/auszeichnungen/?fwp_per_page=100 and read the newest rows." },
   { id: "mahasz", country: "HU", body: "MAHASZ", class: "AUTOMATE", step: 3, hosts: ["slagerlistak.hu"], registerUrl: "https://slagerlistak.hu/arany-es-platinalemezek/adatbazis", humanCheck: "Open this year's MAHASZ database page and read the rows for the 16 names." },
@@ -65,7 +64,7 @@ const LATER = [
   { id: "promusica-br", country: "BR", body: "Pro-Música Brasil", class: "WITH-CARE", step: 3, hosts: ["pro-musicabr.org.br"], registerUrl: "https://pro-musicabr.org.br/home-2/certificados/", humanCheck: "Search https://pro-musicabr.org.br/home-2/certificados/?busca_artista=<name> for each name." },
 ];
 
-const BUILT = [riaa, riaaLatin, musiccanada];
+const BUILT = [riaa, riaaLatin, musiccanada, bpi, snep, zpav, ifpiSverige, ifpiDanmark, nvpi, cnsIfpiCz, cnsIfpiSk];
 
 /** All 28 rows, in the spec's order: built adapters, later rows, manual rows. */
 export const REGISTRY = [

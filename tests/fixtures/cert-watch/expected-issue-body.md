@@ -1,8 +1,8 @@
 ## 🏅 Certification watch — Thursday 24 September 2026
 
-**1 candidate to verify** (1 new since the last run) · 3 of 23 automated registers read cleanly · 5 manual checks this week · 2 on the watchlist
+**2 candidates to verify** (2 new since the last run) · 10 of 23 automated registers read cleanly · 5 manual checks this week · 2 on the watchlist
 
-**Not read today: 🇫🇷 SNEP, 🇵🇱 ZPAV, 🇸🇪 Ifpi Sverige, 🇩🇰 IFPI Danmark, 🇳🇱 NVPI, 🇨🇿 ČNS IFPI (chart 30), 🇸🇰 ČNS IFPI (chart 43) (not built yet — step 2); 🇩🇪 BVMI, 🇦🇹 IFPI Austria, 🇭🇺 MAHASZ, 🇬🇷 IFPI Greece, 🇳🇴 IFPI Norge, 🇪🇸 PROMUSICAE, 🇨🇭 IFPI Schweiz (swisscharts.com), 🇳🇿 RMNZ (RadioScope), 🇨🇴 Pro Música Colombia, 🇲🇽 AMPROFON, 🇮🇹 FIMI, 🇳🇬 TurnTable (TCSN), 🇧🇷 Pro-Música Brasil (not built yet — step 3) — those registers say nothing about today.**
+**Not read today: 🇩🇪 BVMI, 🇦🇹 IFPI Austria, 🇭🇺 MAHASZ, 🇬🇷 IFPI Greece, 🇳🇴 IFPI Norge, 🇪🇸 PROMUSICAE, 🇨🇭 IFPI Schweiz (swisscharts.com), 🇳🇿 RMNZ (RadioScope), 🇨🇴 Pro Música Colombia, 🇲🇽 AMPROFON, 🇮🇹 FIMI, 🇳🇬 TurnTable (TCSN), 🇧🇷 Pro-Música Brasil (not built yet — step 3) — those registers say nothing about today.**
 
 ℹ️ No previous state was found, so every open candidate is listed as new.
 
@@ -19,6 +19,15 @@
   - ⚠ credit does not name Rema — matched on lead "Victony" + title; confirm the featured credit before adding
   - First seen: 2026-09-24
 
+- [ ] 🆕 **Rema — "Soweto"** · 🇫🇷 France · SNEP · **NEW PLAQUE** <!-- fp:bab2f36f147a1c17 -->
+  - Register reads: `Or` (Gold)
+  - Award date: `27/08/2026` (date de constat)
+  - Row: `Singles | SOWETO | VICTONY & TEMPOE | SPIRITUS EMPIRE / BELIEVE | Or | sortie 03/02/2023 | constat 27/08/2026`
+  - Site holds now: nothing in FR for this release
+  - Check: https://snepmusique.com/les-certifications/ · Row link: https://snepmusique.com/les-certifications/?interprete=VICTONY+%26+TEMPOE&titre=SOWETO&editeur=
+  - ⚠ credit does not name Rema — matched on lead "Victony" + title; confirm the featured credit before adding
+  - First seen: 2026-09-24
+
 ### Watchlist — reported every run until it lands
 
 - ⏳ **Dai Dai (Shakira & Burna Boy) — 🇺🇸 RIAA Latin** · register: `2X PLATINO` (`badge LA level 2`, award `default_451299`, certification date July 9, 2026) · site: Platinum ×2 (RIAA Latin) · waiting for: above 2X PLATINO · lead: RIAA's Instagram (@⁠riaa\_awards) showed a "6X Latin Platinum" badge on 23 Sep 2026; the database read 2X Platino (9 Jul 2026) · read ✅ today
@@ -31,14 +40,14 @@
 | 🇺🇸 RIAA | AUTOMATE | ✅ read | newest award September 23, 2026 · 11 Latin row(s) left to riaa-latin · 1 award history read |
 | 🇺🇸 RIAA Latin | AUTOMATE | ✅ read | 33 row(s) for the 16 names (newest: MVLAN (FT. JC REYES), September 21, 2026) · 1 award history read |
 | 🇨🇦 Music Canada | AUTOMATE | ✅ read | newest id 89710, 2026-09-23 · 31,859 awards in the register (X-WP-Total) · first read: newest 100 awards |
-| 🇬🇧 BPI | MANUAL | ⏸️ held — robots.txt | human check below |
-| 🇫🇷 SNEP | AUTOMATE | 🧱 not built yet (step 2) | human check: Open https://snepmusique.com/les-certifications/?interprete=\<name\> for each name; read categorie, certif and date de constat. |
-| 🇵🇱 ZPAV | WITH-CARE | 🧱 not built yet (step 2) | human check: Open https://www.olis.pl/charts/oficjalna-lista-wyroznien, filter by performer, and read the award and its date. |
-| 🇸🇪 Ifpi Sverige | WITH-CARE | 🧱 not built yet (step 2) | human check: Search https://sverigetopplistan.se/ for each name, open the record page, and read "Guld/Platina". |
-| 🇩🇰 IFPI Danmark | WITH-CARE | 🧱 not built yet (step 2) | human check: Open http://ifpi.dk/certificeringer-0 (http only) and read the newest pages for the 16 names. |
-| 🇳🇱 NVPI | AUTOMATE | 🧱 not built yet (step 2) | human check: Search https://www.goudplatina.nl/database for each name. |
-| 🇨🇿 ČNS IFPI (chart 30) | AUTOMATE | 🧱 not built yet (step 2) | human check: Open https://ifpicr.cz/hitparada/30 and read the badge on each charting row by the 16 names. |
-| 🇸🇰 ČNS IFPI (chart 43) | AUTOMATE | 🧱 not built yet (step 2) | human check: Open https://ifpicr.cz/hitparada/43 and read the badge on each charting row by the 16 names. |
+| 🇬🇧 BPI | MANUAL | ⏸️ held — robots.txt | robots.txt: User-agent: \* / Disallow: / · human check below |
+| 🇫🇷 SNEP | AUTOMATE | ✅ read | newest date de constat 17/09/2026 · 19 interprète searches |
+| 🇵🇱 ZPAV | WITH-CARE | ✅ read | newest award 2026-09-23 · 48 artist searches |
+| 🇸🇪 Ifpi Sverige | WITH-CARE | ✅ read | newest cert date read 2026-09-18 · 72 searches (53 lead acts), 7 matched items with a badge, 7 record page(s) read |
+| 🇩🇰 IFPI Danmark | WITH-CARE | ✅ read | newest 16.09.2026 · 152 distinct rows from pages 0–2 in 3 round(s), 9 requests · 10 row(s) printed on two pages in the default order — tied dates at page boundaries may still be short |
+| 🇳🇱 NVPI | AUTOMATE | ✅ read | 6,493 awards in the register; newest 16-7-2026 (NVPI publishes late) · 500 newest read, back to 2005-11-17 |
+| 🇨🇿 ČNS IFPI (chart 30) | AUTOMATE | ✅ read | week 38/2026 (week id 3036) · 50 badge(s) on 100 chart rows · badges show only while a title charts · previous week (week 37/2026): 49 badge(s) |
+| 🇸🇰 ČNS IFPI (chart 43) | AUTOMATE | ✅ read | week 38/2026 (week id 3036) · 58 badge(s) on 100 chart rows · badges show only while a title charts · previous week (week 37/2026): 56 badge(s) |
 | 🇩🇪 BVMI | AUTOMATE | 🧱 not built yet (step 3) | human check: Search the BVMI Gold/Platin database for each name. |
 | 🇦🇹 IFPI Austria | AUTOMATE | 🧱 not built yet (step 3) | human check: Open https://ifpi.at/auszeichnungen/?fwp\_per\_page=100 and read the newest rows. |
 | 🇭🇺 MAHASZ | AUTOMATE | 🧱 not built yet (step 3) | human check: Open this year's MAHASZ database page and read the rows for the 16 names. |
@@ -68,11 +77,11 @@
 
 <details><summary>Run details</summary>
 
-Run 2026-09-24 06:17 UTC · <duration> · 40 requests (www.riaa.com 39, musiccanada.com 1) · OFFLINE (saved responses) · deep reads · dry run
+Run 2026-09-24 06:17 UTC · <duration> · 204 requests (ifpi.dk 9, ifpicr.cz 4, musiccanada.com 1, snepmusique.com 20, sverigetopplistan.se 72, sys2.ifpi.se 7, www.goudplatina.nl 1, www.olis.pl 51, www.riaa.com 39) · OFFLINE (saved responses) · deep reads · dry run
 
 Suppressed: 2 known divergences (One Dance `badge DI level 11`, Wait For U `badge DI level 11`), 0 held rows, 0 tribute rejects, 0 dismissed · cleared since the last run (the site caught up): none
 </details>
 
 <!-- cert-watch:state:v1
-eyJ2IjoxLCJ1cGRhdGVkIjoiMjAyNi0wOS0yNFQwNjoxNzowMFoiLCJydW4iOm51bGwsInJlc2V0Ijp0cnVlLCJvcGVuIjp7InJpYWF8VVN8fHJlbWF8c293ZXRvfHNpbmdsZSI6eyJmcCI6IjY3Y2RmYmIzN2E5YjJhMDAiLCJraW5kIjoiTkVXIFBMQVFVRSIsImZpcnN0U2VlbiI6IjIwMjYtMDktMjQiLCJsYXN0U2VlbiI6IjIwMjYtMDktMjQiLCJyZWFkaW5nIjp7InRpZXIiOiJHb2xkIiwieCI6MSwibGV2ZWwiOjAsInJhdyI6ImJhZGdlIERJIGxldmVsIDAifSwidGllclJhdyI6ImJhZGdlIERJIGxldmVsIDAiLCJhZGFwdGVyIjoicmlhYSIsImFydGlzdCI6InJlbWEiLCJhcnRpc3ROYW1lIjoiUmVtYSIsInJlbGVhc2UiOiJTb3dldG8iLCJ0aXRsZSI6IlNPV0VUTyIsImNvdW50cnkiOiJVUyIsInByb2dyYW1tZSI6bnVsbCwiZm9ybWF0Ijoic2luZ2xlIiwibm9ybVRpdGxlIjoic293ZXRvIiwiZGF0ZVJhdyI6IlNlcHRlbWJlciAxNSwgMjAyNSIsInVybCI6Imh0dHBzOi8vd3d3LnJpYWEuY29tL2dvbGQtcGxhdGludW0vP3RhYl9hY3RpdmU9ZGVmYXVsdC1hd2FyZCZzZT1TT1dFVE8ifX0sImRpc21pc3NlZCI6e30sIndhdGNoIjp7ImRhaS1kYWktcmlhYS1sYXRpbiI6eyJyYXciOiJiYWRnZSBMQSBsZXZlbCAyIiwic2luY2UiOiIyMDI2LTA5LTI0In19LCJoZWFsdGgiOnsibXVzaWNjYW5hZGEiOnsic3RhdHVzIjoib2siLCJzaW5jZSI6IjIwMjYtMDktMjQiLCJmYWlscyI6MH0sInJpYWEiOnsic3RhdHVzIjoib2siLCJzaW5jZSI6IjIwMjYtMDktMjQiLCJmYWlscyI6MH0sInJpYWEtbGF0aW4iOnsic3RhdHVzIjoib2siLCJzaW5jZSI6IjIwMjYtMDktMjQiLCJmYWlscyI6MH19LCJjdXJzb3JzIjp7Im11c2ljY2FuYWRhIjp7Imxhc3RJZCI6ODk3MTB9LCJyaWFhIjp7Imxhc3REYXRlIjoiMjAyNi0wOS0yMyJ9LCJyaWFhLWxhdGluIjp7Imxhc3REYXRlIjoiMjAyNi0wOS0yMSJ9fSwibWFudWFsV2VlayI6IjIwMjYtVzM5IiwibWFudWFsVGlja3MiOltdfQ==
+eyJ2IjoxLCJ1cGRhdGVkIjoiMjAyNi0wOS0yNFQwNjoxNzowMFoiLCJydW4iOm51bGwsInJlc2V0Ijp0cnVlLCJvcGVuIjp7InJpYWF8VVN8fHJlbWF8c293ZXRvfHNpbmdsZSI6eyJmcCI6IjY3Y2RmYmIzN2E5YjJhMDAiLCJraW5kIjoiTkVXIFBMQVFVRSIsImZpcnN0U2VlbiI6IjIwMjYtMDktMjQiLCJsYXN0U2VlbiI6IjIwMjYtMDktMjQiLCJyZWFkaW5nIjp7InRpZXIiOiJHb2xkIiwieCI6MSwibGV2ZWwiOjAsInJhdyI6ImJhZGdlIERJIGxldmVsIDAifSwidGllclJhdyI6ImJhZGdlIERJIGxldmVsIDAiLCJhZGFwdGVyIjoicmlhYSIsImFydGlzdCI6InJlbWEiLCJhcnRpc3ROYW1lIjoiUmVtYSIsInJlbGVhc2UiOiJTb3dldG8iLCJ0aXRsZSI6IlNPV0VUTyIsImNvdW50cnkiOiJVUyIsInByb2dyYW1tZSI6bnVsbCwiZm9ybWF0Ijoic2luZ2xlIiwibm9ybVRpdGxlIjoic293ZXRvIiwiZGF0ZVJhdyI6IlNlcHRlbWJlciAxNSwgMjAyNSIsInVybCI6Imh0dHBzOi8vd3d3LnJpYWEuY29tL2dvbGQtcGxhdGludW0vP3RhYl9hY3RpdmU9ZGVmYXVsdC1hd2FyZCZzZT1TT1dFVE8ifSwic25lcHxGUnx8cmVtYXxzb3dldG98c2luZ2xlIjp7ImZwIjoiYmFiMmYzNmYxNDdhMWMxNyIsImtpbmQiOiJORVcgUExBUVVFIiwiZmlyc3RTZWVuIjoiMjAyNi0wOS0yNCIsImxhc3RTZWVuIjoiMjAyNi0wOS0yNCIsInJlYWRpbmciOnsidGllciI6IkdvbGQiLCJ4IjoxLCJyYXciOiJPciJ9LCJ0aWVyUmF3IjoiT3IiLCJhZGFwdGVyIjoic25lcCIsImFydGlzdCI6InJlbWEiLCJhcnRpc3ROYW1lIjoiUmVtYSIsInJlbGVhc2UiOiJTb3dldG8iLCJ0aXRsZSI6IlNPV0VUTyIsImNvdW50cnkiOiJGUiIsInByb2dyYW1tZSI6bnVsbCwiZm9ybWF0Ijoic2luZ2xlIiwibm9ybVRpdGxlIjoic293ZXRvIiwiZGF0ZVJhdyI6IjI3LzA4LzIwMjYiLCJ1cmwiOiJodHRwczovL3NuZXBtdXNpcXVlLmNvbS9sZXMtY2VydGlmaWNhdGlvbnMvP2ludGVycHJldGU9VklDVE9OWSslMjYrVEVNUE9FJnRpdHJlPVNPV0VUTyZlZGl0ZXVyPSJ9fSwiZGlzbWlzc2VkIjp7fSwid2F0Y2giOnsiZGFpLWRhaS1yaWFhLWxhdGluIjp7InJhdyI6ImJhZGdlIExBIGxldmVsIDIiLCJzaW5jZSI6IjIwMjYtMDktMjQifX0sImhlYWx0aCI6eyJyaWFhIjp7InN0YXR1cyI6Im9rIiwic2luY2UiOiIyMDI2LTA5LTI0IiwiZmFpbHMiOjB9LCJyaWFhLWxhdGluIjp7InN0YXR1cyI6Im9rIiwic2luY2UiOiIyMDI2LTA5LTI0IiwiZmFpbHMiOjB9LCJtdXNpY2NhbmFkYSI6eyJzdGF0dXMiOiJvayIsInNpbmNlIjoiMjAyNi0wOS0yNCIsImZhaWxzIjowfSwic25lcCI6eyJzdGF0dXMiOiJvayIsInNpbmNlIjoiMjAyNi0wOS0yNCIsImZhaWxzIjowfSwienBhdiI6eyJzdGF0dXMiOiJvayIsInNpbmNlIjoiMjAyNi0wOS0yNCIsImZhaWxzIjowfSwiaWZwaS1zdmVyaWdlIjp7InN0YXR1cyI6Im9rIiwic2luY2UiOiIyMDI2LTA5LTI0IiwiZmFpbHMiOjB9LCJpZnBpLWRhbm1hcmsiOnsic3RhdHVzIjoib2siLCJzaW5jZSI6IjIwMjYtMDktMjQiLCJmYWlscyI6MH0sIm52cGkiOnsic3RhdHVzIjoib2siLCJzaW5jZSI6IjIwMjYtMDktMjQiLCJmYWlscyI6MH0sImNucy1pZnBpLWN6Ijp7InN0YXR1cyI6Im9rIiwic2luY2UiOiIyMDI2LTA5LTI0IiwiZmFpbHMiOjB9LCJjbnMtaWZwaS1zayI6eyJzdGF0dXMiOiJvayIsInNpbmNlIjoiMjAyNi0wOS0yNCIsImZhaWxzIjowfX0sImN1cnNvcnMiOnsicmlhYSI6eyJsYXN0RGF0ZSI6IjIwMjYtMDktMjMifSwicmlhYS1sYXRpbiI6eyJsYXN0RGF0ZSI6IjIwMjYtMDktMjEifSwibXVzaWNjYW5hZGEiOnsibGFzdElkIjo4OTcxMH0sInNuZXAiOnsibGFzdERhdGUiOiIyMDI2LTA5LTE3In0sInpwYXYiOnsibGFzdERhdGUiOiIyMDI2LTA5LTIzIn0sImlmcGktc3ZlcmlnZSI6eyJiYWRnZXMiOnsiNzU0OTE5MyI6IlNXRSxQbGF0aW5hIHg3IiwiMTEzMzU0MTgiOiJTV0UsUGxhdGluYSIsIjExNDE2NjExIjoiU1dFLEd1bGQiLCIxMTQxNzA1MyI6IlNXRSxQbGF0aW5hIiwiMTIwOTYxODYiOiJTV0UsUGxhdGluYSIsIjEyNDI5OTkyIjoiU1dFLEd1bGQiLCIxNTMxMTE2MiI6IlNXRSxQbGF0aW5hIn19LCJpZnBpLWRhbm1hcmsiOnsibGFzdERhdGUiOiIyMDI2LTA5LTE2In0sIm52cGkiOnsibGFzdERhdGUiOiIyMDI2LTA3LTE2In0sImNucy1pZnBpLWN6Ijp7IndlZWtJZCI6IjMwMzYifSwiY25zLWlmcGktc2siOnsid2Vla0lkIjoiMzAzNiJ9fSwibWFudWFsV2VlayI6IjIwMjYtVzM5IiwibWFudWFsVGlja3MiOltdfQ==
 -->

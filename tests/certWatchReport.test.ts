@@ -5,7 +5,7 @@ import { mkdtempSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 import { renderBody, renderBodyWithin, code, plain, counts, notReadSentence, BODY_LIMIT } from "../scripts/cert-watch/report.mjs";
-import { REGISTRY } from "../scripts/cert-watch/adapters/index.mjs";
+import { REGISTRY, AUTOMATED } from "../scripts/cert-watch/adapters/index.mjs";
 import { extractState } from "../scripts/cert-watch/state.mjs";
 import { ROOT, fixture } from "./certWatchHelpers";
 
@@ -94,7 +94,9 @@ describe("the golden render", () => {
   it("carries a state block the next run can read", () => {
     const st = extractState(run.read("issue-body.md"));
     expect(st.status).toBe("ok");
-    expect(Object.keys(st.state!.open)).toEqual(["riaa|US||rema|soweto|single"]);
+    // The two flagged Soweto leads (RIAA default_442609, SNEP "VICTONY &
+    // TEMPOE | SOWETO | Or"): Rema matched through his live-artists alias.
+    expect(Object.keys(st.state!.open).sort()).toEqual(["riaa|US||rema|soweto|single", "snep|FR||rema|soweto|single"]);
   });
 });
 
@@ -105,11 +107,14 @@ describe("the not-read invariant (SPEC §7)", () => {
   it("a register not read cleanly counts zero and is named in the headline", () => {
     expect(run.status, run.stderr).toBe(0);
     const n = counts(r, r.candidates);
-    expect(n.clean).toBe(2);
+    // Derived from the registry: every BUILT automated register reads its
+    // saved responses cleanly offline, except the one set to fail.
+    const built = AUTOMATED.filter((x) => x.built).length;
+    expect(n.clean).toBe(built - 1);
     expect(n.notRead.map((x: { id: string }) => x.id)).toContain("riaa-latin");
     const body = run.read("issue-body.md");
     expect(body).toMatch(/\*\*Not read today: [^*]*🇺🇸 RIAA Latin \(network\)/);
-    expect(body).toMatch(/2 of 23 automated registers read cleanly/);
+    expect(body).toContain(`${built - 1} of ${AUTOMATED.length} automated registers read cleanly`);
   });
 
   it("'no new certification leads' never renders without the not-read list beside it", () => {

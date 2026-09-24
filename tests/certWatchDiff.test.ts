@@ -3,6 +3,10 @@ import { describe, it, expect } from "vitest";
 import { evaluateRows } from "../scripts/cert-watch/match.mjs";
 import { riaa, riaaLatin, parseRows } from "../scripts/cert-watch/adapters/riaa.mjs";
 import { musiccanada, parseAwards } from "../scripts/cert-watch/adapters/musiccanada.mjs";
+import { snep, parseCards } from "../scripts/cert-watch/adapters/snep.mjs";
+import { ifpiSverige, parseRecord } from "../scripts/cert-watch/adapters/ifpi-sverige.mjs";
+import { ifpiDanmark, parsePage as parseDkPage } from "../scripts/cert-watch/adapters/ifpi-danmark.mjs";
+import { hydrateSiteIndex } from "../scripts/cert-watch/site.mjs";
 import { LIVE_ARTISTS, config, fixture, frozenIndex, releaseOf } from "./certWatchHelpers";
 
 /**
@@ -144,5 +148,81 @@ describe("rows other registers served (real strings)", () => {
     const row = { ...mcDaiDai[0], tierRaw: "award_cert-double-diamond-single", reading: null };
     const before = frozenIndex((j) => delete releaseOf(j, "burna-boy", "Dai Dai").holdings["CA|"]);
     expect(run(musiccanada, [row], before).candidates[0]).toMatchObject({ kind: "UNREADABLE TIER" });
+  });
+});
+
+describe("SNEP replaces a card on upgrade (step 2)", () => {
+  const run = (rows: unknown[], index = frozenIndex()) => evaluateRows(snep, rows, { index, liveArtists: LIVE_ARTISTS, config });
+  const cards = parseCards(fixture("snep/q-burna.html.gz"));
+
+  it("the superseded Platine card (30/07/2026) yields nothing against the site's Diamond", () => {
+    const platine = cards.filter((r) => r.title === "DAI DAI" && r.tierRaw === "Platine");
+    expect(platine).toHaveLength(1);
+    expect(platine[0].dateRaw).toBe("30/07/2026");
+    expect(run(platine).candidates).toEqual([]);
+  });
+
+  it("the Diamant card is in sync with the real site, and an UPGRADE against the site at Platinum", () => {
+    expect(run(cards).candidates.filter((c) => c.artist === "burna-boy")).toEqual([]);
+    // LABELLED EDIT: the site as it stood before the FR upgrade — Platinum.
+    const before = frozenIndex((j) => (releaseOf(j, "burna-boy", "Dai Dai").holdings["FR|"] = { tier: "Platinum", x: 1 }));
+    const got = run(cards.filter(snep.control.find), before).candidates;
+    expect(got).toHaveLength(1);
+    expect(got[0]).toMatchObject({ kind: "UPGRADE", country: "FR", reading: { tier: "Diamond", x: 1 }, tierRaw: "Diamant" });
+  });
+
+  it("reads SNEP's JERUSALEMA card as the remix through config.titleAliases, in sync at Diamond", () => {
+    // Live dry run, 24 Sep 2026: "Singles | JERUSALEMA | MASTER KG FEAT. BURNA
+    // BOY & NOMCEBO ZIKODE | … | Diamant | constat 23/10/2020".
+    const rows = parseCards(fixture("snep/run-2026-09-24/q__burna-boy.html.gz")).filter((r) => r.title === "JERUSALEMA");
+    expect(rows).toHaveLength(1);
+    expect(rows[0].credit).toBe("MASTER KG FEAT. BURNA BOY & NOMCEBO ZIKODE");
+    expect(run(rows).candidates).toEqual([]);
+    // Without the alias it would be a NEW RELEASE — the alias is what explains it.
+    const bare = { ...config, titleAliases: [] };
+    const idx = hydrateSiteIndex(JSON.parse(fixture("site-index.2026-09-24.json")), LIVE_ARTISTS, bare);
+    const noAlias = evaluateRows(snep, rows, { index: idx, liveArtists: LIVE_ARTISTS, config: bare });
+    expect(noAlias.candidates[0]).toMatchObject({ kind: "NEW RELEASE", artist: "burna-boy" });
+  });
+});
+
+describe("Ifpi Sverige: Tyla's Water (step 2)", () => {
+  const water = () => {
+    const rec = parseRecord(fixture("sverige/record-12096186.html", "latin1"));
+    return [{ rowId: "12096186", credit: rec.artist, title: rec.title, format: "single", tierRaw: rec.cert, reading: rec.reading, dateRaw: rec.date, raw: rec.cert }];
+  };
+  const run = (index = frozenIndex()) => evaluateRows(ifpiSverige, water(), { index, liveArtists: LIVE_ARTISTS, config });
+
+  it("is in sync with the real site (added in PR #317)", () => {
+    expect(run().candidates).toEqual([]);
+  });
+
+  it("is an UPGRADE Gold → Platinum against the site as it stood before PR #317", () => {
+    // LABELLED EDIT: Tyla's Water at SE Gold.
+    const before = frozenIndex((j) => (releaseOf(j, "tyla", "Water").holdings["SE|"] = { tier: "Gold", x: 1 }));
+    const c = run(before).candidates;
+    expect(c).toHaveLength(1);
+    expect(c[0]).toMatchObject({ kind: "UPGRADE", artist: "tyla", release: "Water", country: "SE", tierRaw: "Platina - cert.nr 11312 - 2026-09-18", holding: { tier: "Gold", x: 1 } });
+  });
+});
+
+describe("IFPI Danmark: Boom through the lead alias (step 2)", () => {
+  const run = (rows: unknown[], index = frozenIndex()) => evaluateRows(ifpiDanmark, rows, { index, liveArtists: LIVE_ARTISTS, config });
+  const boom = parseDkPage(fixture("danmark/boom-recheck.html.gz")).filter((r) => r.title === "Boom" && r.credit.startsWith("Major Lazer"));
+
+  it("Boom is Wizkid's through config.leadAliases, flagged as truncated, and in sync at Platin", () => {
+    const got = run(boom);
+    expect(got.counts.matched).toBe(2);
+    expect(got.candidates).toEqual([]);
+    // LABELLED EDIT: the site without a DK plaque on Boom.
+    const none = frozenIndex((j) => delete releaseOf(j, "wizkid", "Boom").holdings["DK|"]);
+    const c = run(boom, none).candidates;
+    expect(c).toHaveLength(1);
+    expect(c[0]).toMatchObject({ kind: "NEW PLAQUE", artist: "wizkid", release: "Boom", reading: { tier: "Platinum", x: 1 } });
+    expect(c[0].flags.join(" ")).toMatch(/credit truncated by the register/);
+  });
+
+  it("Raindance at Platin is in sync with the site", () => {
+    expect(run(parseDkPage(fixture("danmark/page6.html.gz"))).candidates.filter((c) => c.artist === "tems")).toEqual([]);
   });
 });

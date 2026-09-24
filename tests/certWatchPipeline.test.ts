@@ -94,3 +94,18 @@ describe("an unreachable register", () => {
     expect(body).toMatch(/1 dismissed/);
   });
 });
+
+describe("BPI through the runner", () => {
+  it("even enabled with a permission record, robots.txt holds it: zero requests to its host", () => {
+    const dir = mkdtempSync(join(tmpdir(), "cert-watch-bpi-"));
+    const cfg = JSON.parse(readFileSync(join(ROOT, "scripts/cert-watch/config.json"), "utf8"));
+    // LABELLED EDIT of config: BPI switched on with a (test) permission record.
+    cfg.adapters.bpi = { enabled: true, why: "test", permission: { from: "test", on: "2026-09-24", scope: "test" } };
+    writeFileSync(join(dir, "config.json"), JSON.stringify(cfg));
+    const r = run(["--offline", "--dry-run", "--site-json", SITE, "--config", join(dir, "config.json"), "--only=bpi"]);
+    expect(r.status, r.out).toBe(0);
+    const results = JSON.parse(readFileSync(join(r.dir, "out", "results.json"), "utf8"));
+    expect(results.health.bpi.status).toBe("held-robots");
+    expect(results.requests.byHost["certified-awards.bpi.co.uk"]).toBeUndefined();
+  });
+});

@@ -3,7 +3,7 @@
   "issueTitle": "🏅 New certifications found — verify & add",
   "userAgent": "burnaboystats-cert-watch/1.0 (+https://burnaboystats.com/contact)",
   "weeklyTodo": true,
-  "budget": { "runSeconds": 540, "adapterSeconds": 90, "overrides": { "musiccanada": 150, "bvmi": 150 } },
+  "budget": { "runSeconds": 540, "adapterSeconds": 90, "overrides": { "musiccanada": 150, "bvmi": 150, "zpav": 150, "ifpi-sverige": 240 } },
   "hosts": {
     "*": { "minGapMs": 1100 },
     "musiccanada.com": { "minGapMs": 30000, "why": "robots.txt Crawl-delay: 30 (read 24 Sep 2026)" },
@@ -98,7 +98,10 @@
     { "artist": "black-sherif", "names": ["I Shot The Sheriff", "SHERIFF"], "why": "live-artists.mjs note" },
     { "artist": "tyla", "names": ["Tyla Yaweh"], "why": "a different artist (the American rapper); RIAA files him as TYLA YAWEH — HIGH RIGHT NOW, TOMMY LEE, STUNTIN' ON YOU — which /\\btyla\\b/ matches (first live dry run, 24 Sep 2026)" }
   ],
-  "titleAliases": [],
+  "titleAliases": [
+    { "artist": "burna-boy", "printed": "JERUSALEMA", "release": "Jerusalema (Remix)", "why": "SNEP prints the remix — the only version that credits Burna Boy — as \"JERUSALEMA\" under \"MASTER KG FEAT. BURNA BOY & NOMCEBO ZIKODE\" (Diamant, constat 23/10/2020); the site already holds that card as FR Diamond on Jerusalema (Remix). Found by the step-2 live dry run, 24 Sep 2026; Paul to confirm", "on": "2026-09-24" },
+    { "artist": "ckay", "printed": "love nwantiti", "release": "love nwantiti (ah ah ah)", "why": "registers print the title without its \"(ah ah ah)\" subtitle: SNEP \"CKAY | LOVE NWANTITI\" Diamant 25/11/2021, ZPAV \"CKAY | LOVE NWANTITI\" platynowe date_2, NVPI \"Ckay | love nwantiti\" (reconciled to this release in the 23 Sep sweep); the site already holds FR Diamond and PL Platinum ×4. Found by the step-2 live dry run, 24 Sep 2026; Paul to confirm", "on": "2026-09-24" }
+  ],
   "manualChecks": [
     {
       "id": "uk",

@@ -159,7 +159,7 @@ export function createHttp(opts = {}) {
     }
   }
 
-  async function saveRaw(meta, bodyText, headers) {
+  async function saveRaw(meta, bodyBytes, headers) {
     if (!saveRawDir) return;
     await mkdir(saveRawDir, { recursive: true });
     const base = `${String(++rawSeq).padStart(3, "0")}-${safeName(`${meta.method}-${meta.url.replace(/^https?:\/\//, "")}`)}`;
@@ -169,7 +169,7 @@ export function createHttp(opts = {}) {
       .filter(([k]) => k.toLowerCase() !== "set-cookie")
       .map(([k, v]) => `${k}: ${v}`)
       .join("\n");
-    await writeFile(path.join(saveRawDir, `${base}.body`), bodyText);
+    await writeFile(path.join(saveRawDir, `${base}.body`), bodyBytes);
     await writeFile(
       path.join(saveRawDir, `${base}.meta.txt`),
       `${meta.method} ${meta.url}\n${meta.reqBody ? `body: ${meta.reqBody}\n` : ""}status: ${meta.status}\nfetched: ${new Date(now()).toISOString()}\n\n${hdrs}\n`
@@ -193,7 +193,7 @@ export function createHttp(opts = {}) {
       res.headers.forEach((v, k) => {
         hdrs[k] = v;
       });
-      return { status: res.status, headers: hdrs, body: text };
+      return { status: res.status, headers: hdrs, body: text, bytes: buf };
     } catch (e) {
       if (e?.name === "AbortError") return { error: "timeout", detail: `no response in ${timeoutMs / 1000}s` };
       return { error: "network", detail: String(e?.cause?.code ?? e?.message ?? e) };
@@ -268,9 +268,14 @@ export function createHttp(opts = {}) {
       adapterDeadline = Infinity,
       encoding,
       adapterId = null,
+      repeat = 0,
     } = req;
     checkHeaders(headers);
-    const key = `${method} ${url} ${body ?? ""}`;
+    // `repeat` asks for a deliberate re-read of the same URL (IFPI Danmark's
+    // pager shuffles rows that share a date between requests, so the adapter
+    // reads the same pages more than once and unions them). Anything else
+    // shares one in-flight request per (method, url, body).
+    const key = `${method} ${url} ${body ?? ""}${repeat ? `#${repeat}` : ""}`;
     if (memo.has(key)) return memo.get(key);
     const p = (async () => {
       const host = hostOf(url);
@@ -291,7 +296,8 @@ export function createHttp(opts = {}) {
           log.push({ adapter: adapterId, host, method, url: current, status: r.status ?? null, kind: r.error ?? "http", ms: now() - t0, at: new Date(t0).toISOString(), attempt });
           return r;
         });
-        if (!res.error) await saveRaw({ method, url: current, reqBody: body, status: res.status }, res.body, res.headers);
+        // The bytes as served (a latin-1 page stays latin-1 on disk).
+        if (!res.error) await saveRaw({ method, url: current, reqBody: body, status: res.status }, res.bytes ?? res.body, res.headers);
 
         // Redirects: follow on the same host (≤ 3); off-host is a different page.
         if (!res.error && res.status >= 300 && res.status < 400 && res.headers.location) {
@@ -341,6 +347,7 @@ export function createHttp(opts = {}) {
  */
 export function createFixtureHttp({ root, routes, robotsDir, failUrls = [] }) {
   const log = [];
+  const seen = new Map(); // (method, url, body) → how many times asked
   const readBody = async (file, encoding) => {
     const full = path.join(root, file);
     let buf = await readFile(full);
@@ -370,9 +377,17 @@ export function createFixtureHttp({ root, routes, robotsDir, failUrls = [] }) {
     const rv = await robotsCheck(url);
     if (!rv.allowed) return { ok: false, kind: "robots", detail: `robots.txt disallows ${new URL(url).pathname}` };
     if (failUrls.some((f) => url.includes(f))) return { ok: false, kind: "network", detail: "offline: this fixture fetch is set to fail" };
-    const route = routes.find((r) => (r.method ?? "GET") === method && r.match(url, body ?? ""));
+    // A URL read more than once live (a deliberate re-read) replays its
+    // responses in order: the nth request gets the route saved as nth.
+    const k = `${method} ${url} ${body ?? ""}`;
+    const nth = (seen.get(k) ?? 0) + 1;
+    seen.set(k, nth);
+    const fits = routes.filter((r) => (r.method ?? "GET") === method && r.match(url, body ?? ""));
+    const route = fits.find((r) => (r.nth ?? 1) === nth) ?? fits.find((r) => r.nth == null) ?? fits[0];
     if (!route) return { ok: false, kind: "network", detail: `offline: no fixture for ${method} ${url}` };
-    const text = await readBody(route.file, route.encoding ?? encoding);
+    // The adapter's own encoding wins, as it does live; the saved route's is
+    // only a fallback (PROVENANCE records it for a reader of the file).
+    const text = await readBody(route.file, encoding ?? route.encoding);
     let hdrs = route.headers ?? {};
     if (route.headersFile) {
       hdrs = {};
