@@ -51,6 +51,18 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-09-24",
+    category: "Charts",
+    // Billboard's Luxembourg Songs page, week of 26 Sep 2026: "LW 1 PEAK 1 WEEKS
+    // AT NO. 1 12 WEEKS ON CHART 17". Spotify Switzerland daily chart dated
+    // 22 Sep 2026 via kworb's mirror: Dai Dai No. 1 (x104); all-time list: Ordinary
+    // 185, All I Want for Christmas Is You 135, Dance Monkey 133, Shape of You 111,
+    // Dai Dai 104, rockstar 103 — fifth either way, whether or not pre-2017 runs
+    // (Lean On, One Dance) are counted. Read 24 Sep 2026.
+    text: "“Dai Dai” spends a 12th week at No. 1 on Billboard's Luxembourg Songs chart (issue of 26 September, 17 weeks on it), and 104 days atop Spotify Switzerland's daily chart through 22 September — the fifth-longest run there, past Post Malone's “rockstar” (103).",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-09-24",
     category: "Certifications",
     // RIAA's verified @riaa_awards Instagram, 23 Sep 2026 (post DdpKVUjjFVf,
     // slide 3): "RIAA LATIN PLATINUM 6X". Its database still read 2X Platino
