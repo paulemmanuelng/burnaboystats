@@ -199,7 +199,7 @@ export default function PressPage() {
             A certification is a floor, not a sale: the release passed that body&apos;s
             threshold for the tier, and certified units price each plaque at that threshold.
             The units_note column flags each figure that rests on more than the body prints
-            today — a rule for multiples it never wrote, a stream-to-unit ratio it never
+            today — a rule for multiples it never wrote or no longer runs, a stream-to-unit ratio it never
             published, a level or rate from an older rulebook — or is today&apos;s level at a
             body that has since raised it, in the words the{" "}
             <Link href="/compare" className={styles.link}>comparison tool</Link> prints beside

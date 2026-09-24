@@ -340,9 +340,10 @@ describe("units_note carries the notes /compare prints beside the same figure", 
 
   /** What the ENGINE flags, read off its own lines: price each release alone,
    *  Nigeria and features in — /compare's song-against-song view, where a line
-   *  is one plaque — and collect the lines carrying each mark. Nothing here
-   *  calls the helper the CSV calls; a disagreement between the two paths is
-   *  exactly what this is for. */
+   *  is one plaque — and collect the lines carrying each mark. priceArtist
+   *  and the CSV share plaqueNotes, so this proves the CSV says what /compare
+   *  says; the real-row checks below are what catch a bug in plaqueNotes
+   *  itself. */
   const engine = (() => {
     const sets = Object.fromEntries(PLAQUE_NOTE_ORDER.map((k) => [k, new Set<string>()])) as Record<NoteKey, Set<string>>;
     for (const a of inFile)
