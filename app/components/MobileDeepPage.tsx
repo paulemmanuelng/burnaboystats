@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import type { StaticImageData } from "next/image";
 import styles from "./mobileDeepPage.module.css";
 import ScrollRail from "./ScrollRail";
 import MobileMenuButton from "./MobileMenuButton";
@@ -19,7 +20,8 @@ import GatedImage from "./GatedImage";
 
 /** A picture above the row. The list is still one list; the rows have images. */
 export interface DeepTile {
-  src: string;
+  /** A path, or a static import (the cars — see app/lib/carImageAssets.ts). */
+  src: string | StaticImageData;
   alt: string;
   width: number;
   height: number;

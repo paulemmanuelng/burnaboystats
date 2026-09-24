@@ -1,4 +1,4 @@
-import { getImageProps } from "next/image";
+import { getImageProps, type StaticImageData } from "next/image";
 import { BLANK_PIXEL } from "../lib/blankPixel";
 
 /**
@@ -35,7 +35,9 @@ export default function GatedImage({
   eager = false,
   className,
 }: {
-  src: string;
+  /** A path, or a static import — the car tiles are imports so their URL
+   *  outlives a deploy (app/lib/carImageAssets.ts). */
+  src: string | StaticImageData;
   alt: string;
   width: number;
   height: number;

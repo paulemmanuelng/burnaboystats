@@ -10,7 +10,10 @@ The SLS AMG (car 16) was built with:
 
 The first form writes public/cars/<slug>.png (898 x 660 RGBA) and
 public/cars/<slug>-tile.jpg (640 x 400), then prints the numbers cars.ts
-needs: the car's width, its ground line and a palette.
+needs: the car's width, its ground line and a palette. A new car also needs
+its two files imported in app/lib/carImageAssets.ts (since 23 Sep 2026 the
+pages paint from those imports, so the URL survives a deploy); the last line
+printed says so, and tests/carImageAssets.test.tsx fails until it is done.
 
 WHY THIS FILE EXISTS. The fifteen heroes were cut out and grounded by a
 pipeline that was never committed (630568aa, 8b92e291 describe it; neither
@@ -353,6 +356,7 @@ def build(cutout_path, slug, width, hue_band, sigma=0.0):
     print(f"groundLine {ground_line(alpha8)}")
     print(f"palette   {palette(cutout, hue_band)}")
     print(f"detail    {detail(hero):.2f} (fifteen: median 5.32, range 2.62-7.18)")
+    print(f"imports   a new car: import {slug}-tile.jpg and {slug}.png in app/lib/carImageAssets.ts")
 
 
 def check(slug):
