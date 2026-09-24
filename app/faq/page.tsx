@@ -121,7 +121,7 @@ export const faqs: { g: GroupId; q: string; a: string }[] = [
   {
     g: "worldcup",
     q: "What records has Burna Boy set for African music?",
-    a: `Burna Boy was the first African artist to headline a FIFA World Cup opening ceremony and the first to perform at a World Cup Final halftime show (both 2026), the first to sell out a stadium in the United States (Citi Field, 2023) and to headline a UK stadium (London Stadium, 2023), and the first African artist to surpass both 1 billion and 2 billion UK streams.`,
+    a: `Burna Boy was the first African artist to headline a FIFA World Cup opening ceremony and the first to perform at a World Cup Final halftime show (both 2026), the first to sell out a stadium in the United States (Citi Field, 2023) and to headline a UK stadium (London Stadium, 2023), and the first African artist to pass 2 billion UK streams.`,
   },
   {
     g: "cars",
