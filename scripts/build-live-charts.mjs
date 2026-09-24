@@ -29,6 +29,7 @@ import {
   extractCountryChart,
   mergeChartPlacements,
   titleKey,
+  servesCoverArt,
 } from "./stats-lib.mjs";
 import { liveArtist, LIVE_ARTISTS } from "./live-artists.mjs";
 
@@ -416,7 +417,11 @@ for (const w of work.values()) {
             }
           }
 
-          if (hit) {
+          // A hit whose sleeve Deezer no longer serves is no hit: its URL
+          // answers 302 to the grey placeholder, and the carry-forward above
+          // would then keep that grey square on every run. Try the next query,
+          // or leave the monogram.
+          if (hit && (await servesCoverArt(art(hit), { headers: UA }))) {
             r.cover = art(hit);
             found++;
             break;

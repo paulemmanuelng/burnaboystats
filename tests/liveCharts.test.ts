@@ -8,6 +8,8 @@ import {
   extractCountryChart,
   mergeChartPlacements,
   titleKey,
+  servesCoverArt,
+  DEEZER_NO_COVER,
 } from "../scripts/stats-lib.mjs";
 import {
   liveCharts,
@@ -385,5 +387,66 @@ describe("no release is listed twice under a title variant", () => {
       else seen.set(key, r.title);
     }
     expect(clashes, `split releases: ${clashes.join(", ")}`).toEqual([]);
+  });
+});
+
+// build-live-charts.mjs takes a Deezer search hit's `cover_big` only if the CDN
+// actually serves it. Wizkid's "Superstar" shipped with a hash Deezer had
+// dropped: the URL answers 302 to the empty-string MD5, which renders a grey
+// placeholder, and the builder's carry-forward kept it on every run.
+describe("the live-charts cover check", () => {
+  // The URL that shipped on Wizkid's Superstar row until 24 Sep 2026, and the
+  // redirect Deezer's CDN gave for it.
+  const SHIPPED = "https://cdn-images.dzcdn.net/images/cover/6ddb34c26029baeb2bd73c71bb8d839f/500x500-000000-80-0-0.jpg";
+  const PLACEHOLDER = `https://cdn-images.dzcdn.net/images/cover/${DEEZER_NO_COVER}/500x500-000000-80-0-0.jpg`;
+  const REAL = "https://cdn-images.dzcdn.net/images/cover/5d6f7e168ec16377ae3bfa88dbf1ebb5/500x500-000000-80-0-0.jpg";
+
+  type Answer = { status: number; bytes?: number } | Error;
+  /** A fetch that answers in turn, and records how it was asked. */
+  function cdn(...answers: Answer[]) {
+    const calls: { url: string; redirect?: string }[] = [];
+    const fetchImpl = async (url: string, init: { redirect?: string } = {}) => {
+      calls.push({ url, redirect: init.redirect });
+      const a = answers[Math.min(calls.length - 1, answers.length - 1)];
+      if (a instanceof Error) throw a;
+      return {
+        status: a.status,
+        arrayBuffer: async () => new ArrayBuffer(a.bytes ?? 0),
+      };
+    };
+    return { fetchImpl, calls };
+  }
+
+  it("refuses a sleeve that redirects to the placeholder, asking without following redirects", async () => {
+    const { fetchImpl, calls } = cdn({ status: 302 });
+    expect(await servesCoverArt(SHIPPED, { fetchImpl, retryMs: 0 })).toBe(false);
+    expect(calls.length).toBe(2);
+    expect(calls.every((c) => c.redirect === "manual")).toBe(true);
+  });
+
+  it("refuses the placeholder itself without asking", async () => {
+    const { fetchImpl, calls } = cdn({ status: 200, bytes: 6602 });
+    expect(await servesCoverArt(PLACEHOLDER, { fetchImpl, retryMs: 0 })).toBe(false);
+    expect(calls.length).toBe(0);
+  });
+
+  it("refuses a 200 too small to be artwork, and an unreachable CDN", async () => {
+    expect(await servesCoverArt(REAL, { ...cdn({ status: 200, bytes: 900 }), retryMs: 0 })).toBe(false);
+    expect(await servesCoverArt(REAL, { ...cdn(new Error("socket hang up")), retryMs: 0 })).toBe(false);
+    expect(await servesCoverArt("", { ...cdn({ status: 200, bytes: 54_669 }), retryMs: 0 })).toBe(false);
+  });
+
+  it("accepts real artwork, including after one 302 under load", async () => {
+    expect(await servesCoverArt(REAL, { ...cdn({ status: 200, bytes: 54_669 }), retryMs: 0 })).toBe(true);
+    const flaky = cdn({ status: 302 }, { status: 200, bytes: 54_669 });
+    expect(await servesCoverArt(REAL, { ...flaky, retryMs: 0 })).toBe(true);
+    expect(flaky.calls.length).toBe(2);
+  });
+
+  it("is what the builder calls before it keeps a hit", () => {
+    const src = readFileSync("scripts/build-live-charts.mjs", "utf8");
+    expect(src).toMatch(/if \(hit && \(await servesCoverArt\(art\(hit\)/);
+    // The line that shipped, which kept any hit's cover on trust.
+    expect(src).not.toMatch(/^\s*if \(hit\) \{\s*$/m);
   });
 });

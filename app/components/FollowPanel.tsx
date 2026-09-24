@@ -32,8 +32,8 @@ export default function FollowPanel({ subscribeEnabled = false }: { subscribeEna
   const { installed, isIOS } = env;
 
   useEffect(() => {
-    // Register the service worker (it caches nothing — it exists so the site is
-    // installable; see public/sw.js).
+    // Register the service worker (it caches nothing, and clears any cache an
+    // earlier version left; see public/sw.js).
     if ("serviceWorker" in navigator) {
       navigator.serviceWorker.register("/sw.js").catch(() => {});
     }

@@ -58,13 +58,19 @@ export default function TodaysNumber() {
           </div>
         </div>
         <Link href="/dai-dai" className={styles.cover}>
-          {/* eslint-disable-next-line @next/next/no-img-element -- remote Spotify CDN art, as elsewhere on the site */}
-          <img
-            src={spotifyImage(DAI_DAI_COVER, 300)}
-            alt=""
-            width={104}
-            height={104}
-          />
+          {/* The <picture> is there for React, not the browser: an eager <img>
+              outside one becomes a preload hint in the RSC payload, so every
+              client navigation that prefetched "/" downloaded this cover on
+              pages that never show it (/faq logged "preloaded but not used").
+              display: contents leaves the box and `.cover img` as they were. */}
+          <picture style={{ display: "contents" }}>
+            <img
+              src={spotifyImage(DAI_DAI_COVER, 300)}
+              alt=""
+              width={104}
+              height={104}
+            />
+          </picture>
           <span className={styles.coverLabel}>{title} ↗</span>
         </Link>
       </div>

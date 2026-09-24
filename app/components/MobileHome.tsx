@@ -164,8 +164,12 @@ export default function MobileHome() {
         <div className={styles.figureRow}>
           <div className={styles.figure}>{live.countries}</div>
           <Link href="/dai-dai" className={styles.cover}>
-            {/* eslint-disable-next-line @next/next/no-img-element -- remote Spotify CDN art */}
-            <img src={spotifyImage(DAI_DAI_COVER, 300)} alt="" width={88} height={88} />
+            {/* In a <picture> for the same reason as TodaysNumber's cover: an
+                eager <img> outside one is a preload hint in "/"'s RSC payload,
+                fetched by every page that prefetched "/". */}
+            <picture style={{ display: "contents" }}>
+              <img src={spotifyImage(DAI_DAI_COVER, 300)} alt="" width={88} height={88} />
+            </picture>
             <span className={styles.coverLabel}>{live.title ?? "Dai Dai"} ↗</span>
           </Link>
         </div>

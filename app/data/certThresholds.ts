@@ -518,7 +518,10 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
     vintage:
       "ČNS IFPI's Slovak stream thresholds have not moved, but its download equivalence fell from 240 to 217 subscription streams on 9 March 2026, with two unarchived revisions between, so the same threshold is worth more units today than in 2025. Priced at today's ratio. Until 2022 the Slovak awards ran on euro revenue — a different measure.",
     body: "ČNS IFPI — Česká národní skupina IFPI (which administers the Slovak awards; SNS IFPI / ifpi.sk is the Slovak national group)",
-    sourceUrl: "https://web.archive.org/web/20260521153213id_/https://ifpicr.cz/files/page/4b/9c/4b9c16f09271779fffe0975269b85eed/Pravidla-pre-udelovanie-ocenenia-od-9.3.2026-SR.pdf",
+    // The file Wayback captured on 21 May 2026 is "oceneni…-SR-2084.pdf" (the
+    // same 386,006-byte PDF ifpicr.cz serves today, re-read 24 Sep 2026). The
+    // "ocenenia…-SR.pdf" spelling cited until then is a 404 on both.
+    sourceUrl: "https://web.archive.org/web/20260521153213id_/https://ifpicr.cz/files/page/4b/9c/4b9c16f09271779fffe0975269b85eed/Pravidla-pre-udelovanie-oceneni-od-9.3.2026-SR-2084.pdf",
     single: { silver: null, gold: 3_917, platinum: 7_834, diamond: null },
     singleRaw: { gold: 850_000, platinum: 1_700_000 },
     album: { silver: null, gold: 8_064, platinum: 16_129, diamond: null },

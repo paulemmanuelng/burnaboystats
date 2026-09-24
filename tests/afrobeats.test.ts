@@ -733,15 +733,29 @@ describe("cover art", () => {
     // the redirect target gives it away. No replacement art exists on Deezer or
     // Apple (Apple has only a DJ-mix compilation sleeve), so the field was
     // removed and the monogram fallback renders instead.
-    const DEAD = "fbf2218aa7d8262098c19097bd10cb21";
+    //
+    // Omah Lay's "You" went the same way: 6622ab10… redirected to the
+    // placeholder at 500px on 24 Sep 2026, a grey square on /afrobeats/omah-lay.
+    const DEAD = ["fbf2218aa7d8262098c19097bd10cb21", "6622ab10c58f3ac69db8ff4a1da0fad1"];
     const offenders: string[] = [];
     for (const a of afrobeatsArtists) {
       for (const r of [...a.releases, ...a.charts]) {
         const c = (r as { cover?: string }).cover;
-        if (c?.includes(DEAD)) offenders.push(`${a.slug}: ${r.title}`);
+        if (DEAD.some((h) => c?.includes(h))) offenders.push(`${a.slug}: ${r.title}`);
       }
     }
     expect(offenders, "these covers render as a blank square").toEqual([]);
+  });
+
+  it("gives Omah Lay's You the single's own sleeve", () => {
+    // Deezer carries the February 2020 single on its own (album 129095142,
+    // KeyQaad), with the same artwork the dead hash used to serve. Read 24 Sep
+    // 2026: 200 at every size, not the placeholder.
+    const omah = afrobeatsArtists.find((a) => a.slug === "omah-lay")!;
+    const you = omah.releases.find((r) => r.title === "You");
+    expect(you?.cover).toBe(
+      "https://cdn-images.dzcdn.net/images/cover/5d6f7e168ec16377ae3bfa88dbf1ebb5/500x500-000000-80-0-0.jpg"
+    );
   });
 
   it("gives Ama the FUJI MOTO sleeve, and never MY HEALER's", () => {

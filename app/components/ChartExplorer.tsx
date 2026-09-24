@@ -263,13 +263,15 @@ export default function ChartExplorer({
 
   const sortedRows = useMemo(() => {
     const dir = sortDir === "asc" ? 1 : -1;
+    // "en", as in chartOrder.ts: the table's order should not depend on the
+    // reader's browser locale any more than the list view's does.
     return [...flatRows].sort((a, b) => {
       let cmp =
-        sortKey === "song" ? a.song.localeCompare(b.song)
-        : sortKey === "country" ? countries[a.code].name.localeCompare(countries[b.code].name)
+        sortKey === "song" ? a.song.localeCompare(b.song, "en")
+        : sortKey === "country" ? countries[a.code].name.localeCompare(countries[b.code].name, "en")
         : sortKey === "year" ? (a.year ?? 0) - (b.year ?? 0)
         : a.peak - b.peak;
-      if (cmp === 0) cmp = a.peak - b.peak || a.song.localeCompare(b.song);
+      if (cmp === 0) cmp = a.peak - b.peak || a.song.localeCompare(b.song, "en");
       return cmp * dir;
     });
   }, [flatRows, sortKey, sortDir, countries]);

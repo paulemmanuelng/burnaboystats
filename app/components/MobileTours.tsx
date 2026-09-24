@@ -116,7 +116,10 @@ export default function MobileTours({
               </div>
               <div className={styles.upcomingCity}>
                 {u.city}, {u.country}
-                {u.cap ? ` · ${u.cap.toLocaleString()} cap` : ""}
+                {/* A named locale: this is a client component, and a bare
+                    toLocaleString() printed "80.000" in a German browser
+                    against the server's "80,000" — React #418. */}
+                {u.cap ? ` · ${u.cap.toLocaleString("en-US")} cap` : ""}
               </div>
               <p className={styles.upcomingText}>{u.note}</p>
               <p className={styles.upcomingSource}>{u.source}</p>

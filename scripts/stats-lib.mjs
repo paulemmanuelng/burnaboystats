@@ -823,6 +823,35 @@ export function mergeChartPlacements(releases, rows) {
   return releases.sort((a, b) => reach(b) - reach(a));
 }
 
+// ── Cover art ──────────────────────────────────────────────────────────────
+// d41d8cd98f00b204e9800998ecf8427e is the MD5 of the empty string, and Deezer
+// serves it as "no cover": a release whose sleeve Deezer has dropped answers
+// 302 TO that hash, and the redirect lands on a grey placeholder. Following
+// redirects hides it, so the check asks without following them and takes only
+// a 200 carrying a real image's bytes. The same rule as cover-fill.mjs's
+// coverUrl. Wizkid's "Superstar" row on /afrobeats/wizkid/live was a grey
+// square until 24 Sep 2026: build-live-charts.mjs took `cover_big` on trust,
+// and its carry-forward then kept the dead hash on every run.
+export const DEEZER_NO_COVER = "d41d8cd98f00b204e9800998ecf8427e";
+
+/** Whether `url` serves real artwork. Two tries, because one 302 can be the
+ *  CDN under load rather than a missing sleeve (cover-fill.mjs saw exactly
+ *  that). Never throws: artwork is optional, and an unreadable answer means
+ *  "no art", which leaves the monogram. */
+export async function servesCoverArt(url, { fetchImpl = fetch, headers = {}, retryMs = 1000 } = {}) {
+  if (typeof url !== "string" || !url || url.includes(DEEZER_NO_COVER)) return false;
+  for (const attempt of [1, 2]) {
+    try {
+      const res = await fetchImpl(url, { headers, redirect: "manual" });
+      if (res.status === 200 && (await res.arrayBuffer()).byteLength >= 5000) return true;
+    } catch {
+      /* retried below */
+    }
+    if (attempt === 1 && retryMs) await new Promise((ok) => setTimeout(ok, retryMs));
+  }
+  return false;
+}
+
 // ── Certification watches ──────────────────────────────────────────────────
 // A cert watch polls a register's own search endpoint and reports when a row
 // for the watched release appears. `html` is the fragment the register

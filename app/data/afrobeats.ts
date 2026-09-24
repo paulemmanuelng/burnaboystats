@@ -1726,7 +1726,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "My Bebe", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/ed64774f56cf5d0f3fcb8e25c9fe39f6/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Safe Haven", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/e51306cd0211b33a043b1fef073026e5/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Temptations", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/e51306cd0211b33a043b1fef073026e5/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
-      { title: "You", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/6622ab10c58f3ac69db8ff4a1da0fad1/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
+      { title: "You", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/5d6f7e168ec16377ae3bfa88dbf1ebb5/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Do Not Disturb", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/1b2bca57a7cfd3a6b2435783d6e810f1/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Free My Mind", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/f29cb71b391aa82400f19692ea6374d4/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Hello Brother", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/ef0cdba98ec2ded511a923054520c656/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
