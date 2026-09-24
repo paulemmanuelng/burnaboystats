@@ -4,6 +4,7 @@ import { join } from "node:path";
 import { allFirsts } from "../app/data/firsts";
 import { honours } from "../app/data/awards";
 import { timelineEras } from "../app/data/timeline";
+import { updates } from "../app/data/updates";
 
 // Two UK claims the site printed wrong, corrected 24 Sep 2026 (RETRACTIONS #13):
 //
@@ -25,20 +26,30 @@ const read = (p: string) => readFileSync(join(__dirname, "..", p), "utf8");
 describe("UK streams and UK No. 1 firsts", () => {
   it("claims no 1-billion UK streams first anywhere it was printed", () => {
     for (const f of allFirsts) expect(`${f.title} ${f.text}`).not.toMatch(ONE_BILLION_FIRST);
-    expect(read("app/faq/page.tsx")).not.toMatch(/surpass both 1 billion and 2 billion/);
+    for (const h of honours) expect(h.note ?? "").not.toMatch(ONE_BILLION_FIRST);
+    for (const u of updates) expect(u.text).not.toMatch(ONE_BILLION_FIRST);
+    const faq = read("app/faq/page.tsx");
+    expect(faq).not.toMatch(ONE_BILLION_FIRST);
+    expect(faq).not.toMatch(/both 1 billion and 2 billion/);
   });
 
-  it("dates both BRIT Billion plaques", () => {
+  it("dates each BRIT Billion plaque on its own row", () => {
     const brits = honours.filter((h) => h.title === "BRIT Billion Award");
     expect(brits).toHaveLength(2);
-    expect(brits.map((h) => h.note).join(" ")).toMatch(/29 June 2024/);
-    expect(brits.map((h) => h.note).join(" ")).toMatch(/15 July 2024/);
+    const one = brits.find((h) => /1 billion/.test(h.note ?? ""));
+    const two = brits.find((h) => /2 billion/.test(h.note ?? ""));
+    expect(one?.note).toMatch(/London Stadium.*29 June 2024/);
+    expect(two?.note).toMatch(/KOKO Camden.*15 July 2024/);
   });
 
-  it("puts the 'Own It' No. 1 in January 2020", () => {
+  it("puts the 'Own It' No. 1 in January 2020, in the 2020–2021 era", () => {
     for (const f of allFirsts) expect(f.text).not.toMatch(OWN_IT_2019);
-    const ownIt = timelineEras.flatMap((e) => e.entries).filter((e) => /Own It/.test(e.title));
-    expect(ownIt.map((e) => e.date)).toEqual(["Jan 2020"]);
+    const era = timelineEras.find((e) => e.entries.some((x) => /Own It/.test(x.title)));
+    expect(era?.span).toBe("2020 – 2021");
+    const at = era!.entries.findIndex((x) => /Own It/.test(x.title));
+    expect(era!.entries[at].date).toBe("Jan 2020");
+    expect(era!.entries.findIndex((x) => x.date === "Aug 2020")).toBeGreaterThan(at);
+    expect(timelineEras.flatMap((e) => e.entries).filter((x) => /Own It/.test(x.title))).toHaveLength(1);
   });
 
   it("negative controls: the shipped strings fail these checks", () => {
@@ -46,5 +57,8 @@ describe("UK streams and UK No. 1 firsts", () => {
     expect(
       "“Own It” (with Stormzy & Ed Sheeran) topped the UK Singles Chart in 2019, and I Told Them… topped the UK Albums Chart in 2023"
     ).toMatch(OWN_IT_2019);
+    expect(
+      "and the first African artist to surpass both 1 billion and 2 billion UK streams."
+    ).toMatch(ONE_BILLION_FIRST);
   });
 });

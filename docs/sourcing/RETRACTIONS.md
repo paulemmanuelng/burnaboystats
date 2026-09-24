@@ -388,8 +388,10 @@ first African artist to surpass both 1 billion and 2 billion UK streams".
 Billion" (Paul's choice, 24 Sep 2026); the 2-billion first stands, dated.**
 
 **What the body says.** The BPI/BRITs BRIT Billion list (brits.co.uk/brit-billion,
-Wayback captures of 4, 17 and 18 Jul 2024 and 12 Jul 2026) has one Burna Boy
-entry, "Date Awarded: 15/07/2024" — the KOKO Camden show for five years of
+Wayback captures of 18 Jul 2024 and 12 Jul 2026) has one Burna Boy entry, "Date
+Awarded: 15/07/2024". The captures of 4 Jul and 17 Jul 2024 (04:23 UTC) carry no
+Burna Boy entry at all — so the 29 June London Stadium plaque never got one, and
+the entry that appeared on 17–18 July is dated to the KOKO Camden show for five years of
 African Giant, where a special trophy printed "2,000,000,000 UK STREAMS" was
 presented. The award has one published level, 1 billion (a Gold version at 10
 billion is Ed Sheeran's), so the 2-billion award was a one-off; "the first

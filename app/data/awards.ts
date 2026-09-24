@@ -746,8 +746,8 @@ export const honours: Honour[] = [
     org: "BPI · United Kingdom",
     year: 2024,
     // Press-dated: Music In Africa (1 Jul 2024) and OkayAfrica (2 Jul 2024).
-    // The BPI/BRITs list's one Burna Boy entry, 15/07/2024, is the 2-billion
-    // award below, not this one.
+    // The BPI/BRITs list's one Burna Boy entry is dated 15/07/2024, the KOKO
+    // night of the 2-billion award below; this plaque has no entry of its own.
     note: "For surpassing 1 billion UK streams — presented at his London Stadium show, 29 June 2024.",
   },
   {

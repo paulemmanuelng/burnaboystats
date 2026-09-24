@@ -118,7 +118,8 @@ export const firstGroups: FirstGroup[] = [
       // the KOKO Camden show for five years of African Giant, where the special
       // 2-billion trophy ("2,000,000,000 UK STREAMS") was presented. The BPI has
       // no 2-billion tier; "first African artist to reach this milestone" is
-      // @chartdata's (17 Jul 2024), not the BPI's. Read 24 Sep 2026.
+      // @chartdata's (17 Jul 2024), not the BPI's. "Backstage": Channels TV,
+      // 16 Jul 2024. Read 24 Sep 2026.
       { year: "2024", title: "First African artist to surpass 2 billion UK streams", text: "Presented with a special BRIT Billion award for over 2 billion UK streams, backstage at KOKO Camden on 15 July 2024 — the first African artist to reach the milestone." },
       // Not a first, by Paul's choice (24 Sep 2026). "First African artist to
       // surpass 1 billion UK streams (2024)" could not stand as dated: the BPI
@@ -130,7 +131,7 @@ export const firstGroups: FirstGroup[] = [
       // Music Week on 6 Sep 2023 that Burna had over two billion UK streams (a
       // label figure), and his 1-billion plaque came at London Stadium on
       // 29 Jun 2024 (Music In Africa, 1 Jul 2024; OkayAfrica, 2 Jul 2024).
-      { year: "2024", title: "Past 2 billion UK streams before his first BRIT Billion", text: "His label, Atlantic Records UK, put his UK total at over 2 billion streams in September 2023 — nearly ten months before his first BRIT Billion plaque, for 1 billion, was presented at his London Stadium show on 29 June 2024. The BPI presents the award when a label chooses, not on the day the mark is crossed." },
+      { year: "2024", title: "Past 2 billion UK streams before his first BRIT Billion", text: "His label, Atlantic Records UK, put his UK total at over 2 billion streams in September 2023 — nearly ten months before his first BRIT Billion plaque, for 1 billion, was presented at his London Stadium show on 29 June 2024. A BRIT Billion is dated to its presentation, not to the day the mark is crossed." },
       { year: "2022", title: "Highest-charting Nigerian album in Billboard 200 history", text: "Love, Damini debuted at No. 14 — passing the previous Nigerian best, Wizkid's Made in Lagos (No. 28)." },
       { year: "2025", title: "First Nigerian artist to chart five albums on the Billboard 200", text: "African Giant, Twice as Tall, Love, Damini, I Told Them… and No Sign of Weakness." },
       { year: "2024", title: "First African artist with two albums over 1 billion Spotify streams", text: "Love, Damini and African Giant have each crossed a billion streams — and in August 2026 Love, Damini passed 1.7 billion, his first album to that mark and only the second Nigerian album ever to reach it." },
