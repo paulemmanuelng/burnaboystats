@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { cardUrl } from "../lib/og-image";
 import { OgLockup, ogFonts } from "../lib/og-lockup";
-import { daiDaiOgId, ogStats as stats, DAYS_AT_NO1 } from "./ogId";
+import { daiDaiOgId, ogStats as stats, DAYS_AT_NO1, DAI_DAI_OG_PILL } from "./ogId";
 
 // A rich, data-driven share card (like Polymarket's) — cover art + the headline
 // Dai Dai stats + the song/halftime hook + the link. Auto-used as the page's
@@ -170,7 +170,7 @@ export default function Image() {
               padding: "10px 20px",
             }}
           >
-            Live · World Cup Final · 19 July
+            {DAI_DAI_OG_PILL}
           </div>
         </div>
       </div>

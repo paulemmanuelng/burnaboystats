@@ -34,8 +34,16 @@ export const ogStats = [
   { v: `${daiDaiCertCount}`, l: "Certs" },
 ];
 
+/** The pill in the card's footer. The halftime show is over, so it says the
+ *  song was performed there; it read "Live · World Cup Final · 19 July" until
+ *  24 Sep 2026. It is in the id below for the same reason cardUrl is. */
+export const DAI_DAI_OG_PILL = "Performed · World Cup Final · 19 July";
+
 // cardUrl is in the id because it is printed ON the card, and because this card
 // has been advertising a dead /DAI-DAI since it shipped. An id that does not move
 // keeps serving the picture a scraper already cached, so the correction would
 // never reach the previews that are wrong — which is the entire point of it.
-export const daiDaiOgId = ogId([...ogStats.map((s) => s.v), DAYS_AT_NO1, cardUrl("/dai-dai")].join("-"));
+// The pill joined it on 24 Sep 2026: this card re-versions alone for that
+// change, as the Afrobeats and song cards have, rather than through OG_ART,
+// which would re-version all thirty-seven cards for one pill.
+export const daiDaiOgId = ogId([...ogStats.map((s) => s.v), DAYS_AT_NO1, cardUrl("/dai-dai"), DAI_DAI_OG_PILL].join("-"));
