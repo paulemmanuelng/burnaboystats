@@ -196,7 +196,7 @@
   color: var(--dim);
   margin-top: 5px;
 }
-/* His standing on the board, so fourteen boards can be scanned without reading
+/* His standing on the board, so the boards can be scanned without reading
    fourteen lists. A win is filled; a position is outlined. */
 .boardBadge {
   flex: none;

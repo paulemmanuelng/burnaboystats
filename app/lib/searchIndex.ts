@@ -876,8 +876,8 @@ const fold = (s: string) =>
 /**
  * How many docs carry each keyword. A generated doc's keywords are of two
  * kinds: a name for it ("uk" for the United Kingdom, a collaborator) and the
- * category it sits in ("chart" on all 41 charting countries, "award" on all
- * 47 bodies). Only the first says "this doc IS that word".
+ * category it sits in ("chart" on every charting country, "award" on every
+ * awards body). Only the first says "this doc IS that word".
  */
 let keywordDocs: Map<string, number> | null = null;
 function docsWithKeyword(k: string): number {
