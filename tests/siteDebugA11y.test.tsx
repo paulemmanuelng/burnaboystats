@@ -36,6 +36,7 @@ import { metadata as methodologyMeta } from "../app/methodology/page";
 import { metadata as notFoundMeta } from "../app/not-found";
 import { PRE_PAINT_LANG } from "../app/lib/documentLang";
 import { pageMetadata } from "../app/lib/seo";
+import { certCountryCodes, countrySlug, priceCountry } from "../app/lib/certCountry";
 
 /**
  * Accessibility and metadata fixes from the full-site debug of 24 Sep 2026,
@@ -365,7 +366,30 @@ describe("E-09: each dynamic share card has its own alt", () => {
     const pair = (await routes[0][1]()).generateImageMetadata({ params: Promise.resolve({ pair: "burna-boy-vs-wizkid" }) });
     expect((await pair)[0].alt).toBe("Burna Boy vs Wizkid — certified units compared at each body's own threshold");
     const uk = await (await routes[1][1]()).generateImageMetadata({ params: Promise.resolve({ country: "united-kingdom" }) });
-    expect(uk[0].alt).toContain("Certified units in United Kingdom");
+    expect(uk[0].alt).toBe("Certified units in the United Kingdom — every Afrobeats plaque priced at that body's own threshold");
+  });
+
+  it("names a country the way the board's sentences do: the article where it takes one", async () => {
+    const mod = await routes[1][1]();
+    const altFor = async (country: string) => (await mod.generateImageMetadata({ params: Promise.resolve({ country }) }))[0].alt;
+    const names = (where: string) => new RegExp(`^Certified units in ${where} — `);
+    // What E-09's first pass wrote on this branch (commit f74f4ada) before it
+    // reached the live site: the bare name, no article.
+    const firstPass = "Certified units in United Kingdom — every Afrobeats plaque priced at that body's own threshold";
+    expect(firstPass).not.toMatch(names("the United Kingdom"));
+    for (const [slug, where] of [
+      ["united-kingdom", "the United Kingdom"],
+      ["united-states", "the United States"],
+      ["netherlands", "the Netherlands"],
+      ["czech-republic", "the Czech Republic"],
+      ["canada", "Canada"],
+      ["greece", "Greece"],
+    ]) expect(await altFor(slug), slug).toMatch(names(where));
+    // Every card: the alt carries the board's own inSentence, whatever the country.
+    for (const code of certCountryCodes()) {
+      const board = priceCountry(code);
+      expect(await altFor(countrySlug(code)), code).toContain(`Certified units in ${board.inSentence} — `);
+    }
   });
 
   it("negative control: the one alt every pair shipped with", async () => {

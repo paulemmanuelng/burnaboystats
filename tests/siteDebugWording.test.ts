@@ -107,6 +107,37 @@ describe("No. 1 is spelled with a space, and the album with its ellipsis (A-30)"
     }
     expect(allItems.some((r) => r.title === "I Told Them…")).toBe(true);
   });
+
+  // The share cards drew it too. Comments may quote the old spelling; code may not.
+  const CARDS = ["app/music/[song]/opengraph-image.tsx", "app/music/albums/[album]/opengraph-image.tsx", "app/dai-dai/ogId.ts"];
+  const code = (src: string) => src.split("\n").filter((l) => !/^\s*(\/\/|\/\*|\*)/.test(l)).join("\n");
+
+  it("the song, album and Dai Dai share cards print No. 1", () => {
+    // Shipped until 25 Sep 2026: the song and album cards' stat line, and the
+    // Dai Dai card's two stats (dai-dai/ogId.ts).
+    const shipped = [
+      '    best != null && { v: best === 1 ? "No.1" : `#${best}`, l: "Best peak" },',
+      '  { v: "No.1", l: "Global 200" },',
+      '  { v: `${daiDaiNumberOnes}`, l: "Country No.1s" },',
+    ];
+    for (const line of shipped) expect(code(line), line).toMatch(NO_SPACE);
+    for (const f of CARDS) expect(code(read(f)), f).not.toMatch(NO_SPACE);
+  });
+
+  it("the song and album cards fold the peak AS PRINTED into their id, so the new words get a new URL", () => {
+    // Shipped until 25 Sep 2026: the id carried the bare number, so a card whose
+    // only change was "No.1" -> "No. 1" kept the URL every preview had cached.
+    const shippedSongId = 'return [{ id: ogId(`${slug}|${song?.credit ?? ""}|${best}|${countries}|${certCount}|${cardUrl(`/music/${slug}`)}`), alt, size, contentType }];';
+    const shippedAlbumId = "return [{ id: ogId(`${slug}|${best}|${countries}|${certCount}|${cardUrl(`/music/albums/${slug}`)}`), alt, size, contentType }];";
+    const foldsPeak = /id: ogId\(`[^`]*\|\$\{peak\}\|/;
+    expect(shippedSongId).not.toMatch(foldsPeak);
+    expect(shippedAlbumId).not.toMatch(foldsPeak);
+    for (const f of CARDS.slice(0, 2)) {
+      const src = read(f);
+      expect(src, f).toMatch(foldsPeak);
+      expect(src, f).toContain('peak != null && { v: peak, l: "Best peak" }');
+    }
+  });
 });
 
 describe("every certified release is dated (A-32)", () => {

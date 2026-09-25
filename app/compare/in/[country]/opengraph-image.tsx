@@ -22,11 +22,13 @@ export async function generateImageMetadata({ params }: { params: Promise<{ coun
   const { country } = await params;
   // Figures move with every sweep; fold them into the id so a cached preview
   // follows the board rather than freezing at first scrape. The alt names the
-  // market: all 27 cards carried the one generic alt above.
+  // market: all 27 cards carried the one generic alt above. It names it the
+  // way the board's own sentences do (inSentence): "the United Kingdom", not
+  // "United Kingdom". The card's drawn title keeps the bare name.
   const code = countryFromSlug(country);
   return ogVersions(
     cardFor(country),
-    code ? `Certified units in ${priceCountry(code).name} — every Afrobeats plaque priced at that body's own threshold` : alt,
+    code ? `Certified units in ${priceCountry(code).inSentence} — every Afrobeats plaque priced at that body's own threshold` : alt,
   );
 }
 

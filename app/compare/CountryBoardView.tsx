@@ -301,8 +301,10 @@ export function CountryBoardView({
   const levelsLink = t?.sourceUrl && (
     <a href={t.sourceUrl} className={styles.cbRegister} target="_blank" rel="noopener noreferrer">
       {/* "Its own levels" is a promise the link has to keep: a body
-          that publishes none is linked as a register instead. */}
-      {t.single || t.album ? `${board.body}'s own levels` : `${board.body}'s register`}{" "}
+          that publishes none is linked as a register instead. Where the
+          board is priced at someone else's level (`pricedAt`: Greece, at
+          IFPI's June 2013 international table), the link says so. */}
+      {t.pricedAt ?? (t.single || t.album ? `${board.body}'s own levels` : `${board.body}'s register`)}{" "}
       <span aria-hidden="true">↗</span>
     </a>
   );

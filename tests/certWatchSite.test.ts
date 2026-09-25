@@ -67,11 +67,44 @@ describe("buildSiteIndex over the real app/data", () => {
     expect(holdingFor(index, "bnxn", "MOOD", "US", null).release?.title).toBe("Mood (Wizkid ft. BNXN)");
   });
 
+  /**
+   * CHANGED SINCE THE FREEZE. The dump in tests/fixtures/cert-watch was captured
+   * on 24 Sep 2026, before the debug-fix branch corrected three Burna Boy
+   * feature credits in app/data/certifications.ts. A fresh build reads the
+   * corrected credits, so its certification aliases differ from the dump's by
+   * exactly these entries, listed by hand with the item that made each change.
+   *
+   * The fixture is NOT regenerated to absorb them: other watcher tests read
+   * that snapshot as it was (Dai Dai at RIAA Latin 2X, for one). When the
+   * fixture is next re-frozen, these lists must be emptied; the checks below
+   * fail if an entry is already in the dump.
+   */
+  const ALIASES_GAINED_SINCE_FREEZE = [
+    // F-10: Talibans II is credited "Byron Messia ft. Burna Boy"; the dump's
+    // "with Byron Messia" named no lead, so it had no alias.
+    { id: "burna-boy|Byron Messia|Talibans II", item: "F-10" },
+    // A-32: Lenu (Remix) is credited "BNXN ft. Burna Boy"; the dump's row had
+    // no credit at all.
+    { id: "burna-boy|BNXN|Lenu (Remix)", item: "A-32" },
+  ];
+  const ALIASES_RENAMED_SINCE_FREEZE = [
+    // F-10: DJ Tárico keeps his accent. match.mjs folds diacritics, so the
+    // watcher matches the same register rows under either spelling.
+    { from: "burna-boy|DJ Tarico|Yaba Buluku (Remix)", to: "burna-boy|DJ Tárico|Yaba Buluku (Remix)", item: "F-10" },
+  ];
+
   it("decides which aliases match CERTIFICATIONS the same way for a fresh build and the frozen dump", () => {
     const fresh = hydrateSiteIndex(json, LIVE_ARTISTS, config);
     const frozen = hydrateSiteIndex(JSON.parse(fixture("site-index.2026-09-24.json")), LIVE_ARTISTS, config);
     const ids = (l: { artist: string; lead: string; title: string }[]) => l.map((a) => `${a.artist}|${a.lead}|${a.title}`).sort();
-    expect(ids(frozen.certAliases)).toEqual(ids(fresh.certAliases));
+    // The lists describe the dump honestly: nothing "gained" is in it yet,
+    // and every rename starts from a spelling it holds.
+    const frozenIds = ids(frozen.certAliases);
+    for (const g of ALIASES_GAINED_SINCE_FREEZE) expect(frozenIds, g.item).not.toContain(g.id);
+    for (const r of ALIASES_RENAMED_SINCE_FREEZE) expect(frozenIds, r.item).toContain(r.from);
+    const renamed = new Map(ALIASES_RENAMED_SINCE_FREEZE.map((r) => [r.from, r.to]));
+    const expected = [...frozenIds.map((id) => renamed.get(id) ?? id), ...ALIASES_GAINED_SINCE_FREEZE.map((g) => g.id)].sort();
+    expect(expected).toEqual(ids(fresh.certAliases));
     expect(ids(frozen.chartOnlyAliases)).toEqual(ids(fresh.chartOnlyAliases));
     // Every chart-only alias is a chart alias (live-artists.mjs); the site's
     // own feature credits and config's rulings are never gated.

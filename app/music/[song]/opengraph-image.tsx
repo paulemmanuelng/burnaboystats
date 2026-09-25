@@ -21,7 +21,10 @@ function songStats(slug: string) {
   const countries = entries.filter((e) => e.c !== "GLB" && e.c !== "GLBX").length;
   const best = entries.length ? Math.min(...entries.map((e) => e.peak)) : null;
   const certCount = cert ? cert.certs.length : 0;
-  return { song, countries, best, certCount };
+  // The peak exactly as the card prints it. House style is "No. 1", with the
+  // space; the card printed "No.1" until 25 Sep 2026 (A-30).
+  const peak = best == null ? null : best === 1 ? "No. 1" : `#${best}`;
+  return { song, countries, peak, certCount };
 }
 
 export async function generateImageMetadata({
@@ -30,12 +33,16 @@ export async function generateImageMetadata({
   params: Promise<{ song: string }>;
 }) {
   const { song: slug } = await params;
-  const { song, countries, best, certCount } = songStats(slug);
+  const { song, countries, peak, certCount } = songStats(slug);
   // The credit is part of the id: the five credited cards changed text on
   // 17 Sep 2026 without any art change, so they re-version alone (no OG_ART bump).
+  // So is the peak AS PRINTED, not the bare number: "No.1" became "No. 1" on
+  // 25 Sep 2026 (A-30) while every figure stayed put, and an id built from
+  // the number would have kept the old picture in every scraped preview. The
+  // song cards re-version alone again, rather than bumping OG_ART for all.
   // The alt names the song and its credit; every song card carried the one generic alt below.
   const songAlt = song ? `${song.title} by ${song.credit ?? "Burna Boy"} — chart peaks, certifications and stats` : alt;
-  return [{ id: ogId(`${slug}|${song?.credit ?? ""}|${best}|${countries}|${certCount}|${cardUrl(`/music/${slug}`)}`), alt: songAlt, size, contentType }];
+  return [{ id: ogId(`${slug}|${song?.credit ?? ""}|${peak}|${countries}|${certCount}|${cardUrl(`/music/${slug}`)}`), alt: songAlt, size, contentType }];
 }
 
 export const size = { width: 1200, height: 630 };
@@ -46,10 +53,10 @@ const GOLD = "#ffb627";
 
 export default async function Image({ params }: { params: Promise<{ song: string }> }) {
   const { song: slug } = await params;
-  const { song, countries, best, certCount } = songStats(slug);
+  const { song, countries, peak, certCount } = songStats(slug);
 
   const stats = [
-    best != null && { v: best === 1 ? "No.1" : `#${best}`, l: "Best peak" },
+    peak != null && { v: peak, l: "Best peak" },
     countries > 0 && { v: `${countries}`, l: "Countries" },
     certCount > 0 && { v: `${certCount}`, l: "Certs" },
   ].filter(Boolean) as { v: string; l: string }[];

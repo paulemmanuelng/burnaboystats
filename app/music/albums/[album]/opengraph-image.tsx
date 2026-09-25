@@ -24,7 +24,10 @@ function albumStats(slug: string) {
   const countries = entries.filter((e) => e.c !== "GLB" && e.c !== "GLBX").length;
   const best = entries.length ? Math.min(...entries.map((e) => e.peak)) : null;
   const certCount = cert ? cert.certs.length : 0;
-  return { page, record, countries, best, certCount };
+  // The peak exactly as the card prints it. House style is "No. 1", with the
+  // space; the card printed "No.1" until 25 Sep 2026 (A-30).
+  const peak = best == null ? null : best === 1 ? "No. 1" : `#${best}`;
+  return { page, record, countries, peak, certCount };
 }
 
 export async function generateImageMetadata({
@@ -33,10 +36,14 @@ export async function generateImageMetadata({
   params: Promise<{ album: string }>;
 }) {
   const { album: slug } = await params;
-  const { page, countries, best, certCount } = albumStats(slug);
+  const { page, countries, peak, certCount } = albumStats(slug);
+  // The peak is in the id AS PRINTED, not as the bare number: "No.1" became
+  // "No. 1" on 25 Sep 2026 (A-30) while every figure stayed put, and an id
+  // built from the number would have kept the old picture in every scraped
+  // preview. The album cards re-version alone, rather than bumping OG_ART.
   // The alt names the album; every album card carried the one generic alt below.
   const albumAlt = page ? `${page.title}, the Burna Boy album — chart peaks, certifications and stats` : alt;
-  return [{ id: ogId(`${slug}|${best}|${countries}|${certCount}|${cardUrl(`/music/albums/${slug}`)}`), alt: albumAlt, size, contentType }];
+  return [{ id: ogId(`${slug}|${peak}|${countries}|${certCount}|${cardUrl(`/music/albums/${slug}`)}`), alt: albumAlt, size, contentType }];
 }
 
 export const size = { width: 1200, height: 630 };
@@ -47,10 +54,10 @@ const GOLD = "#ffb627";
 
 export default async function Image({ params }: { params: Promise<{ album: string }> }) {
   const { album: slug } = await params;
-  const { page, record, countries, best, certCount } = albumStats(slug);
+  const { page, record, countries, peak, certCount } = albumStats(slug);
 
   const stats = [
-    best != null && { v: best === 1 ? "No.1" : `#${best}`, l: "Best peak" },
+    peak != null && { v: peak, l: "Best peak" },
     countries > 0 && { v: `${countries}`, l: "Countries" },
     certCount > 0 && { v: `${certCount}`, l: "Certs" },
     record && { v: `${record.tracks.length}`, l: "Tracks" },

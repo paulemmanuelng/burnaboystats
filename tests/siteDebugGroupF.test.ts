@@ -22,6 +22,7 @@ import { POST as cspReport } from "../app/api/csp-report/route";
 import { countriesOf, withApiCountryCodes } from "../app/lib/liveChartMeta";
 import { allItems } from "../app/data/certifications";
 import { allChartItems } from "../app/data/charts";
+import { ceremonies } from "../app/data/awards";
 import { concerts, festivals, otherShows } from "../app/data/tours";
 import { pageMetadata } from "../app/lib/seo";
 import { metadata as updatesMetadata } from "../app/updates/page";
@@ -228,6 +229,14 @@ describe("F-10: DJ Tárico keeps his accent, and the credit convention is stated
     expect(cert?.credit).toBe("DJ Tárico & Burna Boy");
     expect(chart?.credit?.startsWith("DJ Tárico")).toBe(true);
     expect(JSON.stringify(allItems)).not.toContain("DJ Tarico");
+  });
+
+  it("the awards record spells him the same way", () => {
+    // Shipped until 25 Sep 2026 (awards.ts, AFRIMA 2021):
+    const shipped = '{ year: 2021, category: "Best African Collaboration", work: "Yaba Buluku (Remix) (DJ Tarico ft. Burna Boy)", won: false }';
+    expect(shipped).toContain("DJ Tarico");
+    expect(JSON.stringify(ceremonies)).not.toContain("DJ Tarico");
+    expect(ceremonies.some((c) => c.noms.some((n) => n.work === "Yaba Buluku (Remix) (DJ Tárico ft. Burna Boy)"))).toBe(true);
   });
 
   it("still finds the record by the unaccented name", () => {

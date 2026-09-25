@@ -337,7 +337,7 @@ export const ceremonies: Ceremony[] = [
       { year: 2019, category: "Best African Collaboration", work: "Killin' Dem", won: false },
       { year: 2019, category: "Song of the Year in Africa", work: "On the Low", won: false },
       { year: 2021, category: "Album of the Year", work: "Twice as Tall", won: false },
-      { year: 2021, category: "Best African Collaboration", work: "Yaba Buluku (Remix) (DJ Tarico ft. Burna Boy)", won: false },
+      { year: 2021, category: "Best African Collaboration", work: "Yaba Buluku (Remix) (DJ Tárico ft. Burna Boy)", won: false },
       { year: 2021, category: "Best Artiste, Duo or Group in African Dance or Choreography", work: "Yaba Buluku (Remix)", won: false },
       { year: 2023, category: "Artist of the Year", won: true },
       { year: 2023, category: "Album of the Year", work: "Love, Damini", won: true },

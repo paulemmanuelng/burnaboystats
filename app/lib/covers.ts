@@ -79,7 +79,7 @@ const EXTRA_COVERS: Record<string, string> = {
   rockstar: "https://cdn-images.dzcdn.net/images/cover/12cc6ed5c376e339bd5e0e7f3500d375/100x100-000000-80-0-0.jpg",
   // Don't Let Me Drown — his single from the F1 (2025) soundtrack
   "don t let me drown": "https://cdn-images.dzcdn.net/images/cover/bb77038fd6b4b72e6d4fd8a34a889e71/100x100-000000-80-0-0.jpg",
-  // Yaba Buluku (Remix) — DJ Tarico; contributors verified to include Burna Boy
+  // Yaba Buluku (Remix) — DJ Tárico; contributors verified to include Burna Boy
   "yaba buluku": "https://cdn-images.dzcdn.net/images/cover/838ae1b6384d70287eb799afdb50512c/100x100-000000-80-0-0.jpg",
   // Hossana — Shatta Wale x Burna Boy
   hossana: "https://cdn-images.dzcdn.net/images/cover/2f2348a8985965e0f13b08e0851f5a8d/100x100-000000-80-0-0.jpg",

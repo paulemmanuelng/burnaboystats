@@ -73,6 +73,26 @@ describe("a country board", () => {
     expect(card).not.toContain("own levels");
   });
 
+  it("labels Greece's levels link as what it opens: IFPI's June 2013 table, not IFPI Greece's own levels", async () => {
+    // The live page's link read "IFPI Greece's own levels ↗" and opened IFPI's
+    // international award-levels list of June 2013 (`pricedAt`, A-12).
+    const linkTexts = (h: string, url: string) =>
+      [...h.matchAll(/<a [^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g)]
+        .filter((m) => m[1].replace(/&amp;/g, "&") === url)
+        .map((m) => text(m[2]).trim());
+    const gr = priceCountry("GR").thresholds!;
+    expect(gr.pricedAt).toBe("IFPI's last published level (June 2013)");
+    const greek = linkTexts(await html({ mode: "country", country: "greece" }), gr.sourceUrl!);
+    // The open card and the phone fold each carry it.
+    expect(greek).toHaveLength(2);
+    for (const l of greek) expect(l).toBe("IFPI's last published level (June 2013) ↗");
+    expect(greek.join(" ")).not.toContain("IFPI Greece's own levels");
+    // Only Greece is relabelled: a body priced at its own levels keeps the label.
+    const ca = priceCountry("CA").thresholds!;
+    expect(ca.pricedAt).toBeUndefined();
+    for (const l of linkTexts(await html({ mode: "country", country: "canada" }), ca.sourceUrl!)) expect(l).toBe("Music Canada's own levels ↗");
+  });
+
   it("honours the features switch, and says which it is on", async () => {
     const on = priceCountry("CA", { includeNigeria: true, includeFeatures: true });
     const off = priceCountry("CA", { includeNigeria: true, includeFeatures: false });
