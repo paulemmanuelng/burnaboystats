@@ -78,7 +78,7 @@ const runNL = weeksOnChart("Dai Dai", "NL");
 const conquestIntro = `“Dai Dai” ha entrado en las listas de ${conquestTotal} países — y ha llegado al número 1 en ${conquestNo1} de ellos. Los países en dorado son los número 1; el resto entró sin llegar a la cima.`;
 
 // Same derivation as the English page: the live board decides, not a sentence.
-const ddLive = liveCharts.find((r) => r.title === "Dai Dai");
+const ddLive = liveCharts.find((r) => r.kind === "song" && r.title === "Dai Dai");
 const liveOnes = (platform: string) =>
   ddLive?.platforms
     .find((p) => p.platform === platform)

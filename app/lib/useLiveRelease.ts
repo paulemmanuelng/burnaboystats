@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import type { LiveRelease } from "../data/liveCharts";
+import { releaseKey } from "./liveChartMeta";
 
 /**
  * The full live-charts snapshot, fetched once per page and shared.
@@ -27,7 +28,10 @@ function load(source: string): Promise<Map<string, LiveRelease>> {
       if (!r.ok) throw new Error(`live snapshot ${r.status}`);
       return r.json() as Promise<{ releases: LiveRelease[] }>;
     })
-    .then((d) => new Map(d.releases.map((r) => [r.title, r])))
+    // Keyed by kind AND title (releaseKey). Keyed by title, a title track and
+    // its album collapsed into one entry and the later overwrote the earlier:
+    // opening the album "African Giant" showed the song's one placement.
+    .then((d) => new Map(d.releases.map((r) => [releaseKey(r), r])))
     .catch((e) => {
       snapshots.delete(source);
       throw e;
@@ -36,7 +40,14 @@ function load(source: string): Promise<Map<string, LiveRelease>> {
   return pending;
 }
 
-export function useLiveRelease(title: string, active: boolean, source = "/api/v1/live-charts") {
+/** `row` is the release being opened: its kind and its title, which together
+ *  identify it (see releaseKey). */
+export function useLiveRelease(
+  row: { kind: "song" | "album"; title: string },
+  active: boolean,
+  source = "/api/v1/live-charts"
+) {
+  const key = releaseKey(row);
   const [state, setState] = useState<{
     release?: LiveRelease;
     /**
@@ -57,12 +68,12 @@ export function useLiveRelease(title: string, active: boolean, source = "/api/v1
     if (!active) return;
     let on = true;
     load(source)
-      .then((m) => on && setState({ release: m.get(title), loaded: true }))
+      .then((m) => on && setState({ release: m.get(key), loaded: true }))
       .catch(() => on && setState({ error: true }));
     return () => {
       on = false;
     };
-  }, [active, title, attempt, source]);
+  }, [active, key, attempt, source]);
 
   return {
     release: state.release,

@@ -72,14 +72,12 @@ const htmlExtractors = {
 async function fetchText(url) {
   // YouTube shows datacenter IPs (CI runners) a cookie-consent wall instead of
   // the watch page, so viewCount is missing. A consent cookie + en/US locale
-  // gets the real HTML.
-  const browserish = {
-    "user-agent":
-      "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0 Safari/537.36",
-    "accept-language": "en-US,en;q=0.9",
-  };
+  // gets the real HTML. The User-Agent stays the site's own honest one: until
+  // 25 Sep 2026 this sent a desktop Chrome string, which passes the bot off as
+  // a browser. YouTube returned all ten tracked view counts to the honest
+  // User-Agent when that was tested (25 Sep 2026).
   const headers = url.includes("youtube.com")
-    ? { ...browserish, cookie: "CONSENT=YES+cb.20210328-17-p0.en+FX+000" }
+    ? { ...UA, "accept-language": "en-US,en;q=0.9", cookie: "CONSENT=YES+cb.20210328-17-p0.en+FX+000" }
     : UA;
   const res = await fetch(url, { headers });
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -237,6 +235,78 @@ async function applyTargets(metric, files) {
   }
 
   return { ok: failures.length === 0, edits, failures };
+}
+
+/**
+ * Write one run's bookkeeping into the config, in place. Returns whether any
+ * source value moved (the caller rewrites the file if so).
+ *
+ * - Every metric read this run: `lastSeenValue` / `lastSeenAt`, when the SOURCE
+ *   moved. Separate from when the displayed figure last changed: a mature
+ *   catalogue song moves ~0.03% a day against a 0.1% rewrite threshold, so its
+ *   display can sit unchanged for days while the source is perfectly healthy.
+ *   Judging staleness on the display made the alarm fire on 17 healthy
+ *   metrics at once.
+ * - Every metric PUBLISHED this run (`applied`): its baseline, `lastChanged`,
+ *   and for an offset metric its `lastRawValue`, all from the same reading.
+ *
+ * `lastRawValue` is the raw reading BEHIND THE PUBLISHED FIGURE, so it moves
+ * only with the baseline: baseline = lastRawValue + offset, always. It used to
+ * be written on every run from the new reading, published or not, and a
+ * reading that is NOT published is exactly the case this field exists for.
+ * kworb's raw sum FELL 16,051,434 in its 24 Sep 2026 build (a title left its
+ * roster); the peak rule kept the career total at 11,060,226,630, and the run
+ * recorded the fallen raw beside that baseline. The pair no longer reconciled
+ * (10,929,316,373 + 114,858,823 = 11,044,175,196, not 11,060,226,630), and
+ * tests/offsetDrift.test.ts, run as the publish gate on that working copy,
+ * refused every run from 25 Sep 05:00 UTC: one metric's bookkeeping held back
+ * every figure the job publishes. Kept at the published reading, the
+ * comparison point also keeps the drift alarm raised on every run until the
+ * raw regains it or the offset is re-measured (scripts/chartmasters-anchor.mjs
+ * writes all three fields together); overwritten, it reported the drop once.
+ */
+export function recordRun(config, results, applied, today = new Date().toISOString().slice(0, 10)) {
+  let sourcesMoved = false;
+  for (const r of results) {
+    if (r.live == null || Number.isNaN(r.live)) continue;
+    const m = config.metrics.find((x) => x.id === r.id);
+    if (!m) continue;
+    const seen = Math.round(r.live);
+    if (m.lastSeenValue !== seen) {
+      m.lastSeenValue = seen;
+      m.lastSeenAt = today;
+      sourcesMoved = true;
+    }
+  }
+
+  for (const { r } of applied) {
+    const m = config.metrics.find((x) => x.id === r.id);
+    if (!m) continue;
+    m.baseline = Math.round(r.live);
+    // The raw behind the figure just published: the same reading, less the
+    // offset it was published with, so the two cannot disagree.
+    if (m.offset != null) m.lastRawValue = m.baseline - m.offset;
+    // Stamped only on a real write, so it records when the figure last
+    // MOVED — not merely when the bot last ran. That distinction is the
+    // whole point: a frozen source still runs fine every hour.
+    m.lastChanged = today;
+    // A value cannot change without having been read, so a write also
+    // proves the source was seen. The loop above already stamps that in
+    // the normal case; restating it here keeps `lastSeenAt >= lastChanged`
+    // true even if the two ever land in the file from separate runs — a
+    // merge once left four metrics "changed today, last seen two days ago",
+    // which would have fired the staleness alarm on healthy sources.
+    m.lastSeenValue = Math.round(r.live);
+    m.lastSeenAt = m.lastChanged;
+    // A published ledger rolls forward: its checkpoint becomes the day
+    // just written and the dailies that day absorbed are dropped. The
+    // record of each day stays in this file's git history.
+    if (r.asOf && m.checkpoint) {
+      Object.assign(m, rollLedger(m.checkpoint, m.readings, r.asOf, Math.round(r.live)));
+      if (m.derived) m.derived = m.derived.filter((d) => d > r.asOf);
+    }
+  }
+  return sourcesMoved;
 }
 
 async function main() {
@@ -435,63 +505,8 @@ async function main() {
     } else manual.push({ r, failures });
   }
 
-  // Record when the raw SOURCE value last moved, on every run — separate from
-  // when the displayed figure last changed. A mature catalogue song moves ~0.03%
-  // a day against a 0.1% rewrite threshold, so its display can sit unchanged for
-  // days while the source is perfectly healthy. Judging staleness on the display
-  // made the alarm fire on 17 healthy metrics at once.
-  let sourcesMoved = false;
-  for (const r of results) {
-    if (r.live == null || Number.isNaN(r.live)) continue;
-    const m = config.metrics.find((x) => x.id === r.id);
-    if (!m) continue;
-    const seen = Math.round(r.live);
-    if (m.lastSeenValue !== seen) {
-      m.lastSeenValue = seen;
-      m.lastSeenAt = new Date().toISOString().slice(0, 10);
-      sourcesMoved = true;
-    }
-    // The RAW reading behind an offset metric, recorded so the next run can
-    // see a discontinuity. Written even when the corrected value is unchanged:
-    // the point is to track the source's own shape, not the published figure.
-    if (r.drift && r.drift.raw != null) {
-      const raw = Math.round(r.drift.raw);
-      if (m.lastRawValue !== raw) {
-        m.lastRawValue = raw;
-        sourcesMoved = true;
-      }
-    }
-  }
-  if (sourcesMoved || readingsMoved) files.set(configPath, JSON.stringify(config, null, 2) + "\n");
-
-  if (applied.length) {
-    for (const { r } of applied) {
-      const m = config.metrics.find((x) => x.id === r.id);
-      if (m) {
-        m.baseline = Math.round(r.live);
-        // Stamped only on a real write, so it records when the figure last
-        // MOVED — not merely when the bot last ran. That distinction is the
-        // whole point: a frozen source still runs fine every hour.
-        m.lastChanged = new Date().toISOString().slice(0, 10);
-        // A value cannot change without having been read, so a write also
-        // proves the source was seen. The loop above already stamps that in
-        // the normal case; restating it here keeps `lastSeenAt >= lastChanged`
-        // true even if the two ever land in the file from separate runs — a
-        // merge once left four metrics "changed today, last seen two days ago",
-        // which would have fired the staleness alarm on healthy sources.
-        m.lastSeenValue = Math.round(r.live);
-        m.lastSeenAt = m.lastChanged;
-        // A published ledger rolls forward: its checkpoint becomes the day
-        // just written and the dailies that day absorbed are dropped. The
-        // record of each day stays in this file's git history.
-        if (r.asOf && m.checkpoint) {
-          Object.assign(m, rollLedger(m.checkpoint, m.readings, r.asOf, Math.round(r.live)));
-          if (m.derived) m.derived = m.derived.filter((d) => d > r.asOf);
-        }
-      }
-    }
-    files.set(configPath, JSON.stringify(config, null, 2) + "\n");
-  }
+  const sourcesMoved = recordRun(config, results, applied, today);
+  if (sourcesMoved || readingsMoved || applied.length) files.set(configPath, JSON.stringify(config, null, 2) + "\n");
 
   // Ranked live rows follow their numbers. The five 2026 running totals on
   // the Africa's Biggest board are written into rows whose ORDER is source
@@ -593,6 +608,9 @@ async function main() {
     await appendFile(process.env.GITHUB_OUTPUT, `has_changes=${applied.length > 0}\n`);
     await appendFile(process.env.GITHUB_OUTPUT, `has_manual=${manual.length > 0}\n`);
     await appendFile(process.env.GITHUB_OUTPUT, `has_rejected=${rejected.length > 0}\n`);
+    // Read by stats-live.yml's last step, which fails the run AFTER the commit:
+    // the other figures publish, and a human still sees a red run.
+    await appendFile(process.env.GITHUB_OUTPUT, `has_drift=${drifted.length > 0}\n`);
   }
 }
 

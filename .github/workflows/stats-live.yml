@@ -138,3 +138,24 @@ jobs:
         run: |
           echo "::error::The board's live charts failed to rebuild. His own figures were published; the board's live pages are serving the previous snapshot until this is fixed."
           exit 1
+
+      # An offset that no longer matches its source (the career Spotify total:
+      # kworb raw + a measured ChartMasters offset). After a fall in the raw the
+      # figure is safe — it only ever moves up, so it holds at its last value —
+      # but it is now known to be off by the amount in the log, and only a human can
+      # re-measure it (scripts/chartmasters-anchor.mjs, on Paul's ChartMasters
+      # sign-in). Until 25 Sep 2026 this case stopped the whole job: the run
+      # recorded the new raw reading without publishing it, the offsetDrift
+      # reconcile test failed on that working copy, and not one figure
+      # published for as long as it lasted. It now fails here, AFTER the commit:
+      # everything else goes out, and the run stays red while the raw sum sits
+      # below the held reading. It clears by itself once the raw sum climbs back
+      # past it, and the total then publishes on the OLD offset; so a drift alarm
+      # means "re-measure the offset against ChartMasters", whether or not it
+      # has since gone green.
+      # !cancelled() so a failed board rebuild above does not hide this one.
+      - name: Surface an offset that no longer matches its source
+        if: ${{ !cancelled() && steps.live.outputs.has_drift == 'true' }}
+        run: |
+          echo "::error::An offset no longer matches its source; the 'Refresh live figures' log says which, by how much, and in which direction. Every other figure was published. Re-measure the offset on ChartMasters with scripts/chartmasters-anchor.mjs."
+          exit 1

@@ -11,7 +11,12 @@ describe("worldwide run history", () => {
     const seen = new Set<string>();
     const dupes: string[] = [];
     for (const r of runHistory) {
-      const key = `${r.date}|${r.release}|${r.platform}`;
+      // A release is its kind and its title: an album's row carries
+      // kind: "album" (a title track and its album share a name), a song's
+      // carries none. Read through a cast so this also type-checks against a
+      // file generated before the field existed.
+      const kind = (r as { kind?: string }).kind ?? "song";
+      const key = `${r.date}|${kind}|${r.release}|${r.platform}`;
       if (seen.has(key)) dupes.push(key);
       seen.add(key);
     }
