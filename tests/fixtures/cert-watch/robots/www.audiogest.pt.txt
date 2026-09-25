@@ -1,7 +1,0 @@
-User-Agent: *
-Disallow: /admin
-Disallow: /documents
-Disallow: /imagens
-Disallow: /lib
-Disallow: /uploads
-Disallow: /manuais
