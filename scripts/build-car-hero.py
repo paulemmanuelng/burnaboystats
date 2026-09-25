@@ -21,7 +21,9 @@ adds a script). This is a rebuild, not a recovery. Every constant below was
 MEASURED off the fifteen shipped heroes rather than chosen, and `--check`
 proves it: it strips an existing hero back to its car, re-grounds it with
 these constants, and prints how far the result lands from the shipped file.
-On the fifteen that is about one alpha level in 255, below the car.
+On the fifteen that is about one alpha level in 255, below the car. (Their
+edges were re-cut soft on 24 Sep 2026 by scripts/recut-car-edges.py; the
+silhouettes, and so the floors, are still these.)
 
 What a hero is, measured across all fifteen:
   - 898 x 660, the car's lowest pixel (alpha > 200) on row 474, centred on
@@ -360,16 +362,28 @@ def build(cutout_path, slug, width, hue_band, sigma=0.0):
 
 
 def check(slug):
-    """Re-ground a shipped hero from its own car and diff it against the file."""
+    """Re-ground a shipped hero from its own car and diff it against the file.
+
+    The diff skips the car's own rim, the 2px round the alpha > 200 body: an
+    anti-aliased edge is car at part opacity, which stripping the hero back to
+    its body cannot keep, so counting it measured the edge rather than the
+    floor (the SLS read rms 4.3, max 192 on that alone; so do the fifteen
+    since scripts/recut-car-edges.py softened theirs).
+    """
     shipped = np.asarray(Image.open(os.path.join(CARS, f"{slug}.png")).convert("RGBA")).astype(float) / 255
     body = shipped[:, :, 3] > CAR / 255
     car = shipped * body[:, :, None]
     floor_a, _ = ground_layers(car)
     a, _ = over(car[:, :, 3], car[:, :, :3] * car[:, :, 3:], floor_a, floor_a[:, :, None] * 0)
-    below = ~body
+    rim = body.copy()
+    for _ in range(2):
+        grown = rim.copy()
+        grown[1:] |= rim[:-1]; grown[:-1] |= rim[1:]; grown[:, 1:] |= rim[:, :-1]; grown[:, :-1] |= rim[:, 1:]
+        rim = grown
+    below = ~rim
     below[:430] = False
     diff = (a - shipped[:, :, 3])[below] * 255
-    print(f"{slug:36} rms {np.sqrt((diff ** 2).mean()):5.2f}   max {np.abs(diff).max():4.0f}   (alpha levels, rows 430-659, off the car)")
+    print(f"{slug:36} rms {np.sqrt((diff ** 2).mean()):5.2f}   max {np.abs(diff).max():4.0f}   (alpha levels, rows 430-659, off the car and its rim)")
 
 
 if __name__ == "__main__":
