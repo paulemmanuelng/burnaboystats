@@ -51,6 +51,14 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-09-25",
+    category: "Certifications",
+    // musiccanada.com/gold-platinum/?_gp_search=secondhand, read 25 Sep 2026:
+    // "September 25, 2026 | Platinum Single | Don Toliver | Secondhand (feat. Rema)".
+    text: "Canada certifies “Secondhand” Platinum: Music Canada’s row of 25 September moves Don Toliver’s single with Rema up from the Gold it reached on 14 July, and this time the title names Rema. His total stays at 85 plaques.",
+    href: "/afrobeats/rema",
+  },
+  {
+    date: "2026-09-25",
     category: "Tours",
     big: true,
     // applemusichall.com/tickets/burna-boy-29th-oct and the venue's eight-show

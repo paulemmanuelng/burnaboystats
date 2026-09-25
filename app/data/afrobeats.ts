@@ -821,7 +821,8 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Mamacita", kind: "Featured appearances", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/d7/33/bb/d733bb70-e88f-cd73-2466-f8867f1e522b/0235.jpg/300x300bb.jpg", certs: [{ c: "UK", level: "Silver" }] },
       { title: "I Like", kind: "Featured appearances", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/e0/b5/1f/e0b51fd9-77ff-5696-26c7-f2a47cd7d9d0/190295392284.jpg/300x300bb.jpg", certs: [{ c: "UK", level: "Silver" }] },
       // DK Platinum, 23 Sep 2026 — carries the ⚠ that Rema's "Secondhand" CA Gold
-      // does (docs/sweeps/wizkid-certifications-v1.md): IFPI Danmark's own row
+      // carried until Music Canada's 25 Sep 2026 Platinum row printed "Secondhand
+      // (feat. Rema)" (docs/sweeps/wizkid-certifications-v1.md): IFPI Danmark's own row
       // cuts the credit off at "Major Lazer Feat. Moti Ty Dolla $ign...", so
       // Wizkid is not printed. Counted on Paul's ruling — one recording, and he
       // is on it (Ifpi Sverige's record of the single prints the full credit, and
@@ -1251,7 +1252,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Favourite Girl", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/6f7959be27296229ca33841aa07d5c79/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 3 }] },
       { title: "Who's Dat Girl", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/fe3deba215d998d74542663a84621852/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Won Da Mo", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/342ebddd40c9c6b60b9d432d7e609f20/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
-      { title: "Secondhand", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/123eb0268dfea84370a28c4a2114dc28/500x500-000000-80-0-0.jpg", certs: [{ c: "CA", level: "Gold" }, { c: "PT", level: "Gold" }] },
+      { title: "Secondhand", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/123eb0268dfea84370a28c4a2114dc28/500x500-000000-80-0-0.jpg", certs: [{ c: "CA", level: "Platinum" }, { c: "PT", level: "Gold" }] },
       { title: "Toxic", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/1732de52d38b7e0d8cd01c52c1057ccd/500x500-000000-80-0-0.jpg", certs: [{ c: "FR", level: "Gold" }] },
       { title: "Compromise (Fireboy DML ft. Rema)", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/48963b4c8969105192017e3dbe543fc9/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Lalala (Young Jonn & Rema)", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/0dd0b79a37a28f75ab7f61b38d0dccda/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
