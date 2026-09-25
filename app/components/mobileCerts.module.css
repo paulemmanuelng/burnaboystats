@@ -501,6 +501,52 @@
   color: var(--text-muted);
   margin: 10px 0 0;
 }
+/* "Compare with…", folded by default. The kicker is the toggle: the padding
+   makes a 44px tap target and the negative margin gives the height back, so
+   the closed fold sits where the plain kicker did. */
+.compareSummary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-block: 14px;
+  margin-block: -14px;
+  user-select: none;
+}
+.compareSummary::-webkit-details-marker { display: none; }
+.compareCount {
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+}
+.compareChevron {
+  margin-left: auto;
+  transition: transform 0.2s ease;
+}
+.compareFold[open] .compareChevron { transform: rotate(180deg); }
+@media (prefers-reduced-motion: reduce) {
+  .compareChevron { transition: none; }
+}
+/* The artists, as the screen's own pills (.chip), wrapping rather than on a
+   rail so the open fold shows all of them at once. */
+.compareChips {
+  list-style: none;
+  margin: 14px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+/* Smaller than the filter pills, at the owner's request (25 Sep 2026); 32px
+   still clears WCAG's 24px minimum target. */
+.compareChip {
+  text-decoration: none;
+  min-height: 32px;
+  padding: 0 11px;
+  font-size: 10px;
+}
+.compareChip:hover { background: var(--bg-raised); }
 .eventRow {
   display: flex;
   align-items: baseline;
