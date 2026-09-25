@@ -11,6 +11,8 @@
   export interface RunPoint {
     date: string; // ISO "YYYY-MM-DD"
     release: string;
+    /** Present only on an album's row; absent means a song. */
+    kind?: "album";
     platform: string;
     position: number;
   }
@@ -411,13 +413,26 @@
     "release": "Raindance",
     "platform": "Spotify",
     "position": 46
+  },
+  {
+    "date": "2026-09-25",
+    "release": "Raindance",
+    "platform": "Shazam",
+    "position": 31
+  },
+  {
+    "date": "2026-09-25",
+    "release": "Raindance",
+    "platform": "Spotify",
+    "position": 47
   }
 ];
   
-  /** The dated series for one release on one platform, oldest first. */
-  export const runSeries = (release: string, platform: string) =>
+  /** The dated series for one release on one platform, oldest first. A song's
+   *  unless `kind` says album: a title track and its album share the name. */
+  export const runSeries = (release: string, platform: string, kind: "song" | "album" = "song") =>
     runHistory
-      .filter((r) => r.release === release && r.platform === platform)
+      .filter((r) => r.release === release && r.platform === platform && (r.kind ?? "song") === kind)
       .map((r) => ({ date: r.date, value: r.position }));
   
   /** How many days the history actually covers — a chart should say so rather

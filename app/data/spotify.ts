@@ -15,4 +15,4 @@ export const spotifyFollowersDisplay = "17.91M";
 
 // Burna Boy's global rank by Spotify monthly listeners (lower is better).
 // One home for the figure; auto-updated hourly by the live stats bot.
-export const spotifyGlobalRank = "82";
+export const spotifyGlobalRank = "84";
