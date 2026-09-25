@@ -741,7 +741,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Ruger — Certifications",
     path: "/afrobeats/ruger",
     section: "Afrobeats",
-    description: "18 certifications across 3 countries and 45 official chart entries, verified at source.",
+    description: "19 certifications across 4 countries and 45 official chart entries, verified at source.",
     keywords: ["ruger", "michael adebayo olayinka", "asiwaju", "girlfriend", "dior", "ruger certifications"],
   },
   {
@@ -762,7 +762,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Oxlade — Certifications",
     path: "/afrobeats/oxlade",
     section: "Afrobeats",
-    description: "13 certifications across 10 countries and 32 official chart entries, verified at source.",
+    description: "14 certifications across 11 countries and 32 official chart entries, verified at source.",
     keywords: ["oxlade", "ikuforiji olaitan abdulrahman", "ku lo sa", "kolo", "oxlade certifications"],
   },
   {

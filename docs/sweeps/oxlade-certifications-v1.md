@@ -15,16 +15,16 @@ row for *Ku Lo Sa* prints the label `Troniq Music, Epic Records`, and every
 foreign register that prints a label names Epic or Sony. No other act in any
 register read uses the name.
 
-## Total: **13 certifications**
+## Total: **14 certifications**
 
-**Country split:** NG + FR + CA + CH + NL + NZ + DK + ES + SE + US = 4 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 = **13** ✓
+**Country split:** NG + FR + CA + CH + NL + NZ + UK + DK + ES + SE + US = 4 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 = **14** ✓
 
-**Tier split:** Diamond + Platinum + Gold + Silver = 1 + 5 + 4 + 3 = **13** ✓ (the five Platinums are Canada at 2×, and Switzerland, Nigeria, the Netherlands and New Zealand; the four Golds are Denmark, Spain, Sweden and the US; all three Silvers are Nigerian)
+**Tier split:** Diamond + Platinum + Gold + Silver = 1 + 6 + 4 + 3 = **14** ✓ (the six Platinums are Canada at 2×, and Switzerland, Nigeria, the Netherlands, New Zealand and the UK; the four Golds are Denmark, Spain, Sweden and the US; all three Silvers are Nigerian)
 
-All 13 are **singles**. No register read holds his album *OFA (Oxlade From Africa)*
+All 14 are **singles**. No register read holds his album *OFA (Oxlade From Africa)*
 or his EP *Oxygene*.
 
-**Ten of the thirteen are one record.** *Ku Lo Sa* holds a plaque in ten
+**Eleven of the fourteen are one record.** *Ku Lo Sa* holds a plaque in eleven
 countries, which is why his board is mostly international. The *Ku Lo Sa*
 remix with Camila Cabello (Dec 2022) is the same record under this series'
 rules, and no register files it separately in any case.
@@ -67,7 +67,7 @@ Oxlade's *Pressure*.
 
 ## International
 
-**Nine**, every one *Ku Lo Sa*, every one a single:
+**Ten**, every one *Ku Lo Sa*, every one a single:
 
 | Country | Body | Title as printed | Tier | Date | Credit as printed | Mark |
 |---|---|---|---|---|---|---|
@@ -76,6 +76,7 @@ Oxlade's *Pressure*.
 | 🇨🇭 CH | IFPI Schweiz | `Ku Lo Sa - A Colors Show` | Platinum (Platin) | 2023 | `Oxlade` | ✓ |
 | 🇳🇱 NL | NVPI | `Ku Lo Sa (A Colors Show)` | Platinum (Platina) | 14.11.2024 | `Oxlade` | ✓ |
 | 🇳🇿 NZ | RMNZ | `Ku La Sa – A Colors Show` (sic) | Platinum (`Plat x1`) | 10.07.2025 | `Oxlade` | ✓ |
+| 🇬🇧 UK | BPI | `KU LO SA` | Platinum | 06.02.2026 | `OXLADE` | ✓ |
 | 🇩🇰 DK | IFPI Danmark | `KU LO SA - A COLORS SHOW` | Gold (Guld) | 08.10.2024 | `Oxlade` | ✓ |
 | 🇪🇸 ES | PROMUSICAE | `KU LO SA - A COLORS SHOW` | Gold (1 × Discos de Oro) | 2024, week 1 | `OXLADE` | ✓ |
 | 🇸🇪 SE | Ifpi Sverige | `KU LO SA - A COLORS SHOW` | Gold (Guld) | 15.12.2022 | `OXLADE` | ✓ |
@@ -180,8 +181,13 @@ under `Oxlade` and, where titles are searchable, `Ku Lo Sa` / `Kulosa`.
 
 ## Gaps — never to be read as zeros
 
-- **BPI (UK)** — `certified-awards.bpi.co.uk/robots.txt` disallows every agent.
-  Not requested by any route. By hand, below.
+- **BPI (UK)** — `certified-awards.bpi.co.uk/robots.txt` disallows every agent,
+  so no agent requests it. On 25 Sep 2026 the owner opened the register in his
+  own browser and searched *Ku Lo Sa*; the card on his screen read `OXLADE | KU LO SA |
+  Single | COLUMBIA | Award: Platinum | Latest Certification 06.02.2026 | Released
+  10.06.2022` (added above). *Intoxycated* has not been searched there yet.
+  A fan transcription of @BRITs' posts (BuzzJack, "2023 BPI Certifications", post of
+  27.10.2023) lists `Oxlade - Ku Lo Sa (GOLD)`, the step before.
 - **ARIA (Australia)** — the accreditation lists are a Dropbox folder whose
   `/sh/` and `/scl/` paths robots.txt blocks, and this machine's local copies were
   lost on the 24 Sep reboot. By hand, below.
@@ -220,7 +226,7 @@ and South Africa.
 
 | Country | Where | Type exactly | Why |
 |---|---|---|---|
-| 🇬🇧 UK | bpi.co.uk → BRIT Certified search | `Oxlade`, then titles `Ku Lo Sa` and `Intoxycated` | *Ku Lo Sa* spent 20 weeks on the Official Singles Chart (peak 24, Sep 2022); *Intoxycated* peaked at 49 (Jul 2023). BPI may file them as `OXLADE & CAMILA CABELLO` or `OXLADE FT DAVE` |
+| 🇬🇧 UK | bpi.co.uk → BRIT Certified search | `Intoxycated` (*Ku Lo Sa* done 25 Sep 2026: Platinum, 06.02.2026) | *Ku Lo Sa* spent 20 weeks on the Official Singles Chart (peak 24, Sep 2022); *Intoxycated* peaked at 49 (Jul 2023). BPI may file them as `OXLADE & CAMILA CABELLO` or `OXLADE FT DAVE` |
 | 🇦🇺 Australia | aria.com.au/accreditations → the Dropbox folder, 2022–2026 singles lists | `OXLADE`, `KU LO SA` | RMNZ Platinum next door; it never made the ARIA Top 50, but accreditations do not need a chart run. Paul can download the folder himself for the next pass to read |
 | 🇵🇹 Portugal | audiogest.pt → TOP AFP annual reports 2022, 2023 and 2024 ("Gal." column), plus the monthly award cards | `OXLADE`, `KU LO SA` | 25 weeks on the AFP Top 200 Singles (peak 60, week 38/2022), under the pre-2024 5,000-unit Gold level. Paul can download the annual TOP PDFs for the next pass to read |
 | 🇿🇦 South Africa | risa.org.za → Certifications | `Oxlade`, then `Ku Lo Sa` | No. 5 on TOSAC's Local & International Streaming Chart (week 37/2022) |

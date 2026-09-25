@@ -2414,7 +2414,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     swept: true,
     chartPublished: { entries: 45, territories: 2, no1s: 2 },
     releases: [
-      { title: "Asiwaju", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/78b014342472081dff80a8cafe54b8ca/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 4 }, { c: "FR", level: "Gold" }] },
+      { title: "Asiwaju", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/78b014342472081dff80a8cafe54b8ca/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 4 }, { c: "FR", level: "Gold" }, { c: "UK", level: "Silver" }] },
       { title: "Poe", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/12b39d25fb640779483f443dcbedf748/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 3 }] },
       { title: "Girlfriend", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/b42b9963b567481843c14d0f3991639c/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }, { c: "NZ", level: "Gold" }] },
       { title: "Bae Bae", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/589173416a36ce1395e49b85c4e6a9f8/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
@@ -2491,7 +2491,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     swept: true,
     chartPublished: { entries: 32, territories: 9, no1s: 0 },
     releases: [
-      { title: "Ku Lo Sa", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/8ffa1ebe726f6367c9cd7852bde139c3/500x500-000000-80-0-0.jpg", certs: [{ c: "FR", level: "Diamond" }, { c: "CA", level: "Platinum", x: 2 }, { c: "CH", level: "Platinum" }, { c: "NG", level: "Platinum" }, { c: "NL", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "DK", level: "Gold" }, { c: "ES", level: "Gold" }, { c: "SE", level: "Gold" }, { c: "US", level: "Gold" }] },
+      { title: "Ku Lo Sa", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/8ffa1ebe726f6367c9cd7852bde139c3/500x500-000000-80-0-0.jpg", certs: [{ c: "FR", level: "Diamond" }, { c: "CA", level: "Platinum", x: 2 }, { c: "CH", level: "Platinum" }, { c: "NG", level: "Platinum" }, { c: "NL", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "UK", level: "Platinum" }, { c: "DK", level: "Gold" }, { c: "ES", level: "Gold" }, { c: "SE", level: "Gold" }, { c: "US", level: "Gold" }] },
       { title: "Intoxycated", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/561fca8c26d6e1be1d4367eb5975781f/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Ojuju", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/52543bcf18dd3d65bfd5f99697893386/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Kolo", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/3ed12ece9fa3923f3f160790a1ad5089/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
