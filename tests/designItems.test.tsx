@@ -437,12 +437,74 @@ describe("NPD-01: faded text fades by one token, and only as far as AA allows", 
 
 // ── NPD-02 ──────────────────────────────────────────────────────────────────
 describe("NPD-02: links inside running prose are underlined", () => {
+  // The rule, and the first version of it this branch shipped, which also
+  // reached the country board's "Change country ×" pill and /about's
+  // Wikipedia link (a second line under a link that draws its own).
+  const RULE = ":where(p:not(footer p)) a:where(:not([class]), .proseLink)";
+  const SHIPPED_RULE = ":where(p:not(footer p)) a:where(:not(.btn))";
+  const dom = (h: string) => new DOMParser().parseFromString(h, "text/html");
+  // Links inside a <p> only: the rule's scope. (The country board also has a
+  // "How this is counted" link outside any paragraph.)
+  const link = (d: Document, t: string) => {
+    const a = [...d.querySelectorAll("p a")].filter((x) => (x.textContent ?? "").includes(t));
+    expect(a.length, t).toBeGreaterThan(0);
+    return a;
+  };
+  const pages = async () => {
+    const { default: CountryPage } = await import("../app/compare/in/[country]/page");
+    const { default: CountryIndexPage } = await import("../app/compare/in/page");
+    const { default: AboutPage } = await import("../app/about/page");
+    const { default: UnmergePage } = await import("../app/analysis/spotify-unmerge/page");
+    const { default: MethodologyPage } = await import("../app/methodology/page");
+    return {
+      board: dom(renderToStaticMarkup(await CountryPage({ params: Promise.resolve({ country: "australia" }) }))),
+      boards: dom(renderToStaticMarkup(await CountryIndexPage())),
+      about: dom(renderToStaticMarkup(<AboutPage />)),
+      unmerge: dom(renderToStaticMarkup(<UnmergePage />)),
+      methodology: dom(renderToStaticMarkup(<MethodologyPage />)),
+      pair: dom(renderToStaticMarkup(await PairPage({ params: Promise.resolve({ pair: "asake-vs-tems" }) }))),
+      compare: dom(renderToStaticMarkup(await ComparePage({ searchParams: Promise.resolve({}) }))),
+    };
+  };
+
   it("globals.css underlines a link in a paragraph: 1px, 2px offset, its own colour", () => {
-    const d = decls(read("app/globals.css"), ":where(p:not(footer p)) a:where(:not(.btn))");
+    const d = decls(read("app/globals.css"), RULE);
     expect(d["text-decoration-line"]).toBe("underline");
     expect(d["text-decoration-thickness"]).toBe("1px");
     expect(d["text-underline-offset"]).toBe("2px");
     expect(d["text-decoration-color"]).toBeUndefined(); // currentColor
+    expect(decls(read("app/globals.css"), SHIPPED_RULE)).toEqual({});
+  });
+  it("reaches running prose: class-less links, and the styled ones marked .proseLink", async () => {
+    const p = await pages();
+    const prose = [
+      ...link(p.methodology, "The compare page"),
+      ...link(p.pair, "Which bodies, and when"),
+      ...link(p.compare, "certified units country by country"),
+      ...link(p.boards, "How this is counted"),
+      ...link(p.unmerge, "methodology page"),
+      ...link(p.unmerge, "by the numbers"),
+    ];
+    for (const a of prose) expect(a.matches(RULE), a.textContent ?? "").toBe(true);
+  }, 30000);
+  it("leaves buttons, pills and links that draw their own line alone", async () => {
+    const p = await pages();
+    const own = [
+      ...link(p.board, "Change country"), // the pill, both layouts
+      ...link(p.about, "Read his full biography on Wikipedia"), // border-bottom
+      ...link(p.methodology, "contact page"), // border-bottom .link
+    ];
+    for (const a of own) expect(a.matches(RULE), a.textContent ?? "").toBe(false);
+    // Negative control: the selector this branch first shipped reached the
+    // pill and the Wikipedia link.
+    expect(link(p.board, "Change country").every((a) => a.matches(SHIPPED_RULE))).toBe(true);
+    expect(link(p.about, "Read his full biography on Wikipedia").every((a) => a.matches(SHIPPED_RULE))).toBe(true);
+  }, 30000);
+  it("/about's timeline link (own line, own hover underline) keeps its hover offset", () => {
+    expect(decls(read("app/about/about.module.css"), ".tMoreLink a")["text-underline-offset"]).toBe("auto");
+    // Negative control: the rule it shipped with left the offset to the in-text rule.
+    const shipped = ".tMoreLink a { color: var(--gold); text-decoration: none; }";
+    expect(decls(shipped, ".tMoreLink a")["text-underline-offset"]).toBeUndefined();
   });
   it("the two prose links that switched it off no longer do (unmerge page, phone board foot)", () => {
     expect(decls(read("app/analysis/spotify-unmerge/unmerge.module.css"), ".link")["text-decoration"]).toBeUndefined();
@@ -452,7 +514,7 @@ describe("NPD-02: links inside running prose are underlined", () => {
   });
   it("negative control: the shipped rule for every link was no decoration at all", () => {
     const shipped = "a {\n  color: inherit;\n  text-decoration: none;\n}";
-    expect(decls(shipped, ":where(p:not(footer p)) a:where(:not(.btn))")["text-decoration-line"]).toBeUndefined();
+    expect(decls(shipped, RULE)["text-decoration-line"]).toBeUndefined();
   });
 });
 

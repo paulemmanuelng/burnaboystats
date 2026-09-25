@@ -122,7 +122,10 @@
 }
 .tText { color: var(--text-muted); font-size: 14.5px; margin: 5px 0 0; max-width: 82ch; line-height: 1.6; }
 .tMoreLink { margin: 18px 0 0; font-family: var(--font-mono), monospace; font-weight: 700; font-size: 12px; letter-spacing: 0.09em; text-transform: uppercase; }
-.tMoreLink a { color: var(--gold); text-decoration: none; }
+/* A link on its own line with its own hover underline, not running prose:
+   the offset is held here so the in-text link rule in globals.css (which the
+   text-decoration shorthand does not reset) leaves its hover line as it was. */
+.tMoreLink a { color: var(--gold); text-decoration: none; text-underline-offset: auto; }
 .tMoreLink a:hover { text-decoration: underline; }
 
 @media (max-width: 1239px) {

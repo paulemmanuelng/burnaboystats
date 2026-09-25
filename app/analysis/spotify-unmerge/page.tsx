@@ -290,9 +290,9 @@ export default function SpotifyUnmergePage() {
           This site&apos;s own streaming figures are built from the platform&apos;s per-track
           counts after the correction, so nothing here was ever inflated by the merge. How every number is
           sourced is set out on the{" "}
-          <Link href="/methodology" className={styles.link}>methodology page</Link>, and the
+          <Link href="/methodology" className={`${styles.link} proseLink`}>methodology page</Link>, and the
           current totals are on{" "}
-          <Link href="/records/by-the-numbers" className={styles.link}>by the numbers</Link>.
+          <Link href="/records/by-the-numbers" className={`${styles.link} proseLink`}>by the numbers</Link>.
         </p>
       </section>
 

@@ -648,10 +648,15 @@ a {
    A thin underline in the link's own colour marks them without a second
    colour. Prose on this site is a <p>; nav, buttons, cards, tiles, chips and
    headings are not, so they keep their own treatment, and the footer's credit
-   line is chrome, not prose. :where() holds this at a bare `a`'s specificity,
-   so a module that styles a link inside a paragraph on purpose (a title link,
-   a pill, the border-underlined .link on /methodology) still decides. */
-:where(p:not(footer p)) a:where(:not(.btn)) {
+   line is chrome, not prose. Inside a <p>, a link that carries a class has
+   been styled on purpose: a button (.btn), a pill (the country board's
+   "Change country ×"), a link that draws its own line (/about's Wikipedia
+   link, the .link on /methodology, /press and /curator). Those are left
+   alone, so the underline goes only on a class-less link, and on a styled
+   one that is still running prose and says so with the global .proseLink
+   (the compare notes, the unmerge page's links). :where() holds this at a
+   bare `a`'s specificity, so a module rule such as `.foo a` still decides. */
+:where(p:not(footer p)) a:where(:not([class]), .proseLink) {
   text-decoration-line: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 2px;

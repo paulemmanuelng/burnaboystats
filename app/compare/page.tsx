@@ -940,7 +940,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
             {/* The other way into the same corpus, and the crawl path to the
                 27 country boards. */}
             <p className={styles.featuredAside}>
-              Or pick a market — <Link href="/compare/in" className={styles.noteLink}>certified units country by country ↗</Link>
+              Or pick a market — <Link href="/compare/in" className={`${styles.noteLink} proseLink`}>certified units country by country ↗</Link>
             </p>
           </section>
         )}
@@ -1128,7 +1128,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
                   plaque awarded before the rise may have cleared a lower bar.{" "}
                   {/* The body-by-body record lives on the methodology page (Paul, 11
                       Sep): twelve of them here were a 40-line wall on a phone. */}
-                  <Link href="/methodology#threshold-history" className={styles.noteLink}>
+                  <Link href="/methodology#threshold-history" className={`${styles.noteLink} proseLink`}>
                     Which bodies, and when ↗
                   </Link>
                 </p>
