@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import sitemap from "../app/sitemap";
 import { updates } from "../app/data/updates";
-import { sweptArtists } from "../app/data/afrobeats";
+import { afrobeatsArtists, sweptArtists } from "../app/data/afrobeats";
 import { liveChartsUpdated } from "../app/data/liveCharts";
 import { LIVE_BOARDS } from "../app/data/liveBoards";
 import { siteUrl } from "../app/site";
@@ -93,5 +93,52 @@ describe("sitemap lastmod", () => {
       .filter((r) => (r.lastModified as Date).toISOString().slice(0, 10) > newestFact)
       .map((r) => r.url);
     expect(ahead).toEqual([]);
+  });
+
+  // The test above takes its ceiling from the data, and since 25 Sep 2026 that
+  // data includes every artist's `verifiedOn`. The board routes take their
+  // lastmod from that same field, so for them it compares a date with itself: a
+  // typo such as "2026-10-25" would raise the ceiling and pass. These two cap
+  // both at the calendar, which the data cannot move.
+  //
+  // "Today" is London's date, where the sweeps are dated. London is never
+  // behind UTC, so a date written just after midnight BST does not fail a CI
+  // runner that is still on yesterday's UTC date.
+  const today = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Europe/London",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(new Date());
+
+  const laterThanToday = (dates: { key: string; date: string }[]) =>
+    dates.filter((d) => d.date > today).map((d) => `${d.key}: ${d.date}, today is ${today}`);
+
+  it("no artist is verified later than today", () => {
+    expect(today).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    expect(laterThanToday(afrobeatsArtists.map((a) => ({ key: a.slug, date: a.verifiedOn })))).toEqual([]);
+  });
+
+  it("no sitemap row is dated later than today", () => {
+    const dated = rows
+      .filter((r) => r.lastModified)
+      .map((r) => ({ key: r.url, date: (r.lastModified as Date).toISOString().slice(0, 10) }));
+    expect(dated.length).toBeGreaterThan(0);
+    expect(laterThanToday(dated)).toEqual([]);
+  });
+
+  it("negative control: a month-out typo clears the data-derived ceiling but not the cap", () => {
+    // The failure the review found (25 Sep 2026): one artist's verifiedOn typed
+    // a month ahead. It becomes the newest fact, so the ceiling rises to meet it.
+    const t = new Date(`${today}T12:00:00Z`);
+    t.setUTCDate(t.getUTCDate() + 30);
+    const typo = t.toISOString().slice(0, 10);
+    const withTypo = [
+      ...afrobeatsArtists.map((a) => ({ key: a.slug, date: a.verifiedOn })),
+      { key: "oxlade", date: typo },
+    ];
+    const ceiling = [...updates.map((u) => u.date), ...withTypo.map((d) => d.date)].sort().at(-1)!;
+    expect(typo > ceiling, "the old check cannot see it").toBe(false);
+    expect(laterThanToday(withTypo), "the cap does").toEqual([`oxlade: ${typo}, today is ${today}`]);
   });
 });
