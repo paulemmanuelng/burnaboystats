@@ -2488,7 +2488,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     image: "https://i.scdn.co/image/ab6761610000e5eb2cdb1148e14bf21f3adc78de",
     verifiedOn: AFROBEATS_VERIFIED_ON_12,
     swept: true,
-    chartPublished: { entries: 34, territories: 11, no1s: 0 },
+    chartPublished: { entries: 32, territories: 9, no1s: 0 },
     releases: [
       { title: "Ku Lo Sa", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/8ffa1ebe726f6367c9cd7852bde139c3/500x500-000000-80-0-0.jpg", certs: [{ c: "FR", level: "Diamond" }, { c: "CA", level: "Platinum", x: 2 }, { c: "CH", level: "Platinum" }, { c: "NG", level: "Platinum" }, { c: "NL", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "DK", level: "Gold" }, { c: "ES", level: "Gold" }, { c: "SE", level: "Gold" }, { c: "US", level: "Gold" }] },
       { title: "Intoxycated", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/561fca8c26d6e1be1d4367eb5975781f/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
@@ -2496,7 +2496,11 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Kolo", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/3ed12ece9fa3923f3f160790a1ad5089/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
     ],
     charts: [
-      { title: "Ku Lo Sa - A COLORS SHOW", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/81015160c51d43ed5f8e15f07f39e9c0/500x500-000000-80-0-0.jpg", entries: [{ c: "SR", peak: 2 }, { c: "NG", peak: 9 }, { c: "NL", peak: 13 }, { c: "CH", peak: 14, weeksAtPeak: 3, weeks: 27 }, { c: "FR", peak: 18 }, { c: "UK", peak: 24, weeksAtPeak: 1, weeks: 20 }, { c: "BE", peak: 32, note: "Wallonia #32 · no Flanders entry", weeksAtPeak: 1, weeks: 10 }, { c: "SE", peak: 35, weeksAtPeak: 1, weeks: 9 }, { c: "IE", peak: 50 }, { c: "PT", peak: 60 }, { c: "GR", peak: 83 }] },
+      // No NL or PT row (25 Sep 2026). The Netherlands #13 and Portugal #60 rested on Hung Medien's cross-country block, re-read
+      // on swisscharts.com as "NL Peak: 13 / Wochen: 45" and "PT Peak: 60 / Wochen: 25": the peak, but neither the chart nor
+      // the week. The pages that print those are dutchcharts.nl (by hand only) and portuguesecharts.com (robots.txt behind a
+      // Cloudflare challenge), so both rows are on Paul's hand check. See docs/sweeps/oxlade-chart-peaks-v1.md.
+      { title: "Ku Lo Sa - A COLORS SHOW", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/81015160c51d43ed5f8e15f07f39e9c0/500x500-000000-80-0-0.jpg", entries: [{ c: "SR", peak: 2 }, { c: "NG", peak: 9 }, { c: "CH", peak: 14, weeksAtPeak: 3, weeks: 27 }, { c: "FR", peak: 18 }, { c: "UK", peak: 24, weeksAtPeak: 1, weeks: 20 }, { c: "BE", peak: 32, note: "Wallonia #32 · no Flanders entry", weeksAtPeak: 1, weeks: 10 }, { c: "SE", peak: 35, weeksAtPeak: 1, weeks: 9 }, { c: "IE", peak: 50 }, { c: "GR", peak: 83 }] },
       { title: "KOLO", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/3ed12ece9fa3923f3f160790a1ad5089/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 7 }] },
       { title: "Ojuju", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/52543bcf18dd3d65bfd5f99697893386/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 11 }] },
       { title: "All My Life", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/1ec6808cc8ae948f825f930f441840c2/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 13 }] },
@@ -2555,7 +2559,8 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Stamina", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/0c45088ffcfc5d0d7043c51a98d45082/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 3 }] },
       { title: "Awolowo (Remix)", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/ae1862219e7923f9e448fa4fa275ed69/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 3 }] },
       { title: "Somebody's Son", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/4eafcb4aaf8c114be22cb15604860a21/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 5 }] },
-      { title: "Energy", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/d810fadc02c818d3ed7d6af2d6c8d2de/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 7, note: "Peak still open — read in the release's first weeks on the Top 100, so it may yet climb. Re-read in a later capture." }] },
+      // TurnTable Top 100: No. 7 on 30 Jul 2026 (week 31), No. 34 on the latest issue read (17 Sep 2026), 16 issues from 4 Jun. The standard open-run note says "first weeks"; this run is 16 weeks old, so it says what was read.
+      { title: "Energy", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/d810fadc02c818d3ed7d6af2d6c8d2de/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 7, note: "Peak still open — still on the Top 100 when read, 16 weeks in (4 Jun to 17 Sep 2026), after reaching No. 7 on 30 Jul. Re-read in a later capture." }] },
       { title: "Jaiye Foreign", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/8feb72523177276c2e6d4afb9f1f704b/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 8 }] },
       { title: "100 MILLION", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/534e46217bbee53226d572fbdd51a54a/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 8 }] },
       { title: "Forgiveness", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/a86863fed5b5f6318f6da589eeeb48ba/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 8 }] },

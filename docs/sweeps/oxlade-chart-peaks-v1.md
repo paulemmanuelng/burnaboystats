@@ -29,31 +29,34 @@ the remix, which every body that carries it files under the *same* chart entry a
 the COLORS original (below). Every other credit is printed "Oxlade" everywhere; no
 body prints a variant spelling.
 
-## Total: 33 singles + 1 album = 34 chart entries
+## Total: 31 singles + 1 album = 32 chart entries
 
-**0 No. 1s.** **11 territories** (🇳🇬 Nigeria, 🇸🇷 Suriname,
-🇳🇱 Netherlands, 🇨🇭 Switzerland, 🇫🇷 France, 🇬🇧 United Kingdom, 🇧🇪 Belgium,
-🇸🇪 Sweden, 🇮🇪 Ireland, 🇵🇹 Portugal, 🇬🇷 Greece).
+**0 No. 1s.** **9 territories** (🇳🇬 Nigeria, 🇸🇷 Suriname, 🇨🇭 Switzerland,
+🇫🇷 France, 🇬🇧 United Kingdom, 🇧🇪 Belgium, 🇸🇪 Sweden, 🇮🇪 Ireland,
+🇬🇷 Greece).
 
-Distribution: 🇳🇬 23 (22 singles + 1 album) + 🇬🇧 2 + one each for SR, NL, CH,
-FR, BE, SE, IE, PT, GR = **34** ✓. No country appears twice for the same title.
+Distribution: 🇳🇬 23 (22 singles + 1 album) + 🇬🇧 2 + one each for SR, CH, FR,
+BE, SE, IE, GR = **32** ✓. No country appears twice for the same title.
 
 **Swept 24 Sep 2026** (find pass), and **every row re-read at its chart body by a
 separate verifier on 24–25 Sep 2026**: 35 rows STAND, 0 are REFUTED, 0 are
-UNVERIFIED. **34 are published:** the 35th, South Africa *Ku Lo Sa* #5, rested
-only on archived TOSAC pages and is held for Paul's hand check under the
-25 Sep 2026 ruling (below). The Nigerian archive was walked a second time, end to end, and
+UNVERIFIED. **32 are published.** The South Africa *Ku Lo Sa* #5 rested only on
+archived TOSAC pages and is held for Paul's hand check under the 25 Sep 2026
+ruling (below). The Netherlands #13 and Portugal #60 were published at first, on
+Hung Medien's database, and **dropped on 25 Sep 2026** when a re-read on an allowed
+host could confirm the peak but not the chart or the week (below); both are on
+Paul's hand check too. The Nigerian archive was walked a second time, end to end, and
 reproduces every row. **Three Billboard peaks for *Ku Lo Sa* are leads, not rows**
 (Canada 59, Global 200 79, Luxembourg 12 — below): Billboard could not be read.
 
 | release | chart peaks by country | |
 |---|---|---|
-| Ku Lo Sa - A COLORS SHOW | 🇸🇷 #2 · 🇳🇬 #9 · 🇳🇱 #13 · 🇨🇭 #14 · 🇫🇷 #18 · 🇬🇧 #24 · 🇧🇪 #32 · 🇸🇪 #35 · 🇮🇪 #50 · 🇵🇹 #60 · 🇬🇷 #83 | **11** |
+| Ku Lo Sa - A COLORS SHOW | 🇸🇷 #2 · 🇳🇬 #9 · 🇨🇭 #14 · 🇫🇷 #18 · 🇬🇧 #24 · 🇧🇪 #32 · 🇸🇪 #35 · 🇮🇪 #50 · 🇬🇷 #83 | **9** |
 | INTOXYCATED (Oxlade ft. Dave) | 🇳🇬 #24 · 🇬🇧 #49 | **2** |
 | 20 other singles | 🇳🇬 only (table below) | **20** |
 | OFA (Oxlade From Africa) | 🇳🇬 only (album) | **1** |
 
-**11 + 2 + 20 + 1 = 34.**
+**9 + 2 + 20 + 1 = 32.**
 
 ## Nigeria — the complete archive, read directly
 
@@ -192,30 +195,60 @@ checked; no spot-check failed.
   is a different record from Oxlade's "OLOLUFE"; the test keys on the exact
   title, so the two strings do not meet.
 
-## Outside Nigeria — eleven entries, each read at the body
+## Outside Nigeria — nine entries, each read at the body
 
 | release | country · chart | peak | weeks at peak / weeks | mark | verbatim, as the body prints it |
 |---|---|---|---|---|---|
 | Ku Lo Sa - A COLORS SHOW | 🇸🇷 Nationale Top 40 Suriname | **2** | — (not published) | ✓ | "De top 40 lijst voor 1 – 8 dec 2022", `<ol class="wp-block-list">` item 2: "Ku Lo Sa – Oxlade". Then 5, 5, 5, 5 (Dec 2022 lists), 3, 4, 6, 8, 10, 13, 18, 26, 29 (typed numbers, 5 Jan – 9 Mar 2023). |
-| Ku Lo Sa - A Colors Show | 🇳🇱 Dutch Single Top 100 | **13** | — / 45 (doc only) | ✓ᴴ | Hung Medien block "NL \| Peak: 13 / Wochen: 45" (swisscharts.com), "NL \| Top: 13 / Semaines: 45" (Ultratop's archived page), "nl \| Peak: 13 / weeks: 45" (portuguesecharts.com). |
 | Ku Lo Sa - A Colors Show | 🇨🇭 Schweizer Hitparade | **14** | 3 / 27 | ✓ | "Single-Hitparade \| Einstieg \| 28.08.2022 \| (Rang 84) \| Zuletzt \| 12.03.2023 \| (Rang 90) \| Peak \| 14 (3 Wochen) \| Anzahl Wochen \| 27" |
 | KU LO SA - A COLORS SHOW | 🇫🇷 SNEP Top Singles (Top 200) | **18** | — (not published) | ✓ | S37-2022 (Semaine du 16 septembre 2022): "18 \| KU LO SA - A COLORS SHOW \| OXLADE \| SONY MUSIC ENTERTAINMENT / EPIC \| 32e La Semaine Dernière". Run from S31-2022 (148): 148, 114, 110, 96, 64, 32, **18**, 27, 22, 20 … |
 | KU LO SA - A COLORS SHOW | 🇬🇧 Official Singles Chart Top 100 | **24** | 1 / 20 | ✓ | Chart of 16/9/2022: "Number 24 \| KU LO SA - A COLORS SHOW \| OXLADE \| LW: 32 , Peak: 24 , Weeks: 9". Song page: 15 weeks 28/07–03/11/2022 + 5 weeks 12/01–09/02/2023 = 20, peak marked once (22/09/2022). |
 | Ku Lo Sa - A Colors Show | 🇧🇪 Ultratop 50 Wallonia | **32** | 1 / 10 | ✓ᴬ | "Singles Charts \| Entrée \| 17/09/2022 \| (Position 50) \| Dernière semaine \| 03/12/2022 \| (Position 44) \| Top \| 32 (1 semaine) \| Semaines \| 10"; block "BE \| Top: 32 / Semaines: 10 (W)". No Flanders entry. |
 | KU LO SA – A COLORS SHOW | 🇸🇪 Sverigetopplistan | **35** | 1 / 9 | ✓ | Vecka 38/2022, position 35. Stats panel: "9 \| Veckor på listan \| 58 \| Föregående placering \| 35 \| Högsta placering \| Första placering: Vecka 35, 2 september 2022". Run 90, 47, 36, **35**, 41, 46, 46, 58, 77. |
 | KU LO SA - A COLORS SHOW | 🇮🇪 Official Irish Singles Chart (IRMA) | **50** | — (not published) | ✓ | IRMA: "KU LO SA - A COLORS SHOW \| OXLADE \| Singles \| Peak \| # \| 50 \| Label \| COLUMBIA". OCC's Irish chart of 14/10/2022: "Number 50 \| KU LO SA - A COLORS SHOW \| OXLADE \| LW: 67 , Peak: 50 , Weeks: 7". |
-| Ku Lo Sa - A Colors Show | 🇵🇹 AFP Top 200 Singles | **60** | — / 25 (doc only) | ✓ᴴ | portuguesecharts.com: "35/2022 : N 149. 36/2022 : 107. 37/2022 : 76. 38/2022 : 60. 39/2022 : 70. … 06/2023 : 160. 08/2023 : R 194." |
 | KU LO SA - A COLORS SHOW | 🇬🇷 IFPI Greece Digital Singles (International) | **83** | — (floor, not recorded) | ✓ᴬ | Week 37/2022: "83 \| Oxlade \| KU LO SA - A COLORS SHOW \| Panik/Sony \| QMEU32209358 \| \| \| 1 \| 83 \| 2022_37 \| NE"; week 38/2022: "89 \| … \| 83 \| 2 \| 83 \| 2022_37 \| DOWN". |
 | INTOXYCATED (Oxlade ft. Dave) | 🇬🇧 Official Singles Chart Top 100 | **49** | 1 / 3 | ✓ | Chart of 21/7/2023: "Number 49 \| New \| INTOXYCATED \| OXLADE FT DAVE \| LW: New Peak: 49 , Weeks: 1". Run 49, 68, 96. Label COLUMBIA. |
 
-**✓ᴴ** = read in the Hung Medien chart database — the data dutchcharts.nl and the
-AFP mirror serve — not at the body's own site. For the Netherlands the body could
-not be read at all (dutchcharts.nl robots.txt is `User-agent: * / Disallow: /`;
-top40.nl disallows ClaudeBot, Claude-Web and anthropic-ai); for Portugal, AFP's
-weekly PDFs sit under an audiogest.pt path its robots.txt disallows. Both figures
-are printed identically on three separate Hung Medien pages, and the board's
-earlier sweeps accept that database for NL and PT. Their weeks (NL 45, PT 25) are
-recorded here, not in the entry.
+### Dropped on 25 Sep 2026: the Netherlands #13 and Portugal #60
+
+Both were published at first, marked ✓ᴴ, on Hung Medien's database: the NL figure
+from the cross-country block on swisscharts.com and an archived Ultratop page, the
+PT run from portuguesecharts.com. The owner asked for them to be verified again.
+The bar for the re-read was the peak, the chart and the week of the peak, on an
+allowed host only, with an honest User-Agent (`burnaboystats-board-verify/1.0`).
+
+| row | as first published | re-read 25 Sep 2026 | outcome |
+|---|---|---|---|
+| 🇳🇱 Dutch Single Top 100 **13** | Hung Medien block "NL \| Peak: 13 / Wochen: 45" (swisscharts.com), "NL \| Top: 13 / Semaines: 45" (Ultratop's archived page), "nl \| Peak: 13 / weeks: 45" (portuguesecharts.com) | swisscharts.com song page `/song/Oxlade/Ku-Lo-Sa-A-Colors-Show-2291609`, block "Weltweit": "NL \| Peak: 13 / Wochen: 45"; austriancharts.at, the same. The peak and the weeks on chart; **no chart name and no week**. The block's NL link goes to dutchcharts.nl. | **dropped**: on Paul's hand check |
+| 🇵🇹 AFP Top 200 Singles **60** | portuguesecharts.com: "35/2022 : N 149. 36/2022 : 107. 37/2022 : 76. 38/2022 : 60. 39/2022 : 70. … 06/2023 : 160. 08/2023 : R 194." | the same swisscharts.com block: "PT \| Peak: 60 / Wochen: 25". The peak and the weeks on chart; **no chart name and no week**. The week-by-week run is printed only on portuguesecharts.com. | **dropped**: on Paul's hand check |
+
+Why no allowed host could finish the re-read:
+- **dutchcharts.nl** and **top40.nl** are by hand under the 24–25 Sep rulings, Wayback
+  included. They are the only pages that print the NL chart and week.
+- **portuguesecharts.com** answers every request, `/robots.txt` included, with a
+  Cloudflare challenge (HTTP 403, `cf-mitigated: challenge`), so its robots.txt
+  cannot be read and the host is not used. The challenge was not bypassed. AFP's
+  own weekly PDFs are "AFP uploads", by hand.
+- **ultratop.be**'s robots.txt disallows ClaudeBot, anthropic-ai and Claude-Web by
+  name, so it was not read (and its archived page was a Wayback copy).
+- **swisscharts.com** allows `*` on song and search pages (crawl-delay 10 s, kept).
+  **austriancharts.at** allows `*` too; its *Ku Lo Sa* page (`showitem.asp`) prints
+  the same block, "nl Peak: 13 / Wochen: 45" and "pt Peak: 60 / Wochen: 25", and
+  again no chart or week. spanishcharts.com and danishcharts.dk also allow `*`; they
+  were not needed. lescharts.com, hitparade.ch, italiancharts.com,
+  swedishcharts.com, norwegiancharts.com, finnishcharts.com, australian-charts.com,
+  charts.nz and irish-charts.com all answer `/robots.txt` with the same Cloudflare
+  "Just a moment..." challenge, so none was read.
+
+Every other Oxlade item on swisscharts.com was re-read the same way (DKT, Want You,
+Ku lo sa with Camila Cabello, Bad Boy, Intoxycated, Katigori, Arabambi, Soli, Like
+That, Medicine, Safe Salina, Okay, Mister Romantic, Napona): none carries an NL or
+PT line, so *Ku Lo Sa* was his only title with either row. Saved pages and each
+host's robots.txt: `~/burnaboy-work/board-four/final/reverify/`.
+
+If Paul confirms either row on dutchcharts.nl or AFP's Top 200, it goes back on
+with ✓ (read at the body, by hand): the Netherlands and Portugal would take him from
+9 territories to 10 or 11.
 
 **Row-level notes.**
 - **Suriname 2** is the rendered position in the site's HTML ordered list — the
@@ -262,7 +295,7 @@ Every read below was made by the verifier with an honest User-Agent:
 | 🇬🇧 UK Official Singles Chart Top 100 (OCC) | OCC search `/search/oxlade/` (7 credits: OXLADE; Oxlade ft Dave; Oxlade ft Mayorkun; Oxlade & Flavour; Oxlade ft Sarkodie; Oxlade ft Wande Coal; Dolapo/Ms Banks/Oxlade) and all seven read in full; also searched k-trap and "pressure" | only the two rows above. K-Trap & Oxlade *Pressure* has no OCC entry (not on K-Trap's page; not among OCC's 12 "Pressure" songs) |
 | 🇮🇪 IRMA | all nine song sitemaps, 17,728 charting songs | only *Ku Lo Sa* (Libianca has *People*, not *Mistaken*) |
 | 🇫🇷 SNEP Top Singles | 92 weekly lists: 2022 W24 – 2023 W36 (Ku Lo Sa, Intoxycated), 2023 W47–52 (Katigori; ElGrandeToto feat. Oxlade *Like That*), 2024 W13–20 (Rhove feat. Oxlade *Soli*), 2024 W24–28 (Arabambi), 2025 W48 – 2026 W3 (Luciano feat. Oxlade *Medicine*); each list checked against its active week | only *Ku Lo Sa* |
-| Hung Medien network (swisscharts.com; austriancharts.at) | song search "oxlade" (18 items) and "ku lo sa"; every Oxlade item read: DKT, Want You, Ku Lo Sa - A Colors Show, Ku lo sa (x Camila Cabello), Bad Boy, Intoxycated, Katigori, Arabambi, Like That, Medicine, Mister Romantic (MC One), Soli, Safe Salina (Tawsen), Okay (It's Not Right) (Whitney Houston & Oxlade & Pheelz), Napona (Nandy & Oxlade) | only *Ku Lo Sa* has a chart run (CH, FR, NL, BE-W, SE, PT) plus the remix item's single FR week inside the same SNEP entry. No AT, DE, NO, DK, IT, ES or FI line on any item; *Mistaken* and *OFA* are not in the database. Austria is a proven zero (its artist page has no Ö3 section) |
+| Hung Medien network (swisscharts.com; austriancharts.at) | song search "oxlade" (18 items) and "ku lo sa"; every Oxlade item read: DKT, Want You, Ku Lo Sa - A Colors Show, Ku lo sa (x Camila Cabello), Bad Boy, Intoxycated, Katigori, Arabambi, Like That, Medicine, Mister Romantic (MC One), Soli, Safe Salina (Tawsen), Okay (It's Not Right) (Whitney Houston & Oxlade & Pheelz), Napona (Nandy & Oxlade) | only *Ku Lo Sa* has a chart run (CH, FR, NL, BE-W, SE, PT; the NL and PT lines are leads since 25 Sep 2026, above) plus the remix item's single FR week inside the same SNEP entry. No AT, DE, NO, DK, IT, ES or FI line on any item; *Mistaken* and *OFA* are not in the database. Austria is a proven zero (its artist page has no Ö3 section) |
 | 🇸🇪 Sverigetopplistan | weekly lists 2022 v34–v45 and the stats panel | only *Ku Lo Sa* |
 | 🇳🇿 Official Top 40 Singles (Aotearoa Music Charts) | the body's search API ("Oxlade", "Ku Lo Sa", "Intoxycated", "Mistaken") and 46 dated Top 40 issues: 29 Jul 2022 – 27 Jan 2023, 14 Jul – 1 Sep 2023, 15 Dec 2023 – 23 Feb 2024 | **zero** in the Top 40; the three entities hold Hot 40 runs only |
 | 🇦🇺 ARIA Top 50 Singles | 45 weekly issues: 1 Aug 2022 – 30 Jan 2023, 17 Jul – 28 Aug 2023, 18 Dec 2023 – 26 Feb 2024 | **zero** |
@@ -299,8 +332,11 @@ and *Ojuju* 13 (TurnTable's own payloads: 9, 7 and 11).
 - **Billboard** — above. Also the Canadian Hot 100 before 2 Sep 2023 (Ku Lo Sa,
   Intoxycated) and every Billboard-compiled national chart (LU, HR, RO, IS …).
 - **Netherlands (body)** and **Dutch Top 40** — dutchcharts.nl `Disallow: /`,
-  top40.nl disallows Claude agents. The Single Top 100 row rests on Hung Medien.
-- **Portugal (body)** — AFP PDFs robots-disallowed; the row rests on Hung Medien.
+  top40.nl disallows Claude agents; both by hand since 24–25 Sep 2026. The Single
+  Top 100 #13 that rested on Hung Medien was dropped on 25 Sep 2026 (above).
+- **Portugal (body)** — AFP PDFs robots-disallowed (by hand), and
+  portuguesecharts.com's robots.txt sits behind a Cloudflare challenge. The #60
+  that rested on it was dropped on 25 Sep 2026 (above).
 - **Germany, Norway** (robots or a Cloudflare challenge), **Belgium live site**
   (Cloudflare; Wayback only), **Hungary** (robots disallows ClaudeBot), **Italy
   (FIMI)** and **RiSA** (manual by owner ruling) — unread, not zero. For

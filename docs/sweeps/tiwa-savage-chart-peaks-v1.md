@@ -188,8 +188,10 @@ Wizkid & Darkovibes", 5 May 2022.)
 - **Open run, published with the board's open-run note:** *Energy* (Tiwa Savage,
   Wande Coal & Mavo) — #7 on 30 Jul 2026, #34 on the latest issue (17 Sep), 16
   issues. The standard note says "read in the release's first weeks"; this run is
-  16 weeks old and falling, so the wording is loose. It is the board's one open-run
-  sentence, used as the README requires. Re-read at the next sweep.
+  16 weeks old and falling, so the wording is loose. **Corrected 25 Sep 2026:** the
+  entry's note now reads "Peak still open — still on the Top 100 when read, 16
+  weeks in (4 Jun to 17 Sep 2026), after reaching No. 7 on 30 Jul. Re-read in a
+  later capture." Re-read at the next sweep.
 - **Koroba predates the chart:** it was #24 on the singles chart's very first issue
   (5 Nov 2020) and reached 21 the next week, so 21 is the best rank since the chart
   began, not since release. The entry says so, in the words the board already uses

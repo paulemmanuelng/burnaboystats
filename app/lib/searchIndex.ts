@@ -762,7 +762,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Oxlade — Certifications",
     path: "/afrobeats/oxlade",
     section: "Afrobeats",
-    description: "13 certifications across 10 countries and 34 official chart entries, verified at source.",
+    description: "13 certifications across 10 countries and 32 official chart entries, verified at source.",
     keywords: ["oxlade", "ikuforiji olaitan abdulrahman", "ku lo sa", "kolo", "oxlade certifications"],
   },
   {
