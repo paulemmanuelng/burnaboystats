@@ -501,6 +501,33 @@
   color: var(--text-muted);
   margin: 10px 0 0;
 }
+/* "Compare with…", folded by default. The kicker is the toggle: the padding
+   makes a 44px tap target and the negative margin gives the height back, so
+   the closed fold sits where the plain kicker did. */
+.compareSummary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-block: 14px;
+  margin-block: -14px;
+  user-select: none;
+}
+.compareSummary::-webkit-details-marker { display: none; }
+.compareCount {
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+}
+.compareChevron {
+  margin-left: auto;
+  transition: transform 0.2s ease;
+}
+.compareFold[open] .compareChevron { transform: rotate(180deg); }
+@media (prefers-reduced-motion: reduce) {
+  .compareChevron { transition: none; }
+}
 .eventRow {
   display: flex;
   align-items: baseline;

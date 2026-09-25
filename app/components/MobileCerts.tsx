@@ -577,18 +577,27 @@ export default function MobileCerts({
 
       {/* The pair pages, linked by their own URLs — the desktop half carries
           the same list. Plain links in the screen's existing label and lede
-          styles (E-10, Paul, 24 Sep 2026). */}
+          styles (E-10, Paul, 24 Sep 2026). Folded by default on the phone
+          (Paul, 25 Sep 2026): with 19 names it ran four rows of links. A native
+          <details>, so every link is still served and crawlable, and it needs
+          no script. */}
       {compareWith && compareWith.length > 0 && (
         <nav className={styles.logHead} aria-label={`Compare ${subject} with…`}>
-          <div className={styles.logKicker}>Compare with…</div>
-          <p className={styles.logLede}>
-            {compareWith.map((c, i) => (
-              <Fragment key={c.href}>
-                {i > 0 && " · "}
-                <Link href={c.href} className="wikiLink">{c.name}</Link>
-              </Fragment>
-            ))}
-          </p>
+          <details className={styles.compareFold}>
+            <summary className={`${styles.logKicker} ${styles.compareSummary}`}>
+              Compare with…
+              <span className={styles.compareCount}>{count(compareWith.length, "artist", "artists")}</span>
+              <span className={styles.compareChevron} aria-hidden="true">↓</span>
+            </summary>
+            <p className={styles.logLede}>
+              {compareWith.map((c, i) => (
+                <Fragment key={c.href}>
+                  {i > 0 && " · "}
+                  <Link href={c.href} className="wikiLink">{c.name}</Link>
+                </Fragment>
+              ))}
+            </p>
+          </details>
         </nav>
       )}
 

@@ -372,4 +372,17 @@ describe("every head-to-head page has a direct internal link", () => {
       expect([...nav.querySelectorAll("a")].map((x) => x.getAttribute("href"))).toEqual(want);
     }
   });
+
+  // Paul, 25 Sep 2026: the phone list folds by default. The links stay in the
+  // served markup (inside a closed <details>), so both tests above still hold.
+  it("the phone screen's list is folded by default, with its count on the toggle", () => {
+    const d = doc(renderToStaticMarkup(<CertificationsPage />));
+    const navs = [...d.querySelectorAll('nav[aria-label="Compare Burna Boy with…"]')];
+    const folded = navs.filter((n) => n.querySelector("details"));
+    expect(folded).toHaveLength(1);
+    const details = folded[0].querySelector("details")!;
+    expect(details.hasAttribute("open")).toBe(false);
+    expect(details.querySelector("summary")!.textContent).toContain(`${afrobeatsArtists.length} artists`);
+    expect(details.querySelectorAll("a")).toHaveLength(afrobeatsArtists.length);
+  });
 });
