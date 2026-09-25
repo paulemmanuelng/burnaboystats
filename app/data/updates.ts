@@ -52,6 +52,12 @@ export const updates: Update[] = [
   {
     date: "2026-09-24",
     category: "Streaming",
+    text: "Still the best-selling African artist of all time: ChartMasters now has Burna Boy on 15.28 million equivalent album sales to Wizkid's 14.96M, a 324,000 lead, with Asake (11.45M) joining them as the third African artist on its 695-name board.",
+    href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-09-24",
+    category: "Streaming",
     text: "17.91 million Spotify followers, the most of any African artist and just over five million clear of Wizkid (12.86M) — with Davido (12.03M), Rema (11.94M) and Asake (10.77M) completing the five. Every count read at Spotify itself on 24 September.",
     href: "/records/africas-biggest",
   },
