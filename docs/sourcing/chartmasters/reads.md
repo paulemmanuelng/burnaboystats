@@ -93,3 +93,10 @@ One block per run of scripts/chartmasters-anchor.mjs — what was read, what was
 - edit: app/data/africasBiggest.ts: /* live:streams-2026-burna */ 1.849B" → 1.856B"
 - edit: app/data/africasBiggest.ts: /* live:streams-2026-asake */ 1.488B" → 1.494B"
 - edit: app/data/africasBiggest.ts: /* live:streams-2026-tyla */ 1.225B" → 1.229B"
+
+## 2026-09-24 — Artist Global Impact (cities), read by hand
+
+- Source: chartmasters.org/artists-global-performance/?artist_id=3wcj11K77LjEY1PkEazffa, signed in by Paul, in the site's own browser
+- Captured: `reads/2026-09-24-cities.json` — the same 50 cities as 23 Sep, re-ranked; 29 countries; Global Ranking #82; popularity 85; followers 17,911,287; monthly listeners 47,144,753 (trend −8,556,927)
+- Feeds: app/data/listeners.ts (whole list replaced, LISTENERS_READ_ON 2026-09-24), applied with `node scripts/listeners-apply.mjs`. The followers figure matches the artist's own Spotify About panel read the same evening (17,911,287), which moved the Africa's Biggest board in its own change, with all five artists read that day.
+- 23 rank moves, all one-place swaps (Sydney 7→6 past São Paulo; Santiago 12→11; Johannesburg 29→28; Accra 37→36), and 4 of the 50 cities up: Lagos (1,430,157), Abuja, Johannesburg, Accra. Top-50 sum 15,337,559.
