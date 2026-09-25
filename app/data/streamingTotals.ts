@@ -72,18 +72,20 @@
 // published figure.
 //
 // Method and full evidence: docs/sourcing/CAREER-STREAMS-OFFSET.md.
-export const spotifyTotalStreams = "11.06B";
+export const spotifyTotalStreams = "11.07B";
 
 /**
  * The day ChartMasters' Playcounts Tool was last read to anchor the offset —
  * the newest docs/sourcing/chartmasters/reads/<date>.json. 23 Sep 2026: kworb's
  * page moved after five frozen days, and a ChartMasters-21 ↔ kworb-22 pair
  * re-measured the offset at 114,858,823 (the 22 Sep --kworb-frozen note above
- * is superseded). /methodology prints this date; it still said "17 September"
+ * is superseded). 25 Sep 2026: kworb's raw sum fell 16,051,434 (a title left its
+ * list), and a ChartMasters-23 ↔ kworb-24 pair re-measured it at 141,218,212.
+ * /methodology prints this date; it still said "17 September"
  * after four newer reads. Move it with every anchor read, and
  * tests/siteDebugWording.test.ts holds it to the newest read on file.
  */
-export const CAREER_STREAMS_ANCHOR_READ_ON = "2026-09-23";
+export const CAREER_STREAMS_ANCHOR_READ_ON = "2026-09-25";
 
 // The same daily figure, unrounded.
 //
@@ -93,7 +95,7 @@ export const CAREER_STREAMS_ANCHOR_READ_ON = "2026-09-23";
 // and rounding the one live input forced its derived figures to be rounded too.
 // Both are written by the SAME metric on the same daily run, so they cannot
 // disagree with each other.
-export const spotifyTotalStreamsExact = "11,060,226,630";
+export const spotifyTotalStreamsExact = "11,070,534,585";
 
 // Every video on Burna Boy's own YouTube channel — the total its about page
 // prints for that channel alone, not his videos on other artists' channels.
