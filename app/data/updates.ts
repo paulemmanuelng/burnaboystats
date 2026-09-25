@@ -52,6 +52,22 @@ export const updates: Update[] = [
   {
     date: "2026-09-25",
     category: "Certifications",
+    // BPI register, read on the owner's screen 25 Sep 2026: "RUGER | ASIWAJU |
+    // Single | PROMISED LAND | Silver | Latest Certification 08.11.2024".
+    text: "Ruger’s “Asiwaju” is Silver in the UK: the BPI certified it on 8 November 2024. It is his first British plaque and a third country for the song after Nigeria and France, taking him to 19 plaques on the Afrobeats Board.",
+    href: "/afrobeats/ruger",
+  },
+  {
+    date: "2026-09-25",
+    category: "Certifications",
+    // BPI register, read on the owner's screen 25 Sep 2026: "OXLADE | KU LO SA |
+    // Single | COLUMBIA | Platinum | Latest Certification 06.02.2026".
+    text: "Oxlade’s “Ku Lo Sa” is Platinum in the UK: the BPI certified the single on 6 February 2026. It is his first British plaque and the song’s eleventh country, taking him to 14 plaques on the Afrobeats Board.",
+    href: "/afrobeats/oxlade",
+  },
+  {
+    date: "2026-09-25",
+    category: "Certifications",
     // musiccanada.com/gold-platinum/?_gp_search=secondhand, read 25 Sep 2026:
     // "September 25, 2026 | Platinum Single | Don Toliver | Secondhand (feat. Rema)".
     text: "Canada certifies “Secondhand” Platinum: Music Canada’s row of 25 September moves Don Toliver’s single with Rema up from the Gold it reached on 14 July, and this time the title names Rema. His total stays at 85 plaques.",

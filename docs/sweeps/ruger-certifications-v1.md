@@ -15,13 +15,13 @@ label `Jonzing World, Columbia Records`). The name is also a firearms brand: eve
 register was searched for "Ruger" and no row in any of them is a firearms title
 or credit. Every hit below credits the artist.
 
-## Total: **18 certifications**
+## Total: **19 certifications**
 
-**Country split:** NG + NZ + FR = 16 + 1 + 1 = **18** ✓
+**Country split:** NG + NZ + FR + UK = 16 + 1 + 1 + 1 = **19** ✓
 
-**Tier split:** Platinum + Gold + Silver = 9 + 6 + 3 = **18** ✓ (the six Golds are four Nigerian, one New Zealand and one French)
+**Tier split:** Platinum + Gold + Silver = 9 + 6 + 4 = **19** ✓ (the six Golds are four Nigerian, one New Zealand and one French; the British plaque is *Asiwaju*'s Silver)
 
-All 18 are **singles**. No register holds an album or EP of his: TCSN files
+All 19 are **singles**. No register holds an album or EP of his: TCSN files
 every row as a single, and no other register names him on any long-form title
 (*Pandemic*, *The Second Wave*, *RU The World*, or *RnB* with BNXN).
 
@@ -88,12 +88,13 @@ Each is one award, counted per artist.
 
 ## International
 
-**Two**, both singles:
+**Three**, all singles:
 
 | Country | Body | Title | Tier | Date | Credit as printed | Mark |
 |---|---|---|---|---|---|---|
 | 🇫🇷 FR | SNEP | Asiwaju | Gold (Or) | 05.12.2024 | `RUGER` | ✓ |
 | 🇳🇿 NZ | RMNZ | Girlfriend | Gold | 16.10.2025 | `Ruger` | ✓ |
+| 🇬🇧 UK | BPI | Asiwaju | Silver | 08.11.2024 | `RUGER` | ✓ |
 
 - **SNEP:** `?interprete=ruger` returns one card — `Singles | ASIWAJU | RUGER |
   COLUMBIA / SONY MUSIC ENTERTAINMENT | Or`, *Date de sortie* 14/11/2022, *Date de
@@ -156,8 +157,12 @@ register's own search.
 
 ## Gaps — never to be read as zeros
 
-- **BPI (UK)** — `certified-awards.bpi.co.uk/robots.txt` disallows every agent.
-  Not requested by any route. By hand, below.
+- **BPI (UK)** — `certified-awards.bpi.co.uk/robots.txt` disallows every agent,
+  so no agent requests it. On 25 Sep 2026 the owner searched `Ruger` on the register
+  in his own browser; the one card on his screen read `RUGER | ASIWAJU | Single |
+  PROMISED LAND | Award: Silver | Latest Certification 08.11.2024 | Released
+  13.01.2023` (added above). Features filed under a lead act (e.g. Darkoo's *Solar*)
+  were not searched.
 - **ARIA (Australia)** — the accreditation lists are a Dropbox folder whose
   `/sh/` and `/scl/` paths robots.txt blocks, and this machine's local copies were
   lost on the 24 Sep reboot. By hand, below.
@@ -196,7 +201,7 @@ in Papua New Guinea).
 
 | Country | Where | Type exactly | Why |
 |---|---|---|---|
-| 🇬🇧 UK | bpi.co.uk → BRIT Certified search | `Ruger`, then titles `Asiwaju`, `Girlfriend`, `Dior`, `Romeo Must Die`, `Poe`, `Toma Toma`; then artist `Darkoo` and read for `Solar` | BPI often files a duet under one act: try `RUGER & BNXN`, `BNXN & RUGER`, `RUGER/TIWA SAVAGE`, `DARKOO & RUGER` |
+| 🇬🇧 UK | bpi.co.uk → BRIT Certified search | (`Ruger` searched 25 Sep 2026: *Asiwaju* Silver only) Titles `Asiwaju`, `Girlfriend`, `Dior`, `Romeo Must Die`, `Poe`, `Toma Toma`; then artist `Darkoo` and read for `Solar` | BPI often files a duet under one act: try `RUGER & BNXN`, `BNXN & RUGER`, `RUGER/TIWA SAVAGE`, `DARKOO & RUGER` |
 | 🇦🇺 Australia | aria.com.au/accreditations → the Dropbox folder, 2022–2026 singles and albums lists | `RUGER`, `GIRLFRIEND`, `ASIWAJU`, `DIOR` | *Girlfriend* is RMNZ Gold next door; Paul can download the folder himself for the next pass to read |
 | 🇵🇹 Portugal | audiogest.pt → TOP AFP annual reports 2022–2025 ("Gal." column), plus the monthly award cards | `RUGER`, `ASIWAJU`, `GIRLFRIEND`, `DIOR` | *Asiwaju* went Gold in France; Paul can download the annual TOP PDFs for the next pass to read |
 | 🇿🇦 South Africa | risa.org.za → Certifications | `Ruger`, then `Asiwaju`, `Girlfriend`, `Dior`, `Bounce` | a completeness check on his biggest four |

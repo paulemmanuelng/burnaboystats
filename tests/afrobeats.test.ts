@@ -51,10 +51,11 @@ const EXPECTED = {
   "black-sherif": { total: 24, diamond: 0 },
   bnxn: { total: 65, diamond: 0 },
   // Joined 25 Sep 2026 (verified 24–25 Sep). Oxlade's one Diamond is France's
-  // "Ku Lo Sa"; the other three hold none.
+  // "Ku Lo Sa"; the other three hold none. Oxlade 13 -> 14 on 25 Sep 2026: "Ku Lo
+  // Sa" UK Platinum (BPI, 06.02.2026), read by the owner on the register.
   "kizz-daniel": { total: 35, diamond: 0 },
-  ruger: { total: 18, diamond: 0 },
-  oxlade: { total: 13, diamond: 1 },
+  ruger: { total: 19, diamond: 0 }, // 18 -> 19: "Asiwaju" UK Silver (BPI, 08.11.2024), read by the owner on the register 25 Sep 2026
+  oxlade: { total: 14, diamond: 1 },
   "tiwa-savage": { total: 12, diamond: 0 },
 } as const;
 
