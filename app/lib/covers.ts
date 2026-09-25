@@ -79,7 +79,7 @@ const EXTRA_COVERS: Record<string, string> = {
   rockstar: "https://cdn-images.dzcdn.net/images/cover/12cc6ed5c376e339bd5e0e7f3500d375/100x100-000000-80-0-0.jpg",
   // Don't Let Me Drown — his single from the F1 (2025) soundtrack
   "don t let me drown": "https://cdn-images.dzcdn.net/images/cover/bb77038fd6b4b72e6d4fd8a34a889e71/100x100-000000-80-0-0.jpg",
-  // Yaba Buluku (Remix) — DJ Tarico; contributors verified to include Burna Boy
+  // Yaba Buluku (Remix) — DJ Tárico; contributors verified to include Burna Boy
   "yaba buluku": "https://cdn-images.dzcdn.net/images/cover/838ae1b6384d70287eb799afdb50512c/100x100-000000-80-0-0.jpg",
   // Hossana — Shatta Wale x Burna Boy
   hossana: "https://cdn-images.dzcdn.net/images/cover/2f2348a8985965e0f13b08e0851f5a8d/100x100-000000-80-0-0.jpg",
@@ -142,13 +142,21 @@ const withCover = (rows: { title: string; cover?: string }[]) =>
 // the original release's art wins over the later collection.
 const allReleases = [...albums, ...eps, ...compilations];
 
+/** A tracklist entry's title, without its credit bracket. key() strips a
+ *  "(feat. X)" or "(with X)" bracket; a track another act leads is written
+ *  with its full credit line — "Talibans II (Byron Messia ft. Burna Boy)"
+ *  (F-10, Paul, 24 Sep 2026) — and that bracket is a credit too. Scoped to
+ *  tracklists: widening key() itself would rekey thirty board titles such as
+ *  "Money (Zlatan ft. Davido)" onto Burna Boy's own "money". */
+const trackTitle = (track: string) => track.replace(/\s*\([^)]*\s(?:ft|feat)\.\s[^)]*\)$/i, "");
+
 /** Song title → the cover of the release whose tracklist contains it. */
 const TRACK_COVERS: Record<string, string> = {};
 for (const album of allReleases) {
   if (!album.cover) continue;
   for (const track of album.tracks) {
     // First album wins, so an original release beats a later compilation.
-    TRACK_COVERS[key(track)] ??= album.cover;
+    TRACK_COVERS[key(trackTitle(track))] ??= album.cover;
   }
 }
 

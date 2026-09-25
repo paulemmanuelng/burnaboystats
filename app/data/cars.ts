@@ -48,9 +48,10 @@
 // ── JULY 2026 UPDATE — top-fan re-pricing pass ──────────────────────────────
 // Re-priced against a researched breakdown from a top Burna Boy fan/collector
 // (@turntupnaza), who tracked each car's buy price + Nigerian import duties.
-// Only the McLaren Senna price is dealer-stated (Abuja Car Limited's June 2025
-// sale post, ₦3.2bn / about $2M); the Bugatti, Cullinan and Aventador SVJ are
-// high-confidence, the rest estimates.
+// Only the McLaren Senna price was dealer-stated then (Abuja Car Limited's June
+// 2025 sale post, ₦3.2bn / about $2M — the row keeps the fan breakdown's
+// ₦2.9bn); the Bugatti, Cullinan and Aventador SVJ are high-confidence, the
+// rest estimates. The Chiron's ₦9bn, added later, is the same dealer's figure.
 //   • Ferrari 458 Italia + 488 Spider → SOLD (kept here, not dropped).
 //   • Bentley Continental GT + Range Rover Autobiography → UNCONFIRMED (not
 //     sighted with him in years).
@@ -205,6 +206,11 @@ export interface Car {
   /** "estimate" when the site, not a dated source, chose the figure — the
    *  labels say so instead of "reported". */
   valueBasis?: "reported" | "estimate";
+  /** ISO date the car joined the list, where that is later than the last full
+   *  sweep (CARS_LAST_SWEEP). A July re-verification cannot vouch for a car
+   *  bought in September, and the SLS AMG's page said "List re-verified July
+   *  2026" over its own "bought in September 2026". */
+  addedOn?: string;
   link?: string; // optional: photo/video of Burna Boy in/with the car
   linkLabel?: string; // optional override for the link text (defaults to "See Burna in it")
 
@@ -433,6 +439,7 @@ export const cars: Car[] = [
     // that day, ₦1,329.2129/$. Hero and tile: scripts/build-car-hero.py (#306).
     make: "Mercedes-Benz", model: "SLS AMG", year: 2010, yearIs: "model",
     valueUsd: 700_000, valueNaira: "₦930 million", valueBasis: "reported",
+    addedOn: "2026-09-23",
     desc: "The gullwing — a 2010 SLS AMG coupé in black over tan, showing about 6,000 miles, bought in September 2026 from AbujaCar in Abuja, the dealer that also supplied the Chiron and the Senna, whose own video carries the car marked SOLD and off to Lagos. Reported at over $700,000 on 9 September 2026; neither AbujaCar nor Burna Boy has published a figure.",
     slug: "mercedes-sls-amg",
     subtitle: "THE GULLWING — 2010 SLS AMG, ABOUT 6,000 MILES",
@@ -642,9 +649,17 @@ export const CARS_LAST_SWEEP = "July 2026";
  *  dates the third pass). Bump by hand on the next spec pass. */
 export const CARS_SPECS_CHECKED = "16 September 2026";
 
-/** The word the value labels use — "reported" for a dated source, "estimate"
- *  where the site chose the figure (the GLS 600 has no report behind it). */
-export const valueWord = (c: Pick<Car, "valueBasis">) => (c.valueBasis === "estimate" ? "estimate" : "reported");
+/** The word the value labels use — "reported" for a dated source, "estimated"
+ *  where the site chose the figure (the GLS 600 has no report behind it). An
+ *  adjective like "reported": the GLS 600 read "by estimate value" until
+ *  24 Sep 2026. */
+export const valueWord = (c: Pick<Car, "valueBasis">) => (c.valueBasis === "estimate" ? "estimated" : "reported");
+
+/** A car's `addedOn`, as the provenance lines print it: "23 September 2026". */
+export const addedOnLabel = (c: Pick<Car, "addedOn">) =>
+  c.addedOn
+    ? new Date(`${c.addedOn}T12:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" })
+    : undefined;
 
 export const conversionNote = (() => {
   const ratios = currentCars

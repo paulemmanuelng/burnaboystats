@@ -1,6 +1,6 @@
 "use client"; // the three chips filter every body's nominations
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "./mobileAwards.module.css";
 import ScrollRail from "./ScrollRail";
@@ -9,6 +9,7 @@ import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
 import MobileFaqSection from "./MobileFaqSection";
 import type { Faq } from "./FaqList";
+import { onDeepLinkChange, readDeepLink } from "../lib/deepLink";
 
 /**
  * Mobile screen 11 — Awards & nominations.
@@ -23,6 +24,10 @@ import type { Faq } from "./FaqList";
  */
 
 type Filter = "all" | "wins" | "noms";
+
+/** A body's heading id — where #body=<name> lands on this screen. */
+const awardBodyAnchor = (name: string) =>
+  `award-body-${name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`;
 
 export default function MobileAwards({
   ceremonies,
@@ -43,6 +48,21 @@ export default function MobileAwards({
   faqs: Faq[];
 }) {
   const [filter, setFilter] = useState<Filter>("all");
+
+  // #body=<name> is search's link for an award body. This screen has no body
+  // filter to set, so it brings that body's heading into view instead — on
+  // arrival and whenever the fragment changes. Search used to send every body
+  // to the top of the page (24 Sep 2026). Skipped when this layout is not the
+  // one on screen.
+  useEffect(() => {
+    const land = () => {
+      const b = readDeepLink("body", false);
+      const el = b ? document.getElementById(awardBodyAnchor(b)) : null;
+      if (el?.getClientRects().length) el.scrollIntoView({ block: "start" });
+    };
+    land();
+    return onDeepLinkChange(land);
+  }, []);
 
   const bodies = ceremonies
     .map((c) => ({
@@ -132,7 +152,7 @@ export default function MobileAwards({
       </div>
 
       {bodies.map((b) => (
-        <div key={b.name}>
+        <div key={b.name} id={awardBodyAnchor(b.name)}>
           <div className={styles.bodyHead}>
             <h2 className={styles.bodyName}>{b.name}</h2>
             <span className={`${styles.tally} ${b.wins > 0 ? styles.tallyWon : ""}`}>

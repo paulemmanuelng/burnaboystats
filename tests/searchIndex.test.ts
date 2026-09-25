@@ -13,7 +13,8 @@ import { join } from "node:path";
 import { searchDocs } from "../app/lib/searchIndex";
 import { generatedDocs } from "../app/lib/searchIndex.generated";
 import { buildSearchDocs } from "../app/lib/buildSearchDocs";
-import { allItems } from "../app/data/certifications";
+import { allItems, COUNTRIES } from "../app/data/certifications";
+import { allChartItems, CHART_COUNTRIES } from "../app/data/charts";
 import { ceremonies } from "../app/data/awards";
 
 // Search used to index only the site's ~79 PAGES, so it could find a page and
@@ -38,6 +39,50 @@ describe("the generated half is current", () => {
     // Names and paths only. A total copied in here would be a second source of
     // truth that drifts from the page it points at.
     for (const d of generatedDocs) expect(d.path.startsWith("/")).toBe(true);
+  });
+});
+
+// C-04 (debug pass, 24 Sep 2026): search sent 70 releases to a bare
+// /certifications, 29 to a bare /records/charts, all 47 award bodies to
+// /records/awards and 67 countries to bare list pages, so "gbona" + Enter
+// landed on the whole ledger with nothing to say which release was meant.
+// Each now carries the fragment its page reads — and a fragment the page does
+// not recognise is a broken link, so each is checked against that page's data.
+describe("generated records deep-link to their own row", () => {
+  const frag = (path: string, key: string) =>
+    new URLSearchParams(path.split("#")[1] ?? "").get(key);
+  const certTitles = new Set(allItems.map((r) => r.title));
+  const chartTitles = new Set(allChartItems.map((r) => r.title));
+
+  it("no release, award body or country points at a bare list page", () => {
+    const bare = generatedDocs.filter(
+      (d) =>
+        ["Release", "Awards", "Country"].includes(d.section) &&
+        ["/certifications", "/records/charts", "/records/awards"].includes(d.path)
+    );
+    expect(bare.map((d) => `${d.section}: ${d.title}`)).toEqual([]);
+  });
+
+  it("every #release= names a release the ledger carries, spelled its way", () => {
+    const docs = generatedDocs.filter((d) => d.path.startsWith("/certifications#release="));
+    expect(docs.length).toBeGreaterThan(0);
+    for (const d of docs) expect(certTitles.has(frag(d.path, "release")!), d.path).toBe(true);
+  });
+
+  it("every #song= names a release the chart table carries, spelled its way", () => {
+    const docs = generatedDocs.filter((d) => d.path.startsWith("/records/charts#song="));
+    expect(docs.length).toBeGreaterThan(0);
+    for (const d of docs) expect(chartTitles.has(frag(d.path, "song")!), d.path).toBe(true);
+  });
+
+  it("every #body= and #country= names something its page can filter to", () => {
+    for (const d of generatedDocs.filter((x) => x.section === "Awards"))
+      expect(ceremonies.some((c) => c.name === frag(d.path, "body")), d.path).toBe(true);
+    for (const d of generatedDocs.filter((x) => x.section === "Country")) {
+      const code = frag(d.path, "country")!;
+      const table = d.path.startsWith("/certifications#") ? COUNTRIES : CHART_COUNTRIES;
+      expect(table[code], d.path).toBeDefined();
+    }
   });
 });
 

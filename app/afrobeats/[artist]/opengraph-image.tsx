@@ -25,7 +25,8 @@ export async function generateImageMetadata({ params }: { params: Promise<{ arti
   const sig = a
     ? `${slug}|${certCount(a)}|${countryCount(a)}|${chartEntries(a)}|${chartNo1s(a)}|${cardUrl(`/afrobeats/${slug}`)}`
     : `${slug}`;
-  return [{ id: ogId(sig), alt, size, contentType }];
+  // The alt names the artist; every board card carried the one generic alt below.
+  return [{ id: ogId(sig), alt: a ? `${a.name} on the Afrobeats Board — certifications and chart records, verified at source` : alt, size, contentType }];
 }
 
 export const size = { width: 1200, height: 630 };

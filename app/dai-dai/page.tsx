@@ -72,19 +72,26 @@ const liveOnes = (platform: string) =>
 const platformOnes = ["YouTube", "Apple Music", "Deezer", "Spotify", "iTunes", "Shazam"]
   .map((p) => [p, liveOnes(p)] as const)
   .filter(([, n]) => n > 0);
-const liveOnesLabel = `right now on the daily charts of ${platformOnes
+// Not "daily": YouTube's country charts, which supply most of these No. 1s,
+// are weekly (cadenceOf in lib/liveChartMeta.ts).
+const liveOnesLabel = `right now on the country charts of ${platformOnes
   .map(([p, n], i) => (i === 0 ? `${p} (${n} countries)` : `${p} (${n})`))
   .join(", ")
   .replace(/, ([^,]*)$/, " and $1")} — ${LIVE_CADENCE} from the live board`;
 
+
+// The story's publication date: the Article node's datePublished and the
+// og:type "article" date both read it. The Spanish edition carries the same.
+const PUBLISHED = "2026-07-16";
 
 export const metadata = pageMetadata({
   title: "Dai Dai — Shakira & Burna Boy's 2026 World Cup Anthem",
   description: `Shakira & Burna Boy's “Dai Dai” — the World Cup anthem: 37 days as Earth's most-streamed song, No. 1 in ${daiDaiNumberOnes} countries, and the Final halftime show.`,
   path: "/dai-dai",
   shareTitle: "The Dai Dai Story — Shakira & Burna Boy",
-  shareDescription: "Shakira & Burna Boy's World Cup anthem — No.1 worldwide, and performed at the Final halftime show.",
+  shareDescription: "Shakira & Burna Boy's World Cup anthem — No. 1 worldwide, and performed at the Final halftime show.",
   languages: { en: "/dai-dai", es: "/dai-dai/es", "x-default": "/dai-dai" },
+  article: { publishedTime: PUBLISHED },
 });
 
 export default function DaiDaiPage() {
@@ -99,7 +106,7 @@ export default function DaiDaiPage() {
     headline: "Dai Dai — Shakira & Burna Boy's 2026 FIFA World Cup Anthem",
     description:
       "The story of “Dai Dai”, the 2026 FIFA World Cup anthem by Shakira and Burna Boy — its record-breaking chart, streaming and certification run, and its live performance at the World Cup Final halftime show.",
-    datePublished: "2026-07-16",
+    datePublished: PUBLISHED,
     dateModified: asDateTime(lastUpdated),
     inLanguage: "en",
     author: { "@type": "Organization", name: SITE_NAME, url: CANONICAL_ORIGIN },
@@ -126,7 +133,9 @@ export default function DaiDaiPage() {
     name: "2026 FIFA World Cup Final Halftime Show",
     startDate: "2026-07-19",
     eventStatus: "https://schema.org/EventScheduled",
-    eventAttendanceMode: "https://schema.org/MixedEventAttendanceMode",
+    // Offline: the location is the stadium alone. "Mixed" also asks for a
+    // VirtualLocation, and the node names no sourced broadcast URL to give one.
+    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
     location: {
       "@type": "Place",
       name: "MetLife Stadium",
@@ -217,7 +226,7 @@ export default function DaiDaiPage() {
       items: [
         { v: "37 days", l: `in total at No. 1 on Spotify's Global Daily Top Songs chart — a first for an African artist, and the most days at No. 1 by any song in 2026, five clear of Djo's “End of Beginning” (32) and six of Justin Bieber & Nicki Minaj's “Beauty And A Beat” (31). A closed total, the first of them on the chart dated ${DAI_DAI_SPOTIFY_NO1_FIRST_LONG} and the last on ${DAI_DAI_SPOTIFY_NO1_LAST_LONG}, confirmed day by day through the chart dated ${DAI_DAI_SPOTIFY_NO1_READ_ON_LONG} — with ${DAI_DAI_SPOTIFY_TOP10_DAYS} days inside the global Top 10 in all, counted through that same chart` },
         { v: "6 weeks", l: "at No. 1 on Spotify's Global Weekly Top Songs chart — a run that closed on the chart dated 27 August — in a 16-week stay counted through the chart dated 10 September 2026, peaking at 40.28M streams in a single week" },
-        { v: "No. 114", l: `where it entered Spotify's Global Daily Top Songs chart on 15 May 2026, the day after release — it fell straight back off for ${cardinalWord(DAI_DAI_SPOTIFY_DAYS_OFF, "en")} days, returned on 22 May and has not left since: ${daiDaiSpotifyStraightDays} straight days on the chart and ${daiDaiSpotifyDaysOnChart} in all, counted through the chart dated ${DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG}, which prints both figures in its own columns (Spotify Charts)` },
+        { v: "No. 114", l: `where it entered Spotify's Global Daily Top Songs chart on 15 May 2026, its release day — it fell straight back off for ${cardinalWord(DAI_DAI_SPOTIFY_DAYS_OFF, "en")} days, returned on 22 May and has not left since: ${daiDaiSpotifyStraightDays} straight days on the chart and ${daiDaiSpotifyDaysOnChart} in all, counted through the chart dated ${DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG}, which prints both figures in its own columns (Spotify Charts)` },
         { v: "58 days", l: "at No. 1 on Apple Music's European songs chart — plus 11 days atop the worldwide Apple Music chart" },
         { v: "40 days", l: "at No. 1 on the worldwide iTunes songs chart, and 15 days atop the European iTunes chart" },
         { v: "No. 1", l: liveOnesLabel },
@@ -243,7 +252,7 @@ export default function DaiDaiPage() {
         // publishing a chart week nobody had read. The peak stands; the currency
         // claim does not.
         { v: "No. 1", l: "Official MENA Chart Top 20 — and Billboard's US World Digital Song Sales chart" },
-        { v: "No. 2", l: `UK Official Singles Chart — ${cardinalWord(weeksUK, "en")} weeks at that peak, 30 July to 27 August 2026, in a ${runUK}-week stay counted through the chart of 17 September (No. 19). The first FIFA World Cup song ever to reach the UK Top 10, and by far the highest-charting World Cup song in UK history, beating Shakira's own “Waka Waka” (No. 21)` },
+        { v: "No. 2", l: `UK Official Singles Chart — ${cardinalWord(weeksUK, "en")} weeks at that peak, 30 July to 27 August 2026, in a ${runUK}-week stay counted through the chart of 24 September (No. 31). The first FIFA World Cup song ever to reach the UK Top 10, and by far the highest-charting World Cup song in UK history, beating Shakira's own “Waka Waka” (No. 21)` },
         { v: "No. 3", l: "Billboard Canadian Hot 100 — a new peak and Burna Boy's first-ever top 10 in Canada, where his best song placing had been No. 14. It is also Shakira's first Canadian top 10 since “She Wolf” in 2009" },
         { v: "No. 17", l: "Billboard Hot 100 (US) — a 42-to-17 jump on the chart dated 1 August, the highest-charting World Cup song in Hot 100 history. Luminate logged 8.6M US streams (+69%), 13.9M radio airplay audience (+11%) and 7,000 sold (+322%) in the 17–23 July tracking week" },
         { v: "4 weeks", l: "at No. 1 on the UK's Big Top 40 (the charts of 9 to 30 August 2026) — the Capital and Heart networks' national countdown, with Burna Boy presented the No. 1 plaque" },
@@ -256,7 +265,10 @@ export default function DaiDaiPage() {
       items: [
         { v: "13 weeks", l: "at No. 1 on Mediatraffic's United World Chart — 230,000 points in the chart week dated 26 September, and the first Burna Boy song ever to top it" },
         { v: "No. 1", l: "iTunes song chart in 73 countries — the US, UK, Canada, France, Italy, New Zealand, India, Spain, Portugal, Hungary & dozens more, Belarus the newest" },
-        { v: "No. 13", l: "Deezer Worldwide Top 100 — a new peak, charting in 57 countries and No. 1 in 23 of them" },
+        // A dated, past-tense peak: the site's own log of 26 Jul 2026 is the read,
+        // and the chart has not bettered No. 13 since (runHistory, from 9 Aug).
+        // "No. 1 in 23 of them" had no source and is gone (Paul, 24 Sep 2026).
+        { v: "No. 13", l: "Deezer Worldwide Top 100 — its peak, reached on 26 July 2026, when it was charting in 57 countries" },
         { v: "29 days", l: "at No. 1 on Spotify's Global Music Video chart, as last counted on the chart of 23 August — the chart is a daily playlist with no archive, so the count is kept by hand" },
         { v: "No. 14", l: "Burna Boy's position on the Global Digital Artist ranking (1,739 points) during the run" },
       ],

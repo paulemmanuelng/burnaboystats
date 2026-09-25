@@ -200,7 +200,9 @@
 .numValueLead { color: var(--gold); }
 /* "Diamond in France" is a value too — it just isn't a number. */
 .numValueLong { font-size: 30px; }
-.numLabel { font-size: 13px; line-height: 1.6; color: var(--text-body); margin-top: 11px; }
+/* anywhere: a label can hold one word wider than a phone card, and
+   "#JerusalemaDanceChallenge" ran 19px past the card's edge at 390. */
+.numLabel { font-size: 13px; line-height: 1.6; color: var(--text-body); margin-top: 11px; overflow-wrap: anywhere; }
 
 /* State E — a figure the record doesn't hold.
    designs/desktop/App States.dc.html, panel E.

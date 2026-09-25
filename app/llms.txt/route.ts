@@ -106,7 +106,7 @@ how most published figures about this artist go wrong.
 ## The Afrobeats Board
 
 ${afrobeatsArtists.length} artists counted by the same rules as above, so the records read side by
-side. Reviewed weekly; Burna Boy's own pages update daily.
+side. Re-read at each register sweep; Burna Boy's own pages update daily.
 
 ${board.map((b) => `- [${b.name}](${CANONICAL_ORIGIN}/afrobeats/${b.slug}): ${b.certs} certifications. Charts at /afrobeats/${b.slug}/charts, live positions at /afrobeats/${b.slug}/live.`).join("\n")}
 

@@ -99,16 +99,16 @@ describe("watched-metrics site targets", () => {
   // styling edit, to match every other list board — would have redirected the
   // daily write into the 2025 row, rewriting history with today's number.
   // youtubeTotalViews is hand-maintained. kworb's page lists 187 videos summing
-  // to 3,187,566,461; the site publishes 343 videos across every channel at
-  // 4.0B. Two populations, not two readings of one number — and no wider kworb
+  // to 3,187,566,461; the site publishes his own channel's total — 343 videos
+  // at 4.0B. Two populations, not two readings of one number — and no wider kworb
   // view exists. While the two were wired together the bot would have published
-  // 3.2B over the 4.0B the moment kworb's total passed its baseline, swapping an
-  // all-channel figure for a partial one with nothing to show it had happened.
+  // 3.2B over the 4.0B the moment kworb's total passed its baseline, swapping the
+  // channel's own total for a partial one with nothing to show it had happened.
   it("no metric writes the hand-maintained YouTube total", () => {
     const writers = targets.filter((t) => t.anchor.includes("youtubeTotalViews"));
     expect(
       writers.map((t) => t.id),
-      "youtubeTotalViews counts every channel; no automated source measures that scope",
+      "youtubeTotalViews is his whole channel's total; no automated source measures that scope",
     ).toEqual([]);
   });
 

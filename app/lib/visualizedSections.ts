@@ -22,3 +22,12 @@ export const JUMP = [
   { href: "#awards", label: "Awards" },
   { href: "#win-rate", label: "Win rate" },
 ];
+
+/**
+ * Monthly listeners in millions, one decimal, ROUNDED DOWN — both layouts'
+ * listener chart. toFixed rounds half up, so the 6 August reading of 59.99M
+ * printed "60.0M" two days before the series' own 60M marker (8 August,
+ * 60.01M). A peak series is a record of thresholds crossed, so a label may
+ * never claim one early.
+ */
+export const listenersLabel = (v: number) => `${(Math.floor(v * 10 + 1e-9) / 10).toFixed(1)}M`;

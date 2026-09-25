@@ -77,10 +77,10 @@ export const stats: {
   { num: `${numberOnes}`, label: "No. 1 chart placements", sub: `${nationalOnes} on national charts, plus both Billboard global charts — in ${numberOneCountryCount} countries`, href: "/records/charts" },
   { num: "$30.46M", label: "Highest-grossing African tour", sub: "the I Told Them… Tour — a world record for an African act", href: "/records/tours", big: true },
   { num: "$6.15M", label: "Biggest concert by an African artist", sub: "London Stadium, June 2024 — 58,973 fans", href: "/records/tours" },
-  { num: `${BURNA_HOT_100_ENTRIES}`, label: "Billboard Hot 100 entries", sub: "the most by any African artist, six years running", href: "/records/charts" },
+  { num: `${BURNA_HOT_100_ENTRIES}`, label: "Billboard Hot 100 entries", sub: "the most by any African artist, and on the chart six years running", href: "/records/charts" },
   { num: BURNA_PEAK_LISTENERS, label: "Spotify monthly listeners, at peak", sub: "the first African artist ever to reach 60 million", href: "/records/africas-biggest", big: true },
   { num: spotifyTotalStreams, label: "Spotify streams, all-time", sub: "every song, lead and featured credits combined", href: "/music" },
-  { num: youtubeTotalViews, label: "YouTube views, all-time", sub: `every video, across his channel and others' — counted by hand on ${ytCountedOn}`, href: "/music" },
+  { num: youtubeTotalViews, label: "YouTube views, all-time", sub: `every video on his YouTube channel — counted by hand on ${ytCountedOn}`, href: "/music" },
   // YouTube figure is kept in sync with the YouTube Music leaderboard on data/africasBiggest.ts.
   { num: BURNA_YT_AUDIENCE, label: "YouTube Music monthly audience, at peak", sub: `first African artist ever past 900 million — set ${BURNA_YT_AUDIENCE_SET_ON_LONG}`, href: "/records/africas-biggest" },
   { num: `No. ${spotifyGlobalRank}`, label: "Global rank by Spotify listeners", sub: "where he currently sits among every artist worldwide", href: "/records/africas-biggest" },

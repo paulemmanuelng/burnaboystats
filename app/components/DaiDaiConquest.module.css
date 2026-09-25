@@ -7,16 +7,32 @@
    Ten columns on desktop, five on a phone. */
 .wrap { margin: 0; }
 
+/* Seams are drawn by the cells, not by a --rule bed showing through the 1px
+   gaps: 66 countries leave a short last row at 10, 8 and 5 columns alike, and
+   the bed painted the empty slots as a dark slab. Each cell draws its own
+   right and bottom seam — the half-pixel offset and spread make the shadow
+   exactly [left, right + 1] x [top, bottom + 1], so it fills the gap to its
+   right, the gap below and the crossing once, and no two cells ever paint the
+   same pixel (a full 0 0 0 1px ring would lay two translucent --rule layers
+   in every gap and darken the seams). The grid clips the last column's and the
+   last row's seams to its frame.
+   The frame keeps its old weight too. The --rule bed used to run under the
+   --rule-soft border as well (background-clip is border-box), so what showed
+   was --rule-soft over --rule. The outline, pulled 1px in, lays that same
+   --rule back over the border and nowhere else. */
 .grid {
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   gap: 1px;
-  background: var(--rule);
   border: 1px solid var(--rule-soft);
+  outline: 1px solid var(--rule);
+  outline-offset: -1px;
+  overflow: hidden;
   margin-top: 14px;
 }
 .cell {
   background: var(--bg);
+  box-shadow: 0.5px 0.5px 0 0.5px var(--rule);
   padding: 12px 8px;
   display: flex;
   flex-direction: column;

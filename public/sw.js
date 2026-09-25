@@ -1,5 +1,11 @@
-// Minimal service worker — its ONLY job is to make the site installable
-// ("Add to Home Screen"), which Chrome gates behind having a fetch handler.
+// Minimal service worker. It caches nothing, and on activation it clears any
+// cache an earlier version of this worker may have left.
+//
+// It has no fetch handler. An empty one used to sit here because Chrome once
+// gated "Add to Home Screen" on having one. Current Chrome does not (checked
+// 24 Sep 2026 with the site's own manifest: no installability errors with or
+// without it), and the empty handler only made Chrome log that a no-op fetch
+// handler may add overhead to navigation.
 //
 // It deliberately does NOT cache anything. The site's figures (listeners, video
 // views, chart peaks) are refreshed hourly by the stats bot, so a cache would
@@ -17,6 +23,3 @@ self.addEventListener("activate", (event) => {
       .then(() => self.clients.claim())
   );
 });
-
-// Pass-through. Present so the app is installable; intentionally no caching.
-self.addEventListener("fetch", () => {});

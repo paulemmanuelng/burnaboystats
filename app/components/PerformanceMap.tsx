@@ -8,6 +8,7 @@ import {
   type PerformedCountry,
 } from "../data/performedCountries";
 import styles from "../records/tours/map/map.module.css";
+import { keyboardFocused } from "../lib/mapFocus";
 
 const CARD_W = 230; // card width, reserved so we can keep it inside the viewport
 const MAX_ZOOM = 4; // how far the +/- controls can zoom the map in
@@ -59,14 +60,25 @@ export default function PerformanceMap() {
   // at tap time — if the page (or the zoomed-in map viewport) scrolls afterward,
   // that anchor goes stale and the card is left floating over whatever scrolled
   // underneath it. Dismiss it on scroll so it never lingers like that.
+  //
+  // Except under keyboard focus. Tabbing to a country the window or the zoomed
+  // map has to scroll to reveal fires this same scroll, and the card for the
+  // country just focused was dismissed as it opened: at zoom 2, four of eight
+  // Tab stops showed no card (24 Sep 2026). A focused country re-anchors to
+  // where it now sits instead.
   useEffect(() => {
     if (active == null) return;
     const vp = viewportRef.current;
-    window.addEventListener("scroll", clear, { passive: true });
-    vp?.addEventListener("scroll", clear, { passive: true });
+    const onScroll = () => {
+      const el = keyboardFocused(vp);
+      if (el) show(Number(el.dataset.code), el.getBoundingClientRect());
+      else clear();
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    vp?.addEventListener("scroll", onScroll, { passive: true });
     return () => {
-      window.removeEventListener("scroll", clear);
-      vp?.removeEventListener("scroll", clear);
+      window.removeEventListener("scroll", onScroll);
+      vp?.removeEventListener("scroll", onScroll);
     };
   }, [active]);
 
@@ -75,6 +87,7 @@ export default function PerformanceMap() {
   const wire = (c: PerformedCountry) => ({
     tabIndex: 0,
     role: "button" as const,
+    "data-code": c.code,
     "aria-label": `${c.name}: ${c.events.slice(0, 2).join("; ")}${c.more ? " and more" : ""}`,
     onMouseEnter: (e: React.MouseEvent<SVGElement>) => show(c.code, e.currentTarget.getBoundingClientRect()),
     onMouseLeave: clear,

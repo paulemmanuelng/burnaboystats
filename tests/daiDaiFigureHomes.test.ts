@@ -23,9 +23,15 @@ interface Home {
   re: RegExp;
 }
 
+// Both home layouts read the constant since 24 Sep 2026 instead of typing it
+// (the desktop one also said "has now spent" about a closed run), so they are
+// held to the constant by name below rather than compared as typed numbers.
+const DERIVED: Home[] = [
+  { file: "app/page.tsx", label: "home hero", re: /spent \{DAI_DAI_SPOTIFY_NO1_DAYS\} days as the most-streamed song on Earth/ },
+  { file: "app/components/MobileHome.tsx", label: "mobile home", re: /\{DAI_DAI_SPOTIFY_NO1_DAYS\} days as the most-streamed song on Earth/ },
+];
+
 const HOMES: Home[] = [
-  { file: "app/page.tsx", label: "home hero", re: /spent (\d+) days as the most-streamed song on Earth/ },
-  { file: "app/components/MobileHome.tsx", label: "mobile home", re: /(\d+) days as the most-streamed song on Earth/ },
   { file: "app/components/DaiDaiStory.tsx", label: "story rail note", re: /(\d+) days as Earth/ },
   { file: "app/components/DaiDaiStory.tsx", label: "story rail body", re: /(\d+) days as the single most-streamed/ },
   { file: "app/data/faqs.ts", label: "FAQ answer", re: /spent (\d+) days at No\. 1/ },
@@ -72,6 +78,22 @@ describe("the days-at-No.1 figure agrees with itself everywhere", () => {
       values.length === 1 ? [] : seen.map((s) => `${s.n}  ←  ${s.where}`),
       `the figure disagrees with itself (${values.join(" vs ")}). Every home has to move in the same commit.`,
     ).toEqual([]);
+  });
+
+  it("the two home layouts read the figure from the constant, in the past tense", () => {
+    const notDerived = DERIVED.filter((h) => !h.re.test(read(h.file)));
+    expect(notDerived.map((h) => `${h.file} — ${h.label}`), "a home layout types the days figure again").toEqual([]);
+    // The desktop sentence that shipped until 24 Sep 2026: a typed figure, and
+    // "has now spent" about a run that closed on 22 August.
+    const SHIPPED = "Their anthem has now spent 37 days as the most-streamed song on Earth — back on top in August.";
+    const typed = /\d+ days as the most-streamed song on Earth/;
+    const presentPerfect = /has now spent/;
+    expect(typed.test(SHIPPED) && presentPerfect.test(SHIPPED), "the checks below no longer catch the shipped line").toBe(true);
+    for (const h of DERIVED) {
+      const src = read(h.file);
+      expect(typed.test(src), `${h.file} types the figure`).toBe(false);
+      expect(presentPerfect.test(src), `${h.file} writes the closed run as ongoing`).toBe(false);
+    }
   });
 
   it("keeps the English share card's cache id tied to the figure", () => {

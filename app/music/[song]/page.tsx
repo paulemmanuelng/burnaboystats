@@ -5,7 +5,7 @@ import KeepExploring from "../../components/KeepExploring";
 import FaqList from "../../components/FaqList";
 import { pageMetadata, CANONICAL_ORIGIN } from "../../lib/seo";
 import { spotifyImage, spotifySrcSet } from "../../lib/spotifyImage";
-import { songBySlug, songSlugs, songs, type Song } from "../../data/songs";
+import { songBySlug, songSlugs, songs, songPageCount, daiDaiStoryPage, type Song } from "../../data/songs";
 import { allChartItems, CHART_COUNTRIES, chartTier } from "../../data/charts";
 import { allItems, COUNTRIES, tierOf } from "../../data/certifications";
 import { albumPageByTitle } from "../../data/albumPages";
@@ -198,8 +198,16 @@ export default async function SongPage({ params }: { params: Promise<{ song: str
       {/* The cover picker — the design's way of moving between songs. Real
           links, so it works without JS and doubles as internal linking. */}
       <section className={styles.pickerPad}>
-        <div className={styles.pickerLabel}>All {songs.length} song pages</div>
+        <div className={styles.pickerLabel}>All {songPageCount} song pages</div>
         <div className={styles.picker}>
+          {/* Dai Dai's story lives at /dai-dai and leads the hub's song grid,
+              so it leads here too — the same chip, linking out (A-38). */}
+          <Link href={daiDaiStoryPage.href} className={styles.pick}>
+            {/* eslint-disable-next-line @next/next/no-img-element -- remote Spotify CDN cover at a fixed 30px; next/image adds no value here */}
+            <img className={styles.pickCover} src={spotifyImage(daiDaiStoryPage.cover, 64)} alt="" width={30} height={30} />
+            {daiDaiStoryPage.title}
+            <span className={styles.pickYear}>{daiDaiStoryPage.year}</span>
+          </Link>
           {songs.map((s) => (
             <Link
               key={s.slug}

@@ -36,6 +36,18 @@ export function allPairs(): [ComparableArtist, ComparableArtist][] {
   return out;
 }
 
+/** The "Compare with…" list on an artist's own page: one link per pair page
+ *  that artist is on, each to its CANONICAL URL, in picker order (E-10, Paul,
+ *  24 Sep 2026). On 24 Sep 101 of the 120 pair pages had no direct internal
+ *  link — the picker links to ?a=&b= query URLs, which canonicalise to the pair
+ *  page but are not it — so a crawler reached them through the sitemap alone.
+ *  Every board artist's page carries its fifteen, and Burna Boy's ledger his. */
+export function compareWithLinks(slug: string): { slug: string; name: string; href: string }[] {
+  const self = comparableArtists.find((x) => x.slug === slug);
+  if (!self) return [];
+  return pickerArtists(slug).map((x) => ({ slug: x.slug, name: x.name, href: `/compare/${pairSlug(self, x)}` }));
+}
+
 /** Parse "<a>-vs-<b>". Slugs contain hyphens, so split on the literal "-vs-".
  *  Returns the two artists (in the URL's order) or null. */
 export function parsePair(pair: string): [ComparableArtist, ComparableArtist] | null {

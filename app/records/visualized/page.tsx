@@ -9,7 +9,7 @@ import PeakMap, { type PeakInfo } from "../../components/PeakMap";
 import KeepExploring from "../../components/KeepExploring";
 import TimeSeriesChart, { type SeriesAnnotation } from "../../components/TimeSeriesChart";
 import { pageMetadata, datasetJsonLd } from "../../lib/seo";
-import { JUMP } from "../../lib/visualizedSections";
+import { JUMP, listenersLabel } from "../../lib/visualizedSections";
 import { revenueShows } from "../../data/tourRevenue";
 import { COUNTRIES, albums, singles, features, totalAwards } from "../../data/certifications";
 import { ceremonies, totalWins, pendingNominations as pendingNoms, decidedNominations as decidedNoms } from "../../data/awards";
@@ -97,7 +97,7 @@ const listenerGain = (listenerLast.value - listenerFirst.value).toFixed(2);
 const listenerDays = Math.round(
   (new Date(listenerLast.date).getTime() - new Date(listenerFirst.date).getTime()) / 86_400_000
 );
-const formatListeners = (v: number) => `${v.toFixed(1)}M`;
+const formatListeners = listenersLabel;
 // The series is a PEAK metric (watched-metrics.json → spotify-peak-listeners,
 // kind: "peak"), so it only extends when a new high is set — it does not run to
 // today, and both labels claimed it did. Derived from the series' own ends, so
@@ -382,7 +382,7 @@ export default function VisualizedPage() {
           },
           {
             title: "Best chart peak by country",
-            note: "Brighter gold is a higher peak — tap a country for the song that got there.",
+            note: "Gold is a higher peak, red a lower one — tap a country for the song that got there.",
             chart: (
               <PeakMap
                 data={peakByISO}
@@ -534,7 +534,7 @@ export default function VisualizedPage() {
             {certYearRecord ? (
               <>
                 <span className={styles.captionLead}>{thisYear} is already his biggest year</span>{" "}
-                — {certYearPeak} certifications with the year still running. Counted as logged;
+                — {certYearPeak} international certifications with the year still running. Counted as logged;
                 the log is complete from 2023.
               </>
             ) : (
@@ -655,7 +655,7 @@ export default function VisualizedPage() {
           </div>
           <p className={`${styles.caption} ${styles.captionNarrow}`}>
             Each dot is a show — <span className={styles.captionLead}>gold is Burna Boy</span>.
-            Revenue tracks ticket count closely, but higher-priced rooms sit above the line:
+            Revenue tracks ticket count closely, but higher-priced rooms sit above the line:{" "}
             {topShowRow.venue} turned ~{Math.round(num(topShowRow.tickets) / 1000)},000 tickets into $
             {(topShowRow.revenue / 1e6).toFixed(2)}M.
           </p>
@@ -708,14 +708,14 @@ export default function VisualizedPage() {
               legends, one of them describing bands the map doesn't use, would
               mislabel the thing they sit above. */}
           <div className={styles.heatHead}>
-            <span className={styles.heatHint}>Brighter = higher peak</span>
+            <span className={styles.heatHint}>Gold = higher peak, red = lower</span>
           </div>
           <div className={styles.chartBody}>
             <PeakMap data={peakByISO} ariaLabel="World map coloured by Burna Boy's best official chart peak in each country" />
           </div>
           <p className={styles.caption}>
             His best official chart position in each of {peakCountryCount} countries —
-            brighter means higher. No. 1s span Nigeria, the UK, the Netherlands, Belgium,
+            gold means higher, red lower. No. 1s span Nigeria, the UK, the Netherlands, Belgium,
             Germany, Switzerland, Colombia, Argentina and more.
           </p>
           <Link href="/records/charts" className={`btn btnSecondary ${styles.cta}`}>

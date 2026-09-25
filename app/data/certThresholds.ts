@@ -170,6 +170,11 @@ export interface CountryThresholds {
    *  Distinct from `vintage` (the body raised a level it still publishes) and
    *  `assumed` (a stream ratio the body never published). */
   historic?: string;
+  /** What prices this country's plaques, as a phrase after "priced at", where
+   *  it is NOT simply the body's own thresholds. The country boards' meta
+   *  description, lede and search entry read it; without it they said "IFPI
+   *  Greece's own thresholds" of a body that publishes none. */
+  pricedAt?: string;
   /** The one format `historic` speaks to, where it is not both. Poland: its
    *  albums are units at the level ZPAV prints today, so an album-only Polish
    *  line carries no ¶. */
@@ -330,6 +335,7 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
     sourceUrl: "https://web.archive.org/web/20140328112251id_/http://ifpi.org/content/library/international-award-levels.pdf",
     single: { silver: null, gold: 3_000, platinum: 6_000, diamond: null },
     album: { silver: null, gold: 3_000, platinum: 6_000, diamond: null },
+    pricedAt: "IFPI's last published level (June 2013)",
     historic:
       "IFPI Greece publishes no current level. Priced at IFPI's own International Certification Award levels list, updated June 2013 — the last figure ever published for Greece (singles Gold 3,000 / Platinum 6,000 unit sales; international-repertoire albums the same). The body now certifies from its streaming Digital Singles chart and states no ratio, so a plaque awarded today may sit on a different bar.",
     caveat:
@@ -484,7 +490,11 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
     code: "SE",
     assumedFormat: "single",
     vintageFormat: "single",
-    body: "Ifpi Sverige (the former GLF, Grammofonleverantörernas förening) — 'Guld- och Platinacertifikat delas ut av Ifpi Sverige.'",
+    // IFPI Sverige certifies; GLF (Grammofonleverantörernas förening) is a
+    // separate legal person and is named only as the operator of Grammotex,
+    // the register the plaques are read in (Paul, 24 Sep 2026). The quote is
+    // the body's own words, in its own spelling.
+    body: "IFPI Sverige — 'Guld- och Platinacertifikat delas ut av Ifpi Sverige.'",
     sourceUrl: "https://www.ifpi.se/musikbolag/guld-och-platina/",
     // Songs: «Låt (enbart streams) 6 000 000 / 12 000 000» since 1 January 2024
     // (ifpi.se, read 12 Sep 2026); 4 / 8 million from 1 January 2018 (the
@@ -493,11 +503,11 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
     // 2017-12). «Enbart streams får räknas» — and capped streams at that, per
     // its Guld och Platina-guide.
     normalised:
-      "SINGLES converted: Ifpi Sverige publishes song levels in capped streams (Guld 6,000,000) and no download-equivalence. Divided by 100 streams to a unit — the ratio IFPI Danmark and IFPI Norge publish — see `assumed`. Albums were already units.",
+      "SINGLES converted: IFPI Sverige publishes song levels in capped streams (Guld 6,000,000) and no download-equivalence. Divided by 100 streams to a unit — the ratio IFPI Danmark and IFPI Norge publish — see `assumed`. Albums were already units.",
     assumed:
-      "Ifpi Sverige counts songs in capped streams only (since 1 January 2018) and publishes no stream-to-unit ratio. Its plaques are converted at 100 streams to a unit, the ratio IFPI Danmark and IFPI Norge publish for the same measure; capped streams undercount plays, so the figure is a floor.",
+      "IFPI Sverige counts songs in capped streams only (since 1 January 2018) and publishes no stream-to-unit ratio. Its plaques are converted at 100 streams to a unit, the ratio IFPI Danmark and IFPI Norge publish for the same measure; capped streams undercount plays, so the figure is a floor.",
     vintage:
-      "Ifpi Sverige raised its song levels on 1 January 2024 from 4 and 8 million streams to 6 and 12 million — 40,000 / 80,000 to 60,000 / 120,000 units at 100 streams to a unit. Priced at today's level; a plaque awarded before then may have cleared the lower bar.",
+      "IFPI Sverige raised its song levels on 1 January 2024 from 4 and 8 million streams to 6 and 12 million — 40,000 / 80,000 to 60,000 / 120,000 units at 100 streams to a unit. Priced at today's level; a plaque awarded before then may have cleared the lower bar.",
     single: { silver: null, gold: 60_000, platinum: 120_000, diamond: null },
     singleRaw: { gold: 6_000_000, platinum: 12_000_000 },
     floor: { single: { silver: null, gold: 40_000, platinum: 80_000, diamond: null } },
@@ -512,7 +522,10 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
     vintage:
       "ČNS IFPI's Slovak stream thresholds have not moved, but its download equivalence fell from 240 to 217 subscription streams on 9 March 2026, with two unarchived revisions between, so the same threshold is worth more units today than in 2025. Priced at today's ratio. Until 2022 the Slovak awards ran on euro revenue — a different measure.",
     body: "ČNS IFPI — Česká národní skupina IFPI (which administers the Slovak awards; SNS IFPI / ifpi.sk is the Slovak national group)",
-    sourceUrl: "https://web.archive.org/web/20260521153213id_/https://ifpicr.cz/files/page/4b/9c/4b9c16f09271779fffe0975269b85eed/Pravidla-pre-udelovanie-ocenenia-od-9.3.2026-SR.pdf",
+    // The file Wayback captured on 21 May 2026 is "oceneni…-SR-2084.pdf" (the
+    // same 386,006-byte PDF ifpicr.cz serves today, re-read 24 Sep 2026). The
+    // "ocenenia…-SR.pdf" spelling cited until then is a 404 on both.
+    sourceUrl: "https://web.archive.org/web/20260521153213id_/https://ifpicr.cz/files/page/4b/9c/4b9c16f09271779fffe0975269b85eed/Pravidla-pre-udelovanie-oceneni-od-9.3.2026-SR-2084.pdf",
     single: { silver: null, gold: 3_917, platinum: 7_834, diamond: null },
     singleRaw: { gold: 850_000, platinum: 1_700_000 },
     album: { silver: null, gold: 8_064, platinum: 16_129, diamond: null },

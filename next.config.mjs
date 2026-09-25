@@ -45,8 +45,17 @@ const nextConfig = {
           "base-uri 'self'",
           "form-action 'self'",
           "object-src 'none'",
+          // Where the violations go. The comment above counts on "any
+          // report-uri", and there was none: a report-only policy with nowhere
+          // to report only ever spoke to the console of whoever had it open.
+          // app/api/csp-report logs each report, so they land in the Vercel
+          // function logs. report-uri is the form every browser reads;
+          // report-to is the newer one, named by Reporting-Endpoints below.
+          "report-uri /api/csp-report",
+          "report-to csp",
         ].join("; "),
       },
+      { key: "Reporting-Endpoints", value: 'csp="/api/csp-report"' },
     ];
     return [
       { source: "/:path*", headers: securityHeaders },

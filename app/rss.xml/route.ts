@@ -1,5 +1,6 @@
 import { updates } from "../data/updates";
 import { CANONICAL_ORIGIN, SITE_NAME } from "../lib/seo";
+import { feedGuids } from "../lib/feedGuid";
 
 // RSS 2.0 feed of the Latest Updates, so fans and aggregators can subscribe to
 // the site's Burna Boy news. Statically generated; regenerates on each build.
@@ -16,14 +17,19 @@ function escapeXml(s: string): string {
 
 export function GET() {
   const feedUrl = `${CANONICAL_ORIGIN}/rss.xml`;
+  // Numbered per date, so a new entry never renumbers the ones below it.
+  const guids = feedGuids(updates);
   const items = updates
     .map((u, i) => {
       const link = `${CANONICAL_ORIGIN}${u.href}`;
-      const pubDate = new Date(`${u.date}T12:00:00Z`).toUTCString();
+      // The start of the entry's day. Noon dated a morning entry in the
+      // future: one live from about 09:05 UTC on 24 Sep 2026 went out as
+      // "Thu, 24 Sep 2026 12:00:00 GMT".
+      const pubDate = new Date(`${u.date}T00:00:00Z`).toUTCString();
       return `    <item>
       <title>${escapeXml(u.text)}</title>
       <link>${link}</link>
-      <guid isPermaLink="false">${escapeXml(`${u.href}#${u.date}-${i}`)}</guid>
+      <guid isPermaLink="false">${escapeXml(guids[i])}</guid>
       <category>${escapeXml(u.category)}</category>
       <pubDate>${pubDate}</pubDate>
       <description>${escapeXml(u.text)}</description>

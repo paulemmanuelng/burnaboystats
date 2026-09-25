@@ -14,12 +14,14 @@ import type { Update, UpdateCategory } from "../data/updates";
  * hiding rows, so an empty month never leaves a stray heading behind.
  */
 
-const MONTH_FMT = new Intl.DateTimeFormat("en-US", {
+// en-GB, like the mobile feed and the page's own "Last entry" line: the rows
+// read "September 23, 2026" under a header reading "23 September 2026".
+const MONTH_FMT = new Intl.DateTimeFormat("en-GB", {
   month: "long",
   year: "numeric",
   timeZone: "UTC",
 });
-const DATE_FMT = new Intl.DateTimeFormat("en-US", {
+const DATE_FMT = new Intl.DateTimeFormat("en-GB", {
   month: "long",
   day: "numeric",
   year: "numeric",

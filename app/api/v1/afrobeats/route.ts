@@ -97,7 +97,7 @@ export function GET() {
   return apiJson({
     endpoint: "/afrobeats",
     description:
-      `The Afrobeats Board: ${artists.length + 1} artists counted by one rule — a plaque is one title in one country at its CURRENT tier, and an upgrade replaces the earlier award rather than adding to it. Chart figures are official national charts plus Billboard's two worldwide charts; platform charts (Spotify, Apple Music, iTunes) are never counted here. Reviewed weekly, where Burna Boy's own pages update daily.`,
+      `The Afrobeats Board: ${artists.length + 1} artists counted by one rule — a plaque is one title in one country at its CURRENT tier, and an upgrade replaces the earlier award rather than adding to it. Chart figures are official national charts plus Billboard's two worldwide charts; platform charts (Spotify, Apple Music, iTunes) are never counted here. Re-read at each register sweep, where Burna Boy's own pages update daily.`,
     // The subject is a row on this board, not an appendix, so he is inside the
     // count — and `countOf` says so, because `data.artists` holds fifteen.
     count: artists.length + 1,
@@ -105,7 +105,9 @@ export function GET() {
     data: {
       countingRule:
         "One plaque per title per country at its current tier. Chart No. 1s count placements, not releases.",
-      cadence: { board: "weekly", burnaBoy: "daily" },
+      // "weekly" until 24 Sep 2026, a pace no sweep has kept: the board is
+      // re-read register by register, as /afrobeats and llms.txt say.
+      cadence: { board: "each register sweep", burnaBoy: "daily" },
       subject: {
         slug: "burna-boy",
         name: "Burna Boy",

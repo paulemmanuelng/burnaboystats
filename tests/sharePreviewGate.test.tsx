@@ -144,14 +144,14 @@ const CARDS = [
 const layouts = [
   {
     name: "MobileStatCards",
-    el: <MobileStatCards cards={CARDS} verified="23 September 2026" pageUrl="https://example.com/share" />,
+    el: <MobileStatCards cards={CARDS} verified="23 September 2026" origin="https://example.com" />,
     styles: mobileStyles,
     shows: "story",
     warms: "square",
   },
   {
     name: "StatCardMaker",
-    el: <StatCardMaker cards={CARDS} verified="23 September 2026" pageUrl="https://example.com/share" />,
+    el: <StatCardMaker cards={CARDS} verified="23 September 2026" origin="https://example.com" />,
     styles: makerStyles,
     shows: "square",
     warms: "story",

@@ -346,6 +346,22 @@ export function countryFromSlug(slug: string | undefined): string | null {
 }
 
 /**
+ * What a board's plaques are priced at, as a phrase after "priced at" — or null
+ * where they are listed and never priced (a body with no published threshold,
+ * Colombia today). "The body's own thresholds" only where that is what prices
+ * them: IFPI Greece publishes no current level (its row's `pricedAt`, the ¶
+ * note), and ZPAV prints its single levels in złoty, converted here at
+ * `plnPerSingle` (the ¶ on Polish single lines).
+ */
+export function pricingPhrase(board: CountryBoard, own = "own thresholds"): string | null {
+  if (!board.counted) return null;
+  const t = board.thresholds;
+  if (t?.pricedAt) return t.pricedAt;
+  if (t?.plnPerSingle) return `${board.body}'s levels (singles at ${t.plnPerSingle} zł each)`;
+  return `${board.body}'s ${own}`;
+}
+
+/**
  * Title, description and share copy for one country page, from the live
  * figures. Lengths sit inside Google's display limits for every one of the 27
  * — the post-build gate (scripts/check-seo.mjs) reads them off the rendered
@@ -357,14 +373,14 @@ export function countryCopy(board: CountryBoard) {
   const long = `Certified Units in ${where} — Afrobeats Artists Ranked`;
   const plaques = `${n(board.plaques)} plaque${board.plaques === 1 ? "" : "s"}`;
   const artists = `${board.artists} artist${board.artists === 1 ? "" : "s"}`;
-  const floor = board.counted
-    ? `at least ${n(board.units)} certified units`
-    : "no published threshold to price them against";
+  const priced = pricingPhrase(board);
   return {
     title: long.length <= 60 ? long : `Certified Units in ${where}`,
-    description:
-      `Every Afrobeats plaque awarded in ${where}, priced at ${board.body}'s own thresholds — ` +
-      `${artists}, ${plaques}, ${floor}.`,
+    description: priced
+      ? `Every Afrobeats plaque awarded in ${where}, priced at ${priced} — ` +
+        `${artists}, ${plaques}, at least ${n(board.units)} certified units.`
+      : `Every Afrobeats plaque awarded in ${where}, listed, not priced: ${board.body} publishes ` +
+        `no unit threshold — ${artists}, ${plaques}.`,
     /** The share card's second line. */
     sub: `${artists} · ${plaques} · ${board.counted ? `at least ${n(board.units)} units` : "not priceable"}`,
   };

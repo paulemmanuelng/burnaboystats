@@ -121,6 +121,8 @@ export const exploreFor: Record<string, string[]> = {
   "/records/charts": ["live-charts", "dai-dai", "analysis"],
   "/live-charts": ["charts", "dai-dai", "africas-biggest"],
   "/dai-dai": ["live-charts", "charts", "share"],
+  // The Spanish edition's rail: the same three, in Spanish (A-24).
+  "/dai-dai/es": ["live-charts", "charts", "share"],
   "/records/tours": ["records", "certifications", "charts"],
   "/records/firsts": ["dai-dai", "charts", "certifications"],
   "/records/africas-biggest": ["afrobeats", "certifications", "charts"],

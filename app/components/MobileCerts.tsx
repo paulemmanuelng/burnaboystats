@@ -1,6 +1,6 @@
 "use client"; // the tier rail filters the list
 
-import { useState, useEffect, type CSSProperties } from "react";
+import { Fragment, useState, useEffect, useLayoutEffect, type CSSProperties } from "react";
 import Link from "next/link";
 import styles from "./mobileCerts.module.css";
 import { badgeWeight, byMostCertified } from "../lib/certs";
@@ -19,6 +19,7 @@ import BackLink from "./BackLink";
 import MobileFaqSection from "./MobileFaqSection";
 import type { Faq } from "./FaqList";
 import { tierWord } from "../lib/awardName";
+import { dropDeepLink, onDeepLinkChange, readDeepLink, readSavedView, saveView } from "../lib/deepLink";
 
 /**
  * The mobile certifications screen.
@@ -67,6 +68,8 @@ const GRAD: Record<Tier, string> = {
 };
 
 const ROWS_SHOWN = 10;
+/** This screen's key in the history entry's saved filters (lib/deepLink.ts). */
+const VIEW_ID = "certs-m";
 
 // Derived, not a literal — see certHistoryYears in data/certifications.ts.
 const YEARS = certHistoryYears;
@@ -93,6 +96,7 @@ export default function MobileCerts({
   faqs,
   showActionBar = true,
   compareSlug = "burna-boy",
+  compareWith,
 }: {
   releases: Release[];
   albums: Release[];
@@ -143,6 +147,9 @@ export default function MobileCerts({
   showActionBar?: boolean;
   /** Which artist the Compare button pre-fills side A with. */
   compareSlug?: string;
+  /** Every head-to-head page this artist is on, canonical URLs — the plain
+   *  "Compare with…" list under the boards (lib/comparePairs.compareWithLinks). */
+  compareWith?: { name: string; href: string }[];
 }) {
   const art = (title: string) => (covers ? covers[title] : coverFor(title));
   // The list runs albums, singles and features together, so an album needs
@@ -162,20 +169,31 @@ export default function MobileCerts({
   // whole unfiltered ledger with nothing to say a filter was ever meant.
   const [focus, setFocus] = useState<string | null>(null);
 
-  // Read the deep link once on mount — client-only, exactly as CertExplorer
+  // Read the deep link on mount — client-only, exactly as CertExplorer
   // does it, so /certifications stays statically rendered. The FRAGMENT is the
   // live form; the query string is still read so older links keep working (see
   // CertExplorer for why the crawlable ?release= variant was retired). The
   // focused release is un-folded at the same time: the bar promises "every
   // certification", and Dai Dai's would otherwise stay behind the "+N" chip.
-  useEffect(() => {
-    const fromHash = new URLSearchParams(window.location.hash.replace(/^#/, "")).get("release");
-    const r = fromHash ?? new URLSearchParams(window.location.search).get("release");
-    if (!r) return;
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time mount read of a browser-only URL param
-    setFocus(r);
-    setOpenBadges(new Set([r]));
+  //
+  // Read again when the fragment changes, as the desktop explorer does, and
+  // the tier comes back from this history entry on Back. A layout effect so
+  // the list is right before the browser restores the scroll offset over it.
+  useLayoutEffect(() => {
+    const saved = readSavedView<{ tier: Tier | null }>(VIEW_ID);
+    const read = (initial: boolean) => {
+      const r = readDeepLink("release", initial);
+      setFocus(r);
+      if (r) setOpenBadges(new Set([r]));
+      if (initial && saved) setTier(saved.tier && TIER_ORDER.includes(saved.tier) ? saved.tier : null);
+    };
+    read(true);
+    return onDeepLinkChange(() => read(false));
   }, []);
+
+  useEffect(() => {
+    saveView(VIEW_ID, { tier });
+  }, [tier]);
 
   const tierCount = TIER_ORDER.reduce<Record<Tier, number>>(
     (acc, name) => {
@@ -348,7 +366,15 @@ export default function MobileCerts({
           <span>
             Showing every certification for <b>{focus}</b>
           </span>
-          <button type="button" className={styles.focusClear} onClick={() => setFocus(null)}>
+          <button
+            type="button"
+            className={styles.focusClear}
+            onClick={() => {
+              setFocus(null);
+              // Out of the address bar too, or a reload puts it back.
+              dropDeepLink("release");
+            }}
+          >
             Show all releases ✕
           </button>
         </div>
@@ -515,6 +541,23 @@ export default function MobileCerts({
             </Link>
           )}
         </div>
+      )}
+
+      {/* The pair pages, linked by their own URLs — the desktop half carries
+          the same list. Plain links in the screen's existing label and lede
+          styles (E-10, Paul, 24 Sep 2026). */}
+      {compareWith && compareWith.length > 0 && (
+        <nav className={styles.logHead} aria-label={`Compare ${subject} with…`}>
+          <div className={styles.logKicker}>Compare with…</div>
+          <p className={styles.logLede}>
+            {compareWith.map((c, i) => (
+              <Fragment key={c.href}>
+                {i > 0 && " · "}
+                <Link href={c.href} className="wikiLink">{c.name}</Link>
+              </Fragment>
+            ))}
+          </p>
+        </nav>
       )}
 
       {/* ── The dated log ─────────────────────────────────────────── */}

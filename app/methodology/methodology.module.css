@@ -157,6 +157,7 @@
   align-items: start;
 }
 .sourceArea {
+  display: block; /* a span now, inside the row's one <dt> */
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
   font-size: 22px;
@@ -167,6 +168,7 @@
   margin: 0;
 }
 .sourceTag {
+  display: block;
   font-family: var(--font-mono), monospace;
   font-size: var(--type-label);
   letter-spacing: var(--type-label-tracking);
@@ -261,6 +263,12 @@
 /* ── Claims checked and not published ────────────────────────────────────
    A definition list, because that is what it is: a claim and its answer. */
 .rejectList { margin: 14px 0 30px; display: grid; gap: 2px; }
+/* The three list headings. .blockH zeroes every margin (it was written for
+   the blocks' own headings), so the first one sat on the intro paragraph with
+   no gap at all. 30px here collapses with the list's 30px bottom margin above
+   the other two, so all three stand the same distance off what precedes them.
+   After .blockH in the file, so it wins the tie. */
+.rejectH { margin-top: 30px; }
 .rejectRow {
   display: grid;
   grid-template-columns: minmax(0, 15rem) 1fr;

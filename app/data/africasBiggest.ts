@@ -172,12 +172,12 @@ export const statBoxes: LeaderboardBox[] = [
     entries: [
       { name: "Burna Boy", sub: "🇳🇬 “Dai Dai” (with Shakira)", value: "No. 1" },
       { name: "CKay", sub: "🇳🇬 “Love Nwantiti”", value: "No. 2" },
+      { name: "Tems", sub: "🇳🇬 “Wait for U” (Future & Drake)", value: "No. 2", tie: true },
       { name: "Rema", sub: "🇳🇬 “Calm Down” (with Selena Gomez)", value: "No. 3" },
-      { name: "Tyla", sub: "🇿🇦 “Water”", value: "No. 9" },
-      { name: "Libianca", sub: "🇨🇲 “People”", value: "No. 20" },
+      { name: "Tyla", sub: "🇿🇦 “Water”", value: "No. 6" },
     ],
-    note: "“Dai Dai” made Burna Boy the first African artist ever to top Billboard's US-inclusive Global 200 — leading the five biggest African crossover hits on the chart. (Wizkid & Tems' “Essence” sits just outside, at No. 28.)",
-    source: "Best peak on Billboard's Global 200 chart (US-inclusive), per Billboard and each song's Wikipedia-cited chart history. Several of these peaked even higher on the separate Global 200 Excl. US chart. Verified July 2026.",
+    note: "“Dai Dai” made Burna Boy the first African artist ever to top Billboard's US-inclusive Global 200 — leading the five biggest African crossover hits on the chart. (Libianca's “People” sits just outside, at No. 20.)",
+    source: "Best peak on Billboard's Global 200 chart (US-inclusive), lead or featured credit, per Billboard and each song's Wikipedia-cited chart history. Rema's “Calm Down” peaked higher still on the separate Global 200 Excl. US chart, at No. 1. Re-read at Billboard's own chart histories, September 2026.",
   },
   {
     id: "billboard-hot-100-peak",
@@ -381,7 +381,7 @@ export const statBoxes: LeaderboardBox[] = [
       { name: "Rema & Tyla", sub: "🇳🇬🇿🇦 “Calm Down” (Remix) / “Water” & “Chanel” · tied", value: "#8" },
       { name: "CKay", sub: "🇳🇬 “love nwantiti (ah ah ah)”", value: "#9" },
     ],
-    note: "Burna Boy is the first and only African artist to reach No. 1 on Spotify's Global Daily Top Songs chart — no other African artist has ever cracked the top 4. “Dai Dai” has now held that No. 1 for 37 days in total, tying “WAP” by Cardi B and Megan Thee Stallion for the most days any song has spent on top of the chart.",
+    note: "Burna Boy is the first and only African artist to reach No. 1 on Spotify's Global Daily Top Songs chart — no other African artist has ever cracked the top 4. “Dai Dai” has now held that No. 1 for 37 days in total — the most days at No. 1 by any song in 2026.",
     source:
       "Peak positions on Spotify's Daily Top Songs Global chart, each artist's best-charting song across all credits, from chart-tracking accounts. As of August 2026.",
   },

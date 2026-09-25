@@ -10,10 +10,16 @@ export function generateStaticParams() {
 
 const cardFor = (pair: string) => {
   const parsed = parsePair(pair);
-  if (!parsed) return { kicker: "Certified units", title: "Compared", sub: "" };
+  if (!parsed) return { kicker: "Certified units", title: "Compared", sub: "", alt };
   const [a, b] = canonicalPair(parsed[0], parsed[1]);
   const copy = pairCopy(a, b);
-  return { kicker: "Certified units · head to head", title: `${a.name} vs ${b.name}`, sub: copy.sub };
+  return {
+    kicker: "Certified units · head to head",
+    title: `${a.name} vs ${b.name}`,
+    sub: copy.sub,
+    // Per pair: all 120 cards carried the one generic alt above.
+    alt: `${a.name} vs ${b.name} — certified units compared at each body's own threshold`,
+  };
 };
 
 // The figures move with each register sweep; folding them into the id keeps a
@@ -22,7 +28,7 @@ const cardFor = (pair: string) => {
 export async function generateImageMetadata({ params }: { params: Promise<{ pair: string }> }) {
   const { pair } = await params;
   const card = cardFor(pair ?? "");
-  return [{ id: ogId([card.kicker, card.title, card.sub].join("|")), alt, size, contentType }];
+  return [{ id: ogId([card.kicker, card.title, card.sub].join("|")), alt: card.alt, size, contentType }];
 }
 
 export default async function Image({ params }: { params: Promise<{ pair: string }> }) {

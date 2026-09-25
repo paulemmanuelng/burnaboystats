@@ -159,7 +159,10 @@
   overflow-x: auto;
 }
 .codeLine { font-family: var(--font-mono), monospace; font-size: 11.5px; color: var(--gold-bright-ink); white-space: pre; }
-.codeAttr { font-family: var(--font-mono), monospace; font-size: 11px; color: var(--text-body); white-space: pre; }
+/* The attribution wraps rather than scrolls: it is a line to read and copy by
+   hand, and at 390 "pre" cut it to "…burnaboystats.co" at the box's edge with
+   no sign that it scrolled. The curl above stays on one line. */
+.codeAttr { font-family: var(--font-mono), monospace; font-size: 11px; color: var(--text-body); white-space: pre-wrap; overflow-wrap: anywhere; }
 
 /* ── Caveats ──────────────────────────────────────────────────────────── */
 .caveat { padding: 12px 0; border-bottom: 1px solid var(--line); }

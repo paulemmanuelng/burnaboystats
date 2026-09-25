@@ -1,4 +1,4 @@
-import { ENVELOPE_NOTE, UPDATED_NOTE } from "../lib/api";
+import { CREDIT_NOTE, ENVELOPE_NOTE, UPDATED_NOTE } from "../lib/api";
 import Link from "next/link";
 import styles from "./mobileApi.module.css";
 import CopyButton from "./CopyButton";
@@ -122,11 +122,14 @@ export default function MobileApi({
 
       <div className={`${styles.block} ${styles.blockSoft}`}>
         <h2 className={styles.blockTitle}>Try it</h2>
-        <div className={styles.codeBox}>
+        {/* The curl stays on one line and scrolls sideways where the phone is
+            narrower than it; focusable so a keyboard can scroll it too. (The
+            attribution box below wraps, so it never scrolls.) */}
+        <div className={styles.codeBox} tabIndex={0} role="region" aria-label="Sample request">
           <code className={styles.codeLine}>{curl}</code>
         </div>
         <p className={styles.blockBody}>
-          {ENVELOPE_NOTE} {UPDATED_NOTE}
+          {ENVELOPE_NOTE} {UPDATED_NOTE} {CREDIT_NOTE}
         </p>
       </div>
 

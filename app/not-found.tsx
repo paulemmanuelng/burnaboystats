@@ -6,12 +6,18 @@ import { ROOT_OG_IMAGE } from "./lib/og-image";
 // so a dead burnaboystats.com link pasted into a chat unfurled as a healthy
 // home page — the reader got no signal the URL was broken — and every 404
 // self-canonicalised to the home page. Same inheritance trap /search documents
-// one route over. `robots: noindex` is applied automatically and limits the SEO
-// side, but robots never reaches an unfurler.
+// one route over. robots limits the SEO side, but never reaches an unfurler.
+//
+// noindex is stated here rather than left to Next, which adds it to a real 404
+// but not to /_not-found itself: that URL answers 200 and shipped with no
+// robots tag at all. And no canonical at all: the one it had, /404, is itself
+// a 404, so every miss named a dead URL as its canonical. `null` still stops
+// the root layout's "/" from being inherited.
 export const metadata = {
   title: "Page Not Found — Burna Boy Stats",
   description: "That page doesn't exist. Every certification, chart peak, award and tour record is still here.",
-  alternates: { canonical: "/404" },
+  robots: { index: false, follow: true },
+  alternates: { canonical: null },
   openGraph: {
     title: "Page Not Found — Burna Boy Stats",
     description: "That page doesn't exist. Every certification, chart peak, award and tour record is still here.",

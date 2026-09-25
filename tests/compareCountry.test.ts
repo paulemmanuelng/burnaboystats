@@ -6,7 +6,9 @@ import {
   countryFromSlug,
   countrySlug,
   priceCountry,
+  pricingPhrase,
 } from "../app/lib/certCountry";
+import { buildSearchDocs } from "../app/lib/buildSearchDocs";
 import { comparableArtists, compare, priceArtist } from "../app/lib/certUnits";
 import { CERT_THRESHOLDS } from "../app/data/certThresholds";
 
@@ -192,5 +194,43 @@ describe("a separately-priced programme is its own line (Paul, 23 Sep 2026)", ()
     expect(co.programs.length).toBe(1);
     expect(co.programs[0].program).toBeUndefined();
     expect(co.counted).toBe(0);
+  });
+});
+
+// Debug fixes, 24 Sep 2026. The description, the lede and the search entry all
+// said "priced at <body>'s own thresholds" — of Colombia, whose plaques are
+// never priced; of Greece, priced at IFPI's June 2013 list because IFPI Greece
+// publishes no level; and of Poland, whose single levels are złoty converted
+// at 2 zł a single. The lines below are the ones the site shipped.
+describe("the country copy says what actually prices the plaques", () => {
+  const board = (code: string) => priceCountry(code, OPTS);
+
+  it("an unpriced country is listed, not priced", () => {
+    const co = countryCopy(board("CO")).description;
+    expect(co).toContain("listed, not priced");
+    expect(co).not.toMatch(/priced at [^—]*own thresholds/);
+    expect(co).not.toContain("no published threshold to price them against");
+    expect(pricingPhrase(board("CO"))).toBeNull();
+  });
+
+  it("Greece names the IFPI list it is priced at, not IFPI Greece's own thresholds", () => {
+    const gr = countryCopy(board("GR")).description;
+    expect(gr).toContain("IFPI's last published level (June 2013)");
+    expect(gr).not.toContain("IFPI Greece's own thresholds");
+  });
+
+  it("Poland names the złoty conversion, from the rate its row carries", () => {
+    const pl = countryCopy(board("PL")).description;
+    expect(pl).toContain(`singles at ${CERT_THRESHOLDS.PL.plnPerSingle} zł each`);
+    expect(pl).not.toContain("ZPAV's own thresholds");
+  });
+
+  it("the search entries match, and take the article where the name does", () => {
+    const docs = buildSearchDocs().filter((d) => d.path.startsWith("/compare/in/"));
+    const text = docs.map((d) => d.description).join("\n");
+    expect(text).not.toContain("priced at Pro Musica Colombia's own thresholds and ranked by artist");
+    expect(text).not.toContain("priced at IFPI Greece's own thresholds");
+    expect(text).not.toContain("awarded in United Kingdom");
+    expect(text).toContain("awarded in the United Kingdom");
   });
 });

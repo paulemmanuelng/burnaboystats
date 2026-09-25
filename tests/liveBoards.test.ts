@@ -107,6 +107,35 @@ describe("the board's live charts", () => {
     }
   });
 
+  it("wears no sleeve Deezer has blanked", () => {
+    // 6ddb34c2… sat on Wizkid's "Superstar" until 24 Sep 2026. Deezer's CDN
+    // answers it with a 302 to d41d8cd9… (the empty-string MD5), a grey
+    // placeholder, and the builder's carry-forward kept it on every run. It
+    // was never the album's sleeve either: an edge that still held the file
+    // served DJ Xclusive's "Gal Badi" single, on which Wizkid features.
+    const BLANKED = ["6ddb34c26029baeb2bd73c71bb8d839f", "d41d8cd98f00b204e9800998ecf8427e"];
+    const offenders = LIVE_BOARDS.flatMap((b) =>
+      b.releases
+        .filter((r) => BLANKED.some((h) => r.cover?.includes(h)))
+        .map((r) => `${b.slug}: ${r.title}`)
+    );
+    expect(offenders, "these rows render a grey square").toEqual([]);
+  });
+
+  it("gives Wizkid's Superstar its own EME sleeve", () => {
+    // Deezer does not carry the 2011 album at all; Apple does (collection
+    // 1627794779, ℗ Empire Mates Entertainment, 17 tracks from "Say My Name"
+    // to "Wiz Party"), and the board's catalogue (app/data/afrobeats.ts)
+    // already uses Apple's art. The builder's carry-forward keeps it from run
+    // to run. A row with no cover renders the monogram, which is not wrong;
+    // any other sleeve is.
+    const superstar = liveBoardFor("wizkid")?.releases.find((r) => r.title === "Superstar");
+    if (!superstar?.cover) return;
+    expect(superstar.cover).toBe(
+      "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/73/bd/59/73bd5950-72b7-8758-e91f-b2a16d558c57/0.jpg/300x300bb.jpg"
+    );
+  });
+
   it("points its country panels at its own endpoint", () => {
     for (const b of LIVE_BOARDS) expect(b.api).toBe(`/api/v1/live-charts/${b.slug}`);
   });

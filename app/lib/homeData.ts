@@ -198,6 +198,15 @@ export const liveNumberOneCountries = (() => {
 /** Countries where a release topped that country's own official chart. */
 export const boardCountryTotal = officialOnes.length;
 export const careerNumberOnes = numberOnes;
+// The No. 1 board's button, both layouts (Paul, 24 Sep 2026). It read "All 46
+// career No. 1s" directly under "Career total: 44 No. 1s across 30 countries",
+// two different counts one line apart; it now says where the extra two come
+// from. Both counts are the data's, and the clause goes when the globals do.
+const globalNumberOnes = allChartItems.reduce(
+  (n, r) => n + r.entries.filter((e) => e.peak === 1 && (e.c === "GLB" || e.c === "GLBX")).length,
+  0,
+);
+export const careerNumberOnesLabel = `${careerNumberOnes} No. 1s${globalNumberOnes > 0 ? ", including Billboard's global charts" : ""}`;
 
 // Countries the feed just reported topping lead the board — they are the reason
 // to look at it — and only they carry the NEW mark.
@@ -226,7 +235,7 @@ const allBoardCells: BoardCell[] = [...officialOnes].reverse().map((code) => {
 // Panama and Luxembourg (the board's two most marginal charts) give up their
 // visible slots so the UK, the biggest chart the catalogue has topped, can
 // show both of its No. 1s: "Own It" on the Official Singles Chart and the
-// "I Told Them..." album on the Official Albums Chart. All three remain real
+// "I Told Them…" album on the Official Albums Chart. All three remain real
 // No. 1 countries and stay in the 31-count — they are just not among the 24
 // cells shown. The board otherwise keeps its natural order.
 function specialCell(title: string, chart: string): BoardCell {
@@ -242,7 +251,7 @@ function specialCell(title: string, chart: string): BoardCell {
   };
 }
 export const ukSinglesCell = specialCell("Own It", "Official Singles Chart");
-export const ukAlbumsCell = specialCell("I Told Them...", "Official Albums Chart");
+export const ukAlbumsCell = specialCell("I Told Them…", "Official Albums Chart");
 
 function withOverrides(cell: BoardCell): BoardCell {
   if (cell.code === "LB") {
@@ -259,6 +268,10 @@ export const boardCells: BoardCell[] = allBoardCells
   .map(withOverrides)
   // The tail already held a UK cell; the curation must never render it twice.
   .filter((c, i, arr) => arr.findIndex((x) => x.code === c.code && x.coverTitle === c.coverTitle) === i);
+
+/** Countries the board shows, not cells: the UK holds two cells (a single and
+ *  an album), so "Showing 24 of 30" counted it twice beside a country total. */
+export const boardCountriesShown = new Set(boardCells.map((c) => c.code)).size;
 
 // ── The catalogue ──────────────────────────────────────────────────────────
 /**

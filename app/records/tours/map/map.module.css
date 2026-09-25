@@ -132,6 +132,12 @@
   white-space: nowrap;
   text-align: left;
 }
+/* The row header sits on the row's top line with its cells. ".table th" above
+   is 0,1,1 and outranks .regionCell, so the th fell back to the table
+   default, vertical-align: middle, about 13px below the cells beside it. Only
+   the alignment is raised here; the rest of .regionCell still loses to
+   ".table th", as it always has. */
+.table th.regionCell { vertical-align: top; }
 .numCol {
   text-align: right;
   font-family: var(--font-geist-sans), system-ui, sans-serif;

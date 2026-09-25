@@ -74,6 +74,17 @@
 // Method and full evidence: docs/sourcing/CAREER-STREAMS-OFFSET.md.
 export const spotifyTotalStreams = "11.06B";
 
+/**
+ * The day ChartMasters' Playcounts Tool was last read to anchor the offset —
+ * the newest docs/sourcing/chartmasters/reads/<date>.json. 23 Sep 2026: kworb's
+ * page moved after five frozen days, and a ChartMasters-21 ↔ kworb-22 pair
+ * re-measured the offset at 114,858,823 (the 22 Sep --kworb-frozen note above
+ * is superseded). /methodology prints this date; it still said "17 September"
+ * after four newer reads. Move it with every anchor read, and
+ * tests/siteDebugWording.test.ts holds it to the newest read on file.
+ */
+export const CAREER_STREAMS_ANCHOR_READ_ON = "2026-09-23";
+
 // The same daily figure, unrounded.
 //
 // The compact string above is what the site shows nearly everywhere, and it is
@@ -84,8 +95,9 @@ export const spotifyTotalStreams = "11.06B";
 // disagree with each other.
 export const spotifyTotalStreamsExact = "11,060,226,630";
 
-// Every Burna Boy video on YouTube, across his channel and others'. He leads
-// all Nigerian artists on this measure — 346 videos to 4.04 billion views,
+// Every video on Burna Boy's own YouTube channel — the total its about page
+// prints for that channel alone, not his videos on other artists' channels.
+// He leads all Nigerian artists on this measure — 346 videos to 4.04 billion views,
 // ahead of Wizkid (2.66B), Rema (2.60B) and Davido (2.47B).
 //
 // Re-measured 14 Sep 2026 at youtube.com/@BurnaBoy/about, which reported
@@ -100,10 +112,10 @@ export const spotifyTotalStreamsExact = "11,060,226,630";
 // 4.0B counted here. Two populations, not two opinions about one number, and no
 // wider kworb view exists. Had it stayed wired up, the bot would have published
 // 3.2B over this the moment kworb's total passed its baseline — quietly swapping
-// an all-channel figure for a partial one.
+// the channel's own total for a partial one.
 //
 // So do NOT "correct" this down to kworb's number, and do not re-point a metric
-// at it without a source that counts every channel. kworb is still watched for
+// at it without a source that counts every video on the channel. kworb is still watched for
 // its own sake (watched-metrics.json → youtube-total-views, watch-only), so its
 // movement still gets reported; it just no longer writes here.
 export const youtubeTotalViews = "4.0B";

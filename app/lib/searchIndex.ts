@@ -348,7 +348,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Dai Dai — the World Cup Anthem",
     path: "/dai-dai",
     section: "Records",
-    description: "Shakira & Burna Boy's World Cup anthem — No.1 worldwide, and live at the 2026 Final halftime show.",
+    description: "Shakira & Burna Boy's World Cup anthem — No. 1 worldwide, and live at the 2026 Final halftime show.",
     keywords: ["dai dai", "dai dai story", "world cup song", "world cup halftime show", "world cup halftime 2026", "who is performing at the world cup halftime", "shakira burna boy halftime", "world cup final performers", "shakira burna boy", "fifa world cup 2026", "biggest song in the world", "global 200"],
   },
   {
@@ -362,8 +362,10 @@ export const searchIndex: SearchDoc[] = [
     title: "FAQ",
     path: "/faq",
     section: "Site",
-    description: "Burna Boy's real name, net worth, Grammys and more — answered.",
-    keywords: ["faq", "questions", "real name", "damini ogulu", "net worth", "how many grammys", "age", "born"],
+    // No "net worth": the FAQ has no such answer (its money question is the car
+    // collection's worth, which /records/cars answers under that keyword).
+    description: "Burna Boy's real name, age, Grammys, No. 1s and more — answered.",
+    keywords: ["faq", "questions", "real name", "damini ogulu", "how many grammys", "age", "born"],
   },
   {
     title: "Live Charts",
@@ -787,14 +789,38 @@ const fold = (s: string) =>
     .trim()
     .toLowerCase();
 
+/**
+ * How many docs carry each keyword. A generated doc's keywords are of two
+ * kinds: a name for it ("uk" for the United Kingdom, a collaborator) and the
+ * category it sits in ("chart" on all 41 charting countries, "award" on all
+ * 47 bodies). Only the first says "this doc IS that word".
+ */
+let keywordDocs: Map<string, number> | null = null;
+function docsWithKeyword(k: string): number {
+  if (!keywordDocs) {
+    keywordDocs = new Map();
+    for (const d of [...searchIndex, ...generatedDocs])
+      for (const w of new Set(d.keywords.map(fold))) keywordDocs.set(w, (keywordDocs.get(w) ?? 0) + 1);
+  }
+  return keywordDocs.get(k) ?? 0;
+}
+/** At most this many docs share a keyword that names one of them. */
+const NAMING_KEYWORD = 5;
+
 /** Score one field against one word. */
-function wordScore(doc: SearchDoc, w: string): number {
+function exactWordScore(doc: SearchDoc, w: string): number {
   const title = fold(doc.title);
   const desc = fold(doc.description);
   // An exact title is an exact title wherever it came from — typing "Location"
   // should reach the record, not a page that merely mentions it.
   if (title === w) return 100;
   const g = doc.generated === true;
+  // A record's own name as a keyword is the next-best thing. It sat below a
+  // bare title prefix and substring, so "uk" put Ukraine 2nd and the United
+  // Kingdom 7th, and "us" led with Jerusalema (Remix), whose title merely
+  // contains the letters (24 Sep 2026). A category keyword stays where it was,
+  // or "chart" would fill the palette with forty countries.
+  if (g && doc.keywords.some((k) => fold(k) === w) && docsWithKeyword(w) <= NAMING_KEYWORD) return 75;
   if (title.startsWith(w)) return g ? 50 : 80;
   if (title.includes(w)) return g ? 30 : 60;
   if (doc.keywords.some((k) => fold(k) === w)) return g ? 40 : 55;
@@ -802,6 +828,26 @@ function wordScore(doc: SearchDoc, w: string): number {
   if (doc.keywords.some((k) => fold(k).includes(w))) return g ? 18 : 35;
   if (desc.includes(w)) return g ? 10 : 20;
   return 0;
+}
+
+/** Whether `w` stands as a word of its own in `s`. */
+const hasWord = (s: string, w: string) =>
+  s.split(/[^a-z0-9]+/).includes(w);
+
+/**
+ * One word, forgiving a plural: a word that matches nothing is tried again
+ * without its final "s", so "grammys" reaches Grammy Awards — it returned
+ * two results and not that one. Only where the singular is a WORD of the
+ * title or a keyword ("cars" is not "career"), at half weight so a doc
+ * matching the word as typed still leads ("charts" keeps Live Charts first),
+ * and only from four letters, so "us" stays "us".
+ */
+function wordScore(doc: SearchDoc, w: string): number {
+  const s = exactWordScore(doc, w);
+  if (s || w.length < 4 || !w.endsWith("s")) return s;
+  const one = w.slice(0, -1);
+  if (!hasWord(fold(doc.title), one) && !doc.keywords.some((k) => hasWord(fold(k), one))) return 0;
+  return Math.round(exactWordScore(doc, one) / 2);
 }
 
 /**
@@ -828,10 +874,12 @@ function raw(doc: SearchDoc, q: string): number {
 }
 
 // Rank the index for a query. Empty query returns [] (callers show a default).
-// `path` is NOT a unique identifier for a SearchDoc, by design: 91 country and
-// certification docs point at /certifications, 55 at /records/charts and 47 at
-// /records/awards, each with its own title, and that is what makes record-level
-// search work. Keying on it gave React duplicate sibling keys, so it could not
+// `path` is NOT a unique identifier for a SearchDoc, by design: many docs point
+// at one page — 91 at /certifications, 55 at /records/charts and 47 at
+// /records/awards when this was written (most now carry a #release=, #song=,
+// #country= or #body= fragment, but nothing guarantees it), each with its own
+// title, and that is what makes record-level search work. Keying on it gave
+// React duplicate sibling keys, so it could not
 // match old rows to new ones and kept stale rows alive alongside fresh ones —
 // 270 visible rows against a LIMIT of 60 in a production build, where the
 // warning that exposes it is stripped out. section|title|path is unique across

@@ -1,6 +1,6 @@
 import { liveCharts, liveChartsUpdated, liveChartsBuiltAt } from "../../../data/liveCharts";
 import { apiHeaders, API_VERSION, LIVE_CACHE_CONTROL, provenance } from "../../../lib/api";
-import { LIVE_CADENCE_REBUILT } from "../../../lib/liveChartMeta";
+import { LIVE_CADENCE_REBUILT, withApiCountryCodes } from "../../../lib/liveChartMeta";
 
 // force-static like its siblings. This route was the only static-able one
 // served on demand, burning a function invocation per request — including the
@@ -38,7 +38,7 @@ export function GET() {
       count: liveCharts.length,
       countOf: "releases",
       ...provenance,
-      releases: liveCharts,
+      releases: withApiCountryCodes(liveCharts),
     },
     { headers: apiHeaders(LIVE_CACHE_CONTROL) }
   );

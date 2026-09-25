@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { readFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
-import { cars, garage, carSlugs, carBySlug, currentCars, carCount, totalValueFormatted } from "../app/data/cars";
+import { cars, garage, carSlugs, carBySlug, currentCars, carCount, totalValueFormatted, valueWord, addedOnLabel } from "../app/data/cars";
 import { updates } from "../app/data/updates";
 import { carTitle, carDescription, performanceBars, neighbours, garageBest, modelShort } from "../app/lib/garage";
 
@@ -364,6 +364,27 @@ describe("the updates log's garage totals", () => {
       const bar = performanceBars(c).find((b) => b.key === "Top speed")!;
       expect(bar.value, c.slug).toMatch(/^>/);
       expect(bar.aria, c.slug).toContain("over ");
+    }
+  });
+});
+
+// Debug fixes, 24 Sep 2026.
+describe("the car pages' value word and sweep stamp", () => {
+  it("an estimated value reads as an adjective, like 'reported'", () => {
+    // The GLS 600 read "RANK 14 OF 16 BY ESTIMATE VALUE".
+    const gls = cars.find((c) => c.valueBasis === "estimate")!;
+    expect(valueWord(gls)).toBe("estimated");
+    expect(`by ${valueWord(gls)} value`).not.toBe("by estimate value");
+  });
+
+  it("a car bought after the last full sweep carries its own added date, and both pages print it", () => {
+    // The SLS AMG's page said "List re-verified July 2026" over its own
+    // "bought in September 2026".
+    const sls = carBySlug("mercedes-sls-amg")!;
+    expect(sls.addedOn).toBe("2026-09-23");
+    expect(addedOnLabel(sls)).toBe("23 September 2026");
+    for (const f of ["app/records/cars/page.tsx", "app/records/cars/[car]/page.tsx"]) {
+      expect(readFileSync(join(process.cwd(), f), "utf8"), f).toContain("addedOnLabel(");
     }
   });
 });

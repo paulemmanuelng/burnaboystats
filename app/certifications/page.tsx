@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { CSSProperties } from "react";
+import { Fragment, type CSSProperties } from "react";
 import styles from "./certifications.module.css";
 import BreadcrumbBar from "../components/BreadcrumbBar";
 import MobileCerts from "../components/MobileCerts";
@@ -18,6 +18,12 @@ import { portraitArtFor } from "../lib/portraitArt";
 import { andMore, topBody, topPlatform } from "../lib/boardNotes";
 import { allChartItems, CHART_COUNTRIES, type ChartRelease } from "../data/charts";
 import { livePlatformTotals } from "../data/liveCharts";
+import { compareWithLinks } from "../lib/comparePairs";
+
+// Burna Boy's side of the "Compare with…" list the board artists' pages carry:
+// his fifteen head-to-head pages, each by its canonical URL (E-10, Paul,
+// 24 Sep 2026). Same helper, same order as the board's own lists.
+const compareWith = compareWithLinks("burna-boy");
 
 export const metadata = pageMetadata({
   title: `Burna Boy Certifications — ${totalAwards()} Awards Across ${countryCount} Countries`,
@@ -121,6 +127,7 @@ export default function CertificationsPage() {
         liveHref="/live-charts"
         chartsNote={burnaChartsNote}
         liveNote={burnaLiveNote}
+        compareWith={compareWith}
       />
 
       <div className={styles.desktopOnly}>
@@ -214,12 +221,30 @@ export default function CertificationsPage() {
       <section className={styles.sourceBand}>
         <div className={styles.wide}>
           <p className={styles.source}>
-            Sources: {certSources()} — each award read at the body&apos;s own register, most
+            Sources: {certSources()} — each award read at the body&apos;s own register (or, in
+            a market with no current public register, from the label&apos;s own plaque), most
             recently on {certsVerifiedLong}. Each row shows a release&apos;s current level in
             every country; “×” denotes multi-platinum.
           </p>
         </div>
       </section>
+
+      {/* The pair pages, by their own URLs — the phone screen carries the same
+          list (MobileCerts). A second band in the source band's own styles, so
+          the list reads as its own line rather than the sources' last one. */}
+      <nav className={styles.sourceBand} aria-label="Compare Burna Boy with…">
+        <div className={styles.wide}>
+          <p className={styles.source}>
+            Compare with…{" "}
+            {compareWith.map((c, i) => (
+              <Fragment key={c.href}>
+                {i > 0 && " · "}
+                <Link href={c.href} className="wikiLink">{c.name}</Link>
+              </Fragment>
+            ))}
+          </p>
+        </div>
+      </nav>
 
       <KeepExploring current="/certifications" />
       </div>

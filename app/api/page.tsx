@@ -5,7 +5,7 @@ import BreadcrumbBar from "../components/BreadcrumbBar";
 import CopyButton from "../components/CopyButton";
 import MobileApi from "../components/MobileApi";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime } from "../lib/seo";
-import { API_VERSION, lastUpdated, ENVELOPE_NOTE, UPDATED_NOTE } from "../lib/api";
+import { API_VERSION, lastUpdated, ENVELOPE_NOTE, UPDATED_NOTE, CREDIT_NOTE } from "../lib/api";
 import { chartsSample } from "../lib/chartsPayload";
 import { chartEntryCount, chartCountryCount, numberOnes, CHART_COUNTRIES, allChartItems } from "../data/charts";
 import { totalAwards } from "../data/certifications";
@@ -157,8 +157,10 @@ export default function ApiPage() {
           // "countries" over the territory figure, which counts Billboard's
           // Global 200 and Global 200 Excl. US. Neither is a country, so the
           // pill read two higher than the desktop badge beside it on the same
-          // page. Both layouts now take the same country figure.
-          `${chartedCountryCount} countries`,
+          // page. Both layouts now take the same country figure — and the same
+          // noun: beside "248 certifications", a bare "67 countries" read as
+          // the certified countries.
+          `${chartedCountryCount} countries charted`,
           "CC BY 4.0",
         ]}
         endpoints={endpoints}
@@ -259,7 +261,9 @@ export default function ApiPage() {
             <CopyButton value={CURL} className={styles.copyBtn} />
           </div>
           <p className={styles.body}>{ENVELOPE_NOTE.replace(/\.$/, "")}:</p>
-          <pre className={styles.pre}>
+          {/* Focusable, so a keyboard can scroll it: the sample's long lines
+              overflow the box sideways and nothing inside it takes focus. */}
+          <pre className={styles.pre} tabIndex={0} role="region" aria-label="Sample response">
             <code>{sample}</code>
           </pre>
           <p className={styles.note}>
@@ -271,7 +275,7 @@ export default function ApiPage() {
             <code>count</code> is the endpoint&apos;s headline size and{" "}
             <code>countOf</code> names its unit — it is not always the length of the array
             in <code>data</code>, and where the two differ the array&apos;s own length is
-            published under <code>data.totals</code>.
+            published under <code>data.totals</code>. {CREDIT_NOTE}
           </p>
         </section>
 

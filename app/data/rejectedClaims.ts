@@ -66,11 +66,6 @@ export const disputedCounts: RejectedClaim[] = [
   { claim: "BMI Awards — 2 wins", reason: "One, for “Last Last” in 2023." },
   { claim: "Galaxy Music Awards — 5 wins", reason: "One. No breakdown of the other four exists anywhere." },
   {
-    claim: "“Dai Dai” — No. 2 on US Rhythmic radio",
-    reason:
-      "No. 4 on Mediabase's Rhythmic chart, read on its syndicated listing. Mediabase and Billboard are different charts that share a monitoring feed: Billboard's Rhythmic Airplay ranks 40 positions on its own reporter panel and a Mon–Sun week, Mediabase's ranks 50 on its own panel and a Sun–Sat week. The gap showed in this record on the charts dated 22 August 2026 — Billboard No. 3, Mediabase No. 4, the same week. Both charts have since put the song at No. 1: Billboard's Rhythmic Airplay on the charts dated 5 and 12 September 2026 (No. 2 on 19 September), Mediabase's Rhythmic on the chart week ending 5 September (No. 5 on 12 September). This site publishes the Billboard peak.",
-  },
-  {
     claim: "African Giant — “the first ever certified Nigerian album” (Silver, UK, 22 September 2020)",
     reason:
       "The award is real but the rest is not. BPI's own register dates the Silver 18 September 2020 — the 22nd is when the press ran it — and the album has been Gold since 22 July 2022. It was Burna Boy's first UK-certified album, not the first certified Nigerian one: Sade, born in Ibadan, had Diamond Life at 4× Platinum with the BPI by 1987, and Lagos-born Keziah Jones's Blufunk was Double Gold with SNEP in June 2000. This site carries the award and its dates, and no superlative.",

@@ -53,8 +53,12 @@ describe("rejected claims are still rejected", () => {
     // 18 Sep 2020, Gold 22 Jul 2022; Sade and Keziah Jones precede it) and the
     // circulating "6,050,000 units worldwide" for "Dai Dai", whose figure is
     // derived from priceRelease() and must match what the compare page prices.
-    expect(disputedCounts.length).toBe(7);
-    expect(disputedCounts.filter((c) => /rhythmic/i.test(c.reason)).length).toBe(1);
+    // Six since 24 Sep 2026: the Rhythmic entry is gone. The site now publishes
+    // No. 1 on Billboard's Rhythmic Airplay (5 and 12 Sep charts), so a
+    // circulating "No. 2" sits BELOW the site's figure and no longer belongs
+    // under "Counts that circulate higher than ours".
+    expect(disputedCounts.length).toBe(6);
+    expect(disputedCounts.filter((c) => /rhythmic/i.test(`${c.claim} ${c.reason}`)).length).toBe(0);
     const units = disputedCounts.find((c) => /6,050,000/.test(c.claim));
     const dd = priceRelease(artistBySlug("burna-boy")!, "Dai Dai")!;
     expect(units?.reason).toContain(`at least ${dd.total.toLocaleString("en-US")} certified units`);

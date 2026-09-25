@@ -51,7 +51,7 @@ const ukPlatinum = CERT_THRESHOLDS.UK.single!.platinum!;
 import type { Metadata } from "next";
 import { PICKER_FOLD, fold, pickerArtists, pickerReleases } from "../lib/comparePicker";
 import { featuredPairs, pairCopy, pairSlug } from "../lib/comparePairs";
-import { href, one, type SP } from "../lib/compareUrl";
+import { carried, href, one, type SP } from "../lib/compareUrl";
 import { fmt, keepParens, plaque, program, shortProgram, tierClass } from "./chips";
 import { marketKey, PLAQUE_NOTE_HEADINGS } from "../lib/certUnits";
 
@@ -64,7 +64,7 @@ const programShort = (name: string, country: string) => {
   return `${country} · ${(tail || name).toUpperCase()}`;
 };
 import { CountryBoardView } from "./CountryBoardView";
-import { countryCopy, countryFromSlug, countrySlug, priceCountry } from "../lib/certCountry";
+import { countryCopy, countryFromSlug, countrySlug, priceCountry, pricingPhrase } from "../lib/certCountry";
 import { artAt, artSrcSet } from "../lib/artAt";
 import {
   artistBySlug,
@@ -394,9 +394,7 @@ function SongPicker({
 
   // Everything except this side's own query, so submitting replaces rather than
   // stacks it.
-  const carried = Object.entries(sp)
-    .map(([k, v]) => [k, one(v)] as const)
-    .filter(([k, v]) => v && k !== field);
+  const kept = carried(sp).filter(([k]) => k !== field);
 
   return (
     <div className={styles.pickWrap} id={`pick-${side}`}>
@@ -416,8 +414,8 @@ function SongPicker({
             it builds the query, so the reload lands on the results, not the
             title. */}
         <form method="get" action={`/compare#pick-${side}`} className={styles.search} role="search">
-          {carried.map(([k, v]) => (
-            <input key={k} type="hidden" name={k} value={v as string} />
+          {kept.map(([k, v]) => (
+            <input key={k} type="hidden" name={k} value={v} />
           ))}
           <input
             type="search"
@@ -781,7 +779,7 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
             countryBoard.counted ? (
               <>
                 Every plaque the sixteen artists hold in {countryBoard.inSentence}, priced at{" "}
-                {countryBoard.body}&apos;s own published threshold and ranked. Each figure is a floor — a plaque
+                {pricingPhrase(countryBoard, "own published threshold")} and ranked. Each figure is a floor — a plaque
                 says <em>at least</em>, never what a record sold.
               </>
             ) : (
@@ -1008,7 +1006,9 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
               <span className={styles.scope}>
                 {scope}
                 {ready && a && b && !record
-                  ? ` · registers read ${longDate(a.verifiedOn)} (${a.name}) and ${longDate(b.verifiedOn)} (${b.name})`
+                  ? a.verifiedOn === b.verifiedOn
+                    ? ` · both registers read ${longDate(a.verifiedOn)}`
+                    : ` · registers read ${longDate(a.verifiedOn)} (${a.name}) and ${longDate(b.verifiedOn)} (${b.name})`
                   : ""}
               </span>
             </div>
@@ -1214,17 +1214,19 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
             <Link href="/afrobeats" className="btn btnPrimary">The Afrobeats Board <span aria-hidden="true">↗</span></Link>
           </section>
         )}
+        {/* Phone only: the design's sticky bar above the five-tab bar, once both
+            sides are filled. The desktop foot strip above hides under 760px.
+            Inside <main> so its link belongs to a landmark; it is fixed, and
+            .wrap sets no transform, so it sits exactly where it did. */}
+        {ready && (
+          <div className={`${styles.boardBar} compareBoardBar`}>
+            <Link href="/afrobeats" className={styles.boardBtn}>
+              <span>The Afrobeats Board</span>
+              <span aria-hidden="true">↗</span>
+            </Link>
+          </div>
+        )}
       </main>
-      {/* Phone only: the design's sticky bar above the five-tab bar, once both
-          sides are filled. The desktop foot strip above hides under 760px. */}
-      {ready && (
-        <div className={`${styles.boardBar} compareBoardBar`}>
-          <Link href="/afrobeats" className={styles.boardBtn}>
-            <span>The Afrobeats Board</span>
-            <span aria-hidden="true">↗</span>
-          </Link>
-        </div>
-      )}
       {/* No "Keep exploring" here (Paul, 11 Sep): the Afrobeats Board action
           is the one way onward this page offers. */}
       {ready && <div className={styles.barSpacer} aria-hidden="true" />}

@@ -18,7 +18,8 @@ vi.mock("next/link", () => ({
 }));
 
 import AfricasBiggestPage from "../app/records/africas-biggest/page";
-import AwardsPage from "../app/records/awards/page";
+import AwardsPage, { metadata as awardsMetadata } from "../app/records/awards/page";
+import { ceremonies } from "../app/data/awards";
 import { stats as byTheNumbers } from "../app/data/byTheNumbers";
 import {
   BURNA_YT_AUDIENCE,
@@ -316,5 +317,39 @@ describe("the YouTube Music audience tile says it is a peak, and when", () => {
     if (!tile) throw new Error("the YouTube Music audience is no longer on /records/by-the-numbers");
     expect(tile.label).toContain("at peak");
     expect(tile.sub).toContain(BURNA_YT_AUDIENCE_SET_ON_LONG);
+  });
+});
+
+/* ── Debug fixes, 24 Sep 2026 ─────────────────────────────────────────────── */
+
+describe("the YouTube total says whose views it counts", () => {
+  it("is his channel's total, not every channel's", () => {
+    // It read "every video, across his channel and others'" over a figure
+    // read at youtube.com/@BurnaBoy/about, which counts his channel alone.
+    const row = byTheNumbers.find((x) => x.label === "YouTube views, all-time")!;
+    expect(row.sub).toContain("every video on his YouTube channel");
+    expect(row.sub).not.toContain("across his channel and others'");
+  });
+});
+
+describe("/records/awards claims only the wins the data holds", () => {
+  const winsAt = (name: string) => ceremonies.find((c) => c.name === name)?.noms.filter((n) => n.won).length ?? 0;
+
+  it("names no body he has not won at in the meta and share descriptions", () => {
+    // "…plus BET, BRIT, MOBO, Headies & AFRIMA wins" — the BRIT Awards: 0 of 5.
+    const text = `${awardsMetadata.description} ${JSON.stringify(awardsMetadata.openGraph ?? {})}`;
+    expect(winsAt("BRIT Awards")).toBe(0);
+    expect(text).not.toMatch(/\bBRIT\b/);
+    for (const body of ["BET Awards", "MOBO Awards", "The Headies", "All Africa Music Awards (AFRIMA)"]) {
+      expect(winsAt(body), body).toBeGreaterThan(0);
+    }
+  });
+
+  it("puts the Grammy among the wins, not the honours, and dates the list in September", () => {
+    const { container } = render(<AwardsPage />);
+    const text = container.textContent ?? "";
+    expect(text).toMatch(/\d+ wins — including the 2021 Grammy for Twice as Tall — from \d+ nominations/);
+    expect(text).not.toContain("honours & special recognitions — including the 2021 Grammy");
+    expect(text).not.toContain("each ceremony's results, August 2026");
   });
 });

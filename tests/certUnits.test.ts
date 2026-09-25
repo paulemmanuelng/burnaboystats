@@ -211,9 +211,10 @@ describe("rule 3 — what cannot be priced is counted and named", () => {
     const p = priceArtist(bySlug("burna-boy"), { includeNigeria: false, includeFeatures: true });
     const se = p.byCountry.find((l) => l.country === "SE");
     expect(se?.counted).toBe(true);
-    expect(se?.assumed).toMatch(/Ifpi Sverige/);
+    // One name for Sweden's certifier: IFPI Sverige (Paul, 24 Sep 2026).
+    expect(se?.assumed).toMatch(/IFPI Sverige/);
     expect(se?.notCounted).toBeUndefined();
-    expect(p.assumptions.some((a) => /Ifpi Sverige/.test(a))).toBe(true);
+    expect(p.assumptions.some((a) => /IFPI Sverige/.test(a))).toBe(true);
   });
 });
 
@@ -738,6 +739,21 @@ describe("audit fixes, 11 Sep 2026 — each one had a live counter-example", () 
     const dd = priceRelease(bySlug("burna-boy"), "Dai Dai", { includeNigeria: true, includeFeatures: true })!;
     expect(dd.byCountry.find((l) => l.country === "CZ")?.units).toBe(11_261);
     expect(dd.byCountry.find((l) => l.country === "SK")?.units).toBe(7_834);
+  });
+
+  it("cites the Slovak rules at the file Wayback actually holds", () => {
+    // /compare/in/slovakia's "own levels" link pointed at "ocenenia…-SR.pdf",
+    // a 404 on Wayback and on ifpicr.cz. The capture of 21 May 2026 is
+    // "oceneni…-SR-2084.pdf": a 386,006-byte PDF stating 850,000 / 1,700,000
+    // (singles), 1,750,000 / 3,500,000 (albums) and 1 download = 217 streams,
+    // re-read 24 Sep 2026.
+    const SK = CERT_THRESHOLDS.SK;
+    expect(SK.sourceUrl).toBe(
+      "https://web.archive.org/web/20260521153213id_/https://ifpicr.cz/files/page/4b/9c/4b9c16f09271779fffe0975269b85eed/Pravidla-pre-udelovanie-oceneni-od-9.3.2026-SR-2084.pdf"
+    );
+    expect(SK.sourceUrl).not.toContain("Pravidla-pre-udelovanie-ocenenia-od-9.3.2026-SR.pdf");
+    expect(SK.singleRaw).toEqual({ gold: 850_000, platinum: 1_700_000 });
+    expect(SK.albumRaw).toEqual({ gold: 1_750_000, platinum: 3_500_000 });
   });
 });
 

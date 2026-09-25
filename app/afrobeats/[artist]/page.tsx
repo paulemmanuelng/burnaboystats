@@ -1,4 +1,5 @@
 import { count, plural } from "../../lib/plural";
+import { Fragment } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import styles from "./artist.module.css";
@@ -10,6 +11,7 @@ import { pageMetadata, CANONICAL_ORIGIN, datasetJsonLd } from "../../lib/seo";
 import { artistFaqs, faqJsonLd } from "../../lib/boardFaqs";
 import { tierOf, type Release, type Country } from "../../data/certifications";
 import { opponentOf } from "../../lib/headToHead";
+import { compareWithLinks } from "../../lib/comparePairs";
 import { andMore, topBody, topPlatform } from "../../lib/boardNotes";
 import { liveBoardFor } from "../../data/liveBoards";
 import { spotifyImage, spotifySrcSet } from "../../lib/spotifyImage";
@@ -98,6 +100,7 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
   const chartsNote = andMore(bodies.top, bodies.total);
   const plats = live ? topPlatform(live.platformTotals) : { total: 0 };
   const liveNote = andMore(plats.top, plats.total);
+  const compareWith = compareWithLinks(a.slug);
   const idx = afrobeatsArtists.findIndex((x) => x.slug === a.slug);
   const next = afrobeatsArtists[(idx + 1) % afrobeatsArtists.length];
 
@@ -213,6 +216,7 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
         faqs={faqs}
         showActionBar
         compareSlug={a.slug}
+        compareWith={compareWith}
       />
 
       <div className={styles.desktopOnly}>
@@ -495,6 +499,19 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
             : `Both are read at source; this board was last re-read at every register on ${verifiedLong}.`}{" "}
           <Link href={rival.href}>{rival.name}&apos;s page ↗</Link>
         </p>
+        {/* Every head-to-head page this artist is on, by its own URL — the
+            phone screen carries the same list (E-10, Paul, 24 Sep 2026). */}
+        <nav aria-label={`Compare ${a.name} with…`}>
+          <p className={styles.provenance}>
+            Compare with…{" "}
+            {compareWith.map((c, i) => (
+              <Fragment key={c.href}>
+                {i > 0 && " · "}
+                <Link href={c.href}>{c.name}</Link>
+              </Fragment>
+            ))}
+          </p>
+        </nav>
       </section>
       )}
 

@@ -24,9 +24,12 @@ import { DAI_DAI_SPOTIFY_NO1_DAYS } from "../data/daiDai";
  *  the card's cache id both refer to it by this name. */
 export const DAYS_AT_NO1 = DAI_DAI_SPOTIFY_NO1_DAYS;
 
+// House style is "No. 1", with the space; the card printed "No.1" and
+// "Country No.1s" until 25 Sep 2026 (A-30). The first `v` is in the id below,
+// so that correction moves this card's id on its own, with no OG_ART bump.
 export const ogStats = [
-  { v: "No.1", l: "Global 200" },
-  { v: `${daiDaiNumberOnes}`, l: "Country No.1s" },
+  { v: "No. 1", l: "Global 200" },
+  { v: `${daiDaiNumberOnes}`, l: "Country No. 1s" },
   { v: `${daiDaiChartEntryCount}`, l: "Charts" },
   { v: `${daiDaiCertCount}`, l: "Certs" },
 ];

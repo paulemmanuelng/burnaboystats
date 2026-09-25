@@ -79,7 +79,10 @@ export default function MobileTours({
           Tours &amp; <span className={styles.gold}>live</span>
         </h1>
         <p className={styles.lede}>
-          {spell(tours.length)} tours across {countryCount} countries — and the
+          {/* Two measures, kept apart: countryCount is every country he has
+              performed in (tours, festivals and one-off shows), not the six
+              tours' own footprint. */}
+          {spell(tours.length)} tours, and live shows in {countryCount} countries — and the
           highest-grossing tour by any African artist. Tap a tour for its dates.
         </p>
       </div>
@@ -113,7 +116,10 @@ export default function MobileTours({
               </div>
               <div className={styles.upcomingCity}>
                 {u.city}, {u.country}
-                {u.cap ? ` · ${u.cap.toLocaleString()} cap` : ""}
+                {/* A named locale: this is a client component, and a bare
+                    toLocaleString() printed "80.000" in a German browser
+                    against the server's "80,000" — React #418. */}
+                {u.cap ? ` · ${u.cap.toLocaleString("en-US")} cap` : ""}
               </div>
               <p className={styles.upcomingText}>{u.note}</p>
               <p className={styles.upcomingSource}>{u.source}</p>

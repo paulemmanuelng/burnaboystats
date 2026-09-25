@@ -9,7 +9,9 @@ import KeepExploring from "../components/KeepExploring";
 import { updates } from "../data/updates";
 import { pageMetadata } from "../lib/seo";
 
-const baseMetadata = pageMetadata({
+// pageMetadata() advertises the RSS feed, here as on every page, so readers
+// auto-discover it.
+export const metadata = pageMetadata({
   title: "Burna Boy News — Latest Chart, Award & Streaming Updates",
   description:
     "Every recent update to Burna Boy Stats — new chart peaks, certifications, streaming milestones and records, tracked as they happen.",
@@ -17,15 +19,6 @@ const baseMetadata = pageMetadata({
   shareTitle: "Burna Boy Stats — Latest Updates",
   shareDescription: "What's new on the site, tracked as it happens.",
 });
-
-// Advertise the RSS feed so readers auto-discover it.
-export const metadata = {
-  ...baseMetadata,
-  alternates: {
-    ...baseMetadata.alternates,
-    types: { "application/rss+xml": "/rss.xml" },
-  },
-};
 
 // ── Derived ────────────────────────────────────────────────────────────────
 // Entries are stored newest-first, so the freshest date is simply the first.

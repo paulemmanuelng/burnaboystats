@@ -12,6 +12,7 @@ import { afrobeatsArtists, countryMeta } from "../data/afrobeats";
 import { chartEntryCount, numberOnes, chartSourceSplit, chartCountryCount } from "../data/charts";
 import { ceremonyCount } from "../data/awards";
 import { tours } from "../data/tours";
+import { CAREER_STREAMS_ANCHOR_READ_ON } from "../data/streamingTotals";
 import { numberWord } from "../lib/homeData";
 
 export const metadata = pageMetadata({
@@ -35,6 +36,30 @@ const reviewedLabel = new Date(`${lastReviewed}T12:00:00Z`).toLocaleDateString("
   year: "numeric",
 });
 
+// The career-streams anchor's last ChartMasters read — one constant, so the
+// date cannot fall behind the reads again (it said 17 September on 24 Sep).
+const anchorReadLabel = new Date(`${CAREER_STREAMS_ANCHOR_READ_ON}T12:00:00Z`).toLocaleDateString("en-GB", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+  timeZone: "UTC",
+});
+
+// The plaques that name an ISSUER rather than a separately priced programme —
+// a label's own plaque. Paul, 24 Sep 2026: "Dai Dai"'s Colombian Gold, issued
+// by Sony Music Colombia, stays counted, because Colombia's certifier keeps no
+// current public register (its roster stops in 2024). The rule below said
+// "only once it appears in the awarding body's own searchable database", which
+// that plaque never can; the exception is stated, and read off the data.
+const labelPlaques = allItems.flatMap((r) =>
+  r.certs
+    .filter((c) => c.body && !CERT_PROGRAMS[c.body])
+    .map((c) => `“${r.title}”'s ${c.level} in ${COUNTRIES[c.c]?.name ?? c.c}, issued by ${c.body}`),
+);
+const labelPlaqueClause = labelPlaques.length
+  ? ` The one exception is a market with no current public register, where the label's own plaque stands: ${labelPlaques.join("; ")}.`
+  : "";
+
 // Primary sources, grouped by what they verify. Deliberately names the chart
 // bodies and databases so readers (and search engines) can see the numbers are
 // traceable to authoritative origins, not blogs or aggregators.
@@ -44,7 +69,7 @@ const sources = [
     count: String(countryCount),
     tag: "RIAA · BPI · SNEP · BVMI",
     detail:
-      "Official certification databases of each market — the RIAA (US), BPI (UK), SNEP (France), BVMI (Germany), FIMI (Italy) and others. A certification is only counted once it appears in the awarding body's own searchable database.",
+      `Official certification databases of each market — the RIAA (US), BPI (UK), SNEP (France), BVMI (Germany), FIMI (Italy) and others. A certification is only counted once it appears in the awarding body's own searchable database.${labelPlaqueClause}`,
   },
   {
     area: "Charts",
@@ -62,7 +87,7 @@ const sources = [
     count: "live",
     tag: "Spotify · YouTube · in-app figures",
     detail:
-      "Spotify and YouTube's own in-app figures for monthly listeners, followers and view counts, cross-checked against the platforms directly. The one figure Spotify never publishes — a career stream total — is built from its per-track counts: kworb's mirror of them, summed daily, anchored to a dated read of ChartMasters' Playcounts Tool (last 17 September 2026), the method streamingTotals.ts documents.",
+      `Spotify and YouTube's own in-app figures for monthly listeners, followers and view counts, cross-checked against the platforms directly. The one figure Spotify never publishes — a career stream total — is built from its per-track counts: kworb's mirror of them, summed daily, anchored to a dated read of ChartMasters' Playcounts Tool (last ${anchorReadLabel}), the method streamingTotals.ts documents.`,
   },
   {
     area: "Awards",
@@ -359,7 +384,7 @@ export default function MethodologyPage() {
             {numberWord(correctionsMade.length).toLowerCase()} of them changed figures on this site.
           </p>
 
-          <h3 className={styles.blockH}>No primary source names him</h3>
+          <h3 className={`${styles.blockH} ${styles.rejectH}`}>No primary source names him</h3>
           <dl className={styles.rejectList}>
             {unsourcedBodies.map((r) => (
               <div key={r.claim} className={styles.rejectRow}>
@@ -369,7 +394,7 @@ export default function MethodologyPage() {
             ))}
           </dl>
 
-          <h3 className={styles.blockH}>Counts that circulate higher than ours</h3>
+          <h3 className={`${styles.blockH} ${styles.rejectH}`}>Counts that circulate higher than ours</h3>
           <dl className={styles.rejectList}>
             {disputedCounts.map((r) => (
               <div key={r.claim} className={styles.rejectRow}>
@@ -379,7 +404,7 @@ export default function MethodologyPage() {
             ))}
           </dl>
 
-          <h3 className={styles.blockH}>Checks that changed our own figures</h3>
+          <h3 className={`${styles.blockH} ${styles.rejectH}`}>Checks that changed our own figures</h3>
           <dl className={styles.rejectList}>
             {correctionsMade.map((r) => (
               <div key={r.claim} className={styles.rejectRow}>
@@ -435,10 +460,13 @@ export default function MethodologyPage() {
           <dl className={styles.sourceList}>
             {sources.map((s) => (
               <div key={s.area} className={styles.sourceRow}>
-                <div>
-                  <dt className={styles.sourceArea}>{s.area}</dt>
-                  <div className={styles.sourceTag}>{s.tag}</div>
-                </div>
+                {/* One <dt> holding both lines: a <div> between the row and its
+                    <dt> is not a definition-list group, so the five terms were
+                    orphaned from their descriptions in the accessibility tree. */}
+                <dt>
+                  <span className={styles.sourceArea}>{s.area}</span>
+                  <span className={styles.sourceTag}>{s.tag}</span>
+                </dt>
                 <dd className={styles.sourceDetail}>{s.detail}</dd>
               </div>
             ))}
@@ -451,8 +479,9 @@ export default function MethodologyPage() {
             <div className={styles.block}>
               <h2 className={styles.blockH}>How often it&apos;s updated</h2>
               <p className={styles.blockP}>
-                Fast-moving streaming figures — Spotify monthly listeners, follower counts,
-                YouTube views — are tracked live and updated as they move. Slower records
+                Fast-moving streaming figures — Spotify monthly listeners, song streams and
+                video views — are tracked live and updated as they move; follower counts and
+                his channel&apos;s all-time YouTube total are read by hand every few weeks. Slower records
                 such as certifications, chart peaks and awards are updated as each new
                 milestone is confirmed. Every change worth noting is logged on the Latest
                 Updates feed, so you can always see what changed and when.
@@ -605,7 +634,7 @@ export default function MethodologyPage() {
             date, the band a record actually fell in is the one that applies.
           </p>
           <p className={styles.p}>
-            <strong>One plaque per release per country, at its current tier.</strong>
+            <strong>One plaque per release per country, at its current tier.</strong>{" "}
             Gold → Platinum → 2× Platinum is the same sales recertified, not three
             sales. A release&apos;s own upgrades are never added together.
           </p>
@@ -717,7 +746,8 @@ export default function MethodologyPage() {
               </>
             )}
           </p>
-          <div className={styles.tableScroll}>
+          {/* Focusable, so a keyboard can scroll the 720px table on a phone. */}
+          <div className={styles.tableScroll} tabIndex={0} role="region" aria-label="Threshold table">
             <table className={styles.thresholdTable}>
               <thead>
                 <tr>

@@ -11,10 +11,13 @@ import { updates } from "../data/updates";
 
 export const API_VERSION = "v1";
 
-// `updated` is the date of the newest logged content change, NOT the build
-// time. A payload that claims to be freshly generated on every deploy trains
-// consumers to ignore the field — the same reasoning the sitemap uses for
-// lastmod.
+// `updated` is the date of the newest entry in the news log (updates.ts), NOT
+// the build time. A payload that claims to be freshly generated on every
+// deploy trains consumers to ignore the field — the same reasoning the sitemap
+// uses for lastmod. It is not every change, though: the stats bot refreshes
+// figures (streaming counts, chart runs) without logging an entry, so a
+// payload can change under an unchanged `updated`. UPDATED_NOTE says so, and
+// points consumers at the ETag, which does move with the bytes.
 export const lastUpdated = [...updates.map((u) => u.date)].sort().at(-1)!;
 
 export const LICENSE = {
@@ -66,6 +69,11 @@ export function apiHeaders(cacheControl: string = API_CACHE_CONTROL): Record<str
     // Open data: any origin may read it straight from the browser.
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Methods": "GET",
+    // A cross-origin script can read only the CORS-safelisted headers unless
+    // named here: X-License and the ETag came back null to a fetch from
+    // another site, so a browser client could not read the licence header or
+    // do the If-None-Match check UPDATED_NOTE recommends.
+    "Access-Control-Expose-Headers": "X-License, ETag",
     "Cache-Control": cacheControl,
     "X-License": "CC-BY-4.0",
   };
@@ -122,7 +130,17 @@ export function apiJson(envelope: Envelope) {
 export const ENVELOPE_NOTE =
   "Every response uses the same envelope — the data, plus where it came from and when it last changed. The two live-charts snapshots are the exception: they keep releases at the top level, with no data key, because the live page's own panels read it there.";
 export const UPDATED_NOTE =
-  "updated is the date of the most recent real change to the data, not the last deploy — so you can safely use it to decide whether to re-fetch. The two live-charts snapshots also carry builtAt, the minute the board was rebuilt: use that, not updated, to detect a new snapshot.";
+  "updated is the date of the newest entry in the site's news log, not the last deploy. Figures refreshed between entries, such as streaming counts, can change without moving it, so to tell whether a payload has changed, send the ETag from your last fetch back as If-None-Match: an unchanged payload answers 304. The two live-charts snapshots also carry builtAt, the minute the board was rebuilt: use that, not updated, to detect a new snapshot.";
+/**
+ * How the `credit` field reads, in /charts and /certifications alike. Both
+ * datasets write it from Burna Boy's side, and a bare "with Stromae" read to a
+ * reviewer as a stray fragment: it is the style for a release he leads. (The
+ * fragment the reviewer met, Talibans II's "with Byron Messia", is gone: that
+ * record is Byron Messia's, credited "Byron Messia ft. Burna Boy" in both
+ * files — F-10, Paul, 24 Sep 2026.)
+ */
+export const CREDIT_NOTE =
+  "credit is written from Burna Boy's side: a value that starts with “feat.” or “with” (“feat. Wizkid”, “with Stromae”) names the guests on a release he leads, any other value names the release's own acts with the lead act first, and a release with no guest reads “Burna Boy”.";
 
 // Note: no OPTIONS handler on purpose. A route that exports anything beyond GET
 // is excluded from static generation, and a plain cross-origin GET never fires

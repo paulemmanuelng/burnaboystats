@@ -26,8 +26,14 @@ function faces() {
 
 // The card carries live totals, so its id has to move when they do — otherwise
 // a scraper keeps serving whatever it read the first time.
+//
+// v3 (24 Sep 2026): the footer's total gained its thousands separator — the
+// card printed "1238 plaques" — so this card re-versions alone, as the song
+// cards did on 17 Sep, rather than bumping OG_ART for every card. The footer
+// total is in the id too: a plaque for an artist off the card moves it.
 export function generateImageMetadata() {
-  const sig = `v2|${faces().map((f) => `${f.name}:${f.n}`).join("|")}|${AFROBEATS_VERIFIED_ON}`;
+  const total = afrobeatsArtists.reduce((n, a) => n + certCount(a), 0) + totalAwards();
+  const sig = `v3|${faces().map((f) => `${f.name}:${f.n}`).join("|")}|${AFROBEATS_VERIFIED_ON}|${total}`;
   return [{ id: ogId(sig), alt, size, contentType }];
 }
 
@@ -179,7 +185,7 @@ export default function Image() {
           </div>
           <div style={{ display: "flex" }}>·</div>
           <div style={{ display: "flex" }}>
-            {`${boardTotal + totalAwards()} plaques, each read in an issuing body's own register`}
+            {`${(boardTotal + totalAwards()).toLocaleString("en-US")} plaques, each read in an issuing body's own register`}
           </div>
         </div>
       </div>

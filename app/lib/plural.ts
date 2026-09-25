@@ -52,3 +52,17 @@ export function cardinalWord(n: number | null, lang: "en" | "es" = "en"): string
 export function ordinalWord(n: number | null, lang: "en" | "es" = "en"): string {
   return WORDS[lang].ord[n ?? -1] ?? String(n);
 }
+
+/**
+ * A compact English figure as Spanish prose writes it: "1.13B" → "1130
+ * millones", "468M" → "468 millones". The Dai Dai figures are written by the
+ * stats bot in the English compact form, and /dai-dai/es printed them as-is —
+ * "1.13B visualizaciones" beside its own "40,28 millones" — until 24 Sep 2026.
+ * Anything that is not a compact M/B figure comes back unchanged.
+ */
+export function millonesEs(compact: string): string {
+  const m = /^(\d+(?:\.\d+)?)([MB])$/.exec(compact.trim());
+  if (!m) return compact;
+  const millions = Math.round(parseFloat(m[1]) * (m[2] === "B" ? 1000 : 1) * 100) / 100;
+  return `${new Intl.NumberFormat("es-ES", { maximumFractionDigits: 2 }).format(millions)} millones`;
+}

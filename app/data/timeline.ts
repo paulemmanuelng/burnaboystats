@@ -82,7 +82,7 @@ export const timelineEras: TimelineEra[] = [
     intro: "An eighth album and a year of firsts, from Red Rocks to the Stade de France.",
     entries: [
       { date: "Jul 2025", title: "No Sign of Weakness", text: "Album eight: No. 1 in Nigeria, with Travis Scott, Mick Jagger and Shaboozey — AFRIMA's Album of the Year.", href: "/music/albums/no-sign-of-weakness", kind: "album" },
-      { date: "2025", title: "Red Rocks, Stade de France, New Zealand", text: "First Nigerian artist to headline Red Rocks, first African artist to sell out the Stade de France, and the first African stadium headline in New Zealand.", href: "/records/firsts", kind: "tour" },
+      { date: "2025", title: "Red Rocks, Stade de France, New Zealand", text: "First Nigerian artist to headline Red Rocks, first African artist to headline the Stade de France, and the first African stadium headline in New Zealand.", href: "/records/firsts", kind: "tour" },
       { date: "2025", title: "Five albums on the Billboard 200", text: "The first Nigerian artist to chart five albums on the US album chart.", href: "/records/firsts", kind: "chart" },
     ],
   },
@@ -92,7 +92,7 @@ export const timelineEras: TimelineEra[] = [
     intro:
       "“Dai Dai” with Shakira — the official FIFA World Cup song — turns a career of firsts into a global No. 1 machine.",
     entries: [
-      { date: "May 2026", title: "“Dai Dai” arrives", text: "The official 2026 FIFA World Cup song, with Shakira — released 14 May.", href: "/dai-dai", kind: "chart" },
+      { date: "May 2026", title: "“Dai Dai” arrives", text: "The official 2026 FIFA World Cup song, with Shakira — released 15 May.", href: "/dai-dai", kind: "chart" },
       { date: "Jun 2026", title: "First African artist to headline a FIFA World Cup opening ceremony", text: "Mexico City, alongside Shakira, performing the tournament's own song.", href: "/records/firsts", kind: "milestone" },
       { date: "2026", title: "No. 1 on the Billboard Global 200", text: "The first African artist to top it — and the highest-charting World Cup song in Billboard Hot 100 history.", href: "/records/charts", kind: "chart" },
       { date: "19 Jul 2026", title: "The World Cup Final halftime show", text: "The first-ever FIFA World Cup Final halftime show — and the first African artist to perform at it, alongside Madonna, Shakira, BTS, Justin Bieber and Coldplay.", href: "/dai-dai", kind: "milestone" },

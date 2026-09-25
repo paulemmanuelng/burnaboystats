@@ -27,7 +27,7 @@
 /* Hover / tap tooltip */
 .tip {
   position: fixed;
-  z-index: 60;
+  z-index: 61; /* over the tab bar (60), which follows the page in the DOM */
   width: 220px;
   padding: 12px 14px;
   background: var(--bg-soft);

@@ -50,7 +50,10 @@ const headline = [
   {
     value: topShow.tickets ?? "—",
     label: "Tickets, one night",
-    note: "Biggest reported African crowd",
+    // Scoped to the source (A-49, Paul, 24 Sep 2026): the 2023 London Stadium
+    // night is put at "about 60,000" elsewhere on the site, with no Boxscore
+    // row, so "biggest reported" overstated what this figure can claim.
+    note: "Biggest African crowd in Billboard's box-office figures",
     href: "/records/tours/revenue",
   },
   {

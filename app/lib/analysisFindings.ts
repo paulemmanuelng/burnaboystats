@@ -67,6 +67,21 @@ const topCert = certsByCountry[0];
 const diamondHome = diamondCerts[0]?.country ?? "France";
 const ddEntryShare = Math.round((daiDaiChartEntryCount / chartEntryCount) * 100);
 
+// The No. 1s chart draws the top eight releases. Unlabelled, its bars summed to
+// 38 under a 44 headline and "Own It" was simply missing (until 24 Sep 2026),
+// so the label says it is a top eight and the note accounts for the rest.
+const NO1_BARS = 8;
+const no1Rest = numberOnesByRelease.slice(NO1_BARS);
+const no1RestTotal = no1Rest.reduce((n, r) => n + r.count, 0);
+const no1RestNote =
+  no1Rest.length === 0
+    ? ""
+    : no1Rest.length === 1
+      ? ` Not shown: “${no1Rest[0].title}”, with ${no1RestTotal}.`
+      : no1RestTotal === no1Rest.length
+        ? ` The other ${no1Rest.length} releases have one each.`
+        : ` The other ${no1Rest.length} releases hold ${no1RestTotal} between them.`;
+
 // Each finding: a claim, the evidence, and what follows from it. The numbers are
 // interpolated from lib/analysis.ts so a data change can never leave the prose
 // quoting a stale figure — and tests/analysis.test.ts guards the shape each
@@ -90,14 +105,14 @@ export const findings: Finding[] = [
       { href: "/dai-dai", label: "The Dai Dai story" },
       { href: "/records/charts", label: "Every chart entry" },
     ],
-    chartLabel: "No. 1s by release",
+    chartLabel: `No. 1s by release · top ${NO1_BARS}`,
     bars: toBars(
       numberOnesByRelease
-        .slice(0, 8)
+        .slice(0, NO1_BARS)
         .map((r) => ({ name: r.title, n: r.count, hot: r.title === "Dai Dai" }))
     ),
     chartNote:
-      "Country charts only — the two Billboard Global charts are excluded, since a worldwide chart isn't a market.",
+      `Country charts only — the two Billboard Global charts are excluded, since a worldwide chart isn't a market.${no1RestNote}`,
   },
   {
     id: "britain-not-america",

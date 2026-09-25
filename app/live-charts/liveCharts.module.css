@@ -511,6 +511,17 @@
   gap: 2px;
   background: var(--line);
 }
+/* Partial last row: the final card stretches across the cells that remain, so
+   the --line background never shows through as a slab (7 platforms left a
+   1002px grey block at 1280). Scoped per column count so a six-span can never
+   land in the three-column grid below 1240. */
+@media (min-width: 1240px) {
+  .platformGrid > :last-child:nth-child(6n + 1) { grid-column: span 6; }
+  .platformGrid > :last-child:nth-child(6n + 2) { grid-column: span 5; }
+  .platformGrid > :last-child:nth-child(6n + 3) { grid-column: span 4; }
+  .platformGrid > :last-child:nth-child(6n + 4) { grid-column: span 3; }
+  .platformGrid > :last-child:nth-child(6n + 5) { grid-column: span 2; }
+}
 .platformCard { background: var(--bg); padding: 22px 20px; }
 .platformCardV {
   font-family: var(--font-anton), sans-serif;
@@ -572,6 +583,8 @@
   .summaryCell:nth-child(3n + 1) { border-left: none; }
   .summaryCell:nth-child(n + 4) { border-top: 1px solid var(--line); }
   .platformGrid { grid-template-columns: repeat(3, 1fr); }
+  .platformGrid > :last-child:nth-child(3n + 1) { grid-column: span 3; }
+  .platformGrid > :last-child:nth-child(3n + 2) { grid-column: span 2; }
 }
 
 /* The on-demand panel while its one shared fetch is in flight. */

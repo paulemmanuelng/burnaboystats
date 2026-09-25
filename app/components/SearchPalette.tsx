@@ -19,6 +19,7 @@ export default function SearchPalette() {
   const [active, setActive] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
   // Whatever had focus when the palette opened, so closing can hand it back
   // instead of dumping a keyboard user at the top of the document.
   const openerRef = useRef<HTMLElement | null>(null);
@@ -39,31 +40,63 @@ export default function SearchPalette() {
     (path: string) => {
       track("search_select", { q: query.trim().toLowerCase() || "(suggested)", to: path });
       close();
-      router.push(path);
+      // A record on the page you are already on differs only in its fragment
+      // (/certifications#release=Gbona from /certifications), and a router push
+      // that moves only the fragment fires no hashchange — the address bar
+      // changed and the page did not. A plain fragment navigation does fire
+      // it, and the explorers listen (lib/deepLink.ts).
+      const to = new URL(path, window.location.href);
+      if (to.hash && to.pathname === window.location.pathname) window.location.assign(to.href);
+      else router.push(path);
     },
     [query, close, router]
   );
 
   // Global ⌘K / Ctrl+K to open, Escape to close.
   useEffect(() => {
+    // Whether the palette may open now. Two cases where it must not, both
+    // seen on the live site (24 Sep 2026):
+    //   - its own trigger is not displayed. Screens with their own mobile
+    //     chrome hide this whole header (.navDesktopOnly), so the palette
+    //     opened inside a display:none parent: invisible, holding the scroll
+    //     lock, and taking the keystrokes.
+    //   - another modal is open (a tracklist, a stat card, the site menu).
+    //     The palette opened UNDER it, took focus from it, and the two scroll
+    //     locks then restored each other's saved value, leaving the page
+    //     unscrollable after both closed. The menu sheet stays mounted with
+    //     `hidden` while closed, hence the visibility test.
+    const canOpen = () => {
+      if (!triggerRef.current?.getClientRects().length) return false;
+      return ![...document.querySelectorAll('[aria-modal="true"]')].some(
+        (d) => d !== panelRef.current && d.getClientRects().length > 0
+      );
+    };
     const onKey = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        // Closed and not allowed to open: leave the keystroke to the page.
+        if (!panelRef.current && !canOpen()) return;
         e.preventDefault();
         setOpen((o) => !o);
+        // Every way out clears the query, this toggle included, so the next
+        // open starts from the suggestions rather than a stale search.
+        setQuery("");
+        setActive(0);
       } else if (e.key === "Escape") {
-        setOpen(false);
+        close();
       }
     };
     // The hero's "Search the dataset" button opens the same palette without
     // this component having to be lifted or duplicated.
-    const onOpen = () => setOpen(true);
+    const onOpen = () => {
+      if (canOpen()) setOpen(true);
+    };
     window.addEventListener("keydown", onKey);
     window.addEventListener("open-search", onOpen);
     return () => {
       window.removeEventListener("keydown", onKey);
       window.removeEventListener("open-search", onOpen);
     };
-  }, []);
+  }, [close]);
 
   // Focus the input and lock body scroll while open.
   useEffect(() => {
@@ -119,6 +152,7 @@ export default function SearchPalette() {
   return (
     <>
       <button
+        ref={triggerRef}
         type="button"
         className={styles.trigger}
         onClick={() => setOpen(true)}

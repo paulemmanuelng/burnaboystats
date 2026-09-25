@@ -3,6 +3,7 @@ import Link from "next/link";
 import styles from "./mobileVisualized.module.css";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
+import { listenersLabel } from "../lib/visualizedSections";
 
 /**
  * The mobile "visualized" screen.
@@ -54,7 +55,7 @@ const STROKE = 10;
 const C = 2 * Math.PI * R;
 
 const FORMATTERS: Record<string, (v: number) => string> = {
-  listeners: (v) => `${v.toFixed(1)}M`,
+  listeners: listenersLabel,
   count: (v) => String(Math.round(v)),
 };
 

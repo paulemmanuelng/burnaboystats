@@ -539,7 +539,9 @@
      labels do not fit 343px, so the phone shows the short ones. */
   .seg { display: flex; width: 100%; }
   .segItem { flex: 1; justify-content: center; min-height: 44px; padding: 9px 6px; }
-  .segLong { display: none; }
+  /* Visually hidden, not display:none: the short label is aria-hidden, so
+     hiding the long one outright left each mode link with no name at all. */
+  .segLong { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   .segShort { display: inline; }
 
   /* Slots stack; title and meta are one line each, ellipsised (design). */
@@ -596,7 +598,10 @@
   .thCount { display: block; }
   .table th.thNum, .tdNum { text-align: left; }
   .cell { align-items: flex-start; gap: 4px; }
-  .country { gap: 6px; }
+  /* Wraps here: "US · LATIN" (the RIAA Latin line, 24 pair pages) is wider
+     than the 78px column, and nowrap ran its "N" under the tier pill beside
+     it. It breaks to "US ·" / "LATIN"; two-letter codes are unaffected. */
+  .country { gap: 6px; white-space: normal; }
   .flag { font-size: 16px; }
   /* Off-screen, not display:none: a screen reader still hears "Switzerland",
      not "C-H", and can match the row to the footnote that names it. */
@@ -647,7 +652,9 @@
      run it wrapped with its left bar orphaned at the start of line two. */
   .tierChip { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 3px 5px; }
   .chipProgram { margin: 0; padding: 1px 6px; border: 1px solid currentColor; border-radius: 999px; white-space: nowrap; }
-  .progLong { display: none; }
+  /* Same as .segLong: the long programme name stays the chip's spoken text
+     ("Sony Music Colombia", not nothing) while the phone shows the short one. */
+  .progLong { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   .progShort { display: inline; }
   .table tr { border-bottom-color: var(--line); }
   .table thead tr { align-items: end; }
@@ -1049,9 +1056,14 @@
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--text-muted);
-  margin: 0 0 6px;
+  /* The name now sits before its <dl> (a <p> may not sit inside one), so the
+     card's 10px gap replaces the list's 8px: 4 + 10 keeps the old 6 + 8. */
+  margin: 0 0 4px;
+  width: 100%;
 }
-.cbThList + .cbThList { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--rule-soft); }
+/* The divider opens the second programme, on its name, as it did when the name
+   sat inside the list; full width, because the card left-aligns its items. */
+.cbThList + .cbThProgram { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--rule-soft); }
 
 /* the chosen country's headline + its threshold card */
 .cbHead {

@@ -6,6 +6,11 @@ export const SITE_NAME = "Burna Boy Stats";
 // Canonical production origin (stable — used for absolute URLs in structured data).
 export const CANONICAL_ORIGIN = "https://burnaboystats.com";
 
+/** twitter:creator on every page: the site's maker, Paul's own account (E-11,
+ *  Paul, 24 Sep 2026). NEVER @BurnaBoyStats — that is a fan page Paul does not
+ *  run. No twitter:site: the site has no account of its own. */
+export const TWITTER_CREATOR = "@paulemmanuelng";
+
 /**
  * A feed date ("2026-08-09") as a full ISO 8601 datetime.
  *
@@ -16,6 +21,15 @@ export const CANONICAL_ORIGIN = "https://burnaboystats.com";
  * right calendar day in every timezone.
  */
 export const asDateTime = (isoDate: string) => `${isoDate}T12:00:00+00:00`;
+
+/**
+ * The RSS feed, as an `alternates.types` entry: <link rel="alternate"
+ * type="application/rss+xml"> in the head, which is how a reader finds a feed.
+ * It was on /updates only. Next does not merge `alternates`: a page that sets
+ * its own replaces the root layout's whole block, so the link has to ride in
+ * both the root metadata and pageMetadata() for most pages to carry it.
+ */
+export const FEED_ALTERNATE = { "application/rss+xml": "/rss.xml" } as const;
 
 // Build a full Metadata object for a page: title + description + canonical, plus
 // a matching Open Graph and Twitter card so social/search previews are unique
@@ -38,9 +52,16 @@ export function pageMetadata(opts: {
    *  near-identical "sweep scheduled" pages are thin content until they carry
    *  figures, and this flips off on its own the week they do. */
   noindex?: boolean;
+  /** An article page — one whose structured data is an Article — declares
+   *  og:type "article" with the same publication date, rather than the
+   *  "website" every other page carries. */
+  article?: { publishedTime: string };
 }): Metadata {
   const ogTitle = opts.shareTitle ?? opts.title;
   const ogDescription = opts.shareDescription ?? opts.description;
+  const ogType = opts.article
+    ? { type: "article" as const, publishedTime: opts.article.publishedTime }
+    : { type: "website" as const };
   return {
     title: opts.title,
     description: opts.description,
@@ -48,19 +69,21 @@ export function pageMetadata(opts: {
     alternates: {
       canonical: opts.path,
       ...(opts.languages ? { languages: opts.languages } : {}),
+      types: FEED_ALTERNATE,
     },
     openGraph: {
       title: ogTitle,
       description: ogDescription,
       url: opts.path,
       siteName: SITE_NAME,
-      type: "website",
+      ...ogType,
       locale: opts.locale ?? "en_US",
     },
     twitter: {
       card: "summary_large_image",
       title: ogTitle,
       description: ogDescription,
+      creator: TWITTER_CREATOR,
     },
   };
 }
@@ -133,6 +156,11 @@ const OWN_BREADCRUMB = [
   // leaf is "Burna Boy vs Wizkid", which the slug cannot spell.
   /^\/compare$/,
   /^\/compare\/[^/]+$/,
+  // A country board is the same view one level deeper, and writes the same
+  // five-crumb trail with the market's name ("United Kingdom"). The pattern
+  // above stops at one segment, so all 27 boards also shipped the generated
+  // trail, ending in the raw slug "united-kingdom".
+  /^\/compare\/in\/[^/]+$/,
 ];
 
 /** True where the page emits its own trail and the site-wide one must not. */

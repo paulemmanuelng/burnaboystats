@@ -1,4 +1,5 @@
 import { describe, it, expect } from "vitest";
+import { readFileSync } from "node:fs";
 import {
   CHART_COUNTRIES,
   allChartItems,
@@ -12,6 +13,8 @@ import {
   numberOneCountryCount,
   chartSourceSplit,
 } from "../app/data/charts";
+import { faqs } from "../app/data/faqs";
+import { countryNumberOnes, countryNumberOneReleases } from "../app/lib/analysis";
 
 // The chart dataset drives the headline numbers on the homepage, /records/charts,
 // /records/by-the-numbers, /faq, /methodology, the Dai Dai story and the stat
@@ -320,26 +323,59 @@ describe("the two country figures stay distinct", () => {
   });
 });
 
-// The peak map's ramp runs bright-gold (No. 1) to deep-red (No. 100), and two
-// captions describe it — one per layout. The mobile one said "darker gold is a
-// higher peak", which is the scale backwards. Pin the direction so a caption
-// and the ramp cannot disagree again.
+// The peak map's ramp runs gold (No. 1) to red (No. 100), and three captions
+// describe it — the desktop hint, the desktop caption and the phone note. The
+// mobile one once said "darker gold is a higher peak", the scale backwards on
+// black. Then all three said "brighter", which is backwards on paper: the light
+// ramp runs deep gold-brown at No. 1 to pale red at 41+, so the thirty No. 1
+// countries were the darkest on the map under a caption calling them the
+// brightest (site debug D-05, 24 Sep 2026). What holds in both themes is the
+// hue, so the captions name the hue and this pins it per ramp.
 describe("peak map colour ramp", () => {
-  it("runs bright at No. 1 and dark at No. 100", async () => {
-    const src = await import("node:fs").then((fs) =>
-      fs.readFileSync("app/components/PeakMap.tsx", "utf8")
-    );
-    const stops = [...src.matchAll(/\[([\d.]+), \[(\d+), (\d+), (\d+)\]\]/g)].map((m) => ({
-      t: Number(m[1]),
-      lum: (Number(m[2]) * 299 + Number(m[3]) * 587 + Number(m[4]) * 114) / 1000,
-    }));
-    expect(stops.length).toBeGreaterThanOrEqual(2);
-    const first = stops[0];
-    const last = stops[stops.length - 1];
-    expect(first.t).toBe(0);
-    expect(last.t).toBe(1);
-    // t=0 is peak 1. Brighter there, or every caption on the site is wrong.
-    expect(first.lum).toBeGreaterThan(last.lum);
+  const src = readFileSync("app/components/PeakMap.tsx", "utf8");
+  const ramp = (name: string) => {
+    const body = src.slice(src.indexOf(`const ${name}: Stop[] = [`)).split("];")[0];
+    return [...body.matchAll(/\[([\d.]+), \[(\d+), (\d+), (\d+)\]\]/g)].map((m) => {
+      const [r, g, b] = [Number(m[2]), Number(m[3]), Number(m[4])];
+      const max = Math.max(r, g, b), min = Math.min(r, g, b);
+      // Hue of a warm colour (red is the max channel for every stop).
+      const hue = max === min ? 0 : (60 * (g - b)) / (max - min);
+      return { t: Number(m[1]), hue, lum: (r * 299 + g * 587 + b * 114) / 1000 };
+    });
+  };
+
+  for (const name of ["RAMP_DARK", "RAMP_LIGHT"]) {
+    it(`${name} runs gold at No. 1 and red at No. 100`, () => {
+      const stops = ramp(name);
+      expect(stops.length).toBeGreaterThanOrEqual(2);
+      const [first, last] = [stops[0], stops[stops.length - 1]];
+      expect(first.t).toBe(0);
+      expect(last.t).toBe(1);
+      expect(first.hue, "peak 1 is gold").toBeGreaterThanOrEqual(30);
+      expect(first.hue).toBeLessThanOrEqual(60);
+      expect(last.hue, "peak 100 is red").toBeLessThan(15);
+    });
+  }
+
+  it("inverts its lightness across themes, so no caption can say brighter", () => {
+    const [dark, light] = [ramp("RAMP_DARK"), ramp("RAMP_LIGHT")];
+    expect(dark[0].lum).toBeGreaterThan(dark[dark.length - 1].lum);
+    expect(light[0].lum).toBeLessThan(light[light.length - 1].lum);
+  });
+
+  it("the captions describe the hue, not the brightness", () => {
+    const brightness = /\b(brighter|darker)\b/i;
+    // Negative control: the three captions the live site shipped.
+    for (const shipped of [
+      "Brighter = higher peak",
+      "brighter means higher",
+      "Brighter gold is a higher peak — tap a country for the song that got there.",
+    ]) expect(shipped).toMatch(brightness);
+    const page = readFileSync("app/records/visualized/page.tsx", "utf8");
+    expect(page).not.toMatch(brightness);
+    expect(page).toContain("Gold = higher peak, red = lower");
+    expect(page).toContain("gold means higher, red lower");
+    expect(page).toContain("Gold is a higher peak, red a lower one");
   });
 });
 
@@ -354,5 +390,26 @@ describe("every charting country can be drawn on the map", () => {
       .filter((c) => c !== "GLB" && c !== "GLBX")
       .filter((c) => !(c in A2_TO_ISO));
     expect(missing, `chart codes missing from A2_TO_ISO: ${missing.join(", ")}`).toEqual([]);
+  });
+});
+
+// ── Debug fixes, 24 Sep 2026 ───────────────────────────────────────────────
+
+describe("the FAQ's No. 1 answer counts national charts only", () => {
+  // It said "14 releases that have reached No. 1 on an official national chart
+  // — 46 chart-topping placements in all" from numberOnes, which folds in
+  // Billboard's two global charts. /records/by-the-numbers splits the same 46
+  // as 44 national plus the two globals.
+  const answer = faqs.find((f) => f.q === "How many number-one songs does Burna Boy have?")!.a;
+
+  it("reads the country-chart counts", () => {
+    expect(answer).toContain(
+      `${countryNumberOneReleases} releases that have reached No. 1 on an official national chart — ${countryNumberOnes} chart-topping placements`,
+    );
+  });
+
+  it("never pairs the global-inclusive total with the word national", () => {
+    expect(numberOnes).toBeGreaterThan(countryNumberOnes);
+    expect(answer).not.toContain(`${numberOnes} chart-topping placements`);
   });
 });

@@ -1,3 +1,5 @@
+import type { LiveRelease } from "../data/liveCharts";
+
 /**
  * How often each platform's chart actually refreshes.
  *
@@ -32,6 +34,9 @@ export const LIVE_CADENCE_ADVERB = "several times a day";
 export const LIVE_CADENCE = `refreshed ${LIVE_CADENCE_ADVERB}`;
 export const LIVE_CADENCE_REBUILT = `rebuilt ${LIVE_CADENCE_ADVERB}`;
 export const LIVE_CADENCE_LABEL = `Refreshed ${LIVE_CADENCE_ADVERB}`;
+/** The Spanish edition's LIVE_CADENCE. /dai-dai/es typed "actualizado cada
+ *  hora" beside an English page that said "several times a day". */
+export const LIVE_CADENCE_ES = "actualizado varias veces al día";
 
 /** Total placements for a release, across every platform it charts on. */
 export const reachOf = (r: { platforms: { entries: unknown[] }[] }) =>
@@ -63,3 +68,22 @@ export const countriesOf = (entries: { country: string }[]) =>
       .map((e) => COUNTRY_ALIASES[e.country] ?? e.country)
       .filter((c) => !NOT_A_COUNTRY.has(c))
   ).size;
+
+/**
+ * The releases as the live-charts API serves them: Britain under one code.
+ *
+ * The counting above merges kworb's two codes; the JSON passed both through,
+ * so /api/v1/live-charts listed "United Kingdom" as GB (Spotify) AND as UK
+ * (the other five platforms), 146 country codes against the page's 145
+ * countries (24 Sep 2026). "UK" is the code the charts and certifications
+ * endpoints use, and flagFor already draws it, so Spotify's GB becomes UK.
+ */
+export function withApiCountryCodes(releases: LiveRelease[]): LiveRelease[] {
+  return releases.map((r) => ({
+    ...r,
+    platforms: r.platforms.map((p) => ({
+      ...p,
+      entries: p.entries.map((e) => (e.country === "GB" ? { ...e, country: "UK" } : e)),
+    })),
+  }));
+}

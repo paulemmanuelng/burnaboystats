@@ -13,10 +13,10 @@ export const metadata = pageMetadata({
   // impressions, ~0% CTR — so the snippet must answer it outright.
   title: `Burna Boy Awards: ${totalWins} Wins — Grammy, BET, Headies & AFRIMA`,
   description:
-    `Burna Boy has won ${totalWins} awards from ${totalNominations} nominations across ${ceremonyCount} award bodies — a 2021 Grammy, plus BET, BRIT, MOBO, Headies & AFRIMA wins. Every award, filterable.`,
+    `Burna Boy has won ${totalWins} awards from ${totalNominations} nominations across ${ceremonyCount} award bodies — a 2021 Grammy, plus BET, MOBO, Headies & AFRIMA wins. Every award, filterable.`,
   path: "/records/awards",
   shareTitle: "Burna Boy Awards & Nominations",
-  shareDescription: "His Grammy win, BET, BRIT, MOBO, Headies, AFRIMA and more.",
+  shareDescription: "His Grammy win, BET, MOBO, Headies, AFRIMA and more.",
 });
 
 // Wins for a named body, derived so the FAQ can never drift from the data.
@@ -108,7 +108,7 @@ export default function AwardsPage() {
         honours={honours}
         faqs={faqs}
         wins={totalWins}
-        footNote={`${totalWins} wins from ${totalNominations} nominations across ${ceremonyCount} award bodies, plus ${honourCount} honours & special recognitions — including the 2021 Grammy for Twice as Tall.`}
+        footNote={`${totalWins} wins — including the 2021 Grammy for Twice as Tall — from ${totalNominations} nominations across ${ceremonyCount} award bodies, plus ${honourCount} honours & special recognitions.`}
         stats={[
           { value: String(totalWins), label: "Wins", note: "career total" },
           {
@@ -233,7 +233,7 @@ export default function AwardsPage() {
             <p className={styles.source}>
               Includes a 2021 Grammy win (Best Global Music Album, <em>Twice as Tall</em>)
               and {grammyNoms} Grammy nominations in total. Compiled and verified against
-              each ceremony&apos;s results, August 2026; nominations are listed even where the
+              each ceremony&apos;s results, last updated September 2026; nominations are listed even where the
               award went elsewhere. Nominations at ceremonies still to be held stay listed
               as nominations until the results are confirmed.
             </p>

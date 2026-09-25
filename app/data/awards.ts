@@ -176,7 +176,7 @@ export const ceremonies: Ceremony[] = [
       { year: 2024, category: "Best Melodic Rap Performance", work: "Sittin' on Top of the World", won: false },
       { year: 2024, category: "Best Global Music Performance", work: "Alone", won: false },
       { year: 2024, category: "Best African Music Performance", work: "City Boys", won: false },
-      { year: 2024, category: "Best Global Music Album", work: "I Told Them...", won: false },
+      { year: 2024, category: "Best Global Music Album", work: "I Told Them…", won: false },
       { year: 2025, category: "Best African Music Performance", work: "Higher", won: false },
       { year: 2026, category: "Best Global Music Album", work: "No Sign of Weakness", won: false },
       { year: 2026, category: "Best African Music Performance", work: "Love", won: false },
@@ -239,7 +239,7 @@ export const ceremonies: Ceremony[] = [
     name: "NAACP Image Awards",
     noms: [
       { year: 2024, category: "Outstanding Male Artist", won: false },
-      { year: 2024, category: "Outstanding Album", work: "I Told Them...", won: false },
+      { year: 2024, category: "Outstanding Album", work: "I Told Them…", won: false },
       { year: 2024, category: "Outstanding Duo, Group or Collaboration", work: "Sittin' on Top of the World", won: false },
       { year: 2024, category: "Outstanding Hip Hop/Rap Song", won: false },
       { year: 2024, category: "Outstanding International Song", work: "City Boys", won: false },
@@ -337,7 +337,7 @@ export const ceremonies: Ceremony[] = [
       { year: 2019, category: "Best African Collaboration", work: "Killin' Dem", won: false },
       { year: 2019, category: "Song of the Year in Africa", work: "On the Low", won: false },
       { year: 2021, category: "Album of the Year", work: "Twice as Tall", won: false },
-      { year: 2021, category: "Best African Collaboration", work: "Yaba Buluku (Remix) (DJ Tarico ft. Burna Boy)", won: false },
+      { year: 2021, category: "Best African Collaboration", work: "Yaba Buluku (Remix) (DJ Tárico ft. Burna Boy)", won: false },
       { year: 2021, category: "Best Artiste, Duo or Group in African Dance or Choreography", work: "Yaba Buluku (Remix)", won: false },
       { year: 2023, category: "Artist of the Year", won: true },
       { year: 2023, category: "Album of the Year", work: "Love, Damini", won: true },
@@ -564,7 +564,7 @@ export const ceremonies: Ceremony[] = [
     name: "Trace Awards",
     noms: [
       { year: 2023, category: "Album of the Year", work: "Love, Damini", won: true },
-      { year: 2025, category: "Album of the Year", work: "I Told Them...", won: false },
+      { year: 2025, category: "Album of the Year", work: "I Told Them…", won: false },
       { year: 2025, category: "Song of the Year", work: "Active (with Travis Scott)", won: false },
       { year: 2025, category: "Best Collaboration", work: "Tshwala Bam (Remix)", won: false },
       { year: 2025, category: "Best Live Performance", won: false },
@@ -622,7 +622,7 @@ export const ceremonies: Ceremony[] = [
   {
     name: "Caribbean Music Awards",
     noms: [
-      { year: 2024, category: "Collaboration of the Year (Dancehall)", work: "Talibans II (with Byron Messia)", won: true },
+      { year: 2024, category: "Collaboration of the Year (Dancehall)", work: "Talibans II (Byron Messia ft. Burna Boy)", won: true },
       // PENDING — the 2026 ceremony is 19 Sep; see `pendingResults` above.
       { year: 2026, category: "Konpa — Song of the Year", work: "4 Kampé II (Remix)", won: false },
     ],

@@ -35,7 +35,7 @@ const RATIOS: { key: CardRatio; label: string }[] = [
 export default function MobileStatCards({
   cards,
   verified,
-  pageUrl,
+  origin,
 }: {
   cards: CardChoice[];
   /** The date the figures were last checked, already formatted by /share.
@@ -43,7 +43,11 @@ export default function MobileStatCards({
    *  prop for it at all, so a phone reader got no "as of" date for a number
    *  they were about to post publicly. */
   verified: string;
-  pageUrl: string;
+  /** The canonical origin. The shared link is the chosen stat's own page —
+   *  origin + card.href — never /share itself and never a ?stat= query, which
+   *  would bring back Search Console's alternate-page duplicates (C-14, Paul,
+   *  24 Sep 2026). */
+  origin: string;
 }) {
   const [id, setId] = useState(cards[0]?.id ?? "");
   // Story, per the design. The desktop maker keeps square.
@@ -69,6 +73,7 @@ export default function MobileStatCards({
   const src = `/stat-card?stat=${id}&ratio=${ratio}${attempt ? `&r=${attempt}` : ""}`;
   const size = CARD_SIZES[ratio];
   const shareText = `Burna Boy — ${card.value} ${card.label}. ${card.source}.`;
+  const shareUrl = `${origin}${card.href}`;
   // On a phone the primary action opens the share sheet (Save Image, or post
   // straight to an app), so the button should not promise a download.
   const shareable = useSyncExternalStore(subscribeNever, canShareFiles, () => false);
@@ -219,7 +224,7 @@ export default function MobileStatCards({
         <div className={styles.secondaryRow}>
           <a
             className={styles.secondary}
-            href={`https://x.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(pageUrl)}`}
+            href={`https://x.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -227,7 +232,7 @@ export default function MobileStatCards({
           </a>
           <a
             className={styles.secondary}
-            href={`https://wa.me/?text=${encodeURIComponent(`${shareText} ${pageUrl}`)}`}
+            href={`https://wa.me/?text=${encodeURIComponent(`${shareText} ${shareUrl}`)}`}
             target="_blank"
             rel="noopener noreferrer"
           >

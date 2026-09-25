@@ -8,7 +8,7 @@ import styles from "./music.module.css";
 import { albums, eps, compilations } from "../data/albums";
 import KeepExploring from "../components/KeepExploring";
 import { spotifyImage, spotifySrcSet } from "../lib/spotifyImage";
-import { songs as songPages } from "../data/songs";
+import { songs as songPages, daiDaiStoryPage } from "../data/songs";
 import { siteUrl } from "../site";
 import { numberWord } from "../lib/homeData";
 import { pageMetadata } from "../lib/seo";
@@ -16,12 +16,7 @@ import { spotifyTotalStreams } from "../data/streamingTotals";
 
 // Deep-dive song pages, Dai Dai (its own bespoke page) featured first.
 const songStories = [
-  {
-    href: "/dai-dai",
-    cover: "https://i.scdn.co/image/ab67616d0000b27303cadf1b3fe324c1dc710ed4",
-    title: "Dai Dai",
-    tag: "The 2026 FIFA World Cup anthem, with Shakira",
-  },
+  { href: daiDaiStoryPage.href, cover: daiDaiStoryPage.cover, title: daiDaiStoryPage.title, tag: daiDaiStoryPage.tag },
   ...songPages.map((s) => ({ href: `/music/${s.slug}`, cover: s.cover, title: s.title, tag: s.tagline })),
 ];
 
@@ -135,16 +130,21 @@ export default function MusicPage() {
           <div className={styles.latest}>
             <div className={styles.kicker}>Latest album</div>
             <div className={styles.latestRow}>
-              {/* eslint-disable-next-line @next/next/no-img-element -- remote Spotify CDN art */}
-              <img
-                className={styles.latestCover}
-                src={spotifyImage(latest.cover ?? "", 600)}
-                srcSet={spotifySrcSet(latest.cover ?? "")}
-                sizes="160px"
-                alt={`${latest.title} album cover`}
-                width={160}
-                height={160}
-              />
+              {/* In a <picture> so React does not turn this eager <img> into a
+                  preload hint in /music's RSC payload, which every page that
+                  prefetched /music then downloaded without showing. display:
+                  contents keeps the <img> the row's flex item. */}
+              <picture style={{ display: "contents" }}>
+                <img
+                  className={styles.latestCover}
+                  src={spotifyImage(latest.cover ?? "", 600)}
+                  srcSet={spotifySrcSet(latest.cover ?? "")}
+                  sizes="160px"
+                  alt={`${latest.title} album cover`}
+                  width={160}
+                  height={160}
+                />
+              </picture>
               <div>
                 <h2 className={styles.latestTitle}>{latest.title}</h2>
                 <div className={styles.latestMeta}>

@@ -80,8 +80,10 @@ export default function MobileFaq({
             className={styles.item}
           >
             <div className={styles.itemGroup}>{f.group}</div>
-            {/* h3, not h2: the desktop group headings are this page's h2s. */}
-            <h3 className={styles.q}>{f.q}</h3>
+            {/* h2: the desktop group headings are hidden on a phone, where the
+                group is a plain label, so an h3 here followed the <h1> with
+                no h2 between. .q sets its own face, size and margin. */}
+            <h2 className={styles.q}>{f.q}</h2>
             <p className={styles.a}>{f.a}</p>
           </div>
         ))}

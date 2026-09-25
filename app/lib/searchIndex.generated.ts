@@ -11,7 +11,7 @@ import type { SearchDoc } from "./searchIndex";
 export const generatedDocs: SearchDoc[] = [
   {
     "title": "4Syte TV Music Video Awards",
-    "path": "/records/awards",
+    "path": "/records/awards#body=4Syte%20TV%20Music%20Video%20Awards",
     "section": "Awards",
     "description": "1 win from 2 nominations.",
     "keywords": [
@@ -25,7 +25,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Africa Arts and Entertainment Awards (AAEA)",
-    "path": "/records/awards",
+    "path": "/records/awards#body=Africa%20Arts%20and%20Entertainment%20Awards%20(AAEA)",
     "section": "Awards",
     "description": "1 win from 1 nomination.",
     "keywords": [
@@ -39,7 +39,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "African Entertainment Awards USA",
-    "path": "/records/awards",
+    "path": "/records/awards#body=African%20Entertainment%20Awards%20USA",
     "section": "Awards",
     "description": "3 wins from 10 nominations.",
     "keywords": [
@@ -53,7 +53,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "African Muzik Magazine Awards (AFRIMMA)",
-    "path": "/records/awards",
+    "path": "/records/awards#body=African%20Muzik%20Magazine%20Awards%20(AFRIMMA)",
     "section": "Awards",
     "description": "8 wins from 23 nominations.",
     "keywords": [
@@ -67,7 +67,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "All Africa Music Awards (AFRIMA)",
-    "path": "/records/awards",
+    "path": "/records/awards#body=All%20Africa%20Music%20Awards%20(AFRIMA)",
     "section": "Awards",
     "description": "7 wins from 17 nominations.",
     "keywords": [
@@ -81,7 +81,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "American Music Awards",
-    "path": "/records/awards",
+    "path": "/records/awards#body=American%20Music%20Awards",
     "section": "Awards",
     "description": "0 wins from 3 nominations.",
     "keywords": [
@@ -95,7 +95,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "BET Awards",
-    "path": "/records/awards",
+    "path": "/records/awards#body=BET%20Awards",
     "section": "Awards",
     "description": "4 wins from 11 nominations.",
     "keywords": [
@@ -109,7 +109,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "BET Hip Hop Awards",
-    "path": "/records/awards",
+    "path": "/records/awards#body=BET%20Hip%20Hop%20Awards",
     "section": "Awards",
     "description": "0 wins from 7 nominations.",
     "keywords": [
@@ -123,7 +123,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Billboard Music Awards",
-    "path": "/records/awards",
+    "path": "/records/awards#body=Billboard%20Music%20Awards",
     "section": "Awards",
     "description": "1 win from 2 nominations.",
     "keywords": [
@@ -137,7 +137,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "BMI Awards",
-    "path": "/records/awards",
+    "path": "/records/awards#body=BMI%20Awards",
     "section": "Awards",
     "description": "1 win from 1 nomination.",
     "keywords": [
@@ -151,7 +151,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "BreakTudo Awards",
-    "path": "/records/awards",
+    "path": "/records/awards#body=BreakTudo%20Awards",
     "section": "Awards",
     "description": "0 wins from 3 nominations.",
     "keywords": [
@@ -165,7 +165,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "BRIT Awards",
-    "path": "/records/awards",
+    "path": "/records/awards#body=BRIT%20Awards",
     "section": "Awards",
     "description": "0 wins from 5 nominations.",
     "keywords": [
@@ -179,7 +179,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Caribbean Music Awards",
-    "path": "/records/awards",
+    "path": "/records/awards#body=Caribbean%20Music%20Awards",
     "section": "Awards",
     "description": "1 win from 2 nominations.",
     "keywords": [
@@ -193,7 +193,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Channel O Africa Music Video Awards",
-    "path": "/records/awards",
+    "path": "/records/awards#body=Channel%20O%20Africa%20Music%20Video%20Awards",
     "section": "Awards",
     "description": "0 wins from 3 nominations.",
     "keywords": [
@@ -207,7 +207,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Edison Awards",
-    "path": "/records/awards",
+    "path": "/records/awards#body=Edison%20Awards",
     "section": "Awards",
     "description": "1 win from 1 nomination.",
     "keywords": [
@@ -221,7 +221,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Galaxy Music Awards",
-    "path": "/records/awards",
+    "path": "/records/awards#body=Galaxy%20Music%20Awards",
     "section": "Awards",
     "description": "1 win from 1 nomination.",
     "keywords": [
@@ -235,7 +235,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Ghana Entertainment Awards USA",
-    "path": "/records/awards",
+    "path": "/records/awards#body=Ghana%20Entertainment%20Awards%20USA",
     "section": "Awards",
     "description": "1 win from 2 nominations.",
     "keywords": [
@@ -249,7 +249,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Ghana Music Awards",
-    "path": "/records/awards",
+    "path": "/records/awards#body=Ghana%20Music%20Awards",
     "section": "Awards",
     "description": "3 wins from 4 nominations.",
     "keywords": [
@@ -263,7 +263,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Ghana Music Awards UK",
-    "path": "/records/awards",
+    "path": "/records/awards#body=Ghana%20Music%20Awards%20UK",
     "section": "Awards",
     "description": "1 win from 2 nominations.",
     "keywords": [
@@ -277,7 +277,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Global Music Awards Africa",
-    "path": "/records/awards",
+    "path": "/records/awards#body=Global%20Music%20Awards%20Africa",
     "section": "Awards",
     "description": "1 win from 2 nominations.",
     "keywords": [
@@ -291,7 +291,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Grammy Awards",
-    "path": "/records/awards",
+    "path": "/records/awards#body=Grammy%20Awards",
     "section": "Awards",
     "description": "1 win from 13 nominations.",
     "keywords": [
@@ -305,7 +305,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "iHeartRadio Music Awards",
-    "path": "/records/awards",
+    "path": "/records/awards#body=iHeartRadio%20Music%20Awards",
     "section": "Awards",
     "description": "1 win from 3 nominations.",
     "keywords": [
@@ -319,7 +319,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "International Reggae & World Music Awards (IRAWMA)",
-    "path": "/records/awards",
+    "path": "/records/awards#body=International%20Reggae%20%26%20World%20Music%20Awards%20(IRAWMA)",
     "section": "Awards",
     "description": "3 wins from 6 nominations.",
     "keywords": [
@@ -333,7 +333,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Metro FM Music Awards",
-    "path": "/records/awards",
+    "path": "/records/awards#body=Metro%20FM%20Music%20Awards",
     "section": "Awards",
     "description": "3 wins from 3 nominations.",
     "keywords": [
@@ -347,7 +347,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "MOBO Awards",
-    "path": "/records/awards",
+    "path": "/records/awards#body=MOBO%20Awards",
     "section": "Awards",
     "description": "3 wins from 5 nominations.",
     "keywords": [
@@ -361,7 +361,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "MTN Liberia Music Awards",
-    "path": "/records/awards",
+    "path": "/records/awards#body=MTN%20Liberia%20Music%20Awards",
     "section": "Awards",
     "description": "1 win from 2 nominations.",
     "keywords": [
@@ -375,7 +375,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "MTV Africa Music Awards",
-    "path": "/records/awards",
+    "path": "/records/awards#body=MTV%20Africa%20Music%20Awards",
     "section": "Awards",
     "description": "1 win from 4 nominations.",
     "keywords": [
@@ -389,7 +389,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "MTV Europe Music Awards",
-    "path": "/records/awards",
+    "path": "/records/awards#body=MTV%20Europe%20Music%20Awards",
     "section": "Awards",
     "description": "2 wins from 7 nominations.",
     "keywords": [
@@ -403,7 +403,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "MTV Video Music Awards",
-    "path": "/records/awards",
+    "path": "/records/awards#body=MTV%20Video%20Music%20Awards",
     "section": "Awards",
     "description": "0 wins from 4 nominations.",
     "keywords": [
@@ -417,7 +417,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "NAACP Image Awards",
-    "path": "/records/awards",
+    "path": "/records/awards#body=NAACP%20Image%20Awards",
     "section": "Awards",
     "description": "0 wins from 7 nominations.",
     "keywords": [
@@ -431,7 +431,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "NET Honours",
-    "path": "/records/awards",
+    "path": "/records/awards#body=NET%20Honours",
     "section": "Awards",
     "description": "0 wins from 3 nominations.",
     "keywords": [
@@ -445,7 +445,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Nigeria Entertainment Awards",
-    "path": "/records/awards",
+    "path": "/records/awards#body=Nigeria%20Entertainment%20Awards",
     "section": "Awards",
     "description": "3 wins from 5 nominations.",
     "keywords": [
@@ -459,7 +459,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Nigeria South South Music Awards",
-    "path": "/records/awards",
+    "path": "/records/awards#body=Nigeria%20South%20South%20Music%20Awards",
     "section": "Awards",
     "description": "1 win from 1 nomination.",
     "keywords": [
@@ -473,7 +473,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "NME Awards",
-    "path": "/records/awards",
+    "path": "/records/awards#body=NME%20Awards",
     "section": "Awards",
     "description": "1 win from 1 nomination.",
     "keywords": [
@@ -487,7 +487,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "NRJ Music Awards",
-    "path": "/records/awards",
+    "path": "/records/awards#body=NRJ%20Music%20Awards",
     "section": "Awards",
     "description": "0 wins from 1 nomination.",
     "keywords": [
@@ -501,7 +501,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Planet Rap Awards",
-    "path": "/records/awards",
+    "path": "/records/awards#body=Planet%20Rap%20Awards",
     "section": "Awards",
     "description": "1 win from 1 nomination.",
     "keywords": [
@@ -515,7 +515,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Premios Juventud",
-    "path": "/records/awards",
+    "path": "/records/awards#body=Premios%20Juventud",
     "section": "Awards",
     "description": "1 win from 1 nomination.",
     "keywords": [
@@ -529,7 +529,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Rocklan One Radio Music Awards",
-    "path": "/records/awards",
+    "path": "/records/awards#body=Rocklan%20One%20Radio%20Music%20Awards",
     "section": "Awards",
     "description": "1 win from 1 nomination.",
     "keywords": [
@@ -543,7 +543,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "SESAC Awards",
-    "path": "/records/awards",
+    "path": "/records/awards#body=SESAC%20Awards",
     "section": "Awards",
     "description": "3 wins from 3 nominations.",
     "keywords": [
@@ -557,7 +557,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Soul Train Awards",
-    "path": "/records/awards",
+    "path": "/records/awards#body=Soul%20Train%20Awards",
     "section": "Awards",
     "description": "0 wins from 4 nominations.",
     "keywords": [
@@ -571,7 +571,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Soundcity MVP Awards Festival",
-    "path": "/records/awards",
+    "path": "/records/awards#body=Soundcity%20MVP%20Awards%20Festival",
     "section": "Awards",
     "description": "8 wins from 19 nominations.",
     "keywords": [
@@ -585,7 +585,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "South African Hip Hop Awards",
-    "path": "/records/awards",
+    "path": "/records/awards#body=South%20African%20Hip%20Hop%20Awards",
     "section": "Awards",
     "description": "0 wins from 3 nominations.",
     "keywords": [
@@ -599,7 +599,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "The Future Awards Africa",
-    "path": "/records/awards",
+    "path": "/records/awards#body=The%20Future%20Awards%20Africa",
     "section": "Awards",
     "description": "2 wins from 2 nominations.",
     "keywords": [
@@ -613,7 +613,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "The Headies",
-    "path": "/records/awards",
+    "path": "/records/awards#body=The%20Headies",
     "section": "Awards",
     "description": "10 wins from 34 nominations.",
     "keywords": [
@@ -627,7 +627,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Trace Awards",
-    "path": "/records/awards",
+    "path": "/records/awards#body=Trace%20Awards",
     "section": "Awards",
     "description": "1 win from 6 nominations.",
     "keywords": [
@@ -641,7 +641,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Uganda HiPipo Music Awards",
-    "path": "/records/awards",
+    "path": "/records/awards#body=Uganda%20HiPipo%20Music%20Awards",
     "section": "Awards",
     "description": "0 wins from 2 nominations.",
     "keywords": [
@@ -655,7 +655,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Urban Music Awards",
-    "path": "/records/awards",
+    "path": "/records/awards#body=Urban%20Music%20Awards",
     "section": "Awards",
     "description": "1 win from 2 nominations.",
     "keywords": [
@@ -1641,7 +1641,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Certified units in Colombia",
     "path": "/compare/in/colombia",
     "section": "Compare",
-    "description": "Every Afrobeats plaque awarded in Colombia, priced at Pro Musica Colombia's own thresholds and ranked by artist.",
+    "description": "Every Afrobeats plaque awarded in Colombia, listed, not priced: Pro Musica Colombia publishes no unit threshold.",
     "keywords": [
       "colombia",
       "co",
@@ -1658,7 +1658,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Certified units in Czech Republic",
     "path": "/compare/in/czech-republic",
     "section": "Compare",
-    "description": "Every Afrobeats plaque awarded in Czech Republic, priced at ČNS IFPI (Czechia)'s own thresholds and ranked by artist.",
+    "description": "Every Afrobeats plaque awarded in the Czech Republic, priced at ČNS IFPI (Czechia)'s own thresholds and ranked by artist.",
     "keywords": [
       "czech republic",
       "cz",
@@ -1726,7 +1726,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Certified units in Greece",
     "path": "/compare/in/greece",
     "section": "Compare",
-    "description": "Every Afrobeats plaque awarded in Greece, priced at IFPI Greece's own thresholds and ranked by artist.",
+    "description": "Every Afrobeats plaque awarded in Greece, priced at IFPI's last published level (June 2013) and ranked by artist.",
     "keywords": [
       "greece",
       "gr",
@@ -1794,7 +1794,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Certified units in Netherlands",
     "path": "/compare/in/netherlands",
     "section": "Compare",
-    "description": "Every Afrobeats plaque awarded in Netherlands, priced at NVPI's own thresholds and ranked by artist.",
+    "description": "Every Afrobeats plaque awarded in the Netherlands, priced at NVPI's own thresholds and ranked by artist.",
     "keywords": [
       "netherlands",
       "nl",
@@ -1862,7 +1862,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Certified units in Poland",
     "path": "/compare/in/poland",
     "section": "Compare",
-    "description": "Every Afrobeats plaque awarded in Poland, priced at ZPAV's own thresholds and ranked by artist.",
+    "description": "Every Afrobeats plaque awarded in Poland, priced at ZPAV's levels (singles at 2 zł each) and ranked by artist.",
     "keywords": [
       "poland",
       "pl",
@@ -1947,11 +1947,11 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Certified units in Sweden",
     "path": "/compare/in/sweden",
     "section": "Compare",
-    "description": "Every Afrobeats plaque awarded in Sweden, priced at GLF's own thresholds and ranked by artist.",
+    "description": "Every Afrobeats plaque awarded in Sweden, priced at IFPI Sverige's own thresholds and ranked by artist.",
     "keywords": [
       "sweden",
       "se",
-      "glf",
+      "ifpi sverige",
       "certified units",
       "certifications",
       "certifications in sweden",
@@ -1981,7 +1981,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Certified units in United Kingdom",
     "path": "/compare/in/united-kingdom",
     "section": "Compare",
-    "description": "Every Afrobeats plaque awarded in United Kingdom, priced at BPI's own thresholds and ranked by artist.",
+    "description": "Every Afrobeats plaque awarded in the United Kingdom, priced at BPI's own thresholds and ranked by artist.",
     "keywords": [
       "united kingdom",
       "uk",
@@ -1998,7 +1998,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Certified units in United States",
     "path": "/compare/in/united-states",
     "section": "Compare",
-    "description": "Every Afrobeats plaque awarded in United States, priced at RIAA's own thresholds and ranked by artist.",
+    "description": "Every Afrobeats plaque awarded in the United States, priced at RIAA's own thresholds and ranked by artist.",
     "keywords": [
       "united states",
       "us",
@@ -3407,7 +3407,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Argentina",
-    "path": "/records/charts",
+    "path": "/records/charts#country=AR",
     "section": "Country",
     "description": "Chart peaks in Argentina on Billboard Argentina Hot 100.",
     "keywords": [
@@ -3421,7 +3421,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Australia",
-    "path": "/certifications",
+    "path": "/certifications#country=AU",
     "section": "Country",
     "description": "Certifications awarded in Australia by ARIA.",
     "keywords": [
@@ -3434,7 +3434,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Austria",
-    "path": "/certifications",
+    "path": "/certifications#country=AT",
     "section": "Country",
     "description": "Certifications awarded in Austria by IFPI Austria.",
     "keywords": [
@@ -3447,7 +3447,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Belgium",
-    "path": "/certifications",
+    "path": "/certifications#country=BE",
     "section": "Country",
     "description": "Certifications awarded in Belgium by Ultratop.",
     "keywords": [
@@ -3460,7 +3460,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Bolivia",
-    "path": "/records/charts",
+    "path": "/records/charts#country=BO",
     "section": "Country",
     "description": "Chart peaks in Bolivia on Billboard Bolivia Songs.",
     "keywords": [
@@ -3474,7 +3474,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Brazil",
-    "path": "/certifications",
+    "path": "/certifications#country=BR",
     "section": "Country",
     "description": "Certifications awarded in Brazil by Pro-Música Brasil.",
     "keywords": [
@@ -3487,7 +3487,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Bulgaria",
-    "path": "/records/charts",
+    "path": "/records/charts#country=BG",
     "section": "Country",
     "description": "Chart peaks in Bulgaria on PROPHON (airplay — no other national chart).",
     "keywords": [
@@ -3501,7 +3501,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Canada",
-    "path": "/certifications",
+    "path": "/certifications#country=CA",
     "section": "Country",
     "description": "Certifications awarded in Canada by Music Canada.",
     "keywords": [
@@ -3514,7 +3514,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Chile",
-    "path": "/records/charts",
+    "path": "/records/charts#country=CL",
     "section": "Country",
     "description": "Chart peaks in Chile on Billboard Chile Songs.",
     "keywords": [
@@ -3528,20 +3528,20 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Colombia",
-    "path": "/certifications",
+    "path": "/certifications#country=CO",
     "section": "Country",
-    "description": "Certifications awarded in Colombia by Pro Musica Colombia.",
+    "description": "Certifications awarded in Colombia by Sony Music Colombia.",
     "keywords": [
       "co",
       "country",
       "certified",
-      "pro musica colombia"
+      "sony music colombia"
     ],
     "generated": true
   },
   {
     "title": "Costa Rica",
-    "path": "/records/charts",
+    "path": "/records/charts#country=CR",
     "section": "Country",
     "description": "Chart peaks in Costa Rica on FONÓTICA Streaming.",
     "keywords": [
@@ -3555,7 +3555,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Croatia",
-    "path": "/records/charts",
+    "path": "/records/charts#country=HR",
     "section": "Country",
     "description": "Chart peaks in Croatia on Billboard Croatia Songs.",
     "keywords": [
@@ -3569,7 +3569,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Czech Republic",
-    "path": "/certifications",
+    "path": "/certifications#country=CZ",
     "section": "Country",
     "description": "Certifications awarded in Czech Republic by ČNS IFPI (Czechia).",
     "keywords": [
@@ -3582,7 +3582,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Denmark",
-    "path": "/certifications",
+    "path": "/certifications#country=DK",
     "section": "Country",
     "description": "Certifications awarded in Denmark by IFPI Denmark.",
     "keywords": [
@@ -3595,7 +3595,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Ecuador",
-    "path": "/records/charts",
+    "path": "/records/charts#country=EC",
     "section": "Country",
     "description": "Chart peaks in Ecuador on IFPI Latin America.",
     "keywords": [
@@ -3609,7 +3609,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Egypt",
-    "path": "/records/charts",
+    "path": "/records/charts#country=EG",
     "section": "Country",
     "description": "Chart peaks in Egypt on Official Egypt Top 20 (MENA Chart).",
     "keywords": [
@@ -3623,7 +3623,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Estonia",
-    "path": "/records/charts",
+    "path": "/records/charts#country=EE",
     "section": "Country",
     "description": "Chart peaks in Estonia on TopHit weekly (airplay — no other national chart).",
     "keywords": [
@@ -3637,7 +3637,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Finland",
-    "path": "/records/charts",
+    "path": "/records/charts#country=FI",
     "section": "Country",
     "description": "Chart peaks in Finland on Suomen virallinen lista.",
     "keywords": [
@@ -3651,7 +3651,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "France",
-    "path": "/certifications",
+    "path": "/certifications#country=FR",
     "section": "Country",
     "description": "Certifications awarded in France by SNEP.",
     "keywords": [
@@ -3664,7 +3664,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Germany",
-    "path": "/certifications",
+    "path": "/certifications#country=DE",
     "section": "Country",
     "description": "Certifications awarded in Germany by BVMI.",
     "keywords": [
@@ -3677,7 +3677,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Greece",
-    "path": "/certifications",
+    "path": "/certifications#country=GR",
     "section": "Country",
     "description": "Certifications awarded in Greece by IFPI Greece.",
     "keywords": [
@@ -3690,7 +3690,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Guatemala",
-    "path": "/records/charts",
+    "path": "/records/charts#country=GT",
     "section": "Country",
     "description": "Chart peaks in Guatemala on Monitor Latino (airplay — no other national chart).",
     "keywords": [
@@ -3704,7 +3704,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Honduras",
-    "path": "/records/charts",
+    "path": "/records/charts#country=HN",
     "section": "Country",
     "description": "Chart peaks in Honduras on Monitor Latino (airplay — no other national chart).",
     "keywords": [
@@ -3718,7 +3718,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Hong Kong",
-    "path": "/records/charts",
+    "path": "/records/charts#country=HK",
     "section": "Country",
     "description": "Chart peaks in Hong Kong on Billboard Hong Kong Songs.",
     "keywords": [
@@ -3732,7 +3732,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Hungary",
-    "path": "/certifications",
+    "path": "/certifications#country=HU",
     "section": "Country",
     "description": "Certifications awarded in Hungary by MAHASZ.",
     "keywords": [
@@ -3745,7 +3745,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Iceland",
-    "path": "/records/charts",
+    "path": "/records/charts#country=IS",
     "section": "Country",
     "description": "Chart peaks in Iceland on Tónlistinn.",
     "keywords": [
@@ -3759,7 +3759,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "India",
-    "path": "/records/charts",
+    "path": "/records/charts#country=IN",
     "section": "Country",
     "description": "Chart peaks in India on IMI International Top 20.",
     "keywords": [
@@ -3773,7 +3773,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Ireland",
-    "path": "/records/charts",
+    "path": "/records/charts#country=IE",
     "section": "Country",
     "description": "Chart peaks in Ireland on IRMA.",
     "keywords": [
@@ -3787,7 +3787,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Israel",
-    "path": "/records/charts",
+    "path": "/records/charts#country=IL",
     "section": "Country",
     "description": "Chart peaks in Israel on Mako Hit List (official singles chart).",
     "keywords": [
@@ -3801,7 +3801,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Italy",
-    "path": "/certifications",
+    "path": "/certifications#country=IT",
     "section": "Country",
     "description": "Certifications awarded in Italy by FIMI.",
     "keywords": [
@@ -3814,7 +3814,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Japan",
-    "path": "/records/charts",
+    "path": "/records/charts#country=JP",
     "section": "Country",
     "description": "Chart peaks in Japan on Billboard Japan Hot 100.",
     "keywords": [
@@ -3828,7 +3828,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Kazakhstan",
-    "path": "/records/charts",
+    "path": "/records/charts#country=KZ",
     "section": "Country",
     "description": "Chart peaks in Kazakhstan on TopHit weekly (airplay — no other national chart).",
     "keywords": [
@@ -3842,7 +3842,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Latvia",
-    "path": "/records/charts",
+    "path": "/records/charts#country=LV",
     "section": "Country",
     "description": "Chart peaks in Latvia on Latvia Streaming Chart.",
     "keywords": [
@@ -3856,7 +3856,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Lebanon",
-    "path": "/records/charts",
+    "path": "/records/charts#country=LB",
     "section": "Country",
     "description": "Chart peaks in Lebanon on The Official Lebanese Top 20 (Ipsos airplay — no other national chart).",
     "keywords": [
@@ -3870,7 +3870,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Lithuania",
-    "path": "/records/charts",
+    "path": "/records/charts#country=LT",
     "section": "Country",
     "description": "Chart peaks in Lithuania on AGATA.",
     "keywords": [
@@ -3884,7 +3884,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Luxembourg",
-    "path": "/records/charts",
+    "path": "/records/charts#country=LU",
     "section": "Country",
     "description": "Chart peaks in Luxembourg on Billboard Luxembourg Songs.",
     "keywords": [
@@ -3898,7 +3898,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Malaysia",
-    "path": "/records/charts",
+    "path": "/records/charts#country=MY",
     "section": "Country",
     "description": "Chart peaks in Malaysia on RIM Charts (Intl. streaming).",
     "keywords": [
@@ -3912,7 +3912,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Moldova",
-    "path": "/records/charts",
+    "path": "/records/charts#country=MD",
     "section": "Country",
     "description": "Chart peaks in Moldova on TopHit weekly (airplay — no other national chart).",
     "keywords": [
@@ -3926,7 +3926,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Netherlands",
-    "path": "/certifications",
+    "path": "/certifications#country=NL",
     "section": "Country",
     "description": "Certifications awarded in Netherlands by NVPI.",
     "keywords": [
@@ -3939,7 +3939,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "New Zealand",
-    "path": "/certifications",
+    "path": "/certifications#country=NZ",
     "section": "Country",
     "description": "Certifications awarded in New Zealand by RMNZ.",
     "keywords": [
@@ -3952,7 +3952,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Nicaragua",
-    "path": "/records/charts",
+    "path": "/records/charts#country=NI",
     "section": "Country",
     "description": "Chart peaks in Nicaragua on Monitor Latino (airplay — no other national chart).",
     "keywords": [
@@ -3966,7 +3966,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Nigeria",
-    "path": "/certifications",
+    "path": "/certifications#country=NG",
     "section": "Country",
     "description": "Certifications awarded in Nigeria by TurnTable (TCSN).",
     "keywords": [
@@ -3979,7 +3979,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Norway",
-    "path": "/certifications",
+    "path": "/certifications#country=NO",
     "section": "Country",
     "description": "Certifications awarded in Norway by IFPI Norway.",
     "keywords": [
@@ -3992,7 +3992,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Panama",
-    "path": "/records/charts",
+    "path": "/records/charts#country=PA",
     "section": "Country",
     "description": "Chart peaks in Panama on PRODUCE Top 50 Internacional (BMAT airplay — no other national chart).",
     "keywords": [
@@ -4006,7 +4006,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Paraguay",
-    "path": "/records/charts",
+    "path": "/records/charts#country=PY",
     "section": "Country",
     "description": "Chart peaks in Paraguay on Monitor Latino (airplay — no other national chart).",
     "keywords": [
@@ -4020,7 +4020,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Peru",
-    "path": "/records/charts",
+    "path": "/records/charts#country=PE",
     "section": "Country",
     "description": "Chart peaks in Peru on Billboard Peru Songs.",
     "keywords": [
@@ -4034,7 +4034,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Poland",
-    "path": "/certifications",
+    "path": "/certifications#country=PL",
     "section": "Country",
     "description": "Certifications awarded in Poland by ZPAV.",
     "keywords": [
@@ -4047,7 +4047,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Portugal",
-    "path": "/certifications",
+    "path": "/certifications#country=PT",
     "section": "Country",
     "description": "Certifications awarded in Portugal by AFP.",
     "keywords": [
@@ -4060,7 +4060,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Puerto Rico",
-    "path": "/records/charts",
+    "path": "/records/charts#country=PR",
     "section": "Country",
     "description": "Chart peaks in Puerto Rico on Monitor Latino (airplay — no other national chart).",
     "keywords": [
@@ -4074,7 +4074,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Romania",
-    "path": "/records/charts",
+    "path": "/records/charts#country=RO",
     "section": "Country",
     "description": "Chart peaks in Romania on Billboard Romania Songs.",
     "keywords": [
@@ -4088,7 +4088,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Russia",
-    "path": "/records/charts",
+    "path": "/records/charts#country=RU",
     "section": "Country",
     "description": "Chart peaks in Russia on TopHit streaming (no industry chart since 2022).",
     "keywords": [
@@ -4102,7 +4102,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Saudi Arabia",
-    "path": "/records/charts",
+    "path": "/records/charts#country=SA",
     "section": "Country",
     "description": "Chart peaks in Saudi Arabia on The Official Saudi Arabia Chart.",
     "keywords": [
@@ -4116,7 +4116,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Singapore",
-    "path": "/records/charts",
+    "path": "/records/charts#country=SG",
     "section": "Country",
     "description": "Chart peaks in Singapore on RIAS Top Charts.",
     "keywords": [
@@ -4130,7 +4130,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Slovakia",
-    "path": "/certifications",
+    "path": "/certifications#country=SK",
     "section": "Country",
     "description": "Certifications awarded in Slovakia by ČNS IFPI (Slovakia).",
     "keywords": [
@@ -4143,7 +4143,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "South Africa",
-    "path": "/certifications",
+    "path": "/certifications#country=ZA",
     "section": "Country",
     "description": "Certifications awarded in South Africa by RiSA.",
     "keywords": [
@@ -4156,7 +4156,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Spain",
-    "path": "/certifications",
+    "path": "/certifications#country=ES",
     "section": "Country",
     "description": "Certifications awarded in Spain by Promusicae.",
     "keywords": [
@@ -4169,7 +4169,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Suriname",
-    "path": "/records/charts",
+    "path": "/records/charts#country=SR",
     "section": "Country",
     "description": "Chart peaks in Suriname on Nationale Top 40.",
     "keywords": [
@@ -4183,20 +4183,20 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Sweden",
-    "path": "/certifications",
+    "path": "/certifications#country=SE",
     "section": "Country",
-    "description": "Certifications awarded in Sweden by GLF.",
+    "description": "Certifications awarded in Sweden by IFPI Sverige.",
     "keywords": [
       "se",
       "country",
       "certified",
-      "glf"
+      "ifpi sverige"
     ],
     "generated": true
   },
   {
     "title": "Switzerland",
-    "path": "/certifications",
+    "path": "/certifications#country=CH",
     "section": "Country",
     "description": "Certifications awarded in Switzerland by IFPI.",
     "keywords": [
@@ -4209,7 +4209,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Turkey",
-    "path": "/records/charts",
+    "path": "/records/charts#country=TR",
     "section": "Country",
     "description": "Chart peaks in Turkey on Radiomonitor Türkiye Intl. (airplay — no other national chart).",
     "keywords": [
@@ -4223,7 +4223,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Ukraine",
-    "path": "/records/charts",
+    "path": "/records/charts#country=UA",
     "section": "Country",
     "description": "Chart peaks in Ukraine on TopHit weekly (airplay — no other national chart).",
     "keywords": [
@@ -4237,7 +4237,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "United Arab Emirates",
-    "path": "/records/charts",
+    "path": "/records/charts#country=AE",
     "section": "Country",
     "description": "Chart peaks in United Arab Emirates on The Official UAE Chart.",
     "keywords": [
@@ -4251,7 +4251,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "United Kingdom",
-    "path": "/certifications",
+    "path": "/certifications#country=UK",
     "section": "Country",
     "description": "Certifications awarded in United Kingdom by BPI.",
     "keywords": [
@@ -4264,7 +4264,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "United States",
-    "path": "/certifications",
+    "path": "/certifications#country=US",
     "section": "Country",
     "description": "Certifications awarded in United States by RIAA.",
     "keywords": [
@@ -4277,7 +4277,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Uruguay",
-    "path": "/records/charts",
+    "path": "/records/charts#country=UY",
     "section": "Country",
     "description": "Chart peaks in Uruguay on Monitor Latino (airplay — no other national chart).",
     "keywords": [
@@ -4291,7 +4291,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Venezuela",
-    "path": "/records/charts",
+    "path": "/records/charts#country=VE",
     "section": "Country",
     "description": "Chart peaks in Venezuela on Record Report (airplay — the national chart).",
     "keywords": [
@@ -4305,7 +4305,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Vietnam",
-    "path": "/records/charts",
+    "path": "/records/charts#country=VN",
     "section": "Country",
     "description": "Chart peaks in Vietnam on Billboard Vietnam Hot 100.",
     "keywords": [
@@ -4319,7 +4319,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "20 10 20",
-    "path": "/records/charts",
+    "path": "/records/charts#song=20%2010%2020",
     "section": "Release",
     "description": "1 chart entry.",
     "keywords": [
@@ -4341,7 +4341,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "28 Grams",
-    "path": "/certifications",
+    "path": "/certifications#release=28%20Grams",
     "section": "Release",
     "description": "1 certification · 1 chart entry.",
     "keywords": [
@@ -4352,11 +4352,13 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "4 Kampé II",
-    "path": "/certifications",
+    "path": "/certifications#release=4%20Kamp%C3%A9%20II",
     "section": "Release",
     "description": "Joé Dwèt Filé ft. Burna Boy — 2 certifications · 2 chart entries.",
     "keywords": [
-      "fil",
+      "joe",
+      "dwet",
+      "file",
       "burna",
       "boy",
       "song",
@@ -4377,7 +4379,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "All Eyes on Me",
-    "path": "/certifications",
+    "path": "/certifications#release=All%20Eyes%20on%20Me",
     "section": "Release",
     "description": "AKA ft. Burna Boy, Da L.E.S & JR — 1 certification.",
     "keywords": [
@@ -4391,7 +4393,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "All My Life (Burna Boy Remix)",
-    "path": "/records/charts",
+    "path": "/records/charts#song=All%20My%20Life%20(Burna%20Boy%20Remix)",
     "section": "Release",
     "description": "Lil Durk & J. Cole ft. Burna Boy — 1 chart entry.",
     "keywords": [
@@ -4418,7 +4420,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Anybody",
-    "path": "/certifications",
+    "path": "/certifications#release=Anybody",
     "section": "Release",
     "description": "4 certifications.",
     "keywords": [
@@ -4429,7 +4431,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "B. D'OR",
-    "path": "/certifications",
+    "path": "/certifications#release=B.%20D'OR",
     "section": "Release",
     "description": "feat. Wizkid — 1 certification · 1 chart entry.",
     "keywords": [
@@ -4442,7 +4444,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Baddest",
-    "path": "/certifications",
+    "path": "/certifications#release=Baddest",
     "section": "Release",
     "description": "AKA ft. Burna Boy, Khuli Chana & Yanga Chief — 1 certification.",
     "keywords": [
@@ -4460,7 +4462,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Bank On It",
-    "path": "/certifications",
+    "path": "/certifications#release=Bank%20On%20It",
     "section": "Release",
     "description": "1 certification.",
     "keywords": [
@@ -4471,7 +4473,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Be Honest",
-    "path": "/certifications",
+    "path": "/certifications#release=Be%20Honest",
     "section": "Release",
     "description": "Jorja Smith ft. Burna Boy — 6 certifications · 5 chart entries.",
     "keywords": [
@@ -4486,7 +4488,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Big 7",
-    "path": "/records/charts",
+    "path": "/records/charts#song=Big%207",
     "section": "Release",
     "description": "1 certification · 2 chart entries.",
     "keywords": [
@@ -4497,7 +4499,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Birthday",
-    "path": "/records/charts",
+    "path": "/records/charts#song=Birthday",
     "section": "Release",
     "description": "Fredo, Burna Boy & Steel Banglez — 1 chart entry.",
     "keywords": [
@@ -4513,7 +4515,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Born Winner",
-    "path": "/certifications",
+    "path": "/certifications#release=Born%20Winner",
     "section": "Release",
     "description": "1 certification · 1 chart entry.",
     "keywords": [
@@ -4524,7 +4526,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Bundle by Bundle",
-    "path": "/certifications",
+    "path": "/certifications#release=Bundle%20by%20Bundle",
     "section": "Release",
     "description": "1 certification · 1 chart entry.",
     "keywords": [
@@ -4535,7 +4537,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Buy You Life",
-    "path": "/certifications",
+    "path": "/certifications#release=Buy%20You%20Life",
     "section": "Release",
     "description": "1 certification · 1 chart entry.",
     "keywords": [
@@ -4546,7 +4548,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Change Your Mind",
-    "path": "/certifications",
+    "path": "/certifications#release=Change%20Your%20Mind",
     "section": "Release",
     "description": "feat. Shaboozey — 1 certification · 1 chart entry.",
     "keywords": [
@@ -4559,7 +4561,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Cheat on Me",
-    "path": "/records/charts",
+    "path": "/records/charts#song=Cheat%20on%20Me",
     "section": "Release",
     "description": "feat. Dave — 2 certifications · 5 chart entries.",
     "keywords": [
@@ -4583,7 +4585,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Cloak & Dagger",
-    "path": "/certifications",
+    "path": "/certifications#release=Cloak%20%26%20Dagger",
     "section": "Release",
     "description": "feat. J Hus — 1 certification · 1 chart entry.",
     "keywords": [
@@ -4596,7 +4598,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Collateral Damage",
-    "path": "/certifications",
+    "path": "/certifications#release=Collateral%20Damage",
     "section": "Release",
     "description": "1 certification.",
     "keywords": [
@@ -4607,7 +4609,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Come Gimme",
-    "path": "/records/charts",
+    "path": "/records/charts#song=Come%20Gimme",
     "section": "Release",
     "description": "1 chart entry.",
     "keywords": [
@@ -4618,7 +4620,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Coming Home",
-    "path": "/records/charts",
+    "path": "/records/charts#song=Coming%20Home",
     "section": "Release",
     "description": "Usher & Burna Boy — 1 chart entry.",
     "keywords": [
@@ -4632,7 +4634,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Common Person",
-    "path": "/certifications",
+    "path": "/certifications#release=Common%20Person",
     "section": "Release",
     "description": "1 certification · 1 chart entry.",
     "keywords": [
@@ -4643,7 +4645,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Dai Dai",
-    "path": "/records/charts",
+    "path": "/records/charts#song=Dai%20Dai",
     "section": "Release",
     "description": "Shakira & Burna Boy — 17 certifications · 68 chart entries.",
     "keywords": [
@@ -4657,7 +4659,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Dem Dey",
-    "path": "/certifications",
+    "path": "/certifications#release=Dem%20Dey",
     "section": "Release",
     "description": "1 certification · 1 chart entry.",
     "keywords": [
@@ -4668,7 +4670,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Dey Play",
-    "path": "/certifications",
+    "path": "/certifications#release=Dey%20Play",
     "section": "Release",
     "description": "1 certification · 1 chart entry.",
     "keywords": [
@@ -4679,7 +4681,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Different Size",
-    "path": "/certifications",
+    "path": "/certifications#release=Different%20Size",
     "section": "Release",
     "description": "feat. Victony — 1 certification · 1 chart entry.",
     "keywords": [
@@ -4692,7 +4694,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Dirty Secrets",
-    "path": "/certifications",
+    "path": "/certifications#release=Dirty%20Secrets",
     "section": "Release",
     "description": "1 certification · 1 chart entry.",
     "keywords": [
@@ -4703,7 +4705,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Do I",
-    "path": "/certifications",
+    "path": "/certifications#release=Do%20I",
     "section": "Release",
     "description": "Phyno & Burna Boy — 1 certification · 1 chart entry.",
     "keywords": [
@@ -4717,7 +4719,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Don't Let Me Drown",
-    "path": "/records/charts",
+    "path": "/records/charts#song=Don't%20Let%20Me%20Drown",
     "section": "Release",
     "description": "1 chart entry.",
     "keywords": [
@@ -4728,7 +4730,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Donne-moi l'accord",
-    "path": "/certifications",
+    "path": "/certifications#release=Donne-moi%20l'accord",
     "section": "Release",
     "description": "Dadju ft. Burna Boy — 1 certification.",
     "keywords": [
@@ -4742,7 +4744,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Empty Chairs",
-    "path": "/certifications",
+    "path": "/certifications#release=Empty%20Chairs",
     "section": "Release",
     "description": "feat. Mick Jagger — 1 certification · 1 chart entry.",
     "keywords": [
@@ -4756,7 +4758,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Enjoy Yourself (Remix)",
-    "path": "/certifications",
+    "path": "/certifications#release=Enjoy%20Yourself%20(Remix)",
     "section": "Release",
     "description": "Pop Smoke ft. Burna Boy — 2 certifications.",
     "keywords": [
@@ -4771,7 +4773,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "For My Hand",
-    "path": "/records/charts",
+    "path": "/records/charts#song=For%20My%20Hand",
     "section": "Release",
     "description": "feat. Ed Sheeran — 9 certifications · 12 chart entries.",
     "keywords": [
@@ -4784,7 +4786,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Gbona",
-    "path": "/certifications",
+    "path": "/certifications#release=Gbona",
     "section": "Release",
     "description": "8 certifications.",
     "keywords": [
@@ -4795,7 +4797,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Ginger",
-    "path": "/certifications",
+    "path": "/certifications#release=Ginger",
     "section": "Release",
     "description": "Wizkid ft. Burna Boy — 6 certifications · 2 chart entries.",
     "keywords": [
@@ -4809,7 +4811,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Giza",
-    "path": "/certifications",
+    "path": "/certifications#release=Giza",
     "section": "Release",
     "description": "feat. Seyi Vibez — 1 certification · 1 chart entry.",
     "keywords": [
@@ -4823,7 +4825,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Glory",
-    "path": "/certifications",
+    "path": "/certifications#release=Glory",
     "section": "Release",
     "description": "feat. Ladysmith Black Mambazo — 1 certification · 1 chart entry.",
     "keywords": [
@@ -4838,7 +4840,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Gum Body",
-    "path": "/certifications",
+    "path": "/certifications#release=Gum%20Body",
     "section": "Release",
     "description": "feat. Jorja Smith — 2 certifications.",
     "keywords": [
@@ -4852,7 +4854,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Hey Boy",
-    "path": "/records/charts",
+    "path": "/records/charts#song=Hey%20Boy",
     "section": "Release",
     "description": "Sia ft. Burna Boy — 1 chart entry.",
     "keywords": [
@@ -4866,7 +4868,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Higher",
-    "path": "/records/charts",
+    "path": "/records/charts#song=Higher",
     "section": "Release",
     "description": "1 certification · 2 chart entries.",
     "keywords": [
@@ -4877,7 +4879,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "How Bad Could It Be",
-    "path": "/certifications",
+    "path": "/certifications#release=How%20Bad%20Could%20It%20Be",
     "section": "Release",
     "description": "1 certification · 1 chart entry.",
     "keywords": [
@@ -4888,7 +4890,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "I FEEL IT",
-    "path": "/records/charts",
+    "path": "/records/charts#song=I%20FEEL%20IT",
     "section": "Release",
     "description": "Jon Bellion ft. Burna Boy — 1 chart entry.",
     "keywords": [
@@ -4903,7 +4905,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "I Told Them",
-    "path": "/certifications",
+    "path": "/certifications#release=I%20Told%20Them",
     "section": "Release",
     "description": "feat. GZA — 1 certification · 1 chart entry.",
     "keywords": [
@@ -4915,7 +4917,7 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
-    "title": "I Told Them...",
+    "title": "I Told Them…",
     "path": "/music/albums/i-told-them",
     "section": "Release",
     "description": "4 certifications · 14 chart entries.",
@@ -4927,7 +4929,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "If I'm Lying",
-    "path": "/certifications",
+    "path": "/certifications#release=If%20I'm%20Lying",
     "section": "Release",
     "description": "1 certification · 1 chart entry.",
     "keywords": [
@@ -4938,7 +4940,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "It's Plenty",
-    "path": "/certifications",
+    "path": "/certifications#release=It's%20Plenty",
     "section": "Release",
     "description": "5 certifications · 1 chart entry.",
     "keywords": [
@@ -4949,7 +4951,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Jagele",
-    "path": "/certifications",
+    "path": "/certifications#release=Jagele",
     "section": "Release",
     "description": "1 certification · 1 chart entry.",
     "keywords": [
@@ -4975,7 +4977,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Just Like Me",
-    "path": "/records/charts",
+    "path": "/records/charts#song=Just%20Like%20Me",
     "section": "Release",
     "description": "21 Savage, Burna Boy & Metro Boomin — 2 chart entries.",
     "keywords": [
@@ -4991,7 +4993,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Kabiyesi",
-    "path": "/records/charts",
+    "path": "/records/charts#song=Kabiyesi",
     "section": "Release",
     "description": "1 chart entry.",
     "keywords": [
@@ -5002,7 +5004,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Kilometre",
-    "path": "/certifications",
+    "path": "/certifications#release=Kilometre",
     "section": "Release",
     "description": "2 certifications · 2 chart entries.",
     "keywords": [
@@ -5013,7 +5015,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Laho II",
-    "path": "/records/charts",
+    "path": "/records/charts#song=Laho%20II",
     "section": "Release",
     "description": "Shallipopi & Burna Boy — 1 chart entry.",
     "keywords": [
@@ -5038,10 +5040,13 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Lenu (Remix)",
-    "path": "/certifications",
+    "path": "/certifications#release=Lenu%20(Remix)",
     "section": "Release",
-    "description": "1 certification.",
+    "description": "BNXN ft. Burna Boy — 1 certification.",
     "keywords": [
+      "bnxn",
+      "burna",
+      "boy",
       "song",
       "release"
     ],
@@ -5049,7 +5054,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Level Up",
-    "path": "/certifications",
+    "path": "/certifications#release=Level%20Up",
     "section": "Release",
     "description": "1 certification.",
     "keywords": [
@@ -5060,7 +5065,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Location",
-    "path": "/certifications",
+    "path": "/certifications#release=Location",
     "section": "Release",
     "description": "Dave ft. Burna Boy — 14 certifications · 2 chart entries.",
     "keywords": [
@@ -5074,7 +5079,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Love",
-    "path": "/certifications",
+    "path": "/certifications#release=Love",
     "section": "Release",
     "description": "1 certification · 1 chart entry.",
     "keywords": [
@@ -5096,7 +5101,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Loved by You",
-    "path": "/records/charts",
+    "path": "/records/charts#song=Loved%20by%20You",
     "section": "Release",
     "description": "Justin Bieber ft. Burna Boy — 2 certifications · 3 chart entries.",
     "keywords": [
@@ -5111,7 +5116,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Masculine",
-    "path": "/records/charts",
+    "path": "/records/charts#song=Masculine",
     "section": "Release",
     "description": "J Hus ft. Burna Boy — 1 chart entry.",
     "keywords": [
@@ -5125,7 +5130,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Mera Na",
-    "path": "/records/charts",
+    "path": "/records/charts#song=Mera%20Na",
     "section": "Release",
     "description": "Sidhu Moose Wala ft. Burna Boy & Steel Banglez — 2 chart entries.",
     "keywords": [
@@ -5143,7 +5148,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Monsters You Made",
-    "path": "/records/charts",
+    "path": "/records/charts#song=Monsters%20You%20Made",
     "section": "Release",
     "description": "feat. Chris Martin — 1 chart entry.",
     "keywords": [
@@ -5157,7 +5162,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "My Oasis",
-    "path": "/records/charts",
+    "path": "/records/charts#song=My%20Oasis",
     "section": "Release",
     "description": "Sam Smith ft. Burna Boy — 4 certifications · 9 chart entries.",
     "keywords": [
@@ -5172,7 +5177,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "No Fit Vex",
-    "path": "/certifications",
+    "path": "/certifications#release=No%20Fit%20Vex",
     "section": "Release",
     "description": "1 certification.",
     "keywords": [
@@ -5183,7 +5188,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "No Panic",
-    "path": "/certifications",
+    "path": "/certifications#release=No%20Panic",
     "section": "Release",
     "description": "1 certification · 1 chart entry.",
     "keywords": [
@@ -5194,7 +5199,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "No Sign of Weakness",
-    "path": "/certifications",
+    "path": "/certifications#release=No%20Sign%20of%20Weakness",
     "section": "Release",
     "description": "The title track — 1 certification.",
     "keywords": [
@@ -5216,7 +5221,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Normal",
-    "path": "/certifications",
+    "path": "/certifications#release=Normal",
     "section": "Release",
     "description": "1 certification · 1 chart entry.",
     "keywords": [
@@ -5227,7 +5232,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "On Form",
-    "path": "/certifications",
+    "path": "/certifications#release=On%20Form",
     "section": "Release",
     "description": "1 certification · 1 chart entry.",
     "keywords": [
@@ -5249,7 +5254,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Only You",
-    "path": "/records/charts",
+    "path": "/records/charts#song=Only%20You",
     "section": "Release",
     "description": "J. Cole ft. Burna Boy — 1 chart entry.",
     "keywords": [
@@ -5263,7 +5268,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Onyeka (Baby)",
-    "path": "/certifications",
+    "path": "/certifications#release=Onyeka%20(Baby)",
     "section": "Release",
     "description": "1 certification · 1 chart entry.",
     "keywords": [
@@ -5285,7 +5290,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Own It",
-    "path": "/records/charts",
+    "path": "/records/charts#song=Own%20It",
     "section": "Release",
     "description": "Stormzy ft. Ed Sheeran & Burna Boy — 6 certifications · 9 chart entries.",
     "keywords": [
@@ -5300,7 +5305,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Pardon",
-    "path": "/records/charts",
+    "path": "/records/charts#song=Pardon",
     "section": "Release",
     "description": "with Stromae — 1 chart entry.",
     "keywords": [
@@ -5313,7 +5318,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Play Play",
-    "path": "/certifications",
+    "path": "/certifications#release=Play%20Play",
     "section": "Release",
     "description": "J Hus ft. Burna Boy — 1 certification.",
     "keywords": [
@@ -5327,7 +5332,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Question",
-    "path": "/certifications",
+    "path": "/certifications#release=Question",
     "section": "Release",
     "description": "feat. Don Jazzy — 1 certification · 1 chart entry.",
     "keywords": [
@@ -5341,7 +5346,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Real Life",
-    "path": "/certifications",
+    "path": "/certifications#release=Real%20Life",
     "section": "Release",
     "description": "feat. Stormzy — 4 certifications · 2 chart entries.",
     "keywords": [
@@ -5354,7 +5359,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "ROBOSHOTTA",
-    "path": "/records/charts",
+    "path": "/records/charts#song=ROBOSHOTTA",
     "section": "Release",
     "description": "Busta Rhymes ft. Burna Boy — 1 chart entry.",
     "keywords": [
@@ -5369,7 +5374,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Rollercoaster",
-    "path": "/certifications",
+    "path": "/certifications#release=Rollercoaster",
     "section": "Release",
     "description": "feat. J Balvin — 1 certification · 1 chart entry.",
     "keywords": [
@@ -5382,7 +5387,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Rollin'",
-    "path": "/certifications",
+    "path": "/certifications#release=Rollin'",
     "section": "Release",
     "description": "Mist ft. Burna Boy — 1 certification · 1 chart entry.",
     "keywords": [
@@ -5396,7 +5401,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Rotate",
-    "path": "/records/charts",
+    "path": "/records/charts#song=Rotate",
     "section": "Release",
     "description": "Becky G, Burna Boy — 1 chart entry.",
     "keywords": [
@@ -5410,7 +5415,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Science",
-    "path": "/certifications",
+    "path": "/certifications#release=Science",
     "section": "Release",
     "description": "1 certification · 1 chart entry.",
     "keywords": [
@@ -5421,7 +5426,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Second Sermon (Remix)",
-    "path": "/certifications",
+    "path": "/certifications#release=Second%20Sermon%20(Remix)",
     "section": "Release",
     "description": "Black Sherif ft. Burna Boy — 1 certification · 1 chart entry.",
     "keywords": [
@@ -5436,7 +5441,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Secret",
-    "path": "/certifications",
+    "path": "/certifications#release=Secret",
     "section": "Release",
     "description": "feat. Jeremih & Serani — 1 certification.",
     "keywords": [
@@ -5450,7 +5455,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Simmer",
-    "path": "/certifications",
+    "path": "/certifications#release=Simmer",
     "section": "Release",
     "description": "Mahalia ft. Burna Boy — 2 certifications · 1 chart entry.",
     "keywords": [
@@ -5464,7 +5469,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Sittin' on Top of the World",
-    "path": "/certifications",
+    "path": "/certifications#release=Sittin'%20on%20Top%20of%20the%20World",
     "section": "Release",
     "description": "feat. 21 Savage — 4 certifications · 4 chart entries.",
     "keywords": [
@@ -5477,7 +5482,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Solid",
-    "path": "/certifications",
+    "path": "/certifications#release=Solid",
     "section": "Release",
     "description": "feat. Blxst & Kehlani — 1 certification · 1 chart entry.",
     "keywords": [
@@ -5491,7 +5496,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Sungba (Remix)",
-    "path": "/certifications",
+    "path": "/certifications#release=Sungba%20(Remix)",
     "section": "Release",
     "description": "Asake ft. Burna Boy — 2 certifications · 1 chart entry.",
     "keywords": [
@@ -5505,7 +5510,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Sweet Love",
-    "path": "/certifications",
+    "path": "/certifications#release=Sweet%20Love",
     "section": "Release",
     "description": "1 certification · 1 chart entry.",
     "keywords": [
@@ -5516,13 +5521,14 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Talibans II",
-    "path": "/records/charts",
+    "path": "/records/charts#song=Talibans%20II",
     "section": "Release",
-    "description": "with Byron Messia — 2 certifications · 3 chart entries.",
+    "description": "Byron Messia ft. Burna Boy — 2 certifications · 3 chart entries.",
     "keywords": [
-      "with",
       "byron",
       "messia",
+      "burna",
+      "boy",
       "song",
       "release"
     ],
@@ -5544,7 +5550,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Teary Eyes",
-    "path": "/records/charts",
+    "path": "/records/charts#song=Teary%20Eyes",
     "section": "Release",
     "description": "YoungBoy Never Broke Again & Burna Boy — 1 chart entry.",
     "keywords": [
@@ -5561,7 +5567,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Tested, Approved & Trusted",
-    "path": "/certifications",
+    "path": "/certifications#release=Tested%2C%20Approved%20%26%20Trusted",
     "section": "Release",
     "description": "3 certifications · 1 chart entry.",
     "keywords": [
@@ -5572,7 +5578,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Thanks",
-    "path": "/certifications",
+    "path": "/certifications#release=Thanks",
     "section": "Release",
     "description": "feat. J. Cole — 1 certification · 1 chart entry.",
     "keywords": [
@@ -5585,7 +5591,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Toni-Ann Singh",
-    "path": "/certifications",
+    "path": "/certifications#release=Toni-Ann%20Singh",
     "section": "Release",
     "description": "feat. Popcaan — 2 certifications · 1 chart entry.",
     "keywords": [
@@ -5598,7 +5604,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Tshwala Bam (Remix)",
-    "path": "/certifications",
+    "path": "/certifications#release=Tshwala%20Bam%20(Remix)",
     "section": "Release",
     "description": "TitoM & Yuppe ft. S.N.E & Burna Boy — 1 certification · 1 chart entry.",
     "keywords": [
@@ -5624,7 +5630,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Update",
-    "path": "/certifications",
+    "path": "/certifications#release=Update",
     "section": "Release",
     "description": "1 certification · 1 chart entry.",
     "keywords": [
@@ -5635,7 +5641,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Vanilla",
-    "path": "/certifications",
+    "path": "/certifications#release=Vanilla",
     "section": "Release",
     "description": "1 certification · 1 chart entry.",
     "keywords": [
@@ -5646,7 +5652,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Virgil",
-    "path": "/certifications",
+    "path": "/certifications#release=Virgil",
     "section": "Release",
     "description": "1 certification · 1 chart entry.",
     "keywords": [
@@ -5657,7 +5663,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Want It All",
-    "path": "/certifications",
+    "path": "/certifications#release=Want%20It%20All",
     "section": "Release",
     "description": "feat. Polo G — 1 certification · 1 chart entry.",
     "keywords": [
@@ -5670,7 +5676,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Way Too Big",
-    "path": "/certifications",
+    "path": "/certifications#release=Way%20Too%20Big",
     "section": "Release",
     "description": "1 certification · 1 chart entry.",
     "keywords": [
@@ -5681,7 +5687,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "We Pray",
-    "path": "/records/charts",
+    "path": "/records/charts#song=We%20Pray",
     "section": "Release",
     "description": "Coldplay ft. Burna Boy & others — 8 certifications · 26 chart entries.",
     "keywords": [
@@ -5710,7 +5716,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Whiskey",
-    "path": "/certifications",
+    "path": "/certifications#release=Whiskey",
     "section": "Release",
     "description": "1 certification · 1 chart entry.",
     "keywords": [
@@ -5721,7 +5727,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Wild Dreams",
-    "path": "/certifications",
+    "path": "/certifications#release=Wild%20Dreams",
     "section": "Release",
     "description": "feat. Khalid — 1 certification · 1 chart entry.",
     "keywords": [
@@ -5734,7 +5740,7 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Wonderful",
-    "path": "/certifications",
+    "path": "/certifications#release=Wonderful",
     "section": "Release",
     "description": "1 certification.",
     "keywords": [
@@ -5745,9 +5751,9 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Yaba Buluku (Remix)",
-    "path": "/certifications",
+    "path": "/certifications#release=Yaba%20Buluku%20(Remix)",
     "section": "Release",
-    "description": "DJ Tarico & Burna Boy — 1 certification · 1 chart entry.",
+    "description": "DJ Tárico & Burna Boy — 1 certification · 1 chart entry.",
     "keywords": [
       "tarico",
       "burna",

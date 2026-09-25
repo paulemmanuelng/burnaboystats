@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import Link from "next/link";
 import styles from "./compare.module.css";
 import { fmt, keepParens, plaque, program, shortProgram, tierClass } from "./chips";
@@ -280,24 +281,30 @@ export function CountryBoardView({
   const multiplied = board.programs.some((x) => x.lines.some((l) => l.plaqueList.some((p) => p.x > 1)));
   const onBoard = (format?: CertFormat) =>
     !format || board.programs.some((x) => x.lines.some((l) => l.plaqueList.some((p) => p.format === format)));
+  // The programme's name sits BEFORE its <dl>, not inside it: a <p> is not
+  // allowed in a definition list, and the two-programme US card failed as one.
   const levelLists = board.programs.map((prog) => (
-    <dl className={styles.cbThList} key={prog.name}>
+    <Fragment key={prog.name}>
       {board.programs.length > 1 && <p className={styles.cbThProgram}>{prog.name}</p>}
-      <div className={styles.cbThRow}>
-        <dt>Single</dt>
-        <dd>{prog.single ? tierRun(prog.single) : <>not priced{"\u00a0"}<span className={styles.mark}>¹</span></>}</dd>
-      </div>
-      <div className={styles.cbThRow}>
-        <dt>Album</dt>
-        <dd>{prog.album ? tierRun(prog.album) : <>not priced{"\u00a0"}<span className={styles.mark}>¹</span></>}</dd>
-      </div>
-    </dl>
+      <dl className={styles.cbThList}>
+        <div className={styles.cbThRow}>
+          <dt>Single</dt>
+          <dd>{prog.single ? tierRun(prog.single) : <>not priced{"\u00a0"}<span className={styles.mark}>¹</span></>}</dd>
+        </div>
+        <div className={styles.cbThRow}>
+          <dt>Album</dt>
+          <dd>{prog.album ? tierRun(prog.album) : <>not priced{"\u00a0"}<span className={styles.mark}>¹</span></>}</dd>
+        </div>
+      </dl>
+    </Fragment>
   ));
   const levelsLink = t?.sourceUrl && (
     <a href={t.sourceUrl} className={styles.cbRegister} target="_blank" rel="noopener noreferrer">
       {/* "Its own levels" is a promise the link has to keep: a body
-          that publishes none is linked as a register instead. */}
-      {t.single || t.album ? `${board.body}'s own levels` : `${board.body}'s register`}{" "}
+          that publishes none is linked as a register instead. Where the
+          board is priced at someone else's level (`pricedAt`: Greece, at
+          IFPI's June 2013 international table), the link says so. */}
+      {t.pricedAt ?? (t.single || t.album ? `${board.body}'s own levels` : `${board.body}'s register`)}{" "}
       <span aria-hidden="true">↗</span>
     </a>
   );

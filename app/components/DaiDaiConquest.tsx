@@ -25,9 +25,13 @@ export interface ConquestCountry {
   peak: number;
 }
 
-/** No. 1s first, so the gold cells group together. Stable within a tier. */
+/** No. 1s first, so the gold cells group together. Stable within a tier.
+ *  The tie-break names its locale: this runs in the browser too, and a Czech
+ *  or Slovak reader's default collation files CH after H (and after GR), so
+ *  the client's grid came out in a different order from the server's —
+ *  React #418 on /dai-dai. */
 function order(countries: ConquestCountry[]): ConquestCountry[] {
-  return [...countries].sort((a, b) => a.peak - b.peak || a.code.localeCompare(b.code));
+  return [...countries].sort((a, b) => a.peak - b.peak || a.code.localeCompare(b.code, "en"));
 }
 
 export default function DaiDaiConquest({

@@ -65,7 +65,7 @@ const headline = [
   // <title>, its OG card, and the mobile screen rendered into the same
   // document — which reads the string straight through.
   { value: topTour.gross ?? "—", label: "Top tour gross · African record" },
-  { value: topShowM(1), label: "Biggest concert · African record" },
+  { value: topShowM(2), label: "Biggest concert · African record" },
   { value: topTicketsShort, label: `Tickets · ${topTour.name}` },
 ];
 
@@ -259,7 +259,7 @@ export default function ToursPage() {
               Burna Boy holds {hisShowCount} of the {revenueShows.length}{" "}
               highest-grossing shows by an African artist — more than every other artist on this list
               combined. Box-office figures reported by Billboard Boxscore &amp; Pollstar (as
-              aggregated by TouringData), cross-checked against press reporting, as of August
+              aggregated by TouringData), cross-checked against press reporting, as of September
               2026.
             </p>
             <Link href="/records/tours/revenue" className={styles.jumpCardAlt}>
@@ -307,7 +307,7 @@ export default function ToursPage() {
             <p className={styles.sourceLine}>
               Box-office figures are reported by Billboard Boxscore &amp; Pollstar (as
               aggregated by TouringData) and cross-checked against press reporting, as of
-              August 2026. For future dates, always check official ticketing.
+              September 2026. For future dates, always check official ticketing.
             </p>
             <Link href="/records" className={`btn btnSecondary ${styles.backBtn}`}>
               ← Career Records
