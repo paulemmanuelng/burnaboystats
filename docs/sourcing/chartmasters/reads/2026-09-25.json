@@ -1,0 +1,11 @@
+{
+  "$comment": "Read 25 Sep 2026 on Paul's signed-in ChartMasters account (Playcounts Tool, ?artist_spotify_id=<id>&valid_as_of=20260923), in the site's own browser. Every artist's newest day is 23 Sep, paired with kworb's Burna Boy songs page stamped 2026/09/24 (raw 10,929,316,373), a true day-N / page-N+1 pair. Why now: kworb's raw sum FELL 16,051,434 in its 24 Sep build (a title left its Burna list; its Daily is +7.38M), so the stats bot's drift alarm asked for a re-measure. The artist select keeps the previously loaded label, so each total's identity is the URL's artist_spotify_id; each rose by a plausible two days of streams since the 21 Sep read.",
+  "readOn": "2026-09-25",
+  "artists": {
+    "burna-boy": { "spotifyId": "3wcj11K77LjEY1PkEazffa", "name": "Burna Boy", "days": { "September 23, 2026": 11070534585 } },
+    "wizkid": { "spotifyId": "3tVQdUvClmAT7URs9V3rsp", "name": "Wizkid", "days": { "September 23, 2026": 11813232742 } },
+    "tems": { "spotifyId": "687cZJR45JO7jhk1LHIbgq", "name": "Tems", "days": { "September 23, 2026": 6292263298 } },
+    "asake": { "spotifyId": "3a1tBryiczPAZpgoZN9Rzg", "name": "Asake", "days": { "September 23, 2026": 4409152937 } },
+    "tyla": { "spotifyId": "3SozjO3Lat463tQICI9LcE", "name": "Tyla", "days": { "September 23, 2026": 4852632377 } }
+  }
+}

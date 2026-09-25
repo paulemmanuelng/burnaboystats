@@ -100,3 +100,14 @@ One block per run of scripts/chartmasters-anchor.mjs — what was read, what was
 - Captured: `reads/2026-09-24-cities.json` — the same 50 cities as 23 Sep, re-ranked; 29 countries; Global Ranking #82; popularity 85; followers 17,911,287; monthly listeners 47,144,753 (trend −8,556,927)
 - Feeds: app/data/listeners.ts (whole list replaced, LISTENERS_READ_ON 2026-09-24), applied with `node scripts/listeners-apply.mjs`. The followers figure matches the artist's own Spotify About panel read the same evening (17,911,287), which moved the Africa's Biggest board in its own change, with all five artists read that day.
 - 23 rank moves, all one-place swaps (Sydney 7→6 past São Paulo; Santiago 12→11; Johannesburg 29→28; Accra 37→36), and 4 of the 50 cities up: Lagos (1,430,157), Abuja, Johannesburg, Accra. Top-50 sum 15,337,559.
+
+## 2026-09-25
+
+- career total: offset 141,218,212 (ChartMasters through 2026-09-23 − kworb 2026-09-24); published 11,070,534,585 on kworb's 2026-09-24 page
+- burna-boy: 2026 ledger anchored at 1,870,981,911 through kworb's 2026-09-24 (was 1,870,893,694 through 2026-09-24)
+- wizkid: 2026 ledger anchored at 1,856,260,714 through kworb's 2026-09-24 (was 1,855,915,010 through 2026-09-24)
+- tems: 2026 ledger anchored at 1,851,038,320 through kworb's 2026-09-24 (was 1,850,976,710 through 2026-09-24)
+- asake: 2026 ledger anchored at 1,504,923,545 through kworb's 2026-09-24 (was 1,504,913,543 through 2026-09-24)
+- tyla: 2026 ledger anchored at 1,235,340,009 through kworb's 2026-09-24 (was 1,235,338,424 through 2026-09-24)
+- edit: app/data/streamingTotals.ts: "11.06B" → "11.07B"
+- edit: app/data/streamingTotals.ts: "11,060,226,630" → "11,070,534,585"
