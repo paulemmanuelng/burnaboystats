@@ -536,9 +536,16 @@
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 6px;
 }
-.compareChip { text-decoration: none; }
+/* Smaller than the filter pills, at the owner's request (25 Sep 2026); 32px
+   still clears WCAG's 24px minimum target. */
+.compareChip {
+  text-decoration: none;
+  min-height: 32px;
+  padding: 0 11px;
+  font-size: 10px;
+}
 .compareChip:hover { background: var(--bg-raised); }
 .eventRow {
   display: flex;
