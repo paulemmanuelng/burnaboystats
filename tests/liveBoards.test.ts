@@ -19,7 +19,12 @@ describe("the board's live charts", () => {
     for (const b of LIVE_BOARDS) expect(artistBySlug(b.slug), b.slug).toBeTruthy();
   });
 
-  it("is never empty, and never Burna Boy's data", () => {
+  // Until 25 Sep 2026 this was one test, "is never empty, and never Burna Boy's
+  // data". Since the per-artist floor, an artist declared `mayChartNowhere`
+  // has a floor of 0 and may hold no placement and no release on a given day,
+  // so "never empty" was no longer what it checked. Split in two, each named
+  // for what it holds.
+  it("clears its artist's placement floor, so it is empty only for an artist declared mayChartNowhere", () => {
     for (const b of LIVE_BOARDS) {
       // The floor is an "is this file real" check, not a quality bar, so it
       // cannot be one number for everyone: an artist whose breakout is years
@@ -33,6 +38,23 @@ describe("the board's live charts", () => {
       // may hold none on a given day.
       const minReleases = floor >= 25 ? 6 : floor > 0 ? 1 : 0;
       expect(b.releases.length, b.slug).toBeGreaterThanOrEqual(minReleases);
+      // Every other board is never empty.
+      if (floor > 0) expect(b.placements, b.slug).toBeGreaterThan(0);
+    }
+  });
+
+  it("names the boards allowed to be empty, so that list cannot grow unseen", () => {
+    // A floor of 0 is a declaration in scripts/live-artists.mjs, not a
+    // default. These are the live boards carrying it on 25 Sep 2026; adding
+    // one here is a deliberate edit, the same as adding it there.
+    const mayBeEmpty = LIVE_BOARDS.filter((b) => placementFloor(LIVE_REGISTRY[b.slug] ?? { slug: b.slug }) === 0)
+      .map((b) => b.slug)
+      .sort();
+    expect(mayBeEmpty).toEqual(["black-sherif", "bnxn", "ckay", "olamide", "oxlade", "tiwa-savage"]);
+  });
+
+  it("is never Burna Boy's data", () => {
+    for (const b of LIVE_BOARDS) {
       // The bug this guards: one shared module-level fetch cache used to mean
       // a second artist's page could render Burna Boy's snapshot.
       const shared = b.releases.filter((r) => burnaLive.some((x) => x.title === r.title));
