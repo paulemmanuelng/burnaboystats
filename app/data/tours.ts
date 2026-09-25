@@ -252,6 +252,28 @@ export const upcomingShows: UpcomingShow[] = [
     source: "Announced by the NFL, 17 September 2026",
   },
   {
+    venue: "Apple Music Hall",
+    city: "London",
+    country: "UK",
+    when: "29 Oct 2026",
+    cap: 600,
+    note: "A Thursday-night show at Apple's new venue inside Battersea Power Station, doors 6 pm, livestreamed worldwide on Apple Music. He is the only African artist among the eight shows announced for its opening run, from Elton John on 28 September to Charli XCX on 2 December. On-sale details are still to come.",
+    // applemusichall.com/tickets/burna-boy-29th-oct, read 25 Sep 2026: "Burna Boy
+    // / Thursday, October 29, 2026 / Doors 6pm / ON SALE INFO COMING SOON", and
+    // fans can watch "livestreaming it from anywhere in the world on Apple
+    // Music". Lineup on applemusichall.com and /tickets, eight shows: Elton John
+    // 28 Sep, Baby Keem 2 Oct, Skye Newman 7 Oct, Troye Sivan 13 Oct, Arlo Parks
+    // 22 Oct, Burna Boy 29 Oct, Chase & Status 26 Nov, Charli XCX 2 Dec — absent
+    // from the Wayback captures of 22 and 24 Sep, present on 25 Sep. Venue and
+    // capacity: apple.com/newsroom, 21 Sep 2026 ("The 600-capacity venue";
+    // "Performances out of Apple Music Hall will also be livestreamed globally").
+    // NOT "the first African artist to perform at Apple Music Hall": the run
+    // is not over and more dates can be added. Elton John opens the venue, not
+    // him. By nationality (Paul, 17 Sep 2026) Troye Sivan, born in
+    // Johannesburg, is Australian. After the show, move it to `concerts`.
+    source: "Announced by Apple, 25 September 2026",
+  },
+  {
     venue: "London Stadium",
     city: "London",
     country: "UK",

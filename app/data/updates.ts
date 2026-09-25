@@ -50,6 +50,15 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-09-25",
+    category: "Tours",
+    big: true,
+    // applemusichall.com/tickets/burna-boy-29th-oct and the venue's eight-show
+    // lineup, read 25 Sep 2026; livestreaming per apple.com/newsroom, 21 Sep.
+    text: "Apple Music Hall will host Burna Boy on Thursday 29 October: Apple's new venue in London's Battersea Power Station, with its shows livestreamed worldwide on Apple Music. He is the only African artist among the eight shows announced for its opening run.",
+    href: "/records/tours",
+  },
+  {
     date: "2026-09-24",
     category: "Streaming",
     text: "Still the best-selling African artist of all time: ChartMasters now has Burna Boy on 15.28 million equivalent album sales to Wizkid's 14.96M, a 324,000 lead, with Asake (11.45M) joining them as the third African artist on its 695-name board.",
