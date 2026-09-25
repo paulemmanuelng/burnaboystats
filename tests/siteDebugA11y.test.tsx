@@ -366,7 +366,11 @@ describe("E-09: each dynamic share card has its own alt", () => {
     const pair = (await routes[0][1]()).generateImageMetadata({ params: Promise.resolve({ pair: "burna-boy-vs-wizkid" }) });
     expect((await pair)[0].alt).toBe("Burna Boy vs Wizkid — certified units compared at each body's own threshold");
     const uk = await (await routes[1][1]()).generateImageMetadata({ params: Promise.resolve({ country: "united-kingdom" }) });
-    expect(uk[0].alt).toBe("Certified units in the United Kingdom — every Afrobeats plaque priced at that body's own threshold");
+    // It names the body since the pricing follow-up (25 Sep 2026): the alt
+    // used to end "priced at that body's own threshold" on every card, which
+    // was wrong for Greece, Poland and Colombia (tests/compareCountryShareCopy).
+    expect(uk[0].alt).toBe("Certified units in the United Kingdom — every Afrobeats plaque priced at BPI's own thresholds");
+    expect(uk[0].alt).not.toBe("Certified units in the United Kingdom — every Afrobeats plaque priced at that body's own threshold");
   });
 
   it("names a country the way the board's sentences do: the article where it takes one", async () => {

@@ -2,6 +2,22 @@ import comparePairRedirects from "./app/data/comparePairRedirects.json" with { t
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // An /api/ URL with a trailing slash is answered, not redirected (F-07).
+  //
+  // Next's built-in trailing-slash redirect (/x/ → 308 → /x) runs ahead of
+  // everything in this file; on Vercel it is the very first route, before
+  // headers(). So /api/v1/stats/ got a 308 with no Access-Control-Allow-Origin,
+  // and a fetch from another site stopped there. A preflight (OPTIONS) fared
+  // worse, because a preflight answer has to be a 2xx. This switches the
+  // built-in off. The first entry in redirects() puts it back, word for word,
+  // for every path outside /api/ and /_next/ (Next keeps every redirect set
+  // here off /_next/; it never links an asset with a trailing slash, so
+  // nothing real used that one). The rewrite in rewrites() serves /api/<x>/ as
+  // /api/<x>, so the route's own response answers the slash form for GET, HEAD
+  // and OPTIONS alike, with its CORS, licence and cache headers. That needs no
+  // middleware and no second copy of those headers.
+  skipTrailingSlashRedirect: true,
+
   // Baseline security headers applied to every response.
   async headers() {
     const securityHeaders = [
@@ -59,6 +75,20 @@ const nextConfig = {
     ];
     return [
       { source: "/:path*", headers: securityHeaders },
+      // The API is open data read cross-origin, and its docs recommend a
+      // conditional GET (If-None-Match against the ETag). Those request headers
+      // are not CORS-safelisted, so a browser preflights them, and the preflight
+      // answer (the platform's automatic OPTIONS) named no allowed headers: the
+      // check the docs recommend failed from every other site. Measured on
+      // production, 25 Sep 2026: OPTIONS /api/v1/stats → 204 with
+      // allow-methods and allow-origin, no Access-Control-Allow-Headers.
+      {
+        source: "/api/:path*",
+        headers: [
+          { key: "Access-Control-Allow-Headers", value: "If-None-Match, If-Modified-Since" },
+          { key: "Access-Control-Max-Age", value: "86400" },
+        ],
+      },
       // Only burnaboystats.com should ever be indexable. The redirect below
       // covers the clean Vercel alias, but preview deployments
       // (burnaboystats-<hash>.vercel.app) are deliberately left reachable for
@@ -130,6 +160,13 @@ const nextConfig = {
   // (burnaboystats-<hash>.vercel.app) stay reachable for testing.
   async redirects() {
     return [
+      // Next's own trailing-slash redirect (source "/:path+/"), switched off by
+      // skipTrailingSlashRedirect above, back for every path except those under
+      // /api/. /api/ itself is the docs page, so it still redirects: the
+      // lookahead needs a character after "api/", and /api/'s only one is the
+      // trailing slash. Keep it first, where Next put its own. Its twin is the
+      // rewrite in rewrites().
+      { source: "/:path((?!api/[^/])(?:[^/]+/)*[^/]+)/", destination: "/:path", permanent: true },
       {
         source: "/:path*",
         has: [{ type: "host", value: "burnaboystats.vercel.app" }],
@@ -153,6 +190,16 @@ const nextConfig = {
       // by scripts/build-compare-redirects.mjs.
       ...comparePairRedirects,
     ];
+  },
+
+  // The other half of the trailing-slash rule: /api/<x>/ is served as /api/<x>,
+  // with no redirect. The route handler's own headers answer it, CORS included.
+  // Case is kept as typed (no folding), so the slash form of a 404 is the same
+  // 404.
+  async rewrites() {
+    return {
+      beforeFiles: [{ source: "/:path(api/(?:[^/]+/)*[^/]+)/", destination: "/:path" }],
+    };
   },
 };
 

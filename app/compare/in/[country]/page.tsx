@@ -37,7 +37,9 @@ export async function generateMetadata({ params }: { params: Promise<{ country: 
     title: copy.title,
     description: copy.description,
     path: `/compare/in/${countrySlug(code)}`,
-    shareTitle: `Certified units in ${board.name}`,
+    // The in-sentence name, as the page title and the card's alt use:
+    // "the United Kingdom", not "United Kingdom".
+    shareTitle: `Certified units in ${board.inSentence}`,
     shareDescription: copy.sub,
   });
 }

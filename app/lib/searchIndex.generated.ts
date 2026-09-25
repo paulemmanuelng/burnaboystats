@@ -1655,23 +1655,6 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
-    "title": "Certified units in Czech Republic",
-    "path": "/compare/in/czech-republic",
-    "section": "Compare",
-    "description": "Every Afrobeats plaque awarded in the Czech Republic, priced at ČNS IFPI (Czechia)'s own thresholds and ranked by artist.",
-    "keywords": [
-      "czech republic",
-      "cz",
-      "čns ifpi (czechia)",
-      "certified units",
-      "certifications",
-      "certifications in czech republic",
-      "plaques",
-      "by country"
-    ],
-    "generated": true
-  },
-  {
     "title": "Certified units in Denmark",
     "path": "/compare/in/denmark",
     "section": "Compare",
@@ -1785,23 +1768,6 @@ export const generatedDocs: SearchDoc[] = [
       "certified units",
       "certifications",
       "certifications in mexico",
-      "plaques",
-      "by country"
-    ],
-    "generated": true
-  },
-  {
-    "title": "Certified units in Netherlands",
-    "path": "/compare/in/netherlands",
-    "section": "Compare",
-    "description": "Every Afrobeats plaque awarded in the Netherlands, priced at NVPI's own thresholds and ranked by artist.",
-    "keywords": [
-      "netherlands",
-      "nl",
-      "nvpi",
-      "certified units",
-      "certifications",
-      "certifications in netherlands",
       "plaques",
       "by country"
     ],
@@ -1978,7 +1944,41 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
-    "title": "Certified units in United Kingdom",
+    "title": "Certified units in the Czech Republic",
+    "path": "/compare/in/czech-republic",
+    "section": "Compare",
+    "description": "Every Afrobeats plaque awarded in the Czech Republic, priced at ČNS IFPI (Czechia)'s own thresholds and ranked by artist.",
+    "keywords": [
+      "czech republic",
+      "cz",
+      "čns ifpi (czechia)",
+      "certified units",
+      "certifications",
+      "certifications in czech republic",
+      "plaques",
+      "by country"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Certified units in the Netherlands",
+    "path": "/compare/in/netherlands",
+    "section": "Compare",
+    "description": "Every Afrobeats plaque awarded in the Netherlands, priced at NVPI's own thresholds and ranked by artist.",
+    "keywords": [
+      "netherlands",
+      "nl",
+      "nvpi",
+      "certified units",
+      "certifications",
+      "certifications in netherlands",
+      "plaques",
+      "by country"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Certified units in the United Kingdom",
     "path": "/compare/in/united-kingdom",
     "section": "Compare",
     "description": "Every Afrobeats plaque awarded in the United Kingdom, priced at BPI's own thresholds and ranked by artist.",
@@ -1995,7 +1995,7 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
-    "title": "Certified units in United States",
+    "title": "Certified units in the United States",
     "path": "/compare/in/united-states",
     "section": "Compare",
     "description": "Every Afrobeats plaque awarded in the United States, priced at RIAA's own thresholds and ranked by artist.",
