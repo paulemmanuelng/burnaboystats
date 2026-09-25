@@ -528,6 +528,18 @@
 @media (prefers-reduced-motion: reduce) {
   .compareChevron { transition: none; }
 }
+/* The artists, as the screen's own pills (.chip), wrapping rather than on a
+   rail so the open fold shows all of them at once. */
+.compareChips {
+  list-style: none;
+  margin: 14px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.compareChip { text-decoration: none; }
+.compareChip:hover { background: var(--bg-raised); }
 .eventRow {
   display: flex;
   align-items: baseline;

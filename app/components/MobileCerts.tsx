@@ -589,14 +589,15 @@ export default function MobileCerts({
               <span className={styles.compareCount}>{count(compareWith.length, "artist", "artists")}</span>
               <span className={styles.compareChevron} aria-hidden="true">↓</span>
             </summary>
-            <p className={styles.logLede}>
-              {compareWith.map((c, i) => (
-                <Fragment key={c.href}>
-                  {i > 0 && " · "}
-                  <Link href={c.href} className="wikiLink">{c.name}</Link>
-                </Fragment>
+            {/* Each artist as one of the screen's own pills, not an underlined
+                link (Paul, 25 Sep 2026). */}
+            <ul className={styles.compareChips}>
+              {compareWith.map((c) => (
+                <li key={c.href}>
+                  <Link href={c.href} className={`${styles.chip} ${styles.compareChip}`}>{c.name}</Link>
+                </li>
               ))}
-            </p>
+            </ul>
           </details>
         </nav>
       )}
