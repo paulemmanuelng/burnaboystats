@@ -193,7 +193,7 @@
   letter-spacing: 0.09em;
   text-transform: uppercase;
   color: var(--gold);
-  opacity: 0.8;
+  opacity: var(--text-fade);
 }
 .entryLinked:hover .entryMore { opacity: 1; }
 

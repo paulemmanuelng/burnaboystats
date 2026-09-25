@@ -43,5 +43,10 @@ export default async function PairPage({ params }: { params: Promise<{ pair: str
   const parsed = parsePair(pair);
   if (!parsed) notFound();
   const [a, b] = canonicalPair(parsed[0], parsed[1]);
-  return CompareView({ sp: { a: a.slug, b: b.slug }, path: `/compare/${pair}`, leaf: `${a.name} vs ${b.name}` });
+  return CompareView({
+    sp: { a: a.slug, b: b.slug },
+    path: `/compare/${pair}`,
+    leaf: `${a.name} vs ${b.name}`,
+    pairTitle: `${a.name} vs ${b.name}`,
+  });
 }

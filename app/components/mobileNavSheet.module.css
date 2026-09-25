@@ -38,12 +38,15 @@
   to { opacity: 1; }
 }
 
+/* The hint sits on the 72% scrim, over whatever page is behind it — on a
+   paper page that ground comes out near #4c4b4a, where the island's muted ink
+   (#9b9ba3) read about 3.2:1. The island's body ink clears 4.5 over any page. */
 .dismissHint {
   font-family: var(--font-mono), monospace;
   font-size: 11px;
   letter-spacing: 0.11em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--text-body);
 }
 
 .sheet {

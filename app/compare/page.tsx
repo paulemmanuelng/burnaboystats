@@ -538,7 +538,7 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
  * sides filled, a path of its own for the breadcrumb and a leaf label the
  * slug cannot spell ("Burna Boy vs Wizkid").
  */
-export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; leaf?: string }) {
+export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path: string; leaf?: string; pairTitle?: string }) {
   const mode = readMode(one(sp.mode));
   const record = isRecordMode(mode);
   const format = formatOf(mode);
@@ -770,9 +770,12 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
       {dataset && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(dataset) }} />}
       <BreadcrumbBar path={path} leaf={leaf} parents={[{ label: "Certifications", href: "/certifications" }]} />
       <main id="content" className={styles.wrap}>
-        <p className={styles.kicker}>Certifications › Compare</p>
+        {/* A pair page (/compare/<a>-vs-<b>) is its own page for search, so its
+            <h1> names the pair; the shared title every one of the 120 carried
+            moves up to be its kicker. /compare itself is unchanged. */}
+        <p className={styles.kicker}>{pairTitle ? "Certified units, compared" : "Certifications › Compare"}</p>
         <h1 className={styles.h1}>
-          {countryBoard ? `Certified units in ${countryBoard.inSentence}` : countryMode ? "Certified units by country" : "Certified units, compared"}
+          {pairTitle ?? (countryBoard ? `Certified units in ${countryBoard.inSentence}` : countryMode ? "Certified units by country" : "Certified units, compared")}
         </h1>
         <p className={styles.lede}>
           {countryBoard ? (
@@ -937,7 +940,7 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
             {/* The other way into the same corpus, and the crawl path to the
                 27 country boards. */}
             <p className={styles.featuredAside}>
-              Or pick a market — <Link href="/compare/in" className={styles.noteLink}>certified units country by country ↗</Link>
+              Or pick a market — <Link href="/compare/in" className={`${styles.noteLink} proseLink`}>certified units country by country ↗</Link>
             </p>
           </section>
         )}
@@ -1125,7 +1128,7 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
                   plaque awarded before the rise may have cleared a lower bar.{" "}
                   {/* The body-by-body record lives on the methodology page (Paul, 11
                       Sep): twelve of them here were a 40-line wall on a phone. */}
-                  <Link href="/methodology#threshold-history" className={styles.noteLink}>
+                  <Link href="/methodology#threshold-history" className={`${styles.noteLink} proseLink`}>
                     Which bodies, and when ↗
                   </Link>
                 </p>

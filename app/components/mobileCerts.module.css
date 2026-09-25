@@ -290,6 +290,32 @@
   color: var(--text-muted);
 }
 .list { border-top: 1px solid var(--line); }
+/* "Albums" / "Songs" where each block of the list starts — the list label's
+   own style, a step in from the rule above it. */
+.blockLabel {
+  composes: listLabel;
+  padding: 14px 18px 6px;
+}
+/* Filters that leave nothing (a tier plus a release focus, or a #release= the
+   page does not carry). The list would otherwise just stop under its label. */
+.empty {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 0 18px 14px;
+  padding: 11px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+}
+.emptyText {
+  margin: 0;
+  font-size: var(--type-small);
+  line-height: var(--type-small-lh);
+  color: var(--text);
+}
+.emptyClear { composes: focusClear; }
 .row {
   display: block;
   padding: 15px 18px;
@@ -493,7 +519,7 @@
 /* "2026 42" read as one number. A middot plus a dimmer count separates the
    year from its tally the way the site's other meta lines do. */
 .chipSep { opacity: 0.45; margin: 0 -2px; }
-.chipCount { opacity: 0.7; font-weight: 400; }
+.chipCount { opacity: var(--text-fade); font-weight: 400; }
 
 /* "Album" tag beside a title, matching the chart table's. The mobile list runs
    albums, singles and features together, so the type has to be stated. */

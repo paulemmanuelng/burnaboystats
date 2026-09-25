@@ -184,6 +184,11 @@
   /* The closer band's two warm stops. Flat on paper like every other gold. */
   --gold-band-a: light-dark(#945e00, #f08a12);
   --gold-band-b: light-dark(#945e00, #d96c0c);
+  /* The pale sheen in the band's top-left corner. On black it is the light
+     catching the gold; on paper it lifted the one gold under the white kicker
+     to about 3.3:1, so there it goes, like the other dark-room devices. Dark
+     is the literal it replaces. */
+  --gold-band-sheen: light-dark(transparent, rgba(255, 246, 214, 0.5));
 
   /* Warm "Afro-Fusion" flourish gradient — use once per screen */
   --grad-a: #ffd24a;
@@ -440,6 +445,17 @@
      plate fell to 3.87:1. Scaled here rather than at 94 call sites, so a chip
      keeps one alpha and the theme decides how much of it lands. */
   --wash-strength: 1;
+  /* How far a DE-EMPHASISED piece of text may fade: the count in a chip, the
+     year beside a title, the country inside a peak pill, a row that is no
+     longer counted. Each of those was its own opacity (.65 to .85), stacked on
+     an ink that was already muted or gold, and on 12 templates the result fell
+     under AA 4.5:1. One number now. On black, 0.9 is the faintest the dimmest
+     ink that fades (--dim, 5.41:1 on the ground) can go and still clear 4.5.
+     On paper it is 1: gold sits at its floor there already (#945e00 is 4.96:1
+     on the page, 4.54 on an inset), so any fade at all takes it under — the
+     fade is a dark-room device, like the grain and the vignette above. A
+     number, not a colour, so it lives in the override block below as well. */
+  --text-fade: 0.9;
 
   /* Near-blacks, kept apart because they are four different inks doing three
      different jobs. --scrim (warm, chrome) is above; these are its relatives.
@@ -522,6 +538,7 @@
      4.5:1. */
   --wash-strength: 0.42;
   --grain-opacity: 0.022;
+  --text-fade: 1;
 }
 
 /* Figures line up in columns only if the numerals are tabular. The site is
@@ -624,6 +641,25 @@ h1 {
 a {
   color: inherit;
   text-decoration: none;
+}
+/* Links inside running prose. They were told apart from the words around them
+   by colour alone (gold beside body or muted ink), which WCAG 1.4.1 does not
+   accept: axe's link-in-text-block found 60 on 14 templates on 24 Sep 2026.
+   A thin underline in the link's own colour marks them without a second
+   colour. Prose on this site is a <p>; nav, buttons, cards, tiles, chips and
+   headings are not, so they keep their own treatment, and the footer's credit
+   line is chrome, not prose. Inside a <p>, a link that carries a class has
+   been styled on purpose: a button (.btn), a pill (the country board's
+   "Change country ×"), a link that draws its own line (/about's Wikipedia
+   link, the .link on /methodology, /press and /curator). Those are left
+   alone, so the underline goes only on a class-less link, and on a styled
+   one that is still running prose and says so with the global .proseLink
+   (the compare notes, the unmerge page's links). :where() holds this at a
+   bare `a`'s specificity, so a module rule such as `.foo a` still decides. */
+:where(p:not(footer p)) a:where(:not([class]), .proseLink) {
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
 }
 
 /* Center content and cap its width. */

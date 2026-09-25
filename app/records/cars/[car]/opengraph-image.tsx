@@ -4,7 +4,7 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ogId } from "../../../lib/og-image";
 import { carBySlug, carSlugs, garage, valueWord } from "../../../data/cars";
-import { modelShort, usdFull, rankLabel } from "../../../lib/garage";
+import { modelShort, usdFull, rankLabel, valueRank } from "../../../lib/garage";
 
 export function generateStaticParams() {
   return carSlugs.map((car) => ({ car }));
@@ -18,7 +18,7 @@ export async function generateImageMetadata({ params }: { params: Promise<{ car:
   // The value's basis word is in the id, so the one estimated card re-versions alone.
   // The alt names the model; every car card carried the one generic alt below.
   const carAlt = car ? `${car.make} ${car.model} from Burna Boy's collection — an illustration of the model, its reported value and rank` : alt;
-  return [{ id: ogId(`${slug}|${car?.valueUsd}|${car ? valueWord(car) : ""}|${car?.rank}|${garage.length}`), alt: carAlt, size, contentType }];
+  return [{ id: ogId(`${slug}|${car?.valueUsd}|${car ? valueWord(car) : ""}|${car ? valueRank(car) : ""}|${garage.length}`), alt: carAlt, size, contentType }];
 }
 
 export const size = { width: 1200, height: 630 };
@@ -78,7 +78,7 @@ export default async function Image({ params }: { params: Promise<{ car: string 
 
         <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "56px 0 50px 64px", width: 560 }}>
           <div style={{ display: "flex", fontSize: 21, letterSpacing: 4, color: GOLD, textTransform: "uppercase", fontWeight: 700 }}>
-            Burna Boy&apos;s garage · {car ? `${rankLabel(car.rank)} of ${garage.length}` : ""}
+            Burna Boy&apos;s garage · {car ? `${rankLabel(valueRank(car))} of ${garage.length}` : ""}
           </div>
           <div style={{ display: "flex", flexDirection: "column" }}>
             <div style={{ display: "flex", fontSize: 64, fontWeight: 800, letterSpacing: -2, lineHeight: 1 }}>

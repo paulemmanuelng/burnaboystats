@@ -87,14 +87,14 @@ export default function KeepExploring({ current, lang = "en" }: { current: strin
     .map((k) => (sectionLinks[k] ? { ...sectionLinks[k], ...(lang === "es" ? sectionLinksEs[k] : {}) } : undefined))
     .filter((l): l is SectionLink => Boolean(l));
 
-  // Its margin is .container's `0 auto` and nothing else. The module's own
-  // .wrap margins (64px/80px, 36px/56px on phones) lost that tie on every page
-  // until 23 Sep 2026, because this stylesheet was linked ahead of globals.css.
-  // Since the root layout stopped importing the FAQ and By-the-numbers pages
-  // (lib/navGroups.ts) it loads after globals.css, where they would win, so
-  // they were removed rather than brought to life. tests/rootLayoutCss.test.ts.
+  // The block's spacing is the module's .wrap margins (64px above, 80px
+  // below; 36px/56px on phones). They lost a specificity tie with .container's
+  // `0 auto` until 23 Sep 2026 and were then removed, which left the block
+  // jammed under the content and flush on the footer. The owner asked for the
+  // spacing back on 24 Sep 2026: the rule is .wrap.wrap now, so it outranks
+  // .container whichever stylesheet loads first. tests/rootLayoutCss.test.ts.
   return (
-    <nav className="container" aria-label={lang === "es" ? "Explora más páginas" : "Explore more pages"}>
+    <nav className={`container ${styles.wrap}`} aria-label={lang === "es" ? "Explora más páginas" : "Explore more pages"}>
       <p className={styles.eyebrow}>{lang === "es" ? "Sigue explorando" : "Keep exploring"}</p>
       <div className={styles.grid}>
         {links.map((l) => (

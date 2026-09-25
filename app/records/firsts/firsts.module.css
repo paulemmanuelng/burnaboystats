@@ -104,7 +104,7 @@
   transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
 }
 .jumpChip:hover { border-color: var(--gold); color: var(--gold); }
-.jumpCount { font-family: var(--font-mono), monospace; font-size: 11px; opacity: 0.7; }
+.jumpCount { font-family: var(--font-mono), monospace; font-size: 11px; opacity: var(--text-fade); }
 
 /* ── Groups ───────────────────────────────────────────────────────────── */
 .groupSection { border-bottom: 1px solid var(--line); }

@@ -345,7 +345,7 @@
   letter-spacing: 0.07em;
   text-transform: uppercase;
   color: var(--text-muted);
-  opacity: 0.75;
+  opacity: var(--text-fade);
 }
 .platformCadence {
   color: var(--text-muted);

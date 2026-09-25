@@ -163,6 +163,31 @@
    hand, and at 390 "pre" cut it to "…burnaboystats.co" at the box's edge with
    no sign that it scrolled. The curl above stays on one line. */
 .codeAttr { font-family: var(--font-mono), monospace; font-size: 11px; color: var(--text-body); white-space: pre-wrap; overflow-wrap: anywhere; }
+/* The attribution box and its Copy button, side by side. */
+.attrRow { display: flex; align-items: center; gap: 10px; margin-top: 12px; }
+.attrRow .codeBox { flex: 1; min-width: 0; margin-top: 0; }
+/* The /api page's small copy button (api.module.css .copyBtnSm), in this
+   screen's module: a quiet outlined pill, gold on hover. 40px tall, the
+   phone's floor for a pill control. */
+.copySm {
+  flex: none;
+  min-height: 40px;
+  padding: 0 13px;
+  border-radius: 999px;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+@media (hover: hover) {
+  .copySm:hover { border-color: var(--gold); color: var(--gold); }
+}
 
 /* ── Caveats ──────────────────────────────────────────────────────────── */
 .caveat { padding: 12px 0; border-bottom: 1px solid var(--line); }

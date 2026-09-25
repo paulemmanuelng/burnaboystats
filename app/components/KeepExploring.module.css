@@ -1,3 +1,17 @@
+/* The block's own spacing, clear of the content above and of the footer. The
+   class is doubled (0,2,0) so it outranks globals.css's .container
+   { margin: 0 auto } (0,1,0) whatever order the build links the two sheets in:
+   a single .wrap lost that tie until 23 Sep 2026. Same values it always
+   declared. */
+.wrap.wrap {
+  margin: 64px auto 80px;
+}
+/* Less top gap above "Keep exploring" on phones (the CTA above already adds space). */
+@media (max-width: 760px) {
+  .wrap.wrap {
+    margin: 36px auto 56px;
+  }
+}
 .eyebrow {
   font-family: var(--font-mono), monospace;
   text-transform: uppercase;

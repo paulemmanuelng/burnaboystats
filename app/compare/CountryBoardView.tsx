@@ -125,7 +125,7 @@ function CountryIndex({ options }: { options: { includeNigeria: boolean; include
       </div>
       <p className={styles.cbFoot}>
         <span className={styles.mark}>¹</span> A country with plaques but no published threshold is listed, never
-        summed — the plaque is real, the scale is not available. <Link href="/methodology#certified-units" className={styles.noteLink}>How this is counted ↗</Link>
+        summed — the plaque is real, the scale is not available. <Link href="/methodology#certified-units" className={`${styles.noteLink} proseLink`}>How this is counted ↗</Link>
       </p>
     </>
   );

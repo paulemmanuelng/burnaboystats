@@ -792,7 +792,7 @@
 .yearCount {
   font-family: var(--font-mono), monospace;
   font-size: 11px;
-  opacity: 0.7;
+  opacity: var(--text-fade);
 }
 .yearNote { color: var(--gold); font-size: 13.5px; margin: 0 0 18px; }
 .eventList { border-top: 1px solid var(--line); }
@@ -861,7 +861,7 @@
   font-size: 0.82em;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  opacity: 0.85;
+  opacity: var(--text-fade);
 }
 
 /* A ledger title that has its own page. Same type as .certTitle — only the

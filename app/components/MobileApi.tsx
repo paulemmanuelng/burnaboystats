@@ -161,8 +161,15 @@ export default function MobileApi({
           </a>
           . Use it commercially, remix it, redistribute it — just credit the source:
         </p>
-        <div className={styles.codeBox}>
-          <code className={styles.codeAttr}>{attribution}</code>
+        {/* The line the paragraph above asks for, with its own Copy — the
+            curl has the action bar's, and this is the other thing a reader is
+            told to paste. Falls back to the textarea route where the
+            Clipboard API refuses. */}
+        <div className={styles.attrRow}>
+          <div className={styles.codeBox}>
+            <code className={styles.codeAttr}>{attribution}</code>
+          </div>
+          <CopyButton value={attribution} className={styles.copySm} fallback />
         </div>
         {/* The other two routes the desktop licence block carries: how each
             figure is verified, and what has changed since. */}

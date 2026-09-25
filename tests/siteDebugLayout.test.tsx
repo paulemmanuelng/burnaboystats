@@ -181,10 +181,12 @@ describe("D-06: the region row headers sit on the row's top line", () => {
     it(f, () => {
       const css = read(f);
       expect(aligned(css)).toBe(true);
-      // Alignment only: the Anton type on these headers is the owner's call,
-      // so the raised rule carries nothing else.
+      // The Anton 17px type was the owner's call, and he approved it on
+      // 24 Sep 2026 (tests/designItems.test.tsx holds the type). This file
+      // holds the alignment: exactly one raised rule, and it sets top.
       const raised = rules(css).filter((r) => r.selector === ".table th.regionCell");
-      for (const r of raised) expect(r.body.replace(/\s/g, "")).toBe("vertical-align:top;");
+      expect(raised.length).toBe(1);
+      expect(decl(raised[0].body, "vertical-align")).toBe("top");
     });
   }
 

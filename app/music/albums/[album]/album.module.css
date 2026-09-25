@@ -50,7 +50,7 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--gold);
-  opacity: 0.75;
+  opacity: var(--text-fade);
 }
 .trackLink:hover .trackMore {
   opacity: 1;

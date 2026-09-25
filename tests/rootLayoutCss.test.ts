@@ -130,17 +130,20 @@ const setsMargin = (d: string) => /^margin(-[a-z-]+)?\s*:/.test(d);
 const setsScrollMargin = (d: string) => /^scroll-margin(-[a-z-]+)?\s*:/.test(d);
 
 describe("rules that never painted stay unpainted", () => {
-  it("'Keep exploring' takes its margin from .container alone", () => {
+  // The one exception, by the owner's decision on 24 Sep 2026 (design item
+  // D-01): 'Keep exploring' gets its spacing back, at the values it always
+  // declared, on a doubled class that outranks .container in either order.
+  it("'Keep exploring' carries its own spacing, and it outranks .container", () => {
     const tsx = readFileSync(join(ROOT, "app/components/KeepExploring.tsx"), "utf8");
     // The label is the edition's own since /dai-dai/es got the rail (A-24,
-    // 24 Sep 2026); the class is still .container and nothing else.
-    expect(tsx).toMatch(/<nav className="container" aria-label=\{lang === "es" \? "Explora más páginas" : "Explore more pages"\}>/);
-    const css = readFileSync(join(ROOT, "app/components/KeepExploring.module.css"), "utf8");
-    expect(
-      declarationsOf(css, "wrap").filter(setsMargin),
-      "These margins lost to .container { margin: 0 auto } until 23 Sep 2026 and never painted. " +
-        "Loaded after globals.css now, they would add 36-80px around 'Keep exploring' on nearly every page.",
-    ).toEqual([]);
+    // 24 Sep 2026); the spacing is the doubled .wrap (D-01).
+    expect(tsx).toMatch(/<nav className=\{`container \$\{styles\.wrap\}`\} aria-label=\{lang === "es" \? "Explora más páginas" : "Explore more pages"\}>/);
+    const css = stripComments(readFileSync(join(ROOT, "app/components/KeepExploring.module.css"), "utf8"));
+    const rules = [...css.matchAll(/([^{}]*)\{([^{}]*)\}/g)].filter(([, sel]) => /\.wrap\b/.test(sel));
+    // Every rule that sets the margin is the doubled selector: a single .wrap
+    // (0,1,0) only ties .container and loses whenever globals.css loads later.
+    for (const [, sel, body] of rules) if (/margin/.test(body)) expect(sel.trim()).toBe(".wrap.wrap");
+    expect(declarationsOf(css, "wrap").filter(setsMargin)).toEqual(["margin: 64px auto 80px", "margin: 36px auto 56px"]);
   });
 
   it("the phone FAQ's jump targets take their scroll margin from [id] alone", () => {
@@ -152,10 +155,17 @@ describe("rules that never painted stay unpainted", () => {
   });
 
   it("negative controls: the rules the site shipped until 23 Sep 2026 fail", () => {
+    // The shipped .wrap had the right values on a selector that only TIED
+    // .container — the reason it never painted.
     expect(declarationsOf(KEEP_EXPLORING_WRAP_SHIPPED_UNTIL_2026_09_23, "wrap").filter(setsMargin)).toEqual([
       "margin: 64px auto 80px",
       "margin: 36px auto 56px",
     ]);
+    expect(
+      [...stripComments(KEEP_EXPLORING_WRAP_SHIPPED_UNTIL_2026_09_23).matchAll(/([^{}]*)\{([^{}]*)\}/g)]
+        .filter(([, sel, body]) => /\.wrap\b/.test(sel) && /margin/.test(body))
+        .every(([, sel]) => sel.trim() === ".wrap.wrap"),
+    ).toBe(false);
     expect(declarationsOf(MOBILE_FAQ_ITEM_SHIPPED_UNTIL_2026_09_23, "item").filter(setsScrollMargin)).toEqual([
       "scroll-margin-top: 84px",
     ]);
