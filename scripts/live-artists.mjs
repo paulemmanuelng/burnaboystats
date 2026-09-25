@@ -31,6 +31,17 @@
  * @property {string} out         Output file, relative to app/data/.
  * @property {string} [runOut]    Append-only daily run history, if kept.
  * @property {boolean} [covers]   Resolve artwork per release at build time.
+ * @property {boolean} [mayChartNowhere]  Exempt from the 25-placement floor.
+ *   ONLY for an artist who can genuinely hold no placement on a given day.
+ * @property {number} [minPlacements]  A lower "is this file real" floor for an
+ *   artist who does chart, but sits near 25 on an ordinary day — so a quiet
+ *   hour doesn't fail the build. Use this, not mayChartNowhere, for anyone
+ *   who charts.
+ * @property {boolean} [staged]   Built, but not on the board yet: its
+ *   app/data/liveBoards.ts row waits on the artist's certification verify.
+ *   `--artist=board` (the hourly job) skips a staged artist, so the set the job
+ *   refreshes stays the set of live pages; name it explicitly to build it.
+ *   Delete the flag in the same change that adds its liveBoards.ts row.
  */
 
 /** @type {Record<string, LiveArtist>} */
@@ -343,6 +354,191 @@ export const LIVE_ARTISTS = {
     runOut: "runHistory.seyi-vibez.ts",
     covers: true,
   },
+
+  // ── The eight swept for the board (24 Sep 2026) ───────────────────────────
+  // Built ahead of their certification verify, so each carried `staged: true`
+  // until its app/data/liveBoards.ts row landed. Oxlade, Tiwa Savage, Kizz
+  // Daniel and Ruger joined the board on 25 Sep 2026 and are wired; Mr Eazi,
+  // Yemi Alade, Stonebwoy and Sarkodie stay staged (owner, 25 Sep 2026). The aliases below were read on
+  // 24 Sep 2026 off each artist's kworb page and the certification find rows,
+  // and every one was checked against Deezer: the lead is billed exactly as
+  // written here and the artist is in the track's contributor list.
+  // All eight are thin on the live platform charts today (4 to 43 placements
+  // on their kworb pages), so none of them is held to the 25-placement floor.
+  oxlade: {
+    slug: "oxlade",
+    name: "Oxlade",
+    source: "https://kworb.net/itunes/artist/oxlade.html",
+    credit: /\boxlade\b/i,
+    // kworb's artist page trims a title to its first words: "What If" is
+    // "Yanga Chief, Oxlade & Thatohatsi - What If (Mgani) [Remix]" on iTunes
+    // Zimbabwe, and "ON YOU" is "Timi Dre & Oxlade - ON YOU (iii) [III]" on
+    // Shazam Uganda. The release keeps the page's name.
+    aliases: [
+      { artist: "Sarkodie", title: "Non Living Thing", release: "Non Living Thing" },
+      { artist: "Ice Prince", title: "KOLO", release: "Kolo" },
+      { artist: "Yanga Chief", title: "What If (Mgani) (Remix)", release: "What If" },
+      { artist: "Timi Dre", title: "ON YOU (iii)", release: "ON YOU" },
+    ],
+    out: "liveCharts.oxlade.ts",
+    runOut: "runHistory.oxlade.ts",
+    covers: true,
+    mayChartNowhere: true,
+  },
+  "tiwa-savage": {
+    slug: "tiwa-savage",
+    name: "Tiwa Savage",
+    source: "https://kworb.net/itunes/artist/tiwasavage.html",
+    // The full name, never a bare "savage": that also matches 21 Savage and
+    // Savage Garden, both of whom chart in their own right.
+    credit: /\btiwa\s*savage\b/i,
+    // She is on the REMIXES of "Who Is Your Guy?" and "No Wahala", not the
+    // originals, which are Spyro's and 1da Banton's alone. So those two
+    // aliases name the remix title, and a chart row for either original
+    // never reaches her board.
+    aliases: [
+      { artist: "Reekado Banks", title: "Like", release: "Like" },
+      { artist: "Mavins", title: "Dorobucci", release: "Dorobucci" },
+      { artist: "Spyro", title: "Who Is Your Guy? (Remix)", release: "Who Is Your Guy" },
+      { artist: "1da Banton", title: "No Wahala (Remix)", release: "No Wahala" },
+      { artist: "Ruger", title: "Toma Toma", release: "Toma Toma" },
+      { artist: "ODUMODUBLVCK", title: "100 MILLION", release: "100 Million" },
+      { artist: "Majeeed", title: "Gbese", release: "Gbese" },
+      { artist: "Bella Shmurda", title: "NSV", release: "NSV" },
+      { artist: "Korede Bello", title: "Romantic", release: "Romantic" },
+    ],
+    out: "liveCharts.tiwa-savage.ts",
+    runOut: "runHistory.tiwa-savage.ts",
+    covers: true,
+    mayChartNowhere: true,
+  },
+  "kizz-daniel": {
+    slug: "kizz-daniel",
+    name: "Kizz Daniel",
+    source: "https://kworb.net/itunes/artist/kizzdaniel.html",
+    // Billed "Kiss Daniel" until 2018, and Deezer still files the early
+    // catalogue under that name (Woju, Yeba, Laye), so both spellings.
+    credit: /\bki(?:zz|ss)\s*daniel\b/i,
+    aliases: [
+      { artist: "Iyanya", title: "Like", release: "Like" },
+      { artist: "Young Jonn", title: "Big Big Things", release: "Big Big Things" },
+      { artist: "BNXN", title: "GWAGWALADA", release: "GWAGWALADA" },
+      { artist: "FOLA", title: "lost", release: "lost" },
+      { artist: "1da Banton", title: "No Wahala (Remix)", release: "No Wahala" },
+      { artist: "Poco Lee", title: "Unleash", release: "Unleash" },
+    ],
+    // The artist page names it "Buga"; Deezer, and so its country charts, name
+    // it "Buga (Lo Lo Lo)". One record.
+    titleAliases: { "Buga (Lo Lo Lo)": "Buga" },
+    out: "liveCharts.kizz-daniel.ts",
+    runOut: "runHistory.kizz-daniel.ts",
+    covers: true,
+    minPlacements: 10,
+  },
+  "mr-eazi": {
+    slug: "mr-eazi",
+    name: "Mr Eazi",
+    source: "https://kworb.net/itunes/artist/mreazi.html",
+    // "Mr Eazi" and "Mr. Eazi" are both in circulation; Deezer has a profile
+    // under each.
+    credit: /\bmr\.?\s*eazi\b/i,
+    // "Nobody" on his page is Kwesi Arthur's (Apple Music Ghana prints "Kwesi
+    // Arthur - Nobody (feat. Mr Eazi)"), NOT DJ Neptune's "Nobody" with
+    // Joeboy. Aliasing both would fold two different records into one row.
+    aliases: [
+      { artist: "Eugy", title: "Dance For Me (Eugy X Mr Eazi)", release: "Dance for Me" },
+      { artist: "Kwesi Arthur", title: "Nobody", release: "Nobody" },
+      { artist: "Gilli", title: "Can't Lose", release: "Can't Lose" },
+      { artist: "J. Balvin", title: "COMO UN BEBÉ", release: "COMO UN BEBÉ" },
+      { artist: "J. Balvin", title: "Arcoíris", release: "Arcoíris" },
+      { artist: "Rudimental", title: "Let Me Live", release: "Let Me Live" },
+    ],
+    out: "liveCharts.mr-eazi.ts",
+    runOut: "runHistory.mr-eazi.ts",
+    covers: true,
+    mayChartNowhere: true,
+    staged: true,
+  },
+  "yemi-alade": {
+    slug: "yemi-alade",
+    name: "Yemi Alade",
+    source: "https://kworb.net/itunes/artist/yemialade.html",
+    credit: /\byemi\s*alade\b/i,
+    // "ALL NIGHT" by Valmar also charts (Deezer and YouTube Hungary); the pair
+    // below is Harmonize's record, which is the one she is on.
+    aliases: [
+      { artist: "Harmonize", title: "All Night", release: "All Night" },
+    ],
+    out: "liveCharts.yemi-alade.ts",
+    runOut: "runHistory.yemi-alade.ts",
+    covers: true,
+    mayChartNowhere: true,
+    staged: true,
+  },
+  ruger: {
+    slug: "ruger",
+    name: "Ruger",
+    source: "https://kworb.net/itunes/artist/ruger.html",
+    // Word-anchored at both ends like every matcher here, with the lookahead
+    // at the FRONT so the guard still holds: Ruger Hauer is a Finnish hip-hop
+    // group with chart history of its own, and a bare /\bruger\b/ takes it.
+    credit: /\b(?!ruger\s+hauer\b)ruger\b/i,
+    // POE, Ilashe, Bae Bae and Romeo Must Die are billed to Ruger on Deezer
+    // (with BNXN), so the matcher catches them without an alias.
+    aliases: [
+      { artist: "Patoranking", title: "Shake That", release: "Shake That" },
+      { artist: "DJ Neptune", title: "Bienvenue", release: "Bienvenue" },
+    ],
+    // The artist page trims it; Apple Music Chad prints "Muhammad Ali (Can't
+    // Relate)". The remix is a separate record and is not folded.
+    titleAliases: { "Muhammad Ali (Can't Relate)": "Muhammad Ali" },
+    out: "liveCharts.ruger.ts",
+    runOut: "runHistory.ruger.ts",
+    covers: true,
+    minPlacements: 10,
+  },
+  stonebwoy: {
+    slug: "stonebwoy",
+    name: "Stonebwoy",
+    source: "https://kworb.net/itunes/artist/stonebwoy.html",
+    // "Stone Bwoy" as well, but never "Stone Boy".
+    credit: /\bstone\s*bwoy\b/i,
+    // "Activate" is his own lead record (Davido's entry carries it as a
+    // feature), so the matcher already has it. "Malaika" here is Seyi Vibez's;
+    // Nandy's "Malaika", on YouTube Kenya and Tanzania, is a different song.
+    aliases: [
+      { artist: "Jux", title: "SEXY & BAD", release: "SEXY & BAD" },
+      { artist: "Harmonize", title: "Beer", release: "Beer" },
+      { artist: "AratheJay", title: "Talisman", release: "Talisman" },
+      { artist: "DarkoVibes", title: "Stay Woke", release: "Stay Woke" },
+      { artist: "Ogunskele", title: "Yearning for you", release: "Yearning for you" },
+      { artist: "Yo Maps", title: "Charley (Bonus)", release: "Charley" },
+      { artist: "Seyi Vibez", title: "Malaika", release: "Malaika" },
+    ],
+    out: "liveCharts.stonebwoy.ts",
+    runOut: "runHistory.stonebwoy.ts",
+    covers: true,
+    minPlacements: 5,
+    staged: true,
+  },
+  sarkodie: {
+    slug: "sarkodie",
+    name: "Sarkodie",
+    source: "https://kworb.net/itunes/artist/sarkodie.html",
+    credit: /\bsarkodie\b/i,
+    aliases: [
+      { artist: "Patoranking", title: "No Kissing Baby", release: "No Kissing Baby" },
+      { artist: "KiDi", title: "IDK", release: "IDK" },
+      { artist: "Jupitar", title: "Enemies", release: "Enemies" },
+      { artist: "Olivetheboy", title: "Bend", release: "Bend" },
+      { artist: "Rudeboy", title: "Blessed & Alive", release: "Blessed & Alive" },
+    ],
+    out: "liveCharts.sarkodie.ts",
+    runOut: "runHistory.sarkodie.ts",
+    covers: true,
+    minPlacements: 10,
+    staged: true,
+  },
 };
 
 export const liveArtist = (slug) => {
@@ -353,4 +549,34 @@ export const liveArtist = (slug) => {
     );
   }
   return a;
+};
+
+
+/** The registry without its staged artists: Burna Boy and every artist with a
+ *  page on the board. Whatever reasons about "the site's artists" reads this,
+ *  never LIVE_ARTISTS — the certification watcher above all. A staged artist
+ *  has live-chart data but no board page and no plaque on the site, so a
+ *  register row naming one is a lead for nothing, and the watcher's own
+ *  integrity check (the registry equals the site) would refuse to run. */
+export const BOARD_LIVE_ARTISTS = Object.fromEntries(Object.entries(LIVE_ARTISTS).filter(([, a]) => !a.staged));
+/** The "is this file real" floor for one artist's build — read by the builder
+ *  AND by tests/liveBoards.test.ts, so the two cannot drift. */
+export const placementFloor = (artist) =>
+  artist.mayChartNowhere ? 0 : artist.minPlacements ?? (artist.slug === "burna-boy" ? 50 : 25);
+
+/** How much of the previous file may vanish before a build is a source failure
+ *  rather than a quiet hour. Chart churn moves these files by a few per cent an
+ *  hour, so a 40% fall on a big board is a half-scraped page. On a small board
+ *  a percentage alone misfires: Yemi Alade going from 4 placements to 2 is a
+ *  "50% drop" and ordinary. So a build is refused only when the fall is BOTH
+ *  over 40% AND more than 10 placements. Returns the reason to refuse, or null. */
+export const MAX_DROP = 0.4;
+export const MIN_LOSS = 10;
+export const dropRefusal = (before, after) => {
+  if (!(before > 0)) return null;
+  const drop = (before - after) / before;
+  if (drop > MAX_DROP && before - after > MIN_LOSS) {
+    return `${after} placements against ${before} last time — a ${Math.round(drop * 100)}% drop (${before - after} placements), over the ${Math.round(MAX_DROP * 100)}% and ${MIN_LOSS}-placement limits`;
+  }
+  return null;
 };

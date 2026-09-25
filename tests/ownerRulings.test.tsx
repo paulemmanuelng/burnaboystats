@@ -329,16 +329,21 @@ describe("/share links the chosen stat's own page", () => {
 describe("every head-to-head page has a direct internal link", () => {
   const canonical = new Set(allPairs().map(([a, b]) => `/compare/${pairSlug(a, b)}`));
 
-  it("the helper links each artist to its fifteen, canonical URLs only", () => {
-    expect(canonical.size).toBe(120);
+  // One link per other artist on the roster (Burna Boy included): fifteen of
+  // 120 pairs until 25 Sep 2026, nineteen of 190 since Kizz Daniel, Ruger,
+  // Oxlade and Tiwa Savage joined. Derived from the board, so the next
+  // artist moves both without an edit here.
+  const others = afrobeatsArtists.length; // the board less oneself, plus Burna Boy
+  it("the helper links each artist to every other artist, canonical URLs only", () => {
+    expect(canonical.size).toBe(((others + 1) * others) / 2);
     for (const a of afrobeatsArtists) {
       const links = compareWithLinks(a.slug);
-      expect(links).toHaveLength(15);
+      expect(links).toHaveLength(others);
       for (const l of links) expect(canonical.has(l.href), `${a.slug} → ${l.href}`).toBe(true);
     }
   });
 
-  it("the fifteen board pages link all 120, in both layouts", async () => {
+  it("the board pages link every pair page, in both layouts", async () => {
     const linked = new Set<string>();
     for (const a of afrobeatsArtists) {
       const el = await ArtistPage({ params: Promise.resolve({ artist: a.slug }) });
@@ -355,12 +360,12 @@ describe("every head-to-head page has a direct internal link", () => {
     expect([...canonical].filter((h) => !linked.has(h))).toEqual([]);
   }, 120_000);
 
-  it("Burna Boy's own ledger, /certifications, carries his fifteen in both layouts", () => {
+  it("Burna Boy's own ledger, /certifications, carries one per board artist in both layouts", () => {
     const d = doc(renderToStaticMarkup(<CertificationsPage />));
     const navs = [...d.querySelectorAll('nav[aria-label="Compare Burna Boy with…"]')];
     expect(navs).toHaveLength(2);
     const want = compareWithLinks("burna-boy").map((l) => l.href);
-    expect(want).toHaveLength(15);
+    expect(want).toHaveLength(afrobeatsArtists.length);
     for (const h of want) expect(canonical.has(h), h).toBe(true);
     for (const nav of navs) {
       expect(nav.textContent).toContain("Compare with…");

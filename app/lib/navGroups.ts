@@ -74,7 +74,7 @@ export const navGroups: NavGroup[] = [
       { label: "Records", href: "/records", meta: `${recordBooks.length} books` },
       { label: "Live charts", href: "/live-charts", meta: `${liveNumberOnes} No. 1s` },
       // The board's own count: the swept artists plus Burna Boy, as /afrobeats
-      // prints "One rule, 16 verified artists". This read 15 beside Compare's
+      // prints "One rule, <N> verified artists". This read 15 beside Compare's
       // "16 artists" until 24 Sep 2026.
       { label: "The Afrobeats Board", href: "/afrobeats", meta: String(sweptArtists.length + 1) },
       // 12 Sep 2026: +/compare. Paul asked for it in the mobile nav; the row

@@ -50,6 +50,12 @@ const EXPECTED = {
   olamide: { total: 54, diamond: 0 },
   "black-sherif": { total: 24, diamond: 0 },
   bnxn: { total: 65, diamond: 0 },
+  // Joined 25 Sep 2026 (verified 24–25 Sep). Oxlade's one Diamond is France's
+  // "Ku Lo Sa"; the other three hold none.
+  "kizz-daniel": { total: 35, diamond: 0 },
+  ruger: { total: 18, diamond: 0 },
+  oxlade: { total: 13, diamond: 1 },
+  "tiwa-savage": { total: 12, diamond: 0 },
 } as const;
 
 describe("the Afrobeats board", () => {
@@ -351,9 +357,26 @@ describe("records that appear on two boards", () => {
     // "Diamonds" and "Everyday" (Fireboy DML's NG 87 / NG 10) and "Blessings"
     // (Omah Lay's NG 79; Asake's is "Blessings (Remix)"). The chart body's
     // artiste line separates them; the bare title does not.
+    // 25 Sep 2026: Kizz Daniel, Ruger, Oxlade and Tiwa Savage brought six more
+    // bare titles that are different records on another board, each told apart
+    // by TurnTable's own artiste line in the verifiers' re-walk of the archive:
+    //   "Oshe"        Kizz Daniel ft. The Cavemen (NG 9) against Wizkid's own
+    //                 (NG 14).
+    //   "Energy"      THREE records: G4ZI & Kizz Daniel (NG 13), Tiwa Savage,
+    //                 Wande Coal & Mavo (NG 7), and Wizkid's own (NG 15).
+    //   "Forgiveness" Tiwa Savage's (NG 8) against Asake's own (NG 1).
+    //   "Ole"         Tiwa Savage ft. Naira Marley (NG 49) against Qing Madi &
+    //                 BNXN (NG 12).
+    //   "Lately"      Maleek Berry ft. Ruger (NG 15) against Davido's own
+    //                 (NG 40).
+    //   "Bounce"      Ruger's own (NG 4) against Bella Shmurda & Seyi Vibez
+    //                 (NG 9); TurnTable carries a third, Rema's, on neither board.
+    // (Oxlade's "Pressure", K-Trap & Oxlade NG 98, is a sixth "Pressure" and is
+    // already covered by the entry above.)
     const known = new Set<string>([
       "Pressure|NG", "Apollo|NG", "Away|NG",
       "Special|NG", "Pray|NG", "Diamonds|NG", "Everyday|NG", "Blessings|NG",
+      "Oshe|NG", "Energy|NG", "Forgiveness|NG", "Ole|NG", "Lately|NG", "Bounce|NG",
     ]);
     const conflicts: string[] = [];
     for (const [title, per] of shared()) {
@@ -401,6 +424,21 @@ describe("records that appear on two boards", () => {
         "REAL, Vol. 1 \u2013 EP", "Set Up", "Shibebe", "Skido", "So It Goes", "Soweto",
         "Stubborn", "Toxic", "Turbulence", "Uptown Disco", "Who's Dat Girl",
         "With You", "Won Da Mo",
+        // 25 Sep 2026, with Kizz Daniel, Ruger, Oxlade and Tiwa Savage. The same
+        // record on both boards, at the same peak: Currently (Olamide), Commona
+        // (Olamide), POE, Romeo Must Die (RMD), Ilashe, Bae Bae, GBESUNMO,
+        // Calculate Love, Party Monster, Not Done and the EP RnB (all BNXN's
+        // too), Twe Twe, Like and Tanana (Davido), Stamina and How Many Times
+        // (Ayra Starr), Loaded (Asake), Big Big Things (Seyi Vibez), and No
+        // Wahala and Toma Toma, each on two of the four new boards.
+        "Bae Bae", "Big Big Things", "Calculate Love", "Commona", "Currently", "GBESUNMO",
+        "How Many Times", "Ilashe", "Like (Iyanya ft. Davido & Kizz Daniel)", "Loaded",
+        "No Wahala", "Not Done", "POE", "Party Monster", "RnB", "Romeo Must Die (RMD)",
+        "Stamina", "Tanana (ft. Tiwa Savage)", "Toma Toma", "Twe Twe",
+        // …and seven that are DIFFERENT records under one title: the six in
+        // `known` above, and "Woman" — Joeboy & Oxlade (NG 100) on Oxlade's
+        // board, Omah Lay's own (ZA 100) on his, never on the same chart.
+        "Bounce", "Energy", "Forgiveness", "Lately", "Ole", "Oshe", "Woman",
       ].sort(),
     );
   });
@@ -454,6 +492,36 @@ describe("hooks that state a figure", () => {
     // The whole point of his line: everything he has is Nigerian.
     expect(new Set(seyi.releases.flatMap((r) => r.certs.map((c) => c.c)))).toEqual(new Set(["NG"]));
     expect(new Set(seyi.charts.flatMap((r) => r.entries.map((e) => e.c)))).toEqual(new Set(["NG"]));
+  });
+
+  it("keeps the four hooks of 25 Sep 2026 true to their sweeps", () => {
+    // Written without figures, so what each one claims is held here instead.
+    const kizz = artistBySlug("kizz-daniel")!;
+    const ng1 = (kind: string) => kizz.charts.filter((r) => r.kind === kind && r.entries.some((e) => e.c === "NG" && e.peak === 1));
+    expect(ng1("Singles").length, "Kizz Daniel: Nigerian No. 1 singles").toBeGreaterThan(0);
+    expect(ng1("Albums").some((r) => / - EP$/.test(r.title)), "…an EP").toBe(true);
+    expect(ng1("Albums").some((r) => !/ - EP$/.test(r.title)), "…and an album").toBe(true);
+    expect(kizz.releases.find((r) => r.title === "Buga (Lo Lo Lo)")?.certs).toContainEqual({ c: "US", level: "Gold" });
+    expect(kizz.hook).toContain("“Buga”, with Tekno, is the record the United States certified Gold");
+
+    const ruger = artistBySlug("ruger")!;
+    expect(ruger.charts.find((r) => r.title === "Asiwaju")?.entries).toContainEqual({ c: "NG", peak: 1 });
+    expect(ruger.releases.find((r) => r.title === "Asiwaju")?.certs).toContainEqual({ c: "FR", level: "Gold" });
+    expect(ruger.releases.find((r) => r.title === "Girlfriend")?.certs).toContainEqual({ c: "NZ", level: "Gold" });
+
+    const oxlade = artistBySlug("oxlade")!;
+    const abroad = oxlade.releases.filter((r) => r.certs.some((c) => c.c !== "NG")).map((r) => r.title);
+    expect(abroad, "every plaque outside Nigeria is for one record").toEqual(["Ku Lo Sa"]);
+    expect(oxlade.releases.find((r) => r.title === "Ku Lo Sa")?.certs).toContainEqual({ c: "FR", level: "Diamond" });
+
+    // "Her biggest plaque is a feature … and so is the one New Zealand gave her."
+    const tiwa = artistBySlug("tiwa-savage")!;
+    const top = topAward(tiwa)!;
+    const topRelease = tiwa.releases.find((r) => r.certs.includes(top))!;
+    expect(topRelease.title).toBe("Who Is Your Guy? (Remix)");
+    expect(topRelease.kind).toBe("Featured appearances");
+    const nz = tiwa.releases.filter((r) => r.certs.some((c) => c.c === "NZ"));
+    expect(nz.map((r) => [r.title, r.kind])).toEqual([["Romantic", "Featured appearances"]]);
   });
 
   it("claims a first only where a named award makes it datable", () => {
@@ -521,7 +589,8 @@ describe("hub scatter", () => {
   const X_MAX = 26;
 
   it("plots every swept artist plus Burna Boy", () => {
-    expect(sweptArtists.length + 1).toBe(16);
+    // 16 until 25 Sep 2026, when Kizz Daniel, Ruger, Oxlade and Tiwa Savage joined.
+    expect(sweptArtists.length + 1).toBe(20);
   });
 
   it("keeps every pair inside the drawn axes", () => {
@@ -614,23 +683,32 @@ describe("cover art", () => {
   // search gave many distinct songs one album sleeve — one cover landed on 15
   // different titles — so any cover used by more than one distinct record was
   // dropped rather than shipped. A missing cover beats a wrong one.
+  // 23 Sep 2026: a second ayra-starr+omah-lay. Ayra Starr's new "Many Roads"
+  // plaque and Omah Lay's "Last Time" are two tracks of Zinoleesky's album
+  // "Grit & Lust" (Deezer album 379954787: "Many Roads", "Last Time"), so
+  // they share its sleeve — the shared-ALBUM case, as M.I Abaga's is below.
+  //
+  // 25 Sep 2026: Kizz Daniel, Ruger, Oxlade and Tiwa Savage. Every new share
+  // was read off Deezer's contributor list in the cover-fill review, and each
+  // is one recording on both boards — Currently (Olamide), Gwagwalada (BNXN,
+  // Seyi Vibez), Twe Twe and Like (Davido), Big Big Things (Seyi Vibez),
+  // Loaded (Asake), Stamina (Ayra Starr), No Wahala and Toma Toma (between the
+  // new four) — or one EP both artists released, Ruger & BNXN's "RnB" (Ilashe,
+  // Bae Bae).
   const VERIFIED_SHARES = [
     "asake+ayra-starr", "asake+davido", "asake+fireboy-dml", "asake+fireboy-dml+olamide",
     "asake+olamide", "asake+olamide", "asake+olamide", "asake+olamide+seyi-vibez+wizkid",
-    "asake+rema", "asake+tems", "asake+victony", "asake+wizkid", "asake+wizkid",
-    "asake+wizkid", "ayra-starr+ckay", "ayra-starr+omah-lay",
-    // 23 Sep 2026: a second ayra-starr+omah-lay. Ayra Starr's new "Many Roads"
-    // plaque and Omah Lay's "Last Time" are two tracks of Zinoleesky's album
-    // "Grit & Lust" (Deezer album 379954787: "Many Roads", "Last Time"), so
-    // they share its sleeve — the shared-ALBUM case, as M.I Abaga's is below.
-    "ayra-starr+omah-lay",
-    "ayra-starr+rema", "ayra-starr+rema", "ayra-starr+seyi-vibez", "ayra-starr+wizkid",
-    "black-sherif+fireboy-dml", "bnxn+fireboy-dml+olamide+rema", "bnxn+rema",
-    "bnxn+seyi-vibez", "bnxn+seyi-vibez+victony", "bnxn+wizkid", "bnxn+wizkid",
-    "ckay+davido", "ckay+davido", "davido+omah-lay+victony", "fireboy-dml+rema",
+    "asake+rema", "asake+tems", "asake+tiwa-savage", "asake+victony", "asake+wizkid",
+    "asake+wizkid", "asake+wizkid", "ayra-starr+ckay", "ayra-starr+omah-lay",
+    "ayra-starr+omah-lay", "ayra-starr+rema", "ayra-starr+rema", "ayra-starr+seyi-vibez",
+    "ayra-starr+tiwa-savage", "ayra-starr+wizkid", "black-sherif+fireboy-dml",
+    "bnxn+fireboy-dml+olamide+rema", "bnxn+kizz-daniel+seyi-vibez", "bnxn+rema", "bnxn+ruger",
+    "bnxn+seyi-vibez+victony", "bnxn+wizkid", "bnxn+wizkid", "ckay+davido", "ckay+davido",
+    "davido+kizz-daniel", "davido+kizz-daniel", "davido+omah-lay+victony", "fireboy-dml+rema",
+    "kizz-daniel+olamide", "kizz-daniel+seyi-vibez", "kizz-daniel+tiwa-savage",
     "olamide+omah-lay", "olamide+seyi-vibez", "olamide+seyi-vibez", "olamide+wizkid",
     "omah-lay+seyi-vibez", "omah-lay+tems", "omah-lay+wizkid", "rema+victony",
-    "tems+wizkid",
+    "ruger+tiwa-savage", "tems+wizkid",
   ];
 
   const sharedPairs = () => {
@@ -671,20 +749,31 @@ describe("cover art", () => {
   //   davido+wizkid        ODUMODUBLVCK's "INDUSTRY MACHINE": Wizkid on
   //                        "BIG TIME", Davido on "Grooving".
   //   seyi-vibez+wizkid    "Apala Disco (Remix)" — the same recording.
+  // 25 Sep 2026, charts included: the release shares above plus five that only
+  // the chart rows reach — How Many Times (Ayra Starr and Oxlade, one
+  // recording), GBESUNMO (Wande Coal's record with Ruger and BNXN), Commona
+  // on Tiwa Savage's "Water & Garri" soundtrack (Olamide is on it), and two
+  // shared ALBUMS: Davido's "A Better Time" now carries Tiwa Savage's "Tanana"
+  // as well as CKay's "La La" (so one ckay+davido became ckay+davido+tiwa-savage),
+  // and Joeboy's "Body & Soul" carries BNXN's "Normally" and Oxlade's "Woman".
   const VERIFIED_SHARES_WITH_CHARTS = [
     "asake+ayra-starr", "asake+bnxn", "asake+davido", "asake+fireboy-dml",
     "asake+fireboy-dml+olamide", "asake+olamide", "asake+olamide", "asake+olamide",
-    "asake+olamide+seyi-vibez+wizkid", "asake+rema", "asake+tems", "asake+victony",
-    "asake+wizkid", "asake+wizkid", "asake+wizkid", "ayra-starr+ckay", "ayra-starr+omah-lay",
-    "ayra-starr+omah-lay", "ayra-starr+rema", "ayra-starr+rema", "ayra-starr+seyi-vibez",
-    "ayra-starr+tyla", "ayra-starr+wizkid", "black-sherif+davido", "black-sherif+fireboy-dml",
-    "black-sherif+fireboy-dml", "bnxn+fireboy-dml+olamide+rema", "bnxn+olamide", "bnxn+rema",
-    "bnxn+rema", "bnxn+seyi-vibez", "bnxn+seyi-vibez+victony", "bnxn+victony", "bnxn+wizkid",
-    "bnxn+wizkid", "bnxn+wizkid", "ckay+davido", "ckay+davido", "davido+omah-lay+victony",
-    "davido+wizkid", "fireboy-dml+rema", "olamide+omah-lay", "olamide+seyi-vibez",
-    "olamide+seyi-vibez", "olamide+victony", "olamide+wizkid", "omah-lay+seyi-vibez",
-    "omah-lay+tems", "omah-lay+tyla", "omah-lay+wizkid", "rema+victony", "seyi-vibez+wizkid",
-    "tems+wizkid", "tyla+victony",
+    "asake+olamide+seyi-vibez+wizkid", "asake+rema", "asake+tems", "asake+tiwa-savage",
+    "asake+victony", "asake+wizkid", "asake+wizkid", "asake+wizkid", "ayra-starr+ckay",
+    "ayra-starr+omah-lay", "ayra-starr+omah-lay", "ayra-starr+oxlade", "ayra-starr+rema",
+    "ayra-starr+rema", "ayra-starr+seyi-vibez", "ayra-starr+tiwa-savage", "ayra-starr+tyla",
+    "ayra-starr+wizkid", "black-sherif+davido", "black-sherif+fireboy-dml",
+    "black-sherif+fireboy-dml", "bnxn+fireboy-dml+olamide+rema", "bnxn+kizz-daniel+seyi-vibez",
+    "bnxn+olamide", "bnxn+oxlade", "bnxn+rema", "bnxn+rema", "bnxn+ruger", "bnxn+ruger",
+    "bnxn+seyi-vibez+victony", "bnxn+victony", "bnxn+wizkid", "bnxn+wizkid", "bnxn+wizkid",
+    "ckay+davido", "ckay+davido+tiwa-savage", "davido+kizz-daniel", "davido+kizz-daniel",
+    "davido+omah-lay+victony", "davido+wizkid", "fireboy-dml+rema", "kizz-daniel+olamide",
+    "kizz-daniel+seyi-vibez", "kizz-daniel+tiwa-savage", "olamide+omah-lay",
+    "olamide+seyi-vibez", "olamide+seyi-vibez", "olamide+tiwa-savage", "olamide+victony",
+    "olamide+wizkid", "omah-lay+seyi-vibez", "omah-lay+tems", "omah-lay+tyla",
+    "omah-lay+wizkid", "rema+victony", "ruger+tiwa-savage", "seyi-vibez+wizkid", "tems+wizkid",
+    "tyla+victony",
   ];
 
   it("shares a cover across artists only where the recording is shared, charts included", () => {

@@ -2,9 +2,9 @@ import styles from "./hubScatter.module.css";
 import { plaqueDomain } from "../lib/hubScatterScale";
 
 /**
- * "The shape of the field" — the board's ten careers on two axes.
+ * "The shape of the field" — the board's careers on two axes.
  *
- * The grid ranks. This says the thing a ranked grid cannot: the nine artists are
+ * The grid ranks. This says the thing a ranked grid cannot: the artists are
  * different SHAPES. Countries wide against plaques deep, so Seyi Vibez reads as
  * the deepest home-market record on the board rather than a short bar, and Tyla
  * as the widest reach rather than a small one — before a reader opens a page.
@@ -38,7 +38,18 @@ const GRID_X = [0, 5, 10, 15, 20, 25];
  * edge; Tems hangs left and down to clear Rema and Tyla; Davido and Omah Lay
  * share a country count exactly, so one lifts and the other drops.
  */
-const PLACE: Record<string, { anchor: "start" | "end"; dx: number; dy: number }> = {
+interface Place {
+  anchor: "start" | "end";
+  dx: number;
+  dy: number;
+  /** Name and figures on one line — only where two lines have no room. */
+  inline?: boolean;
+  /** A hairline from the dot to a label that cannot sit beside it, as
+   *  [x1, y1, x2, y2] relative to the dot's centre. */
+  leader?: [number, number, number, number];
+}
+
+const PLACE: Record<string, Place> = {
   "burna-boy": { anchor: "end", dx: -16, dy: -14 },
   wizkid: { anchor: "end", dx: -14, dy: -12 },
   "seyi-vibez": { anchor: "start", dx: 14, dy: -4 },
@@ -49,9 +60,30 @@ const PLACE: Record<string, { anchor: "start" | "end"; dx: number; dy: number }>
   tyla: { anchor: "start", dx: 12, dy: 6 },
   "omah-lay": { anchor: "start", dx: 12, dy: 10 },
   "ayra-starr": { anchor: "start", dx: 12, dy: 2 },
+  // 25 Sep 2026: Kizz Daniel, Ruger and Tiwa Savage land in the bottom-left
+  // corner with Olamide and Black Sherif — five careers within three countries
+  // and 60 plaques, where the y scale gives them about 50px. (Oxlade, the
+  // fourth to join, sits alone at ten countries.) Tuned by
+  // measuring label boxes in Space Mono (0.612em advance), not by eye:
+  //   Olamide, Kizz Daniel and Ruger stack up and to the right of their dots;
+  //   Black Sherif's label moves above the cluster on a vertical hairline,
+  //   because Kizz Daniel's and Tiwa Savage's dots sit either side of it;
+  //   Tiwa Savage is boxed in on all four sides (Black Sherif, Kizz Daniel,
+  //   Ruger, the axis), so her label runs on one line under Ruger's, on a
+  //   hairline passing below his dot.
+  // BNXN, Fireboy DML and Victony share a country count and were already
+  // colliding (Fireboy DML's figures under Victony's name); they now step apart.
+  olamide: { anchor: "start", dx: 12, dy: -16 },
+  "kizz-daniel": { anchor: "start", dx: 12, dy: -8 },
+  "black-sherif": { anchor: "start", dx: -38, dy: -49, leader: [0, -7, 0, -32] },
+  ruger: { anchor: "start", dx: 18, dy: -12 },
+  "tiwa-savage": { anchor: "start", dx: 58, dy: 8, inline: true, leader: [8, 1, 55, 5] },
+  bnxn: { anchor: "start", dx: 14, dy: -10 },
+  "fireboy-dml": { anchor: "start", dx: 14, dy: -12 },
+  victony: { anchor: "start", dx: 14, dy: 2 },
 };
 
-const FALLBACK = { anchor: "start" as const, dx: 14, dy: -6 };
+const FALLBACK: Place = { anchor: "start", dx: 14, dy: -6 };
 
 export default function HubScatter({ dots }: { dots: ScatterDot[] }) {
   // Descending plaques, so the reading order of the labels matches the board's.
@@ -116,6 +148,16 @@ export default function HubScatter({ dots }: { dots: ScatterDot[] }) {
             const ly = cy + p.dy;
             return (
               <g key={d.slug}>
+                {p.leader && (
+                  <line
+                    x1={cx + p.leader[0]}
+                    y1={cy + p.leader[1]}
+                    x2={cx + p.leader[2]}
+                    y2={cy + p.leader[3]}
+                    stroke="color-mix(in srgb, var(--text) 30%, transparent)"
+                    strokeWidth="1"
+                  />
+                )}
                 <circle
                   cx={cx}
                   cy={cy}
@@ -136,17 +178,24 @@ export default function HubScatter({ dots }: { dots: ScatterDot[] }) {
                   fill={d.anchor ? "var(--gold-bright-ink)" : "var(--text)"}
                 >
                   {d.anchor ? d.name.toUpperCase() : d.name}
+                  {p.inline && (
+                    <tspan dx={7} fontSize="10" fill="var(--text-muted)">
+                      {d.plaques} · {d.countries}
+                    </tspan>
+                  )}
                 </text>
-                <text
-                  x={lx}
-                  y={ly + 13}
-                  textAnchor={p.anchor}
-                  fontFamily="var(--font-mono), monospace"
-                  fontSize="10"
-                  fill="var(--text-muted)"
-                >
-                  {d.plaques} · {d.countries}
-                </text>
+                {!p.inline && (
+                  <text
+                    x={lx}
+                    y={ly + 13}
+                    textAnchor={p.anchor}
+                    fontFamily="var(--font-mono), monospace"
+                    fontSize="10"
+                    fill="var(--text-muted)"
+                  >
+                    {d.plaques} · {d.countries}
+                  </text>
+                )}
               </g>
             );
           })}

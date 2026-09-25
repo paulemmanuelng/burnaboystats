@@ -90,7 +90,7 @@ import {
  *  1. Every comparison becomes a URL. "Burna vs Wizkid, features on, Nigeria
  *     included" is a link somebody can paste into the argument they are already
  *     having, which is the entire point of the page.
- *  2. The engine reads the whole plaque corpus — 16 artists, 1,212 plaques and
+ *  2. The engine reads the whole plaque corpus — every artist, every plaque and
  *     the 27-body threshold table. Shipping that to the browser to power four
  *     toggles would be a large bundle for state a query string already holds.
  *  3. It renders complete without JavaScript, so a crawler sees the numbers.
@@ -365,7 +365,7 @@ function SongPicker({
   // as it is for the filter — it was reporting "85 of 85 match “&”".
   const q = fold(query);
   const all = artist.releases.filter((r) => r.format === format);
-  // Eight of the sixteen hold no certified album at all. Say so, and offer
+  // Many on the roster hold no certified album at all. Say so, and offer
   // the mode that has something to price, rather than an empty picker.
   if (all.length === 0) {
     const other = mode === "albums" ? "songs" : "albums";
@@ -781,7 +781,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
           {countryBoard ? (
             countryBoard.counted ? (
               <>
-                Every plaque the sixteen artists hold in {countryBoard.inSentence}, priced at{" "}
+                Every plaque the {numberWord(comparableArtists.length).toLowerCase()} artists hold in {countryBoard.inSentence}, priced at{" "}
                 {pricingPhrase(countryBoard, "own published threshold")} and ranked. Each figure is a floor — a plaque
                 says <em>at least</em>, never what a record sold.
               </>
@@ -790,7 +790,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
               // published threshold" quoted back at it, which is what the
               // one-size lede was doing on Colombia.
               <>
-                Every plaque the sixteen artists hold in {countryBoard.inSentence}. {countryBoard.body} publishes
+                Every plaque the {numberWord(comparableArtists.length).toLowerCase()} artists hold in {countryBoard.inSentence}. {countryBoard.body} publishes
                 no unit threshold, so these plaques are listed here and never summed — the award is real, the
                 scale is not published.
               </>

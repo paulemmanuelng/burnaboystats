@@ -16,8 +16,8 @@ import { LIVE_CADENCE_REBUILT } from "../lib/liveChartMeta";
  * job is to place him against the field.
  *
  * The design's structural change is the door: Burna is a full-width card above
- * the wall, in colour, gold-bordered, leading to the site itself. The nine
- * behind him are a two-up wall of greyed tiles. Nothing on this screen holds
+ * the wall, in colour, gold-bordered, leading to the site itself. The field
+ * behind him is a two-up wall of greyed tiles. Nothing on this screen holds
  * state — the wall is the whole field at once, which is the point.
  */
 
@@ -91,7 +91,7 @@ export default function MobileAfrobeatsHub({
               this page's LCP element — did not begin downloading until CSS had
               parsed and the box had been laid out. As an <img> it is discovered
               while the HTML is still streaming, and the priority hint puts it
-              ahead of the nine greyed tiles behind it. */}
+              ahead of the greyed tiles behind it. */}
           {/* Gated behind a media query for the same reason the hero portrait is:
               this screen is display:none on desktop, where a hidden EAGER <img>
               would still be fetched though the old background never was. The

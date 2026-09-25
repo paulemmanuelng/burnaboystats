@@ -63,6 +63,21 @@ const NAMES = {
   olamide: ["olamide"],
   "black-sherif": ["black sherif"],
   bnxn: ["bnxn"],
+  // The eight joining the board (24 Sep 2026). Each spelling is one a credit
+  // really carries. Never a bare "savage" (21 Savage, Savage Garden); Kizz
+  // Daniel was billed "Kiss Daniel" until 2018 and Deezer still files his
+  // early catalogue that way; Mr Eazi appears with and without the dot;
+  // "stone bwoy" but never "stone boy". "ruger" is a substring match, so it
+  // would also pass the Finnish group Ruger Hauer: the exact-title rule is
+  // what keeps them apart, and a proposal crediting them is rejected in review.
+  oxlade: ["oxlade"],
+  "tiwa-savage": ["tiwa savage"],
+  "kizz-daniel": ["kizz daniel", "kiss daniel"],
+  "mr-eazi": ["mr eazi", "mr. eazi"],
+  "yemi-alade": ["yemi alade"],
+  ruger: ["ruger"],
+  stonebwoy: ["stonebwoy", "stone bwoy"],
+  sarkodie: ["sarkodie"],
 };
 
 const JUNK = /karaoke|tribute|8.?bit|chiptune|instrumental|made famous by|made popular by|originally performed|cover version|ringtone|lullaby|piano version|workout mix|sped up|slowed/i;

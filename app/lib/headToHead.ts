@@ -66,6 +66,19 @@ export const HEAD_TO_HEAD: Record<string, string> = {
   "fireboy-dml": "omah-lay",
   "omah-lay": "fireboy-dml",
 
+  // Joined 25 Sep 2026. Two careers that predate Nigeria's official chart, and
+  // two of the voices on 1da Banton's "No Wahala" — one record, on both boards
+  // at the same peak. His plaques are nearly all home singles; hers lean on
+  // features. No figures typed here: the panel prints them from the data.
+  "kizz-daniel": "tiwa-savage",
+  "tiwa-savage": "kizz-daniel",
+
+  // Joined 25 Sep 2026. Same generation, opposite shapes: Ruger's plaques are
+  // built at home, Oxlade's travelled on one record, "Ku Lo Sa", certified
+  // across Europe and North America.
+  ruger: "oxlade",
+  oxlade: "ruger",
+
   // The second pairing that leaves the board, and the reason is the country
   // count: 23 certifying countries against Burna Boy's 26. Nobody else on the
   // board comes within eight of him on spread, so this is the one other

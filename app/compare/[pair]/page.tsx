@@ -6,14 +6,14 @@ import { allPairs, canonicalPair, pairCopy, pairSlug, parsePair } from "../../li
 
 /**
  * /compare/<a>-vs-<b> — the compare page with both artists filled, as a page
- * of its own. 120 of them, one per unordered pair of the sixteen artists,
+ * of its own. One per unordered pair of the roster's artists (n × (n − 1) / 2),
  * statically generated; the reverse order redirects to the canonical one, so
  * no comparison lives at two URLs. Everything else — the pickers, the
  * toggles, the song and album modes — is /compare with a query string, and
  * canonicals back here when it is this comparison it is showing.
  */
 
-// Only the 120 generated pairs exist: anything else is a real 404 at the
+// Only the generated pairs exist: anything else is a real 404 at the
 // routing layer, and the reverse order of a pair is a real 308 from
 // next.config.mjs (see scripts/build-compare-redirects.mjs) — a redirect or
 // notFound thrown from a prerendered page can only be a meta-refresh with 200.

@@ -169,10 +169,10 @@ describe("the pickers fold after eight, and drop nothing", () => {
     const folded = chipsIn(insideDetails(first)).map((c) => c.text);
     expect(shown).toEqual(expected.slice(0, PICKER_FOLD));
     expect(folded).toEqual(expected.slice(PICKER_FOLD));
-    expect(shown.length + folded.length).toBe(16);
+    expect(shown.length + folded.length).toBe(comparableArtists.length);
     // The noun rides inside the toggle so its accessible name follows the
-    // open state ("+ 8 more artists" / "Show fewer artists").
-    expect(text(first)).toContain(`+ ${16 - PICKER_FOLD} more artists ↓`);
+    // open state ("+ 12 more artists" / "Show fewer artists").
+    expect(text(first)).toContain(`+ ${comparableArtists.length - PICKER_FOLD} more artists ↓`);
     expect(text(first)).toContain("Show fewer artists ↑");
     expect(first).not.toContain("aria-label=\"Show");
   });
@@ -344,9 +344,13 @@ describe("the pair pages", () => {
   it("one canonical order per pair, the reverse parses to the same pair, unknowns are null", async () => {
     const { allPairs, canonicalPair, pairSlug, parsePair, featuredPairs } = await import("../app/lib/comparePairs");
     const pairs = allPairs();
-    expect(pairs).toHaveLength((16 * 15) / 2);
+    const n = comparableArtists.length;
+    expect(pairs).toHaveLength((n * (n - 1)) / 2);
+    // 120 pairs of 16 artists until 25 Sep 2026; Kizz Daniel, Ruger, Oxlade and
+    // Tiwa Savage make it 20 artists and 190 pairs.
+    expect(pairs).toHaveLength(190);
     const slugs = pairs.map(([a, b]) => pairSlug(a, b));
-    expect(new Set(slugs).size).toBe(120);
+    expect(new Set(slugs).size).toBe(pairs.length);
     for (const [a, b] of pairs) {
       const slug = pairSlug(a, b);
       const parsed = parsePair(slug)!;

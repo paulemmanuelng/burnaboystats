@@ -169,7 +169,9 @@ describe("a separately-priced programme is its own line (Paul, 23 Sep 2026)", ()
     const us = priceCountry("US", OPTS);
     expect(us.programs.map((p) => p.name)).toEqual(["RIAA", "RIAA Latin"]);
     const [riaa, latin] = us.programs;
-    expect(riaa.plaques).toBe(45);
+    // 45 until 25 Sep 2026: + Kizz Daniel's "Buga (Lo Lo Lo)" Gold and
+    // Oxlade's "Ku Lo Sa" Gold, both the standard programme.
+    expect(riaa.plaques).toBe(47);
     expect(latin.plaques).toBe(3);
     // 360,000 (Dai Dai 6×) + 960,000 (Santa 16×) + 120,000 (Bubalu 2×).
     expect(latin.units).toBe(1_440_000);
@@ -179,8 +181,8 @@ describe("a separately-priced programme is its own line (Paul, 23 Sep 2026)", ()
     // counts a person once however many programmes certified them.
     expect(us.units).toBe(riaa.units + latin.units);
     expect(us.plaques).toBe(riaa.plaques + latin.plaques);
-    expect(us.artists).toBe(13);
-    expect(riaa.lines.length + latin.lines.length).toBe(15);
+    expect(us.artists).toBe(15);
+    expect(riaa.lines.length + latin.lines.length).toBe(17);
     for (const code of certCountryCodes().filter((c) => c !== "US")) {
       expect(priceCountry(code, OPTS).programs.length, code).toBe(1);
     }

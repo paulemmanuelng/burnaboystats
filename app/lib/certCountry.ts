@@ -4,7 +4,7 @@
 //
 // /compare prices two artists against each other across every country. This
 // pivots the same corpus the other way: pick Canada, and see what each of the
-// sixteen artists has cleared THERE, ranked.
+// roster's artists has cleared THERE, ranked.
 //
 // IT IS THE SAME ARITHMETIC, DELIBERATELY. Every figure here runs through
 // `unitsForCert` and the rule-1 collapse that certUnits.ts already enforces —
@@ -13,7 +13,7 @@
 // the pricing rules would drift from the compare table within a week, and a
 // reader who saw Canada say 720,000 here and 715,000 there would be right to
 // stop trusting both. tests/compareCountry.test.ts asserts line-for-line
-// agreement with priceArtist() for all 27 countries and all 16 artists.
+// agreement with priceArtist() for every country and every artist.
 //
 // TWO THINGS THIS VIEW CHANGES, AND ONLY TWO:
 //

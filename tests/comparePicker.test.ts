@@ -6,14 +6,15 @@ describe("the compare picker misses nothing", () => {
   it("offers every artist on the board", () => {
     const all = pickerArtists();
     expect(all.map((a) => a.slug).sort()).toEqual(comparableArtists.map((a) => a.slug).sort());
-    expect(all).toHaveLength(16);
+    expect(all).toHaveLength(comparableArtists.length);
+    expect(all).toHaveLength(20); // Burna Boy + the board's 19 (25 Sep 2026)
   });
 
   it("from any chosen side, offers every OTHER artist and never the same one", () => {
     for (const chosen of comparableArtists) {
       const offered = pickerArtists(chosen.slug).map((a) => a.slug);
       expect(offered, `${chosen.name} offered themselves`).not.toContain(chosen.slug);
-      expect(offered, `${chosen.name} is missing someone`).toHaveLength(15);
+      expect(offered, `${chosen.name} is missing someone`).toHaveLength(comparableArtists.length - 1);
       for (const other of comparableArtists)
         if (other.slug !== chosen.slug) expect(offered, `${other.name} unreachable from ${chosen.name}`).toContain(other.slug);
     }

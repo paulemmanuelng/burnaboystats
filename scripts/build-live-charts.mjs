@@ -31,7 +31,7 @@ import {
   titleKey,
   servesCoverArt,
 } from "./stats-lib.mjs";
-import { liveArtist, LIVE_ARTISTS } from "./live-artists.mjs";
+import { liveArtist, LIVE_ARTISTS, placementFloor, dropRefusal } from "./live-artists.mjs";
 
 // One process can build several artists. That matters because the Deezer and
 // YouTube sweeps read the SAME 204 country charts for everyone: fetching them
@@ -41,11 +41,16 @@ import { liveArtist, LIVE_ARTISTS } from "./live-artists.mjs";
 // registry except Burna Boy, whose live charts are the site's own page. The
 // hourly job passes that rather than a hardcoded list, so adding an artist to
 // the registry is genuinely one edit.
+// A `staged` artist (built ahead of its liveBoards.ts row) is left out of
+// "board", so the hourly job refreshes exactly the boards that have a page.
+// Naming a staged artist explicitly still builds it.
 const requested = (
   process.argv.find((a) => a.startsWith("--artist="))?.slice("--artist=".length) ?? "burna-boy"
 ).split(",").map((x) => x.trim()).filter(Boolean);
 const SLUGS = requested.flatMap((slug) =>
-  slug === "board" ? Object.keys(LIVE_ARTISTS).filter((s) => s !== "burna-boy") : [slug]
+  slug === "board"
+    ? Object.keys(LIVE_ARTISTS).filter((s) => s !== "burna-boy" && !LIVE_ARTISTS[s].staged)
+    : [slug]
 );
 const ARTISTS = SLUGS.map(liveArtist);
 const UA = { "user-agent": "burnaboystats-bot" };
@@ -339,11 +344,9 @@ for (const w of work.values()) {
   const previous = w.previous;
   const OUT = new URL(`../app/data/${artist.out}`, import.meta.url);
   const RUN_OUT = artist.runOut ? new URL(`../app/data/${artist.runOut}`, import.meta.url) : null;
-  const MIN_PLACEMENTS = artist.mayChartNowhere ? 0 : artist.slug === "burna-boy" ? 50 : 25;
-  // How much of the previous run may vanish before this is a source failure
-  // rather than a quiet week. Chart churn moves these files by a few per cent
-  // an hour; 40% is far outside that and well inside a half-scraped page.
-  const MAX_DROP = 0.4;
+  // The floor and the drop rule live in scripts/live-artists.mjs so the tests
+  // read the same numbers (placementFloor, dropRefusal).
+  const MIN_PLACEMENTS = placementFloor(artist);
 
 // ── Artwork ──────────────────────────────────────────────────────────────
   // The site's own cover lookup (app/lib/covers.ts) only knows Burna Boy's
@@ -471,19 +474,16 @@ for (const w of work.values()) {
   // of the generated output, which a regex over the whole array does not.
   const priorFile = await readFile(OUT, "utf8").catch(() => "");
   const before = (priorFile.match(/"position":/g) ?? []).length;
-  if (before > 0) {
-    const drop = (before - placements) / before;
-    if (drop > MAX_DROP) {
-      console.error(
-        `REFUSING TO WRITE: ${placements} placements against ${before} last time — ` +
-          `a ${Math.round(drop * 100)}% drop, over the ${Math.round(MAX_DROP * 100)}% limit. ` +
-          `Part of the source is probably missing. The previous file is left in place; ` +
-          `re-run once the source is healthy, or raise MAX_DROP if the fall is real.`
-      );
-      process.exit(1);
-    }
+  const refusal = dropRefusal(before, placements);
+  if (refusal) {
+    console.error(
+      `REFUSING TO WRITE: ${refusal}. ` +
+        `Part of the source is probably missing. The previous file is left in place; ` +
+        `re-run once the source is healthy, or change the limits in scripts/live-artists.mjs if the fall is real.`
+    );
+    process.exit(1);
   }
-  
+
   if (DRY) {
     for (const r of releases.slice(0, 8)) console.error(`  ${r.kind.padEnd(5)} ${r.title} — ${reach(r)}`);
     process.exit(0);

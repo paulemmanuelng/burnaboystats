@@ -7,7 +7,7 @@ Every certification and chart peak on [/afrobeats](https://burnaboystats.com/afr
 | `<artist>-certifications-v1.md` | every plaque, per title, per country, with a verification mark |
 | `<artist>-chart-peaks-v1.md` | every charting position, per title, per country |
 
-Nine artists: Wizkid, Davido, Rema, Tems, Tyla, Ayra Starr, Asake, Omah Lay, Seyi Vibez. Swept 15–19 August 2026.
+One pair of files for every artist on the board; `tests/sweepDocs.test.ts` fails if one is missing. The first nine (Wizkid, Davido, Rema, Tems, Tyla, Ayra Starr, Asake, Omah Lay, Seyi Vibez) were swept 15–19 August 2026; the rest joined later, each with its own dated sweep.
 
 One file is Burna Boy's own: `burna-boy-nigeria-2026-09-18.md` — every issue of TurnTable's Nigeria Top 100 and Top 100 Albums walked for his catalogue on 18 September 2026 (the 89 Nigerian peaks in `app/data/charts.ts`, each with the issue that set it). The walker is `scripts/turntable-walk.mjs`.
 
@@ -17,6 +17,9 @@ They lived outside the repo until 21 August 2026, which meant the site published
 
 - **✓** — seen in the issuing body's own **live** register.
 - **✓ᴬ** — seen in the issuing body's own **archived** register: a Wayback capture of the same URL, fetched in the raw `…{timestamp}id_/…` form so the response is the original bytes rather than the toolbar-injected page.
+- **✓ᴴ** — a chart row for country X, read on a Hung Medien sister domain of a **different** country, not on X's own chart site. Example: a Dutch peak read in the "Weltweit" block of swisscharts.com. A Hung Medien domain that *is* X's own chart site counts as the body's own register: swisscharts.com is the Swiss Hitparade's own site (hitparade.ch's database on its English domain), so a Swiss row or a Swiss plaque read there is **✓**, not ✓ᴴ. Chart rows only, never a plaque. The row names the domain it was read on and the body it stands in for, and it must show the peak, the chart and the week of the peak. The cross-country block prints only a peak and a count of weeks, so on its own it is a lead, not a row. No published row carries ✓ᴴ as of 25 Sep 2026. Oxlade's Netherlands #13 and Portugal #60 were the only two, and they were dropped that day on exactly this point (see `oxlade-chart-peaks-v1.md`).
+
+**By hand, never read by an agent** (owner rulings, 24–25 Sep 2026): TOSAC (South Africa's chart), RiSA, FIMI, the BPI, ARIA's accreditation Dropbox, AFP's uploads, dutchcharts.nl, top40.nl and billboard.com — Wayback copies included. A row whose only evidence came from one of them is not published; it goes on Paul's weekly hand-check list with the exact search to run, and is added when he confirms it.
 
 A register read in full and holding nothing is recorded as a **proven zero**. A register that could not be read is recorded as a **gap**, never as a zero. The distinction matters and the files keep it.
 
@@ -55,4 +58,4 @@ Identical to the ones this site applies to Burna Boy, so the numbers are compara
 - Lead, co-billed and featured credits all count. Writer and producer credits do not.
 - Singles and albums are recorded separately.
 - Chart peaks follow `charts.ts`: one entry per country on its principal national chart, no platform or genre charts, airplay only where a country publishes nothing else.
-- **A live chart run is published, not held.** A record still on a chart is published at its current `highestPosition` with the board's open-run note ("Peak still open — read in the release's first weeks…"), and re-read at the next sweep. The 6 Sep 2026 sweep held CKay's SHEGE "because the run is live" while the same board carried Rema's TEA and five Davido rows the same way; the 17 Sep audit published SHEGE, BACK 2 U, As We Get High, TWIN, WHO THIS, That Girl and Starrgirl under this one rule. What is never done: typing a peak from a written report when the body's own payload says otherwise (Starrgirl: payload 2, report "3" — the payload is the chart).
+- **A live chart run is published, not held.** A record still on a chart is published at its current `highestPosition` with the board's open-run note ("Peak still open — read in the release's first weeks…"), and re-read at the next sweep. When a run is no longer in its first weeks, the note keeps the "Peak still open —" opening but says what was read instead: Tiwa Savage's *Energy* (25 Sep 2026) reads "still on the Top 100 when read, 16 weeks in (4 Jun to 17 Sep 2026), after reaching No. 7 on 30 Jul". The 6 Sep 2026 sweep held CKay's SHEGE "because the run is live" while the same board carried Rema's TEA and five Davido rows the same way; the 17 Sep audit published SHEGE, BACK 2 U, As We Get High, TWIN, WHO THIS, That Girl and Starrgirl under this one rule. What is never done: typing a peak from a written report when the body's own payload says otherwise (Starrgirl: payload 2, report "3" — the payload is the chart).
