@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-25";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-25T17:49Z";
+  export const liveChartsBuiltAt = "2026-09-25T21:39Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","iTunes"];
@@ -54,16 +54,16 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "CV",
-            "name": "Cape Verde",
-            "position": 41,
-            "movement": 6
-          },
-          {
             "country": "BF",
             "name": "Burkina Faso",
+            "position": 45,
+            "movement": 1
+          },
+          {
+            "country": "CV",
+            "name": "Cape Verde",
             "position": 47,
-            "movement": -1
+            "movement": -5
           },
           {
             "country": "GM",
@@ -84,9 +84,16 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "LY",
-            "name": "Libya",
-            "position": 75,
+            "country": "BT",
+            "name": "Bhutan",
+            "position": 134,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 147,
             "movement": null,
             "status": "new"
           }
@@ -106,8 +113,8 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 40,
-            "movement": -6
+            "position": 41,
+            "movement": -4
           }
         ]
       }
@@ -144,8 +151,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 144,
-            "movement": -5
+            "position": 126,
+            "movement": 18
           }
         ]
       }
