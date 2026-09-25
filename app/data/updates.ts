@@ -60,6 +60,13 @@ export const updates: Update[] = [
   },
   {
     date: "2026-09-25",
+    category: "Streaming",
+    // Read on charts.spotify.com's Weekly Top Albums Global pages, 25 Sep 2026.
+    text: "Love, Damini's No. 17 on Spotify's Weekly Top Albums Global chart, in its first week in July 2022, is the highest any African album has reached there: one place above Asake's M$NEY, with Morayo, Rave & Roses Ultra and a tied TYLA and 5ive completing the top five.",
+    href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-09-25",
     category: "Awards",
     // blog.losheat.tv/archivos/entretenimiento/7963, the body's own nominee
     // post of 24 Sep 2026.

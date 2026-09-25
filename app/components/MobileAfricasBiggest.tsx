@@ -18,7 +18,7 @@ import type { Faq } from "./FaqList";
  * row grammar has nowhere to put. Built from designs/mobile/Burna Boy Stats -
  * Mobile Deep Pages.dc.html, screen 16 (`africa()`).
  *
- * No bars anywhere. Eight of these boards rank by placing, and a rank has no
+ * No bars anywhere. Many of these boards rank by placing, and a rank has no
  * length — the design draws rank, name, value and nothing else.
  */
 
@@ -242,7 +242,7 @@ export default function MobileAfricasBiggest({
       {/* Last, exactly where the desktop layout puts it — boards, then the note
           that explains the gold rows in them, then the questions. The note
           stays welded to the list it describes; dropping the FAQ between the
-          two would strand it under fourteen boards it no longer looks like it
+          two would strand it under a list of boards it no longer looks like it
           belongs to.
           Outside the `shown` filter on purpose: the chips narrow the boards,
           and a question about African music is not a board — filtering to "he

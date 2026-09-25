@@ -2,7 +2,7 @@ import { statBoxes, HIGHLIGHT, rankOf, asOfLabel, type LeaderboardBox } from "..
 import { afrobeatsArtists } from "../data/afrobeats";
 
 /**
- * The fourteen boards, shaped for mobile screen 16.
+ * Every board in app/data/africasBiggest.ts, shaped for mobile screen 16.
  *
  * From designs/mobile/Burna Boy Stats - Mobile Deep Pages.dc.html → `africa()`.
  * Two things there are worth stating, because both are decisions rather than
@@ -13,8 +13,8 @@ import { afrobeatsArtists } from "../data/afrobeats";
  *    ranking of artists, so it never counts toward "he leads" — the desktop's
  *    `heLeads` is list-only — and it carries its own badge instead.
  *  - The **badge** states his standing on each board at a glance: LEADS when he
- *    tops it, otherwise his position, so a reader can scan fourteen boards
- *    without reading fourteen lists.
+ *    tops it, otherwise his position, so a reader can scan every board
+ *    without reading every list.
  *
  * Everything is derived from app/data/africasBiggest.ts.
  */

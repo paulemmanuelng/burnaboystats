@@ -252,7 +252,8 @@ describe("every leaderboard is ordered by the numbers it prints", () => {
     // most-streamed contributes its 2026 and 2025 rows separately, and the
     // three earlier years print no totals.
     // 17 since 11 Sep 2026: the fastest-to-a-billion board, judged as days.
-    expect(judged, "ranked lists actually judged").toBe(17);
+    // 18 since 25 Sep 2026: the Spotify Global album board, judged as ranks.
+    expect(judged, "ranked lists actually judged").toBe(18);
   });
 });
 

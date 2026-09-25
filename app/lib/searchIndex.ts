@@ -321,7 +321,7 @@ export const searchIndex: SearchDoc[] = [
     path: "/records/africas-biggest",
     section: "Records",
     description: "Africa's biggest artists by Billboard and Spotify — Burna Boy in context.",
-    keywords: ["africas biggest", "wizkid", "tems", "rema", "tyla", "asake", "davido", "afrobeats", "most streamed african artist", "compare"],
+    keywords: ["africas biggest", "wizkid", "tems", "rema", "tyla", "asake", "davido", "afrobeats", "most streamed african artist", "highest charting african album", "spotify album chart", "compare"],
   },
   {
     title: "By the Numbers",
