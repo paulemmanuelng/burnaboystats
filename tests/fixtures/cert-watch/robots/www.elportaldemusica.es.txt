@@ -1,3 +1,0 @@
-User-agent: *
-Disallow:
-Sitemap: https://www.elportaldemusica.es/sitemap_index.xml
