@@ -75,6 +75,20 @@ const nextConfig = {
     ];
     return [
       { source: "/:path*", headers: securityHeaders },
+      // The API is open data read cross-origin, and its docs recommend a
+      // conditional GET (If-None-Match against the ETag). Those request headers
+      // are not CORS-safelisted, so a browser preflights them, and the preflight
+      // answer (the platform's automatic OPTIONS) named no allowed headers: the
+      // check the docs recommend failed from every other site. Measured on
+      // production, 25 Sep 2026: OPTIONS /api/v1/stats → 204 with
+      // allow-methods and allow-origin, no Access-Control-Allow-Headers.
+      {
+        source: "/api/:path*",
+        headers: [
+          { key: "Access-Control-Allow-Headers", value: "If-None-Match, If-Modified-Since" },
+          { key: "Access-Control-Max-Age", value: "86400" },
+        ],
+      },
       // Only burnaboystats.com should ever be indexable. The redirect below
       // covers the clean Vercel alias, but preview deployments
       // (burnaboystats-<hash>.vercel.app) are deliberately left reachable for

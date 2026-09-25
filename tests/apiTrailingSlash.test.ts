@@ -113,3 +113,21 @@ describe("F-07: every other page keeps Next's trailing-slash redirect", () => {
     expect(await answer(nextConfig, "/tour/")).toEqual({ status: 308, location: "/tour", rewrite: null });
   });
 });
+
+// The API's docs recommend If-None-Match; a browser preflights that header,
+// so every /api/ answer must name it, and nothing outside /api/ changes.
+describe("CORS preflight for the conditional GET the API docs recommend", () => {
+  const allowHeaders = async (path: string) =>
+    (await unstable_getResponseFromNextConfig({ url: `https://burnaboystats.com${path}`, nextConfig })).headers.get(
+      "access-control-allow-headers",
+    );
+  it("names If-None-Match on API paths, with and without the slash", async () => {
+    for (const path of ["/api/v1/stats", "/api/v1/stats/", "/api/v1/live-charts/wizkid", "/api/v1/awards.csv"]) {
+      expect(await allowHeaders(path), path).toMatch(/\bIf-None-Match\b/);
+    }
+  });
+  it("adds nothing outside /api/", async () => {
+    for (const path of ["/", "/records", "/music/last-last"]) expect(await allowHeaders(path), path).toBeNull();
+  });
+});
+
