@@ -55,7 +55,10 @@ export async function generateMetadata({ params }: { params: Promise<{ artist: s
         }`
       : `${a.name} — The Afrobeats Board`,
     description: a.swept
-      ? `${a.name}: ${count(certCount(a), "certification", "certifications")} across ${count(countryCount(a), "country", "countries")}, topped by ${topAward(a) ? plaqueLabel(topAward(a)!) : "a plaque"}, plus ${count(chartEntries(a), "official chart entry", "official chart entries")} and ${count(chartNo1s(a), "No. 1", "No. 1s")} — every figure read at source.`
+      ? `${a.name}: ${count(certCount(a), "certification", "certifications")} across ${count(countryCount(a), "country", "countries")}, topped by ${topAward(a) ? plaqueLabel(topAward(a)!) : "a plaque"}, plus ${count(chartEntries(a), "official chart entry", "official chart entries")}${
+          // No "and 0 No. 1s" for an artist without one (Oxlade, Tiwa Savage).
+          chartNo1s(a) ? ` and ${count(chartNo1s(a), "No. 1", "No. 1s")}` : ""
+        } — every figure read at source.`
       : `${a.name} on The Afrobeats Board. The certification and chart registers are scheduled to be read at source — no figures are published here until they are.`,
     path: `/afrobeats/${a.slug}`,
     shareTitle: `${a.name} — The Afrobeats Board`,

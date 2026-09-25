@@ -41,6 +41,19 @@ const sourceClause = (a: AfroArtist, short = false) => {
     : national;
 };
 
+/** The No. 1 clause, or nothing. Oxlade and Tiwa Savage (25 Sep 2026) were
+ *  the first board artists with no chart No. 1, and the templates printed the
+ *  zero: "Oxlade Chart History — 0 No. 1s & Chart Peaks", "including 0 No. 1
+ *  peaks", "0 of them at No. 1". A count that is zero is left out of the prose;
+ *  the stat grid still shows it as a figure. Artists with a No. 1 read exactly
+ *  as before. */
+const chartTitle = (a: AfroArtist) => {
+  const n = chartNo1s(a);
+  return n ? `${a.name} Chart History — ${count(n, "No. 1", "No. 1s")} & Chart Peaks` : `${a.name} Chart History & Chart Peaks`;
+};
+const no1Tail = (n: number, one: string, many: string, lead: string) => (n ? `${lead}${count(n, one, many)}` : "");
+const ofThemAtNo1 = (n: number) => (n ? `, ${n} of them at No. 1` : "");
+
 export const dynamicParams = false;
 export function generateStaticParams() {
   // Only artists whose registers have actually been read have a chart board.
@@ -52,11 +65,11 @@ export async function generateMetadata({ params }: { params: Promise<{ artist: s
   const a = artistBySlug(slug);
   if (!a) return {};
   return pageMetadata({
-    title: `${a.name} Chart History — ${count(chartNo1s(a), "No. 1", "No. 1s")} & Chart Peaks`,
+    title: chartTitle(a),
     description: `Every ${a.name} official chart peak worldwide — ${count(chartEntries(a), "entry", "entries")} across ${count(chartTerritories(a), "territory", "territories")}, read from ${sourceClause(a, true)}.`,
     path: `/afrobeats/${a.slug}/charts`,
     shareTitle: `${a.name} — Official Chart Peaks`,
-    shareDescription: `${count(chartEntries(a), "entry", "entries")}, ${count(chartTerritories(a), "territory", "territories")}, ${count(chartNo1s(a), "No. 1", "No. 1s")}.`,
+    shareDescription: `${count(chartEntries(a), "entry", "entries")}, ${count(chartTerritories(a), "territory", "territories")}${no1Tail(chartNo1s(a), "No. 1", "No. 1s", ", ")}.`,
   });
 }
 
@@ -114,7 +127,7 @@ export default async function AfroArtistChartsPage({
 
   const dataset = datasetJsonLd({
     name: `${a.name} official chart peaks by country`,
-    description: `${a.name}'s peak positions on official singles and album charts across ${count(territories, "territory", "territories")} — every charting release and its highest position, chart by chart, read from ${sourceClause(a)}, including ${count(no1s, "No. 1 peak", "No. 1 peaks")}.`,
+    description: `${a.name}'s peak positions on official singles and album charts across ${count(territories, "territory", "territories")} — every charting release and its highest position, chart by chart, read from ${sourceClause(a)}${no1Tail(no1s, "No. 1 peak", "No. 1 peaks", ", including ")}.`,
     path: `/afrobeats/${a.slug}/charts`,
     keywords: [a.name, "chart positions", "official charts", "peak chart position", "Afrobeats charts"],
     variableMeasured: ["Peak chart position", "Country / territory", "Release", "Chart"],
@@ -164,7 +177,7 @@ export default async function AfroArtistChartsPage({
         backHref={`/afrobeats/${a.slug}`}
         backLabel={`${a.name} · charts`}
         heading={{ lead: a.name, gold: "charts" }}
-        lede={`${count(entries, "entry", "entries")} across ${count(territories, "territory", "territories")}, ${no1s} of them at No. 1 — every peak read from ${sourceClause(a)}.`}
+        lede={`${count(entries, "entry", "entries")} across ${count(territories, "territory", "territories")}${ofThemAtNo1(no1s)} — every peak read from ${sourceClause(a)}.`}
         sourceNote={sourceNote}
         showActionBar={false}
         territoryNote={territoryNote}
@@ -188,7 +201,7 @@ export default async function AfroArtistChartsPage({
           <p className={styles.lede}>
             {/* A single expression: JSX drops the space after an expression when
                 the sentence wraps to the next line, which published "24of them". */}
-            {`${a.name}’s peak positions on the world’s official charts — ${count(entries, "entry", "entries")} across ${count(territories, "territory", "territories")}, ${no1s} of them at No. 1, read from ${sourceClause(a)} rather than a platform or genre listing.`}
+            {`${a.name}’s peak positions on the world’s official charts — ${count(entries, "entry", "entries")} across ${count(territories, "territory", "territories")}${ofThemAtNo1(no1s)}, read from ${sourceClause(a)} rather than a platform or genre listing.`}
           </p>
 
           <div className={styles.statGrid}>
