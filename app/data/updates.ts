@@ -59,6 +59,14 @@ export const updates: Update[] = [
     href: "/records/tours",
   },
   {
+    date: "2026-09-25",
+    category: "Awards",
+    // blog.losheat.tv/archivos/entretenimiento/7963, the body's own nominee
+    // post of 24 Sep 2026.
+    text: "Three HEAT Latin Music Awards 2026 nominations for “Dai Dai” with Shakira, on the body's own list: Canción del Año, Mejor Video and Mejor Canción Viral. Fans vote in the LosHeat.tv app until 15 October; the gala is 5 November in Puerto Vallarta.",
+    href: "/records/awards",
+  },
+  {
     date: "2026-09-24",
     category: "Streaming",
     text: "Still the best-selling African artist of all time: ChartMasters now has Burna Boy on 15.28 million equivalent album sales to Wizkid's 14.96M, a 324,000 lead, with Asake (11.45M) joining them as the third African artist on its 695-name board.",

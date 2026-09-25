@@ -156,6 +156,11 @@ export const pendingResults: PendingCeremony[] = [
   { ceremony: "NRJ Music Awards", year: 2026, date: "2026-10-23", where: "Palais des Festivals, Cannes" },
   // 18th Headies, nominations announced 26 Aug 2026.
   { ceremony: "The Headies", year: 2026, date: "2026-10-25", where: "Toronto" },
+  // HEAT Latin Music Awards al Estilo Jalisco — nominees in the body's own post
+  // of 24 Sep 2026 (blog.losheat.tv/archivos/entretenimiento/7963; premiosheat.com
+  // redirects to losheat.tv). Public vote in the LosHeat.tv app, once every 24
+  // hours, until 15 Oct; the gala is live on LosHeat.tv.
+  { ceremony: "HEAT Latin Music Awards", year: 2026, date: "2026-11-05", where: "Centro Internacional de Convenciones, Puerto Vallarta" },
   // BreakTudo Awards 2026 — nominees in the body's own post of 16 Sep 2026
   // (breaktudoawards.com, "veja a lista completa de indicados"; read in the
   // Wayback captures of 16 and 18 Sep, the live site serving a Cloudflare
@@ -463,6 +468,23 @@ export const ceremonies: Ceremony[] = [
       { year: 2022, category: "Best Live Act", won: false },
       { year: 2022, category: "Best Male West Africa", won: false },
       { year: 2022, category: "Best Collaboration", work: "Sungba (Remix)", won: false },
+    ],
+  },
+  {
+    name: "HEAT Latin Music Awards",
+    noms: [
+      // PENDING — gala 5 Nov 2026, Puerto Vallarta; see `pendingResults` above.
+      // Read on the body's own nominee list (blog.losheat.tv, post of 24 Sep
+      // 2026) on 25 Sep: "CANCIÓN DEL AÑO" and "MEJOR VIDEO" print "Dai Dai —
+      // Shakira, Burna Boy"; "MEJOR CANCIÓN VIRAL" prints "Dai Dai — Shakira &
+      // Burna Boy". Category names as the body writes them, in Spanish only
+      // (Song of the Year, Best Video, Best Viral Song are glosses, not its
+      // names). NOT "Best Music Video": Mejor Video names the artists, and the
+      // director award (Director de Videoclips del Año) does not list Dai Dai.
+      // Not in Mejor Colaboración, and he has no artist category.
+      { year: 2026, category: "Canción del Año", work: "Dai Dai (with Shakira)", won: false },
+      { year: 2026, category: "Mejor Video", work: "Dai Dai (with Shakira)", won: false },
+      { year: 2026, category: "Mejor Canción Viral", work: "Dai Dai (with Shakira)", won: false },
     ],
   },
   {
