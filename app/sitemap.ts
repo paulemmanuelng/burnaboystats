@@ -191,7 +191,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/live-charts", priority: 0.9, changeFrequency: "daily" },
     { path: "/certifications", priority: 0.8, changeFrequency: "weekly" },
     { path: "/compare", priority: 0.7, changeFrequency: "weekly" },
-    // One page per pair of the sixteen artists, canonical order only.
+    // One page per pair of the roster's artists, canonical order only.
     ...allPairs().map(([a, b]) => ({ path: `/compare/${pairSlug(a, b)}`, priority: 0.6, changeFrequency: "weekly" as const })),
     { path: "/compare/in", priority: 0.7, changeFrequency: "weekly" },
     // One board per market the roster holds a plaque in.

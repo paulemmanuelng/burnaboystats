@@ -4,7 +4,7 @@ import { HEAD_TO_HEAD } from "./headToHead";
 
 /**
  * The pretty comparison routes: /compare/<a>-vs-<b>, one per unordered pair of
- * the sixteen artists (120 pages). They exist for search — "burna boy vs
+ * the roster's artists (n × (n − 1) / 2 pages). They exist for search — "burna boy vs
  * wizkid" is a query people actually type — and each one is the compare page
  * with both sides filled, canonical to itself, with its own title,
  * description and share card built from the live figures.
@@ -41,7 +41,8 @@ export function allPairs(): [ComparableArtist, ComparableArtist][] {
  *  24 Sep 2026). On 24 Sep 101 of the 120 pair pages had no direct internal
  *  link — the picker links to ?a=&b= query URLs, which canonicalise to the pair
  *  page but are not it — so a crawler reached them through the sitemap alone.
- *  Every board artist's page carries its fifteen, and Burna Boy's ledger his. */
+ *  Every board artist's page carries one per other artist, and Burna Boy's
+ *  ledger his. */
 export function compareWithLinks(slug: string): { slug: string; name: string; href: string }[] {
   const self = comparableArtists.find((x) => x.slug === slug);
   if (!self) return [];

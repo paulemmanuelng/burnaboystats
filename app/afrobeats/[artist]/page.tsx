@@ -189,8 +189,8 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
           design.
           `faqs` is not decoration. The FAQPage node above goes out at every
           width, but the visible questions were in the `.desktopOnly` half
-          below, which is display:none on a phone — so across these fifteen
-          pages the schema promised Googlebot (which renders at phone width)
+          below, which is display:none on a phone — so across every board
+          page the schema promised Googlebot (which renders at phone width)
           and every phone reader answers the page did not show them. Un-hiding
           that half is not the fix here: it would paint the whole desktop tree
           on a phone. The answers come to the screen instead. */}
@@ -549,7 +549,7 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
           also handed to MobileCerts at the top of this file, which renders it
           into the phone screen. Two copies of the questions, one per layout,
           exactly as both layouts' <h1>s already work.
-          tests/faqMobileVisibility.test.tsx asserts it for all fifteen. */}
+          tests/faqMobileVisibility.test.tsx asserts it for every board artist. */}
       <section id="faq" className={styles.faqPad}>
         <h2 className={styles.h2}>Common questions</h2>
         <div className={styles.faqList}>

@@ -21,7 +21,7 @@ import { livePlatformTotals } from "../data/liveCharts";
 import { compareWithLinks } from "../lib/comparePairs";
 
 // Burna Boy's side of the "Compare with…" list the board artists' pages carry:
-// his fifteen head-to-head pages, each by its canonical URL (E-10, Paul,
+// one pair page per board artist, each by its canonical URL (E-10, Paul,
 // 24 Sep 2026). Same helper, same order as the board's own lists.
 const compareWith = compareWithLinks("burna-boy");
 

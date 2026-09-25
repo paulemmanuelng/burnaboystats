@@ -992,6 +992,23 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "Asake vs Kizz Daniel",
+    "path": "/compare/asake-vs-kizz-daniel",
+    "section": "Compare",
+    "description": "Asake against Kizz Daniel by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "asake",
+      "kizz daniel",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
     "title": "Asake vs Olamide",
     "path": "/compare/asake-vs-olamide",
     "section": "Compare",
@@ -1026,6 +1043,40 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "Asake vs Oxlade",
+    "path": "/compare/asake-vs-oxlade",
+    "section": "Compare",
+    "description": "Asake against Oxlade by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "asake",
+      "oxlade",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Asake vs Ruger",
+    "path": "/compare/asake-vs-ruger",
+    "section": "Compare",
+    "description": "Asake against Ruger by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "asake",
+      "ruger",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
     "title": "Asake vs Tems",
     "path": "/compare/asake-vs-tems",
     "section": "Compare",
@@ -1033,6 +1084,23 @@ export const generatedDocs: SearchDoc[] = [
     "keywords": [
       "asake",
       "tems",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Asake vs Tiwa Savage",
+    "path": "/compare/asake-vs-tiwa-savage",
+    "section": "Compare",
+    "description": "Asake against Tiwa Savage by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "asake",
+      "tiwa savage",
       "vs",
       "versus",
       "compare",
@@ -1128,6 +1196,74 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "Ayra Starr vs Kizz Daniel",
+    "path": "/compare/ayra-starr-vs-kizz-daniel",
+    "section": "Compare",
+    "description": "Ayra Starr against Kizz Daniel by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "ayra starr",
+      "kizz daniel",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Ayra Starr vs Oxlade",
+    "path": "/compare/ayra-starr-vs-oxlade",
+    "section": "Compare",
+    "description": "Ayra Starr against Oxlade by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "ayra starr",
+      "oxlade",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Ayra Starr vs Ruger",
+    "path": "/compare/ayra-starr-vs-ruger",
+    "section": "Compare",
+    "description": "Ayra Starr against Ruger by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "ayra starr",
+      "ruger",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Ayra Starr vs Tiwa Savage",
+    "path": "/compare/ayra-starr-vs-tiwa-savage",
+    "section": "Compare",
+    "description": "Ayra Starr against Tiwa Savage by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "ayra starr",
+      "tiwa savage",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
     "title": "Ayra Starr vs Victony",
     "path": "/compare/ayra-starr-vs-victony",
     "section": "Compare",
@@ -1135,6 +1271,57 @@ export const generatedDocs: SearchDoc[] = [
     "keywords": [
       "ayra starr",
       "victony",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Black Sherif vs Oxlade",
+    "path": "/compare/black-sherif-vs-oxlade",
+    "section": "Compare",
+    "description": "Black Sherif against Oxlade by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "black sherif",
+      "oxlade",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Black Sherif vs Ruger",
+    "path": "/compare/black-sherif-vs-ruger",
+    "section": "Compare",
+    "description": "Black Sherif against Ruger by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "black sherif",
+      "ruger",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Black Sherif vs Tiwa Savage",
+    "path": "/compare/black-sherif-vs-tiwa-savage",
+    "section": "Compare",
+    "description": "Black Sherif against Tiwa Savage by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "black sherif",
+      "tiwa savage",
       "vs",
       "versus",
       "compare",
@@ -1230,6 +1417,23 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "BNXN vs Kizz Daniel",
+    "path": "/compare/bnxn-vs-kizz-daniel",
+    "section": "Compare",
+    "description": "BNXN against Kizz Daniel by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "bnxn",
+      "kizz daniel",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
     "title": "BNXN vs Olamide",
     "path": "/compare/bnxn-vs-olamide",
     "section": "Compare",
@@ -1254,6 +1458,57 @@ export const generatedDocs: SearchDoc[] = [
     "keywords": [
       "bnxn",
       "omah lay",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "BNXN vs Oxlade",
+    "path": "/compare/bnxn-vs-oxlade",
+    "section": "Compare",
+    "description": "BNXN against Oxlade by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "bnxn",
+      "oxlade",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "BNXN vs Ruger",
+    "path": "/compare/bnxn-vs-ruger",
+    "section": "Compare",
+    "description": "BNXN against Ruger by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "bnxn",
+      "ruger",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "BNXN vs Tiwa Savage",
+    "path": "/compare/bnxn-vs-tiwa-savage",
+    "section": "Compare",
+    "description": "BNXN against Tiwa Savage by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "bnxn",
+      "tiwa savage",
       "vs",
       "versus",
       "compare",
@@ -1417,6 +1672,23 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "Burna Boy vs Kizz Daniel",
+    "path": "/compare/burna-boy-vs-kizz-daniel",
+    "section": "Compare",
+    "description": "Burna Boy against Kizz Daniel by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "burna boy",
+      "kizz daniel",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
     "title": "Burna Boy vs Olamide",
     "path": "/compare/burna-boy-vs-olamide",
     "section": "Compare",
@@ -1451,6 +1723,23 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "Burna Boy vs Oxlade",
+    "path": "/compare/burna-boy-vs-oxlade",
+    "section": "Compare",
+    "description": "Burna Boy against Oxlade by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "burna boy",
+      "oxlade",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
     "title": "Burna Boy vs Rema",
     "path": "/compare/burna-boy-vs-rema",
     "section": "Compare",
@@ -1458,6 +1747,23 @@ export const generatedDocs: SearchDoc[] = [
     "keywords": [
       "burna boy",
       "rema",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Burna Boy vs Ruger",
+    "path": "/compare/burna-boy-vs-ruger",
+    "section": "Compare",
+    "description": "Burna Boy against Ruger by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "burna boy",
+      "ruger",
       "vs",
       "versus",
       "compare",
@@ -1492,6 +1798,23 @@ export const generatedDocs: SearchDoc[] = [
     "keywords": [
       "burna boy",
       "tems",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Burna Boy vs Tiwa Savage",
+    "path": "/compare/burna-boy-vs-tiwa-savage",
+    "section": "Compare",
+    "description": "Burna Boy against Tiwa Savage by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "burna boy",
+      "tiwa savage",
       "vs",
       "versus",
       "compare",
@@ -2029,6 +2352,57 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "CKay vs Oxlade",
+    "path": "/compare/ckay-vs-oxlade",
+    "section": "Compare",
+    "description": "CKay against Oxlade by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "ckay",
+      "oxlade",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "CKay vs Ruger",
+    "path": "/compare/ckay-vs-ruger",
+    "section": "Compare",
+    "description": "CKay against Ruger by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "ckay",
+      "ruger",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "CKay vs Tiwa Savage",
+    "path": "/compare/ckay-vs-tiwa-savage",
+    "section": "Compare",
+    "description": "CKay against Tiwa Savage by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "ckay",
+      "tiwa savage",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
     "title": "CKay vs Victony",
     "path": "/compare/ckay-vs-victony",
     "section": "Compare",
@@ -2148,6 +2522,23 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "Davido vs Kizz Daniel",
+    "path": "/compare/davido-vs-kizz-daniel",
+    "section": "Compare",
+    "description": "Davido against Kizz Daniel by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "davido",
+      "kizz daniel",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
     "title": "Davido vs Olamide",
     "path": "/compare/davido-vs-olamide",
     "section": "Compare",
@@ -2182,6 +2573,23 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "Davido vs Oxlade",
+    "path": "/compare/davido-vs-oxlade",
+    "section": "Compare",
+    "description": "Davido against Oxlade by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "davido",
+      "oxlade",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
     "title": "Davido vs Rema",
     "path": "/compare/davido-vs-rema",
     "section": "Compare",
@@ -2199,6 +2607,23 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "Davido vs Ruger",
+    "path": "/compare/davido-vs-ruger",
+    "section": "Compare",
+    "description": "Davido against Ruger by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "davido",
+      "ruger",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
     "title": "Davido vs Tems",
     "path": "/compare/davido-vs-tems",
     "section": "Compare",
@@ -2206,6 +2631,23 @@ export const generatedDocs: SearchDoc[] = [
     "keywords": [
       "davido",
       "tems",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Davido vs Tiwa Savage",
+    "path": "/compare/davido-vs-tiwa-savage",
+    "section": "Compare",
+    "description": "Davido against Tiwa Savage by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "davido",
+      "tiwa savage",
       "vs",
       "versus",
       "compare",
@@ -2284,12 +2726,182 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "Fireboy DML vs Kizz Daniel",
+    "path": "/compare/fireboy-dml-vs-kizz-daniel",
+    "section": "Compare",
+    "description": "Fireboy DML against Kizz Daniel by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "fireboy dml",
+      "kizz daniel",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Fireboy DML vs Oxlade",
+    "path": "/compare/fireboy-dml-vs-oxlade",
+    "section": "Compare",
+    "description": "Fireboy DML against Oxlade by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "fireboy dml",
+      "oxlade",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Fireboy DML vs Ruger",
+    "path": "/compare/fireboy-dml-vs-ruger",
+    "section": "Compare",
+    "description": "Fireboy DML against Ruger by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "fireboy dml",
+      "ruger",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Fireboy DML vs Tiwa Savage",
+    "path": "/compare/fireboy-dml-vs-tiwa-savage",
+    "section": "Compare",
+    "description": "Fireboy DML against Tiwa Savage by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "fireboy dml",
+      "tiwa savage",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
     "title": "Fireboy DML vs Victony",
     "path": "/compare/fireboy-dml-vs-victony",
     "section": "Compare",
     "description": "Fireboy DML against Victony by certified units — every plaque priced at its own body's threshold, country by country.",
     "keywords": [
       "fireboy dml",
+      "victony",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Kizz Daniel vs Black Sherif",
+    "path": "/compare/kizz-daniel-vs-black-sherif",
+    "section": "Compare",
+    "description": "Kizz Daniel against Black Sherif by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "kizz daniel",
+      "black sherif",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Kizz Daniel vs CKay",
+    "path": "/compare/kizz-daniel-vs-ckay",
+    "section": "Compare",
+    "description": "Kizz Daniel against CKay by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "kizz daniel",
+      "ckay",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Kizz Daniel vs Oxlade",
+    "path": "/compare/kizz-daniel-vs-oxlade",
+    "section": "Compare",
+    "description": "Kizz Daniel against Oxlade by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "kizz daniel",
+      "oxlade",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Kizz Daniel vs Ruger",
+    "path": "/compare/kizz-daniel-vs-ruger",
+    "section": "Compare",
+    "description": "Kizz Daniel against Ruger by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "kizz daniel",
+      "ruger",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Kizz Daniel vs Tiwa Savage",
+    "path": "/compare/kizz-daniel-vs-tiwa-savage",
+    "section": "Compare",
+    "description": "Kizz Daniel against Tiwa Savage by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "kizz daniel",
+      "tiwa savage",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Kizz Daniel vs Victony",
+    "path": "/compare/kizz-daniel-vs-victony",
+    "section": "Compare",
+    "description": "Kizz Daniel against Victony by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "kizz daniel",
       "victony",
       "vs",
       "versus",
@@ -2359,6 +2971,74 @@ export const generatedDocs: SearchDoc[] = [
     "keywords": [
       "olamide",
       "fireboy dml",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Olamide vs Kizz Daniel",
+    "path": "/compare/olamide-vs-kizz-daniel",
+    "section": "Compare",
+    "description": "Olamide against Kizz Daniel by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "olamide",
+      "kizz daniel",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Olamide vs Oxlade",
+    "path": "/compare/olamide-vs-oxlade",
+    "section": "Compare",
+    "description": "Olamide against Oxlade by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "olamide",
+      "oxlade",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Olamide vs Ruger",
+    "path": "/compare/olamide-vs-ruger",
+    "section": "Compare",
+    "description": "Olamide against Ruger by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "olamide",
+      "ruger",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Olamide vs Tiwa Savage",
+    "path": "/compare/olamide-vs-tiwa-savage",
+    "section": "Compare",
+    "description": "Olamide against Tiwa Savage by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "olamide",
+      "tiwa savage",
       "vs",
       "versus",
       "compare",
@@ -2454,6 +3134,23 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "Omah Lay vs Kizz Daniel",
+    "path": "/compare/omah-lay-vs-kizz-daniel",
+    "section": "Compare",
+    "description": "Omah Lay against Kizz Daniel by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "omah lay",
+      "kizz daniel",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
     "title": "Omah Lay vs Olamide",
     "path": "/compare/omah-lay-vs-olamide",
     "section": "Compare",
@@ -2471,6 +3168,57 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "Omah Lay vs Oxlade",
+    "path": "/compare/omah-lay-vs-oxlade",
+    "section": "Compare",
+    "description": "Omah Lay against Oxlade by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "omah lay",
+      "oxlade",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Omah Lay vs Ruger",
+    "path": "/compare/omah-lay-vs-ruger",
+    "section": "Compare",
+    "description": "Omah Lay against Ruger by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "omah lay",
+      "ruger",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Omah Lay vs Tiwa Savage",
+    "path": "/compare/omah-lay-vs-tiwa-savage",
+    "section": "Compare",
+    "description": "Omah Lay against Tiwa Savage by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "omah lay",
+      "tiwa savage",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
     "title": "Omah Lay vs Victony",
     "path": "/compare/omah-lay-vs-victony",
     "section": "Compare",
@@ -2478,6 +3226,23 @@ export const generatedDocs: SearchDoc[] = [
     "keywords": [
       "omah lay",
       "victony",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Oxlade vs Tiwa Savage",
+    "path": "/compare/oxlade-vs-tiwa-savage",
+    "section": "Compare",
+    "description": "Oxlade against Tiwa Savage by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "oxlade",
+      "tiwa savage",
       "vs",
       "versus",
       "compare",
@@ -2590,6 +3355,23 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "Rema vs Kizz Daniel",
+    "path": "/compare/rema-vs-kizz-daniel",
+    "section": "Compare",
+    "description": "Rema against Kizz Daniel by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "rema",
+      "kizz daniel",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
     "title": "Rema vs Olamide",
     "path": "/compare/rema-vs-olamide",
     "section": "Compare",
@@ -2624,6 +3406,40 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "Rema vs Oxlade",
+    "path": "/compare/rema-vs-oxlade",
+    "section": "Compare",
+    "description": "Rema against Oxlade by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "rema",
+      "oxlade",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Rema vs Ruger",
+    "path": "/compare/rema-vs-ruger",
+    "section": "Compare",
+    "description": "Rema against Ruger by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "rema",
+      "ruger",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
     "title": "Rema vs Tems",
     "path": "/compare/rema-vs-tems",
     "section": "Compare",
@@ -2631,6 +3447,23 @@ export const generatedDocs: SearchDoc[] = [
     "keywords": [
       "rema",
       "tems",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Rema vs Tiwa Savage",
+    "path": "/compare/rema-vs-tiwa-savage",
+    "section": "Compare",
+    "description": "Rema against Tiwa Savage by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "rema",
+      "tiwa savage",
       "vs",
       "versus",
       "compare",
@@ -2665,6 +3498,40 @@ export const generatedDocs: SearchDoc[] = [
     "keywords": [
       "rema",
       "victony",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Ruger vs Oxlade",
+    "path": "/compare/ruger-vs-oxlade",
+    "section": "Compare",
+    "description": "Ruger against Oxlade by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "ruger",
+      "oxlade",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Ruger vs Tiwa Savage",
+    "path": "/compare/ruger-vs-tiwa-savage",
+    "section": "Compare",
+    "description": "Ruger against Tiwa Savage by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "ruger",
+      "tiwa savage",
       "vs",
       "versus",
       "compare",
@@ -2794,6 +3661,23 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "Seyi Vibez vs Kizz Daniel",
+    "path": "/compare/seyi-vibez-vs-kizz-daniel",
+    "section": "Compare",
+    "description": "Seyi Vibez against Kizz Daniel by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "seyi vibez",
+      "kizz daniel",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
     "title": "Seyi Vibez vs Olamide",
     "path": "/compare/seyi-vibez-vs-olamide",
     "section": "Compare",
@@ -2828,6 +3712,23 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "Seyi Vibez vs Oxlade",
+    "path": "/compare/seyi-vibez-vs-oxlade",
+    "section": "Compare",
+    "description": "Seyi Vibez against Oxlade by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "seyi vibez",
+      "oxlade",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
     "title": "Seyi Vibez vs Rema",
     "path": "/compare/seyi-vibez-vs-rema",
     "section": "Compare",
@@ -2845,6 +3746,23 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "Seyi Vibez vs Ruger",
+    "path": "/compare/seyi-vibez-vs-ruger",
+    "section": "Compare",
+    "description": "Seyi Vibez against Ruger by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "seyi vibez",
+      "ruger",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
     "title": "Seyi Vibez vs Tems",
     "path": "/compare/seyi-vibez-vs-tems",
     "section": "Compare",
@@ -2852,6 +3770,23 @@ export const generatedDocs: SearchDoc[] = [
     "keywords": [
       "seyi vibez",
       "tems",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Seyi Vibez vs Tiwa Savage",
+    "path": "/compare/seyi-vibez-vs-tiwa-savage",
+    "section": "Compare",
+    "description": "Seyi Vibez against Tiwa Savage by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "seyi vibez",
+      "tiwa savage",
       "vs",
       "versus",
       "compare",
@@ -2981,6 +3916,23 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "Tems vs Kizz Daniel",
+    "path": "/compare/tems-vs-kizz-daniel",
+    "section": "Compare",
+    "description": "Tems against Kizz Daniel by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "tems",
+      "kizz daniel",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
     "title": "Tems vs Olamide",
     "path": "/compare/tems-vs-olamide",
     "section": "Compare",
@@ -3005,6 +3957,57 @@ export const generatedDocs: SearchDoc[] = [
     "keywords": [
       "tems",
       "omah lay",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Tems vs Oxlade",
+    "path": "/compare/tems-vs-oxlade",
+    "section": "Compare",
+    "description": "Tems against Oxlade by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "tems",
+      "oxlade",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Tems vs Ruger",
+    "path": "/compare/tems-vs-ruger",
+    "section": "Compare",
+    "description": "Tems against Ruger by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "tems",
+      "ruger",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Tems vs Tiwa Savage",
+    "path": "/compare/tems-vs-tiwa-savage",
+    "section": "Compare",
+    "description": "Tems against Tiwa Savage by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "tems",
+      "tiwa savage",
       "vs",
       "versus",
       "compare",
@@ -3117,6 +4120,23 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "Tyla vs Kizz Daniel",
+    "path": "/compare/tyla-vs-kizz-daniel",
+    "section": "Compare",
+    "description": "Tyla against Kizz Daniel by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "tyla",
+      "kizz daniel",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
     "title": "Tyla vs Olamide",
     "path": "/compare/tyla-vs-olamide",
     "section": "Compare",
@@ -3151,6 +4171,57 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "Tyla vs Oxlade",
+    "path": "/compare/tyla-vs-oxlade",
+    "section": "Compare",
+    "description": "Tyla against Oxlade by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "tyla",
+      "oxlade",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Tyla vs Ruger",
+    "path": "/compare/tyla-vs-ruger",
+    "section": "Compare",
+    "description": "Tyla against Ruger by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "tyla",
+      "ruger",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Tyla vs Tiwa Savage",
+    "path": "/compare/tyla-vs-tiwa-savage",
+    "section": "Compare",
+    "description": "Tyla against Tiwa Savage by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "tyla",
+      "tiwa savage",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
     "title": "Tyla vs Victony",
     "path": "/compare/tyla-vs-victony",
     "section": "Compare",
@@ -3158,6 +4229,57 @@ export const generatedDocs: SearchDoc[] = [
     "keywords": [
       "tyla",
       "victony",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Victony vs Oxlade",
+    "path": "/compare/victony-vs-oxlade",
+    "section": "Compare",
+    "description": "Victony against Oxlade by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "victony",
+      "oxlade",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Victony vs Ruger",
+    "path": "/compare/victony-vs-ruger",
+    "section": "Compare",
+    "description": "Victony against Ruger by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "victony",
+      "ruger",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Victony vs Tiwa Savage",
+    "path": "/compare/victony-vs-tiwa-savage",
+    "section": "Compare",
+    "description": "Victony against Tiwa Savage by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "victony",
+      "tiwa savage",
       "vs",
       "versus",
       "compare",
@@ -3287,6 +4409,23 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "Wizkid vs Kizz Daniel",
+    "path": "/compare/wizkid-vs-kizz-daniel",
+    "section": "Compare",
+    "description": "Wizkid against Kizz Daniel by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "wizkid",
+      "kizz daniel",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
     "title": "Wizkid vs Olamide",
     "path": "/compare/wizkid-vs-olamide",
     "section": "Compare",
@@ -3321,6 +4460,23 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "Wizkid vs Oxlade",
+    "path": "/compare/wizkid-vs-oxlade",
+    "section": "Compare",
+    "description": "Wizkid against Oxlade by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "wizkid",
+      "oxlade",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
     "title": "Wizkid vs Rema",
     "path": "/compare/wizkid-vs-rema",
     "section": "Compare",
@@ -3328,6 +4484,23 @@ export const generatedDocs: SearchDoc[] = [
     "keywords": [
       "wizkid",
       "rema",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Wizkid vs Ruger",
+    "path": "/compare/wizkid-vs-ruger",
+    "section": "Compare",
+    "description": "Wizkid against Ruger by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "wizkid",
+      "ruger",
       "vs",
       "versus",
       "compare",
@@ -3362,6 +4535,23 @@ export const generatedDocs: SearchDoc[] = [
     "keywords": [
       "wizkid",
       "tems",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Wizkid vs Tiwa Savage",
+    "path": "/compare/wizkid-vs-tiwa-savage",
+    "section": "Compare",
+    "description": "Wizkid against Tiwa Savage by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "wizkid",
+      "tiwa savage",
       "vs",
       "versus",
       "compare",

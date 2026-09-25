@@ -136,7 +136,7 @@ export default function MobileCerts({
   /**
    * The screen's own FAQ, when its route emits FAQPage.
    *
-   * Only /afrobeats/[artist] passes any: those fifteen pages emit the node at
+   * Only /afrobeats/[artist] passes any: every board page emits the node at
    * every width while their visible copy sat in the page's `.desktopOnly`
    * half, which is display:none on a phone. Burna Boy's /certifications, this
    * component's other caller, emits no FAQPage and passes nothing — which is
@@ -650,7 +650,7 @@ export default function MobileCerts({
       {/* The last content section, which is where the artist page's desktop
           layout puts it too: plaques, then the boards, then the questions a
           reader arrives with. A board artist passes history={[]}, so on those
-          fifteen screens this follows the two board links directly. */}
+          screens this follows the two board links directly. */}
       {faqs && faqs.length > 0 && (
         <MobileFaqSection title="Common questions" items={faqs} />
       )}
@@ -661,7 +661,7 @@ export default function MobileCerts({
       {showActionBar && (
       <div className={styles.actionBar}>
         {/* Compare is the first action this bar has ever held that means
-            something for all sixteen artists — "/share" builds a BURNA stat
+            something for every artist on the roster — "/share" builds a BURNA stat
             card, which is why the bar was suppressed on the board pages. So the
             stat card is demoted rather than removed, and only where it exists. */}
         <Link href={`/compare?a=${compareSlug}`} className={styles.actionPrimary}>

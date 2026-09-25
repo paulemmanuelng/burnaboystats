@@ -28,7 +28,7 @@ export const alt = "Official chart peaks by country, read from each country's ow
  * next/og has no emoji glyphs, so satori resolves every flag through
  * `loadAdditionalAsset`, which fetches twemoji from jsDelivr AT RENDER TIME.
  * A failed <img> is swallowed by satori and the card just loses the picture —
- * but a failed EMOJI fetch rejects the whole render, and these fifteen cards
+ * but a failed EMOJI fetch rejects the whole render, and these cards
  * are not prerendered (zero paths in the prerender manifest, one per artist,
  * re-rendered after every deploy the stats bot triggers). Returning the
  * ImageResponse directly meant that rejection landed mid-stream, after the

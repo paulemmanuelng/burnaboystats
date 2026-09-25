@@ -219,7 +219,13 @@ describe("rule 3 — what cannot be priced is counted and named", () => {
 });
 
 describe("the Nigeria default", () => {
-  it("fires on 57 of the 120 pairs on the default view (every plaque), 63 with lead credits only", () => {
+  it("fires on 92 of the 190 pairs on the default view (every plaque), 106 with lead credits only", () => {
+    // Re-measured 25 Sep 2026 by a separate script over the plaque arrays when
+    // Kizz Daniel, Ruger, Oxlade and Tiwa Savage joined: they add 35 firing
+    // pairs to the default view (57 → 92) and 43 with lead credits only
+    // (63 → 106). Their plaques are mostly Nigerian, so the home-market clause
+    // fires against most of the board; Oxlade, certified in ten countries on
+    // one record, fires only against the artists with no plaque abroad.
     // Both counts were measured from the plaque arrays by a separate script
     // before being pinned here, so a change to either clause has to be
     // deliberate. The two differ because the zero-international clause looks
@@ -236,9 +242,9 @@ describe("the Nigeria default", () => {
           if (nigeriaDefault(all[i], all[j], includeFeatures).on) n++;
       return n;
     };
-    expect(all).toHaveLength(16);
-    expect(count(false)).toBe(63);
-    expect(count(true)).toBe(57);
+    expect(all).toHaveLength(20);
+    expect(count(false)).toBe(106);
+    expect(count(true)).toBe(92);
   });
 
   it("rescues BNXN on the default view, where all his international plaques are features", () => {
@@ -296,7 +302,11 @@ describe("the Nigeria default", () => {
     // Not a typed list: Asake at ~89% would move on four plaques.
     expect(nigeriaShare(bySlug("asake"))).toBeGreaterThan(0.5);
     expect(nigeriaShare(bySlug("tyla"))).toBeLessThan(0.1);
-    expect(comparableArtists.filter(isHomeMarketArtist)).toHaveLength(10);
+    // 10 until 25 Sep 2026. Kizz Daniel, Ruger and Tiwa Savage hold most of
+    // their plaques in Nigeria and join; Oxlade, with ten countries on one
+    // record, does not.
+    expect(comparableArtists.filter(isHomeMarketArtist)).toHaveLength(13);
+    expect(isHomeMarketArtist(bySlug("oxlade"))).toBe(false);
   });
 });
 

@@ -7,7 +7,7 @@ Every certification and chart peak on [/afrobeats](https://burnaboystats.com/afr
 | `<artist>-certifications-v1.md` | every plaque, per title, per country, with a verification mark |
 | `<artist>-chart-peaks-v1.md` | every charting position, per title, per country |
 
-Nine artists: Wizkid, Davido, Rema, Tems, Tyla, Ayra Starr, Asake, Omah Lay, Seyi Vibez. Swept 15–19 August 2026.
+One pair of files for every artist on the board; `tests/sweepDocs.test.ts` fails if one is missing. The first nine (Wizkid, Davido, Rema, Tems, Tyla, Ayra Starr, Asake, Omah Lay, Seyi Vibez) were swept 15–19 August 2026; the rest joined later, each with its own dated sweep.
 
 One file is Burna Boy's own: `burna-boy-nigeria-2026-09-18.md` — every issue of TurnTable's Nigeria Top 100 and Top 100 Albums walked for his catalogue on 18 September 2026 (the 89 Nigerian peaks in `app/data/charts.ts`, each with the issue that set it). The walker is `scripts/turntable-walk.mjs`.
 
@@ -17,6 +17,9 @@ They lived outside the repo until 21 August 2026, which meant the site published
 
 - **✓** — seen in the issuing body's own **live** register.
 - **✓ᴬ** — seen in the issuing body's own **archived** register: a Wayback capture of the same URL, fetched in the raw `…{timestamp}id_/…` form so the response is the original bytes rather than the toolbar-injected page.
+- **✓ᴴ** — seen in the Hung Medien chart database (swisscharts.com and its mirrors), not at the chart body's own site, because that site could not be read. Used for a chart row only, never a plaque, and the file says which body it stands in for.
+
+**By hand, never read by an agent** (owner rulings, 24–25 Sep 2026): TOSAC (South Africa's chart), RiSA, FIMI, the BPI, ARIA's accreditation Dropbox, AFP's uploads, dutchcharts.nl, top40.nl and billboard.com — Wayback copies included. A row whose only evidence came from one of them is not published; it goes on Paul's weekly hand-check list with the exact search to run, and is added when he confirms it.
 
 A register read in full and holding nothing is recorded as a **proven zero**. A register that could not be read is recorded as a **gap**, never as a zero. The distinction matters and the files keep it.
 

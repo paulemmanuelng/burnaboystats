@@ -41,7 +41,7 @@ function parse(url: string): { variants: Record<number, string>; suffix: string 
  * callers can spread it onto an <img> and get today's behaviour unchanged.
  *
  * `maxWidth` caps the ladder. It exists for art that is deliberately
- * de-emphasised — the nine wall tiles on the mobile board are greyscaled, sit
+ * de-emphasised — the wall tiles on the mobile board are greyscaled, sit
  * under a scrim reaching 0.94 opacity and paint 220px wide, and at the 640 rung
  * apiece they were most of that screen's 904KB. Capping them at 320 is a real
  * trade: a little softer on a dense screen, about 650KB lighter. Leave it unset

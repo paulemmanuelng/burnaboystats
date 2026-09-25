@@ -102,7 +102,7 @@ export interface ComparableArtist {
 }
 
 // ---------------------------------------------------------------------------
-// The roster: Burna Boy plus the fifteen board artists, on one shape.
+// The roster: Burna Boy plus every board artist, on one shape.
 //
 // Burna is deliberately NOT inside `afrobeatsArtists` — that array is his PEERS,
 // and the board's own header says so. His releases live in certifications.ts as

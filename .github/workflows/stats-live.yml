@@ -130,11 +130,11 @@ jobs:
 
       # The board rebuild is allowed to fail without blocking his refresh — that
       # is what continue-on-error buys, and it is the right trade. What it must
-      # not buy is silence: without this the nine board pages can freeze on a
+      # not buy is silence: without this every board live page can freeze on a
       # stale snapshot behind a green tick, indefinitely. Runs last so the commit
       # above still publishes.
       - name: Surface a failed board rebuild
         if: steps.board.outcome == 'failure'
         run: |
-          echo "::error::The board's live charts failed to rebuild. His own figures were published; the nine board live pages are serving the previous snapshot until this is fixed."
+          echo "::error::The board's live charts failed to rebuild. His own figures were published; the board's live pages are serving the previous snapshot until this is fixed."
           exit 1

@@ -208,6 +208,10 @@ export const SEGMENT_LABELS: Record<string, string> = {
   olamide: "Olamide",
   "black-sherif": "Black Sherif",
   bnxn: "BNXN",
+  "kizz-daniel": "Kizz Daniel",
+  ruger: "Ruger",
+  oxlade: "Oxlade",
+  "tiwa-savage": "Tiwa Savage",
   "dai-dai": "The Dai Dai Story",
   // The leaf of /dai-dai/es. /dai-dai hand-writes its own trail, but the
   // Spanish edition is not in OWN_BREADCRUMB, so it takes the generated one —

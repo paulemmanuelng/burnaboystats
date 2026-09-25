@@ -60,6 +60,11 @@
     "permanent": true
   },
   {
+    "source": "/compare/kizz-daniel-vs-burna-boy",
+    "destination": "/compare/burna-boy-vs-kizz-daniel",
+    "permanent": true
+  },
+  {
     "source": "/compare/ckay-vs-burna-boy",
     "destination": "/compare/burna-boy-vs-ckay",
     "permanent": true
@@ -72,6 +77,21 @@
   {
     "source": "/compare/victony-vs-burna-boy",
     "destination": "/compare/burna-boy-vs-victony",
+    "permanent": true
+  },
+  {
+    "source": "/compare/ruger-vs-burna-boy",
+    "destination": "/compare/burna-boy-vs-ruger",
+    "permanent": true
+  },
+  {
+    "source": "/compare/oxlade-vs-burna-boy",
+    "destination": "/compare/burna-boy-vs-oxlade",
+    "permanent": true
+  },
+  {
+    "source": "/compare/tiwa-savage-vs-burna-boy",
+    "destination": "/compare/burna-boy-vs-tiwa-savage",
     "permanent": true
   },
   {
@@ -130,6 +150,11 @@
     "permanent": true
   },
   {
+    "source": "/compare/kizz-daniel-vs-wizkid",
+    "destination": "/compare/wizkid-vs-kizz-daniel",
+    "permanent": true
+  },
+  {
     "source": "/compare/ckay-vs-wizkid",
     "destination": "/compare/wizkid-vs-ckay",
     "permanent": true
@@ -142,6 +167,21 @@
   {
     "source": "/compare/victony-vs-wizkid",
     "destination": "/compare/wizkid-vs-victony",
+    "permanent": true
+  },
+  {
+    "source": "/compare/ruger-vs-wizkid",
+    "destination": "/compare/wizkid-vs-ruger",
+    "permanent": true
+  },
+  {
+    "source": "/compare/oxlade-vs-wizkid",
+    "destination": "/compare/wizkid-vs-oxlade",
+    "permanent": true
+  },
+  {
+    "source": "/compare/tiwa-savage-vs-wizkid",
+    "destination": "/compare/wizkid-vs-tiwa-savage",
     "permanent": true
   },
   {
@@ -195,6 +235,11 @@
     "permanent": true
   },
   {
+    "source": "/compare/kizz-daniel-vs-seyi-vibez",
+    "destination": "/compare/seyi-vibez-vs-kizz-daniel",
+    "permanent": true
+  },
+  {
     "source": "/compare/ckay-vs-seyi-vibez",
     "destination": "/compare/seyi-vibez-vs-ckay",
     "permanent": true
@@ -207,6 +252,21 @@
   {
     "source": "/compare/victony-vs-seyi-vibez",
     "destination": "/compare/seyi-vibez-vs-victony",
+    "permanent": true
+  },
+  {
+    "source": "/compare/ruger-vs-seyi-vibez",
+    "destination": "/compare/seyi-vibez-vs-ruger",
+    "permanent": true
+  },
+  {
+    "source": "/compare/oxlade-vs-seyi-vibez",
+    "destination": "/compare/seyi-vibez-vs-oxlade",
+    "permanent": true
+  },
+  {
+    "source": "/compare/tiwa-savage-vs-seyi-vibez",
+    "destination": "/compare/seyi-vibez-vs-tiwa-savage",
     "permanent": true
   },
   {
@@ -255,6 +315,11 @@
     "permanent": true
   },
   {
+    "source": "/compare/kizz-daniel-vs-davido",
+    "destination": "/compare/davido-vs-kizz-daniel",
+    "permanent": true
+  },
+  {
     "source": "/compare/ckay-vs-davido",
     "destination": "/compare/davido-vs-ckay",
     "permanent": true
@@ -267,6 +332,21 @@
   {
     "source": "/compare/victony-vs-davido",
     "destination": "/compare/davido-vs-victony",
+    "permanent": true
+  },
+  {
+    "source": "/compare/ruger-vs-davido",
+    "destination": "/compare/davido-vs-ruger",
+    "permanent": true
+  },
+  {
+    "source": "/compare/oxlade-vs-davido",
+    "destination": "/compare/davido-vs-oxlade",
+    "permanent": true
+  },
+  {
+    "source": "/compare/tiwa-savage-vs-davido",
+    "destination": "/compare/davido-vs-tiwa-savage",
     "permanent": true
   },
   {
@@ -310,6 +390,11 @@
     "permanent": true
   },
   {
+    "source": "/compare/kizz-daniel-vs-rema",
+    "destination": "/compare/rema-vs-kizz-daniel",
+    "permanent": true
+  },
+  {
     "source": "/compare/ckay-vs-rema",
     "destination": "/compare/rema-vs-ckay",
     "permanent": true
@@ -322,6 +407,21 @@
   {
     "source": "/compare/victony-vs-rema",
     "destination": "/compare/rema-vs-victony",
+    "permanent": true
+  },
+  {
+    "source": "/compare/ruger-vs-rema",
+    "destination": "/compare/rema-vs-ruger",
+    "permanent": true
+  },
+  {
+    "source": "/compare/oxlade-vs-rema",
+    "destination": "/compare/rema-vs-oxlade",
+    "permanent": true
+  },
+  {
+    "source": "/compare/tiwa-savage-vs-rema",
+    "destination": "/compare/rema-vs-tiwa-savage",
     "permanent": true
   },
   {
@@ -360,6 +460,11 @@
     "permanent": true
   },
   {
+    "source": "/compare/kizz-daniel-vs-asake",
+    "destination": "/compare/asake-vs-kizz-daniel",
+    "permanent": true
+  },
+  {
     "source": "/compare/ckay-vs-asake",
     "destination": "/compare/asake-vs-ckay",
     "permanent": true
@@ -372,6 +477,21 @@
   {
     "source": "/compare/victony-vs-asake",
     "destination": "/compare/asake-vs-victony",
+    "permanent": true
+  },
+  {
+    "source": "/compare/ruger-vs-asake",
+    "destination": "/compare/asake-vs-ruger",
+    "permanent": true
+  },
+  {
+    "source": "/compare/oxlade-vs-asake",
+    "destination": "/compare/asake-vs-oxlade",
+    "permanent": true
+  },
+  {
+    "source": "/compare/tiwa-savage-vs-asake",
+    "destination": "/compare/asake-vs-tiwa-savage",
     "permanent": true
   },
   {
@@ -405,6 +525,11 @@
     "permanent": true
   },
   {
+    "source": "/compare/kizz-daniel-vs-tems",
+    "destination": "/compare/tems-vs-kizz-daniel",
+    "permanent": true
+  },
+  {
     "source": "/compare/ckay-vs-tems",
     "destination": "/compare/tems-vs-ckay",
     "permanent": true
@@ -417,6 +542,21 @@
   {
     "source": "/compare/victony-vs-tems",
     "destination": "/compare/tems-vs-victony",
+    "permanent": true
+  },
+  {
+    "source": "/compare/ruger-vs-tems",
+    "destination": "/compare/tems-vs-ruger",
+    "permanent": true
+  },
+  {
+    "source": "/compare/oxlade-vs-tems",
+    "destination": "/compare/tems-vs-oxlade",
+    "permanent": true
+  },
+  {
+    "source": "/compare/tiwa-savage-vs-tems",
+    "destination": "/compare/tems-vs-tiwa-savage",
     "permanent": true
   },
   {
@@ -445,6 +585,11 @@
     "permanent": true
   },
   {
+    "source": "/compare/kizz-daniel-vs-bnxn",
+    "destination": "/compare/bnxn-vs-kizz-daniel",
+    "permanent": true
+  },
+  {
     "source": "/compare/ckay-vs-bnxn",
     "destination": "/compare/bnxn-vs-ckay",
     "permanent": true
@@ -457,6 +602,21 @@
   {
     "source": "/compare/victony-vs-bnxn",
     "destination": "/compare/bnxn-vs-victony",
+    "permanent": true
+  },
+  {
+    "source": "/compare/ruger-vs-bnxn",
+    "destination": "/compare/bnxn-vs-ruger",
+    "permanent": true
+  },
+  {
+    "source": "/compare/oxlade-vs-bnxn",
+    "destination": "/compare/bnxn-vs-oxlade",
+    "permanent": true
+  },
+  {
+    "source": "/compare/tiwa-savage-vs-bnxn",
+    "destination": "/compare/bnxn-vs-tiwa-savage",
     "permanent": true
   },
   {
@@ -480,6 +640,11 @@
     "permanent": true
   },
   {
+    "source": "/compare/kizz-daniel-vs-tyla",
+    "destination": "/compare/tyla-vs-kizz-daniel",
+    "permanent": true
+  },
+  {
     "source": "/compare/ckay-vs-tyla",
     "destination": "/compare/tyla-vs-ckay",
     "permanent": true
@@ -492,6 +657,21 @@
   {
     "source": "/compare/victony-vs-tyla",
     "destination": "/compare/tyla-vs-victony",
+    "permanent": true
+  },
+  {
+    "source": "/compare/ruger-vs-tyla",
+    "destination": "/compare/tyla-vs-ruger",
+    "permanent": true
+  },
+  {
+    "source": "/compare/oxlade-vs-tyla",
+    "destination": "/compare/tyla-vs-oxlade",
+    "permanent": true
+  },
+  {
+    "source": "/compare/tiwa-savage-vs-tyla",
+    "destination": "/compare/tyla-vs-tiwa-savage",
     "permanent": true
   },
   {
@@ -510,6 +690,11 @@
     "permanent": true
   },
   {
+    "source": "/compare/kizz-daniel-vs-omah-lay",
+    "destination": "/compare/omah-lay-vs-kizz-daniel",
+    "permanent": true
+  },
+  {
     "source": "/compare/ckay-vs-omah-lay",
     "destination": "/compare/omah-lay-vs-ckay",
     "permanent": true
@@ -525,6 +710,21 @@
     "permanent": true
   },
   {
+    "source": "/compare/ruger-vs-omah-lay",
+    "destination": "/compare/omah-lay-vs-ruger",
+    "permanent": true
+  },
+  {
+    "source": "/compare/oxlade-vs-omah-lay",
+    "destination": "/compare/omah-lay-vs-oxlade",
+    "permanent": true
+  },
+  {
+    "source": "/compare/tiwa-savage-vs-omah-lay",
+    "destination": "/compare/omah-lay-vs-tiwa-savage",
+    "permanent": true
+  },
+  {
     "source": "/compare/ayra-starr-vs-olamide",
     "destination": "/compare/olamide-vs-ayra-starr",
     "permanent": true
@@ -532,6 +732,11 @@
   {
     "source": "/compare/fireboy-dml-vs-olamide",
     "destination": "/compare/olamide-vs-fireboy-dml",
+    "permanent": true
+  },
+  {
+    "source": "/compare/kizz-daniel-vs-olamide",
+    "destination": "/compare/olamide-vs-kizz-daniel",
     "permanent": true
   },
   {
@@ -550,8 +755,28 @@
     "permanent": true
   },
   {
+    "source": "/compare/ruger-vs-olamide",
+    "destination": "/compare/olamide-vs-ruger",
+    "permanent": true
+  },
+  {
+    "source": "/compare/oxlade-vs-olamide",
+    "destination": "/compare/olamide-vs-oxlade",
+    "permanent": true
+  },
+  {
+    "source": "/compare/tiwa-savage-vs-olamide",
+    "destination": "/compare/olamide-vs-tiwa-savage",
+    "permanent": true
+  },
+  {
     "source": "/compare/fireboy-dml-vs-ayra-starr",
     "destination": "/compare/ayra-starr-vs-fireboy-dml",
+    "permanent": true
+  },
+  {
+    "source": "/compare/kizz-daniel-vs-ayra-starr",
+    "destination": "/compare/ayra-starr-vs-kizz-daniel",
     "permanent": true
   },
   {
@@ -570,6 +795,26 @@
     "permanent": true
   },
   {
+    "source": "/compare/ruger-vs-ayra-starr",
+    "destination": "/compare/ayra-starr-vs-ruger",
+    "permanent": true
+  },
+  {
+    "source": "/compare/oxlade-vs-ayra-starr",
+    "destination": "/compare/ayra-starr-vs-oxlade",
+    "permanent": true
+  },
+  {
+    "source": "/compare/tiwa-savage-vs-ayra-starr",
+    "destination": "/compare/ayra-starr-vs-tiwa-savage",
+    "permanent": true
+  },
+  {
+    "source": "/compare/kizz-daniel-vs-fireboy-dml",
+    "destination": "/compare/fireboy-dml-vs-kizz-daniel",
+    "permanent": true
+  },
+  {
     "source": "/compare/ckay-vs-fireboy-dml",
     "destination": "/compare/fireboy-dml-vs-ckay",
     "permanent": true
@@ -585,6 +830,51 @@
     "permanent": true
   },
   {
+    "source": "/compare/ruger-vs-fireboy-dml",
+    "destination": "/compare/fireboy-dml-vs-ruger",
+    "permanent": true
+  },
+  {
+    "source": "/compare/oxlade-vs-fireboy-dml",
+    "destination": "/compare/fireboy-dml-vs-oxlade",
+    "permanent": true
+  },
+  {
+    "source": "/compare/tiwa-savage-vs-fireboy-dml",
+    "destination": "/compare/fireboy-dml-vs-tiwa-savage",
+    "permanent": true
+  },
+  {
+    "source": "/compare/ckay-vs-kizz-daniel",
+    "destination": "/compare/kizz-daniel-vs-ckay",
+    "permanent": true
+  },
+  {
+    "source": "/compare/black-sherif-vs-kizz-daniel",
+    "destination": "/compare/kizz-daniel-vs-black-sherif",
+    "permanent": true
+  },
+  {
+    "source": "/compare/victony-vs-kizz-daniel",
+    "destination": "/compare/kizz-daniel-vs-victony",
+    "permanent": true
+  },
+  {
+    "source": "/compare/ruger-vs-kizz-daniel",
+    "destination": "/compare/kizz-daniel-vs-ruger",
+    "permanent": true
+  },
+  {
+    "source": "/compare/oxlade-vs-kizz-daniel",
+    "destination": "/compare/kizz-daniel-vs-oxlade",
+    "permanent": true
+  },
+  {
+    "source": "/compare/tiwa-savage-vs-kizz-daniel",
+    "destination": "/compare/kizz-daniel-vs-tiwa-savage",
+    "permanent": true
+  },
+  {
     "source": "/compare/black-sherif-vs-ckay",
     "destination": "/compare/ckay-vs-black-sherif",
     "permanent": true
@@ -595,8 +885,68 @@
     "permanent": true
   },
   {
+    "source": "/compare/ruger-vs-ckay",
+    "destination": "/compare/ckay-vs-ruger",
+    "permanent": true
+  },
+  {
+    "source": "/compare/oxlade-vs-ckay",
+    "destination": "/compare/ckay-vs-oxlade",
+    "permanent": true
+  },
+  {
+    "source": "/compare/tiwa-savage-vs-ckay",
+    "destination": "/compare/ckay-vs-tiwa-savage",
+    "permanent": true
+  },
+  {
     "source": "/compare/victony-vs-black-sherif",
     "destination": "/compare/black-sherif-vs-victony",
+    "permanent": true
+  },
+  {
+    "source": "/compare/ruger-vs-black-sherif",
+    "destination": "/compare/black-sherif-vs-ruger",
+    "permanent": true
+  },
+  {
+    "source": "/compare/oxlade-vs-black-sherif",
+    "destination": "/compare/black-sherif-vs-oxlade",
+    "permanent": true
+  },
+  {
+    "source": "/compare/tiwa-savage-vs-black-sherif",
+    "destination": "/compare/black-sherif-vs-tiwa-savage",
+    "permanent": true
+  },
+  {
+    "source": "/compare/ruger-vs-victony",
+    "destination": "/compare/victony-vs-ruger",
+    "permanent": true
+  },
+  {
+    "source": "/compare/oxlade-vs-victony",
+    "destination": "/compare/victony-vs-oxlade",
+    "permanent": true
+  },
+  {
+    "source": "/compare/tiwa-savage-vs-victony",
+    "destination": "/compare/victony-vs-tiwa-savage",
+    "permanent": true
+  },
+  {
+    "source": "/compare/oxlade-vs-ruger",
+    "destination": "/compare/ruger-vs-oxlade",
+    "permanent": true
+  },
+  {
+    "source": "/compare/tiwa-savage-vs-ruger",
+    "destination": "/compare/ruger-vs-tiwa-savage",
+    "permanent": true
+  },
+  {
+    "source": "/compare/tiwa-savage-vs-oxlade",
+    "destination": "/compare/oxlade-vs-tiwa-savage",
     "permanent": true
   }
 ]

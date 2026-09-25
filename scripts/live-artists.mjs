@@ -355,9 +355,11 @@ export const LIVE_ARTISTS = {
     covers: true,
   },
 
-  // ── The eight joining the board (24 Sep 2026) ─────────────────────────────
-  // Built ahead of their certification verify, so each carries `staged: true`
-  // until its app/data/liveBoards.ts row lands. The aliases below were read on
+  // ── The eight swept for the board (24 Sep 2026) ───────────────────────────
+  // Built ahead of their certification verify, so each carried `staged: true`
+  // until its app/data/liveBoards.ts row landed. Oxlade, Tiwa Savage, Kizz
+  // Daniel and Ruger joined the board on 25 Sep 2026 and are wired; Mr Eazi,
+  // Yemi Alade, Stonebwoy and Sarkodie stay staged (owner, 25 Sep 2026). The aliases below were read on
   // 24 Sep 2026 off each artist's kworb page and the certification find rows,
   // and every one was checked against Deezer: the lead is billed exactly as
   // written here and the artist is in the track's contributor list.
@@ -382,7 +384,6 @@ export const LIVE_ARTISTS = {
     runOut: "runHistory.oxlade.ts",
     covers: true,
     mayChartNowhere: true,
-    staged: true,
   },
   "tiwa-savage": {
     slug: "tiwa-savage",
@@ -410,7 +411,6 @@ export const LIVE_ARTISTS = {
     runOut: "runHistory.tiwa-savage.ts",
     covers: true,
     mayChartNowhere: true,
-    staged: true,
   },
   "kizz-daniel": {
     slug: "kizz-daniel",
@@ -434,7 +434,6 @@ export const LIVE_ARTISTS = {
     runOut: "runHistory.kizz-daniel.ts",
     covers: true,
     minPlacements: 10,
-    staged: true,
   },
   "mr-eazi": {
     slug: "mr-eazi",
@@ -497,7 +496,6 @@ export const LIVE_ARTISTS = {
     runOut: "runHistory.ruger.ts",
     covers: true,
     minPlacements: 10,
-    staged: true,
   },
   stonebwoy: {
     slug: "stonebwoy",
@@ -553,6 +551,14 @@ export const liveArtist = (slug) => {
   return a;
 };
 
+
+/** The registry without its staged artists: Burna Boy and every artist with a
+ *  page on the board. Whatever reasons about "the site's artists" reads this,
+ *  never LIVE_ARTISTS — the certification watcher above all. A staged artist
+ *  has live-chart data but no board page and no plaque on the site, so a
+ *  register row naming one is a lead for nothing, and the watcher's own
+ *  integrity check (the registry equals the site) would refuse to run. */
+export const BOARD_LIVE_ARTISTS = Object.fromEntries(Object.entries(LIVE_ARTISTS).filter(([, a]) => !a.staged));
 /** The "is this file real" floor for one artist's build — read by the builder
  *  AND by tests/liveBoards.test.ts, so the two cannot drift. */
 export const placementFloor = (artist) =>

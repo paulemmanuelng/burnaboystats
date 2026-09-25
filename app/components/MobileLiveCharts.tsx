@@ -80,7 +80,7 @@ export default function MobileLiveCharts({
   backHref?: string;
   backLabel?: string;
   /** Where this artist's OFFICIAL chart peaks live. Defaults to Burna Boy's,
-   *  which is right on his own page and wrong on all nine board pages — they
+   *  which is right on his own page and wrong on every board page — they
    *  were sending readers to his chart records instead of the artist's. */
   chartsHref?: string;
   /** The screen's own H1, in two parts. Defaults to "Live Charts". */

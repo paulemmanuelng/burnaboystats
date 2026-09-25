@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 import sitemap from "../app/sitemap";
 import { updates } from "../app/data/updates";
+import { sweptArtists } from "../app/data/afrobeats";
 import { liveChartsUpdated } from "../app/data/liveCharts";
 import { LIVE_BOARDS } from "../app/data/liveBoards";
 import { siteUrl } from "../app/site";
@@ -75,7 +76,12 @@ describe("sitemap lastmod", () => {
     // comes from the feed, and none of them may be later than the newest fact
     // logged — a sitemap that reports tomorrow is the failure mode this file's
     // own header comment exists to prevent.
-    const newestFact = [...updates.map((u) => u.date)].sort().at(-1)!;
+    // The board's register dates count as logged facts too. updates.ts is
+    // Burna Boy's news only, so a board sweep is never written there; its date
+    // lives on each artist as `verifiedOn`, and the board routes take their
+    // lastmod from it. On 25 Sep 2026 Oxlade and Tiwa Savage were verified a
+    // day after the feed's newest entry, which is a real date, not tomorrow.
+    const newestFact = [...updates.map((u) => u.date), ...sweptArtists.map((a) => a.verifiedOn)].sort().at(-1)!;
     const pipeline = new Set(pipelineRoutes.map((r) => `${siteUrl}${r.path}`));
     const ahead = rows
       .filter((r) => !pipeline.has(r.url))

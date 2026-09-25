@@ -65,7 +65,7 @@ const artists = sweptArtists.map((a) => ({
 
 // The subject's plaques in the SAME shape as every other row on the board, so
 // `[subject, ...artists]` is one uniform list. It was not: `subject` carried
-// neither `chartTerritories` nor `releases`, so a consumer folding the sixteen
+// neither `chartTerritories` nor `releases`, so a consumer folding the whole board
 // into one table got `undefined` for the subject's territories and a TypeError
 // the moment it read `.releases.length` — on the one row the whole dataset
 // exists to compare against.
@@ -99,7 +99,7 @@ export function GET() {
     description:
       `The Afrobeats Board: ${artists.length + 1} artists counted by one rule — a plaque is one title in one country at its CURRENT tier, and an upgrade replaces the earlier award rather than adding to it. Chart figures are official national charts plus Billboard's two worldwide charts; platform charts (Spotify, Apple Music, iTunes) are never counted here. Re-read at each register sweep, where Burna Boy's own pages update daily.`,
     // The subject is a row on this board, not an appendix, so he is inside the
-    // count — and `countOf` says so, because `data.artists` holds fifteen.
+    // count — and `countOf` says so, because `data.artists` holds the board alone.
     count: artists.length + 1,
     countOf: `artists (${artists.length} on the board in \`artists\`, plus the subject)`,
     data: {

@@ -23,8 +23,8 @@ import { CERT_PROGRAMS, type CertFormat, type TierUnits } from "../data/certThre
  *
  * The rest of /compare answers "who has more?". This answers "who has more
  * WHERE?", which is the question the ledgers could not: an artist's page lists
- * their Canadian plaques, and nothing on the site put those beside the fifteen
- * other artists' Canadian plaques on one scale.
+ * their Canadian plaques, and nothing on the site put those beside every
+ * other artist's Canadian plaques on one scale.
  *
  * Every figure comes from app/lib/certCountry.ts, which is a pivot of the
  * compare engine rather than a second one — see the note at the top of that

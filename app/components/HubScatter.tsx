@@ -2,9 +2,9 @@ import styles from "./hubScatter.module.css";
 import { plaqueDomain } from "../lib/hubScatterScale";
 
 /**
- * "The shape of the field" — the board's ten careers on two axes.
+ * "The shape of the field" — the board's careers on two axes.
  *
- * The grid ranks. This says the thing a ranked grid cannot: the nine artists are
+ * The grid ranks. This says the thing a ranked grid cannot: the artists are
  * different SHAPES. Countries wide against plaques deep, so Seyi Vibez reads as
  * the deepest home-market record on the board rather than a short bar, and Tyla
  * as the widest reach rather than a small one — before a reader opens a page.

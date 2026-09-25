@@ -27,6 +27,10 @@ import { liveCharts as ckay, liveChartsUpdated as ckayAt, liveChartsBuiltAt as c
 import { liveCharts as olamide, liveChartsUpdated as olamideAt, liveChartsBuiltAt as olamideBuilt } from "./liveCharts.olamide";
 import { liveCharts as blackSherif, liveChartsUpdated as blackSherifAt, liveChartsBuiltAt as blackSherifBuilt } from "./liveCharts.black-sherif";
 import { liveCharts as bnxn, liveChartsUpdated as bnxnAt, liveChartsBuiltAt as bnxnBuilt } from "./liveCharts.bnxn";
+import { liveCharts as kizzDaniel, liveChartsUpdated as kizzDanielAt, liveChartsBuiltAt as kizzDanielBuilt } from "./liveCharts.kizz-daniel";
+import { liveCharts as ruger, liveChartsUpdated as rugerAt, liveChartsBuiltAt as rugerBuilt } from "./liveCharts.ruger";
+import { liveCharts as oxlade, liveChartsUpdated as oxladeAt, liveChartsBuiltAt as oxladeBuilt } from "./liveCharts.oxlade";
+import { liveCharts as tiwaSavage, liveChartsUpdated as tiwaSavageAt, liveChartsBuiltAt as tiwaSavageBuilt } from "./liveCharts.tiwa-savage";
 
 export interface LiveBoard {
   slug: string;
@@ -68,9 +72,11 @@ function board(slug: string, releases: LiveRelease[], updated: string, builtAt: 
   };
 }
 
-// Ordered as the board orders itself — most-certified first, then the three
-// whose register sweeps are still scheduled. A live board needs no sweep: the
-// platform charts are readable today, which is why all nine have one.
+// In the order each artist joined the board, and within a batch most-certified
+// first. Nothing depends on the order: the hub sorts its own tiles, and the API
+// and the sitemap only list the slugs. A live board needs no register sweep —
+// the platform charts are readable today — but a row here needs an
+// afrobeats.ts entry, and every artist on the board has a row.
 export const LIVE_BOARDS: LiveBoard[] = [
   board("wizkid", wizkid, wizkidAt, wizkidBuilt),
   board("davido", davido, davidoAt, davidoBuilt),
@@ -87,6 +93,10 @@ export const LIVE_BOARDS: LiveBoard[] = [
   board("olamide", olamide, olamideAt, olamideBuilt),
   board("black-sherif", blackSherif, blackSherifAt, blackSherifBuilt),
   board("bnxn", bnxn, bnxnAt, bnxnBuilt),
+  board("kizz-daniel", kizzDaniel, kizzDanielAt, kizzDanielBuilt),
+  board("ruger", ruger, rugerAt, rugerBuilt),
+  board("oxlade", oxlade, oxladeAt, oxladeBuilt),
+  board("tiwa-savage", tiwaSavage, tiwaSavageAt, tiwaSavageBuilt),
 ];
 
 export const liveBoardFor = (slug: string) => LIVE_BOARDS.find((b) => b.slug === slug);
