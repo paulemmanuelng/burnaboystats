@@ -72,14 +72,12 @@ const htmlExtractors = {
 async function fetchText(url) {
   // YouTube shows datacenter IPs (CI runners) a cookie-consent wall instead of
   // the watch page, so viewCount is missing. A consent cookie + en/US locale
-  // gets the real HTML.
-  const browserish = {
-    "user-agent":
-      "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0 Safari/537.36",
-    "accept-language": "en-US,en;q=0.9",
-  };
+  // gets the real HTML. The User-Agent stays the site's own honest one: until
+  // 25 Sep 2026 this sent a desktop Chrome string, which passes the bot off as
+  // a browser. YouTube returned all ten tracked view counts to the honest
+  // User-Agent when that was tested (25 Sep 2026).
   const headers = url.includes("youtube.com")
-    ? { ...browserish, cookie: "CONSENT=YES+cb.20210328-17-p0.en+FX+000" }
+    ? { ...UA, "accept-language": "en-US,en;q=0.9", cookie: "CONSENT=YES+cb.20210328-17-p0.en+FX+000" }
     : UA;
   const res = await fetch(url, { headers });
   if (!res.ok) throw new Error(`HTTP ${res.status}`);

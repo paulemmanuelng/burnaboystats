@@ -148,7 +148,11 @@ jobs:
       # recorded the new raw reading without publishing it, the offsetDrift
       # reconcile test failed on that working copy, and not one figure
       # published for as long as it lasted. It now fails here, AFTER the commit:
-      # everything else goes out, and the run is still red until someone acts.
+      # everything else goes out, and the run stays red while the raw sum sits
+      # below the held reading. It clears by itself once the raw sum climbs back
+      # past it, and the total then publishes on the OLD offset; so a drift alarm
+      # means "re-measure the offset against ChartMasters", whether or not it
+      # has since gone green.
       # !cancelled() so a failed board rebuild above does not hide this one.
       - name: Surface an offset that no longer matches its source
         if: ${{ !cancelled() && steps.live.outputs.has_drift == 'true' }}
