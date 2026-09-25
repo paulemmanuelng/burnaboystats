@@ -211,7 +211,8 @@ export function buildSearchDocs(): SearchDoc[] {
   for (const code of certCountryCodes()) {
     const board = priceCountry(code);
     add({
-      title: `Certified units in ${board.name}`,
+      // "the United Kingdom", as the page names it (inSentence).
+      title: `Certified units in ${board.inSentence}`,
       path: `/compare/in/${countrySlug(code)}`,
       section: "Compare",
       description: pricingPhrase(board)

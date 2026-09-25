@@ -1,5 +1,5 @@
 import { ogImage, ogVersions, size, contentType } from "../../../lib/og-image";
-import { certCountryCodes, countryCopy, countryFromSlug, countrySlug, priceCountry } from "../../../lib/certCountry";
+import { certCountryCodes, countryCopy, countryFromSlug, countrySlug, priceCountry, pricingPhrase } from "../../../lib/certCountry";
 
 export { size, contentType };
 export const alt = "Certified units in one market — every Afrobeats plaque priced at that body's own threshold";
@@ -18,6 +18,19 @@ const cardFor = (slug: string) => {
     : { kicker: "Certified units", title: "By country" };
 };
 
+/** The alt names what THIS board is priced at, in the words its page
+ *  description uses (pricingPhrase). Every card used to end "priced at that
+ *  body's own threshold", which was wrong for three boards. Greece is priced
+ *  at IFPI's June 2013 level, Polish singles are converted at 2 zł each, and
+ *  Colombia is not priced at all. */
+const altFor = (code: string) => {
+  const board = priceCountry(code);
+  const priced = pricingPhrase(board);
+  return priced
+    ? `Certified units in ${board.inSentence} — every Afrobeats plaque priced at ${priced}`
+    : `Certified units in ${board.inSentence} — every Afrobeats plaque listed, not priced: ${board.body} publishes no unit threshold`;
+};
+
 export async function generateImageMetadata({ params }: { params: Promise<{ country: string }> }) {
   const { country } = await params;
   // Figures move with every sweep; fold them into the id so a cached preview
@@ -28,7 +41,7 @@ export async function generateImageMetadata({ params }: { params: Promise<{ coun
   const code = countryFromSlug(country);
   return ogVersions(
     cardFor(country),
-    code ? `Certified units in ${priceCountry(code).inSentence} — every Afrobeats plaque priced at that body's own threshold` : alt,
+    code ? altFor(code) : alt,
   );
 }
 
