@@ -29,9 +29,13 @@ at FRAME_ORIGIN. Only the edge is re-cut:
   - on the lower body the "stage" is the car's reflection in the floor, so
     only the anti-aliased edge is used there and the car cannot grow into it;
     where page type or lines touch the car the same holds;
-  - the pixels that set a hero's measurements — the sides of its alpha > 200
+  - faint specks the matte leaves floating beside the car, with a clear gap
+    between them and it, are cleared (drop_specks);
+  - the lines that set a hero's measurements — the sides of its alpha > 200
     box and each wheel band's lowest row (scripts/measure-ground-line.mjs) —
-    stay solid, so cars.ts's groundLine and the pipeline's centring hold;
+    keep their soft edge, bar one pixel per line held at alpha 201-254 in the
+    car's recovered colour (anchor), so cars.ts's groundLine and the
+    pipeline's centring hold without a hard dark segment at each extreme;
   - the floor is the shipped floor wherever the car did not cover it; under
     the car's now-soft rim it is build-car-hero.py's re-grounding of the same
     hard car, which --check puts within about one alpha level of the shipped.
@@ -124,11 +128,11 @@ def dilate(m, steps=1, within=None, diagonal=False):
     return m
 
 
-def grow(seed, within):
+def grow(seed, within, diagonal=False):
     """The part of `within` connected to `seed`."""
     reg = seed & within
     while True:
-        g = dilate(reg, within=within)
+        g = dilate(reg, within=within, diagonal=diagonal)
         if (g == reg).all():
             return reg
         reg = g
@@ -338,28 +342,73 @@ def matte(I, M, lower_row):
     part = band & (alpha < 1) & ~near_type
     rgb[part] = np.clip(t * unmixed + (1 - t) * F, 0, 255)[part]
     rgb[alpha <= 0] = 0
-    return alpha, rgb
+    return alpha, rgb, F
+
+
+def drop_specks(alpha, rgb):
+    """Clear faint dust that the matte left beside the car.
+
+    JPEG grain can push a stage pixel a pixel or two off the edge past the 0.12
+    floor, and where the matte then zeroes the pixel between it and the car the
+    speck is left floating: 1-9 per car at 12-25% opacity (the Revuelto's worst,
+    a 7px hairline one row above its roof with a clear row under it). A speck is
+    any 8-connected run of alpha > 0 that reaches no pixel at 0.5 or more."""
+    car = grow(alpha >= 0.5, alpha > 0, diagonal=True)
+    speck = (alpha > 0) & ~car
+    alpha[speck] = 0
+    rgb[speck] = 0
+    return int(speck.sum())
 
 
 def measured(M):
-    """The pixels a hero is measured by: its box's four sides and the lowest row
+    """The lines a hero is measured by: its box's four sides and the lowest row
     of each wheel band, exactly as ground_line() splits the car."""
     ys, xs = np.nonzero(M)
     x0, x1, y0, y1 = xs.min(), xs.max(), ys.min(), ys.max()
-    keep = np.zeros_like(M)
-    keep[:, x0] |= M[:, x0]
-    keep[:, x1] |= M[:, x1]
-    keep[y0] |= M[y0]
-    keep[y1] |= M[y1]
     cols = np.arange(M.shape[1])
+    lines = [M & (cols[None, :] == x0), M & (cols[None, :] == x1)]
+    for y in (y0, y1):
+        line = np.zeros_like(M)
+        line[y] = M[y]
+        lines.append(line)
     bottom = np.array([np.nonzero(M[:, x])[0].max() if M[:, x].any() else -1 for x in cols])
     lowest = np.full(M.shape[1], M.shape[0])
     for band in (cols < x0 + (x1 - x0) * 0.38, cols > x0 + (x1 - x0) * 0.62):
         band &= bottom >= 0
         row = bottom[band].max()
-        keep[row, cols[band & (bottom == row)]] = True
+        line = np.zeros_like(M)
+        line[row, cols[band & (bottom == row)]] = True
+        lines.append(line)
         lowest[band] = row
-    return keep, (x0, x1, y0, y1), lowest
+    return lines, (x0, x1, y0, y1), lowest
+
+
+# alpha > 200 is what bbox() and ground_line() count as car; 254 is short of solid
+ANCHOR_LO, ANCHOR_HI = 201.2 / 255, 254.4 / 255
+
+
+def anchor(lines, alpha, rgb, F, car):
+    """Hold each measurement with ONE pixel, soft rather than solid.
+
+    Each measured line needs one pixel over alpha 200 for the box and the ground
+    line to hold. Keeping them all solid, in the frame's own colour, left a hard
+    dark segment at every extreme: the whole top row of the Chiron's roof (25px),
+    the Testarossa's nose. So every pixel on those lines keeps its soft matte,
+    and one per line, the most car-like, is lifted to alpha 201-254 in the car's
+    recovered colour."""
+    picked = np.zeros(alpha.shape, bool)
+    for line in lines:
+        if (picked & line).any():          # a corner, or y1 and the near wheel's row
+            continue
+        cand = np.argwhere(line & car) if (line & car).any() else np.argwhere(line)
+        best = alpha[cand[:, 0], cand[:, 1]]
+        top = cand[best >= best.max() - 1e-9]
+        y, x = top[len(top) // 2]          # the middle of the best run
+        picked[y, x] = True
+        if alpha[y, x] < 0.1:              # nothing recovered here: the car just inside
+            rgb[y, x] = F[y, x]
+        alpha[y, x] = np.clip(alpha[y, x], ANCHOR_LO, ANCHOR_HI)
+    return picked
 
 
 def hard_cut(slug):
@@ -392,11 +441,11 @@ def recut(slug):
         notes.append(f"stage cut out from under the wing ({int(gap.sum())} px)")
 
     top = np.nonzero(M.any(1))[0].min()
-    alpha, rgb = matte(I, M, top + 0.5 * (bch.GROUND_ROW - top))
+    alpha, rgb, F = matte(I, M, top + 0.5 * (bch.GROUND_ROW - top))
+    specks = drop_specks(alpha, rgb)
 
-    keep, (x0, x1, y0, y1), lowest = measured(M0)
-    alpha[keep] = 1
-    rgb[keep] = I[keep]
+    lines, (x0, x1, y0, y1), lowest = measured(M0)
+    anchor(lines, alpha, rgb, F, M)
 
     # the shipped floor, and under the car the pipeline's floor for that hard car
     old_a = old[:, :, 3] / 255
@@ -425,7 +474,7 @@ def recut(slug):
     path = os.path.join(bch.CARS, f"{slug}.png")
     hero.save(path, optimize=True)
     soft = int(((alpha > 0) & (alpha < 1)).sum())
-    print(f"{slug:36} {soft:5d} soft edge px   groundLine {bch.ground_line(a8)}   {'; '.join(notes)}")
+    print(f"{slug:36} {soft:5d} soft edge px   {specks} specks cleared   groundLine {bch.ground_line(a8)}   {'; '.join(notes)}")
 
 
 if __name__ == "__main__":
