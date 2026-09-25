@@ -50,9 +50,8 @@ async function throttle() {
 // ---------- fetching ----------
 const stats = { requests: 0, retries: 0, rateLimited: 0, empty: 0, mismatch: 0, errors: 0 };
 
-// An honest User-Agent, in the same form as the certification watcher's
-// (scripts/cert-watch/http.mjs USER_AGENT): it names this site and says where
-// to reach it, and it does not pretend to be a browser. This sent
+// An honest User-Agent: it names this site and says where to reach it, and
+// it does not pretend to be a browser. This sent
 // "Mozilla/5.0 (archive read; burnaboystats sweep)" until 25 Sep 2026, which
 // opens like a browser's string; the board's chart verifiers ran their copies
 // with an honest one and read the same 509 issues. turntablecharts.com serves
