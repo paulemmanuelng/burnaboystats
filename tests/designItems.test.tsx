@@ -51,8 +51,9 @@ describe("NPD-03: a pair page's h1 names the pair", () => {
     expect(text(h)).toContain("Certified units, compared");
   });
 
-  it("every one of the 120 pairs names its own pair, once", async () => {
+  it("every pair names its own pair, once", async () => {
     const { allPairs, pairSlug } = await import("../app/lib/comparePairs");
+    const { comparableArtists } = await import("../app/lib/certUnits");
     const seen = new Set<string>();
     for (const [a, b] of allPairs()) {
       const h = renderToStaticMarkup(await PairPage({ params: Promise.resolve({ pair: pairSlug(a, b) }) }));
@@ -61,7 +62,29 @@ describe("NPD-03: a pair page's h1 names the pair", () => {
       expect(one[0]).toBe(`${a.name} vs ${b.name}`);
       seen.add(one[0]);
     }
-    expect(seen.size).toBe(120);
+    // One distinct h1 per pair of the roster, whatever its size.
+    const n = comparableArtists.length;
+    expect(seen.size).toBe((n * (n - 1)) / 2);
+    // 120 pairs of 16 artists when this item shipped (24 Sep 2026); Kizz Daniel,
+    // Ruger, Oxlade and Tiwa Savage make it 20 artists and 190 pairs.
+    expect(seen.size).toBe(190);
+  });
+
+  it("the four artists who joined on 25 Sep 2026 get their own h1s too", async () => {
+    const { pairSlug } = await import("../app/lib/comparePairs");
+    const { comparableArtists } = await import("../app/lib/certUnits");
+    const by = (slug: string) => comparableArtists.find((x) => x.slug === slug)!;
+    for (const [x, y] of [
+      ["kizz-daniel", "ruger"],
+      ["oxlade", "tiwa-savage"],
+      ["burna-boy", "oxlade"],
+    ]) {
+      const [a, b] = [by(x), by(y)];
+      const slug = pairSlug(a, b);
+      const h = renderToStaticMarkup(await PairPage({ params: Promise.resolve({ pair: slug }) }));
+      expect(h1s(h), slug).toEqual([`${a.name} vs ${b.name}`]);
+      expect([a.name, b.name].sort()).toEqual([by(x).name, by(y).name].sort());
+    }
   });
 
   it("/compare itself is unchanged", async () => {
@@ -70,7 +93,7 @@ describe("NPD-03: a pair page's h1 names the pair", () => {
     expect(text(h)).toContain("Certifications › Compare");
   });
 
-  it("negative control: the h1 all 120 pair pages shipped until 24 Sep 2026", () => {
+  it("negative control: the h1 every pair page (then 120) shipped until 24 Sep 2026", () => {
     const SHIPPED_PAIR_H1 = "Certified units, compared";
     expect(SHIPPED_PAIR_H1).not.toBe("Asake vs Tems");
   });
