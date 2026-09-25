@@ -355,12 +355,16 @@ for (const w of work.values()) {
   // Artwork is decoration: a title that cannot be resolved keeps its monogram
   // rather than borrowing another release's cover.
     if (artist.covers) {
+    // Carried by kind AND title. By title, a title track and its album (Seyi
+    // Vibez's "SWAGUU" is both) shared one entry, so whichever came last in the
+    // previous file lent its sleeve to the other on every later run.
+    const coverKey = (r) => `${r.kind}:${r.title}`;
     const previousCovers = new Map(
-      previous.filter((r) => r.cover).map((r) => [r.title, r.cover])
+      previous.filter((r) => r.cover).map((r) => [coverKey(r), r.cover])
     );
     let found = 0;
     for (const r of releases) {
-      const carried = previousCovers.get(r.title);
+      const carried = previousCovers.get(coverKey(r));
       if (carried) {
         r.cover = carried;
         found++;
@@ -584,7 +588,19 @@ for (const w of work.values()) {
   for (const r of releases) {
     for (const p of r.platforms) {
       const ww = p.entries.find((e) => e.country === "WW" || /^world/i.test(e.name ?? ""));
-      if (ww) todaysRuns.push({ date: today, release: r.title, platform: p.platform, position: ww.position });
+      // An ALBUM's row says so. A title track and its album share a name, and
+      // a platform that charted both worldwide would otherwise write two rows
+      // with one (date, release, platform) key — two readings in one series.
+      // Song rows stay as they always were, so the history already collected
+      // needs no rewrite.
+      if (ww)
+        todaysRuns.push({
+          date: today,
+          release: r.title,
+          ...(r.kind === "album" ? { kind: "album" } : {}),
+          platform: p.platform,
+          position: ww.position,
+        });
     }
   }
   
@@ -605,7 +621,11 @@ for (const w of work.values()) {
   const isToday = (x) => x.date === today;
   const keptFrom = new Date(Date.now() - RUN_KEEP_DAYS * 86_400_000).toISOString().slice(0, 10);
   const mergedRuns = [...priorRuns.filter((x) => !isToday(x) && x.date >= keptFrom), ...todaysRuns].sort(
-    (a, b) => a.date.localeCompare(b.date) || a.release.localeCompare(b.release) || a.platform.localeCompare(b.platform)
+    (a, b) =>
+      a.date.localeCompare(b.date) ||
+      a.release.localeCompare(b.release) ||
+      (a.kind ?? "song").localeCompare(b.kind ?? "song") ||
+      a.platform.localeCompare(b.platform)
   );
   
   const runBody = `// GENERATED FILE — do not edit by hand.
@@ -621,16 +641,19 @@ for (const w of work.values()) {
   export interface RunPoint {
     date: string; // ISO "YYYY-MM-DD"
     release: string;
+    /** Present only on an album's row; absent means a song. */
+    kind?: "album";
     platform: string;
     position: number;
   }
   
   export const runHistory: RunPoint[] = ${JSON.stringify(mergedRuns, null, 2)};
   
-  /** The dated series for one release on one platform, oldest first. */
-  export const runSeries = (release: string, platform: string) =>
+  /** The dated series for one release on one platform, oldest first. A song's
+   *  unless \`kind\` says album: a title track and its album share the name. */
+  export const runSeries = (release: string, platform: string, kind: "song" | "album" = "song") =>
     runHistory
-      .filter((r) => r.release === release && r.platform === platform)
+      .filter((r) => r.release === release && r.platform === platform && (r.kind ?? "song") === kind)
       .map((r) => ({ date: r.date, value: r.position }));
   
   /** How many days the history actually covers — a chart should say so rather
