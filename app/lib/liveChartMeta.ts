@@ -47,6 +47,31 @@ export const numberOnesOf = (r: { platforms: { numberOnes: number }[] }) =>
   r.platforms.reduce((n, p) => n + p.numberOnes, 0);
 
 /**
+ * What identifies a live release: its KIND and its title, never the title
+ * alone. A title track charts twice under one name. On 24 Sep 2026 Burna Boy's
+ * album "African Giant" (Apple Music No. 1 in Guinea-Bissau) was joined by the
+ * song "African Giant" (Apple Music No. 171 there), two releases and two sets
+ * of placements. The board already carried four such pairs (Seyi Vibez's
+ * "SWAGUU" and "FUJI MOTO", Fireboy DML's "Playboy", Victony's "STARLIFE").
+ * Anything that keys, opens or looks up a release by title alone mixes the two
+ * up; the pages, the panels and the tests all key on this.
+ */
+export const releaseKey = (r: { kind: string; title: string }) => `${r.kind}:${r.title}`;
+
+/** Keys held by more than one release: the same kind AND title twice. An album
+ *  and a song sharing a title are two releases and are not reported. */
+export function duplicateReleaseKeys(releases: { kind: string; title: string }[]): string[] {
+  const seen = new Set<string>();
+  const dupes = new Set<string>();
+  for (const r of releases) {
+    const k = releaseKey(r);
+    if (seen.has(k)) dupes.add(k);
+    seen.add(k);
+  }
+  return [...dupes];
+}
+
+/**
  * How many COUNTRIES a set of live placements covers.
  *
  * kworb's codes are not clean ISO: it labels Britain "UK" on the Apple Music,

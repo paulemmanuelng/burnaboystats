@@ -57,8 +57,8 @@ export default function LiveReleaseBlock({
   source?: string;
 }) {
   const [opened, setOpened] = useState(false);
-  const { release, error, missing, loading, retry } = useLiveRelease(r.title, opened, source);
-  const art = r.cover ?? coverFor(r.title);
+  const { release, error, missing, loading, retry } = useLiveRelease(r, opened, source);
+  const art = r.cover ?? coverFor(r.title, r.kind);
 
   return (
     <details

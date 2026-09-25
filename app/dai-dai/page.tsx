@@ -64,7 +64,8 @@ const conquestIntro = `“Dai Dai” has charted in ${conquestTotal} countries �
 // The per-platform No. 1 counts, derived from the same hourly live-charts
 // snapshot as /live-charts — this line used to be hand-written and drifted
 // (Apple 25 vs a real 8) the day the daily charts moved.
-const ddLive = liveCharts.find((r) => r.title === "Dai Dai");
+// The SONG: a title alone can name an album too (releaseKey, liveChartMeta.ts).
+const ddLive = liveCharts.find((r) => r.kind === "song" && r.title === "Dai Dai");
 const liveOnes = (platform: string) =>
   ddLive?.platforms
     .find((p) => p.platform === platform)

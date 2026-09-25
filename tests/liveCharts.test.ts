@@ -21,7 +21,8 @@ import {
   liveChartsBuiltAt,
 } from "../app/data/liveCharts";
 import { CHART_COUNTRIES } from "../app/data/charts";
-import { countriesOf, cadenceOf } from "../app/lib/liveChartMeta";
+import { LIVE_BOARDS } from "../app/data/liveBoards";
+import { countriesOf, cadenceOf, duplicateReleaseKeys } from "../app/lib/liveChartMeta";
 
 // The live-charts page is generated wholesale from a scraped page, so the
 // parser is the single point of failure. These pin its behaviour on a fixture
@@ -120,10 +121,36 @@ describe("extractLiveCharts", () => {
 });
 
 describe("generated liveCharts data", () => {
-  it("has releases and no duplicate titles", () => {
+  // A release is its kind AND its title. This asserted unique TITLES until 25
+  // Sep 2026, and the stats bot stopped publishing for it: on 24 Sep the song
+  // "African Giant" (Apple Music, Guinea-Bissau No. 171) started charting
+  // beside the album "African Giant" (No. 1 there), two real releases, and
+  // every run from 21:32 UTC failed its test gate and committed nothing.
+  it("has releases and no release listed twice (same kind and title)", () => {
     expect(liveCharts.length).toBeGreaterThan(0);
-    const titles = liveCharts.map((r) => r.title);
-    expect(titles).toHaveLength(new Set(titles).size);
+    expect(duplicateReleaseKeys(liveCharts), "the same release appears twice").toEqual([]);
+  });
+
+  it("holds every board artist to the same rule", () => {
+    for (const b of LIVE_BOARDS) {
+      expect(duplicateReleaseKeys(b.releases), `${b.slug}: the same release twice`).toEqual([]);
+    }
+  });
+
+  it("tells a real duplicate from a title track (controls)", () => {
+    const pair = [
+      { kind: "album", title: "African Giant" },
+      { kind: "song", title: "African Giant" },
+    ];
+    // The pair that stopped the bot is two releases, not a duplicate…
+    expect(duplicateReleaseKeys(pair)).toEqual([]);
+    // …while the same song twice still fails, whatever else is on the list.
+    expect(duplicateReleaseKeys([...pair, { kind: "song", title: "African Giant" }])).toEqual([
+      "song:African Giant",
+    ]);
+    expect(duplicateReleaseKeys([...pair, { kind: "album", title: "African Giant" }])).toEqual([
+      "album:African Giant",
+    ]);
   });
 
   it("counts countries by the site's rule, not by raw kworb code", () => {

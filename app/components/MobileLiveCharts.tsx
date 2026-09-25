@@ -5,7 +5,7 @@ import Link from "next/link";
 import styles from "./mobileLiveCharts.module.css";
 import { artAt } from "../lib/artAt";
 import { coverFor, monogramFor } from "../lib/covers";
-import { cadenceOf, LIVE_CADENCE } from "../lib/liveChartMeta";
+import { cadenceOf, LIVE_CADENCE, releaseKey } from "../lib/liveChartMeta";
 import { useLiveRelease } from "../lib/useLiveRelease";
 import ScrollRail from "./ScrollRail";
 import MobileMenuButton from "./MobileMenuButton";
@@ -174,21 +174,25 @@ export default function MobileLiveCharts({
       <div className={styles.sectionLabel}>Charting now</div>
       <div className={styles.list}>
         {rows.map((r) => {
-          const isOpen = open === r.title;
-          const panelId = `live-${r.title.replace(/[^a-z0-9]+/gi, "-").toLowerCase()}`;
+          // The open row is held by kind AND title (releaseKey), and so is the
+          // panel's id. By title alone, a title track and its album ("African
+          // Giant", 24 Sep 2026) opened together and shared one id.
+          const id = releaseKey(r);
+          const isOpen = open === id;
+          const panelId = `live-${r.kind}-${r.title.replace(/[^a-z0-9]+/gi, "-").toLowerCase()}`;
           return (
-            <div key={`${r.kind}:${r.title}`} className={`${styles.row} ${isOpen ? styles.rowOpen : ""}`}>
+            <div key={id} className={`${styles.row} ${isOpen ? styles.rowOpen : ""}`}>
               <button
                 type="button"
                 className={styles.rowBtn}
                 aria-expanded={isOpen}
                 aria-controls={panelId}
-                onClick={() => setOpen(isOpen ? null : r.title)}
+                onClick={() => setOpen(isOpen ? null : id)}
               >
                 <span className={styles.rowTop}>
                   {/* No art on file → the release's initial, as the desktop
                       draws it, rather than a blank tinted square. */}
-                  {(r.cover ?? coverFor(r.title)) ? (
+                  {(r.cover ?? coverFor(r.title, r.kind)) ? (
                     // The slot holds the art back until the row nears the
                     // screen; see .coverSlot (23 Sep 2026).
                     <span className={styles.coverSlot}>
@@ -196,7 +200,7 @@ export default function MobileLiveCharts({
                         className={styles.rowCover}
                         /* 120 = 3x the 40px tile, not a board artist's 500px
                            Deezer art (23 Sep 2026). */
-                        style={{ backgroundImage: `url(${artAt(r.cover ?? coverFor(r.title) ?? "", 120)})` }}
+                        style={{ backgroundImage: `url(${artAt(r.cover ?? coverFor(r.title, r.kind) ?? "", 120)})` }}
                       />
                     </span>
                   ) : (
@@ -247,7 +251,7 @@ export default function MobileLiveCharts({
                 )}
               </button>
 
-              {isOpen && <LivePanel title={r.title} panelId={panelId} source={source} />}
+              {isOpen && <LivePanel row={r} panelId={panelId} source={source} />}
             </div>
           );
         })}
@@ -265,8 +269,16 @@ export default function MobileLiveCharts({
  * /api/v1/live-charts snapshot — shipping all ~790 rows as props made this
  * page the heaviest thing the site sent, for panels most readers never open.
  */
-function LivePanel({ title, panelId, source }: { title: string; panelId: string; source?: string }) {
-  const { release, error, missing, loading, retry } = useLiveRelease(title, true, source);
+function LivePanel({
+  row,
+  panelId,
+  source,
+}: {
+  row: { kind: "song" | "album"; title: string };
+  panelId: string;
+  source?: string;
+}) {
+  const { release, error, missing, loading, retry } = useLiveRelease(row, true, source);
   if (loading) return <div id={panelId} className={styles.panelNote}>Loading the country list…</div>;
   // Two outcomes that were one. `missing` is a snapshot that came back WITHOUT
   // this release, which happens because the page is static and the snapshot is

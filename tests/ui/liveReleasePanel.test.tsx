@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, renderHook, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 vi.mock("next/navigation", () => ({
@@ -7,6 +7,7 @@ vi.mock("next/navigation", () => ({
 }));
 
 import MobileLiveCharts, { type ReleasePreview } from "../../app/components/MobileLiveCharts";
+import { useLiveRelease } from "../../app/lib/useLiveRelease";
 
 /**
  * The open state of a live-charts row, and the three answers it can get.
@@ -132,5 +133,116 @@ describe("MobileLiveCharts — a row's open panel", () => {
     expect(await screen.findByText(/Couldn't load the country list/i)).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /try again/i })).toBeInTheDocument();
     expect(screen.queryByText(/Loading the country list/i)).not.toBeInTheDocument();
+  });
+});
+
+/**
+ * A title track and its album are two releases with one name. On 24 Sep 2026
+ * the song "African Giant" started charting (Apple Music, Guinea-Bissau No.
+ * 171) beside the album "African Giant" (No. 1 there, No. 23 in Nigeria). The
+ * phone screen kept its open row by TITLE, so tapping either opened both, and
+ * the panel looked the release up by title in a snapshot map where the later
+ * of the two overwrote the earlier: one of the two rows always showed the
+ * other's countries. The same map fed the desktop panels.
+ */
+describe("a title track and its album, open one at a time", () => {
+  const AG = "African Giant";
+  const rows: ReleasePreview[] = [
+    {
+      kind: "album",
+      title: AG,
+      total: 2,
+      no1: 1,
+      top: [
+        { country: "GW", position: 1, movement: 0 },
+        { country: "NG", position: 23, movement: 0 },
+      ],
+    },
+    { kind: "song", title: AG, total: 1, no1: 0, top: [{ country: "GW", position: 171, status: "new" }] },
+  ];
+  const pairSnapshot = () => ({
+    releases: [
+      {
+        title: AG,
+        kind: "album",
+        platforms: [
+          {
+            platform: "Apple Music",
+            numberOnes: 1,
+            entries: [
+              { country: "GW", name: "Guinea-Bissau", position: 1, movement: 0 },
+              { country: "NG", name: "Nigeria", position: 23, movement: 0 },
+            ],
+          },
+        ],
+      },
+      {
+        title: AG,
+        kind: "song",
+        platforms: [
+          {
+            platform: "Apple Music",
+            numberOnes: 0,
+            entries: [{ country: "GW", name: "Guinea-Bissau", position: 171, movement: null, status: "new" }],
+          },
+        ],
+      },
+    ],
+  });
+
+  function mountPair(source: string) {
+    return render(
+      <MobileLiveCharts
+        releases={rows}
+        platforms={[{ platform: "Apple Music", placements: 3, numberOnes: 1 }]}
+        placements={3}
+        countries={2}
+        numberOnes={1}
+        updated="25 September 2026"
+        source={source}
+      />
+    );
+  }
+  // The album row carries the "Album" tag inside its button; the song's does not.
+  const albumBtn = () => screen.getAllByRole("button", { name: /African Giant/ }).find((b) => /Album/.test(b.textContent ?? ""))!;
+  const songBtn = () => screen.getAllByRole("button", { name: /African Giant/ }).find((b) => !/Album/.test(b.textContent ?? ""))!;
+  const panelOf = (btn: HTMLElement) => document.getElementById(btn.getAttribute("aria-controls") ?? "");
+
+  it("opens the song alone, and its panel shows the song's placements", async () => {
+    vi.stubGlobal("fetch", vi.fn(async () => ({ ok: true, json: async () => pairSnapshot() })));
+    mountPair(nextSource());
+    expect(songBtn().getAttribute("aria-controls")).not.toBe(albumBtn().getAttribute("aria-controls"));
+
+    await userEvent.click(songBtn());
+    expect(songBtn()).toHaveAttribute("aria-expanded", "true");
+    expect(albumBtn()).toHaveAttribute("aria-expanded", "false");
+    expect(await screen.findByText("#171")).toBeInTheDocument();
+    const panel = panelOf(songBtn());
+    expect(panel?.textContent).toContain("Guinea-Bissau");
+    expect(panel?.textContent).not.toContain("Nigeria");
+  });
+
+  it("opens the album alone, and its panel shows the album's placements", async () => {
+    vi.stubGlobal("fetch", vi.fn(async () => ({ ok: true, json: async () => pairSnapshot() })));
+    mountPair(nextSource());
+
+    await userEvent.click(albumBtn());
+    expect(albumBtn()).toHaveAttribute("aria-expanded", "true");
+    expect(songBtn()).toHaveAttribute("aria-expanded", "false");
+    expect(await screen.findByText("Nigeria")).toBeInTheDocument();
+    expect(panelOf(albumBtn())?.textContent).not.toContain("#171");
+  });
+
+  it("gives the desktop panels the right release too (the shared hook)", async () => {
+    vi.stubGlobal("fetch", vi.fn(async () => ({ ok: true, json: async () => pairSnapshot() })));
+    const src = nextSource();
+    const album = renderHook(() => useLiveRelease({ kind: "album", title: AG }, true, src));
+    const song = renderHook(() => useLiveRelease({ kind: "song", title: AG }, true, src));
+    await waitFor(() => expect(album.result.current.release).toBeDefined());
+    await waitFor(() => expect(song.result.current.release).toBeDefined());
+    expect(album.result.current.release?.kind).toBe("album");
+    expect(album.result.current.release?.platforms[0].entries).toHaveLength(2);
+    expect(song.result.current.release?.kind).toBe("song");
+    expect(song.result.current.release?.platforms[0].entries[0].position).toBe(171);
   });
 });

@@ -3,7 +3,7 @@ import styles from "./liveCharts.module.css";
 import KeepExploring from "../components/KeepExploring";
 import BreadcrumbBar from "../components/BreadcrumbBar";
 import MobileLiveCharts, { type ReleasePreview } from "../components/MobileLiveCharts";
-import { cadenceOf, reachOf, numberOnesOf, countriesOf, LIVE_CADENCE, LIVE_CADENCE_ADVERB } from "../lib/liveChartMeta";
+import { cadenceOf, reachOf, numberOnesOf, countriesOf, releaseKey, LIVE_CADENCE, LIVE_CADENCE_ADVERB } from "../lib/liveChartMeta";
 import LiveReleaseBlock, { type ReleaseSummary } from "../components/LiveReleaseBlock";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime } from "../lib/seo";
 import { coverFor, monogramFor } from "../lib/covers";
@@ -210,7 +210,7 @@ export default function LiveChartsPage() {
             </p>
             <div className={styles.releaseList}>
               {songs.map((r) => (
-                <LiveReleaseBlock key={`${r.kind}:${r.title}`} r={summarize(r)} />
+                <LiveReleaseBlock key={releaseKey(r)} r={summarize(r)} />
               ))}
             </div>
           </div>
@@ -225,7 +225,7 @@ export default function LiveChartsPage() {
               </div>
               <div className={styles.releaseList}>
                 {albums.map((r) => (
-                  <LiveReleaseBlock key={`${r.kind}:${r.title}`} r={summarize(r)} />
+                  <LiveReleaseBlock key={releaseKey(r)} r={summarize(r)} />
                 ))}
               </div>
             </div>

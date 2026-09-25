@@ -160,15 +160,25 @@ for (const album of allReleases) {
   }
 }
 
+/** Album, EP and compilation covers alone, for a caller that knows the row is
+ *  an ALBUM. OWN_COVERS below lets a song's own art override a record's of the
+ *  same name, which is right for the song and wrong for the album: a title
+ *  track with its own single art would have put that art on the album's row. */
+const RELEASE_COVERS: Record<string, string> = Object.fromEntries(withCover(allReleases));
+
 const OWN_COVERS: Record<string, string> = {
-  ...Object.fromEntries(withCover(allReleases)),
+  ...RELEASE_COVERS,
   ...Object.fromEntries(withCover(songs)),
   ...EXTRA_COVERS,
 };
 
-export function coverFor(title: string): string | undefined {
+/** `kind` is optional and matters only for a title an album and a song share
+ *  (the live boards list both, e.g. "African Giant", 24 Sep 2026): "album"
+ *  takes the record's own sleeve first. Songs, and callers that do not know
+ *  the kind, resolve exactly as before. */
+export function coverFor(title: string, kind?: "song" | "album"): string | undefined {
   const k = TITLE_ALIASES[key(title)] ?? key(title);
-  const hit = OWN_COVERS[k] ?? TRACK_COVERS[k];
+  const hit = (kind === "album" ? RELEASE_COVERS[k] : undefined) ?? OWN_COVERS[k] ?? TRACK_COVERS[k];
   if (hit) return hit;
   // "Sungba (Remix)" should find the art filed under "sungba": sources write
   // the remix credit inconsistently, and the remix single almost always

@@ -5,7 +5,7 @@ import bar from "../artist.module.css";
 import KeepExploring from "../../../components/KeepExploring";
 import MobileLiveCharts, { type ReleasePreview } from "../../../components/MobileLiveCharts";
 import LiveReleaseBlock, { type ReleaseSummary } from "../../../components/LiveReleaseBlock";
-import { cadenceOf, reachOf, numberOnesOf, LIVE_CADENCE, LIVE_CADENCE_LABEL, LIVE_CADENCE_ADVERB } from "../../../lib/liveChartMeta";
+import { cadenceOf, reachOf, numberOnesOf, releaseKey, LIVE_CADENCE, LIVE_CADENCE_LABEL, LIVE_CADENCE_ADVERB } from "../../../lib/liveChartMeta";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime } from "../../../lib/seo";
 import { artistBySlug } from "../../../data/afrobeats";
 import { LIVE_BOARDS, liveBoardFor, type LiveBoard } from "../../../data/liveBoards";
@@ -275,7 +275,7 @@ export default async function AfroLiveChartsPage({
             </p>
             <div className={styles.releaseList}>
               {songs.map((r) => (
-                <LiveReleaseBlock key={`${r.kind}:${r.title}`} r={summarize(r)} source={board.api} />
+                <LiveReleaseBlock key={releaseKey(r)} r={summarize(r)} source={board.api} />
               ))}
             </div>
           </div>
@@ -290,7 +290,7 @@ export default async function AfroLiveChartsPage({
               </div>
               <div className={styles.releaseList}>
                 {albums.map((r) => (
-                  <LiveReleaseBlock key={`${r.kind}:${r.title}`} r={summarize(r)} source={board.api} />
+                  <LiveReleaseBlock key={releaseKey(r)} r={summarize(r)} source={board.api} />
                 ))}
               </div>
             </div>
