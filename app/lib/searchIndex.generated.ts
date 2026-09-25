@@ -304,6 +304,20 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "HEAT Latin Music Awards",
+    "path": "/records/awards#body=HEAT%20Latin%20Music%20Awards",
+    "section": "Awards",
+    "description": "0 wins from 3 nominations.",
+    "keywords": [
+      "award",
+      "awards",
+      "ceremony",
+      "won",
+      "nomination"
+    ],
+    "generated": true
+  },
+  {
     "title": "iHeartRadio Music Awards",
     "path": "/records/awards#body=iHeartRadio%20Music%20Awards",
     "section": "Awards",

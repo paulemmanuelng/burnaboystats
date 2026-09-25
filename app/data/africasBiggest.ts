@@ -386,6 +386,36 @@ export const statBoxes: LeaderboardBox[] = [
       "Peak positions on Spotify's Daily Top Songs Global chart, each artist's best-charting song across all credits, from chart-tracking accounts. As of August 2026.",
   },
   {
+    // Paul asked for this board on 25 Sep 2026 ("build top 5 leaderboard for
+    // that spotify page"). Every row was read on Spotify's own chart page,
+    // charts.spotify.com/charts/view/album-global-weekly/<Thursday>, that day:
+    // Love, Damini #17 NEW (2022-07-14; #31 the week after), M$NEY #18 NEW
+    // (2026-05-07), Morayo #22 NEW (2024-11-28), Rave & Roses #24
+    // (2023-05-04; #32 the week before, then #26, #30, #37), TYLA #29 NEW
+    // (2024-03-28), 5ive #29 NEW (2025-04-24). Checked and lower: I Told Them…
+    // #30, The Year I Turned 21 #37, SWAGUU #40, Lungu Boy #45, No Sign of
+    // Weakness #50, Timeless #54 NEW (2023-04-06), Born in the Wild #81 NEW,
+    // Work of Art #135 NEW, Made in Lagos #190 NEW (Nov 2020; the deluxe was
+    // off the chart in Aug 2021). One row per artist, his or her best album,
+    // as the song board beside it; a tie is one row, earlier peak named first.
+    // Platform data: never copy these into charts.ts or an album page's
+    // official-chart peaks. tests/africaBoards.test.ts holds the note to the rows.
+    id: "spotify-global-album-peak",
+    title: "Highest-charting African album on Spotify Global",
+    meta: "Spotify Weekly Top Albums Global · peak position · African artists' own albums",
+    layout: "list",
+    entries: [
+      { name: "Burna Boy", sub: "🇳🇬 Love, Damini", value: "#17" },
+      { name: "Asake", sub: "🇳🇬 M$NEY", value: "#18" },
+      { name: "Wizkid", sub: "🇳🇬 Morayo", value: "#22" },
+      { name: "Rema", sub: "🇳🇬 Rave & Roses", value: "#24" },
+      { name: "Tyla & Davido", sub: "🇿🇦🇳🇬 TYLA / 5ive · tied", value: "#29" },
+    ],
+    note: "Burna Boy's Love, Damini is the highest-charting African album on Spotify's Weekly Top Albums Global chart: No. 17 in its first week, in July 2022, one place above Asake's M$NEY. Tyla's TYLA is the best from outside Nigeria, level with Davido's 5ive at No. 29.",
+    source:
+      "Peak positions on Spotify's Weekly Top Albums Global chart (Friday-to-Thursday weeks), each artist's highest-charting album of their own; nationality decides who counts. Soundtracks and compilations are left out: Black Panther: Wakanda Forever – Music From and Inspired By, which Spotify credits to Rihanna and Tems, reached No. 7 on 11–17 November 2022. The chart's archive begins in October 2020. The week each peak was set: Love, Damini No. 17, 8–14 July 2022; M$NEY No. 18, 1–7 May 2026; Morayo No. 22, 22–28 November 2024; Rave & Roses No. 24, 28 April–4 May 2023; TYLA No. 29, 22–28 March 2024; 5ive No. 29, 18–24 April 2025. All but Rave & Roses peaked in their first week (it entered at No. 32 the week before). Checked and lower: I Told Them… No. 30, The Year I Turned 21 No. 37, SWAGUU No. 40, Lungu Boy No. 45, No Sign of Weakness No. 50, Timeless No. 54, Born in the Wild No. 81, Work of Art No. 135 and Made in Lagos No. 190. The six peaks above were read on charts.spotify.com, 25 September 2026; the lower checks there and in kworb's archived copies of the chart.",
+  },
+  {
     id: "daily-peak-streams-ng",
     title: "Biggest single day on Spotify",
     meta: "Spotify · Nigerian artists · best day on record",

@@ -123,7 +123,7 @@ describe("handoff checklist — data integrity", () => {
     ).toBe(chartTitle);
   });
 
-  it("counts 83 award wins from 245 nominations across 47 bodies", () => {
+  it("counts 83 award wins from 248 nominations across 48 bodies", () => {
     const wins = allNoms.filter((n) => n.won).length;
 
     // 4 Aug 2026 year-by-year pass: +2 wins (Headies 2012 Rookie of the
@@ -164,10 +164,14 @@ describe("handoff checklist — data integrity", () => {
     // 243 -> 245 on 23 Sep 2026: two BreakTudo Awards 2026 nominations
     // (International Male Artist; International Hit of the Year, "Dai Dai"),
     // read in the body's own nominee post. Ceremony 24 Nov — pending.
-    expect(allNoms.length).toBe(236 + 4 + 1 + 1 - 1 + 1 + 1 + 2);
+    // 245 -> 248 and a 48th body on 25 Sep 2026: three HEAT Latin Music Awards
+    // 2026 nominations for "Dai Dai" (Canción del Año, Mejor Video, Mejor
+    // Canción Viral), read in the body's own nominee post of 24 Sep. Gala 5 Nov,
+    // Puerto Vallarta — pending.
+    expect(allNoms.length).toBe(236 + 4 + 1 + 1 - 1 + 1 + 1 + 2 + 3);
     expect(totalWins).toBe(wins);
     expect(totalNominations).toBe(allNoms.length);
-    expect(ceremonyCount).toBe(47);
+    expect(ceremonyCount).toBe(48);
   });
 
   it("counts 57 countries performed in and 52 firsts", () => {

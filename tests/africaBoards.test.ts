@@ -193,3 +193,43 @@ describe("the Spotify Global note makes no all-time record claim", () => {
     expect(feed.map((u) => u.date)).toEqual([]);
   });
 });
+
+describe("the Spotify Global album board", () => {
+  // Paul's board of 25 Sep 2026, read on charts.spotify.com that day. Its note
+  // restates three of its rows in words, so the words are held to the rows: a
+  // re-read that moves a peak moves the note or fails here.
+  const box = statBoxes.find((b) => b.id === "spotify-global-album-peak")!;
+  const place = (v?: string) => Number(/^#(\d+)$/.exec(v ?? "")?.[1]);
+
+  it("sits beside the song board it mirrors", () => {
+    const i = statBoxes.findIndex((b) => b.id === "highest-spotify-global-peak");
+    expect(statBoxes[i + 1]?.id).toBe(box.id);
+  });
+
+  it("states the rows' own peaks in its note", () => {
+    const [first, second, , , tied] = box.entries!;
+    expect(first.name).toBe(HIGHLIGHT);
+    expect(first.sub).toContain("Love, Damini");
+    expect(box.note).toContain(`No. ${place(first.value)} in its first week`);
+    // "One place above" is the gap between the top two rows, not a phrase.
+    expect(second.sub).toContain("M$NEY");
+    expect(place(second.value) - place(first.value)).toBe(1);
+    expect(box.note).toContain("one place above Asake's M$NEY");
+    // The tie is one row, as on the song board, and the note names its place.
+    expect(tied.name).toBe("Tyla & Davido");
+    expect(tied.sub).toContain("TYLA / 5ive · tied");
+    expect(box.note).toContain(`level with Davido's 5ive at No. ${place(tied.value)}`);
+  });
+
+  it("names its read date, and the feed entry quotes the same peak", () => {
+    expect(box.source).toContain("read on charts.spotify.com, 25 September 2026");
+    const entry = updates.find((u) => u.date === "2026-09-25" && u.href === "/records/africas-biggest");
+    expect(entry?.text).toContain(`Love, Damini's No. ${place(box.entries![0].value)}`);
+  });
+
+  it("stays out of the official-chart data", () => {
+    // A platform chart. charts.ts is official national charts only.
+    const charts = readFileSync("app/data/charts.ts", "utf8");
+    expect(charts).not.toMatch(/Weekly Top Albums|album-global-weekly/);
+  });
+});

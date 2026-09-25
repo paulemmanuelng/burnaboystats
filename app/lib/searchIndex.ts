@@ -321,7 +321,7 @@ export const searchIndex: SearchDoc[] = [
     path: "/records/africas-biggest",
     section: "Records",
     description: "Africa's biggest artists by Billboard and Spotify — Burna Boy in context.",
-    keywords: ["africas biggest", "wizkid", "tems", "rema", "tyla", "asake", "davido", "afrobeats", "most streamed african artist", "compare"],
+    keywords: ["africas biggest", "wizkid", "tems", "rema", "tyla", "asake", "davido", "afrobeats", "most streamed african artist", "highest charting african album", "spotify album chart", "compare"],
   },
   {
     title: "By the Numbers",
@@ -876,8 +876,8 @@ const fold = (s: string) =>
 /**
  * How many docs carry each keyword. A generated doc's keywords are of two
  * kinds: a name for it ("uk" for the United Kingdom, a collaborator) and the
- * category it sits in ("chart" on all 41 charting countries, "award" on all
- * 47 bodies). Only the first says "this doc IS that word".
+ * category it sits in ("chart" on every charting country, "award" on every
+ * awards body). Only the first says "this doc IS that word".
  */
 let keywordDocs: Map<string, number> | null = null;
 function docsWithKeyword(k: string): number {
