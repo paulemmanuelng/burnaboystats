@@ -91,15 +91,19 @@ export const tours: Tour[] = [
       { date: "Nov 5, 2023", venue: "Climate Pledge Arena", city: "Seattle", country: "USA", cap: 18100 },
       { date: "Nov 7, 2023", venue: "Rogers Arena", city: "Vancouver", country: "Canada", cap: 18910 },
       { date: "Nov 9, 2023", venue: "Rogers Place", city: "Edmonton", country: "Canada", cap: 18500 },
-      { date: "Nov 12, 2023", venue: "Ball Arena", city: "Denver", country: "USA", cap: 19520 },
+      // Three announced dates were CANCELLED and are not listed: Denver, Ball
+      // Arena, 12 Nov 2023 (ballarena.com event card, Wayback 20231111051153:
+      // status "cancelled"); Minneapolis, Target Center, 18 Feb 2024, and
+      // Columbus, Nationwide Arena, 22 Feb 2024 (Ticketmaster artist page
+      // schema.org data, Wayback 20231225190950 and 20240213104847:
+      // "EventCancelled"). The 16 North American dates left here match Touring
+      // Data's 16 North American shows.
       { date: "Nov 17, 2023", venue: "Toyota Center", city: "Houston", country: "USA", cap: 18055 },
       { date: "Nov 18, 2023", venue: "Moody Center", city: "Austin", country: "USA", cap: 15000 },
       { date: "Dec 9, 2023", venue: "Mercedes-Benz Arena", city: "Berlin", country: "Germany" },
       { date: "Dec 10, 2023", venue: "Lanxess Arena", city: "Cologne", country: "Germany" },
       { date: "Dec 12, 2023", venue: "Sportpaleis", city: "Antwerp", country: "Belgium" },
-      { date: "Feb 18, 2024", venue: "Target Center", city: "Minneapolis", country: "USA", cap: 18978 },
       { date: "Feb 21, 2024", venue: "Wintrust Arena", city: "Chicago", country: "USA", cap: 10387 },
-      { date: "Feb 22, 2024", venue: "Nationwide Arena", city: "Columbus", country: "USA", cap: 18500 },
       { date: "Feb 24, 2024", venue: "Scotiabank Arena", city: "Toronto", country: "Canada", cap: 19800 },
       { date: "Feb 25, 2024", venue: "Scotiabank Arena", city: "Toronto", country: "Canada", cap: 19800 },
       { date: "Feb 28, 2024", venue: "Bell Centre", city: "Montreal", country: "Canada", cap: 21302 },
@@ -112,8 +116,15 @@ export const tours: Tour[] = [
       { date: "Jun 29, 2024", venue: "London Stadium", city: "London", country: "UK", cap: 80000 },
       { date: "Apr 18, 2025", venue: "Stade de France", city: "Paris", country: "France", cap: 80000 },
       { date: "Apr 21, 2025", venue: "Co-op Live", city: "Manchester", country: "UK", cap: 23000 },
-      { date: "Jul 5, 2025", venue: "Waldbühne", city: "Berlin", country: "Germany", cap: 22000 },
-      { date: "Jul 6, 2025", venue: "SparkassenPark", city: "Mönchengladbach", country: "Germany", cap: 21000 },
+      // The Mönchengladbach date moved to SummerJam the same day
+      // (sparkassenpark.de event page, Wayback 20250718173700: "will be moving
+      // to Summerjam Festival in Cologne on the same day (July 6, 2025)");
+      // setlist.fm has the set at Fühlinger See.
+      { date: "Jul 6, 2025", venue: "SummerJam Festival", city: "Cologne", country: "Germany" },
+      // Postponed from 5 July: the venue's page reads "Ersatztermin für den
+      // 05.07.2025 Freitag, 15. Aug. 2025" (waldbuehne-berlin.de, Wayback
+      // 20250703173412), and its Hall of Fame lists the 15.08.2025 show.
+      { date: "Aug 15, 2025", venue: "Waldbühne", city: "Berlin", country: "Germany", cap: 22000 },
     ],
   },
   {
@@ -159,12 +170,22 @@ export const tours: Tour[] = [
   {
     name: "African Giant Tour",
     years: "2019",
-    note: "The run behind the Grammy-nominated African Giant. Its main leg — the African Giant Returns Tour — swept theatres and clubs across Canada, the US and Europe in late 2019, opening at Toronto's Rebel and closing in Leicester, widening his worldwide audience ahead of the stadium era.",
+    note: "The run behind the Grammy-nominated African Giant. Its main leg — the African Giant Returns Tour — swept theatres and clubs across Canada, the US and Europe from August to November 2019, widening his worldwide audience ahead of the stadium era.",
     dates: [
-      { date: "Aug 9, 2019", venue: "Rebel", city: "Toronto", country: "Canada", cap: 2500 },
-      { date: "Aug 11, 2019", venue: "L'Olympia", city: "Montreal", country: "Canada", cap: 2300 },
+      // The spring 2019 US run (OkayAfrica, 12 Feb 2019, announced a Boston
+      // stop). Date from listings only: Songkick "2019-04-01 Burna Boy @
+      // Brighton Music Hall, Boston" and do617.com/events/2019/4/1.
+      { date: "Apr 1, 2019", venue: "Brighton Music Hall", city: "Boston", country: "USA", cap: 480 },
+      // Postponed from 11 Aug: the venue's page (olympiamontreal.com, Wayback
+      // 20190921130435) reads "The event originally scheduled for August 11 is
+      // postponed to this Thursday, August 15!"
+      { date: "Aug 15, 2019", venue: "L'Olympia", city: "Montreal", country: "Canada", cap: 2300 },
       { date: "Aug 16, 2019", venue: "Union Hall", city: "Edmonton", country: "Canada" },
       { date: "Aug 17, 2019", venue: "Vogue Theatre", city: "Vancouver", country: "Canada", cap: 1150 },
+      // Called off on the night of Friday 9 Aug and played Sunday 18 Aug: NOW
+      // Magazine, 19 Aug 2019 ("at Rebel, Sunday, August 18"); setlist.fm has
+      // the Rebel set on 18 Aug 2019.
+      { date: "Aug 18, 2019", venue: "Rebel", city: "Toronto", country: "Canada", cap: 2500 },
       { date: "Aug 28, 2019", venue: "House of Blues", city: "San Diego", country: "USA", cap: 1100 },
       { date: "Aug 29, 2019", venue: "The Wiltern", city: "Los Angeles", country: "USA", cap: 1850 },
       { date: "Sep 4, 2019", venue: "Summit", city: "Denver", country: "USA" },
@@ -190,13 +211,15 @@ export const tours: Tour[] = [
       { date: "May 30, 2018", venue: "Howard Theatre", city: "Washington, D.C.", country: "USA", cap: 1100 },
       { date: "May 31, 2018", venue: "The Foundry", city: "Philadelphia", country: "USA", cap: 450 },
       { date: "Jun 2, 2018", venue: "Gramercy Theatre", city: "New York", country: "USA", cap: 650 },
-      { date: "Jun 3, 2018", venue: "Brighton Music Hall", city: "Boston", country: "USA", cap: 480 },
-      { date: "Jun 5, 2018", venue: "The Velvet Underground", city: "Toronto", country: "Canada" },
-      { date: "Jun 6, 2018", venue: "Reggies", city: "Chicago", country: "USA" },
-      { date: "Jun 8, 2018", venue: "Complex", city: "Oakland", country: "USA" },
-      { date: "Jun 10, 2018", venue: "The Roxy", city: "Los Angeles", country: "USA", cap: 500 },
+      // The official tour poster (BrooklynVegan, 4 May 2018) and Songkick have
+      // "6/8 CHICAGO, IL BOTTOM LOUNGE" and "6/16 LOS ANGELES, CA UNION
+      // NIGHTCLUB". Boston is the 1 Apr 2019 show (African Giant Tour above).
+      // Toronto 5 Jun, Oakland 8 Jun and Dallas 17 Jun 2018 are on neither
+      // source and are not listed: his Toronto debut was 18 Aug 2019 (NOW
+      // Magazine, 19 Aug 2019), and on 8 Jun he was in Chicago.
+      { date: "Jun 8, 2018", venue: "Bottom Lounge", city: "Chicago", country: "USA" },
       { date: "Jun 14, 2018", venue: "House of Blues (Bronze Peacock)", city: "Houston", country: "USA" },
-      { date: "Jun 17, 2018", venue: "House of Blues (Cambridge Room)", city: "Dallas", country: "USA" },
+      { date: "Jun 16, 2018", venue: "Union Nightclub", city: "Los Angeles", country: "USA" },
       { date: "Sep 20, 2018", venue: "The Garage", city: "Glasgow", country: "UK", cap: 600 },
       { date: "Sep 22, 2018", venue: "O2 Academy", city: "Newcastle", country: "UK", cap: 2000 },
       { date: "Sep 23, 2018", venue: "O2 Academy", city: "Leeds", country: "UK", cap: 2300 },
@@ -379,7 +402,9 @@ export const otherShows: Festival[] = [
 // dates within a routed multi-city tour, which live in `tours` above).
 export const concerts: Festival[] = [
   { year: "2026", name: "Burna Boy Live in El Gouna", location: "El Gouna Conference & Cultural Center, Egypt", note: "His first-ever performance in Egypt (11 April 2026), blending hits like On the Low and Gbona with cuts from No Sign of Weakness." },
-  { year: "2022", name: "Burna Boy Live in Harare", location: "Belgravia Sports Club, Zimbabwe", note: "His Zimbabwe debut (4 June 2022) — also remembered for declining to wear a ruling-party (ZANU-PF) scarf, refusing any political endorsement." },
+  // Friday 3 June, on stage at 22:55 local: GreedySouth's review, 4 Jun 2022
+  // ("On Friday the 3rd of June, Harare's Belgravia Sports Club was host").
+  { year: "2022", name: "Burna Boy Live in Harare", location: "Belgravia Sports Club, Zimbabwe", note: "His Zimbabwe debut (3 June 2022) — also remembered for declining to wear a ruling-party (ZANU-PF) scarf, refusing any political endorsement." },
   { year: "2021", name: "Burna Boy: The Live Experience", location: "Eko Convention Centre, Lagos", note: "His sold-out Lagos homecoming concert — a hometown spectacle staged as a newly-crowned Grammy winner." },
   { year: "2022", name: "National Stadium, Kingston", location: "Jamaica", note: "His first-ever headline concert in Jamaica — about 19,000 fans, joined on stage by Popcaan and Lila Iké, planting his flag in the home of reggae and dancehall." },
   { year: "2019", name: "Burna Boy Xperience", location: "Sheraton Gardens, Kampala", note: "A packed Kampala headline concert (22 March 2019) — his return to Uganda after debuting at Namboole Stadium's Club MegaFest in 2014." },
