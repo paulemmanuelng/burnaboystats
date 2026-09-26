@@ -4,6 +4,7 @@ import Link from "next/link";
 import BrandMark from "./BrandMark";
 import { usePathname } from "next/navigation";
 import { hasOwnActionBar } from "../lib/mobileScreens";
+import { SPANISH_PATH } from "../lib/documentLang";
 import styles from "./mobileTabBar.module.css";
 
 /**
@@ -34,12 +35,27 @@ import styles from "./mobileTabBar.module.css";
  */
 const TABS = [
   // `mark: true` renders the crown instead of a glyph — see the note above.
-  { icon: "◆", label: "Home", href: "/", mark: true },
-  { icon: "♪", label: "Music", href: "/music" },
-  { icon: "★", label: "Certs", href: "/certifications" },
-  { icon: "▲", label: "Charts", href: "/live-charts" },
-  { icon: "⌗", label: "Records", href: "/records" },
+  { icon: "◆", label: "Home", es: "Inicio", href: "/", mark: true },
+  { icon: "♪", label: "Music", es: "Música", href: "/music" },
+  { icon: "★", label: "Certs", es: "Certs", href: "/certifications" },
+  { icon: "▲", label: "Charts", es: "Listas", href: "/live-charts" },
+  { icon: "⌗", label: "Records", es: "Récords", href: "/records" },
 ] as const;
+
+/**
+ * The words on the site's one Spanish route, /dai-dai/es.
+ *
+ * The Dai Dai redesign Paul approved on 26 Sep 2026 draws the phone's tabs in
+ * Spanish on that edition (change-list item 13: "the phone top bar and tabs
+ * translated"). The labels are the artboard's own (tabsEs in "Dai Dai
+ * Redesign.dc.html": Inicio, Música, Certs, Listas, Récords); the glyphs and
+ * the hrefs stay the site's, since the sections they open are English.
+ *
+ * The bar sits in the root layout, outside the page's <main lang="es">, so it
+ * carries its own lang for a reader whose document language was never
+ * corrected (no JavaScript — see lib/documentLang.ts).
+ */
+const BAR_LABEL = { en: "Tab bar", es: "Barra de pestañas" } as const;
 
 /**
  * Routes that belong to a tab but do not sit under its href.
@@ -66,8 +82,14 @@ export default function MobileTabBar() {
   // Its own name, not "Primary": the top nav is also on screen at phone width
   // on most pages, and two landmarks both called "Primary navigation" leave a
   // screen-reader user unable to tell which one they are in.
+  const es = SPANISH_PATH.test(pathname);
+
   return (
-    <nav className={`${styles.bar} mobileTabBarPresent`} aria-label="Tab bar">
+    <nav
+      className={`${styles.bar} mobileTabBarPresent`}
+      aria-label={es ? BAR_LABEL.es : BAR_LABEL.en}
+      lang={es ? "es" : undefined}
+    >
       {TABS.map((t) => {
         // "/" only matches exactly; the rest match their whole section, so a
         // song page still shows Music as the active tab.
@@ -89,7 +111,7 @@ export default function MobileTabBar() {
             ) : (
               <span className={styles.icon} aria-hidden="true">{t.icon}</span>
             )}
-            <span className={styles.label}>{t.label}</span>
+            <span className={styles.label}>{es ? t.es : t.label}</span>
           </Link>
         );
       })}

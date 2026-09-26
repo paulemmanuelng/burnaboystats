@@ -347,6 +347,22 @@ export const daiDaiYouTubeDaysAtNo1 = daysInclusive(
 // on YouTube worldwide" is exactly the conflation this repo keeps paying for.
 
 // ---------------------------------------------------------------------------
+// The iTunes sweep: the number of countries whose iTunes songs chart "Dai Dai"
+// has led.
+//
+// It was only ever prose ("iTunes song chart in 73 countries…") until the
+// redesign of 26 Sep 2026 made it the figure of its own row in the world
+// rankings list, on both editions. A display figure needs a home, so it is
+// here. The read is the site's own dated log in app/data/updates.ts: 18 Aug
+// 2026, "The iTunes sweep reaches 73 countries: Belarus becomes the newest",
+// restated on 21 Aug ("has led the iTunes songs chart in 73 territories,
+// Belarus the newest"). Nothing later in the log moves it, and no bot
+// refreshes it, which is why it carries the date of that last statement.
+// tests/daiDaiFigureHomes.test.ts holds it to the log.
+export const DAI_DAI_ITUNES_NO1_COUNTRIES = 73;
+export const DAI_DAI_ITUNES_NO1_COUNTRIES_AS_OF = "2026-08-21";
+
+// ---------------------------------------------------------------------------
 // The story's dates and its figures' data (the /dai-dai redesign, 26 Sep 2026).
 //
 // Each of these was already in the repo — as a typed kicker, a JSON-LD field,

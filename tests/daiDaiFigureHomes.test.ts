@@ -1,6 +1,8 @@
 import { describe, it, expect } from "vitest";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
+import { updates } from "../app/data/updates";
+import { DAI_DAI_ITUNES_NO1_COUNTRIES, DAI_DAI_ITUNES_NO1_COUNTRIES_AS_OF } from "../app/data/daiDai";
 
 // "Dai Dai"'s days-at-No.1 figure is the most-quoted number on this site and
 // has by far the widest spread: every statement of it listed below, across nine
@@ -42,6 +44,15 @@ const DERIVED: Home[] = [
 // 2026: chapter 04's figure is now the six-spell strip, and it prints the
 // constant itself. Held here by name, like the home layouts above, and the
 // spells it draws are held to the same constant in daiDaiStoryFigures.test.tsx.
+// The record's two streak rows (EN and ES) typed "37 days" / "37 días" as
+// their value until the review of 26 Sep 2026 — rows the redesign had just
+// rewritten, beside a constant that already held the figure. They read it now,
+// and are held here by name like the home layouts.
+const ROWS: Home[] = [
+  { file: "app/dai-dai/page.tsx", label: "EN streak row", re: /\{ v: `\$\{DAI_DAI_SPOTIFY_NO1_DAYS\} days`, l: `in total at No\. 1 on Spotify/ },
+  { file: "app/dai-dai/es/page.tsx", label: "ES streak row", re: /\{ v: `\$\{DAI_DAI_SPOTIFY_NO1_DAYS\} días`, l: `en total en el número 1/ },
+];
+
 const FIGURE: Home = {
   file: "app/components/DaiDaiFigures.tsx",
   label: "story chapter 04 figure",
@@ -52,7 +63,6 @@ const HOMES: Home[] = [
   { file: "app/components/DaiDaiStory.tsx", label: "story rail body", re: /(\d+) days as the single most-streamed/ },
   { file: "app/data/faqs.ts", label: "FAQ answer", re: /spent (\d+) days at No\. 1/ },
   { file: "app/dai-dai/page.tsx", label: "EN page description", re: /anthem: (\d+) days as Earth/ },
-  { file: "app/dai-dai/page.tsx", label: "EN streak card", re: /\{ v: "(\d+) days", l: ["`]in total at No\. 1 on Spotify/ },
   // The figure's home is now app/data/daiDai.ts, beside its three siblings and
   // with a reading date of its own. ogId re-exports it for the share card's
   // cache id; the seventeen prose statements below still spell it out, and this
@@ -63,7 +73,6 @@ const HOMES: Home[] = [
   { file: "app/dai-dai/es/ogId.ts", label: "ES share card", re: /— (\d+) días como/ },
   { file: "app/dai-dai/es/page.tsx", label: "ES page description", re: /Burna Boy: (\d+) días como/ },
   { file: "app/dai-dai/es/page.tsx", label: "ES story body", re: /la semanal: (\d+) días como/ },
-  { file: "app/dai-dai/es/page.tsx", label: "ES streak card", re: /\{ v: "(\d+) días", l: ["`]en total en el número 1/ },
   // The sixteenth home, and the one that was missing: Africa's Biggest carries
   // the same figure in a board note, in a file this list did not cover at all.
   { file: "app/data/africasBiggest.ts", label: "Africa's Biggest board note", re: /held that No\. 1 for (\d+) days/ },
@@ -99,6 +108,19 @@ describe("the days-at-No.1 figure agrees with itself everywhere", () => {
     expect(/\b\d+ days (?:as|at No\. 1)/.test(src), `${FIGURE.file} types a days figure`).toBe(false);
   });
 
+  it("the record's streak rows read the figure from the constant", () => {
+    const notDerived = ROWS.filter((h) => !h.re.test(read(h.file)));
+    expect(notDerived.map((h) => `${h.file} — ${h.label}`), "a streak row types the days figure again").toEqual([]);
+    // The rows as the redesign first shipped them (PR 350, 26 Sep 2026).
+    const SHIPPED = [
+      '{ v: "37 days", l: `in total at No. 1 on Spotify',
+      '{ v: "37 días", l: `en total en el número 1',
+    ];
+    const typed = /\{ v: "\d+ (?:days|días)", l: `(?:in total at No\. 1 on Spotify|en total en el número 1)/;
+    for (const line of SHIPPED) expect(typed.test(line), `the check no longer catches: ${line}`).toBe(true);
+    for (const h of ROWS) expect(typed.test(read(h.file)), `${h.file} types the days figure`).toBe(false);
+  });
+
   it("the two home layouts read the figure from the constant, in the past tense", () => {
     const notDerived = DERIVED.filter((h) => !h.re.test(read(h.file)));
     expect(notDerived.map((h) => `${h.file} — ${h.label}`), "a home layout types the days figure again").toEqual([]);
@@ -130,5 +152,46 @@ describe("the days-at-No.1 figure agrees with itself everywhere", () => {
     expect(og, "the share-card route must use the shared id, not one of its own").toMatch(
       /generateImageMetadata\s*=\s*\(\)\s*=>\s*\[\{\s*id:\s*daiDaiOgId/,
     );
+  });
+});
+
+// The iTunes sweep: how many countries' iTunes songs chart "Dai Dai" has led.
+// Prose only until the redesign of 26 Sep 2026 gave it a row of its own in the
+// world rankings list, where it was typed as the row's value ("73") and again
+// in its sentence, in both editions. It has one home now,
+// DAI_DAI_ITUNES_NO1_COUNTRIES, and the anchor that is not that constant is
+// the site's own dated log: the page may run ahead of updates.ts, never behind.
+describe("the iTunes countries figure has one home", () => {
+  const ROWS: Home[] = [
+    { file: "app/dai-dai/page.tsx", label: "EN world-rankings row", re: /\{ v: `\$\{DAI_DAI_ITUNES_NO1_COUNTRIES\}`, l: `iTunes song chart in \$\{DAI_DAI_ITUNES_NO1_COUNTRIES\} countries/ },
+    { file: "app/dai-dai/es/page.tsx", label: "ES world-rankings row", re: /\{ v: `\$\{DAI_DAI_ITUNES_NO1_COUNTRIES\}`, l: `en la lista de canciones de iTunes en \$\{DAI_DAI_ITUNES_NO1_COUNTRIES\} países/ },
+  ];
+  // The rows as PR 350 first shipped them, value and sentence both typed.
+  const SHIPPED = [
+    '{ v: "73", l: "iTunes song chart in 73 countries — the US, UK, Canada',
+    '{ v: "73", l: "en la lista de canciones de iTunes en 73 países — Estados Unidos',
+  ];
+  const typed = /iTunes song chart in \d+ countries|canciones de iTunes en \d+ países|\{ v: "\d+", l: ["`](?:iTunes song chart|en la lista de canciones de iTunes)/;
+
+  it("both editions read the value and the sentence from the constant", () => {
+    const notDerived = ROWS.filter((h) => !h.re.test(read(h.file)));
+    expect(notDerived.map((h) => `${h.file} — ${h.label}`), "a row types the iTunes figure again").toEqual([]);
+    for (const line of SHIPPED) expect(typed.test(line), `the check no longer catches: ${line}`).toBe(true);
+    for (const h of ROWS) expect(typed.test(read(h.file)), `${h.file} types the iTunes figure`).toBe(false);
+  });
+
+  it("never falls behind the updates feed's own statement of it", () => {
+    const FEED = [/iTunes sweep reaches (\d+) countries/, /iTunes in (\d+) countries/, /led the iTunes songs chart in (\d+) territories/];
+    const said = updates.flatMap((u) =>
+      FEED.flatMap((re) => {
+        const m = u.text.match(re);
+        return m ? [{ n: Number(m[1]), date: u.date }] : [];
+      }),
+    );
+    expect(said.length, "no updates.ts entry states the iTunes countries figure in a shape this test reads").toBeGreaterThan(0);
+    const newest = said.reduce((a, b) => (b.date > a.date ? b : a));
+    const most = Math.max(...said.map((s) => s.n));
+    expect(DAI_DAI_ITUNES_NO1_COUNTRIES, `updates.ts already published ${most}`).toBeGreaterThanOrEqual(most);
+    expect(DAI_DAI_ITUNES_NO1_COUNTRIES_AS_OF >= newest.date, "the feed states the figure after the constant's reading date").toBe(true);
   });
 });

@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { updates } from "../app/data/updates";
-import { daiDaiYouTubeDaysAtNo1 } from "../app/data/daiDai";
+import { daiDaiYouTubeDaysAtNo1, DAI_DAI_SPOTIFY_NO1_DAYS } from "../app/data/daiDai";
 
 // Platform streaks — Spotify's daily and weekly charts, Apple Music, iTunes,
 // Mediatraffic, YouTube — are the one class of figure on /dai-dai with nowhere
@@ -58,7 +58,10 @@ interface Streak {
 const STREAKS: Streak[] = [
   {
     id: "Spotify Global Daily — days at No. 1",
-    page: `v: "(\\d+) days", l: ["\`]in total at No\\. 1 on Spotify${A}s Global Daily`,
+    // Read from DAI_DAI_SPOTIFY_NO1_DAYS since the review of 26 Sep 2026: the
+    // redesigned row had typed "37 days" beside a constant that already held it.
+    page: `v: \`\\$\\{DAI_DAI_SPOTIFY_NO1_DAYS\\} days\`, l: \`in total at No\\. 1 on Spotify${A}s Global Daily`,
+    derived: DAI_DAI_SPOTIFY_NO1_DAYS,
     feed: [
       `${ORD} day as the most-streamed song on Earth`,
       `${ORD} day atop Spotify${A}s Global Daily`,
