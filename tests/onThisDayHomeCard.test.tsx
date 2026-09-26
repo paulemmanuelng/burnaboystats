@@ -297,7 +297,17 @@ describe("the picture and the title open the day's page, not the card (Paul, 26 
     const lh = Number(rule(phone, ".homeTitle").match(/line-height: ([\d.]+);/)![1]);
     const pad = Number(rule(phone, ".homeTitleLink::after").match(/inset: -(\d+)px 0;/)![1]);
     expect(size * lh + 2 * pad).toBeGreaterThanOrEqual(44);
-    expect(rule(phone, ".homeCardNameLink")).toMatch(/min-height: 44px;/);
+    // The card line keeps its natural height (a min-height moved it and the
+    // button 12.6px down the box at 390); its layer lifts one line to 44px.
+    const nameLink = rule(phone, ".homeCardNameLink");
+    expect(nameLink).not.toMatch(/min-height|height:|padding|display: flex/);
+    expect(nameLink).toMatch(/position: relative;/);
+    const small = Number(readFileSync("app/globals.css", "utf8").match(/--type-small: ([\d.]+)px;/)![1]);
+    const nameLh = Number(rule(phone, ".homeCardName").match(/line-height: ([\d.]+);/)![1]);
+    const [, up, down] = rule(phone, ".homeCardNameLink::after").match(/inset: -(\d+)px 0 -(\d+)px;/)!.map(Number);
+    expect(small * nameLh + up + down).toBeGreaterThanOrEqual(44);
+    // It reaches into the 8px gap over the button, never onto it.
+    expect(down).toBeLessThan(Number(rule(phone, ".homeCardCopy").match(/gap: (\d+)px;/)![1]));
     // The thumbnail is 96×120.
     expect(rule(phone, ".homeThumb")).toMatch(/width: 96px; height: 120px;/);
   });

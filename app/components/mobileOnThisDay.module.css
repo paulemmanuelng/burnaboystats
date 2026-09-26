@@ -215,16 +215,19 @@
 .homeThumb img { display: block; width: 96px; height: 120px; }
 .homeCardCopy { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
 .homeCardName { font-size: var(--type-small); line-height: 1.4; font-weight: 600; }
-/* "The <day> card, ready to post" opens the day's page too: a 44px target,
-   its words at the foot so they still sit 8px over "Save or share ↓". The
-   column stays shorter than the 120px thumbnail, so the box does not grow. */
+/* "The <day> card, ready to post" opens the day's page too. The link keeps
+   its natural height, so the line and "Save or share ↓" stay centred beside
+   the thumbnail where they shipped; a transparent layer, as on the title,
+   lifts the tap target to 44px: one line is 18.9px, the layer adds 21px into
+   the empty space above it (24.5px at 390) and 5px into the 8px gap over the
+   button. The focus ring hugs the words, not the layer. */
 .homeCardNameLink {
-  display: flex;
-  align-items: flex-end;
-  min-height: 44px;
+  position: relative;
+  display: block;
   color: inherit;
   text-decoration: none;
 }
+.homeCardNameLink::after { content: ""; position: absolute; inset: -21px 0 -5px; }
 .homeCardNameLink:hover,
 .homeCardNameLink:active { text-decoration-line: underline; text-underline-offset: 2px; }
 /* The site's outlined secondary, at the design's 44px. */
