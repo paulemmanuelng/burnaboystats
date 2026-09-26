@@ -93,7 +93,7 @@ export default function MobileOnThisDayCard({ pick }: { pick: OnThisDayPick | nu
       <div className={styles.homeCardBox}>
         {/* The thumbnail opens the day's page, not the PNG; the link carries
             the name, so the image inside it is silent. */}
-        <Link href={dayHref} className={styles.homeThumb} aria-label={`Open ${day.label} on the calendar`}>
+        <Link href={dayHref} className={styles.homeThumb} aria-label={`Open ${day.label}`}>
           {/* eslint-disable-next-line @next/next/no-img-element -- a route-drawn WebP, sized by the route */}
           <img
             src={cardPreviewSrc(day.slug, 320)}

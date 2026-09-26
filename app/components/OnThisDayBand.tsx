@@ -138,7 +138,7 @@ export default function OnThisDayBand({ pick }: { pick: OnThisDayPick | null }) 
                 fetched. The 320px WebP, never the 725 KB PNG. The picture
                 opens the day's page; the link carries the name, so the
                 image inside it is silent. */}
-            <Link href={dayHref} className={styles.cardLink} aria-label={`Open ${day.label} on the calendar`}>
+            <Link href={dayHref} className={styles.cardLink} aria-label={`Open ${day.label}`}>
               {/* eslint-disable-next-line @next/next/no-img-element -- a route-drawn WebP, sized by the route */}
               <img
                 src={cardPreviewSrc(day.slug, 320)}

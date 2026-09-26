@@ -209,7 +209,7 @@ describe("the picture and the title open the day's page, not the card (Paul, 26 
       for (const host of Object.values(html(pick))) {
         expect(pictureHref(host)).toBe(dayHref);
         const link = host.querySelector("img")!.closest("a")!;
-        expect(link.getAttribute("aria-label")).toBe(`Open ${pick.day.label} on the calendar`);
+        expect(link.getAttribute("aria-label")).toBe(`Open ${pick.day.label}`);
         expect(link.hasAttribute("download")).toBe(false);
         // The link carries the name; the picture inside it is silent.
         expect(host.querySelector("img")!.getAttribute("alt")).toBe("");
