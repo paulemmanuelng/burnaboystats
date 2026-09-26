@@ -5,9 +5,12 @@
  *
  * The approved design (design_handoff_burnaboystats/docs-design/
  * design-response-on-this-day.md §2 "Share images", change list 15–18, Paul,
- * 26 Sep 2026) makes the MILESTONE the hero of both images and the DATE their
- * identity: the link preview leads with the lead's headline, the post card
- * with the day numeral beside the record's cover. Everything here is read off
+ * 26 Sep 2026) makes the MILESTONE the hero of both images: the link preview
+ * leads with the lead's headline, and so, since Paul's note on the post card
+ * the same day ("so much focus is on the big gold date whereas the focus
+ * should be on the actual stuff being remembered"), does the post card — its
+ * date is a small label over the headline, not the day numeral item 15 drew
+ * as the card's identity figure. Everything here is read off
  * the day's events — the sizes step by the length of the text they hold, the
  * cover is the art the site already holds for that record, and every count is
  * a count. The drawing is in lib/onThisDayImages.tsx and the two
@@ -20,7 +23,6 @@ import { spotifyImage } from "./spotifyImage";
 import { cardUrl } from "./og-image";
 import {
   KIND_MARK,
-  MONTHS,
   isRecordLine,
   onThisDayDays,
   onThisDayEvents,
@@ -102,10 +104,33 @@ export function sharePublisher(e: OnThisDayEvent): string | null {
 export const previewHeadSize = (length: number, cover: boolean) =>
   cover ? (length <= 44 ? 54 : 46) : length <= 44 ? 64 : length <= 60 ? 56 : 50;
 
-/** The post card's headline, stepped by length: 74/64/56 beside a cover,
- *  84/72/62 without (the OTD Post Card component's own steps). */
-export const cardHeadSize = (length: number, cover: boolean) =>
-  cover ? (length <= 42 ? 74 : length <= 60 ? 64 : 56) : length <= 42 ? 84 : length <= 60 ? 72 : 62;
+/**
+ * The post card's headline — the largest thing on the card — stepped by
+ * length: 120 up to 24 characters, 104 to 36, 88 to 48, and 80 past that,
+ * the same with a cover or without (the cover sits above it and the headline
+ * keeps the full measure). Read against every day on the calendar (26 Sep
+ * 2026): most break into two or three lines, and none into more than four —
+ * 28 April's 69 characters, the longest, take four at 80.
+ *
+ * One word can outgrow a step on its own: 1 March's MADFUNXPERIENCE is
+ * 9.7em of Geist caps, 1010px at 104 on a 912px measure. So a step also holds
+ * the longest word at 0.66em a letter, and steps down until it fits. That is
+ * a long word's rate: across twelve letters and more the wide and narrow
+ * capitals even out, and MADFUNXPERIENCE's 0.65 is the widest on the
+ * calendar. A short word runs wider a letter (SHOW, 0.76) but is never near
+ * the measure. It errs small: 18 July's GURTENFESTIVAL would fit at 104 and
+ * is set at 88. Every day is rendered and checked against the measure in
+ * tests/onThisDayShareImages.test.tsx, so a new word that outruns the rate
+ * fails there, not on a card.
+ */
+const HEAD_STEPS = [120, 104, 88, 80] as const;
+export function cardHeadSize(headline: string, measure = 912): number {
+  const n = headline.length;
+  const longest = Math.max(...headline.split(" ").map((w) => w.length));
+  let i = n <= 24 ? 0 : n <= 36 ? 1 : n <= 48 ? 2 : 3;
+  while (i < HEAD_STEPS.length - 1 && longest * 0.66 * HEAD_STEPS[i] > measure) i++;
+  return HEAD_STEPS[i];
+}
 
 // ── The link preview, 1200×630 ──────────────────────────────────────────────
 
@@ -156,14 +181,16 @@ export function calendarTiles(): { v: string; k: "DATES" | "MILESTONES" | "MONTH
 // ── The post card, 1080×1350 ────────────────────────────────────────────────
 
 export interface DayPostCard {
-  /** The day numeral, "16" — the card's identity figure. */
-  numeral: string;
-  numeralSize: number;
-  /** The month in full, "AUGUST". */
-  month: string;
-  monthSize: number;
-  /** A 420px cover (the 640 rung) when the lead has 640px art, else null. */
+  /** "ON THIS DAY · 16 AUGUST": the date as a small label over the headline,
+   *  never a figure of its own (Paul, 26 Sep 2026). */
+  dateLine: string;
+  /** The cover (the 640 rung) when the lead has 640px art, else null. */
   cover: string | null;
+  /** How wide the cover is drawn: 420, or 360 over a headline set at 88 or
+   *  less — one that may run to four lines, which a 420 cover leaves no room
+   *  for. */
+  coverSize: number;
+  /** The lead's headline in capitals: the hero, the largest text on the card. */
   headline: string;
   headSize: number;
   /** The lead's record sentence, when its detail states one; else null. */
@@ -187,20 +214,16 @@ export interface DayPostCard {
 export function dayPostCard(day: OnThisDayDay, { withCover = true }: { withCover?: boolean } = {}): DayPostCard {
   const lead = day.lead;
   const art = withCover ? eventCover(lead) : null;
-  const cover = Boolean(art);
-  const month = MONTHS[day.month - 1];
   const more = day.events.length - 1;
   const source = sharePublisher(lead);
+  const headline = lead.headline.toUpperCase();
+  const headSize = cardHeadSize(headline);
   return {
-    numeral: String(day.day),
-    numeralSize: cover ? 280 : 360,
-    month: month.toUpperCase(),
-    // Beside a cover the month stacks under the numeral in a narrow column,
-    // so the four long months step down to hold it on one line.
-    monthSize: cover ? (month.length > 7 ? 44 : 54) : 64,
+    dateLine: `On this day · ${day.label}`.toUpperCase(),
     cover: art ? spotifyImage(art, 420) : null,
-    headline: lead.headline.toUpperCase(),
-    headSize: cardHeadSize(lead.headline.length, cover),
+    coverSize: headSize >= 104 ? 420 : 360,
+    headline,
+    headSize,
     record: isRecordLine(lead) ? lead.detail : null,
     year: String(lead.year),
     kind: lead.kind,

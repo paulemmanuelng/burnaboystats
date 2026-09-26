@@ -4,8 +4,8 @@ import { loadPortrait, postCardImage } from "../../../lib/onThisDayImages";
 import { parsePreviewWidth } from "../../../lib/cardPreview";
 
 // GET /on-this-day/<day>/card → the day's post-ready PNG, 1080×1350 (4:5, the
-// tallest a feed post runs on Instagram and X uncropped). The date is its
-// identity and the milestone its hero (lib/onThisDayImages.tsx). Rendered on
+// tallest a feed post runs on Instagram and X uncropped). The milestone is its
+// hero, the date a label over it (lib/onThisDayImages.tsx). Rendered on
 // request and cached by the CDN, like /stat-card — building ~170 of them into
 // every deploy would buy nothing.
 //
@@ -30,8 +30,8 @@ const CACHE = "public, max-age=600, s-maxage=3600, stale-while-revalidate=86400"
  * from Spotify's CDN at render time, and a THROWN fetch rejects the whole
  * render (tests/ogEmojiFallback.test.ts measured it on the chart cards) — sent
  * as a stream, that is an empty 200 on the wire. So a render that fails with
- * the cover is drawn again without it: the no-art layout, the numeral at full
- * size. A CDN hiccup costs the picture, never the card.
+ * the cover is drawn again without it: the no-art layout, the same headline.
+ * A CDN hiccup costs the picture, never the card.
  *
  * The faded portrait (Paul, 26 Sep 2026) is fetched before the render and is
  * null when the fetch fails (loadPortrait); should Satori still refuse its
