@@ -1,4 +1,4 @@
-import { KIND_MARK, type OnThisDayKind } from "../lib/onThisDay";
+import { KIND_MARK, type OnThisDayKind } from "../lib/onThisDayKinds";
 
 /**
  * An On this day kind's mark: ■ Release · ▲ Charts · ◆ Streaming ·

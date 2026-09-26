@@ -1,37 +1,14 @@
 /* On this day — desktop: the calendar and the day pages. Hidden below 900px,
    where MobileOnThisDayIndex / MobileOnThisDayDay render instead.
 
-   The furniture is the updates page's (band, .wide, eyebrow, h1, lede) and
-   the home band's rows. A kind is its mark and its word, in ink
+   Both follow designs/desktop/OTD Calendar.dc.html and OTD Day Page.dc.html
+   (approved 26 Sep 2026). A kind is its mark and its word, in ink
    (lib/onThisDay.ts KIND_MARK, components/OnThisDayKind.tsx): no kind has a
    colour. */
 .desktopOnly { display: block; }
 @media (max-width: 900px) { .desktopOnly { display: none; } }
 
-.band { border-bottom: 1px solid var(--line); }
-.bandSurface { border-bottom: 1px solid var(--line); background: var(--bg-soft); }
-.wide { max-width: 1360px; margin: 0 auto; padding: 0 40px; }
-
-/* ── Hero ───────────────────────────────────────────────────────────────── */
-.hero {
-  padding: 50px 40px 42px;
-  display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: 56px;
-  align-items: end;
-}
-.eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-family: var(--font-mono), monospace;
-  font-weight: 700;
-  font-size: 11.5px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
-.eyebrowRule { width: 22px; height: 2px; background: var(--gold); display: block; }
+/* The page's h1, on the calendar and on a day: Anton 96 / 0.88. */
 .h1 {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400; /* Anton has no bold cut */
@@ -41,121 +18,317 @@
   text-transform: uppercase;
   margin: 16px 0 0;
 }
-.lede {
+
+/* ── The calendar ─────────────────────────────────────────────────────────
+   designs/desktop/OTD Calendar.dc.html, desktop: the page-content frame
+   (1280), the hero top-aligned with the Today panel beside the h1, one
+   legend-and-tally strip, then the twelve months. */
+.calWrap { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
+.calHero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 400px;
+  gap: 64px;
+  align-items: start;
+  padding: 24px 0 36px;
+}
+.calHeroText { display: flex; flex-direction: column; gap: 18px; min-width: 0; }
+.calHeroText .h1 { margin: 0; }
+.calLede {
+  margin: 0;
+  max-width: 56ch;
   font-size: var(--type-lede);
   line-height: var(--type-lede-lh);
-  max-width: 56ch;
-  margin: 18px 0 0;
   color: var(--text-body-cool);
   text-wrap: pretty;
 }
 
-/* The tally, right of the hero: one line per kind. */
-.tally { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
-.tallyRow {
+/* The Today panel: today's date and its lead, or — on an empty day — the next
+   dated day and how far off it is. Drawn on the server (revalidate hourly). */
+.today {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px 22px;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.today p { margin: 0; }
+.todayLabel {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 0;
-  border-bottom: 1px solid var(--line);
+  gap: 8px;
   font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+/* The ring's key: today is live, so its ring is gold. */
+.todaySwatch {
+  display: block;
+  flex: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  box-shadow: 0 0 0 2px var(--gold);
+}
+.todayDate { color: var(--text); }
+.todaySentence { font-size: 15px; line-height: 1.5; color: var(--text-body); }
+.todayHeadline { font-size: 18px; line-height: 1.35; font-weight: 600; color: var(--text); }
+.todayMeta {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
   font-size: var(--type-label);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--text-muted);
 }
-.tallyValue {
-  margin-left: auto;
-  font-family: var(--font-anton), sans-serif;
-  font-size: 22px;
-  letter-spacing: 0.01em;
-  color: var(--text);
-  font-variant-numeric: tabular-nums;
-}
-/* A kind's mark beside its word, in the ink of the text it sits in. */
-.dot { width: 10px; height: 10px; display: block; flex: none; color: var(--text); }
-
-/* ── The calendar ───────────────────────────────────────────────────────── */
-.calendar {
-  padding: 40px 0 48px;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 28px 32px;
-}
-@media (max-width: 1240px) { .calendar { grid-template-columns: repeat(3, 1fr); } }
-.monthName {
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-  margin: 0 0 12px;
-  font-family: var(--font-anton), sans-serif;
-  font-weight: 400;
-  font-size: 22px;
-  line-height: 1;
-  letter-spacing: 0.01em;
-  text-transform: uppercase;
-}
-.monthCount {
-  margin-left: auto;
-  font-family: var(--font-mono), monospace;
-  font-size: var(--type-label);
-  letter-spacing: 0.08em;
-  color: var(--text-muted);
-}
-.days {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 4px;
-}
-.dayOn,
-.dayOff {
-  position: relative;
-  aspect-ratio: 1;
-  display: flex;
+.todayOpen {
+  align-self: flex-start;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  border-radius: var(--radius-sm);
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
-  font-size: 13.5px;
-  font-variant-numeric: tabular-nums;
-}
-.dayOn {
+  gap: 6px;
+  min-height: 24px;
+  font-family: var(--font-mono), monospace;
   font-weight: 700;
-  color: var(--text);
-  background: var(--bg-soft);
-  border: 1px solid var(--line);
-  transition: background var(--dur) var(--ease), border-color var(--dur) var(--ease);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
 }
-.dayOn:hover { background: var(--bg-raised); border-color: var(--gold); }
-.dayOff { color: var(--dim); border: 1px solid transparent; }
-.dayDot {
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  width: 8px;
-  height: 8px;
-  display: block;
-  color: var(--text);
-}
-.legend {
+
+/* One strip: each kind's mark, word and count, and the rule for reading a day. */
+.legendStrip {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px 18px;
-  padding: 0 0 36px;
-  margin: 0;
+  align-items: center;
+  gap: 10px 22px;
+  padding: 14px 0;
+  border-top: 2px solid var(--rule);
+  border-bottom: 1px solid var(--line);
+}
+.legendKinds { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px 22px; }
+.legendKind {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+.legendMark { display: block; flex: none; width: 12px; height: 12px; color: var(--text); }
+.legendCount { color: var(--text-muted); }
+.legendRule {
+  margin: 0 0 0 auto;
   font-size: var(--type-caption);
   line-height: var(--type-caption-lh);
   color: var(--text-muted);
 }
-.legendItem { display: inline-flex; align-items: center; gap: 7px; }
 
-.source {
-  padding: 30px 0 34px;
+/* Four months across from 1240, three below it (one breakpoint: the first
+   build switched at max-width 1240, so 1240 itself was 3-up). */
+.months {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 48px 40px;
+  padding-top: 32px;
+}
+.month { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.monthHead {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--rule);
+}
+.monthName {
   margin: 0;
-  max-width: 88ch;
-  font-size: var(--type-small);
-  line-height: var(--type-small-lh);
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 22px;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+.monthSub {
+  margin-left: auto;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--text-muted);
+}
+
+/* Days 1–31 in seven columns and no weekday header: the calendar has no
+   year, so a weekday would be false. */
+.grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; }
+.cell {
+  position: relative;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+}
+/* A dated day: a box, a 600 numeral, its lead's mark bottom-left and — when
+   there is more than one — its count top-right. */
+.cellOn {
+  background: var(--bg-soft);
+  border-color: var(--line);
+  color: var(--text);
+  font-size: 13.5px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+}
+.cellOn:hover { background: var(--bg-raised); border-color: var(--rule); }
+.cellOn:active { background: var(--bg-raised); border-color: var(--text); }
+/* An undated day: a dim numeral, no box, no link. */
+.cellOff { color: var(--dim); font-size: 12.5px; font-weight: 400; }
+/* Today: a 2px gold ring — today is live. */
+.cellToday { box-shadow: 0 0 0 2px var(--gold); }
+.cellMark {
+  position: absolute;
+  left: 4px;
+  bottom: 4px;
+  display: block;
+  width: 8px;
+  height: 8px;
+  color: var(--text);
+}
+.cellCount {
+  position: absolute;
+  right: 3px;
+  top: 1px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  line-height: 1.2;
+  color: var(--text-muted);
+}
+
+/* The month's dated days, each with its lead headline — in the page, not a
+   tooltip. */
+.monthList { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.listRow {
+  display: grid;
+  grid-template-columns: 22px 12px minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: center;
+  min-height: 26px;
+  padding: 0 6px;
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  text-decoration: none;
+  transition: background var(--dur-fast) var(--ease);
+}
+.listRow:hover { background: var(--bg-raised); }
+.listDay {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  color: var(--text-muted);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.listMark { display: block; width: 10px; height: 10px; color: var(--text); }
+.listHeadline {
+  font-size: 13px;
+  line-height: 1.35;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.listMore {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  color: var(--text-muted);
+}
+
+/* A cell and its row light together (design response §3). At rest each month
+   lights one day — today, else the Today panel's next date, else its busiest
+   — as the artboard draws it; pointing at, or tabbing to, any day's cell or
+   row lights that one instead. One selector per day of the month. */
+.month:not(:has([data-day]:is(:hover, :focus-visible))) [data-default] {
+  background: var(--bg-raised);
+  border-color: var(--rule);
+}
+.month:has([data-day="1"]:is(:hover, :focus-visible)) [data-day="1"],
+.month:has([data-day="2"]:is(:hover, :focus-visible)) [data-day="2"],
+.month:has([data-day="3"]:is(:hover, :focus-visible)) [data-day="3"],
+.month:has([data-day="4"]:is(:hover, :focus-visible)) [data-day="4"],
+.month:has([data-day="5"]:is(:hover, :focus-visible)) [data-day="5"],
+.month:has([data-day="6"]:is(:hover, :focus-visible)) [data-day="6"],
+.month:has([data-day="7"]:is(:hover, :focus-visible)) [data-day="7"],
+.month:has([data-day="8"]:is(:hover, :focus-visible)) [data-day="8"],
+.month:has([data-day="9"]:is(:hover, :focus-visible)) [data-day="9"],
+.month:has([data-day="10"]:is(:hover, :focus-visible)) [data-day="10"],
+.month:has([data-day="11"]:is(:hover, :focus-visible)) [data-day="11"],
+.month:has([data-day="12"]:is(:hover, :focus-visible)) [data-day="12"],
+.month:has([data-day="13"]:is(:hover, :focus-visible)) [data-day="13"],
+.month:has([data-day="14"]:is(:hover, :focus-visible)) [data-day="14"],
+.month:has([data-day="15"]:is(:hover, :focus-visible)) [data-day="15"],
+.month:has([data-day="16"]:is(:hover, :focus-visible)) [data-day="16"],
+.month:has([data-day="17"]:is(:hover, :focus-visible)) [data-day="17"],
+.month:has([data-day="18"]:is(:hover, :focus-visible)) [data-day="18"],
+.month:has([data-day="19"]:is(:hover, :focus-visible)) [data-day="19"],
+.month:has([data-day="20"]:is(:hover, :focus-visible)) [data-day="20"],
+.month:has([data-day="21"]:is(:hover, :focus-visible)) [data-day="21"],
+.month:has([data-day="22"]:is(:hover, :focus-visible)) [data-day="22"],
+.month:has([data-day="23"]:is(:hover, :focus-visible)) [data-day="23"],
+.month:has([data-day="24"]:is(:hover, :focus-visible)) [data-day="24"],
+.month:has([data-day="25"]:is(:hover, :focus-visible)) [data-day="25"],
+.month:has([data-day="26"]:is(:hover, :focus-visible)) [data-day="26"],
+.month:has([data-day="27"]:is(:hover, :focus-visible)) [data-day="27"],
+.month:has([data-day="28"]:is(:hover, :focus-visible)) [data-day="28"],
+.month:has([data-day="29"]:is(:hover, :focus-visible)) [data-day="29"],
+.month:has([data-day="30"]:is(:hover, :focus-visible)) [data-day="30"],
+.month:has([data-day="31"]:is(:hover, :focus-visible)) [data-day="31"] {
+  background: var(--bg-raised);
+  border-color: var(--rule);
+}
+
+/* How dates are filed — the words the brief keeps, under a 2px rule. */
+.filed {
+  margin-top: 56px;
+  padding: 26px 0;
+  border-top: 2px solid var(--rule);
+  display: grid;
+  grid-template-columns: 320px minmax(0, 1fr);
+  gap: 48px;
+}
+.filedLabel {
+  margin: 0;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.filedText {
+  margin: 0;
+  max-width: var(--measure);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-body);
+}
+.filedText a { color: var(--gold); text-decoration: underline; text-underline-offset: 3px; }
+
+/* Tablet, 901–1239: three months across; the Today panel drops under the h1,
+   full width; the month lists stay. */
+@media (max-width: 1239px) {
+  .calHero { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .months { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
 /* ── A day ────────────────────────────────────────────────────────────────

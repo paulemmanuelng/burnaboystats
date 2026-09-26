@@ -70,6 +70,7 @@ describe("no kind resolves to a colour", () => {
   // or the inks the kinds used to borrow.
   const files = [
     "app/lib/onThisDay.ts",
+    "app/lib/onThisDayKinds.ts",
     "app/components/OnThisDayKind.tsx",
     ...readdirSync("app/components")
       .filter((f) => /onthisday/i.test(f))
