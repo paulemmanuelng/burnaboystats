@@ -170,7 +170,7 @@ export const tours: Tour[] = [
   {
     name: "African Giant Tour",
     years: "2019",
-    note: "The run behind the Grammy-nominated African Giant. Its main leg — the African Giant Returns Tour — swept theatres and clubs across Canada, the US and Europe from August to November 2019, widening his worldwide audience ahead of the stadium era.",
+    note: "The run behind the Grammy-nominated African Giant. After a spring US date in Boston (1 April 2019), its main leg — the African Giant Returns Tour — swept theatres and clubs across Canada, the US and Europe from August to November 2019, widening his worldwide audience ahead of the stadium era.",
     dates: [
       // The spring 2019 US run (OkayAfrica, 12 Feb 2019, announced a Boston
       // stop). Date from listings only: Songkick "2019-04-01 Burna Boy @
@@ -388,7 +388,7 @@ export const festivals: Festival[] = [
   { year: "2025", date: "2025-08-02", name: "Coca-Cola Food Fest", location: "Tribeca Mall, Mauritius", note: "Billed as the biggest live show Mauritius had ever seen (2 Aug 2025)." },
   { year: "2026", date: "2026-08-14", name: "Luna Loca launch", location: "O Beach Ibiza, San Antonio, Spain", note: "Headlined the global launch of Luna Loca, a pool-party live-music concept, on Friday 14 August 2026 — his first performance in Ibiza, with Steel Banglez on the decks." },
   { year: "2024", date: "2024-05-31", name: "We Love Green Festival", location: "Bois de Vincennes, Paris, France", note: "Headlined the festival (31 May) — telling the crowd “my second home is a place called Paris,” on a bill with Justice and L'Impératrice." },
-  { year: "2024", date: "2024-07-07", name: "SummerJam Festival", location: "Fühlinger See, Cologne, Germany", note: "Headlined the 37th edition (7 July) — his only German festival date that year." },
+  { year: "2024", date: "2024-07-07", name: "SummerJam Festival", location: "Fühlinger See, Cologne, Germany", note: "Headlined the 37th edition (7 July)." },
   { year: "2024", date: "2024-07-18", name: "Gurtenfestival", location: "Bern, Switzerland", note: "Headlined the Thursday (18 July) before 18,000 — the organisers' own count for his night at a festival capped at 20,000 a day, which drew 73,000 entries over its four days — on a bill with Peter Fox and Justice." },
   { year: "2024", date: "2024-07-23", name: "Paléo Festival", location: "Nyon, Switzerland", note: "Headlined one of the world's biggest festivals (23 July) — all 200,000 tickets for the week sold out in 21 minutes, on a bill with Sean Paul, Patti Smith and Khruangbin." },
   { year: "2024", name: "Lollapalooza Berlin", location: "Olympiastadion & Olympiapark, Berlin, Germany", note: "A headliner (7–8 September) alongside Sam Smith and Martin Garrix." },
