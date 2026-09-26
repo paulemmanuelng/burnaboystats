@@ -363,6 +363,76 @@ export const DAI_DAI_ITUNES_NO1_COUNTRIES = 73;
 export const DAI_DAI_ITUNES_NO1_COUNTRIES_AS_OF = "2026-08-21";
 
 // ---------------------------------------------------------------------------
+// The record's ruled lists: the seven row values the redesign of 26 Sep 2026
+// still typed into both editions ("6 weeks", "58 days", "40 days", "13 weeks",
+// "No. 13", "29 days", "No. 14"). One home each now, and each names the line
+// that states it. tests/daiDaiFigureHomes.test.ts holds every one of them to
+// that line — equal where the line states the figure itself, and "never
+// behind it" where the page's figure was published after the site's own log
+// last stated it (two of them), exactly as the iTunes countries figure above.
+//
+// None of these is refreshed by a bot. Apple, iTunes, Deezer, Mediatraffic and
+// Spotify's playlist charts publish no days-at-No. 1 column, so each is a
+// count someone kept, dated by the entry that last stated it.
+
+/**
+ * Weeks at No. 1 on Spotify's Global Weekly Top Songs chart. A CLOSED run.
+ * The site's own log, 22 Aug 2026: "a 6th week atop the weekly list, in its
+ * 13th week on it". The run closed on the chart dated 27 August (No. 3, prev
+ * 1), read at charts.spotify.com by the September freshness audit
+ * (docs/audits/freshness-2026-09/audit-batch1-raw.json: "The No. 1 run closed
+ * at 6 weeks").
+ */
+export const DAI_DAI_SPOTIFY_WEEKLY_NO1_WEEKS = 6;
+
+/**
+ * Days at No. 1 on Apple Music's European songs chart. The log's last
+ * statement is 57, on 19 Aug 2026 ("has now held “Dai Dai” at No. 1 for 57
+ * days"). The page has printed 58 since the batch of 21 Aug 2026 (commit
+ * 8fc728e9: "Apple Music Europe 58 days, worldwide iTunes 40"), a day the log
+ * never recorded. So the page runs one day ahead of the log, and the test holds
+ * it to never falling behind it.
+ */
+export const DAI_DAI_APPLE_EUROPE_NO1_DAYS = 58;
+
+/** Days at No. 1 on the worldwide iTunes songs chart. The log, 21 Aug 2026:
+ *  "by 21 August had reached a 40th on the worldwide iTunes songs chart". */
+export const DAI_DAI_ITUNES_WORLDWIDE_NO1_DAYS = 40;
+
+/** Weeks at No. 1 on Mediatraffic's United World Chart. The log, 23 Sep 2026:
+ *  "A 13th week atop Mediatraffic's United World Chart … in the chart week
+ *  dated 26 September, on 230,000 points". */
+export const DAI_DAI_UWC_NO1_WEEKS = 13;
+
+/** The Deezer Worldwide Top 100 peak. The log, 26 Jul 2026: "a new Deezer
+ *  Worldwide Top 100 peak of No. 13, charting in 57 countries"; the chart has
+ *  not bettered it since (the note on the row in page.tsx). */
+export const DAI_DAI_DEEZER_WORLDWIDE_PEAK = 13;
+
+/**
+ * Days at No. 1 on Spotify's Global Music Video chart, as last counted on the
+ * chart of 23 August. The log's last statement is the 28th, on 22 Aug 2026 ("A
+ * 28th day at the top of Spotify's Global Music Video chart"); the 29th is the
+ * batch of 25 Aug 2026 (commit a041e4f7: "The Spotify Music Video chart
+ * reaches 29 days"). The chart is a daily playlist with no archive, so the
+ * count is kept by hand. One day ahead of the log, held to never falling
+ * behind it.
+ */
+export const DAI_DAI_SPOTIFY_MUSIC_VIDEO_NO1_DAYS = 29;
+
+/**
+ * Burna Boy's position on the Global Digital Artist ranking "during the run",
+ * with its points. From the batch of 25 Jul 2026 (commit 3e44afd6, "Burna Boy
+ * at No. 14 on the Global Digital Artist ranking (1,739 points)", read from the
+ * World Music Awards breakdown). No file states it but the page. The site's
+ * own log of 27 Jul 2026 has a later and better reading, "a new peak … No. 13
+ * with 1,721 points", so the row is a position during the run, never the peak:
+ * the test holds it to never being better than that logged peak.
+ */
+export const BURNA_GLOBAL_DIGITAL_ARTIST_POSITION = 14;
+export const BURNA_GLOBAL_DIGITAL_ARTIST_POINTS = 1739;
+
+// ---------------------------------------------------------------------------
 // The story's dates and its figures' data (the /dai-dai redesign, 26 Sep 2026).
 //
 // Each of these was already in the repo — as a typed kicker, a JSON-LD field,
@@ -375,8 +445,12 @@ export const DAI_DAI_ITUNES_NO1_COUNTRIES_AS_OF = "2026-08-21";
 export const DAI_DAI_RELEASE_DATE = "2026-05-15";
 
 /** The first-ever FIFA World Cup Final halftime show, MetLife Stadium — the
- *  MusicEvent's startDate on the English page. */
+ *  MusicEvent's startDate on both editions. */
 export const DAI_DAI_HALFTIME_DATE = "2026-07-19";
+
+/** The story's own publication date: the Article node's datePublished and the
+ *  og:type "article" date, on both editions. It was typed into each page. */
+export const DAI_DAI_STORY_PUBLISHED = "2026-07-16";
 
 /** The halftime performance on YouTube (the link the hero used to carry). The
  *  story's chapter 07 shows its poster and loads the player only on a tap. */

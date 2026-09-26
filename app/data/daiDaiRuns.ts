@@ -21,12 +21,18 @@
  * Only readings a body's own date or week label can place are transcribed. A
  * feed entry that names no chart date ("Up to No. 18 in the UK … its 5th week
  * there") cannot be put on an issue, so it is not — which is why the UK plays
- * as "run not recorded" even though the feed mentions several of its weeks.
+ * as "run not recorded" even though the feed mentions several of its weeks
+ * (and why its one dated line does not place it either: see the UK note below
+ * TRANSCRIPTIONS).
  * Where a span is written in by its ends ("No. 1 for 15 straight weeks from 14
- * June to 20 September"), every issue between is stated by that sentence;
- * where a body's own count pins the remaining issues (Luxembourg's twelfth week
- * at No. 1 on 26 September, eight of them counted through 29 August, and
- * exactly four issues in between), the comment beside it says so.
+ * June to 20 September"), every issue between is stated by that sentence.
+ * A week is read only when a line states it: the issue itself, a run whose
+ * ends take it in, or the body's own last-week column printed on the next
+ * issue ("LW 1"). A week that only a count pins — "a 13th week at No. 1" with
+ * eleven dated and one issue between — is NOT read (ruling of 26 Sep 2026):
+ * the quote a reader is shown has to say the week, not imply it. Every
+ * reading carries the quote that states it (RunPoint.quote), and
+ * tests/daiDaiRuns.test.tsx finds each one in its file.
  *
  * Peaks, weeks at the peak and weeks on the chart are READ from charts.ts,
  * never retyped (tests/daiDaiRuns.test.tsx). The Billboard Global 200 run is
@@ -69,6 +75,9 @@ export interface RunPoint {
   pos?: number;
   /** The repo file that states it — shown in the card's footnote. */
   source: string;
+  /** The words in that file that state this week ("" when unread). Kept on
+   *  the server: tests/daiDaiRuns.test.tsx finds every one in its file. */
+  quote: string;
 }
 
 export interface CountryRun {
@@ -188,6 +197,7 @@ const wLabel = (d: string) => `W${isoWeekOf(d)}`;
 const RUNS_DOC = "docs/sourcing/DAI-DAI-RUNS-2026-08-29.md";
 const CHARTS = "app/data/charts.ts";
 const FEED = "app/data/updates.ts";
+const SWEEP_0906 = "docs/sweeps/RESUME-2026-09-06.md";
 
 const TRANSCRIPTIONS: Transcription[] = [
   {
@@ -240,23 +250,48 @@ const TRANSCRIPTIONS: Transcription[] = [
     code: "LU",
     evidence: [
       { file: RUNS_DOC, quote: "Luxembourg — eight consecutive, 11 Jul → 29 Aug. Debut 6 Jun at #15." },
-      { file: CHARTS, quote: "twelve weeks at No.1 and 17 on the chart, as Billboard's own Luxembourg Songs page prints them for the week of 26 September 2026 (LW 1)" },
+      { file: SWEEP_0906, quote: "Billboard Luxembourg Songs, Week of September 5, 2026: \"Dai Dai (FIFA World Cup Official Song 2026) — Shakira X Burna Boy\" at No.1 with LW 1, PEAK 1, WEEKS 14" },
+      { file: CHARTS, quote: "as Billboard's own Luxembourg Songs page prints them for the week of 26 September 2026 (LW 1)" },
+      { file: FEED, quote: "spends a 12th week at No. 1 on Billboard's Luxembourg Songs chart (issue of 26 September, 17 weeks on it)" },
     ],
     debut: "2026-06-06",
-    // Eight weeks at No. 1 counted through 29 Aug; twelve printed on 26 Sep;
-    // 5, 12, 19 and 26 Sep are the four issues in between, so all four are No. 1.
-    readings: [on("2026-06-06", 15, 0), ...span("2026-07-11", "2026-08-29", 1, 0), ...span("2026-09-05", "2026-09-26", 1, 1)],
+    // Each read week has a line that says it: the run 11 Jul → 29 Aug; the
+    // issue of 5 Sep, read at the body in the 6 Sep sweep; 19 Sep by the "LW
+    // 1" Billboard printed on the 26 Sep issue; and 26 Sep itself. The issue of
+    // 12 Sep is stated by no line — only the count of twelve implies it — so it
+    // is unread (ruling of 26 Sep 2026).
+    readings: [
+      on("2026-06-06", 15, 0),
+      ...span("2026-07-11", "2026-08-29", 1, 0),
+      on("2026-09-05", 1, 1),
+      on("2026-09-19", 1, 2),
+      on("2026-09-26", 1, 3),
+    ],
   },
   {
     // Ö3 Austria Top 40, Friday-dated.
     code: "AT",
     evidence: [
-      { file: RUNS_DOC, quote: "No. 1 is confirmed on 26 Jun, 17 Jul, 24 Jul, 31 Jul, 7 Aug, 14 Aug, 21 Aug and 28 Aug. 26 Jun → 28 Aug is exactly ten chart weeks." },
+      { file: RUNS_DOC, quote: "No. 1 is confirmed on 26 Jun, 17 Jul, 24 Jul, 31 Jul, 7 Aug, 14 Aug, 21 Aug and 28 Aug." },
+      // The run that takes in 3 and 10 Jul, the two issues the Wayback captures
+      // above could not re-read. The 6 Sep sweep (applied in #216) transcribed
+      // it from the Ö3 Top 40 archive at austriancharts.at, a Hung Medien site.
+      { file: SWEEP_0906, quote: "then No.1 every week from 26.06.2026 to 04.09.2026 = 11 consecutive" },
+      { file: SWEEP_0906, quote: "\"Single Charts vom 4. September 2026\": row 1 reads \"DW 1 / LW 1 / WW 15 / Dai Dai / Shakira & Burna Boy\"" },
       { file: FEED, quote: "Austria's Ö3 Top 40 of 18 September gave it a 13th week at No. 1 there" },
     ],
-    // Ten weeks at No. 1 in the ten chart weeks 26 Jun → 28 Aug; the thirteenth
-    // on 18 Sep; 4, 11 and 18 Sep are the three issues in between.
-    readings: [...span("2026-06-26", "2026-08-28", 1, 0), ...span("2026-09-04", "2026-09-18", 1, 1)],
+    // 26 Jun and 17 Jul → 28 Aug read at the body (Wayback); 3 and 10 Jul in
+    // the run 26 Jun → 4 Sep; 4 Sep off Ö3's own chart; 18 Sep in the feed.
+    // The issue of 11 Sep is stated by no line — only the count of thirteen
+    // implies it — so it is unread (ruling of 26 Sep 2026).
+    readings: [
+      on("2026-06-26", 1, 0),
+      on("2026-07-03", 1, 1),
+      on("2026-07-10", 1, 1),
+      ...span("2026-07-17", "2026-08-28", 1, 0),
+      on("2026-09-04", 1, 2),
+      on("2026-09-18", 1, 3),
+    ],
   },
   {
     // Offizielle Deutsche Charts, Friday-dated. Nine weeks from the 3 Jul
@@ -393,6 +428,21 @@ const TRANSCRIPTIONS: Transcription[] = [
   },
 ];
 
+// THE UK, AND WHY IT STAYS "RUN NOT RECORDED" (ruling of 26 Sep 2026)
+//
+// The page's own UK row ends "counted through the chart of 24 September (No.
+// 31)". The Official Charts Company runs its chart weeks Friday to Thursday and
+// dates a chart by its first day; 24 September 2026 is a Thursday, the LAST
+// day of the week that chart covers (18–24 Sep). So the line names that week
+// by its end, not by the date the body gives it, and the week straddles two of
+// these Monday-to-Sunday frames: dated by the body's own first day (18 Sep) it
+// sits in the frame of 14 Sep; dated as the line prints it, in the frame of 21
+// Sep. One line, two frames — it does not map to one frame unambiguously, so
+// the UK is not placed on either. The dated UK run the 6 Sep sweep copied off
+// the OCC's song page (docs/sweeps/RESUME-2026-09-06.md: "14 weeks —
+// 11/06/2026 to 10/09/2026") prints the same Thursday dates, so it has the same
+// problem and is not transcribed either.
+
 // ── Building the runs ────────────────────────────────────────────────────────
 
 const daiDaiRelease = allChartItems.find((r) => r.title === "Dai Dai");
@@ -430,6 +480,7 @@ function pointsOf(t: Transcription): RunPoint[] {
         status: r.status,
         ...(r.status === "on" ? { pos: r.pos } : {}),
         source: t.evidence[r.ev].file,
+        quote: t.evidence[r.ev].quote,
       };
     }
     const before = t.debut !== undefined && ms(chartDate) < ms(t.debut);
@@ -440,6 +491,7 @@ function pointsOf(t: Transcription): RunPoint[] {
       label: t.labelOf?.(chartDate),
       status: before ? "off" : "unread",
       source: before ? debutEv.file : "",
+      quote: before ? debutEv.quote : "",
     };
   });
 }

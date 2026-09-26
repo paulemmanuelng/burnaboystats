@@ -166,6 +166,52 @@ describe("3. no unread week is ever filled from a neighbouring week", () => {
     }
   });
 
+  it("every read week's own quote is in its own file (ruling of 26 Sep 2026)", () => {
+    let read_ = 0;
+    for (const r of daiDaiRuns) {
+      for (const p of r.points) {
+        if (p.status === "unread") {
+          expect(p.quote, `${r.code} ${p.chartDate}`).toBe("");
+          continue;
+        }
+        read_++;
+        expect(p.quote.length, `${r.code} ${p.chartDate} has no quote`).toBeGreaterThan(0);
+        expect(norm(read(p.source)).includes(norm(p.quote)), `${r.code} ${p.chartDate}: "${p.quote}" is not in ${p.source}`).toBe(true);
+      }
+    }
+    expect(read_).toBeGreaterThan(100);
+  });
+
+  it("Austria's 3 and 10 July and Luxembourg's September weeks are read only where a line states them", () => {
+    const at = run("AT");
+    const lu = run("LU");
+    const pt = (r: typeof at, d: string) => r.points[frameIdx(d)];
+    // Austria: 3 and 10 Jul come from the run that takes them in, and the
+    // quote a reader's source points at says so; 4 Sep off Ö3's own chart.
+    for (const d of ["2026-07-03", "2026-07-10"]) {
+      expect(pt(at, d)).toMatchObject({ chartDate: d, status: "on", pos: 1, source: "docs/sweeps/RESUME-2026-09-06.md" });
+      expect(pt(at, d).quote).toContain("No.1 every week from 26.06.2026 to 04.09.2026");
+    }
+    expect(pt(at, "2026-09-04").quote).toContain("Single Charts vom 4. September 2026");
+    // Luxembourg: 5 Sep read at the body, 19 Sep by the "LW 1" printed on the
+    // 26 Sep issue, 26 Sep itself.
+    expect(pt(lu, "2026-09-05").quote).toContain("Week of September 5, 2026");
+    expect(pt(lu, "2026-09-19").quote).toContain("for the week of 26 September 2026 (LW 1)");
+    expect(pt(lu, "2026-09-26").quote).toContain("issue of 26 September");
+    // The two issues only a count implies stay unread: Austria's 11 Sep (the
+    // 13th week) and Luxembourg's 12 Sep (the 12th).
+    expect(pt(at, "2026-09-11")).toMatchObject({ chartDate: "2026-09-11", status: "unread", source: "", quote: "" });
+    expect(pt(lu, "2026-09-12")).toMatchObject({ chartDate: "2026-09-12", status: "unread", source: "", quote: "" });
+    // Negative control: the evidence these weeks carried as shipped (PR 350,
+    // c1e3a9aa) names none of them — a count, not the week.
+    const SHIPPED = [
+      "No. 1 is confirmed on 26 Jun, 17 Jul, 24 Jul, 31 Jul, 7 Aug, 14 Aug, 21 Aug and 28 Aug. 26 Jun → 28 Aug is exactly ten chart weeks.",
+      "twelve weeks at No.1 and 17 on the chart, as Billboard's own Luxembourg Songs page prints them for the week of 26 September 2026 (LW 1)",
+    ];
+    expect(SHIPPED[0]).not.toMatch(/3 Jul|10 Jul|03\.07|10\.07|every week from 26\.06/);
+    expect(SHIPPED[1]).not.toMatch(/5 Sep|September 5|12 Sep|12 September|19 Sep/);
+  });
+
   it("the gaps the repo really has stay gaps (the shipped data, not an invented case)", () => {
     // Netherlands: dutchcharts' table is read from 20 June; the three weeks
     // before it are on the chart (17 in all) but unread — and 20 June is a No. 1.
@@ -202,6 +248,18 @@ describe("3. no unread week is ever filled from a neighbouring week", () => {
   it("a run the repo cannot date is 'run not recorded', never a guessed series", () => {
     // The UK's feed entries name no chart date, so the UK has no points.
     expect(run("UK").points).toEqual([]);
+    // Nor does the page's one dated UK line place it (ruling of 26 Sep 2026):
+    // "the chart of 24 September" names a Thursday, the last day of the OCC's
+    // Friday-to-Thursday week 18–24 Sep, and that week's first day (the date
+    // the OCC gives a chart) falls in a different frame from the day the line
+    // prints. One line, two frames: not recorded.
+    expect(read("app/dai-dai/page.tsx")).toContain("counted through the chart of 24 September (No. 31)");
+    expect(new Date(t("2026-09-24")).getUTCDay()).toBe(4); // Thursday
+    const firstDay = "2026-09-18";
+    expect(new Date(t(firstDay)).getUTCDay()).toBe(5); // Friday
+    expect(frameOf(firstDay)).not.toBe(frameOf("2026-09-24"));
+    expect(daiDaiFrames).toContain(frameOf(firstDay));
+    expect(daiDaiFrames).toContain(frameOf("2026-09-24"));
     // Counts-only and peak-only countries likewise.
     for (const c of ["BE", "SR", "AE", "AR", "IT", "IN", "CZ", "VE", "LB", "IS", "EC", "EE", "US", "SG"]) expect(run(c).points, c).toEqual([]);
     expect(daiDaiRecordedCount + daiDaiPeakOnlyCount).toBe(66);
@@ -354,6 +412,61 @@ describe("the player", () => {
     const second = data.countries.find((c) => c.code === chips[1].dataset.chip)!;
     expect(getByRole("group", { name: second.name })).toBeInTheDocument();
     expect(chips.filter((c) => c.tabIndex === 0)).toEqual([chips[1]]);
+  });
+
+  it("on the phone the ranking's chips are labels: no buttons, no tab stop", () => {
+    const mm = window.matchMedia;
+    window.matchMedia = ((q: string) => ({ matches: q.includes("max-width: 900px"), media: q, addEventListener: () => {}, removeEventListener: () => {} })) as unknown as typeof window.matchMedia;
+    try {
+      const { container } = render(<DaiDaiReplay data={data} labels={EN_REPLAY_LABELS} />);
+      expect(container.querySelectorAll("button[data-chip]")).toHaveLength(0);
+      const labels = [...container.querySelectorAll<HTMLElement>("[data-chip-label]")];
+      expect(labels).toHaveLength(66);
+      for (const l of labels) {
+        expect(l.tagName).toBe("SPAN");
+        expect(l.hasAttribute("tabindex")).toBe(false);
+        expect(l.querySelector("button, a, [tabindex]")).toBeNull();
+      }
+      // Each still says its country and position to a screen reader.
+      const ch = labels.find((l) => l.dataset.chipLabel === "CH")!;
+      expect(ch.textContent).toContain("Switzerland: No. 1");
+    } finally {
+      window.matchMedia = mm;
+    }
+    // Negative control: at desktop width the same ranking is 66 buttons.
+    const { container } = render(<DaiDaiReplay data={data} labels={EN_REPLAY_LABELS} />);
+    expect(container.querySelectorAll("button[data-chip]")).toHaveLength(66);
+    expect(container.querySelectorAll("[data-chip-label]")).toHaveLength(0);
+  });
+
+  it("the country with its card open keeps its band fill: a copy drawn last, outlined under the fill", () => {
+    const { container, getByRole } = render(<DaiDaiReplay data={data} labels={EN_REPLAY_LABELS} />);
+    fireEvent.click(getByRole("button", { name: /^Switzerland: No\. 1/ }));
+    for (const svg of container.querySelectorAll("svg[role=img]")) {
+      const uses = [...svg.querySelectorAll("use")];
+      const top = uses.at(-1)!;
+      // The copy is the last shape in each view, so no neighbour covers its outline…
+      expect(top.getAttribute("data-picked")).toBe("CH");
+      expect(top.getAttribute("href")).toBe(`/dai-dai/replay-map.svg#s756`);
+      // …in the same band fill as the shape under it (No. 1 at the peak picture).
+      const base = svg.querySelector('use[data-code="CH"]')!;
+      const bands = (el: Element) => el.getAttribute("class")!.split(/\s+/).filter((c) => /(^|_)b1(_|$)/.test(c));
+      expect(bands(top)).toEqual(bands(base));
+      expect(bands(base)).toHaveLength(1);
+      // The outline is on the copy only.
+      expect(base.getAttribute("class")).not.toMatch(/picked/);
+    }
+    // The outline is painted under the fill, so the fill stays whole.
+    const css = read("app/components/DaiDaiReplay.module.css");
+    const rule = css.match(/\.mapBox svg \.shape\.charted\.picked \{([^}]*)\}/)?.[1] ?? "";
+    expect(rule).toMatch(/paint-order:\s*stroke/);
+    expect(rule).toMatch(/pointer-events:\s*none/);
+    // Negative control: the rule as shipped, a centred 2px outline over the fill.
+    const shipped = "stroke: var(--text);\n  stroke-width: 2px;\n  stroke-dasharray: none;";
+    expect(shipped).not.toMatch(/paint-order:\s*stroke/);
+    // With no card open there is no copy (the sprite test counts every <use>).
+    const poster = render(<DaiDaiReplay data={data} labels={EN_REPLAY_LABELS} />);
+    expect(poster.container.querySelectorAll("use[data-picked]")).toHaveLength(0);
   });
 
   it("under reduced motion the small multiples come first, and nothing moves", () => {

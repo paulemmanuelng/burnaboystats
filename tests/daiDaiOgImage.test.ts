@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { readFileSync } from "node:fs";
 import { daiDaiOgId } from "../app/dai-dai/ogId";
+import { DAI_DAI_RELEASE_DATE, DAI_DAI_HALFTIME_DATE } from "../app/data/daiDai";
 
 /**
  * The MusicEvent's `image` points at a share-card URL that actually resolves.
@@ -58,7 +59,11 @@ describe("the MusicEvent keeps the fields Search Console asked for", () => {
   it("keeps the offer bounded by its dates, which is what makes InStock true", () => {
     // InStock is only honest here because the offer says when it applied. Lose
     // the dates and the claim becomes "you can still watch it".
-    expect(PAGE).toMatch(/validFrom:\s*"2026-05-15"/);
-    expect(PAGE).toMatch(/validThrough:\s*"2026-07-19"/);
+    // Read from app/data/daiDai.ts since 26 Sep 2026: the release day and the
+    // show's date, which the node's start and end dates read too.
+    expect(PAGE).toMatch(/validFrom:\s*DAI_DAI_RELEASE_DATE,/);
+    expect(PAGE).toMatch(/validThrough:\s*DAI_DAI_HALFTIME_DATE,/);
+    expect(DAI_DAI_RELEASE_DATE).toBe("2026-05-15");
+    expect(DAI_DAI_HALFTIME_DATE).toBe("2026-07-19");
   });
 });

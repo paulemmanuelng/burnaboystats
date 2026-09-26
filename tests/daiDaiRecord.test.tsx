@@ -323,3 +323,61 @@ describe("the FAQ and the outro", () => {
     expect(css).not.toMatch(/text-align:\s*center/);
   });
 });
+
+// Ruling 13 of 26 Sep 2026: within a peak, the takeover's cells run in the
+// order of the names the edition prints, not of the ISO codes behind them.
+describe("the takeover grid, within each peak, is in the order of its visible names", () => {
+  const collate = (lang: "en" | "es") => new Intl.Collator(lang === "es" ? "es" : "en-GB", { sensitivity: "base" });
+  const inNameOrder = (cells: { name: string; peak: number }[], lang: "en" | "es") =>
+    cells.every((c, i) => i === 0 || cells[i - 1].peak < c.peak || (cells[i - 1].peak === c.peak && collate(lang).compare(cells[i - 1].name, c.name) <= 0));
+  const cellsOf = (d: HTMLElement) =>
+    [...d.querySelectorAll("ol[aria-label] li[data-code]")].map((li) => ({
+      code: li.getAttribute("data-code")!,
+      name: text(li.querySelector('[class*="name"]')),
+      peak: Number(text(li.querySelector('[class*="peak"]')).slice(1)),
+    }));
+
+  it.each(editions)("%s", (_, Page, lang) => {
+    const cells = cellsOf(dom(<Page />));
+    expect(cells).toHaveLength(countries.length);
+    expect(inNameOrder(cells, lang)).toBe(true);
+    // Peaks still run best first.
+    for (let i = 1; i < cells.length; i++) expect(cells[i - 1].peak).toBeLessThanOrEqual(cells[i].peak);
+  });
+
+  it("the two editions differ where the names do: Germany is Alemania", () => {
+    const en = cellsOf(dom(<DaiDaiPage />)).filter((c) => c.peak === 1).map((c) => c.code);
+    const es = cellsOf(dom(<DaiDaiPageES />)).filter((c) => c.peak === 1).map((c) => c.code);
+    expect(new Set(es)).toEqual(new Set(en));
+    expect(es.indexOf("DE")).toBeLessThan(es.indexOf("AT")); // Alemania < Austria
+    expect(en.indexOf("AT")).toBeLessThan(en.indexOf("DE")); // Austria < Germany
+  });
+
+  it("negative control: the grid as shipped, ordered by code within a peak", () => {
+    for (const lang of ["en", "es"] as const) {
+      const shipped = countries
+        .map((e) => ({ code: e.c, name: countryName(e.c, lang), peak: e.peak }))
+        .sort((a, b) => a.peak - b.peak || a.code.localeCompare(b.code, "en"));
+      expect(inNameOrder(shipped, lang), lang).toBe(false);
+    }
+  });
+});
+
+// Ruling 4 of 26 Sep 2026: on this page only, the Keep-exploring cards align
+// to the content column (120–1320 at 1440) — the shared rail is untouched.
+describe("the Keep-exploring rail lines up with the content column", () => {
+  it("both editions wrap the rail in .exploreRail, whose sides equal .wrap's", () => {
+    for (const file of ["app/dai-dai/page.tsx", "app/dai-dai/es/page.tsx"]) {
+      expect(read(file), file).toMatch(/className=\{`\$\{styles\.desktopOnly\} \$\{styles\.exploreRail\}`\}>\s*<KeepExploring/);
+    }
+    const wrapSides = /padding:\s*\d+px (\d+)px/.exec(rule(CSS, ".wrap"))?.[1];
+    const railSides = /padding-inline:\s*(\d+)px/.exec(rule(CSS, ".exploreRail :global(.container)"))?.[1];
+    expect(wrapSides).toBe("40");
+    expect(railSides).toBe(wrapSides);
+    // The shared component keeps the site-wide .container it always had.
+    expect(read("app/components/KeepExploring.tsx")).toContain("className={`container ${styles.wrap}`}");
+    // Negative control: the site-wide gutter the rail had here, 16px short.
+    const shipped = /padding:\s*0 (\d+)px/.exec(read("app/globals.css").match(/\n\.container \{[^}]*\}/)![0])?.[1];
+    expect(Number(wrapSides) - Number(shipped)).toBe(16);
+  });
+});

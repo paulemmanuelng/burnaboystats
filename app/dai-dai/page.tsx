@@ -8,7 +8,7 @@ import { buildReplayData } from "../components/daiDaiReplayData";
 import { EN_REPLAY_LABELS } from "../components/daiDaiReplayLabels";
 import KeepExploring from "../components/KeepExploring";
 import { Leads, NationalTable, RuledLists, type LeadFigure, type NumbersLabels, type RecordRow } from "../components/DaiDaiNumbers";
-import { RecordBand, SectionHead, Lineup, nationalRow, daiDaiCountries, countryName, topPlaque, plaqueCountries } from "../components/DaiDaiRecord";
+import { RecordBand, SectionHead, Lineup, nationalRow, daiDaiCountries, countryName, topPlaque, plaqueCountries, byVisibleName, plaqueX, thousands } from "../components/DaiDaiRecord";
 import { EN_FIGURE_LABELS } from "../components/DaiDaiFigures";
 import FaqList from "../components/FaqList";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime } from "../lib/seo";
@@ -17,7 +17,7 @@ import { cardinalWord } from "../lib/plural";
 import { daiDaiNumberOnes, daiDaiChartEntryCount, CHART_COUNTRIES, weeksAtPeak, weeksOnChart } from "../data/charts";
 import { liveCharts } from "../data/liveCharts";
 import { daiDaiCertCount } from "../data/certifications";
-import { DAI_DAI_COVER, DAI_DAI_RELEASE_DATE, DAI_DAI_HALFTIME_DATE, DAI_DAI_VIDEO_ID, DAI_DAI_SPOTIFY_BODY_READ, DAI_DAI_VIDEO_VIEWS, DAI_DAI_1B_DAYS, DAI_DAI_1B_RANK_EN, DAI_DAI_SPOTIFY_STREAMS, DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG, DAI_DAI_SPOTIFY_NO1_READ_ON_LONG, DAI_DAI_SPOTIFY_NO1_FIRST_LONG, DAI_DAI_SPOTIFY_NO1_LAST_LONG, DAI_DAI_SPOTIFY_TOP10_DAYS, DAI_DAI_SPOTIFY_DAYS_OFF, DAI_DAI_SPOTIFY_NO1_DAYS, DAI_DAI_ITUNES_NO1_COUNTRIES, daiDaiSpotifyDaysOnChart, daiDaiSpotifyStraightDays, daiDaiYouTubeDaysAtNo1 } from "../data/daiDai";
+import { DAI_DAI_COVER, DAI_DAI_RELEASE_DATE, DAI_DAI_HALFTIME_DATE, DAI_DAI_VIDEO_ID, DAI_DAI_SPOTIFY_BODY_READ, DAI_DAI_VIDEO_VIEWS, DAI_DAI_1B_DAYS, DAI_DAI_1B_RANK_EN, DAI_DAI_SPOTIFY_STREAMS, DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG, DAI_DAI_SPOTIFY_NO1_READ_ON_LONG, DAI_DAI_SPOTIFY_NO1_FIRST_LONG, DAI_DAI_SPOTIFY_NO1_LAST_LONG, DAI_DAI_SPOTIFY_TOP10_DAYS, DAI_DAI_SPOTIFY_DAYS_OFF, DAI_DAI_SPOTIFY_NO1_DAYS, DAI_DAI_ITUNES_NO1_COUNTRIES, DAI_DAI_STORY_PUBLISHED, DAI_DAI_SPOTIFY_WEEKLY_NO1_WEEKS, DAI_DAI_APPLE_EUROPE_NO1_DAYS, DAI_DAI_ITUNES_WORLDWIDE_NO1_DAYS, DAI_DAI_UWC_NO1_WEEKS, DAI_DAI_DEEZER_WORLDWIDE_PEAK, DAI_DAI_SPOTIFY_MUSIC_VIDEO_NO1_DAYS, BURNA_GLOBAL_DIGITAL_ARTIST_POSITION, BURNA_GLOBAL_DIGITAL_ARTIST_POINTS, daiDaiSpotifyDaysOnChart, daiDaiSpotifyStraightDays, daiDaiYouTubeDaysAtNo1 } from "../data/daiDai";
 import { spotifyImage, spotifySrcSet } from "../lib/spotifyImage";
 import { BURNA_PORTRAIT, SHAKIRA_PORTRAIT } from "../lib/artistImages";
 import { daiDaiOgId } from "./ogId";
@@ -28,13 +28,17 @@ import { LIVE_CADENCE } from "../lib/liveChartMeta";
 // Every country the song charted in, for the takeover grid — flag, name and
 // peak, the name in this edition's language. A flag grid needs no map shape, so
 // nothing is dropped — which is what the old SVG map did to the three No. 1
-// countries it had no outline for.
-const conquestCountries: ConquestCountry[] = daiDaiCountries.map((e) => ({
-  code: e.c,
-  flag: CHART_COUNTRIES[e.c]?.flag ?? "🏳",
-  name: countryName(e.c, "en"),
-  peak: e.peak,
-}));
+// countries it had no outline for. Within a peak, the cells run in the order
+// of the names this edition prints (byVisibleName), not of the ISO codes.
+const conquestCountries: ConquestCountry[] = byVisibleName(
+  daiDaiCountries.map((e) => ({
+    code: e.c,
+    flag: CHART_COUNTRIES[e.c]?.flag ?? "🏳",
+    name: countryName(e.c, "en"),
+    peak: e.peak,
+  })),
+  "en",
+);
 const conquestTotal = conquestCountries.length;
 const conquestNo1 = conquestCountries.filter((c) => c.peak === 1).length;
 // Longevity is read from the chart entries, not typed here. These used to be
@@ -54,6 +58,10 @@ const halftime = (opts: Intl.DateTimeFormatOptions) =>
   new Date(`${DAI_DAI_HALFTIME_DATE}T12:00:00Z`).toLocaleDateString("en-GB", { ...opts, timeZone: "UTC" });
 const halftimeShort = halftime({ day: "numeric", month: "short" });
 const halftimeLong = halftime({ day: "numeric", month: "long", year: "numeric" });
+// The UK peak, for the FAQ answer that is also FAQPage structured data.
+const peakUK = daiDaiCountries.find((e) => e.c === "UK")?.peak;
+// The Global Digital Artist row's points, grouped as this edition writes them.
+const gdaPoints = thousands(BURNA_GLOBAL_DIGITAL_ARTIST_POINTS, ",");
 // The plaques, for the fifth lead figure's caption: how many countries, and
 // the top plaque and its country in words, both read from the plaque wall.
 const certCountries = plaqueCountries();
@@ -91,12 +99,13 @@ const liveOnesValue = platformOnes.map(([, n]) => n).join(" · ");
 
 
 // The story's publication date: the Article node's datePublished and the
-// og:type "article" date both read it. The Spanish edition carries the same.
-const PUBLISHED = "2026-07-16";
+// og:type "article" date both read it, from its one home in daiDai.ts, which
+// the Spanish edition reads too.
+const PUBLISHED = DAI_DAI_STORY_PUBLISHED;
 
 export const metadata = pageMetadata({
   title: "Dai Dai — Shakira & Burna Boy's 2026 World Cup Anthem",
-  description: `Shakira & Burna Boy's “Dai Dai” — the World Cup anthem: 37 days as Earth's most-streamed song, No. 1 in ${daiDaiNumberOnes} countries, and the Final halftime show.`,
+  description: `Shakira & Burna Boy's “Dai Dai” — the World Cup anthem: ${DAI_DAI_SPOTIFY_NO1_DAYS} days as Earth's most-streamed song, No. 1 in ${daiDaiNumberOnes} countries, and the Final halftime show.`,
   path: "/dai-dai",
   shareTitle: "The Dai Dai Story — Shakira & Burna Boy",
   shareDescription: "Shakira & Burna Boy's World Cup anthem — No. 1 worldwide, and performed at the Final halftime show.",
@@ -128,7 +137,7 @@ export default function DaiDaiPage() {
         { "@type": "Person", name: "Shakira" },
         { "@type": "MusicGroup", name: "Burna Boy" },
       ],
-      datePublished: "2026-05",
+      datePublished: DAI_DAI_RELEASE_DATE.slice(0, 7),
       genre: ["Afrobeats", "Latin pop"],
       inLanguage: "en",
     },
@@ -141,7 +150,7 @@ export default function DaiDaiPage() {
     "@context": "https://schema.org",
     "@type": "MusicEvent",
     name: "2026 FIFA World Cup Final Halftime Show",
-    startDate: "2026-07-19",
+    startDate: DAI_DAI_HALFTIME_DATE,
     eventStatus: "https://schema.org/EventScheduled",
     // Offline: the location is the stadium alone. "Mixed" also asks for a
     // VirtualLocation, and the node names no sourced broadcast URL to give one.
@@ -185,7 +194,7 @@ export default function DaiDaiPage() {
       "The first-ever halftime show at a FIFA World Cup Final — Shakira and Burna Boy performed “Dai Dai”, the official 2026 tournament anthem, alongside Madonna, BTS, Justin Bieber and Coldplay.",
     // A one-evening show: schema.org wants an endDate even when it equals the
     // start date, or the event reads as open-ended.
-    endDate: "2026-07-19",
+    endDate: DAI_DAI_HALFTIME_DATE,
     // The show itself was not ticketed separately from the match, and it
     // streamed free — which is a real answer to "offers", not a missing one.
     //
@@ -208,8 +217,8 @@ export default function DaiDaiPage() {
       price: "0",
       priceCurrency: "USD",
       url: `${CANONICAL_ORIGIN}/dai-dai`,
-      validFrom: "2026-05-15",
-      validThrough: "2026-07-19",
+      validFrom: DAI_DAI_RELEASE_DATE,
+      validThrough: DAI_DAI_HALFTIME_DATE,
     },
   };
 
@@ -222,7 +231,9 @@ export default function DaiDaiPage() {
   const leads: LeadFigure[] = [
     { v: `${daiDaiChartEntryCount}`, cap: `Official chart entries — ${conquestTotal} national charts plus both Billboard globals` },
     { v: `${daiDaiNumberOnes}`, cap: "Countries at No. 1 on their own official chart" },
-    { v: "No. 1", cap: "On both Billboard globals: the Global 200 and the Global 200 Excl. US" },
+    // The Global 200's "first for an African artist" note is the old card's,
+    // word for word (restored 26 Sep 2026; never reworded, README §6).
+    { v: "No. 1", cap: "On both Billboard globals: the Global 200 (a first for an African artist, and Shakira's 2nd) and the Global 200 Excl. US" },
     { v: DAI_DAI_SPOTIFY_STREAMS, cap: "Spotify streams — Burna Boy's 8th song past 300 million, the most of any African act", live: true },
     { v: `${daiDaiCertCount}`, cap: `Certifications, in ${certCountries} countries — ${topPlaqueWords}` },
     { v: halftimeShort, cap: "Performed at the first World Cup Final halftime show" },
@@ -264,24 +275,24 @@ export default function DaiDaiPage() {
       title: "Streaming streaks",
       rows: [
         { v: `${DAI_DAI_SPOTIFY_NO1_DAYS} days`, l: `in total at No. 1 on Spotify's Global Daily Top Songs chart — a first for an African artist, and the most days at No. 1 by any song in 2026, five clear of Djo's “End of Beginning” (32) and six of Justin Bieber & Nicki Minaj's “Beauty And A Beat” (31). A closed total, the first of them on the chart dated ${DAI_DAI_SPOTIFY_NO1_FIRST_LONG} and the last on ${DAI_DAI_SPOTIFY_NO1_LAST_LONG}, confirmed day by day through the chart dated ${DAI_DAI_SPOTIFY_NO1_READ_ON_LONG} — with ${DAI_DAI_SPOTIFY_TOP10_DAYS} days inside the global Top 10 in all, counted through that same chart`, k: "Spotify global daily, No. 1" },
-        { v: "6 weeks", l: "at No. 1 on Spotify's Global Weekly Top Songs chart — a run that closed on the chart dated 27 August — in a 16-week stay counted through the chart dated 10 September 2026, peaking at 40.28M streams in a single week", k: "Spotify global weekly, No. 1" },
+        { v: `${DAI_DAI_SPOTIFY_WEEKLY_NO1_WEEKS} weeks`, l: "at No. 1 on Spotify's Global Weekly Top Songs chart — a run that closed on the chart dated 27 August — in a 16-week stay counted through the chart dated 10 September 2026, peaking at 40.28M streams in a single week", k: "Spotify global weekly, No. 1" },
         { v: `${daiDaiSpotifyStraightDays}`, l: `it entered Spotify's Global Daily Top Songs chart on 15 May 2026, its release day — it fell straight back off for ${cardinalWord(DAI_DAI_SPOTIFY_DAYS_OFF, "en")} days, returned on 22 May and has not left since: ${daiDaiSpotifyStraightDays} straight days on the chart and ${daiDaiSpotifyDaysOnChart} in all, counted through the chart dated ${DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG}, which prints both figures in its own columns (Spotify Charts)`, k: `Spotify global daily — entered at No. ${debutAt}, then straight days on the chart`, live: true },
-        { v: "58 days", l: "at No. 1 on Apple Music's European songs chart — plus 11 days atop the worldwide Apple Music chart", k: "Apple Music Europe, No. 1" },
-        { v: "40 days", l: "at No. 1 on the worldwide iTunes songs chart, and 15 days atop the European iTunes chart", k: "iTunes worldwide, No. 1" },
+        { v: `${DAI_DAI_APPLE_EUROPE_NO1_DAYS} days`, l: "at No. 1 on Apple Music's European songs chart — plus 11 days atop the worldwide Apple Music chart", k: "Apple Music Europe, No. 1" },
+        { v: `${DAI_DAI_ITUNES_WORLDWIDE_NO1_DAYS} days`, l: "at No. 1 on the worldwide iTunes songs chart, and 15 days atop the European iTunes chart", k: "iTunes worldwide, No. 1" },
         { v: liveOnesValue, l: liveOnesLabel, k: liveOnesKey, live: true },
       ],
     },
     {
       title: "World rankings",
       rows: [
-        { v: "13 weeks", l: "at No. 1 on Mediatraffic's United World Chart — 230,000 points in the chart week dated 26 September, and the first Burna Boy song ever to top it", k: "United World Chart, No. 1" },
+        { v: `${DAI_DAI_UWC_NO1_WEEKS} weeks`, l: "at No. 1 on Mediatraffic's United World Chart — 230,000 points in the chart week dated 26 September, and the first Burna Boy song ever to top it", k: "United World Chart, No. 1" },
         { v: `${DAI_DAI_ITUNES_NO1_COUNTRIES}`, l: `iTunes song chart in ${DAI_DAI_ITUNES_NO1_COUNTRIES} countries — the US, UK, Canada, France, Italy, New Zealand, India, Spain, Portugal, Hungary & dozens more, Belarus the newest`, k: "iTunes No. 1, countries" },
         // A dated, past-tense peak: the site's own log of 26 Jul 2026 is the read,
         // and the chart has not bettered No. 13 since (runHistory, from 9 Aug).
         // "No. 1 in 23 of them" had no source and is gone (Paul, 24 Sep 2026).
-        { v: "No. 13", l: "Deezer Worldwide Top 100 — its peak, reached on 26 July 2026, when it was charting in 57 countries", k: "Deezer Worldwide, peak" },
-        { v: "29 days", l: "at No. 1 on Spotify's Global Music Video chart, as last counted on the chart of 23 August — the chart is a daily playlist with no archive, so the count is kept by hand", k: "Spotify Global Music Video, No. 1" },
-        { v: "No. 14", l: "Burna Boy's position on the Global Digital Artist ranking (1,739 points) during the run", k: "Global Digital Artist ranking" },
+        { v: `No. ${DAI_DAI_DEEZER_WORLDWIDE_PEAK}`, l: "Deezer Worldwide Top 100 — its peak, reached on 26 July 2026, when it was charting in 57 countries", k: "Deezer Worldwide, peak" },
+        { v: `${DAI_DAI_SPOTIFY_MUSIC_VIDEO_NO1_DAYS} days`, l: "at No. 1 on Spotify's Global Music Video chart, as last counted on the chart of 23 August — the chart is a daily playlist with no archive, so the count is kept by hand", k: "Spotify Global Music Video, No. 1" },
+        { v: `No. ${BURNA_GLOBAL_DIGITAL_ARTIST_POSITION}`, l: `Burna Boy's position on the Global Digital Artist ranking (${gdaPoints} points) during the run`, k: "Global Digital Artist ranking" },
       ],
     },
     {
@@ -315,7 +326,7 @@ export default function DaiDaiPage() {
     },
     {
       q: "Is “Dai Dai” the 2026 World Cup song?",
-      a: "Yes. “Dai Dai” is the official anthem of the 2026 FIFA World Cup, and Shakira and Burna Boy performed it live at the World Cup Final halftime show on 19 July 2026.",
+      a: `Yes. “Dai Dai” is the official anthem of the 2026 FIFA World Cup, and Shakira and Burna Boy performed it live at the World Cup Final halftime show on ${halftimeLong}.`,
     },
     {
       q: "Did “Dai Dai” reach No. 1?",
@@ -323,15 +334,15 @@ export default function DaiDaiPage() {
     },
     {
       q: "How high did “Dai Dai” chart in the UK?",
-      a: "“Dai Dai” peaked at No. 2 on the UK Official Singles Chart — the first FIFA World Cup song ever to reach the UK Top 10, and by far the highest-charting World Cup song in UK history, surpassing Shakira's own “Waka Waka (This Time for Africa)”, which peaked at No. 21 in 2010.",
+      a: `“Dai Dai” peaked at No. ${peakUK} on the UK Official Singles Chart — the first FIFA World Cup song ever to reach the UK Top 10, and by far the highest-charting World Cup song in UK history, surpassing Shakira's own “Waka Waka (This Time for Africa)”, which peaked at No. 21 in 2010.`,
     },
     {
       q: "When was the 2026 World Cup Final halftime show?",
-      a: "The first-ever FIFA World Cup Final halftime show took place on 19 July 2026 at MetLife Stadium. Shakira and Burna Boy performed “Dai Dai”, joined on stage by Uganda's Triplets Ghetto Kids.",
+      a: `The first-ever FIFA World Cup Final halftime show took place on ${halftimeLong} at MetLife Stadium. Shakira and Burna Boy performed “Dai Dai”, joined on stage by Uganda's Triplets Ghetto Kids.`,
     },
     {
       q: "Who performed at the 2026 World Cup Final halftime show?",
-      a: "The 2026 FIFA World Cup Final halftime show — the first ever — featured Madonna, Shakira and Burna Boy (performing “Dai Dai”), BTS, Justin Bieber, conductor Gustavo Dudamel, and the PS22 Chorus with Coldplay, produced by Global Citizen, on 19 July 2026 at MetLife Stadium.",
+      a: `The 2026 FIFA World Cup Final halftime show — the first ever — featured Madonna, Shakira and Burna Boy (performing “Dai Dai”), BTS, Justin Bieber, conductor Gustavo Dudamel, and the PS22 Chorus with Coldplay, produced by Global Citizen, on ${halftimeLong} at MetLife Stadium.`,
     },
     {
       q: "Who are the Ghetto Kids who performed with Shakira and Burna Boy?",
@@ -339,7 +350,7 @@ export default function DaiDaiPage() {
     },
     {
       q: "How many certifications does “Dai Dai” have?",
-      a: `“Dai Dai” has ${daiDaiCertCount} certifications: Diamond in France from SNEP, 2× Platinum in Canada from Music Canada and 6× Platino in the US from the RIAA's Latin programme, Platinum in Spain, Slovakia, Portugal, Hungary, Austria, Greece and Sweden, Gold in Colombia, the Czech Republic, Italy, Poland, Belgium and Germany, and Silver in the UK from the BPI.`,
+      a: `“Dai Dai” has ${daiDaiCertCount} certifications: Diamond in France from SNEP, ${plaqueX("CA")}× Platinum in Canada from Music Canada and ${plaqueX("US")}× Platino in the US from the RIAA's Latin programme, Platinum in Spain, Slovakia, Portugal, Hungary, Austria, Greece and Sweden, Gold in Colombia, the Czech Republic, Italy, Poland, Belgium and Germany, and Silver in the UK from the BPI.`,
     },
   ];
 
@@ -525,7 +536,10 @@ export default function DaiDaiPage() {
         </section>
       </div>
 
-      <div className={styles.desktopOnly}>
+      {/* .exploreRail sets the shared rail's side padding to this page's
+          40px, so its cards line up with the content column above (120–1320
+          at 1440). The shared component itself is untouched. */}
+      <div className={`${styles.desktopOnly} ${styles.exploreRail}`}>
         <KeepExploring current="/dai-dai" />
       </div>
     </main>

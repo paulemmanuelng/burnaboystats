@@ -5,7 +5,7 @@ import { weeksAtPeak, weeksOnChart, daiDaiChartEntryCount, daiDaiNumberOnes } fr
 import { daiDaiCertCount } from "../app/data/certifications";
 import { plaqueGroups } from "../app/components/DaiDaiFigures";
 import { plaqueCountries, daiDaiCountries } from "../app/components/DaiDaiRecord";
-import { DAI_DAI_SPOTIFY_BODY_READ, daiDaiSpotifyDaysOnChart, daiDaiSpotifyStraightDays, daiDaiYouTubeDaysAtNo1, DAI_DAI_1B_DAYS, DAI_DAI_1B_RANK_EN, DAI_DAI_1B_RANK_ES, DAI_DAI_SPOTIFY_CONFIRMED_THROUGH, DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG, DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_NO1_READ_ON_LONG, DAI_DAI_SPOTIFY_NO1_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_NO1_FIRST_LONG, DAI_DAI_SPOTIFY_NO1_FIRST_LONG_ES, DAI_DAI_SPOTIFY_NO1_LAST_LONG, DAI_DAI_SPOTIFY_NO1_LAST_LONG_ES, DAI_DAI_SPOTIFY_TOP10_DAYS, DAI_DAI_SPOTIFY_DAYS_OFF, DAI_DAI_SPOTIFY_NO1_DAYS, DAI_DAI_ITUNES_NO1_COUNTRIES } from "../app/data/daiDai";
+import { DAI_DAI_SPOTIFY_BODY_READ, daiDaiSpotifyDaysOnChart, daiDaiSpotifyStraightDays, daiDaiYouTubeDaysAtNo1, DAI_DAI_1B_DAYS, DAI_DAI_1B_RANK_EN, DAI_DAI_1B_RANK_ES, DAI_DAI_SPOTIFY_CONFIRMED_THROUGH, DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG, DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_NO1_READ_ON_LONG, DAI_DAI_SPOTIFY_NO1_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_NO1_FIRST_LONG, DAI_DAI_SPOTIFY_NO1_FIRST_LONG_ES, DAI_DAI_SPOTIFY_NO1_LAST_LONG, DAI_DAI_SPOTIFY_NO1_LAST_LONG_ES, DAI_DAI_SPOTIFY_TOP10_DAYS, DAI_DAI_SPOTIFY_DAYS_OFF, DAI_DAI_SPOTIFY_NO1_DAYS, DAI_DAI_ITUNES_NO1_COUNTRIES, DAI_DAI_SPOTIFY_WEEKLY_NO1_WEEKS, DAI_DAI_APPLE_EUROPE_NO1_DAYS, DAI_DAI_ITUNES_WORLDWIDE_NO1_DAYS, DAI_DAI_UWC_NO1_WEEKS, DAI_DAI_DEEZER_WORLDWIDE_PEAK, DAI_DAI_SPOTIFY_MUSIC_VIDEO_NO1_DAYS, BURNA_GLOBAL_DIGITAL_ARTIST_POSITION, BURNA_GLOBAL_DIGITAL_ARTIST_POINTS } from "../app/data/daiDai";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 
@@ -142,6 +142,18 @@ const DERIVED: Record<string, number | string | null> = {
   // sentence both).
   DAI_DAI_SPOTIFY_NO1_DAYS,
   DAI_DAI_ITUNES_NO1_COUNTRIES,
+  // The seven ruled-list values the redesign still typed, sent to
+  // app/data/daiDai.ts on 26 Sep 2026 (each with the line that states it), and
+  // the ranking row's points, which each edition groups its own way ("1,739",
+  // "1.739") — the digits compared here are the same.
+  DAI_DAI_SPOTIFY_WEEKLY_NO1_WEEKS,
+  DAI_DAI_APPLE_EUROPE_NO1_DAYS,
+  DAI_DAI_ITUNES_WORLDWIDE_NO1_DAYS,
+  DAI_DAI_UWC_NO1_WEEKS,
+  DAI_DAI_DEEZER_WORLDWIDE_PEAK,
+  DAI_DAI_SPOTIFY_MUSIC_VIDEO_NO1_DAYS,
+  BURNA_GLOBAL_DIGITAL_ARTIST_POSITION,
+  gdaPoints: BURNA_GLOBAL_DIGITAL_ARTIST_POINTS,
 };
 // Two interpolation shapes appear in the cards: a bare `${weeksDE}`, and a
 // `${ordinalWord(weeksGLB, "es")}` where the Spanish edition needs the word

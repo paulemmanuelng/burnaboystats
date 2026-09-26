@@ -255,7 +255,18 @@
 :global(:root[data-theme="light"]) .shape.rest {
   stroke: var(--text);
 }
-.mapBox svg .shape.charted.picked,
+/* The country whose card is open: a copy of its shape drawn last (see
+   drawUses), outlined in ink with the outline painted UNDER the fill, so only
+   its outer half shows and the band fill is whole — on Switzerland in the
+   inset as on France. 3px painted under the fill leaves 1.5px outside. The
+   copy takes no pointer: the shape beneath it answers hover and taps. */
+.mapBox svg .shape.charted.picked {
+  stroke: var(--text);
+  stroke-width: 3px;
+  stroke-dasharray: none;
+  paint-order: stroke;
+  pointer-events: none;
+}
 .mapBox svg .sg.picked {
   stroke: var(--text);
   stroke-width: 2px;
@@ -445,6 +456,13 @@
 }
 .chipCue {
   color: var(--text-muted);
+}
+/* The phone's chips: labels, not controls (see DaiDaiReplay.tsx). */
+.chipLabel {
+  cursor: default;
+}
+.chipLabel:hover {
+  background: transparent;
 }
 
 /* "Not read this week": exactly the unread countries, so its count is the

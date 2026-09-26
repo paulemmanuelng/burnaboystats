@@ -46,6 +46,10 @@ export interface FigureLabels {
   /** A week's bar, for a screen reader: "Chart dated {date}: No. {n}". */
   weekRead: string;
   weekUnread: string;
+  /** Chapter 02's note beside its figure: "First African artist ever ·
+   *  Shakira's 2nd". The old story rail's words, restored on 26 Sep 2026 and
+   *  never reworded (README §6). */
+  globalFirst: string;
   /** "{a} straight, a week at No. {dip}, then {b} more." */
   globalSpells: string;
   /** "And {n} straight weeks at No. 1 on the Global 200 Excl. US." */
@@ -81,6 +85,7 @@ export const EN_FIGURE_LABELS: FigureLabels = {
   weekTick: "w{n}",
   weekRead: "Chart dated {date}: No. {n}",
   weekUnread: "Chart dated {date}: no reading held",
+  globalFirst: "First African artist ever · Shakira's 2nd",
   globalSpells: "{a} straight, a week at No. {dip}, then {b} more.",
   globalExUs: "And {n} straight weeks at No. 1 on the Global 200 Excl. US.",
   countriesAt1: "countries at No. 1",
@@ -214,9 +219,15 @@ export function FigureGlobalRun({ t }: { t: FigureLabels }) {
   const shaped = between.length === 1 && between[0].pos != null;
   return (
     <Frame>
-      <div className={styles.head}>
+      {/* The note sits in the height the big figure already takes, above its
+          unit, so the figure keeps its slot (330px desktop, 290 phone) and the
+          Spanish phone chapter still fits between the bars. */}
+      <div className={`${styles.head} ${styles.headNoted}`}>
         <span className={styles.big}>{weeks}</span>
-        <span className={styles.mid}>{t.weeksAt1}</span>
+        <span className={styles.midStack}>
+          <span className={styles.firstNote}>{t.globalFirst}</span>
+          <span className={styles.mid}>{t.weeksAt1}</span>
+        </span>
       </div>
       <div className={styles.eyebrowTight}>Billboard Global 200 · {t.weekByWeek}</div>
       <ol className={styles.bars} style={{ gridTemplateColumns: `repeat(${run.length}, minmax(0, 1fr))` }}>

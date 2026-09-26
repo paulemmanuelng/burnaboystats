@@ -800,3 +800,13 @@ a.langItem:focus-visible { outline-offset: -3px; }
    HTML, and on screen, at every width (see the note on the section in
    page.tsx). */
 @media (max-width: 900px) { .desktopOnly { display: none; } }
+
+/* The Keep-exploring rail, on this page only. The shared rail is a global
+   .container (max-width 1280, 24px sides), so at 1440 its cards ran 104–1336
+   while every section above sits in .wrap's 1280 box with 40px sides,
+   120–1320: a 16px overhang on each side. This gives the rail the same 40px
+   sides, here and nowhere else; the shared component is not restyled. (0,2,0)
+   outranks .container's (0,1,0) whatever order the sheets load in. */
+.exploreRail :global(.container) {
+  padding-inline: 40px;
+}

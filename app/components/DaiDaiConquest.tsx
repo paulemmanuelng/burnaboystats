@@ -38,13 +38,15 @@ export interface ConquestCountry {
 /** How many cells a phone shows before the fold (the phone artboard's 30). */
 const PHONE_FOLD = 30;
 
-/** No. 1s first, so the No. 1 cells group together. Stable within a tier.
- *  The tie-break names its locale: this runs in the browser too, and a Czech
- *  or Slovak reader's default collation files CH after H (and after GR), so
- *  the client's grid came out in a different order from the server's —
- *  React #418 on /dai-dai. */
+/** No. 1s first, so the No. 1 cells group together. Within a peak the cells
+ *  keep the order they arrive in: each page sorts them by the name it prints,
+ *  in its own language, on the server (byVisibleName in DaiDaiRecord). No
+ *  string is compared here — this runs in the browser too, and a Czech or
+ *  Slovak reader's default collation files CH after H (and after GR), so a
+ *  locale-dependent tie-break put the client's grid in a different order from
+ *  the server's — React #418 on /dai-dai. A numeric sort is stable. */
 function order(countries: ConquestCountry[]): ConquestCountry[] {
-  return [...countries].sort((a, b) => a.peak - b.peak || a.code.localeCompare(b.code, "en"));
+  return [...countries].sort((a, b) => a.peak - b.peak);
 }
 
 export default function DaiDaiConquest({

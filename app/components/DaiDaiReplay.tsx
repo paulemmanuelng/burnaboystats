@@ -80,6 +80,22 @@ const subscribeRM = (cb: () => void) => {
 const getRM = () => window.matchMedia?.(RM).matches ?? false;
 const getRMServer = () => false;
 
+// ── The phone layout, read in JavaScript ─────────────────────────────────────
+// On the phone the ranking's chips are labels, as the 390 artboard draws them:
+// a 22px chip cannot be a 44px target, and the map is where a phone reader
+// taps a country. So below 901px they are not buttons and take no tab stop
+// (CSS alone could stop the pointer, not the focus). The server renders the
+// desktop's buttons, and a phone swaps them for labels as it hydrates; both
+// carry the same classes, so nothing moves.
+const PHONE = "(max-width: 900px)";
+const subscribePhone = (cb: () => void) => {
+  const m = window.matchMedia?.(PHONE);
+  m?.addEventListener("change", cb);
+  return () => m?.removeEventListener("change", cb);
+};
+const getPhone = () => window.matchMedia?.(PHONE).matches ?? false;
+const getPhoneServer = () => false;
+
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
 const ordinal = (n: number, lang: "en" | "es") => {
@@ -113,6 +129,7 @@ export default function DaiDaiReplay({ data, labels: t }: { data: ReplayData; la
   const [hovered, setHovered] = useState<string | null>(null);
   const [announce, setAnnounce] = useState("");
   const reduced = useSyncExternalStore(subscribeRM, getRM, getRMServer);
+  const phone = useSyncExternalStore(subscribePhone, getPhone, getPhoneServer);
   const view = userView ?? (reduced ? "multiples" : "player");
 
   const endLike = mode === "poster" || mode === "end";
@@ -346,15 +363,19 @@ export default function DaiDaiReplay({ data, labels: t }: { data: ReplayData; la
   const sg = byIso.get(SG_ISO);
   const sgLook = lookOf(sg, frame, endLike);
 
-  const shapeClass = (look: string, code: string | undefined) =>
-    look === "none"
-      ? styles.shape
-      : [styles.shape, styles.charted, styles[look], code === cardCode ? styles.picked : ""].filter(Boolean).join(" ");
+  const shapeClass = (look: string) =>
+    look === "none" ? styles.shape : [styles.shape, styles.charted, styles[look]].filter(Boolean).join(" ");
   const patternFill = (look: string, where: "w" | "e") =>
     look === "unread" ? `url(#ddr-hatch-${where})` : look === "nochart" ? `url(#ddr-cross-${where})` : undefined;
 
-  const drawUses = (where: "w" | "e") =>
-    data.shapes.map((iso) => {
+  // The country with its card open is drawn a second time, last, in the same
+  // look: its outline then sits on top of every neighbour, and it is painted
+  // under the fill (paint-order), so the whole band fill stays visible. A
+  // centred 2px outline covered most of a small shape — Switzerland in the
+  // inset lost its band to it while France and Germany kept theirs.
+  const pickedRun = cardRun?.iso !== undefined && data.shapes.includes(cardRun.iso) ? cardRun : undefined;
+  const drawUses = (where: "w" | "e") => {
+    const uses = data.shapes.map((iso) => {
       const r = byIso.get(iso);
       const look = lookOf(r, frame, endLike);
       const pf = patternFill(look, where);
@@ -362,12 +383,27 @@ export default function DaiDaiReplay({ data, labels: t }: { data: ReplayData; la
         <use
           key={iso}
           href={`${SPRITE}#s${iso}`}
-          className={shapeClass(look, r?.code)}
+          className={shapeClass(look)}
           style={pf ? { fill: pf } : undefined}
           data-code={r?.code}
         />
       );
     });
+    if (!pickedRun) return uses;
+    const look = lookOf(pickedRun, frame, endLike);
+    const pf = patternFill(look, where);
+    return [
+      ...uses,
+      <use
+        key="picked"
+        href={`${SPRITE}#s${pickedRun.iso}`}
+        className={`${shapeClass(look)} ${styles.picked}`}
+        style={pf ? { fill: pf } : undefined}
+        data-picked={pickedRun.code}
+        aria-hidden="true"
+      />,
+    ];
+  };
   const drawMarks = (r: number) =>
     endLike ? marks.map((m) => <circle key={m.code} className={styles.peakMark} cx={m.at[0]} cy={m.at[1]} r={r} data-code={m.code} />) : null;
 
@@ -557,23 +593,39 @@ export default function DaiDaiReplay({ data, labels: t }: { data: ReplayData; la
                   <ul className={styles.chips}>
                     {g.items.map((it) => (
                       <li key={it.run.code}>
-                        <button
-                          type="button"
-                          className={`${styles.chip} ${it.run.code === cardCode ? styles.chipOn : ""}`}
-                          aria-label={it.say}
-                          aria-pressed={it.run.code === pinned}
-                          data-chip={it.run.code}
-                          tabIndex={it.run.code === tabChip ? 0 : -1}
-                          onKeyDown={(e) => onChipKey(e, it.run.code)}
-                          onClick={() => pick(it.run.code)}
-                          onFocus={() => {
-                            if (mode !== "playing" && mode !== "scrubbing") setPinned(it.run.code);
-                          }}
-                        >
-                          <span aria-hidden="true">{it.run.flag}</span>
-                          <span>{it.run.code}</span>
-                          {it.cue ? <span className={styles.chipCue}>{it.cue}</span> : null}
-                        </button>
+                        {phone ? (
+                          <span
+                            className={`${styles.chip} ${styles.chipLabel} ${it.run.code === cardCode ? styles.chipOn : ""}`}
+                            data-chip-label={it.run.code}
+                          >
+                            <span aria-hidden="true">{it.run.flag}</span>
+                            <span aria-hidden="true">{it.run.code}</span>
+                            {it.cue ? (
+                              <span className={styles.chipCue} aria-hidden="true">
+                                {it.cue}
+                              </span>
+                            ) : null}
+                            <span className="visuallyHidden">{it.say}</span>
+                          </span>
+                        ) : (
+                          <button
+                            type="button"
+                            className={`${styles.chip} ${it.run.code === cardCode ? styles.chipOn : ""}`}
+                            aria-label={it.say}
+                            aria-pressed={it.run.code === pinned}
+                            data-chip={it.run.code}
+                            tabIndex={it.run.code === tabChip ? 0 : -1}
+                            onKeyDown={(e) => onChipKey(e, it.run.code)}
+                            onClick={() => pick(it.run.code)}
+                            onFocus={() => {
+                              if (mode !== "playing" && mode !== "scrubbing") setPinned(it.run.code);
+                            }}
+                          >
+                            <span aria-hidden="true">{it.run.flag}</span>
+                            <span>{it.run.code}</span>
+                            {it.cue ? <span className={styles.chipCue}>{it.cue}</span> : null}
+                          </button>
+                        )}
                       </li>
                     ))}
                   </ul>

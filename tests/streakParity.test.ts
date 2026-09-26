@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { updates } from "../app/data/updates";
-import { daiDaiYouTubeDaysAtNo1, DAI_DAI_SPOTIFY_NO1_DAYS } from "../app/data/daiDai";
+import { daiDaiYouTubeDaysAtNo1, DAI_DAI_SPOTIFY_NO1_DAYS, DAI_DAI_SPOTIFY_WEEKLY_NO1_WEEKS, DAI_DAI_APPLE_EUROPE_NO1_DAYS, DAI_DAI_ITUNES_WORLDWIDE_NO1_DAYS, DAI_DAI_UWC_NO1_WEEKS, DAI_DAI_SPOTIFY_MUSIC_VIDEO_NO1_DAYS } from "../app/data/daiDai";
 
 // Platform streaks — Spotify's daily and weekly charts, Apple Music, iTunes,
 // Mediatraffic, YouTube — are the one class of figure on /dai-dai with nowhere
@@ -79,25 +79,32 @@ const STREAKS: Streak[] = [
   },
   {
     id: "Spotify Global Weekly — weeks at No. 1",
-    page: `v: "(\\d+) weeks", l: "at No\\. 1 on Spotify${A}s Global Weekly`,
+    // The five rows below read their figures from app/data/daiDai.ts since
+    // 26 Sep 2026 (each constant names the feed line that states it), so each
+    // is held here by the constant's name and its value, like the daily row.
+    page: `v: \`\\$\\{DAI_DAI_SPOTIFY_WEEKLY_NO1_WEEKS\\} weeks\`, l: "at No\\. 1 on Spotify${A}s Global Weekly`,
+    derived: DAI_DAI_SPOTIFY_WEEKLY_NO1_WEEKS,
     feed: [`${ORD} week atop the weekly list`, `${ORD} on Spotify${A}s Global Weekly Top Songs`],
     topic: `Global Weekly|weekly list|Weekly Top Songs Global`,
   },
   {
     id: "Apple Music Europe — days at No. 1",
-    page: `v: "(\\d+) days", l: "at No\\. 1 on Apple Music${A}s European songs`,
+    page: `v: \`\\$\\{DAI_DAI_APPLE_EUROPE_NO1_DAYS\\} days\`, l: "at No\\. 1 on Apple Music${A}s European songs`,
+    derived: DAI_DAI_APPLE_EUROPE_NO1_DAYS,
     feed: [`${ORD} day atop Apple Music${A}s European`, `at No\\. 1 for (\\d+) days`],
     topic: `Apple Music${A}s European`,
   },
   {
     id: "iTunes worldwide — days at No. 1",
-    page: `v: "(\\d+) days", l: "at No\\. 1 on the worldwide iTunes songs`,
+    page: `v: \`\\$\\{DAI_DAI_ITUNES_WORLDWIDE_NO1_DAYS\\} days\`, l: "at No\\. 1 on the worldwide iTunes songs`,
+    derived: DAI_DAI_ITUNES_WORLDWIDE_NO1_DAYS,
     feed: [`${ORD} on the worldwide iTunes`, `${ORD} day at No\\. 1 on worldwide iTunes`],
     topic: `worldwide iTunes`,
   },
   {
     id: "United World Chart — weeks at No. 1",
-    page: `v: "(\\d+) weeks", l: "at No\\. 1 on Mediatraffic${A}s United World`,
+    page: `v: \`\\$\\{DAI_DAI_UWC_NO1_WEEKS\\} weeks\`, l: "at No\\. 1 on Mediatraffic${A}s United World`,
+    derived: DAI_DAI_UWC_NO1_WEEKS,
     feed: [
       `${ORD} atop Mediatraffic`,
       // "a 10th WEEK atop Mediatraffic's..." — the natural way to write it,
@@ -110,7 +117,8 @@ const STREAKS: Streak[] = [
   },
   {
     id: "Spotify Global Music Video — days at No. 1",
-    page: `v: "(\\d+) days", l: "at No\\. 1 on Spotify${A}s Global Music Video`,
+    page: `v: \`\\$\\{DAI_DAI_SPOTIFY_MUSIC_VIDEO_NO1_DAYS\\} days\`, l: "at No\\. 1 on Spotify${A}s Global Music Video`,
+    derived: DAI_DAI_SPOTIFY_MUSIC_VIDEO_NO1_DAYS,
     feed: [
       `${ORD} day at No\\. 1 on Spotify${A}s Global Music Video`,
       `${ORD} day at the top of Spotify${A}s Global Music Video`,

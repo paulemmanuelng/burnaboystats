@@ -5,7 +5,7 @@ import { daiDaiFigures, EN_FIGURE_LABELS, type FigureLabels } from "./DaiDaiFigu
 import { cardinalWord } from "../lib/plural";
 import { daiDaiNumberOnes, weeksAtPeak } from "../data/charts";
 import { daiDaiCertCount } from "../data/certifications";
-import { DAI_DAI_RELEASE_DATE, DAI_DAI_HALFTIME_DATE } from "../data/daiDai";
+import { DAI_DAI_RELEASE_DATE, DAI_DAI_HALFTIME_DATE, DAI_DAI_SPOTIFY_NO1_DAYS } from "../data/daiDai";
 
 // Every figure here is "Dai Dai"'s OWN — never Burna Boy's artist-wide totals
 // (monthly listeners, YouTube audience, career certs). Burna had a huge
@@ -99,7 +99,7 @@ function buildSteps(p: { daiDaiNo1s: number; daiDaiCerts: number; weeksGLB: numb
       scene: "streaming",
       kicker: "On streaming",
       title: "The most-streamed song on Earth",
-      body: "“Dai Dai” topped Spotify's Global Top Songs chart on both the Daily and Weekly lists — 37 days as the single most-streamed song on the planet, a run reclaimed in August, and the first time an African artist has ever led it.",
+      body: `“Dai Dai” topped Spotify's Global Top Songs chart on both the Daily and Weekly lists — ${DAI_DAI_SPOTIFY_NO1_DAYS} days as the single most-streamed song on the planet, a run reclaimed in August, and the first time an African artist has ever led it.`,
     },
     {
       scene: "certs",

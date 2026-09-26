@@ -38,6 +38,24 @@
   line-height: 1;
   text-transform: uppercase;
 }
+/* Chapter 02: a note stacked over the unit, beside the big figure. Bottoms
+   align rather than baselines: the column's first baseline would be the
+   note's. At line-height 0.9 the figure's baseline sits within a pixel of its
+   box's foot, and the unit's within two of its own, so the unit stays on the
+   figure's baseline as before. */
+.headNoted { align-items: flex-end; }
+.midStack {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  flex: 1 1 0;
+}
+.firstNote {
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
+  color: var(--text-body);
+}
 .eyebrow,
 .eyebrowTight {
   font-family: var(--font-mono), monospace;
@@ -376,6 +394,10 @@
   .fig { padding: 16px; gap: 12px; }
   .big { font-size: 56px; }
   .mid { font-size: 20px; }
+  /* The 56px figure is 50px tall and its unit 20: two lines of the note at
+     the 11px floor fit the 30 above the unit, so the head does not grow. */
+  .midStack { gap: 2px; }
+  .firstNote { font-size: 11px; line-height: 1.25; }
   .release { gap: 12px; }
   .cover { width: 120px; height: 120px; }
   .releaseDate { font-size: 56px; }

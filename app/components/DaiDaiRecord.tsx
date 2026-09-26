@@ -164,6 +164,11 @@ export function nationalRow(
     code: spec.c,
     flag: CHART_COUNTRIES[spec.c]?.flag ?? "🏳",
     country: countryName(spec.c, lang),
+    // The chart column prints the chart's own name where the data holds one —
+    // the three DAI_DAI_OTHER_CHARTS rows above do. charts.ts has no chart-name
+    // field (ChartCountry is name, flag, body), so these rows print the body,
+    // which for several countries is the chart's name ("Ö3 Austria Top 40",
+    // "VG-lista") and for the rest the body that compiles it (26 Sep 2026).
     chart: CHART_COUNTRIES[spec.c]?.body ?? spec.c,
     peak: e.peak,
     weeksAtNo1: e.peak === 1 ? weeksAtPeak("Dai Dai", spec.c) : 0,
@@ -171,6 +176,33 @@ export function nationalRow(
     l: spec.l,
   };
 }
+
+/**
+ * The takeover grid's order: by peak, and within a peak by the country's name
+ * as this edition prints it ("Alemania" before "Austria" on /es; "Austria"
+ * before "Belgium" on /dai-dai) rather than by its ISO code. Sorted here, on
+ * the server, with the edition's own collation; the grid then keeps this order
+ * inside each peak, so the browser's ICU never decides it (the React #418 the
+ * grid's comment records).
+ */
+export function byVisibleName<T extends { name: string; peak: number }>(cells: T[], lang: "en" | "es"): T[] {
+  const collator = new Intl.Collator(lang === "es" ? "es" : "en-GB", { sensitivity: "base" });
+  return [...cells].sort((a, b) => a.peak - b.peak || collator.compare(a.name, b.name));
+}
+
+/** The multiple on the song's plaque in one country: 2 for Canada's 2×
+ *  Platinum, 6 for the RIAA Latin 6× Platino, 1 for a single plaque. Read from
+ *  the plaque wall, so the FAQ answer (FAQPage structured data) moves with it. */
+export function plaqueX(code: string): number {
+  const g = plaqueGroups().find((x) => x.codes.includes(code));
+  if (!g) throw new Error(`Dai Dai has no plaque in ${code}`);
+  return g.x;
+}
+
+/** A whole number with its thousands marked by `sep` ("1,739", "1.739"),
+ *  without asking the runtime's locale data: Spanish ICU leaves a four-digit
+ *  number ungrouped, and the page has always printed "1.739". */
+export const thousands = (n: number, sep: "," | ".") => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, sep);
 
 /** The song's top plaque, in words: "Diamond in France". Read from the plaque
  *  wall's own grouping, so the caption moves the day a plaque does. */
