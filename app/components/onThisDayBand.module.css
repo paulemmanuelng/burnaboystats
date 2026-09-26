@@ -1,19 +1,25 @@
 /* The home page's "On this day" band — desktop only (MobileOnThisDayCard is
-   the phone's). The History band's grid, one row down: kicker and title in
-   the narrow column, the day's events in the wide one. Ink, not gold — gold on
-   this page marks what is live and what is the action, and this is neither.
-   Hidden below 900px with the rest of the desktop page (.desktopOnly). */
-.band { border-bottom: 1px solid var(--line); }
+   the phone's). designs/desktop/OTD Home Card.dc.html, desktop: History
+   made's 1fr 2fr grid, one band down, with a 2px --rule under it so it reads
+   as its own section rather than a footnote to History made.
+
+   Gold here is links only. The card button is an outlined secondary: "View
+   certifications" is the screen's one gold action. A kind is its mark and its
+   word, in ink. Hidden below 900px with the rest of the desktop page. */
+.band { border-bottom: 2px solid var(--rule); }
 .inner {
   max-width: 1360px;
   margin: 0 auto;
-  padding: 34px 40px;
+  padding: 40px 40px 44px;
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 48px;
   align-items: start;
 }
-.lead { min-width: 0; }
+
+/* ── Left: the lead milestone ────────────────────────────────────────── */
+.lead { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.lead p { margin: 0; }
 .kicker {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
@@ -22,78 +28,155 @@
   text-transform: uppercase;
   color: var(--text-muted);
 }
+.when { color: var(--text); }
 .title {
+  margin: 0;
   font-family: var(--font-anton), sans-serif;
-  font-weight: 400;
-  font-size: 32px;
-  line-height: 1.05;
-  letter-spacing: 0.01em;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 40px;
+  line-height: 1.02;
   text-transform: uppercase;
-  margin: 14px 0 0;
+  text-wrap: balance;
 }
-.links {
+.meta {
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
-  gap: 6px 22px;
-  margin-top: 18px;
-}
-.link {
+  gap: 8px;
   font-family: var(--font-mono), monospace;
   font-weight: 700;
   font-size: var(--type-label);
-  letter-spacing: var(--type-label-tracking);
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--text);
-  padding: 6px 0;
+  color: var(--text-muted);
 }
-.link:hover { color: var(--gold); }
-
-.list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
-.row {
-  display: grid;
-  grid-template-columns: 74px 1fr;
-  gap: 18px;
-  padding: 14px 12px 14px 0;
-  border-bottom: 1px solid var(--line);
-  color: var(--text);
-  transition: background var(--dur) var(--ease);
-}
-.row:hover { background: var(--bg-raised); }
-/* The Firsts list's year, one section down — the same figure in the same face. */
-.year {
-  font-family: var(--font-anton), sans-serif;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 1.2;
-  color: var(--gold);
-  font-variant-numeric: tabular-nums;
-}
-.body { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
-.meta { display: flex; align-items: center; gap: 10px; }
-.tag {
+.pill {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-family: var(--font-mono), monospace;
-  font-weight: 700;
-  font-size: var(--type-label);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
   padding: 2px 8px;
   border: 1px solid var(--line);
   border-radius: 999px;
   color: var(--text);
 }
-.ago {
+.age { color: var(--text); }
+.detail { font-size: 15px; line-height: 1.55; color: var(--text-body); }
+/* A record sentence, in ink and a step up. */
+.record { font-size: var(--type-body); line-height: 1.55; color: var(--text); }
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 24px;
+  margin-top: 6px;
+}
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 24px;
   font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* ── Right: the day's other anniversaries, then its card ─────────────── */
+.side {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 150px;
+  gap: 40px;
+  align-items: start;
+  min-width: 0;
+}
+.rest { display: flex; flex-direction: column; min-width: 0; }
+.restTitle {
+  margin: 0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
   font-size: var(--type-label);
-  letter-spacing: 0.06em;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
   color: var(--text-muted);
 }
-.headline { font-weight: 600; font-size: 15px; line-height: 1.35; }
-.detail {
+.rows { list-style: none; margin: 0; padding: 0; }
+/* The whole row is the link to the record; hover presses it in. */
+.row {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: baseline;
+  padding: 14px 8px;
+  border-bottom: 1px solid var(--line);
+  color: var(--text);
+  text-decoration: none;
+  transition: background var(--dur-fast) var(--ease);
+}
+.row:hover { background: var(--bg-raised); }
+/* Years are ink: a year is data, not an action. */
+.year {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.body { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.headline { display: flex; align-items: center; gap: 8px; font-size: 15px; line-height: 1.35; font-weight: 600; }
+.mark { display: block; flex: none; width: 10px; height: 10px; color: var(--text); }
+.detailLine {
+  padding-left: 18px;
   font-size: var(--type-caption);
   line-height: var(--type-caption-lh);
   color: var(--text-muted);
+}
+.ago,
+.nextLabel {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.nextMeta { font-size: var(--type-caption); line-height: var(--type-caption-lh); color: var(--text-muted); }
+.nextArrow {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  color: var(--gold);
+}
+
+.cardCol { display: flex; flex-direction: column; gap: 10px; }
+.cardImg {
+  display: block;
+  width: 150px;
+  height: 188px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+/* The site's outlined secondary, at the design's size. */
+.cardBtn {
+  height: 40px;
+  padding: 0 14px;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: var(--type-label);
+  letter-spacing: 0.08em;
+}
+.cardBtnTablet { display: none; }
+
+/* Tablet, 901–1239: the band's padding steps to 28/32, exactly as History
+   made's does, so the two bands' edges never drift; the title steps to
+   28/32. The preview column drops and "The card ↓" moves under the links. */
+@media (max-width: 1239px) {
+  .inner { padding: 28px 32px 30px; }
+  .title { font-size: 28px; line-height: 32px; }
+  .side { grid-template-columns: minmax(0, 1fr); }
+  .cardCol { display: none; }
+  .cardBtnTablet { display: inline-flex; align-self: flex-start; margin-top: 6px; }
 }

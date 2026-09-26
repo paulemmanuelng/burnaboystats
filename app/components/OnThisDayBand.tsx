@@ -1,68 +1,136 @@
 import Link from "next/link";
 import styles from "./onThisDayBand.module.css";
-import { KindPill } from "./OnThisDayKind";
-import { anniversary, yearsAgo, type OnThisDayPick } from "../lib/onThisDay";
+import { KindMark, KindPill } from "./OnThisDayKind";
+import { cardFilename, cardPath, cardPreviewSrc } from "../lib/cardPreview";
+import {
+  KIND_MARK,
+  homeAge,
+  homeDayLink,
+  homeLeadAge,
+  homeRestTitle,
+  homeRows,
+  homeWhen,
+  isRecordLine,
+  neighbours,
+  type OnThisDayPick,
+} from "../lib/onThisDay";
 
 /**
- * The home page's "On this day" band — desktop. MobileOnThisDayCard is the
- * phone's.
+ * The home page's "On this day" band — desktop (designs/desktop/OTD Home
+ * Card.dc.html). MobileOnThisDayCard is the phone's.
  *
- * It sits under "History made", the page's one dated story, so the upper page
- * (hero, scoreboard, history) keeps its place to the pixel. The pick is made
- * once, in app/page.tsx, from the London date at render and handed to both
- * layouts — a server render with nothing to recompute in the browser, which is
- * what keeps hydration quiet. The home page revalidates hourly, so the band
- * turns over within the hour after London's midnight.
+ * The lead milestone is the title; the date and the countdown sit in the
+ * kicker. On the right, the day's other anniversaries (up to two, newest
+ * first, each with its own age), a "Next on the calendar" teaser when there
+ * are fewer than two, and the day's card with an outlined "The card ↓". No
+ * gold action: "View certifications" is the screen's one.
  *
- * Three rows at most: the day's lead event (rank, then the most recent year)
- * and the next two. The day page holds the rest.
+ * It sits under "History made". The pick is made once, in app/page.tsx, from
+ * the London date at render and handed to both layouts; the home page
+ * revalidates hourly, so the band turns over within the hour after London's
+ * midnight.
  */
 export default function OnThisDayBand({ pick }: { pick: OnThisDayPick | null }) {
   if (!pick) return null;
-  const { day, events, mode } = pick;
-  const year = Number(pick.iso.slice(0, 4));
-  const shown = events.slice(0, 3);
-  const lead = shown[0];
+  const { day } = pick;
+  const [lead, ...rest] = homeRows(pick);
+  const next = neighbours(day.key).next;
+  const cardButton = (className = "") => (
+    <a href={cardPath(day.slug)} download={cardFilename(day.slug)} className={`btn btnSecondary ${styles.cardBtn}${className ? ` ${className}` : ""}`}>
+      <span>
+        The card<span className="visuallyHidden"> for {day.label}</span>
+      </span>
+      <span aria-hidden="true">↓</span>
+    </a>
+  );
 
   return (
     <section className={styles.band} aria-labelledby="otd-title">
       <div className={styles.inner}>
         <div className={styles.lead}>
-          <div className={styles.kicker}>
-            {mode === "today" ? `On this day · ${day.label}` : "On this day"}
-          </div>
+          <p className={styles.kicker}>
+            On this day · <span className={styles.when}>{homeWhen(pick)}</span>
+          </p>
           <h2 id="otd-title" className={styles.title}>
-            {mode === "today" ? `${yearsAgo(year - lead.year)} today` : `Coming up: ${day.label}`}
+            {lead.headline}
           </h2>
+          <p className={styles.meta}>
+            <KindPill kind={lead.kind} className={styles.pill} />
+            <span>{lead.year}</span>
+            <span aria-hidden="true">·</span>
+            <span className={styles.age}>{homeLeadAge(pick)}</span>
+          </p>
+          {/* A record sentence prints in ink at 16px; a plain detail in body
+              colour at 15px. */}
+          <p className={isRecordLine(lead) ? styles.record : styles.detail}>{lead.detail}</p>
           <div className={styles.links}>
             <Link href={`/on-this-day/${day.slug}`} className={styles.link}>
-              {events.length > 1 ? `All ${events.length} on ${day.label}` : `${day.label}, every year`} →
+              {homeDayLink(pick)} <span aria-hidden="true">↗</span>
             </Link>
             <Link href="/on-this-day" className={styles.link}>
-              The calendar →
+              The calendar <span aria-hidden="true">↗</span>
             </Link>
           </div>
+          {/* 901–1239: the preview column drops and the button stays, here. */}
+          {cardButton(styles.cardBtnTablet)}
         </div>
 
-        <ol className={styles.list}>
-          {shown.map((e) => (
-            <li key={e.id}>
-              <Link href={e.href} className={styles.row}>
-                <span className={styles.year}>{e.year}</span>
+        <div className={styles.side}>
+          <div className={styles.rest}>
+            <p className={styles.restTitle}>{homeRestTitle(pick)}</p>
+            {rest.length > 0 && (
+              <ol className={styles.rows}>
+                {rest.map((e) => (
+                  <li key={e.id}>
+                    <Link href={e.href} className={styles.row}>
+                      <span className={styles.year}>{e.year}</span>
+                      <span className={styles.body}>
+                        <span className={styles.headline}>
+                          <KindMark kind={e.kind} className={styles.mark} />
+                          {e.headline}
+                        </span>
+                        <span className={styles.detailLine}>
+                          {KIND_MARK[e.kind].word} · {e.detail}
+                        </span>
+                      </span>
+                      <span className={styles.ago}>{homeAge(pick, e)}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ol>
+            )}
+            {rest.length < 2 && (
+              <Link href={`/on-this-day/${next.slug}`} className={styles.row}>
+                <span className={styles.nextLabel}>Next</span>
                 <span className={styles.body}>
-                  <span className={styles.meta}>
-                    <KindPill kind={e.kind} className={styles.tag} />
-                    <span className={styles.ago}>
-                      {mode === "today" ? yearsAgo(year - e.year) : anniversary(year - e.year)}
-                    </span>
+                  <span className={styles.headline}>{next.lead.headline}</span>
+                  <span className={styles.nextMeta}>
+                    {next.label} · {next.lead.year}
                   </span>
-                  <span className={styles.headline}>{e.headline}</span>
-                  <span className={styles.detail}>{e.detail}</span>
+                </span>
+                <span className={styles.nextArrow} aria-hidden="true">
+                  ↗
                 </span>
               </Link>
-            </li>
-          ))}
-        </ol>
+            )}
+          </div>
+
+          <div className={styles.cardCol}>
+            {/* Lazy, and hidden below 1240: a hidden lazy image is never
+                fetched. The 320px WebP, never the 725 KB PNG. */}
+            {/* eslint-disable-next-line @next/next/no-img-element -- a route-drawn WebP, sized by the route */}
+            <img
+              src={cardPreviewSrc(day.slug, 320)}
+              alt={`The ${day.label} card: ${day.lead.year}, ${day.lead.headline}`}
+              width={150}
+              height={188}
+              loading="lazy"
+              decoding="async"
+              className={styles.cardImg}
+            />
+            {cardButton()}
+          </div>
+        </div>
       </div>
     </section>
   );

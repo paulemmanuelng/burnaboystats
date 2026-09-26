@@ -478,6 +478,8 @@ export interface OnThisDayPick {
   mode: "today" | "coming";
   /** The occurrence being shown, ISO — today, or the coming date. */
   iso: string;
+  /** Days from the London date to `iso`: 0 today, 11 when it is 11 days off. */
+  ahead: number;
   day: OnThisDayDay;
   /** Anniversaries on that occurrence: earlier years only, lead first. */
   events: OnThisDayEvent[];
@@ -500,17 +502,60 @@ function anniversaries(iso: string): { day: OnThisDayDay; events: OnThisDayEvent
 export function onThisDayFor(now: Date): OnThisDayPick | null {
   const today = londonDate(now);
   const hit = anniversaries(today);
-  if (hit) return { mode: "today", iso: today, ...hit };
+  if (hit) return { mode: "today", iso: today, ahead: 0, ...hit };
   for (let i = 1; i <= 366; i++) {
     const iso = addDays(today, i);
     const next = anniversaries(iso);
-    if (next) return { mode: "coming", iso, ...next };
+    if (next) return { mode: "coming", iso, ahead: i, ...next };
   }
   return null;
 }
 
 /** "1 day", "11 days". */
 export const daysCount = (n: number) => `${n} day${n === 1 ? "" : "s"}`;
+
+// ── The home card ───────────────────────────────────────────────────────────
+
+/**
+ * The home card's rows (design response §2 Home card; change list item 6):
+ * the lead first, then the rest newest first — ties inside a year by rank —
+ * at most three. Every row carries its own age, so mixed years read as such.
+ */
+export function homeRows(pick: OnThisDayPick): OnThisDayEvent[] {
+  const [lead, ...rest] = pick.events;
+  if (!lead) return [];
+  return [lead, ...rest.sort((a, b) => b.year - a.year || byLead(a, b))].slice(0, 3);
+}
+
+/** A row's age on the home card: "5 years ago" today, "5th anniversary" ahead. */
+export const homeAge = (pick: OnThisDayPick, e: OnThisDayEvent) => {
+  const n = Number(pick.iso.slice(0, 4)) - e.year;
+  return pick.mode === "today" ? yearsAgo(n) : anniversary(n);
+};
+
+/** The lead's age line: "5 years ago today", or "5th anniversary on 7 October". */
+export const homeLeadAge = (pick: OnThisDayPick) =>
+  pick.mode === "today"
+    ? `${homeAge(pick, pick.events[0])} today`
+    : `${homeAge(pick, pick.events[0])} on ${pick.day.label}`;
+
+/** The kicker's date part: "today, 7 October" or "coming up in 11 days · 7 October". */
+export const homeWhen = (pick: OnThisDayPick) =>
+  pick.mode === "today" ? `today, ${pick.day.label}` : `coming up in ${daysCount(pick.ahead)} · ${pick.day.label}`;
+
+/** The day link: "All 2 on 7 October", or "8 October, every year" for one. */
+export const homeDayLink = (pick: OnThisDayPick) =>
+  pick.events.length > 1 ? `All ${pick.events.length} on ${pick.day.label}` : `${pick.day.label}, every year`;
+
+/** The right column's head: "Also on 7 October", "Also on 16 August · 2 of 4
+ *  more" when the card shows only some, or "Next on the calendar" when the
+ *  lead is the day's only anniversary. */
+export function homeRestTitle(pick: OnThisDayPick): string {
+  const shown = homeRows(pick).length - 1;
+  const more = pick.events.length - 1;
+  if (!shown) return "Next on the calendar";
+  return more > shown ? `Also on ${pick.day.label} · ${shown} of ${more} more` : `Also on ${pick.day.label}`;
+}
 
 // ── The calendar ────────────────────────────────────────────────────────────
 

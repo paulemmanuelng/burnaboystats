@@ -3,9 +3,10 @@
    pages are app/on-this-day/onThisDay.module.css, not this markup widened.
 
    Vocabulary borrowed, not invented: the back bar and hero are the updates
-   screen's, the rows are its feed rows, the gold pill the History card's
-   CTA — the one action on the screen. A kind is its mark and its word, in
-   ink (lib/onThisDay.ts KIND_MARK): no kind has a colour. */
+   screen's, the rows are its feed rows. Gold is today's ring, links and the
+   day page's one "Save or share"; the home card adds no gold action. A kind
+   is its mark and its word, in ink (lib/onThisDayKinds.ts KIND_MARK): no
+   kind has a colour. */
 .screen { display: none; }
 
 @media (max-width: 900px) {
@@ -55,16 +56,6 @@
 }
 
 /* ── Hero ─────────────────────────────────────────────────────────────── */
-.hero { padding: 22px 18px 18px; }
-.kicker {
-  margin: 0;
-  font-family: var(--font-mono), monospace;
-  font-weight: 700;
-  font-size: var(--type-label);
-  letter-spacing: var(--type-label-tracking);
-  text-transform: uppercase;
-  color: var(--gold);
-}
 .title {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400; /* Anton has no bold cut */
@@ -85,56 +76,7 @@
   margin: -0.2em 0;
 }
 
-/* ── Gold pill: the screen's one action ──────────────────────────────── */
-.pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  min-height: 44px;
-  padding: 0 18px;
-  margin-top: 16px;
-  border-radius: 999px;
-  border: 1px solid var(--gold);
-  color: var(--gold);
-  font-family: var(--font-mono), monospace;
-  font-weight: 700;
-  font-size: var(--type-label);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  text-decoration: none;
-}
-.textLink {
-  min-height: 44px;
-  display: inline-flex;
-  align-items: center;
-  margin-top: 16px;
-  font-family: var(--font-mono), monospace;
-  font-size: var(--type-label);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
-
-/* ── Event rows ───────────────────────────────────────────────────────── */
-.list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
-.row {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  padding: 14px 18px;
-  border-bottom: 1px solid var(--line);
-  color: var(--text);
-}
-.row:active { background: var(--bg-raised); }
-.rowTop { display: flex; align-items: center; gap: 10px; }
-.year {
-  font-family: var(--font-anton), sans-serif;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 1;
-  color: var(--gold);
-  font-variant-numeric: tabular-nums;
-}
+/* A kind: its mark and its word, in ink on a hairline pill (the day rows). */
 .tag {
   display: inline-flex;
   align-items: center;
@@ -149,46 +91,138 @@
   border: 1px solid var(--line);
   color: var(--text);
 }
-.ago {
-  margin-left: auto;
+
+/* ── The home card ────────────────────────────────────────────────────
+   designs/desktop/OTD Home Card.dc.html, phone: under History made, a 2px
+   --rule on top. The lead milestone is the title; links are gold, the card's
+   button an outlined secondary — no gold action here. */
+.homeCard {
+  padding: 24px 18px 28px;
+  border-top: 2px solid var(--rule);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.homeCard p { margin: 0; }
+.homeKicker {
   font-family: var(--font-mono), monospace;
+  font-weight: 700;
   font-size: var(--type-label);
-  letter-spacing: 0.06em;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
   color: var(--text-muted);
-  text-align: right;
 }
-.headline { font-weight: 600; font-size: 15px; line-height: 1.35; }
-.detail {
-  font-size: var(--type-caption);
-  line-height: var(--type-caption-lh);
-  color: var(--text-muted);
-}
-
-/* ── The home card ────────────────────────────────────────────────────── */
-.homeCard {
-  padding: 22px 0 26px;
-  border-top: 1px solid var(--line);
-}
-.homeCard > .kicker,
-.homeCard > .homeTitle { padding: 0 18px; }
-.homeCard > .list { margin-top: 14px; }
+.homeWhen { color: var(--text); }
 .homeTitle {
+  margin: 0;
   font-family: var(--font-anton), sans-serif;
-  font-weight: 400;
+  font-weight: 400; /* Anton has no bold cut */
   font-size: 26px;
   line-height: 1.05;
-  letter-spacing: 0.01em;
   text-transform: uppercase;
-  margin: 10px 0 0;
+  text-wrap: balance;
 }
+.homeMeta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.homePill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 9px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--text);
+}
+.homeAge { color: var(--text); }
+.homeDetail { font-size: var(--type-small); line-height: 1.5; color: var(--text-body); }
+/* A record sentence prints in ink. */
+.homeRecord { font-size: var(--type-small); line-height: 1.5; color: var(--text); }
+
+.homeRest {
+  list-style: none;
+  margin: 6px 0 0;
+  padding: 0;
+  border-top: 1px solid var(--rule);
+}
+.homeRow {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  gap: 12px;
+  min-height: 44px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--text);
+  text-decoration: none;
+}
+.homeRow:active { background: var(--bg-raised); }
+/* Years are ink: a year is data, not an action. */
+.homeRowYear {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+.homeRowBody { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.homeRowHeadline { display: flex; align-items: flex-start; gap: 7px; font-size: 15px; line-height: 1.35; font-weight: 600; }
+.homeRowMark { display: block; flex: none; width: 10px; height: 10px; margin-top: 5px; color: var(--text); }
+.homeRowMeta { font-size: var(--type-caption); line-height: var(--type-caption-lh); color: var(--text-muted); }
+
+/* The day's card: a 96×120 thumbnail (the 320px WebP, lazy) and the save. */
+.homeCardBox {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  gap: 14px;
+  align-items: center;
+  margin-top: 10px;
+  padding: 12px;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.homeThumb { display: block; width: 96px; height: 120px; border-radius: var(--radius-sm); overflow: hidden; }
+.homeThumb img { display: block; width: 96px; height: 120px; }
+.homeCardCopy { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.homeCardName { font-size: var(--type-small); line-height: 1.4; font-weight: 600; }
+/* The site's outlined secondary, at the design's 44px. */
+.homeSave {
+  height: 44px;
+  padding: 0 16px;
+  justify-content: space-between;
+  font-size: var(--type-label);
+  letter-spacing: 0.1em;
+}
+
+/* Two full-width 44px link rows. */
 .homeLinks {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0 18px;
-  padding: 0 18px;
+  flex-direction: column;
+  margin-top: 4px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
+.homeLinkRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 44px;
+  color: var(--gold);
+  text-decoration: none;
+}
+.homeLinkRow + .homeLinkRow { border-top: 1px solid var(--line); }
 
 /* ── The calendar ─────────────────────────────────────────────────────
    designs/desktop/OTD Calendar.dc.html, phone: the Today panel, the month
