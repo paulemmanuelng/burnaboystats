@@ -312,7 +312,8 @@ export const AFROBEATS_VERIFIED_ON_11 = "2026-09-24";
  *  certifications were re-read on 24 Sep and their chart peaks on 24–25 Sep,
  *  so the page prints the later date. Rows whose only evidence was TOSAC (South
  *  Africa's chart) were left off under the owner's ruling of 25 Sep 2026: that
- *  chart is checked by hand, never by an agent, archives included. */
+ *  chart is checked by hand, never by an agent, archives included. Superseded
+ *  for Oxlade by ON_14 on 26 Sep 2026. */
 export const AFROBEATS_VERIFIED_ON_12 = "2026-09-25";
 
 /** Rema and Ruger, each re-read at one register on 25 Sep 2026, and each
@@ -327,6 +328,16 @@ export const AFROBEATS_VERIFIED_ON_12 = "2026-09-25";
  *  tests/afrobeats.test.ts holds every verifiedOn to the reads its sweep doc
  *  records. */
 export const AFROBEATS_VERIFIED_ON_13 = "2026-09-25";
+
+/** Oxlade, re-read at AFP/Audiogest (Portugal) on 26 Sep 2026 and gaining the
+ *  plaque that read found — the same rule as ON_13. The register is the annual
+ *  "TOP AFP/AUDIOGEST · Semanas 01 a 52 de 2022" (31/12/2021–29/12/2022), read
+ *  from the copy the owner downloaded himself: it sits under audiogest.pt/uploads,
+ *  which robots.txt bars to agents. "Ku Lo Sa" carries Gal. `OU` (Ouro) in both
+ *  of its Top 10000 lists, Streaming #544 and Singles + EPs Digitais #527. The
+ *  column freezes at the period end, so this is Gold by 29 Dec 2022; the award
+ *  day is not printed. docs/sweeps/oxlade-certifications-v1.md, Portugal. */
+export const AFROBEATS_VERIFIED_ON_14 = "2026-09-26";
 
 export const afrobeatsArtists: AfroArtist[] = [
   {
@@ -2310,6 +2321,10 @@ export const afrobeatsArtists: AfroArtist[] = [
   // rows: Kizz Daniel's "Cough (Odo)" ZA #86, a floor from a run the archive loses
   // mid-climb, and "Cry Baby (Ruger Remix)" NG #54, whose chart credit never
   // names Ruger.
+  //
+  // A hand check that lands is a source like any other. Oxlade's "Ku Lo Sa"
+  // Portugal Gold (26 Sep 2026) is read from AFP's 2022 annual TOP in the copy
+  // the owner downloaded himself; no agent requested audiogest.pt/uploads.
   {
     slug: "kizz-daniel",
     name: "Kizz Daniel",
@@ -2502,11 +2517,11 @@ export const afrobeatsArtists: AfroArtist[] = [
     spotifyId: "3WTrdbZU99dgTtt3ZkyamT",
     wikipedia: "https://en.wikipedia.org/wiki/Oxlade_(singer)",
     image: "https://i.scdn.co/image/ab6761610000e5eb2cdb1148e14bf21f3adc78de",
-    verifiedOn: AFROBEATS_VERIFIED_ON_12,
+    verifiedOn: AFROBEATS_VERIFIED_ON_14,
     swept: true,
     chartPublished: { entries: 32, territories: 9, no1s: 0 },
     releases: [
-      { title: "Ku Lo Sa", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/8ffa1ebe726f6367c9cd7852bde139c3/500x500-000000-80-0-0.jpg", certs: [{ c: "FR", level: "Diamond" }, { c: "CA", level: "Platinum", x: 2 }, { c: "CH", level: "Platinum" }, { c: "NG", level: "Platinum" }, { c: "NL", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "UK", level: "Platinum" }, { c: "DK", level: "Gold" }, { c: "ES", level: "Gold" }, { c: "SE", level: "Gold" }, { c: "US", level: "Gold" }] },
+      { title: "Ku Lo Sa", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/8ffa1ebe726f6367c9cd7852bde139c3/500x500-000000-80-0-0.jpg", certs: [{ c: "FR", level: "Diamond" }, { c: "CA", level: "Platinum", x: 2 }, { c: "CH", level: "Platinum" }, { c: "NG", level: "Platinum" }, { c: "NL", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "UK", level: "Platinum" }, { c: "DK", level: "Gold" }, { c: "ES", level: "Gold" }, { c: "PT", level: "Gold" }, { c: "SE", level: "Gold" }, { c: "US", level: "Gold" }] }, // PT: TOP AFP/Audiogest 2022 annual, Gal. "OU" (Streaming #544, Singles + EPs Digitais #527) = Gold by 29 Dec 2022; read 26 Sep 2026 from the owner's own download
       { title: "Intoxycated", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/561fca8c26d6e1be1d4367eb5975781f/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Ojuju", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/52543bcf18dd3d65bfd5f99697893386/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Kolo", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/3ed12ece9fa3923f3f160790a1ad5089/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },

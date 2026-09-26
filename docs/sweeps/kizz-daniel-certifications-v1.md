@@ -170,6 +170,38 @@ zero is the find pass's register search with its controls. **AMPROFON** returned
 HTTP 403 to the verifier and was not retried; its zero is the find pass's full
 read of 8,685 rows.
 
+## Portugal — AFP's 2022 annual, read 26 Sep 2026
+
+AFP/Audiogest's annual `TOP AFP/AUDIOGEST · Semanas 01 a 52 de 2022 · De
+31/12/2021 a 29/12/2022` (143 pages), read with pypdf from the copy the owner
+downloaded himself: it sits under `audiogest.pt/uploads`, which robots.txt bars
+to agents, and no agent requested it. The same read gave Oxlade's *Ku Lo Sa* its
+Portugal Gold (`544 OU` / `527 OU`). Its two 10,000-row lists, Top 10000
+Streaming and Top 10000 Singles + EPs Digitais, were searched in full, case-
+insensitively, for the credit and every title named below; `Gal.` (Galardão:
+`OU` Ouro, `PL` Platina) freezes at the period's last week.
+
+Both lists carry two of his records, and **neither row is badged** — `Gal.` is blank:
+
+- Top 10000 Streaming: `5605 Buga Kizz Daniel & Tekno EMPIRE DISTRIBUTION` and `5654 Nesesari Kizz Daniel feat. Philkeyz Kudos Records`
+- Top 10000 Singles + EPs Digitais: `5524 Buga Kizz Daniel & Tekno EMPIRE DISTRIBUTION` and `5635 Nesesari Kizz Daniel feat. Philkeyz Kudos Records`
+
+So *Buga* and *Nesesari* held **no Portuguese plaque on 29 Dec 2022**. Nothing
+else of his is in either list (`Kiss Daniel`, *Cough (Odo)*, *Twe Twe*, *Lie*,
+*Shu-Peru*, *RTID (Rich Till I Die)*, *Eh God (Barnabas)*, *Pour Me Water*, and
+Iyanya's *Like*: no row; the `Kizzy` rows are another act, credited with Orochi). The
+lists' `No Wahala` (Streaming 1954, Singles + EPs 1950) is credited to `1da
+Banton` alone — the original, not the remix he features on — and is unbadged in
+any case. A title outside the lists cannot carry a badge there, so for his other
+records this is "not found", not a proven zero; the annuals before 2022 are
+unread for him.
+
+**2023 onward is unread.** The 2023 and 2024 annuals are only 200 rows deep
+(and also under `/uploads`), the 2025 and 2026 weeklies were not read, and an
+award off the chart prints only on AFP's monthly cards. The board does not
+change, and `verifiedOn` does not move: a one-year read that finds nothing is
+not a re-verification of the page.
+
 ## Gaps — never to be read as zeros
 
 - **BPI (UK)** — `certified-awards.bpi.co.uk/robots.txt` disallows every agent.
@@ -177,9 +209,11 @@ read of 8,685 rows.
 - **ARIA (Australia)** — the accreditation lists are a Dropbox folder whose
   `/sh/` and `/scl/` paths robots.txt blocks, and this machine's local copies were
   lost on the 24 Sep reboot. By hand, below.
-- **AFP/Audiogest (Portugal)** — every TOP PDF sits under `audiogest.pt/uploads`,
-  which robots.txt disallows; the local corpus was lost on the same reboot. By
-  hand, below.
+- **AFP/Audiogest (Portugal), all but the 2022 annual** — every TOP PDF sits
+  under `audiogest.pt/uploads`, which robots.txt disallows, so only the owner's
+  downloads are read. The 2022 annual is read (26 Sep 2026, above: nothing
+  badged). Unread: the annuals before and after it, the 2025 and 2026 weeklies,
+  and AFP's monthly award cards. By hand, below.
 - **FIMI (Italy)** and **RiSA (South Africa)** — never read by an agent (owner
   ruling). By hand, below.
 - **Ultratop (Belgium)** — read only through raw Wayback `id_` captures of its
@@ -211,7 +245,7 @@ outside Nigeria (*Buga*, RIAA Gold), his other biggest Nigerian plaques (*Cough
 | 🇮🇹 Italy | fimi.it → Certificazioni | `Kizz Daniel`, then title `Buga` | lowest odds; a completeness check |
 | 🇿🇦 South Africa | risa.org.za → Certifications | `Kizz Daniel`, `Kiss Daniel`, then `Buga`, `Cough`, `Twe Twe`, `Ghetto` | *Ghetto* (Kizz Daniel feat. Nasty C) features a South African act |
 | 🇦🇺 Australia | aria.com.au/accreditations → the Dropbox folder, 2022–2026 singles and albums lists | `KIZZ DANIEL`, `BUGA`, `COUGH` | Paul can download the folder himself for the next pass to read |
-| 🇵🇹 Portugal | audiogest.pt → TOP AFP annual reports 2022–2025 ("Gal." column), plus the monthly award cards | `KIZZ DANIEL`, `BUGA`, `COUGH` | Paul can download the annual TOP PDFs for the next pass to read |
+| 🇵🇹 Portugal | audiogest.pt → TOP AFP annual reports 2023 onward and before 2022 ("Gal." column), plus the monthly award cards (2022 annual read — Portugal, above: *Buga* and *Nesesari* listed, unbadged) | `KIZZ DANIEL`, `BUGA`, `COUGH` | Paul can download the annual TOP PDFs for the next pass to read |
 
 ## Priced on /compare, and linked on /methodology
 
