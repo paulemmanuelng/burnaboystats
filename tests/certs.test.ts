@@ -377,6 +377,7 @@ describe("No Sign of Weakness: the song and the album stay two releases", () => 
 describe("the dated log's corrections of 23 Sep 2026", () => {
   it("logs Location's 2023 UK award as BPI's 4× Platinum, not a 4× Gold", () => {
     const ev = certHistory.filter((e) => e.title === "Location" && e.country === "UK" && e.year === 2023);
-    expect(ev).toEqual([{ title: "Location", credit: "Dave ft. Burna Boy", country: "UK", level: "Platinum", x: 4, year: 2023 }]);
+    // `date` since 26 Sep 2026: the same BPI ladder dates the step 05 May 2023.
+    expect(ev).toEqual([{ title: "Location", credit: "Dave ft. Burna Boy", country: "UK", level: "Platinum", x: 4, year: 2023, date: "2023-05-05" }]);
   });
 });

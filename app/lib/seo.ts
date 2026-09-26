@@ -161,6 +161,8 @@ const OWN_BREADCRUMB = [
   // above stops at one segment, so all 27 boards also shipped the generated
   // trail, ending in the raw slug "united-kingdom".
   /^\/compare\/in\/[^/]+$/,
+  // A day page's leaf is "26 September", which the slug spells "26-september".
+  /^\/on-this-day\/[^/]+$/,
 ];
 
 /** True where the page emits its own trail and the site-wide one must not. */
@@ -191,6 +193,7 @@ export const SEGMENT_LABELS: Record<string, string> = {
   "africas-biggest": "Africa's Biggest",
   updates: "Latest Updates",
   timeline: "Career Timeline",
+  "on-this-day": "On This Day",
   afrobeats: "The Afrobeats Board",
   // Board artists, so /afrobeats/<slug>/charts reads as words in the trail.
   wizkid: "Wizkid",

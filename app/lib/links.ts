@@ -132,6 +132,9 @@ export const exploreFor: Record<string, string[]> = {
   // back to the subject of the site — a reader who arrived on "wizkid
   // certifications" should land somewhere that is Burna Boy's record.
   "/afrobeats": ["certifications", "charts", "africas-biggest"],
+  // The calendar and its day pages: the full story in order, the records the
+  // days are drawn from, and the cards to post one with.
+  "/on-this-day": ["timeline", "records", "share"],
 };
 
 /**

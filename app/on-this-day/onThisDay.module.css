@@ -1,0 +1,248 @@
+/* On this day — desktop: the calendar and the day pages. Hidden below 900px,
+   where MobileOnThisDayIndex / MobileOnThisDayDay render instead.
+
+   The furniture is the updates page's (band, .wide, eyebrow, h1, lede) and
+   the home band's rows; the kind pills wear lib/onThisDay.ts's KIND_INK, the
+   update feed's category inks. */
+.desktopOnly { display: block; }
+@media (max-width: 900px) { .desktopOnly { display: none; } }
+
+.band { border-bottom: 1px solid var(--line); }
+.bandSurface { border-bottom: 1px solid var(--line); background: var(--bg-soft); }
+.wide { max-width: 1360px; margin: 0 auto; padding: 0 40px; }
+
+/* ── Hero ───────────────────────────────────────────────────────────────── */
+.hero {
+  padding: 50px 40px 42px;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 56px;
+  align-items: end;
+}
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.eyebrowRule { width: 22px; height: 2px; background: var(--gold); display: block; }
+.h1 {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 96px;
+  line-height: 0.88;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 16px 0 0;
+}
+.lede {
+  font-size: var(--type-lede);
+  line-height: var(--type-lede-lh);
+  max-width: 56ch;
+  margin: 18px 0 0;
+  color: var(--text-body-cool);
+  text-wrap: pretty;
+}
+
+/* The tally, right of the hero: one line per kind. */
+.tally { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.tallyRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.tallyValue {
+  margin-left: auto;
+  font-family: var(--font-anton), sans-serif;
+  font-size: 22px;
+  letter-spacing: 0.01em;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+.dot { width: 7px; height: 7px; border-radius: 50%; display: block; flex: none; }
+
+/* ── The calendar ───────────────────────────────────────────────────────── */
+.calendar {
+  padding: 40px 0 48px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px 32px;
+}
+@media (max-width: 1240px) { .calendar { grid-template-columns: repeat(3, 1fr); } }
+.monthName {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 0 0 12px;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+.monthCount {
+  margin-left: auto;
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+.dayOn,
+.dayOff {
+  position: relative;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: 13.5px;
+  font-variant-numeric: tabular-nums;
+}
+.dayOn {
+  font-weight: 700;
+  color: var(--text);
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  transition: background var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+.dayOn:hover { background: var(--bg-raised); border-color: var(--gold); }
+.dayOff { color: var(--dim); border: 1px solid transparent; }
+.dayDot {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  display: block;
+}
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  padding: 0 0 36px;
+  margin: 0;
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
+  color: var(--text-muted);
+}
+.legendItem { display: inline-flex; align-items: center; gap: 7px; }
+
+.source {
+  padding: 30px 0 34px;
+  margin: 0;
+  max-width: 88ch;
+  font-size: var(--type-small);
+  line-height: var(--type-small-lh);
+  color: var(--text-muted);
+}
+
+/* ── A day ──────────────────────────────────────────────────────────────── */
+.cardAside {
+  display: grid;
+  grid-template-columns: 176px 1fr;
+  gap: 22px;
+  align-items: end;
+}
+.cardPreview {
+  display: block;
+  width: 176px;
+  height: 220px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  background: var(--bg-soft);
+  object-fit: cover;
+}
+.cardCopy { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+.cardNote {
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.events { list-style: none; margin: 0; padding: 0; }
+.event {
+  display: grid;
+  grid-template-columns: 120px 1fr auto;
+  gap: 28px;
+  align-items: baseline;
+  padding: 22px 12px 22px 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--text);
+  transition: background var(--dur) var(--ease);
+}
+.event:hover { background: var(--bg-raised); }
+.eventYear {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 1;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+}
+.eventBody { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.tag {
+  align-self: flex-start;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border: 1px solid;
+  border-radius: 999px;
+}
+.eventHeadline { font-size: var(--type-h-prose); line-height: var(--type-h-prose-lh); font-weight: 600; }
+.eventDetail {
+  font-size: var(--type-small);
+  line-height: var(--type-small-lh);
+  color: var(--text-muted);
+  max-width: 72ch;
+}
+.eventMore {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.event:hover .eventMore { color: var(--gold); }
+
+.pager {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 26px 0 34px;
+}
+.pagerLink {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+  color: var(--text);
+  padding: 6px 0;
+}
+.pagerLink:hover { color: var(--gold); }
+.pagerMid { margin: 0 auto; }

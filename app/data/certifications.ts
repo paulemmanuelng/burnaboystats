@@ -660,6 +660,16 @@ export interface CertEvent {
   level: Tier;
   x?: number;
   year: number;
+  /**
+   * The award date as the body's own register prints it, ISO "YYYY-MM-DD" —
+   * the day of the award, never the day it was read or logged here. Set ONLY
+   * where a register read recorded it (the comment beside the row, or the
+   * release row's, names the read; the Wayback-only SNEP dates and the RMNZ
+   * remix date are in docs/sweeps/sweep-2026-09-23.md). Everything else is
+   * year-only, and stays that way until a register shows the day: /on-this-day
+   * lists a plaque on its anniversary only when this is set. `year` must agree.
+   */
+  date?: string;
   body?: string; // overrides the country's default certifying body (e.g. "RIAA Latin")
 }
 
@@ -707,7 +717,7 @@ export const certHistory: CertEvent[] = [
   { title: "Kilometre", country: "CA", level: "Gold", year: 2026 },
   { title: "Toni-Ann Singh", credit: "feat. Popcaan", country: "CA", level: "Gold", year: 2026 },
   { title: "Alone", country: "US", level: "Gold", year: 2026 },
-  { title: "On the Low", country: "UK", level: "Platinum", year: 2026 },
+  { title: "On the Low", country: "UK", level: "Platinum", year: 2026, date: "2026-01-23" }, // BPI escalation, on the release row
   { title: "On the Low", country: "CA", level: "Platinum", x: 2, year: 2026 },
   { title: "Gbona", country: "CA", level: "Platinum", year: 2026 },
   { title: "City Boys", country: "CA", level: "Platinum", year: 2026 },
@@ -717,8 +727,8 @@ export const certHistory: CertEvent[] = [
   { title: "Gbona", country: "DK", level: "Gold", year: 2026 },
   { title: "WGFT", credit: "Gunna ft. Burna Boy", country: "NZ", level: "Gold", year: 2026 },
   { title: "On the Low", country: "NZ", level: "Platinum", year: 2026 },
-  { title: "Last Last", country: "NZ", level: "Platinum", x: 3, year: 2026 },
-  { title: "Twice as Tall", album: true, country: "UK", level: "Silver", year: 2026 },
+  { title: "Last Last", country: "NZ", level: "Platinum", x: 3, year: 2026, date: "2026-03-05" }, // RMNZ, read 16 Sep 2026 (see the 2023 rows)
+  { title: "Twice as Tall", album: true, country: "UK", level: "Silver", year: 2026, date: "2026-03-06" }, // BPI, per the African Giant note below
   { title: "Location", credit: "Dave ft. Burna Boy", country: "NZ", level: "Platinum", x: 3, year: 2026 },
   { title: "It's Plenty", country: "NZ", level: "Platinum", year: 2026 },
   { title: "4 Kampé II", credit: "Joé Dwèt Filé ft. Burna Boy", country: "FR", level: "Gold", year: 2026 },
@@ -732,14 +742,14 @@ export const certHistory: CertEvent[] = [
   // BPI title page, read 16 Sep 2026: "Certification history 01 May 2026 Gold |
   // 10 January 2025 Silver". The release row already carried the Gold; the log
   // had only the Silver step.
-  { title: "We Pray", credit: "Coldplay ft. Burna Boy & others", country: "UK", level: "Gold", year: 2026 },
-  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "US", level: "Platinum", x: 2, year: 2026, body: "RIAA Latin" },
+  { title: "We Pray", credit: "Coldplay ft. Burna Boy & others", country: "UK", level: "Gold", year: 2026, date: "2026-05-01" },
+  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "US", level: "Platinum", x: 2, year: 2026, date: "2026-07-09", body: "RIAA Latin" }, // RIAA database: "2X PLATINO, July 9, 2026"
   // RIAA's @riaa_awards post, 23 Sep 2026: "RIAA LATIN PLATINUM 6X" (see the
   // release row). The database had not yet logged the step on 24 Sep.
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "US", level: "Platinum", x: 6, year: 2026, body: "RIAA Latin" },
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "CO", level: "Gold", year: 2026, body: "Sony Music Colombia" },
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "ES", level: "Gold", year: 2026 },
-  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "FR", level: "Gold", year: 2026 },
+  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "FR", level: "Gold", year: 2026, date: "2026-07-09" }, // SNEP, Wayback capture (sweep-2026-09-23.md)
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "HU", level: "Gold", year: 2026 },
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "SK", level: "Gold", year: 2026 },
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "PT", level: "Gold", year: 2026 },
@@ -747,15 +757,15 @@ export const certHistory: CertEvent[] = [
   { title: "Location", credit: "Dave ft. Burna Boy", country: "ZA", level: "Platinum", x: 2, year: 2026 },
   { title: "Gbona", country: "FR", level: "Diamond", year: 2026 },
 
-  { title: "We Pray", credit: "Coldplay ft. Burna Boy & others", country: "UK", level: "Silver", year: 2025 },
+  { title: "We Pray", credit: "Coldplay ft. Burna Boy & others", country: "UK", level: "Silver", year: 2025, date: "2025-01-10" }, // BPI title page, read 16 Sep 2026
   { title: "Simmer", credit: "Mahalia ft. Burna Boy", country: "CA", level: "Gold", year: 2025 },
-  { title: "We Pray", credit: "Coldplay ft. Burna Boy & others", country: "FR", level: "Gold", year: 2025 },
+  { title: "We Pray", credit: "Coldplay ft. Burna Boy & others", country: "FR", level: "Gold", year: 2025, date: "2025-01-16" }, // SNEP, Wayback capture (sweep-2026-09-23.md)
   { title: "Anybody", country: "FR", level: "Gold", year: 2025 },
   { title: "On the Low", country: "DK", level: "Gold", year: 2025 },
   { title: "We Pray", credit: "Coldplay ft. Burna Boy & others", country: "PT", level: "Gold", year: 2025 },
   { title: "City Boys", country: "UK", level: "Gold", year: 2025 },
   { title: "Donne-moi l'accord", credit: "Dadju ft. Burna Boy", country: "FR", level: "Platinum", year: 2025 },
-  { title: "Location", credit: "Dave ft. Burna Boy", country: "UK", level: "Platinum", x: 5, year: 2025 },
+  { title: "Location", credit: "Dave ft. Burna Boy", country: "UK", level: "Platinum", x: 5, year: 2025, date: "2025-05-23" }, // BPI ladder, see the 4x row
   { title: "Last Last", country: "AT", level: "Gold", year: 2025 },
   { title: "We Pray", credit: "Coldplay ft. Burna Boy & others", country: "AT", level: "Gold", year: 2025 },
   { title: "City Boys", country: "FR", level: "Platinum", year: 2025 },
@@ -763,12 +773,12 @@ export const certHistory: CertEvent[] = [
   { title: "Cheat on Me", credit: "feat. Dave", country: "UK", level: "Silver", year: 2025 },
   { title: "It's Plenty", country: "FR", level: "Gold", year: 2025 },
   { title: "Secret", credit: "feat. Jeremih & Serani", country: "UK", level: "Silver", year: 2025 },
-  { title: "Enjoy Yourself (Remix)", credit: "Pop Smoke ft. Burna Boy", country: "NZ", level: "Gold", year: 2025 },
+  { title: "Enjoy Yourself (Remix)", credit: "Pop Smoke ft. Burna Boy", country: "NZ", level: "Gold", year: 2025, date: "2025-01-23" }, // RMNZ (sweep-2026-09-23.md)
   { title: "Tested, Approved & Trusted", country: "NZ", level: "Gold", year: 2025 },
   { title: "Real Life", credit: "feat. Stormzy", country: "NZ", level: "Gold", year: 2025 },
   { title: "Love, Damini", album: true, country: "NZ", level: "Platinum", year: 2025 },
   { title: "We Pray", credit: "Coldplay ft. Burna Boy & others", country: "PL", level: "Gold", year: 2025 },
-  { title: "My Oasis", credit: "Sam Smith ft. Burna Boy", country: "UK", level: "Silver", year: 2025 }, // BPI: 22 Aug 2025 Silver, read 16 Sep 2026
+  { title: "My Oasis", credit: "Sam Smith ft. Burna Boy", country: "UK", level: "Silver", year: 2025, date: "2025-08-22" }, // BPI: 22 Aug 2025 Silver, read 16 Sep 2026
   { title: "City Boys", country: "US", level: "Gold", year: 2025 },
   { title: "Real Life", credit: "feat. Stormzy", country: "AU", level: "Gold", year: 2025 },
   { title: "We Pray", credit: "Coldplay ft. Burna Boy & others", country: "AU", level: "Gold", year: 2025 },
@@ -798,14 +808,14 @@ export const certHistory: CertEvent[] = [
   { title: "City Boys", country: "UK", level: "Silver", year: 2024 },
   // On the release row since the snapshot, never logged: RMNZ (RadioScope
   // table 2052) "Burna Boy | City Boys | Gold | 2024-06-13", read 17 Sep 2026.
-  { title: "City Boys", country: "NZ", level: "Gold", year: 2024 },
+  { title: "City Boys", country: "NZ", level: "Gold", year: 2024, date: "2024-06-13" },
 
   // "On the Low" awards that were confirmed at the body on 27 Aug 2026 but had
   // never been logged here. The UK/CA/DK/AU/NZ rows were already present above.
   { title: "On the Low", country: "CH", level: "Platinum", year: 2023 },
-  { title: "On the Low", country: "FR", level: "Diamond", year: 2022 },
+  { title: "On the Low", country: "FR", level: "Diamond", year: 2022, date: "2022-07-14" }, // SNEP date de constat, on the release row
   { title: "On the Low", country: "US", level: "Gold", year: 2022 },
-  { title: "On the Low", country: "UK", level: "Silver", year: 2020 },
+  { title: "On the Low", country: "UK", level: "Silver", year: 2020, date: "2020-10-16" }, // BPI escalation, on the release row
 
   // "African Giant" in the UK — read at BPI's own register on 14 Sep 2026
   // (certified-awards.bpi.co.uk/format/3/artist/4398/title/13134, certification
@@ -817,55 +827,55 @@ export const certHistory: CertEvent[] = [
   // Diamond Life was BPI 4× Platinum by 1987 and Keziah Jones's Blufunk was
   // SNEP Double Or on 27/06/2000. The "22 September 2020" that circulates is
   // the date of the press coverage, not the award.
-  { title: "African Giant", album: true, country: "UK", level: "Silver", year: 2020 },
-  { title: "African Giant", album: true, country: "UK", level: "Gold", year: 2022 },
+  { title: "African Giant", album: true, country: "UK", level: "Silver", year: 2020, date: "2020-09-18" },
+  { title: "African Giant", album: true, country: "UK", level: "Gold", year: 2022, date: "2022-07-22" },
 
   // GLF/Grammotex, read 27 Aug 2026. All four certified 2023-08-16.
-  { title: "On the Low", country: "SE", level: "Platinum", year: 2023 },
-  { title: "Ye", country: "SE", level: "Platinum", year: 2023 },
-  { title: "African Giant", album: true, country: "SE", level: "Gold", year: 2023 },
-  { title: "Gbona", country: "SE", level: "Gold", year: 2023 },
+  { title: "On the Low", country: "SE", level: "Platinum", year: 2023, date: "2023-08-16" },
+  { title: "Ye", country: "SE", level: "Platinum", year: 2023, date: "2023-08-16" },
+  { title: "African Giant", album: true, country: "SE", level: "Gold", year: 2023, date: "2023-08-16" },
+  { title: "Gbona", country: "SE", level: "Gold", year: 2023, date: "2023-08-16" },
   // SNEP's register (read 16 Sep 2026) holds ONE Last Last row: "Diamant | Date
   // de constat 02/11/2023" — no Or or Platine step, so the 2023 event is the
   // Diamond itself, which this log had typed as Platinum.
-  { title: "Last Last", country: "FR", level: "Diamond", year: 2023 },
+  { title: "Last Last", country: "FR", level: "Diamond", year: 2023, date: "2023-11-02" },
   // RMNZ (RadioScope, read 16 Sep 2026): Gold 2022-09-08, Plat x1 2022-12-08,
   // Plat x2 2023-12-21, Plat x3 2026-03-05. The 2023 event is the 2× Platinum;
   // the Gold and first Platinum are 2022 rows, below.
-  { title: "Last Last", country: "NZ", level: "Platinum", x: 2, year: 2023 },
+  { title: "Last Last", country: "NZ", level: "Platinum", x: 2, year: 2023, date: "2023-12-21" },
   { title: "Own It", credit: "Stormzy ft. Ed Sheeran & Burna Boy", country: "UK", level: "Platinum", x: 3, year: 2023 },
   { title: "Ye", country: "US", level: "Platinum", year: 2023 },
   { title: "Location", credit: "Dave ft. Burna Boy", country: "DK", level: "Platinum", year: 2023 },
   { title: "Gbona", country: "PT", level: "Gold", year: 2022 },
-  { title: "Last Last", country: "NZ", level: "Platinum", year: 2022 }, // RMNZ 2022-12-08
-  { title: "Last Last", country: "NZ", level: "Gold", year: 2022 }, // RMNZ 2022-09-08
-  { title: "Love, Damini", album: true, country: "UK", level: "Silver", year: 2023 },
+  { title: "Last Last", country: "NZ", level: "Platinum", year: 2022, date: "2022-12-08" }, // RMNZ 2022-12-08
+  { title: "Last Last", country: "NZ", level: "Gold", year: 2022, date: "2022-09-08" }, // RMNZ 2022-09-08
+  { title: "Love, Damini", album: true, country: "UK", level: "Silver", year: 2023, date: "2023-02-10" },
   // BPI title/9614: certification history "22 December 2023 — Silver" (read
   // 18 Sep 2026); the log had it under 2024.
-  { title: "I Told Them…", album: true, country: "UK", level: "Silver", year: 2023 },
+  { title: "I Told Them…", album: true, country: "UK", level: "Silver", year: 2023, date: "2023-12-22" },
   // BPI album page, read 16 Sep 2026: "01 December 2023 Gold | 10 February
   // 2023 Silver" — the Gold step was on the release row but never in this log.
-  { title: "Love, Damini", album: true, country: "UK", level: "Gold", year: 2023 },
+  { title: "Love, Damini", album: true, country: "UK", level: "Gold", year: 2023, date: "2023-12-01" },
   // SNEP register, read 16 Sep 2026: "ALONE | BURNA BOY | Or | Date de constat
   // 26/10/2023" — on the release row, absent from this log until now.
-  { title: "Alone", country: "FR", level: "Gold", year: 2023 },
+  { title: "Alone", country: "FR", level: "Gold", year: 2023, date: "2023-10-26" },
   { title: "Gbona", country: "UK", level: "Gold", year: 2026 },
   { title: "Love, Damini", album: true, country: "DK", level: "Gold", year: 2023 },
-  { title: "Love, Damini", album: true, country: "NL", level: "Gold", year: 2022 }, // NVPI: "3-11-2022", read 16 Sep 2026
+  { title: "Love, Damini", album: true, country: "NL", level: "Gold", year: 2022, date: "2022-11-03" }, // NVPI: "3-11-2022", read 16 Sep 2026
   { title: "Last Last", country: "US", level: "Platinum", year: 2023 },
   { title: "Collateral Damage", country: "FR", level: "Gold", year: 2023 },
-  { title: "On the Low", country: "UK", level: "Gold", year: 2023 },
+  { title: "On the Low", country: "UK", level: "Gold", year: 2023, date: "2023-04-07" }, // BPI escalation, on the release row
   { title: "For My Hand", credit: "feat. Ed Sheeran", country: "UK", level: "Gold", year: 2023 },
   // BPI's title page (re-read 23 Sep 2026) prints the ladder: 07 Jun 2019 Gold,
   // 02 Aug 2019 Platinum, 10 Apr 2020 2x, 08 Oct 2021 3x, 05 May 2023 4x,
   // 23 May 2025 5x. The 2023 event is the 4x PLATINUM; this row said "4x Gold".
-  { title: "Location", credit: "Dave ft. Burna Boy", country: "UK", level: "Platinum", x: 4, year: 2023 },
+  { title: "Location", credit: "Dave ft. Burna Boy", country: "UK", level: "Platinum", x: 4, year: 2023, date: "2023-05-05" },
   { title: "For My Hand", credit: "feat. Ed Sheeran", country: "CA", level: "Platinum", year: 2023 },
   { title: "Gum Body", credit: "feat. Jorja Smith", country: "CA", level: "Gold", year: 2023 },
   { title: "Love, Damini", album: true, country: "CA", level: "Gold", year: 2023 },
   { title: "Last Last", country: "CA", level: "Platinum", x: 2, year: 2023 },
   { title: "It's Plenty", country: "CA", level: "Gold", year: 2023 },
-  { title: "Location", credit: "Dave ft. Burna Boy", country: "FR", level: "Platinum", year: 2023 },
+  { title: "Location", credit: "Dave ft. Burna Boy", country: "FR", level: "Platinum", year: 2023, date: "2023-05-18" }, // SNEP, Wayback capture (sweep-2026-09-23.md)
   { title: "Be Honest", credit: "Jorja Smith ft. Burna Boy", country: "AU", level: "Platinum", year: 2023 },
   { title: "Anybody", country: "UK", level: "Silver", year: 2023 },
   { title: "Ginger", credit: "Wizkid ft. Burna Boy", country: "UK", level: "Silver", year: 2023 },
@@ -957,11 +967,11 @@ export const certHistory: CertEvent[] = [
   // France APPENDS, per the append-never-rewrite rule — the Gold and Platinum
   // rows above stay, so this country now logs three events for one plaque.
   // Poland had no row here at all.
-  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "FR", level: "Diamond", year: 2026 },
+  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "FR", level: "Diamond", year: 2026, date: "2026-08-27" }, // SNEP date de constat, on the release row
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "PL", level: "Gold", year: 2026 },
   // Same day, read at the body: IFPI Austria's Gold & Platin database returns
   // "Shakira & Burna Boy | Dai Dai | Single | PLATIN | Sony | 03.09.2026".
-  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "AT", level: "Platinum", year: 2026 },
+  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "AT", level: "Platinum", year: 2026, date: "2026-09-03" },
   // Greece, Gold -> Platinum, read 16 Sep 2026 at IFPI Greece's own chart page
   // (ifpi.gr/digital_ien.html — Digital Singles Chart (International), Week
   // 36/2026): row 1, "Shakira, Burna Boy | Dai Dai | Sony-Warner |
@@ -975,18 +985,18 @@ export const certHistory: CertEvent[] = [
   // BRMA's awards and sits behind a Cloudflare "verify you are human" wall that
   // this site's tooling never completes, so the row was read from Paul's own
   // browser (ultratop.be/nl/goud-platina/2026/singles). Fourteenth country.
-  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "BE", level: "Gold", year: 2026 },
+  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "BE", level: "Gold", year: 2026, date: "2026-08-10" },
   // 20 Sep 2026 — Sweden. Grammotex (the GLF/Ifpi Sverige register, http only):
   // "SHAKIRA & BURNA BOY — DAI DAI", Platina, cert.nr 11317, awarded 2026-09-18.
   // The record id came from Sverigetopplistan's own chart markup (data-sart=
   // 15311162), so the record was opened directly; no Guld step is listed.
   // Fifteenth country. Provenance caveat as for every Swedish row (GLF ≠ Ifpi).
-  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "SE", level: "Platinum", year: 2026 },
+  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "SE", level: "Platinum", year: 2026, date: "2026-09-18" },
   // 22 Sep 2026 — Canada. Music Canada's own database: "September 21, 2026 ·
   // Double Platinum Single · Shakira, Burna Boy · Dai Dai · Sony Music Latin /
   // Sony Music Entertainment Canada Inc." One row, straight to 2×. Sixteenth
   // country for the song.
-  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "CA", level: "Platinum", x: 2, year: 2026 },
+  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "CA", level: "Platinum", x: 2, year: 2026, date: "2026-09-21" },
   // 23 Sep 2026 — Germany. BVMI's own database: "Shakira & Burna Boy | Dai Dai |
   // 2026 | Single | 1x Gold | Sony Music Entertainment Germany GmbH | Epic".
   // Seventeenth country for the song.

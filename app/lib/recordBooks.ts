@@ -2,6 +2,7 @@ import { revenueShows } from "../data/tourRevenue";
 import { LIVE_CADENCE } from "./liveChartMeta";
 import { careerYears } from "../data/timeline";
 import { numberWord } from "./homeData";
+import { onThisDayDays } from "./onThisDay";
 
 /**
  * The record books — every page the Career Records hub lists, in its order.
@@ -23,6 +24,7 @@ export const recordBooks: RecordBook[] = [
   { href: "/records/awards", title: "Awards", desc: "Every win & nomination to date" },
   { href: "/records/firsts", title: "Firsts", desc: "Every record broken & first achieved" },
   { href: "/timeline", title: "Career Timeline", desc: `${numberWord(careerYears)} years, era by era — every milestone dated` },
+  { href: "/on-this-day", title: "On This Day", desc: `${onThisDayDays.length} dates in the calendar, each with a milestone on it` },
   { href: "/afrobeats", title: "The Afrobeats Board", desc: "Burna Boy and the genre's biggest, counted by one rule" },
   { href: "/records/africas-biggest", title: "Africa's Biggest", desc: "Most-streamed African artists, year by year" },
   { href: "/records/tours", title: "Tours", desc: "Tour runs, dates & box-office grosses" },

@@ -5522,6 +5522,1676 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "On this day: 1 December",
+    "path": "/on-this-day/1-december",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 1 December, 2023.",
+    "keywords": [
+      "december 1"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 1 March",
+    "path": "/on-this-day/1-march",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 1 March, 2025.",
+    "keywords": [
+      "march 1"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 1 May",
+    "path": "/on-this-day/1-may",
+    "section": "On this day",
+    "description": "3 Burna Boy milestones dated 1 May, 2024–2026.",
+    "keywords": [
+      "may 1"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 1 September",
+    "path": "/on-this-day/1-september",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 1 September, 2023.",
+    "keywords": [
+      "september 1"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 10 August",
+    "path": "/on-this-day/10-august",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 10 August, 2026.",
+    "keywords": [
+      "august 10"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 10 December",
+    "path": "/on-this-day/10-december",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 10 December, 2023.",
+    "keywords": [
+      "december 10"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 10 February",
+    "path": "/on-this-day/10-february",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 10 February, 2023.",
+    "keywords": [
+      "february 10"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 10 January",
+    "path": "/on-this-day/10-january",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 10 January, 2025.",
+    "keywords": [
+      "january 10"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 10 June",
+    "path": "/on-this-day/10-june",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 10 June, 2018.",
+    "keywords": [
+      "june 10"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 10 November",
+    "path": "/on-this-day/10-november",
+    "section": "On this day",
+    "description": "2 Burna Boy milestones dated 10 November, 2018–2021.",
+    "keywords": [
+      "november 10"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 10 September",
+    "path": "/on-this-day/10-september",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 10 September, 2019.",
+    "keywords": [
+      "september 10"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 11 April",
+    "path": "/on-this-day/11-april",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 11 April, 2026.",
+    "keywords": [
+      "april 11"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 11 August",
+    "path": "/on-this-day/11-august",
+    "section": "On this day",
+    "description": "2 Burna Boy milestones dated 11 August, 2019–2022.",
+    "keywords": [
+      "august 11"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 11 January",
+    "path": "/on-this-day/11-january",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 11 January, 2024.",
+    "keywords": [
+      "january 11"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 11 July",
+    "path": "/on-this-day/11-july",
+    "section": "On this day",
+    "description": "3 Burna Boy milestones dated 11 July, 2024–2026.",
+    "keywords": [
+      "july 11"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 11 March",
+    "path": "/on-this-day/11-march",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 11 March, 2024.",
+    "keywords": [
+      "march 11"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 11 October",
+    "path": "/on-this-day/11-october",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 11 October, 2025.",
+    "keywords": [
+      "october 11"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 12 April",
+    "path": "/on-this-day/12-april",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 12 April, 2022.",
+    "keywords": [
+      "april 12"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 12 August",
+    "path": "/on-this-day/12-august",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 12 August, 2013.",
+    "keywords": [
+      "august 12"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 12 December",
+    "path": "/on-this-day/12-december",
+    "section": "On this day",
+    "description": "2 Burna Boy milestones dated 12 December, 2023–2025.",
+    "keywords": [
+      "december 12"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 12 March",
+    "path": "/on-this-day/12-march",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 12 March, 2024.",
+    "keywords": [
+      "march 12"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 12 November",
+    "path": "/on-this-day/12-november",
+    "section": "On this day",
+    "description": "2 Burna Boy milestones dated 12 November, 2023–2025.",
+    "keywords": [
+      "november 12"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 13 June",
+    "path": "/on-this-day/13-june",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 13 June, 2024.",
+    "keywords": [
+      "june 13"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 13 September",
+    "path": "/on-this-day/13-september",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 13 September, 2019.",
+    "keywords": [
+      "september 13"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 14 April",
+    "path": "/on-this-day/14-april",
+    "section": "On this day",
+    "description": "2 Burna Boy milestones dated 14 April, 2022.",
+    "keywords": [
+      "april 14"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 14 August",
+    "path": "/on-this-day/14-august",
+    "section": "On this day",
+    "description": "2 Burna Boy milestones dated 14 August, 2020–2026.",
+    "keywords": [
+      "august 14"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 14 July",
+    "path": "/on-this-day/14-july",
+    "section": "On this day",
+    "description": "4 Burna Boy milestones dated 14 July, 2022.",
+    "keywords": [
+      "july 14"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 14 June",
+    "path": "/on-this-day/14-june",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 14 June, 2018.",
+    "keywords": [
+      "june 14"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 15 December",
+    "path": "/on-this-day/15-december",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 15 December, 2025.",
+    "keywords": [
+      "december 15"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 15 January",
+    "path": "/on-this-day/15-january",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 15 January, 2026.",
+    "keywords": [
+      "january 15"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 15 July",
+    "path": "/on-this-day/15-july",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 15 July, 2024.",
+    "keywords": [
+      "july 15"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 15 May",
+    "path": "/on-this-day/15-may",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 15 May, 2026.",
+    "keywords": [
+      "may 15"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 15 November",
+    "path": "/on-this-day/15-november",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 15 November, 2019.",
+    "keywords": [
+      "november 15"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 15 September",
+    "path": "/on-this-day/15-september",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 15 September, 2019.",
+    "keywords": [
+      "september 15"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 16 August",
+    "path": "/on-this-day/16-august",
+    "section": "On this day",
+    "description": "5 Burna Boy milestones dated 16 August, 2019–2023.",
+    "keywords": [
+      "august 16"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 16 January",
+    "path": "/on-this-day/16-january",
+    "section": "On this day",
+    "description": "2 Burna Boy milestones dated 16 January, 2025–2026.",
+    "keywords": [
+      "january 16"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 16 November",
+    "path": "/on-this-day/16-november",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 16 November, 2025.",
+    "keywords": [
+      "november 16"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 16 October",
+    "path": "/on-this-day/16-october",
+    "section": "On this day",
+    "description": "2 Burna Boy milestones dated 16 October, 2020–2025.",
+    "keywords": [
+      "october 16"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 17 August",
+    "path": "/on-this-day/17-august",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 17 August, 2019.",
+    "keywords": [
+      "august 17"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 17 December",
+    "path": "/on-this-day/17-december",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 17 December, 2025.",
+    "keywords": [
+      "december 17"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 17 February",
+    "path": "/on-this-day/17-february",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 17 February, 2024.",
+    "keywords": [
+      "february 17"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 17 January",
+    "path": "/on-this-day/17-january",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 17 January, 2026.",
+    "keywords": [
+      "january 17"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 17 July",
+    "path": "/on-this-day/17-july",
+    "section": "On this day",
+    "description": "3 Burna Boy milestones dated 17 July, 2022–2025.",
+    "keywords": [
+      "july 17"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 17 June",
+    "path": "/on-this-day/17-june",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 17 June, 2018.",
+    "keywords": [
+      "june 17"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 17 November",
+    "path": "/on-this-day/17-november",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 17 November, 2023.",
+    "keywords": [
+      "november 17"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 18 April",
+    "path": "/on-this-day/18-april",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 18 April, 2025.",
+    "keywords": [
+      "april 18"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 18 December",
+    "path": "/on-this-day/18-december",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 18 December, 2025.",
+    "keywords": [
+      "december 18"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 18 February",
+    "path": "/on-this-day/18-february",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 18 February, 2024.",
+    "keywords": [
+      "february 18"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 18 July",
+    "path": "/on-this-day/18-july",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 18 July, 2024.",
+    "keywords": [
+      "july 18"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 18 June",
+    "path": "/on-this-day/18-june",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 18 June, 2026.",
+    "keywords": [
+      "june 18"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 18 March",
+    "path": "/on-this-day/18-march",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 18 March, 2022.",
+    "keywords": [
+      "march 18"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 18 May",
+    "path": "/on-this-day/18-may",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 18 May, 2023.",
+    "keywords": [
+      "may 18"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 18 November",
+    "path": "/on-this-day/18-november",
+    "section": "On this day",
+    "description": "2 Burna Boy milestones dated 18 November, 2023–2025.",
+    "keywords": [
+      "november 18"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 18 October",
+    "path": "/on-this-day/18-october",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 18 October, 2025.",
+    "keywords": [
+      "october 18"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 18 September",
+    "path": "/on-this-day/18-september",
+    "section": "On this day",
+    "description": "2 Burna Boy milestones dated 18 September, 2020–2026.",
+    "keywords": [
+      "september 18"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 19 December",
+    "path": "/on-this-day/19-december",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 19 December, 2025.",
+    "keywords": [
+      "december 19"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 19 July",
+    "path": "/on-this-day/19-july",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 19 July, 2026.",
+    "keywords": [
+      "july 19"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 19 May",
+    "path": "/on-this-day/19-may",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 19 May, 2022.",
+    "keywords": [
+      "may 19"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 19 November",
+    "path": "/on-this-day/19-november",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 19 November, 2025.",
+    "keywords": [
+      "november 19"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 2 August",
+    "path": "/on-this-day/2-august",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 2 August, 2025.",
+    "keywords": [
+      "august 2"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 2 June",
+    "path": "/on-this-day/2-june",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 2 June, 2018.",
+    "keywords": [
+      "june 2"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 2 March",
+    "path": "/on-this-day/2-march",
+    "section": "On this day",
+    "description": "2 Burna Boy milestones dated 2 March, 2024.",
+    "keywords": [
+      "march 2"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 2 November",
+    "path": "/on-this-day/2-november",
+    "section": "On this day",
+    "description": "2 Burna Boy milestones dated 2 November, 2022–2023.",
+    "keywords": [
+      "november 2"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 2 September",
+    "path": "/on-this-day/2-september",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 2 September, 2021.",
+    "keywords": [
+      "september 2"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 20 January",
+    "path": "/on-this-day/20-january",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 20 January, 2026.",
+    "keywords": [
+      "january 20"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 20 October",
+    "path": "/on-this-day/20-october",
+    "section": "On this day",
+    "description": "2 Burna Boy milestones dated 20 October, 2019–2025.",
+    "keywords": [
+      "october 20"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 20 September",
+    "path": "/on-this-day/20-september",
+    "section": "On this day",
+    "description": "2 Burna Boy milestones dated 20 September, 2018–2019.",
+    "keywords": [
+      "september 20"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 21 April",
+    "path": "/on-this-day/21-april",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 21 April, 2025.",
+    "keywords": [
+      "april 21"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 21 December",
+    "path": "/on-this-day/21-december",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 21 December, 2023.",
+    "keywords": [
+      "december 21"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 21 February",
+    "path": "/on-this-day/21-february",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 21 February, 2024.",
+    "keywords": [
+      "february 21"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 21 July",
+    "path": "/on-this-day/21-july",
+    "section": "On this day",
+    "description": "2 Burna Boy milestones dated 21 July, 2022.",
+    "keywords": [
+      "july 21"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 21 September",
+    "path": "/on-this-day/21-september",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 21 September, 2026.",
+    "keywords": [
+      "september 21"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 22 August",
+    "path": "/on-this-day/22-august",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 22 August, 2025.",
+    "keywords": [
+      "august 22"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 22 December",
+    "path": "/on-this-day/22-december",
+    "section": "On this day",
+    "description": "2 Burna Boy milestones dated 22 December, 2016–2023.",
+    "keywords": [
+      "december 22"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 22 February",
+    "path": "/on-this-day/22-february",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 22 February, 2024.",
+    "keywords": [
+      "february 22"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 22 July",
+    "path": "/on-this-day/22-july",
+    "section": "On this day",
+    "description": "2 Burna Boy milestones dated 22 July, 2022.",
+    "keywords": [
+      "july 22"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 22 March",
+    "path": "/on-this-day/22-march",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 22 March, 2019.",
+    "keywords": [
+      "march 22"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 22 November",
+    "path": "/on-this-day/22-november",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 22 November, 2025.",
+    "keywords": [
+      "november 22"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 22 September",
+    "path": "/on-this-day/22-september",
+    "section": "On this day",
+    "description": "2 Burna Boy milestones dated 22 September, 2018–2026.",
+    "keywords": [
+      "september 22"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 23 December",
+    "path": "/on-this-day/23-december",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 23 December, 2021.",
+    "keywords": [
+      "december 23"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 23 January",
+    "path": "/on-this-day/23-january",
+    "section": "On this day",
+    "description": "3 Burna Boy milestones dated 23 January, 2025–2026.",
+    "keywords": [
+      "january 23"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 23 July",
+    "path": "/on-this-day/23-july",
+    "section": "On this day",
+    "description": "2 Burna Boy milestones dated 23 July, 2022–2024.",
+    "keywords": [
+      "july 23"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 23 March",
+    "path": "/on-this-day/23-march",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 23 March, 2019.",
+    "keywords": [
+      "march 23"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 23 May",
+    "path": "/on-this-day/23-may",
+    "section": "On this day",
+    "description": "2 Burna Boy milestones dated 23 May, 2024–2025.",
+    "keywords": [
+      "may 23"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 23 September",
+    "path": "/on-this-day/23-september",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 23 September, 2018.",
+    "keywords": [
+      "september 23"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 24 February",
+    "path": "/on-this-day/24-february",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 24 February, 2024.",
+    "keywords": [
+      "february 24"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 24 July",
+    "path": "/on-this-day/24-july",
+    "section": "On this day",
+    "description": "2 Burna Boy milestones dated 24 July, 2022–2025.",
+    "keywords": [
+      "july 24"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 24 November",
+    "path": "/on-this-day/24-november",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 24 November, 2025.",
+    "keywords": [
+      "november 24"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 24 October",
+    "path": "/on-this-day/24-october",
+    "section": "On this day",
+    "description": "3 Burna Boy milestones dated 24 October, 2018–2025.",
+    "keywords": [
+      "october 24"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 24 September",
+    "path": "/on-this-day/24-september",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 24 September, 2018.",
+    "keywords": [
+      "september 24"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 25 August",
+    "path": "/on-this-day/25-august",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 25 August, 2023.",
+    "keywords": [
+      "august 25"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 25 February",
+    "path": "/on-this-day/25-february",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 25 February, 2024.",
+    "keywords": [
+      "february 25"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 25 March",
+    "path": "/on-this-day/25-march",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 25 March, 2021.",
+    "keywords": [
+      "march 25"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 25 November",
+    "path": "/on-this-day/25-november",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 25 November, 2015.",
+    "keywords": [
+      "november 25"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 25 October",
+    "path": "/on-this-day/25-october",
+    "section": "On this day",
+    "description": "2 Burna Boy milestones dated 25 October, 2018–2019.",
+    "keywords": [
+      "october 25"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 25 September",
+    "path": "/on-this-day/25-september",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 25 September, 2021.",
+    "keywords": [
+      "september 25"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 26 December",
+    "path": "/on-this-day/26-december",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 26 December, 2024.",
+    "keywords": [
+      "december 26"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 26 January",
+    "path": "/on-this-day/26-january",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 26 January, 2018.",
+    "keywords": [
+      "january 26"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 26 July",
+    "path": "/on-this-day/26-july",
+    "section": "On this day",
+    "description": "2 Burna Boy milestones dated 26 July, 2019–2024.",
+    "keywords": [
+      "july 26"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 26 October",
+    "path": "/on-this-day/26-october",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 26 October, 2023.",
+    "keywords": [
+      "october 26"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 27 April",
+    "path": "/on-this-day/27-april",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 27 April, 2025.",
+    "keywords": [
+      "april 27"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 27 August",
+    "path": "/on-this-day/27-august",
+    "section": "On this day",
+    "description": "2 Burna Boy milestones dated 27 August, 2021–2026.",
+    "keywords": [
+      "august 27"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 27 December",
+    "path": "/on-this-day/27-december",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 27 December, 2021.",
+    "keywords": [
+      "december 27"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 27 February",
+    "path": "/on-this-day/27-february",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 27 February, 2025.",
+    "keywords": [
+      "february 27"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 27 July",
+    "path": "/on-this-day/27-july",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 27 July, 2022.",
+    "keywords": [
+      "july 27"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 28 April",
+    "path": "/on-this-day/28-april",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 28 April, 2022.",
+    "keywords": [
+      "april 28"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 28 August",
+    "path": "/on-this-day/28-august",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 28 August, 2019.",
+    "keywords": [
+      "august 28"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 28 February",
+    "path": "/on-this-day/28-february",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 28 February, 2024.",
+    "keywords": [
+      "february 28"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 28 June",
+    "path": "/on-this-day/28-june",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 28 June, 2023.",
+    "keywords": [
+      "june 28"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 28 October",
+    "path": "/on-this-day/28-october",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 28 October, 2022.",
+    "keywords": [
+      "october 28"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 29 August",
+    "path": "/on-this-day/29-august",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 29 August, 2019.",
+    "keywords": [
+      "august 29"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 29 February",
+    "path": "/on-this-day/29-february",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 29 February, 2024.",
+    "keywords": [
+      "february 29"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 29 July",
+    "path": "/on-this-day/29-july",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 29 July, 2022.",
+    "keywords": [
+      "july 29"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 29 June",
+    "path": "/on-this-day/29-june",
+    "section": "On this day",
+    "description": "2 Burna Boy milestones dated 29 June, 2024.",
+    "keywords": [
+      "june 29"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 29 May",
+    "path": "/on-this-day/29-may",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 29 May, 2025.",
+    "keywords": [
+      "may 29"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 3 August",
+    "path": "/on-this-day/3-august",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 3 August, 2023.",
+    "keywords": [
+      "august 3"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 3 December",
+    "path": "/on-this-day/3-december",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 3 December, 2025.",
+    "keywords": [
+      "december 3"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 3 January",
+    "path": "/on-this-day/3-january",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 3 January, 2020.",
+    "keywords": [
+      "january 3"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 3 July",
+    "path": "/on-this-day/3-july",
+    "section": "On this day",
+    "description": "2 Burna Boy milestones dated 3 July, 2022–2026.",
+    "keywords": [
+      "july 3"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 3 June",
+    "path": "/on-this-day/3-june",
+    "section": "On this day",
+    "description": "2 Burna Boy milestones dated 3 June, 2018–2023.",
+    "keywords": [
+      "june 3"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 3 May",
+    "path": "/on-this-day/3-may",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 3 May, 2024.",
+    "keywords": [
+      "may 3"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 3 November",
+    "path": "/on-this-day/3-november",
+    "section": "On this day",
+    "description": "3 Burna Boy milestones dated 3 November, 2019–2023.",
+    "keywords": [
+      "november 3"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 3 September",
+    "path": "/on-this-day/3-september",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 3 September, 2026.",
+    "keywords": [
+      "september 3"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 30 July",
+    "path": "/on-this-day/30-july",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 30 July, 2022.",
+    "keywords": [
+      "july 30"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 30 June",
+    "path": "/on-this-day/30-june",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 30 June, 2026.",
+    "keywords": [
+      "june 30"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 30 May",
+    "path": "/on-this-day/30-may",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 30 May, 2018.",
+    "keywords": [
+      "may 30"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 30 November",
+    "path": "/on-this-day/30-november",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 30 November, 2022.",
+    "keywords": [
+      "november 30"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 31 August",
+    "path": "/on-this-day/31-august",
+    "section": "On this day",
+    "description": "3 Burna Boy milestones dated 31 August, 2023.",
+    "keywords": [
+      "august 31"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 31 December",
+    "path": "/on-this-day/31-december",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 31 December, 2017.",
+    "keywords": [
+      "december 31"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 31 July",
+    "path": "/on-this-day/31-july",
+    "section": "On this day",
+    "description": "2 Burna Boy milestones dated 31 July, 2022–2026.",
+    "keywords": [
+      "july 31"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 31 March",
+    "path": "/on-this-day/31-march",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 31 March, 2022.",
+    "keywords": [
+      "march 31"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 31 May",
+    "path": "/on-this-day/31-may",
+    "section": "On this day",
+    "description": "2 Burna Boy milestones dated 31 May, 2018–2024.",
+    "keywords": [
+      "may 31"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 4 June",
+    "path": "/on-this-day/4-june",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 4 June, 2022.",
+    "keywords": [
+      "june 4"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 4 March",
+    "path": "/on-this-day/4-march",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 4 March, 2021.",
+    "keywords": [
+      "march 4"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 4 September",
+    "path": "/on-this-day/4-september",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 4 September, 2019.",
+    "keywords": [
+      "september 4"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 5 December",
+    "path": "/on-this-day/5-december",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 5 December, 2025.",
+    "keywords": [
+      "december 5"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 5 July",
+    "path": "/on-this-day/5-july",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 5 July, 2025.",
+    "keywords": [
+      "july 5"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 5 June",
+    "path": "/on-this-day/5-june",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 5 June, 2018.",
+    "keywords": [
+      "june 5"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 5 March",
+    "path": "/on-this-day/5-march",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 5 March, 2026.",
+    "keywords": [
+      "march 5"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 5 May",
+    "path": "/on-this-day/5-may",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 5 May, 2023.",
+    "keywords": [
+      "may 5"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 5 November",
+    "path": "/on-this-day/5-november",
+    "section": "On this day",
+    "description": "2 Burna Boy milestones dated 5 November, 2020–2023.",
+    "keywords": [
+      "november 5"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 6 December",
+    "path": "/on-this-day/6-december",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 6 December, 2025.",
+    "keywords": [
+      "december 6"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 6 July",
+    "path": "/on-this-day/6-july",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 6 July, 2025.",
+    "keywords": [
+      "july 6"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 6 June",
+    "path": "/on-this-day/6-june",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 6 June, 2018.",
+    "keywords": [
+      "june 6"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 6 March",
+    "path": "/on-this-day/6-march",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 6 March, 2026.",
+    "keywords": [
+      "march 6"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 6 May",
+    "path": "/on-this-day/6-may",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 6 May, 2021.",
+    "keywords": [
+      "may 6"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 6 November",
+    "path": "/on-this-day/6-november",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 6 November, 2019.",
+    "keywords": [
+      "november 6"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 6 September",
+    "path": "/on-this-day/6-september",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 6 September, 2025.",
+    "keywords": [
+      "september 6"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 7 April",
+    "path": "/on-this-day/7-april",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 7 April, 2023.",
+    "keywords": [
+      "april 7"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 7 February",
+    "path": "/on-this-day/7-february",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 7 February, 2020.",
+    "keywords": [
+      "february 7"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 7 July",
+    "path": "/on-this-day/7-july",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 7 July, 2024.",
+    "keywords": [
+      "july 7"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 7 March",
+    "path": "/on-this-day/7-march",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 7 March, 2024.",
+    "keywords": [
+      "march 7"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 7 November",
+    "path": "/on-this-day/7-november",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 7 November, 2023.",
+    "keywords": [
+      "november 7"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 7 October",
+    "path": "/on-this-day/7-october",
+    "section": "On this day",
+    "description": "2 Burna Boy milestones dated 7 October, 2018–2021.",
+    "keywords": [
+      "october 7"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 7 September",
+    "path": "/on-this-day/7-september",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 7 September, 2023.",
+    "keywords": [
+      "september 7"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 8 April",
+    "path": "/on-this-day/8-april",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 8 April, 2023.",
+    "keywords": [
+      "april 8"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 8 December",
+    "path": "/on-this-day/8-december",
+    "section": "On this day",
+    "description": "3 Burna Boy milestones dated 8 December, 2022–2025.",
+    "keywords": [
+      "december 8"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 8 July",
+    "path": "/on-this-day/8-july",
+    "section": "On this day",
+    "description": "2 Burna Boy milestones dated 8 July, 2022–2023.",
+    "keywords": [
+      "july 8"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 8 June",
+    "path": "/on-this-day/8-june",
+    "section": "On this day",
+    "description": "2 Burna Boy milestones dated 8 June, 2018–2023.",
+    "keywords": [
+      "june 8"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 8 October",
+    "path": "/on-this-day/8-october",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 8 October, 2021.",
+    "keywords": [
+      "october 8"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 8 September",
+    "path": "/on-this-day/8-september",
+    "section": "On this day",
+    "description": "3 Burna Boy milestones dated 8 September, 2019–2024.",
+    "keywords": [
+      "september 8"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 9 August",
+    "path": "/on-this-day/9-august",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 9 August, 2019.",
+    "keywords": [
+      "august 9"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 9 December",
+    "path": "/on-this-day/9-december",
+    "section": "On this day",
+    "description": "2 Burna Boy milestones dated 9 December, 2022–2023.",
+    "keywords": [
+      "december 9"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 9 July",
+    "path": "/on-this-day/9-july",
+    "section": "On this day",
+    "description": "2 Burna Boy milestones dated 9 July, 2026.",
+    "keywords": [
+      "july 9"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 9 June",
+    "path": "/on-this-day/9-june",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 9 June, 2026.",
+    "keywords": [
+      "june 9"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 9 March",
+    "path": "/on-this-day/9-march",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 9 March, 2024.",
+    "keywords": [
+      "march 9"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 9 November",
+    "path": "/on-this-day/9-november",
+    "section": "On this day",
+    "description": "2 Burna Boy milestones dated 9 November, 2019–2023.",
+    "keywords": [
+      "november 9"
+    ],
+    "generated": true
+  },
+  {
     "title": "20 10 20",
     "path": "/records/charts#song=20%2010%2020",
     "section": "Release",

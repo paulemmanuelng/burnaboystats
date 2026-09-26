@@ -1,0 +1,95 @@
+/* The home page's "On this day" band — desktop only (MobileOnThisDayCard is
+   the phone's). The History band's grid, one row down: kicker and title in
+   the narrow column, the day's events in the wide one. Ink, not gold — gold on
+   this page marks what is live and what is the action, and this is neither.
+   Hidden below 900px with the rest of the desktop page (.desktopOnly). */
+.band { border-bottom: 1px solid var(--line); }
+.inner {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 34px 40px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 48px;
+  align-items: start;
+}
+.lead { min-width: 0; }
+.kicker {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.title {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 14px 0 0;
+}
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 22px;
+  margin-top: 18px;
+}
+.link {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+  color: var(--text);
+  padding: 6px 0;
+}
+.link:hover { color: var(--gold); }
+
+.list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.row {
+  display: grid;
+  grid-template-columns: 74px 1fr;
+  gap: 18px;
+  padding: 14px 12px 14px 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--text);
+  transition: background var(--dur) var(--ease);
+}
+.row:hover { background: var(--bg-raised); }
+/* The Firsts list's year, one section down — the same figure in the same face. */
+.year {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.2;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+}
+.body { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.meta { display: flex; align-items: center; gap: 10px; }
+.tag {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border: 1px solid;
+  border-radius: 999px;
+}
+.ago {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.headline { font-weight: 600; font-size: 15px; line-height: 1.35; }
+.detail {
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
+  color: var(--text-muted);
+}
