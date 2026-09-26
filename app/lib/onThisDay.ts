@@ -446,12 +446,12 @@ export const dayBySlug = (slug: string) => onThisDayDays.find((d) => d.slug === 
 
 /**
  * Whether a day's page is worth a search engine's index: two or more
- * milestones. 120 of the 167 days hold one, and a page that is one sentence
- * and a card is thin content by any engine's reading. Every day keeps its
- * page, its links and its place in site search — readers still land on 8
- * October from the calendar — but a one-event day is `noindex, follow` and
- * stays out of the sitemap (a sitemap entry for a noindexed page is a
- * contradiction). The one predicate both read.
+ * milestones. Most days hold one (116 of 161 on 26 Sep 2026), and a page
+ * that is one sentence and a card is thin content by any engine's reading.
+ * Every day keeps its page, its links and its place in site search — readers
+ * still land on 8 October from the calendar — but a one-event day is
+ * `noindex, follow` and stays out of the sitemap (a sitemap entry for a
+ * noindexed page is a contradiction). The one predicate both read.
  */
 export const isIndexableDay = (day: Pick<OnThisDayDay, "events">) => day.events.length >= 2;
 

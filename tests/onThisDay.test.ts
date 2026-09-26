@@ -159,6 +159,32 @@ describe("the dated fields agree with the record around them", () => {
     expect(mentions("Headlined the festival (31 May)", "2024-05-30")).toBe(false);
     expect(mentions("A headliner (7–8 September)", "2024-09-07")).toBe(false);
   });
+
+  // TurnTable prints a Fri–Thu week, and the site dates a Nigeria peak to the
+  // Thursday that closes it. Issue 1480 (Love, Damini's No. 3, printed "Oct
+  // 28th - Nov 3rd, 2022") is the one whose record stamp, dateCreated, is a
+  // Wednesday: 2 Nov, the date this branch first shipped
+  // (docs/sweeps/burna-boy-nigeria-2026-09-18.md).
+  const thursday = (iso: string) => new Date(`${iso}T00:00:00Z`).getUTCDay() === 4;
+
+  it("a Nigeria chart peak is dated to the Thursday that closes TurnTable's week", () => {
+    const bad = [albumCharts, singleCharts, featureCharts]
+      .flat()
+      .flatMap((r) => r.entries.filter((e) => e.c === "NG" && e.peakDate && !thursday(e.peakDate)).map((e) => `${r.title}: ${e.peakDate}`));
+    expect(bad).toEqual([]);
+  });
+
+  it("a negative control: issue 1480's record stamp is not that Thursday", () => {
+    expect(thursday("2022-11-02")).toBe(false);
+    expect(thursday("2022-11-03")).toBe(true);
+  });
+
+  it("Dai Dai's YouTube No. 1 is dated from its first day on the chart, not the run's", () => {
+    // No. 1 on debut, 23 May; DAI_DAI_YT_NO1_SINCE (9 June) starts the 80-day run.
+    const e = onThisDayEvents.find((x) => x.id === "streaming:dai-dai-youtube-no1")!;
+    expect(e.date).toBe(daiDai.DAI_DAI_YT_FIRST_NO1);
+    expect(e.date).not.toBe(daiDai.DAI_DAI_YT_NO1_SINCE);
+  });
 });
 
 describe("the counts are the dated records, counted from the data", () => {

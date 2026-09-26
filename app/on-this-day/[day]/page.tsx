@@ -43,7 +43,8 @@ export async function generateMetadata({ params }: { params: Promise<{ day: stri
     shareDescription: dayShareLine(day),
     // A one-milestone day stays live, linked and searchable on the site, but
     // is `noindex, follow` for search engines, and out of the sitemap
-    // (isIndexableDay, lib/onThisDay.ts): 120 of the 167 are one sentence.
+    // (isIndexableDay, lib/onThisDay.ts): most days are one sentence (116 of
+    // the 161 on 26 Sep 2026).
     noindex: !isIndexableDay(day),
   });
 }
