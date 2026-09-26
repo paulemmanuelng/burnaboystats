@@ -209,7 +209,11 @@ export const tours: Tour[] = [
     note: "His first international headline tour, behind Outside — his Atlantic Records debut. An intimate club-and-theatre run across North America in early summer, then a sold-out UK leg in the autumn capped by a packed O2 Academy Brixton — growing his audience beyond Nigeria, just before the African Giant era.",
     dates: [
       { date: "May 30, 2018", venue: "Howard Theatre", city: "Washington, D.C.", country: "USA", cap: 1100 },
-      { date: "May 31, 2018", venue: "The Foundry", city: "Philadelphia", country: "USA", cap: 450 },
+      // Underground Arts, not The Foundry: the tour poster has "5/31
+      // PHILADELPHIA, PA UNDERGROUND ARTS", and the venue's own event page
+      // (undergroundarts.org, Wayback 20190722212150) reads "Burna Boy Thu.
+      // May 31, 2018 ... Underground Arts". No cap: 450 was The Foundry's.
+      { date: "May 31, 2018", venue: "Underground Arts", city: "Philadelphia", country: "USA" },
       { date: "Jun 2, 2018", venue: "Gramercy Theatre", city: "New York", country: "USA", cap: 650 },
       // The official tour poster (BrooklynVegan, 4 May 2018) and Songkick have
       // "6/8 CHICAGO, IL BOTTOM LOUNGE" and "6/16 LOS ANGELES, CA UNION
@@ -218,12 +222,19 @@ export const tours: Tour[] = [
       // source and are not listed: his Toronto debut was 18 Aug 2019 (NOW
       // Magazine, 19 Aug 2019), and on 8 Jun he was in Chicago.
       { date: "Jun 8, 2018", venue: "Bottom Lounge", city: "Chicago", country: "USA" },
+      // Poster: "6/12 SEATTLE, WA THE CROCODILE". The venue's home page
+      // (thecrocodile.com, Wayback 20180425232450) lists "Burna Boy Tue 6/12",
+      // and the Seattle Times (5 Oct 2022) says he played the Crocodile's old
+      // location in 2018. No cap: it gives about 400, Songkick 560.
+      { date: "Jun 12, 2018", venue: "The Crocodile", city: "Seattle", country: "USA" },
       { date: "Jun 14, 2018", venue: "House of Blues (Bronze Peacock)", city: "Houston", country: "USA" },
       { date: "Jun 16, 2018", venue: "Union Nightclub", city: "Los Angeles", country: "USA" },
-      { date: "Sep 20, 2018", venue: "The Garage", city: "Glasgow", country: "UK", cap: 600 },
-      { date: "Sep 22, 2018", venue: "O2 Academy", city: "Newcastle", country: "UK", cap: 2000 },
-      { date: "Sep 23, 2018", venue: "O2 Academy", city: "Leeds", country: "UK", cap: 2300 },
-      { date: "Sep 24, 2018", venue: "O2 Ritz", city: "Manchester", country: "UK", cap: 1500 },
+      // No September UK dates. The Garage, Glasgow (20 Sep), O2 Academy
+      // Newcastle (22 Sep), O2 Academy Leeds (23 Sep) and the O2 Ritz,
+      // Manchester (24 Sep) are not listed: each venue's own 2018 calendar has
+      // another act or nothing that night and no Burna Boy (Garage iCal, Wayback
+      // 20180905022939; academymusicgroup.com, Wayback 20180922030236,
+      // 20180918144713 and 20180916090449), and Songkick has none of them.
       { date: "Oct 7, 2018", venue: "O2 Academy Brixton", city: "London", country: "UK", cap: 4900 },
       { date: "Oct 24, 2018", venue: "Thekla", city: "Bristol", country: "UK", cap: 400 },
       { date: "Oct 25, 2018", venue: "O2 Academy 2", city: "Birmingham", country: "UK", cap: 600 },
