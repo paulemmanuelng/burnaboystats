@@ -56,8 +56,11 @@ describe("the share cards carry the lockup", () => {
   });
 
   it("every card that builds its own ImageResponse supplies the font list", () => {
+    // otdFonts is this list with Geist's kerning off (lib/onThisDayImages.tsx),
+    // for the On This Day images; tests/onThisDayRulings.test.tsx holds it to
+    // the same families in the same order.
     const missing = ROUTES.filter(
-      (f) => src(f).includes("new ImageResponse") && !src(f).includes("fonts: ogFonts")
+      (f) => src(f).includes("new ImageResponse") && !/fonts: (ogFonts|otdFonts)\b/.test(src(f))
     );
     expect(
       missing,

@@ -5,7 +5,38 @@
 // strip — this is the deep version, linking out to the pages that hold the
 // working.
 
+import { tours } from "./tours";
+
 export type TimelineKind = "album" | "milestone" | "award" | "tour" | "chart";
+
+const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+/**
+ * A tour's run — first and last month — read off its own itinerary.
+ *
+ * The I Told Them… span was typed here, ending in July 2025, and went stale
+ * the day the Waldbühne show moved from 5 July to 15 August 2025 (#351): the
+ * tour data moved, the sentence did not. The dates live in tours.ts, so the span does
+ * too. Show dates are "Nov 3, 2023"; anything else fails the build rather than
+ * printing a wrong month.
+ */
+export function tourRun(tourName: string): { from: string; to: string; years: string } {
+  const dates = tours.find((t) => t.name === tourName)?.dates ?? [];
+  if (!dates.length) throw new Error(`timeline: no dated tour named "${tourName}" in tours.ts`);
+  const keys = dates.map(({ date }) => {
+    const m = /^([A-Z][a-z]{2}) \d{1,2}, (\d{4})$/.exec(date);
+    const month = m ? MONTHS.findIndex((name) => name.startsWith(m[1])) : -1;
+    if (!m || month < 0) throw new Error(`timeline: unreadable show date "${date}" on ${tourName}`);
+    return Number(m[2]) * 12 + month;
+  });
+  const label = (k: number) => `${MONTHS[k % 12]} ${Math.floor(k / 12)}`;
+  const first = Math.min(...keys);
+  const last = Math.max(...keys);
+  const [y0, y1] = [Math.floor(first / 12), Math.floor(last / 12)];
+  return { from: label(first), to: label(last), years: y0 === y1 ? `${y0}` : `${y0}–${String(y1).slice(-2)}` };
+}
+
+const iToldThemRun = tourRun("I Told Them… Tour");
 
 export interface TimelineEntry {
   date: string; // display label — year, or a fuller date where the record has one
@@ -71,7 +102,7 @@ export const timelineEras: TimelineEra[] = [
       // No. 1 on the Official Albums Chart dated 1 Sep 2023 (released 25 Aug).
       { date: "Sep 2023", title: "I Told Them… debuts at UK No. 1", text: "The first Afrobeats album ever to top the UK Official Albums Chart — and a No. 1 in Nigeria.", href: "/music/albums/i-told-them", kind: "album" },
       { date: "2023", title: "Stadium history, twice", text: "First African artist to headline and sell out a UK stadium (London Stadium) and a US stadium (Citi Field) — in the same year.", href: "/records/firsts", kind: "tour" },
-      { date: "2023–25", title: "The I Told Them… Tour", text: "The arena-and-stadium run behind the album, November 2023 to July 2025. When Billboard Boxscore published the full tally in 2025, it stood at $30.46M and 302,801 tickets — the highest-grossing tour ever by an African artist.", href: "/records/tours", kind: "tour" },
+      { date: iToldThemRun.years, title: "The I Told Them… Tour", text: `The arena-and-stadium run behind the album, ${iToldThemRun.from} to ${iToldThemRun.to}. When Billboard Boxscore published the full tally in 2025, it stood at $30.46M and 302,801 tickets — the highest-grossing tour ever by an African artist.`, href: "/records/tours", kind: "tour" },
       { date: "Feb 2024", title: "First African artist on the Grammys' main telecast stage", text: "A medley from I Told Them… with Brandy and 21 Savage.", href: "/records/firsts", kind: "milestone" },
       { date: "2024", title: "The biggest single show by any African artist", text: "London Stadium: $6.15M grossed and 58,973 tickets in one night.", href: "/records/tours/revenue", kind: "tour" },
     ],

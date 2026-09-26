@@ -191,6 +191,8 @@ describe("every country board is linked from /certifications, in both layouts", 
     const folded = navs.filter((n) => n.querySelector("details"));
     expect(folded).toHaveLength(1);
     expect(folded[0].querySelector("details")!.hasAttribute("open")).toBe(false);
-    expect(folded[0].querySelector("summary")!.textContent).toContain(`${boards.length} countries`);
+    // Counted as markets, /compare/in's word: the boards are not his
+    // certified countries (tests/liveDebug349.test.tsx).
+    expect(folded[0].querySelector("summary")!.textContent).toContain(`${boards.length} markets`);
   });
 });

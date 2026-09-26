@@ -12,7 +12,7 @@ describe("mobile nav sheet", () => {
     expect(navGroups.map((g) => g.name)).toEqual(["Browse", "Deep data", "The site"]);
   });
 
-  it("lists 29 routes — 8 browse, 8 record books, 13 site", () => {
+  it("lists 30 routes — 8 browse, 8 record books, 14 site", () => {
     // 8 Aug 2026: +2 site routes — /curator and /press.
     // 11 Aug 2026: +/dai-dai/es. The Spanish edition had one inbound link in
     // the whole site; the sheet now carries it on every page.
@@ -22,10 +22,12 @@ describe("mobile nav sheet", () => {
     // against 50 for every established page — the sheet fixes that site-wide.
     // 12 Sep 2026: +/compare, Browse — Paul asked for the compare page in the
     // mobile nav; it is a top-level tool, not a record book.
+    // 26 Sep 2026: +/on-this-day, The site, beside the career timeline — the
+    // SEO audit found the calendar in neither the sheet nor the footer.
     // 26 Sep 2026: +/embed, The site — the home footer's "The site" column
     // links it, and that footer is hidden on phones.
-    expect(navGroups.map((g) => g.items.length)).toEqual([8, 8, 13]);
-    expect(navRoutes).toHaveLength(29);
+    expect(navGroups.map((g) => g.items.length)).toEqual([8, 8, 14]);
+    expect(navRoutes).toHaveLength(30);
   });
 
   it("links every route exactly once", () => {

@@ -26,6 +26,7 @@ import { garage } from "../data/cars";
 import { titleKey } from "./titleKey";
 import { allPairs, pairSlug } from "./comparePairs";
 import { certCountryCodes, countrySlug, priceCountry, pricingPhrase } from "./certCountry";
+import { onThisDayDays, MONTHS } from "./onThisDay";
 import type { SearchDoc } from "./searchIndex";
 
 export function buildSearchDocs(): SearchDoc[] {
@@ -154,6 +155,24 @@ export function buildSearchDocs(): SearchDoc[] {
       section: "Car",
       description: "In Burna Boy's garage — its page: illustration, reported value and specifications.",
       keywords: [c.make.toLowerCase(), ...c.slug.split("-"), "car", "garage"],
+    });
+  }
+
+  // ── On this day ─────────────────────────────────────────────────────────
+  // One doc per day that has a page, so "26 september" or "burna boy july 8"
+  // lands on the date. A count and a span only — the page holds the events.
+  for (const d of onThisDayDays) {
+    const month = MONTHS[d.month - 1].toLowerCase();
+    const years = [...new Set(d.events.map((e) => e.year))].sort();
+    const n = d.events.length;
+    add({
+      title: `On this day: ${d.label}`,
+      path: `/on-this-day/${d.slug}`,
+      section: "On this day",
+      description: `${n} Burna Boy milestone${n === 1 ? "" : "s"} dated ${d.label}, ${years.length > 1 ? `${years[0]}–${years.at(-1)}` : years[0]}.`,
+      // The title already reads "On this day: 7 October"; the keyword is the
+      // American order, "october 7".
+      keywords: [`${month} ${d.day}`],
     });
   }
 
