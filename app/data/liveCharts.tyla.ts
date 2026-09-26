@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-26";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-26T05:03Z";
+  export const liveChartsBuiltAt = "2026-09-26T11:29Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify Albums","iTunes"];
@@ -285,95 +285,82 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "IT",
-            "name": "Italy",
-            "position": 34,
-            "movement": -11
+            "country": "AU",
+            "name": "Australia",
+            "position": 33,
+            "movement": 5
           },
           {
             "country": "NO",
             "name": "Norway",
-            "position": 34,
-            "movement": -4
+            "position": 36,
+            "movement": -2
           },
           {
             "country": "SE",
             "name": "Sweden",
-            "position": 34,
-            "movement": -3
-          },
-          {
-            "country": "AU",
-            "name": "Australia",
-            "position": 38,
-            "movement": -15
-          },
-          {
-            "country": "CA",
-            "name": "Canada",
-            "position": 39,
-            "movement": 21
+            "position": 40,
+            "movement": -6
           },
           {
             "country": "CH",
             "name": "Switzerland",
-            "position": 41,
-            "movement": -15
-          },
-          {
-            "country": "AT",
-            "name": "Austria",
-            "position": 48,
-            "movement": -12
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
             "position": 50,
-            "movement": -3
+            "movement": -9
           },
           {
             "country": "DK",
             "name": "Denmark",
-            "position": 51,
-            "movement": -13
+            "position": 54,
+            "movement": -3
           },
           {
-            "country": "BE",
-            "name": "Belgium",
-            "position": 56,
-            "movement": -6
+            "country": "IT",
+            "name": "Italy",
+            "position": 54,
+            "movement": -20
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 55,
+            "movement": -5
+          },
+          {
+            "country": "AT",
+            "name": "Austria",
+            "position": 57,
+            "movement": -9
+          },
+          {
+            "country": "CA",
+            "name": "Canada",
+            "position": 59,
+            "movement": -20
           },
           {
             "country": "WW",
             "name": "Worldwide",
-            "position": 62,
-            "movement": 5
+            "position": 70,
+            "movement": -8
           },
           {
-            "country": "DE",
-            "name": "Germany",
-            "position": 65,
-            "movement": -11
+            "country": "BE",
+            "name": "Belgium",
+            "position": 77,
+            "movement": -21
           },
           {
             "country": "IE",
             "name": "Ireland",
-            "position": 74,
-            "movement": 15
+            "position": 90,
+            "movement": -16
           },
           {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 91,
-            "movement": -17
-          },
-          {
-            "country": "US",
-            "name": "United States",
-            "position": 93,
-            "movement": null,
-            "status": "new"
+            "country": "DE",
+            "name": "Germany",
+            "position": 97,
+            "movement": -32
           }
         ]
       },
@@ -382,9 +369,9 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "DK",
-            "name": "Denmark",
-            "position": 106,
+            "country": "PL",
+            "name": "Poland",
+            "position": 44,
             "movement": null,
             "status": "new"
           }
@@ -428,8 +415,8 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 45,
-            "movement": -19
+            "position": 46,
+            "movement": -9
           }
         ]
       },
@@ -440,8 +427,8 @@
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 48,
-            "movement": 6
+            "position": 43,
+            "movement": 5
           }
         ]
       },
@@ -452,9 +439,8 @@
           {
             "country": "JM",
             "name": "Jamaica",
-            "position": 24,
-            "movement": null,
-            "status": "new"
+            "position": 52,
+            "movement": -28
           }
         ]
       }
@@ -472,21 +458,20 @@
           {
             "country": "RO",
             "name": "Romania",
-            "position": 126,
-            "movement": -27
+            "position": 147,
+            "movement": -21
           },
           {
             "country": "BG",
             "name": "Bulgaria",
-            "position": 147,
-            "movement": -1
+            "position": 169,
+            "movement": -22
           },
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 187,
-            "movement": null,
-            "status": "new"
+            "position": 180,
+            "movement": 7
           }
         ]
       },
@@ -508,9 +493,9 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "SE",
-            "name": "Sweden",
-            "position": 179,
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 28,
             "movement": null,
             "status": "new"
           }
@@ -568,77 +553,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Talk to Me",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FI",
-            "name": "Finland",
-            "position": 159,
-            "movement": -16
-          },
-          {
-            "country": "HR",
-            "name": "Croatia",
-            "position": 188,
-            "movement": -1
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FI",
-            "name": "Finland",
-            "position": 69,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/cd07d0b83bcc8a17928619b3771e42df/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Truth or Dare",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "PG",
-            "name": "Papua New Guinea",
-            "position": 180,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 137,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/1ae9486180d1f50e7dbbb099b1e66825/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Water",
     "platforms": [
       {
@@ -661,14 +575,66 @@
           {
             "country": "BS",
             "name": "The Bahamas",
-            "position": 81,
-            "movement": -73
+            "position": 92,
+            "movement": -54
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "AU",
+            "name": "Australia",
+            "position": 79,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Talk to Me",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FI",
+            "name": "Finland",
+            "position": 148,
+            "movement": 11
+          },
+          {
+            "country": "RO",
+            "name": "Romania",
+            "position": 196,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FI",
+            "name": "Finland",
+            "position": 78,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/cd07d0b83bcc8a17928619b3771e42df/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "IS IT LOVE",
@@ -692,7 +658,7 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 179,
+            "position": 170,
             "movement": 9
           }
         ]
@@ -711,7 +677,7 @@
           {
             "country": "NO",
             "name": "Norway",
-            "position": 82,
+            "position": 173,
             "movement": null,
             "status": "new"
           }
@@ -720,6 +686,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Truth or Dare",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "PG",
+            "name": "Papua New Guinea",
+            "position": 180,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/1ae9486180d1f50e7dbbb099b1e66825/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "WWP - Single",
@@ -731,7 +717,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 54,
+            "position": 81,
             "movement": null,
             "status": "new"
           }
