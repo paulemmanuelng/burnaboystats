@@ -176,7 +176,16 @@ const nextConfig = {
       // report it would clean up. Crawling stays open; only indexing is
       // declined.
       //
-      // Social scrapers ignore X-Robots-Tag, so link previews are unaffected.
+      // The share cards (every opengraph-image route) are NOT on this list any
+      // more. They were, from 22 Aug to 26 Sep 2026, and that was wrong: a card
+      // is the image a page is found by. The /dai-dai Article cites its card as
+      // Article.image, which Google requires to be crawlable AND indexable, and
+      // max-image-preview:large (the root layout's robots) asks Discover to
+      // show the 1200px card, which it will not do for an image that says
+      // noindex. So a card may show up in "Crawled - currently not indexed"
+      // again; that report is informational, and this is the price of being
+      // eligible. scripts/check-seo.mjs fails the build if an image a page
+      // cites (JSON-LD or og:image) answers noindex here.
       {
         source: "/_next/static/:path*",
         headers: [{ key: "X-Robots-Tag", value: "noindex" }],
@@ -185,13 +194,23 @@ const nextConfig = {
         source: "/favicon.ico",
         headers: [{ key: "X-Robots-Tag", value: "noindex" }],
       },
+      // The self-hosted fonts in public/fonts: the embed widgets' four Latin
+      // WOFF2s, the Twemoji flags face and the share cards' TTFs.
+      //
+      // Next cannot cache public/ for long because a file there may change
+      // under the same name, so it sends max-age=0, must-revalidate — and every
+      // repeat view of a widget on a host page sent three or four conditional
+      // requests (304s) before it could draw its own type, painting the
+      // fallback face until they came back (measured 26 Sep 2026). The widget
+      // CSS names these files and nothing else changes them, so they are
+      // cached for a year instead. The price is the rule Next could not assume:
+      // a changed font gets a NEW file name (Anton-Regular-latin.v2.woff2, and
+      // the FONTS list in app/lib/embedWidgets.ts), never new bytes under the
+      // old one. tests/liveDebug349Headers.test.ts pins each file's hash to its
+      // name, so new bytes under an old name fail the build.
       {
-        source: "/opengraph-image",
-        headers: [{ key: "X-Robots-Tag", value: "noindex" }],
-      },
-      {
-        source: "/:path*/opengraph-image/:id*",
-        headers: [{ key: "X-Robots-Tag", value: "noindex" }],
+        source: "/fonts/:file*",
+        headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
       },
       // The one non-English URL on the site says so at the transport layer too.
       //

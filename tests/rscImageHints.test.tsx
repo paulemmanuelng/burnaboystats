@@ -117,9 +117,11 @@ describe("eager covers stay out of the RSC payload's preload hints", () => {
       }
       const hints = hinted(root);
       expect(hints.filter((i) => chips.includes(i)), slug).toEqual([]);
-      // The hero's cover and its backdrop are the page's own images and keep
-      // their hints; nothing else on a song page asks for one.
-      expect(hints.map((i) => i.getAttribute("class")), slug).toHaveLength(2);
+      // The hero's cover is the page's own image and keeps its hint; nothing
+      // else on a song page asks for one. The blurred backdrop had one too
+      // until 26 Sep 2026, and it rode along in every prefetch of the page
+      // (tests/liveDebug349.test.tsx).
+      expect(hints.map((i) => i.getAttribute("class")), slug).toEqual([songStyles.cover]);
     }
   });
 });
