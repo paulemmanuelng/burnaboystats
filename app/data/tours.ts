@@ -170,7 +170,7 @@ export const tours: Tour[] = [
   {
     name: "African Giant Tour",
     years: "2019",
-    note: "The run behind the Grammy-nominated African Giant. Its main leg — the African Giant Returns Tour — swept theatres and clubs across Canada, the US and Europe from August to November 2019, widening his worldwide audience ahead of the stadium era.",
+    note: "The run behind the Grammy-nominated African Giant. After a spring US date in Boston (1 April 2019), its main leg — the African Giant Returns Tour — swept theatres and clubs across Canada, the US and Europe from August to November 2019, widening his worldwide audience ahead of the stadium era.",
     dates: [
       // The spring 2019 US run (OkayAfrica, 12 Feb 2019, announced a Boston
       // stop). Date from listings only: Songkick "2019-04-01 Burna Boy @
