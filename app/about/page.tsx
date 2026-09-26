@@ -3,7 +3,7 @@ import styles from "./about.module.css";
 import BreadcrumbBar from "../components/BreadcrumbBar";
 import MobileAbout from "../components/MobileAbout";
 import KeepExploring from "../components/KeepExploring";
-import { pageMetadata, CANONICAL_ORIGIN } from "../lib/seo";
+import { pageMetadata, CANONICAL_ORIGIN, BURNA_BOY_ID, BURNA_BOY_SAME_AS } from "../lib/seo";
 
 export const metadata = pageMetadata({
   title: "Burna Boy Real Name & Biography — Damini Ebunoluwa Ogulu",
@@ -40,10 +40,13 @@ const timeline = [
 // Person entity for the biography page — reinforces "real name / birth name / age"
 // queries and gives Google + AI answer engines a clean, self-contained entity.
 // Complements the site-wide MusicGroup markup in layout.tsx (a solo artist can be
-// both). sameAs mirrors the vetted profile list used site-wide.
+// both) — and says so: the shared @id makes this Person and that MusicGroup one
+// entity rather than two strangers with the same name. sameAs is the vetted
+// profile list used site-wide, Wikidata included (lib/seo.ts).
 const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
+  "@id": BURNA_BOY_ID,
   name: "Burna Boy",
   alternateName: "Damini Ebunoluwa Ogulu",
   birthDate: "1991-07-02",
@@ -53,13 +56,7 @@ const personJsonLd = {
   knowsAbout: ["Afrobeats", "Afro-fusion"],
   award: "Grammy Award for Best Global Music Album (2021)",
   url: `${CANONICAL_ORIGIN}/about`,
-  sameAs: [
-    "https://en.wikipedia.org/wiki/Burna_Boy",
-    "https://www.instagram.com/burnaboygram",
-    "https://x.com/burnaboy",
-    "https://open.spotify.com/artist/3wcj11K77LjEY1PkEazffa",
-    "https://music.apple.com/us/artist/burna-boy/591899010",
-  ],
+  sameAs: BURNA_BOY_SAME_AS,
 };
 
 export default function AboutPage() {
