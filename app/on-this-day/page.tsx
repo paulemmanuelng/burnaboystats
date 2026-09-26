@@ -4,15 +4,8 @@ import BreadcrumbBar from "../components/BreadcrumbBar";
 import KeepExploring from "../components/KeepExploring";
 import MobileOnThisDayIndex from "../components/MobileOnThisDayIndex";
 import { pageMetadata } from "../lib/seo";
-import {
-  KIND_INK,
-  KIND_LABEL,
-  MONTHS,
-  onThisDayCounts,
-  onThisDayDays,
-  onThisDayEvents,
-  type OnThisDayKind,
-} from "../lib/onThisDay";
+import { KindMark } from "../components/OnThisDayKind";
+import { KIND_MARK, KIND_ORDER, MONTHS, onThisDayCounts, onThisDayDays, onThisDayEvents } from "../lib/onThisDay";
 
 export const metadata = pageMetadata({
   title: "Burna Boy On This Day — A Milestone for Every Date",
@@ -22,7 +15,7 @@ export const metadata = pageMetadata({
   shareDescription: "A dated milestone for every day that has one, each linked to its source.",
 });
 
-const kinds = (Object.keys(KIND_LABEL) as OnThisDayKind[]).filter((k) => onThisDayCounts[k] > 0);
+const kinds = KIND_ORDER.filter((k) => onThisDayCounts[k] > 0);
 
 // A leap year, so 29 February has a square to sit in.
 const daysIn = (month: number) => new Date(Date.UTC(2024, month, 0)).getUTCDate();
@@ -54,8 +47,8 @@ export default function OnThisDayPage() {
             <ul className={styles.tally} aria-label="Milestones by kind">
               {kinds.map((k) => (
                 <li key={k} className={styles.tallyRow}>
-                  <span className={styles.dot} style={{ background: KIND_INK[k] }} aria-hidden="true" />
-                  {KIND_LABEL[k]}
+                  <KindMark kind={k} className={styles.dot} />
+                  {KIND_MARK[k].word}
                   <span className={styles.tallyValue}>{onThisDayCounts[k]}</span>
                 </li>
               ))}
@@ -87,7 +80,7 @@ export default function OnThisDayPage() {
                             title={`${d.lead.year}: ${d.lead.headline}`}
                           >
                             {n}
-                            <span className={styles.dayDot} style={{ background: KIND_INK[d.lead.kind] }} aria-hidden="true" />
+                            <KindMark kind={d.lead.kind} alone size={8} className={styles.dayDot} />
                           </Link>
                         ) : (
                           <span key={n} className={styles.dayOff} aria-hidden="true">
@@ -101,11 +94,11 @@ export default function OnThisDayPage() {
               })}
             </div>
             <p className={styles.legend}>
-              <span>The dot is the day&apos;s lead milestone:</span>
+              <span>The mark is the day&apos;s lead milestone:</span>
               {kinds.map((k) => (
                 <span key={k} className={styles.legendItem}>
-                  <span className={styles.dot} style={{ background: KIND_INK[k] }} aria-hidden="true" />
-                  {KIND_LABEL[k]}
+                  <KindMark kind={k} className={styles.dot} />
+                  {KIND_MARK[k].word}
                 </span>
               ))}
             </p>

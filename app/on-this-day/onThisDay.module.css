@@ -2,8 +2,9 @@
    where MobileOnThisDayIndex / MobileOnThisDayDay render instead.
 
    The furniture is the updates page's (band, .wide, eyebrow, h1, lede) and
-   the home band's rows; the kind pills wear lib/onThisDay.ts's KIND_INK, the
-   update feed's category inks. */
+   the home band's rows. A kind is its mark and its word, in ink
+   (lib/onThisDay.ts KIND_MARK, components/OnThisDayKind.tsx): no kind has a
+   colour. */
 .desktopOnly { display: block; }
 @media (max-width: 900px) { .desktopOnly { display: none; } }
 
@@ -71,7 +72,8 @@
   color: var(--text);
   font-variant-numeric: tabular-nums;
 }
-.dot { width: 7px; height: 7px; border-radius: 50%; display: block; flex: none; }
+/* A kind's mark beside its word, in the ink of the text it sits in. */
+.dot { width: 10px; height: 10px; display: block; flex: none; color: var(--text); }
 
 /* ── The calendar ───────────────────────────────────────────────────────── */
 .calendar {
@@ -130,10 +132,10 @@
   position: absolute;
   top: 4px;
   right: 4px;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
+  width: 8px;
+  height: 8px;
   display: block;
+  color: var(--text);
 }
 .legend {
   display: flex;
@@ -203,14 +205,18 @@
 .eventBody { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
 .tag {
   align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-family: var(--font-mono), monospace;
   font-weight: 700;
   font-size: var(--type-label);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   padding: 2px 8px;
-  border: 1px solid;
+  border: 1px solid var(--line);
   border-radius: 999px;
+  color: var(--text);
 }
 .eventHeadline { font-size: var(--type-h-prose); line-height: var(--type-h-prose-lh); font-weight: 600; }
 .eventDetail {

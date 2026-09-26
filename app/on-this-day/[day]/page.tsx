@@ -5,9 +5,8 @@ import BreadcrumbBar from "../../components/BreadcrumbBar";
 import KeepExploring from "../../components/KeepExploring";
 import MobileOnThisDayDay from "../../components/MobileOnThisDayDay";
 import { pageMetadata, CANONICAL_ORIGIN } from "../../lib/seo";
+import { KindPill } from "../../components/OnThisDayKind";
 import {
-  KIND_INK,
-  KIND_LABEL,
   dayBySlug,
   neighbours,
   onThisDayDays,
@@ -120,9 +119,7 @@ export default async function OnThisDayDayPage({ params }: { params: Promise<{ d
                   <Link href={e.href} className={styles.event}>
                     <span className={styles.eventYear}>{e.year}</span>
                     <span className={styles.eventBody}>
-                      <span className={styles.tag} style={{ color: KIND_INK[e.kind], borderColor: KIND_INK[e.kind] }}>
-                        {KIND_LABEL[e.kind]}
-                      </span>
+                      <KindPill kind={e.kind} className={styles.tag} />
                       <span className={styles.eventHeadline}>{e.headline}</span>
                       <span className={styles.eventDetail}>{e.detail}</span>
                     </span>

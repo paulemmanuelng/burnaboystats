@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styles from "./onThisDayBand.module.css";
-import { KIND_INK, KIND_LABEL, anniversary, yearsAgo, type OnThisDayPick } from "../lib/onThisDay";
+import { KindPill } from "./OnThisDayKind";
+import { anniversary, yearsAgo, type OnThisDayPick } from "../lib/onThisDay";
 
 /**
  * The home page's "On this day" band — desktop. MobileOnThisDayCard is the
@@ -50,9 +51,7 @@ export default function OnThisDayBand({ pick }: { pick: OnThisDayPick | null }) 
                 <span className={styles.year}>{e.year}</span>
                 <span className={styles.body}>
                   <span className={styles.meta}>
-                    <span className={styles.tag} style={{ color: KIND_INK[e.kind], borderColor: KIND_INK[e.kind] }}>
-                      {KIND_LABEL[e.kind]}
-                    </span>
+                    <KindPill kind={e.kind} className={styles.tag} />
                     <span className={styles.ago}>
                       {mode === "today" ? yearsAgo(year - e.year) : anniversary(year - e.year)}
                     </span>

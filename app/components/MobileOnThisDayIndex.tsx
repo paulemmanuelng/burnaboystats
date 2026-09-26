@@ -2,15 +2,8 @@ import Link from "next/link";
 import styles from "./mobileOnThisDay.module.css";
 import BackLink from "./BackLink";
 import MobileMenuButton from "./MobileMenuButton";
-import {
-  KIND_INK,
-  KIND_LABEL,
-  MONTHS,
-  onThisDayCounts,
-  onThisDayDays,
-  onThisDayEvents,
-  type OnThisDayKind,
-} from "../lib/onThisDay";
+import { KindMark } from "./OnThisDayKind";
+import { KIND_MARK, KIND_ORDER, MONTHS, onThisDayCounts, onThisDayDays, onThisDayEvents } from "../lib/onThisDay";
 
 /**
  * The phone's On this day calendar — the desktop page draws twelve month
@@ -19,7 +12,7 @@ import {
  * days, the same links, the same counts.
  */
 export default function MobileOnThisDayIndex() {
-  const kinds = (Object.keys(KIND_LABEL) as OnThisDayKind[]).filter((k) => onThisDayCounts[k] > 0);
+  const kinds = KIND_ORDER.filter((k) => onThisDayCounts[k] > 0);
 
   return (
     <div className={styles.screen}>
@@ -48,8 +41,8 @@ export default function MobileOnThisDayIndex() {
       <div className={styles.tally}>
         {kinds.map((k) => (
           <span key={k} className={styles.tallyItem}>
-            <span className={styles.dot} style={{ background: KIND_INK[k] }} aria-hidden="true" />
-            {KIND_LABEL[k]} {onThisDayCounts[k]}
+            <KindMark kind={k} className={styles.dot} />
+            {KIND_MARK[k].word} {onThisDayCounts[k]}
           </span>
         ))}
       </div>
@@ -72,7 +65,7 @@ export default function MobileOnThisDayIndex() {
                     aria-label={`${d.label} — ${d.events.length} milestone${d.events.length === 1 ? "" : "s"}`}
                   >
                     {d.day}
-                    <span className={styles.chipDot} style={{ background: KIND_INK[d.lead.kind] }} aria-hidden="true" />
+                    <KindMark kind={d.lead.kind} alone size={8} className={styles.chipDot} />
                   </Link>
                 ))}
               </div>

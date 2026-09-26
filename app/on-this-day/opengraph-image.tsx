@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { OgLockup, ogFonts } from "../lib/og-lockup";
 import { ogId, cardUrl } from "../lib/og-image";
-import { KIND_LABEL, onThisDayCounts, onThisDayDays, onThisDayEvents, type OnThisDayKind } from "../lib/onThisDay";
+import { KIND_MARK, KIND_ORDER, onThisDayCounts, onThisDayDays, onThisDayEvents } from "../lib/onThisDay";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
@@ -10,7 +10,7 @@ export const alt = "Burna Boy on this day — a calendar of dated milestones";
 const GOLD = "#ffb627";
 
 // The three biggest kinds, by count — read off the data, never typed.
-const top = (Object.keys(KIND_LABEL) as OnThisDayKind[])
+const top = KIND_ORDER
   .filter((k) => onThisDayCounts[k] > 0)
   .sort((a, b) => onThisDayCounts[b] - onThisDayCounts[a])
   .slice(0, 2);
@@ -18,7 +18,7 @@ const top = (Object.keys(KIND_LABEL) as OnThisDayKind[])
 const stats = [
   { v: String(onThisDayDays.length), l: "Dates" },
   { v: String(onThisDayEvents.length), l: "Milestones" },
-  ...top.map((k) => ({ v: String(onThisDayCounts[k]), l: KIND_LABEL[k] })),
+  ...top.map((k) => ({ v: String(onThisDayCounts[k]), l: KIND_MARK[k].word })),
 ];
 
 // Versioned by what the card prints, like the other data-driven cards (see

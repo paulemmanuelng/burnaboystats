@@ -2,7 +2,8 @@ import Link from "next/link";
 import styles from "./mobileOnThisDay.module.css";
 import BackLink from "./BackLink";
 import MobileMenuButton from "./MobileMenuButton";
-import { KIND_INK, KIND_LABEL, neighbours, yearSpan, type OnThisDayDay } from "../lib/onThisDay";
+import { KindPill } from "./OnThisDayKind";
+import { neighbours, yearSpan, type OnThisDayDay } from "../lib/onThisDay";
 
 /**
  * The phone's day page — every event dated this day, newest first, each row
@@ -43,9 +44,7 @@ export default function MobileOnThisDayDay({ day }: { day: OnThisDayDay }) {
             <Link href={e.href} className={styles.row}>
               <span className={styles.rowTop}>
                 <span className={styles.year}>{e.year}</span>
-                <span className={styles.tag} style={{ color: KIND_INK[e.kind], borderColor: KIND_INK[e.kind] }}>
-                  {KIND_LABEL[e.kind]}
-                </span>
+                <KindPill kind={e.kind} className={styles.tag} />
               </span>
               <span className={styles.headline}>{e.headline}</span>
               <span className={styles.detail}>{e.detail}</span>

@@ -3,9 +3,9 @@
    pages are app/on-this-day/onThisDay.module.css, not this markup widened.
 
    Vocabulary borrowed, not invented: the back bar and hero are the updates
-   screen's, the rows are its feed rows, the kind pills its category pills
-   (same inks, lib/onThisDay.ts KIND_INK), the gold pill the History card's
-   CTA — the one action on the screen. */
+   screen's, the rows are its feed rows, the gold pill the History card's
+   CTA — the one action on the screen. A kind is its mark and its word, in
+   ink (lib/onThisDay.ts KIND_MARK): no kind has a colour. */
 .screen { display: none; }
 
 @media (max-width: 900px) {
@@ -142,6 +142,9 @@
   font-variant-numeric: tabular-nums;
 }
 .tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-family: var(--font-mono), monospace;
   font-weight: 700;
   font-size: var(--type-label);
@@ -149,7 +152,8 @@
   text-transform: uppercase;
   padding: 3px 9px;
   border-radius: 999px;
-  border: 1px solid;
+  border: 1px solid var(--line);
+  color: var(--text);
 }
 .ago {
   margin-left: auto;
@@ -205,7 +209,7 @@
   color: var(--text-muted);
 }
 .tallyItem { display: inline-flex; align-items: center; gap: 7px; }
-.dot { width: 7px; height: 7px; border-radius: 50%; display: block; flex: none; }
+.dot { width: 10px; height: 10px; display: block; flex: none; color: var(--text); }
 .month { padding: 16px 18px 18px; border-top: 1px solid var(--line); }
 .monthName {
   display: flex;
@@ -252,10 +256,10 @@
   position: absolute;
   top: 6px;
   right: 6px;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
+  width: 8px;
+  height: 8px;
   display: block;
+  color: var(--text);
 }
 
 /* ── Pager ────────────────────────────────────────────────────────────── */

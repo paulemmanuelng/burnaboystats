@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { OgLockup, ogFonts } from "../../lib/og-lockup";
 import { ogId, cardUrl } from "../../lib/og-image";
-import { KIND_LABEL, dayBySlug, onThisDayDays, yearSpan } from "../../lib/onThisDay";
+import { KIND_MARK, dayBySlug, onThisDayDays, yearSpan } from "../../lib/onThisDay";
 
 export function generateStaticParams() {
   return onThisDayDays.map((d) => ({ day: d.slug }));
@@ -24,7 +24,7 @@ function cardFor(slug: string) {
     stats: [
       { v: String(n), l: n === 1 ? "Milestone" : "Milestones" },
       { v: yearSpan(day.events), l: "Years" },
-      { v: KIND_LABEL[day.lead.kind], l: "Leads with" },
+      { v: KIND_MARK[day.lead.kind].word, l: "Leads with" },
     ],
     url: cardUrl(`/on-this-day/${day.slug}`),
   };

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styles from "./mobileOnThisDay.module.css";
-import { KIND_INK, KIND_LABEL, anniversary, yearsAgo, type OnThisDayPick } from "../lib/onThisDay";
+import { KindPill } from "./OnThisDayKind";
+import { anniversary, yearsAgo, type OnThisDayPick } from "../lib/onThisDay";
 
 /**
  * The phone home's "On this day" card — OnThisDayBand is the desktop's.
@@ -28,9 +29,7 @@ export default function MobileOnThisDayCard({ pick }: { pick: OnThisDayPick | nu
             <Link href={e.href} className={styles.row}>
               <span className={styles.rowTop}>
                 <span className={styles.year}>{e.year}</span>
-                <span className={styles.tag} style={{ color: KIND_INK[e.kind], borderColor: KIND_INK[e.kind] }}>
-                  {KIND_LABEL[e.kind]}
-                </span>
+                <KindPill kind={e.kind} className={styles.tag} />
                 <span className={styles.ago}>
                   {mode === "today" ? yearsAgo(year - e.year) : anniversary(year - e.year)}
                 </span>

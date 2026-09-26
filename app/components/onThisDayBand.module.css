@@ -71,14 +71,18 @@
 .body { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
 .meta { display: flex; align-items: center; gap: 10px; }
 .tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-family: var(--font-mono), monospace;
   font-weight: 700;
   font-size: var(--type-label);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   padding: 2px 8px;
-  border: 1px solid;
+  border: 1px solid var(--line);
   border-radius: 999px;
+  color: var(--text);
 }
 .ago {
   font-family: var(--font-mono), monospace;
