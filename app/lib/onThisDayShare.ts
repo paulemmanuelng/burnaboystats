@@ -98,6 +98,22 @@ export function sharePublisher(e: OnThisDayEvent): string | null {
   }
 }
 
+/**
+ * The source as the post card prints it: the publisher in capitals, printed
+ * once. Where the headline already names it — 10 November's NIGERIA
+ * ENTERTAINMENT AWARDS: ALBUM OF THE YEAR, 22 September's SESAC AWARDS: TOP
+ * SONGS HONOREE, 30 June's … ON SPOTIFY'S GLOBAL CHART — the foot would say it
+ * a second time, so it prints no source (change list 22: a repeated source
+ * prints once). The name is matched whole, ignoring case: as a phrase of its
+ * own, not the inside of a longer word.
+ */
+export function cardSource(headline: string, publisher: string | null): string | null {
+  if (!publisher) return null;
+  const name = publisher.toUpperCase();
+  const phrase = new RegExp(`(?<![\\p{L}\\p{N}])${name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?![\\p{L}\\p{N}])`, "u");
+  return phrase.test(headline.toUpperCase()) ? null : name;
+}
+
 // ── Sizes ───────────────────────────────────────────────────────────────────
 
 /** The link preview's headline, stepped by length: Geist caps at 64/56/50,
@@ -155,16 +171,17 @@ export function cardHeadSize(headline: string, measure = 912): number {
  * plain space, or after a hyphen before a letter, as Unicode's line breaking
  * allows (2 August's HEADLINED COCA- / COLA FOOD FEST) — never inside what
  * keepTogether joins. The renders of every day are read back against these
- * lines (tests/onThisDayShareImages.test.tsx).
+ * lines (tests/onThisDayShareImages.test.tsx) — and the link previews', at
+ * their own measure and tracking.
  */
-export function cardHeadLines(headline: string, size: number, measure = 912): string[] {
+export function cardHeadLines(headline: string, size: number, measure = 912, letterSpacing = 0): string[] {
   const pieces = keepTogether(headline).split(/(?<= )|(?<=-)(?=\D)/);
   const trim = (line: string) => line.replace(/ +$/, "");
   const breakAt = (width: number) => {
     const lines: string[] = [];
     for (const piece of pieces) {
       const last = lines.length - 1;
-      if (last >= 0 && cardTextWidth(trim(lines[last] + piece), size) <= width) lines[last] += piece;
+      if (last >= 0 && cardTextWidth(trim(lines[last] + piece), size, letterSpacing) <= width) lines[last] += piece;
       else lines.push(piece);
     }
     return lines.map(trim);
@@ -181,12 +198,13 @@ export function cardHeadLines(headline: string, size: number, measure = 912): st
 }
 
 /**
- * The text as the post card DRAWS it: "No." joined to its number, and a
- * multiple ("2×") to the word it multiplies, by a no-break space — so no line
- * ends "HIT NO." over "1 IN NIGERIA", as 23 May's did, and no "2×" is left at
- * the end of one. Satori breaks lines where Unicode allows (UAX #14), and
- * U+00A0 is glue: it never breaks there, and draws as Geist's space, the same
- * 250 units. Only at the draw: the strings the model holds keep one plain
+ * The text as the post card and the link preview DRAW it: "No." joined to its
+ * number, and a multiple ("2×") to the word it multiplies, by a no-break
+ * space — so no line ends "HIT NO." over "1 IN NIGERIA", as 23 May's card
+ * did, and no "4×" is left at the end of one, as 5 May's preview left it.
+ * Satori breaks lines where Unicode allows (UAX #14), and U+00A0 is glue: it
+ * never breaks there, and draws as Geist's space, the same 250 units. Only
+ * at the draw: the strings the model holds keep one plain
  * space between words (ruling 8, tests/onThisDayShareImages.test.tsx), and
  * the site spells "No. 1" with a space (tests/siteDebugWording.test.ts).
  */
@@ -262,7 +280,8 @@ export interface DayPostCard {
   /** "CERTIFICATION · + 4 MORE MILESTONES ON THIS DAY", or shorter where
    *  the source leaves it less room (cardKindLine). */
   kindLine: string;
-  /** The publisher, in capitals, or null (sharePublisher). */
+  /** The publisher, in capitals, or null: for no publisher (sharePublisher),
+   *  or one the headline already names (cardSource). */
   source: string | null;
   url: string;
 }
@@ -292,7 +311,10 @@ export const CARD_FOOT = {
  * 31 August, 24 October, 3 and 10 November), leaving "DAY" or "THIS DAY" on a
  * line of its own and lifting the rule 29px. The source never wraps and never
  * gives way: it is the publisher's name. Measured as Satori measures it
- * (cardTextWidth), with a pixel's allowance for the layout's rounding.
+ * (cardTextWidth), with a pixel's allowance for the layout's rounding. It is
+ * given the source the card PRINTS (cardSource): 10 November's headline names
+ * its NIGERIA ENTERTAINMENT AWARDS, so it prints none, and its kind line has
+ * the measure to itself.
  */
 export function cardKindLine(word: string, more: number, source: string | null): string {
   const F = CARD_FOOT;
@@ -315,8 +337,8 @@ export function dayPostCard(day: OnThisDayDay, { withCover = true }: { withCover
   const lead = day.lead;
   const art = withCover ? eventCover(lead) : null;
   const more = day.events.length - 1;
-  const source = sharePublisher(lead);
   const headline = lead.headline.toUpperCase();
+  const source = cardSource(headline, sharePublisher(lead));
   const headSize = cardHeadSize(headline);
   return {
     dateLine: `On this day · ${day.label}`.toUpperCase(),
@@ -327,8 +349,8 @@ export function dayPostCard(day: OnThisDayDay, { withCover = true }: { withCover
     record: isRecordLine(lead) ? lead.detail : null,
     year: String(lead.year),
     kind: lead.kind,
-    kindLine: cardKindLine(KIND_MARK[lead.kind].word, more, source ? source.toUpperCase() : null),
-    source: source ? source.toUpperCase() : null,
+    kindLine: cardKindLine(KIND_MARK[lead.kind].word, more, source),
+    source,
     url: cardUrl(`/on-this-day/${day.slug}`),
   };
 }

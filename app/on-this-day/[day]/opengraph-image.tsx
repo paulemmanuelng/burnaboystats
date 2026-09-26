@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 import { OgLockup } from "../../lib/og-lockup";
 import { ogId, cardUrl } from "../../lib/og-image";
 import { dayBySlug, onThisDayDays } from "../../lib/onThisDay";
-import { dayPreview } from "../../lib/onThisDayShare";
+import { dayPreview, keepTogether } from "../../lib/onThisDayShare";
 import { FadedPortrait, OTD_GOLD, PREVIEW_PORTRAIT, ShareMark, ShareUrl, loadPortrait, otdFonts } from "../../lib/onThisDayImages";
 
 export function generateStaticParams() {
@@ -121,7 +121,7 @@ export default async function Image({ params }: { params: Promise<{ day: string 
                   textWrap: "balance",
                 }}
               >
-                {p.headline}
+                {keepTogether(p.headline)}
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: 12, fontSize: 24, letterSpacing: 2.88, color: "#c9c9d0" }}>
                 <ShareMark kind={p.kind} size={18} color="#c9c9d0" />

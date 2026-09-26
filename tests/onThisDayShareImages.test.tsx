@@ -186,8 +186,11 @@ describe("the post card, 1080×1350", () => {
     expect(dayPostCard(day("24-october")).kindLine).toBe("SHOW · + 2 MORE ON THIS DAY"); // BILLBOARD BOXSCORE
     for (const slug of ["17-july", "31-august"]) expect(dayPostCard(day(slug)).kindLine).toBe("CHARTS · + 2 MORE ON THIS DAY"); // TURNTABLE TOP 100 ALBUMS
     expect(dayPostCard(day("3-november")).kindLine).toBe("CHARTS · + 3 MORE ON THIS DAY");
-    // The longest source, NIGERIA ENTERTAINMENT AWARDS, leaves room for the count alone.
-    expect(dayPostCard(day("10-november")).kindLine).toBe("AWARDS · + 1 MORE");
+    // The sixth, 10 November, beside NIGERIA ENTERTAINMENT AWARDS, had room
+    // for the count alone — but its headline names that source, so the card
+    // prints none (cardSource) and the kind line is said in full.
+    expect(dayPostCard(day("10-november")).source).toBeNull();
+    expect(dayPostCard(day("10-november")).kindLine).toBe("AWARDS · + 1 MORE MILESTONE ON THIS DAY");
     // Where it fits, it is said in full: 16 August's beside IFPI SVERIGE, with 1.7px to spare.
     expect(dayPostCard(day("16-august")).kindLine).toBe("CERTIFICATION · + 4 MORE MILESTONES ON THIS DAY");
     expect(cardKindLine("Charts", 2, null)).toBe("CHARTS · + 2 MORE MILESTONES ON THIS DAY");
@@ -512,6 +515,15 @@ describe("ruling 8: the images print one plain space between words, and draw it 
   }, 30000);
 });
 
+/** A headline's lines that split what reads as one: a line ending on
+ *  "NO." or on a multiple ("2×"), or starting on NO.'s number. */
+const splits = (lines: string[]) =>
+  lines.flatMap((l, i) => [
+    ...(/\bNO\.$/i.test(l) ? [`line ${i + 1} ends "NO."`] : []),
+    ...(/\d×$/.test(l) ? [`line ${i + 1} ends on "${l.split(" ").at(-1)}"`] : []),
+    ...(i > 0 && /\bNO\.$/i.test(lines[i - 1]) && /^\d/.test(l) ? [`line ${i + 1} starts on NO.'s number`] : []),
+  ]);
+
 describe("the post card leads with the milestone, not the date (Paul, 26 Sep 2026)", () => {
   // "so much focus is on the big gold date whereas the focus should be on the
   // actual stuff being remembered" — every day on the calendar, rendered and
@@ -758,15 +770,6 @@ describe("the post card leads with the milestone, not the date (Paul, 26 Sep 202
     });
   }
 
-  /** A headline's lines that split what reads as one: a line ending on
-   *  "NO." or on a multiple ("2×"), or starting on NO.'s number. */
-  const splits = (lines: string[]) =>
-    lines.flatMap((l, i) => [
-      ...(/\bNO\.$/i.test(l) ? [`line ${i + 1} ends "NO."`] : []),
-      ...(/\d×$/.test(l) ? [`line ${i + 1} ends on "${l.split(" ").at(-1)}"`] : []),
-      ...(i > 0 && /\bNO\.$/i.test(lines[i - 1]) && /^\d/.test(l) ? [`line ${i + 1} starts on NO.'s number`] : []),
-    ]);
-
   const results = new Map<string, { faults: string[]; lines: number; widths: number[]; rule: number; head: string[]; foot: string[] }>();
 
   beforeAll(async () => {
@@ -828,11 +831,14 @@ describe("the post card leads with the milestone, not the date (Paul, 26 Sep 202
     const bad = [...results].filter(([, v]) => v.foot.length).map(([slug, v]) => `${slug}: ${v.foot.join("; ")}`);
     expect(bad).toEqual([]);
     expect(new Set([...results.values()].map((v) => v.rule))).toEqual(new Set([results.get("8-october")!.rule]));
-    // Not vacuous: the six days the full kind line wrapped on are among them,
-    // each now in a shorter form.
-    for (const slug of ["2-march", "17-july", "31-august", "24-october", "3-november", "10-november"]) {
+    // Not vacuous: the days the full kind line wrapped on are among them,
+    // each now in a shorter form — and 10 November, which prints no source
+    // now, in full on one line.
+    for (const slug of ["2-march", "17-july", "31-august", "24-october", "3-november"]) {
       expect(dayPostCard(day(slug)).kindLine, slug).not.toMatch(/MILESTONES? ON THIS DAY$/);
     }
+    expect(dayPostCard(day("10-november")).kindLine).toMatch(/MILESTONE ON THIS DAY$/);
+    expect(results.get("10-november")?.foot).toEqual([]);
   });
 
   it("a negative control: 23 May's headline as the branch drew it, NO. at the end of a line, fails the same read", async () => {
@@ -867,6 +873,17 @@ describe("the post card leads with the milestone, not the date (Paul, 26 Sep 202
     expect(footFaults(r, true)).toEqual(["the kind line runs to 2 lines"]);
     expect(r.rule).toBeLessThan(results.get("2-march")!.rule);
     expect(results.get("2-march")?.foot).toEqual([]);
+  }, 60000);
+
+  it("a negative control: 10 November's card as the branch set it prints its source twice", async () => {
+    // The branch at a4ed45c6 set NIGERIA ENTERTAINMENT AWARDS under SOURCE,
+    // below a headline that opens with it, and cut the kind line to the count
+    // to make room for it (read off its render, 27 Sep 2026). The foot as
+    // drawn: a label over the name, where the card now draws none.
+    const shipped: DayPostCard = { ...dayPostCard(day("10-november")), source: "NIGERIA ENTERTAINMENT AWARDS", kindLine: "AWARDS · + 1 MORE" };
+    const r = await readCard(Buffer.from(await postCardImage(shipped).arrayBuffer()));
+    expect(footFaults(r, false)).toEqual(["2 source lines, not none"]);
+    expect(results.get("10-november")?.foot).toEqual([]);
   }, 60000);
 
   it("a negative control: the shipped numeral card fails the same read", async () => {
@@ -910,6 +927,107 @@ describe("the post card leads with the milestone, not the date (Paul, 26 Sep 202
     expect(f).toEqual(expect.arrayContaining([expect.stringMatching(/numeral, not a label/), expect.stringMatching(/is not the largest text/)]));
     // And the 8 October it now draws passes.
     expect(results.get("8-october")?.faults).toEqual([]);
+  }, 60000);
+});
+
+describe("the link preview draws NO. 1 and 4× PLATINUM whole, as the post card does", () => {
+  // 5 May's preview broke "“LOCATION” WAS CERTIFIED 4×" over "PLATINUM IN THE
+  // UNITED KINGDOM", and 9 July's and 21 December's their 2× the same way:
+  // the route drew the headline as the model holds it, plain spaces and all.
+  const realFetch = globalThis.fetch;
+  afterEach(() => {
+    globalThis.fetch = realFetch;
+  });
+
+  const solid = (hex: string) => sharp({ create: { width: 640, height: 640, channels: 3, background: hex } }).png().toBuffer();
+
+  /** Where the headline starts, and its measure: the 1200px card less its
+   *  64px padding either side — and beside a cover, less the 300px tile and
+   *  its 48px gap (app/on-this-day/[day]/opengraph-image.tsx). */
+  const column = (cover: boolean) => (cover ? { left: 412, measure: 724 } : { left: 64, measure: 1072 });
+  const previewLines = (p: ReturnType<typeof dayPreview>) => cardHeadLines(p.headline, p.headSize, column(Boolean(p.cover)).measure, 0.005 * p.headSize);
+
+  /** A day's preview, its headline read back as ink: rows of the headline's
+   *  white (#f5f4f0) in its column, under the kicker's row (56 + 44), grouped
+   *  into bands. No network: the portrait answers green and any cover blue,
+   *  so neither reads as white. */
+  async function headInk(slug: string) {
+    const [green, blue] = await Promise.all([solid("#00ff00"), solid("#0000ff")]);
+    globalThis.fetch = (async (input: RequestInfo | URL, init?: RequestInit) => {
+      const url = String(input instanceof Request ? input.url : input);
+      if (url === BURNA_PORTRAIT) return new Response(new Uint8Array(green), { headers: { "Content-Type": "image/png" } });
+      if (url.includes("i.scdn.co")) return new Response(new Uint8Array(blue), { headers: { "Content-Type": "image/png" } });
+      return realFetch(input as never, init as never);
+    }) as typeof fetch;
+    const og = await import("../app/on-this-day/[day]/opengraph-image");
+    const res = (await og.default({ params: Promise.resolve({ day: slug }) })) as Response;
+    const { data, info } = await sharp(Buffer.from(await res.arrayBuffer())).raw().toBuffer({ resolveWithObject: true });
+    const { left } = column(Boolean(dayPreview(day(slug)).cover));
+    const bands: { top: number; bottom: number; right: number }[] = [];
+    let open = false;
+    for (let y = 100; y < info.height; y++) {
+      let n = 0;
+      let right = -1;
+      for (let x = left; x < info.width; x++) {
+        const i = (y * info.width + x) * info.channels;
+        if (Math.min(data[i], data[i + 1], data[i + 2]) > 215) {
+          n++;
+          right = x;
+        }
+      }
+      if (n < 20) open = false;
+      else if (!open) {
+        bands.push({ top: y, bottom: y, right });
+        open = true;
+      } else Object.assign(bands[bands.length - 1], { bottom: y, right: Math.max(bands[bands.length - 1].right, right) });
+    }
+    return bands;
+  }
+
+  /** Where each line's ink ends, against the lines it should be: at its
+   *  advance, less no more than its last letter's side bearing. */
+  const inkFaults = (bands: { right: number }[], lines: string[], size: number, left: number) =>
+    bands.length !== lines.length
+      ? [`${bands.length} lines drawn, not ${lines.length}`]
+      : lines.flatMap((l, i) => {
+          const end = left + cardTextWidth(l, size, 0.005 * size);
+          return bands[i].right > end + 2 || bands[i].right < end - 0.2 * size ? [`line ${i + 1} ends at ${bands[i].right}, not by ${Math.round(end)}`] : [];
+        });
+
+  it("the route sets the headline through keepTogether", () => {
+    const route = readFileSync("app/on-this-day/[day]/opengraph-image.tsx", "utf8");
+    expect(route).toContain("{keepTogether(p.headline)}");
+    // The line it shipped, which drew the plain spaces Satori may break at.
+    expect(route).not.toContain("{p.headline}");
+  });
+
+  // Read off the renders, 27 Sep 2026: the three days where the glue moves a
+  // break. 9 July's takes a third line — 2× PLATINO IN THE UNITED STATES is
+  // wider than the 724px beside the cover — and stays well inside its box.
+  const CASES: [string, string[]][] = [
+    ["5-may", ["“LOCATION” WAS CERTIFIED", "4×\u00a0PLATINUM IN THE UNITED KINGDOM"]],
+    ["9-july", ["“DAI DAI” WAS", "CERTIFIED 2×\u00a0PLATINO", "IN THE UNITED STATES"]],
+    ["21-december", ["“LAST LAST” WAS CERTIFIED", "2×\u00a0PLATINUM IN NEW ZEALAND"]],
+  ];
+
+  it.each(CASES)("%s breaks where the glued headline breaks, never after its multiple", async (slug, want) => {
+    const p = dayPreview(day(slug));
+    expect(previewLines(p)).toEqual(want);
+    expect(splits(want)).toEqual([]);
+    const ink = await headInk(slug);
+    expect(inkFaults(ink, want, p.headSize, column(Boolean(p.cover)).left)).toEqual([]);
+    // Inside the card, under the kicker and clear of the right padding.
+    expect(Math.min(...ink.map((b) => b.top))).toBeGreaterThan(110);
+    expect(Math.max(...ink.map((b) => b.right))).toBeLessThanOrEqual(1136);
+  }, 60000);
+
+  it("a negative control: 5 May's lines as the branch drew them fail the same read", async () => {
+    // Read off the branch's render at a4ed45c6 (27 Sep 2026): the plain
+    // "4× PLATINUM" broke, and the 4× ended line one.
+    const shipped = ["“LOCATION” WAS CERTIFIED 4×", "PLATINUM IN THE UNITED KINGDOM"];
+    expect(splits(shipped)).toEqual(['line 1 ends on "4×"']);
+    const p = dayPreview(day("5-may"));
+    expect(inkFaults(await headInk("5-may"), shipped, p.headSize, 64)).not.toEqual([]);
   }, 60000);
 });
 
