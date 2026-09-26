@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-25";
+  export const liveChartsUpdated = "2026-09-26";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-25T21:38Z";
+  export const liveChartsBuiltAt = "2026-09-26T05:03Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","iTunes"];
@@ -343,8 +343,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 54,
-            "movement": -2
+            "position": 52,
+            "movement": 0
           },
           {
             "country": "SL",
@@ -503,20 +503,20 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 55,
-            "movement": -4
+            "position": 57,
+            "movement": -5
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 76,
-            "movement": -16
+            "position": 80,
+            "movement": -17
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 129,
-            "movement": -36
+            "position": 176,
+            "movement": -163
           }
         ]
       },
@@ -826,13 +826,13 @@
             "country": "UG",
             "name": "Uganda",
             "position": 85,
-            "movement": -1
+            "movement": -2
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 192,
-            "movement": 3
+            "position": 182,
+            "movement": -3
           }
         ]
       }
@@ -1003,8 +1003,8 @@
           {
             "country": "AZ",
             "name": "Azerbaijan",
-            "position": 84,
-            "movement": -14
+            "position": 88,
+            "movement": -12
           }
         ]
       }
@@ -1060,7 +1060,7 @@
             "country": "FR",
             "name": "France",
             "position": 93,
-            "movement": -12
+            "movement": -14
           },
           {
             "country": "BE",
@@ -1084,8 +1084,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 26,
-            "movement": -20
+            "position": 38,
+            "movement": -28
           }
         ]
       },
@@ -1129,38 +1129,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b38a20520a3084e0e07332273a98158a/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "bend you",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 179,
-            "movement": -138
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SN",
-            "name": "Senegal",
-            "position": 94,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/e51306cd0211b33a043b1fef073026e5/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "woman",
@@ -1219,6 +1187,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b38a20520a3084e0e07332273a98158a/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "bend you",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SN",
+            "name": "Senegal",
+            "position": 94,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/e51306cd0211b33a043b1fef073026e5/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "imagine",
