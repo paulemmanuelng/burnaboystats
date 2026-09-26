@@ -53,6 +53,9 @@ const TABS = [
 const ALSO: Record<string, RegExp> = {
   "/live-charts": /^\/(records\/charts|afrobeats\/[^/]+\/(charts|live))$/,
   "/certifications": /^\/afrobeats\/[^/]+$/,
+  // The calendar and its day pages are records filed by date — the artboards
+  // light Records on both — but live at /on-this-day, not under /records.
+  "/records": /^\/on-this-day(\/[^/]+)?$/,
 };
 
 export default function MobileTabBar() {

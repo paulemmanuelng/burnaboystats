@@ -1,5 +1,7 @@
 import Link from "next/link";
 import GlobeTeaser from "./GlobeTeaser";
+import MobileOnThisDayCard from "./MobileOnThisDayCard";
+import type { OnThisDayPick } from "../lib/onThisDay";
 import StatGlyph from "./StatGlyph";
 import styles from "./mobileHome.module.css";
 import { liveHeadline } from "../lib/liveHeadline";
@@ -142,7 +144,7 @@ const stats = [
   { glyph: "tour" as const, value: topTour?.gross ?? "—", label: "Top tour gross", source: "Boxscore", href: "/records/tours" },
 ];
 
-export default function MobileHome() {
+export default function MobileHome({ onThisDay = null }: { onThisDay?: OnThisDayPick | null }) {
   const live = liveHeadline();
 
   return (
@@ -337,6 +339,11 @@ export default function MobileHome() {
           Read the story ↗
         </Link>
       </section>
+
+      {/* On this day — last on the screen, under History made, so nothing
+          above it moves. The pick is made once in app/page.tsx and shared
+          with the desktop band. */}
+      <MobileOnThisDayCard pick={onThisDay} />
     </div>
   );
 }

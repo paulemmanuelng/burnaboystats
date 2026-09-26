@@ -18,6 +18,7 @@
 import { totalAwards } from "../data/certifications";
 import { sweptArtists } from "../data/afrobeats";
 import { timelineEntryCount } from "../data/timeline";
+import { onThisDayDays } from "./onThisDay";
 import { chartEntryCount } from "../data/charts";
 import { totalWins } from "../data/awards";
 import { tours } from "../data/tours";
@@ -98,6 +99,9 @@ export const navGroups: NavGroup[] = [
       // group is its phone counterpart.
       { label: "Embed stats", href: "/embed", meta: "" },
       { label: "Career timeline", href: "/timeline", meta: String(timelineEntryCount) },
+      // 26 Sep 2026: +/on-this-day, beside the timeline it re-files by date;
+      // the row counts the calendar's dated days, as the calendar does.
+      { label: "On this day", href: "/on-this-day", meta: `${onThisDayDays.length} dates` },
       { label: "About", href: "/about", meta: "" },
       { label: "Analysis", href: "/analysis", meta: String(findings.length) },
       { label: "Methodology", href: "/methodology", meta: "" },
