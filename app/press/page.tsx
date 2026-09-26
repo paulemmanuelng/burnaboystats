@@ -3,7 +3,7 @@ import styles from "./press.module.css";
 import BreadcrumbBar from "../components/BreadcrumbBar";
 import KeepExploring from "../components/KeepExploring";
 import CopyButton from "../components/CopyButton";
-import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime } from "../lib/seo";
+import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime, BURNA_BOY_REF } from "../lib/seo";
 import { totalAwards, countryCount } from "../data/certifications";
 import { chartEntryCount, numberOnes } from "../data/charts";
 // The country figure, not the headline territory figure: the site's
@@ -18,6 +18,7 @@ import { totalWins, totalNominations } from "../data/awards";
 import { countryCount as performedCountryCount, regionCount } from "../data/performedCountries";
 import { spotifyTotalStreams } from "../data/streamingTotals";
 import { updates } from "../data/updates";
+import { EMBED_NAME_LIST, EMBED_WIDGETS } from "../lib/embedWidgets";
 import {
   DATA_DOWNLOADS,
   DATASET_CITATION,
@@ -70,7 +71,7 @@ export default function PressPage() {
     dateModified: asDateTime(lastReviewed),
     inLanguage: "en",
     isPartOf: { "@type": "WebSite", name: SITE_NAME, url: CANONICAL_ORIGIN },
-    about: { "@type": "MusicGroup", name: "Burna Boy" },
+    about: BURNA_BOY_REF,
     publisher: { "@type": "Organization", name: SITE_NAME, url: CANONICAL_ORIGIN },
     license: "https://creativecommons.org/licenses/by/4.0/",
   };
@@ -220,6 +221,20 @@ export default function PressPage() {
           <Link href="/share" className={styles.link}>stat cards page</Link>. Need a figure
           as a card that isn&apos;t there? Ask — custom cards for fan pages are usually a
           same-day turnaround.
+        </p>
+      </section>
+
+      {/* ── Embeds ──────────────────────────────────────────── */}
+      {/* The widget count and names come from the widget list itself, so this
+          sentence moves the day a box is added. */}
+      <section className={`${styles.wrap} ${styles.sectionPad}`} aria-labelledby="embeds">
+        <h2 id="embeds" className={styles.h2}>Live stat boxes for your site</h2>
+        <p className={styles.p}>
+          For a blog post, a fan page or a live article: {EMBED_WIDGETS.length} small boxes (
+          {EMBED_NAME_LIST}) that keep their figures current by
+          themselves and link back to the page each one comes from. Pick one on the{" "}
+          <Link href="/embed" className={styles.link}>embed page</Link>, copy one snippet of
+          HTML and paste it in.
         </p>
       </section>
 

@@ -14,7 +14,7 @@ import BirthdayCelebration from "./components/BirthdayCelebration";
 import FooterNav from "./components/FooterNav";
 import { siteUrl } from "./site";
 import { PRE_PAINT_LANG } from "./lib/documentLang";
-import { FEED_ALTERNATE, TWITTER_CREATOR } from "./lib/seo";
+import { FEED_ALTERNATE, INDEXABLE_ROBOTS, TWITTER_CREATOR, BURNA_BOY } from "./lib/seo";
 import "./globals.css";
 import FlagEmojiPolyfill from "./components/FlagEmojiPolyfill";
 
@@ -41,6 +41,9 @@ const spaceMono = Space_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   alternates: { canonical: "/", types: FEED_ALTERNATE },
+  // max-image-preview:large for Discover's large card (lib/seo.ts). A page
+  // that sets its own robots replaces this block rather than merging with it.
+  robots: INDEXABLE_ROBOTS,
   /**
    * Icons declared as plain paths, from public/, rather than left to the
    * app/ file convention.
@@ -178,23 +181,9 @@ const jsonLd = {
     },
     "query-input": "required name=search_term_string",
   },
-  about: {
-    "@type": "MusicGroup",
-    name: "Burna Boy",
-    alternateName: "Damini Ebunoluwa Ogulu",
-    genre: ["Afrobeats", "Afro-fusion", "Reggae", "Dancehall"],
-    award: "Grammy Award for Best Global Music Album (2021)",
-    foundingLocation: { "@type": "Place", name: "Port Harcourt, Nigeria" },
-    sameAs: [
-      "https://en.wikipedia.org/wiki/Burna_Boy",
-      "https://www.instagram.com/burnaboygram",
-      "https://x.com/burnaboy",
-      "https://www.youtube.com/channel/UCEzDdNqNkT-7rSfSGSr1hWg",
-      "https://open.spotify.com/artist/3wcj11K77LjEY1PkEazffa",
-      "https://music.apple.com/us/artist/burna-boy/591899010",
-      "https://www.facebook.com/Officialburnaboy",
-    ],
-  },
+  // The one full Burna Boy node on every page; the rest of the site's markup
+  // points at it by @id (lib/seo.ts BURNA_BOY).
+  about: BURNA_BOY,
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

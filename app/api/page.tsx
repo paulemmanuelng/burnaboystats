@@ -4,7 +4,7 @@ import KeepExploring from "../components/KeepExploring";
 import BreadcrumbBar from "../components/BreadcrumbBar";
 import CopyButton from "../components/CopyButton";
 import MobileApi from "../components/MobileApi";
-import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime } from "../lib/seo";
+import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime, BURNA_BOY_REF } from "../lib/seo";
 import { API_VERSION, lastUpdated, ENVELOPE_NOTE, UPDATED_NOTE, CREDIT_NOTE } from "../lib/api";
 import { chartsSample } from "../lib/chartsPayload";
 import { chartEntryCount, chartCountryCount, numberOnes, CHART_COUNTRIES, allChartItems } from "../data/charts";
@@ -115,7 +115,7 @@ export default function ApiPage() {
     isAccessibleForFree: true,
     dateModified: asDateTime(lastUpdated),
     creator: { "@type": "Organization", name: SITE_NAME, url: CANONICAL_ORIGIN },
-    about: { "@type": "MusicGroup", name: "Burna Boy" },
+    about: BURNA_BOY_REF,
     keywords: ["Burna Boy", "charts", "certifications", "Afrobeats", "music data", "open data"],
     distribution: [
       ...endpoints.map((e) => ({

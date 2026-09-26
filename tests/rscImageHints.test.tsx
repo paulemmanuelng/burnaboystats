@@ -3,6 +3,9 @@ import { renderToStaticMarkup } from "react-dom/server";
 vi.mock("next/navigation", () => ({
   useRouter: () => ({ push: vi.fn(), prefetch: vi.fn(), replace: vi.fn(), back: vi.fn() }),
   usePathname: () => "/",
+  notFound: () => {
+    throw new Error("notFound() — the fixture slug no longer exists");
+  },
 }));
 vi.mock("next/link", () => ({
   default: ({ href, children, ...rest }: { href: string; children: React.ReactNode }) => (
@@ -15,10 +18,13 @@ vi.mock("next/link", () => ({
 import TodaysNumber from "../app/components/TodaysNumber";
 import MobileHome from "../app/components/MobileHome";
 import MusicPage from "../app/music/page";
+import SongPage from "../app/music/[song]/page";
+import songStyles from "../app/music/[song]/song.module.css";
+import { songSlugs, songPageCount } from "../app/data/songs";
 
 /**
- * No eager cover on "/" or /music becomes a preload hint in the page's RSC
- * payload.
+ * No eager cover on "/", /music or a song page's picker becomes a preload hint
+ * in the page's RSC payload.
  *
  * React's server renderer turns every eager <img> it renders into a preload
  * hint (`:HL[...,"image"]`) unless the image is lazy, fetchPriority="low", or
@@ -88,5 +94,32 @@ describe("eager covers stay out of the RSC payload's preload hints", () => {
     expect(desktop[0].getAttribute("loading")).toBeNull();
     expect(hinted(root)).not.toContain(desktop[0]);
     expect((desktop[0].parentElement as HTMLElement).style.display).toBe("contents");
+  });
+
+  it("the rule catches the song-page picker chip that shipped", () => {
+    // Served by burnaboystats.com/music/last-last on 26 Sep 2026, before the
+    // fix: one of fifteen such chips, each a <link rel="preload" as="image">.
+    const shipped = parse(
+      '<a class="song-module__JUBKta__pick" href="/dai-dai"><img class="song-module__JUBKta__pickCover" src="https://i.scdn.co/image/ab67616d0000485103cadf1b3fe324c1dc710ed4" alt="" width="30" height="30"/>Dai Dai<span class="song-module__JUBKta__pickYear">2026</span></a>'
+    );
+    expect(hinted(shipped)).toHaveLength(1);
+  });
+
+  it("every song page's picker covers stay eager and out of the hints", async () => {
+    for (const slug of songSlugs) {
+      const root = parse(renderToStaticMarkup(await SongPage({ params: Promise.resolve({ song: slug }) })));
+      const chips = [...root.querySelectorAll("img")].filter((i) => i.classList.contains(songStyles.pickCover));
+      // Dai Dai's chip plus one per song page — the label's own count.
+      expect(chips, slug).toHaveLength(songPageCount);
+      for (const chip of chips) {
+        expect(chip.getAttribute("loading"), `${slug}: still eager`).toBeNull();
+        expect((chip.parentElement as HTMLElement).style.display, `${slug}: the wrapper takes no box`).toBe("contents");
+      }
+      const hints = hinted(root);
+      expect(hints.filter((i) => chips.includes(i)), slug).toEqual([]);
+      // The hero's cover and its backdrop are the page's own images and keep
+      // their hints; nothing else on a song page asks for one.
+      expect(hints.map((i) => i.getAttribute("class")), slug).toHaveLength(2);
+    }
   });
 });

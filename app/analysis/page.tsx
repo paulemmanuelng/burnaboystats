@@ -4,7 +4,7 @@ import KeepExploring from "../components/KeepExploring";
 import BreadcrumbBar from "../components/BreadcrumbBar";
 import MobileAnalysis from "../components/MobileAnalysis";
 import { findings } from "../lib/analysisFindings";
-import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime } from "../lib/seo";
+import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime, BURNA_BOY_REF } from "../lib/seo";
 import { updates } from "../data/updates";
 import { numberWord } from "../lib/homeData";
 import { chartEntryCount, daiDaiChartEntryCount } from "../data/charts";
@@ -39,7 +39,7 @@ export default function AnalysisPage() {
     dateModified: asDateTime(lastReviewed),
     inLanguage: "en",
     isPartOf: { "@type": "WebSite", name: SITE_NAME, url: CANONICAL_ORIGIN },
-    about: { "@type": "MusicGroup", name: "Burna Boy" },
+    about: BURNA_BOY_REF,
     author: { "@type": "Organization", name: SITE_NAME, url: CANONICAL_ORIGIN },
     publisher: { "@type": "Organization", name: SITE_NAME, url: CANONICAL_ORIGIN },
     articleSection: findings.map((f) => f.h),

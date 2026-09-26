@@ -1,4 +1,25 @@
 import comparePairRedirects from "./app/data/comparePairRedirects.json" with { type: "json" };
+import embedWidgetList from "./app/data/embedWidgetList.json" with { type: "json" };
+
+// The embed widgets' slugs, as one alternation for the framing rules in
+// headers(): /embed/<a real widget> exactly, and nothing else under /embed.
+// Generated from app/lib/embedWidgets.ts (scripts/build-embed-list.mjs), not
+// typed, so a widget added there is framable the day it ships. A slug is
+// lower-case words and hyphens; anything else would change what the pattern
+// means, so it stops the build instead.
+//
+// "Exactly" is up to letter case. Next matches every source in this file
+// without regard to case (experimental.caseSensitiveRoutes is off, and turning
+// it on would change every redirect below for mixed-case requests, /Tour
+// included), so /embed/LATEST gets the widget's headers too. The routes are
+// case-sensitive, though, and on its own /embed/LATEST was the site's 404
+// page sent out framable. The rewrites in rewrites() serve it the widget
+// instead, so whatever these rules frame is a widget.
+const embedSlugs = embedWidgetList.map((w) => w.slug);
+if (!embedSlugs.length || embedSlugs.some((s) => !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(s))) {
+  throw new Error(`next.config.mjs: embed slugs must be lower-case words and hyphens, got ${JSON.stringify(embedSlugs)}`);
+}
+const EMBED_SLUG_PATTERN = embedSlugs.join("|");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -23,7 +44,6 @@ const nextConfig = {
     const securityHeaders = [
       { key: "X-Content-Type-Options", value: "nosniff" },
       { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-      { key: "X-Frame-Options", value: "SAMEORIGIN" },
       { key: "X-DNS-Prefetch-Control", value: "on" },
       {
         key: "Permissions-Policy",
@@ -73,8 +93,25 @@ const nextConfig = {
       },
       { key: "Reporting-Endpoints", value: 'csp="/api/csp-report"' },
     ];
+    // The same report-only policy with one directive changed, for the embed
+    // widgets (see their rule below). Derived rather than restated, so the two
+    // cannot drift apart.
+    const siteReportOnly = securityHeaders.find((h) => h.key === "Content-Security-Policy-Report-Only").value;
+    const embedReportOnly = siteReportOnly.replace("frame-ancestors 'self'", "frame-ancestors *");
+    if (embedReportOnly === siteReportOnly) throw new Error("next.config.mjs: the CSP no longer says frame-ancestors 'self'");
     return [
       { source: "/:path*", headers: securityHeaders },
+      // X-Frame-Options: SAMEORIGIN on every path EXCEPT an embed widget,
+      // /embed/<widget> for a slug in the widget list — so /embed itself (the
+      // gallery page), a name that is not a widget (the site's 404 page), and
+      // everything else keep it. A widget exists to be framed on other people's
+      // sites, and there is no X-Frame-Options value that allows that: the only
+      // way to allow it is not to send the header. The widgets' own rule below
+      // sends frame-ancestors * instead.
+      {
+        source: `/:path((?!embed/(?:${EMBED_SLUG_PATTERN})$).*)`,
+        headers: [{ key: "X-Frame-Options", value: "SAMEORIGIN" }],
+      },
       // The API is open data read cross-origin, and its docs recommend a
       // conditional GET (If-None-Match against the ETag). Those request headers
       // are not CORS-safelisted, so a browser preflights them, and the preflight
@@ -87,6 +124,29 @@ const nextConfig = {
         headers: [
           { key: "Access-Control-Allow-Headers", value: "If-None-Match, If-Modified-Since" },
           { key: "Access-Control-Max-Age", value: "86400" },
+        ],
+      },
+      // The embed widgets, /embed/<widget> for the slugs in the widget list
+      // only: framable by any site.
+      //
+      // frame-ancestors * is the ENFORCED half, and the only directive in it,
+      // so it can decide nothing but who may frame the page. The report-only
+      // policy is re-sent with frame-ancestors * as well (a later rule's header
+      // replaces an earlier one's of the same name), because the site-wide one
+      // says 'self', and every embed on another site would otherwise file a
+      // violation report to /api/csp-report. Everything else in it is the
+      // site-wide policy, word for word.
+      //
+      // noindex: a widget is a thin standalone page. indexifembedded lets Google
+      // read it as part of the page that embeds it, which is where it is meant
+      // to be read. Ahead of the non-canonical-host rule below on purpose, so a
+      // preview deployment's widget still says "noindex, nofollow".
+      {
+        source: `/embed/:widget(${EMBED_SLUG_PATTERN})`,
+        headers: [
+          { key: "Content-Security-Policy", value: "frame-ancestors *" },
+          { key: "Content-Security-Policy-Report-Only", value: embedReportOnly },
+          { key: "X-Robots-Tag", value: "noindex, indexifembedded" },
         ],
       },
       // Only burnaboystats.com should ever be indexable. The redirect below
@@ -196,9 +256,20 @@ const nextConfig = {
   // with no redirect. The route handler's own headers answer it, CORS included.
   // Case is kept as typed (no folding), so the slash form of a 404 is the same
   // 404.
+  //
+  // Then one rewrite per embed widget, from the slug to itself. The source
+  // matches in any letter case, like the framing rules in headers(), and the
+  // destination is the slug as written, so /embed/LATEST is served
+  // /embed/latest rather than the 404 page those rules would have framed (see
+  // the note on embedSlugs). A redirect cannot do it: its source would match
+  // its own destination. The lower-case path rewrites to itself, which changes
+  // nothing.
   async rewrites() {
     return {
-      beforeFiles: [{ source: "/:path(api/(?:[^/]+/)*[^/]+)/", destination: "/:path" }],
+      beforeFiles: [
+        { source: "/:path(api/(?:[^/]+/)*[^/]+)/", destination: "/:path" },
+        ...embedSlugs.map((s) => ({ source: `/embed/${s}`, destination: `/embed/${s}` })),
+      ],
     };
   },
 };

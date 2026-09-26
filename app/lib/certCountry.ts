@@ -316,6 +316,17 @@ export function certCountryCodes(): string[] {
     .map(([c]) => c);
 }
 
+/** Every country board as a link, in the picker's order: the list
+ *  /certifications prints beside "Compare with…". Derived like the routes
+ *  themselves, so a new market's page is linked the day it exists. */
+export function countryBoardLinks(): { code: string; name: string; href: string }[] {
+  return certCountryCodes().map((code) => ({
+    code,
+    name: countryMeta(code).name,
+    href: `/compare/in/${countrySlug(code)}`,
+  }));
+}
+
 /** "United Kingdom" -> "united-kingdom". The URL says the country's NAME, not
  *  its ISO code: /compare/in/canada is the thing somebody would type. */
 export const countrySlug = (code: string): string =>
