@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 import { OgLockup } from "../lib/og-lockup";
 import { ogId, cardUrl } from "../lib/og-image";
 import { calendarTiles } from "../lib/onThisDayShare";
-import { OTD_GOLD, ShareUrl, otdFonts } from "../lib/onThisDayImages";
+import { FadedPortrait, OTD_GOLD, PREVIEW_PORTRAIT, ShareUrl, loadPortrait, otdFonts } from "../lib/onThisDayImages";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
@@ -19,7 +19,10 @@ export const generateImageMetadata = () => [
   { id: ogId([...tiles.map((t) => `${t.v}${t.k}`), cardUrl("/on-this-day")].join("|")), alt, size, contentType },
 ];
 
-export default function Image() {
+/** The portrait sits faded in the glow under the lockup, as on the day cards
+ *  (Paul, 26 Sep 2026). */
+export default async function Image() {
+  const portrait = await loadPortrait();
   return new ImageResponse(
     (
       <div
@@ -35,6 +38,7 @@ export default function Image() {
           padding: "56px 64px 52px",
         }}
       >
+        {portrait && <FadedPortrait src={portrait} at={PREVIEW_PORTRAIT} ground="10,10,11" width={size.width} height={size.height} />}
         <div
           style={{
             position: "absolute",

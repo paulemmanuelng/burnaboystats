@@ -91,7 +91,9 @@ export const cardUrl = (path: string) => `BURNABOYSTATS.COM${path.toLowerCase()}
  *
  *   lockup-1       the crown lockup reached every card
  *   on-this-day-1  the On This Day images redrawn (26 Sep 2026): the
- *                  milestone as the hero, covers, the post card's numeral
+ *                  milestone as the hero, covers, the post card's numeral,
+ *                  and the faded portrait (same day, before any of it was
+ *                  live, so the one bump covers it)
  */
 export const OG_ART = "on-this-day-1";
 

@@ -1,6 +1,6 @@
 import { dayBySlug, type OnThisDayDay } from "../../../lib/onThisDay";
 import { dayPostCard } from "../../../lib/onThisDayShare";
-import { postCardImage } from "../../../lib/onThisDayImages";
+import { loadPortrait, postCardImage } from "../../../lib/onThisDayImages";
 import { parsePreviewWidth } from "../../../lib/cardPreview";
 
 // GET /on-this-day/<day>/card → the day's post-ready PNG, 1080×1350 (4:5, the
@@ -32,16 +32,27 @@ const CACHE = "public, max-age=600, s-maxage=3600, stale-while-revalidate=86400"
  * as a stream, that is an empty 200 on the wire. So a render that fails with
  * the cover is drawn again without it: the no-art layout, the numeral at full
  * size. A CDN hiccup costs the picture, never the card.
+ *
+ * The faded portrait (Paul, 26 Sep 2026) is fetched before the render and is
+ * null when the fetch fails (loadPortrait); should Satori still refuse its
+ * bytes, the last attempt draws the card without it.
  */
 async function render(day: OnThisDayDay): Promise<Response> {
   const card = dayPostCard(day);
-  const draw = (c: typeof card) => postCardImage(c).arrayBuffer();
+  const portrait = await loadPortrait();
+  const draw = (c: typeof card, p: string | null) => postCardImage(c, p).arrayBuffer();
   let bytes: ArrayBuffer;
   try {
-    bytes = await draw(card);
+    bytes = await draw(card, portrait);
   } catch (err) {
-    if (!card.cover) throw err;
-    bytes = await draw(dayPostCard(day, { withCover: false }));
+    if (!card.cover && !portrait) throw err;
+    const bare = dayPostCard(day, { withCover: false });
+    try {
+      bytes = await draw(bare, portrait);
+    } catch (again) {
+      if (!portrait) throw again;
+      bytes = await draw(bare, null);
+    }
   }
   return new Response(bytes, { headers: { "Content-Type": "image/png", "Cache-Control": CACHE } });
 }

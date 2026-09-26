@@ -3,7 +3,7 @@ import { OgLockup } from "../../lib/og-lockup";
 import { ogId, cardUrl } from "../../lib/og-image";
 import { dayBySlug, onThisDayDays } from "../../lib/onThisDay";
 import { dayPreview } from "../../lib/onThisDayShare";
-import { OTD_GOLD, ShareMark, ShareUrl, otdFonts } from "../../lib/onThisDayImages";
+import { FadedPortrait, OTD_GOLD, PREVIEW_PORTRAIT, ShareMark, ShareUrl, loadPortrait, otdFonts } from "../../lib/onThisDayImages";
 
 export function generateStaticParams() {
   return onThisDayDays.map((d) => ({ day: d.slug }));
@@ -36,11 +36,14 @@ export async function generateImageMetadata({ params }: { params: Promise<{ day:
  * A day's link preview (design response §2 "Share images"; change list 16):
  * the lead's headline is the hero, stepped by its length; the date moves into
  * the kicker; the record's cover sits beside it when the lead has 640px art;
- * one meta line names the year, the kind and the day's other milestones.
+ * one meta line names the year, the kind and the day's other milestones. The
+ * portrait sits faded in the glow under the lockup (Paul, 26 Sep 2026), on
+ * every day, the cover days too: it is gone by x 800, and the tile ends at 364.
  */
 export default async function Image({ params }: { params: Promise<{ day: string }> }) {
   const { day: slug } = await params;
   const p = previewFor(slug);
+  const portrait = await loadPortrait();
 
   return new ImageResponse(
     (
@@ -57,6 +60,7 @@ export default async function Image({ params }: { params: Promise<{ day: string 
           padding: "56px 64px 52px",
         }}
       >
+        {portrait && <FadedPortrait src={portrait} at={PREVIEW_PORTRAIT} ground="10,10,11" width={size.width} height={size.height} />}
         <div
           style={{
             position: "absolute",

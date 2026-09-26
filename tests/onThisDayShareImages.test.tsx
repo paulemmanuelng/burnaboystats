@@ -1,6 +1,7 @@
 // @vitest-environment node
 import { describe, it, expect, afterEach } from "vitest";
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync, statSync } from "node:fs";
+import { join } from "node:path";
 import { dayBySlug, dayKey, onThisDayDays, onThisDayEvents } from "../app/lib/onThisDay";
 import {
   calendarTiles,
@@ -13,7 +14,8 @@ import {
 } from "../app/lib/onThisDayShare";
 import { OG_ART } from "../app/lib/og-image";
 import { ogFonts } from "../app/lib/og-lockup";
-import { otdFonts } from "../app/lib/onThisDayImages";
+import { CARD_PORTRAIT, PREVIEW_PORTRAIT, otdFonts } from "../app/lib/onThisDayImages";
+import { BURNA_PORTRAIT } from "../app/lib/artistImages";
 import { kernLookupCount } from "../app/lib/unkernedFont";
 import { ImageResponse } from "next/og";
 import sharp from "sharp";
@@ -25,7 +27,10 @@ import { tours, festivals, otherShows, concerts } from "../app/data/tours";
  * response §2 "Share images"; change list 15–18, Paul, 26 Sep 2026): the
  * milestone is the hero of the link preview, the date the identity of the post
  * card, the cover drawn only from 640px art, the source printed only for a
- * publisher, Geist Regular only, and no portrait, watermark or seam.
+ * publisher, Geist Regular only, and no watermark or seam. The portrait item 15
+ * removed is back on these images only, faded into the top right: Paul asked
+ * for it on 26 Sep 2026 ("let's have burna boy picture faded on this part of
+ * the On this day design").
  *
  * The expected values are the real days the design drew — 16 August, 8
  * October, 28 April, 11 July — read off the data, not a rule restated here.
@@ -233,8 +238,44 @@ describe("the drawing", () => {
     expect(FILES.filter((f) => BOLD.test(code(src(f))) || OTHER_FACE.test(code(src(f))))).toEqual([]);
   });
 
-  it("no portrait and no watermark", () => {
-    expect(FILES.filter((f) => PORTRAIT.test(code(src(f))) || WATERMARK.test(code(src(f))))).toEqual([]);
+  it("no watermark", () => {
+    expect(FILES.filter((f) => WATERMARK.test(code(src(f))))).toEqual([]);
+  });
+
+  it("the portrait is on all three images, fetched first and drawn by the one fade (Paul, 26 Sep 2026)", () => {
+    const lib = code(src("app/lib/onThisDayImages.tsx"));
+    expect(lib).toMatch(PORTRAIT);
+    expect(lib).toContain("<FadedPortrait src={portrait} at={CARD_PORTRAIT}");
+    for (const f of ["app/on-this-day/[day]/opengraph-image.tsx", "app/on-this-day/opengraph-image.tsx"]) {
+      expect(code(src(f)), f).toContain("await loadPortrait()");
+      expect(code(src(f)), f).toContain("<FadedPortrait src={portrait} at={PREVIEW_PORTRAIT}");
+    }
+    expect(code(src("app/on-this-day/[day]/card/route.ts"))).toContain("await loadPortrait()");
+  });
+
+  /** Every .ts/.tsx file under app/. */
+  const walk = (dir: string): string[] =>
+    readdirSync(dir).flatMap((e) => {
+      const p = join(dir, e);
+      return statSync(p).isDirectory() ? walk(p) : /\.tsx?$/.test(e) ? [p] : [];
+    });
+  const OTD = ["app/lib/onThisDayImages.tsx", "app/on-this-day/[day]/opengraph-image.tsx", "app/on-this-day/opengraph-image.tsx", "app/on-this-day/[day]/card/route.ts"];
+  const FADE = /FadedPortrait|loadPortrait|CARD_PORTRAIT|PREVIEW_PORTRAIT/;
+
+  it("and on no other card or preview: the fade is drawn only by the On This Day images", () => {
+    expect(walk("app").filter((f) => FADE.test(code(src(f)))).sort()).toEqual([...OTD].sort());
+  });
+
+  it("no other share image gains the photo: the image routes that draw it are the ones that did before", () => {
+    // /stat-card draws the stat card, whose own portrait predates this
+    // (lib/statCardImage.tsx) and which does not take the On This Day fade;
+    // the Afrobeats Board card draws Burna Boy as one of its artists.
+    const image = (f: string) => /(opengraph-image|twitter-image)\.tsx$|[\\/]route\.tsx?$/.test(f);
+    const drawsPhoto = (f: string) => PORTRAIT.test(code(src(f))) || FADE.test(code(src(f))) || /statCardImage\(/.test(code(src(f)));
+    expect(walk("app").filter((f) => image(f) && drawsPhoto(f)).sort()).toEqual(
+      ["app/afrobeats/opengraph-image.tsx", "app/on-this-day/[day]/card/route.ts", "app/on-this-day/[day]/opengraph-image.tsx", "app/on-this-day/opengraph-image.tsx", "app/stat-card/route.ts"].sort(),
+    );
+    expect(code(src("app/lib/statCardImage.tsx"))).not.toMatch(/onThisDayImages|FadedPortrait/);
   });
 
   it("the post card carries the crown lockup, with the fonts it is set in", () => {
@@ -440,5 +481,144 @@ describe("ruling 8: the post card's headline breaks into the lines the artboard 
 
   it("16 August: three lines, as drawn", async () => {
     expect(await headlineLines("16-august")).toBe(3);
+  }, 60000);
+});
+
+describe("the portrait, faded into the top right (Paul, 26 Sep 2026)", () => {
+  const realFetch = globalThis.fetch;
+  afterEach(() => {
+    globalThis.fetch = realFetch;
+  });
+
+  const solid = (hex: string) => sharp({ create: { width: 640, height: 640, channels: 3, background: hex } }).png().toBuffer();
+
+  /**
+   * No network. The portrait answers pure green — nothing on these images is
+   * green, so a green cast is the photo showing through — or fails outright.
+   * Any cover answers pure blue.
+   */
+  async function serve(portrait: "green" | "down") {
+    const [green, blue] = await Promise.all([solid("#00ff00"), solid("#0000ff")]);
+    let asked = 0;
+    globalThis.fetch = (async (input: RequestInfo | URL, init?: RequestInit) => {
+      const url = String(input instanceof Request ? input.url : input);
+      if (url === BURNA_PORTRAIT) {
+        asked++;
+        if (portrait === "down") throw new Error("SIMULATED CDN OUTAGE");
+        return new Response(new Uint8Array(green), { headers: { "Content-Type": "image/png" } });
+      }
+      if (url.includes("i.scdn.co")) return new Response(new Uint8Array(blue), { headers: { "Content-Type": "image/png" } });
+      return realFetch(input as never, init as never);
+    }) as typeof fetch;
+    return () => asked;
+  }
+
+  /** Photo pixels in a box: those with a green cast and little blue. Every
+   *  ground here is warm or neutral (red ≥ green), and the one green thing
+   *  drawn — the crown's dot, #3ed17f — carries more blue than half its green,
+   *  so the count is 0 wherever the photo is not. */
+  async function photo(res: Response) {
+    const { data, info } = await sharp(Buffer.from(await res.arrayBuffer())).raw().toBuffer({ resolveWithObject: true });
+    return {
+      size: { w: info.width, h: info.height },
+      in(x0: number, y0: number, x1: number, y1: number) {
+        let n = 0;
+        for (let y = y0; y < y1; y++)
+          for (let x = x0; x < x1; x++) {
+            const i = (y * info.width + x) * info.channels;
+            if (data[i + 1] > data[i] + 6 && data[i + 2] * 2 < data[i + 1]) n++;
+          }
+        return n;
+      },
+    };
+  }
+
+  const card = async (slug: string) => {
+    const { GET } = await import("../app/on-this-day/[day]/card/route");
+    return GET(new Request(`http://x/on-this-day/${slug}/card`), { params: Promise.resolve({ day: slug }) });
+  };
+  const preview = async (slug: string) => {
+    const og = await import("../app/on-this-day/[day]/opengraph-image");
+    return (await og.default({ params: Promise.resolve({ day: slug }) })) as Response;
+  };
+  const calendar = async () => {
+    const cal = await import("../app/on-this-day/opengraph-image");
+    return (await cal.default()) as Response;
+  };
+
+  it("the post card: in the top right, and gone before the top line, the cover, the numeral and the headline", async () => {
+    await serve("green");
+    // 8 October has no cover; 16 August has one, and the numeral beside it.
+    for (const slug of ["8-october", "16-august"]) {
+      const p = await photo(await card(slug));
+      expect(p.in(600, 120, 1080, 400), `${slug}: no photo in the top right`).toBeGreaterThan(20000);
+      // ON THIS DAY sits on 93–119: the band is solid down to 119.
+      expect(p.in(0, 0, 1080, 120), `${slug}: photo under the top line`).toBe(0);
+      // The floor is solid from 385 — the highest ink right of x 600 on any
+      // day is 16 August's numeral, at 412.
+      expect(p.in(0, 385, 1080, 1350), `${slug}: photo under the numeral or the headline`).toBe(0);
+      // The cover ends at x 504, the numeral's column starts at 548.
+      expect(p.in(0, 0, 600, 1350), `${slug}: photo beside the cover`).toBe(0);
+    }
+  }, 60000);
+
+  it("the link previews: in the glow under the lockup, gone before the top line and the headline", async () => {
+    await serve("green");
+    for (const [name, res] of [
+      ["16 August (a cover day)", () => preview("16-august")],
+      ["8 October", () => preview("8-october")],
+      ["the calendar", calendar],
+    ] as const) {
+      const p = await photo(await res());
+      expect(p.in(820, 100, 1200, 215), `${name}: no photo under the lockup`).toBeGreaterThan(5000);
+      // The lockup and its tagline sit on 60–95; the band is solid to 100.
+      expect(p.in(0, 0, 1200, 100), `${name}: photo behind the lockup`).toBe(0);
+      // The highest headline starts at 219 (23 January); the floor is solid from 215.
+      expect(p.in(0, 215, 1200, 630), `${name}: photo under the headline`).toBe(0);
+      // The cover tile ends at 364; the kicker's longest date ends by 780.
+      expect(p.in(0, 0, 832, 630), `${name}: photo left of the glow`).toBe(0);
+    }
+  }, 60000);
+
+  it("placements: every scrim that meets a photo edge on the image is solid there", () => {
+    // The photo's square is never drawn: its left edge is under a scrim at
+    // alpha 1, and its foot is below a solid floor.
+    for (const [name, at, w, h] of [["card", CARD_PORTRAIT, 1080, 1350], ["preview", PREVIEW_PORTRAIT, 1200, 630]] as const) {
+      const { left, top, size } = at.photo;
+      expect(left + size, `${name}: the photo bleeds off the right`).toBeGreaterThanOrEqual(w);
+      const leftFade = at.scrims.find((s) => s.angle === 90 && s.left < left)!;
+      const solidTo = leftFade.left + (leftFade.width * Math.max(...leftFade.stops.filter(([, a]) => a === 1).map(([p]) => p))) / 100;
+      expect(solidTo, `${name}: the left fade is solid past the photo's edge`).toBeGreaterThanOrEqual(left);
+      const floor = at.scrims.find((s) => s.angle === 180 && s.top > 100)!;
+      expect(floor.top + floor.height, `${name}: the floor reaches past the photo's foot`).toBeGreaterThanOrEqual(Math.min(top + size, h));
+      expect(floor.stops.at(-1)![1]).toBe(1);
+    }
+  });
+
+  it("a portrait that cannot be fetched costs the portrait, not the image", async () => {
+    const asked = await serve("down");
+    const c = await card("16-august");
+    expect(c.status).toBe(200);
+    const p = await photo(c);
+    expect(p.size).toEqual({ w: 1080, h: 1350 });
+    expect(p.in(0, 0, 1080, 1350)).toBe(0);
+    for (const res of [await preview("8-october"), await calendar()]) {
+      const q = await photo(res);
+      expect(q.size).toEqual({ w: 1200, h: 630 });
+      expect(q.in(0, 0, 1200, 630)).toBe(0);
+    }
+    expect(asked(), "the portrait was never fetched — this test proved nothing").toBeGreaterThanOrEqual(3);
+  }, 60000);
+
+  it("a negative control: the post card the branch shipped before (79faa5ed) has no photo pixel anywhere", async () => {
+    // Drawn without a portrait the images are the shipped drawings, byte for
+    // byte (checked 26 Sep 2026 against renders from 79faa5ed: the post cards
+    // and link previews of 16 August, 8 October and 28 April, 11 July's card
+    // and the calendar's preview). The same count that finds the photo above
+    // finds nothing on them, so it is not counting the images' own tones.
+    await serve("down");
+    for (const slug of ["8-october", "16-august"]) {
+      expect((await photo(await card(slug))).in(0, 0, 1080, 1350), slug).toBe(0);
+    }
   }, 60000);
 });

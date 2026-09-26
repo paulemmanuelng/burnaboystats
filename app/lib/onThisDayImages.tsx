@@ -3,6 +3,7 @@ import { OgLockup, ogFonts } from "./og-lockup";
 import { KIND_MARK, type OnThisDayKind } from "./onThisDayKinds";
 import { CARD_SIZE } from "./cardPreview";
 import { withoutKerning } from "./unkernedFont";
+import { BURNA_PORTRAIT } from "./artistImages";
 import type { DayPostCard } from "./onThisDayShare";
 
 /**
@@ -74,8 +75,175 @@ export function ShareUrl({ url, fontSize, color, tracking }: { url: string; font
   return <div style={{ display: "flex", fontSize, color, letterSpacing: tracking, whiteSpace: "nowrap" }}>{url}</div>;
 }
 
+// ── The portrait ────────────────────────────────────────────────────────────
+
+/**
+ * Burna Boy's portrait, faded into the top right of the On This Day images.
+ * Paul, 26 Sep 2026: "let's have burna boy picture faded on this part of the
+ * On this day design", pointing at the post card's empty top right (around ON
+ * THIS DAY, and to the right of the numeral) and at the link preview's glow
+ * around the crown lockup. It overrides change list 15 ("the portrait …
+ * removed") on these images only: no other card or preview gains it
+ * (tests/onThisDayShareImages.test.tsx).
+ *
+ * Atmosphere, not a second subject: the site's own photo (lib/artistImages.ts)
+ * at about a third of its strength, the face clear and all around it dissolved
+ * into the ground. The fade is the stat card's (lib/statCardImage.tsx): scrims
+ * of the image's own ground laid over the photo, each solid BEFORE the photo's
+ * edge, so the photo's square is never drawn. They are linear because Satori's
+ * radial gradients cannot fade IN: one that runs from clear to solid paints its
+ * last colour over its whole box (measured 26 Sep 2026). Two of the scrims
+ * keep the type clean — a band under the top line (ON THIS DAY, the lockup)
+ * and a floor above everything the numeral and the headline can reach.
+ */
+
+/**
+ * The portrait as a data URL, or null — and the image is drawn without it.
+ *
+ * Fetched before the render rather than handed to Satori as a URL: a THROWN
+ * fetch inside Satori rejects the whole image (the card route's note), and the
+ * link previews have no second attempt. So a Spotify CDN outage, or a stall
+ * past five seconds, costs the portrait, never the image.
+ */
+export async function loadPortrait(): Promise<string | null> {
+  try {
+    const res = await fetch(BURNA_PORTRAIT, { signal: AbortSignal.timeout(5000) });
+    const type = res.headers.get("content-type") ?? "";
+    if (!res.ok || !type.startsWith("image/")) return null;
+    return `data:${type};base64,${Buffer.from(await res.arrayBuffer()).toString("base64")}`;
+  } catch {
+    return null;
+  }
+}
+
+/** One scrim: a box, and the ground's alpha at stops along one direction. */
+interface Scrim {
+  left: number;
+  top: number;
+  width: number;
+  height: number;
+  /** CSS degrees: 90 runs left → right, 180 top → bottom. */
+  angle: number;
+  /** [position in %, alpha] */
+  stops: [number, number][];
+}
+
+export interface PortraitPlacement {
+  /** The photo's square, in the image's px. */
+  photo: { left: number; top: number; size: number };
+  /** How much of the photo shows before any scrim. */
+  opacity: number;
+  scrims: Scrim[];
+}
+
+/** The photo and its scrims in `ground` ("r,g,b"). Drawn under the image's
+ *  glow and light, so they fall on the photo as they fall on the ground. */
+export function FadedPortrait({
+  src,
+  at,
+  ground,
+  width,
+  height,
+}: {
+  src: string;
+  at: PortraitPlacement;
+  ground: string;
+  width: number;
+  height: number;
+}) {
+  const { left, top, size } = at.photo;
+  return (
+    <div style={{ position: "absolute", top: 0, left: 0, width, height, display: "flex" }}>
+      {/* eslint-disable-next-line @next/next/no-img-element -- satori draws its own tree; next/image cannot run inside an ImageResponse. */}
+      <img
+        src={src}
+        width={size}
+        height={size}
+        alt=""
+        style={{ position: "absolute", left, top, width: size, height: size, opacity: at.opacity }}
+      />
+      {at.scrims.map((s, i) => (
+        <div
+          key={i}
+          style={{
+            position: "absolute",
+            display: "flex",
+            left: s.left,
+            top: s.top,
+            width: s.width,
+            height: s.height,
+            background: `linear-gradient(${s.angle}deg, ${s.stops.map(([p, a]) => `rgba(${ground},${a}) ${p}%`).join(", ")})`,
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
+/**
+ * The link previews' portrait (1200×630, a day's and the calendar's): the
+ * face under the lockup, in the glow. The band under the top line keeps the
+ * lockup and its tagline (60–95) on the ground they had. The floor is solid
+ * from 215, above the highest any day's headline starts — 23 January's, at
+ * 219, of the 161 read on 26 Sep 2026 — and the left fade is solid to the
+ * photo's edge at x 832, far right of the cover tile (x 64–364) and of the
+ * kicker's longest date (the 780 cap). At 400px the face fits the window
+ * between the two: the glasses, the nose and the mouth.
+ */
+export const PREVIEW_PORTRAIT: PortraitPlacement = {
+  photo: { left: 832, top: 22, size: 400 },
+  opacity: 0.38,
+  scrims: [
+    // The band under the top line: solid to 100, clear by 140.
+    { left: 700, top: 0, width: 500, height: 140, angle: 180, stops: [[0, 1], [72, 1], [100, 0]] },
+    // The left fade: solid to the photo's edge (832), clear at 960.
+    { left: 700, top: 0, width: 260, height: 630, angle: 90, stops: [[0, 1], [52, 1], [100, 0]] },
+    // The floor: clear at 168, solid from 215 to the foot.
+    { left: 700, top: 168, width: 500, height: 462, angle: 180, stops: [[0, 0], [10, 1], [100, 1]] },
+    // The photo's grey backdrop at the right edge.
+    { left: 1060, top: 0, width: 140, height: 630, angle: 90, stops: [[0, 0], [100, 0.8]] },
+  ],
+};
+
 // The stat card's face: a warm near-black, lit from the top right.
 const FACE = "linear-gradient(155deg, #1A1410 0%, #0C0A09 55%, #140F0A 100%)";
+/**
+ * The same face in two layers, for a card with the portrait: its darkest tone
+ * (the 55% stop) as the ground the scrims are drawn in, and the rest of its
+ * light laid over the photo. So a scrim's solid edge is the ground's own
+ * colour, and no seam can show where it meets the face. Over a bare ground the
+ * pair composes to FACE exactly: 12 + .25·(68−12) = 26 at the first stop,
+ * 12 + .2·(52−12) = 20 at the last, and likewise in green and blue.
+ */
+const GROUND = "12,10,9";
+const FACE_LIGHT =
+  "linear-gradient(155deg, rgba(68,50,37,0.25) 0%, rgba(68,50,37,0) 55%, rgba(52,35,14,0) 55%, rgba(52,35,14,0.2) 100%)";
+
+/**
+ * The post card's portrait: the top right, bled off the top and the right
+ * edge. The band under the top line keeps ON THIS DAY (93–119) on the ground
+ * it had. The floor is solid from 385, above the highest ink right of x 600 on
+ * any day — 16 August's numeral, at 412, of the 161 read on 26 Sep 2026 — so
+ * the photo never reaches the numeral, the month or the headline. The left
+ * fade is solid to the photo's edge at x 600: clear of the 420px cover (x
+ * 84–504) on a day that has one, and of the numeral's column on a day without.
+ */
+export const CARD_PORTRAIT: PortraitPlacement = {
+  photo: { left: 600, top: -10, size: 600 },
+  opacity: 0.34,
+  scrims: [
+    // The band under the top line: solid to 119, clear by 180.
+    { left: 520, top: 0, width: 560, height: 180, angle: 180, stops: [[0, 1], [66, 1], [100, 0]] },
+    // The left fade: solid to the photo's edge (600), clear at 780.
+    { left: 520, top: -10, width: 260, height: 700, angle: 90, stops: [[0, 1], [32, 1], [100, 0]] },
+    // The floor: clear at 280, solid by 385 and down past the photo's foot.
+    { left: 520, top: 280, width: 560, height: 420, angle: 180, stops: [[0, 0], [25, 1], [100, 1]] },
+    // The photo's grey backdrop at the right edge.
+    { left: 940, top: -10, width: 140, height: 700, angle: 90, stops: [[0, 0], [100, 0.55]] },
+    // The corner between the left fade and the floor, rounded off.
+    { left: 520, top: 150, width: 400, height: 300, angle: 225, stops: [[0, 0], [50, 0], [80, 1], [100, 1]] },
+  ],
+};
 const NUMERAL_GRAD = "linear-gradient(180deg, #ffd24a 0%, #ffb627 52%, #f5890b 100%)";
 
 /**
@@ -86,10 +254,12 @@ const NUMERAL_GRAD = "linear-gradient(180deg, #ffd24a 0%, #ffb627 52%, #f5890b 1
  * 360px when it does not, the month set on its baseline. The milestone is the
  * reading hero, its record sentence under it; the year, the kind and how many
  * more milestones share the day sit on the foot, with the source only when it
- * is a publisher. No portrait, watermark or tone seam: the portrait made
- * every card the same card (change list 15).
+ * is a publisher. No watermark or tone seam (change list 15). The portrait
+ * that list removed is back, faded into the top right (Paul, 26 Sep 2026;
+ * CARD_PORTRAIT above) — `portrait` is loadPortrait()'s data URL, and with
+ * null the card is drawn as it was without one.
  */
-export function postCardImage(card: DayPostCard) {
+export function postCardImage(card: DayPostCard, portrait: string | null = null) {
   const { width, height } = CARD_SIZE;
   const cover = Boolean(card.cover);
   const n = card.numeralSize;
@@ -104,11 +274,17 @@ export function postCardImage(card: DayPostCard) {
           display: "flex",
           flexDirection: "column",
           padding: 84,
-          background: FACE,
+          background: portrait ? `rgb(${GROUND})` : FACE,
           color: INK,
           fontFamily: "sans-serif",
         }}
       >
+        {/* The portrait on the face's ground, then the rest of the face's
+            light over both. */}
+        {portrait && <FadedPortrait src={portrait} at={CARD_PORTRAIT} ground={GROUND} width={width} height={height} />}
+        {portrait && (
+          <div style={{ position: "absolute", top: 0, left: 0, width, height, display: "flex", background: FACE_LIGHT }} />
+        )}
         {/* The gold wash from the top right, then the 2px frame. */}
         <div
           style={{
