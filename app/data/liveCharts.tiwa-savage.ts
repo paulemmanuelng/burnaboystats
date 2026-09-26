@@ -40,10 +40,10 @@
   export const liveChartsUpdated = "2026-09-26";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-26T05:03Z";
+  export const liveChartsBuiltAt = "2026-09-26T11:29Z";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Deezer","Shazam","iTunes"];
+  export const livePlatforms: string[] = ["Shazam","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -56,20 +56,20 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 45,
-            "movement": 4
+            "position": 46,
+            "movement": -1
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 149,
-            "movement": 9
+            "position": 150,
+            "movement": -1
           },
           {
             "country": "ZM",
             "name": "Zambia",
-            "position": 169,
-            "movement": 7
+            "position": 173,
+            "movement": -4
           }
         ]
       }
@@ -87,7 +87,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 32,
+            "position": 54,
             "movement": null,
             "status": "new"
           }
@@ -96,45 +96,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ab78245a891d3dad863b735b8afc1b89/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Energy",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 93,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/d810fadc02c818d3ed7d6af2d6c8d2de/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Once Upon A Time",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 181,
-            "movement": -7
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/556df097d6c975617e593855e293e4e7/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Dorobucci",
@@ -156,6 +117,25 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/70ea3139021b354895903f2ce4da79fd/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Once Upon A Time",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 184,
+            "movement": -7
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/556df097d6c975617e593855e293e4e7/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Who Is Your Guy",
     "platforms": [
       {
@@ -166,7 +146,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 86,
-            "movement": -17
+            "movement": -10
           }
         ]
       }
