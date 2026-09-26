@@ -92,7 +92,6 @@ export default async function Image({ params }: { params: Promise<{ day: string 
 
         <div style={{ position: "relative", flex: 1, display: "flex", alignItems: "center", gap: 48, minHeight: 0 }}>
           {p?.cover && (
-            // eslint-disable-next-line @next/next/no-img-element -- satori draws its own tree; next/image cannot run inside an ImageResponse.
             <img
               src={p.cover}
               width={300}

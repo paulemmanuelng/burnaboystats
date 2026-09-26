@@ -161,7 +161,6 @@ export default async function OnThisDayDayPage({ params }: { params: Promise<{ d
                     (lib/blankPixel.ts). */}
                 <picture>
                   <source media="(max-width: 900px)" srcSet={BLANK_PIXEL} />
-                  {/* eslint-disable-next-line @next/next/no-img-element -- a route-drawn WebP, sized by the route */}
                   <img
                     src={cardPreviewSrc(day.slug, 560)}
                     alt={`The ${day.label} card: ${day.lead.year}, ${day.lead.headline}`}
