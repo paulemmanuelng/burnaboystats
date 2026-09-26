@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-26";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-26T16:27Z";
+  export const liveChartsBuiltAt = "2026-09-26T21:15Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","iTunes"];
@@ -56,14 +56,14 @@
           {
             "country": "CV",
             "name": "Cape Verde",
-            "position": 38,
+            "position": 44,
             "movement": 3
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 50,
-            "movement": -4
+            "position": 52,
+            "movement": -7
           },
           {
             "country": "GM",
@@ -74,8 +74,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 92,
-            "movement": -2
+            "position": 94,
+            "movement": -4
           }
         ]
       },
@@ -84,16 +84,9 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "BT",
-            "name": "Bhutan",
-            "position": 134,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 147,
+            "country": "PG",
+            "name": "Papua New Guinea",
+            "position": 144,
             "movement": null,
             "status": "new"
           }
@@ -126,8 +119,8 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 46,
-            "movement": -6
+            "position": 48,
+            "movement": -7
           }
         ]
       }
@@ -155,6 +148,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/0c76441e9c51769073efdebeb8a77251/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Jabole",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 137,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6e033d86b6e64ad9bf891ade1d78d70f/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Non Living Thing",
     "platforms": [
       {
@@ -164,8 +177,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 126,
-            "movement": 18
+            "position": 142,
+            "movement": -16
           }
         ]
       }
