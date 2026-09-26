@@ -1,0 +1,198 @@
+/* Embed Burna Boy's stats — desktop.
+   The /api page's vocabulary (hero, badges, hairline-grid list, numbered
+   notes), with one row per widget: the live box on the left, its code on the
+   right. Hidden below 900px, where MobileEmbed renders the phone screen. */
+.desktopOnly { display: block; }
+@media (max-width: 900px) { .desktopOnly { display: none; } }
+
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 40px; }
+
+/* ── Hero ───────────────────────────────────────────────────────────────── */
+.heroPad { padding: 44px 40px 0; }
+.kicker {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.h1 {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 82px;
+  line-height: 0.9;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 14px 0 0;
+}
+.lede { font-size: var(--type-lede); line-height: var(--type-lede-lh); color: var(--text-body); max-width: 56ch; margin: 20px 0 0; text-wrap: pretty; }
+.badges { display: flex; gap: 9px; flex-wrap: wrap; margin-top: 22px; }
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 15px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  color: var(--text-body);
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+/* ── Sections ───────────────────────────────────────────────────────────── */
+.sectionPad { padding: 48px 40px 0; }
+.h2 {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 34px;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 0;
+}
+.body { font-size: var(--type-body); line-height: var(--type-body-lh); color: var(--text-body); margin: 12px 0 0; max-width: var(--measure); }
+.body a { color: var(--gold); }
+
+/* ── Theme picker — the themeToggle pill, labelled ─────────────────────── */
+.themeRow { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-top: 22px; }
+.themeLabel {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.seg {
+  display: inline-flex;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg-soft);
+}
+.segOpt {
+  min-width: 76px;
+  min-height: 36px;
+  padding: 0 14px;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  color: var(--text-muted);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+}
+.segOpt:not(:last-child) { border-right: 1px solid var(--border); }
+.segOpt:not(.segOn):hover { background: var(--bg-raised); color: var(--text); }
+.segOpt:focus-visible { outline: 2px solid var(--gold); outline-offset: -2px; }
+.segOn { background: var(--gold-fill); color: var(--ink-on-gold); }
+.themeNote { font-size: var(--type-small); line-height: var(--type-small-lh); color: var(--text-muted); margin: 0; }
+
+/* ── One row per widget ─────────────────────────────────────────────────── */
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 18px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule-soft);
+}
+.row {
+  background: var(--bg);
+  display: grid;
+  grid-template-columns: 404px minmax(0, 1fr);
+}
+/* The box sits in a well, so the reader sees its edge the way a host page
+   will. */
+.preview {
+  background: var(--bg-soft-2);
+  padding: 22px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+.frame { display: block; border: 0; max-width: 100%; }
+.rowBody { padding: 22px 26px 24px; min-width: 0; }
+.rowTop { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+.rowName {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 0;
+}
+.size {
+  margin-left: auto;
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.rowWhat { font-size: var(--type-body); line-height: var(--type-body-lh); color: var(--text-body); margin: 8px 0 0; max-width: var(--measure); }
+.snippet {
+  margin: 14px 0 0;
+  padding: 14px 16px;
+  background: var(--code-bg);
+  border: 1px solid var(--line);
+  font-family: var(--font-mono), monospace;
+  font-size: 12.5px;
+  line-height: 1.65;
+  color: var(--text-body);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.copyBtn {
+  margin-top: 12px;
+  min-height: 38px;
+  padding: 0 16px;
+  border-radius: 999px;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+.copyBtn:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ── Notes ──────────────────────────────────────────────────────────────── */
+.notes { margin-top: 22px; border-top: 1px solid var(--line); list-style: none; padding: 0; }
+.note {
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  gap: 18px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+  align-items: start;
+}
+/* Outlined numeral, as on the API page's caveats. */
+.noteNum {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 19px;
+  color: var(--bg-soft-2);
+  -webkit-text-stroke: 1px var(--gold);
+  line-height: 1.2;
+}
+.noteP { font-size: var(--type-body); line-height: var(--type-body-lh); color: var(--text-body); margin: 0; max-width: var(--measure); }
+.noteP strong { color: var(--text); }
+
+@media (max-width: 1239px) {
+  .h1 { font-size: 60px; }
+}
+
+/* A URL fragment or CSS value inside a note: kept on one line. */
+.code { font-family: var(--font-mono), monospace; font-size: 0.88em; color: var(--text); white-space: nowrap; }

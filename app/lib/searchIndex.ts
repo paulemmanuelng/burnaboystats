@@ -32,6 +32,7 @@ export type SearchDoc = {
 };
 
 import { generatedDocs } from "./searchIndex.generated";
+import embedWidgetList from "../data/embedWidgetList.json";
 import { LIVE_CADENCE } from "./liveChartMeta";
 
 export const searchIndex: SearchDoc[] = [
@@ -415,6 +416,15 @@ export const searchIndex: SearchDoc[] = [
     section: "Site",
     description: "Verified figures free to use with attribution — citations, CSV downloads, API, stat cards.",
     keywords: ["press", "data kit", "cite", "citation", "attribution", "media", "journalists", "csv", "download data", "spreadsheet", "excel"],
+  },
+  {
+    title: "Embed Burna Boy's Stats",
+    path: "/embed",
+    section: "Site",
+    // Named from the widget list (generated from app/lib/embedWidgets.ts,
+    // which imports the datasets this file must not).
+    description: `Live stat boxes for your own site — ${embedWidgetList.slice(0, -1).map((w) => w.phrase).join(", ")} and ${embedWidgetList.at(-1)?.phrase}.`,
+    keywords: ["embed", "widget", "iframe", "live stats", "blog", "fan page", "website", "html", "snippet", "badge"],
   },
   {
     title: "About Burna Boy",

@@ -176,14 +176,34 @@ describe("the enforced security headers survive an edit to next.config.mjs", () 
   // enforced, the switch is the only thing that changed: an enforcing policy
   // must never ship still carrying script-src 'unsafe-inline', because that is
   // the directive the whole exercise exists to remove.
+  //
+  // An enforcing policy may be written as an array joined with "; " (how the
+  // report-only one is written) or as one string. The embed widgets' is the
+  // second: "frame-ancestors *" alone, which lets other sites frame
+  // /embed/<widget> and decides nothing else. Both shapes are read here, so a
+  // one-string policy cannot slip 'unsafe-inline' past this check.
   it("does not enforce a CSP that still allows inline script", () => {
-    const enforcing = /key:\s*["']Content-Security-Policy["']/.test(CONFIG);
-    if (!enforcing) return;
-    const policy = /key:\s*["']Content-Security-Policy["'][\s\S]*?value:\s*\[([\s\S]*?)\]\.join/.exec(CONFIG);
-    expect(policy, "the CSP is enforcing but this check cannot read it").toBeTruthy();
-    expect(
-      /script-src[^"]*'unsafe-inline'/.test(policy![1]),
-      "the CSP was switched to enforcing while script-src still allows 'unsafe-inline' — add nonces first, that is the work enforcement was waiting on"
-    ).toBe(false);
+    const enforced = [
+      ...CONFIG.matchAll(/key:\s*["']Content-Security-Policy["'],\s*value:\s*(?:\[([\s\S]*?)\]\.join|"([^"]*)")/g),
+    ];
+    const keys = CONFIG.match(/key:\s*["']Content-Security-Policy["']/g) ?? [];
+    expect(enforced.length, "the CSP is enforcing but this check cannot read it").toBe(keys.length);
+    for (const m of enforced) {
+      expect(
+        /script-src[^"]*'unsafe-inline'/.test(m[1] ?? m[2]),
+        "the CSP was switched to enforcing while script-src still allows 'unsafe-inline' — add nonces first, that is the work enforcement was waiting on"
+      ).toBe(false);
+    }
+  });
+
+  it("negative control: reads a one-string enforcing policy that allows inline script", () => {
+    const shipped = `{ key: "Content-Security-Policy", value: "frame-ancestors *" },`;
+    const bad = shipped.replace("frame-ancestors *", "script-src 'self' 'unsafe-inline'");
+    const read = (src: string) =>
+      [...src.matchAll(/key:\s*["']Content-Security-Policy["'],\s*value:\s*(?:\[([\s\S]*?)\]\.join|"([^"]*)")/g)].map(
+        (m) => /script-src[^"]*'unsafe-inline'/.test(m[1] ?? m[2]),
+      );
+    expect(read(shipped)).toEqual([false]);
+    expect(read(bad)).toEqual([true]);
   });
 });

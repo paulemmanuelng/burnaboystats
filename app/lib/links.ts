@@ -90,6 +90,7 @@ export const footerColumns: { label: string; links: { href: string; label: strin
       { href: "/api", label: "Open data API" },
       { href: "/search", label: "Search" },
       { href: "/share", label: "Stat Cards" },
+      { href: "/embed", label: "Embed stats" },
       { href: "/faq", label: "FAQ" },
       { href: "/contact", label: "Contact" },
     ],
@@ -128,6 +129,9 @@ export const exploreFor: Record<string, string[]> = {
   "/records/africas-biggest": ["afrobeats", "certifications", "charts"],
   "/analysis/spotify-unmerge": ["analysis", "by-the-numbers", "methodology"],
   "/share": ["dai-dai", "certifications", "records"],
+  // Someone who came to put a box on their site: the other two ways to take
+  // the numbers away, and the page that quotes them all.
+  "/embed": ["share", "api", "by-the-numbers"],
   // The board is the one section about other artists. Every way out of it leads
   // back to the subject of the site — a reader who arrived on "wizkid
   // certifications" should land somewhere that is Burna Boy's record.
@@ -158,6 +162,25 @@ export const DEFAULT_FOOTER: FooterVariant = {
 };
 
 export const footerFor: Record<string, FooterVariant> = {
+  // The press kit's footer swaps its own link (the default's "Press kit") for
+  // the embed page, the kit's live-box sibling; a sixth link wrapped the row.
+  "/press": {
+    links: [
+      { href: "/music", label: "Music" },
+      { href: "/records", label: "Records" },
+      { href: "/live-charts", label: "Live Charts" },
+      { href: "/api", label: "Open data API" },
+      { href: "/embed", label: "Embed stats" },
+    ],
+  },
+  "/embed": {
+    links: [
+      { href: "/press", label: "Press kit" },
+      { href: "/api", label: "Open data API" },
+      { href: "/share", label: "Stat Cards" },
+      { href: "/methodology", label: "Methodology" },
+    ],
+  },
   "/certifications": {
     note: "Certification data is read from each issuing body.",
     links: [

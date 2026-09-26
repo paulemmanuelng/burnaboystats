@@ -43,6 +43,9 @@ export const BACK_BAR_ROUTES = new Set<string>([
   "/methodology",
   "/api",
   "/share",
+  // Keeps the five-tab bar: four snippets to copy, so no single action for a
+  // bottom bar to carry. Not an ACTION_BAR route.
+  "/embed",
   "/dai-dai",
 ]);
 
