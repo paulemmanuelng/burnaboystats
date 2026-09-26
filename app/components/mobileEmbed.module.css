@@ -1,0 +1,189 @@
+/* /embed on a phone. The API screen's grammar (mobileApi.module.css): back
+   bar, hero, blocks separated by hairlines. Shown only below the mobile
+   breakpoint; the desktop page is its own layout.
+
+   This screen keeps the five-tab bar, so /embed is in BACK_BAR_ROUTES but not
+   ACTION_BAR_ROUTES. */
+.screen { display: none; }
+
+@media (max-width: 900px) {
+  .screen {
+    display: flex;
+    flex-direction: column;
+    background: var(--bg);
+    min-height: 100%;
+  }
+}
+
+/* ── Back bar ─────────────────────────────────────────────────────────── */
+.backBar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: var(--scrim);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+  padding: 12px 18px;
+  padding-top: calc(12px + env(safe-area-inset-top, 0px));
+  padding-left: calc(18px + env(safe-area-inset-left, 0px));
+  padding-right: calc(18px + env(safe-area-inset-right, 0px));
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.backBtn {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  color: var(--text);
+  flex: none;
+}
+.backLabel {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+}
+
+/* ── Hero ─────────────────────────────────────────────────────────────── */
+.hero { padding: 22px 18px 18px; }
+.kicker {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.title {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 46px;
+  line-height: 0.94;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 11px 0 0;
+}
+/* The API screen's display ramp, for the one gold word. */
+.gold {
+  background: linear-gradient(180deg, var(--display-ramp-a), var(--display-ramp-b) 45%, var(--display-ramp-c));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  padding: 0.2em 0;
+  margin: -0.2em 0;
+}
+.lede { font-size: var(--type-lede); line-height: var(--type-lede-lh); color: var(--text-body); margin: 12px 0 0; }
+
+/* ── Theme picker — the sheet's full-width appearance control ─────────── */
+.themeBlock { border-top: 1px solid var(--line); padding: 16px 18px 18px; }
+.themeLabel {
+  display: block;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+.seg {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg-soft);
+}
+.segOpt {
+  flex: 1;
+  min-height: 44px;
+  padding: 0 10px;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  color: var(--text-muted);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+}
+.segOpt:not(:last-child) { border-right: 1px solid var(--border); }
+.segOpt:focus-visible { outline: 2px solid var(--gold); outline-offset: -2px; }
+.segOn { background: var(--gold-fill); color: var(--ink-on-gold); }
+.themeNote { font-size: var(--type-small); line-height: var(--type-small-lh); color: var(--text-muted); margin: 10px 0 0; }
+
+/* ── One block per widget ─────────────────────────────────────────────── */
+.block { border-top: 1px solid var(--line); padding: 20px 18px 22px; }
+.blockTop { display: flex; align-items: baseline; gap: 10px; }
+.blockTitle {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 20px;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 0;
+}
+.size { margin-left: auto; font-family: var(--font-mono), monospace; font-size: var(--type-label); color: var(--text-muted); white-space: nowrap; }
+.what { font-size: var(--type-body); line-height: var(--type-body-lh); color: var(--text-body); margin: 8px 0 14px; }
+/* The column's width, up to the widest the box is drawn for. */
+.frame { display: block; width: 100%; max-width: 400px; border: 0; }
+.codeBox {
+  margin: 14px 0 0;
+  padding: 13px 14px;
+  border-radius: 8px;
+  background: var(--code-bg);
+  border: 1px solid var(--line);
+  font-family: var(--font-mono), monospace;
+  font-size: 11.5px;
+  line-height: 1.6;
+  color: var(--text-body);
+  /* Wrapped rather than scrolled — at 390 a one-line iframe tag ran off the
+     box with no sign it scrolled (the API screen's attribution note). */
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+/* The API screen's small copy pill, full width here: it is the action of the
+   block, and the phone's floor for a pill control is 44px. */
+.copyBtn {
+  margin-top: 12px;
+  width: 100%;
+  min-height: 44px;
+  padding: 0 13px;
+  border-radius: 999px;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+@media (hover: hover) {
+  .copyBtn:hover { border-color: var(--gold); color: var(--gold); }
+}
+
+/* ── Notes ────────────────────────────────────────────────────────────── */
+.notes { border-top: 1px solid var(--line); padding: 20px 18px 8px; }
+.note { font-size: var(--type-body); line-height: var(--type-body-lh); color: var(--text-body); margin: 12px 0 0; }
+.noteLead { color: var(--text); font-weight: 700; }
+/* Gold + underline: an unmarked link in body prose is not a link on a touch
+   screen (the API screen's licence links). */
+.link { color: var(--gold); text-decoration: underline; text-underline-offset: 2px; }
+
+/* Clears the five-tab bar. */
+.spacer { height: 96px; }
+
+/* A URL fragment or CSS value inside a note: kept on one line. */
+.code { font-family: var(--font-mono), monospace; font-size: 0.88em; color: var(--text); white-space: nowrap; }

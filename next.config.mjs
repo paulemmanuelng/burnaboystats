@@ -23,7 +23,6 @@ const nextConfig = {
     const securityHeaders = [
       { key: "X-Content-Type-Options", value: "nosniff" },
       { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-      { key: "X-Frame-Options", value: "SAMEORIGIN" },
       { key: "X-DNS-Prefetch-Control", value: "on" },
       {
         key: "Permissions-Policy",
@@ -73,8 +72,21 @@ const nextConfig = {
       },
       { key: "Reporting-Endpoints", value: 'csp="/api/csp-report"' },
     ];
+    // The same report-only policy with one directive changed, for the embed
+    // widgets (see their rule below). Derived rather than restated, so the two
+    // cannot drift apart.
+    const siteReportOnly = securityHeaders.find((h) => h.key === "Content-Security-Policy-Report-Only").value;
+    const embedReportOnly = siteReportOnly.replace("frame-ancestors 'self'", "frame-ancestors *");
+    if (embedReportOnly === siteReportOnly) throw new Error("next.config.mjs: the CSP no longer says frame-ancestors 'self'");
     return [
       { source: "/:path*", headers: securityHeaders },
+      // X-Frame-Options: SAMEORIGIN on every path EXCEPT an embed widget,
+      // /embed/<widget> — one segment after /embed, so /embed itself (the
+      // gallery page) and everything else keep it. A widget exists to be framed
+      // on other people's sites, and there is no X-Frame-Options value that
+      // allows that: the only way to allow it is not to send the header. The
+      // widgets' own rule below sends frame-ancestors * instead.
+      { source: "/:path((?!embed/[^/]+$).*)", headers: [{ key: "X-Frame-Options", value: "SAMEORIGIN" }] },
       // The API is open data read cross-origin, and its docs recommend a
       // conditional GET (If-None-Match against the ETag). Those request headers
       // are not CORS-safelisted, so a browser preflights them, and the preflight
@@ -87,6 +99,28 @@ const nextConfig = {
         headers: [
           { key: "Access-Control-Allow-Headers", value: "If-None-Match, If-Modified-Since" },
           { key: "Access-Control-Max-Age", value: "86400" },
+        ],
+      },
+      // The embed widgets, /embed/<widget>: framable by any site.
+      //
+      // frame-ancestors * is the ENFORCED half, and the only directive in it,
+      // so it can decide nothing but who may frame the page. The report-only
+      // policy is re-sent with frame-ancestors * as well (a later rule's header
+      // replaces an earlier one's of the same name), because the site-wide one
+      // says 'self', and every embed on another site would otherwise file a
+      // violation report to /api/csp-report. Everything else in it is the
+      // site-wide policy, word for word.
+      //
+      // noindex: a widget is a thin standalone page. indexifembedded lets Google
+      // read it as part of the page that embeds it, which is where it is meant
+      // to be read. Ahead of the non-canonical-host rule below on purpose, so a
+      // preview deployment's widget still says "noindex, nofollow".
+      {
+        source: "/embed/:widget",
+        headers: [
+          { key: "Content-Security-Policy", value: "frame-ancestors *" },
+          { key: "Content-Security-Policy-Report-Only", value: embedReportOnly },
+          { key: "X-Robots-Tag", value: "noindex, indexifembedded" },
         ],
       },
       // Only burnaboystats.com should ever be indexable. The redirect below

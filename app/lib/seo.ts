@@ -223,6 +223,7 @@ export const SEGMENT_LABELS: Record<string, string> = {
   faq: "FAQ",
   curator: "About the Curator",
   press: "Press & Data Kit",
+  embed: "Embed Stats",
   analysis: "Analysis",
   "live-charts": "Live Charts",
   api: "Open Data API",

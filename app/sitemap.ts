@@ -238,6 +238,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/methodology", priority: 0.6, changeFrequency: "monthly" },
     { path: "/curator", priority: 0.5, changeFrequency: "monthly" },
     { path: "/press", priority: 0.6, changeFrequency: "monthly" },
+    { path: "/embed", priority: 0.6, changeFrequency: "monthly" },
     { path: "/about", priority: 0.5, changeFrequency: "monthly" },
     { path: "/contact", priority: 0.4, changeFrequency: "monthly" },
   ];

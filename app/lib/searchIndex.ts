@@ -417,6 +417,13 @@ export const searchIndex: SearchDoc[] = [
     keywords: ["press", "data kit", "cite", "citation", "attribution", "media", "journalists", "csv", "download data", "spreadsheet", "excel"],
   },
   {
+    title: "Embed Burna Boy's Stats",
+    path: "/embed",
+    section: "Site",
+    description: "Live stat boxes for your own site — career streams, certifications, Dai Dai and the latest milestone.",
+    keywords: ["embed", "widget", "iframe", "live stats", "blog", "fan page", "website", "html", "snippet", "badge"],
+  },
+  {
     title: "About Burna Boy",
     path: "/about",
     section: "Site",
