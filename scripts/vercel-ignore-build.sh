@@ -13,9 +13,14 @@
 [ -z "$VERCEL_GIT_PREVIOUS_SHA" ] && exit 1
 # A shallow clone may not hold the previous deploy's commit: build.
 git cat-file -e "$VERCEL_GIT_PREVIOUS_SHA^{commit}" 2>/dev/null || exit 1
+#
+# scripts/plaque-radar is a private tool run by hand on this machine; nothing
+# the site builds imports it. Its merge #341 (14 files there, one test) still
+# deployed production cold, since only root-level *.md was excluded.
 if git diff --quiet "$VERCEL_GIT_PREVIOUS_SHA" "$VERCEL_GIT_COMMIT_SHA" -- . \
-  ':(exclude)docs' ':(exclude)tests' ':(exclude).github' ':(exclude,glob)*.md'; then
-  echo "Only docs, tests, CI config or root markdown changed since the last production deploy: skipping the build."
+  ':(exclude)docs' ':(exclude)tests' ':(exclude).github' ':(exclude,glob)*.md' \
+  ':(exclude)scripts/plaque-radar'; then
+  echo "Only docs, tests, CI config, root markdown or the plaque radar changed since the last production deploy: skipping the build."
   exit 0
 fi
 exit 1

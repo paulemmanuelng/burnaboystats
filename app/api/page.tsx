@@ -303,8 +303,8 @@ export default function ApiPage() {
               <p className={styles.blockMuted}>
                 If you publish something built on it, a link back is genuinely appreciated.
                 How each figure is verified is set out on the{" "}
-                <Link href="/methodology">methodology page</Link>, and every change is
-                logged on the <Link href="/updates">updates feed</Link>.
+                <Link href="/methodology">methodology page</Link>, and every change to
+                Burna Boy&apos;s figures is logged on the <Link href="/updates">updates feed</Link>.
               </p>
             </div>
 

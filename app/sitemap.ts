@@ -65,6 +65,16 @@ const feedDate = (path: string | undefined): string | undefined =>
 /** Board artists with a published sweep — the only ones that get pages. */
 const sweptArtists = afrobeatsArtists.filter((a) => a.swept);
 
+// A country board changes when any artist certified THERE is re-read — not
+// when the roster is, so a sweep of an artist with no Canadian plaque does not
+// restamp Canada.
+const countryBoardStamps: Record<string, string> = Object.fromEntries(
+  certCountryCodes().map((code) => [
+    `/compare/in/${countrySlug(code)}`,
+    priceCountry(code).lines.map((l) => l.artist.verifiedOn).sort().at(-1)!,
+  ]),
+);
+
 /**
  * Dates read from the data a route actually renders, for routes the feed
  * cannot describe.
@@ -97,8 +107,12 @@ const sweptArtists = afrobeatsArtists.filter((a) => a.swept);
  * THE FEED PAGE ITSELF. /updates renders every entry in the log, so the newest
  * entry is literally the newest thing on it.
  *
- * The later of feed and stamp always wins, so a genuine feed entry about any of
- * these still counts.
+ * The later of feed and stamp always wins. Since 26 Sep 2026 (PR #340) the
+ * feed carries Burna Boy's own stories only, so no feed entry can raise a
+ * board artist's route: their stamp is verifiedOn alone, and a plaque added to
+ * a board artist has to move verifiedOn with it (tests/afrobeats.test.ts). The
+ * removal of those entries is what took /afrobeats/rema back to 23 Sep while
+ * its page showed a plaque of the 25th.
  */
 const contentStamp: Record<string, string> = {
   // The minute the board was rebuilt, not its day: the day read as noon ran
@@ -122,15 +136,11 @@ const contentStamp: Record<string, string> = {
   ...Object.fromEntries(
     allPairs().map(([a, b]) => [`/compare/${pairSlug(a, b)}`, [a.verifiedOn, b.verifiedOn].sort().at(-1)!]),
   ),
-  // A country board changes when any artist certified THERE is re-read — not
-  // when the roster is, so a sweep of an artist with no Canadian plaque does
-  // not restamp Canada.
-  ...Object.fromEntries(
-    certCountryCodes().map((code) => [
-      `/compare/in/${countrySlug(code)}`,
-      priceCountry(code).lines.map((l) => l.artist.verifiedOn).sort().at(-1)!,
-    ]),
-  ),
+  ...countryBoardStamps,
+  // The index of those boards prints every market's artists, plaques and
+  // units, so it changed when the newest of them did. With no stamp it fell
+  // back to the feed alone and said 23 Sep while it printed 25 Sep's totals.
+  "/compare/in": Object.values(countryBoardStamps).sort().at(-1)!,
 };
 
 /**
