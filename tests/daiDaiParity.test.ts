@@ -305,13 +305,15 @@ describe("Dai Dai has one release date", () => {
 });
 
 describe("the Spanish edition writes its figures in Spanish", () => {
-  it("prints the bot's compact figures as millones, and says 'e hizo historia'", () => {
+  it("prints the bot's compact figures as millones, and never 'y en historia'", () => {
     expect(ES).toContain("millonesEs(DAI_DAI_VIDEO_VIEWS)");
     expect(ES).toContain("millonesEs(DAI_DAI_SPOTIFY_STREAMS)");
     expect(millonesEs("1.13B")).toBe("1130 millones");
     expect(millonesEs("468M")).toBe("468 millones");
     expect(millonesEs("40.28M")).toBe("40,28 millones");
-    expect(ES).toContain("e hizo historia en el primer show");
+    // The lede this guarded ("… — e hizo historia en el primer show …") was
+    // replaced by the redesign's shorter one on 26 Sep 2026; the broken form
+    // it caught must still never come back.
     expect(ES).not.toContain("— y en historia en el primer show");
   });
 });

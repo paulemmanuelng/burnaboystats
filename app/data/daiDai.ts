@@ -88,6 +88,9 @@ export const DAI_DAI_SPOTIFY_BODY_READ = {
   streak: 122,
   totalDaysOnChart: 123,
   debutPosition: 114,
+  /** The row's own Peak column on that chart: "Peak 1". The story's chapter
+   *  06 figure prints it rather than typing "No. 1". */
+  peak: 1,
 } as const;
 export const DAI_DAI_SPOTIFY_STREAK_SINCE = "2026-05-22"; // 122 days back from the 20 Sep body read
 export const DAI_DAI_SPOTIFY_CONFIRMED_THROUGH = "2026-09-20";
@@ -342,3 +345,81 @@ export const daiDaiYouTubeDaysAtNo1 = daysInclusive(
 // different metric from the run the card describes, and swapping one number
 // for the other inside a sentence that says "as the most-viewed music video
 // on YouTube worldwide" is exactly the conflation this repo keeps paying for.
+
+// ---------------------------------------------------------------------------
+// The story's dates and its figures' data (the /dai-dai redesign, 26 Sep 2026).
+//
+// Each of these was already in the repo — as a typed kicker, a JSON-LD field,
+// a comment or a sourcing doc — and nowhere a figure could read it. They are
+// transcribed here so the seven chapter figures draw from data rather than
+// carrying their own copies of the same numbers.
+
+/** Release day: Friday 15 May 2026 (Billboard's release story; see the
+ *  DAI_DAI_SPOTIFY_BODY_READ note on why Spotify prints the 14th). */
+export const DAI_DAI_RELEASE_DATE = "2026-05-15";
+
+/** The first-ever FIFA World Cup Final halftime show, MetLife Stadium — the
+ *  MusicEvent's startDate on the English page. */
+export const DAI_DAI_HALFTIME_DATE = "2026-07-19";
+
+/** The halftime performance on YouTube (the link the hero used to carry). The
+ *  story's chapter 07 shows its poster and loads the player only on a tap. */
+export const DAI_DAI_HALFTIME_VIDEO_ID = "T3thHUtPdhc";
+
+/**
+ * The 37 days at No. 1 on Spotify's Global Daily Top Songs chart, as the SIX
+ * spells walked day by day at charts.spotify.com on 14 Sep 2026 (the note on
+ * DAI_DAI_SPOTIFY_NO1_DAYS above): 30 Jun; 3–7 Jul; 10–14 Jul; 17–30 Jul;
+ * 7–16 Aug; 21–22 Aug. Inclusive chart dates.
+ *
+ * tests/daiDaiStoryFigures.test.tsx holds these to DAI_DAI_SPOTIFY_NO1_DAYS and
+ * to the first and last days, so the strip and the prose cannot part company.
+ */
+export const DAI_DAI_SPOTIFY_NO1_SPELLS: readonly (readonly [from: string, to: string])[] = [
+  ["2026-06-30", "2026-06-30"],
+  ["2026-07-03", "2026-07-07"],
+  ["2026-07-10", "2026-07-14"],
+  ["2026-07-17", "2026-07-30"],
+  ["2026-08-07", "2026-08-16"],
+  ["2026-08-21", "2026-08-22"],
+];
+
+/**
+ * The Billboard Global 200 run, one row per issue from its debut to the latest
+ * issue read — 17 weeks, which is the entry's own `weeks` in charts.ts.
+ *
+ * `pos: null` means NO READING IS HELD for that issue. It is never filled from
+ * a neighbouring week: the figure draws it hatched. The 5 Jul 2026 feed entry
+ * ("a new peak of No. 3 … jumps six places") names no chart date, so it cannot
+ * be placed on an issue and is not.
+ *
+ * Sources, every one already in the repo:
+ * - 6 Jun debut at No. 114: docs/sourcing/DAI-DAI-RUNS-2026-08-29.md.
+ * - 18 Jul – 8 Aug No. 1, 15 Aug No. 3, 22 and 29 Aug No. 1: the same doc,
+ *   counted at the body.
+ * - 5 Sep No. 1 (the run's seventh and last week), 12 and 19 Sep No. 3,
+ *   26 Sep No. 4: the GLB note in charts.ts.
+ */
+export const DAI_DAI_GLOBAL_200_RUN: readonly { issue: string; pos: number | null }[] = [
+  { issue: "2026-06-06", pos: 114 },
+  { issue: "2026-06-13", pos: null },
+  { issue: "2026-06-20", pos: null },
+  { issue: "2026-06-27", pos: null },
+  { issue: "2026-07-04", pos: null },
+  { issue: "2026-07-11", pos: null },
+  { issue: "2026-07-18", pos: 1 },
+  { issue: "2026-07-25", pos: 1 },
+  { issue: "2026-08-01", pos: 1 },
+  { issue: "2026-08-08", pos: 1 },
+  { issue: "2026-08-15", pos: 3 },
+  { issue: "2026-08-22", pos: 1 },
+  { issue: "2026-08-29", pos: 1 },
+  { issue: "2026-09-05", pos: 1 },
+  { issue: "2026-09-12", pos: 3 },
+  { issue: "2026-09-19", pos: 3 },
+  { issue: "2026-09-26", pos: 4 },
+];
+
+/** The single's cover on Spotify's CDN (640px rung; spotifyImage/spotifySrcSet
+ *  derive the others). The hero shows it on desktop, chapter 01 everywhere. */
+export const DAI_DAI_COVER = "https://i.scdn.co/image/ab67616d0000b27303cadf1b3fe324c1dc710ed4";

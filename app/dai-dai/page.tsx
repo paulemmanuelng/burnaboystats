@@ -11,10 +11,12 @@ import { cardinalWord } from "../lib/plural";
 import { daiDaiNumberOnes, daiDaiChartEntryCount, allChartItems, CHART_COUNTRIES, weeksAtPeak, weeksOnChart } from "../data/charts";
 import { liveCharts } from "../data/liveCharts";
 import { daiDaiCertCount } from "../data/certifications";
-import { DAI_DAI_VIDEO_VIEWS, DAI_DAI_1B_DAYS, DAI_DAI_1B_RANK_EN, DAI_DAI_SPOTIFY_STREAMS, DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG, DAI_DAI_SPOTIFY_NO1_READ_ON_LONG, DAI_DAI_SPOTIFY_NO1_FIRST_LONG, DAI_DAI_SPOTIFY_NO1_LAST_LONG, DAI_DAI_SPOTIFY_TOP10_DAYS, DAI_DAI_SPOTIFY_DAYS_OFF, daiDaiSpotifyDaysOnChart, daiDaiSpotifyStraightDays, daiDaiYouTubeDaysAtNo1 } from "../data/daiDai";
+import { DAI_DAI_COVER, DAI_DAI_RELEASE_DATE, DAI_DAI_VIDEO_VIEWS, DAI_DAI_1B_DAYS, DAI_DAI_1B_RANK_EN, DAI_DAI_SPOTIFY_STREAMS, DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG, DAI_DAI_SPOTIFY_NO1_READ_ON_LONG, DAI_DAI_SPOTIFY_NO1_FIRST_LONG, DAI_DAI_SPOTIFY_NO1_LAST_LONG, DAI_DAI_SPOTIFY_TOP10_DAYS, DAI_DAI_SPOTIFY_DAYS_OFF, daiDaiSpotifyDaysOnChart, daiDaiSpotifyStraightDays, daiDaiYouTubeDaysAtNo1 } from "../data/daiDai";
 import { spotifyImage, spotifySrcSet } from "../lib/spotifyImage";
 import { BURNA_PORTRAIT, SHAKIRA_PORTRAIT } from "../lib/artistImages";
 import { daiDaiOgId } from "./ogId";
+import LangSwitch from "./LangSwitch";
+import { BLANK_PIXEL } from "../lib/blankPixel";
 import { LIVE_CADENCE } from "../lib/liveChartMeta";
 
 // Countries "Dai Dai" charted in, mapped to the world-map's ISO id space, for
@@ -206,8 +208,6 @@ export default function DaiDaiPage() {
 
   // Every headline "Dai Dai" figure in one scannable, crawlable block — the
   // song's OWN numbers (not Burna Boy's artist-wide totals).
-  const HALFTIME_VIDEO = "https://youtu.be/T3thHUtPdhc";
-
   // The song's headline figures, tiered: six hero numbers first, then the
   // rest grouped by what they measure. Same crawlable content as the old flat
   // grid — the tiers are volume control, not omission.
@@ -359,35 +359,57 @@ export default function DaiDaiPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(eventJsonLd) }} />
 
-      <section className={`${styles.wrap} ${styles.heroPad}`}>
-        <div className={styles.kicker}>2026 FIFA World Cup · official song</div>
-        <h1 className={styles.h1}>
-          The <span className="inkText">Dai Dai</span> story
-        </h1>
-        <p className={styles.lede}>
-          How Shakira &amp; Burna Boy&apos;s 2026 World Cup anthem became the biggest song
-          in the world — and made history at the first-ever FIFA World Cup Final halftime
-          show. Scroll to follow the run.
-        </p>
-        <div className={styles.heroActions}>
-          <a
-            className="btn btnPrimary"
-            href={HALFTIME_VIDEO}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            ▶ Watch the halftime show ↗
-          </a>
-          <a className="btn btnSecondary" href="#numbers">Skip to the numbers</a>
-          <Link className="btn btnSecondary" href="/dai-dai/es" hrefLang="es">
-            Leer en español
-          </Link>
+      {/* The hero: one primary action and the EN/ES switch (design response §5,
+          item 1). The halftime link moved into chapter 07's poster, and the
+          blurred cover backdrop is gone. The cover beside the h1 is drawn on
+          the desktop artboard only: on desktop it is the largest first paint
+          (a real image, so it asks for a high priority), and a <source> gate
+          keeps a phone from ever fetching it. */}
+      <section className={styles.hero}>
+        <div className={styles.heroText}>
+          <div className={styles.kicker}>2026 FIFA World Cup · official song</div>
+          <h1 className={styles.h1}>
+            The <span className={`inkText ${styles.name}`}>Dai Dai</span> story
+          </h1>
+          <p className={styles.lede}>
+            <span className={styles.ledeWide}>
+              Shakira × Burna Boy&apos;s official World Cup song — from a May release to the
+              first-ever halftime show at a World Cup Final, then every chart, plaque and stream
+              behind it.
+            </span>
+            <span className={styles.ledeNarrow}>
+              Shakira × Burna Boy&apos;s official World Cup song, from release to the first World
+              Cup Final halftime show.
+            </span>
+          </p>
+          <div className={styles.heroActions}>
+            <a className={`btn btnPrimary ${styles.skip}`} href="#numbers">Skip to the numbers</a>
+            <LangSwitch current="en" label="Language" />
+          </div>
         </div>
+        <figure className={styles.heroCover}>
+          <picture>
+            <source media="(max-width: 900px)" srcSet={BLANK_PIXEL} />
+            <img
+              className={styles.heroCoverImg}
+              src={spotifyImage(DAI_DAI_COVER, 640)}
+              srcSet={spotifySrcSet(DAI_DAI_COVER)}
+              sizes="360px"
+              alt="Dai Dai single cover — Shakira × Burna Boy, 2026 FIFA World Cup"
+              width={360}
+              height={360}
+              fetchPriority="high"
+            />
+          </picture>
+          <figcaption className={styles.heroCoverCaption}>
+            Shakira × Burna Boy · single · {DAI_DAI_RELEASE_DATE.slice(0, 4)}
+          </figcaption>
+        </figure>
       </section>
 
-      <div className={styles.wrap}>
-        <DaiDaiStory daiDaiNo1s={daiDaiNumberOnes} daiDaiCerts={daiDaiCertCount} weeksGLB={weeksGLB} weeksGLBX={weeksGLBX} />
+      <DaiDaiStory />
 
+      <div className={styles.wrap}>
         <section className={styles.section} aria-labelledby="dd-lineup">
           <div className={styles.kicker}>19 July 2026 · MetLife Stadium</div>
           <h2 id="dd-lineup" className={styles.h2}>

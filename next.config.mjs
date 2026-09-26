@@ -50,13 +50,19 @@ const nextConfig = {
           "default-src 'self'",
           "script-src 'self' 'unsafe-inline' https://va.vercel-scripts.com",
           "style-src 'self' 'unsafe-inline'",
-          "img-src 'self' data: blob: https://cdn-images.dzcdn.net https://is1-ssl.mzstatic.com https://i.scdn.co",
+          // i.ytimg.com: the /dai-dai video posters (DaiDaiVideoPoster), the
+          // only images the site loads from YouTube.
+          "img-src 'self' data: blob: https://cdn-images.dzcdn.net https://is1-ssl.mzstatic.com https://i.scdn.co https://i.ytimg.com",
           "font-src 'self' data:",
           // formsubmit.co is the contact form's POST target (ContactForm.tsx) and
           // the only non-same-origin fetch in the app. connect-src is declared,
           // so it does not fall back to default-src — without this the policy
           // would have blocked the form the moment it stopped being report-only.
           "connect-src 'self' https://va.vercel-scripts.com https://vitals.vercel-insights.com https://formsubmit.co",
+          // The one embedded player on the site, created only when a reader
+          // taps a /dai-dai video poster. Without this, frame-src falls back to
+          // default-src 'self' and the tap would be reported as a violation.
+          "frame-src https://www.youtube-nocookie.com",
           "frame-ancestors 'self'",
           "base-uri 'self'",
           "form-action 'self'",

@@ -31,8 +31,18 @@ const DERIVED: Home[] = [
   { file: "app/components/MobileHome.tsx", label: "mobile home", re: /\{DAI_DAI_SPOTIFY_NO1_DAYS\} days as the most-streamed song on Earth/ },
 ];
 
+// The story's two typed rail notes ("Daily & Weekly · 37 days as Earth's
+// most-streamed song" and its Spanish twin) went with the redesign of 26 Sep
+// 2026: chapter 04's figure is now the six-spell strip, and it prints the
+// constant itself. Held here by name, like the home layouts above, and the
+// spells it draws are held to the same constant in daiDaiStoryFigures.test.tsx.
+const FIGURE: Home = {
+  file: "app/components/DaiDaiFigures.tsx",
+  label: "story chapter 04 figure",
+  re: /\{DAI_DAI_SPOTIFY_NO1_DAYS\}/,
+};
+
 const HOMES: Home[] = [
-  { file: "app/components/DaiDaiStory.tsx", label: "story rail note", re: /(\d+) days as Earth/ },
   { file: "app/components/DaiDaiStory.tsx", label: "story rail body", re: /(\d+) days as the single most-streamed/ },
   { file: "app/data/faqs.ts", label: "FAQ answer", re: /spent (\d+) days at No\. 1/ },
   { file: "app/dai-dai/page.tsx", label: "EN page description", re: /anthem: (\d+) days as Earth/ },
@@ -50,7 +60,6 @@ const HOMES: Home[] = [
   { file: "app/dai-dai/es/page.tsx", label: "ES story body", re: /la semanal: (\d+) días como/ },
   { file: "app/dai-dai/es/page.tsx", label: "ES hero card", re: /tras (\d+) días como/ },
   { file: "app/dai-dai/es/page.tsx", label: "ES streak card", re: /\{ v: "(\d+) días", l: ["`]en total en el número 1/ },
-  { file: "app/dai-dai/es/page.tsx", label: "ES story rail note", re: /semanal · (\d+) días como/ },
   // The sixteenth home, and the one that was missing: Africa's Biggest carries
   // the same figure in a board note, in a file this list did not cover at all.
   { file: "app/data/africasBiggest.ts", label: "Africa's Biggest board note", re: /held that No\. 1 for (\d+) days/ },
@@ -78,6 +87,12 @@ describe("the days-at-No.1 figure agrees with itself everywhere", () => {
       values.length === 1 ? [] : seen.map((s) => `${s.n}  ←  ${s.where}`),
       `the figure disagrees with itself (${values.join(" vs ")}). Every home has to move in the same commit.`,
     ).toEqual([]);
+  });
+
+  it("the story's chapter 04 figure prints the constant, not a typed copy", () => {
+    const src = read(FIGURE.file);
+    expect(FIGURE.re.test(src), `${FIGURE.file} — ${FIGURE.label} no longer reads DAI_DAI_SPOTIFY_NO1_DAYS`).toBe(true);
+    expect(/\b\d+ days (?:as|at No\. 1)/.test(src), `${FIGURE.file} types a days figure`).toBe(false);
   });
 
   it("the two home layouts read the figure from the constant, in the past tense", () => {

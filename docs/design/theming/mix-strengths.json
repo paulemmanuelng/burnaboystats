@@ -81,12 +81,13 @@
     "--ink-wash-base 7%",
     "--text-dim-warm 50%"
   ],
-  "app/components/DaiDaiStory.module.css": [
-    "--bg 35%",
-    "--bg 82%",
-    "--shadow-base 50%",
-    "--shadow-base 55%",
-    "--shadow-base 65%"
+  "app/components/DaiDaiFigures.module.css": [
+    "--peak-band-1 10%",
+    "--peak-band-1 55%",
+    "--peak-band-1 8%",
+    "--text 34%",
+    "--text 42%",
+    "--text 92%"
   ],
   "app/components/FollowPanel.module.css": [
     "--gold-ink 22%",

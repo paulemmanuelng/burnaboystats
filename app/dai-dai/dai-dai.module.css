@@ -1,12 +1,25 @@
-/* The Dai Dai story — designs/desktop/Dai Dai.dc.html, values verbatim.
-   The scroll-driven scene stage lives in DaiDaiStory; this file is the shell.
-
-   Mobile is screen 25. The scrollytelling shape holds at both widths — a
-   sticky scene with steps passing it is how the phone version works too — so
-   the sizes step down rather than a second layout being drawn. */
+/* The Dai Dai page shell — the hero here, the story in DaiDaiStory.
+   Hero values are read from designs/desktop/Dai Dai Redesign.dc.html: the
+   desktop 1440 artboards at base, the phone 390 artboards in the ≤900 block,
+   the tablet note (h1 64) between. Desktop and phone are separate designs;
+   each band carries its own artboard's values rather than a scaled copy. */
 .wrap { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
 
-.heroPad { padding: 48px 40px 0; }
+.hero {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 64px 40px 56px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  align-items: end;
+  gap: 64px;
+}
+.heroText {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+}
 .kicker {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
@@ -20,12 +33,88 @@
   font-weight: 400; /* Anton has no bold cut */
   font-size: 88px;
   line-height: 0.9;
-  letter-spacing: 0.01em;
+  letter-spacing: normal;
   text-transform: uppercase;
-  margin: 14px 0 0;
+  margin: 0;
 }
-.lede { font-size: var(--type-lede); line-height: var(--type-lede-lh); color: var(--text-body); max-width: 62ch; margin: 20px 0 0; text-wrap: pretty; }
-.heroActions { display: flex; gap: 10px; margin-top: 26px; flex-wrap: wrap; }
+/* Spanish capitals carry accents above the cap height; the desktop h1 gets
+   room for them above and below its lines (design response §1, Spanish). */
+.h1:lang(es) { padding: 0.12em 0; }
+/* The song's name never breaks across lines, in either edition. */
+.name { white-space: nowrap; }
+.lede {
+  font-size: var(--type-lede);
+  line-height: var(--type-lede-lh);
+  color: var(--text-body);
+  max-width: 52ch;
+  margin: 0;
+  text-wrap: pretty;
+}
+/* Each layout draws its own lede; only one is ever displayed. */
+.ledeNarrow { display: none; }
+.heroActions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 4px;
+}
+/* The one primary action. The arrow is drawn, not written, so the link's text
+   stays exactly its words (tests/ownerRulings.test.tsx reads it). */
+.skip { gap: 10px; }
+.skip::after {
+  content: "↓";
+  content: "↓" / "";
+}
+.lang {
+  display: inline-flex;
+  height: 36px;
+  overflow: hidden;
+  border: 1px solid var(--btn-edge);
+  border-radius: 999px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+}
+.langItem {
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  color: var(--text-muted);
+}
+.langItem + .langItem { border-left: 1px solid var(--btn-edge); }
+.langOn {
+  background: var(--text);
+  color: var(--bg);
+}
+a.langItem:hover {
+  background: var(--bg-raised);
+  color: var(--text);
+}
+/* The switch clips its children, so the focus ring is drawn inside. */
+a.langItem:focus-visible { outline-offset: -3px; }
+.heroCover {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+}
+.heroCoverImg {
+  display: block;
+  width: 360px;
+  height: 360px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.heroCoverCaption {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
 
 .section { padding: 56px 0 0; }
 .h2 {
@@ -42,17 +131,38 @@
 .gold { color: var(--gold); }
 .numIntro { font-size: 14px; line-height: 1.65; color: var(--text-muted); max-width: 74ch; margin: 12px 0 0; }
 
+/* Tablet, 901–1239: the tablet note's display step. */
+@media (max-width: 1239px) and (min-width: 901px) {
+  .h1 { font-size: 64px; }
+}
+
 @media (max-width: 900px) {
   .wrap { padding: 0 18px; }
-  /* Clear the story's back bar. That bar is position:fixed and lives inside
-     DaiDaiStory — which renders BELOW this hero — so nothing in the flow
-     reserved space for it and the <h1> sat underneath it at the top of the
-     page. 56px of bar + its safe-area inset, then the hero's own 24px. */
-  .heroPad {
-    padding: calc(56px + env(safe-area-inset-top, 0px) + 24px) 18px 0;
+  /* The phone artboard. The back bar is position:fixed and lives inside
+     DaiDaiStory, below this hero in the flow, so the hero reserves its 69px
+     (and the safe-area inset) itself, then the artboard's own 22px. */
+  .hero {
+    display: block;
+    padding: calc(69px + env(safe-area-inset-top, 0px) + 22px) 18px 0;
   }
-  .h1 { font-size: 46px; }
-  .lede { font-size: 15px; }
+  .heroText { gap: 14px; }
+  .h1 { font-size: 46px; line-height: 0.92; }
+  .h1:lang(es) { padding: 0; }
+  .lede { font-size: var(--type-body); line-height: 1.5; }
+  .ledeWide { display: none; }
+  .ledeNarrow { display: inline; }
+  .heroActions { flex-wrap: nowrap; gap: 10px; margin-top: 0; }
+  .skip {
+    flex: 1;
+    justify-content: space-between;
+    height: auto;
+    min-height: 48px;
+    padding: 0 18px;
+    font-size: 12px;
+  }
+  .lang { flex: none; height: 44px; }
+  .langItem { padding: 0 13px; }
+  .heroCover { display: none; }
   .h2 { font-size: 26px; }
   .section { padding: 36px 0 0; }
 }/* One rule for every section intro, in both languages.

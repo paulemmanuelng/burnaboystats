@@ -17,10 +17,12 @@ import {
 } from "../../data/charts";
 import { liveCharts } from "../../data/liveCharts";
 import { LIVE_CADENCE_ES } from "../../lib/liveChartMeta";
-import { daiDaiCertCount, daiDaiPlatinumMore } from "../../data/certifications";
-import { DAI_DAI_VIDEO_VIEWS, DAI_DAI_1B_DAYS, DAI_DAI_1B_RANK_ES, DAI_DAI_SPOTIFY_STREAMS, DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_NO1_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_NO1_FIRST_LONG_ES, DAI_DAI_SPOTIFY_NO1_LAST_LONG_ES, DAI_DAI_SPOTIFY_TOP10_DAYS, DAI_DAI_SPOTIFY_DAYS_OFF, daiDaiSpotifyDaysOnChart, daiDaiSpotifyStraightDays, daiDaiYouTubeDaysAtNo1 } from "../../data/daiDai";
+import { daiDaiCertCount } from "../../data/certifications";
+import { DAI_DAI_COVER, DAI_DAI_RELEASE_DATE, DAI_DAI_VIDEO_VIEWS, DAI_DAI_1B_DAYS, DAI_DAI_1B_RANK_ES, DAI_DAI_SPOTIFY_STREAMS, DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_NO1_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_NO1_FIRST_LONG_ES, DAI_DAI_SPOTIFY_NO1_LAST_LONG_ES, DAI_DAI_SPOTIFY_TOP10_DAYS, DAI_DAI_SPOTIFY_DAYS_OFF, daiDaiSpotifyDaysOnChart, daiDaiSpotifyStraightDays, daiDaiYouTubeDaysAtNo1 } from "../../data/daiDai";
 import { spotifyImage, spotifySrcSet } from "../../lib/spotifyImage";
 import { daiDaiEsOgId } from "./ogId";
+import LangSwitch from "../LangSwitch";
+import { BLANK_PIXEL } from "../../lib/blankPixel";
 import { BURNA_PORTRAIT, SHAKIRA_PORTRAIT } from "../../lib/artistImages";
 
 /**
@@ -108,8 +110,6 @@ export const metadata = pageMetadata({
 });
 
 export default function DaiDaiPageES() {
-  const HALFTIME_VIDEO = "https://youtu.be/T3thHUtPdhc";
-
   const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -157,6 +157,7 @@ export default function DaiDaiPageES() {
       kicker: "En todo el mundo",
       title: "Número 1 en un país tras otro",
       body: `“Dai Dai” llegó al número 1 en ${daiDaiNumberOnes} países —de Francia y Alemania a los Países Bajos y Emiratos Árabes Unidos— y encabezó las dos listas globales de Billboard. El alcance de una colaboración verdaderamente mundial.`,
+      link: { href: "/records/charts?song=Dai%20Dai", label: "Todas las posiciones" },
     },
     {
       scene: "streaming",
@@ -169,6 +170,7 @@ export default function DaiDaiPageES() {
       kicker: "Certificada en el mundo entero",
       title: "Llegaron los discos",
       body: `La canción ganó sus propias certificaciones: diamante en Francia, doble platino en Canadá, séxtuple platino (latino) en Estados Unidos, platino en España, Eslovaquia, Portugal, Hungría, Austria, Grecia y Suecia, oro en Colombia, Chequia, Italia, Polonia, Bélgica y Alemania, y plata en el Reino Unido. Ya son ${daiDaiCertCount} certificaciones para la colaboración de Shakira y Burna Boy, y siguen sumando.`,
+      link: { href: "/certifications#release=Dai%20Dai", label: "Todas las certificaciones" },
     },
     {
       scene: "worldsong",
@@ -315,56 +317,89 @@ export default function DaiDaiPageES() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
-      <section className={`${styles.wrap} ${styles.heroPad}`}>
-        <div className={styles.kicker}>Mundial de la FIFA 2026 · canción oficial</div>
-        <h1 className={styles.h1}>
-          La historia de <span className="inkText">Dai Dai</span>
-        </h1>
-        <p className={styles.lede}>
-          Cómo el himno mundialista de Shakira y Burna Boy se convirtió en la canción más
-          grande del mundo — e hizo historia en el primer show de medio tiempo de una Final
-          del Mundial. Desplázate para seguir el recorrido.
-        </p>
-        <div className={styles.heroActions}>
-          <a
-            className="btn btnPrimary"
-            href={HALFTIME_VIDEO}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            ▶ Ver el show de medio tiempo ↗
-          </a>
-          <a className="btn btnSecondary" href="#numbers">Saltar a las cifras</a>
-          <Link className="btn btnSecondary" href={EN_PATH} hrefLang="en">
-            Read in English
-          </Link>
+      {/* The same hero as the English edition, in Spanish: one primary action
+          and the EN/ES switch; the halftime link lives in chapter 07. */}
+      <section className={styles.hero}>
+        <div className={styles.heroText}>
+          <div className={styles.kicker}>Mundial de la FIFA 2026 · canción oficial</div>
+          <h1 className={styles.h1}>
+            La historia de <span className={`inkText ${styles.name}`}>Dai Dai</span>
+          </h1>
+          <p className={styles.lede}>
+            <span className={styles.ledeWide}>
+              La canción oficial del Mundial de Shakira × Burna Boy — del lanzamiento en mayo al
+              primer show de medio tiempo de una final del Mundial, y después cada lista,
+              certificación y reproducción que la respalda.
+            </span>
+            <span className={styles.ledeNarrow}>
+              La canción oficial del Mundial de Shakira × Burna Boy, del lanzamiento al primer show
+              de medio tiempo de una final.
+            </span>
+          </p>
+          <div className={styles.heroActions}>
+            <a className={`btn btnPrimary ${styles.skip}`} href="#numbers">Saltar a las cifras</a>
+            <LangSwitch current="es" label="Idioma" />
+          </div>
         </div>
+        <figure className={styles.heroCover}>
+          <picture>
+            <source media="(max-width: 900px)" srcSet={BLANK_PIXEL} />
+            <img
+              className={styles.heroCoverImg}
+              src={spotifyImage(DAI_DAI_COVER, 640)}
+              srcSet={spotifySrcSet(DAI_DAI_COVER)}
+              sizes="360px"
+              alt="Portada del sencillo Dai Dai — Shakira × Burna Boy, Mundial de la FIFA 2026"
+              width={360}
+              height={360}
+              fetchPriority="high"
+            />
+          </picture>
+          <figcaption className={styles.heroCoverCaption}>
+            Shakira × Burna Boy · sencillo · {DAI_DAI_RELEASE_DATE.slice(0, 4)}
+          </figcaption>
+        </figure>
       </section>
 
-      <div className={styles.wrap}>
-        <DaiDaiStory
-          daiDaiNo1s={daiDaiNumberOnes}
-          daiDaiCerts={daiDaiCertCount}
-          weeksGLB={weeksGLB}
-          weeksGLBX={weeksGLBX}
-          lang="es"
-          steps={steps}
-          sceneCopy={{
-            heroLabel: "Dai Dai · Shakira × Burna Boy",
-            global1Note: "Primer artista africano en lograrlo · el 2.º de Shakira",
-            no1sLabel: "países en el n.º 1",
-            no1sLink: "Ver todas las posiciones de Dai Dai →",
-            streamingNote: "Diaria y semanal · 37 días como la canción más escuchada del mundo",
-            certsLabel: "certificaciones de Dai Dai",
-            certsNote: `Séxtuple platino (latino) en EE. UU. · platino en ${daiDaiPlatinumMore} países más`,
-            certsLink: "Ver las certificaciones de Dai Dai →",
-            worldsongWord: "EL HIMNO\nMUNDIALISTA\nMÁS GRANDE",
-            worldsongLabel: "El pico más alto en el Spotify Global",
-            halftimeLabel: "Final del Mundial · show de medio tiempo",
-            halftimeNote: "Shakira y Burna Boy · medio tiempo, 19 de julio",
-          }}
-        />
+      <DaiDaiStory
+        lang="es"
+        steps={steps}
+        labels={{
+          story: "La historia",
+          meta: "{n} capítulos · {from} → {to}",
+          end: "Fin de la historia",
+          back: "Volver",
+          menu: "Abrir menú",
+        }}
+        figureLabels={{
+          locale: "es-ES",
+          released: "Lanzamiento",
+          coverAlt: "Portada del sencillo Dai Dai — Shakira × Burna Boy, Mundial de la FIFA 2026",
+          credit: "Shakira × Burna Boy",
+          weeksAt1: "semanas en el N.º 1",
+          weekByWeek: "semana a semana",
+          weekTick: "w{n}",
+          weekRead: "Lista del {date}: N.º {n}",
+          weekUnread: "Lista del {date}: sin lectura",
+          globalSpells: "{a} seguidas, una en el N.º {dip} y {b} más.",
+          globalExUs: "Además, {n} semanas seguidas en el N.º 1 de la Global 200 sin EE. UU.",
+          countriesAt1: "países en el N.º 1",
+          daysAt1: "días en el N.º 1",
+          spells: "Spotify Global daily · {n} rachas",
+          spellsRead: "{n} días en el N.º 1, en estas rachas: {list}.",
+          certs: "certificaciones",
+          tiers: { diamond: "Diamante", platinum: "Platino", gold: "Oro", silver: "Plata" },
+          multiple: "{n}× {tier}",
+          spotifyPeak: "Pico en Spotify Global",
+          biggest: "El himno mundialista con el pico más alto de la historia de Spotify Global",
+          venue: "{date} · MetLife Stadium",
+          watch: "Ver el show",
+          play: "Reproducir el show de medio tiempo",
+          videoTitle: "Shakira y Burna Boy en el show de medio tiempo de la Final del Mundial de la FIFA 2026",
+        }}
+      />
 
+      <div className={styles.wrap}>
         <section className={styles.section} aria-labelledby="dd-lineup">
           <div className={styles.kicker}>19 de julio de 2026 · MetLife Stadium</div>
           <h2 id="dd-lineup" className={styles.h2}>

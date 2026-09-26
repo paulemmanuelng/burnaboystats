@@ -1,0 +1,392 @@
+/* The Dai Dai story's seven chapter figures.
+   Values are read from designs/desktop/Dai Dai Chapter Figure.dc.html — its
+   `desk` values here, its `phone` values in the ≤900 block. Two departures,
+   both to the site's own floor rather than the file's: the file sets week
+   ticks, country codes, tier badges and day ticks at 10–10.5px, and nothing on
+   this site is set under 11px (README §4, "Type"), so those are 11px. */
+
+.fig {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 18px;
+  padding: 28px;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--text);
+}
+
+/* A figure and its unit: "7 WEEKS AT NO. 1". */
+.head {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.big {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 84px;
+  line-height: 0.9;
+  font-variant-numeric: tabular-nums;
+}
+.mid {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 1;
+  text-transform: uppercase;
+}
+.eyebrow,
+.eyebrowTight {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.eyebrowTight { letter-spacing: 0.1em; }
+.note {
+  margin: 0;
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
+  color: var(--text-body);
+}
+
+/* ── 01 · the cover and the release date ─────────────────────────────── */
+.release {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.cover {
+  flex: none;
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.releaseText {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.releaseDate {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 84px;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+.credit {
+  font-size: var(--type-small);
+  color: var(--text-body);
+}
+
+/* ── 02 · the Global 200, week by week ───────────────────────────────── */
+.bars {
+  display: grid;
+  gap: 3px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.barCell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+}
+/* Every bar stands on the same line. The design file's empty tick spans had
+   no height, so its unlabelled bars sat 14px lower than the labelled ones; a
+   fixed track and a fixed tick row keep the heights readable as positions. */
+.barTrack {
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  height: 56px;
+}
+.bar {
+  display: block;
+  width: 100%;
+  border: 1px solid transparent;
+  border-radius: 2px;
+}
+.b1 { background: var(--peak-band-1); }
+.b5 { background: var(--peak-band-5); }
+.b10 { background: var(--peak-band-10); }
+.b40 { background: var(--peak-band-40); }
+.rest { background: var(--peak-band-rest); }
+/* On paper the two lightest bands all but vanish on a white card (1.9:1 and
+   1.2:1), so they carry the structural rule as an outline. */
+:global(:root[data-theme="light"]) .b40,
+:global(:root[data-theme="light"]) .rest { border-color: var(--rule); }
+/* No reading held: a neutral hatch and a dashed outline, never the band of a
+   week either side of it. */
+.barUnread {
+  height: 56px;
+  border: 1px dashed var(--text);
+  background: repeating-linear-gradient(
+    45deg,
+    color-mix(in srgb, var(--text) 34%, transparent) 0 1.5px,
+    var(--bg-soft-2) 1.5px 4px
+  );
+}
+:global(:root[data-theme="light"]) .barUnread {
+  background: repeating-linear-gradient(
+    45deg,
+    color-mix(in srgb, var(--text) 42%, transparent) 0 1.5px,
+    var(--bg-soft-2) 1.5px 4px
+  );
+}
+.barTick {
+  height: 12px;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  line-height: 12px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* ── 03 · the No. 1 cells ────────────────────────────────────────────── */
+.ones {
+  display: grid;
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+/* The No. 1 peak band as a wash and an edge — a data colour, not the brand
+   gold (brief §6). */
+.one {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 6px 2px;
+  background: color-mix(in srgb, var(--peak-band-1) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--peak-band-1) 55%, transparent);
+  border-radius: var(--radius-sm);
+}
+:global(:root[data-theme="light"]) .one {
+  background: color-mix(in srgb, var(--peak-band-1) 8%, transparent);
+}
+.oneFlag {
+  font-size: 15px;
+  line-height: 1;
+}
+.oneCode {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+
+/* ── 04 · the days at No. 1, as spells ───────────────────────────────── */
+.strip {
+  display: flex;
+  align-items: stretch;
+  gap: 1px;
+  height: 34px;
+}
+.day,
+.dayOn {
+  flex: 1;
+  border-radius: 1px;
+  background: var(--bg-soft-2);
+}
+.dayOn { background: var(--peak-band-1); }
+.ticks {
+  position: relative;
+  height: 14px;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.tickStart { position: absolute; left: 0; }
+.tickEnd { position: absolute; right: 0; }
+.tickMid { position: absolute; transform: translateX(-50%); }
+
+/* ── 05 · the plaque wall ────────────────────────────────────────────── */
+/* One grid for every row, so the badges share a column as wide as the widest
+   of them and the country codes start on one line. */
+.tiers {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  align-items: center;
+  gap: 7px 10px;
+  margin: 0;
+}
+.tierRow { display: contents; }
+.tier {
+  justify-self: start;
+  padding: 3px 8px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+/* The tier inks — data colours, never the brand gold. */
+.tierDiamond { color: var(--tier-diamond-ink); }
+.tierPlatinum { color: var(--tier-platinum-ink); }
+.tierGold { color: var(--tier-gold-ink); }
+.tierSilver { color: var(--tier-silver-ink); }
+.codes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 0;
+}
+.code {
+  padding: 2px 6px;
+  border-radius: 3px;
+  background: var(--bg-soft-2);
+  color: var(--text);
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+}
+
+/* ── 06 · the Spotify-peak statement ─────────────────────────────────── */
+.peak {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 18px;
+}
+.peakFigure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 14px;
+  border-left: 2px solid var(--rule);
+}
+.peakLabel {
+  margin-top: 8px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.statement {
+  margin: 0;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+/* ── 07 · the halftime video poster ──────────────────────────────────── */
+.poster {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--bg);
+}
+.posterButton {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+/* The box clips its children, so the global 2px ring is drawn inside it. */
+.posterButton:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: -4px;
+}
+.posterImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.playDisc {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--text) 92%, transparent);
+  transition: transform var(--dur) var(--ease-out);
+}
+.playDisc svg { fill: var(--bg); }
+.posterButton:hover .playDisc { transform: scale(1.06); }
+.player {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.videoMeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.watch {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.watch:hover { color: var(--gold-hit); }
+
+/* ── Tablet, 901–1239: figures run full width under their sentence, capped at
+   640px tall (the tablet note). Only the poster could outgrow that, so its
+   16:9 box stops at the width whose height keeps the whole figure inside. */
+@media (max-width: 1239px) and (min-width: 901px) {
+  .poster { max-width: 976px; }
+}
+
+/* ── Phone: Dai Dai Chapter Figure.dc.html, size="phone" ─────────────── */
+@media (max-width: 900px) {
+  .fig { padding: 16px; gap: 12px; }
+  .big { font-size: 56px; }
+  .mid { font-size: 20px; }
+  .release { gap: 12px; }
+  .cover { width: 120px; height: 120px; }
+  .releaseDate { font-size: 56px; }
+  .ones { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+  /* The artboard's 130px badge column. The longest badge ("6× Platinum ·
+     RIAA Latin") cannot fit it on one line at the 11px floor; it wraps inside
+     its pill rather than running over the country codes beside it. */
+  .tiers { grid-template-columns: 130px minmax(0, 1fr); }
+  .tier { white-space: normal; }
+  .peak { gap: 12px; }
+  .statement { font-size: 20px; }
+  /* The 44px touch floor for the one link inside a figure. */
+  .watch {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    min-height: 44px;
+  }
+}
