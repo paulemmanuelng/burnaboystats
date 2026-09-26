@@ -4,7 +4,7 @@ import BreadcrumbBar from "../components/BreadcrumbBar";
 import KeepExploring from "../components/KeepExploring";
 import EmbedGallery from "../components/EmbedGallery";
 import MobileEmbed from "../components/MobileEmbed";
-import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME } from "../lib/seo";
+import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, BURNA_BOY_REF } from "../lib/seo";
 import { embedMetas, EMBED_NAME_LIST } from "../lib/embedWidgets";
 import { noteParts, EMBED_FITS, EMBED_CREDIT } from "../lib/embedSnippet";
 
@@ -58,7 +58,7 @@ export default function EmbedPage() {
     url: `${CANONICAL_ORIGIN}/embed`,
     inLanguage: "en",
     isPartOf: { "@type": "WebSite", name: SITE_NAME, url: CANONICAL_ORIGIN },
-    about: { "@type": "MusicGroup", name: "Burna Boy" },
+    about: BURNA_BOY_REF,
     publisher: { "@type": "Organization", name: SITE_NAME, url: CANONICAL_ORIGIN },
     license: "https://creativecommons.org/licenses/by/4.0/",
   };
