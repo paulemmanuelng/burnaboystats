@@ -4,18 +4,24 @@ import { readFileSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { dayBySlug, dayKey, onThisDayDays, onThisDayEvents } from "../app/lib/onThisDay";
 import {
+  CARD_FOOT,
   calendarTiles,
+  cardHeadLines,
+  cardKindLine,
   dayPostCard,
   dayPreview,
   eventArt,
   cardHeadSize,
   eventCover,
   isFullSizeArt,
+  keepTogether,
   sharePublisher,
+  type DayPostCard,
 } from "../app/lib/onThisDayShare";
+import { cardTextWidth } from "../app/lib/cardTextWidth";
 import { OG_ART } from "../app/lib/og-image";
 import { ogFonts } from "../app/lib/og-lockup";
-import { CARD_PORTRAIT, PREVIEW_PORTRAIT, otdFonts } from "../app/lib/onThisDayImages";
+import { CARD_PORTRAIT, PREVIEW_PORTRAIT, otdFonts, postCardImage } from "../app/lib/onThisDayImages";
 import { BURNA_PORTRAIT } from "../app/lib/artistImages";
 import { kernLookupCount } from "../app/lib/unkernedFont";
 import { ImageResponse } from "next/og";
@@ -147,8 +153,10 @@ describe("the post card, 1080×1350", () => {
   });
 
   it("the headline steps by length — 120, 104, 88, 80 — and down again for a word too wide for the step", () => {
-    /** n characters of four-letter words. */
-    const words = (n: number) => "WORD ".repeat(Math.ceil(n / 5)).slice(0, n).trim().padEnd(n, "D");
+    /** n characters of four-letter words. LINE, not WORD: 36 characters of
+     *  WORD's wide capitals take four lines at 104, one of them a lone W, and
+     *  step down for that (four short lines, below), not for their length. */
+    const words = (n: number) => "LINE ".repeat(Math.ceil(n / 5)).slice(0, n).trim().padEnd(n, "E");
     expect(cardHeadSize("BRIT BILLION AWARD")).toBe(120); // 15 July, 18 characters
     expect([24, 25, 36, 37, 48, 49].map((n) => cardHeadSize(words(n)))).toEqual([120, 104, 104, 88, 88, 80]);
     // 1 March: 35 characters would be 104, but MADFUNXPERIENCE is 1010px at
@@ -170,6 +178,52 @@ describe("the post card, 1080×1350", () => {
 
   it("one more milestone is said as one", () => {
     expect(dayPostCard(day("16-january")).kindLine).toBe("SHOW · + 1 MORE MILESTONE ON THIS DAY");
+  });
+
+  it("the kind line gives way to the source, a step at a time, and never wraps", () => {
+    // The six days it wrapped on, set in full, until 26 Sep 2026.
+    expect(dayPostCard(day("2-march")).kindLine).toBe("AWARDS · + 1 MORE ON THIS DAY"); // beside BOSTON CITY COUNCIL
+    expect(dayPostCard(day("24-october")).kindLine).toBe("SHOW · + 2 MORE ON THIS DAY"); // BILLBOARD BOXSCORE
+    for (const slug of ["17-july", "31-august"]) expect(dayPostCard(day(slug)).kindLine).toBe("CHARTS · + 2 MORE ON THIS DAY"); // TURNTABLE TOP 100 ALBUMS
+    expect(dayPostCard(day("3-november")).kindLine).toBe("CHARTS · + 3 MORE ON THIS DAY");
+    // The longest source, NIGERIA ENTERTAINMENT AWARDS, leaves room for the count alone.
+    expect(dayPostCard(day("10-november")).kindLine).toBe("AWARDS · + 1 MORE");
+    // Where it fits, it is said in full: 16 August's beside IFPI SVERIGE, with 1.7px to spare.
+    expect(dayPostCard(day("16-august")).kindLine).toBe("CERTIFICATION · + 4 MORE MILESTONES ON THIS DAY");
+    expect(cardKindLine("Charts", 2, null)).toBe("CHARTS · + 2 MORE MILESTONES ON THIS DAY");
+    expect(cardKindLine("Show", 0, "BILLBOARD BOXSCORE")).toBe("SHOW");
+    // Every day's fits the room its source leaves, measured as Satori measures.
+    const F = CARD_FOOT;
+    const bad = onThisDayDays.filter((d) => {
+      const c = dayPostCard(d);
+      const source = c.source ? Math.max(cardTextWidth(F.label.text, F.label.fontSize, F.label.letterSpacing), cardTextWidth(c.source, F.source.fontSize, F.source.letterSpacing)) + F.gap : 0;
+      return cardTextWidth(c.kindLine, F.kind.fontSize, F.kind.letterSpacing) + F.mark + F.markGap + source > F.measure;
+    });
+    expect(bad.map((d) => d.slug)).toEqual([]);
+  });
+
+  it("the card draws NO. 1 and 2× PLATINUM unbroken, and the model keeps its plain spaces", () => {
+    expect(keepTogether("“TSHWALA BAM (REMIX)” HIT NO. 1 IN NIGERIA")).toBe("“TSHWALA BAM (REMIX)” HIT NO.\u00a01 IN NIGERIA");
+    expect(keepTogether("“DAI DAI” WAS CERTIFIED 2× PLATINUM IN CANADA")).toBe("“DAI DAI” WAS CERTIFIED 2×\u00a0PLATINUM IN CANADA");
+    expect(keepTogether("the most No. 1s in 12 countries")).toBe("the most No.\u00a01s in 12 countries");
+    // Only "No." before a number: 17 July's NO SIGN OF WEAKNESS is a title.
+    expect(keepTogether("NO SIGN OF WEAKNESS HIT NO. 1 IN NIGERIA")).toBe("NO SIGN OF WEAKNESS HIT NO.\u00a01 IN NIGERIA");
+    // The glue is the draw's: the card's own strings print "No. 1" with a plain space.
+    expect(dayPostCard(day("23-may")).headline).toBe("“TSHWALA BAM (REMIX)” HIT NO. 1 IN NIGERIA");
+  });
+
+  it("four short lines step down: 15 August's headline sets in two at 88, not four at 104", () => {
+    const berlin = dayPostCard(day("15-august")).headline;
+    expect(berlin).toBe("BURNA BOY PLAYED WALDBÜHNE, BERLIN");
+    expect(cardHeadLines(berlin, 104)).toEqual(["BURNA BOY", "PLAYED", "WALDBÜHNE,", "BERLIN"]);
+    expect(cardHeadLines(berlin, 88)).toEqual(["BURNA BOY PLAYED", "WALDBÜHNE, BERLIN"]);
+    expect(cardHeadSize(berlin)).toBe(88);
+    // Four at 88, three at 80.
+    expect(dayPostCard(day("7-july")).headSize).toBe(80);
+    expect(dayPostCard(day("22-december")).headSize).toBe(80);
+    // Four lines that a step smaller keeps at four stay where they are:
+    // 10 November's NIGERIA / ENTERTAINMENT / AWARDS: ALBUM / OF THE YEAR.
+    expect(dayPostCard(day("10-november")).headSize).toBe(88);
   });
 
   it("without its cover the same day draws the no-art layout (the route's fallback), with the same headline", () => {
@@ -573,8 +627,45 @@ describe("the post card leads with the milestone, not the date (Paul, 26 Sep 202
           : { top: y, bottom: y, left: x, right: x };
       }
 
+    /**
+     * The foot's text under the rule, in its two greys, as bands of rows: the
+     * kind line's cool grey (#9b9ba3, bluer than red, and its mark with it)
+     * and the source's warm one (#8A8279, the label's #6B655D — redder than
+     * blue, as the year's white and its edges are not). The address under
+     * them is the same warm grey but centred, so a source band is one that
+     * starts right of x 540 (the longest source starts at 563). The kind
+     * line is read right of its mark (x 84–104), which centres on a wrapped
+     * line's two rows and would join them.
+     */
+    const footBands = (is: (p: number[]) => boolean, x0 = 4) => {
+      const out: Band[] = [];
+      let cur: Band | undefined;
+      for (let y = rule + 3; y < info.height - 4; y++) {
+        let n = 0;
+        let [l, r] = [W, -1];
+        for (let x = x0; x < W - 4; x++)
+          if (is(at(x, y))) {
+            n++;
+            l = Math.min(l, x);
+            r = Math.max(r, x);
+          }
+        if (n < 6) cur = undefined;
+        else if (!cur) out.push((cur = { top: y, bottom: y, left: l, right: r }));
+        else Object.assign(cur, { bottom: y, left: Math.min(cur.left, l), right: Math.max(cur.right, r) });
+      }
+      return out;
+    };
+    const foot =
+      rule < 0
+        ? null
+        : {
+            kind: footBands(([r, , b]) => b - r >= 4 && b > 80, 110),
+            source: footBands(([r, , b]) => r - b >= 10 && r - b < 60 && r > 70).filter((b) => b.left > 540),
+          };
+
     return {
       rule,
+      foot,
       /** The hero's text, by ink, top to bottom. */
       hero: bandsIn(HERO_TOP, rule < 0 ? info.height : rule),
       /** The foot's first line: the year, in the headline's white. */
@@ -637,7 +728,46 @@ describe("the post card leads with the milestone, not the date (Paul, 26 Sep 202
     return f;
   }
 
-  const results = new Map<string, { faults: string[]; lines: number }>();
+  /** What is wrong with a card's foot: each of its lines is one line — the
+   *  kind line whole, the source a label over one line — with the kind line
+   *  clear of the source and all of it on the measure. */
+  function footFaults(r: CardRead, source: boolean): string[] {
+    if (!r.foot) return ["no rule found"];
+    const f: string[] = [];
+    const { kind, source: src } = r.foot;
+    if (kind.length !== 1) f.push(`the kind line runs to ${kind.length} lines`);
+    if (src.length !== (source ? 2 : 0)) f.push(`${src.length} source lines, not ${source ? "a label over one" : "none"}`);
+    const name = src.at(-1);
+    if (kind[0] && name && kind[0].right + 16 > name.left) f.push(`the kind line runs to ${kind[0].right}, into the source at ${name.left}`);
+    if ([...kind, ...src].some((b) => b.left < LEFT - 4 || b.right > RIGHT)) f.push("foot text outside the 912px measure");
+    return f;
+  }
+
+  /**
+   * Where the headline's lines end in ink, against the lines they should be:
+   * each ends at its advance (cardTextWidth), less no more than its last
+   * letter's side bearing — so a line drawn with a word more or fewer than
+   * `lines` says (a "1" at the least, 60px at 80) is caught.
+   */
+  function lineFaults(head: Band[], lines: string[], size: number): string[] {
+    if (head.length !== lines.length) return [`${head.length} headline lines drawn, not ${lines.length}`];
+    return lines.flatMap((l, i) => {
+      const end = LEFT + cardTextWidth(l, size);
+      const at = head[i].right;
+      return at > end + 2 || at < end - 0.2 * size ? [`line ${i + 1} ends at ${at}, not by ${Math.round(end)} ("${l.replace(/\u00a0/g, " ")}")`] : [];
+    });
+  }
+
+  /** A headline's lines that split what reads as one: a line ending on
+   *  "NO." or on a multiple ("2×"), or starting on NO.'s number. */
+  const splits = (lines: string[]) =>
+    lines.flatMap((l, i) => [
+      ...(/\bNO\.$/i.test(l) ? [`line ${i + 1} ends "NO."`] : []),
+      ...(/\d×$/.test(l) ? [`line ${i + 1} ends on "${l.split(" ").at(-1)}"`] : []),
+      ...(i > 0 && /\bNO\.$/i.test(lines[i - 1]) && /^\d/.test(l) ? [`line ${i + 1} starts on NO.'s number`] : []),
+    ]);
+
+  const results = new Map<string, { faults: string[]; lines: number; widths: number[]; rule: number; head: string[]; foot: string[] }>();
 
   beforeAll(async () => {
     await standIns();
@@ -646,9 +776,14 @@ describe("the post card leads with the milestone, not the date (Paul, 26 Sep 202
       const res = await GET(new Request(`http://x/on-this-day/${d.slug}/card`), { params: Promise.resolve({ day: d.slug }) });
       const r = await readCard(Buffer.from(await res.arrayBuffer()));
       const c = dayPostCard(d);
+      const lines = cardHeadLines(c.headline, c.headSize);
       results.set(d.slug, {
         faults: faults(r, c.cover ? c.coverSize : null),
         lines: r.hero.white.length,
+        widths: r.hero.white.map((b) => b.right - b.left + 1),
+        rule: r.rule,
+        head: [...lineFaults(r.hero.white, lines, c.headSize), ...splits(lines)],
+        foot: footFaults(r, Boolean(c.source)),
       });
     }
     globalThis.fetch = realFetch;
@@ -666,6 +801,73 @@ describe("the post card leads with the milestone, not the date (Paul, 26 Sep 202
     expect(results.get("15-july")?.lines).toBe(2);
     expect(Math.max(...[...results.values()].map((v) => v.lines))).toBe(4);
   });
+
+  it("every day's headline breaks where cardHeadLines says, so never inside NO. 1 or after a 2×", () => {
+    const bad = [...results].filter(([, v]) => v.head.length).map(([slug, v]) => `${slug}: ${v.head.join("; ")}`);
+    expect(bad).toEqual([]);
+    // Not vacuous: the tokens are on the calendar, and 23 May's is at a break.
+    const printed = onThisDayDays.map((d) => dayPostCard(d).headline);
+    expect(printed.filter((h) => /\bNO\. \d/.test(h)).length).toBeGreaterThan(20);
+    expect(printed.filter((h) => /\d× /.test(h)).length).toBeGreaterThan(3);
+    expect(cardHeadLines(dayPostCard(day("23-may")).headline, 88)).toEqual(["“TSHWALA BAM", "(REMIX)” HIT", "NO.\u00a01 IN NIGERIA"]);
+  });
+
+  it("no headline sets as four lines, one under half the measure, where a step smaller takes fewer", () => {
+    // 15 August's BURNA BOY / PLAYED / WALDBÜHNE, / BERLIN, at 104, until 26 Sep 2026.
+    const bad = onThisDayDays.filter((d) => {
+      const c = dayPostCard(d);
+      const v = results.get(d.slug)!;
+      const step = [120, 104, 88, 80].indexOf(c.headSize);
+      return v.lines === 4 && Math.min(...v.widths) < 456 && step < 3 && cardHeadLines(c.headline, [120, 104, 88, 80][step + 1]).length < 4;
+    });
+    expect(bad.map((d) => d.slug)).toEqual([]);
+    expect(results.get("15-august")?.lines).toBe(2);
+  });
+
+  it("every day's foot: the kind line whole beside its source, each on one line, and the rule at one height on every card", () => {
+    const bad = [...results].filter(([, v]) => v.foot.length).map(([slug, v]) => `${slug}: ${v.foot.join("; ")}`);
+    expect(bad).toEqual([]);
+    expect(new Set([...results.values()].map((v) => v.rule))).toEqual(new Set([results.get("8-october")!.rule]));
+    // Not vacuous: the six days the full kind line wrapped on are among them,
+    // each now in a shorter form.
+    for (const slug of ["2-march", "17-july", "31-august", "24-october", "3-november", "10-november"]) {
+      expect(dayPostCard(day(slug)).kindLine, slug).not.toMatch(/MILESTONES? ON THIS DAY$/);
+    }
+  });
+
+  it("a negative control: 23 May's headline as the branch drew it, NO. at the end of a line, fails the same read", async () => {
+    // The branch at 34fd8fcd, read off its render of 23 May (26 Sep 2026):
+    // Satori broke the plain "NO. 1" and set the 1 at the head of line three.
+    const shipped = ["“TSHWALA BAM", "(REMIX)” HIT NO.", "1 IN NIGERIA"];
+    expect(splits(shipped)).toEqual(['line 2 ends "NO."', "line 3 starts on NO.'s number"]);
+    // And the ink tells those lines from the ones the card draws: the
+    // headline block, set as the branch set it, reads back as `shipped`, and
+    // not as the lines 23 May now takes.
+    const c = dayPostCard(day("23-may"));
+    const replica = new ImageResponse(
+      (
+        <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", justifyContent: "center", padding: 84, background: "#0c0a09", color: "#f5f4f0", fontFamily: "sans-serif" }}>
+          <div style={{ display: "flex", width: 912, fontSize: c.headSize, lineHeight: 1.04, letterSpacing: 0, textWrap: "balance" }}>{c.headline}</div>
+        </div>
+      ),
+      { width: 1080, height: 1350, fonts: otdFonts },
+    );
+    const head = (await readCard(Buffer.from(await replica.arrayBuffer()))).hero.white;
+    expect(lineFaults(head, shipped, c.headSize)).toEqual([]);
+    expect(lineFaults(head, cardHeadLines(c.headline, c.headSize), c.headSize)).not.toEqual([]);
+    expect(results.get("23-may")?.head).toEqual([]);
+  }, 60000);
+
+  it("a negative control: 2 March's foot as the branch set it wraps, and lifts the rule", async () => {
+    // The branch at 34fd8fcd printed the kind line in full on every card; on
+    // 2 March it wrapped beside BOSTON CITY COUNCIL and left DAY on a line of
+    // its own (read off its render, 26 Sep 2026).
+    const shipped: DayPostCard = { ...dayPostCard(day("2-march")), kindLine: "AWARDS · + 1 MORE MILESTONE ON THIS DAY" };
+    const r = await readCard(Buffer.from(await postCardImage(shipped).arrayBuffer()));
+    expect(footFaults(r, true)).toEqual(["the kind line runs to 2 lines"]);
+    expect(r.rule).toBeLessThan(results.get("2-march")!.rule);
+    expect(results.get("2-march")?.foot).toEqual([]);
+  }, 60000);
 
   it("a negative control: the shipped numeral card fails the same read", async () => {
     // The hero of app/lib/onThisDayImages.tsx @ fbfcb723 on 8 October — the
@@ -782,7 +984,7 @@ describe("the portrait, faded into the top right (Paul, 26 Sep 2026)", () => {
       // The lockup's row ends at 128: the band is solid down to 119.
       expect(p.in(0, 0, 1080, 120), `${slug}: photo under the top line`).toBe(0);
       // The floor is solid from 385 — the highest text right of x 600 on any
-      // day is 22 December's headline, at 522 (read on every day above).
+      // day is 19 July's headline, at 530 (read on every day above).
       expect(p.in(0, 385, 1080, 1350), `${slug}: photo under the date line or the headline`).toBe(0);
       // The cover ends at x 504 (444 at 360); the left fade is solid to 600.
       expect(p.in(0, 0, 600, 1350), `${slug}: photo beside the cover`).toBe(0);

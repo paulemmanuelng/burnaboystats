@@ -21,6 +21,7 @@ import { certHistory } from "../data/certifications";
 import { coverFor } from "./covers";
 import { spotifyImage } from "./spotifyImage";
 import { cardUrl } from "./og-image";
+import { cardTextWidth } from "./cardTextWidth";
 import {
   KIND_MARK,
   isRecordLine,
@@ -121,16 +122,75 @@ export const previewHeadSize = (length: number, cover: boolean) =>
  * the measure. It errs small: 18 July's GURTENFESTIVAL would fit at 104 and
  * is set at 88. Every day is rendered and checked against the measure in
  * tests/onThisDayShareImages.test.tsx, so a new word that outruns the rate
- * fails there, not on a card.
+ * fails there, not on a card. A word here is what the card cannot break
+ * (keepTogether): "NO. 1" and "2× PLATINUM" count as one.
+ *
+ * And four short lines read as a list, not a sentence: 15 August's BURNA BOY
+ * / PLAYED / WALDBÜHNE, / BERLIN at 104. So a headline that would take four
+ * lines, one of them under half the measure, is set a step smaller when that
+ * step takes fewer lines — 15 August two lines at 88; 7 July and 22 December,
+ * four at 88, three at 80. The lines are cardHeadLines', the renderer's own
+ * breaks.
  */
 const HEAD_STEPS = [120, 104, 88, 80] as const;
 export function cardHeadSize(headline: string, measure = 912): number {
   const n = headline.length;
-  const longest = Math.max(...headline.split(" ").map((w) => w.length));
+  const longest = Math.max(...keepTogether(headline).split(" ").map((w) => w.length));
   let i = n <= 24 ? 0 : n <= 36 ? 1 : n <= 48 ? 2 : 3;
   while (i < HEAD_STEPS.length - 1 && longest * 0.66 * HEAD_STEPS[i] > measure) i++;
+  if (i < HEAD_STEPS.length - 1) {
+    const lines = cardHeadLines(headline, HEAD_STEPS[i], measure);
+    const shortest = Math.min(...lines.map((l) => cardTextWidth(l, HEAD_STEPS[i])));
+    if (lines.length === 4 && shortest < measure / 2 && cardHeadLines(headline, HEAD_STEPS[i + 1], measure).length < 4) i++;
+  }
   return HEAD_STEPS[i];
 }
+
+/**
+ * The lines a post card headline breaks into at `size`, as Satori breaks it
+ * under text-wrap: balance (its own procedure, in next/og's satori): lay the
+ * words out greedily on the measure; if that takes more than one line, search
+ * between half the measure and the measure for the narrowest width that takes
+ * no more lines, and lay them out again at that. A line may break after a
+ * plain space, or after a hyphen before a letter, as Unicode's line breaking
+ * allows (2 August's HEADLINED COCA- / COLA FOOD FEST) — never inside what
+ * keepTogether joins. The renders of every day are read back against these
+ * lines (tests/onThisDayShareImages.test.tsx).
+ */
+export function cardHeadLines(headline: string, size: number, measure = 912): string[] {
+  const pieces = keepTogether(headline).split(/(?<= )|(?<=-)(?=\D)/);
+  const trim = (line: string) => line.replace(/ +$/, "");
+  const breakAt = (width: number) => {
+    const lines: string[] = [];
+    for (const piece of pieces) {
+      const last = lines.length - 1;
+      if (last >= 0 && cardTextWidth(trim(lines[last] + piece), size) <= width) lines[last] += piece;
+      else lines.push(piece);
+    }
+    return lines.map(trim);
+  };
+  const greedy = breakAt(measure);
+  if (greedy.length === 1) return greedy;
+  let [lo, hi] = [measure / 2, measure];
+  while (lo + 1 < hi) {
+    const mid = (lo + hi) / 2;
+    if (breakAt(mid).length > greedy.length) lo = mid;
+    else hi = mid;
+  }
+  return breakAt(hi);
+}
+
+/**
+ * The text as the post card DRAWS it: "No." joined to its number, and a
+ * multiple ("2×") to the word it multiplies, by a no-break space — so no line
+ * ends "HIT NO." over "1 IN NIGERIA", as 23 May's did, and no "2×" is left at
+ * the end of one. Satori breaks lines where Unicode allows (UAX #14), and
+ * U+00A0 is glue: it never breaks there, and draws as Geist's space, the same
+ * 250 units. Only at the draw: the strings the model holds keep one plain
+ * space between words (ruling 8, tests/onThisDayShareImages.test.tsx), and
+ * the site spells "No. 1" with a space (tests/siteDebugWording.test.ts).
+ */
+export const keepTogether = (text: string) => text.replace(/\b(No\.) (?=\d)/gi, "$1\u00a0").replace(/(\d×) /g, "$1\u00a0");
 
 // ── The link preview, 1200×630 ──────────────────────────────────────────────
 
@@ -199,11 +259,51 @@ export interface DayPostCard {
    *  for years. */
   year: string;
   kind: OnThisDayKind;
-  /** "CERTIFICATION · + 4 MORE MILESTONES ON THIS DAY" */
+  /** "CERTIFICATION · + 4 MORE MILESTONES ON THIS DAY", or shorter where
+   *  the source leaves it less room (cardKindLine). */
   kindLine: string;
   /** The publisher, in capitals, or null (sharePublisher). */
   source: string | null;
   url: string;
+}
+
+/**
+ * The post card's foot, as lib/onThisDayImages.tsx sets it: the year over the
+ * kind line on the left, the source (a label over the publisher) on the right,
+ * on the card's 912px measure. One place for the sizes, so the kind line is
+ * fitted to the type that draws it.
+ */
+export const CARD_FOOT = {
+  measure: 912,
+  /** Between the kind line's column and the source's. */
+  gap: 32,
+  /** The kind's mark, and the gap after it. */
+  mark: 20,
+  markGap: 12,
+  kind: { fontSize: 22, letterSpacing: 2.64 },
+  label: { text: "SOURCE", fontSize: 18, letterSpacing: 3.24 },
+  source: { fontSize: 22, letterSpacing: 2.2 },
+} as const;
+
+/**
+ * The kind line, in the longest form that fits on one line beside the source:
+ * "CHARTS · + 2 MORE MILESTONES ON THIS DAY", else "… · + 2 MORE ON THIS DAY",
+ * else "… · + 2 MORE". Set in full it wrapped on six days (2 March, 17 July,
+ * 31 August, 24 October, 3 and 10 November), leaving "DAY" or "THIS DAY" on a
+ * line of its own and lifting the rule 29px. The source never wraps and never
+ * gives way: it is the publisher's name. Measured as Satori measures it
+ * (cardTextWidth), with a pixel's allowance for the layout's rounding.
+ */
+export function cardKindLine(word: string, more: number, source: string | null): string {
+  const F = CARD_FOOT;
+  const sourceWidth = source
+    ? Math.max(cardTextWidth(F.label.text, F.label.fontSize, F.label.letterSpacing), cardTextWidth(source, F.source.fontSize, F.source.letterSpacing))
+    : 0;
+  const room = F.measure - F.mark - F.markGap - (source ? F.gap + sourceWidth : 0) - 1;
+  const forms = more
+    ? [`+ ${more} more milestone${more === 1 ? "" : "s"} on this day`, `+ ${more} more on this day`, `+ ${more} more`].map((m) => `${word} · ${m}`.toUpperCase())
+    : [word.toUpperCase()];
+  return forms.find((l) => cardTextWidth(l, F.kind.fontSize, F.kind.letterSpacing) <= room) ?? forms[forms.length - 1];
 }
 
 /**
@@ -227,7 +327,7 @@ export function dayPostCard(day: OnThisDayDay, { withCover = true }: { withCover
     record: isRecordLine(lead) ? lead.detail : null,
     year: String(lead.year),
     kind: lead.kind,
-    kindLine: `${KIND_MARK[lead.kind].word}${more ? ` · + ${more} more milestone${more === 1 ? "" : "s"} on this day` : ""}`.toUpperCase(),
+    kindLine: cardKindLine(KIND_MARK[lead.kind].word, more, source ? source.toUpperCase() : null),
     source: source ? source.toUpperCase() : null,
     url: cardUrl(`/on-this-day/${day.slug}`),
   };

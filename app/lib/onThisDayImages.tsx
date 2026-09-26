@@ -4,7 +4,7 @@ import { KIND_MARK, type OnThisDayKind } from "./onThisDayKinds";
 import { CARD_SIZE } from "./cardPreview";
 import { withoutKerning } from "./unkernedFont";
 import { BURNA_PORTRAIT } from "./artistImages";
-import type { DayPostCard } from "./onThisDayShare";
+import { CARD_FOOT, keepTogether, type DayPostCard } from "./onThisDayShare";
 
 /**
  * ON THIS DAY — the drawing shared by its two share images, and the post card.
@@ -226,7 +226,7 @@ const FACE_LIGHT =
  * line). The floor is solid from 385, and no text reaches it: on a day
  * without a cover the text starts no higher than TEXT_TOP (400), and on a day
  * with one it starts under the cover — the highest text right of x 600 on any
- * day is 22 December's headline, at 522, reading every day on the calendar
+ * day is 19 July's headline, at 530, reading every day on the calendar
  * (26 Sep 2026; the card's text starts at 464 at the highest). So the
  * photo never sits behind the date line, the headline or the record. The left
  * fade is solid to the photo's edge at x 600: clear of the cover (x 84–504 at
@@ -383,24 +383,27 @@ export function postCardImage(card: DayPostCard, portrait: string | null = null)
               textWrap: "balance",
             }}
           >
-            {card.headline}
+            {keepTogether(card.headline)}
           </div>
           {card.record && (
             <div style={{ display: "flex", width: HEADLINE_WIDTH, marginTop: 26, fontSize: 32, lineHeight: 1.3, color: "#CFC7BB" }}>
-              {card.record}
+              {keepTogether(card.record)}
             </div>
           )}
         </div>
 
         {/* The foot: the rule, the year, the kind and the day's other
-            milestones, the publisher when there is one, the address. */}
+            milestones, the publisher when there is one, the address. Every
+            line of it is one line, so the rule sits at the same height on
+            every card: the source is set whole, and the kind line is the
+            longest form that fits beside it (cardKindLine, CARD_FOOT). */}
         <div style={{ position: "relative", display: "flex", flexDirection: "column", gap: 22 }}>
           <div style={{ display: "flex", height: 2, background: "rgba(255,182,39,0.35)" }} />
-          <div style={{ display: "flex", alignItems: "flex-end", gap: 32 }}>
+          <div style={{ display: "flex", alignItems: "flex-end", gap: CARD_FOOT.gap }}>
             <div style={{ display: "flex", flexDirection: "column", gap: 10, flex: 1, minWidth: 0 }}>
               <div style={{ display: "flex", fontSize: 52, lineHeight: 1, letterSpacing: 1.04 }}>{card.year}</div>
-              <div style={{ display: "flex", alignItems: "center", gap: 12, fontSize: 22, letterSpacing: 2.64, color: "#9b9ba3" }}>
-                <ShareMark kind={card.kind} size={20} color="#9b9ba3" />
+              <div style={{ display: "flex", alignItems: "center", gap: CARD_FOOT.markGap, ...CARD_FOOT.kind, color: "#9b9ba3" }}>
+                <ShareMark kind={card.kind} size={CARD_FOOT.mark} color="#9b9ba3" />
                 <div style={{ display: "flex", flex: 1, minWidth: 0 }}>{card.kindLine}</div>
               </div>
             </div>
@@ -410,13 +413,15 @@ export function postCardImage(card: DayPostCard, portrait: string | null = null)
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "flex-end",
+                  flexShrink: 0,
                   gap: 6,
-                  maxWidth: 420,
                   textAlign: "right",
                 }}
               >
-                <div style={{ display: "flex", fontSize: 18, letterSpacing: 3.24, color: "#6B655D" }}>SOURCE</div>
-                <div style={{ display: "flex", fontSize: 22, letterSpacing: 2.2, color: "#8A8279" }}>{card.source}</div>
+                <div style={{ display: "flex", fontSize: CARD_FOOT.label.fontSize, letterSpacing: CARD_FOOT.label.letterSpacing, color: "#6B655D" }}>
+                  {CARD_FOOT.label.text}
+                </div>
+                <div style={{ display: "flex", ...CARD_FOOT.source, color: "#8A8279", whiteSpace: "nowrap" }}>{card.source}</div>
               </div>
             )}
           </div>
