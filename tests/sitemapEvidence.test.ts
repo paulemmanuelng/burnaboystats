@@ -47,6 +47,14 @@ const feedDate = (path: string): string | undefined =>
 
 const swept = afrobeatsArtists.filter((a) => a.swept);
 
+/** Newest sweep among the artists holding a plaque in this country. */
+const countryEvidence = (code: string): string | undefined =>
+  comparableArtists
+    .filter((a) => a.releases.some((r) => r.certs.some((x) => x.c === code)))
+    .map((a) => a.verifiedOn)
+    .sort()
+    .at(-1);
+
 /** Every date a route is entitled to claim, derived independently. */
 function evidenceFor(path: string): string[] {
   const dates = [feedDate(path)];
@@ -59,14 +67,9 @@ function evidenceFor(path: string): string[] {
   // A country board is dated by the artists certified THERE — derived from the
   // plaques themselves here, not from the board builder the sitemap calls.
   const code = certCountryCodes().find((c) => `/compare/in/${countrySlug(c)}` === path);
-  if (code)
-    dates.push(
-      comparableArtists
-        .filter((a) => a.releases.some((r) => r.certs.some((x) => x.c === code)))
-        .map((a) => a.verifiedOn)
-        .sort()
-        .at(-1),
-    );
+  if (code) dates.push(countryEvidence(code));
+  // The index of the country boards prints every one of them.
+  if (path === "/compare/in") dates.push(...certCountryCodes().map(countryEvidence));
   if (path === "/updates") dates.push([...updates.map((u) => u.date)].sort().at(-1));
   if (path === "/afrobeats") dates.push([...swept.map((a) => a.verifiedOn)].sort().at(-1));
   const board = LIVE_BOARDS.find((b) => `/afrobeats/${b.slug}/live` === path);
@@ -169,6 +172,30 @@ describe("sitemap lastmod is evidence-backed", () => {
     // audit keeps finding: green while checking nothing.
     expect(swept.length).toBe(sweptArtists.length);
     expect(wrong).toEqual([]);
+  });
+});
+
+describe("/compare/in is dated by the boards it indexes", () => {
+  // Live, 26 Sep 2026: /compare/in had no stamp of its own, so it took the feed's
+  // 23 Sep while printing "27 countries, 1,318 plaques" — totals that moved on
+  // the 25th, when /compare/in/united-kingdom and /canada were already dated 25 Sep.
+  const said = (p: string) => dayOf(rows.find((r) => pathOf(r.url) === p)?.lastModified as Date | undefined);
+  const newestBoard = () =>
+    certCountryCodes()
+      .map((c) => said(`/compare/in/${countrySlug(c)}`))
+      .filter((d): d is string => Boolean(d))
+      .sort()
+      .at(-1)!;
+  const behind = (index: string | undefined, board: string) => index === undefined || index < board;
+
+  it("is never older than its newest country board", () => {
+    expect(certCountryCodes().length).toBeGreaterThan(20);
+    expect(behind(said("/compare/in"), newestBoard()), `/compare/in says ${said("/compare/in")}`).toBe(false);
+  });
+
+  it("negative control: the lastmod that shipped", () => {
+    // The live sitemap's <lastmod> for /compare/in on 26 Sep 2026.
+    expect(behind("2026-09-23", newestBoard())).toBe(true);
   });
 });
 

@@ -5,9 +5,9 @@
 **Read on:** 26 Sep 2026, live site, repo at `93fedb07`.
 **Status:** this is a report only. Nothing in the repo was changed.
 
-Screenshots are in `shots/` next to this file. They were taken with the repo's own CDP harness (`scripts/mobile-shot.mjs`) through `~/.local/bin/heavy`, at **390×844 (phone, dpr 2)** and **1440×900 (desktop, dpr 1)**. Before each capture the page was scrolled slowly in 70px steps and then left 1.7s to settle, so the sticky scene, the count-ups and the lazy images all paint.
+Screenshots are in [`../shots/`](../shots/), beside this folder, saved as JPG. They were taken with the repo's own CDP harness (`scripts/mobile-shot.mjs`) through `~/.local/bin/heavy`, at **390×844 (phone, dpr 2)** and **1440×900 (desktop, dpr 1)**. Before each capture the page was scrolled slowly in 70px steps and then left 1.7s to settle, so the sticky scene, the count-ups and the lazy images all paint.
 
-There are no full-page captures. The harness's `--full` mode grows the viewport to the document height, and this page sizes its stage and steps in `vh`, so the 44vh stage inflates to about 3,800px and the result is useless. The two composites (`desktop-dark-08-lineup-takeover.png` and `phone-dark-05-lineup-takeover-outro.png`) are real viewport captures placed side by side or stacked, and the fixed bars appear in each panel because each panel is a real screen.
+There are no full-page captures. The harness's `--full` mode grows the viewport to the document height, and this page sizes its stage and steps in `vh`, so the 44vh stage inflates to about 3,800px and the result is useless. The two composites (`desktop-dark-08-lineup-takeover.jpg` and `phone-dark-05-lineup-takeover-outro.jpg`) are real viewport captures placed side by side or stacked, and the fixed bars appear in each panel because each panel is a real screen.
 
 Every value quoted below is either measured on the live page (marked "measured") or read from the code at `file:line`. Paths are relative to `~/burnaboy-website/`.
 
@@ -35,34 +35,34 @@ A comment in `page.tsx:443` calls this the site's most-trafficked page.
 ## 2. Phone (390×844)
 
 ### P1. Fixed chrome plus the stage leave a 378px reading window
-`shots/phone-dark-02-story-billboard.png`
+`../shots/phone-dark-02-story-billboard.jpg`
 
 - The back bar is fixed at 0–69px (`app/components/DaiDaiStory.module.css:331-351`, z-index 45). The five-tab bar is fixed at 757–844px, 87px tall (`app/components/mobileTabBar.module.css:10-20`, z-index 60). Together they cover 156px, which is 18.5% of the screen, on every screen of the page.
 - Inside the story, the sticky stage is 371px tall (`44vh`, min 300px; `DaiDaiStory.module.css:270-287`) and occupies 8–379px (measured).
 - The prose therefore gets **379–757px, which is 378px or 45% of the screen**. The Billboard paragraph is 445 characters over 11 lines. It starts under the stage and its last line runs under the tab bar ("ten straight weeks at No. 1, 4 July to 5…" is cut off in the shot).
 
 ### P2. The stage slides under the back bar
-`shots/phone-dark-02-story-billboard.png`, `shots/phone-dark-03-story-certs.png`
+`../shots/phone-dark-02-story-billboard.jpg`, `../shots/phone-dark-03-story-certs.jpg`
 
 - The stage pins at `top: 8px` (`DaiDaiStory.module.css:274`), but the fixed back bar is 69px tall. **The top 61px of the stage is always hidden behind the bar.**
 - The stage's top border never shows. "№1" and "17" sit hard against the bar's edge.
 - As the halftime scene leaves, the bar cuts through Shakira and Burna Boy's portraits (seen at scroll 4,450; that capture is not in `shots/`).
 
 ### P3. The active step's heading sits behind the stage
-`shots/phone-dark-03-story-certs.png`
+`../shots/phone-dark-03-story-certs.jpg`
 
 - A step becomes active when it crosses the viewport's centre line (`rootMargin: "-50% 0px -50% 0px"`, `DaiDaiStory.tsx:234`), which is at 422px. The visible window only starts at 379px (P1).
 - At scroll 2,900 the certifications step is active, but its index, kicker and title ("The plaques rolled in") are behind the stage. The reader meets the text mid-sentence, at "…Diamond in France, 2× Platinum…".
 - The step's text top was at 263px, 116px under the stage (measured).
 
 ### P4. The step counter reads "07 / 07" for the rest of the page
-`shots/phone-dark-04-numbers-hero.png` (top bar)
+`../shots/phone-dark-04-numbers-hero.jpg` (top bar)
 
 - `backStep` prints `active + 1` (`DaiDaiStory.tsx:253-255`) and nothing ever clears it.
 - Through the lineup, takeover, numbers and FAQ, the bar still says **07 / 07**, which looks like a stuck progress indicator.
 
 ### P5. Hero: three stacked full-size pills push the story off screen 1
-`shots/phone-dark-01-hero.png`
+`../shots/phone-dark-01-hero.jpg`
 
 - The three pills are "▶ Watch the halftime show ↗" (297px wide), "Skip to the numbers" (225px) and "Leer en español" (189px). All are 46px tall (`.btn`, `app/globals.css:734-746`). They wrap into a ragged left-aligned stack 158px tall, at 289–447px.
 - The language switch and the skip link carry the same weight as the primary action.
@@ -72,14 +72,14 @@ A comment in `page.tsx:443` calls this the site's most-trafficked page.
 - "Skip to the numbers" smooth-scrolls (`html { scroll-behavior: smooth }`, `globals.css:561`) about 5,400px through all seven scenes to reach `#numbers` at 5,749px.
 
 ### P6. The stage is mostly empty, and each scene is one glyph and one line
-`shots/phone-dark-02-story-billboard.png`, `shots/phone-dark-03-story-certs.png`
+`../shots/phone-dark-02-story-billboard.jpg`, `../shots/phone-dark-03-story-certs.jpg`
 
 - On a 354×371px card, each scene is a single big figure ("№1", "26", "17", three words, or two 100px portraits), a mono label and a gold note.
 - The blurred cover backdrop is at `opacity: .28` (`DaiDaiStory.module.css:43`) under a scrim that reaches 82% `--bg` (`:54`). On a phone it reads as a flat dark box.
 - Each step has a 66vh minimum height (557px; `:293-295`). Short steps (185–223 characters, 5 lines) leave about 280px of blank screen under the text (bottom of `phone-dark-03`).
 
 ### P7. Lineup portraits render as ovals; the tags wrap unevenly
-`shots/phone-dark-05-lineup-takeover-outro.png` (left panel)
+`../shots/phone-dark-05-lineup-takeover-outro.jpg` (left panel)
 
 - `.lineupPhoto` is `width: 100%; max-width: 118px; aspect-ratio: 1` (`app/dai-dai/dai-dai.module.css:88-96`), but the `<img>` also has `width={128} height={128}` (`page.tsx:404`). The height attribute wins over `aspect-ratio`.
 - Measured: the portraits are **106×128 on a phone and 118×128 on desktop**, which is visibly oval on a phone.
@@ -87,27 +87,27 @@ A comment in `page.tsx:443` calls this the site's most-trafficked page.
 - The tags "“Everything Hallelujah”" and "With PS22 Chorus" wrap to two lines, so the three columns end at different heights.
 
 ### P8. The world takeover, the page's best visual, is folded by default
-`shots/phone-dark-05-lineup-takeover-outro.png` (middle panel)
+`../shots/phone-dark-05-lineup-takeover-outro.jpg` (middle panel)
 
 - On a phone the 66-cell grid is `display: none` until tapped (`app/components/DaiDaiConquest.module.css:144-147`; state at `DaiDaiConquest.tsx:75`).
 - The fold bar reads "66 COUNTRIES · 26 AT NO. 1 · SHOW ALL +". The sentence directly above has just said "charted in 66 countries — and reached No. 1 in 26 of them" (`page.tsx:61`), so the reader sees the same two numbers twice in a row and no picture.
 
 ### P9. The lead number cards are 129px text columns with labels up to 22 lines long
-`shots/phone-dark-04-numbers-hero.png`
+`../shots/phone-dark-04-numbers-hero.jpg`
 
 - On a phone the six lead cards go two-up (`.numHeroGrid { grid-template-columns: 1fr 1fr }`, `dai-dai.module.css:196`). That gives 177px cards with 24px padding each side, so the label has 129px.
 - The labels are 13.5px (`:156`) and run up to 390 characters. The Billboard card ("No. 1", `page.tsx:217`) is **22 lines at about 18 characters a line**. The card is 564px tall, and its neighbour ("473M") is half empty beside it.
 - The six lead figures take 1,198px (measured).
 
 ### P10. The full breakdown adds 5,638px of identical cards
-`shots/phone-dark-05-lineup-takeover-outro.png` (middle panel) shows the folded state. The opened state was measured.
+`../shots/phone-dark-05-lineup-takeover-outro.jpg` (middle panel) shows the folded state. The opened state was measured.
 
 - Behind the "Show the full breakdown (28 more) +" button (`app/components/DaiDaiNumbers.tsx:71-78`; fold at `dai-dai.module.css:284-305`) are 28 cards with the same two-up shape and the same long labels.
 - Opening it takes the page from 8,614px to **14,252px**.
 - The value line ("11 weeks", "9 weeks", "No. 1") never says which country or chart it belongs to. That is only in the label ("at No. 1 on Germany's official singles chart — and named…"), so scanning the values tells the reader nothing.
 
 ### P11. Outro: centred, glued to the FAQ, and three stacked pills again
-`shots/phone-dark-05-lineup-takeover-outro.png` (right panel)
+`../shots/phone-dark-05-lineup-takeover-outro.jpg` (right panel)
 
 - `.outro` is `margin: 8px auto 60px; text-align: center` (`dai-dai.module.css:249-253`). It starts 8px under the last FAQ card, with no section break and no kicker.
 - It is the only centred block after a left-aligned page.
@@ -125,14 +125,14 @@ A comment in `page.tsx:443` calls this the site's most-trafficked page.
 ## 3. Desktop (1440×900)
 
 ### D1. Hero: a strong title, three equal pills, and the stage cut at the fold
-`shots/desktop-dark-01-hero.png`
+`../shots/desktop-dark-01-hero.jpg`
 
 - What works: the Anton title at 88px (`dai-dai.module.css:18-26`) with the gold ink on "Dai Dai" (`.inkText`), the mono kicker, and the lede at a 62ch measure (`:27`). This is the brand at its best.
 - The three pills sit on one row at 364–410px. As on the phone, the Spanish link and the skip link weigh the same as the primary action.
 - The stage starts at 454px, so screen 1 shows its top half, with the cover and the step "01 / 07" heading squeezed into the bottom-right corner.
 
 ### D2. The sticky stage is a 572px square that is mostly empty
-`shots/desktop-light-02-story-stage.png`, `shots/desktop-dark-04-story-halftime.png`
+`../shots/desktop-light-02-story-stage.jpg`, `../shots/desktop-dark-04-story-halftime.jpg`
 
 - `.scrolly` is two equal columns with a 56px gap (`DaiDaiStory.module.css:4-10`). The stage is `aspect-ratio: 1` (`:23`), 572×572, and pins at `top: 104px` (`:15`).
 - The header is 69px, so there is a 35px sliver above the stage. The stage ends at 676px, leaving 224px of the 900px viewport unused below it.
@@ -140,7 +140,7 @@ A comment in `page.tsx:443` calls this the site's most-trafficked page.
 - The Billboard scene and the Spotify scene are the same layout (№1, a label, a note), so two of the seven chapters look identical.
 
 ### D3. The blurred backdrop bleeds out of the card, most visibly in light mode
-`shots/desktop-light-02-story-stage.png` (grey and pink blotches below and left of the card), and more faintly in `desktop-dark-01`, `-04`.
+`../shots/desktop-light-02-story-stage.jpg` (grey and pink blotches below and left of the card), and more faintly in `desktop-dark-01`, `-04`.
 
 - `.backdrop` is `position: absolute; inset: -25%; filter: blur(46px)` (`DaiDaiStory.module.css:37-46`). Its comment says it "fills the stage".
 - On desktop, though, `.sticky` has no `position` (`:22-34`; measured `static`). The backdrop is therefore positioned against `.stickyCol` and is **not clipped** by `.sticky`'s `overflow: hidden`.
@@ -149,7 +149,7 @@ A comment in `page.tsx:443` calls this the site's most-trafficked page.
 - On a phone `.sticky` is `position: sticky`, so the backdrop is contained there.
 
 ### D4. Chapter rhythm: each step is 830px of scroll holding about 280px of text
-`shots/desktop-dark-03-story-gap.png`
+`../shots/desktop-dark-03-story-gap.jpg`
 
 - Steps have a 92vh minimum height (828px; `DaiDaiStory.module.css:177-181`), with the text block centred inside. The text blocks are 488px wide and about 280px tall (394px for the Billboard step) (measured).
 - Between steps the right column goes blank for about 550px. In the shot, the stage has already switched to "Spotify Global Top Songs" while the only text on screen is the dimmed tail of the previous step and a heading at the very bottom.
@@ -157,11 +157,11 @@ A comment in `page.tsx:443` calls this the site's most-trafficked page.
 - Inactive steps sit at `opacity: .34` (`:186`).
 
 ### D5. The scenes carry figures without meaning
-`shots/desktop-light-02-story-stage.png`, `shots/phone-dark-03-story-certs.png`
+`../shots/desktop-light-02-story-stage.jpg`, `../shots/phone-dark-03-story-certs.jpg`
 
 - **Certifications scene: two unlabelled dots**, one in `--tier-platinum-ink` and one in `--gold` (`DaiDaiStory.tsx:184-186`). Nothing says which is Platinum and which is Gold. The plaques themselves (Diamond, 2× Platinum, 6× Platino, eight Platinum, six Gold, one Silver) appear only as a 353-character sentence in the step body (`:125`).
 - **No. 1 countries scene: a hard-coded string of 10 flags** (`DaiDaiStory.tsx:166`) under a derived count of 26. The count updates from data and the flags never will.
-- **Halftime, the climax of the story, is two 128px portraits and a label** (`shots/desktop-dark-04-story-halftime.png`). There is no photo or poster of the performance, and no video.
+- **Halftime, the climax of the story, is two 128px portraits and a label** (`../shots/desktop-dark-04-story-halftime.jpg`). There is no photo or poster of the performance, and no video.
 
 ### D6. The video content is missing from the page
 - The only link to the halftime show is the hero pill. It is an external YouTube link (`HALFTIME_VIDEO`, `page.tsx:209`, used at 373-380).
@@ -169,14 +169,14 @@ A comment in `page.tsx:443` calls this the site's most-trafficked page.
 - The "The video" group has 2 cards in a 3-column grid, leaving a blank third cell.
 
 ### D7. Lineup: the note is centred under a left-aligned section, and the lineup is told three times
-`shots/desktop-dark-08-lineup-takeover.png` (top half)
+`../shots/desktop-dark-08-lineup-takeover.jpg` (top half)
 
 - `.lineupNote` is `margin: 0 auto` (`dai-dai.module.css:114-120`). Measured, it starts at x=437 while the heading and intro start at x=120, so it floats alone in the middle.
 - The six portraits (118×128, slightly oval, see P7) in a 6-column grid are fine.
 - The same bill is told in the halftime step ("alongside Madonna, BTS and Justin Bieber"), in this section, and in FAQ answer 6.
 
 ### D8. World takeover: works, with rough edges
-`shots/desktop-dark-08-lineup-takeover.png` (bottom half)
+`../shots/desktop-dark-08-lineup-takeover.jpg` (bottom half)
 
 - **Keep:** one cell per country, sorted by peak, so the 26 gold No. 1 cells read as a block. It replaced a map that silently dropped countries (`DaiDaiConquest.tsx:14-18`).
 - The grid is 1200×634px, with 10 columns (`DaiDaiConquest.module.css:25`; 8 at ≤1239px, 5 on a phone).
@@ -185,7 +185,7 @@ A comment in `page.tsx:443` calls this the site's most-trafficked page.
 - The gold cells use a 30% gold wash (`:45`), which on black renders as a flat mustard-brown slab.
 
 ### D9. By the numbers: 3,008px of equal-weight cards where values do not say what they measure
-`shots/desktop-dark-05-numbers-national.png`
+`../shots/desktop-dark-05-numbers-national.jpg`
 
 - **Six lead cards**, three-up, 255px and 212px tall. The values are 52px gold Anton (`dai-dai.module.css:155`) and the labels are 13.5px paragraphs.
 - The six values mix units: counts (68, 26, 17), a rank ("No. 1"), streams (473M) and a date (19 Jul).
@@ -200,20 +200,20 @@ A comment in `page.tsx:443` calls this the site's most-trafficked page.
   - The certification list: story step 5, lead card 5 and FAQ 8, with the scene note summarising it again.
 
 ### D10. FAQ on desktop: 1,200px-wide cards, about 150 characters a line
-`shots/desktop-dark-06-faq.png`
+`../shots/desktop-dark-06-faq.jpg`
 
 - There are eight cards, all open (by design on desktop), each the full 1,200px content width. The answers are 15.68px, 1,158px wide (measured), so a full line holds about 150 characters. For example, the certifications answer wraps after "…6× Platino in the US from the RIAA's Latin".
 - The heading sits directly on the first card with a 0px gap (recorded as the shipped look in `dai-dai.module.css:240-243`).
 - The section is 1,065px tall.
 
 ### D11. Outro and rail: a centred block after left-aligned content, an orphan pill, and a second grid
-`shots/desktop-dark-07-outro-footer.png`
+`../shots/desktop-dark-07-outro-footer.jpg`
 
 - The outro starts 8px under the last FAQ card (`dai-dai.module.css:251`). It is a centred 720px block, and its three pills wrap two-plus-one, leaving "Burna Boy discography ↗" alone on the second row.
 - The Keep-exploring rail starts about 16px left of the page's content edge (around x=104 against x=120 in the capture), so the foot of the page runs on two different grids.
 
 ### D12. Nothing marks the chapters apart
-Visible across `desktop-dark-08-lineup-takeover.png`, `desktop-dark-05-numbers-national.png` and `desktop-dark-06-faq.png`.
+Visible across `desktop-dark-08-lineup-takeover.jpg`, `desktop-dark-05-numbers-national.jpg` and `desktop-dark-06-faq.jpg`.
 
 - Every section after the story uses the same device: a mono kicker, an Anton h2 with its second half in flat gold (`.gold`, `dai-dai.module.css:42`), and a grey intro, with the same 56px `.section` top padding (`:30`).
 - Five h2s in a row use the gold-second-half trick. Nothing separates the narrative (the story) from the reference material (numbers and FAQ), and nothing lets a section breathe or lead.
@@ -221,7 +221,7 @@ Visible across `desktop-dark-08-lineup-takeover.png`, `desktop-dark-05-numbers-n
 ---
 
 ## 4. Light theme
-`shots/desktop-light-02-story-stage.png`
+`../shots/desktop-light-02-story-stage.jpg`
 
 - The tokens carry the page into light mode cleanly: paper `--bg #f7f4ee`, ink `#17140f`, one gold `#945e00` (`globals.css:23-67`), with shadows and washes scaled down (`:535-539`).
 - Two problems are specific to light mode:
@@ -229,7 +229,7 @@ Visible across `desktop-dark-08-lineup-takeover.png`, `desktop-dark-05-numbers-n
   - The stage becomes a pale card only slightly lighter than the page, so it loses its edge.
 
 ## 5. Spanish edition (/dai-dai/es)
-`shots/es-01-hero-phone-desktop.png`
+`../shots/es-01-hero-phone-desktop.jpg`
 
 - **The phone title breaks the song's name:** "LA HISTORIA DE DAI / DAI" at 46px (`dai-dai.module.css:54`).
 - **Capital accents collide with the line above.** Step titles are Anton at `line-height: 1.05` (`DaiDaiStory.module.css:215`). On desktop the "Ú" of "DÚO" touches the "N" of "UN" on the line above (right half of the shot, bottom).
@@ -344,17 +344,17 @@ These are for implementation later, and are listed so the design doesn't have to
 
 | File | Shows |
 |---|---|
-| `shots/desktop-dark-01-hero.png` | D1: the hero, the three pills, the stage cut at the fold |
-| `shots/desktop-light-02-story-stage.png` | D2, D3, D5, section 4: an empty 572px stage and the backdrop bleeding onto paper |
-| `shots/desktop-dark-03-story-gap.png` | D4: between steps, a blank right column and the scene swapped early |
-| `shots/desktop-dark-04-story-halftime.png` | D5, D6: the climax chapter as two small portraits |
-| `shots/desktop-dark-05-numbers-national.png` | D9: national charts as tiles, values without their countries |
-| `shots/desktop-dark-06-faq.png` | D10: full-width FAQ cards at about 150 characters a line |
-| `shots/desktop-dark-07-outro-footer.png` | D11: the outro 8px under the FAQ, the orphan pill, the rail off the grid |
-| `shots/desktop-dark-08-lineup-takeover.png` | D7, D8: the lineup screen stacked over the takeover screen; the centred note and the 4-cell hole |
-| `shots/phone-dark-01-hero.png` | P5: three stacked pills, the story below the fold |
-| `shots/phone-dark-02-story-billboard.png` | P1, P2, P6: the stage under the back bar, text under the tab bar |
-| `shots/phone-dark-03-story-certs.png` | P3, D5: the active step's title hidden behind the stage |
-| `shots/phone-dark-04-numbers-hero.png` | P9, P4: 22-line labels in a 129px column, and the stale "07 / 07" |
-| `shots/phone-dark-05-lineup-takeover-outro.png` | P7, P8, P11, P4: oval portraits, the folded takeover repeating the sentence above it, the centred outro, and "07 / 07" on every panel |
-| `shots/es-01-hero-phone-desktop.png` | Section 5: "DAI / DAI" split on a phone, and the "DÚO" accent collision on desktop |
+| `../shots/desktop-dark-01-hero.jpg` | D1: the hero, the three pills, the stage cut at the fold |
+| `../shots/desktop-light-02-story-stage.jpg` | D2, D3, D5, section 4: an empty 572px stage and the backdrop bleeding onto paper |
+| `../shots/desktop-dark-03-story-gap.jpg` | D4: between steps, a blank right column and the scene swapped early |
+| `../shots/desktop-dark-04-story-halftime.jpg` | D5, D6: the climax chapter as two small portraits |
+| `../shots/desktop-dark-05-numbers-national.jpg` | D9: national charts as tiles, values without their countries |
+| `../shots/desktop-dark-06-faq.jpg` | D10: full-width FAQ cards at about 150 characters a line |
+| `../shots/desktop-dark-07-outro-footer.jpg` | D11: the outro 8px under the FAQ, the orphan pill, the rail off the grid |
+| `../shots/desktop-dark-08-lineup-takeover.jpg` | D7, D8: the lineup screen stacked over the takeover screen; the centred note and the 4-cell hole |
+| `../shots/phone-dark-01-hero.jpg` | P5: three stacked pills, the story below the fold |
+| `../shots/phone-dark-02-story-billboard.jpg` | P1, P2, P6: the stage under the back bar, text under the tab bar |
+| `../shots/phone-dark-03-story-certs.jpg` | P3, D5: the active step's title hidden behind the stage |
+| `../shots/phone-dark-04-numbers-hero.jpg` | P9, P4: 22-line labels in a 129px column, and the stale "07 / 07" |
+| `../shots/phone-dark-05-lineup-takeover-outro.jpg` | P7, P8, P11, P4: oval portraits, the folded takeover repeating the sentence above it, the centred outro, and "07 / 07" on every panel |
+| `../shots/es-01-hero-phone-desktop.jpg` | Section 5: "DAI / DAI" split on a phone, and the "DÚO" accent collision on desktop |

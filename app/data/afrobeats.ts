@@ -297,13 +297,15 @@ export const AFROBEATS_VERIFIED_ON_9 = "2026-09-19";
  *  ČNS IFPI's chart-row badges (CZ/SK), RiSA's live table via Wayback, Ifpi
  *  Sverige's record pages, IFPI Danmark in full and TCSN's 21 Feb 2026 capture.
  *  Certifications only. The sweep re-read every body for all fifteen artists;
- *  the other ten came back unchanged and keep the dates they had. */
+ *  the other ten came back unchanged and keep the dates they had. Superseded
+ *  for Rema by ON_13 on 25 Sep 2026. */
 export const AFROBEATS_VERIFIED_ON_10 = "2026-09-23";
 
 /** Kizz Daniel and Ruger, who joined the board on 25 Sep 2026 with Oxlade and
  *  Tiwa Savage. Their find pass and the verifier's re-read of every row, at
  *  every certification register and chart body, both finished on 24 Sep 2026.
- *  Nigeria's chart was re-walked end to end: every issue TurnTable has published. */
+ *  Nigeria's chart was re-walked end to end: every issue TurnTable has published.
+ *  Superseded for Ruger by ON_13 on 25 Sep 2026. */
 export const AFROBEATS_VERIFIED_ON_11 = "2026-09-24";
 
 /** Oxlade and Tiwa Savage, the other two who joined on 25 Sep 2026. Their
@@ -312,6 +314,19 @@ export const AFROBEATS_VERIFIED_ON_11 = "2026-09-24";
  *  Africa's chart) were left off under the owner's ruling of 25 Sep 2026: that
  *  chart is checked by hand, never by an agent, archives included. */
 export const AFROBEATS_VERIFIED_ON_12 = "2026-09-25";
+
+/** Rema and Ruger, each re-read at one register on 25 Sep 2026, and each
+ *  gaining the plaque that read found — the rule ON_8 and ON_9 set: a page
+ *  that shows a plaque cannot say it was last verified before it was read.
+ *  Rema: Music Canada's row of 25 Sep 2026 prints "Secondhand (feat. Rema)"
+ *  at Platinum (PR #337); until this moved, his page, the CSV's verified_on
+ *  and the Dataset's dateModified all said 23 Sep, two days before the award.
+ *  Ruger: the owner read "Asiwaju" Silver on the BPI register on 25 Sep 2026
+ *  (PR #338; docs/sweeps/ruger-certifications-v1.md, Gaps), a plaque of
+ *  08.11.2024 that the 24 Sep find pass could not request.
+ *  tests/afrobeats.test.ts holds every verifiedOn to the reads its sweep doc
+ *  records. */
+export const AFROBEATS_VERIFIED_ON_13 = "2026-09-25";
 
 export const afrobeatsArtists: AfroArtist[] = [
   {
@@ -1204,7 +1219,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     spotifyId: "46pWGuE3dSwY3bMMXGBvVS",
     wikipedia: "https://en.wikipedia.org/wiki/Rema_(musician)",
     image: "https://i.scdn.co/image/ab6761610000e5ebe3b85a0f16eaab80965c6ef3",
-    verifiedOn: AFROBEATS_VERIFIED_ON_10,
+    verifiedOn: AFROBEATS_VERIFIED_ON_13,
     swept: true,
     chartPublished: { entries: 119, territories: 53, no1s: 17 },
     releases: [
@@ -2410,7 +2425,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     spotifyId: "0a1SidMjD8D6EHvJph4n2H",
     wikipedia: "https://en.wikipedia.org/wiki/Ruger_(musician)",
     image: "https://i.scdn.co/image/ab6761610000e5eb26c5385b3d2b2dc901bcba49",
-    verifiedOn: AFROBEATS_VERIFIED_ON_11,
+    verifiedOn: AFROBEATS_VERIFIED_ON_13,
     swept: true,
     chartPublished: { entries: 45, territories: 2, no1s: 2 },
     releases: [

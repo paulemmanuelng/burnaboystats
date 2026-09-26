@@ -327,7 +327,9 @@
 }
 /* The NAME ellipsises; "· at least" never does — it is the figure's qualifier,
    and on a phone "BLACK SHERIF · AT L…" was losing exactly the words the page
-   exists to say. */
+   exists to say. The space between them ends the name's span, so when the
+   phone rule below sends the qualifier to a line of its own it starts flush
+   with the name, not one space in. */
 .headNameName { flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .headNameQual { flex: none; white-space: nowrap; }
 .figure {
@@ -669,11 +671,25 @@
   .head:not(.headSolo) { gap: 0 1px; background: var(--rule); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin-bottom: 14px; }
   .head:not(.headSolo) .headCell { background: var(--bg); padding: 14px 12px 14px 0; }
   .head:not(.headSolo) .headCell + .headCell { padding: 14px 0 14px 12px; }
-  .headName { letter-spacing: 0.08em; }
+  .headName { letter-spacing: 0.08em; flex-wrap: wrap; }
+  /* Where a name and "· at least" cannot share a line, the qualifier takes
+     the next one and the name keeps the whole cell: at 390 "KIZZ DANIEL"
+     missed by 1px and printed "KIZZ DANI…", and at 320 the name had 48px, so
+     "BURNA…" and "SEYI …" (live, 26 Sep 2026). A name longer than the whole
+     cell still ellipsises. The cells stack from the foot, so a two-line label
+     on one side moves its own label up and leaves both figures and both bars
+     level. */
+  .head:not(.headSolo) .headCell { display: flex; flex-direction: column; justify-content: flex-end; }
   /* Mode pill: 44px, segments flush, a hairline between (design). */
   .seg { padding: 0; gap: 0; overflow: hidden; }
   .segItem { border-radius: 0; }
   .segItem + .segItem { border-left: 1px solid var(--rule); }
+  /* The pill clips its segments, so the site's ring 2px OUTSIDE a focused
+     segment was cut away: SONGS kept only its right-hand arc, ALBUMS its two
+     sides (live, 26 Sep 2026). The ring goes inside instead, the way full-bleed
+     rows take theirs (globals.css). Only the links take focus; the current
+     mode is a span, so the ring never sits on the filled segment. */
+  .segItem:focus-visible { outline: none; box-shadow: inset 0 0 0 2px var(--gold); }
   .vs { font-size: 16px; }
   /* The why-line on the design's M2: the same 1px edge, tighter, and no mark
      (the "i" is the desktop frame's, D5). */
@@ -981,7 +997,10 @@
   color: var(--text-muted);
 }
 .cbArtistCell { min-width: 0; }
-.cbArtistLink { display: inline-flex; align-items: center; gap: 11px; min-width: 0; }
+.cbArtistLink { position: relative; display: inline-flex; align-items: center; gap: 11px; min-width: 0; }
+/* A 44px target around the 36px face and name, without moving the row: the
+   link was 36px tall with nothing extending it (live, 26 Sep 2026). */
+.cbArtistLink::after { content: ""; position: absolute; inset: -4px 0; }
 .cbFace {
   width: 36px;
   height: 36px;

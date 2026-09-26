@@ -2,9 +2,9 @@
 
 This is for the designer drawing the On This Day page, its home-page card and its share images. Every value is copied from code and cited `file:line`. Paths are relative to `~/burnaboy-website/` at `main` @ `93fedb07` (26 Sep 2026). A few points are marked **(branch)**: they come from `feat/on-this-day` @ `21a7bc82` in `~/burnaboy-onthisday` (PR #344, not merged, not live). A few are marked **(owner)**: they are standing decisions by the site owner, written in his notes rather than in code.
 
-The page tokens are extracted in full, with every table and line number, in **`~/burnaboy-work/daidai-handoff/design-system.md`** (the "Dai Dai extract"). It was taken from the same commit, and its citations still hold: `globals.css:23`, `:67`, `:107-122`, `:160` and `:215` were re-read for this file. Section 1 below is a brief summary. Sections 2 and 3 are new.
+The page tokens are extracted in full, with every table and line number, in **[`../../dai-dai-redesign/research/design-system.md`](../../dai-dai-redesign/research/design-system.md)** (the "Dai Dai extract"). It was taken from the same commit, and its citations still hold: `globals.css:23`, `:67`, `:107-122`, `:160` and `:215` were re-read for this file. Section 1 below is a brief summary. Sections 2 and 3 are new.
 
-Reference renders of the live cards are in `~/burnaboy-work/otd-handoff/ref/`, fetched from burnaboystats.com on 26 Sep 2026 (see §2.13).
+Reference renders of the live cards are in [`../shots/`](../shots/), fetched from burnaboystats.com on 26 Sep 2026 (see §2.13 and §4).
 
 > **A correction to the brief's premise.** On `main` the homepage has **no Latest Updates list**. The desktop page's own header comment says so: "The marquee, updates feed and map teaser the previous page carried are not in this design" (`app/page.tsx:38-39`). The phone home (`app/components/MobileHome.tsx`) has none either. The list lives only on `/updates`, drawn by `UpdatesFeed` on desktop and `MobileUpdates` on the phone. On the branch, the On This Day card sits under **History made**, the home page's one dated story. On desktop it goes between History made and the certifications ledger. On the phone it goes at the very foot of MobileHome, after History made. §3 therefore gives the anatomy of both: the /updates list, and the History made neighbour the card actually sits under.
 
@@ -449,14 +449,14 @@ On the phone, the page reserves `padding-bottom: calc(64px + max(30px, safe-area
 
 ## 4. Reference files
 
-`~/burnaboy-work/otd-handoff/ref/` holds PNGs fetched from burnaboystats.com on 26 Sep 2026. robots.txt was read first, and the User-Agent was "burnaboystats.com (+https://burnaboystats.com/contact)".
+These are in [`../shots/`](../shots/), fetched from burnaboystats.com on 26 Sep 2026 and saved as JPG. robots.txt was read first, and the User-Agent was "burnaboystats.com (+https://burnaboystats.com/contact)".
 
 | File | What it shows |
 |---|---|
-| `og-template-updates-1200x630.png` | The template card: lockup top-left, centred column |
-| `og-bespoke-timeline-1200x630.png` | The bespoke dated card: lockup top-right, gold pool, figure tiles, lowercase path. This is the pattern the branch OTD OG cards follow |
-| `og-bespoke-daidai-1200x630.png` | The bespoke card with a cover and a footer pill |
-| `og-root-1200x630.png` | The root card |
-| `statcard-square-1080.png`, `statcard-story-1080x1920.png` | The stat card: brand row, portrait, figure, "AS OF 2026-09-25", and the scrim step at x ≈ 430 / 275 |
+| [`og-template-updates-1200x630.jpg`](../shots/og-template-updates-1200x630.jpg) | The template card: lockup top-left, centred column |
+| [`og-bespoke-timeline-1200x630.jpg`](../shots/og-bespoke-timeline-1200x630.jpg) | The bespoke dated card: lockup top-right, gold pool, figure tiles, lowercase path. This is the pattern the branch OTD OG cards follow |
+| [`og-bespoke-daidai-1200x630.jpg`](../shots/og-bespoke-daidai-1200x630.jpg) | The bespoke card with a cover and a footer pill |
+| [`og-root-1200x630.jpg`](../shots/og-root-1200x630.jpg) | The root card |
+| [`statcard-square-1080.jpg`](../shots/statcard-square-1080.jpg), [`statcard-story-1080x1920.jpg`](../shots/statcard-story-1080x1920.jpg) | The stat card: brand row, portrait, figure, "AS OF 2026-09-25", and the scrim step at x ≈ 430 / 275 |
 
 All of them render every weight as Geist Regular (§2.2).
