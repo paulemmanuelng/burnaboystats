@@ -266,13 +266,44 @@
 .featuredVs { color: var(--text-muted); font-size: var(--type-label); letter-spacing: 0.1em; text-transform: uppercase; }
 
 /* ── why-line ─────────────────────────────────────────────── */
+/* The design's D5: a 1px gold edge all round (not a left-border accent), an
+   "i" in a gold ring, ink text. The edge and wash are the site's wash-note
+   pair (the digest's "check your inbox" note), not new mixes. */
 .why {
-  border-left: 3px solid var(--gold);
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  border: 1px solid var(--gold-edge);
   background: var(--gold-wash);
-  padding: 13px 18px;
+  padding: 12px 16px;
   margin: 0 0 26px;
+  color: var(--text);
   font-size: var(--type-small);
   line-height: var(--type-small-lh);
+}
+.whyMark {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  /* Centres the ring on the first line of text (13.5px × 1.5 = 20px). */
+  margin-top: 1px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  color: var(--gold);
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+}
+.whyText { min-width: 0; }
+/* A refusal is neither live nor an action, so it takes no gold: the neutral
+   note the digest uses for its landed-invalid state. No mark either. */
+.whyRefusal {
+  border-color: var(--line);
+  background: var(--bg-raised);
 }
 
 /* ── headline ─────────────────────────────────────────────── */
@@ -565,7 +596,6 @@
      phone frame — five wrapped lines of it put the two bars at different
      heights. The plaque counts stay in the slot meta and the footnotes. */
   .head { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0 12px; }
-  .headName { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .figure { font-size: clamp(26px, 8.4vw, 34px); overflow-wrap: normal; }
   /* Kept for assistive tech (the figure's qualifier), off the screen. */
   .headMeta { position: absolute; left: 0; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; margin: 0; }
@@ -645,6 +675,10 @@
   .segItem { border-radius: 0; }
   .segItem + .segItem { border-left: 1px solid var(--rule); }
   .vs { font-size: 16px; }
+  /* The why-line on the design's M2: the same 1px edge, tighter, and no mark
+     (the "i" is the desktop frame's, D5). */
+  .why { padding: 10px 12px; }
+  .whyMark { display: none; }
   /* Nigeria strip as the design's soft box, the action as gold text. */
   .ngStrip { padding: 12px 14px; background: var(--bg-soft); border-color: var(--line); border-radius: 0; }
   .ngAction { border: 0; padding: 0; color: var(--gold); background: transparent; }
@@ -676,7 +710,9 @@
    The design's M1/M2: when both sides are filled, "The Afrobeats Board ↗"
    sits in its own bar directly ABOVE the five-tab bar. Not on arrival.
    Same gold ramp and both iPhone guards as .actionPrimary on /certifications.
-   Bottom offset = the tab bar's height (8 + 48 + foot + 1px border). */
+   Bottom offset = the tab bar's height, --tabbar-h: the sum of the tokens the
+   tab bar is built from (globals.css, mobileTabBar.module.css). One source, so
+   a change to its padding or row cannot leave this bar over it or off it. */
 .boardBar, .barSpacer { display: none; }
 @media (max-width: 900px) {
   .barSpacer { display: block; }
@@ -685,7 +721,7 @@
     position: fixed;
     left: 0;
     right: 0;
-    bottom: calc(57px + max(30px, env(safe-area-inset-bottom, 0px)));
+    bottom: var(--tabbar-h);
     z-index: 59;
     padding: 10px 12px;
     padding-left: calc(12px + env(safe-area-inset-left, 0px));
@@ -849,6 +885,15 @@
 .moreToggle:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-radius: 999px; }
 .more[open] > .moreToggle { margin-bottom: 8px; }
 .more[open] .whenClosed, .more:not([open]) .whenOpen { display: none; }
+
+/* The phone's touch floor for the picker's chips, the head-to-head links and
+   the fold toggle: 44px, like every other control on this page. Here, after
+   .moreToggle's base rule, not in the 760px block above it — a copy there
+   loses to this later base rule on order, the trap .slotClear hit. The rows
+   are flex-wrap with an 8px gap, so each row just grows 4px. */
+@media (max-width: 760px) {
+  .chip, .featuredLink, .moreToggle { min-height: 44px; }
+}
 
 /* ── by country: one market, every artist ─────────────────────
  *

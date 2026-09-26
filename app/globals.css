@@ -1863,6 +1863,21 @@ a[class*="__certRow"]:focus-visible,
    under ACCESSIBILITY — a second copy here only invited the two to drift. */
 
 
+/* The five-tab bar's size, as tokens. app/components/mobileTabBar.module.css
+   builds the bar from these parts (its padding, its 48px row, its 1px edge),
+   and --tabbar-h is their sum, so anything that sits on the bar (/compare's
+   board bar) reads one number instead of re-adding 8 + 48 + foot + 1 by hand.
+   Declared here, not in the module: a token must resolve on :root. */
+:root {
+  --tabbar-pad: 8px;
+  --tabbar-row: 48px;
+  /* The 30px foot is the home-indicator gap from the design; env() adds the
+     real inset on devices that report one, so it is right on both. */
+  --tabbar-foot: max(30px, env(safe-area-inset-bottom, 0px));
+  --tabbar-edge: 1px;
+  --tabbar-h: calc(var(--tabbar-pad) + var(--tabbar-row) + var(--tabbar-foot) + var(--tabbar-edge));
+}
+
 /* A fixed bottom bar sits over the page, so the last line needs clearance or
    it hides beneath it. The tab bar is home-only now, and deep screens carry
    their own action bar plus their own spacer — so this is scoped to the tab
