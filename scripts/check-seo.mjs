@@ -9,7 +9,18 @@
 //   node scripts/check-seo.mjs
 import { readdir, readFile } from "node:fs/promises";
 import { join } from "node:path";
-import { robotsProblem } from "./seo-rules.mjs";
+import { AsyncLocalStorage } from "node:async_hooks";
+import { robotsProblem, citedImages, imageRobotsProblem } from "./seo-rules.mjs";
+import nextConfig from "../next.config.mjs";
+
+// The headers each cited image is served with, read from next.config.mjs by
+// Next's own matcher (the reading tests/embedHeaders.test.ts uses). Next's
+// server modules take AsyncLocalStorage off the global, which `next start`
+// sets and a plain script does not.
+globalThis.AsyncLocalStorage ??= AsyncLocalStorage;
+const { unstable_getResponseFromNextConfig } = await import("next/experimental/testing/server.js");
+const robotsTagFor = async (path) =>
+  (await unstable_getResponseFromNextConfig({ url: `https://burnaboystats.com${path}`, nextConfig })).headers.get("x-robots-tag");
 
 const ROOT = ".next/server/app";
 const TITLE_MAX = 60;    // Google shows ~60 characters
@@ -29,6 +40,8 @@ async function* walk(dir) {
 
 const problems = [];
 let checked = 0;
+/** Each image path a page cites, and the first page that cites it. */
+const cited = new Map();
 
 for await (const file of walk(ROOT)) {
   const route = "/" + file.slice(ROOT.length + 1).replace(/\.html$/, "");
@@ -52,6 +65,9 @@ for await (const file of walk(ROOT)) {
   const robots = robotsProblem(html);
   if (robots) problems.push(`${route}: ${robots}`);
 
+  // ...and the images it cites have to be indexable (scripts/seo-rules.mjs).
+  for (const path of citedImages(html)) if (!cited.has(path)) cited.set(path, route);
+
   // One <h1> per LAYOUT, not per document.
   //
   // Most routes ship a mobile screen and a desktop page in the same HTML, one
@@ -72,9 +88,14 @@ for await (const file of walk(ROOT)) {
   }
 }
 
+for (const [path, route] of cited) {
+  const problem = imageRobotsProblem(path, await robotsTagFor(path));
+  if (problem) problems.push(`${route}: ${problem}`);
+}
+
 if (problems.length) {
   console.error(`SEO check failed — ${problems.length} problem(s) across ${checked} pages:\n`);
   for (const p of problems) console.error(`  ${p}`);
   process.exit(1);
 }
-console.error(`SEO check passed — ${checked} pages: titles, descriptions, canonicals, og:image, large image preview, one h1 per layout.`);
+console.error(`SEO check passed — ${checked} pages: titles, descriptions, canonicals, og:image, large image preview, ${cited.size} cited images indexable, one h1 per layout.`);
