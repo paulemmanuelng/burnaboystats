@@ -154,6 +154,18 @@ export function pageMetadata(opts: {
   };
 }
 
+/** One artist a Dataset is about: the name, and the profiles that pin it down. */
+export type DatasetAbout = { name: string; sameAs?: string[] };
+
+/**
+ * The node for one artist. Burna Boy is always the pointer to his one node,
+ * whoever passes him in, so no Dataset can name him without the @id.
+ */
+const aboutNode = (a: DatasetAbout) =>
+  a.name === BURNA_BOY.name
+    ? BURNA_BOY_REF
+    : { "@type": "MusicGroup", name: a.name, ...(a.sameAs ? { sameAs: a.sameAs } : {}) };
+
 // Dataset structured data — marks our data-heavy pages (charts, certifications,
 // records, the tour map) as structured datasets, so search engines and AI answer
 // engines can recognise, surface and cite them as a source.
@@ -166,8 +178,13 @@ export function datasetJsonLd(opts: {
   /** Who the dataset is ABOUT. Defaults to Burna Boy, which is every page on
    *  the site except the Afrobeats Board — where declaring his name on another
    *  artist's chart record would tell a search engine the page is about the
-   *  wrong entity. Pass the artist's name and Spotify URL there. */
-  about?: { name: string; sameAs?: string[] };
+   *  wrong entity. Pass the artist's name and Spotify URL there.
+   *
+   *  A list is one node per artist: a /compare pair page is about both of its
+   *  artists, each a MusicGroup of its own. It used to pass one combined
+   *  "Burna Boy and Rema" group, an entity that does not exist, with no @id
+   *  on his half (live-site debug, 26 Sep 2026). */
+  about?: DatasetAbout | DatasetAbout[];
   /** ISO date the underlying figures were last read at source. Answer engines
    *  weight recency, and a Dataset with no date looks static to them — these
    *  boards are reviewed weekly, which is worth saying in the markup. */
@@ -183,13 +200,7 @@ export function datasetJsonLd(opts: {
     isAccessibleForFree: true,
     license: "https://creativecommons.org/licenses/by/4.0/",
     creator: { "@type": "Organization", name: SITE_NAME, url: CANONICAL_ORIGIN },
-    about: opts.about
-      ? {
-          "@type": "MusicGroup",
-          name: opts.about.name,
-          ...(opts.about.sameAs ? { sameAs: opts.about.sameAs } : {}),
-        }
-      : BURNA_BOY_REF,
+    about: Array.isArray(opts.about) ? opts.about.map(aboutNode) : opts.about ? aboutNode(opts.about) : BURNA_BOY_REF,
     variableMeasured: opts.variableMeasured,
     ...(opts.dateModified ? { dateModified: opts.dateModified } : {}),
   };

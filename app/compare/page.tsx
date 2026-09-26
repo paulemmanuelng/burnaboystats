@@ -3,7 +3,7 @@ import styles from "./compare.module.css";
 import BreadcrumbBar from "../components/BreadcrumbBar";
 import { pageMetadata, datasetJsonLd, SEGMENT_LABELS } from "../lib/seo";
 import { siteUrl } from "../site";
-import { countryMeta } from "../data/afrobeats";
+import { countryMeta, artistBySlug as boardArtist } from "../data/afrobeats";
 import { CERT_THRESHOLDS } from "../data/certThresholds";
 import { numberWord } from "../lib/homeData";
 
@@ -757,7 +757,12 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
         path,
         keywords: [a.name, b.name, "certified units", "certifications", "Afrobeats", "head to head"],
         variableMeasured: ["Certified units (floor) per country", "Highest certification per release per country", "Plaques counted and not counted"],
-        about: { name: `${a.name} and ${b.name}` },
+        // Both artists, one node each: Burna Boy as the pointer to his node,
+        // a board artist with the profiles the board already cites for them.
+        about: [a, b].map((x) => {
+          const board = boardArtist(x.slug);
+          return board ? { name: x.name, sameAs: [board.wikipedia, `https://open.spotify.com/artist/${board.spotifyId}`] } : { name: x.name };
+        }),
         // The newer of the two sides' register reads — the day the comparison
         // last changed; the sitemap stamps the pair with the same date.
         dateModified: [a.verifiedOn, b.verifiedOn].sort().at(-1)!,
