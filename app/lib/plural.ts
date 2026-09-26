@@ -66,3 +66,16 @@ export function millonesEs(compact: string): string {
   const millions = Math.round(parseFloat(m[1]) * (m[2] === "B" ? 1000 : 1) * 100) / 100;
   return `${new Intl.NumberFormat("es-ES", { maximumFractionDigits: 2 }).format(millions)} millones`;
 }
+
+/**
+ * The same figure, compact, the Spanish way: "473M" → "473 M", "1.14B" →
+ * "1140 M". For a slot too narrow for "millones" — the record's lead figures
+ * are a 52px Anton value in a sixth of the page (a 118px column on a phone),
+ * where "473 MILLONES" would run out of its cell. The design's own Spanish
+ * lead prints "473 M". Anything that is not a compact M/B figure comes back
+ * unchanged.
+ */
+export function millonesCortoEs(compact: string): string {
+  const full = millonesEs(compact);
+  return full === compact ? compact : full.replace(/ millones$/, " M");
+}

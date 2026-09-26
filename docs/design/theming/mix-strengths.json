@@ -71,22 +71,29 @@
     "--tier-silver-ink 10%"
   ],
   "app/components/DaiDaiConquest.module.css": [
-    "--gold-wash-base 30%",
-    "--gold-wash-base 30%",
-    "--gold-wash-base 30%",
-    "--gold-wash-base 30%",
-    "--ink-wash-base 7%",
-    "--ink-wash-base 7%",
-    "--ink-wash-base 7%",
-    "--ink-wash-base 7%",
-    "--text-dim-warm 50%"
+    "--peak-band-1 10%",
+    "--peak-band-1 55%",
+    "--peak-band-1 7%"
   ],
-  "app/components/DaiDaiStory.module.css": [
-    "--bg 35%",
-    "--bg 82%",
-    "--shadow-base 50%",
-    "--shadow-base 55%",
-    "--shadow-base 65%"
+  "app/components/DaiDaiFigures.module.css": [
+    "--peak-band-1 10%",
+    "--peak-band-1 55%",
+    "--peak-band-1 8%",
+    "--text 34%",
+    "--text 42%",
+    "--text 92%"
+  ],
+  "app/components/DaiDaiReplay.module.css": [
+    "--text 34%",
+    "--text 34%",
+    "--text 34%",
+    "--text 34%",
+    "--text 34%",
+    "--text 42%",
+    "--text 42%",
+    "--text 42%",
+    "--text 42%",
+    "--text 42%"
   ],
   "app/components/FollowPanel.module.css": [
     "--gold-ink 22%",
@@ -302,10 +309,6 @@
   ],
   "app/curator/curator.module.css": [
     "--gold-ink 35%"
-  ],
-  "app/dai-dai/dai-dai.module.css": [
-    "--gold-wash-base 5%",
-    "--shadow-base 50%"
   ],
   "app/globals.css": [
     "--glow-base 10%",

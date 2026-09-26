@@ -1,15 +1,14 @@
 import { ImageResponse } from "next/og";
 import { cardUrl } from "../lib/og-image";
 import { OgLockup, ogFonts } from "../lib/og-lockup";
-import { daiDaiOgId, ogStats as stats, DAYS_AT_NO1, DAI_DAI_OG_PILL } from "./ogId";
+import { daiDaiOgId, ogStats as stats, DAYS_AT_NO1, DAI_DAI_OG_PILL, halftimeDayMonth } from "./ogId";
 
 // A rich, data-driven share card (like Polymarket's) — cover art + the headline
 // Dai Dai stats + the song/halftime hook + the link. Auto-used as the page's
 // og:image, so any share of /dai-dai renders this.
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt =
-  "Dai Dai — Shakira & Burna Boy's 2026 FIFA World Cup anthem: No. 1 worldwide, live at the Final halftime show on 19 July";
+export const alt = `Dai Dai — Shakira & Burna Boy's 2026 FIFA World Cup anthem: No. 1 worldwide, live at the Final halftime show on ${halftimeDayMonth()}`;
 
 const COVER = "https://i.scdn.co/image/ab67616d0000b27303cadf1b3fe324c1dc710ed4";
 const GOLD = "#ffb627";
@@ -114,7 +113,7 @@ export default function Image() {
               }}
             >
               The official 2026 FIFA World Cup anthem — {DAYS_AT_NO1} days as the most-streamed song on
-              Earth, live at the Final halftime show on 19 July.
+              Earth, live at the Final halftime show on {halftimeDayMonth()}.
             </div>
 
             <div style={{ display: "flex", gap: 16, marginTop: 32 }}>

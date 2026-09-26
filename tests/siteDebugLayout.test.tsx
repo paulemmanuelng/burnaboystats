@@ -113,7 +113,12 @@ describe("D-02: the live-charts platform grid has no grey slab", () => {
   });
 });
 
-describe("D-03: the Dai Dai conquest grid draws its seams per cell", () => {
+describe("D-03: the Dai Dai takeover grid paints no bed behind its cells", () => {
+  // Re-drawn on 26 Sep 2026 (the Dai Dai redesign, approved by Paul): the
+  // cells now sit 4px apart and each draws its own edge, so there are no seams
+  // to share at all. What D-03 fixed still holds, and is what this pins: no
+  // --rule (or any) bed under the grid, so an empty slot in a short last row
+  // is page, never a dark slab.
   const conquest = (css: string) => {
     const all = rules(css).filter((r) => r.media === null);
     return {
@@ -124,21 +129,19 @@ describe("D-03: the Dai Dai conquest grid draws its seams per cell", () => {
   const bedless = (css: string) => {
     const { grid, cell } = conquest(css);
     return (
-      !/var\(--rule\)/.test(decl(grid, "background") ?? "") &&
-      decl(grid, "overflow") === "hidden" &&
-      decl(cell, "box-shadow") === "0.5px 0.5px 0 0.5px var(--rule)"
+      decl(grid, "background") == null &&
+      /^\d+px$/.test(decl(grid, "gap") ?? "") &&
+      /var\(--line\)/.test(decl(cell, "border") ?? "") &&
+      decl(cell, "background") != null
     );
   };
 
-  it("paints no --rule bed behind the cells, so an empty slot is page", () => {
+  it("paints no bed behind the cells; every cell draws its own edge", () => {
     const css = read("app/components/DaiDaiConquest.module.css");
     expect(bedless(css)).toBe(true);
-    // The frame is unchanged: --rule-soft with the --rule the bed used to lay
-    // under it, now an outline pulled onto the border.
     const { grid } = conquest(css);
-    expect(decl(grid, "border")).toBe("1px solid var(--rule-soft)");
-    expect(decl(grid, "outline")).toBe("1px solid var(--rule)");
-    expect(decl(grid, "outline-offset")).toBe("-1px");
+    // Eleven across on desktop: 66 countries fill six rows.
+    expect(decl(grid, "grid-template-columns")).toBe("repeat(11, minmax(0, 1fr))");
   });
 
   it("negative control: the shipped grid showed --rule through its gaps", () => {

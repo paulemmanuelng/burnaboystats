@@ -1,331 +1,186 @@
-/* Scrollytelling: a sticky visual "stage" (left) that swaps scenes as the
-   narrative steps (right) scroll past. On mobile the stage pins to the top and
-   the steps scroll beneath it. */
-.scrolly {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 56px;
-  align-items: start;
-  margin: 44px 0 16px;
+/* The Dai Dai story — designs/desktop/Dai Dai Redesign.dc.html.
+   Desktop (≥1240): one grid row per chapter, text left and its figure right.
+   Tablet (901–1239): the design's tablet note — one column, the figure under
+   its sentence at full width, capped at 640px tall.
+   Phone (≤900): the phone artboard — figure first, then kicker, title and
+   sentence, each chapter scrolling as one piece; no pinned stage. */
+
+.story {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 40px;
 }
-/* The column is what sticks; the card inside it keeps its own square shape.
-   Pinning below the sticky site header (rather than centring on the viewport)
-   keeps the stage clear of the hero at scroll 0 — a viewport-centred card
-   rides up over the copy above it. */
-.stickyCol { position: sticky; top: 104px; align-self: start; }
 
-/* Archetype 5 — the per-step scene used only between 900 and 1239px, where the
-   stage unsticks. Off at every other width: above 1240 the single sticky stage
-   is the design, below 900 the phone pins it to the top. */
-.inlineScene { display: none; }
-
-.sticky {
-  aspect-ratio: 1;
+.head {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 20px;
-  text-align: center;
-  overflow: hidden;
-  border-radius: var(--radius);
-  border: 1px solid var(--line);
-  padding: 40px 28px;
+  gap: 14px;
+  padding: 18px 0;
+  border-top: 2px solid var(--rule);
 }
-
-/* Blurred cover art fills the stage behind every scene so it never feels empty. */
-.backdrop {
-  position: absolute;
-  inset: -25%;
-  background-size: cover;
-  background-position: center;
-  filter: blur(46px) saturate(1.4);
-  opacity: 0.28;
-  z-index: 0;
-  pointer-events: none;
-}
-/* A dark radial scrim over the backdrop keeps the centred text high-contrast. */
-.sticky::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background: radial-gradient(circle at 50% 45%, color-mix(in srgb, var(--bg) 35%, transparent), color-mix(in srgb, var(--bg) 82%, transparent) 78%);
-}
-
-.scene {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  animation: sceneIn 0.5s var(--ease-out, cubic-bezier(0.22, 1, 0.36, 1));
-}
-
-/* Hero cover art */
-.cover {
-  width: clamp(150px, 32vw, 230px);
-  height: auto;
-  border-radius: var(--radius);
-  box-shadow: 0 18px 50px color-mix(in srgb, var(--shadow-base) calc(55% * var(--shadow-strength)), transparent);
-}
-
-/* Halftime scene — overlapping artist portraits (the live collaboration) */
-.duo {
-  display: inline-flex;
-  align-items: center;
-}
-.duoImg {
-  width: clamp(88px, 20vw, 128px);
-  height: clamp(88px, 20vw, 128px);
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid var(--gold);
-  box-shadow: 0 10px 30px color-mix(in srgb, var(--shadow-base) calc(50% * var(--shadow-strength)), transparent);
-}
-.duoImg:last-child {
-  margin-left: -24px;
-}
-@keyframes sceneIn {
-  from { opacity: 0; transform: translateY(14px); }
-  to { opacity: 1; transform: none; }
-}.finaleWord {
-  font-family: var(--font-anton), sans-serif;
-  font-size: clamp(2.4rem, 6.5vw, 4.4rem);
-  line-height: 0.98;
-  color: var(--text);
-  text-transform: uppercase;
-}
-.hash {
-  font-family: var(--font-anton), sans-serif;
-  font-size: clamp(5rem, 16vw, 11rem);
-  line-height: 0.8;
-  color: var(--gold-bright-ink);
-}
-.bigNum {
-  font-family: var(--font-anton), sans-serif;
-  font-size: clamp(4rem, 13vw, 8.5rem);
-  line-height: 0.85;
-  color: var(--gold);
-}
-.sceneLabel {
+.headTitle {
   font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
-  letter-spacing: 0.16em;
-  font-size: 0.8rem;
-  color: var(--text-muted);
-}.sceneNote {
-  font-size: 0.95rem;
-  color: var(--gold-dim);
 }
-/* "See all →" deep-links inside a scene (to the full chart / cert data). */
-.sceneLink {
-  /* A standalone call to action, not a link inside a sentence — the 24px
-     target floor applies. */
-  display: inline-flex;
-  align-items: center;
-  min-height: 24px;
-  margin-top: 4px;
+.headMeta {
   font-family: var(--font-mono), monospace;
-  text-transform: uppercase;
+  font-size: 11px;
   letter-spacing: 0.1em;
-  font-size: 0.72rem;
-  color: var(--text);
-  border-bottom: 1px solid var(--gold);
-  padding-bottom: 3px;
-  transition: color var(--dur, 0.2s) var(--ease-out, ease);
-}
-.sceneLink:hover {
-  color: var(--gold-bright-ink);
-}
-.flags {
-  font-size: 1.5rem;
-  letter-spacing: 0.12em;
-  max-width: 340px;
-  line-height: 1.7;
-}
-.tierDots {
-  display: inline-flex;
-  gap: 10px;
-}
-.tierDots i {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  display: inline-block;
-}
-
-.progressBar {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  gap: 8px;
-}
-.tick {
-  width: 26px;
-  height: 3px;
-  border-radius: 3px;
-  background: var(--line);
-  transition: background 0.3s ease;
-}
-.tickOn {
-  background: var(--gold-fill);
-}
-
-.step {
-  min-height: 92vh;
-  display: flex;
-  align-items: center;
-}
-.stepInner {
-  max-width: 46ch;
-  /* .34 is the handoff's value — dim enough to recede, light enough that a
-     step you have already read is still readable. */
-  opacity: 0.34;
-  transform: translateY(8px);
-  transition: opacity 0.45s ease, transform 0.45s ease;
-}
-.stepOn .stepInner {
-  opacity: 1;
-  transform: none;
-}
-.stepIndex {
-  display: block;
-  font-family: var(--font-mono), monospace;
-  font-size: 0.72rem;
-  letter-spacing: 0.14em;
-  color: var(--gold-dim);
-}
-.stepKicker {
-  display: block;
-  margin-top: 10px;
-  font-family: var(--font-mono), monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  font-size: 0.7rem;
   color: var(--text-muted);
 }
-.stepTitle {
-  margin: 12px 0 14px;
+
+.chapter {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 620px;
+  align-items: center;
+  gap: 56px;
+  padding: 40px 0;
+  border-top: 1px solid var(--line);
+}
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 56ch;
+  min-width: 0;
+}
+.kicker {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.num { color: var(--text); }
+.rule {
+  flex: none;
+  width: 24px;
+  height: 1px;
+  background: var(--rule);
+}
+.title {
+  margin: 0;
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
-  font-size: clamp(1.8rem, 4vw, 2.8rem);
-  line-height: 1.05;
+  font-size: 44px;
+  line-height: 0.95;
+  letter-spacing: normal;
   text-transform: uppercase;
-  letter-spacing: 0.01em;
+  color: var(--text);
 }
-.stepBody {
+/* An accented word in a title (see withAccentRoom): 0.95 + 0.20 puts the
+   line above 1.15em away, clear of an acute that reaches 1.10em. */
+.accentWord {
+  display: inline-block;
+  padding-top: 0.2em;
+}
+.body {
   margin: 0;
-  font-size: 1.08rem;
-  line-height: 1.65;
-  color: var(--text-body-cool-quiet);
+  font-size: var(--type-body);
+  line-height: var(--type-body-lh);
+  color: var(--text-body);
+}
+.link {
+  align-self: flex-start;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.link:hover { color: var(--gold-hit); }
+/* Each figure is drawn at its own height, sized for its worst case (the
+   artboards' figH, desktop): 300 · 330 · 320 · 250 · 330 · 230 · 430. A
+   minimum, not a box — a figure whose data grows grows with it, and its
+   content sits centred in the frame as drawn. */
+.figure {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.figure > * { flex: 1 1 auto; }
+.fh1 { min-height: 300px; }
+.fh2 { min-height: 330px; }
+.fh3 { min-height: 320px; }
+.fh4 { min-height: 250px; }
+.fh5 { min-height: 330px; }
+.fh6 { min-height: 230px; }
+.fh7 { min-height: 430px; }
+
+.end {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 0 0;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
 }
 
-/* 900–1239: the sticky scene stage unsticks and each scene renders inline
-   above its step text. Sticky scroll narratives need two full columns to read;
-   below that they fight the scroll. RESPONSIVE-AND-STATES.md, archetype 5. */
+/* ── Tablet, 901–1239: the tablet note ───────────────────────────────── */
 @media (max-width: 1239px) and (min-width: 901px) {
-  .scrolly { display: block; margin: 32px 0 16px; }
-  /* The shared stage goes; each step carries its own. */
-  .stickyCol { display: none; }
-  .inlineScene { display: block; margin-bottom: 20px; }
-  .inlineSceneCard {
-    position: relative;
+  .chapter {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 18px;
-    text-align: center;
-    overflow: hidden;
-    border-radius: var(--radius);
-    border: 1px solid var(--line);
-    background: var(--bg-soft);
-    /* The doc's cap for a figure that has moved below its paragraph. */
-    max-height: 640px;
-    min-height: 320px;
-    padding: 34px 26px;
+    align-items: stretch;
+    gap: 24px;
   }
-  /* Nothing dims once every step carries its own scene — the reveal that the
-     opacity ramp existed to stage is now just the scroll itself. */
-  .step { min-height: 0; display: block; padding: 0 0 56px; }
-  .stepInner { max-width: none; opacity: 1; transform: none; }
+  .text { max-width: 62ch; }
+  .title { font-size: 34px; }
+  /* The tablet note draws no per-figure heights: content, capped at 640. */
+  .figure { max-height: 640px; min-height: 0; }
 }
 
+/* ── Phone, ≤900: the phone artboard ─────────────────────────────────── */
 @media (max-width: 900px) {
-  .scrolly {
-    display: block;
-    margin: 0 0 8px;
+  .story { padding: 0; }
+  /* The phone draws no story header: chapter 01 follows the hero directly. */
+  .head { display: none; }
+  .chapter {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    padding: 22px 18px;
   }
-  /* Drop the column wrapper so the stage's sticky container becomes the tall
-     .scrolly itself. Without this the wrapper is only as tall as the stage, so
-     the stage un-pins and scrolls away after one screen — on desktop the grid
-     stretches it full-height. Now the stage stays pinned the whole way down,
-     exactly like desktop, with the narrative scrolling beneath it. */
-  .stickyCol {
-    display: contents;
+  /* The figure leads each chapter; the heading stays first in reading order.
+     Content-sized here, not the artboard's figHp: those heights were drawn
+     around abridged sentences, and with the page's own copy (Spanish runs
+     longest) they would push chapters 02 and 05 past the 688px between the
+     two bars — the one constraint the phone story is built on. */
+  .figure { order: -1; min-height: 0; }
+  .text { gap: 12px; max-width: none; }
+  .kicker { gap: 10px; }
+  .rule { width: 18px; }
+  .title { font-size: 28px; }
+  /* A flex container drops the space before the arrow, so the gap puts it
+     back (the phone artboard shows the pair run together). */
+  .link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    min-height: 44px;
   }
-  .sticky {
-    /* The base rule's sticky now lives on .stickyCol, which is display:contents
-       here — so the card itself has to pin. */
-    position: sticky;
-    top: 8px;
-    transform: none;
-    aspect-ratio: auto;
-    height: 44vh;
-    min-height: 300px;
-    max-height: none;
-    z-index: 2;
-    background: var(--bg-soft);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    box-shadow: 0 16px 30px -6px color-mix(in srgb, var(--shadow-base) calc(65% * var(--shadow-strength)), transparent);
-    padding: 20px 18px;
-    gap: 14px;
-  }
-  .steps {
-    position: relative;
-    z-index: 1;
-    padding-top: 18px;
-  }
-  .step {
-    min-height: 66vh;
-  }
-  /* Keep the reveal — inactive steps dim so the eye tracks the active one. */
-  .stepInner {
-    opacity: 0.45;
-    transform: none;
-    transition: opacity 0.4s ease;
-  }
-  .stepOn .stepInner {
-    opacity: 1;
-  }
-  /* Scale the biggest scenes down so nothing crops inside the shorter stage. */
-  .cover { width: clamp(120px, 32vw, 160px); }
-  .bigNum { font-size: clamp(3.2rem, 19vw, 4.8rem); }
-  .hash { font-size: clamp(4.4rem, 26vw, 6.8rem); }
-  .finaleWord { font-size: clamp(1.9rem, 8.5vw, 2.8rem); }
-  .flags { font-size: 1.2rem; line-height: 1.5; }
-  .duoImg { width: clamp(74px, 21vw, 100px); height: clamp(74px, 21vw, 100px); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .scene {
-    animation: none;
-  }
-  .stepInner {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
+  .end { padding: 10px 18px 14px; }
 }
 
 /* ── Screen 25's back bar ────────────────────────────────────────────────
-   Mobile only: the desktop layout keeps the site nav, which this replaces on a
-   phone. Fixed rather than sticky because it is rendered from inside the story,
-   partway down the document. */
+   Phone only: the desktop layout keeps the site nav, which this replaces on a
+   phone. Fixed rather than sticky because it is rendered from inside the page,
+   below the hero. 12 + 44 + 12 + the 1px rule = the 69px the design draws. */
 .backBar { display: none; }
 
 @media (max-width: 900px) {
@@ -337,29 +192,26 @@
     z-index: 45;
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 12px 18px;
-  /* With viewport-fit=cover the bar reaches under the notch and the
-     status bar; the insets push its CONTENT back into the safe area
-     while the background still bleeds to the edges. */
-  padding-top: calc(12px + env(safe-area-inset-top, 0px));
-  padding-left: calc(18px + env(safe-area-inset-left, 0px));
-  padding-right: calc(18px + env(safe-area-inset-right, 0px));
+    gap: 10px;
+    /* With viewport-fit=cover the bar reaches under the notch and the
+       status bar; the insets push its CONTENT back into the safe area
+       while the background still bleeds to the edges. */
+    padding: calc(12px + env(safe-area-inset-top, 0px)) calc(12px + env(safe-area-inset-right, 0px)) 12px
+      calc(14px + env(safe-area-inset-left, 0px));
     background: var(--scrim);
     backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--line);
   }
   .backBtn {
-    width: 44px;
-    height: 44px;
+    flex: none;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 44px;
+    height: 44px;
     border-radius: 999px;
-    background: var(--bg-soft);
     border: 1px solid var(--line);
     color: var(--text);
-    flex: none;
   }
   .backLabel {
     font-family: var(--font-mono), monospace;
@@ -368,12 +220,15 @@
     letter-spacing: 0.11em;
     text-transform: uppercase;
   }
+  /* Muted, not gold: a position in the story is neither live nor an action. */
   .backStep {
     margin-left: auto;
     font-family: var(--font-mono), monospace;
     font-size: 11px;
     letter-spacing: 0.1em;
-    color: var(--gold);
+    color: var(--text-muted);
     font-variant-numeric: tabular-nums;
   }
+  /* The counter owns the free space, so the menu sits right beside it. */
+  .backBar .menuBtn { margin-left: 0; }
 }

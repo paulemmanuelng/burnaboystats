@@ -221,7 +221,14 @@ const PUBLISHING_GATE = process.env.PUBLISH_GATE === "1";
  * precisely because no list said there were two.
  */
 const SPOTIFY_NO1_SURFACES = [
-  "app/dai-dai/page.tsx",
+  // Not app/dai-dai/page.tsx, since 26 Sep 2026: the record's redesign turned
+  // the streams card ("…after 37 days as the most-streamed song on Earth") into
+  // a lead figure captioned with its chart, and the English page now states the
+  // run only as the dated streak row — which "every Spotify figure carries the
+  // date of the chart it was read off" below already holds to its anchor and to
+  // the past tense. The English sentence itself lives on in the story's
+  // chapter 04 (DaiDaiStory.tsx, listed here). The completeness check at the
+  // foot of this file fails if the phrase ever comes back to the page unlisted.
   "app/dai-dai/es/page.tsx",
   "app/page.tsx",
   "app/components/MobileHome.tsx",

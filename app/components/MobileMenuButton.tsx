@@ -13,13 +13,21 @@ import styles from "./mobileMenuButton.module.css";
  * that render it are server components, and a context consumer would force
  * every one of them client-side for the sake of one button.
  */
-export default function MobileMenuButton({ className }: { className?: string }) {
+export default function MobileMenuButton({
+  className,
+  label = "Open menu",
+}: {
+  className?: string;
+  /** Its accessible name. English everywhere but /dai-dai/es, whose back bar
+   *  is drawn in Spanish. */
+  label?: string;
+}) {
   return (
     <button
       type="button"
       data-mobile-menu-button=""
       className={`${styles.btn} ${className ?? ""}`}
-      aria-label="Open menu"
+      aria-label={label}
       aria-haspopup="dialog"
       // Carries the button itself, so the sheet can hand focus back to THIS
       // one on close. A bare querySelector would find the desktop nav's
