@@ -93,6 +93,10 @@ export const navGroups: NavGroup[] = [
       // page), which is thin for a page whose whole job is ranking in Spanish.
       { label: "Dai Dai en español", href: "/dai-dai/es", meta: "ES" },
       { label: "Stat cards", href: "/share", meta: "" },
+      // 26 Sep 2026: +/embed, beside the stat cards as it is in the home
+      // footer's "The site" column — the footer is hidden on phones, and this
+      // group is its phone counterpart.
+      { label: "Embed stats", href: "/embed", meta: "" },
       { label: "Career timeline", href: "/timeline", meta: String(timelineEntryCount) },
       { label: "About", href: "/about", meta: "" },
       { label: "Analysis", href: "/analysis", meta: String(findings.length) },

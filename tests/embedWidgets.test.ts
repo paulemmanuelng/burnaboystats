@@ -1,13 +1,13 @@
 import { describe, it, expect } from "vitest";
 import { GET } from "../app/embed/[widget]/route";
-import { EMBED_WIDGETS, EMBED_SLUGS, renderEmbed } from "../app/lib/embedWidgets";
+import { EMBED_WIDGETS, EMBED_SLUGS, renderEmbed, latestContent, LATEST_SIZED_FOR } from "../app/lib/embedWidgets";
 import { EMBED_TOKENS } from "../app/lib/embedTheme";
 import { embedSnippet, embedPath } from "../app/lib/embedSnippet";
 import { spotifyTotalStreams, spotifyTotalStreamsExact } from "../app/data/streamingTotals";
 import { allItems, COUNTRIES } from "../app/data/certifications";
 import { allChartItems } from "../app/data/charts";
 import { DAI_DAI_SPOTIFY_NO1_DAYS } from "../app/data/daiDai";
-import { updates } from "../app/data/updates";
+import { updates, type Update } from "../app/data/updates";
 import sitemap from "../app/sitemap";
 import { searchIndex } from "../app/lib/searchIndex";
 import { siteUrl } from "../app/site";
@@ -95,7 +95,7 @@ describe("the embed widgets render the data's own figures", () => {
     expect(stat(/official chart entries/)).toBe(String(dd.entries.length));
   });
 
-  it("latest milestone: the newest entry in the feed, whole, under its own category and date", async () => {
+  it("latest milestone: the newest entry in the feed, every word of it once, under its own category and date", async () => {
     const { doc } = await fetchWidget("latest");
     const newest = [...updates].sort((a, b) => b.date.localeCompare(a.date))[0];
     // The feed is kept newest first; the box reads the top, which must be the
@@ -113,6 +113,56 @@ describe("the embed widgets render the data's own figures", () => {
     expect(meta).toContain(updates[0].category);
     const day = new Date(`${updates[0].date}T12:00:00Z`).getUTCDate();
     expect(meta).toMatch(new RegExp(`\\b${day}\\b`));
+  });
+
+  /** What in the widget's stylesheet would cut the body text off. */
+  function cutProblems(html: string): string[] {
+    const body = html.match(/\.body\{[^}]*\}/)?.[0];
+    if (!body) return ["no .body rule"];
+    return ["line-clamp", "text-overflow", "overflow:hidden", "max-height"].filter((p) => body.includes(p));
+  }
+
+  /** Feed entries the latest box, at its fixed height, was not measured for. */
+  function oversize(entries: Update[]): string[] {
+    return entries.flatMap((u) => {
+      const c = latestContent(u);
+      const headline = c.headline?.length ?? 0;
+      const out: string[] = [];
+      if (headline > LATEST_SIZED_FOR.headline) out.push(`${u.date}: headline of ${headline}`);
+      if (headline + c.body.length > LATEST_SIZED_FOR.entry) out.push(`${u.date}: ${headline + c.body.length} characters`);
+      // Meta is Space Mono — one width per character — so its length is its width.
+      if (c.meta.length > LATEST_SIZED_FOR.meta.length) out.push(`${u.date}: meta "${c.meta}"`);
+      return out;
+    });
+  }
+
+  it("latest milestone: nothing in the stylesheet cuts the text off", () => {
+    // The check above reads textContent, which holds the whole entry even when
+    // CSS hides half of it: the box shipped with a four-line clamp, printed
+    // "He is the only African artist among the…", and that check passed.
+    expect(cutProblems(renderEmbed("latest")!)).toEqual([]);
+  });
+
+  it("latest milestone: every entry in the feed fits the entry the box's height was measured for", () => {
+    // The height is fixed in the snippet on other people's pages, and the box
+    // changes with every new entry, so it is sized once for the longest entry
+    // the feed allows (LATEST_SIZED_FOR) and every entry is checked against
+    // that, not only today's. An entry past it would run off the bottom of the
+    // box; this fails first.
+    expect(oversize(updates), "re-measure the latest box's height at 300 px, then raise LATEST_SIZED_FOR").toEqual([]);
+  });
+
+  it("negative control: the clamp the box shipped with, and an entry past the cap, both fail", () => {
+    // The .body rule exactly as commit c80f699a shipped it.
+    const SHIPPED_BODY =
+      ".body{font-size:var(--type-small);line-height:var(--type-small-lh);color:var(--text-body);margin-top:8px;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:4;overflow:hidden}";
+    const clamped = renderEmbed("latest")!.replace(/\.body\{[^}]*\}/, SHIPPED_BODY);
+    expect(cutProblems(clamped)).toEqual(["line-clamp", "overflow:hidden"]);
+    // Two real entries run together: longer than the feed's cap allows.
+    const long = { ...updates[0], text: `${updates[0].text} ${updates[1].text}` };
+    const found = oversize([long]);
+    expect(found).toHaveLength(1);
+    expect(found[0]).toMatch(new RegExp(`^${long.date}: \\d+ characters$`));
   });
 });
 

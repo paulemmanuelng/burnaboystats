@@ -15,8 +15,8 @@ import { spotifyTotalStreams, spotifyTotalStreamsExact } from "../data/streaming
 import { totalAwards, countryCount, allItems, CERTS_VERIFIED_ON } from "../data/certifications";
 import { daiDaiNumberOnes, daiDaiChartEntryCount, weeksAtPeak } from "../data/charts";
 import { DAI_DAI_SPOTIFY_NO1_DAYS } from "../data/daiDai";
-import { bandFact } from "./bandHeadline";
-import { updates } from "../data/updates";
+import { openingClause } from "./bandHeadline";
+import { updates, type Update } from "../data/updates";
 import { esc } from "./emailChrome";
 import { CANONICAL_ORIGIN } from "./seo";
 import { embedTokenDeclarations } from "./embedTheme";
@@ -75,19 +75,43 @@ export const embedTierCounts = TIER_ORDER.map((name) => ({
 const weeksGlobal200 = weeksAtPeak("Dai Dai", "GLB");
 
 // ── (d) The latest milestone: the home band's own read of the feed ─────────
-// bandFact() is updates[0] (tests/updatesOrder.test.ts keeps the feed newest
-// first, and tests/updatesBurnaOnly.test.ts keeps it Burna Boy news only), with
-// its opening clause as the headline. The rest of the entry follows it, when
-// the clause is a clean prefix; a clause the band had to trim gives way to the
-// entry's whole text, so nothing is printed twice or cut off.
+// The box shows updates[0] (tests/updatesOrder.test.ts keeps the feed newest
+// first, and tests/updatesBurnaOnly.test.ts keeps it Burna Boy news only), split
+// the way the home band splits it: the entry's opening clause — openingClause,
+// the function bandFact() prints — as the headline, and the rest of the entry
+// after it. A clause the band had to trim is not a prefix of the entry, so it
+// gives way to the entry's whole text. Either way the box prints the entry
+// once and whole: the body is never clamped, so nothing is cut off.
+export function latestContent(entry: Update): { meta: string; headline?: string; body: string } {
+  const meta = `${entry.category} · ${longDate(entry.date)}`;
+  const clause = openingClause(entry.text);
+  if (!entry.text.startsWith(clause)) return { meta, body: entry.text };
+  return { meta, headline: clause, body: entry.text.slice(clause.length).replace(/^[\s:.—–-]+/, "") };
+}
+
+/**
+ * What the latest box's height is sized for. Its contents change with every
+ * new feed entry, so its height cannot be re-measured per entry; it was
+ * measured once, at the narrowest column the /embed page promises (300 px),
+ * with the fonts loaded, for the longest entry the feed allows: a headline of
+ * the band's full 72 characters (openingClause trims past that) with the rest
+ * of a 300-character entry under it (tests/updatesLength.test.ts caps entries
+ * at 300), under the longest meta line the categories and months can make.
+ * Measured 26 Sep 2026 in headless Chrome: of every entry then in the feed
+ * plus 800 worst cases built from the feed's own words, the tallest box was
+ * 413 px at 300 px wide (narrower is taller), so the height is 440, a line to
+ * spare. A short entry leaves room above the source line; it never overflows.
+ * tests/embedWidgets.test.ts checks every entry in the feed against these, so
+ * an entry past them fails there rather than running off the bottom of the box
+ * on someone else's page — raise them only after re-measuring.
+ */
+export const LATEST_SIZED_FOR = {
+  headline: 72,
+  entry: 300,
+  meta: "Firsts & Records · 30 September 2026",
+} as const;
+
 const latest = updates[0];
-const fact = bandFact();
-const latestRest = (() => {
-  if (!latest || !fact) return "";
-  if (!latest.text.startsWith(fact.headline)) return latest.text;
-  return latest.text.slice(fact.headline.length).replace(/^[\s:.—–-]+/, "");
-})();
-const latestHeadline = latest && fact && latest.text.startsWith(fact.headline) ? fact.headline : undefined;
 
 export const EMBED_WIDGETS: EmbedWidget[] = [
   {
@@ -96,7 +120,9 @@ export const EMBED_WIDGETS: EmbedWidget[] = [
     what: "His all-time Spotify total, every song, lead and featured credits combined — the figure this site publishes, refreshed daily.",
     // Heights measured in a production build at 300, 360 and 400 px wide with
     // the fonts loaded (the figure grows with the width), each the tallest of
-    // the three plus a few pixels. Re-measure when a box's contents change.
+    // the three plus a few pixels. Re-measure when a box's layout changes. The
+    // latest box is the exception: it is sized for the longest entry the feed
+    // allows (LATEST_SIZED_FOR), not for the entry it shows today.
     width: 360,
     height: 260,
     iframeTitle: "Burna Boy's career Spotify streams, live from Burna Boy Stats",
@@ -160,17 +186,16 @@ export const EMBED_WIDGETS: EmbedWidget[] = [
   {
     slug: "latest",
     name: "Latest milestone",
-    what: "The newest entry in the site's dated log of Burna Boy news. It changes whenever a new fact is logged.",
+    what: "The newest entry in the site's dated log of Burna Boy news, printed whole. It changes whenever a new fact is logged, so the box is tall enough for the longest entry the log takes.",
     width: 360,
-    height: 340,
+    // Sized for the longest entry the feed allows, not today's: LATEST_SIZED_FOR.
+    height: 440,
     iframeTitle: "The latest Burna Boy milestone, from Burna Boy Stats",
     credit: "The latest Burna Boy milestones, on Burna Boy Stats",
     creditHref: "/updates",
     content: {
       kicker: "Burna Boy · Latest milestone",
-      meta: latest ? `${latest.category} · ${longDate(latest.date)}` : undefined,
-      headline: latestHeadline,
-      body: latestRest,
+      ...(latest ? latestContent(latest) : {}),
       source: "the site's dated log of Burna Boy news",
       href: "/updates",
     },
@@ -234,7 +259,7 @@ body{font-family:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif;color:var
 .detail{font-family:${MONO};font-size:var(--type-label);letter-spacing:.04em;color:var(--text-muted);margin-top:3px}
 .meta{font-family:${MONO};font-weight:700;font-size:var(--type-label);letter-spacing:var(--type-label-tracking);text-transform:uppercase;color:var(--text-muted);margin-top:12px}
 .headline{font-family:${ANTON};font-weight:400;font-size:24px;line-height:1.08;letter-spacing:.02em;text-transform:uppercase;color:var(--text);margin-top:6px}
-.body{font-size:var(--type-small);line-height:var(--type-small-lh);color:var(--text-body);margin-top:8px;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:4;overflow:hidden}
+.body{font-size:var(--type-small);line-height:var(--type-small-lh);color:var(--text-body);margin-top:8px}
 .stats{display:flex;margin-top:12px;border-top:1px solid var(--line)}
 .stat{flex:1 1 0;min-width:0;padding:8px 8px 0 0}
 .stat+.stat{padding-left:10px;border-left:1px solid var(--line)}
