@@ -9,6 +9,7 @@ import { cardFilename, cardPath, cardPreviewSrc } from "../lib/cardPreview";
 import {
   dayLedeShort,
   dayMeta,
+  dayShareText,
   isRecordLine,
   milestones,
   neighbours,
@@ -102,7 +103,7 @@ export default function MobileOnThisDayDay({ day }: { day: OnThisDayDay }) {
         <OnThisDaySaveCard
           src={card}
           filename={cardFilename(day.slug)}
-          shareText={`Burna Boy on this day, ${day.label}: ${day.lead.year} — ${day.lead.headline}. ${CANONICAL_ORIGIN}/on-this-day/${day.slug}`}
+          shareText={dayShareText(day, CANONICAL_ORIGIN)}
           className={`btn btnPrimary ${styles.saveBtn}`}
         >
           <span>Save or share</span>

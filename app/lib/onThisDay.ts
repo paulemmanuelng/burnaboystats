@@ -442,6 +442,17 @@ export const onThisDayDays: OnThisDayDay[] = [...new Set(onThisDayEvents.map((e)
 
 export const dayBySlug = (slug: string) => onThisDayDays.find((d) => d.slug === slug);
 
+/**
+ * Whether a day's page is worth a search engine's index: two or more
+ * milestones. 120 of the 167 days hold one, and a page that is one sentence
+ * and a card is thin content by any engine's reading. Every day keeps its
+ * page, its links and its place in site search — readers still land on 8
+ * October from the calendar — but a one-event day is `noindex, follow` and
+ * stays out of the sitemap (a sitemap entry for a noindexed page is a
+ * contradiction). The one predicate both read.
+ */
+export const isIndexableDay = (day: Pick<OnThisDayDay, "events">) => day.events.length >= 2;
+
 /** The days either side of this one on the calendar, wrapping at the year. */
 export function neighbours(key: string): { prev: OnThisDayDay; next: OnThisDayDay } {
   const i = onThisDayDays.findIndex((d) => d.key === key);
@@ -683,6 +694,47 @@ export function dayLedeShort(day: OnThisDayDay): string {
     ? `One milestone, from ${span}.`
     : `${milestones(day.events.length)}, ${span}, newest year first.`;
 }
+
+// ── A day's metadata ────────────────────────────────────────────────────────
+
+/** A headline closed as a sentence, once: four leads already end in "D.C.",
+ *  and a joined "." printed "Washington, D.C.." in their descriptions. */
+export const asSentence = (s: string) => (/[.!?]$/.test(s) ? s : `${s}.`);
+
+/** Google shows about 60 characters of a title (scripts/check-seo.mjs). */
+const TITLE_MAX = 60;
+
+/**
+ * A day page's <title>. A day with several milestones is counted — "Burna
+ * Boy on This Day: 16 August — 5 Milestones". A one-milestone day names it
+ * when that fits in 60 characters — "8 October 2021: Burna Boy played
+ * Hollywood Bowl, Los Angeles" — and keeps the counted form when it does not.
+ */
+export function dayPageTitle(day: OnThisDayDay): string {
+  const n = day.events.length;
+  const counted = `Burna Boy on This Day: ${day.label} — ${n} Milestone${n === 1 ? "" : "s"}`;
+  if (n > 1) return counted;
+  const named = `${day.label} ${day.lead.year}: ${day.lead.headline}`;
+  return named.length <= TITLE_MAX ? named : counted;
+}
+
+/** The description names the lead event when it fits in Google's 160, and
+ *  falls back to a count and a span when it does not. */
+export function dayPageDescription(day: OnThisDayDay): string {
+  const n = day.events.length;
+  const rich = `${day.lead.year}: ${asSentence(day.lead.headline)}${n > 1 ? ` Plus ${n - 1} more Burna Boy milestone${n === 2 ? "" : "s"} dated ${day.label}.` : ` Burna Boy on this day, ${day.label}.`}`;
+  return rich.length <= 160
+    ? rich
+    : `${milestones(n)} dated ${day.label}, ${yearSpan(day.events)} — releases, chart peaks, certifications and shows, each linked to its source.`;
+}
+
+/** The link preview's description, and the start of a shared post's text:
+ *  "2023: “On the Low” was certified Platinum in Sweden." */
+export const dayShareLine = (day: OnThisDayDay) => `${day.lead.year}: ${asSentence(day.lead.headline)}`;
+
+/** What "Save or share" hands the share sheet: the day, the lead, the page. */
+export const dayShareText = (day: OnThisDayDay, origin: string) =>
+  `Burna Boy on this day, ${day.label}: ${day.lead.year} — ${asSentence(day.lead.headline)} ${origin}/on-this-day/${day.slug}`;
 
 /** A pager card's line under a neighbour's lead: "2020 · Release · 2 milestones". */
 export function dayMeta(day: OnThisDayDay): string {

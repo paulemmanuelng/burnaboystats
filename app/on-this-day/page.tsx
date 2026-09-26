@@ -21,8 +21,10 @@ import {
   todaySentence,
 } from "../lib/onThisDay";
 
+// The title counts what the calendar holds: 167 of 366 dates carry a
+// milestone, so "a milestone for every date" was a promise the page broke.
 export const metadata = pageMetadata({
-  title: "Burna Boy On This Day — A Milestone for Every Date",
+  title: `Burna Boy On This Day — ${onThisDayEvents.length} Milestones on ${onThisDayDays.length} Dates`,
   description: `Burna Boy on this day: ${onThisDayEvents.length} dated milestones on ${onThisDayDays.length} days of the year — releases, No. 1s, certifications, awards and shows.`,
   path: "/on-this-day",
   shareTitle: "Burna Boy — On This Day",

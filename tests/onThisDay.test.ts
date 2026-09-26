@@ -9,6 +9,7 @@ import {
   daySlug,
   keyFromSlug,
   dayBySlug,
+  isIndexableDay,
   showDateIso,
   anniversary,
   type OnThisDayEvent,
@@ -224,11 +225,19 @@ describe("the day pages", () => {
     expect(dayBySlug("32-january")).toBeUndefined();
   });
 
-  it("the sitemap carries every day page", () => {
-    const urls = new Set(sitemap().map((r) => r.url));
-    const missing = onThisDayDays.filter((d) => !urls.has(`${siteUrl}/on-this-day/${d.slug}`)).map((d) => d.slug);
-    expect(missing).toEqual([]);
-    expect(urls.has(`${siteUrl}/on-this-day`)).toBe(true);
+  it("the sitemap carries the calendar and exactly the day pages that are indexed", () => {
+    // A one-milestone day is noindex (SEO follow-up A, 26 Sep 2026), and a
+    // sitemap entry for a noindexed page is a contradiction: the sitemap's
+    // day set IS the indexable set, both ways round.
+    const urls = sitemap().map((r) => r.url);
+    const prefix = `${siteUrl}/on-this-day/`;
+    const listed = urls.filter((u) => u.startsWith(prefix)).map((u) => u.slice(prefix.length)).sort();
+    const indexable = onThisDayDays.filter(isIndexableDay).map((d) => d.slug).sort();
+    expect(listed).toEqual(indexable);
+    expect(urls).toContain(`${siteUrl}/on-this-day`);
+    // Not vacuous either way: some days are in, the one-event days are out.
+    expect(indexable.length).toBeGreaterThan(0);
+    expect(indexable.length).toBeLessThan(onThisDayDays.length);
   });
 });
 

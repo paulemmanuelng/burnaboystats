@@ -10,7 +10,7 @@ import { LIVE_BOARDS } from "./data/liveBoards";
 import { liveChartsBuiltAt } from "./data/liveCharts";
 import { carSlugs } from "./data/cars";
 import { LISTENERS_READ_ON } from "./data/listeners";
-import { onThisDayDays } from "./lib/onThisDay";
+import { isIndexableDay, onThisDayDays } from "./lib/onThisDay";
 
 /**
  * lastmod is a claim about a specific URL, and it is only worth making when
@@ -202,10 +202,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...songs.map((sg) => ({ path: `/music/${sg.slug}`, priority: 0.8, changeFrequency: "weekly" as const })),
     ...albumPages.map((al) => ({ path: `/music/albums/${al.slug}`, priority: 0.8, changeFrequency: "weekly" as const })),
     { path: "/timeline", priority: 0.8, changeFrequency: "weekly" },
-    // The calendar and one page per day that has a dated milestone — only
-    // those days get a page, so every URL here has something on it.
+    // The calendar, and the day pages a search engine is asked to index: two
+    // or more milestones (isIndexableDay). A one-milestone day is noindex, and
+    // a sitemap entry for a noindexed page is a contradiction.
     { path: "/on-this-day", priority: 0.7, changeFrequency: "weekly" },
-    ...onThisDayDays.map((d) => ({ path: `/on-this-day/${d.slug}`, priority: 0.5, changeFrequency: "monthly" as const })),
+    ...onThisDayDays
+      .filter(isIndexableDay)
+      .map((d) => ({ path: `/on-this-day/${d.slug}`, priority: 0.5, changeFrequency: "monthly" as const })),
     { path: "/afrobeats", priority: 0.8, changeFrequency: "weekly" },
     // Swept artists only: the pending three are noindex until their registers
     // are read, and a sitemap entry for a noindexed page is a contradiction.

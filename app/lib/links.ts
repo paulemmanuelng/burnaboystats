@@ -76,6 +76,8 @@ export const footerColumns: { label: string; links: { href: string; label: strin
       { href: "/dai-dai/es", label: "Dai Dai en español" },
       { href: "/updates", label: "Updates" },
       { href: "/timeline", label: "Career timeline" },
+      // Beside the timeline: the same story, filed by calendar date.
+      { href: "/on-this-day", label: "On this day" },
       { href: "/about", label: "About Burna Boy" },
       { href: "/music", label: "Song pages" },
       { href: "/rss.xml", label: "RSS feed" },

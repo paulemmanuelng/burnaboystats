@@ -12,29 +12,23 @@ import {
   dayBySlug,
   dayLede,
   dayMeta,
+  dayPageDescription,
+  dayPageTitle,
+  dayShareLine,
+  isIndexableDay,
   isRecordLine,
   milestones,
   neighbours,
   onThisDayDays,
   yearGroups,
-  yearSpan,
-  type OnThisDayDay,
 } from "../../lib/onThisDay";
 
-// Only a day with at least one dated milestone has a page — no thin pages, and
-// anything else 404s.
+// Only a day with at least one dated milestone has a page, and anything else
+// 404s.
 export const dynamicParams = false;
 
 export function generateStaticParams() {
   return onThisDayDays.map((d) => ({ day: d.slug }));
-}
-
-/** The description names the lead event when it fits in Google's 160, and
- *  falls back to a count and a span when it does not. */
-function describe(day: OnThisDayDay): string {
-  const n = day.events.length;
-  const rich = `${day.lead.year}: ${day.lead.headline}.${n > 1 ? ` Plus ${n - 1} more Burna Boy milestone${n === 2 ? "" : "s"} dated ${day.label}.` : ` Burna Boy on this day, ${day.label}.`}`;
-  return rich.length <= 160 ? rich : `${milestones(n)} dated ${day.label}, ${yearSpan(day.events)} — releases, chart peaks, certifications and shows, each linked to its source.`;
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ day: string }> }) {
@@ -42,11 +36,15 @@ export async function generateMetadata({ params }: { params: Promise<{ day: stri
   const day = dayBySlug(slug);
   if (!day) return {};
   return pageMetadata({
-    title: `Burna Boy on This Day: ${day.label} — ${day.events.length} Milestone${day.events.length === 1 ? "" : "s"}`,
-    description: describe(day),
+    title: dayPageTitle(day),
+    description: dayPageDescription(day),
     path: `/on-this-day/${day.slug}`,
     shareTitle: `Burna Boy on this day — ${day.label}`,
-    shareDescription: `${day.lead.year}: ${day.lead.headline}.`,
+    shareDescription: dayShareLine(day),
+    // A one-milestone day stays live, linked and searchable on the site, but
+    // is `noindex, follow` for search engines, and out of the sitemap
+    // (isIndexableDay, lib/onThisDay.ts): 120 of the 167 are one sentence.
+    noindex: !isIndexableDay(day),
   });
 }
 
