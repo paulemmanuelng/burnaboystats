@@ -19,16 +19,26 @@ import { andMore, topBody, topPlatform } from "../lib/boardNotes";
 import { allChartItems, CHART_COUNTRIES, type ChartRelease } from "../data/charts";
 import { livePlatformTotals } from "../data/liveCharts";
 import { compareWithLinks } from "../lib/comparePairs";
+import { countryBoardLinks } from "../lib/certCountry";
 
 // Burna Boy's side of the "Compare with…" list the board artists' pages carry:
 // one pair page per board artist, each by its canonical URL (E-10, Paul,
 // 24 Sep 2026). Same helper, same order as the board's own lists.
 const compareWith = compareWithLinks("burna-boy");
+// Every /compare/in/<country> board, beside that list. They were linked from
+// their own index and nothing else (26 Sep 2026), though this is the page
+// that lists the countries.
+const countryBoards = countryBoardLinks();
 
+// "Plaques", not "Awards": /records/awards is "Burna Boy Awards: N Wins", and
+// while this title said "Awards" too, a "burna boy awards" search showed the
+// two results side by side with counts that could not both be his awards
+// (26 Sep 2026). Plaque is the site's own word for one certification — the
+// board and /compare count in it.
 export const metadata = pageMetadata({
-  title: `Burna Boy Certifications — ${totalAwards()} Awards Across ${countryCount} Countries`,
+  title: `Burna Boy Certifications — ${totalAwards()} Plaques in ${countryCount} Countries`,
   description:
-    `${totalAwards()} Silver, Gold, Platinum and Diamond certifications across ${countryCount} countries — filter by tier, country or year.`,
+    `Burna Boy's ${totalAwards()} Silver, Gold, Platinum and Diamond certifications across ${countryCount} countries — filter by tier, country or year.`,
   path: "/certifications",
   shareTitle: "Burna Boy Certifications — Every Silver, Gold, Platinum & Diamond",
   shareDescription: `Every certified Burna Boy song and album across ${countryCount} countries.`,
@@ -50,7 +60,7 @@ const certJsonLd = {
 
 const certDataset = datasetJsonLd({
   name: "Burna Boy music certifications",
-  description: `Every Silver, Gold, Platinum and Diamond certification for Burna Boy's songs and albums — ${total} awards across ${countryCount} countries (RIAA, BPI, SNEP and more).`,
+  description: `Every Silver, Gold, Platinum and Diamond certification for Burna Boy's songs and albums — ${total} plaques across ${countryCount} countries (RIAA, BPI, SNEP and more).`,
   path: "/certifications",
   keywords: ["Burna Boy", "certifications", "RIAA", "BPI", "Gold", "Platinum", "Diamond", "music sales"],
   variableMeasured: ["Certification level", "Country", "Release"],
@@ -128,6 +138,7 @@ export default function CertificationsPage() {
         chartsNote={burnaChartsNote}
         liveNote={burnaLiveNote}
         compareWith={compareWith}
+        countryBoards={countryBoards}
       />
 
       <div className={styles.desktopOnly}>
@@ -237,6 +248,21 @@ export default function CertificationsPage() {
           <p className={styles.source}>
             Compare with…{" "}
             {compareWith.map((c, i) => (
+              <Fragment key={c.href}>
+                {i > 0 && " · "}
+                <Link href={c.href} className="wikiLink">{c.name}</Link>
+              </Fragment>
+            ))}
+          </p>
+        </div>
+      </nav>
+
+      {/* The country boards, the same way — MobileCerts carries the list too. */}
+      <nav className={styles.sourceBand} aria-label="Certified units by country">
+        <div className={styles.wide}>
+          <p className={styles.source}>
+            Certified units by country…{" "}
+            {countryBoards.map((c, i) => (
               <Fragment key={c.href}>
                 {i > 0 && " · "}
                 <Link href={c.href} className="wikiLink">{c.name}</Link>

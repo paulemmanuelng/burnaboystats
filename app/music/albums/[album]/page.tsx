@@ -7,7 +7,7 @@ import styles from "../../[song]/song.module.css";
 import albumStyles from "./album.module.css";
 import KeepExploring from "../../../components/KeepExploring";
 import FaqList from "../../../components/FaqList";
-import { pageMetadata, CANONICAL_ORIGIN } from "../../../lib/seo";
+import { pageMetadata, CANONICAL_ORIGIN, BURNA_BOY_REF } from "../../../lib/seo";
 import { spotifyImage, spotifySrcSet } from "../../../lib/spotifyImage";
 import { albumPageBySlug, albumPageSlugs, albumPages } from "../../../data/albumPages";
 import { albums, releaseDateLabel } from "../../../data/albums";
@@ -106,7 +106,7 @@ export default async function AlbumPage({ params }: { params: Promise<{ album: s
     "@context": "https://schema.org",
     "@type": "MusicAlbum",
     name: page.title,
-    byArtist: { "@type": "MusicGroup", name: "Burna Boy" },
+    byArtist: BURNA_BOY_REF,
     datePublished: record.released ?? String(record.year),
     numTracks: record.tracks.length,
     url: `${CANONICAL_ORIGIN}/music/albums/${page.slug}`,

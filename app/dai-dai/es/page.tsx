@@ -10,7 +10,7 @@ import { Leads, NationalTable, RuledLists, type LeadFigure, type NumbersLabels, 
 import { RecordBand, SectionHead, Lineup, nationalRow, daiDaiCountries, countryName, topPlaque, plaqueCountries, byVisibleName, plaqueX, thousands } from "../../components/DaiDaiRecord";
 import FaqList from "../../components/FaqList";
 import KeepExploring from "../../components/KeepExploring";
-import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime } from "../../lib/seo";
+import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime, BURNA_BOY_REF } from "../../lib/seo";
 import { lastUpdated } from "../../lib/api";
 import {
   daiDaiNumberOnes,
@@ -151,7 +151,7 @@ export default function DaiDaiPageES() {
       name: "Dai Dai",
       byArtist: [
         { "@type": "Person", name: "Shakira" },
-        { "@type": "MusicGroup", name: "Burna Boy" },
+        BURNA_BOY_REF,
       ],
       datePublished: DAI_DAI_RELEASE_DATE.slice(0, 7),
       genre: ["Afrobeats", "Latin pop"],
@@ -184,7 +184,7 @@ export default function DaiDaiPageES() {
     },
     performer: [
       { "@type": "Person", name: "Shakira" },
-      { "@type": "MusicGroup", name: "Burna Boy" },
+      BURNA_BOY_REF,
       { "@type": "Person", name: "Madonna" },
       { "@type": "MusicGroup", name: "BTS" },
       { "@type": "Person", name: "Justin Bieber" },

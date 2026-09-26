@@ -12,6 +12,49 @@ export const CANONICAL_ORIGIN = "https://burnaboystats.com";
 export const TWITTER_CREATOR = "@paulemmanuelng";
 
 /**
+ * Burna Boy as ONE entity across the site's structured data.
+ *
+ * He was four unlinked nodes (26 Sep 2026): the layout's WebSite.about
+ * MusicGroup with seven sameAs, /about's Person with five, /music's MusicGroup
+ * with none and a url of its own, and a bare {MusicGroup, name} on every
+ * Dataset, recording and album. Nothing said they were one artist, and none
+ * named his Wikidata item — the identifier knowledge graphs key an entity on
+ * (Q17305712, read off en.wikipedia's pageprops for "Burna Boy").
+ *
+ * The full node is written once per page, by the root layout. Everything else
+ * points at it with BURNA_BOY_REF, which keeps @type and name beside the @id
+ * so a reader that does not resolve @id still sees who is meant. The board
+ * artists' own nodes are untouched: this id is his alone.
+ */
+export const BURNA_BOY_ID = `${CANONICAL_ORIGIN}/#burna-boy`;
+
+export const BURNA_BOY_SAME_AS = [
+  "https://en.wikipedia.org/wiki/Burna_Boy",
+  "https://www.wikidata.org/wiki/Q17305712",
+  "https://www.instagram.com/burnaboygram",
+  "https://x.com/burnaboy",
+  "https://www.youtube.com/channel/UCEzDdNqNkT-7rSfSGSr1hWg",
+  "https://open.spotify.com/artist/3wcj11K77LjEY1PkEazffa",
+  "https://music.apple.com/us/artist/burna-boy/591899010",
+  "https://www.facebook.com/Officialburnaboy",
+];
+
+/** The full node — WebSite.about in the root layout, so every page has it. */
+export const BURNA_BOY = {
+  "@type": "MusicGroup",
+  "@id": BURNA_BOY_ID,
+  name: "Burna Boy",
+  alternateName: "Damini Ebunoluwa Ogulu",
+  genre: ["Afrobeats", "Afro-fusion", "Reggae", "Dancehall"],
+  award: "Grammy Award for Best Global Music Album (2021)",
+  foundingLocation: { "@type": "Place", name: "Port Harcourt, Nigeria" },
+  sameAs: BURNA_BOY_SAME_AS,
+};
+
+/** A pointer to that node, for byArtist, performer and about. */
+export const BURNA_BOY_REF = { "@type": "MusicGroup", "@id": BURNA_BOY_ID, name: "Burna Boy" };
+
+/**
  * A feed date ("2026-08-09") as a full ISO 8601 datetime.
  *
  * Search Console flagged "Invalid datetime value for dateModified" on the
@@ -30,6 +73,29 @@ export const asDateTime = (isoDate: string) => `${isoDate}T12:00:00+00:00`;
  * both the root metadata and pageMetadata() for most pages to carry it.
  */
 export const FEED_ALTERNATE = { "application/rss+xml": "/rss.xml" } as const;
+
+/**
+ * The robots directives every indexable page inherits from the root layout.
+ *
+ * Google Discover shows a page's large image card only when the image is at
+ * least 1200px wide AND the page allows it with max-image-preview:large.
+ * Every share card here is already a 1200×630 PNG; the opt-in was the missing
+ * half, and on 26 Sep 2026 none of the 346 sitemap pages declared it, so
+ * /updates and the story pages could only ever earn a thumbnail.
+ *
+ * The plain robots tag, not a googlebot one: it is the form Google's Discover
+ * guidance gives, and Bing reads the same three directives. Next does not
+ * merge `robots` — a page that sets its own (pageMetadata's noindex, /search,
+ * /primitives, the 404) replaces this whole block, so no noindex page picks
+ * up an "index" from here.
+ */
+export const INDEXABLE_ROBOTS = {
+  index: true,
+  follow: true,
+  "max-image-preview": "large",
+  "max-snippet": -1,
+  "max-video-preview": -1,
+} satisfies Metadata["robots"];
 
 // Build a full Metadata object for a page: title + description + canonical, plus
 // a matching Open Graph and Twitter card so social/search previews are unique
@@ -117,11 +183,13 @@ export function datasetJsonLd(opts: {
     isAccessibleForFree: true,
     license: "https://creativecommons.org/licenses/by/4.0/",
     creator: { "@type": "Organization", name: SITE_NAME, url: CANONICAL_ORIGIN },
-    about: {
-      "@type": "MusicGroup",
-      name: opts.about?.name ?? "Burna Boy",
-      ...(opts.about?.sameAs ? { sameAs: opts.about.sameAs } : {}),
-    },
+    about: opts.about
+      ? {
+          "@type": "MusicGroup",
+          name: opts.about.name,
+          ...(opts.about.sameAs ? { sameAs: opts.about.sameAs } : {}),
+        }
+      : BURNA_BOY_REF,
     variableMeasured: opts.variableMeasured,
     ...(opts.dateModified ? { dateModified: opts.dateModified } : {}),
   };
