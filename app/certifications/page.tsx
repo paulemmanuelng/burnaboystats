@@ -11,7 +11,7 @@ import KeepExploring from "../components/KeepExploring";
 import { siteUrl } from "../site";
 import {
   COUNTRIES, albums as certAlbums, singles, features, certHistory, intlCertHistory, allItems,
-  totalAwards, certifiedReleaseCount, countryCount, certSources, CERTS_VERIFIED_ON,
+  totalAwards, tierCounts, certifiedReleaseCount, countryCount, certSources, CERTS_VERIFIED_ON,
 } from "../data/certifications";
 import { pageMetadata, datasetJsonLd } from "../lib/seo";
 import { portraitArtFor } from "../lib/portraitArt";
@@ -68,7 +68,6 @@ const burnaPlats = topPlatform(livePlatformTotals);
 const burnaLiveNote = andMore(burnaPlats.top, burnaPlats.total);
 
 // ── Derived figures for the hero rail and the summary strip ───────────────
-const TIER_ORDER = ["Diamond", "Platinum", "Gold", "Silver"] as const;
 // A tier's colour IS the tier. These read --cyan for Diamond and --silver for
 // Platinum: the Top 10 and Top 40 PEAK-BAND tokens, which globals.css reserves
 // for the chart screens in as many words. So the certification ledger painted
@@ -81,13 +80,11 @@ const TIER_INK: Record<string, string> = {
   Silver: "var(--tier-silver-ink)",
 };
 
-const tierRail = TIER_ORDER.map((name) => {
-  const count = allItems.reduce(
-    (n, item) => n + item.certs.filter((c) => c.level === name).length,
-    0
-  );
-  return { name, count, pct: `${Math.round((count / total) * 100)}%` };
-});
+const tierRail = tierCounts().map(({ name, count }) => ({
+  name,
+  count,
+  pct: `${Math.round((count / total) * 100)}%`,
+}));
 
 const thisYear = Math.max(...certHistory.map((e) => e.year));
 const issuingBodies = new Set(

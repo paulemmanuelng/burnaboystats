@@ -19,7 +19,6 @@ import { join } from "node:path";
  * from the project root, and never on a request.
  */
 export const EMBED_TOKENS = [
-  "--bg",
   "--bg-soft",
   "--bg-raised",
   "--line",
@@ -44,7 +43,7 @@ export const EMBED_TOKENS = [
 
 let cached: string | null = null;
 
-/** `--bg:light-dark(#f7f4ee, #0a0a0b);--bg-soft:…` — each token's FIRST
+/** `--bg-soft:light-dark(…, …);--bg-raised:…` — each token's FIRST
  *  declaration in globals.css, which is its :root value. Throws on a token that
  *  is not there, so a rename in globals.css fails the build instead of shipping
  *  a widget whose var() resolves to nothing. */

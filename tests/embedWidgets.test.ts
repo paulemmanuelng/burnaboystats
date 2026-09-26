@@ -1,8 +1,19 @@
 import { describe, it, expect } from "vitest";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { GET } from "../app/embed/[widget]/route";
-import { EMBED_WIDGETS, EMBED_SLUGS, renderEmbed, latestContent, LATEST_SIZED_FOR } from "../app/lib/embedWidgets";
+import {
+  EMBED_WIDGETS,
+  EMBED_SLUGS,
+  EMBED_FONT_FILES,
+  renderEmbed,
+  latestContent,
+  embedMetas,
+  LATEST_SIZED_FOR,
+} from "../app/lib/embedWidgets";
 import { EMBED_TOKENS } from "../app/lib/embedTheme";
 import { embedSnippet, embedPath } from "../app/lib/embedSnippet";
+import { SITE_NAME } from "../app/lib/seo";
 import { spotifyTotalStreams, spotifyTotalStreamsExact } from "../app/data/streamingTotals";
 import { allItems, COUNTRIES } from "../app/data/certifications";
 import { allChartItems } from "../app/data/charts";
@@ -212,15 +223,64 @@ describe("every widget links back to burnaboystats.com", () => {
 });
 
 describe("the widget document stands alone", () => {
-  it("declares every token its stylesheet uses, from globals.css", () => {
+  it("declares every token its stylesheet uses, from globals.css, and none it does not", () => {
+    const usedAnywhere = new Set<string>();
     for (const slug of EMBED_SLUGS) {
       const html = renderEmbed(slug)!;
       const used = new Set([...html.matchAll(/var\((--[a-z0-9-]+)\)/g)].map((m) => m[1]));
+      used.forEach((t) => usedAnywhere.add(t));
       const declared = new Set(EMBED_TOKENS as readonly string[]);
       expect([...used].filter((t) => !declared.has(t)), slug).toEqual([]);
       // Declared with the site's own value, not a copy typed here.
-      expect(html).toMatch(/--bg:light-dark\(#[0-9a-f]{6}, #[0-9a-f]{6}\)/i);
+      expect(html).toMatch(/--bg-soft:light-dark\(#[0-9a-f]{6}, #[0-9a-f]{6}\)/i);
     }
+    // A token no widget reads is dead weight in every widget's <style>.
+    expect(EMBED_TOKENS.filter((t) => !usedAnywhere.has(t))).toEqual([]);
+  });
+
+  /** (family, weight) pairs the stylesheet asks for that no @font-face serves,
+   *  so the browser would synthesise them. A rule without a font-family is in
+   *  the body's; one without a weight is 400. */
+  function fakedFaces(html: string): string[] {
+    const style = html.match(/<style>([\s\S]*?)<\/style>/)?.[1] ?? "";
+    const family = (decl: string) => decl.match(/font-family:\s*"?([^",;]+)/)?.[1];
+    const weight = (decl: string) => Number(decl.match(/font-weight:\s*(\d+)/)?.[1] ?? 400);
+    const faces = new Set(
+      [...style.matchAll(/@font-face\{([^}]*)\}/g)].map((m) => `${family(m[1])} ${weight(m[1])}`),
+    );
+    const bodyFamily = family(style.match(/(?:^|\n)body\{([^}]*)\}/)?.[1] ?? "");
+    const asked = new Set(
+      [...style.matchAll(/(?:^|\n)([^@\n{]+)\{([^}]*)\}/g)]
+        .filter(([, , decl]) => /font-(family|weight)/.test(decl))
+        .map(([, , decl]) => `${family(decl) ?? bodyFamily} ${weight(decl)}`),
+    );
+    return [...asked].filter((f) => !faces.has(f)).sort();
+  }
+
+  it("serves a real face for every weight it asks for, from small WOFF2 files", () => {
+    for (const slug of EMBED_SLUGS) expect(fakedFaces(renderEmbed(slug)!), slug).toEqual([]);
+    // Every file is WOFF2, and the lot stays small: the TTFs they replaced came
+    // to 337 KB for three faces, fetched again on every site that embeds a box.
+    let bytes = 0;
+    for (const file of EMBED_FONT_FILES) {
+      const data = readFileSync(join(process.cwd(), "public", file));
+      expect(data.subarray(0, 4).toString("latin1"), file).toBe("wOF2");
+      bytes += data.length;
+    }
+    expect(bytes).toBeLessThan(64_000);
+  });
+
+  it("negative control: the @font-face lines the widget shipped with fake Space Mono's bold", () => {
+    // As commit c80f699a shipped them: Regular only, for a stylesheet whose
+    // kicker, meta and brand lines ask for 700.
+    const SHIPPED_FACES = [
+      '@font-face{font-family:"Anton";src:url("/fonts/Anton-Regular.ttf") format("truetype");font-display:swap}',
+      '@font-face{font-family:"Space Mono";src:url("/fonts/SpaceMono-Regular.ttf") format("truetype");font-display:swap}',
+      '@font-face{font-family:"Geist";src:url("/fonts/Geist-Regular.ttf") format("truetype");font-display:swap}',
+    ].join("\n");
+    const html = renderEmbed("career-streams")!;
+    const shipped = html.replace(/(@font-face\{[^}]*\}\n?)+/, `${SHIPPED_FACES}\n`);
+    expect(fakedFaces(shipped)).toEqual(["Space Mono 700"]);
   });
 
   it("loads nothing from another host, and runs only the theme switch", () => {
@@ -236,13 +296,46 @@ describe("the widget document stands alone", () => {
 });
 
 describe("the snippet", () => {
-  const w = EMBED_WIDGETS[0];
+  const w = embedMetas()[0];
 
   it("frames the canonical widget URL at its suggested size, with a plain credit link", () => {
     const s = embedSnippet(w, "auto");
     expect(s).toContain(`<iframe src="https://burnaboystats.com/embed/${w.slug}"`);
     expect(s).toContain(`width="${w.width}" height="${w.height}"`);
     expect(s).toContain(`<a href="https://burnaboystats.com${w.creditHref}">`);
+  });
+
+  /** What the credit line owes: the brand as its link text, and a plain link
+   *  to the page the box's figure comes from. */
+  function creditProblems(snippet: string, pageHref: string): string[] {
+    const doc = new DOMParser().parseFromString(snippet, "text/html");
+    const a = doc.querySelector("p a");
+    if (!a) return ["no credit link"];
+    const out: string[] = [];
+    // Brand, not keywords: Google's spam policies name keyword-rich links
+    // spread through widgets.
+    if (a.textContent !== SITE_NAME) out.push(`link text "${a.textContent}"`);
+    if (a.closest("p")?.textContent !== `Source: ${SITE_NAME}`) out.push(`line "${a.closest("p")?.textContent}"`);
+    if (a.getAttribute("href") !== `https://burnaboystats.com${pageHref}`) out.push(`links to ${a.getAttribute("href")}`);
+    if (a.hasAttribute("rel")) out.push(`rel=${a.getAttribute("rel")}`);
+    return out;
+  }
+
+  it.each(EMBED_WIDGETS.map((x) => x.slug))("%s: the credit is the brand, linked to the box's own page", (slug) => {
+    const meta = embedMetas().find((m) => m.slug === slug)!;
+    const page = EMBED_WIDGETS.find((x) => x.slug === slug)!.content.href;
+    for (const theme of ["auto", "dark"] as const) {
+      expect(creditProblems(embedSnippet(meta, theme), page)).toEqual([]);
+    }
+  });
+
+  it("negative control: the keyword credit the snippet shipped with fails", () => {
+    // The career-streams credit as commit c80f699a shipped it.
+    const shipped = `<p><a href="https://burnaboystats.com/records/by-the-numbers">Burna Boy's career streams, live on Burna Boy Stats</a></p>`;
+    expect(creditProblems(shipped, "/records/by-the-numbers")).toEqual([
+      `link text "Burna Boy's career streams, live on Burna Boy Stats"`,
+      `line "Burna Boy's career streams, live on Burna Boy Stats"`,
+    ]);
   });
 
   it("carries the theme only when one is picked", () => {

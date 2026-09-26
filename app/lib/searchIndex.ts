@@ -32,6 +32,7 @@ export type SearchDoc = {
 };
 
 import { generatedDocs } from "./searchIndex.generated";
+import embedWidgetList from "../data/embedWidgetList.json";
 import { LIVE_CADENCE } from "./liveChartMeta";
 
 export const searchIndex: SearchDoc[] = [
@@ -420,7 +421,9 @@ export const searchIndex: SearchDoc[] = [
     title: "Embed Burna Boy's Stats",
     path: "/embed",
     section: "Site",
-    description: "Live stat boxes for your own site — career streams, certifications, Dai Dai and the latest milestone.",
+    // Named from the widget list (generated from app/lib/embedWidgets.ts,
+    // which imports the datasets this file must not).
+    description: `Live stat boxes for your own site — ${embedWidgetList.map((w) => w.name).join(", ")}.`,
     keywords: ["embed", "widget", "iframe", "live stats", "blog", "fan page", "website", "html", "snippet", "badge"],
   },
   {

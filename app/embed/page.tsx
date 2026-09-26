@@ -5,13 +5,14 @@ import KeepExploring from "../components/KeepExploring";
 import EmbedGallery from "../components/EmbedGallery";
 import MobileEmbed from "../components/MobileEmbed";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME } from "../lib/seo";
-import { embedMetas } from "../lib/embedWidgets";
-import { noteParts } from "../lib/embedSnippet";
+import { embedMetas, EMBED_NAME_LIST } from "../lib/embedWidgets";
+import { noteParts, EMBED_FITS, EMBED_CREDIT } from "../lib/embedSnippet";
 
+// The boxes are named from the widget list, so the description moves the day
+// one is added (check-seo holds it to 160 characters).
 export const metadata = pageMetadata({
   title: "Embed Burna Boy's Stats — Live Widgets for Any Site",
-  description:
-    "Free live boxes of Burna Boy's numbers for your own site: career streams, certifications, Dai Dai and the latest milestone. Paste one snippet of HTML.",
+  description: `Free live boxes of Burna Boy's numbers for your own site: ${EMBED_NAME_LIST}. Paste one snippet of HTML.`,
   path: "/embed",
   shareTitle: "Embed Burna Boy's stats",
   shareDescription: "Live stat boxes for fan pages, blogs and journalists — paste one snippet and the figures keep themselves current.",
@@ -34,12 +35,12 @@ const NOTES: { h: string; p: string }[] = [
     p: "Without a theme a box follows each reader's device. Add `?theme=light` or `?theme=dark` to the address to pin it; the picker above writes that for you.",
   },
   {
-    h: "Any column from 300 to 400 px.",
-    p: "The suggested sizes fit every box, and `max-width:100%` lets one shrink into a narrower column without cutting anything off.",
+    h: `Any column from ${EMBED_FITS.min} to ${EMBED_FITS.max} px.`,
+    p: `At its suggested height, every box was measured to fit at any width in that range, and \`max-width:100%\` lets one shrink into a column narrower than its suggested width. Below ${EMBED_FITS.min} px, a box can run out of room.`,
   },
   {
     h: "Keep the credit line.",
-    p: "The line under the iframe is a plain link to the page the figure comes from. The box links there too, in a new tab.",
+    p: `The line under the iframe, “Source: ${EMBED_CREDIT}”, links to the page the figure comes from. The box links there too, in a new tab.`,
   },
   {
     h: "Free, with attribution.",

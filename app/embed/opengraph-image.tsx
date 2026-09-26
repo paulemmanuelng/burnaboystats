@@ -1,4 +1,5 @@
 import { ogImage, ogVersions, size, contentType } from "../lib/og-image";
+import { EMBED_NAME_LIST } from "../lib/embedWidgets";
 
 export { size, contentType };
 export const alt = "Embed Burna Boy's stats — live boxes of his numbers for any website";
@@ -6,7 +7,8 @@ export const alt = "Embed Burna Boy's stats — live boxes of his numbers for an
 const card = {
   kicker: "Embed the stats",
   title: "Live on your site",
-  sub: "Career streams, certifications, Dai Dai and the latest milestone — one snippet, always current",
+  // Named from the widget list, like the page's description.
+  sub: `${EMBED_NAME_LIST} — one snippet, always current`,
 };
 
 // Versioned by the card's own contents, so a cached preview follows the copy

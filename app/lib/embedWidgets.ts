@@ -12,7 +12,7 @@
 // should cost them a few kilobytes, not the whole app.
 
 import { spotifyTotalStreams, spotifyTotalStreamsExact } from "../data/streamingTotals";
-import { totalAwards, countryCount, allItems, CERTS_VERIFIED_ON } from "../data/certifications";
+import { totalAwards, countryCount, tierCounts, CERTS_VERIFIED_ON } from "../data/certifications";
 import { daiDaiNumberOnes, daiDaiChartEntryCount, weeksAtPeak } from "../data/charts";
 import { DAI_DAI_SPOTIFY_NO1_DAYS } from "../data/daiDai";
 import { openingClause } from "./bandHeadline";
@@ -52,7 +52,10 @@ export interface EmbedContent {
   href: string;
 }
 
-export interface EmbedWidget extends EmbedMeta {
+/** A widget as written below. Its credit line links where the box does
+ *  (content.href), so embedMetas() fills creditHref in rather than it being
+ *  typed twice. */
+export interface EmbedWidget extends Omit<EmbedMeta, "creditHref"> {
   content: EmbedContent;
 }
 
@@ -64,12 +67,8 @@ const longDate = (iso: string) =>
     timeZone: "UTC",
   });
 
-// ── (b) Certifications: the tier rail, counted the way /certifications does ─
-const TIER_ORDER = ["Diamond", "Platinum", "Gold", "Silver"] as const;
-export const embedTierCounts = TIER_ORDER.map((name) => ({
-  name,
-  count: allItems.reduce((n, item) => n + item.certs.filter((c) => c.level === name).length, 0),
-}));
+// ── (b) Certifications: the tier split is tierCounts(), the helper the
+// /certifications hero rail prints, so the two cannot count differently ──────
 
 // ── (c) Dai Dai: the song's own run, as the Dai Dai page derives it ─────────
 const weeksGlobal200 = weeksAtPeak("Dai Dai", "GLB");
@@ -92,15 +91,16 @@ export function latestContent(entry: Update): { meta: string; headline?: string;
 /**
  * What the latest box's height is sized for. Its contents change with every
  * new feed entry, so its height cannot be re-measured per entry; it was
- * measured once, at the narrowest column the /embed page promises (300 px),
- * with the fonts loaded, for the longest entry the feed allows: a headline of
- * the band's full 72 characters (openingClause trims past that) with the rest
- * of a 300-character entry under it (tests/updatesLength.test.ts caps entries
- * at 300), under the longest meta line the categories and months can make.
- * Measured 26 Sep 2026 in headless Chrome: of every entry then in the feed
- * plus 800 worst cases built from the feed's own words, the tallest box was
- * 413 px at 300 px wide (narrower is taller), so the height is 440, a line to
- * spare. A short entry leaves room above the source line; it never overflows.
+ * measured once, at the narrowest column the /embed page promises
+ * (EMBED_FITS.min), with the fonts loaded, for the longest entry the feed
+ * allows: a headline of the band's full 72 characters (openingClause trims past
+ * that) with the rest of a 300-character entry under it
+ * (tests/updatesLength.test.ts caps entries at 300), under the longest meta
+ * line the categories and months can make. Measured 26 Sep 2026 in headless
+ * Chrome, of every entry then in the feed plus 800 worst cases built from the
+ * feed's own words: the tallest box was 413 px at 300 px wide and 439 px at
+ * 280 (narrower is taller), so the height is 460, a line to spare at 280. A
+ * short entry leaves room above the source line; it never overflows.
  * tests/embedWidgets.test.ts checks every entry in the feed against these, so
  * an entry past them fails there rather than running off the bottom of the box
  * on someone else's page — raise them only after re-measuring.
@@ -118,16 +118,15 @@ export const EMBED_WIDGETS: EmbedWidget[] = [
     slug: "career-streams",
     name: "Career streams",
     what: "His all-time Spotify total, every song, lead and featured credits combined — the figure this site publishes, refreshed daily.",
-    // Heights measured in a production build at 300, 360 and 400 px wide with
-    // the fonts loaded (the figure grows with the width), each the tallest of
-    // the three plus a few pixels. Re-measure when a box's layout changes. The
-    // latest box is the exception: it is sized for the longest entry the feed
-    // allows (LATEST_SIZED_FOR), not for the entry it shows today.
+    // Heights measured in a production build with the fonts loaded, at every
+    // 20 px from EMBED_FITS.min to EMBED_FITS.max wide (the figure grows with
+    // the width, the text wraps as it narrows): each is the tallest of those
+    // plus a few pixels. Re-measure when a box's layout changes. The latest
+    // box is the exception: it is sized for the longest entry the feed allows
+    // (LATEST_SIZED_FOR), not for the entry it shows today.
     width: 360,
-    height: 260,
+    height: 280,
     iframeTitle: "Burna Boy's career Spotify streams, live from Burna Boy Stats",
-    credit: "Burna Boy's career streams, live on Burna Boy Stats",
-    creditHref: "/records/by-the-numbers",
     content: {
       kicker: "Burna Boy · Career streams",
       figure: spotifyTotalStreams,
@@ -144,13 +143,11 @@ export const EMBED_WIDGETS: EmbedWidget[] = [
     width: 360,
     height: 280,
     iframeTitle: "Burna Boy's certifications, live from Burna Boy Stats",
-    credit: "Burna Boy's certifications, live on Burna Boy Stats",
-    creditHref: "/certifications",
     content: {
       kicker: "Burna Boy · Certifications",
       figure: String(totalAwards()),
       label: `certifications in ${countryCount} countries`,
-      stats: embedTierCounts.map((t) => ({
+      stats: tierCounts().map((t) => ({
         v: String(t.count),
         l: t.name,
         ink: `--tier-${t.name.toLowerCase()}-ink`,
@@ -164,10 +161,8 @@ export const EMBED_WIDGETS: EmbedWidget[] = [
     name: "Dai Dai",
     what: "The World Cup anthem's run: countries at No. 1, weeks atop the Billboard Global 200, days atop Spotify's global chart.",
     width: 360,
-    height: 320,
+    height: 350,
     iframeTitle: "“Dai Dai” by Shakira and Burna Boy, by the numbers, from Burna Boy Stats",
-    credit: "“Dai Dai” by the numbers, live on Burna Boy Stats",
-    creditHref: "/dai-dai",
     content: {
       kicker: "Shakira & Burna Boy · “Dai Dai”",
       figure: String(daiDaiNumberOnes),
@@ -189,10 +184,8 @@ export const EMBED_WIDGETS: EmbedWidget[] = [
     what: "The newest entry in the site's dated log of Burna Boy news, printed whole. It changes whenever a new fact is logged, so the box is tall enough for the longest entry the log takes.",
     width: 360,
     // Sized for the longest entry the feed allows, not today's: LATEST_SIZED_FOR.
-    height: 440,
+    height: 460,
     iframeTitle: "The latest Burna Boy milestone, from Burna Boy Stats",
-    credit: "The latest Burna Boy milestones, on Burna Boy Stats",
-    creditHref: "/updates",
     content: {
       kicker: "Burna Boy · Latest milestone",
       ...(latest ? latestContent(latest) : {}),
@@ -203,6 +196,13 @@ export const EMBED_WIDGETS: EmbedWidget[] = [
 ];
 
 export const EMBED_SLUGS = EMBED_WIDGETS.map((w) => w.slug);
+
+/** "Career streams, Certifications, Dai Dai and Latest milestone": the boxes by
+ *  name, for the copy that lists them (the /embed description and share card),
+ *  so a box added to the list is named there the day it ships. */
+const names = EMBED_WIDGETS.map((w) => w.name);
+export const EMBED_NAME_LIST =
+  names.length > 1 ? `${names.slice(0, -1).join(", ")} and ${names[names.length - 1]}` : (names[0] ?? "");
 
 export const embedWidget = (slug: string) => EMBED_WIDGETS.find((w) => w.slug === slug);
 
@@ -216,8 +216,7 @@ export const embedMetas = (): EmbedMeta[] =>
     width: w.width,
     height: w.height,
     iframeTitle: w.iframeTitle,
-    credit: w.credit,
-    creditHref: w.creditHref,
+    creditHref: w.content.href,
   }));
 
 // ── The document ────────────────────────────────────────────────────────────
@@ -235,14 +234,49 @@ const THEME_SCRIPT =
 const MONO = `"Space Mono",ui-monospace,Menlo,monospace`;
 const ANTON = `"Anton",Impact,"Arial Narrow",sans-serif`;
 
+/**
+ * The widget's font files, from public/fonts: Latin-only WOFF2, one per face.
+ *
+ * They were the full TTFs the share cards render with (public/fonts/*.ttf),
+ * 337 KB for three faces behind a 5 KB box, and a widget's fonts are fetched
+ * again on every site that embeds it, because browsers keep a separate cache
+ * per site. These four come to 42 KB.
+ *
+ * Anton, Geist and Space Mono Regular are cut from those TTFs with fonttools:
+ * the Latin range Google Fonts serves, plus ↗ (U+2197) for the brand line,
+ * every OpenType feature kept (tabular-nums reads Geist's tnum) and hinting
+ * dropped, as Google serves them:
+ *
+ *   pyftsubset public/fonts/<face>.ttf --flavor=woff2 --no-hinting \
+ *     --layout-features='*' --output-file=public/fonts/<face>-latin.woff2 \
+ *     --unicodes=U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2197,U+2212,U+2215,U+FEFF,U+FFFD
+ *
+ * Space Mono Bold has no TTF here. Its file is the Latin WOFF2 Google Fonts
+ * serves for Space Mono 700, the one next/font fetches for the site's own mono
+ * bold. The kicker, meta and brand lines ask for 700, and with only the
+ * Regular loaded the browser drew a synthetic bold; this is the real cut. It
+ * has no ↗, so the arrow (aria-hidden) comes from the next font in the stack.
+ */
+const FONTS = [
+  { family: "Anton", weight: 400, file: "Anton-Regular-latin.woff2" },
+  { family: "Geist", weight: 400, file: "Geist-Regular-latin.woff2" },
+  { family: "Space Mono", weight: 400, file: "SpaceMono-Regular-latin.woff2" },
+  { family: "Space Mono", weight: 700, file: "SpaceMono-Bold-latin.woff2" },
+] as const;
+export const EMBED_FONT_FILES = FONTS.map((f) => `/fonts/${f.file}`);
+
+/** Preloaded: the Anton figure is the largest thing in the box, so its swap
+ *  from the fallback is the one that moves the layout most. */
+const PRELOAD = `/fonts/${FONTS[0].file}`;
+
 /** The widget stylesheet. Colours and type sizes are the site's own tokens,
  *  declared from globals.css (embedTheme.ts); the vocabulary is the /press
  *  figure card's — a raised surface, Anton figure, mono kicker. */
 function css(): string {
   return `
-@font-face{font-family:"Anton";src:url("/fonts/Anton-Regular.ttf") format("truetype");font-display:swap}
-@font-face{font-family:"Space Mono";src:url("/fonts/SpaceMono-Regular.ttf") format("truetype");font-display:swap}
-@font-face{font-family:"Geist";src:url("/fonts/Geist-Regular.ttf") format("truetype");font-display:swap}
+${FONTS.map(
+  (f) => `@font-face{font-family:"${f.family}";src:url("/fonts/${f.file}") format("woff2");font-weight:${f.weight};font-display:swap}`
+).join("\n")}
 :root{color-scheme:light dark;${embedTokenDeclarations()}}
 :root[data-theme="light"]{color-scheme:light}
 :root[data-theme="dark"]{color-scheme:dark}
@@ -264,7 +298,7 @@ body{font-family:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif;color:var
 .stat{flex:1 1 0;min-width:0;padding:8px 8px 0 0}
 .stat+.stat{padding-left:10px;border-left:1px solid var(--line)}
 .statV{display:block;font-family:${ANTON};font-weight:400;font-size:22px;line-height:1;color:var(--text)}
-.statL{display:block;font-size:11.5px;line-height:1.3;color:var(--text-muted);margin-top:4px}
+.statL{display:block;font-size:var(--type-caption);line-height:1.3;color:var(--text-muted);margin-top:4px}
 .foot{margin-top:auto;padding-top:9px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:3px}
 .source{font-size:var(--type-caption);line-height:var(--type-caption-lh);color:var(--text-muted)}
 .brand{font-family:${MONO};font-weight:700;font-size:var(--type-label);letter-spacing:.06em;color:var(--gold-ink)}
@@ -314,7 +348,7 @@ export function renderEmbed(slug: string): string | null {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, indexifembedded">
 <title>${esc(w.iframeTitle)}</title>
-<link rel="preload" href="/fonts/Anton-Regular.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="${PRELOAD}" as="font" type="font/woff2" crossorigin>
 <script>${THEME_SCRIPT}</script>
 <style>${css()}</style>
 </head>
