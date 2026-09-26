@@ -194,6 +194,36 @@ titles are searchable, her titles. PROMUSICAE's artist dropdown (4,320 strings)
 holds no *Tiwa* string; its *Savage* strings are 21 Savage, Savage Garden and
 Timmy Trumpet & Savage.
 
+## Portugal — AFP's 2022 annual, read 26 Sep 2026
+
+AFP/Audiogest's annual `TOP AFP/AUDIOGEST · Semanas 01 a 52 de 2022 · De
+31/12/2021 a 29/12/2022` (143 pages), read with pypdf from the copy the owner
+downloaded himself: it sits under `audiogest.pt/uploads`, which robots.txt bars
+to agents, and no agent requested it. The same read gave Oxlade's *Ku Lo Sa* its
+Portugal Gold (`544 OU` / `527 OU`). Its two 10,000-row lists, Top 10000
+Streaming and Top 10000 Singles + EPs Digitais, were searched in full, case-
+insensitively, for the credit and every title named below; `Gal.` (Galardão:
+`OU` Ouro, `PL` Platina) freezes at the period's last week.
+
+**No row carries her credit** in either list: `Tiwa` returns nothing. *Koo Koo
+Fun* (Major Lazer, August 2022) is absent; the lists' Major Lazer rows are *Lean
+On*, *Cold Water*, *Light It Up*, *Rave de Favela*, *Sua Cara*, *Que Calor* and
+Beyoncé's *Already*. *Romantic*, *Loaded*, *Koroba*, *Ma Lo*, *Somebody's Son*,
+*Who Is Your Guy?*, *Jaiye Foreign*, *One Time* and *Girl Next Door* have no row
+either. The lists' `No Wahala` (Streaming 1954, Singles + EPs 1950) is credited
+to `1da Banton` alone — the original, not the remix she features on — and is
+unbadged in any case. So nothing of hers sold enough in Portugal in 2022 to make
+either list, and no badge of hers could print in it: a plaque by 29 Dec 2022 is
+**not found**. That is not a proven zero — an award from before 2022 on a title
+that had dropped out of the lists would not show, and the 2019–2021 annuals are
+unread for her.
+
+**2023 onward is unread.** The 2023 and 2024 annuals are only 200 rows deep
+(and also under `/uploads`), the 2025 and 2026 weeklies were not read, and an
+award off the chart prints only on AFP's monthly cards. The board does not
+change, and `verifiedOn` does not move: a one-year read that finds nothing is
+not a re-verification of the page.
+
 ## Gaps — never to be read as zeros
 
 - **BPI (UK)** — `certified-awards.bpi.co.uk/robots.txt` disallows every agent.
@@ -201,9 +231,11 @@ Timmy Trumpet & Savage.
 - **ARIA (Australia)** — the accreditation lists are a Dropbox folder whose
   `/sh/` and `/scl/` paths robots.txt blocks, and this machine's local copies were
   lost on the 24 Sep reboot. By hand, below.
-- **AFP/Audiogest (Portugal)** — every TOP PDF sits under `audiogest.pt/uploads`,
-  which robots.txt disallows; the local corpus was lost on the same reboot. By
-  hand, below.
+- **AFP/Audiogest (Portugal), all but the 2022 annual** — every TOP PDF sits
+  under `audiogest.pt/uploads`, which robots.txt disallows, so only the owner's
+  downloads are read. The 2022 annual is read (26 Sep 2026, above: nothing
+  badged). Unread: the annuals before and after it, the 2025 and 2026 weeklies,
+  and AFP's monthly award cards. By hand, below.
 - **FIMI (Italy)** and **RiSA (South Africa)** — never read by an agent (owner
   ruling). By hand, below.
 - **Ultratop (Belgium)** — read only through raw Wayback `id_` captures of its
@@ -244,7 +276,7 @@ British acts plus her biggest streaming singles.
 |---|---|---|---|
 | 🇬🇧 UK | bpi.co.uk → BRIT Certified search | `Tiwa Savage`, then titles `Commitment`, `On The Low`, `Top Shelf`, `Love Struck`, `Can't Let You Go`, `Koroba`, `Somebody's Son`, `Ma Lo`, `Loaded`, `Keys To The Kingdom` | UK-act collaborations: Craig David (*Commitment*, 2025), Skepta (*On The Low*, 2025), Chip (*Top Shelf*, 2021), WSTRN with Mr Eazi (*Love Struck*, 2018), Stefflon Don with Rema (*Can't Let You Go (Remix)*, 2021 — counts only if BPI's credit names her). BPI may file them as `CRAIG DAVID & TIWA SAVAGE`, `CHIP & TIWA SAVAGE`, `WSTRN FT MR EAZI & TIWA SAVAGE` |
 | 🇦🇺 Australia | aria.com.au/accreditations → the Dropbox folder, 2017–2026 singles lists | `TIWA SAVAGE`, `ROMANTIC` (credit `KOREDE BELLO`), `KOROBA`, `MA LO`, `LOADED` | *Romantic* is RMNZ Gold next door (Dec 2024). Paul can download the folder himself for the next pass to read |
-| 🇵🇹 Portugal | audiogest.pt → TOP AFP annual reports 2020–2025 ("Gal." column), plus the monthly award cards | `TIWA SAVAGE`, `KOO KOO FUN`, `ROMANTIC`, `LOADED`, `NO WAHALA` | a completeness check; *Koo Koo Fun* (Major Lazer, amapiano) is her likeliest Portuguese record. Paul can download the annual TOP PDFs for the next pass to read |
+| 🇵🇹 Portugal | audiogest.pt → TOP AFP annual reports 2023 onward and 2020–2021 ("Gal." column), plus the monthly award cards (2022 annual read — Portugal, above: no row of hers) | `TIWA SAVAGE`, `KOO KOO FUN`, `ROMANTIC`, `LOADED`, `NO WAHALA` | a completeness check; *Koo Koo Fun* (Major Lazer, amapiano) is her likeliest Portuguese record, and it was not in 2022's Top 10000. Paul can download the annual TOP PDFs for the next pass to read |
 | 🇿🇦 South Africa | risa.org.za → Certifications | `Tiwa Savage`, then `Koo Koo Fun` (lead `Major Lazer`), `One Time` (lead `Nasty C`), `Girl Next Door` (lead `Sauti Sol`), `Ma Lo`, `Loaded`, `Stamina` | *Koo Koo Fun* is a South African-produced amapiano record (DJ Maphorisa); *One Time* is Nasty C's |
 | 🇮🇹 Italy | fimi.it → Certificazioni | `Tiwa Savage`, then title `Voodoo` (lead `Los Unidades`) | lowest odds; a completeness check |
 | 🇧🇪 Belgium (optional) | ultratop.be → Goud en platina 2026 (a human can pass the check) | `Tiwa Savage`, `Jonna Fraser` | closes the post-April 2026 window only, for *Turn It Up*; nothing through 13/04/2026 |
