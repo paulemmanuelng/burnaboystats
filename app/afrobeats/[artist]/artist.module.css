@@ -200,7 +200,9 @@
   margin-left: 4px;
   padding-left: 5px;
   border-left: 1px solid currentColor;
-  font-size: 0.82em;
+  /* Relative to the badge, but never under the site's 11px floor: 0.82em of
+     an 11px badge printed Rema's "Latin" at 9px (live, 26 Sep 2026). */
+  font-size: max(11px, 0.82em);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   opacity: 0.85;

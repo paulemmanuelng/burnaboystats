@@ -178,7 +178,7 @@ export default function MobileApi({
           <Link href="/methodology" className={styles.licenceLink}>
             methodology page
           </Link>
-          , and every change is logged on the{" "}
+          , and every change to Burna Boy&apos;s figures is logged on the{" "}
           <Link href="/updates" className={styles.licenceLink}>
             updates feed
           </Link>

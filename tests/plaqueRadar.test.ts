@@ -11,6 +11,7 @@ import { afrobeatsArtists } from "../app/data/afrobeats";
 import { rankAll, judgeUK, coverage, buildRecords, historicalPace } from "../scripts/plaque-radar/rank.mjs";
 import { parseRobots, robotsVerdict } from "../scripts/plaque-radar/robots.mjs";
 import { assertAllowed, NEVER_HOSTS, ALLOWED_HOSTS, createClient, curlArgs, parseCurlOutput, MAX_REDIRECTS } from "../scripts/plaque-radar/net.mjs";
+import { parseArgs, reportFile, occFile } from "../scripts/plaque-radar/args.mjs";
 
 // The plaque radar (scripts/plaque-radar/) is PRIVATE and run by hand. These
 // tests pin its arithmetic and its ranking on fixtures — no network, no saved
@@ -492,5 +493,42 @@ describe("the radar follows redirects itself, one checked hop at a time", () => 
     const { client, requested } = fakeWeb({});
     await expect(client.get("https://certified-awards.bpi.co.uk/")).rejects.toThrow(/never requested/);
     expect(requested).toEqual([]);
+  });
+});
+
+describe("where the radar writes", () => {
+  // 26 Sep 2026: an --offline re-run wrote the same radar-<date>.md as the
+  // online run that morning — with no Network line, since only an online run
+  // has one — and occ/ was join(--out, "occ"), so an offline run with --out
+  // somewhere else read no saved chart at all.
+  const HOME = "/home/fixture";
+  const AS_OF = "2026-09-26";
+
+  it("an offline run never overwrites the day's online report", () => {
+    const online = reportFile(parseArgs([], HOME), AS_OF);
+    const offline = reportFile(parseArgs(["--offline"], HOME), AS_OF);
+    expect(online).toBe("/home/fixture/burnaboy-work/radar/radar-2026-09-26.md");
+    expect(offline).toBe("/home/fixture/burnaboy-work/radar/radar-2026-09-26-offline.md");
+  });
+
+  it("--out moves the report and not the saved Official Charts pages; --occ moves those", () => {
+    const moved = parseArgs(["--offline", "--out", "/scratch/radar"], HOME);
+    expect(reportFile(moved, AS_OF)).toBe("/scratch/radar/radar-2026-09-26-offline.md");
+    expect(occFile(moved, AS_OF, "singles")).toBe("/home/fixture/burnaboy-work/radar/occ/2026-09-26-singles.html");
+    expect(occFile(parseArgs(["--occ=/scratch/occ"], HOME), AS_OF, "singles")).toBe("/scratch/occ/2026-09-26-singles.html");
+  });
+
+  it("negative control: the paths index.mjs built before", () => {
+    // join(args.out, `radar-${asOf}.md`) and join(args.out, "occ"), verbatim.
+    const shipped = (out: string, offline: boolean) => ({ file: join(out, `radar-${AS_OF}.md`), occ: join(out, "occ"), offline });
+    const home = join(HOME, "burnaboy-work/radar");
+    expect(shipped(home, true).file).toBe(shipped(home, false).file);
+    expect(shipped("/scratch/radar", true).occ).not.toBe(join(home, "occ"));
+  });
+
+  it("index.mjs takes both paths from args.mjs", () => {
+    const src = readFileSync("scripts/plaque-radar/index.mjs", "utf8");
+    expect(src).toContain("reportFile(args, asOf)");
+    expect(src).not.toMatch(/join\(args\.out/);
   });
 });

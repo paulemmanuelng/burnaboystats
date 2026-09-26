@@ -678,7 +678,9 @@
   margin-left: 4px;
   padding-left: 5px;
   border-left: 1px solid currentColor;
-  font-size: 0.82em;
+  /* Relative to the badge, but never under the site's 11px floor: 0.82em of
+     an 11px badge printed Rema's "Latin" at 9px (live, 26 Sep 2026). */
+  font-size: max(11px, 0.82em);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   opacity: 0.85;
@@ -706,7 +708,9 @@
 .badgeMore::after {
   content: "";
   position: absolute;
-  inset: -8px 0;
+  /* The ::after is placed against the PADDING box, 25.6px inside the 1px
+     dashed border, so -8px made a 41.6px target (live, 26 Sep 2026). */
+  inset: -10px 0;
 }
 .badgeMore[aria-expanded="true"] { color: var(--gold); border-color: var(--gold); }
 

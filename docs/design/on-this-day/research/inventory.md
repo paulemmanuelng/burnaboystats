@@ -599,17 +599,17 @@ The dated days either side of today are 23, 24 and 25 September (one show each) 
 
 ## 5. Pictures from the production build
 
-These PNGs were rendered from the branch's own code: the same `next/og` renderer, the same functions and the same fonts, run directly in Node.
+These were rendered from the branch's own code: the same `next/og` renderer, the same functions and the same fonts, run directly in Node.
 
 | File | What it is |
 |---|---|
-| `images/og-calendar.png` | 1200×630 calendar OG |
-| `images/og-day-16-august.png` | day OG, busy day (5) |
-| `images/og-day-28-april.png` | day OG with the longest lead line: it wraps to 2 lines at 32px |
-| `images/og-day-8-october.png`, `-29-june`, `-11-july`, `-7-october`, `-16-january` | day OGs for the example days |
-| `images/card-16-august.png` | 1080×1350 portrait card, busy day. The kicker wraps to 2 lines. |
-| `images/card-28-april.png` | portrait card with the longest label (69 characters), which wraps to **3 lines at 38px** |
-| `images/card-8-october.png`, `-29-june`, `-11-july`, `-7-october`, `-16-january`, `-10-november`, `-15-july` | portrait cards for the other example days, plus the two award-led days |
+| `../shots/og-calendar.jpg` | 1200×630 calendar OG |
+| `../shots/og-16-august.jpg` | day OG, busy day (5) |
+| `../shots/og-28-april.jpg` | day OG with the longest lead line: it wraps to 2 lines at 32px |
+| `../shots/og-day-8-october.jpg` | day OG for an example day. The `-29-june`, `-11-july`, `-7-october` and `-16-january` OGs were rendered too but are not in the repo |
+| `../shots/card-16-august.jpg` | 1080×1350 portrait card, busy day. The kicker wraps to 2 lines. |
+| `../shots/card-28-april.jpg` | portrait card with the longest label (69 characters), which wraps to **3 lines at 38px** |
+| `../shots/card-11-july.jpg` | portrait card for an example day. The `-8-october`, `-29-june`, `-7-october`, `-16-january`, `-10-november` and `-15-july` cards (the last two award-led) were rendered too but are not in the repo |
 
 What the renders show that the code alone does not:
 
@@ -624,15 +624,15 @@ What the renders show that the code alone does not:
 
 | File | Viewport | What it shows |
 |---|---|---|
-| `shots/home-desktop-band-dark.png` / `-light.png` | 1440×900 | The scoreboard's foot, History made, **the On This Day band** (268px tall with two rows) and the top of the certifications ledger |
-| `shots/home-phone-card-dark.png` / `-light.png` | 390×844 @2x | History made, then **the phone card**, then the five-tab bar. Two gold outline pills stack one screen apart here: History made's `READ THE STORY ↗` and this card's `ALL 2 ON 7 OCTOBER ↗`. |
-| `shots/calendar-desktop-dark.png` | 1440, full page | `/on-this-day`: the hero, the tally, all twelve months in 4 columns, the legend, the source note and Keep Exploring |
-| `shots/calendar-desktop-1024-dark.png` | 1024, full page | The same page at the 3-column breakpoint |
-| `shots/calendar-phone-dark.png` | 390, full page | The phone calendar: the tally wraps to two lines, and the chips run 7 to a row |
-| `shots/day-16-august-desktop-dark.png` | 1440, full page | The busiest day page, with the card preview and the gold download button |
-| `shots/day-16-august-phone-dark.png` | 390, full page | The same day on the phone |
-| `shots/day-29-june-desktop-light.png` | 1440, full page, light | The award day, in light mode |
-| `shots/day-11-july-phone-light.png` | 390, light | The release day on the phone, in light mode |
+| `../shots/desktop-dark-home-band.jpg` / `desktop-light-home-band.jpg` | 1440×900 | The scoreboard's foot, History made, **the On This Day band** (268px tall with two rows) and the top of the certifications ledger |
+| `../shots/phone-dark-home-card.jpg` / `phone-light-home-card.jpg` | 390×844 @2x | History made, then **the phone card**, then the five-tab bar. Two gold outline pills stack one screen apart here: History made's `READ THE STORY ↗` and this card's `ALL 2 ON 7 OCTOBER ↗`. |
+| `../shots/desktop-dark-index-full.jpg` (and `desktop-light-index-full.jpg`) | 1440, full page | `/on-this-day`: the hero, the tally, all twelve months in 4 columns, the legend, the source note and Keep Exploring |
+| `../shots/calendar-desktop-1024-dark.jpg` | 1024, full page | The same page at the 3-column breakpoint |
+| `../shots/phone-dark-index-full.jpg` | 390, full page | The phone calendar: the tally wraps to two lines, and the chips run 7 to a row |
+| `../shots/desktop-dark-day-16-august-full.jpg` | 1440, full page | The busiest day page, with the card preview and the gold download button |
+| `../shots/phone-dark-day-16-august-full.jpg` | 390, full page | The same day on the phone |
+| `../shots/day-29-june-desktop-light.jpg` | 1440, full page, light | The award day, in light mode |
+| `../shots/day-11-july-phone-light.jpg` | 390, light | The release day on the phone, in light mode |
 
 (Other files in `shots/` were put there by another agent and are not described here.)
 

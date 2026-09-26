@@ -1149,6 +1149,46 @@ describe("the board's stamp cannot fall behind its sweeps", () => {
   });
 });
 
+describe("no artist is verified before a read their own sweep doc records", () => {
+  // Live, 26 Sep 2026: Rema's page printed "Last verified 23 September 2026"
+  // over the Canada Platinum Music Canada printed on the 25th, and the CSV
+  // dated that row's verified_on two days before its award. Ruger's said 24 Sep
+  // over a BPI Silver the owner read on the 25th. Both plaques landed without
+  // moving verifiedOn, which also drives the sitemap, the Dataset's
+  // dateModified and every pair page's "registers read" line.
+  //
+  // The per-register rows of docs/sweeps/<slug>-certifications-v1.md are where
+  // a read is dated ("Music Canada … 25 Sep 2026", "`Ruger` searched 25 Sep
+  // 2026"), so no date in those table rows may be newer than the artist's stamp.
+  const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const newestRead = (doc: string): string | undefined =>
+    doc
+      .split("\n")
+      .filter((l) => l.startsWith("|"))
+      .flatMap((l) => [...l.matchAll(/\b(\d{1,2}) (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]* (\d{4})\b/g)])
+      .map((m) => `${m[3]}-${String(MONTHS.indexOf(m[2]) + 1).padStart(2, "0")}-${m[1].padStart(2, "0")}`)
+      .sort()
+      .at(-1);
+  const ahead = (stamps: { slug: string; verifiedOn: string }[]) =>
+    stamps
+      .map((a) => ({ ...a, read: newestRead(readFileSync(`docs/sweeps/${a.slug}-certifications-v1.md`, "utf8")) }))
+      .filter((a) => a.read && a.read > a.verifiedOn)
+      .map((a) => `${a.slug}: verifiedOn ${a.verifiedOn}, but the sweep doc records a read of ${a.read}`);
+
+  it("holds for every swept artist", () => {
+    const swept = afrobeatsArtists.filter((a) => a.swept);
+    expect(swept.length).toBeGreaterThanOrEqual(19);
+    expect(ahead(swept)).toEqual([]);
+  });
+
+  it("negative control: the stamps that shipped", () => {
+    expect(ahead([{ slug: "rema", verifiedOn: "2026-09-23" }, { slug: "ruger", verifiedOn: "2026-09-24" }])).toEqual([
+      "rema: verifiedOn 2026-09-23, but the sweep doc records a read of 2026-09-25",
+      "ruger: verifiedOn 2026-09-24, but the sweep doc records a read of 2026-09-25",
+    ]);
+  });
+});
+
 describe("the certifications FAQ names the release the list puts first", () => {
   // topPlaque() and the "Most-certified releases" list tie-break the same way
   // (byMostCertified), so a reader never sees "Soweto" at the top of the list
