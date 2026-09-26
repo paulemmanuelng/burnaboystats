@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-26";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-26T11:29Z";
+  export const liveChartsBuiltAt = "2026-09-26T16:27Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -56,14 +56,14 @@
           {
             "country": "RU",
             "name": "Russia",
-            "position": 10,
-            "movement": -1
+            "position": 9,
+            "movement": 0
           },
           {
             "country": "AZ",
             "name": "Azerbaijan",
-            "position": 30,
-            "movement": -10
+            "position": 42,
+            "movement": -20
           },
           {
             "country": "BF",
@@ -74,7 +74,7 @@
           {
             "country": "CL",
             "name": "Chile",
-            "position": 115,
+            "position": 119,
             "movement": null,
             "status": "new"
           }
@@ -199,26 +199,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "forever",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 42,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/73e10a485de513f9c18f87575ae66d58/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "E CLEAR",
     "platforms": [
       {
@@ -297,6 +277,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/b922c719d3a9901f749140e8f532a8d0/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "forever",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 115,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/73e10a485de513f9c18f87575ae66d58/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Boyfriend",
     "platforms": [
       {
@@ -307,7 +307,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 69,
-            "movement": -2
+            "movement": 0
           }
         ]
       }
