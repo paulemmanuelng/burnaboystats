@@ -55,7 +55,7 @@ const EXPECTED = {
   // Sa" UK Platinum (BPI, 06.02.2026), read by the owner on the register.
   "kizz-daniel": { total: 35, diamond: 0 },
   ruger: { total: 19, diamond: 0 }, // 18 -> 19: "Asiwaju" UK Silver (BPI, 08.11.2024), read by the owner on the register 25 Sep 2026
-  oxlade: { total: 14, diamond: 1 },
+  oxlade: { total: 15, diamond: 1 }, // 14 -> 15: "Ku Lo Sa" 🇵🇹 Ouro, Gal. "OU" in AFP's 2022 annual TOP (Streaming #544, Singles + EPs #527), read 26 Sep 2026 from the owner's download
   "tiwa-savage": { total: 12, diamond: 0 },
 } as const;
 

@@ -63,7 +63,7 @@ const PLACE: Record<string, Place> = {
   // 25 Sep 2026: Kizz Daniel, Ruger and Tiwa Savage land in the bottom-left
   // corner with Olamide and Black Sherif — five careers within three countries
   // and 60 plaques, where the y scale gives them about 50px. (Oxlade, the
-  // fourth to join, sits alone at ten countries.) Tuned by
+  // fourth to join, sits apart at twelve countries — see his own entry.) Tuned by
   // measuring label boxes in Space Mono (0.612em advance), not by eye:
   //   Olamide, Kizz Daniel and Ruger stack up and to the right of their dots;
   //   Black Sherif's label moves above the cluster on a vertical hairline,
@@ -81,6 +81,12 @@ const PLACE: Record<string, Place> = {
   bnxn: { anchor: "start", dx: 14, dy: -10 },
   "fireboy-dml": { anchor: "start", dx: 14, dy: -12 },
   victony: { anchor: "start", dx: 14, dy: 2 },
+  // 26 Sep 2026: Portugal took Oxlade to twelve countries, Ayra Starr's count,
+  // so his dot sits straight under hers (x 600.8; y 265.6 against 239.6). On
+  // the fallback his name's ascenders (y ≈ 251.6–259.6) cut into her figures
+  // line (y ≈ 247.6–254.6) across the same x span. Hung left, both his lines
+  // sit in open space (x ≈ 544–587), 8px clear of her dot.
+  oxlade: { anchor: "end", dx: -14, dy: -6 },
 };
 
 const FALLBACK: Place = { anchor: "start", dx: 14, dy: -6 };

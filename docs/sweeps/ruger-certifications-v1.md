@@ -155,6 +155,33 @@ across the page where "Ruger" would sort (between *Rudimental* and *Rugsted &
 Kreutzfeldt*); Music Canada by its own `search=` (X-WP-Total 0); the rest by the
 register's own search.
 
+## Portugal — AFP's 2022 annual, read 26 Sep 2026
+
+AFP/Audiogest's annual `TOP AFP/AUDIOGEST · Semanas 01 a 52 de 2022 · De
+31/12/2021 a 29/12/2022` (143 pages), read with pypdf from the copy the owner
+downloaded himself: it sits under `audiogest.pt/uploads`, which robots.txt bars
+to agents, and no agent requested it. The same read gave Oxlade's *Ku Lo Sa* its
+Portugal Gold (`544 OU` / `527 OU`). Its two 10,000-row lists, Top 10000
+Streaming and Top 10000 Singles + EPs Digitais, were searched in full, case-
+insensitively, for the credit and every title named below; `Gal.` (Galardão:
+`OU` Ouro, `PL` Platina) freezes at the period's last week.
+
+**No row carries his credit** in either list: `Ruger` returns nothing, and none
+of his titles is there under another credit. The lists' *Girlfriend* rows are
+Avril Lavigne, girl in red and Ariana Grande; their *Dior* rows are Pop Smoke,
+Major RD and Chico da Tina; their *Bounce* is Lexsil & Otile Brown. *Asiwaju*
+(January 2023) postdates the period. So nothing of his sold enough in Portugal
+in 2022 to make either list, and no badge of his could print in it: a plaque by
+29 Dec 2022 is **not found**. That is not a proven zero — an award from before
+2022 on a title that had dropped out of the lists would not show, and the 2021
+annual (1,000 rows) is unread for him.
+
+**2023 onward is unread.** The 2023 and 2024 annuals are only 200 rows deep
+(and also under `/uploads`), the 2025 and 2026 weeklies were not read, and an
+award off the chart prints only on AFP's monthly cards. The board does not
+change, and `verifiedOn` does not move: a one-year read that finds nothing is
+not a re-verification of the page.
+
 ## Gaps — never to be read as zeros
 
 - **BPI (UK)** — `certified-awards.bpi.co.uk/robots.txt` disallows every agent,
@@ -166,9 +193,11 @@ register's own search.
 - **ARIA (Australia)** — the accreditation lists are a Dropbox folder whose
   `/sh/` and `/scl/` paths robots.txt blocks, and this machine's local copies were
   lost on the 24 Sep reboot. By hand, below.
-- **AFP/Audiogest (Portugal)** — every TOP PDF sits under `audiogest.pt/uploads`,
-  which robots.txt disallows; the local corpus was lost on the same reboot. By
-  hand, below.
+- **AFP/Audiogest (Portugal), all but the 2022 annual** — every TOP PDF sits
+  under `audiogest.pt/uploads`, which robots.txt disallows, so only the owner's
+  downloads are read. The 2022 annual is read (26 Sep 2026, above: nothing
+  badged). Unread: the annuals before and after it, the 2025 and 2026 weeklies,
+  and AFP's monthly award cards. By hand, below.
 - **FIMI (Italy)** and **RiSA (South Africa)** — never read by an agent (owner
   ruling). By hand, below.
 - **Ultratop (Belgium)** — read only through raw Wayback `id_` captures of its
@@ -203,7 +232,7 @@ in Papua New Guinea).
 |---|---|---|---|
 | 🇬🇧 UK | bpi.co.uk → BRIT Certified search | (`Ruger` searched 25 Sep 2026: *Asiwaju* Silver only) Titles `Asiwaju`, `Girlfriend`, `Dior`, `Romeo Must Die`, `Poe`, `Toma Toma`; then artist `Darkoo` and read for `Solar` | BPI often files a duet under one act: try `RUGER & BNXN`, `BNXN & RUGER`, `RUGER/TIWA SAVAGE`, `DARKOO & RUGER` |
 | 🇦🇺 Australia | aria.com.au/accreditations → the Dropbox folder, 2022–2026 singles and albums lists | `RUGER`, `GIRLFRIEND`, `ASIWAJU`, `DIOR` | *Girlfriend* is RMNZ Gold next door; Paul can download the folder himself for the next pass to read |
-| 🇵🇹 Portugal | audiogest.pt → TOP AFP annual reports 2022–2025 ("Gal." column), plus the monthly award cards | `RUGER`, `ASIWAJU`, `GIRLFRIEND`, `DIOR` | *Asiwaju* went Gold in France; Paul can download the annual TOP PDFs for the next pass to read |
+| 🇵🇹 Portugal | audiogest.pt → TOP AFP annual reports 2023 onward and 2021 ("Gal." column), plus the monthly award cards (2022 annual read — Portugal, above: no row of his) | `RUGER`, `ASIWAJU`, `GIRLFRIEND`, `DIOR` | *Asiwaju* went Gold in France; Paul can download the annual TOP PDFs for the next pass to read |
 | 🇿🇦 South Africa | risa.org.za → Certifications | `Ruger`, then `Asiwaju`, `Girlfriend`, `Dior`, `Bounce` | a completeness check on his biggest four |
 | 🇮🇹 Italy | fimi.it → Certificazioni | `Ruger`, then title `Asiwaju` | lowest odds; a completeness check |
 

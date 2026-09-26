@@ -8,23 +8,26 @@ Platinum is one plaque, not two; an upgrade replaces, it does not add).
 do not. Singles and albums are recorded separately. A register read in full and
 holding nothing is a **proven zero**; a register that could not be read is a
 **gap**, never a zero. Swept **24 Sep 2026** (find pass), and every row re-read
-at its register by a separate verifier the same day.
+at its register by a separate verifier the same day. Two rows landed after it,
+each from a hand check: the UK Platinum (BPI, read by the owner 25 Sep 2026) and
+the Portugal Gold (AFP's 2022 annual TOP, read 26 Sep 2026 from the owner's own
+download — see International).
 
 Oxlade is the Lagos singer signed to Troniq Music / Epic Records — TCSN's 2023
 row for *Ku Lo Sa* prints the label `Troniq Music, Epic Records`, and every
 foreign register that prints a label names Epic or Sony. No other act in any
 register read uses the name.
 
-## Total: **14 certifications**
+## Total: **15 certifications**
 
-**Country split:** NG + FR + CA + CH + NL + NZ + UK + DK + ES + SE + US = 4 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 = **14** ✓
+**Country split:** NG + FR + CA + CH + NL + NZ + UK + DK + ES + PT + SE + US = 4 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 = **15** ✓
 
-**Tier split:** Diamond + Platinum + Gold + Silver = 1 + 6 + 4 + 3 = **14** ✓ (the six Platinums are Canada at 2×, and Switzerland, Nigeria, the Netherlands, New Zealand and the UK; the four Golds are Denmark, Spain, Sweden and the US; all three Silvers are Nigerian)
+**Tier split:** Diamond + Platinum + Gold + Silver = 1 + 6 + 5 + 3 = **15** ✓ (the six Platinums are Canada at 2×, and Switzerland, Nigeria, the Netherlands, New Zealand and the UK; the five Golds are Denmark, Spain, Portugal, Sweden and the US; all three Silvers are Nigerian)
 
-All 14 are **singles**. No register read holds his album *OFA (Oxlade From Africa)*
+All 15 are **singles**. No register read holds his album *OFA (Oxlade From Africa)*
 or his EP *Oxygene*.
 
-**Eleven of the fourteen are one record.** *Ku Lo Sa* holds a plaque in eleven
+**Twelve of the fifteen are one record.** *Ku Lo Sa* holds a plaque in twelve
 countries, which is why his board is mostly international. The *Ku Lo Sa*
 remix with Camila Cabello (Dec 2022) is the same record under this series'
 rules, and no register files it separately in any case.
@@ -67,7 +70,7 @@ Oxlade's *Pressure*.
 
 ## International
 
-**Ten**, every one *Ku Lo Sa*, every one a single:
+**Eleven**, every one *Ku Lo Sa*, every one a single:
 
 | Country | Body | Title as printed | Tier | Date | Credit as printed | Mark |
 |---|---|---|---|---|---|---|
@@ -79,6 +82,7 @@ Oxlade's *Pressure*.
 | 🇬🇧 UK | BPI | `KU LO SA` | Platinum | 06.02.2026 | `OXLADE` | ✓ |
 | 🇩🇰 DK | IFPI Danmark | `KU LO SA - A COLORS SHOW` | Gold (Guld) | 08.10.2024 | `Oxlade` | ✓ |
 | 🇪🇸 ES | PROMUSICAE | `KU LO SA - A COLORS SHOW` | Gold (1 × Discos de Oro) | 2024, week 1 | `OXLADE` | ✓ |
+| 🇵🇹 PT | AFP/Audiogest (annual TOP 2022, read 26 Sep 2026) | `Ku Lo Sa` | Gold (Ouro, Gal. `OU`) | by 29.12.2022 (TOP AFP Anual 2022, Gal. OU) | `Oxlade` | ✓ |
 | 🇸🇪 SE | Ifpi Sverige | `KU LO SA - A COLORS SHOW` | Gold (Guld) | 15.12.2022 | `OXLADE` | ✓ |
 | 🇺🇸 US | RIAA | `KU LO SA` | Gold | 20.09.2024 | `OXLADE` | ✓ |
 
@@ -108,6 +112,23 @@ Oxlade's *Pressure*.
   search returns one card, **21983**, `CANCIONES | KU LO SA - A COLORS SHOW | OXLADE |
   1 × Discos de Oro | Año 2024 Semana 1`. None of the 13 Camila Cabello credit
   strings carries *Ku Lo Sa*.
+- **AFP/Audiogest:** the annual report `TOP AFP/AUDIOGEST · Semanas 01 a 52 de
+  2022 · De 31/12/2021 a 29/12/2022` (143 pages), published at
+  `audiogest.pt/uploads/files/file_2023-01-30-17-47-02.pdf` and linked from
+  `audiogest.pt/tabelas-oficiais-de-vendas-?lang=pt`. robots.txt bars `/uploads`
+  to agents, so no agent requested it: the owner downloaded it himself and it was
+  read on **26 Sep 2026** from his local copy, with pypdf. Columns `Posição · Gal. ·
+  Titulo · Artista · Editora`; `Gal.` = Galardão, `OU` = Ouro (Gold), `PL` =
+  Platina. Two rows, the only two carrying `Oxlade` anywhere in the report:
+  Top 10000 Streaming, page 11: `544 OU Ku Lo Sa Oxlade SONY MUSIC`; Top 10000
+  Singles + EPs Digitais, page 79: `527 OU Ku Lo Sa Oxlade SONY MUSIC`. Both lists
+  run the full 10,000 rows (each ends on row `10000`). The `Gal.` column freezes
+  at the period's last week, not at publication (tested on the 2020 annual:
+  `portugal-afp-verification-2026-08-27.md`), so the plaque existed **by 29 Dec
+  2022**; the award day is not printed.
+  Gold for a single was then 5,000 units (12,000 from 1 Jan 2024). Wikipedia's
+  *Ku Lo Sa* article cites the same file (`Certification Table Entry|region=
+  Portugal … award=Gold … certyear=2022`) — a pointer to the file, not the source.
 - **Ifpi Sverige:** Sverigetopplistan's search lists one Oxlade item (sart
   **11380413**, singles list 41, badges `SWE,Guld`). Its record at
   `sys2.ifpi.se/netdata/grp006.MBR/artdata?sart=11380413` — served identically
@@ -191,9 +212,13 @@ under `Oxlade` and, where titles are searchable, `Ku Lo Sa` / `Kulosa`.
 - **ARIA (Australia)** — the accreditation lists are a Dropbox folder whose
   `/sh/` and `/scl/` paths robots.txt blocks, and this machine's local copies were
   lost on the 24 Sep reboot. By hand, below.
-- **AFP/Audiogest (Portugal)** — every TOP PDF sits under `audiogest.pt/uploads`,
-  which robots.txt disallows; the local corpus was lost on the same reboot. By
-  hand, below.
+- **AFP/Audiogest (Portugal) after 29 Dec 2022** — every TOP PDF sits under
+  `audiogest.pt/uploads`, which robots.txt disallows, so only the owner's
+  downloads are read. The 2022 annual is read (26 Sep 2026, above). Unread: the
+  2023 and 2024 annuals (200 rows deep each, so an absence there proves little),
+  the 2025 and 2026 weeklies, and AFP's monthly award cards from 2023 on, the
+  only place an off-chart award or an upgrade of *Ku Lo Sa* to Platina would
+  print. By hand, below.
 - **FIMI (Italy)** and **RiSA (South Africa)** — never read by an agent (owner
   ruling). By hand, below.
 - **Ultratop (Belgium)** — read only through raw Wayback `id_` captures of its
@@ -220,7 +245,7 @@ under `Oxlade` and, where titles are searchable, `Ku Lo Sa` / `Kulosa`.
 ## By hand for Paul
 
 Records worth a manual check, with the exact search. *Ku Lo Sa* is the priority
-everywhere: it is certified in ten countries, went Diamond in France and
+everywhere: it is certified in twelve countries, went Diamond in France and
 Platinum in New Zealand next door to Australia, and charted in the UK, Portugal
 and South Africa.
 
@@ -228,7 +253,7 @@ and South Africa.
 |---|---|---|---|
 | 🇬🇧 UK | bpi.co.uk → BRIT Certified search | `Intoxycated` (*Ku Lo Sa* done 25 Sep 2026: Platinum, 06.02.2026) | *Ku Lo Sa* spent 20 weeks on the Official Singles Chart (peak 24, Sep 2022); *Intoxycated* peaked at 49 (Jul 2023). BPI may file them as `OXLADE & CAMILA CABELLO` or `OXLADE FT DAVE` |
 | 🇦🇺 Australia | aria.com.au/accreditations → the Dropbox folder, 2022–2026 singles lists | `OXLADE`, `KU LO SA` | RMNZ Platinum next door; it never made the ARIA Top 50, but accreditations do not need a chart run. Paul can download the folder himself for the next pass to read |
-| 🇵🇹 Portugal | audiogest.pt → TOP AFP annual reports 2022, 2023 and 2024 ("Gal." column), plus the monthly award cards | `OXLADE`, `KU LO SA` | 25 weeks on the AFP Top 200 Singles (peak 60, week 38/2022), under the pre-2024 5,000-unit Gold level. Paul can download the annual TOP PDFs for the next pass to read |
+| 🇵🇹 Portugal | audiogest.pt → TOP AFP annual reports 2023 and 2024 ("Gal." column), plus the monthly award cards from 2023 on (2022 annual done 26 Sep 2026: *Ku Lo Sa* Gold) | `OXLADE`, `KU LO SA` | Gold by 29 Dec 2022 at the 5,000-unit level; an upgrade to Platina (10,000 until 2024, 25,000 since) would print only in a later annual or on a monthly card. Paul can download the 2023 and 2024 annual TOP PDFs for the next pass to read |
 | 🇿🇦 South Africa | risa.org.za → Certifications | `Oxlade`, then `Ku Lo Sa` | No. 5 on TOSAC's Local & International Streaming Chart (week 37/2022) |
 | 🇮🇹 Italy | fimi.it → Certificazioni | `Oxlade`, then `Ku Lo Sa`; then artist `Rhove` and read for `Soli` | *Soli* (Rhove feat. Oxlade) is an Italian act's record; a completeness check |
 | 🇧🇪 Belgium (optional) | ultratop.be → Goud en platina 2026 (a human can pass the check) | `Oxlade`, `Ku Lo Sa` | closes the post-April 2026 window only; nothing through 13/04/2026 |
@@ -236,7 +261,7 @@ and South Africa.
 ## Priced on /compare, and linked on /methodology
 
 Every plaque here is a single in a country whose `CERT_THRESHOLDS` row prices
-that tier, so all 13 are counted:
+that tier, so all 15 are counted:
 
 - **NG** — single Platinum and Silver priced. Register link exists (`COUNTRIES.NG`, turntablecharts.com/certification).
 - **FR** — single Diamond priced (SNEP's 50,000,000-stream level). Link exists (`COUNTRIES.FR`).
@@ -244,8 +269,10 @@ that tier, so all 13 are counted:
 - **CH** — single Platinum priced. Link exists (`COUNTRIES.CH`).
 - **NL** — single Platinum priced (post-2016 stream level). Link exists (`COUNTRIES.NL`).
 - **NZ** — single Platinum priced. Link exists (`COUNTRIES.NZ`).
+- **UK** — single Platinum priced. Link exists (`COUNTRIES.UK`, certified-awards.bpi.co.uk).
 - **DK** — single Gold priced. Link exists (`COUNTRIES.DK`, one of the two whitelisted `http://` registers).
 - **ES** — single Gold priced (today's level, with the pre-April 2025 floor). Link exists (`COUNTRIES.ES`).
+- **PT** — single Gold priced at today's 12,000 units, with the pre-2024 5,000 floor on the row (this plaque was awarded under the lower level). Link exists (`COUNTRIES.PT`, audiogest.pt/tabelas-oficiais-de-vendas-?lang=pt).
 - **SE** — single Gold priced (stream-converted, with the pre-2024 floor). Link exists (`COUNTRIES.SE`, the other whitelisted `http://` register).
 - **US** — single Gold priced, standard programme (badge `DI`), so no `body` is needed. Link exists (`COUNTRIES.US`).
 
