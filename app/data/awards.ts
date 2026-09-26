@@ -795,11 +795,11 @@ export const honours: Honour[] = [
     note: "A special award for over 2 billion UK streams, presented at KOKO Camden on 15 July 2024 — the first African artist to reach the milestone.",
   },
   {
-    title: "\"Burna Boy Day\" Proclamation",
+    title: "“Burna Boy Day” Proclamation",
     org: "Boston City Council",
     year: 2024,
     date: "2024-03-02",
-    note: "March 2 declared \"Burna Boy Day\" by the Boston City Council, recognising his role in popularising Afrobeats worldwide.",
+    note: "March 2 declared “Burna Boy Day” by the Boston City Council, recognising his role in popularising Afrobeats worldwide.",
   },
 ];
 

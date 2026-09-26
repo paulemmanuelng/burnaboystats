@@ -154,7 +154,7 @@ describe("the dated fields agree with the record around them", () => {
 
   it("a negative control: the matcher refuses a day the prose does not name", () => {
     expect(mentions("Headlined the festival (31 May)", "2024-05-31")).toBe(true);
-    expect(mentions("March 2 declared \"Burna Boy Day\"", "2024-03-02")).toBe(true);
+    expect(mentions("March 2 declared “Burna Boy Day”", "2024-03-02")).toBe(true);
     expect(mentions("Headlined the festival (31 May)", "2024-05-30")).toBe(false);
     expect(mentions("A headliner (7–8 September)", "2024-09-07")).toBe(false);
   });
