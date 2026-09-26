@@ -9,8 +9,9 @@
  *
  * The site stores Dai Dai's chart run as peaks, not runs. This file holds the
  * weekly positions the repo ALREADY states somewhere — in docs/sourcing/, in
- * the `note` strings of app/data/charts.ts and in the dated entries of
- * app/data/updates.ts (replay.md §1b) — transcribed, with each reading pointing
+ * the `note` strings of app/data/charts.ts, in the dated entries of
+ * app/data/updates.ts (replay.md §1b) and in the page's own dated lines
+ * (app/dai-dai/page.tsx) — transcribed, with each reading pointing
  * at the file that states it and quoting the words that do. Nothing was read
  * afresh for this file.
  *
@@ -20,10 +21,9 @@
  *
  * Only readings a body's own date or week label can place are transcribed. A
  * feed entry that names no chart date ("Up to No. 18 in the UK … its 5th week
- * there") cannot be put on an issue, so it is not — which is why the UK plays
- * as "run not recorded" even though the feed mentions several of its weeks
- * (and why its one dated line does not place it either: see the UK note below
- * TRANSCRIPTIONS).
+ * there", "Norway for a 4th") cannot be put on an issue, so it is not. The UK's
+ * weeks come from the page's one dated UK line instead, and Norway's No. 1
+ * from the page's "from week 31" (see the notes on both in TRANSCRIPTIONS).
  * Where a span is written in by its ends ("No. 1 for 15 straight weeks from 14
  * June to 20 September"), every issue between is stated by that sentence.
  * A week is read only when a line states it: the issue itself, a run whose
@@ -198,6 +198,7 @@ const RUNS_DOC = "docs/sourcing/DAI-DAI-RUNS-2026-08-29.md";
 const CHARTS = "app/data/charts.ts";
 const FEED = "app/data/updates.ts";
 const SWEEP_0906 = "docs/sweeps/RESUME-2026-09-06.md";
+const PAGE = "app/dai-dai/page.tsx";
 
 const TRANSCRIPTIONS: Transcription[] = [
   {
@@ -369,19 +370,43 @@ const TRANSCRIPTIONS: Transcription[] = [
     ],
   },
   {
-    // VG-lista, by week number. Four in-run weeks read from Wayback; the No. 1
-    // run starts at week 31 and is four weeks long (charts.ts weeksAtPeak,
-    // which the test holds this run's No. 1 count to), and the feed
-    // had the fourth on 22 Aug — before week 35's list existed — so the four
-    // are weeks 31 to 34.
+    // VG-lista, by week number. Four in-run weeks read from Wayback, and week
+    // 31 at No. 1 from the page's own line, which names it. That line's other
+    // three No. 1 weeks are a count ("four consecutive weeks"), and the feed's
+    // 2nd, 3rd and 4th Norwegian weeks (entries of 8, 15 and 22 Aug) name no
+    // week, so weeks 32 to 34 are unread (ruling of 26 Sep 2026). DAI-DAI-RUNS calls the week-31 start
+    // "consistent with the claim without supporting it": the page states it,
+    // no capture of VG-lista does.
     code: "NO",
     evidence: [
       { file: RUNS_DOC, quote: "All four readable in-run weeks show the song not at No. 1 — wk26 #4, wk27 #2, wk29 #3, wk30 #2" },
-      { file: RUNS_DOC, quote: "this repo says the Norwegian run starts at week 31" },
-      { file: FEED, quote: "Norway for a 4th" },
+      { file: PAGE, quote: "at No. 1 on Norway's VG-lista Topp 40 — four consecutive weeks, from week 31" },
     ],
     labelOf: wLabel,
-    readings: [on(wk(26), 4, 0, "W26"), on(wk(27), 2, 0, "W27"), on(wk(29), 3, 0, "W29"), on(wk(30), 2, 0, "W30"), ...span(wk(31), wk(34), 1, 1, wLabel)],
+    readings: [on(wk(26), 4, 0, "W26"), on(wk(27), 2, 0, "W27"), on(wk(29), 3, 0, "W29"), on(wk(30), 2, 0, "W30"), on(wk(31), 1, 1, "W31")],
+  },
+  {
+    // Official Singles Chart (OCC), dated by the first day of its Friday-to-
+    // Thursday week. The page's one dated UK line names its weeks by their
+    // closing Thursdays: it was written on Thursday 24 Sep 2026 (1c4d5f81,
+    // 14:29 BST), before the next chart existed, and replaced "the chart of 17
+    // September (No. 19)", also a Thursday — so "the chart of 24 September" is
+    // the chart for 18–24 Sep, the issue of Friday 18 Sep. That is how this file
+    // already reads Germany's "nine weeks 3 Jul → 3 Sep" (the last one is the
+    // issue of Friday 28 Aug), and it puts the UK in the same frame as the Ö3
+    // and GfK charts of 18 Sep, which cover the same sales week. The same line
+    // states the peak run by its ends, "30 July to 27 August 2026": the issues
+    // of 24 Jul to 21 Aug, five of them, the line's own count (charts.ts
+    // weeksAtPeak). "That peak" is the charts.ts peak, No. 2. Every other UK
+    // week is unread: the 6 Sep sweep's "14 weeks — 11/06/2026 to 10/09/2026"
+    // (docs/sweeps/RESUME-2026-09-06.md) states the stay but no position, and
+    // the feed's UK entries name no chart date.
+    code: "UK",
+    evidence: [
+      { file: PAGE, quote: "weeks at that peak, 30 July to 27 August 2026" },
+      { file: PAGE, quote: "counted through the chart of 24 September (No. 31)" },
+    ],
+    readings: [...span("2026-07-24", "2026-08-21", 2, 0), on("2026-09-18", 31, 1)],
   },
   {
     // PRODUCE Top 50 Internacional, Thursday-dated.
@@ -427,21 +452,6 @@ const TRANSCRIPTIONS: Transcription[] = [
     readings: DAI_DAI_GLOBAL_200_RUN.flatMap((r) => (r.pos === null ? [] : [on(r.issue, r.pos, 0)])),
   },
 ];
-
-// THE UK, AND WHY IT STAYS "RUN NOT RECORDED" (ruling of 26 Sep 2026)
-//
-// The page's own UK row ends "counted through the chart of 24 September (No.
-// 31)". The Official Charts Company runs its chart weeks Friday to Thursday and
-// dates a chart by its first day; 24 September 2026 is a Thursday, the LAST
-// day of the week that chart covers (18–24 Sep). So the line names that week
-// by its end, not by the date the body gives it, and the week straddles two of
-// these Monday-to-Sunday frames: dated by the body's own first day (18 Sep) it
-// sits in the frame of 14 Sep; dated as the line prints it, in the frame of 21
-// Sep. One line, two frames — it does not map to one frame unambiguously, so
-// the UK is not placed on either. The dated UK run the 6 Sep sweep copied off
-// the OCC's song page (docs/sweeps/RESUME-2026-09-06.md: "14 weeks —
-// 11/06/2026 to 10/09/2026") prints the same Thursday dates, so it has the same
-// problem and is not transcribed either.
 
 // ── Building the runs ────────────────────────────────────────────────────────
 

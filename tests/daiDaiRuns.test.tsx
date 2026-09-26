@@ -245,23 +245,67 @@ describe("3. no unread week is ever filled from a neighbouring week", () => {
     expect(run("PA").points[frameIdx("2026-07-16")].status).toBe("no-chart");
   });
 
+  it("the UK is read from the page's one dated line, placed by the OCC's first day (ruling of 26 Sep 2026)", () => {
+    const uk = run("UK");
+    const page = read("app/dai-dai/page.tsx");
+    // The line, as the page prints it.
+    expect(page).toContain("counted through the chart of 24 September (No. 31)");
+    expect(page).toContain("weeks at that peak, 30 July to 27 August 2026");
+    // It names each week by its closing Thursday. "The chart of 24 September"
+    // is the OCC week 18–24 Sep, whose first day, Friday 18 Sep, dates it, as
+    // "3 Sep" is Germany's week of Friday 28 Aug in this file — one frame, the
+    // frame of 14 Sep, the one the Ö3 chart of 18 Sep sits in.
+    for (const thu of ["2026-09-24", "2026-07-30", "2026-08-27"]) expect(new Date(t(thu)).getUTCDay(), thu).toBe(4);
+    expect(uk.points[frameIdx("2026-09-18")]).toMatchObject({
+      frame: "2026-09-14",
+      chartDate: "2026-09-18",
+      status: "on",
+      pos: 31,
+      source: "app/dai-dai/page.tsx",
+      quote: "counted through the chart of 24 September (No. 31)",
+    });
+    expect(run("AT").points[frameIdx("2026-09-18")].chartDate).toBe("2026-09-18");
+    expect(run("DE").points[frameIdx("2026-08-28")]).toMatchObject({ chartDate: "2026-08-28", status: "on", pos: 1 });
+    // The peak run the same line states by its ends: the issues of 24 Jul to
+    // 21 Aug at No. 2 — five, the line's own count and charts.ts's.
+    const peakWeeks = uk.points.filter((p) => p.status === "on" && p.pos === uk.peak);
+    expect(uk.peak).toBe(2);
+    expect(peakWeeks.map((p) => p.chartDate)).toEqual(["2026-07-24", "2026-07-31", "2026-08-07", "2026-08-14", "2026-08-21"]);
+    expect(peakWeeks).toHaveLength(uk.weeksAtPeak!);
+    for (const p of peakWeeks) expect(p.quote).toBe("weeks at that peak, 30 July to 27 August 2026");
+    // Nothing else is read: no line states the UK's other weeks.
+    expect(uk.points.filter((p) => p.status !== "unread")).toHaveLength(6);
+    expect(uk.points[frameIdx("2026-09-11")].status).toBe("unread");
+    expect(uk.points[frameIdx("2026-08-28")].status).toBe("unread");
+    // One line, one frame: the frame of the printed Thursday (21 Sep) is not
+    // a second copy of it.
+    expect(uk.points[frameIdx("2026-09-24")]).toMatchObject({ chartDate: "2026-09-25", status: "unread", quote: "" });
+  });
+
+  it("Norway reads week 31 at No. 1 from the line that names it, and leaves the three a count implies unread", () => {
+    const no = run("NO");
+    const pt = (w: string) => no.points[frameIdx(w)];
+    expect(read("app/dai-dai/page.tsx")).toContain("at No. 1 on Norway's VG-lista Topp 40 — four consecutive weeks, from week 31");
+    expect(pt("2026-07-27")).toMatchObject({ label: "W31", status: "on", pos: 1, source: "app/dai-dai/page.tsx" });
+    expect(pt("2026-07-27").quote).toContain("from week 31");
+    // Weeks 32–34: only "four consecutive" pins them, and the feed's 2nd, 3rd
+    // and 4th Norwegian weeks (8, 15 and 22 Aug) name no week.
+    for (const [w, l] of [["2026-08-03", "W32"], ["2026-08-10", "W33"], ["2026-08-17", "W34"]]) {
+      expect(pt(w), l).toMatchObject({ label: l, status: "unread", source: "", quote: "" });
+    }
+    expect(no.points.filter((p) => p.status === "on" && p.pos === 1)).toHaveLength(1);
+    expect(no.weeksAtPeak).toBe(4);
+    // Negative control: the evidence weeks 31–34 carried as shipped (PR 350,
+    // 0d760799) names week 31 and no other.
+    const SHIPPED = "this repo says the Norwegian run starts at week 31";
+    expect(SHIPPED).not.toMatch(/32|33|34/);
+    expect(read("docs/sourcing/DAI-DAI-RUNS-2026-08-29.md")).toContain("Norway — unverified, left at 4");
+  });
+
   it("a run the repo cannot date is 'run not recorded', never a guessed series", () => {
-    // The UK's feed entries name no chart date, so the UK has no points.
-    expect(run("UK").points).toEqual([]);
-    // Nor does the page's one dated UK line place it (ruling of 26 Sep 2026):
-    // "the chart of 24 September" names a Thursday, the last day of the OCC's
-    // Friday-to-Thursday week 18–24 Sep, and that week's first day (the date
-    // the OCC gives a chart) falls in a different frame from the day the line
-    // prints. One line, two frames: not recorded.
-    expect(read("app/dai-dai/page.tsx")).toContain("counted through the chart of 24 September (No. 31)");
-    expect(new Date(t("2026-09-24")).getUTCDay()).toBe(4); // Thursday
-    const firstDay = "2026-09-18";
-    expect(new Date(t(firstDay)).getUTCDay()).toBe(5); // Friday
-    expect(frameOf(firstDay)).not.toBe(frameOf("2026-09-24"));
-    expect(daiDaiFrames).toContain(frameOf(firstDay));
-    expect(daiDaiFrames).toContain(frameOf("2026-09-24"));
-    // Counts-only and peak-only countries likewise.
+    // Counts-only and peak-only countries.
     for (const c of ["BE", "SR", "AE", "AR", "IT", "IN", "CZ", "VE", "LB", "IS", "EC", "EE", "US", "SG"]) expect(run(c).points, c).toEqual([]);
+    expect(daiDaiRecordedCount).toBe(15);
     expect(daiDaiRecordedCount + daiDaiPeakOnlyCount).toBe(66);
   });
 
