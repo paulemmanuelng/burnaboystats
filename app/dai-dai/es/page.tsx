@@ -2,6 +2,10 @@ import Link from "next/link";
 import styles from "../dai-dai.module.css";
 import DaiDaiStory, { type Step } from "../../components/DaiDaiStory";
 import DaiDaiConquest, { type ConquestCountry } from "../../components/DaiDaiConquest";
+import DaiDaiReplay from "../../components/DaiDaiReplay";
+import DaiDaiReplayMultiples from "../../components/DaiDaiReplayMultiples";
+import { buildReplayData } from "../../components/daiDaiReplayData";
+import { ES_REPLAY_LABELS } from "../../components/daiDaiReplayLabels";
 import { Leads, NationalTable, RuledLists, type LeadFigure, type NumbersLabels, type RecordRow } from "../../components/DaiDaiNumbers";
 import { RecordBand, SectionHead, Lineup, nationalRow, daiDaiCountries, countryName, topPlaque, plaqueCountries } from "../../components/DaiDaiRecord";
 import FaqList from "../../components/FaqList";
@@ -75,6 +79,10 @@ const halftimeLong = halftime({ day: "numeric", month: "long", year: "numeric" }
 // Spanish prose writes the tier in lower case.
 const certCountries = plaqueCountries();
 const topPlaqueWords = topPlaque({ diamond: "diamante", platinum: "platino", gold: "oro", silver: "plata" }, "es", " en ");
+
+// La repetición bajo la cuadrícula: la carrera oficial de Dai Dai en listas,
+// semana a semana, desde app/data/daiDaiRuns.ts. Su fotograma final es esta cuadrícula.
+const replayData = buildReplayData("es");
 
 const conquestIntro = `“Dai Dai” ha entrado en las listas de ${conquestTotal} países y ha llegado al número 1 en ${conquestNo1} de ellos: cada celda muestra su pico.`;
 
@@ -439,6 +447,10 @@ export default function DaiDaiPageES() {
               showFewer: "Ver menos",
             }}
           />
+          <DaiDaiReplay data={replayData} labels={ES_REPLAY_LABELS} />
+          <noscript>
+            <DaiDaiReplayMultiples data={replayData} labels={ES_REPLAY_LABELS} />
+          </noscript>
         </section>
 
         <section id="numbers" className={`${styles.section} ${styles.sectionNumbers}`} aria-labelledby="dd-numbers">

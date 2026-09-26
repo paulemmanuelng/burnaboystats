@@ -2,6 +2,10 @@ import Link from "next/link";
 import styles from "./dai-dai.module.css";
 import DaiDaiStory from "../components/DaiDaiStory";
 import DaiDaiConquest, { type ConquestCountry } from "../components/DaiDaiConquest";
+import DaiDaiReplay from "../components/DaiDaiReplay";
+import DaiDaiReplayMultiples from "../components/DaiDaiReplayMultiples";
+import { buildReplayData } from "../components/daiDaiReplayData";
+import { EN_REPLAY_LABELS } from "../components/daiDaiReplayLabels";
 import KeepExploring from "../components/KeepExploring";
 import { Leads, NationalTable, RuledLists, type LeadFigure, type NumbersLabels, type RecordRow } from "../components/DaiDaiNumbers";
 import { RecordBand, SectionHead, Lineup, nationalRow, daiDaiCountries, countryName, topPlaque, plaqueCountries } from "../components/DaiDaiRecord";
@@ -54,6 +58,10 @@ const halftimeLong = halftime({ day: "numeric", month: "long", year: "numeric" }
 // the top plaque and its country in words, both read from the plaque wall.
 const certCountries = plaqueCountries();
 const topPlaqueWords = topPlaque(EN_FIGURE_LABELS.tiers, "en", " in ");
+
+// The replay under the grid: Dai Dai's official chart run, week by week, from
+// app/data/daiDaiRuns.ts. Its end frame is this grid.
+const replayData = buildReplayData("en");
 
 const conquestIntro = `“Dai Dai” charted in ${conquestTotal} countries and reached No. 1 in ${conquestNo1} of them — each cell shows its peak.`;
 
@@ -444,6 +452,14 @@ export default function DaiDaiPage() {
         <section className={`${styles.section} ${styles.sectionTakeover}`} aria-labelledby="dd-conquest">
           <SectionHead id="dd-conquest" title="The world takeover" aside={conquestIntro} stackOnPhone />
           <DaiDaiConquest countries={conquestCountries} />
+          {/* "How it got there" (design response §5, item 6): the replay, beside
+              the grid rather than merged with it. The server renders its end
+              frame; nothing plays until Play is pressed. Without JavaScript the
+              week-by-week table is the reading. */}
+          <DaiDaiReplay data={replayData} labels={EN_REPLAY_LABELS} />
+          <noscript>
+            <DaiDaiReplayMultiples data={replayData} labels={EN_REPLAY_LABELS} />
+          </noscript>
         </section>
 
         <section id="numbers" className={`${styles.section} ${styles.sectionNumbers}`} aria-labelledby="dd-numbers">

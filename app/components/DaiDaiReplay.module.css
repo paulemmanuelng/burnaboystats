@@ -1,0 +1,956 @@
+/* "How it got there" — the chart replay under the takeover grid.
+   Every value is read from designs/desktop/Dai Dai Replay Module.dc.html (the
+   desktop and phone layouts are its L objects) and the states sheet. Tokens
+   only: the five peak bands are data colours and are never the brand gold;
+   gold is the Play button and the focus ring. Nothing is set below the site's
+   11px floor — where the prototype drew 9–10.5px (the inset label, the
+   small-multiples heads) it is lifted to 11. */
+
+/* Desktop: the module sits in a 28px-padded hairline frame under the grid.
+   Phone: full-bleed below a hairline, with its own 18px gutter. */
+.replay {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+
+
+/* ── Header ─────────────────────────────────────────────────────────────── */
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.kicker {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.title {
+  margin: 0;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 34px;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--text);
+}
+.intro {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--text-body);
+  max-width: 62ch;
+}
+
+/* ── Player ─────────────────────────────────────────────────────────────── */
+.player {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.readoutRow {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.readout {
+  font-family: var(--font-anton), sans-serif;
+  font-size: 30px;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--text);
+}
+.counter {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.counterNum {
+  color: var(--text);
+}
+
+/* The two Billboard globals: not countries, so tiles above the map. */
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+.tile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  min-width: 0;
+}
+.tileText {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.tileName {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.tileNameShort {
+  display: none;
+}
+.tileSub {
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+.tilePos {
+  font-family: var(--font-anton), sans-serif;
+  font-size: 26px;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+/* ── Map + ranking ──────────────────────────────────────────────────────── */
+.body {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+.mapCol {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+.mapToggle {
+  display: none;
+}
+.mapBox {
+  position: relative;
+  height: 430px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+.world {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 6px;
+  box-sizing: border-box;
+}
+.europe {
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
+  width: 31%;
+  aspect-ratio: 1 / 0.86;
+  background: var(--bg);
+  border: 1px solid var(--rule);
+}
+.europeSvg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 4px;
+  box-sizing: border-box;
+}
+.europeLabel {
+  position: absolute;
+  left: 8px;
+  top: 6px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+/* A country on the map. A shape with no chart row is the uncharted well.
+   Stroke widths are the module's own: a state's width times the view's scale
+   (0.7 on the world map, 1 in the Europe inset, 1.2 in the phone's Europe
+   view), in screen pixels — the paths carry non-scaling strokes. */
+.shape {
+  fill: var(--bg-soft-2);
+  stroke: var(--rule);
+  opacity: 0.55;
+  transition:
+    fill var(--dur-slow) var(--ease-out),
+    stroke var(--dur-slow) var(--ease-out);
+}
+.charted {
+  opacity: 1;
+  cursor: pointer;
+}
+.shape.b1,
+.shape.b5,
+.shape.b10,
+.shape.b40,
+.shape.rest {
+  stroke: var(--bg);
+}
+.shape.off {
+  fill: var(--bg-soft-2);
+  stroke: var(--rule);
+}
+/* No reading: a neutral hatch (set as the fill beside it) and a dashed ink
+   outline — never the band of a week either side of it. */
+.shape.unread {
+  stroke: var(--text);
+  stroke-dasharray: 3 2;
+}
+.shape.nochart {
+  stroke: var(--text);
+}
+/* Run not recorded: a dotted outline with no fill, until the end frame. */
+.shape.norun {
+  fill: transparent;
+  stroke: var(--text);
+  stroke-dasharray: 1.2 1.6;
+  opacity: 0.9;
+}
+.world .shape { stroke-width: 0.245px; }
+.world .shape.off { stroke-width: 0.35px; }
+.world .shape.nochart { stroke-width: 0.42px; }
+.world .shape.charted:is(.b1, .b5, .b10, .b40, .rest, .unread, .norun) { stroke-width: 0.49px; }
+.europeSvg .shape { stroke-width: 0.35px; }
+.europeSvg .shape.off { stroke-width: 0.5px; }
+.europeSvg .shape.nochart { stroke-width: 0.6px; }
+.europeSvg .shape.charted:is(.b1, .b5, .b10, .b40, .rest, .unread, .norun) { stroke-width: 0.7px; }
+/* On paper the two lightest bands all but vanish on the well (1.86:1 and
+   1.22:1), so Top 40 and 41+ carry an ink outline. */
+:global(:root[data-theme="light"]) .shape.b40,
+:global(:root[data-theme="light"]) .shape.rest {
+  stroke: var(--text);
+}
+.mapBox svg .shape.charted.picked,
+.mapBox svg .sg.picked {
+  stroke: var(--text);
+  stroke-width: 2px;
+  stroke-dasharray: none;
+}
+.patWell {
+  fill: var(--bg-soft-2);
+}
+.patLine {
+  stroke: color-mix(in srgb, var(--text) 34%, transparent);
+}
+:global(:root[data-theme="light"]) .patLine {
+  stroke: color-mix(in srgb, var(--text) 42%, transparent);
+}
+
+/* The end frame's ● on a country whose run is not recorded. */
+.peakMark {
+  fill: var(--bg);
+  stroke: var(--text);
+  stroke-width: 0.6px;
+  vector-effect: non-scaling-stroke;
+  pointer-events: none;
+}
+:global(:root[data-theme="light"]) .peakMark {
+  fill: var(--bg-soft);
+}
+
+/* Singapore: no shape at this scale, so a marker in its state. */
+.sg {
+  stroke: var(--text);
+  stroke-width: 1px;
+  vector-effect: non-scaling-stroke;
+  cursor: pointer;
+}
+.sg.off {
+  fill: var(--bg-soft-2);
+  stroke: var(--rule);
+}
+.sg.unread {
+  stroke-dasharray: 3 2;
+}
+.sg.norun {
+  fill: transparent;
+  stroke-dasharray: 1.2 1.6;
+}
+.sgLabel {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  fill: var(--text-muted);
+  pointer-events: none;
+}
+
+/* The country card: hover, focus or tap, whenever the replay is not moving. */
+.card {
+  position: absolute;
+  left: 24px;
+  top: 24px;
+  width: 280px;
+  padding: 14px 16px;
+  background: var(--bg-soft);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  pointer-events: none;
+}
+.cardHead {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.cardFlag {
+  font-size: 18px;
+  line-height: 1;
+}
+.cardName {
+  font-family: var(--font-anton), sans-serif;
+  font-size: 20px;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--text);
+}
+.cardBody {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.cardPosRow {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.cardPos {
+  font-family: var(--font-anton), sans-serif;
+  font-size: 30px;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+}
+.cardStatus {
+  font-size: 13.5px;
+  color: var(--text-body);
+}
+.cardLabel {
+  font-size: 12.5px;
+  color: var(--text-body);
+}
+.cardSource {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  color: var(--text-muted);
+  overflow-wrap: anywhere;
+}
+
+/* The ranking: ties grouped by band, weeks at No. 1 so far as the cue. */
+.rankCol {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.groupHead {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--rule);
+}
+.groupLabel {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+.groupCount,
+.trayCount {
+  margin-left: auto;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--text);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background var(--dur) var(--ease-out);
+}
+.chip:hover {
+  background: var(--bg-raised);
+}
+.chipOn {
+  border-color: var(--text);
+}
+.chipCue {
+  color: var(--text-muted);
+}
+
+/* "Not read this week": exactly the unread countries, so its count is the
+   counter's "not read". */
+.tray {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 12px;
+  background: var(--bg-soft-2);
+  border-radius: 6px;
+}
+.trayHead {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.trayLabel {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.trayList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+.trayNote {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--text-muted);
+}
+
+/* ── Transport ──────────────────────────────────────────────────────────── */
+.transport {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.playBtn,
+.stepBtn {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.playBtn {
+  border: 0;
+  background-color: var(--gold-fill);
+  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold-fill) 48%, var(--gold-dim) 100%);
+  color: var(--ink-on-gold);
+}
+.stepBtn {
+  border: 1px solid var(--btn-edge);
+  background: var(--btn-face);
+  color: var(--text);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 16px;
+}
+.stepBtn:hover {
+  background: var(--bg-raised);
+}
+.slider {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  touch-action: none;
+}
+.rail,
+.progress {
+  position: absolute;
+  left: 0;
+  top: 21px;
+  height: 2px;
+}
+.rail {
+  right: 0;
+  background: var(--line);
+}
+.progress {
+  background: var(--text);
+}
+.ticks {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.tick {
+  flex: none;
+  width: 2px;
+  height: 8px;
+  border-radius: 1px;
+  background: var(--text-muted);
+}
+.tickPast {
+  background: var(--text);
+}
+.tickMark {
+  width: 4px;
+  height: 14px;
+}
+.tickCur {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--text);
+  box-shadow:
+    0 0 0 3px var(--bg),
+    0 0 0 5px var(--text);
+}
+.marks {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ── Legend + footnote ──────────────────────────────────────────────────── */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.foot {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--text-muted);
+}
+
+/* Swatches: the tiles, the group heads, the tray, the legend. */
+.swatch,
+.swatchSm {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+}
+.swatchSm {
+  width: 12px;
+  height: 12px;
+}
+
+/* The five bands, for fills (map) and backgrounds (swatches, cells). */
+.b1 { fill: var(--peak-band-1); background: var(--peak-band-1); }
+.b5 { fill: var(--peak-band-5); background: var(--peak-band-5); }
+.b10 { fill: var(--peak-band-10); background: var(--peak-band-10); }
+.b40 { fill: var(--peak-band-40); background: var(--peak-band-40); }
+.rest { fill: var(--peak-band-rest); background: var(--peak-band-rest); }
+:global(:root[data-theme="light"]) .swatch.b40,
+:global(:root[data-theme="light"]) .swatch.rest,
+:global(:root[data-theme="light"]) .swatchSm.b40,
+:global(:root[data-theme="light"]) .swatchSm.rest,
+:global(:root[data-theme="light"]) .mCell.b40,
+:global(:root[data-theme="light"]) .mCell.rest,
+:global(:root[data-theme="light"]) .mSwatch.b40,
+:global(:root[data-theme="light"]) .mSwatch.rest {
+  border-color: var(--text);
+}
+.swatch.off,
+.swatchSm.off {
+  background: var(--bg-soft-2);
+  border-color: var(--rule);
+}
+.swatch.unread,
+.swatchSm.unread,
+.mUnread {
+  background: repeating-linear-gradient(45deg, color-mix(in srgb, var(--text) 34%, transparent) 0 1.5px, var(--bg-soft-2) 1.5px 4px);
+  border: 1px dashed var(--text);
+}
+:global(:root[data-theme="light"]) .swatch.unread,
+:global(:root[data-theme="light"]) .swatchSm.unread,
+:global(:root[data-theme="light"]) .mUnread {
+  background: repeating-linear-gradient(45deg, color-mix(in srgb, var(--text) 42%, transparent) 0 1.5px, var(--bg-soft-2) 1.5px 4px);
+}
+.swatch.nochart,
+.swatchSm.nochart {
+  background:
+    repeating-linear-gradient(45deg, color-mix(in srgb, var(--text) 34%, transparent) 0 1px, transparent 1px 4px),
+    repeating-linear-gradient(-45deg, color-mix(in srgb, var(--text) 34%, transparent) 0 1px, var(--bg-soft-2) 1px 4px);
+  border: 1px solid var(--text);
+}
+:global(:root[data-theme="light"]) .swatch.nochart,
+:global(:root[data-theme="light"]) .swatchSm.nochart {
+  background:
+    repeating-linear-gradient(45deg, color-mix(in srgb, var(--text) 42%, transparent) 0 1px, transparent 1px 4px),
+    repeating-linear-gradient(-45deg, color-mix(in srgb, var(--text) 42%, transparent) 0 1px, var(--bg-soft-2) 1px 4px);
+}
+.swatch.norun {
+  background: transparent;
+  border: 1px dotted var(--text);
+}
+
+/* ── Small multiples ────────────────────────────────────────────────────── */
+.multiples {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.mHead {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.mTitle {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+.mNote {
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+.openPlayer {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 999px;
+  background: var(--btn-face);
+  border: 1px solid var(--btn-edge);
+  color: var(--text);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.openPlayer:hover {
+  background: var(--bg-raised);
+}
+.mTable {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+}
+.mColChart {
+  width: 120px;
+}
+.mTable th,
+.mTable td {
+  padding: 1px;
+  font-weight: 400;
+}
+.mTable thead th {
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--rule);
+  color: var(--text-muted);
+  text-align: center;
+  vertical-align: bottom;
+  white-space: nowrap;
+  overflow: visible;
+}
+.mTable thead .mColHead {
+  text-align: left;
+}
+.mTickOdd {
+  visibility: hidden;
+}
+.mTable tbody tr {
+  height: 20px;
+}
+.mRowHead {
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  color: var(--text);
+}
+.mCode {
+  margin-left: 6px;
+}
+.mPeak {
+  margin-left: 6px;
+  color: var(--text-muted);
+}
+.mCell {
+  display: block;
+  height: 14px;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+}
+.mOff {
+  background: var(--bg-soft-2);
+}
+.mNoChart {
+  background: repeating-linear-gradient(-45deg, color-mix(in srgb, var(--text) 34%, transparent) 0 1px, var(--bg-soft-2) 1px 4px);
+  border: 1px solid var(--text);
+}
+:global(:root[data-theme="light"]) .mNoChart {
+  background: repeating-linear-gradient(-45deg, color-mix(in srgb, var(--text) 42%, transparent) 0 1px, var(--bg-soft-2) 1px 4px);
+}
+.mPeakOnly {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 14px;
+  padding: 0 8px;
+  border: 1px dotted var(--text);
+  border-radius: 2px;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.mSwatch {
+  flex: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+}
+
+/* ── Tablet: the ranking drops under the map ────────────────────────────── */
+@media (max-width: 1239px) {
+  .body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ── Phone: ranking first, a Europe map with a World toggle, then the
+   transport above the 87px tab bar. Every control is 44px or more. ─────── */
+@media (max-width: 900px) {
+  .replay {
+    gap: 14px;
+    margin: 10px -18px 0;
+    padding: 20px 18px 24px;
+    border: 0;
+    border-top: 1px solid var(--line);
+    border-radius: 0;
+  }
+  .title {
+    font-size: 26px;
+  }
+  .player {
+    gap: 14px;
+  }
+  .readout {
+    font-size: 22px;
+  }
+  .tileNameLong {
+    display: none;
+  }
+  .tileNameShort {
+    display: inline;
+  }
+  .body {
+    display: flex;
+    flex-direction: column;
+  }
+  .mapCol {
+    order: 2;
+  }
+  .rankCol {
+    order: 1;
+  }
+  .mapToggle {
+    display: flex;
+    height: 44px;
+    border: 1px solid var(--btn-edge);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .mapToggleItem {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    border: 0;
+    background: transparent;
+    font-family: var(--font-mono), monospace;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    cursor: pointer;
+  }
+  .mapToggleItem + .mapToggleItem {
+    border-left: 1px solid var(--btn-edge);
+  }
+  .mapToggleOn {
+    background: var(--text);
+    color: var(--bg);
+  }
+  .mapBox {
+    height: 300px;
+  }
+  /* The Europe crop is the phone's map; World swaps it for the whole map. */
+  .mapBox[data-map="europe"] .world {
+    display: none;
+  }
+  .mapBox[data-map="world"] .europe {
+    display: none;
+  }
+  .europe {
+    position: static;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+    border: 0;
+  }
+  .europeLabel {
+    display: none;
+  }
+  .europeSvg .shape { stroke-width: 0.42px; }
+  .europeSvg .shape.off { stroke-width: 0.6px; }
+  .europeSvg .shape.nochart { stroke-width: 0.72px; }
+  .europeSvg .shape.charted:is(.b1, .b5, .b10, .b40, .rest, .unread, .norun) { stroke-width: 0.84px; }
+  .card {
+    left: 10px;
+    top: 10px;
+    width: calc(100% - 20px);
+  }
+  /* A chip is 22px tall: on a phone it is a label, not a control — the map
+     is where a country is tapped. */
+  .chip {
+    pointer-events: none;
+  }
+  .transport {
+    position: sticky;
+    bottom: calc(57px + max(30px, env(safe-area-inset-bottom, 0px)));
+    z-index: 2;
+    padding: 10px 0 0;
+    background: var(--bg);
+    border-top: 1px solid var(--line);
+  }
+  .mColChart {
+    width: 64px;
+  }
+  .mTable tbody tr {
+    height: 18px;
+  }
+  .mCell {
+    height: 12px;
+  }
+  .mTickEven:not([data-q]) {
+    visibility: hidden;
+  }
+  .mPeak,
+  .mCode + .mPeak {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shape,
+  .chip {
+    transition: none;
+  }
+}

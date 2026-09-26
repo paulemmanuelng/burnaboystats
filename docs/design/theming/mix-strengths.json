@@ -83,6 +83,18 @@
     "--text 42%",
     "--text 92%"
   ],
+  "app/components/DaiDaiReplay.module.css": [
+    "--text 34%",
+    "--text 34%",
+    "--text 34%",
+    "--text 34%",
+    "--text 34%",
+    "--text 42%",
+    "--text 42%",
+    "--text 42%",
+    "--text 42%",
+    "--text 42%"
+  ],
   "app/components/FollowPanel.module.css": [
     "--gold-ink 22%",
     "--gold-wash-base 8%",
