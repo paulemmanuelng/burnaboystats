@@ -5,7 +5,7 @@ import DaiDaiConquest, { type ConquestCountry } from "../components/DaiDaiConque
 import KeepExploring from "../components/KeepExploring";
 import DaiDaiNumbers from "../components/DaiDaiNumbers";
 import FaqList from "../components/FaqList";
-import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime } from "../lib/seo";
+import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime, BURNA_BOY_REF } from "../lib/seo";
 import { lastUpdated } from "../lib/api";
 import { cardinalWord } from "../lib/plural";
 import { daiDaiNumberOnes, daiDaiChartEntryCount, allChartItems, CHART_COUNTRIES, weeksAtPeak, weeksOnChart } from "../data/charts";
@@ -96,11 +96,6 @@ export const metadata = pageMetadata({
 });
 
 export default function DaiDaiPage() {
-  // No `image` on these nodes on purpose. The bare /dai-dai/opengraph-image
-  // path 404s — the route uses generateImageMetadata, so the real URL carries
-  // an id segment hashed from the card's own stats — and a recommended field
-  // pointing at a dead URL is worse than its absence. og:image is emitted
-  // correctly by the metadata export and is what consumers actually read.
   const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -109,6 +104,11 @@ export default function DaiDaiPage() {
       "The story of “Dai Dai”, the 2026 FIFA World Cup anthem by Shakira and Burna Boy — its record-breaking chart, streaming and certification run, and its live performance at the World Cup Final halftime show.",
     datePublished: PUBLISHED,
     dateModified: asDateTime(lastUpdated),
+    // The share card by its real URL: generateImageMetadata puts the card's id
+    // in the path, so the bare /dai-dai/opengraph-image 404s. The id is the
+    // one the MusicEvent below cites (./ogId); the Spanish edition's Article
+    // cites its own card the same way.
+    image: [`${CANONICAL_ORIGIN}/dai-dai/opengraph-image/${daiDaiOgId}`],
     inLanguage: "en",
     author: { "@type": "Organization", name: SITE_NAME, url: CANONICAL_ORIGIN },
     publisher: { "@type": "Organization", name: SITE_NAME, url: CANONICAL_ORIGIN },
@@ -117,7 +117,7 @@ export default function DaiDaiPage() {
       name: "Dai Dai",
       byArtist: [
         { "@type": "Person", name: "Shakira" },
-        { "@type": "MusicGroup", name: "Burna Boy" },
+        BURNA_BOY_REF,
       ],
       datePublished: "2026-05",
       genre: ["Afrobeats", "Latin pop"],
@@ -149,7 +149,7 @@ export default function DaiDaiPage() {
     },
     performer: [
       { "@type": "Person", name: "Shakira" },
-      { "@type": "MusicGroup", name: "Burna Boy" },
+      BURNA_BOY_REF,
       { "@type": "Person", name: "Madonna" },
       { "@type": "MusicGroup", name: "BTS" },
       { "@type": "Person", name: "Justin Bieber" },

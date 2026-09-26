@@ -15,21 +15,22 @@
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 2px;
-    /* The 30px foot is the home-indicator gap from the design; env() adds the
-       real inset on devices that report one, so it is right on both. */
-    padding: 8px 10px max(30px, env(safe-area-inset-bottom, 0px));
+    /* Built from the --tabbar-* tokens in globals.css, whose sum is
+       --tabbar-h: change a part there and everything sitting on the bar
+       moves with it. */
+    padding: var(--tabbar-pad) 10px var(--tabbar-foot);
     padding-left: calc(10px + env(safe-area-inset-left, 0px));
     padding-right: calc(10px + env(safe-area-inset-right, 0px));
     background: var(--scrim);
     /* Unprefixed only — the build adds -webkit- itself. Writing both by hand
        makes the pipeline keep the prefixed line alone, which Firefox ignores. */
     backdrop-filter: blur(14px);
-    border-top: 1px solid var(--line);
+    border-top: var(--tabbar-edge) solid var(--line);
   }
 }
 
 .tab {
-  min-height: 48px; /* tap-target floor */
+  min-height: var(--tabbar-row); /* tap-target floor */
   display: flex;
   flex-direction: column;
   align-items: center;

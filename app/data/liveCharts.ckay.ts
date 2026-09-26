@@ -40,10 +40,10 @@
   export const liveChartsUpdated = "2026-09-26";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-26T05:03Z";
+  export const liveChartsBuiltAt = "2026-09-26T11:29Z";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Spotify","Spotify Albums","YouTube","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -56,20 +56,27 @@
           {
             "country": "RU",
             "name": "Russia",
-            "position": 9,
+            "position": 10,
             "movement": -1
           },
           {
             "country": "AZ",
             "name": "Azerbaijan",
             "position": 30,
-            "movement": -12
+            "movement": -10
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
             "position": 54,
             "movement": -4
+          },
+          {
+            "country": "CL",
+            "name": "Chile",
+            "position": 115,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -102,6 +109,19 @@
             "name": "Morocco",
             "position": 189,
             "movement": -26
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "UZ",
+            "name": "Uzbekistan",
+            "position": 192,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -188,7 +208,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 22,
+            "position": 42,
             "movement": null,
             "status": "new"
           }
@@ -197,6 +217,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/73e10a485de513f9c18f87575ae66d58/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "E CLEAR",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SN",
+            "name": "Senegal",
+            "position": 99,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/1d0daaf8c0025c2d95c96beafe4e0a0b/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Felony",
@@ -267,7 +307,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 69,
-            "movement": -3
+            "movement": -2
           }
         ]
       }

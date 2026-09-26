@@ -871,16 +871,22 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
         )}
 
         {/* Refusals come first: on a phone they were explaining themselves
-            below the fold, under controls that had nothing to switch. */}
+            below the fold, under controls that had nothing to switch. They
+            are the neutral note, not the gold why-line: a refusal is neither
+            live nor an action. */}
         {sameArtist && !countryMode && (
-          <p className={styles.why}>
-            <strong>That is {a!.name} on both sides.</strong> Pick a different artist for one of them.
+          <p className={`${styles.why} ${styles.whyRefusal}`}>
+            <span className={styles.whyText}>
+              <strong>That is {a!.name} on both sides.</strong> Pick a different artist for one of them.
+            </span>
           </p>
         )}
         {sameRecording && (
-          <p className={styles.why}>
-            <strong>That is the same recording on both sides.</strong> “{songA!.title}” is one record with
-            one set of plaques; pick a different {noun(mode)} for one of them.
+          <p className={`${styles.why} ${styles.whyRefusal}`}>
+            <span className={styles.whyText}>
+              <strong>That is the same recording on both sides.</strong> “{songA!.title}” is one record with
+              one set of plaques; pick a different {noun(mode)} for one of them.
+            </span>
           </p>
         )}
 
@@ -947,7 +953,10 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
 
         {c && c.nigeria.on && !ngParam && c.nigeria.reason && (
           <p className={styles.why}>
-            <strong>Nigeria included by default</strong> — {c.nigeria.reason.replace(/^Nigeria included: /, "")}
+            <span className={styles.whyMark} aria-hidden="true">i</span>
+            <span className={styles.whyText}>
+              <strong>Nigeria included by default</strong> — {c.nigeria.reason.replace(/^Nigeria included: /, "")}
+            </span>
           </p>
         )}
 
@@ -1038,8 +1047,11 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
 
         {ready && rows.length === 0 && (
           <p className={styles.why}>
-            Neither {nameA} nor {nameB} holds a certification {ngOn ? "anywhere on the board" : "outside Nigeria"}
-            {!ngOn ? " — include Nigeria to compare them" : ""}.
+            <span className={styles.whyMark} aria-hidden="true">i</span>
+            <span className={styles.whyText}>
+              Neither {nameA} nor {nameB} holds a certification {ngOn ? "anywhere on the board" : "outside Nigeria"}
+              {!ngOn ? " — include Nigeria to compare them" : ""}.
+            </span>
           </p>
         )}
 

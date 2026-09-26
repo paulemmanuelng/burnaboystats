@@ -40,10 +40,10 @@
   export const liveChartsUpdated = "2026-09-26";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-26T05:03Z";
+  export const liveChartsBuiltAt = "2026-09-26T11:29Z";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Shazam","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -57,13 +57,13 @@
             "country": "CV",
             "name": "Cape Verde",
             "position": 44,
-            "movement": -3
+            "movement": 3
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
             "position": 50,
-            "movement": -3
+            "movement": -4
           },
           {
             "country": "GM",
@@ -75,7 +75,7 @@
             "country": "UG",
             "name": "Uganda",
             "position": 90,
-            "movement": -2
+            "movement": 0
           }
         ]
       },
@@ -98,6 +98,19 @@
             "status": "new"
           }
         ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 49,
+            "movement": null,
+            "status": "new"
+          }
+        ]
       }
     ],
     "kind": "song",
@@ -113,8 +126,8 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 43,
-            "movement": -5
+            "position": 45,
+            "movement": -6
           }
         ]
       }
@@ -132,8 +145,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 121,
-            "movement": 3
+            "position": 137,
+            "movement": -16
           }
         ]
       }

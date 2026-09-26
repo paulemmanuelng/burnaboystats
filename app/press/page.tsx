@@ -3,7 +3,7 @@ import styles from "./press.module.css";
 import BreadcrumbBar from "../components/BreadcrumbBar";
 import KeepExploring from "../components/KeepExploring";
 import CopyButton from "../components/CopyButton";
-import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime } from "../lib/seo";
+import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime, BURNA_BOY_REF } from "../lib/seo";
 import { totalAwards, countryCount } from "../data/certifications";
 import { chartEntryCount, numberOnes } from "../data/charts";
 // The country figure, not the headline territory figure: the site's
@@ -71,7 +71,7 @@ export default function PressPage() {
     dateModified: asDateTime(lastReviewed),
     inLanguage: "en",
     isPartOf: { "@type": "WebSite", name: SITE_NAME, url: CANONICAL_ORIGIN },
-    about: { "@type": "MusicGroup", name: "Burna Boy" },
+    about: BURNA_BOY_REF,
     publisher: { "@type": "Organization", name: SITE_NAME, url: CANONICAL_ORIGIN },
     license: "https://creativecommons.org/licenses/by/4.0/",
   };

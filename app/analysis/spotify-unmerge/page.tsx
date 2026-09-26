@@ -2,7 +2,7 @@ import Link from "next/link";
 import styles from "./unmerge.module.css";
 import KeepExploring from "../../components/KeepExploring";
 import BreadcrumbBar from "../../components/BreadcrumbBar";
-import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime } from "../../lib/seo";
+import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime, BURNA_BOY_REF } from "../../lib/seo";
 import { lastUpdated } from "../../lib/api";
 import { spotifyTotalStreams, spotifyTotalStreamsExact } from "../../data/streamingTotals";
 
@@ -178,7 +178,7 @@ export default function SpotifyUnmergePage() {
     inLanguage: "en",
     author: { "@type": "Organization", name: SITE_NAME, url: CANONICAL_ORIGIN },
     publisher: { "@type": "Organization", name: SITE_NAME, url: CANONICAL_ORIGIN },
-    about: { "@type": "MusicGroup", name: "Burna Boy" },
+    about: BURNA_BOY_REF,
     url: `${CANONICAL_ORIGIN}/analysis/spotify-unmerge`,
   };
 

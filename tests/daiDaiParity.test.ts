@@ -1,4 +1,5 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
+import { renderToStaticMarkup } from "react-dom/server";
 import { cardinalWord, ordinalWord, millonesEs } from "../app/lib/plural";
 import { cadenceOf, LIVE_CADENCE_ES } from "../app/lib/liveChartMeta";
 import { weeksAtPeak, weeksOnChart, daiDaiChartEntryCount, daiDaiNumberOnes } from "../app/data/charts";
@@ -6,6 +7,22 @@ import { daiDaiCertCount } from "../app/data/certifications";
 import { daiDaiSpotifyDaysOnChart, daiDaiSpotifyStraightDays, daiDaiYouTubeDaysAtNo1, DAI_DAI_1B_DAYS, DAI_DAI_1B_RANK_EN, DAI_DAI_1B_RANK_ES, DAI_DAI_SPOTIFY_CONFIRMED_THROUGH, DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG, DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_NO1_READ_ON_LONG, DAI_DAI_SPOTIFY_NO1_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_NO1_FIRST_LONG, DAI_DAI_SPOTIFY_NO1_FIRST_LONG_ES, DAI_DAI_SPOTIFY_NO1_LAST_LONG, DAI_DAI_SPOTIFY_NO1_LAST_LONG_ES, DAI_DAI_SPOTIFY_TOP10_DAYS, DAI_DAI_SPOTIFY_DAYS_OFF } from "../app/data/daiDai";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
+import DaiDaiPage from "../app/dai-dai/page";
+import DaiDaiPageES from "../app/dai-dai/es/page";
+
+// The Article check below renders both editions; these two stand in for the
+// router the way every other rendering test here does.
+vi.mock("next/navigation", () => ({
+  useRouter: () => ({ push: vi.fn(), prefetch: vi.fn(), replace: vi.fn(), back: vi.fn() }),
+  usePathname: () => "/dai-dai",
+}));
+vi.mock("next/link", async () => {
+  const { createElement } = await import("react");
+  return {
+    default: ({ href, children, ...rest }: { href: string; children?: unknown }) =>
+      createElement("a", { href, ...rest }, children as never),
+  };
+});
 
 // The Spanish edition at /dai-dai/es is a hand-written translation, not a
 // generated one — which means it can silently fall behind the English page.
@@ -328,5 +345,42 @@ describe("the live No. 1 line states no cadence the charts do not have", () => {
   it("the Spanish line says the board's real cadence, from its one home", () => {
     expect(ES).toContain("${LIVE_CADENCE_ES} desde el panel en vivo");
     expect(LIVE_CADENCE_ES).toBe("actualizado varias veces al día");
+  });
+});
+
+// The Article node, as each edition serves it. Structure is the part of this
+// page's markup that CAN drift unseen: the English Article went without the
+// `image` Google recommends while the Spanish one carried it, behind a comment
+// saying the image URL 404s — true of the bare path, false of the one the
+// same file's MusicEvent already cited.
+const articleOf = (html: string): Record<string, unknown> | undefined =>
+  [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
+    .map((m) => JSON.parse(m[1]) as Record<string, unknown>)
+    .find((n) => n["@type"] === "Article");
+
+describe("Dai Dai: both editions' Article nodes carry the same fields", () => {
+  it("refuses the English Article that shipped", () => {
+    // Served by burnaboystats.com/dai-dai on 26 Sep 2026: no `image`.
+    const shipped = articleOf(
+      '<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Dai Dai — Shakira & Burna Boy\'s 2026 FIFA World Cup Anthem","description":"The story of “Dai Dai”, the 2026 FIFA World Cup anthem by Shakira and Burna Boy — its record-breaking chart, streaming and certification run, and its live performance at the World Cup Final halftime show.","datePublished":"2026-07-16","dateModified":"2026-09-25T12:00:00+00:00","inLanguage":"en","author":{"@type":"Organization","name":"Burna Boy Stats","url":"https://burnaboystats.com"},"publisher":{"@type":"Organization","name":"Burna Boy Stats","url":"https://burnaboystats.com"},"about":{"@type":"MusicRecording","name":"Dai Dai","byArtist":[{"@type":"Person","name":"Shakira"},{"@type":"MusicGroup","name":"Burna Boy"}],"datePublished":"2026-05","genre":["Afrobeats","Latin pop"],"inLanguage":"en"},"url":"https://burnaboystats.com/dai-dai"}</script>'
+    );
+    expect(shipped).toBeDefined();
+    // The same comparison the next test makes, against the live Spanish node.
+    const es = articleOf(renderToStaticMarkup(DaiDaiPageES()));
+    expect(Object.keys(shipped!).sort()).not.toEqual(Object.keys(es!).sort());
+    expect(Object.keys(shipped!)).not.toContain("image");
+  });
+
+  it("has the same top-level keys in English and Spanish, image included", () => {
+    const en = articleOf(renderToStaticMarkup(DaiDaiPage()));
+    const es = articleOf(renderToStaticMarkup(DaiDaiPageES()));
+    expect(en, "English Article not found").toBeDefined();
+    expect(es, "Spanish Article not found").toBeDefined();
+    expect(Object.keys(en!).sort()).toEqual(Object.keys(es!).sort());
+    // By its real, id-carrying URL — never the bare route, which 404s.
+    for (const [lang, node, path] of [["en", en!, "/dai-dai"], ["es", es!, "/dai-dai/es"]] as const) {
+      const img = (node.image as string[])[0];
+      expect(img, lang).toMatch(new RegExp(`^https://burnaboystats\\.com${path}/opengraph-image/[a-z0-9]+$`));
+    }
   });
 });

@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import styles from "./song.module.css";
 import KeepExploring from "../../components/KeepExploring";
 import FaqList from "../../components/FaqList";
-import { pageMetadata, CANONICAL_ORIGIN } from "../../lib/seo";
+import { pageMetadata, CANONICAL_ORIGIN, BURNA_BOY_REF } from "../../lib/seo";
 import { spotifyImage, spotifySrcSet } from "../../lib/spotifyImage";
 import { songBySlug, songSlugs, songs, songPageCount, daiDaiStoryPage, type Song } from "../../data/songs";
 import { allChartItems, CHART_COUNTRIES, chartTier } from "../../data/charts";
@@ -129,12 +129,15 @@ export default async function SongPage({ params }: { params: Promise<{ song: str
     // Split on every separator the credits actually use. Splitting on " ft. "
     // alone published "Burna Boy feat. Travis Scott" as ONE artist name, because
     // two songs are credited with "feat." and everything else with "ft.".
+    // Burna Boy himself is the site's one entity, by @id (lib/seo.ts); a guest
+    // on the credit stays a plain named node.
     byArtist: song.credit
       ? song.credit
           .split(/\s+(?:ft\.|feat\.|featuring|&|,)\s+/i)
-          .map((name) => ({ "@type": "MusicGroup", name: name.trim() }))
-          .filter((a) => a.name)
-      : { "@type": "MusicGroup", name: "Burna Boy" },
+          .map((name) => name.trim())
+          .filter(Boolean)
+          .map((name) => (name === BURNA_BOY_REF.name ? BURNA_BOY_REF : { "@type": "MusicGroup", name }))
+      : BURNA_BOY_REF,
     // "Single" is songs.ts's placeholder for a track that was never on an album,
     // so publishing it as an album name asserts a release that does not exist.
     // "(EP)" is the site's display suffix, not part of the release's name —
@@ -196,15 +199,23 @@ export default async function SongPage({ params }: { params: Promise<{ song: str
       </div>
 
       {/* The cover picker — the design's way of moving between songs. Real
-          links, so it works without JS and doubles as internal linking. */}
+          links, so it works without JS and doubles as internal linking.
+
+          Each 30px cover sits in a <picture> for React, not the browser: an
+          eager <img> outside one becomes a preload hint, and on 26 Sep 2026
+          every song page served fifteen of them for these chips, fetched in
+          the same instant as the hero cover — and, because the hints ride in
+          the RSC payload, again on every page that prefetched a song.
+          display: contents keeps the <img> the chip's flex item. */}
       <section className={styles.pickerPad}>
         <div className={styles.pickerLabel}>All {songPageCount} song pages</div>
         <div className={styles.picker}>
           {/* Dai Dai's story lives at /dai-dai and leads the hub's song grid,
               so it leads here too — the same chip, linking out (A-38). */}
           <Link href={daiDaiStoryPage.href} className={styles.pick}>
-            {/* eslint-disable-next-line @next/next/no-img-element -- remote Spotify CDN cover at a fixed 30px; next/image adds no value here */}
-            <img className={styles.pickCover} src={spotifyImage(daiDaiStoryPage.cover, 64)} alt="" width={30} height={30} />
+            <picture style={{ display: "contents" }}>
+              <img className={styles.pickCover} src={spotifyImage(daiDaiStoryPage.cover, 64)} alt="" width={30} height={30} />
+            </picture>
             {daiDaiStoryPage.title}
             <span className={styles.pickYear}>{daiDaiStoryPage.year}</span>
           </Link>
@@ -215,8 +226,9 @@ export default async function SongPage({ params }: { params: Promise<{ song: str
               className={`${styles.pick} ${s.slug === song.slug ? styles.pickOn : ""}`}
               aria-current={s.slug === song.slug ? "page" : undefined}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element -- remote Spotify CDN cover at a fixed 30px; next/image adds no value here */}
-              <img className={styles.pickCover} src={spotifyImage(s.cover, 64)} alt="" width={30} height={30} />
+              <picture style={{ display: "contents" }}>
+                <img className={styles.pickCover} src={spotifyImage(s.cover, 64)} alt="" width={30} height={30} />
+              </picture>
               {s.title}
               <span className={styles.pickYear}>{s.year}</span>
             </Link>
