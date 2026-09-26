@@ -14,8 +14,12 @@ node scripts/plaque-radar/index.mjs --offline      # saved pages + site data onl
 ```
 
 It writes `~/burnaboy-work/radar/radar-<YYYY-MM-DD>.md` and prints a short
-summary. Other options: `--as-of YYYY-MM-DD`, `--top N` (default 10),
-`--out DIR`, `--buzzjack DIR`.
+summary. An `--offline` run writes `radar-<YYYY-MM-DD>-offline.md` instead, so
+it never replaces the day's online report and the network and robots record
+that only an online run has. Other options: `--as-of YYYY-MM-DD`, `--top N`
+(default 10), `--out DIR` (the report only), `--occ DIR` (the saved Official
+Charts pages; default `~/burnaboy-work/radar/occ/` wherever `--out` points),
+`--buzzjack DIR`.
 
 ## What it will never do
 
@@ -42,7 +46,7 @@ summary. Other options: `--as-of YYYY-MM-DD`, `--top N` (default 10),
 | The site's own plaques | each title's current tier per market | `app/data/certifications.ts`, `app/data/afrobeats.ts` |
 | Sweep documents | award dates the sweeps printed (`🇬🇧 Silver ✓ (21.03.2025)`) | `docs/sweeps/*-certifications-v1.md` |
 | BuzzJack's "<year> BPI Certifications" threads | the BPI's weekly lists, transcribed: a dated step per tier | saved pages in `~/burnaboy-work/buzzjack/<year>/`; online runs fetch only pages newer than the newest saved |
-| Official Charts Company | this week's Singles, Albums and Afrobeats charts | fetched online, only if robots.txt allows; kept in `~/burnaboy-work/radar/occ/` so an `--offline` re-run the same day reuses them |
+| Official Charts Company | this week's Singles, Albums and Afrobeats charts | fetched online, only if robots.txt allows; kept in `~/burnaboy-work/radar/occ/` (or `--occ DIR`) so an `--offline` re-run the same day reuses them, whatever `--out` says |
 | The site's live platform charts | where each title charts today, per country | `app/data/liveCharts*.ts`, `app/data/liveBoards.ts` |
 | Official chart runs | best peak and weeks per country | `app/data/charts.ts`, `app/data/afrobeats.ts` |
 | Thresholds | units per tier, per body | `app/data/certThresholds.ts` — the radar types none |
@@ -112,7 +116,8 @@ how widely it has certified elsewhere.
 
 | File | Job |
 | --- | --- |
-| `index.mjs` | the command: options, loading, network, report |
+| `index.mjs` | the command: loading, network, report |
+| `args.mjs` | the options, and the two paths it writes: the report and the saved charts |
 | `site.mjs` | reads the site's data (read only) |
 | `ts-hook.mjs` | lets Node load the site's `.ts` data files |
 | `buzzjack.mjs` | reads saved thread pages; fetches newer ones |

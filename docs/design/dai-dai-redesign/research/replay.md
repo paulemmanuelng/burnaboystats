@@ -90,7 +90,7 @@ today, but **its git history is a daily per-country series**: 615 commits,
 
 I reconstructed it read-only, taking the last commit of each UTC day, and saved
 it for you to design against:
-**`~/burnaboy-work/daidai-handoff/replay-platform-daily.json`** (Spotify, Apple
+`replay-platform-daily.json` — on the owner's machine, **not in the repo** (Spotify, Apple
 Music and YouTube).
 
 | Platform | Countries per day (excluding WW) | Countries at No. 1 |

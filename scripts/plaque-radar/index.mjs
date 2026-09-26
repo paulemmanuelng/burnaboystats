@@ -7,17 +7,17 @@
 //   node scripts/plaque-radar/index.mjs --market UK     # one market
 //   node scripts/plaque-radar/index.mjs --offline       # saved pages only
 //
-// Writes ~/burnaboy-work/radar/radar-<YYYY-MM-DD>.md and prints a summary.
+// Writes ~/burnaboy-work/radar/radar-<YYYY-MM-DD>.md (…-offline.md for an
+// --offline run) and prints a summary.
 // It never runs on a schedule, never touches the site's data, and never
 // requests a certification register. See README.md beside this file.
 
 import "./ts-hook.mjs";
 import { mkdirSync, writeFileSync, readFileSync, existsSync } from "node:fs";
-import { homedir } from "node:os";
-import { join, dirname, resolve } from "node:path";
+import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { execFileSync } from "node:child_process";
-import { loadSite, MARKETS } from "./site.mjs";
+import { loadSite } from "./site.mjs";
 import { loadSavedPages, fetchNewerPages, THREADS } from "./buzzjack.mjs";
 import { parsePosts } from "./lists.mjs";
 import { artistsInCredit, artistAliases } from "./normalize.mjs";
@@ -25,42 +25,9 @@ import { createClient } from "./net.mjs";
 import { fetchOcc, occFromSaved } from "./occ.mjs";
 import { rankAll } from "./rank.mjs";
 import { renderReport, renderSummary } from "./report.mjs";
+import { HELP, parseArgs, reportFile, occFile as occPath } from "./args.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "../..");
-const HELP = `Plaque radar — titles likely due a new plaque (private; estimates only).
-
-  node scripts/plaque-radar/index.mjs [--market UK|ZA|AU|PT] [--offline]
-
-  --market M     one market (repeat or comma-separate for several); default all
-  --offline      no network: saved BuzzJack pages and the site's own data only
-  --as-of DATE   judge as of this date (YYYY-MM-DD); default today
-  --top N        how many UK titles to list (default 10)
-  --out DIR      where the report goes (default ~/burnaboy-work/radar)
-  --buzzjack DIR saved BuzzJack pages (default ~/burnaboy-work/buzzjack)`;
-
-function parseArgs(argv) {
-  const a = { markets: [], offline: false, asOf: null, top: 10, out: join(homedir(), "burnaboy-work/radar"), buzzjack: join(homedir(), "burnaboy-work/buzzjack") };
-  for (let i = 0; i < argv.length; i++) {
-    const [flag, inline] = argv[i].split("=");
-    const val = () => inline ?? argv[++i];
-    if (flag === "--help" || flag === "-h") a.help = true;
-    else if (flag === "--offline") a.offline = true;
-    else if (flag === "--market") a.markets.push(...val().split(",").map((m) => m.trim().toUpperCase()));
-    else if (flag === "--as-of") a.asOf = val();
-    else if (flag === "--top") a.top = Number(val());
-    else if (flag === "--out") a.out = val();
-    else if (flag === "--buzzjack") a.buzzjack = val();
-    else throw new Error(`unknown option ${argv[i]}\n\n${HELP}`);
-  }
-  a.markets = a.markets.map((m) => (m === "GB" ? "UK" : m));
-  if (!a.markets.length || a.markets.includes("ALL")) a.markets = [...MARKETS];
-  const bad = a.markets.filter((m) => !MARKETS.includes(m));
-  if (bad.length) throw new Error(`unknown market ${bad.join(", ")} — use ${MARKETS.join(", ")}`);
-  if (a.asOf && !/^\d{4}-\d{2}-\d{2}$/.test(a.asOf)) throw new Error("--as-of wants YYYY-MM-DD");
-  if (!Number.isInteger(a.top) || a.top < 1) throw new Error("--top wants a whole number");
-  return a;
-}
-
 const today = () => {
   const d = new Date();
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
@@ -86,10 +53,11 @@ async function main() {
 
   const site = await loadSite(ROOT);
 
-  // This week's Official Charts pages are kept beside the report, one file per
-  // chart and day, so an --offline re-run the same day still has them.
-  const occDir = join(args.out, "occ");
-  const occFile = (id) => join(occDir, `${asOf}-${id}.html`);
+  // This week's Official Charts pages are kept in --occ, one file per chart and
+  // day, so an --offline re-run the same day still has them — wherever --out
+  // sends the report.
+  const occDir = args.occ;
+  const occFile = (id) => occPath(args, asOf, id);
   let occ = [];
   let occNote = "not needed for these markets";
   if (args.markets.includes("UK") && !args.offline) {
@@ -128,7 +96,7 @@ async function main() {
   const argsText = process.argv.slice(2).join(" ");
   const md = renderReport({ asOf, markets: args.markets, ranked, inputs, offline: args.offline, argsText });
   mkdirSync(args.out, { recursive: true });
-  const file = join(args.out, `radar-${asOf}.md`);
+  const file = reportFile(args, asOf);
   writeFileSync(file, md);
   console.log(renderSummary({ file, ranked, markets: args.markets }));
 }

@@ -2,7 +2,7 @@
 
 **What was audited:** branch `feat/on-this-day` at commit `21a7bc82` (PR #344, not merged, not on the live site). Worktree `~/burnaboy-onthisday`.
 **Date:** 26 Sep 2026.
-**Shots:** `~/burnaboy-work/otd-handoff/shots/`. Every finding below names the shot that shows it.
+**Shots:** [`../shots/`](../shots/), saved as JPG. Every finding below names the shot that shows it.
 
 ## How the shots were taken
 
@@ -22,17 +22,17 @@
 
 | File | What it shows |
 |---|---|
-| `phone-dark-home-card.png`, `phone-light-home-card.png` | Phone home scrolled to the On This Day card (the page is at maximum scroll) |
-| `desktop-dark-home-band.png`, `desktop-light-home-band.png` | Desktop home: the band between History made and the certifications ledger |
-| `phone-dark-index-full.png` | `/on-this-day`, phone, dark, full page (780×5568) |
-| `desktop-dark-index-full.png`, `desktop-light-index-full.png` | `/on-this-day`, desktop, dark and light, full page |
-| `phone-dark-day-16-august-full.png`, `desktop-dark-day-16-august-full.png` | Busiest day, 16 August (5 milestones) |
-| `phone-dark-day-28-april-full.png`, `desktop-dark-day-28-april-full.png` | A sparse day, 28 April (1 milestone, the longest lead headline on the calendar) |
-| `og-16-august.png`, `og-28-april.png` | Day OG images, 1200×630 |
-| `card-16-august.png`, `card-28-april.png` | Day portrait cards, 1080×1350 |
-| `compare-stat-card-dai-dai.png` | Existing stat card, `/stat-card?stat=dai-dai`, 1080×1080 |
-| `compare-og-dai-dai.png` | Existing OG image for `/dai-dai`, 1200×630 |
-| `thumbs-share-images-1x.png` | The six share images scaled to the size people actually see them, at 1× CSS size: a 500 pt link preview, a 250 pt unfurl, a 390 pt phone feed post and a 130 pt profile-grid tile |
+| `phone-dark-home-card.jpg`, `phone-light-home-card.jpg` | Phone home scrolled to the On This Day card (the page is at maximum scroll) |
+| `desktop-dark-home-band.jpg`, `desktop-light-home-band.jpg` | Desktop home: the band between History made and the certifications ledger |
+| `phone-dark-index-full.jpg` | `/on-this-day`, phone, dark, full page (780×5568) |
+| `desktop-dark-index-full.jpg`, `desktop-light-index-full.jpg` | `/on-this-day`, desktop, dark and light, full page |
+| `phone-dark-day-16-august-full.jpg`, `desktop-dark-day-16-august-full.jpg` | Busiest day, 16 August (5 milestones) |
+| `phone-dark-day-28-april-full.jpg`, `desktop-dark-day-28-april-full.jpg` | A sparse day, 28 April (1 milestone, the longest lead headline on the calendar) |
+| `og-16-august.jpg`, `og-28-april.jpg` | Day OG images, 1200×630 |
+| `card-16-august.jpg`, `card-28-april.jpg` | Day portrait cards, 1080×1350 |
+| `compare-stat-card-dai-dai.jpg` | Existing stat card, `/stat-card?stat=dai-dai`, 1080×1080 |
+| `compare-og-dai-dai.jpg` | Existing OG image for `/dai-dai`, 1200×630 |
+| `thumbs-share-images-1x.jpg` | The six share images scaled to the size people actually see them, at 1× CSS size: a 500 pt link preview, a 250 pt unfurl, a 390 pt phone feed post and a 130 pt profile-grid tile |
 
 ## Data facts that shape the design
 
@@ -61,7 +61,7 @@ The fallback is therefore the card's main state, but it was designed as an edge 
 
 ## 1. Home card: phone
 
-**Shots:** `phone-dark-home-card.png`, `phone-light-home-card.png`
+**Shots:** `phone-dark-home-card.jpg`, `phone-light-home-card.jpg`
 
 **Weaknesses**
 
@@ -89,7 +89,7 @@ The fallback is therefore the card's main state, but it was designed as an edge 
 
 ## 2. Home band: desktop
 
-**Shots:** `desktop-dark-home-band.png`, `desktop-light-home-band.png`
+**Shots:** `desktop-dark-home-band.jpg`, `desktop-light-home-band.jpg`
 
 **Weaknesses**
 
@@ -112,7 +112,7 @@ The fallback is therefore the card's main state, but it was designed as an edge 
 
 ## 3. Calendar index: phone
 
-**Shot:** `phone-dark-index-full.png`
+**Shot:** `phone-dark-index-full.jpg`
 
 **Weaknesses**
 
@@ -140,7 +140,7 @@ The fallback is therefore the card's main state, but it was designed as an edge 
 
 ## 4. Calendar index: desktop
 
-**Shots:** `desktop-dark-index-full.png`, `desktop-light-index-full.png`
+**Shots:** `desktop-dark-index-full.jpg`, `desktop-light-index-full.jpg`
 
 **Weaknesses**
 
@@ -162,7 +162,7 @@ The fallback is therefore the card's main state, but it was designed as an edge 
 
 ## 5. Day page: phone
 
-**Shots:** `phone-dark-day-16-august-full.png` (busiest), `phone-dark-day-28-april-full.png` (sparse)
+**Shots:** `phone-dark-day-16-august-full.jpg` (busiest), `phone-dark-day-28-april-full.jpg` (sparse)
 
 **Weaknesses**
 
@@ -188,7 +188,7 @@ The fallback is therefore the card's main state, but it was designed as an edge 
 
 ## 6. Day page: desktop
 
-**Shots:** `desktop-dark-day-16-august-full.png`, `desktop-dark-day-28-april-full.png`
+**Shots:** `desktop-dark-day-16-august-full.jpg`, `desktop-dark-day-28-april-full.jpg`
 
 **Weaknesses**
 
@@ -201,7 +201,7 @@ The fallback is therefore the card's main state, but it was designed as an edge 
    - It is the full 1080×1350 PNG: 725 KB for 16 August, loaded for a thumbnail.
    - It is marked `loading="lazy"` (`page.tsx:98`) even though it sits above the fold.
 4. **Card note copy is spec, not benefit.** It reads "1080×1350, the 4:5 a post runs uncropped on Instagram and X." (`page.tsx:109`).
-5. **The lede does not handle one event.** On a 1-event day it still says "Each one links to the page that holds the record." (`page.tsx:87-88`; see `desktop-dark-day-28-april-full.png`).
+5. **The lede does not handle one event.** On a 1-event day it still says "Each one links to the page that holds the record." (`page.tsx:87-88`; see `desktop-dark-day-28-april-full.jpg`).
 6. **Keep exploring ignores the feature.** It suggests Career Timeline, Career Records and Stat Cards: nothing about nearby days or other milestones of the same kind.
 7. **Same batching, lead-marking and gold issues as the phone.**
 
@@ -216,7 +216,7 @@ The fallback is therefore the card's main state, but it was designed as an edge 
 
 1. **Kind colours collide.** `KIND_INK` is at `onThisDay.ts:63-70`; tokens are in `globals.css`.
    - **Release vs Certification.** Release is `--ember`: #ff7a1a dark, #b34700 light (`:158`). Certification is `--gold`: #ffb627 dark, #945e00 light (`:67`). As 5 px dots they cannot be told apart in either theme.
-   - **Streaming vs Awards.** In light mode they are *identical*. Streaming is `--tier-silver-ink` and Awards is `--silver`, and both are #6b6b74 (`globals.css:285` and `:235`). See the legend row in `desktop-light-index-full.png`.
+   - **Streaming vs Awards.** In light mode they are *identical*. Streaming is `--tier-silver-ink` and Awards is `--silver`, and both are #6b6b74 (`globals.css:285` and `:235`). See the legend row in `desktop-light-index-full.jpg`.
    - **Band tokens reused as category colours.** `--cyan` is documented as "Top 10 peak band ONLY" and `--silver` as "Top 40 peak band ONLY" (`globals.css:234-235`). A No. 1 chart row therefore wears the Top-10 colour.
 2. **Headlines switch between sentences and titles.** The type comment says a headline is "a past-tense sentence" (`onThisDay.ts:89`). Award, honour, concert and live-moment rows are titles instead (`:284`, `:300`, `:355`, `:382`). Examples:
    - "SESAC Awards: Top Songs honoree".
@@ -229,22 +229,22 @@ The fallback is therefore the card's main state, but it was designed as an edge 
 
 ### OG image (1200×630)
 
-**Shots:** `og-16-august.png`, `og-28-april.png`, compared with `compare-og-dai-dai.png`, plus `thumbs-share-images-1x.png` rows 1–2
+**Shots:** `og-16-august.jpg`, `og-28-april.jpg`, compared with `compare-og-dai-dai.jpg`, plus `thumbs-share-images-1x.jpg` rows 1–2
 
 1. **The milestone is secondary.**
    - The date is 120 px gold. The actual milestone is a 32 px grey (#c9c9d0) line (`[day]/opengraph-image.tsx:87-91`).
    - In a 250 pt unfurl (thumbs row 2), only "16 August" can be read; the milestone line is about 6–7 px.
 2. **The stat tiles restate the date or use internal vocabulary** (`:24-28`).
    - "LEADS WITH: Certification" is internal ranking vocabulary.
-   - On a single-event day the three tiles read "1 MILESTONE / 2022 YEARS / Live LEADS WITH" (`og-28-april.png`). That is a third of the card spent saying "one thing happened in 2022", with a plural label on a single year.
+   - On a single-event day the three tiles read "1 MILESTONE / 2022 YEARS / Live LEADS WITH" (`og-28-april.jpg`). That is a third of the card spent saying "one thing happened in 2022", with a plural label on a single year.
 3. **No picture.** The existing `/dai-dai` OG carries cover art; day OGs are text only. At feed size, all 167 day OGs look the same apart from the date string.
-4. **Font weights do not render.** The code asks for `fontWeight: 800` (`:87`, `:107`), but `ogFonts` loads only Geist *Regular* 400 (plus Anton and Space Mono for the lockup; `og-lockup.tsx:46-49`), so the 120 px date renders in the regular cut. This is shared with the existing OG family (see `compare-og-dai-dai.png`), so it is a family trait, not an OTD bug.
+4. **Font weights do not render.** The code asks for `fontWeight: 800` (`:87`, `:107`), but `ogFonts` loads only Geist *Regular* 400 (plus Anton and Space Mono for the lockup; `og-lockup.tsx:46-49`), so the 120 px date renders in the regular cut. This is shared with the existing OG family (see `compare-og-dai-dai.jpg`), so it is a family trait, not an OTD bug.
 
 **Keep:** the lockup top right, the gold radial wash, the URL footer and the 64 px frame. These match the site's OG family exactly.
 
 ### Portrait card (1080×1350)
 
-**Shots:** `card-16-august.png`, `card-28-april.png`, compared with `compare-stat-card-dai-dai.png`, plus `thumbs-share-images-1x.png` rows 3–4
+**Shots:** `card-16-august.jpg`, `card-28-april.jpg`, compared with `compare-stat-card-dai-dai.jpg`, plus `thumbs-share-images-1x.jpg` rows 3–4
 
 1. **A year sits in the hero-number slot.**
    - The card's `value` is the lead event's year (`onThisDay.ts:551`), drawn in the stat card's gold gradient at about 180 px (`statCardImage.tsx:49-52`: base 210 × 0.86 for four characters).
@@ -266,7 +266,7 @@ The fallback is therefore the card's main state, but it was designed as an edge 
 
 **Keep**
 
-- The card face, gold border, gold gradient number, provenance line and burnaboystats.com stamp: this is the house stat card exactly (`compare-stat-card-dai-dai.png`), so the card belongs to the family.
+- The card face, gold border, gold gradient number, provenance line and burnaboystats.com stamp: this is the house stat card exactly (`compare-stat-card-dai-dai.jpg`), so the card belongs to the family.
 - 4:5 is the right shape for a feed post.
 - The source body (IFPI SVERIGE, BILLBOARD BOXSCORE) is printed on the image, so every card can be traced.
 

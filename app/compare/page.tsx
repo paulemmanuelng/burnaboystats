@@ -966,7 +966,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
           <>
             <div className={`${styles.head} ${ready ? "" : styles.headSolo}`} id="result">
               <div className={styles.headCell}>
-                <p className={styles.headName}><span className={styles.headNameName}>{nameA || a?.name}</span><span className={styles.headNameQual}>{"\u00a0·\u00a0at least"}</span></p>
+                <p className={styles.headName}><span className={styles.headNameName}>{nameA || a?.name}{"\u00a0"}</span><span className={styles.headNameQual}>{"·\u00a0at least"}</span></p>
                 <p className={`${styles.figure} ${leadA ? styles.figureLead : styles.figureBehind}`}>{fmt(totalA)}</p>
                 <p className={styles.headMeta}>
                   certified units · {ngOn ? "Nigeria included" : "international"}
@@ -979,7 +979,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
               </div>
               {ready && (
                 <div className={styles.headCell}>
-                  <p className={styles.headName}><span className={styles.headNameName}>{nameB}</span><span className={styles.headNameQual}>{"\u00a0·\u00a0at least"}</span></p>
+                  <p className={styles.headName}><span className={styles.headNameName}>{nameB}{"\u00a0"}</span><span className={styles.headNameQual}>{"·\u00a0at least"}</span></p>
                   <p className={`${styles.figure} ${leadA ? styles.figureBehind : styles.figureLead}`}>{fmt(totalB)}</p>
                   <p className={styles.headMeta}>
                     certified units · {ngOn ? "Nigeria included" : "international"}

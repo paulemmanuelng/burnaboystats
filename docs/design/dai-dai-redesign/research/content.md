@@ -506,7 +506,7 @@ The site supports dark, light and system themes, so the page must work in both.
 
 These are factual, not decisions:
 
-1. **Phone first load:** at 390×844 the hero and its three stacked buttons fill the screen. The story stage starts at about 447px, and chapter 01's text isn't visible until you scroll (`shots/en-phone-390-top.png`).
+1. **Phone first load:** at 390×844 the hero and its three stacked buttons fill the screen. The story stage starts at about 447px, and chapter 01's text isn't visible until you scroll (`en-phone-390-top.png`, not in the repo; [`../shots/phone-dark-01-hero.jpg`](../shots/phone-dark-01-hero.jpg) is the audit's capture of the same first screen).
 2. **Phone pinned stage:** it pins at `top: 8px` with z-index 2 (`DaiDaiStory.module.css:274-280`). The fixed back bar (z-index 45) is 12 + 44 + 12 px of padding and button, plus the safe area and a 1px rule. Going by the CSS, the top ~61px of the pinned stage sits under the bar's 0.94 scrim. This was worked out from the code and **not confirmed on screen**: the screenshot batch couldn't get the machine lock.
 3. **Two chapters use the same art:** 02 and 04 both show "№1". Chapter 03's flag row is typed (10 of the 26). Chapter 05's tier dots show only platinum and gold, although the plaques run Diamond → Silver.
 4. **Wording varies within the page:** "6× Platinum (Latin)" in the story, "6× Platino" in the cards and FAQ.
@@ -516,7 +516,7 @@ These are factual, not decisions:
 8. **English and Spanish are out of step in five places:** FAQ order; MusicEvent and breadcrumb nodes; share-card template; the UK card clause; the untranslated back bar and cover alt text.
 9. **No visible breadcrumb bar** on either edition.
 
-**Screenshot:** `~/burnaboy-work/daidai-handoff/shots/en-phone-390-top.png` shows the live phone first screen at 390×844 @2x, taken 26 Sep 2026.
+**Screenshot:** `en-phone-390-top.png` showed the live phone first screen at 390×844 @2x, taken 26 Sep 2026. It stayed on the owner's machine and is not in the repo; [`../shots/phone-dark-01-hero.jpg`](../shots/phone-dark-01-hero.jpg) is the audit's capture of the same screen.
 
 - **Full-page captures are not included.** The stage's height is set in vh, so it stretches with a tall viewport and a full-page capture looks nothing like the real page.
-- **Per-section viewport captures are not included either.** The batch script is ready at `~/burnaboy-work/daidai-handoff/dd-shots.sh`, but other agents held the machine's heavy lock for over 30 minutes. Run it through `~/.local/bin/heavy` when the lock is free.
+- **Per-section viewport captures were not taken for this note** (other agents held the machine's heavy lock for over 30 minutes; the batch script stayed on the owner's machine and is not in the repo). The audit took them later: they are in [`../shots/`](../shots/), indexed in [`audit.md`](audit.md) §10.

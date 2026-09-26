@@ -31,5 +31,10 @@
 .current { color: var(--text); }
 
 @media (max-width: 900px) {
-  .inner { padding: 10px 18px; gap: 8px; font-size: 11px; }
+  /* A phone's crumbs take the 44px touch target, not WCAG's 24px minimum: the
+     bar's 10px of padding moves into the links, so a one-line bar keeps its
+     44px and its text stays where it was (live, 26 Sep 2026: HOME was 32×24).
+     No row gap either, so a bar that wraps never overlaps two rows' targets. */
+  .inner { padding: 0 18px; gap: 0 8px; min-height: 44px; font-size: 11px; }
+  .inner a { min-height: 44px; }
 }

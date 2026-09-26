@@ -40,7 +40,8 @@
   flex-wrap: wrap;
   padding: 8px 4px 10px;
   font-family: var(--font-mono), monospace;
-  font-size: 10.5px;
+  /* The site's 11px floor (--type-label); the design's 10.5 sat under it. */
+  font-size: var(--type-label);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-muted);
