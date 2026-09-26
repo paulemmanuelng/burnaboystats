@@ -90,7 +90,10 @@ describe("client components print the server's text in any locale", () => {
     const countries = daiDai.entries
       .filter((e) => e.c !== "GLB" && e.c !== "GLBX")
       .map((e) => ({ code: e.c, flag: "", name: CHART_COUNTRIES[e.c]?.name ?? e.c, peak: e.peak }));
-    const order = (html: string) => [...html.matchAll(/title="([^"]+) — peak #\d+"/g)].map((m) => m[1]);
+    // Read by the cell's country code: the names are visible text now (the
+    // redesign of 26 Sep 2026 retired the hover-only title tooltips).
+    const order = (html: string) =>
+      [...html.matchAll(/data-code="([A-Z]+)"/g)].map((m) => CHART_COUNTRIES[m[1]]?.name ?? m[1]);
     const server = order(renderToStaticMarkup(<DaiDaiConquest countries={countries} />));
     expect(server.length).toBeGreaterThan(20);
     // The pair the Czech default reverses, when both are at the same peak.

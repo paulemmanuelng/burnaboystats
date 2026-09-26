@@ -88,6 +88,9 @@ export const DAI_DAI_SPOTIFY_BODY_READ = {
   streak: 122,
   totalDaysOnChart: 123,
   debutPosition: 114,
+  /** The row's own Peak column on that chart: "Peak 1". The story's chapter
+   *  06 figure prints it rather than typing "No. 1". */
+  peak: 1,
 } as const;
 export const DAI_DAI_SPOTIFY_STREAK_SINCE = "2026-05-22"; // 122 days back from the 20 Sep body read
 export const DAI_DAI_SPOTIFY_CONFIRMED_THROUGH = "2026-09-20";
@@ -342,3 +345,201 @@ export const daiDaiYouTubeDaysAtNo1 = daysInclusive(
 // different metric from the run the card describes, and swapping one number
 // for the other inside a sentence that says "as the most-viewed music video
 // on YouTube worldwide" is exactly the conflation this repo keeps paying for.
+
+// ---------------------------------------------------------------------------
+// The iTunes sweep: the number of countries whose iTunes songs chart "Dai Dai"
+// has led.
+//
+// It was only ever prose ("iTunes song chart in 73 countries…") until the
+// redesign of 26 Sep 2026 made it the figure of its own row in the world
+// rankings list, on both editions. A display figure needs a home, so it is
+// here. The read is the site's own dated log in app/data/updates.ts: 18 Aug
+// 2026, "The iTunes sweep reaches 73 countries: Belarus becomes the newest",
+// restated on 21 Aug ("has led the iTunes songs chart in 73 territories,
+// Belarus the newest"). Nothing later in the log moves it, and no bot
+// refreshes it, which is why it carries the date of that last statement.
+// tests/daiDaiFigureHomes.test.ts holds it to the log.
+export const DAI_DAI_ITUNES_NO1_COUNTRIES = 73;
+export const DAI_DAI_ITUNES_NO1_COUNTRIES_AS_OF = "2026-08-21";
+
+// ---------------------------------------------------------------------------
+// The record's ruled lists: the seven row values the redesign of 26 Sep 2026
+// still typed into both editions ("6 weeks", "58 days", "40 days", "13 weeks",
+// "No. 13", "29 days", "No. 14"). One home each now, and each names the line
+// that states it. tests/daiDaiFigureHomes.test.ts holds every one of them to
+// that line — equal where the line states the figure itself, and "never
+// behind it" where the page's figure was published after the site's own log
+// last stated it (two of them), exactly as the iTunes countries figure above.
+//
+// None of these is refreshed by a bot. Apple, iTunes, Deezer, Mediatraffic and
+// Spotify's playlist charts publish no days-at-No. 1 column, so each is a
+// count someone kept, dated by the entry that last stated it.
+
+/**
+ * Weeks at No. 1 on Spotify's Global Weekly Top Songs chart. A CLOSED run.
+ * The site's own log, 22 Aug 2026: "a 6th week atop the weekly list, in its
+ * 13th week on it". The run closed on the chart dated 27 August (No. 3, prev
+ * 1), read at charts.spotify.com by the September freshness audit
+ * (docs/audits/freshness-2026-09/audit-batch1-raw.json: "The No. 1 run closed
+ * at 6 weeks").
+ */
+export const DAI_DAI_SPOTIFY_WEEKLY_NO1_WEEKS = 6;
+
+/**
+ * Days at No. 1 on Apple Music's European songs chart. The log's last
+ * statement is 57, on 19 Aug 2026 ("has now held “Dai Dai” at No. 1 for 57
+ * days"). The page has printed 58 since the batch of 21 Aug 2026 (commit
+ * 8fc728e9: "Apple Music Europe 58 days, worldwide iTunes 40"), a day the log
+ * never recorded. So the page runs one day ahead of the log, and the test holds
+ * it to never falling behind it.
+ */
+export const DAI_DAI_APPLE_EUROPE_NO1_DAYS = 58;
+
+/** Days at No. 1 on the worldwide iTunes songs chart. The log, 21 Aug 2026:
+ *  "by 21 August had reached a 40th on the worldwide iTunes songs chart". */
+export const DAI_DAI_ITUNES_WORLDWIDE_NO1_DAYS = 40;
+
+/** Weeks at No. 1 on Mediatraffic's United World Chart. The log, 23 Sep 2026:
+ *  "A 13th week atop Mediatraffic's United World Chart … in the chart week
+ *  dated 26 September, on 230,000 points". */
+export const DAI_DAI_UWC_NO1_WEEKS = 13;
+
+/** The Deezer Worldwide Top 100 peak. The log, 26 Jul 2026: "a new Deezer
+ *  Worldwide Top 100 peak of No. 13, charting in 57 countries"; the chart has
+ *  not bettered it since (the note on the row in page.tsx). */
+export const DAI_DAI_DEEZER_WORLDWIDE_PEAK = 13;
+
+/**
+ * Days at No. 1 on Spotify's Global Music Video chart, as last counted on the
+ * chart of 23 August. The log's last statement is the 28th, on 22 Aug 2026 ("A
+ * 28th day at the top of Spotify's Global Music Video chart"); the 29th is the
+ * batch of 25 Aug 2026 (commit a041e4f7: "The Spotify Music Video chart
+ * reaches 29 days"). The chart is a daily playlist with no archive, so the
+ * count is kept by hand. One day ahead of the log, held to never falling
+ * behind it.
+ */
+export const DAI_DAI_SPOTIFY_MUSIC_VIDEO_NO1_DAYS = 29;
+
+/**
+ * Burna Boy's position on the Global Digital Artist ranking "during the run",
+ * with its points. From the batch of 25 Jul 2026 (commit 3e44afd6, "Burna Boy
+ * at No. 14 on the Global Digital Artist ranking (1,739 points)", read from the
+ * World Music Awards breakdown). No file states it but the page. The site's
+ * own log of 27 Jul 2026 has a later and better reading, "a new peak … No. 13
+ * with 1,721 points", so the row is a position during the run, never the peak:
+ * the test holds it to never being better than that logged peak.
+ */
+export const BURNA_GLOBAL_DIGITAL_ARTIST_POSITION = 14;
+export const BURNA_GLOBAL_DIGITAL_ARTIST_POINTS = 1739;
+
+// ---------------------------------------------------------------------------
+// The story's dates and its figures' data (the /dai-dai redesign, 26 Sep 2026).
+//
+// Each of these was already in the repo — as a typed kicker, a JSON-LD field,
+// a comment or a sourcing doc — and nowhere a figure could read it. They are
+// transcribed here so the seven chapter figures draw from data rather than
+// carrying their own copies of the same numbers.
+
+/** Release day: Friday 15 May 2026 (Billboard's release story; see the
+ *  DAI_DAI_SPOTIFY_BODY_READ note on why Spotify prints the 14th). */
+export const DAI_DAI_RELEASE_DATE = "2026-05-15";
+
+/** The first-ever FIFA World Cup Final halftime show, MetLife Stadium — the
+ *  MusicEvent's startDate on both editions. */
+export const DAI_DAI_HALFTIME_DATE = "2026-07-19";
+
+/** The story's own publication date: the Article node's datePublished and the
+ *  og:type "article" date, on both editions. It was typed into each page. */
+export const DAI_DAI_STORY_PUBLISHED = "2026-07-16";
+
+/** The halftime performance on YouTube (the link the hero used to carry). The
+ *  story's chapter 07 shows its poster and loads the player only on a tap. */
+export const DAI_DAI_HALFTIME_VIDEO_ID = "T3thHUtPdhc";
+
+/**
+ * The 37 days at No. 1 on Spotify's Global Daily Top Songs chart, as the SIX
+ * spells walked day by day at charts.spotify.com on 14 Sep 2026 (the note on
+ * DAI_DAI_SPOTIFY_NO1_DAYS above): 30 Jun; 3–7 Jul; 10–14 Jul; 17–30 Jul;
+ * 7–16 Aug; 21–22 Aug. Inclusive chart dates.
+ *
+ * tests/daiDaiStoryFigures.test.tsx holds these to DAI_DAI_SPOTIFY_NO1_DAYS and
+ * to the first and last days, so the strip and the prose cannot part company.
+ */
+export const DAI_DAI_SPOTIFY_NO1_SPELLS: readonly (readonly [from: string, to: string])[] = [
+  ["2026-06-30", "2026-06-30"],
+  ["2026-07-03", "2026-07-07"],
+  ["2026-07-10", "2026-07-14"],
+  ["2026-07-17", "2026-07-30"],
+  ["2026-08-07", "2026-08-16"],
+  ["2026-08-21", "2026-08-22"],
+];
+
+/**
+ * The Billboard Global 200 run, one row per issue from its debut to the latest
+ * issue read — 17 weeks, which is the entry's own `weeks` in charts.ts.
+ *
+ * `pos: null` means NO READING IS HELD for that issue. It is never filled from
+ * a neighbouring week: the figure draws it hatched. The 5 Jul 2026 feed entry
+ * ("a new peak of No. 3 … jumps six places") names no chart date, so it cannot
+ * be placed on an issue and is not.
+ *
+ * Sources, every one already in the repo:
+ * - 6 Jun debut at No. 114: docs/sourcing/DAI-DAI-RUNS-2026-08-29.md.
+ * - 18 Jul – 8 Aug No. 1, 15 Aug No. 3, 22 and 29 Aug No. 1: the same doc,
+ *   counted at the body.
+ * - 5 Sep No. 1 (the run's seventh and last week), 12 and 19 Sep No. 3,
+ *   26 Sep No. 4: the GLB note in charts.ts.
+ */
+export const DAI_DAI_GLOBAL_200_RUN: readonly { issue: string; pos: number | null }[] = [
+  { issue: "2026-06-06", pos: 114 },
+  { issue: "2026-06-13", pos: null },
+  { issue: "2026-06-20", pos: null },
+  { issue: "2026-06-27", pos: null },
+  { issue: "2026-07-04", pos: null },
+  { issue: "2026-07-11", pos: null },
+  { issue: "2026-07-18", pos: 1 },
+  { issue: "2026-07-25", pos: 1 },
+  { issue: "2026-08-01", pos: 1 },
+  { issue: "2026-08-08", pos: 1 },
+  { issue: "2026-08-15", pos: 3 },
+  { issue: "2026-08-22", pos: 1 },
+  { issue: "2026-08-29", pos: 1 },
+  { issue: "2026-09-05", pos: 1 },
+  { issue: "2026-09-12", pos: 3 },
+  { issue: "2026-09-19", pos: 3 },
+  { issue: "2026-09-26", pos: 4 },
+];
+
+/** The single's cover on Spotify's CDN (640px rung; spotifyImage/spotifySrcSet
+ *  derive the others). The hero shows it on desktop, chapter 01 everywhere. */
+export const DAI_DAI_COVER = "https://i.scdn.co/image/ab67616d0000b27303cadf1b3fe324c1dc710ed4";
+
+/** The official "Dai Dai" video — the one DAI_DAI_VIDEO_VIEWS counts
+ *  (scripts/watched-metrics.json, dai-dai-video-views). The record's "The
+ *  video" list shows its poster and loads the player only on a tap. */
+export const DAI_DAI_VIDEO_ID = "fcnDmrtj6Sk";
+
+/**
+ * The three rows of the record's national-charts table that charts.ts does not
+ * hold, because by its own rules it cannot: a regional chart (the Official
+ * MENA Chart covers 13 markets and is no country's chart), a radio countdown
+ * (the UK's Big Top 40, on the Capital and Heart networks) and an airplay chart
+ * (Billboard's Rhythmic Airplay). Each figure is transcribed from what the page
+ * already published and the updates feed dated:
+ *
+ * - MENA: No. 1 ("tops the Official MENA Chart's Top 20", feed). The page has
+ *   never stated a week count, so none is given here.
+ * - Big Top 40: No. 1 for 4 weeks, the charts of 9 to 30 August 2026 (the
+ *   page's card; "a 2nd atop the UK's Big Top 40" and "tops the UK's Big Top
+ *   40", feed). No weeks-on-chart figure was ever read.
+ * - Rhythmic Airplay: No. 1 for 2 weeks, the charts dated 5 and 12 September
+ *   2026 (the page's card; "goes to No. 1 on Billboard's Rhythmic Airplay chart
+ *   dated 5 September 2026", feed). No weeks-on-chart figure was ever read.
+ *
+ * `null` is "not stated": the table prints those words, never a guess.
+ */
+export const DAI_DAI_OTHER_CHARTS = {
+  MENA: { chart: "Official MENA Chart Top 20", peak: 1, weeksAtNo1: null, weeksOnChart: null },
+  BIG_TOP_40: { chart: "Big Top 40", peak: 1, weeksAtNo1: 4, weeksOnChart: null },
+  RHYTHMIC: { chart: "Billboard Rhythmic Airplay", peak: 1, weeksAtNo1: 2, weeksOnChart: null },
+} as const satisfies Record<string, { chart: string; peak: number; weeksAtNo1: number | null; weeksOnChart: number | null }>;

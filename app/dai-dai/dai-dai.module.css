@@ -1,12 +1,25 @@
-/* The Dai Dai story — designs/desktop/Dai Dai.dc.html, values verbatim.
-   The scroll-driven scene stage lives in DaiDaiStory; this file is the shell.
+/* The Dai Dai page shell — the hero and "The record" here, the story in
+   DaiDaiStory, the takeover grid in DaiDaiConquest. Both editions share it.
+   Values are read from designs/desktop/Dai Dai Redesign.dc.html: the desktop
+   1440 artboards at base, the phone 390 artboards in the ≤900 blocks, the
+   tablet note (901–1239) between. Desktop and phone are separate designs;
+   each band carries its own artboard's values rather than a scaled copy. */
 
-   Mobile is screen 25. The scrollytelling shape holds at both widths — a
-   sticky scene with steps passing it is how the phone version works too — so
-   the sizes step down rather than a second layout being drawn. */
-.wrap { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
-
-.heroPad { padding: 48px 40px 0; }
+.hero {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 64px 40px 56px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  align-items: end;
+  gap: 64px;
+}
+.heroText {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+}
 .kicker {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
@@ -20,287 +33,780 @@
   font-weight: 400; /* Anton has no bold cut */
   font-size: 88px;
   line-height: 0.9;
-  letter-spacing: 0.01em;
+  letter-spacing: normal;
   text-transform: uppercase;
-  margin: 14px 0 0;
+  margin: 0;
 }
-.lede { font-size: var(--type-lede); line-height: var(--type-lede-lh); color: var(--text-body); max-width: 62ch; margin: 20px 0 0; text-wrap: pretty; }
-.heroActions { display: flex; gap: 10px; margin-top: 26px; flex-wrap: wrap; }
+/* Spanish capitals carry accents above the cap height; the desktop h1 gets
+   room for them above and below its lines (design response §1, Spanish). */
+.h1:lang(es) { padding: 0.12em 0; }
+/* The song's name never breaks across lines, in either edition. */
+.name { white-space: nowrap; }
+.lede {
+  font-size: var(--type-lede);
+  line-height: var(--type-lede-lh);
+  color: var(--text-body);
+  max-width: 52ch;
+  margin: 0;
+  text-wrap: pretty;
+}
+/* Each layout draws its own lede; only one is ever displayed. */
+.ledeNarrow { display: none; }
+.heroActions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 4px;
+}
+/* The one primary action. The arrow is drawn, not written, so the link's text
+   stays exactly its words (tests/ownerRulings.test.tsx reads it). */
+.skip { gap: 10px; }
+.skip::after {
+  content: "↓";
+  content: "↓" / "";
+}
+.lang {
+  display: inline-flex;
+  height: 36px;
+  overflow: hidden;
+  border: 1px solid var(--btn-edge);
+  border-radius: 999px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+}
+.langItem {
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  color: var(--text-muted);
+}
+.langItem + .langItem { border-left: 1px solid var(--btn-edge); }
+.langOn {
+  background: var(--text);
+  color: var(--bg);
+}
+a.langItem:hover {
+  background: var(--bg-raised);
+  color: var(--text);
+}
+/* The switch clips its children, so the focus ring is drawn inside. */
+a.langItem:focus-visible { outline-offset: -3px; }
+.heroCover {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+}
+.heroCoverImg {
+  display: block;
+  width: 360px;
+  height: 360px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.heroCoverCaption {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
 
-.section { padding: 56px 0 0; }
-.h2 {
-  font-family: var(--font-anton), sans-serif;
-  font-weight: 400;
-  font-size: 40px;
-  line-height: 1.05;
-  letter-spacing: 0.01em;
-  text-transform: uppercase;
-  margin: 12px 0 0;
+/* Tablet, 901–1239: the tablet note's display step. */
+@media (max-width: 1239px) and (min-width: 901px) {
+  .h1 { font-size: 64px; }
 }
-/* Flat gold, not the ink gradient: these sit beside white words in the same
-   line, and the grain reads as noise at 40px next to plain text. */
-.gold { color: var(--gold); }
-.numIntro { font-size: 14px; line-height: 1.65; color: var(--text-muted); max-width: 74ch; margin: 12px 0 0; }
 
 @media (max-width: 900px) {
-  .wrap { padding: 0 18px; }
-  /* Clear the story's back bar. That bar is position:fixed and lives inside
-     DaiDaiStory — which renders BELOW this hero — so nothing in the flow
-     reserved space for it and the <h1> sat underneath it at the top of the
-     page. 56px of bar + its safe-area inset, then the hero's own 24px. */
-  .heroPad {
-    padding: calc(56px + env(safe-area-inset-top, 0px) + 24px) 18px 0;
+  /* The phone artboard. The back bar is position:fixed and lives inside
+     DaiDaiStory, below this hero in the flow, so the hero reserves its 69px
+     (and the safe-area inset) itself, then the artboard's own 22px. */
+  .hero {
+    display: block;
+    padding: calc(69px + env(safe-area-inset-top, 0px) + 22px) 18px 0;
   }
-  .h1 { font-size: 46px; }
-  .lede { font-size: 15px; }
-  .h2 { font-size: 26px; }
-  .section { padding: 36px 0 0; }
-}/* One rule for every section intro, in both languages.
-   Replaces .lineupIntro and .conquestIntro, which each gave the paragraph its
-   OWN centring instead of letting it inherit the heading's column — so at
-   desktop widths the intro began far to the right of the heading it belongs
-   to, and .lineupIntro's negative top margin pulled it into the heading's box.
-   60ch is a measure here, not a centring device. No Spanish override is
-   needed: a ch measure grows with the text, and with the negative margin gone
-   a longer heading pushes the paragraph down instead of colliding with it. */
-.sectionIntro {
-  max-width: 60ch;
-  margin: 14px 0 32px;
-  text-align: left;
-  color: var(--text-muted);
-  font-size: 1.02rem;
-  line-height: 1.6;
+  .heroText { gap: 14px; }
+  .h1 { font-size: 46px; line-height: 0.92; }
+  .h1:lang(es) { padding: 0; }
+  .lede { font-size: var(--type-body); line-height: 1.5; }
+  .ledeWide { display: none; }
+  .ledeNarrow { display: inline; }
+  .heroActions { flex-wrap: nowrap; gap: 10px; margin-top: 0; }
+  .skip {
+    flex: 1;
+    justify-content: space-between;
+    height: auto;
+    min-height: 48px;
+    padding: 0 18px;
+    font-size: 12px;
+  }
+  .lang { flex: none; height: 44px; }
+  .langItem { padding: 0 13px; }
+  .heroCover { display: none; }
 }
+
+/* ══ The record ══════════════════════════════════════════════════════════
+   The reference half of the page. A band on --bg-soft with a 2px --rule top
+   breaks it from the story (design response §5, item 4); every section under
+   it has a 34px ink heading with no gold half (item 11). Gold on this half is
+   only what is live or an action: the live figures, the links, the play
+   button and the phone's fold. */
+
+.band {
+  margin-top: 72px;
+  background: var(--bg-soft);
+  border-top: 2px solid var(--rule);
+}
+.bandInner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 40px 40px 8px;
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+}
+.bandTitle {
+  flex: none;
+  margin: 0;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 56px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: uppercase;
+  color: var(--text);
+}
+.bandText {
+  margin: 0;
+  font-size: var(--type-body);
+  line-height: 1.5;
+  color: var(--text-body);
+}
+
+/* The sections, one column: 48px under the band and 64px apart. */
+.wrap {
+  max-width: 1280px;
+  margin: 0 auto;
+  /* No foot padding: the Keep-exploring rail below brings its own 64px. */
+  padding: 48px 40px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+}
+.sectionNumbers { gap: 28px; }
+
+.head {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  column-gap: 16px;
+  row-gap: 4px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--rule);
+}
+.h2 {
+  margin: 0;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 34px;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-transform: uppercase;
+  color: var(--text);
+}
+.headLabel {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.headText {
+  font-size: var(--type-body);
+  line-height: 1.5;
+  color: var(--text-body);
+}
+.phoneOnlyInline { display: none; }
+
+/* ── The halftime lineup ─────────────────────────────────────────────── */
 .lineupGrid {
   list-style: none;
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 22px;
-  margin: 0 0 24px;
+  margin: 0;
   padding: 0;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 20px;
 }
 .lineupCard {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
+  min-width: 0;
 }
+/* Circles, not the ovals the old flexible width stretched them into. */
 .lineupPhoto {
-  width: 100%;
-  max-width: 118px;
+  display: block;
+  width: 132px;
+  max-width: 100%;
+  height: auto;
   aspect-ratio: 1;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid var(--line);
-  box-shadow: 0 12px 28px color-mix(in srgb, var(--shadow-base) calc(50% * var(--shadow-strength)), transparent);
+  background: var(--bg-soft-2);
+  box-shadow: 0 0 0 1px var(--line);
 }
+/* The two headliners: a 3px gold ring, set off by 3px of page. */
 .lineupHeadliner .lineupPhoto {
-  border-color: var(--gold);
+  box-shadow: 0 0 0 3px var(--bg), 0 0 0 6px var(--gold);
 }
 .lineupName {
   font-family: var(--font-anton), sans-serif;
-  font-size: 1rem;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1;
   text-transform: uppercase;
-  letter-spacing: 0.02em;
-  line-height: 1.05;
 }
 .lineupTag {
+  padding: 4px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
   font-family: var(--font-mono), monospace;
-  font-size: 0.6875rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--gold-dim);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--text-body);
 }
 .lineupNote {
-  max-width: 58ch;
-  margin: 0 auto;
-  color: var(--text-muted);
-  font-size: 0.92rem;
-  line-height: 1.55;
+  max-width: 62ch;
+  margin: 0;
+  font-size: var(--type-small);
+  line-height: var(--type-small-lh);
+  color: var(--text-body);
 }
-@media (max-width: 720px) {
-  .lineupGrid { grid-template-columns: repeat(3, 1fr); gap: 18px; }
-}
-@media (max-width: 380px) {
-  .lineupGrid { grid-template-columns: repeat(2, 1fr); }
-}/* Seams are drawn per card, not by showing a --line bed through the gaps.
-   The bed trick leaves a pale phantom block wherever the last row is short,
-   and the fix for that (spanning the final card) can't follow a column count
-   that changes at the breakpoint — a `span 3` inside a 2-column grid invents a
-   third column and overflows the page. A 1px ring on each card fills the 1px
-   gap exactly and is immune to both. */
-.numGrid {
+
+/* ── By the numbers: the six lead figures ────────────────────────────── */
+/* Hairline cells: the rule shows through the 1px gaps. Six figures fill six
+   columns on desktop and three by two on a tablet, so no slot is ever empty. */
+.leads {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 1px;
-  margin-top: 24px;
+  background: var(--rule);
+  background-clip: padding-box;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
 }
-.numCard {
-  background: var(--bg);
-  box-shadow: 0 0 0 1px var(--line);
-  padding: 22px 24px;
+.lead {
   display: flex;
   flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+  padding: 22px 18px 20px 0;
+  background: var(--bg);
 }
-/* The song's headline figure takes the tint. */
-.numCardLead { background: color-mix(in srgb, var(--gold-wash-base) calc(5% * var(--wash-strength)), transparent); }
-.numValue {
+.leadValue {
+  align-self: flex-start;
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
-  font-size: 40px;
-  line-height: 0.92;
+  font-size: 52px;
+  line-height: 0.95;
   color: var(--text);
   font-variant-numeric: tabular-nums;
 }
-.numValueLead { color: var(--gold); font-size: 52px; }
-.numLabel { font-size: 13.5px; line-height: 1.6; color: var(--text-body); margin-top: 12px; }
-
-/* Six hero numbers at full volume — the tinted lead treatment, three up. */
-.numHeroGrid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1px;
-  margin-top: 24px;
+.leadCaption {
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
+  color: var(--text-body);
+}
+.liveMark {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 6px;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.liveDot {
+  flex: none;
+  width: 6px;
+  height: 6px;
+  /* Centred on the label's first line (11px at 1.2), wherever it wraps. */
+  margin-top: 4px;
+  border-radius: 50%;
+  background: var(--green);
 }
 
-/* The grouped tiers under the heroes: a small labeled head and a one-line
-   intro before each grid, so a cell's unit is known before it is read. */
-.numGroup { margin-top: 44px; }
-.numGroupHead {
+/* ── The national charts, as a table ─────────────────────────────────── */
+.national {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.listTitle {
+  margin: 0;
+  padding-bottom: 10px;
   font-family: var(--font-mono), monospace;
   font-weight: 700;
   font-size: 11px;
+  line-height: 1.2;
   letter-spacing: 0.11em;
   text-transform: uppercase;
-  color: var(--gold);
-  display: flex;
-  align-items: center;
-  gap: 12px;
+  color: var(--text);
 }
-.numGroupHead::after {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background: var(--line);
+.listTitleRuled { border-bottom: 2px solid var(--rule); }
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: var(--type-small);
+  line-height: 1.45;
+  font-variant-numeric: tabular-nums;
 }
-.numGroupIntro {
-  font-size: 13.5px;
-  line-height: 1.6;
-  color: var(--text-dim-warm);
-  margin-top: 8px;
+/* The artboard's columns — 220 · 1fr · 110 · 150 · 150 with 16px between —
+   as fixed column widths, each carrying its 16px gutter on the right. */
+.colCountry { width: 236px; }
+.colPeak { width: 126px; }
+.colWeeks { width: 166px; }
+.colLast { width: 150px; }
+.table th,
+.table td {
+  padding: 10px 16px 10px 0;
+  text-align: left;
+  vertical-align: middle;
 }
-.numGroup .numGrid { margin-top: 16px; }
+.table th:last-child,
+.table td:last-child { padding-right: 0; }
+.thead th {
+  border-top: 2px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1.2;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.tr > * {
+  height: 44px;
+  border-bottom: 1px solid var(--line);
+}
+.tdCountry {
+  font-weight: 400;
+  color: var(--text);
+}
+.flag {
+  display: inline-block;
+  margin-right: 8px;
+}
+.tdChart { color: var(--text-body); }
+.chartName { display: block; }
+/* The page's own dated sentence for a row — what the old card said. */
+.note {
+  display: block;
+  margin-top: 2px;
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
+  color: var(--text-muted);
+}
+.table .num {
+  text-align: right;
+  color: var(--text);
+}
+.table .w1missing,
+.table .wcmissing { color: var(--text-muted); }
+/* The phone's units: the desktop's column heads already say what a figure is. */
+.unit { display: none; }
 
-@media (max-width: 900px) {
-  .numGrid { grid-template-columns: 1fr 1fr; }
-  .numHeroGrid { grid-template-columns: 1fr 1fr; }
-  .numValue { font-size: 30px; }
-  .numValueLead { font-size: 36px; }
-  .numGroup { margin-top: 32px; }
-}.faqList {
+/* ── Streaks, world rankings, the video: ruled lists ─────────────────── */
+.lists {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 40px;
+  align-items: start;
+}
+.list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  min-width: 0;
+}
+.rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 14px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--line);
+}
+.rowText {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.rowKey {
+  font-size: var(--type-small);
+  line-height: 1.45;
+  color: var(--text-body);
+}
+.rowValue {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1;
+  white-space: nowrap;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+.listVideo { margin-top: 14px; }
+
+/* A live figure — the bot-written streams and views, the streak, "No. 1
+   right now" — is the one figure at rest that takes gold. After both value
+   rules, which set ink, so it wins wherever it lands. */
+.leadValue.liveValue,
+.rowValue.liveValue { color: var(--gold); }
+
+/* ── The FAQ: a heading column, then the answers at a reading measure ── */
+.faq {
+  display: grid;
+  grid-template-columns: 320px minmax(0, 1fr);
+  gap: 56px;
+  padding-top: 24px;
+  border-top: 1px solid var(--rule);
+}
+.faqHead {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.faqHead .h2 { line-height: 1.1; }
+.faqList {
+  display: flex;
+  flex-direction: column;
+  max-width: 72ch;
 }
 .faqItem {
-  padding: 18px 20px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--bg-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
 }
 .faqQ {
-  margin: 0 0 8px;
+  margin: 0;
   /* Readable Geist, not the condensed Anton that h3 defaults to globally. */
   font-family: var(--font-geist-sans), system-ui, sans-serif;
-  font-size: 1.12rem;
-  font-weight: 700;
-  line-height: 1.3;
+  font-size: var(--type-h-prose);
+  line-height: var(--type-h-prose-lh);
+  font-weight: 600;
   letter-spacing: 0;
+  text-transform: none;
   color: var(--text);
 }
 .faqA {
   margin: 0;
-  font-size: 0.98rem;
-  line-height: 1.6;
-  color: var(--text-muted);
+  font-size: var(--type-body);
+  line-height: var(--type-body-lh);
+  color: var(--text-body);
 }
 
-/* The FAQ is newly visible on screen 25 (it was inside .desktopOnly until the
-   phone-reader bug below), so these are the only values it has ever needed at
-   this width. Vertical only, and deliberately few:
-
-   - The 18px band per question is ALREADY the base rule's — .faqItem is
-     `padding: 18px 20px`, so screen 08's row rhythm falls out of the card as
-     shipped. Re-declaring it here would be a no-op that reads like a decision.
-   - The horizontal 20px is the CARD's inset, not this screen's gutter; .wrap
-     already supplies the 18px page gutter at this width. Touching either would
-     inset the answers from every other section on the page.
-   - Only the question-to-answer gap moves, 8px → 6px, to sit on screen 08's
-     spacing rather than the desktop card's.
-   - .faqList gets the 16px it has no need of on desktop: .h2 carries no bottom
-     margin, so the first card butts straight onto the heading (measured: 0px at
-     1280px, which is the shipped desktop look and stays that way). At 26px the
-     mobile .h2 needs the heading and the card told apart. */
-@media (max-width: 900px) {
-  .faqList { margin-top: 16px; }
-  .faqQ { margin-bottom: 6px; }
-}
-
+/* ── The outro ───────────────────────────────────────────────────────── */
 .outro {
-  max-width: 720px;
-  margin: 8px auto 60px;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding-top: 48px;
+  border-top: 2px solid var(--rule);
 }
 .outroLead {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  color: var(--text-body-cool-quiet);
-  margin: 0 0 24px;
+  max-width: 28ch;
+  margin: 0;
+  text-wrap: balance;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 34px;
+  line-height: 1.05;
+  text-transform: uppercase;
+  color: var(--text);
 }
 .outroLinks {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
-  justify-content: center;
+  gap: 28px;
 }
-@media (max-width: 900px) {}
+.outroLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 44px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.outroLink:hover { color: var(--gold-bright); }
 
-/* What is left in .desktopOnly is the Keep-exploring rail — screen 25 uses the
-   five-tab bar to move around the site instead. Both /dai-dai and /dai-dai/es
-   import this file, so whatever this class hides, it hides in both editions.
+/* ── Tablet, 901–1239: the tablet note ───────────────────────────────── */
+@media (max-width: 1239px) and (min-width: 901px) {
+  /* All five columns stay, narrower, so the chart column keeps a reading
+     width down to 901px. */
+  .colCountry { width: 196px; }
+  .colPeak { width: 86px; }
+  .colWeeks { width: 136px; }
+  .colLast { width: 120px; }
+  .leads { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .leadValue { font-size: 44px; }
+  .lists { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+}
 
-   This used to read "the FAQ and the Keep-exploring rail are desktop only.
-   Hidden rather than unrendered, so the FAQ markup (and the FAQPage JSON-LD
-   that mirrors it) stays crawlable." Crawlable was the wrong test and that
-   sentence is why this survived review: Googlebot renders at phone width, where
-   display:none is display:none, so the schema promised eight answers the phone
-   reader — and the crawler — never saw. The FAQ renders at both widths now; see
-   the note on the section in page.tsx. */
-@media (max-width: 900px) { .desktopOnly { display: none; } }
-
-/* ── "By the numbers" fold ───────────────────────────────────────────────
-   The six hero numbers always show; on a phone the grouped tiers fold
-   behind the toggle. Desktop renders the lot and never sees the button. */
-.numFold { display: none; }
-
+/* ── Phone: the phone artboards ──────────────────────────────────────── */
 @media (max-width: 900px) {
-  .numGroups { display: none; }
-  .numGroupsOpen { display: block; }
-  .numFold {
-    width: 100%;
+  .band {
+    margin-top: 0;
+  }
+  .bandInner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+    padding: 26px 18px 18px;
+  }
+  .bandTitle { font-size: 40px; }
+  .bandText {
+    font-size: var(--type-small);
+    line-height: var(--type-small-lh);
+  }
+  .bandMore { display: none; }
+
+  .wrap {
+    padding: 22px 18px 48px;
+    gap: 34px;
+  }
+  .section { gap: 14px; }
+  .sectionNumbers { gap: 24px; }
+  .sectionTakeover { gap: 12px; }
+
+  .head {
+    padding-bottom: 10px;
+    border-bottom-width: 2px;
+  }
+  .headStack {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+  }
+  .h2 { font-size: 26px; }
+  .headText {
+    font-size: var(--type-small);
+    line-height: var(--type-small-lh);
+  }
+  .desktopOnlyInline { display: none; }
+  .phoneOnlyInline { display: inline; }
+
+  .lineupGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px 10px;
+  }
+  .lineupCard {
+    align-items: center;
+    gap: 6px;
+    text-align: center;
+  }
+  .lineupPhoto { width: 84px; }
+  .lineupHeadliner .lineupPhoto {
+    box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--gold);
+  }
+  .lineupName {
+    font-size: 15px;
+    line-height: 1.05;
+  }
+  .lineupTag {
+    padding: 0;
+    border: 0;
+    color: var(--text-muted);
+  }
+
+  /* The lead figures as full-width rows: the figure in a 118px column, its
+     caption beside it, the 129px 2-up labels gone. */
+  .leads {
+    display: block;
+    margin-top: -24px;
+    background: none;
+    border: 0;
+  }
+  .lead {
+    display: grid;
+    grid-template-columns: 118px minmax(0, 1fr);
+    align-items: center;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .leadValue {
+    justify-self: start;
+    font-size: 36px;
+  }
+  .leadCaption {
+    font-size: var(--type-small);
+    line-height: 1.45;
+  }
+  .liveMark { display: none; }
+
+  /* The table's rows stack: country and chart on the left, the peak and the
+     weeks on the right, the row's sentence under its chart. */
+  /* The column heads stay for a screen reader, out of sight. Pinned left and
+     laid out as blocks, so the hidden row can never measure wider than the
+     phone (globals.css .visuallyHidden, for the same reason). */
+  .thead {
+    position: absolute;
+    left: 0;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .thead tr,
+  .thead th { display: block; }
+  .table,
+  .table tbody { display: block; }
+  .listTitle.nationalTitle { border-bottom: 2px solid var(--rule); }
+  .tr {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    /* The last row is flexible, so a long sentence under the chart grows the
+       row there and never pushes the weeks lines apart. */
+    grid-template-rows: auto auto auto 1fr;
+    column-gap: 10px;
+    row-gap: 2px;
+    min-height: 52px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .table .tr > * {
+    height: auto;
+    padding: 0;
+    border: 0;
+  }
+  .tdCountry {
+    grid-column: 1;
+    grid-row: 1;
+    font-size: 14px;
+  }
+  .tdChart {
+    grid-column: 1;
+    grid-row: 2 / 5;
+  }
+  .chartName {
+    font-size: var(--type-caption);
+    color: var(--text-muted);
+  }
+  .tdPeak {
+    grid-column: 2;
+    grid-row: 1;
+    font-family: var(--font-anton), sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.2;
+  }
+  .table .tdWeeks {
+    grid-column: 2;
+    font-family: var(--font-mono), monospace;
+    font-size: 11px;
+    line-height: 1.4;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    color: var(--text-muted);
+  }
+  .unit { display: inline; }
+  .w1dash,
+  .w1missing,
+  .hasW1 .wcmissing { display: none; }
+
+  .lists {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+
+  .faq {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding-top: 0;
+    border-top: 0;
+  }
+  .faqHead {
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--rule);
+  }
+  .faqHead .h2 { line-height: 1.5; }
+  .faqItem {
+    gap: 0;
+    padding: 0;
+  }
+  .faqQ {
+    font-size: 17px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    min-height: 48px;
-    margin-top: 12px;
-    border: 1px solid var(--line);
-    background: var(--bg-soft);
-    color: var(--gold);
-    font-family: var(--font-mono), monospace;
-    font-weight: 700;
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    cursor: pointer;
+    min-height: 56px;
+    padding: 10px 0;
   }
+  .faqA { padding-bottom: 14px; }
+
+  .outro {
+    gap: 12px;
+    padding-top: 48px;
+    border-top: 0;
+  }
+  .outroLead { font-size: 24px; }
+  .outroLinks {
+    flex-direction: column;
+    gap: 0;
+  }
+  .outroLink {
+    justify-content: space-between;
+    min-height: 48px;
+    border-bottom: 1px solid var(--line);
+    text-decoration: none;
+  }
+}
+
+/* What is left in .desktopOnly is the Keep-exploring rail — the phone uses
+   the five-tab bar to move around the site instead. Both /dai-dai and
+   /dai-dai/es import this file, so whatever this class hides, it hides in
+   both editions. The FAQ is deliberately NOT in it: its answers stay in the
+   HTML, and on screen, at every width (see the note on the section in
+   page.tsx). */
+@media (max-width: 900px) { .desktopOnly { display: none; } }
+
+/* The Keep-exploring rail, on this page only. The shared rail is a global
+   .container (max-width 1280, 24px sides), so at 1440 its cards ran 104–1336
+   while every section above sits in .wrap's 1280 box with 40px sides,
+   120–1320: a 16px overhang on each side. This gives the rail the same 40px
+   sides, here and nowhere else; the shared component is not restyled. (0,2,0)
+   outranks .container's (0,1,0) whatever order the sheets load in. */
+.exploreRail :global(.container) {
+  padding-inline: 40px;
 }

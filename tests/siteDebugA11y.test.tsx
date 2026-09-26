@@ -36,6 +36,7 @@ import { metadata as methodologyMeta } from "../app/methodology/page";
 import { metadata as notFoundMeta } from "../app/not-found";
 import { PRE_PAINT_LANG } from "../app/lib/documentLang";
 import { pageMetadata } from "../app/lib/seo";
+import { DAI_DAI_STORY_PUBLISHED } from "../app/data/daiDai";
 import { certCountryCodes, countrySlug, priceCountry } from "../app/lib/certCountry";
 
 /**
@@ -413,7 +414,13 @@ describe("E-11: the article pages say og:type article", () => {
     expect(og.publishedTime).toBe(published);
     // The same date as the Article node's datePublished on the page.
     const src = read(path === "/dai-dai" ? "app/dai-dai/page.tsx" : path === "/dai-dai/es" ? "app/dai-dai/es/page.tsx" : "app/analysis/spotify-unmerge/page.tsx");
-    expect(src).toContain(`const PUBLISHED = "${published}";`);
+    // The two Dai Dai editions read one home for the date since 26 Sep 2026
+    // (it was typed into each); the analysis page still types its own.
+    if (path === "/analysis/spotify-unmerge") expect(src).toContain(`const PUBLISHED = "${published}";`);
+    else {
+      expect(src).toContain("const PUBLISHED = DAI_DAI_STORY_PUBLISHED;");
+      expect(DAI_DAI_STORY_PUBLISHED).toBe(published);
+    }
     expect(src).toMatch(/"@type": "Article",[\s\S]*?datePublished: PUBLISHED,/);
   });
 
