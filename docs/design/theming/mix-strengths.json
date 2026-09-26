@@ -71,15 +71,9 @@
     "--tier-silver-ink 10%"
   ],
   "app/components/DaiDaiConquest.module.css": [
-    "--gold-wash-base 30%",
-    "--gold-wash-base 30%",
-    "--gold-wash-base 30%",
-    "--gold-wash-base 30%",
-    "--ink-wash-base 7%",
-    "--ink-wash-base 7%",
-    "--ink-wash-base 7%",
-    "--ink-wash-base 7%",
-    "--text-dim-warm 50%"
+    "--peak-band-1 10%",
+    "--peak-band-1 55%",
+    "--peak-band-1 7%"
   ],
   "app/components/DaiDaiFigures.module.css": [
     "--peak-band-1 10%",
@@ -303,10 +297,6 @@
   ],
   "app/curator/curator.module.css": [
     "--gold-ink 35%"
-  ],
-  "app/dai-dai/dai-dai.module.css": [
-    "--gold-wash-base 5%",
-    "--shadow-base 50%"
   ],
   "app/globals.css": [
     "--glow-base 10%",

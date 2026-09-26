@@ -23,12 +23,18 @@ export default function DaiDaiVideoPoster({
   videoId,
   play,
   title,
+  sizes = "(max-width: 900px) calc(100vw - 68px), 564px",
+  small = false,
 }: {
   videoId: string;
   /** The button's accessible name, e.g. "Play the halftime show". */
   play: string;
   /** The player's title, once it exists. */
   title: string;
+  /** The poster's rendered width, for the srcset. Defaults to chapter 07's. */
+  sizes?: string;
+  /** The record's music-video poster draws a 52px play disc, not 64px. */
+  small?: boolean;
 }) {
   const [on, setOn] = useState(false);
   const frame = useRef<HTMLIFrameElement>(null);
@@ -60,15 +66,15 @@ export default function DaiDaiVideoPoster({
             className={styles.posterImage}
             src={img("hqdefault")}
             srcSet={`${img("hqdefault")} 480w, ${img("sddefault")} 640w, ${img("maxresdefault")} 1280w`}
-            sizes="(max-width: 900px) calc(100vw - 68px), 564px"
+            sizes={sizes}
             alt=""
             width={640}
             height={360}
             loading="lazy"
             decoding="async"
           />
-          <span className={styles.playDisc} aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24">
+          <span className={`${styles.playDisc} ${small ? styles.playDiscSmall : ""}`} aria-hidden="true">
+            <svg width={small ? 18 : 22} height={small ? 18 : 22} viewBox="0 0 24 24">
               <path d="M8 5v14l11-7z" />
             </svg>
           </span>

@@ -334,6 +334,11 @@
   transition: transform var(--dur) var(--ease-out);
 }
 .playDisc svg { fill: var(--bg); }
+/* The record's music-video poster: the artboard's 52px disc. */
+.playDiscSmall {
+  width: 52px;
+  height: 52px;
+}
 .posterButton:hover .playDisc { transform: scale(1.06); }
 .player {
   position: absolute;
@@ -380,7 +385,14 @@
      its pill rather than running over the country codes beside it. */
   .tiers { grid-template-columns: 130px minmax(0, 1fr); }
   .tier { white-space: normal; }
-  .peak { gap: 12px; }
+  /* The label's column is capped at half the figure, so on a 320px phone
+     the Spanish statement ("mundialista") still has room for its longest
+     word; the figure itself never breaks between "N.º" and its number. */
+  .peak {
+    grid-template-columns: fit-content(50%) minmax(0, 1fr);
+    gap: 12px;
+  }
+  .peakFigure .big { white-space: nowrap; }
   .statement { font-size: 20px; }
   /* The 44px touch floor for the one link inside a figure. */
   .watch {

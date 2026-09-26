@@ -2,7 +2,8 @@ import Link from "next/link";
 import styles from "../dai-dai.module.css";
 import DaiDaiStory, { type Step } from "../../components/DaiDaiStory";
 import DaiDaiConquest, { type ConquestCountry } from "../../components/DaiDaiConquest";
-import DaiDaiNumbers from "../../components/DaiDaiNumbers";
+import { Leads, NationalTable, RuledLists, type LeadFigure, type NumbersLabels, type RecordRow } from "../../components/DaiDaiNumbers";
+import { RecordBand, SectionHead, Lineup, nationalRow, daiDaiCountries, countryName, topPlaque, plaqueCountries } from "../../components/DaiDaiRecord";
 import FaqList from "../../components/FaqList";
 import KeepExploring from "../../components/KeepExploring";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime } from "../../lib/seo";
@@ -10,7 +11,6 @@ import { lastUpdated } from "../../lib/api";
 import {
   daiDaiNumberOnes,
   daiDaiChartEntryCount,
-  allChartItems,
   CHART_COUNTRIES,
   weeksAtPeak,
   weeksOnChart,
@@ -18,7 +18,7 @@ import {
 import { liveCharts } from "../../data/liveCharts";
 import { LIVE_CADENCE_ES } from "../../lib/liveChartMeta";
 import { daiDaiCertCount } from "../../data/certifications";
-import { DAI_DAI_COVER, DAI_DAI_RELEASE_DATE, DAI_DAI_VIDEO_VIEWS, DAI_DAI_1B_DAYS, DAI_DAI_1B_RANK_ES, DAI_DAI_SPOTIFY_STREAMS, DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_NO1_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_NO1_FIRST_LONG_ES, DAI_DAI_SPOTIFY_NO1_LAST_LONG_ES, DAI_DAI_SPOTIFY_TOP10_DAYS, DAI_DAI_SPOTIFY_DAYS_OFF, daiDaiSpotifyDaysOnChart, daiDaiSpotifyStraightDays, daiDaiYouTubeDaysAtNo1 } from "../../data/daiDai";
+import { DAI_DAI_COVER, DAI_DAI_RELEASE_DATE, DAI_DAI_HALFTIME_DATE, DAI_DAI_VIDEO_ID, DAI_DAI_SPOTIFY_BODY_READ, DAI_DAI_VIDEO_VIEWS, DAI_DAI_1B_DAYS, DAI_DAI_1B_RANK_ES, DAI_DAI_SPOTIFY_STREAMS, DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_NO1_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_NO1_FIRST_LONG_ES, DAI_DAI_SPOTIFY_NO1_LAST_LONG_ES, DAI_DAI_SPOTIFY_TOP10_DAYS, DAI_DAI_SPOTIFY_DAYS_OFF, daiDaiSpotifyDaysOnChart, daiDaiSpotifyStraightDays, daiDaiYouTubeDaysAtNo1 } from "../../data/daiDai";
 import { spotifyImage, spotifySrcSet } from "../../lib/spotifyImage";
 import { daiDaiEsOgId } from "./ogId";
 import LangSwitch from "../LangSwitch";
@@ -42,42 +42,41 @@ import { BURNA_PORTRAIT, SHAKIRA_PORTRAIT } from "../../lib/artistImages";
 const EN_PATH = "/dai-dai";
 const ES_PATH = "/dai-dai/es";
 
-const daiDai = allChartItems.find((r) => r.title === "Dai Dai");
-const conquestCountries: ConquestCountry[] = (daiDai?.entries ?? [])
-  .filter((e) => e.c !== "GLB" && e.c !== "GLBX")
-  .map((e) => ({
-    code: e.c,
-    flag: CHART_COUNTRIES[e.c]?.flag ?? "🏳",
-    name: CHART_COUNTRIES[e.c]?.name ?? e.c,
-    peak: e.peak,
-  }));
+// Every country the song charted in, for the takeover grid, named in Spanish.
+const conquestCountries: ConquestCountry[] = daiDaiCountries.map((e) => ({
+  code: e.c,
+  flag: CHART_COUNTRIES[e.c]?.flag ?? "🏳",
+  name: countryName(e.c, "es"),
+  peak: e.peak,
+}));
 const conquestTotal = conquestCountries.length;
 const conquestNo1 = conquestCountries.filter((c) => c.peak === 1).length;
 // Las semanas se leen de los datos, igual que en la edición inglesa — una cifra
 // escrita a mano en dos idiomas se desincroniza el doble de rápido.
-import { cardinalWord, ordinalWord, millonesEs } from "../../lib/plural";
+import { cardinalWord, millonesEs, millonesCortoEs } from "../../lib/plural";
 
-const weeksDE = weeksAtPeak("Dai Dai", "DE");
-const weeksCH = weeksAtPeak("Dai Dai", "CH");
-const weeksFR = weeksAtPeak("Dai Dai", "FR");
 const weeksGLB = weeksAtPeak("Dai Dai", "GLB");
 const weeksGLBX = weeksAtPeak("Dai Dai", "GLBX");
-// The national runs verified on 22 Aug 2026, each read in the chart body's own
-// week-by-week run rather than off a round-up. Norway carries no weeksOnChart:
-// VG-lista's song page says 10 weeks where the circulating figure said 13, and
-// an unpublished longevity figure is omitted here, never guessed.
-const weeksAT = weeksAtPeak("Dai Dai", "AT");
-const weeksBE = weeksAtPeak("Dai Dai", "BE");
-const weeksNL = weeksAtPeak("Dai Dai", "NL");
-const weeksSE = weeksAtPeak("Dai Dai", "SE");
-const weeksNO = weeksAtPeak("Dai Dai", "NO");
+// The national-charts table reads every peak and week count itself
+// (nationalRow); these are the ones the rows' own sentences still quote.
 const weeksUK = weeksAtPeak("Dai Dai", "UK");
 const runUK = weeksOnChart("Dai Dai", "UK");
 const runAT = weeksOnChart("Dai Dai", "AT");
 const runSE = weeksOnChart("Dai Dai", "SE");
 const runNL = weeksOnChart("Dai Dai", "NL");
+// The Spotify entry position, as Spotify's own chart row prints it.
+const debutAt = DAI_DAI_SPOTIFY_BODY_READ.debutPosition;
+// The halftime date, as the lineup's line and the sixth lead figure print it.
+const halftime = (opts: Intl.DateTimeFormatOptions) =>
+  new Date(`${DAI_DAI_HALFTIME_DATE}T12:00:00Z`).toLocaleDateString("es-ES", { ...opts, timeZone: "UTC" });
+const halftimeShort = halftime({ day: "numeric", month: "short" });
+const halftimeLong = halftime({ day: "numeric", month: "long", year: "numeric" });
+// The plaques, for the fifth lead figure's caption, read from the plaque wall.
+// Spanish prose writes the tier in lower case.
+const certCountries = plaqueCountries();
+const topPlaqueWords = topPlaque({ diamond: "diamante", platinum: "platino", gold: "oro", silver: "plata" }, "es", " en ");
 
-const conquestIntro = `“Dai Dai” ha entrado en las listas de ${conquestTotal} países — y ha llegado al número 1 en ${conquestNo1} de ellos. Los países en dorado son los número 1; el resto entró sin llegar a la cima.`;
+const conquestIntro = `“Dai Dai” ha entrado en las listas de ${conquestTotal} países y ha llegado al número 1 en ${conquestNo1} de ellos: cada celda muestra su pico.`;
 
 // Same derivation as the English page: the live board decides, not a sentence.
 const ddLive = liveCharts.find((r) => r.kind === "song" && r.title === "Dai Dai");
@@ -92,6 +91,9 @@ const liveOnesLabel = `ahora mismo en las listas por país de ${platformOnes
   .map(([p, n], i) => (i === 0 ? `${p} (${n} países)` : `${p} (${n})`))
   .join(", ")
   .replace(/, ([^,]*)$/, " y $1")} — ${LIVE_CADENCE_ES} desde el panel en vivo`;
+// The same counts as a ruled-list row, as the English edition builds it.
+const liveOnesKey = `N.º 1 ahora mismo: ${platformOnes.map(([p], i) => (i === 0 ? `países en ${p}` : p)).join(" · ")}`;
+const liveOnesValue = platformOnes.map(([, n]) => n).join(" · ");
 
 // Same date as the English edition's PUBLISHED: the Article node's
 // datePublished and the og:type "article" date.
@@ -188,73 +190,85 @@ export default function DaiDaiPageES() {
     },
   ];
 
-  const heroNumbers: { v: string; l: string }[] = [
-    { v: `${daiDaiChartEntryCount}`, l: "entradas en listas oficiales de todo el mundo — en listas nacionales de sencillos, más las dos listas globales de Billboard" },
-    { v: `${daiDaiNumberOnes}`, l: "países con la canción en el número 1 de su lista oficial de sencillos — de Francia y Alemania a Emiratos Árabes Unidos" },
-    { v: "N.º 1", l: `en las dos listas globales de Billboard — ${ordinalWord(weeksGLB, "es")} semana en la cima del Global 200 (algo inédito para un artista africano, y el segundo de Shakira), cima recuperada en la lista del 22 de agosto tras una semana en el N.º 3 y mantenida hasta la lista del 5 de septiembre, cuando la racha se cerró (N.º 3 en la edición del 12 de septiembre), y ${cardinalWord(weeksGLBX, "es")} semanas consecutivas en la cima del Global 200 Excl. US, del 4 de julio al 5 de septiembre (N.º 2 en la edición del 12 de septiembre)` },
-    { v: millonesEs(DAI_DAI_SPOTIFY_STREAMS), l: "reproducciones en Spotify — la octava canción de Burna Boy que supera los 300 millones, más que ningún otro artista africano, tras 37 días como la canción más escuchada del planeta" },
-    { v: `${daiDaiCertCount}`, l: "certificaciones — diamante en Francia, doble platino en Canadá, séxtuple platino (latino) en EE. UU., platino en España, Eslovaquia, Portugal, Hungría, Austria, Grecia y Suecia, oro en Colombia, Chequia, Italia, Polonia, Bélgica y Alemania, y plata en el Reino Unido" },
-    { v: "19 jul", l: "Shakira y Burna Boy interpretaron “Dai Dai” en vivo en el primer show de medio tiempo de una Final del Mundial de la FIFA" },
+  // Las cifras de la canción, como las dibuja el rediseño: seis cifras
+  // principales con su pie, las listas nacionales en una tabla y las rachas,
+  // los rankings y el video en listas. Cada fila conserva su frase fechada.
+  const leads: LeadFigure[] = [
+    { v: `${daiDaiChartEntryCount}`, cap: `Entradas en listas oficiales: ${conquestTotal} nacionales y las dos globales de Billboard` },
+    { v: `${daiDaiNumberOnes}`, cap: "Países en el N.º 1 de su propia lista oficial" },
+    { v: "N.º 1", cap: "En las dos listas globales de Billboard: el Global 200 y el Global 200 Excl. US" },
+    { v: millonesCortoEs(DAI_DAI_SPOTIFY_STREAMS), cap: "Reproducciones en Spotify — la octava canción de Burna Boy que supera los 300 millones, más que ningún otro artista africano", live: true },
+    { v: `${daiDaiCertCount}`, cap: `Certificaciones, en ${certCountries} países — ${topPlaqueWords}` },
+    { v: halftimeShort, cap: "Actuación en el primer show de medio tiempo de una final del Mundial" },
   ];
 
-  const numberGroups: { label: string; intro: string; items: { v: string; l: string }[]}[] = [
+  const national: { c: string; l: string; other?: "MENA" | "BIG_TOP_40" | "RHYTHMIC" }[] = [
+    { c: "DE", l: "en el número 1 de la lista oficial de sencillos de Alemania — y elegida Sommerhit 2026, la canción del verano del país, por GfK Entertainment, tras casi 60 millones de reproducciones alemanas" },
+    { c: "CH", l: "en el número 1 de la lista oficial de Suiza — la racha más larga de cualquier canción en el país en lo que va de año" },
+    { c: "FR", l: "en el número 1 de la lista oficial de sencillos de Francia (SNEP)" },
+    { c: "AT", l: `en el número 1 del Ö3 Austria Top 40 — una racha ininterrumpida desde finales de junio, con ${runAT} semanas en lista` },
+    { c: "BE", l: "en el número 1 del Ultratop 50 de Valonia — nueve seguidas, y número 1 también en Flandes" },
+    { c: "NL", l: `en el número 1 del Single Top 100 neerlandés — dos en junio y cinco más desde finales de julio, en una permanencia de ${runNL} semanas` },
+    { c: "SE", l: `en el número 1 de la Sverigetopplistan sueca, recuperado en la semana 34 tras una semana en el N.º 2 — ${runSE} semanas en lista` },
+    { c: "NO", l: "en el número 1 de la VG-lista Topp 40 de Noruega — cuatro semanas consecutivas, desde la semana 31" },
+    { c: "IN", l: "en la lista IMI International Top 20 Singles de la India — la primera canción de Burna Boy que encabeza una lista en ese país" },
+    // Igual que en la edición inglesa: se retira la afirmación de actualidad,
+    // que no se releía desde el 4 de agosto y no puede fecharse sin publicar
+    // una semana de lista que nadie ha leído. El pico se mantiene.
+    { c: "AE", l: "en el Official MENA Chart Top 20 y en la lista US World Digital Song Sales de Billboard", other: "MENA" },
+    { c: "UK", l: `en la lista oficial de sencillos del Reino Unido — ${cardinalWord(weeksUK, "es")} semanas en ese pico, del 30 de julio al 27 de agosto de 2026, en una estancia de ${runUK} semanas contada hasta la lista del 24 de septiembre (N.º 31). La primera canción de un Mundial de la FIFA que entra en el top 10 británico, muy por encima del N.º 21 que alcanzó “Waka Waka” de la propia Shakira` },
+    { c: "CA", l: "en el Billboard Canadian Hot 100 — un nuevo pico y el primer top 10 de Burna Boy en Canadá, donde su mejor posición había sido el N.º 14. Es también el primer top 10 canadiense de Shakira desde “She Wolf” en 2009" },
+    { c: "US", l: "en el Billboard Hot 100 de Estados Unidos — un salto del 42 al 17 en la lista del 1 de agosto, el pico más alto de una canción mundialista en la historia del Hot 100. Luminate registró 8,6 millones de reproducciones en Estados Unidos (+69 %), 13,9 millones de audiencia radial (+11 %) y 7.000 copias vendidas (+322 %) en la semana de seguimiento del 17 al 23 de julio" },
+    { c: "UK", l: "en el número 1 del Big Top 40 del Reino Unido (las listas del 9 al 30 de agosto de 2026) — la cuenta atrás nacional de las cadenas Capital y Heart, con Burna Boy recibiendo la placa de número 1", other: "BIG_TOP_40" },
+    { c: "US", l: "en el número 1 de la lista Rhythmic Airplay de Billboard (con fecha del 5 y el 12 de septiembre de 2026) — el primer N.º 1 de Shakira en ese formato, veinte años después de que “Hips Don't Lie” llegara al N.º 5 — y N.º 2 en la lista del 19 de septiembre; en esa misma lista del 19 de septiembre figura en el N.º 26 de Pop Airplay, igualando el pico que fijó en la lista del 15 de agosto", other: "RHYTHMIC" },
+  ];
+  const nationalRows = national.map((r) => nationalRow(r, "es"));
+
+  const numberLists: { title: string; rows: RecordRow[]; video?: boolean }[] = [
     {
-      label: "Las rachas en streaming",
-      intro: `Las rachas diarias y semanales, según la última lectura de cada lista — la racha en Spotify hasta la lista del ${DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG_ES}; los días en el número 1, hasta la del ${DAI_DAI_SPOTIFY_NO1_READ_ON_LONG_ES}.`,
-      items: [
-        { v: "37 días", l: `en total en el número 1 de la lista Global Daily Top Songs de Spotify —algo inédito para un artista africano, y la canción con más días en el número 1 de todo 2026, cinco por delante de “End of Beginning” de Djo (32) y seis de “Beauty And A Beat” de Justin Bieber y Nicki Minaj (31)—. Es un total cerrado: el primero en la lista del ${DAI_DAI_SPOTIFY_NO1_FIRST_LONG_ES} y el último en la del ${DAI_DAI_SPOTIFY_NO1_LAST_LONG_ES}, confirmado día a día hasta la lista del ${DAI_DAI_SPOTIFY_NO1_READ_ON_LONG_ES} — con ${DAI_DAI_SPOTIFY_TOP10_DAYS} días dentro del top 10 mundial en total, contados hasta esa misma lista` },
-        { v: "6 semanas", l: "en el número 1 de la lista Global Weekly Top Songs de Spotify — una racha cerrada en la lista del 27 de agosto — en una estancia de 16 semanas contada hasta la lista del 10 de septiembre de 2026, con un pico de 40,28 millones de reproducciones en una sola semana" },
-        { v: "N.º 114", l: `puesto por el que entró en la lista Global Daily Top Songs de Spotify el 15 de mayo de 2026, el mismo día de su lanzamiento — cayó de ella durante ${cardinalWord(DAI_DAI_SPOTIFY_DAYS_OFF, "es")} días, volvió el 22 de mayo y no ha salido desde entonces: ${daiDaiSpotifyStraightDays} seguidos en la lista y ${daiDaiSpotifyDaysOnChart} en total, contados hasta la lista del ${DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG_ES}, que imprime ambas cifras en sus propias columnas (Spotify Charts)` },
-        { v: "58 días", l: "en el número 1 de la lista europea de Apple Music, más 11 días en la cima de la lista mundial de Apple Music" },
-        { v: "40 días", l: "en el número 1 de la lista mundial de canciones de iTunes, y 15 días en la cima de la lista europea de iTunes" },
-        { v: "N.º 1", l: liveOnesLabel },
+      title: "Rachas en streaming",
+      rows: [
+        { v: "37 días", l: `en total en el número 1 de la lista Global Daily Top Songs de Spotify —algo inédito para un artista africano, y la canción con más días en el número 1 de todo 2026, cinco por delante de “End of Beginning” de Djo (32) y seis de “Beauty And A Beat” de Justin Bieber y Nicki Minaj (31)—. Es un total cerrado: el primero en la lista del ${DAI_DAI_SPOTIFY_NO1_FIRST_LONG_ES} y el último en la del ${DAI_DAI_SPOTIFY_NO1_LAST_LONG_ES}, confirmado día a día hasta la lista del ${DAI_DAI_SPOTIFY_NO1_READ_ON_LONG_ES} — con ${DAI_DAI_SPOTIFY_TOP10_DAYS} días dentro del top 10 mundial en total, contados hasta esa misma lista`, k: "Spotify global diaria, N.º 1" },
+        { v: "6 semanas", l: "en el número 1 de la lista Global Weekly Top Songs de Spotify — una racha cerrada en la lista del 27 de agosto — en una estancia de 16 semanas contada hasta la lista del 10 de septiembre de 2026, con un pico de 40,28 millones de reproducciones en una sola semana", k: "Spotify global semanal, N.º 1" },
+        { v: `${daiDaiSpotifyStraightDays}`, l: `entró en la lista Global Daily Top Songs de Spotify el 15 de mayo de 2026, el mismo día de su lanzamiento — cayó de ella durante ${cardinalWord(DAI_DAI_SPOTIFY_DAYS_OFF, "es")} días, volvió el 22 de mayo y no ha salido desde entonces: ${daiDaiSpotifyStraightDays} seguidos en la lista y ${daiDaiSpotifyDaysOnChart} en total, contados hasta la lista del ${DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG_ES}, que imprime ambas cifras en sus propias columnas (Spotify Charts)`, k: `Spotify global diaria — entró en el N.º ${debutAt}, luego días seguidos en la lista`, live: true },
+        { v: "58 días", l: "en el número 1 de la lista europea de Apple Music, más 11 días en la cima de la lista mundial de Apple Music", k: "Apple Music Europa, N.º 1" },
+        { v: "40 días", l: "en el número 1 de la lista mundial de canciones de iTunes, y 15 días en la cima de la lista europea de iTunes", k: "iTunes mundial, N.º 1" },
+        { v: liveOnesValue, l: liveOnesLabel, k: liveOnesKey, live: true },
       ],
     },
     {
-      label: "Las listas nacionales",
-      intro: "País por país, en las listas oficiales de sencillos.",
-      items: [
-        { v: `${weeksDE} semanas`, l: "en el número 1 de la lista oficial de sencillos de Alemania — y elegida Sommerhit 2026, la canción del verano del país, por GfK Entertainment, tras casi 60 millones de reproducciones alemanas" },
-        { v: `${weeksCH} semanas`, l: "en el número 1 de la lista oficial de Suiza — la racha más larga de cualquier canción en el país en lo que va de año" },
-        { v: `${weeksFR} semanas`, l: "en el número 1 de la lista oficial de sencillos de Francia (SNEP)" },
-        { v: `${weeksAT} semanas`, l: `en el número 1 del Ö3 Austria Top 40 — una racha ininterrumpida desde finales de junio, con ${runAT} semanas en lista` },
-        { v: `${weeksBE} semanas`, l: "en el número 1 del Ultratop 50 de Valonia — nueve seguidas, y número 1 también en Flandes" },
-        { v: `${weeksNL} semanas`, l: `en el número 1 del Single Top 100 neerlandés — dos en junio y cinco más desde finales de julio, en una permanencia de ${runNL} semanas` },
-        { v: `${weeksSE} semanas`, l: `en el número 1 de la Sverigetopplistan sueca, recuperado en la semana 34 tras una semana en el N.º 2 — ${runSE} semanas en lista` },
-        { v: `${weeksNO} semanas`, l: "en el número 1 de la VG-lista Topp 40 de Noruega — cuatro semanas consecutivas, desde la semana 31" },
-        { v: "N.º 1", l: "en la lista IMI International Top 20 Singles de la India — la primera canción de Burna Boy que encabeza una lista en ese país" },
-        // Igual que en la edición inglesa: se retira la afirmación de actualidad,
-        // que no se releía desde el 4 de agosto y no puede fecharse sin publicar
-        // una semana de lista que nadie ha leído. El pico se mantiene.
-        { v: "N.º 1", l: "en el Official MENA Chart Top 20 y en la lista US World Digital Song Sales de Billboard" },
-        { v: "N.º 2", l: `en la lista oficial de sencillos del Reino Unido — ${cardinalWord(weeksUK, "es")} semanas en ese pico, del 30 de julio al 27 de agosto de 2026, en una estancia de ${runUK} semanas contada hasta la lista del 24 de septiembre (N.º 31). La primera canción de un Mundial de la FIFA que entra en el top 10 británico, muy por encima del N.º 21 que alcanzó “Waka Waka” de la propia Shakira` },
-        { v: "N.º 3", l: "en el Billboard Canadian Hot 100 — un nuevo pico y el primer top 10 de Burna Boy en Canadá, donde su mejor posición había sido el N.º 14. Es también el primer top 10 canadiense de Shakira desde “She Wolf” en 2009" },
-        { v: "N.º 17", l: "en el Billboard Hot 100 de Estados Unidos — un salto del 42 al 17 en la lista del 1 de agosto, el pico más alto de una canción mundialista en la historia del Hot 100. Luminate registró 8,6 millones de reproducciones en Estados Unidos (+69 %), 13,9 millones de audiencia radial (+11 %) y 7.000 copias vendidas (+322 %) en la semana de seguimiento del 17 al 23 de julio" },
-        { v: "4 semanas", l: "en el número 1 del Big Top 40 del Reino Unido (las listas del 9 al 30 de agosto de 2026) — la cuenta atrás nacional de las cadenas Capital y Heart, con Burna Boy recibiendo la placa de número 1" },
-        { v: "2 semanas", l: "en el número 1 de la lista Rhythmic Airplay de Billboard (con fecha del 5 y el 12 de septiembre de 2026) — el primer N.º 1 de Shakira en ese formato, veinte años después de que “Hips Don't Lie” llegara al N.º 5 — y N.º 2 en la lista del 19 de septiembre; en esa misma lista del 19 de septiembre figura en el N.º 26 de Pop Airplay, igualando el pico que fijó en la lista del 15 de agosto" },
-      ],
-    },
-    {
-      label: "Los rankings mundiales",
-      intro: "Las listas que miden el planeta entero a la vez.",
-      items: [
-        { v: "13 semanas", l: "en el número 1 del United World Chart de Mediatraffic — 230.000 puntos en la semana del 26 de septiembre, y la primera canción de Burna Boy que lo lidera" },
-        { v: "N.º 1", l: "en la lista de canciones de iTunes en 73 países — Estados Unidos, Reino Unido, Canadá, Francia, Italia, Nueva Zelanda, India, España, Portugal, Hungría y decenas más, Bielorrusia la más reciente" },
+      title: "Rankings mundiales",
+      rows: [
+        { v: "13 semanas", l: "en el número 1 del United World Chart de Mediatraffic — 230.000 puntos en la semana del 26 de septiembre, y la primera canción de Burna Boy que lo lidera", k: "United World Chart, N.º 1" },
+        { v: "73", l: "en la lista de canciones de iTunes en 73 países — Estados Unidos, Reino Unido, Canadá, Francia, Italia, Nueva Zelanda, India, España, Portugal, Hungría y decenas más, Bielorrusia la más reciente", k: "iTunes N.º 1, países" },
         // Igual que en la edición inglesa: pico fechado, en pasado, sin el "23".
-        { v: "N.º 13", l: "en el Deezer Worldwide Top 100 — su pico, alcanzado el 26 de julio de 2026, cuando estaba en las listas de 57 países" },
-        { v: "29 días", l: "en el número 1 de la lista Global Music Video de Spotify, según el último recuento en la lista del 23 de agosto — es una playlist diaria sin archivo, así que el recuento se lleva a mano" },
-        { v: "N.º 14", l: "la posición de Burna Boy en el ranking Global Digital Artist (1.739 puntos) durante el recorrido" },
+        { v: "N.º 13", l: "en el Deezer Worldwide Top 100 — su pico, alcanzado el 26 de julio de 2026, cuando estaba en las listas de 57 países", k: "Deezer Worldwide, pico" },
+        { v: "29 días", l: "en el número 1 de la lista Global Music Video de Spotify, según el último recuento en la lista del 23 de agosto — es una playlist diaria sin archivo, así que el recuento se lleva a mano", k: "Spotify Global Music Video, N.º 1" },
+        { v: "N.º 14", l: "la posición de Burna Boy en el ranking Global Digital Artist (1.739 puntos) durante el recorrido", k: "Ranking Global Digital Artist" },
       ],
     },
     {
-      label: "El video",
-      intro: "El video de “Dai Dai”, con carrera propia.",
-      items: [
-        { v: millonesEs(DAI_DAI_VIDEO_VIEWS), l: `visualizaciones en YouTube — mil millones en ${DAI_DAI_1B_DAYS} días, el ${DAI_DAI_1B_RANK_ES} más rápido de la historia de YouTube y el primer video de 2026 en alcanzarlos. Antes: 500 millones en 59,4 días, 600 millones en 67 días (el más rápido de la carrera de ambos artistas hasta esa cifra) y 700 millones en 74,8 días` },
-        { v: `${daiDaiYouTubeDaysAtNo1} días`, l: "seguidos en el número 1 como el video musical más visto del mundo en YouTube, del 9 de junio a la lista del 27 de agosto. Esa racha se cortó —el video quedó en el número 2 en las listas del 5 y el 6 de septiembre— y recuperó la cima: número 1 otra vez en la lista del 7 de septiembre de 2026, en su día 108 en la lista. Ese segundo tramo también terminó —número 2 en la lista del 14 de septiembre, tras una nueva entrada—. Los 80 son un total cerrado, no una racha en curso" },
+      title: "El video",
+      video: true,
+      rows: [
+        { v: millonesEs(DAI_DAI_VIDEO_VIEWS), l: `visualizaciones en YouTube — mil millones en ${DAI_DAI_1B_DAYS} días, el ${DAI_DAI_1B_RANK_ES} más rápido de la historia de YouTube y el primer video de 2026 en alcanzarlos. Antes: 500 millones en 59,4 días, 600 millones en 67 días (el más rápido de la carrera de ambos artistas hasta esa cifra) y 700 millones en 74,8 días`, k: "Visualizaciones en YouTube", live: true },
+        { v: `${daiDaiYouTubeDaysAtNo1} días`, l: "seguidos en el número 1 como el video musical más visto del mundo en YouTube, del 9 de junio a la lista del 27 de agosto. Esa racha se cortó —el video quedó en el número 2 en las listas del 5 y el 6 de septiembre— y recuperó la cima: número 1 otra vez en la lista del 7 de septiembre de 2026, en su día 108 en la lista. Ese segundo tramo también terminó —número 2 en la lista del 14 de septiembre, tras una nueva entrada—. Los 80 son un total cerrado, no una racha en curso", k: "Seguidos en el N.º 1 de la lista mundial de videos de YouTube" },
       ],
     },
   ];
+
+  const numbersLabels: NumbersLabels = {
+    national: "Listas nacionales",
+    cols: { country: "País", chart: "Lista", peak: "Pico", weeksAt1: "Semanas en el N.º 1", weeksOn: "Semanas en lista" },
+    peak: "N.º {n}",
+    notStated: "no consta",
+    none: "ninguna",
+    wkAt1: " sem. en el N.º 1",
+    wkOn: " sem. en lista",
+    weeksPrefix: "semanas: ",
+    live: LIVE_CADENCE_ES,
+    video: { id: DAI_DAI_VIDEO_ID, play: "Reproducir el video de “Dai Dai”", title: "Shakira y Burna Boy — “Dai Dai” (video oficial)" },
+  };
 
   const faqs: { q: string; a: string }[] = [
     {
@@ -304,11 +318,11 @@ export default function DaiDaiPageES() {
   };
 
   const lineup: { name: string; img: string; tag?: string; headliner?: boolean }[] = [
-    { name: "Shakira", img: SHAKIRA_PORTRAIT, tag: "“Dai Dai”", headliner: true },
-    { name: "Burna Boy", img: BURNA_PORTRAIT, tag: "“Dai Dai”", headliner: true },
-    { name: "Madonna", img: "https://i.scdn.co/image/ab6761610000e5ebed2208b41d49ebd24687985b", tag: "“Music”" },
-    { name: "BTS", img: "https://i.scdn.co/image/ab6761610000e5ebf80ec63ea7a0ef0fba60957d", tag: "“Dynamite”" },
-    { name: "Justin Bieber", img: "https://i.scdn.co/image/ab6761610000e5ebaf20f7db5288bce9beede034", tag: "“Everything Hallelujah”" },
+    { name: "Shakira", img: SHAKIRA_PORTRAIT, tag: "Dai Dai", headliner: true },
+    { name: "Burna Boy", img: BURNA_PORTRAIT, tag: "Dai Dai", headliner: true },
+    { name: "Madonna", img: "https://i.scdn.co/image/ab6761610000e5ebed2208b41d49ebd24687985b", tag: "Music" },
+    { name: "BTS", img: "https://i.scdn.co/image/ab6761610000e5ebf80ec63ea7a0ef0fba60957d", tag: "Dynamite" },
+    { name: "Justin Bieber", img: "https://i.scdn.co/image/ab6761610000e5ebaf20f7db5288bce9beede034", tag: "Everything Hallelujah" },
     { name: "Coldplay", img: "https://i.scdn.co/image/ab6761610000e5eb1ba8fc5f5c73e7e9313cc6eb", tag: "con el PS22 Chorus" },
   ];
 
@@ -399,69 +413,44 @@ export default function DaiDaiPageES() {
         }}
       />
 
-      <div className={styles.wrap}>
-        <section className={styles.section} aria-labelledby="dd-lineup">
-          <div className={styles.kicker}>19 de julio de 2026 · MetLife Stadium</div>
-          <h2 id="dd-lineup" className={styles.h2}>
-            El cartel del <span className={styles.gold}>show de medio tiempo</span>
-          </h2>
-          <p className={styles.sectionIntro}>
-            El primer show de medio tiempo de una Final del Mundial de la FIFA, producido por
-            Global Citizen. Shakira y Burna Boy interpretaron “Dai Dai” en un cartel de
-            superestrellas globales.
-          </p>
-          <ul className={styles.lineupGrid}>
-            {lineup.map((a) => (
-              <li key={a.name} className={`${styles.lineupCard} ${a.headliner ? styles.lineupHeadliner : ""}`}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img className={styles.lineupPhoto} src={spotifyImage(a.img, 320)} srcSet={spotifySrcSet(a.img)} sizes="128px" alt={a.name} width={128} height={128} loading="lazy" />
-                <span className={styles.lineupName}>{a.name}</span>
-                {a.tag ? <span className={styles.lineupTag}>{a.tag}</span> : null}
-              </li>
-            ))}
-          </ul>
-          <p className={styles.lineupNote}>
-            También en el cartel: los Triplets Ghetto Kids de Uganda en el escenario, el
-            director Gustavo Dudamel y el PS22 Chorus.
-          </p>
-        </section>
+      <RecordBand
+        title="El historial"
+        lead="Las cifras de la propia canción, no los totales de la carrera de Burna Boy."
+        more="Cada una nombra su lista."
+      />
 
-        <section className={styles.section} aria-labelledby="dd-conquest">
-          <div className={styles.kicker}>País por país</div>
-          <h2 id="dd-conquest" className={styles.h2}>
-            La <span className={styles.gold}>conquista mundial</span>
-          </h2>
-          <p className={styles.sectionIntro}>{conquestIntro}</p>
+      <div className={styles.wrap}>
+        <Lineup
+          id="dd-lineup"
+          title="El cartel del show de medio tiempo"
+          meta={`${halftimeLong} · MetLife Stadium · producción de Global Citizen`}
+          note="También en el cartel: los Triplets Ghetto Kids de Uganda en el escenario, el director Gustavo Dudamel y el PS22 Chorus."
+          lineup={lineup}
+        />
+
+        <section className={`${styles.section} ${styles.sectionTakeover}`} aria-labelledby="dd-conquest">
+          <SectionHead id="dd-conquest" title="La conquista mundial" aside={conquestIntro} stackOnPhone />
           <DaiDaiConquest
             countries={conquestCountries}
             labels={{
-              countries: "países",
-              atNo1: "en el n.º 1",
               aria: "“Dai Dai” entró en las listas de {total} países y llegó al número 1 en {ones} de ellos.",
-              peak: "{name} — pico n.º {peak}",
-              legendOne: "N.º 1",
-              legendCharted: "En lista",
-              showAll: "Ver todos +",
-              hide: "Ocultar −",
+              cell: "{name}, pico N.º {peak}",
+              showAll: "Ver los {total}, con nombres",
+              showFewer: "Ver menos",
             }}
           />
         </section>
 
-        <section id="numbers" className={styles.section} aria-labelledby="dd-numbers">
-          <div className={styles.kicker}>El récord de la canción</div>
-          <h2 id="dd-numbers" className={styles.h2}>
-            Dai Dai <span className={styles.gold}>en cifras</span>
-          </h2>
-          <p className={styles.numIntro}>
-            Estas son las cifras de “Dai Dai”, no los totales de la carrera de Burna Boy.
-            Todas pertenecen a la canción.
-          </p>
-          <DaiDaiNumbers
-            hero={heroNumbers}
-            groups={numberGroups}
-            foldMore="Ver el desglose completo ({n} más) +"
-            foldLess="Ver menos −"
+        <section id="numbers" className={`${styles.section} ${styles.sectionNumbers}`} aria-labelledby="dd-numbers">
+          <SectionHead
+            id="dd-numbers"
+            title="Dai Dai en cifras"
+            aside="Las cifras de la propia canción, no los totales de la carrera de Burna Boy."
+            hideAsideOnPhone
           />
+          <Leads leads={leads} live={numbersLabels.live} />
+          <NationalTable rows={nationalRows} t={numbersLabels} id="dd-national" />
+          <RuledLists lists={numberLists} t={numbersLabels} idPrefix="dd-list" />
         </section>
 
         {/* Deliberately NOT .desktopOnly — see the note on the English page,
@@ -473,7 +462,7 @@ export default function DaiDaiPageES() {
             It matters at least as much here: half this song's audience searches
             in Spanish, which is the reason this edition exists at all, and a
             Spanish-language search for "¿quiénes son los Ghetto Kids?" arrives
-            on a phone. Flat list on a laptop, every answer open.
+            on a phone. A heading column and every answer open on a laptop.
             The Keep-exploring rail at the foot of this file stays .desktopOnly,
             exactly as on the English edition.
             The phone fold is FaqList, exactly as on the English edition —
@@ -481,11 +470,12 @@ export default function DaiDaiPageES() {
             reader whose JavaScript never arrives still gets all eight answers.
             The control needs no translating: its accessible name is the
             question itself and its affordance is a +/−. */}
-        <section className={styles.section} aria-labelledby="dd-faq">
-          <div className={styles.kicker}>Respuestas claras</div>
-          <h2 id="dd-faq" className={styles.h2}>
-            Preguntas <span className={styles.gold}>frecuentes</span>
-          </h2>
+        <section className={styles.faq} aria-labelledby="dd-faq">
+          <div className={styles.faqHead}>
+            <h2 id="dd-faq" className={styles.h2}>
+              Preguntas frecuentes
+            </h2>
+          </div>
           <FaqList
             items={faqs}
             classes={{
@@ -497,24 +487,14 @@ export default function DaiDaiPageES() {
           />
         </section>
 
-        <section className={styles.outro}>
-          <p className={styles.outroLead}>
-            Una canción, un récord mundial y un artista africano en el número 1 de las listas
-            más grandes del planeta. Explora los datos detrás del recorrido:
-          </p>
+        {/* The English edition's outro, in Spanish. The way back to English is
+            the hero's EN/ES switch, so the outro carries the same three links. */}
+        <section className={styles.outro} aria-label="Más sobre el recorrido">
+          <p className={styles.outroLead}>Cada cifra de esta página nombra la lista o el organismo que la publicó.</p>
           <div className={styles.outroLinks}>
-            <Link href="/records/charts?song=Dai%20Dai" className="btn btnPrimary">
-              Todas las posiciones ↗
-            </Link>
-            <Link href="/records/africas-biggest" className="btn btnSecondary">
-              Lo más grande de África ↗
-            </Link>
-            <Link href="/music" className="btn btnSecondary">
-              Discografía de Burna Boy ↗
-            </Link>
-            <Link href={EN_PATH} className="btn btnSecondary" hrefLang="en">
-              Read in English ↗
-            </Link>
+            <Link href="/records/charts?song=Dai%20Dai" className={styles.outroLink}>Todas las posiciones <span aria-hidden="true">↗</span></Link>
+            <Link href="/records/africas-biggest" className={styles.outroLink}>Lo más grande de África <span aria-hidden="true">↗</span></Link>
+            <Link href="/music" className={styles.outroLink}>Discografía de Burna Boy <span aria-hidden="true">↗</span></Link>
           </div>
         </section>
       </div>

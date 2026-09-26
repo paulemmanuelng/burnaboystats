@@ -31,6 +31,12 @@ const DERIVED: Home[] = [
   { file: "app/components/MobileHome.tsx", label: "mobile home", re: /\{DAI_DAI_SPOTIFY_NO1_DAYS\} days as the most-streamed song on Earth/ },
 ];
 
+// The two hero-card homes ("…after 37 days as the most-streamed song on Earth"
+// and "…tras 37 días como…") went with the record's redesign the same day: the
+// Spotify-streams card became a lead figure captioned with its chart, and the
+// figure is said once on that page — chapter 04 and the streak row below,
+// both still listed here.
+//
 // The story's two typed rail notes ("Daily & Weekly · 37 days as Earth's
 // most-streamed song" and its Spanish twin) went with the redesign of 26 Sep
 // 2026: chapter 04's figure is now the six-spell strip, and it prints the
@@ -46,7 +52,6 @@ const HOMES: Home[] = [
   { file: "app/components/DaiDaiStory.tsx", label: "story rail body", re: /(\d+) days as the single most-streamed/ },
   { file: "app/data/faqs.ts", label: "FAQ answer", re: /spent (\d+) days at No\. 1/ },
   { file: "app/dai-dai/page.tsx", label: "EN page description", re: /anthem: (\d+) days as Earth/ },
-  { file: "app/dai-dai/page.tsx", label: "EN hero card", re: /after (\d+) days as the most-streamed/ },
   { file: "app/dai-dai/page.tsx", label: "EN streak card", re: /\{ v: "(\d+) days", l: ["`]in total at No\. 1 on Spotify/ },
   // The figure's home is now app/data/daiDai.ts, beside its three siblings and
   // with a reading date of its own. ogId re-exports it for the share card's
@@ -58,7 +63,6 @@ const HOMES: Home[] = [
   { file: "app/dai-dai/es/ogId.ts", label: "ES share card", re: /— (\d+) días como/ },
   { file: "app/dai-dai/es/page.tsx", label: "ES page description", re: /Burna Boy: (\d+) días como/ },
   { file: "app/dai-dai/es/page.tsx", label: "ES story body", re: /la semanal: (\d+) días como/ },
-  { file: "app/dai-dai/es/page.tsx", label: "ES hero card", re: /tras (\d+) días como/ },
   { file: "app/dai-dai/es/page.tsx", label: "ES streak card", re: /\{ v: "(\d+) días", l: ["`]en total en el número 1/ },
   // The sixteenth home, and the one that was missing: Africa's Biggest carries
   // the same figure in a board note, in a file this list did not cover at all.

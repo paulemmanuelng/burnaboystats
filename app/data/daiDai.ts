@@ -423,3 +423,33 @@ export const DAI_DAI_GLOBAL_200_RUN: readonly { issue: string; pos: number | nul
 /** The single's cover on Spotify's CDN (640px rung; spotifyImage/spotifySrcSet
  *  derive the others). The hero shows it on desktop, chapter 01 everywhere. */
 export const DAI_DAI_COVER = "https://i.scdn.co/image/ab67616d0000b27303cadf1b3fe324c1dc710ed4";
+
+/** The official "Dai Dai" video — the one DAI_DAI_VIDEO_VIEWS counts
+ *  (scripts/watched-metrics.json, dai-dai-video-views). The record's "The
+ *  video" list shows its poster and loads the player only on a tap. */
+export const DAI_DAI_VIDEO_ID = "fcnDmrtj6Sk";
+
+/**
+ * The three rows of the record's national-charts table that charts.ts does not
+ * hold, because by its own rules it cannot: a regional chart (the Official
+ * MENA Chart covers 13 markets and is no country's chart), a radio countdown
+ * (the UK's Big Top 40, on the Capital and Heart networks) and an airplay chart
+ * (Billboard's Rhythmic Airplay). Each figure is transcribed from what the page
+ * already published and the updates feed dated:
+ *
+ * - MENA: No. 1 ("tops the Official MENA Chart's Top 20", feed). The page has
+ *   never stated a week count, so none is given here.
+ * - Big Top 40: No. 1 for 4 weeks, the charts of 9 to 30 August 2026 (the
+ *   page's card; "a 2nd atop the UK's Big Top 40" and "tops the UK's Big Top
+ *   40", feed). No weeks-on-chart figure was ever read.
+ * - Rhythmic Airplay: No. 1 for 2 weeks, the charts dated 5 and 12 September
+ *   2026 (the page's card; "goes to No. 1 on Billboard's Rhythmic Airplay chart
+ *   dated 5 September 2026", feed). No weeks-on-chart figure was ever read.
+ *
+ * `null` is "not stated": the table prints those words, never a guess.
+ */
+export const DAI_DAI_OTHER_CHARTS = {
+  MENA: { chart: "Official MENA Chart Top 20", peak: 1, weeksAtNo1: null, weeksOnChart: null },
+  BIG_TOP_40: { chart: "Big Top 40", peak: 1, weeksAtNo1: 4, weeksOnChart: null },
+  RHYTHMIC: { chart: "Billboard Rhythmic Airplay", peak: 1, weeksAtNo1: 2, weeksOnChart: null },
+} as const satisfies Record<string, { chart: string; peak: number; weeksAtNo1: number | null; weeksOnChart: number | null }>;

@@ -1,9 +1,11 @@
 import { describe, it, expect } from "vitest";
-import { cardinalWord, ordinalWord, millonesEs } from "../app/lib/plural";
+import { cardinalWord, ordinalWord, millonesEs, millonesCortoEs } from "../app/lib/plural";
 import { cadenceOf, LIVE_CADENCE_ES } from "../app/lib/liveChartMeta";
 import { weeksAtPeak, weeksOnChart, daiDaiChartEntryCount, daiDaiNumberOnes } from "../app/data/charts";
 import { daiDaiCertCount } from "../app/data/certifications";
-import { daiDaiSpotifyDaysOnChart, daiDaiSpotifyStraightDays, daiDaiYouTubeDaysAtNo1, DAI_DAI_1B_DAYS, DAI_DAI_1B_RANK_EN, DAI_DAI_1B_RANK_ES, DAI_DAI_SPOTIFY_CONFIRMED_THROUGH, DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG, DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_NO1_READ_ON_LONG, DAI_DAI_SPOTIFY_NO1_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_NO1_FIRST_LONG, DAI_DAI_SPOTIFY_NO1_FIRST_LONG_ES, DAI_DAI_SPOTIFY_NO1_LAST_LONG, DAI_DAI_SPOTIFY_NO1_LAST_LONG_ES, DAI_DAI_SPOTIFY_TOP10_DAYS, DAI_DAI_SPOTIFY_DAYS_OFF } from "../app/data/daiDai";
+import { plaqueGroups } from "../app/components/DaiDaiFigures";
+import { plaqueCountries, daiDaiCountries } from "../app/components/DaiDaiRecord";
+import { DAI_DAI_SPOTIFY_BODY_READ, daiDaiSpotifyDaysOnChart, daiDaiSpotifyStraightDays, daiDaiYouTubeDaysAtNo1, DAI_DAI_1B_DAYS, DAI_DAI_1B_RANK_EN, DAI_DAI_1B_RANK_ES, DAI_DAI_SPOTIFY_CONFIRMED_THROUGH, DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG, DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_NO1_READ_ON_LONG, DAI_DAI_SPOTIFY_NO1_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_NO1_FIRST_LONG, DAI_DAI_SPOTIFY_NO1_FIRST_LONG_ES, DAI_DAI_SPOTIFY_NO1_LAST_LONG, DAI_DAI_SPOTIFY_NO1_LAST_LONG_ES, DAI_DAI_SPOTIFY_TOP10_DAYS, DAI_DAI_SPOTIFY_DAYS_OFF } from "../app/data/daiDai";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 
@@ -26,24 +28,44 @@ const lineupOf = (src: string) => {
   };
 };
 
-// { v: <value>, l: "<description>" } — the shape every number card uses.
-// `v` may not span lines, so the `{ v: string; l: string }[]` type annotation
-// above the array can't bridge into the first real entry.
+// The shapes the record's figures are written in, one object per line:
+//   a lead figure       { v: <value>, cap: "<caption>" }            (+ live)
+//   a ruled-list row    { v: <value>, l: "<sentence>", k: "<label>" } (+ live)
+//   a national chart    { c: "<code>", l: "<sentence>" }            (+ other)
+// The redesign of 26 Sep 2026 turned the old { v, l } cards into these — the
+// national charts became a table whose peaks and weeks are read from charts.ts,
+// so their rows carry a country code where the card carried a typed value.
+// All three are compared the same way: the value's digits, then every figure
+// in the words (the sentence and the label together).
+//
 // `v` may be a plain string OR a template literal — longevity figures are read
-// from the chart data now rather than typed, so a card can read
-// `${weeksDE} weeks`. The old pattern excluded braces and silently dropped
-// those three cards, which shifted every later index and made card 0 compare
-// against card 3's value.
+// from the chart data rather than typed, so a value can read
+// `${daiDaiSpotifyStraightDays}`. The old pattern excluded braces and silently
+// dropped those cards, which shifted every later index and made card 0 compare
+// against card 3's value. A row's words may be a template literal too, or an
+// identifier (the live No. 1 row reads its sentence and label from the board);
+// an identifier is compared as having no figures of its own, in both editions.
+// Built from plain strings: a template literal cannot hold the backticks
+// the pattern has to match.
+const BT = "`";
+const STR = '(?:"(?:[^"\\\\]|\\\\.)*"|' + BT + "(?:[^" + BT + "\\\\]|\\\\.)*" + BT + "|[A-Za-z_]\\w*)";
+const VAL = "(?:" + BT + "(?:[^" + BT + "\\\\]|\\\\.)*" + BT + "|[^,{}\\n]+?)";
+const CARD = new RegExp(
+  "\\{\\s*(?:v|c):\\s*(" + VAL + "),\\s*(?:l|cap):\\s*(" + STR + ")((?:,\\s*\\w+:\\s*(?:" + STR + "))*)\\s*\\}",
+  "g",
+);
+const words = (lit: string) => (/^["`]/.test(lit) ? resolve(lit.slice(1, -1)) : "");
 const cardsOf = (src: string) =>
-  [...src.matchAll(/\{\s*v:\s*(`(?:[^`\\]|\\.)*`|[^,{}\n]+?),\s*l:\s*(?:"((?:[^"\\]|\\.)*)"|`((?:[^`\\]|\\.)*)`)\s*\}/g)].map((m) => ({
-    v: resolve(m[1].trim()),
-    // `l` may be a template literal too, now that the Billboard card reads its
-    // week counts from the data. Matching only double-quoted descriptions made
-    // that card vanish from the English side and silently misaligned every
-    // comparison after it — which is worse than failing, because the pairs it
-    // then compared were real cards that simply were not each other's twin.
-    l: resolve((m[2] ?? m[3] ?? "").trim()),
-  }));
+  [...src.matchAll(CARD)].map((m) => {
+    const k = /\bk:\s*("(?:[^"\\]|\\.)*"|`(?:[^`\\]|\\.)*`)/.exec(m[3] ?? "")?.[1];
+    return {
+      v: resolve(m[1].trim()),
+      // The sentence, and the row's label after it: "entered at No. 114" moved
+      // into the label when the streak row took the 122 as its value, and a
+      // figure that moves must still be compared.
+      l: [words(m[2].trim()), k ? words(k) : ""].join(" ").trim(),
+    };
+  });
 
 // Both editions read these from app/data/charts.ts, so they cannot disagree by
 // construction — but the comparison still has to see a number, not the name of
@@ -73,6 +95,18 @@ const DERIVED: Record<string, number | string | null> = {
   daiDaiChartEntryCount,
   daiDaiNumberOnes,
   daiDaiCertCount,
+  // The record's lead captions (26 Sep 2026): the national charts behind the
+  // entry count, the countries the plaques come from, and the top plaque in
+  // words — whose only possible figure is a multiple ("6× Platinum").
+  conquestTotal: daiDaiCountries.length,
+  certCountries: plaqueCountries(),
+  topPlaqueWords: (() => {
+    const top = plaqueGroups()[0];
+    return top && top.x > 1 ? `${top.x}×` : "";
+  })(),
+  // The streak row's label: where it entered Spotify's chart, as the chart's
+  // own row prints it.
+  debutAt: DAI_DAI_SPOTIFY_BODY_READ.debutPosition,
   daiDaiSpotifyDaysOnChart,
   daiDaiSpotifyStraightDays,
   daiDaiYouTubeDaysAtNo1,
@@ -222,7 +256,11 @@ describe("Dai Dai certification prose stays consistent across all copies", () =>
   const goldLists = [...en.matchAll(/Gold in ([^.]*?), and Silver/g)].map((m) => m[1]);
 
   it("finds a Gold list in every English copy", () => {
-    expect(goldLists.length).toBeGreaterThanOrEqual(3);
+    // Two since 26 Sep 2026: the FAQ answer and the story's chapter 05. The
+    // third, the certifications card's label, became a lead figure whose
+    // caption reads its top plaque from the data ("Certifications, in 17
+    // countries — Diamond in France") rather than typing the list again.
+    expect(goldLists.length).toBeGreaterThanOrEqual(2);
   });
 
   it("never lists Hungary among the Golds — it is Platinum", () => {
@@ -307,7 +345,14 @@ describe("Dai Dai has one release date", () => {
 describe("the Spanish edition writes its figures in Spanish", () => {
   it("prints the bot's compact figures as millones, and never 'y en historia'", () => {
     expect(ES).toContain("millonesEs(DAI_DAI_VIDEO_VIEWS)");
-    expect(ES).toContain("millonesEs(DAI_DAI_SPOTIFY_STREAMS)");
+    // The streams are a lead figure now, a 52px value in a sixth of the page
+    // (118px on a phone) where "473 MILLONES" would run out of its cell: the
+    // compact Spanish form, as the design's Spanish lead prints it.
+    expect(ES).toContain("millonesCortoEs(DAI_DAI_SPOTIFY_STREAMS)");
+    expect(ES).not.toMatch(/v: DAI_DAI_SPOTIFY_STREAMS\b/);
+    expect(millonesCortoEs("473M")).toBe("473 M");
+    expect(millonesCortoEs("1.14B")).toBe("1140 M");
+    expect(millonesCortoEs("n/a")).toBe("n/a");
     expect(millonesEs("1.13B")).toBe("1130 millones");
     expect(millonesEs("468M")).toBe("468 millones");
     expect(millonesEs("40.28M")).toBe("40,28 millones");
