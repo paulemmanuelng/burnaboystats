@@ -51,30 +51,6 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-09-25",
-    category: "Certifications",
-    // BPI register, read on the owner's screen 25 Sep 2026: "RUGER | ASIWAJU |
-    // Single | PROMISED LAND | Silver | Latest Certification 08.11.2024".
-    text: "Ruger’s “Asiwaju” is Silver in the UK: the BPI certified it on 8 November 2024. It is his first British plaque and a third country for the song after Nigeria and France, taking him to 19 plaques on the Afrobeats Board.",
-    href: "/afrobeats/ruger",
-  },
-  {
-    date: "2026-09-25",
-    category: "Certifications",
-    // BPI register, read on the owner's screen 25 Sep 2026: "OXLADE | KU LO SA |
-    // Single | COLUMBIA | Platinum | Latest Certification 06.02.2026".
-    text: "Oxlade’s “Ku Lo Sa” is Platinum in the UK: the BPI certified the single on 6 February 2026. It is his first British plaque and the song’s eleventh country, taking him to 14 plaques on the Afrobeats Board.",
-    href: "/afrobeats/oxlade",
-  },
-  {
-    date: "2026-09-25",
-    category: "Certifications",
-    // musiccanada.com/gold-platinum/?_gp_search=secondhand, read 25 Sep 2026:
-    // "September 25, 2026 | Platinum Single | Don Toliver | Secondhand (feat. Rema)".
-    text: "Canada certifies “Secondhand” Platinum: Music Canada’s row of 25 September moves Don Toliver’s single with Rema up from the Gold it reached on 14 July, and this time the title names Rema. His total stays at 85 plaques.",
-    href: "/afrobeats/rema",
-  },
-  {
-    date: "2026-09-25",
     category: "Tours",
     big: true,
     // applemusichall.com/tickets/burna-boy-29th-oct and the venue's eight-show
@@ -353,48 +329,6 @@ export const updates: Update[] = [
   },
   {
     date: "2026-09-17",
-    category: "Charts",
-    text: "Wizkid's Nigerian record, read from TurnTable's own archive — 306 weekly issues since 2020: 83 chart entries the board never had, including a tenth Nigerian No. 1 (the S2 EP, 28 December 2023). 237 chart entries across 32 territories, 25 of them No. 1s.",
-    href: "/afrobeats/wizkid/charts",
-  },
-  {
-    date: "2026-09-17",
-    category: "Charts",
-    text: "Davido's Nigerian record, from the same archive: 53 chart entries the board never had — “Somebody Baby” and “High” at No. 2, “Jowo” No. 3 — and three peaks corrected (“Magician” 28, “Yebo Lapho” 21, “Wallah Wallah” 82). 146 chart entries; South Africa's two plaques read as 3× Platinum.",
-    href: "/afrobeats/davido/charts",
-  },
-  {
-    date: "2026-09-17",
-    category: "Charts",
-    text: "Tyla: nine chart entries the board never had — five Nigerian singles led by “Show Me Love” at 59 and the WWP EP at 18 on the albums chart, and three South African Top 20 placings read at TOSAC's own chart (“Is It Love” 17, “Double Blind” 19, “Mr. Nonchalant” 20). 184 chart entries.",
-    href: "/afrobeats/tyla/charts",
-  },
-  {
-    date: "2026-09-17",
-    category: "Charts",
-    text: "Ayra Starr's Nigerian record, read from TurnTable's own archive — all 306 issues since 2020: 28 peaks the board never had, led by “Ngozi” with Crayon at No. 2 and “People” at No. 6; “My Love” corrected 64→51; a text-mined “Fashion Killa” row that no issue carries removed. 110 chart entries.",
-    href: "/afrobeats/ayra-starr/charts",
-  },
-  {
-    date: "2026-09-17",
-    category: "Charts",
-    text: "Seven board peaks moved on TurnTable's own week-37 payload: Seyi Vibez's “BACK 2 U” No. 8, Ayra Starr's Starrgirl No. 2 on the albums chart, Victony & FOLA's “TWIN” 64→18, Victony & BNXN's “WHO THIS” 42→24, Tyla's “That Girl” 48→41, CKay's “SHEGE” 50 and Omah Lay's “As We Get High” 35.",
-    href: "/afrobeats",
-  },
-  {
-    date: "2026-09-17",
-    category: "Charts",
-    text: "Two countries CKay's board was missing, read at the bodies: “love nwantiti (ah ah ah)” peaked at No. 5 on the Official Irish Singles Chart (October 2021) and No. 6 on Hungary's MAHASZ Single Top 40, where “Emiliana” reached No. 26 — 37 entries across 22 territories.",
-    href: "/afrobeats/ckay/charts",
-  },
-  {
-    date: "2026-09-17",
-    category: "Charts",
-    text: "A correction on Olamide's board: “Pon Pon” and “PonPon” were one three-week run on TurnTable's chart in June–July 2021 (the title lost its space in week two), not two entries. 104 chart entries, 98 distinct Nigerian charting singles.",
-    href: "/afrobeats/olamide/charts",
-  },
-  {
-    date: "2026-09-17",
     category: "Streaming",
     big: true,
     text: "Burna Boy is the most-streamed African artist of 2026 so far: 1,810,927,983 Spotify streams through 16 September by the tracker's count, past Wizkid (1,808,204,727) and Tems (1,807,644,361) for the first time this year — 2.7 million clear, with 106 days of the year to run.",
@@ -555,12 +489,6 @@ export const updates: Update[] = [
     href: "/compare/burna-boy-vs-wizkid",
   },
   {
-    date: "2026-09-12",
-    category: "Certifications",
-    text: "A new page: certified units, compared. Pick any two of the sixteen artists on this site, or any two of their certified records, and every plaque is priced at the level its own certifying body publishes today, then added up country by country under identical rules.",
-    href: "/compare",
-  },
-  {
     date: "2026-09-11",
     category: "Streaming",
     text: "The “Dai Dai” video reached a billion YouTube views in 105 days: joint fifth-fastest music video in YouTube history, level with “APT.” by ROSÉ & Bruno Mars and behind only “Hello” (88 days), “Shape of You” and “Despacito” (97) and “Mi Gente” (103).",
@@ -616,12 +544,6 @@ export const updates: Update[] = [
   },
   {
     date: "2026-09-08",
-    category: "Charts",
-    text: "Two Nigerian album peaks for Black Sherif from TurnTable's Official Top 100 Albums, read from the archive: IRON BOY at No. 3 and The Villain I Never Was at No. 6 — his first album rows on the board.",
-    href: "/afrobeats/black-sherif/charts",
-  },
-  {
-    date: "2026-09-08",
     category: "Lifestyle",
     text: `A correction to the garage total, now ${totalValueFormatted} across ${carCount} cars: the Bugatti Chiron's ₦9 billion is re-converted at CBN's ₦1,370.19 to the dollar, the last trading day before the 4 July reveal — not the ₦1,454 it had been. Nothing about the car changed; only the arithmetic did.`,
     href: "/records/cars",
@@ -673,12 +595,6 @@ export const updates: Update[] = [
     category: "Charts",
     text: "A 10th week atop Mediatraffic's United World Chart: “Dai Dai” leads the global ranking again in the chart week dated 5 September, on 283,000 points. It remains the first Burna Boy record ever to top it.",
     href: "/dai-dai",
-  },
-  {
-    date: "2026-09-02",
-    category: "Certifications",
-    text: "France certifies “Soweto”: SNEP lists Victony & Tempoe’s 2023 single at Or, date de constat 27 August. It is the fifth country outside Nigeria to certify Victony, and every one of the five did it for the same record.",
-    href: "/afrobeats/victony",
   },
   {
     date: "2026-08-31",
@@ -811,18 +727,6 @@ export const updates: Update[] = [
     category: "Streaming",
     text: "No. 1 on iTunes in 73 countries, and forty days atop the worldwide list: “Dai Dai” has led the iTunes songs chart in 73 territories, Belarus the newest, and by 21 August had reached a 40th on the worldwide iTunes songs chart, with a 15th day at the top of the European one.",
     href: "/dai-dai",
-  },
-  {
-    date: "2026-08-21",
-    category: "Certifications",
-    text: "Two artists join the Afrobeats Board: Victony (22 certifications across 4 countries, 40 chart entries) and Fireboy DML (36 across 6, 67 entries, including a French Diamond and a UK 3× Platinum for “Peru”). The board is now 11 artists and 801 plaques.",
-    href: "/afrobeats",
-  },
-  {
-    date: "2026-08-21",
-    category: "Certifications",
-    text: "Asake picks up a fourth country: Recorded Music NZ certified “Bandana”, his 7× Platinum record with Fireboy DML, Gold in New Zealand on 20 August. It takes him to 80 plaques, and the Afrobeats Board to 743.",
-    href: "/afrobeats/asake",
   },
   {
     date: "2026-08-21",
