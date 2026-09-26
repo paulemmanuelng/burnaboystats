@@ -277,8 +277,13 @@ export const DAI_DAI_SPOTIFY_NO1_READ_ON_LONG_ES = longDate(DAI_DAI_SPOTIFY_NO1_
 // no chart day is missing from the middle. Rows were matched on video id
 // fcnDmrtj6Sk, not on title: from 8 Aug a second row, "Dai dai (Live)" by
 // Shakira & Beéle (mapfegnAXOg), sits on the same chart.
-export const DAI_DAI_YT_NO1_SINCE = "2026-06-09"; // first day of the run
+export const DAI_DAI_YT_NO1_SINCE = "2026-06-09"; // first day of the 80-day run
 export const DAI_DAI_YT_CONFIRMED_THROUGH = "2026-08-27"; // last chart read AT No. 1
+// NOT the first day at No. 1. The same walk has it at No. 1 on its debut chart,
+// 23 May: 93 of its 97 days at No. 1, and the only misses were 28 and 29 May,
+// 2 June and 8 June (docs/sourcing/RETRACTIONS.md). 9 June is the day after
+// the last miss. Anything that says it "went to No. 1" dates from this one.
+export const DAI_DAI_YT_FIRST_NO1 = "2026-05-23";
 
 /**
  * THE RUN HAS ENDED. Read at the body on 8 Sep 2026: YouTube's Global Daily Top
