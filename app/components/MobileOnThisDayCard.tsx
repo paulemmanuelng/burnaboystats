@@ -29,6 +29,11 @@ const NBSP = "\u00a0";
  * thumbnail with an outlined "Save or share ↓"; then two full-width 44px link
  * rows. No gold action — the screen's one is elsewhere.
  *
+ * The title, the thumbnail and "The <day> card, ready to post" open the day's
+ * page (Paul, 26 Sep 2026: "it should take me to the page, not the
+ * picture"); "Save or share ↓" is the way to the image itself. Every link is
+ * its own <a>: none sits inside another.
+ *
  * Last on the screen, under "History made". Same pick as the desktop band,
  * made once in app/page.tsx from the London date.
  */
@@ -37,14 +42,18 @@ export default function MobileOnThisDayCard({ pick }: { pick: OnThisDayPick | nu
   const { day } = pick;
   const [lead, ...rest] = homeRows(pick);
   const card = cardPath(day.slug);
+  const dayHref = `/on-this-day/${day.slug}`;
 
   return (
     <section className={styles.homeCard} aria-labelledby="otd-title-m">
       <p className={styles.homeKicker}>
         On this day ·{NBSP}<span className={styles.homeWhen}>{keepSeparators(homeWhen(pick))}</span>
       </p>
+      {/* The title is a link to the day's page, in ink. */}
       <h2 id="otd-title-m" className={styles.homeTitle}>
-        {lead.headline}
+        <Link href={dayHref} className={styles.homeTitleLink}>
+          {lead.headline}
+        </Link>
       </h2>
       {/* Each " · " travels with the item after it (a no-break space), so a
           wrap never leaves it hanging: at 390 the age used to drop under
@@ -82,19 +91,25 @@ export default function MobileOnThisDayCard({ pick }: { pick: OnThisDayPick | nu
       )}
 
       <div className={styles.homeCardBox}>
-        <a href={card} className={styles.homeThumb}>
+        {/* The thumbnail opens the day's page, not the PNG; the link carries
+            the name, so the image inside it is silent. */}
+        <Link href={dayHref} className={styles.homeThumb} aria-label={`Open ${day.label}`}>
           {/* eslint-disable-next-line @next/next/no-img-element -- a route-drawn WebP, sized by the route */}
           <img
             src={cardPreviewSrc(day.slug, 320)}
-            alt={`The ${day.label} card: ${day.lead.year}, ${day.lead.headline}`}
+            alt=""
             width={96}
             height={120}
             loading="lazy"
             decoding="async"
           />
-        </a>
+        </Link>
         <div className={styles.homeCardCopy}>
-          <p className={styles.homeCardName}>The {day.label} card, ready to post</p>
+          <p className={styles.homeCardName}>
+            <Link href={dayHref} className={styles.homeCardNameLink}>
+              The {day.label} card, ready to post
+            </Link>
+          </p>
           <OnThisDaySaveCard
             src={card}
             filename={cardFilename(day.slug)}
@@ -108,7 +123,7 @@ export default function MobileOnThisDayCard({ pick }: { pick: OnThisDayPick | nu
       </div>
 
       <div className={styles.homeLinks}>
-        <Link href={`/on-this-day/${day.slug}`} className={styles.homeLinkRow}>
+        <Link href={dayHref} className={styles.homeLinkRow}>
           <span>{homeDayLink(pick)}</span>
           <span aria-hidden="true">↗</span>
         </Link>

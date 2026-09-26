@@ -41,6 +41,15 @@
   text-transform: uppercase;
   text-wrap: balance;
 }
+/* The title opens the day's page. It stays in ink — gold is for live figures
+   and actions — and, like the Live band's headline, is underlined on hover
+   only: at Anton 40 a resting underline reads as a rule. */
+.titleLink { color: inherit; text-decoration: none; }
+.titleLink:hover {
+  text-decoration-line: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
 .meta {
   display: flex;
   align-items: center;
@@ -155,6 +164,8 @@
 }
 
 .cardCol { display: flex; flex-direction: column; gap: 10px; }
+/* The picture opens the day's page; "The card ↓" under it saves the image. */
+.cardLink { display: block; width: 150px; border-radius: var(--radius); }
 .cardImg {
   display: block;
   width: 150px;
