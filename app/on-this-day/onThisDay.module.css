@@ -8,13 +8,15 @@
 .desktopOnly { display: block; }
 @media (max-width: 900px) { .desktopOnly { display: none; } }
 
-/* The page's h1, on the calendar and on a day: Anton 96 / 0.88. */
+/* The page's h1, on the calendar and on a day: Anton 96 / 0.88, with no
+   tracking — the artboards set none. 0 rather than no declaration: the global
+   h1 rule carries 0.01em, so dropping the line would change nothing. */
 .h1 {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400; /* Anton has no bold cut */
   font-size: 96px;
   line-height: 0.88;
-  letter-spacing: 0.01em;
+  letter-spacing: 0;
   text-transform: uppercase;
   margin: 16px 0 0;
 }
@@ -146,12 +148,14 @@
   padding-bottom: 8px;
   border-bottom: 1px solid var(--rule);
 }
+/* No tracking, as drawn; the global h2 rule would otherwise pull it to -0.02em. */
 .monthName {
   margin: 0;
   font-family: var(--font-anton), sans-serif;
   font-weight: 400; /* Anton has no bold cut */
   font-size: 22px;
   line-height: 1.1;
+  letter-spacing: 0;
   text-transform: uppercase;
 }
 .monthSub {
@@ -501,6 +505,10 @@
   transition: background var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
 }
 .pagerCard:hover { background: var(--bg-raised); border-color: var(--rule); }
+/* On paper the gold date label measures 4.14:1 on the pressed-in --bg-raised,
+   under AA for 12px text, so while the card is hovered it reads in ink (ruling,
+   26 Sep 2026). Dark keeps its gold: 8.8:1 on the same state. */
+:global(:root[data-theme="light"]) .pagerCard:hover .pagerLabel { color: var(--text); }
 .pagerCardNext { text-align: right; }
 .pagerLabel,
 .pagerCalendar {

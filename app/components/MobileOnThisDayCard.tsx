@@ -6,14 +6,18 @@ import { CANONICAL_ORIGIN } from "../lib/seo";
 import { cardFilename, cardPath, cardPreviewSrc } from "../lib/cardPreview";
 import {
   KIND_MARK,
+  dayShareText,
   homeAge,
   homeDayLink,
   homeLeadAge,
   homeRows,
   homeWhen,
   isRecordLine,
+  keepSeparators,
   type OnThisDayPick,
 } from "../lib/onThisDay";
+
+const NBSP = "\u00a0";
 
 /**
  * The phone home's "On this day" card (designs/desktop/OTD Home Card.dc.html,
@@ -37,14 +41,22 @@ export default function MobileOnThisDayCard({ pick }: { pick: OnThisDayPick | nu
   return (
     <section className={styles.homeCard} aria-labelledby="otd-title-m">
       <p className={styles.homeKicker}>
-        On this day · <span className={styles.homeWhen}>{homeWhen(pick)}</span>
+        On this day ·{NBSP}<span className={styles.homeWhen}>{keepSeparators(homeWhen(pick))}</span>
       </p>
       <h2 id="otd-title-m" className={styles.homeTitle}>
         {lead.headline}
       </h2>
+      {/* Each " · " travels with the item after it (a no-break space), so a
+          wrap never leaves it hanging: at 390 the age used to drop under
+          "2021 ·". */}
       <p className={styles.homeMeta}>
         <KindPill kind={lead.kind} className={styles.homePill} />
-        {lead.year} · <span className={styles.homeAge}>{homeLeadAge(pick)}</span>
+        <span>{lead.year}</span>
+        <span>
+          <span aria-hidden="true">·</span>
+          {NBSP}
+          <span className={styles.homeAge}>{homeLeadAge(pick)}</span>
+        </span>
       </p>
       <p className={isRecordLine(lead) ? styles.homeRecord : styles.homeDetail}>{lead.detail}</p>
 
@@ -86,7 +98,7 @@ export default function MobileOnThisDayCard({ pick }: { pick: OnThisDayPick | nu
           <OnThisDaySaveCard
             src={card}
             filename={cardFilename(day.slug)}
-            shareText={`Burna Boy on this day, ${day.label}: ${day.lead.year} — ${day.lead.headline}. ${CANONICAL_ORIGIN}/on-this-day/${day.slug}`}
+            shareText={dayShareText(day, CANONICAL_ORIGIN)}
             className={`btn btnSecondary ${styles.homeSave}`}
           >
             <span>Save or share</span>

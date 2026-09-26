@@ -11,9 +11,12 @@ import {
   homeRows,
   homeWhen,
   isRecordLine,
+  keepSeparators,
   neighbours,
   type OnThisDayPick,
 } from "../lib/onThisDay";
+
+const NBSP = "\u00a0";
 
 /**
  * The home page's "On this day" band — desktop (designs/desktop/OTD Home
@@ -49,16 +52,22 @@ export default function OnThisDayBand({ pick }: { pick: OnThisDayPick | null }) 
       <div className={styles.inner}>
         <div className={styles.lead}>
           <p className={styles.kicker}>
-            On this day · <span className={styles.when}>{homeWhen(pick)}</span>
+            On this day ·{NBSP}<span className={styles.when}>{keepSeparators(homeWhen(pick))}</span>
           </p>
           <h2 id="otd-title" className={styles.title}>
             {lead.headline}
           </h2>
+          {/* Each " · " travels with the item after it, joined by a no-break
+              space, so a wrap never leaves a separator hanging at a line's
+              end (at 1024 the age wrapped under "2021 ·"). */}
           <p className={styles.meta}>
             <KindPill kind={lead.kind} className={styles.pill} />
             <span>{lead.year}</span>
-            <span aria-hidden="true">·</span>
-            <span className={styles.age}>{homeLeadAge(pick)}</span>
+            <span>
+              <span aria-hidden="true">·</span>
+              {NBSP}
+              <span className={styles.age}>{homeLeadAge(pick)}</span>
+            </span>
           </p>
           {/* A record sentence prints in ink at 16px; a plain detail in body
               colour at 15px. */}

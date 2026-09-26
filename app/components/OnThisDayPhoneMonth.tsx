@@ -76,6 +76,8 @@ export default function OnThisDayPhoneMonth({
           const key = `${String(month).padStart(2, "0")}-${String(n).padStart(2, "0")}`;
           const isToday = key === todayKey;
           if (!d) {
+            // An undated day is not focusable, and aria-current on a plain
+            // span is not reliably announced — so today says so in words.
             return (
               <span
                 key={n}
@@ -83,7 +85,10 @@ export default function OnThisDayPhoneMonth({
                 aria-current={isToday ? "date" : undefined}
               >
                 <span aria-hidden="true">{n}</span>
-                <span className="visuallyHidden">{label}</span>
+                <span className="visuallyHidden">
+                  {label}
+                  {isToday && ", today"}
+                </span>
               </span>
             );
           }

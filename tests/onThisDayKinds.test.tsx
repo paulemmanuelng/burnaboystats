@@ -91,7 +91,7 @@ describe("no kind resolves to a colour", () => {
   });
 
   it("a negative control: the guards catch the lines the first build shipped", () => {
-    // app/lib/onThisDay.ts @ 21a7bc82, KIND_INK, and the pill that wore it.
+    // app/lib/onThisDay.ts @ 78c816c2, KIND_INK, and the pill that wore it.
     expect(colourIn(`show: "var(--green)"`)).toBe(true);
     expect(colourIn(`certification: "var(--gold)"`)).toBe(true);
     expect(BORROWED.test(`style={{ color: KIND_INK[e.kind], borderColor: KIND_INK[e.kind] }}`)).toBe(true);
@@ -131,7 +131,7 @@ describe("no kind is labelled \"Live\"", () => {
   });
 
   it("a negative control: the check catches the label the first build shipped", () => {
-    // app/lib/onThisDay.ts @ 21a7bc82, KIND_LABEL.
+    // app/lib/onThisDay.ts @ 78c816c2, KIND_LABEL.
     expect(LIVE.test(`show: "Live",`)).toBe(true);
     expect(LIVE.test("Show")).toBe(false);
   });

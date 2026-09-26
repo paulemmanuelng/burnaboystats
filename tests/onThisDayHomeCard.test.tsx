@@ -20,6 +20,7 @@ import {
   anniversary,
   homeRows,
   isRecordLine,
+  keepSeparators,
   neighbours,
   onThisDayDays,
   onThisDayFor,
@@ -82,7 +83,7 @@ describe("the title is the lead milestone; the date moves to the kicker", () => 
     const n = Number(pick.iso.slice(0, 4)) - lead.year;
     for (const host of Object.values(html(pick))) {
       expect(host.querySelector("h2")!.textContent).toBe(lead.headline);
-      expect(host.textContent).toContain(`On this day · coming up in ${days} day${days === 1 ? "" : "s"} · ${pick.day.label}`);
+      expect(host.textContent).toContain(keepSeparators(`On this day · coming up in ${days} day${days === 1 ? "" : "s"} · ${pick.day.label}`));
       expect(host.textContent).toContain(`${anniversary(n)} on ${pick.day.label}`);
       expect(host.textContent).not.toMatch(/Coming up:/);
     }
@@ -95,7 +96,7 @@ describe("the title is the lead milestone; the date moves to the kicker", () => 
       const lead = pick.events[0];
       for (const host of Object.values(html(pick))) {
         expect(host.querySelector("h2")!.textContent).toBe(lead.headline);
-        expect(host.textContent).toContain(`On this day · today, ${pick.day.label}`);
+        expect(host.textContent).toContain(keepSeparators(`On this day · today, ${pick.day.label}`));
         expect(host.textContent).toContain(`${ago(2027 - lead.year)} today`);
         expect(host.textContent).toContain(KIND_MARK[lead.kind].word);
         expect(host.textContent).toContain(lead.detail);
@@ -223,9 +224,21 @@ describe("the band's frame", () => {
     expect(band).toMatch(/\.band \{ border-bottom: 2px solid var\(--rule\); \}/);
   });
 
-  it("the title is Anton 40 on desktop and 28/32 at 1239 and under", () => {
+  it("the title is Anton 40 on desktop, and History made's title size at 1239 and under", () => {
+    // Ruling 4 (26 Sep 2026): item 13's "28/32" is the band's padding, not the
+    // title. At 901–1239 the title takes History made's title size, read here
+    // from app/page.module.css so the two cannot drift apart.
     expect(band).toMatch(/\.title \{[^}]*font-size: 40px;/);
-    expect(tablet(band)).toContain(".title { font-size: 28px; line-height: 32px; }");
+    const historyTitle = home.match(/\.historyTitle \{([^}]*)\}/)![1];
+    const size = historyTitle.match(/font-size: ([^;]+);/)![1];
+    const lh = historyTitle.match(/line-height: ([^;]+);/)![1];
+    // History made's title does not step at this width, so its base rule is the one in force.
+    const blocks = [...home.matchAll(/@media \(max-width: 1239px\) \{\n([\s\S]*?)\n\}/g)].map((m) => m[1]);
+    expect(blocks.some((b) => /\.historyTitle/.test(b))).toBe(false);
+    expect(size).toBe("32px");
+    expect(tablet(band)).toContain(`.title { font-size: ${size}; line-height: ${lh}; }`);
+    // A negative control: the first build's tablet title.
+    expect(".title { font-size: 28px; line-height: 32px; }").not.toContain(`font-size: ${size};`);
   });
 
   it("at 1239 and under its padding is History made's, so the two bands' edges line up", () => {

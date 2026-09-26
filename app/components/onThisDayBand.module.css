@@ -29,12 +29,15 @@
   color: var(--text-muted);
 }
 .when { color: var(--text); }
+/* No tracking, as the artboard draws it; the global h2 rule would pull it to
+   -0.02em, which set 8 December's 50 characters on two lines, not three. */
 .title {
   margin: 0;
   font-family: var(--font-anton), sans-serif;
   font-weight: 400; /* Anton has no bold cut */
   font-size: 40px;
   line-height: 1.02;
+  letter-spacing: 0;
   text-transform: uppercase;
   text-wrap: balance;
 }
@@ -170,12 +173,15 @@
 }
 .cardBtnTablet { display: none; }
 
-/* Tablet, 901–1239: the band's padding steps to 28/32, exactly as History
-   made's does, so the two bands' edges never drift; the title steps to
-   28/32. The preview column drops and "The card ↓" moves under the links. */
+/* Tablet, 901–1239: the band's padding steps to 28/32 — the "28/32" of
+   change-list item 13 is this padding, exactly History made's, so the two
+   bands' edges never drift. The title takes History made's title size at
+   this width (app/page.module.css .historyTitle, 32px / 1.05, which does not
+   step) — tests/onThisDayRulings.test.tsx holds the two together. The
+   preview column drops and "The card ↓" moves under the links. */
 @media (max-width: 1239px) {
   .inner { padding: 28px 32px 30px; }
-  .title { font-size: 28px; line-height: 32px; }
+  .title { font-size: 32px; line-height: 1.05; }
   .side { grid-template-columns: minmax(0, 1fr); }
   .cardCol { display: none; }
   .cardBtnTablet { display: inline-flex; align-self: flex-start; margin-top: 6px; }

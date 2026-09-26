@@ -175,17 +175,37 @@ describe("the month grids", () => {
     });
   });
 
-  it("an undated day is not a link and reads \"<date> — no milestone\"", () => {
+  it("an undated day is not a link and reads \"<date> — no milestone\" (today adds \", today\")", () => {
     for (const host of [desk, phone]) {
       grids(host).forEach((s, i) => {
         cellsOf(s).forEach((c, j) => {
-          if (byKey.has(`${String(i + 1).padStart(2, "0")}-${String(j + 1).padStart(2, "0")}`)) return;
+          const key = `${String(i + 1).padStart(2, "0")}-${String(j + 1).padStart(2, "0")}`;
+          if (byKey.has(key)) return;
           expect(c.tagName).toBe("SPAN");
           expect(c.querySelector("a, button")).toBeNull();
-          expect(c.textContent).toBe(`${j + 1}${j + 1} ${MONTHS[i]} — no milestone`);
+          const today = key === EMPTY.slice(5) ? ", today" : "";
+          expect(c.textContent).toBe(`${j + 1}${j + 1} ${MONTHS[i]} — no milestone${today}`);
         });
       });
     }
+  });
+
+  it("an undated today says so in words: it is not focusable, so aria-current alone is not announced", () => {
+    // Ruling 10 (26 Sep 2026). The ring's cell is a plain span on both
+    // layouts; screen readers do not reliably speak aria-current off a
+    // focusable element, so the cell's hidden label carries the word.
+    for (const host of [desk, phone]) {
+      const ringed = host.querySelectorAll('[aria-current="date"]');
+      expect(ringed.length).toBe(1);
+      expect(ringed[0].tagName).toBe("SPAN");
+      const hidden = ringed[0].querySelector(".visuallyHidden")!;
+      expect(hidden.textContent).toMatch(/— no milestone, today$/);
+    }
+    // A negative control, with the cell the first build shipped: its label
+    // named the date and nothing else.
+    const shipped = document.createElement("span");
+    shipped.innerHTML = '<span aria-hidden="true">26</span><span class="visuallyHidden">26 September — no milestone</span>';
+    expect(shipped.querySelector(".visuallyHidden")!.textContent).not.toMatch(/today/);
   });
 
   it("desktop: each month lists its dated days under the grid, every lead headline in the page", () => {

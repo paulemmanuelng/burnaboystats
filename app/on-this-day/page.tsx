@@ -67,7 +67,7 @@ export default function OnThisDayPage() {
                 On This <span className="inkText">Day</span>
               </h1>
               <p className={styles.calLede}>
-                {onThisDayEvents.length} dated milestones on {onThisDayDays.length} days of the year — album
+                {onThisDayEvents.length} dated milestones on {onThisDayDays.length} days of the year: album
                 releases, chart peaks, certifications, awards and shows, each filed on the day it happened.
                 Pick a date for everything on it.
               </p>
@@ -145,7 +145,11 @@ export default function OnThisDayPage() {
                       ) : (
                         <span key={n} className={cls} aria-current={isToday ? "date" : undefined}>
                           <span aria-hidden="true">{n}</span>
-                          <span className="visuallyHidden">{calendarDayLabel(key)}</span>
+                          {/* Not focusable, so today is said in words too. */}
+                          <span className="visuallyHidden">
+                            {calendarDayLabel(key)}
+                            {isToday && ", today"}
+                          </span>
                         </span>
                       );
                     })}

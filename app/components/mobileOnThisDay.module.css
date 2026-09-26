@@ -56,12 +56,15 @@
 }
 
 /* ── Hero ─────────────────────────────────────────────────────────────── */
+/* The h1s (.title here, .dayTitle below) and the h2s this file draws in Anton
+   carry no tracking, as the artboards set none: 0, not a missing declaration,
+   because the global h1 rule adds 0.01em and the h2 rule -0.02em. */
 .title {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400; /* Anton has no bold cut */
   font-size: 52px;
   line-height: 0.88;
-  letter-spacing: 0.01em;
+  letter-spacing: 0;
   text-transform: uppercase;
   margin: 10px 0 0;
 }
@@ -119,6 +122,7 @@
   font-weight: 400; /* Anton has no bold cut */
   font-size: 26px;
   line-height: 1.05;
+  letter-spacing: 0;
   text-transform: uppercase;
   text-wrap: balance;
 }
@@ -352,6 +356,7 @@
   font-weight: 400; /* Anton has no bold cut */
   font-size: 24px;
   line-height: 1.1;
+  letter-spacing: 0;
   text-transform: uppercase;
 }
 .calMonthSub,
@@ -496,7 +501,7 @@
   font-weight: 400; /* Anton has no bold cut */
   font-size: 52px;
   line-height: 0.88;
-  letter-spacing: 0.01em;
+  letter-spacing: 0;
   text-transform: uppercase;
 }
 .dayLede {
@@ -613,6 +618,9 @@
   text-decoration: none;
 }
 .pagerCard:active { background: var(--bg-raised); border-color: var(--rule); }
+/* The desktop's rule, on the phone's pressed state: gold on --bg-raised is
+   4.14:1 on paper, so the label reads in ink while the card is held. */
+:global(:root[data-theme="light"]) .pagerCard:active .pagerLabel { color: var(--text); }
 .pagerCardNext { text-align: right; }
 .pagerLabel {
   font-family: var(--font-mono), monospace;

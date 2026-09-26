@@ -131,11 +131,11 @@ export default function MobileOnThisDayIndex({ today }: { today: OnThisDayToday 
         );
       })}
 
+      {/* The artboard's short note; the desktop's "How dates are filed" spells
+          out the three kinds of date. */}
       <p className={styles.calNote}>
-        Only records that carry their own day are here: a certification on the award date its body&apos;s
-        register prints, a chart peak on the issue that first carried it, a show on the night itself. A record
-        known only by its year stays off the calendar until its day is read — see the{" "}
-        <Link href="/methodology">methodology</Link>.
+        Only records that carry their own day are here. A record known only by its year stays off the calendar
+        until its day is read — see the <Link href="/methodology">methodology</Link>.
       </p>
     </div>
   );

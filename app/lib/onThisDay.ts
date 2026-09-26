@@ -526,6 +526,11 @@ export const daysCount = (n: number) => `${n} day${n === 1 ? "" : "s"}`;
 
 // ── The home card ───────────────────────────────────────────────────────────
 
+/** A display line's " · " joins, each bound to the item after it by a
+ *  no-break space — so where the line wraps, a separator starts the next line
+ *  rather than hanging at the end of the last one. */
+export const keepSeparators = (s: string) => s.replace(/ · /g, " ·\u00a0");
+
 /**
  * The home card's rows (design response §2 Home card; change list item 6):
  * the lead first, then the rest newest first — ties inside a year by rank —
