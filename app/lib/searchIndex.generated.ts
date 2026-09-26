@@ -5722,6 +5722,16 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "On this day: 12 June",
+    "path": "/on-this-day/12-june",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 12 June, 2018.",
+    "keywords": [
+      "june 12"
+    ],
+    "generated": true
+  },
+  {
     "title": "On this day: 12 March",
     "path": "/on-this-day/12-march",
     "section": "On this day",
@@ -6195,7 +6205,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "On this day: 20 September",
     "path": "/on-this-day/20-september",
     "section": "On this day",
-    "description": "2 Burna Boy milestones dated 20 September, 2018–2019.",
+    "description": "1 Burna Boy milestone dated 20 September, 2019.",
     "keywords": [
       "september 20"
     ],
@@ -6305,7 +6315,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "On this day: 22 September",
     "path": "/on-this-day/22-september",
     "section": "On this day",
-    "description": "2 Burna Boy milestones dated 22 September, 2018–2026.",
+    "description": "1 Burna Boy milestone dated 22 September, 2026.",
     "keywords": [
       "september 22"
     ],
@@ -6362,16 +6372,6 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
-    "title": "On this day: 23 September",
-    "path": "/on-this-day/23-september",
-    "section": "On this day",
-    "description": "1 Burna Boy milestone dated 23 September, 2018.",
-    "keywords": [
-      "september 23"
-    ],
-    "generated": true
-  },
-  {
     "title": "On this day: 24 February",
     "path": "/on-this-day/24-february",
     "section": "On this day",
@@ -6408,16 +6408,6 @@ export const generatedDocs: SearchDoc[] = [
     "description": "3 Burna Boy milestones dated 24 October, 2018–2025.",
     "keywords": [
       "october 24"
-    ],
-    "generated": true
-  },
-  {
-    "title": "On this day: 24 September",
-    "path": "/on-this-day/24-september",
-    "section": "On this day",
-    "description": "1 Burna Boy milestone dated 24 September, 2018.",
-    "keywords": [
-      "september 24"
     ],
     "generated": true
   },
