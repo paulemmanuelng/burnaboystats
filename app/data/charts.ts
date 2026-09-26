@@ -253,7 +253,7 @@ export const albumCharts: ChartRelease[] = [
     { c: "NZ", peak: 12 }, { c: "DK", peak: 13 }, { c: "AT", peak: 39 },
   ] },
   { title: "Love, Damini", year: 2022, entries: [
-    { c: "UK", peak: 2 }, { c: "NG", peak: 3, peakDate: "2022-11-02", note: "Peak still open — read while the release is still on the chart, so it may yet climb." }, { c: "NL", peak: 2 }, { c: "CA", peak: 6 }, { c: "SE", peak: 12 },
+    { c: "UK", peak: 2 }, { c: "NG", peak: 3, peakDate: "2022-11-03", note: "Peak still open — read while the release is still on the chart, so it may yet climb." }, { c: "NL", peak: 2 }, { c: "CA", peak: 6 }, { c: "SE", peak: 12 },
     { c: "US", peak: 14 }, { c: "FR", peak: 17 }, { c: "IE", peak: 23 }, { c: "BE", peak: 24 },
     { c: "DE", peak: 61 },
   ] },

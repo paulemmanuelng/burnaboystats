@@ -5522,6 +5522,16 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "On this day: 1 April",
+    "path": "/on-this-day/1-april",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 1 April, 2019.",
+    "keywords": [
+      "april 1"
+    ],
+    "generated": true
+  },
+  {
     "title": "On this day: 1 December",
     "path": "/on-this-day/1-december",
     "section": "On this day",
@@ -5602,16 +5612,6 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
-    "title": "On this day: 10 June",
-    "path": "/on-this-day/10-june",
-    "section": "On this day",
-    "description": "1 Burna Boy milestone dated 10 June, 2018.",
-    "keywords": [
-      "june 10"
-    ],
-    "generated": true
-  },
-  {
     "title": "On this day: 10 November",
     "path": "/on-this-day/10-november",
     "section": "On this day",
@@ -5645,7 +5645,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "On this day: 11 August",
     "path": "/on-this-day/11-august",
     "section": "On this day",
-    "description": "2 Burna Boy milestones dated 11 August, 2019–2022.",
+    "description": "1 Burna Boy milestone dated 11 August, 2022.",
     "keywords": [
       "august 11"
     ],
@@ -5735,7 +5735,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "On this day: 12 November",
     "path": "/on-this-day/12-november",
     "section": "On this day",
-    "description": "2 Burna Boy milestones dated 12 November, 2023–2025.",
+    "description": "1 Burna Boy milestone dated 12 November, 2025.",
     "keywords": [
       "november 12"
     ],
@@ -5798,6 +5798,16 @@ export const generatedDocs: SearchDoc[] = [
     "description": "1 Burna Boy milestone dated 14 June, 2018.",
     "keywords": [
       "june 14"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 15 August",
+    "path": "/on-this-day/15-august",
+    "section": "On this day",
+    "description": "2 Burna Boy milestones dated 15 August, 2019–2025.",
+    "keywords": [
+      "august 15"
     ],
     "generated": true
   },
@@ -5882,6 +5892,16 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "On this day: 16 June",
+    "path": "/on-this-day/16-june",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 16 June, 2018.",
+    "keywords": [
+      "june 16"
+    ],
+    "generated": true
+  },
+  {
     "title": "On this day: 16 November",
     "path": "/on-this-day/16-november",
     "section": "On this day",
@@ -5952,16 +5972,6 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
-    "title": "On this day: 17 June",
-    "path": "/on-this-day/17-june",
-    "section": "On this day",
-    "description": "1 Burna Boy milestone dated 17 June, 2018.",
-    "keywords": [
-      "june 17"
-    ],
-    "generated": true
-  },
-  {
     "title": "On this day: 17 November",
     "path": "/on-this-day/17-november",
     "section": "On this day",
@@ -5982,22 +5992,22 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "On this day: 18 August",
+    "path": "/on-this-day/18-august",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 18 August, 2019.",
+    "keywords": [
+      "august 18"
+    ],
+    "generated": true
+  },
+  {
     "title": "On this day: 18 December",
     "path": "/on-this-day/18-december",
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 18 December, 2025.",
     "keywords": [
       "december 18"
-    ],
-    "generated": true
-  },
-  {
-    "title": "On this day: 18 February",
-    "path": "/on-this-day/18-february",
-    "section": "On this day",
-    "description": "1 Burna Boy milestone dated 18 February, 2024.",
-    "keywords": [
-      "february 18"
     ],
     "generated": true
   },
@@ -6145,7 +6155,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "On this day: 2 November",
     "path": "/on-this-day/2-november",
     "section": "On this day",
-    "description": "2 Burna Boy milestones dated 2 November, 2022–2023.",
+    "description": "1 Burna Boy milestone dated 2 November, 2023.",
     "keywords": [
       "november 2"
     ],
@@ -6262,16 +6272,6 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
-    "title": "On this day: 22 February",
-    "path": "/on-this-day/22-february",
-    "section": "On this day",
-    "description": "1 Burna Boy milestone dated 22 February, 2024.",
-    "keywords": [
-      "february 22"
-    ],
-    "generated": true
-  },
-  {
     "title": "On this day: 22 July",
     "path": "/on-this-day/22-july",
     "section": "On this day",
@@ -6355,7 +6355,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "On this day: 23 May",
     "path": "/on-this-day/23-may",
     "section": "On this day",
-    "description": "2 Burna Boy milestones dated 23 May, 2024–2025.",
+    "description": "3 Burna Boy milestones dated 23 May, 2024–2026.",
     "keywords": [
       "may 23"
     ],
@@ -6715,7 +6715,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "On this day: 3 June",
     "path": "/on-this-day/3-june",
     "section": "On this day",
-    "description": "2 Burna Boy milestones dated 3 June, 2018–2023.",
+    "description": "2 Burna Boy milestones dated 3 June, 2022–2023.",
     "keywords": [
       "june 3"
     ],
@@ -6735,7 +6735,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "On this day: 3 November",
     "path": "/on-this-day/3-november",
     "section": "On this day",
-    "description": "3 Burna Boy milestones dated 3 November, 2019–2023.",
+    "description": "4 Burna Boy milestones dated 3 November, 2019–2023.",
     "keywords": [
       "november 3"
     ],
@@ -6842,16 +6842,6 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
-    "title": "On this day: 4 June",
-    "path": "/on-this-day/4-june",
-    "section": "On this day",
-    "description": "1 Burna Boy milestone dated 4 June, 2022.",
-    "keywords": [
-      "june 4"
-    ],
-    "generated": true
-  },
-  {
     "title": "On this day: 4 March",
     "path": "/on-this-day/4-march",
     "section": "On this day",
@@ -6878,26 +6868,6 @@ export const generatedDocs: SearchDoc[] = [
     "description": "1 Burna Boy milestone dated 5 December, 2025.",
     "keywords": [
       "december 5"
-    ],
-    "generated": true
-  },
-  {
-    "title": "On this day: 5 July",
-    "path": "/on-this-day/5-july",
-    "section": "On this day",
-    "description": "1 Burna Boy milestone dated 5 July, 2025.",
-    "keywords": [
-      "july 5"
-    ],
-    "generated": true
-  },
-  {
-    "title": "On this day: 5 June",
-    "path": "/on-this-day/5-june",
-    "section": "On this day",
-    "description": "1 Burna Boy milestone dated 5 June, 2018.",
-    "keywords": [
-      "june 5"
     ],
     "generated": true
   },
@@ -6948,16 +6918,6 @@ export const generatedDocs: SearchDoc[] = [
     "description": "1 Burna Boy milestone dated 6 July, 2025.",
     "keywords": [
       "july 6"
-    ],
-    "generated": true
-  },
-  {
-    "title": "On this day: 6 June",
-    "path": "/on-this-day/6-june",
-    "section": "On this day",
-    "description": "1 Burna Boy milestone dated 6 June, 2018.",
-    "keywords": [
-      "june 6"
     ],
     "generated": true
   },
@@ -7132,16 +7092,6 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
-    "title": "On this day: 9 August",
-    "path": "/on-this-day/9-august",
-    "section": "On this day",
-    "description": "1 Burna Boy milestone dated 9 August, 2019.",
-    "keywords": [
-      "august 9"
-    ],
-    "generated": true
-  },
-  {
     "title": "On this day: 9 December",
     "path": "/on-this-day/9-december",
     "section": "On this day",
@@ -7158,16 +7108,6 @@ export const generatedDocs: SearchDoc[] = [
     "description": "2 Burna Boy milestones dated 9 July, 2026.",
     "keywords": [
       "july 9"
-    ],
-    "generated": true
-  },
-  {
-    "title": "On this day: 9 June",
-    "path": "/on-this-day/9-june",
-    "section": "On this day",
-    "description": "1 Burna Boy milestone dated 9 June, 2026.",
-    "keywords": [
-      "june 9"
     ],
     "generated": true
   },

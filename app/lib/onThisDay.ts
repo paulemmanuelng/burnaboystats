@@ -9,7 +9,7 @@
  *   release        albums.ts `released`; daiDai.ts DAI_DAI_SPOTIFY_DEBUT
  *   chart          charts.ts `peakDate` (the issue the peak was first reached),
  *                  Top 10 peaks only — the site's own peak bands
- *   streaming      daiDai.ts DAI_DAI_SPOTIFY_NO1_FIRST_DAY, DAI_DAI_YT_NO1_SINCE
+ *   streaming      daiDai.ts DAI_DAI_SPOTIFY_NO1_FIRST_DAY, DAI_DAI_YT_FIRST_NO1
  *   certification  certifications.ts certHistory `date` (the register's award day)
  *   award          awards.ts AwardNom `date` (won only) and Honour `date`
  *   show           tours.ts tour `dates[].date`; festival, other-show, concert
@@ -38,7 +38,7 @@ import {
   DAI_DAI_SPOTIFY_BODY_READ,
   DAI_DAI_SPOTIFY_NO1_FIRST_DAY,
   DAI_DAI_SPOTIFY_NO1_DAYS,
-  DAI_DAI_YT_NO1_SINCE,
+  DAI_DAI_YT_FIRST_NO1,
 } from "../data/daiDai";
 import { awardLabel } from "./awardName";
 
@@ -57,7 +57,7 @@ export type EventSource =
   | { data: "tours"; tour: string; index: number }
   | { data: "festivals" | "otherShows" | "concerts" | "liveMoments" | "honours"; index: number }
   | { data: "ceremonies"; ceremony: string; index: number }
-  | { data: "daiDai"; field: "DAI_DAI_SPOTIFY_DEBUT" | "DAI_DAI_SPOTIFY_NO1_FIRST_DAY" | "DAI_DAI_YT_NO1_SINCE" };
+  | { data: "daiDai"; field: "DAI_DAI_SPOTIFY_DEBUT" | "DAI_DAI_SPOTIFY_NO1_FIRST_DAY" | "DAI_DAI_YT_FIRST_NO1" };
 
 export interface OnThisDayEvent {
   id: string;
@@ -214,14 +214,16 @@ function streamingEvents(): OnThisDayEvent[] {
     },
     {
       id: "streaming:dai-dai-youtube-no1",
-      date: DAI_DAI_YT_NO1_SINCE,
-      year: Number(DAI_DAI_YT_NO1_SINCE.slice(0, 4)),
+      // Its debut chart, 23 May: DAI_DAI_YT_NO1_SINCE is the start of the
+      // 80-day run, 17 days later (tests/daiDaiYouTubeFirstNo1.test.ts).
+      date: DAI_DAI_YT_FIRST_NO1,
+      year: Number(DAI_DAI_YT_FIRST_NO1.slice(0, 4)),
       kind: "streaming",
       headline: "“Dai Dai” went to No. 1 on YouTube's global music-video chart",
       detail: "Global Daily Top Music Videos",
       body: "YouTube",
       href: "/dai-dai",
-      source: { data: "daiDai", field: "DAI_DAI_YT_NO1_SINCE" },
+      source: { data: "daiDai", field: "DAI_DAI_YT_FIRST_NO1" },
       rank: 74,
     },
   ];

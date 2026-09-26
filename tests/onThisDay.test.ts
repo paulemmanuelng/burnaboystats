@@ -173,7 +173,7 @@ describe("the counts are the dated records, counted from the data", () => {
   const expected: Record<OnThisDayKind, number> = {
     release: albums.filter((a) => a.released).length + dated("DAI_DAI_SPOTIFY_DEBUT"),
     chart: chartPeaks,
-    streaming: dated("DAI_DAI_SPOTIFY_NO1_FIRST_DAY", "DAI_DAI_YT_NO1_SINCE"),
+    streaming: dated("DAI_DAI_SPOTIFY_NO1_FIRST_DAY", "DAI_DAI_YT_FIRST_NO1"),
     certification: certHistory.filter((c) => c.date).length,
     award:
       ceremonies.flatMap((c) => c.noms).filter((n) => n.won && n.date).length + honours.filter((h) => h.date).length,
