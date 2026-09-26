@@ -99,7 +99,7 @@
   },
   {
     "date": "2026-09-26",
-    "release": "Ilome",
+    "release": "ILOME",
     "platform": "Shazam",
     "position": 59
   },
