@@ -1008,6 +1008,19 @@ export function totalAwards() {
   return allItems.reduce((sum, it) => sum + it.certs.length, 0);
 }
 
+/** The four tiers, highest first: the order every tier rail prints them in. */
+export const TIER_ORDER: readonly Tier[] = ["Diamond", "Platinum", "Gold", "Silver"];
+
+/** Plaques per tier across every release, highest tier first. The
+ *  /certifications hero rail and the certifications embed widget both print
+ *  this, so the two cannot count a tier differently. */
+export function tierCounts(): { name: Tier; count: number }[] {
+  return TIER_ORDER.map((name) => ({
+    name,
+    count: allItems.reduce((n, item) => n + item.certs.filter((c) => c.level === name).length, 0),
+  }));
+}
+
 // "Dai Dai"'s OWN certifications only — so the Dai Dai page never borrows Burna
 // Boy's artist-wide 2026 total. Counts distinct country certs for the song.
 // The dated by-year log counts INTERNATIONAL certifications only. The logs
