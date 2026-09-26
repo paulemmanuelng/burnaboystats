@@ -126,6 +126,23 @@
   text-transform: uppercase;
   text-wrap: balance;
 }
+/* The title opens the day's page, in ink. One line of Anton 26 is 27px, so a
+   transparent layer 9px above and below lifts the tap target to 45 without
+   moving a line — the gaps either side are 10px and hold nothing to tap. The
+   focus ring hugs the title, not the layer. */
+.homeTitleLink {
+  position: relative;
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+.homeTitleLink::after { content: ""; position: absolute; inset: -9px 0; }
+.homeTitleLink:hover,
+.homeTitleLink:active {
+  text-decoration-line: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
 .homeMeta {
   display: flex;
   align-items: center;
@@ -198,6 +215,18 @@
 .homeThumb img { display: block; width: 96px; height: 120px; }
 .homeCardCopy { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
 .homeCardName { font-size: var(--type-small); line-height: 1.4; font-weight: 600; }
+/* "The <day> card, ready to post" opens the day's page too: a 44px target,
+   its words at the foot so they still sit 8px over "Save or share ↓". The
+   column stays shorter than the 120px thumbnail, so the box does not grow. */
+.homeCardNameLink {
+  display: flex;
+  align-items: flex-end;
+  min-height: 44px;
+  color: inherit;
+  text-decoration: none;
+}
+.homeCardNameLink:hover,
+.homeCardNameLink:active { text-decoration-line: underline; text-underline-offset: 2px; }
 /* The site's outlined secondary, at the design's 44px. */
 .homeSave {
   height: 44px;

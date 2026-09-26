@@ -28,6 +28,10 @@ const NBSP = "\u00a0";
  * are fewer than two, and the day's card with an outlined "The card ↓". No
  * gold action: "View certifications" is the screen's one.
  *
+ * The title and the card's picture open the day's page (Paul, 26 Sep 2026:
+ * "it should take me to the page, not the picture"); "The card ↓" is the way
+ * to the image itself. Every link is its own <a>: none sits inside another.
+ *
  * It sits under "History made". The pick is made once, in app/page.tsx, from
  * the London date at render and handed to both layouts; the home page
  * revalidates hourly, so the band turns over within the hour after London's
@@ -38,6 +42,7 @@ export default function OnThisDayBand({ pick }: { pick: OnThisDayPick | null }) 
   const { day } = pick;
   const [lead, ...rest] = homeRows(pick);
   const next = neighbours(day.key).next;
+  const dayHref = `/on-this-day/${day.slug}`;
   const cardButton = (className = "") => (
     <a href={cardPath(day.slug)} download={cardFilename(day.slug)} className={`btn btnSecondary ${styles.cardBtn}${className ? ` ${className}` : ""}`}>
       <span>
@@ -54,8 +59,12 @@ export default function OnThisDayBand({ pick }: { pick: OnThisDayPick | null }) 
           <p className={styles.kicker}>
             On this day ·{NBSP}<span className={styles.when}>{keepSeparators(homeWhen(pick))}</span>
           </p>
+          {/* The title is a link to the day's page, in ink, underlined on
+              hover — the Live band's headline does the same. */}
           <h2 id="otd-title" className={styles.title}>
-            {lead.headline}
+            <Link href={dayHref} className={styles.titleLink}>
+              {lead.headline}
+            </Link>
           </h2>
           {/* Each " · " travels with the item after it, joined by a no-break
               space, so a wrap never leaves a separator hanging at a line's
@@ -73,7 +82,7 @@ export default function OnThisDayBand({ pick }: { pick: OnThisDayPick | null }) 
               colour at 15px. */}
           <p className={isRecordLine(lead) ? styles.record : styles.detail}>{lead.detail}</p>
           <div className={styles.links}>
-            <Link href={`/on-this-day/${day.slug}`} className={styles.link}>
+            <Link href={dayHref} className={styles.link}>
               {homeDayLink(pick)} <span aria-hidden="true">↗</span>
             </Link>
             <Link href="/on-this-day" className={styles.link}>
@@ -126,17 +135,21 @@ export default function OnThisDayBand({ pick }: { pick: OnThisDayPick | null }) 
 
           <div className={styles.cardCol}>
             {/* Lazy, and hidden below 1240: a hidden lazy image is never
-                fetched. The 320px WebP, never the 725 KB PNG. */}
-            {/* eslint-disable-next-line @next/next/no-img-element -- a route-drawn WebP, sized by the route */}
-            <img
-              src={cardPreviewSrc(day.slug, 320)}
-              alt={`The ${day.label} card: ${day.lead.year}, ${day.lead.headline}`}
-              width={150}
-              height={188}
-              loading="lazy"
-              decoding="async"
-              className={styles.cardImg}
-            />
+                fetched. The 320px WebP, never the 725 KB PNG. The picture
+                opens the day's page; the link carries the name, so the
+                image inside it is silent. */}
+            <Link href={dayHref} className={styles.cardLink} aria-label={`Open ${day.label} on the calendar`}>
+              {/* eslint-disable-next-line @next/next/no-img-element -- a route-drawn WebP, sized by the route */}
+              <img
+                src={cardPreviewSrc(day.slug, 320)}
+                alt=""
+                width={150}
+                height={188}
+                loading="lazy"
+                decoding="async"
+                className={styles.cardImg}
+              />
+            </Link>
             {cardButton()}
           </div>
         </div>

@@ -162,11 +162,144 @@ describe("the rows: the lead, then the rest newest first, each with its own age"
       const pick = at(iso);
       const want = k === "1" ? `${pick.day.label}, every year` : `All ${pick.events.length} on ${pick.day.label}`;
       for (const host of Object.values(html(pick))) {
-        const day = [...host.querySelectorAll(`a[href="/on-this-day/${pick.day.slug}"]`)];
+        // The arrow link. The title and the picture go to the day too (the
+        // next block); this is the one that says where it goes.
+        const day = [...host.querySelectorAll(`a[href="/on-this-day/${pick.day.slug}"]`)].filter((a) => /↗$/.test(a.textContent ?? ""));
         expect(day.map((a) => (a.textContent ?? "").replace(/\s*↗$/, ""))).toEqual([want]);
         expect([...host.querySelectorAll('a[href="/on-this-day"]')].length).toBe(1);
       }
     }
+  });
+});
+
+describe("the picture and the title open the day's page, not the card (Paul, 26 Sep 2026)", () => {
+  // "on the homepage, when i click on this, it should take me to the page, not
+  // the picture, the text now isnt clickable on homepage." "Save or share ↓"
+  // and "The card ↓" stay the ways to the image.
+
+  /** 7 October as it shipped before (the home card of 26 Sep 2026, rendered
+   *  from main): the phone's thumbnail went to the PNG, the desktop's picture
+   *  was no link, and neither title nor the phone's card line was one. */
+  const SHIPPED = {
+    deskTitle: '<h2 id="otd-title" class="_title_c1e3a3">“Want It All” hit No. 8 in Nigeria</h2>',
+    deskPicture:
+      '<div class="_cardCol_c1e3a3"><img src="/on-this-day/7-october/card?w=320" alt="The 7 October card: 2021, “Want It All” hit No. 8 in Nigeria" width="150" height="188" loading="lazy" decoding="async" class="_cardImg_c1e3a3"/><a href="/on-this-day/7-october/card" download="burna-boy-on-this-day-7-october.png" class="btn btnSecondary _cardBtn_c1e3a3"><span>The card<span class="visuallyHidden"> for 7 October</span></span><span aria-hidden="true">↓</span></a></div>',
+    phoneTitle: '<h2 id="otd-title-m" class="_homeTitle_b8fde5">“Want It All” hit No. 8 in Nigeria</h2>',
+    phoneThumb:
+      '<a href="/on-this-day/7-october/card" class="_homeThumb_b8fde5"><img src="/on-this-day/7-october/card?w=320" alt="The 7 October card: 2021, “Want It All” hit No. 8 in Nigeria" width="96" height="120" loading="lazy" decoding="async"/></a>',
+    phoneName: '<p class="_homeCardName_b8fde5">The 7 October card, ready to post</p>',
+  };
+  const doc = (s: string) => {
+    const el = document.createElement("div");
+    el.innerHTML = s;
+    return el;
+  };
+  /** Where the preview picture's link goes; null when the picture is no link. */
+  const pictureHref = (host: Element) => host.querySelector("img")!.closest("a")?.getAttribute("href") ?? null;
+  /** Where the title's link goes; null when the title is no link. */
+  const titleHref = (host: Element) => host.querySelector("h2 a")?.getAttribute("href") ?? null;
+  /** The phone's "The <day> card, ready to post" line, and its link if any. */
+  const nameLink = (host: Element, label: string) =>
+    [...host.querySelectorAll("p")].find((p) => p.textContent === `The ${label} card, ready to post`)?.querySelector("a") ?? null;
+  const picks = () => [at(COMING), ...[...TODAY_BY_COUNT.values()].map(at)];
+
+  it("the preview picture links to /on-this-day/<day>, named for where it goes", () => {
+    for (const pick of picks()) {
+      const dayHref = `/on-this-day/${pick.day.slug}`;
+      for (const host of Object.values(html(pick))) {
+        expect(pictureHref(host)).toBe(dayHref);
+        const link = host.querySelector("img")!.closest("a")!;
+        expect(link.getAttribute("aria-label")).toBe(`Open ${pick.day.label} on the calendar`);
+        expect(link.hasAttribute("download")).toBe(false);
+        // The link carries the name; the picture inside it is silent.
+        expect(host.querySelector("img")!.getAttribute("alt")).toBe("");
+      }
+    }
+    // A negative control: the shipped markup fails it on both layouts.
+    expect(pictureHref(doc(SHIPPED.phoneThumb))).toBe("/on-this-day/7-october/card");
+    expect(pictureHref(doc(SHIPPED.deskPicture))).toBeNull();
+  });
+
+  it("the title is a link to the same page, inside its h2, in the lead's words", () => {
+    for (const pick of picks()) {
+      const { desk, phone } = html(pick);
+      for (const [host, id] of [[desk, "otd-title"], [phone, "otd-title-m"]] as const) {
+        const h2 = host.querySelector("h2")!;
+        expect(h2.id).toBe(id);
+        expect(titleHref(host)).toBe(`/on-this-day/${pick.day.slug}`);
+        expect(h2.querySelectorAll("a").length).toBe(1);
+        expect(h2.querySelector("a")!.textContent).toBe(homeRows(pick)[0].headline);
+      }
+    }
+    expect(titleHref(doc(SHIPPED.deskTitle))).toBeNull();
+    expect(titleHref(doc(SHIPPED.phoneTitle))).toBeNull();
+  });
+
+  it("the phone's \"The <day> card, ready to post\" opens the day's page too", () => {
+    for (const pick of picks()) {
+      const link = nameLink(html(pick).phone, pick.day.label);
+      expect(link?.getAttribute("href")).toBe(`/on-this-day/${pick.day.slug}`);
+    }
+    expect(nameLink(doc(SHIPPED.phoneName), "7 October")).toBeNull();
+  });
+
+  it("the card is still one tap away: the only links to it are the save buttons", () => {
+    const toCard = (host: Element) => [...host.querySelectorAll('a[href$="/card"]')];
+    for (const pick of picks()) {
+      const card = `/on-this-day/${pick.day.slug}/card`;
+      const { desk, phone } = html(pick);
+      for (const [host, n] of [[desk, 2], [phone, 1]] as const) {
+        const links = toCard(host);
+        expect(links.length).toBe(n);
+        for (const a of links) {
+          expect(a.getAttribute("href")).toBe(card);
+          expect(a.classList.contains("btnSecondary")).toBe(true);
+          expect(a.hasAttribute("download")).toBe(true);
+        }
+      }
+      expect(toCard(phone)[0].textContent).toBe("Save or share↓");
+    }
+    // The shipped thumbnail was a link to the card that was no button.
+    expect(toCard(doc(SHIPPED.phoneThumb)).filter((a) => !a.classList.contains("btnSecondary")).length).toBe(1);
+  });
+
+  it("no link sits inside another", () => {
+    /** The deepest <a> nesting in a raw markup string (a parser would undo it). */
+    const depth = (markup: string) => {
+      let d = 0;
+      let max = 0;
+      for (const m of markup.matchAll(/<a\b|<\/a>/g)) {
+        d += m[0] === "</a>" ? -1 : 1;
+        max = Math.max(max, d);
+      }
+      return max;
+    };
+    for (const pick of picks()) {
+      expect(depth(renderToStaticMarkup(<OnThisDayBand pick={pick} />))).toBe(1);
+      expect(depth(renderToStaticMarkup(<MobileOnThisDayCard pick={pick} />))).toBe(1);
+    }
+    // A negative control: the shipped thumbnail wrapped in the day's link, the
+    // shortcut this guard is here to stop.
+    expect(depth(`<a href="/on-this-day/7-october">${SHIPPED.phoneThumb}</a>`)).toBe(2);
+  });
+
+  it("the title stays in ink; the phone's new targets are at least 44px", () => {
+    const band = readFileSync("app/components/onThisDayBand.module.css", "utf8");
+    const phone = readFileSync("app/components/mobileOnThisDay.module.css", "utf8");
+    const rule = (sheet: string, sel: string) => sheet.match(new RegExp(`\\n${sel.replace(/[.:]/g, "\\$&")} \\{([^}]*)\\}`))?.[1] ?? "";
+    for (const [sheet, title, link] of [[band, ".title", ".titleLink"], [phone, ".homeTitle", ".homeTitleLink"]] as const) {
+      expect(rule(sheet, title)).not.toMatch(/--gold/);
+      expect(rule(sheet, link)).toMatch(/color: inherit;/);
+      expect(sheet).not.toMatch(new RegExp(`\\${link}[^{]*\\{[^}]*--gold`));
+    }
+    // One line of the phone title, plus the layer above and below it.
+    const size = Number(rule(phone, ".homeTitle").match(/font-size: (\d+)px;/)![1]);
+    const lh = Number(rule(phone, ".homeTitle").match(/line-height: ([\d.]+);/)![1]);
+    const pad = Number(rule(phone, ".homeTitleLink::after").match(/inset: -(\d+)px 0;/)![1]);
+    expect(size * lh + 2 * pad).toBeGreaterThanOrEqual(44);
+    expect(rule(phone, ".homeCardNameLink")).toMatch(/min-height: 44px;/);
+    // The thumbnail is 96×120.
+    expect(rule(phone, ".homeThumb")).toMatch(/width: 96px; height: 120px;/);
   });
 });
 
