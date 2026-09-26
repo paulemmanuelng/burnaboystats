@@ -94,8 +94,11 @@ export const cardUrl = (path: string) => `BURNABOYSTATS.COM${path.toLowerCase()}
  *                  milestone as the hero, covers, the post card's numeral,
  *                  and the faded portrait (same day, before any of it was
  *                  live, so the one bump covers it)
+ *   on-this-day-2  the post card leads with the milestone, not the date
+ *                  (26 Sep 2026, Paul): the headline is the hero, the date
+ *                  a small gold label over it, the numeral gone
  */
-export const OG_ART = "on-this-day-1";
+export const OG_ART = "on-this-day-2";
 
 /**
  * The root card's URL, for the three pages that cite it by hand.

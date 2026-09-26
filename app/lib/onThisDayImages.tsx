@@ -4,7 +4,7 @@ import { KIND_MARK, type OnThisDayKind } from "./onThisDayKinds";
 import { CARD_SIZE } from "./cardPreview";
 import { withoutKerning } from "./unkernedFont";
 import { BURNA_PORTRAIT } from "./artistImages";
-import type { DayPostCard } from "./onThisDayShare";
+import { CARD_FOOT, keepTogether, type DayPostCard } from "./onThisDayShare";
 
 /**
  * ON THIS DAY — the drawing shared by its two share images, and the post card.
@@ -39,14 +39,13 @@ export const otdFonts = ogFonts.map((f) => (f.name === "geist" ? { ...f, data: w
  * The post card's headline measure: 912px, the artboard's max-width (1080
  * less the 84px padding either side), given outright.
  *
- * The artboard also tracks the headline .01em — in a browser, which kerns.
- * Satori cannot (above), and an unkerned line at .01em runs about 1% longer
- * than the artboard's: 28 April's "BURNA BOY PLAYED MADISON" measured 920px
- * against Chrome's 909, so the card broke into four lines where the artboard
- * draws three. Tracking 0 gives back what the kerning took. Measured over all
- * 167 days against the artboard's own styles in Chrome (26 Sep 2026): the line
- * count matches on 166 (22 December's NATIVELAND FESTIVAL still takes four,
- * as it did), where .01em matched 164.
+ * Tracked 0. The artboard tracks the headline .01em — in a browser, which
+ * kerns. Satori cannot (above), and an unkerned line at .01em runs about 1%
+ * longer than the artboard's: 28 April's "BURNA BOY PLAYED MADISON" measured
+ * 920px against Chrome's 909. Tracking 0 gives back what the kerning took.
+ * The sizes are no longer the artboard's since the card was redrawn to lead
+ * with the milestone (cardHeadSize, lib/onThisDayShare.ts), so its lines are
+ * counted on every day's own render (tests/onThisDayShareImages.test.tsx).
  */
 const HEADLINE_WIDTH = 912;
 
@@ -80,9 +79,10 @@ export function ShareUrl({ url, fontSize, color, tracking }: { url: string; font
 /**
  * Burna Boy's portrait, faded into the top right of the On This Day images.
  * Paul, 26 Sep 2026: "let's have burna boy picture faded on this part of the
- * On this day design", pointing at the post card's empty top right (around ON
- * THIS DAY, and to the right of the numeral) and at the link preview's glow
- * around the crown lockup. It overrides change list 15 ("the portrait …
+ * On this day design", pointing at the post card's empty top right (then
+ * around ON THIS DAY and to the right of the numeral, both gone since the card
+ * leads with the milestone) and at the link preview's glow around the crown
+ * lockup. It overrides change list 15 ("the portrait …
  * removed") on these images only: no other card or preview gains it
  * (tests/onThisDayShareImages.test.tsx).
  *
@@ -93,8 +93,8 @@ export function ShareUrl({ url, fontSize, color, tracking }: { url: string; font
  * edge, so the photo's square is never drawn. They are linear because Satori's
  * radial gradients cannot fade IN: one that runs from clear to solid paints its
  * last colour over its whole box (measured 26 Sep 2026). Two of the scrims
- * keep the type clean — a band under the top line (ON THIS DAY, the lockup)
- * and a floor above everything the numeral and the headline can reach.
+ * keep the type clean — a band under the top line and a floor above
+ * everything the text can reach.
  */
 
 /**
@@ -221,13 +221,16 @@ const FACE_LIGHT =
 
 /**
  * The post card's portrait: the top right, bled off the top and the right
- * edge. The band under the top line keeps ON THIS DAY (93–119) on the ground
- * it had. The floor is solid from 385, above the highest ink right of x 600
- * on any day: 16 August's numeral, at 412, reading every day on the calendar
- * (26 Sep 2026). So the photo never reaches the numeral, the month or the
- * headline. The left fade is solid to the photo's edge at x 600: clear of the
- * 420px cover (x 84–504) on a day that has one, and of the numeral's column
- * on a day without.
+ * edge. The band under the top line fades it into the card's top edge (it
+ * kept ON THIS DAY, 93–119, clean until that label moved down into the date
+ * line). The floor is solid from 385, and no text reaches it: on a day
+ * without a cover the text starts no higher than TEXT_TOP (400), and on a day
+ * with one it starts under the cover — the highest text right of x 600 on any
+ * day is 19 July's headline, at 530, reading every day on the calendar
+ * (26 Sep 2026; the card's text starts at 464 at the highest). So the
+ * photo never sits behind the date line, the headline or the record. The left
+ * fade is solid to the photo's edge at x 600: clear of the cover (x 84–504 at
+ * 420, 84–444 at 360) on a day that has one.
  */
 export const CARD_PORTRAIT: PortraitPlacement = {
   photo: { left: 600, top: -10, size: 600 },
@@ -245,15 +248,31 @@ export const CARD_PORTRAIT: PortraitPlacement = {
     { left: 520, top: 150, width: 400, height: 300, angle: 225, stops: [[0, 0], [50, 0], [80, 1], [100, 1]] },
   ],
 };
-const NUMERAL_GRAD = "linear-gradient(180deg, #ffd24a 0%, #ffb627 52%, #f5890b 100%)";
+
+/** Where the post card's hero begins: under the 84px padding and the 44px
+ *  lockup row. */
+const HERO_TOP = 84 + 44;
+/**
+ * The highest the post card's text may start on a day without a cover: 15px
+ * under the portrait's floor, which is solid from 385 (CARD_PORTRAIT). The
+ * text runs the full measure, x 84–996, so it passes under the photo's
+ * column; on a day with a cover, the cover (left of the photo, x 84–504) is
+ * what sits up there, and the text starts below it.
+ */
+const TEXT_TOP = 400;
 
 /**
  * The post card, 1080×1350 (4:5): /on-this-day/<day>/card.
  *
- * The date is its identity — the day numeral in the gold gradient, with the
- * month — beside the record's 420px cover when the lead has one, and alone at
- * 360px when it does not, the month set on its baseline. The milestone is the
- * reading hero, its record sentence under it; the year, the kind and how many
+ * The milestone is the hero (Paul, 26 Sep 2026: "so much focus is on the
+ * big gold date whereas the focus should be on the actual stuff being
+ * remembered"): the lead's headline is the largest thing on the card, in the
+ * card's white, stepped by length (cardHeadSize) and balanced, its record
+ * sentence straight under it. The date is a label over it — "ON THIS DAY · 16
+ * AUGUST" in the gold, tracked caps at 28 — where change list 15 had the day
+ * numeral in the gold gradient as the card's identity figure. The record's
+ * cover, when the lead has 640px art, sits above the label: 420 wide, or 360
+ * over a headline that may run to four lines. The year, the kind and how many
  * more milestones share the day sit on the foot, with the source only when it
  * is a publisher. No watermark or tone seam (change list 15). The portrait
  * that list removed is back, faded into the top right (Paul, 26 Sep 2026;
@@ -263,8 +282,7 @@ const NUMERAL_GRAD = "linear-gradient(180deg, #ffd24a 0%, #ffb627 52%, #f5890b 1
 export function postCardImage(card: DayPostCard, portrait: string | null = null) {
   const { width, height } = CARD_SIZE;
   const cover = Boolean(card.cover);
-  const n = card.numeralSize;
-  const m = card.monthSize;
+  const c = card.coverSize;
   return new ImageResponse(
     (
       <div
@@ -310,15 +328,16 @@ export function postCardImage(card: DayPostCard, portrait: string | null = null)
           }}
         />
 
-        {/* The crown lockup — the link preview's brand, on the post card too. */}
+        {/* The crown lockup — the link preview's brand, on the post card too.
+            The top right is the portrait's: ON THIS DAY moved down into the
+            date line, over the headline. */}
         <div style={{ position: "relative", display: "flex", alignItems: "center", height: 44 }}>
           <OgLockup />
-          <div style={{ display: "flex", marginLeft: "auto", fontSize: 26, letterSpacing: 5.72, color: OTD_GOLD }}>
-            ON THIS DAY
-          </div>
         </div>
 
-        {/* The hero, centred in the space above the rule. */}
+        {/* The hero: the cover when there is one, the date line, the
+            milestone and its record — centred in the band between TEXT_TOP
+            (or, with a cover, 48 under the lockup) and 48 above the rule. */}
         <div
           style={{
             position: "relative",
@@ -327,91 +346,64 @@ export function postCardImage(card: DayPostCard, portrait: string | null = null)
             flexDirection: "column",
             justifyContent: "center",
             minHeight: 0,
+            paddingTop: cover ? 48 : TEXT_TOP - HERO_TOP,
+            paddingBottom: 48,
           }}
         >
-          <div style={{ display: "flex", alignItems: "flex-end", gap: 44 }}>
-            {card.cover && (
-              // eslint-disable-next-line @next/next/no-img-element -- satori draws its own tree; next/image cannot run inside an ImageResponse.
-              <img
-                src={card.cover}
-                width={420}
-                height={420}
-                alt=""
-                style={{
-                  width: 420,
-                  height: 420,
-                  borderRadius: 18,
-                  border: "2px solid rgba(245,244,240,0.16)",
-                  objectFit: "cover",
-                  boxShadow: "0 30px 60px rgba(0,0,0,0.5)",
-                }}
-              />
-            )}
-            <div
+          {card.cover && (
+            // eslint-disable-next-line @next/next/no-img-element -- satori draws its own tree; next/image cannot run inside an ImageResponse.
+            <img
+              src={card.cover}
+              width={c}
+              height={c}
+              alt=""
               style={{
-                display: "flex",
-                flexDirection: cover ? "column" : "row",
-                alignItems: cover ? "flex-start" : "flex-end",
-                gap: cover ? 14 : 30,
+                width: c,
+                height: c,
+                marginBottom: 44,
+                borderRadius: 18,
+                border: "2px solid rgba(245,244,240,0.16)",
+                objectFit: "cover",
+                boxShadow: "0 30px 60px rgba(0,0,0,0.5)",
               }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  fontSize: n,
-                  lineHeight: 0.78,
-                  letterSpacing: -0.04 * n,
-                  paddingTop: 0.08 * n,
-                  whiteSpace: "nowrap",
-                  backgroundImage: NUMERAL_GRAD,
-                  backgroundClip: "text",
-                  color: "transparent",
-                }}
-              >
-                {card.numeral}
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  fontSize: m,
-                  lineHeight: 1,
-                  letterSpacing: 0.16 * m,
-                  paddingBottom: cover ? 0 : 18,
-                  color: INK,
-                }}
-              >
-                {card.month}
-              </div>
-            </div>
+            />
+          )}
+          <div style={{ display: "flex", fontSize: 28, lineHeight: 1, letterSpacing: 5.6, color: OTD_GOLD, whiteSpace: "nowrap" }}>
+            {card.dateLine}
           </div>
-
-          <div style={{ display: "flex", flexDirection: "column", gap: 22, marginTop: cover ? 60 : 56, width: HEADLINE_WIDTH }}>
-            <div
-              style={{
-                display: "flex",
-                fontSize: card.headSize,
-                lineHeight: 1.08,
-                letterSpacing: 0,
-                textWrap: "balance",
-              }}
-            >
-              {card.headline}
-            </div>
-            {card.record && (
-              <div style={{ display: "flex", fontSize: 32, lineHeight: 1.3, color: "#CFC7BB" }}>{card.record}</div>
-            )}
+          <div
+            style={{
+              display: "flex",
+              width: HEADLINE_WIDTH,
+              marginTop: 22,
+              fontSize: card.headSize,
+              lineHeight: 1.04,
+              letterSpacing: 0,
+              color: INK,
+              textWrap: "balance",
+            }}
+          >
+            {keepTogether(card.headline)}
           </div>
+          {card.record && (
+            <div style={{ display: "flex", width: HEADLINE_WIDTH, marginTop: 26, fontSize: 32, lineHeight: 1.3, color: "#CFC7BB" }}>
+              {keepTogether(card.record)}
+            </div>
+          )}
         </div>
 
         {/* The foot: the rule, the year, the kind and the day's other
-            milestones, the publisher when there is one, the address. */}
+            milestones, the publisher when there is one, the address. Every
+            line of it is one line, so the rule sits at the same height on
+            every card: the source is set whole, and the kind line is the
+            longest form that fits beside it (cardKindLine, CARD_FOOT). */}
         <div style={{ position: "relative", display: "flex", flexDirection: "column", gap: 22 }}>
           <div style={{ display: "flex", height: 2, background: "rgba(255,182,39,0.35)" }} />
-          <div style={{ display: "flex", alignItems: "flex-end", gap: 32 }}>
+          <div style={{ display: "flex", alignItems: "flex-end", gap: CARD_FOOT.gap }}>
             <div style={{ display: "flex", flexDirection: "column", gap: 10, flex: 1, minWidth: 0 }}>
               <div style={{ display: "flex", fontSize: 52, lineHeight: 1, letterSpacing: 1.04 }}>{card.year}</div>
-              <div style={{ display: "flex", alignItems: "center", gap: 12, fontSize: 22, letterSpacing: 2.64, color: "#9b9ba3" }}>
-                <ShareMark kind={card.kind} size={20} color="#9b9ba3" />
+              <div style={{ display: "flex", alignItems: "center", gap: CARD_FOOT.markGap, ...CARD_FOOT.kind, color: "#9b9ba3" }}>
+                <ShareMark kind={card.kind} size={CARD_FOOT.mark} color="#9b9ba3" />
                 <div style={{ display: "flex", flex: 1, minWidth: 0 }}>{card.kindLine}</div>
               </div>
             </div>
@@ -421,13 +413,15 @@ export function postCardImage(card: DayPostCard, portrait: string | null = null)
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "flex-end",
+                  flexShrink: 0,
                   gap: 6,
-                  maxWidth: 420,
                   textAlign: "right",
                 }}
               >
-                <div style={{ display: "flex", fontSize: 18, letterSpacing: 3.24, color: "#6B655D" }}>SOURCE</div>
-                <div style={{ display: "flex", fontSize: 22, letterSpacing: 2.2, color: "#8A8279" }}>{card.source}</div>
+                <div style={{ display: "flex", fontSize: CARD_FOOT.label.fontSize, letterSpacing: CARD_FOOT.label.letterSpacing, color: "#6B655D" }}>
+                  {CARD_FOOT.label.text}
+                </div>
+                <div style={{ display: "flex", ...CARD_FOOT.source, color: "#8A8279", whiteSpace: "nowrap" }}>{card.source}</div>
               </div>
             )}
           </div>

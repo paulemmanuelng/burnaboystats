@@ -18,7 +18,7 @@ vi.mock("next/link", () => ({
 import DayPage from "../app/on-this-day/[day]/page";
 import MobileOnThisDayDay from "../app/components/MobileOnThisDayDay";
 import { dayBySlug, onThisDayDays, onThisDayEvents } from "../app/lib/onThisDay";
-import { dayPostCard, dayPreview } from "../app/lib/onThisDayShare";
+import { dayPostCard, dayPreview, sharePublisher } from "../app/lib/onThisDayShare";
 import { honours } from "../app/data/awards";
 import { concerts } from "../app/data/tours";
 
@@ -85,6 +85,50 @@ describe("a detail that repeats its source prints once", () => {
       return r.includes(c.source) || c.source.includes(r);
     });
     expect(bad.map((d) => d.slug)).toEqual([]);
+  });
+
+  /** Does the headline name the source: the source's words, in order, among
+   *  the headline's? Read as words, so SPOTIFY'S names SPOTIFY, and no name
+   *  counts inside a longer word. */
+  const names = (headline: string, source: string) => {
+    const words = (t: string) => t.toUpperCase().split(/[^\p{L}\p{N}]+/u).filter(Boolean);
+    const [h, w] = [words(headline), words(source)];
+    return h.some((_, i) => w.every((x, j) => h[i + j] === x));
+  };
+
+  it("the post card never prints a source its headline already names", () => {
+    const bad = onThisDayDays.filter((d) => {
+      const c = dayPostCard(d);
+      return c.source !== null && names(c.headline, c.source);
+    });
+    expect(bad.map((d) => d.slug)).toEqual([]);
+  });
+
+  it("and prints every other publisher: only the days whose headline names it go without", () => {
+    const wrong: string[] = [];
+    const dropped: string[] = [];
+    for (const d of onThisDayDays) {
+      const publisher = sharePublisher(d.lead);
+      const c = dayPostCard(d);
+      if (!publisher) continue;
+      if (c.source === null && names(c.headline, publisher)) dropped.push(d.slug);
+      else if (c.source !== publisher.toUpperCase()) wrong.push(`${d.slug}: ${c.source} for ${publisher}`);
+    }
+    expect(wrong).toEqual([]);
+    // Read off the calendar, 27 Sep 2026: NIGERIA ENTERTAINMENT AWARDS: ALBUM
+    // OF THE YEAR, SESAC AWARDS: TOP SONGS HONOREE, and … ON SPOTIFY'S GLOBAL
+    // CHART.
+    expect(dropped).toEqual(["30-june", "22-september", "10-november"]);
+  });
+
+  it("a negative control: 10 November's card as the branch set it fails the same read", () => {
+    // lib/onThisDayShare.ts @ a4ed45c6, dayPostCard(): `source: source ?
+    // source.toUpperCase() : null` — the publisher, whatever the headline said.
+    expect(names("NIGERIA ENTERTAINMENT AWARDS: ALBUM OF THE YEAR", "NIGERIA ENTERTAINMENT AWARDS")).toBe(true);
+    // And a publisher the headline does not name still prints: 16 August's.
+    const c = dayPostCard(dayBySlug("16-august")!);
+    expect(names(c.headline, "IFPI SVERIGE")).toBe(false);
+    expect(c.source).toBe("IFPI SVERIGE");
   });
 
   it("the link preview prints neither: its meta line is the year, the kind and the count", () => {
