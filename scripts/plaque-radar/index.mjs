@@ -20,7 +20,7 @@ import { execFileSync } from "node:child_process";
 import { loadSite, MARKETS } from "./site.mjs";
 import { loadSavedPages, fetchNewerPages, THREADS } from "./buzzjack.mjs";
 import { parsePosts } from "./lists.mjs";
-import { artistsInCredit } from "./normalize.mjs";
+import { artistsInCredit, artistAliases } from "./normalize.mjs";
 import { createClient } from "./net.mjs";
 import { fetchOcc, occFromSaved } from "./occ.mjs";
 import { rankAll } from "./rank.mjs";
@@ -112,13 +112,14 @@ async function main() {
   const entries = parsePosts(posts);
   const ranked = rankAll({ site, entries, occ, asOf, markets: args.markets, top: args.top });
 
+  const aliases = artistAliases(site.artists);
   const inputs = {
     repo: repoState(),
     artists: site.artists.length,
     releases: site.releases.length,
     ukPlaques: site.releases.filter((r) => r.certs.some((c) => c.c === "UK")).length,
     lists: ranked.coverage.byWeek ? [...ranked.coverage.byWeek.keys()].filter((d) => d >= "2022-01-01").length : 0,
-    ourRows: entries.filter((e) => artistsInCredit(e.credit).length).length,
+    ourRows: entries.filter((e) => artistsInCredit(e.credit, aliases).length).length,
     occ: occNote,
     liveUpdated: site.liveUpdated,
     thresholds: site.thresholds,

@@ -18,7 +18,7 @@
 //      titles kept are those whose crossing falls in the weeks the lists have
 //      not covered yet (or will in the next month).
 
-import { titleKey, looseTitleKey, creditHas, creditHasArtist, namesInCredit, artistsInCredit, ARTIST_ALIASES } from "./normalize.mjs";
+import { titleKey, looseTitleKey, creditHas, creditHasArtist, namesInCredit, artistsInCredit, artistAliases } from "./normalize.mjs";
 import { unitsOf, tierLabel, nextTier, maxTier, staircase, project, against, weeksBetween } from "./units.mjs";
 import { fridayOnOrBefore } from "./lists.mjs";
 
@@ -65,13 +65,13 @@ function anchorsFor(release) {
  *  AND the credit names the release's artist — or, for an exact title only,
  *  one of its anchors. (The loose title drops "(Remix)", and Burna Boy's
  *  "Tshwala Bam (Remix)" must not collect the original's plaques through
- *  TitoM & Yuppe's names.) */
-export function rowMatchesRelease(release, row) {
+ *  TitoM & Yuppe's names.) `aliases` is artistAliases(site.artists). */
+export function rowMatchesRelease(release, row, aliases) {
   if (row.format && release.format !== row.format) return false;
   const exact = titleKey(release.title) === titleKey(row.title);
   if (!exact && looseTitleKey(release.title) !== looseTitleKey(row.title)) return false;
   const credit = row.credit ?? row.artist ?? "";
-  if (creditHasArtist(credit, release.slug)) return true;
+  if (creditHasArtist(credit, release.slug, aliases)) return true;
   return exact && anchorsFor(release).some((n) => creditHas(credit, n));
 }
 
@@ -98,7 +98,8 @@ export function buildRecords(site, entries) {
     if (!byKey.has(k)) byKey.set(k, []);
     byKey.get(k).push(i);
   });
-  const names = (slug) => ARTIST_ALIASES[slug]?.names ?? [];
+  const aliases = artistAliases(site.artists);
+  const names = (slug) => aliases[slug]?.names ?? [];
   for (const idx of byKey.values()) {
     for (let a = 0; a < idx.length; a++)
       for (let b = a + 1; b < idx.length; b++) {
@@ -111,8 +112,8 @@ export function buildRecords(site, entries) {
         if (linked) union(idx[a], idx[b]);
       }
   }
-  const ours = entries.filter((e) => artistsInCredit(e.credit).length);
-  const hits = ours.map((e) => rel.map((r, i) => (rowMatchesRelease(r, e) ? i : -1)).filter((i) => i >= 0));
+  const ours = entries.filter((e) => artistsInCredit(e.credit, aliases).length);
+  const hits = ours.map((e) => rel.map((r, i) => (rowMatchesRelease(r, e, aliases) ? i : -1)).filter((i) => i >= 0));
   for (const h of hits) for (let k = 1; k < h.length; k++) union(h[0], h[k]);
 
   const records = new Map();
@@ -132,7 +133,7 @@ export function buildRecords(site, entries) {
       recOf(hits[k][0]).entries.push(e);
       return;
     }
-    const slugs = artistsInCredit(e.credit);
+    const slugs = artistsInCredit(e.credit, aliases);
     const key = `${e.format}|${looseTitleKey(e.title)}|${slugs.sort().join(",")}`;
     if (!orphans.has(key)) orphans.set(key, { id: `o${orphans.size}`, format: e.format, title: e.title, releases: [], entries: [], charts: [], live: [], sweep: [], slugs: new Set(slugs), orphan: true });
     orphans.get(key).entries.push(e);
@@ -219,14 +220,14 @@ const bestEntry = (rec, market) =>
     .flatMap((c) => c.entries.filter((e) => e.c === market))
     .sort((a, b) => a.peak - b.peak || (b.weeks ?? 0) - (a.weeks ?? 0))[0] ?? null;
 
-function occFor(rec, occ) {
+function occFor(rec, occ, aliases) {
   if (!occ?.length) return [];
   const titles = rec.releases.length ? rec.releases.map((r) => r.title) : [rec.title];
   return occ.filter(
     (o) =>
       o.format === rec.format &&
       titles.some((t) => titleKey(t) === titleKey(o.title) || looseTitleKey(t) === looseTitleKey(o.title)) &&
-      ([...rec.slugs].some((s) => creditHasArtist(o.artist, s)) || rec.releases.some((r) => anchorsFor(r).some((n) => creditHas(o.artist, n)))),
+      ([...rec.slugs].some((s) => creditHasArtist(o.artist, s, aliases)) || rec.releases.some((r) => anchorsFor(r).some((n) => creditHas(o.artist, n)))),
   );
 }
 function occScore(rows) {
@@ -324,11 +325,11 @@ export function judgeUK(rec, ctx) {
   const top = steps[steps.length - 1] ?? null;
   const artist = artistNames(rec, site);
   const title = rec.releases[0]?.title ?? rec.title;
-  // Search for the title as the BPI's list printed it ("Buga", not the site's
-  // "Buga (Lo Lo Lo)"), in the site's casing where the two agree.
+  // Search for the title as the BPI's list printed it ("Title", not the site's
+  // "Title (Subtitle)"), in the site's casing where the two agree.
   const printed = [...rec.entries].sort((a, b) => b.date.localeCompare(a.date))[0]?.title;
   const listTitle = printed && titleKey(printed) === titleKey(title) ? title : printed;
-  const occRows = occFor(rec, occ);
+  const occRows = occFor(rec, occ, artistAliases(site.artists));
   const liveRows = rec.live.filter((l) => l.country === "UK");
   const momentum = occScore(occRows) + Math.min(liveScore(liveRows) * 0.3, 0.5);
   const momentumText = [occRows.length ? `this week: ${occLine(occRows)}` : "", liveRows.length ? `today: ${liveLine(liveRows, "UK")}` : ""].filter(Boolean).join("; ");
@@ -444,7 +445,7 @@ export function judgeUKChart(rec, ctx) {
   if (!ladder) return null;
   if (siteTier(rec, "UK", ladder) || rec.entries.length) return null;
   const peak = bestEntry(rec, "UK");
-  const occRows = occFor(rec, occ);
+  const occRows = occFor(rec, occ, artistAliases(site.artists));
   const liveRows = rec.live.filter((l) => l.country === "UK");
   // Silver is an accumulation, so a chart run counts by how long it has lasted:
   // a new entry at No. 2 has banked a week, a ten-week No. 1 has banked ten.

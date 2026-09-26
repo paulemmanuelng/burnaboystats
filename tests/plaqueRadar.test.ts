@@ -4,7 +4,10 @@ import { join } from "node:path";
 import { CERT_THRESHOLDS } from "../app/data/certThresholds";
 import { unitsOf, nextTier, tierLabel, staircase, project, against, weeksBetween } from "../scripts/plaque-radar/units.mjs";
 import { parsePost, fridayOnOrBefore, parseTierWord } from "../scripts/plaque-radar/lists.mjs";
-import { titleKey, looseTitleKey, creditHasArtist } from "../scripts/plaque-radar/normalize.mjs";
+import { titleKey, looseTitleKey, creditHasArtist, artistsInCredit, artistAliases, ALIAS_OVERRIDES } from "../scripts/plaque-radar/normalize.mjs";
+import { siteArtists } from "../scripts/plaque-radar/site.mjs";
+import { renderReport } from "../scripts/plaque-radar/report.mjs";
+import { afrobeatsArtists } from "../app/data/afrobeats";
 import { rankAll, judgeUK, coverage, buildRecords, historicalPace } from "../scripts/plaque-radar/rank.mjs";
 import { parseRobots, robotsVerdict } from "../scripts/plaque-radar/robots.mjs";
 import { assertAllowed, NEVER_HOSTS, ALLOWED_HOSTS } from "../scripts/plaque-radar/net.mjs";
@@ -156,10 +159,29 @@ describe("matching a list row to a release — artist WITH title", () => {
     expect(titleKey("I Told Them…")).toBe(titleKey("I Told Them..."));
   });
   it("never takes Buju Banton for BNXN or Tyla Yaweh for Tyla", () => {
-    expect(creditHasArtist("Wizkid ft. Buju", "bnxn")).toBe(true);
-    expect(creditHasArtist("Buju Banton", "bnxn")).toBe(false);
-    expect(creditHasArtist("Tyla Yaweh ft. Post Malone", "tyla")).toBe(false);
-    expect(creditHasArtist("Tyla, Gunna & Skillibeng", "tyla")).toBe(true);
+    const aliases = artistAliases(siteArtists(afrobeatsArtists));
+    expect(creditHasArtist("Wizkid ft. Buju", "bnxn", aliases)).toBe(true);
+    expect(creditHasArtist("Buju Banton", "bnxn", aliases)).toBe(false);
+    expect(creditHasArtist("Tyla Yaweh ft. Post Malone", "tyla", aliases)).toBe(false);
+    expect(creditHasArtist("Tyla, Gunna & Skillibeng", "tyla", aliases)).toBe(true);
+  });
+});
+
+describe("the artists come from the site's data", () => {
+  const artists = siteArtists(afrobeatsArtists);
+  const aliases = artistAliases(artists);
+
+  it("matches every site artist by the site's own name", () => {
+    expect(Object.keys(aliases).sort()).toEqual(artists.map((a) => a.slug).sort());
+    const missed = artists.filter(
+      (a) => !creditHasArtist(`Someone ft. ${a.name}`, a.slug, aliases) || !artistsInCredit(`${a.name} & Someone`, aliases).includes(a.slug),
+    );
+    expect(missed).toEqual([]);
+  });
+
+  it("types overrides only for artists the site carries", () => {
+    const slugs = new Set(artists.map((a) => a.slug));
+    expect(Object.keys(ALIAS_OVERRIDES).filter((s) => !slugs.has(s))).toEqual([]);
   });
 });
 
@@ -281,6 +303,20 @@ describe("ranking", () => {
     expect(pace.factor).toBeCloseTo(2, 6);
     // Too few replays (the fixture above has none) and the line is left straight.
     expect(historicalPace(buildRecords(site, entries), site)).toEqual({ factor: 1, samples: 0 });
+  });
+
+  it("matches an artist who joins the board with no typed alias", () => {
+    const joined = fixtureSite([release("new-act", "Joiner Song", [{ c: "UK", level: "Silver" }])]);
+    joined.artists = [...joined.artists, { slug: "new-act", name: "New Act" }];
+    expect(ALIAS_OVERRIDES).not.toHaveProperty("new-act");
+    const r = rankAll({ site: joined, entries: [...weeks, row("2026-08-14", "New Act", "Joiner Song", "Gold")], asOf: AS_OF, markets: ["UK"] });
+    expect(r.main[0]).toMatchObject({ title: "Joiner Song", kind: "listed", siteTier: "Silver", nextTier: "Gold" });
+  });
+
+  it("counts the artists in the report from the data", () => {
+    const inputs = { repo: "fixture", artists: site.artists.length, releases: site.releases.length, ukPlaques: site.releases.length, lists: 1, ourRows: 1, occ: "not read", liveUpdated: AS_OF, thresholds: CERT_THRESHOLDS, netLog: [] };
+    const md = renderReport({ asOf: AS_OF, markets: ["UK"], ranked, inputs, offline: true });
+    expect(md).toContain(`rows name one of the ${site.artists.length} artists.`);
   });
 
   it("caps the list", () => {

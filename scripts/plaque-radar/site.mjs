@@ -14,6 +14,12 @@ const load = (root, rel) => import(pathToFileURL(join(root, rel)).href);
 /** The markets the radar serves; "UK" as the site writes it. */
 export const MARKETS = ["UK", "ZA", "AU", "PT"];
 
+/** Burna Boy and every artist on the Afrobeats Board, as [{ slug, name }].
+ *  The radar's artist matching is built from this list (artistAliases). */
+export function siteArtists(afrobeatsArtists) {
+  return [{ slug: "burna-boy", name: "Burna Boy" }, ...afrobeatsArtists.map((a) => ({ slug: a.slug, name: a.name }))];
+}
+
 /**
  * Everything the radar needs from the repo, flattened to plain records.
  *   artists   [{ slug, name }]
@@ -31,7 +37,7 @@ export async function loadSite(root) {
   const burnaLive = await load(root, "app/data/liveCharts.ts");
   const boards = await load(root, "app/data/liveBoards.ts");
 
-  const artists = [{ slug: "burna-boy", name: "Burna Boy" }, ...board.afrobeatsArtists.map((a) => ({ slug: a.slug, name: a.name }))];
+  const artists = siteArtists(board.afrobeatsArtists);
   const nameOf = Object.fromEntries(artists.map((a) => [a.slug, a.name]));
 
   const releases = [];

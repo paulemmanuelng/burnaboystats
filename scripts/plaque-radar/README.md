@@ -4,8 +4,8 @@ A **private, run-by-hand** list of the handful of titles most likely to have
 reached a new certification tier in the markets whose registers can't be read
 automatically — the UK (BPI), South Africa (RiSA), Australia (ARIA) and
 Portugal (AFP / Audiogest) — for Burna Boy and every artist on the Afrobeats
-Board. Instead of searching those registers for twenty artists, search only
-what the radar names.
+Board. Instead of searching those registers for every one of them, search
+only what the radar names.
 
 ```sh
 node scripts/plaque-radar/index.mjs                # every market, online
@@ -56,7 +56,10 @@ token and `*`.
 1. **Match.** A list row belongs to a release only when the title matches AND
    the credit names the release's artist (or someone its credit names) —
    never on the title alone. Khalid's "Location" is not Dave and Burna Boy's.
-   "Buju Banton" is not BNXN; "Tyla Yaweh" is not Tyla.
+   "Buju Banton" is not BNXN; "Tyla Yaweh" is not Tyla. The artists and
+   their names come from the site's own list (`app/data/afrobeats.ts`), so a
+   new board artist is matched with no edit; only other spellings ("Wiz Kid",
+   "Buju") and look-alikes are typed, in `ALIAS_OVERRIDES` in `normalize.mjs`.
 2. **Staircase.** Every dated row for a title becomes a step: units at that
    tier (a 3× Platinum single is 3 × 600,000), dated the first time it was
    seen.

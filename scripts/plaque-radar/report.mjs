@@ -40,7 +40,7 @@ export function renderReport(r) {
   L.push(`- Site data: ${inputs.repo}. ${inputs.artists} artists (Burna Boy + the Afrobeats Board), ${inputs.releases} releases, ${inputs.ukPlaques} UK plaques on the site.`);
   if (markets.includes("UK")) {
     L.push(
-      `- BuzzJack weekly lists: ${inputs.lists} weeks transcribed (${cov.complete.size} of them the full list; the rest only the BRITs account's handful — most of Apr–Sep 2023), ${cov.first ? fmtDate(cov.first) : "—"} → ${cov.last ? fmtDate(cov.last) : "—"}; last FULL list ${cov.lastComplete ? fmtDate(cov.lastComplete) : "—"}${cov.last && cov.last !== cov.lastComplete ? `; ${fmtDate(cov.last)} has only ${cov.byWeek.get(cov.last)} rows so far (the BRITs posts), so a plaque awarded that week may not be visible yet` : ""}. ${inputs.ourRows} rows name one of the 20 artists.`,
+      `- BuzzJack weekly lists: ${inputs.lists} weeks transcribed (${cov.complete.size} of them the full list; the rest only the BRITs account's handful — most of Apr–Sep 2023), ${cov.first ? fmtDate(cov.first) : "—"} → ${cov.last ? fmtDate(cov.last) : "—"}; last FULL list ${cov.lastComplete ? fmtDate(cov.lastComplete) : "—"}${cov.last && cov.last !== cov.lastComplete ? `; ${fmtDate(cov.last)} has only ${cov.byWeek.get(cov.last)} rows so far (the BRITs posts), so a plaque awarded that week may not be visible yet` : ""}. ${inputs.ourRows} rows name one of the ${inputs.artists} artists.`,
     );
     L.push(`- Official Charts Company: ${inputs.occ}.`);
   }

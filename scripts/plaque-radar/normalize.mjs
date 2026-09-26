@@ -40,34 +40,36 @@ export function looseTitleKey(title) {
 }
 
 /**
- * Who counts as each artist inside a certification credit.
+ * What the site's own artist name would get wrong in a certification credit,
+ * by slug. Every artist's site name counts on its own (see artistAliases), so
+ * an artist who joins the board is matched with no edit here; only other
+ * spellings and look-alikes are typed.
  *
- * `not` lists longer names that CONTAIN the alias and belong to someone else:
+ * `not` lists longer names that CONTAIN a name and belong to someone else:
  * "Buju" was BNXN's name until 2022, but "Buju Banton" is a different artist;
  * "Tyla Yaweh" is not Tyla. The board has tripped on both before.
  */
-export const ARTIST_ALIASES = {
-  "burna-boy": { names: ["Burna Boy"] },
-  olamide: { names: ["Olamide"] },
-  "black-sherif": { names: ["Black Sherif"] },
-  bnxn: { names: ["BNXN", "Buju"], not: ["Buju Banton"] },
-  wizkid: { names: ["Wizkid", "Wiz Kid"] },
-  davido: { names: ["Davido"] },
-  rema: { names: ["Rema"] },
-  tems: { names: ["Tems"] },
-  tyla: { names: ["Tyla"], not: ["Tyla Yaweh"] },
-  "ayra-starr": { names: ["Ayra Starr"] },
-  asake: { names: ["Asake"] },
-  "omah-lay": { names: ["Omah Lay"] },
-  "seyi-vibez": { names: ["Seyi Vibez"] },
-  victony: { names: ["Victony"] },
-  "fireboy-dml": { names: ["Fireboy DML", "Fireboy"] },
-  ckay: { names: ["CKay"] },
-  "kizz-daniel": { names: ["Kizz Daniel", "Kiss Daniel"] },
-  ruger: { names: ["Ruger"] },
-  oxlade: { names: ["Oxlade"] },
-  "tiwa-savage": { names: ["Tiwa Savage"] },
+export const ALIAS_OVERRIDES = {
+  bnxn: { names: ["Buju"], not: ["Buju Banton"] },
+  wizkid: { names: ["Wiz Kid"] },
+  tyla: { not: ["Tyla Yaweh"] },
+  "fireboy-dml": { names: ["Fireboy"] },
+  "kizz-daniel": { names: ["Kiss Daniel"] },
 };
+
+/**
+ * Who counts as each artist inside a certification credit, built from the
+ * site's artist list ([{ slug, name }], site.mjs): the site name, plus any
+ * ALIAS_OVERRIDES spellings and exclusions.
+ */
+export function artistAliases(artists) {
+  return Object.fromEntries(
+    artists.map(({ slug, name }) => {
+      const o = ALIAS_OVERRIDES[slug] ?? {};
+      return [slug, { names: [...new Set([name, ...(o.names ?? [])])], not: o.not ?? [] }];
+    }),
+  );
+}
 
 const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 const fold = (s) =>
@@ -84,16 +86,16 @@ export function creditHas(credit, name, not = []) {
   return new RegExp(`(^|[^a-z0-9])${esc(fold(name))}(?=$|[^a-z0-9])`).test(c);
 }
 
-/** True when the credit names this board artist (by slug). */
-export function creditHasArtist(credit, slug) {
-  const a = ARTIST_ALIASES[slug];
+/** True when the credit names this artist (by slug), per an artistAliases table. */
+export function creditHasArtist(credit, slug, aliases) {
+  const a = aliases[slug];
   if (!a) return false;
-  return a.names.some((n) => creditHas(credit, n, a.not ?? []));
+  return a.names.some((n) => creditHas(credit, n, a.not));
 }
 
-/** Every board slug the credit names. */
-export function artistsInCredit(credit) {
-  return Object.keys(ARTIST_ALIASES).filter((slug) => creditHasArtist(credit, slug));
+/** Every slug in the artistAliases table that the credit names. */
+export function artistsInCredit(credit, aliases) {
+  return Object.keys(aliases).filter((slug) => creditHasArtist(credit, slug, aliases));
 }
 
 /** Names pulled out of a site credit such as "Coldplay ft. Burna Boy & others"
