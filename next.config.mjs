@@ -7,6 +7,14 @@ import embedWidgetList from "./app/data/embedWidgetList.json" with { type: "json
 // typed, so a widget added there is framable the day it ships. A slug is
 // lower-case words and hyphens; anything else would change what the pattern
 // means, so it stops the build instead.
+//
+// "Exactly" is up to letter case. Next matches every source in this file
+// without regard to case (experimental.caseSensitiveRoutes is off, and turning
+// it on would change every redirect below for mixed-case requests, /Tour
+// included), so /embed/LATEST gets the widget's headers too. The routes are
+// case-sensitive, though, and on its own /embed/LATEST was the site's 404
+// page sent out framable. The rewrites in rewrites() serve it the widget
+// instead, so whatever these rules frame is a widget.
 const embedSlugs = embedWidgetList.map((w) => w.slug);
 if (!embedSlugs.length || embedSlugs.some((s) => !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(s))) {
   throw new Error(`next.config.mjs: embed slugs must be lower-case words and hyphens, got ${JSON.stringify(embedSlugs)}`);
@@ -248,9 +256,20 @@ const nextConfig = {
   // with no redirect. The route handler's own headers answer it, CORS included.
   // Case is kept as typed (no folding), so the slash form of a 404 is the same
   // 404.
+  //
+  // Then one rewrite per embed widget, from the slug to itself. The source
+  // matches in any letter case, like the framing rules in headers(), and the
+  // destination is the slug as written, so /embed/LATEST is served
+  // /embed/latest rather than the 404 page those rules would have framed (see
+  // the note on embedSlugs). A redirect cannot do it: its source would match
+  // its own destination. The lower-case path rewrites to itself, which changes
+  // nothing.
   async rewrites() {
     return {
-      beforeFiles: [{ source: "/:path(api/(?:[^/]+/)*[^/]+)/", destination: "/:path" }],
+      beforeFiles: [
+        { source: "/:path(api/(?:[^/]+/)*[^/]+)/", destination: "/:path" },
+        ...embedSlugs.map((s) => ({ source: `/embed/${s}`, destination: `/embed/${s}` })),
+      ],
     };
   },
 };

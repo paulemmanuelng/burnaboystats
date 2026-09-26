@@ -297,6 +297,7 @@ body{font-family:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif;color:var
 .stats{display:flex;margin-top:12px;border-top:1px solid var(--line)}
 .stat{flex:1 1 0;min-width:0;padding:8px 8px 0 0}
 .stat+.stat{padding-left:10px;border-left:1px solid var(--line)}
+@media (max-width:319px){.stat{padding-right:2px}.stat+.stat{padding-left:6px}}
 .statV{display:block;font-family:${ANTON};font-weight:400;font-size:22px;line-height:1;color:var(--text)}
 .statL{display:block;font-size:var(--type-caption);line-height:1.3;color:var(--text-muted);margin-top:4px}
 .foot{margin-top:auto;padding-top:9px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:3px}
