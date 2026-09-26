@@ -539,12 +539,14 @@
   gap: 6px;
 }
 /* Smaller than the filter pills, at the owner's request (25 Sep 2026); 32px
-   still clears WCAG's 24px minimum target. */
+   still clears WCAG's 24px minimum target. The type stays on the site's 11px
+   floor (--type-label); the box shrank, not the letters. */
 .compareChip {
   text-decoration: none;
   min-height: 32px;
   padding: 0 11px;
-  font-size: 10px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
 }
 .compareChip:hover { background: var(--bg-raised); }
 .eventRow {
