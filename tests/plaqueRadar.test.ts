@@ -10,7 +10,7 @@ import { renderReport } from "../scripts/plaque-radar/report.mjs";
 import { afrobeatsArtists } from "../app/data/afrobeats";
 import { rankAll, judgeUK, coverage, buildRecords, historicalPace } from "../scripts/plaque-radar/rank.mjs";
 import { parseRobots, robotsVerdict } from "../scripts/plaque-radar/robots.mjs";
-import { assertAllowed, NEVER_HOSTS, ALLOWED_HOSTS } from "../scripts/plaque-radar/net.mjs";
+import { assertAllowed, NEVER_HOSTS, ALLOWED_HOSTS, createClient, curlArgs, parseCurlOutput, MAX_REDIRECTS } from "../scripts/plaque-radar/net.mjs";
 
 // The plaque radar (scripts/plaque-radar/) is PRIVATE and run by hand. These
 // tests pin its arithmetic and its ranking on fixtures — no network, no saved
@@ -377,5 +377,120 @@ describe("the radar stays private and polite", () => {
     expect(robotsVerdict(groups, tokens, "/search/?q=burna").ok).toBe(false);
     const named = parseRobots("User-agent: Claude-User\nDisallow: /\n\nUser-agent: *\nAllow: /\n");
     expect(robotsVerdict(named, tokens, "/anything").ok).toBe(false);
+  });
+});
+
+// ── Redirects: every hop passes the same door ───────────────────────────────
+
+type Page = { status: number; body?: string; location?: string };
+
+/** A fake web: `pages` maps a URL to its response (404 otherwise). Records
+ *  every URL actually requested, so a test can prove a hop never went out. */
+function fakeWeb(pages: Record<string, Page>) {
+  const requested: string[] = [];
+  const fetcher = async (url: string) => {
+    requested.push(url);
+    const p = pages[url] ?? { status: 404 };
+    return { ok: p.status >= 200 && p.status < 300, status: p.status, body: p.body ?? "", location: p.location };
+  };
+  const client = createClient({ fetcher, sleep: async () => {} });
+  return { client, requested };
+}
+
+const BJ = "https://www.buzzjack.com";
+const OCC = "https://www.officialcharts.com";
+const OPEN_ROBOTS = { status: 200, body: "User-agent: *\nAllow: /\n" };
+
+describe("the radar follows redirects itself, one checked hop at a time", () => {
+  it("curl is never told to follow a redirect, and is held to https", () => {
+    const args = curlArgs(`${BJ}/x`);
+    expect(args).not.toContain("-L");
+    expect(args).not.toContain("--location");
+    expect(args.join(" ")).toContain("--proto =https");
+  });
+
+  it("reads curl's Location from its -w line, and a failed transfer is a failure", () => {
+    expect(parseCurlOutput(`moved\n301 ${BJ}/b`)).toMatchObject({ ok: false, status: 301, body: "moved", location: `${BJ}/b` });
+    expect(parseCurlOutput("a\nb\n200 ")).toMatchObject({ ok: true, status: 200, body: "a\nb", location: undefined });
+    expect(parseCurlOutput("half a pa\n200 ", { failed: true, stderr: "curl: (28) Operation timed out" }).ok).toBe(false);
+  });
+
+  it("never requests a barred host a redirect points at", async () => {
+    for (const h of NEVER_HOSTS) {
+      const barred = `https://${h}/`;
+      const { client, requested } = fakeWeb({ [`${BJ}/robots.txt`]: OPEN_ROBOTS, [`${BJ}/page`]: { status: 302, location: barred } });
+      const res = await client.get(`${BJ}/page`);
+      expect(res.ok).toBe(false);
+      expect(res.error).toMatch(/not followed/);
+      expect(requested).toEqual([`${BJ}/robots.txt`, `${BJ}/page`]);
+    }
+  });
+
+  it.each([
+    ["a barred register", "https://certified-awards.bpi.co.uk/search"],
+    ["a host off the list", "https://example.com/"],
+    ["plain http on an allowed host", "http://www.buzzjack.com/page2"],
+  ])("refuses a redirect to %s without requesting it", async (_label, target) => {
+    const { client, requested } = fakeWeb({ [`${BJ}/robots.txt`]: OPEN_ROBOTS, [`${BJ}/page`]: { status: 301, location: target } });
+    const res = await client.get(`${BJ}/page`);
+    expect(res).toMatchObject({ ok: false, status: 301, body: "" });
+    expect(requested).not.toContain(target);
+    expect(requested).toEqual([`${BJ}/robots.txt`, `${BJ}/page`]);
+  });
+
+  it("checks robots.txt for where a redirect lands, not just where it started", async () => {
+    const { client, requested } = fakeWeb({
+      [`${BJ}/robots.txt`]: { status: 200, body: "User-agent: *\nDisallow: /search/\n" },
+      [`${BJ}/forums/topic/1/`]: { status: 302, location: "/search/?q=burna" },
+    });
+    const res = await client.get(`${BJ}/forums/topic/1/`);
+    expect(res.ok).toBe(false);
+    expect(res.error).toMatch(/robots\.txt disallows/);
+    expect(requested).not.toContain(`${BJ}/search/?q=burna`);
+  });
+
+  it("reads the new host's robots.txt before following a redirect onto it", async () => {
+    const { client, requested } = fakeWeb({
+      [`${BJ}/robots.txt`]: OPEN_ROBOTS,
+      [`${OCC}/robots.txt`]: { status: 200, body: "User-agent: Claude-User\nDisallow: /\n" },
+      [`${BJ}/go`]: { status: 307, location: `${OCC}/charts/singles-chart/` },
+    });
+    const res = await client.get(`${BJ}/go`);
+    expect(res.ok).toBe(false);
+    expect(requested).toEqual([`${BJ}/robots.txt`, `${BJ}/go`, `${OCC}/robots.txt`]);
+  });
+
+  it("follows an allowed redirect and returns the page it lands on", async () => {
+    const { client, requested } = fakeWeb({
+      [`${OCC}/robots.txt`]: OPEN_ROBOTS,
+      [`${OCC}/charts/singles-chart`]: { status: 301, location: `${OCC}/charts/singles-chart/` },
+      [`${OCC}/charts/singles-chart/`]: { status: 200, body: "<html>chart</html>" },
+    });
+    const res = await client.get(`${OCC}/charts/singles-chart`);
+    expect(res).toMatchObject({ ok: true, status: 200, body: "<html>chart</html>", url: `${OCC}/charts/singles-chart/` });
+    expect(requested).toEqual([`${OCC}/robots.txt`, `${OCC}/charts/singles-chart`, `${OCC}/charts/singles-chart/`]);
+  });
+
+  it(`stops after ${MAX_REDIRECTS} redirects`, async () => {
+    const pages: Record<string, Page> = { [`${BJ}/robots.txt`]: OPEN_ROBOTS };
+    for (let i = 0; i < 10; i++) pages[`${BJ}/r${i}`] = { status: 302, location: `/r${i + 1}` };
+    const { client, requested } = fakeWeb(pages);
+    const res = await client.get(`${BJ}/r0`);
+    expect(res.ok).toBe(false);
+    expect(res.error).toMatch(/more than/);
+    expect(requested.filter((u) => u !== `${BJ}/robots.txt`)).toHaveLength(MAX_REDIRECTS + 1);
+  });
+
+  it("a robots.txt that redirects off the list leaves the host unread", async () => {
+    const { client, requested } = fakeWeb({ [`${BJ}/robots.txt`]: { status: 301, location: "https://risa.org.za/robots.txt" } });
+    const res = await client.get(`${BJ}/page`);
+    expect(res).toMatchObject({ ok: false, error: "robots.txt unreadable" });
+    expect(requested).toEqual([`${BJ}/robots.txt`]);
+  });
+
+  it("still throws when the radar itself asks for a barred host", async () => {
+    const { client, requested } = fakeWeb({});
+    await expect(client.get("https://certified-awards.bpi.co.uk/")).rejects.toThrow(/never requested/);
+    expect(requested).toEqual([]);
   });
 });
