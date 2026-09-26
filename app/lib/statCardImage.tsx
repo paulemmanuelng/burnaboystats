@@ -39,9 +39,8 @@ export function statCardImage(card: StatCard, ratio: CardRatio = "square") {
   // the square source keeps the face natural. Story is 1:3; running full
   // height there over-zooms the crop until the face lands by luck, so the
   // photo gets a bounded, top-anchored box instead and dissolves out well
-  // above the number block. Portrait (4:5) keeps the square's 1:2 box — the
-  // crop that already works — and melts out 270px above the base.
-  const photoH = tall ? Math.round(size.height * 0.56) : Math.min(size.height, size.width);
+  // above the number block.
+  const photoH = tall ? Math.round(size.height * 0.56) : size.height;
   const textW = size.width - pad * 2 - photoW * (tall ? 0.15 : 0.45);
 
   // Long values ("$30.46M") have to hold the same optical weight as short ones
@@ -142,10 +141,9 @@ export function statCardImage(card: StatCard, ratio: CardRatio = "square") {
               "linear-gradient(270deg, rgba(12,10,9,0.62) 0%, rgba(12,10,9,0.2) 55%, rgba(12,10,9,0) 100%)",
           }}
         />
-        {/* Story and portrait: the photo box ends above the base, so its
-            bottom edge melts into the face colour rather than cutting a line
-            across it. The square's box is the card, so it has no edge. */}
-        {photoH < size.height && (
+        {/* Story only: the photo box ends mid-card, so its bottom edge melts
+            into the face colour rather than cutting a line across it. */}
+        {tall && (
           <div
             style={{
               position: "absolute",
@@ -156,24 +154,6 @@ export function statCardImage(card: StatCard, ratio: CardRatio = "square") {
               display: "flex",
               background:
                 "linear-gradient(180deg, rgba(12,10,9,0) 0%, rgba(12,10,9,0.75) 62%, #0C0A09 100%)",
-            }}
-          />
-        )}
-
-        {/* Portrait only: its box stops 270px above the base, where the face's
-            own gradient is a shade lighter than the melt's end, which drew a
-            seam across the card. The melt's colour carries on to the base.
-            Story keeps the look it always had. */}
-        {ratio === "portrait" && (
-          <div
-            style={{
-              position: "absolute",
-              right: 0,
-              top: photoH,
-              width: photoW,
-              height: size.height - photoH,
-              display: "flex",
-              background: "#0C0A09",
             }}
           />
         )}

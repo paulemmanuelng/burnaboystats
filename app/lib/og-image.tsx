@@ -88,8 +88,12 @@ export const cardUrl = (path: string) => `BURNABOYSTATS.COM${path.toLowerCase()}
  * Bump it whenever the drawing changes and the words do not. Do NOT bump it for
  * a data change; those move their own ids already, and re-versioning all
  * thirty-seven cards to ship one new figure is just churn.
+ *
+ *   lockup-1       the crown lockup reached every card
+ *   on-this-day-1  the On This Day images redrawn (26 Sep 2026): the
+ *                  milestone as the hero, covers, the post card's numeral
  */
-export const OG_ART = "lockup-1";
+export const OG_ART = "on-this-day-1";
 
 /**
  * The root card's URL, for the three pages that cite it by hand.

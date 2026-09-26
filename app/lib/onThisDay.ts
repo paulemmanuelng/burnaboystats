@@ -41,7 +41,6 @@ import {
   DAI_DAI_YT_NO1_SINCE,
 } from "../data/daiDai";
 import { awardLabel } from "./awardName";
-import type { StatCard } from "./statCards";
 
 // The kinds — shape plus word, in ink — live in a module of their own, so a
 // client component can draw a mark without pulling this file's datasets into
@@ -689,29 +688,6 @@ export function dayLedeShort(day: OnThisDayDay): string {
 export function dayMeta(day: OnThisDayDay): string {
   const n = day.events.length;
   return `${day.lead.year} · ${KIND_MARK[day.lead.kind].word}${n > 1 ? ` · ${milestones(n)}` : ""}`;
-}
-
-// ── The post-ready card ─────────────────────────────────────────────────────
-
-/**
- * A day's share card, in the stat-card shape so /on-this-day/<day>/card is drawn
- * by the same renderer as every other card on the site (lib/statCardImage.tsx).
- * The figure is the lead event's YEAR, never "N years ago": a card is saved and
- * reposted, and a relative age printed on it would be wrong a year later.
- */
-export function dayCard(day: OnThisDayDay): StatCard {
-  const more = day.events.length - 1;
-  return {
-    id: `on-this-day-${day.slug}`,
-    value: String(day.lead.year),
-    label: day.lead.headline,
-    kicker: more > 0 ? `On this day, ${day.label} — and ${more} more milestone${more === 1 ? "" : "s"}` : `On this day, ${day.label}`,
-    chip: `On this day · ${day.label}`,
-    source: day.lead.body,
-    detail: day.lead.detail,
-    href: `/on-this-day/${day.slug}`,
-    watermark: MONTHS[day.month - 1].slice(0, 3).toUpperCase(),
-  };
 }
 
 /** "1st anniversary", "13th anniversary" — for a date still to come. */

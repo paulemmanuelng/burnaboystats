@@ -8,6 +8,10 @@
  * so the route cannot be asked for a thousand cache variants.
  */
 export const CARD_PREVIEW_WIDTHS = [320, 560] as const;
+
+/** The card itself: 4:5, the tallest a feed post runs on Instagram and X
+ *  without a crop (lib/onThisDayImages.tsx draws it). */
+export const CARD_SIZE = { width: 1080, height: 1350 } as const;
 export type CardPreviewWidth = (typeof CARD_PREVIEW_WIDTHS)[number];
 
 export const cardPath = (slug: string) => `/on-this-day/${slug}/card`;
