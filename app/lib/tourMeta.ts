@@ -23,7 +23,7 @@ export function tourDateNote(t: Tour): string {
   const dates = t.dates?.length ?? 0;
   const capacities = "Capacities are the venues’ standard listed capacities.";
 
-  // The header says "22 shows" and the table below it lists 27 dates. Both are
+  // The header says "22 shows" and the table below it lists 24 dates. Both are
   // right and they count different things — box office is only reported for
   // some dates — but side by side with no explanation it reads as an error.
   if (t.shows && t.shows !== dates) {
