@@ -63,6 +63,13 @@ export const searchIndex: SearchDoc[] = [
     keywords: ["timeline", "career", "history", "biography", "story", "milestones", "year by year", "journey"],
   },
   {
+    title: "On This Day",
+    path: "/on-this-day",
+    section: "Site",
+    description: "Burna Boy on this day — a calendar of dated milestones: releases, No. 1s, certifications, awards and shows, each on its anniversary.",
+    keywords: ["on this day", "this day", "today in history", "anniversary", "anniversaries", "calendar", "date", "what happened today", "burna boy on this day"],
+  },
+  {
     title: "L.I.F.E",
     path: "/music/albums/life",
     section: "Album",

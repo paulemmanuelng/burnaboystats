@@ -76,6 +76,8 @@ export const footerColumns: { label: string; links: { href: string; label: strin
       { href: "/dai-dai/es", label: "Dai Dai en español" },
       { href: "/updates", label: "Updates" },
       { href: "/timeline", label: "Career timeline" },
+      // Beside the timeline: the same story, filed by calendar date.
+      { href: "/on-this-day", label: "On this day" },
       { href: "/about", label: "About Burna Boy" },
       { href: "/music", label: "Song pages" },
       { href: "/rss.xml", label: "RSS feed" },
@@ -132,6 +134,9 @@ export const exploreFor: Record<string, string[]> = {
   // back to the subject of the site — a reader who arrived on "wizkid
   // certifications" should land somewhere that is Burna Boy's record.
   "/afrobeats": ["certifications", "charts", "africas-biggest"],
+  // The calendar and its day pages: the full story in order, the records the
+  // days are drawn from, and the cards to post one with.
+  "/on-this-day": ["timeline", "records", "share"],
 };
 
 /**

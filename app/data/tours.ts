@@ -210,6 +210,14 @@ export const tours: Tour[] = [
 
 export interface LiveMoment {
   year: string;
+  /**
+   * The day it happened, ISO "YYYY-MM-DD" — set only where the text itself
+   * names the day, and never on a moment that is also a dated tour show above
+   * (London Stadium, Citi Field, Madison Square Garden, Stade de France, Red
+   * Rocks): /on-this-day reads the show's own date and joins the moment to it,
+   * so a second date here would list the same night twice.
+   */
+  date?: string;
   title: string;
   text: string;
   record?: boolean;
@@ -287,9 +295,9 @@ export const upcomingShows: UpcomingShow[] = [
 ];
 
 export const liveMoments: LiveMoment[] = [
-  { year: "2026", title: "FIFA World Cup Final halftime show", text: "Performed at the 2026 final's halftime show (19 July) — the first African artist to do so — on a bill with Madonna, Shakira, BTS, Justin Bieber and Coldplay.", record: true },
+  { year: "2026", date: "2026-07-19", title: "FIFA World Cup Final halftime show", text: "Performed at the 2026 final's halftime show (19 July) — the first African artist to do so — on a bill with Madonna, Shakira, BTS, Justin Bieber and Coldplay.", record: true },
   { year: "2026", title: "FIFA World Cup Opening Ceremony", text: "Headlined the opener in Mexico City with Shakira, performing the official tournament song “Dai Dai.”" },
-  { year: "2026", title: "AFCON 2025 Fan Zone grand finale", text: "Headlined “The AFCON Last Dance” in Rabat (16 Jan 2026), closing out the Africa Cup of Nations hosted by Morocco — on a bill with Stormzy, Stonebwoy and Jaylann." },
+  { year: "2026", date: "2026-01-16", title: "AFCON 2025 Fan Zone grand finale", text: "Headlined “The AFCON Last Dance” in Rabat (16 Jan 2026), closing out the Africa Cup of Nations hosted by Morocco — on a bill with Stormzy, Stonebwoy and Jaylann." },
   { year: "2025", title: "Stade de France, Paris", text: `First African artist to headline the Stade de France (April 2025)${stadeDeFranceGross}.` },
   { year: "2025", title: "Red Rocks Amphitheatre", text: "First Nigerian artist to headline the iconic Colorado venue, opening the North American leg of the No Sign of Weakness tour." },
   { year: "2025", title: "England Lionesses' Euro victory parade", text: "Surprise-performed “For My Hand” for a crowd the FA put at 65,000 at Buckingham Palace as the Lionesses celebrated retaining the UEFA Women's Euro (July 2025) — manager Sarina Wiegman, a self-professed fan, sang along." },
@@ -310,6 +318,12 @@ export const liveMoments: LiveMoment[] = [
 // Personal headline tours are NOT listed here — they live in `tours` above.
 export interface Festival {
   year: string;
+  /**
+   * The day he played, ISO "YYYY-MM-DD" — set only where the note names that
+   * day (a range like "7–8 September", or a month alone, stays undated). The
+   * note keeps its own wording; tests/onThisDay.test.ts checks the two agree.
+   */
+  date?: string;
   name: string;
   location: string;
   note: string;
@@ -320,14 +334,14 @@ export const festivals: Festival[] = [
   { year: "2023", name: "St Kitts Music Festival", location: "St Kitts & Nevis", note: "The event's first-ever African headlining artist, anchoring the multi-day lineup." },
   { year: "2024", name: "Mawazine Festival", location: "Rabat, Morocco", note: "Headlined the OLM Souissi main stage at one of the world's largest festivals, on a 2024 bill that also featured Nicki Minaj, Kylie Minogue and Camila Cabello." },
   { year: "2025", name: "Flow Festival", location: "Helsinki, Finland", note: "A Main Stage headliner, topping one of the three nights — on a bill with Charli XCX, FKA twigs, Little Simz and Air." },
-  { year: "2026", name: "North Sea Jazz Festival", location: "Rotterdam, Netherlands", note: "A marquee name on the Saturday (11 July) bill of the festival's landmark 50th edition at Rotterdam Ahoy, alongside headliners including John Legend & The Roots, Diana Krall, Charlie Puth and Thundercat." },
+  { year: "2026", date: "2026-07-11", name: "North Sea Jazz Festival", location: "Rotterdam, Netherlands", note: "A marquee name on the Saturday (11 July) bill of the festival's landmark 50th edition at Rotterdam Ahoy, alongside headliners including John Legend & The Roots, Diana Krall, Charlie Puth and Thundercat." },
   { year: "2019", name: "Afro Nation", location: "Portimão, Portugal", note: "A headliner at the festival's inaugural edition, sharing the Saturday bill with Davido (Wizkid closed Sunday)." },
-  { year: "2022", name: "Afro Nation", location: "Portimão, Portugal", note: "Closed the festival (3 July) with what press called a headline performance, after Davido and Wizkid topped the earlier nights." },
-  { year: "2023", name: "Afro Nation", location: "Portimão, Portugal", note: "Headlined the opening night (28 June), with Wizkid and Asake the following night and 50 Cent and Davido closing the festival." },
+  { year: "2022", date: "2022-07-03", name: "Afro Nation", location: "Portimão, Portugal", note: "Closed the festival (3 July) with what press called a headline performance, after Davido and Wizkid topped the earlier nights." },
+  { year: "2023", date: "2023-06-28", name: "Afro Nation", location: "Portimão, Portugal", note: "Headlined the opening night (28 June), with Wizkid and Asake the following night and 50 Cent and Davido closing the festival." },
   { year: "2023", name: "Afro Nation", location: "Miami, US", note: "Closed day one of the festival's Miami debut, with Wizkid headlining day two." },
   { year: "2023", name: "Afro Nation", location: "Detroit, US", note: "Closed day one with an hour-long set, alongside fellow headliner Davido, who closed day two." },
   { year: "2025", name: "Afro Nation", location: "Portimão, Portugal", note: "A main-stage headliner of the world's biggest Afrobeats festival (5th edition, July 2025), topping the bill alongside Davido and Mary J. Blige." },
-  { year: "2026", name: "Afro Nation", location: "Portimão, Portugal", note: "Headliner of the main “Lit Stage,” topping the opening night (3 July) alongside Tyla — with Asake and Wizkid headlining the nights after." },
+  { year: "2026", date: "2026-07-03", name: "Afro Nation", location: "Portimão, Portugal", note: "Headliner of the main “Lit Stage,” topping the opening night (3 July) alongside Tyla — with Asake and Wizkid headlining the nights after." },
   // Written as a future commitment ("Headlining…", no date) and left that way
   // for five weeks after the set happened — the only entry on this list a
   // reader could not place in time, because every other 2026 festival names its
@@ -335,61 +349,61 @@ export const festivals: Festival[] = [
   // original Saturday–Sunday weekend sold out, which is what "first-ever
   // Friday" means, and which is also why it needs saying — an unheld
   // headline slot and a played one read identically without the date.
-  { year: "2026", name: "Reggae Land", location: "Milton Keynes, UK", note: "Headlined the festival's first-ever Friday (31 July 2026) — a date added after the original Saturday–Sunday weekend sold out — before 35,000 at the 65,000-capacity National Bowl, topping a bill with Masicka, Christopher Martin and Julian Marley. The three days drew more than 135,000." },
-  { year: "2025", name: "GTCO Music Concert", location: "Accra, Ghana", note: "A headline act at the free second edition (19 Dec 2025) before 30,000+ at the Accra Sports Stadium — on a stacked pan-African bill with Shatta Wale, Sarkodie, Ayra Starr, Patoranking, Fireboy DML, Joeboy, King Promise and R2Bees." },
-  { year: "2025", name: "MadfunXperience", location: "Nairobi, Kenya", note: "Headlined the Uhuru Gardens show (1 Mar 2025) with his full band, The Outsiders — joined on stage by Sauti Sol, with Bensoul, Charisma and Vigro Deep supporting." },
+  { year: "2026", date: "2026-07-31", name: "Reggae Land", location: "Milton Keynes, UK", note: "Headlined the festival's first-ever Friday (31 July 2026) — a date added after the original Saturday–Sunday weekend sold out — before 35,000 at the 65,000-capacity National Bowl, topping a bill with Masicka, Christopher Martin and Julian Marley. The three days drew more than 135,000." },
+  { year: "2025", date: "2025-12-19", name: "GTCO Music Concert", location: "Accra, Ghana", note: "A headline act at the free second edition (19 Dec 2025) before 30,000+ at the Accra Sports Stadium — on a stacked pan-African bill with Shatta Wale, Sarkodie, Ayra Starr, Patoranking, Fireboy DML, Joeboy, King Promise and R2Bees." },
+  { year: "2025", date: "2025-03-01", name: "MadfunXperience", location: "Nairobi, Kenya", note: "Headlined the Uhuru Gardens show (1 Mar 2025) with his full band, The Outsiders — joined on stage by Sauti Sol, with Bensoul, Charisma and Vigro Deep supporting." },
   { year: "2022", name: "DStv Delicious Festival", location: "Johannesburg, South Africa", note: "Headlined the main stage at the food-and-music festival (Kyalami, Sept 2022), on a bill that also featured Babyface, Digable Planets and Stereo MCs." },
-  { year: "2016", name: "NATIVELAND Festival", location: "Muri Okunola Park, Lagos", note: "A headliner of the inaugural NATIVELAND (22 Dec 2016), The NATIVE magazine's flagship Lagos festival — on a bill with Skepta, YCEE and Maleek Berry." },
-  { year: "2025", name: "Afrosoul Festival", location: "Go Media Stadium, Auckland", note: "Headlined the inaugural Afrosoul (11 Oct 2025) — the first African artist to headline a stadium concert in New Zealand, opening his Oceania run." },
+  { year: "2016", date: "2016-12-22", name: "NATIVELAND Festival", location: "Muri Okunola Park, Lagos", note: "A headliner of the inaugural NATIVELAND (22 Dec 2016), The NATIVE magazine's flagship Lagos festival — on a bill with Skepta, YCEE and Maleek Berry." },
+  { year: "2025", date: "2025-10-11", name: "Afrosoul Festival", location: "Go Media Stadium, Auckland", note: "Headlined the inaugural Afrosoul (11 Oct 2025) — the first African artist to headline a stadium concert in New Zealand, opening his Oceania run." },
   { year: "2022", name: "World Creole Music Festival", location: "Windsor Park Stadium, Roseau, Dominica", note: "Headlined night two of Dominica's flagship festival (Oct 2022)." },
-  { year: "2024", name: "Sunny Hill Festival", location: "Pristina, Kosovo", note: "Headlined the second night (Friday 26 July 2024) of Kosovo's biggest festival, in its first edition at the new Bërnicë site — wrapped in the Kosovo flag throughout." },
+  { year: "2024", date: "2024-07-26", name: "Sunny Hill Festival", location: "Pristina, Kosovo", note: "Headlined the second night (Friday 26 July 2024) of Kosovo's biggest festival, in its first edition at the new Bërnicë site — wrapped in the Kosovo flag throughout." },
   { year: "2024", name: "Stell'Air Festival", location: "Abidjan, Côte d'Ivoire", note: "Drew about 20,000 during AFCON 2024 (Jan 2024)." },
   { year: "2022", name: "Festi Dakar", location: "Grand Théâtre, Dakar, Senegal", note: "Closed the festival's third edition (Feb 2022) — his first Dakar concert." },
   { year: "2023", name: "Roskilde Festival", location: "Roskilde, Denmark", note: "Closed the Orange Stage on Thursday night — a headline slot in the same rotation as Kendrick Lamar (Wednesday), Blur (Friday) and closing headliner Lizzo." },
   { year: "2022", name: "TOMAC Festival", location: "Plymouth Recreation Ground, Tobago", note: "Headlined Tobago's Music, Arts & Culture festival through torrential rain (Oct 2022)." },
   { year: "2021", name: "SNF Nostos Festival", location: "Athens, Greece", note: "His Greece debut (Aug 2021)." },
-  { year: "2025", name: "Coca-Cola Food Fest", location: "Tribeca Mall, Mauritius", note: "Billed as the biggest live show Mauritius had ever seen (2 Aug 2025)." },
-  { year: "2026", name: "Luna Loca launch", location: "O Beach Ibiza, San Antonio, Spain", note: "Headlined the global launch of Luna Loca, a pool-party live-music concept, on Friday 14 August 2026 — his first performance in Ibiza, with Steel Banglez on the decks." },
-  { year: "2024", name: "We Love Green Festival", location: "Bois de Vincennes, Paris, France", note: "Headlined the festival (31 May) — telling the crowd “my second home is a place called Paris,” on a bill with Justice and L'Impératrice." },
-  { year: "2024", name: "SummerJam Festival", location: "Fühlinger See, Cologne, Germany", note: "Headlined the 37th edition (7 July) — his only German festival date that year." },
-  { year: "2024", name: "Gurtenfestival", location: "Bern, Switzerland", note: "Headlined the Thursday (18 July) before 18,000 — the organisers' own count for his night at a festival capped at 20,000 a day, which drew 73,000 entries over its four days — on a bill with Peter Fox and Justice." },
-  { year: "2024", name: "Paléo Festival", location: "Nyon, Switzerland", note: "Headlined one of the world's biggest festivals (23 July) — all 200,000 tickets for the week sold out in 21 minutes, on a bill with Sean Paul, Patti Smith and Khruangbin." },
+  { year: "2025", date: "2025-08-02", name: "Coca-Cola Food Fest", location: "Tribeca Mall, Mauritius", note: "Billed as the biggest live show Mauritius had ever seen (2 Aug 2025)." },
+  { year: "2026", date: "2026-08-14", name: "Luna Loca launch", location: "O Beach Ibiza, San Antonio, Spain", note: "Headlined the global launch of Luna Loca, a pool-party live-music concept, on Friday 14 August 2026 — his first performance in Ibiza, with Steel Banglez on the decks." },
+  { year: "2024", date: "2024-05-31", name: "We Love Green Festival", location: "Bois de Vincennes, Paris, France", note: "Headlined the festival (31 May) — telling the crowd “my second home is a place called Paris,” on a bill with Justice and L'Impératrice." },
+  { year: "2024", date: "2024-07-07", name: "SummerJam Festival", location: "Fühlinger See, Cologne, Germany", note: "Headlined the 37th edition (7 July) — his only German festival date that year." },
+  { year: "2024", date: "2024-07-18", name: "Gurtenfestival", location: "Bern, Switzerland", note: "Headlined the Thursday (18 July) before 18,000 — the organisers' own count for his night at a festival capped at 20,000 a day, which drew 73,000 entries over its four days — on a bill with Peter Fox and Justice." },
+  { year: "2024", date: "2024-07-23", name: "Paléo Festival", location: "Nyon, Switzerland", note: "Headlined one of the world's biggest festivals (23 July) — all 200,000 tickets for the week sold out in 21 minutes, on a bill with Sean Paul, Patti Smith and Khruangbin." },
   { year: "2024", name: "Lollapalooza Berlin", location: "Olympiastadion & Olympiapark, Berlin, Germany", note: "A headliner (7–8 September) alongside Sam Smith and Martin Garrix." },
-  { year: "2024", name: "Spilligate Festival", location: "Fort Charlotte, Nassau, Bahamas", note: "Headlined the festival (17 February) — originally booked for December 2023 but postponed." },
+  { year: "2024", date: "2024-02-17", name: "Spilligate Festival", location: "Fort Charlotte, Nassau, Bahamas", note: "Headlined the festival (17 February) — originally booked for December 2023 but postponed." },
 ];
 
 // Other festivals & one-off shows he performed at (NOT as the headliner).
 export const otherShows: Festival[] = [
   { year: "2019", name: "Coachella", location: "Indio, USA", note: "His Coachella debut, performing across both weekends on the main Coachella Stage." },
   { year: "2021", name: "Governors Ball Music Festival", location: "New York, USA", note: "A Sunday main-stage set at Citi Field, on a bill headlined by Post Malone." },
-  { year: "2021", name: "Global Citizen Live", location: "New York, USA", note: "Performed on the Great Lawn in Central Park (25 Sept 2021), ahead of headliners Coldplay, Billie Eilish and Jennifer Lopez." },
+  { year: "2021", date: "2021-09-25", name: "Global Citizen Live", location: "New York, USA", note: "Performed on the Great Lawn in Central Park (25 Sept 2021), ahead of headliners Coldplay, Billie Eilish and Jennifer Lopez." },
   { year: "2023", name: "Coachella", location: "Indio, USA", note: "Returned to Coachella for a second appearance, on a bigger stage than his 2019 debut." },
   { year: "2024", name: "Glastonbury Festival", location: "Worthy Farm, UK", note: "A primetime Pyramid Stage set, immediately before Sunday headliner SZA, on a bill topped by Dua Lipa and Coldplay." },
   { year: "2025", name: "Wireless Festival", location: "London, UK", note: "A top-billed name on the Sunday line-up at Finsbury Park, on a bill headlined by Drake — who headlined all three days." },
-  { year: "2025", name: "The Town", location: "São Paulo, Brazil", note: "His first show in Brazil — a Skyline Stage set at the giant São Paulo festival (Autódromo de Interlagos, 6 Sept 2025), on a day topped by headliner Travis Scott, before a roughly 100,000-strong daily crowd." },
-  { year: "2019", name: "One Africa Music Fest", location: "Dubai, UAE", note: "A featured act at the Afrobeats festival's Dubai edition (Festival Arena, 15 Nov 2019), on a bill led by Wizkid and also featuring Davido, Tiwa Savage, Tekno, Teni and 2Baba, hosted by Banky W." },
+  { year: "2025", date: "2025-09-06", name: "The Town", location: "São Paulo, Brazil", note: "His first show in Brazil — a Skyline Stage set at the giant São Paulo festival (Autódromo de Interlagos, 6 Sept 2025), on a day topped by headliner Travis Scott, before a roughly 100,000-strong daily crowd." },
+  { year: "2019", date: "2019-11-15", name: "One Africa Music Fest", location: "Dubai, UAE", note: "A featured act at the Afrobeats festival's Dubai edition (Festival Arena, 15 Nov 2019), on a bill led by Wizkid and also featuring Davido, Tiwa Savage, Tekno, Teni and 2Baba, hosted by Banky W." },
   { year: "2024", name: "Untold Festival", location: "Cluj-Napoca, Romania", note: "Performed at one of Europe's biggest festivals (Aug 2024) — his Romania debut." },
-  { year: "2024", name: "Superbloom Festival", location: "Munich, Germany", note: "A set at the Munich festival in the Olympiapark (8 Sept 2024)." },
+  { year: "2024", date: "2024-09-08", name: "Superbloom Festival", location: "Munich, Germany", note: "A set at the Munich festival in the Olympiapark (8 Sept 2024)." },
   { year: "2024", name: "MEO Kalorama", location: "Lisbon, Portugal", note: "A set at the Lisbon festival in Parque da Bela Vista (Aug 2024)." },
   { year: "2024", name: "Stavern Festival", location: "Stavern, Norway", note: "His Norway debut — a festival set in summer 2024." },
-  { year: "2025", name: "New Orleans Jazz & Heritage Festival", location: "New Orleans, USA", note: "A Congo Square Stage set at the legendary Jazz Fest (27 April 2025)." },
+  { year: "2025", date: "2025-04-27", name: "New Orleans Jazz & Heritage Festival", location: "New Orleans, USA", note: "A Congo Square Stage set at the legendary Jazz Fest (27 April 2025)." },
 ];
 
 // Solo headline concerts — his own standalone shows (not festival slots, and not
 // dates within a routed multi-city tour, which live in `tours` above).
 export const concerts: Festival[] = [
-  { year: "2026", name: "Burna Boy Live in El Gouna", location: "El Gouna Conference & Cultural Center, Egypt", note: "His first-ever performance in Egypt (11 April 2026), blending hits like On the Low and Gbona with cuts from No Sign of Weakness." },
-  { year: "2022", name: "Burna Boy Live in Harare", location: "Belgravia Sports Club, Zimbabwe", note: "His Zimbabwe debut (4 June 2022) — also remembered for declining to wear a ruling-party (ZANU-PF) scarf, refusing any political endorsement." },
+  { year: "2026", date: "2026-04-11", name: "Burna Boy Live in El Gouna", location: "El Gouna Conference & Cultural Center, Egypt", note: "His first-ever performance in Egypt (11 April 2026), blending hits like On the Low and Gbona with cuts from No Sign of Weakness." },
+  { year: "2022", date: "2022-06-04", name: "Burna Boy Live in Harare", location: "Belgravia Sports Club, Zimbabwe", note: "His Zimbabwe debut (4 June 2022) — also remembered for declining to wear a ruling-party (ZANU-PF) scarf, refusing any political endorsement." },
   { year: "2021", name: "Burna Boy: The Live Experience", location: "Eko Convention Centre, Lagos", note: "His sold-out Lagos homecoming concert — a hometown spectacle staged as a newly-crowned Grammy winner." },
   { year: "2022", name: "National Stadium, Kingston", location: "Jamaica", note: "His first-ever headline concert in Jamaica — about 19,000 fans, joined on stage by Popcaan and Lila Iké, planting his flag in the home of reggae and dancehall." },
-  { year: "2019", name: "Burna Boy Xperience", location: "Sheraton Gardens, Kampala", note: "A packed Kampala headline concert (22 March 2019) — his return to Uganda after debuting at Namboole Stadium's Club MegaFest in 2014." },
+  { year: "2019", date: "2019-03-22", name: "Burna Boy Xperience", location: "Sheraton Gardens, Kampala", note: "A packed Kampala headline concert (22 March 2019) — his return to Uganda after debuting at Namboole Stadium's Club MegaFest in 2014." },
   { year: "2025", name: "Burna Boy Live in Madrid", location: "FITZ, Madrid", note: "Two nights in the Spanish capital (5–6 Nov 2025)." },
-  { year: "2020", name: "Burna Boy Live in Rome", location: "Atlantico, Rome", note: "His first-ever performance in Italy (7 Feb 2020)." },
-  { year: "2024", name: "Unforgettable Concert", location: "Guyana National Stadium, Providence", note: "Headlined the biggest concert in Guyana's history (1 May 2024) — about 20,000 fans, the country's most expensive show ever staged." },
-  { year: "2019", name: "Burna Boy Experience", location: "Intare Conference Arena, Kigali", note: "A sold-out Kigali headline concert (23 March 2019)." },
-  { year: "2017", name: "Burna Boy Live in Addis Ababa", location: "Addis Ababa, Ethiopia", note: "A New Year's Eve concert (31 December 2017) welcoming in 2018 — his Ethiopia debut." },
+  { year: "2020", date: "2020-02-07", name: "Burna Boy Live in Rome", location: "Atlantico, Rome", note: "His first-ever performance in Italy (7 Feb 2020)." },
+  { year: "2024", date: "2024-05-01", name: "Unforgettable Concert", location: "Guyana National Stadium, Providence", note: "Headlined the biggest concert in Guyana's history (1 May 2024) — about 20,000 fans, the country's most expensive show ever staged." },
+  { year: "2019", date: "2019-03-23", name: "Burna Boy Experience", location: "Intare Conference Arena, Kigali", note: "A sold-out Kigali headline concert (23 March 2019)." },
+  { year: "2017", date: "2017-12-31", name: "Burna Boy Live in Addis Ababa", location: "Addis Ababa, Ethiopia", note: "A New Year's Eve concert (31 December 2017) welcoming in 2018 — his Ethiopia debut." },
   { year: "2022", name: "Burna Boy Live in Suriname", location: "Paramaribo", note: "His first concert in Suriname (Dec 2022)." },
-  { year: "2022", name: "Burna Boy Live in Curaçao", location: "Festival Center Brievengat, Willemstad", note: "A Love, Damini era show (28 October 2022) that drew fans from Aruba, Bonaire and Suriname." },
+  { year: "2022", date: "2022-10-28", name: "Burna Boy Live in Curaçao", location: "Festival Center Brievengat, Willemstad", note: "A Love, Damini era show (28 October 2022) that drew fans from Aruba, Bonaire and Suriname." },
   { year: "2022", name: "Burna Boy Live in Windhoek", location: "Independence Stadium, Namibia", note: "His Namibia debut (Sept 2022) — originally booked for the African Giant tour in 2020 but postponed by COVID-19 restrictions; the show finally happened two years later." },
-  { year: "2024", name: "Taste the Rhythms with Burna Boy", location: "Vigie Playing Field, Castries, Saint Lucia", note: "A standalone promoted concert (3 May 2024) — separate from that year's official Saint Lucia Jazz & Arts Festival, whose own headliners were Air Supply, Davido and Machel Montano." },
+  { year: "2024", date: "2024-05-03", name: "Taste the Rhythms with Burna Boy", location: "Vigie Playing Field, Castries, Saint Lucia", note: "A standalone promoted concert (3 May 2024) — separate from that year's official Saint Lucia Jazz & Arts Festival, whose own headliners were Air Supply, Davido and Machel Montano." },
 ];

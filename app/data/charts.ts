@@ -218,6 +218,19 @@ export interface ChartEntry {
   weeksAtPeak?: number;
   /** Total weeks on that country's chart, where the body publishes a run. */
   weeks?: number;
+  /**
+   * The issue date of the chart on which the peak was FIRST reached, ISO
+   * "YYYY-MM-DD" — the chart's own date, as the body prints it, never the day
+   * the peak was read here. Optional like the two above, for the same reason.
+   *
+   * Carried so far by the Top 10 peaks whose issue a read recorded: every
+   * Nigerian one, from the issue-by-issue walk in
+   * docs/sweeps/burna-boy-nigeria-2026-09-18.md ("Set on issue"), and the two
+   * UK No. 1s dated by the Official Charts Company (the notes in firsts.ts and
+   * timeline.ts). /on-this-day lists a peak on its anniversary only when this
+   * is set; a peak with no recorded issue stays off the calendar.
+   */
+  peakDate?: string;
 }
 
 export interface ChartRelease {
@@ -230,7 +243,7 @@ export interface ChartRelease {
 
 export const albumCharts: ChartRelease[] = [
   { title: "I Told Them…", year: 2023, entries: [
-    { c: "NG", peak: 1 }, { c: "UK", peak: 1 }, { c: "NL", peak: 2 }, { c: "FR", peak: 6 }, { c: "SE", peak: 7 },
+    { c: "NG", peak: 1, peakDate: "2023-08-31" }, { c: "UK", peak: 1, peakDate: "2023-09-01" }, { c: "NL", peak: 2 }, { c: "FR", peak: 6 }, { c: "SE", peak: 7 },
     { c: "CA", peak: 18 }, { c: "BE", peak: 20 }, { c: "IE", peak: 25 }, { c: "US", peak: 31 },
     { c: "DE", peak: 46 }, { c: "AU", peak: 56 },
     // Read 18 Sep 2026: RMNZ artist page (12, 13 weeks, first charted 1 Sep
@@ -240,7 +253,7 @@ export const albumCharts: ChartRelease[] = [
     { c: "NZ", peak: 12 }, { c: "DK", peak: 13 }, { c: "AT", peak: 39 },
   ] },
   { title: "Love, Damini", year: 2022, entries: [
-    { c: "UK", peak: 2 }, { c: "NG", peak: 3, note: "Peak still open — read while the release is still on the chart, so it may yet climb." }, { c: "NL", peak: 2 }, { c: "CA", peak: 6 }, { c: "SE", peak: 12 },
+    { c: "UK", peak: 2 }, { c: "NG", peak: 3, peakDate: "2022-11-02", note: "Peak still open — read while the release is still on the chart, so it may yet climb." }, { c: "NL", peak: 2 }, { c: "CA", peak: 6 }, { c: "SE", peak: 12 },
     { c: "US", peak: 14 }, { c: "FR", peak: 17 }, { c: "IE", peak: 23 }, { c: "BE", peak: 24 },
     { c: "DE", peak: 61 },
   ] },
@@ -274,7 +287,7 @@ export const albumCharts: ChartRelease[] = [
     // Schweizer Hitparade Alben Top 100, issue of 20 Jul 2025: 28, one week
     // (swisscharts.com/charts/alben/20-07-2025); AFP/Audiogest TOP semana 29 de
     // 2025, Top 200 Álbuns: 66, new, one week (audiogest.pt PDF). Read 18 Sep 2026.
-    { c: "NG", peak: 1 }, { c: "UK", peak: 6 }, { c: "CH", peak: 28 }, { c: "NL", peak: 57 }, { c: "FR", peak: 58 }, { c: "CA", peak: 65 },
+    { c: "NG", peak: 1, peakDate: "2025-07-17" }, { c: "UK", peak: 6 }, { c: "CH", peak: 28 }, { c: "NL", peak: 57 }, { c: "FR", peak: 58 }, { c: "CA", peak: 65 },
     { c: "PT", peak: 66 }, { c: "BE", peak: 136 }, { c: "US", peak: 200 },
   ] },
 ];
@@ -356,7 +369,7 @@ export const singleCharts: ChartRelease[] = [
     { c: "HN", peak: 4 }, { c: "HU", peak: 8 },
     { c: "LT", peak: 5 }, { c: "CR", peak: 5 }, { c: "RO", peak: 5 }, { c: "LV", peak: 5 }, { c: "MY", peak: 5 }, { c: "GT", peak: 5 }, { c: "DK", peak: 5 },
     { c: "IL", peak: 6 }, { c: "FI", peak: 6 }, { c: "NI", peak: 6 },
-    { c: "NG", peak: 7, note: "Peak still open — read while the release is still on the chart, so it may yet climb." }, { c: "TR", peak: 7 },
+    { c: "NG", peak: 7, peakDate: "2026-06-18", note: "Peak still open — read while the release is still on the chart, so it may yet climb." }, { c: "TR", peak: 7 },
     { c: "KZ", peak: 8 }, { c: "AU", peak: 10 },
     { c: "NZ", peak: 13 }, { c: "HR", peak: 13 },
     { c: "EG", peak: 14 }, { c: "CL", peak: 14 }, { c: "US", peak: 17 }, { c: "ZA", peak: 20 },
@@ -368,18 +381,18 @@ export const singleCharts: ChartRelease[] = [
     // 1, week 20/2022, id 1096 — rank 3, highestPosition 3); 46 issues in all,
     // never higher, and the Top 100 counter from 7 Jul 2022 reads 4. Re-read
     // 17 Sep 2026 across 229 consecutive issues.
-    { c: "ZA", peak: 1 }, { c: "NG", peak: 3 }, { c: "UK", peak: 4 }, { c: "NZ", peak: 12 },
+    { c: "ZA", peak: 1 }, { c: "NG", peak: 3, peakDate: "2022-05-19" }, { c: "UK", peak: 4 }, { c: "NZ", peak: 12 },
     { c: "NL", peak: 14 }, { c: "SE", peak: 21 }, { c: "FR", peak: 23 }, { c: "IE", peak: 27 },
     { c: "CA", peak: 30 }, { c: "CH", peak: 38 }, { c: "GLB", peak: 39 }, { c: "US", peak: 44 },
     { c: "BE", peak: 49 }, { c: "AU", peak: 79 }, { c: "PT", peak: 142 },
   ] },
   { title: "City Boys", year: 2023, entries: [
-    { c: "NG", peak: 2 }, { c: "NL", peak: 14 }, { c: "UK", peak: 14 }, { c: "CH", peak: 24 },
+    { c: "NG", peak: 2, peakDate: "2023-09-07" }, { c: "NL", peak: 14 }, { c: "UK", peak: 14 }, { c: "CH", peak: 24 },
     { c: "FR", peak: 27 }, { c: "IE", peak: 44 }, { c: "SE", peak: 58 }, { c: "CA", peak: 70 },
     { c: "GLB", peak: 143 },
   ] },
   { title: "For My Hand", credit: "feat. Ed Sheeran", year: 2022, entries: [
-    { c: "NG", peak: 1 }, { c: "SR", peak: 3 }, { c: "ZA", peak: 4 }, { c: "UK", peak: 18 }, { c: "DK", peak: 23 },
+    { c: "NG", peak: 1, peakDate: "2022-07-14" }, { c: "SR", peak: 3 }, { c: "ZA", peak: 4 }, { c: "UK", peak: 18 }, { c: "DK", peak: 23 },
     { c: "NL", peak: 25 }, { c: "SE", peak: 38 }, { c: "IE", peak: 47 }, { c: "GLB", peak: 52 },
     { c: "CH", peak: 59 }, { c: "CA", peak: 63 }, { c: "FR", peak: 173 },
   ] },
@@ -393,24 +406,24 @@ export const singleCharts: ChartRelease[] = [
     { c: "GLB", peak: 143 }, { c: "NG", peak: 17 }
   ] },
   { title: "Cheat on Me", credit: "feat. Dave", year: 2023, entries: [
-    { c: "NG", peak: 4 }, { c: "UK", peak: 19 }, { c: "IE", peak: 42 }, { c: "FR", peak: 109 }, { c: "GLB", peak: 194 },
+    { c: "NG", peak: 4, peakDate: "2023-08-31" }, { c: "UK", peak: 19 }, { c: "IE", peak: 42 }, { c: "FR", peak: 109 }, { c: "GLB", peak: 194 },
   ] },
   { title: "Sittin' on Top of the World", credit: "feat. 21 Savage", year: 2023, entries: [
-    { c: "NG", peak: 8 }, { c: "UK", peak: 36 }, { c: "NZ", peak: 36 }, { c: "US", peak: 80 },
+    { c: "NG", peak: 8, peakDate: "2023-06-08" }, { c: "UK", peak: 36 }, { c: "NZ", peak: 36 }, { c: "US", peak: 80 },
   ] },
-  { title: "Big 7", year: 2023, entries: [{ c: "NG", peak: 2 }, { c: "UK", peak: 53 }] },
+  { title: "Big 7", year: 2023, entries: [{ c: "NG", peak: 2, peakDate: "2023-08-03" }, { c: "UK", peak: 53 }] },
   // The NATIVE's recap of TurnTable's I Told Them... week: "Giza" at No. 2,
   // ahead of City Boys (3), Cheat on Me (4) and Big 7 (5). Its only official
   // national-chart placement — a home smash on the strength of Seyi Vibez.
-  { title: "Giza", credit: "feat. Seyi Vibez", year: 2023, entries: [{ c: "NG", peak: 2 }] },
+  { title: "Giza", credit: "feat. Seyi Vibez", year: 2023, entries: [{ c: "NG", peak: 2, peakDate: "2023-08-31" }] },
   { title: "Real Life", credit: "feat. Stormzy", year: 2020, entries: [{ c: "UK", peak: 54 }, { c: "NG", peak: 40 }] },
   { title: "On the Low", year: 2018, entries: [
     { c: "FR", peak: 78 }, { c: "NL", peak: 97 },
   ] },
-  { title: "Kilometre", year: 2021, entries: [{ c: "NG", peak: 1 }, { c: "UK", peak: 84 }] },
-  { title: "TaTaTa", credit: "feat. Travis Scott", year: 2025, entries: [{ c: "NG", peak: 5 }, { c: "UK", peak: 84 }] },
-  { title: "Higher", year: 2024, entries: [{ c: "NG", peak: 1 }, { c: "UK", peak: 99 }] },
-  { title: "Love", year: 2025, entries: [{ c: "NG", peak: 1 }] },
+  { title: "Kilometre", year: 2021, entries: [{ c: "NG", peak: 1, peakDate: "2021-05-06" }, { c: "UK", peak: 84 }] },
+  { title: "TaTaTa", credit: "feat. Travis Scott", year: 2025, entries: [{ c: "NG", peak: 5, peakDate: "2025-05-29" }, { c: "UK", peak: 84 }] },
+  { title: "Higher", year: 2024, entries: [{ c: "NG", peak: 1, peakDate: "2024-07-11" }, { c: "UK", peak: 99 }] },
+  { title: "Love", year: 2025, entries: [{ c: "NG", peak: 1, peakDate: "2025-07-24" }] },
   // ── Nigeria sweep, 18 Sep 2026 ─────────────────────────────────────────
   // Every issue of TurnTable's Official Nigeria Top 100 (306 issues, 5 Nov
   // 2020 → 10 Sep 2026, the Top 50 era included) walked at the body's own
@@ -418,16 +431,16 @@ export const singleCharts: ChartRelease[] = [
   // chart row at all before the sweep — most are album cuts that charted on
   // release week, priced by the same rule as every other entry here. Evidence
   // per row (issue id, date, weeks) in docs/sweeps/burna-boy-nigeria-2026-09-18.md.
-  { title: "B. D'OR", credit: "feat. Wizkid", year: 2021, entries: [{ c: "NG", peak: 2 }] },
-  { title: "Bundle by Bundle", year: 2024, entries: [{ c: "NG", peak: 2 }] },
-  { title: "It's Plenty", year: 2022, entries: [{ c: "NG", peak: 3 }] },
-  { title: "Common Person", year: 2022, entries: [{ c: "NG", peak: 4 }] },
-  { title: "Question", credit: "feat. Don Jazzy", year: 2021, entries: [{ c: "NG", peak: 4 }] },
-  { title: "Update", year: 2025, entries: [{ c: "NG", peak: 4 }] },
-  { title: "Dem Dey", year: 2025, entries: [{ c: "NG", peak: 5 }] },
-  { title: "Different Size", credit: "feat. Victony", year: 2022, entries: [{ c: "NG", peak: 8 }] },
-  { title: "Want It All", credit: "feat. Polo G", year: 2021, entries: [{ c: "NG", peak: 8 }] },
-  { title: "Cloak & Dagger", credit: "feat. J Hus", year: 2022, entries: [{ c: "NG", peak: 9 }] },
+  { title: "B. D'OR", credit: "feat. Wizkid", year: 2021, entries: [{ c: "NG", peak: 2, peakDate: "2021-12-23" }] },
+  { title: "Bundle by Bundle", year: 2024, entries: [{ c: "NG", peak: 2, peakDate: "2024-12-26" }] },
+  { title: "It's Plenty", year: 2022, entries: [{ c: "NG", peak: 3, peakDate: "2022-07-21" }] },
+  { title: "Common Person", year: 2022, entries: [{ c: "NG", peak: 4, peakDate: "2022-08-11" }] },
+  { title: "Question", credit: "feat. Don Jazzy", year: 2021, entries: [{ c: "NG", peak: 4, peakDate: "2021-09-02" }] },
+  { title: "Update", year: 2025, entries: [{ c: "NG", peak: 4, peakDate: "2025-02-27" }] },
+  { title: "Dem Dey", year: 2025, entries: [{ c: "NG", peak: 5, peakDate: "2025-07-17" }] },
+  { title: "Different Size", credit: "feat. Victony", year: 2022, entries: [{ c: "NG", peak: 8, peakDate: "2022-07-14" }] },
+  { title: "Want It All", credit: "feat. Polo G", year: 2021, entries: [{ c: "NG", peak: 8, peakDate: "2021-10-07" }] },
+  { title: "Cloak & Dagger", credit: "feat. J Hus", year: 2022, entries: [{ c: "NG", peak: 9, peakDate: "2022-07-14" }] },
   { title: "No Panic", year: 2025, entries: [{ c: "NG", peak: 13 }] },
   { title: "20 10 20", year: 2020, entries: [{ c: "NG", peak: 14 }] },
   { title: "Change Your Mind", credit: "feat. Shaboozey", year: 2025, entries: [{ c: "NG", peak: 14 }] },
@@ -468,7 +481,7 @@ export const singleCharts: ChartRelease[] = [
 
 export const featureCharts: ChartRelease[] = [
   { title: "Own It", credit: "Stormzy ft. Ed Sheeran & Burna Boy", year: 2019, entries: [
-    { c: "UK", peak: 1 }, { c: "IE", peak: 2 }, { c: "DK", peak: 11 }, { c: "NL", peak: 25 },
+    { c: "UK", peak: 1, peakDate: "2020-01-03" }, { c: "IE", peak: 2 }, { c: "DK", peak: 11 }, { c: "NL", peak: 25 },
     { c: "CH", peak: 27 }, { c: "SE", peak: 30 }, { c: "AU", peak: 40 }, { c: "AT", peak: 57 },
     { c: "CA", peak: 82 },
   ] },
@@ -519,20 +532,20 @@ export const featureCharts: ChartRelease[] = [
   { title: "4 Kampé II", credit: "Joé Dwèt Filé ft. Burna Boy", year: 2025, entries: [{ c: "FR", peak: 61 }, { c: "NG", peak: 36 }] },
   { title: "Only You", credit: "J. Cole ft. Burna Boy", year: 2026, entries: [{ c: "US", peak: 78 }] },
   { title: "Just Like Me", credit: "21 Savage, Burna Boy & Metro Boomin", year: 2024, entries: [{ c: "US", peak: 67 }, { c: "NG", peak: 72 }] },
-  { title: "Loved by You", credit: "Justin Bieber ft. Burna Boy", year: 2021, entries: [{ c: "UK", peak: 59 }, { c: "US", peak: 87 }, { c: "NG", peak: 4 }] },
-  { title: "Ginger", credit: "Wizkid ft. Burna Boy", year: 2020, entries: [{ c: "NG", peak: 1 }, { c: "UK", peak: 67 }] },
-  { title: "Sungba (Remix)", credit: "Asake ft. Burna Boy", year: 2022, entries: [{ c: "NG", peak: 1 }] },
-  { title: "Tshwala Bam (Remix)", credit: "TitoM, Yuppe & Burna Boy feat. S.N.E", year: 2024, entries: [{ c: "NG", peak: 1 }] },
+  { title: "Loved by You", credit: "Justin Bieber ft. Burna Boy", year: 2021, entries: [{ c: "UK", peak: 59 }, { c: "US", peak: 87 }, { c: "NG", peak: 4, peakDate: "2021-03-25" }] },
+  { title: "Ginger", credit: "Wizkid ft. Burna Boy", year: 2020, entries: [{ c: "NG", peak: 1, peakDate: "2020-11-05" }, { c: "UK", peak: 67 }] },
+  { title: "Sungba (Remix)", credit: "Asake ft. Burna Boy", year: 2022, entries: [{ c: "NG", peak: 1, peakDate: "2022-03-31" }] },
+  { title: "Tshwala Bam (Remix)", credit: "TitoM, Yuppe & Burna Boy feat. S.N.E", year: 2024, entries: [{ c: "NG", peak: 1, peakDate: "2024-05-23" }] },
   // ── Nigeria sweep, 18 Sep 2026 ─────────────────────────────────────────
   // Every issue of TurnTable's Official Nigeria Top 100 (306 issues, 5 Nov
   // 2020 → 10 Sep 2026, the Top 50 era included) walked at the body's own
   // archive route; a peak is the best rank in any issue. Feature rows below had no chart row before the sweep; the credit is as
   // the chart prints it, in the artists' own spellings. Evidence
   // per row (issue id, date, weeks) in docs/sweeps/burna-boy-nigeria-2026-09-18.md.
-  { title: "Laho II", credit: "Shallipopi & Burna Boy", year: 2025, entries: [{ c: "NG", peak: 2 }] },
-  { title: "Do I", credit: "Phyno & Burna Boy", year: 2023, entries: [{ c: "NG", peak: 6 }] },
-  { title: "Rotate", credit: "Becky G, Burna Boy", year: 2021, entries: [{ c: "NG", peak: 8 }] },
-  { title: "Second Sermon (Remix)", credit: "Black Sherif ft. Burna Boy", year: 2021, entries: [{ c: "NG", peak: 9 }] },
+  { title: "Laho II", credit: "Shallipopi & Burna Boy", year: 2025, entries: [{ c: "NG", peak: 2, peakDate: "2025-05-01" }] },
+  { title: "Do I", credit: "Phyno & Burna Boy", year: 2023, entries: [{ c: "NG", peak: 6, peakDate: "2024-01-11" }] },
+  { title: "Rotate", credit: "Becky G, Burna Boy", year: 2021, entries: [{ c: "NG", peak: 8, peakDate: "2021-03-04" }] },
+  { title: "Second Sermon (Remix)", credit: "Black Sherif ft. Burna Boy", year: 2021, entries: [{ c: "NG", peak: 9, peakDate: "2022-04-14" }] },
   { title: "Hey Boy", credit: "Sia ft. Burna Boy", year: 2021, entries: [{ c: "NG", peak: 18 }] },
   { title: "All My Life (Burna Boy Remix)", credit: "Lil Durk & J. Cole ft. Burna Boy", year: 2023, entries: [{ c: "NG", peak: 19 }] },
   { title: "Birthday", credit: "Fredo, Burna Boy & Steel Banglez", year: 2026, entries: [{ c: "NG", peak: 34 }] },

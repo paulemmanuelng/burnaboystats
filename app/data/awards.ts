@@ -86,6 +86,13 @@
 
 export interface AwardNom {
   year: number;
+  /**
+   * The day of the ceremony, ISO "YYYY-MM-DD" — set only where the source this
+   * file already cites for the result names the ceremony's date (the comment
+   * above the row). Every other result is year-only; /on-this-day lists a win
+   * on its anniversary only when this is set. `year` must agree.
+   */
+  date?: string;
   category: string;
   work?: string;
   won: boolean;
@@ -509,7 +516,7 @@ export const ceremonies: Ceremony[] = [
       // HugeDomains) by 7 Aug 2018 and is for sale today. Rests on the press
       // winners list for the 10 Nov 2018 Washington DC ceremony (ameyawdebrah.com,
       // 18 Nov 2018: "Album of the Year: Outside (Burna Boy)"). Read 18 Sep 2026.
-      { year: 2018, category: "Album of the Year", work: "Outside", won: true },
+      { year: 2018, date: "2018-11-10", category: "Album of the Year", work: "Outside", won: true },
     ],
   },
   {
@@ -638,7 +645,7 @@ export const ceremonies: Ceremony[] = [
       // Burna Boy)" among the honorees (Billboard Pro, Paul Grein, 23 Sep 2026,
       // with SESAC's chief creative officer quoted and SESAC's Mario Prins
       // pictured). SESAC's own news page had not posted it on 23 Sep.
-      { year: 2026, category: "Top Songs honoree", work: "WGFT (with Gunna)", won: true },
+      { year: 2026, date: "2026-09-22", category: "Top Songs honoree", work: "WGFT (with Gunna)", won: true },
     ],
   },
   {
@@ -729,6 +736,10 @@ export interface Honour {
   title: string;
   org: string;
   year: number;
+  /** The day it marks, ISO — the night a plaque was presented, or the day a
+   *  proclamation names — and only where the note names that day
+   *  (tests/onThisDay.test.ts checks the two agree). */
+  date?: string;
   note?: string;
 }
 
@@ -767,6 +778,7 @@ export const honours: Honour[] = [
     title: "BRIT Billion Award",
     org: "BPI · United Kingdom",
     year: 2024,
+    date: "2024-06-29",
     // Press-dated: Music In Africa (1 Jul 2024) and OkayAfrica (2 Jul 2024).
     // The BPI/BRITs list's one Burna Boy entry is dated 15/07/2024, the KOKO
     // night of the 2-billion award below; this plaque has no entry of its own.
@@ -776,16 +788,18 @@ export const honours: Honour[] = [
     title: "BRIT Billion Award",
     org: "BPI · United Kingdom",
     year: 2024,
+    date: "2024-07-15",
     // BPI/BRITs list: "Burna Boy — Date Awarded: 15/07/2024" (brits.co.uk
     // /brit-billion, Wayback 18 Jul 2024). A one-off: the BPI has no 2-billion
     // tier. "First African artist" is @chartdata's (17 Jul 2024). Read 24 Sep 2026.
     note: "A special award for over 2 billion UK streams, presented at KOKO Camden on 15 July 2024 — the first African artist to reach the milestone.",
   },
   {
-    title: "\"Burna Boy Day\" Proclamation",
+    title: "“Burna Boy Day” Proclamation",
     org: "Boston City Council",
     year: 2024,
-    note: "March 2 declared \"Burna Boy Day\" by the Boston City Council, recognising his role in popularising Afrobeats worldwide.",
+    date: "2024-03-02",
+    note: "March 2 declared “Burna Boy Day” by the Boston City Council, recognising his role in popularising Afrobeats worldwide.",
   },
 ];
 

@@ -30,6 +30,17 @@ import {
 import { updates } from "./data/updates";
 import { DAI_DAI_SPOTIFY_NO1_DAYS } from "./data/daiDai";
 import NotReported from "./components/NotReported";
+import OnThisDayBand from "./components/OnThisDayBand";
+import { onThisDayFor } from "./lib/onThisDay";
+
+/**
+ * The On this day card turns over with London's calendar day, and nothing else
+ * on this page reads the clock. An hourly revalidation re-renders the page on
+ * the server within the hour after midnight; the card is server-rendered in
+ * both layouts from one pick, so the browser has nothing to recompute and no
+ * hydration to disagree with. Every other figure here only moves with a deploy.
+ */
+export const revalidate = 3600;
 
 /**
  * The homepage, built from designs/desktop/Burna Boy Stats.dc.html.
@@ -73,12 +84,15 @@ const lastYear = albumCards.at(-1)!.year;
 const albumSpan = `${numberWord(lastYear - firstYear + 1)} years, ${firstYear} to ${lastYear}.`;
 
 export default function Home() {
+  // One pick for both layouts, from the London date at render.
+  const onThisDay = onThisDayFor(new Date());
+
   return (
     <main id="content">
       {/* Mobile is its own screen in this design — a different running order,
           and sections the desktop page does not have. Each renders at its own
           breakpoint rather than one being reflowed into the other. */}
-      <MobileHome />
+      <MobileHome onThisDay={onThisDay} />
 
       <div className={styles.desktopOnly}>
         <LiveBand />
@@ -172,6 +186,11 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* ── On this day ────────────────────────────────────────── */}
+        {/* Under the one dated story on the page, so nothing above it moves.
+            The phone draws its own card at the foot of MobileHome. */}
+        <OnThisDayBand pick={onThisDay} />
 
         {/* ── The certifications ledger ──────────────────────────── */}
         <CertLedger

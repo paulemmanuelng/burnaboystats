@@ -44,6 +44,9 @@ export const BACK_BAR_ROUTES = new Set<string>([
   "/api",
   "/share",
   "/dai-dai",
+  // The calendar keeps the five-tab bar; its day pages are matched by
+  // isOnThisDayPage below.
+  "/on-this-day",
 ]);
 
 /**
@@ -119,6 +122,12 @@ const isBoardArtistPage = (pathname: string) => /^\/afrobeats\/[^/]+$/.test(path
 const isCarPage = (pathname: string) => pathname.startsWith("/records/cars/");
 
 /**
+ * An On this day page — /on-this-day/<day>. Its own back bar (back to the
+ * calendar), and the five-tab bar at its foot like the calendar above it.
+ */
+const isOnThisDayPage = (pathname: string) => pathname.startsWith("/on-this-day/");
+
+/**
  * Language editions inherit their parent screen's chrome.
  *
  * The sets above are exact-match, so /dai-dai/es did not count as /dai-dai and
@@ -133,6 +142,10 @@ const withoutLocale = (pathname: string) => {
 };
 
 export const hasOwnMobileChrome = (pathname: string) =>
-  BACK_BAR_ROUTES.has(withoutLocale(pathname)) || isSongPage(pathname) || isBoardPage(pathname) || isCarPage(pathname);
+  BACK_BAR_ROUTES.has(withoutLocale(pathname)) ||
+  isSongPage(pathname) ||
+  isBoardPage(pathname) ||
+  isCarPage(pathname) ||
+  isOnThisDayPage(pathname);
 export const hasOwnActionBar = (pathname: string) =>
   ACTION_BAR_ROUTES.has(withoutLocale(pathname)) || isSongPage(pathname) || isBoardArtistPage(pathname);
