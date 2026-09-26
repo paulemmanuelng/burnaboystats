@@ -30,7 +30,10 @@ summary. Other options: `--as-of YYYY-MM-DD`, `--top N` (default 10),
   `~/burnaboy-work/`.
 - **Read a certification register** — not the BPI's, RiSA's, ARIA's or
   Audiogest's, blocked or allowed. `net.mjs` knows two hosts, BuzzJack's forum
-  and the Official Charts Company, and refuses the rest.
+  and the Official Charts Company, and refuses the rest. curl never follows a
+  redirect on its own: `net.mjs` follows each one itself, and a hop is
+  requested only after it passes the same two-host list, the https rule and
+  robots.txt for where it lands.
 
 ## Evidence it uses
 
