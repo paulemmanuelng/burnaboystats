@@ -1,4 +1,17 @@
 import comparePairRedirects from "./app/data/comparePairRedirects.json" with { type: "json" };
+import embedWidgetList from "./app/data/embedWidgetList.json" with { type: "json" };
+
+// The embed widgets' slugs, as one alternation for the framing rules in
+// headers(): /embed/<a real widget> exactly, and nothing else under /embed.
+// Generated from app/lib/embedWidgets.ts (scripts/build-embed-list.mjs), not
+// typed, so a widget added there is framable the day it ships. A slug is
+// lower-case words and hyphens; anything else would change what the pattern
+// means, so it stops the build instead.
+const embedSlugs = embedWidgetList.map((w) => w.slug);
+if (!embedSlugs.length || embedSlugs.some((s) => !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(s))) {
+  throw new Error(`next.config.mjs: embed slugs must be lower-case words and hyphens, got ${JSON.stringify(embedSlugs)}`);
+}
+const EMBED_SLUG_PATTERN = embedSlugs.join("|");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -81,12 +94,16 @@ const nextConfig = {
     return [
       { source: "/:path*", headers: securityHeaders },
       // X-Frame-Options: SAMEORIGIN on every path EXCEPT an embed widget,
-      // /embed/<widget> — one segment after /embed, so /embed itself (the
-      // gallery page) and everything else keep it. A widget exists to be framed
-      // on other people's sites, and there is no X-Frame-Options value that
-      // allows that: the only way to allow it is not to send the header. The
-      // widgets' own rule below sends frame-ancestors * instead.
-      { source: "/:path((?!embed/[^/]+$).*)", headers: [{ key: "X-Frame-Options", value: "SAMEORIGIN" }] },
+      // /embed/<widget> for a slug in the widget list — so /embed itself (the
+      // gallery page), a name that is not a widget (the site's 404 page), and
+      // everything else keep it. A widget exists to be framed on other people's
+      // sites, and there is no X-Frame-Options value that allows that: the only
+      // way to allow it is not to send the header. The widgets' own rule below
+      // sends frame-ancestors * instead.
+      {
+        source: `/:path((?!embed/(?:${EMBED_SLUG_PATTERN})$).*)`,
+        headers: [{ key: "X-Frame-Options", value: "SAMEORIGIN" }],
+      },
       // The API is open data read cross-origin, and its docs recommend a
       // conditional GET (If-None-Match against the ETag). Those request headers
       // are not CORS-safelisted, so a browser preflights them, and the preflight
@@ -101,7 +118,8 @@ const nextConfig = {
           { key: "Access-Control-Max-Age", value: "86400" },
         ],
       },
-      // The embed widgets, /embed/<widget>: framable by any site.
+      // The embed widgets, /embed/<widget> for the slugs in the widget list
+      // only: framable by any site.
       //
       // frame-ancestors * is the ENFORCED half, and the only directive in it,
       // so it can decide nothing but who may frame the page. The report-only
@@ -116,7 +134,7 @@ const nextConfig = {
       // to be read. Ahead of the non-canonical-host rule below on purpose, so a
       // preview deployment's widget still says "noindex, nofollow".
       {
-        source: "/embed/:widget",
+        source: `/embed/:widget(${EMBED_SLUG_PATTERN})`,
         headers: [
           { key: "Content-Security-Policy", value: "frame-ancestors *" },
           { key: "Content-Security-Policy-Report-Only", value: embedReportOnly },

@@ -34,8 +34,11 @@ const layouts = [
 describe.each(layouts)("/embed, %s layout", (_name, mount) => {
   it("shows every widget from its own address, with its snippet", () => {
     const { container } = mount();
-    const srcs = [...container.querySelectorAll("iframe")].map((f) => f.getAttribute("src"));
-    expect(srcs).toEqual(EMBED_SLUGS.map((s) => `/embed/${s}`));
+    const frames = [...container.querySelectorAll("iframe")];
+    expect(frames.map((f) => f.getAttribute("src"))).toEqual(EMBED_SLUGS.map((s) => `/embed/${s}`));
+    // Lazy: the two layouts share one document and one is always display:none,
+    // and a lazy frame that is never rendered is never fetched.
+    expect(frames.map((f) => f.getAttribute("loading"))).toEqual(EMBED_SLUGS.map(() => "lazy"));
     const snippets = [...container.querySelectorAll("pre")].map((p) => p.textContent ?? "");
     expect(snippets).toHaveLength(EMBED_SLUGS.length);
     EMBED_SLUGS.forEach((s, i) => {

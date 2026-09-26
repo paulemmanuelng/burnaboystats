@@ -99,11 +99,14 @@ export default function MobileEmbed({
               </span>
             </div>
             <p className={styles.what}>{w.what}</p>
+            {/* Lazy, as on the desktop layout: when this screen is the hidden
+                one, its frames are never rendered and so never fetched. */}
             <iframe
               src={embedPath(w.slug, theme)}
               title={w.iframeTitle}
               width={w.width}
               height={w.height}
+              loading="lazy"
               className={styles.frame}
             />
             <pre className={styles.codeBox}>

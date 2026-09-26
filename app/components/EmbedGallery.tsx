@@ -58,11 +58,16 @@ export default function EmbedGallery({ widgets }: { widgets: EmbedMeta[] }) {
           return (
             <li key={w.slug} className={styles.row}>
               <div className={styles.preview}>
+                {/* Lazy, and not only for the scroll: this layout and the phone
+                    one sit in the document together, one of them display:none,
+                    and a lazy frame that is never rendered is never fetched. So
+                    the hidden layout's boxes cost the page nothing. */}
                 <iframe
                   src={embedPath(w.slug, theme)}
                   title={w.iframeTitle}
                   width={w.width}
                   height={w.height}
+                  loading="lazy"
                   className={styles.frame}
                 />
               </div>

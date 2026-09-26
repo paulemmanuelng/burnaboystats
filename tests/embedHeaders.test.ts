@@ -2,7 +2,8 @@
 import { describe, it, expect } from "vitest";
 import { AsyncLocalStorage } from "node:async_hooks";
 import nextConfig from "../next.config.mjs";
-import { EMBED_SLUGS } from "../app/lib/embedWidgets";
+import { EMBED_SLUGS, EMBED_WIDGETS } from "../app/lib/embedWidgets";
+import embedWidgetList from "../app/data/embedWidgetList.json";
 
 // Next's server modules read AsyncLocalStorage off the global, which `next
 // start` sets up and a test runner does not; set it before loading them.
@@ -18,7 +19,10 @@ const { unstable_getResponseFromNextConfig } = await import("next/experimental/t
  * widgets get none, plus Content-Security-Policy: frame-ancestors *. Every other
  * path must come out of this change with exactly the headers it had, so the
  * cases below include the near misses — the gallery page at /embed itself, its
- * share card one segment deeper, a path that merely starts with "embed".
+ * share card one segment deeper, a path that merely starts with "embed", and a
+ * name one segment after /embed that is not a widget. That last is the site's
+ * 404 page, and the first cut of the rule (any one segment after /embed)
+ * sent it out framable; the slugs are named now, from the widget list.
  *
  * These run Next's own reading of next.config.mjs. That the platform serves the
  * same headers is for the curl on a real server (done for the PR).
@@ -36,6 +40,8 @@ const WIDGETS = EMBED_SLUGS.map((s) => `/embed/${s}`);
 const NOT_WIDGETS = [
   "/",
   "/embed",
+  "/embed/nope",
+  `/embed/${EMBED_SLUGS[0]}x`,
   "/embed/opengraph-image/abc123",
   "/embedded",
   "/records/embed/x",
@@ -46,6 +52,13 @@ const NOT_WIDGETS = [
 ];
 
 describe("framing is allowed on /embed/<widget> only", () => {
+  it("reads the slugs from a generated list that matches the widgets", () => {
+    // next.config.mjs cannot import TypeScript, so it reads
+    // app/data/embedWidgetList.json. Stale, it would frame a retired name and
+    // refuse a new widget: run scripts/build-embed-list.mjs.
+    expect(embedWidgetList).toEqual(EMBED_WIDGETS.map((w) => ({ slug: w.slug, name: w.name })));
+  });
+
   it("the site-wide policy is what it was: SAMEORIGIN, frame-ancestors 'self'", () => {
     expect(SITE_REPORT_ONLY).toContain("frame-ancestors 'self'");
     expect(SITE_REPORT_ONLY).toContain("report-uri /api/csp-report");
