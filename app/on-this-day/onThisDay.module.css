@@ -158,97 +158,222 @@
   color: var(--text-muted);
 }
 
-/* ── A day ──────────────────────────────────────────────────────────────── */
-.cardAside {
-  display: grid;
-  grid-template-columns: 176px 1fr;
-  gap: 22px;
-  align-items: end;
+/* ── A day ────────────────────────────────────────────────────────────────
+   designs/desktop/OTD Day Page.dc.html, desktop: the page-content frame
+   (1280), the events grouped by year beside a sticky card column. */
+.dayWrap { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
+.dayHero {
+  padding: 20px 0 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
 }
-.cardPreview {
-  display: block;
-  width: 176px;
-  height: 220px;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--line);
-  background: var(--bg-soft);
-  object-fit: cover;
-}
-.cardCopy { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
-.cardNote {
-  font-size: var(--type-caption);
-  line-height: var(--type-caption-lh);
-  color: var(--text-muted);
+.dayHero .h1 { margin: 0; }
+.dayEyebrow {
   margin: 0;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
 }
-
-.events { list-style: none; margin: 0; padding: 0; }
-.event {
+.dayLede {
+  margin: 0;
+  max-width: var(--measure);
+  font-size: var(--type-lede);
+  line-height: var(--type-lede-lh);
+  color: var(--text-body-cool);
+  text-wrap: pretty;
+}
+.dayGrid {
   display: grid;
-  grid-template-columns: 120px 1fr auto;
-  gap: 28px;
-  align-items: baseline;
-  padding: 22px 12px 22px 0;
-  border-bottom: 1px solid var(--line);
-  color: var(--text);
-  transition: background var(--dur) var(--ease);
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 64px;
+  align-items: start;
+  border-top: 2px solid var(--rule);
 }
-.event:hover { background: var(--bg-raised); }
-.eventYear {
+.dayMain { display: flex; flex-direction: column; min-width: 0; }
+
+/* A year, printed once, with its count; its rows beside it. */
+.yearGroup {
+  display: grid;
+  grid-template-columns: 128px minmax(0, 1fr);
+  gap: 24px;
+  padding: 24px 0 28px;
+  border-bottom: 1px solid var(--rule);
+}
+.yearHead { display: flex; flex-direction: column; gap: 6px; }
+.yearNum {
+  margin: 0;
+  align-self: flex-start;
   font-family: var(--font-anton), sans-serif;
-  font-weight: 400;
-  font-size: 40px;
-  line-height: 1;
-  color: var(--gold);
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 48px;
+  line-height: 0.9;
+  letter-spacing: 0;
   font-variant-numeric: tabular-nums;
 }
-.eventBody { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
-.tag {
-  align-self: flex-start;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
+.yearCount {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
   font-size: var(--type-label);
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  color: var(--text-muted);
+}
+.rows { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+
+/* The whole row is the link; the ↗ is decoration. Hover presses the row in
+   (--bg-raised) and brings its edge up to --rule. */
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 20px;
+  align-items: start;
+  padding: 14px 16px;
+  margin: 0 -16px;
+  border-radius: var(--radius);
+  color: var(--text);
+  text-decoration: none;
+  box-shadow: inset 0 0 0 1px transparent;
+  transition: background var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
+}
+.row:hover { background: var(--bg-raised); box-shadow: inset 0 0 0 1px var(--rule); }
+.row:active { background: var(--bg-raised); box-shadow: inset 0 0 0 1px var(--text); }
+.rowBody { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.rowTags { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+/* A kind: its mark and its word, in ink on a hairline pill. */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   padding: 2px 8px;
   border: 1px solid var(--line);
   border-radius: 999px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--text);
 }
-.eventHeadline { font-size: var(--type-h-prose); line-height: var(--type-h-prose-lh); font-weight: 600; }
-.eventDetail {
-  font-size: var(--type-small);
-  line-height: var(--type-small-lh);
-  color: var(--text-muted);
-  max-width: 72ch;
-}
-.eventMore {
+.cardTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--bg-soft-2);
   font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+.rowHeadline { font-size: var(--type-h-prose); line-height: var(--type-h-prose-lh); font-weight: 600; }
+/* A record sentence, promoted: ink at body size, with its label. */
+.recordLine {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  font-size: var(--type-body);
+  line-height: 1.5;
+  color: var(--text);
+}
+.recordLabel {
+  flex: none;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
   font-size: var(--type-label);
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--text-muted);
-  white-space: nowrap;
+  padding: 1px 6px;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
 }
-.event:hover .eventMore { color: var(--gold); }
+.rowDetail {
+  font-size: var(--type-small);
+  line-height: var(--type-small-lh);
+  color: var(--text-body);
+}
+.rowArrow {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--gold);
+  padding-top: 2px;
+}
 
-.pager {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  padding: 26px 0 34px;
+/* Pager: each neighbour previews its lead, so a one-event day still leads on. */
+.pagerCards {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 16px;
+  align-items: stretch;
+  margin-top: 32px;
 }
-.pagerLink {
+.pagerCard {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch; /* the global nav-link rule centres a <nav>'s links */
+  gap: 6px;
+  padding: 16px 18px;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--text);
+  text-decoration: none;
+  transition: background var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+}
+.pagerCard:hover { background: var(--bg-raised); border-color: var(--rule); }
+.pagerCardNext { text-align: right; }
+.pagerLabel,
+.pagerCalendar {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.pagerCalendar { display: flex; align-items: center; padding: 0 12px; text-decoration: none; }
+.pagerHeadline { font-size: 14px; line-height: 1.4; font-weight: 600; }
+.pagerMeta { font-size: var(--type-caption); line-height: var(--type-caption-lh); color: var(--text-muted); }
+
+/* The card column: pinned below the site's sticky 69px nav (the artboard's
+   masthead does not stick, so its top:24 becomes 69 + 24 here). */
+.cardCol {
+  position: sticky;
+  top: calc(93px + env(safe-area-inset-top, 0px));
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 24px;
+}
+.cardColLabel {
+  margin: 0;
   font-family: var(--font-mono), monospace;
   font-weight: 700;
   font-size: var(--type-label);
   letter-spacing: var(--type-label-tracking);
   text-transform: uppercase;
-  color: var(--text);
-  padding: 6px 0;
+  color: var(--text-muted);
 }
-.pagerLink:hover { color: var(--gold); }
-.pagerMid { margin: 0 auto; }
+.cardStage { padding: 20px; background: var(--bg-soft-2); border-radius: var(--radius); }
+.cardStage picture { display: block; }
+.cardImg {
+  display: block;
+  width: 280px;
+  height: 350px;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow);
+}
+.cardBtn { width: 100%; justify-content: space-between; }
+.cardBenefit {
+  margin: 0;
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
+  color: var(--text-muted);
+}

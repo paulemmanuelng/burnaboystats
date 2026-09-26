@@ -567,6 +567,56 @@ export const yearSpan = (events: OnThisDayEvent[]) => {
   return lo === hi ? String(lo) : `${lo}–${hi}`;
 };
 
+/** "1 milestone", "5 milestones". */
+export const milestones = (n: number) => `${n} milestone${n === 1 ? "" : "s"}`;
+
+// ── A day's page ────────────────────────────────────────────────────────────
+
+/**
+ * A detail that states a record: "First African artist to sell out the
+ * world's most famous arena.", "…the highest-grossing single concert by any
+ * African artist." The day page prints these as record lines, not as the
+ * muted detail. Decided by these patterns over the data (the design response
+ * lists them), never by marking rows by hand.
+ */
+const RECORD_LINE = /(^|\b)(first (african|nigerian)|highest-grossing|most famous)/i;
+export const isRecordLine = (e: Pick<OnThisDayEvent, "detail">) => RECORD_LINE.test(e.detail);
+
+export interface OnThisDayYear {
+  year: number;
+  /** The lead first when it falls in this year, then by rank. */
+  events: OnThisDayEvent[];
+}
+
+/** A day's events by year, newest year first; each year printed once. */
+export function yearGroups(day: OnThisDayDay): OnThisDayYear[] {
+  const years = [...new Set(day.events.map((e) => e.year))].sort((a, b) => b - a);
+  return years.map((year) => ({ year, events: day.events.filter((e) => e.year === year).sort(byLead) }));
+}
+
+/** The desktop lede. A one-event day is said as one: "One milestone is dated
+ *  8 October, from 2021." — never "Each one links…" about a list of one. */
+export function dayLede(day: OnThisDayDay): string {
+  const span = yearSpan(day.events);
+  return day.events.length === 1
+    ? `One milestone is dated ${day.label}, from ${span}. It links to the page that holds the record.`
+    : `${milestones(day.events.length)} dated ${day.label}, ${span}, grouped by year, newest first. Each links to the page that holds the record.`;
+}
+
+/** The phone's lede: the same facts, shorter. */
+export function dayLedeShort(day: OnThisDayDay): string {
+  const span = yearSpan(day.events);
+  return day.events.length === 1
+    ? `One milestone, from ${span}.`
+    : `${milestones(day.events.length)}, ${span}, newest year first.`;
+}
+
+/** A pager card's line under a neighbour's lead: "2020 · Release · 2 milestones". */
+export function dayMeta(day: OnThisDayDay): string {
+  const n = day.events.length;
+  return `${day.lead.year} · ${KIND_MARK[day.lead.kind].word}${n > 1 ? ` · ${milestones(n)}` : ""}`;
+}
+
 // ── The post-ready card ─────────────────────────────────────────────────────
 
 /**

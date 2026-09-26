@@ -2,17 +2,30 @@ import Link from "next/link";
 import styles from "./mobileOnThisDay.module.css";
 import BackLink from "./BackLink";
 import MobileMenuButton from "./MobileMenuButton";
+import OnThisDaySaveCard from "./OnThisDaySaveCard";
 import { KindPill } from "./OnThisDayKind";
-import { neighbours, yearSpan, type OnThisDayDay } from "../lib/onThisDay";
+import { CANONICAL_ORIGIN } from "../lib/seo";
+import { cardFilename, cardPath, cardPreviewSrc } from "../lib/cardPreview";
+import {
+  dayLedeShort,
+  dayMeta,
+  isRecordLine,
+  milestones,
+  neighbours,
+  yearGroups,
+  type OnThisDayDay,
+} from "../lib/onThisDay";
 
 /**
- * The phone's day page — every event dated this day, newest first, each row
- * a link to the page that holds the record. The desktop page is the same list
- * in a wider frame, beside the card preview.
+ * The phone's day page (designs/desktop/OTD Day Page.dc.html, phone): the
+ * events grouped by year, newest first, each row a link to the page that
+ * holds the record; then the day's card with "Save or share", the pager
+ * cards and a one-line source note. The desktop page is its own markup.
  */
 export default function MobileOnThisDayDay({ day }: { day: OnThisDayDay }) {
   const { prev, next } = neighbours(day.key);
-  const n = day.events.length;
+  const groups = yearGroups(day);
+  const card = cardPath(day.slug);
 
   return (
     <div className={styles.screen}>
@@ -26,41 +39,94 @@ export default function MobileOnThisDayDay({ day }: { day: OnThisDayDay }) {
         <MobileMenuButton />
       </div>
 
-      <div className={styles.hero}>
-        <p className={styles.kicker}>Burna Boy · on this day</p>
+      <div className={styles.dayHero}>
+        <p className={styles.dayKicker}>Burna Boy · On this day</p>
         {/* The page's <h1>, one per layout — only one is ever visible. */}
-        <h1 className={styles.title}>{day.label}</h1>
-        <p className={styles.lede}>
-          {n} milestone{n === 1 ? "" : "s"} dated {day.label}, {yearSpan(day.events)} — newest first.
-        </p>
-        <a href={`/on-this-day/${day.slug}/card`} download={`burna-boy-on-this-day-${day.slug}.png`} className={styles.pill}>
-          Post-ready card · 1080×1350 ↓
-        </a>
+        <h1 className={styles.dayTitle}>{day.label}</h1>
+        <p className={styles.dayLede}>{dayLedeShort(day)}</p>
       </div>
 
-      <ol className={styles.list}>
-        {day.events.map((e) => (
-          <li key={e.id}>
-            <Link href={e.href} className={styles.row}>
-              <span className={styles.rowTop}>
-                <span className={styles.year}>{e.year}</span>
-                <KindPill kind={e.kind} className={styles.tag} />
-              </span>
-              <span className={styles.headline}>{e.headline}</span>
-              <span className={styles.detail}>{e.detail}</span>
-            </Link>
-          </li>
-        ))}
-      </ol>
+      {groups.map((g) => (
+        <section key={g.year} className={styles.yearGroup} aria-labelledby={`otd-ym-${g.year}`}>
+          <div className={styles.yearHead}>
+            <h2 id={`otd-ym-${g.year}`} className={styles.yearNum}>
+              {g.year}
+            </h2>
+            <span className={styles.yearCount}>{milestones(g.events.length)}</span>
+          </div>
+          <ol className={styles.dayRows}>
+            {g.events.map((e) => (
+              <li key={e.id}>
+                <Link href={e.href} className={styles.dayRow}>
+                  <span className={styles.dayRowTags}>
+                    <KindPill kind={e.kind} className={styles.tag} />
+                    {e === day.lead && <span className={styles.cardTag}>On the card</span>}
+                    <span className={styles.dayRowArrow} aria-hidden="true">
+                      ↗
+                    </span>
+                  </span>
+                  <span className={styles.dayRowHeadline}>{e.headline}</span>
+                  {isRecordLine(e) ? (
+                    <span className={styles.recordLine}>
+                      <span className={styles.recordLabel}>Record</span>
+                      {e.detail}
+                    </span>
+                  ) : (
+                    <span className={styles.dayRowDetail}>{e.detail}</span>
+                  )}
+                </Link>
+              </li>
+            ))}
+          </ol>
+        </section>
+      ))}
 
-      <nav className={styles.pager} aria-label="Other dates">
-        <Link href={`/on-this-day/${prev.slug}`} className={styles.pagerLink}>
-          ← {prev.label}
+      <section className={styles.cardBlock} aria-labelledby="otd-card-m">
+        <a href={card} className={styles.cardThumb}>
+          {/* eslint-disable-next-line @next/next/no-img-element -- a route-drawn WebP, sized by the route */}
+          <img
+            src={cardPreviewSrc(day.slug, 320)}
+            alt={`The ${day.label} card: ${day.lead.year}, ${day.lead.headline}`}
+            width={144}
+            height={180}
+            loading="lazy"
+            decoding="async"
+          />
+        </a>
+        <div className={styles.cardCopy}>
+          <p id="otd-card-m" className={styles.cardName}>
+            The {day.label} card
+          </p>
+          <p className={styles.cardNote}>Ready to post. Tap to see it full size.</p>
+        </div>
+        <OnThisDaySaveCard
+          src={card}
+          filename={cardFilename(day.slug)}
+          shareText={`Burna Boy on this day, ${day.label}: ${day.lead.year} — ${day.lead.headline}. ${CANONICAL_ORIGIN}/on-this-day/${day.slug}`}
+          className={`btn btnPrimary ${styles.saveBtn}`}
+        >
+          <span>Save or share</span>
+          <span aria-hidden="true">↓</span>
+        </OnThisDaySaveCard>
+      </section>
+
+      <nav className={styles.pagerCards} aria-label="Other dates">
+        <Link href={`/on-this-day/${prev.slug}`} className={styles.pagerCard}>
+          <span className={styles.pagerLabel}>← {prev.label}</span>
+          <span className={styles.pagerHeadline}>{prev.lead.headline}</span>
+          <span className={styles.pagerMeta}>{dayMeta(prev)}</span>
         </Link>
-        <Link href={`/on-this-day/${next.slug}`} className={`${styles.pagerLink} ${styles.pagerNext}`}>
-          {next.label} →
+        <Link href={`/on-this-day/${next.slug}`} className={`${styles.pagerCard} ${styles.pagerCardNext}`}>
+          <span className={styles.pagerLabel}>{next.label} →</span>
+          <span className={styles.pagerHeadline}>{next.lead.headline}</span>
+          <span className={styles.pagerMeta}>{dayMeta(next)}</span>
         </Link>
       </nav>
+
+      <p className={styles.dayNote}>
+        Every milestone here is filed on the day its own source prints.{" "}
+        <Link href="/methodology">How dates are filed</Link>
+      </p>
     </div>
   );
 }

@@ -262,24 +262,161 @@
   color: var(--text);
 }
 
-/* ── Pager ────────────────────────────────────────────────────────────── */
-.pager {
-  display: flex;
-  gap: 12px;
-  padding: 16px 18px 28px;
+/* ── A day ──────────────────────────────────────────────────────────────
+   designs/desktop/OTD Day Page.dc.html, phone: grouped by year, then the
+   card block, the pager cards and a one-line source note. */
+.dayHero { padding: 22px 18px 6px; display: flex; flex-direction: column; gap: 12px; }
+.dayKicker {
+  margin: 0;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+  color: var(--text-muted);
 }
-.pagerLink {
+.dayTitle {
+  margin: 0;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 52px;
+  line-height: 0.88;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+.dayLede {
+  margin: 0;
+  font-size: var(--type-body);
+  line-height: 1.5;
+  color: var(--text-body-cool);
+}
+
+.yearGroup { padding: 14px 18px 0; }
+.yearHead {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid var(--rule);
+}
+.yearNum {
+  margin: 0;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 1;
+  letter-spacing: 0;
+  font-variant-numeric: tabular-nums;
+}
+.yearCount {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.dayRows { list-style: none; margin: 0; padding: 0; }
+.dayRow {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
   min-height: 44px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--text);
+  text-decoration: none;
+}
+.dayRow:active { background: var(--bg-raised); }
+.dayRowTags { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.cardTag {
   display: inline-flex;
   align-items: center;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: var(--bg-soft-2);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+.dayRowArrow { margin-left: auto; font-family: var(--font-mono), monospace; color: var(--gold); }
+.dayRowHeadline { font-size: var(--type-body); line-height: 1.35; font-weight: 600; }
+.recordLine { font-size: 14.5px; line-height: 1.5; color: var(--text); }
+.recordLabel {
+  margin-right: 8px;
+  padding: 1px 6px;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
   font-family: var(--font-mono), monospace;
   font-weight: 700;
   font-size: var(--type-label);
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--text);
 }
-.pagerNext { margin-left: auto; }
+.dayRowDetail { font-size: var(--type-small); line-height: var(--type-small-lh); color: var(--text-body); }
+
+/* The day's card, after the list: a legible thumbnail and the one gold action. */
+.cardBlock {
+  margin: 22px 18px 0;
+  padding: 14px;
+  background: var(--bg-soft-2);
+  border-radius: var(--radius);
+  display: grid;
+  grid-template-columns: 144px minmax(0, 1fr);
+  gap: 14px;
+  align-items: center;
+}
+.cardThumb { display: block; width: 144px; height: 180px; border-radius: var(--radius-sm); overflow: hidden; box-shadow: var(--shadow); }
+.cardThumb img { display: block; width: 144px; height: 180px; }
+.cardCopy { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.cardName { margin: 0; font-size: 15px; line-height: 1.35; font-weight: 600; }
+.cardNote { margin: 0; font-size: var(--type-caption); line-height: var(--type-caption-lh); color: var(--text-muted); }
+.saveBtn {
+  grid-column: 1 / -1;
+  width: 100%;
+  height: 48px;
+  padding: 0 20px;
+  font-size: 12px;
+  justify-content: space-between;
+}
+
+.pagerCards { padding: 22px 18px 0; display: flex; flex-direction: column; gap: 8px; }
+.pagerCard {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch; /* the global nav-link rule centres a <nav>'s links */
+  gap: 4px;
+  min-height: 44px;
+  padding: 12px 14px;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--text);
+  text-decoration: none;
+}
+.pagerCard:active { background: var(--bg-raised); border-color: var(--rule); }
+.pagerCardNext { text-align: right; }
+.pagerLabel {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.pagerHeadline { font-size: 14px; line-height: 1.4; font-weight: 600; }
+.pagerMeta { font-size: var(--type-caption); line-height: var(--type-caption-lh); color: var(--text-muted); }
+.dayNote {
+  margin: 0;
+  padding: 12px 18px 24px;
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
+  color: var(--text-muted);
+}
+.dayNote a { color: var(--gold); text-decoration: underline; }
 
 .note {
   margin: 0;
