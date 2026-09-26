@@ -184,11 +184,11 @@ export function FadedPortrait({
  * The link previews' portrait (1200×630, a day's and the calendar's): the
  * face under the lockup, in the glow. The band under the top line keeps the
  * lockup and its tagline (60–95) on the ground they had. The floor is solid
- * from 215, above the highest any day's headline starts — 23 January's, at
- * 219, of the 161 read on 26 Sep 2026 — and the left fade is solid to the
- * photo's edge at x 832, far right of the cover tile (x 64–364) and of the
- * kicker's longest date (the 780 cap). At 400px the face fits the window
- * between the two: the glasses, the nose and the mouth.
+ * from 215, above the highest any day's headline starts: 23 January's, at
+ * 219, reading every day on the calendar (26 Sep 2026). The left fade is
+ * solid to the photo's edge at x 832, far right of the cover tile (x 64–364)
+ * and of the kicker's longest date (the 780 cap). At 400px the face fits the
+ * window between band and floor: the glasses, the nose and the mouth.
  */
 export const PREVIEW_PORTRAIT: PortraitPlacement = {
   photo: { left: 832, top: 22, size: 400 },
@@ -222,11 +222,12 @@ const FACE_LIGHT =
 /**
  * The post card's portrait: the top right, bled off the top and the right
  * edge. The band under the top line keeps ON THIS DAY (93–119) on the ground
- * it had. The floor is solid from 385, above the highest ink right of x 600 on
- * any day — 16 August's numeral, at 412, of the 161 read on 26 Sep 2026 — so
- * the photo never reaches the numeral, the month or the headline. The left
- * fade is solid to the photo's edge at x 600: clear of the 420px cover (x
- * 84–504) on a day that has one, and of the numeral's column on a day without.
+ * it had. The floor is solid from 385, above the highest ink right of x 600
+ * on any day: 16 August's numeral, at 412, reading every day on the calendar
+ * (26 Sep 2026). So the photo never reaches the numeral, the month or the
+ * headline. The left fade is solid to the photo's edge at x 600: clear of the
+ * 420px cover (x 84–504) on a day that has one, and of the numeral's column
+ * on a day without.
  */
 export const CARD_PORTRAIT: PortraitPlacement = {
   photo: { left: 600, top: -10, size: 600 },
