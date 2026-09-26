@@ -12,6 +12,11 @@ import {
   sharePublisher,
 } from "../app/lib/onThisDayShare";
 import { OG_ART } from "../app/lib/og-image";
+import { ogFonts } from "../app/lib/og-lockup";
+import { otdFonts } from "../app/lib/onThisDayImages";
+import { kernLookupCount } from "../app/lib/unkernedFont";
+import { ImageResponse } from "next/og";
+import sharp from "sharp";
 import { albums } from "../app/data/albums";
 import { tours, festivals, otherShows, concerts } from "../app/data/tours";
 
@@ -235,7 +240,7 @@ describe("the drawing", () => {
   it("the post card carries the crown lockup, with the fonts it is set in", () => {
     const card = code(src("app/lib/onThisDayImages.tsx"));
     expect(card).toContain("<OgLockup");
-    expect(card).toContain("fonts: ogFonts");
+    expect(card).toContain("fonts: otdFonts");
     expect(card).not.toMatch(/BURNABOY<\/span>/);
   });
 
@@ -310,5 +315,130 @@ describe("the images render", () => {
     expect(isPng(b)).toBe(true);
     expect(size(b)).toEqual({ w: 1080, h: 1350 });
     expect(blocked, "the cover fetch was never attempted — this test proved nothing").toBeGreaterThan(0);
+  }, 60000);
+});
+
+describe("ruling 8: the images print one plain space between words, and draw it as one", () => {
+  it("every day's text model: single ASCII spaces, nothing leading or trailing, no other space character", () => {
+    const bad: string[] = [];
+    for (const d of onThisDayDays) {
+      const p = dayPreview(d);
+      const c = dayPostCard(d);
+      const printed = { ...p, ...Object.fromEntries(Object.entries(c).map(([k, v]) => [`card.${k}`, v])) };
+      for (const [k, v] of Object.entries(printed)) {
+        if (typeof v !== "string") continue;
+        if (/ {2}|^\s|\s$|[^\S ]/.test(v)) bad.push(`${d.slug} ${k}: ${JSON.stringify(v)}`);
+      }
+    }
+    expect(bad).toEqual([]);
+  });
+
+  it("they are drawn in the site's card fonts with Geist's kerning off — the same families, in the same order", () => {
+    const geist = (fs: typeof ogFonts) => fs.find((f) => f.name === "geist")!.data;
+    expect(otdFonts.map((f) => f.name)).toEqual(ogFonts.map((f) => f.name));
+    expect(kernLookupCount(geist(otdFonts))).toBe(0);
+    // Not vacuous: the stock Geist kerns, and only the kerning changed.
+    expect(kernLookupCount(geist(ogFonts))).toBeGreaterThan(0);
+    expect(geist(otdFonts).length).toBe(geist(ogFonts).length);
+    for (const name of ["Anton", "Space Mono"]) {
+      expect(otdFonts.find((f) => f.name === name)!.data).toBe(ogFonts.find((f) => f.name === name)!.data);
+    }
+  });
+
+  /**
+   * Where the text's last ink column lands, drawn as Satori lays out a card
+   * line. With " " each word is its own run, placed where Satori MEASURED the
+   * words before it (letter by letter, unkerned); with a no-break space the
+   * words are one run, placed as DRAWN. The two agree only when drawing is
+   * measuring — the double space was the difference.
+   */
+  async function lastInk(text: string, fontSize: number, letterSpacing: number, fonts: typeof ogFonts) {
+    const res = new ImageResponse(
+      (
+        <div style={{ display: "flex", width: "100%", height: "100%", padding: 20, background: "#000", color: "#fff", fontFamily: "sans-serif" }}>
+          <div style={{ display: "flex", fontSize, letterSpacing }}>{text}</div>
+        </div>
+      ),
+      { width: 1400, height: 160, fonts },
+    );
+    const { data, info } = await sharp(Buffer.from(await res.arrayBuffer())).raw().toBuffer({ resolveWithObject: true });
+    for (let x = info.width - 1; x >= 0; x--) {
+      for (let y = 0; y < info.height; y++) if (data[(y * info.width + x) * info.channels] > 128) return x;
+    }
+    return -1;
+  }
+  const drift = async (words: [string, string], size: number, tracking: number, fonts: typeof ogFonts) =>
+    Math.abs((await lastInk(words.join(" "), size, tracking, fonts)) - (await lastInk(words.join("\u00a0"), size, tracking, fonts)));
+
+  // The three the 26 Sep renders showed, at the size and tracking each is set in.
+  const CASES: [string, [string, string], number, number][] = [
+    ["8 October's headline", ["HOLLYWOOD", "BOWL"], 72, 0],
+    ["16 August's kind line", ["CERTIFICATION", "·"], 22, 2.64],
+    ["28 April's record line", ["artist", "to"], 32, 0],
+  ];
+
+  it.each(CASES)("%s: the word after the gap sits where it is drawn, not a kerning's width further on", async (_, words, size, tracking) => {
+    expect(await drift(words, size, tracking, otdFonts)).toBeLessThanOrEqual(1);
+  }, 30000);
+
+  it.each(CASES)("a negative control, %s in the stock (kerned) Geist: the gap opens", async (_, words, size, tracking) => {
+    expect(await drift(words, size, tracking, ogFonts)).toBeGreaterThanOrEqual(3);
+  }, 30000);
+});
+
+describe("ruling 8: the post card's headline breaks into the lines the artboard draws", () => {
+  const realFetch = globalThis.fetch;
+  afterEach(() => {
+    globalThis.fetch = realFetch;
+  });
+
+  /** Headline lines on a rendered card: bands of white ink between the date
+   *  row (the gold numeral, and the stand-in cover whose foot the month sits
+   *  on) and the foot's rule — the record line (#CFC7BB) is below the white
+   *  threshold, the year sits under the rule. */
+  async function headlineLines(slug: string) {
+    // The cover is Spotify's; any 640px image lays out the same, and the test
+    // must not need the network.
+    // Pure blue: nothing else on the card is, so its rows can be found.
+    const stand = await sharp({ create: { width: 640, height: 640, channels: 3, background: "#0000ff" } }).png().toBuffer();
+    globalThis.fetch = (async (input: RequestInfo | URL, init?: RequestInit) => {
+      const url = String(input instanceof Request ? input.url : input);
+      if (url.includes("i.scdn.co")) return new Response(new Uint8Array(stand), { headers: { "Content-Type": "image/png" } });
+      return realFetch(input as never, init as never);
+    }) as typeof fetch;
+    const { GET } = await import("../app/on-this-day/[day]/card/route");
+    const res = await GET(new Request(`http://x/on-this-day/${slug}/card`), { params: Promise.resolve({ day: slug }) });
+    const { data, info } = await sharp(Buffer.from(await res.arrayBuffer())).raw().toBuffer({ resolveWithObject: true });
+    const px = (x: number, y: number) => {
+      const i = (y * info.width + x) * info.channels;
+      return [data[i], data[i + 1], data[i + 2]];
+    };
+    const rowHas = (y: number, test: (p: number[]) => boolean) => {
+      for (let x = 84; x < 996; x++) if (test(px(x, y))) return true;
+      return false;
+    };
+    const gold = (p: number[]) => p[0] > 200 && p[1] > 90 && p[1] < 215 && p[2] < 90;
+    const tile = (p: number[]) => p[2] > 200 && p[0] < 40 && p[1] < 40;
+    const white = (p: number[]) => Math.min(...p) > 215;
+    // Start under the date row: the numeral's last gold row, or the cover's
+    // last row (the month is aligned to its foot). Stop above the rule.
+    let dateRow = 0;
+    for (let y = 200; y < 1095; y++) if (rowHas(y, gold) || rowHas(y, tile)) dateRow = y;
+    let bands = 0;
+    let inBand = false;
+    for (let y = dateRow + 1; y < 1095; y++) {
+      const on = rowHas(y, white);
+      if (on && !inBand) bands++;
+      inBand = on;
+    }
+    return bands;
+  }
+
+  it("28 April: three lines, as drawn (the first build's card broke it into four)", async () => {
+    expect(await headlineLines("28-april")).toBe(3);
+  }, 60000);
+
+  it("16 August: three lines, as drawn", async () => {
+    expect(await headlineLines("16-august")).toBe(3);
   }, 60000);
 });

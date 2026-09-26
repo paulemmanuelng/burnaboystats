@@ -2,6 +2,7 @@ import { ImageResponse } from "next/og";
 import { OgLockup, ogFonts } from "./og-lockup";
 import { KIND_MARK, type OnThisDayKind } from "./onThisDayKinds";
 import { CARD_SIZE } from "./cardPreview";
+import { withoutKerning } from "./unkernedFont";
 import type { DayPostCard } from "./onThisDayShare";
 
 /**
@@ -22,6 +23,31 @@ import type { DayPostCard } from "./onThisDayShare";
 
 export const OTD_GOLD = "#ffb627";
 const INK = "#f5f4f0";
+
+/**
+ * The site's card fonts, with Geist's kerning off (lib/unkernedFont.ts).
+ * Satori sizes each word letter by letter but draws it kerned, so a word with
+ * tight pairs left a double-width gap after it — "HOLLYWOOD␣␣BOWL",
+ * "CERTIFICATION␣␣·", "artist␣␣to". Unkerned, what is drawn is what was
+ * measured. Same families, same order, same files otherwise: geist still
+ * heads the list, so `sans-serif` still falls back to it.
+ */
+export const otdFonts = ogFonts.map((f) => (f.name === "geist" ? { ...f, data: withoutKerning(f.data) } : f));
+
+/**
+ * The post card's headline measure: 912px, the artboard's max-width (1080
+ * less the 84px padding either side), given outright.
+ *
+ * The artboard also tracks the headline .01em — in a browser, which kerns.
+ * Satori cannot (above), and an unkerned line at .01em runs about 1% longer
+ * than the artboard's: 28 April's "BURNA BOY PLAYED MADISON" measured 920px
+ * against Chrome's 909, so the card broke into four lines where the artboard
+ * draws three. Tracking 0 gives back what the kerning took. Measured over all
+ * 167 days against the artboard's own styles in Chrome (26 Sep 2026): the line
+ * count matches on 166 (22 December's NATIVELAND FESTIVAL still takes four,
+ * as it did), where .01em matched 164.
+ */
+const HEADLINE_WIDTH = 912;
 
 /** A kind's mark on an image: its shape in the text colour around it — the
  *  same ink rule as the pages (lib/onThisDayKinds.ts), never a colour of its
@@ -182,13 +208,13 @@ export function postCardImage(card: DayPostCard) {
             </div>
           </div>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: 22, marginTop: cover ? 60 : 56, maxWidth: 912 }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 22, marginTop: cover ? 60 : 56, width: HEADLINE_WIDTH }}>
             <div
               style={{
                 display: "flex",
                 fontSize: card.headSize,
                 lineHeight: 1.08,
-                letterSpacing: 0.01 * card.headSize,
+                letterSpacing: 0,
                 textWrap: "balance",
               }}
             >
@@ -237,7 +263,7 @@ export function postCardImage(card: DayPostCard) {
     {
       width,
       height,
-      fonts: ogFonts,
+      fonts: otdFonts,
       // Rendered on request; the CDN keeps it an hour, so a redesign reaches
       // every reader within the hour.
       headers: { "Cache-Control": "public, max-age=600, s-maxage=3600, stale-while-revalidate=86400" },

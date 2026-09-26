@@ -1,8 +1,8 @@
 import { ImageResponse } from "next/og";
-import { OgLockup, ogFonts } from "../lib/og-lockup";
+import { OgLockup } from "../lib/og-lockup";
 import { ogId, cardUrl } from "../lib/og-image";
 import { calendarTiles } from "../lib/onThisDayShare";
-import { OTD_GOLD, ShareUrl } from "../lib/onThisDayImages";
+import { OTD_GOLD, ShareUrl, otdFonts } from "../lib/onThisDayImages";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
@@ -60,7 +60,7 @@ export default function Image() {
         <div style={{ position: "relative", flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", gap: 18 }}>
           <div style={{ display: "flex", fontSize: 112, lineHeight: 0.95, letterSpacing: -1.12, color: OTD_GOLD }}>On This Day</div>
           <div style={{ display: "flex", fontSize: 30, lineHeight: 1.3, color: "#c9c9d0", maxWidth: 900 }}>
-            A dated milestone for every day that has one — each on the day it happened.
+            A dated Burna Boy milestone for every day that has one, each on the day it happened.
           </div>
           <div style={{ display: "flex", gap: 14, marginTop: 10 }}>
             {tiles.map((t) => (
@@ -88,6 +88,6 @@ export default function Image() {
         </div>
       </div>
     ),
-    { ...size, fonts: ogFonts }
+    { ...size, fonts: otdFonts }
   );
 }

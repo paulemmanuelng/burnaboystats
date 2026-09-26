@@ -1,9 +1,9 @@
 import { ImageResponse } from "next/og";
-import { OgLockup, ogFonts } from "../../lib/og-lockup";
+import { OgLockup } from "../../lib/og-lockup";
 import { ogId, cardUrl } from "../../lib/og-image";
 import { dayBySlug, onThisDayDays } from "../../lib/onThisDay";
 import { dayPreview } from "../../lib/onThisDayShare";
-import { OTD_GOLD, ShareMark, ShareUrl } from "../../lib/onThisDayImages";
+import { OTD_GOLD, ShareMark, ShareUrl, otdFonts } from "../../lib/onThisDayImages";
 
 export function generateStaticParams() {
   return onThisDayDays.map((d) => ({ day: d.slug }));
@@ -133,6 +133,6 @@ export default async function Image({ params }: { params: Promise<{ day: string 
         </div>
       </div>
     ),
-    { ...size, fonts: ogFonts }
+    { ...size, fonts: otdFonts }
   );
 }
