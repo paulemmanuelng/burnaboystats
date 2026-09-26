@@ -9,6 +9,7 @@
 //   node scripts/check-seo.mjs
 import { readdir, readFile } from "node:fs/promises";
 import { join } from "node:path";
+import { robotsProblem } from "./seo-rules.mjs";
 
 const ROOT = ".next/server/app";
 const TITLE_MAX = 60;    // Google shows ~60 characters
@@ -47,6 +48,10 @@ for await (const file of walk(ROOT)) {
   if (!/<link rel="canonical"/.test(html)) problems.push(`${route}: no canonical`);
   if (!/property="og:image"/.test(html)) problems.push(`${route}: no og:image`);
 
+  // Indexable pages opt into Discover's large image card (scripts/seo-rules.mjs).
+  const robots = robotsProblem(html);
+  if (robots) problems.push(`${route}: ${robots}`);
+
   // One <h1> per LAYOUT, not per document.
   //
   // Most routes ship a mobile screen and a desktop page in the same HTML, one
@@ -72,4 +77,4 @@ if (problems.length) {
   for (const p of problems) console.error(`  ${p}`);
   process.exit(1);
 }
-console.error(`SEO check passed — ${checked} pages: titles, descriptions, canonicals, og:image, one h1 per layout.`);
+console.error(`SEO check passed — ${checked} pages: titles, descriptions, canonicals, og:image, large image preview, one h1 per layout.`);

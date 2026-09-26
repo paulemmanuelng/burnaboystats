@@ -97,6 +97,7 @@ export default function MobileCerts({
   showActionBar = true,
   compareSlug = "burna-boy",
   compareWith,
+  countryBoards,
 }: {
   releases: Release[];
   albums: Release[];
@@ -150,6 +151,10 @@ export default function MobileCerts({
   /** Every head-to-head page this artist is on, canonical URLs — the plain
    *  "Compare with…" list under the boards (lib/comparePairs.compareWithLinks). */
   compareWith?: { name: string; href: string }[];
+  /** Every country board (/compare/in/<country>), canonical URLs — folded
+   *  under "Compare with…" the same way. Only /certifications passes it: the
+   *  boards were linked from their own index and nowhere else. */
+  countryBoards?: { name: string; href: string }[];
 }) {
   const art = (title: string) => (covers ? covers[title] : coverFor(title));
   // The list runs albums, singles and features together, so an album needs
@@ -593,6 +598,27 @@ export default function MobileCerts({
                 link (Paul, 25 Sep 2026). */}
             <ul className={styles.compareChips}>
               {compareWith.map((c) => (
+                <li key={c.href}>
+                  <Link href={c.href} className={`${styles.chip} ${styles.compareChip}`}>{c.name}</Link>
+                </li>
+              ))}
+            </ul>
+          </details>
+        </nav>
+      )}
+
+      {/* The country boards, in the "Compare with…" fold's own pattern and
+          pills — the desktop half carries the same list. */}
+      {countryBoards && countryBoards.length > 0 && (
+        <nav className={styles.logHead} aria-label="Certified units by country">
+          <details className={styles.compareFold}>
+            <summary className={`${styles.logKicker} ${styles.compareSummary}`}>
+              Certified units by country…
+              <span className={styles.compareCount}>{count(countryBoards.length, "country", "countries")}</span>
+              <span className={styles.compareChevron} aria-hidden="true">↓</span>
+            </summary>
+            <ul className={styles.compareChips}>
+              {countryBoards.map((c) => (
                 <li key={c.href}>
                   <Link href={c.href} className={`${styles.chip} ${styles.compareChip}`}>{c.name}</Link>
                 </li>

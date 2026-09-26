@@ -11,7 +11,7 @@ import { spotifyImage, spotifySrcSet } from "../lib/spotifyImage";
 import { songs as songPages, daiDaiStoryPage } from "../data/songs";
 import { siteUrl } from "../site";
 import { numberWord } from "../lib/homeData";
-import { pageMetadata } from "../lib/seo";
+import { pageMetadata, BURNA_BOY_REF } from "../lib/seo";
 import { spotifyTotalStreams } from "../data/streamingTotals";
 
 // Deep-dive song pages, Dai Dai (its own bespoke page) featured first.
@@ -33,15 +33,15 @@ const musicJsonLd = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "MusicGroup",
-      name: "Burna Boy",
-      url: `${siteUrl}/music`,
+      // The site's one Burna Boy entity, by @id (lib/seo.ts), with his albums.
+      // No `url`: on a shared @id it would say his address is /music.
+      ...BURNA_BOY_REF,
       album: [...albums, ...eps, ...compilations].map((a) => ({
         "@type": "MusicAlbum",
         name: a.title,
         datePublished: String(a.year),
         numTracks: a.tracks.length,
-        byArtist: { "@type": "MusicGroup", name: "Burna Boy" },
+        byArtist: BURNA_BOY_REF,
         ...(a.cover ? { image: a.cover } : {}),
         ...(a.spotify ? { sameAs: a.spotify } : {}),
       })),

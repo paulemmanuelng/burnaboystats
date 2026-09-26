@@ -5,7 +5,7 @@ import DaiDaiConquest, { type ConquestCountry } from "../../components/DaiDaiCon
 import DaiDaiNumbers from "../../components/DaiDaiNumbers";
 import FaqList from "../../components/FaqList";
 import KeepExploring from "../../components/KeepExploring";
-import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime } from "../../lib/seo";
+import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime, BURNA_BOY_REF } from "../../lib/seo";
 import { lastUpdated } from "../../lib/api";
 import {
   daiDaiNumberOnes,
@@ -129,7 +129,7 @@ export default function DaiDaiPageES() {
       name: "Dai Dai",
       byArtist: [
         { "@type": "Person", name: "Shakira" },
-        { "@type": "MusicGroup", name: "Burna Boy" },
+        BURNA_BOY_REF,
       ],
       datePublished: "2026-05",
       genre: ["Afrobeats", "Latin pop"],

@@ -5,7 +5,7 @@ import BreadcrumbBar from "../components/BreadcrumbBar";
 import MobileLiveCharts, { type ReleasePreview } from "../components/MobileLiveCharts";
 import { cadenceOf, reachOf, numberOnesOf, countriesOf, releaseKey, LIVE_CADENCE, LIVE_CADENCE_ADVERB } from "../lib/liveChartMeta";
 import LiveReleaseBlock, { type ReleaseSummary } from "../components/LiveReleaseBlock";
-import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime } from "../lib/seo";
+import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime, BURNA_BOY_REF } from "../lib/seo";
 import { coverFor, monogramFor } from "../lib/covers";
 import { spotifyImage } from "../lib/spotifyImage";
 import {
@@ -271,7 +271,7 @@ function datasetJsonLd() {
     isAccessibleForFree: true,
     license: "https://creativecommons.org/licenses/by/4.0/",
     creator: { "@type": "Organization", name: SITE_NAME, url: CANONICAL_ORIGIN },
-    about: { "@type": "MusicGroup", name: "Burna Boy" },
+    about: BURNA_BOY_REF,
     variableMeasured: ["Chart position", "Platform", "Country", "24-hour movement"],
     keywords: ["Burna Boy", "live charts", "Spotify", "Apple Music", "iTunes", "Shazam", "Deezer"],
   };
