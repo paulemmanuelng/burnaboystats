@@ -8,7 +8,7 @@ const card = {
   kicker: "Embed the stats",
   title: "Live on your site",
   // Named from the widget list, like the page's description.
-  sub: `${EMBED_NAME_LIST} — one snippet, always current`,
+  sub: `${EMBED_NAME_LIST.charAt(0).toUpperCase()}${EMBED_NAME_LIST.slice(1)} — one snippet, always current`,
 };
 
 // Versioned by the card's own contents, so a cached preview follows the copy

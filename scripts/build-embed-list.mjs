@@ -1,4 +1,4 @@
-// Writes app/data/embedWidgetList.json: each embed widget's slug and name, in
+// Writes app/data/embedWidgetList.json: each embed widget's slug, name and phrase, in
 // the order app/lib/embedWidgets.ts lists them.
 //
 // Two readers cannot import that module. next.config.mjs cannot import
@@ -13,6 +13,6 @@ import { writeFile } from "node:fs/promises";
 import { EMBED_WIDGETS } from "../app/lib/embedWidgets.ts";
 
 const OUT = new URL("../app/data/embedWidgetList.json", import.meta.url);
-const rows = EMBED_WIDGETS.map((w) => ({ slug: w.slug, name: w.name }));
+const rows = EMBED_WIDGETS.map((w) => ({ slug: w.slug, name: w.name, phrase: w.phrase }));
 await writeFile(OUT, JSON.stringify(rows, null, 2) + "\n", "utf8");
 console.error(`wrote ${rows.length} widgets`);

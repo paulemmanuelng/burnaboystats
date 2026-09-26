@@ -97,7 +97,7 @@ describe("framing is allowed on /embed/<widget> only", () => {
     // next.config.mjs cannot import TypeScript, so it reads
     // app/data/embedWidgetList.json. Stale, it would frame a retired name and
     // refuse a new widget: run scripts/build-embed-list.mjs.
-    expect(embedWidgetList).toEqual(EMBED_WIDGETS.map((w) => ({ slug: w.slug, name: w.name })));
+    expect(embedWidgetList).toEqual(EMBED_WIDGETS.map((w) => ({ slug: w.slug, name: w.name, phrase: w.phrase })));
   });
 
   it("the site-wide policy is what it was: SAMEORIGIN, frame-ancestors 'self'", () => {

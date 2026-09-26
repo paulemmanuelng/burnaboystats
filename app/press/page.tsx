@@ -18,7 +18,7 @@ import { totalWins, totalNominations } from "../data/awards";
 import { countryCount as performedCountryCount, regionCount } from "../data/performedCountries";
 import { spotifyTotalStreams } from "../data/streamingTotals";
 import { updates } from "../data/updates";
-import { EMBED_WIDGETS } from "../lib/embedWidgets";
+import { EMBED_NAME_LIST, EMBED_WIDGETS } from "../lib/embedWidgets";
 import {
   DATA_DOWNLOADS,
   DATASET_CITATION,
@@ -231,7 +231,7 @@ export default function PressPage() {
         <h2 id="embeds" className={styles.h2}>Live stat boxes for your site</h2>
         <p className={styles.p}>
           For a blog post, a fan page or a live article: {EMBED_WIDGETS.length} small boxes (
-          {EMBED_WIDGETS.map((w) => w.name).join(", ")}) that keep their figures current by
+          {EMBED_NAME_LIST}) that keep their figures current by
           themselves and link back to the page each one comes from. Pick one on the{" "}
           <Link href="/embed" className={styles.link}>embed page</Link>, copy one snippet of
           HTML and paste it in.

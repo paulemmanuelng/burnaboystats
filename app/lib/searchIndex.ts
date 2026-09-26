@@ -423,7 +423,7 @@ export const searchIndex: SearchDoc[] = [
     section: "Site",
     // Named from the widget list (generated from app/lib/embedWidgets.ts,
     // which imports the datasets this file must not).
-    description: `Live stat boxes for your own site — ${embedWidgetList.map((w) => w.name).join(", ")}.`,
+    description: `Live stat boxes for your own site — ${embedWidgetList.slice(0, -1).map((w) => w.phrase).join(", ")} and ${embedWidgetList.at(-1)?.phrase}.`,
     keywords: ["embed", "widget", "iframe", "live stats", "blog", "fan page", "website", "html", "snippet", "badge"],
   },
   {

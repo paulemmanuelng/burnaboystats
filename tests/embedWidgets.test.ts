@@ -4,6 +4,7 @@ import { join } from "node:path";
 import { GET } from "../app/embed/[widget]/route";
 import {
   EMBED_WIDGETS,
+  EMBED_NAME_LIST,
   EMBED_SLUGS,
   EMBED_FONT_FILES,
   renderEmbed,
@@ -355,5 +356,19 @@ describe("/embed is findable, the widgets are not", () => {
 
   it("keeps every noindex widget out of the sitemap", () => {
     expect(paths.filter((p) => p.startsWith("/embed/"))).toEqual([]);
+  });
+});
+
+describe("the copy that lists the boxes reads as a sentence", () => {
+  it("names each box mid-sentence, not by its label", () => {
+    // The labels joined read "Career streams, Certifications, Dai Dai and Latest
+    // milestone", which shipped on the branch for a day in the /embed description,
+    // share card and search entry.
+    expect(EMBED_NAME_LIST).not.toBe("Career streams, Certifications, Dai Dai and Latest milestone");
+    for (const w of EMBED_WIDGETS) {
+      // A phrase is the label in lower case (with an article where it needs one),
+      // unless the label is a song title.
+      if (w.phrase !== w.name) expect(w.phrase).toMatch(/^[a-z]/);
+    }
   });
 });

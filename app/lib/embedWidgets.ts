@@ -56,6 +56,9 @@ export interface EmbedContent {
  *  (content.href), so embedMetas() fills creditHref in rather than it being
  *  typed twice. */
 export interface EmbedWidget extends Omit<EmbedMeta, "creditHref"> {
+  /** The box named mid-sentence ("the latest milestone"), for copy that lists
+   *  the boxes; `name` is the label form ("Latest milestone"). */
+  phrase: string;
   content: EmbedContent;
 }
 
@@ -117,6 +120,7 @@ export const EMBED_WIDGETS: EmbedWidget[] = [
   {
     slug: "career-streams",
     name: "Career streams",
+    phrase: "career streams",
     what: "His all-time Spotify total, every song, lead and featured credits combined — the figure this site publishes, refreshed daily.",
     // Heights measured in a production build with the fonts loaded, at every
     // 20 px from EMBED_FITS.min to EMBED_FITS.max wide (the figure grows with
@@ -139,6 +143,7 @@ export const EMBED_WIDGETS: EmbedWidget[] = [
   {
     slug: "certifications",
     name: "Certifications",
+    phrase: "certifications",
     what: "Every plaque he holds and the countries that certified them, with the tier split.",
     width: 360,
     height: 280,
@@ -159,6 +164,7 @@ export const EMBED_WIDGETS: EmbedWidget[] = [
   {
     slug: "dai-dai",
     name: "Dai Dai",
+    phrase: "Dai Dai",
     what: "The World Cup anthem's run: countries at No. 1, weeks atop the Billboard Global 200, days atop Spotify's global chart.",
     width: 360,
     height: 350,
@@ -181,6 +187,7 @@ export const EMBED_WIDGETS: EmbedWidget[] = [
   {
     slug: "latest",
     name: "Latest milestone",
+    phrase: "the latest milestone",
     what: "The newest entry in the site's dated log of Burna Boy news, printed whole. It changes whenever a new fact is logged, so the box is tall enough for the longest entry the log takes.",
     width: 360,
     // Sized for the longest entry the feed allows, not today's: LATEST_SIZED_FOR.
@@ -197,12 +204,12 @@ export const EMBED_WIDGETS: EmbedWidget[] = [
 
 export const EMBED_SLUGS = EMBED_WIDGETS.map((w) => w.slug);
 
-/** "Career streams, Certifications, Dai Dai and Latest milestone": the boxes by
- *  name, for the copy that lists them (the /embed description and share card),
- *  so a box added to the list is named there the day it ships. */
-const names = EMBED_WIDGETS.map((w) => w.name);
-export const EMBED_NAME_LIST =
-  names.length > 1 ? `${names.slice(0, -1).join(", ")} and ${names[names.length - 1]}` : (names[0] ?? "");
+/** "career streams, certifications, Dai Dai and the latest milestone": the boxes
+ *  as the copy that lists them names them (the /embed description, share card
+ *  and /press), so a box added to the list is named there the day it ships. */
+const listPhrases = (phrases: string[]) =>
+  phrases.length > 1 ? `${phrases.slice(0, -1).join(", ")} and ${phrases[phrases.length - 1]}` : (phrases[0] ?? "");
+export const EMBED_NAME_LIST = listPhrases(EMBED_WIDGETS.map((w) => w.phrase));
 
 export const embedWidget = (slug: string) => EMBED_WIDGETS.find((w) => w.slug === slug);
 
