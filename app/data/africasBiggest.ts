@@ -1,5 +1,14 @@
 import { spotifyFollowersDisplay } from "./spotify";
 import { monthlyListenersSeries } from "./trends";
+import {
+  hot100Top,
+  HOT100_TOP,
+  HOT100_COUNTRIES,
+  HOT100_METHOD,
+  HOT100_SOURCE,
+  hot100StillChartingLine,
+} from "./hot100Weeks";
+import { count } from "../lib/plural";
 
 // His peak Spotify monthly listeners, in one place. The note under the
 // leaderboard used to spell the milestone out ("past 56 million") while the
@@ -162,6 +171,19 @@ export interface LeaderboardBox {
 
 // Name highlighted across every box (the site's subject).
 export const HIGHLIGHT = "Burna Boy";
+
+/**
+ * The rows of "Most weeks on the Billboard Hot 100". Every figure is computed
+ * in data/hot100Weeks.ts from Billboard's own rows, one per credited song; this
+ * only formats them the way the page's other boards read — flag and detail
+ * under the name, the figure on the right. A tie shares its rank.
+ */
+const hot100WeeksEntries: RankEntry[] = hot100Top.map((s, i) => ({
+  name: s.name,
+  sub: `${HOT100_COUNTRIES[s.country].flag} ${count(s.songs, "song", "songs")} · best No. ${s.bestPeak}`,
+  value: `${s.weeks} weeks`,
+  ...(i > 0 && s.rank === hot100Top[i - 1].rank ? { tie: true as const } : {}),
+}));
 
 export const statBoxes: LeaderboardBox[] = [
   {
@@ -337,6 +359,19 @@ export const statBoxes: LeaderboardBox[] = [
     note: `Burna Boy has the most Billboard Hot 100 entries of any African artist in history — ${BURNA_HOT_100_ENTRIES}, extended by “Dai Dai” with Shakira. Tems is next with 8 — the most ever by an African woman. Hugh Masekela and Tyla are tied on 4; Masekela was the first African act to top the chart (“Grazing in the Grass,” No. 1, 1968).`,
     source:
       `Career Billboard Hot 100 entries by African artists, from Billboard chart histories. Burna Boy (${BURNA_HOT_100_ENTRIES}), Tems (8) and Tyla (4) confirmed via Billboard; Seether (7), Wizkid (5) and Hugh Masekela (4) cross-checked against Billboard and chart-stat trackers. As of July 2026.`,
+  },
+  {
+    // Paul, 27 Sep 2026: this board lives here and nowhere else. Scope is every
+    // African artist, by nationality (the site's rule of 17 Sep 2026). Nothing
+    // in it is typed: the rows, note and source are all built in
+    // data/hot100Weeks.ts, where the read and its nationality calls are kept.
+    id: "most-hot-100-weeks",
+    title: "Most weeks on the Billboard Hot 100",
+    meta: `Top ${HOT100_TOP} · African artists`,
+    layout: "list",
+    entries: hot100WeeksEntries,
+    note: [HOT100_METHOD, hot100StillChartingLine()].filter(Boolean).join(" "),
+    source: HOT100_SOURCE,
   },
   {
     id: "most-200m-stream-songs",
