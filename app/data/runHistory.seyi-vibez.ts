@@ -121,6 +121,37 @@
     "release": "VOLUME",
     "platform": "Shazam",
     "position": 71
+  },
+  {
+    "date": "2026-09-27",
+    "release": "BACK 2 U",
+    "platform": "Shazam",
+    "position": 124
+  },
+  {
+    "date": "2026-09-27",
+    "release": "ILOME",
+    "platform": "Shazam",
+    "position": 59
+  },
+  {
+    "date": "2026-09-27",
+    "release": "PANSA",
+    "platform": "Shazam",
+    "position": 185
+  },
+  {
+    "date": "2026-09-27",
+    "release": "SWAGUU",
+    "kind": "album",
+    "platform": "Spotify Albums",
+    "position": 40
+  },
+  {
+    "date": "2026-09-27",
+    "release": "VOLUME",
+    "platform": "Shazam",
+    "position": 71
   }
 ];
   

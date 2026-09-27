@@ -72,7 +72,7 @@
 // published figure.
 //
 // Method and full evidence: docs/sourcing/CAREER-STREAMS-OFFSET.md.
-export const spotifyTotalStreams = "11.08B";
+export const spotifyTotalStreams = "11.09B";
 
 /**
  * The day ChartMasters' Playcounts Tool was last read to anchor the offset —
@@ -95,7 +95,7 @@ export const CAREER_STREAMS_ANCHOR_READ_ON = "2026-09-25";
 // and rounding the one live input forced its derived figures to be rounded too.
 // Both are written by the SAME metric on the same daily run, so they cannot
 // disagree with each other.
-export const spotifyTotalStreamsExact = "11,078,173,429";
+export const spotifyTotalStreamsExact = "11,085,890,337";
 
 // Every video on Burna Boy's own YouTube channel — the total its about page
 // prints for that channel alone, not his videos on other artists' channels.
