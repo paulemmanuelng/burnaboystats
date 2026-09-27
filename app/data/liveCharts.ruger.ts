@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-27";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-27T05:22Z";
+  export const liveChartsBuiltAt = "2026-09-27T12:07Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","Spotify Albums","iTunes"];
@@ -88,14 +88,14 @@
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
-            "position": 90,
-            "movement": 1
+            "position": 104,
+            "movement": -14
           },
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 120,
-            "movement": -5
+            "position": 137,
+            "movement": -17
           }
         ]
       }
@@ -320,7 +320,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 127,
+            "position": 139,
             "movement": null,
             "status": "new"
           }
@@ -386,8 +386,8 @@
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 68,
-            "movement": 1
+            "position": 56,
+            "movement": 12
           }
         ]
       }
@@ -424,8 +424,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 195,
-            "movement": 3
+            "position": 193,
+            "movement": 2
           }
         ]
       }

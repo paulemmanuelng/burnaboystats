@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-27";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-27T05:22Z";
+  export const liveChartsBuiltAt = "2026-09-27T12:07Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Shazam","iTunes"];
@@ -56,20 +56,14 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 46,
-            "movement": -1
+            "position": 53,
+            "movement": -7
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 150,
-            "movement": -1
-          },
-          {
-            "country": "ZM",
-            "name": "Zambia",
-            "position": 173,
-            "movement": -4
+            "position": 136,
+            "movement": 14
           }
         ]
       }
@@ -125,33 +119,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 178,
-            "movement": 3
+            "position": 182,
+            "movement": 2
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/556df097d6c975617e593855e293e4e7/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Ma Lo",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 191,
-            "movement": -159
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ab78245a891d3dad863b735b8afc1b89/500x500-000000-80-0-0.jpg"
   }
 ];
   
