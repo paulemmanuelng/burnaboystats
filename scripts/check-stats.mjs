@@ -50,12 +50,12 @@ const HAND_READS = [
     // the cadence. One day's slack makes this Monday issue the first to ask, 9
     // days after the chart date — the next issue has been out since Tuesday —
     // and the CI alarm in tests/hot100Weeks.test.tsx the backstop, from day 11.
-    label: "Most weeks on the Billboard Hot 100 — the board's top 5 (/afrobeats)",
+    label: "Most weeks on the Billboard Hot 100 — African artists, top 5 (/records/africas-biggest)",
     file: "app/data/hot100Weeks.ts",
     re: /HOT100_CHART_DATE = "([\d-]+)"/,
     everyDays: 7,
     slack: 1,
-    how: "Re-read each artist's Billboard chart-history page (the `source` URLs in app/data/hot100Weeks.ts): add a row for any new song, update the weeks and `stillCharting` of the rest from the latest chart, then set HOT100_CHART_DATE to that chart's date and HOT100_READ_ON to today.",
+    how: "Open the latest Hot 100 (billboard.com/charts/hot-100/): add a week to each row in app/data/hot100Weeks.ts still on it, add a row for any African act newly on it (credit as Billboard prints it), set `stillCharting` from that chart, then set HOT100_CHART_DATE to its date and HOT100_READ_ON to today.",
   },
 ];
 

@@ -13,6 +13,7 @@ import {
   BURNA_PEAK_LISTENERS_SET_ON_LONG,
 } from "../../data/africasBiggest";
 import { monthlyListenersSeries } from "../../data/trends";
+import { HOT100_METHOD } from "../../data/hot100Weeks";
 import { pageMetadata, datasetJsonLd } from "../../lib/seo";
 import MobileAfricasBiggest from "../../components/MobileAfricasBiggest";
 import {
@@ -101,6 +102,7 @@ const billboardIds = new Set([
   "billboard-global-200-peak",
   "billboard-hot-100-peak",
   "most-hot-100-entries",
+  "most-hot-100-weeks",
 ]);
 const groups = [
   { id: "billboard", label: "On the Billboard charts", boxes: statBoxes.filter((b) => billboardIds.has(b.id)) },
@@ -120,17 +122,20 @@ export default function AfricasBiggestPage() {
     description: "Leaderboards of Africa's biggest artists: the top 5 by Billboard Global 200 peak, the most-streamed on Spotify each year, most Billboard Hot 100 entries and more — with Burna Boy in context.",
     path: "/records/africas-biggest",
     keywords: ["most-streamed African artist", "highest-charting African song", "African artists Billboard Hot 100", "Billboard Global 200", "first African artist Billboard Global 200", "Burna Boy", "Wizkid", "Tems", "Rema", "Tyla", "Afrobeats records"],
-    variableMeasured: ["Billboard Global 200 peak", "Billboard Hot 100 peak", "Spotify streams", "Artist", "Chart entries"],
+    variableMeasured: ["Billboard Global 200 peak", "Billboard Hot 100 peak", "Weeks on the Billboard Hot 100", "Spotify streams", "Artist", "Chart entries"],
   });
 
-  // ItemLists for the Billboard peak leaderboards so search + AI read the rankings.
-  const itemLists = ["billboard-global-200-peak", "billboard-hot-100-peak"]
+  // ItemLists for the Billboard leaderboards so search + AI read the rankings.
+  // The weeks board's list carries its method as the description, so the
+  // structured data states what the figure counts, as the page does.
+  const itemLists = ["billboard-global-200-peak", "billboard-hot-100-peak", "most-hot-100-weeks"]
     .map((id) => statBoxes.find((b) => b.id === id))
     .filter((b): b is (typeof statBoxes)[number] => !!b?.entries?.length)
     .map((b) => ({
       "@context": "https://schema.org",
       "@type": "ItemList",
       name: b.title,
+      ...(b.id === "most-hot-100-weeks" ? { description: HOT100_METHOD } : {}),
       numberOfItems: b.entries!.length,
       itemListElement: b.entries!.map((e, i) => ({
         "@type": "ListItem",
