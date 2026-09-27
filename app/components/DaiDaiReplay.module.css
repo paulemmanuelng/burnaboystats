@@ -104,6 +104,9 @@
   flex-direction: column;
   gap: 2px;
 }
+/* The chart's name prints in full, never ellipsised: two phone tiles side by
+   side left it 24–79px, and Paul's phone read "GLOBAL 2…" and "GLOBAL E…"
+   (27 Sep 2026). A name too long for its line wraps at a space instead. */
 .tileName {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
@@ -111,9 +114,6 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-muted);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 .tileNameShort {
   display: none;
@@ -865,6 +865,14 @@
   }
   .readout {
     font-size: 22px;
+  }
+  /* The two tiles stack, full width: side by side, each left its name
+     24px at 320 and 79 at 430, and "GLOBAL EXCL. US" is 114. Stacked, the
+     tile keeps the desktop's row (swatch, name over sub-line, the figure)
+     and its words fit; the rows share one height. */
+  .tiles {
+    grid-template-columns: minmax(0, 1fr);
+    grid-auto-rows: 1fr;
   }
   .tileNameLong {
     display: none;
