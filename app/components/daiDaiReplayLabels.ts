@@ -26,8 +26,12 @@ export interface ReplayLabels {
   posUnread: string;
   posOff: string;
   posNoChart: string;
-  /** Tile sub-lines. "{n} wk at No. 1 so far" */
+  /** Tile sub-lines. "{n} weeks at No. 1 so far", and "{n} week …" for one.
+   *  Written out, not "wk": a phone stacks the two tiles, and the words fit.
+   *  The player holds "No." to its number with U+00A0 at the draw; the
+   *  strings keep a plain space. */
   tileSoFar: string;
+  tileSoFarOne: string;
   tileUnread: string;
   tileOff: string;
   tileNoChart: string;
@@ -117,7 +121,8 @@ export const EN_REPLAY_LABELS: ReplayLabels = {
   posUnread: "—",
   posOff: "Off",
   posNoChart: "×",
-  tileSoFar: "{n} wk at No. 1 so far",
+  tileSoFar: "{n} weeks at No. 1 so far",
+  tileSoFarOne: "{n} week at No. 1 so far",
   tileUnread: "not read this week",
   tileOff: "not on the chart",
   tileNoChart: "no chart this week",
@@ -189,7 +194,8 @@ export const ES_REPLAY_LABELS: ReplayLabels = {
   posUnread: "—",
   posOff: "Fuera",
   posNoChart: "×",
-  tileSoFar: "{n} sem. en el n.º 1 hasta ahora",
+  tileSoFar: "{n} semanas en el n.º 1 hasta ahora",
+  tileSoFarOne: "{n} semana en el n.º 1 hasta ahora",
   tileUnread: "sin lectura esta semana",
   tileOff: "fuera de la lista",
   tileNoChart: "sin lista esta semana",

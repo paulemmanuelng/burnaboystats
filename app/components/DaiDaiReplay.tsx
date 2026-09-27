@@ -117,6 +117,12 @@ const ordinal = (n: number, lang: "en" | "es") => {
   return `${n}${m >= 11 && m <= 13 ? "th" : (["th", "st", "nd", "rd"][n % 10] ?? "th")}`;
 };
 
+/** "No. 1" and "n.º 1" held together by U+00A0 at the draw, as the post card
+ *  holds them (keepTogether, app/lib/onThisDayShare.ts), so a tile's sub-line
+ *  never ends on "No." over "1 so far". Only here: the labels keep the plain
+ *  space the site spells "No. 1" with (tests/siteDebugWording.test.ts). */
+const holdNo = (s: string) => s.replace(/\b(No\.|n\.º) (?=\d)/gi, "$1\u00a0");
+
 /** Read weeks at No. 1 up to and including frame i. */
 const readNo1s = (r: ReplayRun, i: number) => r.pts.slice(0, i + 1).filter((p) => p.s === "on" && p.p === 1).length;
 
@@ -398,12 +404,13 @@ export default function DaiDaiReplay({ data, labels: t }: { data: ReplayData; la
   };
 
   // ── The two globals ────────────────────────────────────────────────────────
+  const soFar = (n: number) => fillIn(n === 1 ? t.tileSoFarOne : t.tileSoFar, { n });
   const tiles = data.globals.map((g) => {
     if (endLike) {
-      return { g, sw: bandOf(g.best), pos: fillIn(t.pos, { p: g.best }), sub: fillIn(t.tileSoFar, { n: g.weeksAtPeak ?? readNo1s(g, last) }) };
+      return { g, sw: bandOf(g.best), pos: fillIn(t.pos, { p: g.best }), sub: soFar(g.weeksAtPeak ?? readNo1s(g, last)) };
     }
     const p = g.pts[frame];
-    if (p.s === "on") return { g, sw: bandOf(p.p!), pos: fillIn(t.pos, { p: p.p! }), sub: fillIn(t.tileSoFar, { n: readNo1s(g, frame) }) };
+    if (p.s === "on") return { g, sw: bandOf(p.p!), pos: fillIn(t.pos, { p: p.p! }), sub: soFar(readNo1s(g, frame)) };
     if (p.s === "unread") return { g, sw: "unread", pos: t.posUnread, sub: t.tileUnread };
     if (p.s === "no-chart") return { g, sw: "nochart", pos: t.posNoChart, sub: t.tileNoChart };
     return { g, sw: "off", pos: t.posOff, sub: t.tileOff };
@@ -520,7 +527,7 @@ export default function DaiDaiReplay({ data, labels: t }: { data: ReplayData; la
                     <span className={styles.tileNameLong}>{g.body}</span>
                     <span className={styles.tileNameShort}>{g.name}</span>
                   </span>
-                  <span className={styles.tileSub}>{sub}</span>
+                  <span className={styles.tileSub}>{holdNo(sub)}</span>
                 </span>
                 <span className={styles.tilePos}>{pos}</span>
               </div>
