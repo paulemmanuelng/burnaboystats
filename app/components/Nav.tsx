@@ -13,18 +13,30 @@ export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
 
-  // Give the nav a solid, blurred backdrop once the user scrolls off the hero,
-  // so links stay legible over album art and section titles below.
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   // Screens with their own mobile chrome carry a back bar instead of this nav.
   // The class only hides it below the mobile breakpoint — desktop is unchanged.
   const ownChrome = hasOwnMobileChrome(pathname);
+
+  // Give the nav a solid, blurred backdrop once the user scrolls off the hero,
+  // so links stay legible over album art and section titles below. Where the
+  // bar is display:none (a screen with its own chrome, at phone width) it does
+  // not listen, so a phone's scroll runs no handler for a bar it cannot see.
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    const hidden = ownChrome ? window.matchMedia("(max-width: 900px)") : null;
+    const attach = () => {
+      window.removeEventListener("scroll", onScroll);
+      if (hidden?.matches) return;
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+    };
+    attach();
+    hidden?.addEventListener("change", attach);
+    return () => {
+      hidden?.removeEventListener("change", attach);
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, [ownChrome]);
 
   return (
     <header
