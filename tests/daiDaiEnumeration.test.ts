@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { readFileSync } from "node:fs";
 import { allItems } from "../app/data/certifications";
+import { plaqueSentence } from "../app/components/daiDaiStoryFacts";
 
 /**
  * The "Dai Dai" certification sentence names every country the data holds.
@@ -38,11 +39,13 @@ const NAMES: Record<string, string[]> = {
   DE: ["Germany", "Alemania"],
 };
 
-/** Files that carry a hand-written enumeration, and the marker that finds one. */
+/** Files that carry a hand-written enumeration, and the marker that finds one.
+ *  The story's chapter 05 left this list on 27 Sep 2026: both editions now
+ *  build that sentence from the plaque wall (daiDaiStoryFacts.plaqueSentence),
+ *  checked by the last test below. */
 const SURFACES = [
   "app/dai-dai/page.tsx",
   "app/dai-dai/es/page.tsx",
-  "app/components/DaiDaiStory.tsx",
 ];
 
 /** A line is an enumeration if it names the anchor country in either language. */
@@ -95,5 +98,14 @@ describe("the Dai Dai certification sentence names every country", () => {
     expect(silent, "a surface stopped being checked without failing").toEqual([]);
     expect(found, "no Dai Dai enumeration matched anywhere").toBeGreaterThanOrEqual(SURFACES.length);
     expect(missing).toEqual([]);
+  });
+
+  it("the story's built sentence names every certified country, in both editions", () => {
+    const codes = [...new Set(cert!.certs.map((c) => c.c))];
+    for (const lang of ["en", "es"] as const) {
+      const line = plaqueSentence(lang);
+      expect(isEnumeration(line), `${lang}: ${line}`).toBe(true);
+      expect(codes.filter((code) => !NAMES[code]?.some((n) => line.includes(n))), lang).toEqual([]);
+    }
   });
 });

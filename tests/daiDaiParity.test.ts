@@ -5,8 +5,9 @@ import { cadenceOf, LIVE_CADENCE_ES } from "../app/lib/liveChartMeta";
 import { weeksAtPeak, weeksOnChart, daiDaiChartEntryCount, daiDaiNumberOnes } from "../app/data/charts";
 import { daiDaiCertCount } from "../app/data/certifications";
 import { plaqueGroups } from "../app/components/DaiDaiFigures";
+import { plaqueSentence, storyLongDate } from "../app/components/daiDaiStoryFacts";
 import { plaqueCountries, daiDaiCountries } from "../app/components/DaiDaiRecord";
-import { DAI_DAI_SPOTIFY_BODY_READ, daiDaiSpotifyDaysOnChart, daiDaiSpotifyStraightDays, daiDaiYouTubeDaysAtNo1, DAI_DAI_1B_DAYS, DAI_DAI_1B_RANK_EN, DAI_DAI_1B_RANK_ES, DAI_DAI_SPOTIFY_CONFIRMED_THROUGH, DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG, DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_NO1_READ_ON_LONG, DAI_DAI_SPOTIFY_NO1_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_NO1_FIRST_LONG, DAI_DAI_SPOTIFY_NO1_FIRST_LONG_ES, DAI_DAI_SPOTIFY_NO1_LAST_LONG, DAI_DAI_SPOTIFY_NO1_LAST_LONG_ES, DAI_DAI_SPOTIFY_TOP10_DAYS, DAI_DAI_SPOTIFY_DAYS_OFF, DAI_DAI_SPOTIFY_NO1_DAYS, DAI_DAI_ITUNES_NO1_COUNTRIES, DAI_DAI_SPOTIFY_WEEKLY_NO1_WEEKS, DAI_DAI_APPLE_EUROPE_NO1_DAYS, DAI_DAI_ITUNES_WORLDWIDE_NO1_DAYS, DAI_DAI_UWC_NO1_WEEKS, DAI_DAI_DEEZER_WORLDWIDE_PEAK, DAI_DAI_SPOTIFY_MUSIC_VIDEO_NO1_DAYS, BURNA_GLOBAL_DIGITAL_ARTIST_POSITION, BURNA_GLOBAL_DIGITAL_ARTIST_POINTS } from "../app/data/daiDai";
+import { DAI_DAI_RELEASE_DATE, DAI_DAI_SPOTIFY_BODY_READ, daiDaiSpotifyDaysOnChart, daiDaiSpotifyStraightDays, daiDaiYouTubeDaysAtNo1, DAI_DAI_1B_DAYS, DAI_DAI_1B_RANK_EN, DAI_DAI_1B_RANK_ES, DAI_DAI_SPOTIFY_CONFIRMED_THROUGH, DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG, DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_NO1_READ_ON_LONG, DAI_DAI_SPOTIFY_NO1_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_NO1_FIRST_LONG, DAI_DAI_SPOTIFY_NO1_FIRST_LONG_ES, DAI_DAI_SPOTIFY_NO1_LAST_LONG, DAI_DAI_SPOTIFY_NO1_LAST_LONG_ES, DAI_DAI_SPOTIFY_TOP10_DAYS, DAI_DAI_SPOTIFY_DAYS_OFF, DAI_DAI_SPOTIFY_NO1_DAYS, DAI_DAI_ITUNES_NO1_COUNTRIES, DAI_DAI_SPOTIFY_WEEKLY_NO1_WEEKS, DAI_DAI_APPLE_EUROPE_NO1_DAYS, DAI_DAI_ITUNES_WORLDWIDE_NO1_DAYS, DAI_DAI_UWC_NO1_WEEKS, DAI_DAI_DEEZER_WORLDWIDE_PEAK, DAI_DAI_SPOTIFY_MUSIC_VIDEO_NO1_DAYS, BURNA_GLOBAL_DIGITAL_ARTIST_POSITION, BURNA_GLOBAL_DIGITAL_ARTIST_POINTS } from "../app/data/daiDai";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import DaiDaiPage from "../app/dai-dai/page";
@@ -287,7 +288,9 @@ describe("Dai Dai: Spanish edition matches the English one", () => {
 // contradicted the stat-line directly above it. Assert the tier groupings
 // agree across every copy rather than trusting six hand-edits to stay in step.
 describe("Dai Dai certification prose stays consistent across all copies", () => {
-  const en = [read("app/dai-dai/page.tsx"), read("app/components/DaiDaiStory.tsx")].join("\n");
+  // The story's chapter 05 is built from the plaque wall since 27 Sep 2026
+  // (daiDaiStoryFacts), so its copy is the sentence it prints, not its source.
+  const en = [read("app/dai-dai/page.tsx"), plaqueSentence("en")].join("\n");
   const goldLists = [...en.matchAll(/Gold in ([^.]*?), and Silver/g)].map((m) => m[1]);
 
   it("finds a Gold list in every English copy", () => {
@@ -362,7 +365,10 @@ describe("Dai Dai has one release date", () => {
 
   it("is 15 May 2026 on the story, the timeline and both Spotify cards", () => {
     expect(new Date("2026-05-15T12:00:00Z").getUTCDay()).toBe(5); // a Friday
-    expect(STORY).toContain('kicker: "15 May 2026"');
+    // The story's kicker reads the one release date (27 Sep 2026).
+    expect(STORY).toContain('kicker: storyLongDate(DAI_DAI_RELEASE_DATE, "en")');
+    expect(storyLongDate(DAI_DAI_RELEASE_DATE, "en")).toBe("15 May 2026");
+    expect(storyLongDate(DAI_DAI_RELEASE_DATE, "es")).toBe("15 de mayo de 2026");
     expect(TIMELINE).toMatch(/“Dai Dai” arrives"[^}]*released 15 May\./);
     expect(EN).toContain("on 15 May 2026, its release day");
     expect(ES).toContain("el 15 de mayo de 2026, el mismo día de su lanzamiento");

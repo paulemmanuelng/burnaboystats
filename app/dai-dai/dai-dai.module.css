@@ -144,8 +144,10 @@ a.langItem:focus-visible { outline-offset: -3px; }
     padding: 0 18px;
     font-size: 12px;
   }
-  .lang { flex: none; height: 44px; }
-  .langItem { padding: 0 13px; }
+  /* 46 outside, so each option is 44 inside the 1px edge; and at least 44
+     wide. At 44 outside the items were 41.7 and 42.7 × 42 (live, 27 Sep 2026). */
+  .lang { flex: none; height: 46px; }
+  .langItem { min-width: 44px; justify-content: center; padding: 0 13px; }
   .heroCover { display: none; }
 }
 

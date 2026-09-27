@@ -547,7 +547,7 @@ export default function DaiDaiReplay({ data, labels: t }: { data: ReplayData; la
                   {endLike && sg && !sg.pts.length ? (
                     <circle className={styles.peakMark} cx={SG.x} cy={SG.y} r={1.35} />
                   ) : null}
-                  <text className={styles.sgLabel} x={SG.x + 8.4} y={SG.y + 3.6}>
+                  <text className={styles.sgLabel} x={SG.x + 8.4} y={SG.y + 4.2}>
                     SG
                   </text>
                 </svg>

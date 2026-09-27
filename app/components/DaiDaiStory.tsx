@@ -6,6 +6,7 @@ import { cardinalWord } from "../lib/plural";
 import { daiDaiNumberOnes, weeksAtPeak } from "../data/charts";
 import { daiDaiCertCount } from "../data/certifications";
 import { DAI_DAI_RELEASE_DATE, DAI_DAI_HALFTIME_DATE, DAI_DAI_SPOTIFY_NO1_DAYS } from "../data/daiDai";
+import { exUsSpan, globalRunSentence, plaqueSentence, storyDayMonth, storyLongDate } from "./daiDaiStoryFacts";
 
 // Every figure here is "Dai Dai"'s OWN — never Burna Boy's artist-wide totals
 // (monthly listeners, YouTube audience, career certs). Burna had a huge
@@ -73,12 +74,14 @@ interface Props {
 }
 
 // The narrative — framed as the Shakira × Burna Boy collaboration it is, not one
-// artist's star power. Numbers are injected from live data so it never goes stale.
+// artist's star power. Numbers are injected from live data so it never goes stale:
+// the dates, the Global 200's shape and the plaques too (daiDaiStoryFacts), which
+// the chapters typed beside figures that read them from data until 27 Sep 2026.
 function buildSteps(p: { daiDaiNo1s: number; daiDaiCerts: number; weeksGLB: number | null; weeksGLBX: number | null; lang: "en" | "es" }): Step[] {
   return [
     {
       scene: "hero",
-      kicker: "15 May 2026",
+      kicker: storyLongDate(DAI_DAI_RELEASE_DATE, "en"),
       title: "A World Cup anthem, together",
       body: "The 2026 FIFA World Cup unveiled its official song — “Dai Dai”, a collaboration between two global superstars: Shakira and Burna Boy. Latin pop meets Afrobeats on the planet's biggest stage.",
     },
@@ -86,7 +89,7 @@ function buildSteps(p: { daiDaiNo1s: number; daiDaiCerts: number; weeksGLB: numb
       scene: "global1",
       kicker: "The record",
       title: "No. 1 on the Billboard Global 200",
-      body: `Within weeks their song topped Billboard's flagship, US-inclusive worldwide chart — Shakira's second-ever Global 200 No. 1, and the first time in history an African artist has helped lead it. After four straight weeks it slipped to No. 3, then took the chart back for three weeks — the issues of 22 and 29 August and 5 September — ${cardinalWord(p.weeksGLB, p.lang)} weeks at No. 1 in all. On the Global 200 Excl. US it ran ${cardinalWord(p.weeksGLBX, p.lang)} straight weeks at No. 1, 4 July to 5 September.`,
+      body: `Within weeks their song topped Billboard's flagship, US-inclusive worldwide chart — Shakira's second-ever Global 200 No. 1, and the first time in history an African artist has helped lead it. ${globalRunSentence("en", p.weeksGLB)} On the Global 200 Excl. US it ran ${cardinalWord(p.weeksGLBX, p.lang)} straight weeks at No. 1, ${exUsSpan("en")}.`,
     },
     {
       scene: "no1s",
@@ -105,7 +108,7 @@ function buildSteps(p: { daiDaiNo1s: number; daiDaiCerts: number; weeksGLB: numb
       scene: "certs",
       kicker: "Certified worldwide",
       title: "The plaques rolled in",
-      body: `The song earned its own plaques — Diamond in France, 2× Platinum in Canada, 6× Platinum (Latin) in the US, Platinum in Spain, Slovakia, Portugal, Hungary, Austria, Greece and Sweden, Gold in Colombia, the Czech Republic, Italy, Poland, Belgium and Germany, and Silver in the UK. ${p.daiDaiCerts} certifications for Shakira and Burna Boy's collaboration, and counting.`,
+      body: `The song earned its own plaques — ${plaqueSentence("en")}. ${p.daiDaiCerts} certifications for Shakira and Burna Boy's collaboration, and counting.`,
       link: { href: "/certifications#release=Dai%20Dai", label: "All certifications" },
     },
     {
@@ -116,9 +119,9 @@ function buildSteps(p: { daiDaiNo1s: number; daiDaiCerts: number; weeksGLB: numb
     },
     {
       scene: "halftime",
-      kicker: "History made · 19 July",
+      kicker: `History made · ${storyDayMonth(DAI_DAI_HALFTIME_DATE, "en")}`,
       title: "History on the World Cup Final stage",
-      body: "Shakira and Burna Boy took “Dai Dai” to the first-ever FIFA World Cup Final halftime show at MetLife Stadium on 19 July — before a global audience of billions, alongside Madonna, BTS and Justin Bieber.",
+      body: `Shakira and Burna Boy took “Dai Dai” to the first-ever FIFA World Cup Final halftime show at MetLife Stadium on ${storyDayMonth(DAI_DAI_HALFTIME_DATE, "en")} — before a global audience of billions, alongside Madonna, BTS and Justin Bieber.`,
     },
   ];
 }

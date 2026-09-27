@@ -20,6 +20,7 @@ import {
   anniversary,
   homeRows,
   isRecordLine,
+  keepFigures,
   keepSeparators,
   neighbours,
   onThisDayDays,
@@ -83,7 +84,7 @@ describe("the title is the lead milestone; the date moves to the kicker", () => 
     const n = Number(pick.iso.slice(0, 4)) - lead.year;
     for (const host of Object.values(html(pick))) {
       expect(host.querySelector("h2")!.textContent).toBe(lead.headline);
-      expect(host.textContent).toContain(keepSeparators(`On this day · coming up in ${days} day${days === 1 ? "" : "s"} · ${pick.day.label}`));
+      expect(host.textContent).toContain(keepFigures(keepSeparators(`On this day · coming up in ${days} day${days === 1 ? "" : "s"} · ${pick.day.label}`)));
       expect(host.textContent).toContain(`${anniversary(n)} on ${pick.day.label}`);
       expect(host.textContent).not.toMatch(/Coming up:/);
     }
@@ -96,7 +97,7 @@ describe("the title is the lead milestone; the date moves to the kicker", () => 
       const lead = pick.events[0];
       for (const host of Object.values(html(pick))) {
         expect(host.querySelector("h2")!.textContent).toBe(lead.headline);
-        expect(host.textContent).toContain(keepSeparators(`On this day · today, ${pick.day.label}`));
+        expect(host.textContent).toContain(keepFigures(keepSeparators(`On this day · today, ${pick.day.label}`)));
         expect(host.textContent).toContain(`${ago(2027 - lead.year)} today`);
         expect(host.textContent).toContain(KIND_MARK[lead.kind].word);
         expect(host.textContent).toContain(lead.detail);

@@ -11,9 +11,8 @@ import {
   homeDayLink,
   homeLeadAge,
   homeRows,
-  homeWhen,
+  homeWhenLine,
   isRecordLine,
-  keepSeparators,
   type OnThisDayPick,
 } from "../lib/onThisDay";
 
@@ -47,7 +46,7 @@ export default function MobileOnThisDayCard({ pick }: { pick: OnThisDayPick | nu
   return (
     <section className={styles.homeCard} aria-labelledby="otd-title-m">
       <p className={styles.homeKicker}>
-        On this day ·{NBSP}<span className={styles.homeWhen}>{keepSeparators(homeWhen(pick))}</span>
+        On this day ·{NBSP}<span className={styles.homeWhen}>{homeWhenLine(pick)}</span>
       </p>
       {/* The title is a link to the day's page, in ink. */}
       <h2 id="otd-title-m" className={styles.homeTitle}>
