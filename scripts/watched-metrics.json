@@ -965,8 +965,8 @@
       "lastChanged": "2026-09-17",
       "lastSeenValue": 85924785,
       "lastSeenAt": "2026-09-24",
-      "stalenessDays": 3,
-      "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total."
+      "stalenessDays": 30,
+      "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. Staleness window 30 days (27 Sep 2026): the page prints this compact (\"86M\"), and the remix gains ~50k streams a day (85,571,611 on 17 Sep to 85,924,785 on kworb's 25 Sep page), so the printed figure can only move every couple of weeks; a 3-day window made the alarm ring on a correct figure."
     },
     {
       "id": "streams-2026-tems",
