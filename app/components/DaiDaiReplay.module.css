@@ -556,7 +556,10 @@
   display: flex;
   align-items: center;
   cursor: pointer;
-  touch-action: none;
+  /* The page keeps vertical swipes: on a phone this bar is pinned where a
+     reader scrolling past puts a thumb. Sideways drags scrub (the player
+     takes a finger once it has moved 8px more across than down). */
+  touch-action: pan-y;
 }
 .rail,
 .progress {

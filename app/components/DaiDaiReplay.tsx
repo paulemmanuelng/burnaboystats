@@ -1,6 +1,6 @@
 "use client"; // the player: play, step, scrub, the country card
 
-import { useEffect, useMemo, useRef, useState, useSyncExternalStore, type KeyboardEvent, type MouseEvent, type PointerEvent } from "react";
+import { useEffect, useMemo, useRef, useState, useSyncExternalStore, type KeyboardEvent, type MouseEvent, type PointerEvent, type ReactNode } from "react";
 import styles from "./DaiDaiReplay.module.css";
 import { projectEqualEarth } from "../lib/equalEarth";
 import DaiDaiReplayMultiples, { bandOf, fillIn, type Band } from "./DaiDaiReplayMultiples";
@@ -43,6 +43,9 @@ type Mode = "poster" | "playing" | "paused" | "scrubbing" | "end";
 
 const BANDS: Band[] = ["b1", "b5", "b10", "b40", "rest"];
 const PLAY_MS = 1000;
+/** How far a finger must move sideways (and more sideways than down) before
+ *  the scrubber takes the gesture from the page. */
+const SCRUB_SLOP = 8;
 
 // ── Geometry ─────────────────────────────────────────────────────────────────
 
@@ -95,8 +98,18 @@ const subscribePhone = (cb: () => void) => {
 };
 const getPhone = () => window.matchMedia?.(PHONE).matches ?? false;
 const getPhoneServer = () => false;
+// Read by the two parts that differ on a phone — the ranking's chips and the
+// world map — and not by the player itself. The server's answer is "not a
+// phone", so a phone re-renders what reads it as it hydrates, synchronously:
+// kept to those two parts, that pass is the chips and one map, not the whole
+// module (map, ticks, tiles and all) a second time.
+const usePhone = () => useSyncExternalStore(subscribePhone, getPhone, getPhoneServer);
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
+
+/** localeCompare(…, "en") as one collator: the same order, without building
+ *  the comparison afresh for each of the sort's calls. */
+const byCode = new Intl.Collator("en").compare;
 
 const ordinal = (n: number, lang: "en" | "es") => {
   if (lang === "es") return `${n}.ª`;
@@ -129,7 +142,6 @@ export default function DaiDaiReplay({ data, labels: t }: { data: ReplayData; la
   const [hovered, setHovered] = useState<string | null>(null);
   const [announce, setAnnounce] = useState("");
   const reduced = useSyncExternalStore(subscribeRM, getRM, getRMServer);
-  const phone = useSyncExternalStore(subscribePhone, getPhone, getPhoneServer);
   const view = userView ?? (reduced ? "multiples" : "player");
 
   const endLike = mode === "poster" || mode === "end";
@@ -213,7 +225,18 @@ export default function DaiDaiReplay({ data, labels: t }: { data: ReplayData; la
   };
 
   // Scrubbing: the pointer snaps to whole weeks, and the readout follows.
+  //
+  // On a phone the transport is pinned above the tab bar while the replay is
+  // in view, so a reader scrolling past starts swipes on it. The scrubber lets
+  // the page have vertical swipes (touch-action: pan-y), and a finger scrubs
+  // only once it has moved SCRUB_SLOP px more sideways than down; a tap still
+  // seeks. A mouse scrubs from the press, as before. While scrubbing, the
+  // ranking above keeps the height it had, so an early week's short ranking
+  // cannot pull the page up under the finger.
   const track = useRef<HTMLDivElement>(null);
+  const rankRef = useRef<HTMLDivElement>(null);
+  const press = useRef<{ id: number; x: number; y: number } | null>(null);
+  const [rankHold, setRankHold] = useState<number | null>(null);
   const frameAt = (clientX: number) => {
     const el = track.current;
     if (!el) return frame;
@@ -221,20 +244,47 @@ export default function DaiDaiReplay({ data, labels: t }: { data: ReplayData; la
     if (!r.width) return frame;
     return Math.round(Math.max(0, Math.min(1, (clientX - r.left) / r.width)) * last);
   };
-  const onScrubStart = (e: PointerEvent<HTMLDivElement>) => {
-    if (e.button !== 0) return;
+  const startScrub = (e: PointerEvent<HTMLDivElement>) => {
+    press.current = null;
     e.currentTarget.setPointerCapture?.(e.pointerId);
+    setRankHold(rankRef.current?.offsetHeight ?? null);
     setPinned(null);
     setHovered(null);
     setAnnounce("");
     setFrame(frameAt(e.clientX));
     setMode("scrubbing");
   };
+  const onScrubStart = (e: PointerEvent<HTMLDivElement>) => {
+    if (e.button !== 0) return;
+    if (e.pointerType === "mouse") startScrub(e);
+    else press.current = { id: e.pointerId, x: e.clientX, y: e.clientY };
+  };
   const onScrubMove = (e: PointerEvent<HTMLDivElement>) => {
-    if (mode === "scrubbing") setFrame(frameAt(e.clientX));
+    if (mode === "scrubbing") {
+      setFrame(frameAt(e.clientX));
+      return;
+    }
+    const p = press.current;
+    if (!p || p.id !== e.pointerId) return;
+    const dx = Math.abs(e.clientX - p.x);
+    if (dx >= SCRUB_SLOP && dx > Math.abs(e.clientY - p.y)) startScrub(e);
+  };
+  const endScrub = (f: number) => {
+    setRankHold(null);
+    hold(f);
   };
   const onScrubEnd = (e: PointerEvent<HTMLDivElement>) => {
-    if (mode === "scrubbing") hold(frameAt(e.clientX));
+    if (mode === "scrubbing") endScrub(frameAt(e.clientX));
+    else if (press.current?.id === e.pointerId) {
+      // A tap: seek to the week under the finger.
+      press.current = null;
+      endScrub(frameAt(e.clientX));
+    }
+  };
+  // The page took the swipe (a vertical pan): nothing to seek.
+  const onScrubCancel = (e: PointerEvent<HTMLDivElement>) => {
+    if (mode === "scrubbing") endScrub(frameAt(e.clientX));
+    else if (press.current?.id === e.pointerId) press.current = null;
   };
 
   // ── The country card ───────────────────────────────────────────────────────
@@ -289,10 +339,12 @@ export default function DaiDaiReplay({ data, labels: t }: { data: ReplayData; la
   };
 
   // ── Ranking ────────────────────────────────────────────────────────────────
-  const groups = (() => {
+  // Memoised: the sort ran on every render (a hover, a card, the phone's
+  // second hydration pass), and it only changes with the frame.
+  const groups = useMemo(() => {
     if (endLike) {
       const order = [...data.countries].sort(
-        (a, b) => a.best - b.best || Number(b.pts.length > 0) - Number(a.pts.length > 0) || (b.weeksAtPeak ?? 0) - (a.weeksAtPeak ?? 0) || a.code.localeCompare(b.code, "en"),
+        (a, b) => a.best - b.best || Number(b.pts.length > 0) - Number(a.pts.length > 0) || (b.weeksAtPeak ?? 0) - (a.weeksAtPeak ?? 0) || byCode(a.code, b.code),
       );
       return BANDS.map((b, bi) => {
         const items = order.filter((c) => bandOf(c.best) === b);
@@ -311,7 +363,7 @@ export default function DaiDaiReplay({ data, labels: t }: { data: ReplayData; la
     return BANDS.map((b, bi) => {
       const items = on
         .filter((c) => bandOf(c.pts[frame].p!) === b)
-        .sort((x, y) => x.pts[frame].p! - y.pts[frame].p! || readNo1s(y, frame) - readNo1s(x, frame) || x.code.localeCompare(y.code, "en"));
+        .sort((x, y) => x.pts[frame].p! - y.pts[frame].p! || readNo1s(y, frame) - readNo1s(x, frame) || byCode(x.code, y.code));
       return {
         band: b,
         label: t.bands[bi],
@@ -325,13 +377,12 @@ export default function DaiDaiReplay({ data, labels: t }: { data: ReplayData; la
         }),
       };
     }).filter((g) => g.items.length);
-  })();
+  }, [data.countries, endLike, frame, last, t]);
 
   // One tab stop for the whole ranking: the chips are a roving group, arrows
   // move between them and the focused one shows its card.
   const chipOrder = groups.flatMap((g) => g.items.map((it) => it.run.code));
   const tabChip = pinned && chipOrder.includes(pinned) ? pinned : chipOrder[0];
-  const rankRef = useRef<HTMLDivElement>(null);
   const onChipKey = (e: KeyboardEvent<HTMLButtonElement>, code: string) => {
     const i = chipOrder.indexOf(code);
     const k = e.key;
@@ -534,22 +585,29 @@ export default function DaiDaiReplay({ data, labels: t }: { data: ReplayData; la
                   role="img"
                   aria-label={fillIn(t.mapAria, { readout })}
                 >
-                  {drawUses("w")}
-                  {drawMarks(1.35)}
-                  <circle
-                    className={`${styles.sg} ${styles[sgLook] ?? ""} ${sg && sg.code === cardCode ? styles.picked : ""}`}
-                    cx={SG.x}
-                    cy={SG.y}
-                    r={4.8}
-                    style={patternFill(sgLook, "w") ? { fill: patternFill(sgLook, "w") } : undefined}
-                    data-code={sg?.code}
+                  <WorldLayer
+                    mapView={mapView}
+                    draw={() => (
+                      <>
+                        {drawUses("w")}
+                        {drawMarks(1.35)}
+                        <circle
+                          className={`${styles.sg} ${styles[sgLook] ?? ""} ${sg && sg.code === cardCode ? styles.picked : ""}`}
+                          cx={SG.x}
+                          cy={SG.y}
+                          r={4.8}
+                          style={patternFill(sgLook, "w") ? { fill: patternFill(sgLook, "w") } : undefined}
+                          data-code={sg?.code}
+                        />
+                        {endLike && sg && !sg.pts.length ? (
+                          <circle className={styles.peakMark} cx={SG.x} cy={SG.y} r={1.35} />
+                        ) : null}
+                        <text className={styles.sgLabel} x={SG.x + 8.4} y={SG.y + 4.2}>
+                          SG
+                        </text>
+                      </>
+                    )}
                   />
-                  {endLike && sg && !sg.pts.length ? (
-                    <circle className={styles.peakMark} cx={SG.x} cy={SG.y} r={1.35} />
-                  ) : null}
-                  <text className={styles.sgLabel} x={SG.x + 8.4} y={SG.y + 4.2}>
-                    SG
-                  </text>
                 </svg>
 
                 <div className={styles.europe}>
@@ -582,55 +640,22 @@ export default function DaiDaiReplay({ data, labels: t }: { data: ReplayData; la
               </div>
             </div>
 
-            <div className={styles.rankCol} ref={rankRef}>
-              {groups.map((g) => (
-                <div key={g.band} className={styles.group}>
-                  <div className={styles.groupHead}>
-                    <span className={`${styles.swatchSm} ${styles[g.band]}`} aria-hidden="true" />
-                    <span className={styles.groupLabel}>{g.label}</span>
-                    <span className={styles.groupCount}>{g.items.length}</span>
-                  </div>
-                  <ul className={styles.chips}>
-                    {g.items.map((it) => (
-                      <li key={it.run.code}>
-                        {phone ? (
-                          <span
-                            className={`${styles.chip} ${styles.chipLabel} ${it.run.code === cardCode ? styles.chipOn : ""}`}
-                            data-chip-label={it.run.code}
-                          >
-                            <span aria-hidden="true">{it.run.flag}</span>
-                            <span aria-hidden="true">{it.run.code}</span>
-                            {it.cue ? (
-                              <span className={styles.chipCue} aria-hidden="true">
-                                {it.cue}
-                              </span>
-                            ) : null}
-                            <span className="visuallyHidden">{it.say}</span>
-                          </span>
-                        ) : (
-                          <button
-                            type="button"
-                            className={`${styles.chip} ${it.run.code === cardCode ? styles.chipOn : ""}`}
-                            aria-label={it.say}
-                            aria-pressed={it.run.code === pinned}
-                            data-chip={it.run.code}
-                            tabIndex={it.run.code === tabChip ? 0 : -1}
-                            onKeyDown={(e) => onChipKey(e, it.run.code)}
-                            onClick={() => pick(it.run.code)}
-                            onFocus={() => {
-                              if (mode !== "playing" && mode !== "scrubbing") setPinned(it.run.code);
-                            }}
-                          >
-                            <span aria-hidden="true">{it.run.flag}</span>
-                            <span>{it.run.code}</span>
-                            {it.cue ? <span className={styles.chipCue}>{it.cue}</span> : null}
-                          </button>
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+            <div
+              className={styles.rankCol}
+              ref={rankRef}
+              style={mode === "scrubbing" && rankHold ? { minHeight: rankHold } : undefined}
+            >
+              <RankGroups
+                groups={groups}
+                cardCode={cardCode}
+                pinned={pinned}
+                tabChip={tabChip}
+                onChipKey={onChipKey}
+                onPick={pick}
+                onChipFocus={(code) => {
+                  if (mode !== "playing" && mode !== "scrubbing") setPinned(code);
+                }}
+              />
 
               <div className={styles.tray}>
                 <div className={styles.trayHead}>
@@ -697,7 +722,7 @@ export default function DaiDaiReplay({ data, labels: t }: { data: ReplayData; la
                 onPointerDown={onScrubStart}
                 onPointerMove={onScrubMove}
                 onPointerUp={onScrubEnd}
-                onPointerCancel={onScrubEnd}
+                onPointerCancel={onScrubCancel}
               >
                 <span className={styles.rail} aria-hidden="true" />
                 <span className={styles.progress} style={{ width: `${endLike ? 100 : (frame / last) * 100}%` }} aria-hidden="true" />
@@ -745,4 +770,89 @@ export default function DaiDaiReplay({ data, labels: t }: { data: ReplayData; la
       </div>
     </div>
   );
+}
+
+// ── The parts that differ on a phone ─────────────────────────────────────────
+
+type RankGroup = { band: Band; label: string; items: { run: ReplayRun; cue: string; say: string }[] };
+
+/** The ranking: bands of chips. Buttons at desktop width; on the phone,
+ *  labels (see PHONE above). */
+function RankGroups({
+  groups,
+  cardCode,
+  pinned,
+  tabChip,
+  onChipKey,
+  onPick,
+  onChipFocus,
+}: {
+  groups: RankGroup[];
+  cardCode: string | null;
+  pinned: string | null;
+  tabChip: string | undefined;
+  onChipKey: (e: KeyboardEvent<HTMLButtonElement>, code: string) => void;
+  onPick: (code: string) => void;
+  onChipFocus: (code: string) => void;
+}) {
+  const phone = usePhone();
+  return (
+    <>
+      {groups.map((g) => (
+        <div key={g.band} className={styles.group}>
+          <div className={styles.groupHead}>
+            <span className={`${styles.swatchSm} ${styles[g.band]}`} aria-hidden="true" />
+            <span className={styles.groupLabel}>{g.label}</span>
+            <span className={styles.groupCount}>{g.items.length}</span>
+          </div>
+          <ul className={styles.chips}>
+            {g.items.map((it) => (
+              <li key={it.run.code}>
+                {phone ? (
+                  <span
+                    className={`${styles.chip} ${styles.chipLabel} ${it.run.code === cardCode ? styles.chipOn : ""}`}
+                    data-chip-label={it.run.code}
+                  >
+                    <span aria-hidden="true">{it.run.flag}</span>
+                    <span aria-hidden="true">{it.run.code}</span>
+                    {it.cue ? (
+                      <span className={styles.chipCue} aria-hidden="true">
+                        {it.cue}
+                      </span>
+                    ) : null}
+                    <span className="visuallyHidden">{it.say}</span>
+                  </span>
+                ) : (
+                  <button
+                    type="button"
+                    className={`${styles.chip} ${it.run.code === cardCode ? styles.chipOn : ""}`}
+                    aria-label={it.say}
+                    aria-pressed={it.run.code === pinned}
+                    data-chip={it.run.code}
+                    tabIndex={it.run.code === tabChip ? 0 : -1}
+                    onKeyDown={(e) => onChipKey(e, it.run.code)}
+                    onClick={() => onPick(it.run.code)}
+                    onFocus={() => onChipFocus(it.run.code)}
+                  >
+                    <span aria-hidden="true">{it.run.flag}</span>
+                    <span>{it.run.code}</span>
+                    {it.cue ? <span className={styles.chipCue}>{it.cue}</span> : null}
+                  </button>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </>
+  );
+}
+
+/** The world map's shapes. The phone shows one map at a time, Europe first,
+ *  and its World map is display:none until picked — so it is not drawn until
+ *  picked either: 175 fewer shapes in every frame the phone plays. The server
+ *  draws it (it cannot know the width); the desktop always shows it. */
+function WorldLayer({ mapView, draw }: { mapView: "europe" | "world"; draw: () => ReactNode }) {
+  const phone = usePhone();
+  return phone && mapView !== "world" ? null : draw();
 }
