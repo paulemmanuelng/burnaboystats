@@ -21,8 +21,19 @@ import { polyfillCountryFlagEmojis } from "country-flag-emoji-polyfill";
  * The package ships the woff2 itself, so it is copied into public/fonts and
  * served from our own origin: the policy stays honest and the third party goes.
  */
+/**
+ * Apple's systems (macOS, iOS, iPadOS — whose Safari says "Macintosh") and
+ * Android draw flag emoji natively, so there the test is skipped outright. It
+ * draws emoji into a canvas and reads the pixels back, twice: 38–49 ms of main
+ * thread on a throttled phone, in the same task that finishes hydration — the
+ * moment a reader is starting to scroll. Everywhere else (Windows, Linux,
+ * ChromeOS) it runs as before.
+ */
+export const DRAWS_FLAGS = /\b(iPhone|iPad|iPod|Macintosh|Android)\b/;
+
 export default function FlagEmojiPolyfill() {
   useEffect(() => {
+    if (DRAWS_FLAGS.test(navigator.userAgent)) return;
     polyfillCountryFlagEmojis("Twemoji Country Flags", "/fonts/TwemojiCountryFlags.woff2");
   }, []);
 
