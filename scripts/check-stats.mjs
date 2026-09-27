@@ -43,6 +43,20 @@ const HAND_READS = [
     slack: 3,
     how: "Re-read ChartMasters' Artist Global Impact page signed in, then `node scripts/listeners-apply.mjs --snippet` and apply the capture.",
   },
+  {
+    // Measured from the CHART's date, not the reading's: the totals are "as of"
+    // an issue, and Billboard dates each issue on a Saturday. A new issue lands
+    // every week and any row still on the chart grows by one, so seven days is
+    // the cadence. One day's slack makes this Monday issue the first to ask, 9
+    // days after the chart date — the next issue has been out since Tuesday —
+    // and the CI alarm in tests/hot100Weeks.test.tsx the backstop, from day 11.
+    label: "Most weeks on the Billboard Hot 100 — the board's top 5 (/afrobeats)",
+    file: "app/data/hot100Weeks.ts",
+    re: /HOT100_CHART_DATE = "([\d-]+)"/,
+    everyDays: 7,
+    slack: 1,
+    how: "Re-read each artist's Billboard chart-history page (the `source` URLs in app/data/hot100Weeks.ts): add a row for any new song, update the weeks and `stillCharting` of the rest from the latest chart, then set HOT100_CHART_DATE to that chart's date and HOT100_READ_ON to today.",
+  },
 ];
 
 /**

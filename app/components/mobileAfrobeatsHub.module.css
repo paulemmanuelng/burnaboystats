@@ -372,3 +372,80 @@
   aspect-ratio: 2 / 1;
 }
 .tile:last-child:nth-child(odd) .art { object-position: center 18%; }
+
+/* ── Most weeks on the Billboard Hot 100 ────────────────────────────────────
+   The rows of mobileAfricasBiggest.module.css's boards — rank, name over a
+   caption, value right — made into links: each row is a 44px-plus target, and
+   hover presses on paper (--bg-raised). Figures stay ink; gold marks his name,
+   as his pill does in the rails above, and the source link. */
+.hot100 {
+  margin: 22px 18px 0;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+.hot100Title {
+  margin: 0;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+.hot100Meta {
+  margin-top: 5px;
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+.hot100Rows {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+}
+.hot100Row {
+  display: grid;
+  grid-template-columns: 22px 1fr auto;
+  gap: 10px;
+  align-items: baseline;
+  min-height: 44px;
+  padding: 9px 8px 9px 4px;
+  border-bottom: 1px solid var(--line);
+  color: var(--text);
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.hot100Row:hover { background: var(--bg-raised); }
+.hot100Rank {
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-weight: 700;
+  font-size: var(--type-small);
+  color: var(--dim);
+  font-variant-numeric: tabular-nums;
+}
+.hot100Main { min-width: 0; }
+.hot100Name { display: block; font-size: 13px; font-weight: 600; color: var(--text); }
+.hot100His .hot100Name { color: var(--gold); }
+.hot100Sub {
+  display: block;
+  margin-top: 2px;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-caption);
+  color: var(--text-muted);
+}
+.hot100Weeks {
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-weight: 700;
+  font-size: var(--type-small);
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.hot100Unit { font-weight: 400; color: var(--text-muted); }
+.hot100Method { margin: 10px 0 0; font-size: 12px; line-height: 1.5; color: var(--text-body); }
+.hot100Source { margin: 6px 0 0; font-size: 12px; line-height: 1.5; color: var(--text-muted); }
+.hot100Source a { color: var(--gold); }

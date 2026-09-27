@@ -39,6 +39,28 @@ export interface HubPill {
   isBurna: boolean;
 }
 
+/** One row of the Hot 100 leaderboard, every figure computed by the page from
+ *  data/hot100Weeks.ts — this component formats, it never counts. */
+export interface HubHot100Row {
+  key: string;
+  name: string;
+  href: string;
+  rank: number;
+  weeks: number;
+  /** "8 songs", already counted and pluralised. */
+  songs: string;
+  bestPeak: number;
+  isBurna: boolean;
+}
+
+export interface HubHot100 {
+  rows: HubHot100Row[];
+  top: number;
+  method: string;
+  sourceUrl: string;
+  readOn: string;
+}
+
 export default function MobileAfrobeatsHub({
   boardCount,
   burna,
@@ -47,6 +69,7 @@ export default function MobileAfrobeatsHub({
   liveRail,
   sweptRange,
   liveNote,
+  hot100,
 }: {
   boardCount: number;
   burna: { name: string; flag: string; image: string; href: string; certs: number; countries: number };
@@ -55,6 +78,7 @@ export default function MobileAfrobeatsHub({
   liveRail: HubPill[];
   sweptRange: string;
   liveNote: string;
+  hot100: HubHot100;
 }) {
   return (
     <div className={styles.screen}>
@@ -240,6 +264,47 @@ export default function MobileAfrobeatsHub({
         </ScrollRail>
         <p className={styles.railNote}>{liveNote}</p>
       </div>
+
+      {/* Most weeks on the Billboard Hot 100 — the desktop page's section,
+          drawn the way this site's phone leaderboards are (Africa's biggest):
+          rank, name over its sub, value right. Each row is the link, so the
+          target is the row's full height, never the name alone. */}
+      <section className={styles.hot100} aria-labelledby="hot-100-weeks-phone">
+        <h2 id="hot-100-weeks-phone" className={styles.hot100Title}>
+          Most weeks on the Billboard Hot 100
+        </h2>
+        <div className={styles.hot100Meta}>Top {hot100.top} · the board, Burna Boy included</div>
+        <ol className={styles.hot100Rows}>
+          {hot100.rows.map((r) => (
+            <li key={r.key}>
+              <Link
+                href={r.href}
+                className={r.isBurna ? `${styles.hot100Row} ${styles.hot100His}` : styles.hot100Row}
+                prefetch={false}
+              >
+                <span className={styles.hot100Rank}>{r.rank}</span>
+                <span className={styles.hot100Main}>
+                  <span className={styles.hot100Name}>{r.name}</span>
+                  <span className={styles.hot100Sub}>
+                    {r.songs} · best No. {r.bestPeak}
+                  </span>
+                </span>
+                <span className={styles.hot100Weeks}>
+                  {r.weeks} <span className={styles.hot100Unit}>weeks</span>
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ol>
+        <p className={styles.hot100Method}>{hot100.method}</p>
+        <p className={styles.hot100Source}>
+          Source:{" "}
+          <a href={hot100.sourceUrl} target="_blank" rel="noopener noreferrer">
+            Billboard
+          </a>{" "}
+          — each artist&rsquo;s Hot 100 chart history, read {hot100.readOn}.
+        </p>
+      </section>
 
       <div className={styles.foot}>
         <p>

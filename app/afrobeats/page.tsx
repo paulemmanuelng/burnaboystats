@@ -22,6 +22,14 @@ import {
 import { totalAwards, countryCount as burnaCountries } from "../data/certifications";
 import { chartEntryCount as burnaChartEntries } from "../data/charts";
 import { livePlacementCount as burnaLivePlacements } from "../data/liveCharts";
+import {
+  hot100Top,
+  HOT100_TOP,
+  HOT100_METHOD,
+  HOT100_CHART_URL,
+  HOT100_READ_ON_LONG,
+} from "../data/hot100Weeks";
+import { count } from "../lib/plural";
 
 // Names, and the count in the eyebrow, come from the data: adding an artist to
 // the board must not leave the copy describing the old one.
@@ -109,6 +117,22 @@ const liveRail: Rail[] = [
   })),
 ].sort((x, y) => y.value - x.value);
 
+// The Hot 100 leaderboard's rows. Every figure is computed in
+// data/hot100Weeks.ts from Billboard's own rows; this only adds where a name
+// goes. It goes where the chart rail above already sends it — the figure is a
+// chart record, so a name opens that artist's chart page, and Burna Boy's opens
+// his (the hub's own rule: a control opens what its figure counts).
+const hot100Rows = hot100Top.map((s) => ({
+  key: s.slug,
+  name: s.name,
+  href: s.slug === "burna-boy" ? "/records/charts" : `/afrobeats/${s.slug}/charts`,
+  rank: s.rank,
+  weeks: s.weeks,
+  songs: count(s.songs, "song", "songs"),
+  bestPeak: s.bestPeak,
+  isBurna: s.slug === "burna-boy",
+}));
+
 // plaqueLabel, not a local template: it carries the award-programme marker
 // ("· Latin"), so a tile never shows a Latin plaque as plain Platinum.
 const badge = (a: (typeof sweptArtists)[number]) => {
@@ -138,10 +162,29 @@ const jsonLd = {
   },
 };
 
+// The leaderboard as its own ItemList, beside the board's — the same shape
+// /records/africas-biggest uses for its Billboard boards. Position is the
+// list's order; a tie is visible on the page, where the shared rank is printed.
+const hot100JsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Most weeks on the Billboard Hot 100 — The Afrobeats Board",
+  description: HOT100_METHOD,
+  numberOfItems: hot100Rows.length,
+  itemListOrder: "https://schema.org/ItemListOrderDescending",
+  itemListElement: hot100Rows.map((r, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: r.name,
+    url: `${CANONICAL_ORIGIN}${r.href}`,
+  })),
+};
+
 export default function AfrobeatsPage() {
   return (
     <main id="content">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(hot100JsonLd) }} />
 
       {/* The phone gets its own screen. It used to get this page's grid squeezed
           by media queries — four columns down to two, and Burna the first
@@ -170,6 +213,13 @@ export default function AfrobeatsPage() {
         liveRail={liveRail}
         sweptRange={sweptRange}
         liveNote={liveCadenceNote}
+        hot100={{
+          rows: hot100Rows,
+          top: HOT100_TOP,
+          method: HOT100_METHOD,
+          sourceUrl: HOT100_CHART_URL,
+          readOn: HOT100_READ_ON_LONG,
+        }}
       />
 
       <div className={styles.desktopBody}>
@@ -316,6 +366,50 @@ export default function AfrobeatsPage() {
             </Link>
           ))}
         </div>
+
+        {/* Most weeks on the Billboard Hot 100. A third kind of record after
+            the two rails: not a peak and not this hour, but how long each
+            artist has lasted on America's singles chart, summed over every
+            song that credits them. Ranks, totals and song counts are computed
+            from the rows in data/hot100Weeks.ts; the date is the chart's. */}
+        <section className={styles.hot100} aria-labelledby="hot-100-weeks">
+          <div className={styles.hot100Head}>
+            <h2 id="hot-100-weeks" className={styles.hot100Title}>
+              Most weeks on the Billboard Hot 100
+            </h2>
+            <span className={styles.hot100Kicker}>Top {HOT100_TOP} · the board, Burna Boy included</span>
+          </div>
+          <ol className={styles.hot100List}>
+            {hot100Rows.map((r) => (
+              <li key={r.key}>
+                <Link
+                  href={r.href}
+                  className={r.isBurna ? `${styles.hot100Row} ${styles.hot100His}` : styles.hot100Row}
+                  prefetch={false}
+                >
+                  <span className={styles.hot100Rank}>{r.rank}</span>
+                  <span>
+                    <span className={styles.hot100Name}>{r.name}</span>
+                    <span className={styles.hot100Sub}>
+                      {r.songs} · best No. {r.bestPeak}
+                    </span>
+                  </span>
+                  <span className={styles.hot100Weeks}>
+                    {r.weeks} <span className={styles.hot100Unit}>weeks</span>
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ol>
+          <p className={styles.hot100Method}>{HOT100_METHOD}</p>
+          <p className={styles.hot100Source}>
+            Source:{" "}
+            <a href={HOT100_CHART_URL} target="_blank" rel="noopener noreferrer">
+              Billboard
+            </a>{" "}
+            — each artist&apos;s Hot 100 chart history, read {HOT100_READ_ON_LONG}.
+          </p>
+        </section>
 
         {pendingArtists.length > 0 && (
           <>
