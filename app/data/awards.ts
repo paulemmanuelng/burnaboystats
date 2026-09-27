@@ -147,15 +147,6 @@ export interface PendingCeremony {
 }
 
 export const pendingResults: PendingCeremony[] = [
-  // 19 Sep 2026 — the fourth edition, and the first held in the Caribbean after
-  // three years at Brooklyn's Kings Theatre. Voting closed 10 Aug 2026.
-  { ceremony: "Caribbean Music Awards", year: 2026, date: "2026-09-19", where: "NAPA, Port of Spain",
-    // Morning after: caribmusicawards.com still shows VOTE on every category
-    // and no winners page exists (/winners and /2026-winners 404); X has no
-    // Konpa result since the 19th. Dated snooze, not a silence.
-    // Re-read 23 Sep 2026: caribmusicawards.com's WordPress API shows no page
-    // changed since 12 Sep, and /winners and /2026-winners still 404.
-    checkedOn: "2026-09-23", checkedNote: "no page on caribmusicawards.com changed since 12 Sep; /winners and /2026-winners still 404" },
   // Nominations announced 18 Aug 2026; ceremony 27 Sep 2026.
   { ceremony: "MTV Video Music Awards", year: 2026, date: "2026-09-27", where: "United States" },
   // 28th NRJ Music Awards — nominees published on NRJ's own site 16 Sep 2026;
@@ -652,7 +643,10 @@ export const ceremonies: Ceremony[] = [
     name: "Caribbean Music Awards",
     noms: [
       { year: 2024, category: "Collaboration of the Year (Dancehall)", work: "Talibans II (Byron Messia ft. Burna Boy)", won: true },
-      // PENDING — the 2026 ceremony is 19 Sep; see `pendingResults` above.
+      // Resolved 27 Sep 2026 from the body's own "Official Winners" cards
+      // (caribmusicawards.com/2026winners/, published 26 Sep): Konpa Song of
+      // the Year went to "4 Kampé" — Joé Dwèt Filé. That credit names neither
+      // Burna Boy nor the "II (Remix)" he is on, so no win is recorded here.
       { year: 2026, category: "Konpa — Song of the Year", work: "4 Kampé II (Remix)", won: false },
     ],
   },

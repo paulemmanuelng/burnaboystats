@@ -116,6 +116,45 @@ export async function loadPortrait(): Promise<string | null> {
   }
 }
 
+/**
+ * The byte budget for a day's link preview. WhatsApp is widely reported to
+ * drop an og:image over about 300 KB — an external limit, not verified here.
+ * The site's other cover cards sit under it (/dai-dai 276,830 B,
+ * /music/last-last 292,620 B).
+ */
+export const PREVIEW_BYTES = 300_000;
+
+/**
+ * A link preview's PNG, re-encoded to stay under PREVIEW_BYTES.
+ *
+ * The renderer writes an RGBA PNG with light compression: live on 26 Sep
+ * 2026, 37 of the 160 day previews were over 300 KB, all of them cover days
+ * (6 March 362,298 B). The image is opaque, so the first pass drops the unused
+ * alpha channel and re-deflates with adaptive filtering — the same pixels,
+ * about a quarter lighter (6 March 238,362 B, 23 January 275,848 B). Only a
+ * render still over budget after that takes a 256-colour palette, which
+ * roughly thirds it. Should the encoder be missing on a host, the render is
+ * served as drawn: a heavier preview, never a hole (the card route's rule).
+ */
+export async function compactPreview(res: Response): Promise<Response> {
+  const drawn = Buffer.from(await res.arrayBuffer());
+  const headers = new Headers(res.headers);
+  headers.delete("content-length");
+  let bytes: Buffer = drawn;
+  try {
+    const { default: sharp } = await import("sharp");
+    const lossless = await sharp(drawn).removeAlpha().png({ compressionLevel: 9, adaptiveFiltering: true }).toBuffer();
+    bytes =
+      lossless.length < PREVIEW_BYTES
+        ? lossless
+        : await sharp(drawn).removeAlpha().png({ palette: true, quality: 100, compressionLevel: 9 }).toBuffer();
+    if (bytes.length > drawn.length) bytes = drawn;
+  } catch {
+    bytes = drawn;
+  }
+  return new Response(new Uint8Array(bytes), { status: res.status, headers });
+}
+
 /** One scrim: a box, and the ground's alpha at stops along one direction. */
 interface Scrim {
   left: number;

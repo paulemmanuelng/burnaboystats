@@ -97,8 +97,13 @@ export const cardUrl = (path: string) => `BURNABOYSTATS.COM${path.toLowerCase()}
  *   on-this-day-2  the post card leads with the milestone, not the date
  *                  (26 Sep 2026, Paul): the headline is the hero, the date
  *                  a small gold label over it, the numeral gone
+ *   on-this-day-3  a day preview's meta line steps down where it would wrap
+ *                  beside a cover (8 and 18 September, 8 December, 23
+ *                  January), and the day previews are re-encoded under 300 KB
+ *                  — 37 were over it, and a preview dropped for its size may
+ *                  sit in a cache as "no image" (live debug, 27 Sep 2026)
  */
-export const OG_ART = "on-this-day-2";
+export const OG_ART = "on-this-day-3";
 
 /**
  * The root card's URL, for the three pages that cite it by hand.

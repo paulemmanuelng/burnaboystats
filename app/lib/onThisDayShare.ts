@@ -210,6 +210,24 @@ export function cardHeadLines(headline: string, size: number, measure = 912, let
  */
 export const keepTogether = (text: string) => text.replace(/\b(No\.) (?=\d)/gi, "$1\u00a0").replace(/(\d×) /g, "$1\u00a0");
 
+/**
+ * The link preview's meta line: 24px, tracked .12em, on ONE line (change list
+ * 16) — which beside a cover leaves it 694px (1200 less 64 + 64 padding, the
+ * 300px tile and its 48px gap, the 18px mark and its 12px gap), and 1,042
+ * without. Set in full at 24 it wrapped on four cover days live (26 Sep
+ * 2026) and split the date: "2026 · CERTIFICATION · + 1 MORE ON 18" /
+ * "SEPTEMBER" on 18 September, the same on 8 September, 8 December and 23
+ * January. So it steps down, as the headline does, to the first of 24, 22
+ * and 20 that fits — measured as Satori measures it (cardTextWidth), with a
+ * pixel's allowance for the layout's rounding. The words never change.
+ */
+export const PREVIEW_META = { steps: [24, 22, 20], tracking: 0.12, room: { cover: 694, bare: 1042 } } as const;
+export function previewMetaSize(meta: string, cover: boolean): number {
+  const room = (cover ? PREVIEW_META.room.cover : PREVIEW_META.room.bare) - 1;
+  const { steps, tracking } = PREVIEW_META;
+  return steps.find((size) => cardTextWidth(meta, size, size * tracking) <= room) ?? steps[steps.length - 1];
+}
+
 // ── The link preview, 1200×630 ──────────────────────────────────────────────
 
 export interface DayPreview {
@@ -223,6 +241,8 @@ export interface DayPreview {
   kind: OnThisDayKind;
   /** "2023 · CERTIFICATION · + 4 MORE ON 16 AUGUST" */
   meta: string;
+  /** The meta line's size (previewMetaSize): 24, stepping to 22 or 20 where it would wrap. */
+  metaSize: number;
   /** "BURNABOYSTATS.COM/on-this-day/16-august" */
   url: string;
   alt: string;
@@ -232,6 +252,7 @@ export function dayPreview(day: OnThisDayDay): DayPreview {
   const lead = day.lead;
   const art = eventCover(lead);
   const more = day.events.length - 1;
+  const meta = `${lead.year} · ${KIND_MARK[lead.kind].word}${more ? ` · + ${more} more on ${day.label}` : ""}`.toUpperCase();
   return {
     kicker: `Burna Boy · On this day · ${day.label}`.toUpperCase(),
     headline: lead.headline.toUpperCase(),
@@ -239,7 +260,8 @@ export function dayPreview(day: OnThisDayDay): DayPreview {
     // The tile is 300px wide on a 1200px card; Spotify serves a 300 rung.
     cover: art ? spotifyImage(art, 300) : null,
     kind: lead.kind,
-    meta: `${lead.year} · ${KIND_MARK[lead.kind].word}${more ? ` · + ${more} more on ${day.label}` : ""}`.toUpperCase(),
+    meta,
+    metaSize: previewMetaSize(meta, Boolean(art)),
     url: cardUrl(`/on-this-day/${day.slug}`),
     alt: `Burna Boy on this day, ${day.label}: ${lead.year} — ${lead.headline}`,
   };

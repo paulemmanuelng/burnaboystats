@@ -4,6 +4,7 @@ import DaiDaiVideoPoster from "./DaiDaiVideoPoster";
 import { spotifyImage, spotifySrcSet } from "../lib/spotifyImage";
 import { cardinalWord } from "../lib/plural";
 import { allChartItems, CHART_COUNTRIES, weeksAtPeak } from "../data/charts";
+import { countryName } from "./daiDaiCountryName";
 import { allItems as certReleases, type Tier } from "../data/certifications";
 import {
   DAI_DAI_RELEASE_DATE,
@@ -122,11 +123,12 @@ const COVER = DAI_DAI_COVER;
 const daiDai = allChartItems.find((r) => r.title === "Dai Dai");
 
 /** The No. 1 countries, longest reign first — the peak-only No. 1s (no week
- *  count published) close the block. Global charts are not countries. */
+ *  count published) close the block. Global charts are not countries. Each
+ *  edition names them in its own language (FigureNumberOnes). */
 export const numberOneCountries = (daiDai?.entries ?? [])
   .filter((e) => e.peak === 1 && e.c !== "GLB" && e.c !== "GLBX")
   .sort((a, b) => (b.weeksAtPeak ?? 0) - (a.weeksAtPeak ?? 0) || a.c.localeCompare(b.c, "en"))
-  .map((e) => ({ code: e.c, flag: CHART_COUNTRIES[e.c]?.flag ?? "🏳", name: CHART_COUNTRIES[e.c]?.name ?? e.c }));
+  .map((e) => ({ code: e.c, flag: CHART_COUNTRIES[e.c]?.flag ?? "🏳" }));
 
 /** Maximal runs of consecutive No. 1 issues in the Global 200 run. */
 export function globalNo1Spells(run: readonly { pos: number | null }[] = DAI_DAI_GLOBAL_200_RUN) {
@@ -267,9 +269,11 @@ export function FigureGlobalRun({ t }: { t: FigureLabels }) {
   );
 }
 
-/** 03 — the No. 1 cells, one per country, from charts.ts. */
+/** 03 — the No. 1 cells, one per country, from charts.ts, each named (its
+ *  tooltip and its screen-reader text) in the edition's language. */
 export function FigureNumberOnes({ t }: { t: FigureLabels }) {
-  const ones = numberOneCountries;
+  const lang = t.locale === "es-ES" ? "es" : "en";
+  const ones = numberOneCountries.map((c) => ({ ...c, name: countryName(c.code, lang) }));
   return (
     <Frame>
       <div className={styles.head}>

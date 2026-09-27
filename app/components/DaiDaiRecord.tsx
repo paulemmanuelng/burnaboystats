@@ -4,6 +4,7 @@ import { spotifyImage, spotifySrcSet } from "../lib/spotifyImage";
 import { allChartItems, CHART_COUNTRIES, weeksAtPeak, weeksOnChart } from "../data/charts";
 import { DAI_DAI_OTHER_CHARTS } from "../data/daiDai";
 import { plaqueGroups } from "./DaiDaiFigures";
+import { countryName } from "./daiDaiCountryName";
 import type { NationalRow } from "./DaiDaiNumbers";
 import type { Tier } from "../data/certifications";
 
@@ -126,15 +127,8 @@ const daiDaiEntries = allChartItems.find((r) => r.title === "Dai Dai")?.entries 
 /** Every country the song charted in, in its chart order — the globals are not countries. */
 export const daiDaiCountries = daiDaiEntries.filter((e) => e.c !== "GLB" && e.c !== "GLBX");
 
-const esRegions = new Intl.DisplayNames(["es"], { type: "region" });
-
-/** A country's name in the edition's language. English is the site's own
- *  table (CHART_COUNTRIES); Spanish is the ICU region name, read on the server
- *  so the browser's own ICU can never disagree with the HTML. */
-export function countryName(code: string, lang: "en" | "es"): string {
-  if (lang === "en") return CHART_COUNTRIES[code]?.name ?? code;
-  return esRegions.of(code === "UK" ? "GB" : code) ?? CHART_COUNTRIES[code]?.name ?? code;
-}
+/** A country's name in the edition's language (daiDaiCountryName.ts). */
+export { countryName };
 
 /** A row of the national-charts table, as its spec names it: a country code
  *  and the page's own sentence, and — for the three charts charts.ts does not

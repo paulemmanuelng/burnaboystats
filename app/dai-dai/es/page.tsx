@@ -26,6 +26,7 @@ import { DAI_DAI_COVER, DAI_DAI_RELEASE_DATE, DAI_DAI_HALFTIME_DATE, DAI_DAI_VID
 import { spotifyImage, spotifySrcSet } from "../../lib/spotifyImage";
 import { daiDaiEsOgId } from "./ogId";
 import LangSwitch from "../LangSwitch";
+import { MULTIPLE_ES, exUsSpan, globalRunSentence, plaqueSentence, storyDayMonth, storyLongDate } from "../../components/daiDaiStoryFacts";
 import { BLANK_PIXEL } from "../../lib/blankPixel";
 import { BURNA_PORTRAIT, SHAKIRA_PORTRAIT } from "../../lib/artistImages";
 
@@ -84,8 +85,7 @@ const peakUK = daiDaiCountries.find((e) => e.c === "UK")?.peak;
 // The Global Digital Artist row's points, grouped as this edition writes them.
 const gdaPoints = thousands(BURNA_GLOBAL_DIGITAL_ARTIST_POINTS, ".");
 // Spanish names a plaque's multiple in words ("doble platino"); a multiple the
-// table does not hold falls back to the figure.
-const MULTIPLE_ES: Record<number, string> = { 2: "doble", 3: "triple", 4: "cuádruple", 5: "quíntuple", 6: "séxtuple", 7: "séptuple", 8: "óctuple", 9: "nónuple", 10: "décuple" };
+// table does not hold falls back to the figure (MULTIPLE_ES, daiDaiStoryFacts).
 const multipleEs = (code: string) => { const x = plaqueX(code); return MULTIPLE_ES[x] ?? `${x}×`; };
 // The plaques, for the fifth lead figure's caption, read from the plaque wall.
 // Spanish prose writes the tier in lower case.
@@ -217,7 +217,7 @@ export default function DaiDaiPageES() {
   const steps: Step[] = [
     {
       scene: "hero",
-      kicker: "15 de mayo de 2026",
+      kicker: storyLongDate(DAI_DAI_RELEASE_DATE, "es"),
       title: "Un himno mundialista, a dúo",
       body: "El Mundial de la FIFA 2026 presentó su canción oficial: “Dai Dai”, una colaboración entre dos superestrellas globales, Shakira y Burna Boy. El pop latino y el afrobeats se encuentran en el escenario más grande del planeta.",
     },
@@ -225,7 +225,7 @@ export default function DaiDaiPageES() {
       scene: "global1",
       kicker: "El récord",
       title: "Número 1 en el Billboard Global 200",
-      body: `En cuestión de semanas la canción lideró la lista mundial insignia de Billboard, la que incluye a Estados Unidos: el segundo número 1 de Shakira en el Global 200 y la primera vez en la historia que un artista africano ayuda a encabezarla. Tras cuatro semanas consecutivas bajó al N.º 3, y el 22 de agosto recuperó la cima por tres semanas —las listas del 22 y el 29 de agosto y del 5 de septiembre—: ${cardinalWord(weeksGLB, "es")} semanas en el número 1 en total. En el Global 200 Excl. US encadenó ${cardinalWord(weeksGLBX, "es")} semanas seguidas en el número 1, del 4 de julio al 5 de septiembre.`,
+      body: `En cuestión de semanas la canción lideró la lista mundial insignia de Billboard, la que incluye a Estados Unidos: el segundo número 1 de Shakira en el Global 200 y la primera vez en la historia que un artista africano ayuda a encabezarla. ${globalRunSentence("es", weeksGLB)} En el Global 200 Excl. US encadenó ${cardinalWord(weeksGLBX, "es")} semanas seguidas en el número 1, ${exUsSpan("es")}.`,
     },
     {
       scene: "no1s",
@@ -244,7 +244,7 @@ export default function DaiDaiPageES() {
       scene: "certs",
       kicker: "Certificada en el mundo entero",
       title: "Llegaron los discos",
-      body: `La canción ganó sus propias certificaciones: diamante en Francia, doble platino en Canadá, séxtuple platino (latino) en Estados Unidos, platino en España, Eslovaquia, Portugal, Hungría, Austria, Grecia y Suecia, oro en Colombia, Chequia, Italia, Polonia, Bélgica y Alemania, y plata en el Reino Unido. Ya son ${daiDaiCertCount} certificaciones para la colaboración de Shakira y Burna Boy, y siguen sumando.`,
+      body: `La canción ganó sus propias certificaciones: ${plaqueSentence("es")}. Ya son ${daiDaiCertCount} certificaciones para la colaboración de Shakira y Burna Boy, y siguen sumando.`,
       link: { href: "/certifications#release=Dai%20Dai", label: "Todas las certificaciones" },
     },
     {
@@ -257,9 +257,9 @@ export default function DaiDaiPageES() {
     // the stage, the date, the audience and the co-headliners it names.
     {
       scene: "halftime",
-      kicker: "Historia · 19 de julio",
+      kicker: `Historia · ${storyDayMonth(DAI_DAI_HALFTIME_DATE, "es")}`,
       title: "Historia en el escenario de la Final del Mundial",
-      body: "Shakira y Burna Boy llevaron “Dai Dai” al primer show de medio tiempo de una Final del Mundial de la FIFA, en el MetLife Stadium, el 19 de julio — ante una audiencia global de miles de millones, junto a Madonna, BTS y Justin Bieber.",
+      body: `Shakira y Burna Boy llevaron “Dai Dai” al primer show de medio tiempo de una Final del Mundial de la FIFA, en el MetLife Stadium, el ${storyDayMonth(DAI_DAI_HALFTIME_DATE, "es")} — ante una audiencia global de miles de millones, junto a Madonna, BTS y Justin Bieber.`,
     },
   ];
 

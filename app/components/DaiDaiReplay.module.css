@@ -312,10 +312,13 @@
   fill: transparent;
   stroke-dasharray: 1.2 1.6;
 }
+/* In the world map's 900-unit viewBox: 15 units print at 11.8px where the
+   map is smallest (1240, scale 0.786 measured live; a 15px scrollbar takes it
+   to about 0.775, still 11.6). 13 printed 10.2–10.6px from 1240 up. */
 .sgLabel {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
-  font-size: 13px;
+  font-size: 15px;
   letter-spacing: 0.1em;
   fill: var(--text-muted);
   pointer-events: none;
@@ -866,9 +869,13 @@
   .tileNameShort {
     display: inline;
   }
+  /* Stretch, not the desktop grid's start: a flex column at start shrank the
+     map column to the Europe SVG's own 347px, 7px short of the tray at 390
+     and 47 at 430, and World (whose SVG fills) widened it again. */
   .body {
     display: flex;
     flex-direction: column;
+    align-items: stretch;
   }
   .mapCol {
     order: 2;
@@ -924,6 +931,11 @@
     border: 0;
   }
   .europeLabel {
+    display: none;
+  }
+  /* The whole world at phone width is about 0.38 of its viewBox: the label
+     would print at 4–6px, under any floor. The marker and its card stay. */
+  .sgLabel {
     display: none;
   }
   .europeSvg .shape { stroke-width: 0.42px; }

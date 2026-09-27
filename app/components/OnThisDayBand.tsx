@@ -9,9 +9,8 @@ import {
   homeLeadAge,
   homeRestTitle,
   homeRows,
-  homeWhen,
+  homeWhenLine,
   isRecordLine,
-  keepSeparators,
   neighbours,
   type OnThisDayPick,
 } from "../lib/onThisDay";
@@ -57,7 +56,7 @@ export default function OnThisDayBand({ pick }: { pick: OnThisDayPick | null }) 
       <div className={styles.inner}>
         <div className={styles.lead}>
           <p className={styles.kicker}>
-            On this day ·{NBSP}<span className={styles.when}>{keepSeparators(homeWhen(pick))}</span>
+            On this day ·{NBSP}<span className={styles.when}>{homeWhenLine(pick)}</span>
           </p>
           {/* The title is a link to the day's page, in ink, underlined on
               hover — the Live band's headline does the same. */}

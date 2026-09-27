@@ -3,7 +3,7 @@ import { OgLockup } from "../../lib/og-lockup";
 import { ogId, cardUrl } from "../../lib/og-image";
 import { dayBySlug, onThisDayDays } from "../../lib/onThisDay";
 import { dayPreview, keepTogether } from "../../lib/onThisDayShare";
-import { FadedPortrait, OTD_GOLD, PREVIEW_PORTRAIT, ShareMark, ShareUrl, loadPortrait, otdFonts } from "../../lib/onThisDayImages";
+import { FadedPortrait, OTD_GOLD, PREVIEW_PORTRAIT, ShareMark, ShareUrl, compactPreview, loadPortrait, otdFonts } from "../../lib/onThisDayImages";
 
 export function generateStaticParams() {
   return onThisDayDays.map((d) => ({ day: d.slug }));
@@ -39,13 +39,17 @@ export async function generateImageMetadata({ params }: { params: Promise<{ day:
  * one meta line names the year, the kind and the day's other milestones. The
  * portrait sits faded in the glow under the lockup (Paul, 26 Sep 2026), on
  * every day, the cover days too: it is gone by x 800, and the tile ends at 364.
+ *
+ * The meta line steps down from 24px where it would wrap beside a cover
+ * (previewMetaSize), and the PNG is re-encoded under the preview byte budget
+ * (compactPreview) — both from the live debug of 27 Sep 2026.
  */
 export default async function Image({ params }: { params: Promise<{ day: string }> }) {
   const { day: slug } = await params;
   const p = previewFor(slug);
   const portrait = await loadPortrait();
 
-  return new ImageResponse(
+  return compactPreview(new ImageResponse(
     (
       <div
         style={{
@@ -123,7 +127,7 @@ export default async function Image({ params }: { params: Promise<{ day: string 
               >
                 {keepTogether(p.headline)}
               </div>
-              <div style={{ display: "flex", alignItems: "center", gap: 12, fontSize: 24, letterSpacing: 2.88, color: "#c9c9d0" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 12, fontSize: p.metaSize, letterSpacing: 0.12 * p.metaSize, color: "#c9c9d0" }}>
                 <ShareMark kind={p.kind} size={18} color="#c9c9d0" />
                 <div style={{ display: "flex" }}>{p.meta}</div>
               </div>
@@ -137,5 +141,5 @@ export default async function Image({ params }: { params: Promise<{ day: string 
       </div>
     ),
     { ...size, fonts: otdFonts }
-  );
+  ));
 }

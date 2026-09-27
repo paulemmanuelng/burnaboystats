@@ -324,6 +324,9 @@
   gap: 6px;
   scroll-margin-top: calc(69px + env(safe-area-inset-top, 0px));
 }
+/* Below 356 the gap closes to the grid's 2px so a jump stays 44 wide: at 320,
+   six across 284px at 6px were 42.3 (live, 27 Sep 2026); at 2px, 45.7. */
+@media (max-width: 355px) { .monthJumps { gap: 2px; } }
 .monthJump {
   height: 48px;
   display: flex;

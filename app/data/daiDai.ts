@@ -515,6 +515,15 @@ export const DAI_DAI_GLOBAL_200_RUN: readonly { issue: string; pos: number | nul
   { issue: "2026-09-26", pos: 4 },
 ];
 
+/**
+ * The Billboard Global 200 Excl. US run at No. 1, first and last issue: ten
+ * straight weeks, 4 July to 5 September 2026 — the GLBX note in charts.ts
+ * ("ten weeks at No.1, consecutive - 4 July to 5 September 2026 … the run is
+ * final"), transcribed so chapter 02's sentence reads it rather than typing
+ * it. tests/liveDebugDaiDaiStory holds its length to the entry's weeksAtPeak.
+ */
+export const DAI_DAI_GLOBAL_EXCL_US_NO1: readonly [from: string, to: string] = ["2026-07-04", "2026-09-05"];
+
 /** The single's cover on Spotify's CDN (640px rung; spotifyImage/spotifySrcSet
  *  derive the others). The hero shows it on desktop, chapter 01 everywhere. */
 export const DAI_DAI_COVER = "https://i.scdn.co/image/ab67616d0000b27303cadf1b3fe324c1dc710ed4";

@@ -560,6 +560,17 @@ export const homeLeadAge = (pick: OnThisDayPick) =>
 export const homeWhen = (pick: OnThisDayPick) =>
   pick.mode === "today" ? `today, ${pick.day.label}` : `coming up in ${daysCount(pick.ahead)} · ${pick.day.label}`;
 
+/** A figure bound to the word it dates or counts — "7 October", "11 days" — by
+ *  a no-break space, so a wrap never strands the number at the end of a line.
+ *  keepSeparators binds only the " · " joins: live on 26 Sep 2026 the kicker
+ *  broke "… · 7" / "October" at 1440, 390 and 360, and "… in 11" / "days" at
+ *  1024. */
+export const keepFigures = (s: string) => s.replace(/(\d+) (?=[A-Z]|days?\b)/g, "$1 ");
+
+/** The kicker's date part as both home layouts print it: each separator bound
+ *  to the item after it, each figure to its word. */
+export const homeWhenLine = (pick: OnThisDayPick) => keepFigures(keepSeparators(homeWhen(pick)));
+
 /** The day link: "All 2 on 7 October", or "8 October, every year" for one. */
 export const homeDayLink = (pick: OnThisDayPick) =>
   pick.events.length > 1 ? `All ${pick.events.length} on ${pick.day.label}` : `${pick.day.label}, every year`;
