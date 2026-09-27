@@ -276,8 +276,11 @@ export default function DaiDaiReplay({ data, labels: t }: { data: ReplayData; la
   const onScrubEnd = (e: PointerEvent<HTMLDivElement>) => {
     if (mode === "scrubbing") endScrub(frameAt(e.clientX));
     else if (press.current?.id === e.pointerId) {
-      // A tap: seek to the week under the finger.
+      // A tap: seek to the week under the finger, and close the country card,
+      // as a press on the scrubber always has (startScrub does it for a drag).
       press.current = null;
+      setPinned(null);
+      setHovered(null);
       endScrub(frameAt(e.clientX));
     }
   };

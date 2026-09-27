@@ -552,7 +552,7 @@ describe("the replay's phone pass", () => {
       const rank = view.container.querySelector<HTMLElement>("[class*=rankCol]")!;
       Object.defineProperty(rank, "offsetHeight", { value: 480, configurable: true });
       const mode = () => view.container.firstElementChild!.getAttribute("data-mode");
-      return { s, rank, mode };
+      return { s, rank, mode, view };
     };
     const touch = { pointerId: 7, pointerType: "touch", button: 0 };
 
@@ -589,12 +589,22 @@ describe("the replay's phone pass", () => {
       expect(rank.style.minHeight).toBe("");
     });
 
-    it("a tap still seeks; a mouse scrubs from the press", () => {
-      const { s, mode } = setup();
+    it("a tap still seeks and closes the pinned card, as the press did; a mouse scrubs from the press", () => {
+      const { s, mode, view } = setup();
+      // The review's repro: Russia's card open, then a tap on the scrubber.
+      const ru = data.countries.find((c) => c.code === "RU")!;
+      const card = () => view.container.querySelector(`[role=group][aria-label="${ru.name}"]`);
+      fireEvent.click(view.container.querySelector('[data-code="RU"]')!);
+      expect(card()).not.toBeNull();
       fireEvent.pointerDown(s, { ...touch, clientX: 20, clientY: 20 });
       fireEvent.pointerUp(s, { ...touch, clientX: 20, clientY: 20 });
       expect(mode()).toBe("paused");
       expect(s.getAttribute("aria-valuenow")).toBe(String(Math.round(0.2 * last)));
+      expect(card()).toBeNull();
+      // Negative control: at a held week the card does show when picked, so
+      // its absence above is the tap's doing (the PR's first cut left it open).
+      fireEvent.click(view.container.querySelector('[data-code="RU"]')!);
+      expect(card()).not.toBeNull();
       fireEvent.pointerDown(s, { pointerId: 1, pointerType: "mouse", button: 0, clientX: 80, clientY: 20 });
       expect(mode()).toBe("scrubbing");
       expect(s.getAttribute("aria-valuenow")).toBe(String(Math.round(0.8 * last)));
