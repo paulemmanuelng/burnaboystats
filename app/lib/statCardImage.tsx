@@ -2,7 +2,6 @@ import { ImageResponse } from "next/og";
 import type { StatCard } from "./statCards";
 import { CARD_SIZES, type CardRatio } from "./cardSizes";
 import { BURNA_PORTRAIT } from "./artistImages";
-import { lastUpdated } from "./api";
 
 /**
  * The downloadable share card, built from designs/desktop/Share.dc.html.
@@ -285,7 +284,9 @@ export function statCardImage(card: StatCard, ratio: CardRatio = "square") {
                 in time. The date matters more here than anywhere else on the
                 site: a card outlives the figure printed on it — it gets saved,
                 reposted and quoted months later — and the page it came from
-                shows the date inches away while the image itself did not. */}
+                shows the date inches away while the image itself did not. It is
+                the FIGURE's date (card.asOf, see statCards.ts), not the site's
+                newest update — a peak set on 10 Aug printed "As of 2026-09-25". */}
             <div
               style={{
                 display: "flex",
@@ -301,7 +302,7 @@ export function statCardImage(card: StatCard, ratio: CardRatio = "square") {
             >
               <div style={{ display: "flex" }}>{card.source}</div>
               <div style={{ display: "flex", color: "#6B655D", marginTop: 6 }}>
-                As of {lastUpdated}
+                As of {card.asOf}
               </div>
             </div>
           </div>

@@ -272,7 +272,7 @@ export default function DaiDaiPageES() {
     // La nota del Global 200 es la de la antigua tarjeta, palabra por palabra
     // (restituida el 26 sep. 2026; nunca se reescribe, README §6).
     { v: "N.º 1", cap: "En las dos listas globales de Billboard: el Global 200 (algo inédito para un artista africano, y el segundo de Shakira) y el Global 200 Excl. US" },
-    { v: millonesCortoEs(DAI_DAI_SPOTIFY_STREAMS), cap: "Reproducciones en Spotify — la octava canción de Burna Boy que supera los 300 millones, más que ningún otro artista africano", live: true },
+    { v: millonesCortoEs(DAI_DAI_SPOTIFY_STREAMS), cap: "Reproducciones en Spotify — la octava de las canciones de Burna Boy en superar los 300 millones, más que ningún otro artista africano", live: true },
     { v: `${daiDaiCertCount}`, cap: `Certificaciones, en ${certCountries} países — ${topPlaqueWords}` },
     { v: halftimeShort, cap: "Actuación en el primer show de medio tiempo de una final del Mundial" },
   ];

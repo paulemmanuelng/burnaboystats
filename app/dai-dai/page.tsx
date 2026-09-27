@@ -234,7 +234,7 @@ export default function DaiDaiPage() {
     // The Global 200's "first for an African artist" note is the old card's,
     // word for word (restored 26 Sep 2026; never reworded, README §6).
     { v: "No. 1", cap: "On both Billboard globals: the Global 200 (a first for an African artist, and Shakira's 2nd) and the Global 200 Excl. US" },
-    { v: DAI_DAI_SPOTIFY_STREAMS, cap: "Spotify streams — Burna Boy's 8th song past 300 million, the most of any African act", live: true },
+    { v: DAI_DAI_SPOTIFY_STREAMS, cap: "Spotify streams — the 8th of Burna Boy's songs to pass 300 million, the most of any African act", live: true },
     { v: `${daiDaiCertCount}`, cap: `Certifications, in ${certCountries} countries — ${topPlaqueWords}` },
     { v: halftimeShort, cap: "Performed at the first World Cup Final halftime show" },
   ];

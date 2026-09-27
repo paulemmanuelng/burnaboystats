@@ -1,4 +1,4 @@
-import { spotifyFollowersDisplay } from "./spotify";
+import { spotifyFollowersRead, followersCompact, SPOTIFY_FOLLOWERS_READ_ON } from "./spotify";
 import { monthlyListenersSeries } from "./trends";
 import {
   hot100Top,
@@ -8,7 +8,7 @@ import {
   HOT100_SOURCE,
   hot100StillChartingLine,
 } from "./hot100Weeks";
-import { count } from "../lib/plural";
+import { count, cardinalWord } from "../lib/plural";
 
 // His peak Spotify monthly listeners, in one place. The note under the
 // leaderboard used to spell the milestone out ("past 56 million") while the
@@ -185,6 +185,48 @@ const hot100WeeksEntries: RankEntry[] = hot100Top.map((s, i) => ({
   ...(i > 0 && s.rank === hot100Top[i - 1].rank ? { tie: true as const } : {}),
 }));
 
+/**
+ * The followers board, written from one day's reading (app/data/spotify.ts).
+ *
+ * Its note and source line used to be typed beside five typed values, and the
+ * next re-read had to find and change every copy by hand — the note's "next"
+ * pair and the source line's order both went stale that way (Ruger, Seyi Vibez
+ * and Kizz Daniel, each past six million on the 27 Sep read, were not in a line
+ * that had Fireboy DML, on 5.7 million, following Ayra Starr). Now the rows, the
+ * gaps and the counts are all read off the list, so a re-read is one edit.
+ */
+const withCommas = (n: number) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+const andList = (xs: string[]) =>
+  xs.length <= 1 ? xs.join("") : `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}`;
+/** A gap between two follower counts, the way the note says it. */
+const followerGap = (n: number) =>
+  n >= 1e6 ? `${(n / 1e6).toFixed(2)} million` : `about ${withCommas(Math.round(n / 1000) * 1000)}`;
+
+const followers = [...spotifyFollowersRead].sort((a, b) => b.followers - a.followers);
+const followersTop = followers.slice(0, 5);
+const followersNote = (() => {
+  const [f1, f2, f3, f4, f5, f6, f7] = followers;
+  return (
+    `${f1.name} is the most-followed African artist on Spotify — ${followerGap(f1.followers - f2.followers)} clear of ${f2.name} in second. ` +
+    `${f3.name} and ${f4.name} sit ${followerGap(f3.followers - f4.followers)} apart for third, ` +
+    `and ${f5.name} is past ${cardinalWord(Math.floor(f5.followers / 1e6))} million too; ` +
+    `${f6.name} (${followersCompact(f6.followers)}) and ${f7.name} (${followersCompact(f7.followers)}) are next.`
+  );
+})();
+const followersSource = (() => {
+  const counted = (xs: typeof followers) => xs.map((r) => `${r.name} ${withCommas(r.followers)}`);
+  const rest = followers.slice(7);
+  const over = rest.filter((r) => r.followers >= 2e6);
+  const under = rest.filter((r) => r.followers < 2e6).map((r) => r.name);
+  return (
+    `Spotify follower counts, read directly from each artist's own Spotify page (the About panel prints the exact count) rather than a tracker, all on ${monthYear(SPOTIFY_FOLLOWERS_READ_ON)} — ` +
+    `${counted(followersTop).join(", ")} (then ${andList(counted(followers.slice(5, 7)))}; ` +
+    `${andList(counted(over))} follow, and ${andList(under)} are under 2 million). ` +
+    // The previous reading, typed: it is a fixed, dated fact about the past.
+    "The 24 September reading had the five at 17,911,287 / 12,855,789 / 12,027,276 / 11,939,386 / 10,773,557."
+  );
+})();
+
 export const statBoxes: LeaderboardBox[] = [
   {
     id: "billboard-global-200-peak",
@@ -253,12 +295,14 @@ export const statBoxes: LeaderboardBox[] = [
         ],
         /* live:streams-2026-asof */ asOf: "2026-09-26",
         inProgress: true,
-        // {{order2026}}, {{spread2026}} and {{asOf2026}} are filled from the row
-        // itself at load, so the sentence follows the numbers when the order
-        // changes — "Burna Boy third behind Tems and Wizkid" was typed, and
-        // stayed typed the day the board (wrongly, as it turned out) had him
-        // pass Wizkid.
-        note: "Five African artists have passed a billion Spotify streams in 2026 so far — and three are past a billion and a half, {{order2026}}, the three of them separated by about {{spread2026}} million. All five totals are read together, as of {{asOf2026}}, so the gaps stay comparable; they move together, never one without the others.",
+        // {{billions2026}} and {{asOf2026}} are filled from the row itself at
+        // load (see billionsSentence below), so the sentence follows the
+        // numbers when the order changes — "Burna Boy third behind Tems and
+        // Wizkid" was typed, and stayed typed the day the board (wrongly, as it
+        // turned out) had him pass Wizkid. The counts are derived for the same
+        // reason: "three are past a billion and a half" was typed, and was
+        // still printed on 26 Sep 2026 with Asake at 1.516B — four.
+        note: "{{billions2026}} All five totals are read together, as of {{asOf2026}}, so the gaps stay comparable; they move together, never one without the others.",
       },
       {
         label: "2025",
@@ -394,16 +438,9 @@ export const statBoxes: LeaderboardBox[] = [
     title: "Most-followed African artist on Spotify",
     meta: "Spotify followers · African artists · current",
     layout: "list",
-    entries: [
-      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: spotifyFollowersDisplay },
-      { name: "Wizkid", sub: "🇳🇬 Nigeria", value: "12.86M" },
-      { name: "Davido", sub: "🇳🇬 Nigeria", value: "12.03M" },
-      { name: "Rema", sub: "🇳🇬 Nigeria", value: "11.94M" },
-      { name: "Asake", sub: "🇳🇬 Nigeria", value: "10.77M" },
-    ],
-    note: "Burna Boy is the most-followed African artist on Spotify — just over 5 million clear of Wizkid in second. Davido and Rema sit within a hundred thousand of each other for third, and Asake is past ten million too; Omah Lay (8.02M) and Ayra Starr (7.83M) are next.",
-    source:
-      "Spotify follower counts, read directly from each artist's own Spotify page (the About panel prints the exact count) rather than a tracker, all on 24 September 2026 — Burna Boy 17,911,287, Wizkid 12,855,789, Davido 12,027,276, Rema 11,939,386, Asake 10,773,557 (then Omah Lay 8,022,983 and Ayra Starr 7,828,789; Fireboy DML 5,736,488, Olamide 5,549,083, Tyla 5,439,165 and Tems 5,094,181 follow, and Diamond Platnumz and Black Coffee are under 2 million). The 21 September reading had them at 17,870,932 / 12,822,411 / 12,001,372 / 11,911,168 / 10,726,832.",
+    entries: followersTop.map((r) => ({ name: r.name, sub: r.sub, value: followersCompact(r.followers) })),
+    note: followersNote,
+    source: followersSource,
   },
   {
     id: "highest-spotify-global-peak",
@@ -586,15 +623,61 @@ export const asOfLabel = (iso: string): string => {
   return `${d} ${["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][m - 1]} ${y}`;
 };
 
+/** "1.886B" → 1,886,000,000 and "998M" → 998,000,000; NaN for anything else.
+ *  The bot writes these rows in billions today, but a row that slips under a
+ *  billion is written in millions, and a bare parseFloat would read "998M" as
+ *  998 billion. */
+export const streamsOf = (value?: string): number => {
+  const m = /^(\d+(?:\.\d+)?)([BM])$/.exec(value ?? "");
+  return m ? parseFloat(m[1]) * (m[2] === "B" ? 1e9 : 1e6) : NaN;
+};
+
+const capitalise = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+
+/**
+ * The 2026 row's opening sentence, counted from the row's own values.
+ *
+ * Both counts are thresholds on the five figures the bot writes each day, so
+ * both are derived: the note said "three are past a billion and a half" and was
+ * still saying it with four rows past 1.5B. The billion count can only speak for
+ * the board's own five — the top five, so if the fifth is past a billion, "five"
+ * is what the board can vouch for.
+ *
+ * `order` is the "with Burna Boy ahead of …" phrase and `spread` the top three's
+ * gap in millions; both are computed by the loop below.
+ */
+export function billionsSentence(values: number[], order: string, spread: number): string {
+  const pastBillion = values.filter((v) => v >= 1e9).length;
+  const pastHalf = values.filter((v) => v >= 1.5e9).length;
+  const lead =
+    pastBillion === 0
+      ? "No African artist has passed a billion Spotify streams in 2026 yet"
+      : pastBillion === 1
+        ? "One African artist has passed a billion Spotify streams in 2026 so far"
+        : `${capitalise(cardinalWord(pastBillion))} African artists have passed a billion Spotify streams in 2026 so far`;
+  // Exactly the three the order names: one clause carries both.
+  if (pastHalf === 3) {
+    return `${lead} — and three are past a billion and a half, ${order}, the three of them separated by about ${spread} million.`;
+  }
+  const half =
+    pastHalf === 0
+      ? ""
+      : pastHalf === 1
+        ? " — and one is past a billion and a half"
+        : pastHalf === values.length
+          ? ` — and all ${cardinalWord(pastHalf)} are past a billion and a half`
+          : ` — and ${cardinalWord(pastHalf)} are past a billion and a half`;
+  return `${lead}${half}. The top three are separated by about ${spread} million, ${order}.`;
+}
+
 for (const box of statBoxes) {
   for (const row of box.rows ?? []) {
-    if (!row.note || !/\{\{(spread|order|asOf)2026\}\}/.test(row.note)) continue;
+    if (!row.note || !/\{\{(billions|asOf)2026\}\}/.test(row.note)) continue;
     // The date the bot last wrote beside the values; the note never carries a
     // typed one, because a typed date is stale the morning after it is typed.
     row.note = row.note.replace("{{asOf2026}}", row.asOf ? asOfLabel(row.asOf) : "the latest reading");
-    const m = row.entries.map((e) => parseFloat(e.value ?? "")).filter((n) => !Number.isNaN(n));
-    const spread = Math.round((Math.max(...m.slice(0, 3)) - Math.min(...m.slice(0, 3))) * 1000);
-    row.note = row.note.replace("{{spread2026}}", String(spread));
+    const m = row.entries.map((e) => streamsOf(e.value)).filter((n) => !Number.isNaN(n));
+    const spread = Math.round((Math.max(...m.slice(0, 3)) - Math.min(...m.slice(0, 3))) / 1e6);
     // The order sentence follows the rows, which the bot keeps sorted by value
     // and marks joint where a gap is inside the method's resolution — a joint
     // row is never called a lead, in either direction.
@@ -613,6 +696,6 @@ for (const box of statBoxes) {
             : second === "Burna Boy"
               ? `with Burna Boy second behind ${first} and ahead of ${third}`
               : `with Burna Boy ahead of ${second} and ${third}`;
-    row.note = row.note.replace("{{order2026}}", order);
+    row.note = row.note.replace("{{billions2026}}", billionsSentence(m, order, spread));
   }
 }

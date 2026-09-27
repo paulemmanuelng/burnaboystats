@@ -11,6 +11,10 @@ export interface First {
   year: string;
   title: string;
   text: string;
+  /** ISO day of the reading the text quotes, where it quotes a dated one. The
+   *  item's stat card (/stat-card?stat=first-…) prints it as its "As of";
+   *  without it the card falls back to the site's newest update. */
+  asOf?: string;
 }
 
 export interface FirstGroup {
@@ -171,7 +175,24 @@ export const firstGroups: FirstGroup[] = [
       // Counts are deliberately loose ("more than 20", "five") where a
       // crossing is days away and nothing in watched-metrics.json tracks the
       // figure; the exact numbers live in the dated feed entries.
-      { year: "2026", title: "First African artist with five songs past 400 million Spotify streams", text: "“Dai Dai” became the fifth on the 16 September 2026 reading (449.5 million), joining “Location”, “Last Last”, “On the Low” and “Own It”. Tems and Tyla are next with three each. Nine of his songs are past 300 million, where Tyla is next with six." },
+      //
+      // "Dai Dai" is dated by the first reading in the repo that has it past
+      // 400M: the stats bot's refresh of 1 Sep 2026 wrote DAI_DAI_SPOTIFY_STREAMS
+      // 399M → 406M (commit 52ebc7f1), and the /updates entry of 2 Sep already
+      // lists it among the five. This said "on the 16 September 2026 reading"
+      // until 27 Sep, which read as a crossing two weeks after the fact.
+      //
+      // The rivals' counts are NOT in this repo (no per-song figures for other
+      // artists), so they are dated to the page they were read from — kworb's
+      // artist pages stamped 2026/09/26. Past 400M: Tems four — "Wait For U"
+      // 1,415,842,511, "Raindance" 843,041,903, "Me & U" 418,226,014, "Essence"
+      // 400,738,347; Tyla three — "Water" 1,478,362,838, "Push 2 Start"
+      // 527,420,713, "Chanel" 413,775,115. Past 300M: Tyla six (adds "Truth or
+      // Dare" 359.1M, "Show Me Love" 346.0M, "Jump" 321.1M); Tems five (adds
+      // "Free Mind" 325.7M). Burna Boy's nine past 300M on the same day's page
+      // run from "Location" 738.4M to "wgft" 313.7M. This said "Tems and Tyla
+      // are next with three each" until 27 Sep; "Essence" had since crossed.
+      { year: "2026", title: "First African artist with five songs past 400 million Spotify streams", text: "“Dai Dai” became the fifth by the 1 September 2026 reading (406 million), joining “Location”, “Last Last”, “On the Low” and “Own It”. On kworb's 26 September 2026 pages, Tems is next with four and Tyla with three; nine of his songs are past 300 million, where Tyla is next with six.", asOf: "2026-09-26" },
       { year: "2026", title: "First African artist with more than 20 songs past 100 million Spotify streams", text: "Twenty-three of his songs have each passed 100 million streams on Spotify — nine of them solo, three as lead with a guest, and the rest as a featured artist. “Sungba (Remix)” was the 23rd, on 16 September 2026; Wizkid is next with 18." },
       { year: "2026", title: "First African artist with 50 songs past 50 million Spotify streams", text: "“4 Kampé II” was the fiftieth, on the 16 September 2026 reading. Wizkid is next with 39, Asake with 29." },
     ],

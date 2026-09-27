@@ -19,6 +19,7 @@ import { getStatCards } from "../app/lib/statCards";
 import { searchIndex } from "../app/lib/searchIndex";
 import { faqs } from "../app/data/faqs";
 import { listenersLabel } from "../app/lib/visualizedSections";
+import { monthlyListenersSeries } from "../app/data/trends";
 
 /**
  * Wording the full-site debug of 24 Sep 2026 found reading wrong on the live
@@ -62,13 +63,30 @@ describe("/records/visualized (A-28, A-39)", () => {
     // as "60.0M" two days before the 60M marker.
     const shipped = (v: number) => `${v.toFixed(1)}M`;
     expect(shipped(59.99)).toBe("60.0M");
-    expect(listenersLabel(59.99)).toBe("59.9M");
-    expect(listenersLabel(60.01)).toBe("60.0M");
-    expect(listenersLabel(58.3)).toBe("58.3M");
+    expect(listenersLabel(59.99)).toBe("59.99M");
+    expect(listenersLabel(60.01)).toBe("60.01M");
+    expect(listenersLabel(58.3)).toBe("58.30M");
+    // Every logged reading prints exactly as logged, so none can round past a mark.
+    for (const p of monthlyListenersSeries) expect(Number.parseFloat(listenersLabel(p.value))).toBe(p.value);
     for (const f of ["app/records/visualized/page.tsx", "app/components/MobileVisualized.tsx"]) {
       expect(read(f), `${f} formats listeners on its own again`).not.toContain("${v.toFixed(1)}M");
       expect(read(f)).toContain("listenersLabel");
     }
+  });
+
+  it("the chart's end labels add up to the rise the caption quotes", () => {
+    // The caption reads "+12.75M in 40 days … from 47.3M to 60.1M" while the
+    // labels came from a one-decimal floor (Spotify audit, 27 Sep 2026).
+    const first = monthlyListenersSeries[0].value;
+    const last = monthlyListenersSeries[monthlyListenersSeries.length - 1].value;
+    const gain = (last - first).toFixed(2);
+    const floored = (v: number) => `${(Math.floor(v * 10 + 1e-9) / 10).toFixed(1)}M`;
+    const diff = (f: (v: number) => string) => (Number.parseFloat(f(last)) - Number.parseFloat(f(first))).toFixed(2);
+    expect(diff(floored), "negative control: the shipped labels").not.toBe(gain);
+    expect(diff(listenersLabel)).toBe(gain);
+    // …and spell the endpoints as /records/africas-biggest does (47.38M, 60.13M).
+    expect(listenersLabel(47.38)).toBe("47.38M");
+    expect(listenersLabel(60.13)).toBe("60.13M");
   });
 });
 

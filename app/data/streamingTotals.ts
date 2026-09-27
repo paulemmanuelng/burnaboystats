@@ -5,10 +5,13 @@
 // never published. Both live here as their own home so the hourly bot can
 // rewrite exactly one string per figure and have it update everywhere.
 //
-// Auto-updated hourly by scripts/apply-stat-updates.mjs (the
-// spotify-total-streams and youtube-total-views metrics), read from kworb's
-// artist totals. Displayed in whole billions — these move by millions a day,
-// so more precision would be noise.
+// The Spotify total is written by the stats bot (scripts/apply-stat-updates.mjs,
+// the spotify-total-streams metric: kworb's raw sum plus a measured offset); the
+// YouTube total is hand-maintained (see below — the bot was taken off it on
+// 27 Aug 2026). Displayed to two decimals of a billion ("11.09B") and one
+// ("4.0B") respectively — these move by millions a day, so more precision would
+// be noise; the one page that argues from the arithmetic reads the unrounded
+// Spotify figure below.
 
 // Every Burna Boy song on Spotify, lead and featured credits combined.
 //
@@ -16,41 +19,49 @@
 // to kworb's raw sum before writing this string. Never hand-edit either string —
 // the next bot run overwrites it. To move the figure, move the offset.
 //
-// 22 Sep 2026 — PUBLISHED DIRECTLY FROM CHARTMASTERS (Paul's instruction),
-// through 20 Sep: 11,048,637,922. kworb's Burna Boy page had not rebuilt since
-// its 18 Sep build (every other artist's page current), so no same-date pair
-// existed and the bot had published nothing since 19 Sep. The anchor script
-// was run with --kworb-frozen: the offset (168,789,190) is ChartMasters'
-// 20 Sep total against the stale 18 Sep page, which keeps the reconcile
-// invariant but is NOT a measured gap — re-run the script without the flag
-// the day kworb's page moves (docs/sourcing/chartmasters/reads/2026-09-22.json).
+// CURRENT ANCHOR — 25 Sep 2026, a DIRECT read of ChartMasters' Playcounts Tool
+// (Paul's premium account, read in the site's own browser). ChartMasters'
+// "streams updated through" day N pairs with kworb's page stamped N+1 — kworb
+// stamps a page with the day it was built:
 //
-// RE-ANCHORED 17 Sep 2026 on a DIRECT read of ChartMasters' Playcounts Tool
-// (Paul's premium account, read in the site's own browser), eight same-date
-// pairs deep. ChartMasters' "streams updated through" day N pairs with kworb's
-// page stamped N+1 — kworb stamps a page with the day it was built — and under
-// that pairing the gap is stable to within half a million across 8–13 Sep:
+//     ChartMasters through 23 Sep   11,070,534,585
+//     kworb raw, page 2026/09/24    10,929,316,373
+//     offset                           141,218,212
 //
-//     ChartMasters through 15 Sep   11,010,480,657
-//     kworb raw, page 2026/09/16    10,895,302,794
-//     offset                           115,177,863
+// Why then: kworb's raw sum FELL 16,051,434 in its 24 Sep build (a title left
+// its Burna Boy list while its own Daily read +7.38M), and the bot's drift alarm
+// asked for a re-measure. docs/sourcing/chartmasters/reads/2026-09-25.json.
+// CAREER_STREAMS_ANCHOR_READ_ON below carries the date.
 //
-// The 10 Sep anchor (112,305,806) was ChartMasters' "through 8 Sep" figure
-// against kworb's 09/09 page — the same pairing, described then as a same-
-// number one. The gap stepped up 2.6M on kworb's 09/15 page, whose cumulative
-// moved only 4,694,787 against its own Daily of 7,319,821: a roster removal
-// on kworb's side that ChartMasters did not make. Full table in
-// scripts/watched-metrics.json and docs/sourcing/CAREER-STREAMS-OFFSET.md.
+// How the offset got here, oldest first — each a day-N ↔ page-N+1 pair unless
+// marked:
 //
-// WHAT IS EVIDENCED AND WHAT IS NOT. 80,606,612 of that was measured track by
-// track: 42 credited recordings that exist on Spotify but are absent from
-// kworb's 291-row roster, each read at open.spotify.com/track/<id> and joined by
-// track id, every one on another artist's release or a various-artists
-// compilation — which is exactly what the artist-page "appears on" shelf kworb
-// reads drops. The remaining 31,699,194 is the amount by which ChartMasters'
-// roster exceeds both kworb's and our own hunt. Its mechanism is named and
-// plausible — catalogue completeness, counted further — but it has NOT been
-// enumerated. Do not call the whole offset measured.
+//     10 Sep  112,305,806  through 8 Sep ↔ page 09/09
+//     17 Sep  115,177,863  through 15 Sep ↔ page 09/16, eight pairs deep (8–15 Sep),
+//                          stable to within half a million except a +2.6M step on
+//                          kworb's 09/15 page, whose cumulative moved only
+//                          4,694,787 against its own Daily of 7,319,821: a roster
+//                          removal on kworb's side that ChartMasters did not make
+//     22 Sep  168,789,190  --kworb-frozen, NOT a measured gap: ChartMasters through
+//                          20 Sep (11,048,637,922, published directly on Paul's
+//                          instruction) against kworb's stale 18 Sep build
+//     23 Sep  114,858,823  through 21 Sep ↔ page 09/22, kworb moving again
+//     25 Sep  141,218,212  through 23 Sep ↔ page 09/24 (above)
+//
+// Full table in scripts/watched-metrics.json; the method, and the evidence for
+// the reads up to 17 Sep, in docs/sourcing/CAREER-STREAMS-OFFSET.md.
+//
+// WHAT IS EVIDENCED AND WHAT IS NOT. Of the 10 Sep offset (112,305,806),
+// 80,606,612 was measured track by track: 42 credited recordings that exist on
+// Spotify but are absent from kworb's 291-row roster, each read at
+// open.spotify.com/track/<id> and joined by track id, every one on another
+// artist's release or a various-artists compilation — which is exactly what the
+// artist-page "appears on" shelf kworb reads drops. The remaining 31,699,194 was
+// the amount by which ChartMasters' roster exceeded both kworb's and our own
+// hunt. Its mechanism is named and plausible — catalogue completeness, counted
+// further — but it has NOT been enumerated, and nor have the later moves, which
+// follow kworb's roster (the 09/15 step, the title that left the 09/24 build).
+// Do not call the whole offset measured.
 //
 // Neither figure is ground truth. Spotify publishes no career total anywhere —
 // not on the artist page, not in the Web API — so both trackers are estimates
@@ -103,8 +114,8 @@ export const spotifyTotalStreamsExact = "11,085,890,337";
 // ahead of Wizkid (2.66B), Rema (2.60B) and Davido (2.47B).
 //
 // Re-measured 14 Sep 2026 at youtube.com/@BurnaBoy/about, which reported
-// 4,043,634,651 views across 346 videos and 7.31m subscribers. Displayed in
-// whole billions, so the string does not move — but the measurement date does,
+// 4,043,634,651 views across 346 videos and 7.31m subscribers. Displayed to a
+// tenth of a billion, so the string does not move — but the measurement date does,
 // and the gap to the next Nigerian act is what makes the 4-billion first below
 // arithmetic rather than a press claim.
 //

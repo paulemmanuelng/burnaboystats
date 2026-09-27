@@ -32,7 +32,7 @@ const base = `${CANONICAL_ORIGIN}/api/${API_VERSION}`;
 const endpoints = [
   {
     path: "/stats",
-    what: "Headline career totals plus the dated series of Spotify monthly-listener highs (a point is added only when the peak moves; the current figure is not published).",
+    what: "Headline career totals plus the dated series of Spotify monthly-listener highs (a point is added only when the peak moves, so it ends on the day the peak was set; the latest dated current reading is on /music/listeners).",
     size: "1 object",
   },
   {
