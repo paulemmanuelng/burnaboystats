@@ -12,6 +12,7 @@ import { chartedCountryCount } from "../../../lib/analysis";
 import { songs } from "../../../data/songs";
 import { monthlyListenersSeries } from "../../../data/trends";
 import { spotifyFollowersDisplay, spotifyGlobalRank } from "../../../data/spotify";
+import { LISTENERS_READ_ON } from "../../../data/listeners";
 
 export const dynamic = "force-static";
 
@@ -19,7 +20,9 @@ export function GET() {
   return apiJson({
     endpoint: "/stats",
     description:
-      "Headline career totals, plus the dated series of Spotify monthly-listener highs behind the site's trend charts — a point is added only when the all-time peak moves; the current figure is not published.",
+      // Said "the current figure is not published" until 27 Sep 2026 — true of
+      // this endpoint, false of the site: /music/listeners prints a dated read.
+      `Headline career totals, plus the dated series of Spotify monthly-listener highs behind the site's trend charts — a point is added only when the all-time peak moves, so the series ends on the day the peak was set, not today. This endpoint carries no current monthly-listener figure; the latest dated reading (${LISTENERS_READ_ON}) is published on /music/listeners.`,
     data: {
       charts: {
         chartEntries: chartEntryCount,

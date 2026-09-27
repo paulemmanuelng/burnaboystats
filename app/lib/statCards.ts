@@ -1,12 +1,13 @@
-import { totalAwards, countryCount, allItems, tierOf, daiDaiCertCount, COUNTRIES } from "../data/certifications";
+import { totalAwards, countryCount, allItems, tierOf, daiDaiCertCount, COUNTRIES, CERTS_VERIFIED_ON } from "../data/certifications";
 import { firstGroups } from "../data/firsts";
 import { titleKey } from "./titleKey";
 import { badgeWeight } from "./certs";
 import { numberOnes, chartEntryCount, daiDaiNumberOnes, daiDaiChartEntryCount } from "../data/charts";
 import { numberOneCountryCount } from "./analysis";
 import { totalWins, totalNominations, ceremonyCount } from "../data/awards";
-import { spotifyFollowersDisplay } from "../data/spotify";
-import { BURNA_PEAK_LISTENERS } from "../data/africasBiggest";
+import { spotifyFollowersDisplay, SPOTIFY_FOLLOWERS_READ_ON } from "../data/spotify";
+import { BURNA_PEAK_LISTENERS, BURNA_PEAK_LISTENERS_SET_ON, BURNA_PEAK_LISTENERS_SET_ON_LONG } from "../data/africasBiggest";
+import { lastUpdated } from "./api";
 import { revenueShows } from "../data/tourRevenue";
 import { tours } from "../data/tours";
 
@@ -36,6 +37,16 @@ export interface StatCard {
   href: string;
   /** One word ghosted behind the card. */
   watermark: string;
+  /**
+   * The day THIS figure was read or set (ISO), printed on the card as "As of".
+   * Until 27 Sep 2026 every card printed the newest /updates entry instead, so
+   * the peak-listeners card — a high set on 10 Aug — was stamped 25 Sep, and a
+   * follower count read on 24 Sep looked a day old whenever the feed moved.
+   * Each card names its own date from the data file that holds the figure;
+   * `lastUpdated` (the site's newest update) is the fallback only for figures
+   * whose data carries no date, and those cards say so beside the field.
+   */
+  asOf: string;
 }
 
 // Count certification plaques of a given tier across the whole catalogue.
@@ -60,6 +71,8 @@ export function getStatCards(): StatCard[] {
       label: `certifications across ${countryCount} countries`,
       kicker: "The most-certified African artist in history",
       chip: "Most-certified",
+      // The last day a certifying body's own register was read for the file.
+      asOf: CERTS_VERIFIED_ON,
     },
     {
       id: "dai-dai",
@@ -72,6 +85,8 @@ export function getStatCards(): StatCard[] {
       label: `“Dai Dai” — No. 1 in ${daiDaiNumberOnes} countries and on both Billboard global charts`,
       kicker: "The 2026 FIFA World Cup anthem, with Shakira",
       chip: "Dai Dai · No. 1",
+      // data/charts.ts carries no read date: fallback.
+      asOf: lastUpdated,
     },
     {
       id: "no1s",
@@ -88,17 +103,27 @@ export function getStatCards(): StatCard[] {
       label: "No. 1 chart placements worldwide",
       kicker: "Nigeria, the UK, the Netherlands, Colombia & more",
       chip: "No. 1s",
+      // data/charts.ts carries no read date: fallback.
+      asOf: lastUpdated,
     },
     {
       id: "listeners",
-      source: "Spotify",
+      // The metric is Spotify's; the PEAK is kworb's record of it (its
+      // PkListeners column). Spotify's artist page prints only today's
+      // figure, so a reader sent to "Spotify" alone could not find this one.
+      source: "Spotify · kworb",
       watermark: "PLAY",
       href: "/records/africas-biggest",
-      detail: `Read from Spotify's own artist page rather than a tracker. The first African artist ever past ${Math.floor(Number.parseFloat(BURNA_PEAK_LISTENERS))} million monthly listeners.`,
+      // Said "Read from Spotify's own artist page rather than a tracker" until
+      // 27 Sep 2026 — the opposite of where a peak comes from. Worded now as
+      // /records/africas-biggest words it.
+      detail: `His highest Spotify monthly listeners — kworb's recorded peak, set on ${BURNA_PEAK_LISTENERS_SET_ON_LONG}; Spotify's own artist page shows only the current figure. The first African artist ever past ${Math.floor(Number.parseFloat(BURNA_PEAK_LISTENERS))} million monthly listeners.`,
       value: BURNA_PEAK_LISTENERS,
       label: "peak Spotify monthly listeners",
       kicker: "The most of any African artist",
       chip: "Peak listeners",
+      // The day the peak was set, derived from the series the bot extends.
+      asOf: BURNA_PEAK_LISTENERS_SET_ON,
     },
     {
       id: "tour",
@@ -110,6 +135,8 @@ export function getStatCards(): StatCard[] {
       label: "highest-grossing African tour ever",
       kicker: "The I Told Them… Tour",
       chip: "Record tour",
+      // A closed tour; tourRevenue.ts dates its figures to a month only: fallback.
+      asOf: lastUpdated,
     },
     {
       id: "grammy",
@@ -121,6 +148,8 @@ export function getStatCards(): StatCard[] {
       label: "Grammy winner — Best Global Music Album",
       kicker: "Twice as Tall",
       chip: "Grammy",
+      // data/awards.ts carries no read date: fallback.
+      asOf: lastUpdated,
     },
     {
       id: "concert",
@@ -132,17 +161,21 @@ export function getStatCards(): StatCard[] {
       label: "biggest concert by an African artist",
       kicker: `${topShow.venue} · June ${showYear(topShow.year)}`,
       chip: "Biggest concert",
+      // tourRevenue.ts dates its figures to a month only: fallback.
+      asOf: lastUpdated,
     },
     {
       id: "followers",
       source: "Spotify",
       watermark: "FOLLOW",
       href: "/records/africas-biggest",
-      detail: `Followers, not monthly listeners — the count of people who chose to keep his releases in their feed. The most of any African artist.`,
+      detail: `Followers, not monthly listeners — the count of people who chose to keep his releases in their feed. The most of any African artist, read from each artist's own Spotify page on ${new Date(`${SPOTIFY_FOLLOWERS_READ_ON}T12:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" })}.`,
       value: spotifyFollowersDisplay,
       label: "Spotify followers — most of any African artist",
       kicker: "The most-followed African artist on Spotify",
       chip: "Followers",
+      // The day the whole followers board was read — one reading for all rows.
+      asOf: SPOTIFY_FOLLOWERS_READ_ON,
     },
   ];
 }
@@ -209,6 +242,7 @@ export function findCard(id: string | null): StatCard | undefined {
       watermark: "CERTS",
       href: "/certifications",
       detail: `Every certification “${r.title}” holds, as recorded by each country's own certifying body.`,
+      asOf: CERTS_VERIFIED_ON,
     };
   }
 
@@ -226,6 +260,7 @@ export function findCard(id: string | null): StatCard | undefined {
       watermark: "FIRST",
       href: "/records/firsts",
       detail: f.text,
+      asOf: f.asOf ?? lastUpdated,
     };
   }
 

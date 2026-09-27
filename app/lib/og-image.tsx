@@ -102,8 +102,11 @@ export const cardUrl = (path: string) => `BURNABOYSTATS.COM${path.toLowerCase()}
  *                  January), and the day previews are re-encoded under 300 KB
  *                  — 37 were over it, and a preview dropped for its size may
  *                  sit in a cache as "no image" (live debug, 27 Sep 2026)
+ *   stat-cards-asof-1  every stat card's "As of" prints its own figure's date
+ *                  rather than the site's newest update, and the peak-listeners
+ *                  card credits "Spotify · kworb" (Spotify audit, 27 Sep 2026)
  */
-export const OG_ART = "on-this-day-3";
+export const OG_ART = "stat-cards-asof-1";
 
 /**
  * The root card's URL, for the three pages that cite it by hand.

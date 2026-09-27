@@ -1186,7 +1186,7 @@ export const updates: Update[] = [
   {
     date: "2026-08-03",
     category: "Streaming",
-    text: "Burna Boy passes 10.6 billion Spotify streams and 17.2 million followers, holding at No. 38 most-followed artist in the world with 59,482,941 monthly listeners — a new career peak.",
+    text: "Burna Boy passes 10.6 billion Spotify streams and 17.2 million followers, and holds at No. 38 in the world by monthly listeners with 59,482,941 — a new career peak.",
     href: "/records/by-the-numbers",
   },
   {

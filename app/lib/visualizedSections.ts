@@ -24,10 +24,15 @@ export const JUMP = [
 ];
 
 /**
- * Monthly listeners in millions, one decimal, ROUNDED DOWN — both layouts'
- * listener chart. toFixed rounds half up, so the 6 August reading of 59.99M
- * printed "60.0M" two days before the series' own 60M marker (8 August,
- * 60.01M). A peak series is a record of thresholds crossed, so a label may
- * never claim one early.
+ * Monthly listeners in millions, TWO decimals — both layouts' listener chart,
+ * spelled as /records/africas-biggest spells the same readings (47.38M, 60.13M).
+ *
+ * The series is logged to two decimals, so this prints each reading exactly as
+ * logged, and a reading can never be labelled past a threshold it had not
+ * crossed: the 6 August 59.99M prints "59.99M", where a one-decimal toFixed
+ * printed "60.0M" two days before the series' own 60M marker. The one-decimal
+ * floor that replaced it kept that promise but broke the caption beside the
+ * chart, which quotes the rise to two decimals — "+12.75M" under "47.3M" and
+ * "60.1M", a sum that comes to 12.8 (Spotify audit, 27 Sep 2026).
  */
-export const listenersLabel = (v: number) => `${(Math.floor(v * 10 + 1e-9) / 10).toFixed(1)}M`;
+export const listenersLabel = (v: number) => `${v.toFixed(2)}M`;
