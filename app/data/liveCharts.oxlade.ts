@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-27";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-27T17:01Z";
+  export const liveChartsBuiltAt = "2026-09-27T21:24Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","iTunes"];
@@ -54,16 +54,16 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "CV",
-            "name": "Cape Verde",
-            "position": 38,
-            "movement": 0
-          },
-          {
             "country": "BF",
             "name": "Burkina Faso",
             "position": 43,
             "movement": 7
+          },
+          {
+            "country": "CV",
+            "name": "Cape Verde",
+            "position": 44,
+            "movement": 0
           },
           {
             "country": "GM",
@@ -80,9 +80,8 @@
           {
             "country": "PG",
             "name": "Papua New Guinea",
-            "position": 144,
-            "movement": null,
-            "status": "new"
+            "position": 86,
+            "movement": 58
           }
         ]
       }
@@ -100,14 +99,34 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 57,
-            "movement": -11
+            "position": 60,
+            "movement": -12
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/cbbac06ed3061e624e2856a82917a7c5/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "DKT",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SB",
+            "name": "Solomon Islands",
+            "position": 157,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/736bc83960f36a6abbafd16418af709d/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "ON YOU",
@@ -129,26 +148,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/0c76441e9c51769073efdebeb8a77251/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Jabole",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 137,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6e033d86b6e64ad9bf891ade1d78d70f/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Non Living Thing",
     "platforms": [
       {
@@ -158,8 +157,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 142,
-            "movement": -16
+            "position": 127,
+            "movement": 15
           }
         ]
       }

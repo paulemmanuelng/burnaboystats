@@ -124,7 +124,7 @@
   },
   {
     "date": "2026-09-27",
-    "release": "BACK 2 U",
+    "release": "Back 2 U",
     "platform": "Shazam",
     "position": 117
   },
