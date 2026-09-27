@@ -3,18 +3,15 @@ import styles from "./onThisDay.module.css";
 import BreadcrumbBar from "../components/BreadcrumbBar";
 import KeepExploring from "../components/KeepExploring";
 import MobileOnThisDayIndex from "../components/MobileOnThisDayIndex";
+import StaticLinks from "../components/StaticLinks";
+import { desktopMonthsHtml } from "./desktopMonths";
 import { pageMetadata } from "../lib/seo";
 import { KindMark } from "../components/OnThisDayKind";
 import {
   KIND_MARK,
   KIND_ORDER,
-  MONTHS,
-  calendarDayLabel,
-  calendarMonthDays,
   calendarToday,
   focusMeta,
-  monthDefault,
-  monthSub,
   onThisDayCounts,
   onThisDayDays,
   onThisDayEvents,
@@ -39,7 +36,6 @@ export const metadata = pageMetadata({
 export const revalidate = 3600;
 
 const kinds = KIND_ORDER.filter((k) => onThisDayCounts[k] > 0);
-const pad = (n: number) => String(n).padStart(2, "0");
 
 /**
  * The calendar (designs/desktop/OTD Calendar.dc.html, desktop): the Today
@@ -103,92 +99,10 @@ export default function OnThisDayPage() {
             </p>
           </div>
 
-          <div className={styles.months}>
-            {MONTHS.map((name, i) => {
-              const month = i + 1;
-              const days = onThisDayDays.filter((d) => d.month === month);
-              const byDay = new Map(days.map((d) => [d.day, d]));
-              // The month's lit day at rest, as the artboard draws it: today,
-              // else the Today panel's next date, else the busiest day.
-              const lit = monthDefault(days, today)?.day;
-              return (
-                <section key={name} className={styles.month} aria-labelledby={`otd-cal-${month}`}>
-                  <div className={styles.monthHead}>
-                    <h2 id={`otd-cal-${month}`} className={styles.monthName}>
-                      {name}
-                    </h2>
-                    <span className={styles.monthSub}>
-                      {monthSub(days)}
-                      <span className="visuallyHidden"> milestones</span>
-                    </span>
-                  </div>
-
-                  <div className={styles.grid}>
-                    {Array.from({ length: calendarMonthDays(month) }, (_, j) => j + 1).map((n) => {
-                      const key = `${pad(month)}-${pad(n)}`;
-                      const d = byDay.get(n);
-                      const isToday = key === today.key;
-                      const cls = `${styles.cell} ${d ? styles.cellOn : styles.cellOff}${isToday ? ` ${styles.cellToday}` : ""}`;
-                      return d ? (
-                        <Link
-                          key={n}
-                          href={`/on-this-day/${d.slug}`}
-                          data-day={n}
-                          data-default={n === lit || undefined}
-                          className={cls}
-                          aria-label={calendarDayLabel(key, d)}
-                          aria-current={isToday ? "date" : undefined}
-                        >
-                          {n}
-                          <KindMark kind={d.lead.kind} size={8} className={styles.cellMark} />
-                          {d.events.length > 1 && <span className={styles.cellCount}>{d.events.length}</span>}
-                        </Link>
-                      ) : (
-                        <span key={n} className={cls} aria-current={isToday ? "date" : undefined}>
-                          <span aria-hidden="true">{n}</span>
-                          {/* Not focusable, so today is said in words too. */}
-                          <span className="visuallyHidden">
-                            {calendarDayLabel(key)}
-                            {isToday && ", today"}
-                          </span>
-                        </span>
-                      );
-                    })}
-                  </div>
-
-                  {/* Every lead headline is in the page, not in a tooltip. The
-                      cells above are the keyboard's way in; these rows repeat
-                      their links for the pointer, so they stay out of the tab
-                      order. */}
-                  <ol className={styles.monthList}>
-                    {days.map((d) => (
-                      <li key={d.key}>
-                        <Link
-                          href={`/on-this-day/${d.slug}`}
-                          data-day={d.day}
-                          data-default={d.day === lit || undefined}
-                          className={styles.listRow}
-                          tabIndex={-1}
-                        >
-                          <span className={styles.listDay}>{d.day}</span>
-                          <KindMark kind={d.lead.kind} alone className={styles.listMark} />
-                          <span className={styles.listHeadline}>{d.lead.headline}</span>
-                          <span className={styles.listMore}>
-                            {d.events.length > 1 && (
-                              <>
-                                +{d.events.length - 1}
-                                <span className="visuallyHidden"> more</span>
-                              </>
-                            )}
-                          </span>
-                        </Link>
-                      </li>
-                    ))}
-                  </ol>
-                </section>
-              );
-            })}
-          </div>
+          {/* The twelve months, as one block of server-built HTML
+              (desktopMonths.ts): all of it in the page, none of it for React
+              to rebuild or hydrate on a phone, where it is display:none. */}
+          <StaticLinks className={styles.months} html={desktopMonthsHtml(today)} />
 
           <div className={styles.filed}>
             <p className={styles.filedLabel}>How dates are filed</p>
