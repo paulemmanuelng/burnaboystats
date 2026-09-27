@@ -10,9 +10,21 @@ export default function BackToTop() {
 
   useEffect(() => {
     const onScroll = () => setShow(window.scrollY > 700);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    // The button is display:none at phone width (below), so it listens only
+    // at desktop width: a phone's scroll runs no handler for it.
+    const phone = window.matchMedia("(max-width: 900px)");
+    const attach = () => {
+      window.removeEventListener("scroll", onScroll);
+      if (phone.matches) return;
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+    };
+    attach();
+    phone.addEventListener("change", attach);
+    return () => {
+      phone.removeEventListener("change", attach);
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   // Desktop only. Every mobile screen carries a fixed bottom bar — the tab bar,

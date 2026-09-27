@@ -121,7 +121,9 @@ export default function OnThisDayPhoneMonth({
             <KindMark kind={sel.kind} alone size={11} className={styles.calPanelMark} />
             {sel.headline}
           </p>
-          <Link href={`/on-this-day/${sel.slug}`} className={styles.calPanelOpen}>
+          {/* No prefetch, like the desktop calendar's day links: twelve panels
+              scrolling past would each fetch a day page mid-scroll. */}
+          <Link href={`/on-this-day/${sel.slug}`} prefetch={false} className={styles.calPanelOpen}>
             <span>Open {sel.label}</span>
             <span aria-hidden="true">↗</span>
           </Link>
