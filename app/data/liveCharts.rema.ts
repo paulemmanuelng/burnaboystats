@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-27";
+  export const liveChartsUpdated = "2026-09-28";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-27T21:24Z";
+  export const liveChartsBuiltAt = "2026-09-28T05:28Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -252,6 +252,25 @@
         ]
       },
       {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GD",
+            "name": "Grenada",
+            "position": 6,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 23,
+            "movement": -4
+          }
+        ]
+      },
+      {
         "platform": "Spotify",
         "numberOnes": 0,
         "entries": [
@@ -260,18 +279,6 @@
             "name": "Nigeria",
             "position": 3,
             "movement": 0
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 22,
-            "movement": -10
           }
         ]
       },
@@ -362,7 +369,7 @@
             "country": "FR",
             "name": "France",
             "position": 14,
-            "movement": -3
+            "movement": 0
           },
           {
             "country": "LU",
@@ -508,19 +515,26 @@
       },
       {
         "platform": "iTunes",
-        "numberOnes": 1,
+        "numberOnes": 0,
         "entries": [
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 1,
-            "movement": 0
+            "position": 6,
+            "movement": -5
+          },
+          {
+            "country": "GD",
+            "name": "Grenada",
+            "position": 10,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 72,
-            "movement": -57
+            "position": 150,
+            "movement": -144
           }
         ]
       },
@@ -580,8 +594,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 61,
-            "movement": 0
+            "position": 58,
+            "movement": 3
           },
           {
             "country": "TZ",
@@ -655,8 +669,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 70,
-            "movement": 0
+            "position": 64,
+            "movement": 6
           },
           {
             "country": "UG",
@@ -812,19 +826,6 @@
             "country": "GH",
             "name": "Ghana",
             "position": 198,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 133,
             "movement": null,
             "status": "new"
           }
@@ -1154,7 +1155,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 47,
+            "position": 70,
             "movement": null,
             "status": "new"
           }
@@ -1305,13 +1306,13 @@
             "country": "SZ",
             "name": "Swaziland",
             "position": 23,
-            "movement": 4
+            "movement": -2
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 65,
-            "movement": 1
+            "position": 60,
+            "movement": 6
           }
         ]
       }
@@ -1463,8 +1464,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 79,
-            "movement": -71
+            "position": 156,
+            "movement": -142
           }
         ]
       }
@@ -1640,8 +1641,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 71,
-            "movement": 0
+            "position": 72,
+            "movement": -1
           }
         ]
       }
@@ -1659,8 +1660,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 12,
-            "movement": -2
+            "position": 17,
+            "movement": -5
           }
         ]
       }
@@ -1764,26 +1765,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/e01c854fc22ac6a5c685a89bd686d36d/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "VILLAIN",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 139,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/4891a944de9418f059cabda0c7699160/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Rave & Roses Ultra",

@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-27";
+  export const liveChartsUpdated = "2026-09-28";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-27T21:24Z";
+  export const liveChartsBuiltAt = "2026-09-28T05:28Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -135,7 +135,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 24,
-            "movement": 1
+            "movement": 0
           },
           {
             "country": "LU",
@@ -274,8 +274,8 @@
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 54,
-            "movement": 2
+            "position": 57,
+            "movement": -7
           },
           {
             "country": "AZ",
@@ -339,6 +339,12 @@
             "movement": 30
           },
           {
+            "country": "DE",
+            "name": "Germany",
+            "position": 84,
+            "movement": 11
+          },
+          {
             "country": "BM",
             "name": "Bermuda",
             "position": 85,
@@ -381,12 +387,6 @@
             "movement": 55
           },
           {
-            "country": "DE",
-            "name": "Germany",
-            "position": 92,
-            "movement": 7
-          },
-          {
             "country": "SZ",
             "name": "Swaziland",
             "position": 94,
@@ -411,12 +411,6 @@
             "movement": 29
           },
           {
-            "country": "NZ",
-            "name": "New Zealand",
-            "position": 98,
-            "movement": -28
-          },
-          {
             "country": "LB",
             "name": "Lebanon",
             "position": 100,
@@ -427,6 +421,12 @@
             "name": "Cayman Islands",
             "position": 101,
             "movement": -47
+          },
+          {
+            "country": "NZ",
+            "name": "New Zealand",
+            "position": 103,
+            "movement": -5
           },
           {
             "country": "SC",
@@ -468,7 +468,7 @@
             "country": "AU",
             "name": "Australia",
             "position": 131,
-            "movement": 0
+            "movement": 20
           },
           {
             "country": "DK",
@@ -1008,56 +1008,55 @@
             "country": "UA",
             "name": "Ukraine",
             "position": 2,
-            "movement": null,
-            "status": "new"
+            "movement": 7
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 13,
-            "movement": 122
-          },
-          {
-            "country": "IN",
-            "name": "India",
-            "position": 17,
-            "movement": -7
+            "position": 9,
+            "movement": 159
           },
           {
             "country": "MD",
             "name": "Moldova",
-            "position": 21,
-            "movement": -10
+            "position": 27,
+            "movement": -12
+          },
+          {
+            "country": "IN",
+            "name": "India",
+            "position": 33,
+            "movement": -21
           },
           {
             "country": "UZ",
             "name": "Uzbekistan",
-            "position": 46,
-            "movement": -33
+            "position": 55,
+            "movement": -37
           },
           {
             "country": "AZ",
             "name": "Azerbaijan",
-            "position": 63,
-            "movement": -25
+            "position": 68,
+            "movement": -28
           },
           {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 66,
-            "movement": 12
-          },
-          {
-            "country": "CZ",
-            "name": "Czech Republic",
-            "position": 70,
+            "country": "TR",
+            "name": "Turkey",
+            "position": 88,
             "movement": null,
             "status": "new"
           },
           {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 94,
+            "movement": 14
+          },
+          {
             "country": "SE",
             "name": "Sweden",
-            "position": 110,
+            "position": 181,
             "movement": null,
             "status": "new"
           }
@@ -1133,8 +1132,8 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 18,
-            "movement": 1
+            "position": 20,
+            "movement": 0
           },
           {
             "country": "BS",
@@ -1495,32 +1494,32 @@
       },
       {
         "platform": "iTunes",
-        "numberOnes": 0,
+        "numberOnes": 1,
         "entries": [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 4,
-            "movement": 3
+            "position": 1,
+            "movement": 12
           },
           {
             "country": "MU",
             "name": "Mauritius",
-            "position": 56,
-            "movement": -9
+            "position": 59,
+            "movement": -11
           },
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 77,
+            "position": 108,
             "movement": null,
             "status": "new"
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 141,
-            "movement": -10
+            "position": 146,
+            "movement": -11
           }
         ]
       },
@@ -1539,99 +1538,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/21ffdcad2bde4b25ba9a5a3a53193b05/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "What You Need",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BM",
-            "name": "Bermuda",
-            "position": 3,
-            "movement": 0
-          },
-          {
-            "country": "TC",
-            "name": "Turks and Caicos",
-            "position": 30,
-            "movement": 75
-          },
-          {
-            "country": "BS",
-            "name": "The Bahamas",
-            "position": 68,
-            "movement": 6
-          },
-          {
-            "country": "US",
-            "name": "United States",
-            "position": 88,
-            "movement": 13
-          },
-          {
-            "country": "KN",
-            "name": "Saint Kitts and Nevis",
-            "position": 154,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "BB",
-            "name": "Barbados",
-            "position": 174,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BM",
-            "name": "Bermuda",
-            "position": 17,
-            "movement": -9
-          },
-          {
-            "country": "US",
-            "name": "United States",
-            "position": 181,
-            "movement": 17
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "US",
-            "name": "United States",
-            "position": 40,
-            "movement": -1
-          }
-        ]
-      },
-      {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "US",
-            "name": "United States",
-            "position": 15,
-            "movement": -3
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/584f40f4d2b62b611a7ab8561b656ff3/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Born in the Wild",
@@ -1717,8 +1623,133 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/66c0e3ff739ce671cee90fea6eb1047c/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "What You Need",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BM",
+            "name": "Bermuda",
+            "position": 3,
+            "movement": 0
+          },
+          {
+            "country": "TC",
+            "name": "Turks and Caicos",
+            "position": 30,
+            "movement": 75
+          },
+          {
+            "country": "BS",
+            "name": "The Bahamas",
+            "position": 68,
+            "movement": 6
+          },
+          {
+            "country": "US",
+            "name": "United States",
+            "position": 94,
+            "movement": -1
+          },
+          {
+            "country": "KN",
+            "name": "Saint Kitts and Nevis",
+            "position": 154,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "BB",
+            "name": "Barbados",
+            "position": 174,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BM",
+            "name": "Bermuda",
+            "position": 21,
+            "movement": -8
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "US",
+            "name": "United States",
+            "position": 40,
+            "movement": -1
+          }
+        ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "US",
+            "name": "United States",
+            "position": 15,
+            "movement": -3
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/584f40f4d2b62b611a7ab8561b656ff3/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Essence",
     "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 8,
+            "movement": 0
+          },
+          {
+            "country": "DM",
+            "name": "Dominica",
+            "position": 24,
+            "movement": 11
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 49,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 125,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 193,
+            "movement": 7
+          }
+        ]
+      },
       {
         "platform": "Apple Music",
         "numberOnes": 0,
@@ -1735,24 +1766,6 @@
             "name": "Kenya",
             "position": 182,
             "movement": -1
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 8,
-            "movement": 1
-          },
-          {
-            "country": "DM",
-            "name": "Dominica",
-            "position": 35,
-            "movement": 0
           }
         ]
       },
@@ -1804,18 +1817,6 @@
             "position": 160,
             "movement": null,
             "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BS",
-            "name": "The Bahamas",
-            "position": 57,
-            "movement": -43
           }
         ]
       }
@@ -1964,6 +1965,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/53e9db9663c87b34723c17bcf9c2a8e8/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Try Me",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 48,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/0989302f2acc1132d8922b3f292abe4b/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Burning",
     "platforms": [
       {
@@ -1973,14 +1994,34 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 51,
-            "movement": -5
+            "position": 52,
+            "movement": -3
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/66c0e3ff739ce671cee90fea6eb1047c/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Mr Rebel",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 72,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/d45215beb1417c79c9868de1f58b80eb/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Fountains",
@@ -2021,25 +2062,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/8e6a8bc36abf9401abf57794db386b13/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Love Me JeJe",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 140,
-            "movement": -79
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/4bfd7acfa6aaa14c1497f19aeb5a0536/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "If Orange Was A Place - EP",
     "platforms": [
       {
@@ -2049,8 +2071,8 @@
           {
             "country": "GD",
             "name": "Grenada",
-            "position": 87,
-            "movement": 0
+            "position": 86,
+            "movement": 1
           }
         ]
       }
