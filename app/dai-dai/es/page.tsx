@@ -7,7 +7,7 @@ import DaiDaiReplayMultiples from "../../components/DaiDaiReplayMultiples";
 import { buildReplayData } from "../../components/daiDaiReplayData";
 import { ES_REPLAY_LABELS } from "../../components/daiDaiReplayLabels";
 import { Leads, NationalTable, RuledLists, type LeadFigure, type NumbersLabels, type RecordRow } from "../../components/DaiDaiNumbers";
-import { RecordBand, SectionHead, Lineup, nationalRow, daiDaiCountries, countryName, topPlaque, plaqueCountries, byVisibleName, plaqueX, thousands } from "../../components/DaiDaiRecord";
+import { RecordBand, SectionHead, Lineup, nationalRow, daiDaiCountries, countryName, topPlaque, plaqueCountries, byVisibleName, thousands } from "../../components/DaiDaiRecord";
 import FaqList from "../../components/FaqList";
 import KeepExploring from "../../components/KeepExploring";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime, BURNA_BOY_REF } from "../../lib/seo";
@@ -26,7 +26,7 @@ import { DAI_DAI_COVER, DAI_DAI_RELEASE_DATE, DAI_DAI_HALFTIME_DATE, DAI_DAI_VID
 import { spotifyImage, spotifySrcSet } from "../../lib/spotifyImage";
 import { daiDaiEsOgId } from "./ogId";
 import LangSwitch from "../LangSwitch";
-import { MULTIPLE_ES, exUsSpan, globalRunSentence, plaqueSentence, storyDayMonth, storyLongDate } from "../../components/daiDaiStoryFacts";
+import { exUsSpan, globalRunSentence, plaqueSentence, storyDayMonth, storyLongDate } from "../../components/daiDaiStoryFacts";
 import { BLANK_PIXEL } from "../../lib/blankPixel";
 import { BURNA_PORTRAIT, SHAKIRA_PORTRAIT } from "../../lib/artistImages";
 
@@ -84,9 +84,6 @@ const halftimeLong = halftime({ day: "numeric", month: "long", year: "numeric" }
 const peakUK = daiDaiCountries.find((e) => e.c === "UK")?.peak;
 // The Global Digital Artist row's points, grouped as this edition writes them.
 const gdaPoints = thousands(BURNA_GLOBAL_DIGITAL_ARTIST_POINTS, ".");
-// Spanish names a plaque's multiple in words ("doble platino"); a multiple the
-// table does not hold falls back to the figure (MULTIPLE_ES, daiDaiStoryFacts).
-const multipleEs = (code: string) => { const x = plaqueX(code); return MULTIPLE_ES[x] ?? `${x}×`; };
 // The plaques, for the fifth lead figure's caption, read from the plaque wall.
 // Spanish prose writes the tier in lower case.
 const certCountries = plaqueCountries();
@@ -368,7 +365,8 @@ export default function DaiDaiPageES() {
     },
     {
       q: "¿Cuántas certificaciones tiene “Dai Dai”?",
-      a: `“Dai Dai” tiene ${daiDaiCertCount} certificaciones: diamante en Francia por la SNEP, ${multipleEs("CA")} platino en Canadá por Music Canada, ${multipleEs("US")} platino (latino) en Estados Unidos por la RIAA, platino en España, Eslovaquia, Portugal, Hungría, Austria, Grecia y Suecia, oro en Colombia, Chequia, Italia, Polonia, Bélgica y Alemania, y plata en el Reino Unido por la BPI.`,
+      // Built from the plaque wall, as chapter 05 is (see the English edition).
+      a: `“Dai Dai” tiene ${daiDaiCertCount} certificaciones: ${plaqueSentence("es")}.`,
     },
     {
       q: "¿Cuándo fue el show de medio tiempo de la Final del Mundial 2026?",

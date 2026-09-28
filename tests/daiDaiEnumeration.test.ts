@@ -39,10 +39,11 @@ const NAMES: Record<string, string[]> = {
   DE: ["Germany", "Alemania"],
 };
 
-/** Files that carry a hand-written enumeration, and the marker that finds one.
- *  The story's chapter 05 left this list on 27 Sep 2026: both editions now
- *  build that sentence from the plaque wall (daiDaiStoryFacts.plaqueSentence),
- *  checked by the last test below. */
+/** The pages that used to carry a hand-written enumeration. The story's
+ *  chapter 05 left this list on 27 Sep 2026, and both FAQ answers on 28 Sep,
+ *  after they kept "Silver in the UK" past the BPI's Gold of 25 Sep: every
+ *  copy is now built from the plaque wall (daiDaiStoryFacts.plaqueSentence),
+ *  checked by the last test below. These pages may not type one again. */
 const SURFACES = [
   "app/dai-dai/page.tsx",
   "app/dai-dai/es/page.tsx",
@@ -62,42 +63,15 @@ describe("the Dai Dai certification sentence names every country", () => {
     expect(cert!.certs.length).toBeGreaterThan(0);
   });
 
-  it("every certified country appears in every enumeration", () => {
-    const codes = [...new Set(cert!.certs.map((c) => c.c))];
-    const missing: string[] = [];
-    const perFile: Record<string, number> = Object.fromEntries(SURFACES.map((f) => [f, 0]));
-    let found = 0;
-
+  it("no page types the enumeration; both FAQ answers build it", () => {
+    // Negative control: the English answer as it shipped until 28 Sep 2026.
+    expect(isEnumeration("“Dai Dai” has 17 certifications: Diamond in France from SNEP, 2× Platinum in Canada")).toBe(true);
     for (const file of SURFACES) {
-      const lines = readFileSync(file, "utf8").split("\n");
-      lines.forEach((line, i) => {
-        if (!isEnumeration(line)) return;
-        found++;
-        perFile[file]++;
-        for (const code of codes) {
-          const names = NAMES[code];
-          if (!names) {
-            missing.push(`${file}:${i + 1} — no prose name known for ${code}; add it to NAMES`);
-            continue;
-          }
-          if (!names.some((n) => line.includes(n))) {
-            missing.push(`${file}:${i + 1} — never names ${code} (${names[0]})`);
-          }
-        }
-      });
+      const src = readFileSync(file, "utf8");
+      const typed = src.split("\n").map((l, i) => [i + 1, l] as const).filter(([, l]) => isEnumeration(l));
+      expect(typed.map(([n]) => `${file}:${n}`), "a typed enumeration is back").toEqual([]);
+      expect(src, file).toMatch(/\$\{plaqueSentence\("(?:en|es)"\)\}/);
     }
-
-    // PER FILE, not in aggregate. The first version asserted `found >= 3` across
-    // all three surfaces — and the Spanish page alone carries three
-    // enumerations, so rewording it past the marker left the total at 3, the
-    // test green, and the Spanish copy (the one that shipped missing acts
-    // before) checked by nothing at all.
-    const silent = Object.entries(perFile)
-      .filter(([, n]) => n === 0)
-      .map(([file]) => `${file} — no enumeration matched; was it reworded past the marker?`);
-    expect(silent, "a surface stopped being checked without failing").toEqual([]);
-    expect(found, "no Dai Dai enumeration matched anywhere").toBeGreaterThanOrEqual(SURFACES.length);
-    expect(missing).toEqual([]);
   });
 
   it("the story's built sentence names every certified country, in both editions", () => {

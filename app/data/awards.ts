@@ -147,8 +147,6 @@ export interface PendingCeremony {
 }
 
 export const pendingResults: PendingCeremony[] = [
-  // Nominations announced 18 Aug 2026; ceremony 27 Sep 2026.
-  { ceremony: "MTV Video Music Awards", year: 2026, date: "2026-09-27", where: "United States" },
   // 28th NRJ Music Awards — nominees published on NRJ's own site 16 Sep 2026;
   // public vote 16 Sep 12:00 to 23 Oct 12:00 (French time); live on TF1.
   { ceremony: "NRJ Music Awards", year: 2026, date: "2026-10-23", where: "Palais des Festivals, Cannes" },
@@ -321,8 +319,12 @@ export const ceremonies: Ceremony[] = [
     noms: [
       { year: 2025, category: "Best Afrobeats", work: "TaTaTa (with Travis Scott)", won: false },
       { year: 2025, category: "Video for Good", work: "Higher", won: false },
-      // Announced 18 Aug 2026; the ceremony is 27 Sep, so both stay won:false
-      // until MTV publishes winners. Note the Best Latin nomination is not a
+      // Announced 18 Aug 2026; ceremony 27 Sep 2026. Resolved 28 Sep: neither
+      // won (Paul, 28 Sep 2026). MTV's own winners pages could not
+      // be read from here — mtv.com redirects UK visitors to mtv.co.uk's home
+      // page and paramountpressexpress.com answers "location-not-allowed" — and
+      // since both rows stay won:false, nothing on the page rests on that read.
+      // Note the Best Latin nomination is not a
       // miscategorisation — "Dai Dai" is a Shakira record as much as his, and
       // MTV placed it in that field. The Afrobeats category was not held this
       // year, which is why neither nomination sits in it.

@@ -281,32 +281,34 @@ describe("Dai Dai: Spanish edition matches the English one", () => {
   });
 });
 
-// The certification-country prose exists in six places (EN stat-line, EN FAQ,
-// EN story band, and the three Spanish equivalents). On 16-17 Aug 2026 the
-// story band was left behind twice in a row: it still listed Hungary as Gold
-// after its Platinum upgrade, and missed Italy's Gold entirely, so the band
-// contradicted the stat-line directly above it. Assert the tier groupings
-// agree across every copy rather than trusting six hand-edits to stay in step.
+// The certification-country prose exists in four places (the EN and ES FAQ
+// answers and the story's chapter 05 in each edition). Hand-edited, the copies
+// drifted: on 16-17 Aug 2026 the story band still listed Hungary as Gold after
+// its Platinum upgrade and missed Italy's Gold, and on 28 Sep 2026 both FAQ
+// answers still said the UK was Silver three days after the BPI's Gold. Every
+// copy is now built from the plaque wall (daiDaiStoryFacts' plaqueSentence), so
+// assert that no copy types the list again and that the list reads right.
 describe("Dai Dai certification prose stays consistent across all copies", () => {
-  // The story's chapter 05 is built from the plaque wall since 27 Sep 2026
-  // (daiDaiStoryFacts), so its copy is the sentence it prints, not its source.
-  const en = [read("app/dai-dai/page.tsx"), plaqueSentence("en")].join("\n");
-  const goldLists = [...en.matchAll(/Gold in ([^.]*?), and Silver/g)].map((m) => m[1]);
+  const goldList = plaqueSentence("en").match(/Gold in (.*?)(?:, and Silver in .*)?$/)?.[1] ?? "";
+  const typedList = /\b(?:Diamond|Platinum|Gold|Silver) in (?:the )?[A-Z]|\b(?:diamante|platino|oro|plata) en [A-Z]/;
 
-  it("finds a Gold list in every English copy", () => {
-    // Two since 26 Sep 2026: the FAQ answer and the story's chapter 05. The
-    // third, the certifications card's label, became a lead figure whose
-    // caption reads its top plaque from the data ("Certifications, in 17
-    // countries — Diamond in France") rather than typing the list again.
-    expect(goldLists.length).toBeGreaterThanOrEqual(2);
+  it("builds both FAQ answers from the plaque wall, never a typed list", () => {
+    expect(EN).toMatch(/certifications: \$\{plaqueSentence\("en"\)\}/);
+    expect(ES).toMatch(/certificaciones: \$\{plaqueSentence\("es"\)\}/);
+    // Negative control: the answers as they shipped until 28 Sep 2026.
+    expect(typedList.test("Gold in Colombia, the Czech Republic, Italy, Poland, Belgium and Germany, and Silver in the UK from the BPI.")).toBe(true);
+    expect(typedList.test("oro en Colombia, Chequia, Italia, Polonia, Bélgica y Alemania, y plata en el Reino Unido por la BPI.")).toBe(true);
+    expect(EN).not.toMatch(typedList);
+    expect(ES).not.toMatch(typedList);
   });
 
   it("never lists Hungary among the Golds — it is Platinum", () => {
-    for (const list of goldLists) expect(list).not.toMatch(/Hungary/);
+    expect(goldList).not.toMatch(/Hungary/);
   });
 
-  it("lists Italy among the Golds in every English copy", () => {
-    for (const list of goldLists) expect(list).toMatch(/Italy/);
+  it("lists Italy and the UK among the Golds", () => {
+    expect(goldList).toMatch(/Italy/);
+    expect(goldList).toMatch(/the UK$/);
   });
 });
 

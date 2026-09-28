@@ -197,7 +197,7 @@ export const singles: Release[] = [
     // SHAKIRA & BURNA BOY | SONY MUSIC LATIN / SONY MUSIC ENTERTAINMENT | Diamant",
     // date de constat 27/08/2026, three months from release. One plaque per title
     // per country at its CURRENT tier, so the Diamond replaces the Platinum.
-    { c: "CO", level: "Gold", body: "Sony Music Colombia" }, { c: "ES", level: "Platinum" }, { c: "FR", level: "Diamond" }, { c: "HU", level: "Platinum" }, { c: "SK", level: "Platinum" }, { c: "PT", level: "Platinum" }, { c: "GR", level: "Platinum" }, { c: "UK", level: "Silver" }, { c: "CZ", level: "Gold" }, { c: "IT", level: "Gold" },
+    { c: "CO", level: "Gold", body: "Sony Music Colombia" }, { c: "ES", level: "Platinum" }, { c: "FR", level: "Diamond" }, { c: "HU", level: "Platinum" }, { c: "SK", level: "Platinum" }, { c: "PT", level: "Platinum" }, { c: "GR", level: "Platinum" }, { c: "CZ", level: "Gold" }, { c: "IT", level: "Gold" },
     // PL read in ZPAV's own award register via olis.pl's API (category 3 =
     // "oficjalna lista wyróżnień", subcategory 6 = "złote płyty"): title "Dai Dai",
     // artist "Shakira, Burna Boy", contractor Sony Music Entertainment, format
@@ -229,6 +229,14 @@ export const singles: Release[] = [
     // Germany GmbH | Epic" — one row, and the credit matches. A German single's
     // Gold is 300,000 units since 30 June 2023.
     { c: "DE", level: "Gold" },
+    // UK upgraded Silver -> Gold, read off the BPI register's own award card
+    // (Paul's screenshot, 28 Sep 2026, of the card as @BurnaBoyStats posted it):
+    // "SHAKIRA & BURNA BOY | DAI DAI | Format Single | ATLANTIC/SONY MUSIC CG |
+    // Latest Certification 25.09.2026 | Released 15.05.2026 | Award Gold". The
+    // register's robots.txt bars all bots, so UK plaques are read by hand.
+    // One plaque per title per country at its CURRENT tier; moved to the end of
+    // the list with the upgrade, as the newest award.
+    { c: "UK", level: "Gold" },
   ] },
   { title: "Last Last", year: 2022, certs: [
     { c: "CA", level: "Platinum", x: 4 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum", x: 2 },
@@ -905,6 +913,9 @@ export const certHistory: CertEvent[] = [
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "PT", level: "Platinum", year: 2026 },
   // Announced by the BRIT Awards' own account (#BRITcertified), 7 Aug 2026.
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "UK", level: "Silver", year: 2026 },
+  // Silver -> Gold on the BPI register's award card, "Latest Certification
+  // 25.09.2026" (see the release row). The Silver above stays: this log appends.
+  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "UK", level: "Gold", year: 2026, date: "2026-09-25" },
   // 225th: gold badge ("Zlatý singl") on ČNS IFPI's own Singles Digital Top 100,
   // week 32/2026. The row prints no count; 2.5M subscription streams is the Gold
   // threshold in ČNS IFPI's rules (Platinum 5M). Re-read 16 Sep 2026, week
@@ -1043,7 +1054,7 @@ export const intlCertHistory = certHistory.filter((e) => e.country !== "NG");
 /** The most recent day a certifying body's own register was read for this
  *  file. Printed on the page's sources line in place of a typed "as of" month
  *  — bump it on every body read, in the same edit as the row it changes. */
-export const CERTS_VERIFIED_ON = "2026-09-23";
+export const CERTS_VERIFIED_ON = "2026-09-28";
 
 /** "Dai Dai" Platinum plaques beyond the US Latin 2× — the "Platinum in N more"
  *  rail note on the story and its Spanish twin, counted rather than typed after
