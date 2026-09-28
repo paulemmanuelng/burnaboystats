@@ -464,7 +464,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Wizkid",
     path: "/afrobeats/wizkid",
     section: "Afrobeats",
-    description: "Wizkid's 158 certifications across 21 countries and his official chart peaks, verified at source.",
+    description: "Wizkid's 159 certifications across 21 countries and his official chart peaks, verified at source.",
     keywords: ["wizkid", "wizzy", "star boy", "starboy", "ayodeji balogun", "big wiz", "made in lagos", "wizkid certifications", "wizkid plaques", "wizkid awards"],
   },
   {

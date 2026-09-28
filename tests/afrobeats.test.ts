@@ -35,7 +35,7 @@ const EXPECTED = {
   asake: { total: 80, diamond: 0 },
   "omah-lay": { total: 62, diamond: 2 }, // + "understand" 🇵🇹 Ouro, AFP March 2026 card
   "seyi-vibez": { total: 102, diamond: 0 },
-  wizkid: { total: 158, diamond: 6 }, // 23 Sep 2026: + "Boom" 🇩🇰 Platin ⚠ (IFPI Danmark truncates the credit; Paul's ruling); 28 Sep 2026: + "Glow in the Dark" 🇬🇧 Silver (BPI, 04.09.2026), read by the owner on the register
+  wizkid: { total: 159, diamond: 6 }, // 23 Sep 2026: + "Boom" 🇩🇰 Platin ⚠ (IFPI Danmark truncates the credit; Paul's ruling); 28 Sep 2026: + "Glow in the Dark" 🇬🇧 Silver (BPI, 04.09.2026), read by the owner on the register; + "System" (Dave ft. Wizkid) 🇬🇧 Gold (BPI, 04.10.2024, filed under DAVE alone — Paul's ruling, as with "Boom")
   victony: { total: 24, diamond: 0 }, // + "Soweto" 🇫🇷 Or, SNEP constat 27 Aug 2026
   "fireboy-dml": { total: 36, diamond: 1 },
   davido: { total: 91, diamond: 0 },
