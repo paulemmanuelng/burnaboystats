@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-28";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-28T14:02Z";
+  export const liveChartsBuiltAt = "2026-09-28T23:20Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Shazam","YouTube","iTunes"];
@@ -81,8 +81,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 137,
-            "movement": -22
+            "position": 148,
+            "movement": -25
           }
         ]
       },
@@ -113,7 +113,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 4,
+            "position": 7,
             "movement": null,
             "status": "new"
           }
@@ -152,34 +152,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 178,
-            "movement": 4
+            "position": 183,
+            "movement": 3
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/556df097d6c975617e593855e293e4e7/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Terminator",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "MY",
-            "name": "Malaysia",
-            "position": 135,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/0590e128a31db47aa37fedc0b72b4c39/500x500-000000-80-0-0.jpg"
   }
 ];
   

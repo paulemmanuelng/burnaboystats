@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-28";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-28T14:02Z";
+  export const liveChartsBuiltAt = "2026-09-28T23:20Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","iTunes"];
@@ -56,27 +56,20 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 37,
-            "movement": 6
+            "position": 38,
+            "movement": 5
           },
           {
             "country": "CV",
             "name": "Cape Verde",
             "position": 38,
-            "movement": 0
+            "movement": 6
           },
           {
             "country": "GM",
             "name": "Gambia",
             "position": 62,
             "movement": 1
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 98,
-            "movement": null,
-            "status": "new"
           }
         ]
       },
@@ -87,8 +80,8 @@
           {
             "country": "PG",
             "name": "Papua New Guinea",
-            "position": 86,
-            "movement": 58
+            "position": 187,
+            "movement": -101
           }
         ]
       }
@@ -106,34 +99,14 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 64,
-            "movement": -8
+            "position": 72,
+            "movement": -12
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/cbbac06ed3061e624e2856a82917a7c5/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "DKT",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SB",
-            "name": "Solomon Islands",
-            "position": 157,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/736bc83960f36a6abbafd16418af709d/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "ON YOU",
@@ -164,8 +137,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 127,
-            "movement": 15
+            "position": 138,
+            "movement": -11
           }
         ]
       }

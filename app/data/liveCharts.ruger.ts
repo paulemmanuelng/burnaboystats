@@ -40,68 +40,12 @@
   export const liveChartsUpdated = "2026-09-28";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-28T14:02Z";
+  export const liveChartsBuiltAt = "2026-09-28T23:20Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","Spotify Albums","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
-  {
-    "title": "The Second Wave",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "PG",
-            "name": "Papua New Guinea",
-            "position": 35,
-            "movement": -20
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 155,
-            "movement": -50
-          },
-          {
-            "country": "TZ",
-            "name": "Tanzania",
-            "position": 165,
-            "movement": -1
-          },
-          {
-            "country": "MR",
-            "name": "Mauritania",
-            "position": 182,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 195,
-            "movement": -82
-          }
-        ]
-      },
-      {
-        "platform": "Spotify Albums",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 50,
-            "movement": -5
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b42b9963b567481843c14d0f3991639c/500x500-000000-80-0-0.jpg"
-  },
   {
     "title": "Girlfriend",
     "platforms": [
@@ -112,20 +56,27 @@
           {
             "country": "FJ",
             "name": "Fiji",
-            "position": 44,
-            "movement": 9
+            "position": 65,
+            "movement": -21
           },
           {
             "country": "PG",
             "name": "Papua New Guinea",
-            "position": 64,
-            "movement": 13
+            "position": 108,
+            "movement": -44
           },
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 100,
-            "movement": 13
+            "position": 146,
+            "movement": -46
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 162,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -136,9 +87,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 18,
-            "movement": null,
-            "status": "new"
+            "position": 31,
+            "movement": -25
           }
         ]
       },
@@ -166,28 +116,28 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 94,
-            "movement": 24
-          },
-          {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 94,
-            "movement": -24
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 115,
-            "movement": 2
+            "position": 57,
+            "movement": 37
           },
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 169,
-            "movement": -35
+            "position": 106,
+            "movement": 63
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 117,
+            "movement": -23
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 119,
+            "movement": -4
           }
         ]
       },
@@ -198,9 +148,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 189,
-            "movement": null,
-            "status": "new"
+            "position": 199,
+            "movement": -10
           }
         ]
       }
@@ -218,21 +167,28 @@
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 123,
-            "movement": -41
+            "position": 131,
+            "movement": -8
           },
           {
-            "country": "GD",
-            "name": "Grenada",
-            "position": 152,
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 144,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 145,
             "movement": null,
             "status": "new"
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 161,
-            "movement": 6
+            "position": 177,
+            "movement": -16
           }
         ]
       },
@@ -253,6 +209,49 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/78b014342472081dff80a8cafe54b8ca/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "The Second Wave",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "PG",
+            "name": "Papua New Guinea",
+            "position": 68,
+            "movement": -33
+          },
+          {
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 126,
+            "movement": 39
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 151,
+            "movement": 4
+          }
+        ]
+      },
+      {
+        "platform": "Spotify Albums",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 50,
+            "movement": -5
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b42b9963b567481843c14d0f3991639c/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "RnB",
     "platforms": [
       {
@@ -262,27 +261,21 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 70,
-            "movement": 6
-          },
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 155,
-            "movement": null,
-            "status": "new"
+            "position": 74,
+            "movement": -4
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 171,
-            "movement": -5
+            "position": 159,
+            "movement": 12
           },
           {
-            "country": "NE",
-            "name": "Niger",
-            "position": 193,
-            "movement": -42
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 166,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -300,9 +293,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 176,
-            "movement": null,
-            "status": "new"
+            "position": 157,
+            "movement": 19
           }
         ]
       },
@@ -332,8 +324,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 147,
-            "movement": 30
+            "position": 173,
+            "movement": -26
           }
         ]
       }
@@ -342,16 +334,16 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/78b014342472081dff80a8cafe54b8ca/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Bounce",
+    "title": "Tour",
     "platforms": [
       {
-        "platform": "Spotify",
+        "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 180,
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 130,
             "movement": null,
             "status": "new"
           }
@@ -359,7 +351,7 @@
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/47ff5c26da8186dd164697a1371d48eb/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/78b014342472081dff80a8cafe54b8ca/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Ilashe",
@@ -371,8 +363,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 195,
-            "movement": -2
+            "position": 193,
+            "movement": 2
           }
         ]
       }
@@ -407,9 +399,9 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "PG",
-            "name": "Papua New Guinea",
-            "position": 81,
+            "country": "SB",
+            "name": "Solomon Islands",
+            "position": 39,
             "movement": null,
             "status": "new"
           }
@@ -429,33 +421,14 @@
           {
             "country": "LR",
             "name": "Liberia",
-            "position": 140,
-            "movement": -71
+            "position": 181,
+            "movement": -41
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/78b014342472081dff80a8cafe54b8ca/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "PANDEMIC - EP",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 147,
-            "movement": -90
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/47ff5c26da8186dd164697a1371d48eb/500x500-000000-80-0-0.jpg"
   }
 ];
   
