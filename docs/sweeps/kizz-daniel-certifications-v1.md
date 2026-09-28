@@ -14,11 +14,11 @@ Daniel Oluwatobiloba Anidugbe, Nigeria. He was billed **"Kiss Daniel"** until
 about 2018, so every register was searched under both names. No register holds
 a single row under the old spelling.
 
-## Total: **35 certifications**
+## Total: **36 certifications**
 
-**Country split:** NG + US = 34 + 1 = **35** ✓
+**Country split:** NG + US + UK = 34 + 1 + 1 = **36** ✓
 
-**Tier split:** Platinum + Gold + Silver = 20 + 8 + 7 = **35** ✓ (the eight Golds are seven Nigerian and one American)
+**Tier split:** Platinum + Gold + Silver = 20 + 8 + 8 = **36** ✓ (the eight Golds are seven Nigerian and one American; the British plaque is *Buga*'s Silver)
 
 All 35 are **singles**. No register holds an album or EP of his: TCSN files
 every row as a single, and no other register names him on any long-form title.
@@ -104,11 +104,12 @@ artist.
 
 ## International
 
-**One.** RIAA (US), standard programme:
+**Two**, both *Buga*: RIAA (US), standard programme, and the BPI (UK):
 
 | Country | Body | Title | Tier | Date | Credit as printed | Mark |
 |---|---|---|---|---|---|---|
 | 🇺🇸 US | RIAA | Buga (Lo Lo Lo) | Gold | 07.11.2025 | `KIZZ DANIEL, TEKNO` | ✓ |
+| 🇬🇧 UK | BPI | Buga | Silver | 18.09.2026 | `KIZZ DANIEL & TEKNO` | ✓ |
 
 Award **444596**, badge `DI level 0` ("Gold"), format SINGLE, label FLYBOY INC /
 EMPIRE. The award history (`load_detail_from_recent_timeline&id=444596`) reads
@@ -204,8 +205,13 @@ not a re-verification of the page.
 
 ## Gaps — never to be read as zeros
 
-- **BPI (UK)** — `certified-awards.bpi.co.uk/robots.txt` disallows every agent.
-  Not requested by any route. By hand, below.
+- **BPI (UK)** — `certified-awards.bpi.co.uk/robots.txt` disallows every agent,
+  so no agent requests it. On 28 Sep 2026 the owner searched `Buga` on the register
+  in his own browser; the one card on his screen read `KIZZ DANIEL & TEKNO | BUGA |
+  Single | FLYBOY INC/EMPIRE | Award: Silver | Latest Certification 18.09.2026`
+  (added above). On 26 Sep the same search had returned nothing: BuzzJack's copy of
+  the BPI's 18 Sep list printed the Silver before the register showed it.
+  `Kizz Daniel`, `Cough` and `Twe Twe` were not searched.
 - **ARIA (Australia)** — the accreditation lists are a Dropbox folder whose
   `/sh/` and `/scl/` paths robots.txt blocks, and this machine's local copies were
   lost on the 24 Sep reboot. By hand, below.
@@ -241,7 +247,7 @@ outside Nigeria (*Buga*, RIAA Gold), his other biggest Nigerian plaques (*Cough
 
 | Country | Where | Type exactly | Why |
 |---|---|---|---|
-| 🇬🇧 UK | bpi.co.uk → BRIT Certified search | `Kizz Daniel`, then `Buga`, `Cough`, `Twe Twe`; then artist `Major Lazer` and read for `Loyal` | Buga is RIAA Gold; BPI may file it as `KIZZ DANIEL & TEKNO` or `KIZZ DANIEL FT TEKNO` |
+| 🇬🇧 UK | bpi.co.uk → BRIT Certified search | (`Buga` searched 28 Sep 2026: Silver) `Kizz Daniel`, then `Cough`, `Twe Twe`; then artist `Major Lazer` and read for `Loyal` | Buga is RIAA Gold; BPI may file it as `KIZZ DANIEL & TEKNO` or `KIZZ DANIEL FT TEKNO` |
 | 🇮🇹 Italy | fimi.it → Certificazioni | `Kizz Daniel`, then title `Buga` | lowest odds; a completeness check |
 | 🇿🇦 South Africa | risa.org.za → Certifications | `Kizz Daniel`, `Kiss Daniel`, then `Buga`, `Cough`, `Twe Twe`, `Ghetto` | *Ghetto* (Kizz Daniel feat. Nasty C) features a South African act |
 | 🇦🇺 Australia | aria.com.au/accreditations → the Dropbox folder, 2022–2026 singles and albums lists | `KIZZ DANIEL`, `BUGA`, `COUGH` | Paul can download the folder himself for the next pass to read |
@@ -256,4 +262,8 @@ outside Nigeria (*Buga*, RIAA Gold), his other biggest Nigerian plaques (*Cough
   programme, so no `body` is needed. The register link already exists
   (`COUNTRIES.US`, riaa.com/gold-platinum).
 
-No new country, threshold row or register link is needed.
+- **UK** — `CERT_THRESHOLDS.UK` prices a single Silver at 200,000, so *Buga*'s
+  Silver is counted. The register link already exists (`COUNTRIES.UK`,
+  certified-awards.bpi.co.uk).
+
+No new threshold row or register link is needed.

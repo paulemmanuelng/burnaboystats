@@ -464,7 +464,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Wizkid",
     path: "/afrobeats/wizkid",
     section: "Afrobeats",
-    description: "Wizkid's 157 certifications across 21 countries and his official chart peaks, verified at source.",
+    description: "Wizkid's 158 certifications across 21 countries and his official chart peaks, verified at source.",
     keywords: ["wizkid", "wizzy", "star boy", "starboy", "ayodeji balogun", "big wiz", "made in lagos", "wizkid certifications", "wizkid plaques", "wizkid awards"],
   },
   {
@@ -737,7 +737,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Kizz Daniel — Certifications",
     path: "/afrobeats/kizz-daniel",
     section: "Afrobeats",
-    description: "35 certifications across 2 countries and 55 official chart entries, verified at source.",
+    description: "36 certifications across 3 countries and 55 official chart entries, verified at source.",
     keywords: ["kizz daniel", "kiss daniel", "daniel oluwatobiloba anidugbe", "buga", "cough odo", "twe twe", "kizz daniel certifications"],
   },
   {

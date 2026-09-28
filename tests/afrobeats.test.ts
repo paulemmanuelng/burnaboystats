@@ -35,7 +35,7 @@ const EXPECTED = {
   asake: { total: 80, diamond: 0 },
   "omah-lay": { total: 62, diamond: 2 }, // + "understand" 🇵🇹 Ouro, AFP March 2026 card
   "seyi-vibez": { total: 102, diamond: 0 },
-  wizkid: { total: 157, diamond: 6 }, // 23 Sep 2026: + "Boom" 🇩🇰 Platin ⚠ (IFPI Danmark truncates the credit; Paul's ruling)
+  wizkid: { total: 158, diamond: 6 }, // 23 Sep 2026: + "Boom" 🇩🇰 Platin ⚠ (IFPI Danmark truncates the credit; Paul's ruling); 28 Sep 2026: + "Glow in the Dark" 🇬🇧 Silver (BPI, 04.09.2026), read by the owner on the register
   victony: { total: 24, diamond: 0 }, // + "Soweto" 🇫🇷 Or, SNEP constat 27 Aug 2026
   "fireboy-dml": { total: 36, diamond: 1 },
   davido: { total: 91, diamond: 0 },
@@ -53,7 +53,7 @@ const EXPECTED = {
   // Joined 25 Sep 2026 (verified 24–25 Sep). Oxlade's one Diamond is France's
   // "Ku Lo Sa"; the other three hold none. Oxlade 13 -> 14 on 25 Sep 2026: "Ku Lo
   // Sa" UK Platinum (BPI, 06.02.2026), read by the owner on the register.
-  "kizz-daniel": { total: 35, diamond: 0 },
+  "kizz-daniel": { total: 36, diamond: 0 }, // 35 -> 36: "Buga" UK Silver (BPI, 18.09.2026), read by the owner on the register 28 Sep 2026
   ruger: { total: 19, diamond: 0 }, // 18 -> 19: "Asiwaju" UK Silver (BPI, 08.11.2024), read by the owner on the register 25 Sep 2026
   oxlade: { total: 15, diamond: 1 }, // 14 -> 15: "Ku Lo Sa" 🇵🇹 Ouro, Gal. "OU" in AFP's 2022 annual TOP (Streaming #544, Singles + EPs #527), read 26 Sep 2026 from the owner's download
   "tiwa-savage": { total: 12, diamond: 0 },
