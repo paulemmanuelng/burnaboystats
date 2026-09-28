@@ -9,6 +9,7 @@ import {
   hot100StillChartingLine,
 } from "./hot100Weeks";
 import { count, cardinalWord } from "../lib/plural";
+import { DAI_DAI_2026_MOST_NO1_THROUGH_LONG } from "./daiDaiNo1Claim";
 
 // His peak Spotify monthly listeners, in one place. The note under the
 // leaderboard used to spell the milestone out ("past 56 million") while the
@@ -427,11 +428,11 @@ export const statBoxes: LeaderboardBox[] = [
       { name: "Tems", sub: "🇳🇬 Nigeria", value: "8" },
       { name: "Tyla", sub: "🇿🇦 South Africa · tied", value: "6" },
       { name: "Rema", sub: "🇳🇬 Nigeria · tied", value: "6" },
-      { name: "CKay", sub: "🇳🇬 Nigeria", value: "4" },
+      { name: "CKay & Seether", sub: "🇳🇬 Nigeria · 🇿🇦 South Africa · tied", value: "4" },
     ],
     note: "Burna Boy has the most songs past 200 million Spotify streams of any African artist — 15, well clear of the field. He owns the 300M tier too, and is now nine deep in it: “Dai Dai” crossed in August 2026 as his eighth, and Gunna’s “wgft” became the ninth on 1 September. The next-deepest is Tyla with six, then Tems with five. Counts include lead and featured credits, and separate song versions are counted individually (as trackers list them).",
     source:
-      "Songs with 200M+ Spotify streams (all credits), counted from kworb.net stream totals, read 16 September 2026 — figures shift as songs cross the threshold. CKay’s fourth is the North African remix of “love nwantiti” (204M), a separate version the rule above counts on its own; Tyla’s sixth is WizTheMc’s “Show Me Love (with Tyla)”.",
+      "Songs with 200M+ Spotify streams (all credits), counted from kworb.net stream totals, read 28 September 2026 — figures shift as songs cross the threshold. CKay’s fourth is the North African remix of “love nwantiti” (204M), a separate version the rule above counts on its own; Tyla’s sixth is WizTheMc’s “Show Me Love (with Tyla)”. Seether’s four are “Fake It”, “Remedy”, “Fine Again” and their “Careless Whisper” (205M).",
   },
   {
     id: "most-followed-spotify",
@@ -453,7 +454,7 @@ export const statBoxes: LeaderboardBox[] = [
       { name: "Rema & Tyla", sub: "🇳🇬🇿🇦 “Calm Down” (Remix) / “Water” & “Chanel” · tied", value: "#8" },
       { name: "CKay", sub: "🇳🇬 “love nwantiti (ah ah ah)”", value: "#9" },
     ],
-    note: "Burna Boy is the first and only African artist to reach No. 1 on Spotify's Global Daily Top Songs chart — no other African artist has ever cracked the top 4. “Dai Dai” has now held that No. 1 for 37 days in total — the most days at No. 1 by any song in 2026.",
+    note: `Burna Boy is the first and only African artist to reach No. 1 on Spotify's Global Daily Top Songs chart — no other African artist has ever cracked the top 4. “Dai Dai” has now held that No. 1 for 37 days in total — the most days at No. 1 by any song in 2026 through the chart dated ${DAI_DAI_2026_MOST_NO1_THROUGH_LONG}.`,
     source:
       "Peak positions on Spotify's Daily Top Songs Global chart, each artist's best-charting song across all credits, from chart-tracking accounts. As of August 2026.",
   },
