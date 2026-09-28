@@ -339,6 +339,17 @@ export const AFROBEATS_VERIFIED_ON_13 = "2026-09-25";
  *  day is not printed. docs/sweeps/oxlade-certifications-v1.md, Portugal. */
 export const AFROBEATS_VERIFIED_ON_14 = "2026-09-26";
 
+/** Kizz Daniel and Wizkid, each re-read at the BPI on 28 Sep 2026 and each
+ *  gaining the plaque that read found — the same rule as ON_13. The owner
+ *  searched the register in his own browser and the cards on his screen read
+ *  "KIZZ DANIEL & TEKNO | BUGA | Single | FLYBOY INC/EMPIRE | Silver | Latest
+ *  Certification 18.09.2026" and "SKEPTA FT LAY-Z & WIZKID | GLOW IN THE DARK |
+ *  Single | BOY BETTER KNOW | Silver | Latest Certification 04.09.2026 |
+ *  Released 31.05.2019". Both were the leads BuzzJack's copies of the BPI lists
+ *  printed and the register did not yet show on 26 Sep.
+ *  docs/sweeps/{kizz-daniel,wizkid}-certifications-v1.md. */
+export const AFROBEATS_VERIFIED_ON_15 = "2026-09-28";
+
 export const afrobeatsArtists: AfroArtist[] = [
   {
     slug: "olamide",
@@ -775,7 +786,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     spotifyId: "3tVQdUvClmAT7URs9V3rsp",
     wikipedia: "https://en.wikipedia.org/wiki/Wizkid",
     image: "https://i.scdn.co/image/ab6761610000e5ebe6ef803356b45ee5a9fa7a8a",
-    verifiedOn: AFROBEATS_VERIFIED_ON_10,
+    verifiedOn: AFROBEATS_VERIFIED_ON_15,
     swept: true,
     chartPublished: { entries: 237, territories: 32, no1s: 25 },
     releases: [
@@ -846,6 +857,9 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "G Love", kind: "Featured appearances", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/9e/a9/4e/9ea94e1e-4660-1d37-6296-389df09e4085/888915614945_cover.jpg/300x300bb.jpg", certs: [{ c: "UK", level: "Gold" }] },
       { title: "Mamacita", kind: "Featured appearances", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/d7/33/bb/d733bb70-e88f-cd73-2466-f8867f1e522b/0235.jpg/300x300bb.jpg", certs: [{ c: "UK", level: "Silver" }] },
       { title: "I Like", kind: "Featured appearances", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/e0/b5/1f/e0b51fd9-77ff-5696-26c7-f2a47cd7d9d0/190295392284.jpg/300x300bb.jpg", certs: [{ c: "UK", level: "Silver" }] },
+      // BPI, read by the owner on the register 28 Sep 2026: "SKEPTA FT LAY-Z & WIZKID |
+      // GLOW IN THE DARK | Single | BOY BETTER KNOW | Silver | 04.09.2026" (see ON_15).
+      { title: "Glow in the Dark", kind: "Featured appearances", certs: [{ c: "UK", level: "Silver" }] },
       // DK Platinum, 23 Sep 2026 — carries the ⚠ that Rema's "Secondhand" CA Gold
       // carried until Music Canada's 25 Sep 2026 Platinum row printed "Secondhand
       // (feat. Rema)" (docs/sweeps/wizkid-certifications-v1.md): IFPI Danmark's own row
@@ -2335,13 +2349,13 @@ export const afrobeatsArtists: AfroArtist[] = [
     spotifyId: "1X6cBGnXpEpN7CmflLKmLV",
     wikipedia: "https://en.wikipedia.org/wiki/Kizz_Daniel",
     image: "https://i.scdn.co/image/ab6761610000e5ebac3bab90f4cb7b14f36ea00c",
-    verifiedOn: AFROBEATS_VERIFIED_ON_11,
+    verifiedOn: AFROBEATS_VERIFIED_ON_15,
     swept: true,
     chartPublished: { entries: 55, territories: 3, no1s: 10 },
     releases: [
       { title: "Twe Twe", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/f0a8912bba25b958294948c435c99a8a/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 5 }] },
       { title: "Gwagwalada", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/7f89da381e2508e30a82f7dc2d18287f/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 5 }] },
-      { title: "Buga (Lo Lo Lo)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/2ed4231dd65e7727d82ba06f7d05e44f/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 4 }, { c: "US", level: "Gold" }] },
+      { title: "Buga (Lo Lo Lo)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/2ed4231dd65e7727d82ba06f7d05e44f/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 4 }, { c: "US", level: "Gold" }, { c: "UK", level: "Silver" }] },
       { title: "Cough (Odo)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/9176335c8808dce1c372cdd55a035706/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 4 }] },
       { title: "Lie", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/54c83ae08920953b2766cdec3138586c/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 3 }] },
       { title: "Lost", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/56b7e22a5fd90249012da4aa0e45f60d/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 3 }] },
