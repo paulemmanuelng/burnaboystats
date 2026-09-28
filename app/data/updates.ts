@@ -53,6 +53,17 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-09-28",
+    category: "Streaming",
+    // ChartMasters' Playcounts Tool, "Streams updated through September 27,
+    // 2026": catalogue total 11,100,344,672, less the site's 2025 close of
+    // 9,199,552,674 (the same arithmetic as the 24 Sep ledger anchor). Its day 27
+    // is kworb's 28 Sep stamp, so the board's own ledger reaches the same figure
+    // when kworb posts that day.
+    text: "Past 1.9 billion Spotify streams in 2026: Burna Boy's catalogue stands at 1,900,791,998 for the year through 27 September, by ChartMasters' playcounts less his 2025 close — still the most-streamed African artist of 2026.",
+    href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-09-28",
     category: "Certifications",
     big: true,
     // Promusicae's own award register: "DAI DAI | SHAKIRA / BURNA BOY | 2 ×
