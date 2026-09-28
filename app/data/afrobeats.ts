@@ -346,7 +346,9 @@ export const AFROBEATS_VERIFIED_ON_14 = "2026-09-26";
  *  Certification 18.09.2026" and "SKEPTA FT LAY-Z & WIZKID | GLOW IN THE DARK |
  *  Single | BOY BETTER KNOW | Silver | Latest Certification 04.09.2026 |
  *  Released 31.05.2019". Both were the leads BuzzJack's copies of the BPI lists
- *  printed and the register did not yet show on 26 Sep.
+ *  printed and the register did not yet show on 26 Sep. The same evening the
+ *  owner's own search found Wizkid's "System" (Dave ft. Wizkid) Gold, 04.10.2024,
+ *  filed under "DAVE" alone.
  *  docs/sweeps/{kizz-daniel,wizkid}-certifications-v1.md. */
 export const AFROBEATS_VERIFIED_ON_15 = "2026-09-28";
 
@@ -860,6 +862,14 @@ export const afrobeatsArtists: AfroArtist[] = [
       // BPI, read by the owner on the register 28 Sep 2026: "SKEPTA FT LAY-Z & WIZKID |
       // GLOW IN THE DARK | Single | BOY BETTER KNOW | Silver | 04.09.2026" (see ON_15).
       { title: "Glow in the Dark", kind: "Featured appearances", certs: [{ c: "UK", level: "Silver" }] },
+      // BPI, read by the owner on the register 28 Sep 2026 (his own browser): "DAVE |
+      // SYSTEM | Single | DAVE NEIGHBOURHOOD | Gold | Latest Certification 04.10.2024 |
+      // Released 23.07.2021". The BPI files it under the lead act alone, which is
+      // why the 12 Aug BPI sweep (searched by "Wizkid") never saw it. Counted on
+      // Paul's ruling of 28 Sep 2026, as with "Boom": one recording — Dave's
+      // "System (feat. WizKid)", the only release of the title — and Wizkid is on
+      // it; his charts row below carries the same record.
+      { title: "System", kind: "Featured appearances", certs: [{ c: "UK", level: "Gold" }] },
       // DK Platinum, 23 Sep 2026 — carries the ⚠ that Rema's "Secondhand" CA Gold
       // carried until Music Canada's 25 Sep 2026 Platinum row printed "Secondhand
       // (feat. Rema)" (docs/sweeps/wizkid-certifications-v1.md): IFPI Danmark's own row
