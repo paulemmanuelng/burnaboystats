@@ -95,10 +95,15 @@ describe("certHistory (certifications by year)", () => {
   // for its siblings, it should record one here too.
   it("keeps both rows for every Dai Dai Gold→Platinum upgrade", () => {
     const dd = certHistory.filter((e) => e.title === "Dai Dai" && e.year === 2026);
-    for (const country of ["ES", "SK", "PT", "HU"]) {
+    for (const country of ["SK", "PT", "HU"]) {
       const levels = dd.filter((e) => e.country === country).map((e) => e.level);
       expect(levels, `${country} should log Gold then Platinum`).toEqual(["Gold", "Platinum"]);
     }
+    // Spain went on to 2× Platinum (Promusicae, 2026 week 39, read 28 Sep):
+    // three rows, one plaque — the Gold, the Platino and the double.
+    expect(
+      dd.filter((e) => e.country === "ES").map((e) => `${e.x ?? 1}× ${e.level}`),
+    ).toEqual(["1× Gold", "1× Platinum", "2× Platinum"]);
     // France went further: SNEP upgraded it again to Diamant on 31 Aug 2026 at
     // 50 million equivalent streams. Three rows, one plaque, same append rule.
     expect(dd.filter((e) => e.country === "FR").map((e) => e.level)).toEqual([
@@ -106,12 +111,12 @@ describe("certHistory (certifications by year)", () => {
     ]);
   });
 
-  it("2026 logs 65 international certifications (83 events with Nigeria)", () => {
+  it("2026 logs 66 international certifications (84 events with Nigeria)", () => {
     // The by-year log is international-only: earlier years predate the TCSN
     // register, so Nigeria's 18 events (8 until the 23 Sep 2026 sweep added ten) would skew the comparison. They still
     // count in the totals. The log counts award EVENTS, so a Gold and a later
     // Platinum in the same country are two.
-    expect(intlCertHistory.filter((e) => e.year === 2026).length).toBe(65);
+    expect(intlCertHistory.filter((e) => e.year === 2026).length).toBe(66);
     // 54th and 55th: the French Diamant upgrade and Poland's Gold, both
     // awarded 31 Aug 2026 and both missing from this log until 3 Sep.
     // 56th: Austria's Platinum for "Dai Dai", read in IFPI Austria's own
@@ -131,11 +136,13 @@ describe("certHistory (certifications by year)", () => {
     // @riaa_awards post of 23 Sep 2026; its database still read 2× on 24 Sep.
     // 65th: "Dai Dai" UK Gold — the BPI register's award card, "Latest
     // Certification 25.09.2026", read 28 Sep 2026; the Silver stays as its own event.
+    // 66th: "Dai Dai" Spain 2× Platinum — Promusicae's register, "2 × Discos de
+    // Platino", 2026 week 39, read 28 Sep 2026; the 1× Platino stays as its own event.
     // With Nigeria 71 -> 81 on 23 Sep 2026: the ten TCSN events of the Feb 2026
     // batch (nine new plaques and Ye's Silver -> Gold), logged 2026 with no day.
     // The international figure does not move. 81 -> 82 with the 64th above,
-    // 83 with the 65th.
-    expect(certHistory.filter((e) => e.year === 2026).length).toBe(83);
+    // 83 with the 65th, 84 with the 66th.
+    expect(certHistory.filter((e) => e.year === 2026).length).toBe(84);
   });
 
   it("2025 has the published count of 29 certifications", () => {
