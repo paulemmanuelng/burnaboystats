@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-28";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-28T05:28Z";
+  export const liveChartsBuiltAt = "2026-09-28T14:01Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","iTunes"];
@@ -443,8 +443,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 171,
-            "movement": -141
+            "position": 194,
+            "movement": -146
           }
         ]
       },
@@ -455,8 +455,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 151,
-            "movement": -22
+            "position": 157,
+            "movement": -6
           }
         ]
       },
@@ -465,9 +465,9 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 54,
+            "country": "KE",
+            "name": "Kenya",
+            "position": 34,
             "movement": null,
             "status": "new"
           }
@@ -548,20 +548,20 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 87,
-            "movement": -15
+            "position": 89,
+            "movement": -17
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 121,
-            "movement": -12
+            "position": 131,
+            "movement": -22
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 162,
-            "movement": -142
+            "position": 184,
+            "movement": -147
           }
         ]
       },
@@ -572,14 +572,14 @@
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 141,
-            "movement": -5
+            "position": 153,
+            "movement": -12
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 187,
-            "movement": -26
+            "position": 197,
+            "movement": -10
           }
         ]
       },
@@ -687,15 +687,14 @@
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
-            "position": 103,
-            "movement": -7
+            "position": 111,
+            "movement": -8
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 180,
-            "movement": null,
-            "status": "new"
+            "position": 172,
+            "movement": 8
           }
         ]
       }
@@ -920,49 +919,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/ff869559b2b6b876cc2b7811bb7e4436/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Forever",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 93,
-            "movement": 3
-          },
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 185,
-            "movement": 7
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CI",
-            "name": "Côte d'Ivoire",
-            "position": 186,
-            "movement": -8
-          },
-          {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 197,
-            "movement": -1
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ada9bcfee9900dd72f862562ae032550/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Waist",
     "platforms": [
       {
@@ -994,47 +950,66 @@
             "movement": -4
           }
         ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 88,
+            "movement": null,
+            "status": "new"
+          }
+        ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/39ef498a2ba8764bae8c87f00ae13441/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "As We Get High",
+    "title": "Forever",
     "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 93,
+            "movement": 4
+          },
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 195,
+            "movement": -6
+          }
+        ]
+      },
       {
         "platform": "Shazam",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 102,
-            "movement": -5
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 191,
+            "movement": 6
           },
           {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 166,
-            "movement": -78
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 119,
-            "movement": -25
+            "country": "CI",
+            "name": "Côte d'Ivoire",
+            "position": 197,
+            "movement": -11
           }
         ]
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b4d2ad60759dd994a1a8440baa1c61e8/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ada9bcfee9900dd72f862562ae032550/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "soso",
@@ -1069,6 +1044,44 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/e51306cd0211b33a043b1fef073026e5/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Company",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 189,
+            "movement": -21
+          },
+          {
+            "country": "AE",
+            "name": "United Arab Emirates",
+            "position": 196,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 98,
+            "movement": -26
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6d9ca878974f4d47b8d671a0ea95ecd2/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Namek",
     "platforms": [
       {
@@ -1078,8 +1091,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 94,
-            "movement": 2
+            "position": 91,
+            "movement": -3
           },
           {
             "country": "BE",
@@ -1120,6 +1133,37 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/c9d87c5a3f02efbf52b0a27d553f1a87/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "As We Get High",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 119,
+            "movement": -25
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 88,
+            "movement": 14
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b4d2ad60759dd994a1a8440baa1c61e8/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Isaka II",
     "platforms": [
       {
@@ -1151,35 +1195,64 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/d015c74bed325b8928343913858fb3c2/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Company",
+    "title": "People",
     "platforms": [
       {
         "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 93,
-            "movement": -21
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 168,
-            "movement": -16
+            "country": "ID",
+            "name": "Indonesia",
+            "position": 156,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6d9ca878974f4d47b8d671a0ea95ecd2/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/e51306cd0211b33a043b1fef073026e5/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "MARY GO ROUND",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 89,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b38a20520a3084e0e07332273a98158a/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "AMEN",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 90,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b38a20520a3084e0e07332273a98158a/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "10 Toes",

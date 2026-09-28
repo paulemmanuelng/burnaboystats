@@ -40,10 +40,10 @@
   export const liveChartsUpdated = "2026-09-28";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-28T05:28Z";
+  export const liveChartsBuiltAt = "2026-09-28T14:02Z";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Shazam","iTunes"];
+  export const livePlatforms: string[] = ["Shazam","YouTube","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -56,20 +56,72 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 53,
-            "movement": -7
+            "position": 78,
+            "movement": -25
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 136,
-            "movement": 14
+            "position": 114,
+            "movement": 22
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/bb3bf375aeed10455d2ce25b8411a7e8/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Who Is Your Guy",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 137,
+            "movement": -22
+          }
+        ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 70,
+            "movement": null,
+            "status": "re"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/c30e36dcd1d84bddc05343a97acf3eaa/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "My Darlin",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 4,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/14b6244faabed9fe8f1183951f8053ea/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Dorobucci",
@@ -91,25 +143,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/70ea3139021b354895903f2ce4da79fd/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Who Is Your Guy",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 127,
-            "movement": -12
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/c30e36dcd1d84bddc05343a97acf3eaa/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Once Upon A Time",
     "platforms": [
       {
@@ -120,13 +153,33 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 178,
-            "movement": 0
+            "movement": 4
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/556df097d6c975617e593855e293e4e7/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Terminator",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "MY",
+            "name": "Malaysia",
+            "position": 135,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/0590e128a31db47aa37fedc0b72b4c39/500x500-000000-80-0-0.jpg"
   }
 ];
   

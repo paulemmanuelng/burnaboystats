@@ -40,10 +40,10 @@
   export const liveChartsUpdated = "2026-09-28";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-28T05:28Z";
+  export const liveChartsBuiltAt = "2026-09-28T14:01Z";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Deezer","Spotify","Spotify Albums","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -57,7 +57,7 @@
             "country": "RU",
             "name": "Russia",
             "position": 6,
-            "movement": 3
+            "movement": 0
           },
           {
             "country": "BF",
@@ -68,8 +68,8 @@
           {
             "country": "AZ",
             "name": "Azerbaijan",
-            "position": 83,
-            "movement": -27
+            "position": 84,
+            "movement": -23
           }
         ]
       },
@@ -82,18 +82,6 @@
             "name": "Morocco",
             "position": 139,
             "movement": 19
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "UZ",
-            "name": "Uzbekistan",
-            "position": 159,
-            "movement": 33
           }
         ]
       }
@@ -260,26 +248,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/ed3944c139089af1359c26d78843d435/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "love nwantiti (feat. ElGrande Toto) (North African Remix)",
-    "kind": "song",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "MA",
-            "name": "Morocco",
-            "position": 71,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "cover": "https://cdn-images.dzcdn.net/images/cover/330629fb8b6242beb5a119f17ff52c9c/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "BODY (danz)",
     "kind": "song",
     "platforms": [
@@ -288,9 +256,9 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 53,
+            "country": "JM",
+            "name": "Jamaica",
+            "position": 12,
             "movement": null,
             "status": "new"
           }

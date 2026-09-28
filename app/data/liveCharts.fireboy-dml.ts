@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-28";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-28T05:28Z";
+  export const liveChartsBuiltAt = "2026-09-28T14:01Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -254,8 +254,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 14,
-            "movement": -9
+            "position": 17,
+            "movement": -10
           }
         ]
       }
@@ -398,14 +398,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 149,
-            "movement": -13
-          },
-          {
-            "country": "ZM",
-            "name": "Zambia",
-            "position": 176,
-            "movement": -29
+            "position": 141,
+            "movement": 8
           }
         ]
       },
@@ -414,9 +408,9 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 11,
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 76,
             "movement": null,
             "status": "new"
           }
@@ -559,50 +553,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/20b709c21edd2d8924cf88132a94ff1e/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Jealous",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 196,
-            "movement": -16
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 94,
-            "movement": -45
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 46,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/25e5891aa67f8eab6b1a1b806f7c2fc4/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "iseoluwa",
     "platforms": [
       {
@@ -635,35 +585,48 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/a687087e03dff683b56b53044b52c551/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "CLAAT",
+    "title": "Jealous",
     "platforms": [
       {
-        "platform": "Shazam",
+        "platform": "Spotify",
         "numberOnes": 0,
         "entries": [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 100,
-            "movement": -52
-          },
+            "position": 196,
+            "movement": -16
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
           {
-            "country": "AE",
-            "name": "United Arab Emirates",
-            "position": 179,
-            "movement": -150
-          },
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 96,
+            "movement": -47
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
           {
-            "country": "ES",
-            "name": "Spain",
-            "position": 194,
-            "movement": 4
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 70,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/29bf5b5ad5f962997dbb7c369a8320d9/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/25e5891aa67f8eab6b1a1b806f7c2fc4/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "ZUKO",
@@ -764,14 +727,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 59,
-            "movement": 0
+            "position": 55,
+            "movement": 4
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 143,
-            "movement": 3
+            "position": 153,
+            "movement": -10
           }
         ]
       }
@@ -802,8 +765,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 164,
-            "movement": -9
+            "position": 170,
+            "movement": -6
           }
         ]
       }
@@ -829,25 +792,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/9b8ce8a62a6484f053bdd2cf80818a2d/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "everyday",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 103,
-            "movement": -26
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/86d8d6db321a04e6b49342da728b2e58/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Vibration",
@@ -886,6 +830,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/8545c6658a0f32b008b96fd40e36e824/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "everyday",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 125,
+            "movement": -22
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/86d8d6db321a04e6b49342da728b2e58/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Dealer",

@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-28";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-28T05:28Z";
+  export const liveChartsBuiltAt = "2026-09-28T14:01Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify Albums","YouTube","iTunes"];
@@ -235,7 +235,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 128,
-            "movement": -2
+            "movement": 3
           }
         ]
       }
@@ -266,7 +266,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 16,
-            "movement": 1
+            "movement": 0
           }
         ]
       },
@@ -308,8 +308,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 65,
-            "movement": -13
+            "position": 75,
+            "movement": -23
           }
         ]
       },
@@ -320,8 +320,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 52,
-            "movement": -6
+            "position": 57,
+            "movement": -5
           }
         ]
       }
@@ -351,8 +351,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 30,
-            "movement": 0
+            "position": 29,
+            "movement": 1
           }
         ]
       }
@@ -382,7 +382,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 106,
+            "position": 123,
             "movement": -17
           }
         ]
@@ -415,6 +415,38 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Fallen Angel",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 125,
+            "movement": 16
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 5,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5e469a94aaac1c27a9d16e02246a73ab/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "So it Goes",
@@ -463,8 +495,8 @@
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
-            "position": 107,
-            "movement": 51
+            "position": 86,
+            "movement": 21
           }
         ]
       }
@@ -559,26 +591,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Toxic Love City",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "AE",
-            "name": "United Arab Emirates",
-            "position": 3,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6c62324aa93ed6be667929a5ab922f65/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Soma Obi",
@@ -714,6 +726,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Toxic Love City",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "AE",
+            "name": "United Arab Emirates",
+            "position": 36,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6c62324aa93ed6be667929a5ab922f65/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Body",
     "platforms": [
       {
@@ -750,25 +782,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Fallen Angel",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 125,
-            "movement": 16
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5e469a94aaac1c27a9d16e02246a73ab/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "January 9th",
@@ -970,7 +983,7 @@
           {
             "country": "BG",
             "name": "Bulgaria",
-            "position": 78,
+            "position": 89,
             "movement": null,
             "status": "new"
           }
