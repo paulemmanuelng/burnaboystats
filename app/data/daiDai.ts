@@ -263,6 +263,9 @@ export const DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG_ES = longDate(DAI_DAI_SPOTIFY_C
 export const DAI_DAI_SPOTIFY_NO1_READ_ON_LONG = longDate(DAI_DAI_SPOTIFY_NO1_DAYS_AS_OF, "en-GB");
 export const DAI_DAI_SPOTIFY_NO1_READ_ON_LONG_ES = longDate(DAI_DAI_SPOTIFY_NO1_DAYS_AS_OF, "es-ES");
 
+// The dated "most days at No. 1 in 2026" claim: see daiDaiNo1Claim.ts.
+export { DAI_DAI_2026_MOST_NO1_THROUGH, DAI_DAI_2026_MOST_NO1_THROUGH_LONG, DAI_DAI_2026_MOST_NO1_THROUGH_LONG_ES } from "./daiDaiNo1Claim";
+
 // ---------------------------------------------------------------------------
 // The YouTube Global Daily Top Music Videos run, on the same footing and for
 // the same reason.
