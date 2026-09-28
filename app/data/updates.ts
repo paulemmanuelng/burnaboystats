@@ -32,6 +32,7 @@ import { totalAwards } from "./certifications";
 
 const plSingle = CERT_THRESHOLDS.PL.single!;
 const ukSingle = CERT_THRESHOLDS.UK.single!;
+const esSingle = CERT_THRESHOLDS.ES.single!;
 
 export type UpdateCategory = "Charts" | "Certifications" | "Streaming" | "Firsts & Records" | "Awards" | "Tours" | "Lifestyle";
 
@@ -50,6 +51,15 @@ export interface Update {
 }
 
 export const updates: Update[] = [
+  {
+    date: "2026-09-28",
+    category: "Certifications",
+    big: true,
+    // Promusicae's own award register: "DAI DAI | SHAKIRA / BURNA BOY | 2 ×
+    // Discos de Platino | 2026 | Semana 39" (certifications.ts, the release row).
+    text: `“Dai Dai” is 2× Platinum in Spain: Promusicae's register lists the double platino in week 39 of 2026, nine weeks after the first — ${(2 * esSingle.platinum!).toLocaleString("en-US")} units at its current levels. An upgrade, so the song stays on 17 plaques.`,
+    href: "/certifications",
+  },
   {
     date: "2026-09-28",
     category: "Certifications",

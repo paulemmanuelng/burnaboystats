@@ -197,7 +197,7 @@ export const singles: Release[] = [
     // SHAKIRA & BURNA BOY | SONY MUSIC LATIN / SONY MUSIC ENTERTAINMENT | Diamant",
     // date de constat 27/08/2026, three months from release. One plaque per title
     // per country at its CURRENT tier, so the Diamond replaces the Platinum.
-    { c: "CO", level: "Gold", body: "Sony Music Colombia" }, { c: "ES", level: "Platinum" }, { c: "FR", level: "Diamond" }, { c: "HU", level: "Platinum" }, { c: "SK", level: "Platinum" }, { c: "PT", level: "Platinum" }, { c: "GR", level: "Platinum" }, { c: "CZ", level: "Gold" }, { c: "IT", level: "Gold" },
+    { c: "CO", level: "Gold", body: "Sony Music Colombia" }, { c: "FR", level: "Diamond" }, { c: "HU", level: "Platinum" }, { c: "SK", level: "Platinum" }, { c: "PT", level: "Platinum" }, { c: "GR", level: "Platinum" }, { c: "CZ", level: "Gold" }, { c: "IT", level: "Gold" },
     // PL read in ZPAV's own award register via olis.pl's API (category 3 =
     // "oficjalna lista wyróżnień", subcategory 6 = "złote płyty"): title "Dai Dai",
     // artist "Shakira, Burna Boy", contractor Sony Music Entertainment, format
@@ -237,6 +237,12 @@ export const singles: Release[] = [
     // One plaque per title per country at its CURRENT tier; moved to the end of
     // the list with the upgrade, as the newest award.
     { c: "UK", level: "Gold" },
+    // ES upgraded Platinum -> 2x Platinum, read 28 Sep 2026 in Promusicae's own
+    // award register (elportaldemusica.es/awards/index, artist "SHAKIRA / BURNA
+    // BOY"): "CANCIONES | DAI DAI | 2 × Discos de Platino | Año 2026 | Semana 39",
+    // above the 1× Platino of week 30 and the Oro of week 27. Moved to the end
+    // of the list with the upgrade, as the newest award.
+    { c: "ES", level: "Platinum", x: 2 },
   ] },
   { title: "Last Last", year: 2022, certs: [
     { c: "CA", level: "Platinum", x: 4 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum", x: 2 },
@@ -905,6 +911,9 @@ export const certHistory: CertEvent[] = [
   { title: "For My Hand", credit: "feat. Ed Sheeran", country: "CH", level: "Gold", year: 2023 },
   { title: "My Oasis", credit: "Sam Smith ft. Burna Boy", country: "AU", level: "Gold", year: 2023 },
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "ES", level: "Platinum", year: 2026 },
+  // Promusicae's register, read 28 Sep 2026: "2 × Discos de Platino", 2026 week
+  // 39 (see the release row). The Platino above stays: this log appends.
+  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "ES", level: "Platinum", x: 2, year: 2026 },
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "FR", level: "Platinum", year: 2026 },
   { title: "Location", credit: "Dave ft. Burna Boy", country: "SE", level: "Platinum", year: 2026 },
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "SK", level: "Platinum", year: 2026 },
