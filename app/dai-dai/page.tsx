@@ -8,7 +8,8 @@ import { buildReplayData } from "../components/daiDaiReplayData";
 import { EN_REPLAY_LABELS } from "../components/daiDaiReplayLabels";
 import KeepExploring from "../components/KeepExploring";
 import { Leads, NationalTable, RuledLists, type LeadFigure, type NumbersLabels, type RecordRow } from "../components/DaiDaiNumbers";
-import { RecordBand, SectionHead, Lineup, nationalRow, daiDaiCountries, countryName, topPlaque, plaqueCountries, byVisibleName, plaqueX, thousands } from "../components/DaiDaiRecord";
+import { RecordBand, SectionHead, Lineup, nationalRow, daiDaiCountries, countryName, topPlaque, plaqueCountries, byVisibleName, thousands } from "../components/DaiDaiRecord";
+import { plaqueSentence } from "../components/daiDaiStoryFacts";
 import { EN_FIGURE_LABELS } from "../components/DaiDaiFigures";
 import FaqList from "../components/FaqList";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime, BURNA_BOY_REF } from "../lib/seo";
@@ -350,7 +351,9 @@ export default function DaiDaiPage() {
     },
     {
       q: "How many certifications does “Dai Dai” have?",
-      a: `“Dai Dai” has ${daiDaiCertCount} certifications: Diamond in France from SNEP, ${plaqueX("CA")}× Platinum in Canada from Music Canada and ${plaqueX("US")}× Platino in the US from the RIAA's Latin programme, Platinum in Spain, Slovakia, Portugal, Hungary, Austria, Greece and Sweden, Gold in Colombia, the Czech Republic, Italy, Poland, Belgium and Germany, and Silver in the UK from the BPI.`,
+      // Built from the plaque wall, as chapter 05 is: the typed list kept the
+      // UK at Silver for three days after the BPI's Gold of 25 Sep 2026.
+      a: `“Dai Dai” has ${daiDaiCertCount} certifications: ${plaqueSentence("en")}.`,
     },
   ];
 

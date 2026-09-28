@@ -6465,7 +6465,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "On this day: 25 September",
     "path": "/on-this-day/25-september",
     "section": "On this day",
-    "description": "1 Burna Boy milestone dated 25 September, 2021.",
+    "description": "2 Burna Boy milestones dated 25 September, 2021–2026.",
     "keywords": [
       "september 25"
     ],

@@ -48,7 +48,7 @@ describe("handoff checklist — data integrity", () => {
     expect(certCountryCount).toBe(Object.keys(CERT_COUNTRIES).length);
   });
 
-  it("splits into 7 Diamond / 103 Platinum / 103 Gold / 35 Silver", () => {
+  it("splits into 7 Diamond / 103 Platinum / 104 Gold / 34 Silver", () => {
     // 6 Aug 2026: “Dai Dai” Portugal upgraded Gold → Platinum (AFP week-31 PDF).
     const byLevel = (level: string) =>
       allItems.reduce((n, i) => n + i.certs.filter((c) => c.level === level).length, 0);
@@ -76,8 +76,11 @@ describe("handoff checklist — data integrity", () => {
     // You Life, 28 Grams and Born Winner new, "Ye" NG up from Silver. Silver
     // 31 -> 35 — No Sign of Weakness (the song), Change Your Mind, Empty
     // Chairs, Sweet Love and 4 Kampé II new, less Ye's Silver.
-    expect(byLevel("Gold")).toBe(103); // + 4 NG Golds, + Ye NG, + Dai Dai DE, + Dai Dai BE, + City Boys PT, + "Dai Dai" in Poland (ZPAV), + Ginger CH, − Dai Dai GR, − My Oasis UK
-    expect(byLevel("Silver")).toBe(35); // + 5 NG Silvers, − Ye NG; On the Low NG left this tier for Gold; My Oasis UK came back to it
+    // 28 Sep 2026: "Dai Dai" in the UK moved up a tier, Silver -> Gold, on the
+    // BPI register's award card (25.09.2026). Gold 103 -> 104, Silver 35 -> 34;
+    // an upgrade, so the total is unchanged.
+    expect(byLevel("Gold")).toBe(104); // + 4 NG Golds, + Ye NG, + Dai Dai DE, + Dai Dai BE, + City Boys PT, + "Dai Dai" in Poland (ZPAV), + Ginger CH, − Dai Dai GR, − My Oasis UK, + Dai Dai UK
+    expect(byLevel("Silver")).toBe(34); // + 5 NG Silvers, − Ye NG; On the Low NG left this tier for Gold; My Oasis UK came back to it; Dai Dai UK left it for Gold
 
     const sum = byLevel("Diamond") + byLevel("Platinum") + byLevel("Gold") + byLevel("Silver");
     expect(sum).toBe(248);

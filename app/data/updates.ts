@@ -31,6 +31,7 @@ import { CERT_THRESHOLDS } from "./certThresholds";
 import { totalAwards } from "./certifications";
 
 const plSingle = CERT_THRESHOLDS.PL.single!;
+const ukSingle = CERT_THRESHOLDS.UK.single!;
 
 export type UpdateCategory = "Charts" | "Certifications" | "Streaming" | "Firsts & Records" | "Awards" | "Tours" | "Lifestyle";
 
@@ -49,6 +50,15 @@ export interface Update {
 }
 
 export const updates: Update[] = [
+  {
+    date: "2026-09-28",
+    category: "Certifications",
+    big: true,
+    // The BPI register's own award card: "Latest Certification 25.09.2026 |
+    // Award Gold" (certifications.ts, the release row).
+    text: `“Dai Dai” is Gold in the UK: the BPI's register dates the award 25 September 2026, up from the Silver of August — ${ukSingle.gold!.toLocaleString("en-US")} units for Shakira and Burna Boy's World Cup anthem. An upgrade, so the song stays on 17 plaques.`,
+    href: "/certifications",
+  },
   {
     date: "2026-09-25",
     category: "Tours",

@@ -293,7 +293,7 @@ describe("daidai-en-5: the story's sentences read the figures they state", () =>
     );
     expect(body(d, 5)).toContain(`The song earned its own plaques — ${plaqueSentence("en")}.`);
     expect(plaqueSentence("en")).toContain(`${plaqueX("CA")}× Platinum in Canada, ${plaqueX("US")}× Platinum (Latin) in the US`);
-    expect(plaqueSentence("en")).toMatch(/^Diamond in France, .*, and Silver in the UK$/);
+    expect(plaqueSentence("en")).toMatch(/^Diamond in France, .*, and Gold in .* and the UK$/);
   });
 
   it("Spanish: the same facts, in its own words", () => {
@@ -305,7 +305,7 @@ describe("daidai-en-5: the story's sentences read the figures they state", () =>
       "Tras cuatro semanas consecutivas bajó al N.º 3, y el 22 de agosto recuperó la cima por tres semanas —las listas del 22 y el 29 de agosto y del 5 de septiembre—: siete semanas en el número 1 en total. En el Global 200 Excl. US encadenó diez semanas seguidas en el número 1, del 4 de julio al 5 de septiembre.",
     );
     expect(body(d, 5)).toContain(`La canción ganó sus propias certificaciones: ${plaqueSentence("es")}.`);
-    expect(plaqueSentence("es")).toMatch(/^diamante en Francia, doble platino en Canadá, séxtuple platino \(latino\) en Estados Unidos, .*, y plata en el Reino Unido$/);
+    expect(plaqueSentence("es")).toMatch(/^diamante en Francia, doble platino en Canadá, séxtuple platino \(latino\) en Estados Unidos, .*, y oro en .* y el Reino Unido$/);
   });
 
   it("the Excl. US span is as long as the entry's weeks at No. 1", () => {
