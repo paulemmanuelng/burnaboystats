@@ -40,10 +40,10 @@
   export const liveChartsUpdated = "2026-09-29";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-29T05:48Z";
+  export const liveChartsBuiltAt = "2026-09-29T12:58Z";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","Spotify Albums","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -87,8 +87,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 40,
-            "movement": -33
+            "position": 44,
+            "movement": -30
           }
         ]
       },
@@ -99,8 +99,8 @@
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
-            "position": 133,
-            "movement": -29
+            "position": 152,
+            "movement": -19
           }
         ]
       }
@@ -305,14 +305,34 @@
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 63,
-            "movement": -7
+            "position": 58,
+            "movement": 5
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b42b9963b567481843c14d0f3991639c/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Ruger",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SN",
+            "name": "Senegal",
+            "position": 18,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/78b014342472081dff80a8cafe54b8ca/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Asiwaju",
@@ -382,8 +402,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 192,
-            "movement": 1
+            "position": 194,
+            "movement": -2
           }
         ]
       }

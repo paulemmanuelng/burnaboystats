@@ -182,7 +182,7 @@
     "date": "2026-09-29",
     "release": "ILOME",
     "platform": "Shazam",
-    "position": 67
+    "position": 71
   },
   {
     "date": "2026-09-29",
@@ -190,12 +190,6 @@
     "kind": "album",
     "platform": "Spotify Albums",
     "position": 40
-  },
-  {
-    "date": "2026-09-29",
-    "release": "VOLUME",
-    "platform": "Shazam",
-    "position": 153
   }
 ];
   

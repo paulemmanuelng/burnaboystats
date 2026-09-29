@@ -40,10 +40,10 @@
   export const liveChartsUpdated = "2026-09-29";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-29T05:48Z";
+  export const liveChartsBuiltAt = "2026-09-29T12:58Z";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Shazam","YouTube","iTunes"];
+  export const livePlatforms: string[] = ["Deezer","Shazam","YouTube","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -54,16 +54,16 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 78,
-            "movement": -25
-          },
-          {
             "country": "GH",
             "name": "Ghana",
-            "position": 114,
-            "movement": 22
+            "position": 97,
+            "movement": 17
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 103,
+            "movement": -25
           }
         ]
       }
@@ -81,8 +81,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 159,
-            "movement": -33
+            "position": 163,
+            "movement": -30
           }
         ]
       },
@@ -104,6 +104,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/c30e36dcd1d84bddc05343a97acf3eaa/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Energy",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 40,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/d810fadc02c818d3ed7d6af2d6c8d2de/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "My Darlin",
     "platforms": [
       {
@@ -113,9 +133,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 9,
-            "movement": null,
-            "status": "new"
+            "position": 13,
+            "movement": -10
           }
         ]
       }
@@ -152,8 +171,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 179,
-            "movement": -1
+            "position": 180,
+            "movement": -2
           }
         ]
       }

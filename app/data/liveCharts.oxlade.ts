@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-29";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-29T05:48Z";
+  export const liveChartsBuiltAt = "2026-09-29T12:58Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","iTunes"];
@@ -63,7 +63,7 @@
             "country": "CV",
             "name": "Cape Verde",
             "position": 44,
-            "movement": 0
+            "movement": -6
           },
           {
             "country": "GM",
@@ -90,6 +90,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/81015160c51d43ed5f8e15f07f39e9c0/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Nice n' Sweet",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FI",
+            "name": "Finland",
+            "position": 70,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/22477fa0fedd6ef6905695d98610be09/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "What If",
     "platforms": [
       {
@@ -99,7 +119,7 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 73,
+            "position": 76,
             "movement": -12
           }
         ]
@@ -118,8 +138,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 134,
-            "movement": -8
+            "position": 131,
+            "movement": 3
           }
         ]
       }
