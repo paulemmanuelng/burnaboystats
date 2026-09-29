@@ -134,10 +134,10 @@ describe("B. figures in metadata, share cards and JSON-LD read their constants",
     const faqOf = (html: string) => JSON.stringify(nodesOf(html).find((n) => n["@type"] === "FAQPage"));
     expect(faqOf(EN_HTML)).toContain("19 July 2026");
     expect(faqOf(EN_HTML)).toContain("peaked at No. 2 on the UK Official Singles Chart");
-    expect(faqOf(EN_HTML)).toContain("2× Platinum in Canada and Spain, 6× Platinum (Latin) in the US");
+    expect(faqOf(EN_HTML)).toContain("2× Platinum in Canada, Spain and Portugal, 6× Platinum (Latin) in the US");
     expect(faqOf(EN_HTML)).toContain("Germany and the UK.");
     expect(faqOf(ES_HTML)).toContain("19 de julio de 2026");
-    expect(faqOf(ES_HTML)).toContain("doble platino en Canadá y España, séxtuple platino (latino) en Estados Unidos");
+    expect(faqOf(ES_HTML)).toContain("doble platino en Canadá, España y Portugal, séxtuple platino (latino) en Estados Unidos");
     expect(faqOf(ES_HTML)).toContain("Alemania y el Reino Unido.");
     const typed = /(?:on|el) 19 (?:July|de julio de) 2026|peaked at No\. \d+ on the UK|alcanzó el número \d+ de la lista oficial de sencillos del Reino Unido|\d× Platinum in Canada|\d× Platino in the US|doble platino en Canadá|séxtuple platino/;
     const faqSrc = (src: string) => src.slice(src.indexOf("const faqs"), src.indexOf("];", src.indexOf("const faqs")));
