@@ -197,7 +197,7 @@ export const singles: Release[] = [
     // SHAKIRA & BURNA BOY | SONY MUSIC LATIN / SONY MUSIC ENTERTAINMENT | Diamant",
     // date de constat 27/08/2026, three months from release. One plaque per title
     // per country at its CURRENT tier, so the Diamond replaces the Platinum.
-    { c: "CO", level: "Gold", body: "Sony Music Colombia" }, { c: "FR", level: "Diamond" }, { c: "HU", level: "Platinum" }, { c: "SK", level: "Platinum" }, { c: "PT", level: "Platinum" }, { c: "GR", level: "Platinum" }, { c: "CZ", level: "Gold" }, { c: "IT", level: "Gold" },
+    { c: "CO", level: "Gold", body: "Sony Music Colombia" }, { c: "FR", level: "Diamond" }, { c: "HU", level: "Platinum" }, { c: "SK", level: "Platinum" }, { c: "GR", level: "Platinum" }, { c: "CZ", level: "Gold" }, { c: "IT", level: "Gold" },
     // PL read in ZPAV's own award register via olis.pl's API (category 3 =
     // "oficjalna lista wyróżnień", subcategory 6 = "złote płyty"): title "Dai Dai",
     // artist "Shakira, Burna Boy", contractor Sony Music Entertainment, format
@@ -243,6 +243,13 @@ export const singles: Release[] = [
     // above the 1× Platino of week 30 and the Oro of week 27. Moved to the end
     // of the list with the upgrade, as the newest award.
     { c: "ES", level: "Platinum", x: 2 },
+    // PT upgraded Platinum -> 2x Platinum, read 29 Sep 2026 in AFP/Audiogest's own
+    // weekly TOP, "Semana 39 de 2026, 18/9/2026 até 24/9/2026" (file_2026-09-29-
+    // 11-56-20.pdf from audiogest.pt/tops-semanais-2026, downloaded by hand): "4 4 1
+    // 19 2PL Dai Dai Shakira & Burna Boy SONY/WARNER (50/50)" in both the Top 200
+    // Singles and the Top 200 Streams, where week 38 read PL. Moved to the end of
+    // the list with the upgrade, as the newest award.
+    { c: "PT", level: "Platinum", x: 2 },
   ] },
   { title: "Last Last", year: 2022, certs: [
     { c: "CA", level: "Platinum", x: 4 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum", x: 2 },
@@ -920,6 +927,9 @@ export const certHistory: CertEvent[] = [
   // Gold→Platinum upgrade, verified in AFP/Audiogest's own week-31 2026 PDF
   // (Top 200 Singles, pos. 1, Gal. "PL", 11th week on top).
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "PT", level: "Platinum", year: 2026 },
+  // AFP/Audiogest's week-39 TOP, read 29 Sep 2026: "2PL" (see the release row).
+  // The Platina above stays: this log appends.
+  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "PT", level: "Platinum", x: 2, year: 2026 },
   // Announced by the BRIT Awards' own account (#BRITcertified), 7 Aug 2026.
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "UK", level: "Silver", year: 2026 },
   // Silver -> Gold on the BPI register's award card, "Latest Certification
@@ -1063,7 +1073,7 @@ export const intlCertHistory = certHistory.filter((e) => e.country !== "NG");
 /** The most recent day a certifying body's own register was read for this
  *  file. Printed on the page's sources line in place of a typed "as of" month
  *  — bump it on every body read, in the same edit as the row it changes. */
-export const CERTS_VERIFIED_ON = "2026-09-28";
+export const CERTS_VERIFIED_ON = "2026-09-29";
 
 /** "Dai Dai" Platinum plaques beyond the US Latin 2× — the "Platinum in N more"
  *  rail note on the story and its Spanish twin, counted rather than typed after
