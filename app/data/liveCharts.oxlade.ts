@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-29";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-29T12:58Z";
+  export const liveChartsBuiltAt = "2026-09-29T22:19Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","iTunes"];
@@ -56,14 +56,14 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 35,
+            "position": 36,
             "movement": 2
           },
           {
             "country": "CV",
             "name": "Cape Verde",
-            "position": 44,
-            "movement": -6
+            "position": 38,
+            "movement": 0
           },
           {
             "country": "GM",
@@ -72,42 +72,10 @@
             "movement": 0
           }
         ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "PG",
-            "name": "Papua New Guinea",
-            "position": 187,
-            "movement": -101
-          }
-        ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/81015160c51d43ed5f8e15f07f39e9c0/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Nice n' Sweet",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FI",
-            "name": "Finland",
-            "position": 70,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/22477fa0fedd6ef6905695d98610be09/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "What If",
@@ -119,8 +87,8 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 76,
-            "movement": -12
+            "position": 83,
+            "movement": -11
           }
         ]
       }
@@ -157,8 +125,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 138,
-            "movement": -11
+            "position": 132,
+            "movement": 6
           }
         ]
       }
