@@ -106,7 +106,7 @@ export const CAREER_STREAMS_ANCHOR_READ_ON = "2026-09-25";
 // and rounding the one live input forced its derived figures to be rounded too.
 // Both are written by the SAME metric on the same daily run, so they cannot
 // disagree with each other.
-export const spotifyTotalStreamsExact = "11,096,123,866";
+export const spotifyTotalStreamsExact = "11,103,140,399";
 
 // Every video on Burna Boy's own YouTube channel — the total its about page
 // prints for that channel alone, not his videos on other artists' channels.

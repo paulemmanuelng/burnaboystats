@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-28";
+  export const liveChartsUpdated = "2026-09-29";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-28T23:19Z";
+  export const liveChartsBuiltAt = "2026-09-29T04:45Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -132,6 +132,12 @@
             "movement": 6
           },
           {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 16,
+            "movement": 4
+          },
+          {
             "country": "KE",
             "name": "Kenya",
             "position": 20,
@@ -142,12 +148,6 @@
             "name": "Saint Kitts and Nevis",
             "position": 20,
             "movement": 14
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 21,
-            "movement": 0
           },
           {
             "country": "SB",
@@ -424,15 +424,15 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 5,
+            "position": 9,
             "movement": null,
             "status": "new"
           },
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 14,
-            "movement": -11
+            "position": 16,
+            "movement": -13
           },
           {
             "country": "AI",
@@ -441,28 +441,28 @@
             "movement": 0
           },
           {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 27,
-            "movement": -25
-          },
-          {
             "country": "FJ",
             "name": "Fiji",
             "position": 28,
             "movement": -3
           },
           {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 36,
+            "movement": -33
+          },
+          {
             "country": "ZA",
             "name": "South Africa",
-            "position": 32,
-            "movement": -2
+            "position": 44,
+            "movement": -13
           },
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 45,
-            "movement": -4
+            "position": 52,
+            "movement": -10
           }
         ]
       },
@@ -554,13 +554,13 @@
     "platforms": [
       {
         "platform": "Apple Music",
-        "numberOnes": 0,
+        "numberOnes": 1,
         "entries": [
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 2,
-            "movement": 2
+            "position": 1,
+            "movement": 1
           },
           {
             "country": "LR",
@@ -863,24 +863,24 @@
             "country": "GH",
             "name": "Ghana",
             "position": 15,
-            "movement": -3
+            "movement": -1
           },
           {
             "country": "TR",
             "name": "Turkey",
-            "position": 17,
-            "movement": 9
+            "position": 18,
+            "movement": 16
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 65,
-            "movement": -9
+            "position": 70,
+            "movement": -11
           },
           {
             "country": "AT",
             "name": "Austria",
-            "position": 76,
+            "position": 112,
             "movement": null,
             "status": "new"
           }
@@ -1115,8 +1115,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 78,
-            "movement": -27
+            "position": 87,
+            "movement": -33
           }
         ]
       },
@@ -1176,37 +1176,37 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 17,
-            "movement": 8
+            "position": 18,
+            "movement": -1
           },
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 34,
-            "movement": -14
+            "position": 35,
+            "movement": -15
           },
           {
             "country": "AG",
             "name": "Antigua and Barbuda",
-            "position": 61,
+            "position": 60,
             "movement": 1
           },
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 68,
-            "movement": 3
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 92,
-            "movement": 6
+            "position": 66,
+            "movement": -4
           },
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 92,
+            "position": 87,
+            "movement": -6
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 94,
             "movement": -2
           }
         ]
@@ -1560,7 +1560,7 @@
             "country": "FR",
             "name": "France",
             "position": 121,
-            "movement": 9
+            "movement": 7
           },
           {
             "country": "CG",
@@ -1603,6 +1603,83 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/7b49d51e89ff07824c8c62043775a2ab/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Wo, man",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BG",
+            "name": "Bulgaria",
+            "position": 7,
+            "movement": 0
+          },
+          {
+            "country": "IT",
+            "name": "Italy",
+            "position": 12,
+            "movement": -3
+          },
+          {
+            "country": "IE",
+            "name": "Ireland",
+            "position": 31,
+            "movement": -2
+          },
+          {
+            "country": "RO",
+            "name": "Romania",
+            "position": 39,
+            "movement": -1
+          },
+          {
+            "country": "DE",
+            "name": "Germany",
+            "position": 199,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "AM",
+            "name": "Armenia",
+            "position": 12,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "IT",
+            "name": "Italy",
+            "position": 14,
+            "movement": 29
+          },
+          {
+            "country": "LT",
+            "name": "Lithuania",
+            "position": 22,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "BE",
+            "name": "Belgium",
+            "position": 45,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/c4c1696f82feac0a7fa1e26379b9f7e2/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Away",
@@ -1662,93 +1739,10 @@
             "status": "new"
           }
         ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "AE",
-            "name": "United Arab Emirates",
-            "position": 85,
-            "movement": null,
-            "status": "new"
-          }
-        ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/24407cf49fdf864463cb5ca5ad974630/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Wo, man",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BG",
-            "name": "Bulgaria",
-            "position": 7,
-            "movement": 0
-          },
-          {
-            "country": "IT",
-            "name": "Italy",
-            "position": 12,
-            "movement": -3
-          },
-          {
-            "country": "IE",
-            "name": "Ireland",
-            "position": 31,
-            "movement": -2
-          },
-          {
-            "country": "RO",
-            "name": "Romania",
-            "position": 39,
-            "movement": -1
-          },
-          {
-            "country": "DE",
-            "name": "Germany",
-            "position": 199,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "AM",
-            "name": "Armenia",
-            "position": 11,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "IT",
-            "name": "Italy",
-            "position": 13,
-            "movement": 33
-          },
-          {
-            "country": "BE",
-            "name": "Belgium",
-            "position": 36,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/c4c1696f82feac0a7fa1e26379b9f7e2/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Ngozi",
@@ -1760,8 +1754,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 20,
-            "movement": -1
+            "position": 15,
+            "movement": 4
           },
           {
             "country": "UG",
@@ -1796,8 +1790,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 125,
-            "movement": -24
+            "position": 132,
+            "movement": -29
           }
         ]
       }
@@ -1866,8 +1860,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 39,
-            "movement": 3
+            "position": 38,
+            "movement": 1
           },
           {
             "country": "FM",
@@ -1953,8 +1947,8 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 57,
-            "movement": -7
+            "position": 56,
+            "movement": -5
           }
         ]
       }
@@ -1972,8 +1966,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 22,
-            "movement": 11
+            "position": 17,
+            "movement": 4
           },
           {
             "country": "SL",
@@ -2244,25 +2238,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/7861d849c8157fbffc37ccebf0ee75c5/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Won Da Mo",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 18,
-            "movement": -6
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ee5b8bb977ed14449b1a4cdde235ba53/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Bloody Samaritan",
     "platforms": [
       {
@@ -2272,14 +2247,33 @@
           {
             "country": "DM",
             "name": "Dominica",
-            "position": 33,
-            "movement": 11
+            "position": 30,
+            "movement": 3
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/6811d7a880826af2be69b81686f629f2/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Won Da Mo",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 78,
+            "movement": -61
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ee5b8bb977ed14449b1a4cdde235ba53/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Escaladizzy II",

@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-28";
+  export const liveChartsUpdated = "2026-09-29";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-28T23:19Z";
+  export const liveChartsBuiltAt = "2026-09-29T04:45Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -237,15 +237,15 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 13,
+            "position": 19,
             "movement": null,
             "status": "new"
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 24,
-            "movement": -2
+            "position": 31,
+            "movement": -8
           }
         ]
       },
@@ -397,8 +397,8 @@
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 6,
-            "movement": -5
+            "position": 10,
+            "movement": -4
           },
           {
             "country": "GD",
@@ -815,8 +815,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 64,
-            "movement": 6
+            "position": 63,
+            "movement": 1
           },
           {
             "country": "NG",
@@ -1016,8 +1016,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 58,
-            "movement": 3
+            "position": 57,
+            "movement": 1
           },
           {
             "country": "TZ",
@@ -1200,19 +1200,19 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 40,
-            "movement": -17
+            "position": 38,
+            "movement": -15
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 58,
+            "position": 51,
             "movement": 8
           },
           {
-            "country": "PH",
-            "name": "Philippines",
-            "position": 184,
+            "country": "BR",
+            "name": "Brazil",
+            "position": 158,
             "movement": null,
             "status": "new"
           }
@@ -1708,8 +1708,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 72,
-            "movement": -1
+            "position": 64,
+            "movement": 8
           },
           {
             "country": "LR",
@@ -1724,25 +1724,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/d386058066ab6b2b140515ed5c591a1f/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Won Da Mo",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 18,
-            "movement": -6
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ee5b8bb977ed14449b1a4cdde235ba53/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Goals",
     "platforms": [
       {
@@ -1752,7 +1733,7 @@
           {
             "country": "TH",
             "name": "Thailand",
-            "position": 120,
+            "position": 134,
             "movement": null,
             "status": "new"
           }
@@ -1761,6 +1742,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/8d26b51a325ab59c594708d1c8c71bf2/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Won Da Mo",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 78,
+            "movement": -61
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ee5b8bb977ed14449b1a4cdde235ba53/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Fi Kan We Kan",

@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-28";
+  export const liveChartsUpdated = "2026-09-29";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-28T23:20Z";
+  export const liveChartsBuiltAt = "2026-09-29T04:45Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -164,7 +164,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 14,
+            "position": 20,
             "movement": null,
             "status": "new"
           }
@@ -396,7 +396,7 @@
           {
             "country": "NA",
             "name": "Namibia",
-            "position": 56,
+            "position": 60,
             "movement": -18
           }
         ]
@@ -560,8 +560,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 85,
-            "movement": -75
+            "position": 152,
+            "movement": -139
           }
         ]
       },
@@ -894,8 +894,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 68,
-            "movement": 7
+            "position": 63,
+            "movement": 5
           }
         ]
       }
@@ -1177,7 +1177,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 131,
+            "position": 130,
             "movement": 0
           }
         ]
@@ -1225,26 +1225,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/e4c2c39678f951dd57f09d2e98cd4062/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Love Made Me Do It",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 46,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/a90418f56a19473b7fc577f9eeb2821a/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "GWAGWALADA",
     "platforms": [
       {
@@ -1282,6 +1262,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/47b72924cef36764e12e24f894bb0bd9/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Love Made Me Do It",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 72,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/a90418f56a19473b7fc577f9eeb2821a/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Feeling",

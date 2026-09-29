@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-28";
+  export const liveChartsUpdated = "2026-09-29";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-28T23:19Z";
+  export const liveChartsBuiltAt = "2026-09-29T04:45Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","iTunes"];
@@ -295,19 +295,19 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 52,
+            "position": 53,
             "movement": -12
           },
           {
             "country": "CR",
             "name": "Costa Rica",
-            "position": 59,
-            "movement": -52
+            "position": 69,
+            "movement": -58
           },
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 149,
+            "position": 169,
             "movement": null,
             "status": "new"
           }
@@ -520,8 +520,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 3,
-            "movement": 10
+            "position": 7,
+            "movement": 9
           }
         ]
       }
@@ -673,7 +673,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 90,
-            "movement": -1
+            "movement": 0
           },
           {
             "country": "GM",
@@ -734,26 +734,26 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 48,
-            "movement": 0
+            "position": 49,
+            "movement": -2
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 70,
-            "movement": 2
+            "position": 68,
+            "movement": -4
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 78,
-            "movement": 0
+            "position": 72,
+            "movement": 5
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 82,
-            "movement": 0
+            "position": 72,
+            "movement": 9
           }
         ]
       },
@@ -1088,8 +1088,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 76,
-            "movement": 24
+            "position": 143,
+            "movement": -131
           }
         ]
       }
@@ -1303,7 +1303,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 93,
-            "movement": -1
+            "movement": 0
           },
           {
             "country": "GH",
@@ -1489,8 +1489,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 125,
-            "movement": -1
+            "position": 116,
+            "movement": 3
           }
         ]
       }
@@ -1737,8 +1737,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 65,
-            "movement": -1
+            "position": 72,
+            "movement": -7
           }
         ]
       }
@@ -1855,20 +1855,20 @@
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 8,
-            "movement": 0
+            "position": 7,
+            "movement": 1
           },
           {
             "country": "DM",
             "name": "Dominica",
-            "position": 24,
-            "movement": 11
+            "position": 21,
+            "movement": 3
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 111,
-            "movement": -77
+            "position": 176,
+            "movement": -133
           }
         ]
       },
@@ -2005,19 +2005,19 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 60,
-            "movement": 0
+            "position": 54,
+            "movement": 5
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 85,
-            "movement": -2
+            "position": 76,
+            "movement": 3
           },
           {
             "country": "GD",
             "name": "Grenada",
-            "position": 88,
+            "position": 87,
             "movement": 1
           },
           {
@@ -2230,8 +2230,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 28,
-            "movement": 22
+            "position": 23,
+            "movement": 4
           }
         ]
       }
@@ -2288,7 +2288,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 19,
+            "position": 27,
             "movement": null,
             "status": "new"
           }
@@ -2297,26 +2297,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/a4c216574fd4d381c73a4df2f512f599/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Balance",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 37,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/e4286ac8a38829b6cf5d225c311bccf7/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Daddy Yo",
@@ -2338,6 +2318,26 @@
     "kind": "song"
   },
   {
+    "title": "Balance",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 55,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/e4286ac8a38829b6cf5d225c311bccf7/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Alaye",
     "platforms": [
       {
@@ -2355,25 +2355,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/a4c216574fd4d381c73a4df2f512f599/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Billionaires Club",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 84,
-            "movement": -75
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Getting Paid",
@@ -2394,25 +2375,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/77fc9f281aabc0cfb5c17649afe08c8c/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Piece of Me",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 121,
-            "movement": -81
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Wine to the Top",
@@ -2454,7 +2416,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/1079769bab009299da36d7680437e608/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "IDK",
+    "title": "Billionaires Club",
     "platforms": [
       {
         "platform": "iTunes",
@@ -2463,15 +2425,33 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 147,
-            "movement": null,
-            "status": "new"
+            "position": 151,
+            "movement": -140
           }
         ]
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/24a4bbe1d6d25c216426e42587156a04/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Piece of Me",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 187,
+            "movement": -133
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "SoundMan, Vol. 1",
