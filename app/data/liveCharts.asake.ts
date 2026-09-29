@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-29";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-29T04:45Z";
+  export const liveChartsBuiltAt = "2026-09-29T05:48Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -204,16 +204,16 @@
             "movement": 2
           },
           {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 50,
+            "movement": 0
+          },
+          {
             "country": "AE",
             "name": "United Arab Emirates",
             "position": 52,
             "movement": -1
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 53,
-            "movement": 0
           },
           {
             "country": "SR",
@@ -260,8 +260,8 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 125,
-            "movement": -15
+            "position": 129,
+            "movement": -22
           },
           {
             "country": "GD",
@@ -291,7 +291,7 @@
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 41,
+            "position": 42,
             "movement": null,
             "status": "new"
           }
@@ -468,19 +468,19 @@
       },
       {
         "platform": "iTunes",
-        "numberOnes": 1,
+        "numberOnes": 2,
         "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 1,
+            "movement": 2
+          },
           {
             "country": "ZW",
             "name": "Zimbabwe",
             "position": 1,
             "movement": 27
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 3,
-            "movement": -2
           },
           {
             "country": "NA",
@@ -711,7 +711,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 55,
+            "position": 56,
             "movement": -10
           }
         ]
@@ -888,7 +888,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 190,
+            "position": 199,
             "movement": -132
           }
         ]
@@ -1736,15 +1736,15 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 89,
+            "position": 100,
             "movement": null,
             "status": "new"
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 146,
-            "movement": -141
+            "position": 155,
+            "movement": -138
           }
         ]
       },
@@ -2344,8 +2344,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 143,
-            "movement": -131
+            "position": 152,
+            "movement": -138
           }
         ]
       }
@@ -2533,8 +2533,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 2,
-            "movement": 17
+            "position": 9,
+            "movement": -7
           }
         ]
       },
@@ -3154,8 +3154,9 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 16,
-            "movement": 168
+            "position": 22,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -3504,8 +3505,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 12,
-            "movement": 120
+            "position": 18,
+            "movement": 140
           }
         ]
       }
@@ -3654,6 +3655,38 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/671d8a1ee4c2d4ca3e7c32877bbfee6a/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Dupe",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 150,
+            "movement": -2
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 4,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/f15012ed6d84db07276cff80e8dcd75f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Basquiat",
@@ -3876,7 +3909,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 30,
+            "position": 36,
             "movement": null,
             "status": "new"
           }
@@ -3885,45 +3918,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/0bcd709f154f3696394779095ad0c3c9/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Dupe",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 150,
-            "movement": -2
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/f15012ed6d84db07276cff80e8dcd75f/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Happiness",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 42,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/1aca731992c29efe91ca4639235a69c8/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Ego",
@@ -3943,6 +3937,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/d3d1d769407f8180412a67a4f9ef7c85/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Happiness",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 48,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/1aca731992c29efe91ca4639235a69c8/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "I Believe",
@@ -4050,8 +4064,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 155,
-            "movement": -135
+            "position": 164,
+            "movement": -136
           }
         ]
       }

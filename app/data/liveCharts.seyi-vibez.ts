@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-29";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-29T04:45Z";
+  export const liveChartsBuiltAt = "2026-09-29T05:48Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -140,7 +140,7 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 17,
+            "position": 18,
             "movement": -1
           },
           {
@@ -168,16 +168,16 @@
             "movement": -5
           },
           {
-            "country": "CA",
-            "name": "Canada",
-            "position": 42,
-            "movement": -8
-          },
-          {
             "country": "LT",
             "name": "Lithuania",
             "position": 42,
             "movement": 50
+          },
+          {
+            "country": "CA",
+            "name": "Canada",
+            "position": 43,
+            "movement": -7
           },
           {
             "country": "SN",
@@ -186,16 +186,16 @@
             "movement": 7
           },
           {
-            "country": "US",
-            "name": "United States",
-            "position": 54,
-            "movement": -13
-          },
-          {
             "country": "TR",
             "name": "Turkey",
             "position": 61,
             "movement": 4
+          },
+          {
+            "country": "US",
+            "name": "United States",
+            "position": 67,
+            "movement": -16
           },
           {
             "country": "CV",
@@ -239,8 +239,15 @@
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 119,
-            "movement": 48
+            "position": 125,
+            "movement": 43
+          },
+          {
+            "country": "NO",
+            "name": "Norway",
+            "position": 172,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -270,8 +277,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 12,
-            "movement": -11
+            "position": 13,
+            "movement": -10
           }
         ]
       }
@@ -379,7 +386,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 160,
+            "position": 169,
             "movement": -136
           }
         ]
@@ -1729,8 +1736,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 12,
-            "movement": 120
+            "position": 18,
+            "movement": 140
           }
         ]
       }
@@ -2207,26 +2214,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/c8ebad7f5af3f521ca579199d9e05150/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "UP",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 75,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/cf3225fd6ccebd61ef2d071f59b1a5d9/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "FUJI MOTO",
     "platforms": [
       {
@@ -2237,6 +2224,26 @@
             "country": "BJ",
             "name": "Benin",
             "position": 156,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/cf3225fd6ccebd61ef2d071f59b1a5d9/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "UP",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 82,
             "movement": null,
             "status": "new"
           }

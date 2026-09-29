@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-29";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-29T04:45Z";
+  export const liveChartsBuiltAt = "2026-09-29T05:47Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -694,7 +694,7 @@
             "country": "NO",
             "name": "Norway",
             "position": 8,
-            "movement": -4
+            "movement": -3
           },
           {
             "country": "NL",
@@ -736,7 +736,7 @@
             "country": "ES",
             "name": "Spain",
             "position": 15,
-            "movement": -6
+            "movement": -5
           },
           {
             "country": "CY",
@@ -832,7 +832,7 @@
             "country": "IT",
             "name": "Italy",
             "position": 42,
-            "movement": -9
+            "movement": -8
           },
           {
             "country": "SI",
@@ -844,7 +844,7 @@
             "country": "BR",
             "name": "Brazil",
             "position": 45,
-            "movement": -3
+            "movement": 0
           },
           {
             "country": "MV",
@@ -874,7 +874,7 @@
             "country": "FR",
             "name": "France",
             "position": 56,
-            "movement": -14
+            "movement": -8
           },
           {
             "country": "LB",
@@ -934,7 +934,7 @@
             "country": "CA",
             "name": "Canada",
             "position": 82,
-            "movement": -25
+            "movement": -22
           },
           {
             "country": "SG",
@@ -977,7 +977,7 @@
             "country": "AU",
             "name": "Australia",
             "position": 153,
-            "movement": -6
+            "movement": -19
           },
           {
             "country": "JO",
@@ -1029,7 +1029,7 @@
             "country": "NZ",
             "name": "New Zealand",
             "position": 191,
-            "movement": -42
+            "movement": -33
           }
         ]
       },
@@ -1802,7 +1802,7 @@
             "country": "DE",
             "name": "Germany",
             "position": 12,
-            "movement": 0
+            "movement": 1
           },
           {
             "country": "NL",
@@ -1814,26 +1814,19 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 12,
-            "movement": 1
+            "movement": 0
           },
           {
             "country": "FR",
             "name": "France",
             "position": 13,
-            "movement": -2
+            "movement": -5
           },
           {
             "country": "BE",
             "name": "Belgium",
             "position": 15,
-            "movement": 50
-          },
-          {
-            "country": "NO",
-            "name": "Norway",
-            "position": 20,
-            "movement": null,
-            "status": "new"
+            "movement": 54
           },
           {
             "country": "AZ",
@@ -1844,7 +1837,7 @@
           {
             "country": "ES",
             "name": "Spain",
-            "position": 24,
+            "position": 26,
             "movement": null,
             "status": "new"
           },
@@ -1856,67 +1849,73 @@
             "status": "new"
           },
           {
-            "country": "CA",
-            "name": "Canada",
-            "position": 31,
-            "movement": -2
-          },
-          {
-            "country": "PH",
-            "name": "Philippines",
-            "position": 39,
+            "country": "NO",
+            "name": "Norway",
+            "position": 33,
             "movement": null,
             "status": "new"
           },
           {
+            "country": "CA",
+            "name": "Canada",
+            "position": 37,
+            "movement": -10
+          },
+          {
             "country": "CZ",
             "name": "Czech Republic",
-            "position": 53,
+            "position": 56,
             "movement": null,
             "status": "new"
           },
           {
             "country": "IT",
             "name": "Italy",
-            "position": 53,
-            "movement": 15
-          },
-          {
-            "country": "SE",
-            "name": "Sweden",
-            "position": 54,
-            "movement": -35
-          },
-          {
-            "country": "NZ",
-            "name": "New Zealand",
             "position": 56,
+            "movement": 18
+          },
+          {
+            "country": "PH",
+            "name": "Philippines",
+            "position": 59,
             "movement": null,
             "status": "new"
           },
           {
+            "country": "SE",
+            "name": "Sweden",
+            "position": 65,
+            "movement": -42
+          },
+          {
             "country": "DK",
             "name": "Denmark",
-            "position": 67,
-            "movement": 7
+            "position": 77,
+            "movement": 28
           },
           {
             "country": "AU",
             "name": "Australia",
-            "position": 70,
-            "movement": 58
-          },
-          {
-            "country": "MX",
-            "name": "Mexico",
-            "position": 81,
-            "movement": -2
+            "position": 85,
+            "movement": -14
           },
           {
             "country": "US",
             "name": "United States",
-            "position": 82,
-            "movement": 10
+            "position": 88,
+            "movement": -12
+          },
+          {
+            "country": "MX",
+            "name": "Mexico",
+            "position": 126,
+            "movement": -74
+          },
+          {
+            "country": "NZ",
+            "name": "New Zealand",
+            "position": 146,
+            "movement": -131
           }
         ]
       }
@@ -2079,8 +2078,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 130,
-            "movement": 0
+            "position": 131,
+            "movement": -1
           }
         ]
       },
@@ -2685,8 +2684,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 10,
-            "movement": 20
+            "position": 16,
+            "movement": 23
           }
         ]
       }
@@ -3033,7 +3032,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 182,
+            "position": 183,
             "movement": 0
           }
         ]
@@ -3397,7 +3396,7 @@
             "country": "BW",
             "name": "Botswana",
             "position": 77,
-            "movement": -4
+            "movement": -3
           }
         ]
       }
@@ -3444,8 +3443,8 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 83,
-            "movement": 4
+            "position": 84,
+            "movement": 3
           },
           {
             "country": "ZW",
@@ -3620,7 +3619,7 @@
           {
             "country": "KZ",
             "name": "Kazakhstan",
-            "position": 76,
+            "position": 81,
             "movement": null,
             "status": "new"
           }
@@ -3751,7 +3750,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 52,
+            "position": 58,
             "movement": null,
             "status": "new"
           }
@@ -3776,8 +3775,8 @@
           {
             "country": "AI",
             "name": "Anguilla",
-            "position": 48,
-            "movement": 10
+            "position": 59,
+            "movement": -1
           },
           {
             "country": "ZW",
@@ -3806,8 +3805,8 @@
           {
             "country": "NA",
             "name": "Namibia",
-            "position": 84,
-            "movement": -17
+            "position": 85,
+            "movement": -18
           }
         ]
       },
@@ -3848,7 +3847,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 161,
+            "position": 170,
             "movement": -135
           }
         ]
@@ -3929,37 +3928,6 @@
     "kind": "song"
   },
   {
-    "title": "City Boys",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 195,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 195,
-            "movement": -133
-          }
-        ]
-      }
-    ],
-    "kind": "song"
-  },
-  {
     "title": "L.I.F.E - Leaving an Impact for Eternity",
     "platforms": [
       {
@@ -3982,31 +3950,13 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 131,
-            "movement": 0
+            "position": 132,
+            "movement": -1
           }
         ]
       }
     ],
     "kind": "album"
-  },
-  {
-    "title": "Higher",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 17,
-            "movement": 160
-          }
-        ]
-      }
-    ],
-    "kind": "song"
   },
   {
     "title": "Heaven's Gate",
@@ -4020,6 +3970,25 @@
             "name": "Nigeria",
             "position": 58,
             "movement": -11
+          }
+        ]
+      }
+    ],
+    "kind": "song"
+  },
+  {
+    "title": "Higher",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 23,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -4118,6 +4087,25 @@
     "kind": "song"
   },
   {
+    "title": "City Boys",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NE",
+            "name": "Niger",
+            "position": 195,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song"
+  },
+  {
     "title": "Special Someone",
     "platforms": [
       {
@@ -4200,8 +4188,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 159,
-            "movement": -1
+            "position": 160,
+            "movement": -2
           }
         ]
       }
