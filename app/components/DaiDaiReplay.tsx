@@ -493,292 +493,307 @@ export default function DaiDaiReplay({ data, labels: t }: { data: ReplayData; la
     { cls: "b5", label: t.legendPeakMark },
   ];
 
+  // The <noscript> copy of the small multiples follows the player, so a reader
+  // without JavaScript gets the week-by-week table as well as the poster. It
+  // lives here rather than on the page (until 30 Sep 2026 each page.tsx
+  // rendered it) because a server component's tree travels twice: once as
+  // HTML and again in the page's RSC payload for hydration. That copy was
+  // ~124 KB of each dai-dai page's flight and prefetch segment. Rendered by
+  // this client component, it is sent as HTML only: the payload carries the
+  // props, which the player needs anyway. React treats a <noscript>'s content
+  // as text in the browser, so the table is never rendered or hydrated there,
+  // just as when the page rendered it.
   return (
-    <div className={styles.replay} data-mode={mode} data-view={view} onKeyDown={onRootKey}>
-      <div className={styles.head}>
-        <div className={styles.kicker}>{t.kicker}</div>
-        <h3 className={styles.title}>{t.title}</h3>
-        <p className={styles.intro}>{t.intro}</p>
-      </div>
-
-      {view === "multiples" ? (
-        <DaiDaiReplayMultiples
-          data={data}
-          labels={t}
-          onOpen={() => {
-            setUserView("player");
-            setMode("poster");
-            setFrame(last);
-          }}
-        />
-      ) : (
-        <div className={styles.player}>
-          <div className={styles.readoutRow}>
-            <span className={styles.readout}>{readout}</span>
-            <span className={styles.counter}>{counter}</span>
-          </div>
-
-          <div className={styles.tiles}>
-            {tiles.map(({ g, sw, pos, sub }) => (
-              <div key={g.code} className={styles.tile} data-code={g.code}>
-                <span className={`${styles.swatch} ${styles[sw] ?? ""}`} aria-hidden="true" />
-                <span className={styles.tileText}>
-                  <span className={styles.tileName}>
-                    <span className={styles.tileNameLong}>{g.body}</span>
-                    <span className={styles.tileNameShort}>{g.name}</span>
-                  </span>
-                  <span className={styles.tileSub}>{holdNo(sub)}</span>
-                </span>
-                <span className={styles.tilePos}>{pos}</span>
-              </div>
-            ))}
-          </div>
-
-          <div className={styles.body}>
-            <div className={styles.mapCol}>
-              <div role="radiogroup" aria-label={t.mapView} className={styles.mapToggle}>
-                {(["europe", "world"] as const).map((v) => (
-                  <button
-                    key={v}
-                    type="button"
-                    role="radio"
-                    aria-checked={mapView === v}
-                    tabIndex={mapView === v ? 0 : -1}
-                    className={`${styles.mapToggleItem} ${mapView === v ? styles.mapToggleOn : ""}`}
-                    onClick={() => setMapView(v)}
-                    onKeyDown={(e) => {
-                      if (e.key === "ArrowLeft" || e.key === "ArrowRight" || e.key === "ArrowUp" || e.key === "ArrowDown") {
-                        e.preventDefault();
-                        const next = mapView === "europe" ? "world" : "europe";
-                        setMapView(next);
-                        (e.currentTarget.parentElement?.querySelector(`[data-v="${next}"]`) as HTMLElement | null)?.focus();
-                      }
-                    }}
-                    data-v={v}
-                  >
-                    {v === "europe" ? t.europe : t.world}
-                  </button>
-                ))}
-              </div>
-              <div
-                className={styles.mapBox}
-                data-map={mapView}
-                onPointerOver={onMapOver}
-                onPointerLeave={() => setHovered(null)}
-                onClick={onMapClick}
-              >
-                {/* The hatches. The shapes come from the sprite. */}
-                <svg className={styles.defs} aria-hidden="true" focusable="false">
-                  <defs>
-                    <pattern id="ddr-hatch-w" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-                      <rect className={styles.patWell} width="6" height="6" />
-                      <line className={styles.patLine} x1="0" y1="0" x2="0" y2="6" strokeWidth="1.7" />
-                    </pattern>
-                    <pattern id="ddr-hatch-e" width="2.2" height="2.2" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-                      <rect className={styles.patWell} width="2.2" height="2.2" />
-                      <line className={styles.patLine} x1="0" y1="0" x2="0" y2="2.2" strokeWidth="0.63" />
-                    </pattern>
-                    <pattern id="ddr-cross-w" width="7.2" height="7.2" patternUnits="userSpaceOnUse">
-                      <rect className={styles.patWell} width="7.2" height="7.2" />
-                      <path className={styles.patLine} d="M0 0L7.2 7.2M7.2 0L0 7.2" strokeWidth="1.1" />
-                    </pattern>
-                    <pattern id="ddr-cross-e" width="2.7" height="2.7" patternUnits="userSpaceOnUse">
-                      <rect className={styles.patWell} width="2.7" height="2.7" />
-                      <path className={styles.patLine} d="M0 0L2.7 2.7M2.7 0L0 2.7" strokeWidth="0.4" />
-                    </pattern>
-                  </defs>
-                </svg>
-
-                <svg
-                  className={styles.world}
-                  viewBox={`0 0 ${data.mapW} ${data.mapH}`}
-                  role="img"
-                  aria-label={fillIn(t.mapAria, { readout })}
-                >
-                  <WorldLayer
-                    mapView={mapView}
-                    draw={() => (
-                      <>
-                        {drawUses("w")}
-                        {drawMarks(1.35)}
-                        <circle
-                          className={`${styles.sg} ${styles[sgLook] ?? ""} ${sg && sg.code === cardCode ? styles.picked : ""}`}
-                          cx={SG.x}
-                          cy={SG.y}
-                          r={4.8}
-                          style={patternFill(sgLook, "w") ? { fill: patternFill(sgLook, "w") } : undefined}
-                          data-code={sg?.code}
-                        />
-                        {endLike && sg && !sg.pts.length ? (
-                          <circle className={styles.peakMark} cx={SG.x} cy={SG.y} r={1.35} />
-                        ) : null}
-                        <text className={styles.sgLabel} x={SG.x + 8.4} y={SG.y + 4.2}>
-                          SG
-                        </text>
-                      </>
-                    )}
-                  />
-                </svg>
-
-                <div className={styles.europe}>
-                  <span className={styles.europeLabel} aria-hidden="true">
-                    {t.europe}
-                  </span>
-                  <svg className={styles.europeSvg} viewBox={EUROPE} role="img" aria-label={`${t.europe} — ${fillIn(t.mapAria, { readout })}`}>
-                    {drawUses("e")}
-                    {drawMarks(0.72)}
-                  </svg>
-                </div>
-
-                {card ? (
-                  <div className={styles.card} role="group" aria-label={card.name}>
-                    <div className={styles.cardHead}>
-                      <span className={styles.cardFlag} aria-hidden="true">
-                        {card.flag}
-                      </span>
-                      <span className={styles.cardName}>{card.name}</span>
-                    </div>
-                    <div className={styles.cardBody}>{card.body}</div>
-                    <div className={styles.cardPosRow}>
-                      <span className={styles.cardPos}>{card.pos}</span>
-                      <span className={styles.cardStatus}>{card.status}</span>
-                    </div>
-                    {card.label ? <div className={styles.cardLabel}>{card.label}</div> : null}
-                    {card.source ? <div className={styles.cardSource}>{card.source}</div> : null}
-                  </div>
-                ) : null}
-              </div>
-            </div>
-
-            <div
-              className={styles.rankCol}
-              ref={rankRef}
-              style={mode === "scrubbing" && rankHold ? { minHeight: rankHold } : undefined}
-            >
-              <RankGroups
-                groups={groups}
-                cardCode={cardCode}
-                pinned={pinned}
-                tabChip={tabChip}
-                onChipKey={onChipKey}
-                onPick={pick}
-                onChipFocus={(code) => {
-                  if (mode !== "playing" && mode !== "scrubbing") setPinned(code);
-                }}
-              />
-
-              <div className={styles.tray}>
-                <div className={styles.trayHead}>
-                  <span className={`${styles.swatchSm} ${styles.unread}`} aria-hidden="true" />
-                  <span className={styles.trayLabel}>{endLike ? t.trayNotRecorded : t.trayUnread}</span>
-                  <span className={styles.trayCount}>{endLike ? peakOnly : stats.unread.length}</span>
-                </div>
-                {!endLike && stats.unread.length ? (
-                  <ul className={styles.trayList}>
-                    {stats.unread.map((c) => (
-                      <li key={c.code} data-code={c.code}>
-                        <span aria-hidden="true">{c.flag}</span> {c.code}
-                        <span className="visuallyHidden"> ({c.name})</span>
-                      </li>
-                    ))}
-                  </ul>
-                ) : null}
-                {!endLike && stats.noChart.length ? (
-                  <p className={styles.trayNote}>
-                    {fillIn(t.trayNoChart, { list: stats.noChart.map((c) => `${c.flag} ${c.code}`).join(", ") })}
-                  </p>
-                ) : null}
-                <p className={styles.trayNote}>
-                  {endLike
-                    ? fillIn(t.trayEnd, { k: peakOnly, ones: stats.n1, total })
-                    : fillIn(t.trayPeakOnly, { k: peakOnly })}
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className={styles.transport}>
-            <div className={styles.controls}>
-              <button type="button" className={styles.playBtn} aria-label={playLabel} onClick={toggle}>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path
-                    d={
-                      mode === "playing"
-                        ? "M6 5h4v14H6zM14 5h4v14h-4z"
-                        : mode === "end"
-                          ? "M12 5V2L7 6l5 4V7a6 6 0 1 1-6 6H4a8 8 0 1 0 8-8z"
-                          : "M7 4v16l13-8z"
-                    }
-                  />
-                </svg>
-              </button>
-              <button type="button" className={styles.stepBtn} aria-label={t.prev} onClick={back}>
-                <span aria-hidden="true">‹</span>
-              </button>
-              <button type="button" className={styles.stepBtn} aria-label={t.next} onClick={fwd}>
-                <span aria-hidden="true">›</span>
-              </button>
-              <div
-                ref={track}
-                role="slider"
-                tabIndex={0}
-                aria-label={t.slider}
-                aria-valuemin={0}
-                aria-valuemax={last}
-                aria-valuenow={endLike ? last : frame}
-                aria-valuetext={valuetext}
-                className={styles.slider}
-                onKeyDown={onSliderKey}
-                onPointerDown={onScrubStart}
-                onPointerMove={onScrubMove}
-                onPointerUp={onScrubEnd}
-                onPointerCancel={onScrubCancel}
-              >
-                <span className={styles.rail} aria-hidden="true" />
-                <span className={styles.progress} style={{ width: `${endLike ? 100 : (frame / last) * 100}%` }} aria-hidden="true" />
-                <span className={styles.ticks} aria-hidden="true">
-                  {data.frames.map((f, i) => {
-                    const cur = !endLike && i === frame;
-                    const mark = i === data.releaseFrame || i === data.halftimeFrame;
-                    const past = endLike || i <= frame;
-                    return (
-                      <span
-                        key={f}
-                        title={f}
-                        className={`${styles.tick} ${cur ? styles.tickCur : mark ? styles.tickMark : ""} ${past ? styles.tickPast : ""}`}
-                      />
-                    );
-                  })}
-                </span>
-              </div>
-            </div>
-            <div className={styles.marks} aria-hidden="true">
-              <span>
-                ▲ {data.releaseShort} · {t.release}
-              </span>
-              <span>
-                ▲ {data.halftimeShort} · {t.halftime}
-              </span>
-              <span>{data.lastShort}</span>
-            </div>
-          </div>
-
-          <ul className={styles.legend}>
-            {legend.map((l) => (
-              <li key={l.label}>
-                <span className={`${styles.swatch} ${styles[l.cls]}`} aria-hidden="true" />
-                {l.label}
-              </li>
-            ))}
-          </ul>
-          <p className={styles.foot}>{fillIn(t.footnote, { k: peakOnly, total })}</p>
+    <>
+      <div className={styles.replay} data-mode={mode} data-view={view} onKeyDown={onRootKey}>
+        <div className={styles.head}>
+          <div className={styles.kicker}>{t.kicker}</div>
+          <h3 className={styles.title}>{t.title}</h3>
+          <p className={styles.intro}>{t.intro}</p>
         </div>
-      )}
 
-      <div className="visuallyHidden" aria-live="polite" aria-atomic="true">
-        {mode === "paused" ? announce : ""}
+        {view === "multiples" ? (
+          <DaiDaiReplayMultiples
+            data={data}
+            labels={t}
+            onOpen={() => {
+              setUserView("player");
+              setMode("poster");
+              setFrame(last);
+            }}
+          />
+        ) : (
+          <div className={styles.player}>
+            <div className={styles.readoutRow}>
+              <span className={styles.readout}>{readout}</span>
+              <span className={styles.counter}>{counter}</span>
+            </div>
+
+            <div className={styles.tiles}>
+              {tiles.map(({ g, sw, pos, sub }) => (
+                <div key={g.code} className={styles.tile} data-code={g.code}>
+                  <span className={`${styles.swatch} ${styles[sw] ?? ""}`} aria-hidden="true" />
+                  <span className={styles.tileText}>
+                    <span className={styles.tileName}>
+                      <span className={styles.tileNameLong}>{g.body}</span>
+                      <span className={styles.tileNameShort}>{g.name}</span>
+                    </span>
+                    <span className={styles.tileSub}>{holdNo(sub)}</span>
+                  </span>
+                  <span className={styles.tilePos}>{pos}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className={styles.body}>
+              <div className={styles.mapCol}>
+                <div role="radiogroup" aria-label={t.mapView} className={styles.mapToggle}>
+                  {(["europe", "world"] as const).map((v) => (
+                    <button
+                      key={v}
+                      type="button"
+                      role="radio"
+                      aria-checked={mapView === v}
+                      tabIndex={mapView === v ? 0 : -1}
+                      className={`${styles.mapToggleItem} ${mapView === v ? styles.mapToggleOn : ""}`}
+                      onClick={() => setMapView(v)}
+                      onKeyDown={(e) => {
+                        if (e.key === "ArrowLeft" || e.key === "ArrowRight" || e.key === "ArrowUp" || e.key === "ArrowDown") {
+                          e.preventDefault();
+                          const next = mapView === "europe" ? "world" : "europe";
+                          setMapView(next);
+                          (e.currentTarget.parentElement?.querySelector(`[data-v="${next}"]`) as HTMLElement | null)?.focus();
+                        }
+                      }}
+                      data-v={v}
+                    >
+                      {v === "europe" ? t.europe : t.world}
+                    </button>
+                  ))}
+                </div>
+                <div
+                  className={styles.mapBox}
+                  data-map={mapView}
+                  onPointerOver={onMapOver}
+                  onPointerLeave={() => setHovered(null)}
+                  onClick={onMapClick}
+                >
+                  {/* The hatches. The shapes come from the sprite. */}
+                  <svg className={styles.defs} aria-hidden="true" focusable="false">
+                    <defs>
+                      <pattern id="ddr-hatch-w" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                        <rect className={styles.patWell} width="6" height="6" />
+                        <line className={styles.patLine} x1="0" y1="0" x2="0" y2="6" strokeWidth="1.7" />
+                      </pattern>
+                      <pattern id="ddr-hatch-e" width="2.2" height="2.2" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                        <rect className={styles.patWell} width="2.2" height="2.2" />
+                        <line className={styles.patLine} x1="0" y1="0" x2="0" y2="2.2" strokeWidth="0.63" />
+                      </pattern>
+                      <pattern id="ddr-cross-w" width="7.2" height="7.2" patternUnits="userSpaceOnUse">
+                        <rect className={styles.patWell} width="7.2" height="7.2" />
+                        <path className={styles.patLine} d="M0 0L7.2 7.2M7.2 0L0 7.2" strokeWidth="1.1" />
+                      </pattern>
+                      <pattern id="ddr-cross-e" width="2.7" height="2.7" patternUnits="userSpaceOnUse">
+                        <rect className={styles.patWell} width="2.7" height="2.7" />
+                        <path className={styles.patLine} d="M0 0L2.7 2.7M2.7 0L0 2.7" strokeWidth="0.4" />
+                      </pattern>
+                    </defs>
+                  </svg>
+
+                  <svg
+                    className={styles.world}
+                    viewBox={`0 0 ${data.mapW} ${data.mapH}`}
+                    role="img"
+                    aria-label={fillIn(t.mapAria, { readout })}
+                  >
+                    <WorldLayer
+                      mapView={mapView}
+                      draw={() => (
+                        <>
+                          {drawUses("w")}
+                          {drawMarks(1.35)}
+                          <circle
+                            className={`${styles.sg} ${styles[sgLook] ?? ""} ${sg && sg.code === cardCode ? styles.picked : ""}`}
+                            cx={SG.x}
+                            cy={SG.y}
+                            r={4.8}
+                            style={patternFill(sgLook, "w") ? { fill: patternFill(sgLook, "w") } : undefined}
+                            data-code={sg?.code}
+                          />
+                          {endLike && sg && !sg.pts.length ? (
+                            <circle className={styles.peakMark} cx={SG.x} cy={SG.y} r={1.35} />
+                          ) : null}
+                          <text className={styles.sgLabel} x={SG.x + 8.4} y={SG.y + 4.2}>
+                            SG
+                          </text>
+                        </>
+                      )}
+                    />
+                  </svg>
+
+                  <div className={styles.europe}>
+                    <span className={styles.europeLabel} aria-hidden="true">
+                      {t.europe}
+                    </span>
+                    <svg className={styles.europeSvg} viewBox={EUROPE} role="img" aria-label={`${t.europe} — ${fillIn(t.mapAria, { readout })}`}>
+                      {drawUses("e")}
+                      {drawMarks(0.72)}
+                    </svg>
+                  </div>
+
+                  {card ? (
+                    <div className={styles.card} role="group" aria-label={card.name}>
+                      <div className={styles.cardHead}>
+                        <span className={styles.cardFlag} aria-hidden="true">
+                          {card.flag}
+                        </span>
+                        <span className={styles.cardName}>{card.name}</span>
+                      </div>
+                      <div className={styles.cardBody}>{card.body}</div>
+                      <div className={styles.cardPosRow}>
+                        <span className={styles.cardPos}>{card.pos}</span>
+                        <span className={styles.cardStatus}>{card.status}</span>
+                      </div>
+                      {card.label ? <div className={styles.cardLabel}>{card.label}</div> : null}
+                      {card.source ? <div className={styles.cardSource}>{card.source}</div> : null}
+                    </div>
+                  ) : null}
+                </div>
+              </div>
+
+              <div
+                className={styles.rankCol}
+                ref={rankRef}
+                style={mode === "scrubbing" && rankHold ? { minHeight: rankHold } : undefined}
+              >
+                <RankGroups
+                  groups={groups}
+                  cardCode={cardCode}
+                  pinned={pinned}
+                  tabChip={tabChip}
+                  onChipKey={onChipKey}
+                  onPick={pick}
+                  onChipFocus={(code) => {
+                    if (mode !== "playing" && mode !== "scrubbing") setPinned(code);
+                  }}
+                />
+
+                <div className={styles.tray}>
+                  <div className={styles.trayHead}>
+                    <span className={`${styles.swatchSm} ${styles.unread}`} aria-hidden="true" />
+                    <span className={styles.trayLabel}>{endLike ? t.trayNotRecorded : t.trayUnread}</span>
+                    <span className={styles.trayCount}>{endLike ? peakOnly : stats.unread.length}</span>
+                  </div>
+                  {!endLike && stats.unread.length ? (
+                    <ul className={styles.trayList}>
+                      {stats.unread.map((c) => (
+                        <li key={c.code} data-code={c.code}>
+                          <span aria-hidden="true">{c.flag}</span> {c.code}
+                          <span className="visuallyHidden"> ({c.name})</span>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : null}
+                  {!endLike && stats.noChart.length ? (
+                    <p className={styles.trayNote}>
+                      {fillIn(t.trayNoChart, { list: stats.noChart.map((c) => `${c.flag} ${c.code}`).join(", ") })}
+                    </p>
+                  ) : null}
+                  <p className={styles.trayNote}>
+                    {endLike
+                      ? fillIn(t.trayEnd, { k: peakOnly, ones: stats.n1, total })
+                      : fillIn(t.trayPeakOnly, { k: peakOnly })}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className={styles.transport}>
+              <div className={styles.controls}>
+                <button type="button" className={styles.playBtn} aria-label={playLabel} onClick={toggle}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                      d={
+                        mode === "playing"
+                          ? "M6 5h4v14H6zM14 5h4v14h-4z"
+                          : mode === "end"
+                            ? "M12 5V2L7 6l5 4V7a6 6 0 1 1-6 6H4a8 8 0 1 0 8-8z"
+                            : "M7 4v16l13-8z"
+                      }
+                    />
+                  </svg>
+                </button>
+                <button type="button" className={styles.stepBtn} aria-label={t.prev} onClick={back}>
+                  <span aria-hidden="true">‹</span>
+                </button>
+                <button type="button" className={styles.stepBtn} aria-label={t.next} onClick={fwd}>
+                  <span aria-hidden="true">›</span>
+                </button>
+                <div
+                  ref={track}
+                  role="slider"
+                  tabIndex={0}
+                  aria-label={t.slider}
+                  aria-valuemin={0}
+                  aria-valuemax={last}
+                  aria-valuenow={endLike ? last : frame}
+                  aria-valuetext={valuetext}
+                  className={styles.slider}
+                  onKeyDown={onSliderKey}
+                  onPointerDown={onScrubStart}
+                  onPointerMove={onScrubMove}
+                  onPointerUp={onScrubEnd}
+                  onPointerCancel={onScrubCancel}
+                >
+                  <span className={styles.rail} aria-hidden="true" />
+                  <span className={styles.progress} style={{ width: `${endLike ? 100 : (frame / last) * 100}%` }} aria-hidden="true" />
+                  <span className={styles.ticks} aria-hidden="true">
+                    {data.frames.map((f, i) => {
+                      const cur = !endLike && i === frame;
+                      const mark = i === data.releaseFrame || i === data.halftimeFrame;
+                      const past = endLike || i <= frame;
+                      return (
+                        <span
+                          key={f}
+                          title={f}
+                          className={`${styles.tick} ${cur ? styles.tickCur : mark ? styles.tickMark : ""} ${past ? styles.tickPast : ""}`}
+                        />
+                      );
+                    })}
+                  </span>
+                </div>
+              </div>
+              <div className={styles.marks} aria-hidden="true">
+                <span>
+                  ▲ {data.releaseShort} · {t.release}
+                </span>
+                <span>
+                  ▲ {data.halftimeShort} · {t.halftime}
+                </span>
+                <span>{data.lastShort}</span>
+              </div>
+            </div>
+
+            <ul className={styles.legend}>
+              {legend.map((l) => (
+                <li key={l.label}>
+                  <span className={`${styles.swatch} ${styles[l.cls]}`} aria-hidden="true" />
+                  {l.label}
+                </li>
+              ))}
+            </ul>
+            <p className={styles.foot}>{fillIn(t.footnote, { k: peakOnly, total })}</p>
+          </div>
+        )}
+
+        <div className="visuallyHidden" aria-live="polite" aria-atomic="true">
+          {mode === "paused" ? announce : ""}
+        </div>
       </div>
-    </div>
+      <noscript>
+        <DaiDaiReplayMultiples data={data} labels={t} />
+      </noscript>
+    </>
   );
 }
 

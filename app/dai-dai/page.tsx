@@ -3,7 +3,6 @@ import styles from "./dai-dai.module.css";
 import DaiDaiStory from "../components/DaiDaiStory";
 import DaiDaiConquest, { type ConquestCountry } from "../components/DaiDaiConquest";
 import DaiDaiReplay from "../components/DaiDaiReplay";
-import DaiDaiReplayMultiples from "../components/DaiDaiReplayMultiples";
 import { buildReplayData } from "../components/daiDaiReplayData";
 import { EN_REPLAY_LABELS } from "../components/daiDaiReplayLabels";
 import KeepExploring from "../components/KeepExploring";
@@ -469,11 +468,9 @@ export default function DaiDaiPage() {
           {/* "How it got there" (design response §5, item 6): the replay, beside
               the grid rather than merged with it. The server renders its end
               frame; nothing plays until Play is pressed. Without JavaScript the
-              week-by-week table is the reading. */}
+              week-by-week table is the reading: the player renders it inside
+              <noscript> itself, which keeps it out of the RSC payload. */}
           <DaiDaiReplay data={replayData} labels={EN_REPLAY_LABELS} />
-          <noscript>
-            <DaiDaiReplayMultiples data={replayData} labels={EN_REPLAY_LABELS} />
-          </noscript>
         </section>
 
         <section id="numbers" className={`${styles.section} ${styles.sectionNumbers}`} aria-labelledby="dd-numbers">

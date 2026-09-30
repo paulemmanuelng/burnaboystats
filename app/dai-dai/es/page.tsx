@@ -3,7 +3,6 @@ import styles from "../dai-dai.module.css";
 import DaiDaiStory, { type Step } from "../../components/DaiDaiStory";
 import DaiDaiConquest, { type ConquestCountry } from "../../components/DaiDaiConquest";
 import DaiDaiReplay from "../../components/DaiDaiReplay";
-import DaiDaiReplayMultiples from "../../components/DaiDaiReplayMultiples";
 import { buildReplayData } from "../../components/daiDaiReplayData";
 import { ES_REPLAY_LABELS } from "../../components/daiDaiReplayLabels";
 import { Leads, NationalTable, RuledLists, type LeadFigure, type NumbersLabels, type RecordRow } from "../../components/DaiDaiNumbers";
@@ -514,10 +513,8 @@ export default function DaiDaiPageES() {
               showFewer: "Ver menos",
             }}
           />
+          {/* The player renders the no-JavaScript table in <noscript> itself. */}
           <DaiDaiReplay data={replayData} labels={ES_REPLAY_LABELS} />
-          <noscript>
-            <DaiDaiReplayMultiples data={replayData} labels={ES_REPLAY_LABELS} />
-          </noscript>
         </section>
 
         <section id="numbers" className={`${styles.section} ${styles.sectionNumbers}`} aria-labelledby="dd-numbers">
