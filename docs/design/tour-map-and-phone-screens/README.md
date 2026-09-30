@@ -174,6 +174,7 @@ Numbers below were measured on the live site on 29 Sep 2026. The phone was measu
 - **The first screen cuts the map.**
   - The map runs from y 436 to y 1041 on a 900px-tall screen, so the fold cuts through Oceania and southern Africa.
   - Below all land except Antarctica is an empty band: 13.7% of the frame's height.
+  - Cutting that band (§3.7) makes the frame shorter but doesn't lift Oceania: it sits above the band, so New Zealand stays at about y 883 on a 900px screen (checked 30 Sep). Getting the whole map onto the first screen at 1440 × 900 needs less height above the map, or a smaller map. Your call; show the result at 1440 × 900.
 - **Small places on desktop too.** At 1440, 21 countries are under 12px on a side: 8 in Europe (Belgium 9.7 × 6.6, the Netherlands, Ireland, Switzerland, Denmark, Portugal, Austria, Kosovo), all 10 in the Caribbean, and Rwanda, Benin and Mauritius. At 1024 it is 24.
 - **The Caribbean dots overlap on desktop.** Each dot is 8.2px across at 1440, but Barbados and Saint Lucia are 5.3px apart, centre to centre. The review said "about 9.5px apart", but that is only true of St Kitts and Antigua.
 - **Keyboard:**
