@@ -1,0 +1,70 @@
+== A. Corner boxes on the tour map frame
+-- uncropped, 1440: frame 1158 x 605
+   200x172 bottom-left: no played country
+   200x172 top-right: no played country
+   200x172 bottom-right: Australia 26%, New Zealand 100%
+   200x172 top-left: no played country
+   260x224 bottom-left: no played country
+   260x224 top-right: no played country
+   260x224 bottom-right: Australia 93%, New Zealand 100%
+   260x224 top-left: United States 27%, Canada 11%, Mexico 65%
+   300x258 bottom-left: no played country
+   300x258 top-right: no played country
+   300x258 bottom-right: Australia 100%, New Zealand 100%
+   300x258 top-left: United States 62%, Canada 32%, Mexico 100%
+-- uncropped, 1024: frame 942 x 492
+   200x172 bottom-left: no played country
+   200x172 top-right: no played country
+   200x172 bottom-right: Australia 85%, New Zealand 100%
+   200x172 top-left: United States 18%, Canada 5%, Mexico 34%
+   260x224 bottom-left: no played country
+   260x224 top-right: no played country
+   260x224 bottom-right: Australia 100%, New Zealand 100%
+   260x224 top-left: United States 79%, Canada 44%, Mexico 100%
+   300x258 bottom-left: Brazil 18%
+   300x258 top-right: no played country
+   300x258 bottom-right: Australia 100%, New Zealand 100%
+   300x258 top-left: United States 99%, Canada 72%, Mexico 100%, Brazil 10%, Jamaica 100%, Bahamas 100%, Haiti 100%; dots: Curaçao, St Kitts & Nevis
+-- cropped y 10-415, 1440: frame 1158 x 521
+   200x172 bottom-left: no played country
+   200x172 top-right: no played country
+   200x172 bottom-right: Australia 86%, New Zealand 100%
+   200x172 top-left: no played country
+   260x224 bottom-left: no played country
+   260x224 top-right: no played country
+   260x224 bottom-right: Australia 100%, New Zealand 100%
+   260x224 top-left: United States 27%, Canada 11%, Mexico 65%
+   300x258 bottom-left: no played country
+   300x258 top-right: no played country
+   300x258 bottom-right: Australia 100%, New Zealand 100%
+   300x258 top-left: United States 62%, Canada 32%, Mexico 100%
+-- cropped y 10-415, 1024: frame 942 x 424
+   200x172 bottom-left: no played country
+   200x172 top-right: no played country
+   200x172 bottom-right: Australia 100%, New Zealand 100%
+   200x172 top-left: United States 18%, Canada 5%, Mexico 34%
+   260x224 bottom-left: no played country
+   260x224 top-right: no played country
+   260x224 bottom-right: Australia 100%, New Zealand 100%
+   260x224 top-left: United States 79%, Canada 44%, Mexico 100%
+   300x258 bottom-left: Mexico 42%, Brazil 18%, Jamaica 100%, Haiti 100%; dots: Curaçao, St Kitts & Nevis
+   300x258 top-right: no played country
+   300x258 bottom-right: Australia 100%, New Zealand 100%
+   300x258 top-left: United States 99%, Canada 72%, Mexico 100%, Brazil 15%, Jamaica 100%, Bahamas 100%, Haiti 100%; dots: Curaçao, St Kitts & Nevis
+
+== B. Close-up magnification (world at 1440 = 1.2867 px/unit)
+   All of Europe, Turkey included (lon -11 to 45, lat 34 to 71): 200x172: 1.1x, Belgium 11 x 7 px | 260x224: 1.5x, Belgium 14 x 10 px
+   The Dai Dai Europe box (lon -11 to 32, lat 35 to 71, 1:0.86): 200x172: 1.4x, Belgium 14 x 9 px | 260x224: 1.9x, Belgium 18 x 12 px
+   Only the small countries (map x 426-501, y 56-118): 200x172: 2.0x, Belgium 19 x 13 px | 260x224: 2.6x, Belgium 25 x 17 px
+
+== C. The Dai Dai inset
+   901: map box 763 px, world 0.832 px/unit -> 31% (today) 237x203, Europe at 2.60x the world: CO (No. 1) 7%, EC (No. 1) 61%, CL (No. 14) 40%, PE (No. 23) 99%, BO (No. 25) 29%, BR (No. 27) 9% | 200 x 172 200x172, Europe at 2.18x the world: no charted country
+   1000: map box 862 px, world 0.885 px/unit -> 31% (today) 267x230, Europe at 2.78x the world: CO (No. 1) 73%, PA (No. 1) 19%, VE (No. 1) 3%, EC (No. 1) 100%, PE (No. 23) 88%, BR (No. 27) 2% | 200 x 172 200x172, Europe at 2.05x the world: no charted country
+   1024: map box 886 px, world 0.885 px/unit -> 31% (today) 275x236, Europe at 2.86x the world: CO (No. 1) 60%, PA (No. 1) 100%, VE (No. 1) 1%, EC (No. 1) 100%, CR (No. 5) 57%, PE (No. 23) 71%, BR (No. 27) 1% | 200 x 172 200x172, Europe at 2.05x the world: no charted country
+   1100: map box 962 px, world 0.885 px/unit -> 31% (today) 298x256, Europe at 3.12x the world: PA (No. 1) 68%, EC (No. 1) 51%, HN (No. 4) 100%, CR (No. 5) 100%, GT (No. 5) 84%, NI (No. 6) 100%, PE (No. 23) 7% | 200 x 172 200x172, Europe at 2.05x the world: no charted country
+   1180: map box 1042 px, world 0.885 px/unit -> 31% (today) 323x278, Europe at 3.39x the world: HN (No. 4) 50%, GT (No. 5) 100%, NI (No. 6) 10% | 200 x 172 200x172, Europe at 2.05x the world: no charted country
+   1239: map box 1101 px, world 0.885 px/unit -> 31% (today) 341x294, Europe at 3.59x the world: GT (No. 5) 3%, US (No. 17) 2% | 200 x 172 200x172, Europe at 2.05x the world: no charted country
+   1240: map box 721 px, world 0.786 px/unit -> 31% (today) 224x192, Europe at 2.60x the world: AR (No. 1) 1%, CL (No. 14) 43%, PE (No. 23) 75%, BO (No. 25) 31%, BR (No. 27) 6% | 200 x 172 200x172, Europe at 2.31x the world: no charted country
+   1280: map box 748 px, world 0.816 px/unit -> 31% (today) 232x199, Europe at 2.60x the world: CO (No. 1) 1%, EC (No. 1) 24%, CL (No. 14) 41%, PE (No. 23) 96%, BO (No. 25) 30%, BR (No. 27) 8% | 200 x 172 200x172, Europe at 2.22x the world: no charted country
+   1440: map box 748 px, world 0.816 px/unit -> 31% (today) 232x199, Europe at 2.60x the world: CO (No. 1) 1%, EC (No. 1) 24%, CL (No. 14) 41%, PE (No. 23) 96%, BO (No. 25) 30%, BR (No. 27) 8% | 200 x 172 200x172, Europe at 2.22x the world: no charted country
+   1440: New Zealand's east edge at x 700 px of a 746 px box -> 38 px of sea to the inset's 8 px margin

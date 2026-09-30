@@ -1,0 +1,48 @@
+<!-- EXCERPT, read-only reference. Source: design_handoff_burnaboystats/designs/mobile/Burna Boy Stats - Mobile Deep Pages.dc.html, lines 670-715,
+     copied 30 Sep 2026 from the owner's copy of the bundle (dated 26 Sep 2026). Edit the file in your own project, not this copy. -->
+      <div style="font-family:var(--mono);font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted)">20 · Where he's performed</div>
+      <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" dark="{{ true }}" hint-size="402px,874px">
+        <div style="background:var(--bg);min-height:100%;display:flex;flex-direction:column">
+          <div style="position:sticky;top:0;z-index:5;background:rgba(12,10,9,0.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:56px 18px 12px;display:flex;align-items:center;gap:12px">
+            <span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:999px;background:var(--soft);border:1px solid var(--line);color:var(--text);flex:none">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 5l-7 7 7 7"></path></svg>
+            </span>
+            <span style="font-family:var(--mono);font-weight:700;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase">Tour map</span>
+            <span style="margin-left:auto;font-family:var(--mono);font-size:10px;letter-spacing:0.1em;color:var(--gold);flex:none">57</span>
+            <button aria-label="Open menu" style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:999px;background:var(--soft);border:1px solid var(--line);color:var(--muted);cursor:pointer;flex:none"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button>
+          </div>
+          <div style="padding:22px 18px 18px">
+            <div style="font-family:var(--mono);font-weight:700;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted)">Live worldwide</div>
+            <h1 style="font-size:40px;line-height:0.94;margin-top:11px">Where he's <span style="background:linear-gradient(180deg,var(--gold-bright),var(--gold) 45%,var(--gold-2));-webkit-background-clip:text;background-clip:text;color:transparent">performed</span></h1>
+            <p style="font-size:14.5px;line-height:1.55;color:#CFC7BB;margin:12px 0 0">Fifty-seven countries across seven regions.</p>
+          </div>
+          <div style="margin:0 18px;border:1px solid var(--line);border-radius:8px;overflow:hidden">
+            <div style="height:190px;background:var(--soft);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;position:relative">
+              <div style="position:absolute;inset:0;background-image:radial-gradient(circle at 22% 38%, rgba(255,182,39,0.5) 2px, transparent 2.5px),radial-gradient(circle at 46% 30%, rgba(255,182,39,0.5) 2px, transparent 2.5px),radial-gradient(circle at 52% 55%, rgba(255,182,39,0.5) 2px, transparent 2.5px),radial-gradient(circle at 68% 44%, rgba(255,182,39,0.35) 2px, transparent 2.5px),radial-gradient(circle at 80% 70%, rgba(255,182,39,0.35) 2px, transparent 2.5px),radial-gradient(circle at 30% 62%, rgba(255,182,39,0.4) 2px, transparent 2.5px)"></div>
+              <span style="font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--dim);position:relative">Interactive map</span>
+              <span style="font-family:var(--anton);font-size:40px;color:var(--gold);position:relative;line-height:1">57</span>
+              <span style="font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);position:relative">countries · pinch to zoom</span>
+            </div>
+            <div style="padding:11px 14px;border-top:1px solid var(--line);background:var(--bg);font-family:var(--mono);font-size:10px;line-height:1.5;color:var(--dim)">Same Natural Earth geometry as desktop, fitted to the viewport. Tap a country for its shows.</div>
+          </div>
+          <div style="padding:20px 0 0">
+            <sc-for list="{{ mapRegions }}" as="r" hint-placeholder-count="7">
+              <div style="padding:14px 18px;border-top:1px solid var(--line)">
+                <div style="display:flex;align-items:baseline;gap:10px">
+                  <span style="font-family:var(--anton);font-size:17px;text-transform:uppercase">{{ r.name }}</span>
+                  <span style="margin-left:auto;font-family:var(--anton);font-size:19px;color:var(--gold);font-variant-numeric:tabular-nums">{{ r.count }}</span>
+                </div>
+                <p style="font-family:var(--mono);font-size:10.5px;line-height:1.6;color:var(--muted);margin:7px 0 0">{{ r.list }}</p>
+              </div>
+            </sc-for>
+          </div>
+          <p style="font-size:12px;line-height:1.55;color:var(--dim);padding:18px 18px 0;border-top:1px solid var(--line)">Regions and counts are derived from the same 57-country list the desktop map shades. Ten small island nations have no usable shape at 110m resolution and are plotted as markers rather than filled — the region list above is the accessible equivalent.</p>
+          <div style="height:110px"></div>
+          <div style="position:sticky;bottom:0;margin-top:auto;background:rgba(12,10,9,0.94);backdrop-filter:blur(14px);border-top:1px solid var(--line);padding:12px 18px 34px;display:flex;gap:10px">
+            <button style="flex:1;min-height:50px;border-radius:999px;background:var(--gold);color:#0a0a0b;border:0;font-family:var(--mono);font-weight:700;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;box-shadow:0 0 26px rgba(255,182,39,0.25);cursor:pointer">Open the map</button>
+          </div>
+        </div>
+      </x-import>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:14px">

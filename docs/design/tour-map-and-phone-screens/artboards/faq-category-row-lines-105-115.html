@@ -1,0 +1,13 @@
+<!-- EXCERPT, read-only reference. Source: design_handoff_burnaboystats/designs/desktop/FAQ.dc.html, lines 105-115,
+     copied 30 Sep 2026 from the owner's copy of the bundle (dated 26 Sep 2026). Edit the file in your own project, not this copy. -->
+  <section style="border-bottom:1px solid var(--color-divider);background:var(--color-surface)">
+    <div style="max-width:1360px;margin:0 auto;padding:20px 40px;display:flex;flex-wrap:wrap;align-items:center;gap:10px">
+      <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-right:6px">Jump to</span>
+      <sc-for list="{{ chips }}" as="c" hint-placeholder-count="5">
+        <a href="{{ c.href }}" style="display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:13px;font-weight:600" style-hover="border-color:var(--color-accent);color:var(--color-accent)">
+          {{ c.label }}<span style="font-family:var(--font-mono);font-size:11px;opacity:0.7">{{ c.count }}</span>
+        </a>
+      </sc-for>
+      <span style="margin-left:auto;font-family:var(--font-mono);font-size:11.5px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted)">{{ total }} questions</span>
+    </div>
+  </section>

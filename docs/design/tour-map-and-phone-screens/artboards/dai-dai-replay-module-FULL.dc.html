@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Space+Mono:wght@400;700&amp;family=Geist:wght@400;500;600&amp;display=swap">
+<script src="dai-dai-data.js"></script>
+</helmet>
+<div style="--bg:{{ t.bg }};--soft:{{ t.soft }};--well:{{ t.well }};--raised:{{ t.raised }};--text:{{ t.text }};--body:{{ t.body }};--muted:{{ t.muted }};--line:{{ t.line }};--rule:{{ t.rule }};--gold:{{ t.gold }};--btn-face:{{ t.btnFace }};--btn-edge:{{ t.btnEdge }};--ink-on-gold:{{ t.inkOnGold }};--green:{{ t.green }};background:var(--bg);color:var(--text);font-family:Geist,system-ui,sans-serif;display:flex;flex-direction:column;gap:{{ L.gap }};padding:{{ L.pad }}">
+
+  <div style="display:flex;flex-direction:column;gap:8px">
+    <div style="font-family:'Space Mono',monospace;font-weight:700;font-size:11px;letter-spacing:0.11em;text-transform:uppercase;color:var(--muted)">The chart run · week by week</div>
+    <div style="font-family:Anton,sans-serif;font-size:{{ L.h }};line-height:1;text-transform:uppercase">How it got there</div>
+    <p style="margin:0;font-size:13.5px;line-height:1.5;color:var(--body);max-width:62ch">Official national charts, one frame a week from release. A hatched country is a week nobody has read yet: it is never filled in from the weeks around it.</p>
+  </div>
+
+  <sc-if value="{{ isMultiples }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <span style="font-family:'Space Mono',monospace;font-weight:700;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text)">Every chart, every week</span>
+        <span style="font-size:12.5px;color:var(--muted)">Reduced motion and no-JS view · 68 charts · peak-only rows show their peak</span>
+        <button style="margin-left:auto;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border-radius:999px;background:var(--btn-face);border:1px solid var(--btn-edge);color:var(--text);font-family:'Space Mono',monospace;font-weight:700;font-size:12px;letter-spacing:0.08em;text-transform:uppercase">Open the player (steps, no animation)</button>
+      </div>
+      <div role="table" aria-label="Dai Dai week by week, every chart" style="display:flex;flex-direction:column;gap:2px;font-family:'Space Mono',monospace;font-size:11px">
+        <div role="row" style="display:grid;grid-template-columns:{{ L.smCols }};gap:2px;align-items:end;color:var(--muted);padding-bottom:4px;border-bottom:1px solid var(--rule)">
+          <span role="columnheader">Chart</span>
+          <sc-for list="{{ smHead }}" as="h" hint-placeholder-count="20"><span role="columnheader" style="text-align:center;font-size:10px">{{ h }}</span></sc-for>
+        </div>
+        <sc-for list="{{ smRows }}" as="r" hint-placeholder-count="12">
+          <div role="row" style="display:grid;grid-template-columns:{{ L.smCols }};gap:2px;align-items:center;min-height:{{ L.smRowH }}">
+            <span role="rowheader" style="display:flex;align-items:center;gap:6px;color:var(--text);white-space:nowrap;overflow:hidden"><span>{{ r.flag }}</span>{{ r.code }}<span style="color:var(--muted);font-size:10px">{{ r.peakLabel }}</span></span>
+            <sc-if value="{{ r.recorded }}" hint-placeholder-val="{{ true }}">
+              <sc-for list="{{ r.cells }}" as="c" hint-placeholder-count="20"><span role="cell" aria-label="{{ c.aria }}" style="height:{{ L.smCellH }};background:{{ c.bg }};border:{{ c.border }};border-radius:2px"></span></sc-for>
+            </sc-if>
+            <sc-if value="{{ r.peakOnly }}" hint-placeholder-val="{{ false }}">
+              <span role="cell" style="grid-column:2 / -1;display:flex;align-items:center;gap:8px;height:{{ L.smCellH }};padding:0 8px;border:1px dotted var(--text);border-radius:2px;color:var(--muted);font-size:10.5px;letter-spacing:0.04em"><span style="width:10px;height:10px;border-radius:2px;background:{{ r.peakBg }};border:{{ r.peakBorder }}"></span>peak No. {{ r.peak }} · run not recorded</span>
+            </sc-if>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isPlayer }}" hint-placeholder-val="{{ true }}">
+    <div style="display:flex;flex-direction:column;gap:{{ L.gap }}">
+      <div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap">
+        <span aria-live="polite" style="font-family:Anton,sans-serif;font-size:{{ L.readout }};line-height:1;text-transform:uppercase">{{ readout }}</span>
+        <span style="font-family:'Space Mono',monospace;font-weight:700;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted)">No. 1 in <span style="color:var(--text);outline:var(--slot)">{{ n1 }}</span> {{ n1Word }} this week · <span style="outline:var(--slot)">{{ unreadN }}</span> not read</span>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px">
+        <sc-for list="{{ tiles }}" as="g" hint-placeholder-count="2">
+          <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;background:var(--soft);border:1px solid var(--line);border-radius:6px;min-width:0">
+            <span style="width:14px;height:14px;border-radius:3px;flex:none;background:{{ g.bg }};border:{{ g.border }}"></span>
+            <span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:2px"><span style="font-family:'Space Mono',monospace;font-weight:700;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ g.name }}</span><span style="font-size:12.5px;color:var(--muted)">{{ g.sub }}</span></span>
+            <span style="font-family:Anton,sans-serif;font-size:26px;line-height:1;font-variant-numeric:tabular-nums;outline:var(--slot)">{{ g.pos }}</span>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="display:{{ L.bodyDisplay }};grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:20px;flex-direction:column">
+        <div style="position:relative;order:{{ L.mapOrder }};display:flex;flex-direction:column;gap:8px">
+          <sc-if value="{{ L.phone }}" hint-placeholder-val="{{ false }}">
+            <div role="radiogroup" aria-label="Map view" style="display:flex;border:1px solid var(--btn-edge);border-radius:999px;overflow:hidden;height:44px;font-family:'Space Mono',monospace;font-weight:700;font-size:11px;letter-spacing:0.1em;text-transform:uppercase">
+              <span style="flex:1;display:flex;align-items:center;justify-content:center;background:var(--text);color:var(--bg)">Europe</span>
+              <span style="flex:1;display:flex;align-items:center;justify-content:center;color:var(--muted);border-left:1px solid var(--btn-edge)">World</span>
+            </div>
+          </sc-if>
+          <div style="position:relative;height:{{ L.mapH }};background:var(--bg);border:1px solid var(--line);border-radius:6px;overflow:hidden">
+            <iframe title="Map of Dai Dai's chart positions, {{ readout }}" src="dai-dai-replay-map.html?theme={{ theme }}&amp;view={{ L.view }}&amp;frame={{ frame }}&amp;mode={{ mapMode }}&amp;card={{ card }}&amp;inset={{ L.inset }}" style="border:0;width:100%;height:100%;display:block;background:transparent"></iframe>
+            <sc-if value="{{ hasCard }}" hint-placeholder-val="{{ false }}">
+              <div role="dialog" aria-label="{{ cardData.name }}" style="position:absolute;left:{{ L.cardX }};top:{{ L.cardY }};width:{{ L.cardW }};padding:14px 16px;background:var(--soft);border:1px solid var(--rule);border-radius:6px;box-shadow:{{ t.shadow }};display:flex;flex-direction:column;gap:6px">
+                <div style="display:flex;align-items:center;gap:8px"><span style="font-size:18px">{{ cardData.flag }}</span><span style="font-family:Anton,sans-serif;font-size:20px;text-transform:uppercase;line-height:1">{{ cardData.name }}</span></div>
+                <div style="font-family:'Space Mono',monospace;font-weight:700;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted)">{{ cardData.body }}</div>
+                <div style="display:flex;align-items:baseline;gap:10px"><span style="font-family:Anton,sans-serif;font-size:30px;line-height:1;outline:var(--slot)">{{ cardData.pos }}</span><span style="font-size:13.5px;color:var(--body)">{{ cardData.status }}</span></div>
+                <div style="font-size:12.5px;color:var(--body)">{{ cardData.label }}</div>
+                <div style="font-size:11px;font-family:'Space Mono',monospace;color:var(--muted);letter-spacing:0.02em">Source: {{ cardData.source }}</div>
+              </div>
+            </sc-if>
+          </div>
+        </div>
+
+        <div style="order:{{ L.rankOrder }};display:flex;flex-direction:column;gap:12px;min-width:0">
+          <sc-for list="{{ groups }}" as="gr" hint-placeholder-count="3">
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="display:flex;align-items:center;gap:8px;padding-bottom:6px;border-bottom:1px solid var(--rule)">
+                <span style="width:12px;height:12px;border-radius:3px;background:{{ gr.bg }};border:{{ gr.border }}"></span>
+                <span style="font-family:'Space Mono',monospace;font-weight:700;font-size:11px;letter-spacing:0.1em;text-transform:uppercase">{{ gr.label }}</span>
+                <span style="margin-left:auto;font-family:'Space Mono',monospace;font-size:11px;color:var(--muted);outline:var(--slot)">{{ gr.count }}</span>
+              </div>
+              <div style="display:flex;flex-wrap:wrap;gap:4px 6px">
+                <sc-for list="{{ gr.items }}" as="it" hint-placeholder-count="6">
+                  <span title="{{ it.name }}" style="display:inline-flex;align-items:center;gap:5px;padding:3px 8px;border:1px solid var(--line);border-radius:999px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.04em;color:var(--text);white-space:nowrap"><span>{{ it.flag }}</span>{{ it.code }}<span style="color:var(--muted)">{{ it.cue }}</span></span>
+                </sc-for>
+              </div>
+            </div>
+          </sc-for>
+          <div style="display:flex;flex-direction:column;gap:6px;padding:10px 12px;background:var(--well);border-radius:6px">
+            <div style="display:flex;align-items:center;gap:8px"><span style="width:12px;height:12px;border-radius:3px;background:repeating-linear-gradient(45deg,var(--muted) 0 1.5px,transparent 1.5px 4px);border:1px dashed var(--text)"></span><span style="font-family:'Space Mono',monospace;font-weight:700;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted)">{{ trayLabel }}</span><span style="margin-left:auto;font-family:'Space Mono',monospace;font-size:11px;color:var(--muted);outline:var(--slot)">{{ trayCount }}</span></div>
+            <div style="display:flex;flex-wrap:wrap;gap:4px 8px;font-family:'Space Mono',monospace;font-size:11px;color:var(--muted)"><sc-for list="{{ tray }}" as="x" hint-placeholder-count="6"><span>{{ x }}</span></sc-for></div>
+            <div style="font-size:12.5px;color:var(--muted)">{{ trayNote }}</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:8px;padding:{{ L.transportPad }};background:{{ L.transportBg }};border-top:{{ L.transportBorder }}">
+        <div style="display:flex;align-items:center;gap:8px">
+          <button onClick="{{ toggle }}" aria-label="{{ playLabel }}" style="width:44px;height:44px;flex:none;border-radius:50%;border:0;background:linear-gradient(180deg,{{ t.goldBright }} 0%,{{ t.gold }} 48%,{{ t.goldDim }} 100%);color:var(--ink-on-gold);display:flex;align-items:center;justify-content:center;cursor:pointer">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="{{ playIcon }}"></path></svg>
+          </button>
+          <button onClick="{{ back }}" aria-label="Previous week" style="width:44px;height:44px;flex:none;border-radius:50%;border:1px solid var(--btn-edge);background:var(--btn-face);color:var(--text);cursor:pointer;font-family:'Space Mono',monospace;font-weight:700">‹</button>
+          <button onClick="{{ fwd }}" aria-label="Next week" style="width:44px;height:44px;flex:none;border-radius:50%;border:1px solid var(--btn-edge);background:var(--btn-face);color:var(--text);cursor:pointer;font-family:'Space Mono',monospace;font-weight:700">›</button>
+          <div role="slider" tabindex="0" onKeyDown="{{ onKey }}" aria-label="Week" aria-valuemin="0" aria-valuemax="19" aria-valuenow="{{ frame }}" aria-valuetext="{{ valuetext }}" style="flex:1;min-width:0;position:relative;height:44px;display:flex;align-items:center;outline-offset:2px">
+            <div style="position:absolute;left:0;right:0;top:21px;height:2px;background:var(--line)"></div>
+            <div style="position:absolute;left:0;top:21px;height:2px;width:{{ progress }};background:var(--text)"></div>
+            <div style="position:relative;flex:1;display:flex;justify-content:space-between">
+              <sc-for list="{{ ticks }}" as="k" hint-placeholder-count="20">
+                <span onClick="{{ k.go }}" title="{{ k.title }}" style="width:{{ k.w }};height:{{ k.h }};border-radius:{{ k.r }};background:{{ k.bg }};cursor:pointer;flex:none;box-shadow:{{ k.ring }}"></span>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted)">
+          <span>▲ 15 May · release</span><span>▲ 19 Jul · halftime</span><span>26 Sep</span>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted)">
+        <sc-for list="{{ legend }}" as="lg" hint-placeholder-count="9">
+          <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:3px;background:{{ lg.bg }};border:{{ lg.border }}"></span>{{ lg.label }}</span>
+        </sc-for>
+      </div>
+      <p style="margin:0;font-size:12.5px;line-height:1.45;color:var(--muted)">Official national charts, as read by burnaboystats.com. Frames are calendar weeks; each chart dates its own week, and the card shows that date. 51 of 66 countries show only their peak.</p>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1200,&quot;height&quot;:900},&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;dark&quot;,&quot;light&quot;],&quot;default&quot;:&quot;dark&quot;,&quot;tsType&quot;:&quot;'dark'|'light'&quot;},&quot;layout&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;desktop&quot;,&quot;phone&quot;],&quot;default&quot;:&quot;desktop&quot;,&quot;tsType&quot;:&quot;'desktop'|'phone'&quot;},&quot;mode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;poster&quot;,&quot;playing&quot;,&quot;paused&quot;,&quot;scrubbing&quot;,&quot;end&quot;,&quot;multiples&quot;],&quot;default&quot;:&quot;poster&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;frame&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:19,&quot;min&quot;:0,&quot;max&quot;:19,&quot;tsType&quot;:&quot;number&quot;},&quot;card&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { frame: null, playing: false, mode: null };
+  componentWillUnmount() { clearInterval(this._t); }
+  componentDidMount() { if (!window.DD) this._w = setInterval(() => { if (window.DD) { clearInterval(this._w); this.forceUpdate(); } }, 60); }
+  THEMES = {
+    dark: { bg:'#0a0a0b', soft:'#141416', well:'#1c1c21', raised:'#24242a', text:'#f5f4f0', body:'#cfc7bb', muted:'#9b9ba3', line:'rgba(245,244,240,0.12)', rule:'rgba(245,244,240,0.38)', gold:'#ffb627', goldBright:'#ffd24a', goldDim:'#c98a2e', btnFace:'#24242a', btnEdge:'rgba(245,244,240,0.42)', inkOnGold:'#14100a', green:'#3ed17f', shadow:'0 20px 50px rgba(0,0,0,.45)' },
+    light: { bg:'#f7f4ee', soft:'#ffffff', well:'#efeae1', raised:'#e6e0d4', text:'#17140f', body:'#4a443b', muted:'#5f584f', line:'rgba(23,20,15,0.12)', rule:'rgba(23,20,15,0.48)', gold:'#945e00', goldBright:'#945e00', goldDim:'#945e00', btnFace:'#ffffff', btnEdge:'rgba(23,20,15,0.55)', inkOnGold:'#ffffff', green:'#177a45', shadow:'0 12px 32px rgba(23,20,15,.14)' },
+  };
+  go(f) { clearInterval(this._t); this.setState({ frame: Math.max(0, Math.min(19, f)), playing: false, mode: 'paused' }); }
+  play() {
+    clearInterval(this._t);
+    const start = this.cur().mode === 'end' || this.cur().mode === 'poster' ? 0 : this.cur().frame;
+    this.setState({ playing: true, mode: 'playing', frame: start });
+    this._t = setInterval(() => { const f = this.state.frame + 1; if (f > 19) { clearInterval(this._t); this.setState({ playing: false, mode: 'end', frame: 19 }); } else this.setState({ frame: f }); }, 1000);
+  }
+  cur() { return { frame: this.state.frame ?? (this.props.frame ?? 19), mode: this.state.mode ?? (this.props.mode || 'poster') }; }
+  renderVals() {
+    const D = window.DD; if (!D) return { t: this.THEMES.dark, L: {}, isPlayer: false, isMultiples: false };
+    const theme = this.props.theme === 'light' ? 'light' : 'dark';
+    const t = this.THEMES[theme], B = D.BANDS[theme];
+    const phone = this.props.layout === 'phone';
+    const { frame, mode } = this.cur();
+    const endLike = mode === 'end' || mode === 'poster';
+    const light = theme === 'light';
+    const sw = (b) => ({ bg: B[b], border: light && (b === 'b40' || b === 'rest') ? `1px solid ${B.ink}` : '1px solid transparent' });
+    const L = phone
+      ? { phone: true, pad: '20px 18px 24px', gap: '14px', h: '26px', readout: '22px', view: 'europe', inset: 0, mapH: '300px', bodyDisplay: 'flex', mapOrder: 2, rankOrder: 1, cardX: '10px', cardY: '10px', cardW: 'calc(100% - 20px)', transportPad: '10px 0 0', transportBg: 'var(--bg)', transportBorder: '1px solid var(--line)', smCols: '64px repeat(20,minmax(0,1fr))', smRowH: '18px', smCellH: '12px' }
+      : { phone: false, pad: '0', gap: '18px', h: '34px', readout: '30px', view: 'world', inset: 1, mapH: '430px', bodyDisplay: 'grid', mapOrder: 1, rankOrder: 2, cardX: '24px', cardY: '24px', cardW: '280px', transportPad: '0', transportBg: 'transparent', transportBorder: '0', smCols: '120px repeat(20,minmax(0,1fr))', smRowH: '20px', smCellH: '14px' };
+    const countries = D.C.map(([code, name, iso, peak, group]) => ({ code, name, peak, group, flag: D.flag(code), run: D.RUNS[code] }));
+    const recorded = countries.filter((c) => c.run);
+    const wksAt1 = (run, f) => run.slice(0, f + 1).filter((v) => v === 1).length;
+    const ord = (k) => { const m = k % 100; return `${k}${m >= 11 && m <= 13 ? 'th' : ['th', 'st', 'nd', 'rd'][k % 10] || 'th'}`; };
+    let trayN = 0;
+    // ranking
+    let groups, tray, trayLabel, trayNote, n1, unreadN;
+    const bandsOrder = [['b1', 'No. 1'], ['b5', 'Top 5'], ['b10', 'Top 10'], ['b40', 'Top 40'], ['rest', '41+']];
+    if (endLike) {
+      groups = bandsOrder.map(([b, label]) => { const items = countries.filter((c) => D.band(c.peak) === b); return { label: `${label} · peak`, count: items.length, ...sw(b), items: items.map((c) => ({ code: c.code, flag: c.flag, name: c.name, cue: c.run ? (c.peak === 1 ? `${wksAt1(c.run, 19)} wk` : '') : '●' })) }; }).filter((g) => g.count);
+      n1 = 26; unreadN = 0; trayLabel = 'Run not recorded'; tray = []; trayNote = '51 countries show only their peak (●). The peak picture equals the takeover grid above: 26 of 66 at No. 1.';
+    } else {
+      const on = recorded.filter((c) => typeof c.run[frame] === 'number');
+      groups = bandsOrder.map(([b, label]) => { const items = on.filter((c) => D.band(c.run[frame]) === b).sort((x, y) => x.run[frame] - y.run[frame] || wksAt1(y.run, frame) - wksAt1(x.run, frame)); return { label, count: items.length, ...sw(b), items: items.map((c) => ({ code: c.code, flag: c.flag, name: c.name, cue: c.run[frame] === 1 ? `${wksAt1(c.run, frame)} wk` : `#${c.run[frame]}` })) }; }).filter((g) => g.count);
+      const un = recorded.filter((c) => c.run[frame] === 'u'), nc = recorded.filter((c) => c.run[frame] === 'n');
+      n1 = on.filter((c) => c.run[frame] === 1).length; unreadN = un.length;
+      trayLabel = 'Not read this week'; tray = un.map((c) => `${c.flag} ${c.code}`); trayN = un.length;
+      trayNote = `${nc.length ? `No chart published this week: ${nc.map((c) => `${c.flag} ${c.code}`).join(', ')}. ` : ''}+ 51 countries whose run is not recorded (dotted on the map). They fill with their peak at the end.`;
+    }
+    const tile = (k) => { const g = D.GLOBALS[k]; const v = endLike ? 1 : g.run[frame]; const num = typeof v === 'number'; const b = num ? D.band(v) : null;
+      return { name: phone ? g.short : g.name, pos: num ? `No. ${v}` : v === 'u' ? '—' : 'Off', sub: num ? `${wksAt1(endLike ? g.run : g.run, endLike ? 19 : frame)} wk at No. 1 so far` : v === 'u' ? 'not read this week' : 'not on the chart', bg: num ? B[b] : v === 'u' ? `repeating-linear-gradient(45deg,${B.hatch} 0 1.5px,${B.well} 1.5px 4px)` : B.well, border: num ? sw(b).border : `1px dashed ${B.ink}` }; };
+    const readout = endLike ? 'The peak picture' : `Week of ${D.longDate(D.FRAMES[frame])}`;
+    const card = mode === 'paused' ? (this.props.card || '') : '';
+    const cc = card ? countries.find((c) => c.code === card) : null;
+    const cardData = cc ? (() => { const v = cc.run ? cc.run[frame] : null; return { name: cc.name, flag: cc.flag, body: D.BODY[cc.code] || 'Official national chart', pos: typeof v === 'number' ? `No. ${v}` : v === 'u' ? '—' : v === 'n' ? '×' : 'Off', status: typeof v === 'number' ? (v === 1 ? `${ord(wksAt1(cc.run, frame))} week at No. 1` : 'this week') : v === 'u' ? 'no reading this week' : v === 'n' ? 'no chart published' : 'not on the chart', label: D.ownLabel(cc.code, frame), source: 'docs/sourcing/DAI-DAI-RUNS-2026-08-29.md' }; })() : {};
+    const ticks = D.FRAMES.map((d, i) => { const mark = i === 0 || i === 9; const cur = i === frame && !endLike; return { go: () => this.go(i), title: D.longDate(d), w: cur ? '14px' : mark ? '4px' : '2px', h: cur ? '14px' : mark ? '14px' : '8px', r: cur ? '50%' : '1px', bg: cur ? t.text : i <= frame ? t.text : t.muted, ring: cur ? `0 0 0 3px ${t.bg}, 0 0 0 5px ${t.text}` : 'none' }; });
+    const legend = [...bandsOrder.map(([b, l]) => ({ label: l, ...sw(b) })),
+      { label: 'Off chart', bg: B.well, border: `1px solid ${B.line}` },
+      { label: 'No reading', bg: `repeating-linear-gradient(45deg,${B.hatch} 0 1.5px,${B.well} 1.5px 4px)`, border: `1px dashed ${B.ink}` },
+      { label: 'No chart that week', bg: `repeating-linear-gradient(45deg,${B.hatch} 0 1px,transparent 1px 4px),repeating-linear-gradient(-45deg,${B.hatch} 0 1px,${B.well} 1px 4px)`, border: `1px solid ${B.ink}` },
+      { label: 'Run not recorded', bg: 'transparent', border: `1px dotted ${B.ink}` },
+      { label: '● Peak (end frame)', bg: B.b5, border: sw('b5').border }];
+    // small multiples
+    const cellOf = (v, i, code) => { if (typeof v === 'number') { const s = sw(D.band(v)); return { bg: s.bg, border: s.border, aria: `${D.longDate(D.FRAMES[i])}: No. ${v}` }; }
+      if (v === 'u') return { bg: `repeating-linear-gradient(45deg,${B.hatch} 0 1.5px,${B.well} 1.5px 4px)`, border: `1px dashed ${B.ink}`, aria: `${D.longDate(D.FRAMES[i])}: no reading` };
+      if (v === 'n') return { bg: `repeating-linear-gradient(-45deg,${B.hatch} 0 1px,${B.well} 1px 4px)`, border: `1px solid ${B.ink}`, aria: `${D.longDate(D.FRAMES[i])}: no chart published` };
+      return { bg: B.well, border: '1px solid transparent', aria: `${D.longDate(D.FRAMES[i])}: off chart` }; };
+    const smRows = [
+      ...Object.entries(D.GLOBALS).map(([k, g]) => ({ code: k === 'GLB' ? 'GLOBAL 200' : 'GLB EXCL US', flag: '🌐', peakLabel: '', recorded: true, peakOnly: false, cells: g.run.map((v, i) => cellOf(v, i, k)) })),
+      ...countries.slice().sort((a, b) => a.peak - b.peak || (b.run ? 1 : 0) - (a.run ? 1 : 0)).map((c) => ({ code: c.code, flag: c.flag, peakLabel: phone ? '' : `#${c.peak}`, recorded: !!c.run, peakOnly: !c.run, peak: c.peak, peakBg: sw(D.band(c.peak)).bg, peakBorder: sw(D.band(c.peak)).border, cells: c.run ? c.run.map((v, i) => cellOf(v, i, c.code)) : [] })),
+    ];
+    const smHead = D.FRAMES.map((d, i) => (i % (phone ? 4 : 2) === 0 ? `${+d.slice(8)}/${+d.slice(5, 7)}` : ''));
+    const playing = mode === 'playing';
+    return {
+      t, L, theme, frame, card, mapMode: mode, isMultiples: mode === 'multiples', isPlayer: mode !== 'multiples',
+      readout, n1, n1Word: n1 === 1 ? 'country' : 'countries', unreadN, tiles: ['GLB', 'GLBX'].map(tile), groups, tray, trayLabel, trayCount: endLike ? 51 : trayN, trayNote,
+      hasCard: !!cc, cardData, ticks, legend, smRows, smHead,
+      progress: endLike ? '100%' : `${(frame / 19) * 100}%`,
+      valuetext: endLike ? 'End frame: No. 1 in 26 countries' : `Week of ${D.longDate(D.FRAMES[frame])}: No. 1 in ${n1} ${n1 === 1 ? 'country' : 'countries'}, ${unreadN} not read`,
+      playLabel: playing ? 'Pause' : endLike && mode === 'end' ? 'Replay' : 'Play',
+      playIcon: playing ? 'M6 5h4v14H6zM14 5h4v14h-4z' : mode === 'end' ? 'M12 5V2L7 6l5 4V7a6 6 0 1 1-6 6H4a8 8 0 1 0 8-8z' : 'M7 4v16l13-8z',
+      toggle: () => (playing ? (clearInterval(this._t), this.setState({ playing: false, mode: 'paused' })) : this.play()),
+      back: () => this.go((endLike ? 19 : frame) - 1), fwd: () => this.go((endLike ? -1 : frame) + 1),
+      onKey: (e) => { if (e.key === 'ArrowRight') this.go(frame + 1); else if (e.key === 'ArrowLeft') this.go(frame - 1); else if (e.key === 'Home') this.go(0); else if (e.key === 'End') this.go(19); else if (e.key === ' ') { e.preventDefault(); playing ? (clearInterval(this._t), this.setState({ playing: false, mode: 'paused' })) : this.play(); } },
+    };
+  }
+}
+</script>
+</body>
+</html>

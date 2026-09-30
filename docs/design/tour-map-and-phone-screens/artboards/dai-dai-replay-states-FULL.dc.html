@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Space+Mono:wght@400;700&amp;family=Geist:wght@400;500;600&amp;display=swap">
+<script src="dai-dai-data.js"></script>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: #050505; color: #f5f4f0; font-family: "Geist", system-ui, sans-serif; }
+  a { color: #ffb627; } a:hover { color: #ffd24a; }
+</style>
+</helmet>
+<div style="--slot:1.5px dashed #ff4fd8;padding:40px 44px 96px;display:flex;flex-direction:column;gap:48px;min-width:2800px">
+  <div style="max-width:1000px;display:flex;flex-direction:column;gap:10px">
+    <div style="font-family:'Space Mono',monospace;font-weight:700;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#ffb627">/dai-dai · the chart run, week by week · brief §5</div>
+    <div style="font-family:Anton,sans-serif;font-size:34px;line-height:1;text-transform:uppercase">Replay — every state, desktop and phone</div>
+    <p style="margin:0;font-size:14px;line-height:1.55;color:#9b9ba3;max-width:92ch">Each board is the same component with a different state. The player is live: press play, step, click a tick, or focus the scrubber and use the arrow keys, Home/End and Space. Weekly readings are sample frames in the brief's coverage proportion (7 near-complete countries plus 2 globals, 8 outline, 8 counts-only, 43 peak-only) — the build reads <span style="font-family:'Space Mono',monospace;font-size:12px;color:#cfc7bb">app/data/daiDaiRuns.ts</span>. The map is real Natural Earth geometry.</p>
+  </div>
+
+  <div style="display:flex;flex-wrap:wrap;gap:48px 40px;align-items:flex-start">
+    <sc-for list="{{ desk }}" as="b" hint-placeholder-count="6">
+      <div data-screen-label="{{ b.label }}" style="width:1240px;flex:none;display:flex;flex-direction:column;gap:10px">
+        <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#9b9ba3">{{ b.label }} <span style="text-transform:none;letter-spacing:0.02em;color:#85858e;margin-left:8px">{{ b.note }}</span></div>
+        <div style="padding:28px;background:{{ b.ground }};border:1px solid rgba(245,244,240,0.18)"><dc-import name="Dai Dai Replay Module" theme="{{ b.theme }}" layout="desktop" mode="{{ b.mode }}" frame="{{ b.frame }}" card="{{ b.card }}" hint-size="100%,1080px"></dc-import></div>
+      </div>
+    </sc-for>
+  </div>
+
+  <div style="display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start">
+    <sc-for list="{{ phone }}" as="b" hint-placeholder-count="6">
+      <div data-screen-label="{{ b.label }}" style="width:390px;flex:none;display:flex;flex-direction:column;gap:10px">
+        <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#9b9ba3">{{ b.label }}</div>
+        <div style="border:1px solid rgba(245,244,240,0.18)"><dc-import name="Dai Dai Replay Module" theme="{{ b.theme }}" layout="phone" mode="{{ b.mode }}" frame="{{ b.frame }}" card="{{ b.card }}" hint-size="100%,1200px"></dc-import></div>
+      </div>
+    </sc-for>
+  </div>
+
+  <div data-screen-label="Video frame · 1920×1080" style="display:flex;flex-direction:column;gap:10px">
+    <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#9b9ba3">Optional · /dai-dai/replay · Download video frame · shown at 50% of 1920 × 1080</div>
+    <div style="width:960px;height:540px;background:#0a0a0b;border:1px solid rgba(245,244,240,0.18);position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) 250px;grid-template-rows:auto minmax(0,1fr) auto;gap:10px 18px;padding:22px 26px">
+      <div style="grid-column:1 / -1;display:flex;align-items:baseline;gap:14px"><span style="font-family:Anton,sans-serif;font-size:28px;text-transform:uppercase">Dai Dai · Shakira &amp; Burna Boy</span><span style="font-family:'Space Mono',monospace;font-weight:700;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#9b9ba3">the chart run, week by week</span><span style="margin-left:auto;font-family:Anton,sans-serif;font-size:24px;text-transform:uppercase">Week of 13 July 2026</span></div>
+      <iframe title="Video frame map" src="dai-dai-replay-map.html?theme=dark&amp;view=world&amp;frame=9&amp;mode=playing&amp;inset=1" style="border:0;width:100%;height:100%"></iframe>
+      <div style="display:flex;flex-direction:column;gap:8px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:#9b9ba3">
+        <span style="font-family:Anton,sans-serif;font-size:44px;line-height:1;color:#f5f4f0;letter-spacing:0">12</span><span>countries at No. 1 this week</span><span style="margin-top:6px">6 not read · 51 run not recorded</span>
+        <span style="margin-top:auto;display:flex;flex-direction:column;gap:5px"><span><span style="display:inline-block;width:10px;height:10px;background:#ffd24a;margin-right:6px"></span>No. 1</span><span><span style="display:inline-block;width:10px;height:10px;background:#ffb627;margin-right:6px"></span>Top 5</span><span><span style="display:inline-block;width:10px;height:10px;background:#c98a2e;margin-right:6px"></span>Top 10</span><span><span style="display:inline-block;width:10px;height:10px;background:#8a7a52;margin-right:6px"></span>Top 40</span><span><span style="display:inline-block;width:10px;height:10px;background:#5a5a62;margin-right:6px"></span>41+</span><span><span style="display:inline-block;width:10px;height:10px;background:repeating-linear-gradient(45deg,rgba(245,244,240,.34) 0 1.5px,#1c1c21 1.5px 4px);border:1px dashed #f5f4f0;margin-right:6px"></span>No reading</span></span>
+      </div>
+      <div style="grid-column:1 / -1;display:flex;align-items:center;gap:14px;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.06em;text-transform:uppercase;color:#9b9ba3"><span>Official national charts, as read by burnaboystats.com</span><span>·</span><span>Hatched: a week nobody has read. Never filled in.</span><span style="margin-left:auto;font-family:Anton,sans-serif;font-size:16px;letter-spacing:0.04em;color:#f5f4f0">BURNABOY<span style="color:#ffb627">STATS</span>.COM/DAI-DAI</span></div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const S = [
+      ['Poster', 'poster', 19, '', 'the end frame, server-rendered · no autoplay · equals the takeover grid'],
+      ['Playing', 'playing', 9, '', '~1 s a frame, ~20 s end to end · live region silent'],
+      ['Paused · country card', 'paused', 9, 'CH', 'hover, focus or tap · the chart\'s own date and label, status, source'],
+      ['Scrubbing', 'scrubbing', 14, '', 'snaps to weeks · arrow keys step, Home/End, Space · aria-valuetext reads the frame'],
+      ['End', 'end', 19, '', 'the peak picture, plus Replay · peak-only countries fill with a ● mark'],
+      ['Small multiples', 'multiples', 19, '', 'reduced motion / no JS default · one row per chart · dense, not folded'],
+    ];
+    const desk = [];
+    S.forEach(([label, mode, frame, card, note], i) => desk.push({ label: `Desktop · ${label} · ${i === 2 || i === 5 ? 'light' : 'dark'}`, note, mode, frame, card, theme: i === 2 || i === 5 ? 'light' : 'dark', ground: i === 2 || i === 5 ? '#f7f4ee' : '#0a0a0b' }));
+    const phone = S.map(([label, mode, frame, card], i) => ({ label: `Phone · ${label} · ${i === 1 || i === 4 ? 'light' : 'dark'}`, mode, frame, card, theme: i === 1 || i === 4 ? 'light' : 'dark' }));
+    return { desk, phone };
+  }
+}
+</script>
+</body>
+</html>

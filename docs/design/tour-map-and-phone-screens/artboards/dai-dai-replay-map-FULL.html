@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Dai Dai replay map</title>
+<script src="https://unpkg.com/d3@7.9.0/dist/d3.min.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/topojson-client@3.1.0/dist/topojson-client.min.js" crossorigin="anonymous"></script>
+<script src="dai-dai-data.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap">
+<style>
+  html,body{margin:0;height:100%;overflow:hidden;background:transparent}
+  svg{display:block;width:100%;height:100%}
+  text{font-family:"Space Mono",monospace;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+</style></head>
+<body><svg id="m"></svg>
+<script>
+// Real geometry: Natural Earth 1:50m via world-atlas. Params: theme, view (world|europe), frame, mode (poster|playing|paused|scrubbing|end), card (A2), inset (1|0)
+const P = new URLSearchParams(location.search);
+const S = { theme: P.get("theme") || "dark", view: P.get("view") || "world", frame: +(P.get("frame") ?? 19), mode: P.get("mode") || "poster", card: P.get("card") || "", inset: P.get("inset") !== "0" };
+const T = DD.BANDS[S.theme];
+const BY_ISO = {}; DD.C.forEach(([a2, name, iso, peak, group]) => (BY_ISO[String(iso).padStart(3, "0")] = { a2, name, peak, group }));
+const end = S.mode === "end" || S.mode === "poster";
+// state of one country at the current frame → { fill, stroke, dash, pattern, mark }
+function look(c) {
+  if (!c) return { fill: T.well, stroke: T.line, w: 0.35, op: 0.55 };
+  const run = DD.RUNS[c.a2];
+  if (!run || end) {
+    if (end) return { fill: T[DD.band(c.peak)], stroke: outline(DD.band(c.peak)), w: 0.6, mark: !run || c.group !== "near" };
+    return { fill: "none", stroke: T.ink, w: 0.7, dash: "1.2 1.6", op: 0.9 }; // peak only: run not recorded
+  }
+  const v = run[S.frame];
+  if (v === "o") return { fill: T.well, stroke: T.line, w: 0.5 };
+  if (v === "u") return { fill: "url(#hatch)", stroke: T.ink, w: 0.7, dash: "3 2" };
+  if (v === "n") return { fill: "url(#cross)", stroke: T.ink, w: 0.6 };
+  const b = DD.band(v);
+  return { fill: T[b], stroke: outline(b), w: 0.7 };
+}
+// Light theme: Top 40 and 41+ fail 3:1 on the well, so they carry an ink outline.
+function outline(b) { return S.theme === "light" && (b === "b40" || b === "rest") ? T.ink : S.theme === "dark" ? "rgba(10,10,11,0.8)" : "rgba(247,244,238,0.9)"; }
+
+d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-50m.json").then((topo) => {
+  const all = topojson.feature(topo, topo.objects.countries).features.filter((f) => f.id !== "010");
+  const svg = d3.select("#m"); const W = innerWidth, H = innerHeight; svg.attr("viewBox", `0 0 ${W} ${H}`);
+  const defs = svg.append("defs");
+  defs.append("pattern").attr("id", "hatch").attr("width", 5).attr("height", 5).attr("patternUnits", "userSpaceOnUse").attr("patternTransform", "rotate(45)")
+    .call((p) => { p.append("rect").attr("width", 5).attr("height", 5).attr("fill", T.well); p.append("line").attr("x1", 0).attr("y1", 0).attr("x2", 0).attr("y2", 5).attr("stroke", T.hatch).attr("stroke-width", 1.4); });
+  defs.append("pattern").attr("id", "cross").attr("width", 6).attr("height", 6).attr("patternUnits", "userSpaceOnUse")
+    .call((p) => { p.append("rect").attr("width", 6).attr("height", 6).attr("fill", T.well); p.append("path").attr("d", "M0 0L6 6M6 0L0 6").attr("stroke", T.hatch).attr("stroke-width", 0.9); });
+
+  function draw(g, features, proj, scaleW) {
+    const path = d3.geoPath(proj);
+    g.selectAll("path").data(features).join("path").attr("d", path)
+      .each(function (f) {
+        const c = BY_ISO[f.id]; const L = look(c);
+        d3.select(this).attr("fill", L.fill).attr("stroke", c && S.card === c.a2 ? T.ink : L.stroke).attr("stroke-width", c && S.card === c.a2 ? 2 : L.w * scaleW)
+          .attr("stroke-dasharray", L.dash || null).attr("opacity", L.op ?? 1);
+      });
+    // peak mark at the end frame for countries whose run is not recorded
+    if (end) g.selectAll("circle.pk").data(features.filter((f) => BY_ISO[f.id] && look(BY_ISO[f.id]).mark)).join("circle").attr("class", "pk")
+      .attr("cx", (f) => path.centroid(f)[0]).attr("cy", (f) => path.centroid(f)[1]).attr("r", 1.6 * scaleW).attr("fill", S.theme === "dark" ? "#0a0a0b" : "#ffffff").attr("stroke", T.ink).attr("stroke-width", 0.6);
+    return path;
+  }
+  const europeBox = { type: "Feature", geometry: { type: "Polygon", coordinates: [[[-11, 35], [32, 35], [32, 71], [-11, 71], [-11, 35]]] } };
+  const sg = [103.82, 1.35];
+  if (S.view === "europe") {
+    const proj = d3.geoConicConformal().rotate([-12, 0]).parallels([40, 62]).fitExtent([[8, 8], [W - 8, H - 8]], europeBox);
+    draw(svg.append("g"), all, proj, 1.2);
+  } else {
+    const proj = d3.geoEqualEarth().fitExtent([[6, 6], [W - 6, H - 6]], { type: "Sphere" });
+    const p = draw(svg.append("g"), all, proj, 0.7);
+    // Singapore has no shape at this scale: a marker in its peak state
+    const [x, y] = proj(sg); const L = look(BY_ISO["702"]);
+    svg.append("circle").attr("cx", x).attr("cy", y).attr("r", 4).attr("fill", L.fill === "none" ? "transparent" : L.fill).attr("stroke", T.ink).attr("stroke-width", 1).attr("stroke-dasharray", L.dash || null);
+    svg.append("text").attr("x", x + 7).attr("y", y + 3).attr("font-size", 9).attr("fill", T.muted).text("SG");
+    if (S.inset) {
+      const iw = Math.round(W * 0.31), ih = Math.round(iw * 0.86), ix = 8, iy = H - ih - 8;
+      const gi = svg.append("g");
+      gi.append("rect").attr("x", ix).attr("y", iy).attr("width", iw).attr("height", ih).attr("fill", S.theme === "dark" ? "#0a0a0b" : "#f7f4ee").attr("stroke", T.line).attr("stroke-width", 1);
+      const cp = gi.append("clipPath").attr("id", "ic").append("rect").attr("x", ix).attr("y", iy).attr("width", iw).attr("height", ih);
+      const ip = d3.geoConicConformal().rotate([-12, 0]).parallels([40, 62]).fitExtent([[ix + 4, iy + 4], [ix + iw - 4, iy + ih - 4]], europeBox);
+      draw(gi.append("g").attr("clip-path", "url(#ic)"), all, ip, 1);
+      gi.append("text").attr("x", ix + 8).attr("y", iy + 15).attr("font-size", 9).attr("fill", T.muted).text("Europe");
+    }
+  }
+  parent.postMessage({ ddMap: "ready" }, "*");
+});
+</script></body></html>

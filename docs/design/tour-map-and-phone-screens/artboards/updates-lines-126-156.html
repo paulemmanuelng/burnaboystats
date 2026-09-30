@@ -1,0 +1,33 @@
+<!-- EXCERPT, read-only reference. Source: design_handoff_burnaboystats/designs/desktop/Updates.dc.html, lines 126-156,
+     copied 30 Sep 2026 from the owner's copy of the bundle (dated 26 Sep 2026). Edit the file in your own project, not this copy. -->
+  <section style="border-bottom:1px solid var(--color-divider);background:var(--color-surface)">
+    <div style="max-width:1360px;margin:0 auto;padding:22px 40px;display:flex;flex-wrap:wrap;align-items:center;gap:10px">
+      <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-right:6px">Filter</span>
+      <sc-for list="{{ chips }}" as="c" hint-placeholder-count="6">
+        <button onClick="{{ c.pick }}" style="display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border-radius:999px;border:1px solid {{ c.border }};background:{{ c.bg }};color:{{ c.color }};font-family:inherit;font-size:13px;font-weight:600;cursor:pointer">
+          <span style="width:8px;height:8px;border-radius:50%;flex:none;background:{{ c.dot }};display:{{ c.dotShow }}"></span>{{ c.label }}
+          <span style="font-family:var(--font-mono);font-size:11px;opacity:0.75">{{ c.count }}</span>
+        </button>
+      </sc-for>
+      <span style="margin-left:auto;font-family:var(--font-mono);font-size:11.5px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted)">{{ shown }} entries</span>
+    </div>
+  </section>
+
+  <section style="border-bottom:1px solid var(--color-divider)">
+    <div style="max-width:1360px;margin:0 auto;padding:10px 40px 40px">
+      <sc-for list="{{ groups }}" as="g">
+        <div style="margin-top:30px">
+          <div style="display:flex;align-items:baseline;gap:14px;padding-bottom:10px;border-bottom:1px solid var(--color-divider)">
+            <h2 style="font-size:26px;margin:0">{{ g.month }}</h2>
+            <span style="font-family:var(--font-mono);font-size:12px;color:var(--muted)">{{ g.countLabel }}</span>
+          </div>
+          <sc-for list="{{ g.items }}" as="u">
+            <a href="{{ u.href }}" style="display:grid;grid-template-columns:190px 150px 1fr auto;gap:24px;align-items:center;padding:16px 8px;border-bottom:1px solid var(--color-divider);color:var(--color-text)" style-hover="background:rgba(245,240,232,0.05)">
+              <span style="font-family:var(--font-mono);font-size:12.5px;letter-spacing:0.04em;color:var(--muted);white-space:nowrap">{{ u.date }}</span>
+              <span style="display:inline-flex;align-items:center;gap:7px;padding:4px 11px;border-radius:999px;border:1px solid {{ u.edge }};color:{{ u.ink }};font-family:var(--font-mono);font-weight:700;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;justify-self:start;white-space:nowrap">
+                <span style="width:6px;height:6px;border-radius:50%;background:{{ u.ink }};display:block"></span>{{ u.category }}
+              </span>
+              <span style="font-size:15.5px;line-height:1.5">{{ u.text }}</span>
+              <span style="color:var(--color-accent);font-size:16px">↗</span>
+            </a>
+          </sc-for>
