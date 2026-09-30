@@ -33,6 +33,7 @@ import { totalAwards } from "./certifications";
 const plSingle = CERT_THRESHOLDS.PL.single!;
 const ukSingle = CERT_THRESHOLDS.UK.single!;
 const esSingle = CERT_THRESHOLDS.ES.single!;
+const ptSingle = CERT_THRESHOLDS.PT.single!;
 
 export type UpdateCategory = "Charts" | "Certifications" | "Streaming" | "Firsts & Records" | "Awards" | "Tours" | "Lifestyle";
 
@@ -51,6 +52,15 @@ export interface Update {
 }
 
 export const updates: Update[] = [
+  {
+    date: "2026-09-29",
+    category: "Certifications",
+    big: true,
+    // AFP/Audiogest's weekly TOP, Semana 39 de 2026: "2PL Dai Dai Shakira & Burna
+    // Boy" in the Top 200 Singles and Streams (certifications.ts, the release row).
+    text: `“Dai Dai” is 2× Platinum in Portugal: AFP's week-39 chart marks it double platinum, up from Platinum — ${(2 * ptSingle.platinum!).toLocaleString("en-US")} units at its current levels. An upgrade, so the song stays on 17 plaques.`,
+    href: "/certifications",
+  },
   {
     date: "2026-09-28",
     category: "Streaming",
