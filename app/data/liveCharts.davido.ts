@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-30";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-30T12:39Z";
+  export const liveChartsBuiltAt = "2026-09-30T17:09Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -233,8 +233,9 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 31,
-            "movement": 156
+            "position": 65,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -393,7 +394,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 161,
-            "movement": 11
+            "movement": 7
           },
           {
             "country": "ML",
@@ -654,8 +655,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 153,
-            "movement": -104
+            "position": 185,
+            "movement": -114
           }
         ]
       },
@@ -1252,7 +1253,7 @@
             "country": "KE",
             "name": "Kenya",
             "position": 1,
-            "movement": 42
+            "movement": 95
           }
         ]
       }
@@ -1423,7 +1424,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 5,
+            "position": 6,
             "movement": 150
           }
         ]
@@ -1547,7 +1548,7 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 12,
+            "position": 46,
             "movement": null,
             "status": "new"
           },
@@ -1578,20 +1579,20 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 47,
-            "movement": -2
-          },
-          {
-            "country": "MZ",
-            "name": "Mozambique",
-            "position": 58,
-            "movement": 2
+            "position": 49,
+            "movement": -4
           },
           {
             "country": "SZ",
             "name": "Swaziland",
             "position": 58,
-            "movement": -28
+            "movement": -27
+          },
+          {
+            "country": "MZ",
+            "name": "Mozambique",
+            "position": 59,
+            "movement": 2
           },
           {
             "country": "BW",
@@ -1670,8 +1671,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 192,
-            "movement": -22
+            "position": 196,
+            "movement": -12
           }
         ]
       }
@@ -1923,19 +1924,19 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 38,
-            "movement": -1
+            "position": 39,
+            "movement": -2
           },
           {
             "country": "SZ",
             "name": "Swaziland",
             "position": 56,
-            "movement": -28
+            "movement": -27
           },
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 61,
+            "position": 62,
             "movement": 2
           },
           {
@@ -1947,7 +1948,7 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 89,
+            "position": 91,
             "movement": 0
           }
         ]
@@ -2015,17 +2016,17 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 9,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "TD",
             "name": "Chad",
             "position": 67,
             "movement": -53
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 80,
-            "movement": null,
-            "status": "new"
           },
           {
             "country": "LR",
@@ -2107,7 +2108,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 52,
-            "movement": -2
+            "movement": -5
           }
         ]
       }
@@ -2169,7 +2170,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 33,
+            "position": 67,
             "movement": null,
             "status": "new"
           }
@@ -2180,7 +2181,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/89d5885fe38a406504224ed98c1ab605/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Para",
+    "title": "Wonder Woman",
     "platforms": [
       {
         "platform": "Apple Music",
@@ -2189,7 +2190,7 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 23,
+            "position": 37,
             "movement": null,
             "status": "new"
           }
@@ -2197,47 +2198,7 @@
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Nwa Baby",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 29,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/74fb63756975ed8644a5519be4ad39fc/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Maga 2 Mugu",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 31,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/50d12a3358fb88c810b8c9231ced0cd6/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/937ecd70b99a3110975b23a6b463cb8d/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "On The Road",
@@ -2280,6 +2241,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/da0c3e984d1fa2b9c54158ee1a02fbd1/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Para",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 58,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Gimme Dat Ting",
     "platforms": [
       {
@@ -2297,6 +2278,46 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Nwa Baby",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 64,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/74fb63756975ed8644a5519be4ad39fc/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Maga 2 Mugu",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 66,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/50d12a3358fb88c810b8c9231ced0cd6/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "OVER DEM",
@@ -2347,7 +2368,7 @@
             "country": "MU",
             "name": "Mauritius",
             "position": 49,
-            "movement": -7
+            "movement": -6
           }
         ]
       }

@@ -1,0 +1,15 @@
+{
+  "$comment": "Read 30 Sep 2026 on Paul's signed-in ChartMasters account (Playcounts Tool, the account's default Burna Boy view at /spotify-streaming-numbers-tool/), in the site's own browser; identity confirmed by the select's value 3wcj11K77LjEY1PkEazffa and the discography table (Dai Dai 482,902,736, Last Last 613,894,994). Newest day is 28 Sep, paired with kworb's Burna Boy songs page stamped 2026/09/29 (raw 10,989,875,203), a true day-N / page-N+1 pair. Why now: kworb's raw sum ROSE 27,953,016 in its 29 Sep build (titles it had dropped came back), so the stats bot's drift alarm (05:35 UTC run) asked for a re-measure; the published total had been running high since.",
+  "readOn": "2026-09-30",
+  "artists": {
+    "burna-boy": {
+      "spotifyId": "3wcj11K77LjEY1PkEazffa",
+      "name": "Burna Boy",
+      "days": { "September 28, 2026": 11107256033 },
+      "milestones": [
+        { "figure": "1.4B", "what": "Album Streams", "on": "Sep 25, 2026" },
+        { "figure": "11B", "what": "Artist Streams", "on": "Sep 14, 2026" }
+      ]
+    }
+  }
+}
