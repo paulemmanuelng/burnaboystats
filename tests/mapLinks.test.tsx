@@ -16,7 +16,8 @@ vi.mock("next/link", () => ({
 }));
 
 import ToursPage from "../app/records/tours/page";
-import { festivals, concerts, otherShows } from "../app/data/tours";
+import { tours, festivals, concerts, otherShows } from "../app/data/tours";
+import { revenueShows } from "../app/data/tourRevenue";
 import { performedCountries } from "../app/data/performedCountries";
 
 /**
@@ -176,5 +177,46 @@ describe("item 38: the Festivals card drops its completeness claim", () => {
   it("negative control: the description shipped until 30 Sep 2026 claimed every festival", () => {
     const SHIPPED = "Every festival & big stage he's played — the headline sets and beyond";
     expect(claimsEvery(SHIPPED)).toBe(true);
+  });
+});
+
+// ── Item 39 ─────────────────────────────────────────────────────────────────
+describe("item 39: the Tours lede dates the biggest night from its tour date", () => {
+  const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  const monthOf = (date: string) => {
+    const iso = date.match(/^(\d{4})-(\d{2})-\d{2}$/);
+    if (iso) return `${MONTHS[Number(iso[2]) - 1]} ${iso[1]}`;
+    const [, mon, year] = date.match(/^([A-Z][a-z]{2}) \d{1,2}, (\d{4})$/) ?? [];
+    return `${MONTHS.find((m) => m.startsWith(mon))} ${year}`;
+  };
+  const top = [...revenueShows].sort((a, b) => b.revenue - a.revenue)[0];
+  const atVenue = tours.flatMap((t) => t.dates ?? []).filter((d) => d.venue === top.venue);
+  const night = atVenue.find((d) => d.date.includes(top.year));
+
+  it("the venue is in tours.ts more than once, so the match needs the year too", () => {
+    expect(atVenue.length).toBeGreaterThan(1);
+    expect(night, `a ${top.venue} date in ${top.year}`).toBeDefined();
+    // Read by venue alone, another night gives another year.
+    const other = atVenue.find((d) => d !== night)!;
+    expect(monthOf(other.date)).not.toBe(monthOf(night!.date));
+  });
+
+  it("the rendered lede names the month and year of that date", () => {
+    const lede = clean(desktopOf(toursDoc()).querySelector('[class*="_lede_"]')?.textContent);
+    expect(lede).toContain(`and his ${monthOf(night!.date)} ${top.venue} concert (`);
+  });
+
+  /** A month and year typed beside the venue in the page source. */
+  const typesTheMonth = (src: string) =>
+    new RegExp(`his\\s+(?:${MONTHS.join("|")})\\s+\\d{4}\\s+\\{topShow\\.venue\\}`).test(src);
+
+  it("the page source types no month beside the venue", () => {
+    expect(typesTheMonth(read("app/records/tours/page.tsx"))).toBe(false);
+  });
+
+  it("negative control: the lede line shipped until 30 Sep 2026 typed 'June 2024'", () => {
+    const SHIPPED = `the highest-grossing tour by an African artist in history — and his June
+                  2024 {topShow.venue} concert ({topShowM(2)} from {topShow.tickets} fans) is`;
+    expect(typesTheMonth(SHIPPED)).toBe(true);
   });
 });

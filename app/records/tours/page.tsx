@@ -59,6 +59,32 @@ function yearsOf(range: string): number[] {
 const tourYears = tours.flatMap((t) => yearsOf(t.years));
 const yearSpan = `${Math.min(...tourYears)} — ${Math.max(...tourYears)}`;
 
+// The biggest night's month, read off its own tour date rather than typed
+// beside the venue. Matched on venue AND year: London Stadium is in tours.ts
+// twice (the 2023 Love, Damini date and the 2024 I Told Them… date), so the
+// venue alone could pick the wrong night. tours.ts writes dates two ways —
+// "Jun 29, 2024" and "2024-06-29" — and both are read. If no date matches,
+// the lede falls back to the year alone rather than guessing a month.
+const MONTHS = [
+  "January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December",
+];
+/** "Jun 29, 2024" or "2024-06-29" → "June 2024"; null for anything else. */
+function monthYearOf(date: string): { label: string; year: string } | null {
+  const iso = date.match(/^(\d{4})-(\d{2})-\d{2}$/);
+  const named = date.match(/^([A-Z][a-z]{2}) \d{1,2}, (\d{4})$/);
+  const month = iso
+    ? MONTHS[Number(iso[2]) - 1]
+    : named && MONTHS.find((m) => m.startsWith(named[1]));
+  const year = iso?.[1] ?? named?.[2];
+  return month && year ? { label: `${month} ${year}`, year } : null;
+}
+const topShowDate = tours
+  .flatMap((t) => t.dates ?? [])
+  .map((d) => ({ venue: d.venue, when: monthYearOf(d.date) }))
+  .find((d) => d.venue === topShow.venue && d.when?.year === topShow.year);
+const topShowMonthYear = topShowDate?.when?.label ?? topShow.year;
+
 // The two cards after the tour list carry these as their sub-lines.
 // "Documented", because the lists are what has been verified, not a claim to
 // every show he has played.
@@ -109,9 +135,9 @@ export default function ToursPage() {
                 </h1>
                 <p className={styles.lede}>
                   The {topTour.name} grossed {topGrossLong} across {topTour.shows} reported shows —
-                  the highest-grossing tour by an African artist in history — and his June
-                  2024 {topShow.venue} concert ({topShowM(2)} from {topShow.tickets} fans) is
-                  the biggest single concert ever by an African artist.
+                  the highest-grossing tour by an African artist in history — and his{" "}
+                  {topShowMonthYear} {topShow.venue} concert ({topShowM(2)} from {topShow.tickets}{" "}
+                  fans) is the biggest single concert ever by an African artist.
                 </p>
               </div>
               <div className={styles.ticketPanel}>
