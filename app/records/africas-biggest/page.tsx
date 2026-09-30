@@ -11,6 +11,9 @@ import {
   BURNA_PEAK_LISTENERS,
   BURNA_PEAK_LISTENERS_RISE,
   BURNA_PEAK_LISTENERS_SET_ON_LONG,
+  EAS_STREAMS_COUNTED_TO,
+  asOfLabel,
+  type RankEntry,
 } from "../../data/africasBiggest";
 import { monthlyListenersSeries } from "../../data/trends";
 import { HOT100_METHOD } from "../../data/hot100Weeks";
@@ -61,10 +64,131 @@ export const metadata = pageMetadata({
   shareDescription: "Top African artists on the Billboard Global 200 and Spotify — with Burna Boy in context.",
 });
 
+// ── The two searches this page is found by ─────────────────────────────────
+// Search Console, 28 days to 30 Sep 2026: "biggest artist in africa" (68
+// clicks, +258%) and "best selling african artist of all time". Both answers
+// are read off the boards below, so they move when a board is re-read.
+
+/** A board by id, or a build that stops — an answer cannot be written from a
+ *  board that is not there. */
+const board = (id: string) => {
+  const b = statBoxes.find((x) => x.id === id);
+  if (!b) throw new Error(`/records/africas-biggest: no "${id}" board to answer from`);
+  return b;
+};
+
+/**
+ * Everyone sharing first place: the rows the data marks joint, and the rows
+ * level with the top on value.
+ *
+ * The second half is not belt and braces. The Hot 100 peak board lists Wizkid
+ * and Tems both at No. 1 with no tie mark — the order there is simply the
+ * order they got there — so reading entries[0] alone would name one of two
+ * No. 1s as the leader.
+ */
+function leadersOf(entries: RankEntry[]): RankEntry[] {
+  const [top, ...rest] = entries;
+  if (!top) return [];
+  const group = [top];
+  for (const e of rest) {
+    if (e.tie || (e.value !== undefined && e.value === top.value)) group.push(e);
+    else break;
+  }
+  return group;
+}
+
+const andList = (xs: string[]) =>
+  xs.length <= 1 ? xs.join("") : `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}`;
+const possessive = (name: string) => (name.endsWith("s") ? `${name}'` : `${name}'s`);
+
+/** "Best-selling" has one measure on this page: ChartMasters' equivalent
+ *  album sales. The names, figures, source and date are the board's. */
+const bestSellingAnswer = (() => {
+  const eas = board("best-selling-african-artist-eas");
+  const [first, second] = eas.entries ?? [];
+  const source = eas.meta.split(" · ").at(-1) ?? "";
+  return (
+    `${first.name} is the best-selling African artist of all time by ${possessive(source)} count of ` +
+    `equivalent album sales: ${first.value} to ${possessive(second.name)} ${second.value}, with both ` +
+    `artists' streams counted to ${asOfLabel(EAS_STREAMS_COUNTED_TO)}. Artists are counted by ` +
+    `nationality, which is why Akon, an American artist, is not in the comparison.`
+  );
+})();
+
+/**
+ * "Biggest" has no single measure, so the answer names who leads which —
+ * computed, so it cannot crown anyone the boards do not.
+ *
+ * These are the African boards (by nationality) that measure size. Left out,
+ * on purpose: the two world boards (YouTube's all-artist audience, the fastest
+ * video to a billion), whose leaders are not African; the two NIGERIAN-only
+ * boards (biggest single Spotify day, the Weekly Top Artists peak), which
+ * cannot say who leads Africa; and the Spotify and Apple Music chart peaks,
+ * one service's chart asking the question the Billboard peaks already ask
+ * across all of them. Every board in the set that another artist leads stays
+ * in — dropping those is how an answer like this turns into a crown, and
+ * tests/topSearchFaqs.test.tsx names each leader against the boards.
+ */
+type Measure = { label: string; leaders: string[]; value?: string };
+const listMeasure = (id: string, label: string): Measure => {
+  const lead = leadersOf(board(id).entries ?? []);
+  return { label, leaders: lead.map((e) => e.name), value: lead[0]?.value };
+};
+// The newest CLOSED year of the streaming board: a running year has a leader,
+// not a winner, and the board's own badge counts closed years only.
+const streamYear = board("most-streamed-african-artist").rows?.find((r) => !r.inProgress);
+const biggestMeasures: Measure[] = [
+  listMeasure("best-selling-african-artist-eas", "equivalent album sales"),
+  ...(streamYear
+    ? [
+        {
+          label: `Spotify streams in ${streamYear.label}`,
+          leaders: leadersOf(streamYear.entries).map((e) => e.name),
+          value: streamYear.entries[0]?.value,
+        },
+      ]
+    : []),
+  listMeasure("monthly-listeners-peak", "peak Spotify monthly listeners"),
+  listMeasure("billboard-global-200-peak", "the highest Billboard Global 200 peak"),
+  listMeasure("most-hot-100-entries", "Billboard Hot 100 entries"),
+  listMeasure("most-hot-100-weeks", "weeks on the Billboard Hot 100"),
+  listMeasure("billboard-hot-100-peak", "the highest Billboard Hot 100 peak"),
+  listMeasure("biggest-spotify-debut", "the biggest Spotify album debut"),
+];
+
+const biggestAnswer = (() => {
+  // One clause per leader (or joint leaders), most measures first; a stable
+  // sort keeps the list's order between equals.
+  const groups = new Map<string, { leaders: string[]; measures: Measure[] }>();
+  for (const m of biggestMeasures) {
+    const key = m.leaders.join("|");
+    if (!groups.has(key)) groups.set(key, { leaders: m.leaders, measures: [] });
+    groups.get(key)!.measures.push(m);
+  }
+  const clauses = [...groups.values()]
+    .sort((a, b) => b.measures.length - a.measures.length)
+    .map((g) => {
+      const what = andList(g.measures.map((m) => (m.value ? `${m.label} (${m.value})` : m.label)));
+      return g.leaders.length === 1 ? `${g.leaders[0]} leads on ${what}` : `${andList(g.leaders)} share ${what}`;
+    });
+  const byMeasure =
+    clauses.length > 1 ? `${clauses.slice(0, -1).join("; ")}; and ${clauses[clauses.length - 1]}` : clauses[0];
+  return `“Biggest” has no single measure, so among African artists it depends on which one you count. ${byMeasure}.`;
+})();
+
 // Answer-first Q&A targeting the multi-artist searches this page serves, so it
 // can win featured snippets / AI answers for "which / highest African artist on
 // Billboard / Spotify" queries. Rendered visibly and as FAQPage structured data.
+// The two searched-for questions lead: the phone's list opens on the first.
 export const pageFaqs = [
+  {
+    q: "Who is the biggest artist in Africa?",
+    a: biggestAnswer,
+  },
+  {
+    q: "Who is the best-selling African artist of all time?",
+    a: bestSellingAnswer,
+  },
   {
     q: "What is the highest-charting African song on the Billboard Global 200?",
     a: "Shakira and Burna Boy's “Dai Dai” — the first and only African song to reach No. 1 on Billboard's US-inclusive Global 200. The next-highest are CKay's “Love Nwantiti” and Future's “Wait for U” with Drake and Tems (both No. 2), Rema and Selena Gomez's “Calm Down” (No. 3) and Tyla's “Water” (No. 6).",

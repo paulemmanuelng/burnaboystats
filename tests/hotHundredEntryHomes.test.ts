@@ -67,6 +67,12 @@ const HOMES: { where: string; text: string; spelling: "numeral" | "word" }[] = [
     text: pageFaqs.find((f) => f.q === "Which African artist has the most Billboard Hot 100 entries?")!.a,
     spelling: "word",
   },
+  {
+    // Read off the entries board's own row, so it is the constant again.
+    where: "africas-biggest page — biggest-artist-in-Africa Q&A",
+    text: pageFaqs.find((f) => f.q === "Who is the biggest artist in Africa?")!.a,
+    spelling: "numeral",
+  },
 ];
 
 // The files allowed to state it. A new one has to be added here — and to HOMES
