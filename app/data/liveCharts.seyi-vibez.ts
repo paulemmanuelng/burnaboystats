@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-29";
+  export const liveChartsUpdated = "2026-09-30";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-29T22:19Z";
+  export const liveChartsBuiltAt = "2026-09-30T05:37Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -156,16 +156,16 @@
             "movement": -2
           },
           {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 19,
-            "movement": 1
-          },
-          {
             "country": "CV",
             "name": "Cape Verde",
             "position": 20,
             "movement": 53
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 20,
+            "movement": -2
           },
           {
             "country": "MW",
@@ -182,14 +182,8 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 45,
-            "movement": -6
-          },
-          {
-            "country": "US",
-            "name": "United States",
-            "position": 57,
-            "movement": -11
+            "position": 46,
+            "movement": -3
           },
           {
             "country": "TC",
@@ -203,6 +197,12 @@
             "name": "Turkey",
             "position": 69,
             "movement": -8
+          },
+          {
+            "country": "US",
+            "name": "United States",
+            "position": 77,
+            "movement": -10
           },
           {
             "country": "CG",
@@ -219,21 +219,20 @@
           {
             "country": "NO",
             "name": "Norway",
-            "position": 125,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 168,
-            "movement": -55
+            "position": 166,
+            "movement": 6
           },
           {
             "country": "LT",
             "name": "Lithuania",
             "position": 176,
             "movement": -134
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 185,
+            "movement": -60
           }
         ]
       },
@@ -263,8 +262,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 38,
-            "movement": -28
+            "position": 46,
+            "movement": -34
           }
         ]
       }
@@ -373,7 +372,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 5,
-            "movement": 87
+            "movement": 165
           }
         ]
       },
@@ -927,7 +926,7 @@
             "country": "GD",
             "name": "Grenada",
             "position": 15,
-            "movement": -7
+            "movement": -6
           }
         ]
       },
@@ -1077,6 +1076,19 @@
         ]
       },
       {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 109,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
         "platform": "Shazam",
         "numberOnes": 0,
         "entries": [
@@ -1128,8 +1140,8 @@
           {
             "country": "BN",
             "name": "Brunei Darussalam",
-            "position": 33,
-            "movement": 4
+            "position": 38,
+            "movement": -1
           },
           {
             "country": "BJ",
@@ -1654,8 +1666,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 99,
-            "movement": -92
+            "position": 132,
+            "movement": -114
           }
         ]
       }
@@ -1889,6 +1901,38 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/6954c3e880713a3d27089b7a0ad8570d/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Pressure",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 109,
+            "movement": 2
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 51,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ee26d796ad7fe0cc761309d449f775ae/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Bad Vibes",
     "platforms": [
       {
@@ -1981,25 +2025,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/c8ebad7f5af3f521ca579199d9e05150/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Pressure",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 109,
-            "movement": 2
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ee26d796ad7fe0cc761309d449f775ae/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Today",
@@ -2146,8 +2171,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 156,
-            "movement": -108
+            "position": 187,
+            "movement": -105
           }
         ]
       }

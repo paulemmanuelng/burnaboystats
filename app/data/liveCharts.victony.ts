@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-29";
+  export const liveChartsUpdated = "2026-09-30";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-29T22:19Z";
+  export const liveChartsBuiltAt = "2026-09-30T05:37Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -367,17 +367,24 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 9,
+            "movement": 5
+          },
+          {
             "country": "DO",
             "name": "Dominican Republic",
-            "position": 11,
+            "position": 15,
             "movement": null,
             "status": "new"
           },
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 97,
-            "movement": -93
+            "country": "ES",
+            "name": "Spain",
+            "position": 50,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -590,7 +597,8 @@
             "country": "CV",
             "name": "Cape Verde",
             "position": 59,
-            "movement": 141
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "KE",

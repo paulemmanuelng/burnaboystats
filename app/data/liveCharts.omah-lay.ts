@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-29";
+  export const liveChartsUpdated = "2026-09-30";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-29T22:19Z";
+  export const liveChartsBuiltAt = "2026-09-30T05:37Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","iTunes"];
@@ -63,8 +63,7 @@
             "country": "GW",
             "name": "Guinea-Bissau",
             "position": 30,
-            "movement": null,
-            "status": "new"
+            "movement": 170
           },
           {
             "country": "NG",
@@ -75,7 +74,7 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 49,
+            "position": 48,
             "movement": -1
           },
           {
@@ -599,8 +598,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 160,
-            "movement": -18
+            "position": 3,
+            "movement": 149
           }
         ]
       },
@@ -961,8 +960,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 90,
-            "movement": 1
+            "position": 91,
+            "movement": -1
           },
           {
             "country": "BE",
@@ -1044,6 +1043,31 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b4d2ad60759dd994a1a8440baa1c61e8/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Forever",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 97,
+            "movement": -2
+          },
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 200,
+            "movement": -6
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ada9bcfee9900dd72f862562ae032550/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Company",
@@ -1138,8 +1162,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 68,
-            "movement": 6
+            "position": 69,
+            "movement": 5
           }
         ]
       }
