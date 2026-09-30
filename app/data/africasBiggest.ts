@@ -8,6 +8,7 @@ import {
   HOT100_METHOD,
   HOT100_SOURCE,
   HOT100_CHART_DATE_LONG,
+  HOT100_PUBLISHED_ON_LONG,
   HOT100_READ_ON_LONG,
   hot100StillChartingLine,
   coCreditsOf,
@@ -285,7 +286,7 @@ const hot100PeakSource = (() => {
   const extended = hot100PeakRows.some((s) => s.rank > HOT100_TOP);
   return (
     `Best Billboard Hot 100 peak, lead or featured credit, from the same rows the weeks board is summed from: ` +
-    `each act's Hot 100 chart history on billboard.com, read ${HOT100_READ_ON_LONG}, as of the chart dated ${HOT100_CHART_DATE_LONG}. ` +
+    `each act's Hot 100 chart history on billboard.com, read ${HOT100_READ_ON_LONG}, as of the chart dated ${HOT100_CHART_DATE_LONG} (published ${HOT100_PUBLISHED_ON_LONG}). ` +
     `African artists by nationality. Acts on the same peak share a rank and are listed in the order they reached it.` +
     (extended
       ? ` The top ${cardinalWord(HOT100_TOP)}, then every act down to ${HIGHLIGHT}'s row, so his row prints the rank he holds.`
@@ -305,6 +306,48 @@ const hot100PeakSource = (() => {
  * values, never one without the other.
  */
 export const EAS_STREAMS_COUNTED_TO = "2026-09-28";
+
+/**
+ * Spotify streams as a LEAD artist, African artists by nationality: the measure
+ * the "most-streamed African artist on Spotify" answer leads with (Paul, 30 Sep
+ * 2026), because a featured credit on someone else's hit is not the artist's
+ * own streaming. Read 30 Sep 2026 from each artist's ChartMasters page
+ * (chartmasters.org/artist/<slug>/, "Spotify statistics": Lead streams and
+ * Feat streams), as the page prints them. ChartMasters counts a shared top
+ * billing ("Shakira & Burna Boy") as lead for both acts. kworb, which counts
+ * only the first-listed artist as lead, gives the same order at the top on its
+ * 28–29 Sep pages: Burna Boy 6.26B, Rema 4.99B, Tyla 4.21B, Wizkid 3.41B. Both
+ * tables: docs/sourcing/spotify-lead-streams-2026-09-30.md. Re-read the whole
+ * list on one day; never one row.
+ */
+export const SPOTIFY_LEAD_STREAMS_READ_ON = "2026-09-30";
+export const SPOTIFY_LEAD_STREAMS_READ_ON_LONG = new Date(`${SPOTIFY_LEAD_STREAMS_READ_ON}T00:00:00Z`).toLocaleDateString("en-GB", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+  timeZone: "UTC",
+});
+export interface LeadStreamsReading {
+  name: string;
+  /** Streams as lead, at the precision ChartMasters prints. */
+  lead: number;
+  /** Streams as a featured artist, likewise. */
+  feat: number;
+}
+export const spotifyLeadStreams: LeadStreamsReading[] = [
+  { name: "Burna Boy", lead: 8.0e9, feat: 3.1e9 },
+  { name: "Rema", lead: 6.3e9, feat: 407.7e6 },
+  { name: "Wizkid", lead: 4.9e9, feat: 6.9e9 },
+  { name: "Tems", lead: 4.8e9, feat: 1.5e9 },
+  { name: "Tyla", lead: 4.7e9, feat: 136.8e6 },
+  { name: "Asake", lead: 4.0e9, feat: 396.0e6 },
+  { name: "Ayra Starr", lead: 3.5e9, feat: 771.0e6 },
+  { name: "Davido", lead: 3.4e9, feat: 816.7e6 },
+  { name: "Omah Lay", lead: 3.1e9, feat: 651.7e6 },
+  { name: "CKay", lead: 3.0e9, feat: 76.9e6 },
+];
+/** "8.0B" / "407.7M", the precision the source prints. */
+export const streamsShort = (n: number) => (n >= 1e9 ? `${(n / 1e9).toFixed(1)}B` : `${(n / 1e6).toFixed(1)}M`);
 /** "28 September" — how the source line has always written the stamp. */
 const dayMonth = (iso: string) =>
   new Date(`${iso}T12:00:00Z`).toLocaleDateString("en-GB", {

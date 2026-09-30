@@ -25,7 +25,7 @@ import AfricasBiggestPage, {
 } from "../app/records/africas-biggest/page";
 import { carFaqs } from "../app/lib/carFaqs";
 import { cars, CARS_LAST_SWEEP, carsListYear } from "../app/data/cars";
-import { statBoxes, EAS_STREAMS_COUNTED_TO, HIGHLIGHT } from "../app/data/africasBiggest";
+import { statBoxes, EAS_STREAMS_COUNTED_TO, HIGHLIGHT, spotifyLeadStreams, streamsShort } from "../app/data/africasBiggest";
 import { hot100Artists } from "../app/data/hot100Weeks";
 import { faqs as siteFaqs } from "../app/data/faqs";
 import { modelShort } from "../app/lib/garage";
@@ -487,5 +487,42 @@ describe("/records/africas-biggest paints the new questions on both layouts", ()
     const shown = pairs(section, faqSectionStyles.item);
     expect(shown).toEqual(pageFaqs);
     expect(shown[0].q).toBe(BIGGEST);
+  });
+});
+
+
+describe("the most-streamed answer leads with lead credits (Paul, 30 Sep 2026)", () => {
+  const faq = pageFaqs.find((f) => f.q === "Who is the most-streamed African artist on Spotify?")!;
+  const ranked = [...spotifyLeadStreams].sort((a, b) => b.lead - a.lead);
+
+  it("names the lead-credit leader and the next two, with their figures, from the reading", () => {
+    expect(faq, "the question is still on the page").toBeTruthy();
+    expect(ranked[0].lead, "a tie at the top needs a rewrite, not a crown").toBeGreaterThan(ranked[1].lead);
+    expect(faq.a).toContain(`it is ${ranked[0].name}: ${streamsShort(ranked[0].lead)} Spotify streams as a lead artist`);
+    expect(faq.a).toContain(`${ranked[1].name} (${streamsShort(ranked[1].lead)})`);
+    expect(faq.a).toContain(`${ranked[2].name} (${streamsShort(ranked[2].lead)})`);
+  });
+
+  it("says why a bigger overall total is not a bigger lead total, only while that is true", () => {
+    const overall = [...spotifyLeadStreams].sort((a, b) => b.lead + b.feat - (a.lead + a.feat))[0];
+    if (overall.name !== ranked[0].name)
+      expect(faq.a).toContain(`${overall.name}'s overall Spotify total is higher, because ${streamsShort(overall.feat)} of it comes from songs where ${overall.name} is the featured artist.`);
+    else expect(faq.a).not.toContain("overall Spotify total is higher");
+  });
+
+  it("no figure in the answer is typed", () => {
+    const src = readFileSync(join(process.cwd(), "app/records/africas-biggest/page.tsx"), "utf8");
+    const body = src.slice(src.indexOf("const leadStreamsAnswer"), src.indexOf("const biggestAnswer"));
+    expect(/\d\.\d+B/.test(body), "a typed streams figure").toBe(false);
+    // Negative control: the answer this replaced, verbatim, led with yearly totals and no lead count.
+    const SHIPPED = "Burna Boy was the most-streamed African artist globally in both 2024 and 2025, and holds the highest Spotify monthly-listener peak of any African artist. Tems, Wizkid, Tyla and Asake also rank among the most-streamed African artists each year.";
+    expect(SHIPPED.includes("as a lead artist")).toBe(false);
+    expect(faq.a).not.toBe(SHIPPED);
+  });
+
+  it("the biggest-artist answer credits the lead-credit leader first among that artist's measures", () => {
+    const big = pageFaqs.find((f) => f.q === "Who is the biggest artist in Africa?")!;
+    expect(big.a).toContain(`${ranked[0].name} leads on Spotify streams as a lead artist (${streamsShort(ranked[0].lead)})`);
+    expect(BIGGEST_MEASURED_IDS, "an off-board measure is not a board the answer reads").not.toContain("spotify-lead-streams");
   });
 });

@@ -672,9 +672,15 @@ const longDate = (iso: string) =>
   });
 export const HOT100_CHART_DATE_LONG = longDate(HOT100_CHART_DATE);
 export const HOT100_READ_ON_LONG = longDate(HOT100_READ_ON);
+/** The day Billboard published that chart: the Tuesday before the Saturday it is
+ *  dated, so a chart "dated 3 October" is out on 29 September. Printed beside
+ *  the chart date because a future-looking date reads like a typo (Paul, 30 Sep
+ *  2026: "we are not in Oct yet"). */
+export const HOT100_PUBLISHED_ON = new Date(Date.parse(`${HOT100_CHART_DATE}T00:00:00Z`) - 4 * 86_400_000).toISOString().slice(0, 10);
+export const HOT100_PUBLISHED_ON_LONG = longDate(HOT100_PUBLISHED_ON);
 
 /** The method line, word for word in the board's note and the structured data. */
-export const HOT100_METHOD = `Every week a song crediting the artist (lead or featured) spent on the Billboard Hot 100, summed. African artists by nationality. As of the chart dated ${HOT100_CHART_DATE_LONG}.`;
+export const HOT100_METHOD = `Every week a song crediting the artist (lead or featured) spent on the Billboard Hot 100, summed. African artists by nationality. As of the chart dated ${HOT100_CHART_DATE_LONG} (published ${HOT100_PUBLISHED_ON_LONG}).`;
 
 /** "A, B and C" — the page's list style. */
 const listed = (xs: string[]) =>
@@ -714,7 +720,7 @@ export const HOT100_SOURCE = (() => {
   const via = (r: Hot100Artist["read"]) =>
     listed(hot100Standings.filter((s) => hot100Artists.find((a) => a.slug === s.slug)!.read === r).map((s) => s.name));
   return (
-    `Billboard, read ${HOT100_READ_ON_LONG}, as of the chart dated ${HOT100_CHART_DATE_LONG}. ` +
+    `Billboard, read ${HOT100_READ_ON_LONG}, as of the chart dated ${HOT100_CHART_DATE_LONG} (published ${HOT100_PUBLISHED_ON_LONG}). ` +
     `Each artist's Hot 100 chart history on billboard.com, one row per song whose credit line names them, lead or featured; songwriting credits do not count. ` +
     `Billboard gives some acts no chart module: ${via("co-artist-page")} were read off a co-credited artist's chart history, ` +
     `and ${via("weekly-charts")} off the weekly Hot 100 itself — each song's weeks-on-chart figure in its last week, with the weeks after it checked for its absence. ` +

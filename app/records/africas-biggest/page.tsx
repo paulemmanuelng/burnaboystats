@@ -12,6 +12,9 @@ import {
   BURNA_PEAK_LISTENERS_RISE,
   BURNA_PEAK_LISTENERS_SET_ON_LONG,
   EAS_STREAMS_COUNTED_TO,
+  SPOTIFY_LEAD_STREAMS_READ_ON_LONG,
+  spotifyLeadStreams,
+  streamsShort,
   asOfLabel,
   type RankEntry,
 } from "../../data/africasBiggest";
@@ -182,7 +185,18 @@ const hot100No1Answer = (() => {
  * another artist leads stays in — dropping those is how an answer like this
  * turns into a crown, and the test names each leader against the boards.
  */
-type Measure = { id: string; label: string; leaders: string[]; value?: string };
+type Measure = { id: string; label: string; leaders: string[]; value?: string; offBoard?: true };
+// Streams as a lead artist is not a board on the page, so it is read from its
+// own dated list and kept out of BIGGEST_MEASURED_IDS (the boards the answer
+// reads). It leads the list because a featured credit is someone else's hit.
+const leadRanked = [...spotifyLeadStreams].sort((a, b) => b.lead - a.lead);
+const leadMeasure: Measure = {
+  id: "spotify-lead-streams",
+  label: "Spotify streams as a lead artist",
+  leaders: leadRanked.filter((r) => r.lead === leadRanked[0].lead).map((r) => r.name),
+  value: streamsShort(leadRanked[0].lead),
+  offBoard: true,
+};
 const listMeasure = (id: string, label: string): Measure => {
   const lead = leadersOf(board(id).entries ?? []);
   return { id, label, leaders: lead.map((e) => e.name), value: lead[0]?.value };
@@ -192,6 +206,7 @@ const listMeasure = (id: string, label: string): Measure => {
 const STREAMS_BOARD = "most-streamed-african-artist";
 const streamYear = board(STREAMS_BOARD).rows?.find((r) => !r.inProgress);
 const biggestMeasures: Measure[] = [
+  leadMeasure,
   listMeasure("best-selling-african-artist-eas", "equivalent album sales"),
   ...(streamYear
     ? [
@@ -215,7 +230,7 @@ const biggestMeasures: Measure[] = [
   listMeasure("biggest-spotify-debut", "the biggest Spotify album debut"),
 ];
 /** The boards the answer reads. */
-export const BIGGEST_MEASURED_IDS = biggestMeasures.map((m) => m.id);
+export const BIGGEST_MEASURED_IDS = biggestMeasures.filter((m) => !m.offBoard).map((m) => m.id);
 const WORLD = "a world board: its leaders are not African artists";
 const NIGERIAN = "Nigerian artists only, so it cannot say who leads Africa";
 const ONE_SERVICE = "one service's chart, asking what the Billboard peaks already ask across all of them";
@@ -229,6 +244,27 @@ export const BIGGEST_LEFT_OUT: Record<string, string> = {
   "spotify-global-album-peak": ONE_SERVICE,
   "apple-music-global-no1": ONE_SERVICE,
 };
+
+/**
+ * "Most-streamed on Spotify" is answered by lead credits first (Paul, 30 Sep
+ * 2026): streams on the artist's own songs, not features on someone else's.
+ * Every name and figure comes from spotifyLeadStreams; the overall-total line
+ * appears only while the overall leader is someone else, and the closing
+ * sentence (2024, 2025, the listener peak) is the answer this replaced.
+ */
+const leadStreamsAnswer = (() => {
+  const [top, second, third] = leadRanked;
+  const overall = [...spotifyLeadStreams].sort((a, b) => b.lead + b.feat - (a.lead + a.feat))[0];
+  const overallLine =
+    overall.name !== top.name
+      ? ` ${overall.name}'s overall Spotify total is higher, because ${streamsShort(overall.feat)} of it comes from songs where ${overall.name} is the featured artist.`
+      : "";
+  return (
+    `By lead credits (the artist's own songs, not features), it is ${top.name}: ${streamsShort(top.lead)} Spotify streams as a lead artist, the most of any African artist, ahead of ${second.name} (${streamsShort(second.lead)}) and ${third.name} (${streamsShort(third.lead)}) on ChartMasters' count, read ${SPOTIFY_LEAD_STREAMS_READ_ON_LONG}.` +
+    overallLine +
+    ` Burna Boy was also the most-streamed African artist globally in both 2024 and 2025, and holds the highest Spotify monthly-listener peak of any African artist.`
+  );
+})();
 
 const biggestAnswer = (() => {
   // One clause per leader (or joint leaders), most measures first; a stable
@@ -277,7 +313,7 @@ export const pageFaqs = [
   },
   {
     q: "Who is the most-streamed African artist on Spotify?",
-    a: "Burna Boy was the most-streamed African artist globally in both 2024 and 2025, and holds the highest Spotify monthly-listener peak of any African artist. Tems, Wizkid, Tyla and Asake also rank among the most-streamed African artists each year.",
+    a: leadStreamsAnswer,
   },
   {
     q: "Who was the first African artist to reach No. 1 on the Billboard Global 200?",

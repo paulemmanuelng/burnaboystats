@@ -35,6 +35,8 @@ import {
   HOT100_CHART_DATE_LONG,
   HOT100_READ_ON,
   HOT100_READ_ON_LONG,
+  HOT100_PUBLISHED_ON,
+  HOT100_PUBLISHED_ON_LONG,
   HOT100_METHOD,
   weeksOf,
   type Hot100Artist,
@@ -501,7 +503,9 @@ describe("/records/africas-biggest carries the board on both layouts", () => {
     expect(box.note).toContain(HOT100_METHOD);
     expect(HOT100_METHOD).toContain("lead or featured");
     expect(HOT100_METHOD).toContain("African artists by nationality");
-    expect(HOT100_METHOD).toContain(`As of the chart dated ${HOT100_CHART_DATE_LONG}.`);
+    expect(HOT100_METHOD).toContain(`As of the chart dated ${HOT100_CHART_DATE_LONG} (published ${HOT100_PUBLISHED_ON_LONG}).`);
+    // The publication date is the Tuesday before the chart's Saturday.
+    expect(new Date(`${HOT100_PUBLISHED_ON}T00:00:00Z`).getUTCDay(), "Billboard publishes on Tuesdays").toBe(2);
     expect(box.source).toContain(`read ${HOT100_READ_ON_LONG}`);
     expect(box.source).toContain(`as of the chart dated ${HOT100_CHART_DATE_LONG}`);
     expect(box.entries!.map((e) => e.name)).toEqual(hot100Top.map((s) => s.name));
