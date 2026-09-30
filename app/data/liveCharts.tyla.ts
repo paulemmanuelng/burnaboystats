@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-30";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-30T05:37Z";
+  export const liveChartsBuiltAt = "2026-09-30T12:39Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify Albums","iTunes"];
@@ -184,17 +184,16 @@
             "status": "new"
           },
           {
-            "country": "BR",
-            "name": "Brazil",
-            "position": 160,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "GY",
             "name": "Guyana",
             "position": 173,
             "movement": -4
+          },
+          {
+            "country": "BR",
+            "name": "Brazil",
+            "position": 177,
+            "movement": 5
           },
           {
             "country": "RO",
@@ -242,46 +241,54 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "DK",
-            "name": "Denmark",
-            "position": 73,
-            "movement": -11
-          },
-          {
-            "country": "IT",
-            "name": "Italy",
-            "position": 76,
-            "movement": -45
+            "country": "AU",
+            "name": "Australia",
+            "position": 67,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "NO",
             "name": "Norway",
-            "position": 80,
-            "movement": -32
+            "position": 70,
+            "movement": 10
+          },
+          {
+            "country": "DK",
+            "name": "Denmark",
+            "position": 79,
+            "movement": -6
           },
           {
             "country": "CH",
             "name": "Switzerland",
-            "position": 80,
-            "movement": -34
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 95,
-            "movement": -32
-          },
-          {
-            "country": "AT",
-            "name": "Austria",
-            "position": 99,
-            "movement": -34
+            "position": 81,
+            "movement": -1
           },
           {
             "country": "SE",
             "name": "Sweden",
-            "position": 99,
-            "movement": -52
+            "position": 83,
+            "movement": 16
+          },
+          {
+            "country": "BE",
+            "name": "Belgium",
+            "position": 90,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 90,
+            "movement": 5
+          },
+          {
+            "country": "AT",
+            "name": "Austria",
+            "position": 95,
+            "movement": 4
           }
         ]
       }
@@ -317,15 +324,14 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 83,
-            "movement": -21
+            "position": 84,
+            "movement": -20
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 113,
-            "movement": null,
-            "status": "new"
+            "position": 128,
+            "movement": -104
           }
         ]
       },
@@ -337,7 +343,7 @@
             "country": "MY",
             "name": "Malaysia",
             "position": 35,
-            "movement": 1
+            "movement": 0
           }
         ]
       }
@@ -353,22 +359,22 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "RO",
-            "name": "Romania",
-            "position": 176,
-            "movement": -15
-          },
-          {
             "country": "BG",
             "name": "Bulgaria",
-            "position": 187,
-            "movement": 1
+            "position": 167,
+            "movement": 20
+          },
+          {
+            "country": "RO",
+            "name": "Romania",
+            "position": 167,
+            "movement": 9
           },
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 193,
-            "movement": -20
+            "position": 183,
+            "movement": 10
           }
         ]
       },
@@ -440,12 +446,12 @@
       },
       {
         "platform": "Deezer",
-        "numberOnes": 0,
+        "numberOnes": 1,
         "entries": [
           {
-            "country": "AU",
-            "name": "Australia",
-            "position": 97,
+            "country": "SV",
+            "name": "El Salvador",
+            "position": 1,
             "movement": null,
             "status": "new"
           }
@@ -465,8 +471,8 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 173,
-            "movement": -8
+            "position": 174,
+            "movement": -1
           }
         ]
       },
@@ -475,9 +481,9 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "SN",
-            "name": "Senegal",
-            "position": 96,
+            "country": "JM",
+            "name": "Jamaica",
+            "position": 27,
             "movement": null,
             "status": "new"
           }
@@ -497,7 +503,7 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 3,
+            "position": 4,
             "movement": null,
             "status": "new"
           }
@@ -506,45 +512,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "When I'm With You",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TH",
-            "name": "Thailand",
-            "position": 102,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/8e87690a458cb1629014434230b84001/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Talk to Me",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FI",
-            "name": "Finland",
-            "position": 173,
-            "movement": -31
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/cd07d0b83bcc8a17928619b3771e42df/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "TYLA",
