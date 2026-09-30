@@ -24,6 +24,7 @@ import ApiPage from "../app/api/page";
 import ScatterChart from "../app/components/ScatterChart";
 import MobileTabBar from "../app/components/MobileTabBar";
 import Nav from "../app/components/Nav";
+import { suggestedSearchDocs } from "../app/lib/searchSuggested";
 import SubscribeBox from "../app/components/SubscribeBox";
 import MobileFaq from "../app/components/MobileFaq";
 import MobileAbout from "../app/components/MobileAbout";
@@ -204,7 +205,7 @@ describe("E-04: every sideways-scrolling box can be reached from a keyboard", ()
 describe("E-05: the two navigation landmarks have different names", () => {
   it("the tab bar is not a second \"Primary\"", () => {
     const label = (html: string) => doc(html).querySelector("nav")?.getAttribute("aria-label");
-    const top = label(renderToStaticMarkup(<Nav />));
+    const top = label(renderToStaticMarkup(<Nav suggested={suggestedSearchDocs()} />));
     const bar = label(renderToStaticMarkup(<MobileTabBar />));
     expect(top).toBe("Primary");
     expect(bar).toBeTruthy();

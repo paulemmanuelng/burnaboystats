@@ -14,10 +14,12 @@ vi.mock("next/link", () => ({
 }));
 
 import Nav from "../../app/components/Nav";
+import { suggestedSearchDocs } from "../../app/lib/searchSuggested";
 
 describe("Nav", () => {
   it("renders all nav items and marks the active page with aria-current", () => {
-    render(<Nav />);
+    // The palette's suggestions come from the server, as layout.tsx passes them.
+    render(<Nav suggested={suggestedSearchDocs()} />);
     expect(screen.getByText("Certifications")).toBeInTheDocument();
     expect(screen.getByText("Records")).toBeInTheDocument();
     const active = screen.getByText("Music").closest("a");
