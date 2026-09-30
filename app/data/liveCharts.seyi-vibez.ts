@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-09-30";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-30T12:40Z";
+  export const liveChartsBuiltAt = "2026-09-30T17:09Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -156,16 +156,16 @@
             "movement": -2
           },
           {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 19,
-            "movement": -2
-          },
-          {
             "country": "CV",
             "name": "Cape Verde",
             "position": 20,
             "movement": 53
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 20,
+            "movement": 0
           },
           {
             "country": "MW",
@@ -182,8 +182,14 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 44,
-            "movement": -3
+            "position": 43,
+            "movement": -5
+          },
+          {
+            "country": "US",
+            "name": "United States",
+            "position": 64,
+            "movement": -8
           },
           {
             "country": "TC",
@@ -195,14 +201,8 @@
           {
             "country": "TR",
             "name": "Turkey",
-            "position": 69,
-            "movement": -8
-          },
-          {
-            "country": "US",
-            "name": "United States",
-            "position": 81,
-            "movement": -6
+            "position": 79,
+            "movement": -18
           },
           {
             "country": "CG",
@@ -213,8 +213,8 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 117,
-            "movement": 1
+            "position": 135,
+            "movement": -17
           },
           {
             "country": "LT",
@@ -250,8 +250,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 53,
-            "movement": -37
+            "position": 57,
+            "movement": -26
           }
         ]
       }
@@ -359,8 +359,9 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 20,
-            "movement": 165
+            "position": 54,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -1110,7 +1111,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 124,
+            "position": 157,
             "movement": null,
             "status": "new"
           }
@@ -1681,8 +1682,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 2,
-            "movement": 35
+            "position": 5,
+            "movement": 55
           }
         ]
       }
@@ -1937,7 +1938,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 66,
+            "position": 99,
             "movement": null,
             "status": "new"
           }
@@ -2175,25 +2176,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/44b6b558a027125f253bbf9538541db4/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "UP",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 200,
-            "movement": -102
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/cf3225fd6ccebd61ef2d071f59b1a5d9/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Billion Dollar Baby",
