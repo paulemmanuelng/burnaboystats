@@ -55,6 +55,7 @@ export const BACK_BAR_ROUTES = new Set<string>([
   // keeps the five-tab bar, as /about, /faq and /embed do: none has a single
   // main action for a bottom bar. So they are NOT ACTION_BAR routes.
   "/curator",
+  "/press",
 ]);
 
 /**

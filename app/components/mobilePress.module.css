@@ -1,0 +1,265 @@
+/* /press on a phone. designs/mobile/CPC Phone.dc.html (page "press") and
+   the copy-states board in Curator Press Correction - Mobile.dc.html, values
+   verbatim. Shown only below the mobile breakpoint; the desktop page is its
+   own layout (app/press/press.module.css).
+
+   This screen keeps the five-tab bar, so /press is in BACK_BAR_ROUTES but not
+   ACTION_BAR_ROUTES. */
+.screen { display: none; }
+
+@media (max-width: 900px) {
+  .screen {
+    display: flex;
+    flex-direction: column;
+    background: var(--bg);
+    min-height: 100%;
+  }
+}
+
+/* ── Back bar (the sibling screens' grammar) ──────────────────────────── */
+.backBar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: var(--scrim);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+  padding: 12px 18px;
+  /* With viewport-fit=cover the bar reaches under the notch and the
+     status bar; the insets push its CONTENT back into the safe area
+     while the background still bleeds to the edges. */
+  padding-top: calc(12px + env(safe-area-inset-top, 0px));
+  padding-left: calc(18px + env(safe-area-inset-left, 0px));
+  padding-right: calc(18px + env(safe-area-inset-right, 0px));
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.backBtn {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  color: var(--text);
+  flex: none;
+}
+.backLabel {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+/* The count, from data, in gold as on the sibling back-bar screens (owner
+   decision, 30 Sep 2026). The badge takes the free space, so the menu button
+   (whose own rule says margin-left:auto) sits straight after it, as drawn;
+   two auto margins would split the space and float the badge mid-bar. */
+.badge {
+  margin-left: auto;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  flex: none;
+}
+.backBar .menuAfterBadge { margin-left: 0; }
+
+/* ── Hero ─────────────────────────────────────────────────────────────── */
+.hero { padding: 22px 18px 0; }
+.kicker {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1.2;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.title {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 44px;
+  line-height: 0.95;
+  text-transform: uppercase;
+  margin: 11px 0 0;
+}
+/* The split word in the gold ramp — owner decision, 30 Sep 2026: the split
+   word only, nothing else in the hero. */
+.gold {
+  background: linear-gradient(180deg, var(--display-ramp-a), var(--display-ramp-b) 45%, var(--display-ramp-c));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  /* Paints the glyph, not the line box: background-clip:text fills the
+     padding box, and Anton's ink overruns a sub-1 line-height. See
+     mobileMethodology.module.css for the measurement behind 0.2em. */
+  padding: 0.2em 0;
+  margin: -0.2em 0;
+}
+.lede {
+  font-size: var(--type-lede);
+  line-height: var(--type-lede-lh);
+  color: var(--text-body);
+  margin: 14px 0 0;
+  text-wrap: pretty;
+}
+.lede strong { color: var(--text); font-weight: 600; }
+/* The live "Data last reviewed" line: green, the site's live accent. */
+.reviewed {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 0 0;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.reviewed strong { color: var(--text); font-weight: 600; }
+.reviewedDot { width: 7px; height: 7px; border-radius: 50%; background: var(--green-dot); display: block; flex: none; }
+
+/* ── Body ─────────────────────────────────────────────────────────────── */
+.body { padding: 0 18px; }
+.h2 {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.05;
+  text-transform: uppercase;
+  margin: 34px 0 0;
+}
+.p {
+  font-size: var(--type-body);
+  line-height: var(--type-body-lh);
+  color: var(--text-body);
+  margin: 10px 0 0;
+  text-wrap: pretty;
+}
+.link { color: var(--gold); }
+
+.small { margin: 10px 0 0; font-size: var(--type-small); line-height: var(--type-small-lh); color: var(--text-muted); }
+.note { margin: 12px 0 0; font-size: var(--type-small); line-height: 1.55; color: var(--text-muted); text-wrap: pretty; }
+.h3 {
+  margin: 24px 0 0;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1.2;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ── The headline figures (items 48, 53) ─────────────────────────────── */
+/* Each tile is itself the link: → at its foot and --bg-raised when pressed.
+   Five figures at rest in ink; the career total, which moves by itself,
+   stays gold. */
+.tiles { margin-top: 14px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.tile {
+  display: flex;
+  flex-direction: column;
+  min-height: 112px;
+  padding: 14px 14px 12px;
+  border: 1px solid var(--rule-soft);
+  border-radius: 6px;
+  background: var(--bg-soft);
+  color: var(--text);
+}
+.tile:active { background: var(--bg-raised); }
+.tileValue {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 0.95;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+}
+.tileLive { color: var(--gold); }
+.tileLabel {
+  margin-top: 9px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1.25;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.tileFoot { margin-top: auto; padding-top: 8px; display: flex; align-items: flex-end; gap: 8px; }
+.tileSub { flex: 1; font-size: 12.5px; line-height: 1.35; color: var(--text-muted); }
+.tileArrow { color: var(--gold); font-size: 16px; line-height: 1; }
+
+/* ── The copy boxes (item 49) ─────────────────────────────────────────── */
+/* One layout for all three: the text at full box width, so nothing is
+   squeezed beside a button, and a footer with a one-line label and the
+   button bottom-right, 104 × 44. CopyButton is unchanged (item 75): at rest
+   outlined on --bg, --bg-raised pressed, "Copied ✓" in --green for about
+   1.8s (its own inline colour), and the site's 2px gold focus ring. */
+.copyBox {
+  margin-top: 10px;
+  border: 1px solid var(--rule-soft);
+  border-radius: 6px;
+  background: var(--bg-soft-2);
+  overflow: hidden;
+}
+.copyCode {
+  display: block;
+  padding: 12px 14px;
+  font-family: var(--font-mono), monospace;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+.copyFoot { display: flex; align-items: center; gap: 10px; padding: 0 6px 6px 14px; }
+.copyKind {
+  flex: 1;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+/* The Copy pill, and the Download pill below: one shape. */
+.pill,
+.dlPill {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border-radius: 999px;
+  border: 1px solid var(--btn-edge);
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.pill { min-width: 104px; padding: 0 14px; cursor: pointer; }
+.pill:active { background: var(--bg-raised); }
+
+/* ── Download the data (items 50, 72) ─────────────────────────────────── */
+.dlList { margin-top: 12px; border-top: 1px solid var(--rule-soft); }
+.dlRow {
+  display: grid;
+  grid-template-columns: 1fr 104px;
+  gap: 12px;
+  align-items: start;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--text);
+}
+.dlText { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+.dlFile { font-family: var(--font-mono), monospace; font-weight: 700; font-size: 13px; line-height: 1.3; }
+.dlMeta { font-weight: 400; color: var(--text-muted); }
+.dlCount { color: var(--text); }
+.dlWhat { font-size: var(--type-small); line-height: var(--type-small-lh); color: var(--text-muted); }
+.dlRow:active .dlPill { background: var(--bg-raised); }
