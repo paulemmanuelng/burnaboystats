@@ -18,10 +18,15 @@ vi.mock("next/link", () => ({
 }));
 
 import CarsPage, { metadata as carsMetadata } from "../app/records/cars/page";
-import AfricasBiggestPage, { pageFaqs } from "../app/records/africas-biggest/page";
+import AfricasBiggestPage, {
+  pageFaqs,
+  BIGGEST_MEASURED_IDS,
+  BIGGEST_LEFT_OUT,
+} from "../app/records/africas-biggest/page";
 import { carFaqs } from "../app/lib/carFaqs";
 import { cars, CARS_LAST_SWEEP, carsListYear } from "../app/data/cars";
 import { statBoxes, EAS_STREAMS_COUNTED_TO, HIGHLIGHT } from "../app/data/africasBiggest";
+import { hot100Artists } from "../app/data/hot100Weeks";
 import { faqs as siteFaqs } from "../app/data/faqs";
 import { modelShort } from "../app/lib/garage";
 import { cardinalWord } from "../app/lib/plural";
@@ -315,17 +320,9 @@ describe("/records/africas-biggest answers the two searches it is found by", () 
 
   describe("biggest artist in Africa — by measure, never a crown", () => {
     const a = abAnswer(BIGGEST);
-    // The African boards that measure size. The page code says why the others
-    // (world boards, Nigerian-only boards, single-release chart peaks) are out.
-    const MEASURED = [
-      "best-selling-african-artist-eas",
-      "monthly-listeners-peak",
-      "billboard-global-200-peak",
-      "most-hot-100-entries",
-      "most-hot-100-weeks",
-      "billboard-hot-100-peak",
-      "biggest-spotify-debut",
-    ];
+    // The ranked boards the answer reads, from the page itself; the year board
+    // (most-streamed) is checked on its own below.
+    const MEASURED = BIGGEST_MEASURED_IDS.filter((id) => boardOf(id).layout === "list");
     const streams = boardOf("most-streamed-african-artist").rows!.find((r) => !r.inProgress)!;
     const leaders = [
       ...MEASURED.map((id) => topGroup(boardOf(id).entries!)),
@@ -351,11 +348,55 @@ describe("/records/africas-biggest answers the two searches it is found by", () 
       expect(leaderNames.filter((n) => n !== HIGHLIGHT).length).toBeGreaterThan(0);
     });
 
-    it("calls the Hot 100 peak joint: two No. 1s, one of them not first in the list", () => {
+    // Every act with a No. 1 among Billboard's own rows — read off the rows,
+    // not off the board the answer is built from.
+    const hot100No1Acts = hot100Artists.filter((x) => x.songs.some((s) => s.peak === 1)).map((x) => x.name);
+    const namesEveryNo1 = (text: string) => hot100No1Acts.every((n) => text.includes(n));
+    const andList = (xs: string[]) => (xs.length < 2 ? xs.join("") : `${xs.slice(0, -1).join(", ")} and ${xs.at(-1)}`);
+
+    it("calls the Hot 100 peak joint, naming every African No. 1", () => {
       const hot = boardOf("billboard-hot-100-peak").entries!;
       const joint = hot.filter((e) => e.value === hot[0].value).map((e) => e.name);
       expect(joint.length, "the premise: more than one African Hot 100 No. 1").toBeGreaterThan(1);
-      expect(a).toContain(`${joint.join(" and ")} share the highest Billboard Hot 100 peak (${hot[0].value})`);
+      expect([...joint].sort()).toEqual([...hot100No1Acts].sort());
+      expect(a).toContain(`${andList(joint)} share the highest Billboard Hot 100 peak (${hot[0].value})`);
+      expect(namesEveryNo1(a)).toBe(true);
+    });
+
+    it("negative control: the clause this answer carried before Hugh Masekela was on the board", () => {
+      // Built from the board as it was typed then (tests/topSearchFaqs.test.tsx
+      // at d0c35182 asserted exactly this line).
+      const SHIPPED = "Wizkid and Tems share the highest Billboard Hot 100 peak (No. 1)";
+      expect(hot100No1Acts).toContain("Hugh Masekela");
+      expect(namesEveryNo1(SHIPPED)).toBe(false);
+    });
+
+    it("sorts every board on the page: measured, or left out with a reason", () => {
+      const ids = statBoxes.map((b) => b.id);
+      const unaccounted = ids.filter((id) => !BIGGEST_MEASURED_IDS.includes(id) && !(id in BIGGEST_LEFT_OUT));
+      expect(unaccounted, "a board the answer neither reads nor says why it skips").toEqual([]);
+      expect(BIGGEST_MEASURED_IDS.filter((id) => id in BIGGEST_LEFT_OUT), "measured AND left out").toEqual([]);
+      const stale = [...BIGGEST_MEASURED_IDS, ...Object.keys(BIGGEST_LEFT_OUT)].filter((id) => !ids.includes(id));
+      expect(stale, "names a board the page no longer has").toEqual([]);
+      for (const [id, why] of Object.entries(BIGGEST_LEFT_OUT)) expect(why.length, id).toBeGreaterThan(20);
+    });
+
+    it("negative control: the set this answer shipped with left three boards in neither list", () => {
+      // The measure ids as d0c35182 shipped them, against today's left-out list.
+      const SHIPPED = [
+        "best-selling-african-artist-eas",
+        "monthly-listeners-peak",
+        "billboard-global-200-peak",
+        "most-hot-100-entries",
+        "most-hot-100-weeks",
+        "billboard-hot-100-peak",
+        "biggest-spotify-debut",
+        "most-streamed-african-artist",
+      ];
+      const unaccounted = statBoxes
+        .map((b) => b.id)
+        .filter((id) => !SHIPPED.includes(id) && !(id in BIGGEST_LEFT_OUT));
+      expect(unaccounted).toEqual(["most-200m-stream-songs", "most-followed-spotify", "youtube-music-audience-peak"]);
     });
 
     it("leaves the world boards' leaders out — they are not African artists", () => {
@@ -378,6 +419,51 @@ describe("/records/africas-biggest answers the two searches it is found by", () 
       expect(quoted.length).toBeGreaterThan(0);
       for (const v of quoted) expect(src, v).not.toContain(v);
     });
+  });
+});
+
+describe("/records/africas-biggest names every African Hot 100 No. 1", () => {
+  // Hugh Masekela topped the chart as the lead act in 1968; the answer and the
+  // peak board named only Wizkid and Tems until 30 Sep 2026. Read here off
+  // Billboard's rows in data/hot100Weeks.ts, not off the board or the helpers
+  // the answer is built from.
+  const Q = "Which African artists have reached No. 1 on the Billboard Hot 100?";
+  const a = abAnswer(Q);
+  const no1s = hot100Artists
+    .flatMap((x) => x.songs.filter((s) => s.peak === 1).map((s) => ({ name: x.name, song: s })))
+    .sort((x, y) => (x.song.peakDate ?? "").localeCompare(y.song.peakDate ?? ""));
+  const namesEvery = (text: string) => no1s.every((n) => text.includes(n.name));
+
+  it("names each one with the song and the year it got there", () => {
+    expect(no1s.length, "the premise: more than one").toBeGreaterThan(1);
+    expect(namesEvery(a)).toBe(true);
+    for (const n of no1s) {
+      expect(a, n.name).toContain(`“${n.song.title}” (${n.song.peakDate!.slice(0, 4)})`);
+    }
+  });
+
+  it("says who was first, and that only the first did it as the lead act", () => {
+    const [first, ...rest] = no1s;
+    expect(first.song.credit, "the premise: the first No. 1 is a lead credit").toBe(first.name);
+    for (const n of rest) expect(n.song.credit, n.name).toMatch(/ Featuring /);
+    expect(a).toContain(`${first.name} was the first, and the only one as the lead act`);
+  });
+
+  it("negative control: the answer the site shipped leaves Hugh Masekela out", () => {
+    const SHIPPED =
+      "Wizkid (“One Dance” with Drake) and Tems (“Wait for U” with Future and Drake) have both topped the Billboard Hot 100 through featured credits. The highest Hot 100 peak for a lead African act is Rema's “Calm Down” at No. 3, ahead of Tyla's “Water” (No. 7) and Burna Boy's “Dai Dai” with Shakira (No. 17). Burna Boy's best featured placing is higher still — “WGFT” with Gunna at No. 16.";
+    expect(namesEvery(SHIPPED)).toBe(false);
+  });
+
+  it("page.tsx types no name, title or year of it", () => {
+    const src = stripComments(read("app/records/africas-biggest/page.tsx"));
+    const faq = src.slice(src.indexOf("const hot100No1Answer"), src.indexOf("})();", src.indexOf("const hot100No1Answer")));
+    expect(faq.length).toBeGreaterThan(0);
+    for (const n of no1s) {
+      expect(faq, n.name).not.toContain(n.name);
+      expect(faq, n.song.title).not.toContain(n.song.title);
+      expect(faq, n.song.peakDate).not.toContain(n.song.peakDate!.slice(0, 4));
+    }
   });
 });
 

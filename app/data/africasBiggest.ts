@@ -2,11 +2,17 @@ import { spotifyFollowersRead, followersCompact, SPOTIFY_FOLLOWERS_READ_ON } fro
 import { monthlyListenersSeries } from "./trends";
 import {
   hot100Top,
+  hot100PeakStandings,
   HOT100_TOP,
   HOT100_COUNTRIES,
   HOT100_METHOD,
   HOT100_SOURCE,
+  HOT100_CHART_DATE_LONG,
+  HOT100_READ_ON_LONG,
   hot100StillChartingLine,
+  coCreditsOf,
+  peakReachedOn,
+  shortTitle,
 } from "./hot100Weeks";
 import { count, cardinalWord } from "../lib/plural";
 import { DAI_DAI_2026_MOST_NO1_THROUGH_LONG } from "./daiDaiNo1Claim";
@@ -229,6 +235,65 @@ const followersSource = (() => {
 })();
 
 /**
+ * The rows of "Highest Billboard Hot 100 peak", read off the same Billboard
+ * rows as the weeks board (data/hot100Weeks.ts), so the two cannot disagree.
+ *
+ * They were typed until 30 Sep 2026, and wrong by omission. They left out Hugh
+ * Masekela, who topped the chart as the lead act in 1968 (the entries board on
+ * this same page said so), and Miriam Makeba, whose "Pata Pata" peaked above
+ * his best, so Burna Boy's row printed fifth when he is seventh; and Tems' No. 1
+ * carried no tie mark, so she printed second. The "biggest artist in Africa"
+ * answer, read off this board, then called Wizkid and Tems the joint holders.
+ *
+ * The top five, ties included, then every act down to his row when he sits
+ * below it: a row with a gap above it would print a rank he does not hold.
+ */
+const hot100PeakRows = (() => {
+  const his = hot100PeakStandings.findIndex((s) => s.name === HIGHLIGHT);
+  return hot100PeakStandings.filter((s, i) => s.rank <= HOT100_TOP || i <= his);
+})();
+/** "Drake & Kyla", "A, B & C" — how the page's subs join a credit. */
+const ampList = (xs: string[]) =>
+  xs.length <= 1 ? xs.join("") : `${xs.slice(0, -1).join(", ")} & ${xs[xs.length - 1]}`;
+const hot100PeakEntries: RankEntry[] = hot100PeakRows.map((s, i) => {
+  const others = coCreditsOf(s.song, s.name);
+  return {
+    name: s.name,
+    sub: `${HOT100_COUNTRIES[s.country].flag} “${shortTitle(s.song.title)}”${others.length ? ` (with ${ampList(others)})` : ""}`,
+    value: `No. ${s.peak}`,
+    ...(i > 0 && s.peak === hot100PeakRows[i - 1].peak ? { tie: true as const } : {}),
+  };
+});
+const hot100PeakNote = (() => {
+  const no1s = hot100PeakStandings.filter((s) => s.peak === 1);
+  const him = hot100PeakStandings.find((s) => s.name === HIGHLIGHT);
+  const [first] = no1s;
+  const firstHit = first
+    ? `“${shortTitle(first.song.title)}” in ${peakReachedOn(first.song).slice(0, 4)}`
+    : "";
+  const no1Line = !first
+    ? ""
+    : no1s.length === 1
+      ? `${first.name} is the only African act to reach No. 1, with ${firstHit}. `
+      : `${andList(no1s.map((s) => s.name))} have all reached No. 1, ${first.name} first, with ${firstHit}. `;
+  const hisLine = him
+    ? `${HIGHLIGHT}'s best is “${shortTitle(him.song.title)}” at No. ${him.peak} (his real Hot 100 record is entries, where he leads all African acts with ${BURNA_HOT_100_ENTRIES_WORD.toLowerCase()}).`
+    : "";
+  return `The highest any African artist has charted on the Billboard Hot 100, counting lead and featured credits. ${no1Line}${hisLine}`.trim();
+})();
+const hot100PeakSource = (() => {
+  const extended = hot100PeakRows.some((s) => s.rank > HOT100_TOP);
+  return (
+    `Best Billboard Hot 100 peak, lead or featured credit, from the same rows the weeks board is summed from: ` +
+    `each act's Hot 100 chart history on billboard.com, read ${HOT100_READ_ON_LONG}, as of the chart dated ${HOT100_CHART_DATE_LONG}. ` +
+    `African artists by nationality. Acts on the same peak share a rank and are listed in the order they reached it.` +
+    (extended
+      ? ` The top ${cardinalWord(HOT100_TOP)}, then every act down to ${HIGHLIGHT}'s row, so his row prints the rank he holds.`
+      : "")
+  );
+})();
+
+/**
  * The day the best-selling board's top two are counted to. ChartMasters stamps
  * each artist's streams with a date, and Burna Boy and Wizkid are read as a
  * same-date pair, so this one day dates both totals. The board's source line
@@ -269,15 +334,10 @@ export const statBoxes: LeaderboardBox[] = [
     title: "Highest Billboard Hot 100 peak",
     meta: "Billboard Hot 100 · African artists · best peak",
     layout: "list",
-    entries: [
-      { name: "Wizkid", sub: "🇳🇬 “One Dance” (with Drake)", value: "No. 1" },
-      { name: "Tems", sub: "🇳🇬 “Wait for U” (Future & Drake)", value: "No. 1" },
-      { name: "Rema", sub: "🇳🇬 “Calm Down” (with Selena Gomez)", value: "No. 3" },
-      { name: "Tyla", sub: "🇿🇦 “Water”", value: "No. 7" },
-      { name: "Burna Boy", sub: "🇳🇬 “WGFT” (with Gunna)", value: "No. 16" },
-    ],
-    note: `The highest any African artist has charted on the Billboard Hot 100, counting lead and featured credits — Wizkid and Tems both hit No. 1 via global smashes with Drake and Future. Burna Boy's best is “WGFT” at No. 16 (his real Hot 100 record is entries, where he leads all African acts with ${BURNA_HOT_100_ENTRIES_WORD.toLowerCase()}).`,
-    source: "Best Billboard Hot 100 peak (lead or featured credit), per Billboard and Wikipedia-cited chart histories. As of July 2026.",
+    // Nothing here is typed: see hot100PeakEntries above.
+    entries: hot100PeakEntries,
+    note: hot100PeakNote,
+    source: hot100PeakSource,
   },
   {
     id: "most-streamed-african-artist",

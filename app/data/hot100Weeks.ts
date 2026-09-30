@@ -596,6 +596,63 @@ export function hot100StandingsOf(artists: Hot100Artist[]): Hot100Standing[] {
 
 export const hot100Standings = hot100StandingsOf(hot100Artists);
 
+/** The day a row reached its peak: Billboard's date where the page printed
+ *  one, the debut where it did not ("Pata Pata"). */
+export const peakReachedOn = (s: Hot100Song) => s.peakDate ?? s.debut;
+
+/** The song an act's best peak comes from — among equal peaks, the one that
+ *  got there first. */
+export const bestSongOf = (a: Hot100Artist): Hot100Song | undefined =>
+  [...a.songs].sort((x, y) => x.peak - y.peak || peakReachedOn(x).localeCompare(peakReachedOn(y)))[0];
+
+/** Named after "Featuring" on Billboard's credit line: a featured turn, not a
+ *  lead or joint credit ("Shakira X Burna Boy" is joint). */
+export const isFeaturedOn = (s: Hot100Song, name: string) => {
+  const credit = s.credit.toLowerCase();
+  const feat = credit.indexOf(" featuring ");
+  return feat >= 0 && credit.indexOf(name.toLowerCase()) > feat;
+};
+
+/** The act a featured turn was on — the credit line before "Featuring". */
+export const leadActOf = (s: Hot100Song) => s.credit.split(/ Featuring /i)[0];
+
+/** The other acts on a song's credit line, in Billboard's order and spelling. */
+export const coCreditsOf = (s: Hot100Song, name: string) =>
+  s.credit
+    .split(/ Featuring | & | X |, /i)
+    .map((x) => x.trim())
+    .filter((x) => x && x.toLowerCase() !== name.toLowerCase());
+
+export interface Hot100PeakStanding {
+  slug: string;
+  name: string;
+  country: Hot100Country;
+  peak: number;
+  /** The row the peak comes from. */
+  song: Hot100Song;
+  /** Competition ranking on the peak: acts on the same peak share a rank. */
+  rank: number;
+}
+
+/**
+ * Every ranked act by its best Hot 100 peak, highest first — the rows of the
+ * page's peak board, read off the same Billboard rows as the weeks board.
+ * Acts on the same peak are listed in the order they reached it, so the first
+ * African No. 1 is named first.
+ */
+export const hot100PeakStandings: Hot100PeakStanding[] = (() => {
+  const rows = hot100Artists
+    .filter((a) => a.read !== "unreadable" && a.songs.length > 0)
+    .map((a) => ({ slug: a.slug, name: a.name, country: a.country, peak: bestPeakOf(a)!, song: bestSongOf(a)! }))
+    .sort(
+      (x, y) =>
+        x.peak - y.peak ||
+        peakReachedOn(x.song).localeCompare(peakReachedOn(y.song)) ||
+        x.name.localeCompare(y.name)
+    );
+  return rows.map((r) => ({ ...r, rank: 1 + rows.filter((o) => o.peak < r.peak).length }));
+})();
+
 /** The published board: rank 5 and above. A tie at fifth shows every act
  *  sharing it, so this can run longer than five but never drops one. */
 export const HOT100_TOP = 5;
@@ -620,7 +677,7 @@ const listed = (xs: string[]) =>
   xs.length < 2 ? (xs[0] ?? "") : `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}`;
 
 /** Billboard's parenthetical subtitles off, for prose: "Dai Dai". */
-const shortTitle = (t: string) => t.replace(/\s*\(.*\)\s*$/, "");
+export const shortTitle = (t: string) => t.replace(/\s*\(.*\)\s*$/, "");
 
 /**
  * Which published totals are still moving, in words — from the rows, so the

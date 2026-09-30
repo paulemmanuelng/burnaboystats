@@ -42,7 +42,7 @@ import {
 } from "../app/data/hot100Weeks";
 import { afrobeatsArtists } from "../app/data/afrobeats";
 import { allChartItems } from "../app/data/charts";
-import { statBoxes, HIGHLIGHT, BURNA_HOT_100_ENTRIES } from "../app/data/africasBiggest";
+import { statBoxes, HIGHLIGHT, BURNA_HOT_100_ENTRIES, rankOf, type RankEntry } from "../app/data/africasBiggest";
 import { africaBoards } from "../app/lib/africaBoards";
 
 /**
@@ -243,6 +243,58 @@ describe("the rows agree with what the site already publishes", () => {
     expect(checked.length, "no overlap — checking nothing").toBeGreaterThanOrEqual(5);
     for (const e of checked)
       expect(`No. ${hot100Standings.find((s) => s.name === e.name)!.bestPeak}`, e.name).toBe(e.value);
+  });
+
+  // The peak board was typed until 30 Sep 2026 and left out two acts the rows
+  // rank above its lower rows: Hugh Masekela (No. 1, 1968) and Miriam Makeba
+  // (No. 12), so Burna Boy's No. 16 printed fifth; and it gave Tems' No. 1 no
+  // tie mark, so she printed second. Judged here against every counted act's
+  // rows, not against the standings the board is now built from.
+  const bestPeak = (a: Hot100Artist) => Math.min(...a.songs.map((s) => s.peak));
+  const peakBoardFaults = (entries: RankEntry[]) => {
+    const faults: string[] = [];
+    const last = Number(entries.at(-1)!.value!.replace(/\D/g, ""));
+    for (const a of counted)
+      if (bestPeak(a) <= last && !entries.some((e) => e.name === a.name))
+        faults.push(`missing ${a.name} (No. ${bestPeak(a)})`);
+    entries.forEach((e, i) => {
+      const a = counted.find((x) => x.name === e.name);
+      if (!a) return void faults.push(`${e.name} has no Hot 100 rows`);
+      const held = 1 + counted.filter((x) => bestPeak(x) < bestPeak(a)).length;
+      if (rankOf(entries, i) !== held) faults.push(`${e.name} prints rank ${rankOf(entries, i)}, holds ${held}`);
+    });
+    return faults;
+  };
+
+  it("the Hot 100 peak board leaves out no act ranked above its last row, and prints the ranks the rows give", () => {
+    const board = statBoxes.find((b) => b.id === "billboard-hot-100-peak")!.entries!;
+    expect(peakBoardFaults(board)).toEqual([]);
+    expect(board.some((e) => e.name === HIGHLIGHT), "his row is on the board").toBe(true);
+  });
+
+  it("negative control: the board as it was typed fails on all three counts", () => {
+    const SHIPPED: RankEntry[] = [
+      { name: "Wizkid", sub: "🇳🇬 “One Dance” (with Drake)", value: "No. 1" },
+      { name: "Tems", sub: "🇳🇬 “Wait for U” (Future & Drake)", value: "No. 1" },
+      { name: "Rema", sub: "🇳🇬 “Calm Down” (with Selena Gomez)", value: "No. 3" },
+      { name: "Tyla", sub: "🇿🇦 “Water”", value: "No. 7" },
+      { name: "Burna Boy", sub: "🇳🇬 “WGFT” (with Gunna)", value: "No. 16" },
+    ];
+    expect(peakBoardFaults(SHIPPED)).toEqual([
+      "missing Hugh Masekela (No. 1)",
+      "missing Miriam Makeba (No. 12)",
+      "Tems prints rank 2, holds 1",
+      "Rema prints rank 3, holds 4",
+      "Tyla prints rank 4, holds 5",
+      "Burna Boy prints rank 5, holds 7",
+    ]);
+  });
+
+  it("the peak board's first No. 1 is the act the entries board calls the first to top the chart", () => {
+    const first = statBoxes.find((b) => b.id === "billboard-hot-100-peak")!.entries![0];
+    const entriesNote = statBoxes.find((b) => b.id === "most-hot-100-entries")!.note!;
+    expect(first.value).toBe("No. 1");
+    expect(entriesNote).toContain(`${first.name.split(" ").at(-1)} was the first African act to top the chart`);
   });
 
   it("each song count matches the Hot 100 entries board, and Burna Boy's matches his constant", () => {
