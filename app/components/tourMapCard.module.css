@@ -1,0 +1,168 @@
+/* The desktop country card: TM Card.dc.html (desktop layout), inside the map
+   frame. Border and arrow were gold; the edge is now --rule and there is no
+   arrow (item 27). The region label was gold; it is muted (item 25). */
+
+.card {
+  width: 300px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  /* No overscroll-behavior: contain (item 4). At the card's end the wheel
+     scrolls the page, as a reader expects. */
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  color: var(--text);
+}
+@media (max-width: 1239px) {
+  .card { width: 280px; }
+}
+
+.head {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 14px 16px 0;
+}
+.titles {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.nameLine {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.flag {
+  font-size: 18px;
+  line-height: 1;
+}
+.name {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+.region,
+.label,
+.hint {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1.2;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.close {
+  width: 32px;
+  height: 32px;
+  flex: none;
+  margin: -6px -8px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+.close:hover {
+  background: var(--bg-raised);
+  color: var(--text);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px 16px 14px;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.value {
+  font-size: var(--type-small);
+  line-height: var(--type-small-lh);
+  color: var(--text);
+  text-wrap: pretty;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+}
+.linkRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 36px;
+  padding: 6px 16px;
+  box-sizing: border-box;
+  border-top: 1px solid var(--line);
+  color: var(--text);
+  text-decoration: none;
+}
+.linkRow:hover {
+  background: var(--bg-raised);
+}
+.linkRow:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: -2px;
+}
+.linkText {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.linkLabel {
+  font-size: var(--type-small);
+  line-height: 1.35;
+}
+.linkSub {
+  font-size: var(--type-caption);
+  line-height: 1.35;
+  color: var(--text-muted);
+}
+.arrow {
+  color: var(--gold);
+  font-size: 15px;
+}
+
+.events {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 16px 14px;
+  border-top: 1px solid var(--line);
+}
+.event {
+  font-size: var(--type-small);
+  line-height: 1.45;
+  color: var(--text-body);
+}
+
+.hint {
+  padding: 10px 16px;
+  border-top: 1px solid var(--line);
+}
+.caveat {
+  padding: 10px 16px 12px;
+  border-top: 1px solid var(--line);
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
+  color: var(--text-muted);
+}

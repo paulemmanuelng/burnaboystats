@@ -495,17 +495,6 @@
   "app/records/tours/festivals/festivals.module.css": [
     "--gold-wash-base 7%"
   ],
-  "app/records/tours/map/map.module.css": [
-    "--gold-wash-base 42%",
-    "--gold-wash-base 42%",
-    "--gold-wash-base 5%",
-    "--gold-wash-base 75%",
-    "--gold-wash-base 75%",
-    "--scrim-base 90%",
-    "--scrim-base 90%",
-    "--shadow-base 55%",
-    "--veil-base 97%"
-  ],
   "app/records/tours/revenue/revenue.module.css": [
     "--ember 16%",
     "--gold-wash-base 4%"

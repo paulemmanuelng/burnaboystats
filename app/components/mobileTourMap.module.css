@@ -1,11 +1,13 @@
-/* Mobile tour-map screen. Values are the design's, verbatim
-   (designs/mobile/Burna Boy Stats - Mobile Deep Pages.dc.html, screen 20).
-   Shown only below the mobile breakpoint — the desktop page is a different
-   layout, not this markup widened. */
+/* Phone tour-map screen (900px and below). Values are the design's:
+   designs/mobile/TM Phone.dc.html (Deep Pages screen 20) and the design
+   response of 30 Sep 2026, whose change list wins where they differ. Shown
+   only below the mobile breakpoint — the desktop page is a different layout,
+   not this markup widened. */
 .screen { display: none; }
 
 @media (max-width: 900px) {
   .screen {
+    position: relative;
     display: flex;
     flex-direction: column;
     background: var(--bg);
@@ -45,14 +47,15 @@
   flex: none;
 }
 .backLabel {
+  flex: 1;
   font-family: var(--font-mono), monospace;
   font-weight: 700;
   font-size: 11px;
   letter-spacing: 0.11em;
   text-transform: uppercase;
 }
+/* "{57} countries", gold as on every sibling back-bar page (owner, item 24). */
 .badge {
-  margin-left: auto;
   font-family: var(--font-mono), monospace;
   font-size: 11px;
   letter-spacing: 0.1em;
@@ -60,25 +63,64 @@
   flex: none;
 }
 
+/* "Skip to country list" (item 14): the first stop inside the content,
+   before the map. The gold ramp, 44px, seen only on focus. */
+.skip {
+  position: absolute;
+  z-index: 6;
+  left: 18px;
+  top: calc(80px + env(safe-area-inset-top, 0px));
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 22px;
+  border-radius: 999px;
+  background-color: var(--gold-fill);
+  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold-fill) 48%, var(--gold-dim) 100%);
+  color: var(--ink-on-gold);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.skip:not(:focus) {
+  width: 1px;
+  height: 1px;
+  min-height: 0;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
 /* ── Hero ─────────────────────────────────────────────────────────────── */
-.hero { padding: 22px 18px 18px; }
+.hero { padding: 20px 18px 0; display: flex; flex-direction: column; }
+/* Muted, with the Records family's ember tick (item 26). */
 .kicker {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-family: var(--font-mono), monospace;
   font-weight: 700;
   font-size: 11px;
+  line-height: 1.2;
   letter-spacing: 0.11em;
   text-transform: uppercase;
-  color: var(--ember);
+  color: var(--text-muted);
 }
+.tick { width: 16px; height: 2px; background: var(--ember); flex: none; }
 .title {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400; /* Anton has no bold cut */
   font-size: 40px;
-  line-height: 0.94;
-  letter-spacing: 0.01em;
+  line-height: 1;
+  letter-spacing: 0.005em;
   text-transform: uppercase;
-  margin-top: 11px;
+  margin: 10px 0 0;
 }
+/* The split word stays gold (owner, 30 Sep 2026, item 29). */
 .gold {
   background: linear-gradient(180deg, var(--display-ramp-a), var(--display-ramp-b) 45%, var(--display-ramp-c));
   -webkit-background-clip: text;
@@ -94,58 +136,230 @@
   padding: 0.2em 0;
   margin: -0.2em 0;
 }
+/* "{57} countries across {7} regions." keeps the region count in the hero
+   (item 10). */
 .lede { font-size: var(--type-lede); line-height: var(--type-lede-lh); color: var(--text-body); margin: 12px 0 0; }
 
-/* ── Map card ─────────────────────────────────────────────────────────── */
-/* The design mocks the map with dots because its prototype can't run the real
-   one. This renders the actual PerformanceMap in the same frame. */
-.mapCard { margin: 0 18px; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
-.mapInner { background: var(--bg-soft); }
-.mapHint {
-  padding: 11px 14px;
+/* The three figures; the biggest night is left to the card. The cell holding
+   the year range is the widest, so "2014–2026" stays on one line at 390 and
+   375 (item 10). */
+.figs {
+  display: grid;
+  grid-template-columns: 1fr 0.8fr 1.3fr;
+  margin-top: 14px;
   border-top: 1px solid var(--line);
-  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+.fig {
+  padding: 12px 0 12px 12px;
+  border-left: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.fig:first-child { padding-left: 0; border-left: none; }
+.figValue {
+  align-self: flex-start;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  color: var(--text);
+}
+.figLabel {
   font-family: var(--font-mono), monospace;
+  font-weight: 700;
   font-size: 11px;
-  line-height: 1.5;
-  color: var(--dim);
+  line-height: 1.2;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ── Views ────────────────────────────────────────────────────────────── */
+/* Four chips on one line: 356px of 366 at 402; at 375, tighter padding,
+   gaps and tracking, 331px of 339. No scrolling row, no shortened labels. */
+.chips {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+  /* Room for the sticky back bar when a region row scrolls the map up. */
+  scroll-margin-top: calc(84px + env(safe-area-inset-top, 0px));
+}
+.chip {
+  height: 44px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  border-radius: 999px;
+  border: 1px solid var(--btn-edge);
+  background: transparent;
+  color: var(--text-muted);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.chipOn {
+  background: var(--text);
+  border-color: var(--text);
+  color: var(--bg);
+}
+@media (max-width: 391px) {
+  .chips { gap: 6px; }
+  .chip { padding: 0 11px; letter-spacing: 0.06em; }
+}
+
+/* One frame height for every view, 260px, so the list below never jumps
+   (item 7). World is letterboxed with the sea colour: the frame is the sea. */
+.mapFrame {
+  margin-top: 12px;
+  height: 260px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--map-sea);
+}
+.mapDip { width: 100%; height: 100%; }
+/* A view change is an opacity dip on the one map, 0.2s; instant under
+   reduced motion (item 77). Two names so a second change restarts it. */
+@media (prefers-reduced-motion: no-preference) {
+  .dipA { animation: tmDipA 0.2s cubic-bezier(0.22, 1, 0.36, 1); }
+  .dipB { animation: tmDipB 0.2s cubic-bezier(0.22, 1, 0.36, 1); }
+}
+@keyframes tmDipA { from { opacity: 0; } to { opacity: 1; } }
+@keyframes tmDipB { from { opacity: 0; } to { opacity: 1; } }
+
+/* The hint, in Geist (item 16). */
+.hint {
+  margin: 0;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  font-size: var(--type-small);
+  line-height: 1.4;
+  color: var(--text-body);
+}
+.caveat {
+  margin: 0 0 4px;
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
+  color: var(--text-muted);
+}
+
+/* The panel, in the flow under the map. On a ?country= visit its space is
+   held from the first paint (page.tsx), so nothing jumps as it arrives. */
+.panelSlot { margin-top: 4px; }
+:global(html[data-tm-deep]) .panelSlot { min-height: 420px; }
+.panelSlot:empty { margin-top: 0; }
+.note {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 56px;
+  padding: 0 4px 0 16px;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--bg-soft);
+  font-size: var(--type-small);
+  line-height: 1.45;
+  color: var(--text);
+}
+.note span { flex: 1; }
+.noteClose {
+  width: 44px;
+  height: 44px;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
 }
 
 /* ── Regions ──────────────────────────────────────────────────────────── */
-.regions { padding: 20px 0 0; }
-.region { padding: 14px 18px; border-top: 1px solid var(--line); }
-.regionTop { display: flex; align-items: baseline; gap: 10px; }
+.listKicker { margin-top: 28px; }
+.h2 {
+  margin: 8px 0 12px;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+.regions { display: flex; flex-direction: column; }
+.region {
+  display: flex;
+  flex-direction: column;
+  padding: 0 12px 12px;
+  margin: 0 -12px;
+  border-top: 1px solid var(--line);
+}
+/* The current row: --bg-raised and a 3px ink rule, no gold label, and the
+   map is not dimmed (item 13). */
+.regionOn {
+  background: var(--bg-raised);
+  box-shadow: inset 3px 0 0 var(--text);
+}
+/* Only the header line is the button, so a screen reader does not read up
+   to 19 country names as its label (item 82). */
+.regionTop {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
 .regionName {
+  flex: 1;
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
   font-size: 17px;
   text-transform: uppercase;
 }
+/* Ink, not gold (item 23). */
 .regionCount {
-  margin-left: auto;
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
   font-size: 19px;
-  color: var(--gold);
   font-variant-numeric: tabular-nums;
+  color: var(--text);
 }
 .regionList {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  line-height: 1.6;
-  color: var(--text-muted);
-  margin: 7px 0 0;
+  margin: 0;
+  font-size: var(--type-small);
+  line-height: 1.5;
+  color: var(--text-body);
 }
 
 .footNote {
-  font-size: 12px;
-  line-height: 1.55;
-  color: var(--dim);
-  padding: 18px 18px 0;
+  margin: 16px 0 0;
+  padding-top: 16px;
   border-top: 1px solid var(--line);
-  margin: 0;
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
+  color: var(--text-muted);
 }
-.spacer { height: 110px; }
+/* 160px under the last row, so nothing sits under the fixed bar. */
+.spacer { height: 160px; }
 
 /* ── Action bar — replaces the tab bar on this screen ─────────────────── */
 .actionBar {
