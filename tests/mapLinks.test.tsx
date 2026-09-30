@@ -17,6 +17,7 @@ vi.mock("next/link", () => ({
 
 import ToursPage from "../app/records/tours/page";
 import FestivalsPage from "../app/records/tours/festivals/page";
+import GlobeTeaser from "../app/components/GlobeTeaser";
 import { tours, festivals, concerts, otherShows } from "../app/data/tours";
 import { revenueShows } from "../app/data/tourRevenue";
 import { performedCountries } from "../app/data/performedCountries";
@@ -502,3 +503,40 @@ describe("items 66 and 67: the phone grid in ink, labels at the 11px floor, Afro
   });
 });
 
+// ── Item 41 ─────────────────────────────────────────────────────────────────
+describe("item 41: the home map teaser drops the typed 'Oceania added Oct 2025'", () => {
+  /** A line dating when a region was added. The data holds no such date. */
+  const datesAnAddition = (text: string) => /\badded\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.?\s+\d{4}(?!\d)/i.test(text);
+  const teaser = () => parse(renderToStaticMarkup(GlobeTeaser())).body;
+
+  it("the foot holds only 'Open the map ↗', and nothing dates an addition", () => {
+    const t = teaser();
+    expect(clean(t.querySelector('[class*="_foot_"]')?.textContent)).toBe("Open the map ↗");
+    expect(datesAnAddition(clean(t.textContent))).toBe(false);
+  });
+
+  it("negative control: the foot as shipped until 30 Sep 2026", () => {
+    // The shipped JSX, verbatim.
+    const shipped = parse(
+      renderToStaticMarkup(
+        <div className="foot">
+          <span className="dot" aria-hidden="true" />
+          <span className="note">Oceania added Oct 2025</span>
+          <span className="cta">Open the map ↗</span>
+        </div>,
+      ),
+    ).body;
+    expect(datesAnAddition(clean(shipped.textContent))).toBe(true);
+  });
+
+  it("the region strip is left as it is: three regions, then Rest, adding up to the total", () => {
+    // The Rest split has no artboard, so it is not built in this job.
+    const cells = [...teaser().querySelectorAll('[class*="_cell_"]')].map((c) => ({
+      n: Number(clean(c.querySelector('[class*="_num_"]')?.textContent)),
+      label: clean(c.querySelector('[class*="_label_"]')?.textContent),
+    }));
+    expect(cells).toHaveLength(4);
+    expect(cells[3].label).toBe("Rest");
+    expect(cells.reduce((t, c) => t + c.n, 0)).toBe(performedCountries.length);
+  });
+});
