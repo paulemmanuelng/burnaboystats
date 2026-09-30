@@ -53,6 +53,12 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-09-30",
+    category: "Streaming",
+    text: "Still the best-selling African artist of all time: ChartMasters has Burna Boy on 15.34 million equivalent album sales to Wizkid's 15.00M, a 339,000 lead, both counted to 28 September.",
+    href: "/records/africas-biggest",
+  },
+  {
     date: "2026-09-29",
     category: "Certifications",
     big: true,
