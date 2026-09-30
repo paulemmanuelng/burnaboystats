@@ -10,6 +10,9 @@ import { join } from "node:path";
  *   60. The Europe inset: option (c), owner decided — a fixed 200 × 172 px at
  *       every width from 901 up, bottom-left, 8px from the edges. It shipped
  *       as 31% of the map box, which grew with the box through 901–1239.
+ *   61. The stat strip: 24px each side of each lead cell, except the first
+ *       cell in each row (left 0, on the column edge). It shipped as
+ *       22px 18px 20px 0 on every cell.
  *
  * Each check resolves the stylesheet the way a browser would at a given
  * viewport width (the rules that apply, by specificity then source order),
@@ -221,5 +224,85 @@ describe("60 · the Europe inset is a fixed 200 × 172 from 901 up", () => {
     expect(cut).toBe("0.86");
     const size = insetSize(computed(REPLAY_CSS, ".europe", 1440), 873, 416)!;
     expect(size.h / size.w).toBeCloseTo(Number(cut), 4);
+  });
+});
+
+// ── 61. The stat strip ───────────────────────────────────────────────────────
+//
+// Every cell is padding 22px 24px 20px 24px, except the first cell in each
+// row, whose left stays 0 (it sits on the column edge): cell 1 in the row of
+// six from 1240 up, cells 1 and 4 in the tablet's three by two (901–1239).
+// The phone's full-width rows (padding 14px 0) do not change.
+
+const PAGE_CSS = read("app/dai-dai/dai-dai.module.css");
+
+/** How many columns the lead figures sit in on a screen `w` wide. */
+function leadColumns(sheet: string, w: number): number {
+  const d = computed(sheet, ".leads", w);
+  if (d.get("display") !== "grid") return 1;
+  return Number(/^repeat\((\d+),/.exec(d.get("grid-template-columns") ?? "")?.[1] ?? NaN);
+}
+
+const px = (v: string | undefined) => (v === undefined ? NaN : parseFloat(v));
+
+/** What is wrong with the strip in a stylesheet, as readable lines. */
+function stripMisses(sheet: string): string[] {
+  const miss: string[] = [];
+  for (const [vw, cols] of [[1920, 6], [1440, 6], [1240, 6], [1239, 3], [1024, 3], [901, 3]] as const) {
+    if (leadColumns(sheet, vw) !== cols) miss.push(`${vw}px: ${leadColumns(sheet, vw)} columns`);
+    for (let i = 1; i <= 6; i++) {
+      const d = computed(sheet, ".lead", vw, i);
+      const want = [22, 24, 20, (i - 1) % cols === 0 ? 0 : 24];
+      const got = ["top", "right", "bottom", "left"].map((s) => px(d.get(`padding-${s}`)));
+      if (got.join() !== want.join()) miss.push(`${vw}px, cell ${i}: ${got.join(" ")}`);
+    }
+  }
+  return miss;
+}
+
+// The shipped rule (origin/main at cda9fb74, 30 Sep 2026), verbatim. The negative control.
+const SHIPPED_LEAD = `
+.lead {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+  padding: 22px 18px 20px 0;
+  background: var(--bg);
+}`;
+/** The stylesheet as shipped: the .lead rule put back and no first-cell rules. */
+const shippedStrip = (sheet: string) =>
+  swapRule(sheet, ".lead", SHIPPED_LEAD).replace(/\n\s*\.lead:(?:nth-child\([^)]*\)|first-child) \{[^}]*\}/g, "");
+
+describe("61 · the stat strip: 24px each side, the first cell in each row on the edge", () => {
+  it("pads every cell 22 24 20 24, the row's first cell 0 on the left, at 6 across and 3 × 2", () => {
+    expect(stripMisses(PAGE_CSS)).toEqual([]);
+  });
+
+  it("negative control: the shipped padding 22px 18px 20px 0 fails", () => {
+    const shipped = shippedStrip(PAGE_CSS);
+    expect(shipped).toContain("padding: 22px 18px 20px 0;");
+    const misses = stripMisses(shipped);
+    expect(misses).toContain("1440px, cell 2: 22 18 20 0");
+    expect(misses).toContain("1024px, cell 5: 22 18 20 0");
+  });
+
+  it("leaves the phone's rows as they are: padding 14px 0, one cell a row", () => {
+    expect(PAGE_CSS).toMatch(/\n {2}\.lead \{\n {4}display: grid;\n {4}grid-template-columns: 118px minmax\(0, 1fr\);\n {4}align-items: center;\n {4}gap: 14px;\n {4}padding: 14px 0;\n/);
+    for (const vw of [320, 390, 900]) {
+      expect(leadColumns(PAGE_CSS, vw), `${vw}`).toBe(1);
+      for (let i = 1; i <= 6; i++) {
+        const d = computed(PAGE_CSS, ".lead", vw, i);
+        expect(["top", "right", "bottom", "left"].map((s) => px(d.get(`padding-${s}`))), `${vw}px, cell ${i}`).toEqual([14, 0, 14, 0]);
+      }
+    }
+  });
+
+  it("both editions draw the strip from the one stylesheet, six cells in one list", () => {
+    for (const file of ["app/dai-dai/page.tsx", "app/dai-dai/es/page.tsx"]) {
+      expect(read(file), file).toMatch(/import \{ Leads,/);
+    }
+    // The first-cell rules count children: the list holds only the cells.
+    expect(read("app/components/DaiDaiNumbers.tsx")).toMatch(/<ul className=\{styles\.leads\}>\s*\{leads\.map\(\(f\) => \(\s*<li key=\{f\.cap\} className=\{styles\.lead\}>/);
   });
 });
