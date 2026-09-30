@@ -87,7 +87,8 @@ describe("the one-side hint follows the featured switch", () => {
     // and so are the six Swedish plaques since Sweden is priced (§).
     // 171: + Dai Dai GR Platinum (priced ¶ at IFPI's 2013 level, 20 Sep 2026), + Dai Dai SE Platinum (priced §, 20 Sep), + BE Gold (19 Sep), + City Boys PT Gold (18 Sep 2026)
     // 173: + Dai Dai DE Gold, BVMI (read 23 Sep 2026); + Dai Dai CA 2× Platinum, Music Canada 21 Sep 2026
-    expect(on).toContain("175 counted"); // + Dai Dai PL Gold and We Pray PL Platinum, Poland's singles priced at ZPAV's 2 zł (23 Sep 2026)
+    // 175: + Dai Dai PL Gold and We Pray PL Platinum, Poland's singles priced at ZPAV's 2 zł (23 Sep 2026)
+    expect(on).toContain("176 counted"); // + Alone PT Gold, AFP's award card (30 Sep 2026)
   });
 });
 
