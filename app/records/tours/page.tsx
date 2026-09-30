@@ -85,10 +85,11 @@ const topShowDate = tours
   .find((d) => d.venue === topShow.venue && d.when?.year === topShow.year);
 const topShowMonthYear = topShowDate?.when?.label ?? topShow.year;
 
-// The two cards after the tour list carry these as their sub-lines.
-// "Documented", because the lists are what has been verified, not a claim to
-// every show he has played.
+// The two cards after the tour list, and the phone's "More from the road"
+// rows, carry these as their sub-lines. "Documented", because the lists are
+// what has been verified, not a claim to every show he has played.
 const appearanceCount = festivals.length + concerts.length + otherShows.length;
+const headlinedCount = festivals.length;
 
 const headline = [
   // topTour.gross verbatim, not re-rounded. toFixed(1) turned "$30.46M" into
@@ -116,6 +117,10 @@ export default function ToursPage() {
         biggestNight={topShow.tickets ?? "—"}
         biggestVenue={topShow.venue}
         yearSpan={yearSpan}
+        hisShowCount={hisShowCount}
+        revenueShowCount={revenueShows.length}
+        appearanceCount={appearanceCount}
+        headlinedCount={headlinedCount}
       />
 
       <div className={styles.desktopOnly}>

@@ -220,3 +220,113 @@ describe("item 39: the Tours lede dates the biggest night from its tour date", (
     expect(typesTheMonth(SHIPPED)).toBe(true);
   });
 });
+
+// ── Items 35 and 68 ─────────────────────────────────────────────────────────
+describe("item 35: phone Tours gains 'More from the road', map first", () => {
+  const ROAD = ["/records/tours/map", "/records/tours/revenue", "/records/tours/festivals"];
+  /** Links on the phone screen to the three pages the group routes to. */
+  const roadHrefs = (hrefs: string[]) => hrefs.filter((h) => ROAD.includes(h));
+  const phoneOf = (doc: Document) => doc.querySelector('[class*="_screen_"]')!;
+  const his = revenueShows.filter((s) => s.artist === "Burna Boy").length;
+
+  it("a nav labelled by its h2, three rows in order, each sub-line from the data", () => {
+    const phone = phoneOf(toursDoc());
+    const nav = phone.querySelector('nav[aria-labelledby="more-from-the-road"]')!;
+    const h2 = phone.querySelector(`#${nav.getAttribute("aria-labelledby")}`)!;
+    expect(h2.tagName).toBe("H2");
+    expect(clean(h2.textContent)).toBe("More from the road");
+    const rows = [...nav.querySelectorAll("a")].map((a) => ({
+      href: a.getAttribute("href"),
+      title: clean(a.querySelector('[class*="_roadTitle_"]')?.textContent),
+      sub: clean(a.querySelector('[class*="_roadSub_"]')?.textContent),
+      arrow: a.querySelector(':scope > [aria-hidden="true"]')?.textContent?.trim(),
+    }));
+    expect(rows).toEqual([
+      {
+        href: "/records/tours/map",
+        title: "Where he's performed",
+        sub: `${performedCountries.length} countries documented · ${regionCount} regions`,
+        arrow: "→",
+      },
+      {
+        href: "/records/tours/revenue",
+        title: "Revenue per show",
+        sub: `His ${his} of the ${revenueShows.length} biggest reported single-show grosses by an African artist`,
+        arrow: "→",
+      },
+      {
+        href: "/records/tours/festivals",
+        title: "Festivals & shows",
+        sub: `${appearances} documented appearances · ${festivals.length} headlined`,
+        arrow: "→",
+      },
+    ]);
+    // Links, not expanders: no caret in the group.
+    expect(nav.textContent).not.toMatch(/[▸▾]/);
+  });
+
+  it("sits directly under the last tour row, before the footnote", () => {
+    const phone = phoneOf(toursDoc());
+    const nav = phone.querySelector('nav[aria-labelledby="more-from-the-road"]')!;
+    const lastTour = [...phone.querySelectorAll('[class*="_tour_"]')].at(-1)!;
+    const foot = phone.querySelector('[class*="_footNote_"]')!;
+    expect(lastTour.nextElementSibling).toBe(nav);
+    expect(nav.nextElementSibling).toBe(foot);
+  });
+
+  it("the 'Countries' tile stays a figure, not a link", () => {
+    const grid = phoneOf(toursDoc()).querySelector('[class*="_statGrid_"]')!;
+    expect(clean(grid.textContent)).toContain("Countries");
+    expect(grid.querySelectorAll("a")).toHaveLength(0);
+  });
+
+  it("the phone screen now links to all three pages", () => {
+    const hrefs = [...phoneOf(toursDoc()).querySelectorAll("a")].map((a) => a.getAttribute("href") ?? "");
+    expect(roadHrefs(hrefs)).toEqual(ROAD);
+  });
+
+  it("negative control: the screen shipped until 30 Sep 2026 linked to none of them", () => {
+    // Every href in app/components/MobileTours.tsx as shipped: the back link
+    // and the Ticketmaster bar.
+    const SHIPPED_HREFS = ["/records", "https://www.ticketmaster.com/burna-boy-tickets/artist/2486272"];
+    expect(roadHrefs(SHIPPED_HREFS)).toEqual([]);
+  });
+});
+
+describe("item 69: the phone Tours footnote stays the build's own", () => {
+  // Map Links §1 had added "and Pollstar"; the fix put the artboard back to the
+  // footnote as it ships, so the build's line must not move.
+  const SHIPPED =
+    "Tour grosses come from Billboard Boxscore. The per-date figure is the venue's capacity, not tickets sold — tours.ts records capacity, and only some nights have a Boxscore headcount. A dash means the run has no reported gross, not that it was small. Dates shown are a documented sample, not the full itinerary.";
+
+  it("reads exactly as shipped, with no Pollstar added", () => {
+    const foot = clean(toursDoc().querySelector('[class*="_screen_"] [class*="_footNote_"]')?.textContent);
+    expect(foot).toBe(SHIPPED);
+    expect(foot).not.toContain("Pollstar");
+  });
+
+  it("negative control: the footnote Map Links §1 first drew would fail it", () => {
+    const DRAWN =
+      "Box-office figures are reported by Billboard Boxscore and Pollstar. The per-date figure inside each tour is the venue's capacity, not tickets sold. A dash means the run has no reported gross, not that it was small.";
+    expect(DRAWN).not.toBe(SHIPPED);
+    expect(DRAWN).toContain("Pollstar");
+  });
+});
+
+describe("item 68: the rows are 64px and press to --bg-raised", () => {
+  const pressesToRaised = (css: string) => declared(ruleFor(css, ".roadRow:active"), "background") === "var(--bg-raised)";
+
+  it("in mobileTours.module.css", () => {
+    const css = read("app/components/mobileTours.module.css");
+    expect(pressesToRaised(css)).toBe(true);
+    expect(declared(ruleFor(css, ".roadRow"), "min-height")).toBe("64px");
+    // Geist, not mono, for the sub-line: it runs to a sentence.
+    expect(declared(ruleFor(css, ".roadSub"), "font-family")).toBeNull();
+  });
+
+  it("negative control: Deep Pages 12's pressed row as first drawn (raw #24242a)", () => {
+    // style-hover="background:#24242a", as a rule.
+    expect(pressesToRaised(".roadRow:active { background: #24242a; }")).toBe(false);
+  });
+});
+
