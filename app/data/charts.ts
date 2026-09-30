@@ -562,12 +562,9 @@ export const featureCharts: ChartRelease[] = [
 ];
 
 // Helpers
-export function chartTier(peak: number): "one" | "top10" | "top40" | "rest" {
-  if (peak === 1) return "one";
-  if (peak <= 10) return "top10";
-  if (peak <= 40) return "top40";
-  return "rest";
-}
+// chartTier is pure and lives in lib/chartTier.ts, so a client component can
+// use it without importing this dataset.
+export { chartTier } from "../lib/chartTier";
 
 export const allChartItems: ChartRelease[] = [...albumCharts, ...singleCharts, ...featureCharts];
 

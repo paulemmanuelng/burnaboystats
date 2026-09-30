@@ -28,6 +28,10 @@ import {
   chartCountryCount,
   numberOnes,
 } from "../../app/data/charts";
+// Cover art as /records/charts builds it on the server and passes to both layouts.
+import { chartCovers } from "../../app/lib/chartCovers";
+
+const covers = chartCovers(albumCharts, singleCharts, featureCharts);
 
 /**
  * Accessibility invariants that a browser will never complain about.
@@ -94,6 +98,7 @@ describe("filter status is announced", () => {
         singles={singleCharts}
         features={featureCharts}
         countries={CHART_COUNTRIES}
+        covers={covers}
       />
     );
 
@@ -125,6 +130,7 @@ describe("mobile chart peak pills name their country", () => {
         territoryCount={chartCountryCount}
         numberOnes={numberOnes}
         releaseCount={albumCharts.length + singleCharts.length + featureCharts.length}
+        covers={covers}
       />
     );
 

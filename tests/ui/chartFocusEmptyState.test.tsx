@@ -13,6 +13,10 @@ import {
   featureCharts,
   CHART_COUNTRIES,
 } from "../../app/data/charts";
+// Cover art as /records/charts builds it on the server and passes to both layouts.
+import { chartCovers } from "../../app/lib/chartCovers";
+
+const covers = chartCovers(albumCharts, singleCharts, featureCharts);
 
 /**
  * The deep-linked focus is a FILTER, and the explorer did not treat it as one.
@@ -38,6 +42,7 @@ const props = {
   singles: singleCharts,
   features: featureCharts,
   countries: CHART_COUNTRIES,
+  covers,
 };
 
 // A real release with a modest chart run: NG #2, UK #53 — so "No. 1" excludes

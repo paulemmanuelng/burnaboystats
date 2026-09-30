@@ -2,9 +2,9 @@
 
 import { useEffect, useLayoutEffect, useMemo, useState } from "react";
 import styles from "../records/charts/charts.module.css";
-import { chartTier, type ChartCountry } from "../data/charts";
+import type { ChartCountry } from "../data/charts";
+import { chartTier } from "../lib/chartTier";
 import { track } from "../lib/analytics";
-import { coverFor } from "../lib/covers";
 import { spotifyImage } from "../lib/spotifyImage";
 import { artAt } from "../lib/artAt";
 import FilterEmpty from "./FilterEmpty";
@@ -131,11 +131,12 @@ export default function ChartExplorer({
   singles: ExplorerRelease[];
   features: ExplorerRelease[];
   countries: Countries;
-  /** Artwork by release title. Defaults to Burna's catalogue lookup. */
+  /** Artwork by release title, built on the server (lib/chartCovers.ts for
+   *  Burna's page). A title missing from it has no art. */
   covers?: CoverMap;
   featuredLabel?: string;
 }) {
-  const cover = (title: string) => (covers ? covers[title] : coverFor(title));
+  const cover = (title: string) => covers?.[title];
 
   // Year is only a column where every release actually carries one — an empty
   // column that cannot be sorted is worse than no column.
