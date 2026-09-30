@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState, useSyncExternalStore, type KeyboardEvent, type MouseEvent, type PointerEvent, type ReactNode } from "react";
 import styles from "./DaiDaiReplay.module.css";
 import { projectEqualEarth } from "../lib/equalEarth";
-import DaiDaiReplayMultiples, { bandOf, fillIn, type Band } from "./DaiDaiReplayMultiples";
+import DaiDaiReplayMultiples, { bandOf, byCode, fillIn, type Band } from "./DaiDaiReplayMultiples";
 import type { ReplayData, ReplayRun } from "./daiDaiReplayData";
 import type { ReplayLabels } from "./daiDaiReplayLabels";
 
@@ -107,9 +107,11 @@ const usePhone = () => useSyncExternalStore(subscribePhone, getPhone, getPhoneSe
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
-/** localeCompare(…, "en") as one collator: the same order, without building
- *  the comparison afresh for each of the sort's calls. */
-const byCode = new Intl.Collator("en").compare;
+// Chart codes sort with byCode (DaiDaiReplayMultiples.tsx), not an
+// Intl.Collator: codes are [A-Z]+, where code-unit order is the "en"
+// collation's order, so it needs neither ICU nor a locale on the client. The
+// collator this replaced cost 22-24 ms to build inside this module, in the
+// page's hydration task, on a 4x-throttled phone (30 Sep 2026).
 
 const ordinal = (n: number, lang: "en" | "es") => {
   if (lang === "es") return `${n}.ª`;
