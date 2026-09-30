@@ -418,6 +418,13 @@ export const searchIndex: SearchDoc[] = [
     keywords: ["curator", "about", "who runs", "ukpaka emmanuel", "paul emmanuel", "owner"],
   },
   {
+    title: "Naija @ 66 — Independence Day Hunt",
+    path: "/naija66",
+    section: "Site",
+    description: "Nigeria at 66: five keys hidden across the site on 1 October, a month of Premium for each — the rules, the board and the key box.",
+    keywords: ["naija", "naija 66", "nigeria", "independence day", "1 october", "key hunt", "treasure hunt", "hunt", "giveaway", "competition", "prize"],
+  },
+  {
     title: "Press & Data Kit",
     path: "/press",
     section: "Site",
