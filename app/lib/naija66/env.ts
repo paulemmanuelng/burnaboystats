@@ -12,7 +12,7 @@ import { memoryStore, redisEnv, upstashStore, type HuntStore } from "./store";
  *
  * FAIL CLOSED. With no secret, or in production with no Redis, huntConfig()
  * is null and every route answers as though the hunt has not opened: claims
- * 503, badges blank, the board "opens at 9am". Nothing throws, so a missing
+ * 503, badges blank, the board "not open yet". Nothing throws, so a missing
  * variable can never take a page down with it.
  */
 

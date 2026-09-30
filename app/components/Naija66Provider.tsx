@@ -12,6 +12,11 @@ import type { HuntStatus, Mine } from "../lib/naija66/state";
  *
  * The board polls every 20 seconds while the tab is visible, and at once when
  * it becomes visible again.
+ *
+ * Every claim carries this browser's claim token (claimToken below), so a
+ * winning claim whose reply never arrived — lost signal, a closed tab — is
+ * still this browser's when it tries the same key again
+ * (app/api/naija66/claim/route.ts).
  */
 
 export type Outcome =
@@ -36,6 +41,31 @@ const Ctx = createContext<HuntContext | null>(null);
 
 export const POLL_MS = 20_000;
 const OFFLINE = "Couldn't reach the hunt — check your connection and try again.";
+
+const TOKEN_KEY = "naija66-claim";
+let pageToken: string | null = null;
+
+/**
+ * This browser's claim token: 32 random hex characters, made on its first
+ * claim and kept in localStorage, so a retry from a reopened tab still
+ * carries it. Where storage is blocked it lives as long as the page does,
+ * which still covers a retry in the same tab.
+ */
+export function claimToken(): string {
+  try {
+    const kept = localStorage.getItem(TOKEN_KEY);
+    if (kept && /^[0-9a-f]{32}$/.test(kept)) return kept;
+  } catch {
+    /* storage blocked: the page's own token below */
+  }
+  pageToken ??= Array.from(crypto.getRandomValues(new Uint8Array(16)), (b) => b.toString(16).padStart(2, "0")).join("");
+  try {
+    localStorage.setItem(TOKEN_KEY, pageToken);
+  } catch {
+    /* kept for this page view only */
+  }
+  return pageToken;
+}
 
 export function useHunt(): HuntContext {
   const ctx = useContext(Ctx);
@@ -87,8 +117,8 @@ export default function Naija66Provider({ children }: { children: ReactNode }) {
 
   const submit = useCallback(
     (key: string) => {
-      // A double tap must not send two claims: the second would come back
-      // "claimed" — by this same person — and overwrite the win.
+      // A double tap sends one claim, not two: the second would only repeat
+      // the first's answer, and "Checking…" should mean one request.
       if (busy.current) return;
       busy.current = true;
       setPending(true);
@@ -97,7 +127,7 @@ export default function Naija66Provider({ children }: { children: ReactNode }) {
           const res = await fetch("/api/naija66/claim", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ key }),
+            body: JSON.stringify({ key, token: claimToken() }),
           });
           const j = (await res.json().catch(() => ({}))) as Record<string, unknown>;
           if (j.won === true) {

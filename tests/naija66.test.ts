@@ -75,6 +75,7 @@ async function fresh(now: string) {
   const store = await import("../app/lib/naija66/store");
   store.resetMemoryStore();
   delete (globalThis as { __naija66Records?: unknown }).__naija66Records;
+  delete (globalThis as { __naija66Valve?: unknown }).__naija66Valve;
   return {
     badgeRoute: await import("../app/api/naija66/badge/route"),
     claimRoute: await import("../app/api/naija66/claim/route"),
@@ -94,7 +95,10 @@ const badge = (p: string, ip = "198.51.100.1") =>
     }),
   );
 
-const claim = (key: unknown, { ip = "203.0.113.7", cookie }: { ip?: string; cookie?: string } = {}) =>
+const claim = (
+  key: unknown,
+  { ip = "203.0.113.7", cookie, token }: { ip?: string; cookie?: string; token?: unknown } = {},
+) =>
   r.claimRoute.POST(
     new Request("https://burnaboystats.com/api/naija66/claim", {
       method: "POST",
@@ -103,9 +107,13 @@ const claim = (key: unknown, { ip = "203.0.113.7", cookie }: { ip?: string; cook
         "x-forwarded-for": ip,
         ...(cookie ? { cookie } : {}),
       },
-      body: JSON.stringify({ key }),
+      body: JSON.stringify(token === undefined ? { key } : { key, token }),
     }),
   );
+
+/** Two browsers' claim tokens, shaped the way Naija66Provider makes them. */
+const TOKEN_A = "fedcba9876543210fedcba9876543210";
+const TOKEN_B = "00112233445566778899aabbccddeeff";
 
 const status = (cookie?: string) =>
   r.statusRoute.GET(
@@ -224,14 +232,85 @@ describe("GET /api/naija66/badge", () => {
     expect((await bytes(await badge("/test/prize-1"))).equals(decoy)).toBe(true);
   });
 
-  it("goes blank past 30 requests a minute from one IP, decoys counted", async () => {
+  it("gives one IP 40 different pages a quarter-hour, decoys counted; past that, new pages are blank", async () => {
     const decoy = await bytes(await badge("/test/decoy", "192.0.2.50"));
-    for (let i = 0; i < 29; i++) await badge(`/test/decoy-${i}`, "192.0.2.50");
-    const limited = await badge("/test/prize-1", "192.0.2.50"); // the 31st
+    for (let i = 0; i < 39; i++) await badge(`/test/decoy-${i}`, "192.0.2.50"); // 40 pages so far
+    const limited = await badge("/test/prize-1", "192.0.2.50"); // the 41st page
     expect((await bytes(limited)).equals(decoy)).toBe(true);
     expect(headerList(limited)).toEqual(headerList(await badge("/test/decoy", "192.0.2.51")));
-    // Another address is its own bucket.
+    expect((await bytes(await badge("/test/prize-1", "192.0.2.50"))).equals(decoy)).toBe(true); // and stays so
+    // Another address is its own budget.
     expect((await bytes(await badge("/test/prize-1", "192.0.2.52"))).equals(decoy)).toBe(false);
+  });
+
+  it("never spends the budget on a page already asked about: revisits and reloads are free", async () => {
+    const decoy = await bytes(await badge("/test/decoy", "192.0.2.60"));
+    const first = await bytes(await badge("/test/prize-1", "192.0.2.60")); // page 2 of 40
+    expect(first.equals(decoy)).toBe(false);
+    for (let i = 0; i < 38; i++) await badge(`/test/decoy-${i}`, "192.0.2.60"); // pages 3 to 40: the budget is spent
+    expect((await bytes(await badge("/test/decoy-new", "192.0.2.60"))).equals(decoy)).toBe(true);
+    // The prize page it already saw still answers, however often it comes back.
+    for (let i = 0; i < 20; i++) expect((await bytes(await badge("/test/prize-1", "192.0.2.60"))).equals(first)).toBe(true);
+  });
+
+  it("negative control: a player going back and forth between two pages 60 times is never limited", async () => {
+    const decoy = await bytes(await badge("/test/decoy", "192.0.2.70"));
+    for (let i = 0; i < 60; i++) {
+      expect((await bytes(await badge(i % 2 ? "/test/decoy" : "/test/prize-1", "192.0.2.70"))).equals(decoy)).toBe(
+        i % 2 === 1,
+      );
+    }
+  });
+});
+
+// ── The badge, in front of the store ─────────────────────────────────────────
+
+describe("GET /api/naija66/badge before the store", () => {
+  /** Routes on a fake Upstash, counting every REST call the badge makes. */
+  async function onUpstash(now: string) {
+    const calls: string[] = [];
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async (url: string, init?: RequestInit) => {
+        calls.push(url);
+        const body = JSON.parse(String(init?.body));
+        if (url.endsWith("/pipeline")) {
+          return new Response(JSON.stringify(body.map((c: string[]) => ({ result: c[0] === "ZRANK" ? 0 : 1 }))));
+        }
+        return new Response(JSON.stringify({ result: body[0] === "MGET" ? [null, null, null, null, null] : null }));
+      }),
+    );
+    r = await fresh(now);
+    vi.stubEnv("KV_REST_API_URL", "https://example-redis.test");
+    vi.stubEnv("KV_REST_API_TOKEN", "tok");
+    return calls;
+  }
+  afterEach(() => {
+    vi.unstubAllGlobals();
+  });
+
+  it("answers blank without a store call outside the hunt, and for a p that is not a pathname", async () => {
+    const calls = await onUpstash(BEFORE);
+    await badge("/test/prize-1");
+    at(CLOSED);
+    await badge("/test/prize-1");
+    at(AT_0905);
+    await badge("test/prize-1");
+    await badge("");
+    expect(calls).toEqual([]);
+    await badge("/test/decoy"); // negative control: in the hunt, a pathname does reach the store
+    expect(calls.length).toBeGreaterThan(0);
+  });
+
+  it("shuts the valve on an IP past 120 requests a minute on one instance, before any store call", async () => {
+    const calls = await onUpstash(AT_0905);
+    for (let i = 0; i < 120; i++) await badge("/test/decoy", "192.0.2.80");
+    const spent = calls.length;
+    expect(spent).toBeGreaterThanOrEqual(120);
+    const blank = await bytes(await badge("/test/decoy", "192.0.2.81"));
+    const shut = await badge("/test/prize-1", "192.0.2.80"); // the 121st
+    expect((await bytes(shut)).equals(blank)).toBe(true);
+    expect(calls.length).toBe(spent + 1); // only 192.0.2.81's request reached the store
   });
 });
 
@@ -296,6 +375,50 @@ describe("POST /api/naija66/claim", () => {
     expect(again.mine.prize).toBe(1);
     // Prize 2 is still there for somebody else.
     expect((await (await claim(VECTORS.keys[1], { ip: "6.6.6.6" })).json()).won).toBe(true);
+  });
+
+  it("a winner whose reply never arrived gets the same win again from the same browser's retry", async () => {
+    const first = await claim(VECTORS.keys[0], { ip: "7.7.7.7", token: TOKEN_A });
+    const won = await first.json();
+    expect(won.won).toBe(true);
+    // The reply is lost: no cookie reached the browser. It tries the same key again.
+    const retry = await claim(VECTORS.keys[0], { ip: "7.7.7.8", token: TOKEN_A });
+    expect(await retry.json()).toEqual(won);
+    expect(retry.headers.get("set-cookie")).toBe(first.headers.get("set-cookie"));
+    // Typed differently, and with the cookie back, it is still the same win.
+    expect(await (await claim(` ${VECTORS.keys[0].toLowerCase()}`, { token: TOKEN_A, cookie: cookieFrom(retry) })).json()).toEqual(won);
+    // Anybody else is too slow, and learns only the last two characters.
+    const other = await (await claim(VECTORS.keys[0], { ip: "8.8.8.8", token: TOKEN_B })).json();
+    expect(other).toEqual({ claimed: true, prize: 1, at: won.at, tail: won.code.slice(-2) });
+    // The board never shows the token's tag.
+    expect(await (await status()).text()).not.toMatch(/"th"/);
+  });
+
+  it("negative control: without its token, the same retry is told it was too slow", async () => {
+    const won = await (await claim(VECTORS.keys[0], { token: TOKEN_A })).json();
+    expect(won.won).toBe(true);
+    const bare = await (await claim(VECTORS.keys[0], { ip: "7.7.7.9" })).json();
+    expect(bare).toEqual({ claimed: true, prize: 1, at: won.at, tail: won.code.slice(-2) });
+  });
+
+  it("the token also proves one prize per person when the cookie is gone", async () => {
+    at(AT_1205);
+    const won = await (await claim(VECTORS.keys[0], { token: TOKEN_A })).json();
+    const again = await claim(VECTORS.keys[1], { ip: "7.7.7.10", token: TOKEN_A });
+    const j = await again.json();
+    expect(j).toEqual({ alreadyWon: true, mine: { prize: 1, code: won.code, at: won.at } });
+    expect(cookieFrom(again)).toBe(`naija66=${won.code}`);
+    expect((await (await claim(VECTORS.keys[1], { token: TOKEN_B })).json()).won).toBe(true);
+  });
+
+  it("ignores a token that is not one, and still claims", async () => {
+    for (const token of ["", "short", "G".repeat(32), 42, null, { a: 1 }, "A".repeat(32)]) {
+      r = await fresh(AT_0905);
+      const j = await (await claim(VECTORS.keys[0], { token })).json();
+      expect(j.won, JSON.stringify(token)).toBe(true);
+      const bare = await (await claim(VECTORS.keys[0], { ip: "7.7.7.11", token })).json();
+      expect(bare.claimed, JSON.stringify(token)).toBe(true);
+    }
   });
 });
 
@@ -362,7 +485,7 @@ describe("fails closed in production without its environment", () => {
     prod();
     const c = await claim(VECTORS.keys[0]);
     expect(c.status).toBe(503);
-    expect(await c.json()).toEqual({ error: "The hunt isn't open yet" });
+    expect(await c.json()).toEqual({ error: "The hunt isn't open yet." });
     const b = await badge("/test/prize-1");
     expect((await bytes(b)).equals(decoy)).toBe(true);
     const s = await (await status()).json();
@@ -402,12 +525,15 @@ describe("fails closed in production without its environment", () => {
 // ── The Upstash store, against a fake REST endpoint ──────────────────────────
 
 describe("the Upstash REST store", () => {
-  it("speaks SET NX, GET, MGET and an INCR+EXPIRE pipeline", async () => {
+  /** A fake Upstash REST endpoint over a Map, recording every call. */
+  function fakeUpstash({ loseSetReply = false } = {}) {
     const data = new Map<string, string>();
-    const calls: { url: string; body: unknown; auth: string | null }[] = [];
+    const zsets = new Map<string, Map<string, number>>();
+    const calls: { url: string; body: unknown; auth: string | null; signal: unknown }[] = [];
+    let setsLost = 0;
     const fetchStub = vi.fn(async (url: string, init?: RequestInit) => {
       const body = JSON.parse(String(init?.body));
-      calls.push({ url, body, auth: new Headers(init?.headers).get("authorization") });
+      calls.push({ url, body, auth: new Headers(init?.headers).get("authorization"), signal: init?.signal });
       const run = (cmd: (string | number)[]): unknown => {
         const [op, k, ...rest] = cmd.map(String);
         if (op === "SET") return rest.includes("NX") && data.has(k) ? null : (data.set(k, rest[0]), "OK");
@@ -415,14 +541,35 @@ describe("the Upstash REST store", () => {
         if (op === "MGET") return [k, ...rest].map((x) => data.get(x) ?? null);
         if (op === "INCR") return data.set(k, String(Number(data.get(k) ?? 0) + 1)), Number(data.get(k));
         if (op === "EXPIRE") return 1;
+        if (op === "ZADD") {
+          const [nx, score, member] = rest;
+          const z = zsets.get(k) ?? new Map<string, number>();
+          zsets.set(k, z);
+          if (nx !== "NX") throw new Error("ZADD without NX");
+          return z.has(member) ? 0 : (z.set(member, Number(score)), 1);
+        }
+        if (op === "ZRANK") {
+          const z = [...(zsets.get(k) ?? new Map<string, number>())].sort((a, b) => a[1] - b[1] || (a[0] < b[0] ? -1 : 1));
+          const i = z.findIndex(([m]) => m === rest[0]);
+          return i < 0 ? null : i;
+        }
         throw new Error(op);
       };
       const result = url.endsWith("/pipeline") ? body.map((c: string[]) => ({ result: run(c) })) : { result: run(body) };
+      // The SET ran; its answer never came back.
+      if (loseSetReply && !url.endsWith("/pipeline") && body[0] === "SET" && setsLost++ === 0) {
+        throw new DOMException("The operation was aborted due to timeout", "TimeoutError");
+      }
       return new Response(JSON.stringify(result), { status: 200 });
     });
     vi.stubGlobal("fetch", fetchStub);
+    return { calls, data };
+  }
+
+  it("speaks SET NX, GET, MGET, an INCR+EXPIRE pipeline and a ZADD NX+ZRANK+EXPIRE pipeline", async () => {
+    const { calls } = fakeUpstash();
     try {
-      const { upstashStore } = await import("../app/lib/naija66/store");
+      const { upstashStore, TIMEOUT_MS } = await import("../app/lib/naija66/store");
       const s = upstashStore("https://example-redis.test/", "tok");
       expect(await s.setNX("k", "v1")).toBe(true);
       expect(await s.setNX("k", "v2")).toBe(false);
@@ -430,9 +577,49 @@ describe("the Upstash REST store", () => {
       expect(await s.mget(["k", "nope"])).toEqual(["v1", null]);
       expect(await s.hit("c", 60)).toBe(1);
       expect(await s.hit("c", 60)).toBe(2);
-      expect(calls[0]).toEqual({ url: "https://example-redis.test", body: ["SET", "k", "v1", "NX"], auth: "Bearer tok" });
+      expect(calls[0]).toMatchObject({ url: "https://example-redis.test", body: ["SET", "k", "v1", "NX"], auth: "Bearer tok" });
       expect(calls.at(-1)!.url).toBe("https://example-redis.test/pipeline");
       expect(calls.at(-1)!.body).toEqual([["INCR", "c"], ["EXPIRE", "c", "60"]]);
+      // Places in line: first seen, first placed, and a return keeps its place.
+      expect(await s.order("z", "a", 1800)).toBe(0);
+      expect(await s.order("z", "b", 1800)).toBe(1);
+      expect(await s.order("z", "a", 1800)).toBe(0);
+      expect(await s.order("z", "c", 1800)).toBe(2);
+      const zadd = calls.at(-1)!.body as string[][];
+      expect(zadd.map((c) => c[0])).toEqual(["ZADD", "ZRANK", "EXPIRE"]);
+      expect(zadd[0].slice(0, 3)).toEqual(["ZADD", "z", "NX"]);
+      expect(zadd[2]).toEqual(["EXPIRE", "z", "1800"]);
+      // Every call can give up: none waits on Upstash for ever.
+      expect(TIMEOUT_MS).toBe(5000);
+      for (const c of calls) expect(c.signal).toBeInstanceOf(AbortSignal);
+    } finally {
+      vi.unstubAllGlobals();
+    }
+  });
+
+  it("the in-memory store keeps the same places in line", async () => {
+    const { memoryStore } = await import("../app/lib/naija66/store");
+    const s = memoryStore({ values: new Map(), counters: new Map() });
+    expect([await s.order("z", "a", 60), await s.order("z", "b", 60), await s.order("z", "a", 60)]).toEqual([0, 1, 0]);
+    expect(await s.order("other", "b", 60)).toBe(0);
+  });
+
+  it("a SET that landed but whose reply was lost: 503, then the same browser's retry wins", async () => {
+    const { calls } = fakeUpstash({ loseSetReply: true });
+    try {
+      vi.stubEnv("KV_REST_API_URL", "https://example-redis.test");
+      vi.stubEnv("KV_REST_API_TOKEN", "tok");
+      const lost = await claim(VECTORS.keys[0], { token: TOKEN_A });
+      expect(lost.status).toBe(503);
+      expect(lost.headers.get("set-cookie")).toBeNull();
+      expect(calls.some((c) => (c.body as string[])[0] === "SET")).toBe(true);
+      const retry = await claim(VECTORS.keys[0], { ip: "7.7.7.12", token: TOKEN_A });
+      const j = await retry.json();
+      expect(j.won).toBe(true);
+      expect(j.code).toMatch(new RegExp(`^NG66-1-[${ALPHABET}]{6}$`));
+      expect(cookieFrom(retry)).toBe(`naija66=${j.code}`);
+      // Somebody else is still too slow.
+      expect((await (await claim(VECTORS.keys[0], { ip: "7.7.7.13", token: TOKEN_B })).json()).claimed).toBe(true);
     } finally {
       vi.unstubAllGlobals();
     }

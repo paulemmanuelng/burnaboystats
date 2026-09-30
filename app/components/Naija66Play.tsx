@@ -1,10 +1,10 @@
 "use client"; // the key box and the live board
 
-import { useId, useState } from "react";
+import { useId, useRef, useSyncExternalStore } from "react";
 import CopyButton from "./CopyButton";
 import { useHunt, type Outcome } from "./Naija66Provider";
 import { NAIJA66_PRIZES, NAIJA66_X_HANDLE, NAIJA66_X_URL } from "../data/naija66";
-import { CLOSES_MS, watClock, watHour } from "../lib/naija66/clock";
+import { CLOSES_MS, FIRST_DROP_MS, watClock, watHour } from "../lib/naija66/clock";
 import { WINNER_LINE } from "../lib/naija66/copy";
 import type { Mine, PublicPrize } from "../lib/naija66/state";
 import styles from "./naija66Play.module.css";
@@ -19,6 +19,10 @@ import styles from "./naija66Play.module.css";
 type Layout = "desktop" | "phone";
 
 const closedAt = (now: string | undefined) => (now ? Date.parse(now) >= CLOSES_MS : false);
+
+/** False in the server's HTML and during hydration, true once React runs the page. */
+const NEVER = () => () => {};
+const useHydrated = () => useSyncExternalStore(NEVER, () => true, () => false);
 
 function outcomeLine(o: Outcome): string {
   switch (o.kind) {
@@ -59,9 +63,17 @@ function WinCard({ mine, again, layout }: { mine: Mine; again: boolean; layout: 
   );
 }
 
+/**
+ * The key box. Claim stays disabled until the page has hydrated: before that
+ * the form is plain HTML, and a tap would reload the page and lose the key
+ * rather than claim it. The input has no name, so no submit of any kind can
+ * put a key in a URL. It is read from the field itself on submit, so a key
+ * pasted before hydration is still the key sent.
+ */
 export function HuntKeyForm({ layout }: { layout: Layout }) {
   const { status, mine, outcome, pending, submit } = useHunt();
-  const [value, setValue] = useState("");
+  const hydrated = useHydrated();
+  const input = useRef<HTMLInputElement>(null);
   const id = useId();
   const phone = layout === "phone" ? styles.phone : "";
 
@@ -86,7 +98,8 @@ export function HuntKeyForm({ layout }: { layout: Layout }) {
       noValidate
       onSubmit={(e) => {
         e.preventDefault();
-        if (value.trim()) submit(value);
+        const typed = input.current?.value ?? "";
+        if (typed.trim()) submit(typed);
       }}
     >
       <div className={styles.kicker}>Got a key?</div>
@@ -96,11 +109,9 @@ export function HuntKeyForm({ layout }: { layout: Layout }) {
       </label>
       <div className={styles.row}>
         <input
+          ref={input}
           id={`${id}-key`}
-          name="key"
           className={styles.input}
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
           placeholder="NG66-XXXXXX"
           autoComplete="off"
           autoCapitalize="characters"
@@ -110,7 +121,7 @@ export function HuntKeyForm({ layout }: { layout: Layout }) {
           aria-describedby={line ? `${id}-out` : undefined}
           aria-invalid={outcome?.kind === "wrong" ? true : undefined}
         />
-        <button type="submit" className={`btn btnPrimary ${styles.button}`} disabled={pending}>
+        <button type="submit" className={`btn btnPrimary ${styles.button}`} disabled={!hydrated || pending}>
           {pending ? "Checking…" : "Claim"}
         </button>
       </div>
@@ -145,7 +156,11 @@ export function HuntBoard({ layout }: { layout: Layout }) {
   return (
     <div className={`${styles.boardWrap} ${layout === "phone" ? styles.phone : ""}`}>
       {status && !status.ready ? (
-        <p className={styles.notice}>The hunt opens at 9am WAT on 1 October.</p>
+        <p className={styles.notice}>
+          {Date.parse(status.now) >= FIRST_DROP_MS
+            ? "The hunt isn't open yet — check back soon."
+            : "The hunt opens at 9am WAT on 1 October."}
+        </p>
       ) : closed ? (
         <p className={styles.notice}>The hunt is closed. These are the final results.</p>
       ) : null}

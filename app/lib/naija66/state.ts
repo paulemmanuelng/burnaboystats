@@ -1,6 +1,6 @@
 import { NAIJA66_CLOSES, NAIJA66_PRIZES } from "../../data/naija66";
 import { CLOSES_MS } from "./clock";
-import { ipTag, prizeOfCode, safeEqual } from "./crypto";
+import { ipTag, pageTag, prizeOfCode, safeEqual } from "./crypto";
 import type { HuntStore } from "./store";
 
 /**
@@ -9,8 +9,13 @@ import type { HuntStore } from "./store";
  * under app/api/naija66/.
  */
 
-/** What a claim stores: the winner code and when it was claimed. */
-export type ClaimRecord = { code: string; at: string };
+/**
+ * What a claim stores: the winner code, when it was claimed, and — when the
+ * browser sent one — the tag of its claim token (crypto.ts claimTag), so the
+ * same browser's retry is recognised if the reply to the winning claim never
+ * arrived. The tag never leaves the server.
+ */
+export type ClaimRecord = { code: string; at: string; th?: string };
 
 export const prizeKey = (prize: number) => `naija66:prize:${prize}`;
 
@@ -18,7 +23,8 @@ function parseRecord(raw: string | null): ClaimRecord | null {
   if (!raw) return null;
   try {
     const r = JSON.parse(raw) as Partial<ClaimRecord>;
-    return typeof r.code === "string" && typeof r.at === "string" ? { code: r.code, at: r.at } : null;
+    if (typeof r.code !== "string" || typeof r.at !== "string") return null;
+    return typeof r.th === "string" ? { code: r.code, at: r.at, th: r.th } : { code: r.code, at: r.at };
   } catch {
     return null;
   }
@@ -70,7 +76,10 @@ export type PublicPrize = {
 export type Mine = { prize: number; code: string; at: string };
 
 export type HuntStatus = {
-  /** False when the hunt is misconfigured: the board says it opens at 9am. */
+  /**
+   * False when the hunt is misconfigured: the board says it opens at 9am (or,
+   * past 9am, that it isn't open yet) and the home banner stops saying "live".
+   */
   ready: boolean;
   /** The server's clock, so a board with a wrong phone clock still reads right. */
   now: string;
@@ -144,6 +153,15 @@ export function mineFrom(req: Request, records: (ClaimRecord | null)[]): Mine | 
   return { prize, code: record.code, at: record.at };
 }
 
+/** The claim a browser's claim-token tag proves: the record that tag won, if any. */
+export function mineByTag(tag: string | null, records: (ClaimRecord | null)[]): Mine | null {
+  if (!tag) return null;
+  for (const [i, r] of records.entries()) {
+    if (r?.th && safeEqual(r.th, tag)) return { prize: i + 1, code: r.code, at: r.at };
+  }
+  return null;
+}
+
 // ── Requests and responses ──────────────────────────────────────────────────
 
 /** Vercel sets x-forwarded-for to the client first; x-real-ip is the fallback. */
@@ -166,8 +184,56 @@ export async function overLimit(
   return (await store.hit(key, windowSeconds * 2)) > limit;
 }
 
+/**
+ * The badge's budget: how many DIFFERENT pages one address may ask about in a
+ * window. A page it has already asked about in the window answers as usual
+ * however often it comes back — a revisit is a fresh request by design
+ * (HuntKeySlot.tsx) and must not use anything up — so the budget only binds
+ * on a sweep of many pages. Past it, every new page is blank for the rest of
+ * the window.
+ *
+ * The windows sit on the quarter-hours, so each drop opens a fresh one: nobody
+ * can bank budget before a drop, and nobody can double it across a boundary
+ * in the first quarter-hour after one.
+ */
+export async function overPageBudget(
+  store: HuntStore,
+  secret: string,
+  req: Request,
+  pathname: string,
+  limit: number,
+  windowSeconds: number,
+): Promise<boolean> {
+  const window = Math.floor(Date.now() / (windowSeconds * 1000));
+  const key = `naija66:rl:pages:${ipTag(secret, clientIp(req))}:${window}`;
+  return (await store.order(key, pageTag(secret, pathname), windowSeconds * 2)) >= limit;
+}
+
+/**
+ * A per-instance valve in front of the store: an address past `limit`
+ * requests a minute on this server instance is answered without a store call
+ * at all, so a loop hammering one route cannot spend the Redis quota the hunt
+ * runs on. In memory only, keyed like every other bucket (never by address).
+ */
+const valves = globalThis as typeof globalThis & { __naija66Valve?: Map<string, { n: number; until: number }> };
+const VALVE_CAP = 10_000;
+
+export function valveShut(secret: string, req: Request, bucket: string, limit: number): boolean {
+  const now = Date.now();
+  const map = (valves.__naija66Valve ??= new Map());
+  if (map.size > VALVE_CAP) {
+    for (const [k, v] of map) if (v.until <= now) map.delete(k);
+    if (map.size > VALVE_CAP) map.clear();
+  }
+  const key = `${bucket}:${ipTag(secret, clientIp(req))}`;
+  const c = map.get(key);
+  const next = c && c.until > now ? { n: c.n + 1, until: c.until } : { n: 1, until: now + 60_000 };
+  map.set(key, next);
+  return next.n > limit;
+}
+
 /** The claim route's three sentences a player can be shown. */
-export const NOT_OPEN = "The hunt isn't open yet";
+export const NOT_OPEN = "The hunt isn't open yet.";
 export const TOO_MANY = "That's a lot of tries — give it ten minutes, then have another go.";
 export const BROKEN = "Something went wrong on our side — try again in a moment.";
 

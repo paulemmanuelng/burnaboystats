@@ -3,7 +3,7 @@
 import { useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { huntEpoch } from "../lib/naija66/clock";
+import { badgeRound } from "../lib/naija66/clock";
 import { hasOwnActionBar } from "../lib/mobileScreens";
 import styles from "./huntKeySlot.module.css";
 
@@ -17,9 +17,17 @@ import styles from "./huntKeySlot.module.css";
  *
  * WHEN. Only between the first drop and the close, by the visitor's clock —
  * outside that window it renders nothing and asks for nothing. The server
- * snapshot is "before", so the server's HTML never carries the slot at all and
- * hydration has nothing to disagree about. The epoch (how many keys have
- * dropped) rides on the URL, so a page left open across a drop asks again.
+ * snapshot is null, so the server's HTML never carries the slot at all and
+ * hydration has nothing to disagree about.
+ *
+ * ASKING AGAIN. A browser keeps an image for the life of the document, even
+ * one sent no-store, and a client-side navigation keeps the document — so an
+ * <img> whose URL was answered blank once stays blank on every return to
+ * that page. The URL therefore changes whenever the answer might have:
+ *   v  the round (clock.ts badgeRound): at each drop, and once more 90 seconds
+ *      after it, for a phone whose clock runs ahead of the server's;
+ *   n  the visit: one more on every change of page, so each arrival on a page
+ *      is a fresh request, never a copy of the last one.
  *
  * SPACE. None, until a real badge arrives. The <img> sits absolutely
  * positioned inside a zero-height box: a blank 1x1 moves nothing on any page.
@@ -33,17 +41,21 @@ const EVERY_30_S = (onChange: () => void) => {
   const id = setInterval(onChange, 30_000);
   return () => clearInterval(id);
 };
-const clientEpoch = () => huntEpoch(Date.now());
-const serverEpoch = () => -1;
+const clientRound = () => badgeRound(Date.now());
+const serverRound = () => null;
 
 export default function HuntKeySlot() {
   const pathname = usePathname();
-  const epoch = useSyncExternalStore(EVERY_30_S, clientEpoch, serverEpoch);
+  const round = useSyncExternalStore(EVERY_30_S, clientRound, serverRound);
   const [found, setFound] = useState<string | null>(null);
+  // Counted in render, the way React adjusts state to a changed prop: the
+  // first render on a new page already carries the new visit.
+  const [visit, setVisit] = useState({ path: pathname, n: 0 });
+  if (visit.path !== pathname) setVisit({ path: pathname, n: visit.n + 1 });
 
-  if (!pathname || epoch < 1 || epoch > 5) return null;
+  if (!pathname || round === null) return null;
 
-  const src = `/api/naija66/badge?p=${encodeURIComponent(pathname)}&v=${epoch}`;
+  const src = `/api/naija66/badge?p=${encodeURIComponent(pathname)}&v=${round}&n=${visit.n}`;
   const isFound = found === src;
 
   return (

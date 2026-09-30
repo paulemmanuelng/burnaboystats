@@ -24,12 +24,29 @@ const WAT_OFFSET_MS = 60 * 60 * 1000;
  *   99       closed
  *
  * A number rather than a label so a client can use it as a cache-buster: the
- * key slot asks for its badge again whenever it moves.
+ * key slot asks for its badge again whenever it moves (see badgeRound).
  */
 export function huntEpoch(now: number): number {
   if (now < FIRST_DROP_MS) return -1;
   if (now >= CLOSES_MS) return 99;
   return DROPS_MS.filter((d) => now >= d).length;
+}
+
+/** How long after a drop the key slot asks once more (see badgeRound). */
+export const RECHECK_MS = 90_000;
+
+/**
+ * The key slot's round at `now`, for its badge URL: the epoch, then — from 90
+ * seconds after that epoch's drop — the epoch with a "b". A page open across
+ * a drop asks when the visitor's clock reaches the drop, and once more 90
+ * seconds later: a phone clock running up to 90 seconds fast asks the first
+ * time before the server's drop and gets a blank, and the second ask brings
+ * the key. Null outside the hunt.
+ */
+export function badgeRound(now: number): string | null {
+  const epoch = huntEpoch(now);
+  if (epoch < 1 || epoch > 5) return null;
+  return now - DROPS_MS[epoch - 1] >= RECHECK_MS ? `${epoch}b` : String(epoch);
 }
 
 /** True between the first drop and the close. */

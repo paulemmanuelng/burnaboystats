@@ -11,6 +11,10 @@
  * SET finds the key absent and gets "OK"; the rest get nil. That reply is the
  * whole of the atomicity — nothing reads-then-writes.
  *
+ * Every call gives up after five seconds (see TIMEOUT_MS). A claim whose SET
+ * landed but whose reply was lost is not lost to its winner: the claim route
+ * recognises the same browser's retry (app/api/naija66/claim/route.ts).
+ *
  * In development and tests, with no Redis configured, the same interface is
  * kept in memory. A Map written without an await between the check and the
  * set is just as atomic inside one Node process. It is refused in production
@@ -26,11 +30,23 @@ export interface HuntStore {
   mget(keys: string[]): Promise<(string | null)[]>;
   /** INCR, and EXPIRE so the bucket dies on its own. Returns the new count. */
   hit(key: string, ttlSeconds: number): Promise<number>;
+  /**
+   * Adds `member` to the set at `key` the first time it is seen, and EXPIREs
+   * the set. Returns the member's place in the order the set first saw its
+   * members, from 0: an early member keeps its place however many come after.
+   */
+  order(key: string, member: string, ttlSeconds: number): Promise<number>;
 }
 
 // ── Upstash ────────────────────────────────────────────────────────────────
 
 type UpstashReply = { result?: unknown; error?: string };
+
+/**
+ * How long one Upstash call may take. Past it the route answers "try again"
+ * rather than holding the player's request open until the platform kills it.
+ */
+export const TIMEOUT_MS = 5000;
 
 export function upstashStore(url: string, token: string): HuntStore {
   const base = url.replace(/\/+$/, "");
@@ -40,6 +56,7 @@ export function upstashStore(url: string, token: string): HuntStore {
       headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
       body: JSON.stringify(body),
       cache: "no-store",
+      signal: AbortSignal.timeout(TIMEOUT_MS),
     });
     if (!res.ok) throw new Error(`Upstash answered ${res.status}`);
     return res.json();
@@ -73,12 +90,28 @@ export function upstashStore(url: string, token: string): HuntStore {
       if (!first || first.error || typeof first.result !== "number") throw new Error("Upstash: INCR failed");
       return first.result;
     },
+    async order(key, member, ttlSeconds) {
+      // A sorted set scored by the time each member was first seen: ZADD NX
+      // never moves a member already there, so its rank is its place in line.
+      const replies = (await call("/pipeline", [
+        ["ZADD", key, "NX", String(Date.now()), member],
+        ["ZRANK", key, member],
+        ["EXPIRE", key, String(ttlSeconds)],
+      ])) as UpstashReply[];
+      const rank = replies?.[1];
+      if (!rank || rank.error || typeof rank.result !== "number") throw new Error("Upstash: ZRANK failed");
+      return rank.result;
+    },
   };
 }
 
 // ── Memory ─────────────────────────────────────────────────────────────────
 
-type MemoryState = { values: Map<string, string>; counters: Map<string, { n: number; until: number }> };
+type MemoryState = {
+  values: Map<string, string>;
+  counters: Map<string, { n: number; until: number }>;
+  orders?: Map<string, { members: Map<string, number>; until: number }>;
+};
 
 /**
  * One Map per process, on globalThis: Next bundles each route separately, so a
@@ -88,7 +121,8 @@ type MemoryState = { values: Map<string, string>; counters: Map<string, { n: num
 const shared = globalThis as typeof globalThis & { __naija66Memory?: MemoryState };
 
 export function memoryStore(state?: MemoryState): HuntStore {
-  const s = state ?? (shared.__naija66Memory ??= { values: new Map(), counters: new Map() });
+  const s: MemoryState =
+    state ?? (shared.__naija66Memory ??= { values: new Map(), counters: new Map(), orders: new Map() });
   return {
     kind: "memory",
     async setNX(key, value) {
@@ -109,12 +143,21 @@ export function memoryStore(state?: MemoryState): HuntStore {
       s.counters.set(key, next);
       return next.n;
     },
+    async order(key, member, ttlSeconds) {
+      const now = Date.now();
+      const orders = (s.orders ??= new Map());
+      const live = orders.get(key);
+      const o = live && live.until > now ? live : { members: new Map<string, number>(), until: now + ttlSeconds * 1000 };
+      if (!o.members.has(member)) o.members.set(member, o.members.size);
+      orders.set(key, o);
+      return o.members.get(member)!;
+    },
   };
 }
 
 /** Empties the in-memory store — tests only. */
 export function resetMemoryStore() {
-  shared.__naija66Memory = { values: new Map(), counters: new Map() };
+  shared.__naija66Memory = { values: new Map(), counters: new Map(), orders: new Map() };
 }
 
 /** The Redis REST pair Vercel set, whichever naming it used; null when neither. */

@@ -12,10 +12,16 @@ const EVERY_MINUTE = (onChange: () => void) => {
 };
 const clientPhase = () => bannerPhase(Date.now());
 
-/** The line the banner says, from the phase and (live) the prizes still out. */
-export function bannerLine(phase: BannerPhase, left: number | null): string {
+/**
+ * The line the banner says, from the phase and (live) the prizes still out.
+ * `ready` is false when the server says the hunt is misconfigured (it fails
+ * closed): then the banner must not call it live, because /naija66 will say it
+ * isn't open.
+ */
+export function bannerLine(phase: BannerPhase, left: number | null, ready = true): string {
   if (phase === "tomorrow") return "Tomorrow 9am WAT: the Naija @ 66 hunt — five months of Spotify Premium";
   if (phase === "today") return "Today 9am WAT: the Naija @ 66 hunt — five months of Spotify Premium";
+  if (!ready) return "Naija @ 66 — starting soon";
   if (left === null) return "Naija @ 66 is live — five months of Spotify Premium to find";
   if (left === 0) return "Naija @ 66 — all five prizes claimed. See the winners";
   return `Naija @ 66 is live — ${left} of 5 prizes left`;
@@ -40,6 +46,7 @@ export default function Naija66BannerLive({
 }) {
   const phase = useSyncExternalStore(EVERY_MINUTE, clientPhase, () => initialPhase);
   const [left, setLeft] = useState<number | null>(null);
+  const [ready, setReady] = useState(true);
 
   useEffect(() => {
     if (phase !== "live") return;
@@ -47,7 +54,9 @@ export default function Naija66BannerLive({
     fetch("/api/naija66/status", { cache: "no-store" })
       .then((r) => (r.ok ? (r.json() as Promise<HuntStatus>) : null))
       .then((s) => {
-        if (alive && s?.ready && Array.isArray(s.prizes)) {
+        if (!alive || !s) return;
+        if (s.ready === false) setReady(false);
+        else if (s.ready && Array.isArray(s.prizes)) {
           setLeft(s.prizes.filter((p) => p.state === "live" || p.state === "sleeping").length);
         }
       })
@@ -67,9 +76,9 @@ export default function Naija66BannerLive({
           <span />
           <span />
         </span>
-        <span className={styles.line}>{bannerLine(phase, left)}</span>
+        <span className={styles.line}>{bannerLine(phase, left, ready)}</span>
         <span className={styles.cta}>
-          <span className={styles.ctaWord}>{phase === "live" ? "Play" : "How it works"} </span>→
+          <span className={styles.ctaWord}>{phase === "live" && ready ? "Play" : "How it works"} </span>→
         </span>
       </span>
     </Link>

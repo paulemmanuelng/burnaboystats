@@ -11,10 +11,14 @@ import { renderToString, renderToStaticMarkup } from "react-dom/server";
  */
 
 const SAMPLE_PATH = "/a/sample-page";
+const OTHER_PATH = "/another/sample";
+
+/** The pathname usePathname() returns; a test moves it to navigate. */
+const nav = vi.hoisted(() => ({ path: "/a/sample-page" }));
 
 vi.mock("next/navigation", () => ({
   useRouter: () => ({ push: vi.fn(), prefetch: vi.fn(), replace: vi.fn(), back: vi.fn() }),
-  usePathname: () => SAMPLE_PATH,
+  usePathname: () => nav.path,
 }));
 vi.mock("next/link", () => ({
   default: ({ href, children, ...rest }: { href: string; children: React.ReactNode }) => (
@@ -28,7 +32,7 @@ import HuntKeySlot from "../app/components/HuntKeySlot";
 import slotStyles from "../app/components/huntKeySlot.module.css";
 import Naija66Page from "../app/naija66/page";
 import Naija66Banner from "../app/components/Naija66Banner";
-import { bannerLine } from "../app/components/Naija66BannerLive";
+import Naija66BannerLive, { bannerLine } from "../app/components/Naija66BannerLive";
 import bannerStyles from "../app/components/naija66Banner.module.css";
 import Home from "../app/page";
 import { CLOSES_MS } from "../app/lib/naija66/clock";
@@ -45,6 +49,7 @@ const setNow = (iso: string) => vi.setSystemTime(new Date(iso));
 
 beforeEach(() => {
   vi.useFakeTimers({ toFake: ["Date"] });
+  nav.path = SAMPLE_PATH;
 });
 afterEach(() => {
   cleanup();
@@ -65,16 +70,70 @@ describe("HuntKeySlot", () => {
   });
 
   it("asks for this page's badge between them, lazily, with no alt text and no space", () => {
-    for (const [t, epoch] of [[AT_0905, 1], [AT_2105, 5], [new Date(CLOSES_MS - 1).toISOString(), 5]] as const) {
+    const cases = [
+      ["2026-10-01T08:00:30Z", "1"], // 30 s after the first drop
+      [AT_0905, "1b"], // past the 90-second recheck
+      ["2026-10-01T20:01:29Z", "5"],
+      [AT_2105, "5b"],
+      [new Date(CLOSES_MS - 1).toISOString(), "5b"],
+    ] as const;
+    for (const [t, round] of cases) {
       setNow(t);
       const { container, unmount } = render(<HuntKeySlot />);
       const img = container.querySelector("img")!;
-      expect(img.getAttribute("src")).toBe(`/api/naija66/badge?p=${encodeURIComponent(SAMPLE_PATH)}&v=${epoch}`);
+      expect(img.getAttribute("src"), t).toBe(`/api/naija66/badge?p=${encodeURIComponent(SAMPLE_PATH)}&v=${round}&n=0`);
       expect(img.getAttribute("alt")).toBe("");
       expect(img.getAttribute("loading")).toBe("lazy");
       expect(container.firstElementChild!.className).toBe(slotStyles.slot);
       unmount();
     }
+  });
+
+  it("asks again 90 seconds after a drop, for a phone whose clock runs ahead", () => {
+    setNow("2026-10-01T11:00:10Z"); // prize 2's drop, by a fast phone clock
+    const { container, rerender } = render(<HuntKeySlot />);
+    const first = container.querySelector("img")!.getAttribute("src");
+    expect(first).toContain("&v=2&");
+    setNow("2026-10-01T11:01:31Z");
+    rerender(<HuntKeySlot />);
+    const second = container.querySelector("img")!.getAttribute("src");
+    expect(second).toContain("&v=2b&");
+    setNow("2026-10-01T11:40:00Z");
+    rerender(<HuntKeySlot />);
+    expect(container.querySelector("img")!.getAttribute("src")).toBe(second); // and only once
+  });
+
+  it("asks afresh on every arrival at a page, so a blank never sticks to a revisit", () => {
+    setNow(AT_0905);
+    const { container, rerender } = render(<HuntKeySlot />);
+    const src = () => container.querySelector("img")!.getAttribute("src");
+    const firstVisit = src();
+    const img = container.querySelector("img")!;
+    Object.defineProperty(img, "naturalWidth", { configurable: true, value: 360 });
+    fireEvent.load(img);
+    expect(container.firstElementChild!.classList.contains(slotStyles.found)).toBe(true);
+
+    nav.path = OTHER_PATH;
+    rerender(<HuntKeySlot />);
+    expect(src()).toBe(`/api/naija66/badge?p=${encodeURIComponent(OTHER_PATH)}&v=1b&n=1`);
+    expect(container.firstElementChild!.classList.contains(slotStyles.found)).toBe(false);
+
+    nav.path = SAMPLE_PATH; // back to the first page
+    rerender(<HuntKeySlot />);
+    expect(src()).toBe(`/api/naija66/badge?p=${encodeURIComponent(SAMPLE_PATH)}&v=1b&n=2`);
+    expect(src()).not.toBe(firstVisit); // a new URL: the browser cannot answer it from the first visit's image
+    // The slot waits for the new answer rather than showing the old one.
+    expect(container.firstElementChild!.classList.contains(slotStyles.found)).toBe(false);
+    expect(container.querySelector("a")).toBeNull();
+  });
+
+  it("negative control: re-rendering the same page asks nothing new", () => {
+    setNow(AT_0905);
+    const { container, rerender } = render(<HuntKeySlot />);
+    const before = container.querySelector("img")!.getAttribute("src");
+    rerender(<HuntKeySlot />);
+    rerender(<HuntKeySlot />);
+    expect(container.querySelector("img")!.getAttribute("src")).toBe(before);
   });
 
   it("is never in the server's HTML, so every page's source is the same", () => {
@@ -112,18 +171,28 @@ const STATUS_0905 = {
   ],
 };
 
-function stubApi(claimBody: unknown = { wrong: true }) {
+function stubApi(claimBody: unknown = { wrong: true }, statusBody: unknown = STATUS_0905) {
   const calls: string[] = [];
+  const sent: Record<string, unknown>[] = [];
   vi.stubGlobal(
     "fetch",
-    vi.fn(async (url: string) => {
+    vi.fn(async (url: string, init?: RequestInit) => {
       calls.push(url);
-      const body = url.includes("/claim") ? claimBody : STATUS_0905;
+      if (init?.body) sent.push(JSON.parse(String(init.body)));
+      const body = url.includes("/claim") ? claimBody : statusBody;
       return { ok: true, status: 200, json: async () => body };
     }),
   );
-  return calls;
+  return Object.assign(calls, { sent });
 }
+
+/** The board a misconfigured deploy serves (state.ts notReadyStatus), at `now`. */
+const notReady = (now: string) => ({
+  ...STATUS_0905,
+  ready: false,
+  now,
+  prizes: STATUS_0905.prizes.map((p) => ({ ...p, state: "sleeping" })),
+});
 
 describe("/naija66", () => {
   it("renders both layouts — two h1s, two key boxes, two boards — from one poll", async () => {
@@ -167,6 +236,63 @@ describe("/naija66", () => {
     });
     await waitFor(() => expect(screen.getAllByText(/doesn't open anything/)).toHaveLength(2));
   });
+
+  it("sends this browser's claim token with every claim, the same one each time", async () => {
+    setNow(AT_0905);
+    localStorage.removeItem("naija66-claim");
+    const calls = stubApi({ wrong: true });
+    render(<Naija66Page />);
+    const [box] = screen.getAllByLabelText("Your key");
+    for (const key of ["NG66-AAAAAA", "NG66-BBBBBB"]) {
+      fireEvent.change(box, { target: { value: key } });
+      await act(async () => {
+        fireEvent.submit(box.closest("form")!);
+      });
+      await waitFor(() => expect(calls.sent.filter((b) => b.key === key)).toHaveLength(1));
+    }
+    const tokens = calls.sent.map((b) => b.token);
+    expect(tokens[0]).toMatch(/^[0-9a-f]{32}$/);
+    expect(tokens[1]).toBe(tokens[0]);
+    expect(localStorage.getItem("naija66-claim")).toBe(tokens[0]);
+  });
+
+  it("keeps Claim disabled in the server's HTML, and names no field, so a pre-hydration tap cannot reload with the key", async () => {
+    setNow(AT_0905);
+    const html = renderToString(<Naija66Page />);
+    const buttons = [...html.matchAll(/<button type="submit"[^>]*>/g)].map((m) => m[0]);
+    expect(buttons).toHaveLength(2);
+    for (const b of buttons) expect(b).toMatch(/ disabled=""/);
+    expect(html).not.toMatch(/<input[^>]*\bname=/);
+    // Once React runs the page, Claim works.
+    stubApi();
+    render(<Naija66Page />);
+    for (const b of screen.getAllByRole("button", { name: "Claim" })) expect(b.hasAttribute("disabled")).toBe(false);
+  });
+
+  it("reads the key from the field itself, so a key pasted before hydration is the key sent", async () => {
+    setNow(AT_0905);
+    const calls = stubApi({ wrong: true });
+    render(<Naija66Page />);
+    const [box] = screen.getAllByLabelText("Your key") as HTMLInputElement[];
+    box.value = "NG66-CCCCCC"; // no React change event, as when the page was still plain HTML
+    await act(async () => {
+      fireEvent.submit(box.closest("form")!);
+    });
+    await waitFor(() => expect(calls.sent.map((b) => b.key)).toEqual(["NG66-CCCCCC"]));
+  });
+
+  it("misconfigured: says it opens at 9am before then, and not a time already past after", async () => {
+    setNow(AT_0905);
+    stubApi({ error: "The hunt isn't open yet." }, notReady(AT_0905));
+    const { unmount } = render(<Naija66Page />);
+    await waitFor(() => expect(screen.getAllByText("The hunt isn't open yet — check back soon.")).toHaveLength(2));
+    expect(screen.queryByText(/opens at 9am/)).toBeNull();
+    unmount();
+    setNow(DAWN);
+    stubApi({ wrong: true }, notReady(DAWN));
+    render(<Naija66Page />);
+    await waitFor(() => expect(screen.getAllByText("The hunt opens at 9am WAT on 1 October.")).toHaveLength(2));
+  });
 });
 
 // ── The home banner ──────────────────────────────────────────────────────────
@@ -199,7 +325,31 @@ describe("the home banner", () => {
     expect(html).toContain(`if(Date.now()>=${CLOSES_MS})document.documentElement.dataset.naija66="over"`);
   });
 
+  it("does not call a misconfigured hunt live, in either layout", async () => {
+    setNow(AT_0905);
+    stubApi({ wrong: true }, notReady(AT_0905));
+    render(
+      <>
+        <Naija66BannerLive layout="phone" initialPhase="live" />
+        <Naija66BannerLive layout="desktop" initialPhase="live" />
+      </>,
+    );
+    await waitFor(() => expect(screen.getAllByText("Naija @ 66 — starting soon")).toHaveLength(2));
+    expect(screen.queryByText(/is live/)).toBeNull();
+    expect(screen.getAllByText(/How it works/)).toHaveLength(2);
+    expect(screen.queryByText(/Play/)).toBeNull();
+  });
+
+  it("negative control: a ready hunt's banner does say live, and counts", async () => {
+    setNow(AT_0905);
+    stubApi();
+    render(<Naija66BannerLive layout="phone" initialPhase="live" />);
+    await waitFor(() => expect(screen.getByText("Naija @ 66 is live — 5 of 5 prizes left")).toBeTruthy());
+    expect(screen.getByText(/Play/)).toBeTruthy();
+  });
+
   it("counts the prizes still out once the hunt is live", () => {
+    expect(bannerLine("live", 3, false)).toBe("Naija @ 66 — starting soon");
     expect(bannerLine("live", null)).toBe("Naija @ 66 is live — five months of Spotify Premium to find");
     expect(bannerLine("live", 3)).toBe("Naija @ 66 is live — 3 of 5 prizes left");
     expect(bannerLine("live", 0)).toBe("Naija @ 66 — all five prizes claimed. See the winners");
