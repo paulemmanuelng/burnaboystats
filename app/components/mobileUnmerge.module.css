@@ -1,0 +1,225 @@
+/* /analysis/spotify-unmerge on a phone. designs/mobile/CPC Phone.dc.html
+   (page "correction"), values verbatim. Shown only below the mobile
+   breakpoint; the desktop page is its own layout
+   (app/analysis/spotify-unmerge/unmerge.module.css).
+
+   This screen keeps the five-tab bar, so the route is in BACK_BAR_ROUTES but
+   not ACTION_BAR_ROUTES. */
+.screen { display: none; }
+
+@media (max-width: 900px) {
+  .screen {
+    display: flex;
+    flex-direction: column;
+    background: var(--bg);
+    min-height: 100%;
+  }
+}
+
+/* ── Back bar (the sibling screens' grammar) ──────────────────────────── */
+.backBar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: var(--scrim);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+  padding: 12px 18px;
+  /* With viewport-fit=cover the bar reaches under the notch and the
+     status bar; the insets push its CONTENT back into the safe area
+     while the background still bleeds to the edges. */
+  padding-top: calc(12px + env(safe-area-inset-top, 0px));
+  padding-left: calc(18px + env(safe-area-inset-left, 0px));
+  padding-right: calc(18px + env(safe-area-inset-right, 0px));
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.backBtn {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  color: var(--text);
+  flex: none;
+}
+.backLabel {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+/* The count, from data, in gold as on the sibling back-bar screens (owner
+   decision, 30 Sep 2026). The badge takes the free space, so the menu button
+   (whose own rule says margin-left:auto) sits straight after it, as drawn;
+   two auto margins would split the space and float the badge mid-bar. */
+.badge {
+  margin-left: auto;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  flex: none;
+}
+.backBar .menuAfterBadge { margin-left: 0; }
+
+/* ── Hero ─────────────────────────────────────────────────────────────── */
+.hero { padding: 22px 18px 0; }
+.kicker {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1.2;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+/* 40, not the 44 of /curator and /press: the question runs to four lines. */
+.title {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 40px;
+  line-height: 0.98;
+  text-transform: uppercase;
+  margin: 11px 0 0;
+  text-wrap: balance;
+}
+/* The split word in the gold ramp — owner decision, 30 Sep 2026: the split
+   word only, nothing else in the hero. */
+.gold {
+  background: linear-gradient(180deg, var(--display-ramp-a), var(--display-ramp-b) 45%, var(--display-ramp-c));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  /* Paints the glyph, not the line box: background-clip:text fills the
+     padding box, and Anton's ink overruns a sub-1 line-height. See
+     mobileMethodology.module.css for the measurement behind 0.2em. */
+  padding: 0.2em 0;
+  margin: -0.2em 0;
+}
+/* The answer is the page: the largest body text, in full ink. */
+.answer {
+  margin: 16px 0 0;
+  font-size: 19px;
+  line-height: 1.5;
+  color: var(--text);
+  text-wrap: pretty;
+}
+.answer strong { font-weight: 700; }
+.sub { margin: 12px 0 0; font-size: var(--type-small); line-height: var(--type-small-lh); color: var(--text-muted); }
+
+/* ── Body ─────────────────────────────────────────────────────────────── */
+.body { padding: 0 18px; }
+.h2 {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.05;
+  text-transform: uppercase;
+  margin: 34px 0 0;
+}
+.p {
+  font-size: var(--type-body);
+  line-height: var(--type-body-lh);
+  color: var(--text-body);
+  margin: 10px 0 0;
+  text-wrap: pretty;
+}
+.link { color: var(--gold); }
+
+.p strong { color: var(--text); font-weight: 600; }
+.p + .p,
+.sums + .p,
+.liveBlock + .p { margin-top: 14px; }
+.note { margin: 12px 0 0; font-size: var(--type-small); line-height: var(--type-small-lh); color: var(--text-muted); text-wrap: pretty; }
+
+/* ── The arithmetic (items 51, 55) ────────────────────────────────────── */
+/* Nine fixed points, stacked: label, its note, then the value in ink display
+   numerals (never a slot, never gold). Each remix's before and after share a
+   tinted group with a 3px left rule and a dashed divider; = marks the three
+   results, each under a heavier 2px rule. */
+.sums { margin: 14px 0 0; border-top: 1px solid var(--rule-soft); }
+.sumRow { padding: 14px 0; border-top: 1px solid var(--line); }
+.before,
+.after { background: var(--bg-soft); border-left: 3px solid var(--rule-soft); }
+.before { padding: 12px 0 8px 12px; }
+.after { padding: 8px 0 12px 12px; border-top: 1px dashed var(--line); }
+.result { border-top: 2px solid var(--rule); }
+.sumLabel { font-size: 14px; line-height: 1.4; color: var(--text); }
+.sumNote { display: block; margin-top: 2px; font-size: 12.5px; color: var(--text-muted); }
+.sumValue { margin: 6px 0 0; display: flex; align-items: baseline; gap: 10px; }
+.sumOp {
+  width: 14px;
+  flex: none;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1;
+  color: var(--text-muted);
+}
+.sumFigure {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+}
+
+/* ── Where that leaves him today (item 52) ────────────────────────────── */
+/* The page's one live figure, gold, with the green "updates daily" dot. It
+   sits inside the same condition as the two paragraphs under it. */
+.liveBlock {
+  margin-top: 12px;
+  padding: 16px 16px 14px;
+  border: 1px solid var(--rule-soft);
+  border-radius: 6px;
+  background: var(--bg-soft);
+}
+.liveLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1.2;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.liveDot { width: 7px; height: 7px; border-radius: 50%; background: var(--green-dot); flex: none; }
+.liveValue {
+  margin-top: 10px;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 0.95;
+  font-variant-numeric: tabular-nums;
+  color: var(--gold);
+}
+
+/* ── Common questions ─────────────────────────────────────────────────── */
+/* Flat and open: every answer painted, no accordion (the owner's dense-list
+   rule, and the FAQPage promise). */
+.faqList { margin-top: 6px; }
+.faqItem { padding: 16px 0; border-bottom: 1px solid var(--line); }
+.faqQ {
+  margin: 0;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 1.35;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--text);
+}
+.faqA { margin: 8px 0 0; font-size: 15px; line-height: 1.6; color: var(--text-body); text-wrap: pretty; }

@@ -56,6 +56,7 @@ export const BACK_BAR_ROUTES = new Set<string>([
   // main action for a bottom bar. So they are NOT ACTION_BAR routes.
   "/curator",
   "/press",
+  "/analysis/spotify-unmerge",
 ]);
 
 /**

@@ -425,7 +425,8 @@ describe("every route emitting FAQPage answers a phone reader", () => {
   });
 
   it("/analysis/spotify-unmerge serves its answers, open", async () => {
-    // Already correct: one CSS-driven layout, no .desktopOnly around the FAQ.
+    // Two trees since 30 Sep 2026 (MobileUnmerge, then .desktopOnly): the
+    // phone screen paints every answer, and the FAQPage is emitted once.
     expectAnswersVisibleOnAPhone(servedMarkup(await UnmergePage()), "/analysis/spotify-unmerge");
   });
 
