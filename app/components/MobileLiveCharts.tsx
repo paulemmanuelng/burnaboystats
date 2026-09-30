@@ -4,13 +4,11 @@ import { useState } from "react";
 import Link from "next/link";
 import styles from "./mobileLiveCharts.module.css";
 import { artAt } from "../lib/artAt";
-import { coverFor, monogramFor } from "../lib/covers";
 import { cadenceOf, LIVE_CADENCE, releaseKey } from "../lib/liveChartMeta";
 import { useLiveRelease } from "../lib/useLiveRelease";
 import ScrollRail from "./ScrollRail";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
-import { isEp } from "../data/albums";
 
 /**
  * The mobile live-charts screen.
@@ -48,9 +46,13 @@ function movement(e: { movement?: number | null; status?: "new" | "re" }) {
 export interface ReleasePreview {
   kind: "song" | "album";
   title: string;
-  /** Artwork shipped with the release, for artists whose covers the site's own
-   *  catalogue does not hold. */
+  /** The row's art, resolved on the server (lib/liveReleaseArt.ts) so the
+   *  site's catalogue stays out of this bundle. Absent: no art on file. */
   cover?: string;
+  /** The monogram drawn when there is no art. */
+  letter: string;
+  /** An album the catalogue lists as an EP. */
+  ep: boolean;
   total: number;
   no1: number;
   top: { country: string; position: number; movement?: number | null; status?: "new" | "re" }[];
@@ -192,7 +194,7 @@ export default function MobileLiveCharts({
                 <span className={styles.rowTop}>
                   {/* No art on file → the release's initial, as the desktop
                       draws it, rather than a blank tinted square. */}
-                  {(r.cover ?? coverFor(r.title, r.kind)) ? (
+                  {r.cover ? (
                     // The slot holds the art back until the row nears the
                     // screen; see .coverSlot (23 Sep 2026).
                     <span className={styles.coverSlot}>
@@ -200,11 +202,11 @@ export default function MobileLiveCharts({
                         className={styles.rowCover}
                         /* 120 = 3x the 40px tile, not a board artist's 500px
                            Deezer art (23 Sep 2026). */
-                        style={{ backgroundImage: `url(${artAt(r.cover ?? coverFor(r.title, r.kind) ?? "", 120)})` }}
+                        style={{ backgroundImage: `url(${artAt(r.cover, 120)})` }}
                       />
                     </span>
                   ) : (
-                    <span className={styles.rowCover} data-letter={monogramFor(r.title)} aria-hidden="true" />
+                    <span className={styles.rowCover} data-letter={r.letter} aria-hidden="true" />
                   )}
                   <span className={styles.rowMain}>
                     <span className={styles.rowTitle}>
@@ -212,7 +214,7 @@ export default function MobileLiveCharts({
                       {/* Albums sit in the same list as songs — the desktop
                           page separates them into sections, and this tag is
                           that distinction at phone size. */}
-                      {r.kind === "album" && <span className={styles.kindTag}>{isEp(r.title) ? "EP" : "Album"}</span>}
+                      {r.kind === "album" && <span className={styles.kindTag}>{r.ep ? "EP" : "Album"}</span>}
                     </span>
                     <span className={styles.rowMeta}>
                       {r.total} {r.total === 1 ? "chart" : "charts"}

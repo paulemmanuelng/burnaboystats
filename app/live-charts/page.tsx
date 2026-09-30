@@ -6,7 +6,7 @@ import MobileLiveCharts, { type ReleasePreview } from "../components/MobileLiveC
 import { cadenceOf, reachOf, numberOnesOf, countriesOf, releaseKey, LIVE_CADENCE, LIVE_CADENCE_ADVERB } from "../lib/liveChartMeta";
 import LiveReleaseBlock, { type ReleaseSummary } from "../components/LiveReleaseBlock";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime, BURNA_BOY_REF } from "../lib/seo";
-import { coverFor, monogramFor } from "../lib/covers";
+import { releaseArt } from "../lib/liveReleaseArt";
 import { spotifyImage } from "../lib/spotifyImage";
 import {
   liveCharts,
@@ -17,7 +17,6 @@ import {
   livePlatformTotals,
   type LiveEntry,
 } from "../data/liveCharts";
-import { isEp } from "../data/albums";
 
 // Counted here rather than read from the generated file, which counts raw
 // kworb codes — "UK" and "GB" are one country and "WW" is none.
@@ -52,10 +51,13 @@ const reach = reachOf;
 // fetch from /api/v1/live-charts on first open. This page used to serialise
 // all ~790 rows twice over and was the heaviest thing the site sent.
 // The mobile screen's shut rows, computed here so the client gets previews —
-// title, totals and the five best chips — instead of the whole dataset.
+// title, totals and the five best chips — instead of the whole dataset. Each
+// row's art (cover, monogram, EP flag) is resolved here too, so the site's
+// catalogue stays out of the client bundle (lib/liveReleaseArt.ts).
 const preview = (r: (typeof liveCharts)[number]): ReleasePreview => ({
   kind: r.kind,
   title: r.title,
+  ...releaseArt(r),
   total: reachOf(r),
   no1: numberOnesOf(r),
   top: r.platforms
@@ -68,7 +70,7 @@ const preview = (r: (typeof liveCharts)[number]): ReleasePreview => ({
 const summarize = (r: (typeof liveCharts)[number]): ReleaseSummary => ({
   title: r.title,
   kind: r.kind,
-  ep: r.kind === "album" && isEp(r.title),
+  ...releaseArt(r),
   total: reachOf(r),
   no1: numberOnesOf(r),
   platforms: r.platforms.map((p) => ({

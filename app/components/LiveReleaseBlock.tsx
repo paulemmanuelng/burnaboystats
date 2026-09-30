@@ -4,7 +4,6 @@ import { useState } from "react";
 import styles from "../live-charts/liveCharts.module.css";
 import { cadenceOf } from "../lib/liveChartMeta";
 import { useLiveRelease } from "../lib/useLiveRelease";
-import { coverFor, monogramFor } from "../lib/covers";
 import { spotifyImage } from "../lib/spotifyImage";
 import type { LiveEntry } from "../data/liveCharts";
 
@@ -20,9 +19,11 @@ import type { LiveEntry } from "../data/liveCharts";
  */
 
 export interface ReleaseSummary {
-  /** Artwork shipped with the release (board artists), if the site's own
-   *  catalogue does not hold it. */
+  /** The release's art, resolved on the server (lib/liveReleaseArt.ts) so the
+   *  site's catalogue stays out of this bundle. Absent: no art on file. */
   cover?: string;
+  /** The monogram drawn when there is no art. */
+  letter: string;
   title: string;
   kind: "song" | "album";
   ep: boolean;
@@ -51,14 +52,13 @@ export default function LiveReleaseBlock({
   source,
 }: {
   r: ReleaseSummary;
-  /** Where the country panels fetch from, and whose artwork to draw. Burna
-   *  Boy's page passes nothing: his covers are in the site's own catalogue.
-   *  A board artist ships the URL with the release, resolved at build time. */
+  /** Where the country panels fetch from. Burna Boy's page passes nothing.
+   *  The artwork is in `r` either way, resolved at build time. */
   source?: string;
 }) {
   const [opened, setOpened] = useState(false);
   const { release, error, missing, loading, retry } = useLiveRelease(r, opened, source);
-  const art = r.cover ?? coverFor(r.title, r.kind);
+  const art = r.cover;
 
   return (
     <details
@@ -87,7 +87,7 @@ export default function LiveReleaseBlock({
               decoding="async"
             />
           ) : (
-            <span className={styles.coverFallback} data-letter={monogramFor(r.title)} aria-hidden="true" />
+            <span className={styles.coverFallback} data-letter={r.letter} aria-hidden="true" />
           )}
           {r.title}
           {/* The feed only knows song vs album; the two EPs deserve their
