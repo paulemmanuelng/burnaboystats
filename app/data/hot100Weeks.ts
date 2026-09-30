@@ -600,6 +600,63 @@ export function hot100StandingsOf(artists: Hot100Artist[]): Hot100Standing[] {
 
 export const hot100Standings = hot100StandingsOf(hot100Artists);
 
+/** The day a row reached its peak: Billboard's date where the page printed
+ *  one, the debut where it did not ("Pata Pata"). */
+export const peakReachedOn = (s: Hot100Song) => s.peakDate ?? s.debut;
+
+/** The song an act's best peak comes from — among equal peaks, the one that
+ *  got there first. */
+export const bestSongOf = (a: Hot100Artist): Hot100Song | undefined =>
+  [...a.songs].sort((x, y) => x.peak - y.peak || peakReachedOn(x).localeCompare(peakReachedOn(y)))[0];
+
+/** Named after "Featuring" on Billboard's credit line: a featured turn, not a
+ *  lead or joint credit ("Shakira X Burna Boy" is joint). */
+export const isFeaturedOn = (s: Hot100Song, name: string) => {
+  const credit = s.credit.toLowerCase();
+  const feat = credit.indexOf(" featuring ");
+  return feat >= 0 && credit.indexOf(name.toLowerCase()) > feat;
+};
+
+/** The act a featured turn was on — the credit line before "Featuring". */
+export const leadActOf = (s: Hot100Song) => s.credit.split(/ Featuring /i)[0];
+
+/** The other acts on a song's credit line, in Billboard's order and spelling. */
+export const coCreditsOf = (s: Hot100Song, name: string) =>
+  s.credit
+    .split(/ Featuring | & | X |, /i)
+    .map((x) => x.trim())
+    .filter((x) => x && x.toLowerCase() !== name.toLowerCase());
+
+export interface Hot100PeakStanding {
+  slug: string;
+  name: string;
+  country: Hot100Country;
+  peak: number;
+  /** The row the peak comes from. */
+  song: Hot100Song;
+  /** Competition ranking on the peak: acts on the same peak share a rank. */
+  rank: number;
+}
+
+/**
+ * Every ranked act by its best Hot 100 peak, highest first — the rows of the
+ * page's peak board, read off the same Billboard rows as the weeks board.
+ * Acts on the same peak are listed in the order they reached it, so the first
+ * African No. 1 is named first.
+ */
+export const hot100PeakStandings: Hot100PeakStanding[] = (() => {
+  const rows = hot100Artists
+    .filter((a) => a.read !== "unreadable" && a.songs.length > 0)
+    .map((a) => ({ slug: a.slug, name: a.name, country: a.country, peak: bestPeakOf(a)!, song: bestSongOf(a)! }))
+    .sort(
+      (x, y) =>
+        x.peak - y.peak ||
+        peakReachedOn(x.song).localeCompare(peakReachedOn(y.song)) ||
+        x.name.localeCompare(y.name)
+    );
+  return rows.map((r) => ({ ...r, rank: 1 + rows.filter((o) => o.peak < r.peak).length }));
+})();
+
 /** The published board: rank 5 and above. A tie at fifth shows every act
  *  sharing it, so this can run longer than five but never drops one. */
 export const HOT100_TOP = 5;
@@ -615,16 +672,22 @@ const longDate = (iso: string) =>
   });
 export const HOT100_CHART_DATE_LONG = longDate(HOT100_CHART_DATE);
 export const HOT100_READ_ON_LONG = longDate(HOT100_READ_ON);
+/** The day Billboard published that chart: the Tuesday before the Saturday it is
+ *  dated, so a chart "dated 3 October" is out on 29 September. Printed beside
+ *  the chart date because a future-looking date reads like a typo (Paul, 30 Sep
+ *  2026: "we are not in Oct yet"). */
+export const HOT100_PUBLISHED_ON = new Date(Date.parse(`${HOT100_CHART_DATE}T00:00:00Z`) - 4 * 86_400_000).toISOString().slice(0, 10);
+export const HOT100_PUBLISHED_ON_LONG = longDate(HOT100_PUBLISHED_ON);
 
 /** The method line, word for word in the board's note and the structured data. */
-export const HOT100_METHOD = `Every week a song crediting the artist (lead or featured) spent on the Billboard Hot 100, summed. African artists by nationality. As of the chart dated ${HOT100_CHART_DATE_LONG}.`;
+export const HOT100_METHOD = `Every week a song crediting the artist (lead or featured) spent on the Billboard Hot 100, summed. African artists by nationality. As of the chart dated ${HOT100_CHART_DATE_LONG} (published ${HOT100_PUBLISHED_ON_LONG}).`;
 
 /** "A, B and C" — the page's list style. */
 const listed = (xs: string[]) =>
   xs.length < 2 ? (xs[0] ?? "") : `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}`;
 
 /** Billboard's parenthetical subtitles off, for prose: "Dai Dai". */
-const shortTitle = (t: string) => t.replace(/\s*\(.*\)\s*$/, "");
+export const shortTitle = (t: string) => t.replace(/\s*\(.*\)\s*$/, "");
 
 /**
  * Which published totals are still moving, in words — from the rows, so the
@@ -657,7 +720,7 @@ export const HOT100_SOURCE = (() => {
   const via = (r: Hot100Artist["read"]) =>
     listed(hot100Standings.filter((s) => hot100Artists.find((a) => a.slug === s.slug)!.read === r).map((s) => s.name));
   return (
-    `Billboard, read ${HOT100_READ_ON_LONG}, as of the chart dated ${HOT100_CHART_DATE_LONG}. ` +
+    `Billboard, read ${HOT100_READ_ON_LONG}, as of the chart dated ${HOT100_CHART_DATE_LONG} (published ${HOT100_PUBLISHED_ON_LONG}). ` +
     `Each artist's Hot 100 chart history on billboard.com, one row per song whose credit line names them, lead or featured; songwriting credits do not count. ` +
     `Billboard gives some acts no chart module: ${via("co-artist-page")} were read off a co-credited artist's chart history, ` +
     `and ${via("weekly-charts")} off the weekly Hot 100 itself — each song's weeks-on-chart figure in its last week, with the weeks after it checked for its absence. ` +
