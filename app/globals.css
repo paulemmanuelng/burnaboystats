@@ -420,6 +420,21 @@
   /* A hover fill has to step AWAY from the resting state, and which way "away"
      points depends on the ground: brighter on black, deeper on paper. */
   --gold-hit: light-dark(#5f3c00, #ffd24a);
+  /* The tour map's fills (design response of 30 Sep 2026, §7, item 30). The
+     played fill had no light value (a 42% gold wash, 1.55:1 against unplayed
+     land on paper) and the borders did not theme (a fixed near-black, 13.5:1
+     on paper, so the borders outranked the data). Measured:
+     - played vs not played 3.44 (paper) / 3.73 (dark); vs the sea 4.13 / 4.56;
+     - land vs the sea 1.20 / 1.22, so land still reads as land in dark;
+     - borders 1.60 / 1.53 on land and 1.40 / 1.23 on played: the data now
+       outranks them;
+     - the sea equals --bg-soft in both themes today. It is its own role so the
+       map's ground can move without touching every soft panel.
+     Hover stays --gold-hit, with a 1.5px --text outline carrying the 3:1. */
+  --map-played: light-dark(#a3742a, #a07820);
+  --map-land: light-dark(#efeae1, #26262c);
+  --map-border: light-dark(rgba(23, 20, 15, 0.22), rgba(245, 244, 240, 0.14));
+  --map-sea: light-dark(#ffffff, #141416);
   --glow-base: light-dark(transparent, #e8b04b);
   --spotify-glow-base: light-dark(transparent, #1db954);
   /* The halo behind masthead text. It exists to lift the wordmark and the nav
