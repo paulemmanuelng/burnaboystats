@@ -1,0 +1,115 @@
+/* The tour map's drawing: one map, both layouts (design response §7, the fills
+   board on Tour Map.dc.html, and tour-map.js's layer order). Every colour is a
+   token; the four --map-* pairs are the only new ones (app/globals.css).
+
+   Strokes are in SCREEN px at every view: the sprite's paths carry
+   vector-effect: non-scaling-stroke (app/dai-dai/replay-map.svg/route.ts), and
+   stroke and stroke-width inherit into a <use>'s copy of them. */
+
+.svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* The static ground: every country with no documented show, one layer. */
+.land {
+  fill: var(--map-land);
+  stroke: var(--map-border);
+  stroke-width: 0.6px;
+}
+
+/* A country where a show is documented. */
+.played {
+  fill: var(--map-played);
+  stroke: var(--map-border);
+  stroke-width: 0.6px;
+  cursor: pointer;
+  /* The focus ring is drawn by the map itself (.ringOuter below), because a
+     CSS outline would box the whole shape's bounding rectangle. */
+  outline: none;
+  transition: opacity 0.15s ease;
+}
+
+/* A region row hovered on desktop: the rest of the played countries dim. */
+.dim {
+  opacity: 0.28;
+}
+
+/* The state layers: drawn over every neighbour, under the country's own fill,
+   so a 7px country keeps its colour and still shows as picked. None of them
+   takes the pointer; the country underneath does. */
+.state {
+  pointer-events: none;
+}
+.ringOuter {
+  fill: none;
+  stroke: var(--gold);
+  stroke-width: 10px;
+  stroke-linejoin: round;
+}
+.ringInner {
+  fill: none;
+  stroke: var(--map-sea);
+  stroke-width: 6px;
+  stroke-linejoin: round;
+}
+/* Selection: --text, 2.25px outside the shape once the fill covers the
+   inner half. */
+.selOutline {
+  fill: none;
+  stroke: var(--text);
+  stroke-width: 4.5px;
+  stroke-linejoin: round;
+}
+/* Hover: --gold-hit alone is 2.39 : 1 (paper) and 2.80 : 1 (dark) against
+   --map-played, so a 1.5px --text outline carries the 3 : 1 (item 30a). */
+.hotOutline {
+  fill: none;
+  stroke: var(--text);
+  stroke-width: 3px;
+  stroke-linejoin: round;
+}
+.refill {
+  fill: var(--map-played);
+  stroke: var(--map-border);
+  stroke-width: 0.6px;
+}
+.refillHot {
+  fill: var(--gold-hit);
+  stroke: var(--map-border);
+  stroke-width: 0.6px;
+}
+
+/* The eight dots: 8px at every view, with a 1px sea-coloured outline that
+   separates the overlapping pair (Barbados and Saint Lucia). */
+.dot {
+  fill: var(--map-played);
+  stroke: var(--map-sea);
+  stroke-width: 1px;
+  cursor: pointer;
+  outline: none;
+  transition: opacity 0.15s ease;
+}
+.dotHot {
+  fill: var(--gold-hit);
+}
+.dotSel {
+  stroke: var(--text);
+  stroke-width: 2px;
+}
+.dotRing {
+  fill: none;
+  stroke: var(--gold);
+  stroke-width: 2px;
+  pointer-events: none;
+}
+
+/* The area the desktop close-up shows, marked on the world map. */
+.area {
+  fill: none;
+  stroke: var(--text-muted);
+  stroke-width: 1px;
+  stroke-dasharray: 3 3;
+  pointer-events: none;
+}
