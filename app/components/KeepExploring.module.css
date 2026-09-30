@@ -12,12 +12,16 @@
     margin: 36px auto 56px;
   }
 }
+/* The label is a label, not an action or a live figure, so it is muted (rule
+   3; owner decision, 30 Sep 2026, design response item 56). One shared block,
+   so the change is site-wide, /dai-dai and /dai-dai/es included. The arrows
+   below are the action and stay gold. tests/keepExploringLabel.test.ts. */
 .eyebrow {
   font-family: var(--font-mono), monospace;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   font-size: 0.72rem;
-  color: var(--gold);
+  color: var(--text-muted);
   margin-bottom: 16px;
 }
 .grid {
