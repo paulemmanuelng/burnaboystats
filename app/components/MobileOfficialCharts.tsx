@@ -5,7 +5,6 @@ import Link from "next/link";
 import styles from "./mobileOfficialCharts.module.css";
 import ScrollRail from "./ScrollRail";
 import FilterEmpty from "./FilterEmpty";
-import { coverFor } from "../lib/covers";
 import { artAt } from "../lib/artAt";
 import type { ChartCountry } from "../data/charts";
 import type { ExplorerRelease, CoverMap } from "./ChartExplorer";
@@ -107,7 +106,8 @@ export default function MobileOfficialCharts({
     billboardCountry: number;
     global: number;
   };
-  /** Artwork by release title — Burna's catalogue lookup by default. */
+  /** Artwork by release title, built on the server (lib/chartCovers.ts for
+   *  Burna's page). A title missing from it has no art. */
   covers?: CoverMap;
   /** Replaces the source footnote where the split is not ours to publish. */
   sourceNote?: string;
@@ -124,7 +124,7 @@ export default function MobileOfficialCharts({
   /** Footnote under the territory count — Burna's two global charts by default. */
   territoryNote?: string;
 }) {
-  const cover = (title: string) => (covers ? covers[title] : coverFor(title));
+  const cover = (title: string) => covers?.[title];
   const [peakMax, setPeakMax] = useState<number | null>(null);
   const [only, setOnly] = useState<string | null>(null);
   // A single-release focus, deep-linked via #song=… (or an older ?song=…) —

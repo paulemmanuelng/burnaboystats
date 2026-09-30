@@ -5,7 +5,7 @@ import type { ReplayLabels } from "./daiDaiReplayLabels";
 /**
  * The replay's small multiples: every chart, every week, as one dense table —
  * one row per chart, one cell per frame. It is the reduced-motion default (the
- * player checks matchMedia in JavaScript and shows this first), and the page
+ * player checks matchMedia in JavaScript and shows this first), and the player
  * also renders it inside <noscript>, so a reader without JavaScript gets the
  * week-by-week reading as well as the poster.
  *
@@ -14,8 +14,8 @@ import type { ReplayLabels } from "./daiDaiReplayLabels";
  * row is ONE cell, "peak No. N · run not recorded" — never twenty cells of
  * guesses. Dense, not folded.
  *
- * No hooks, so the page's server-rendered <noscript> copy and the player's
- * client copy are the same component. `onOpen` is the player's; without it
+ * No hooks, so the server-rendered <noscript> copy and the player's own
+ * multiples view are the same component. `onOpen` is the player's; without it
  * (no JavaScript) there is no button to press.
  */
 
@@ -29,6 +29,13 @@ export const bandOf = (p: number): Band => (p === 1 ? "b1" : p <= 5 ? "b5" : p <
 export const fillIn = (s: string, v: Record<string, string | number>) =>
   s.replace(/\{(\w+)\}/g, (m, k: string) => (k in v ? String(v[k]) : m));
 
+/** Chart codes in order. Codes are [A-Z]+ (tests/daiDaiByCode.test.tsx), and
+ *  for those, code-unit order is the "en" collation's order: this is what
+ *  localeCompare(…, "en") and Intl.Collator("en") returned, without ICU or a
+ *  locale. Building the collator cost 22-24 ms of the page's hydration task on
+ *  a 4x-throttled phone (30 Sep 2026). */
+export const byCode = (a: string, b: string) => (a < b ? -1 : a > b ? 1 : 0);
+
 /** The small multiples' row order. */
 export function multiplesOrder(countries: ReplayRun[]): ReplayRun[] {
   return [...countries].sort(
@@ -36,7 +43,7 @@ export function multiplesOrder(countries: ReplayRun[]): ReplayRun[] {
       a.peak - b.peak ||
       Number(b.pts.length > 0) - Number(a.pts.length > 0) ||
       (b.weeksAtPeak ?? 0) - (a.weeksAtPeak ?? 0) ||
-      a.code.localeCompare(b.code, "en"),
+      byCode(a.code, b.code),
   );
 }
 

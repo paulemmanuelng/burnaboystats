@@ -18,6 +18,10 @@ import {
   numberOnes,
   chartCountryCount,
 } from "../../app/data/charts";
+// Cover art as /records/charts builds it on the server and passes to both layouts.
+import { chartCovers } from "../../app/lib/chartCovers";
+
+const covers = chartCovers(albumCharts, singleCharts, featureCharts);
 
 /**
  * The Dai Dai story's "every chart position" link carries ?song=Dai Dai, and
@@ -43,6 +47,7 @@ const mobileProps = {
   territoryCount: chartCountryCount,
   numberOnes,
   releaseCount: albumCharts.length + singleCharts.length + featureCharts.length,
+  covers,
 };
 
 describe("?song= deep link into the official charts", () => {
@@ -67,6 +72,7 @@ describe("?song= deep link into the official charts", () => {
         singles={singleCharts}
         features={featureCharts}
         countries={CHART_COUNTRIES}
+        covers={covers}
       />
     );
 

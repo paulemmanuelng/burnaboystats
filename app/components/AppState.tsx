@@ -1,5 +1,4 @@
 import Link from "next/link";
-import styles from "./appState.module.css";
 
 /**
  * The shared shell behind every app-level state.
@@ -12,6 +11,12 @@ import styles from "./appState.module.css";
  *
  * The site header and the ambient gold wash stay in place around it, so a
  * failure still looks like the site rather than a browser error page.
+ *
+ * Its styles are the `appState*` rules at the end of globals.css, not a CSS
+ * module. The error and not-found boundaries render this component, and a
+ * boundary's CSS is preloaded on every page of the site; as a module it put a
+ * 124 KB shared chunk in the head of every page (30 Sep 2026). Keep it free
+ * of *.module.css imports (tests/boundaryCss.test.ts).
  */
 export default function AppState({
   glyph,
@@ -49,23 +54,23 @@ export default function AppState({
   appLevel?: boolean;
 }) {
   return (
-    <div className={`${styles.wrap} ${appLevel ? `${styles.appLevel} appStateShell` : ""}`}>
-      {tone === "error" && <div className={styles.washError} aria-hidden="true" />}
+    <div className={`appStateWrap ${appLevel ? "appStateAppLevel appStateShell" : ""}`}>
+      {tone === "error" && <div className="appStateWashError" aria-hidden="true" />}
 
       {glyph && (
-        <div className={`${styles.glyph} ${tone === "neutral" ? "inkText" : ""}`} aria-hidden="true">
+        <div className={`appStateGlyph ${tone === "neutral" ? "inkText" : ""}`} aria-hidden="true">
           {glyph}
         </div>
       )}
       {icon && (
         <>
-          <div className={tone === "error" ? styles.icon : styles.iconMuted} aria-hidden="true">
+          <div className={tone === "error" ? "appStateIcon" : "appStateIconMuted"} aria-hidden="true">
             {icon}
           </div>
           {/* At 402px the design replaces the disc with a plain glyph. */}
           {mobileGlyph && (
             <div
-              className={`${styles.glyph} ${styles.glyphMobileOnly} ${tone === "error" ? styles.glyphError : ""}`}
+              className={`appStateGlyph appStateGlyphMobileOnly ${tone === "error" ? "appStateGlyphError" : ""}`}
               aria-hidden="true"
             >
               {mobileGlyph}
@@ -78,29 +83,29 @@ export default function AppState({
           h1. The in-page states sit inside a page that already has one, and the
           SEO gate allows exactly one per page — so there they are plain text. */}
       {appLevel ? (
-        <h1 className={styles.title}>{title}</h1>
+        <h1 className="appStateTitle">{title}</h1>
       ) : (
-        <p className={`${styles.title} ${compact ? styles.titleSm : ""}`}>{title}</p>
+        <p className={`appStateTitle ${compact ? "appStateTitleSm" : ""}`}>{title}</p>
       )}
-      <p className={`${styles.body} ${compact ? styles.bodySm : ""}`}>{body}</p>
+      <p className={`appStateBody ${compact ? "appStateBodySm" : ""}`}>{body}</p>
 
-      {actions && <div className={styles.actions}>{actions}</div>}
+      {actions && <div className="appStateActions">{actions}</div>}
 
       {reference && (
-        <div className={styles.reference}>
-          <span className={styles.referenceLabel}>Reference</span>
-          <span className={styles.referenceId}>{reference}</span>
-          <span className={styles.referenceRule} aria-hidden="true" />
-          <Link href="/contact" className={styles.referenceLink}>Report it</Link>
+        <div className="appStateReference">
+          <span className="appStateReferenceLabel">Reference</span>
+          <span className="appStateReferenceId">{reference}</span>
+          <span className="appStateReferenceRule" aria-hidden="true" />
+          <Link href="/contact" className="appStateReferenceLink">Report it</Link>
         </div>
       )}
 
       {suggestions && suggestions.length > 0 && (
-        <div className={styles.suggestWrap}>
-          <div className={styles.suggestLabel}>Popular instead</div>
-          <div className={styles.suggestRow}>
+        <div className="appStateSuggestWrap">
+          <div className="appStateSuggestLabel">Popular instead</div>
+          <div className="appStateSuggestRow">
             {suggestions.map((s) => (
-              <Link key={s.href} href={s.href} className={styles.suggest}>
+              <Link key={s.href} href={s.href} className="appStateSuggest">
                 {s.label}
               </Link>
             ))}

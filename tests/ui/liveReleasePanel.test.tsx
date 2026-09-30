@@ -8,6 +8,8 @@ vi.mock("next/navigation", () => ({
 
 import MobileLiveCharts, { type ReleasePreview } from "../../app/components/MobileLiveCharts";
 import { useLiveRelease } from "../../app/lib/useLiveRelease";
+// Each row's cover, monogram and EP flag, as the pages resolve them on the server.
+import { releaseArt } from "../../app/lib/liveReleaseArt";
 
 /**
  * The open state of a live-charts row, and the three answers it can get.
@@ -31,6 +33,7 @@ import { useLiveRelease } from "../../app/lib/useLiveRelease";
 const preview = (title: string): ReleasePreview => ({
   kind: "song",
   title,
+  ...releaseArt({ title, kind: "song" }),
   total: 1,
   no1: 1,
   top: [{ country: "NG", position: 1, movement: 0 }],
@@ -151,6 +154,7 @@ describe("a title track and its album, open one at a time", () => {
     {
       kind: "album",
       title: AG,
+      ...releaseArt({ title: AG, kind: "album" }),
       total: 2,
       no1: 1,
       top: [
@@ -158,7 +162,7 @@ describe("a title track and its album, open one at a time", () => {
         { country: "NG", position: 23, movement: 0 },
       ],
     },
-    { kind: "song", title: AG, total: 1, no1: 0, top: [{ country: "GW", position: 171, status: "new" }] },
+    { kind: "song", title: AG, ...releaseArt({ title: AG, kind: "song" }), total: 1, no1: 0, top: [{ country: "GW", position: 171, status: "new" }] },
   ];
   const pairSnapshot = () => ({
     releases: [

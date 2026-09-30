@@ -15,6 +15,7 @@ import {
   chartCountryCount,
 } from "../../data/charts";
 import { pageMetadata, datasetJsonLd } from "../../lib/seo";
+import { chartCovers } from "../../lib/chartCovers";
 
 export const metadata = pageMetadata({
   title: `Burna Boy Chart History — ${numberOnes} No. 1s & Chart Peaks`,
@@ -34,6 +35,9 @@ export default function ChartsPage() {
     variableMeasured: ["Peak chart position", "Country / territory", "Release", "Chart"],
   });
   const allReleases = albumCharts.length + singleCharts.length + featureCharts.length;
+  // Cover art by title, resolved here so the catalogue stays out of the
+  // client bundle. ONE object for both layouts: the RSC payload sends it once.
+  const covers = chartCovers(albumCharts, singleCharts, featureCharts);
   const stats = [
     { num: chartEntryCount, label: "Chart entries", note: "official charts only" },
     { num: numberOnes, label: "No. 1 peaks", note: "placements, not releases" },
@@ -80,6 +84,7 @@ export default function ChartsPage() {
         numberOnes={numberOnes}
         releaseCount={allReleases}
         sourceSplit={chartSourceSplit}
+        covers={covers}
       />
 
       <div className={styles.desktopOnly}>
@@ -115,6 +120,7 @@ export default function ChartsPage() {
           singles={singleCharts}
           features={featureCharts}
           countries={CHART_COUNTRIES}
+          covers={covers}
         />
       </div>
 

@@ -22,6 +22,12 @@ import { useEffect } from "react";
  *   - A client-side arrival: no document load, so no inline script. This
  *     effect sets "es".
  *
+ * The effect writes only when the value is not already "es". After a full
+ * load the script has set it, and writing the same value again is not free:
+ * a write to <html lang> invalidates style for the whole document (:lang()
+ * can match anywhere), and on this page that was a restyle of ~2,073 elements
+ * right after hydration, 11-17 ms on a 4x-throttled phone (30 Sep 2026).
+ *
  * Leaving sets "en" — explicitly, not "whatever was there before". After a
  * full load the value found here is already "es" (the inline script wrote it),
  * so restoring it would carry Spanish onto /dai-dai and every English page
@@ -36,7 +42,7 @@ import { useEffect } from "react";
 export default function DocumentLangEs() {
   useEffect(() => {
     const root = document.documentElement;
-    root.lang = "es";
+    if (root.lang !== "es") root.lang = "es";
     return () => {
       root.lang = "en";
     };

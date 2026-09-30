@@ -154,11 +154,6 @@
     "--gold-wash-base 16%",
     "--scrim-base 82%"
   ],
-  "app/components/appState.module.css": [
-    "--red 10%",
-    "--red 12%",
-    "--red 50%"
-  ],
   "app/components/filterEmpty.module.css": [
     "--gold-wash-base 14%"
   ],
@@ -331,6 +326,9 @@
     "--gold-wash-base 7%",
     "--halo-base 60%",
     "--halo-base 70%",
+    "--red 10%",
+    "--red 12%",
+    "--red 50%",
     "--red 8%",
     "--red-glow-base 10%",
     "--scrim-deep 78%",

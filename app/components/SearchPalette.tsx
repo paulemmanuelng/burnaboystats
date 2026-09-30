@@ -3,17 +3,57 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./SearchPalette.module.css";
-import { searchDocs, searchIndex } from "../lib/searchIndex";
+import type { SearchDoc } from "../lib/searchIndex";
+import type { SuggestedDoc } from "../lib/searchSuggested";
 import { track } from "../lib/analytics";
+import { nextActive } from "./searchPaletteActive";
 
 // Site-wide command palette: a search button in the nav that opens a ⌘K / Ctrl+K
 // modal to jump to any page. Pure client-side over the static index — no backend.
 // When closed and empty it suggests the most-used pages so it's never a blank box.
-const SUGGESTED = ["/records/cars", "/records/charts", "/certifications", "/records/africas-biggest"]
-  .map((p) => searchIndex.find((d) => d.path === p)!)
-  .filter(Boolean);
+//
+// The index is NOT imported up here. It is 183 KB of JS (19 KB brotli), and a
+// static import put it in the first-load bundle of every page on the site,
+// ahead of the page's own paint, for a box most visits never open. It loads
+// on demand instead (loadIndex below): when the palette opens, when a pointer
+// or focus reaches the trigger, and once the page is idle after its load
+// event, but only where the trigger is displayed. A phone screen that carries
+// its own back bar hides the whole header, so it never downloads the index;
+// home on a phone shows the search circle, so it does. The four suggestions
+// come from the server as a prop, so "Popular pages" is there the moment the
+// palette opens, index or not. /search keeps its static import
+// (SearchResults.tsx): that page is the index.
+type SearchIndexModule = typeof import("../lib/searchIndex");
+let indexPromise: Promise<SearchIndexModule> | null = null;
+/** The loaded index, once it has arrived, so a later mount starts with it. */
+let indexModule: SearchIndexModule | undefined;
+function loadIndex(): Promise<SearchIndexModule> {
+  indexPromise ??= import("../lib/searchIndex").then(
+    (m) => (indexModule = m),
+    (err) => {
+      // A failed chunk load (a dropped connection) must not stick: the next
+      // open tries again.
+      indexPromise = null;
+      throw err;
+    }
+  );
+  return indexPromise;
+}
 
-export default function SearchPalette() {
+/** Today's result list, or null while the index is still on its way and
+ *  there is a query to run against it. An empty query shows the suggestions
+ *  either way. */
+function resultsFor(
+  index: SearchIndexModule | undefined,
+  query: string,
+  suggested: readonly SuggestedDoc[]
+): readonly (SearchDoc | SuggestedDoc)[] | null {
+  if (!index) return query.trim() ? null : suggested;
+  const r = index.searchDocs(query, 8);
+  return r.length ? r : query.trim() ? [] : suggested;
+}
+
+export default function SearchPalette({ suggested }: { suggested: readonly SuggestedDoc[] }) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [active, setActive] = useState(0);
@@ -24,11 +64,19 @@ export default function SearchPalette() {
   // instead of dumping a keyboard user at the top of the document.
   const openerRef = useRef<HTMLElement | null>(null);
   const router = useRouter();
+  // Undefined until the index has loaded; from the module cache on any mount
+  // after that, so a later mount never waits for it.
+  const [index, setIndex] = useState(() => indexModule);
+  const wantIndex = useCallback(() => {
+    loadIndex().then(setIndex, () => {});
+  }, []);
 
-  const results = useMemo(() => {
-    const r = searchDocs(query, 8);
-    return r.length ? r : query.trim() ? [] : SUGGESTED;
-  }, [query]);
+  // While the index is loading, a typed query shows neither results nor "No
+  // pages match": it is not known yet whether anything matches. The list
+  // appears when the index lands.
+  const found = useMemo(() => resultsFor(index, query, suggested), [index, query, suggested]);
+  const searching = found === null;
+  const results = found ?? [];
 
   const close = useCallback(() => {
     setOpen(false);
@@ -51,6 +99,39 @@ export default function SearchPalette() {
     },
     [query, close, router]
   );
+
+  // Every way of opening (the trigger, ⌘K, the hero's open-search event)
+  // asks for the index.
+  useEffect(() => {
+    if (open) wantIndex();
+  }, [open, wantIndex]);
+
+  // Warm it once the page has loaded and gone idle, so the first keystroke
+  // usually finds it there. Only where the trigger is displayed: a screen with
+  // its own back bar hides this header at phone width (.navDesktopOnly), and
+  // the palette cannot open there, so it never downloads the index. This is
+  // the same displayed test canOpen() makes below; it adds no breakpoint of
+  // its own.
+  useEffect(() => {
+    if (indexModule) return;
+    let idle: number | undefined;
+    let timer: number | undefined;
+    const warm = () => {
+      if (triggerRef.current?.getClientRects().length) wantIndex();
+    };
+    const schedule = () => {
+      // Safari has no requestIdleCallback; a timer after load stands in.
+      if (typeof window.requestIdleCallback === "function") idle = window.requestIdleCallback(warm, { timeout: 4000 });
+      else timer = window.setTimeout(warm, 2000);
+    };
+    if (document.readyState === "complete") schedule();
+    else window.addEventListener("load", schedule, { once: true });
+    return () => {
+      window.removeEventListener("load", schedule);
+      if (idle !== undefined) window.cancelIdleCallback(idle);
+      window.clearTimeout(timer);
+    };
+  }, [wantIndex]);
 
   // Global ⌘K / Ctrl+K to open, Escape to close.
   useEffect(() => {
@@ -115,17 +196,34 @@ export default function SearchPalette() {
   }, [open]);
 
   const onInputKey = (e: React.KeyboardEvent) => {
-    if (e.key === "ArrowDown") {
+    if (e.key === "ArrowDown" || e.key === "ArrowUp") {
       e.preventDefault();
-      setActive((i) => Math.min(i + 1, results.length - 1));
-    } else if (e.key === "ArrowUp") {
-      e.preventDefault();
-      setActive((i) => Math.max(i - 1, 0));
+      // Clamped at row 0, so a press while the index is still loading (no
+      // rows yet) leaves the first result highlighted when it lands.
+      const key = e.key;
+      setActive((i) => nextActive(i, key, results.length));
     } else if (e.key === "Enter") {
       e.preventDefault();
-      const pick = results[active];
-      if (pick) go(pick.path);
-      else if (query.trim()) go(`/search?q=${encodeURIComponent(query.trim())}`);
+      const choose = (list: readonly { path: string }[]) => {
+        const pick = list[active];
+        if (pick) go(pick.path);
+        else if (query.trim()) go(`/search?q=${encodeURIComponent(query.trim())}`);
+      };
+      if (!searching) {
+        choose(results);
+        return;
+      }
+      // Enter before the index has landed: wait for it, then choose exactly
+      // as above, so the same page opens as it would have with the index
+      // already there. Nothing happens if the palette was closed meanwhile.
+      loadIndex().then(
+        (m) => {
+          if (panelRef.current) choose(resultsFor(m, query, suggested) ?? []);
+        },
+        () => {
+          if (panelRef.current) choose([]);
+        }
+      );
     }
   };
 
@@ -156,6 +254,8 @@ export default function SearchPalette() {
         type="button"
         className={styles.trigger}
         onClick={() => setOpen(true)}
+        onPointerEnter={wantIndex}
+        onFocus={wantIndex}
         aria-label="Search the site"
       >
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
@@ -236,7 +336,7 @@ export default function SearchPalette() {
                   </li>
                 ))}
               </ul>
-            ) : (
+            ) : searching ? null : (
               <div className={styles.empty}>
                 No pages match “{query.trim()}”.
                 <br />

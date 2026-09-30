@@ -50,6 +50,7 @@ import { KindMark } from "../app/components/OnThisDayKind";
 import DaiDaiBackBar from "../app/components/DaiDaiBackBar";
 import BackToTop from "../app/components/BackToTop";
 import Nav from "../app/components/Nav";
+import { suggestedSearchDocs } from "../app/lib/searchSuggested";
 import FlagEmojiPolyfill, { DRAWS_FLAGS } from "../app/components/FlagEmojiPolyfill";
 import DaiDaiReplay from "../app/components/DaiDaiReplay";
 import { buildReplayData } from "../app/components/daiDaiReplayData";
@@ -475,7 +476,7 @@ describe("the site bar and back-to-top listen only where they can be seen", () =
       nav.path = path;
       const restore = atWidth(phone);
       try {
-        const types = windowListeners(() => void render(<Nav />));
+        const types = windowListeners(() => void render(<Nav suggested={suggestedSearchDocs()} />));
         expect(types.filter((t) => t === "scroll"), `${path} ${phone ? "phone" : "desktop"}`).toHaveLength(want);
       } finally {
         restore();

@@ -32,6 +32,10 @@ import {
   numberOnes,
   chartCountryCount,
 } from "../../app/data/charts";
+// Cover art as /records/charts builds it on the server and passes to both layouts.
+import { chartCovers } from "../../app/lib/chartCovers";
+
+const covers = chartCovers(albumCharts, singleCharts, featureCharts);
 import { ceremonies, honours, totalWins } from "../../app/data/awards";
 
 /**
@@ -68,7 +72,7 @@ const mobileCerts = () => (
   />
 );
 const chart = () => (
-  <ChartExplorer albums={albumCharts} singles={singleCharts} features={featureCharts} countries={CHART_COUNTRIES} />
+  <ChartExplorer albums={albumCharts} singles={singleCharts} features={featureCharts} countries={CHART_COUNTRIES} covers={covers} />
 );
 const mobileChart = () => (
   <MobileOfficialCharts
@@ -80,6 +84,7 @@ const mobileChart = () => (
     territoryCount={chartCountryCount}
     numberOnes={numberOnes}
     releaseCount={albumCharts.length + singleCharts.length + featureCharts.length}
+    covers={covers}
   />
 );
 

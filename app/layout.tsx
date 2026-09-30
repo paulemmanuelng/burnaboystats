@@ -8,6 +8,7 @@ import Nav from "./components/Nav";
 import MobileNavSheet from "./components/MobileNavSheet";
 import NavHistoryTracker from "./components/NavHistoryTracker";
 import { navGroups, navUpdated, navSearchHint } from "./lib/navGroups";
+import { suggestedSearchDocs } from "./lib/searchSuggested";
 import BackToTop from "./components/BackToTop";
 import Breadcrumbs from "./components/Breadcrumbs";
 import BirthdayCelebration from "./components/BirthdayCelebration";
@@ -257,8 +258,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             to where you came from" from "there is nowhere to go back to". */}
         <NavHistoryTracker />
 
-        {/* NAVIGATION BAR — shown on every page */}
-        <Nav />
+        {/* NAVIGATION BAR — shown on every page. The search palette's four
+            suggestions are built here on the server; the index itself loads
+            in the browser only when somebody may search. */}
+        <Nav suggested={suggestedSearchDocs()} />
 
         {/* The hamburger's open state. Mounted once here rather than per
             screen: it is opened by an event, so every back bar's menu button

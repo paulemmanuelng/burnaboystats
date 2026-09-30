@@ -8,6 +8,7 @@ import LiveReleaseBlock, { type ReleaseSummary } from "../../../components/LiveR
 import { cadenceOf, reachOf, numberOnesOf, releaseKey, LIVE_CADENCE, LIVE_CADENCE_LABEL, LIVE_CADENCE_ADVERB } from "../../../lib/liveChartMeta";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime } from "../../../lib/seo";
 import { artistBySlug } from "../../../data/afrobeats";
+import { releaseArt } from "../../../lib/liveReleaseArt";
 import { LIVE_BOARDS, liveBoardFor, type LiveBoard } from "../../../data/liveBoards";
 
 export const dynamicParams = false;
@@ -81,10 +82,12 @@ export async function generateMetadata({ params }: { params: Promise<{ artist: s
   });
 }
 
+// Each row's art is resolved here, not in the browser (lib/liveReleaseArt.ts).
+// The phone's EP tag reads the catalogue's EP list, as it did in the browser.
 const preview = (r: LiveBoard["releases"][number]): ReleasePreview => ({
   kind: r.kind,
   title: r.title,
-  cover: r.cover,
+  ...releaseArt(r),
   total: reachOf(r),
   no1: numberOnesOf(r),
   top: r.platforms
@@ -97,7 +100,7 @@ const preview = (r: LiveBoard["releases"][number]): ReleasePreview => ({
 const summarize = (r: LiveBoard["releases"][number]): ReleaseSummary => ({
   title: r.title,
   kind: r.kind,
-  cover: r.cover,
+  ...releaseArt(r),
   // The board feed only knows song vs album, and we hold no EP list for these
   // artists — so nothing is labelled an EP rather than labelling one wrongly.
   ep: false,

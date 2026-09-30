@@ -8,6 +8,10 @@ vi.mock("next/navigation", () => ({
 }));
 
 import SearchPalette from "../../app/components/SearchPalette";
+import { suggestedSearchDocs } from "../../app/lib/searchSuggested";
+
+// The suggestions as layout.tsx builds them on the server.
+const suggested = suggestedSearchDocs();
 
 /**
  * The ⌘K palette, as the debug pass of 24 Sep 2026 found it on the live site:
@@ -27,6 +31,11 @@ import SearchPalette from "../../app/components/SearchPalette";
  * jsdom does no layout, so getClientRects() is empty for everything. It is
  * stubbed to follow `hidden` and a test-only `data-test-undisplayed`, which
  * stands in for the display:none a stylesheet would apply.
+ *
+ * Since 30 Sep 2026 the palette loads the search index on demand (opening it
+ * asks for it), so a typed query's results arrive a moment after the typing:
+ * they are awaited here with findBy / waitFor rather than read at once.
+ * tests/ui/searchPaletteDeferred.test.tsx holds the index back on purpose.
  */
 beforeEach(() => {
   vi.spyOn(Element.prototype, "getClientRects").mockImplementation(function (this: Element) {
@@ -44,7 +53,7 @@ const palette = () => screen.queryByRole("dialog", { name: "Search the site" });
 
 describe("⌘K opens the palette only where it can be seen and used", () => {
   it("opens on an ordinary page (control)", () => {
-    render(<SearchPalette />);
+    render(<SearchPalette suggested={suggested} />);
     cmdK();
     expect(palette()).toBeInTheDocument();
     expect(screen.getByRole("combobox", { name: "Search query" })).toHaveFocus();
@@ -53,7 +62,7 @@ describe("⌘K opens the palette only where it can be seen and used", () => {
   it("C-01: stays shut while another modal is open, which keeps its focus", () => {
     render(
       <>
-        <SearchPalette />
+        <SearchPalette suggested={suggested} />
         <div role="dialog" aria-modal="true" aria-label="No Sign of Weakness tracklist">
           <button type="button">Close dialog</button>
         </div>
@@ -73,7 +82,7 @@ describe("⌘K opens the palette only where it can be seen and used", () => {
   it("C-01: a closed menu sheet (mounted with `hidden`) does not count as open", () => {
     render(
       <>
-        <SearchPalette />
+        <SearchPalette suggested={suggested} />
         <div role="dialog" aria-modal="true" aria-label="Site menu" hidden />
       </>
     );
@@ -84,7 +93,7 @@ describe("⌘K opens the palette only where it can be seen and used", () => {
   it("C-02: stays shut when its own trigger is not displayed", () => {
     render(
       <header data-test-undisplayed="">
-        <SearchPalette />
+        <SearchPalette suggested={suggested} />
       </header>
     );
     cmdK();
@@ -100,11 +109,11 @@ describe("⌘K opens the palette only where it can be seen and used", () => {
 
 describe("C-13: every way out clears the query", () => {
   it("reopens on the suggestions after Esc, not on the last query", async () => {
-    render(<SearchPalette />);
+    render(<SearchPalette suggested={suggested} />);
     cmdK();
     await userEvent.type(screen.getByRole("combobox", { name: "Search query" }), "gbo");
     // Gbona is what "gbo" found on the live site.
-    expect(screen.getByRole("option", { name: /Gbona/ })).toBeInTheDocument();
+    expect(await screen.findByRole("option", { name: /Gbona/ })).toBeInTheDocument();
 
     fireEvent.keyDown(window, { key: "Escape" });
     expect(palette()).not.toBeInTheDocument();
@@ -115,7 +124,7 @@ describe("C-13: every way out clears the query", () => {
   });
 
   it("reopens empty after ⌘K toggled it shut", async () => {
-    render(<SearchPalette />);
+    render(<SearchPalette suggested={suggested} />);
     cmdK();
     await userEvent.type(screen.getByRole("combobox", { name: "Search query" }), "gbo");
     cmdK();
@@ -131,20 +140,20 @@ describe("C-04: a result on the page you are on moves the fragment itself", () =
     const heard = vi.fn();
     window.addEventListener("hashchange", heard);
 
-    render(<SearchPalette />);
+    render(<SearchPalette suggested={suggested} />);
     cmdK();
     await userEvent.type(screen.getByRole("combobox", { name: "Search query" }), "gbona{Enter}");
 
+    await vi.waitFor(() => expect(window.location.pathname + window.location.hash).toBe("/certifications#release=Gbona"));
     expect(push).not.toHaveBeenCalled();
-    expect(window.location.pathname + window.location.hash).toBe("/certifications#release=Gbona");
     await vi.waitFor(() => expect(heard).toHaveBeenCalled());
     window.removeEventListener("hashchange", heard);
   });
 
   it("still pushes through the router to another page", async () => {
-    render(<SearchPalette />);
+    render(<SearchPalette suggested={suggested} />);
     cmdK();
     await userEvent.type(screen.getByRole("combobox", { name: "Search query" }), "gbona{Enter}");
-    expect(push).toHaveBeenCalledWith("/certifications#release=Gbona");
+    await vi.waitFor(() => expect(push).toHaveBeenCalledWith("/certifications#release=Gbona"));
   });
 });
