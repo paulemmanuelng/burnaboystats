@@ -299,6 +299,11 @@
     "--green 50%",
     "--shadow-base 45%"
   ],
+  "app/components/worldMap.module.css": [
+    "--scrim-base 90%",
+    "--shadow-base 55%",
+    "--veil-base 97%"
+  ],
   "app/contact/contact.module.css": [
     "--gold-wash-base 6%"
   ],
