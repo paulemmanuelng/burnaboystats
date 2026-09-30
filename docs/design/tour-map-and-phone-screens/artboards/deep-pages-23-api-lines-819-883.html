@@ -1,0 +1,67 @@
+<!-- EXCERPT, read-only reference. Source: design_handoff_burnaboystats/designs/mobile/Burna Boy Stats - Mobile Deep Pages.dc.html, lines 819-883,
+     copied 30 Sep 2026 from the owner's copy of the bundle (dated 26 Sep 2026). Edit the file in your own project, not this copy. -->
+      <div style="font-family:var(--mono);font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted)">23 · Open data API</div>
+      <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" dark="{{ true }}" hint-size="402px,874px">
+        <div style="background:var(--bg);min-height:100%;display:flex;flex-direction:column">
+          <div style="position:sticky;top:0;z-index:5;background:rgba(12,10,9,0.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:56px 18px 12px;display:flex;align-items:center;gap:12px">
+            <span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:999px;background:var(--soft);border:1px solid var(--line);color:var(--text);flex:none"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 5l-7 7 7 7"></path></svg></span>
+            <span style="font-family:var(--mono);font-weight:700;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase">Open data API</span>
+            <span style="margin-left:auto;font-family:var(--mono);font-size:10px;letter-spacing:0.1em;color:var(--gold);flex:none">v1</span>
+            <button aria-label="Open menu" style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:999px;background:var(--soft);border:1px solid var(--line);color:var(--muted);cursor:pointer;flex:none"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button>
+          </div>
+          <div style="padding:22px 18px 18px">
+            <div style="font-family:var(--mono);font-weight:700;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted)">Free · no key · no rate limit</div>
+            <h1 style="font-size:46px;line-height:0.94;margin-top:11px">Open data <span style="background:linear-gradient(180deg,var(--gold-bright),var(--gold) 45%,var(--gold-2));-webkit-background-clip:text;background-clip:text;color:transparent">API</span></h1>
+            <p style="font-size:14.5px;line-height:1.55;color:#CFC7BB;margin:12px 0 0">Afrobeats has no open chart dataset. Every figure here is checked against the body that owns it, and published in machine-readable form. The only condition is attribution.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:7px;margin-top:16px">
+              <span style="display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;border:1px solid rgba(255,182,39,0.4);background:rgba(255,182,39,0.08);color:var(--gold);font-family:var(--mono);font-weight:700;font-size:10px;letter-spacing:0.08em"><span style="width:6px;height:6px;border-radius:999px;background:var(--green);display:block"></span>260 chart entries</span>
+              <span style="padding:6px 12px;border-radius:999px;border:1px solid var(--line);color:var(--muted);font-family:var(--mono);font-weight:700;font-size:10px;letter-spacing:0.08em">221 certifications</span>
+              <span style="padding:6px 12px;border-radius:999px;border:1px solid var(--line);color:var(--muted);font-family:var(--mono);font-weight:700;font-size:10px;letter-spacing:0.08em">60 countries</span>
+              <span style="padding:6px 12px;border-radius:999px;border:1px solid var(--line);color:var(--muted);font-family:var(--mono);font-weight:700;font-size:10px;letter-spacing:0.08em">CC BY 4.0</span>
+            </div>
+          </div>
+          <div style="border-top:1px solid var(--line);padding:20px 18px 8px">
+            <h2 style="font-size:20px;color:var(--gold)">Endpoints</h2>
+            <p style="font-size:12.5px;line-height:1.55;color:var(--muted);margin:8px 0 14px">All <span style="font-family:var(--mono);color:var(--text)">GET</span>, all JSON, all sending <span style="font-family:var(--mono);color:var(--text)">Access-Control-Allow-Origin: *</span> so you can call them straight from the browser.</p>
+            <sc-for list="{{ apiEndpoints }}" as="e" hint-placeholder-count="4">
+              <a href="#" style="display:block;padding:13px 0;border-top:1px solid var(--line);color:var(--text)">
+                <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+                  <span style="padding:3px 8px;border-radius:4px;background:rgba(255,182,39,0.14);color:var(--gold);font-family:var(--mono);font-weight:700;font-size:10px;letter-spacing:0.06em">GET</span>
+                  <span style="font-family:var(--mono);font-size:12.5px;color:var(--text)">/api/v1{{ e.path }}</span>
+                  <span style="margin-left:auto;font-family:var(--mono);font-size:10px;color:var(--dim)">{{ e.size }}</span>
+                </div>
+                <p style="font-size:12.5px;line-height:1.5;color:var(--muted);margin:7px 0 0">{{ e.what }}</p>
+              </a>
+            </sc-for>
+          </div>
+          <div style="background:var(--soft);border-top:1px solid var(--line);margin-top:16px;padding:20px 18px">
+            <h2 style="font-size:20px;color:var(--gold)">Try it</h2>
+            <div style="margin-top:12px;padding:13px 14px;border-radius:8px;background:#0f0f11;border:1px solid var(--line);overflow-x:auto">
+              <code style="font-family:var(--mono);font-size:11.5px;color:var(--gold-bright);white-space:pre">curl burnaboystats.com/api/v1/charts</code>
+            </div>
+            <p style="font-size:12.5px;line-height:1.55;color:var(--muted);margin:12px 0 0">Every response uses the same envelope — the data, plus where it came from and when it last changed. <span style="font-family:var(--mono);color:var(--text)">updated</span> is the date of the most recent real change, not the last deploy, so you can use it to decide whether to re-fetch.</p>
+          </div>
+          <div style="border-top:1px solid var(--line);padding:20px 18px 6px">
+            <h2 style="font-size:20px;color:var(--gold)">Before you use it</h2>
+            <sc-for list="{{ apiCaveats }}" as="c" hint-placeholder-count="5">
+              <div style="padding:12px 0;border-bottom:1px solid var(--line)">
+                <p style="font-size:12.5px;line-height:1.6;color:var(--muted);margin:0"><strong style="color:var(--text);font-weight:700">{{ c.lead }}</strong> {{ c.rest }}</p>
+              </div>
+            </sc-for>
+          </div>
+          <div style="border-top:1px solid var(--line);padding:18px 18px">
+            <h2 style="font-size:18px;color:var(--gold)">Licence &amp; attribution</h2>
+            <p style="font-size:12.5px;line-height:1.6;color:var(--muted);margin:8px 0 10px">Released under CC BY 4.0. Use it commercially, remix it, redistribute it — just credit the source:</p>
+            <div style="padding:11px 13px;border-radius:8px;background:#0f0f11;border:1px solid var(--line);overflow-x:auto">
+              <code style="font-family:var(--mono);font-size:11px;color:#CFC7BB;white-space:pre">Data from Burna Boy Stats — burnaboystats.com</code>
+            </div>
+          </div>
+          <div style="height:110px"></div>
+          <div style="position:sticky;bottom:0;margin-top:auto;background:rgba(12,10,9,0.94);backdrop-filter:blur(14px);border-top:1px solid var(--line);padding:12px 18px 34px">
+            <button style="width:100%;min-height:50px;border-radius:999px;background:var(--gold);color:#0a0a0b;border:0;font-family:var(--mono);font-weight:700;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;box-shadow:0 0 26px rgba(255,182,39,0.25);cursor:pointer">Copy the curl</button>
+          </div>
+        </div>
+      </x-import>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:14px">

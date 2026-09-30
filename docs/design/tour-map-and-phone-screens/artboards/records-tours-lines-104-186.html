@@ -1,0 +1,85 @@
+<!-- EXCERPT, read-only reference. Source: design_handoff_burnaboystats/designs/desktop/Records - Tours.dc.html, lines 104-186,
+     copied 30 Sep 2026 from the owner's copy of the bundle (dated 26 Sep 2026). Edit the file in your own project, not this copy. -->
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;font-family:var(--font-mono);font-weight:700;font-size:11.5px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted)">
+          <span style="width:22px;height:2px;background:var(--color-accent);display:block"></span>On the road
+        </div>
+        <h1 style="font-size:92px;line-height:0.88;margin:16px 0 0">Tours <span style="background:linear-gradient(120deg,var(--gold-bright),var(--color-accent) 55%,var(--color-accent-2));-webkit-background-clip:text;background-clip:text;color:transparent">&amp; Live</span></h1>
+        <p style="font-size:17.5px;line-height:1.55;max-width:62ch;margin:18px 0 0;color:#d8d8de;text-wrap:pretty">The I Told Them… Tour grossed $30.46 million across 22 shows — the highest-grossing tour by an African artist in history — and his June 2024 London Stadium concert ($6.15M from 58,973 fans) is the biggest single concert ever by an African artist.</p>
+      </div>
+      <div style="border-left:1px solid var(--color-divider);padding-left:40px">
+        <div style="font-family:var(--font-mono);font-weight:700;font-size:11.5px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted)">Upcoming dates &amp; tickets</div>
+        <div style="display:flex;flex-direction:column;gap:9px;margin-top:16px">
+          <a class="btn btn-primary" href="https://www.ticketmaster.com/burna-boy-tickets/artist/2486272" target="_blank" rel="noopener noreferrer" style="background:var(--color-accent);justify-content:flex-start;width:100%">Tickets · Ticketmaster ↗</a>
+          <a class="btn btn-secondary" href="https://www.onaspaceship.com/tour" target="_blank" rel="noopener noreferrer" style="justify-content:flex-start;width:100%">Official tour site ↗</a>
+          <a class="btn btn-secondary" href="/records/tours/map" style="justify-content:flex-start;width:100%">Where he's performed ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="border-bottom:1px solid var(--color-divider);background:var(--color-surface)">
+    <div style="max-width:1360px;margin:0 auto;padding:0 40px;display:grid;grid-template-columns:repeat(3,1fr)">
+      <sc-for list="{{ headline }}" as="s" hint-placeholder-count="3">
+        <div style="padding:28px 24px 26px;border-left:1px solid var(--color-divider)">
+          <div style="font-family:var(--font-heading);font-size:52px;line-height:0.9;color:var(--text);font-variant-numeric:tabular-nums">{{ s.value }}</div>
+          <div style="font-family:var(--font-mono);font-weight:700;font-size:11.5px;letter-spacing:0.14em;text-transform:uppercase;margin-top:12px">{{ s.label }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="border-bottom:1px solid var(--color-divider)">
+    <div style="max-width:1360px;margin:0 auto;padding:40px 40px 44px">
+      <div style="display:flex;align-items:flex-end;gap:30px;margin-bottom:8px">
+        <h2 style="font-size:38px;margin:0"><span style="background:linear-gradient(120deg,var(--gold-bright),var(--color-accent) 55%,var(--color-accent-2));-webkit-background-clip:text;background-clip:text;color:transparent">Tours</span></h2>
+        <p class="text-muted" style="font-size:13.5px;margin:0 0 6px">Click a tour to see its venues, dates and capacities.</p>
+      </div>
+      <div style="border-top:1px solid var(--color-divider)">
+        <sc-for list="{{ tours }}" as="t">
+          <div style="border-bottom:1px solid var(--color-divider)">
+            <button onClick="{{ t.toggle }}" style="width:100%;display:grid;grid-template-columns:26px 1fr auto;gap:20px;align-items:center;padding:20px 8px;background:{{ t.rowBg }};border:0;text-align:left;cursor:pointer;font:inherit;color:var(--color-text)" style-hover="background:rgba(245,240,232,0.05)">
+              <span style="color:var(--color-accent);font-size:13px;transform:{{ t.caret }};display:inline-block">▼</span>
+              <span style="min-width:0">
+                <span style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap">
+                  <span style="font-family:var(--font-heading);font-size:27px;line-height:1.05;text-transform:uppercase">{{ t.name }}</span>
+                  <span style="font-family:var(--font-mono);font-size:12.5px;color:var(--muted)">{{ t.years }}</span>
+                  <span style="display:{{ t.recordShow }};padding:3px 10px;border-radius:999px;border:1px solid rgba(62,209,127,0.45);color:var(--win);font-family:var(--font-mono);font-weight:700;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase">African record</span>
+                </span>
+                <span style="display:block;color:var(--muted);font-size:13.5px;margin-top:6px;max-width:96ch;line-height:1.55">{{ t.note }}</span>
+              </span>
+              <span style="text-align:right;white-space:nowrap">
+                <span style="display:block;font-family:var(--font-heading);font-size:24px;color:var(--color-accent);font-variant-numeric:tabular-nums">{{ t.gross }}</span>
+                <span style="display:block;font-family:var(--font-mono);font-size:11.5px;color:var(--muted);margin-top:4px">{{ t.meta }}</span>
+              </span>
+            </button>
+            <sc-if value="{{ t.open }}" hint-placeholder-val="{{ false }}">
+              <div style="padding:4px 8px 24px 46px">
+                <table class="table">
+                  <thead><tr><th style="width:130px">Date</th><th>Venue</th><th style="width:180px">City</th><th style="width:140px">Country</th><th style="width:110px;text-align:right">Capacity</th></tr></thead>
+                  <tbody>
+                    <sc-for list="{{ t.dates }}" as="d">
+                      <tr>
+                        <td style="font-family:var(--font-mono);font-size:12.5px;color:var(--muted);white-space:nowrap">{{ d.date }}</td>
+                        <td style="font-weight:600;font-size:14.5px">{{ d.venue }}</td>
+                        <td style="font-size:13.5px;color:#d8d8de">{{ d.city }}</td>
+                        <td style="font-family:var(--font-mono);font-size:12px;color:var(--muted)">{{ d.country }}</td>
+                        <td style="text-align:right;font-family:var(--font-mono);font-size:12.5px;color:#d8d8de;font-variant-numeric:tabular-nums">{{ d.cap }}</td>
+                      </tr>
+                    </sc-for>
+                  </tbody>
+                </table>
+                <div style="font-family:var(--font-mono);font-size:11.5px;color:var(--muted);margin-top:12px">{{ t.dateNote }}</div>
+              </div>
+            </sc-if>
+          </div>
+        </sc-for>
+      </div>
+      <a href="/records/tours/festivals" style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:20px;padding:22px 26px;border:1px solid var(--border);border-radius:var(--radius-md);background:var(--color-surface);color:var(--color-text)" style-hover="border-color:var(--color-accent);background:rgba(255,182,39,0.05)">
+        <span>
+          <span style="display:block;font-family:var(--font-heading);font-size:24px;text-transform:uppercase">Festivals &amp; shows</span>
+          <span style="display:block;color:var(--muted);font-size:13.5px;margin-top:5px">Every festival &amp; big stage he's played — the headline sets and beyond</span>
+        </span>
+        <span style="color:var(--color-accent);font-weight:700;font-size:20px">→</span>
+      </a>
+    </div>

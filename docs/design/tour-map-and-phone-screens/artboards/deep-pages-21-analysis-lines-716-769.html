@@ -1,0 +1,56 @@
+<!-- EXCERPT, read-only reference. Source: design_handoff_burnaboystats/designs/mobile/Burna Boy Stats - Mobile Deep Pages.dc.html, lines 716-769,
+     copied 30 Sep 2026 from the owner's copy of the bundle (dated 26 Sep 2026). Edit the file in your own project, not this copy. -->
+      <div style="font-family:var(--mono);font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted)">21 · Analysis</div>
+      <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" dark="{{ true }}" hint-size="402px,874px">
+        <div style="background:var(--bg);min-height:100%;display:flex;flex-direction:column">
+          <div style="position:sticky;top:0;z-index:5;background:rgba(12,10,9,0.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:56px 18px 12px;display:flex;align-items:center;gap:12px">
+            <span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:999px;background:var(--soft);border:1px solid var(--line);color:var(--text);flex:none"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 5l-7 7 7 7"></path></svg></span>
+            <span style="font-family:var(--mono);font-weight:700;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase">Analysis</span>
+            <span style="margin-left:auto;font-family:var(--mono);font-size:10px;letter-spacing:0.1em;color:var(--gold);flex:none">4 findings</span>
+            <button aria-label="Open menu" style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:999px;background:var(--soft);border:1px solid var(--line);color:var(--muted);cursor:pointer;flex:none"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button>
+          </div>
+          <div style="padding:22px 18px 18px">
+            <div style="font-family:var(--mono);font-weight:700;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted)">Analysis · not a summary</div>
+            <h1 style="font-size:34px;line-height:1.0;margin-top:11px">What the numbers <span style="background:linear-gradient(180deg,var(--gold-bright),var(--gold) 45%,var(--gold-2));-webkit-background-clip:text;background-clip:text;color:transparent">actually say</span></h1>
+            <p style="font-size:14.5px;line-height:1.55;color:#CFC7BB;margin:12px 0 0">The rest of this site reports the record. This page argues with it — four findings drawn from the full chart and certification data.</p>
+            <div style="display:flex;align-items:center;gap:9px;margin-top:14px;font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim)">
+              <span style="width:7px;height:7px;border-radius:999px;background:var(--green);display:block;flex:none"></span>Data last reviewed 30 July 2026
+            </div>
+          </div>
+          <sc-for list="{{ anFindings }}" as="f" hint-placeholder-count="4">
+            <div style="border-top:1px solid var(--line);padding:22px 18px 20px">
+              <div style="display:flex;align-items:center;gap:10px;font-family:var(--mono);font-weight:700;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold)">
+                <span style="font-family:var(--anton);font-size:19px;letter-spacing:0.02em">{{ f.num }}</span>{{ f.kicker }}
+              </div>
+              <h2 style="font-size:24px;line-height:1.12;margin-top:10px;text-transform:none">{{ f.h }}</h2>
+              <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:16px">
+                <sc-for list="{{ f.stats }}" as="t" hint-placeholder-count="3">
+                  <div style="background:var(--bg);padding:12px 10px;text-align:center">
+                    <div style="font-family:var(--anton);font-size:24px;line-height:1;color:var(--gold);font-variant-numeric:tabular-nums">{{ t.0 }}</div>
+                    <div style="font-family:var(--mono);font-size:10px;letter-spacing:0.05em;color:var(--muted);margin-top:6px;line-height:1.35">{{ t.1 }}</div>
+                  </div>
+                </sc-for>
+              </div>
+              <sc-for list="{{ f.body }}" as="p" hint-placeholder-count="3">
+                <p style="font-size:13.5px;line-height:1.6;color:#CFC7BB;margin:13px 0 0">{{ p }}</p>
+              </sc-for>
+              <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:15px">
+                <sc-for list="{{ f.links }}" as="l" hint-placeholder-count="2">
+                  <a href="{{ l.1 }}" style="display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border-radius:999px;border:1px solid var(--line);color:var(--gold);font-family:var(--mono);font-weight:700;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase">{{ l.0 }} →</a>
+                </sc-for>
+              </div>
+            </div>
+          </sc-for>
+          <div style="border-top:1px solid var(--line);background:var(--soft);padding:22px 18px">
+            <h2 style="font-size:20px;color:var(--gold)">How to check this</h2>
+            <p style="font-size:13px;line-height:1.6;color:var(--muted);margin:10px 0 0">Nothing here is an opinion about the music — each claim is a statement about the dataset, and every one can be reproduced. The figures are published as open JSON on the data API. Two definitions matter: No. 1s are counted as <em style="color:#CFC7BB">placements</em>, and country tallies exclude the two Billboard Global charts, since a worldwide chart isn't a market.</p>
+          </div>
+          <div style="height:110px"></div>
+          <div style="position:sticky;bottom:0;margin-top:auto;background:rgba(12,10,9,0.94);backdrop-filter:blur(14px);border-top:1px solid var(--line);padding:12px 18px 34px">
+            <button style="width:100%;min-height:50px;border-radius:999px;background:var(--gold);color:#0a0a0b;border:0;font-family:var(--mono);font-weight:700;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;box-shadow:0 0 26px rgba(255,182,39,0.25);cursor:pointer">Open the data API</button>
+          </div>
+        </div>
+      </x-import>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:14px">
