@@ -69,8 +69,9 @@
   color: var(--text-muted);
 }
 .ticketBtns { display: flex; flex-direction: column; gap: 9px; margin-top: 16px; }
-/* Left-aligned labels: three stacked full-width buttons read as a list, and a
-   list is scanned down its left edge. */
+/* Left-aligned labels: stacked full-width buttons read as a list, and a list is
+   scanned down its left edge. Two, both leaving the site: the map link that sat
+   third here moved to its own card beside Festivals (design response item 33). */
 .ticketBtns :global(.btn) { width: 100%; justify-content: flex-start; }  /* :global — the ticket links carry the UNHASHED global class, so a bare
      .btn here compiles to a local name and matches nothing. The site's other
      three call sites wrap it; this one did not, so global .btn's
@@ -224,25 +225,45 @@
 }
 
 /* ── Jump cards ─────────────────────────────────────────────────────────── */
+/* After the tour list: "Where he's performed", then "Festivals & shows", one
+   row of two (Map Links §2). minmax(0, 1fr) so a long word can't push a card
+   past its half; the grid stretches both to the taller card. */
+.cardsRow {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
 .jumpCard,
 .jumpCardAlt {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  margin-top: 20px;
   padding: 22px 26px;
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   color: var(--text);
   transition: border-color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease);
 }
-/* The two cards sit on different beds, so each takes the other band's colour
+/* The two kinds sit on different beds, so each takes the other band's colour
    to stay legible as a raised surface. */
-.jumpCard { background: var(--bg-soft); }
-.jumpCardAlt { background: var(--bg); }
-.jumpCard:hover,
+.jumpCard { background: var(--bg-soft); min-width: 0; }
+.jumpCardAlt { background: var(--bg); margin-top: 20px; }
+/* The owner's hover rule: the surface presses to --bg-raised, no gold wash. */
+.jumpCard:hover { border-color: var(--gold); background: var(--bg-raised); }
 .jumpCardAlt:hover { border-color: var(--gold); background: color-mix(in srgb, var(--gold-wash-base) calc(5% * var(--wash-strength)), transparent); }
+.cardText { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+.cardTitle {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+.cardDesc { color: var(--text-muted); font-size: 13.5px; line-height: 1.45; }
+/* Ink, not muted: the sub-line carries the card's figures. */
+.cardSub { color: var(--text); font-size: 13.5px; line-height: 1.45; margin-top: 2px; }
 .jumpTitle {
   display: block;
   font-family: var(--font-anton), sans-serif;
@@ -251,7 +272,7 @@
   text-transform: uppercase;
 }
 .jumpDesc { display: block; color: var(--text-muted); font-size: 13.5px; margin-top: 5px; }
-.jumpArrow { color: var(--gold); font-weight: 700; font-size: 20px; }
+.jumpArrow { color: var(--gold); font-weight: 700; font-size: 20px; flex: none; }
 
 /* ── Revenue per show ───────────────────────────────────────────────────── */
 .revenuePad { padding: 42px 40px 46px; }
@@ -363,6 +384,8 @@
   .ticketPanel { border-left: 0; padding-left: 0; border-top: 1px solid var(--line); padding-top: 40px; }
   .h1 { font-size: 67px; }
   .headlineValue { font-size: 42px; }
+  /* The 1024 check: 944 of content, 462 a card, both titles on one line. */
+  .jumpCard { padding: 22px 24px; }
 }
 
 /* ── Announced, not yet played ──────────────────────────────────────────

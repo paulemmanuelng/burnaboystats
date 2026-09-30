@@ -4,7 +4,7 @@ import KeepExploring from "../../components/KeepExploring";
 import BreadcrumbBar from "../../components/BreadcrumbBar";
 import ToursExplorer from "../../components/ToursExplorer";
 import MobileTours from "../../components/MobileTours";
-import { tours, liveMoments, upcomingShows } from "../../data/tours";
+import { tours, liveMoments, upcomingShows, festivals, concerts, otherShows } from "../../data/tours";
 import { revenueShows } from "../../data/tourRevenue";
 import { countryCount as playedCount, regionCount } from "../../data/performedCountries";
 import { pageMetadata } from "../../lib/seo";
@@ -58,6 +58,11 @@ function yearsOf(range: string): number[] {
 }
 const tourYears = tours.flatMap((t) => yearsOf(t.years));
 const yearSpan = `${Math.min(...tourYears)} — ${Math.max(...tourYears)}`;
+
+// The two cards after the tour list carry these as their sub-lines.
+// "Documented", because the lists are what has been verified, not a claim to
+// every show he has played.
+const appearanceCount = festivals.length + concerts.length + otherShows.length;
 
 const headline = [
   // topTour.gross verbatim, not re-rounded. toFixed(1) turned "$30.46M" into
@@ -128,9 +133,6 @@ export default function ToursPage() {
                   >
                     Official tour site ↗
                   </a>
-                  <Link href="/records/tours/map" className="btn btnSecondary">
-                    Where he&apos;s performed ↗
-                  </Link>
                 </div>
               </div>
             </div>
@@ -192,18 +194,37 @@ export default function ToursPage() {
 
             <ToursExplorer tours={tours} />
 
-            <Link href="/records/tours/festivals" className={styles.jumpCard}>
-              <span>
-                <span className={styles.jumpTitle}>Festivals &amp; shows</span>
-                <span className={styles.jumpDesc}>
-                  Every festival &amp; big stage he&apos;s played — the headline sets and
-                  beyond
+            {/* The map's card, then Festivals: two cards that are themselves
+                the link, so each ends in →. The map used to be a third button
+                in the tickets panel, where it read as a third ticket link. */}
+            <div className={styles.cardsRow}>
+              <Link href="/records/tours/map" className={styles.jumpCard}>
+                <span className={styles.cardText}>
+                  <span className={styles.cardTitle}>Where he&apos;s performed</span>
+                  <span className={styles.cardDesc}>
+                    The countries he has taken to the stage, on one map
+                  </span>
+                  <span className={styles.cardSub}>
+                    {playedCount} countries documented · {regionCount} regions
+                  </span>
                 </span>
-              </span>
-              <span className={styles.jumpArrow} aria-hidden="true">
-                →
-              </span>
-            </Link>
+                <span className={styles.jumpArrow} aria-hidden="true">
+                  →
+                </span>
+              </Link>
+              <Link href="/records/tours/festivals" className={styles.jumpCard}>
+                <span className={styles.cardText}>
+                  <span className={styles.cardTitle}>Festivals &amp; shows</span>
+                  <span className={styles.cardDesc}>
+                    The festivals and big stages he&apos;s played: the headline sets and beyond
+                  </span>
+                  <span className={styles.cardSub}>{appearanceCount} documented appearances</span>
+                </span>
+                <span className={styles.jumpArrow} aria-hidden="true">
+                  →
+                </span>
+              </Link>
+            </div>
           </div>
         </section>
 
