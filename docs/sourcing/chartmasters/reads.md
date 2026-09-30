@@ -111,3 +111,12 @@ One block per run of scripts/chartmasters-anchor.mjs — what was read, what was
 - tyla: 2026 ledger anchored at 1,235,340,009 through kworb's 2026-09-24 (was 1,235,338,424 through 2026-09-24)
 - edit: app/data/streamingTotals.ts: "11.06B" → "11.07B"
 - edit: app/data/streamingTotals.ts: "11,060,226,630" → "11,070,534,585"
+
+## 2026-09-30
+
+- career total: offset 117,380,830 (ChartMasters through 2026-09-28 − kworb 2026-09-29); published 11,107,256,033 on kworb's 2026-09-29 page
+- ChartMasters milestone: 1.4B Album Streams — Sep 25, 2026
+- ChartMasters milestone: 11B Artist Streams — Sep 14, 2026
+- burna-boy: 2026 ledger NOT re-anchored. The script anchored it at 1,907,703,359 through kworb's 2026-09-29 (was 1,900,611,867 through 2026-09-28, plus a 29 Sep daily of 6,883,734), but the board prints 28 Sep and a ledger cannot give a figure for a day before its checkpoint (tests/statsGuards "the board is never ahead of the ledgers" failed). The ledger was never wrong: kworb's returning titles moved its raw sum, not its dailies, and the two routes differ by 207,758. Reverted by hand; re-anchor the 2026 ledgers only on a read that carries all five artists.
+- edit: app/data/streamingTotals.ts: "11.13B" → "11.11B"
+- edit: app/data/streamingTotals.ts: "11,131,093,415" → "11,107,256,033"
