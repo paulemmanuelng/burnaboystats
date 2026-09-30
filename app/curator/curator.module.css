@@ -1,6 +1,11 @@
-/* About the Curator — a single responsive layout (like the song pages): this
-   is a short prose page, so one column scales down without a separate mobile
-   component. Visual vocabulary matches /methodology. */
+/* About the Curator — desktop.
+   Below 900px MobileCurator renders the phone screen instead (design response
+   §11, items 42–47): this column is a separate design, not that screen
+   widened. The figure strip and the source rows follow
+   designs/desktop/Curator Press Correction.dc.html (items 45–46); everything
+   else stays as it shipped. Visual vocabulary matches /methodology. */
+.desktopOnly { display: block; }
+@media (max-width: 900px) { .desktopOnly { display: none; } }
 
 .wrap { max-width: 900px; margin: 0 auto; padding: 0 40px; }
 
@@ -58,10 +63,66 @@
 .link { color: var(--gold); text-decoration: none; border-bottom: 1px solid color-mix(in srgb, var(--gold-ink) 35%, transparent); }
 .link:hover { color: var(--gold-bright-ink); border-bottom-color: var(--gold-bright-ink); }
 
-@media (max-width: 720px) {
-  .wrap { padding: 0 18px; }
-  .heroPad { padding: 28px 18px 0; }
-  .sectionPad { padding: 30px 18px 0; }
-  .h1 { font-size: 42px; }
-  .lede { font-size: 16.5px; }
+/* Item 47: the two "Reach me" paragraphs get a gap (they had none). The only
+   place two .p paragraphs sit side by side on this page. */
+.p + .p { margin-top: 16px; }
+/* A paragraph after a strip or a row list. */
+.after { margin-top: 14px; }
+
+/* ── "Why this site exists": the figure strip (item 45) ─────────────────── */
+/* The artboard's reading column is 760px; the strip and the rows below span
+   it, where the prose keeps its 72ch measure. */
+/* Five figures at rest, in ink: they change when the data is edited, not by
+   themselves (rule 3). Hairlines between cells, as the site's strips draw. */
+.strip {
+  list-style: none;
+  margin: 18px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1px;
+  max-width: 760px;
+  background: var(--line);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
 }
+.stripCell { background: var(--bg); padding: 18px 12px 18px 0; display: flex; flex-direction: column; }
+.stripValue {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 38px;
+  line-height: 0.95;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+}
+.stripLabel {
+  margin-top: 10px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1.25;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+/* ── "How I work": one source per kind of figure (item 46) ──────────────── */
+.sources { margin: 14px 0 0; border-top: 1px solid var(--rule-soft); max-width: 760px; }
+.sourceRow {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 24px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+  align-items: baseline;
+}
+.sourceKind {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1.35;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+.sourceText { margin: 0; font-size: 15.5px; line-height: 1.55; color: var(--text-body); }

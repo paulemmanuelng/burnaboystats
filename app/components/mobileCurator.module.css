@@ -1,0 +1,186 @@
+/* /curator on a phone. designs/mobile/CPC Phone.dc.html (page "curator"),
+   values verbatim. Shown only below the mobile breakpoint; the desktop page
+   is its own layout (app/curator/curator.module.css).
+
+   This screen keeps the five-tab bar, so /curator is in BACK_BAR_ROUTES but
+   not ACTION_BAR_ROUTES. */
+.screen { display: none; }
+
+@media (max-width: 900px) {
+  .screen {
+    display: flex;
+    flex-direction: column;
+    background: var(--bg);
+    min-height: 100%;
+  }
+}
+
+/* ── Back bar (the sibling screens' grammar) ──────────────────────────── */
+.backBar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: var(--scrim);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+  padding: 12px 18px;
+  /* With viewport-fit=cover the bar reaches under the notch and the
+     status bar; the insets push its CONTENT back into the safe area
+     while the background still bleeds to the edges. */
+  padding-top: calc(12px + env(safe-area-inset-top, 0px));
+  padding-left: calc(18px + env(safe-area-inset-left, 0px));
+  padding-right: calc(18px + env(safe-area-inset-right, 0px));
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.backBtn {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  color: var(--text);
+  flex: none;
+}
+.backLabel {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* ── Hero ─────────────────────────────────────────────────────────────── */
+.hero { padding: 22px 18px 0; }
+.kicker {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1.2;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.title {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 44px;
+  line-height: 0.95;
+  text-transform: uppercase;
+  margin: 11px 0 0;
+}
+/* The split word in the gold ramp — owner decision, 30 Sep 2026: the split
+   word only, nothing else in the hero. */
+.gold {
+  background: linear-gradient(180deg, var(--display-ramp-a), var(--display-ramp-b) 45%, var(--display-ramp-c));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  /* Paints the glyph, not the line box: background-clip:text fills the
+     padding box, and Anton's ink overruns a sub-1 line-height. See
+     mobileMethodology.module.css for the measurement behind 0.2em. */
+  padding: 0.2em 0;
+  margin: -0.2em 0;
+}
+.lede {
+  font-size: var(--type-lede);
+  line-height: var(--type-lede-lh);
+  color: var(--text-body);
+  margin: 14px 0 0;
+  text-wrap: pretty;
+}
+.lede strong { color: var(--text); font-weight: 600; }
+/* The live "Data last reviewed" line: green, the site's live accent. */
+.reviewed {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 0 0;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.reviewed strong { color: var(--text); font-weight: 600; }
+.reviewedDot { width: 7px; height: 7px; border-radius: 50%; background: var(--green-dot); display: block; flex: none; }
+
+/* ── Body ─────────────────────────────────────────────────────────────── */
+.body { padding: 0 18px; }
+.h2 {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.05;
+  text-transform: uppercase;
+  margin: 34px 0 0;
+}
+.p {
+  font-size: var(--type-body);
+  line-height: var(--type-body-lh);
+  color: var(--text-body);
+  margin: 10px 0 0;
+  text-wrap: pretty;
+}
+/* "Reach me": 16px between its two paragraphs (item 47) — the only place two
+   paragraphs sit side by side on this screen. */
+.p + .p { margin-top: 16px; }
+.after { margin-top: 12px; }
+.link { color: var(--gold); }
+
+/* ── "Why this site exists": the figure strip (item 45) ─────────────────── */
+.strip {
+  list-style: none;
+  margin: 14px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--line);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.stripCell { background: var(--bg); padding: 14px 4px 14px 0; display: flex; flex-direction: column; }
+/* An odd last figure spans the row rather than leaving a hole beside it. */
+.stripCell:last-child:nth-child(odd) { grid-column: 1 / -1; }
+.stripValue {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 0.95;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+}
+.stripLabel {
+  margin-top: 8px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1.2;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+/* ── "How I work": one source per kind of figure (item 46) ──────────────── */
+.sources { margin: 12px 0 0; border-top: 1px solid var(--rule-soft); }
+.sourceRow {
+  display: grid;
+  grid-template-columns: 112px 1fr;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+  align-items: baseline;
+}
+.sourceKind {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1.35;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+.sourceText { margin: 0; font-size: 14.5px; line-height: 1.5; color: var(--text-body); }
