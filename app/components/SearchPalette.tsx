@@ -6,6 +6,7 @@ import styles from "./SearchPalette.module.css";
 import type { SearchDoc } from "../lib/searchIndex";
 import type { SuggestedDoc } from "../lib/searchSuggested";
 import { track } from "../lib/analytics";
+import { nextActive } from "./searchPaletteActive";
 
 // Site-wide command palette: a search button in the nav that opens a ⌘K / Ctrl+K
 // modal to jump to any page. Pure client-side over the static index — no backend.
@@ -195,12 +196,12 @@ export default function SearchPalette({ suggested }: { suggested: readonly Sugge
   }, [open]);
 
   const onInputKey = (e: React.KeyboardEvent) => {
-    if (e.key === "ArrowDown") {
+    if (e.key === "ArrowDown" || e.key === "ArrowUp") {
       e.preventDefault();
-      setActive((i) => Math.min(i + 1, results.length - 1));
-    } else if (e.key === "ArrowUp") {
-      e.preventDefault();
-      setActive((i) => Math.max(i - 1, 0));
+      // Clamped at row 0, so a press while the index is still loading (no
+      // rows yet) leaves the first result highlighted when it lands.
+      const key = e.key;
+      setActive((i) => nextActive(i, key, results.length));
     } else if (e.key === "Enter") {
       e.preventDefault();
       const choose = (list: readonly { path: string }[]) => {
