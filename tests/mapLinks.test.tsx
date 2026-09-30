@@ -16,9 +16,11 @@ vi.mock("next/link", () => ({
 }));
 
 import ToursPage from "../app/records/tours/page";
+import FestivalsPage from "../app/records/tours/festivals/page";
 import { tours, festivals, concerts, otherShows } from "../app/data/tours";
 import { revenueShows } from "../app/data/tourRevenue";
 import { performedCountries } from "../app/data/performedCountries";
+import { numberWord } from "../app/lib/homeData";
 
 /**
  * Job 2 of the 30 Sep 2026 design handoff: getting to the map.
@@ -327,6 +329,176 @@ describe("item 68: the rows are 64px and press to --bg-raised", () => {
   it("negative control: Deep Pages 12's pressed row as first drawn (raw #24242a)", () => {
     // style-hover="background:#24242a", as a rule.
     expect(pressesToRaised(".roadRow:active { background: #24242a; }")).toBe(false);
+  });
+});
+
+// ── Festivals: items 37, 40, 65, 66, 67 ─────────────────────────────────────
+const festDoc = () => parse(renderToStaticMarkup(FestivalsPage()));
+const festPhone = (doc: Document) => doc.querySelector('[class*="_screen_"]')!;
+const MAP = "/records/tours/map";
+const mapLinksIn = (root: Element) => [...root.querySelectorAll(`a[href="${MAP}"]`)];
+
+describe("item 37: Festivals links to the map near the top, on both layouts", () => {
+  it("desktop: an outlined pill in the hero, clear of the count strip", () => {
+    const desk = desktopOf(festDoc());
+    const hero = desk.querySelector('[class*="_heroRow_"]')!;
+    expect(mapLinksIn(hero).map((a) => clean(a.textContent))).toEqual(["Where he's performed ↗"]);
+    // The strip's cells stay anchors to the page's own sections.
+    const strip = [...desk.querySelectorAll('[class*="_countGrid_"] a')].map((a) => a.getAttribute("href"));
+    expect(strip).toEqual(["#headlined", "#concerts", "#others"]);
+  });
+
+  it("phone: a pill between the 2 × 2 grid and the first section", () => {
+    const phone = festPhone(festDoc());
+    const grid = phone.querySelector('[class*="_statGrid_"]')!;
+    const wrap = grid.nextElementSibling!;
+    expect(mapLinksIn(wrap)).toHaveLength(1);
+    const link = mapLinksIn(wrap)[0];
+    // The name a screen reader hears, and the arrow drawn beside it.
+    const named = link.cloneNode(true) as Element;
+    named.querySelectorAll('[aria-hidden="true"]').forEach((e) => e.remove());
+    expect(clean(named.textContent)).toBe("Where he's performed");
+    expect(link.querySelector('[aria-hidden="true"]')?.textContent?.trim()).toBe("↗");
+    // Then the first section, whichever is open.
+    expect(wrap.nextElementSibling?.querySelector("button[aria-expanded]")).not.toBeNull();
+  });
+
+  it("negative control: the desktop hero and phone top as shipped until 30 Sep 2026 had no map link", () => {
+    // The shipped hero JSX, verbatim, with the count as rendered.
+    const hero = parse(
+      renderToStaticMarkup(
+        <div className="wide heroPad">
+          <div className="eyebrow">
+            <span className="eyebrowRule" aria-hidden="true" />
+            Big stages
+          </div>
+          <h1 className="h1">
+            Festivals <span className="inkText">&amp; Shows</span>
+          </h1>
+          <p className="lede">
+            The festivals Burna Boy has headlined — and the other big stages he&apos;s
+            played. {appearances} appearances across three categories.
+          </p>
+        </div>,
+      ),
+    ).body;
+    expect(mapLinksIn(hero)).toHaveLength(0);
+    // Every href in app/components/MobileFestivals.tsx as shipped: the back link.
+    const SHIPPED_PHONE_HREFS = ["/records/tours"];
+    expect(SHIPPED_PHONE_HREFS.filter((h) => h === MAP)).toEqual([]);
+  });
+
+  /** Item 37's one style: 11px, a --btn-edge outline, no gold wash. */
+  const oneStyle = (rule: string | null) =>
+    declared(rule, "font-size") === "11px" &&
+    declared(rule, "border") === "1px solid var(--btn-edge)" &&
+    !/gold-wash|rgba\(255,\s*182,\s*39/.test(rule ?? "");
+
+  it("both files draw the pill in that style; hover and press go to --bg-raised", () => {
+    const desk = read("app/records/tours/festivals/festivals.module.css");
+    const phone = read("app/components/mobileFestivals.module.css");
+    expect(oneStyle(ruleFor(desk, ".mapLink"))).toBe(true);
+    expect(oneStyle(ruleFor(phone, ".mapLink"))).toBe(true);
+    expect(declared(ruleFor(desk, ".mapLink:hover"), "background")).toBe("var(--bg-raised)");
+    expect(declared(ruleFor(phone, ".mapLink:active"), "background")).toBe("var(--bg-raised)");
+    expect(declared(ruleFor(phone, ".mapLink"), "min-height")).toBe("48px");
+    expect(declared(ruleFor(desk, ".mapLink"), "min-height")).toBe("44px");
+  });
+
+  it("negative control: the pills as first drawn in the two artboards", () => {
+    // Records - Festivals.dc.html: 11.5px, a --color-divider edge, a gold-wash hover.
+    const DESKTOP_FIRST =
+      ".mapLink { font-size:11.5px; border:1px solid var(--color-divider); } .mapLink:hover { border-color:var(--color-accent); background:rgba(255,182,39,0.05) }";
+    expect(oneStyle(ruleFor(DESKTOP_FIRST, ".mapLink"))).toBe(false);
+    // Deep Pages 13: a --line edge, pressed to a raw #24242a fallback.
+    const PHONE_FIRST = ".mapLink { font-size:11px; border:1px solid var(--line); } .mapLink:active { background:var(--bg-raised, #24242a) }";
+    expect(oneStyle(ruleFor(PHONE_FIRST, ".mapLink"))).toBe(false);
+    expect(declared(ruleFor(PHONE_FIRST, ".mapLink:active"), "background")).not.toBe("var(--bg-raised)");
+  });
+});
+
+describe("item 40: every Festivals count is read from the lists, and the strip agrees with the headings", () => {
+  const lists = { headlined: festivals.length, concerts: concerts.length, others: otherShows.length };
+  /** Each strip cell's count equals the count in its own section heading. */
+  const stripAgrees = (strip: string[], headings: string[]) =>
+    strip.length === headings.length && strip.every((v, i) => headings[i].startsWith(`${v} `));
+
+  it("desktop: strip, section headings and the data", () => {
+    const desk = desktopOf(festDoc());
+    const strip = [...desk.querySelectorAll('[class*="_countValue_"]')].map((e) => clean(e.textContent));
+    const headings = [...desk.querySelectorAll('[class*="_groupCount_"]')].map((e) => clean(e.textContent));
+    expect(strip).toEqual([lists.headlined, lists.concerts, lists.others].map(String));
+    expect(stripAgrees(strip, headings)).toBe(true);
+  });
+
+  it("phone: the badge, the grid and the section counts", () => {
+    const phone = festPhone(festDoc());
+    expect(clean(phone.querySelector('[class*="_badge_"]')?.textContent)).toBe(String(appearances));
+    const grid = [...phone.querySelectorAll('[class*="_statCell_"]')].map((c) => clean(c.textContent));
+    const afro = festivals.filter((f) => f.name === "Afro Nation").length;
+    expect(grid).toEqual([`${lists.headlined}Headlined`, `${afro}Afro Nation`, `${lists.concerts}Solo shows`, `${appearances}Total`]);
+    const sections = [...phone.querySelectorAll('button[aria-expanded] [class*="_count_"]')].map((e) => clean(e.textContent));
+    expect(sections).toEqual([lists.headlined, lists.concerts, lists.others].map((n) => `(${n})`));
+  });
+
+  it("negative control: the desktop artboard's strip and heading could disagree (32 against '31 sets')", () => {
+    expect(stripAgrees(["32"], ["31 sets"])).toBe(false);
+  });
+
+  it("no count is typed into either file", () => {
+    // Comments may name the old values; the code may not.
+    const code = (f: string) => read(f).replace(/\/\*[\s\S]*?\*\//g, "").replace(/^\s*\/\/.*$/gm, "");
+    for (const f of ["app/records/tours/festivals/page.tsx", "app/components/MobileFestivals.tsx"]) {
+      expect(code(f)).not.toMatch(/\b(?:57|58|59|30|32|14|13)\b/);
+    }
+  });
+});
+
+describe("item 65: the desktop lede says 'documented appearances'", () => {
+  const saysDocumented = (lede: string) => new RegExp(`\\b${appearances} documented appearances across three categories\\.`).test(lede);
+
+  it("with the count and the number of categories from the page's own lists", () => {
+    const lede = clean(desktopOf(festDoc()).querySelector('[class*="_lede_"]')?.textContent);
+    expect(saysDocumented(lede)).toBe(true);
+  });
+
+  it("negative control: the lede as shipped until 30 Sep 2026", () => {
+    const SHIPPED = `The festivals Burna Boy has headlined — and the other big stages he's played. ${appearances} appearances across three categories.`;
+    expect(saysDocumented(SHIPPED)).toBe(false);
+  });
+});
+
+describe("items 66 and 67: the phone grid in ink, labels at the 11px floor, Afro Nation a slot", () => {
+  const css = read("app/components/mobileFestivals.module.css");
+  const inInk = (rule: string | null) => declared(rule, "color") === "var(--text)";
+  const px = (rule: string | null) => Number.parseFloat(declared(rule, "font-size") ?? "0");
+
+  it("the four values are ink, not gold", () => {
+    expect(inInk(ruleFor(css, ".statValue"))).toBe(true);
+  });
+
+  it("negative control: the value rule as shipped until 30 Sep 2026 was gold", () => {
+    const SHIPPED = `.statValue {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 34px;
+  line-height: 0.9;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+}`;
+    expect(inInk(ruleFor(SHIPPED, ".statValue"))).toBe(false);
+  });
+
+  it("the badge and the grid labels are at least 11px; the artboard's first 10px was not", () => {
+    expect(px(ruleFor(css, ".badge"))).toBeGreaterThanOrEqual(11);
+    expect(px(ruleFor(css, ".statLabel"))).toBeGreaterThanOrEqual(11);
+    expect(px(".badge { font-size: 10px; }")).toBeLessThan(11);
+  });
+
+  it("the lede's Afro Nation count is read from the list and spelled out", () => {
+    const afro = festivals.filter((f) => f.name === "Afro Nation").length;
+    const lede = clean(festPhone(festDoc()).querySelector('[class*="_lede_"]')?.textContent);
+    expect(lede).toContain(`${festivals.length} festivals headlined, including ${numberWord(afro).toLowerCase()} Afro Nation editions.`);
   });
 });
 
