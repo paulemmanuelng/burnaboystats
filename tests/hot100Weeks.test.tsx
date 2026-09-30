@@ -72,6 +72,8 @@ function parse(html: string): HTMLElement {
 const STALE_AFTER_DAYS = 10;
 const DAY = 86_400_000;
 const at = (iso: string) => Date.parse(`${iso}T00:00:00Z`);
+/** The day a Hot 100 dated `chartDate` (a Saturday) is published: the Tuesday before. */
+const readableFrom = (chartDate: string) => new Date(at(chartDate) - 4 * 24 * 3600 * 1000).toISOString().slice(0, 10);
 const plusWeeks = (iso: string, n: number) => new Date(at(iso) + n * 7 * DAY).toISOString().slice(0, 10);
 const counted = hot100Artists.filter((a) => a.read !== "unreadable" && a.songs.length > 0);
 const artist = (slug: string) => hot100Artists.find((a) => a.slug === slug)!;
@@ -544,7 +546,17 @@ describe("the read is dated and gets re-read", () => {
     expect(HOT100_CHART_DATE).toMatch(/^\d{4}-\d{2}-\d{2}$/);
     expect(HOT100_READ_ON).toMatch(/^\d{4}-\d{2}-\d{2}$/);
     expect(new Date(at(HOT100_CHART_DATE)).getUTCDay(), "Hot 100 issues are dated Saturdays").toBe(6);
-    expect(HOT100_READ_ON >= HOT100_CHART_DATE, "read before the chart it counts").toBe(true);
+    // Billboard publishes each Hot 100 on the Tuesday BEFORE the Saturday it is
+    // dated, so a read can legitimately precede the printed date by up to four
+    // days (30 Sep 2026 read the chart dated 3 Oct, out since Tuesday 29 Sep).
+    // What cannot happen is a read before that Tuesday.
+    expect(readableFrom(HOT100_CHART_DATE) <= HOT100_READ_ON, "read before the chart it counts was published").toBe(true);
+  });
+
+  it("the publication rule accepts the reads that happened and refuses one before release", () => {
+    expect(readableFrom("2026-09-26") <= "2026-09-27").toBe(true);   // the first read
+    expect(readableFrom("2026-10-03") <= "2026-09-30").toBe(true);   // Tuesday-release read
+    expect(readableFrom("2026-10-03") <= "2026-09-28").toBe(false);  // the Monday before release
   });
 
   it("the weekly monitor issue reads HOT100_CHART_DATE from this file", () => {
