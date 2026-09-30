@@ -1,0 +1,108 @@
+/* The Naija @ 66 home strip (Naija66BannerLive.tsx), 30 Sep – 2 Oct 2026.
+
+   Built in the live band's vocabulary — a flat --bg-soft strip with a
+   hairline under it — because it is the same kind of thing: chrome carrying
+   one fact. Its colour is the flag's green-white-green motif and the green
+   call to action; gold stays the site's.
+
+   FIXED HEIGHT in both layouts. The strip is in the server's HTML, and its
+   words change after hydration (tomorrow → today → live → N of 5 left); a box
+   that grew or shrank with them would move the page under a reader. */
+
+.banner {
+  display: block;
+  color: var(--text);
+  text-decoration: none;
+  background: var(--bg-soft);
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+}
+.banner:hover .line { text-decoration: underline; }
+
+/* The close, reached on a page cached before it: the pre-paint script in
+   Naija66Banner.tsx marks <html>, and the strip never paints. Doubled class
+   so it outranks the layout rules below in any sheet order. */
+:global(html[data-naija66="over"]) .banner.banner { display: none; }
+
+.inner {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* Green-white-green, the flag's vertical bands. */
+.flag {
+  display: flex;
+  flex: none;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+}
+.flag > span { flex: 1; }
+.flag > span:nth-child(odd) { background: var(--flag-green); }
+.flag > span:nth-child(2) { background: var(--flag-white); }
+
+.line { min-width: 0; }
+
+.cta {
+  flex: none;
+  margin-left: auto;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+  color: var(--green);
+  white-space: nowrap;
+}
+
+/* ── Desktop: one 42px row on the live band's column ─────────────────── */
+.desktop .inner {
+  max-width: 1360px;
+  margin: 0 auto;
+  height: 42px;
+  padding: 0 40px;
+  gap: 14px;
+}
+.desktop .flag { width: 21px; height: 15px; }
+.desktop .line {
+  flex: 1 1 auto;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── Phone: a 64px strip at the top of the screen, two lines at most ───── */
+.banner.phone { display: none; }
+@media (max-width: 900px) {
+  .banner.phone { display: block; }
+  /* The desktop copy sits inside the page's desktopOnly wrapper, which is
+     already hidden here; this keeps it hidden wherever else it is used. */
+  .banner.desktop { display: none; }
+}
+.phone .inner {
+  height: 64px;
+  padding: 0 18px;
+  padding-left: calc(18px + env(safe-area-inset-left, 0px));
+  padding-right: calc(18px + env(safe-area-inset-right, 0px));
+  gap: 12px;
+}
+.phone .flag { width: 24px; height: 17px; }
+/* The whole strip is the link; on a phone the arrow says so without words. */
+.phone .ctaWord { display: none; }
+.phone .cta { font-size: 16px; }
+.phone .line {
+  flex: 1 1 auto;
+  font-size: var(--type-small);
+  line-height: 1.35;
+  font-weight: 600;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
