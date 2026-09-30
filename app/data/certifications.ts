@@ -312,6 +312,13 @@ export const singles: Release[] = [
   { title: "Alone", year: 2022, certs: [
     { c: "NG", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "NZ", level: "Gold" },
     { c: "FR", level: "Gold" }, { c: "UK", level: "Silver" },
+    // PT Gold from AFP/Audiogest's own monthly award card — "Alone / Burna Boy /
+    // Universal", a gold disc — as reposted by @Toluwase_x on 30 Sep 2026 (Paul's
+    // screenshot); Paul confirmed the same card on Audiogest's own Facebook post
+    // the same day. AFP publishes its cards only on Audiogest's Facebook and
+    // Instagram, which bar automated reads. Off-chart: the
+    // week-39 TOP (18-24 Sep) carries no "Alone" row, so no weekly file could badge it.
+    { c: "PT", level: "Gold" },
   ] },
   { title: "Anybody", year: 2019, cover: "https://cdn-images.dzcdn.net/images/cover/b4efa5d273887ff67773697206c618bc/500x500-000000-80-0-0.jpg", certs: [
     { c: "CA", level: "Gold" }, { c: "FR", level: "Gold" }, { c: "CH", level: "Gold" }, { c: "UK", level: "Silver" },
@@ -987,6 +994,9 @@ export const certHistory: CertEvent[] = [
   // card was out of reach when the March one was read on 28 Aug. The song was
   // not charting in Portugal in 2026, so no weekly TOP could have badged it.
   { title: "City Boys", country: "PT", level: "Gold", year: 2026 },
+  // AFP/Audiogest's award card for "Alone" (Burna Boy / Universal, Ouro), on
+  // Audiogest's Facebook, read 30 Sep 2026 (see the release row). No batch date.
+  { title: "Alone", country: "PT", level: "Gold", year: 2026 },
 
   // 31 Aug 2026 — both of these were on the RELEASE and missing from this log,
   // so the by-year figures ran two short. The site's own updates feed recorded
@@ -1073,7 +1083,7 @@ export const intlCertHistory = certHistory.filter((e) => e.country !== "NG");
 /** The most recent day a certifying body's own register was read for this
  *  file. Printed on the page's sources line in place of a typed "as of" month
  *  — bump it on every body read, in the same edit as the row it changes. */
-export const CERTS_VERIFIED_ON = "2026-09-29";
+export const CERTS_VERIFIED_ON = "2026-09-30";
 
 /** "Dai Dai" Platinum plaques beyond the US Latin 2× — the "Platinum in N more"
  *  rail note on the story and its Spanish twin, counted rather than typed after

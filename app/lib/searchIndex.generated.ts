@@ -7215,7 +7215,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Alone",
     "path": "/music/alone",
     "section": "Release",
-    "description": "5 certifications · 9 chart entries.",
+    "description": "6 certifications · 9 chart entries.",
     "keywords": [
       "song",
       "release"
