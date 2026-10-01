@@ -437,7 +437,11 @@
 }
 /* Inline links are gold, underlined (item 20). */
 .note2 a { color: var(--gold); text-decoration: underline; text-underline-offset: 2px; }
-.pills { display: flex; gap: 12px; flex-wrap: wrap; padding: 24px 0 64px; }
+/* Inside the content column, lined up with the note above (TM Desktop draws
+   them in the padX column, margin 24px 0 64px). Top and bottom only: a
+   `padding` shorthand here would zero .wrap's 40px sides on this element,
+   as the shipped `padding: 40px 0 72px` did (tests/tourMapStyles.test.ts). */
+.pills { display: flex; gap: 12px; flex-wrap: wrap; padding-top: 24px; padding-bottom: 64px; }
 
 /* ═══ The 1024 band (901–1239) ════════════════════════════════════════════ */
 @media (max-width: 1239px) {
