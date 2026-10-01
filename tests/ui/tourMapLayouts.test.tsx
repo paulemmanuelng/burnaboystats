@@ -284,6 +284,25 @@ const placementDeps = (line: string) =>
     .split(",")
     .map((s) => s.trim());
 
+describe("the hover state (item 30a)", () => {
+  it("a hovered country gets a --text outline layer UNDER its --gold-hit refill, so 1.5px of the outline shows", () => {
+    render(<TourMapDesktop data={tourMapProps} />);
+    const ghana = mapOf().querySelector('[data-code="288"]')!;
+    fireEvent.pointerMove(ghana, { pointerType: "mouse" });
+    const layers = [...mapOf().querySelectorAll('use[href$="#s288"]')].filter((u) => !u.hasAttribute("data-code")).map((u) => u.getAttribute("class") ?? "");
+    const outline = layers.findIndex((c) => /hotOutline/.test(c));
+    const refill = layers.findIndex((c) => /refillHot/.test(c));
+    expect(outline).toBeGreaterThanOrEqual(0);
+    expect(refill).toBeGreaterThan(outline);
+  });
+
+  it("negative control: with nothing hovered, Ghana has no hover layers", () => {
+    render(<TourMapDesktop data={tourMapProps} />);
+    const layers = [...mapOf().querySelectorAll('use[href$="#s288"]')].filter((u) => !u.hasAttribute("data-code"));
+    expect(layers.filter((u) => /hotOutline|refillHot/.test(u.getAttribute("class") ?? ""))).toEqual([]);
+  });
+});
+
 describe("?country= deep links (§5)", () => {
   it("gb: the UK's card, pinned", () => {
     window.history.replaceState(null, "", "/records/tours/map?country=gb");

@@ -117,6 +117,25 @@ const SHIPPED_MAP = `
   margin-top: 4px;
 }
 `;
+const SHIPPED_PHONE = `
+.kicker {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--ember);
+}
+.regionCount {
+  margin-left: auto;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 19px;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+}
+`;
+
 // ── Desktop pills: inside the content column ────────────────────────────────
 
 /** The side padding an element carrying every one of these classes gets
@@ -159,5 +178,161 @@ describe("the desktop pills sit in the content column (TM Desktop: padX column, 
     const firstBuild = `.wrap { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
 .pills { display: flex; gap: 12px; flex-wrap: wrap; padding: 24px 0 64px; }`;
     expect(sidePadding(firstBuild, [".wrap", ".pills"]).left).toBe("0");
+  });
+});
+
+// ── Item 30a: hover is --gold-hit plus a 1.5px --text outline ──────────────
+
+/** The --text outline a hovered country shows OUTSIDE its shape: half the
+ *  stroke of an unfilled --text outline layer that a hover (".hot…" or
+ *  ":hover") rule draws, since the country's own fill covers the inner half.
+ *  0 when the sheet draws no such layer. */
+const hoverOutlinePx = (css: string) => {
+  const outline = rules(top(css)).find(([s, d]) => /hot|:hover/i.test(s) && d.fill === "none" && d.stroke === "var(--text)");
+  return outline ? px(outline[1]["stroke-width"]) / 2 : 0;
+};
+const hoverFills = (css: string) =>
+  rules(top(css))
+    .filter(([s]) => /hot|:hover/i.test(s))
+    .map(([, d]) => d.fill)
+    .filter(Boolean);
+
+describe("item 30a: hover is --gold-hit with a 1.5px --text outline", () => {
+  it("the outline layer is 3px of --text, half of it outside the shape; the refill is --gold-hit", () => {
+    expect(decls(top(SVG), ".hotOutline")).toMatchObject({ fill: "none", stroke: "var(--text)", "stroke-width": "3px" });
+    expect(decls(top(SVG), ".refillHot").fill).toBe("var(--gold-hit)");
+    expect(hoverOutlinePx(SVG)).toBe(1.5);
+    expect(hoverFills(SVG)).toContain("var(--gold-hit)");
+  });
+
+  it("negative control: the shipped hover was the --gold-hit fill alone, no outline", () => {
+    expect(hoverFills(SHIPPED_MAP)).toContain("var(--gold-hit)");
+    expect(hoverOutlinePx(SHIPPED_MAP)).toBe(0);
+  });
+});
+
+// ── Item 8: the close-up ────────────────────────────────────────────────────
+
+describe("item 8: the close-up is 260 × 224, 200 × 172 in the 1024 band, bottom-left, labelled", () => {
+  const BAND = "(max-width: 1239px)";
+
+  it("its box at 1440 and in the 1024 band", () => {
+    expect(decls(top(MAP), ".closeup")).toMatchObject({ width: "260px", height: "224px", left: "9px", bottom: "9px", position: "absolute" });
+    expect(decls(media(MAP, BAND), ".closeup")).toMatchObject({ width: "200px", height: "172px" });
+  });
+
+  it("its label band (22px) sits inside the box, and the label is 'Western Europe'", () => {
+    expect(decls(top(MAP), ".closeup")["box-sizing"]).toBe("border-box");
+    expect(decls(top(MAP), ".closeupLabel").height).toBe("22px");
+    expect(readFileSync("app/components/TourMapDesktop.tsx", "utf8")).toMatch(/<span className=\{styles\.closeupLabel\}>Western Europe<\/span>/);
+  });
+
+  it("negative control: the shipped sheet has no close-up, so the size check fails on it", () => {
+    expect(decls(top(SHIPPED_MAP), ".closeup").width).toBeUndefined();
+    expect(decls(top(SHIPPED_MAP), ".frame")).toMatchObject({ position: "relative" }); // the shipped frame does parse
+  });
+});
+
+// ── Item 12: country names are 24px buttons ─────────────────────────────────
+
+describe("item 12: each country name is a button, at least 24px tall (the mouse target)", () => {
+  it(".countryBtn", () => {
+    expect(px(decls(top(MAP), ".countryBtn")["min-height"])).toBeGreaterThanOrEqual(24);
+    expect(readFileSync("app/components/TourMapDesktop.tsx", "utf8")).toMatch(/<button[\s\S]{0,120}?className=\{`\$\{styles\.countryBtn\}/);
+  });
+
+  it("the region names stay at the approved 17px (D-06)", () => {
+    expect(decls(top(MAP), ".table th.regionCell")["font-size"]).toBe("17px");
+  });
+
+  it("negative control: the shipped names were one text cell with no target height", () => {
+    expect(px(decls(top(SHIPPED_MAP), ".namesCell")["min-height"])).toBeNaN();
+  });
+});
+
+// ── Items 22–28: gold steps back ───────────────────────────────────────────
+
+describe("item 22: the headline figures are ink", () => {
+  it(".figValue is --text, on both layouts", () => {
+    expect(decls(top(MAP), ".figValue").color).toBe("var(--text)");
+    expect(decls(top(PHONE), ".figValue").color).toBe("var(--text)");
+  });
+  it("negative control: the shipped .countBig was gold", () => {
+    expect(decls(top(SHIPPED_MAP), ".countBig").color).toBe("var(--gold)");
+  });
+});
+
+describe("item 23: the phone's region counts are ink", () => {
+  it(".regionCount is --text", () => {
+    expect(decls(top(PHONE), ".regionCount").color).toBe("var(--text)");
+  });
+  it("negative control: the shipped .regionCount was gold", () => {
+    expect(decls(top(SHIPPED_PHONE), ".regionCount").color).toBe("var(--gold)");
+  });
+});
+
+describe("item 24: the phone badge is --gold, as on every sibling back-bar page (owner)", () => {
+  it(".badge is --gold, and reads '{n} countries' from the data", () => {
+    expect(decls(top(PHONE), ".badge").color).toBe("var(--gold)");
+    expect(readFileSync("app/components/MobileTourMap.tsx", "utf8")).toMatch(/className=\{styles\.badge\}[^>]*>\s*\{[^}]*totals\.countries\} countries/);
+  });
+  it("negative control: the superseded artboard (designs/desktop/TM Phone.dc.html) drew it muted", () => {
+    // The badge's inline style there, verbatim, read as a rule.
+    const artboard = ".badge { font:700 11px/1 'Space Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted) }";
+    expect(decls(artboard, ".badge").color).not.toBe("var(--gold)");
+  });
+});
+
+describe("item 25: the card's region label is muted", () => {
+  it("the card sheet's .region is --text-muted", () => {
+    expect(decls(top(CARD), ".region, .label, .hint").color).toBe("var(--text-muted)");
+  });
+  it("negative control: the shipped .cardRegion was gold", () => {
+    expect(decls(top(SHIPPED_MAP), ".cardRegion").color).toBe("var(--gold)");
+  });
+});
+
+describe("item 26: the kickers are muted, with the ember tick", () => {
+  it("desktop and phone .kicker are --text-muted; the tick is --ember", () => {
+    for (const css of [MAP, PHONE]) {
+      expect(decls(top(css), ".kicker").color).toBe("var(--text-muted)");
+      expect(decls(top(css), ".tick").background).toBe("var(--ember)");
+    }
+    const desktop = readFileSync("app/components/TourMapDesktop.tsx", "utf8");
+    expect(desktop).toMatch(/<span className=\{styles\.tick\} aria-hidden="true" \/>\s*Live worldwide/);
+  });
+  it("negative control: the shipped kickers were gold (desktop) and ember text (phone)", () => {
+    expect(decls(top(SHIPPED_MAP), ".kicker").color).toBe("var(--gold)");
+    expect(decls(top(SHIPPED_PHONE), ".kicker").color).toBe("var(--ember)");
+  });
+});
+
+describe("item 27: the card's edge is --rule, and it has no pointer arrow", () => {
+  const drawsPointer = (css: string) => rules(top(css)).some(([, d]) => Object.entries(d).some(([k, v]) => /^border-(top|bottom)$/.test(k) && /^7px solid/.test(v)));
+  it(".card border is 1px --rule; no rule draws the 7px triangle", () => {
+    expect(decls(top(CARD), ".card").border).toBe("1px solid var(--rule)");
+    expect(drawsPointer(CARD)).toBe(false);
+  });
+  it("negative control: the shipped card was gold-edged with a 7px gold arrow", () => {
+    expect(decls(top(SHIPPED_MAP), ".card").border).toBe("1px solid var(--gold)");
+    expect(drawsPointer(SHIPPED_MAP)).toBe(true);
+  });
+});
+
+describe("item 28: each legend swatch is the fill it explains, never gold", () => {
+  it("the swatches take the map's own fills and the --map-border edge", () => {
+    const played = decls(top(SVG), ".played").fill;
+    const land = decls(top(SVG), ".land").fill;
+    expect(played).toBe("var(--map-played)");
+    expect(decls(top(MAP), ".swatch, .swatchLand").border).toBe("1px solid var(--map-border)");
+    expect(decls(top(MAP), ".swatch").background).toBe(played);
+    expect(decls(top(MAP), ".swatchLand").background).toBe(land);
+    expect(decls(top(MAP), ".swatchDot").background).toBe(decls(top(SVG), ".dot").fill);
+  });
+  it("negative control: the shipped swatch was the 42% gold wash with a gold edge, not today's played fill", () => {
+    const shipped = decls(top(SHIPPED_MAP), ".swatch");
+    expect(shipped.background).toBe("color-mix(in srgb, var(--gold-wash-base) 42%, transparent)");
+    expect(shipped.background).not.toBe(decls(top(SVG), ".played").fill);
+    expect(shipped.border).toBe("1px solid var(--gold)");
   });
 });
