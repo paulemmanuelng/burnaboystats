@@ -15,11 +15,9 @@ import { NAIJA66_CLOSES, NAIJA66_FIRST_DROP, NAIJA66_PRIZES } from "../app/data/
  * string does either. Every route is checked, so the check names none of the
  * five and cannot hint at them.
  *
- * ONE EXCEPTION, made by Paul (30 Sep 2026, 23:00): he names code 1's page
- * publicly — "Code 1 appears at 9am WAT on the Where the World Listens page" —
- * so that one route may stand in the hunt's copy (lib/naija66/copy.ts
- * CODE1_PAGE), and nowhere else. Every other route still fails in every hunt
- * file, copy.ts included, and this one still fails in any other file.
+ * There is no exception. From 30 Sep 23:00 to 1 Oct 03:50 the copy named code
+ * 1's page by Paul's choice; he then withdrew it ("remove the cue/link of where
+ * the code appear"), so every route fails in every hunt file again.
  */
 
 const ROOT = process.cwd();
@@ -51,20 +49,11 @@ const ROUTES = [
 
 const escape = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
-/**
- * The routes a hunt file may name, by file: prize 1's page, in the copy only,
- * because Paul names it publicly (see the top). Nothing else is allowed.
- */
-const COPY_FILE = "app/lib/naija66/copy.ts";
-const NAMED_PAGE = "/music/listeners";
-const NAMED_PUBLICLY: Record<string, readonly string[]> = { [COPY_FILE]: [NAMED_PAGE] };
 
 /** Problems in one file's source: a route as a string literal, or a key. */
-function leaks(src: string, file = ""): string[] {
+function leaks(src: string): string[] {
   const out: string[] = [];
-  const allowed = NAMED_PUBLICLY[file] ?? [];
   for (const route of ROUTES) {
-    if (allowed.includes(route)) continue;
     if (new RegExp(`(["'\`])${escape(route)}\\1`).test(src)) out.push(`route ${route}`);
   }
   for (const m of src.matchAll(/NG66-[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{6}(?![A-Z0-9])/g)) {
@@ -96,17 +85,8 @@ describe("Naija @ 66's committed config", () => {
   });
 
   it("holds no page path, no key and no stray hash in the hunt's config, data or library", () => {
-    const found = HUNT_FILES.flatMap((f) => leaks(readFileSync(join(ROOT, f), "utf8"), f).map((l) => `${f}: ${l}`));
+    const found = HUNT_FILES.flatMap((f) => leaks(readFileSync(join(ROOT, f), "utf8")).map((l) => `${f}: ${l}`));
     expect(found).toEqual([]);
-  });
-
-  it("names exactly one page, prize 1's, and only in the copy", () => {
-    expect(ROUTES).toContain(NAMED_PAGE); // a real route, so the allowance is not vacuous
-    expect(HUNT_FILES).toContain(COPY_FILE);
-    const copy = readFileSync(join(ROOT, COPY_FILE), "utf8");
-    // Without its allowance, the copy trips on that one route and nothing else.
-    expect(leaks(copy)).toEqual([`route ${NAMED_PAGE}`]);
-    expect(leaks(copy, COPY_FILE)).toEqual([]);
   });
 
   it("negative control: the same guard catches a planted path, a planted key and a planted hash", () => {
@@ -120,15 +100,4 @@ describe("Naija @ 66's committed config", () => {
     );
   });
 
-  it("negative control: the allowance is one route in one file — any other route in the copy fails, and the named one fails elsewhere", () => {
-    const copy = readFileSync(join(ROOT, COPY_FILE), "utf8");
-    const other = ROUTES.find((r) => r.length > 1 && r !== NAMED_PAGE && r !== "/naija66")!;
-    const plantedInCopy = copy.replace(`"${NAMED_PAGE}"`, `"${other}"`);
-    expect(plantedInCopy).not.toBe(copy);
-    expect(leaks(plantedInCopy, COPY_FILE)).toEqual([`route ${other}`]);
-    expect(leaks(`${copy}\nconst also = "${other}";`, COPY_FILE)).toEqual([`route ${other}`]);
-    const data = readFileSync(join(ROOT, "app/data/naija66.ts"), "utf8");
-    const namedInData = data.replace(NAIJA66_PRIZES[0].pathHash, NAMED_PAGE);
-    expect(leaks(namedInData, "app/data/naija66.ts")).toContain(`route ${NAMED_PAGE}`);
-  });
 });

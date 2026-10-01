@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { readFileSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
-import { CODE1_PAGE, HOW_IT_WORKS, PRIZE, RULES, WINNER_KEEP_LINE, WINNER_LINE } from "../app/lib/naija66/copy";
+import { HOW_IT_WORKS, PRIZE, RULES, WINNER_KEEP_LINE, WINNER_LINE } from "../app/lib/naija66/copy";
 import { wordsText } from "../app/components/Naija66Words";
 import { metadata } from "../app/naija66/page";
 import { alt as ogAlt } from "../app/naija66/opengraph-image";
@@ -133,21 +133,16 @@ describe("no clues", () => {
 });
 
 describe("where to look", () => {
-  it("names code 1's page — and only its — by the page's own title, linked", () => {
-    expect(CODE1_PAGE.href).toBe("/music/listeners");
-    // The page's own title begins with the name the hunt gives it.
-    expect(read("app/music/listeners/page.tsx")).toContain(`shareTitle: "${CODE1_PAGE.name} to Burna Boy"`);
-    const step1 = HOW_IT_WORKS[0].words;
-    expect(wordsText(step1)).toBe(
-      "Code 1 appears at 9am WAT on the Where the World Listens page. For codes 2 to 5, follow @paulemmanuelng on X to find out where to look.",
-    );
-    expect(step1.filter((w) => typeof w !== "string")).toEqual([{ href: CODE1_PAGE.href, text: CODE1_PAGE.name }]);
-    // Every other step is plain words: no other page is linked.
-    for (const s of HOW_IT_WORKS.slice(1)) expect(s.words.every((w) => typeof w === "string")).toBe(true);
+  it("names no page: step 1 sends players to X for every code", () => {
+    expect(wordsText(HOW_IT_WORKS[0].words)).toBe("Follow @paulemmanuelng on X to find out where to look for each code.");
+    for (const s of HOW_IT_WORKS) expect(s.words.every((w) => typeof w === "string"), s.title).toBe(true);
   });
 
-  it("no hunt file but copy.ts types the named page's route", () => {
-    expect(HUNT_FILES.filter((f) => f !== COPY_FILE && read(f).includes(CODE1_PAGE.href))).toEqual([]);
+  it("negative control: the code-1 line the page printed until 1 Oct 03:50 is gone", () => {
+    // The shipped line began "Code 1 appears at 9am WAT on the …"; its page is
+    // deliberately not written here either, since this file is public too.
+    for (const f of HUNT_FILES) expect(read(f).includes("Code 1 appears"), f).toBe(false);
+    expect(HOW_IT_WORKS.map((s) => wordsText(s.words)).join(" ")).not.toContain("Code 1 appears");
   });
 
   it("tells a winner not to post the code", () => {
