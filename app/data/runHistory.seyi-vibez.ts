@@ -214,13 +214,13 @@
     "date": "2026-10-01",
     "release": "Back 2 U",
     "platform": "Shazam",
-    "position": 107
+    "position": 121
   },
   {
     "date": "2026-10-01",
     "release": "ILOME",
     "platform": "Shazam",
-    "position": 84
+    "position": 96
   },
   {
     "date": "2026-10-01",

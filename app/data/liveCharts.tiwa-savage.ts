@@ -40,10 +40,10 @@
   export const liveChartsUpdated = "2026-10-01";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-01T06:00Z";
+  export const liveChartsBuiltAt = "2026-10-01T13:22Z";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","YouTube","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Shazam","YouTube","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -87,38 +87,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/c30e36dcd1d84bddc05343a97acf3eaa/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Energy",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 34,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 84,
-            "movement": -44
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/d810fadc02c818d3ed7d6af2d6c8d2de/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Like",
     "platforms": [
       {
@@ -128,14 +96,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 86,
-            "movement": 11
+            "position": 78,
+            "movement": 8
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 118,
-            "movement": -15
+            "position": 120,
+            "movement": -2
           }
         ]
       }
@@ -162,6 +130,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/0c45088ffcfc5d0d7043c51a98d45082/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Energy",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 34,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/d810fadc02c818d3ed7d6af2d6c8d2de/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "You4Me",
@@ -193,7 +181,7 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 34,
+            "position": 35,
             "movement": null,
             "status": "new"
           }
@@ -271,8 +259,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 82,
-            "movement": -45
+            "position": 86,
+            "movement": -37
           }
         ]
       }

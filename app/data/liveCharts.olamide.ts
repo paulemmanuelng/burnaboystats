@@ -40,10 +40,10 @@
   export const liveChartsUpdated = "2026-10-01";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-01T06:00Z";
+  export const liveChartsBuiltAt = "2026-10-01T13:21Z";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","Spotify Albums","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -139,6 +139,19 @@
             "movement": -42
           }
         ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 87,
+            "movement": null,
+            "status": "new"
+          }
+        ]
       }
     ],
     "kind": "song",
@@ -154,44 +167,63 @@
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 67,
-            "movement": 33
+            "position": 53,
+            "movement": 14
           },
           {
             "country": "US",
             "name": "United States",
-            "position": 88,
-            "movement": 44
+            "position": 70,
+            "movement": 18
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 102,
-            "movement": 57
+            "position": 76,
+            "movement": 26
           },
           {
             "country": "CA",
             "name": "Canada",
-            "position": 107,
-            "movement": 41
+            "position": 83,
+            "movement": 24
           },
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 129,
-            "movement": 49
+            "position": 102,
+            "movement": 27
           },
           {
             "country": "FR",
             "name": "France",
-            "position": 195,
-            "movement": null,
-            "status": "new"
+            "position": 150,
+            "movement": 45
           },
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
-            "position": 200,
+            "position": 154,
+            "movement": 46
+          },
+          {
+            "country": "PT",
+            "name": "Portugal",
+            "position": 157,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "WW",
+            "name": "Worldwide",
+            "position": 178,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "BE",
+            "name": "Belgium",
+            "position": 193,
             "movement": null,
             "status": "new"
           }
@@ -205,8 +237,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 53,
-            "movement": null,
-            "status": "new"
+            "movement": -34
           },
           {
             "country": "NG",
@@ -347,8 +378,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 21,
-            "movement": 111
+            "position": 31,
+            "movement": -29
           }
         ]
       }
@@ -428,7 +459,7 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 61,
+            "position": 60,
             "movement": null,
             "status": "new"
           }
@@ -467,8 +498,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 63,
-            "movement": 13
+            "position": 57,
+            "movement": 6
           }
         ]
       }
@@ -525,7 +556,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 100,
+            "position": 110,
             "movement": null,
             "status": "new"
           }
@@ -534,25 +565,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Goosebumps",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 188,
-            "movement": -9
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/fc1106137f70104bf77a42787f19d31e/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Ikigai / 生き甲斐, Vol. 1",
