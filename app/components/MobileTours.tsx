@@ -26,6 +26,11 @@ const spell = (n: number) => (WORDS[n] ? WORDS[n][0].toUpperCase() + WORDS[n].sl
  * records capacity, and only some nights have a Boxscore headcount. The column
  * says so, and the note under the list repeats it, because the two are easy to
  * conflate and the difference is large.
+ *
+ * Under the last tour row, "More from the road": the map, revenue and
+ * festivals pages as three link rows (design response §10, item 35). Every
+ * figure in their sub-lines arrives as a prop from the server page, so this
+ * client component imports no extra data.
  */
 export default function MobileTours({
   tours,
@@ -36,6 +41,10 @@ export default function MobileTours({
   biggestNight,
   biggestVenue,
   yearSpan,
+  hisShowCount,
+  revenueShowCount,
+  appearanceCount,
+  headlinedCount,
 }: {
   tours: Tour[];
   topGross: string;
@@ -45,6 +54,12 @@ export default function MobileTours({
   biggestNight: string;
   biggestVenue: string;
   yearSpan: string;
+  /** His shows on the revenue board, and the board's length. */
+  hisShowCount: number;
+  revenueShowCount: number;
+  /** Festivals, solo concerts and other appearances together; festivals alone. */
+  appearanceCount: number;
+  headlinedCount: number;
 }) {
   const [open, setOpen] = useState<string | null>(null);
 
@@ -53,6 +68,28 @@ export default function MobileTours({
     { v: topGross, l: "Top gross", n: topTourName },
     { v: String(countryCount), l: "Countries", n: `${regionCount} regions` },
     { v: biggestNight, l: "Biggest night", n: biggestVenue },
+  ];
+
+  // Map first: the group is this screen's one route to it. The "Countries"
+  // tile above stays a figure, not a link (brief §4.3).
+  const road = [
+    {
+      href: "/records/tours/map",
+      title: "Where he's performed",
+      sub: `${countryCount} countries documented · ${regionCount} regions`,
+    },
+    {
+      href: "/records/tours/revenue",
+      title: "Revenue per show",
+      // "Of the N biggest … by an African artist": the board ranks every
+      // African artist, so "N shows" alone would overclaim.
+      sub: `His ${hisShowCount} of the ${revenueShowCount} biggest reported single-show grosses by an African artist`,
+    },
+    {
+      href: "/records/tours/festivals",
+      title: "Festivals & shows",
+      sub: `${appearanceCount} documented appearances · ${headlinedCount} headlined`,
+    },
   ];
 
   return (
@@ -185,6 +222,25 @@ export default function MobileTours({
           </div>
         );
       })}
+
+      {/* Links, not expanders: the whole row is the link and ends in →, where
+          the tour rows above end in a ▸ caret. */}
+      <nav aria-labelledby="more-from-the-road" className={styles.road}>
+        <h2 id="more-from-the-road" className={styles.roadHead}>
+          More from the road
+        </h2>
+        {road.map((r) => (
+          <Link key={r.href} href={r.href} className={styles.roadRow}>
+            <span className={styles.roadText}>
+              <span className={styles.roadTitle}>{r.title}</span>
+              <span className={styles.roadSub}>{r.sub}</span>
+            </span>
+            <span className={styles.roadArrow} aria-hidden="true">
+              →
+            </span>
+          </Link>
+        ))}
+      </nav>
 
       <p className={styles.footNote}>
         Tour grosses come from Billboard Boxscore. The per-date figure is the{" "}

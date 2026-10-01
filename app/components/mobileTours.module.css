@@ -231,6 +231,52 @@
 }
 .empty { font-family: var(--font-mono), monospace; font-size: 11px; color: var(--dim); margin: 0; }
 
+/* ── More from the road ────────────────────────────────────────────────────
+   Deep Pages 12 / Map Links §1: three link rows under the last tour row. An h2
+   in the label style, 64px rows (a title and a Geist sub-line each), the whole
+   row the link, pressing to --bg-raised. */
+/* No bottom rule of its own: the footnote's top rule closes the group. */
+.road {
+  margin-top: 22px;
+  border-top: 1px solid var(--line);
+}
+.roadHead {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1.2;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 18px 18px 12px;
+  margin: 0;
+}
+.roadRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 64px;
+  padding: 14px 18px;
+  border-top: 1px solid var(--line);
+  color: var(--text);
+  text-decoration: none;
+}
+.roadRow:hover,
+.roadRow:active { background: var(--bg-raised); }
+/* A full-bleed row: the focus ring goes inside, where the screen edge can't
+   clip it. */
+.roadRow:focus-visible { outline: none; box-shadow: inset 0 0 0 2px var(--gold); }
+.roadText { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.roadTitle {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+.roadSub { font-size: 13px; line-height: 1.45; color: var(--text-muted); }
+.roadArrow { font-size: 18px; color: var(--gold); flex: none; }
+
 .footNote {
   font-size: 12px;
   line-height: 1.55;

@@ -2,11 +2,18 @@ import { spotifyFollowersRead, followersCompact, SPOTIFY_FOLLOWERS_READ_ON } fro
 import { monthlyListenersSeries } from "./trends";
 import {
   hot100Top,
+  hot100PeakStandings,
   HOT100_TOP,
   HOT100_COUNTRIES,
   HOT100_METHOD,
   HOT100_SOURCE,
+  HOT100_CHART_DATE_LONG,
+  HOT100_PUBLISHED_ON_LONG,
+  HOT100_READ_ON_LONG,
   hot100StillChartingLine,
+  coCreditsOf,
+  peakReachedOn,
+  shortTitle,
 } from "./hot100Weeks";
 import { count, cardinalWord } from "../lib/plural";
 import { DAI_DAI_2026_MOST_NO1_THROUGH_LONG } from "./daiDaiNo1Claim";
@@ -228,6 +235,127 @@ const followersSource = (() => {
   );
 })();
 
+/**
+ * The rows of "Highest Billboard Hot 100 peak", read off the same Billboard
+ * rows as the weeks board (data/hot100Weeks.ts), so the two cannot disagree.
+ *
+ * They were typed until 30 Sep 2026, and wrong by omission. They left out Hugh
+ * Masekela, who topped the chart as the lead act in 1968 (the entries board on
+ * this same page said so), and Miriam Makeba, whose "Pata Pata" peaked above
+ * his best, so Burna Boy's row printed fifth when he is seventh; and Tems' No. 1
+ * carried no tie mark, so she printed second. The "biggest artist in Africa"
+ * answer, read off this board, then called Wizkid and Tems the joint holders.
+ *
+ * The top five, ties included, then every act down to his row when he sits
+ * below it: a row with a gap above it would print a rank he does not hold.
+ */
+const hot100PeakRows = (() => {
+  const his = hot100PeakStandings.findIndex((s) => s.name === HIGHLIGHT);
+  return hot100PeakStandings.filter((s, i) => s.rank <= HOT100_TOP || i <= his);
+})();
+/** "Drake & Kyla", "A, B & C" — how the page's subs join a credit. */
+const ampList = (xs: string[]) =>
+  xs.length <= 1 ? xs.join("") : `${xs.slice(0, -1).join(", ")} & ${xs[xs.length - 1]}`;
+const hot100PeakEntries: RankEntry[] = hot100PeakRows.map((s, i) => {
+  const others = coCreditsOf(s.song, s.name);
+  return {
+    name: s.name,
+    sub: `${HOT100_COUNTRIES[s.country].flag} “${shortTitle(s.song.title)}”${others.length ? ` (with ${ampList(others)})` : ""}`,
+    value: `No. ${s.peak}`,
+    ...(i > 0 && s.peak === hot100PeakRows[i - 1].peak ? { tie: true as const } : {}),
+  };
+});
+const hot100PeakNote = (() => {
+  const no1s = hot100PeakStandings.filter((s) => s.peak === 1);
+  const him = hot100PeakStandings.find((s) => s.name === HIGHLIGHT);
+  const [first] = no1s;
+  const firstHit = first
+    ? `“${shortTitle(first.song.title)}” in ${peakReachedOn(first.song).slice(0, 4)}`
+    : "";
+  const no1Line = !first
+    ? ""
+    : no1s.length === 1
+      ? `${first.name} is the only African act to reach No. 1, with ${firstHit}. `
+      : `${andList(no1s.map((s) => s.name))} have all reached No. 1, ${first.name} first, with ${firstHit}. `;
+  const hisLine = him
+    ? `${HIGHLIGHT}'s best is “${shortTitle(him.song.title)}” at No. ${him.peak} (his real Hot 100 record is entries, where he leads all African acts with ${BURNA_HOT_100_ENTRIES_WORD.toLowerCase()}).`
+    : "";
+  return `The highest any African artist has charted on the Billboard Hot 100, counting lead and featured credits. ${no1Line}${hisLine}`.trim();
+})();
+const hot100PeakSource = (() => {
+  const extended = hot100PeakRows.some((s) => s.rank > HOT100_TOP);
+  return (
+    `Best Billboard Hot 100 peak, lead or featured credit, from the same rows the weeks board is summed from: ` +
+    `each act's Hot 100 chart history on billboard.com, read ${HOT100_READ_ON_LONG}, as of the chart dated ${HOT100_CHART_DATE_LONG} (published ${HOT100_PUBLISHED_ON_LONG}). ` +
+    `African artists by nationality. Acts on the same peak share a rank and are listed in the order they reached it.` +
+    (extended
+      ? ` The top ${cardinalWord(HOT100_TOP)}, then every act down to ${HIGHLIGHT}'s row, so his row prints the rank he holds.`
+      : "")
+  );
+})();
+
+/**
+ * The day the best-selling board's top two are counted to. ChartMasters stamps
+ * each artist's streams with a date, and Burna Boy and Wizkid are read as a
+ * same-date pair, so this one day dates both totals. The board's source line
+ * prints it, and so does the "best-selling African artist" answer on
+ * /records/africas-biggest — which is why it lives here rather than inside the
+ * sentence: typed into the source line alone, the answer would either have to
+ * copy it (and be left behind by the next re-read) or go undated.
+ * Typed, like BURNA_YT_AUDIENCE_SET_ON: bump it in the same edit as the two
+ * values, never one without the other.
+ */
+export const EAS_STREAMS_COUNTED_TO = "2026-09-28";
+
+/**
+ * Spotify streams as a LEAD artist, African artists by nationality: the measure
+ * the "most-streamed African artist on Spotify" answer leads with (Paul, 30 Sep
+ * 2026), because a featured credit on someone else's hit is not the artist's
+ * own streaming. Read 30 Sep 2026 from each artist's ChartMasters page
+ * (chartmasters.org/artist/<slug>/, "Spotify statistics": Lead streams and
+ * Feat streams), as the page prints them. ChartMasters counts a shared top
+ * billing ("Shakira & Burna Boy") as lead for both acts. kworb, which counts
+ * only the first-listed artist as lead, gives the same order at the top on its
+ * 28–29 Sep pages: Burna Boy 6.26B, Rema 4.99B, Tyla 4.21B, Wizkid 3.41B. Both
+ * tables: docs/sourcing/spotify-lead-streams-2026-09-30.md. Re-read the whole
+ * list on one day; never one row.
+ */
+export const SPOTIFY_LEAD_STREAMS_READ_ON = "2026-09-30";
+export const SPOTIFY_LEAD_STREAMS_READ_ON_LONG = new Date(`${SPOTIFY_LEAD_STREAMS_READ_ON}T00:00:00Z`).toLocaleDateString("en-GB", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+  timeZone: "UTC",
+});
+export interface LeadStreamsReading {
+  name: string;
+  /** Streams as lead, at the precision ChartMasters prints. */
+  lead: number;
+  /** Streams as a featured artist, likewise. */
+  feat: number;
+}
+export const spotifyLeadStreams: LeadStreamsReading[] = [
+  { name: "Burna Boy", lead: 8.0e9, feat: 3.1e9 },
+  { name: "Rema", lead: 6.3e9, feat: 407.7e6 },
+  { name: "Wizkid", lead: 4.9e9, feat: 6.9e9 },
+  { name: "Tems", lead: 4.8e9, feat: 1.5e9 },
+  { name: "Tyla", lead: 4.7e9, feat: 136.8e6 },
+  { name: "Asake", lead: 4.0e9, feat: 396.0e6 },
+  { name: "Ayra Starr", lead: 3.5e9, feat: 771.0e6 },
+  { name: "Davido", lead: 3.4e9, feat: 816.7e6 },
+  { name: "Omah Lay", lead: 3.1e9, feat: 651.7e6 },
+  { name: "CKay", lead: 3.0e9, feat: 76.9e6 },
+];
+/** "8.0B" / "407.7M", the precision the source prints. */
+export const streamsShort = (n: number) => (n >= 1e9 ? `${(n / 1e9).toFixed(1)}B` : `${(n / 1e6).toFixed(1)}M`);
+/** "28 September" — how the source line has always written the stamp. */
+const dayMonth = (iso: string) =>
+  new Date(`${iso}T12:00:00Z`).toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "long",
+    timeZone: "UTC",
+  });
+
 export const statBoxes: LeaderboardBox[] = [
   {
     id: "billboard-global-200-peak",
@@ -249,15 +377,10 @@ export const statBoxes: LeaderboardBox[] = [
     title: "Highest Billboard Hot 100 peak",
     meta: "Billboard Hot 100 · African artists · best peak",
     layout: "list",
-    entries: [
-      { name: "Wizkid", sub: "🇳🇬 “One Dance” (with Drake)", value: "No. 1" },
-      { name: "Tems", sub: "🇳🇬 “Wait for U” (Future & Drake)", value: "No. 1" },
-      { name: "Rema", sub: "🇳🇬 “Calm Down” (with Selena Gomez)", value: "No. 3" },
-      { name: "Tyla", sub: "🇿🇦 “Water”", value: "No. 7" },
-      { name: "Burna Boy", sub: "🇳🇬 “WGFT” (with Gunna)", value: "No. 16" },
-    ],
-    note: `The highest any African artist has charted on the Billboard Hot 100, counting lead and featured credits — Wizkid and Tems both hit No. 1 via global smashes with Drake and Future. Burna Boy's best is “WGFT” at No. 16 (his real Hot 100 record is entries, where he leads all African acts with ${BURNA_HOT_100_ENTRIES_WORD.toLowerCase()}).`,
-    source: "Best Billboard Hot 100 peak (lead or featured credit), per Billboard and Wikipedia-cited chart histories. As of July 2026.",
+    // Nothing here is typed: see hot100PeakEntries above.
+    entries: hot100PeakEntries,
+    note: hot100PeakNote,
+    source: hot100PeakSource,
   },
   {
     id: "most-streamed-african-artist",
@@ -585,7 +708,7 @@ export const statBoxes: LeaderboardBox[] = [
       { name: "Asake", sub: "🇳🇬 Nigeria", value: "11.45M" },
     ],
     note: "Burna Boy is the best-selling African artist of all time, and his lead over Wizkid, now past 15 million equivalent album sales himself, has stretched from about 30,000 to some 339,000 across the “Dai Dai” run. Asake is the third African artist on ChartMasters' 696-name board. Read the scope with the figure: these three are the only artists from any African country on it (the board also tags Colombia's Beéle, 11.02M, as Afrobeats).",
-    source: "Total equivalent album sales (EAS), per ChartMasters' daily Best-Selling Artists of All-Time board, every one of its 696 rows read 30 September 2026 through the board's own paged table: Burna Boy 15,341,000 (rank 532), Wizkid 15,002,000 (rank 538), Asake 11,445,000 (rank 638). Burna Boy's and Wizkid's streams are both stamped 28 September, a same-date pair; Asake's are still stamped 18 September, so his figure trails his real total by some ten days of streams. The 24 September reading was 15,280,000 (534) to 14,956,000 (538), so Burna gained 61,000 and Wizkid 46,000, and the board grew from 695 names to 696. Nationality decides who counts (Akon, DJ Khaled and Dido are on the board and are not African artists). The board no longer prints a country column, so the country was read with its own search: \"country:nigeria\" returns exactly Burna Boy, WizKid and Asake, and every other African country returns no rows. READ THE RANK FROM THE g# COLUMN, NOT THE # COLUMN: the leading # is a client-side row counter that resets to 1 under any search or filter, so a re-read that searches for a name and copies the first number will publish a rank of 1. g# is the real position, and sorting all 696 rows by Total EAS reproduces it exactly. IMPORTANT ON METHOD, still true: ChartMasters has not completed a CSPC study for any of the three — the studio-album, other-LP, physical-single and digital-single columns all read 0, and Total EAS equals the streaming figure to the digit. Checked against a negative control rather than assumed: neighbours who DO have studies render non-zero in the same read, e.g. Carly Rae Jepsen at rank 539 with 1,777,000 studio and 31,940,000 digital singles. Board-wide, 236 of the 696 have all-zero sales columns and 460 have a completed study; these three are in the 236. So all three totals are streaming-only estimates that would UNDERSTATE a real CSPC result, not full sales tallies. ChartMasters itself makes no claim about African artists anywhere on that page. THE NAME ANYONE WILL RAISE: Akon sits at rank 501 on 16,736,000 EAS, ahead of Burna Boy. ChartMasters tags his country as the United States, and so does this site — Paul's ruling of 17 September 2026: an artist's nationality and where the career sits, not parentage or birthplace; Akon is an American artist, as GIMS and Aya Nakamura are French. The two have traded this lead before, so it is worth re-reading rather than assuming."
+    source: `Total equivalent album sales (EAS), per ChartMasters' daily Best-Selling Artists of All-Time board, every one of its 696 rows read 30 September 2026 through the board's own paged table: Burna Boy 15,341,000 (rank 532), Wizkid 15,002,000 (rank 538), Asake 11,445,000 (rank 638). Burna Boy's and Wizkid's streams are both stamped ${dayMonth(EAS_STREAMS_COUNTED_TO)}, a same-date pair; Asake's are still stamped 18 September, so his figure trails his real total by some ten days of streams. The 24 September reading was 15,280,000 (534) to 14,956,000 (538), so Burna gained 61,000 and Wizkid 46,000, and the board grew from 695 names to 696. Nationality decides who counts (Akon, DJ Khaled and Dido are on the board and are not African artists). The board no longer prints a country column, so the country was read with its own search: "country:nigeria" returns exactly Burna Boy, WizKid and Asake, and every other African country returns no rows. READ THE RANK FROM THE g# COLUMN, NOT THE # COLUMN: the leading # is a client-side row counter that resets to 1 under any search or filter, so a re-read that searches for a name and copies the first number will publish a rank of 1. g# is the real position, and sorting all 696 rows by Total EAS reproduces it exactly. IMPORTANT ON METHOD, still true: ChartMasters has not completed a CSPC study for any of the three — the studio-album, other-LP, physical-single and digital-single columns all read 0, and Total EAS equals the streaming figure to the digit. Checked against a negative control rather than assumed: neighbours who DO have studies render non-zero in the same read, e.g. Carly Rae Jepsen at rank 539 with 1,777,000 studio and 31,940,000 digital singles. Board-wide, 236 of the 696 have all-zero sales columns and 460 have a completed study; these three are in the 236. So all three totals are streaming-only estimates that would UNDERSTATE a real CSPC result, not full sales tallies. ChartMasters itself makes no claim about African artists anywhere on that page. THE NAME ANYONE WILL RAISE: Akon sits at rank 501 on 16,736,000 EAS, ahead of Burna Boy. ChartMasters tags his country as the United States, and so does this site — Paul's ruling of 17 September 2026: an artist's nationality and where the career sits, not parentage or birthplace; Akon is an American artist, as GIMS and Aya Nakamura are French. The two have traded this lead before, so it is worth re-reading rather than assuming.`
   },
   {
     id: "spotify-top-artists-peak",

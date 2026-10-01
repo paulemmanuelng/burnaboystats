@@ -2,7 +2,7 @@
 
    One design at every width, lifted from the mobile home screen: kicker, split
    title, lede, the rotating globe ringed on its stage, a four-cell region
-   strip, then a status/CTA foot. Desktop used to have a separate side-by-side
+   strip, then the CTA foot. Desktop used to have a separate side-by-side
    card; this replaced it. */
 .globe {
   display: block;
@@ -105,17 +105,6 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
-/* Green, not gold: this reports freshness, not a record. */
-.dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--green);
-  display: block;
-  flex: none;
-  box-shadow: 0 0 8px color-mix(in srgb, var(--green-dot) 70%, transparent);
-}
-.note { color: var(--text-muted); }
 .cta { margin-left: auto; color: var(--gold); }
 
 /* Above the mobile breakpoint it sits inside a column (the certifications

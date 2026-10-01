@@ -11,9 +11,25 @@ import {
   BURNA_PEAK_LISTENERS,
   BURNA_PEAK_LISTENERS_RISE,
   BURNA_PEAK_LISTENERS_SET_ON_LONG,
+  EAS_STREAMS_COUNTED_TO,
+  SPOTIFY_LEAD_STREAMS_READ_ON_LONG,
+  spotifyLeadStreams,
+  streamsShort,
+  asOfLabel,
+  type RankEntry,
 } from "../../data/africasBiggest";
 import { monthlyListenersSeries } from "../../data/trends";
-import { HOT100_METHOD } from "../../data/hot100Weeks";
+import {
+  HOT100_METHOD,
+  hot100PeakStandings,
+  peakReachedOn,
+  shortTitle,
+  isFeaturedOn,
+  leadActOf,
+  coCreditsOf,
+  type Hot100PeakStanding,
+} from "../../data/hot100Weeks";
+import { cardinalWord } from "../../lib/plural";
 import { pageMetadata, datasetJsonLd } from "../../lib/seo";
 import MobileAfricasBiggest from "../../components/MobileAfricasBiggest";
 import {
@@ -61,17 +77,235 @@ export const metadata = pageMetadata({
   shareDescription: "Top African artists on the Billboard Global 200 and Spotify — with Burna Boy in context.",
 });
 
+// ── The two searches this page is found by ─────────────────────────────────
+// Search Console, 28 days to 30 Sep 2026: "biggest artist in africa" (68
+// clicks, +258%) and "best selling african artist of all time". Both answers
+// are read off the boards below, so they move when a board is re-read.
+
+/** A board by id, or a build that stops — an answer cannot be written from a
+ *  board that is not there. */
+const board = (id: string) => {
+  const b = statBoxes.find((x) => x.id === id);
+  if (!b) throw new Error(`/records/africas-biggest: no "${id}" board to answer from`);
+  return b;
+};
+
+/**
+ * Everyone sharing first place: the rows the data marks joint, and the rows
+ * level with the top on value.
+ *
+ * The second half is not belt and braces. The Hot 100 peak board listed its
+ * No. 1s with no tie mark until 30 Sep 2026 — the order there is simply the
+ * order they got there — and a typed board can lose the mark again, so reading
+ * entries[0] alone could name one of several No. 1s as the leader.
+ */
+function leadersOf(entries: RankEntry[]): RankEntry[] {
+  const [top, ...rest] = entries;
+  if (!top) return [];
+  const group = [top];
+  for (const e of rest) {
+    if (e.tie || (e.value !== undefined && e.value === top.value)) group.push(e);
+    else break;
+  }
+  return group;
+}
+
+const andList = (xs: string[]) =>
+  xs.length <= 1 ? xs.join("") : `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}`;
+const possessive = (name: string) => (name.endsWith("s") ? `${name}'` : `${name}'s`);
+
+/** "Best-selling" has one measure on this page: ChartMasters' equivalent
+ *  album sales. The names, figures, source and date are the board's. */
+const bestSellingAnswer = (() => {
+  const eas = board("best-selling-african-artist-eas");
+  const [first, second] = eas.entries ?? [];
+  const source = eas.meta.split(" · ").at(-1) ?? "";
+  return (
+    `${first.name} is the best-selling African artist of all time by ${possessive(source)} count of ` +
+    `equivalent album sales: ${first.value} to ${possessive(second.name)} ${second.value}, with both ` +
+    `artists' streams counted to ${asOfLabel(EAS_STREAMS_COUNTED_TO)}. Artists are counted by ` +
+    `nationality, which is why Akon, an American artist, is not in the comparison.`
+  );
+})();
+
+/**
+ * "Which African artists have reached No. 1 on the Billboard Hot 100?" — read
+ * off the rows the peak board is built from (data/hot100Weeks.ts), so it names
+ * every No. 1 the board holds. The typed answer it replaced named Wizkid and
+ * Tems alone and called Rema's "Calm Down" the best lead-act peak, leaving out
+ * Hugh Masekela, who topped the chart as the lead act.
+ */
+const hot100No1Answer = (() => {
+  const no1s = hot100PeakStandings.filter((s) => s.peak === 1);
+  const title = (s: Hot100PeakStanding) => `“${shortTitle(s.song.title)}”`;
+  const year = (s: Hot100PeakStanding) => peakReachedOn(s.song).slice(0, 4);
+  const featured = (s: Hot100PeakStanding) => isFeaturedOn(s.song, s.name);
+  const hit = (s: Hot100PeakStanding) =>
+    featured(s)
+      ? `${s.name} on ${possessive(leadActOf(s.song))} ${title(s)} (${year(s)})`
+      : `${s.name} with ${title(s)} (${year(s)})`;
+  const withWho = (s: Hot100PeakStanding) => {
+    const others = coCreditsOf(s.song, s.name);
+    return others.length ? ` (with ${andList(others)})` : "";
+  };
+  const [first] = no1s;
+  const leads = no1s.filter((s) => !featured(s));
+  const feats = no1s.filter(featured);
+  const next = hot100PeakStandings.find((s) => s.peak > 1);
+  const him = hot100PeakStandings.find((s) => s.name === HIGHLIGHT);
+  const howMany = cardinalWord(no1s.length);
+  const opener = `${howMany[0].toUpperCase()}${howMany.slice(1)} African ${
+    no1s.length === 1 ? "artist has" : "artists have"
+  } reached No. 1 on the Billboard Hot 100: ${andList(no1s.map(hit))}.`;
+  const firstLine = first
+    ? ` ${first.name} was the first${leads.length === 1 && leads[0] === first ? ", and the only one as the lead act" : ""}${
+        feats.length ? `; ${andList(feats.map((s) => s.name))} got there on featured credits` : ""
+      }.`
+    : "";
+  const nextLine = next
+    ? ` The next-highest African peak is ${possessive(next.name)} ${title(next)}${withWho(next)} at No. ${next.peak}` +
+      (him && him !== next && him.peak > 1
+        ? `, and ${possessive(HIGHLIGHT)} best is ${title(him)}${withWho(him)} at No. ${him.peak}.`
+        : ".")
+    : "";
+  return `${opener}${firstLine}${nextLine}`;
+})();
+
+/**
+ * "Biggest" has no single measure, so the answer names who leads which —
+ * computed, so it cannot crown anyone the boards do not.
+ *
+ * Every board on the page is either a measure below or in BIGGEST_LEFT_OUT
+ * with the reason it is out, and tests/topSearchFaqs.test.tsx walks statBoxes
+ * to hold that, so a board added later has to be sorted into one or the other.
+ * Until 30 Sep 2026 the set was a list with a comment naming what was out, and
+ * three African size boards were in neither: Spotify followers, songs past
+ * 200M streams and the YouTube audience peak. The measures are the African
+ * boards (by nationality) that measure size. Every board in the set that
+ * another artist leads stays in — dropping those is how an answer like this
+ * turns into a crown, and the test names each leader against the boards.
+ */
+type Measure = { id: string; label: string; leaders: string[]; value?: string; offBoard?: true };
+// Streams as a lead artist is not a board on the page, so it is read from its
+// own dated list and kept out of BIGGEST_MEASURED_IDS (the boards the answer
+// reads). It leads the list because a featured credit is someone else's hit.
+const leadRanked = [...spotifyLeadStreams].sort((a, b) => b.lead - a.lead);
+const leadMeasure: Measure = {
+  id: "spotify-lead-streams",
+  label: "Spotify streams as a lead artist",
+  leaders: leadRanked.filter((r) => r.lead === leadRanked[0].lead).map((r) => r.name),
+  value: streamsShort(leadRanked[0].lead),
+  offBoard: true,
+};
+const listMeasure = (id: string, label: string): Measure => {
+  const lead = leadersOf(board(id).entries ?? []);
+  return { id, label, leaders: lead.map((e) => e.name), value: lead[0]?.value };
+};
+// The newest CLOSED year of the streaming board: a running year has a leader,
+// not a winner, and the board's own badge counts closed years only.
+const STREAMS_BOARD = "most-streamed-african-artist";
+const streamYear = board(STREAMS_BOARD).rows?.find((r) => !r.inProgress);
+const biggestMeasures: Measure[] = [
+  leadMeasure,
+  listMeasure("best-selling-african-artist-eas", "equivalent album sales"),
+  ...(streamYear
+    ? [
+        {
+          id: STREAMS_BOARD,
+          label: `Spotify streams in ${streamYear.label}`,
+          leaders: leadersOf(streamYear.entries).map((e) => e.name),
+          value: streamYear.entries[0]?.value,
+        },
+      ]
+    : []),
+  listMeasure("monthly-listeners-peak", "peak Spotify monthly listeners"),
+  listMeasure("most-followed-spotify", "Spotify followers"),
+  listMeasure("youtube-music-audience-peak", "peak monthly audience on YouTube"),
+  // "songs over 200M Spotify streams" — the threshold is the board's own.
+  listMeasure("most-200m-stream-songs", board("most-200m-stream-songs").title.replace(/^Most /, "")),
+  listMeasure("billboard-global-200-peak", "the highest Billboard Global 200 peak"),
+  listMeasure("most-hot-100-entries", "Billboard Hot 100 entries"),
+  listMeasure("most-hot-100-weeks", "weeks on the Billboard Hot 100"),
+  listMeasure("billboard-hot-100-peak", "the highest Billboard Hot 100 peak"),
+  listMeasure("biggest-spotify-debut", "the biggest Spotify album debut"),
+];
+/** The boards the answer reads. */
+export const BIGGEST_MEASURED_IDS = biggestMeasures.filter((m) => !m.offBoard).map((m) => m.id);
+const WORLD = "a world board: its leaders are not African artists";
+const NIGERIAN = "Nigerian artists only, so it cannot say who leads Africa";
+const ONE_SERVICE = "one service's chart, asking what the Billboard peaks already ask across all of them";
+/** The boards it does not, each with the reason. */
+export const BIGGEST_LEFT_OUT: Record<string, string> = {
+  "youtube-audience-world": WORLD,
+  "fastest-to-a-billion-youtube": WORLD,
+  "daily-peak-streams-ng": NIGERIAN,
+  "spotify-top-artists-peak": NIGERIAN,
+  "highest-spotify-global-peak": ONE_SERVICE,
+  "spotify-global-album-peak": ONE_SERVICE,
+  "apple-music-global-no1": ONE_SERVICE,
+};
+
+/**
+ * "Most-streamed on Spotify" is answered by lead credits first (Paul, 30 Sep
+ * 2026): streams on the artist's own songs, not features on someone else's.
+ * Every name and figure comes from spotifyLeadStreams; the overall-total line
+ * appears only while the overall leader is someone else, and the closing
+ * sentence (2024, 2025, the listener peak) is the answer this replaced.
+ */
+const leadStreamsAnswer = (() => {
+  const [top, second, third] = leadRanked;
+  const overall = [...spotifyLeadStreams].sort((a, b) => b.lead + b.feat - (a.lead + a.feat))[0];
+  const overallLine =
+    overall.name !== top.name
+      ? ` ${overall.name}'s overall Spotify total is higher, because ${streamsShort(overall.feat)} of it comes from songs where ${overall.name} is the featured artist.`
+      : "";
+  return (
+    `By lead credits (the artist's own songs, not features), it is ${top.name}: ${streamsShort(top.lead)} Spotify streams as a lead artist, the most of any African artist, ahead of ${second.name} (${streamsShort(second.lead)}) and ${third.name} (${streamsShort(third.lead)}) on ChartMasters' count, read ${SPOTIFY_LEAD_STREAMS_READ_ON_LONG}.` +
+    overallLine +
+    ` Burna Boy was also the most-streamed African artist globally in both 2024 and 2025, and holds the highest Spotify monthly-listener peak of any African artist.`
+  );
+})();
+
+const biggestAnswer = (() => {
+  // One clause per leader (or joint leaders), most measures first; a stable
+  // sort keeps the list's order between equals.
+  const groups = new Map<string, { leaders: string[]; measures: Measure[] }>();
+  for (const m of biggestMeasures) {
+    const key = m.leaders.join("|");
+    if (!groups.has(key)) groups.set(key, { leaders: m.leaders, measures: [] });
+    groups.get(key)!.measures.push(m);
+  }
+  const clauses = [...groups.values()]
+    .sort((a, b) => b.measures.length - a.measures.length)
+    .map((g) => {
+      const what = andList(g.measures.map((m) => (m.value ? `${m.label} (${m.value})` : m.label)));
+      return g.leaders.length === 1 ? `${g.leaders[0]} leads on ${what}` : `${andList(g.leaders)} share ${what}`;
+    });
+  const byMeasure =
+    clauses.length > 1 ? `${clauses.slice(0, -1).join("; ")}; and ${clauses[clauses.length - 1]}` : clauses[0];
+  return `“Biggest” has no single measure, so among African artists it depends on which one you count. ${byMeasure}.`;
+})();
+
 // Answer-first Q&A targeting the multi-artist searches this page serves, so it
 // can win featured snippets / AI answers for "which / highest African artist on
 // Billboard / Spotify" queries. Rendered visibly and as FAQPage structured data.
+// The two searched-for questions lead: the phone's list opens on the first.
 export const pageFaqs = [
+  {
+    q: "Who is the biggest artist in Africa?",
+    a: biggestAnswer,
+  },
+  {
+    q: "Who is the best-selling African artist of all time?",
+    a: bestSellingAnswer,
+  },
   {
     q: "What is the highest-charting African song on the Billboard Global 200?",
     a: "Shakira and Burna Boy's “Dai Dai” — the first and only African song to reach No. 1 on Billboard's US-inclusive Global 200. The next-highest are CKay's “Love Nwantiti” and Future's “Wait for U” with Drake and Tems (both No. 2), Rema and Selena Gomez's “Calm Down” (No. 3) and Tyla's “Water” (No. 6).",
   },
   {
     q: "Which African artists have reached No. 1 on the Billboard Hot 100?",
-    a: "Wizkid (“One Dance” with Drake) and Tems (“Wait for U” with Future and Drake) have both topped the Billboard Hot 100 through featured credits. The highest Hot 100 peak for a lead African act is Rema's “Calm Down” at No. 3, ahead of Tyla's “Water” (No. 7) and Burna Boy's “Dai Dai” with Shakira (No. 17). Burna Boy's best featured placing is higher still — “WGFT” with Gunna at No. 16.",
+    a: hot100No1Answer,
   },
   {
     q: "Which African artist has the most Billboard Hot 100 entries?",
@@ -79,7 +313,7 @@ export const pageFaqs = [
   },
   {
     q: "Who is the most-streamed African artist on Spotify?",
-    a: "Burna Boy was the most-streamed African artist globally in both 2024 and 2025, and holds the highest Spotify monthly-listener peak of any African artist. Tems, Wizkid, Tyla and Asake also rank among the most-streamed African artists each year.",
+    a: leadStreamsAnswer,
   },
   {
     q: "Who was the first African artist to reach No. 1 on the Billboard Global 200?",

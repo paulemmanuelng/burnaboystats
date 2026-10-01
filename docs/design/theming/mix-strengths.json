@@ -106,8 +106,7 @@
     "--gold-ink 14%",
     "--gold-ink 28%",
     "--gold-ink 9%",
-    "--gold-wash-base 13%",
-    "--green-dot 70%"
+    "--gold-wash-base 13%"
   ],
   "app/components/HubScatter.tsx": [
     "--bg-soft 90%",
