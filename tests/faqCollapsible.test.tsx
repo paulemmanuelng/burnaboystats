@@ -22,6 +22,7 @@ import AlbumPage from "../app/music/albums/[album]/page";
 import ArtistPage from "../app/afrobeats/[artist]/page";
 import AwardsPage from "../app/records/awards/page";
 import AfricasBiggestPage from "../app/records/africas-biggest/page";
+import CarsPage from "../app/records/cars/page";
 import songStyles from "../app/music/[song]/song.module.css";
 import faqSectionStyles from "../app/components/mobileFaqSection.module.css";
 
@@ -251,6 +252,8 @@ describe("at 1280px the routes it was added to render the markup they always did
     ["/afrobeats/wizkid", () => ArtistPage({ params: Promise.resolve({ artist: "wizkid" }) }), faqSectionStyles.list],
     ["/records/awards", async () => <AwardsPage />, faqSectionStyles.list],
     ["/records/africas-biggest", async () => <AfricasBiggestPage />, faqSectionStyles.list],
+    // The shared deep-page screen, not a bespoke one — the same promise.
+    ["/records/cars", async () => <CarsPage />, faqSectionStyles.list],
   ])("%s", async (_route, page, cls) => {
     const { served, mounted } = await faqSubtrees(await page(), cls);
     // The premise: if the selector stops matching, the comparison below passes

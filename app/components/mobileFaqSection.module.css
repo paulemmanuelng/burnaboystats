@@ -1,12 +1,13 @@
 /* The FAQ section on a bespoke mobile screen — see MobileFaqSection.tsx.
 
    Every rule here paints only below 900px, because the only things that render
-   this component are the three mobile screens, and each of those is
+   this component are mobile screens — the three bespoke ones and, on
+   /records/cars, the shared deep-page screen — and each of those is
    `display: none` at base and a real display inside their own 900px block. So
    there is no media query in this file and nothing in it can reach a desktop
-   layout: /afrobeats/[artist], /records/awards and /records/africas-biggest
-   have to be byte-identical above 900px, and the cheapest way to keep a promise
-   like that is for these selectors to have nowhere to match. */
+   layout: /afrobeats/[artist], /records/awards, /records/africas-biggest and
+   /records/cars have to be byte-identical above 900px, and the cheapest way to
+   keep a promise like that is for these selectors to have nowhere to match. */
 
 /* A trailing section, marked off by a rule rather than a band. Screen 11 gives
    its honours block a --bg-soft panel and screen 16 rules its boards off; a

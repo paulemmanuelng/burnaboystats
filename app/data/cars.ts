@@ -687,6 +687,23 @@ export const totalValueFormatted = formatUsd(totalValueUsd);
 export const topCar = currentCars[0];
 export const topCarValueFormatted = formatUsd(topCar.valueUsd);
 
+/**
+ * The year the list was last confirmed: the newer of the last full sweep and
+ * any car added since it. /records/cars puts it in its <title> ("Car Collection
+ * (2026)"), because "burna boy car collection 2026" is one of the searches the
+ * page answers.
+ *
+ * Read off the list's own dates, never the build clock — the rule
+ * /records/by-the-numbers follows for its edition year. A clock year would
+ * start calling this "the 2027 collection" on 1 January with nobody having
+ * looked at a single car; this one moves only when the list is re-verified or
+ * a car joins it.
+ */
+export const carsListYear = Math.max(
+  Number(/\b(\d{4})\b/.exec(CARS_LAST_SWEEP)?.[1]),
+  ...currentCars.filter((c) => c.addedOn).map((c) => Number(c.addedOn!.slice(0, 4))),
+);
+
 // ── The garage: the current cars as pages ───────────────────────────────────
 // Rank is the position in the value-sorted list, so it can never disagree with
 // the index. The image block is derived from the slug: one hero and one 16:10

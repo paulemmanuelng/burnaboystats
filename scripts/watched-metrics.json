@@ -99,8 +99,8 @@
       "extractor": "kworbTotalStreams",
       "kind": "peak",
       "threshold": 0.03,
-      "baseline": 11131093415,
-      "note": "RE-ANCHORED 25 Sep 2026 on a DIRECT read of ChartMasters' Playcounts Tool (Paul's premium account, in the site's own browser): offset 141,218,212 = ChartMasters through 23 Sep (11,070,534,585) − kworb's page stamped 2026/09/24 (raw 10,929,316,373), a day-N ↔ page-N+1 pair (kworb stamps a page with the day it was built). Why then: kworb's raw sum FELL 16,051,434 in its 24 Sep build (a title left its Burna list while its Daily read +7.38M), and the drift alarm asked for a re-measure — docs/sourcing/chartmasters/reads/2026-09-25.json. The offset's history, oldest first: 10 Sep 112,305,806 (through 8 Sep ↔ page 09/09); 17 Sep 115,177,863 (through 15 Sep ↔ 09/16, eight pairs deep: 8/09 112,305,806 · 9/10 112,611,573 · 10/11 112,418,311 · 11/12 112,753,238 · 12/13 112,673,462 · 13/14 112,276,678 · 14/15 114,914,869 · 15/16 115,177,863 — stable to within 0.5M under this pairing and wandering by 3M under same-number pairing, except the +2.6M step on kworb's 09/15 page, whose cumulative moved only 4,694,787 while its own Daily read 7,319,821: a roster removal on kworb's side that ChartMasters did not make); 22 Sep 168,789,190 (--kworb-frozen, NOT a measured gap: ChartMasters through 20 Sep, 11,048,637,922, published directly on Paul's instruction, against kworb's stale 18 Sep build); 23 Sep 114,858,823 (through 21 Sep ↔ 09/22, kworb moving again); 25 Sep 141,218,212 (above). So the gap does NOT decay: it moves when kworb's roster changes, in either direction, and only a same-date re-read catches it. ChartMasters' own milestone card dates the 11B crossing to 14 Sep 2026 (11,002,971,256 through that day). Re-read at chartmasters.org/spotify-streaming-numbers-tool (the account is set to Burna Boy; the date picker serves the last 15 days) whenever the raw jumps or monthly; move offset and baseline together; never derive the offset from the published figure. Evidence: docs/sourcing/CAREER-STREAMS-OFFSET.md and docs/sourcing/chartmasters/reads/.",
+      "baseline": 11107256033,
+      "note": "RE-ANCHORED 30 Sep 2026 on a DIRECT read of ChartMasters' Playcounts Tool (Paul's premium account, in the site's own browser): offset 117,380,830 = ChartMasters through 28 Sep (11,107,256,033) − kworb's page stamped 2026/09/29 (raw 10,989,875,203), a day-N ↔ page-N+1 pair (kworb stamps a page with the day it was built). Why then: kworb's raw sum ROSE 27,953,016 in its 29 Sep build against a Daily of 6,883,734 (titles it had dropped came back), so the published total ran 23,837,382 high until the re-read; the drift alarm caught it on the 05:35 UTC run — docs/sourcing/chartmasters/reads/2026-09-30.json. The offset's history, oldest first: 10 Sep 112,305,806 (through 8 Sep ↔ page 09/09); 17 Sep 115,177,863 (through 15 Sep ↔ 09/16, eight pairs deep: 8/09 112,305,806 · 9/10 112,611,573 · 10/11 112,418,311 · 11/12 112,753,238 · 12/13 112,673,462 · 13/14 112,276,678 · 14/15 114,914,869 · 15/16 115,177,863 — stable to within 0.5M under this pairing and wandering by 3M under same-number pairing, except the +2.6M step on kworb's 09/15 page, whose cumulative moved only 4,694,787 while its own Daily read 7,319,821: a roster removal on kworb's side that ChartMasters did not make); 22 Sep 168,789,190 (--kworb-frozen, NOT a measured gap: ChartMasters through 20 Sep, 11,048,637,922, published directly on Paul's instruction, against kworb's stale 18 Sep build); 23 Sep 114,858,823 (through 21 Sep ↔ 09/22, kworb moving again); 25 Sep 141,218,212 (through 23 Sep ↔ 09/24: kworb's raw sum FELL 16,051,434 when a title left its Burna list); 30 Sep 117,380,830 (above). So the gap does NOT decay: it moves when kworb's roster changes, in either direction, and only a same-date re-read catches it. ChartMasters' own milestone card dates the 11B crossing to 14 Sep 2026 (11,002,971,256 through that day). Re-read at chartmasters.org/spotify-streaming-numbers-tool (the account is set to Burna Boy; the date picker serves the last 15 days) whenever the raw jumps or monthly; move offset and baseline together; never derive the offset from the published figure. Evidence: docs/sourcing/CAREER-STREAMS-OFFSET.md and docs/sourcing/chartmasters/reads/.",
       "live": true,
       "siteTargets": [
         {
@@ -126,8 +126,8 @@
         "max": 100000000000
       },
       "lastChanged": "2026-09-30",
-      "offset": 141218212,
-      "lastSeenValue": 11131093415,
+      "offset": 117380830,
+      "lastSeenValue": 11107256033,
       "lastSeenAt": "2026-09-30",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B.",
@@ -161,7 +161,7 @@
         }
       ],
       "lastChanged": "2026-09-30",
-      "lastSeenValue": 1167199949,
+      "lastSeenValue": 1170176792,
       "lastSeenAt": "2026-09-30",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
@@ -193,7 +193,7 @@
         }
       ],
       "lastChanged": "2026-09-26",
-      "lastSeenValue": 364944853,
+      "lastSeenValue": 364997031,
       "lastSeenAt": "2026-09-30",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. Source moved off kworb on 28 Aug 2026: kworb.net/youtube/artist/burnaboy.html froze on 25 Aug, serving byte-identical totals for three days while still printing a ~105k/day view rate. The staleness alarm caught it. YouTube itself was 105k-309k views ahead on every one of the four."
@@ -225,7 +225,7 @@
         }
       ],
       "lastChanged": "2026-09-23",
-      "lastSeenValue": 310957894,
+      "lastSeenValue": 310988443,
       "lastSeenAt": "2026-09-30",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. Source moved off kworb on 28 Aug 2026: kworb.net/youtube/artist/burnaboy.html froze on 25 Aug, serving byte-identical totals for three days while still printing a ~105k/day view rate. The staleness alarm caught it. YouTube itself was 105k-309k views ahead on every one of the four."
@@ -257,7 +257,7 @@
         }
       ],
       "lastChanged": "2026-09-25",
-      "lastSeenValue": 484332016,
+      "lastSeenValue": 484419888,
       "lastSeenAt": "2026-09-30",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. Source moved off kworb on 28 Aug 2026: kworb.net/youtube/artist/burnaboy.html froze on 25 Aug, serving byte-identical totals for three days while still printing a ~105k/day view rate. The staleness alarm caught it. YouTube itself was 105k-309k views ahead on every one of the four."
@@ -289,7 +289,7 @@
         }
       ],
       "lastChanged": "2026-09-16",
-      "lastSeenValue": 119153484,
+      "lastSeenValue": 119177671,
       "lastSeenAt": "2026-09-30",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. Source moved off kworb on 28 Aug 2026: kworb.net/youtube/artist/burnaboy.html froze on 25 Aug, serving byte-identical totals for three days while still printing a ~105k/day view rate. The staleness alarm caught it. YouTube itself was 105k-309k views ahead on every one of the four."
@@ -321,7 +321,7 @@
         }
       ],
       "lastChanged": "2026-09-23",
-      "lastSeenValue": 50740766,
+      "lastSeenValue": 50757623,
       "lastSeenAt": "2026-09-30",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total."
@@ -353,7 +353,7 @@
         }
       ],
       "lastChanged": "2026-09-17",
-      "lastSeenValue": 12804194,
+      "lastSeenValue": 12806947,
       "lastSeenAt": "2026-09-30",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total."
@@ -385,7 +385,7 @@
         }
       ],
       "lastChanged": "2026-09-17",
-      "lastSeenValue": 1821841,
+      "lastSeenValue": 1821866,
       "lastSeenAt": "2026-09-30",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total."
@@ -417,7 +417,7 @@
         }
       ],
       "lastChanged": "2026-09-17",
-      "lastSeenValue": 1045340,
+      "lastSeenValue": 1045382,
       "lastSeenAt": "2026-09-30",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total."
@@ -449,7 +449,7 @@
         }
       ],
       "lastChanged": "2026-09-17",
-      "lastSeenValue": 1252222,
+      "lastSeenValue": 1252263,
       "lastSeenAt": "2026-09-30",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total."
