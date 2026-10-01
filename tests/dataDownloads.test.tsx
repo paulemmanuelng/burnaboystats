@@ -520,63 +520,116 @@ describe("awards: the description and the values agree", () => {
 });
 
 describe("/press offers the downloads", () => {
-  // /press is ONE responsive tree — no desktopOnly wrapper, no mobile screen —
-  // so the section it renders is the section both widths get. Held here so a
-  // later split into two trees cannot leave the downloads in one of them.
-  const css = readFileSync("app/press/press.module.css", "utf8");
-
-  it("renders a single tree that no stylesheet hides at any width", () => {
-    const src = readFileSync("app/press/page.tsx", "utf8");
-    expect(src).not.toMatch(/desktopOnly|mobileOnly|Mobile[A-Z]\w+/);
-    expect(css).not.toMatch(/display:\s*none/);
-  });
-
-  it("links each file, with its derived count, a download name and the citation", () => {
+  // /press renders TWO trees since 30 Sep 2026 (design response items 42 and
+  // 62): the phone screen, then the desktop column inside .desktopOnly, which
+  // is display:none below 900px. This block used to rest on the page being one
+  // responsive tree; that premise is gone, so every check below now runs on
+  // BOTH trees — a download that exists in one layout only is a download half
+  // the readers never see.
+  const pressTrees = () => {
     const { container } = render(<PressPage />);
-    const section = container.querySelector('section[aria-labelledby="downloads"]') as HTMLElement;
-    expect(section, "no Download the data section").not.toBeNull();
-    expect(within(section).getByRole("heading", { level: 2 }).textContent).toBe("Download the data");
+    const desktop = container.querySelector('[class*="desktopOnly"]') as HTMLElement;
+    const sections = [...container.querySelectorAll("section")].filter((s) =>
+      /^(m-)?downloads$/.test(s.getAttribute("aria-labelledby") ?? ""),
+    ) as HTMLElement[];
+    const inDesktop = sections.filter((s) => desktop?.contains(s));
+    const inPhone = sections.filter((s) => !desktop?.contains(s));
+    return { container, desktop, inDesktop, inPhone };
+  };
+
+  /** What a tree must hold. Throws with a message naming the tree. */
+  const expectDownloads = (section: HTMLElement, tree: string) => {
+    expect(within(section).getByRole("heading", { level: 2 }).textContent, tree).toBe("Download the data");
     const links = [...section.querySelectorAll("a[download]")] as HTMLAnchorElement[];
-    expect(links.map((a) => a.getAttribute("href"))).toEqual([
+    expect(links.map((a) => a.getAttribute("href")), tree).toEqual([
       "/api/v1/certifications.csv",
       "/api/v1/chart-peaks.csv",
       "/api/v1/awards.csv",
     ]);
     for (const d of DATA_DOWNLOADS) {
       const a = links.find((l) => l.getAttribute("href") === d.path)!;
-      expect(a.getAttribute("download")).toBe(downloadFilename(d.slug));
-      expect(section.textContent).toContain(`${d.slug}.csv · ${d.count.toLocaleString("en-GB")} ${d.countOf}`);
+      expect(a.getAttribute("download"), tree).toBe(downloadFilename(d.slug));
+      // The whole row is the link (item 50): the file, its count and its full
+      // description are all inside it.
+      expect(a.textContent!.replace(/\s+/g, " "), tree).toContain(
+        `${d.slug}.csv · ${d.count.toLocaleString("en-GB")} ${d.countOf}`,
+      );
+      expect(a.textContent, tree).toContain(d.what);
     }
     // The citation fills in the data date, and the page prints it.
     expect(DATASET_CITATION).toContain(dataDateLabel);
-    expect(section.textContent).toContain(DATASET_CITATION);
-    expect(within(section).getByRole("heading", { level: 3 }).textContent).toBe("How to cite");
-    expect(section.querySelector('a[href="/methodology"]')).not.toBeNull();
-    expect(section.textContent).toMatch(/floor/);
-    expect(section.textContent).toMatch(/TCSN/);
+    expect(section.textContent, tree).toContain(DATASET_CITATION);
+    expect(within(section).getByRole("heading", { level: 3 }).textContent, tree).toBe("How to cite");
+    expect(section.querySelector('a[href="/methodology"]'), tree).not.toBeNull();
+    expect(section.textContent, tree).toMatch(/floor/);
+    expect(section.textContent, tree).toMatch(/TCSN/);
+  };
+
+  it("renders the section once in each tree: the phone screen and the desktop column", () => {
+    const { desktop, inDesktop, inPhone } = pressTrees();
+    expect(desktop, "no desktop tree").not.toBeNull();
+    expect(inDesktop.length, "downloads missing from the desktop tree").toBe(1);
+    expect(inPhone.length, "downloads missing from the phone tree").toBe(1);
   });
 
-  it("says truthfully when units are blank, and points to units_note", () => {
-    const { container } = render(<PressPage />);
-    const section = container.querySelector('section[aria-labelledby="downloads"]') as HTMLElement;
-    const text = section.textContent!.replace(/\s+/g, " ");
-    // Negative control, the line this section first shipped: Greece, Poland's
-    // singles, Sweden and Mexico are all priced on a figure their body does not
-    // print today, and none of them is blank.
-    expect(text).not.toContain("blank where the body publishes none");
-    // The columns it names are real columns of the file.
-    for (const c of ["units_note", "unpriced_reason"]) {
-      expect(text).toContain(`${c} `);
-      expect(downloadBySlug("certifications").header).toContain(c);
+  it("negative control: the single tree /press shipped would fail the two-tree check", () => {
+    // The row as it shipped until 30 Sep 2026, one copy, no .desktopOnly and no
+    // phone screen around it.
+    const shipped = document.createElement("div");
+    shipped.innerHTML =
+      '<main><section aria-labelledby="downloads"><h2 id="downloads">Download the data</h2>' +
+      '<div><code>certifications.csv · 1 plaques</code><a href="/api/v1/certifications.csv" download="x.csv">Download</a></div>' +
+      "</section></main>";
+    const desktop = shipped.querySelector('[class*="desktopOnly"]');
+    expect(desktop).toBeNull();
+    const sections = [...shipped.querySelectorAll('section[aria-labelledby$="downloads"]')];
+    expect(sections.filter((s) => desktop?.contains(s)).length).not.toBe(1);
+  });
+
+  it("links each file, with its derived count, a download name and the citation — in both trees", () => {
+    const { inDesktop, inPhone } = pressTrees();
+    expectDownloads(inDesktop[0], "desktop");
+    expectDownloads(inPhone[0], "phone");
+  });
+
+  it("derives the artist counts in each description from the board", () => {
+    // "{19} artists" and "{20} artists" are slots (item 72): read off the
+    // swept board, never typed.
+    expect(downloadBySlug("certifications").what).toContain(
+      `Every plaque for Burna Boy and the ${sweptArtists.length} artists on the Afrobeats Board`,
+    );
+    expect(downloadBySlug("chart-peaks").what).toContain(
+      `Every official chart entry for the same ${sweptArtists.length + 1} artists`,
+    );
+    expect(readFileSync("app/lib/dataDownloads.ts", "utf8")).not.toMatch(/the \d+ artists on the Afrobeats Board/);
+  });
+
+  it("says truthfully when units are blank, and points to units_note — in both trees", () => {
+    const { inDesktop, inPhone } = pressTrees();
+    for (const [section, tree] of [
+      [inDesktop[0], "desktop"],
+      [inPhone[0], "phone"],
+    ] as const) {
+      const text = section.textContent!.replace(/\s+/g, " ");
+      // Negative control, the line this section first shipped: Greece, Poland's
+      // singles, Sweden and Mexico are all priced on a figure their body does not
+      // print today, and none of them is blank.
+      expect(text, tree).not.toContain("blank where the body publishes none");
+      // The columns it names are real columns of the file.
+      for (const c of ["units_note", "unpriced_reason"]) {
+        expect(text, tree).toContain(`${c} `);
+        expect(downloadBySlug("certifications").header).toContain(c);
+      }
+      expect(text, tree).toContain("Units are blank only where a body publishes no threshold at all");
+      expect(section.querySelector('a[href="/compare"]'), tree).not.toBeNull();
     }
-    expect(text).toContain("Units are blank only where a body publishes no threshold at all");
-    expect(section.querySelector('a[href="/compare"]')).not.toBeNull();
   });
 
   it("dates the citation from the data, the same day the page says it was reviewed", () => {
     const { container } = render(<PressPage />);
-    const reviewed = container.textContent!.match(/Data last reviewed\s*(\d{1,2} \w+ \d{4})/)?.[1];
-    expect(reviewed).toBe(dataDateLabel);
+    const reviewed = [...container.textContent!.matchAll(/Data last reviewed\s*(\d{1,2} \w+ \d{4})/g)].map((m) => m[1]);
+    // Once per tree, and both the data's date.
+    expect(reviewed).toEqual([dataDateLabel, dataDateLabel]);
   });
 });
 

@@ -52,6 +52,13 @@ export const BACK_BAR_ROUTES = new Set<string>([
   // The calendar keeps the five-tab bar; its day pages are matched by
   // isOnThisDayPage below.
   "/on-this-day",
+  // The pages about the site itself (design response items 42–44 and 58,
+  // 30 Sep 2026). Each got a phone screen with its own back bar, and each
+  // keeps the five-tab bar, as /about, /faq and /embed do: none has a single
+  // main action for a bottom bar. So they are NOT ACTION_BAR routes.
+  "/curator",
+  "/press",
+  "/analysis/spotify-unmerge",
 ]);
 
 /**
