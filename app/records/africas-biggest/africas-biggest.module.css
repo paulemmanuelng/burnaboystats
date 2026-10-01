@@ -147,10 +147,19 @@
    second grid on this page runs to ELEVEN boxes and was shipping one.
    Parity is not simply "odd is orphaned", because `.boxFeatured` spans the
    whole row and shifts everything after it — so the rule is written twice, once
-   for a grid without a featured box and once for a grid with one. */
-.boxGrid > :last-child:nth-child(2n + 1) { grid-column: span 2; }
-.boxGrid > .boxFeatured ~ :last-child:nth-child(2n + 1) { grid-column: auto; }
-.boxGrid > .boxFeatured ~ :last-child:nth-child(2n) { grid-column: span 2;
+   for a grid without a featured box and once for a grid with one.
+   The stretch rules live ONLY where the grid has two tracks (>= 1240px). They
+   used to sit here unscoped with a `grid-column: auto` reset in the <= 1239px
+   block, and the reset lost on specificity: `.boxFeatured ~ :last-child:nth-child(2n)`
+   is 0,4,0 against the reset's 0,3,0. Between 901 and 1239px the Billboard
+   grid's fourth box spanned 2 tracks of a 1-track grid, which invented an
+   auto-width second column, squeezed the Global 200 board to 268px and left a
+   673px grey slab beside the entries board (live debug, 1 Oct 2026). Scoping
+   by media query means there is no reset left to lose. */
+@media (min-width: 1240px) {
+  .boxGrid > :last-child:nth-child(2n + 1) { grid-column: span 2; }
+  .boxGrid > .boxFeatured ~ :last-child:nth-child(2n + 1) { grid-column: auto; }
+  .boxGrid > .boxFeatured ~ :last-child:nth-child(2n) { grid-column: span 2; }
 }
 
 /* ── Stat box ───────────────────────────────────────────────────────────── */
@@ -321,9 +330,8 @@
   .trendGrid { grid-template-columns: 1fr; }
   .trendChart { border-left: 0; border-top: 1px solid var(--border); }
   .trendValue { font-size: 56px; }
+  /* One column. The stretch rules are scoped to >= 1240px above, so nothing
+     here can span a second track that does not exist. */
   .boxGrid { grid-template-columns: 1fr; }
-  /* One column: the stretch rules must stand down or they invent a
-     second track that does not exist. */
-  .boxGrid > :last-child, .boxGrid > .boxFeatured ~ :last-child { grid-column: auto; }
   .faqItem { grid-template-columns: 1fr; gap: 10px; }
 }
