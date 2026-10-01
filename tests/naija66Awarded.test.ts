@@ -18,3 +18,11 @@ describe("prizes awarded off the site (Paul, 1 Oct 2026: codes 1 and 2 were won 
     expect(board[0].tail).toBeUndefined();
   });
 });
+
+
+describe("the here card is hidden (Paul, 1 Oct 18:40 WAT: hide it in a word or phrase)", () => {
+  it("is off in the live config", async () => {
+    const { NAIJA66_HERE_CARD } = await import("../app/data/naija66");
+    expect(NAIJA66_HERE_CARD).toBe(false);
+  });
+});

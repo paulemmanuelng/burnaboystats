@@ -17,6 +17,13 @@ const OTHER_PATH = "/another/sample";
 /** The pathname usePathname() returns; a test moves it to navigate. */
 const nav = vi.hoisted(() => ({ path: "/a/sample-page" }));
 
+// These suites test the card's flows; the live config hides the "here" card
+// (NAIJA66_HERE_CARD = false, Paul 1 Oct), which tests/naija66Awarded.test.ts
+// checks on the real config.
+vi.mock("../app/data/naija66", async (importOriginal) => {
+  const real = await importOriginal<typeof import("../app/data/naija66")>();
+  return { ...real, NAIJA66_HERE_CARD: true };
+});
 vi.mock("next/navigation", () => ({
   useRouter: () => ({ push: vi.fn(), prefetch: vi.fn(), replace: vi.fn(), back: vi.fn() }),
   usePathname: () => nav.path,

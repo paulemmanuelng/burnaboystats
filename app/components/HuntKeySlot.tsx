@@ -16,6 +16,7 @@ import {
   cardHidden,
 } from "../lib/naija66/copy";
 import styles from "./huntKeySlot.module.css";
+import { NAIJA66_HERE_CARD } from "../data/naija66";
 
 /**
  * The Naija @ 66 reveal card — one per page, from the root layout.
@@ -115,6 +116,7 @@ export default function HuntKeySlot() {
   if (!pathname || round === null || !spot || spot.path !== pathname || !spot.spot) return null;
   const s = spot.spot;
   if (s.kind !== "here" && s.kind !== "won" && closedPath === pathname) return null;
+  if (s.kind === "here" && !NAIJA66_HERE_CARD) return null;
 
   const reveal = () => {
     if (busy.current) return;
