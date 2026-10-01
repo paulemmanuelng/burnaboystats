@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { readFileSync } from "node:fs";
+import { join } from "node:path";
 
 /**
  * The tour map's look, read from its stylesheets (design response of 30 Sep
@@ -334,5 +335,21 @@ describe("item 28: each legend swatch is the fill it explains, never gold", () =
     expect(shipped.background).toBe("color-mix(in srgb, var(--gold-wash-base) 42%, transparent)");
     expect(shipped.background).not.toBe(decls(top(SVG), ".played").fill);
     expect(shipped.border).toBe("1px solid var(--gold)");
+  });
+});
+
+
+describe("item 5: the desktop lede is set at body size so the map reaches the first screen", () => {
+  const css = readFileSync(join(process.cwd(), "app/records/tours/map/map.module.css"), "utf8");
+  const ledeRule = (src: string) => /\n\.lede \{([^}]*)\}/.exec(src)?.[1] ?? "";
+  it("uses --type-body (16px) and its leading, not --type-lede", () => {
+    expect(ledeRule(css)).toContain("font-size: var(--type-body);");
+    expect(ledeRule(css)).toContain("line-height: var(--type-body-lh);");
+    expect(ledeRule(css)).not.toContain("--type-lede");
+  });
+  it("negative control: the shipped rule is caught", () => {
+    const SHIPPED = "\n.lede {\n  margin: 0;\n  max-width: 430px;\n  font-size: var(--type-lede);\n  line-height: var(--type-lede-lh);\n  color: var(--text-body);\n  text-wrap: pretty;\n}";
+    expect(ledeRule(SHIPPED)).toContain("--type-lede");
+    expect(ledeRule(SHIPPED)).not.toContain("font-size: var(--type-body);");
   });
 });

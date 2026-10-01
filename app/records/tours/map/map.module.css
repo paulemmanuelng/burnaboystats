@@ -83,11 +83,15 @@
   white-space: nowrap;
   margin: 0;
 }
+/* 16px on desktop, as the TM Desktop artboard draws it (Paul, 1 Oct 2026):
+   on --type-lede the lede wrapped to four lines at 430px and pushed the map's
+   foot 52px below a 1440x900 screen (change-list item 5). The phone keeps its
+   own lede in mobileTourMap.module.css. */
 .lede {
   margin: 0;
   max-width: 430px;
-  font-size: var(--type-lede);
-  line-height: var(--type-lede-lh);
+  font-size: var(--type-body);
+  line-height: var(--type-body-lh);
   color: var(--text-body);
   text-wrap: pretty;
 }
