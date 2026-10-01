@@ -26,6 +26,7 @@ import { totalAwards, countryCount } from "../app/data/certifications";
 import { chartEntryCount, numberOnes } from "../app/data/charts";
 import { totalWins } from "../app/data/awards";
 import { dom, text, trees, declared } from "./fixtures/phoneTrees";
+import phoneStyles from "../app/components/mobileCurator.module.css";
 
 /**
  * /curator gets a phone screen.
@@ -203,6 +204,25 @@ describe("/curator", () => {
     it("negative control: the shipped paragraph rule set no gap", () => {
       const shipped = ".p { font-size: 15.5px; line-height: 1.75; color: var(--text-muted); max-width: 72ch; margin: 0; }";
       expect(gap(shipped)).toBe(false);
+    });
+  });
+
+  describe("the repository link breaks rather than pushing the page sideways (artboard; measured at 320)", () => {
+    // Unbroken, "github.com/paulemmanuelng/burnaboystats" is 326px wide; at 320
+    // the column is 284, and the page scrolled 28px sideways (1 Oct 2026). The
+    // artboard draws overflow-wrap:anywhere on that link.
+    const REPO_HREF = "https://github.com/paulemmanuelng/burnaboystats";
+    const breaks = (css: string) => declared(css, ".link", "overflow-wrap");
+
+    it("sets overflow-wrap:anywhere on the phone link class, which the repository link carries", () => {
+      expect(breaks(read("app/components/mobileCurator.module.css"))).toEqual(["anywhere"]);
+      const repo = phone!.querySelector(`a[href="${REPO_HREF}"]`);
+      expect(text(repo)).toBe("github.com/paulemmanuelng/burnaboystats");
+      expect(repo!.className.split(" ")).toContain(phoneStyles.link);
+    });
+
+    it("negative control: the shipped phone link rule set no break", () => {
+      expect(breaks(".link { color: var(--gold); }")).toEqual([]);
     });
   });
 

@@ -128,7 +128,15 @@
    paragraphs sit side by side on this screen. */
 .p + .p { margin-top: 16px; }
 .after { margin-top: 12px; }
-.link { color: var(--gold); }
+/* overflow-wrap:anywhere is the artboard's, drawn on the repository link
+   (github.com/paulemmanuelng/burnaboystats): unbroken, it is 326px wide and
+   pushed the page 24–28px sideways at 320 (measured, 1 Oct 2026). On the
+   shared link class it changes nothing for the short links — a space always
+   wraps first. */
+.link {
+  color: var(--gold);
+  overflow-wrap: anywhere;
+}
 
 /* ── "Why this site exists": the figure strip (item 45) ─────────────────── */
 .strip {

@@ -26,6 +26,7 @@ import { totalAwards } from "../app/data/certifications";
 import { spotifyTotalStreams } from "../app/data/streamingTotals";
 import { DATASET_CITATION } from "../app/lib/dataDownloads";
 import { dom, text, trees, declared, declaredAt, cssRules } from "./fixtures/phoneTrees";
+import phoneStyles from "../app/components/mobilePress.module.css";
 
 /**
  * /press gets a phone screen.
@@ -144,6 +145,25 @@ describe("/press", () => {
 
     it("negative control: the shipped rule fails the under-402 check at every width", () => {
       expect(offSiblingGrammar(SHIPPED)).toEqual(UNDER.map((w) => `${w}px: 0.14em / 1`));
+    });
+  });
+
+  describe("the repository link breaks rather than pushing the page sideways (artboard; measured at 320)", () => {
+    // Unbroken, "github.com/paulemmanuelng/burnaboystats" is 326px wide; at 320
+    // the column is 284, and the page scrolled 24px sideways (1 Oct 2026). The
+    // artboard draws overflow-wrap:anywhere on that link.
+    const REPO_HREF = "https://github.com/paulemmanuelng/burnaboystats";
+    const breaks = (css: string) => declared(css, ".link", "overflow-wrap");
+
+    it("sets overflow-wrap:anywhere on the phone link class, which the repository link carries", () => {
+      expect(breaks(PHONE)).toEqual(["anywhere"]);
+      const repo = phone!.querySelector(`a[href="${REPO_HREF}"]`);
+      expect(text(repo)).toBe("github.com/paulemmanuelng/burnaboystats");
+      expect(repo!.className.split(" ")).toContain(phoneStyles.link);
+    });
+
+    it("negative control: the shipped phone link rule set no break", () => {
+      expect(breaks(".link { color: var(--gold); }")).toEqual([]);
     });
   });
 

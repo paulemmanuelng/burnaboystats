@@ -154,7 +154,15 @@
   margin: 10px 0 0;
   text-wrap: pretty;
 }
-.link { color: var(--gold); }
+/* overflow-wrap:anywhere is the artboard's, drawn on the repository link
+   (github.com/paulemmanuelng/burnaboystats): unbroken, it is 326px wide and
+   pushed the page 24–28px sideways at 320 (measured, 1 Oct 2026). On the
+   shared link class it changes nothing for the short links — a space always
+   wraps first. */
+.link {
+  color: var(--gold);
+  overflow-wrap: anywhere;
+}
 
 .small { margin: 10px 0 0; font-size: var(--type-small); line-height: var(--type-small-lh); color: var(--text-muted); }
 .note { margin: 12px 0 0; font-size: var(--type-small); line-height: 1.55; color: var(--text-muted); text-wrap: pretty; }
