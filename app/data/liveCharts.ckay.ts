@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-30";
+  export const liveChartsUpdated = "2026-10-01";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-30T12:39Z";
+  export const liveChartsBuiltAt = "2026-10-01T06:00Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Spotify","Spotify Albums","iTunes"];
@@ -56,14 +56,14 @@
           {
             "country": "RU",
             "name": "Russia",
-            "position": 5,
-            "movement": 0
+            "position": 8,
+            "movement": -2
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
             "position": 41,
-            "movement": -1
+            "movement": 0
           }
         ]
       },
@@ -74,8 +74,8 @@
           {
             "country": "MA",
             "name": "Morocco",
-            "position": 177,
-            "movement": -29
+            "position": 175,
+            "movement": 2
           }
         ]
       }
@@ -91,16 +91,17 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 116,
-            "movement": -28
+            "country": "GM",
+            "name": "Gambia",
+            "position": 133,
+            "movement": null,
+            "status": "new"
           },
           {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 163,
-            "movement": -38
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 149,
+            "movement": -33
           }
         ]
       },
@@ -111,8 +112,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 134,
-            "movement": 0
+            "position": 111,
+            "movement": 23
           }
         ]
       }
@@ -130,8 +131,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 197,
-            "movement": -7
+            "position": 192,
+            "movement": 5
           }
         ]
       },
@@ -140,9 +141,9 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 148,
+            "country": "GW",
+            "name": "Guinea-Bissau",
+            "position": 196,
             "movement": null,
             "status": "new"
           }
@@ -174,9 +175,8 @@
           {
             "country": "NE",
             "name": "Niger",
-            "position": 106,
-            "movement": null,
-            "status": "new"
+            "position": 164,
+            "movement": -58
           }
         ]
       }
@@ -194,7 +194,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 99,
+            "position": 100,
             "movement": -1
           }
         ]
@@ -204,6 +204,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Beggie Beggie",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 182,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b922c719d3a9901f749140e8f532a8d0/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Boyfriend",
     "platforms": [
       {
@@ -211,10 +231,11 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 65,
-            "movement": -3
+            "country": "GW",
+            "name": "Guinea-Bissau",
+            "position": 117,
+            "movement": null,
+            "status": "new"
           }
         ]
       }

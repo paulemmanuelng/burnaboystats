@@ -27,6 +27,7 @@ import AlbumPage from "../app/music/albums/[album]/page";
 import ArtistPage from "../app/afrobeats/[artist]/page";
 import AwardsPage from "../app/records/awards/page";
 import AfricasBiggestPage from "../app/records/africas-biggest/page";
+import CarsPage from "../app/records/cars/page";
 import { songSlugs } from "../app/data/songs";
 import { albumPageSlugs } from "../app/data/albumPages";
 import { afrobeatsArtists } from "../app/data/afrobeats";
@@ -111,6 +112,7 @@ const CHECKED = [
   "music/albums/[album]/page.tsx",
   "records/africas-biggest/page.tsx",
   "records/awards/page.tsx",
+  "records/cars/page.tsx",
 ];
 
 /**
@@ -481,6 +483,13 @@ describe("every route emitting FAQPage answers a phone reader", () => {
       "/records/africas-biggest"
     );
   });
+
+  // The site's top search page, whose FAQ arrived on 30 Sep 2026. Its phone
+  // layout is the shared deep-page screen rather than a bespoke one, so the
+  // second copy rides in as MobileDeepPage's children.
+  it("/records/cars serves its answers, open", () => {
+    expectAnswersVisibleOnAPhone(servedMarkup(<CarsPage />), "/records/cars");
+  });
 });
 
 /**
@@ -564,6 +573,12 @@ describe("and the phone accordion folds those answers without losing them", () =
     expect(expectAnswersReachableOnAPhone(container, "/records/africas-biggest")).toBe(
       answers - 1
     );
+  });
+
+  it("/records/cars keeps every answer one tap away", () => {
+    const { container } = render(<CarsPage />);
+    const answers = promisedAnswers(container).length;
+    expect(expectAnswersReachableOnAPhone(container, "/records/cars")).toBe(answers - 1);
   });
 
   // The two routes that were already right and are NOT in the accordion's

@@ -305,6 +305,7 @@ export const SEGMENT_LABELS: Record<string, string> = {
   faq: "FAQ",
   curator: "About the Curator",
   press: "Press & Data Kit",
+  naija66: "Naija @ 66",
   embed: "Embed Stats",
   analysis: "Analysis",
   "live-charts": "Live Charts",

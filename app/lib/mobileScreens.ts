@@ -37,6 +37,8 @@ export const BACK_BAR_ROUTES = new Set<string>([
   // FAQ and Contact keep the five-tab bar, so neither is an ACTION_BAR route.
   "/faq",
   "/contact",
+  // Naija @ 66 (Oct 2026) draws /contact's back bar and keeps the five tabs.
+  "/naija66",
   "/about",
   "/updates",
   "/analysis",
