@@ -3,14 +3,15 @@ import styles from "./mobileNaija66.module.css";
 import BackLink from "./BackLink";
 import MobileMenuButton from "./MobileMenuButton";
 import { HuntBoard, HuntKeyForm } from "./Naija66Play";
-import { DROP_HOURS, HOW_IT_WORKS, RULES } from "../lib/naija66/copy";
-import { NAIJA66_X_HANDLE, NAIJA66_X_URL } from "../data/naija66";
+import Naija66Words from "./Naija66Words";
+import { CODE1_LINE, DROP_HOURS, HOW_IT_WORKS, PRIZE, RULES, WHERE_NEXT } from "../lib/naija66/copy";
+import { NAIJA66_X_URL } from "../data/naija66";
 
 /**
  * The /naija66 phone screen.
  *
- * Its own running order for a thumb: the key box straight under the title —
- * the reason most people arrive, clue in hand — then the board, the steps and
+ * Its own running order for a thumb: the code box straight under the title —
+ * the reason most people arrive, code in hand — then the board, the steps and
  * the rules. Back bar like /contact's (so /naija66 is in BACK_BAR_ROUTES), and
  * the five-tab bar at its foot (so it is not an ACTION_BAR route).
  *
@@ -47,15 +48,18 @@ export default function MobileNaija66() {
           Naija @ <span className={styles.green}>66</span>
         </h1>
         <p className={styles.lede}>
-          Five keys are hidden across Burna Boy Stats. Find one, enter it first, and win a
-          month of Spotify Premium.
+          Five codes are hidden on pages of Burna Boy Stats. Find one, enter it first, and win{" "}
+          {PRIZE.long}.
+        </p>
+        <p className={styles.lede}>
+          <Naija66Words words={CODE1_LINE} />
         </p>
         <p className={styles.drops}>
           <span className={styles.liveDot} aria-hidden="true" />
-          Drops {DROP_HOURS} WAT
+          Codes appear {DROP_HOURS} WAT
         </p>
         <a href={NAIJA66_X_URL} target="_blank" rel="noopener noreferrer" className={styles.xLink}>
-          Clues from {NAIJA66_X_HANDLE} on X ↗
+          {WHERE_NEXT} ↗
         </a>
       </div>
 
@@ -82,7 +86,9 @@ export default function MobileNaija66() {
               <span className={styles.stepNo}>{String(i + 1).padStart(2, "0")}</span>
               <div>
                 <h3 className={styles.stepTitle}>{s.title}</h3>
-                <p className={styles.stepText}>{s.text}</p>
+                <p className={styles.stepText}>
+                  <Naija66Words words={s.words} />
+                </p>
               </div>
             </li>
           ))}

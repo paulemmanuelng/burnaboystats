@@ -103,6 +103,9 @@
   color: var(--text-muted);
 }
 .liveDot { width: 7px; height: 7px; border-radius: 50%; background: var(--green-dot); display: block; flex: none; }
+/* The one page the hunt names (lib/naija66/copy.ts CODE1_PAGE), in the hero
+   and in step 1: gold like every link here, underlined as prose. */
+.lede a, .stepText a { color: var(--gold); }
 .xLink {
   display: inline-flex;
   align-items: center;

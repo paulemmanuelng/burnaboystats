@@ -77,6 +77,10 @@
 .liveDot { width: 7px; height: 7px; border-radius: 50%; background: var(--green-dot); display: block; }
 .xLink { color: var(--gold); display: inline-flex; align-items: center; min-height: 24px; }
 .xLink:hover { color: var(--gold-bright-ink); text-decoration: underline; }
+/* The one page the hunt names (lib/naija66/copy.ts CODE1_PAGE), in the hero
+   and in step 1: gold like every link here, underlined as prose. */
+.lede a, .stepText a { color: var(--gold); }
+.lede a:hover, .stepText a:hover { color: var(--gold-bright-ink); }
 
 /* ── Sections ───────────────────────────────────────────────────────────── */
 .section { padding-top: 44px; padding-bottom: 48px; }

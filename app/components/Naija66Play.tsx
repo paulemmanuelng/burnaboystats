@@ -1,16 +1,16 @@
-"use client"; // the key box and the live board
+"use client"; // the code box and the live board
 
 import { useId, useRef, useSyncExternalStore } from "react";
 import CopyButton from "./CopyButton";
 import { useHunt, type Outcome } from "./Naija66Provider";
 import { NAIJA66_PRIZES, NAIJA66_X_HANDLE, NAIJA66_X_URL } from "../data/naija66";
-import { CLOSES_MS, FIRST_DROP_MS, watClock, watHour } from "../lib/naija66/clock";
-import { WINNER_LINE } from "../lib/naija66/copy";
+import { CLOSES_MS, DROPS_MS, FIRST_DROP_MS, watClock, watHour } from "../lib/naija66/clock";
+import { LAST_CODE_LINE, NEXT_CODE_LINE, PRIZE, WINNER_KEEP_LINE, WINNER_LINE } from "../lib/naija66/copy";
 import type { Mine, PublicPrize } from "../lib/naija66/state";
 import styles from "./naija66Play.module.css";
 
 /**
- * The two live pieces of /naija66 — the key box and the board — drawn for
+ * The two live pieces of /naija66 — the code box and the board — drawn for
  * either layout. The phone screen and the desktop page each place them in
  * their own running order; the state behind both is one Naija66Provider, so
  * a claim made in one is the claim shown in the other.
@@ -24,14 +24,25 @@ const closedAt = (now: string | undefined) => (now ? Date.parse(now) >= CLOSES_M
 const NEVER = () => () => {};
 const useHydrated = () => useSyncExternalStore(NEVER, () => true, () => false);
 
-function outcomeLine(o: Outcome): string {
+/** The last drop, 9pm WAT: from here no code is still to come. */
+const LAST_DROP_MS = DROPS_MS[DROPS_MS.length - 1];
+
+/**
+ * What the code box says after a claim. `now` is the board's clock (the
+ * server's, when the board has loaded): a "too slow" points at X for where to
+ * look next while a drop is still to come, and says it was the last code for
+ * prize 5 or once the last drop has passed.
+ */
+export function outcomeLine(o: Outcome, now: number): string {
   switch (o.kind) {
     case "wrong":
-      return "That key doesn't open anything. Check the badge and try again.";
-    case "claimed":
+      return "That code doesn't open anything. Check the badge and try again.";
+    case "claimed": {
+      const next = o.prize >= NAIJA66_PRIZES.length || now >= LAST_DROP_MS ? LAST_CODE_LINE : NEXT_CODE_LINE;
       return o.at
-        ? `Too slow — prize ${o.prize} was claimed at ${watClock(o.at)}${o.tail ? ` (code ends …${o.tail})` : ""}. Watch X for the next clue.`
-        : `Too slow — prize ${o.prize} has already been claimed. Watch X for the next clue.`;
+        ? `Too slow — prize ${o.prize} was claimed at ${watClock(o.at)}${o.tail ? ` (winner code ends …${o.tail})` : ""}. ${next}`
+        : `Too slow — prize ${o.prize} has already been claimed. ${next}`;
+    }
     case "error":
       return o.message;
     default:
@@ -56,19 +67,20 @@ function WinCard({ mine, again, layout }: { mine: Mine; again: boolean; layout: 
       </a>
       <p className={styles.fine}>
         {again
-          ? "One prize per person — you've already won, so the key you just entered stays open for somebody else."
-          : "Only this browser can show this code. Screenshot it to be safe."}
+          ? "One prize per person — you've already won, so the code you just entered stays open for somebody else."
+          : WINNER_KEEP_LINE}
       </p>
     </div>
   );
 }
 
 /**
- * The key box. Claim stays disabled until the page has hydrated: before that
- * the form is plain HTML, and a tap would reload the page and lose the key
- * rather than claim it. The input has no name, so no submit of any kind can
- * put a key in a URL. It is read from the field itself on submit, so a key
- * pasted before hydration is still the key sent.
+ * The code box (the API calls what it sends a key). Claim stays disabled
+ * until the page has hydrated: before that the form is plain HTML, and a tap
+ * would reload the page and lose the code rather than claim it. The input has
+ * no name, so no submit of any kind can put a code in a URL. It is read from
+ * the field itself on submit, so a code pasted before hydration is still the
+ * code sent.
  */
 export function HuntKeyForm({ layout }: { layout: Layout }) {
   const { status, mine, outcome, pending, submit } = useHunt();
@@ -90,7 +102,11 @@ export function HuntKeyForm({ layout }: { layout: Layout }) {
     );
   }
 
-  const line = outcome ? outcomeLine(outcome) : "";
+  // The board's clock is the server's, and the provider reloads it after every
+  // claim. Before it first loads, the claim's own time is the latest moment
+  // known to have passed — pure, so render never reads the phone's clock.
+  const boardNow = status ? Date.parse(status.now) : outcome?.kind === "claimed" && outcome.at ? Date.parse(outcome.at) : 0;
+  const line = outcome ? outcomeLine(outcome, boardNow) : "";
 
   return (
     <form
@@ -102,10 +118,10 @@ export function HuntKeyForm({ layout }: { layout: Layout }) {
         if (typed.trim()) submit(typed);
       }}
     >
-      <div className={styles.kicker}>Got a key?</div>
+      <div className={styles.kicker}>Got a code?</div>
       <h2 className={styles.head}>Claim it here</h2>
       <label className={styles.label} htmlFor={`${id}-key`}>
-        Your key
+        Your code
       </label>
       <div className={styles.row}>
         <input
@@ -130,7 +146,7 @@ export function HuntKeyForm({ layout }: { layout: Layout }) {
           {line}
         </p>
       ) : null}
-      <p className={styles.fine}>Keys look like NG66-XXXXXX, and they aren&apos;t case-sensitive.</p>
+      <p className={styles.fine}>Codes look like NG66-XXXXXX, and they aren&apos;t case-sensitive.</p>
     </form>
   );
 }
@@ -141,7 +157,7 @@ function stateLine(p: PublicPrize | undefined): string {
     case "sleeping":
       return "Sleeping";
     case "live":
-      return "Live — the key is out";
+      return "Live — the code is out";
     case "claimed":
       return `Claimed at ${p.claimedAt ? watClock(p.claimedAt) : "—"}${p.tail ? ` · ends …${p.tail}` : ""}`;
     case "closed":
@@ -171,7 +187,7 @@ export function HuntBoard({ layout }: { layout: Layout }) {
             <li key={p.prize} className={styles.boardRow} data-state={s?.state ?? "unknown"}>
               <span className={styles.rowPrize}>
                 <span className={styles.rowNo}>Prize {p.prize}</span>
-                <span className={styles.rowWhat}>1 month of Spotify Premium</span>
+                <span className={styles.rowWhat}>{PRIZE.board}</span>
               </span>
               <span className={styles.rowDrop}>{watHour(p.dropsAt)}</span>
               <span className={styles.rowState}>

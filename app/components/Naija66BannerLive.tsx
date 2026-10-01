@@ -2,7 +2,8 @@
 
 import { useEffect, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
-import { bannerPhase, type BannerPhase } from "../lib/naija66/clock";
+import { FIRST_DROP_MS, bannerPhase, watHour, type BannerPhase } from "../lib/naija66/clock";
+import { PRIZE } from "../lib/naija66/copy";
 import type { HuntStatus } from "../lib/naija66/state";
 import styles from "./naija66Banner.module.css";
 
@@ -12,6 +13,9 @@ const EVERY_MINUTE = (onChange: () => void) => {
 };
 const clientPhase = () => bannerPhase(Date.now());
 
+/** "9am WAT", from the committed schedule. */
+const FIRST_HOUR = watHour(FIRST_DROP_MS);
+
 /**
  * The line the banner says, from the phase and (live) the prizes still out.
  * `ready` is false when the server says the hunt is misconfigured (it fails
@@ -19,10 +23,10 @@ const clientPhase = () => bannerPhase(Date.now());
  * isn't open.
  */
 export function bannerLine(phase: BannerPhase, left: number | null, ready = true): string {
-  if (phase === "tomorrow") return "Tomorrow 9am WAT: the Naija @ 66 hunt — five months of Spotify Premium";
-  if (phase === "today") return "Today 9am WAT: the Naija @ 66 hunt — five months of Spotify Premium";
+  if (phase === "tomorrow") return `Tomorrow ${FIRST_HOUR}: the Naija @ 66 hunt — ${PRIZE.banner}`;
+  if (phase === "today") return `Today ${FIRST_HOUR}: the Naija @ 66 hunt — ${PRIZE.banner}`;
   if (!ready) return "Naija @ 66 — starting soon";
-  if (left === null) return "Naija @ 66 is live — five months of Spotify Premium to find";
+  if (left === null) return `Naija @ 66 is live — ${PRIZE.banner}`;
   if (left === 0) return "Naija @ 66 — all five prizes claimed. See the winners";
   return `Naija @ 66 is live — ${left} of 5 prizes left`;
 }

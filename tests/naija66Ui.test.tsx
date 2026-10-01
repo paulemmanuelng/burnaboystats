@@ -36,7 +36,15 @@ import Naija66BannerLive, { bannerLine } from "../app/components/Naija66BannerLi
 import bannerStyles from "../app/components/naija66Banner.module.css";
 import Home from "../app/page";
 import { CLOSES_MS } from "../app/lib/naija66/clock";
-import { WINNER_LINE } from "../app/lib/naija66/copy";
+import {
+  CODE1_PAGE,
+  LAST_CODE_LINE,
+  NEXT_CODE_LINE,
+  PRIZE,
+  WINNER_KEEP_LINE,
+  WINNER_LINE,
+} from "../app/lib/naija66/copy";
+import { outcomeLine } from "../app/components/Naija66Play";
 
 const EVE = "2026-09-30T12:00:00Z"; // 1pm WAT the day before
 const DAWN = "2026-10-01T05:00:00Z"; // 6am WAT on the day
@@ -200,7 +208,7 @@ describe("/naija66", () => {
     const calls = stubApi();
     const { container } = render(<Naija66Page />);
     expect(screen.getAllByRole("heading", { level: 1 })).toHaveLength(2);
-    expect(screen.getAllByLabelText("Your key")).toHaveLength(2);
+    expect(screen.getAllByLabelText("Your code")).toHaveLength(2);
     expect(container.querySelectorAll("li[data-state]")).toHaveLength(10);
     await waitFor(() => expect(container.querySelectorAll('li[data-state="live"]')).toHaveLength(2));
     expect(calls.filter((c) => c.includes("/status"))).toHaveLength(1);
@@ -210,11 +218,43 @@ describe("/naija66", () => {
     expect(container.textContent).toContain("9am, 12pm, 3pm, 6pm and 9pm WAT");
   });
 
+  it("prints the prize from the one copy constant, in both layouts", () => {
+    setNow(AT_0905);
+    stubApi();
+    const { container } = render(<Naija66Page />);
+    const text = container.textContent!;
+    // Five board rows in each layout, each the board's own words for the prize.
+    expect(screen.getAllByText(PRIZE.board)).toHaveLength(10);
+    // The heroes (desktop and phone), step 4 twice, and the rule twice.
+    expect(text.split(PRIZE.long).length - 1).toBeGreaterThanOrEqual(6);
+    expect(screen.getAllByText(`Each prize is ${PRIZE.long}.`)).toHaveLength(2);
+    expect(text).not.toMatch(/\b(1|one|five) months? of Spotify Premium\b(?! Nigeria)/i);
+  });
+
+  it("names code 1's page, links it, and sends codes 2 to 5 to X — in both layouts, with no clue anywhere", () => {
+    setNow(AT_0905);
+    stubApi();
+    const { container } = render(<Naija66Page />);
+    const text = container.textContent!;
+    expect(text.split("Code 1 appears at 9am WAT on the Where the World Listens page.").length - 1).toBe(4); // hero + step 1, twice
+    const named = [...container.querySelectorAll(`a[href="${CODE1_PAGE.href}"]`)];
+    expect(named).toHaveLength(4);
+    for (const a of named) expect(a.textContent).toBe("Where the World Listens");
+    expect(text.split("For codes 2 to 5, follow @paulemmanuelng on X to find out where to look.").length - 1).toBe(2);
+    expect(screen.getAllByText("Where to look next: @paulemmanuelng on X ↗")).toHaveLength(2);
+    expect(text).not.toMatch(/\bclues?\b/i);
+    // The page links to no other page on the site but the ones it always did.
+    const internal = new Set(
+      [...container.querySelectorAll("a[href^='/']")].map((a) => a.getAttribute("href")),
+    );
+    expect([...internal].sort()).toEqual(["/", CODE1_PAGE.href].sort());
+  });
+
   it("shows a win in both layouts, with the code and the DM line", async () => {
     setNow(AT_0905);
     stubApi({ won: true, prize: 1, code: "NG66-1-7QK4MZ", at: "2026-10-01T08:07:00.000Z" });
     render(<Naija66Page />);
-    const [box] = screen.getAllByLabelText("Your key");
+    const [box] = screen.getAllByLabelText("Your code");
     fireEvent.change(box, { target: { value: "ng66-abcdef" } });
     await act(async () => {
       fireEvent.submit(box.closest("form")!);
@@ -223,13 +263,32 @@ describe("/naija66", () => {
     expect(screen.getAllByText("NG66-1-7QK4MZ")).toHaveLength(2);
     expect(screen.getAllByText(WINNER_LINE)).toHaveLength(2);
     expect(screen.getAllByText(/claimed 09:07 WAT/)).toHaveLength(2);
+    // Keep the code, and keep it to yourself: the first DM with it is paid.
+    expect(screen.getAllByText(WINNER_KEEP_LINE)).toHaveLength(2);
+    expect(WINNER_KEEP_LINE).toMatch(/don't post it/);
+    expect(screen.queryByText("Only this browser can show this code. Screenshot it to be safe.")).toBeNull();
+    expect(WINNER_LINE).toContain(PRIZE.long);
+  });
+
+  it("points a too-slow player at X while a drop is still to come", async () => {
+    setNow(AT_0905);
+    stubApi({ claimed: true, prize: 1, at: "2026-10-01T08:03:00.000Z", tail: "MZ" });
+    render(<Naija66Page />);
+    const [box] = screen.getAllByLabelText("Your code");
+    fireEvent.change(box, { target: { value: "NG66-AAAAAA" } });
+    await act(async () => {
+      fireEvent.submit(box.closest("form")!);
+    });
+    const line =
+      "Too slow — prize 1 was claimed at 09:03 WAT (winner code ends …MZ). Follow @paulemmanuelng on X for where to look next.";
+    await waitFor(() => expect(screen.getAllByText(line)).toHaveLength(2));
   });
 
   it("says the same thing for a wrong key in both layouts", async () => {
     setNow(AT_0905);
     stubApi({ wrong: true });
     render(<Naija66Page />);
-    const [box] = screen.getAllByLabelText("Your key");
+    const [box] = screen.getAllByLabelText("Your code");
     fireEvent.change(box, { target: { value: "NG66-AAAAAA" } });
     await act(async () => {
       fireEvent.submit(box.closest("form")!);
@@ -242,7 +301,7 @@ describe("/naija66", () => {
     localStorage.removeItem("naija66-claim");
     const calls = stubApi({ wrong: true });
     render(<Naija66Page />);
-    const [box] = screen.getAllByLabelText("Your key");
+    const [box] = screen.getAllByLabelText("Your code");
     for (const key of ["NG66-AAAAAA", "NG66-BBBBBB"]) {
       fireEvent.change(box, { target: { value: key } });
       await act(async () => {
@@ -273,7 +332,7 @@ describe("/naija66", () => {
     setNow(AT_0905);
     const calls = stubApi({ wrong: true });
     render(<Naija66Page />);
-    const [box] = screen.getAllByLabelText("Your key") as HTMLInputElement[];
+    const [box] = screen.getAllByLabelText("Your code") as HTMLInputElement[];
     box.value = "NG66-CCCCCC"; // no React change event, as when the page was still plain HTML
     await act(async () => {
       fireEvent.submit(box.closest("form")!);
@@ -305,7 +364,7 @@ describe("the home banner", () => {
     expect(banners).toHaveLength(2);
     expect(banners.some((c) => c.includes(bannerStyles.phone))).toBe(true);
     expect(banners.some((c) => c.includes(bannerStyles.desktop))).toBe(true);
-    expect(html.split("Tomorrow 9am WAT: the Naija @ 66 hunt — five months of Spotify Premium").length - 1).toBe(2);
+    expect(html.split("Tomorrow 9am WAT: the Naija @ 66 hunt — five ₦3,000 Spotify Premium prizes").length - 1).toBe(2);
     // The phone strip precedes the phone screen; the desktop one sits in the desktop wrapper.
     expect(html.indexOf(bannerStyles.phone)).toBeLessThan(html.indexOf("Burna Boy</h1>"));
   });
@@ -350,9 +409,42 @@ describe("the home banner", () => {
 
   it("counts the prizes still out once the hunt is live", () => {
     expect(bannerLine("live", 3, false)).toBe("Naija @ 66 — starting soon");
-    expect(bannerLine("live", null)).toBe("Naija @ 66 is live — five months of Spotify Premium to find");
+    expect(bannerLine("live", null)).toBe("Naija @ 66 is live — five ₦3,000 Spotify Premium prizes");
     expect(bannerLine("live", 3)).toBe("Naija @ 66 is live — 3 of 5 prizes left");
     expect(bannerLine("live", 0)).toBe("Naija @ 66 — all five prizes claimed. See the winners");
-    expect(bannerLine("tomorrow", null)).toBe("Tomorrow 9am WAT: the Naija @ 66 hunt — five months of Spotify Premium");
+    expect(bannerLine("tomorrow", null)).toBe("Tomorrow 9am WAT: the Naija @ 66 hunt — five ₦3,000 Spotify Premium prizes");
+    expect(bannerLine("today", null)).toBe("Today 9am WAT: the Naija @ 66 hunt — five ₦3,000 Spotify Premium prizes");
+    for (const phase of ["tomorrow", "today"] as const) expect(bannerLine(phase, null)).toContain(PRIZE.banner);
+  });
+});
+
+// ── The too-slow line ────────────────────────────────────────────────────────
+
+describe("the too-slow line", () => {
+  const ms = (iso: string) => Date.parse(iso);
+  const claimed = (prize: number) => ({ kind: "claimed" as const, prize, at: "2026-10-01T11:02:00Z", tail: "Q7" });
+
+  it("sends the player to X while a drop is still to come", () => {
+    expect(outcomeLine(claimed(2), ms("2026-10-01T11:30:00Z"))).toBe(
+      `Too slow — prize 2 was claimed at 12:02 WAT (winner code ends …Q7). ${NEXT_CODE_LINE}`,
+    );
+    expect(NEXT_CODE_LINE).toBe("Follow @paulemmanuelng on X for where to look next.");
+    expect(outcomeLine({ kind: "claimed", prize: 4, at: null, tail: null }, ms("2026-10-01T19:59:59Z"))).toBe(
+      `Too slow — prize 4 has already been claimed. ${NEXT_CODE_LINE}`,
+    );
+  });
+
+  it("says it was the last code for prize 5, and for any prize once the last drop has passed", () => {
+    expect(outcomeLine(claimed(5), ms("2026-10-01T20:30:00Z"))).toMatch(/\. That was the last code\.$/);
+    expect(outcomeLine(claimed(3), ms("2026-10-01T20:00:00Z"))).toMatch(/\. That was the last code\.$/);
+    expect(LAST_CODE_LINE).toBe("That was the last code.");
+  });
+
+  it("never says clue", () => {
+    const lines = [1, 2, 3, 4, 5].flatMap((p) =>
+      ["2026-10-01T12:00:00Z", "2026-10-01T21:00:00Z"].map((t) => outcomeLine(claimed(p), ms(t))),
+    );
+    lines.push(outcomeLine({ kind: "wrong" }, ms(AT_0905)));
+    for (const l of lines) expect(l).not.toMatch(/\bclues?\b/i);
   });
 });

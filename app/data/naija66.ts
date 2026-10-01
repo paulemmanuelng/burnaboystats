@@ -45,6 +45,6 @@ export const NAIJA66_FIRST_DROP = NAIJA66_PRIZES[0].dropsAt;
 /** The day a winner has to DM their code by — 11:59pm WAT, 4 October. */
 export const NAIJA66_DM_BY = "11:59pm on 4 October (WAT)";
 
-/** The account the clues come from and winners DM. */
+/** The account that says where to look next, and the one winners DM. */
 export const NAIJA66_X_HANDLE = "@paulemmanuelng";
 export const NAIJA66_X_URL = "https://x.com/paulemmanuelng";

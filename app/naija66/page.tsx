@@ -4,17 +4,17 @@ import BreadcrumbBar from "../components/BreadcrumbBar";
 import MobileNaija66 from "../components/MobileNaija66";
 import Naija66Provider from "../components/Naija66Provider";
 import { HuntBoard, HuntKeyForm } from "../components/Naija66Play";
+import Naija66Words from "../components/Naija66Words";
 import { pageMetadata } from "../lib/seo";
-import { DROP_HOURS, HOW_IT_WORKS, RULES } from "../lib/naija66/copy";
-import { NAIJA66_X_HANDLE, NAIJA66_X_URL } from "../data/naija66";
+import { CODE1_LINE, DROP_HOURS, HOW_IT_WORKS, PRIZE, RULES, WHERE_NEXT } from "../lib/naija66/copy";
+import { NAIJA66_X_URL } from "../data/naija66";
 
 export const metadata = pageMetadata({
   title: "Naija @ 66 — Burna Boy Stats Independence Day Hunt",
-  description:
-    "Nigeria turns 66 on 1 October. Five keys are hidden across Burna Boy Stats — enter one first and win a month of Spotify Premium. Free to play.",
+  description: `Nigeria turns 66 on 1 October. Five codes are hidden on Burna Boy Stats — enter one first and win ${PRIZE.long}. Free to play.`,
   path: "/naija66",
   shareTitle: "Naija @ 66 — the Independence Day key hunt",
-  shareDescription: "Five keys hidden across Burna Boy Stats on 1 October. Find one first, win a month of Spotify Premium.",
+  shareDescription: `Five codes hidden on pages of Burna Boy Stats on 1 October. Find one, enter it first, win ${PRIZE.long}.`,
 });
 
 /**
@@ -50,15 +50,19 @@ export default function Naija66Page() {
                   Naija @ <span className={styles.green}>66</span>
                 </h1>
                 <p className={styles.lede}>
-                  Five keys are hidden across Burna Boy Stats. Follow the clues on X, find the
-                  badge, and be the first to enter its key — each one wins a month of Spotify
-                  Premium.
+                  Five codes are hidden on pages of Burna Boy Stats, each appearing at its time as a
+                  small key badge. Find one, enter it first, and win {PRIZE.long}.
+                </p>
+                <p className={styles.lede}>
+                  <Naija66Words words={CODE1_LINE} />
                 </p>
                 <p className={styles.drops}>
                   <span className={styles.liveDot} aria-hidden="true" />
-                  Keys drop at {DROP_HOURS} WAT on 1 October ·{" "}
+                  {/* No separator: the flex gap spaces the link, and it wraps to its own
+                      line at 1440 without leaving a dangling "·" behind. */}
+                  Codes appear at {DROP_HOURS} WAT on 1 October
                   <a href={NAIJA66_X_URL} target="_blank" rel="noopener noreferrer" className={styles.xLink}>
-                    Clues from {NAIJA66_X_HANDLE} ↗
+                    {WHERE_NEXT} ↗
                   </a>
                 </p>
               </div>
@@ -89,7 +93,9 @@ export default function Naija66Page() {
                   <li key={s.title} className={styles.step}>
                     <span className={styles.stepNo}>{String(i + 1).padStart(2, "0")}</span>
                     <h3 className={styles.stepTitle}>{s.title}</h3>
-                    <p className={styles.stepText}>{s.text}</p>
+                    <p className={styles.stepText}>
+                      <Naija66Words words={s.words} />
+                    </p>
                   </li>
                 ))}
               </ol>

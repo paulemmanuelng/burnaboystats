@@ -80,7 +80,7 @@ export default function HuntKeySlot() {
       />
       {isFound && (
         <Link href="/naija66" className={styles.claim}>
-          Found a key? Claim it →
+          Found a code? Claim it →
         </Link>
       )}
     </div>
