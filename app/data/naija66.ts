@@ -42,8 +42,6 @@ export const NAIJA66_CLOSES = "2026-10-02T23:00:00Z";
 /** The first drop, 9am WAT on 1 October. */
 export const NAIJA66_FIRST_DROP = NAIJA66_PRIZES[0].dropsAt;
 
-/** The day a winner has to DM their code by — 11:59pm WAT, 4 October. */
-export const NAIJA66_DM_BY = "11:59pm on 4 October (WAT)";
 
 /** The account that says where to look next, and the one winners DM. */
 export const NAIJA66_X_HANDLE = "@paulemmanuelng";

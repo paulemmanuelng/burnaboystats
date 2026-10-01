@@ -1,4 +1,4 @@
-import { NAIJA66_DM_BY, NAIJA66_PRIZES, NAIJA66_X_HANDLE } from "../../data/naija66";
+import { NAIJA66_PRIZES, NAIJA66_X_HANDLE } from "../../data/naija66";
 import { watHour } from "./clock";
 
 /**
@@ -63,7 +63,7 @@ export const HOW_IT_WORKS: readonly { title: string; words: Words }[] = [
   {
     title: "Claim your Premium",
     words: [
-      `Win, and this page gives you a winner code. DM it to ${NAIJA66_X_HANDLE} on X by ${NAIJA66_DM_BY} for ${PRIZE.long}.`,
+      `Win, and this page gives you a winner code. DM it to ${NAIJA66_X_HANDLE} on X as soon as you get it, for ${PRIZE.long}.`,
     ],
   },
 ];
@@ -75,13 +75,13 @@ export const RULES = [
   "Codes are not case-sensitive.",
   "The first valid code entered wins its prize. A claimed code never opens again.",
   "Claims close at midnight WAT at the end of 2 October.",
-  `Winners must DM their winner code to ${NAIJA66_X_HANDLE} on X by ${NAIJA66_DM_BY}.`,
+  `Winners DM their winner code to ${NAIJA66_X_HANDLE} on X as soon as they get it.`,
   "Not affiliated with Spotify or Burna Boy.",
   "Paul's decision is final.",
 ] as const;
 
 /** What a winner is told. */
-export const WINNER_LINE = `DM this code to ${NAIJA66_X_HANDLE} on X by ${NAIJA66_DM_BY} to claim ${PRIZE.long}.`;
+export const WINNER_LINE = `DM this code to ${NAIJA66_X_HANDLE} on X now to claim ${PRIZE.long}.`;
 
 /**
  * Under a winner's code: keep it, and keep it to yourself — whoever DMs the
