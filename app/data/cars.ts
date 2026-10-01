@@ -679,6 +679,14 @@ function formatUsd(n: number): string {
   return `$${(n / 1_000_000).toFixed(2)}M`;
 }
 export const totalValueFormatted = formatUsd(totalValueUsd);
+/** The total as the reader-facing surfaces print it: "$17.54M+". The "+" is
+ *  part of the figure, not decoration: at least one price in the sum is the
+ *  site's own estimate (the GLS 600, `valueBasis: "estimate"`), so the total is
+ *  a floor. It was typed after `totalValueFormatted` on each surface, and the
+ *  phone hero, its stat and the /search row printed the bare "$17.54M" while
+ *  the title, desktop stat, FAQs and JSON-LD carried the "+" (live debug,
+ *  1 Oct 2026). One home, so no surface can drop it again. */
+export const totalValueReported = `${totalValueFormatted}+`;
 
 // The single most valuable car, and its price already formatted. It exists so
 // that prose about "his most expensive car" reads the figure instead of typing

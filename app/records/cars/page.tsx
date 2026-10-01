@@ -7,7 +7,7 @@ import MobileFaqSection from "../../components/MobileFaqSection";
 import GatedImage from "../../components/GatedImage";
 import { carImages } from "../../lib/carImageAssets";
 import { numberWord } from "../../lib/homeData";
-import { garage, currentCars, soldCars, unconfirmedCars, carCount, totalValueFormatted, conversionNote, CARS_LAST_SWEEP, valueWord, addedOnLabel, carsListYear } from "../../data/cars";
+import { garage, currentCars, soldCars, unconfirmedCars, carCount, totalValueReported, conversionNote, CARS_LAST_SWEEP, valueWord, addedOnLabel, carsListYear } from "../../data/cars";
 import { usdFull, usdShort, rankLabel, rankText, valueRank, modelShort, marqueTally } from "../../lib/garage";
 import { pageMetadata, datasetJsonLd } from "../../lib/seo";
 import { carFaqs } from "../../lib/carFaqs";
@@ -20,12 +20,12 @@ import { faqJsonLd } from "../../lib/boardFaqs";
 // share title stays the plain name, as /records/by-the-numbers keeps its
 // edition year out of its own.
 export const metadata = pageMetadata({
-  title: `Burna Boy's Car Collection (${carsListYear}) — ${carCount} Cars Worth ${totalValueFormatted}+`,
+  title: `Burna Boy's Car Collection (${carsListYear}) — ${carCount} Cars Worth ${totalValueReported}`,
   description:
-    `Every car in Burna Boy's garage, priced and sourced: ${carCount} vehicles worth a reported ${totalValueFormatted}+, led by his ₦9bn one-of-one Bugatti Chiron.`,
+    `Every car in Burna Boy's garage, priced and sourced: ${carCount} vehicles worth a reported ${totalValueReported}, led by his ₦9bn one-of-one Bugatti Chiron.`,
   path: "/records/cars",
   shareTitle: "Burna Boy's Car Collection",
-  shareDescription: `${carCount} cars worth a reported ${totalValueFormatted}+, led by a ₦9bn Bugatti Chiron — every car, priced.`,
+  shareDescription: `${carCount} cars worth a reported ${totalValueReported}, led by a ₦9bn Bugatti Chiron — every car, priced.`,
 });
 
 const carsDataset = datasetJsonLd({
@@ -104,9 +104,9 @@ export default function CarsPage() {
         titlePre="Car "
         titleGold="collection"
         titleSize={40}
-        lede={`${numberWord(carCount)} confirmed cars worth a reported ${totalValueFormatted} — led by a one-of-one ₦9bn Bugatti. Tap any car for its page.`}
+        lede={`${numberWord(carCount)} confirmed cars worth a reported ${totalValueReported} — led by a one-of-one ₦9bn Bugatti. Tap any car for its page.`}
         stats={[
-          { value: totalValueFormatted, label: "Total value" },
+          { value: totalValueReported, label: "Total value" },
           { value: topCarValue, label: topCarName },
         ]}
         listTitle="Ranked by what each cost"
@@ -171,7 +171,7 @@ export default function CarsPage() {
           </h1>
           <p className={styles.lede}>
             Burna Boy currently owns {carCount} confirmed cars — a collection worth a reported{" "}
-            {totalValueFormatted}+, led by a one-of-one ₦9 billion Bugatti Chiron and a{" "}
+            {totalValueReported}, led by a one-of-one ₦9 billion Bugatti Chiron and a{" "}
             {usdShort(senna.valueUsd)} McLaren Senna. Every car below opens to its own page: specifications, where
             it stands in the garage, and the source that put it on this list.
           </p>
@@ -182,7 +182,7 @@ export default function CarsPage() {
               <div className={styles.statLabel}>Confirmed cars</div>
             </div>
             <div className={styles.statCell}>
-              <div className={styles.statNum}>{totalValueFormatted}+</div>
+              <div className={styles.statNum}>{totalValueReported}</div>
               <div className={styles.statLabel}>Reported value</div>
             </div>
             {highlights.slice(0, 2).map((h) => (

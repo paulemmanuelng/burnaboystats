@@ -6,7 +6,7 @@ import { totalWins, ceremonyCount } from "../data/awards";
 import { revenueShows } from "../data/tourRevenue";
 import { tours, festivals, concerts, otherShows } from "../data/tours";
 import { countryCount as performedCountryCount } from "../data/performedCountries";
-import { totalValueFormatted } from "../data/cars";
+import { totalValueReported } from "../data/cars";
 import { firstsCount } from "../data/firsts";
 import { statBoxes } from "../data/africasBiggest";
 import { albums } from "../data/albums";
@@ -44,7 +44,7 @@ export const searchStats: Record<string, string> = {
   "/records/tours/revenue": `${revenueShows.length} shows`,
   "/records/tours/festivals": String(festivals.length + concerts.length + otherShows.length),
   "/records/africas-biggest": `${statBoxes.length} boards`,
-  "/records/cars": totalValueFormatted,
+  "/records/cars": totalValueReported,
   "/analysis": `${findings.length} findings`,
   "/api": "CC BY 4.0",
   "/updates": `${updates.length} entries`,

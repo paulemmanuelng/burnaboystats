@@ -21,7 +21,7 @@ import {
   soldCars,
   unconfirmedCars,
   carCount,
-  totalValueFormatted,
+  totalValueReported,
   topCar,
   topCarValueFormatted,
   valueWord,
@@ -84,7 +84,7 @@ export const carFaqs: Faq[] = [
   {
     q: "How much is Burna Boy's car collection worth?",
     a:
-      `Burna Boy's ${carCount} confirmed cars are worth a reported ${totalValueFormatted}+ in total: ` +
+      `Burna Boy's ${carCount} confirmed cars are worth a reported ${totalValueReported} in total: ` +
       `the sum of each car's reported price${estimateClause()}. The prices are import-inclusive, so ` +
       `they run higher than international sticker prices, and cars he has sold or not been seen with ` +
       `in years are left out.`,
