@@ -1,6 +1,6 @@
 "use client"; // reads the current path so breadcrumb data is correct on every page
 
-import { usePathname } from "next/navigation";
+import { usePagePath } from "../lib/pagePath";
 import { breadcrumbList, hasOwnBreadcrumb } from "../lib/seo";
 
 // Emits BreadcrumbList structured data for the current page (server-rendered in
@@ -10,7 +10,7 @@ import { breadcrumbList, hasOwnBreadcrumb } from "../lib/seo";
 // search engine choosing between two competing hierarchies for the same page.
 // Placed once in the root layout — no per-page setup.
 export default function Breadcrumbs() {
-  const pathname = usePathname();
+  const pathname = usePagePath();
   if (hasOwnBreadcrumb(pathname)) return null;
   const data = breadcrumbList(pathname);
   if (!data) return null;

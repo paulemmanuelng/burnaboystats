@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePagePath } from "../lib/pagePath";
 import { navItems } from "../lib/links";
 import BrandMark from "./BrandMark";
 import ThemeToggle from "./ThemeToggle";
@@ -14,7 +14,7 @@ import { hasOwnMobileChrome } from "../lib/mobileScreens";
  *  (lib/searchSuggested.ts) so the search index stays out of this bundle. */
 export default function Nav({ suggested }: { suggested: readonly SuggestedDoc[] }) {
   const [scrolled, setScrolled] = useState(false);
-  const pathname = usePathname();
+  const pathname = usePagePath();
 
   // Screens with their own mobile chrome carry a back bar instead of this nav.
   // The class only hides it below the mobile breakpoint — desktop is unchanged.

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import BrandMark from "./BrandMark";
-import { usePathname } from "next/navigation";
+import { usePagePath } from "../lib/pagePath";
 import { hasOwnActionBar } from "../lib/mobileScreens";
 import { SPANISH_PATH } from "../lib/documentLang";
 import styles from "./mobileTabBar.module.css";
@@ -75,7 +75,7 @@ const ALSO: Record<string, RegExp> = {
 };
 
 export default function MobileTabBar() {
-  const pathname = usePathname();
+  const pathname = usePagePath();
 
   // The bottom of the nine top-level screens, home included. Deep screens are
   // reached by a back button rather than lateral nav, so they carry a page

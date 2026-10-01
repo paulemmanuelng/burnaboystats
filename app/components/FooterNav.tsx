@@ -3,7 +3,7 @@
 import BrandMark from "./BrandMark";
 import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
-import { usePathname } from "next/navigation";
+import { usePagePath } from "../lib/pagePath";
 import { footerColumns, footerFor, DEFAULT_FOOTER } from "../lib/links";
 
 /**
@@ -50,7 +50,7 @@ const DISCLAIMER = "An unofficial fan site — not affiliated with or endorsed b
 const YEAR = new Date().getFullYear();
 
 export default function FooterNav() {
-  const pathname = usePathname();
+  const pathname = usePagePath();
 
   if (pathname !== "/") {
     const variant = footerFor[pathname] ?? DEFAULT_FOOTER;

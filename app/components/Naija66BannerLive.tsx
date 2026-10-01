@@ -17,6 +17,25 @@ const clientPhase = () => bannerPhase(Date.now());
 const FIRST_HOUR = watHour(FIRST_DROP_MS);
 
 /**
+ * One status read for every banner on the page. The home page mounts the strip
+ * once per layout and CSS hides one, but both run their effects, so each load
+ * fetched the status twice — two function calls and two billed Redis reads for
+ * one visible line (live debug, 1 Oct 2026). Both mount in one commit, so their
+ * effects run in the same tick and the second joins the first's request. The
+ * share ends when the request settles, so a later phase change reads afresh.
+ */
+let inFlight: Promise<HuntStatus | null> | null = null;
+function readStatus(): Promise<HuntStatus | null> {
+  inFlight ??= fetch("/api/naija66/status", { cache: "no-store" })
+    .then((r) => (r.ok ? (r.json() as Promise<HuntStatus>) : null))
+    .catch(() => null)
+    .finally(() => {
+      inFlight = null;
+    });
+  return inFlight;
+}
+
+/**
  * The line the banner says, from the phase and (live) the prizes still out.
  * `ready` is false when the server says the hunt is misconfigured (it fails
  * closed): then the banner must not call it live, because /naija66 will say it
@@ -55,8 +74,7 @@ export default function Naija66BannerLive({
   useEffect(() => {
     if (phase !== "live") return;
     let alive = true;
-    fetch("/api/naija66/status", { cache: "no-store" })
-      .then((r) => (r.ok ? (r.json() as Promise<HuntStatus>) : null))
+    readStatus()
       .then((s) => {
         if (!alive || !s) return;
         if (s.ready === false) setReady(false);

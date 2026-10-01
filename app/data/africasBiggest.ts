@@ -708,7 +708,36 @@ export const statBoxes: LeaderboardBox[] = [
       { name: "Asake", sub: "🇳🇬 Nigeria", value: "11.45M" },
     ],
     note: "Burna Boy is the best-selling African artist of all time, and his lead over Wizkid, now past 15 million equivalent album sales himself, has stretched from about 30,000 to some 339,000 across the “Dai Dai” run. Asake is the third African artist on ChartMasters' 696-name board. Read the scope with the figure: these three are the only artists from any African country on it (the board also tags Colombia's Beéle, 11.02M, as Afrobeats).",
-    source: `Total equivalent album sales (EAS), per ChartMasters' daily Best-Selling Artists of All-Time board, every one of its 696 rows read 30 September 2026 through the board's own paged table: Burna Boy 15,341,000 (rank 532), Wizkid 15,002,000 (rank 538), Asake 11,445,000 (rank 638). Burna Boy's and Wizkid's streams are both stamped ${dayMonth(EAS_STREAMS_COUNTED_TO)}, a same-date pair; Asake's are still stamped 18 September, so his figure trails his real total by some ten days of streams. The 24 September reading was 15,280,000 (534) to 14,956,000 (538), so Burna gained 61,000 and Wizkid 46,000, and the board grew from 695 names to 696. Nationality decides who counts (Akon, DJ Khaled and Dido are on the board and are not African artists). The board no longer prints a country column, so the country was read with its own search: "country:nigeria" returns exactly Burna Boy, WizKid and Asake, and every other African country returns no rows. READ THE RANK FROM THE g# COLUMN, NOT THE # COLUMN: the leading # is a client-side row counter that resets to 1 under any search or filter, so a re-read that searches for a name and copies the first number will publish a rank of 1. g# is the real position, and sorting all 696 rows by Total EAS reproduces it exactly. IMPORTANT ON METHOD, still true: ChartMasters has not completed a CSPC study for any of the three — the studio-album, other-LP, physical-single and digital-single columns all read 0, and Total EAS equals the streaming figure to the digit. Checked against a negative control rather than assumed: neighbours who DO have studies render non-zero in the same read, e.g. Carly Rae Jepsen at rank 539 with 1,777,000 studio and 31,940,000 digital singles. Board-wide, 236 of the 696 have all-zero sales columns and 460 have a completed study; these three are in the 236. So all three totals are streaming-only estimates that would UNDERSTATE a real CSPC result, not full sales tallies. ChartMasters itself makes no claim about African artists anywhere on that page. THE NAME ANYONE WILL RAISE: Akon sits at rank 501 on 16,736,000 EAS, ahead of Burna Boy. ChartMasters tags his country as the United States, and so does this site — Paul's ruling of 17 September 2026: an artist's nationality and where the career sits, not parentage or birthplace; Akon is an American artist, as GIMS and Aya Nakamura are French. The two have traded this lead before, so it is worth re-reading rather than assuming.`
+    /* Re-reading this board (moved out of the public source line on 1 Oct 2026,
+       live debug: these were instructions to whoever re-reads the data, and
+       the dropdown printed them to visitors).
+       - Read the rank from the g# column, not the # column. The leading # is a
+         client-side row counter that resets to 1 under any search or filter,
+         so a re-read that searches for a name and copies the first number will
+         publish a rank of 1. g# is the real position; sorting all rows by
+         Total EAS reproduces it exactly.
+       - The board no longer prints a country column. Read the country with its
+         own search: on 30 Sep "country:nigeria" returned exactly Burna Boy,
+         WizKid and Asake, and every other African country returned no rows.
+       - CSPC check, against a negative control rather than assumed: for all
+         three, the studio-album, other-LP, physical-single and digital-single
+         columns read 0 and Total EAS equals the streaming figure to the digit.
+         Neighbours who DO have studies render non-zero in the same read (30
+         Sep: Carly Rae Jepsen, rank 539, 1,777,000 studio and 31,940,000
+         digital singles). Board-wide on 30 Sep, 236 of the 696 had all-zero
+         sales columns and 460 a completed study; these three are in the 236.
+         ChartMasters makes no claim about African artists on that page.
+       - Previous reading, 24 Sep: 15,280,000 (534) to 14,956,000 (538), so by
+         30 Sep Burna gained 61,000 and Wizkid 46,000, and the board grew from
+         695 names to 696.
+       - Nationality decides who counts (Paul, 17 Sep 2026): an artist's
+         nationality and where the career sits, not parentage or birthplace.
+         Akon (rank 501, 16,736,000 EAS on 30 Sep, ahead of Burna Boy) is
+         tagged United States by ChartMasters and is an American artist, as
+         GIMS and Aya Nakamura are French. DJ Khaled and Dido are on the board
+         and are not African artists either. The two have traded this lead
+         before, so re-read it rather than assume. */
+    source: `Total equivalent album sales (EAS) on ChartMasters' daily Best-Selling Artists of All-Time board, all 696 rows read 30 September 2026: Burna Boy 15,341,000 (rank 532), Wizkid 15,002,000 (rank 538), Asake 11,445,000 (rank 638). Burna Boy's and Wizkid's streams are both stamped ${dayMonth(EAS_STREAMS_COUNTED_TO)}, a same-date pair; Asake's are still stamped 18 September, so his figure trails his real total by some ten days of streams. ChartMasters has not completed a CSPC sales study for any of the three, so all three totals are streaming-only estimates that would understate a full sales count. Artists are counted by nationality: Akon (rank 501, 16,736,000) is on the board, but he is an American artist, as ChartMasters also lists him, so he is not in this comparison.`
   },
   {
     id: "spotify-top-artists-peak",
