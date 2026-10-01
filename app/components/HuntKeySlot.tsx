@@ -66,7 +66,8 @@ const serverRound = () => null;
 export function spotFrom(j: Record<string, unknown>, prizeHint?: number): Spot | null {
   if (j.alreadyWon === true && prizeHint) return { kind: "already", prize: prizeHint };
   const prize = Number(j.prize);
-  if (!Number.isInteger(prize) || prize < 1 || prize > 5) return null;
+  // 0 is Paul's private test code (data/naija66Words.ts), 1–5 the prizes.
+  if (!Number.isInteger(prize) || prize < 0 || prize > 5) return null;
   if (j.won === true && typeof j.code === "string" && typeof j.at === "string") {
     return { kind: "won", prize, code: j.code, at: j.at };
   }
@@ -255,7 +256,7 @@ export default function HuntKeySlot() {
       <aside className={place} aria-label="Naija @ 66" data-state={s.kind} role="status">
         <div className={styles.kicker}>
           {flag}
-          <span>{`Naija @ 66 · Code ${s.prize}`}</span>
+          <span>{s.prize === 0 ? "Naija @ 66 · Test code" : `Naija @ 66 · Code ${s.prize}`}</span>
           {close}
         </div>
         {s.kind === "won" ? (

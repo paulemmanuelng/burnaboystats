@@ -636,3 +636,17 @@ describe("the home banner", () => {
     for (const phase of ["tomorrow", "today"] as const) expect(bannerLine(phase, null)).toContain(PRIZE.banner);
   });
 });
+
+describe("Paul's private test code (prize 0) arms the page like a prize", () => {
+  it("spotFrom accepts prize 0 and still rejects anything outside 0–5", async () => {
+    const { spotFrom } = await import("../app/components/HuntKeySlot");
+    expect(spotFrom({ here: true, prize: 0 })).toEqual({ kind: "here", prize: 0 });
+    expect(spotFrom({ claimed: true, prize: 0, at: "2026-10-01T19:10:00.000Z" })).toEqual({ kind: "claimed", prize: 0, at: "2026-10-01T19:10:00.000Z" });
+    expect(spotFrom({ here: true, prize: 6 })).toBeNull();
+    expect(spotFrom({ here: true, prize: -1 })).toBeNull();
+  });
+  it("negative control: the shipped range check refused prize 0", () => {
+    const shipped = (prize: number) => !(!Number.isInteger(prize) || prize < 1 || prize > 5);
+    expect(shipped(0)).toBe(false);
+  });
+});
