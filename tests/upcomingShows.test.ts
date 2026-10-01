@@ -1,8 +1,21 @@
 import { describe, it, expect } from "vitest";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import { upcomingShows } from "../app/data/tours";
+import { upcomingShows, type UpcomingShow } from "../app/data/tours";
 import { updates } from "../app/data/updates";
+
+/** The lead's line on Apple Music Hall, as it reached us. Not established. */
+const LEAD = "The first African artist to perform live at the Apple Music Hall";
+
+/**
+ * Venues whose phone line says "first" when their full note does not. The
+ * `short` field's own rule: no claim the note does not make. The word alone,
+ * not a venue-bound phrase: the venue's name prints on the row above, so the
+ * line has no reason to repeat it.
+ */
+const FIRST_WORD = /\bfirst\b/i;
+const unbackedFirsts = (shows: Pick<UpcomingShow, "venue" | "note" | "short">[]) =>
+  shows.filter((u) => FIRST_WORD.test(u.short) && !FIRST_WORD.test(u.note)).map((u) => u.venue);
 
 /**
  * The announced-shows list on /records/tours: the one forward-looking list in
@@ -33,6 +46,15 @@ describe("the phone's one-line notes", () => {
       expect(u.short.length, u.venue).toBeLessThanOrEqual(80);
     }
   });
+
+  it("claim no 'first' that the full note does not make", () => {
+    expect(unbackedFirsts(upcomingShows)).toEqual([]);
+  });
+
+  it("negative control: the lead's line on Apple Music Hall's row", () => {
+    const apple = upcomingShows.find((u) => u.venue === "Apple Music Hall")!;
+    expect(unbackedFirsts([{ ...apple, short: LEAD }])).toEqual(["Apple Music Hall"]);
+  });
 });
 
 describe("Apple Music Hall, 29 October 2026", () => {
@@ -51,13 +73,21 @@ describe("Apple Music Hall, 29 October 2026", () => {
 
   it("says 'the only African artist among the eight shows', never 'the first'", () => {
     // The lead's own line is what the guard refuses.
-    expect("The first African artist to perform live at the Apple Music Hall").toMatch(FIRST);
+    expect(LEAD).toMatch(FIRST);
     expect(feed.length).toBeGreaterThan(0);
     for (const text of [show.note, ...feed.map((u) => u.text)]) {
       expect(text).toContain("the only African artist among the eight shows announced for its opening run");
       expect(text).not.toMatch(FIRST);
     }
-    expect(show.short).not.toMatch(FIRST);
+  });
+
+  it("its phone line has no 'first' at all", () => {
+    // FIRST needs the venue's name after the claim, and the phone line sits
+    // under that name, so it never repeats it. The note has no "first", so
+    // the bare word is exact here.
+    expect(LEAD).toMatch(FIRST_WORD);
+    expect(show.note).not.toMatch(FIRST_WORD);
+    expect(show.short).not.toMatch(FIRST_WORD);
   });
 });
 
