@@ -143,13 +143,19 @@ export default function MobileTours({
               a single head date would label the second with the first's. */}
           <div className={styles.upcomingHead}>
             <span className={styles.upcomingTag}>Announced</span>
-            <span className={styles.upcomingWhen}>{upcomingShows.length === 1 ? upcomingShows[0].when : `${upcomingShows.length} shows`}</span>
+            {/* One show: its date, in the display face. Several: a count in
+                the label face, so it does not outsize the dated rows under it. */}
+            {upcomingShows.length === 1 ? (
+              <span className={styles.upcomingWhen}>{upcomingShows[0].when}</span>
+            ) : (
+              <span className={styles.upcomingCount}>{upcomingShows.length} shows</span>
+            )}
           </div>
           {upcomingShows.map((u) => (
-            <div key={`${u.venue}-${u.when}`}>
-              <div className={styles.upcomingVenue}>
-                {u.venue}
-                {upcomingShows.length > 1 && <span className={styles.upcomingWhen}> · {u.when}</span>}
+            <div key={`${u.venue}-${u.when}`} className={styles.upcomingShow}>
+              <div className={styles.upcomingRow}>
+                <span className={styles.upcomingVenue}>{u.venue}</span>
+                {upcomingShows.length > 1 && <span className={styles.upcomingDate}>{u.when}</span>}
               </div>
               <div className={styles.upcomingCity}>
                 {u.city}, {u.country}
@@ -158,8 +164,12 @@ export default function MobileTours({
                     against the server's "80,000" — React #418. */}
                 {u.cap ? ` · ${u.cap.toLocaleString("en-US")} cap` : ""}
               </div>
-              <p className={styles.upcomingText}>{u.note}</p>
-              <p className={styles.upcomingSource}>{u.source}</p>
+              {/* One line, not the full note: three notes ran this box to a
+                  whole phone screen (Paul, 1 Oct 2026). Desktop has them. */}
+              <p className={styles.upcomingText}>{u.short}</p>
+              {/* The date kept whole: at 320 "…the NFL, 17" / "September 2026"
+                  split the day from its month. Desktop prints it on one line. */}
+              <p className={styles.upcomingSource}>{u.source.replace(/(\d{1,2}) ([A-Z][a-z]+) (\d{4})/, "$1\u00a0$2\u00a0$3")}</p>
             </div>
           ))}
         </div>
