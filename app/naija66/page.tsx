@@ -3,7 +3,7 @@ import styles from "./naija66.module.css";
 import BreadcrumbBar from "../components/BreadcrumbBar";
 import MobileNaija66 from "../components/MobileNaija66";
 import Naija66Provider from "../components/Naija66Provider";
-import { HuntBoard, HuntKeyForm } from "../components/Naija66Play";
+import { HuntBoard, HuntFlowBox } from "../components/Naija66Play";
 import Naija66Words from "../components/Naija66Words";
 import { pageMetadata } from "../lib/seo";
 import { DROP_HOURS, HOW_IT_WORKS, PRIZE, RULES, WHERE_NEXT } from "../lib/naija66/copy";
@@ -11,16 +11,16 @@ import { NAIJA66_X_URL } from "../data/naija66";
 
 export const metadata = pageMetadata({
   title: "Naija @ 66 — Burna Boy Stats Independence Day Hunt",
-  description: `Nigeria turns 66 on 1 October. Five codes are hidden on Burna Boy Stats — enter one first and win ${PRIZE.long}. Free to play.`,
+  description: `Nigeria turns 66 on 1 October. Five codes hide on Burna Boy Stats — reveal one first and win ${PRIZE.long}. Free to play.`,
   path: "/naija66",
   shareTitle: "Naija @ 66 — the Independence Day key hunt",
-  shareDescription: `Five codes hidden on pages of Burna Boy Stats on 1 October. Find one, enter it first, win ${PRIZE.long}.`,
+  shareDescription: `Five codes hidden on pages of Burna Boy Stats on 1 October. Be the first to tap Reveal and win ${PRIZE.long}.`,
 });
 
 /**
  * /naija66 — Nigeria's 66th Independence Day key hunt (1-2 October 2026).
  *
- * The rules, the live board of the five prizes and the key box. The page is
+ * The rules, the live board of the five prizes and how to win. The page is
  * static; everything that moves (the board, a claim, a winner's code) comes
  * from /api/naija66/* in the browser, through one Naija66Provider shared by
  * both layouts. The phone screen is MobileNaija66; the desktop page is below.
@@ -34,7 +34,7 @@ export default function Naija66Page() {
         <div className={styles.desktopOnly}>
           <BreadcrumbBar path="/naija66" />
 
-          {/* ── Hero, with the key box as its right column ────────────── */}
+          {/* ── Hero, with the flow box as its right column ───────────── */}
           <section className={styles.band}>
             <div className={`${styles.wide} ${styles.hero}`}>
               <div>
@@ -50,8 +50,8 @@ export default function Naija66Page() {
                   Naija @ <span className={styles.green}>66</span>
                 </h1>
                 <p className={styles.lede}>
-                  Five codes are hidden on pages of Burna Boy Stats, each appearing at its time as a
-                  small key badge. Find one, enter it first, and win {PRIZE.long}.
+                  Five codes hide on pages of Burna Boy Stats, one at each drop. Open the right page,
+                  tap Reveal first, and win {PRIZE.long}.
                 </p>
                 <p className={styles.drops}>
                   <span className={styles.liveDot} aria-hidden="true" />
@@ -63,7 +63,7 @@ export default function Naija66Page() {
                   </a>
                 </p>
               </div>
-              <HuntKeyForm layout="desktop" />
+              <HuntFlowBox layout="desktop" />
             </div>
           </section>
 

@@ -1,13 +1,17 @@
 import { NAIJA66_CLOSES, NAIJA66_PRIZES } from "../../data/naija66";
 import { CLOSES_MS } from "./clock";
-import { ipTag, pageTag, prizeOfCode, safeEqual } from "./crypto";
+import { ipTag, prizeOfCode, safeEqual } from "./crypto";
 import type { HuntStore } from "./store";
 
 /**
  * The hunt's shared server pieces: the claim records, the public board built
  * from them, the winner's cookie and the rate limits. Used by the three routes
- * under app/api/naija66/.
+ * under app/api/naija66/ (spot, reveal, status).
  */
+
+/** The prize whose code hides on this page, if any (app/data/naija66.ts). */
+/** The prize whose code hides on this page — never one already awarded off the site. */
+export const prizeOnPage = (pathname: string) => NAIJA66_PRIZES.find((p) => p.path === pathname && !p.awarded);
 
 /**
  * What a claim stores: the winner code, when it was claimed, and — when the
@@ -93,6 +97,7 @@ export const tailOf = (code: string) => code.slice(-2);
 export function publicPrizes(records: (ClaimRecord | null)[], now: number): PublicPrize[] {
   return NAIJA66_PRIZES.map((p, i) => {
     const r = records[i];
+    if (p.awarded && !r) return { prize: p.prize, dropsAt: p.dropsAt, state: "claimed" };
     if (r) return { prize: p.prize, dropsAt: p.dropsAt, state: "claimed", claimedAt: r.at, tail: tailOf(r.code) };
     const state: PrizeState = now >= CLOSES_MS ? "closed" : now >= Date.parse(p.dropsAt) ? "live" : "sleeping";
     return { prize: p.prize, dropsAt: p.dropsAt, state };
@@ -185,31 +190,6 @@ export async function overLimit(
 }
 
 /**
- * The badge's budget: how many DIFFERENT pages one address may ask about in a
- * window. A page it has already asked about in the window answers as usual
- * however often it comes back — a revisit is a fresh request by design
- * (HuntKeySlot.tsx) and must not use anything up — so the budget only binds
- * on a sweep of many pages. Past it, every new page is blank for the rest of
- * the window.
- *
- * The windows sit on the quarter-hours, so each drop opens a fresh one: nobody
- * can bank budget before a drop, and nobody can double it across a boundary
- * in the first quarter-hour after one.
- */
-export async function overPageBudget(
-  store: HuntStore,
-  secret: string,
-  req: Request,
-  pathname: string,
-  limit: number,
-  windowSeconds: number,
-): Promise<boolean> {
-  const window = Math.floor(Date.now() / (windowSeconds * 1000));
-  const key = `naija66:rl:pages:${ipTag(secret, clientIp(req))}:${window}`;
-  return (await store.order(key, pageTag(secret, pathname), windowSeconds * 2)) >= limit;
-}
-
-/**
  * A per-instance valve in front of the store: an address past `limit`
  * requests a minute on this server instance is answered without a store call
  * at all, so a loop hammering one route cannot spend the Redis quota the hunt
@@ -232,7 +212,7 @@ export function valveShut(secret: string, req: Request, bucket: string, limit: n
   return next.n > limit;
 }
 
-/** The claim route's three sentences a player can be shown. */
+/** The reveal route's sentences a player can be shown. */
 export const NOT_OPEN = "The hunt isn't open yet.";
 export const TOO_MANY = "That's a lot of tries — give it ten minutes, then have another go.";
 export const BROKEN = "Something went wrong on our side — try again in a moment.";
