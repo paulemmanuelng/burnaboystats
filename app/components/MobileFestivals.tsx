@@ -14,6 +14,9 @@ import BackLink from "./BackLink";
  * Full list.", and the screen already is the full list.
  *
  * Only the accordion is interactive, so this stays a server component.
+ *
+ * "Where he's performed ↗" sits between the grid and the sections (design
+ * response §10, item 37), in the same outlined style as the desktop's.
  */
 export default function MobileFestivals({
   total,
@@ -60,6 +63,19 @@ export default function MobileFestivals({
             <div className={styles.statLabel}>{s.label}</div>
           </div>
         ))}
+      </div>
+
+      {/* Between the grid and the first section, so it is on the first
+          screen whichever section is open. The screen has no bar by design,
+          so the link lives in the page. A stand-alone link to another page,
+          so ↗. */}
+      <div className={styles.mapLinkWrap}>
+        <Link href="/records/tours/map" className={styles.mapLink}>
+          Where he&apos;s performed
+          <span className={styles.mapLinkArrow} aria-hidden="true">
+            ↗
+          </span>
+        </Link>
       </div>
 
       <MobileSections sections={sections} />

@@ -14,7 +14,7 @@ import {
  *
  * One design at every width. This is the mobile home screen's version, which
  * replaced the desktop's old side-by-side card: kicker, split title, lede, the
- * globe on its ringed stage, the region strip, then the status/CTA foot.
+ * globe on its ringed stage, the region strip, then the CTA foot.
  *
  * Four cells in the strip: the three biggest regions by country count, then
  * everything else pooled as "Rest", so it always adds up to the full total —
@@ -68,9 +68,11 @@ export default function GlobeTeaser() {
         ))}
       </div>
 
+      {/* The foot carried "Oceania added Oct 2025" beside a green status dot
+          until 30 Sep 2026. performedCountries.ts records no date a country
+          was added, so the line was typed and could only go stale (design
+          response item 41); the dot was its marker and went with it. */}
       <div className={styles.foot}>
-        <span className={styles.dot} aria-hidden="true" />
-        <span className={styles.note}>Oceania added Oct 2025</span>
         <span className={styles.cta}>Open the map ↗</span>
       </div>
     </Link>

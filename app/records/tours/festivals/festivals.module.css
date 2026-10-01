@@ -11,6 +11,9 @@
 
 /* ── Hero ───────────────────────────────────────────────────────────────── */
 .heroPad { padding: 50px 40px 40px; }
+/* The map link sits right of the lede, bottom-aligned with it (Map Links §3). */
+.heroRow { display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; }
+.heroText { min-width: 0; }
 .eyebrow {
   display: flex;
   align-items: center;
@@ -40,6 +43,31 @@
   color: var(--text-body-cool);
   text-wrap: pretty;
 }
+
+/* "Where he's performed ↗": the one style the phone shares (item 37): 11px,
+   a --btn-edge outline, no gold wash. The label is gold, an action. */
+.mapLink {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 20px;
+  margin-bottom: 4px;
+  border-radius: 999px;
+  border: 1px solid var(--btn-edge);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  transition: background var(--dur-fast) var(--ease);
+}
+.mapLink:hover { background: var(--bg-raised); }
+/* On paper gold measures 4.14:1 on --bg-raised, under AA for 11px text, so the
+   hovered label reads in ink, as the other --bg-raised hovers do (ruling,
+   26 Sep 2026). Dark keeps its gold. */
+:global(:root[data-theme="light"]) .mapLink:hover { color: var(--text); }
 
 /* ── Count band ─────────────────────────────────────────────────────────── */
 /* Each cell is a link into its own section, so the band doubles as the page's

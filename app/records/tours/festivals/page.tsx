@@ -91,17 +91,29 @@ export default function FestivalsPage() {
         {/* ── Hero ───────────────────────────────────────────── */}
         <section className={styles.band}>
           <div className={`${styles.wide} ${styles.heroPad}`}>
-            <div className={styles.eyebrow}>
-              <span className={styles.eyebrowRule} aria-hidden="true" />
-              Big stages
+            <div className={styles.heroRow}>
+              <div className={styles.heroText}>
+                <div className={styles.eyebrow}>
+                  <span className={styles.eyebrowRule} aria-hidden="true" />
+                  Big stages
+                </div>
+                <h1 className={styles.h1}>
+                  Festivals <span className="inkText">&amp; Shows</span>
+                </h1>
+                <p className={styles.lede}>
+                  The festivals Burna Boy has headlined — and the other big stages he&apos;s
+                  played. {total} documented appearances across{" "}
+                  {numberWord(groups.length).toLowerCase()} categories.
+                </p>
+              </div>
+              {/* In the hero, not the count strip: the strip's three cells are
+                  anchors to the sections below, and a fourth link there would
+                  read as a fourth category. A stand-alone link to another
+                  page, so ↗. */}
+              <Link href="/records/tours/map" className={styles.mapLink}>
+                Where he&apos;s performed ↗
+              </Link>
             </div>
-            <h1 className={styles.h1}>
-              Festivals <span className="inkText">&amp; Shows</span>
-            </h1>
-            <p className={styles.lede}>
-              The festivals Burna Boy has headlined — and the other big stages he&apos;s
-              played. {total} appearances across three categories.
-            </p>
           </div>
         </section>
 
