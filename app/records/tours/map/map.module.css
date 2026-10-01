@@ -1,130 +1,369 @@
-/* "Where he's performed" — custom world map (no mapping library; shapes are the
-   pre-generated static paths in data/worldShapes.ts).
+/* "Where he's performed" — the desktop page (above 900px).
 
-   Two consumers: this page's desktop layout, and PerformanceMap, which imports
-   the map/card classes from here and is rendered by both layouts.
-   designs/desktop/Records - Tour Map.html supplies every value below. */
+   Built from designs/desktop/TM Desktop.dc.html (the 30 Sep 2026 tour-map
+   design, Tour Map.dc.html) and the change list of its design response,
+   which wins where the two differ. The map's drawing is
+   components/tourMapSvg.module.css, the card components/tourMapCard.module.css,
+   and the phone screen components/mobileTourMap.module.css. The listeners
+   map's frame, zoom and card moved to components/worldMap.module.css. */
 
 /* ═══ Page — desktop ═══════════════════════════════════════════════════════ */
-.desktopOnly { display: block; }
+.desktopOnly { display: block; position: relative; }
 @media (max-width: 900px) { .desktopOnly { display: none; } }
 
 .wrap { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
+.page { position: relative; }
 
-.head { padding-top: 32px; }
+/* "Skip to country list": the first stop inside the main content, ahead of
+   the breadcrumb bar and the map (item 14; rendered by page.tsx). The site's
+   own "Skip to content" stays the first Tab on the page. The gold ramp, 44px,
+   seen only on focus, just under the 49px breadcrumb bar (TM Desktop B9). */
+.skip {
+  position: absolute;
+  z-index: 30;
+  left: max(40px, calc((100% - 1160px) / 2));
+  top: 55px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 22px;
+  border-radius: 999px;
+  background-color: var(--gold-fill);
+  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold-fill) 48%, var(--gold-dim) 100%);
+  color: var(--ink-on-gold);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.skip:not(:focus) {
+  width: 1px;
+  height: 1px;
+  min-height: 0;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.head { padding-top: 14px; }
+
+/* Kicker: muted, the Records family's ember tick in front (item 26). */
 .kicker {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-family: var(--font-mono), monospace;
   font-weight: 700;
   font-size: 11px;
+  line-height: 1.2;
   letter-spacing: 0.11em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text-muted);
+}
+.tick { width: 16px; height: 2px; background: var(--ember); flex: none; }
+
+/* The h1 and the lede share one row; the figures run as one strip under
+   them, so the whole map is on the first screen at 1440 × 900 (item 5). */
+.titleRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+  margin-top: 10px;
 }
 .title {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400; /* Anton has no bold cut */
   font-size: 78px;
-  line-height: 0.9;
-  letter-spacing: 0.01em;
+  line-height: 0.95;
   text-transform: uppercase;
-  margin: 14px 0 0;
+  white-space: nowrap;
+  margin: 0;
 }
+/* 16px on desktop, as the TM Desktop artboard draws it (Paul, 1 Oct 2026):
+   on --type-lede the lede wrapped to four lines at 430px and pushed the map's
+   foot 52px below a 1440x900 screen (change-list item 5). The phone keeps its
+   own lede in mobileTourMap.module.css. */
 .lede {
-  font-size: var(--type-lede);
-  line-height: var(--type-lede-lh);
+  margin: 0;
+  max-width: 430px;
+  font-size: var(--type-body);
+  line-height: var(--type-body-lh);
   color: var(--text-body);
-  max-width: 62ch;
-  margin: 18px 0 0;
   text-wrap: pretty;
 }
 
-/* The two counts read as one line: countries lit, regions plain, a hairline
-   between them. Regions aren't a record — they're the shape of the first
-   number. */
-.counts { display: flex; align-items: baseline; gap: 14px; margin-top: 22px; flex-wrap: wrap; }
-.countBig {
+/* The headline figures (item 10), ink at rest (item 22). */
+.figs {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.2fr 1fr 1.3fr 2.2fr;
+  margin-top: 14px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.fig {
+  padding: 10px 16px;
+  border-left: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.fig:first-child { padding-left: 0; border-left: none; }
+.figValue {
+  align-self: flex-start;
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
-  font-size: 58px;
-  line-height: 0.9;
-  color: var(--gold);
+  font-size: 36px;
+  line-height: 1;
   font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  color: var(--text);
 }
-.countBigPlain { color: var(--text); }
-.countWord {
+.figLabel {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
   font-size: 11px;
+  line-height: 1.25;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+/* The biggest night's venue and date, in Geist under the mono label. */
+.figSub {
+  font-size: var(--type-small);
+  line-height: 1.35;
+  color: var(--text-body);
+}
+.caveat {
+  margin: 8px 0 0;
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
+  color: var(--text-muted);
+}
+
+/* ── The map frame ─────────────────────────────────────────────────────── */
+.figure { margin: 12px auto 0; }
+.frame {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--map-sea);
+}
+/* The world view: the whole map, the Antarctica band cropped (900 × 405). */
+.frame .world { height: auto; aspect-ratio: 900 / 405; }
+
+/* The close-up for the small places (item 8): bottom-left, inside the frame,
+   260 × 224 at 1440 and 200 × 172 in the 1024 band. Its label band sits
+   inside the box. */
+.closeup {
+  position: absolute;
+  z-index: 1;
+  left: 9px;
+  bottom: 9px;
+  width: 260px;
+  height: 224px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  padding: 0 4px 4px;
+  border: 1px solid var(--rule);
+  background: var(--map-sea);
+}
+.closeupLabel {
+  height: 22px;
+  display: flex;
+  align-items: center;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1.2;
   letter-spacing: 0.11em;
   text-transform: uppercase;
+  color: var(--text-muted);
 }
-.countRule { width: 1px; height: 22px; background: var(--line); display: block; }
+.closeupMap { flex: 1; min-height: 0; }
 
-.figure { margin: 28px auto 0; }
-.frame { position: relative; border: 1px solid var(--line); background: var(--bg-soft); }
+/* The card: inside the frame, 9px from its edges, top-right; top-left when
+   that would cover the selected country (item 4). */
+.cardSlot { position: absolute; z-index: 2; top: 9px; }
+.cardRight { right: 9px; }
+.cardLeft { left: 9px; }
+
+/* ?country= for a real country with no documented show: one line, a close
+   control and no links, where the card would be. */
+.note {
+  width: 300px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 4px 0 16px;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--bg);
+  box-shadow: var(--shadow);
+  font-size: var(--type-small);
+  line-height: 1.45;
+  color: var(--text);
+}
+.note span { flex: 1; }
+.noteClose {
+  width: 32px;
+  height: 32px;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+.noteClose:hover { background: var(--bg-raised); color: var(--text); }
+
+/* The legend (item 18): each swatch shows the fill it explains, never gold
+   (item 28). */
 .legend {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-top: 14px;
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-muted);
+  gap: 28px;
   flex-wrap: wrap;
+  margin-top: 12px;
+  font-size: var(--type-small);
+  color: var(--text-body);
 }
-/* Two swatches, because there are two ways a country can appear: a shaded
-   shape, or a marker where 110m geometry has no usable shape for it. */
-.swatch {
+.legendItem { display: flex; align-items: center; gap: 8px; }
+.swatch,
+.swatchLand {
   width: 14px;
   height: 14px;
-  background: color-mix(in srgb, var(--gold-wash-base) 42%, transparent);
-  border: 1px solid var(--gold);
-  display: block;
+  box-sizing: border-box;
+  border-radius: 2px;
+  border: 1px solid var(--map-border);
   flex: none;
 }
+.swatch { background: var(--map-played); }
+.swatchLand { background: var(--map-land); }
 .swatchDot {
-  width: 9px;
-  height: 9px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  background: color-mix(in srgb, var(--gold-wash-base) 75%, transparent);
-  border: 1px solid var(--gold-bright);
-  display: block;
+  background: var(--map-played);
+  box-shadow: 0 0 0 1px var(--map-sea), 0 0 0 2px var(--map-border);
   flex: none;
-  margin-left: 14px;
 }
 
-.breakdown { padding-top: 52px; }
+/* ── By region ─────────────────────────────────────────────────────────── */
+.breakdown { padding-top: 48px; }
+.listHead {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
 .breakdownTitle {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
   font-size: 34px;
-  line-height: 1.05;
-  letter-spacing: 0.01em;
+  line-height: 1;
   text-transform: uppercase;
-  margin: 12px 0 0;
+  margin: 8px 0 0;
 }
-.tableWrap { margin-top: 22px; overflow-x: auto; }
-.table { width: 100%; border-collapse: collapse; }
-.table th {
-  text-align: left;
-  padding: 12px 14px;
-  border-bottom: 1px solid var(--border);
+
+/* The find box (item 11). */
+.find { width: 340px; display: flex; flex-direction: column; gap: 6px; }
+.findLabel {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
   font-size: 11px;
-  letter-spacing: 0.12em;
+  line-height: 1.2;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
   color: var(--text-muted);
 }
-.table td { padding: 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
-.table tbody tr:hover td { background: color-mix(in srgb, var(--gold-wash-base) calc(5% * var(--wash-strength)), transparent); }
+.findField {
+  height: 40px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 14px;
+  border: 1px solid var(--btn-edge);
+  border-radius: 999px;
+  background: var(--bg-soft);
+  color: var(--text-muted);
+}
+.findField:focus-within {
+  border-color: var(--text);
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--gold);
+}
+.findInput {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  font: inherit;
+  font-size: 14px;
+  color: var(--text);
+}
+/* The field draws the ring (above), so the input's own would double it. */
+.findInput:focus-visible { outline: none; }
+.findInput::placeholder { color: var(--dim); }
+
+.result {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 14px;
+  padding: 12px 16px;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--bg-soft);
+}
+.resultText { font-size: 14px; line-height: 1.45; }
+.resultLink {
+  flex: none;
+  min-height: 24px;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  font: inherit;
+  font-size: var(--type-small);
+  color: var(--text);
+  cursor: pointer;
+}
+.resultLink span { color: var(--gold); }
+
+.tableWrap { margin-top: 16px; overflow-x: auto; }
+.table { width: 100%; border-collapse: collapse; }
+.table th {
+  text-align: left;
+  padding: 0 12px 10px;
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1.2;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.table td { padding: 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
 /* The row header: the region in the heading face, on the row's top line with
    its cells. Written as ".table th.regionCell" (0,2,1) because ".table th"
    above is 0,1,1 and outranked a bare .regionCell — so until 24 Sep 2026 the
    header rendered as the column heads' 11px muted mono, and sat about 13px
-   below its row at the table default, vertical-align: middle. */
+   below its row at the table default, vertical-align: middle. The size is the
+   approved 17px (D-06; the design response keeps it, item 12). */
 .table th.regionCell {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
@@ -133,165 +372,88 @@
   letter-spacing: 0.01em;
   color: var(--text);
   border-bottom: 1px solid var(--line);
-  padding: 14px;
+  padding: 12px;
+  width: 200px;
   white-space: nowrap;
   text-align: left;
   vertical-align: top;
 }
-.numCol {
-  text-align: right;
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
-  font-size: var(--type-small);
-  font-weight: 700;
+.numCol { text-align: right; width: 72px; white-space: nowrap; }
+.table th.numCol { text-align: right; }
+.table td.numCol {
+  font-family: var(--font-anton), sans-serif;
+  font-size: 18px;
+  line-height: 1.2;
   font-variant-numeric: tabular-nums;
-  white-space: nowrap;
-  width: 90px;
+  color: var(--text);
 }
-.namesCell { font-size: 13.5px; line-height: 1.7; color: var(--text-body); }
+/* A region row hovered lights its countries on the map (item 12). */
+.rowLit td,
+.table .rowLit th.regionCell { background: var(--bg-raised); }
+/* Typing in the find box dims the rows that cannot match. */
+.rowDim { opacity: 0.35; }
+
+.names { display: flex; flex-wrap: wrap; gap: 2px 4px; }
+/* Each country is a button that pins its card: 24px, the mouse target. */
+.countryBtn {
+  min-height: 24px;
+  padding: 1px 5px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  font: inherit;
+  font-size: 14px;
+  line-height: 1.5;
+  white-space: nowrap;
+  color: var(--text);
+  cursor: pointer;
+}
+.countryBtn:hover,
+.countryHot { background: var(--bg-raised); }
+.countryOn {
+  background: var(--bg-raised);
+  box-shadow: inset 0 0 0 1.5px var(--text);
+}
+
 .table tfoot td {
   border-bottom: none;
-  border-top: 1px solid var(--border);
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
   font-size: 18px;
   text-transform: uppercase;
 }
-/* The total row's last cell is prose, not display type. */
-.tfootPlain {
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
-  font-size: 14px;
-  text-transform: none;
-}
-
-.note { font-size: 13px; line-height: 1.7; color: var(--text-muted); margin: 22px 0 0; max-width: 84ch; }
-.note a { color: var(--gold); }
-.pills { display: flex; gap: 10px; flex-wrap: wrap; padding: 40px 0 72px; }
-
-@media (max-width: 1239px) {
-  .title { font-size: 57px; }
-  .countBig { font-size: 44px; }
-}
-
-/* ═══ Map component ════════════════════════════════════════════════════════ */
-.mapWrap { position: relative; width: 100%; }
-.svg { display: block; width: 100%; height: auto; overflow: visible; }
-
-/* zoomable scroll viewport (the SVG width scales with the zoom level) */
-.viewport { width: 100%; aspect-ratio: 900 / 470; scrollbar-width: thin; }
-
-/* +/- zoom controls, top-right of the map */
-.zoom {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  z-index: 20;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-.zoomBtn {
-  width: 34px;
-  height: 34px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--bg-soft);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
-  color: var(--gold-bright-ink);
-  font-size: 1.35rem;
-  line-height: 1;
-  cursor: pointer;
-  transition: border-color 0.15s ease, background 0.15s ease;
-}
-.zoomBtn:hover:not(:disabled) { border-color: var(--gold); background: var(--bg-raised); }
-.zoomBtn:disabled { opacity: 0.4; cursor: default; }
-
-/* 34px is right beside a mouse; a thumb gets the 44px floor, the same split the
-   icon button primitive makes. The country shapes themselves stay as geography
-   draws them — WCAG's essential-size exception — and the phone screen carries
-   the list equivalent for anyone who can't work the map. */
-@media (pointer: coarse) {
-  .zoomBtn { width: 44px; height: 44px; }
-}
-
-/* countries with no documented show — the muted base map */
-.off { fill: var(--bg-soft-2); stroke: color-mix(in srgb, var(--scrim-base) 90%, transparent); stroke-width: 0.4; }
-
-/* countries he has performed in */
-.on {
-  fill: color-mix(in srgb, var(--gold-wash-base) 42%, transparent);
-  stroke: color-mix(in srgb, var(--scrim-base) 90%, transparent);
-  stroke-width: 0.4;
-  cursor: pointer;
-  transition: fill 0.15s ease;
-  outline: none;
-}
-.on:hover,
-.on:focus-visible { fill: var(--gold-hit); }
-.activePath { fill: var(--gold-hit); }
-
-/* dot markers for territories with no shape at this map resolution */
-.dot {
-  fill: color-mix(in srgb, var(--gold-wash-base) 75%, transparent);
-  stroke: var(--gold-hit);
-  stroke-width: 1;
-  cursor: pointer;
-  transition: fill 0.15s ease;
-  outline: none;
-}
-.dot:hover,
-.dot:focus-visible { fill: var(--gold-hit); }
-
-/* floating detail card (follows the cursor / tap) */
-.card {
-  position: fixed;
-  z-index: 50;
-  pointer-events: none;
-  background: color-mix(in srgb, var(--veil-base) 97%, transparent);
-  border: 1px solid var(--gold);
-  box-shadow: 0 10px 34px color-mix(in srgb, var(--shadow-base) calc(55% * var(--shadow-strength)), transparent);
-  padding: 12px 14px;
-  max-width: 280px;
-}
-
-/* little arrow that points from the card at the country it describes */
-.arrow {
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-left: 7px solid transparent;
-  border-right: 7px solid transparent;
-  transform: translateX(-50%);
-}
-.cardAbove .arrow { bottom: -7px; border-top: 7px solid var(--gold); }
-.cardBelow .arrow { top: -7px; border-bottom: 7px solid var(--gold); }
-.cardName {
-  display: block;
-  font-family: var(--font-anton), sans-serif;
-  font-weight: 400;
-  font-size: 17px;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
-  color: var(--text);
-}
-.cardRegion {
-  display: block;
+/* The total row's last cell is a label, not display type. */
+.table tfoot td.tfootPlain {
   font-family: var(--font-mono), monospace;
+  font-weight: 700;
   font-size: 11px;
   letter-spacing: 0.11em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-top: 4px;
+  color: var(--text-muted);
+  vertical-align: middle;
 }
-.cardEvents { margin: 9px 0 0; padding-left: 15px; }
-.cardEvents li { font-size: 12.5px; line-height: 1.45; color: var(--text-body); margin-bottom: 3px; }
-.cardMore {
-  display: block;
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--dim);
-  margin-top: 7px;
+
+.note2 {
+  margin: 20px 0 0;
+  max-width: 62ch;
+  font-size: var(--type-small);
+  line-height: 1.55;
+  color: var(--text-body);
+}
+/* Inline links are gold, underlined (item 20). */
+.note2 a { color: var(--gold); text-decoration: underline; text-underline-offset: 2px; }
+/* Inside the content column, lined up with the note above (TM Desktop draws
+   them in the padX column, margin 24px 0 64px). Top and bottom only: a
+   `padding` shorthand here would zero .wrap's 40px sides on this element,
+   as the shipped `padding: 40px 0 72px` did (tests/tourMapStyles.test.ts). */
+.pills { display: flex; gap: 12px; flex-wrap: wrap; padding-top: 24px; padding-bottom: 64px; }
+
+/* ═══ The 1024 band (901–1239) ════════════════════════════════════════════ */
+@media (max-width: 1239px) {
+  .title { font-size: 57px; }
+  .lede { max-width: 360px; }
+  .figs { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .fig:nth-child(4) { padding-left: 0; border-left: none; }
+  .figValue { font-size: 30px; }
+  .closeup { width: 200px; height: 172px; }
+  .note { width: 280px; }
 }

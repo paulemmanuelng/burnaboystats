@@ -12,14 +12,14 @@ import {
 } from "../data/listeners";
 import { projectEqualEarth } from "../lib/equalEarth";
 import { keyboardFocused } from "../lib/mapFocus";
-import mapStyles from "../records/tours/map/map.module.css";
+import mapStyles from "./worldMap.module.css";
 import styles from "./ListenerMap.module.css";
 
 /**
  * "Where the world listens" — the top-50 Spotify cities as dots on the same
- * Equal Earth world the performance map uses. Same frame, zoom controls and
- * anchored card as PerformanceMap (whose classes it imports), different
- * geometry: a city is a point, not a shape, so every dot is projected from its
+ * Equal Earth world the performance map uses. Its frame, zoom controls and
+ * anchored card come from worldMap.module.css (they were the tour map's until
+ * that map was redesigned on 30 Sep 2026), different geometry: a city is a point, not a shape, so every dot is projected from its
  * coordinates at render and sized by its listeners: the radius grows with the
  * square root of the count above a floor, so bigger always means more but the
  * 50th city still reads as a dot. The encoding is ordinal, not proportional.
@@ -40,7 +40,7 @@ const CARD_EST_H = 150; // measured 148 — the count line plus the wrapped "mon
 const GAP = 9;
 const R_MIN = 2.6; // the floor (a city of zero listeners); the 50th city lands near 4.8
 const R_MAX = 9.2; // the first
-const HIT_PX = 22; // half the site's 44 px thumb floor (map.module.css .zoomBtn on coarse pointers)
+const HIT_PX = 22; // half the site's 44 px thumb floor (worldMap.module.css .zoomBtn on coarse pointers)
 
 interface Anchor {
   cx: number;

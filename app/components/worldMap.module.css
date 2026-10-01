@@ -1,0 +1,89 @@
+/* The world-map frame the listeners map (/music/listeners) draws on: its
+   zoomable viewport, the + and − buttons, the muted base map and the floating
+   card. Custom map, no mapping library; the shapes are the static paths in
+   data/worldShapes.ts.
+
+   Moved here, rule for rule, from records/tours/map/map.module.css on
+   30 Sep 2026. The tour map was redesigned (region views, a close-up, a card
+   inside the frame, no + and −) and the listeners map was not: it imported
+   these classes from the tour map's sheet, so a change there would have
+   changed it too (design response, item 73). tests/worldMapStyles.test.ts
+   holds the listeners map's look to the values below. */
+
+.mapWrap { position: relative; width: 100%; }
+.svg { display: block; width: 100%; height: auto; overflow: visible; }
+
+/* zoomable scroll viewport (the SVG width scales with the zoom level) */
+.viewport { width: 100%; aspect-ratio: 900 / 470; scrollbar-width: thin; }
+
+/* +/- zoom controls, top-right of the map */
+.zoom {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.zoomBtn {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  color: var(--gold-bright-ink);
+  font-size: 1.35rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.zoomBtn:hover:not(:disabled) { border-color: var(--gold); background: var(--bg-raised); }
+.zoomBtn:disabled { opacity: 0.4; cursor: default; }
+
+/* 34px is right beside a mouse; a thumb gets the 44px floor, the same split the
+   icon button primitive makes. The city dots themselves stay as geography
+   places them, and the page carries the ranked list for anyone who can't work
+   the map. */
+@media (pointer: coarse) {
+  .zoomBtn { width: 44px; height: 44px; }
+}
+
+/* countries with no city in the 50 — the muted base map */
+.off { fill: var(--bg-soft-2); stroke: color-mix(in srgb, var(--scrim-base) 90%, transparent); stroke-width: 0.4; }
+
+/* floating detail card (anchored to the dot) */
+.card {
+  position: fixed;
+  z-index: 50;
+  pointer-events: none;
+  background: color-mix(in srgb, var(--veil-base) 97%, transparent);
+  border: 1px solid var(--gold);
+  box-shadow: 0 10px 34px color-mix(in srgb, var(--shadow-base) calc(55% * var(--shadow-strength)), transparent);
+  padding: 12px 14px;
+  max-width: 280px;
+}
+
+/* little arrow that points from the card at the dot it describes */
+.arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  transform: translateX(-50%);
+}
+.cardAbove .arrow { bottom: -7px; border-top: 7px solid var(--gold); }
+.cardBelow .arrow { top: -7px; border-bottom: 7px solid var(--gold); }
+.cardName {
+  display: block;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 17px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--text);
+}

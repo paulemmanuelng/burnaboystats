@@ -4,6 +4,7 @@ import { join } from "node:path";
 import { performedCountries } from "../app/data/performedCountries";
 import { worldShapes } from "../app/data/worldShapes";
 import { tours } from "../app/data/tours";
+import { tourMapCountries, tourMapTotals } from "../app/lib/tourMapData";
 
 /**
  * Every country on the tour map is actually drawn, and the prose says how many
@@ -51,29 +52,57 @@ describe("the tour map draws every country it counts", () => {
   const WORDS: Record<string, number> = {
     four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10, eleven: 11, twelve: 12,
   };
+  const caribbean = markers.filter((c) => c.region === "Caribbean");
+  const others = markers.filter((c) => c.region !== "Caribbean").map((c) => c.name);
 
-  it("the marker count is right in the sentence a READER sees", () => {
+  /**
+   * The counts in the phone footnote as a READER sees it (design response,
+   * item 19): "{Eight} small places, {six} Caribbean islands plus Mauritius
+   * and Kosovo, are shown as dots." Both counts, and the two names, come from
+   * the data. The sentence it replaces said the eight were "territories [with]
+   * no usable shape at 110m", which was false for Kosovo (it has a 110m shape;
+   * the site's shape file drops it for want of an ISO id).
+   */
+  const footnoteCounts = (text: string) => {
+    const m = /(\w+) small places, (\w+) Caribbean islands plus (.+?), are shown as dots\./.exec(text);
+    return m ? { dots: WORDS[m[1].toLowerCase()], caribbean: WORDS[m[2].toLowerCase()], others: m[3].split(" and ") } : null;
+  };
+
+  it("the marker counts are right in the sentence a READER sees", () => {
     /**
-     * This is the one that matters, and the first version of this file did not
-     * check it. It policed the JSDoc — the ` * ` in its own regex gave it away —
-     * so the comment was corrected, the comment was guarded, and the published
-     * footnote went on saying "Ten small island nations" to every phone visitor
-     * for another day. A guard that reads the explanation instead of the claim
-     * is worse than none: it certifies the wrong copy.
+     * The first version of this file policed the JSDoc — the ` * ` in its
+     * own regex gave it away — so the comment was corrected, the comment was
+     * guarded, and the published footnote went on saying "Ten small island
+     * nations" to every phone visitor for another day. A guard that reads the
+     * explanation instead of the claim is worse than none. So this one reads
+     * the rendered footnote, in tests/ui/tourMapLayouts.test.tsx, and checks
+     * the same derivation here, from the data the component is handed.
      */
+    expect(tourMapTotals.dots).toBe(markers.length);
+    expect(tourMapTotals.caribbeanDots).toBe(caribbean.length);
+    expect(tourMapTotals.otherDotNames).toEqual(others);
     const src = readFileSync(MOBILE, "utf8");
-    const rendered = src.slice(src.indexOf("<p className={styles.footNote}>"));
-    const m = /(\w+) territories have no usable shape at 110m/.exec(rendered);
-    expect(m, `${MOBILE}: no marker-count sentence in the rendered footnote — was it reworded?`).not.toBeNull();
-    expect(
-      WORDS[m![1].toLowerCase()],
-      `the footnote says "${m![1]}" territories carry a marker; the data has ${markers.length}`
-    ).toBe(markers.length);
+    expect(src, `${MOBILE}: the footnote must print the derived counts, not typed ones`).toContain(
+      "{cap(cardinalWord(totals.dots))} small places, {cardinalWord(totals.caribbeanDots)} Caribbean islands plus",
+    );
+    // What that renders today.
+    expect(footnoteCounts("Eight small places, six Caribbean islands plus Mauritius and Kosovo, are shown as dots.")).toEqual({
+      dots: markers.length,
+      caribbean: caribbean.length,
+      others,
+    });
+  });
+
+  it("negative control: the shipped footnote does not pass the new reading", () => {
+    // MobileTourMap.tsx's footnote, shipped until 30 Sep 2026.
+    const shipped =
+      "Regions and counts are derived from the same 57-country list the desktop map shades. Eight territories have no usable shape at 110m resolution and are plotted as markers rather than filled — the region list above is the accessible equivalent.";
+    expect(footnoteCounts(shipped)).toBeNull();
   });
 
   it("and in the docstring that explains it", () => {
     const src = readFileSync(MOBILE, "utf8");
-    const m = /(\w+) territories have no usable\n \* shape at 110m/.exec(src);
+    const m = /(\w+) small places have no shape\n \* of their own/.exec(src);
     expect(m, `${MOBILE}: no marker-count sentence in the docstring`).not.toBeNull();
     expect(WORDS[m![1].toLowerCase()]).toBe(markers.length);
   });
@@ -115,31 +144,73 @@ describe("comments cite guards that exist", () => {
   });
 });
 
-// A country card lists two shows and says "…and more" only when `more` is
-// set. Belgium had three tour dates in tours.ts and no flag, so the card read
-// as a complete record of two (17 Sep 2026). tours[].dates carries a typed
-// `country`, so the count is anchored there — festivals and one-offs have
-// free-form locations and are not counted.
-describe("a country with more tour dates than its card shows says so", () => {
+// A country card listed two shows and said "…and more" only when a hand-set
+// `more` flag was on. Belgium had three tour dates in tours.ts and no flag, so
+// its card read as a complete record of two (17 Sep 2026). The design response
+// of 30 Sep 2026 drops "…and more" (item 3) and puts a DOCUMENTED line on
+// every card with a row instead (item 32): the counts are derived, so this
+// checks the counts themselves, against tours.ts, and not only that a line is
+// there.
+describe("every country with a row carries its documented line", () => {
   const ALIAS: Record<string, string> = { USA: "United States", UK: "United Kingdom" };
-  it("every performed country with more than two tour dates carries `more`", () => {
-    const dates = new Map<string, number>();
-    for (const t of tours) for (const d of t.dates ?? []) {
-      const name = ALIAS[d.country] ?? d.country;
-      dates.set(name, (dates.get(name) ?? 0) + 1);
-    }
-    const missing = performedCountries
-      .filter((c) => (dates.get(c.name) ?? 0) > 2 && !c.more)
-      .map((c) => `${c.name} has ${dates.get(c.name)} tour dates in tours.ts but no \`more\` flag — the card reads as a complete record`);
-    expect(missing).toEqual([]);
-    // The reproducer, in the words the card now speaks.
-    const be = performedCountries.find((c) => c.name === "Belgium")!;
-    expect(`${be.name}: ${be.events.slice(0, 2).join("; ")}${be.more ? " and more" : ""}`).toMatch(/ and more$/);
+  const dates = new Map<string, number>();
+  for (const t of tours) for (const d of t.dates ?? []) {
+    const name = ALIAS[d.country] ?? d.country;
+    dates.set(name, (dates.get(name) ?? 0) + 1);
+  }
+
+  it("the tour-date count on every card is tours.ts's own count", () => {
+    const off = tourMapCountries.flatMap((c) => {
+      const n = dates.get(c.name) ?? 0;
+      const want = n === 0 ? null : `${n} tour date${n === 1 ? "" : "s"}`;
+      const got = /^(\d+ tour dates?)/.exec(c.documented)?.[1] ?? null;
+      return want === got ? [] : [`${c.name}: tours.ts has ${n} tour dates, the card says "${c.documented}"`];
+    });
+    expect(off).toEqual([]);
   });
 
-  it("the desktop legend no longer calls the markers island nations", () => {
-    const page = readFileSync(join(process.cwd(), "app/records/tours/map/page.tsx"), "utf8");
-    expect(page).not.toContain("Island nations too small to shade"); // Kosovo is landlocked
-    expect(page).toContain("Territories too small to shade");
+  it("Belgium, the reproducer: 3 tour dates, said in the card's own words", () => {
+    expect(tourMapCountries.find((c) => c.name === "Belgium")!.documented).toBe("3 tour dates · 2 cities · 2019–2026");
+  });
+
+  it("only the nine known from the map's own event lines have none", () => {
+    expect(tourMapCountries.filter((c) => !c.documented)).toHaveLength(9);
+  });
+
+  it("no card says '…and more' any more, and the flag is gone from the data", () => {
+    // The code, not its comments (the card's docstring says why it went).
+    const strip = (src: string) => src.replace(/\/\*[\s\S]*?\*\//g, "").replace(/^\s*\/\/.*$/gm, "");
+    const code = (f: string) => strip(readFileSync(f, "utf8"));
+    for (const f of ["app/components/TourMapCard.tsx", "app/components/TourMapPanel.tsx", "app/components/TourMapDesktop.tsx", "app/components/MobileTourMap.tsx"]) {
+      expect(code(f), f).not.toMatch(/and more/);
+    }
+    // The negative control for this line: the shipped card's JSX.
+    expect(strip('{country.more && <span className={styles.cardMore}>…and more</span>}')).toMatch(/and more/);
+    expect(readFileSync("app/data/performedCountries.ts", "utf8")).not.toMatch(/more: true/);
+  });
+
+  it("negative control: the shipped Belgium card read as a complete record of two", () => {
+    // PerformanceMap.tsx's aria-label for Belgium, 17 Sep 2026: two events, no count.
+    const shipped = "Belgium: ING Arena, Brussels (2026); Palais 12, Brussels (2019)";
+    expect(/^(\d+ tour dates?)/.exec(shipped)).toBeNull();
+  });
+});
+
+describe("the desktop legend names the dots in reader words", () => {
+  // Design response, item 18: "Territories too small to shade" became
+  // "Small islands and Kosovo, shown as dots" (Kosovo is not an island,
+  // and "110m" is not reader copy).
+  const LEGEND = "app/components/TourMapDesktop.tsx";
+  it("says what the dots are, and never 'Island nations too small to shade'", () => {
+    const src = readFileSync(join(process.cwd(), LEGEND), "utf8");
+    expect(src).not.toContain("Island nations too small to shade"); // Kosovo is landlocked
+    expect(src).not.toContain("Territories too small to shade");
+    expect(src).toContain("Small islands and Kosovo, shown as dots");
+    expect(src).toContain("Countries where a show is documented");
+    expect(src).toContain("No documented show");
+  });
+  it("negative control: the shipped legend line fails it", () => {
+    const shipped = "Territories too small to shade at 110m";
+    expect(shipped.includes("Small islands and Kosovo, shown as dots")).toBe(false);
   });
 });

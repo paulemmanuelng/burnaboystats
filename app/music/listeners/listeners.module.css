@@ -1,7 +1,8 @@
 /* "Where the world listens" — the desktop page. Every page-level value is the
    performance map's (records/tours/map/map.module.css), which this page is
-   built from; the map component itself imports that file's frame, zoom and
-   card classes and adds its dot layer in components/ListenerMap.module.css.
+   built from; the map component itself imports its frame, zoom and card
+   classes from components/worldMap.module.css and adds its dot layer in
+   components/ListenerMap.module.css.
    Only the ranked city list at the bottom of this file is new. */
 
 /* ═══ Page — desktop ═══════════════════════════════════════════════════════ */

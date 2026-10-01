@@ -1,6 +1,7 @@
 /* "Where the world listens" — the dot layer over the shared world map.
-   Frame, zoom, viewport and card come from records/tours/map/map.module.css
-   (the performance map's); only what a CITY needs is here. */
+   Frame, zoom, viewport and card come from worldMap.module.css (the
+   performance map's until its 30 Sep 2026 redesign); only what a CITY needs
+   is here. */
 
 /* A country that places a city in the 50 — the performed map's 42%, the same
    tint the page's legend swatch shows (an 18% wash was invisible on paper:
