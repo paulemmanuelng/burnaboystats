@@ -30,12 +30,6 @@ export interface HuntStore {
   mget(keys: string[]): Promise<(string | null)[]>;
   /** INCR, and EXPIRE so the bucket dies on its own. Returns the new count. */
   hit(key: string, ttlSeconds: number): Promise<number>;
-  /**
-   * Adds `member` to the set at `key` the first time it is seen, and EXPIREs
-   * the set. Returns the member's place in the order the set first saw its
-   * members, from 0: an early member keeps its place however many come after.
-   */
-  order(key: string, member: string, ttlSeconds: number): Promise<number>;
 }
 
 // ── Upstash ────────────────────────────────────────────────────────────────
@@ -90,18 +84,6 @@ export function upstashStore(url: string, token: string): HuntStore {
       if (!first || first.error || typeof first.result !== "number") throw new Error("Upstash: INCR failed");
       return first.result;
     },
-    async order(key, member, ttlSeconds) {
-      // A sorted set scored by the time each member was first seen: ZADD NX
-      // never moves a member already there, so its rank is its place in line.
-      const replies = (await call("/pipeline", [
-        ["ZADD", key, "NX", String(Date.now()), member],
-        ["ZRANK", key, member],
-        ["EXPIRE", key, String(ttlSeconds)],
-      ])) as UpstashReply[];
-      const rank = replies?.[1];
-      if (!rank || rank.error || typeof rank.result !== "number") throw new Error("Upstash: ZRANK failed");
-      return rank.result;
-    },
   };
 }
 
@@ -110,7 +92,6 @@ export function upstashStore(url: string, token: string): HuntStore {
 type MemoryState = {
   values: Map<string, string>;
   counters: Map<string, { n: number; until: number }>;
-  orders?: Map<string, { members: Map<string, number>; until: number }>;
 };
 
 /**
@@ -122,7 +103,7 @@ const shared = globalThis as typeof globalThis & { __naija66Memory?: MemoryState
 
 export function memoryStore(state?: MemoryState): HuntStore {
   const s: MemoryState =
-    state ?? (shared.__naija66Memory ??= { values: new Map(), counters: new Map(), orders: new Map() });
+    state ?? (shared.__naija66Memory ??= { values: new Map(), counters: new Map() });
   return {
     kind: "memory",
     async setNX(key, value) {
@@ -143,21 +124,12 @@ export function memoryStore(state?: MemoryState): HuntStore {
       s.counters.set(key, next);
       return next.n;
     },
-    async order(key, member, ttlSeconds) {
-      const now = Date.now();
-      const orders = (s.orders ??= new Map());
-      const live = orders.get(key);
-      const o = live && live.until > now ? live : { members: new Map<string, number>(), until: now + ttlSeconds * 1000 };
-      if (!o.members.has(member)) o.members.set(member, o.members.size);
-      orders.set(key, o);
-      return o.members.get(member)!;
-    },
   };
 }
 
 /** Empties the in-memory store — tests only. */
 export function resetMemoryStore() {
-  shared.__naija66Memory = { values: new Map(), counters: new Map(), orders: new Map() };
+  shared.__naija66Memory = { values: new Map(), counters: new Map() };
 }
 
 /** The Redis REST pair Vercel set, whichever naming it used; null when neither. */

@@ -95,6 +95,31 @@ describe("HuntKeySlot (the reveal card)", () => {
     expect(container.innerHTML).toBe("");
   });
 
+  it("sends the kept claim token with the spot ask, and makes none for a browser that never tapped", async () => {
+    setNow(AT_0905);
+    const headersOf = (f: ReturnType<typeof vi.fn>) =>
+      new Headers((f.mock.calls[0][1] as RequestInit | undefined)?.headers).get("x-naija66-token");
+    const answer = async () => ({ ok: true, status: 200, json: async () => ({}) });
+
+    localStorage.removeItem("naija66-claim");
+    const none = vi.fn(answer);
+    vi.stubGlobal("fetch", none);
+    const first = render(<HuntKeySlot />);
+    await waitFor(() => expect(none).toHaveBeenCalledTimes(1));
+    expect(headersOf(none)).toBeNull();
+    expect(localStorage.getItem("naija66-claim")).toBeNull();
+    first.unmount();
+
+    const kept = "0123456789abcdef0123456789abcdef";
+    localStorage.setItem("naija66-claim", kept);
+    const withToken = vi.fn(answer);
+    vi.stubGlobal("fetch", withToken);
+    render(<HuntKeySlot />);
+    await waitFor(() => expect(withToken).toHaveBeenCalledTimes(1));
+    expect(headersOf(withToken)).toBe(kept);
+    localStorage.removeItem("naija66-claim");
+  });
+
   it("is never in the server's HTML, so every page's source is the same", () => {
     setNow(AT_0905);
     expect(renderToString(<HuntKeySlot />)).toBe("");

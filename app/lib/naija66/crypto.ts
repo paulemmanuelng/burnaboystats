@@ -34,10 +34,6 @@ export function prizeOfCode(code: string): number | null {
  */
 export const ipTag = (secret: string, ip: string) => hmac(secret, `naija66:ip:${ip}`).toString("hex").slice(0, 20);
 
-/** A page as the badge budget stores it: short, fixed-length, and not the path itself. */
-export const pageTag = (secret: string, pathname: string) =>
-  hmac(secret, `naija66:page:${pathname}`).toString("hex").slice(0, 16);
-
 /** What a browser's claim token looks like: 32 hex characters (Naija66Provider makes it). */
 const TOKEN = /^[0-9a-f]{32}$/;
 

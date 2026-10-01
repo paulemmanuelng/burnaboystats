@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import CopyButton from "./CopyButton";
 import { badgeRound } from "../lib/naija66/clock";
 import { hasOwnActionBar } from "../lib/mobileScreens";
-import { claimToken } from "../lib/naija66/token";
+import { claimToken, keptClaimToken } from "../lib/naija66/token";
 import {
   ALREADY_WON_LINE,
   REVEAL_BUTTON,
@@ -27,6 +27,9 @@ import styles from "./huntKeySlot.module.css";
  * WHEN. Only between the first drop and the close, by the visitor's clock —
  * outside that window it renders nothing and asks for nothing. The server
  * snapshot is null, so the server's HTML never carries the card.
+ *
+ * Each ask carries the browser's claim token, if it has one (token.ts), so a
+ * winner whose reveal reply was lost sees the code on the next ask.
  *
  * ASKING AGAIN. On every arrival at a page, and whenever the round changes
  * (clock.ts badgeRound: at each drop, and 90 seconds after it, for a phone
@@ -84,7 +87,13 @@ export default function HuntKeySlot() {
   useEffect(() => {
     if (!pathname || round === null) return;
     let live = true;
-    fetch(`/api/naija66/spot?p=${encodeURIComponent(pathname)}`, { cache: "no-store" })
+    // The claim token, when this browser has one: a winning tap whose reply
+    // was lost (no cookie came back) is recognised by it on the next ask.
+    const token = keptClaimToken();
+    fetch(`/api/naija66/spot?p=${encodeURIComponent(pathname)}`, {
+      cache: "no-store",
+      ...(token ? { headers: { "x-naija66-token": token } } : {}),
+    })
       .then((res) => (res.ok ? (res.json() as Promise<Record<string, unknown>>) : {}))
       .then((j) => {
         if (!live) return;

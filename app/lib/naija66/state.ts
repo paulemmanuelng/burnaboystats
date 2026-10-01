@@ -1,6 +1,6 @@
 import { NAIJA66_CLOSES, NAIJA66_PRIZES } from "../../data/naija66";
 import { CLOSES_MS } from "./clock";
-import { ipTag, pageTag, prizeOfCode, safeEqual } from "./crypto";
+import { ipTag, prizeOfCode, safeEqual } from "./crypto";
 import type { HuntStore } from "./store";
 
 /**
@@ -185,31 +185,6 @@ export async function overLimit(
   const window = Math.floor(Date.now() / (windowSeconds * 1000));
   const key = `naija66:rl:${bucket}:${ipTag(secret, clientIp(req))}:${window}`;
   return (await store.hit(key, windowSeconds * 2)) > limit;
-}
-
-/**
- * The spot check's budget: how many DIFFERENT pages one address may ask about in a
- * window. A page it has already asked about in the window answers as usual
- * however often it comes back — a revisit is a fresh request by design
- * (HuntKeySlot.tsx asks on every arrival) and must not use anything up — so the budget only binds
- * on a sweep of many pages. Past it, every new page is blank for the rest of
- * the window.
- *
- * The windows sit on the quarter-hours, so each drop opens a fresh one: nobody
- * can bank budget before a drop, and nobody can double it across a boundary
- * in the first quarter-hour after one.
- */
-export async function overPageBudget(
-  store: HuntStore,
-  secret: string,
-  req: Request,
-  pathname: string,
-  limit: number,
-  windowSeconds: number,
-): Promise<boolean> {
-  const window = Math.floor(Date.now() / (windowSeconds * 1000));
-  const key = `naija66:rl:pages:${ipTag(secret, clientIp(req))}:${window}`;
-  return (await store.order(key, pageTag(secret, pathname), windowSeconds * 2)) >= limit;
 }
 
 /**

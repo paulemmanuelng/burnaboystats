@@ -57,10 +57,17 @@ let r: Routes;
 
 const at = (now: string) => vi.stubEnv("NAIJA66_NOW", now);
 
-const spot = (p: string, { ip = "198.51.100.1", cookie }: { ip?: string; cookie?: string } = {}) =>
+const spot = (
+  p: string,
+  { ip = "198.51.100.1", cookie, token }: { ip?: string; cookie?: string; token?: string } = {},
+) =>
   r.spotRoute.GET(
     new Request(`https://burnaboystats.com/api/naija66/spot?p=${encodeURIComponent(p)}`, {
-      headers: { "x-forwarded-for": `${ip}, 10.0.0.1`, ...(cookie ? { cookie } : {}) },
+      headers: {
+        "x-forwarded-for": `${ip}, 10.0.0.1`,
+        ...(cookie ? { cookie } : {}),
+        ...(token ? { "x-naija66-token": token } : {}),
+      },
     }),
   );
 
@@ -157,11 +164,35 @@ describe("GET /api/naija66/spot", () => {
     expect(await (await spot(P1)).text()).toBe("{}");
   });
 
-  it("gives one IP 40 different pages a quarter-hour; past that, new pages answer {}", async () => {
+  it("one address (a shared mobile IP) browsing 200 other pages still sees the prize page", async () => {
     const ip = "192.0.2.50";
-    for (let i = 0; i < 40; i++) await spot(`/test/decoy-${i}`, { ip });
-    expect(await (await spot(P1, { ip })).text()).toBe("{}"); // the 41st page
-    expect(await (await spot(P1, { ip: "192.0.2.52" })).json()).toEqual({ here: true, prize: 1 });
+    for (let i = 0; i < 200; i++) expect(await (await spot(`/test/decoy-${i}`, { ip })).text()).toBe("{}");
+    expect(await (await spot(P1, { ip })).json()).toEqual({ here: true, prize: 1 });
+  });
+
+  it("a winner whose reveal reply was lost gets the code back from spot by its token, cookie and all", async () => {
+    const won = await (await reveal(P1, { token: TOKEN_A })).json(); // the reply never reaches the browser
+    expect(won.won).toBe(true);
+    const back = await spot(P1, { ip: "198.51.100.20", token: TOKEN_A }); // a reload: no cookie, token kept
+    expect(await back.json()).toEqual(won);
+    expect(cookieFrom(back)).toBe(`naija66=${won.code}`);
+    expect(back.headers.get("set-cookie")).toMatch(/HttpOnly/);
+  });
+
+  it("negative control: another browser's token, a malformed one, or none is told it was claimed", async () => {
+    const won = await (await reveal(P1, { token: TOKEN_A })).json();
+    const claimed = { claimed: true, prize: 1, at: won.at };
+    for (const token of [TOKEN_B, "not-a-token", undefined]) {
+      const res = await spot(P1, { ip: "198.51.100.21", token });
+      expect(await res.json(), String(token)).toEqual(claimed);
+      expect(res.headers.get("set-cookie"), String(token)).toBeNull();
+    }
+  });
+
+  it("a token wins nothing on another prize's page: that page still says here", async () => {
+    at(AT_1205);
+    await reveal(P1, { token: TOKEN_A });
+    expect(await (await spot(P2, { token: TOKEN_A })).json()).toEqual({ here: true, prize: 2 });
   });
 
   it("negative control: a player going back and forth between two pages 60 times is never limited", async () => {
@@ -370,7 +401,6 @@ describe("the Upstash REST store", () => {
   /** A fake Upstash REST endpoint over a Map, recording every call. */
   function fakeUpstash({ loseSetReply = false } = {}) {
     const data = new Map<string, string>();
-    const zsets = new Map<string, Map<string, number>>();
     const calls: { url: string; body: unknown; auth: string | null; signal: unknown }[] = [];
     let setsLost = 0;
     const fetchStub = vi.fn(async (url: string, init?: RequestInit) => {
@@ -383,18 +413,6 @@ describe("the Upstash REST store", () => {
         if (op === "MGET") return [k, ...rest].map((x) => data.get(x) ?? null);
         if (op === "INCR") return data.set(k, String(Number(data.get(k) ?? 0) + 1)), Number(data.get(k));
         if (op === "EXPIRE") return 1;
-        if (op === "ZADD") {
-          const [nx, score, member] = rest;
-          const z = zsets.get(k) ?? new Map<string, number>();
-          zsets.set(k, z);
-          if (nx !== "NX") throw new Error("ZADD without NX");
-          return z.has(member) ? 0 : (z.set(member, Number(score)), 1);
-        }
-        if (op === "ZRANK") {
-          const z = [...(zsets.get(k) ?? new Map<string, number>())].sort((a, b) => a[1] - b[1] || (a[0] < b[0] ? -1 : 1));
-          const i = z.findIndex(([m]) => m === rest[0]);
-          return i < 0 ? null : i;
-        }
         throw new Error(op);
       };
       const result = url.endsWith("/pipeline") ? body.map((c: string[]) => ({ result: run(c) })) : { result: run(body) };
@@ -408,7 +426,7 @@ describe("the Upstash REST store", () => {
     return { calls, data };
   }
 
-  it("speaks SET NX, GET, MGET, an INCR+EXPIRE pipeline and a ZADD NX+ZRANK+EXPIRE pipeline", async () => {
+  it("speaks SET NX, GET, MGET and an INCR+EXPIRE pipeline", async () => {
     const { calls } = fakeUpstash();
     try {
       const { upstashStore, TIMEOUT_MS } = await import("../app/lib/naija66/store");
@@ -422,28 +440,12 @@ describe("the Upstash REST store", () => {
       expect(calls[0]).toMatchObject({ url: "https://example-redis.test", body: ["SET", "k", "v1", "NX"], auth: "Bearer tok" });
       expect(calls.at(-1)!.url).toBe("https://example-redis.test/pipeline");
       expect(calls.at(-1)!.body).toEqual([["INCR", "c"], ["EXPIRE", "c", "60"]]);
-      // Places in line: first seen, first placed, and a return keeps its place.
-      expect(await s.order("z", "a", 1800)).toBe(0);
-      expect(await s.order("z", "b", 1800)).toBe(1);
-      expect(await s.order("z", "a", 1800)).toBe(0);
-      expect(await s.order("z", "c", 1800)).toBe(2);
-      const zadd = calls.at(-1)!.body as string[][];
-      expect(zadd.map((c) => c[0])).toEqual(["ZADD", "ZRANK", "EXPIRE"]);
-      expect(zadd[0].slice(0, 3)).toEqual(["ZADD", "z", "NX"]);
-      expect(zadd[2]).toEqual(["EXPIRE", "z", "1800"]);
       // Every call can give up: none waits on Upstash for ever.
       expect(TIMEOUT_MS).toBe(5000);
       for (const c of calls) expect(c.signal).toBeInstanceOf(AbortSignal);
     } finally {
       vi.unstubAllGlobals();
     }
-  });
-
-  it("the in-memory store keeps the same places in line", async () => {
-    const { memoryStore } = await import("../app/lib/naija66/store");
-    const s = memoryStore({ values: new Map(), counters: new Map() });
-    expect([await s.order("z", "a", 60), await s.order("z", "b", 60), await s.order("z", "a", 60)]).toEqual([0, 1, 0]);
-    expect(await s.order("other", "b", 60)).toBe(0);
   });
 
   it("a SET that landed but whose reply was lost: 503, then the same browser's retry wins", async () => {
@@ -462,6 +464,40 @@ describe("the Upstash REST store", () => {
       expect(cookieFrom(retry)).toBe(`naija66=${j.code}`);
       // Somebody else is still too slow.
       expect((await (await reveal(P1, { ip: "7.7.7.13", token: TOKEN_B })).json()).claimed).toBe(true);
+    } finally {
+      vi.unstubAllGlobals();
+    }
+  });
+
+  it("a SET whose reply was lost, then a reload: spot hands the winner the code by token, with the cookie", async () => {
+    fakeUpstash({ loseSetReply: true });
+    try {
+      vi.stubEnv("KV_REST_API_URL", "https://example-redis.test");
+      vi.stubEnv("KV_REST_API_TOKEN", "tok");
+      expect((await reveal(P1, { token: TOKEN_A })).status).toBe(503);
+      delete (globalThis as { __naija66Records?: unknown }).__naija66Records; // another instance
+      const back = await spot(P1, { ip: "7.7.7.14", token: TOKEN_A });
+      const j = await back.json();
+      expect(j.won).toBe(true);
+      expect(j.code).toMatch(new RegExp(`^NG66-1-[${ALPHABET}]{6}$`));
+      expect(cookieFrom(back)).toBe(`naija66=${j.code}`);
+      // The board then shows it too: the recovered cookie unlocks `mine`.
+      expect((await (await status(cookieFrom(back))).json()).mine.code).toBe(j.code);
+    } finally {
+      vi.unstubAllGlobals();
+    }
+  });
+
+  it("spot spends no store call on a decoy or a prize page before its drop; a dropped prize page does", async () => {
+    const { calls } = fakeUpstash();
+    try {
+      vi.stubEnv("KV_REST_API_URL", "https://example-redis.test");
+      vi.stubEnv("KV_REST_API_TOKEN", "tok");
+      for (let i = 0; i < 50; i++) expect(await (await spot(`/test/decoy-${i}`)).text()).toBe("{}");
+      expect(await (await spot(P2)).text()).toBe("{}"); // drops at 12pm WAT
+      expect(calls).toHaveLength(0);
+      expect(await (await spot(P1)).json()).toEqual({ here: true, prize: 1 });
+      expect(calls.length).toBeGreaterThan(0); // negative control: the counter does count
     } finally {
       vi.unstubAllGlobals();
     }

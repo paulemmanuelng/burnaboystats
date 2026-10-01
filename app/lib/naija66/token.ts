@@ -8,13 +8,27 @@
 const TOKEN_KEY = "naija66-claim";
 let pageToken: string | null = null;
 
-export function claimToken(): string {
+function storedToken(): string | null {
   try {
     const kept = localStorage.getItem(TOKEN_KEY);
     if (kept && /^[0-9a-f]{32}$/.test(kept)) return kept;
   } catch {
-    /* storage blocked: the page's own token below */
+    /* storage blocked */
   }
+  return null;
+}
+
+/**
+ * The token this browser already holds, or null when it has never tapped:
+ * sent with every spot check (HuntKeySlot.tsx), so a winner whose reveal reply
+ * was lost gets the code back on the prize page even after a reload. Never
+ * makes one, so a visitor who has not tapped stores nothing.
+ */
+export const keptClaimToken = (): string | null => storedToken() ?? pageToken;
+
+export function claimToken(): string {
+  const kept = storedToken();
+  if (kept) return kept;
   pageToken ??= Array.from(crypto.getRandomValues(new Uint8Array(16)), (b) => b.toString(16).padStart(2, "0")).join("");
   try {
     localStorage.setItem(TOKEN_KEY, pageToken);
