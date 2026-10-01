@@ -44,7 +44,8 @@ import {
   WINNER_KEEP_LINE,
   WINNER_LINE,
 } from "../app/lib/naija66/copy";
-import { outcomeLine } from "../app/components/Naija66Play";
+import { nothingLeft, outcomeLine } from "../app/components/Naija66Play";
+import type { PublicPrize } from "../app/lib/naija66/state";
 
 const EVE = "2026-09-30T12:00:00Z"; // 1pm WAT the day before
 const DAWN = "2026-10-01T05:00:00Z"; // 6am WAT on the day
@@ -284,6 +285,39 @@ describe("/naija66", () => {
     await waitFor(() => expect(screen.getAllByText(line)).toHaveLength(2));
   });
 
+  /** The board at 21:30 WAT, prize 5 just claimed, with `rest` as prizes 1 to 4. */
+  const at2130 = (rest: string[]) => ({
+    ...STATUS_0905,
+    now: "2026-10-01T20:30:00Z",
+    prizes: STATUS_0905.prizes.map((p, i) =>
+      i < 4
+        ? { ...p, state: rest[i], ...(rest[i] === "claimed" ? { claimedAt: "2026-10-01T12:00:00Z", tail: "AB" } : {}) }
+        : { ...p, state: "claimed", claimedAt: "2026-10-01T20:30:00Z", tail: "XD" },
+    ),
+  });
+  const tooSlowOn5 = async (statusBody: unknown) => {
+    setNow("2026-10-01T20:30:00Z");
+    stubApi({ claimed: true, prize: 5, at: "2026-10-01T20:30:00.000Z", tail: "XD" }, statusBody);
+    render(<Naija66Page />);
+    const [box] = screen.getAllByLabelText("Your code");
+    fireEvent.change(box, { target: { value: "NG66-AAAAAA" } });
+    await act(async () => {
+      fireEvent.submit(box.closest("form")!);
+    });
+  };
+  const TOO_SLOW_5 = "Too slow — prize 5 was claimed at 21:30 WAT (winner code ends …XD).";
+
+  it("after the last drop, still points at X while the board shows a code out — in both layouts", async () => {
+    await tooSlowOn5(at2130(["live", "live", "live", "claimed"]));
+    await waitFor(() => expect(screen.getAllByText(`${TOO_SLOW_5} ${NEXT_CODE_LINE}`)).toHaveLength(2));
+    expect(screen.queryByText(/That was the last code/)).toBeNull();
+  });
+
+  it("says it was the last code once the board shows every prize claimed — in both layouts", async () => {
+    await tooSlowOn5(at2130(["claimed", "claimed", "claimed", "claimed"]));
+    await waitFor(() => expect(screen.getAllByText(`${TOO_SLOW_5} ${LAST_CODE_LINE}`)).toHaveLength(2));
+  });
+
   it("says the same thing for a wrong key in both layouts", async () => {
     setNow(AT_0905);
     stubApi({ wrong: true });
@@ -421,30 +455,67 @@ describe("the home banner", () => {
 // ── The too-slow line ────────────────────────────────────────────────────────
 
 describe("the too-slow line", () => {
-  const ms = (iso: string) => Date.parse(iso);
   const claimed = (prize: number) => ({ kind: "claimed" as const, prize, at: "2026-10-01T11:02:00Z", tail: "Q7" });
+  type State = "sleeping" | "live" | "claimed" | "closed";
+  /** A board in prize order: board("claimed", "live", …) is prize 1 claimed, prize 2 live… */
+  const board = (...states: State[]): PublicPrize[] =>
+    states.map((state, i) => ({ prize: i + 1, dropsAt: STATUS_0905.prizes[i].dropsAt, state }));
 
   it("sends the player to X while a drop is still to come", () => {
-    expect(outcomeLine(claimed(2), ms("2026-10-01T11:30:00Z"))).toBe(
+    expect(outcomeLine(claimed(2), board("claimed", "claimed", "sleeping", "sleeping", "sleeping"))).toBe(
       `Too slow — prize 2 was claimed at 12:02 WAT (winner code ends …Q7). ${NEXT_CODE_LINE}`,
     );
     expect(NEXT_CODE_LINE).toBe("Follow @paulemmanuelng on X for where to look next.");
-    expect(outcomeLine({ kind: "claimed", prize: 4, at: null, tail: null }, ms("2026-10-01T19:59:59Z"))).toBe(
-      `Too slow — prize 4 has already been claimed. ${NEXT_CODE_LINE}`,
+    expect(
+      outcomeLine({ kind: "claimed", prize: 4, at: null, tail: null }, board("claimed", "claimed", "claimed", "claimed", "sleeping")),
+    ).toBe(`Too slow — prize 4 has already been claimed. ${NEXT_CODE_LINE}`);
+  });
+
+  it("sends the player to X after the last drop while an earlier code is still out", () => {
+    // The state the builder's own 21:30 shot caught: prize 5 just claimed,
+    // prizes 1 to 3 still live. The line the page printed then is wrong here.
+    const shipped = "Too slow — prize 5 was claimed at 21:30 WAT (winner code ends …XD). That was the last code.";
+    const at2130 = { kind: "claimed" as const, prize: 5, at: "2026-10-01T20:30:00Z", tail: "XD" };
+    const line = outcomeLine(at2130, board("live", "live", "live", "claimed", "claimed"));
+    expect(line).not.toBe(shipped);
+    expect(line).toBe(`Too slow — prize 5 was claimed at 21:30 WAT (winner code ends …XD). ${NEXT_CODE_LINE}`);
+    // 21:05: too slow on prize 3 while prize 5 is live.
+    expect(outcomeLine(claimed(3), board("claimed", "claimed", "claimed", "claimed", "live"))).toMatch(
+      /\. Follow @paulemmanuelng on X for where to look next\.$/,
     );
   });
 
-  it("says it was the last code for prize 5, and for any prize once the last drop has passed", () => {
-    expect(outcomeLine(claimed(5), ms("2026-10-01T20:30:00Z"))).toMatch(/\. That was the last code\.$/);
-    expect(outcomeLine(claimed(3), ms("2026-10-01T20:00:00Z"))).toMatch(/\. That was the last code\.$/);
+  it("says it was the last code only once every other prize is claimed", () => {
+    expect(outcomeLine(claimed(5), board("claimed", "claimed", "claimed", "claimed", "claimed"))).toBe(
+      `Too slow — prize 5 was claimed at 12:02 WAT (winner code ends …Q7). ${LAST_CODE_LINE}`,
+    );
+    // The board may not have caught up with this claim yet: its own row does not count.
+    expect(outcomeLine(claimed(2), board("claimed", "live", "claimed", "claimed", "claimed"))).toMatch(
+      /\. That was the last code\.$/,
+    );
+    expect(outcomeLine(claimed(1), board("claimed", "claimed", "closed", "claimed", "claimed"))).toMatch(
+      /\. That was the last code\.$/,
+    );
     expect(LAST_CODE_LINE).toBe("That was the last code.");
   });
 
+  it("never says it was the last code without a board that shows it", () => {
+    expect(outcomeLine(claimed(5), undefined)).toMatch(/\. Follow @paulemmanuelng on X for where to look next\.$/);
+    // A board missing a row (here prize 5's) proves nothing about that row.
+    expect(outcomeLine(claimed(1), board("claimed", "claimed", "claimed", "claimed"))).toMatch(/where to look next\.$/);
+    for (const s of ["live", "sleeping"] as const) {
+      for (let other = 1; other <= 4; other++) {
+        const states: State[] = ["claimed", "claimed", "claimed", "claimed", "claimed"];
+        states[other - 1] = s;
+        expect(nothingLeft(5, board(...states)), `prize ${other} ${s}`).toBe(false);
+      }
+    }
+  });
+
   it("never says clue", () => {
-    const lines = [1, 2, 3, 4, 5].flatMap((p) =>
-      ["2026-10-01T12:00:00Z", "2026-10-01T21:00:00Z"].map((t) => outcomeLine(claimed(p), ms(t))),
-    );
-    lines.push(outcomeLine({ kind: "wrong" }, ms(AT_0905)));
+    const boards = [board("claimed", "live", "sleeping", "sleeping", "sleeping"), board("claimed", "claimed", "claimed", "claimed", "claimed")];
+    const lines = [1, 2, 3, 4, 5].flatMap((p) => boards.map((b) => outcomeLine(claimed(p), b)));
+    lines.push(outcomeLine({ kind: "wrong" }, boards[0]));
     for (const l of lines) expect(l).not.toMatch(/\bclues?\b/i);
   });
 });

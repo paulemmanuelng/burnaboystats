@@ -4,7 +4,7 @@ import { useId, useRef, useSyncExternalStore } from "react";
 import CopyButton from "./CopyButton";
 import { useHunt, type Outcome } from "./Naija66Provider";
 import { NAIJA66_PRIZES, NAIJA66_X_HANDLE, NAIJA66_X_URL } from "../data/naija66";
-import { CLOSES_MS, DROPS_MS, FIRST_DROP_MS, watClock, watHour } from "../lib/naija66/clock";
+import { CLOSES_MS, FIRST_DROP_MS, watClock, watHour } from "../lib/naija66/clock";
 import { LAST_CODE_LINE, NEXT_CODE_LINE, PRIZE, WINNER_KEEP_LINE, WINNER_LINE } from "../lib/naija66/copy";
 import type { Mine, PublicPrize } from "../lib/naija66/state";
 import styles from "./naija66Play.module.css";
@@ -24,21 +24,33 @@ const closedAt = (now: string | undefined) => (now ? Date.parse(now) >= CLOSES_M
 const NEVER = () => () => {};
 const useHydrated = () => useSyncExternalStore(NEVER, () => true, () => false);
 
-/** The last drop, 9pm WAT: from here no code is still to come. */
-const LAST_DROP_MS = DROPS_MS[DROPS_MS.length - 1];
+/**
+ * True only when the board shows every prize but `prize` claimed (or closed):
+ * no code is still out and none is still to drop. Read from the board, never
+ * the clock — at 9:30pm a code from the morning can still be out. A board not
+ * yet loaded, or missing a row, proves nothing, so it reads as "not over".
+ */
+export function nothingLeft(prize: number, board: readonly PublicPrize[] | undefined): boolean {
+  if (!board) return false;
+  return NAIJA66_PRIZES.every((p) => {
+    if (p.prize === prize) return true;
+    const state = board.find((x) => x.prize === p.prize)?.state;
+    return state === "claimed" || state === "closed";
+  });
+}
 
 /**
- * What the code box says after a claim. `now` is the board's clock (the
- * server's, when the board has loaded): a "too slow" points at X for where to
- * look next while a drop is still to come, and says it was the last code for
- * prize 5 or once the last drop has passed.
+ * What the code box says after a claim. `board` is the board's prizes, which
+ * the provider reloads after every claim: a "too slow" says it was the last
+ * code only when nothing else is left to find, and otherwise points at X,
+ * which says where the codes still out are.
  */
-export function outcomeLine(o: Outcome, now: number): string {
+export function outcomeLine(o: Outcome, board: readonly PublicPrize[] | undefined): string {
   switch (o.kind) {
     case "wrong":
       return "That code doesn't open anything. Check the badge and try again.";
     case "claimed": {
-      const next = o.prize >= NAIJA66_PRIZES.length || now >= LAST_DROP_MS ? LAST_CODE_LINE : NEXT_CODE_LINE;
+      const next = nothingLeft(o.prize, board) ? LAST_CODE_LINE : NEXT_CODE_LINE;
       return o.at
         ? `Too slow — prize ${o.prize} was claimed at ${watClock(o.at)}${o.tail ? ` (winner code ends …${o.tail})` : ""}. ${next}`
         : `Too slow — prize ${o.prize} has already been claimed. ${next}`;
@@ -102,11 +114,9 @@ export function HuntKeyForm({ layout }: { layout: Layout }) {
     );
   }
 
-  // The board's clock is the server's, and the provider reloads it after every
-  // claim. Before it first loads, the claim's own time is the latest moment
-  // known to have passed — pure, so render never reads the phone's clock.
-  const boardNow = status ? Date.parse(status.now) : outcome?.kind === "claimed" && outcome.at ? Date.parse(outcome.at) : 0;
-  const line = outcome ? outcomeLine(outcome, boardNow) : "";
+  // The board, not the clock, decides "that was the last code" — and the
+  // provider reloads the board after every claim, so the line follows it.
+  const line = outcome ? outcomeLine(outcome, status?.prizes) : "";
 
   return (
     <form

@@ -108,7 +108,11 @@ export const WINNER_LINE = `DM this code to ${NAIJA66_X_HANDLE} on X by ${NAIJA6
 export const WINNER_KEEP_LINE =
   "Only this browser can show this code. Screenshot it, but don't post it: the first DM with the code gets the prize.";
 
-/** After "Too slow — prize N was claimed…", while a later drop is still to come. */
+/** After "Too slow — prize N was claimed…", while another code is still out or still to drop. */
 export const NEXT_CODE_LINE = `Follow ${NAIJA66_X_HANDLE} on X for where to look next.`;
-/** …and instead, for prize 5, or once the last drop has passed. */
+/**
+ * …and instead once the board shows every other prize claimed, so nothing is
+ * left to find (Naija66Play.tsx nothingLeft). Never from the clock alone: at
+ * 9:30pm, with prize 5 gone, a morning code can still be out.
+ */
 export const LAST_CODE_LINE = "That was the last code.";
