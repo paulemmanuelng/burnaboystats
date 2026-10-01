@@ -62,13 +62,6 @@
 }
 .close:hover { color: var(--text); }
 
-.reveal {
-  width: 100%;
-  min-height: 48px;
-  margin-top: 12px;
-  justify-content: center;
-}
-
 .codeRow {
   display: flex;
   flex-wrap: wrap;
@@ -116,11 +109,23 @@
   line-height: var(--type-caption-lh);
   color: var(--text-muted);
 }
-.error {
-  margin: 8px 0 0;
+/* The quiet note past 40 taps a minute: small, top-centre, gone in 4 s. */
+.toast {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 59;
+  max-width: calc(100vw - 32px);
+  padding: 8px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--bg-soft);
+  color: var(--text);
+  box-shadow: var(--shadow);
   font-size: var(--type-caption);
   line-height: var(--type-caption-lh);
-  color: var(--text);
+  pointer-events: none;
 }
 
 @media (max-width: 900px) {

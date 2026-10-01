@@ -1,4 +1,5 @@
 import { NAIJA66_CLOSES, NAIJA66_PRIZES } from "../../data/naija66";
+import { SLOW_DOWN } from "./copy";
 import { CLOSES_MS } from "./clock";
 import { ipTag, prizeOfCode, safeEqual } from "./crypto";
 import type { HuntStore } from "./store";
@@ -56,7 +57,7 @@ export async function readRecords(store: HuntStore): Promise<(ClaimRecord | null
 
 export async function readRecord(store: HuntStore, prize: number): Promise<ClaimRecord | null> {
   const hit = cache.__naija66Records;
-  if (store.kind === "redis" && hit && Date.now() - hit.at < RECORDS_TTL_MS) return hit.records[prize - 1] ?? null;
+  if (prize >= 1 && store.kind === "redis" && hit && Date.now() - hit.at < RECORDS_TTL_MS) return hit.records[prize - 1] ?? null;
   return parseRecord(await store.get(prizeKey(prize)));
 }
 
@@ -214,7 +215,7 @@ export function valveShut(secret: string, req: Request, bucket: string, limit: n
 
 /** The reveal route's sentences a player can be shown. */
 export const NOT_OPEN = "The hunt isn't open yet.";
-export const TOO_MANY = "That's a lot of tries — give it ten minutes, then have another go.";
+export const TOO_MANY = SLOW_DOWN;
 export const BROKEN = "Something went wrong on our side — try again in a moment.";
 
 export const NO_STORE = { "Cache-Control": "no-store" } as const;

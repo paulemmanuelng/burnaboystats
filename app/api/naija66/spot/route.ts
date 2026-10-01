@@ -10,6 +10,7 @@ import {
   readRecord,
   valveShut,
 } from "../../../lib/naija66/state";
+import { testPrizeOnPage } from "../../../lib/naija66/word.server";
 
 /**
  * GET /api/naija66/spot?p=<pathname> — does this page hold a code right now?
@@ -53,7 +54,7 @@ export async function GET(req: Request) {
     if (!cfg) return json(NOTHING);
     const now = huntNow();
     if (!huntIsOpen(now) || !pathname.startsWith("/")) return json(NOTHING);
-    const entry = prizeOnPage(pathname);
+    const entry = prizeOnPage(pathname) ?? testPrizeOnPage(pathname);
     if (!entry || now < Date.parse(entry.dropsAt)) return json(NOTHING);
     if (valveShut(cfg.secret, req, "spot", REQUESTS_PER_MINUTE)) return json(NOTHING);
 

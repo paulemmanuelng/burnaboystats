@@ -9,8 +9,9 @@ import { watClock, watHour } from "./clock";
  * Drop times come from the committed schedule, not typed.
  *
  * Wording (Paul, 30 Sep 2026): the hunt hides five CODES. Since 1 Oct 2026
- * each one hides behind a "Tap to reveal" card on its page: the first tap gets
- * the code, and everyone after sees it claimed. The hunt names NO page (Paul, 1 Oct 2026, 03:50: "remove the
+ * (evening) each one hides in a WORD on its page: the first tap on that word
+ * gets the code, and everyone after sees it claimed. No copy says which word,
+ * or that a page holds one. The hunt names NO page (Paul, 1 Oct 2026, 03:50: "remove the
  * cue/link of where the code appear" — code 1's page had been named from 30 Sep
  * 23:00); players follow NAIJA66_X_HANDLE on X to find out where to look.
  */
@@ -47,7 +48,7 @@ export const WHERE_NEXT = `Where to look next: ${NAIJA66_X_HANDLE} on X`;
 const HOURS_LIST = hours.join(", ");
 
 /** The whole mechanic in one paragraph (Paul, 1 Oct 2026) — the /naija66 box. */
-export const FLOW = `At each drop (${HOURS_LIST} WAT) a code hides on one page of the site. Follow ${NAIJA66_X_HANDLE} on X for where to look. The first person to open that page and tap Reveal gets the code; it then shows as claimed for everyone else. DM it to ${NAIJA66_X_HANDLE} as soon as you get it.`;
+export const FLOW = `At each drop (${HOURS_LIST} WAT) a code hides in a word on one page of the site. Follow ${NAIJA66_X_HANDLE} on X for where to look. Tap the right word first and the code is yours — after that it shows as claimed. DM it to ${NAIJA66_X_HANDLE} as soon as you get it.`;
 
 export const HOW_IT_WORKS: readonly { title: string; words: Words }[] = [
   {
@@ -56,13 +57,11 @@ export const HOW_IT_WORKS: readonly { title: string; words: Words }[] = [
   },
   {
     title: "Watch the drops",
-    words: [`At each drop — ${DROP_HOURS} WAT on 1 October — a code hides on one page of the site.`],
+    words: [`At each drop — ${DROP_HOURS} WAT on 1 October — a code hides in a word on one page of the site.`],
   },
   {
-    title: "Tap to reveal",
-    words: [
-      "The first person to open that page and tap Reveal gets the code. It then shows as claimed for everyone else.",
-    ],
+    title: "Tap the right word",
+    words: ["Tap the right word first and the code is yours. After that it shows as claimed."],
   },
   {
     title: "Claim your Premium",
@@ -74,18 +73,17 @@ export const RULES = [
   "Free to play — no purchase, no sign-up, and no personal data collected.",
   `Each prize is ${PRIZE.long}.`,
   "One prize per person.",
-  "The first tap of Reveal on a code's page wins that code. Once revealed, it shows as claimed for everyone else.",
+  "The first tap on a code's word wins that code. After that it shows as claimed for everyone else.",
   "Claims close at midnight WAT at the end of 2 October.",
   `Winners DM their winner code to ${NAIJA66_X_HANDLE} on X as soon as they get it.`,
   "Not affiliated with Spotify or Burna Boy.",
   "Paul's decision is final.",
 ] as const;
 
-// ── The card on a prize page (HuntKeySlot.tsx) ─────────────────────────────
+// ── The card a tap on the word brings up (HuntKeySlot.tsx) ─────────────────
 
-export const cardHidden = (prize: number) => `Naija @ 66 · Code ${prize} is hidden on this page`;
-export const REVEAL_BUTTON = "Tap to reveal";
-export const REVEAL_FINE = "First tap wins. One prize per person.";
+/** The quiet toast past 40 taps a minute (the reveal route's 429). */
+export const SLOW_DOWN = "Slow down a little — try again in a minute.";
 export const cardClaimed = (prize: number, at: string | null) =>
   `Code ${prize} was claimed${at ? ` at ${watClock(at)}` : ""}. Follow ${NAIJA66_X_HANDLE} on X for the next one.`;
 export const ALREADY_WON_LINE = "You've already won a prize today. One per person.";
