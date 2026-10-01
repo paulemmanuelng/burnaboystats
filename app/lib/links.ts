@@ -130,6 +130,12 @@ export const exploreFor: Record<string, string[]> = {
   "/records/firsts": ["dai-dai", "charts", "certifications"],
   "/records/africas-biggest": ["afrobeats", "certifications", "charts"],
   "/analysis/spotify-unmerge": ["analysis", "by-the-numbers", "methodology"],
+  // The two pages about the site itself (design response item 57, 30 Sep
+  // 2026). Both fell through to DEFAULT_EXPLORE (Music · Certifications ·
+  // Career Records); a reader who came to see who runs the site, or to cite
+  // it, is sent on to how the figures are checked and the ways to take them.
+  "/curator": ["methodology", "api", "share"],
+  "/press": ["share", "api", "methodology"],
   "/share": ["dai-dai", "certifications", "records"],
   // Someone who came to put a box on their site: the other two ways to take
   // the numbers away, and the page that quotes them all.

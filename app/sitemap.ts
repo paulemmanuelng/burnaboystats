@@ -256,6 +256,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/methodology", priority: 0.6, changeFrequency: "monthly" },
     { path: "/curator", priority: 0.5, changeFrequency: "monthly" },
     { path: "/press", priority: 0.6, changeFrequency: "monthly" },
+    // Naija @ 66, the Independence Day key hunt (1-2 Oct 2026): its board moves
+    // through the hunt, then it stands as the results page.
+    { path: "/naija66", priority: 0.5, changeFrequency: "daily" },
     { path: "/embed", priority: 0.6, changeFrequency: "monthly" },
     { path: "/about", priority: 0.5, changeFrequency: "monthly" },
     { path: "/contact", priority: 0.4, changeFrequency: "monthly" },

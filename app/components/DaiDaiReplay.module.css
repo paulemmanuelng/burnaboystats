@@ -169,12 +169,17 @@
   padding: 6px;
   box-sizing: border-box;
 }
+/* The Europe inset: a fixed 200 × 172 at every width from 901 up (option (c),
+   owner decided 30 Sep 2026; change list item 60), not a share of the box —
+   a share grew with the box through 901–1239 and brought Central America
+   back under the inset. 172 / 200 is the 1 : 0.86 the Europe viewBox is cut
+   to. CSS px on an HTML box over the map, so the viewBox never scales it. */
 .europe {
   position: absolute;
   left: 8px;
   bottom: 8px;
-  width: 31%;
-  aspect-ratio: 1 / 0.86;
+  width: 200px;
+  height: 172px;
   background: var(--bg);
   border: 1px solid var(--rule);
 }

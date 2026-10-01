@@ -182,9 +182,11 @@ describe("every leaderboard is ordered by the numbers it prints", () => {
   const PARTIAL_BY_DESIGN = new Set(["monthly-listeners-peak"]);
   // Boards whose values are written at load from a dated reading rather than
   // typed, so the source holds no literal to scan: the followers board, from
-  // app/data/spotify.ts since 27 Sep 2026. Judged on the loaded values instead,
-  // and still counted, so the total below cannot drop by a board going quiet.
-  const DERIVED_AT_LOAD = new Set(["most-followed-spotify"]);
+  // app/data/spotify.ts since 27 Sep 2026, and the Hot 100 peak board, from
+  // app/data/hot100Weeks.ts since 30 Sep 2026. Judged on the loaded values
+  // instead — placings ascending, magnitudes descending — and still counted, so
+  // the total below cannot drop by a board going quiet.
+  const DERIVED_AT_LOAD = new Set(["most-followed-spotify", "billboard-hot-100-peak"]);
 
   it("lists descending values, on every board that prints comparable numbers", () => {
     const raw = readFileSync("app/data/africasBiggest.ts", "utf8");
@@ -256,11 +258,12 @@ describe("every leaderboard is ordered by the numbers it prints", () => {
       const scanned = lists.filter((l) => l.id === id);
       expect(scanned.every((l) => l.values.length === 0), `${id} types its values again — drop it from DERIVED_AT_LOAD`).toBe(true);
       const values = statBoxes.find((b) => b.id === id)!.entries!.map((e) => e.value ?? "");
-      const nums = values.map(magnitude);
+      const asc = values.every((v) => rank(v) !== null);
+      const nums = values.map(asc ? rank : magnitude);
       expect(nums.every((n) => n !== null), `${id}: unreadable values ${values.join(", ")}`).toBe(true);
       judged += 1;
       for (let k = 1; k < nums.length; k++) {
-        if (nums[k]! > nums[k - 1]!) {
+        if (asc ? nums[k]! < nums[k - 1]! : nums[k]! > nums[k - 1]!) {
           offenders.push(`${id}: ${values[k - 1]} is listed above ${values[k]}`);
           break;
         }

@@ -13,6 +13,7 @@ import BackToTop from "./components/BackToTop";
 import Breadcrumbs from "./components/Breadcrumbs";
 import BirthdayCelebration from "./components/BirthdayCelebration";
 import FooterNav from "./components/FooterNav";
+import HuntKeySlot from "./components/HuntKeySlot";
 import { siteUrl } from "./site";
 import { PRE_PAINT_LANG } from "./lib/documentLang";
 import { FEED_ALTERNATE, INDEXABLE_ROBOTS, TWITTER_CREATOR, BURNA_BOY } from "./lib/seo";
@@ -278,6 +279,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
         {/* THE ACTUAL PAGE CONTENT gets slotted in here */}
         {children}
+
+        {/* Naija @ 66 (1-2 Oct 2026): the key slot, identical on every page
+            and both layouts. It renders nothing outside the hunt's window and
+            takes no space unless its badge is a real key — see the component.
+            After the content, so a found key sits at the foot of the page,
+            above the footer on desktop and above the bottom bar on a phone. */}
+        <HuntKeySlot />
 
         {/* The mobile spine: a fixed five-tab bar on every phone screen.
             Hidden above the mobile breakpoint, where the sticky nav does it.

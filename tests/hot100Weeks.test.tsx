@@ -35,6 +35,8 @@ import {
   HOT100_CHART_DATE_LONG,
   HOT100_READ_ON,
   HOT100_READ_ON_LONG,
+  HOT100_PUBLISHED_ON,
+  HOT100_PUBLISHED_ON_LONG,
   HOT100_METHOD,
   weeksOf,
   type Hot100Artist,
@@ -42,7 +44,7 @@ import {
 } from "../app/data/hot100Weeks";
 import { afrobeatsArtists } from "../app/data/afrobeats";
 import { allChartItems } from "../app/data/charts";
-import { statBoxes, HIGHLIGHT, BURNA_HOT_100_ENTRIES } from "../app/data/africasBiggest";
+import { statBoxes, HIGHLIGHT, BURNA_HOT_100_ENTRIES, rankOf, type RankEntry } from "../app/data/africasBiggest";
 import { africaBoards } from "../app/lib/africaBoards";
 
 /**
@@ -72,6 +74,8 @@ function parse(html: string): HTMLElement {
 const STALE_AFTER_DAYS = 10;
 const DAY = 86_400_000;
 const at = (iso: string) => Date.parse(`${iso}T00:00:00Z`);
+/** The day a Hot 100 dated `chartDate` (a Saturday) is published: the Tuesday before. */
+const readableFrom = (chartDate: string) => new Date(at(chartDate) - 4 * 24 * 3600 * 1000).toISOString().slice(0, 10);
 const plusWeeks = (iso: string, n: number) => new Date(at(iso) + n * 7 * DAY).toISOString().slice(0, 10);
 const counted = hot100Artists.filter((a) => a.read !== "unreadable" && a.songs.length > 0);
 const artist = (slug: string) => hot100Artists.find((a) => a.slug === slug)!;
@@ -243,6 +247,58 @@ describe("the rows agree with what the site already publishes", () => {
     expect(checked.length, "no overlap — checking nothing").toBeGreaterThanOrEqual(5);
     for (const e of checked)
       expect(`No. ${hot100Standings.find((s) => s.name === e.name)!.bestPeak}`, e.name).toBe(e.value);
+  });
+
+  // The peak board was typed until 30 Sep 2026 and left out two acts the rows
+  // rank above its lower rows: Hugh Masekela (No. 1, 1968) and Miriam Makeba
+  // (No. 12), so Burna Boy's No. 16 printed fifth; and it gave Tems' No. 1 no
+  // tie mark, so she printed second. Judged here against every counted act's
+  // rows, not against the standings the board is now built from.
+  const bestPeak = (a: Hot100Artist) => Math.min(...a.songs.map((s) => s.peak));
+  const peakBoardFaults = (entries: RankEntry[]) => {
+    const faults: string[] = [];
+    const last = Number(entries.at(-1)!.value!.replace(/\D/g, ""));
+    for (const a of counted)
+      if (bestPeak(a) <= last && !entries.some((e) => e.name === a.name))
+        faults.push(`missing ${a.name} (No. ${bestPeak(a)})`);
+    entries.forEach((e, i) => {
+      const a = counted.find((x) => x.name === e.name);
+      if (!a) return void faults.push(`${e.name} has no Hot 100 rows`);
+      const held = 1 + counted.filter((x) => bestPeak(x) < bestPeak(a)).length;
+      if (rankOf(entries, i) !== held) faults.push(`${e.name} prints rank ${rankOf(entries, i)}, holds ${held}`);
+    });
+    return faults;
+  };
+
+  it("the Hot 100 peak board leaves out no act ranked above its last row, and prints the ranks the rows give", () => {
+    const board = statBoxes.find((b) => b.id === "billboard-hot-100-peak")!.entries!;
+    expect(peakBoardFaults(board)).toEqual([]);
+    expect(board.some((e) => e.name === HIGHLIGHT), "his row is on the board").toBe(true);
+  });
+
+  it("negative control: the board as it was typed fails on all three counts", () => {
+    const SHIPPED: RankEntry[] = [
+      { name: "Wizkid", sub: "🇳🇬 “One Dance” (with Drake)", value: "No. 1" },
+      { name: "Tems", sub: "🇳🇬 “Wait for U” (Future & Drake)", value: "No. 1" },
+      { name: "Rema", sub: "🇳🇬 “Calm Down” (with Selena Gomez)", value: "No. 3" },
+      { name: "Tyla", sub: "🇿🇦 “Water”", value: "No. 7" },
+      { name: "Burna Boy", sub: "🇳🇬 “WGFT” (with Gunna)", value: "No. 16" },
+    ];
+    expect(peakBoardFaults(SHIPPED)).toEqual([
+      "missing Hugh Masekela (No. 1)",
+      "missing Miriam Makeba (No. 12)",
+      "Tems prints rank 2, holds 1",
+      "Rema prints rank 3, holds 4",
+      "Tyla prints rank 4, holds 5",
+      "Burna Boy prints rank 5, holds 7",
+    ]);
+  });
+
+  it("the peak board's first No. 1 is the act the entries board calls the first to top the chart", () => {
+    const first = statBoxes.find((b) => b.id === "billboard-hot-100-peak")!.entries![0];
+    const entriesNote = statBoxes.find((b) => b.id === "most-hot-100-entries")!.note!;
+    expect(first.value).toBe("No. 1");
+    expect(entriesNote).toContain(`${first.name.split(" ").at(-1)} was the first African act to top the chart`);
   });
 
   it("each song count matches the Hot 100 entries board, and Burna Boy's matches his constant", () => {
@@ -447,7 +503,9 @@ describe("/records/africas-biggest carries the board on both layouts", () => {
     expect(box.note).toContain(HOT100_METHOD);
     expect(HOT100_METHOD).toContain("lead or featured");
     expect(HOT100_METHOD).toContain("African artists by nationality");
-    expect(HOT100_METHOD).toContain(`As of the chart dated ${HOT100_CHART_DATE_LONG}.`);
+    expect(HOT100_METHOD).toContain(`As of the chart dated ${HOT100_CHART_DATE_LONG} (published ${HOT100_PUBLISHED_ON_LONG}).`);
+    // The publication date is the Tuesday before the chart's Saturday.
+    expect(new Date(`${HOT100_PUBLISHED_ON}T00:00:00Z`).getUTCDay(), "Billboard publishes on Tuesdays").toBe(2);
     expect(box.source).toContain(`read ${HOT100_READ_ON_LONG}`);
     expect(box.source).toContain(`as of the chart dated ${HOT100_CHART_DATE_LONG}`);
     expect(box.entries!.map((e) => e.name)).toEqual(hot100Top.map((s) => s.name));
@@ -544,7 +602,17 @@ describe("the read is dated and gets re-read", () => {
     expect(HOT100_CHART_DATE).toMatch(/^\d{4}-\d{2}-\d{2}$/);
     expect(HOT100_READ_ON).toMatch(/^\d{4}-\d{2}-\d{2}$/);
     expect(new Date(at(HOT100_CHART_DATE)).getUTCDay(), "Hot 100 issues are dated Saturdays").toBe(6);
-    expect(HOT100_READ_ON >= HOT100_CHART_DATE, "read before the chart it counts").toBe(true);
+    // Billboard publishes each Hot 100 on the Tuesday BEFORE the Saturday it is
+    // dated, so a read can legitimately precede the printed date by up to four
+    // days (30 Sep 2026 read the chart dated 3 Oct, out since Tuesday 29 Sep).
+    // What cannot happen is a read before that Tuesday.
+    expect(readableFrom(HOT100_CHART_DATE) <= HOT100_READ_ON, "read before the chart it counts was published").toBe(true);
+  });
+
+  it("the publication rule accepts the reads that happened and refuses one before release", () => {
+    expect(readableFrom("2026-09-26") <= "2026-09-27").toBe(true);   // the first read
+    expect(readableFrom("2026-10-03") <= "2026-09-30").toBe(true);   // Tuesday-release read
+    expect(readableFrom("2026-10-03") <= "2026-09-28").toBe(false);  // the Monday before release
   });
 
   it("the weekly monitor issue reads HOT100_CHART_DATE from this file", () => {

@@ -316,8 +316,14 @@ a.langItem:focus-visible { outline-offset: -3px; }
   flex-direction: column;
   gap: 10px;
   min-width: 0;
-  padding: 22px 18px 20px 0;
+  padding: 22px 24px 20px 24px;
   background: var(--bg);
+}
+/* 24px each side of each cell, except the first cell in each row, which sits
+   on the column edge (change list item 61): cell 1 in the row of six; the
+   tablet's three by two adds cell 4 (below). */
+.lead:nth-child(6n + 1) {
+  padding-left: 0;
 }
 .leadValue {
   align-self: flex-start;
@@ -580,6 +586,7 @@ a.langItem:focus-visible { outline-offset: -3px; }
   .colWeeks { width: 136px; }
   .colLast { width: 120px; }
   .leads { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .lead:nth-child(3n + 1) { padding-left: 0; }
   .leadValue { font-size: 44px; }
   .lists { grid-template-columns: minmax(0, 1fr); gap: 32px; }
 }

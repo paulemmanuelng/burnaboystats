@@ -4,7 +4,7 @@ import KeepExploring from "../../components/KeepExploring";
 import BreadcrumbBar from "../../components/BreadcrumbBar";
 import ToursExplorer from "../../components/ToursExplorer";
 import MobileTours from "../../components/MobileTours";
-import { tours, liveMoments, upcomingShows } from "../../data/tours";
+import { tours, liveMoments, upcomingShows, festivals, concerts, otherShows } from "../../data/tours";
 import { revenueShows } from "../../data/tourRevenue";
 import { countryCount as playedCount, regionCount } from "../../data/performedCountries";
 import { pageMetadata } from "../../lib/seo";
@@ -59,6 +59,38 @@ function yearsOf(range: string): number[] {
 const tourYears = tours.flatMap((t) => yearsOf(t.years));
 const yearSpan = `${Math.min(...tourYears)} — ${Math.max(...tourYears)}`;
 
+// The biggest night's month, read off its own tour date rather than typed
+// beside the venue. Matched on venue AND year: London Stadium is in tours.ts
+// twice (the 2023 Love, Damini date and the 2024 I Told Them… date), so the
+// venue alone could pick the wrong night. tours.ts writes dates two ways —
+// "Jun 29, 2024" and "2024-06-29" — and both are read. If no date matches,
+// the lede falls back to the year alone rather than guessing a month.
+const MONTHS = [
+  "January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December",
+];
+/** "Jun 29, 2024" or "2024-06-29" → "June 2024"; null for anything else. */
+function monthYearOf(date: string): { label: string; year: string } | null {
+  const iso = date.match(/^(\d{4})-(\d{2})-\d{2}$/);
+  const named = date.match(/^([A-Z][a-z]{2}) \d{1,2}, (\d{4})$/);
+  const month = iso
+    ? MONTHS[Number(iso[2]) - 1]
+    : named && MONTHS.find((m) => m.startsWith(named[1]));
+  const year = iso?.[1] ?? named?.[2];
+  return month && year ? { label: `${month} ${year}`, year } : null;
+}
+const topShowDate = tours
+  .flatMap((t) => t.dates ?? [])
+  .map((d) => ({ venue: d.venue, when: monthYearOf(d.date) }))
+  .find((d) => d.venue === topShow.venue && d.when?.year === topShow.year);
+const topShowMonthYear = topShowDate?.when?.label ?? topShow.year;
+
+// The two cards after the tour list, and the phone's "More from the road"
+// rows, carry these as their sub-lines. "Documented", because the lists are
+// what has been verified, not a claim to every show he has played.
+const appearanceCount = festivals.length + concerts.length + otherShows.length;
+const headlinedCount = festivals.length;
+
 const headline = [
   // topTour.gross verbatim, not re-rounded. toFixed(1) turned "$30.46M" into
   // "$30.5M", so the desktop hero of this very page disagreed with its own
@@ -85,6 +117,10 @@ export default function ToursPage() {
         biggestNight={topShow.tickets ?? "—"}
         biggestVenue={topShow.venue}
         yearSpan={yearSpan}
+        hisShowCount={hisShowCount}
+        revenueShowCount={revenueShows.length}
+        appearanceCount={appearanceCount}
+        headlinedCount={headlinedCount}
       />
 
       <div className={styles.desktopOnly}>
@@ -104,9 +140,9 @@ export default function ToursPage() {
                 </h1>
                 <p className={styles.lede}>
                   The {topTour.name} grossed {topGrossLong} across {topTour.shows} reported shows —
-                  the highest-grossing tour by an African artist in history — and his June
-                  2024 {topShow.venue} concert ({topShowM(2)} from {topShow.tickets} fans) is
-                  the biggest single concert ever by an African artist.
+                  the highest-grossing tour by an African artist in history — and his{" "}
+                  {topShowMonthYear} {topShow.venue} concert ({topShowM(2)} from {topShow.tickets}{" "}
+                  fans) is the biggest single concert ever by an African artist.
                 </p>
               </div>
               <div className={styles.ticketPanel}>
@@ -128,9 +164,6 @@ export default function ToursPage() {
                   >
                     Official tour site ↗
                   </a>
-                  <Link href="/records/tours/map" className="btn btnSecondary">
-                    Where he&apos;s performed ↗
-                  </Link>
                 </div>
               </div>
             </div>
@@ -192,18 +225,37 @@ export default function ToursPage() {
 
             <ToursExplorer tours={tours} />
 
-            <Link href="/records/tours/festivals" className={styles.jumpCard}>
-              <span>
-                <span className={styles.jumpTitle}>Festivals &amp; shows</span>
-                <span className={styles.jumpDesc}>
-                  Every festival &amp; big stage he&apos;s played — the headline sets and
-                  beyond
+            {/* The map's card, then Festivals: two cards that are themselves
+                the link, so each ends in →. The map used to be a third button
+                in the tickets panel, where it read as a third ticket link. */}
+            <div className={styles.cardsRow}>
+              <Link href="/records/tours/map" className={styles.jumpCard}>
+                <span className={styles.cardText}>
+                  <span className={styles.cardTitle}>Where he&apos;s performed</span>
+                  <span className={styles.cardDesc}>
+                    The countries he has taken to the stage, on one map
+                  </span>
+                  <span className={styles.cardSub}>
+                    {playedCount} countries documented · {regionCount} regions
+                  </span>
                 </span>
-              </span>
-              <span className={styles.jumpArrow} aria-hidden="true">
-                →
-              </span>
-            </Link>
+                <span className={styles.jumpArrow} aria-hidden="true">
+                  →
+                </span>
+              </Link>
+              <Link href="/records/tours/festivals" className={styles.jumpCard}>
+                <span className={styles.cardText}>
+                  <span className={styles.cardTitle}>Festivals &amp; shows</span>
+                  <span className={styles.cardDesc}>
+                    The festivals and big stages he&apos;s played: the headline sets and beyond
+                  </span>
+                  <span className={styles.cardSub}>{appearanceCount} documented appearances</span>
+                </span>
+                <span className={styles.jumpArrow} aria-hidden="true">
+                  →
+                </span>
+              </Link>
+            </div>
           </div>
         </section>
 

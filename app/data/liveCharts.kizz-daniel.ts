@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-30";
+  export const liveChartsUpdated = "2026-10-01";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-30T12:40Z";
+  export const liveChartsBuiltAt = "2026-10-01T06:00Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -56,32 +56,26 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 25,
-            "movement": 0
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 46,
-            "movement": -4
+            "position": 28,
+            "movement": -3
           },
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 64,
-            "movement": -2
+            "position": 57,
+            "movement": 7
           },
           {
-            "country": "NE",
-            "name": "Niger",
-            "position": 116,
-            "movement": -41
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 79,
+            "movement": -33
           },
           {
             "country": "LR",
             "name": "Liberia",
-            "position": 123,
-            "movement": -52
+            "position": 143,
+            "movement": -20
           }
         ]
       },
@@ -92,8 +86,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 43,
-            "movement": 1
+            "position": 38,
+            "movement": 5
           }
         ]
       },
@@ -104,8 +98,8 @@
           {
             "country": "GD",
             "name": "Grenada",
-            "position": 14,
-            "movement": -1
+            "position": 18,
+            "movement": -5
           }
         ]
       },
@@ -159,20 +153,20 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 102,
-            "movement": 4
+            "position": 104,
+            "movement": -2
           },
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 170,
-            "movement": -79
+            "position": 110,
+            "movement": 60
           },
           {
             "country": "LR",
             "name": "Liberia",
-            "position": 171,
-            "movement": -45
+            "position": 180,
+            "movement": -9
           }
         ]
       },
@@ -183,8 +177,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 139,
-            "movement": -6
+            "position": 142,
+            "movement": -3
           }
         ]
       },
@@ -206,28 +200,35 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/56b7e22a5fd90249012da4aa0e45f60d/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Big Big Things",
+    "title": "Black Girl Magic",
     "platforms": [
       {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 100,
+            "movement": 8
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 102,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
             "country": "NG",
             "name": "Nigeria",
-            "position": 93,
-            "movement": 3
-          },
-          {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 167,
-            "movement": -32
-          },
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 186,
+            "position": 88,
             "movement": null,
             "status": "new"
           }
@@ -235,32 +236,7 @@
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6f160ebeb49e3bcae4edadc24aa7d1cc/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Buga",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CV",
-            "name": "Cape Verde",
-            "position": 16,
-            "movement": 0
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 21,
-            "movement": -1
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/2ed4231dd65e7727d82ba06f7d05e44f/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/7f5dd177b9c16d06857bf6e30c74e558/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Uncle K: Lemon Chase",
@@ -284,14 +260,39 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 166,
-            "movement": -1
+            "position": 162,
+            "movement": 4
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/7f5dd177b9c16d06857bf6e30c74e558/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Buga",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CV",
+            "name": "Cape Verde",
+            "position": 16,
+            "movement": 0
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 21,
+            "movement": 0
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/2ed4231dd65e7727d82ba06f7d05e44f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "To Be A Man",
@@ -303,13 +304,13 @@
           {
             "country": "LR",
             "name": "Liberia",
-            "position": 106,
-            "movement": 78
+            "position": 125,
+            "movement": -19
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 148,
+            "position": 152,
             "movement": -4
           }
         ]
@@ -319,36 +320,30 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/3c138fdec99af4a0686f5de2355d4de3/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Barnabas",
+    "title": "Big Big Things",
     "platforms": [
-      {
-        "platform": "Spotify Albums",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 190,
-            "movement": null,
-            "status": "re"
-          }
-        ]
-      },
       {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "TD",
-            "name": "Chad",
-            "position": 169,
-            "movement": 8
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 96,
+            "movement": -3
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 135,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
     ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3b72a2abeaf0a982b9c093667d6d1440/500x500-000000-80-0-0.jpg"
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6f160ebeb49e3bcae4edadc24aa7d1cc/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "New Era",
@@ -358,10 +353,11 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NE",
-            "name": "Niger",
-            "position": 182,
-            "movement": -47
+            "country": "OM",
+            "name": "Oman",
+            "position": 155,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -372,8 +368,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 157,
-            "movement": -28
+            "position": 169,
+            "movement": -16
           }
         ]
       }
@@ -402,64 +398,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/8451a61626d27a1cd0a51ebf866e20f5/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Pour Me Water",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 82,
-            "movement": -6
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3b72a2abeaf0a982b9c093667d6d1440/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Black Girl Magic",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 108,
-            "movement": -33
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/7f5dd177b9c16d06857bf6e30c74e558/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Ello Baby",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 124,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6e833ccea86c1e9db492213783708ece/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Lie",
     "platforms": [
       {
@@ -469,8 +407,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 61,
-            "movement": -2
+            "position": 62,
+            "movement": -1
           }
         ]
       }
@@ -489,7 +427,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 122,
-            "movement": 40
+            "movement": 0
           }
         ]
       }
@@ -498,7 +436,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/7f89da381e2508e30a82f7dc2d18287f/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Chek",
+    "title": "Twe Twe",
     "platforms": [
       {
         "platform": "iTunes",
@@ -507,7 +445,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 72,
+            "position": 71,
             "movement": null,
             "status": "new"
           }
@@ -515,7 +453,7 @@
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6827c74cb3ae549d8408455eafc3138e/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/f0a8912bba25b958294948c435c99a8a/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "One Ticket",
@@ -576,23 +514,23 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/c9dcffbd13527d3c5f7843128d441156/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Oshe",
+    "title": "Chek",
     "platforms": [
       {
         "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 192,
-            "movement": -31
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 194,
+            "movement": -138
           }
         ]
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3b72a2abeaf0a982b9c093667d6d1440/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6827c74cb3ae549d8408455eafc3138e/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Maverick",
@@ -612,6 +550,26 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2ac63dd6fe23d319b5b6ef545f36f642/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Barnabas",
+    "platforms": [
+      {
+        "platform": "Spotify Albums",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 190,
+            "movement": null,
+            "status": "re"
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3b72a2abeaf0a982b9c093667d6d1440/500x500-000000-80-0-0.jpg"
   }
 ];
   

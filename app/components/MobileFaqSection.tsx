@@ -24,6 +24,10 @@ import styles from "./mobileFaqSection.module.css";
  * an Anton heading — so it reads as a trailing section on any of the three
  * screens without borrowing whichever accent that screen spends elsewhere.
  *
+ * /records/cars (30 Sep 2026) is the fourth: its phone layout is the shared
+ * MobileDeepPage screen, and the section rides in as that screen's children,
+ * after the page's own note — the deep page's 18px gutters are this section's.
+ *
  * The fold, and the fact that it cannot put #170 back, is all in FaqList: it
  * renders flat and open on the server and collapses only after mount, at phone
  * width, so every answer is in the served HTML and survives a reader whose

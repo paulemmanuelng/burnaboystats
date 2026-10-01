@@ -1,0 +1,64 @@
+/* The Naija @ 66 key slot (HuntKeySlot.tsx). In the root layout, after the
+   page's content and before the footer, on every page and both layouts.
+
+   Blank is the normal case, and it must cost the page nothing: a zero-height
+   box holding a 1px image that is out of the flow. Only a real badge (an image
+   wider than a pixel) opens the slot. */
+.slot {
+  position: relative;
+  height: 0;
+}
+
+/* Loading="lazy" still needs a rendered box to measure against the viewport,
+   so the image is 1px and transparent rather than display: none. */
+.badge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* A key: the slot opens on the footer's own column, the badge first. */
+.found {
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 20px;
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 36px 40px 12px;
+}
+.found .badge {
+  position: static;
+  flex: none;
+  width: 180px;
+  height: 48px;
+  opacity: 1;
+}
+
+.claim {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+  color: var(--green);
+  text-decoration: none;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+.claim:hover { text-decoration: underline; }
+
+@media (max-width: 900px) {
+  /* The phone gutter; the five-tab bar's clearance is the body's own padding. */
+  .found { padding: 24px 18px 20px; }
+  /* A screen whose action bar replaces the tab bar ends in its own spacer,
+     and the slot comes after it — so the slot clears the fixed bar itself. */
+  .found.clearBar { padding-bottom: calc(118px + env(safe-area-inset-bottom, 0px)); }
+}

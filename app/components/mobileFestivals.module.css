@@ -106,12 +106,13 @@
   border-bottom: 1px solid var(--rule-soft);
 }
 .statCell { background: var(--bg); padding: 15px 18px; }
+/* Ink, not gold (item 66): four counts of one list, none of them a record. */
 .statValue {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
   font-size: 34px;
   line-height: 0.9;
-  color: var(--gold);
+  color: var(--text);
   font-variant-numeric: tabular-nums;
 }
 .statLabel {
@@ -122,6 +123,28 @@
   text-transform: uppercase;
   margin-top: 9px;
 }
+
+/* ── Map link: a 48px secondary pill (Map Links §3). ─────────────────────── */
+.mapLinkWrap { padding: 14px 18px; }
+.mapLink {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1px solid var(--btn-edge);
+  background: var(--bg-soft);
+  color: var(--text);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.mapLink:hover,
+.mapLink:active { background: var(--bg-raised); }
+.mapLinkArrow { margin-left: auto; color: var(--gold); }
 
 .foot {
   font-size: 12px;

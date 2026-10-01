@@ -3,15 +3,24 @@ import styles from "./cars.module.css";
 import KeepExploring from "../../components/KeepExploring";
 import BreadcrumbBar from "../../components/BreadcrumbBar";
 import MobileDeepPage from "../../components/MobileDeepPage";
+import MobileFaqSection from "../../components/MobileFaqSection";
 import GatedImage from "../../components/GatedImage";
 import { carImages } from "../../lib/carImageAssets";
 import { numberWord } from "../../lib/homeData";
-import { garage, currentCars, soldCars, unconfirmedCars, carCount, totalValueFormatted, conversionNote, CARS_LAST_SWEEP, valueWord, addedOnLabel } from "../../data/cars";
+import { garage, currentCars, soldCars, unconfirmedCars, carCount, totalValueFormatted, conversionNote, CARS_LAST_SWEEP, valueWord, addedOnLabel, carsListYear } from "../../data/cars";
 import { usdFull, usdShort, rankLabel, rankText, valueRank, modelShort, marqueTally } from "../../lib/garage";
 import { pageMetadata, datasetJsonLd } from "../../lib/seo";
+import { carFaqs } from "../../lib/carFaqs";
+import { faqJsonLd } from "../../lib/boardFaqs";
 
+// The year is the list's own (data/cars.ts — the last re-verification or the
+// newest addition), for the "car collection 2026" searches. The SEO gate caps
+// titles at 60 characters; with a two-digit count and a $XX.XXM total this
+// runs to 59 at most, and tests/topSearchFaqs.test.tsx measures the real one. The
+// share title stays the plain name, as /records/by-the-numbers keeps its
+// edition year out of its own.
 export const metadata = pageMetadata({
-  title: `Burna Boy's Car Collection — ${carCount} Cars Worth ${totalValueFormatted}+`,
+  title: `Burna Boy's Car Collection (${carsListYear}) — ${carCount} Cars Worth ${totalValueFormatted}+`,
   description:
     `Every car in Burna Boy's garage, priced and sourced: ${carCount} vehicles worth a reported ${totalValueFormatted}+, led by his ₦9bn one-of-one Bugatti Chiron.`,
   path: "/records/cars",
@@ -78,10 +87,16 @@ export default function CarsPage() {
     <main id="content">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(carsDataset) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(carsItemList) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(carFaqs)) }} />
       {/* Mobile is screen 18 on the shared deep-page grammar — rebuilt with
           tiles (designs/mobile/Cars - Mobile.dc.html). Two stat cells, no chip
           rail, and each row is now a 16:10 illustration over its meta; the
-          whole tile is one link to the car's page. */}
+          whole tile is one link to the car's page.
+          The FAQ goes last among its children, after the note, as on the
+          desktop page. The FAQPage node above goes out at every width, and
+          the desktop copy is inside `.desktopOnly` — without this second copy
+          a phone reader, and Googlebot at phone width, would be promised
+          answers the screen never shows (see MobileFaqSection). */}
       <MobileDeepPage
         label="Car collection"
         badge={String(carCount)}
@@ -142,6 +157,7 @@ export default function CarsPage() {
             Unlike charts and certifications, a car collection has no official record. Reconstructed from press and sightings; only cars confirmed by multiple sources are listed. Images are illustrations of each model, not his cars.
           </p>
         </div>
+        <MobileFaqSection title="Common questions" items={carFaqs} />
       </MobileDeepPage>
 
       <div className={styles.desktopOnly}>
@@ -305,6 +321,22 @@ export default function CarsPage() {
                 .join("")}
               .
             </p>
+          </div>
+        </section>
+
+        {/* ── FAQ ──────────────────────────────────────────────── */}
+        {/* The laptop copy, in the flat list /records/africas-biggest uses. The
+            phone copy is the same `carFaqs`, rendered inside MobileDeepPage
+            above. */}
+        <section id="faq" className={styles.faqWrap}>
+          <h2 className={styles.h2}>Common questions</h2>
+          <div className={styles.faqList}>
+            {carFaqs.map((f) => (
+              <div key={f.q} className={styles.faqItem}>
+                <h3 className={styles.faqQ}>{f.q}</h3>
+                <p className={styles.faqA}>{f.a}</p>
+              </div>
+            ))}
           </div>
         </section>
 

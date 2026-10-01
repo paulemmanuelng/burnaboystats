@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-30";
+  export const liveChartsUpdated = "2026-10-01";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-30T12:40Z";
+  export const liveChartsBuiltAt = "2026-10-01T06:00Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","iTunes"];
@@ -56,44 +56,31 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 36,
-            "movement": -1
+            "position": 38,
+            "movement": 0
           },
           {
             "country": "CV",
             "name": "Cape Verde",
-            "position": 38,
-            "movement": 6
+            "position": 44,
+            "movement": -6
           },
           {
             "country": "GM",
             "name": "Gambia",
             "position": 61,
-            "movement": 1
+            "movement": 0
           }
         ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/81015160c51d43ed5f8e15f07f39e9c0/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "What If",
-    "platforms": [
+      },
       {
-        "platform": "iTunes",
+        "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "ZW",
-            "name": "Zimbabwe",
-            "position": 86,
-            "movement": -10
-          },
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 171,
+            "country": "LY",
+            "name": "Libya",
+            "position": 84,
             "movement": null,
             "status": "new"
           }
@@ -101,7 +88,7 @@
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/cbbac06ed3061e624e2856a82917a7c5/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/81015160c51d43ed5f8e15f07f39e9c0/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "ON YOU",
@@ -132,8 +119,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 132,
-            "movement": 6
+            "position": 139,
+            "movement": -7
           }
         ]
       }
