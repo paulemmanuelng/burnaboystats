@@ -1,4 +1,4 @@
-/* /naija66's live pieces (Naija66Play.tsx): the key box, the winner's card
+/* /naija66's live pieces (Naija66Play.tsx): the flow box, the winner's card
    and the board. Desktop by default; .phone is the phone screen's version —
    full-bleed between hairlines, controls stacked at a thumb's 48px.
 
@@ -102,6 +102,12 @@
   font-size: var(--type-caption);
   line-height: var(--type-caption-lh);
   color: var(--text-muted);
+}
+.flowText {
+  margin: 12px 0 0;
+  font-size: var(--type-body);
+  line-height: var(--type-body-lh);
+  color: var(--text-body);
 }
 .closedText {
   margin: 8px 0 0;

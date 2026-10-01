@@ -2,7 +2,7 @@ import Link from "next/link";
 import styles from "./mobileNaija66.module.css";
 import BackLink from "./BackLink";
 import MobileMenuButton from "./MobileMenuButton";
-import { HuntBoard, HuntKeyForm } from "./Naija66Play";
+import { HuntBoard, HuntFlowBox } from "./Naija66Play";
 import Naija66Words from "./Naija66Words";
 import { DROP_HOURS, HOW_IT_WORKS, PRIZE, RULES, WHERE_NEXT } from "../lib/naija66/copy";
 import { NAIJA66_X_URL } from "../data/naija66";
@@ -10,9 +10,8 @@ import { NAIJA66_X_URL } from "../data/naija66";
 /**
  * The /naija66 phone screen.
  *
- * Its own running order for a thumb: the code box straight under the title —
- * the reason most people arrive, code in hand — then the board, the steps and
- * the rules. Back bar like /contact's (so /naija66 is in BACK_BAR_ROUTES), and
+ * Its own running order for a thumb: how to win straight under the title,
+ * then the board, the steps and the rules. Back bar like /contact's (so /naija66 is in BACK_BAR_ROUTES), and
  * the five-tab bar at its foot (so it is not an ACTION_BAR route).
  *
  * Every word it prints comes from lib/naija66/copy.ts, the same list the
@@ -48,8 +47,8 @@ export default function MobileNaija66() {
           Naija @ <span className={styles.green}>66</span>
         </h1>
         <p className={styles.lede}>
-          Five codes are hidden on pages of Burna Boy Stats. Find one, enter it first, and win{" "}
-          {PRIZE.long}.
+          Five codes hide on pages of Burna Boy Stats, one at each drop. Open the right page, tap
+          Reveal first, and win {PRIZE.long}.
         </p>
         <p className={styles.drops}>
           <span className={styles.liveDot} aria-hidden="true" />
@@ -60,7 +59,7 @@ export default function MobileNaija66() {
         </a>
       </div>
 
-      <HuntKeyForm layout="phone" />
+      <HuntFlowBox layout="phone" />
 
       {/* The board */}
       <section className={styles.section} aria-labelledby="m-naija66-board">

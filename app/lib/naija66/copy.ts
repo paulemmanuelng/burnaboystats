@@ -1,5 +1,5 @@
 import { NAIJA66_PRIZES, NAIJA66_X_HANDLE } from "../../data/naija66";
-import { watHour } from "./clock";
+import { watClock, watHour } from "./clock";
 
 /**
  * The words the hunt says, once, for every place that says them — the phone
@@ -8,9 +8,9 @@ import { watHour } from "./clock";
  * its share card take the prize from PRIZE below, so none of them can drift.
  * Drop times come from the committed schedule, not typed.
  *
- * Wording (Paul, 30 Sep 2026): the hunt hides five CODES; each shows at its
- * time as the small key badge, and the words for them are "code" and "key
- * badge" only. The hunt names NO page (Paul, 1 Oct 2026, 03:50: "remove the
+ * Wording (Paul, 30 Sep 2026): the hunt hides five CODES. Since 1 Oct 2026
+ * each one hides behind a "Tap to reveal" card on its page: the first tap gets
+ * the code, and everyone after sees it claimed. The hunt names NO page (Paul, 1 Oct 2026, 03:50: "remove the
  * cue/link of where the code appear" — code 1's page had been named from 30 Sep
  * 23:00); players follow NAIJA66_X_HANDLE on X to find out where to look.
  */
@@ -43,28 +43,30 @@ export type Words = readonly (string | { href: string; text: string })[];
 /** The X link's words, beside the drop times (the link adds its own ↗). */
 export const WHERE_NEXT = `Where to look next: ${NAIJA66_X_HANDLE} on X`;
 
+/** "9am, 12pm, 3pm, 6pm, 9pm" — Paul's own listing, in the flow line below. */
+const HOURS_LIST = hours.join(", ");
+
+/** The whole mechanic in one paragraph (Paul, 1 Oct 2026) — the /naija66 box. */
+export const FLOW = `At each drop (${HOURS_LIST} WAT) a code hides on one page of the site. Follow ${NAIJA66_X_HANDLE} on X for where to look. The first person to open that page and tap Reveal gets the code; it then shows as claimed for everyone else. DM it to ${NAIJA66_X_HANDLE} as soon as you get it.`;
+
 export const HOW_IT_WORKS: readonly { title: string; words: Words }[] = [
   {
     title: "Where to look",
-    words: [`Follow ${NAIJA66_X_HANDLE} on X to find out where to look for each code.`],
+    words: [`Follow ${NAIJA66_X_HANDLE} on X for where to look.`],
   },
   {
-    title: "Spot the badge",
-    words: [
-      `Each code appears at its time — ${DROP_HOURS} WAT on 1 October — as a small green-white-green key badge at the foot of its page.`,
-    ],
+    title: "Watch the drops",
+    words: [`At each drop — ${DROP_HOURS} WAT on 1 October — a code hides on one page of the site.`],
   },
   {
-    title: "Enter it first",
+    title: "Tap to reveal",
     words: [
-      "Type the code in the box on this page. The first person to enter it wins that prize, and the board marks it claimed.",
+      "The first person to open that page and tap Reveal gets the code. It then shows as claimed for everyone else.",
     ],
   },
   {
     title: "Claim your Premium",
-    words: [
-      `Win, and this page gives you a winner code. DM it to ${NAIJA66_X_HANDLE} on X as soon as you get it, for ${PRIZE.long}.`,
-    ],
+    words: [`DM the code to ${NAIJA66_X_HANDLE} on X as soon as you get it, for ${PRIZE.long}.`],
   },
 ];
 
@@ -72,13 +74,21 @@ export const RULES = [
   "Free to play — no purchase, no sign-up, and no personal data collected.",
   `Each prize is ${PRIZE.long}.`,
   "One prize per person.",
-  "Codes are not case-sensitive.",
-  "The first valid code entered wins its prize. A claimed code never opens again.",
+  "The first tap of Reveal on a code's page wins that code. Once revealed, it shows as claimed for everyone else.",
   "Claims close at midnight WAT at the end of 2 October.",
   `Winners DM their winner code to ${NAIJA66_X_HANDLE} on X as soon as they get it.`,
   "Not affiliated with Spotify or Burna Boy.",
   "Paul's decision is final.",
 ] as const;
+
+// ── The card on a prize page (HuntKeySlot.tsx) ─────────────────────────────
+
+export const cardHidden = (prize: number) => `Naija @ 66 · Code ${prize} is hidden on this page`;
+export const REVEAL_BUTTON = "Tap to reveal";
+export const REVEAL_FINE = "First tap wins. One prize per person.";
+export const cardClaimed = (prize: number, at: string | null) =>
+  `Code ${prize} was claimed${at ? ` at ${watClock(at)}` : ""}. Follow ${NAIJA66_X_HANDLE} on X for the next one.`;
+export const ALREADY_WON_LINE = "You've already won a prize today. One per person.";
 
 /** What a winner is told. */
 export const WINNER_LINE = `DM this code to ${NAIJA66_X_HANDLE} on X now to claim ${PRIZE.long}.`;
@@ -89,12 +99,3 @@ export const WINNER_LINE = `DM this code to ${NAIJA66_X_HANDLE} on X now to clai
  */
 export const WINNER_KEEP_LINE =
   "Only this browser can show this code. Screenshot it, but don't post it: the first DM with the code gets the prize.";
-
-/** After "Too slow — prize N was claimed…", while another code is still out or still to drop. */
-export const NEXT_CODE_LINE = `Follow ${NAIJA66_X_HANDLE} on X for where to look next.`;
-/**
- * …and instead once the board shows every other prize claimed, so nothing is
- * left to find (Naija66Play.tsx nothingLeft). Never from the clock alone: at
- * 9:30pm, with prize 5 gone, a morning code can still be out.
- */
-export const LAST_CODE_LINE = "That was the last code.";

@@ -5,19 +5,12 @@ import sitemap from "../app/sitemap";
 import { NAIJA66_CLOSES, NAIJA66_FIRST_DROP, NAIJA66_PRIZES } from "../app/data/naija66";
 
 /**
- * Naija @ 66's committed configuration is public — the repo is — so it must
- * carry when the keys drop and nothing about where they are or what they say.
- *
- * The five pages exist only as HMACs keyed by NAIJA66_SECRET, which lives in
- * Vercel and nowhere in the repo; the keys are derived from the same secret at
- * request time. This file holds the hunt's config, data and server library to
- * that: no route of the site appears in them as a string, and no key-shaped
- * string does either. Every route is checked, so the check names none of the
- * five and cannot hint at them.
- *
- * There is no exception. From 30 Sep 23:00 to 1 Oct 03:50 the copy named code
- * 1's page by Paul's choice; he then withdrew it ("remove the cue/link of where
- * the code appear"), so every route fails in every hunt file again.
+ * Naija @ 66's committed configuration. Since 1 Oct 2026 the five prize pages
+ * are plain paths in app/data/naija66.ts (Paul accepted a public schedule when
+ * the HMAC mapping could not be matched to the deployed secret). This file
+ * holds the hunt to exactly those five routes, named in that one file and in
+ * no other hunt file — so no copy, component or route can name a page — and
+ * to no key-shaped string anywhere.
  */
 
 const ROOT = process.cwd();
@@ -31,11 +24,22 @@ const walk = (dir: string, out: string[] = []): string[] => {
   return out;
 };
 
-/** The hunt's config and data, and the library that reads them. */
+const rel = (p: string) => p.slice(ROOT.length + 1);
+const DATA_FILE = "app/data/naija66.ts";
+
+/** Every file the hunt is made of: config, library, routes, page and components. */
 const HUNT_FILES = [
-  "app/data/naija66.ts",
-  ...walk(join(ROOT, "app/lib/naija66")).map((p) => p.slice(ROOT.length + 1)),
+  DATA_FILE,
+  ...walk(join(ROOT, "app/lib/naija66")).map(rel),
+  ...walk(join(ROOT, "app/api/naija66")).map(rel),
+  ...walk(join(ROOT, "app/naija66")).map(rel),
+  ...readdirSync(join(ROOT, "app/components"))
+    .filter((f) => /^(Naija66|MobileNaija66|HuntKeySlot|naija66|mobileNaija66|huntKeySlot)/.test(f))
+    .map((f) => `app/components/${f}`),
 ];
+
+/** The five prize pages, as Paul gave them. */
+const PRIZE_ROUTES = ["/music/listeners", "/records/cars", "/certifications", "/records/africas-biggest", "/dai-dai"];
 
 /** Every page the site has: the static routes on disk, and every URL in the sitemap. */
 const ROUTES = [
@@ -50,54 +54,65 @@ const ROUTES = [
 const escape = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
 
-/** Problems in one file's source: a route as a string literal, or a key. */
-function leaks(src: string): string[] {
-  const out: string[] = [];
-  for (const route of ROUTES) {
-    if (new RegExp(`(["'\`])${escape(route)}\\1`).test(src)) out.push(`route ${route}`);
-  }
-  for (const m of src.matchAll(/NG66-[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{6}(?![A-Z0-9])/g)) {
-    if (m[0] !== "NG66-XXXXXX") out.push(`key-shaped ${m[0]}`); // the placeholder is the one allowed
-  }
-  const committed = new Set(NAIJA66_PRIZES.map((p) => p.pathHash));
-  for (const m of src.matchAll(/\b[0-9a-f]{32}\b/g)) if (!committed.has(m[0])) out.push(`hash ${m[0]}`);
-  return out;
-}
+/** The routes one file's source names as string literals. */
+const routesIn = (src: string) =>
+  ROUTES.filter((route) => route !== "/" && new RegExp(`(["'\`])${escape(route)}\\1`).test(src));
+
+/** Key-shaped strings: a key from the old mechanic or a winner code. */
+const keysIn = (src: string) =>
+  [...src.matchAll(/NG66-(?:[1-5]-)?[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{6}(?![A-Z0-9])/g)]
+    .map((m) => m[0])
+    .filter((k) => !k.endsWith("-XXXXXX")); // placeholders
 
 describe("Naija @ 66's committed config", () => {
-  it("is exactly the five entries the brief gave, and the close", () => {
+  it("is exactly the five prize pages and drop times Paul gave, and the close", () => {
     expect(NAIJA66_PRIZES).toEqual([
-      { prize: 1, pathHash: "d3126e9c9d4ab28c7ee261382047039a", dropsAt: "2026-10-01T08:00:00Z" },
-      { prize: 2, pathHash: "365d3e26da5906153b07914e0df9ec68", dropsAt: "2026-10-01T11:00:00Z" },
-      { prize: 3, pathHash: "4d34082f5d93685a1e90fbe7bd245ab3", dropsAt: "2026-10-01T14:00:00Z" },
-      { prize: 4, pathHash: "bf9b35187f466adb928734bf33488f03", dropsAt: "2026-10-01T17:00:00Z" },
-      { prize: 5, pathHash: "2a7966d52600bba4a37b2d7cce61e9cd", dropsAt: "2026-10-01T20:00:00Z" },
+      { prize: 1, path: "/music/listeners", dropsAt: "2026-10-01T08:00:00Z" },
+      { prize: 2, path: "/records/cars", dropsAt: "2026-10-01T11:00:00Z" },
+      { prize: 3, path: "/certifications", dropsAt: "2026-10-01T14:00:00Z" },
+      { prize: 4, path: "/records/africas-biggest", dropsAt: "2026-10-01T17:00:00Z" },
+      { prize: 5, path: "/dai-dai", dropsAt: "2026-10-01T20:00:00Z" },
     ]);
     expect(NAIJA66_FIRST_DROP).toBe("2026-10-01T08:00:00Z");
     expect(NAIJA66_CLOSES).toBe("2026-10-02T23:00:00Z");
   });
 
-  it("walks the whole site, so the guard below is not vacuous", () => {
+  it("walks the whole site and every hunt file, so the guard below is not vacuous", () => {
     expect(ROUTES.length).toBeGreaterThan(300);
-    expect(ROUTES).toContain("/");
-    expect(ROUTES).toContain("/naija66");
-    expect(HUNT_FILES).toContain("app/lib/naija66/crypto.ts");
+    for (const r of PRIZE_ROUTES) expect(ROUTES, r).toContain(r);
+    for (const f of ["app/lib/naija66/crypto.ts", "app/api/naija66/spot/route.ts", "app/components/HuntKeySlot.tsx"]) {
+      expect(HUNT_FILES).toContain(f);
+    }
   });
 
-  it("holds no page path, no key and no stray hash in the hunt's config, data or library", () => {
-    const found = HUNT_FILES.flatMap((f) => leaks(readFileSync(join(ROOT, f), "utf8")).map((l) => `${f}: ${l}`));
+  it("names exactly these five prize routes, in app/data/naija66.ts only", () => {
+    expect(routesIn(readFileSync(join(ROOT, DATA_FILE), "utf8")).sort()).toEqual([...PRIZE_ROUTES].sort());
+    const elsewhere = HUNT_FILES.filter((f) => f !== DATA_FILE).flatMap((f) =>
+      routesIn(readFileSync(join(ROOT, f), "utf8"))
+        // /naija66 is the hunt's own page, which may link to itself.
+        .filter((r) => r !== "/naija66")
+        .map((r) => `${f}: ${r}`),
+    );
+    expect(elsewhere).toEqual([]);
+  });
+
+  it("holds no key-shaped string in any hunt file", () => {
+    const found = HUNT_FILES.flatMap((f) => keysIn(readFileSync(join(ROOT, f), "utf8")).map((k) => `${f}: ${k}`));
     expect(found).toEqual([]);
   });
 
-  it("negative control: the same guard catches a planted path, a planted key and a planted hash", () => {
-    const src = readFileSync(join(ROOT, "app/data/naija66.ts"), "utf8");
-    const sample = ROUTES.find((r) => r.length > 1)!;
-    const planted = src.replace(NAIJA66_PRIZES[0].pathHash, sample);
-    expect(leaks(planted)).toContain(`route ${sample}`);
-    expect(leaks(`${src}\nconst k = "NG66-ABC234";`)).toContain("key-shaped NG66-ABC234");
-    expect(leaks(`${src}\nconst h = "0123456789abcdef0123456789abcdef";`)).toContain(
-      "hash 0123456789abcdef0123456789abcdef",
+  it("negative control: a planted sixth route, a route in another hunt file and a planted code are caught", () => {
+    const src = readFileSync(join(ROOT, DATA_FILE), "utf8");
+    const sixth = ROUTES.find((r) => r.length > 1 && !PRIZE_ROUTES.includes(r) && r !== "/naija66")!;
+    const planted = src.replace(
+      '{ prize: 5, path: "/dai-dai", dropsAt: "2026-10-01T20:00:00Z" },',
+      `{ prize: 5, path: "/dai-dai", dropsAt: "2026-10-01T20:00:00Z" },\n  { prize: 6, path: "${sixth}", dropsAt: "2026-10-01T22:00:00Z" },`,
     );
+    expect(planted).not.toBe(src);
+    expect(routesIn(planted).sort()).not.toEqual([...PRIZE_ROUTES].sort());
+    expect(routesIn(planted)).toContain(sixth);
+    const copy = readFileSync(join(ROOT, "app/lib/naija66/copy.ts"), "utf8");
+    expect(routesIn(`${copy}\nconst where = "${PRIZE_ROUTES[1]}";`)).toEqual([PRIZE_ROUTES[1]]);
+    expect(keysIn(`${src}\nconst k = "NG66-2-ABC234";`)).toEqual(["NG66-2-ABC234"]);
   });
-
 });

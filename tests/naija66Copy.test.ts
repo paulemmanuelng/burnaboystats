@@ -1,7 +1,20 @@
 import { describe, it, expect } from "vitest";
 import { readFileSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
-import { HOW_IT_WORKS, PRIZE, RULES, WINNER_KEEP_LINE, WINNER_LINE } from "../app/lib/naija66/copy";
+import {
+  ALREADY_WON_LINE,
+  FLOW,
+  HOW_IT_WORKS,
+  PRIZE,
+  REVEAL_BUTTON,
+  REVEAL_FINE,
+  RULES,
+  WINNER_KEEP_LINE,
+  WINNER_LINE,
+  cardClaimed,
+  cardHidden,
+} from "../app/lib/naija66/copy";
+import { NAIJA66_PRIZES } from "../app/data/naija66";
 import { wordsText } from "../app/components/Naija66Words";
 import { metadata } from "../app/naija66/page";
 import { alt as ogAlt } from "../app/naija66/opengraph-image";
@@ -71,7 +84,8 @@ describe("the prize, said once", () => {
       "app/components/Naija66BannerLive.tsx",
       "app/components/MobileNaija66.tsx",
       "app/components/HuntKeySlot.tsx",
-      "app/api/naija66/claim/route.ts",
+      "app/api/naija66/reveal/route.ts",
+      "app/api/naija66/spot/route.ts",
     ])
       expect(HUNT_FILES).toContain(f);
   });
@@ -134,8 +148,44 @@ describe("no clues", () => {
 
 describe("where to look", () => {
   it("names no page: step 1 sends players to X for every code", () => {
-    expect(wordsText(HOW_IT_WORKS[0].words)).toBe("Follow @paulemmanuelng on X to find out where to look for each code.");
+    expect(wordsText(HOW_IT_WORKS[0].words)).toBe("Follow @paulemmanuelng on X for where to look.");
     for (const s of HOW_IT_WORKS) expect(s.words.every((w) => typeof w === "string"), s.title).toBe(true);
+  });
+
+  it("says the reveal flow in Paul's words, and no copy names a prize page", () => {
+    expect(FLOW).toBe(
+      "At each drop (9am, 12pm, 3pm, 6pm, 9pm WAT) a code hides on one page of the site. Follow @paulemmanuelng on X for where to look. The first person to open that page and tap Reveal gets the code; it then shows as claimed for everyone else. DM it to @paulemmanuelng as soon as you get it.",
+    );
+    expect(cardHidden(4)).toBe("Naija @ 66 · Code 4 is hidden on this page");
+    expect(REVEAL_BUTTON).toBe("Tap to reveal");
+    expect(REVEAL_FINE).toBe("First tap wins. One prize per person.");
+    expect(cardClaimed(2, "2026-10-01T14:31:00Z")).toBe(
+      "Code 2 was claimed at 15:31 WAT. Follow @paulemmanuelng on X for the next one.",
+    );
+    expect(ALREADY_WON_LINE).toBe("You've already won a prize today. One per person.");
+    const words = [
+      FLOW,
+      cardHidden(1),
+      REVEAL_FINE,
+      cardClaimed(1, null),
+      ALREADY_WON_LINE,
+      WINNER_LINE,
+      WINNER_KEEP_LINE,
+      ...RULES,
+      ...HOW_IT_WORKS.map((s) => wordsText(s.words)),
+    ].join("\n");
+    expect(words).not.toMatch(CLUE);
+    for (const p of NAIJA66_PRIZES) expect(words.includes(p.path), p.path).toBe(false);
+    // Nor any page's name: the last segment of each prize path, as words.
+    for (const p of NAIJA66_PRIZES) {
+      const name = p.path.split("/").pop()!.replace(/-/g, " ");
+      expect(words.toLowerCase().includes(name), name).toBe(false);
+    }
+  });
+
+  it("negative control: a card line that named its page would be caught", () => {
+    const bad = `Code 2 is hidden on ${NAIJA66_PRIZES[1].path}`;
+    expect(NAIJA66_PRIZES.some((p) => bad.includes(p.path))).toBe(true);
   });
 
   it("negative control: the code-1 line the page printed until 1 Oct 03:50 is gone", () => {

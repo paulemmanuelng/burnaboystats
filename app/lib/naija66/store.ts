@@ -12,8 +12,8 @@
  * whole of the atomicity — nothing reads-then-writes.
  *
  * Every call gives up after five seconds (see TIMEOUT_MS). A claim whose SET
- * landed but whose reply was lost is not lost to its winner: the claim route
- * recognises the same browser's retry (app/api/naija66/claim/route.ts).
+ * landed but whose reply was lost is not lost to its winner: the reveal route
+ * recognises the same browser's retry (app/api/naija66/reveal/route.ts).
  *
  * In development and tests, with no Redis configured, the same interface is
  * kept in memory. A Map written without an await between the check and the
