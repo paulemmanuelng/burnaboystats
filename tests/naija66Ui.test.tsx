@@ -37,7 +37,6 @@ import bannerStyles from "../app/components/naija66Banner.module.css";
 import Home from "../app/page";
 import { CLOSES_MS } from "../app/lib/naija66/clock";
 import {
-  CODE1_PAGE,
   LAST_CODE_LINE,
   NEXT_CODE_LINE,
   PRIZE,
@@ -232,23 +231,20 @@ describe("/naija66", () => {
     expect(text).not.toMatch(/\b(1|one|five) months? of Spotify Premium\b(?! Nigeria)/i);
   });
 
-  it("names code 1's page, links it, and sends codes 2 to 5 to X — in both layouts, with no clue anywhere", () => {
+  it("names no page and sends every code to X — in both layouts, with no clue anywhere", () => {
     setNow(AT_0905);
     stubApi();
     const { container } = render(<Naija66Page />);
     const text = container.textContent!;
-    expect(text.split("Code 1 appears at 9am WAT on the Where the World Listens page.").length - 1).toBe(4); // hero + step 1, twice
-    const named = [...container.querySelectorAll(`a[href="${CODE1_PAGE.href}"]`)];
-    expect(named).toHaveLength(4);
-    for (const a of named) expect(a.textContent).toBe("Where the World Listens");
-    expect(text.split("For codes 2 to 5, follow @paulemmanuelng on X to find out where to look.").length - 1).toBe(2);
+    expect(text).not.toContain("Code 1 appears");
+    expect(text.split("Follow @paulemmanuelng on X to find out where to look for each code.").length - 1).toBe(2);
     expect(screen.getAllByText("Where to look next: @paulemmanuelng on X ↗")).toHaveLength(2);
     expect(text).not.toMatch(/\bclues?\b/i);
-    // The page links to no other page on the site but the ones it always did.
+    // The page links to no page on the site but home.
     const internal = new Set(
       [...container.querySelectorAll("a[href^='/']")].map((a) => a.getAttribute("href")),
     );
-    expect([...internal].sort()).toEqual(["/", CODE1_PAGE.href].sort());
+    expect([...internal]).toEqual(["/"]);
   });
 
   it("shows a win in both layouts, with the code and the DM line", async () => {

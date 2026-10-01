@@ -10,9 +10,9 @@ import { watHour } from "./clock";
  *
  * Wording (Paul, 30 Sep 2026): the hunt hides five CODES; each shows at its
  * time as the small key badge, and the words for them are "code" and "key
- * badge" only (tests/naija66Copy.test.ts holds every hunt file to that). Code
- * 1's page is the one page the hunt names (CODE1_PAGE); for codes 2 to 5
- * players follow NAIJA66_X_HANDLE on X to find out where to look.
+ * badge" only. The hunt names NO page (Paul, 1 Oct 2026, 03:50: "remove the
+ * cue/link of where the code appear" — code 1's page had been named from 30 Sep
+ * 23:00); players follow NAIJA66_X_HANDLE on X to find out where to look.
  */
 
 /**
@@ -40,31 +40,13 @@ export const DROP_HOURS = `${hours.slice(0, -1).join(", ")} and ${hours.at(-1)}`
 /** A line of copy with a link in it: plain strings, and a link as {href, text}. */
 export type Words = readonly (string | { href: string; text: string })[];
 
-/**
- * Prize 1's page, which Paul chose to name publicly (30 Sep 2026, 23:00) —
- * the one page the hunt ever names. Its title on the site is "Where the World
- * Listens to Burna Boy". tests/naija66Config.test.ts allows this one route in
- * this one file and still fails on any other route in the hunt's files.
- */
-export const CODE1_PAGE = { href: "/music/listeners", name: "Where the World Listens" } as const;
-
-/** "Code 1 appears at 9am WAT on the Where the World Listens page." */
-export const CODE1_LINE: Words = [
-  `Code 1 appears at ${watHour(NAIJA66_PRIZES[0].dropsAt)} on the `,
-  { href: CODE1_PAGE.href, text: CODE1_PAGE.name },
-  " page.",
-];
-
 /** The X link's words, beside the drop times (the link adds its own ↗). */
 export const WHERE_NEXT = `Where to look next: ${NAIJA66_X_HANDLE} on X`;
 
 export const HOW_IT_WORKS: readonly { title: string; words: Words }[] = [
   {
     title: "Where to look",
-    words: [
-      ...CODE1_LINE,
-      ` For codes 2 to 5, follow ${NAIJA66_X_HANDLE} on X to find out where to look.`,
-    ],
+    words: [`Follow ${NAIJA66_X_HANDLE} on X to find out where to look for each code.`],
   },
   {
     title: "Spot the badge",

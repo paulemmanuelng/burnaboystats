@@ -6,7 +6,7 @@ import Naija66Provider from "../components/Naija66Provider";
 import { HuntBoard, HuntKeyForm } from "../components/Naija66Play";
 import Naija66Words from "../components/Naija66Words";
 import { pageMetadata } from "../lib/seo";
-import { CODE1_LINE, DROP_HOURS, HOW_IT_WORKS, PRIZE, RULES, WHERE_NEXT } from "../lib/naija66/copy";
+import { DROP_HOURS, HOW_IT_WORKS, PRIZE, RULES, WHERE_NEXT } from "../lib/naija66/copy";
 import { NAIJA66_X_URL } from "../data/naija66";
 
 export const metadata = pageMetadata({
@@ -52,9 +52,6 @@ export default function Naija66Page() {
                 <p className={styles.lede}>
                   Five codes are hidden on pages of Burna Boy Stats, each appearing at its time as a
                   small key badge. Find one, enter it first, and win {PRIZE.long}.
-                </p>
-                <p className={styles.lede}>
-                  <Naija66Words words={CODE1_LINE} />
                 </p>
                 <p className={styles.drops}>
                   <span className={styles.liveDot} aria-hidden="true" />
