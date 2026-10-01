@@ -167,7 +167,9 @@ export default function MobileTours({
               {/* One line, not the full note: three notes ran this box to a
                   whole phone screen (Paul, 1 Oct 2026). Desktop has them. */}
               <p className={styles.upcomingText}>{u.short}</p>
-              <p className={styles.upcomingSource}>{u.source}</p>
+              {/* The date kept whole: at 320 "…the NFL, 17" / "September 2026"
+                  split the day from its month. Desktop prints it on one line. */}
+              <p className={styles.upcomingSource}>{u.source.replace(/(\d{1,2}) ([A-Z][a-z]+) (\d{4})/, "$1\u00a0$2\u00a0$3")}</p>
             </div>
           ))}
         </div>

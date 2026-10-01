@@ -298,7 +298,7 @@ export const upcomingShows: UpcomingShow[] = [
     // nfl.com/news/burna-boy-headline-halftime-show-2026-nfl-paris-game-oct-25
     // and @NFL on X, 17 Sep 2026: "Sunday, Oct. 25 at 2:30 p.m. CEST (9:30 a.m.
     // ET) at Stade de France".
-    short: "Halftime show at the first NFL game in France, Steelers v Saints.",
+    short: "Halftime show at the first NFL game in France, Steelers\u00a0v\u00a0Saints.",
     source: "Announced by the NFL, 17 September 2026",
   },
   {
