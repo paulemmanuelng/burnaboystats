@@ -24,6 +24,15 @@ describe("announced shows", () => {
   });
 });
 
+describe("the phone's one-line notes", () => {
+  it("every show has one, short enough for two lines at 375px", () => {
+    for (const u of upcomingShows) {
+      expect(u.short.trim().length, u.venue).toBeGreaterThan(0);
+      expect(u.short.length, u.venue).toBeLessThanOrEqual(80);
+    }
+  });
+});
+
 describe("Apple Music Hall, 29 October 2026", () => {
   // The lead that brought this in said he would be "The first African artist
   // to perform live at the Apple Music Hall". Not established: the opening run
@@ -46,5 +55,6 @@ describe("Apple Music Hall, 29 October 2026", () => {
       expect(text).toContain("the only African artist among the eight shows announced for its opening run");
       expect(text).not.toMatch(FIRST);
     }
+    expect(show.short).not.toMatch(FIRST);
   });
 });

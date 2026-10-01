@@ -330,7 +330,7 @@
 /* Announced, not yet played — a plan, marked as one. */
 .upcoming {
   margin: 0 18px 18px;
-  padding: 16px;
+  padding: 12px 14px 4px;
   border: 1px solid color-mix(in srgb, var(--gold-ink) 28%, transparent);
   background: color-mix(in srgb, var(--gold-wash-base) calc(4% * var(--wash-strength)), transparent);
   border-radius: var(--radius);
@@ -354,11 +354,25 @@
   font-size: 22px;
   color: var(--gold);
 }
+/* One show a row, hairline between: venue left, its date right. */
+.upcomingShow { padding: 11px 0 12px; border-top: 1px solid var(--line); }
+.upcomingRow { display: flex; align-items: baseline; gap: 12px; }
 .upcomingVenue {
+  min-width: 0;
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
-  font-size: 19px;
+  font-size: 18px;
+  line-height: 1.15;
   text-transform: uppercase;
+}
+.upcomingDate {
+  margin-left: auto;
+  flex: none;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.15;
+  color: var(--gold);
 }
 .upcomingCity {
   font-family: var(--font-mono), monospace;
@@ -368,11 +382,11 @@
   color: var(--text-muted);
   margin-top: 3px;
 }
-.upcomingText { font-size: 13px; line-height: 1.55; color: var(--text-body); margin-top: 9px; }
+.upcomingText { font-size: 13px; line-height: 1.5; color: var(--text-body); margin-top: 6px; }
 .upcomingSource {
   font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.06em;
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
   color: var(--text-muted);
-  margin-top: 8px;
+  margin-top: 5px;
 }

@@ -146,10 +146,10 @@ export default function MobileTours({
             <span className={styles.upcomingWhen}>{upcomingShows.length === 1 ? upcomingShows[0].when : `${upcomingShows.length} shows`}</span>
           </div>
           {upcomingShows.map((u) => (
-            <div key={`${u.venue}-${u.when}`}>
-              <div className={styles.upcomingVenue}>
-                {u.venue}
-                {upcomingShows.length > 1 && <span className={styles.upcomingWhen}> · {u.when}</span>}
+            <div key={`${u.venue}-${u.when}`} className={styles.upcomingShow}>
+              <div className={styles.upcomingRow}>
+                <span className={styles.upcomingVenue}>{u.venue}</span>
+                {upcomingShows.length > 1 && <span className={styles.upcomingDate}>{u.when}</span>}
               </div>
               <div className={styles.upcomingCity}>
                 {u.city}, {u.country}
@@ -158,7 +158,9 @@ export default function MobileTours({
                     against the server's "80,000" — React #418. */}
                 {u.cap ? ` · ${u.cap.toLocaleString("en-US")} cap` : ""}
               </div>
-              <p className={styles.upcomingText}>{u.note}</p>
+              {/* One line, not the full note: three notes ran this box to a
+                  whole phone screen (Paul, 1 Oct 2026). Desktop has them. */}
+              <p className={styles.upcomingText}>{u.short}</p>
               <p className={styles.upcomingSource}>{u.source}</p>
             </div>
           ))}
