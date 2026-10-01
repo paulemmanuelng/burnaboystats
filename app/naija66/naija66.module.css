@@ -1,0 +1,148 @@
+/* /naija66 — desktop. In the vocabulary of /contact and /updates (a 1360/40
+   column, hairline bands, Anton headings, mono labels); the accent is the
+   flag's green, not gold, because this page is Nigeria's day. Gold is left
+   to the one action — the Claim button — and the links, as everywhere.
+
+   Hidden below 900px, where MobileNaija66 renders the phone screen. */
+.desktopOnly { display: block; }
+@media (max-width: 900px) { .desktopOnly { display: none; } }
+
+.band { border-bottom: 1px solid var(--line); }
+.bandLast { border-bottom: 0; }
+.wide { max-width: 1360px; margin: 0 auto; padding: 0 40px; }
+
+/* ── Hero ───────────────────────────────────────────────────────────────── */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.9fr);
+  gap: 56px;
+  align-items: start;
+  padding-top: 50px;
+  padding-bottom: 46px;
+}
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+/* Green-white-green, the flag's vertical bands. */
+.flag {
+  display: flex;
+  flex: none;
+  width: 24px;
+  height: 17px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+}
+.flag > span { flex: 1; }
+.flag > span:nth-child(odd) { background: var(--flag-green); }
+.flag > span:nth-child(2) { background: var(--flag-white); }
+
+.h1 {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 96px;
+  line-height: 0.88;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 16px 0 0;
+}
+.green { color: var(--green); }
+.lede {
+  font-size: var(--type-lede);
+  line-height: var(--type-lede-lh);
+  max-width: 52ch;
+  margin: 18px 0 0;
+  color: var(--text-body-cool);
+}
+.drops {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 10px;
+  margin: 22px 0 0;
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.liveDot { width: 7px; height: 7px; border-radius: 50%; background: var(--green-dot); display: block; }
+.xLink { color: var(--gold); display: inline-flex; align-items: center; min-height: 24px; }
+.xLink:hover { color: var(--gold-bright-ink); text-decoration: underline; }
+/* The one page the hunt names (lib/naija66/copy.ts CODE1_PAGE), in the hero
+   and in step 1: gold like every link here, underlined as prose. */
+.lede a, .stepText a { color: var(--gold); }
+.lede a:hover, .stepText a:hover { color: var(--gold-bright-ink); }
+
+/* ── Sections ───────────────────────────────────────────────────────────── */
+.section { padding-top: 44px; padding-bottom: 48px; }
+.h2 {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 38px;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 12px 0 22px;
+}
+
+.steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+.step { background: var(--bg-soft); padding: 22px 22px 24px; }
+.stepNo {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  letter-spacing: var(--type-label-tracking);
+  color: var(--green);
+}
+.stepTitle {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.1;
+  text-transform: uppercase;
+  margin: 10px 0 0;
+}
+.stepText {
+  margin: 10px 0 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-body-cool);
+}
+
+.rules {
+  margin: 0;
+  padding: 0 0 0 20px;
+  columns: 2;
+  column-gap: 56px;
+  font-size: var(--type-body);
+  line-height: var(--type-body-lh);
+  color: var(--text-body-cool);
+}
+.rules li { break-inside: avoid; margin: 0 0 10px; }
+.rules li::marker { color: var(--green); }
+.back { margin: 22px 0 0; font-size: var(--type-small); color: var(--text-muted); }
+.back a { color: var(--gold); }
+
+@media (max-width: 1239px) {
+  .h1 { font-size: 70px; }
+  .hero { grid-template-columns: 1fr; gap: 32px; }
+  .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}

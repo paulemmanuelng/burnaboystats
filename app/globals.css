@@ -295,6 +295,12 @@
   /* The dot is not text, so it answers a 3:1 floor instead of 4.5 and stays
      greener on paper than the label beside it. */
   --green-dot: light-dark(#1f9a5a, #3ed17f);
+  /* The Nigerian flag, for the Naija @ 66 hunt's green-white-green motif
+     (Oct 2026). A flag's colours are the flag's in either theme, so these do
+     not go through light-dark(); the motif carries a --line hairline so its
+     white band still has an edge on paper. Never text: --green is the ink. */
+  --flag-green: #008751;
+  --flag-white: #ffffff;
   --red: #c0392b;     /* ambient background wash only — NEVER for text */
   --red-ink: light-dark(#b3261e, #e0796d); /* negative deltas and "sold" labels: the readable red.
                          The wash red measured 3.64:1 as 10px text on the
