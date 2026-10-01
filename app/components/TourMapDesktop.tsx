@@ -263,9 +263,11 @@ export default function TourMapDesktop({ data }: { data: TourMapProps }) {
           <h1 className={styles.title}>
             Where he&apos;s <span className="inkText">performed</span>
           </h1>
+          {/* Two lines at 16px on the 430px measure, so the map's foot reaches a
+              1440x900 screen (item 5, Paul 1 Oct 2026: measured 905px, against
+              934px for the four-line wording it replaced). */}
           <p className={styles.lede}>
-            The countries Burna Boy has taken to the stage, from arena tours and stadium nights to festival headline sets. Pick a
-            country on the map or in the list for its shows.
+            Every country Burna Boy has played, from stadium nights to festival headlines. Pick one to see its shows.
           </p>
         </div>
         <div className={styles.figs}>

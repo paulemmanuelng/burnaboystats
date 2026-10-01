@@ -353,3 +353,20 @@ describe("item 5: the desktop lede is set at body size so the map reaches the fi
     expect(ledeRule(SHIPPED)).not.toContain("font-size: var(--type-body);");
   });
 });
+
+describe("item 5: the desktop lede stays at two lines on its 430px measure", () => {
+  const src = readFileSync(join(process.cwd(), "app/components/TourMapDesktop.tsx"), "utf8");
+  const ledeText = (s: string) =>
+    (/<p className=\{styles\.lede\}>([\s\S]*?)<\/p>/.exec(s)?.[1] ?? "").replace(/\s+/g, " ").trim();
+  // Measured in Chrome at 1440x900, 16px Geist: 105 characters wrap to two
+  // lines (map foot 905px); the shipped 157-character lede took four (934px).
+  it("is short enough for two lines", () => {
+    expect(ledeText(src).length).toBeGreaterThan(40);
+    expect(ledeText(src).length).toBeLessThanOrEqual(105);
+  });
+  it("negative control: the shipped four-line lede is caught", () => {
+    const SHIPPED =
+      '<p className={styles.lede}>\n            The countries Burna Boy has taken to the stage, from arena tours and stadium nights to festival headline sets. Pick a\n            country on the map or in the list for its shows.\n          </p>';
+    expect(ledeText(SHIPPED).length).toBeGreaterThan(105);
+  });
+});
