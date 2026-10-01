@@ -23,7 +23,7 @@ import UnmergePage from "../app/analysis/spotify-unmerge/page";
 import MobileTabBar from "../app/components/MobileTabBar";
 import { BACK_BAR_ROUTES, ACTION_BAR_ROUTES, hasOwnMobileChrome, hasOwnActionBar } from "../app/lib/mobileScreens";
 import { spotifyTotalStreamsExact } from "../app/data/streamingTotals";
-import { dom, text, trees, declared } from "./fixtures/phoneTrees";
+import { dom, text, trees, declared, declaredAt, cssRules } from "./fixtures/phoneTrees";
 
 /**
  * /analysis/spotify-unmerge gets a phone screen.
@@ -103,6 +103,66 @@ describe(ROUTE, () => {
       `${questions.length} questions`,
     ]);
     expect(declared(PHONE, ".badge", "color")).toEqual(["var(--gold)"]);
+  });
+
+  describe("the back-bar label: one line from 390 to 401, two readable lines below (items 42/43, review of 30 Sep)", () => {
+    // Measured in Chrome beside today's "6 questions" badge: at the drawn
+    // 0.14em the label needs 148.9px where the bar leaves 143.8 at 390, so it
+    // broke onto two lines set solid (line-height 1). At the siblings' 0.11em
+    // it is one line from 390 to 401; at 375 and under no single line fits, so
+    // it wraps — at the leading the sibling back bars inherit, not 1.
+    const DRAWN = [402, 430, 900];
+    const UNDER = [320, 360, 375, 390, 393, 401];
+    const SIBLING = read("app/components/mobileAnalysis.module.css");
+    /** Widths under 402 where the label is not on the sibling bars' 0.11em and inherited leading. */
+    const offSiblingGrammar = (css: string) =>
+      UNDER.flatMap((w) => {
+        const ls = declaredAt(css, ".backLabel", "letter-spacing", w);
+        const lh = declaredAt(css, ".backLabel", "line-height", w);
+        return ls === "0.11em" && lh === "inherit" ? [] : [`${w}px: ${ls} / ${lh}`];
+      });
+    // The rule the phone screen shipped with (591562f6): the artboard's 0.14em,
+    // set solid, at every width.
+    const SHIPPED = `.backLabel {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}`;
+    // The first fix (review round 2): 0.11em under 402, still set solid, so
+    // 375 and 360 broke onto two lines with no leading between them.
+    const FIRST_FIX = `${SHIPPED}
+@media (max-width: 401px) {
+  .backLabel { letter-spacing: 0.11em; }
+}`;
+
+    it("keeps the drawn 0.14em, set solid, at 402 and wider", () => {
+      for (const w of DRAWN) {
+        expect(declaredAt(PHONE, ".backLabel", "letter-spacing", w), `${w}px`).toBe("0.14em");
+        expect(declaredAt(PHONE, ".backLabel", "line-height", w), `${w}px`).toBe("1");
+      }
+    });
+
+    it("under 402 takes the sibling back bars' 0.11em and the leading they inherit", () => {
+      expect(offSiblingGrammar(PHONE)).toEqual([]);
+      // Both values are the siblings' own: 0.11em, and no line-height of their own.
+      expect(declared(SIBLING, ".backLabel", "letter-spacing")).toEqual(["0.11em"]);
+      expect(declared(SIBLING, ".backLabel", "line-height")).toEqual([]);
+    });
+
+    it("never truncates the label and never sets it under 11px", () => {
+      for (const prop of ["text-overflow", "overflow", "white-space", "max-width"]) {
+        expect(cssRules(PHONE).filter((r) => r.selector === ".backLabel" && new RegExp(`(?:^|;|\\s)${prop}\\s*:`).test(r.body)), prop).toEqual([]);
+      }
+      for (const w of [...UNDER, ...DRAWN]) expect(declaredAt(PHONE, ".backLabel", "font-size", w), `${w}px`).toBe("11px");
+    });
+
+    it("negative control: the shipped rule and the first fix both fail the under-402 check", () => {
+      expect(offSiblingGrammar(SHIPPED)).toEqual(UNDER.map((w) => `${w}px: 0.14em / 1`));
+      expect(offSiblingGrammar(FIRST_FIX)).toEqual(UNDER.map((w) => `${w}px: 0.11em / 1`));
+    });
   });
 
   describe("structured data (item 78)", () => {

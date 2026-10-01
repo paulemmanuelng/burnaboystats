@@ -55,6 +55,21 @@
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
+/* The artboard draws the label at 0.14em, set solid (line-height 1), on a
+   402-wide phone. Under 402 it takes the sibling back bars' grammar
+   (mobileAbout, mobileAnalysis …): their 0.11em, and the leading they inherit
+   instead of 1 — the same rule as the Spotify correction's bar
+   (mobileUnmerge.module.css). Measured in Chrome beside today's "6 figures"
+   badge (review, 30 Sep 2026): at 0.14em the label broke onto two lines set
+   solid at 360. At 0.11em it is one line from 360 to 401; on a narrower
+   phone it wraps onto two lines at the inherited leading. Never truncated,
+   never under 11px. */
+@media (max-width: 401px) {
+  .backLabel {
+    letter-spacing: 0.11em;
+    line-height: inherit;
+  }
+}
 /* The count, from data, in gold as on the sibling back-bar screens (owner
    decision, 30 Sep 2026). The badge takes the free space, so the menu button
    (whose own rule says margin-left:auto) sits straight after it, as drawn;
