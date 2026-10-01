@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePagePath } from "../lib/pagePath";
 import styles from "./mobileNavSheet.module.css";
 import ThemeToggle from "./ThemeToggle";
 import { useFocusTrap } from "../lib/useFocusTrap";
@@ -40,7 +40,7 @@ export default function MobileNavSheet({
   searchHint: string;
 }) {
   const [open, setOpen] = useState(false);
-  const pathname = usePathname();
+  const pathname = usePagePath();
   const closeRef = useRef<HTMLButtonElement>(null);
   const sheetRef = useRef<HTMLDivElement>(null);
   // The button that opened us, so focus can return to it rather than to the

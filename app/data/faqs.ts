@@ -16,7 +16,7 @@ import { daiDaiNumberOnes } from "./charts";
 import { countryNumberOnes, countryNumberOneReleases } from "../lib/analysis";
 import { countryCount as performedCountryCount, regionCount } from "./performedCountries";
 import { festivals } from "./tours";
-import { carCount, totalValueFormatted, topCarValueFormatted } from "./cars";
+import { carCount, totalValueReported, topCarValueFormatted } from "./cars";
 import { BURNA_HOT_100_ENTRIES } from "./africasBiggest";
 
 const total = totalAwards();
@@ -124,7 +124,7 @@ export const faqs: { g: GroupId; q: string; a: string }[] = [
   {
     g: "cars",
     q: "How many cars does Burna Boy have?",
-    a: `Burna Boy currently has ${carCount} cars — a collection worth a reported ${totalValueFormatted}+, spanning Ferrari, Lamborghini, Rolls-Royce, McLaren, Bugatti, Porsche and Mercedes. Only vehicles confirmed still in his possession are counted; ones he has since sold (a Ferrari 458 Italia and 488 Spider) are listed separately.`,
+    a: `Burna Boy currently has ${carCount} cars — a collection worth a reported ${totalValueReported}, spanning Ferrari, Lamborghini, Rolls-Royce, McLaren, Bugatti, Porsche and Mercedes. Only vehicles confirmed still in his possession are counted; ones he has since sold (a Ferrari 458 Italia and 488 Spider) are listed separately.`,
   },
   {
     g: "cars",
@@ -134,7 +134,7 @@ export const faqs: { g: GroupId; q: string; a: string }[] = [
   {
     g: "cars",
     q: "How much is Burna Boy's car collection worth?",
-    a: `Burna Boy's ${carCount}-car collection is worth a reported ${totalValueFormatted}+ in total, based on itemised entertainment-press valuations (import-inclusive) — led by his ₦9 billion Bugatti Chiron, a McLaren Senna and a Ferrari Purosangue.`,
+    a: `Burna Boy's ${carCount}-car collection is worth a reported ${totalValueReported} in total, based on itemised entertainment-press valuations (import-inclusive) — led by his ₦9 billion Bugatti Chiron, a McLaren Senna and a Ferrari Purosangue.`,
   },
   {
     g: "artist",

@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { render, screen, fireEvent, waitFor, act, cleanup } from "@testing-library/react";
 import { renderToString, renderToStaticMarkup } from "react-dom/server";
+import { useEffect, useState } from "react";
 
 /**
  * Naija @ 66 on the page: the key slot every page carries, the /naija66 page
@@ -427,6 +428,52 @@ describe("the home banner", () => {
     expect(screen.queryByText(/is live/)).toBeNull();
     expect(screen.getAllByText(/How it works/)).toHaveLength(2);
     expect(screen.queryByText(/Play/)).toBeNull();
+  });
+
+  it("reads the status once for both layouts' banners", async () => {
+    // The home page mounts one banner per layout and CSS hides one; both used
+    // to fetch, so every load read the status twice (live debug, 1 Oct 2026).
+    setNow(AT_0905);
+    const calls = stubApi();
+    render(
+      <>
+        <Naija66BannerLive layout="phone" initialPhase="live" />
+        <Naija66BannerLive layout="desktop" initialPhase="live" />
+      </>,
+    );
+    await waitFor(() => expect(screen.getAllByText("Naija @ 66 is live — 5 of 5 prizes left")).toHaveLength(2));
+    expect(calls).toHaveLength(1);
+  });
+
+  it("negative control: two banners each running the shipped effect read it twice", async () => {
+    setNow(AT_0905);
+    const calls = stubApi();
+    // The effect as it shipped, one fetch per mounted banner.
+    function ShippedBanner() {
+      const [left, setLeft] = useState<number | null>(null);
+      useEffect(() => {
+        let alive = true;
+        fetch("/api/naija66/status", { cache: "no-store" })
+          .then((r) => (r.ok ? (r.json() as Promise<{ ready: boolean; prizes: PublicPrize[] }>) : null))
+          .then((s) => {
+            if (!alive || !s) return;
+            setLeft(s.prizes.filter((p) => p.state === "live" || p.state === "sleeping").length);
+          })
+          .catch(() => {});
+        return () => {
+          alive = false;
+        };
+      }, []);
+      return <span>{left === null ? "" : `${left} left`}</span>;
+    }
+    render(
+      <>
+        <ShippedBanner />
+        <ShippedBanner />
+      </>,
+    );
+    await waitFor(() => expect(screen.getAllByText("5 left")).toHaveLength(2));
+    expect(calls).toHaveLength(2);
   });
 
   it("negative control: a ready hunt's banner does say live, and counts", async () => {

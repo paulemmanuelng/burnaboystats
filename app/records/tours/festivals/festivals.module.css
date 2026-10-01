@@ -64,6 +64,11 @@
   transition: background var(--dur-fast) var(--ease);
 }
 .mapLink:hover { background: var(--bg-raised); }
+/* The site's focus rule (globals.css, a:focus-visible, 0,1,1) sets
+   border-radius: 3px on the element itself and beats this 0,1,0 rule, so the
+   pill squared off under keyboard focus (live debug, 1 Oct 2026). The ring
+   keeps the pill's own radius, as compare.module.css does for its pills. */
+.mapLink:focus-visible { border-radius: 999px; }
 /* On paper gold measures 4.14:1 on --bg-raised, under AA for 11px text, so the
    hovered label reads in ink, as the other --bg-raised hovers do (ruling,
    26 Sep 2026). Dark keeps its gold. */

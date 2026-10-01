@@ -253,7 +253,20 @@
 /* The owner's hover rule: the surface presses to --bg-raised, no gold wash. */
 .jumpCard:hover { border-color: var(--gold); background: var(--bg-raised); }
 .jumpCardAlt:hover { border-color: var(--gold); background: color-mix(in srgb, var(--gold-wash-base) calc(5% * var(--wash-strength)), transparent); }
+/* Keyboard focus keeps the card's own corner: the global a:focus-visible rule
+   (0,1,1) sets border-radius: 3px and would win over the 0,1,0 card rule. */
+.jumpCard:focus-visible,
+.jumpCardAlt:focus-visible { border-radius: var(--radius-md); }
 .cardText { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+/* The pair shares one row height (the grid stretches both to the taller), so
+   each text block fills its card's height and the description takes the slack:
+   titles line up at the top, the figure lines at the bottom, and the arrow
+   stays centred. Centring the text dropped the shorter block: at 1024 the
+   Festivals description wraps to two lines and the map card's does not, which
+   put the titles 10px apart and the sub-lines 9px apart (live debug, 1 Oct
+   2026). Where both descriptions take the same lines (1440) nothing moves. */
+.cardsRow .cardText { align-self: stretch; }
+.cardsRow .cardDesc { flex-grow: 1; }
 .cardTitle {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
