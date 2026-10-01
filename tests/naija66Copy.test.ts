@@ -6,15 +6,14 @@ import {
   FLOW,
   HOW_IT_WORKS,
   PRIZE,
-  REVEAL_BUTTON,
-  REVEAL_FINE,
   RULES,
   WINNER_KEEP_LINE,
   WINNER_LINE,
+  SLOW_DOWN,
   cardClaimed,
-  cardHidden,
 } from "../app/lib/naija66/copy";
 import { NAIJA66_PRIZES } from "../app/data/naija66";
+import { NAIJA66_WORD_HASHES } from "../app/data/naija66Words";
 import { wordsText } from "../app/components/Naija66Words";
 import { metadata } from "../app/naija66/page";
 import { alt as ogAlt } from "../app/naija66/opengraph-image";
@@ -154,19 +153,16 @@ describe("where to look", () => {
 
   it("says the reveal flow in Paul's words, and no copy names a prize page", () => {
     expect(FLOW).toBe(
-      "At each drop (9am, 12pm, 3pm, 6pm, 9pm WAT) a code hides on one page of the site. Follow @paulemmanuelng on X for where to look. The first person to open that page and tap Reveal gets the code; it then shows as claimed for everyone else. DM it to @paulemmanuelng as soon as you get it.",
+      "At each drop (9am, 12pm, 3pm, 6pm, 9pm WAT) a code hides in a word on one page of the site. Follow @paulemmanuelng on X for where to look. Tap the right word first and the code is yours — after that it shows as claimed. DM it to @paulemmanuelng as soon as you get it.",
     );
-    expect(cardHidden(4)).toBe("Naija @ 66 · Code 4 is hidden on this page");
-    expect(REVEAL_BUTTON).toBe("Tap to reveal");
-    expect(REVEAL_FINE).toBe("First tap wins. One prize per person.");
+    expect(SLOW_DOWN).toBe("Slow down a little — try again in a minute.");
     expect(cardClaimed(2, "2026-10-01T14:31:00Z")).toBe(
       "Code 2 was claimed at 15:31 WAT. Follow @paulemmanuelng on X for the next one.",
     );
     expect(ALREADY_WON_LINE).toBe("You've already won a prize today. One per person.");
     const words = [
       FLOW,
-      cardHidden(1),
-      REVEAL_FINE,
+      SLOW_DOWN,
       cardClaimed(1, null),
       ALREADY_WON_LINE,
       WINNER_LINE,
@@ -181,6 +177,8 @@ describe("where to look", () => {
       const name = p.path.split("/").pop()!.replace(/-/g, " ");
       expect(words.toLowerCase().includes(name), name).toBe(false);
     }
+    // The words themselves are not in the repository at all: only their hashes.
+    for (const h of Object.values(NAIJA66_WORD_HASHES)) expect(h).toMatch(/^[0-9a-f]{64}$/);
   });
 
   it("negative control: a card line that named its page would be caught", () => {

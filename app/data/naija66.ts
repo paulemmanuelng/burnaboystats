@@ -6,6 +6,9 @@
  * (Paul, 1 Oct 2026: the HMAC mapping could not be matched to the deployed
  * secret, and a public schedule of paths is the accepted trade). The site's
  * copy still names no page; X says where to look.
+ * Each prize's WORD — the one its code hides behind — is NOT here: this file
+ * ships to the browser, so the words live server-side only, in
+ * app/data/naija66Words.ts.
  * tests/naija66Config.test.ts holds the hunt files to exactly these five
  * routes, in this file only.
  *
@@ -47,11 +50,3 @@ export const NAIJA66_FIRST_DROP = NAIJA66_PRIZES[0].dropsAt;
 /** The account that says where to look next, and the one winners DM. */
 export const NAIJA66_X_HANDLE = "@paulemmanuelng";
 export const NAIJA66_X_URL = "https://x.com/paulemmanuelng";
-
-/**
- * Whether a dropped, unclaimed prize page shows its "Code N is hidden on this
- * page · Tap to reveal" card. Off (Paul, 1 Oct 2026 18:40 WAT: "hide"): the
- * code is to hide in a word or phrase on the page, not in a card anyone
- * visiting can tap. Claimed and won cards still show.
- */
-export const NAIJA66_HERE_CARD = false;

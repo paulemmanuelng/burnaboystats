@@ -17,13 +17,6 @@ const OTHER_PATH = "/another/sample";
 /** The pathname usePathname() returns; a test moves it to navigate. */
 const nav = vi.hoisted(() => ({ path: "/a/sample-page" }));
 
-// These suites test the card's flows; the live config hides the "here" card
-// (NAIJA66_HERE_CARD = false, Paul 1 Oct), which tests/naija66Awarded.test.ts
-// checks on the real config.
-vi.mock("../app/data/naija66", async (importOriginal) => {
-  const real = await importOriginal<typeof import("../app/data/naija66")>();
-  return { ...real, NAIJA66_HERE_CARD: true };
-});
 vi.mock("next/navigation", () => ({
   useRouter: () => ({ push: vi.fn(), prefetch: vi.fn(), replace: vi.fn(), back: vi.fn() }),
   usePathname: () => nav.path,
@@ -79,7 +72,86 @@ function stubHunt(spotBody: unknown = {}, revealBody: unknown = {}) {
   return calls;
 }
 
-describe("HuntKeySlot (the reveal card)", () => {
+/** A page: words in <main> (plain, in a link, in a button), a footer, and the slot. */
+function Page() {
+  return (
+    <>
+      <main>
+        <p>An ordinary line about the Zebrafinch, its 412,500 fans.</p>
+        <a href="#x">Zebrafinch link</a>
+        <button type="button">Zebrafinch button</button>
+      </main>
+      <footer>Zebrafinch footer</footer>
+      <HuntKeySlot />
+    </>
+  );
+}
+const renderPage = () => render(<Page />);
+
+/**
+ * Taps `word` where it sits inside `where` (main's plain paragraph by default).
+ * jsdom has no layout, so the caret goes where a real tap would put it: a
+ * collapsed selection inside the word (word.ts reads that as its fallback).
+ */
+async function tapWord(container: HTMLElement, word: string, where = "main p") {
+  const el = caretIn(container, word, where);
+  await act(async () => {
+    fireEvent.click(el);
+  });
+}
+
+/** Puts the caret inside `word` where it sits inside `where`, as a real tap would. */
+function caretIn(container: HTMLElement, word: string, where: string) {
+  const el = container.ownerDocument.querySelector(where)!;
+  const text = [...el.childNodes].find((n) => n.nodeType === 3 && (n as Text).data.includes(word)) as Text;
+  const sel = document.getSelection()!;
+  sel.removeAllRanges();
+  const r = document.createRange();
+  r.setStart(text, text.data.indexOf(word) + 2);
+  r.collapse(true);
+  sel.addRange(r);
+  return el;
+}
+
+/**
+ * A finger on `word`: pointer down then up, the way an iPhone reports a tap on
+ * plain text — with NO click after it (WebKit sends none when nothing up the
+ * tree listens for clicks). `click: true` adds the click Android sends too.
+ */
+async function touchWord(
+  container: HTMLElement,
+  word: string,
+  {
+    where = "main p",
+    move = 0,
+    holdMs = 0,
+    cancel = false,
+    secondFinger = false,
+    click = false,
+    pointerType = "touch",
+  }: {
+    where?: string;
+    move?: number;
+    holdMs?: number;
+    cancel?: boolean;
+    secondFinger?: boolean;
+    click?: boolean;
+    pointerType?: string;
+  } = {},
+) {
+  const el = caretIn(container, word, where);
+  const finger = { pointerType, pointerId: 7, isPrimary: true, button: 0, clientY: 20 };
+  await act(async () => {
+    fireEvent.pointerDown(el, { ...finger, clientX: 20 });
+    if (secondFinger) fireEvent.pointerDown(el, { ...finger, pointerId: 8, isPrimary: false, clientX: 80 });
+    if (cancel) fireEvent.pointerCancel(el, { ...finger, clientX: 20 });
+    if (holdMs) vi.setSystemTime(new Date(Date.now() + holdMs));
+    fireEvent.pointerUp(el, { ...finger, clientX: 20 + move });
+    if (click) fireEvent.click(el);
+  });
+}
+
+describe("HuntKeySlot (the word tap)", () => {
   it("renders nothing and asks nothing before the first drop or from the close", async () => {
     for (const t of [EVE, BEFORE, CLOSED, "2026-10-09T00:00:00Z"]) {
       setNow(t);
@@ -132,72 +204,221 @@ describe("HuntKeySlot (the reveal card)", () => {
     expect(renderToString(<HuntKeySlot />)).toBe("");
   });
 
-  it("shows the hidden-code card, and a tap reveals the code with the DM lines", async () => {
+  it("shows nothing on a dropped prize page, here or claimed: no card, no cue", async () => {
+    setNow(AT_0905);
+    for (const body of [{ here: true, prize: 2 }, { claimed: true, prize: 1, at: "2026-10-01T08:03:00.000Z" }]) {
+      const calls = stubHunt(body);
+      const { container, unmount } = render(<HuntKeySlot />);
+      await waitFor(() => expect(calls).toHaveLength(1));
+      await act(async () => {});
+      expect(container.innerHTML).toBe("");
+      unmount();
+    }
+  });
+
+  it("the right word wins: posts {p, w, token} and shows the code with the DM lines", async () => {
     setNow(AT_0905);
     localStorage.removeItem("naija66-claim");
     const calls = stubHunt(
       { here: true, prize: 2 },
       { won: true, prize: 2, code: "NG66-2-XXXXXX", at: "2026-10-01T14:31:00.000Z" },
     );
-    render(<HuntKeySlot />);
-    await waitFor(() => screen.getByText("Naija @ 66 · Code 2 is hidden on this page"));
-    expect(screen.getByText("First tap wins. One prize per person.")).toBeTruthy();
-    // Nothing has been posted until the tap.
+    const { container } = renderPage();
+    await waitFor(() => expect(calls).toHaveLength(1));
+    await act(async () => {});
+    // Nothing is posted until a word is tapped.
     expect(calls.filter((c) => c.method === "POST")).toEqual([]);
-    await act(async () => {
-      fireEvent.click(screen.getByRole("button", { name: "Tap to reveal" }));
-    });
+    await tapWord(container, "Zebrafinch");
     await waitFor(() => screen.getByText("NG66-2-XXXXXX"));
     expect(screen.getByText(WINNER_LINE)).toBeTruthy();
     expect(screen.getByText(WINNER_KEEP_LINE)).toBeTruthy();
     const post = calls.find((c) => c.method === "POST")!;
     expect(post.url).toBe("/api/naija66/reveal");
     expect(post.body!.p).toBe(SAMPLE_PATH);
+    expect(post.body!.w).toBe("Zebrafinch");
     expect(post.body!.token).toMatch(/^[0-9a-f]{32}$/);
     expect(localStorage.getItem("naija66-claim")).toBe(post.body!.token);
   });
 
-  it("shows a lost race as claimed, with the time in WAT", async () => {
+  it("a wrong word ({} back) shows nothing at all", async () => {
     setNow(AT_0905);
-    stubHunt({ here: true, prize: 1 }, { claimed: true, prize: 1, at: "2026-10-01T08:03:00.000Z" });
-    render(<HuntKeySlot />);
-    await waitFor(() => screen.getByRole("button", { name: "Tap to reveal" }));
+    const calls = stubHunt({ here: true, prize: 2 }, {});
+    const { container } = renderPage();
+    await waitFor(() => expect(calls).toHaveLength(1));
+    await act(async () => {});
+    await tapWord(container, "ordinary");
+    await waitFor(() => expect(calls.filter((c) => c.method === "POST")).toHaveLength(1));
+    expect(calls.find((c) => c.method === "POST")!.body!.w).toBe("ordinary");
+    await act(async () => {});
+    expect(document.querySelector("aside")).toBeNull();
+    expect(document.querySelector("[role=status]")).toBeNull();
+  });
+
+  it("ignores taps on links and buttons, outside <main>, and on selected text", async () => {
+    setNow(AT_0905);
+    const calls = stubHunt({ here: true, prize: 2 }, { won: true, prize: 2, code: "NG66-2-XXXXXX", at: AT_0905 });
+    const { container } = renderPage();
+    await waitFor(() => expect(calls).toHaveLength(1));
+    await act(async () => {});
+    await tapWord(container, "Zebrafinch", "a");
+    await tapWord(container, "Zebrafinch", "button");
+    await tapWord(container, "Zebrafinch", "footer");
+    // A selection across words: the player is selecting text, not tapping a word.
+    const p = container.querySelector("main p")!;
+    const text = p.firstChild as Text;
+    const sel = document.getSelection()!;
+    const range = document.createRange();
+    range.setStart(text, 0);
+    range.setEnd(text, 8);
+    sel.removeAllRanges();
+    sel.addRange(range);
     await act(async () => {
-      fireEvent.click(screen.getByRole("button", { name: "Tap to reveal" }));
+      fireEvent.click(p);
     });
+    expect(calls.filter((c) => c.method === "POST")).toEqual([]);
+    expect(screen.queryByText("NG66-2-XXXXXX")).toBeNull();
+  });
+
+  it("negative control: the same word in plain text inside <main> does post", async () => {
+    setNow(AT_0905);
+    const calls = stubHunt({ here: true, prize: 2 }, {});
+    const { container } = renderPage();
+    await waitFor(() => expect(calls).toHaveLength(1));
+    await act(async () => {});
+    await tapWord(container, "Zebrafinch");
+    await waitFor(() => expect(calls.filter((c) => c.method === "POST")).toHaveLength(1));
+  });
+
+  it("a finger's tap on the word posts with no click at all (an iPhone sends none), and wins", async () => {
+    setNow(AT_0905);
+    const calls = stubHunt({ here: true, prize: 2 }, { won: true, prize: 2, code: "NG66-2-XXXXXX", at: AT_0905 });
+    const { container } = renderPage();
+    await waitFor(() => expect(calls).toHaveLength(1));
+    await act(async () => {});
+    await touchWord(container, "Zebrafinch");
+    await waitFor(() => screen.getByText("NG66-2-XXXXXX"));
+    const posts = calls.filter((c) => c.method === "POST");
+    expect(posts).toHaveLength(1);
+    expect(posts[0].body!.w).toBe("Zebrafinch");
+  });
+
+  it("a tap that also sends a click (Android) posts once, not twice", async () => {
+    setNow(AT_0905);
+    const posts: unknown[] = [];
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async (url: string, init?: RequestInit) => {
+        if (url.includes("/reveal")) posts.push(init?.body);
+        return { ok: true, status: 200, json: async () => (url.includes("/reveal") ? {} : { here: true, prize: 2 }) };
+      }),
+    );
+    const { container } = renderPage();
+    await act(async () => {});
+    await touchWord(container, "Zebrafinch", { click: true });
+    await act(async () => {});
+    // Even with the first reply back, the click that trails the tap is skipped.
+    expect(posts).toHaveLength(1);
+  });
+
+  it("a scroll, a cancelled touch, a pinch, a long press, or a touch on a link posts nothing", async () => {
+    setNow(AT_0905);
+    const calls = stubHunt({ here: true, prize: 2 }, {});
+    const { container } = renderPage();
+    await waitFor(() => expect(calls).toHaveLength(1));
+    await act(async () => {});
+    await touchWord(container, "Zebrafinch", { move: 30 });
+    await touchWord(container, "Zebrafinch", { cancel: true });
+    await touchWord(container, "Zebrafinch", { secondFinger: true });
+    await touchWord(container, "Zebrafinch", { holdMs: 900 });
+    await touchWord(container, "Zebrafinch", { where: "a" });
+    await touchWord(container, "Zebrafinch", { where: "footer" });
+    // A mouse's pointer events are not its tap: its click is.
+    await touchWord(container, "Zebrafinch", { pointerType: "mouse" });
+    expect(calls.filter((c) => c.method === "POST")).toEqual([]);
+    // Negative control: a still finger lifted at once, on the same word, does post.
+    await touchWord(container, "Zebrafinch", { move: 3 });
+    await waitFor(() => expect(calls.filter((c) => c.method === "POST")).toHaveLength(1));
+  });
+
+  it("arms nothing on a page spot says {} for: a tap posts nothing", async () => {
+    setNow(AT_0905);
+    const calls = stubHunt({}, { won: true, prize: 2, code: "NG66-2-XXXXXX", at: AT_0905 });
+    const { container } = renderPage();
+    await waitFor(() => expect(calls).toHaveLength(1));
+    await act(async () => {});
+    await tapWord(container, "Zebrafinch");
+    expect(calls.filter((c) => c.method === "POST")).toEqual([]);
+  });
+
+  it("the right word after a claim shows it claimed, with the time in WAT; a winner gets one-per-person", async () => {
+    setNow(AT_0905);
+    stubHunt({ claimed: true, prize: 1, at: "2026-10-01T08:03:00.000Z" }, { claimed: true, prize: 1, at: "2026-10-01T08:03:00.000Z" });
+    const first = renderPage();
+    await act(async () => {});
+    await tapWord(first.container, "Zebrafinch");
     await waitFor(() =>
       screen.getByText("Code 1 was claimed at 09:03 WAT. Follow @paulemmanuelng on X for the next one."),
     );
-    expect(screen.queryByRole("button", { name: "Tap to reveal" })).toBeNull();
+    first.unmount();
+    stubHunt({ here: true, prize: 3 }, { alreadyWon: true });
+    const second = renderPage();
+    await act(async () => {});
+    await tapWord(second.container, "Zebrafinch");
+    await waitFor(() => screen.getByText(ALREADY_WON_LINE));
   });
 
-  it("shows a claimed page as claimed straight away, and a second winner the one-per-person line", async () => {
+  it("past 40 taps a minute (429) shows the quiet toast, and no card", async () => {
     setNow(AT_0905);
-    stubHunt({ claimed: true, prize: 1, at: "2026-10-01T08:03:00.000Z" });
-    const { unmount } = render(<HuntKeySlot />);
-    await waitFor(() => screen.getByText(/Code 1 was claimed at 09:03 WAT/));
-    unmount();
-    stubHunt({ here: true, prize: 3 }, { alreadyWon: true });
-    render(<HuntKeySlot />);
-    await waitFor(() => screen.getByRole("button", { name: "Tap to reveal" }));
-    await act(async () => {
-      fireEvent.click(screen.getByRole("button", { name: "Tap to reveal" }));
-    });
-    await waitFor(() => screen.getByText(ALREADY_WON_LINE));
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async (url: string) =>
+        url.includes("/reveal")
+          ? { ok: false, status: 429, json: async () => ({ error: "x" }) }
+          : { ok: true, status: 200, json: async () => ({ here: true, prize: 2 }) },
+      ),
+    );
+    const { container } = renderPage();
+    await act(async () => {});
+    await tapWord(container, "Zebrafinch");
+    await waitFor(() => screen.getByText("Slow down a little — try again in a minute."));
+    expect(document.querySelector("aside")).toBeNull();
+  });
+
+  it("one request in flight: a second tap while the first is out posts nothing", async () => {
+    setNow(AT_0905);
+    let release: (v: unknown) => void = () => {};
+    const posts: unknown[] = [];
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async (url: string, init?: RequestInit) => {
+        if (!url.includes("/reveal")) return { ok: true, status: 200, json: async () => ({ here: true, prize: 2 }) };
+        posts.push(init?.body);
+        await new Promise((r) => (release = r));
+        return { ok: true, status: 200, json: async () => ({}) };
+      }),
+    );
+    const { container } = renderPage();
+    await act(async () => {});
+    await tapWord(container, "Zebrafinch");
+    await tapWord(container, "ordinary");
+    expect(posts).toHaveLength(1);
+    await act(async () => release(null));
   });
 
   it("asks afresh on every arrival at a page, and never carries a card to the next page", async () => {
     setNow(AT_0905);
-    const calls = stubHunt({ here: true, prize: 1 });
-    const { container, rerender } = render(<HuntKeySlot />);
-    await waitFor(() => screen.getByText(/is hidden on this page/));
+    const calls = stubHunt({ here: true, prize: 1 }, { won: true, prize: 1, code: "NG66-1-XXXXXX", at: AT_0905 });
+    const { container, rerender } = renderPage();
+    await act(async () => {});
+    await tapWord(container, "Zebrafinch");
+    await waitFor(() => screen.getByText("NG66-1-XXXXXX"));
     stubHunt({});
     nav.path = OTHER_PATH;
-    rerender(<HuntKeySlot />);
-    expect(container.innerHTML).toBe("");
+    rerender(<Page />);
+    expect(screen.queryByText("NG66-1-XXXXXX")).toBeNull();
     await act(async () => {});
-    expect(container.innerHTML).toBe("");
-    expect(calls).toHaveLength(1);
+    expect(screen.queryByText("NG66-1-XXXXXX")).toBeNull();
+    expect(calls.filter((c) => c.method === "GET")).toHaveLength(1);
   });
 });
 

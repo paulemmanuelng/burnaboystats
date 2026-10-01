@@ -424,7 +424,7 @@ export const searchIndex: SearchDoc[] = [
     // Typed, not imported: this file imports no hunt code (see the top). The
     // prize's words are lib/naija66/copy.ts PRIZE.long, which
     // tests/naija66Copy.test.ts holds this line to.
-    description: "Nigeria at 66: five codes hidden on pages of the site on 1 October, each worth a month of Spotify Premium Nigeria (₦3,000) — the first tap of Reveal wins; the rules and the board.",
+    description: "Nigeria at 66: five codes hidden on pages of the site on 1 October, each worth a month of Spotify Premium Nigeria (₦3,000) — the first tap on the right word wins; the rules and the board.",
     keywords: ["naija", "naija 66", "nigeria", "independence day", "1 october", "key hunt", "treasure hunt", "hunt", "giveaway", "competition", "prize"],
   },
   {

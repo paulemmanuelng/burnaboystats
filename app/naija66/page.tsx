@@ -11,10 +11,10 @@ import { NAIJA66_X_URL } from "../data/naija66";
 
 export const metadata = pageMetadata({
   title: "Naija @ 66 — Burna Boy Stats Independence Day Hunt",
-  description: `Nigeria turns 66 on 1 October. Five codes hide on Burna Boy Stats — reveal one first and win ${PRIZE.long}. Free to play.`,
+  description: `Nigeria turns 66 on 1 October. Five codes hide in words on Burna Boy Stats — tap one first and win ${PRIZE.long}. Free to play.`,
   path: "/naija66",
   shareTitle: "Naija @ 66 — the Independence Day key hunt",
-  shareDescription: `Five codes hidden on pages of Burna Boy Stats on 1 October. Be the first to tap Reveal and win ${PRIZE.long}.`,
+  shareDescription: `Five codes hidden in words on Burna Boy Stats on 1 October. Be the first to tap the right word and win ${PRIZE.long}.`,
 });
 
 /**
@@ -50,8 +50,8 @@ export default function Naija66Page() {
                   Naija @ <span className={styles.green}>66</span>
                 </h1>
                 <p className={styles.lede}>
-                  Five codes hide on pages of Burna Boy Stats, one at each drop. Open the right page,
-                  tap Reveal first, and win {PRIZE.long}.
+                  Five codes hide in words on pages of Burna Boy Stats, one at each drop. Tap the
+                  right word first and win {PRIZE.long}.
                 </p>
                 <p className={styles.drops}>
                   <span className={styles.liveDot} aria-hidden="true" />

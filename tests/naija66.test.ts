@@ -10,6 +10,15 @@ vi.mock("../app/data/naija66", async (importOriginal) => {
   const real = await importOriginal<typeof import("../app/data/naija66")>();
   return { ...real, NAIJA66_PRIZES: real.NAIJA66_PRIZES.map(({ awarded: _awarded, ...p }) => p) };
 });
+// The live word list has words for prizes 3–5 only (1 and 2 were awarded);
+// these suites play prizes 1 and 2, so they get made-up words here.
+vi.mock("../app/data/naija66Words", async (importOriginal) => {
+  const real = await importOriginal<typeof import("../app/data/naija66Words")>();
+  return {
+    ...real,
+    NAIJA66_WORD_HASHES: { ...real.NAIJA66_WORD_HASHES, 1: real.wordHash(1, "zebrafinch"), 2: real.wordHash(2, "1,234.5") },
+  };
+});
 import { NAIJA66_PRIZES } from "../app/data/naija66";
 
 /**
@@ -81,9 +90,17 @@ const spot = (
     }),
   );
 
+/** The made-up word on each test prize page (the mock above); a decoy gets a guess. */
+const WORD: Record<string, string> = { [page(1)]: "Zebrafinch", [page(2)]: "1,234.5" };
+
 const reveal = (
   p: unknown,
-  { ip = "203.0.113.7", cookie, token }: { ip?: string; cookie?: string; token?: unknown } = {},
+  {
+    ip = "203.0.113.7",
+    cookie,
+    token,
+    w = typeof p === "string" ? (WORD[p] ?? "Zebrafinch") : "Zebrafinch",
+  }: { ip?: string; cookie?: string; token?: unknown; w?: unknown } = {},
 ) =>
   r.revealRoute.POST(
     new Request("https://burnaboystats.com/api/naija66/reveal", {
@@ -93,7 +110,7 @@ const reveal = (
         "x-forwarded-for": ip,
         ...(cookie ? { cookie } : {}),
       },
-      body: JSON.stringify(token === undefined ? { p } : { p, token }),
+      body: JSON.stringify(token === undefined ? { p, w } : { p, w, token }),
     }),
   );
 
@@ -267,12 +284,119 @@ describe("POST /api/naija66/reveal", () => {
     expect((await (await status()).json()).prizes[0].state).toBe("closed");
   });
 
-  it("trips after 8 taps per IP in 10 minutes, with a friendly 429", async () => {
-    for (let i = 0; i < 8; i++) expect((await reveal(DECOY, { ip: "9.9.9.9" })).status).toBe(200);
-    const ninth = await reveal(P1, { ip: "9.9.9.9" });
-    expect(ninth.status).toBe(429);
-    expect((await ninth.json()).error).toMatch(/ten minutes/);
+  it("lets a player tap 40 words a minute, then a quiet 429", async () => {
+    for (let i = 0; i < 40; i++) expect((await reveal(P1, { ip: "9.9.9.9", w: `word${i}` })).status).toBe(200);
+    const next = await reveal(P1, { ip: "9.9.9.9" });
+    expect(next.status).toBe(429);
+    expect((await next.json()).error).toBe("Slow down a little — try again in a minute.");
     expect((await (await reveal(P1, { ip: "9.9.9.10" })).json()).won).toBe(true);
+  });
+
+  it("the sweep cap: past 150 taps on one prize page from one IP in an hour, even the right word is {}", async () => {
+    vi.useFakeTimers({ toFake: ["Date"] });
+    try {
+      vi.setSystemTime(new Date("2026-10-01T08:00:30Z"));
+      const decoy = await answer(await reveal(DECOY, { ip: "1" }));
+      // A script trying every word, 40 a minute (the per-minute limit), one IP.
+      for (let i = 0; i < 150; i++) {
+        if (i > 0 && i % 40 === 0) vi.setSystemTime(new Date(Date.now() + 60_000));
+        expect(await (await reveal(P1, { ip: "7.7.7.7", w: `word${i}` })).text()).toBe("{}");
+      }
+      vi.setSystemTime(new Date(Date.now() + 60_000));
+      // The 151st tap is the right word: answered exactly as a wrong word, nothing claimed.
+      expect(await answer(await reveal(P1, { ip: "7.7.7.7" }))).toEqual(decoy);
+      expect((await (await status()).json()).prizes[0].state).toBe("live");
+      // Negative control: the same right word from another IP wins.
+      expect((await (await reveal(P1, { ip: "7.7.7.8" })).json()).won).toBe(true);
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
+  it("negative control: 149 wrong words from one IP, then the right word, still wins", async () => {
+    vi.useFakeTimers({ toFake: ["Date"] });
+    try {
+      vi.setSystemTime(new Date("2026-10-01T08:00:30Z"));
+      for (let i = 0; i < 149; i++) {
+        if (i > 0 && i % 40 === 0) vi.setSystemTime(new Date(Date.now() + 60_000));
+        await reveal(P1, { ip: "7.7.7.9", w: `word${i}` });
+      }
+      vi.setSystemTime(new Date(Date.now() + 60_000));
+      expect((await (await reveal(P1, { ip: "7.7.7.9" })).json()).won).toBe(true);
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
+  it("the sweep cap lifts after the hour, and is per prize page", async () => {
+    vi.useFakeTimers({ toFake: ["Date"] });
+    try {
+      at(AT_1205);
+      vi.setSystemTime(new Date("2026-10-01T11:00:30Z"));
+      for (let i = 0; i < 150; i++) {
+        if (i > 0 && i % 40 === 0) vi.setSystemTime(new Date(Date.now() + 60_000));
+        await reveal(P1, { ip: "7.7.8.1", w: `word${i}` });
+      }
+      vi.setSystemTime(new Date(Date.now() + 60_000));
+      expect(await (await reveal(P1, { ip: "7.7.8.1" })).text()).toBe("{}");
+      // Another prize's page is its own count.
+      expect((await (await reveal(P2, { ip: "7.7.8.1" })).json()).won).toBe(true);
+      vi.setSystemTime(new Date(Date.now() + 60 * 60_000));
+      expect((await (await reveal(P1, { ip: "7.7.8.1" })).json()).won).toBe(true);
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
+  it("the wrong word answers {} exactly as a decoy does, and claims nothing", async () => {
+    const decoy = await answer(await reveal(DECOY, { ip: "1" }));
+    for (const w of ["Zebra", "finch", "Zebrafinches", "1,234", "", null, 42, "Zebra finch"]) {
+      const res = await reveal(P1, { ip: "2", w });
+      expect(await answer(res), String(w)).toEqual(decoy);
+    }
+    expect((await (await status()).json()).prizes[0].state).toBe("live");
+    expect(await (await spot(P1)).json()).toEqual({ here: true, prize: 1 });
+  });
+
+  it("a request with no w at all is {} too", async () => {
+    const res = await r.revealRoute.POST(
+      new Request("https://burnaboystats.com/api/naija66/reveal", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "x-forwarded-for": "4.4.4.4" },
+        body: JSON.stringify({ p: P1, token: TOKEN_A }),
+      }),
+    );
+    expect(await res.text()).toBe("{}");
+    expect((await (await status()).json()).prizes[0].state).toBe("live");
+  });
+
+  it("the right word in any case, with surrounding punctuation, wins — once", async () => {
+    at(AT_1205);
+    const variants = ["ZEBRAFINCH", "zebrafinch.", "“Zebrafinch”", "(Zebrafinch),", " zebraFinch "];
+    const results = await Promise.all(variants.map((w, i) => reveal(P1, { ip: `10.1.0.${i}`, w }).then((x) => x.json())));
+    expect(results.filter((j) => j.won)).toHaveLength(1);
+    expect(results.filter((j) => j.claimed)).toHaveLength(variants.length - 1);
+  });
+
+  it("a number word wins with its punctuation inside, and not without it", async () => {
+    at(AT_1205);
+    expect(await (await reveal(P2, { ip: "10.3.0.1", w: "1234.5" })).text()).toBe("{}");
+    expect(await (await reveal(P2, { ip: "10.3.0.2", w: "1,234" })).text()).toBe("{}");
+    expect((await (await reveal(P2, { ip: "10.3.0.3", w: "1,234.5." })).json()).won).toBe(true);
+  });
+
+  it("the right word on the wrong page, or another prize's word, is {}", async () => {
+    at(AT_1205);
+    expect(await (await reveal(DECOY, { w: "Zebrafinch" })).text()).toBe("{}");
+    expect(await (await reveal(P2, { ip: "10.4.0.1", w: "Zebrafinch" })).text()).toBe("{}");
+    expect(await (await reveal(P1, { ip: "10.4.0.2", w: "1,234.5" })).text()).toBe("{}");
+  });
+
+  it("spot never carries the word, here or claimed", async () => {
+    const here = await (await spot(P1)).text();
+    await reveal(P1, { ip: "10.5.0.1" });
+    const claimed = await (await spot(P1, { ip: "10.5.0.2" })).text();
+    for (const body of [here, claimed]) expect(body.toLowerCase()).not.toContain("zebrafinch");
   });
 
   it("one prize per person: a winner's cookie cannot take a second", async () => {

@@ -47,8 +47,8 @@ export default function MobileNaija66() {
           Naija @ <span className={styles.green}>66</span>
         </h1>
         <p className={styles.lede}>
-          Five codes hide on pages of Burna Boy Stats, one at each drop. Open the right page, tap
-          Reveal first, and win {PRIZE.long}.
+          Five codes hide in words on pages of Burna Boy Stats, one at each drop. Tap the right
+          word first and win {PRIZE.long}.
         </p>
         <p className={styles.drops}>
           <span className={styles.liveDot} aria-hidden="true" />

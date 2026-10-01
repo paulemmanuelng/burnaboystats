@@ -62,7 +62,7 @@ export function HuntFlowBox({ layout }: { layout: Layout }) {
   return (
     <div className={`${styles.box} ${phone}`}>
       <div className={styles.kicker}>How to win</div>
-      <h2 className={styles.head}>Tap to reveal</h2>
+      <h2 className={styles.head}>Tap the right word</h2>
       <p className={styles.flowText}>{FLOW}</p>
     </div>
   );

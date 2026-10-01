@@ -20,9 +20,12 @@ describe("prizes awarded off the site (Paul, 1 Oct 2026: codes 1 and 2 were won 
 });
 
 
-describe("the here card is hidden (Paul, 1 Oct 18:40 WAT: hide it in a word or phrase)", () => {
-  it("is off in the live config", async () => {
-    const { NAIJA66_HERE_CARD } = await import("../app/data/naija66");
-    expect(NAIJA66_HERE_CARD).toBe(false);
+describe("the here card is gone (Paul, 1 Oct 18:40 WAT: hide it in a word or phrase)", () => {
+  it("no hunt config or copy carries the card's switch or its words any more", async () => {
+    const data = await import("../app/data/naija66");
+    const copy = await import("../app/lib/naija66/copy");
+    expect("NAIJA66_HERE_CARD" in data).toBe(false);
+    expect("REVEAL_BUTTON" in copy).toBe(false);
+    expect("cardHidden" in copy).toBe(false);
   });
 });
