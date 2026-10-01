@@ -552,8 +552,16 @@ export const tourMapCities: CityEntry[] = (() => {
 
 const playedCodes = new Set(performedCountries.map((c) => c.code));
 
-/** The static ground: every shape nobody played, one layer (brief §3.7). */
-export const landCodes = worldShapes.filter((s) => !playedCodes.has(s.code)).map((s) => s.code);
+/** Antarctica (ISO 010): the canvas renderer leaves it out (tour-map.js,
+ *  `name !== 'Antarctica'`). Its shape sits wholly below the World box
+ *  (map y 423–454; the box ends at 415), and the phone's 260px frame
+ *  letterboxes World with preserveAspectRatio meet, so it painted as a band
+ *  in the bottom letterbox where the design draws plain sea (§2, item 7). */
+export const ANTARCTICA = 10;
+
+/** The static ground: every shape nobody played, one layer (brief §3.7),
+ *  less Antarctica. */
+export const landCodes = worldShapes.filter((s) => !playedCodes.has(s.code) && s.code !== ANTARCTICA).map((s) => s.code);
 /** The land and played shapes the close-up needs: only the ones in its box. */
 export const closeupLandCodes = landCodes.filter((code) => meets(shapeBox.get(code)!, CLOSEUP));
 
