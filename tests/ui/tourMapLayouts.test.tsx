@@ -1,4 +1,5 @@
 import { render, screen, fireEvent, act, within, cleanup } from "@testing-library/react";
+import { readFileSync } from "node:fs";
 
 vi.mock("next/navigation", () => ({
   useRouter: () => ({ push: vi.fn(), prefetch: vi.fn(), replace: vi.fn(), back: vi.fn() }),
@@ -183,6 +184,105 @@ describe("the desktop: figures, legend, find box", () => {
     expect(screen.getByRole("region", { name: "Canada" })).toBeInTheDocument();
   });
 });
+
+describe("the card's side is measured, and measured again when a preview becomes a pin (item 4)", () => {
+  // The 1024 band as measured live on 1 Oct 2026: the frame is 942 × 424
+  // inside its 1px border, the card 280 wide; New Zealand's preview is 296px
+  // tall and its pinned card 386px (the link rows arrive). New Zealand sits
+  // under the card's column from y 354, so only the PINNED card covers it.
+  const FRAME = { w: 942, h: 424 };
+  const CARD = { w: 280, preview: 296, pinned: 386 };
+  const NZ = 554;
+
+  beforeEach(() => {
+    // A ResizeObserver that reports as it starts observing, as browsers do,
+    // so the frame's size reaches the component.
+    class SyncRO {
+      constructor(private cb: ResizeObserverCallback) {}
+      observe() {
+        this.cb([], this as unknown as ResizeObserver);
+      }
+      unobserve() {}
+      disconnect() {}
+    }
+    vi.stubGlobal("ResizeObserver", SyncRO);
+    const isFrame = (el: HTMLElement) => [...el.children].some((c) => c.tagName.toLowerCase() === "svg" && c.getAttribute("role") === "group");
+    const isCard = (el: HTMLElement) => el.getAttribute("role") === "region" && !!el.closest('[class*="cardSlot"]');
+    vi.spyOn(HTMLElement.prototype, "clientWidth", "get").mockImplementation(function (this: HTMLElement) {
+      return isFrame(this) ? FRAME.w : 0;
+    });
+    vi.spyOn(HTMLElement.prototype, "clientHeight", "get").mockImplementation(function (this: HTMLElement) {
+      return isFrame(this) ? FRAME.h : 0;
+    });
+    vi.spyOn(HTMLElement.prototype, "offsetWidth", "get").mockImplementation(function (this: HTMLElement) {
+      return isCard(this) ? CARD.w : 0;
+    });
+    vi.spyOn(HTMLElement.prototype, "offsetHeight", "get").mockImplementation(function (this: HTMLElement) {
+      if (!isCard(this)) return 0;
+      return /, preview$/.test(this.getAttribute("aria-label") ?? "") ? CARD.preview : CARD.pinned;
+    });
+  });
+  afterEach(() => vi.unstubAllGlobals());
+
+  const side = (name: string) => {
+    const slot = screen.getByRole("region", { name }).parentElement!;
+    return /cardLeft/.test(slot.className) ? "left" : /cardRight/.test(slot.className) ? "right" : "?";
+  };
+  const nz = () => mapOf().querySelector<SVGElement>(`[data-code="${NZ}"]`)!;
+
+  it("the premise: New Zealand's top is below the preview card and above the pinned one", () => {
+    const c = nameOf(NZ);
+    const [, wy, ww] = VIEWS.world;
+    const top = (c.box[1] - wy) * (FRAME.w / ww);
+    expect(top).toBeGreaterThan(9 + CARD.preview);
+    expect(top).toBeLessThan(9 + CARD.pinned);
+  });
+
+  it("hover New Zealand: top-right; click it: the pinned card moves top-left and the close-up hides", () => {
+    render(<TourMapDesktop data={tourMapProps} />);
+    expect(screen.getByText("Western Europe")).toBeInTheDocument();
+    fireEvent.pointerMove(nz(), { pointerType: "mouse" });
+    expect(side("New Zealand, preview")).toBe("right");
+    expect(screen.getByText("Western Europe")).toBeInTheDocument();
+
+    fireEvent.click(nz());
+    expect(side("New Zealand")).toBe("left");
+    expect(screen.queryByText("Western Europe")).toBeNull(); // B17
+  });
+
+  it("the keyboard path too: focus previews top-right, Enter pins top-left", () => {
+    render(<TourMapDesktop data={tourMapProps} />);
+    keyboard = true;
+    act(() => nz().focus());
+    expect(side("New Zealand, preview")).toBe("right");
+    fireEvent.keyDown(nz(), { key: "Enter" });
+    expect(side("New Zealand")).toBe("left");
+    expect(screen.queryByText("Western Europe")).toBeNull();
+  });
+
+  it("the placement effect re-runs on the pin and on the frame's height", () => {
+    const src = readFileSync("app/components/TourMapDesktop.tsx", "utf8");
+    const from = src.indexOf("// Placement (item 4)");
+    const effect = src.slice(from, src.indexOf("]);", from) + 3);
+    const deps = placementDeps(effect.slice(effect.lastIndexOf("}, [")));
+    expect(deps).toEqual(expect.arrayContaining(["card", "preview", "frame.w", "frame.h"]));
+  });
+
+  it("negative control: the first build's deps line misses the pin and the frame's height", () => {
+    const firstBuild = "  }, [card, frame.w, views.world]);";
+    const deps = placementDeps(firstBuild);
+    expect(deps).toContain("card");
+    expect(deps).not.toContain("preview");
+    expect(deps).not.toContain("frame.h");
+  });
+});
+
+/** The names in an effect's closing deps line, "}, [a, b.c]);". */
+const placementDeps = (line: string) =>
+  line
+    .match(/\}, \[([^\]]*)\]\);/)![1]
+    .split(",")
+    .map((s) => s.trim());
 
 describe("?country= deep links (§5)", () => {
   it("gb: the UK's card, pinned", () => {

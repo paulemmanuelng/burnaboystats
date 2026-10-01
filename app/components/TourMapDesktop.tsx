@@ -165,20 +165,35 @@ export default function TourMapDesktop({ data }: { data: TourMapProps }) {
   // Placement (item 4): top-right, 9px in; top-left when that rectangle
   // would cover the country the card is about (Australia at every width,
   // New Zealand at 1024). Measured before paint, so it never flickers.
+  //
+  // Measured again whenever the card's height can change: a preview becoming
+  // a pin (same country, so the same `card`, but the link rows arrive and the
+  // card grows: New Zealand at 1024 is 296px as a preview and 386px pinned,
+  // and only the pinned card reaches it), the frame's height (the card's cap),
+  // and any later resize of the card itself (a web font swapping in). Until
+  // 1 Oct 2026 the deps were [card, frame.w, views.world], so hovering New
+  // Zealand and then clicking it left the pinned card over it.
   useLayoutEffect(() => {
     const el = cardRef.current;
-    const want = (() => {
-      if (!el || !card) return "right";
-      const [wx, wy, ww] = views.world;
-      const k = frame.w / ww;
-      const r = card.dot ? DOT_PX / 2 : 0;
-      const x0 = (card.box[0] - wx) * k - r, x1 = (card.box[0] + card.box[2] - wx) * k + r;
-      const y0 = (card.box[1] - wy) * k - r, y1 = (card.box[1] + card.box[3] - wy) * k + r;
-      const cx0 = frame.w - 9 - el.offsetWidth, cy1 = 9 + el.offsetHeight;
-      return x1 >= cx0 && x0 <= frame.w - 9 && y0 <= cy1 && y1 >= 9 ? "left" : "right";
-    })();
-    setSide(want);
-  }, [card, frame.w, views.world]);
+    const measure = () => {
+      const want = (() => {
+        if (!el || !card) return "right";
+        const [wx, wy, ww] = views.world;
+        const k = frame.w / ww;
+        const r = card.dot ? DOT_PX / 2 : 0;
+        const x0 = (card.box[0] - wx) * k - r, x1 = (card.box[0] + card.box[2] - wx) * k + r;
+        const y0 = (card.box[1] - wy) * k - r, y1 = (card.box[1] + card.box[3] - wy) * k + r;
+        const cx0 = frame.w - 9 - el.offsetWidth, cy1 = 9 + el.offsetHeight;
+        return x1 >= cx0 && x0 <= frame.w - 9 && y0 <= cy1 && y1 >= 9 ? "left" : "right";
+      })();
+      setSide(want);
+    };
+    measure();
+    if (!el || typeof ResizeObserver === "undefined") return;
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [card, preview, frame.w, frame.h, views.world]);
 
   // ── The find box (item 11) ───────────────────────────────────────────────
   const q = norm(query);
