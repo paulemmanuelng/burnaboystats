@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-30";
+  export const liveChartsUpdated = "2026-10-01";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-09-30T22:20Z";
+  export const liveChartsBuiltAt = "2026-10-01T06:00Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -141,7 +141,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 20,
-            "movement": -1
+            "movement": 0
           },
           {
             "country": "KW",
@@ -181,12 +181,6 @@
             "movement": -10
           },
           {
-            "country": "CA",
-            "name": "Canada",
-            "position": 47,
-            "movement": -2
-          },
-          {
             "country": "OM",
             "name": "Oman",
             "position": 50,
@@ -194,9 +188,9 @@
             "status": "new"
           },
           {
-            "country": "US",
-            "name": "United States",
-            "position": 64,
+            "country": "CA",
+            "name": "Canada",
+            "position": 53,
             "movement": -7
           },
           {
@@ -204,6 +198,12 @@
             "name": "Qatar",
             "position": 66,
             "movement": -55
+          },
+          {
+            "country": "US",
+            "name": "United States",
+            "position": 75,
+            "movement": 2
           },
           {
             "country": "TR",
@@ -277,8 +277,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 59,
-            "movement": -21
+            "position": 68,
+            "movement": -19
           }
         ]
       }
@@ -304,6 +304,13 @@
             "name": "Benin",
             "position": 21,
             "movement": 1
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 26,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "GM",
@@ -386,8 +393,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 104,
-            "movement": -99
+            "position": 156,
+            "movement": -151
           }
         ]
       },
@@ -1369,8 +1376,8 @@
           {
             "country": "BN",
             "name": "Brunei Darussalam",
-            "position": 58,
-            "movement": -25
+            "position": 64,
+            "movement": -29
           },
           {
             "country": "LR",
@@ -1798,8 +1805,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 10,
-            "movement": 89
+            "position": 21,
+            "movement": 111
           }
         ]
       }
@@ -1877,38 +1884,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/b4fe00e347d44e64c014306d1f5f778b/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Pressure",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 106,
-            "movement": 3
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 146,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ee26d796ad7fe0cc761309d449f775ae/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "MARIO KART",
     "platforms": [
       {
@@ -1933,6 +1908,37 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/aa8d9ee07662959c9f52b4e9282a0f54/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Pressure",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 106,
+            "movement": 3
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 196,
+            "movement": -145
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ee26d796ad7fe0cc761309d449f775ae/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Big Big Things",
@@ -2218,6 +2224,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/44b6b558a027125f253bbf9538541db4/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Free",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 100,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/85152c36348cfe767fbd0fa90a68c4d6/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Billion Dollar Baby",
