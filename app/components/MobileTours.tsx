@@ -143,7 +143,13 @@ export default function MobileTours({
               a single head date would label the second with the first's. */}
           <div className={styles.upcomingHead}>
             <span className={styles.upcomingTag}>Announced</span>
-            <span className={styles.upcomingWhen}>{upcomingShows.length === 1 ? upcomingShows[0].when : `${upcomingShows.length} shows`}</span>
+            {/* One show: its date, in the display face. Several: a count in
+                the label face, so it does not outsize the dated rows under it. */}
+            {upcomingShows.length === 1 ? (
+              <span className={styles.upcomingWhen}>{upcomingShows[0].when}</span>
+            ) : (
+              <span className={styles.upcomingCount}>{upcomingShows.length} shows</span>
+            )}
           </div>
           {upcomingShows.map((u) => (
             <div key={`${u.venue}-${u.when}`} className={styles.upcomingShow}>

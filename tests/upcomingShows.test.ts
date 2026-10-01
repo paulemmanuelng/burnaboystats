@@ -1,4 +1,6 @@
 import { describe, it, expect } from "vitest";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { upcomingShows } from "../app/data/tours";
 import { updates } from "../app/data/updates";
 
@@ -56,5 +58,25 @@ describe("Apple Music Hall, 29 October 2026", () => {
       expect(text).not.toMatch(FIRST);
     }
     expect(show.short).not.toMatch(FIRST);
+  });
+});
+
+describe("the phone's announced card is on the 11px floor", () => {
+  // The one-row redesign shipped its source line at 10.5px.
+  const under = (css: string) =>
+    [...css.matchAll(/\.(upcoming\w*)\s*\{([^}]*)\}/g)]
+      .map((m) => [m[1], /font-size:\s*([\d.]+)px/.exec(m[2])?.[1]] as const)
+      .filter(([, size]) => size !== undefined && Number(size) < 11)
+      .map(([name]) => name);
+  const css = readFileSync(join(__dirname, "../app/components/mobileTours.module.css"), "utf8");
+
+  it("every .upcoming* rule with a px size", () => {
+    expect(css).toMatch(/\.upcomingSource\s*\{/);
+    expect(under(css)).toEqual([]);
+  });
+
+  it("negative control: the shipped source line", () => {
+    const shipped = `.upcomingSource {\n  font-family: var(--font-mono), monospace;\n  font-size: 10.5px;\n  letter-spacing: 0.04em;\n  color: var(--text-muted);\n  margin-top: 5px;\n}`;
+    expect(under(shipped)).toEqual(["upcomingSource"]);
   });
 });

@@ -333,7 +333,8 @@ export const upcomingShows: UpcomingShow[] = [
     note: "A return to the 80,000-capacity stadium he was the first African artist ever to headline — his third time there, after the sold-out 2023 debut and the 2024 night that set the African concert box-office record. No date announced yet.",
     // x.com/burnaboy/status/2084371889254727698, 9:12 PM 3 Aug 2026: "So excited
     // for 2027! London Stadium III and Much More announcements for y'all."
-    short: "His third night there, after 2023 and 2024. No date yet.",
+    // Non-breaking spaces: "No date yet." wraps as one, not "No / date yet."
+    short: "His third night there, after 2023 and 2024. No\u00a0date\u00a0yet.",
     source: "Announced by Burna Boy on X, 3 August 2026",
   },
 ];
