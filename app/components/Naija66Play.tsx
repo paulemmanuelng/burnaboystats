@@ -76,7 +76,7 @@ function stateLine(p: PublicPrize | undefined): string {
     case "live":
       return "Live — the code is out";
     case "claimed":
-      return `Claimed at ${p.claimedAt ? watClock(p.claimedAt) : "—"}${p.tail ? ` · ends …${p.tail}` : ""}`;
+      return `Claimed${p.claimedAt ? ` at ${watClock(p.claimedAt)}` : ""}${p.tail ? ` · ends …${p.tail}` : ""}`;
     case "closed":
       return "Closed — unclaimed";
   }

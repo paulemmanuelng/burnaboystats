@@ -67,8 +67,8 @@ const keysIn = (src: string) =>
 describe("Naija @ 66's committed config", () => {
   it("is exactly the five prize pages and drop times Paul gave, and the close", () => {
     expect(NAIJA66_PRIZES).toEqual([
-      { prize: 1, path: "/music/listeners", dropsAt: "2026-10-01T08:00:00Z" },
-      { prize: 2, path: "/records/cars", dropsAt: "2026-10-01T11:00:00Z" },
+      { prize: 1, path: "/music/listeners", dropsAt: "2026-10-01T08:00:00Z", awarded: true },
+      { prize: 2, path: "/records/cars", dropsAt: "2026-10-01T11:00:00Z", awarded: true },
       { prize: 3, path: "/certifications", dropsAt: "2026-10-01T14:00:00Z" },
       { prize: 4, path: "/records/africas-biggest", dropsAt: "2026-10-01T17:00:00Z" },
       { prize: 5, path: "/dai-dai", dropsAt: "2026-10-01T20:00:00Z" },

@@ -21,11 +21,17 @@ export type Naija66Prize = {
   path: string;
   /** When this prize's code starts to show, ISO UTC. */
   dropsAt: string;
+  /**
+   * Won off the site (Paul, 1 Oct 2026, 18:00 WAT): prizes 1 and 2 went to
+   * winners on X while the first version's badges were not showing. Such a
+   * prize shows as claimed on the board and never shows a card or reveals.
+   */
+  awarded?: true;
 };
 
 export const NAIJA66_PRIZES: readonly Naija66Prize[] = [
-  { prize: 1, path: "/music/listeners", dropsAt: "2026-10-01T08:00:00Z" },
-  { prize: 2, path: "/records/cars", dropsAt: "2026-10-01T11:00:00Z" },
+  { prize: 1, path: "/music/listeners", dropsAt: "2026-10-01T08:00:00Z", awarded: true },
+  { prize: 2, path: "/records/cars", dropsAt: "2026-10-01T11:00:00Z", awarded: true },
   { prize: 3, path: "/certifications", dropsAt: "2026-10-01T14:00:00Z" },
   { prize: 4, path: "/records/africas-biggest", dropsAt: "2026-10-01T17:00:00Z" },
   { prize: 5, path: "/dai-dai", dropsAt: "2026-10-01T20:00:00Z" },

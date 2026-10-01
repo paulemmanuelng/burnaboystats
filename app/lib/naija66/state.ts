@@ -10,7 +10,8 @@ import type { HuntStore } from "./store";
  */
 
 /** The prize whose code hides on this page, if any (app/data/naija66.ts). */
-export const prizeOnPage = (pathname: string) => NAIJA66_PRIZES.find((p) => p.path === pathname);
+/** The prize whose code hides on this page — never one already awarded off the site. */
+export const prizeOnPage = (pathname: string) => NAIJA66_PRIZES.find((p) => p.path === pathname && !p.awarded);
 
 /**
  * What a claim stores: the winner code, when it was claimed, and — when the
@@ -96,6 +97,7 @@ export const tailOf = (code: string) => code.slice(-2);
 export function publicPrizes(records: (ClaimRecord | null)[], now: number): PublicPrize[] {
   return NAIJA66_PRIZES.map((p, i) => {
     const r = records[i];
+    if (p.awarded && !r) return { prize: p.prize, dropsAt: p.dropsAt, state: "claimed" };
     if (r) return { prize: p.prize, dropsAt: p.dropsAt, state: "claimed", claimedAt: r.at, tail: tailOf(r.code) };
     const state: PrizeState = now >= CLOSES_MS ? "closed" : now >= Date.parse(p.dropsAt) ? "live" : "sleeping";
     return { prize: p.prize, dropsAt: p.dropsAt, state };

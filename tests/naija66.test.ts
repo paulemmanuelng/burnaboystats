@@ -1,5 +1,15 @@
 // @vitest-environment node
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
+
+// These suites exercise the reveal mechanics on prize 1's and prize 2's pages.
+// Paul awarded those two on X (1 Oct 2026), so the live config marks them
+// `awarded`; here that flag is cleared so the mechanics stay tested. The
+// awarded overlay itself is tested on the real config in
+// tests/naija66Awarded.test.ts.
+vi.mock("../app/data/naija66", async (importOriginal) => {
+  const real = await importOriginal<typeof import("../app/data/naija66")>();
+  return { ...real, NAIJA66_PRIZES: real.NAIJA66_PRIZES.map(({ awarded: _awarded, ...p }) => p) };
+});
 import { NAIJA66_PRIZES } from "../app/data/naija66";
 
 /**
@@ -515,3 +525,4 @@ describe("the Upstash REST store", () => {
     expect(redisEnv()).toEqual({ url: "https://kv.test", token: "kt" });
   });
 });
+
