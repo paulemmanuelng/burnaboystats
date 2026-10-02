@@ -68,6 +68,8 @@ One record carries the international side of this discography almost entirely: *
 
 **Subtotal: 6 + 5 + 1 + 1 = 13 album entries.**
 
+**After the 2 Oct 2026 charts sweep: 147 singles + 13 albums = 160 chart entries** (was 119); the changes are listed under "Re-read 2 Oct 2026" at the end of this file.
+
 **106 + 13 = 119 total chart entries, across 53 territories.**
 
 Note on chart depth: SNEP (France) and Ultratop (Belgium) publish 200-position charts, AFP/Audiogest (Portugal) publishes a Top 200 singles chart and (since week 04 of 2024) a Top 200 albums chart, and ORF's Ö3 Austria Top 40 publishes one continuous **1–75** ranking on both the singles and the Longplay side. So *One Time* #171, *Soundgasm* #179, *Baby* #196, *Rave & Roses* BE #189, *HEIS* FR #136 / BE #131 and *Secondhand* AT #68 are placings **on** the principal national chart, not on an extension list below it. UK positions 101–200 are a separate extension chart and are excluded.
@@ -468,3 +470,54 @@ The two sweeps disagreed because they were looking at different things. `tonlist
 - ***Water*** (Tyla) 🇮🇸 **#14 remains unproven** and keeps its marker. Only 8 weekly captures survive for 2024 and none covers the week the peak would fall in. Absence from those eight is not disproof — the figure is neither confirmed nor refuted, and is left flagged rather than promoted or deleted.
 
 **A correction worth recording:** the year-end lists are *not* peaks. The 2016 year-end Top 100 places "One Dance" at #18 credited to "Drake" alone, which is the likeliest origin of a claimed Icelandic peak of 18 for that record. A year-end ranking and a weekly peak are different measurements, and only the weekly one satisfies this file's standard.
+
+## Re-read 2 Oct 2026 (charts sweep)
+
+Applied from the verified 2 Oct 2026 charts sweep — every row below was CONFIRMED by two independent verifiers reading the chart body itself (method, both votes' issue references and the held items in [charts-sweep-2026-10-02.md](charts-sweep-2026-10-02.md)). Nigerian rows are TurnTable's Official Nigeria Top 100 (the Top 50 before 7 Jul 2022) and Official Top 100 Albums, read at the archive route; a peak is the best PRINTED rank in an issue that credits the artist. Board total now **160 chart entries** (147 singles + 13 albums).
+
+- *TEA* — 🇳🇬 NG #3 unchanged; open-run note re-dated or closed. ng-updates-008 — issue: 2026-08-13 (id 5771)
+- *Soweto* — 🇳🇬 NG #4 → **#5**. ng-updates-029 — issue: A: 2023-03-30 (id 1946); also 2023-04-20 (id 2012); B: 2023-03-30 (id 1946) and 2023-04-20 (id 2012)
+- *Calm Down* — 🇮🇸 IS #31 → **#24**. nordic-014 — issue: A: Tónlistinn Lög, list live 6 Jan 2024 (Wayback 20240106201130); B: Tónlistinn Lög list live 6 Jan 2024 (Wayback 20240106201130)
+- *Calm Down* — 🇧🇬 BG **#2** added. cee-003 (reverses the repertoire-component exclusion) — issue: 03.02.2023 – 09.02.2023 and 03.03.2023 – 09.03.2023
+- *Calm Down* — 🇮🇱 IL **#35** added. mena-asia-004 (live issues only: 35, not the backfilled 12) — issue: A: Mako issue "28.11 - 22.11.2022" (publishDate 2022-11-29, chartId 64e1f67e10dab0e5a9a4777e). This is a backfilled pre-launch issue.; B: Mako "28.11 - 22.11.2022" (issue dated 29 Nov 2022, chartId 64e1f67e10dab0e5a9a4777e) - a BACKFILLED pre-launch issue
+- *Oh No* — 🇳🇬 NG **#2** added. ng-new-001 — issue: A: 2026-09-17 (id 5940); B: 2026-09-17 id 5940
+- *Oh No* — 🇸🇷 SR **#27** added. ng-new-001 — issue: A: 2026-09-17 (id 5940); B: 2026-09-17 id 5940
+- *Smooth Criminal* — 🇳🇬 NG **#2** added. ng-new-002 — issue: A: 2023-11-02 (id 2619); B: 2023-11-02 id 2619
+- *Holiday* — 🇳🇬 NG **#3** added. ng-new-003 — issue: A: 2023-02-23 (id 1821); B: 2023-02-23 id 1821
+- *Bounce* — 🇳🇬 NG **#4** added. ng-new-004 — issue: A: 2021-04-15 (id 425); B: 2021-04-15 id 425
+- *DND* — 🇳🇬 NG **#5** added. ng-new-005 — issue: A: 2023-11-23 (id 2718); B: 2023-11-23 id 2718
+- *Dimension* — 🇳🇬 NG **#5** added. ng-new-006 — issue: A: 2021-05-06 (id 462); B: 2021-05-06 id 462
+- *Peace of Mind* — 🇳🇬 NG **#7** added. ng-new-007 — issue: A: 2020-12-10 (id 186); B: 2020-12-10 id 186
+- *Reason You* — 🇳🇬 NG **#16** added. ng-new-008 — issue: A: 2023-02-23 (id 1821); B: 2023-02-23 id 1821
+- *Trouble Maker* — 🇳🇬 NG **#17** added. ng-new-009 — issue: A: 2023-11-02 (id 2619); B: 2023-11-02 id 2619
+- *MARCH AM* — 🇳🇬 NG **#18** added. ng-new-010 — issue: A: 2024-07-25 (id 3442); B: 2024-07-25 id 3442
+- *Pretty Girl* — 🇳🇬 NG **#18** added. ng-new-011 — issue: A: 2023-10-26 (id 2611); B: 2023-10-26 id 2611
+- *Don't Leave* — 🇳🇬 NG **#21** added. ng-new-012 — issue: A: 2023-11-02 (id 2619); B: 2023-11-02 id 2619
+- *Compromise* — 🇳🇬 NG **#23** added. ng-new-013 — issue: A: 2022-08-11 (id 1255); B: 2022-08-11 id 1255
+- *Woman* — 🇳🇬 NG **#25** added. ng-new-014 — issue: A: 2021-01-21 (id 279); B: 2021-01-21 id 279
+- *Time N Affection* — 🇳🇬 NG **#25** added. ng-new-015 — issue: A: 2022-03-31 (id 1025); B: 2022-03-31 id 1025
+- *Red Potion* — 🇳🇬 NG **#25** added. ng-new-016 — issue: A: 2023-11-02 (id 2619); B: 2023-11-02 id 2619
+- *WAR MACHINE* — 🇳🇬 NG **#25** added. ng-new-017 — issue: A: 2024-07-18 (id 3431); B: 2024-07-18 id 3431
+- *Secondhand* — 🇳🇬 NG **#26** added. ng-new-018 — issue: A: 2026-02-12 (id 5267); B: 2026-02-12 id 5267
+- *One Shirt* — 🇳🇬 NG **#27** added. ng-new-019 — issue: A: 2021-02-04 (id 306); B: 2021-02-04 id 306
+- *AZAMAN* — 🇳🇬 NG **#27** added. ng-new-020 — issue: A: 2024-07-25 (id 3442); B: 2024-07-25 id 3442
+- *HEIS (single)* — 🇳🇬 NG **#28** added. ng-new-021 — issue: A: 2024-07-25 (id 3442); B: 2024-07-25 id 3442
+- *Too Correct* — 🇳🇬 NG **#28** added. ng-new-022 — issue: A: 2021-05-13 (id 473); B: 2021-05-13 id 473
+- *Alle* — 🇳🇬 NG **#29** added. ng-new-023 — issue: A: 2022-12-08 (id 1570); B: 2022-12-08 id 1570
+- *Hide & Seek (Rema Remix)* — 🇳🇬 NG **#29** added. ng-new-024 — issue: A: 2023-03-09 (id 1866); B: 2023-03-09 id 1866
+- *FYN* — 🇳🇬 NG **#31** added. ng-new-025 — issue: A: 2022-03-17 (id 1011); B: 2022-03-17 id 1011
+- *Mukulu* — 🇳🇬 NG **#32** added. ng-new-026 — issue: A: 2023-08-17 (id 2329); B: 2023-08-17 id 2329
+- *Are You There?* — 🇳🇬 NG **#33** added. ng-new-027 — issue: A: 2022-05-12 (id 1095); B: 2022-05-12 id 1095
+- *Ginger Me* — 🇳🇬 NG **#34** added. ng-new-028 — issue: A: 2020-11-12 (id 155); B: 2020-11-12 id 155
+- *Afro Jigga* — 🇳🇬 NG **#38** added. ng-new-029 — issue: A: 2021-11-11 (id 810); B: 2021-11-11 id 810
+- *NOW I KNOW* — 🇳🇬 NG **#40** added. ng-new-030 — issue: A: 2024-07-18 (id 3431); B: 2024-07-18 id 3431
+- *Hov* — 🇳🇬 NG **#44** added. ng-new-031 — issue: A: 2023-05-04 (id 2043); B: 2023-05-04 id 2043
+- *Amina* — 🇳🇬 NG **#45** added. ng-new-032 — issue: A: 2022-12-15 (id 1587); B: 2022-12-15 id 1587
+- *VILLAIN* — 🇳🇬 NG **#47** added. ng-new-033 — issue: A: 2024-07-18 (id 3431); B: 2024-07-18 id 3431
+- *EGUNGUN* — 🇳🇬 NG **#49** added. ng-new-034 — issue: A: 2024-07-18 (id 3431); B: 2024-07-18 id 3431
+- *Can't Let You Go* — 🇳🇬 NG **#50** added. ng-new-035 — issue: A: 2021-02-18 (id 331); B: 2021-02-18 id 331
+- *Only You* — 🇳🇬 NG **#53** added. ng-new-036 — issue: A: 2022-10-20 (id 1451); B: 2022-10-20 id 1451
+- *Moviestar* — 🇳🇬 NG **#80** added. ng-new-037 — issue: A: 2026-04-23 (id 5560); B: 2026-04-23 id 5560
+- *Jollof On The Jet* — 🇳🇬 NG **#97** added. ng-new-038 — issue: A: 2024-02-22 (id 3012); B: 2024-02-22 id 3012
+
+**Bulgaria, reversed.** This file excluded *Calm Down*'s Bulgarian No. 2 as a "repertoire component of a PROPHON Top 40". Both 2 Oct 2026 verifiers read PROPHON's two weekly lists: the Svetovniyat (World) TOP 10 is the combined ranking — it carries Bulgarian-repertoire rows in most issues (DARA's "Bangaranga" at No. 1 on 10 Jul 2026) — and it is the very list Burna Boy's "Dai Dai" BG row is read from. For consistency with that row, *Calm Down* BG **#2** (3–9 Feb and 3–9 Mar 2023; 28 issues, 28 Oct 2022–5 May 2023) is now published. **Israel:** Mako counts from its first live issue (07–13 Mar 2023, published 20 Mar 2023); the duo row's #12 is a backfilled pre-launch issue, so the published figure is the solo-"Rema" row's #35 in that first live issue. **Norway** #27 stays off: VG-lista was a Top 20 until week 14 of 2025.

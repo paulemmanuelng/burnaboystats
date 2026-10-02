@@ -9,6 +9,8 @@ Shazam, YouTube, Audiomack, Boomplay); **genre and component charts** (Billboard
 U.S. Afrobeats Songs, Streaming Songs, Radio Songs); extension charts below a
 main chart; year-end, mid-week and recurrent charts.
 
+**After the 2 Oct 2026 charts sweep: 24 singles + 3 albums = 27 chart entries** (was 24); the changes are listed under "Re-read 2 Oct 2026" at the end of this file.
+
 ## Total: 22 singles + 2 albums = 24 chart entries
 
 **1 No. 1**, all in Nigeria. **1 territory.**
@@ -61,3 +63,12 @@ across all 303 issues.
 Belgium, Netherlands, Germany, Switzerland, Austria, the Nordics, Italy, Spain,
 Portugal, Poland, Greece, Australia, New Zealand and the two Billboard Global
 charts were swept for him and returned no principal-chart entry.
+
+## Re-read 2 Oct 2026 (charts sweep)
+
+Applied from the verified 2 Oct 2026 charts sweep — every row below was CONFIRMED by two independent verifiers reading the chart body itself (method, both votes' issue references and the held items in [charts-sweep-2026-10-02.md](charts-sweep-2026-10-02.md)). Nigerian rows are TurnTable's Official Nigeria Top 100 (the Top 50 before 7 Jul 2022) and Official Top 100 Albums, read at the archive route; a peak is the best PRINTED rank in an issue that credits the artist. Board total now **27 chart entries** (24 singles + 3 albums).
+
+- *Come & Go* — 🇳🇬 NG #12 → **#15**. ng-updates-031 — issue: A: 2022-06-09 (id 1114); also 2022-06-16 (id 1118); B: 2022-06-09 (id 1114) and 2022-06-16 (id 1118)
+- *Jolie* — 🇳🇬 NG **#73** added. ng-new-111 — issue: A: 2026-09-17 (id 5940); B: 2026-09-17 id 5940
+- *Love Again* — 🇳🇬 NG **#78** added. ng-new-112 — issue: A: 2026-09-17 (id 5940); B: 2026-09-17 id 5940
+- *SUN SHERIF - EP* — 🇳🇬 NG **#77** added. ng-new-113 — issue: A: 2026-09-10 (id 5922); B: 2026-09-10 id 5922

@@ -51,6 +51,8 @@ One record dominates the ledger: ***Raindance* (Dave & Tems) alone accounts for 
 
 *Albums subtotal: 9 + 1 = **10*** ✓
 
+**After the 2 Oct 2026 charts sweep: 126 singles + 12 albums = 138 chart entries** (was 124); the changes are listed under "Re-read 2 Oct 2026" at the end of this file.
+
 **Total: 114 + 10 = 124 chart entries** ✓
 
 ‡ *Love Is a Kingdom*'s Portuguese placing was previously flagged as impossible on the grounds that AFP's albums list is a Top 100. **That objection is now withdrawn.** Audiogest's own weekly PDF reports were read directly: the albums chart was a **Top 50** through week 03 of 2024 and has run **1–200** since week 04 of 2024 (19 January 2024), published as *Top 200 Álbuns*. A 2026 album at 108 sits comfortably inside the published range. The row keeps its `°` only because it rests on a dated citation rather than a live read — the week-32/2026 report was opened this pass and carries no Tems album row, which neither confirms nor contradicts an earlier peak.
@@ -431,3 +433,26 @@ The two sweeps disagreed because they were looking at different things. `tonlist
 - ***Water*** (Tyla) 🇮🇸 **#14 remains unproven** and keeps its marker. Only 8 weekly captures survive for 2024 and none covers the week the peak would fall in. Absence from those eight is not disproof — the figure is neither confirmed nor refuted, and is left flagged rather than promoted or deleted.
 
 **A correction worth recording:** the year-end lists are *not* peaks. The 2016 year-end Top 100 places "One Dance" at #18 credited to "Drake" alone, which is the likeliest origin of a claimed Icelandic peak of 18 for that record. A year-end ranking and a weekly peak are different measurements, and only the weekly one satisfies this file's standard.
+
+## Re-read 2 Oct 2026 (charts sweep)
+
+Applied from the verified 2 Oct 2026 charts sweep — every row below was CONFIRMED by two independent verifiers reading the chart body itself (method, both votes' issue references and the held items in [charts-sweep-2026-10-02.md](charts-sweep-2026-10-02.md)). Nigerian rows are TurnTable's Official Nigeria Top 100 (the Top 50 before 7 Jul 2022) and Official Top 100 Albums, read at the archive route; a peak is the best PRINTED rank in an issue that credits the artist. Board total now **138 chart entries** (126 singles + 12 albums).
+
+- *What You Need* — 🇳🇬 NG #78 → **#79**. ng-updates-036 — issue: 2026-07-09 (id 5701)
+- *Fountains* — 🇱🇹 LT #40 → **#79**. cee-028 — issue: A: AGATA 2021-W36 (slug 34s-2-2); B: 2021-W36 (post of 10 Sep 2021)
+- *Raindance* — 🇮🇱 IL **#27** added. mena-asia-003 — issue: A: Mako issue titled "09.03 - 03.02.2026" (a typo for 09.02; publishDate 2026-02-10, chartId 698ae9986778d6bb7b833d79); B: Mako issue titled "09.03 - 03.02.2026" (a typo for 09.02; published 10 Feb 2026, chartId 698ae9986778d6bb7b833d79)
+- *Damages* — 🇳🇬 NG **#6** added. ng-new-039 — issue: A: 2020-11-05 (id 145); B: 2020-11-05 id 145
+- *Get It Right* — 🇳🇬 NG **#12** added. ng-new-040 — issue: A: 2024-06-20 (id 3385); B: 2024-06-20 id 3385
+- *Crazy Tings* — 🇳🇬 NG **#16** added. ng-new-041 — issue: A: 2021-09-16 (id 732); B: 2021-09-16 id 732
+- *Fountains* — 🇳🇬 NG **#21** added. ng-new-042 — issue: A: 2021-09-09 (id 721); B: 2021-09-09 id 721
+- *Not An Angel* — 🇳🇬 NG **#33** added. ng-new-043 — issue: A: 2023-12-14 (id 2803); B: 2023-12-14 id 2803
+- *The Key* — 🇳🇬 NG **#38** added. ng-new-044 — issue: A: 2021-02-18 (id 331); B: 2021-02-18 id 331
+- *Wickedest* — 🇳🇬 NG **#43** added. ng-new-045 — issue: A: 2024-08-08 (id 3463); B: 2024-08-08 id 3463
+- *No.1* — 🇳🇬 NG **#79** added. ng-new-046 — issue: A: 2024-03-28 (id 3119); B: 2024-03-28 id 3119
+- *No Woman No Cry* — 🇳🇬 NG **#81** added. ng-new-047 — issue: A: 2022-08-04 (id 1254); B: 2022-08-04 id 1254
+- *Free Fall* — 🇳🇬 NG **#81** added. ng-new-048 — issue: A: 2024-06-13 (id 3367); B: 2024-06-13 id 3367
+- *Live Life* — 🇳🇬 NG **#96** added. ng-new-049 — issue: A: 2022-10-06 (id 1423); B: 2022-10-06 id 1423
+- *Love Is a Kingdom* — 🇳🇬 NG **#30** added. ng-new-050 — issue: A: 2025-11-27 (id 5049); B: 2025-11-27 id 5049
+- *For Broken Ears* — 🇳🇬 NG **#99** added. ng-new-051 — issue: A: 2024-10-17 (id 3763); B: 2024-10-17 id 3763
+
+**Israel.** This file rejected Mako earlier; `charts.ts` has since named the Mako Hit List as Israel's official singles chart, and Tyla's IL row is published on it. The rule applied from 2 Oct 2026: Mako counts from its first LIVE issue (07–13 Mar 2023, published 20 Mar 2023), and the backfilled pre-launch issues do not. *Raindance*'s whole run (3 Feb–19 May 2026) is live, so its #27 stands. *Wakanda Forever* (Rihanna & Tems, TurnTable albums #11) is held for the owner, not added.

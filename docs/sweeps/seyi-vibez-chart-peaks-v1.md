@@ -147,6 +147,8 @@ All 11 rows are the **TurnTable Official Top 100 Albums** (published as *Nigeria
 
 **Albums subtotal: 11.**
 
+**After the 2 Oct 2026 charts sweep: 117 singles + 12 albums = 129 chart entries** (was 115); the changes are listed under "Re-read 2 Oct 2026" at the end of this file.
+
 **Total: 104 + 11 = 115 chart entries.**
 
 *Distribution check — 🇳🇬 Nigeria 115, every other territory 0. Sum: **115*** ✓. No release appears twice for the same country on the same chart.
@@ -253,3 +255,23 @@ The gap is entirely at the border. Burna Boy's 280 includes a Hot 100 line, a Gl
 ## Re-read 17 Sep 2026 (freshness audit, batch 3)
 
 **BACK 2 U** — TurnTable Official Nigeria Top 100, week 37 (issue dated 10 Sep 2026): rank 10, highestPosition 8, 2 weeks on chart (`__NEXT_DATA__` chartData, read 17 Sep 2026). Published at its open peak with the board's live-run note. Headline 114 → **115**.
+
+## Re-read 2 Oct 2026 (charts sweep)
+
+Applied from the verified 2 Oct 2026 charts sweep — every row below was CONFIRMED by two independent verifiers reading the chart body itself (method, both votes' issue references and the held items in [charts-sweep-2026-10-02.md](charts-sweep-2026-10-02.md)). Nigerian rows are TurnTable's Official Nigeria Top 100 (the Top 50 before 7 Jul 2022) and Official Top 100 Albums, read at the archive route; a peak is the best PRINTED rank in an issue that credits the artist. Board total now **129 chart entries** (117 singles + 12 albums).
+
+- *BACK 2 U* — 🇳🇬 NG #8 → **#4**. ng-updates-002 — issue: 2026-09-24 (id 5939)
+- *Volume* — 🇳🇬 NG **#1** added. ng-new-097 — issue: A: 2026-09-24 (id 5939); B: 2026-09-24 id 5939
+- *Ilome* — 🇳🇬 NG **#3** added. ng-new-098 — issue: A: 2026-09-24 (id 5939); B: 2026-09-24 id 5939
+- *Diamonds* — 🇳🇬 NG **#5** added. ng-new-099 — issue: A: 2026-09-24 (id 5939); B: 2026-09-24 id 5939
+- *Pansa* — 🇳🇬 NG **#7** added. ng-new-100 — issue: A: 2026-09-24 (id 5939); B: 2026-09-24 id 5939
+- *GOD* — 🇳🇬 NG **#9** added. ng-new-101 — issue: A: 2026-09-24 (id 5939); B: 2026-09-24 id 5939
+- *Swaguu (single)* — 🇳🇬 NG **#13** added. ng-new-102 — issue: A: 2026-09-24 (id 5939); B: 2026-09-24 id 5939
+- *Melanin* — 🇳🇬 NG **#14** added. ng-new-103 — issue: A: 2026-09-24 (id 5939); B: 2026-09-24 id 5939
+- *El Jaja* — 🇳🇬 NG **#15** added. ng-new-104 — issue: A: 2026-09-24 (id 5939); B: 2026-09-24 id 5939
+- *Alubarika* — 🇳🇬 NG **#16** added. ng-new-105 — issue: A: 2026-09-24 (id 5939); B: 2026-09-24 id 5939
+- *Akpan Akpari* — 🇳🇬 NG **#17** added. ng-new-106 — issue: A: 2026-09-24 (id 5939); B: 2026-09-24 id 5939
+- *Alafia* — 🇳🇬 NG **#18** added. ng-new-107 — issue: A: 2026-09-24 (id 5939); B: 2026-09-24 id 5939
+- *Oble (Original)* — 🇳🇬 NG **#23** added. ng-new-108 — issue: A: 2026-09-24 (id 5939); B: 2026-09-24 id 5939
+- *Billion Dollar* — 🇳🇬 NG **#10** added. ng-new-116 — issue: A: 2022-04-14 (id 1055); B: 2022-04-14 id 1055
+- *Swaguu* — 🇳🇬 NG **#1** added. ng-new-130 (owner's screenshot + TurnTable news 2278)

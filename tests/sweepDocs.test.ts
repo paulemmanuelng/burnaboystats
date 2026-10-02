@@ -30,7 +30,9 @@ const peakDoc = (slug: string) => join(DIR, `${slug}-chart-peaks-v1.md`);
  * methodology rejects.
  */
 const DOCUMENTED_ENTRY_DIVERGENCES: Record<string, { doc: number; data: number; why: string }> = {
-  wizkid: { doc: 238, data: 237, why: '"Dynamite" ZA #45 removed under the same depth rule the file applies to "Money & Love" ZA #98' },
+  // 238/237 until 2 Oct 2026; the charts sweep added three rows to both
+  // (Checklist LT and SK, One Dance GR), so the divergence is still one row.
+  wizkid: { doc: 241, data: 240, why: '"Dynamite" ZA #45 removed under the same depth rule the file applies to "Money & Love" ZA #98' },
 };
 
 describe("sweep documents back the Afrobeats Board", () => {

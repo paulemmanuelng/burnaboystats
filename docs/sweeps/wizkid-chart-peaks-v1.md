@@ -84,6 +84,8 @@ Split: **118 singles entries** across 37 titles, **37 albums entries** across 6 
 
 **Albums subtotal:** 10 + 9 + 9 + 7 + 1 + 1 = **37**
 
+**After the 2 Oct 2026 charts sweep: 201 + 40 = 241 chart entries** — the board's 240 less "Dynamite" ZA #45, as below; changes in "Re-read 2 Oct 2026" at the end of this file.
+
 **Total at the 17 Aug sweep: 118 + 37 = 155.** After the 17 Sep 2026 read: **201 + 37 = 238 chart entries** (the board carries 237 — this document keeps "Dynamite" ZA #45, which the board dropped under its depth rule).
 
 Chart-depth notes so the three-digit numbers read correctly: France's SNEP **Top Singles and Top Albums are 200-position charts** (which is why "Come Closer" #107 and *More Love, Less Ego* #135 are real chart entries, not near-misses); Portugal's **AFP/Audiogest Top 200 Singles** has run 1–200 in every era, and the **AFP/Audiogest Top 200 Álbuns** has run 1–200 since **week 04 of 2024 (19 January 2024)** — *Morayo* is a November 2024 release, so its #181 sits inside the published chart (before that week the Portuguese albums chart was a Top 50, and no pre-2024 Portuguese albums row is carried here); Belgium's Ultratop Albums chart is a **Top 200**; and Billboard Global 200 / Global Excl. US are **200-position charts**. Austria's official chart is branded **Ö3 Austria Top 40** but publishes one continuous **1–75** ranking on both the singles list and the Longplay list, so "Boom" at #57 is a placing on the principal chart proper, not on an extension chart. Every peak past 100 above sits on the principal chart proper. Nigeria's *Made in Lagos* figure (#17) is the **Deluxe Edition** — confirmed in TurnTable's own payload — because the TurnTable albums chart only launched 8 November 2022, two years after the original release.
@@ -592,3 +594,15 @@ Read at the body: `/api/ttc-proxy/api/chart/1/{week}/{year}` (Official Nigeria T
 - **Nigerian entries added to seven rows the board had:** Brown Skin Girl 46 · Forever Be Mine 2 · Call Me Every Day 12 · Pongo 81 · Link Up (Spider-Verse remix) 82 · Energy 15 · System 36.
 - **Albums:** S2 – EP **No. 1** on the 28 Dec 2023 issue (58 issues to May 2025) — a tenth Nigerian No. 1 and the board's 25th; SoundMan, Vol. 1 (StarBoy & Wizkid) 82; Superstar 92.
 - **Headline 154 → 237** (Nigeria 26 → 109 entries); territories 32; No. 1s 24 → 25.
+
+## Re-read 2 Oct 2026 (charts sweep)
+
+Applied from the verified 2 Oct 2026 charts sweep — every row below was CONFIRMED by two independent verifiers reading the chart body itself (method, both votes' issue references and the held items in [charts-sweep-2026-10-02.md](charts-sweep-2026-10-02.md)). Nigerian rows are TurnTable's Official Nigeria Top 100 (the Top 50 before 7 Jul 2022) and Official Top 100 Albums, read at the archive route; a peak is the best PRINTED rank in an issue that credits the artist. Board total now **240 chart entries** (200 singles + 40 albums).
+
+- *Abracadabra (Remix)* — 🇳🇬 NG #6 → **#7**. ng-updates-030 — issue: 2023-02-23 (id 1821)
+- *Mood (Wizkid ft. BNXN)* — 🇳🇬 NG #12 → **#13**. ng-updates-033 — issue: A: 2021-09-09 (id 721); also ids 732, 751; B: 2021-09-09 (id 721); also ids 732 and 751
+- *Man on a Mission* — 🇳🇬 NG #29 → **#30**. ng-updates-035 — issue: 2026-06-25 (id 5655)
+- *Brown Skin Girl* — 🇱🇹 LT #29 → **#67**. cee-027 — issue: A: AGATA post of 26 Jul 2019 (2019 wk30 label); B: 2019-W30 (post of 26 Jul 2019)
+- *Checklist* — 🇱🇹 LT **#46** added. cee-016 — issue: A: AGATA post of 2 Nov 2018 (2018 wk44 label); B: 2018-W44 (post of 2 Nov 2018)
+- *Checklist* — 🇸🇰 SK **#86** added. cee-017 — issue: A: 44. týden 2018 (SK); B: 44. týden 2018 (weekId 2547)
+- *One Dance* — 🇬🇷 GR **#8** added. south-eu-001 — issue: A: Best Position 8 / Best Week 2017_2 is printed in the IFPI Greece Digital Singles Chart (International) issues for weeks 35/2026 and 36/2026. The week 2/2017 issue itself is not readable.; B: IFPI Greece week 2/2017, per the Best Position / Best Week column. That issue is not archived. The column printing it was read in the week 34 (31-34), 35 and 36 issues of 2026.

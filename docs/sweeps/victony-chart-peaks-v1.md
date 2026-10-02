@@ -8,6 +8,8 @@
 - **1 No. 1 placement**
 - **42 charting singles, 3 charting projects** (title counts; they carry 48 and 3 entries respectively)
 
+**After the 2 Oct 2026 charts sweep: 52 singles + 4 albums = 56 chart entries** (was 51); the changes are listed under "Re-read 2 Oct 2026" at the end of this file.
+
 **Total: 48 + 3 = 51 chart entries** across 6 territories — 🇳🇬 45 · 🇬🇧 2 · 🇨🇭 1 · 🇳🇱 1 · 🇨🇦 1 · 🌐 GLBX 1.
 
 *(The line this replaces read "32 + 2 = 40", summing title counts and labelling the result entries. Both figures are now derived from the data.)*
@@ -73,3 +75,19 @@ The UK's **Official Afrobeats Chart** is a genre chart and does not count here. 
 
 - **TWIN** (Victony & FOLA) — TurnTable Official Nigeria Top 100, week 37 (10 Sep 2026): rank 18, highestPosition 18, 3 weeks. Board row moved 64 → **18** (open peak, live-run note).
 - **WHO THIS** (Victony & BNXN) — same issue: rank 24, highestPosition 24, 3 weeks. Board row moved 42 → **24** on both artists' boards (open peak, live-run note). Neither row was in this document's table before; both are on the board.
+
+## Re-read 2 Oct 2026 (charts sweep)
+
+Applied from the verified 2 Oct 2026 charts sweep — every row below was CONFIRMED by two independent verifiers reading the chart body itself (method, both votes' issue references and the held items in [charts-sweep-2026-10-02.md](charts-sweep-2026-10-02.md)). Nigerian rows are TurnTable's Official Nigeria Top 100 (the Top 50 before 7 Jul 2022) and Official Top 100 Albums, read at the archive route; a peak is the best PRINTED rank in an issue that credits the artist. Board total now **56 chart entries** (52 singles + 4 albums).
+
+- *WHO THIS* — 🇳🇬 NG #24 unchanged; open-run note re-dated or closed. ng-updates-006 — issue: 2026-09-10 (id 5923)
+- *TWIN* — 🇳🇬 NG #18 unchanged; open-run note re-dated or closed. ng-updates-007 — issue: 2026-09-03 (id 5874)
+- *Holy Father* — 🇳🇬 NG #53 → **#2**. ng-updates-020 — issue: 2021-12-09 (id 877)
+- *Apollo* — 🇳🇬 NG #82 → **#13**. ng-updates-021 — issue: 2022-04-14 (id 1055)
+- *Kolomental* — 🇳🇬 NG #17 → **#10**. ng-updates-022 — issue: 2022-05-12 (id 1095)
+- *Glory II* — 🇳🇬 NG #20 → **#26**. ng-updates-028 — issue: 2025-07-24 (id 4589)
+- *SLICK* — 🇸🇷 SR **#4** added. americas-004 (open) — issue: A: TOP 40- 10 tot en met 17 september 2026 (held 17–24 Sep); B: TOP 40- 10 tot en met 17 september 2026 (held on the 17–24 Sep list)
+- *Mili* — 🇸🇷 SR **#17** added. americas-005 (floor) — issue: Top40 – 06 tot 13 maart 2025
+- *Stubborn (album)* — 🇳🇬 NG **#2** added. ng-new-117 — issue: A: 2024-06-27 (id 3397); B: 2024-06-27 id 3397
+- *B&B (Booze & Bumbum)* — 🇳🇬 NG **#83** added. ng-new-118 — issue: A: 2022-12-15 (id 1587); B: 2022-12-15 id 1587
+- *Ba$tard, Don't Be Silly* — 🇳🇬 NG **#99** added. ng-new-119 — issue: A: 2024-06-27 (id 3394); B: 2024-06-27 id 3394

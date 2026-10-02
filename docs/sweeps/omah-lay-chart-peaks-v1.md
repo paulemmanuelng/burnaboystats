@@ -83,6 +83,8 @@ Swept **19 August 2026** in two halves — Nigeria/Africa/Billboard Global, and 
 
 **Albums subtotal:** 5 + 1 + 1 + 1 = **8** ✓
 
+**After the 2 Oct 2026 charts sweep: 90 singles + 8 albums = 98 chart entries** (was 72); the changes are listed under "Re-read 2 Oct 2026" at the end of this file.
+
 **Total: 64 + 8 = 72 chart entries.** ✓
 
 **Distribution check** — the 71 entries fall in 14 countries plus the 2 supranational Billboard Global charts: 🇳🇬 43 · 🇨🇭 5 · 🇫🇷 4 · 🇳🇱 3 · 🇬🇧 2 · 🇵🇹 2 · 🇧🇪 2 · 🇿🇦 2 · then eight territories with 1 each (🇨🇦 🇩🇪 🇦🇹 🇱🇺 🇮🇪 🇸🇪 🌐 GLB 🌐 GLBX). Sum: 42 + 5 + 4 + 3 + 2 + 2 + 2 + 2 + 8 = **70** ✓. No release appears twice for the same country.
@@ -217,3 +219,40 @@ Where the line is genuinely strong is **at home and in France**. In Nigeria he h
 **As We Get High** (bees & honey, OMAH LAY, BEAM & Gyptian) — TurnTable Official Nigeria Top 100, week 37 (10 Sep 2026): debut at 35, one week, Omah Lay named on the chart body's own credit line — a featured entry under the lead-and-featured rule, as Gut Genug is. Published at its open peak with the live-run note. Headline 71 → **72**.
 
 **CLARITY OF MIND** — the album row was typed "CLARITY OF MIIND", the spelling TurnTable's own register string carries; the album is *Clarity of Mind*. Corrected on the board; the register string is kept here so the next sweep's title match still finds the row.
+
+## Re-read 2 Oct 2026 (charts sweep)
+
+Applied from the verified 2 Oct 2026 charts sweep — every row below was CONFIRMED by two independent verifiers reading the chart body itself (method, both votes' issue references and the held items in [charts-sweep-2026-10-02.md](charts-sweep-2026-10-02.md)). Nigerian rows are TurnTable's Official Nigeria Top 100 (the Top 50 before 7 Jul 2022) and Official Top 100 Albums, read at the archive route; a peak is the best PRINTED rank in an issue that credits the artist. Board total now **98 chart entries** (90 singles + 8 albums).
+
+- *As We Get High* — 🇳🇬 NG #35 → **#25**. ng-updates-003 — issue: 2026-09-17 (id 5940)
+- *understand* — 🇳🇬 NG #60 → **#1**. ng-updates-017 — issue: A: 2021-07-15 (id 584); B: 2021-07-15 (id 584); also 2021-07-29 and 2021-08-05
+- *Attention* — 🇳🇬 NG #41 → **#4**. ng-updates-018 — issue: A: 2022-03-10 (id 1001); B: 2022-03-10 (id 1001); also 2022-03-17 (id 1011)
+- *Damn* — 🇳🇬 NG #83 → **#25**. ng-updates-019 — issue: 2020-11-19 (id 161)
+- *i'm a mess* — 🇸🇷 SR **#19** added. americas-013 — issue: DE TOP 40 LIJST VOOR 23 FEB – 2 MRT 2023
+- *With You* — 🇸🇷 SR **#7** added. americas-014 — issue: Top40 – 28 augustus tot 04 september 2025 (held 4–11 Sep)
+- *One Call* — 🇸🇷 SR **#8** added. americas-015 — issue: A: Top40 – 10 oktober tot 17 oktober 2024 (held to 31 Oct); B: Top40 – 10 oktober tot 17 oktober 2024 (held 17–24 and 24–31 Oct)
+- *Waist* — 🇸🇷 SR **#20** added. americas-016 — issue: A: Top 40 – 7 tot en met 14 mei 2026; B: Top 40 – 7 tot en met 14 mei 2026 (also 14–21 May, and the unpublished 30 Apr–7 May list per LW 20)
+- *Company* — 🇲🇰 MK **#4** added. airplay-east-003 + ng-new-052 — issue: A: Radiomonitor North Macedonia All Radio, current week as served 2 Oct 2026 (undated); B: current week as served by Radiomonitor on 2 Oct 2026 16:21 UTC (the payload carries no date)
+- *Company* — 🇳🇬 NG **#100** added. airplay-east-003 + ng-new-052 — issue: A: Radiomonitor North Macedonia All Radio, current week as served 2 Oct 2026 (undated); B: current week as served by Radiomonitor on 2 Oct 2026 16:21 UTC (the payload carries no date)
+- *Godly* — 🇳🇬 NG **#1** added. ng-new-053 — issue: A: 2020-12-03 (id 175); B: 2020-12-03 id 175
+- *Forever (Remix)* — 🇳🇬 NG **#1** added. ng-new-054 — issue: A: 2021-03-25 (id 392); B: 2021-03-25 id 392
+- *Infinity* — 🇳🇬 NG **#2** added. ng-new-055 — issue: A: 2020-11-12 (id 155); B: 2020-11-12 id 155
+- *Pronto* — 🇳🇬 NG **#3** added. ng-new-056 — issue: A: 2021-03-18 (id 378); B: 2021-03-18 id 378
+- *Peaches (Masterkraft Remix)* — 🇳🇬 NG **#4** added. ng-new-057 — issue: A: 2021-07-01 (id 540); B: 2021-07-01 id 540
+- *Woman* — 🇳🇬 NG **#5** added. ng-new-058 — issue: A: 2022-05-26 (id 1103); B: 2022-05-26 id 1103
+- *Free My Mind* — 🇳🇬 NG **#7** added. ng-new-059 — issue: A: 2021-11-18 (id 820); B: 2021-11-18 id 820
+- *PAMI* — 🇳🇬 NG **#12** added. ng-new-060 — issue: A: 2020-11-12 (id 155); B: 2020-11-12 id 155
+- *My Bebe* — 🇳🇬 NG **#12** added. ng-new-061 — issue: A: 2020-12-03 (id 175); B: 2020-12-03 id 175
+- *Can't Relate* — 🇳🇬 NG **#18** added. ng-new-062 — issue: A: 2020-12-03 (id 175); B: 2020-12-03 id 175
+- *Bad Influence* — 🇳🇬 NG **#20** added. ng-new-063 — issue: A: 2021-01-07 (id 238); B: 2021-01-07 id 238
+- *Confession* — 🇳🇬 NG **#22** added. ng-new-064 — issue: A: 2020-11-26 (id 167); B: 2020-11-26 id 167
+- *Lo Lo* — 🇳🇬 NG **#32** added. ng-new-065 — issue: A: 2021-01-07 (id 238); B: 2021-01-07 id 238
+- *You* — 🇳🇬 NG **#40** added. ng-new-066 — issue: A: 2020-12-31 (id 218); B: 2020-12-31 id 218
+- *joanna* — 🇳🇬 NG **#41** added. ng-new-067 — issue: A: 2023-06-22 (id 2180); B: 2023-06-22 id 2180
+- *imagine* — 🇳🇬 NG **#44** added. ng-new-068 — issue: A: 2023-06-22 (id 2180); B: 2023-06-22 id 2180
+- *come closer* — 🇳🇬 NG **#45** added. ng-new-069 — issue: A: 2023-06-22 (id 2180); B: 2023-06-22 id 2180
+- *Abeg* — 🇳🇬 NG **#49** added. ng-new-070 — issue: A: 2022-05-12 (id 1095); B: 2022-05-12 id 1095
+- *Take It On (Sprite Limelight)* — 🇳🇬 NG **#85** added. ng-new-071 — issue: A: 2022-08-25 (id 1289); B: 2022-08-25 id 1289
+- *10 Toes* — 🇳🇬 NG **#87** added. ng-new-072 — issue: A: 2022-07-28 (id 1252); B: 2022-07-28 id 1252
+
+**North Macedonia.** *Company* (Clean Bandit, Chlöe & Omah Lay) at #4 on Radiomonitor North Macedonia's All Radio chart, the airplay carve-out the board already uses for MK. The widget serves the current week only, so #4 is a floor, and the row says so.

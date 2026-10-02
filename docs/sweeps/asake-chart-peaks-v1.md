@@ -95,6 +95,8 @@ All on the **TurnTable Official Nigeria Top 100**.
 
 *Albums subtotal: 6 + 4 + 4 + 2 + 1 + 1 + 1 = **19*** ✓
 
+**After the 2 Oct 2026 charts sweep: 115 singles + 24 albums = 139 chart entries** (was 131); the changes are listed under "Re-read 2 Oct 2026" at the end of this file.
+
 **Total: 109 + 22 = 131 chart entries.**
 
 ## Distribution check
@@ -290,3 +292,18 @@ same as an absent placement.
 The two albums genuinely share a peak of 66; they are different chart runs two
 years apart and the coincidence is in the source, not in the transcription.
 Territories rise 11 → 12 as the US joins.
+
+## Re-read 2 Oct 2026 (charts sweep)
+
+Applied from the verified 2 Oct 2026 charts sweep — every row below was CONFIRMED by two independent verifiers reading the chart body itself (method, both votes' issue references and the held items in [charts-sweep-2026-10-02.md](charts-sweep-2026-10-02.md)). Nigerian rows are TurnTable's Official Nigeria Top 100 (the Top 50 before 7 Jul 2022) and Official Top 100 Albums, read at the archive route; a peak is the best PRINTED rank in an issue that credits the artist. Board total now **139 chart entries** (115 singles + 24 albums).
+
+- *Palazzo (SPINALL & Asake)* — 🇳🇬 NG #5 → **#2**. ng-updates-023 — issue: 2022-05-19 (id 1096)
+- *Trabaye* — 🇳🇬 NG #74 → **#24**. ng-updates-024 — issue: 2022-02-24 (id 983)
+- *Terminator* — 🇮🇪 IE **#91** added. uk-ie-014 — issue: A: IRMA chart-singles-2022-08-26 (id 48239), #91; B: IRMA chart-singles-2022-08-26 (id 48239) #91
+- *Wave* — 🇮🇪 IE **#82** added. uk-ie-015 — issue: A: IRMA chart-singles-2024-06-28 (id 48718), #82; B: IRMA chart-singles-2024-06-28 (id 48718) #82
+- *Active* — 🇮🇪 IE **#88** added. uk-ie-016 — issue: A: IRMA chart-singles-2024-08-16 (id 48754), #88; B: IRMA chart-singles-2024-08-16 (id 48754) #88
+- *Work of Art* — 🇮🇪 IE **#59** added. uk-ie-017 — issue: A: IRMA chart-albums-2023-06-23 (id 48448), #59; B: IRMA chart-albums-2023-06-23 (id 48448) #59
+- *M$NEY* — 🇮🇪 IE **#58** added. uk-ie-018 — issue: A: IRMA chart-albums-2026-05-08 (id 41363), #58; B: IRMA chart-albums-2026-05-08 (id 41363) #58
+- *WORSHIP* — 🇸🇷 SR **#2** added. americas-003 — issue: Top 40 – 28 mei tot en met 4 juni 2026
+- *Bad Boy (Live in London)* — 🇳🇬 NG **#70** added. ng-new-114 — issue: A: 2026-07-30 (id 5769); B: 2026-07-30 id 5769
+- *Psycho (Live in London)* — 🇳🇬 NG **#71** added. ng-new-115 — issue: A: 2026-07-30 (id 5769); B: 2026-07-30 id 5769

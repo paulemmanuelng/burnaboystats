@@ -354,3 +354,11 @@ them could add a row that would stand without being re-read.
   document rests on them.
 - One saved Canada page carried an email-like Sentry key string in its scripts; it
   was redacted in all four saved copies.
+
+## Re-read 2 Oct 2026 (charts sweep)
+
+Applied from the verified 2 Oct 2026 charts sweep — every row below was CONFIRMED by two independent verifiers reading the chart body itself (method, both votes' issue references and the held items in [charts-sweep-2026-10-02.md](charts-sweep-2026-10-02.md)). Nigerian rows are TurnTable's Official Nigeria Top 100 (the Top 50 before 7 Jul 2022) and Official Top 100 Albums, read at the archive route; a peak is the best PRINTED rank in an issue that credits the artist. Board total now **45 chart entries** (39 singles + 6 albums).
+
+- *Do Nothing* — 🇳🇬 NG #22 unchanged; open-run note re-dated or closed. ng-updates-009 — issue: 2026-08-20 (id 5848)
+- *Private Chef* — 🇳🇬 NG #52 unchanged; open-run note re-dated or closed. ng-updates-010 — issue: 2026-08-20 (id 5848)
+- *All Die* — 🇳🇬 NG #42 unchanged; open-run note re-dated or closed. ng-updates-011 (run closed 17 Sep) — issue: 2026-08-13 (id 5771)

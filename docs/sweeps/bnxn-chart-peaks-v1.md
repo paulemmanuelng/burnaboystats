@@ -91,3 +91,13 @@ here with a single entry and no Nigerian row.
 ## Re-read 17 Sep 2026 (freshness audit, batch 3)
 
 - **WHO THIS** (Victony & BNXN) — TurnTable Official Nigeria Top 100, week 37 (10 Sep 2026): rank 24, highestPosition 24, 3 weeks. Board row moved 42 → **24**, the same answer on Victony's board (open peak, live-run note).
+
+## Re-read 2 Oct 2026 (charts sweep)
+
+Applied from the verified 2 Oct 2026 charts sweep — every row below was CONFIRMED by two independent verifiers reading the chart body itself (method, both votes' issue references and the held items in [charts-sweep-2026-10-02.md](charts-sweep-2026-10-02.md)). Nigerian rows are TurnTable's Official Nigeria Top 100 (the Top 50 before 7 Jul 2022) and Official Top 100 Albums, read at the archive route; a peak is the best PRINTED rank in an issue that credits the artist. Board total now **104 chart entries** (99 singles + 5 albums).
+
+- *WHO THIS* — 🇳🇬 NG #24 unchanged; open-run note re-dated or closed. ng-updates-005 — issue: 2026-09-10 (id 5923)
+- *Mood (Wizkid ft. BNXN)* — 🇳🇬 NG #12 → **#13**. ng-updates-034 — issue: A: 2021-09-09 (id 721); also ids 732, 751; B: 2021-09-09 (id 721); also ids 732 and 751
+- *African Soldier* — 🇳🇬 NG #98 **removed**. ng-updates-026 (Patoranking ft. Buju Banton)
+- *African Soldier* — row removed (ng-updates-026 (Patoranking ft. Buju Banton)).
+- *Online* — 🇳🇬 NG **#20** added. ng-new-109 — issue: A: 2026-09-24 (id 5939); B: 2026-09-24 id 5939
