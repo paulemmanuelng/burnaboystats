@@ -58,9 +58,9 @@ export const updates: Update[] = [
     big: true,
     // charts.ts "Dai Dai" DE/AT/CH rows, re-read in the 2 Oct 2026 charts sweep
     // (docs/sweeps/charts-sweep-2026-10-02.md): GfK's own releases of 25 Sep
-    // ("zum 13. Mal") and 2 Oct ("13 Wochen am Stück", now No. 2);
+    // ("zum 13. Mal"); the 2 Oct release (No. 2) was read by one verifier only, so it is a hand check, not a claim;
     // austriancharts.at 25.09.2026; swisscharts.com 27.09.2026.
-    text: "Thirteen straight weeks at No. 1 in Germany: GfK's chart of 2 October ends “Dai Dai”'s run at the top, after Austria's Ö3 Top 40 of 25 September gave it a 14th week at No. 1 and the Schweizer Hitparade of 27 September a 16th.",
+    text: "Thirteen straight weeks at No. 1 in Germany for “Dai Dai”, to GfK's chart of 25 September, while Austria's Ö3 Top 40 of the same date gave it a 14th week at No. 1 and the Schweizer Hitparade of 27 September a 16th.",
     href: "/dai-dai",
   },
   {
