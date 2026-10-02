@@ -127,8 +127,8 @@
       },
       "lastChanged": "2026-10-01",
       "offset": 117380830,
-      "lastSeenValue": 11113813067,
-      "lastSeenAt": "2026-10-01",
+      "lastSeenValue": 11104198306,
+      "lastSeenAt": "2026-10-02",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B.",
       "lastRawValue": 10996432237,
@@ -161,7 +161,7 @@
         }
       ],
       "lastChanged": "2026-10-01",
-      "lastSeenValue": 1178066916,
+      "lastSeenValue": 1181791122,
       "lastSeenAt": "2026-10-02",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
@@ -193,7 +193,7 @@
         }
       ],
       "lastChanged": "2026-09-26",
-      "lastSeenValue": 365144473,
+      "lastSeenValue": 365208168,
       "lastSeenAt": "2026-10-02",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. Source moved off kworb on 28 Aug 2026: kworb.net/youtube/artist/burnaboy.html froze on 25 Aug, serving byte-identical totals for three days while still printing a ~105k/day view rate. The staleness alarm caught it. YouTube itself was 105k-309k views ahead on every one of the four."
@@ -225,7 +225,7 @@
         }
       ],
       "lastChanged": "2026-09-23",
-      "lastSeenValue": 311069410,
+      "lastSeenValue": 311104563,
       "lastSeenAt": "2026-10-02",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. Source moved off kworb on 28 Aug 2026: kworb.net/youtube/artist/burnaboy.html froze on 25 Aug, serving byte-identical totals for three days while still printing a ~105k/day view rate. The staleness alarm caught it. YouTube itself was 105k-309k views ahead on every one of the four."
@@ -257,7 +257,7 @@
         }
       ],
       "lastChanged": "2026-10-01",
-      "lastSeenValue": 484635586,
+      "lastSeenValue": 484731240,
       "lastSeenAt": "2026-10-02",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. Source moved off kworb on 28 Aug 2026: kworb.net/youtube/artist/burnaboy.html froze on 25 Aug, serving byte-identical totals for three days while still printing a ~105k/day view rate. The staleness alarm caught it. YouTube itself was 105k-309k views ahead on every one of the four."
@@ -289,7 +289,7 @@
         }
       ],
       "lastChanged": "2026-09-16",
-      "lastSeenValue": 119238487,
+      "lastSeenValue": 119264432,
       "lastSeenAt": "2026-10-02",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. Source moved off kworb on 28 Aug 2026: kworb.net/youtube/artist/burnaboy.html froze on 25 Aug, serving byte-identical totals for three days while still printing a ~105k/day view rate. The staleness alarm caught it. YouTube itself was 105k-309k views ahead on every one of the four."
@@ -321,7 +321,7 @@
         }
       ],
       "lastChanged": "2026-09-23",
-      "lastSeenValue": 50804487,
+      "lastSeenValue": 50822006,
       "lastSeenAt": "2026-10-02",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total."
@@ -353,7 +353,7 @@
         }
       ],
       "lastChanged": "2026-09-17",
-      "lastSeenValue": 12813594,
+      "lastSeenValue": 12816404,
       "lastSeenAt": "2026-10-02",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total."
@@ -385,7 +385,7 @@
         }
       ],
       "lastChanged": "2026-09-17",
-      "lastSeenValue": 1821983,
+      "lastSeenValue": 1822022,
       "lastSeenAt": "2026-10-02",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total."
@@ -417,7 +417,7 @@
         }
       ],
       "lastChanged": "2026-09-17",
-      "lastSeenValue": 1045476,
+      "lastSeenValue": 1045523,
       "lastSeenAt": "2026-10-02",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total."
@@ -449,7 +449,7 @@
         }
       ],
       "lastChanged": "2026-09-17",
-      "lastSeenValue": 1252371,
+      "lastSeenValue": 1252419,
       "lastSeenAt": "2026-10-02",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total."
@@ -502,8 +502,8 @@
         }
       ],
       "lastChanged": "2026-09-28",
-      "lastSeenValue": 614089175,
-      "lastSeenAt": "2026-10-01",
+      "lastSeenValue": 614310704,
+      "lastSeenAt": "2026-10-02",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
@@ -535,8 +535,8 @@
         }
       ],
       "lastChanged": "2026-10-01",
-      "lastSeenValue": 431510891,
-      "lastSeenAt": "2026-10-01",
+      "lastSeenValue": 431752646,
+      "lastSeenAt": "2026-10-02",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
@@ -568,8 +568,8 @@
         }
       ],
       "lastChanged": "2026-09-26",
-      "lastSeenValue": 338276644,
-      "lastSeenAt": "2026-10-01",
+      "lastSeenValue": 338433211,
+      "lastSeenAt": "2026-10-02",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
@@ -601,8 +601,8 @@
         }
       ],
       "lastChanged": "2026-09-30",
-      "lastSeenValue": 290683974,
-      "lastSeenAt": "2026-10-01",
+      "lastSeenValue": 290832135,
+      "lastSeenAt": "2026-10-02",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
@@ -634,8 +634,8 @@
         }
       ],
       "lastChanged": "2026-10-01",
-      "lastSeenValue": 315668469,
-      "lastSeenAt": "2026-10-01",
+      "lastSeenValue": 316164540,
+      "lastSeenAt": "2026-10-02",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
@@ -667,8 +667,8 @@
         }
       ],
       "lastChanged": "2026-09-25",
-      "lastSeenValue": 216240685,
-      "lastSeenAt": "2026-10-01",
+      "lastSeenValue": 216376134,
+      "lastSeenAt": "2026-10-02",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
@@ -700,8 +700,8 @@
         }
       ],
       "lastChanged": "2026-09-26",
-      "lastSeenValue": 73919876,
-      "lastSeenAt": "2026-10-01",
+      "lastSeenValue": 74013081,
+      "lastSeenAt": "2026-10-02",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
@@ -733,8 +733,8 @@
         }
       ],
       "lastChanged": "2026-09-03",
-      "lastSeenValue": 10709340,
-      "lastSeenAt": "2026-10-01",
+      "lastSeenValue": 10716649,
+      "lastSeenAt": "2026-10-02",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
@@ -766,8 +766,8 @@
         }
       ],
       "lastChanged": "2026-08-03",
-      "lastSeenValue": 3843121,
-      "lastSeenAt": "2026-10-01",
+      "lastSeenValue": 3844587,
+      "lastSeenAt": "2026-10-02",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
@@ -799,8 +799,8 @@
         }
       ],
       "lastChanged": "2026-09-27",
-      "lastSeenValue": 3761289,
-      "lastSeenAt": "2026-10-01",
+      "lastSeenValue": 3763872,
+      "lastSeenAt": "2026-10-02",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
@@ -832,8 +832,8 @@
         }
       ],
       "lastChanged": "2026-09-23",
-      "lastSeenValue": 989047,
-      "lastSeenAt": "2026-10-01",
+      "lastSeenValue": 989106,
+      "lastSeenAt": "2026-10-02",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
@@ -845,7 +845,7 @@
       "extractor": "kworbSongStreams",
       "match": "Dai Dai",
       "kind": "peak",
-      "baseline": 485099894,
+      "baseline": 487471894,
       "live": true,
       "sanity": {
         "maxJump": 0.25,
@@ -863,9 +863,9 @@
           "describes": "Spotify streams for Dai Dai"
         }
       ],
-      "lastChanged": "2026-10-01",
-      "lastSeenValue": 485099894,
-      "lastSeenAt": "2026-10-01",
+      "lastChanged": "2026-10-02",
+      "lastSeenValue": 487471894,
+      "lastSeenAt": "2026-10-02",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
@@ -897,8 +897,8 @@
         }
       ],
       "lastChanged": "2026-09-27",
-      "lastSeenValue": 68695115,
-      "lastSeenAt": "2026-10-01",
+      "lastSeenValue": 68735235,
+      "lastSeenAt": "2026-10-02",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
@@ -930,8 +930,8 @@
         }
       ],
       "lastChanged": "2026-09-25",
-      "lastSeenValue": 3774306,
-      "lastSeenAt": "2026-10-01",
+      "lastSeenValue": 3778118,
+      "lastSeenAt": "2026-10-02",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
@@ -963,8 +963,8 @@
         }
       ],
       "lastChanged": "2026-09-17",
-      "lastSeenValue": 85924785,
-      "lastSeenAt": "2026-09-24",
+      "lastSeenValue": 86115109,
+      "lastSeenAt": "2026-10-02",
       "stalenessDays": 30,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. Staleness window 30 days (27 Sep 2026): the page prints this compact (\"86M\"), and the remix gains ~50k streams a day (85,571,611 on 17 Sep to 85,924,785 on kworb's 25 Sep page), so the printed figure can only move every couple of weeks; a 3-day window made the alarm ring on a correct figure."
     },
@@ -986,7 +986,9 @@
         "date": "2026-09-30",
         "value": 1882859106
       },
-      "readings": {},
+      "readings": {
+        "2026-10-02": 2800262
+      },
       "dailyMax": 25000000,
       "live": true,
       "sanity": {
@@ -1015,12 +1017,12 @@
         }
       ],
       "lastSeenValue": 1882859106,
-      "lastSeenAt": "2026-10-01",
+      "lastSeenAt": "2026-10-02",
       "lastChanged": "2026-10-01",
       "lastStamp": {
-        "date": "2026-09-30",
-        "total": 6280427850,
-        "daily": 5355508
+        "date": "2026-10-02",
+        "total": 6247636500,
+        "daily": 2800262
       },
       "derived": []
     },
@@ -1098,7 +1100,9 @@
         "date": "2026-09-30",
         "value": 1914229262
       },
-      "readings": {},
+      "readings": {
+        "2026-10-02": 4038343
+      },
       "dailyMax": 25000000,
       "live": true,
       "sanity": {
@@ -1127,12 +1131,12 @@
         }
       ],
       "lastSeenValue": 1914229262,
-      "lastSeenAt": "2026-10-01",
+      "lastSeenAt": "2026-10-02",
       "lastChanged": "2026-10-01",
       "lastStamp": {
-        "date": "2026-09-30",
-        "total": 10996432237,
-        "daily": 6733661
+        "date": "2026-10-02",
+        "total": 10986817476,
+        "daily": 4038343
       },
       "derived": []
     },
@@ -1154,7 +1158,10 @@
         "date": "2026-09-30",
         "value": 1537315823
       },
-      "readings": {},
+      "readings": {
+        "2026-10-02": 2945769,
+        "2026-10-01": 2478137
+      },
       "dailyMax": 25000000,
       "live": true,
       "sanity": {
@@ -1183,14 +1190,16 @@
         }
       ],
       "lastSeenValue": 1537315823,
-      "lastSeenAt": "2026-10-01",
+      "lastSeenAt": "2026-10-02",
       "lastChanged": "2026-10-01",
       "lastStamp": {
-        "date": "2026-09-30",
-        "total": 4426977410,
-        "daily": 4927853
+        "date": "2026-10-02",
+        "total": 4432401316,
+        "daily": 2945769
       },
-      "derived": []
+      "derived": [
+        "2026-10-01"
+      ]
     },
     {
       "id": "streams-2026-tyla",

@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-02";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-02T12:41Z";
+  export const liveChartsBuiltAt = "2026-10-02T22:18Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Spotify","Spotify Albums","iTunes"];
@@ -56,8 +56,8 @@
           {
             "country": "RU",
             "name": "Russia",
-            "position": 7,
-            "movement": 3
+            "position": 6,
+            "movement": 0
           },
           {
             "country": "BF",
@@ -74,21 +74,8 @@
           {
             "country": "MA",
             "name": "Morocco",
-            "position": 151,
-            "movement": 24
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 105,
-            "movement": null,
-            "status": "new"
+            "position": 184,
+            "movement": -33
           }
         ]
       }
@@ -100,27 +87,33 @@
     "title": "BODY",
     "platforms": [
       {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 104,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NE",
+            "name": "Niger",
+            "position": 121,
+            "movement": -20
+          }
+        ]
+      },
+      {
         "platform": "Spotify",
         "numberOnes": 0,
         "entries": [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 118,
-            "movement": -7
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 101,
-            "movement": null,
-            "status": "new"
+            "position": 123,
+            "movement": -5
           }
         ]
       }
@@ -132,26 +125,33 @@
     "title": "BANGER BOY",
     "platforms": [
       {
-        "platform": "Spotify Albums",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 123,
-            "movement": 9
-          }
-        ]
-      },
-      {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
             "country": "NE",
             "name": "Niger",
-            "position": 50,
-            "movement": 114
+            "position": 88,
+            "movement": -38
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 123,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Spotify Albums",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 133,
+            "movement": -10
           }
         ]
       }
@@ -160,24 +160,44 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/1d0daaf8c0025c2d95c96beafe4e0a0b/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "forever",
+    "title": "Sad Romance",
     "platforms": [
       {
-        "platform": "iTunes",
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 131,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 139,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Spotify Albums",
         "numberOnes": 0,
         "entries": [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 67,
+            "position": 183,
             "movement": null,
-            "status": "new"
+            "status": "re"
           }
         ]
       }
     ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/73e10a485de513f9c18f87575ae66d58/500x500-000000-80-0-0.jpg"
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/71000d4cdf0e9d662dd70c614e1de2a8/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Beggie Beggie",
@@ -189,8 +209,8 @@
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 165,
-            "movement": 17
+            "position": 147,
+            "movement": 18
           }
         ]
       }
@@ -208,8 +228,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 105,
-            "movement": -5
+            "position": 130,
+            "movement": -25
           }
         ]
       }
@@ -218,7 +238,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "AFRICAN GIRLS",
+    "title": "forever",
     "platforms": [
       {
         "platform": "iTunes",
@@ -227,7 +247,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 188,
+            "position": 155,
             "movement": null,
             "status": "new"
           }
@@ -235,7 +255,7 @@
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/558d63bcba858d840fc84efcc3dad6a7/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/73e10a485de513f9c18f87575ae66d58/500x500-000000-80-0-0.jpg"
   }
 ];
   

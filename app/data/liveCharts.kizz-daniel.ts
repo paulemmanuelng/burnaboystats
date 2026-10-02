@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-02";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-02T12:41Z";
+  export const liveChartsBuiltAt = "2026-10-02T22:18Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -56,26 +56,20 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 38,
-            "movement": -10
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 67,
-            "movement": 12
+            "position": 45,
+            "movement": -7
           },
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 95,
-            "movement": -38
+            "position": 116,
+            "movement": -21
           },
           {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 126,
-            "movement": 17
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 124,
+            "movement": -57
           }
         ]
       },
@@ -86,14 +80,14 @@
           {
             "country": "GD",
             "name": "Grenada",
-            "position": 20,
-            "movement": -2
+            "position": 21,
+            "movement": -1
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 38,
-            "movement": -29
+            "position": 128,
+            "movement": -124
           }
         ]
       },
@@ -104,8 +98,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 25,
-            "movement": 13
+            "position": 19,
+            "movement": 6
           }
         ]
       },
@@ -159,20 +153,20 @@
           {
             "country": "LR",
             "name": "Liberia",
-            "position": 82,
-            "movement": 98
+            "position": 86,
+            "movement": -4
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 115,
-            "movement": -11
+            "position": 137,
+            "movement": -22
           },
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 140,
-            "movement": -30
+            "position": 149,
+            "movement": -9
           }
         ]
       },
@@ -183,8 +177,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 117,
-            "movement": 25
+            "position": 112,
+            "movement": 5
           }
         ]
       },
@@ -215,28 +209,26 @@
           {
             "country": "FM",
             "name": "Micronesia",
-            "position": 94,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 129,
-            "movement": -4
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 135,
-            "movement": 17
+            "position": 114,
+            "movement": -20
           },
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 178,
-            "movement": null,
-            "status": "new"
+            "position": 121,
+            "movement": 57
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 127,
+            "movement": 2
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 160,
+            "movement": -25
           }
         ]
       }
@@ -254,28 +246,26 @@
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 62,
-            "movement": null,
-            "status": "new"
+            "position": 68,
+            "movement": -6
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 83,
-            "movement": 13
+            "position": 88,
+            "movement": -5
           },
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 118,
-            "movement": 17
+            "position": 117,
+            "movement": 1
           },
           {
             "country": "BJ",
             "name": "Benin",
-            "position": 133,
-            "movement": null,
-            "status": "new"
+            "position": 122,
+            "movement": 11
           }
         ]
       }
@@ -293,9 +283,8 @@
           {
             "country": "MR",
             "name": "Mauritania",
-            "position": 32,
-            "movement": null,
-            "status": "new"
+            "position": 54,
+            "movement": -22
           }
         ]
       },
@@ -306,8 +295,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 169,
-            "movement": 2
+            "position": 177,
+            "movement": -1
           }
         ]
       }
@@ -325,9 +314,8 @@
           {
             "country": "MR",
             "name": "Mauritania",
-            "position": 38,
-            "movement": null,
-            "status": "new"
+            "position": 41,
+            "movement": -3
           }
         ]
       },
@@ -373,7 +361,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/2ed4231dd65e7727d82ba06f7d05e44f/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Barnabas",
+    "title": "Maverick",
     "platforms": [
       {
         "platform": "Spotify Albums",
@@ -382,9 +370,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 190,
-            "movement": null,
-            "status": "re"
+            "position": 119,
+            "movement": 9
           }
         ]
       },
@@ -395,7 +382,7 @@
           {
             "country": "TD",
             "name": "Chad",
-            "position": 94,
+            "position": 200,
             "movement": null,
             "status": "new"
           }
@@ -403,7 +390,7 @@
       }
     ],
     "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3b72a2abeaf0a982b9c093667d6d1440/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/2ac63dd6fe23d319b5b6ef545f36f642/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Uncle K: Lemon Chase",
@@ -415,8 +402,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 166,
-            "movement": 7
+            "position": 158,
+            "movement": 8
           }
         ]
       },
@@ -427,8 +414,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 150,
-            "movement": 12
+            "position": 169,
+            "movement": -19
           }
         ]
       }
@@ -437,16 +424,16 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/7f5dd177b9c16d06857bf6e30c74e558/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Day By Day",
+    "title": "Black Girl Magic",
     "platforms": [
       {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "TD",
-            "name": "Chad",
-            "position": 42,
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 76,
             "movement": null,
             "status": "new"
           }
@@ -454,7 +441,7 @@
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6827c74cb3ae549d8408455eafc3138e/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/7f5dd177b9c16d06857bf6e30c74e558/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Lie",
@@ -485,8 +472,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 121,
-            "movement": 1
+            "position": 122,
+            "movement": -1
           }
         ]
       }
@@ -533,43 +520,24 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/d50e6c1e1ff65a58b2ae4051876d7e7e/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Black Girl Magic",
+    "title": "No Bad Songz",
     "platforms": [
       {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 192,
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 100,
             "movement": null,
             "status": "new"
           }
         ]
       }
     ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/7f5dd177b9c16d06857bf6e30c74e558/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Maverick",
-    "platforms": [
-      {
-        "platform": "Spotify Albums",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 128,
-            "movement": 2
-          }
-        ]
-      }
-    ],
     "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/2ac63dd6fe23d319b5b6ef545f36f642/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/8451a61626d27a1cd0a51ebf866e20f5/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Eh God (Barnabas)",

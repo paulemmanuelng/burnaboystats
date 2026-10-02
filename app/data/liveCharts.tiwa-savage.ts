@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-02";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-02T12:41Z";
+  export const liveChartsBuiltAt = "2026-10-02T22:18Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","iTunes"];
@@ -64,19 +64,6 @@
             "name": "Uganda",
             "position": 126,
             "movement": -6
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SB",
-            "name": "Solomon Islands",
-            "position": 182,
-            "movement": null,
-            "status": "new"
           }
         ]
       }
@@ -104,66 +91,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/70ea3139021b354895903f2ce4da79fd/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Lova Lova",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 75,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/e17918a3b7f7137fd1e2f716d87590d1/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "R.E.D",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 59,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/e91b53c3319a3533e3c225dfe9a69e98/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Energy",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 199,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/d810fadc02c818d3ed7d6af2d6c8d2de/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "My Darlin",
     "platforms": [
       {
@@ -173,14 +100,54 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 116,
-            "movement": -30
+            "position": 122,
+            "movement": -24
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/14b6244faabed9fe8f1183951f8053ea/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "This One Is Personal",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 61,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ce4277e03a5b88cc40761c56f24043ae/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Lova Lova",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 163,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/e17918a3b7f7137fd1e2f716d87590d1/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Once Upon A Time",
@@ -192,15 +159,33 @@
           {
             "country": "TD",
             "name": "Chad",
-            "position": 106,
-            "movement": null,
-            "status": "new"
+            "position": 85,
+            "movement": 21
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/556df097d6c975617e593855e293e4e7/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "R.E.D",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 189,
+            "movement": -130
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/e91b53c3319a3533e3c225dfe9a69e98/500x500-000000-80-0-0.jpg"
   }
 ];
   
