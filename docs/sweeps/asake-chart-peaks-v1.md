@@ -95,6 +95,8 @@ All on the **TurnTable Official Nigeria Top 100**.
 
 *Albums subtotal: 6 + 4 + 4 + 2 + 1 + 1 + 1 = **19*** ✓
 
+**After the 2 Oct 2026 charts sweep: 115 singles + 24 albums = 139 chart entries** (was 131); the changes are listed under "Re-read 2 Oct 2026" at the end of this file.
+
 **Total: 109 + 22 = 131 chart entries.**
 
 ## Distribution check
@@ -257,11 +259,11 @@ Four rows here also appear in files already written, and **all four reproduce to
 
 ### Context
 
-Under this identical standard, **Burna Boy has 351 chart entries and 46 No. 1 placements across 69 chart territories** ([burnaboystats.com](https://burnaboystats.com)).
+Under this identical standard, **Burna Boy has 384 chart entries and 46 No. 1 placements across 71 chart territories** ([burnaboystats.com](https://burnaboystats.com)).
 
-Asake's **131 entries across 12 chart territories** is **37% of Burna Boy's entry count** and **just over half his No. 1 tally** — but only **17% of his chart-territory reach**, and that last number is the honest one. The two lines are not the same shape at all. Burna Boy's 351 is spread across 69 territories at an average of five entries each; Asake's 131 is **94 entries in one country** plus a 37-entry tail.
+Asake's **139 entries across 13 chart territories** (board figures after the 2 Oct 2026 charts sweep) is **36% of Burna Boy's entry count** and **just over half his No. 1 tally** — but only **18% of his chart-territory reach**, and that last number is the honest one. The two lines are not the same shape at all. Burna Boy's 384 is spread across 71 territories at an average of five entries each; Asake's 139 is **96 entries in one country** plus a 43-entry tail.
 
-Set against the others in this sweep, the comparison is sharper still. Ayra Starr has **82 entries across 30 chart territories** — fewer entries than Asake, in nearly three times as many places. Asake out-charts her at home by 94 to 32 and out-No.-1s her 24 to 10, and then loses the international comparison outright: she has a Spanish No. 1, a six-week Peruvian No. 1 and a Bolivian No. 1; he has **no No. 1 anywhere outside Nigeria, and a best Billboard Global 200 peak of #120.**
+Set against the others in this sweep, the comparison is sharper still. Ayra Starr has **111 entries across 31 chart territories** — fewer entries than Asake, in more than twice as many places. Asake out-charts her at home by 96 to 60 and out-No.-1s her 24 to 10, and then loses the international comparison outright: she has a Spanish No. 1, a six-week Peruvian No. 1 and a Bolivian No. 1; he has **no No. 1 anywhere outside Nigeria, and a best Billboard Global 200 peak of #120.**
 
 Three things in this file are genuinely remarkable and none of them is international. **Twenty-four Nigerian No. 1 placements** is the largest home-market tally recorded in this family. **Every full-length he has released has topped the albums chart** — five studio albums and a joint EP, no exceptions. And *Lonely At The Top* was read at rank 1 in **eleven separate archived weeks**, the longest No. 1 run anyone in this sweep has evidenced week by week.
 
@@ -290,3 +292,18 @@ same as an absent placement.
 The two albums genuinely share a peak of 66; they are different chart runs two
 years apart and the coincidence is in the source, not in the transcription.
 Territories rise 11 → 12 as the US joins.
+
+## Re-read 2 Oct 2026 (charts sweep)
+
+Applied from the verified 2 Oct 2026 charts sweep — every row below was CONFIRMED by two independent verifiers reading the chart body itself (method, both votes' issue references and the held items in [charts-sweep-2026-10-02.md](charts-sweep-2026-10-02.md)). Nigerian rows are TurnTable's Official Nigeria Top 100 (the Top 50 before 7 Jul 2022) and Official Top 100 Albums, read at the archive route; a peak is the best PRINTED rank in an issue that credits the artist. Board total now **139 chart entries** (115 singles + 24 albums).
+
+- *Palazzo (SPINALL & Asake)* — 🇳🇬 NG #5 → **#2**. ng-updates-023 — issue: 2022-05-19 (id 1096)
+- *Trabaye* — 🇳🇬 NG #74 → **#24**. ng-updates-024 — issue: 2022-02-24 (id 983)
+- *Terminator* — 🇮🇪 IE **#91** added. uk-ie-014 — issue: A: IRMA chart-singles-2022-08-26 (id 48239), #91; B: IRMA chart-singles-2022-08-26 (id 48239) #91
+- *Wave* — 🇮🇪 IE **#82** added. uk-ie-015 — issue: A: IRMA chart-singles-2024-06-28 (id 48718), #82; B: IRMA chart-singles-2024-06-28 (id 48718) #82
+- *Active* — 🇮🇪 IE **#88** added. uk-ie-016 — issue: A: IRMA chart-singles-2024-08-16 (id 48754), #88; B: IRMA chart-singles-2024-08-16 (id 48754) #88
+- *Work of Art* — 🇮🇪 IE **#59** added. uk-ie-017 — issue: A: IRMA chart-albums-2023-06-23 (id 48448), #59; B: IRMA chart-albums-2023-06-23 (id 48448) #59
+- *M$NEY* — 🇮🇪 IE **#58** added. uk-ie-018 — issue: A: IRMA chart-albums-2026-05-08 (id 41363), #58; B: IRMA chart-albums-2026-05-08 (id 41363) #58
+- *WORSHIP* — 🇸🇷 SR **#2** added. americas-003 — issue: Top 40 – 28 mei tot en met 4 juni 2026
+- *Bad Boy (Live in London)* — 🇳🇬 NG **#70** added. ng-new-114 — issue: A: 2026-07-30 (id 5769); B: 2026-07-30 id 5769
+- *Psycho (Live in London)* — 🇳🇬 NG **#71** added. ng-new-115 — issue: A: 2026-07-30 (id 5769); B: 2026-07-30 id 5769

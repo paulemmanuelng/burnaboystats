@@ -221,3 +221,9 @@ Resting on the find pass (24 Sep 2026): New Zealand Top 40 singles and albums (A
   one, `burnaboystats-turntable-walk/1.0 (+https://burnaboystats.com/contact)`, on
   25 Sep 2026. This pass ran a copy with an honest User-Agent instead and got the same 509 issues.
 - TOSAC's live pages serve AI-bot filler to an honest client (the "✓ᴬ" rows are read from raw Wayback captures, the site's documented convention). Worth a ruling on whether archived reads of a site that deters AI clients stay acceptable. **Ruled 25 Sep 2026: they do not.** TOSAC is by hand, like RiSA, archives included; the row it alone supported is held.
+
+## Re-read 2 Oct 2026 (charts sweep)
+
+Applied from the verified 2 Oct 2026 charts sweep — every row below was CONFIRMED by two independent verifiers reading the chart body itself (method, both votes' issue references and the held items in [charts-sweep-2026-10-02.md](charts-sweep-2026-10-02.md)). Nigerian rows are TurnTable's Official Nigeria Top 100 (the Top 50 before 7 Jul 2022) and Official Top 100 Albums, read at the archive route; a peak is the best PRINTED rank in an issue that credits the artist. Board total now **55 chart entries** (51 singles + 4 albums).
+
+- *Owo Oluwa* — 🇳🇬 NG #81 → **#8**. ng-updates-001 — issue: 2026-09-24 (id 5939)

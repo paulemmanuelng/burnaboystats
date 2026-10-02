@@ -147,6 +147,8 @@ All 11 rows are the **TurnTable Official Top 100 Albums** (published as *Nigeria
 
 **Albums subtotal: 11.**
 
+**After the 2 Oct 2026 charts sweep: 117 singles + 12 albums = 129 chart entries** (was 115); the changes are listed under "Re-read 2 Oct 2026" at the end of this file.
+
 **Total: 104 + 11 = 115 chart entries.**
 
 *Distribution check — 🇳🇬 Nigeria 115, every other territory 0. Sum: **115*** ✓. No release appears twice for the same country on the same chart.
@@ -242,9 +244,9 @@ This **closes the "Nigeria is structurally unverifiable beyond the current week"
 
 ### Context
 
-Under this identical standard, **Burna Boy has 351 chart entries and 46 No. 1 placements across 69 chart territories** ([burnaboystats.com](https://burnaboystats.com)).
+Under this identical standard, **Burna Boy has 384 chart entries and 46 No. 1 placements across 71 chart territories** ([burnaboystats.com](https://burnaboystats.com)).
 
-The comparison is not close, and it is not really a comparison of size — it is a comparison of shape. Seyi Vibez's **115 entries** is **41% of Burna Boy's count**, which for an artist whose first chart week was January 2021 is a remarkable rate. But those 114 entries sit in **1 chart territory against Burna Boy's 71**, and his **11 No. 1s against 48** are all in that one country. Burna Boy's ledger is 71 territories deep and comparatively shallow in each; Seyi Vibez's is one territory deep and, within it, denser than anyone else's in this sweep series.
+The comparison is not close, and it is not really a comparison of size — it is a comparison of shape. Seyi Vibez's **129 entries** (board figure after the 2 Oct 2026 charts sweep) is **34% of Burna Boy's count**, which for an artist whose first chart week was January 2021 is a remarkable rate. But those 129 entries sit in **1 chart territory against Burna Boy's 71**, and his **13 No. 1s against 46** are all in that one country. Burna Boy's ledger is 71 territories deep and comparatively shallow in each; Seyi Vibez's is one territory deep and, within it, denser than anyone else's in this sweep series.
 
 What drives the density is that TurnTable charts album cuts and interludes: *Apala Interlude* at No. 7, *Fuji Interlude* at No. 13, *Highlife Interlude* at No. 46. **103 charting singles in five years in one market** is the highest single-market singles count in the series. And the catalogue does not fall off — *Thy Kingdom Come* has 163 weeks on the albums chart, *NSNV* 163, *Vibe Till Thy Kingdom Come* 151, *NAHAMciaga* 138.
 
@@ -253,3 +255,23 @@ The gap is entirely at the border. Burna Boy's 280 includes a Hot 100 line, a Gl
 ## Re-read 17 Sep 2026 (freshness audit, batch 3)
 
 **BACK 2 U** — TurnTable Official Nigeria Top 100, week 37 (issue dated 10 Sep 2026): rank 10, highestPosition 8, 2 weeks on chart (`__NEXT_DATA__` chartData, read 17 Sep 2026). Published at its open peak with the board's live-run note. Headline 114 → **115**.
+
+## Re-read 2 Oct 2026 (charts sweep)
+
+Applied from the verified 2 Oct 2026 charts sweep — every row below, unless marked, was CONFIRMED by two independent verifiers reading the chart body itself (method, both votes' issue references and the held items in [charts-sweep-2026-10-02.md](charts-sweep-2026-10-02.md)). Nigerian rows are TurnTable's Official Nigeria Top 100 (the Top 50 before 7 Jul 2022) and Official Top 100 Albums, read at the archive route; a peak is the best PRINTED rank in an issue that credits the artist. Board total now **129 chart entries** (117 singles + 12 albums).
+
+- *BACK 2 U* — 🇳🇬 NG #8 → **#4**. ng-updates-002 — issue: 2026-09-24 (id 5939)
+- *Volume* — 🇳🇬 NG **#1** added. ng-new-097 — issue: A: 2026-09-24 (id 5939); B: 2026-09-24 id 5939
+- *Ilome* — 🇳🇬 NG **#3** added. ng-new-098 — issue: A: 2026-09-24 (id 5939); B: 2026-09-24 id 5939
+- *Diamonds* — 🇳🇬 NG **#5** added. ng-new-099 — issue: A: 2026-09-24 (id 5939); B: 2026-09-24 id 5939
+- *Pansa* — 🇳🇬 NG **#7** added. ng-new-100 — issue: A: 2026-09-24 (id 5939); B: 2026-09-24 id 5939
+- *GOD* — 🇳🇬 NG **#9** added. ng-new-101 — issue: A: 2026-09-24 (id 5939); B: 2026-09-24 id 5939
+- *Swaguu (single)* — 🇳🇬 NG **#13** added. ng-new-102 — issue: A: 2026-09-24 (id 5939); B: 2026-09-24 id 5939
+- *Melanin* — 🇳🇬 NG **#14** added. ng-new-103 — issue: A: 2026-09-24 (id 5939); B: 2026-09-24 id 5939
+- *El Jaja* — 🇳🇬 NG **#15** added. ng-new-104 — issue: A: 2026-09-24 (id 5939); B: 2026-09-24 id 5939
+- *Alubarika* — 🇳🇬 NG **#16** added. ng-new-105 — issue: A: 2026-09-24 (id 5939); B: 2026-09-24 id 5939
+- *Akpan Akpari* — 🇳🇬 NG **#17** added. ng-new-106 — issue: A: 2026-09-24 (id 5939); B: 2026-09-24 id 5939
+- *Alafia* — 🇳🇬 NG **#18** added. ng-new-107 — issue: A: 2026-09-24 (id 5939); B: 2026-09-24 id 5939
+- *Oble (Original)* — 🇳🇬 NG **#23** added. ng-new-108 — issue: A: 2026-09-24 (id 5939); B: 2026-09-24 id 5939
+- *Billion Dollar* — 🇳🇬 NG **#10** added. ng-new-116 — issue: A: 2022-04-14 (id 1055); B: 2022-04-14 id 1055
+- *Swaguu* (album) — 🇳🇬 NG **#1** added. ng-new-130 — **SPLIT (both votes UNREADABLE: the Albums week 39 issue is not yet published)**; added on the owner's instruction from TurnTable's own chart graphic (owner's screenshot, reported 2 Oct; not archived in the repo) and TurnTable news 2278 (29 Sep). Re-read Albums wk39 when the archive publishes it.

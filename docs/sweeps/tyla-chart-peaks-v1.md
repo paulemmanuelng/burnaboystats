@@ -8,7 +8,7 @@
 
 Original sweep **17 Aug 2026**; **audit repair pass applied the same day** — see *Audit repairs (17 Aug 2026)* at the foot of the file. This file merges the earlier regional chart-body sweep with a full A–Z country sweep, then applies the repair pass, which removed 21 entries and re-verified a further 8 at source.
 
-‡ = the chart body was reached but the specific week carrying the peak could not be read; the figure rests on a chart-table citation and is **not** promoted to verified. Exactly one entry carries it (Iceland).
+‡ = the chart body was reached but the specific week carrying the peak could not be read; the figure rests on a chart-table citation and is **not** promoted to verified. No entry carries it since 2 Oct 2026, when Iceland's "Water" #14 was read at the body (see "Re-read 2 Oct 2026").
 
 ## Headline
 
@@ -28,10 +28,10 @@ The shape of the discography is lopsided in a way worth stating plainly: **"Wate
 
 | release | chart peaks by country (best first) | entries |
 |---|---|---|
-| Water | 🇦🇪 #1 · 🇳🇿 #1 · 🇸🇷 #1 · 🇧🇬 #2 · 🇪🇪 #3 · 🇿🇦 #3 · 🇬🇧 #4 · 🇵🇭 #4 · 🇬🇷 #5 · 🇦🇺 #6 · 🌐 #6 · 🌍 #6 · 🇮🇪 #6 · 🇱🇺 #6 · 🇳🇱 #6 · 🇺🇸 #7 · 🇵🇹 #9 · 🇩🇰 #10 · 🇵🇦 #10 · 🇸🇪 #10 · 🇨🇭 #11 · 🇧🇪 #12 · 🇳🇬 #13 · 🇮🇸 #14‡ · 🇱🇹 #14 · 🇱🇻 #14 · 🇳🇴 #14 · 🇸🇬 #14 · 🇨🇦 #15 · 🇫🇷 #22 · 🇩🇪 #25 · 🇻🇪 #36 · 🇦🇹 #46 · 🇸🇰 #57 · 🇧🇷 #59 · 🇵🇱 #83 · 🇺🇦 #86 | **37** |
+| Water | 🇦🇪 #1 · 🇳🇿 #1 · 🇸🇷 #1 · 🇧🇬 #2 · 🇪🇪 #3 · 🇿🇦 #3 · 🇬🇧 #4 · 🇵🇭 #4 · 🇬🇷 #5 · 🇦🇺 #6 · 🌐 #6 · 🌍 #6 · 🇮🇪 #6 · 🇱🇺 #6 · 🇳🇱 #6 · 🇺🇸 #7 · 🇵🇹 #9 · 🇩🇰 #10 · 🇵🇦 #10 · 🇸🇪 #10 · 🇨🇭 #11 · 🇧🇪 #12 · 🇳🇬 #13 · 🇮🇸 #14 · 🇱🇹 #14 · 🇱🇻 #14 · 🇳🇴 #14 · 🇸🇬 #14 · 🇨🇦 #15 · 🇫🇷 #22 · 🇩🇪 #25 · 🇻🇪 #36 · 🇦🇹 #46 · 🇸🇰 #57 · 🇧🇷 #59 · 🇵🇱 #83 · 🇺🇦 #86 | **37** |
 | Chanel | 🇮🇳 #2 · 🇦🇪 #3 · 🇸🇷 #3 · 🇵🇭 #4 · 🇲🇾 #5 · 🇸🇬 #6 · 🇷🇸 #7 · 🌍 #8 · 🇬🇹 #8 · 🇸🇦 #11 · 🌐 #11 · 🇱🇧 #12 · 🇬🇷 #14 · 🇦🇺 #15 · 🇬🇧 #15 · 🇲🇹 #16 · 🇳🇿 #16 · 🇳🇱 #19 · 🇪🇪 #20 · 🇱🇺 #20 · 🇨🇦 #22 · 🇨🇭 #23 · 🇿🇦 #24 · 🇸🇪 #28 · 🇧🇪 #29 · 🇳🇬 #29 · 🇮🇪 #33 · 🇩🇪 #34 · 🇦🇹 #39 · 🇺🇸 #43 · 🇵🇦 #48 · 🇵🇹 #49 · 🇫🇷 #50 · 🇳🇴 #53 · 🇮🇱 #85 · 🇱🇹 #85 · 🇰🇷 #196 | **37** |
 | She Did It Again (ft. Zara Larsson) | 🇸🇪 #2 · 🇸🇷 #4 · 🇿🇦 #9 · 🇬🇷 #28 · 🇳🇴 #32 · 🇨🇭 #34 · 🇬🇧 #40 · 🇩🇪 #47 · 🇦🇹 #48 · 🇨🇦 #55 · 🇺🇸 #59 · 🇮🇪 #61 · 🇳🇬 #62 · 🇳🇱 #62 · 🌐 #74 · 🌍 #79 · 🇦🇺 #87 · 🇪🇪 #91 · 🇫🇷 #110 · 🇵🇹 #125 | **20** |
-| Push 2 Start | 🇸🇷 #3 · 🇿🇦 #3 · 🇱🇧 #8 · 🇲🇰 #10 · 🇦🇪 #16 · 🇬🇷 #18 · 🇳🇿 #20 · 🇬🇧 #23 · 🇳🇬 #30 · 🇳🇱 #38 · 🇱🇹 #40 · 🇦🇺 #44 · 🌍 #54 · 🇨🇭 #55 · 🇨🇦 #70 · 🌐 #70 · 🇺🇸 #88 · 🇵🇹 #99 | **18** |
+| Push 2 Start | 🇸🇷 #3 · 🇿🇦 #3 · 🇱🇧 #8 · 🇲🇰 #10 · 🇦🇪 #16 · 🇵🇭 #17 · 🇬🇷 #18 · 🇳🇿 #20 · 🇬🇧 #23 · 🇳🇬 #30 · 🇳🇱 #38 · 🇦🇺 #44 · 🌍 #54 · 🇨🇭 #55 · 🇮🇪 #60 · 🇨🇦 #70 · 🌐 #70 · 🇺🇸 #88 · 🇵🇹 #99 | **19** | *(corrected 2 Oct 2026, see Re-read: LT #40 removed, IE #60 and PH #17 added)*
 | Jump (with Gunna & Skillibeng) | 🇬🇷 #31 · 🇬🇧 #38 · 🇨🇭 #49 · 🇳🇱 #51 · 🇳🇬 #57 · 🇮🇪 #66 · 🇨🇦 #87 · 🇵🇹 #179 · 🌍 #190 · 🌐 #195 | **10** |
 | Talk to Me (Damiano David, Tyla & Nile Rodgers) | 🇧🇬 #5 · 🇪🇪 #11 · 🇸🇮 #14 · 🇳🇱 #15 · 🇱🇧 #16 · 🇰🇿 #33 · 🇧🇪 #44 | **7** |
 | Is It | 🇿🇦 #7 · 🇬🇷 #54 · 🇳🇬 #69 · 🇬🇧 #99 | **4** |
@@ -57,6 +57,8 @@ Twelve releases that appeared in the previous version of this file — "Truth or
 | A\*Pop (2026) | 🇨🇭 #19 · 🇳🇿 #21 · 🇦🇺 #28 · 🇩🇪 #37 · 🇬🇧 #43 · 🇺🇸 #43 · 🇧🇪 #48 · 🇳🇱 #64 · 🇵🇹 #64 · 🇳🇬 #77 · 🇪🇸 #89 | **11** |
 
 *Albums subtotal: 19 + 11 = **30*** ✓
+
+**After the 2 Oct 2026 charts sweep: 155 singles + 32 albums = 187 chart entries** (was 184); the changes are listed under "Re-read 2 Oct 2026" at the end of this file.
 
 **145 + 30 = 175 at the sweep; 153 + 31 = 184 chart entries** after the 17 Sep 2026 reads ✓ — matches the headline.
 
@@ -173,7 +175,7 @@ Every one of the 30 is now a **read** zero rather than an unfound one. There is 
 | 🇭🇳 Honduras | airplay carve-out | — | Monitor Latino Honduras (General) — Carve-out chart; no Tyla placements. |
 | 🇭🇰 Hong Kong | official chart | — | Billboard Hong Kong Songs (Hits of the World) — IFPI Hong Kong Group's language-split sales charts are repertoire components. No Tyla placements. |
 | 🇭🇺 Hungary | official chart | — | MAHASZ — Single Top 40 / Album Top 40 — Swept via the MAHASZ archive artist search. Tyla records NO Hungarian entry despite 'Water' being certified Platinum there; her only Hungarian placings are on the Editors' Choice Top 40, an extension chart. |
-| 🇮🇸 Iceland | official chart | 1‡ | FHF / Plötutíðindi — **Tónlistinn – Lög**, weekly Top 40 (to 30 Dec 2025); Billboard Iceland Songs from 2026 — The chart's home is **plotutidindi.is**, not tonlistinn.is (an unrelated domain that the earlier note wrongly cited as the source of the problem). plotutidindi.is is **live and was read**: the final weekly Top 40, every year-end Lög list 2016–2025, and 73 weekly Top 40s recovered from Common Crawl and arquivo.pt. The chart's basis is radio (Bylgjan, FM957, Xið 977, Rás 2, K100) **plus Spotify combined** — a hybrid Top 40, which is why it is not treated as an airplay carve-out; publication ceased at the 2025–26 new year but the body and its archive remain online. **The ‡ is re-based, not removed:** the chart body was reachable, but Tyla appears in none of the 73 weeks read (including 2 Oct 2023 and 1 Dec 2023, which bracket the cited 28 Oct 2023 week) and in none of the 2023/2024/2025 year-end Top 100s. The cited 28 Oct 2023 capture is unreadable — archive.org globally offline, vefsafn.is replay behind hCaptcha, archive.today 429, no Common Crawl capture between 6 Oct and 28 Nov 2023. **This is not a proven zero**; the week itself could not be read, so the #14 is retained, flagged and unpromoted. Re-check when archive.org returns: if it cannot be confirmed then, drop it — Tyla's Iceland count goes to 0, entries to 173 and chart countries to 51. |
+| 🇮🇸 Iceland | official chart | 1 | FHF / Plötutíðindi — **Tónlistinn – Lög**, weekly Top 40 (to 30 Dec 2025); Billboard Iceland Songs from 2026 — The chart's home is **plotutidindi.is**, not tonlistinn.is (an unrelated domain that the earlier note wrongly cited as the source of the problem). plotutidindi.is is **live and was read**: the final weekly Top 40, every year-end Lög list 2016–2025, and 73 weekly Top 40s recovered from Common Crawl and arquivo.pt. The chart's basis is radio (Bylgjan, FM957, Xið 977, Rás 2, K100) **plus Spotify combined** — a hybrid Top 40, which is why it is not treated as an airplay carve-out; publication ceased at the 2025–26 new year but the body and its archive remain online. **The ‡ is re-based, not removed:** the chart body was reachable, but Tyla appears in none of the 73 weeks read (including 2 Oct 2023 and 1 Dec 2023, which bracket the cited 28 Oct 2023 week) and in none of the 2023/2024/2025 year-end Top 100s. The cited 28 Oct 2023 capture is unreadable — archive.org globally offline, vefsafn.is replay behind hCaptcha, archive.today 429, no Common Crawl capture between 6 Oct and 28 Nov 2023. **This is not a proven zero**; the week itself could not be read, so the #14 is retained, flagged and unpromoted. Re-check when archive.org returns: if it cannot be confirmed then, drop it — Tyla's Iceland count goes to 0, entries to 173 and chart countries to 51. **Read at the body 2 Oct 2026 (nordic-015, the 28 Oct 2023 capture): #14 confirmed; ‡ removed — see Re-read.** |
 | 🇮🇳 India | official chart | 1 | IMI International Top 20 Singles (BMAT-compiled, IFPI-supported) — Repertoire-split: IMI runs separate international and domestic charts with no combined list. Counted on the Greece/Belgium precedent — where a country's only industry chart is split, the operative side is the national chart. Flagged for Paul's sign-off. |
 | 🇮🇩 Indonesia | official chart | — | Official Indonesia Chart (IFPI SEA, weekly Top 20, **all 81 published issues 10 Jan 2025 – 6 Aug 2026 read**); Billboard Indonesia Songs (Hits of the World, weekly Top 25, **all 235 issues 19 Feb 2022 – 15 Aug 2026 read**) — nil on both, both charts read in full for the whole of their published history. Not a chart closed to Afro-diaspora repertoire: the same sweep surfaced Libianca's "People" at #24. "Indonesia-Domestic" is a domestic-repertoire carve-out and is not countable. Neither chart has an albums counterpart. |
 | 🇮🇷 Iran | no chart | — | No IFPI affiliate and no industry-body chart. |
@@ -410,7 +412,7 @@ Eleven investigation threads were reopened against this file. What changed:
 
 ### Context
 
-Under this identical standard, **Burna Boy has 351 chart entries and 46 No. 1 placements across 67 chart countries** (burnaboystats.com).
+Under this identical standard, **Burna Boy has 384 chart entries and 46 No. 1 placements across 69 chart countries** (burnaboystats.com).
 
 The honest comparison is that these are not close, and the repair pass widened the gap:
 
@@ -436,7 +438,7 @@ The two sweeps disagreed because they were looking at different things. `tonlist
 
 - ***Wait For U*** (Future ft. Drake & Tems) 🇮🇸 **#11 — now verified.** Read directly in the archived weekly Top 40 of 16 July 2022, credited "Future, Tems". The figure was right all along; it simply had no proof attached until now.
 - ***Calm Down*** (Rema) 🇮🇸 **#31 stands.** A second capture (4 Feb 2024) shows #37; the earlier Dec 2023 read of #31 is the better peak and is retained.
-- ***Water*** (Tyla) 🇮🇸 **#14 remains unproven** and keeps its marker. Only 8 weekly captures survive for 2024 and none covers the week the peak would fall in. Absence from those eight is not disproof — the figure is neither confirmed nor refuted, and is left flagged rather than promoted or deleted.
+- ***Water*** (Tyla) 🇮🇸 **#14 remains unproven** and keeps its marker. Only 8 weekly captures survive for 2024 and none covers the week the peak would fall in. Absence from those eight is not disproof — the figure is neither confirmed nor refuted, and is left flagged rather than promoted or deleted. *(Read at the body 2 Oct 2026 — nordic-015; ‡ removed.)*
 
 **A correction worth recording:** the year-end lists are *not* peaks. The 2016 year-end Top 100 places "One Dance" at #18 credited to "Drake" alone, which is the likeliest origin of a claimed Icelandic peak of 18 for that record. A year-end ranking and a weekly peak are different measurements, and only the weekly one satisfies this file's standard.
 
@@ -449,3 +451,16 @@ The two sweeps disagreed because they were looking at different things. `tonlist
 - **Nigeria (TurnTable's own archive route, every held issue re-read; the twelve rows already published reproduce exactly):** Girl Next Door (Tyla & Ayra Starr) **73** (18 May 2023, one week) · Show Me Love (WizTheMc, bees & honey & Tyla) **59** (8 May – 12 Jun 2025) · No.1 (ft. Tems) **79** (28 Mar 2024) · Breathe Me **89** (3 Oct 2024) · Truth Or Dare **95** (7 Dec 2023) · **WWP – EP 18** on the Official Top 100 Albums (31 Jul 2025, 17 issues to 27 Nov). Tyla is on TurnTable's credit line for every one, so the "no Tyla-credited row" exclusion this document applied elsewhere does not apply. Game Time 76 → **77**; That Girl 48 → **41** (open).
 - **South Africa (theofficialsacharts.co.za, Local & International Streaming Chart Top 20, Week 31 2026, read in-browser — curl gets the anti-bot decoy):** THAT GIRL 5 (now read at source), IS IT LOVE **17**, DOUBLE BLIND **19**, MR. NONCHALANT **20** — inside the Top 20 the body publishes in 2026, PEAK column, credited "Tyla" alone; gone by Week 33. The depth rule that removed the three was built for 2024 Local-chart figures and does not apply.
 - **Headline 175 → 184**; Nigeria 15 → 21, South Africa 6 → 9; territories 52 and No. 1s 3 unchanged.
+
+## Re-read 2 Oct 2026 (charts sweep)
+
+Applied from the verified 2 Oct 2026 charts sweep — every row below was CONFIRMED by two independent verifiers reading the chart body itself (method, both votes' issue references and the held items in [charts-sweep-2026-10-02.md](charts-sweep-2026-10-02.md)). Nigerian rows are TurnTable's Official Nigeria Top 100 (the Top 50 before 7 Jul 2022) and Official Top 100 Albums, read at the archive route; a peak is the best PRINTED rank in an issue that credits the artist. Board total now **187 chart entries** (155 singles + 32 albums).
+
+- *That Girl* — 🇳🇬 NG #41 unchanged; open-run note re-dated or closed. ng-updates-013 (run closed 10 Sep) — issue: 2026-08-13 (id 5771)
+- *Push 2 Start* — 🇱🇹 LT #40 **removed**. cee-029 (no AGATA row)
+- *Push 2 Start* — 🇮🇪 IE **#60** added. uk-ie-013 — issue: A: IRMA chart-singles-2025-01-24 (id 48877), #60; B: IRMA chart-singles-2025-01-24 (id 48877) #60
+- *A\\Pop* — 🇫🇷 FR **#56** added. fr-benelux-001 — issue: SNEP Top Albums, Semaine du 31 juillet 2026 (S31)
+- *Show Me Love* — 🇳🇴 NO **#48** added. nordic-012 — issue: A: Topplista Singel 2025 uke 20; B: Topplista Singel 2025-W20
+- *Talk to Me* — 🇸🇮 SI #14 unchanged; open-run note re-dated or closed. airplay-east-004 (open) — issue: A: Radiomonitor Slovenia All Radio, current week as served 2 Oct 2026 (undated); B: current week as served by Radiomonitor on 2 Oct 2026 16:21 UTC (the payload carries no date)
+- *Push 2 Start* — 🇵🇭 PH **#17** added. mena-fill-001 (mini-verify CONFIRMED)
+- *Water* — 🇮🇸 IS #14 **now read at the body**, so the ‡ comes off: Tónlistinn – Lög, list live 28 Oct 2023 (Wayback 20231028205426; also 20231103064039) prints place 14, last week Nýtt, performer Tyla; then 17, 26, and a re-entry at 40 on 16 Dec 2023. This also corrects the note above that Tyla appears in none of the recovered weekly lists. nordic-015.

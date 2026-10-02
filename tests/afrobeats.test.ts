@@ -374,10 +374,27 @@ describe("records that appear on two boards", () => {
     //                 (NG 9); TurnTable carries a third, Rema's, on neither board.
     // (Oxlade's "Pressure", K-Trap & Oxlade NG 98, is a sixth "Pressure" and is
     // already covered by the entry above.)
+    // 2 Oct 2026: the charts sweep's Nigerian backfill brought five more bare
+    // titles that are different records, each told apart by TurnTable's own
+    // artiste line and music link in the walk of every issue:
+    //   "Alubarika"  Seyi Vibez's own (NG 16, 2026) against Zlatan ft. Buju
+    //                (BNXN's NG 12).
+    //   "Melanin"    Seyi Vibez's own (NG 14, 2026) against Balloranking &
+    //                Oxlade (NG 99).
+    //   "Running"    Ladipoe ft. Fireboy DML (NG 5) against Ayra Starr & Lojay
+    //                (NG 34).
+    //   "Trumpet"    Olamide & CKay (NG 15) against Seyi Vibez's own (NG 58).
+    //   "Woman"      Rema's own 2020 single (NG 25) against Omah Lay's (NG 5)
+    //                and Joeboy & Oxlade (NG 100).
+    // And one that IS the same record, answered per credit on purpose: "Soweto"
+    // — Victony's NG 4 is the "Soweto (Remix)" printing credited Victony, Tempoe
+    // & Omah Lay, which does not credit Rema; Rema's best credited printing is
+    // NG 5. Matching artist WITH title gives each board its own answer.
     const known = new Set<string>([
       "Pressure|NG", "Apollo|NG", "Away|NG",
       "Special|NG", "Pray|NG", "Diamonds|NG", "Everyday|NG", "Blessings|NG",
       "Oshe|NG", "Energy|NG", "Forgiveness|NG", "Ole|NG", "Lately|NG", "Bounce|NG",
+      "Alubarika|NG", "Melanin|NG", "Running|NG", "Trumpet|NG", "Woman|NG", "Soweto|NG",
     ]);
     const conflicts: string[] = [];
     for (const [title, per] of shared()) {
@@ -440,6 +457,17 @@ describe("records that appear on two boards", () => {
         // `known` above, and "Woman" — Joeboy & Oxlade (NG 100) on Oxlade's
         // board, Omah Lay's own (ZA 100) on his, never on the same chart.
         "Bounce", "Energy", "Forgiveness", "Lately", "Ole", "Oshe", "Woman",
+        // 2 Oct 2026, the charts sweep's Nigerian backfill. The same record on
+        // two boards at the same peak: Alle and Amina (Rema & Ayra Starr), Beggie
+        // Beggie (Ayra Starr & CKay), Can't Let You Go (Rema & Tiwa Savage),
+        // Compromise (Fireboy DML & Rema), Get It Right (Tems & Asake), Infinity
+        // (Olamide & Omah Lay), No.1 (Tyla & Tems), Obianuju (CKay & Victony),
+        // One Shirt (Ruger & Rema), PAMI (Wizkid & Omah Lay), She Knows (Olamide
+        // & Fireboy DML) and Wahala (CKay & Olamide, NG and SR alike). And four
+        // that are different records under one title, in `known` above.
+        "Alle", "Amina", "Beggie Beggie", "Can't Let You Go", "Compromise", "Get It Right",
+        "Infinity", "No.1", "Obianuju", "One Shirt", "PAMI", "She Knows", "Wahala",
+        "Alubarika", "Melanin", "Running", "Trumpet",
       ].sort(),
     );
   });
@@ -489,7 +517,10 @@ describe("hooks that state a figure", () => {
     expect(certCount(seyi)).toBe(102);
     // 114 -> 115 on 17 Sep 2026: "BACK 2 U" entered TurnTable's Top 100 in
     // week 36 and read rank 10 / peak 8 in week 37 — published at its open peak.
-    expect(chartEntries(seyi)).toBe(115);
+    // 115 -> 129 on 2 Oct 2026: the charts sweep added "Billion Dollar" (NG 10,
+    // the pre-July-2022 Top 50), the twelve "Swaguu" songs that debuted on the
+    // 24 Sep 2026 Top 100, and the "Swaguu" album (No. 1, 18–24 Sep 2026).
+    expect(chartEntries(seyi)).toBe(129);
     // The whole point of his line: everything he has is Nigerian.
     expect(new Set(seyi.releases.flatMap((r) => r.certs.map((c) => c.c)))).toEqual(new Set(["NG"]));
     expect(new Set(seyi.charts.flatMap((r) => r.entries.map((e) => e.c)))).toEqual(new Set(["NG"]));

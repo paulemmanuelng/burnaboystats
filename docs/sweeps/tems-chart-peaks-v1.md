@@ -28,7 +28,7 @@ One record dominates the ledger: ***Raindance* (Dave & Tems) alone accounts for 
 | **Raindance** (Dave & Tems) | 🇬🇧1 · 🇱🇺1 · 🇬🇷1° · 🇦🇪1 · 🇸🇦1 · 🇨🇭2 · 🇱🇹2 · 🇮🇳2 · 🇱🇧3 · 🇿🇦4° · 🇵🇹4 · 🇸🇪4 · 🇳🇱5 · 🇩🇰5 · 🇱🇻5 · 🇳🇿5 · 🇮🇪6 · 🇸🇰6 · 🇳🇬7° · 🇩🇪7 · 🇦🇹7 · 🇨🇿8 · 🇷🇺8 · 🇦🇺8 · 🌐8 · 🇳🇴12 · 🇲🇾12° · 🇰🇿12 · 🌍12 · 🇷🇴14° · 🇮🇸15° · 🇸🇬17° · 🇧🇪19 · 🇫🇷19 · 🇭🇺25 · 🇨🇦25 · 🇸🇷29 · 🇫🇮30 · 🇮🇹40° · 🇺🇸49 · 🇵🇭53° · 🇵🇱65° · 🇲🇩69 · 🇪🇪80 | **44** |
 | **Wait For U** (Future ft. Drake & Tems) | 🇺🇸1 · 🇿🇦1° · 🌍2 · 🇨🇦3 · 🇳🇿7 · 🇬🇧8 · 🇮🇸11 · 🇦🇺12 · 🇱🇺17 · 🇳🇬18° · 🇮🇪21 · 🇬🇷21° · 🇱🇹28 · 🌐29 · 🇨🇭34 · 🇳🇱59 · 🇦🇹65 · 🇵🇹68° · 🇩🇪77 · 🇸🇰78 · 🇫🇷135 | **21** |
 | **Essence** (Wizkid ft. Justin Bieber & Tems) | 🇳🇬2° · 🇺🇸9 · 🇿🇦15° · 🇳🇿15 · 🇬🇧16 · 🌍28 · 🇨🇦30 · 🇮🇪41 · 🌐60 · 🇳🇱76 · 🇨🇭95 · 🇵🇹108° | **12** |
-| **Fountains** (Drake ft. Tems) | 🇿🇦14° · 🇺🇸26 · 🌍26 · 🇦🇺36 · 🇨🇦36 · 🇱🇹40 · 🇵🇹43° · 🌐45 · 🇬🇷57° · 🇫🇷70 | **10** |
+| **Fountains** (Drake ft. Tems) | 🇿🇦14° · 🇺🇸26 · 🌍26 · 🇦🇺36 · 🇨🇦36 · 🇵🇹43° · 🌐45 · 🇬🇷57° · 🇫🇷70 · 🇱🇹79 *(LT corrected 40 → 79 on 2 Oct 2026, see Re-read)* | **10** |
 | **Bunce Road Blues** (J. Cole, Tems & Future) | 🇿🇦10° · 🇺🇸34 · 🇨🇦55 · 🇬🇧59 · 🇳🇬69° · 🌍75 · 🇵🇹164° | **7** |
 | **Move** (Beyoncé ft. Grace Jones & Tems) | 🇿🇦32° · 🌍53 · 🇺🇸55 · 🇨🇦72 · 🌐179 | **5** |
 | **Love Me JeJe** | 🇳🇬8° · 🇬🇧36 · 🇳🇱92 · 🇮🇪94 | **4** |
@@ -50,6 +50,8 @@ One record dominates the ledger: ***Raindance* (Dave & Tems) alone accounts for 
 | **Love Is a Kingdom** (2026) | 🇵🇹108°‡ | **1** |
 
 *Albums subtotal: 9 + 1 = **10*** ✓
+
+**After the 2 Oct 2026 charts sweep: 126 singles + 12 albums = 138 chart entries** (was 124); the changes are listed under "Re-read 2 Oct 2026" at the end of this file.
 
 **Total: 114 + 10 = 124 chart entries** ✓
 
@@ -404,7 +406,7 @@ Every one of the eight matches this file exactly. The audit's premise is the par
 
 ### Context
 
-Under this **identical** standard, Burna Boy holds **351 chart entries and 46 No. 1 placements across 67 chart countries** ([burnaboystats.com](https://burnaboystats.com)). Tems has **124 entries, 7 No. 1 placements, 42 chart countries** — 35% of his entry count, 63% of his country reach, and 15% of his No. 1s.
+Under this **identical** standard, Burna Boy holds **384 chart entries and 46 No. 1 placements across 69 chart countries** ([burnaboystats.com](https://burnaboystats.com)). Tems has **138 entries, 7 No. 1 placements, 43 chart countries** (board figures after the 2 Oct 2026 charts sweep) — 36% of his entry count, 62% of his country reach, and 15% of his No. 1s.
 
 The honest reading is that these are two different shapes of chart career, not two points on one scale.
 
@@ -428,6 +430,29 @@ The two sweeps disagreed because they were looking at different things. `tonlist
 
 - ***Wait For U*** (Future ft. Drake & Tems) 🇮🇸 **#11 — now verified.** Read directly in the archived weekly Top 40 of 16 July 2022, credited "Future, Tems". The figure was right all along; it simply had no proof attached until now.
 - ***Calm Down*** (Rema) 🇮🇸 **#31 stands.** A second capture (4 Feb 2024) shows #37; the earlier Dec 2023 read of #31 is the better peak and is retained.
-- ***Water*** (Tyla) 🇮🇸 **#14 remains unproven** and keeps its marker. Only 8 weekly captures survive for 2024 and none covers the week the peak would fall in. Absence from those eight is not disproof — the figure is neither confirmed nor refuted, and is left flagged rather than promoted or deleted.
+- ***Water*** (Tyla) 🇮🇸 **#14 remains unproven** and keeps its marker. Only 8 weekly captures survive for 2024 and none covers the week the peak would fall in. Absence from those eight is not disproof — the figure is neither confirmed nor refuted, and is left flagged rather than promoted or deleted. *(Read at the body 2 Oct 2026 — nordic-015; ‡ removed.)*
 
 **A correction worth recording:** the year-end lists are *not* peaks. The 2016 year-end Top 100 places "One Dance" at #18 credited to "Drake" alone, which is the likeliest origin of a claimed Icelandic peak of 18 for that record. A year-end ranking and a weekly peak are different measurements, and only the weekly one satisfies this file's standard.
+
+## Re-read 2 Oct 2026 (charts sweep)
+
+Applied from the verified 2 Oct 2026 charts sweep — every row below was CONFIRMED by two independent verifiers reading the chart body itself (method, both votes' issue references and the held items in [charts-sweep-2026-10-02.md](charts-sweep-2026-10-02.md)). Nigerian rows are TurnTable's Official Nigeria Top 100 (the Top 50 before 7 Jul 2022) and Official Top 100 Albums, read at the archive route; a peak is the best PRINTED rank in an issue that credits the artist. Board total now **138 chart entries** (126 singles + 12 albums).
+
+- *What You Need* — 🇳🇬 NG #78 → **#79**. ng-updates-036 — issue: 2026-07-09 (id 5701)
+- *Fountains* — 🇱🇹 LT #40 → **#79**. cee-028 — issue: A: AGATA 2021-W36 (slug 34s-2-2); B: 2021-W36 (post of 10 Sep 2021)
+- *Raindance* — 🇮🇱 IL **#27** added. mena-asia-003 — issue: A: Mako issue titled "09.03 - 03.02.2026" (a typo for 09.02; publishDate 2026-02-10, chartId 698ae9986778d6bb7b833d79); B: Mako issue titled "09.03 - 03.02.2026" (a typo for 09.02; published 10 Feb 2026, chartId 698ae9986778d6bb7b833d79)
+- *Damages* — 🇳🇬 NG **#6** added. ng-new-039 — issue: A: 2020-11-05 (id 145); B: 2020-11-05 id 145
+- *Get It Right* — 🇳🇬 NG **#12** added. ng-new-040 — issue: A: 2024-06-20 (id 3385); B: 2024-06-20 id 3385
+- *Crazy Tings* — 🇳🇬 NG **#16** added. ng-new-041 — issue: A: 2021-09-16 (id 732); B: 2021-09-16 id 732
+- *Fountains* — 🇳🇬 NG **#21** added. ng-new-042 — issue: A: 2021-09-09 (id 721); B: 2021-09-09 id 721
+- *Not An Angel* — 🇳🇬 NG **#33** added. ng-new-043 — issue: A: 2023-12-14 (id 2803); B: 2023-12-14 id 2803
+- *The Key* — 🇳🇬 NG **#38** added. ng-new-044 — issue: A: 2021-02-18 (id 331); B: 2021-02-18 id 331
+- *Wickedest* — 🇳🇬 NG **#43** added. ng-new-045 — issue: A: 2024-08-08 (id 3463); B: 2024-08-08 id 3463
+- *No.1* — 🇳🇬 NG **#79** added. ng-new-046 — issue: A: 2024-03-28 (id 3119); B: 2024-03-28 id 3119
+- *No Woman No Cry* — 🇳🇬 NG **#81** added. ng-new-047 — issue: A: 2022-08-04 (id 1254); B: 2022-08-04 id 1254
+- *Free Fall* — 🇳🇬 NG **#81** added. ng-new-048 — issue: A: 2024-06-13 (id 3367); B: 2024-06-13 id 3367
+- *Live Life* — 🇳🇬 NG **#96** added. ng-new-049 — issue: A: 2022-10-06 (id 1423); B: 2022-10-06 id 1423
+- *Love Is a Kingdom* — 🇳🇬 NG **#30** added. ng-new-050 — issue: A: 2025-11-27 (id 5049); B: 2025-11-27 id 5049
+- *For Broken Ears* — 🇳🇬 NG **#99** added. ng-new-051 — issue: A: 2024-10-17 (id 3763); B: 2024-10-17 id 3763
+
+**Israel.** This file rejected Mako earlier; `charts.ts` has since named the Mako Hit List as Israel's official singles chart, and Tyla's IL row is published on it. The rule applied from 2 Oct 2026: Mako counts from its first LIVE issue (07–13 Mar 2023, published 20 Mar 2023), and the backfilled pre-launch issues do not. *Raindance*'s whole run (3 Feb–19 May 2026) is live, so its #27 stands. *Wakanda Forever* (Rihanna & Tems, TurnTable albums #11) is held for the owner, not added.

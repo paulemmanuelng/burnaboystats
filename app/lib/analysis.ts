@@ -63,8 +63,8 @@ export const numberOneCountries = [
  */
 export const EUROPE = new Set([
   "AT", "BE", "BG", "CH", "CZ", "DE", "DK", "EE", "ES", "FI", "FR", "GR", "HR",
-  "HU", "IE", "IS", "IT", "LT", "LU", "LV", "MD", "NL", "NO", "PL", "PT", "RO",
-  "RU", "SE", "SK", "UA", "UK",
+  "HU", "IE", "IS", "IT", "LT", "LU", "LV", "MD", "MK", "NL", "NO", "PL", "PT",
+  "RO", "RU", "SE", "SI", "SK", "UA", "UK",
 ]);
 export const NON_EUROPE = new Set([
   "AE", "AR", "AU", "BO", "BR", "CA", "CL", "CO", "CR", "DO", "EC", "EG", "GT",

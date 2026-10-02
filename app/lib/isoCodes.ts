@@ -13,4 +13,7 @@ export const A2_TO_ISO: Record<string, number> = {
   // America and eastern Europe. Every one already had a shape in worldShapes.
   BG: 100, HR: 191, EE: 233, MD: 498, UA: 804, RU: 643, TR: 792, KZ: 398,
   UY: 858, VE: 862, SV: 222, DO: 214, GT: 320, HN: 340, NI: 558, PY: 600, PR: 630,
+  // North Macedonia and Slovenia joined CHART_COUNTRIES on 2 Oct 2026
+  // (Radiomonitor airplay floors for "Dai Dai").
+  MK: 807, SI: 705,
 };

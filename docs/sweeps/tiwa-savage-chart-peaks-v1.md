@@ -405,3 +405,9 @@ that would stand without being re-read.
 - Email-like strings in saved pages were redacted: the Sverigetopplistan footer and
   a Sentry key in the Canada pages. No email address was used in any request.
 - Nothing in any repo or worktree was edited.
+
+## Re-read 2 Oct 2026 (charts sweep)
+
+Applied from the verified 2 Oct 2026 charts sweep — every row below was CONFIRMED by two independent verifiers reading the chart body itself (method, both votes' issue references and the held items in [charts-sweep-2026-10-02.md](charts-sweep-2026-10-02.md)). Nigerian rows are TurnTable's Official Nigeria Top 100 (the Top 50 before 7 Jul 2022) and Official Top 100 Albums, read at the archive route; a peak is the best PRINTED rank in an issue that credits the artist. Board total now **34 chart entries** (32 singles + 2 albums).
+
+- *Energy* — 🇳🇬 NG #7 unchanged; open-run note re-dated or closed. ng-updates-014 — issue: 2026-07-30 (id 5769)

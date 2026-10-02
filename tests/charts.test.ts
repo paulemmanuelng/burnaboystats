@@ -76,6 +76,10 @@ describe("chart data integrity", () => {
     // edition, and Panama's alternative (Monitor Latino) is airplay too.
     "LB", "PA",
     "EE", "GT", "HN", "NI", "PY", "PR", "TR", "KZ", "MD", "UA",
+    // 2 Oct 2026: North Macedonia and Slovenia, on Radiomonitor's All Radio
+    // chart — the carve-out the Afrobeats board already gives both (afrobeats.ts
+    // EXTRA_COUNTRIES): neither country publishes a sales/streaming chart.
+    "MK", "SI",
   ]);
   // SV and DO used to sit in this set. Both countries were retracted on 2 Sep
   // 2026 — the entries came from a fan round-up rather than a chart — so the
@@ -195,9 +199,13 @@ describe("chart data integrity", () => {
     // TurnTable's Top 100 walked (306 issues, Nov 2020 → Sep 2026): 8 existing
     // rows gain an NG peak, 59 releases get their first row, no peak moved and
     // no No. 1 was added (docs/sweeps/burna-boy-nigeria-2026-09-18.md).
-    expect(chartEntryCount).toBe(351); // 2 Sep 2026: -2, the unsupported Dominican and Salvadoran No. 1s removed (RETRACTIONS #7, #8)
+    // 2 Oct 2026: 351 → 384 — the charts sweep (docs/sweeps/charts-sweep-2026-10-02.md):
+    // +37 (UK/IE feature rows, LT/CZ/SK/DE/CH/SE/DK/NO back-catalogue, Suriname,
+    // album peaks in CH/DK/NO, Dai Dai in MK and SI) and -4 (Kilometre UK, Loved
+    // by You UK, My Oasis BE, We Pray AU). No No. 1 added or removed.
+    expect(chartEntryCount).toBe(384); // 2 Sep 2026: -2, the unsupported Dominican and Salvadoran No. 1s removed (RETRACTIONS #7, #8)
     expect(numberOnes).toBe(46); // 2 Sep 2026: Poland took this to 49, then the Dominican and Salvadoran No. 1s came out (#7, #8); 17 Sep: Jerusalema ZA out (#10)
-    expect(chartCountryCount).toBe(69); // -2: the Dominican Republic and El Salvador each left with their only entry
+    expect(chartCountryCount).toBe(71); // -2: the Dominican Republic and El Salvador each left with their only entry; +2 on 2 Oct 2026: North Macedonia and Slovenia
   });
 });
 
@@ -221,6 +229,7 @@ describe("where the tracked charts come from", () => {
   const NOT_NATIONAL_BODIES = new Set([
     // Airplay carve-outs: the country publishes no non-airplay national chart.
     "LB", "PA", "BG", "UY", "VE", "EE", "GT", "HN", "NI", "PY", "PR", "TR", "KZ", "MD", "UA",
+    "MK", "SI", // 2 Oct 2026: Radiomonitor All Radio, as on the Afrobeats board
     // Russia is the odd one: TopHit's Russian chart is streaming, not airplay,
     // so no "airplay" in its body — but TopHit is a commercial monitor and no
     // industry body has published a Russian chart since IFPI left in 2022.
@@ -262,10 +271,11 @@ describe("where the tracked charts come from", () => {
 
   it("matches the published split", () => {
     // Was { nationalBody: 53, billboardCountry: 14, global: 2 } — the 53 folded
-    // in the 16 below. 37 + 16 + 14 + 2 = 69 tracked territories.
+    // in the 16 below. 37 + 16 + 14 + 2 = 69 tracked territories; 2 Oct 2026:
+    // North Macedonia and Slovenia make it 18 monitors and 71 territories.
     expect(chartSourceSplit).toEqual({
       nationalBody: 37,
-      airplayMonitor: 16,
+      airplayMonitor: 18,
       billboardCountry: 14,
       global: 2,
     });
@@ -292,7 +302,8 @@ describe("Dai Dai", () => {
   it("matches the published headline figures", () => {
     // 4 Aug 2026 sweep: +11 territories; Ecuador (IFPI LatAm) and Estonia
     // (TopHit) are the two new country No. 1s.
-    expect(daiDaiChartEntryCount).toBe(68);
+    // 2 Oct 2026: +2, North Macedonia (9) and Slovenia (4), Radiomonitor floors.
+    expect(daiDaiChartEntryCount).toBe(70);
     expect(daiDaiNumberOnes).toBe(26); // + Poland 29 Aug, - Dominican Republic and El Salvador 2 Sep
   });
 

@@ -32,7 +32,7 @@ Split: **118 singles entries** across 37 titles, **37 albums entries** across 6 
 | One Dance *(Drake feat. Wizkid & Kyla)* | 🇺🇸 #1 · 🇬🇧 #1 · 🇮🇪 #1 · 🇫🇷 #1 · 🇧🇪 #1 · 🇨🇭 #1 · 🇩🇪 #1 · 🇳🇱 #1 · 🇸🇪 #1 · 🇳🇴 #1 · 🇵🇹 #1 · 🇦🇺 #1 · 🇳🇿 #1 · 🇨🇦 #1 · 🇱🇧 #1 · 🇩🇰 #2 · 🇪🇸 #2 · 🇫🇮 #2 · 🇦🇹 #3 · 🇨🇿 #3 · 🇮🇹 #6 · 🇵🇾 #12 · 🇭🇺 #18 · 🇸🇰 #29 · 🇱🇹 #52 | **25** |
 | Essence *(feat. Tems / Justin Bieber remix)* | 🇳🇬 #2 · 🇺🇸 #9 · 🇿🇦 #15 · 🇳🇿 #15 · 🇬🇧 #16 · 🌐 #28 · 🇨🇦 #30 · 🇮🇪 #41 · 🌍 #60 · 🇳🇱 #76 · 🇨🇭 #95 · 🇵🇹 #108 | **12** |
 | Boom *(Major Lazer feat. MOTi, Ty Dolla $ign, Wizkid & Kranium)* | 🇳🇴 #10 · 🇩🇰 #17 · 🇳🇱 #33 · 🇩🇪 #38 · 🇧🇪 #48 · 🇫🇷 #53 · 🇦🇹 #57 · 🇸🇪 #70 | **8** |
-| Brown Skin Girl *(Beyoncé, SAINt JHN & Wizkid feat. Blue Ivy Carter)* | 🇱🇹 #29 · 🇬🇧 #42 · 🇮🇪 #50 · 🇨🇦 #60 · 🇺🇸 #76 · 🇳🇱 #82 | **6** |
+| Brown Skin Girl *(Beyoncé, SAINt JHN & Wizkid feat. Blue Ivy Carter)* | 🇬🇧 #42 · 🇮🇪 #50 · 🇨🇦 #60 · 🇱🇹 #67 · 🇺🇸 #76 · 🇳🇱 #82 *(LT corrected 29 → 67 on 2 Oct 2026, see Re-read)* | **6** |
 | Forever Be Mine *(Gunna & Wizkid)* | 🇿🇦 #13 · 🇬🇧 #46 · 🇺🇸 #68 · 🌐 #111 | **4** |
 | Call Me Every Day *(Chris Brown feat. Wizkid)* | 🇿🇦 #16 · 🇬🇧 #53 · 🇺🇸 #76 · 🌐 #103 | **4** |
 | Jogodo *(Wizkid & Asake)* | 🇳🇬 #1 · 🇬🇧 #73 · 🌍 #75 · 🌐 #120 | **4** |
@@ -83,6 +83,8 @@ Split: **118 singles entries** across 37 titles, **37 albums entries** across 6 
 | Ayo *(2014)* | 🇳🇬 #54 | **1** |
 
 **Albums subtotal:** 10 + 9 + 9 + 7 + 1 + 1 = **37**
+
+**After the 2 Oct 2026 charts sweep: 201 + 40 = 241 chart entries** — the board's 240 less "Dynamite" ZA #45, as below; changes in "Re-read 2 Oct 2026" at the end of this file.
 
 **Total at the 17 Aug sweep: 118 + 37 = 155.** After the 17 Sep 2026 read: **201 + 37 = 238 chart entries** (the board carries 237 — this document keeps "Dynamite" ZA #45, which the board dropped under its depth rule).
 
@@ -547,7 +549,7 @@ The Netherlands "Boom" figure stays at **#33** (Nederlandse Top 40) rather than 
 
 ### Context
 
-Under the **identical standard**, Burna Boy has **351 chart entries** and **46 No. 1 placements** across **67 chart countries** ([burnaboystats.com](https://burnaboystats.com)).
+Under the **identical standard**, Burna Boy has **384 chart entries** and **46 No. 1 placements** across **69 chart countries** ([burnaboystats.com](https://burnaboystats.com)).
 
 Comparing honestly:
 
@@ -579,7 +581,7 @@ The two sweeps disagreed because they were looking at different things. `tonlist
 
 - ***Wait For U*** (Future ft. Drake & Tems) 🇮🇸 **#11 — now verified.** Read directly in the archived weekly Top 40 of 16 July 2022, credited "Future, Tems". The figure was right all along; it simply had no proof attached until now.
 - ***Calm Down*** (Rema) 🇮🇸 **#31 stands.** A second capture (4 Feb 2024) shows #37; the earlier Dec 2023 read of #31 is the better peak and is retained.
-- ***Water*** (Tyla) 🇮🇸 **#14 remains unproven** and keeps its marker. Only 8 weekly captures survive for 2024 and none covers the week the peak would fall in. Absence from those eight is not disproof — the figure is neither confirmed nor refuted, and is left flagged rather than promoted or deleted.
+- ***Water*** (Tyla) 🇮🇸 **#14 remains unproven** and keeps its marker. Only 8 weekly captures survive for 2024 and none covers the week the peak would fall in. Absence from those eight is not disproof — the figure is neither confirmed nor refuted, and is left flagged rather than promoted or deleted. *(Read at the body 2 Oct 2026 — nordic-015; ‡ removed.)*
 
 **A correction worth recording:** the year-end lists are *not* peaks. The 2016 year-end Top 100 places "One Dance" at #18 credited to "Drake" alone, which is the likeliest origin of a claimed Icelandic peak of 18 for that record. A year-end ranking and a weekly peak are different measurements, and only the weekly one satisfies this file's standard.
 
@@ -592,3 +594,15 @@ Read at the body: `/api/ttc-proxy/api/chart/1/{week}/{year}` (Official Nigeria T
 - **Nigerian entries added to seven rows the board had:** Brown Skin Girl 46 · Forever Be Mine 2 · Call Me Every Day 12 · Pongo 81 · Link Up (Spider-Verse remix) 82 · Energy 15 · System 36.
 - **Albums:** S2 – EP **No. 1** on the 28 Dec 2023 issue (58 issues to May 2025) — a tenth Nigerian No. 1 and the board's 25th; SoundMan, Vol. 1 (StarBoy & Wizkid) 82; Superstar 92.
 - **Headline 154 → 237** (Nigeria 26 → 109 entries); territories 32; No. 1s 24 → 25.
+
+## Re-read 2 Oct 2026 (charts sweep)
+
+Applied from the verified 2 Oct 2026 charts sweep — every row below was CONFIRMED by two independent verifiers reading the chart body itself (method, both votes' issue references and the held items in [charts-sweep-2026-10-02.md](charts-sweep-2026-10-02.md)). Nigerian rows are TurnTable's Official Nigeria Top 100 (the Top 50 before 7 Jul 2022) and Official Top 100 Albums, read at the archive route; a peak is the best PRINTED rank in an issue that credits the artist. Board total now **240 chart entries** (200 singles + 40 albums).
+
+- *Abracadabra (Remix)* — 🇳🇬 NG #6 → **#7**. ng-updates-030 — issue: 2023-02-23 (id 1821)
+- *Mood (Wizkid ft. BNXN)* — 🇳🇬 NG #12 → **#13**. ng-updates-033 — issue: A: 2021-09-09 (id 721); also ids 732, 751; B: 2021-09-09 (id 721); also ids 732 and 751
+- *Man on a Mission* — 🇳🇬 NG #29 → **#30**. ng-updates-035 — issue: 2026-06-25 (id 5655)
+- *Brown Skin Girl* — 🇱🇹 LT #29 → **#67**. cee-027 — issue: A: AGATA post of 26 Jul 2019 (2019 wk30 label); B: 2019-W30 (post of 26 Jul 2019)
+- *Checklist* — 🇱🇹 LT **#46** added. cee-016 — issue: A: AGATA post of 2 Nov 2018 (2018 wk44 label); B: 2018-W44 (post of 2 Nov 2018)
+- *Checklist* — 🇸🇰 SK **#86** added. cee-017 — issue: A: 44. týden 2018 (SK); B: 44. týden 2018 (weekId 2547)
+- *One Dance* — 🇬🇷 GR **#8** added. south-eu-001 — issue: A: Best Position 8 / Best Week 2017_2 is printed in the IFPI Greece Digital Singles Chart (International) issues for weeks 35/2026 and 36/2026. The week 2/2017 issue itself is not readable.; B: IFPI Greece week 2/2017, per the Best Position / Best Week column. That issue is not archived. The column printing it was read in the week 34 (31-34), 35 and 36 issues of 2026.

@@ -9,7 +9,7 @@ import type { ReplayLabels } from "./daiDaiReplayLabels";
  * also renders it inside <noscript>, so a reader without JavaScript gets the
  * week-by-week reading as well as the poster.
  *
- * Rows: the two Billboard globals first, then the 66 countries by peak, a
+ * Rows: the two Billboard globals first, then the 68 countries by peak, a
  * recorded run before a peak-only one, then by weeks at the peak. A peak-only
  * row is ONE cell, "peak No. N · run not recorded" — never twenty cells of
  * guesses. Dense, not folded.

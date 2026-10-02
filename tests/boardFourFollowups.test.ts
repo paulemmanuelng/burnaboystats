@@ -20,15 +20,16 @@ describe("Tiwa Savage's 'Energy' open-run note says what was read", () => {
     return r.entries.find((e) => e.c === "NG")!;
   };
 
-  it("the run is 16 weeks old, so the note no longer calls it the first weeks", () => {
+  it("the run is 17 weeks old, so the note no longer calls it the first weeks", () => {
     const e = energy();
     expect(e.peak).toBe(7);
     expect(e.note).not.toBe(SHIPPED);
     expect(e.note).not.toContain("first weeks");
     // What the verifier recorded: No. 7 on 30 Jul 2026, 16 issues from 4 Jun
-    // to the latest read, 17 Sep.
+    // to the latest read, 17 Sep. Re-read in the 2 Oct 2026 charts sweep: 17
+    // issues to 24 Sep (No. 82), still on the chart.
     expect(e.note).toMatch(/^Peak still open — /);
-    expect(e.note).toContain("16 weeks in (4 Jun to 17 Sep 2026)");
+    expect(e.note).toContain("17 weeks in (4 Jun to 24 Sep 2026)");
     expect(e.note).toContain("No. 7 on 30 Jul");
   });
 

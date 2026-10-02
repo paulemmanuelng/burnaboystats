@@ -75,6 +75,8 @@ The shape of the career is unmistakable in the data: **28 of 78 entries (36%) ar
 
 **Albums subtotal:** 1 + 5 + 1 = **7**
 
+**After the 2 Oct 2026 charts sweep: 103 singles + 8 albums = 111 chart entries** (was 110); the changes are listed under "Re-read 2 Oct 2026" at the end of this file.
+
 **Total: 102 + 8 = 110 chart entries.**
 
 Distribution check — the 82 entries fall in 28 countries plus the 2 supranational Billboard Global charts: 🇳🇬 32, 🇸🇷 9, 🇬🇧 4, 🇫🇷 5, then six territories with 2 each (🌐 GLB, 🌐 GLBX, 🇨🇦, 🇨🇭, 🇳🇱, 🇿🇦), then 20 with 1 each (🇱🇧 🇱🇺 🇧🇪 🇭🇺 🇮🇪 🇸🇪 🇪🇸 🇵🇪 🇧🇴 🇨🇴 🇪🇨 🇵🇦 🇨🇱 🇦🇷 🇲🇽 🇮🇹 🇵🇹 🇲🇹 🇷🇺 🇺🇸). Sum: 28 + 9 + 5 + 5 + (6 × 2) + 20 = **79** ✓. No country appears twice for the same title.
@@ -451,7 +453,7 @@ This section is what makes the 78 defensible. Every peak below is real; none of 
 
 ### Context
 
-Under this identical standard, **Burna Boy has 351 chart entries and 46 No. 1 placements across 67 chart countries** ([burnaboystats.com](https://burnaboystats.com)).
+Under this identical standard, **Burna Boy has 384 chart entries and 46 No. 1 placements across 69 chart countries** ([burnaboystats.com](https://burnaboystats.com)).
 
 The honest comparison: Ayra Starr's **82 entries across 30 chart territories** is a little under **a third of Burna Boy's entry count (29%) and 42% of his chart-country reach** — and the gap in No. 1s is wider still, 10 to 47. But the two lines are not measuring the same thing. Burna Boy's 280 is built on a fifteen-year catalogue with more than a dozen records that charted in ten-plus countries each; Ayra Starr debuted in 2021, and her entire international footprint outside Nigeria rests on **two songs**. Strip *Rush* and *Santa* out and the 50 non-Nigerian entries become 21.
 
@@ -469,7 +471,7 @@ The two sweeps disagreed because they were looking at different things. `tonlist
 
 - ***Wait For U*** (Future ft. Drake & Tems) 🇮🇸 **#11 — now verified.** Read directly in the archived weekly Top 40 of 16 July 2022, credited "Future, Tems". The figure was right all along; it simply had no proof attached until now.
 - ***Calm Down*** (Rema) 🇮🇸 **#31 stands.** A second capture (4 Feb 2024) shows #37; the earlier Dec 2023 read of #31 is the better peak and is retained.
-- ***Water*** (Tyla) 🇮🇸 **#14 remains unproven** and keeps its marker. Only 8 weekly captures survive for 2024 and none covers the week the peak would fall in. Absence from those eight is not disproof — the figure is neither confirmed nor refuted, and is left flagged rather than promoted or deleted.
+- ***Water*** (Tyla) 🇮🇸 **#14 remains unproven** and keeps its marker. Only 8 weekly captures survive for 2024 and none covers the week the peak would fall in. Absence from those eight is not disproof — the figure is neither confirmed nor refuted, and is left flagged rather than promoted or deleted. *(Read at the body 2 Oct 2026 — nordic-015; ‡ removed.)*
 
 **A correction worth recording:** the year-end lists are *not* peaks. The 2016 year-end Top 100 places "One Dance" at #18 credited to "Drake" alone, which is the likeliest origin of a claimed Icelandic peak of 18 for that record. A year-end ranking and a weekly peak are different measurements, and only the weekly one satisfies this file's standard.
 
@@ -506,3 +508,12 @@ Every issue of TurnTable's Official Nigeria Top 100 / Top 50 was read from the b
 - **Corrected — "My Love" (Leigh-Anne ft. Ayra Starr) 🇳🇬 64 → 51.** Issue 2515 (2023-09-14) rank 65 on debut; 2516 (2023-09-21) rank 51, highestPosition 51; 2517 rank 58; 2518 (2023-10-05) rank 63, 4 weeks; absent otherwise. 64 was never a weekly position.
 - **Added — 28 Nigerian peaks, all runs closed** (none on issue 5921): Ngozi (Crayon & Ayra Starr) **2**, 36 weeks 2023-08-24→2024-05-02 · People (Libianca ft. Ayra Starr & Omah Lay) **6**, the row Omah Lay's board already carried · Love Don't Cost A Dime (Re-Up) (Magixx ft.) **8** · PINACOLADA (Thisizlondon, Ayra Starr & 6LACK) **15** · Beggie Beggie (ft. Ckay) **26** · Alle (Mavins) **29** · How Many Times (DJ Big N, Oxlade & Ayra Starr) **30** · Running (& Lojay) **34** · Escaladizzy II (Mavo, Ayra Starr & Shallipopi ft. Zlatan) **34** · Disturbing U (DARKOO &) **36** · Amina **45** · Many Roads (Zinoleesky ft.) **47** · Woman Commando **56** · On A Low (Elestee &) **62** · Make It Up To You (Khalid ft.) **65** · Bloody Samaritan (Remix) (& Kelly Rowland) **66**, its own row for 4 weeks from 2022-10-06, published as a separately-charting remix like Sungba (Remix) · Amazing (ft. kwn) **70** · Girl Next Door (Tyla &) **73** · Birds Sing of Money **74** · Control **81** · You're Hired (NEIKED ft.) **86** · Misunderstood **86** · GOOD FEELINGS (Coldplay &) **92** · Jane (Skip Marley &) **94** · Lonely Refix (& Zinoleesky) **95** · Midnight in New York **95** · Bora Bora (AP Dhillon ft.) **96** · Lagos Love Story **99**. The three "held back" rows above (Amazing, Misunderstood, Midnight in New York, issue 5848 dated 2026-08-20, one week each) are among them — their peaks are final.
 - **Starrgirl 🇳🇬 #2** on the albums chart (above). Headline 82 → **110**; territories 30 and No. 1s 10 unchanged (Ngozi peaked at 2).
+
+## Re-read 2 Oct 2026 (charts sweep)
+
+Applied from the verified 2 Oct 2026 charts sweep — every row below was CONFIRMED by two independent verifiers reading the chart body itself (method, both votes' issue references and the held items in [charts-sweep-2026-10-02.md](charts-sweep-2026-10-02.md)). Nigerian rows are TurnTable's Official Nigeria Top 100 (the Top 50 before 7 Jul 2022) and Official Top 100 Albums, read at the archive route; a peak is the best PRINTED rank in an issue that credits the artist. Board total now **111 chart entries** (103 singles + 8 albums).
+
+- *Starrgirl* — 🇳🇬 NG #2 unchanged; open-run note re-dated or closed. ng-updates-015 — issue: A: 2026-08-20 (albums id 5859); B: 2026-08-20 (id 5859)
+- *Wo, man* — 🇧🇬 BG **#2** added. cee-002 — issue: A: 04.09.2026 – 10.09.2026 (and again 25.09.2026 – 01.10.2026); B: 04.09.2026 – 10.09.2026 (No.2 again in 25.09.2026 – 01.10.2026)
+
+**Bulgaria.** *Wo, man* (Ayra Starr & Peggy Gou) is read off PROPHON's Svetovniyat (World) TOP 10 — the combined list Burna Boy's "Dai Dai" BG row uses, not a repertoire component (see rema-chart-peaks-v1.md, "Bulgaria, reversed"): 7, 5, **2**, 3, 4, **2** across 21 Aug–25 Sep 2026, still on the list when read. **Ecuador:** *Santa*'s EC #2 was read from Billboard Ecuador Songs; the board now labels it so (CHART_BODY_OVERRIDES). *Rush* has no Israeli row: its four Mako issues are all backfilled pre-launch weeks.

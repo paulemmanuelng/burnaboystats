@@ -101,7 +101,7 @@
   .name { display: none; }
   .grid:not(.gridOpen) .cellFolded { display: none; }
 
-  /* "Show all 66, with names": the whole grid, three across, each cell the
+  /* "Show all 68, with names": the whole grid, three across, each cell the
      desktop's flag-and-peak over its name. */
   .gridOpen { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .gridOpen .cell {

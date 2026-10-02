@@ -306,11 +306,11 @@ const TRANSCRIPTIONS: Transcription[] = [
     readings: [on("2026-06-12", 11, 0), on("2026-06-19", 2, 0), on("2026-06-26", 2, 0), ...span("2026-07-03", "2026-08-28", 1, 0)],
   },
   {
-    // SNEP Top Singles, "semaine du" a Friday. The 16 weeks are consecutive
+    // SNEP Top Singles, "semaine du" a Friday. The 18 weeks are consecutive
     // SNEP issues from semaine 22, so every issue before it is off.
     code: "FR",
     evidence: [
-      { file: CHARTS, quote: "semaine 22 (29 mai, debut at No.95) through semaine 37 (11 septembre, No.3, credited to SHAKIRA alone as in 36)" },
+      { file: CHARTS, quote: "semaine 22 (29 mai, debut at No.95) through semaine 39 (25 septembre, No.6, credited to SHAKIRA alone as in 35-38)" },
       { file: CHARTS, quote: "SNEP's own weekly Top Singles, semaine 28 (10 juillet) through semaine 36 (4 septembre 2026), an unbroken La-Semaine-Derniere-1er chain" },
       { file: FEED, quote: "SNEP's Top Singles for the semaine du 11 septembre has “Dai Dai” at No. 3, down from No. 1" },
     ],
@@ -508,7 +508,7 @@ function pointsOf(t: Transcription): RunPoint[] {
 
 const transcribed = new Map(TRANSCRIPTIONS.map((t) => [t.code, t]));
 
-/** Every chart "Dai Dai" is on — the 66 countries plus the two Billboard
+/** Every chart "Dai Dai" is on — the 68 countries plus the two Billboard
  *  globals — in charts.ts order, peak and longevity read from charts.ts. */
 export const daiDaiRuns: CountryRun[] = daiDaiEntries.map((e) => {
   const t = transcribed.get(e.c);
@@ -528,7 +528,7 @@ export const daiDaiRuns: CountryRun[] = daiDaiEntries.map((e) => {
 export const GLOBAL_CODES = ["GLB", "GLBX"] as const;
 const isGlobal = (code: string) => (GLOBAL_CODES as readonly string[]).includes(code);
 
-/** The 66 national runs, and the two globals. */
+/** The 68 national runs, and the two globals. */
 export const daiDaiCountryRuns = daiDaiRuns.filter((r) => !isGlobal(r.code));
 export const daiDaiGlobalRuns = daiDaiRuns.filter((r) => isGlobal(r.code));
 
@@ -568,7 +568,7 @@ export function readWeeksAtNo1(run: CountryRun, i: number): number {
 /**
  * The end frame: every country's best position. A recorded run gives its best
  * READ position, a run not recorded gives its charts.ts peak — and the test
- * holds all 66 to charts.ts, so the replay ends on the takeover grid.
+ * holds all 68 to charts.ts, so the replay ends on the takeover grid.
  */
 export function endBest(run: CountryRun): number {
   const read = run.points.filter((p) => p.status === "on").map((p) => p.pos!);
