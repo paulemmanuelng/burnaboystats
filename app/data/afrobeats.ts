@@ -365,6 +365,13 @@ export const AFROBEATS_VERIFIED_ON_15 = "2026-09-28";
  *  keep the dates they had. */
 export const AFROBEATS_VERIFIED_ON_16 = "2026-10-02";
 
+/** Davido — "Unavailable" (ft. Musa Keys) went UK Silver → Gold. Read on the
+ *  BPI register in the owner's own browser, 2 Oct 2026: "DAVIDO FT MUSA KEYS |
+ *  UNAVAILABLE | Single | COLUMBIA | Latest Certification 02.10.2026 | Released
+ *  31.03.2023 | Award Gold". An upgrade, so his total stays 91 (one plaque per
+ *  title per country, at its current tier). docs/sweeps/davido-certifications-v1.md. */
+export const AFROBEATS_VERIFIED_ON_17 = "2026-10-02";
+
 export const afrobeatsArtists: AfroArtist[] = [
   {
     slug: "olamide",
@@ -1077,13 +1084,15 @@ export const afrobeatsArtists: AfroArtist[] = [
     spotifyId: "0Y3agQaa6g2r0YmHPOO9rh",
     wikipedia: "https://en.wikipedia.org/wiki/Davido",
     image: "https://i.scdn.co/image/ab6761610000e5eb2bf250c3e92f9e7542efd95c",
-    verifiedOn: AFROBEATS_VERIFIED_ON_7,
+    verifiedOn: AFROBEATS_VERIFIED_ON_17,
     swept: true,
     chartPublished: { entries: 146, territories: 13, no1s: 17 },
     releases: [
       { title: "A Good Time", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/b9fd1fc1b331838b6b0ba9b2eacbf31e/500x500-000000-80-0-0.jpg", certs: [{ c: "ZA", level: "Platinum", x: 2 }, { c: "UK", level: "Silver" }] },
       { title: "Timeless", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/58fc25c84a0a2596d4ba450e836785ca/500x500-000000-80-0-0.jpg", certs: [{ c: "UK", level: "Silver" }] },
-      { title: "Unavailable", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/89d5885fe38a406504224ed98c1ab605/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 3 }, { c: "CH", level: "Platinum", x: 2 }, { c: "CA", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "FR", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "UK", level: "Silver" }] },
+      // BPI, read by the owner on the register 2 Oct 2026: "DAVIDO FT MUSA KEYS | UNAVAILABLE |
+      // Single | COLUMBIA | Gold | Latest Certification 02.10.2026" — up from Silver (see ON_17).
+      { title: "Unavailable", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/89d5885fe38a406504224ed98c1ab605/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 3 }, { c: "CH", level: "Platinum", x: 2 }, { c: "CA", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "FR", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "UK", level: "Gold" }] },
       { title: "Fall", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/6f5e2eeac47abb6bf1bcc293125e0016/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Platinum" }, { c: "CA", level: "Platinum" }, { c: "FR", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "UK", level: "Silver" }] },
       { title: "If", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/7de07d81ce22dcf5be4caa2b2b9faace/500x500-000000-80-0-0.jpg", certs: [{ c: "CA", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "UK", level: "Silver" }] },
       { title: "Blow My Mind", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/9b38babe761ad3914bfd843b8c199555/500x500-000000-80-0-0.jpg", certs: [{ c: "ZA", level: "Platinum", x: 3 } /* RiSA files it as RISA-MULTI-PLATINUM; rendered 3× under the Essence rule (10 Sep 2026) */, { c: "US", level: "Gold" }, { c: "CA", level: "Gold" }] },
