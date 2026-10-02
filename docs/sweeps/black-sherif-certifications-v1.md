@@ -9,9 +9,12 @@ do not. Singles and albums are recorded separately. A register read in full and
 holding nothing is a **proven zero**; a register that could not be read is a
 **gap**, never a zero. Swept **28 Aug 2026**.
 
-## Total: **24 certifications**
+## Total: **25 certifications**
 
-**Country split:** 🇳🇬 NG 24
+**Country split:** 🇳🇬 NG 25
+
+> **2 Oct 2026 register sweep — one plaque, credited on the owner's ruling** (24 → **25**; `docs/sweeps/sweep-2026-10-02.md`).
+> ***Road Runners* (Blaqbonez ft. Black Sherif) — 🇳🇬 Silver ✓ᴬ.** TCSN's own register, read in the raw 21 Feb 2026 capture (`20260221224010id_`): `{"id":1214,"milestone":"Silver","title":"Road Runners","artiste":"Blaqbonez ft. Seyi Vibez","format":""}` (batch stamp 2025-01-05) and `{"id":2493,"milestone":"Silver","title":"Road Runners","artiste":"Blaqbonez ft. Seyi Vibez","format":"Single"}` (batch stamp 2025-02-06) — one record, one plaque. **The register's credit is wrong:** the recording is Blaqbonez featuring **Black Sherif**, from *Emeka Must Shine* (27 Oct 2023); Seyi Vibez has no recording of the title, which is why the row came off his board on 27 Aug 2026 (`seyi-vibez-certifications-v1.md`). TurnTable's own chart carries the same record on this board (ROAD RUNNERS, NG #70). Counted on Paul's ruling of 2 Oct 2026, the precedent of Rema's *Smooth Criminal* and Ayra Starr's *Many Roads* — TCSN rows whose `artiste` field is mis-entered, credited to the artist on the record. Silver is archive-only (the live page serves none), so the row is read 2 Oct 2026 in the capture, not on the live page. Nigeria is not a new country for him; the split is now **6 Platinum, 7 Gold, 12 Silver**, and his features are three (*Always*, *Come & Go*, *Road Runners*).
 
 ## Nigeria — read from the register's own archive, not its live page
 
@@ -19,12 +22,16 @@ TCSN's live register at `turntablecharts.com/certification` serves a hard cap of
 **500 rows and no Silver at all**. The Nigerian rows here are taken from the
 register's own **archived capture of 21 Feb 2026 — 2,477 rows**, read via
 `__NEXT_DATA__` → `props.pageProps.certEntries`, which carries all 817 Silvers
-the live page withholds. Black Sherif holds **24** Nigerian plaques:
-**6 Platinum, 7 Gold, 11 Silver**.
+the live page withholds. Black Sherif holds **25** Nigerian plaques:
+**6 Platinum, 7 Gold, 12 Silver** — 24 under his own name, plus *Road Runners*
+(Silver), which TCSN files under "Blaqbonez ft. Seyi Vibez" (see the note above).
 
 Rows are keyed on **(title, artiste)**, never on title alone — the register
 appends the primary artist in parentheses to separate colliding titles, and it
 carries three different records called *On God*. A title-only match merges them.
+The one exception is a row whose `artiste` is shown to be wrong about the
+recording itself, and it is made only on the owner's ruling: *Road Runners*,
+2 Oct 2026.
 
 ## International
 

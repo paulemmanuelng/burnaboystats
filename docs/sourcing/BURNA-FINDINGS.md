@@ -61,6 +61,10 @@ This needs a dedicated look before anything is published.
 **2. A genuinely missing plaque: "No Stress" (Wizkid feat. Burna Boy), RiSA
 Platinum, South Africa.** Not on the site in any form. Would be plaque 232.
 
+*Resolved 2 Oct 2026: not added. Burna Boy is not on* No Stress*; RiSA's
+"Wizkid feat. Burna Boy" credit is a RiSA error, ignored per Paul's hand check
+— see `docs/sweeps/sweep-2026-10-02.md`.*
+
 Two near-misses were checked and are NOT new: Music Canada spells the site's
 "Kilometre" as **"Killometre"** in its own register (their typo, same award),
 and ARIA's "Be Honest" Gold is the 2020 step before the 2023 Platinum the site
@@ -68,6 +72,10 @@ already holds.
 
 One conflict to resolve: the site records **Be Honest CA Gold**, but Music
 Canada's register returned *absent* for it.
+
+*Resolved 2 Oct 2026: the register row exists as `Jorja Smith | Be Honest |
+Gold Single | 2020-01-20` (Burna Boy not printed); kept on Paul's
+ruling (a plain note, no ⚠) — see `docs/sweeps/sweep-2026-10-02.md`.*
 
 ## Still to do
 

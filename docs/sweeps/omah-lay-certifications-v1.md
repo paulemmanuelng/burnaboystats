@@ -2,22 +2,27 @@
 
 **Method:** identical to burnaboystats.com — a certification counts when it appears in the **issuing body's own register**; one plaque per title per country at its **current** tier (a 6× Platinum is one plaque, not six); lead, co-billed and featured **artist** credits all count, writer/producer credits do not. A press announcement is not a register. Swept **19 August 2026** in two halves — Nigeria/Africa, and the rest of the world — then reconciled. ✓ = seen in the issuing body's own live database. ✓ᴬ = confirmed in the body's own **archived** register (Wayback capture of the same URL). No tick anywhere in this file: **every figure below was read in a register.**
 
-## Total: **62 certifications** across **9 countries** — 62 of 62 verified body-side
+## Total: **63 certifications** across **9 countries** — 63 of 63 verified body-side
+
+> **2 Oct 2026 register sweep — one plaque, credited on the owner's ruling** (62 → **63**; `docs/sweeps/sweep-2026-10-02.md`).
+> ***Bad Influence* — 🇳🇬 2× Platinum ✓.** TCSN's own register: the live page (read 2 Oct 2026; the 500 rows are unchanged since the 24 Sep capture) carries `{"id":136,"milestone":"Platinum_2","title":"Bad Influence","artiste":"Asake","format":"Single"}`, and the 21 Feb 2026 capture (`20260221224010id_`) holds the ladder — id 457 `Platinum` (batch stamp 2025-01-05) and id 1496 `Platinum_2` (batch stamp 2025-02-06). **The register's credit is wrong:** no Asake recording of the title exists (`asake-certifications-v1.md`, Removals), and *Bad Influence* is Omah Lay's 2020 single, track 4 of the *Get Layd* EP, whose other tracks the register files under his own name. Counted on Paul's ruling of 2 Oct 2026, the precedent of Rema's *Smooth Criminal* and Ayra Starr's *Many Roads* — TCSN rows whose `artiste` field is mis-entered, credited to the artist on the record. This **reverses** the 19 Aug removal below, which held the plaque off him because the row names Asake; the 19 Aug reading of the row itself was right. Nigeria is not a new country for him.
+>
+> *The tier and section tables below were re-derived from the data on 2 Oct 2026. They had stayed at 61 when the header moved to 62 for* understand *🇵🇹 Ouro (28 Aug).*
 
 | tier | count |
 |---|---|
 | 💎 Diamond | 2 |
-| Platinum (incl. multi-platinum) | 23 |
-| Gold | 23 |
+| Platinum (incl. multi-platinum) | 24 |
+| Gold | 24 |
 | Silver | 13 |
-| **total** | **61** ✓ |
+| **total** | **63** ✓ |
 
-*Tier split: 2 + 23 + 23 + 13 = **61*** ✓
-*Sections: 1 album (2 plaques) + 32 lead-single titles (43 plaques) + 14 featured titles (16 plaques) = **61*** ✓
+*Tier split: 2 + 24 + 24 + 13 = **63*** ✓
+*Sections: 1 album (2 plaques) + 33 lead-single titles (45 plaques) + 14 featured titles (16 plaques) = **63*** ✓
 
-**Country split:** 🇳🇬 43 · 🇫🇷 6 · 🇬🇧 4 · 🇨🇦 3 · 🇵🇹 2 · 🇿🇦 1 · 🇺🇸 1 · 🇪🇸 1 · 🇩🇪 1 = **62** ✓ across **9 countries**.
+**Country split:** 🇳🇬 44 · 🇫🇷 6 · 🇬🇧 4 · 🇨🇦 3 · 🇵🇹 2 · 🇿🇦 1 · 🇺🇸 1 · 🇪🇸 1 · 🇩🇪 1 = **63** ✓ across **9 countries**.
 
-> **The headline finding: the live Nigerian register shows less than half of it.** 22 of the 43 Nigerian plaques are on turntablecharts.com today; **21 are archive-only** — all 9 Silvers and 12 of the 14 Golds. Reading only the live page would report Omah Lay at 22 Nigerian plaques and would report Silver as a tier he has never held. He holds nine.
+> **The headline finding: the live Nigerian register shows barely half of it, and only half under his name.** 23 of the 44 Nigerian plaques are on turntablecharts.com today — 22 under his name, plus *Bad Influence* under Asake's (2 Oct 2026); **21 are archive-only** — all 9 Silvers and 12 of the 14 Golds. Reading only the live page would report Omah Lay at 22 Nigerian plaques and would report Silver as a tier he has never held. He holds nine.
 >
 > **Reconciliation note (read before quoting either half).** The Nigeria/Africa half reports 44 and the rest-of-world half reports 18. Those sum to 62, not 61, because **🇿🇦 Forever (Remix) Platinum appears in both halves' evidence** — RiSA is the one body both halves opened. It is one plaque and is counted **once** here. Any merged multi-artist tally must do the same.
 
@@ -31,7 +36,7 @@
 
 *TCSN holds **no album or EP plaque for anyone** — see "Proven zeroes" below. Both Nigerian EPs and Boy Alone return zero matches across the entire 2,477-row register.*
 
-### Lead singles — 43
+### Lead singles — 45
 
 | song | certifications | |
 |---|---|---|
@@ -43,6 +48,7 @@
 | Godly | 🇳🇬 3× Platinum ✓ | **1** |
 | I'm A Mess | 🇳🇬 3× Platinum ✓ | **1** |
 | Woman | 🇳🇬 2× Platinum ✓ | **1** |
+| Bad Influence *(added 2 Oct 2026 on Paul's ruling — the register files it under "Asake"; see the note at the top)* | 🇳🇬 2× Platinum ✓ (live id 136 `Platinum_2`; archive ids 457 and 1496 — read 2 Oct 2026) | **1** |
 | Bend You | 🇳🇬 Platinum ✓ | **1** |
 | It's Yours | 🇳🇬 Platinum ✓ | **1** |
 | Moving | 🇳🇬 Platinum ✓ | **1** |
@@ -68,8 +74,8 @@
 | Recognize | 🇳🇬 Silver ✓ᴬ | **1** |
 | Ye Ye Ye | 🇳🇬 Silver ✓ᴬ | **1** |
 
-*Lead-singles subtotal: 7 + 4 + 2 + 2 = 15, plus 28 single-plaque rows = **43*** ✓
-*By country: 🇳🇬 32 · 🇫🇷 3 · 🇨🇦 3 · 🇬🇧 2 · 🇺🇸 1 · 🇪🇸 1 · 🇵🇹 1 = **43*** ✓
+*Lead-singles subtotal: 7 + 5 + 2 + 2 = 16, plus 29 single-plaque rows = **45*** ✓
+*By country: 🇳🇬 33 · 🇫🇷 3 · 🇨🇦 3 · 🇬🇧 2 · 🇵🇹 2 · 🇺🇸 1 · 🇪🇸 1 = **45*** ✓
 
 ### Featured appearances — 16
 
@@ -96,23 +102,23 @@
 ### Per-tier derivation (arithmetic check)
 
 - **Diamond (2):** soso 🇫🇷, Namek 🇫🇷.
-- **Platinum incl. multi (23):** Nigeria 20 — 6× soso; 5× Reason; 4× Holy Ghost, Understand, With You; 3× Godly, I'm A Mess, Infinity, My Dealer; 2× Woman, Philo; 1× Attention, Bend You, It's Yours, Moving, Waist, Forever (Remix), Isaka (6AM), Last Time, Pami — plus 🇿🇦 Forever (Remix), 🇵🇹 soso, 🇨🇦 soso.
+- **Platinum incl. multi (24):** Nigeria 21 — 6× soso; 5× Reason; 4× Holy Ghost, Understand, With You; 3× Godly, I'm A Mess, Infinity, My Dealer; 2× Woman, Philo, Bad Influence; 1× Attention, Bend You, It's Yours, Moving, Waist, Forever (Remix), Isaka (6AM), Last Time, Pami — plus 🇿🇦 Forever (Remix), 🇵🇹 soso, 🇨🇦 soso.
 - **Gold (24):** Nigeria 14 — Can't Relate, Come Closer, Confession, Damn, Damn (Remix), Joanna, Lo Lo, My Bebe, Safe Haven, Temptations, You, My Healer, People, Pronto — plus 🇫🇷 4 (Boy Alone, Understand, Holy Ghost, Bad), 🇨🇦 2 (Understand, Attention), 🇵🇹 1 (Understand), 🇺🇸 1 (soso), 🇪🇸 1 (soso), 🇩🇪 1 (Another Vibe).
 - **Silver (13):** Nigeria 9 — Do Not Disturb, Free My Mind, Hello Brother, How To Luv, I, Imagine, Never Forget, Recognize, Ye Ye Ye — plus 🇬🇧 4 (Boy Alone, soso, Understand, Infinity).
 
-20 + 3 = 23 Platinum; 14 + 9 = 23 Gold; 9 + 4 = 13 Silver; 2 Diamond. **Total 61** ✓
+21 + 3 = 24 Platinum; 14 + 10 = 24 Gold; 9 + 4 = 13 Silver; 2 Diamond. **Total 63** ✓
 
 ## Award events vs plaques
 
-Ten Nigerian ladders are visible step by step in TurnTable's archive, so the **43 Nigerian plaques sit behind at least 55 announcements**, and France adds one more (Namek Platine 27/07/2023 → Diamant 21/08/2025) and Canada one more (soso Gold 09.11.2023 → Platinum 12.07.2024).
+Eleven Nigerian ladders are visible step by step in TurnTable's archive, so the **44 Nigerian plaques sit behind at least 57 announcements**, and France adds one more (Namek Platine 27/07/2023 → Diamant 21/08/2025) and Canada one more (soso Gold 09.11.2023 → Platinum 12.07.2024).
 
 | register | ladders observed |
 |---|---|
-| TCSN / TurnTable (Nigeria) | soso 4×→5×→6× · I'm A Mess 1×→2×→3× · Reason 4×→5× · Understand 3×→4× · Holy Ghost 3×→4× · My Dealer 2×→3× · Woman 1×→2× · Damn Silver→Gold · Attention Gold→Platinum · It's Yours Gold→Platinum |
+| TCSN / TurnTable (Nigeria) | soso 4×→5×→6× · I'm A Mess 1×→2×→3× · Reason 4×→5× · Understand 3×→4× · Holy Ghost 3×→4× · My Dealer 2×→3× · Woman 1×→2× · Damn Silver→Gold · Attention Gold→Platinum · It's Yours Gold→Platinum · Bad Influence 1×→2× *(ids 457 → 1496; added 2 Oct 2026)* |
 | SNEP (France) | Namek Platine → Diamant |
 | Music Canada | soso Gold → Platinum |
 
-**A tally of announcements is not a tally of plaques.** Quoting a fan announcement count against the 61 above compares two different measurements — exactly the mechanism already documented in the Tems and Wizkid files.
+**A tally of announcements is not a tally of plaques.** Quoting a fan announcement count against the 63 above compares two different measurements — exactly the mechanism already documented in the Tems and Wizkid files.
 
 **No drift since February.** All 500 live TCSN rows were diffed against the 2026-02-21 capture's newest batch: 0 rows missing, and the 313 apparent "differences" are notation only (`Platinum` ↔ `Platinum_1`, `Gold` ↔ `Gold_1`). Exactly one real tier change turned up anywhere in the register, and it is not his — Asake's "02:30" moved Gold → 4× Platinum.
 
@@ -120,7 +126,7 @@ Ten Nigerian ladders are visible step by step in TurnTable's archive, so the **4
 
 | body | status | result |
 |---|---|---|
-| **TCSN / TurnTable (Nigeria)** | **swept ✓ live + ✓ᴬ full archive** | **43** — live register (`__NEXT_DATA__` → `props.pageProps.certEntries`) serves a hard-capped **500 rows** (456 Platinum, 44 Gold, **zero Silver**); the cap is server-side, not a UI page size — `/_next/data/TbyVdjvUBv8nWoUe13IU_/certification.json` returns exactly 500 rows for `?limit=5000`, `?page=2` and `?search=omah` alike, and there is no artist route. Wayback CDX enumerated 46 status-200 captures; **40 were downloaded whole** (raw `id_` modifier + gzip) and parsed. Row-count eras: 2 → 103 → 206 → 1,203 → **2,477** → 500. The deepest capture (2026-02-21, 39 MB, 2,477 rows = 962 P / 698 G / 817 Silver) stacks six dated batches and holds every Silver and 12 of the 14 Golds. Searched **artist-side** (any row whose artiste or title contains "omah") **and title-side** (~50 title strings checked against every row regardless of credited artist), so guest credits filed under the lead artist would have surfaced. |
+| **TCSN / TurnTable (Nigeria)** | **swept ✓ live + ✓ᴬ full archive** | **44** (43 at the 19 Aug sweep; *Bad Influence* 2× Platinum added on the owner's ruling, the live row `Bad Influence \| Asake \| Platinum_2` re-read 2 Oct 2026) — live register (`__NEXT_DATA__` → `props.pageProps.certEntries`) serves a hard-capped **500 rows** (456 Platinum, 44 Gold, **zero Silver**); the cap is server-side, not a UI page size — `/_next/data/TbyVdjvUBv8nWoUe13IU_/certification.json` returns exactly 500 rows for `?limit=5000`, `?page=2` and `?search=omah` alike, and there is no artist route. Wayback CDX enumerated 46 status-200 captures; **40 were downloaded whole** (raw `id_` modifier + gzip) and parsed. Row-count eras: 2 → 103 → 206 → 1,203 → **2,477** → 500. The deepest capture (2026-02-21, 39 MB, 2,477 rows = 962 P / 698 G / 817 Silver) stacks six dated batches and holds every Silver and 12 of the 14 Golds. Searched **artist-side** (any row whose artiste or title contains "omah") **and title-side** (~50 title strings checked against every row regardless of credited artist), so guest credits filed under the lead artist would have surfaced. |
 | **RiSA (South Africa)** | **swept ✓** (production host) | **1** — Forever (Remix), `RISA-PLATINUM`, 28 Jul 2022. Read exhaustively: all 25 pagination pages (608 rows, 602 unique, 2015 → 09 Sep 2025) plus the register's own `?artist=` / `?title=` search for "Omah", "Lay" and every collaborator and candidate title. Controls: Wizkid 15 rows, Burna 2, Tems 1. **risa.org.za is a decoy** — it returns a 335 KB WordPress shell with zero `certification-row` elements. |
 | **SNEP (France)** | **swept ✓** | **6** — 7 award rows, no pagination; 6 plaques after collapsing the Namek Platine→Diamant ladder. Two of the six are French rap features (Jul, Ninho) that no artist-side fan list carries. |
 | **BPI (UK)** | **swept ✓** | **4** — Boy Alone Silver, soso Silver, Understand Silver, Infinity Silver. **The register has moved:** bpi.co.uk is now a Hivebrite community shell and `/brit-certified/` 404s; the live register is the htmx app at `certified-awards.bpi.co.uk`, driven by `GET / ?search=`. Control "TEMS" returned 175 lines including 3× Platinum tiers. |
@@ -159,7 +165,7 @@ Ten Nigerian ladders are visible step by step in TurnTable's archive, so the **4
 These are results, not silence.
 
 - **TCSN holds no album or EP plaque for Omah Lay — or for anyone.** Boy Alone, Get Layd and What Have We Done return zero matches across the entire 2,477-row register, and the register's own format counts are Single 1,821, blank 651, "SIngle" 5. **TCSN as published is a singles-only register.**
-- **"Bad Influence" has no Omah Lay row in Nigeria.** The register's "Bad Influence" (Platinum_2) belongs to **Asake**. A title-side match would wrongly credit it; the artiste field disproves it.
+- **"Bad Influence" has no row under Omah Lay's name in Nigeria** — the register files its "Bad Influence" (Platinum_2) under **Asake**. *Corrected 2 Oct 2026:* this line read the `artiste` field as settling whose record it is. It does not: no Asake recording of the title exists, the record is Omah Lay's, and on Paul's ruling of 2 Oct 2026 the plaque is counted here (see the note at the top).
 - **RiSA's 602-row register holds exactly one Omah Lay row.** No Understand, no soso, no Woman, no Attention, no Isaka (6AM), no Boy Alone — read row by row across all 25 pages, not merely searched.
 - **Fourteen national registers read end-to-end with a passing control hold nothing at all:** New Zealand, Australia, Italy, Netherlands, Belgium, Denmark, Sweden, Norway, Poland, Hungary, Austria, Switzerland, Brazil, Mexico.
 - **"Attention" (Omah Lay & Justin Bieber) is certified in Canada ONLY.** It is absent from RIAA, BPI, SNEP, ARIA, FIMI, BVMI, PROMUSICAE, NVPI, Ultratop, IFPI Danmark, IFPI Norge, ZPAV, MAHASZ, IFPI Austria, Switzerland, Brazil and AMPROFON — every one checked **title-side as well as artist-side**. A Bieber feature invites the assumption of broad certification; the registers do not support it. **Sweden is the sharpest case:** the track is in Sverigetopplistan's database and its badge row carries no certification.
@@ -168,11 +174,11 @@ These are results, not silence.
 
 **No certification claim in this sweep was refuted.** All 61 survived an attempt to refute them at source. What was removed is structural, and each removal is a trap worth keeping:
 
-- **"Bad Influence" 🇳🇬 — removed on the credit test.** The TCSN row is Asake's. This is the single likeliest source of over-count in any normalised title match on the Nigerian register.
+- ~~**"Bad Influence" 🇳🇬 — removed on the credit test.** The TCSN row is Asake's.~~ **Reversed 2 Oct 2026 on Paul's ruling:** the row is filed under Asake, but the recording is Omah Lay's, so the 2× Platinum is counted here (the *Smooth Criminal* / *Many Roads* precedent). The warning that survives: never match a Nigerian row on a normalised title alone — this one was credited because the recording was identified, not because the titles matched.
 - **Album and EP plaques 🇳🇬 — removed as a category.** Any claim of a Nigerian plaque for Boy Alone, Get Layd or What Have We Done is unsupported by the register, which certifies no albums.
-- **Announcement-count claims — not convertible.** Ladder steps (55+ Nigerian announcements behind 43 plaques) are not plaques and are excluded from every figure in this file.
+- **Announcement-count claims — not convertible.** Ladder steps (57+ Nigerian announcements behind 44 plaques) are not plaques and are excluded from every figure in this file.
 
-**Watch the register's own disambiguation.** TCSN parenthesises colliding titles, and the parenthesis names the owner: *"Reason (Omah Lay)"* vs Asake's "Reason"; *"Woman (Omah Lay)"* vs Simi's "Woman (Simi)"; *"Come Closer (Omah Lay)"* vs Wizkid ft. Drake's "Come Closer"; *"With You (Davido)"* vs Khaid's "With You"; also *"Attention (Omah Lay)"*, *"Waist (Omah Lay)"*, *"People (Libianca)"*. The register's exact strings were used rather than normalised ones, **because normalising is how "Bad Influence" gets misfiled from Asake to Omah Lay.**
+**Watch the register's own disambiguation.** TCSN parenthesises colliding titles, and the parenthesis names the owner: *"Reason (Omah Lay)"* vs Asake's "Reason"; *"Woman (Omah Lay)"* vs Simi's "Woman (Simi)"; *"Come Closer (Omah Lay)"* vs Wizkid ft. Drake's "Come Closer"; *"With You (Davido)"* vs Khaid's "With You"; also *"Attention (Omah Lay)"*, *"Waist (Omah Lay)"*, *"People (Libianca)"*. The register's exact strings were used rather than normalised ones, **because normalising is how "Bad Influence" gets misfiled from Asake to Omah Lay.** *(2 Oct 2026: it is now on this file, but by identifying the recording on the owner's ruling, not by a normalised title match — see the note at the top.)*
 
 ## Known gaps
 
@@ -204,13 +210,15 @@ None is double-counted **within** this document.
 
 ## The shape of this catalogue
 
-**Nigeria is 70% of it** — 43 of 61. Strip Nigeria out and 18 plaques remain across 8 countries, and **France is the story**: 6 of the 18, and both Diamonds. Two of those six are French rap features nobody outside SNEP's own register would connect to him — Jul's *Namek* (Platine 27/07/2023 → **Diamant** 21/08/2025) and Ninho's *Bad* (Or, 22/02/2024).
+**Nigeria is 70% of it** — 44 of 63. Strip Nigeria out and 19 plaques remain across 8 countries, and **France is the story**: 6 of the 19, and both Diamonds. Two of those six are French rap features nobody outside SNEP's own register would connect to him — Jul's *Namek* (Platine 27/07/2023 → **Diamant** 21/08/2025) and Ninho's *Bad* (Or, 22/02/2024).
 
 ***soso* is the only release certified in more than three countries.** It holds 7 plaques at six different tiers simultaneously — 🇫🇷 Diamant, 🇳🇬 6× Platinum, 🇵🇹 Platina, 🇨🇦 Platinum, 🇺🇸 Gold, 🇪🇸 Oro, 🇬🇧 Silver — which is a clean illustration of how far national thresholds diverge for one identical record.
 
 **Four finds that exist only in a register.** None is on the artist-side lists fans compile, and each was invisible until the issuing body's own database was opened: 🇩🇪 *Another Vibe* (Luciano feat. Omah Lay, Gold 2025) — his only German plaque, and it is a feature on a German rapper's record; 🇿🇦 *Forever (Remix)* (Gyakie feat. Omah Lay, Platinum 28.07.2022); 🇬🇧 Silver for Olamide's *Infinity*, certified **07.08.2026 — twelve days before this sweep**; and 🇵🇹 *soso* Platina, which exists in the public record only as the two letters `PL` in the `Gal.` column of one weekly Top 200 PDF. **Had that week not been captured, Portugal would read as a zero.**
 
 ### Context
+
+*(Figures as at the 19 Aug 2026 sweep; the file's current total is in the header.)*
 
 Under the same rules: **Burna Boy 230 certifications across 26 countries** ([burnaboystats.com](https://burnaboystats.com)). Omah Lay's **61 across 9 countries** is **27% of Burna Boy's plaque count and 35% of his country reach**.
 

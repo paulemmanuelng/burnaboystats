@@ -54,7 +54,9 @@ any body so far. The UK entry should point there.
   France's 20 URLs swapped off title-only stubs onto the listing that shows the row.
 - **One genuinely missing plaque found:** "No Stress" (Wizkid feat. Burna Boy),
   RiSA Platinum, South Africa.
+  *Resolved 2 Oct 2026: not added — RiSA's Burna Boy credit on* No Stress *is a RiSA error, ignored per Paul (`docs/sweeps/sweep-2026-10-02.md`).*
 - **One conflict:** the site records Be Honest CA Gold; Music Canada returned absent.
+  *Resolved 2 Oct 2026: the register row exists as `Jorja Smith | Be Honest | Gold Single | 2020-01-20` (Burna Boy not printed); kept on Paul's ruling (a plain note, no ⚠) — `docs/sweeps/sweep-2026-10-02.md`.*
 - **New Zealand needs its own pass** — 29 of 19+ rows came back absent, only 1 confirmed.
 
 ### Board — pass 1 running

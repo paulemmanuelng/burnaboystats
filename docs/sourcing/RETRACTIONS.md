@@ -20,7 +20,13 @@ owner, so the evidence was sitting in the quotes I had already captured:
 I also reported Asake *2:30* as understated at Platinum. **It already carries
 `x: 4`.** My worklist printed the `tier` field and dropped `x`.
 
-## 2. "Bad Influence" — must NOT be added
+## 2. "Bad Influence" — must NOT be added (to Asake)
+
+> **Superseded for Omah Lay, 2 Oct 2026.** On the owner's ruling of that day the
+> TCSN 2× Platinum (live id 136, `Bad Influence | Asake | Platinum_2`) is counted
+> on **Omah Lay's** board — the recording is his — the precedent of Rema's
+> *Smooth Criminal* and Ayra Starr's *Many Roads*. It must still NOT be added to
+> Asake. `docs/sweeps/sweep-2026-10-02.md`.
 
 The repo has already adjudicated this **three times**, from both sides:
 
