@@ -54,6 +54,25 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-10-02",
+    category: "Charts",
+    big: true,
+    // charts.ts "Dai Dai" DE/AT/CH rows, re-read in the 2 Oct 2026 charts sweep
+    // (docs/sweeps/charts-sweep-2026-10-02.md): GfK's own releases of 25 Sep
+    // ("zum 13. Mal") and 2 Oct ("13 Wochen am Stück", now No. 2);
+    // austriancharts.at 25.09.2026; swisscharts.com 27.09.2026.
+    text: "Thirteen straight weeks at No. 1 in Germany: GfK's chart of 2 October ends “Dai Dai”'s run at the top, after Austria's Ö3 Top 40 of 25 September gave it a 14th week at No. 1 and the Schweizer Hitparade of 27 September a 16th.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-10-02",
+    category: "Charts",
+    // The featureCharts rows added in the 2 Oct 2026 charts sweep, each read at
+    // the OCC's weekly issue; the CH/SE/DK/NO/LT/CZ/SK rows beside them.
+    text: "Six more UK Top 100 hits on the record: “Play Play” with J Hus (No. 11), “Masculine” (24), “She's Not Anyone” (30), “Siberia” (35), “Cloak & Dagger” (47) and “Good Time” (88), each read at the Official Charts Company, alongside Swiss, Nordic and Baltic peaks back to 2019.",
+    href: "/records/charts",
+  },
+  {
+    date: "2026-10-02",
     category: "Streaming",
     // The 2 Oct 2026 reading in app/data/spotify.ts (each artist's own Spotify
     // page, About panel). Typed because this is a dated log line; the guard in
