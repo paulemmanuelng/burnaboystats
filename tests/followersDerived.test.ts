@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { readFileSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
-import { spotifyFollowersRead, followersCompact, SPOTIFY_FOLLOWERS_READ_ON } from "../app/data/spotify";
+import { spotifyFollowersRead } from "../app/data/spotify";
 import { updates } from "../app/data/updates";
 
 /**
@@ -45,7 +45,6 @@ function sourceFiles(dir: string): string[] {
   });
 }
 
-const sorted = [...spotifyFollowersRead].sort((a, b) => b.followers - a.followers);
 
 describe("follower figures are read off spotifyFollowersRead, never typed", () => {
   it("no line on the site pairs the word follower with a typed figure", () => {
@@ -112,25 +111,26 @@ describe("follower figures are read off spotifyFollowersRead, never typed", () =
   });
 });
 
-describe("a feed entry dated the reading day quotes that reading", () => {
-  const entries = updates.filter((u) => u.date === SPOTIFY_FOLLOWERS_READ_ON && /Spotify followers/.test(u.text));
-  const [first, second, ...rest] = sorted;
+// The 2 Oct 2026 feed entry is a dated log line: it is held to the reading of
+// that day (the TSV in the session scratchpad, mirrored in spotify.ts on that
+// date), not to whatever spotifyFollowersRead holds later. A future re-read
+// changes the data and adds its own entry if it wants one; it must not fail
+// this test, and it must not rewrite this line.
+describe("the 2 Oct 2026 feed entry quotes the 2 Oct reading", () => {
+  const entry = updates.find((u) => u.date === "2026-10-02" && /Spotify followers/.test(u.text));
 
-  it("there is one, and it names the leader's exact count", () => {
-    expect(entries).toHaveLength(1);
-    expect(entries[0].text).toContain(first.followers.toLocaleString("en-US"));
+  it("exists, and names the leader's exact count, the gap and the next names", () => {
+    expect(entry).toBeDefined();
+    const text = entry!.text;
+    expect(text).toContain("18,016,193");
+    expect(text).toContain("5.07 million clear of Wizkid (12.94M)");
+    for (const s of ["Davido (12.09M)", "Rema (12.02M)", "Asake (10.90M)"]) expect(text).toContain(s);
   });
 
-  it("its gap and the next names' figures are the reading's", () => {
-    const text = entries[0].text;
-    const gap = first.followers - second.followers;
-    expect(text).toContain(`${(gap / 1e6).toFixed(2)} million clear of ${second.name} (${followersCompact(second.followers)})`);
-    for (const r of rest.slice(0, 3)) expect(text).toContain(`${r.name} (${followersCompact(r.followers)})`);
-  });
-
-  it("negative control: the 24 Sep entry fails the same checks against this reading", () => {
+  it("negative control: the 24 Sep entry, from an older reading, fails the same checks", () => {
     const shipped = updates.find((u) => u.date === "2026-09-24" && /Spotify followers/.test(u.text))!.text;
-    expect(shipped).not.toContain(first.followers.toLocaleString("en-US"));
-    expect(shipped).not.toContain(`${second.name} (${followersCompact(second.followers)})`);
+    expect(shipped).not.toContain("18,016,193");
+    expect(shipped).not.toContain("Wizkid (12.94M)");
   });
 });
+
