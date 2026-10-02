@@ -120,3 +120,17 @@ One block per run of scripts/chartmasters-anchor.mjs — what was read, what was
 - burna-boy: 2026 ledger NOT re-anchored. The script anchored it at 1,907,703,359 through kworb's 2026-09-29 (was 1,900,611,867 through 2026-09-28, plus a 29 Sep daily of 6,883,734), but the board prints 28 Sep and a ledger cannot give a figure for a day before its checkpoint (tests/statsGuards "the board is never ahead of the ledgers" failed). The ledger was never wrong: kworb's returning titles moved its raw sum, not its dailies, and the two routes differ by 207,758. Reverted by hand; re-anchor the 2026 ledgers only on a read that carries all five artists.
 - edit: app/data/streamingTotals.ts: "11.13B" → "11.11B"
 - edit: app/data/streamingTotals.ts: "11,131,093,415" → "11,107,256,033"
+
+## 2026-10-02 — Artist Global Impact (cities), read by hand
+
+- Source: chartmasters.org/artists-global-performance/?artist_id=3wcj11K77LjEY1PkEazffa, signed in, in the site's own browser
+- Captured: `reads/2026-10-02-cities.json` — 50 cities, 29 countries; Global Ranking #90; popularity 85; followers 18,016,193; monthly listeners 45,971,055 (trend −7,231,066)
+- Feeds: app/data/listeners.ts (whole list replaced, LISTENERS_READ_ON 2026-10-02), applied with `node scripts/listeners-apply.mjs`.
+- 9 of 50 cities up, 41 down; 23 rank moves. Top city Lagos 1,439,126.
+- New in the top 50: Cape Town (#48) and Auckland (#50); out: Hanover and Athens. Their markers were placed by hand (Cape Town 18.42, −33.92; Auckland 174.76, −36.85) before the apply.
+
+## 2026-10-02 — Playcounts Tool, read and NOT used
+
+- Burna Boy (identity from the select value and the share link): through 28 Sep 11,107,256,033 (the 30 Sep anchor, unchanged); through 29 Sep 11,109,695,269; through 30 Sep 11,109,695,269 — the SAME figure two days running, +2,439,236 over two days, against kworb's +6,557,034 for the single day 29→30 Sep (raw 10,989,875,203 → 10,996,432,237). The 30 Sep table also printed "−100.0%" and "N/A" in its vs-7-days column.
+- The 29 Sep ↔ kworb 30 Sep pair would move the offset 117,380,830 → 113,263,032 and publish ~4.1M low. ChartMasters' 29–30 Sep data reads as incomplete, so the offset was LEFT at 117,380,830 (the clean 28 ↔ 29 pair). Re-read once its days advance normally.
+- Same session, through 30 Sep (not used, the ledgers move only together on a sound day): Wizkid 11,846,789,925; Tems 6,323,948,145; Asake 4,440,990,714 (identity from share links). Tyla read 4,792,419,068, about 60M BELOW her 23 Sep reading, with no share link to confirm identity — treated as unconfirmed.
