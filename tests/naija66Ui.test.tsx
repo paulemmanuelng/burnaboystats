@@ -33,7 +33,6 @@ import HuntKeySlot from "../app/components/HuntKeySlot";
 import Naija66Page from "../app/naija66/page";
 import Naija66Banner from "../app/components/Naija66Banner";
 import Naija66BannerLive, { bannerLine } from "../app/components/Naija66BannerLive";
-import bannerStyles from "../app/components/naija66Banner.module.css";
 import Home from "../app/page";
 import { CLOSES_MS } from "../app/lib/naija66/clock";
 import { ALREADY_WON_LINE, FLOW, PRIZE, WINNER_KEEP_LINE, WINNER_LINE } from "../app/lib/naija66/copy";
@@ -530,16 +529,16 @@ describe("/naija66", () => {
 // ── The home banner ──────────────────────────────────────────────────────────
 
 describe("the home banner", () => {
-  it("is on both layouts of the home page until the close", () => {
+  it("is off the home page (Paul, 2 Oct 2026: all five codes found), while /naija66 stays up", () => {
+    // During the hunt the strip sat on both layouts; this is the line the
+    // phone one printed the evening before, now gone from the home page.
     setNow(EVE);
     const html = renderToStaticMarkup(<Home />);
-    const banners = [...html.matchAll(/<a href="\/naija66" class="([^"]+)"/g)].map((m) => m[1]);
-    expect(banners).toHaveLength(2);
-    expect(banners.some((c) => c.includes(bannerStyles.phone))).toBe(true);
-    expect(banners.some((c) => c.includes(bannerStyles.desktop))).toBe(true);
-    expect(html.split("Tomorrow 9am WAT: the Naija @ 66 hunt — five ₦3,000 Spotify Premium prizes").length - 1).toBe(2);
-    // The phone strip precedes the phone screen; the desktop one sits in the desktop wrapper.
-    expect(html.indexOf(bannerStyles.phone)).toBeLessThan(html.indexOf("Burna Boy</h1>"));
+    expect(html).not.toContain('href="/naija66"');
+    expect(html).not.toContain("Tomorrow 9am WAT: the Naija @ 66 hunt");
+    expect(renderToStaticMarkup(<Naija66Banner layout="phone" now={new Date()} />)).toContain(
+      "Tomorrow 9am WAT: the Naija @ 66 hunt",
+    );
   });
 
   it("says Today on the morning itself, and is gone from the close", () => {
