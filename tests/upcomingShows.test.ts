@@ -1,6 +1,21 @@
 import { describe, it, expect } from "vitest";
-import { upcomingShows } from "../app/data/tours";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+import { upcomingShows, type UpcomingShow } from "../app/data/tours";
 import { updates } from "../app/data/updates";
+
+/** The lead's line on Apple Music Hall, as it reached us. Not established. */
+const LEAD = "The first African artist to perform live at the Apple Music Hall";
+
+/**
+ * Venues whose phone line says "first" when their full note does not. The
+ * `short` field's own rule: no claim the note does not make. The word alone,
+ * not a venue-bound phrase: the venue's name prints on the row above, so the
+ * line has no reason to repeat it.
+ */
+const FIRST_WORD = /\bfirst\b/i;
+const unbackedFirsts = (shows: Pick<UpcomingShow, "venue" | "note" | "short">[]) =>
+  shows.filter((u) => FIRST_WORD.test(u.short) && !FIRST_WORD.test(u.note)).map((u) => u.venue);
 
 /**
  * The announced-shows list on /records/tours: the one forward-looking list in
@@ -24,6 +39,24 @@ describe("announced shows", () => {
   });
 });
 
+describe("the phone's one-line notes", () => {
+  it("every show has one, short enough for two lines at 375px", () => {
+    for (const u of upcomingShows) {
+      expect(u.short.trim().length, u.venue).toBeGreaterThan(0);
+      expect(u.short.length, u.venue).toBeLessThanOrEqual(80);
+    }
+  });
+
+  it("claim no 'first' that the full note does not make", () => {
+    expect(unbackedFirsts(upcomingShows)).toEqual([]);
+  });
+
+  it("negative control: the lead's line on Apple Music Hall's row", () => {
+    const apple = upcomingShows.find((u) => u.venue === "Apple Music Hall")!;
+    expect(unbackedFirsts([{ ...apple, short: LEAD }])).toEqual(["Apple Music Hall"]);
+  });
+});
+
 describe("Apple Music Hall, 29 October 2026", () => {
   // The lead that brought this in said he would be "The first African artist
   // to perform live at the Apple Music Hall". Not established: the opening run
@@ -40,11 +73,40 @@ describe("Apple Music Hall, 29 October 2026", () => {
 
   it("says 'the only African artist among the eight shows', never 'the first'", () => {
     // The lead's own line is what the guard refuses.
-    expect("The first African artist to perform live at the Apple Music Hall").toMatch(FIRST);
+    expect(LEAD).toMatch(FIRST);
     expect(feed.length).toBeGreaterThan(0);
     for (const text of [show.note, ...feed.map((u) => u.text)]) {
       expect(text).toContain("the only African artist among the eight shows announced for its opening run");
       expect(text).not.toMatch(FIRST);
     }
+  });
+
+  it("its phone line has no 'first' at all", () => {
+    // FIRST needs the venue's name after the claim, and the phone line sits
+    // under that name, so it never repeats it. The note has no "first", so
+    // the bare word is exact here.
+    expect(LEAD).toMatch(FIRST_WORD);
+    expect(show.note).not.toMatch(FIRST_WORD);
+    expect(show.short).not.toMatch(FIRST_WORD);
+  });
+});
+
+describe("the phone's announced card is on the 11px floor", () => {
+  // The one-row redesign shipped its source line at 10.5px.
+  const under = (css: string) =>
+    [...css.matchAll(/\.(upcoming\w*)\s*\{([^}]*)\}/g)]
+      .map((m) => [m[1], /font-size:\s*([\d.]+)px/.exec(m[2])?.[1]] as const)
+      .filter(([, size]) => size !== undefined && Number(size) < 11)
+      .map(([name]) => name);
+  const css = readFileSync(join(__dirname, "../app/components/mobileTours.module.css"), "utf8");
+
+  it("every .upcoming* rule with a px size", () => {
+    expect(css).toMatch(/\.upcomingSource\s*\{/);
+    expect(under(css)).toEqual([]);
+  });
+
+  it("negative control: the shipped source line", () => {
+    const shipped = `.upcomingSource {\n  font-family: var(--font-mono), monospace;\n  font-size: 10.5px;\n  letter-spacing: 0.04em;\n  color: var(--text-muted);\n  margin-top: 5px;\n}`;
+    expect(under(shipped)).toEqual(["upcomingSource"]);
   });
 });

@@ -277,6 +277,13 @@ export interface UpcomingShow {
   when: string;
   cap?: number;
   note: string;
+  /**
+   * The note in one line, for the phone layout (MobileTours.tsx), where three
+   * full notes ran the announced box to 730px on a 375px screen and pushed the
+   * tours off it (Paul, 1 Oct 2026). Desktop prints the full note. No claim
+   * here that the note does not make.
+   */
+  short: string;
   /** Where the announcement came from, named on the page. */
   source: string;
 }
@@ -291,6 +298,7 @@ export const upcomingShows: UpcomingShow[] = [
     // nfl.com/news/burna-boy-headline-halftime-show-2026-nfl-paris-game-oct-25
     // and @NFL on X, 17 Sep 2026: "Sunday, Oct. 25 at 2:30 p.m. CEST (9:30 a.m.
     // ET) at Stade de France".
+    short: "Halftime show at the first NFL game in France, Steelers\u00a0v\u00a0Saints.",
     source: "Announced by the NFL, 17 September 2026",
   },
   {
@@ -313,6 +321,7 @@ export const upcomingShows: UpcomingShow[] = [
     // is not over and more dates can be added. Elton John opens the venue, not
     // him. By nationality (Paul, 17 Sep 2026) Troye Sivan, born in
     // Johannesburg, is Australian. After the show, move it to `concerts`.
+    short: "Apple's new Battersea venue, livestreamed worldwide on Apple Music.",
     source: "Announced by Apple, 25 September 2026",
   },
   {
@@ -324,6 +333,8 @@ export const upcomingShows: UpcomingShow[] = [
     note: "A return to the 80,000-capacity stadium he was the first African artist ever to headline — his third time there, after the sold-out 2023 debut and the 2024 night that set the African concert box-office record. No date announced yet.",
     // x.com/burnaboy/status/2084371889254727698, 9:12 PM 3 Aug 2026: "So excited
     // for 2027! London Stadium III and Much More announcements for y'all."
+    // Non-breaking spaces: "No date yet." wraps as one, not "No / date yet."
+    short: "His third night there, after 2023 and 2024. No\u00a0date\u00a0yet.",
     source: "Announced by Burna Boy on X, 3 August 2026",
   },
 ];

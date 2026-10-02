@@ -327,15 +327,19 @@
   box-shadow: 0 0 26px color-mix(in srgb, var(--gold-glow-base) 25%, transparent);
 }
 
-/* Announced, not yet played — a plan, marked as one. */
+/* Announced, not yet played — a plan, marked as one.
+   18px clear of the stat grid above, as of the first tour row below: at 0 the
+   card's rounded top sat on the grid's bottom rule and read as glued to it.
+   Inner rhythm is 14 / 12: 14px from the card edge to the pill and from the
+   last line to the card edge, 12px either side of each hairline. */
 .upcoming {
-  margin: 0 18px 18px;
-  padding: 16px;
+  margin: 18px;
+  padding: 14px 14px 2px;
   border: 1px solid color-mix(in srgb, var(--gold-ink) 28%, transparent);
   background: color-mix(in srgb, var(--gold-wash-base) calc(4% * var(--wash-strength)), transparent);
   border-radius: var(--radius);
 }
-.upcomingHead { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.upcomingHead { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
 .upcomingTag {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
@@ -347,6 +351,7 @@
   border-radius: 999px;
   padding: 3px 9px;
 }
+/* One show: the head carries its date, in the display face. */
 .upcomingWhen {
   margin-left: auto;
   font-family: var(--font-anton), sans-serif;
@@ -354,11 +359,40 @@
   font-size: 22px;
   color: var(--gold);
 }
+/* Several: a count in the label face. At 22px Anton gold it was the largest
+   thing in the card and outsized the dates it counts. */
+.upcomingCount {
+  margin-left: auto;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+/* One show a row, hairline between: venue left, its date right. The venue
+   wraps before the date does, so a long name at 320px drops a line rather
+   than running under the date. */
+.upcomingShow { padding: 12px 0; border-top: 1px solid var(--line); }
+.upcomingRow { display: flex; align-items: baseline; gap: 12px; }
 .upcomingVenue {
+  min-width: 0;
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
-  font-size: 19px;
+  font-size: 18px;
+  line-height: 1.15;
   text-transform: uppercase;
+}
+/* Upper case, as the venue it shares a baseline with: Anton is set in caps
+   everywhere else on this screen. */
+.upcomingDate {
+  margin-left: auto;
+  flex: none;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.15;
+  text-transform: uppercase;
+  color: var(--gold);
 }
 .upcomingCity {
   font-family: var(--font-mono), monospace;
@@ -366,13 +400,17 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-muted);
-  margin-top: 3px;
+  margin-top: 4px;
 }
-.upcomingText { font-size: 13px; line-height: 1.55; color: var(--text-body); margin-top: 9px; }
+/* pretty: no one-word last line ("yet." alone at 375). */
+.upcomingText { font-size: 13px; line-height: 1.5; color: var(--text-body); margin-top: 6px; text-wrap: pretty; }
+/* The quietest line in the row: --dim, as the stat notes above, and on the
+   site's 11px floor (it shipped at 10.5). */
 .upcomingSource {
   font-family: var(--font-mono), monospace;
   font-size: 11px;
-  letter-spacing: 0.06em;
-  color: var(--text-muted);
-  margin-top: 8px;
+  line-height: 1.4;
+  color: var(--dim);
+  margin-top: 4px;
+  text-wrap: pretty;
 }
