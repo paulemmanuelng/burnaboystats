@@ -23,6 +23,12 @@
     "release": "Metaverse",
     "platform": "Shazam",
     "position": 178
+  },
+  {
+    "date": "2026-10-02",
+    "release": "Metaverse",
+    "platform": "Shazam",
+    "position": 178
   }
 ];
   

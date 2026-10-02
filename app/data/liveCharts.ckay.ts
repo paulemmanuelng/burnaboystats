@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-01";
+  export const liveChartsUpdated = "2026-10-02";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-01T22:44Z";
+  export const liveChartsBuiltAt = "2026-10-02T05:43Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Spotify","Spotify Albums","iTunes"];
@@ -56,21 +56,21 @@
           {
             "country": "RU",
             "name": "Russia",
-            "position": 6,
+            "position": 7,
             "movement": 1
-          },
-          {
-            "country": "MY",
-            "name": "Malaysia",
-            "position": 27,
-            "movement": null,
-            "status": "new"
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 41,
+            "position": 39,
             "movement": 2
+          },
+          {
+            "country": "MY",
+            "name": "Malaysia",
+            "position": 71,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -187,6 +187,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/17c6e2a5233d9bb0920643922dd4f210/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "forever",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 48,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/73e10a485de513f9c18f87575ae66d58/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Beggie Beggie",
     "platforms": [
       {
@@ -234,7 +254,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 102,
+            "position": 167,
             "movement": null,
             "status": "new"
           }
