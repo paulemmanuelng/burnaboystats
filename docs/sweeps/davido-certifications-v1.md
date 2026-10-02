@@ -4,6 +4,8 @@
 
 ## Total: **91 certifications**
 
+> **2 Oct 2026 — a BPI upgrade, total unchanged.** ***Unavailable* (ft. Musa Keys) — 🇬🇧 Silver → Gold ✓.** The owner searched the register in his own browser; the card read `DAVIDO FT MUSA KEYS | UNAVAILABLE | Single | Corporate Group/Label: COLUMBIA | Latest Certification 02.10.2026 | Released 31.03.2023 | Award: Gold`. One plaque per title per country at its current tier, so 91 stays 91; the tier split moves one plaque from Silver to Gold.
+
 > **Why the number moved from 60 to 91.** Every one of the 31 additions comes from a single source: the **full TurnTable (Nigeria) archive read**. The live TCSN register displays a hard cap of exactly 500 rows — 456 Platinum + 44 Gold, and **zero Silver** — so it truncates mid-Gold and serves none of the Silver tier at all. Reconstructing the register from 44 of its own archived captures (2023-02 → 2026-07; the richest, 2026-02-21, holds 2,477 entries) raises Davido from **29 displayed rows to 60 published rows**: +11 Gold and +20 Silver. Silver is a genuine TCSN tier, not a rendering artefact — which also **reinstates the Sensational Nigerian Silver** this file previously removed. No other register in the gap pass added anything: Norway, Australia, Greece, Singapore, Finland, Ireland, India, Turkey, Croatia, Argentina, Chile, Colombia, Peru, Malaysia and Slovakia all returned zero for Davido, and eleven of those turned out to publish no usable register at all. Net: 60 + 31 = **91**.
 
 ### Albums — 3
@@ -19,7 +21,7 @@ No other Davido album is certified anywhere. *Omo Baba Olowo*, *Son of Mercy*, *
 ### Lead singles — 60
 | song | certifications |
 |---|---|
-| Unavailable (ft. Musa Keys) | 🇳🇬 3× Platinum ✓ · 🇨🇭 2× Platinum ✓ · 🇨🇦 Platinum ✓ · 🇺🇸 Gold ✓ · 🇫🇷 Gold ✓ · 🇳🇿 Gold ✓ · 🇬🇧 Silver ✓ — **7** |
+| Unavailable (ft. Musa Keys) | 🇳🇬 3× Platinum ✓ · 🇨🇭 2× Platinum ✓ · 🇨🇦 Platinum ✓ · 🇺🇸 Gold ✓ · 🇫🇷 Gold ✓ · 🇳🇿 Gold ✓ · 🇬🇧 Gold ✓ *(up from Silver, cert. 02.10.2026 — read 2 Oct 2026)* — **7** |
 | Fall | 🇺🇸 Platinum ✓ · 🇨🇦 Platinum ✓ · 🇫🇷 Gold ✓ · 🇳🇿 Gold ✓ · 🇬🇧 Silver ✓ — **5** |
 | If | 🇨🇦 Platinum ✓ · 🇺🇸 Gold ✓ · 🇬🇧 Silver ✓ — **3** *(the 🇿🇦 "Diamond" was REMOVED — see notes)* |
 | Blow My Mind (w/ Chris Brown) | 🇿🇦 Multi-Platinum ✓* · 🇺🇸 Gold ✓ · 🇨🇦 Gold ✓ — **3** *(the 🇳🇬 Platinum was REMOVED; the 🇿🇦 "3× Platinum" is retired to Multi-Platinum)* |
@@ -101,10 +103,10 @@ No other Davido album is certified anywhere. *Omo Baba Olowo*, *Son of Mercy*, *
   - ***Fall* — 🇿🇦 South Africa, checked 27 Aug 2026 and NOT added.** A circulating post put *Fall* at "cert in 6 countries, Diamond in South Africa". RiSA's own register, read artist-side in an archived capture of `?artist=Davido&title=&label=`, returns **exactly six Davido rows and no *Fall***: A Good Time (Double Platinum, 31 Mar 2023), and Assurance, D&G, Jowo, Blow My Mind and Risky (all 30 Mar 2023). The live register cannot be read at all — every query returns the same 335KB JavaScript shell with zero table rows. *Fall* stays at **5** countries. The "6" in the claim matches the number of Davido rows RiSA holds, which may be where it came from.
   - The same post's other four claims were already on the site before it was written: *Gang* 🇫🇷 Gold, *Eva Longoria* 🇪🇸 2× Platinum, *Assurance* 🇿🇦 Platinum, and *AGT* — i.e. *A Good Time* — 🇿🇦 2× Platinum.
 - **Platinum tiers 40** — Unavailable ×3 (NG 3×, CH 2×, CA) · Fall ×2 (US, CA) · Jowo ×2 (ZA 2×, NG) · one each for If (CA), A Good Time (ZA 2×), Blow My Mind (ZA multi), Risky (ZA multi), Feel (NG 4×), Assurance (ZA), D&G (ZA), With You (NG 4×), Funds (NG 3×), Kante (NG 3×), No Competition (NG 2×), Away (NG 2×), Awuke, Over Dem, The Best, Champion Sound, Holy Ground, Na Money, For the Road, Stand Strong, Be There Still (all NG) · **12 featured rows**: Twe Twe (NG 5×), Ogechi (NG 4×), Eva Longoria (ES 2×), Electricity, High, Baddest Boy, Shakabulizzy (all NG 2×), For You, Dada, Hmmm, Ke Star Remix (all NG), Yebo Lapho (ZA) → 3+2+2+21+12 = **40**
-- **Gold 25** — *previously counted 14:* Unavailable (US, FR, NZ) 3 · Fall (FR, NZ) 2 · Blow My Mind (US, CA) 2 · Risky (CA, NG) 2 · If (US) 1 · Feel (CA) 1 · E Pain Me (NG) 1 · Sensational (NZ) 1 · Gang (FR) 1. *plus 11 archive-recovered 🇳🇬 TCSN Golds:* 10 Kilo, Fem, Godfather, In the Garden, La La (lead, 5) · Galorizzy, Grooving, Like, Money, Nakupenda, Somebody Baby (featured, 6) → 14 + 11 = **25**
-- **Silver 26** — 🇬🇧 BPI **6**: Timeless, A Good Time, If, Fall, Unavailable, Sensational. 🇳🇬 TCSN **20** (all archive-recovered; the live register serves no Silver at all): Anything, Bop, Dodo, Fade, Holy Water, LCND, Offa Me, Picasso, Precision, Shopping Spree, So Crazy, Something Fishy, U (Juju) (lead, 13) · Activate, All, Cho Cho, Drift (Remix), Maserati (Remix), Watawi, Sensational (featured, 7) → 6 + 20 = **26**
+- **Gold 26** — *previously counted 15:* Unavailable (US, FR, NZ, UK) 4 · Fall (FR, NZ) 2 · Blow My Mind (US, CA) 2 · Risky (CA, NG) 2 · If (US) 1 · Feel (CA) 1 · E Pain Me (NG) 1 · Sensational (NZ) 1 · Gang (FR) 1. *plus 11 archive-recovered 🇳🇬 TCSN Golds:* 10 Kilo, Fem, Godfather, In the Garden, La La (lead, 5) · Galorizzy, Grooving, Like, Money, Nakupenda, Somebody Baby (featured, 6) → 15 + 11 = **26**
+- **Silver 25** — 🇬🇧 BPI **5**: Timeless, A Good Time, If, Fall, Sensational *(Unavailable went Gold, 02.10.2026)*. 🇳🇬 TCSN **20** (all archive-recovered; the live register serves no Silver at all): Anything, Bop, Dodo, Fade, Holy Water, LCND, Offa Me, Picasso, Precision, Shopping Spree, So Crazy, Something Fishy, U (Juju) (lead, 13) · Activate, All, Cho Cho, Drift (Remix), Maserati (Remix), Watawi, Sensational (featured, 7) → 5 + 20 = **25**
 
-0 + 40 + 25 + 26 = **91** ✓ · Sections: 3 albums + 60 lead + 28 featured = **91** ✓
+0 + 40 + 26 + 25 = **91** ✓ · Sections: 3 albums + 60 lead + 28 featured = **91** ✓
 By country: 🇳🇬 60 · 🇿🇦 7 · 🇬🇧 6 · 🇨🇦 6 · 🇺🇸 4 · 🇫🇷 3 · 🇳🇿 3 · 🇨🇭 1 · 🇪🇸 1 = **91 across 9 countries** ✓
 
 ## Award events vs plaques
@@ -112,7 +114,7 @@ By country: 🇳🇬 60 · 🇿🇦 7 · 🇬🇧 6 · 🇨🇦 6 · 🇺🇸 4 
 This section exists to reconcile the site's number against the larger figures fan trackers publish. The two counts measure different things and both are defensible; they must never be mixed.
 
 - **Plaque count = 91.** One plaque per title per country at its current highest tier. This is burnaboystats.com's convention and the only one directly comparable to **Burna Boy's 229**.
-- **Documented award events ≥ 104.** Every separate dated announcement the registers actually show, including each upgrade.
+- **Documented award events ≥ 105.** Every separate dated announcement the registers actually show, including each upgrade.
 
 **Arithmetic, register by register:**
 
@@ -121,16 +123,17 @@ This section exists to reconcile the site's number against the larger figures fa
 | TCSN / TurnTable (Nigeria) | 60 | **69** | +9 |
 | Music Canada | 6 | **9** (9 raw tier-step rows collapsed to 6) | +3 |
 | IFPI Switzerland | 1 | **2** (Unavailable: Gold 2023 → Doppel-Platin 2024) | +1 |
-| RiSA, BPI, RIAA, SNEP, RMNZ, Promusicae | 24 | 24 *(floor — steps not enumerated)* | 0 |
-| **total** | **91** | **≥ 104** | **+13** |
+| BPI (UK) | 6 | **7** (Unavailable: Silver → Gold 02.10.2026, read 2 Oct 2026) | +1 |
+| RiSA, RIAA, SNEP, RMNZ, Promusicae | 18 | 18 *(floor — steps not enumerated)* | 0 |
+| **total** | **91** | **≥ 105** | **+14** |
 
 The TCSN 69 breaks down as 60 first certifications plus 9 observed upgrades: Twe Twe (4×→5×), Feel (Platinum→4×), Ogechi (3×→4×), Funds (Platinum→3×), Kante (2×→3×), Unavailable (Platinum→3×), Away (Platinum→2×), No Competition (Platinum→2×), Hmmm (Gold→Platinum).
 
-**Three honest caveats on the 104:**
+**Three honest caveats on the 105:**
 
 1. **It is a floor, not a total.** TCSN overwrites one row per title in place instead of appending a dated row per tier step, so an upgrade is only visible where two archived captures straddle it. Capture cadence is uneven — a 14-month gap sits between 2023-09 and 2024-10, and nothing between 2026-02-21 and 2026-04-30 — so Twe Twe reaching 5× almost certainly passed through Platinum, 2× and 3× announcements that no capture recorded. The real Nigerian event count is higher than 69.
-2. **Six registers are counted at 1:1 because nobody enumerated their steps, not because no steps exist.** Promusicae publishes every tier step, so *Eva Longoria* at 2× Platinum is very likely 2 announcements rather than 1; the same applies to several RiSA and RMNZ rows. The first pass recorded collapsed tiers only. Re-running those six step-side would raise the figure again.
-3. **The event convention does not by itself explain a large fan tally.** The gap between 91 and 104 is 13. A fan list quoting a much larger number for Davido is not reaching it through upgrade-counting alone — it is either counting registers this sweep found do not exist (see below), counting label-issued or press-announced plaques that no national body records, or counting the *Know Your Worth* remix credit that eleven registers explicitly deny him.
+2. **Five registers, and five of the six BPI plaques, are counted at 1:1 because nobody enumerated their steps, not because no steps exist.** Promusicae publishes every tier step, so *Eva Longoria* at 2× Platinum is very likely 2 announcements rather than 1; the same applies to several RiSA and RMNZ rows. The first pass recorded collapsed tiers only. Re-running those registers step-side would raise the figure again.
+3. **The event convention does not by itself explain a large fan tally.** The gap between 91 and 105 is 14. A fan list quoting a much larger number for Davido is not reaching it through upgrade-counting alone — it is either counting registers this sweep found do not exist (see below), counting label-issued or press-announced plaques that no national body records, or counting the *Know Your Worth* remix credit that eleven registers explicitly deny him.
 
 **What is still unswept, and therefore what this floor cannot see:**
 
@@ -148,7 +151,7 @@ The TCSN 69 breaks down as 60 first certifications plus 9 observed upgrades: Twe
 |---|---|---|
 | TCSN / TurnTable (Nigeria) | **swept ✓⧉** (live register + 44 of 47 archived captures, 2023-02 → 2026-07) | **60 entries — 31 new this pass.** The live page is capped at exactly **500 rows: 456 Platinum + 44 Gold + 0 Silver** — it truncates mid-Gold and serves **no Silver tier whatsoever**. The archive shows the register has published far more: 1,203 rows at 2025-11-12 and **2,477 rows at 2026-02-21** (962 Platinum / 698 Gold / 817 Silver), the richest capture. Davido goes **live 29 → published 60** (+11 Gold, +20 Silver). Silver is a genuine TCSN tier, which reinstates the Sensational plaque. Singles-only for Davido; no album. Highest: Twe Twe 5× Platinum. **Register dates are not award dates** — every live row reads 2026-02-06 and the Feb 2026 capture collapses 2,477 rows onto six dates. Bulk re-dating at migration, not announcements. |
 | RiSA (South Africa) | **swept ✓** (748-row consolidated table, full AJAX dataset) | **7 entries**, incl. *Yebo Lapho* (TxC × Davido), a release absent from his discography. Two are the generic **Multi-Platinum** badge, which publishes no multiplier. RiSA has **no Diamond tier**. |
-| BPI (UK) | **swept ✓** (certified-awards.bpi.co.uk) | 6 entries. Register credit for Sensational reads `CHRIS BROWN FT DAVIDO & LOJAY`, so his feature is explicit. |
+| BPI (UK) | **swept ✓** (certified-awards.bpi.co.uk) | 6 entries; Unavailable Silver → Gold (02.10.2026), read by the owner on the register 2 Oct 2026. Register credit for Sensational reads `CHRIS BROWN FT DAVIDO & LOJAY`, so his feature is explicit. |
 | Music Canada | **swept ✓** (musiccanada.com G&P search) | 6 entries, all confirmed at the claimed tier. **9 raw tier-step rows collapsed to 6 plaques.** No Davido album certified. |
 | RIAA (US) | **swept ✓** (riaa.com/gold-platinum) | 4 entries. Blow My Mind is a joint credit `DAVIDO, CHRIS BROWN` with Davido named first. Sensational is not in the register at all. |
 | SNEP (France) | **swept ✓** (snepmusique.com, paginated HTML) | 3 entries — Fall, Unavailable, Gang, all Or. **Do not use SNEP's own CSV export — it returns page 1 only.** |
