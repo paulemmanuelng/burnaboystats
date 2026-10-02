@@ -171,7 +171,7 @@ describe("the refuted Love, Damini row is not on the site", () => {
   });
 });
 
-// ── Kept with a ⚠ (Paul, 2 Oct 2026) — no tier or count change ─────────────
+// ── Kept, with a plain note and no ⚠ (Paul, 2 Oct 2026) — no tier or count change
 describe("the two Music Canada rows that do not print the board artist", () => {
   it("Be Honest CA Gold and Raindance CA Platinum stand", () => {
     const beHonest = allItems.find((r) => r.title === "Be Honest")!;
@@ -179,15 +179,25 @@ describe("the two Music Canada rows that do not print the board artist", () => {
     expect(certOf("tems", "Raindance", "CA")).toEqual({ level: "Platinum", x: 1 });
   });
 
-  it("each carries the ⚠ where Boom's lives: the documents, pointed to from the data", () => {
+  // Paul, 2 Oct 2026: "only one be honest and one raindance exist" — so each
+  // carries a plain note in the documents, and never a ⚠.
+  it("each carries a plain note, pointed to from the data, and no ⚠", () => {
     const sweep = readFileSync("docs/sweeps/sweep-2026-10-02.md", "utf8");
     expect(sweep).toContain("`Jorja Smith \\| Be Honest \\| Gold Single \\| 2020-01-20`");
     expect(sweep).toContain("`DAVE \\| Raindance \\| Platinum Single \\| 2026-04-22`");
-    expect(readFileSync("docs/sweeps/tems-certifications-v1.md", "utf8")).toContain("🇨🇦 Platinum ✓⚠");
+    const tems = readFileSync("docs/sweeps/tems-certifications-v1.md", "utf8");
+    const raindanceRow = tems.split("\n").find((l) => l.startsWith("| Raindance (Dave ft. Tems)"))!;
+    expect(raindanceRow).toContain("🇨🇦 Platinum ✓ (22.04.2026");
+    expect(raindanceRow).not.toContain("⚠");
+    // The negative control is the cell this PR first wrote.
+    expect("🇨🇦 Platinum ✓⚠ (22.04.2026; the row prints `DAVE` alone)").toContain("⚠");
     const certs = readFileSync("app/data/certifications.ts", "utf8");
-    expect(certs.slice(certs.indexOf("// CA Gold ⚠ (2 Oct 2026)"), certs.indexOf('{ title: "Be Honest"'))).toContain(
-      "docs/sweeps/sweep-2026-10-02.md",
-    );
+    const note = certs.slice(certs.indexOf("// CA Gold (2 Oct 2026)"), certs.indexOf('{ title: "Be Honest"'));
+    expect(note).toContain("docs/sweeps/sweep-2026-10-02.md");
+    expect(certs).not.toContain("// CA Gold ⚠");
+    const board = readFileSync("app/data/afrobeats.ts", "utf8");
+    expect(board).toContain("// CA Platinum (2 Oct 2026)");
+    expect(board).not.toContain("CA Platinum ⚠");
   });
 });
 

@@ -555,11 +555,11 @@ export const features: Release[] = [
     { c: "FR", level: "Platinum" }, { c: "ES", level: "Platinum" }, { c: "PL", level: "Platinum" }, { c: "UK", level: "Gold" },
     { c: "AU", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "AT", level: "Gold" }, { c: "PT", level: "Gold" },
   ] },
-  // CA Gold ⚠ (2 Oct 2026): Music Canada's only row reads "Jorja Smith | Be
-  // Honest" (Gold, 20.01.2020) — Burna Boy is not named. Kept on Paul's ruling
-  // of 2 Oct 2026 with the treatment Wizkid's "Boom" DK carries: there is one
-  // recording of "Be Honest", and he is on it. No tier or count change. The ⚠
-  // is recorded in docs/sweeps/sweep-2026-10-02.md, not in a data field.
+  // CA Gold (2 Oct 2026): Music Canada's only row reads "Jorja Smith | Be
+  // Honest" (Gold, 20.01.2020), without Burna Boy's name. Counted on Paul's
+  // ruling: it is the only recording of "Be Honest", and he is on it. A plain
+  // note, no ⚠ (Paul: "only one be honest and one raindance exist"). Recorded
+  // in docs/sweeps/sweep-2026-10-02.md.
   { title: "Be Honest", credit: "Jorja Smith ft. Burna Boy", year: 2019, certs: [
     { c: "FR", level: "Diamond" }, { c: "AU", level: "Platinum" }, { c: "UK", level: "Platinum" },
     { c: "NZ", level: "Platinum" }, { c: "CA", level: "Gold" }, { c: "DK", level: "Gold" },

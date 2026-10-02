@@ -1398,10 +1398,11 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Isaka", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/d015c74bed325b8928343913858fb3c2/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Replay", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/b3aea8ba7c55e2eafd6672ff29668bdb/500x500-000000-80-0-0.jpg", certs: [{ c: "NZ", level: "Gold" }] },
       { title: "Get It Right (ft. Asake)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/66c0e3ff739ce671cee90fea6eb1047c/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
-      // CA Platinum ⚠ (2 Oct 2026): Music Canada's row prints "DAVE | Raindance"
-      // (Platinum, 22.04.2026) — Tems is not named. Kept on Paul's ruling of 2 Oct
-      // 2026 with the treatment Wizkid's "Boom" DK carries: one recording, and she
-      // is on it. The ⚠ lives in docs/sweeps/tems-certifications-v1.md.
+      // CA Platinum (2 Oct 2026): Music Canada's row prints "DAVE | Raindance"
+      // (Platinum, 22.04.2026), without Tems's name. Counted on Paul's ruling: it
+      // is the only recording of "Raindance", and she is on it. A plain note, no ⚠
+      // (Paul: "only one be honest and one raindance exist"); see
+      // docs/sweeps/tems-certifications-v1.md.
       { title: "Raindance", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/02552930a9bbf685ec4f683ff0ca2029/500x500-000000-80-0-0.jpg", certs: [{ c: "UK", level: "Platinum", x: 2 }, { c: "PT", level: "Platinum", x: 3 }, { c: "BR", level: "Platinum", x: 2 }, { c: "GR", level: "Platinum", x: 2 }, { c: "FR", level: "Platinum" }, { c: "CA", level: "Platinum" }, { c: "BE", level: "Platinum" }, { c: "NL", level: "Platinum" }, { c: "NZ", level: "Platinum", x: 2 }, { c: "AU", level: "Platinum" }, { c: "DK", level: "Platinum" }, { c: "SK", level: "Platinum" }, { c: "ZA", level: "Platinum" }, { c: "IT", level: "Gold" }, { c: "NG", level: "Gold" }, { c: "PL", level: "Gold" }, { c: "CZ", level: "Gold" }] },
       { title: "Wait For U", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/d1bd3da6698dd5eafc5b4514317039c4/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Diamond" }, { c: "NZ", level: "Platinum", x: 4 }, { c: "UK", level: "Platinum", x: 2 }, { c: "CA", level: "Platinum", x: 2 }, { c: "NG", level: "Platinum", x: 2 }, { c: "AU", level: "Platinum", x: 2 }, { c: "PT", level: "Platinum", x: 2 }, { c: "DK", level: "Platinum" }, { c: "FR", level: "Gold" }, { c: "AT", level: "Gold" }, { c: "IT", level: "Gold" }, { c: "ES", level: "Gold" }, { c: "PL", level: "Gold" }] },
       { title: "Essence", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Platinum", x: 5 }, { c: "CA", level: "Platinum", x: 3 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "NG", level: "Platinum", x: 2 }, { c: "ZA", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum" }, { c: "CH", level: "Platinum" }, { c: "FR", level: "Gold" }] },

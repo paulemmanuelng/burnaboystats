@@ -74,8 +74,8 @@ One conflict to resolve: the site records **Be Honest CA Gold**, but Music
 Canada's register returned *absent* for it.
 
 *Resolved 2 Oct 2026: the register row exists as `Jorja Smith | Be Honest |
-Gold Single | 2020-01-20` (Burna Boy not printed); kept with ⚠ on Paul's
-ruling — see `docs/sweeps/sweep-2026-10-02.md`.*
+Gold Single | 2020-01-20` (Burna Boy not printed); kept on Paul's
+ruling (a plain note, no ⚠) — see `docs/sweeps/sweep-2026-10-02.md`.*
 
 ## Still to do
 
