@@ -32,7 +32,6 @@ import { DAI_DAI_SPOTIFY_NO1_DAYS } from "./data/daiDai";
 import NotReported from "./components/NotReported";
 import OnThisDayBand from "./components/OnThisDayBand";
 import { onThisDayFor } from "./lib/onThisDay";
-import Naija66Banner from "./components/Naija66Banner";
 
 /**
  * The On this day card turns over with London's calendar day, and nothing else
@@ -87,21 +86,16 @@ const albumSpan = `${numberWord(lastYear - firstYear + 1)} years, ${firstYear} t
 export default function Home() {
   // One pick for both layouts, from the London date at render.
   const onThisDay = onThisDayFor(new Date());
-  // Naija @ 66 (1-2 Oct 2026): the banner's phase at render. The hourly
-  // revalidation above retires it within the hour after the hunt closes.
-  const renderedAt = new Date();
 
   return (
     <main id="content">
       {/* Mobile is its own screen in this design — a different running order,
           and sections the desktop page does not have. Each renders at its own
           breakpoint rather than one being reflowed into the other. */}
-      <Naija66Banner layout="phone" now={renderedAt} />
       <MobileHome onThisDay={onThisDay} />
 
       <div className={styles.desktopOnly}>
         <LiveBand />
-        <Naija66Banner layout="desktop" now={renderedAt} />
 
         {/* ── Hero ───────────────────────────────────────────────── */}
         {/* Two columns, no portrait: in this design the gold "today's number"
