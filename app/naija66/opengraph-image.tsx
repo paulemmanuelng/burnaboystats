@@ -9,7 +9,7 @@ export const alt = "Naija @ 66 — the Burna Boy Stats Independence Day key hunt
 const card = {
   kicker: "Naija @ 66 · 1 October",
   title: "The key hunt",
-  sub: `Five codes hidden on pages of the site for Independence Day — find one first, win ${PRIZE.long}`,
+  sub: `Five codes hid on pages of the site for Independence Day, each worth ${PRIZE.long}. The hunt has ended.`,
 };
 
 // Versioned by the card's own contents, so a cached preview follows the copy.

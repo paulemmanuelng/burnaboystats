@@ -102,7 +102,6 @@
   text-transform: uppercase;
   color: var(--text-muted);
 }
-.liveDot { width: 7px; height: 7px; border-radius: 50%; background: var(--green-dot); display: block; flex: none; }
 /* Links inside prose (the hero and the steps): gold like every link here. */
 .lede a, .stepText a { color: var(--gold); }
 .xLink {
