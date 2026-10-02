@@ -310,7 +310,7 @@ const TRANSCRIPTIONS: Transcription[] = [
     // SNEP issues from semaine 22, so every issue before it is off.
     code: "FR",
     evidence: [
-      { file: CHARTS, quote: "semaine 22 (29 mai, debut at No.95)" },
+      { file: CHARTS, quote: "semaine 22 (29 mai, debut at No.95) through semaine 39 (25 septembre, No.6, credited to SHAKIRA alone as in 35-38)" },
       { file: CHARTS, quote: "SNEP's own weekly Top Singles, semaine 28 (10 juillet) through semaine 36 (4 septembre 2026), an unbroken La-Semaine-Derniere-1er chain" },
       { file: FEED, quote: "SNEP's Top Singles for the semaine du 11 septembre has “Dai Dai” at No. 3, down from No. 1" },
     ],

@@ -8,7 +8,8 @@ import { artistBySlug, chartCountryMeta } from "../app/data/afrobeats";
  * The 2 Oct 2026 charts sweep (docs/sweeps/charts-sweep-2026-10-02.md).
  *
  * Every value below was CONFIRMED by two verifiers reading the chart body
- * itself. Pinned so a later edit cannot quietly put back a figure the sweep
+ * itself, except the two SPLITs applied on the owner's instruction and marked
+ * where they are pinned (the Swaguu album No. 1 and the Ashawo merge). Pinned so a later edit cannot quietly put back a figure the sweep
  * proved wrong — the removals especially, which are checked against the exact
  * source strings the site shipped before the sweep.
  */
@@ -164,7 +165,7 @@ describe("the Afrobeats board", () => {
     expect(boardPeak("victony", "Stubborn (album)", "NG", "Albums")).toBe(2);
     expect(boardPeak("seyi-vibez", "Volume", "NG")).toBe(1);
     expect(boardPeak("seyi-vibez", "Swaguu (single)", "NG")).toBe(13);
-    expect(boardPeak("seyi-vibez", "Swaguu", "NG", "Albums")).toBe(1);
+    expect(boardPeak("seyi-vibez", "Swaguu", "NG", "Albums")).toBe(1); // SPLIT, owner's instruction: re-read Albums wk39
     expect(boardPeak("ckay", "Emiliana", "NG")).toBe(5);
     expect(boardPeak("tems", "Damages", "NG")).toBe(6);
   });
@@ -182,9 +183,13 @@ describe("the Afrobeats board", () => {
     expect(board("seyi-vibez", "BACK 2 U")!.entries[0]).toMatchObject({ peak: 4 });
   });
 
+  // SPLIT (A REFUTED at 16, B 43): merged on the owner's rule, with a note.
   it("Ashawo is one TurnTable entry, so one row", () => {
     expect(board("fireboy-dml", "Ashawo")).toBeUndefined();
     expect(boardPeak("fireboy-dml", "All of Us (Ashawo)", "NG")).toBe(16);
+    const note = board("fireboy-dml", "All of Us (Ashawo)")!.entries.find((e) => e.c === "NG")?.note ?? "";
+    expect(note).toContain("printed as 'Ashawo'");
+    expect(note).toContain("Best under the new title: No. 43.");
   });
 
   it("Bulgaria off PROPHON's World TOP 10, Israel from Mako's first live issue", () => {
@@ -212,5 +217,27 @@ describe("the Afrobeats board", () => {
     expect(boardPeak("rema", "Calm Down", "NO")).toBeUndefined(); // Top 20 rule: held
     expect(boardPeak("asake", "M$NEY", "IE", "Albums")).toBe(58);
     expect(boardPeak("victony", "SLICK", "SR")).toBe(4);
+  });
+});
+
+describe("review follow-ups: run lengths and open-run notes", () => {
+  it("Dai Dai LT and BR carry the weeks both votes read", () => {
+    expect(weeksOnChart("Dai Dai", "LT")).toBe(18);
+    expect(weeksAtPeak("Dai Dai", "LT")).toBe(1);
+    expect(weeksOnChart("Dai Dai", "BR")).toBe(16);
+    expect(peak("Dai Dai", "BR")).toBe(27);
+  });
+
+  it("Raindance LT and Wo, man BG are open runs, and say so", () => {
+    const rd = board("tems", "Raindance")!.entries.find((e) => e.c === "LT")!;
+    expect(rd).toMatchObject({ peak: 2, weeksAtPeak: 3, weeks: 42 });
+    expect(rd.note).toMatch(/^Peak still open — still on AGATA's Top 100 when read 2 Oct 2026/);
+    const wm = board("ayra-starr", "Wo, man")!.entries.find((e) => e.c === "BG")!;
+    expect(wm.note).toMatch(/^Peak still open — still on PROPHON's World TOP 10 when read 2 Oct 2026, 6 issues in/);
+  });
+
+  it("negative control: the shipped bare Wo, man row is gone", () => {
+    const SHIPPED = '{ title: "Wo, man", kind: "Singles", entries: [{ c: "BG", peak: 2 }] },';
+    expect(read("app/data/afrobeats.ts").includes(SHIPPED)).toBe(false);
   });
 });
