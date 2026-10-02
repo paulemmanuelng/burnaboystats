@@ -352,6 +352,19 @@ export const AFROBEATS_VERIFIED_ON_14 = "2026-09-26";
  *  docs/sweeps/{kizz-daniel,wizkid}-certifications-v1.md. */
 export const AFROBEATS_VERIFIED_ON_15 = "2026-09-28";
 
+/** Wizkid, Black Sherif and Omah Lay — the three artists whose plaques moved
+ *  in the 2 Oct 2026 register sweep (docs/sweeps/sweep-2026-10-02.md), the
+ *  same rule as ON_10 and ON_13. Wizkid: "One Dance" NZ Plat x11 (RMNZ via
+ *  RadioScope table 2052, dated 2026-10-01) and DK 6xPlatin (IFPI Danmark,
+ *  22.09.2026). Black Sherif: "Road Runners" NG Silver, and Omah Lay: "Bad
+ *  Influence" NG 2x Platinum — two TCSN rows filed under the wrong artiste
+ *  ("Blaqbonez ft. Seyi Vibez", "Asake"), credited to the artists on the
+ *  recordings on the owner's ruling of 2 Oct 2026, the precedent of Rema's
+ *  "Smooth Criminal" and Ayra Starr's "Many Roads". The sweep re-read every
+ *  body for all twenty artists; the other seventeen came back unchanged and
+ *  keep the dates they had. */
+export const AFROBEATS_VERIFIED_ON_16 = "2026-10-02";
+
 export const afrobeatsArtists: AfroArtist[] = [
   {
     slug: "olamide",
@@ -541,7 +554,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     spotifyId: "2LiqbH7OhqP0yuaG8VL1wJ",
     wikipedia: "https://en.wikipedia.org/wiki/Black_Sherif",
     image: "https://i.scdn.co/image/ab6761610000e5eb317c2d84e6d0155cdb1ecd49",
-    verifiedOn: AFROBEATS_VERIFIED_ON_7,
+    verifiedOn: AFROBEATS_VERIFIED_ON_16,
     swept: true,
     chartPublished: { entries: 24, territories: 1, no1s: 1 },
     releases: [
@@ -569,6 +582,13 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Top Of The Morning", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Wasteman", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/6c62324aa93ed6be667929a5ab922f65/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Yard", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/a5e28212b1b084457ac9955df581e390/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
+      // 2 Oct 2026 — TCSN ids 1214 and 2493 (Silver), read in the register's
+      // 21 Feb 2026 capture; credit printed "Blaqbonez ft. Seyi Vibez". The
+      // recording is Blaqbonez ft. Black Sherif (Emeka Must Shine, 2023); Seyi
+      // Vibez has none of that title, and the row came off his board on 27 Aug.
+      // Applied on Paul's ruling, as Rema's "Smooth Criminal" and Ayra Starr's
+      // "Many Roads". Sleeve: his own chart row's (ROAD RUNNERS, below).
+      { title: "Road Runners", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/65d37fc3fcc95d0e9a5558f498da9e4a/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
     ],
     charts: [
       { title: "Kwaku The Traveller", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/642d3e07cef3e477a6fddeecc821ff6e/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 1 }] },
@@ -788,10 +808,17 @@ export const afrobeatsArtists: AfroArtist[] = [
     spotifyId: "3tVQdUvClmAT7URs9V3rsp",
     wikipedia: "https://en.wikipedia.org/wiki/Wizkid",
     image: "https://i.scdn.co/image/ab6761610000e5ebe6ef803356b45ee5a9fa7a8a",
-    verifiedOn: AFROBEATS_VERIFIED_ON_15,
+    verifiedOn: AFROBEATS_VERIFIED_ON_16,
     swept: true,
     chartPublished: { entries: 237, territories: 32, no1s: 25 },
     releases: [
+      // NG Gold rests on TCSN's launch-state placeholder row (id 2, "Made in Lagos |
+      // Wizkid | Album | Gold | 2022-11-21", one of the two rows in the register's
+      // first capture, 14 Feb 2023, gone by 6 Mar 2023). Its sibling row, Burna Boy's
+      // "Love, Damini" Silver, was refuted in the 2 Oct 2026 sweep; this one is
+      // KEPT — TurnTable's earlier programme gave the album 5x Platinum (Wikipedia-
+      // cited), the same footing as Burna Boy's Love, Damini album (13 Aug ruling).
+      // docs/sweeps/sweep-2026-10-02.md, "Flagged and kept".
       { title: "Made in Lagos", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Gold" }, { c: "UK", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "CH", level: "Gold" }, { c: "NL", level: "Gold" }, { c: "NG", level: "Gold" }] },
       { title: "Essence", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/b0/09/8e/b0098ed0-ef53-f2b5-386a-c8e6181f3c8a/886448775256.jpg/300x300bb.jpg", certs: [{ c: "ZA", level: "Platinum", x: 3 }, { c: "US", level: "Platinum", x: 5 }, { c: "CA", level: "Platinum", x: 3 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "NG", level: "Platinum", x: 2 }, { c: "UK", level: "Platinum" }, { c: "CH", level: "Platinum" }, { c: "FR", level: "Gold" }] },
       { title: "Come Closer", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/e2/dc/1c/e2dc1cb5-d0cf-04e0-0864-98b8f3e7affd/886446561912.jpg/300x300bb.jpg", certs: [{ c: "ZA", level: "Platinum", x: 3 }, { c: "CA", level: "Platinum", x: 2 }, { c: "UK", level: "Platinum" }, { c: "US", level: "Platinum" }, { c: "FR", level: "Gold" }, { c: "CH", level: "Gold" }, { c: "NG", level: "Silver" }] },
@@ -851,7 +878,12 @@ export const afrobeatsArtists: AfroArtist[] = [
       // date_1…date_7, one per step, and olis.pl prints the step it fills. One
       // Dance's is date_3 = 2021-08-11, shown on the site as Platinum "3" (so are
       // God's Plan and Work in the same batch). Reading one row as 1x is the trap.
-      { title: "One Dance", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/56bdb7a86a27fadb96332c0c8f1b8e81/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Diamond" }, { c: "CA", level: "Diamond" }, { c: "DE", level: "Diamond" }, { c: "FR", level: "Diamond" }, { c: "BR", level: "Diamond" }, { c: "AU", level: "Platinum", x: 17 }, { c: "NZ", level: "Platinum", x: 10 }, { c: "UK", level: "Platinum", x: 8 }, { c: "PT", level: "Platinum", x: 8 }, { c: "SE", level: "Platinum", x: 7 }, { c: "IT", level: "Platinum", x: 6 }, { c: "ES", level: "Platinum", x: 5 }, { c: "DK", level: "Platinum", x: 5 }, { c: "MX", level: "Platinum", x: 4 }, { c: "BE", level: "Platinum", x: 3 }, { c: "PL", level: "Platinum", x: 3 }, { c: "GR", level: "Platinum", x: 3 }] },
+      // 2 Oct 2026 sweep: NEW ZEALAND 10x -> 11x, RMNZ's register (RadioScope
+      // TablePress 2052): "Drake feat. Wizkid And Kyla | One Dance | Plat x11 |
+      // 2026-10-01". DENMARK 5x -> 6x, IFPI Danmark: "22.09.2026. | Drake, Wizkid,
+      // Kyla | One Dance | Universal Music | Track | 6xPlatin". Upgrades: one
+      // plaque each, as before. docs/sweeps/sweep-2026-10-02.md.
+      { title: "One Dance", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/56bdb7a86a27fadb96332c0c8f1b8e81/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Diamond" }, { c: "CA", level: "Diamond" }, { c: "DE", level: "Diamond" }, { c: "FR", level: "Diamond" }, { c: "BR", level: "Diamond" }, { c: "AU", level: "Platinum", x: 17 }, { c: "NZ", level: "Platinum", x: 11 }, { c: "UK", level: "Platinum", x: 8 }, { c: "PT", level: "Platinum", x: 8 }, { c: "SE", level: "Platinum", x: 7 }, { c: "IT", level: "Platinum", x: 6 }, { c: "ES", level: "Platinum", x: 5 }, { c: "DK", level: "Platinum", x: 6 }, { c: "MX", level: "Platinum", x: 4 }, { c: "BE", level: "Platinum", x: 3 }, { c: "PL", level: "Platinum", x: 3 }, { c: "GR", level: "Platinum", x: 3 }] },
       { title: "Call Me Every Day", kind: "Featured appearances", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/45/79/f4/4579f47a-007d-eb5e-2227-00d0c1d5cf02/196589253460.jpg/300x300bb.jpg", certs: [{ c: "US", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "NG", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "CH", level: "Gold" }, { c: "UK", level: "Silver" }] },
       { title: "Brown Skin Girl", kind: "Featured appearances", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/aa/20/73/aa207387-444f-b04d-9b7e-7ea6c687c15e/886447863329.jpg/300x300bb.jpg", certs: [{ c: "US", level: "Gold" }, { c: "AU", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "UK", level: "Silver" }] },
       { title: "Soco", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/38518ed00d7ec413b318419d7b0fbec1/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "UK", level: "Silver" }] },
@@ -1366,6 +1398,10 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Isaka", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/d015c74bed325b8928343913858fb3c2/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Replay", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/b3aea8ba7c55e2eafd6672ff29668bdb/500x500-000000-80-0-0.jpg", certs: [{ c: "NZ", level: "Gold" }] },
       { title: "Get It Right (ft. Asake)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/66c0e3ff739ce671cee90fea6eb1047c/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
+      // CA Platinum ⚠ (2 Oct 2026): Music Canada's row prints "DAVE | Raindance"
+      // (Platinum, 22.04.2026) — Tems is not named. Kept on Paul's ruling of 2 Oct
+      // 2026 with the treatment Wizkid's "Boom" DK carries: one recording, and she
+      // is on it. The ⚠ lives in docs/sweeps/tems-certifications-v1.md.
       { title: "Raindance", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/02552930a9bbf685ec4f683ff0ca2029/500x500-000000-80-0-0.jpg", certs: [{ c: "UK", level: "Platinum", x: 2 }, { c: "PT", level: "Platinum", x: 3 }, { c: "BR", level: "Platinum", x: 2 }, { c: "GR", level: "Platinum", x: 2 }, { c: "FR", level: "Platinum" }, { c: "CA", level: "Platinum" }, { c: "BE", level: "Platinum" }, { c: "NL", level: "Platinum" }, { c: "NZ", level: "Platinum", x: 2 }, { c: "AU", level: "Platinum" }, { c: "DK", level: "Platinum" }, { c: "SK", level: "Platinum" }, { c: "ZA", level: "Platinum" }, { c: "IT", level: "Gold" }, { c: "NG", level: "Gold" }, { c: "PL", level: "Gold" }, { c: "CZ", level: "Gold" }] },
       { title: "Wait For U", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/d1bd3da6698dd5eafc5b4514317039c4/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Diamond" }, { c: "NZ", level: "Platinum", x: 4 }, { c: "UK", level: "Platinum", x: 2 }, { c: "CA", level: "Platinum", x: 2 }, { c: "NG", level: "Platinum", x: 2 }, { c: "AU", level: "Platinum", x: 2 }, { c: "PT", level: "Platinum", x: 2 }, { c: "DK", level: "Platinum" }, { c: "FR", level: "Gold" }, { c: "AT", level: "Gold" }, { c: "IT", level: "Gold" }, { c: "ES", level: "Gold" }, { c: "PL", level: "Gold" }] },
       { title: "Essence", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Platinum", x: 5 }, { c: "CA", level: "Platinum", x: 3 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "NG", level: "Platinum", x: 2 }, { c: "ZA", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum" }, { c: "CH", level: "Platinum" }, { c: "FR", level: "Gold" }] },
@@ -1766,7 +1802,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     spotifyId: "5yOvAmpIR7hVxiS6Ls5DPO",
     wikipedia: "https://en.wikipedia.org/wiki/Omah_Lay",
     image: "https://i.scdn.co/image/ab6761610000e5eb35ba3ee6067196268c5528cb",
-    verifiedOn: AFROBEATS_VERIFIED_ON_7,
+    verifiedOn: AFROBEATS_VERIFIED_ON_16,
     swept: true,
     chartPublished: { entries: 72, territories: 16, no1s: 6 },
     releases: [
@@ -1779,6 +1815,12 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Godly", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/ed64774f56cf5d0f3fcb8e25c9fe39f6/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 3 }] },
       { title: "I'm A Mess", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/e51306cd0211b33a043b1fef073026e5/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 3 }] },
       { title: "Woman", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/1724f66c550648b497bd7ccec64b9179/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
+      // 2 Oct 2026 — TCSN live id 136 ("Bad Influence | Asake | Platinum_2"),
+      // archive ids 457 (Platinum) and 1496 (Platinum_2). No Asake recording of
+      // the title exists; it is Omah Lay's 2020 single, track 4 of Get Layd.
+      // Applied on Paul's ruling, as Rema's "Smooth Criminal" and Ayra Starr's
+      // "Many Roads". Sleeve: Get Layd's (his "Damn", "Lo Lo", "Ye Ye Ye").
+      { title: "Bad Influence", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/c9d87c5a3f02efbf52b0a27d553f1a87/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
       { title: "Bend You", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/e51306cd0211b33a043b1fef073026e5/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "It's Yours", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/fc81a1daef5228b3e31fb1f37bc1ad67/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Moving", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/f913fed89932ceb56f7809aa7f811c0c/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },

@@ -114,6 +114,14 @@ export const albums: Release[] = [
     { c: "CA", level: "Gold" }, { c: "NL", level: "Gold" }, { c: "CH", level: "Gold" },
     { c: "DK", level: "Gold" },
   ] },
+  // NO "Love, Damini" SONG plaque in Nigeria — refuted 2 Oct 2026. TCSN's first
+  // capture (Wayback 20230214120546, two rows) prints id 1 "Love, Damini | Burna
+  // Boy | Single | Spaceship | Silver | 2022-11-20": a pre-launch placeholder,
+  // gone by 6 Mar 2023, dated before TCSN's 20 Feb 2023 launch, and absent from
+  // the uncapped 2,477-row Feb 2026 register and the live page. Paul ruled the
+  // row would mean the title track, but it does not stand as an award, so
+  // nothing is added. The album's NG 5x Platinum is unaffected (13 Aug ruling).
+  // docs/sweeps/sweep-2026-10-02.md; tests/sweep20261002.test.ts holds it off.
   { title: "Love, Damini", year: 2022, certs: [
     { c: "CA", level: "Platinum" }, { c: "UK", level: "Gold" }, { c: "SE", level: "Gold" },
     { c: "FR", level: "Gold" }, { c: "NL", level: "Gold" }, { c: "DK", level: "Platinum" },
@@ -547,6 +555,11 @@ export const features: Release[] = [
     { c: "FR", level: "Platinum" }, { c: "ES", level: "Platinum" }, { c: "PL", level: "Platinum" }, { c: "UK", level: "Gold" },
     { c: "AU", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "AT", level: "Gold" }, { c: "PT", level: "Gold" },
   ] },
+  // CA Gold ⚠ (2 Oct 2026): Music Canada's only row reads "Jorja Smith | Be
+  // Honest" (Gold, 20.01.2020) — Burna Boy is not named. Kept on Paul's ruling
+  // of 2 Oct 2026 with the treatment Wizkid's "Boom" DK carries: there is one
+  // recording of "Be Honest", and he is on it. No tier or count change. The ⚠
+  // is recorded in docs/sweeps/sweep-2026-10-02.md, not in a data field.
   { title: "Be Honest", credit: "Jorja Smith ft. Burna Boy", year: 2019, certs: [
     { c: "FR", level: "Diamond" }, { c: "AU", level: "Platinum" }, { c: "UK", level: "Platinum" },
     { c: "NZ", level: "Platinum" }, { c: "CA", level: "Gold" }, { c: "DK", level: "Gold" },

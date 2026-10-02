@@ -565,7 +565,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Omah Lay",
     path: "/afrobeats/omah-lay",
     section: "Afrobeats",
-    description: "Omah Lay's 62 certifications across 9 countries and 72 official chart entries, verified at source.",
+    description: "Omah Lay's 63 certifications across 9 countries and 72 official chart entries, verified at source.",
     keywords: ["omah lay", "understand", "soso", "boy alone", "omah lay certifications"],
   },
   {
@@ -705,7 +705,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Black Sherif — Certifications",
     path: "/afrobeats/black-sherif",
     section: "Afrobeats",
-    description: "24 certifications and 24 official chart entries, verified at source — the only Ghanaian on the board.",
+    description: "25 certifications and 24 official chart entries, verified at source — the only Ghanaian on the board.",
     keywords: ["black sherif", "blacko", "mohammed ismail sherif", "kwaku the traveller", "black sherif certifications"],
   },
   {

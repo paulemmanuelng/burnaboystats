@@ -60,7 +60,7 @@ read, that is recorded as unreadable, not as grounds for removal.
 
 | Claim | Why rejected |
 |---|---|
-| Asake — "Bad Influence" NG 2× Platinum | Already adjudicated and **HELD**. No Asake recording of that title exists; it is **Omah Lay's** *Get Layd* track. TCSN's `artiste` field is in error. Confirmed by Paul. |
+| Asake — "Bad Influence" NG 2× Platinum | Already adjudicated and **HELD**. No Asake recording of that title exists; it is **Omah Lay's** *Get Layd* track. TCSN's `artiste` field is in error. Confirmed by Paul. **2 Oct 2026: credited to Omah Lay on Paul's ruling** (`docs/sweeps/sweep-2026-10-02.md`); still not Asake's. |
 | Wizkid — "Everyday" NG Silver → Platinum | TCSN credits **Fireboy DML** — "Everyday (Fireboy Dml)" |
 | Asake — "Reason" NG → 5× Platinum | TCSN credits **Omah Lay**; Asake's own row reads Platinum, matching the site |
 | Ayra Starr — "Away" NG → 2× Platinum | TCSN credits **Davido**, who already holds ×2 |

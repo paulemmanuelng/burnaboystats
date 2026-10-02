@@ -33,9 +33,9 @@ import { plaqueDomain, PLAQUE_DOMAIN_FLOOR } from "../app/lib/hubScatterScale";
 // alone would not have caught it — the tier split is what did.
 const EXPECTED = {
   asake: { total: 80, diamond: 0 },
-  "omah-lay": { total: 62, diamond: 2 }, // + "understand" 🇵🇹 Ouro, AFP March 2026 card
+  "omah-lay": { total: 63, diamond: 2 }, // + "understand" 🇵🇹 Ouro, AFP March 2026 card; 2 Oct 2026: + "Bad Influence" 🇳🇬 2× Platinum (TCSN files it under "Asake"; Paul's ruling)
   "seyi-vibez": { total: 102, diamond: 0 },
-  wizkid: { total: 159, diamond: 6 }, // 23 Sep 2026: + "Boom" 🇩🇰 Platin ⚠ (IFPI Danmark truncates the credit; Paul's ruling); 28 Sep 2026: + "Glow in the Dark" 🇬🇧 Silver (BPI, 04.09.2026), read by the owner on the register; + "System" (Dave ft. Wizkid) 🇬🇧 Gold (BPI, 04.10.2024, filed under DAVE alone — Paul's ruling, as with "Boom")
+  wizkid: { total: 159, diamond: 6 }, // 2 Oct 2026: "One Dance" 🇳🇿 10× → 11× and 🇩🇰 5× → 6× are upgrades, so the total holds; 23 Sep 2026: + "Boom" 🇩🇰 Platin ⚠ (IFPI Danmark truncates the credit; Paul's ruling); 28 Sep 2026: + "Glow in the Dark" 🇬🇧 Silver (BPI, 04.09.2026), read by the owner on the register; + "System" (Dave ft. Wizkid) 🇬🇧 Gold (BPI, 04.10.2024, filed under DAVE alone — Paul's ruling, as with "Boom")
   victony: { total: 24, diamond: 0 }, // + "Soweto" 🇫🇷 Or, SNEP constat 27 Aug 2026
   "fireboy-dml": { total: 36, diamond: 1 },
   davido: { total: 91, diamond: 0 },
@@ -48,7 +48,7 @@ const EXPECTED = {
   // from all 303 weekly issues TurnTable has published; internationals read at
   // each issuing body by hand.
   olamide: { total: 54, diamond: 0 },
-  "black-sherif": { total: 24, diamond: 0 },
+  "black-sherif": { total: 25, diamond: 0 }, // 2 Oct 2026: + "Road Runners" 🇳🇬 Silver (TCSN files it under "Blaqbonez ft. Seyi Vibez"; Paul's ruling)
   bnxn: { total: 65, diamond: 0 },
   // Joined 25 Sep 2026 (verified 24–25 Sep). Oxlade's one Diamond is France's
   // "Ku Lo Sa"; the other three hold none. Oxlade 13 -> 14 on 25 Sep 2026: "Ku Lo

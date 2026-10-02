@@ -22,6 +22,14 @@
 > Blaqbonez's; it is not Seyi Vibez's, so it is not counted here.
 >
 > Net: 103 − 1 = **102**.
+>
+> **Where it went, 2 Oct 2026.** On the owner's ruling of that day the plaque is
+> credited to **Black Sherif**, the featured artist on the recording — the
+> precedent of Rema's *Smooth Criminal* and Ayra Starr's *Many Roads*
+> (`black-sherif-certifications-v1.md`, the note at the top;
+> `sweep-2026-10-02.md`). TCSN's rows are ids 1214 and 2493, both
+> `Road Runners | Blaqbonez ft. Seyi Vibez | Silver`. It stays off this file,
+> and Seyi Vibez stays at 102.
 
 | tier | count |
 |---|---|
@@ -201,7 +209,7 @@ second), and *Gangsta* is the Remix. Both keep their plaques.
 | Malaika (Vibez Inc, Seyi Vibez & Stonebwoy) | 🇳🇬 Silver ✓ᴬ |
 | No Caution (Gbemidebe) (Bella Shmurda & Seyi Vibez) | 🇳🇬 Silver ✓ᴬ |
 | On God (Kashy ft. Seyi Vibez) | 🇳🇬 Silver ✓ᴬ |
-| ~~Road Runners (Blaqbonez ft. Seyi Vibez)~~ | **removed — see Removals: the recording is Blaqbonez ft. Black Sherif; TCSN's credit is wrong** |
+| ~~Road Runners (Blaqbonez ft. Seyi Vibez)~~ | **removed — see Removals: the recording is Blaqbonez ft. Black Sherif; TCSN's credit is wrong.** Now counted on Black Sherif's board, on the owner's ruling (see the note at the top) |
 
 *Featured subtotal — Platinum 13 (2× 5×P, 1× 4×P, 2× 3×P, 1× 2×P, 7× 1×P) + Gold 6 + Silver 8 = **27*** ✓
 

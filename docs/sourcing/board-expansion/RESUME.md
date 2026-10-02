@@ -258,6 +258,10 @@ Black Sherif arguably holds that plaque, but TCSN's row does not name him and
 counting it would assert a certification the register credits to someone else.
 Note it in his doc; do not count it.
 
+> **Superseded 2 Oct 2026:** Paul ruled the plaque is Black Sherif's (the
+> *Smooth Criminal* / *Many Roads* precedent), and it is now counted on his
+> board. `docs/sweeps/sweep-2026-10-02.md`.
+
 ## TO DO — adding each artist to the board
 
 Per the CKay precedent (the most recent addition), each artist needs:
