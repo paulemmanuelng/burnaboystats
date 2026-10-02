@@ -246,7 +246,7 @@ This **closes the "Nigeria is structurally unverifiable beyond the current week"
 
 Under this identical standard, **Burna Boy has 384 chart entries and 46 No. 1 placements across 71 chart territories** ([burnaboystats.com](https://burnaboystats.com)).
 
-The comparison is not close, and it is not really a comparison of size — it is a comparison of shape. Seyi Vibez's **115 entries** is **41% of Burna Boy's count**, which for an artist whose first chart week was January 2021 is a remarkable rate. But those 114 entries sit in **1 chart territory against Burna Boy's 71**, and his **11 No. 1s against 48** are all in that one country. Burna Boy's ledger is 71 territories deep and comparatively shallow in each; Seyi Vibez's is one territory deep and, within it, denser than anyone else's in this sweep series.
+The comparison is not close, and it is not really a comparison of size — it is a comparison of shape. Seyi Vibez's **129 entries** (board figure after the 2 Oct 2026 charts sweep) is **34% of Burna Boy's count**, which for an artist whose first chart week was January 2021 is a remarkable rate. But those 129 entries sit in **1 chart territory against Burna Boy's 71**, and his **13 No. 1s against 46** are all in that one country. Burna Boy's ledger is 71 territories deep and comparatively shallow in each; Seyi Vibez's is one territory deep and, within it, denser than anyone else's in this sweep series.
 
 What drives the density is that TurnTable charts album cuts and interludes: *Apala Interlude* at No. 7, *Fuji Interlude* at No. 13, *Highlife Interlude* at No. 46. **103 charting singles in five years in one market** is the highest single-market singles count in the series. And the catalogue does not fall off — *Thy Kingdom Come* has 163 weeks on the albums chart, *NSNV* 163, *Vibe Till Thy Kingdom Come* 151, *NAHAMciaga* 138.
 
@@ -258,7 +258,7 @@ The gap is entirely at the border. Burna Boy's 280 includes a Hot 100 line, a Gl
 
 ## Re-read 2 Oct 2026 (charts sweep)
 
-Applied from the verified 2 Oct 2026 charts sweep — every row below was CONFIRMED by two independent verifiers reading the chart body itself (method, both votes' issue references and the held items in [charts-sweep-2026-10-02.md](charts-sweep-2026-10-02.md)). Nigerian rows are TurnTable's Official Nigeria Top 100 (the Top 50 before 7 Jul 2022) and Official Top 100 Albums, read at the archive route; a peak is the best PRINTED rank in an issue that credits the artist. Board total now **129 chart entries** (117 singles + 12 albums).
+Applied from the verified 2 Oct 2026 charts sweep — every row below, unless marked, was CONFIRMED by two independent verifiers reading the chart body itself (method, both votes' issue references and the held items in [charts-sweep-2026-10-02.md](charts-sweep-2026-10-02.md)). Nigerian rows are TurnTable's Official Nigeria Top 100 (the Top 50 before 7 Jul 2022) and Official Top 100 Albums, read at the archive route; a peak is the best PRINTED rank in an issue that credits the artist. Board total now **129 chart entries** (117 singles + 12 albums).
 
 - *BACK 2 U* — 🇳🇬 NG #8 → **#4**. ng-updates-002 — issue: 2026-09-24 (id 5939)
 - *Volume* — 🇳🇬 NG **#1** added. ng-new-097 — issue: A: 2026-09-24 (id 5939); B: 2026-09-24 id 5939
@@ -274,4 +274,4 @@ Applied from the verified 2 Oct 2026 charts sweep — every row below was CONFIR
 - *Alafia* — 🇳🇬 NG **#18** added. ng-new-107 — issue: A: 2026-09-24 (id 5939); B: 2026-09-24 id 5939
 - *Oble (Original)* — 🇳🇬 NG **#23** added. ng-new-108 — issue: A: 2026-09-24 (id 5939); B: 2026-09-24 id 5939
 - *Billion Dollar* — 🇳🇬 NG **#10** added. ng-new-116 — issue: A: 2022-04-14 (id 1055); B: 2022-04-14 id 1055
-- *Swaguu* — 🇳🇬 NG **#1** added. ng-new-130 (owner's screenshot + TurnTable news 2278)
+- *Swaguu* (album) — 🇳🇬 NG **#1** added. ng-new-130 — **SPLIT (both votes UNREADABLE: the Albums week 39 issue is not yet published)**; added on the owner's instruction from TurnTable's own chart graphic (owner's screenshot, reported 2 Oct; not archived in the repo) and TurnTable news 2278 (29 Sep). Re-read Albums wk39 when the archive publishes it.

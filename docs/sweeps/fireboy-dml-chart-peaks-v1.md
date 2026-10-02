@@ -34,8 +34,7 @@
 | Oh My | 🇳🇬 NG | TurnTable (TCSN) | 14 |
 | Olufunmi Reimagined | 🇳🇬 NG | TurnTable (TCSN) | 15 |
 | Peace By Piece - EP | 🇳🇬 NG | TurnTable (TCSN) | 15 |
-| All of Us (Ashawo) | 🇳🇬 NG | TurnTable (TCSN) | 16 |
-| Ashawo | 🇳🇬 NG | TurnTable (TCSN) | 16 |
+| All of Us (Ashawo) | 🇳🇬 NG | TurnTable (TCSN) | 16 (printed as 'Ashawo'; merged 2 Oct 2026) |
 | Body | 🇧🇪 BE | BEA | 17 |
 | Body | 🇳🇱 NL | NVPI | 17 |
 | Angelina | 🇳🇬 NG | TurnTable (TCSN) | 18 |
@@ -99,10 +98,10 @@ The UK's **Official Afrobeats Chart** is a genre chart and does not count here. 
 
 ## Re-read 2 Oct 2026 (charts sweep)
 
-Applied from the verified 2 Oct 2026 charts sweep — every row below was CONFIRMED by two independent verifiers reading the chart body itself (method, both votes' issue references and the held items in [charts-sweep-2026-10-02.md](charts-sweep-2026-10-02.md)). Nigerian rows are TurnTable's Official Nigeria Top 100 (the Top 50 before 7 Jul 2022) and Official Top 100 Albums, read at the archive route; a peak is the best PRINTED rank in an issue that credits the artist. Board total now **81 chart entries** (75 singles + 6 albums).
+Applied from the verified 2 Oct 2026 charts sweep — every row below, unless marked, was CONFIRMED by two independent verifiers reading the chart body itself (method, both votes' issue references and the held items in [charts-sweep-2026-10-02.md](charts-sweep-2026-10-02.md)). Nigerian rows are TurnTable's Official Nigeria Top 100 (the Top 50 before 7 Jul 2022) and Official Top 100 Albums, read at the archive route; a peak is the best PRINTED rank in an issue that credits the artist. Board total now **81 chart entries** (75 singles + 6 albums).
 
 - *Peru* — 🇳🇬 NG #33 → **#1**. ng-updates-016 — issue: A: 2021-12-30 (id 897); B: 2021-12-30 (id 897); also ids 920, 925, 937 (to 2022-01-20)
-- *Ashawo* — row merged into All of Us (Ashawo) (ng-updates-027).
+- *Ashawo* — row merged into All of Us (Ashawo) (ng-updates-027) — **SPLIT** (A: REFUTED at 16; B: 43 under the new title); merged per the owner's rule: one TurnTable entry (same music link, continuous counter), retitled from 'Ashawo' on 15 Sep 2022; the No. 16 (11 Aug 2022) printed as 'Ashawo', best under the new title No. 43.
 - *Peru* — 🇭🇺 HU **#27** added. cee-004 — issue: 2022. 16. hét (MAHASZ Single Top 40)
 - *YAWA* — 🇸🇷 SR **#11** added. americas-012 — issue: A: Top 40 – 16 nov t/m 23 nov 2023; B: Top 40 – 16 nov t/m 23 nov 2023 (prints LW 11 for the unpublished 9–16 Nov list)
 - *Diana* — 🇸🇷 SR **#15** added. americas-011 (floor) — issue: De top 40 lijst voor 1 – 8 dec 2022

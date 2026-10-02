@@ -99,5 +99,4 @@ Applied from the verified 2 Oct 2026 charts sweep — every row below was CONFIR
 - *WHO THIS* — 🇳🇬 NG #24 unchanged; open-run note re-dated or closed. ng-updates-005 — issue: 2026-09-10 (id 5923)
 - *Mood (Wizkid ft. BNXN)* — 🇳🇬 NG #12 → **#13**. ng-updates-034 — issue: A: 2021-09-09 (id 721); also ids 732, 751; B: 2021-09-09 (id 721); also ids 732 and 751
 - *African Soldier* — 🇳🇬 NG #98 **removed**. ng-updates-026 (Patoranking ft. Buju Banton)
-- *African Soldier* — row removed (ng-updates-026 (Patoranking ft. Buju Banton)).
 - *Online* — 🇳🇬 NG **#20** added. ng-new-109 — issue: A: 2026-09-24 (id 5939); B: 2026-09-24 id 5939

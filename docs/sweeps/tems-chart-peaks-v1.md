@@ -28,7 +28,7 @@ One record dominates the ledger: ***Raindance* (Dave & Tems) alone accounts for 
 | **Raindance** (Dave & Tems) | 🇬🇧1 · 🇱🇺1 · 🇬🇷1° · 🇦🇪1 · 🇸🇦1 · 🇨🇭2 · 🇱🇹2 · 🇮🇳2 · 🇱🇧3 · 🇿🇦4° · 🇵🇹4 · 🇸🇪4 · 🇳🇱5 · 🇩🇰5 · 🇱🇻5 · 🇳🇿5 · 🇮🇪6 · 🇸🇰6 · 🇳🇬7° · 🇩🇪7 · 🇦🇹7 · 🇨🇿8 · 🇷🇺8 · 🇦🇺8 · 🌐8 · 🇳🇴12 · 🇲🇾12° · 🇰🇿12 · 🌍12 · 🇷🇴14° · 🇮🇸15° · 🇸🇬17° · 🇧🇪19 · 🇫🇷19 · 🇭🇺25 · 🇨🇦25 · 🇸🇷29 · 🇫🇮30 · 🇮🇹40° · 🇺🇸49 · 🇵🇭53° · 🇵🇱65° · 🇲🇩69 · 🇪🇪80 | **44** |
 | **Wait For U** (Future ft. Drake & Tems) | 🇺🇸1 · 🇿🇦1° · 🌍2 · 🇨🇦3 · 🇳🇿7 · 🇬🇧8 · 🇮🇸11 · 🇦🇺12 · 🇱🇺17 · 🇳🇬18° · 🇮🇪21 · 🇬🇷21° · 🇱🇹28 · 🌐29 · 🇨🇭34 · 🇳🇱59 · 🇦🇹65 · 🇵🇹68° · 🇩🇪77 · 🇸🇰78 · 🇫🇷135 | **21** |
 | **Essence** (Wizkid ft. Justin Bieber & Tems) | 🇳🇬2° · 🇺🇸9 · 🇿🇦15° · 🇳🇿15 · 🇬🇧16 · 🌍28 · 🇨🇦30 · 🇮🇪41 · 🌐60 · 🇳🇱76 · 🇨🇭95 · 🇵🇹108° | **12** |
-| **Fountains** (Drake ft. Tems) | 🇿🇦14° · 🇺🇸26 · 🌍26 · 🇦🇺36 · 🇨🇦36 · 🇱🇹40 · 🇵🇹43° · 🌐45 · 🇬🇷57° · 🇫🇷70 | **10** |
+| **Fountains** (Drake ft. Tems) | 🇿🇦14° · 🇺🇸26 · 🌍26 · 🇦🇺36 · 🇨🇦36 · 🇵🇹43° · 🌐45 · 🇬🇷57° · 🇫🇷70 · 🇱🇹79 *(LT corrected 40 → 79 on 2 Oct 2026, see Re-read)* | **10** |
 | **Bunce Road Blues** (J. Cole, Tems & Future) | 🇿🇦10° · 🇺🇸34 · 🇨🇦55 · 🇬🇧59 · 🇳🇬69° · 🌍75 · 🇵🇹164° | **7** |
 | **Move** (Beyoncé ft. Grace Jones & Tems) | 🇿🇦32° · 🌍53 · 🇺🇸55 · 🇨🇦72 · 🌐179 | **5** |
 | **Love Me JeJe** | 🇳🇬8° · 🇬🇧36 · 🇳🇱92 · 🇮🇪94 | **4** |
@@ -406,7 +406,7 @@ Every one of the eight matches this file exactly. The audit's premise is the par
 
 ### Context
 
-Under this **identical** standard, Burna Boy holds **384 chart entries and 46 No. 1 placements across 69 chart countries** ([burnaboystats.com](https://burnaboystats.com)). Tems has **124 entries, 7 No. 1 placements, 42 chart countries** — 35% of his entry count, 63% of his country reach, and 15% of his No. 1s.
+Under this **identical** standard, Burna Boy holds **384 chart entries and 46 No. 1 placements across 69 chart countries** ([burnaboystats.com](https://burnaboystats.com)). Tems has **138 entries, 7 No. 1 placements, 43 chart countries** (board figures after the 2 Oct 2026 charts sweep) — 36% of his entry count, 62% of his country reach, and 15% of his No. 1s.
 
 The honest reading is that these are two different shapes of chart career, not two points on one scale.
 
@@ -430,7 +430,7 @@ The two sweeps disagreed because they were looking at different things. `tonlist
 
 - ***Wait For U*** (Future ft. Drake & Tems) 🇮🇸 **#11 — now verified.** Read directly in the archived weekly Top 40 of 16 July 2022, credited "Future, Tems". The figure was right all along; it simply had no proof attached until now.
 - ***Calm Down*** (Rema) 🇮🇸 **#31 stands.** A second capture (4 Feb 2024) shows #37; the earlier Dec 2023 read of #31 is the better peak and is retained.
-- ***Water*** (Tyla) 🇮🇸 **#14 remains unproven** and keeps its marker. Only 8 weekly captures survive for 2024 and none covers the week the peak would fall in. Absence from those eight is not disproof — the figure is neither confirmed nor refuted, and is left flagged rather than promoted or deleted.
+- ***Water*** (Tyla) 🇮🇸 **#14 remains unproven** and keeps its marker. Only 8 weekly captures survive for 2024 and none covers the week the peak would fall in. Absence from those eight is not disproof — the figure is neither confirmed nor refuted, and is left flagged rather than promoted or deleted. *(Read at the body 2 Oct 2026 — nordic-015; ‡ removed.)*
 
 **A correction worth recording:** the year-end lists are *not* peaks. The 2016 year-end Top 100 places "One Dance" at #18 credited to "Drake" alone, which is the likeliest origin of a claimed Icelandic peak of 18 for that record. A year-end ranking and a weekly peak are different measurements, and only the weekly one satisfies this file's standard.
 

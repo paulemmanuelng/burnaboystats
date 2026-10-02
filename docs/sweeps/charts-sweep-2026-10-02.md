@@ -46,7 +46,9 @@ The owner asked for "a charts update sweep" with a rundown, built "with high spe
 | Dai Dai | IL | 6 | 5 | mena-asia-001 | Mako, issue "04.08 - 28.07.2026" |
 | Dai Dai | MK | — | 9 (floor) | airplay-east-001 | Radiomonitor North Macedonia All Radio, current week as served 2 Oct 2026 |
 | Dai Dai | SI | — | 4 (floor) | airplay-east-002 | Radiomonitor Slovenia All Radio, current week as served 2 Oct 2026 |
-| Dai Dai | DE | 1 · 11 wks at No. 1 · 16 wks | 1 · 13 · 18 | dach-003, dach-013 | GfK 25.09.2026 (13th week at No. 1); GfK release of 2 Oct: No. 2, run at the top final |
+| Dai Dai | LT | 5 | 5 · 1 wk at No. 5 · 18 wks (open) | cee-024 | AGATA 2026-W27 (peak); 2026-W40 prints 54 \| 41 \| 18 — both votes |
+| Dai Dai | BR | 27 | 27 · 16 wks (closed 7 Sep) | americas-002 | Billboard Brasil Hot 100, 27 Jul 2026 (peak); 7 Sep 2026 No. 92, Semanas no Chart 16; absent 14/21/28 Sep — both votes. 16 is the body's own counter (A: 12 printed appearances) |
+| Dai Dai | DE | 1 · 11 wks at No. 1 · 16 wks | 1 · 13 · 18 | dach-003, dach-013 | GfK 25.09.2026 (13th week at No. 1); GfK release of 2 Oct: No. 2, run at the top final — **the 2 Oct release (news/5987) was read by vote B only**; vote A saw germancharts.de before it posted 02.10, so the 13/18 are two-vote and the "ends" is one-vote (hand check below) |
 | Dai Dai | AT | 1 · 13 · 17 | 1 · 14 · 18 | dach-001 | Ö3 Austria Top 40, 25.09.2026 |
 | Dai Dai | CH | 1 · 15 · 18 | 1 · 16 · 19 | dach-002 | Schweizer Hitparade, 27.09.2026 |
 | Dai Dai | SE | weeks 17 | weeks 20 | nordic-001 | Sverigetopplistan vecka 40/2026 (No. 4) |
@@ -196,7 +198,7 @@ Both votes' issue references for each Burna row:
 | Release | Country | Before | After | Verify id | Issue (A · B) |
 |---|---|---|---|---|---|
 | Starrgirl | NG | 2 | 2 | ng-updates-015 | A: 2026-08-20 (albums id 5859) · B: 2026-08-20 (id 5859) |
-| Wo, man | BG | — | 2 | cee-002 | A: 04.09.2026 – 10.09.2026 (and again 25.09.2026 – 01.10.2026) · B: 04.09.2026 – 10.09.2026 (No.2 again in 25.09.2026 – 01.10.2026) |
+| Wo, man | BG | — | 2 (open: 6 issues to 25 Sep) | cee-002 | A: 04.09.2026 – 10.09.2026 (and again 25.09.2026 – 01.10.2026) · B: 04.09.2026 – 10.09.2026 (No.2 again in 25.09.2026 – 01.10.2026) |
 
 ### black-sherif
 
@@ -267,7 +269,7 @@ Both votes' issue references for each Burna row:
 | Release | Country | Before | After | Verify id | Issue (A · B) |
 |---|---|---|---|---|---|
 | Peru | NG | 33 | 1 | ng-updates-016 | A: 2021-12-30 (id 897) · B: 2021-12-30 (id 897); also ids 920, 925, 937 (to 2022-01-20) |
-| Ashawo | — | row | merged into All of Us (Ashawo) | ng-updates-027 | — |
+| Ashawo | — | row | merged into All of Us (Ashawo), NG 16, with a note | ng-updates-027 (**SPLIT**) | A: REFUTED — 2022-08-11 (id 1255), 16 printed as 'Ashawo'; merge the rows · B: 43 — 2022-09-29 (id 1401), best printing under the new title |
 | Peru | HU | — | 27 | cee-004 | A = B: 2022. 16. hét (MAHASZ Single Top 40) |
 | YAWA | SR | — | 11 | americas-012 | A: Top 40 – 16 nov t/m 23 nov 2023 · B: Top 40 – 16 nov t/m 23 nov 2023 (prints LW 11 for the unpublished 9–16 Nov list) |
 | Diana | SR | — | 15 | americas-011 (floor) | A = B: De top 40 lijst voor 1 – 8 dec 2022 |
@@ -339,7 +341,7 @@ Both votes' issue references for each Burna row:
 | Soweto | NG | 4 | 5 | ng-updates-029 | A: 2023-03-30 (id 1946); also 2023-04-20 (id 2012) · B: 2023-03-30 (id 1946) and 2023-04-20 (id 2012) |
 | Calm Down | IS | 31 | 24 | nordic-014 | A: Tónlistinn Lög, list live 6 Jan 2024 (Wayback 20240106201130) · B: Tónlistinn Lög list live 6 Jan 2024 (Wayback 20240106201130) |
 | Calm Down | BG | — | 2 | cee-003 (reverses the repertoire-component exclusion) | A = B: 03.02.2023 – 09.02.2023 and 03.03.2023 – 09.03.2023 |
-| Calm Down | IL | — | 35 | mena-asia-004 (live issues only: 35, not the backfilled 12) | A: Mako issue "28.11 - 22.11.2022" (publishDate 2022-11-29, chartId 64e1f67e10dab0e5a9a4777e). This is a backfilled pre-launch issue. · B: Mako "28.11 - 22.11.2022" (issue dated 29 Nov 2022, chartId 64e1f67e10dab0e5a9a4777e) - a BACKFILLED pre-launch issue |
+| Calm Down | IL | — | 35 | mena-asia-004 (live issues only: 35, not the backfilled 12) | Mako "07.03 - 13.03.2023" (first live issue, published 20 Mar 2023), solo "Rema" row #35 — both votes. Both votes' headline 12 is in the backfilled "28.11 - 22.11.2022" issue (published 29 Nov 2022), not counted; duo row's best live printing 60 |
 | Oh No | NG | — | 2 | ng-new-001 | A: 2026-09-17 (id 5940) · B: 2026-09-17 id 5940 |
 | Oh No | SR | — | 27 | ng-new-001 | A: 2026-09-17 (id 5940) · B: 2026-09-17 id 5940 |
 | Smooth Criminal | NG | — | 2 | ng-new-002 | A: 2023-11-02 (id 2619) · B: 2023-11-02 id 2619 |
@@ -428,6 +430,7 @@ Both votes' issue references for each Burna row:
 | Live Life | NG | — | 96 | ng-new-049 | A: 2022-10-06 (id 1423) · B: 2022-10-06 id 1423 |
 | Love Is a Kingdom | NG | — | 30 | ng-new-050 | A: 2025-11-27 (id 5049) · B: 2025-11-27 id 5049 |
 | For Broken Ears | NG | — | 99 | ng-new-051 | A: 2024-10-17 (id 3763) · B: 2024-10-17 id 3763 |
+| Raindance | LT | 2 | 2 · 3 wks at No. 2 · 42 wks (open) | cee-025 | A: AGATA 2026-W3, W4, W9 · B: 2026-W3, W4 and W9 (No. 2); latest 2026-W40 prints 51 \| 44 \| 42 |
 
 ### tiwa-savage
 
@@ -481,7 +484,9 @@ Board notes: closed runs lost the open-run note (Ruger *All Die*, CKay *SHEGE*, 
 
 **Israel (Mako).** Counted from its first LIVE issue — 07–13 Mar 2023, published 20 Mar 2023. Backfilled pre-launch issues (midnight publish dates, counters running backwards) do not count. So: Tems *Raindance* IL 27 (all live); Rema *Calm Down* IL **35** (the solo-"Rema" row in that first live issue — the duo row's 12 is backfill); no IL row for Oxlade's *Ku Lo Sa* or Ayra Starr's *Rush* (backfill only); Dai Dai IL 6 → 5.
 
-**Seyi Vibez — *Swaguu* (album), NG No. 1.** The archive had not published the Top 100 Albums issue for 18–24 Sep 2026 when read (both verifiers: the route returns the earliest-issue fallback), so ng-new-130 is a SPLIT on the printed-rank rule. It is added on two first-party prints: TurnTable's own chart graphic for 18–24 Sep 2026 (the owner's screenshot of 2 Oct: *Swaguu* No. 1, 35.8K units) and TurnTable's news post 2278 (29 Sep), which says *Swaguu* ends *M$NEY*'s 17-week reign at No. 1. The row is noted as open, and should be re-read when the archive publishes the issue.
+**Seyi Vibez — *Swaguu* (album), NG No. 1.** The archive had not published the Top 100 Albums issue for 18–24 Sep 2026 when read (both verifiers: the route returns the earliest-issue fallback), so ng-new-130 is a SPLIT on the printed-rank rule. It is added on two first-party prints: TurnTable's own chart graphic for 18–24 Sep 2026 (per the owner's screenshot of TurnTable's chart graphic, reported 2 Oct; not archived in the repo, and seen by neither the apply agent nor the verifiers: *Swaguu* No. 1, 35.8K units) and TurnTable's news post 2278 (29 Sep), which says *Swaguu* ends *M$NEY*'s 17-week reign at No. 1. The row is noted as open, and should be re-read when the archive publishes the issue.
+
+**Applied despite SPLIT (owner's instruction).** Two rows below go beyond the two-vote rule, and say so where they appear: Seyi Vibez *Swaguu* album NG 1 (ng-new-130; both votes UNREADABLE — see above) and the Fireboy DML *Ashawo* merge (ng-updates-027; A REFUTED at 16, B 43 under the new title). The merged *All of Us (Ashawo)* row keeps NG 16 with a note that the 16 printed as 'Ashawo' (11 Aug 2022), the entry was retitled on 15 Sep 2022, and the best printing under the new title is 43.
 
 ## Held for the owner (not changed)
 
@@ -507,7 +512,8 @@ Board notes: closed runs lost the open-run note (Ruger *All Die*, CKay *SHEGE*, 
 - **AT Ö3 Austria Top 40 and CH Schweizer Hitparade** — austriancharts.at/charts/singles (02.10.2026 issue) and swisscharts.com/charts/singles (04.10.2026 issue) for Dai dai
 - **UK Official Singles Chart Top 100 + Irish Singles (OCC/IRMA), issue of 2 Oct 2026** — After ~17:45 BST on Fri 2 Oct 2026, open officialcharts.com/charts/singles-chart/ and irma.ie/irish-charts/singles/ and find DAI DAI (Shakira & Burna Boy) and RAINDANCE (Dave/Tems). Then also scan the albums charts for Seyi Vibez SWAGUU, Victony STARLIFE, Omah Lay CLARITY OF MIIND and BNXN
 - **Owner ruling: credits on Jerusalema (Remix) UK 55 / IE 4 and We Pray UK 20 / IE 7** — OCC song pages master-kg-ft-nomcebo-zikode-jerusalema and coldplay-we-pray, plus IRMA chart-singles-2021-02-12 row 4 and chart-singles-2024-09-13 row 7
-- **TurnTable Official Top 100 Albums (NG)** — turntablecharts.com/charts/2 — the issue dated 2026-09-24 (week 39), once published
+- **TurnTable Official Top 100 Albums (NG)** — turntablecharts.com/charts/2 — the issue dated 2026-09-24 (week 39), once published (confirms or corrects the *Swaguu* album No. 1, applied on the owner's instruction as a SPLIT)
+- **DE GfK, chart of 2 Oct 2026** — confirm Dai Dai at No. 2 behind Taylor Swift's *Patient Zero* (only vote B read GfK news/5987; the updates feed's "ends Dai Dai's run at the top" rests on it), and read the weeks figure (18 printed to 25.09; 19 counted with 02.10)
 - **TurnTable Official Nigeria Top 100 (NG singles)** — turntablecharts.com/charts/1 — the issue dated 2026-10-01 (week 40), once published
 - **TurnTable Official Nigeria Top 100 (NG singles)** — Owner ruling: credit test for entries re-credited mid-run (Come & Go/Black Sherif 12 v 15, Maserati (Remix)/Davido 13 v 17, Abracadabra (Remix)/Wizkid 6 v 7, Soweto/Rema 4 v 5) and counter-only peaks (Mood 12 v 13, Man on a Mission 29 v 30)
 - **TurnTable Official Top 100 Albums (NG)** — Owner ruling: Tems — 'Black Panther: Wakanda Forever - Music From and Inspired By' credited 'Rihanna & Tems' (#11)

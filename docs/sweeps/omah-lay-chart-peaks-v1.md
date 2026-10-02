@@ -62,7 +62,7 @@ Swept **19 August 2026** in two halves — Nigeria/Africa/Billboard Global, and 
 | understand | 🇳🇬 #60 | **1** |
 | how to luv | 🇳🇬 #68 | **1** |
 | Blessings (KAESTYLE & Omah Lay) | 🇳🇬 #79 | **1** |
-| Damn (ft. 6LACK) | 🇳🇬 #83 | **1** |
+| Damn | 🇳🇬 #25 *(corrected 2 Oct 2026, see Re-read: the plain 'Damn' printing; the #83 row was mis-titled, and the #11 is 'Damn (Remix)' ft. 6lack)* | **1** |
 | i | 🇳🇬 #85 | **1** |
 | safe haven | 🇳🇬 #88 | **1** |
 | never forget | 🇳🇬 #90 | **1** |
@@ -208,11 +208,11 @@ Legitimate inside a single-artist ledger, because featured credits count — but
 
 Under this identical standard, **Burna Boy has 384 chart entries and 46 No. 1 placements across 71 chart territories** ([burnaboystats.com](https://burnaboystats.com)).
 
-The honest comparison: Omah Lay's **70 entries across 16 chart territories** is **26% of Burna Boy's entry count and 23% of his territory reach**, and the gap in No. 1s is wider still — **6 to 47**, and all six of his are in one country.
+The honest comparison: Omah Lay's **98 entries across 18 chart territories** (board figures after the 2 Oct 2026 charts sweep) is **26% of Burna Boy's entry count and 25% of his territory reach**, and the gap in No. 1s is wider still — **9 to 46**, and all nine of his are in one country.
 
-But the two lines are not measuring the same career. Burna Boy's 351 is built on a fifteen-year catalogue with more than a dozen records that charted in ten-plus countries each. Omah Lay is, on this evidence, **a Nigeria-dominant artist with almost no global chart presence**: 42 of 70 entries are Nigerian, and his entire non-Nigerian footprint outside the two guest-billed French rap hits and one Luciano feature is thin enough to list in a sentence. Across **123,600 Billboard Global rows** he appears **once**, for two weeks, at 73 and 74, on a Justin Bieber duet — and he has never entered the Hot 100 or the Billboard 200 at all.
+But the two lines are not measuring the same career. Burna Boy's 384 is built on a fifteen-year catalogue with more than a dozen records that charted in ten-plus countries each. Omah Lay is, on this evidence, **a Nigeria-dominant artist with almost no global chart presence**: 65 of 98 entries are Nigerian, and his entire non-Nigerian footprint outside the two guest-billed French rap hits and one Luciano feature is thin enough to list in a sentence. Across **123,600 Billboard Global rows** he appears **once**, for two weeks, at 73 and 74, on a Justin Bieber duet — and he has never entered the Hot 100 or the Billboard 200 at all.
 
-Where the line is genuinely strong is **at home and in France**. In Nigeria he holds 38 charting singles, 4 charting albums and 6 No. 1 placements, with *Boy Alone* still on the albums chart at **197 weeks** — a run that outlasts most of what this sweep set contains. In France he reached **No. 2** on SNEP, higher than anything Ayra Starr, Tems or Tyla have managed on that chart, and did it as a **featured guest on a Jul record** — the kind of placement no artist-side fan list would ever surface. His Nigerian count is also the one most likely to be a floor: an entire breakout era, 2020–21, sits behind an unreadable predecessor chart, and TurnTable publishes no weekly archive at all.
+Where the line is genuinely strong is **at home and in France**. In Nigeria he holds 61 charting singles, 4 charting albums and 9 No. 1 placements, with *Boy Alone* still on the albums chart at **197 weeks** — a run that outlasts most of what this sweep set contains. In France he reached **No. 2** on SNEP, higher than anything Ayra Starr, Tems or Tyla have managed on that chart, and did it as a **featured guest on a Jul record** — the kind of placement no artist-side fan list would ever surface. His Nigerian count is also the one most likely to be a floor: an entire breakout era, 2020–21, sits behind an unreadable predecessor chart, and TurnTable publishes no weekly archive at all.
 
 ## Re-read 17 Sep 2026 (freshness audit, batch 3)
 

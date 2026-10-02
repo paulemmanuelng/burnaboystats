@@ -467,7 +467,7 @@ The two sweeps disagreed because they were looking at different things. `tonlist
 
 - ***Wait For U*** (Future ft. Drake & Tems) 🇮🇸 **#11 — now verified.** Read directly in the archived weekly Top 40 of 16 July 2022, credited "Future, Tems". The figure was right all along; it simply had no proof attached until now.
 - ***Calm Down*** (Rema) 🇮🇸 **#31 stands.** A second capture (4 Feb 2024) shows #37; the earlier Dec 2023 read of #31 is the better peak and is retained.
-- ***Water*** (Tyla) 🇮🇸 **#14 remains unproven** and keeps its marker. Only 8 weekly captures survive for 2024 and none covers the week the peak would fall in. Absence from those eight is not disproof — the figure is neither confirmed nor refuted, and is left flagged rather than promoted or deleted.
+- ***Water*** (Tyla) 🇮🇸 **#14 remains unproven** and keeps its marker. Only 8 weekly captures survive for 2024 and none covers the week the peak would fall in. Absence from those eight is not disproof — the figure is neither confirmed nor refuted, and is left flagged rather than promoted or deleted. *(Read at the body 2 Oct 2026 — nordic-015; ‡ removed.)*
 
 **A correction worth recording:** the year-end lists are *not* peaks. The 2016 year-end Top 100 places "One Dance" at #18 credited to "Drake" alone, which is the likeliest origin of a claimed Icelandic peak of 18 for that record. A year-end ranking and a weekly peak are different measurements, and only the weekly one satisfies this file's standard.
 
@@ -479,7 +479,7 @@ Applied from the verified 2 Oct 2026 charts sweep — every row below was CONFIR
 - *Soweto* — 🇳🇬 NG #4 → **#5**. ng-updates-029 — issue: A: 2023-03-30 (id 1946); also 2023-04-20 (id 2012); B: 2023-03-30 (id 1946) and 2023-04-20 (id 2012)
 - *Calm Down* — 🇮🇸 IS #31 → **#24**. nordic-014 — issue: A: Tónlistinn Lög, list live 6 Jan 2024 (Wayback 20240106201130); B: Tónlistinn Lög list live 6 Jan 2024 (Wayback 20240106201130)
 - *Calm Down* — 🇧🇬 BG **#2** added. cee-003 (reverses the repertoire-component exclusion) — issue: 03.02.2023 – 09.02.2023 and 03.03.2023 – 09.03.2023
-- *Calm Down* — 🇮🇱 IL **#35** added. mena-asia-004 (live issues only: 35, not the backfilled 12) — issue: A: Mako issue "28.11 - 22.11.2022" (publishDate 2022-11-29, chartId 64e1f67e10dab0e5a9a4777e). This is a backfilled pre-launch issue.; B: Mako "28.11 - 22.11.2022" (issue dated 29 Nov 2022, chartId 64e1f67e10dab0e5a9a4777e) - a BACKFILLED pre-launch issue
+- *Calm Down* — 🇮🇱 IL **#35** added. mena-asia-004 (live issues only: 35, not the backfilled 12) — issue: Mako "07.03 - 13.03.2023" (the first live issue, published 20 Mar 2023), solo "Rema" row at #35 — both votes. The 12 both votes found is in the backfilled "28.11 - 22.11.2022" issue (published 29 Nov 2022), which does not count; the duo row's best live printing is 60.
 - *Oh No* — 🇳🇬 NG **#2** added. ng-new-001 — issue: A: 2026-09-17 (id 5940); B: 2026-09-17 id 5940
 - *Oh No* — 🇸🇷 SR **#27** added. ng-new-001 — issue: A: 2026-09-17 (id 5940); B: 2026-09-17 id 5940
 - *Smooth Criminal* — 🇳🇬 NG **#2** added. ng-new-002 — issue: A: 2023-11-02 (id 2619); B: 2023-11-02 id 2619

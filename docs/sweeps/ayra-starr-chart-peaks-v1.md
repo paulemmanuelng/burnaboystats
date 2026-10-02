@@ -471,7 +471,7 @@ The two sweeps disagreed because they were looking at different things. `tonlist
 
 - ***Wait For U*** (Future ft. Drake & Tems) 🇮🇸 **#11 — now verified.** Read directly in the archived weekly Top 40 of 16 July 2022, credited "Future, Tems". The figure was right all along; it simply had no proof attached until now.
 - ***Calm Down*** (Rema) 🇮🇸 **#31 stands.** A second capture (4 Feb 2024) shows #37; the earlier Dec 2023 read of #31 is the better peak and is retained.
-- ***Water*** (Tyla) 🇮🇸 **#14 remains unproven** and keeps its marker. Only 8 weekly captures survive for 2024 and none covers the week the peak would fall in. Absence from those eight is not disproof — the figure is neither confirmed nor refuted, and is left flagged rather than promoted or deleted.
+- ***Water*** (Tyla) 🇮🇸 **#14 remains unproven** and keeps its marker. Only 8 weekly captures survive for 2024 and none covers the week the peak would fall in. Absence from those eight is not disproof — the figure is neither confirmed nor refuted, and is left flagged rather than promoted or deleted. *(Read at the body 2 Oct 2026 — nordic-015; ‡ removed.)*
 
 **A correction worth recording:** the year-end lists are *not* peaks. The 2016 year-end Top 100 places "One Dance" at #18 credited to "Drake" alone, which is the likeliest origin of a claimed Icelandic peak of 18 for that record. A year-end ranking and a weekly peak are different measurements, and only the weekly one satisfies this file's standard.
 

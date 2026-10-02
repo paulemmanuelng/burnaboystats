@@ -32,7 +32,7 @@ Split: **118 singles entries** across 37 titles, **37 albums entries** across 6 
 | One Dance *(Drake feat. Wizkid & Kyla)* | 🇺🇸 #1 · 🇬🇧 #1 · 🇮🇪 #1 · 🇫🇷 #1 · 🇧🇪 #1 · 🇨🇭 #1 · 🇩🇪 #1 · 🇳🇱 #1 · 🇸🇪 #1 · 🇳🇴 #1 · 🇵🇹 #1 · 🇦🇺 #1 · 🇳🇿 #1 · 🇨🇦 #1 · 🇱🇧 #1 · 🇩🇰 #2 · 🇪🇸 #2 · 🇫🇮 #2 · 🇦🇹 #3 · 🇨🇿 #3 · 🇮🇹 #6 · 🇵🇾 #12 · 🇭🇺 #18 · 🇸🇰 #29 · 🇱🇹 #52 | **25** |
 | Essence *(feat. Tems / Justin Bieber remix)* | 🇳🇬 #2 · 🇺🇸 #9 · 🇿🇦 #15 · 🇳🇿 #15 · 🇬🇧 #16 · 🌐 #28 · 🇨🇦 #30 · 🇮🇪 #41 · 🌍 #60 · 🇳🇱 #76 · 🇨🇭 #95 · 🇵🇹 #108 | **12** |
 | Boom *(Major Lazer feat. MOTi, Ty Dolla $ign, Wizkid & Kranium)* | 🇳🇴 #10 · 🇩🇰 #17 · 🇳🇱 #33 · 🇩🇪 #38 · 🇧🇪 #48 · 🇫🇷 #53 · 🇦🇹 #57 · 🇸🇪 #70 | **8** |
-| Brown Skin Girl *(Beyoncé, SAINt JHN & Wizkid feat. Blue Ivy Carter)* | 🇱🇹 #29 · 🇬🇧 #42 · 🇮🇪 #50 · 🇨🇦 #60 · 🇺🇸 #76 · 🇳🇱 #82 | **6** |
+| Brown Skin Girl *(Beyoncé, SAINt JHN & Wizkid feat. Blue Ivy Carter)* | 🇬🇧 #42 · 🇮🇪 #50 · 🇨🇦 #60 · 🇱🇹 #67 · 🇺🇸 #76 · 🇳🇱 #82 *(LT corrected 29 → 67 on 2 Oct 2026, see Re-read)* | **6** |
 | Forever Be Mine *(Gunna & Wizkid)* | 🇿🇦 #13 · 🇬🇧 #46 · 🇺🇸 #68 · 🌐 #111 | **4** |
 | Call Me Every Day *(Chris Brown feat. Wizkid)* | 🇿🇦 #16 · 🇬🇧 #53 · 🇺🇸 #76 · 🌐 #103 | **4** |
 | Jogodo *(Wizkid & Asake)* | 🇳🇬 #1 · 🇬🇧 #73 · 🌍 #75 · 🌐 #120 | **4** |
@@ -581,7 +581,7 @@ The two sweeps disagreed because they were looking at different things. `tonlist
 
 - ***Wait For U*** (Future ft. Drake & Tems) 🇮🇸 **#11 — now verified.** Read directly in the archived weekly Top 40 of 16 July 2022, credited "Future, Tems". The figure was right all along; it simply had no proof attached until now.
 - ***Calm Down*** (Rema) 🇮🇸 **#31 stands.** A second capture (4 Feb 2024) shows #37; the earlier Dec 2023 read of #31 is the better peak and is retained.
-- ***Water*** (Tyla) 🇮🇸 **#14 remains unproven** and keeps its marker. Only 8 weekly captures survive for 2024 and none covers the week the peak would fall in. Absence from those eight is not disproof — the figure is neither confirmed nor refuted, and is left flagged rather than promoted or deleted.
+- ***Water*** (Tyla) 🇮🇸 **#14 remains unproven** and keeps its marker. Only 8 weekly captures survive for 2024 and none covers the week the peak would fall in. Absence from those eight is not disproof — the figure is neither confirmed nor refuted, and is left flagged rather than promoted or deleted. *(Read at the body 2 Oct 2026 — nordic-015; ‡ removed.)*
 
 **A correction worth recording:** the year-end lists are *not* peaks. The 2016 year-end Top 100 places "One Dance" at #18 credited to "Drake" alone, which is the likeliest origin of a claimed Icelandic peak of 18 for that record. A year-end ranking and a weekly peak are different measurements, and only the weekly one satisfies this file's standard.
 
