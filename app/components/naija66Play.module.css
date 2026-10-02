@@ -1,12 +1,11 @@
-/* /naija66's live pieces (Naija66Play.tsx): the flow box, the winner's card
-   and the board. Desktop by default; .phone is the phone screen's version —
-   full-bleed between hairlines, controls stacked at a thumb's 48px.
+/* /naija66's two boxes (Naija66Play.tsx): the box beside the hero and the
+   final board. Desktop by default; .phone is the phone screen's version —
+   full-bleed between hairlines.
 
-   Colour: green marks what is live (the board's live dot, the winner's card
-   edge) and the flag motif; the Claim button is the page's one action, so it
-   stays the site's gold .btnPrimary. Tokens only. */
+   Colour: green is the box's kicker and the flag motif. The hunt has ended,
+   so nothing on the board is live. Tokens only. */
 
-/* ── The key box ───────────────────────────────────────────────────────── */
+/* ── The box ───────────────────────────────────────────────────────── */
 .box {
   padding: 22px 24px 20px;
   border: 1px solid var(--line);
@@ -30,173 +29,13 @@
   text-transform: uppercase;
   color: var(--green);
 }
-.head {
-  margin: 8px 0 0;
-  font-family: var(--font-anton), sans-serif;
-  font-weight: 400; /* Anton has no bold cut */
-  font-size: 28px;
-  line-height: 1.05;
-  letter-spacing: 0.005em;
-  text-transform: uppercase;
-}
-.phone .head { font-size: 26px; }
 
-.label {
-  display: block;
-  margin-top: 16px;
-  font-family: var(--font-mono), monospace;
-  font-weight: 700;
-  font-size: var(--type-label);
-  letter-spacing: var(--type-label-tracking);
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
-.row {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  margin-top: 6px;
-}
-.phone .row {
-  flex-direction: column;
-  align-items: stretch;
-  gap: 8px;
-}
-.input {
-  flex: 1 1 200px;
-  min-width: 0;
-  min-height: 46px;
-  padding: 10px 18px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--font-mono), monospace;
-  /* 16px stops iOS zooming the page into the field on focus. */
-  font-size: 16px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-.input::placeholder { color: var(--text-muted); }
-.input:focus-visible {
-  outline: 2px solid var(--green);
-  outline-offset: 2px;
-}
-.input[aria-invalid="true"] { border-color: var(--rule); }
-.button { flex: none; }
-.phone .input,
-.phone .button {
-  flex: 0 0 auto;
-  width: 100%;
-  min-height: 48px;
-}
-
-.outcome {
-  margin: 10px 0 0;
-  font-size: var(--type-small);
-  line-height: var(--type-small-lh);
-  color: var(--text);
-}
-.fine {
-  margin: 10px 0 0;
-  font-size: var(--type-caption);
-  line-height: var(--type-caption-lh);
-  color: var(--text-muted);
-}
-.flowText {
-  margin: 12px 0 0;
-  font-size: var(--type-body);
-  line-height: var(--type-body-lh);
-  color: var(--text-body);
-}
 .closedText {
   margin: 8px 0 0;
   font-size: var(--type-body);
   line-height: var(--type-body-lh);
   color: var(--text-body);
 }
-
-/* ── The winner's card ─────────────────────────────────────────────────── */
-.win {
-  padding: 22px 24px 20px;
-  border: 1px solid var(--green);
-  border-left-width: 4px;
-  border-radius: var(--radius);
-  background: var(--bg-soft);
-  color: var(--text);
-}
-.win.phone {
-  padding: 20px 18px 18px;
-  border-radius: 0;
-  border-right: 0;
-}
-.winKicker {
-  font-family: var(--font-mono), monospace;
-  font-weight: 700;
-  font-size: var(--type-label);
-  letter-spacing: var(--type-label-tracking);
-  text-transform: uppercase;
-  color: var(--green);
-}
-.winHead {
-  margin: 8px 0 0;
-  font-family: var(--font-anton), sans-serif;
-  font-weight: 400;
-  font-size: 32px;
-  line-height: 1;
-  text-transform: uppercase;
-}
-.codeRow {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 10px 14px;
-  margin-top: 14px;
-}
-.code {
-  font-family: var(--font-mono), monospace;
-  font-weight: 700;
-  font-size: 26px;
-  letter-spacing: 0.06em;
-  color: var(--text);
-  background: var(--code-bg);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 8px 14px;
-  overflow-wrap: anywhere;
-}
-.phone .code { font-size: 22px; }
-.copy {
-  min-height: 44px;
-  padding: 0 16px;
-  border: 1px solid var(--btn-edge);
-  border-radius: 999px;
-  background: var(--btn-face);
-  color: var(--text);
-  font-family: var(--font-mono), monospace;
-  font-weight: 700;
-  font-size: var(--type-label);
-  letter-spacing: var(--type-label-tracking);
-  text-transform: uppercase;
-  cursor: pointer;
-}
-.copy:hover { border-color: var(--green); }
-.winText {
-  margin: 14px 0 0;
-  font-size: var(--type-body);
-  line-height: var(--type-body-lh);
-  color: var(--text);
-  max-width: 52ch;
-}
-.winLink {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  margin-top: 6px;
-  color: var(--green);
-  font-weight: 600;
-}
-.winLink:hover { text-decoration: underline; }
 
 /* ── The board ─────────────────────────────────────────────────────────── */
 .boardWrap { min-width: 0; }
@@ -268,11 +107,8 @@
   flex: none;
   background: var(--dot-muted);
 }
-[data-state="live"] .rowState { color: var(--green); font-weight: 600; }
-[data-state="live"] .dot { background: var(--green-dot); }
 [data-state="claimed"] .rowState { color: var(--text); }
 [data-state="claimed"] .dot { background: var(--text-muted); }
-.yours { color: var(--green); font-weight: 700; }
 
 .boardFoot {
   margin: 12px 0 0;

@@ -92,6 +92,25 @@ const asTemplate = (path: string) =>
 
 const indexed = routes.filter((r) => !r.noindex);
 
+/** Whether anything in app/ outside the route's own directory links to it. */
+function hasInboundLink(r: Route): boolean {
+  const lit = r.path.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const re = new RegExp(`href[:=]\\s*(?:"${lit}"|\\{${asTemplate(r.path)}\\})`);
+  return [...SOURCES].some(([f, s]) => f !== r.file && (r.dir === "app" || dirname(f) !== r.dir) && re.test(s));
+}
+
+/**
+ * Indexed routes the owner has ruled stay up with no link to them — still in
+ * the sitemap and the site search, so not unfindable, but linked from nowhere.
+ * Each line says who ruled and when.
+ */
+const UNLINKED_BY_RULING: Record<string, string> = {
+  // The Naija @ 66 hunt ended 2 Oct 2026. Paul, 2 Oct 2026: "remove the naija
+  // @66 from homepage but leave the link functional" (#391). The home strip
+  // was its only link; the strip's component went in the post-hunt cleanup.
+  "/naija66": "Paul, 2 Oct 2026 — off the home page, page kept up",
+};
+
 describe("route checklist", () => {
   it("finds every route under app/", () => {
     // A sanity anchor: if the walk breaks, every other test in this file passes
@@ -141,15 +160,20 @@ describe("route checklist", () => {
     // sitemap. Linking to it to satisfy a test would be the test making the
     // site worse. A page nobody should find is allowed to be unfindable.
     const orphans = indexed
-      .filter((r) => {
-        const lit = r.path.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-        const re = new RegExp(`href[:=]\\s*(?:"${lit}"|\\{${asTemplate(r.path)}\\})`);
-        return ![...SOURCES].some(
-          ([f, s]) => f !== r.file && (r.dir === "app" || dirname(f) !== r.dir) && re.test(s),
-        );
-      })
+      .filter((r) => !hasInboundLink(r))
+      .filter((r) => !(r.path in UNLINKED_BY_RULING))
       .map((r) => `${r.path} — nothing in app/ links to it`);
     expect(orphans).toEqual([]);
+  });
+
+  it("keeps the owner's unlinked routes to ones that really have no inbound link", () => {
+    // So the exemption cannot outlive its reason: once something links to a
+    // route again, its line below must go.
+    for (const path of Object.keys(UNLINKED_BY_RULING)) {
+      const r = indexed.find((x) => x.path === path);
+      expect(r, `${path} is not an indexed route`).toBeDefined();
+      expect(hasInboundLink(r!), `${path} is linked again — drop it from UNLINKED_BY_RULING`).toBe(false);
+    }
   });
 
   it("gives every breadcrumb segment a written label", () => {

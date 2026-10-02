@@ -13,7 +13,6 @@ import BackToTop from "./components/BackToTop";
 import Breadcrumbs from "./components/Breadcrumbs";
 import BirthdayCelebration from "./components/BirthdayCelebration";
 import FooterNav from "./components/FooterNav";
-import HuntKeySlot from "./components/HuntKeySlot";
 import { siteUrl } from "./site";
 import { PRE_PAINT_LANG } from "./lib/documentLang";
 import { FEED_ALTERNATE, INDEXABLE_ROBOTS, TWITTER_CREATOR, BURNA_BOY } from "./lib/seo";
@@ -279,12 +278,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
         {/* THE ACTUAL PAGE CONTENT gets slotted in here */}
         {children}
-
-        {/* Naija @ 66 (1-2 Oct 2026): the reveal card, identical on every page
-            and both layouts. It renders nothing outside the hunt's window and
-            nothing on a page without a dropped code — see the component. Fixed
-            when it does show, so it never shifts the page. */}
-        <HuntKeySlot />
 
         {/* The mobile spine: a fixed five-tab bar on every phone screen.
             Hidden above the mobile breakpoint, where the sticky nav does it.

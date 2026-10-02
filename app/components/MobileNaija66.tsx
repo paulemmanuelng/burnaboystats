@@ -4,14 +4,14 @@ import BackLink from "./BackLink";
 import MobileMenuButton from "./MobileMenuButton";
 import { HuntBoard, HuntFlowBox } from "./Naija66Play";
 import Naija66Words from "./Naija66Words";
-import { DROP_HOURS, HOW_IT_WORKS, PRIZE, RULES, WHERE_NEXT } from "../lib/naija66/copy";
+import { DROP_HOURS, ENDED, HOW_IT_WORKS, LEDE, RULES, X_LINK } from "../lib/naija66/copy";
 import { NAIJA66_X_URL } from "../data/naija66";
 
 /**
  * The /naija66 phone screen.
  *
- * Its own running order for a thumb: how to win straight under the title,
- * then the board, the steps and the rules. Back bar like /contact's (so /naija66 is in BACK_BAR_ROUTES), and
+ * Its own running order for a thumb: the close straight under the title,
+ * then the final board, how it worked and the rules (the hunt has ended). Back bar like /contact's (so /naija66 is in BACK_BAR_ROUTES), and
  * the five-tab bar at its foot (so it is not an ACTION_BAR route).
  *
  * Every word it prints comes from lib/naija66/copy.ts, the same list the
@@ -46,16 +46,12 @@ export default function MobileNaija66() {
         <h1 className={styles.title}>
           Naija @ <span className={styles.green}>66</span>
         </h1>
-        <p className={styles.lede}>
-          Five codes hide in words on pages of Burna Boy Stats, one at each drop. Tap the right
-          word first and win {PRIZE.long}.
-        </p>
+        <p className={styles.lede}>{LEDE}</p>
         <p className={styles.drops}>
-          <span className={styles.liveDot} aria-hidden="true" />
-          Codes appear {DROP_HOURS} WAT
+          {ENDED} Codes dropped at {DROP_HOURS} WAT.
         </p>
         <a href={NAIJA66_X_URL} target="_blank" rel="noopener noreferrer" className={styles.xLink}>
-          {WHERE_NEXT} ↗
+          {X_LINK} ↗
         </a>
       </div>
 
@@ -74,7 +70,7 @@ export default function MobileNaija66() {
       <section className={styles.section} aria-labelledby="m-naija66-how">
         <div className={styles.sectionKicker}>Four steps</div>
         <h2 id="m-naija66-how" className={styles.sectionTitle}>
-          How it works
+          How it worked
         </h2>
         <ol className={styles.steps}>
           {HOW_IT_WORKS.map((s, i) => (
