@@ -118,11 +118,21 @@ export const spotifyTotalStreamsExact = "11,113,813,067";
 // He leads all Nigerian artists on this measure — 346 videos to 4.04 billion views,
 // ahead of Wizkid (2.66B), Rema (2.60B) and Davido (2.47B).
 //
-// Re-measured 14 Sep 2026 at youtube.com/@BurnaBoy/about, which reported
+// Measured 14 Sep 2026 at youtube.com/@BurnaBoy/about, which reported
 // 4,043,634,651 views across 346 videos and 7.31m subscribers. Displayed to a
 // tenth of a billion, so the string does not move — but the measurement date does,
 // and the gap to the next Nigerian act is what makes the 4-billion first below
 // arithmetic rather than a press claim.
+//
+// Re-read 2 Oct 2026 at the same about page: 7.39M subscribers (the header
+// rounds it to "7.4M"), but the SAME 4,043,634,651 views and the same 346
+// videos as 14 Sep. The about page's view total did not move in 18 days, while
+// his videos gained views every day of them (the per-video counts the stats bot
+// reads kept climbing), so that total is evidently not refreshed daily by
+// YouTube. The 2 Oct read therefore adds no new count, and
+// `youtubeTotalViewsAsOf` stays on 14 Sep, the last day the page printed a
+// total that had moved. Re-read it in a few weeks; if it is still frozen,
+// the date printed on /records/by-the-numbers is the honest one.
 //
 // HAND-MAINTAINED, deliberately. The stats bot used to write this field from
 // kworb, and was taken off it on 27 Aug 2026 because kworb cannot measure it:
