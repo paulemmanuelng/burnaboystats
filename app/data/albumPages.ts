@@ -187,7 +187,7 @@ export const albumPages: AlbumPage[] = [
     faqs: [
       {
         q: "How did Love, Damini chart?",
-        a: "Love, Damini reached No. 2 in both the UK and the Netherlands — his record album peak at the time — with No. 3 in Nigeria, No. 6 in Canada and No. 14 on the US Billboard 200, charting in ten countries in all.",
+        a: "Love, Damini reached No. 2 in both the UK and the Netherlands — his record album peak at the time — with No. 3 in Nigeria, No. 6 in Canada and No. 14 on the US Billboard 200, charting in thirteen countries in all.",
       },
       {
         q: "Which songs are on Love, Damini?",

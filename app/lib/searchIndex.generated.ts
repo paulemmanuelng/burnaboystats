@@ -5182,6 +5182,20 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "North Macedonia",
+    "path": "/records/charts#country=MK",
+    "section": "Country",
+    "description": "Chart peaks in North Macedonia on Radiomonitor North Macedonia (airplay — no other national chart).",
+    "keywords": [
+      "mk",
+      "country",
+      "chart",
+      "peak",
+      "radiomonitor north macedonia (airplay — no other national chart)"
+    ],
+    "generated": true
+  },
+  {
     "title": "Norway",
     "path": "/certifications#country=NO",
     "section": "Country",
@@ -5342,6 +5356,20 @@ export const generatedDocs: SearchDoc[] = [
       "country",
       "certified",
       "čns ifpi (slovakia)"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Slovenia",
+    "path": "/records/charts#country=SI",
+    "section": "Country",
+    "description": "Chart peaks in Slovenia on Radiomonitor Slovenia (airplay — no other national chart).",
+    "keywords": [
+      "si",
+      "country",
+      "chart",
+      "peak",
+      "radiomonitor slovenia (airplay — no other national chart)"
     ],
     "generated": true
   },
@@ -7277,9 +7305,9 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Be Honest",
-    "path": "/certifications#release=Be%20Honest",
+    "path": "/records/charts#song=Be%20Honest",
     "section": "Release",
-    "description": "Jorja Smith ft. Burna Boy — 6 certifications · 5 chart entries.",
+    "description": "Jorja Smith ft. Burna Boy — 6 certifications · 7 chart entries.",
     "keywords": [
       "jorja",
       "smith",
@@ -7367,7 +7395,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Cheat on Me",
     "path": "/records/charts#song=Cheat%20on%20Me",
     "section": "Release",
-    "description": "feat. Dave — 2 certifications · 5 chart entries.",
+    "description": "feat. Dave — 2 certifications · 7 chart entries.",
     "keywords": [
       "feat",
       "dave",
@@ -7389,9 +7417,9 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Cloak & Dagger",
-    "path": "/certifications#release=Cloak%20%26%20Dagger",
+    "path": "/records/charts#song=Cloak%20%26%20Dagger",
     "section": "Release",
-    "description": "feat. J Hus — 1 certification · 1 chart entry.",
+    "description": "feat. J Hus — 1 certification · 2 chart entries.",
     "keywords": [
       "feat",
       "hus",
@@ -7451,7 +7479,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Dai Dai",
     "path": "/records/charts#song=Dai%20Dai",
     "section": "Release",
-    "description": "Shakira & Burna Boy — 17 certifications · 68 chart entries.",
+    "description": "Shakira & Burna Boy — 17 certifications · 70 chart entries.",
     "keywords": [
       "shakira",
       "burna",
@@ -7592,7 +7620,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Gbona",
     "path": "/certifications#release=Gbona",
     "section": "Release",
-    "description": "8 certifications.",
+    "description": "8 certifications · 1 chart entry.",
     "keywords": [
       "song",
       "release"
@@ -7637,6 +7665,20 @@ export const generatedDocs: SearchDoc[] = [
       "ladysmith",
       "black",
       "mambazo",
+      "song",
+      "release"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Good Time",
+    "path": "/records/charts#song=Good%20Time",
+    "section": "Release",
+    "description": "J Hus ft. Burna Boy — 1 chart entry.",
+    "keywords": [
+      "hus",
+      "burna",
+      "boy",
       "song",
       "release"
     ],
@@ -7724,7 +7766,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "I Told Them…",
     "path": "/music/albums/i-told-them",
     "section": "Release",
-    "description": "4 certifications · 14 chart entries.",
+    "description": "4 certifications · 16 chart entries.",
     "keywords": [
       "song",
       "release"
@@ -7746,7 +7788,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "It's Plenty",
     "path": "/certifications#release=It's%20Plenty",
     "section": "Release",
-    "description": "5 certifications · 1 chart entry.",
+    "description": "5 certifications · 2 chart entries.",
     "keywords": [
       "song",
       "release"
@@ -7755,9 +7797,9 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Jagele",
-    "path": "/certifications#release=Jagele",
+    "path": "/records/charts#song=Jagele",
     "section": "Release",
-    "description": "1 certification · 1 chart entry.",
+    "description": "1 certification · 2 chart entries.",
     "keywords": [
       "song",
       "release"
@@ -7810,7 +7852,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Kilometre",
     "path": "/certifications#release=Kilometre",
     "section": "Release",
-    "description": "2 certifications · 2 chart entries.",
+    "description": "2 certifications · 1 chart entry.",
     "keywords": [
       "song",
       "release"
@@ -7835,7 +7877,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Last Last",
     "path": "/music/last-last",
     "section": "Release",
-    "description": "12 certifications · 15 chart entries.",
+    "description": "12 certifications · 16 chart entries.",
     "keywords": [
       "song",
       "release"
@@ -7896,7 +7938,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Love, Damini",
     "path": "/music/albums/love-damini",
     "section": "Release",
-    "description": "8 certifications · 10 chart entries.",
+    "description": "8 certifications · 13 chart entries.",
     "keywords": [
       "song",
       "release"
@@ -7907,7 +7949,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Loved by You",
     "path": "/records/charts#song=Loved%20by%20You",
     "section": "Release",
-    "description": "Justin Bieber ft. Burna Boy — 2 certifications · 3 chart entries.",
+    "description": "Justin Bieber ft. Burna Boy — 2 certifications · 5 chart entries.",
     "keywords": [
       "justin",
       "bieber",
@@ -7922,7 +7964,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Masculine",
     "path": "/records/charts#song=Masculine",
     "section": "Release",
-    "description": "J Hus ft. Burna Boy — 1 chart entry.",
+    "description": "J Hus ft. Burna Boy — 3 chart entries.",
     "keywords": [
       "hus",
       "burna",
@@ -8096,7 +8138,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Own It",
     "path": "/records/charts#song=Own%20It",
     "section": "Release",
-    "description": "Stormzy ft. Ed Sheeran & Burna Boy — 6 certifications · 9 chart entries.",
+    "description": "Stormzy ft. Ed Sheeran & Burna Boy — 6 certifications · 13 chart entries.",
     "keywords": [
       "stormzy",
       "sheeran",
@@ -8122,9 +8164,9 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Play Play",
-    "path": "/certifications#release=Play%20Play",
+    "path": "/records/charts#song=Play%20Play",
     "section": "Release",
-    "description": "J Hus ft. Burna Boy — 1 certification.",
+    "description": "J Hus ft. Burna Boy — 1 certification · 2 chart entries.",
     "keywords": [
       "hus",
       "burna",
@@ -8258,6 +8300,36 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "She's Not Anyone",
+    "path": "/records/charts#song=She's%20Not%20Anyone",
+    "section": "Release",
+    "description": "D-Block Europe ft. Burna Boy — 2 chart entries.",
+    "keywords": [
+      "block",
+      "europe",
+      "burna",
+      "boy",
+      "song",
+      "release"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Siberia",
+    "path": "/records/charts#song=Siberia",
+    "section": "Release",
+    "description": "Headie One ft. Burna Boy — 2 chart entries.",
+    "keywords": [
+      "headie",
+      "one",
+      "burna",
+      "boy",
+      "song",
+      "release"
+    ],
+    "generated": true
+  },
+  {
     "title": "Simmer",
     "path": "/certifications#release=Simmer",
     "section": "Release",
@@ -8342,7 +8414,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "TaTaTa",
     "path": "/music/tatata",
     "section": "Release",
-    "description": "feat. Travis Scott — 1 certification · 2 chart entries.",
+    "description": "feat. Travis Scott — 1 certification · 4 chart entries.",
     "keywords": [
       "feat",
       "travis",
@@ -8373,7 +8445,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Tested, Approved & Trusted",
     "path": "/certifications#release=Tested%2C%20Approved%20%26%20Trusted",
     "section": "Release",
-    "description": "3 certifications · 1 chart entry.",
+    "description": "3 certifications · 2 chart entries.",
     "keywords": [
       "song",
       "release"
@@ -8493,7 +8565,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "We Pray",
     "path": "/records/charts#song=We%20Pray",
     "section": "Release",
-    "description": "Coldplay ft. Burna Boy & others — 8 certifications · 26 chart entries.",
+    "description": "Coldplay ft. Burna Boy & others — 8 certifications · 25 chart entries.",
     "keywords": [
       "coldplay",
       "burna",
@@ -8531,9 +8603,9 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Wild Dreams",
-    "path": "/certifications#release=Wild%20Dreams",
+    "path": "/records/charts#song=Wild%20Dreams",
     "section": "Release",
-    "description": "feat. Khalid — 1 certification · 1 chart entry.",
+    "description": "feat. Khalid — 1 certification · 2 chart entries.",
     "keywords": [
       "feat",
       "khalid",

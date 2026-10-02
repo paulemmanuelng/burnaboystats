@@ -410,7 +410,7 @@ Eleven investigation threads were reopened against this file. What changed:
 
 ### Context
 
-Under this identical standard, **Burna Boy has 351 chart entries and 46 No. 1 placements across 67 chart countries** (burnaboystats.com).
+Under this identical standard, **Burna Boy has 384 chart entries and 46 No. 1 placements across 69 chart countries** (burnaboystats.com).
 
 The honest comparison is that these are not close, and the repair pass widened the gap:
 

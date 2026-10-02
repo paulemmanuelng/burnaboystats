@@ -136,7 +136,7 @@ describe("the takeover: every country named, the No. 1s in the No. 1 band", () =
     const cells = [...d.querySelectorAll("li[data-code]")];
     expect(cells.filter((c) => /cellFolded/.test(c.className)).length).toBe(Math.max(0, countries.length - 30));
     expect(cells.slice(0, 30).every((c) => !/cellFolded/.test(c.className))).toBe(true);
-    const fold = [...d.querySelectorAll("button")].find((b) => b.hasAttribute("aria-expanded") && /66|todos|all/i.test(text(b)));
+    const fold = [...d.querySelectorAll("button")].find((b) => b.hasAttribute("aria-expanded") && /68|todos|all/i.test(text(b)));
     expect(text(fold)).toContain(String(countries.length));
     // The "66 countries · 26 at No. 1" bar repeated the sentence above it.
     expect(d.querySelector('[class*="foldNums"]')).toBeNull();
@@ -169,7 +169,7 @@ describe("by the numbers: six captioned lead figures, all from data", () => {
       String(daiDaiCertCount),
       "19 Jul",
     ]);
-    // 68 is the national charts plus both Billboard globals, and says so.
+    // 70 is the national charts plus both Billboard globals, and says so.
     expect(entries.some((e) => e.c === "GLB") && entries.some((e) => e.c === "GLBX")).toBe(true);
     expect(countries.length + 2).toBe(daiDaiChartEntryCount);
     const caps = leads.map((li) => text(li.querySelector('[class*="leadCaption"]')));

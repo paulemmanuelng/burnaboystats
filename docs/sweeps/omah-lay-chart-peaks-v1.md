@@ -204,7 +204,7 @@ Legitimate inside a single-artist ledger, because featured credits count — but
 
 ### Context
 
-Under this identical standard, **Burna Boy has 351 chart entries and 46 No. 1 placements across 69 chart territories** ([burnaboystats.com](https://burnaboystats.com)).
+Under this identical standard, **Burna Boy has 384 chart entries and 46 No. 1 placements across 71 chart territories** ([burnaboystats.com](https://burnaboystats.com)).
 
 The honest comparison: Omah Lay's **70 entries across 16 chart territories** is **26% of Burna Boy's entry count and 23% of his territory reach**, and the gap in No. 1s is wider still — **6 to 47**, and all six of his are in one country.
 

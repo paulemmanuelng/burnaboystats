@@ -7,14 +7,15 @@ import styles from "./DaiDaiConquest.module.css";
  * "The world takeover" — every country “Dai Dai” charted in, one cell each.
  *
  * designs/desktop/Dai Dai Redesign.dc.html (approved by Paul, 26 Sep 2026):
- *   - desktop: eleven columns, so 66 countries make six full rows. Every cell
+ *   - desktop: eleven columns — 66 countries made six full rows; North Macedonia
+ *     and Slovenia (2 Oct 2026) put two on a seventh. Every cell
  *     shows its flag, the country's name and its peak — the names used to live
  *     only in hover tooltips, which a touch screen never shows;
  *   - the No. 1 cells carry the No. 1 peak band (--peak-band-1) as a wash and an
  *     edge. It is a data colour, not the brand gold, which marks only what is
  *     live or an action;
  *   - phone: six columns of flag, code and peak for the first thirty cells,
- *     then "Show all 66, with names" — the fold the owner approved. Folded
+ *     then "Show all N, with names" (68 since 2 Oct 2026) — the fold the owner approved. Folded
  *     cells stay in the HTML; the fold is a class, not an unrendered list.
  *
  * The old summary bar ("66 countries · 26 at No. 1") is gone: the section's

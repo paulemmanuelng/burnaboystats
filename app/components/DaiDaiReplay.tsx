@@ -13,7 +13,7 @@ import type { ReplayLabels } from "./daiDaiReplayLabels";
  * Paul on 26 Sep 2026). The Replay Module's rules, ported; not its code:
  *
  * - POSTER: the server renders the END frame — every country at its peak,
- *   which is the takeover grid (26 of 66 at No. 1) — with a Play control.
+ *   which is the takeover grid (26 of 68 at No. 1) — with a Play control.
  *   Nothing plays until it is pressed.
  * - PLAYING: one weekly frame a second. The live region stays silent.
  * - PAUSED: the frame holds; hover, focus or tap on a country shows its card

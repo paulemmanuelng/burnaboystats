@@ -57,7 +57,7 @@ export interface ReplayData {
   releaseShort: string;
   halftimeShort: string;
   lastShort: string;
-  /** The 66 national charts, then the two globals. */
+  /** The 68 national charts, then the two globals. */
   countries: ReplayRun[];
   globals: ReplayRun[];
   /** Countries at No. 1 at their peak — daiDaiNumberOnes, the takeover grid's figure. */

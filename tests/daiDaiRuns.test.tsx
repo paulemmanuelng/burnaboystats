@@ -42,7 +42,7 @@ import DaiDaiPageES from "../app/dai-dai/es/page";
  * The Dai Dai replay (PROMPT-DAI-DAI.md, commit 3; research/replay.md §3).
  *
  * The four invariants the brief names, and what the player does with them:
- *   1. the end frame's best positions are the charts.ts peaks, for all 66;
+ *   1. the end frame's best positions are the charts.ts peaks, for all 68;
  *   2. no frame ever counts more read No. 1s than the song's 26;
  *   3. no unread week is ever filled from a neighbouring week;
  *   4. EN and ES get the same frames.
@@ -64,8 +64,9 @@ const frameIdx = (d: string) => daiDaiFrames.indexOf(frameOf(d));
 describe("app/data/daiDaiRuns.ts — the shape and the reads", () => {
   it("holds one run per chart the song is on, in charts.ts order", () => {
     expect(daiDaiRuns.map((r) => r.code)).toEqual(release.entries.map((e) => e.c));
-    expect(daiDaiCountryRuns).toHaveLength(66);
-    expect(daiDaiRuns).toHaveLength(68);
+    // 66 -> 68 on 2 Oct 2026: North Macedonia and Slovenia (Radiomonitor floors).
+    expect(daiDaiCountryRuns).toHaveLength(68);
+    expect(daiDaiRuns).toHaveLength(70);
   });
 
   it("reads peak, weeks at the peak, weeks on chart and the body from charts.ts — never retypes them", () => {
@@ -113,12 +114,12 @@ describe("app/data/daiDaiRuns.ts — the shape and the reads", () => {
 });
 
 describe("1. the end frame is the takeover grid", () => {
-  it("every one of the 66 ends on its charts.ts peak", () => {
+  it("every one of the 68 ends on its charts.ts peak", () => {
     for (const r of daiDaiCountryRuns) expect(endBest(r), r.code).toBe(entry(r.code).peak);
     for (const r of daiDaiRuns) expect(endBest(r), r.code).toBe(entry(r.code).peak);
   });
 
-  it("26 of 66 at No. 1, as the grid says", () => {
+  it("26 of 68 at No. 1, as the grid says", () => {
     expect(daiDaiCountryRuns.filter((r) => endBest(r) === 1)).toHaveLength(daiDaiNumberOnes);
     expect(daiDaiNumberOnes).toBe(26);
   });
@@ -228,11 +229,12 @@ describe("3. no unread week is ever filled from a neighbouring week", () => {
       expect(glb.points[frameIdx(d)].status, d).toBe("unread");
     }
 
-    // Germany: charts.ts counts 11 weeks at No. 1, the repo dates nine of them.
-    // The two it does not date are unread, not "probably No. 1".
+    // Germany: charts.ts counts 13 weeks at No. 1 (11 until the 2 Oct 2026
+    // charts sweep), the replay's transcriptions date nine of them. The ones
+    // they do not date are unread, not "probably No. 1".
     const de = run("DE");
     expect(de.points.filter((p) => p.status === "on" && p.pos === 1)).toHaveLength(9);
-    expect(de.weeksAtPeak).toBe(11);
+    expect(de.weeksAtPeak).toBe(13);
     expect(de.points[frameIdx("2026-09-04")].status).toBe("unread");
     expect(de.points[frameIdx("2026-09-11")].status).toBe("unread");
 
@@ -306,7 +308,7 @@ describe("3. no unread week is ever filled from a neighbouring week", () => {
     // Counts-only and peak-only countries.
     for (const c of ["BE", "SR", "AE", "AR", "IT", "IN", "CZ", "VE", "LB", "IS", "EC", "EE", "US", "SG"]) expect(run(c).points, c).toEqual([]);
     expect(daiDaiRecordedCount).toBe(15);
-    expect(daiDaiRecordedCount + daiDaiPeakOnlyCount).toBe(66);
+    expect(daiDaiRecordedCount + daiDaiPeakOnlyCount).toBe(68);
   });
 
   it("each frame's tray is exactly its unread countries, and its no-chart line exactly the no-chart ones", () => {
@@ -447,7 +449,7 @@ describe("the player", () => {
   it("the ranking is one tab stop: arrows move between countries and the card follows", () => {
     const { container, getByRole } = render(<DaiDaiReplay data={data} labels={EN_REPLAY_LABELS} />);
     const chips = [...container.querySelectorAll<HTMLButtonElement>("button[data-chip]")];
-    expect(chips).toHaveLength(66);
+    expect(chips).toHaveLength(68);
     expect(chips.filter((c) => c.tabIndex === 0)).toHaveLength(1);
     act(() => chips[0].focus());
     expect(getByRole("group", { name: data.countries.find((c) => c.code === chips[0].dataset.chip)!.name })).toBeInTheDocument();
@@ -465,7 +467,7 @@ describe("the player", () => {
       const { container } = render(<DaiDaiReplay data={data} labels={EN_REPLAY_LABELS} />);
       expect(container.querySelectorAll("button[data-chip]")).toHaveLength(0);
       const labels = [...container.querySelectorAll<HTMLElement>("[data-chip-label]")];
-      expect(labels).toHaveLength(66);
+      expect(labels).toHaveLength(68);
       for (const l of labels) {
         expect(l.tagName).toBe("SPAN");
         expect(l.hasAttribute("tabindex")).toBe(false);
@@ -477,9 +479,9 @@ describe("the player", () => {
     } finally {
       window.matchMedia = mm;
     }
-    // Negative control: at desktop width the same ranking is 66 buttons.
+    // Negative control: at desktop width the same ranking is 68 buttons.
     const { container } = render(<DaiDaiReplay data={data} labels={EN_REPLAY_LABELS} />);
-    expect(container.querySelectorAll("button[data-chip]")).toHaveLength(66);
+    expect(container.querySelectorAll("button[data-chip]")).toHaveLength(68);
     expect(container.querySelectorAll("[data-chip-label]")).toHaveLength(0);
   });
 
@@ -519,7 +521,7 @@ describe("the player", () => {
     try {
       const { container, getByRole } = render(<DaiDaiReplay data={data} labels={EN_REPLAY_LABELS} />);
       expect(container.firstElementChild!.getAttribute("data-view")).toBe("multiples");
-      expect(container.querySelectorAll("tbody tr")).toHaveLength(68);
+      expect(container.querySelectorAll("tbody tr")).toHaveLength(70);
       // Every unread week in the table is hatched.
       for (const td of container.querySelectorAll('td[data-s="unread"] span')) expect(td.getAttribute("class")).toMatch(/mUnread/);
       act(() => vi.advanceTimersByTime(30_000));

@@ -72,7 +72,7 @@ export const songs: Song[] = [
       },
       {
         q: "How high did “Last Last” chart?",
-        a: "“Last Last” reached No. 1 in South Africa, No. 4 on the UK Official Singles Chart, and No. 44 on the US Billboard Hot 100, charting in 14 countries in all.",
+        a: "“Last Last” reached No. 1 in South Africa, No. 4 on the UK Official Singles Chart, and No. 44 on the US Billboard Hot 100, charting in 15 countries in all.",
       },
       {
         q: "Is “Last Last” certified?",

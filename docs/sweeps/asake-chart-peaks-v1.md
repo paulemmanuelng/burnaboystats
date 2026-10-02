@@ -257,7 +257,7 @@ Four rows here also appear in files already written, and **all four reproduce to
 
 ### Context
 
-Under this identical standard, **Burna Boy has 351 chart entries and 46 No. 1 placements across 69 chart territories** ([burnaboystats.com](https://burnaboystats.com)).
+Under this identical standard, **Burna Boy has 384 chart entries and 46 No. 1 placements across 71 chart territories** ([burnaboystats.com](https://burnaboystats.com)).
 
 Asake's **131 entries across 12 chart territories** is **37% of Burna Boy's entry count** and **just over half his No. 1 tally** — but only **17% of his chart-territory reach**, and that last number is the honest one. The two lines are not the same shape at all. Burna Boy's 351 is spread across 69 territories at an average of five entries each; Asake's 131 is **94 entries in one country** plus a 37-entry tail.
 
