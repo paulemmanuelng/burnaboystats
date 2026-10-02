@@ -502,7 +502,7 @@
     "date": "2026-10-02",
     "release": "Raindance",
     "platform": "Shazam",
-    "position": 16
+    "position": 13
   },
   {
     "date": "2026-10-02",

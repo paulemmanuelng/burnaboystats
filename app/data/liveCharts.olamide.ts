@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-02";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-02T05:43Z";
+  export const liveChartsBuiltAt = "2026-10-02T12:41Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","iTunes"];
@@ -134,20 +134,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 76,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 87,
+            "position": 96,
             "movement": null,
             "status": "new"
           }
@@ -167,65 +154,62 @@
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 53,
-            "movement": 14
+            "position": 46,
+            "movement": 7
           },
           {
             "country": "US",
             "name": "United States",
-            "position": 70,
-            "movement": 18
-          },
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 76,
-            "movement": 26
+            "position": 67,
+            "movement": 3
           },
           {
             "country": "CA",
             "name": "Canada",
-            "position": 83,
-            "movement": 24
+            "position": 69,
+            "movement": 14
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 70,
+            "movement": 6
           },
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 102,
-            "movement": 27
-          },
-          {
-            "country": "FR",
-            "name": "France",
-            "position": 150,
-            "movement": 45
-          },
-          {
-            "country": "CI",
-            "name": "Côte d'Ivoire",
-            "position": 154,
-            "movement": 46
+            "position": 83,
+            "movement": 19
           },
           {
             "country": "PT",
             "name": "Portugal",
-            "position": 157,
-            "movement": null,
-            "status": "new"
+            "position": 138,
+            "movement": 19
+          },
+          {
+            "country": "CI",
+            "name": "Côte d'Ivoire",
+            "position": 144,
+            "movement": 10
+          },
+          {
+            "country": "FR",
+            "name": "France",
+            "position": 145,
+            "movement": 5
           },
           {
             "country": "WW",
             "name": "Worldwide",
-            "position": 178,
-            "movement": null,
-            "status": "new"
+            "position": 146,
+            "movement": 32
           },
           {
             "country": "BE",
             "name": "Belgium",
-            "position": 193,
-            "movement": null,
-            "status": "new"
+            "position": 175,
+            "movement": 18
           }
         ]
       },
@@ -238,6 +222,19 @@
             "name": "Nigeria",
             "position": 142,
             "movement": -18
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "DZ",
+            "name": "Algeria",
+            "position": 14,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -300,49 +297,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2f5c91242bfb5ed7be4ccb2b435b6f7f/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "99",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 103,
-            "movement": 12
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 148,
-            "movement": -19
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 198,
-            "movement": -171
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Unruly",
@@ -414,6 +368,37 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "99",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 103,
+            "movement": 12
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 148,
+            "movement": -19
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Fada Fada",
     "platforms": [
       {
@@ -423,7 +408,7 @@
           {
             "country": "NO",
             "name": "Norway",
-            "position": 41,
+            "position": 127,
             "movement": null,
             "status": "new"
           }
@@ -436,8 +421,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 57,
-            "movement": 6
+            "position": 56,
+            "movement": 1
           }
         ]
       }
@@ -559,7 +544,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 143,
-            "movement": 0
+            "movement": 2
           }
         ]
       }
@@ -591,7 +576,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 178,
-            "movement": 0
+            "movement": 2
           }
         ]
       }
@@ -617,26 +602,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2f5c91242bfb5ed7be4ccb2b435b6f7f/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Dope Money",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 65,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/15b2af0e10dba1c44ddbe8b0c587d5e4/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Rock",
@@ -675,6 +640,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Dope Money",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 85,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/15b2af0e10dba1c44ddbe8b0c587d5e4/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Confam Ni",
@@ -727,7 +712,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 137,
-            "movement": 0
+            "movement": 2
           }
         ]
       }
