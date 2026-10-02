@@ -231,7 +231,7 @@ const followersSource = (() => {
     `${counted(followersTop).join(", ")} (then ${andList(counted(followers.slice(5, 7)))}; ` +
     `${andList(counted(over))} follow, and ${andList(under)} are under 2 million). ` +
     // The previous reading, typed: it is a fixed, dated fact about the past.
-    "The 24 September reading had the five at 17,911,287 / 12,855,789 / 12,027,276 / 11,939,386 / 10,773,557."
+    "The 27 September reading had the five at 17,954,252 / 12,891,692 / 12,053,961 / 11,970,673 / 10,832,377."
   );
 })();
 

@@ -53,6 +53,15 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-10-02",
+    category: "Streaming",
+    // The 2 Oct 2026 reading in app/data/spotify.ts (each artist's own Spotify
+    // page, About panel). Typed because this is a dated log line; the guard in
+    // tests/followersDerived.test.ts holds it to that day's reading.
+    text: "18,016,193 Spotify followers: past 18 million, the most of any African artist and 5.07 million clear of Wizkid (12.94M), with Davido (12.09M), Rema (12.02M) and Asake (10.90M) next. Every count read at Spotify itself on 2 October.",
+    href: "/records/africas-biggest",
+  },
+  {
     date: "2026-09-30",
     category: "Certifications",
     // AFP/Audiogest's own award card: "Alone / Burna Boy / Universal", gold disc
