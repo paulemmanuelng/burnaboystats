@@ -171,9 +171,11 @@ export function registerUrl(cert: PlaqueInput["cert"], country: PlaqueInput["cou
 }
 
 /** What the plaque was read from: "register" (a row in the body's own
- *  register — every plaque but a handful), "label" (a label-issued award: a
- *  `source: "label"` board plaque, or a per-cert `body` naming an issuer that
- *  is not a priced programme, as Dai Dai's Colombian Gold does) or
+ *  register — every plaque but a handful), "label" (a label-issued award or
+ *  the label's own announcement of one: a `source: "label"` board plaque —
+ *  Tyla's "Chanel" 🇿🇦 Gold is Sony Music Africa's X post — or a per-cert
+ *  `body` naming an issuer that is not a priced programme, as Dai Dai's
+ *  Colombian Gold does) or
  *  "announcement" (the certifying body's own published announcement, absent
  *  from its register). The column a blank register_url used to be the only
  *  hint of (PR #400 review). */

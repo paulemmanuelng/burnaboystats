@@ -495,7 +495,7 @@ describe("source says what each plaque was read from (PR #400 review)", () => {
         "Burna Boy|Dai Dai|CO|label",
         "Tems|No.1|ZA|label",
         "Tyla|Tyla|FR|announcement",
-        ...["Tyla", "Water", "Push 2 Start", "Truth or Dare", "Jump", "Art", "No.1", "Safer", "Water (Remix) (ft. Travis Scott)"].map(
+        ...["Tyla", "Water", "Push 2 Start", "Truth or Dare", "Jump", "Art", "No.1", "Safer", "Water (Remix) (ft. Travis Scott)", "Chanel"].map(
           (t) => `Tyla|${t}|ZA|label`,
         ),
       ].sort(),
