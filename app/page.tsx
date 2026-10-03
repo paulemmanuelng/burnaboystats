@@ -357,7 +357,7 @@ export default function Home() {
 
             <div className={styles.recordsGrid}>
               <div className={styles.recordsLeft}>
-                <h3 className={styles.h3}>Highest revenue per show</h3>
+                <h3 className={styles.h3}>Highest-grossing shows</h3>
                 <table className="tableBase">
                   <thead>
                     <tr>

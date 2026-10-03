@@ -290,11 +290,11 @@ export const searchIndex: SearchDoc[] = [
     keywords: ["festivals", "afro nation", "coachella", "glastonbury", "north sea jazz", "headline"],
   },
   {
-    title: "Highest Revenue Per Show",
+    title: "Highest-Grossing Shows",
     path: "/records/tours/revenue",
     section: "Records",
     description: "Box-office and highest-grossing concert figures.",
-    keywords: ["revenue", "box office", "grossing", "highest grossing", "boxscore", "earnings", "tour money"],
+    keywords: ["highest-grossing shows", "revenue per show", "highest revenue per show", "revenue", "box office", "grossing", "highest grossing", "boxscore", "earnings", "tour money"],
   },
   {
     title: "Highest-Grossing Artists by Country",

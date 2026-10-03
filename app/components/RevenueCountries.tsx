@@ -108,7 +108,7 @@ export default function RevenueCountries({
           <p className={styles.lede}>{lede}</p>
           <div className={styles.heroBtns}>
             <Link href="/records/tours/revenue" className="btn btnSecondary">
-              ← Revenue per show
+              ← Highest-grossing shows
             </Link>
           </div>
         </div>
@@ -195,7 +195,7 @@ export default function RevenueCountries({
           <p className={styles.sourceNote}>{METHOD_NOTE}</p>
           <div className={own.backRow}>
             <Link href="/records/tours/revenue" className="btn btnSecondary">
-              ← Revenue per show
+              ← Highest-grossing shows
             </Link>
             <Link href="/records/tours" className="btn btnSecondary">
               Tours

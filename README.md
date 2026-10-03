@@ -26,7 +26,7 @@ The site turns a large, hand-verified dataset into browsable, filterable pages:
 - **Awards** — every win and nomination across 40+ award bodies, filterable by
   result, year and ceremony.
 - **Tours & Live** — routed tour itineraries with box-office grosses, a
-  "highest revenue per show" leaderboard, a festivals sub-page, and an
+  "highest-grossing shows" leaderboard, a festivals sub-page, and an
   **interactive world map of every country he's performed in** (custom SVG, no
   mapping dependency).
 - **Firsts & Records**, **Africa's Biggest** (leaderboard comparisons vs. other

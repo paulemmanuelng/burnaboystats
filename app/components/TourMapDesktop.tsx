@@ -505,7 +505,7 @@ export default function TourMapDesktop({ data }: { data: TourMapProps }) {
           Festivals &amp; shows ↗
         </Link>
         <Link href="/records/tours/revenue" className="btn btnSecondary">
-          Revenue per show ↗
+          Highest-grossing shows ↗
         </Link>
       </section>
     </div>

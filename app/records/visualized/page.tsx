@@ -324,7 +324,7 @@ const jsonLd = datasetJsonLd({
     "Charted views of Burna Boy's career: biggest single-show grosses, certifications by country and by tier, the dated monthly-listener log, award wins by body and by year, live platform placements, countries performed in, and a map of the best chart peak per country.",
   path: "/records/visualized",
   keywords: ["Burna Boy", "charts", "data visualization", "grosses", "certifications", "awards", "chart peaks", "win rate", "most-streamed African artist", "Wizkid", "Tyla", "Rema", "Tems"],
-  variableMeasured: ["Revenue per show", "Certifications per country", "Certifications per tier", "International certifications per year (as logged)", "Spotify monthly listeners (dated log)", "Chart peak distribution", "Best chart peak per country", "Spotify streams by artist", "Award wins per body", "Award wins per year", "Award win rate", "Live platform-chart placements", "Countries performed in per region"],
+  variableMeasured: ["Gross per show", "Certifications per country", "Certifications per tier", "International certifications per year (as logged)", "Spotify monthly listeners (dated log)", "Chart peak distribution", "Best chart peak per country", "Spotify streams by artist", "Award wins per body", "Award wins per year", "Award win rate", "Live platform-chart placements", "Countries performed in per region"],
 });
 
 

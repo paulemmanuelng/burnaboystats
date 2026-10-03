@@ -30,18 +30,18 @@ const anyDash = revenueShows.some((s) => !s.tickets);
 const topM = `$${(top.revenue / 1e6).toFixed(2)}M`;
 
 export const metadata = pageMetadata({
-  title: "Burna Boy Concert Revenue — Highest-Grossing Shows",
+  title: "Burna Boy Box Office — Highest-Grossing Shows",
   description:
-    `Every verified single-show gross by an African artist — ${showCount} shows, ranked by box-office revenue and led by Burna Boy's ${topM} London Stadium concert.`,
+    `Every verified single-show gross by an African artist — ${showCount} shows, ranked by box-office gross and led by Burna Boy's ${topM} London Stadium concert.`,
   path: "/records/tours/revenue",
-  shareTitle: "Burna Boy — Highest Revenue Per Show",
+  shareTitle: "Burna Boy — Highest-Grossing Shows",
   shareDescription: `Every verified single-show gross by an African artist — ${showCount} shows, ranked.`,
 });
 
 const revenueJsonLd = {
   "@context": "https://schema.org",
   "@type": "ItemList",
-  name: "Highest reported revenue per show — African artists",
+  name: "Highest-grossing shows — African artists",
   itemListOrder: "https://schema.org/ItemListOrderDescending",
   numberOfItems: revenueShows.length,
   itemListElement: revenueShows.map((s, i) => ({
@@ -52,12 +52,12 @@ const revenueJsonLd = {
 };
 
 const revenueDataset = datasetJsonLd({
-  name: "Highest reported revenue per show by African artists",
+  name: "Highest-grossing shows by African artists",
   description:
-    `Every reported single-show gross by an African artist we have verified — ${showCount} shows, ranked by box-office revenue, led by Burna Boy's ${topM} London Stadium concert.`,
+    `Every reported single-show gross by an African artist we have verified — ${showCount} shows, ranked by box-office gross, led by Burna Boy's ${topM} London Stadium concert.`,
   path: "/records/tours/revenue",
-  keywords: ["Burna Boy", "box office", "highest-grossing concert", "African artist revenue", "touring revenue"],
-  variableMeasured: ["Artist", "Venue", "Tour", "Year", "Tickets sold", "Revenue"],
+  keywords: ["Burna Boy", "box office", "highest-grossing shows", "highest-grossing concert", "African artist revenue", "touring revenue"],
+  variableMeasured: ["Artist", "Venue", "Tour", "Year", "Tickets sold", "Gross"],
 });
 
 const SOURCE_NOTE =
@@ -121,7 +121,7 @@ export default function RevenuePage() {
               Box office · all-time
             </div>
             <h1 className={styles.h1}>
-              Highest <span className="inkText">Revenue Per Show</span>
+              Highest-Grossing <span className="inkText">Shows</span>
             </h1>
             <p className={styles.lede}>
               Every reported single-show gross by an African artist we have verified —{" "}

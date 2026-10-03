@@ -8,8 +8,8 @@ import { statBoxes, type LeaderboardBox } from "../../app/data/africasBiggest";
 // RevenueBoard, so the helper is gone — but this fixture is still the most
 // punishing real-world input StatBox can get, so it's built here instead.
 const revenueBox: LeaderboardBox = {
-  id: "highest-revenue-per-show",
-  title: "Highest reported revenue per show",
+  id: "highest-grossing-shows",
+  title: "Highest-grossing shows",
   meta: "test",
   layout: "list",
   entries: revenueShows.map((s) => ({
