@@ -13,6 +13,7 @@ import { albums } from "../data/albums";
 import { songs } from "../data/songs";
 import { updates } from "../data/updates";
 import { findings } from "./analysisFindings";
+import { revenueByCountry } from "./revenueByCountry";
 
 /**
  * The one-line figure each search result carries on its right.
@@ -42,6 +43,7 @@ export const searchStats: Record<string, string> = {
   "/records/tours/map": `${performedCountryCount} countries`,
   "/music/listeners": `${cityCount} cities`,
   "/records/tours/revenue": `${revenueShows.length} shows`,
+  "/records/tours/revenue/countries": `${revenueByCountry().countryCount} countries`,
   "/records/tours/festivals": String(festivals.length + concerts.length + otherShows.length),
   "/records/africas-biggest": `${statBoxes.length} boards`,
   "/records/cars": totalValueReported,

@@ -5,7 +5,7 @@ import BreadcrumbBar from "../../components/BreadcrumbBar";
 import ToursExplorer from "../../components/ToursExplorer";
 import MobileTours from "../../components/MobileTours";
 import { tours, liveMoments, upcomingShows, festivals, concerts, otherShows } from "../../data/tours";
-import { revenueShows } from "../../data/tourRevenue";
+import { revenueShows, REVENUE_AS_OF, REVENUE_SOURCE } from "../../data/tourRevenue";
 import { countryCount as playedCount, regionCount } from "../../data/performedCountries";
 import { pageMetadata } from "../../lib/seo";
 import NotReported from "../../components/NotReported";
@@ -308,16 +308,15 @@ export default function ToursPage() {
               </tbody>
             </table>
             <p className={styles.sourceNote}>
-              Burna Boy holds {hisShowCount} of the {revenueShows.length}{" "}
-              highest-grossing shows by an African artist — more than every other artist on this list
-              combined. Box-office figures reported by Billboard Boxscore &amp; Pollstar (as
-              aggregated by TouringData), cross-checked against press reporting, as of September
-              2026.
+              Burna Boy holds {hisShowCount} of the {revenueShows.length} verified single-show
+              grosses by an African artist
+              {hisShowCount > revenueShows.length - hisShowCount ? " — more than every other artist on this list combined" : ""}.
+              {REVENUE_SOURCE}, as of {REVENUE_AS_OF}.
             </p>
             <Link href="/records/tours/revenue" className={styles.jumpCardAlt}>
               <span>
                 <span className={styles.jumpTitle}>
-                  See the full top {revenueShows.length}
+                  See all {revenueShows.length}
                 </span>
                 <span className={styles.jumpDesc}>
                   Every show on the list, ranked by reported revenue
@@ -358,8 +357,8 @@ export default function ToursPage() {
           <div className={`${styles.wide} ${styles.sourcePad}`}>
             <p className={styles.sourceLine}>
               Box-office figures are reported by Billboard Boxscore &amp; Pollstar (as
-              aggregated by TouringData) and cross-checked against press reporting, as of
-              September 2026. For future dates, always check official ticketing.
+              aggregated by TouringData) and cross-checked against press reporting, as of{" "}
+              {REVENUE_AS_OF}. For future dates, always check official ticketing.
             </p>
             <Link href="/records" className={`btn btnSecondary ${styles.backBtn}`}>
               ← Career Records

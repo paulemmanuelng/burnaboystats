@@ -10,7 +10,7 @@ export const alt = "Burna Boy — Highest Revenue Per Show";
 const card = {
   kicker: "Box office",
   title: "Highest Revenue Per Show",
-  sub: `The ${revenueShows.length} highest-grossing single shows by an African artist, ranked`,
+  sub: `Every verified single-show gross by an African artist — ${revenueShows.length} shows, ranked`,
 };
 
 export const generateImageMetadata = () => ogVersions(card, alt);

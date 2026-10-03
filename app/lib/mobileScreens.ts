@@ -29,6 +29,9 @@ export const BACK_BAR_ROUTES = new Set<string>([
   "/records/cars",
   "/records/tours",
   "/records/tours/revenue",
+  // Box office by country: back bar to the revenue board, and an action bar
+  // back to every show ranked, as the board itself carries one.
+  "/records/tours/revenue/countries",
   "/records/tours/festivals",
   "/records/tours/map",
   "/records/by-the-numbers",
@@ -83,6 +86,7 @@ export const ACTION_BAR_ROUTES = new Set<string>([
   // home, music or certifications. The car pages are matched by isCarPage.
   "/records/tours",
   "/records/tours/revenue",
+  "/records/tours/revenue/countries",
   "/records/tours/festivals",
   "/records/tours/map",
   "/records/by-the-numbers",

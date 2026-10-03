@@ -376,7 +376,7 @@ export default function VisualizedPage() {
                 yTicks={[{ value: 0, label: "$0" }, { value: 3e6, label: "$3M" }, { value: 6e6, label: "$6M" }]}
                 xLabel="Tickets sold"
                 yLabel="Revenue"
-                ariaLabel="Tickets sold against revenue for the biggest single shows by African artists"
+                ariaLabel="Tickets sold against revenue for the verified single shows by African artists"
               />
             ),
           },
@@ -414,7 +414,7 @@ export default function VisualizedPage() {
         bars={[
           {
             title: "Biggest single-show grosses",
-            note: `Gold is Burna Boy — ${burnaShowCount} of the ${revenueShows.length} biggest nights.`,
+            note: `Gold is Burna Boy — ${burnaShowCount} of the ${revenueShows.length} verified nights.`,
             items: toBars(grosses, 6),
           },
           {
@@ -627,8 +627,8 @@ export default function VisualizedPage() {
           </div>
           <p className={`${styles.caption} ${styles.captionNarrow}`}>
             <span className={styles.captionLead}>Gold bars are Burna Boy</span> — he holds{" "}
-            {burnaShowCount} of the {revenueShows.length} biggest single-show grosses by an
-            African artist, more than everyone else combined.
+            {burnaShowCount} of the {revenueShows.length} verified single-show grosses by an
+            African artist{burnaShowCount > revenueShows.length - burnaShowCount ? ", more than everyone else combined" : ""}.
           </p>
           <Link href="/records/tours/revenue" className={`btn btnSecondary ${styles.cta}`}>
             Full leaderboard ↗
@@ -650,7 +650,7 @@ export default function VisualizedPage() {
               yLabel="Gross revenue"
               // Not the full list: the scatter plots only shows with a reported
               // ticket count, so the label counts the points actually drawn.
-              ariaLabel={`Scatter plot of tickets sold versus gross revenue across ${scatter.length} of the biggest single shows`}
+              ariaLabel={`Scatter plot of tickets sold versus gross revenue across ${scatter.length} verified single shows`}
             />
           </div>
           <p className={`${styles.caption} ${styles.captionNarrow}`}>
