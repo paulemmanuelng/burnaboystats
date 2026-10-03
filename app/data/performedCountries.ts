@@ -118,3 +118,19 @@ export const REGION_ORDER: Region[] = ["Africa", "Europe", "Asia", "North Americ
 
 export const countryCount = performedCountries.length;
 export const regionCount = new Set(performedCountries.map((c) => c.region)).size;
+
+/** The six inhabited continents, in the order the site lists them. */
+export type Continent = "Africa" | "Europe" | "Asia" | "North America" | "South America" | "Oceania";
+
+/** The seven regions sit on six continents once the Caribbean folds into
+ *  North America: every continent except Antarctica. One home — the tour map's
+ *  headline count and the box-office-by-country board both read it. */
+export const CONTINENT_OF: Record<Region, Continent> = {
+  Africa: "Africa",
+  Europe: "Europe",
+  Asia: "Asia",
+  "North America": "North America",
+  "South America": "South America",
+  Caribbean: "North America",
+  Oceania: "Oceania",
+};

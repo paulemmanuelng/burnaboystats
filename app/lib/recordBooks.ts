@@ -29,6 +29,7 @@ export const recordBooks: RecordBook[] = [
   { href: "/records/africas-biggest", title: "Africa's Biggest", desc: "Most-streamed African artists, year by year" },
   { href: "/records/tours", title: "Tours", desc: "Tour runs, dates & box-office grosses" },
   { href: "/records/tours/revenue", title: "Highest Revenue Per Show", desc: `The ${revenueShows.length} biggest single-show grosses by an African artist` },
+  { href: "/records/tours/revenue/countries", title: "Box Office by Country", desc: "Who leads every country and continent for reported box office" },
   { href: "/records/by-the-numbers", title: "By the Numbers", desc: "His whole career in one scannable stat sheet" },
   { href: "/records/visualized", title: "Visualized", desc: "The charts — grosses, certifications & awards at a glance" },
   { href: "/records/tours/map", title: "Where He's Performed", desc: "An interactive map of every country he's taken the stage" },

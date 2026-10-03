@@ -111,6 +111,9 @@ export default function RevenuePage() {
               list combined.
             </p>
             <div className={styles.heroBtns}>
+              <Link href="/records/tours/revenue/countries" className="btn btnPrimary">
+                Leaders by country →
+              </Link>
               <Link href="/records/visualized#grosses" className="btn btnSecondary">
                 See the grosses visualised →
               </Link>

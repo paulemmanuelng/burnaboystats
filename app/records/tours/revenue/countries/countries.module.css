@@ -1,0 +1,152 @@
+/* Box office by country — desktop. The hero, names, ranks and grosses are the
+   revenue board's own classes (../revenue.module.css); this file adds only the
+   continent cards, the country headings and the five-column row. Hidden below
+   900px with the rest of .desktopOnly, where MobileRevenueCountries renders. */
+
+.pad { padding: 30px 40px 40px; }
+
+/* ── Continent cards ────────────────────────────────────────────────────── */
+.cards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  /* Five cards fit one row down to the 1024 band (944px of content). The
+     hairlines are drawn per card, not as a gap over a filled grid, so a card
+     that does wrap leaves page background beside it — not a grey slab. */
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px 20px 20px;
+  background: var(--bg);
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  min-width: 0;
+}
+.cardLabel {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ember);
+}
+.cardMeta {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.cardLeader { margin-top: 8px; }
+.cardGross {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 34px;
+  line-height: 1;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.cardGrossHis { color: var(--gold); }
+.cardRunner {
+  font-size: var(--type-caption);
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+.cardEmpty { background: var(--bg-soft); }
+.cardEmptyTitle {
+  margin-top: 8px;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--text);
+}
+
+/* ── Continent sections ─────────────────────────────────────────────────── */
+.continent + .continent { margin-top: 44px; }
+.continentHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  border-bottom: 2px solid var(--line);
+  padding-bottom: 10px;
+}
+.continentTitle {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 0.95;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 0;
+}
+.continentMeta {
+  font-family: var(--font-mono), monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── One country ────────────────────────────────────────────────────────── */
+.country { margin-top: 26px; }
+.countryHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px 20px;
+  flex-wrap: wrap;
+  padding: 0 8px 10px;
+}
+/* Anton, at its only weight — a 600 here made the browser fake a bold cut. */
+.countryName {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  margin: 0;
+}
+.countryLead {
+  font-size: var(--type-small);
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* The revenue board's row, five columns: rank, artist, best night, shows,
+   total. Same padding, hairlines and hover as .row there. */
+.headRow,
+.row {
+  display: grid;
+  grid-template-columns: 52px 160px minmax(0, 1fr) 80px 140px;
+  gap: 20px;
+  align-items: center;
+  padding: 13px 8px;
+  border-bottom: 1px solid var(--line);
+}
+.headRow {
+  padding: 10px 8px;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border-bottom-width: 2px;
+}
+.row { transition: background var(--dur-fast) var(--ease); }
+.row:hover { background: var(--bg-raised); }
+
+.backRow { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+
+@media (max-width: 1239px) {
+  .headRow,
+  .row { grid-template-columns: 46px 130px minmax(0, 1fr) 64px 120px; gap: 16px; }
+  .continentTitle { font-size: 34px; }
+}

@@ -1,0 +1,199 @@
+import Link from "next/link";
+import styles from "../records/tours/revenue/revenue.module.css";
+import own from "../records/tours/revenue/countries/countries.module.css";
+import BreadcrumbBar from "./BreadcrumbBar";
+import {
+  bestNightLine,
+  showsLabel,
+  standNote,
+  usdFull,
+  usdM,
+  type ArtistTotal,
+  type ContinentBoard,
+  type RevenueByCountry,
+} from "../lib/revenueByCountry";
+
+/**
+ * Box office by country — desktop. The phone screen is MobileRevenueCountries;
+ * both take the same derived board (app/lib/revenueByCountry.ts).
+ *
+ * The look is the revenue board's: its hero, its row grammar, its rank and name
+ * classes, and gold on HIS figures only (tests/goldMarksHisRows.test.ts) —
+ * everyone else's money reads muted, or a page of other artists' totals would
+ * read as his.
+ */
+
+export const AFRICA_NOTE =
+  "Box-office reporting barely reaches venues in Africa — Billboard Boxscore and Pollstar rarely publish grosses from there — so no show on the continent has a reported gross on the board yet. Not reported, not unplayed.";
+
+export const METHOD_NOTE =
+  "What counts: per-show box-office grosses as reported by Billboard Boxscore & Pollstar (as aggregated by TouringData) and cross-checked against press reporting — the rows of the revenue board. An artist's total in a country is every reported gross there added up, including multi-night stands reported as one figure; the best night is a single show only. Reporting is incomplete, so an artist missing from a country means not reported, not that they did not play there.";
+
+function Runner({ k }: { k: ContinentBoard }) {
+  const second = k.artists[1];
+  if (!second) return <span className={own.cardRunner}>The only artist reported</span>;
+  return (
+    <span className={own.cardRunner}>
+      Next: {second.artist} · {usdM(second.total)}
+    </span>
+  );
+}
+
+function ArtistRow({ a, rank }: { a: ArtistTotal; rank: number }) {
+  const note = standNote(a);
+  return (
+    <div role="row" className={`${own.row} ${a.his ? styles.rowHis : ""}`}>
+      <span role="cell" className={`${styles.rank} ${rank === 1 ? styles.rankTop : ""}`}>
+        {String(rank).padStart(2, "0")}
+      </span>
+      <span role="cell" className={a.his ? styles.hisName : styles.otherName}>
+        {a.artist}
+      </span>
+      <span role="cell" className={styles.venueCell}>
+        {a.best ? (
+          <>
+            <span className={styles.venue}>
+              {usdM(a.best.revenue)} · {a.best.venue}
+            </span>
+            <span className={styles.city}>
+              {a.best.city} · {a.best.year}
+              {a.best.tickets ? ` · ${a.best.tickets} tickets` : ""}
+            </span>
+          </>
+        ) : (
+          <>
+            <span className={styles.venue}>Nights reported together</span>
+            <span className={styles.city}>{bestNightLine(a)}</span>
+          </>
+        )}
+        {note && <span className={styles.city}>{note}</span>}
+      </span>
+      <span role="cell" className={styles.tickets}>
+        {a.shows}
+      </span>
+      <span role="cell" className={`${styles.gross} ${a.his ? styles.grossHis : ""}`}>
+        {usdFull(a.total)}
+      </span>
+    </div>
+  );
+}
+
+export default function RevenueCountries({
+  board,
+  lede,
+  path,
+}: {
+  board: RevenueByCountry;
+  lede: string;
+  path: string;
+}) {
+  const withData = board.continents.filter((k) => k.countries.length > 0);
+  const africa = board.continents.find((k) => k.continent === "Africa" && k.countries.length === 0);
+
+  return (
+    <div className={styles.desktopOnly}>
+      <BreadcrumbBar path={path} />
+
+      {/* ── Hero ───────────────────────────────────────────── */}
+      <section className={styles.band}>
+        <div className={`${styles.wide} ${styles.heroPad}`}>
+          <div className={styles.eyebrow}>
+            <span className={styles.eyebrowRule} aria-hidden="true" />
+            Box office · by country
+          </div>
+          <h1 className={styles.h1}>
+            Leaders by <span className="inkText">Country</span>
+          </h1>
+          <p className={styles.lede}>{lede}</p>
+          <div className={styles.heroBtns}>
+            <Link href="/records/tours/revenue" className="btn btnSecondary">
+              ← Revenue per show
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Continents ─────────────────────────────────────── */}
+      <section className={styles.band} aria-labelledby="continents-title">
+        <div className={`${styles.wide} ${own.pad}`}>
+          <h2 id="continents-title" className={styles.standsTitle}>By continent</h2>
+          <ul className={own.cards}>
+            {withData.map((k) => (
+              <li key={k.continent} className={own.card}>
+                <span className={own.cardLabel}>{k.continent}</span>
+                <span className={own.cardMeta}>
+                  {showsLabel(k.shows)} · {k.countries.length} {k.countries.length === 1 ? "country" : "countries"}
+                </span>
+                <span className={`${own.cardLeader} ${k.leader!.his ? styles.hisName : styles.otherName}`}>
+                  {k.leader!.artist}
+                </span>
+                <span className={`${own.cardGross} ${k.leader!.his ? own.cardGrossHis : ""}`}>
+                  {usdM(k.leader!.total)}
+                </span>
+                <Runner k={k} />
+              </li>
+            ))}
+            {africa && (
+              <li className={`${own.card} ${own.cardEmpty}`}>
+                <span className={own.cardLabel}>Africa</span>
+                <span className={own.cardEmptyTitle}>No reported box office yet</span>
+                <span className={own.cardRunner}>{AFRICA_NOTE}</span>
+              </li>
+            )}
+          </ul>
+        </div>
+      </section>
+
+      {/* ── Countries, grouped by continent ────────────────── */}
+      <section className={styles.band} aria-label="Every country">
+        <div className={`${styles.wide} ${own.pad}`}>
+          {withData.map((k) => (
+            <section key={k.continent} className={own.continent} aria-labelledby={`k-${k.continent}`}>
+              <div className={own.continentHead}>
+                <h2 id={`k-${k.continent}`} className={own.continentTitle}>{k.continent}</h2>
+                <span className={own.continentMeta}>
+                  {usdM(k.total)} · {showsLabel(k.shows)}
+                </span>
+              </div>
+              {k.countries.map((c) => (
+                <div key={c.flag} className={own.country}>
+                  <div className={own.countryHead}>
+                    <h3 className={own.countryName}>
+                      <span aria-hidden="true">{c.flag}</span> {c.name}
+                    </h3>
+                    <span className={own.countryLead}>
+                      <span className={c.leader.his ? styles.hisName : styles.otherName}>{c.leader.artist}</span> leads ·{" "}
+                      {usdM(c.leader.total)} of {usdM(c.total)} · {showsLabel(c.shows)} reported
+                    </span>
+                  </div>
+                  <div className={styles.board} role="table" aria-label={`Box office leaders in ${c.name}`}>
+                    <div className={own.headRow} role="row">
+                      <span role="columnheader">#</span>
+                      <span role="columnheader">Artist</span>
+                      <span role="columnheader">Best night</span>
+                      <span className={styles.right} role="columnheader">Shows</span>
+                      <span className={styles.right} role="columnheader">Total</span>
+                    </div>
+                    {c.artists.map((a, i) => (
+                      <ArtistRow key={a.artist} a={a} rank={i + 1} />
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </section>
+          ))}
+
+          <p className={styles.sourceNote}>{METHOD_NOTE}</p>
+          <div className={own.backRow}>
+            <Link href="/records/tours/revenue" className="btn btnSecondary">
+              ← Revenue per show
+            </Link>
+            <Link href="/records/tours" className="btn btnSecondary">
+              Tours
+            </Link>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}

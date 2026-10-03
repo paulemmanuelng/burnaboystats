@@ -114,6 +114,13 @@ export default function MobileRevenue({
         ))}
       </div>
 
+      {/* Box office summed by country — who leads each one (3 Oct 2026). */}
+      <div className={styles.linkRow}>
+        <Link href="/records/tours/revenue/countries" className="btn btnPrimary">
+          Leaders by country →
+        </Link>
+      </div>
+
       <ScrollRail className={styles.rail} label="Filter the board">
         {chips.map((c) => (
           <button

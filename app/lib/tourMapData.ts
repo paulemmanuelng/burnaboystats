@@ -29,7 +29,7 @@
 // Nothing here claims completeness: every count is "documented".
 // ============================================================================
 
-import { performedCountries, REGION_ORDER, type PerformedCountry, type Region } from "../data/performedCountries";
+import { performedCountries, REGION_ORDER, CONTINENT_OF, type PerformedCountry, type Region } from "../data/performedCountries";
 import { tours, festivals, otherShows, concerts, liveMoments } from "../data/tours";
 import { revenueShows, revenueStands } from "../data/tourRevenue";
 import { albumCharts, singleCharts, featureCharts, CHART_COUNTRIES } from "../data/charts";
@@ -455,17 +455,8 @@ export const tourMapCountries: TourMapCountry[] = REGION_ORDER.flatMap((r) =>
 
 // ── Headline figures ─────────────────────────────────────────────────────────
 
-/** The seven regions sit on six continents once the Caribbean folds into
- *  North America: every continent except Antarctica. */
-const CONTINENT_OF: Record<Region, string> = {
-  Africa: "Africa",
-  Europe: "Europe",
-  Asia: "Asia",
-  "North America": "North America",
-  "South America": "South America",
-  Caribbean: "North America",
-  Oceania: "Oceania",
-};
+// The seven regions sit on six continents once the Caribbean folds into North
+// America — CONTINENT_OF lives with the regions in data/performedCountries.ts.
 
 const everyYear = [
   ...datedShows.map((s) => s.year),
