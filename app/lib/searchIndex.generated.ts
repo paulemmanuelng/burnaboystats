@@ -1533,23 +1533,6 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
-    "title": "BNXN vs Tyla",
-    "path": "/compare/bnxn-vs-tyla",
-    "section": "Compare",
-    "description": "BNXN against Tyla by certified units — every plaque priced at its own body's threshold, country by country.",
-    "keywords": [
-      "bnxn",
-      "tyla",
-      "vs",
-      "versus",
-      "compare",
-      "certified units",
-      "head to head",
-      "who has more"
-    ],
-    "generated": true
-  },
-  {
     "title": "BNXN vs Victony",
     "path": "/compare/bnxn-vs-victony",
     "section": "Compare",
@@ -4090,6 +4073,23 @@ export const generatedDocs: SearchDoc[] = [
     "keywords": [
       "tyla",
       "black sherif",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Tyla vs BNXN",
+    "path": "/compare/tyla-vs-bnxn",
+    "section": "Compare",
+    "description": "Tyla against BNXN by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "tyla",
+      "bnxn",
       "vs",
       "versus",
       "compare",

@@ -19,6 +19,7 @@ import {
   chartEntries,
   BURNA,
 } from "../data/afrobeats";
+import { provenanceTileSentence } from "../lib/offRegister";
 import { totalAwards, countryCount as burnaCountries } from "../data/certifications";
 import { chartEntryCount as burnaChartEntries } from "../data/charts";
 import { livePlacementCount as burnaLivePlacements } from "../data/liveCharts";
@@ -33,7 +34,7 @@ const nameList = `${boardNames.slice(0, 5).join(", ")} and ${boardNames.length -
 export const metadata = pageMetadata({
   title: "The Afrobeats Board — Certifications & Charts",
   description:
-    `${nameList}, counted by one rule — every plaque read in the issuing body's own register, never a fan tally.`,
+    `${nameList}, counted by one rule — every plaque read from the body or label that issued it, never a fan tally.`,
   path: "/afrobeats",
   shareTitle: "The Afrobeats Board",
   shareDescription: "The genre's biggest names, counted by one rule.",
@@ -122,7 +123,7 @@ const jsonLd = {
   name: "The Afrobeats Board",
   url: `${CANONICAL_ORIGIN}/afrobeats`,
   description:
-    "Certification and chart records for Afrobeats' biggest artists, each read in the issuing body's own register.",
+    "Certification and chart records for Afrobeats' biggest artists, each read in the issuing body's own register or, where it holds no row, the body's own announcement or the label's own award.",
   // An ItemList, not hasPart: hasPart takes CreativeWork parts of this page,
   // while what the board actually publishes is a ranked list of artists.
   mainEntity: {
@@ -189,7 +190,8 @@ export default function AfrobeatsPage() {
         <p className={styles.lede}>
           Where Burna Boy stands among the genre&apos;s biggest names — counted the same way he is.
           One plaque per title per country at its current tier, lead and featured credits both,
-          every figure read in the issuing body&apos;s own register rather than taken from a fan tally.
+          every figure read in the issuing body&apos;s own register (or, where it holds no row, the
+          body&apos;s own announcement or the label&apos;s own award) rather than taken from a fan tally.
         </p>
         <p className={styles.cadence}>
           The board is re-read at each register sweep — last on {sweptRange}. Burna Boy&apos;s own pages update daily.
@@ -257,8 +259,8 @@ export default function AfrobeatsPage() {
               <span className={styles.ruleName}>One rule, counted the same</span>
               <span className={styles.ruleBody}>
                 One plaque per title per country at its current tier. Award events are not
-                plaques, fan tallies are not registers, and nothing is published here that has
-                not been read at source.
+                plaques, fan tallies are not registers, and nothing is published here that was
+                not read from the body or label that issued it.
               </span>
               <span className={styles.ruleLink}>How the counting works →</span>
             </span>
@@ -274,8 +276,8 @@ export default function AfrobeatsPage() {
               <span className={styles.ruleName}>Read at source, {sweptRange}</span>
               <span className={styles.ruleBody}>
                 {sweptArtists.length} register sweeps — RIAA, BPI, SNEP, TurnTable and their
-                equivalents — re-read at each sweep, last on {sweptRange}. A figure with no
-                register behind it is not published.
+                equivalents — re-read at each sweep, last on {sweptRange}.{" "}
+                {provenanceTileSentence()}
               </span>
               <span className={styles.ruleLink}>Where the figures come from →</span>
             </span>

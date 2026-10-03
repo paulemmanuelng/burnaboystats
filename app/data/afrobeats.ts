@@ -188,7 +188,36 @@ export type Tier = "Diamond" | "Platinum" | "Gold" | "Silver";
  * 3x is the floor the badge establishes, and it is what both rows now carry.
  * If RiSA ever prints a multiple, raise both together.
  */
-export interface AfroCert { c: string; level: Tier; x?: number; body?: string }
+export interface AfroCert {
+  c: string;
+  level: Tier;
+  x?: number;
+  body?: string;
+  /** "label" when the evidence is a LABEL-ISSUED plaque the artist shared, not
+   *  a row in the certifying body's register — counted on the owner's ruling of
+   *  3 Oct 2026 (Tyla's South African plaques, Sony Music Africa's framed award;
+   *  the precedent is AKA's "All Eyes on Me" 19× in certifications.ts). Such a
+   *  cert also names its issuer in `body`, the convention Burna Boy's Colombian
+   *  "Dai Dai" Gold set ("Sony Music Colombia"), so the pill, the API and the
+   *  CSV say who issued it. Every page that says a figure was "read in the
+   *  issuing body's own register" must qualify it when an artist holds one —
+   *  offRegisterPhrase() below, and tests/labelPlaques.test.ts holds the copy
+   *  to it. Absent means a register row, which is every other plaque.
+   *
+   *  "announcement" when the evidence is the CERTIFYING BODY'S OWN published
+   *  announcement — a post on its verified account — and its searchable
+   *  register does not list the row. The body is the right one (no `body`
+   *  override), but "read in the issuing body's own register" is still not
+   *  true of it, so the same copy qualifies it, and `announced` says where and
+   *  when. First use: Tyla's album "Tyla" 🇫🇷 Or, announced by SNEP on its X
+   *  account (@snep) on 6 Apr 2026 and absent from snepmusique.com's database
+   *  when read on 3 Oct 2026. */
+  source?: "label" | "announcement";
+  /** For `source: "announcement"`: where the body announced it ("its own X
+   *  account") and the ISO date of the post. The pill's hover text is built
+   *  from it — "France — SNEP, announced on its own X account, 6 Apr 2026". */
+  announced?: { via: string; on: string };
+}
 export interface AfroPeak {
   c: string;
   peak: number;
@@ -298,7 +327,8 @@ export const AFROBEATS_VERIFIED_ON_9 = "2026-09-19";
  *  Sverige's record pages, IFPI Danmark in full and TCSN's 21 Feb 2026 capture.
  *  Certifications only. The sweep re-read every body for all fifteen artists;
  *  the other ten came back unchanged and keep the dates they had. Superseded
- *  for Rema by ON_13 on 25 Sep 2026. */
+ *  for Rema by ON_13 on 25 Sep 2026, and for Tyla and Tems by ON_18 on
+ *  3 Oct 2026. */
 export const AFROBEATS_VERIFIED_ON_10 = "2026-09-23";
 
 /** Kizz Daniel and Ruger, who joined the board on 25 Sep 2026 with Oxlade and
@@ -371,6 +401,41 @@ export const AFROBEATS_VERIFIED_ON_16 = "2026-10-02";
  *  31.03.2023 | Award Gold". An upgrade, so his total stays 91 (one plaque per
  *  title per country, at its current tier). docs/sweeps/davido-certifications-v1.md. */
 export const AFROBEATS_VERIFIED_ON_17 = "2026-10-02";
+
+/** Tyla — her South African plaques, counted on the owner's ruling of 3 Oct
+ *  2026 ("but that is same way we added the AKA certs, check their archives"
+ *  … "cant you see the plaque"), and on the owner's instruction to "only use
+ *  what you read in that plaque image". The evidence is a label-issued award,
+ *  not a register row: the photo of Sony Music Africa's framed award, whose
+ *  nameplate reads "PLATINUM AWARD presented to 'TYLA' … for sales in excess
+ *  of [units] of the album 'TYLA'", with discs for eight singles (fourteen
+ *  discs in all), each labelled PLATINUM SINGLE or GOLD SINGLE — Water five
+ *  stacked Platinum discs (5×),
+ *  Truth or Dare three (3×), Jump and Art one Platinum each, Safer, No.1,
+ *  Water (Remix) and Push 2 Start one Gold each. The photo was posted on
+ *  Tyla's own Instagram (it carries the mark "@tyla #tyga").
+ *  RiSA's register held no Tyla rows when read in Aug 2026 (the sweep removed
+ *  the ZA claims then) and its robots.txt has barred our reader since. The
+ *  precedent is AKA's "All Eyes on Me" 19× (certifications.ts): a Sony Music
+ *  Entertainment Africa plaque the artist shared, with no RiSA row behind it.
+ *  Nine plaques, 64 → 73; South Africa is her 24th country.
+ *  docs/sweeps/tyla-certifications-v1.md, "3 Oct 2026".
+ *
+ *  And France: SNEP announced the album "Tyla" Or on its own verified X
+ *  account (@snep) on 6 Apr 2026, a row its searchable database does not
+ *  list. `source: "announcement"`, 73 → 74, no new country (France was
+ *  already hers). The note sits on the album row.
+ *
+ *  Tems too: the plaque's "No.1" disc is Tyla feat. Tems, and the board counts
+ *  featured credits, so it is one Tems plaque as well (75 → 76, no new
+ *  country) — docs/sweeps/tems-certifications-v1.md, "3 Oct 2026". Both
+ *  artists' ZA label plaques carry `source: "label"` and name Sony Music
+ *  Africa as the issuer.
+ *
+ *  Not a full re-read: Tyla's and Tems's verifiedOn move to this date by the
+ *  ON_13 bump rule, but on 3 Oct only SNEP's database was read (for Tyla's
+ *  album) and the plaque photo; no other register was re-read for either. */
+export const AFROBEATS_VERIFIED_ON_18 = "2026-10-03";
 
 export const afrobeatsArtists: AfroArtist[] = [
   {
@@ -1444,7 +1509,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     spotifyId: "687cZJR45JO7jhk1LHIbgq",
     wikipedia: "https://en.wikipedia.org/wiki/Tems_(singer)",
     image: "https://i.scdn.co/image/ab6761610000e5eb22d7d6f8981c7a27bf68a382",
-    verifiedOn: AFROBEATS_VERIFIED_ON_10,
+    verifiedOn: AFROBEATS_VERIFIED_ON_18,
     swept: true,
     chartPublished: { entries: 138, territories: 45, no1s: 7 },
     releases: [
@@ -1468,6 +1533,14 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Essence", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Platinum", x: 5 }, { c: "CA", level: "Platinum", x: 3 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "NG", level: "Platinum", x: 2 }, { c: "ZA", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum" }, { c: "CH", level: "Platinum" }, { c: "FR", level: "Gold" }] },
       { title: "Fountains", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/ea8f80f2edb20885ac8aed8751716794/500x500-000000-80-0-0.jpg", certs: [{ c: "NZ", level: "Gold" }, { c: "AU", level: "Gold" }, { c: "PT", level: "Gold" }, { c: "UK", level: "Silver" }] },
       { title: "Move", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/c3e2a951678a28a3f541a69c866583d4/500x500-000000-80-0-0.jpg", certs: [{ c: "BR", level: "Platinum" }, { c: "US", level: "Gold" }] },
+      // ZA Gold ▣ (3 Oct 2026): Tyla's "No.1" (feat. Tems), a Gold disc on Sony
+      // Music Africa's framed award to Tyla — a LABEL plaque, not a RiSA row,
+      // counted on the owner's ruling of 3 Oct 2026 ("cant you see the plaque")
+      // and, because the board counts featured credits, on Tems's board as well
+      // as Tyla's, as "Dynamite" is on Tyla's and Wizkid's. Her country count
+      // does not move: South Africa is already hers (Essence, Raindance).
+      // docs/sweeps/tems-certifications-v1.md, "3 Oct 2026".
+      { title: "No.1", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg", certs: [{ c: "ZA", level: "Gold", body: "Sony Music Africa", source: "label" }] },
     ],
     charts: [
       { title: "Raindance", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/02552930a9bbf685ec4f683ff0ca2029/500x500-000000-80-0-0.jpg", entries: [{ c: "UK", peak: 1 }, { c: "LU", peak: 1 }, { c: "GR", peak: 1 }, { c: "AE", peak: 1 }, { c: "SA", peak: 1 }, { c: "CH", peak: 2 }, { c: "LT", peak: 2, weeksAtPeak: 3, weeks: 42, note: "Peak still open — still on AGATA's Top 100 when read 2 Oct 2026 (2026-W40, No. 51), 42 weeks in since 2025-W51; No. 2 in 2026-W3, W4 and W9. Re-read in a later capture." }, { c: "IN", peak: 2 }, { c: "LB", peak: 3 }, { c: "ZA", peak: 4 }, { c: "PT", peak: 4 }, { c: "SE", peak: 4 }, { c: "NL", peak: 5 }, { c: "DK", peak: 5 }, { c: "LV", peak: 5 }, { c: "NZ", peak: 5 }, { c: "IE", peak: 6 }, { c: "SK", peak: 6 }, { c: "NG", peak: 7 }, { c: "DE", peak: 7 }, { c: "AT", peak: 7 }, { c: "CZ", peak: 8 }, { c: "RU", peak: 8 }, { c: "AU", peak: 8 }, { c: "GLBX", peak: 8 }, { c: "NO", peak: 12 }, { c: "MY", peak: 12 }, { c: "KZ", peak: 12 }, { c: "GLB", peak: 12 }, { c: "RO", peak: 14 }, { c: "IS", peak: 15 }, { c: "SG", peak: 17 }, { c: "BE", peak: 19 }, { c: "FR", peak: 19 }, { c: "HU", peak: 25 }, { c: "CA", peak: 25 }, { c: "IL", peak: 27 }, { c: "SR", peak: 29 }, { c: "FI", peak: 30 }, { c: "IT", peak: 40 }, { c: "US", peak: 42 }, { c: "PH", peak: 53 }, { c: "PL", peak: 65 }, { c: "MD", peak: 69 }, { c: "EE", peak: 80 }] },
@@ -1511,21 +1584,55 @@ export const afrobeatsArtists: AfroArtist[] = [
     spotifyId: "3SozjO3Lat463tQICI9LcE",
     wikipedia: "https://en.wikipedia.org/wiki/Tyla",
     image: "https://i.scdn.co/image/ab6761610000e5eb69719e4164b893213a525d25",
-    verifiedOn: AFROBEATS_VERIFIED_ON_10,
+    verifiedOn: AFROBEATS_VERIFIED_ON_18,
     swept: true,
     chartPublished: { entries: 187, territories: 52, no1s: 3 },
     releases: [
       // Sleeves corrected 23 Sep 2026: all three Tyla album rows carried the
       // sleeve of WizTheMc's "Show Me Love (with Tyla)". TYLA is Deezer 561878142,
       // TYLA + (the deluxe) 653495621, each with its own sleeve.
-      { title: "Tyla", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg", certs: [{ c: "CA", level: "Platinum" }, { c: "BR", level: "Platinum" }, { c: "NL", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "UK", level: "Gold" }, { c: "CH", level: "Gold" }, { c: "DK", level: "Gold" }, { c: "SE", level: "Gold" }] },
+      //
+      // ZA (▣), added 3 Oct 2026 — a LABEL plaque, not a register row, counted
+      // on the owner's ruling of 3 Oct 2026 ("cant you see the plaque"), the
+      // precedent of AKA's "All Eyes on Me" 19× (certifications.ts), and read
+      // from the plaque photo alone (owner: "only use what you read in that
+      // plaque image"). Sony Music Africa's framed award, nameplate "PLATINUM
+      // AWARD presented to 'TYLA' … for sales in excess of [units] of the album
+      // 'TYLA'"; the photo was posted on Tyla's own Instagram ("@tyla #tyga").
+      // Its discs, by label and count: Water five PLATINUM SINGLE (5×), Truth
+      // or Dare three (3×); Jump and Art one Platinum each; Safer, No.1, Water
+      // (Remix) and Push 2 Start one GOLD SINGLE each; the album Platinum (the
+      // nameplate). RiSA's register held no Tyla rows when read in Aug 2026 and
+      // is barred to our reader since.
+      // docs/sweeps/tyla-certifications-v1.md, "3 Oct 2026".
+      //
+      // FR (✓ᴾ), added 3 Oct 2026 — the CERTIFYING BODY'S OWN ANNOUNCEMENT, not
+      // a register row. SNEP, on its verified X account @snep, 6 Apr 2026:
+      // "L'album « Tyla » de Tyla est certifié Or ! 50 000 équivalents ventes 📈
+      // Bravo ! 👏", with SNEP's certification card (CERTIFICATION 2026, ARTISTE
+      // TYLA, ALBUM TYLA, ALBUM OR, 50 000 EQ. VENTES). SNEP's searchable
+      // database (snepmusique.com/les-certifications) does NOT list the row:
+      // read 3 Oct 2026 by artist (only CHANEL Or 05/03/2026, PUSH 2 START Or
+      // 18/12/2025 and WATER Diamant 20/03/2025, all singles), by title, and
+      // across every 2026 Albums row to 24/09/2026. The body's own announcement
+      // counts; the database omission is why it carries source "announcement".
+      // The Aug 2026 sweep removed a claimed French album Gold because the
+      // database held none — true of the database, not of the body.
+      { title: "Tyla", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg", certs: [{ c: "CA", level: "Platinum" }, { c: "BR", level: "Platinum" }, { c: "NL", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "ZA", level: "Platinum", body: "Sony Music Africa", source: "label" }, { c: "US", level: "Gold" }, { c: "UK", level: "Gold" }, { c: "CH", level: "Gold" }, { c: "DK", level: "Gold" }, { c: "SE", level: "Gold" }, { c: "FR", level: "Gold", source: "announcement", announced: { via: "its own X account", on: "2026-04-06" } }] }, // ZA ▣ and FR ✓ᴾ: see the notes above
       { title: "Tyla +", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg", certs: [{ c: "NO", level: "Gold" }] },
-      { title: "Water", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg", certs: [{ c: "BR", level: "Diamond", x: 2 }, { c: "FR", level: "Diamond" }, { c: "US", level: "Platinum", x: 4 }, { c: "CA", level: "Platinum", x: 4 }, { c: "PT", level: "Platinum", x: 4 }, { c: "AU", level: "Platinum", x: 4 }, { c: "NZ", level: "Platinum", x: 4 }, { c: "UK", level: "Platinum", x: 2 }, { c: "CH", level: "Platinum", x: 2 }, { c: "HU", level: "Platinum", x: 2 }, { c: "GR", level: "Platinum", x: 2 }, { c: "AT", level: "Platinum" }, { c: "DK", level: "Platinum" }, { c: "ES", level: "Platinum" }, { c: "BE", level: "Platinum" }, { c: "NL", level: "Platinum" }, { c: "NO", level: "Platinum" }, { c: "PL", level: "Platinum" }, { c: "SE", level: "Platinum" }, { c: "DE", level: "Gold" }, { c: "IT", level: "Gold" }, { c: "MX", level: "Gold" }, { c: "NG", level: "Gold" }] },
-      { title: "Push 2 Start", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Platinum" }, { c: "BR", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "CA", level: "Gold" }, { c: "FR", level: "Gold" }, { c: "GR", level: "Gold" }, { c: "HU", level: "Gold" }, { c: "UK", level: "Gold" }] },
+      { title: "Water", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg", certs: [{ c: "BR", level: "Diamond", x: 2 }, { c: "FR", level: "Diamond" }, { c: "ZA", level: "Platinum", x: 5, body: "Sony Music Africa", source: "label" }, { c: "US", level: "Platinum", x: 4 }, { c: "CA", level: "Platinum", x: 4 }, { c: "PT", level: "Platinum", x: 4 }, { c: "AU", level: "Platinum", x: 4 }, { c: "NZ", level: "Platinum", x: 4 }, { c: "UK", level: "Platinum", x: 2 }, { c: "CH", level: "Platinum", x: 2 }, { c: "HU", level: "Platinum", x: 2 }, { c: "GR", level: "Platinum", x: 2 }, { c: "AT", level: "Platinum" }, { c: "DK", level: "Platinum" }, { c: "ES", level: "Platinum" }, { c: "BE", level: "Platinum" }, { c: "NL", level: "Platinum" }, { c: "NO", level: "Platinum" }, { c: "PL", level: "Platinum" }, { c: "SE", level: "Platinum" }, { c: "DE", level: "Gold" }, { c: "IT", level: "Gold" }, { c: "MX", level: "Gold" }, { c: "NG", level: "Gold" }] }, // ZA ▣: Sony Music Africa plaque, five discs (owner's ruling, 3 Oct 2026)
+      { title: "Push 2 Start", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Platinum" }, { c: "BR", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "CA", level: "Gold" }, { c: "FR", level: "Gold" }, { c: "GR", level: "Gold" }, { c: "HU", level: "Gold" }, { c: "UK", level: "Gold" }, { c: "ZA", level: "Gold", body: "Sony Music Africa", source: "label" }] }, // ZA ▣: Sony Music Africa plaque (owner's ruling, 3 Oct 2026)
       { title: "Chanel", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Gold" }, { c: "AU", level: "Gold" }, { c: "FR", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "PT", level: "Gold" }, { c: "CH", level: "Gold" }, { c: "BE", level: "Gold" }, { c: "UK", level: "Silver" }] }, // BE: Ultratop 2026 singles list, "10/08/2026: Goud", read 19 Sep 2026
-      { title: "Truth or Dare", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/1ae9486180d1f50e7dbbb099b1e66825/500x500-000000-80-0-0.jpg", certs: [{ c: "NZ", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "BR", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "PT", level: "Gold" }, { c: "UK", level: "Silver" }] },
-      { title: "Jump", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Gold" }, { c: "BR", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "UK", level: "Silver" }] },
-      { title: "Art", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Gold" }, { c: "NZ", level: "Gold" }] },
+      { title: "Truth or Dare", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/1ae9486180d1f50e7dbbb099b1e66825/500x500-000000-80-0-0.jpg", certs: [{ c: "ZA", level: "Platinum", x: 3, body: "Sony Music Africa", source: "label" }, { c: "NZ", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "BR", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "PT", level: "Gold" }, { c: "UK", level: "Silver" }] }, // ZA ▣: Sony Music Africa plaque, three discs (owner's ruling, 3 Oct 2026)
+      { title: "Jump", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg", certs: [{ c: "ZA", level: "Platinum", body: "Sony Music Africa", source: "label" }, { c: "US", level: "Gold" }, { c: "BR", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "UK", level: "Silver" }] }, // ZA ▣: Sony Music Africa plaque (owner's ruling, 3 Oct 2026)
+      { title: "Art", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg", certs: [{ c: "ZA", level: "Platinum", body: "Sony Music Africa", source: "label" }, { c: "US", level: "Gold" }, { c: "NZ", level: "Gold" }] }, // ZA ▣: Sony Music Africa plaque (owner's ruling, 3 Oct 2026)
+      // Three titles certified nowhere else, each a Gold disc on the same Sony
+      // Music Africa plaque (▣, owner's ruling, 3 Oct 2026). No.1 wears the TYLA
+      // sleeve its chart row already carries; Safer and the Travis Scott remix
+      // have no cover on the site, so they draw the placeholder.
+      { title: "No.1", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg", certs: [{ c: "ZA", level: "Gold", body: "Sony Music Africa", source: "label" }] },
+      { title: "Safer", kind: "Lead singles", certs: [{ c: "ZA", level: "Gold", body: "Sony Music Africa", source: "label" }] },
+      { title: "Water (Remix) (ft. Travis Scott)", kind: "Lead singles", certs: [{ c: "ZA", level: "Gold", body: "Sony Music Africa", source: "label" }] },
       { title: "Dynamite — Tyla & Wizkid", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/b9de2c8e816295f124dd7b227f7fa668/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Show Me Love", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/33cc78686fd6ca7863758a5408d6eabe/500x500-000000-80-0-0.jpg", certs: [{ c: "GR", level: "Gold" }] },
     ],
@@ -2948,6 +3055,77 @@ export const countryCount = (a: AfroArtist) =>
   new Set(a.releases.flatMap((r) => r.certs.map((c) => c.c))).size;
 export const tierCount = (a: AfroArtist, tier: Tier) =>
   a.releases.reduce((n, r) => n + r.certs.filter((c) => c.level === tier).length, 0);
+
+/** Plaques counted from a label-issued award rather than a register row
+ *  (`source: "label"`). Zero for every artist but the ones a ruling names. */
+export const labelPlaqueCount = (a: AfroArtist) =>
+  a.releases.reduce((n, r) => n + r.certs.filter((c) => c.source === "label").length, 0);
+
+/** Plaques counted from the certifying body's own published announcement
+ *  rather than a register row (`source: "announcement"`). */
+export const announcementCount = (a: AfroArtist) =>
+  a.releases.reduce((n, r) => n + r.certs.filter((c) => c.source === "announcement").length, 0);
+
+/** Every plaque NOT read off a register row, label-issued or announced. */
+export const offRegisterCount = (a: AfroArtist) => labelPlaqueCount(a) + announcementCount(a);
+
+const andList = (xs: string[]) => (xs.length > 1 ? `${xs.slice(0, -1).join(", ")} and ${xs.at(-1)}` : xs[0]);
+
+/** The off-register plaques, one group per kind of evidence, in a fixed order
+ *  (label awards, then body announcements) — the parts every "read in the
+ *  issuing body's own register" sentence qualifies itself with. */
+export const offRegisterGroups = (a: AfroArtist): { n: number; where: string; from: string }[] =>
+  (["label", "announcement"] as const).flatMap((source) => {
+    const certs = a.releases.flatMap((r) => r.certs.filter((c) => c.source === source));
+    if (!certs.length) return [];
+    const where = andList([...new Set(certs.map((c) => countryMeta(c.c).name))]);
+    const bodies = [...new Set(certs.map((c) => c.body ?? countryMeta(c.c).body))];
+    const from =
+      source === "label"
+        ? "the label's own award"
+        : bodies.length === 1
+          ? `${bodies[0]}'s own announcement`
+          : "the certifying bodies' own announcements";
+    return [{ n: certs.length, where, from }];
+  });
+
+/** "9 plaques in South Africa, read from the label's own award, and 1 in
+ *  France, read from SNEP's own announcement" — or undefined when every plaque
+ *  is a register row. `short` drops the "read": "9 plaques in South Africa from
+ *  the label's own award; 1 in France from SNEP's own announcement". */
+export const offRegisterPhrase = (a: AfroArtist, form: "long" | "short" = "long"): string | undefined => {
+  const groups = offRegisterGroups(a);
+  if (!groups.length) return undefined;
+  const parts = groups.map(
+    (g, i) => `${i === 0 ? (g.n === 1 ? "1 plaque" : `${g.n} plaques`) : g.n} in ${g.where}${form === "long" ? ", read" : ""} from ${g.from}`,
+  );
+  return form === "long" ? parts.join(", and ") : parts.join("; ");
+};
+
+/** "which the register does not hold" — plural when the exceptions sit in more
+ *  than one country's register. */
+export const offRegisterHold = (a: AfroArtist): string => {
+  const places = new Set(a.releases.flatMap((r) => r.certs.filter((c) => c.source).map((c) => c.c)));
+  return places.size > 1 ? "which the registers do not hold" : "which the register does not hold";
+};
+
+/** The hover text's tail for a plaque that is not a register row: "label-issued
+ *  plaque", or "announced on its own X account, 6 Apr 2026". Undefined for a
+ *  register row, whose hover stays "Country — Body". */
+export const certProvenance = (c: AfroCert): string | undefined => {
+  if (c.source === "label") return "label-issued plaque";
+  if (c.source === "announcement" && c.announced) {
+    const on = new Date(`${c.announced.on}T12:00:00Z`).toLocaleDateString("en-GB", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+      timeZone: "UTC",
+    });
+    return `announced on ${c.announced.via}, ${on}`;
+  }
+  if (c.source === "announcement") return "announced by the body, not in its register";
+  return undefined;
+};
 
 /** Chart headline, counted from the rows the page actually renders.
  *

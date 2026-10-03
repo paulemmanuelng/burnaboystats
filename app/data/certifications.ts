@@ -28,6 +28,10 @@ export interface Cert {
   level: Tier;
   x?: number;
   body?: string; // overrides the country's default certifying body (e.g. "RIAA Latin")
+  /** Hover-text tail for a board plaque that is not a register row ("label-issued
+   *  plaque", "announced on its own X account, 6 Apr 2026") — set from
+   *  certProvenance() in app/data/afrobeats.ts, never typed here. */
+  provenance?: string;
 }
 
 export interface Release {

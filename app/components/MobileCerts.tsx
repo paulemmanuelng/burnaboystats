@@ -497,6 +497,7 @@ export default function MobileCerts({
                       key={`${c.c}-${c.level}-${c.x ?? 1}`}
                       className={styles.badge}
                       style={{ color: ink, borderColor: ink }}
+                      title={c.provenance ? `${countries[c.c].name} — ${c.body ?? countries[c.c].body}, ${c.provenance}` : undefined}
                     >
                       <span className={styles.flag}>{countries[c.c].flag}</span>
                       {c.x ? `${c.x}× ` : ""}

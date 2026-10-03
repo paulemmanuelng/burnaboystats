@@ -8,6 +8,7 @@ import MobileMethodology from "../components/MobileMethodology";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime, BURNA_BOY_REF } from "../lib/seo";
 import { updates } from "../data/updates";
 import { totalAwards, countryCount, COUNTRIES, allItems } from "../data/certifications";
+import { certificationRule } from "../lib/offRegister";
 import { afrobeatsArtists, countryMeta } from "../data/afrobeats";
 import { chartEntryCount, numberOnes, chartSourceSplit, chartCountryCount } from "../data/charts";
 import { ceremonyCount } from "../data/awards";
@@ -45,20 +46,14 @@ const anchorReadLabel = new Date(`${CAREER_STREAMS_ANCHOR_READ_ON}T12:00:00Z`).t
   timeZone: "UTC",
 });
 
-// The plaques that name an ISSUER rather than a separately priced programme —
-// a label's own plaque. Paul, 24 Sep 2026: "Dai Dai"'s Colombian Gold, issued
-// by Sony Music Colombia, stays counted, because Colombia's certifier keeps no
-// current public register (its roster stops in 2024). The rule below said
-// "only once it appears in the awarding body's own searchable database", which
-// that plaque never can; the exception is stated, and read off the data.
-const labelPlaques = allItems.flatMap((r) =>
-  r.certs
-    .filter((c) => c.body && !CERT_PROGRAMS[c.body])
-    .map((c) => `“${r.title}”'s ${c.level} in ${COUNTRIES[c.c]?.name ?? c.c}, issued by ${c.body}`),
-);
-const labelPlaqueClause = labelPlaques.length
-  ? ` The one exception is a market with no current public register, where the label's own plaque stands: ${labelPlaques.join("; ")}.`
-  : "";
+// The Certifications rule and its named exceptions — label plaques (Burna
+// Boy's "Dai Dai" Colombian Gold, issued by Sony Music Colombia, Paul 24 Sep
+// 2026, because Colombia's certifier keeps no current public register; the
+// board's label-issued awards, owner's ruling 3 Oct 2026) and the certifying
+// body's own announcements its database omits (Tyla's album Or, SNEP's X post
+// of 6 Apr 2026). Built in app/lib/offRegister.ts from the data, so the card
+// the hub's Provenance tile links to cannot fall behind it again.
+const certificationsDetail = certificationRule();
 
 // Primary sources, grouped by what they verify. Deliberately names the chart
 // bodies and databases so readers (and search engines) can see the numbers are
@@ -69,7 +64,7 @@ const sources = [
     count: String(countryCount),
     tag: "RIAA · BPI · SNEP · BVMI",
     detail:
-      `Official certification databases of each market — the RIAA (US), BPI (UK), SNEP (France), BVMI (Germany), FIMI (Italy) and others. A certification is only counted once it appears in the awarding body's own searchable database.${labelPlaqueClause}`,
+      `Official certification databases of each market — the RIAA (US), BPI (UK), SNEP (France), BVMI (Germany), FIMI (Italy) and others. ${certificationsDetail}`,
   },
   {
     area: "Charts",

@@ -8,8 +8,8 @@
 // Pairs are MUTUAL, so each artist appears exactly once as an opponent and the
 // comparison says the same thing from either side. Two pairings point OFF the
 // board at Burna, who has no board page of his own: Wizkid, because that is the
-// comparison the genre has always actually argued, and Tyla, because her 23
-// certifying countries are the only spread on the board close to his 26. An even
+// comparison the genre has always actually argued, and Tyla, because her 24
+// certifying countries are the widest spread on the board, two short of his 26. An even
 // number of artists would need only one; twelve leaves a remainder after Wizkid,
 // and a second off-board pairing is better than a peer pairing that says nothing.
 
@@ -80,9 +80,9 @@ export const HEAD_TO_HEAD: Record<string, string> = {
   oxlade: "ruger",
 
   // The second pairing that leaves the board, and the reason is the country
-  // count: 23 certifying countries against Burna Boy's 26. Nobody else on the
-  // board comes within eight of him on spread, so this is the one other
-  // comparison where the answer is not simply "he is bigger".
+  // count: 24 certifying countries against Burna Boy's 26 (South Africa joined
+  // on 3 Oct 2026). Hers is the widest spread on the board, so this is the one
+  // other comparison where the answer is not simply "he is bigger".
   tyla: "burna-boy",
 };
 

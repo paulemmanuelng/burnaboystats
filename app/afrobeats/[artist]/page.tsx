@@ -30,6 +30,9 @@ import {
   chartTerritories,
   chartNo1s,
   topAward,
+  offRegisterPhrase,
+  offRegisterHold,
+  certProvenance,
   type Tier,
 } from "../../data/afrobeats";
 import { LIVE_CADENCE_ADVERB } from "../../lib/liveChartMeta";
@@ -85,6 +88,13 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
   const faqs = artistFaqs(a);
   const total = certCount(a);
   const countries = countryCount(a);
+  // "9 plaques in South Africa, read from the label's own award, and 1 in
+  // France, read from SNEP's own announcement" when some plaques are not
+  // register rows (the owner's rulings of 3 Oct 2026), else undefined — every
+  // "read in the issuing body's own register" line below qualifies itself with it.
+  const offRegister = offRegisterPhrase(a);
+  const offRegisterShort = offRegisterPhrase(a, "short");
+  const hold = offRegisterHold(a);
   // One formatted date for both layouts — the phone's lede carried none until
   // 17 Sep 2026 while the desktop printed it in the provenance line.
   const verifiedLong = new Date(`${a.verifiedOn}T12:00:00Z`).toLocaleDateString("en-GB", {
@@ -114,13 +124,13 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
   // different register with thresholds a sixteenth of the main programme's —
   // and this strip rendered them as plain US Platinum until 11 Sep 2026. Same
   // marker Burna's explorer paints beside "Dai Dai".
-  const byCountry = new Map<string, { level: Tier; x?: number; body?: string }>();
+  const byCountry = new Map<string, { level: Tier; x?: number; body?: string; provenance?: string }>();
   const rank: Record<Tier, number> = { Diamond: 0, Platinum: 1, Gold: 2, Silver: 3 };
   for (const r of a.releases)
     for (const c of r.certs) {
       const cur = byCountry.get(c.c);
       if (!cur || rank[c.level] < rank[cur.level] || (c.level === cur.level && (c.x ?? 1) > (cur.x ?? 1)))
-        byCountry.set(c.c, { level: c.level, x: c.x, body: c.body });
+        byCountry.set(c.c, { level: c.level, x: c.x, body: c.body, provenance: certProvenance(c) });
     }
   const countryStrip = [...byCountry.entries()].sort(
     (p, q) => rank[p[1].level] - rank[q[1].level] || (q[1].x ?? 1) - (p[1].x ?? 1)
@@ -129,7 +139,7 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
   const dataset = a.swept
     ? datasetJsonLd({
         name: `${a.name} music certifications by country`,
-        description: `Every certification held by ${a.name} — ${count(total, "plaque", "plaques")} across ${count(countries, "country", "countries")}, each read in the issuing body's own register and counted one plaque per title per country at its current tier.`,
+        description: `Every certification held by ${a.name} — ${count(total, "plaque", "plaques")} across ${count(countries, "country", "countries")}, each read in the issuing body's own register${offRegister ? ` (except ${offRegister}, ${hold})` : ""} and counted one plaque per title per country at its current tier.`,
         path: `/afrobeats/${a.slug}`,
         keywords: [a.name, "certifications", "RIAA", "BPI", "gold", "platinum", "diamond", "Afrobeats"],
         variableMeasured: ["Certification tier", "Country / territory", "Release", "Certifying body"],
@@ -150,7 +160,12 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
     // `body` must survive this mapping: MobileCerts paints the programme marker
     // off it, and dropping it here is why the board's two RIAA Latin plaques
     // showed no label on a phone.
-    certs: r.certs.map((c) => ({ c: c.c, level: c.level, ...(c.x ? { x: c.x } : {}), ...(c.body ? { body: c.body } : {}) })),
+    // `provenance` likewise: the explorer's hover says when a plaque is not a
+    // register row ("France — SNEP, announced on its own X account, 6 Apr 2026").
+    certs: r.certs.map((c) => {
+      const provenance = certProvenance(c);
+      return { c: c.c, level: c.level, ...(c.x ? { x: c.x } : {}), ...(c.body ? { body: c.body } : {}), ...(provenance ? { provenance } : {}) };
+    }),
   }));
   const mobileAlbums = mobileReleases.filter((r) =>
     a.releases.some((x) => x.title === r.title && x.kind === "Albums")
@@ -215,7 +230,7 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
         backHref="/afrobeats"
         backLabel={a.name}
         subject={a.name}
-        lede={`Every ${a.name} plaque, read in the issuing body's own register — ${total} across ${count(countries, "country", "countries")}, from ${a.releases.length} certified releases. Last verified ${verifiedLong}.`}
+        lede={`Every ${a.name} plaque, read in the issuing body's own register${offRegisterShort ? ` (${offRegisterShort})` : ""} — ${total} across ${count(countries, "country", "countries")}, from ${a.releases.length} certified releases. Last verified ${verifiedLong}.`}
         faqs={faqs}
         showActionBar
         compareSlug={a.slug}
@@ -341,7 +356,9 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
 
         {/* Verified-at-source line: the site's actual differentiator. */}
         <p className={styles.provenance}>
-          Every figure read in an issuing body&apos;s own register — last verified{" "}
+          Every figure read in an issuing body&apos;s own register
+          {offRegister ? ` — except ${offRegister}, ${hold}` : ""}
+          {" "}— last verified{" "}
           {verifiedLong}. Counted by the same rules, set out in the{" "}
           <Link href="/methodology#principles">methodology</Link>: one plaque per title per
           country at its current tier, lead and featured credits both.
@@ -360,7 +377,7 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
           {countryStrip.map(([code, t]) => {
             const c = countryMeta(code);
             return (
-              <span key={code} className={`${styles.cert} ${styles[tierOf(t.level)]}`} title={`${c.name} — ${t.body ?? c.body}`}>
+              <span key={code} className={`${styles.cert} ${styles[tierOf(t.level)]}`} title={`${c.name} — ${t.body ?? c.body}${t.provenance ? `, ${t.provenance}` : ""}`}>
                 <span className={styles.flag} aria-hidden="true">{c.flag}</span>
                 {t.x && t.x > 1 ? `${t.x}× ` : ""}
                 {tierWord(t.level, t.body)}

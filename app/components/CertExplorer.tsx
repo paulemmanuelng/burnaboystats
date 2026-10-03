@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useEffect, useLayoutEffect, useMemo, useState } from "react";
 import styles from "../certifications/certifications.module.css";
 import { tierOf, type Cert, type Country, type Release } from "../data/certifications";
-import { matches, badgeWeight, byMostCertified } from "../lib/certs";
+import { matches, badgeWeight, byMostCertified, countryChipTitle } from "../lib/certs";
 import { releasePathFor, type ReleaseKind } from "../lib/releasePages";
 import { coverFor } from "../lib/covers";
 import { artAt } from "../lib/artAt";
@@ -38,7 +38,7 @@ function Badge({ cert, countries, dim }: { cert: Cert; countries: Countries; dim
   return (
     <span
       className={`${styles.cBadge} ${styles[tierOf(cert.level)]} ${dim ? styles.badgeDim : ""}`}
-      title={`${country.name} — ${cert.body ?? country.body}`}
+      title={`${country.name} — ${cert.body ?? country.body}${cert.provenance ? `, ${cert.provenance}` : ""}`}
     >
       <span className={styles.flag}>{country.flag}</span>
       {cert.x ? `${cert.x}× ` : ""}
@@ -233,6 +233,14 @@ export default function CertExplorer({
   );
   const unknownFocus = !!focus && !knownTitles.has(focus);
 
+  // Every plaque per country, for the filter chips' hover text — which says
+  // so when a country's plaques are not register rows (countryChipTitle).
+  const certsByCountry = useMemo(() => {
+    const m = new Map<string, Cert[]>();
+    for (const it of [...albums, ...singles, ...features]) for (const c of it.certs) m.set(c.c, [...(m.get(c.c) ?? []), c]);
+    return m;
+  }, [albums, singles, features]);
+
   return (
     <>
       <section className={styles.filterBand}>
@@ -317,7 +325,7 @@ export default function CertExplorer({
                 type="button"
                 className={`${styles.fChip} ${country === code ? styles.fChipOn : ""}`}
                 aria-pressed={country === code}
-                title={`${c.name} — ${c.body}`}
+                title={countryChipTitle(c.name, c.body, certsByCountry.get(code) ?? [])}
                 onClick={() => pickCountry(country === code ? null : code)}
               >
                 <span className={styles.flag}>{c.flag}</span>

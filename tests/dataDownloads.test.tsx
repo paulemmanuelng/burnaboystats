@@ -135,7 +135,7 @@ describe("the three files", () => {
   it("carry exactly the published headers", async () => {
     const HEADERS = {
       certifications:
-        "artist,release,credit,format,kind,country_code,country,certifying_body,level,multiplier,certified_units,units_note,priced,unpriced_reason,register_url,verified_on",
+        "artist,release,credit,format,kind,country_code,country,certifying_body,level,multiplier,certified_units,units_note,priced,unpriced_reason,register_url,verified_on,source",
       "chart-peaks":
         "artist,release,credit,format,kind,country_code,country,chart,peak,weeks_at_peak,weeks_on_chart,note",
       awards: "ceremony,year,category,work,result",
@@ -458,15 +458,51 @@ describe("register_url links only a register that can show the plaque", () => {
     expect(col(find("Ayra Starr", "Santa", "US"), "register_url")).toBe(countryMeta("US").url);
   });
 
+  it("Tyla's album Or, announced by SNEP on X but not in its database, gets no SNEP link", async () => {
+    // source: "announcement" (3 Oct 2026). The body is SNEP itself — no issuer
+    // override — but a link to snepmusique.com's search would find nothing.
+    const { col, find } = await certSheet();
+    const fr = find("Tyla", "Tyla", "FR");
+    expect(col(fr, "certifying_body")).toBe("SNEP");
+    expect(col(fr, "register_url")).toBe("");
+    // Negative control: her French singles ARE database rows and keep the link.
+    expect(col(find("Tyla", "Water", "FR"), "register_url")).toBe(countryMeta("FR").url);
+  });
+
   it("every other row carries its country's register", async () => {
     const { body, col } = await certSheet();
+    const announced = new Set(["Tyla|Tyla|FR"]);
     for (const r of body) {
       const c = col(r, "country_code");
       const country = col(r, "artist") === "Burna Boy" ? BURNA_COUNTRIES[c] : countryMeta(c);
       const b = col(r, "certifying_body");
+      if (announced.has(`${col(r, "artist")}|${col(r, "release")}|${c}`)) continue;
       const otherIssuer = b !== country.body && !CERT_PROGRAMS[b];
       expect(col(r, "register_url"), `${col(r, "release")} ${c}`).toBe(otherIssuer ? "" : (country.url ?? ""));
     }
+  });
+});
+
+describe("source says what each plaque was read from (PR #400 review)", () => {
+  it("names exactly the plaques that are not register rows", async () => {
+    const { body, col } = await certSheet();
+    const off = body
+      .filter((r) => col(r, "source") !== "register")
+      .map((r) => `${col(r, "artist")}|${col(r, "release")}|${col(r, "country_code")}|${col(r, "source")}`)
+      .sort();
+    expect(off).toEqual(
+      [
+        "Burna Boy|Dai Dai|CO|label",
+        "Tems|No.1|ZA|label",
+        "Tyla|Tyla|FR|announcement",
+        ...["Tyla", "Water", "Push 2 Start", "Truth or Dare", "Jump", "Art", "No.1", "Safer", "Water (Remix) (ft. Travis Scott)"].map(
+          (t) => `Tyla|${t}|ZA|label`,
+        ),
+      ].sort(),
+    );
+    // Negative control: a register row says so, and every row has a value.
+    expect(col(body.find((r) => col(r, "release") === "Water" && col(r, "country_code") === "FR" && col(r, "artist") === "Tyla")!, "source")).toBe("register");
+    for (const r of body) expect(["register", "label", "announcement"]).toContain(col(r, "source"));
   });
 });
 

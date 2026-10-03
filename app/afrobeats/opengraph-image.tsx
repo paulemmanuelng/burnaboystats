@@ -31,9 +31,15 @@ function faces() {
 // card printed "1238 plaques" — so this card re-versions alone, as the song
 // cards did on 17 Sep, rather than bumping OG_ART for every card. The footer
 // total is in the id too: a plaque for an artist off the card moves it.
+//
+// v4 (3 Oct 2026): the footer said every plaque was "read in an issuing body's
+// own register", which stopped being true when label-issued plaques were
+// counted (Tyla's and Tems's South African ones, the owner's ruling; Burna
+// Boy's "All Eyes on Me" before them). It now reads "from the body or label
+// that issued it".
 export function generateImageMetadata() {
   const total = afrobeatsArtists.reduce((n, a) => n + certCount(a), 0) + totalAwards();
-  const sig = `v3|${faces().map((f) => `${f.name}:${f.n}`).join("|")}|${AFROBEATS_VERIFIED_ON}|${total}`;
+  const sig = `v4|${faces().map((f) => `${f.name}:${f.n}`).join("|")}|${AFROBEATS_VERIFIED_ON}|${total}`;
   return [{ id: ogId(sig), alt, size, contentType }];
 }
 
@@ -185,7 +191,7 @@ export default function Image() {
           </div>
           <div style={{ display: "flex" }}>·</div>
           <div style={{ display: "flex" }}>
-            {`${(boardTotal + totalAwards()).toLocaleString("en-US")} plaques, each read in an issuing body's own register`}
+            {`${(boardTotal + totalAwards()).toLocaleString("en-US")} plaques, each read from the body or label that issued it`}
           </div>
         </div>
       </div>
