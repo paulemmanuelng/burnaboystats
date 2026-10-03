@@ -22,7 +22,7 @@ import { tierWord } from "../lib/awardName";
 import { dropDeepLink, onDeepLinkChange, readDeepLink, readSavedView, saveView } from "../lib/deepLink";
 import {
   certCountPhrase, certKicker, certsInView, certTotals, creditSwitchable, effectiveView, scopeSwitchable, viewKey,
-  viewNoun, LOG_WHOLE_NOTE, type CertViewKey,
+  viewNoun, logLedeTail, type CertViewKey,
 } from "../lib/certScope";
 import { useCertView } from "../lib/useCertView";
 import CertViewSwitches from "./CertViewSwitches";
@@ -701,9 +701,7 @@ export default function MobileCerts({
           <h2 className={styles.logTitle}>Certifications by year</h2>
           <p className={styles.logLede}>
             Each international announcement as it landed — a release can appear twice in a
-            year if it was certified at two tiers. Nigeria’s TCSN plaques count in the
-            totals and the country grid, not in this log.
-            {narrowed && ` ${LOG_WHOLE_NOTE}`}
+            year if it was certified at two tiers. {logLedeTail(view)}
           </p>
         </div>
 

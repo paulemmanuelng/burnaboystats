@@ -17,6 +17,12 @@ import {
  * home country, "Certified outside South Africa · Lead credits", measured
  * LONG_FORM_320 px — wider than the box — so every narrowed form drops
  * "Certified" (the promise: consistently, at every width, on both layouts).
+ *
+ * These are measurements, not a model jsdom can check: a change to the
+ * kicker's font, size or tracking (the .kicker rule in
+ * app/components/mobileCerts.module.css, which points back here) or to the
+ * hero's side padding means re-measuring at 320 in a browser and updating
+ * the three constants below.
  */
 const KICKER_BOX_320 = 284;
 /** "Outside South Africa · Lead credits", 35 characters, measured 278.0px. */

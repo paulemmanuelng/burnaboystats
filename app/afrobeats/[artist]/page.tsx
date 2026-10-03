@@ -580,6 +580,10 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
         </div>
         <p className={styles.compareNote}>
           Both counted identically.{" "}
+          {/* The pair is every plaque each holds, whatever the switches above
+              say — said only while one is off, so the static page is as it
+              was. */}
+          {scoped((_x, v) => (viewKey(v) === "all" ? null : <>Every plaque held: the switches above do not narrow this pair.{" "}</>))}
           {rival.isBurna
             ? `Burna Boy's figures update daily; this board was last re-read at every register on ${verifiedLong}.`
             : `Both are read at source; this board was last re-read at every register on ${verifiedLong}.`}{" "}

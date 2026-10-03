@@ -138,6 +138,11 @@
 @media (prefers-reduced-motion: no-preference) {
   .heroArt { transition: opacity 300ms var(--ease); }
 }
+/* ONE LINE at 320 in every view (lib/certScope.certKicker). The longest
+   kicker, "Outside South Africa · Lead credits", measured 278px in the 284px
+   box at 320 — 6px spare. Changing this font, size, tracking or the hero's
+   side padding means re-measuring it in a browser at 320 and updating the
+   measured constants in tests/certKicker.test.ts, which cannot measure. */
 .kicker {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
@@ -166,6 +171,9 @@
   text-transform: uppercase;
   color: var(--text-muted);
   line-height: 1.5;
+  /* "International awards as lead artist" wraps on a three-digit total; even
+     the lines out rather than leave "ARTIST" alone on the second. */
+  text-wrap: balance;
 }
 .lede {
   font-size: var(--type-lede);

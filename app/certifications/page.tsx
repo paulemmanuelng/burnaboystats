@@ -177,26 +177,39 @@ const listed = (xs: readonly string[]) =>
   xs.length < 2 ? xs.join("") : `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}`;
 
 /**
- * The hero sentence for a NARROWED view — one string, built here and printed
- * by both layouts: the desktop hero below and the phone screen (MobileCerts'
- * `ledes`), so the two say the same thing about the same view. The all-view
- * keeps each layout's own sentence, the static page as it has always read.
- * "the most-certified African artist in history" is a claim about the FULL
- * count, so it stays with the all-view and no narrowed sentence makes it.
+ * The hero sentence for a NARROWED view, built here once and printed by both
+ * layouts, the way each layout's all-view sentence is printed:
+ *
+ *   phone   (MobileCerts' `ledes`)  the tiers and the bodies — the count is
+ *           the big number and its units right above it, as in the all-view,
+ *           whose phone lede carries no count either
+ *   desktop (the hero below)        "Burna Boy has {count phrase} — " + the
+ *           SAME tiers-and-bodies text, word for word; the desktop hero has
+ *           no big number, so its lede says the count, as in the all-view
+ *
+ * The all-view keeps each layout's own sentence, the static page as it has
+ * always read. "the most-certified African artist in history" is a claim about
+ * the FULL count, so it stays with the all-view and no narrowed sentence makes
+ * it.
  */
-function heroLede(view: CertView): string {
+function heroLedeBody(view: CertView): string {
   const inView = certsInView(allItems, { home, featured }, view);
   const t = certTotals(inView);
   const codes = new Set(inView.flatMap((r) => r.certs.map((c) => c.c)));
   const tiers = (["Silver", "Gold", "Platinum", "Diamond"] as const).filter((x) => t.tiers[x] > 0);
   const bodies = LEDE_BODIES.filter(([c]) => codes.has(c)).map(([, n]) => n);
-  return `Burna Boy has ${certCountPhrase(t.total, t.countries, view)} — ${listed(tiers)} awards${
-    bodies.length ? ` from bodies including ${listed(bodies)}` : ""
-  }.`;
+  return `${listed(tiers)} awards${bodies.length ? ` from bodies including ${listed(bodies)}` : ""}.`;
 }
-const heroLedes = Object.fromEntries(viewsOffered(offered).slice(1).map((v) => [viewKey(v), heroLede(v)])) as Partial<
-  Record<CertViewKey, string>
->;
+function heroLede(view: CertView): string {
+  const t = certTotals(certsInView(allItems, { home, featured }, view));
+  return `Burna Boy has ${certCountPhrase(t.total, t.countries, view)} — ${heroLedeBody(view)}`;
+}
+const narrowedViews = viewsOffered(offered).slice(1);
+const perView = (f: (v: CertView) => string) =>
+  Object.fromEntries(narrowedViews.map((v) => [viewKey(v), f(v)])) as Partial<Record<CertViewKey, string>>;
+/** The phone's narrowed ledes, and the desktop's (the same text, led by the count). */
+const phoneLedes = perView(heroLedeBody);
+const heroLedes = perView(heroLede);
 
 function tierRailView(rows: typeof tierRail) {
   return rows.map((t) => (
@@ -255,7 +268,7 @@ export default function CertificationsPage() {
         home={home}
         homeName={BURNA.country}
         featured={[...featured]}
-        ledes={heroLedes}
+        ledes={phoneLedes}
       />
 
       <div className={styles.desktopOnly}>

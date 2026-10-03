@@ -22,7 +22,9 @@ import CertificationsPage from "../../app/certifications/page";
 import { albums, allItems, singles } from "../../app/data/certifications";
 import { artistBySlug } from "../../app/data/afrobeats";
 import { featuredTitlesOf } from "../../app/lib/certUnits";
-import { certTotals, LOG_WHOLE_NOTE, viewKey, viewNoun, type CertView } from "../../app/lib/certScope";
+import {
+  certTotals, LOG_FEATURES_NOTE, LOG_HOME_IN, LOG_HOME_OUT, viewKey, viewNoun, type CertView,
+} from "../../app/lib/certScope";
 import mobileStyles from "../../app/components/mobileCerts.module.css";
 import certStyles from "../../app/certifications/certifications.module.css";
 
@@ -88,10 +90,15 @@ describe("/certifications: the hero adapts to the view, phone and desktop", () =
     const phoneLede = container.querySelector(`.${mobileStyles.lede}`)!.textContent!;
     const deskLede = container.querySelector(`.${certStyles.lede}`)!.textContent!;
     if (narrowed) {
-      expect(deskLede).toBe(phoneLede);
-      expect(deskLede.startsWith(`Burna Boy has ${t.total} ${viewNoun(t.total, view)} across ${t.countries} countries — `)).toBe(true);
+      // One server-built tiers-and-bodies text per view, printed by both: the
+      // phone as its lede (its count is the big number and units above, as in
+      // its all-view lede), the desktop led by the count (no big number there).
+      expect(deskLede).toBe(`Burna Boy has ${t.total} ${viewNoun(t.total, view)} across ${t.countries} countries — ${phoneLede}`);
+      expect(phoneLede).toMatch(/^(Silver|Gold|Platinum|Diamond)\b.* awards( from bodies including .+)?\.$/);
+      expect(phoneLede).not.toMatch(/\d/);
       // A claim about the FULL count; it stays with the all-view.
       expect(deskLede).not.toContain("most-certified African artist");
+      expect(phoneLede).not.toContain("most-certified African artist");
     } else {
       expect(deskLede).toContain(`Burna Boy has ${t.total} music certifications across ${t.countries} countries`);
       expect(deskLede).toContain("making him the most-certified African artist in history.");
@@ -108,8 +115,16 @@ describe("/certifications: the hero adapts to the view, phone and desktop", () =
     const live = [...container.querySelectorAll('[aria-live="polite"]')].map((n) => n.textContent);
     expect(live).toContain(`${t.total} ${viewNoun(t.total, view)} across ${t.countries} countries`);
 
-    // The dated log is not narrowed by the switches, and says so while one is off.
-    expect(container.textContent!.includes(LOG_WHOLE_NOTE)).toBe(narrowed);
+    // The dated log's lede, on both layouts (twice in the DOM): what the totals
+    // above do with Nigeria's TCSN plaques in THIS view, and — features off —
+    // that the log keeps featured appearances. The home-left-out view said
+    // they "count in the totals" under totals that had left them out.
+    const text = container.textContent!;
+    const times = (needle: string) => text.split(needle).length - 1;
+    expect(times("count in the totals"), viewKey(view)).toBe(view.scope === "all" ? 2 : 0);
+    expect(times(LOG_HOME_IN)).toBe(view.scope === "all" ? 2 : 0);
+    expect(times(LOG_HOME_OUT)).toBe(view.scope === "intl" ? 2 : 0);
+    expect(times(LOG_FEATURES_NOTE)).toBe(view.credit === "lead" ? 2 : 0);
   });
 
   it("the guard: no narrowed view prints the kicker the page shipped, in either layout", async () => {
@@ -142,7 +157,9 @@ describe("/certifications: the hero adapts to the view, phone and desktop", () =
     expect(html).toContain("making him the most-certified African");
     expect(html).not.toContain("Outside Nigeria");
     expect(html).not.toContain("Lead credits");
-    expect(html).not.toContain(LOG_WHOLE_NOTE);
+    expect(html).toContain(LOG_HOME_IN);
+    expect(html).not.toContain(LOG_HOME_OUT);
+    expect(html).not.toContain(LOG_FEATURES_NOTE);
   });
 });
 
@@ -169,6 +186,21 @@ describe("a board artist's phone hero adapts too", () => {
     const lede = container.querySelector(`.${mobileStyles.lede}`)!.textContent!;
     expect(lede).toContain(`— ${t.total} across ${t.countries} countries, from ${rel.length} certified releases.`);
     expect(lede.startsWith(`Every ${view.scope === "intl" ? "international " : ""}Tyla plaque${view.credit === "lead" ? " on a lead credit" : ""},`)).toBe(true);
+  });
+
+  it("the head-to-head says it is every plaque held while a switch is off, and only then", async () => {
+    const QUALIFIER = "Every plaque held: the switches above do not narrow this pair.";
+    at("/afrobeats/wizkid");
+    const full = await artist("wizkid");
+    expect(full.container.textContent).toContain("Both counted identically.");
+    expect(full.container.textContent).not.toContain(QUALIFIER);
+    full.unmount();
+    for (const hash of ["#home=0", "#feat=0", "#feat=0&home=0"]) {
+      at(`/afrobeats/wizkid${hash}`);
+      const { container, unmount } = await artist("wizkid");
+      expect(container.textContent, hash).toContain(`Both counted identically. ${QUALIFIER}`);
+      unmount();
+    }
   });
 
   it("Tyla's all-view phone kicker is the shipped one", async () => {

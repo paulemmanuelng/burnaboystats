@@ -259,9 +259,26 @@ export function certKicker(view: CertView, homeName: string): string {
   return view.credit === "lead" ? `${where} · Lead credits` : where;
 }
 
-/** Said under the log's lede while a certs switch is off. The log is dated
- *  announcements, not the ledger the switches narrow, so its year counts stay
- *  the full international history — and this says so, rather than leaving
- *  "2026 · 58" under a page reading "lead credits". */
-export const LOG_WHOLE_NOTE =
-  "The switches above leave this log whole: every international announcement, featured appearances included.";
+/**
+ * The dated log's lede after its first sentence, per view — Burna Boy's log on
+ * /certifications, both layouts (CertHistoryByYear, MobileCerts). The log is
+ * dated INTERNATIONAL announcements with featured appearances in, not the
+ * ledger the switches narrow, so its year counts never move; what moves is
+ * what the sentence may say about the totals above it.
+ *
+ *   both on        TCSN plaques count in the totals, not in this log
+ *   home left out  TCSN plaques are left out of the totals above too — the
+ *                  log and the totals now agree, so nothing more is said
+ *   features off   + the log keeps featured appearances
+ *
+ * Until 3 Oct 2026 the home-left-out view still said the TCSN plaques "count
+ * in the totals" under totals that had just left them out.
+ */
+export const LOG_HOME_IN = "Nigeria’s TCSN plaques count in the totals and the country grid, not in this log.";
+export const LOG_HOME_OUT = "Nigeria’s TCSN plaques are left out of the totals above, and were never in this log.";
+export const LOG_FEATURES_NOTE =
+  "Turning features off does not narrow this log: it keeps every international announcement, featured appearances included.";
+export function logLedeTail(view: CertView): string {
+  const home = view.scope === "intl" ? LOG_HOME_OUT : LOG_HOME_IN;
+  return view.credit === "lead" ? `${home} ${LOG_FEATURES_NOTE}` : home;
+}
