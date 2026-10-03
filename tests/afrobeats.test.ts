@@ -376,7 +376,8 @@ describe("records that appear on two boards", () => {
     // already covered by the entry above.)
     // 2 Oct 2026: the charts sweep's Nigerian backfill brought five more bare
     // titles that are different records, each told apart by TurnTable's own
-    // artiste line and music link in the walk of every issue:
+    // artiste line and music link in the walk of every issue (four since 3 Oct
+    // 2026 — see "Trumpet" below):
     //   "Alubarika"  Seyi Vibez's own (NG 16, 2026) against Zlatan ft. Buju
     //                (BNXN's NG 12).
     //   "Melanin"    Seyi Vibez's own (NG 14, 2026) against Balloranking &
@@ -384,6 +385,10 @@ describe("records that appear on two boards", () => {
     //   "Running"    Ladipoe ft. Fireboy DML (NG 5) against Ayra Starr & Lojay
     //                (NG 34).
     //   "Trumpet"    Olamide & CKay (NG 15) against Seyi Vibez's own (NG 58).
+    //                Resolved 3 Oct 2026 (owner: "add it"): CKay's row is the
+    //                co-lead "Trumpet (Olamide & CKay)", titled as Olamide's
+    //                is, so the bare "Trumpet" is Seyi Vibez's alone and the
+    //                two titles no longer meet here.
     //   "Woman"      Rema's own 2020 single (NG 25) against Omah Lay's (NG 5)
     //                and Joeboy & Oxlade (NG 100).
     // And one that IS the same record, answered per credit on purpose: "Soweto"
@@ -394,7 +399,7 @@ describe("records that appear on two boards", () => {
       "Pressure|NG", "Apollo|NG", "Away|NG",
       "Special|NG", "Pray|NG", "Diamonds|NG", "Everyday|NG", "Blessings|NG",
       "Oshe|NG", "Energy|NG", "Forgiveness|NG", "Ole|NG", "Lately|NG", "Bounce|NG",
-      "Alubarika|NG", "Melanin|NG", "Running|NG", "Trumpet|NG", "Woman|NG", "Soweto|NG",
+      "Alubarika|NG", "Melanin|NG", "Running|NG", "Woman|NG", "Soweto|NG",
     ]);
     const conflicts: string[] = [];
     for (const [title, per] of shared()) {
@@ -463,11 +468,14 @@ describe("records that appear on two boards", () => {
         // Compromise (Fireboy DML & Rema), Get It Right (Tems & Asake), Infinity
         // (Olamide & Omah Lay), No.1 (Tyla & Tems), Obianuju (CKay & Victony),
         // One Shirt (Ruger & Rema), PAMI (Wizkid & Omah Lay), She Knows (Olamide
-        // & Fireboy DML) and Wahala (CKay & Olamide, NG and SR alike). And four
+        // & Fireboy DML) and Wahala (CKay & Olamide, NG and SR alike). And three
         // that are different records under one title, in `known` above.
         "Alle", "Amina", "Beggie Beggie", "Can't Let You Go", "Compromise", "Get It Right",
         "Infinity", "No.1", "Obianuju", "One Shirt", "PAMI", "She Knows", "Wahala",
-        "Alubarika", "Melanin", "Running", "Trumpet",
+        "Alubarika", "Melanin", "Running",
+        // 3 Oct 2026: the co-lead single on both its leads' boards, one title on
+        // both since CKay's row stopped being a bare "Trumpet" (NG 15 on both).
+        "Trumpet (Olamide & CKay)",
       ].sort(),
     );
   });
@@ -732,6 +740,11 @@ describe("cover art", () => {
   // TYLA, and both boards now carry its South African Gold (Sony Music Africa's
   // plaque, the owner's ruling) under the TYLA sleeve its chart row already wore
   // — one recording, the same case as Essence or Many Ways.
+  //
+  // 3 Oct 2026: one olamide+seyi-vibez became ckay+olamide (here and in the
+  // charts list below). Olamide's "Trumpet (Olamide & CKay)" had worn Seyi
+  // Vibez's "Thy Kingdom Come" sleeve — the home of HIS "Trumpet", a different
+  // record — and now wears the co-lead single's own, which CKay's rows carry.
   const VERIFIED_SHARES = [
     "asake+ayra-starr", "asake+davido", "asake+fireboy-dml", "asake+fireboy-dml+olamide",
     "asake+olamide", "asake+olamide", "asake+olamide", "asake+olamide+seyi-vibez+wizkid",
@@ -741,9 +754,9 @@ describe("cover art", () => {
     "ayra-starr+tiwa-savage", "ayra-starr+wizkid", "black-sherif+fireboy-dml",
     "bnxn+fireboy-dml+olamide+rema", "bnxn+kizz-daniel+seyi-vibez", "bnxn+rema", "bnxn+ruger",
     "bnxn+seyi-vibez+victony", "bnxn+wizkid", "bnxn+wizkid", "ckay+davido", "ckay+davido",
-    "davido+kizz-daniel", "davido+kizz-daniel", "davido+omah-lay+victony", "fireboy-dml+rema",
-    "kizz-daniel+olamide", "kizz-daniel+seyi-vibez", "kizz-daniel+tiwa-savage",
-    "olamide+omah-lay", "olamide+seyi-vibez", "olamide+seyi-vibez", "olamide+wizkid",
+    "ckay+olamide", "davido+kizz-daniel", "davido+kizz-daniel", "davido+omah-lay+victony",
+    "fireboy-dml+rema", "kizz-daniel+olamide", "kizz-daniel+seyi-vibez",
+    "kizz-daniel+tiwa-savage", "olamide+omah-lay", "olamide+seyi-vibez", "olamide+wizkid",
     "omah-lay+seyi-vibez", "omah-lay+tems", "omah-lay+wizkid", "rema+victony",
     "ruger+tiwa-savage", "tems+tyla", "tems+wizkid",
   ];
@@ -804,13 +817,13 @@ describe("cover art", () => {
     "black-sherif+fireboy-dml", "bnxn+fireboy-dml+olamide+rema", "bnxn+kizz-daniel+seyi-vibez",
     "bnxn+olamide", "bnxn+oxlade", "bnxn+rema", "bnxn+rema", "bnxn+ruger", "bnxn+ruger",
     "bnxn+seyi-vibez+victony", "bnxn+victony", "bnxn+wizkid", "bnxn+wizkid", "bnxn+wizkid",
-    "ckay+davido", "ckay+davido+tiwa-savage", "davido+kizz-daniel", "davido+kizz-daniel",
-    "davido+omah-lay+victony", "davido+wizkid", "fireboy-dml+rema", "kizz-daniel+olamide",
-    "kizz-daniel+seyi-vibez", "kizz-daniel+tiwa-savage", "olamide+omah-lay",
-    "olamide+seyi-vibez", "olamide+seyi-vibez", "olamide+tiwa-savage", "olamide+victony",
+    "ckay+davido", "ckay+davido+tiwa-savage", "ckay+olamide", "davido+kizz-daniel",
+    "davido+kizz-daniel", "davido+omah-lay+victony", "davido+wizkid", "fireboy-dml+rema",
+    "kizz-daniel+olamide", "kizz-daniel+seyi-vibez", "kizz-daniel+tiwa-savage",
+    "olamide+omah-lay", "olamide+seyi-vibez", "olamide+tiwa-savage", "olamide+victony",
     "olamide+wizkid", "omah-lay+seyi-vibez", "omah-lay+tems", "omah-lay+tyla",
-    "omah-lay+wizkid", "rema+victony", "ruger+tiwa-savage", "seyi-vibez+wizkid", "tems+tyla", "tems+wizkid",
-    "tyla+victony",
+    "omah-lay+wizkid", "rema+victony", "ruger+tiwa-savage", "seyi-vibez+wizkid", "tems+tyla",
+    "tems+wizkid", "tyla+victony",
   ];
 
   it("shares a cover across artists only where the recording is shared, charts included", () => {
@@ -903,6 +916,69 @@ describe("cover art", () => {
       const sib = seyi.releases.find((r) => r.title === t)?.cover;
       if (sib) expect(sib, `${t} shares the FUJI MOTO sleeve`).toBe(ama);
     }
+  });
+
+  // 3 Oct 2026 (owner's report): Olamide's "Trumpet (Olamide & CKay)" wore
+  // c8ebad7f…, which is Seyi Vibez's album "Thy Kingdom Come" — the sleeve of
+  // Seyi Vibez's OWN "Trumpet", a different record (NG 58 against Olamide &
+  // CKay's NG 15). A title-only cover lookup cannot tell two "Trumpet"s apart.
+  // The pair lists above could not catch it: olamide+seyi-vibez is a real share
+  // elsewhere, so a wrong one hid among right ones.
+  const TRUMPET_OLAMIDE_CKAY = "https://cdn-images.dzcdn.net/images/cover/c4230c9e47469a112e9f05745c603c44/500x500-000000-80-0-0.jpg";
+  const THY_KINGDOM_COME = "https://cdn-images.dzcdn.net/images/cover/c8ebad7f5af3f521ca579199d9e05150/500x500-000000-80-0-0.jpg";
+
+  it("gives each \"Trumpet\" its own sleeve: Olamide & CKay's single, and Seyi Vibez's album", () => {
+    const rows = (slug: string) => {
+      const a = afrobeatsArtists.find((x) => x.slug === slug)!;
+      return [...a.releases, ...a.charts].filter((r) => /^Trumpet\b/.test(r.title));
+    };
+    // The co-lead single, the same record on both boards: two rows each (a
+    // plaque and a chart peak), one sleeve.
+    for (const slug of ["olamide", "ckay"]) {
+      const mine = rows(slug);
+      expect(mine.map((r) => r.title), slug).toEqual(["Trumpet (Olamide & CKay)", "Trumpet (Olamide & CKay)"]);
+      for (const r of mine) expect(r.cover, `${slug}: ${r.title}`).toBe(TRUMPET_OLAMIDE_CKAY);
+    }
+    // Seyi Vibez's own "Trumpet", on Thy Kingdom Come.
+    const seyi = rows("seyi-vibez");
+    expect(seyi.map((r) => r.title)).toEqual(["Trumpet", "Trumpet"]);
+    for (const r of seyi) expect(r.cover, `seyi-vibez: ${r.title}`).toBe(THY_KINGDOM_COME);
+    // And Thy Kingdom Come's sleeve is on no other board at all.
+    const elsewhere = afrobeatsArtists
+      .filter((a) => a.slug !== "seyi-vibez")
+      .flatMap((a) => [...a.releases, ...a.charts].filter((r) => r.cover === THY_KINGDOM_COME).map((r) => `${a.slug}: ${r.title}`));
+    expect(elsewhere).toEqual([]);
+  });
+
+  it("never dresses two different records of one title in one sleeve", () => {
+    // The general form of the Trumpet bug. Two boards' chart rows that share a
+    // title (credits aside — "Trumpet (Olamide & CKay)" is a "Trumpet") and
+    // share a cover must be ONE record, and one record peaks once per chart:
+    // a different peak on the same country's chart means two records, and
+    // then one of them is wearing the other's sleeve. (Two different TITLES
+    // on one sleeve is the shared-album case pinned above, and is fine.)
+    const base = (t: string) => t.replace(/\s*\([^)]*\)\s*$/, "").trim().toLowerCase();
+    const rows = afrobeatsArtists.flatMap((a) =>
+      a.charts
+        .filter((r) => r.cover)
+        .map((r) => ({ slug: a.slug, title: r.title, cover: r.cover!, peaks: new Map(r.entries.map((e) => [e.c, e.peak])) }))
+    );
+    // "Soweto" is the one same-record exception, answered per credit on
+    // purpose (see `known` in the two-boards block): Victony's NG 4 is the
+    // remix printing that does not credit Rema; Rema's best credited one is 5.
+    const SAME_RECORD = new Set(["soweto"]);
+    const offenders: string[] = [];
+    for (const [i, x] of rows.entries()) {
+      for (const y of rows.slice(i + 1)) {
+        if (x.slug === y.slug || x.cover !== y.cover || base(x.title) !== base(y.title)) continue;
+        if (SAME_RECORD.has(base(x.title))) continue;
+        for (const [c, p] of x.peaks) {
+          const q = y.peaks.get(c);
+          if (q !== undefined && q !== p) offenders.push(`${x.slug} "${x.title}" ${c} ${p} vs ${y.slug} "${y.title}" ${c} ${q}`);
+        }
+      }
+    }
+    expect(offenders).toEqual([]);
   });
 });
 

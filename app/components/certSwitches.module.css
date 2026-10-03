@@ -1,0 +1,80 @@
+/* The certs views' two switches, in /compare's own toggle style (Paul, 3 Oct
+   2026: "use the compare togglr style"). Every rule below is a copy of
+   app/compare/compare.module.css's .controls / .control / .controlName /
+   .switch / .switchOn / .dot / .dotOn / .nameLong / .nameShort and its 760px
+   phone swap — copied, not shared, so /compare's stylesheet is untouched and
+   cannot move. The only additions are the button reset (compare's switches are
+   links; these are buttons with role="switch") and the row's spacing, which
+   each host passes in, because the row slots into an existing screen.
+
+   Keep the two in step: a change to compare's switch belongs here too. */
+
+/* compare's .controls, without its rules above and below and its 24px foot
+   margin — those frame compare's page; the host's own spacing goes on `row`. */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 26px;
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.control { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 10px; min-height: 44px; }
+.controlName { color: var(--text-muted); font-weight: 700; }
+/* The design's switch: a 30×16 track with a knob, the state label beside it. */
+.switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 0 4px 0 0;
+  border-radius: 999px;
+  color: var(--text-muted);
+  /* The button reset — compare's switch is an <a> and needs none. */
+  margin: 0;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  text-align: left;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.switch:hover .dot { background: var(--rule); }
+.switchOn { color: var(--text); }
+.dot {
+  position: relative;
+  width: 30px;
+  height: 16px;
+  flex: 0 0 30px;
+  border-radius: 999px;
+  background: var(--rule-soft);
+  transition: background var(--dur) var(--ease);
+}
+.dot::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  transition: left var(--dur) var(--ease), background var(--dur) var(--ease);
+}
+.dotOn { background: var(--gold); }
+.dotOn::after { left: 16px; background: var(--ink-on-gold); }
+.switch:hover .dotOn { background: var(--gold); }
+/* compare: the site's focus rule sets border-radius 3px on the element; the
+   ring keeps the switch's own pill radius. */
+.switch:focus-visible { border-radius: 999px; }
+.nameShort { display: none; }
+
+@media (max-width: 760px) {
+  .nameLong { display: none; }
+  .nameShort { display: inline; }
+}

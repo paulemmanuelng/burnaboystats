@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Fragment, type CSSProperties } from "react";
+import { Fragment, type CSSProperties, type ReactNode } from "react";
 import styles from "./certifications.module.css";
 import BreadcrumbBar from "../components/BreadcrumbBar";
 import MobileCerts from "../components/MobileCerts";
@@ -20,6 +20,12 @@ import { allChartItems, CHART_COUNTRIES, type ChartRelease } from "../data/chart
 import { livePlatformTotals } from "../data/liveCharts";
 import { compareWithLinks } from "../lib/comparePairs";
 import { countryBoardLinks } from "../lib/certCountry";
+import CertViewSwap from "../components/CertViewSwap";
+import { featuredTitlesOf } from "../lib/certUnits";
+import {
+  ALL_VIEW, certCountPhrase, certKicker, certTotals, certsInView, creditSwitchable, homeCodeFor, scopeSwitchable, viewKey,
+  viewNoun, viewsOffered, type CertView, type CertViewKey,
+} from "../lib/certScope";
 
 // Burna Boy's side of the "Compare with…" list the board artists' pages carry:
 // one pair page per board artist, each by its canonical URL (E-10, Paul,
@@ -112,6 +118,129 @@ const summary = [
   },
 ];
 
+// ── The two switches (lib/certScope), /compare's style ───────────────────
+// "Nigeria": his home country is read off his own record (BURNA.country), and
+// names the switch. "Featured appearances": his guest spots are the ones
+// /compare leaves out under "lead credits only" (certUnits.featuredTitlesOf —
+// his `features` array), one rule for both pages. Each narrowed view of the
+// summary strip is counted by the same helpers from the releases left in it.
+// The hero recounts with them too — kicker, lede and tier rail (Paul, 3 Oct
+// 2026: "since the number changes, it should adapt") — on both layouts.
+const home = homeCodeFor(BURNA.country);
+const featured = featuredTitlesOf("burna-boy");
+const offered = { scope: scopeSwitchable(allItems, home), credit: creditSwitchable(allItems, featured) };
+
+function summaryFor(view: CertView): typeof summary {
+  const inView = certsInView(allItems, { home, featured }, view);
+  const t = certTotals(inView);
+  const codes = new Set(inView.flatMap((r) => r.certs.map((c) => c.c)));
+  const label = viewNoun(t.total, view);
+  return [
+    { value: String(t.total), label: label[0].toUpperCase() + label.slice(1), note: "Silver → Diamond" },
+    { value: String(t.countries), label: "Countries", note: `${new Set([...codes].map((c) => COUNTRIES[c].body)).size} issuing bodies` },
+    {
+      value: String(t.releases),
+      label: "Certified releases",
+      note: view.credit === "lead" ? "Albums and singles" : "Albums, singles, features",
+    },
+    // "New in 2026 · International awards" is international already, so the
+    // home switch leaves it as it is; with features off it counts his own
+    // releases only, like the three cells beside it.
+    view.credit === "lead"
+      ? {
+          ...summary[3],
+          value: String(intlCertHistory.filter((e) => e.year === thisYear && !featured.has(e.title)).length),
+          note: "International awards, lead credits",
+        }
+      : summary[3],
+  ];
+}
+
+/** The hero rail's four tiers, counted from the releases in a view, each as a
+ *  share of THAT view's total. All four rows always, a zero included, so the
+ *  rail keeps its height when a switch flips. */
+function tierRailFor(view: CertView): typeof tierRail {
+  const t = certTotals(certsInView(allItems, { home, featured }, view));
+  return tierRail.map(({ name }) => ({
+    name,
+    count: t.tiers[name],
+    pct: `${t.total ? Math.round((t.tiers[name] / t.total) * 100) : 0}%`,
+  }));
+}
+
+// The four bodies the all-view lede names, by code — each named in a narrowed
+// view only while that view still holds a plaque from it.
+const LEDE_BODIES: readonly [code: string, name: string][] = [
+  ["US", "the RIAA (US)"], ["UK", "BPI (UK)"], ["FR", "SNEP (France)"], ["CA", "Music Canada"],
+];
+const listed = (xs: readonly string[]) =>
+  xs.length < 2 ? xs.join("") : `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}`;
+
+/**
+ * The hero sentence for a NARROWED view, built here once and printed by both
+ * layouts, the way each layout's all-view sentence is printed:
+ *
+ *   phone   (MobileCerts' `ledes`)  the tiers and the bodies — the count is
+ *           the big number and its units right above it, as in the all-view,
+ *           whose phone lede carries no count either
+ *   desktop (the hero below)        "Burna Boy has {count phrase} — " + the
+ *           SAME tiers-and-bodies text, word for word; the desktop hero has
+ *           no big number, so its lede says the count, as in the all-view
+ *
+ * The all-view keeps each layout's own sentence, the static page as it has
+ * always read. "the most-certified African artist in history" is a claim about
+ * the FULL count, so it stays with the all-view and no narrowed sentence makes
+ * it.
+ */
+function heroLedeBody(view: CertView): string {
+  const inView = certsInView(allItems, { home, featured }, view);
+  const t = certTotals(inView);
+  const codes = new Set(inView.flatMap((r) => r.certs.map((c) => c.c)));
+  const tiers = (["Silver", "Gold", "Platinum", "Diamond"] as const).filter((x) => t.tiers[x] > 0);
+  const bodies = LEDE_BODIES.filter(([c]) => codes.has(c)).map(([, n]) => n);
+  return `${listed(tiers)} awards${bodies.length ? ` from bodies including ${listed(bodies)}` : ""}.`;
+}
+function heroLede(view: CertView): string {
+  const t = certTotals(certsInView(allItems, { home, featured }, view));
+  return `Burna Boy has ${certCountPhrase(t.total, t.countries, view)} — ${heroLedeBody(view)}`;
+}
+const narrowedViews = viewsOffered(offered).slice(1);
+const perView = (f: (v: CertView) => string) =>
+  Object.fromEntries(narrowedViews.map((v) => [viewKey(v), f(v)])) as Partial<Record<CertViewKey, string>>;
+/** The phone's narrowed ledes, and the desktop's (the same text, led by the count). */
+const phoneLedes = perView(heroLedeBody);
+const heroLedes = perView(heroLede);
+
+function tierRailView(rows: typeof tierRail) {
+  return rows.map((t) => (
+    <div key={t.name} className={styles.tierRow}>
+      <span className={styles.tierDot} style={{ background: TIER_INK[t.name] }} aria-hidden="true" />
+      <span className={styles.tierName} style={{ color: TIER_INK[t.name] }}>{t.name}</span>
+      <span className={styles.tierCount}>{t.count}</span>
+      <span className={styles.tierPct}>{t.pct}</span>
+    </div>
+  ));
+}
+
+function summaryView(cells: typeof summary) {
+  return cells.map((s) => (
+    <div key={s.label} className={styles.summaryCell}>
+      <div className={styles.summaryValue}>{s.value}</div>
+      <div className={styles.summaryLabel}>{s.label}</div>
+      <div className={styles.summaryNote}>{s.note}</div>
+    </div>
+  ));
+}
+
+/** A block in every view the switches offer, or the one it always was. */
+function scoped(all: ReactNode, narrowed: (view: CertView) => ReactNode) {
+  const views = viewsOffered(offered);
+  if (views.length === 1) return all;
+  const byKey: Partial<Record<CertViewKey, ReactNode>> & { all: ReactNode } = { all };
+  for (const v of views.slice(1)) byKey[viewKey(v)] = narrowed(v);
+  return <CertViewSwap views={byKey} offered={offered} />;
+}
+
 export default function CertificationsPage() {
   return (
     <main id="content">
@@ -136,6 +265,10 @@ export default function CertificationsPage() {
         liveNote={burnaLiveNote}
         compareWith={compareWith}
         countryBoards={countryBoards}
+        home={home}
+        homeName={BURNA.country}
+        featured={[...featured]}
+        ledes={phoneLedes}
       />
 
       <div className={styles.desktopOnly}>
@@ -165,16 +298,22 @@ export default function CertificationsPage() {
           <div className={styles.heroCopy}>
             <div className={styles.eyebrow}>
               <span className={styles.eyebrowRule} aria-hidden="true" />
-              Certified worldwide
+              {/* The phone kicker's own words, per view (certKicker). */}
+              {scoped(certKicker(ALL_VIEW, BURNA.country), (v) => certKicker(v, BURNA.country))}
             </div>
             <h1 className={styles.h1}>
               Global <span className="inkText">Certifications</span>
             </h1>
             <p className={styles.lede}>
-              Burna Boy has {total} music certifications across {countryCount} countries —
-              Silver, Gold, Platinum and Diamond awards from bodies including the RIAA (US),
-              BPI (UK), SNEP (France) and Music Canada, making him the most-certified African
-              artist in history.
+              {scoped(
+                <>
+                  Burna Boy has {total} music certifications across {countryCount} countries —
+                  Silver, Gold, Platinum and Diamond awards from bodies including the RIAA (US),
+                  BPI (UK), SNEP (France) and Music Canada, making him the most-certified African
+                  artist in history.
+                </>,
+                (v) => heroLedes[viewKey(v)]
+              )}
             </p>
             <div className={styles.heroButtons}>
               {/* There was no primary action in this head. Compare takes it —
@@ -188,14 +327,10 @@ export default function CertificationsPage() {
           </div>
 
           <div className={styles.tierRail}>
-            {tierRail.map((t) => (
-              <div key={t.name} className={styles.tierRow}>
-                <span className={styles.tierDot} style={{ background: TIER_INK[t.name] }} aria-hidden="true" />
-                <span className={styles.tierName} style={{ color: TIER_INK[t.name] }}>{t.name}</span>
-                <span className={styles.tierCount}>{t.count}</span>
-                <span className={styles.tierPct}>{t.pct}</span>
-              </div>
-            ))}
+            {/* Recounted with the switches, like the lede beside it: each
+                tier's count and its share of the view's own total. The
+                all-view is the static page. */}
+            {scoped(tierRailView(tierRail), (v) => tierRailView(tierRailFor(v)))}
           </div>
         </div>
       </section>
@@ -203,13 +338,7 @@ export default function CertificationsPage() {
       {/* ── Summary strip ────────────────────────────────────────────── */}
       <section className={styles.summary}>
         <div className={styles.summaryGrid}>
-          {summary.map((s) => (
-            <div key={s.label} className={styles.summaryCell}>
-              <div className={styles.summaryValue}>{s.value}</div>
-              <div className={styles.summaryLabel}>{s.label}</div>
-              <div className={styles.summaryNote}>{s.note}</div>
-            </div>
-          ))}
+          {scoped(summaryView(summary), (v) => summaryView(summaryFor(v)))}
         </div>
       </section>
 
@@ -221,10 +350,13 @@ export default function CertificationsPage() {
         features={features}
         countries={COUNTRIES}
         totalCerts={total}
+        home={home}
+        homeName={BURNA.country}
+        featured={[...featured]}
       />
 
       {/* ── The dated log ────────────────────────────────────────────── */}
-      <CertHistoryByYear history={intlCertHistory} countries={COUNTRIES} />
+      <CertHistoryByYear history={intlCertHistory} countries={COUNTRIES} switched />
 
       <section className={styles.sourceBand}>
         <div className={styles.wide}>
