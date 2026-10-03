@@ -59,6 +59,11 @@ const artists = sweptArtists.map((a) => ({
       body: c.body ?? countryMeta(c.c).body,
       level: c.level,
       multiplier: c.x ?? 1,
+      // Only on a plaque that is NOT a register row (PR #400 review): "label"
+      // for a label-issued award, "announcement" for the certifying body's own
+      // published announcement its database omits, with where and when.
+      ...(c.source ? { source: c.source } : {}),
+      ...(c.announced ? { announced: c.announced } : {}),
     })),
   })),
 }));
@@ -97,7 +102,7 @@ export function GET() {
   return apiJson({
     endpoint: "/afrobeats",
     description:
-      `The Afrobeats Board: ${artists.length + 1} artists counted by one rule — a plaque is one title in one country at its CURRENT tier, and an upgrade replaces the earlier award rather than adding to it. Chart figures are official national charts plus Billboard's two worldwide charts; platform charts (Spotify, Apple Music, iTunes) are never counted here. Re-read at each register sweep, where Burna Boy's own pages update daily.`,
+      `The Afrobeats Board: ${artists.length + 1} artists counted by one rule — a plaque is one title in one country at its CURRENT tier, and an upgrade replaces the earlier award rather than adding to it. Chart figures are official national charts plus Billboard's two worldwide charts; platform charts (Spotify, Apple Music, iTunes) are never counted here. Re-read at each register sweep, where Burna Boy's own pages update daily. A certification with a \`source\` is not a register row: "label" is a label-issued plaque, "announcement" the certifying body's own published announcement (\`announced\` says where and when); without one, it is a row in the body's register.`,
     // The subject is a row on this board, not an appendix, so he is inside the
     // count — and `countOf` says so, because `data.artists` holds the board alone.
     count: artists.length + 1,

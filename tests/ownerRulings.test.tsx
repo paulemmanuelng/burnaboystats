@@ -81,12 +81,18 @@ describe("the Colombian Gold is Sony Music Colombia's, and the rule says so", ()
 
   it("the methodology rule states the exception it has always had", () => {
     const t = textOf(renderToStaticMarkup(<MethodologyPage />));
-    const RULE = "A certification is only counted once it appears in the awarding body's own searchable database.";
+    // Since PR #400 the rule also admits the certifying body's own published
+    // announcement (Tyla's album Or, SNEP's X post), and the board's label
+    // plaques follow Burna Boy's exception — app/lib/offRegister.ts and
+    // tests/labelPlaques.test.ts. His own exception keeps its words.
+    const RULE =
+      "A certification is only counted once it appears in the awarding body's own searchable database, or the body itself has published it.";
     expect(t).toContain(RULE);
     // The rule as it shipped ended there, over a plaque no register lists.
     expect(t).toContain(
-      `${RULE} The one exception is a market with no current public register, where the label's own plaque stands: “Dai Dai”'s Gold in Colombia, issued by Sony Music Colombia.`,
+      `${RULE} In Burna Boy's own record, the one exception is a market with no current public register, where the label's own plaque stands: “Dai Dai”'s Gold in Colombia, issued by Sony Music Colombia.`,
     );
+    expect(t).not.toContain("A certification is only counted once it appears in the awarding body's own searchable database. ");
   });
 
   it("every other copy of the rule carries the same exception", () => {

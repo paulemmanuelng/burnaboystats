@@ -127,7 +127,9 @@ const unitsProse = (link: string) => (
     body that has since raised it, in the words the{" "}
     <Link href="/compare" className={link}>comparison tool</Link> prints beside
     the same figure. Units are blank only where a body publishes no threshold at all,
-    and unpriced_reason says why. Nigeria&apos;s TCSN register is request-based, so a
+    and unpriced_reason says why. The source column says what each plaque was read
+    from: a register row, a label&apos;s own award or the certifying body&apos;s own
+    announcement. Nigeria&apos;s TCSN register is request-based, so a
     missing Nigerian plaque is not evidence of none. The full rules are on the{" "}
     <Link href="/methodology" className={link}>methodology page</Link>.
   </>

@@ -135,7 +135,7 @@ describe("the three files", () => {
   it("carry exactly the published headers", async () => {
     const HEADERS = {
       certifications:
-        "artist,release,credit,format,kind,country_code,country,certifying_body,level,multiplier,certified_units,units_note,priced,unpriced_reason,register_url,verified_on",
+        "artist,release,credit,format,kind,country_code,country,certifying_body,level,multiplier,certified_units,units_note,priced,unpriced_reason,register_url,verified_on,source",
       "chart-peaks":
         "artist,release,credit,format,kind,country_code,country,chart,peak,weeks_at_peak,weeks_on_chart,note",
       awards: "ceremony,year,category,work,result",
@@ -480,6 +480,29 @@ describe("register_url links only a register that can show the plaque", () => {
       const otherIssuer = b !== country.body && !CERT_PROGRAMS[b];
       expect(col(r, "register_url"), `${col(r, "release")} ${c}`).toBe(otherIssuer ? "" : (country.url ?? ""));
     }
+  });
+});
+
+describe("source says what each plaque was read from (PR #400 review)", () => {
+  it("names exactly the plaques that are not register rows", async () => {
+    const { body, col } = await certSheet();
+    const off = body
+      .filter((r) => col(r, "source") !== "register")
+      .map((r) => `${col(r, "artist")}|${col(r, "release")}|${col(r, "country_code")}|${col(r, "source")}`)
+      .sort();
+    expect(off).toEqual(
+      [
+        "Burna Boy|Dai Dai|CO|label",
+        "Tems|No.1|ZA|label",
+        "Tyla|Tyla|FR|announcement",
+        ...["Tyla", "Water", "Push 2 Start", "Truth or Dare", "Jump", "Art", "No.1", "Safer", "Water (Remix) (ft. Travis Scott)"].map(
+          (t) => `Tyla|${t}|ZA|label`,
+        ),
+      ].sort(),
+    );
+    // Negative control: a register row says so, and every row has a value.
+    expect(col(body.find((r) => col(r, "release") === "Water" && col(r, "country_code") === "FR" && col(r, "artist") === "Tyla")!, "source")).toBe("register");
+    for (const r of body) expect(["register", "label", "announcement"]).toContain(col(r, "source"));
   });
 });
 

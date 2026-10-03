@@ -408,8 +408,9 @@ export const AFROBEATS_VERIFIED_ON_17 = "2026-10-02";
  *  what you read in that plaque image". The evidence is a label-issued award,
  *  not a register row: the photo of Sony Music Africa's framed award, whose
  *  nameplate reads "PLATINUM AWARD presented to 'TYLA' … for sales in excess
- *  of [units] of the album 'TYLA'", with eight single discs, each labelled
- *  PLATINUM SINGLE or GOLD SINGLE — Water five stacked Platinum discs (5×),
+ *  of [units] of the album 'TYLA'", with discs for eight singles (fourteen
+ *  discs in all), each labelled PLATINUM SINGLE or GOLD SINGLE — Water five
+ *  stacked Platinum discs (5×),
  *  Truth or Dare three (3×), Jump and Art one Platinum each, Safer, No.1,
  *  Water (Remix) and Push 2 Start one Gold each. The photo was posted on
  *  Tyla's own Instagram (it carries the mark "@tyla #tyga").
@@ -429,7 +430,11 @@ export const AFROBEATS_VERIFIED_ON_17 = "2026-10-02";
  *  featured credits, so it is one Tems plaque as well (75 → 76, no new
  *  country) — docs/sweeps/tems-certifications-v1.md, "3 Oct 2026". Both
  *  artists' ZA label plaques carry `source: "label"` and name Sony Music
- *  Africa as the issuer. */
+ *  Africa as the issuer.
+ *
+ *  Not a full re-read: Tyla's and Tems's verifiedOn move to this date by the
+ *  ON_13 bump rule, but on 3 Oct only SNEP's database was read (for Tyla's
+ *  album) and the plaque photo; no other register was re-read for either. */
 export const AFROBEATS_VERIFIED_ON_18 = "2026-10-03";
 
 export const afrobeatsArtists: AfroArtist[] = [

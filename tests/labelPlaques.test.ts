@@ -13,6 +13,15 @@ import {
 } from "../app/data/afrobeats";
 import { artistFaqs } from "../app/lib/boardFaqs";
 import { registerUrl } from "../app/lib/dataDownloads";
+import {
+  burnaLabelPlaques,
+  boardLabelPlaques,
+  boardAnnouncements,
+  boardOffRegisterTotal,
+  provenanceTileSentence,
+  certificationRule,
+} from "../app/lib/offRegister";
+import { countryChipTitle } from "../app/lib/certs";
 
 // LABEL-ISSUED PLAQUES (owner's ruling, 3 Oct 2026: "cant you see the plaque").
 //
@@ -203,5 +212,94 @@ describe("no board page claims every plaque is a register row", () => {
     const shipped =
       "{`${(boardTotal + totalAwards()).toLocaleString(\"en-US\")} plaques, each read in an issuing body's own register`}";
     expect(unqualified(shipped)).toHaveLength(1);
+  });
+});
+
+// The board's two "where the figures come from" statements — the hub's
+// Provenance tile and the methodology's Certifications card it links to — said
+// a figure with no register behind it is never published or counted, over the
+// board's label plaques and SNEP's announced Or (PR #400 review, second pass).
+// Both now come from app/lib/offRegister.ts, and these hold them to the data.
+const ABSOLUTE = [
+  /no register (?:row )?behind it is not published/i,
+  /nothing is published here that has not\s+been read/i,
+  /only counted once it appears in the awarding body(?:&apos;|')s own searchable database\./i,
+];
+const absolute = (src: string): string[] =>
+  ABSOLUTE.flatMap((re) => {
+    const m = src.replace(/\s+/g, " ").match(re);
+    return m ? [m[0]] : [];
+  });
+
+describe("the hub tile and the methodology card name what stands without a register row", () => {
+  it.each([...BOARD_COPY, "app/methodology/page.tsx", "app/components/MobileMethodology.tsx"])("%s", (file) => {
+    expect(absolute(readFileSync(file, "utf8"))).toEqual([]);
+  });
+
+  it("negative control: the Provenance tile that shipped", () => {
+    // app/afrobeats/page.tsx at 20407662, verbatim.
+    const shipped = `                {sweptArtists.length} register sweeps — RIAA, BPI, SNEP, TurnTable and their
+                equivalents — re-read at each sweep, last on {sweptRange}. A figure with no
+                register behind it is not published.`;
+    expect(absolute(shipped)).toHaveLength(1);
+  });
+
+  it("negative control: the One-rule tile that shipped", () => {
+    const shipped = `                plaques, fan tallies are not registers, and nothing is published here that has
+                not been read at source.`;
+    expect(absolute(shipped)).toHaveLength(1);
+  });
+
+  it("negative control: the methodology rule that shipped", () => {
+    const shipped =
+      "`Official certification databases of each market — the RIAA (US), BPI (UK), SNEP (France), BVMI (Germany), FIMI (Italy) and others. A certification is only counted once it appears in the awarding body's own searchable database.${labelPlaqueClause}`,";
+    expect(absolute(shipped)).toHaveLength(1);
+  });
+
+  it("the tile counts every off-register plaque on the board, Burna Boy's included", () => {
+    const swept = afrobeatsArtists.filter((a) => a.swept).reduce((n, a) => n + offRegisterCount(a), 0);
+    expect(swept).toBe(11); // Tyla 10, Tems 1
+    expect(burnaLabelPlaques).toEqual(["“Dai Dai”'s Gold in Colombia, issued by Sony Music Colombia"]);
+    expect(boardOffRegisterTotal).toBe(12);
+    expect(provenanceTileSentence()).toBe(
+      "A figure with no register row behind it is published only where the body itself announced it or the label issued the plaque — 12 of the board's plaques, each named in the methodology.",
+    );
+  });
+
+  it("the methodology names every one of them", () => {
+    const rule = certificationRule();
+    expect(rule).toMatch(
+      /^A certification is only counted once it appears in the awarding body's own searchable database, or the body itself has published it\. In Burna Boy's own record, /,
+    );
+    expect([...boardLabelPlaques].sort()).toEqual([
+      "Tems's “No.1” Gold in South Africa, issued by Sony Music Africa",
+      "Tyla's 9 plaques in South Africa, issued by Sony Music Africa",
+    ]);
+    expect(boardAnnouncements).toEqual([
+      "Tyla's “Tyla” Gold in France, announced by SNEP on its own X account, 6 Apr 2026, and not in its database",
+    ]);
+    for (const x of [...burnaLabelPlaques, ...boardLabelPlaques, ...boardAnnouncements]) expect(rule).toContain(x);
+    // Every swept artist with an off-register plaque is named.
+    for (const a of afrobeatsArtists.filter((x) => x.swept && offRegisterCount(x) > 0)) expect(rule).toContain(`${a.name}'s`);
+  });
+});
+
+describe("the country filter chip says when a country's plaques are not register rows", () => {
+  const chip = (slug: string, code: string) => {
+    const certs = artistBySlug(slug)!.releases.flatMap((r) =>
+      r.certs.filter((c) => c.c === code).map((c) => ({ ...c, provenance: certProvenance(c) })),
+    );
+    return countryChipTitle(countryMeta(code).name, countryMeta(code).body, certs);
+  };
+
+  it("Tyla's ZA chip names the label, not RiSA", () => {
+    expect(chip("tyla", "ZA")).toBe("South Africa — Sony Music Africa, label-issued plaques");
+    expect(chip("tems", "ZA")).toBe("South Africa — RiSA (1 not a register row)");
+    expect(chip("tyla", "FR")).toBe("France — SNEP (1 not a register row)");
+  });
+
+  it("negative control: a country of register rows keeps the plain chip", () => {
+    expect(chip("tyla", "US")).toBe("United States — RIAA");
+    expect(chip("wizkid", "GB")).toBe(`${countryMeta("GB").name} — ${countryMeta("GB").body}`);
   });
 });

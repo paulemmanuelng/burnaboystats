@@ -8,7 +8,7 @@
 >
 > **The ruling, verbatim (Paul, 3 Oct 2026):** "but that is same way we added the AKA certs, check their archives" … "cant you see the plaque" — and, on what may be cited for it, "only use what you read in that plaque image". Tyla's South African plaques count on the same evidence the site already accepts for AKA's *All Eyes on Me* (ft. Burna Boy, JR & Da L.E.S) 🇿🇦 19× Platinum: a label-issued plaque the artist shared, with no RiSA register row behind it (`app/data/certifications.ts`, `docs/sourcing/burna-boy.by-country.md`). Applied, not re-litigated.
 >
-> **The evidence — the plaque photo, and nothing else.** A framed SONY MUSIC AFRICA platinum award with the South African flag, held up by Tyla, read from the owner's photos of it. The photo was posted on Tyla's own Instagram; it carries the mark "@tyla #tyga". The nameplate reads "PLATINUM AWARD presented to 'TYLA' by SONY MUSIC AFRICA for sales in excess of [units] of the album 'TYLA'". Read disc by disc (title → label on the disc → number of discs → plaque):
+> **The evidence — the plaque photo, and nothing else.** A framed SONY MUSIC AFRICA platinum award with the South African flag, held up by Tyla, read from the owner's photo of it. The photo was posted on Tyla's own Instagram; it carries the mark "@tyla #tyga". The nameplate reads "PLATINUM AWARD presented to 'TYLA' by SONY MUSIC AFRICA for sales in excess of [units] of the album 'TYLA'". Read disc by disc (title → label on the disc → number of discs → plaque):
 > - *Water* → "PLATINUM SINGLE" → five discs → **5× Platinum** ▣
 > - *Truth or Dare* → "PLATINUM SINGLE" → three discs → **3× Platinum** ▣
 > - *Jump* (feat. Gunna & Skillibeng) → Platinum single → **Platinum** ▣
@@ -21,7 +21,7 @@
 >
 > Nine plaques: five Platinum-tier (Water, Truth or Dare, Jump, Art, the album) and four Gold. *Chanel* is not on the plaque, so the phantom 🇿🇦 Platinum Wikipedia lifted from Dave & Tems's *Raindance* stays out.
 >
-> **The multiples are the disc counts.** Every disc on the award is labelled PLATINUM SINGLE or GOLD SINGLE. *Water* carries five stacked Platinum discs and *Truth or Dare* three, so the file carries **5×** and **3×**; every other single carries one disc. Nothing else is read into the plaque: the nameplate's unit figure is not recorded, and no other post or graphic is cited. The photos are not committed (they show minors).
+> **The multiples are the disc counts.** Every disc on the award is labelled PLATINUM SINGLE or GOLD SINGLE. *Water* carries five stacked Platinum discs and *Truth or Dare* three, so the file carries **5×** and **3×**; every other single carries one disc. Nothing else is read into the plaque: the nameplate's unit figure is not recorded, and no other post or graphic is cited. The photo is not committed (it shows minors).
 >
 > **Why no register row.** RiSA's register held no Tyla rows when read in Aug 2026 (the five removals below) and its robots.txt has barred our reader since, so it cannot be re-read here. The earlier removals of Water 4×, the album Gold, Art and Jump are **reinstated at the plaque's tiers on the ruling**; the notes below say so where they stand.
 >

@@ -19,6 +19,7 @@ import {
   chartEntries,
   BURNA,
 } from "../data/afrobeats";
+import { provenanceTileSentence } from "../lib/offRegister";
 import { totalAwards, countryCount as burnaCountries } from "../data/certifications";
 import { chartEntryCount as burnaChartEntries } from "../data/charts";
 import { livePlacementCount as burnaLivePlacements } from "../data/liveCharts";
@@ -258,8 +259,8 @@ export default function AfrobeatsPage() {
               <span className={styles.ruleName}>One rule, counted the same</span>
               <span className={styles.ruleBody}>
                 One plaque per title per country at its current tier. Award events are not
-                plaques, fan tallies are not registers, and nothing is published here that has
-                not been read at source.
+                plaques, fan tallies are not registers, and nothing is published here that was
+                not read from the body or label that issued it.
               </span>
               <span className={styles.ruleLink}>How the counting works →</span>
             </span>
@@ -275,8 +276,8 @@ export default function AfrobeatsPage() {
               <span className={styles.ruleName}>Read at source, {sweptRange}</span>
               <span className={styles.ruleBody}>
                 {sweptArtists.length} register sweeps — RIAA, BPI, SNEP, TurnTable and their
-                equivalents — re-read at each sweep, last on {sweptRange}. A figure with no
-                register behind it is not published.
+                equivalents — re-read at each sweep, last on {sweptRange}.{" "}
+                {provenanceTileSentence()}
               </span>
               <span className={styles.ruleLink}>Where the figures come from →</span>
             </span>

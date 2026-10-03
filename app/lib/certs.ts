@@ -52,3 +52,25 @@ export const certWeight = (r: Release) =>
 /** Most-certified first; ties broken by what the plaques actually represent. */
 export const byMostCertified = (a: Release, b: Release) =>
   b.certs.length - a.certs.length || certWeight(b) - certWeight(a);
+
+/** The country filter chip's hover text. A country whose plaques are all
+ *  register rows reads "France — SNEP", as every chip always did. But a chip
+ *  that named the register over plaques that register does not hold said
+ *  "South Africa — RiSA" on Tyla's page, where all nine ZA plaques are Sony
+ *  Music Africa's own award (PR #400 review). So: when every plaque in that
+ *  country is the same kind of off-register plaque from one issuer, the chip
+ *  reads like the badges do ("South Africa — Sony Music Africa, label-issued
+ *  plaques"); when only some are, it counts them ("France — SNEP (1 not a
+ *  register row)"). `provenance` is set only on a plaque that is not a register
+ *  row (certProvenance in app/data/afrobeats.ts). */
+export function countryChipTitle(name: string, body: string, certs: readonly Cert[]): string {
+  const off = certs.filter((c) => c.provenance);
+  if (!off.length) return `${name} — ${body}`;
+  const issuers = new Set(off.map((c) => c.body ?? body));
+  const tails = new Set(off.map((c) => c.provenance!));
+  if (off.length === certs.length && issuers.size === 1 && tails.size === 1) {
+    const tail = [...tails][0];
+    return `${name} — ${[...issuers][0]}, ${off.length > 1 && tail.endsWith("plaque") ? `${tail}s` : tail}`;
+  }
+  return `${name} — ${body} (${off.length} not ${off.length === 1 ? "a register row" : "register rows"})`;
+}
