@@ -30,6 +30,7 @@ import {
   chartTerritories,
   chartNo1s,
   topAward,
+  labelPlaquePhrase,
   type Tier,
 } from "../../data/afrobeats";
 import { LIVE_CADENCE_ADVERB } from "../../lib/liveChartMeta";
@@ -85,6 +86,10 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
   const faqs = artistFaqs(a);
   const total = certCount(a);
   const countries = countryCount(a);
+  // "9 plaques in South Africa" when some plaques are label-issued (the owner's
+  // ruling of 3 Oct 2026), else undefined — every "read in the issuing body's
+  // own register" line below qualifies itself with it.
+  const label = labelPlaquePhrase(a);
   // One formatted date for both layouts — the phone's lede carried none until
   // 17 Sep 2026 while the desktop printed it in the provenance line.
   const verifiedLong = new Date(`${a.verifiedOn}T12:00:00Z`).toLocaleDateString("en-GB", {
@@ -114,13 +119,13 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
   // different register with thresholds a sixteenth of the main programme's —
   // and this strip rendered them as plain US Platinum until 11 Sep 2026. Same
   // marker Burna's explorer paints beside "Dai Dai".
-  const byCountry = new Map<string, { level: Tier; x?: number; body?: string }>();
+  const byCountry = new Map<string, { level: Tier; x?: number; body?: string; source?: "label" }>();
   const rank: Record<Tier, number> = { Diamond: 0, Platinum: 1, Gold: 2, Silver: 3 };
   for (const r of a.releases)
     for (const c of r.certs) {
       const cur = byCountry.get(c.c);
       if (!cur || rank[c.level] < rank[cur.level] || (c.level === cur.level && (c.x ?? 1) > (cur.x ?? 1)))
-        byCountry.set(c.c, { level: c.level, x: c.x, body: c.body });
+        byCountry.set(c.c, { level: c.level, x: c.x, body: c.body, source: c.source });
     }
   const countryStrip = [...byCountry.entries()].sort(
     (p, q) => rank[p[1].level] - rank[q[1].level] || (q[1].x ?? 1) - (p[1].x ?? 1)
@@ -129,7 +134,7 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
   const dataset = a.swept
     ? datasetJsonLd({
         name: `${a.name} music certifications by country`,
-        description: `Every certification held by ${a.name} — ${count(total, "plaque", "plaques")} across ${count(countries, "country", "countries")}, each read in the issuing body's own register and counted one plaque per title per country at its current tier.`,
+        description: `Every certification held by ${a.name} — ${count(total, "plaque", "plaques")} across ${count(countries, "country", "countries")}, each read in the issuing body's own register${label ? ` (except ${label}, read from the label's own award, which the register does not hold)` : ""} and counted one plaque per title per country at its current tier.`,
         path: `/afrobeats/${a.slug}`,
         keywords: [a.name, "certifications", "RIAA", "BPI", "gold", "platinum", "diamond", "Afrobeats"],
         variableMeasured: ["Certification tier", "Country / territory", "Release", "Certifying body"],
@@ -215,7 +220,7 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
         backHref="/afrobeats"
         backLabel={a.name}
         subject={a.name}
-        lede={`Every ${a.name} plaque, read in the issuing body's own register — ${total} across ${count(countries, "country", "countries")}, from ${a.releases.length} certified releases. Last verified ${verifiedLong}.`}
+        lede={`Every ${a.name} plaque, read in the issuing body's own register${label ? ` (${label} from the label's own award)` : ""} — ${total} across ${count(countries, "country", "countries")}, from ${a.releases.length} certified releases. Last verified ${verifiedLong}.`}
         faqs={faqs}
         showActionBar
         compareSlug={a.slug}
@@ -341,7 +346,9 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
 
         {/* Verified-at-source line: the site's actual differentiator. */}
         <p className={styles.provenance}>
-          Every figure read in an issuing body&apos;s own register — last verified{" "}
+          Every figure read in an issuing body&apos;s own register
+          {label ? ` — except ${label}, read from the label’s own award, which the register does not hold` : ""}
+          {" "}— last verified{" "}
           {verifiedLong}. Counted by the same rules, set out in the{" "}
           <Link href="/methodology#principles">methodology</Link>: one plaque per title per
           country at its current tier, lead and featured credits both.
@@ -360,7 +367,7 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
           {countryStrip.map(([code, t]) => {
             const c = countryMeta(code);
             return (
-              <span key={code} className={`${styles.cert} ${styles[tierOf(t.level)]}`} title={`${c.name} — ${t.body ?? c.body}`}>
+              <span key={code} className={`${styles.cert} ${styles[tierOf(t.level)]}`} title={`${c.name} — ${t.source === "label" ? `${t.body ?? "the label"}, label-issued plaque` : t.body ?? c.body}`}>
                 <span className={styles.flag} aria-hidden="true">{c.flag}</span>
                 {t.x && t.x > 1 ? `${t.x}× ` : ""}
                 {tierWord(t.level, t.body)}

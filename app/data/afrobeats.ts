@@ -188,7 +188,23 @@ export type Tier = "Diamond" | "Platinum" | "Gold" | "Silver";
  * 3x is the floor the badge establishes, and it is what both rows now carry.
  * If RiSA ever prints a multiple, raise both together.
  */
-export interface AfroCert { c: string; level: Tier; x?: number; body?: string }
+export interface AfroCert {
+  c: string;
+  level: Tier;
+  x?: number;
+  body?: string;
+  /** "label" when the evidence is a LABEL-ISSUED plaque the artist shared, not
+   *  a row in the certifying body's register — counted on the owner's ruling of
+   *  3 Oct 2026 (Tyla's South African plaques, Sony Music Africa's framed award;
+   *  the precedent is AKA's "All Eyes on Me" 19× in certifications.ts). Such a
+   *  cert also names its issuer in `body`, the convention Burna Boy's Colombian
+   *  "Dai Dai" Gold set ("Sony Music Colombia"), so the pill, the API and the
+   *  CSV say who issued it. Every page that says a figure was "read in the
+   *  issuing body's own register" must qualify it when an artist holds one —
+   *  labelPlaqueCount() below, and tests/labelPlaques.test.ts holds the copy
+   *  to it. Absent means a register row, which is every other plaque. */
+  source?: "label";
+}
 export interface AfroPeak {
   c: string;
   peak: number;
@@ -298,7 +314,8 @@ export const AFROBEATS_VERIFIED_ON_9 = "2026-09-19";
  *  Sverige's record pages, IFPI Danmark in full and TCSN's 21 Feb 2026 capture.
  *  Certifications only. The sweep re-read every body for all fifteen artists;
  *  the other ten came back unchanged and keep the dates they had. Superseded
- *  for Rema by ON_13 on 25 Sep 2026. */
+ *  for Rema by ON_13 on 25 Sep 2026, and for Tyla and Tems by ON_18 on
+ *  3 Oct 2026. */
 export const AFROBEATS_VERIFIED_ON_10 = "2026-09-23";
 
 /** Kizz Daniel and Ruger, who joined the board on 25 Sep 2026 with Oxlade and
@@ -385,7 +402,13 @@ export const AFROBEATS_VERIFIED_ON_17 = "2026-10-02";
  *  precedent is AKA's "All Eyes on Me" 19× (certifications.ts): a Sony Music
  *  Entertainment Africa plaque the artist shared, with no RiSA row behind it.
  *  Nine plaques, 64 → 73; South Africa is her 24th country.
- *  docs/sweeps/tyla-certifications-v1.md, "3 Oct 2026". */
+ *  docs/sweeps/tyla-certifications-v1.md, "3 Oct 2026".
+ *
+ *  Tems too: the plaque's "No.1" disc is Tyla feat. Tems, and the board counts
+ *  featured credits, so it is one Tems plaque as well (75 → 76, no new
+ *  country) — docs/sweeps/tems-certifications-v1.md, "3 Oct 2026". Both
+ *  artists' ZA label plaques carry `source: "label"` and name Sony Music
+ *  Africa as the issuer. */
 export const AFROBEATS_VERIFIED_ON_18 = "2026-10-03";
 
 export const afrobeatsArtists: AfroArtist[] = [
@@ -1460,7 +1483,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     spotifyId: "687cZJR45JO7jhk1LHIbgq",
     wikipedia: "https://en.wikipedia.org/wiki/Tems_(singer)",
     image: "https://i.scdn.co/image/ab6761610000e5eb22d7d6f8981c7a27bf68a382",
-    verifiedOn: AFROBEATS_VERIFIED_ON_10,
+    verifiedOn: AFROBEATS_VERIFIED_ON_18,
     swept: true,
     chartPublished: { entries: 138, territories: 45, no1s: 7 },
     releases: [
@@ -1484,6 +1507,14 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Essence", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Platinum", x: 5 }, { c: "CA", level: "Platinum", x: 3 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "NG", level: "Platinum", x: 2 }, { c: "ZA", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum" }, { c: "CH", level: "Platinum" }, { c: "FR", level: "Gold" }] },
       { title: "Fountains", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/ea8f80f2edb20885ac8aed8751716794/500x500-000000-80-0-0.jpg", certs: [{ c: "NZ", level: "Gold" }, { c: "AU", level: "Gold" }, { c: "PT", level: "Gold" }, { c: "UK", level: "Silver" }] },
       { title: "Move", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/c3e2a951678a28a3f541a69c866583d4/500x500-000000-80-0-0.jpg", certs: [{ c: "BR", level: "Platinum" }, { c: "US", level: "Gold" }] },
+      // ZA Gold ▣ (3 Oct 2026): Tyla's "No.1" (feat. Tems), a Gold disc on Sony
+      // Music Africa's framed award to Tyla — a LABEL plaque, not a RiSA row,
+      // counted on the owner's ruling of 3 Oct 2026 ("cant you see the plaque")
+      // and, because the board counts featured credits, on Tems's board as well
+      // as Tyla's, as "Dynamite" is on Tyla's and Wizkid's. Her country count
+      // does not move: South Africa is already hers (Essence, Raindance).
+      // docs/sweeps/tems-certifications-v1.md, "3 Oct 2026".
+      { title: "No.1", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg", certs: [{ c: "ZA", level: "Gold", body: "Sony Music Africa", source: "label" }] },
     ],
     charts: [
       { title: "Raindance", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/02552930a9bbf685ec4f683ff0ca2029/500x500-000000-80-0-0.jpg", entries: [{ c: "UK", peak: 1 }, { c: "LU", peak: 1 }, { c: "GR", peak: 1 }, { c: "AE", peak: 1 }, { c: "SA", peak: 1 }, { c: "CH", peak: 2 }, { c: "LT", peak: 2, weeksAtPeak: 3, weeks: 42, note: "Peak still open — still on AGATA's Top 100 when read 2 Oct 2026 (2026-W40, No. 51), 42 weeks in since 2025-W51; No. 2 in 2026-W3, W4 and W9. Re-read in a later capture." }, { c: "IN", peak: 2 }, { c: "LB", peak: 3 }, { c: "ZA", peak: 4 }, { c: "PT", peak: 4 }, { c: "SE", peak: 4 }, { c: "NL", peak: 5 }, { c: "DK", peak: 5 }, { c: "LV", peak: 5 }, { c: "NZ", peak: 5 }, { c: "IE", peak: 6 }, { c: "SK", peak: 6 }, { c: "NG", peak: 7 }, { c: "DE", peak: 7 }, { c: "AT", peak: 7 }, { c: "CZ", peak: 8 }, { c: "RU", peak: 8 }, { c: "AU", peak: 8 }, { c: "GLBX", peak: 8 }, { c: "NO", peak: 12 }, { c: "MY", peak: 12 }, { c: "KZ", peak: 12 }, { c: "GLB", peak: 12 }, { c: "RO", peak: 14 }, { c: "IS", peak: 15 }, { c: "SG", peak: 17 }, { c: "BE", peak: 19 }, { c: "FR", peak: 19 }, { c: "HU", peak: 25 }, { c: "CA", peak: 25 }, { c: "IL", peak: 27 }, { c: "SR", peak: 29 }, { c: "FI", peak: 30 }, { c: "IT", peak: 40 }, { c: "US", peak: 42 }, { c: "PH", peak: 53 }, { c: "PL", peak: 65 }, { c: "MD", peak: 69 }, { c: "EE", peak: 80 }] },
@@ -1545,21 +1576,21 @@ export const afrobeatsArtists: AfroArtist[] = [
       // Start Gold; the album Platinum (nameplate). RiSA's register held no Tyla
       // rows when read in Aug 2026 and is barred to our reader since.
       // docs/sweeps/tyla-certifications-v1.md, "3 Oct 2026".
-      { title: "Tyla", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg", certs: [{ c: "CA", level: "Platinum" }, { c: "BR", level: "Platinum" }, { c: "NL", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "ZA", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "UK", level: "Gold" }, { c: "CH", level: "Gold" }, { c: "DK", level: "Gold" }, { c: "SE", level: "Gold" }] }, // ZA ▣: see the ZA note below
+      { title: "Tyla", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg", certs: [{ c: "CA", level: "Platinum" }, { c: "BR", level: "Platinum" }, { c: "NL", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "ZA", level: "Platinum", body: "Sony Music Africa", source: "label" }, { c: "US", level: "Gold" }, { c: "UK", level: "Gold" }, { c: "CH", level: "Gold" }, { c: "DK", level: "Gold" }, { c: "SE", level: "Gold" }] }, // ZA ▣: see the ZA note above
       { title: "Tyla +", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg", certs: [{ c: "NO", level: "Gold" }] },
-      { title: "Water", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg", certs: [{ c: "BR", level: "Diamond", x: 2 }, { c: "FR", level: "Diamond" }, { c: "ZA", level: "Platinum", x: 5 }, { c: "US", level: "Platinum", x: 4 }, { c: "CA", level: "Platinum", x: 4 }, { c: "PT", level: "Platinum", x: 4 }, { c: "AU", level: "Platinum", x: 4 }, { c: "NZ", level: "Platinum", x: 4 }, { c: "UK", level: "Platinum", x: 2 }, { c: "CH", level: "Platinum", x: 2 }, { c: "HU", level: "Platinum", x: 2 }, { c: "GR", level: "Platinum", x: 2 }, { c: "AT", level: "Platinum" }, { c: "DK", level: "Platinum" }, { c: "ES", level: "Platinum" }, { c: "BE", level: "Platinum" }, { c: "NL", level: "Platinum" }, { c: "NO", level: "Platinum" }, { c: "PL", level: "Platinum" }, { c: "SE", level: "Platinum" }, { c: "DE", level: "Gold" }, { c: "IT", level: "Gold" }, { c: "MX", level: "Gold" }, { c: "NG", level: "Gold" }] }, // ZA ▣: Sony Music Africa plaque, five discs (owner's ruling, 3 Oct 2026)
-      { title: "Push 2 Start", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Platinum" }, { c: "BR", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "CA", level: "Gold" }, { c: "FR", level: "Gold" }, { c: "GR", level: "Gold" }, { c: "HU", level: "Gold" }, { c: "UK", level: "Gold" }, { c: "ZA", level: "Gold" }] }, // ZA ▣: Sony Music Africa plaque (owner's ruling, 3 Oct 2026)
+      { title: "Water", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg", certs: [{ c: "BR", level: "Diamond", x: 2 }, { c: "FR", level: "Diamond" }, { c: "ZA", level: "Platinum", x: 5, body: "Sony Music Africa", source: "label" }, { c: "US", level: "Platinum", x: 4 }, { c: "CA", level: "Platinum", x: 4 }, { c: "PT", level: "Platinum", x: 4 }, { c: "AU", level: "Platinum", x: 4 }, { c: "NZ", level: "Platinum", x: 4 }, { c: "UK", level: "Platinum", x: 2 }, { c: "CH", level: "Platinum", x: 2 }, { c: "HU", level: "Platinum", x: 2 }, { c: "GR", level: "Platinum", x: 2 }, { c: "AT", level: "Platinum" }, { c: "DK", level: "Platinum" }, { c: "ES", level: "Platinum" }, { c: "BE", level: "Platinum" }, { c: "NL", level: "Platinum" }, { c: "NO", level: "Platinum" }, { c: "PL", level: "Platinum" }, { c: "SE", level: "Platinum" }, { c: "DE", level: "Gold" }, { c: "IT", level: "Gold" }, { c: "MX", level: "Gold" }, { c: "NG", level: "Gold" }] }, // ZA ▣: Sony Music Africa plaque, five discs (owner's ruling, 3 Oct 2026)
+      { title: "Push 2 Start", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Platinum" }, { c: "BR", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "CA", level: "Gold" }, { c: "FR", level: "Gold" }, { c: "GR", level: "Gold" }, { c: "HU", level: "Gold" }, { c: "UK", level: "Gold" }, { c: "ZA", level: "Gold", body: "Sony Music Africa", source: "label" }] }, // ZA ▣: Sony Music Africa plaque (owner's ruling, 3 Oct 2026)
       { title: "Chanel", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Gold" }, { c: "AU", level: "Gold" }, { c: "FR", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "PT", level: "Gold" }, { c: "CH", level: "Gold" }, { c: "BE", level: "Gold" }, { c: "UK", level: "Silver" }] }, // BE: Ultratop 2026 singles list, "10/08/2026: Goud", read 19 Sep 2026
-      { title: "Truth or Dare", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/1ae9486180d1f50e7dbbb099b1e66825/500x500-000000-80-0-0.jpg", certs: [{ c: "ZA", level: "Platinum", x: 3 }, { c: "NZ", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "BR", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "PT", level: "Gold" }, { c: "UK", level: "Silver" }] }, // ZA ▣: Sony Music Africa plaque, three discs (owner's ruling, 3 Oct 2026)
-      { title: "Jump", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg", certs: [{ c: "ZA", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "BR", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "UK", level: "Silver" }] }, // ZA ▣: Sony Music Africa plaque (owner's ruling, 3 Oct 2026)
-      { title: "Art", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg", certs: [{ c: "ZA", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "NZ", level: "Gold" }] }, // ZA ▣: Sony Music Africa plaque (owner's ruling, 3 Oct 2026)
+      { title: "Truth or Dare", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/1ae9486180d1f50e7dbbb099b1e66825/500x500-000000-80-0-0.jpg", certs: [{ c: "ZA", level: "Platinum", x: 3, body: "Sony Music Africa", source: "label" }, { c: "NZ", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "BR", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "PT", level: "Gold" }, { c: "UK", level: "Silver" }] }, // ZA ▣: Sony Music Africa plaque, three discs (owner's ruling, 3 Oct 2026)
+      { title: "Jump", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg", certs: [{ c: "ZA", level: "Platinum", body: "Sony Music Africa", source: "label" }, { c: "US", level: "Gold" }, { c: "BR", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "UK", level: "Silver" }] }, // ZA ▣: Sony Music Africa plaque (owner's ruling, 3 Oct 2026)
+      { title: "Art", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg", certs: [{ c: "ZA", level: "Platinum", body: "Sony Music Africa", source: "label" }, { c: "US", level: "Gold" }, { c: "NZ", level: "Gold" }] }, // ZA ▣: Sony Music Africa plaque (owner's ruling, 3 Oct 2026)
       // Three titles certified nowhere else, each a Gold disc on the same Sony
       // Music Africa plaque (▣, owner's ruling, 3 Oct 2026). No.1 wears the TYLA
       // sleeve its chart row already carries; Safer and the Travis Scott remix
       // have no cover on the site, so they draw the placeholder.
-      { title: "No.1 (ft. Tems)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg", certs: [{ c: "ZA", level: "Gold" }] },
-      { title: "Safer", kind: "Lead singles", certs: [{ c: "ZA", level: "Gold" }] },
-      { title: "Water (Remix) (ft. Travis Scott)", kind: "Lead singles", certs: [{ c: "ZA", level: "Gold" }] },
+      { title: "No.1", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg", certs: [{ c: "ZA", level: "Gold", body: "Sony Music Africa", source: "label" }] },
+      { title: "Safer", kind: "Lead singles", certs: [{ c: "ZA", level: "Gold", body: "Sony Music Africa", source: "label" }] },
+      { title: "Water (Remix) (ft. Travis Scott)", kind: "Lead singles", certs: [{ c: "ZA", level: "Gold", body: "Sony Music Africa", source: "label" }] },
       { title: "Dynamite — Tyla & Wizkid", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/b9de2c8e816295f124dd7b227f7fa668/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Show Me Love", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/33cc78686fd6ca7863758a5408d6eabe/500x500-000000-80-0-0.jpg", certs: [{ c: "GR", level: "Gold" }] },
     ],
@@ -2982,6 +3013,24 @@ export const countryCount = (a: AfroArtist) =>
   new Set(a.releases.flatMap((r) => r.certs.map((c) => c.c))).size;
 export const tierCount = (a: AfroArtist, tier: Tier) =>
   a.releases.reduce((n, r) => n + r.certs.filter((c) => c.level === tier).length, 0);
+
+/** Plaques counted from a label-issued award rather than a register row
+ *  (`source: "label"`). Zero for every artist but the ones a ruling names. */
+export const labelPlaqueCount = (a: AfroArtist) =>
+  a.releases.reduce((n, r) => n + r.certs.filter((c) => c.source === "label").length, 0);
+
+/** "9 plaques in South Africa" — the label plaques and where they are, or
+ *  undefined when the artist holds none, so every "read in the issuing body's
+ *  own register" sentence can qualify itself from the data. */
+export const labelPlaquePhrase = (a: AfroArtist): string | undefined => {
+  const n = labelPlaqueCount(a);
+  if (!n) return undefined;
+  const places = [
+    ...new Set(a.releases.flatMap((r) => r.certs.filter((c) => c.source === "label").map((c) => countryMeta(c.c).name))),
+  ];
+  const where = places.length > 1 ? `${places.slice(0, -1).join(", ")} and ${places.at(-1)}` : places[0];
+  return `${n === 1 ? "1 plaque" : `${n} plaques`} in ${where}`;
+};
 
 /** Chart headline, counted from the rows the page actually renders.
  *

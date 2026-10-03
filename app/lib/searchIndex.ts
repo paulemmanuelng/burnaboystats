@@ -516,7 +516,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Tems",
     path: "/afrobeats/tems",
     section: "Afrobeats",
-    description: "Tems's 75 certifications across 21 countries and her official chart peaks, verified at source.",
+    description: "Tems's 76 certifications across 21 countries and her official chart peaks, verified at source (1 in South Africa from the label's own award).",
     keywords: ["tems", "temilade openiyi", "born in the wild", "free mind", "tems certifications", "tems plaques", "tems awards"],
   },
   {
@@ -530,7 +530,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Tyla",
     path: "/afrobeats/tyla",
     section: "Afrobeats",
-    description: "Tyla's 73 certifications across 24 countries and her official chart peaks, verified at source.",
+    description: "Tyla's 73 certifications across 24 countries and her official chart peaks, verified at source (9 in South Africa from the label's own award).",
     keywords: ["tyla", "water", "amapiano", "tyla seethal", "push 2 start", "tyla certifications", "tyla plaques", "tyla awards"],
   },
   {
