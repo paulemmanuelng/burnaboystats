@@ -3156,7 +3156,8 @@ export const offRegisterGroups = (
  *  the label's own award; 1 in France from SNEP's own announcement". A split
  *  group says both halves: "10 plaques in South Africa, 9 read from the label's
  *  own award and 1 from its own announcement" (short: "10 plaques in South
- *  Africa (9 from the label's own award, 1 from its own announcement)"). */
+ *  Africa, 9 from the label's own award and 1 from its own announcement" — no
+ *  brackets, since the page sets the short form inside its own). */
 export const offRegisterPhrase = (a: AfroArtist, form: "long" | "short" = "long"): string | undefined => {
   const groups = offRegisterGroups(a);
   if (!groups.length) return undefined;
@@ -3165,7 +3166,7 @@ export const offRegisterPhrase = (a: AfroArtist, form: "long" | "short" = "long"
     if (g.split)
       return form === "long"
         ? `${head}, ${g.split.map((x, k) => `${x.n}${k === 0 ? " read" : ""} from ${x.from}`).join(" and ")}`
-        : `${head} (${g.split.map((x) => `${x.n} from ${x.from}`).join(", ")})`;
+        : `${head}, ${g.split.map((x) => `${x.n} from ${x.from}`).join(" and ")}`;
     return `${head}${form === "long" ? ", read" : ""} from ${g.from}`;
   });
   return form === "long" ? parts.join(", and ") : parts.join("; ");

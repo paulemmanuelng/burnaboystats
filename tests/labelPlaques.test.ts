@@ -22,6 +22,7 @@ import {
   certificationRule,
 } from "../app/lib/offRegister";
 import { countryChipTitle } from "../app/lib/certs";
+import type { Cert } from "../app/data/certifications";
 
 // LABEL-ISSUED PLAQUES (owner's ruling, 3 Oct 2026: "cant you see the plaque").
 //
@@ -91,7 +92,7 @@ describe("label-issued plaques are exactly the ruled ones", () => {
       "10 plaques in South Africa, 9 read from the label's own award and 1 from its own announcement, and 1 in France, read from SNEP's own announcement",
     );
     expect(offRegisterPhrase(artistBySlug("tyla")!, "short")).toBe(
-      "10 plaques in South Africa (9 from the label's own award, 1 from its own announcement); 1 in France from SNEP's own announcement",
+      "10 plaques in South Africa, 9 from the label's own award and 1 from its own announcement; 1 in France from SNEP's own announcement",
     );
     expect(offRegisterHold(artistBySlug("tyla")!)).toBe("which the registers do not hold");
     expect(offRegisterPhrase(artistBySlug("tems")!)).toBe("1 plaque in South Africa, read from the label's own award");
@@ -315,13 +316,17 @@ describe("the hub tile and the methodology card name what stands without a regis
     );
     expect([...boardLabelPlaques].sort()).toEqual([
       "Tems's “No.1” Gold in South Africa, issued by Sony Music Africa",
-      "Tyla's 10 plaques in South Africa, issued by Sony Music Africa, one of them, “Chanel” Gold, announced on its own X account, 8 Jan 2026",
+      "Tyla's 10 plaques in South Africa from Sony Music Africa — 9 issued on its own award and “Chanel” Gold, announced on its own X account, 8 Jan 2026",
     ]);
     expect(boardAnnouncements).toEqual([
       "Tyla's “Tyla” Gold in France, announced by SNEP on its own X account, 6 Apr 2026, and not in its database",
     ]);
     for (const x of [...burnaLabelPlaques, ...boardLabelPlaques, ...boardAnnouncements]) expect(rule).toContain(x);
     expect(rule).toContain("On the Afrobeats board, a label's own plaque or announcement stands where the register holds no row:");
+    // The post announces a Gold; it does not say the label issued a plaque, so
+    // the rule must not call all ten "issued by" — the wording this PR first
+    // carried (PR #402 review).
+    expect(rule).not.toContain("Tyla's 10 plaques in South Africa, issued by Sony Music Africa");
     // Every swept artist with an off-register plaque is named.
     for (const a of afrobeatsArtists.filter((x) => x.swept && offRegisterCount(x) > 0)) expect(rule).toContain(`${a.name}'s`);
   });
@@ -341,6 +346,32 @@ describe("the country filter chip says when a country's plaques are not register
     );
     expect(chip("tems", "ZA")).toBe("South Africa — RiSA (1 not a register row)");
     expect(chip("tyla", "FR")).toBe("France — SNEP (1 not a register row)");
+  });
+
+  // Tyla's ZA chip now takes the mixed-kind branch, so the single-kind wording
+  // #400 shipped ("…, label-issued plaques") is pinned on synthetic certs.
+  const za = (provenance: string) => ({ c: "ZA", level: "Gold", body: "Sony Music Africa", provenance }) as Cert;
+
+  it("one issuer, one kind: the single-kind wording #400 shipped", () => {
+    expect(countryChipTitle("South Africa", "RiSA", [za("label-issued plaque"), za("label-issued plaque")])).toBe(
+      "South Africa — Sony Music Africa, label-issued plaques",
+    );
+    expect(countryChipTitle("South Africa", "RiSA", [za("label-issued plaque")])).toBe(
+      "South Africa — Sony Music Africa, label-issued plaque",
+    );
+  });
+
+  it("one issuer, three kinds: commas and a final and", () => {
+    expect(
+      countryChipTitle("South Africa", "RiSA", [
+        za("label-issued plaque"),
+        za("label-issued plaque"),
+        za("announced on its own X account, 8 Jan 2026"),
+        za("announced on its own Instagram account, 2 Feb 2026"),
+      ]),
+    ).toBe(
+      "South Africa — Sony Music Africa, 2 label-issued plaques, 1 announced on its own X account, 8 Jan 2026 and 1 announced on its own Instagram account, 2 Feb 2026",
+    );
   });
 
   it("negative control: a country of register rows keeps the plain chip", () => {

@@ -80,7 +80,8 @@ export function countryChipTitle(name: string, body: string, certs: readonly Cer
       const n = off.filter((c) => c.provenance === t).length;
       return `${n} ${n > 1 && t.endsWith("plaque") ? `${t}s` : t}`;
     });
-    return `${name} — ${[...issuers][0]}, ${kinds.join(" and ")}`;
+    const list = kinds.length > 1 ? `${kinds.slice(0, -1).join(", ")} and ${kinds.at(-1)}` : kinds[0];
+    return `${name} — ${[...issuers][0]}, ${list}`;
   }
   return `${name} — ${body} (${off.length} not ${off.length === 1 ? "a register row" : "register rows"})`;
 }

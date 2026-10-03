@@ -51,9 +51,19 @@ export const boardLabelPlaques: string[] = swept.flatMap((a) => {
         ? `${a.name}'s “${r.title}” ${c.level} in ${where}, announced by ${issuer}${post(g[0])}`
         : `${a.name}'s “${r.title}” ${c.level} in ${where}, issued by ${issuer}`;
     const posts = g.filter((x) => x.c.announced);
-    const named = posts.map((x) => `“${x.r.title}” ${x.c.level}, announced${post(x)}`).join("; ");
-    const tail = !posts.length ? "" : posts.length === 1 ? `, one of them, ${named}` : `, ${posts.length} of them announced: ${named}`;
-    return `${a.name}'s ${g.length} plaques in ${where}, issued by ${issuer}${tail}`;
+    if (!posts.length) return `${a.name}'s ${g.length} plaques in ${where}, issued by ${issuer}`;
+    // A group that mixes the label's award and its own announcement names the
+    // two kinds apart: the post announces a certification, it does not say the
+    // label issued a plaque (PR #402 review). "Tyla's 10 plaques in South
+    // Africa from Sony Music Africa — 9 issued on its own award and “Chanel”
+    // Gold, announced on its own X account, 8 Jan 2026".
+    const awards = g.length - posts.length;
+    const named = posts.map((x) => `“${x.r.title}” ${x.c.level}, announced${post(x)}`);
+    const announcedPart =
+      posts.length === 1 ? named[0] : `${posts.length} announced on its own posts (${named.join("; ")})`;
+    return awards
+      ? `${a.name}'s ${g.length} plaques in ${where} from ${issuer} — ${awards} issued on its own award and ${announcedPart}`
+      : `${a.name}'s ${g.length} plaques in ${where} from ${issuer}, all ${announcedPart.replace(/^\d+ /, "")}`;
   });
 });
 
