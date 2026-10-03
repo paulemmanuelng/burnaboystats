@@ -122,9 +122,11 @@ export default function RevenueCountries({
             {withData.map((k) => (
               <li key={k.continent} className={own.card}>
                 <span className={own.cardLabel}>{k.continent}</span>
+                {/* Two fixed lines in every card, so the leader and figure sit
+                    at the same height across the row at every width. */}
                 <span className={own.cardMeta}>
-                  <span className={own.nowrap}>{nightsLabel(k.shows)}</span> ·{" "}
-                  <span className={own.nowrap}>
+                  <span className={own.metaLine}>{nightsLabel(k.shows)}</span>
+                  <span className={own.metaLine}>
                     {k.countries.length} {k.countries.length === 1 ? "country" : "countries"}
                   </span>
                 </span>
@@ -135,9 +137,7 @@ export default function RevenueCountries({
                   {usdM(k.leader!.total)}
                 </span>
                 {k.artists.length > 1 && (
-                  <span className={own.cardOf}>
-                    of {usdM(k.total)} in {k.continent}
-                  </span>
+                  <span className={own.cardOf}>of {usdM(k.total)}</span>
                 )}
                 <Runner k={k} />
               </li>

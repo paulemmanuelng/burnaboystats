@@ -58,8 +58,9 @@
   line-height: 1.5;
   color: var(--text-muted);
 }
-.nowrap { white-space: nowrap; }
+.metaLine { display: block; white-space: nowrap; }
 .cardOf {
+  white-space: nowrap;
   font-family: var(--font-mono), monospace;
   font-size: 11px;
   letter-spacing: 0.06em;
