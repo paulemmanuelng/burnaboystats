@@ -175,8 +175,8 @@
   padding: 12px 18px;
   border-bottom: 1px solid var(--line);
 }
-/* The wash marks the rows that are NOT his — about two thirds are his, so tinting those
-   would tint the board rather than pick anything out. */
+/* The wash marks the rows that are NOT his — the page is his, so the tint is
+   what picks everyone else's nights out. */
 .rowOther { background: color-mix(in srgb, var(--text) 2%, transparent); }
 .rank {
   font-family: var(--font-geist-sans), system-ui, sans-serif;

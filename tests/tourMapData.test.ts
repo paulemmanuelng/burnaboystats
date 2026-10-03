@@ -115,6 +115,15 @@ describe("Canada's biggest line follows the design rule (3 Oct 2026)", () => {
   });
 });
 
+describe("Ireland's biggest line follows the same rule (3 Oct 2026)", () => {
+  // His 3Arena night of March 2022 (Space Drift, TouringData's own post of
+  // 27 May 2022) joined tourRevenue.ts. Ireland has no tour date in tours.ts,
+  // so by rule 6 the line carries the year, not a day.
+  it("names the 3Arena night, dated by its year", () => {
+    expect(get("Ireland").big?.line).toBe("3Arena, Dublin · 2022 · 7,504 tickets");
+  });
+});
+
 describe("all 57 match research/countries.md", () => {
   it("documented lines and biggest lines, every country", () => {
     const off = tourMapCountries.flatMap((c) => {

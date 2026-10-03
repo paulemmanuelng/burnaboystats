@@ -50,7 +50,7 @@ const revenueDataset = datasetJsonLd({
 });
 
 const SOURCE_NOTE =
-  `Box-office figures reported by Billboard Boxscore & Pollstar (as aggregated by TouringData), cross-checked against press reporting, as of ${REVENUE_AS_OF}. Each entry is a single night's gross. Stands that Boxscore reported only as one combined total are listed beneath the board with the body's own figures — they cannot be ranked against single nights, and no per-night split is invented for them.`;
+  `Box-office reports as published by TouringData, which republishes Billboard Boxscore and Pollstar reports — read at its site archive and in its own posts, cross-checked with press reporting, as of ${REVENUE_AS_OF}. Each entry is a single night's gross. Stands reported only as one combined total are listed beneath the board with the reported figures — they cannot be ranked against single nights, and no per-night split is invented for them.`;
 
 export default function RevenuePage() {
   return (
@@ -86,12 +86,15 @@ export default function RevenuePage() {
         }))}
         stands={revenueStands.map((s) => ({
           venue: s.venue,
-          meta: `${s.city} · ${s.tour} · ${s.dates} · ${s.shows} shows`,
+          // Another artist's stand names its artist, as the board's rows do.
+          meta: s.artist === "Burna Boy"
+            ? `${s.city} · ${s.tour} · ${s.dates} · ${s.shows} shows`
+            : `${s.artist} · ${s.city} · ${s.tour} · ${s.dates} · ${s.shows} shows`,
           gross: `$${(s.revenue / 1e6).toFixed(2)}M`,
           tickets: `${s.tickets} over ${s.shows} nights`,
           his: s.artist === "Burna Boy",
         }))}
-        sourceNote="Grosses and ticket counts reported by Billboard Boxscore & Pollstar (as aggregated by TouringData), cross-checked against press reporting. The board ranks every reported show by an African artist we have verified, not only his — a missing night means no gross for it was reported, or none we could verify yet. A dash means no headcount was published. Stands Boxscore reported only as one combined total sit beneath the board with the body's figures; no per-night split is invented for them."
+        sourceNote={`Box-office reports as published by TouringData, which republishes Billboard Boxscore and Pollstar reports — read at its site archive and in its own posts, cross-checked with press reporting, as of ${REVENUE_AS_OF}. The board ranks every reported show by an African artist we have verified, not only his — a missing night means no gross for it was reported, or none we could verify yet. A dash means no headcount was published. Stands reported only as one combined total sit beneath the board with the reported figures; no per-night split is invented for them.`}
       />
 
       <div className={styles.desktopOnly}>
@@ -133,17 +136,23 @@ export default function RevenuePage() {
                 <li key={`${s.venue}-${s.dates}`} className={styles.stand}>
                   <span className={styles.standVenue}>
                     <span aria-hidden="true">{s.flag}</span> {s.venue}, {s.city}
-                    <span className={styles.standMeta}> · {s.tour} · {s.dates} · {s.shows} shows</span>
+                    <span className={styles.standMeta}>
+                      {" · "}
+                      {s.artist === "Burna Boy" ? "" : `${s.artist} · `}
+                      {s.tour} · {s.dates} · {s.shows} shows
+                    </span>
                   </span>
-                  <span className={styles.standGross}>${s.revenue.toLocaleString("en-US")}</span>
+                  <span className={`${styles.standGross} ${s.artist === "Burna Boy" ? styles.standGrossHis : ""}`}>
+                    ${s.revenue.toLocaleString("en-US")}
+                  </span>
                   <span className={styles.standTickets}>{s.tickets} tickets over {s.shows} nights</span>
                 </li>
               ))}
             </ul>
             <p className={styles.standsNote}>
-              Boxscore reported each of these runs as one combined figure and never a per-night gross, so
-              they are shown as the body prints them rather than ranked above — a two-night total would
-              sit fifth on a board of single nights it never had.
+              Each of these runs was reported as one combined figure and never a per-night gross, so
+              they are shown as reported rather than ranked above — each total would
+              sit in the top five of a board of single nights it never had.
             </p>
           </section>
           <p className={styles.sourceNote}>{SOURCE_NOTE}</p>

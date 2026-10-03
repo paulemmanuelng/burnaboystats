@@ -22,8 +22,8 @@ import BackLink from "./BackLink";
  *    content — same rule the desktop board follows.
  *  - **The tint marks the other artists, not him.** His nights sit on the plain
  *    background and take the gold gross; everyone else's row carries the faint
- *    wash. The design does it this way because about two thirds of the rows are his, so
- *    tinting those would tint the board.
+ *    wash. The page is his, so the tint is what picks everyone else's nights
+ *    out.
  *
  * No bars: the design draws the gross as figures, and a bar under two thirds of
  * the rows would read as decoration rather than as a scale.

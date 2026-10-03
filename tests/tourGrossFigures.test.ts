@@ -154,19 +154,16 @@ describe("multi-night stands are carried as the body prints them", () => {
 describe("the ranked board holds no per-night average of a stand, and is in order", () => {
   // Wizkid's O2 Arena "show" ($958,489 from 16,938, Made in Lagos Tour 2021)
   // sat on the board for months: it was the AVERAGE of a sold-out three-night
-  // run reported as one total. That run is not in `revenueStands` yet (the
-  // body's exact figure is awaiting a read), so the reported run is listed
-  // here beside the carried stands — every run the guard must know about.
-  const knownRuns = [
-    ...revenueStands.map((s) => ({ name: `${s.artist}, ${s.venue} ${s.dates}`, revenue: s.revenue, tickets: s.tickets, shows: s.shows })),
-    // Reported (Touring Data's X post title), not yet read at the body, so not
-    // in revenueStands. Once the stand lands there, delete this line — the
-    // test below fails once it lands, so the run is never carried twice.
-    { name: "Wizkid, The O2 Arena 28 Nov–1 Dec 2021", revenue: 2875468, tickets: "50,814", shows: 3 },
-  ];
+  // run reported as one total. The run is in `revenueStands` at TouringData's
+  // own figure (post of 26 May 2022), so every run the guard must know about
+  // comes from there — no run is hard-coded here as well.
+  const knownRuns = revenueStands.map((s) => ({ name: `${s.artist}, ${s.venue} ${s.dates}`, revenue: s.revenue, tickets: s.tickets, shows: s.shows }));
 
-  it("the hand-carried Wizkid O2 run is not also in revenueStands", () => {
-    expect(revenueStands.filter((s) => s.artist === "Wizkid" && s.venue === "The O2 Arena")).toEqual([]);
+  it("carries the Wizkid O2 run once, as a stand at the body's figure", () => {
+    const runs = revenueStands.filter((s) => s.artist === "Wizkid" && s.venue === "The O2 Arena");
+    expect(runs.map((s) => [s.revenue, s.tickets, s.shows, s.dates, s.tour])).toEqual([
+      [2875468, "50,814", 3, "28–29 November and 1 December 2021", "Made in Lagos Tour"],
+    ]);
   });
   const n = (t?: string) => (t ? Number(t.replace(/,/g, "")) : NaN);
   const isAverageOf = (row: { revenue: number; tickets?: string }, run: (typeof knownRuns)[number]) =>

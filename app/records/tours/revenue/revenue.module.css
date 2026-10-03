@@ -138,7 +138,7 @@
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
-/* The gold gross marks HIS nights, so it cannot be the default — about a third
+/* The gold gross marks HIS nights, so it cannot be the default — more than half
    of the rows belong to other artists, and lighting all of them gold says the board is
    entirely his. mobileRevenue.module.css has always done it this way (.gross
    muted, .grossHis gold); the desktop board did not, so every artist's money
@@ -179,10 +179,12 @@
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
   font-size: 20px;
-  color: var(--gold);
+  color: var(--text-muted);
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
+/* Gold for his stands only, as on the board: Wizkid's O2 run sits here too. */
+.standGrossHis { color: var(--gold); }
 .standTickets {
   font-family: var(--font-mono), monospace;
   font-size: 11px;

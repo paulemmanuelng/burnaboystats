@@ -38,7 +38,7 @@
 | Europe | France | 2 tour dates · 1 festival or one-off appearance · 1 city · 2021–2025 | 2021–2025 | Biggest reported night · Stade de France, Paris · 18 Apr 2025 · 43,881 tickets (tourRevenue.ts:32) | Stade de France, Paris (2025) / Accor Arena, Paris (2021) | yes |
 | Europe | Netherlands | 3 tour dates · 1 festival or one-off appearance · 2 cities · 2019–2026 | 2019–2026 | Biggest reported night · Ziggo Dome, Amsterdam · 14 Apr 2022 · 17,000 tickets (tourRevenue.ts:38) | Ziggo Dome, Amsterdam (2022) / Rotterdam Ahoy (2022 & 2026) | yes |
 | Europe | Belgium | 3 tour dates · 2 cities · 2019–2026 | 2019–2026 | Biggest reported night · Sportpaleis, Antwerp · 12 Dec 2023 · 8,266 tickets (tourRevenue.ts:67) | ING Arena, Brussels (2026) / Palais 12, Brussels (2019) | yes |
-| Europe | Ireland | none (no row: event lines only) | none | none (line absent) | 3Arena, Dublin (Mar & Dec 2022) |  |
+| Europe | Ireland | none (no row: event lines only) | none | Biggest reported night · 3Arena, Dublin · 2022 · 7,504 tickets (tourRevenue.ts, re-run 3 Oct 2026) | 3Arena, Dublin (Mar & Dec 2022) |  |
 | Europe | Spain | 2 festival and one-off appearances · 2 cities · 2025–2026 | 2025–2026 | none (line absent) | O Beach, Ibiza (2026) / FITZ, Madrid (2025) | yes |
 | Europe | Italy | 1 festival or one-off appearance · 1 city · 2020 | 2020 | none (line absent) | Atlantico, Rome (2020) |  |
 | Europe | Germany | 5 tour dates · 3 festival and one-off appearances · 3 cities · 2019–2025 | 2019–2025 | Biggest reported night · Lanxess Arena, Cologne · 10 Dec 2023 · 14,260 tickets (tourRevenue.ts:41) | Waldbühne, Berlin (2025) / Superbloom Festival, Munich (2024) | yes |
