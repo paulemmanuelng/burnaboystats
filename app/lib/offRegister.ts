@@ -30,7 +30,10 @@ const dateLabel = (iso: string) =>
 
 /** The board's label plaques, one entry per artist, issuer and country:
  *  "Tyla's 9 plaques in South Africa, issued by Sony Music Africa", or, for a
- *  single plaque, "Tems's “No.1” Gold in South Africa, issued by Sony Music Africa". */
+ *  single plaque, "Tems's “No.1” Gold in South Africa, issued by Sony Music Africa".
+ *  A plaque the label announced rather than awarded (`announced` set) is named
+ *  with its post: "…, one of them, “Chanel” Gold, announced on its own X
+ *  account, 8 Jan 2026". */
 export const boardLabelPlaques: string[] = swept.flatMap((a) => {
   const rows = a.releases.flatMap((r) => r.certs.filter((c) => c.source === "label").map((c) => ({ r, c })));
   const groups = new Map<string, { r: (typeof rows)[number]["r"]; c: AfroCert }[]>();
@@ -42,11 +45,31 @@ export const boardLabelPlaques: string[] = swept.flatMap((a) => {
     const { r, c } = g[0];
     const where = countryMeta(c.c).name;
     const issuer = c.body ?? countryMeta(c.c).body;
-    return g.length === 1
-      ? `${a.name}'s “${r.title}” ${c.level} in ${where}, issued by ${issuer}`
-      : `${a.name}'s ${g.length} plaques in ${where}, issued by ${issuer}`;
+    const post = (x: { c: AfroCert }) => (x.c.announced ? ` on ${x.c.announced.via}, ${dateLabel(x.c.announced.on)}` : "");
+    if (g.length === 1)
+      return c.announced
+        ? `${a.name}'s “${r.title}” ${c.level} in ${where}, announced by ${issuer}${post(g[0])}`
+        : `${a.name}'s “${r.title}” ${c.level} in ${where}, issued by ${issuer}`;
+    const posts = g.filter((x) => x.c.announced);
+    if (!posts.length) return `${a.name}'s ${g.length} plaques in ${where}, issued by ${issuer}`;
+    // A group that mixes the label's award and its own announcement names the
+    // two kinds apart: the post announces a certification, it does not say the
+    // label issued a plaque (PR #402 review). "Tyla's 10 plaques in South
+    // Africa from Sony Music Africa — 9 issued on its own award and “Chanel”
+    // Gold, announced on its own X account, 8 Jan 2026".
+    const awards = g.length - posts.length;
+    const named = posts.map((x) => `“${x.r.title}” ${x.c.level}, announced${post(x)}`);
+    const announcedPart =
+      posts.length === 1 ? named[0] : `${posts.length} announced on its own posts (${named.join("; ")})`;
+    return awards
+      ? `${a.name}'s ${g.length} plaques in ${where} from ${issuer} — ${awards} issued on its own award and ${announcedPart}`
+      : `${a.name}'s ${g.length} plaques in ${where} from ${issuer}, all ${announcedPart.replace(/^\d+ /, "")}`;
   });
 });
+
+/** Whether any of the board's label plaques is the label's own announcement
+ *  rather than its award — the methodology names both kinds when it is. */
+const labelAnnounced = swept.some((a) => a.releases.some((r) => r.certs.some((c) => c.source === "label" && c.announced)));
 
 /** The board's body announcements the register omits, one entry per plaque:
  *  "Tyla's “Tyla” Gold in France, announced by SNEP on its own X account,
@@ -78,7 +101,9 @@ export function certificationRule(): string {
       `In Burna Boy's own record, the one exception is a market with no current public register, where the label's own plaque stands: ${burnaLabelPlaques.join("; ")}.`,
     );
   if (boardLabelPlaques.length)
-    parts.push(`On the Afrobeats board, a label's own plaque stands where the register holds no row: ${boardLabelPlaques.join("; ")}.`);
+    parts.push(
+      `On the Afrobeats board, a label's own plaque${labelAnnounced ? " or announcement" : ""} stands where the register holds no row: ${boardLabelPlaques.join("; ")}.`,
+    );
   if (announced.length)
     parts.push(
       `${boardLabelPlaques.length ? "And" : "On the Afrobeats board,"} the certifying body's own published announcement stands where its database omits the row: ${announced.join("; ")}.`,
@@ -92,6 +117,6 @@ export function certificationRule(): string {
  *  stands instead, and how many. */
 export function provenanceTileSentence(): string {
   return boardOffRegisterTotal > 0
-    ? `A figure with no register row behind it is published only where the body itself announced it or the label issued the plaque — ${boardOffRegisterTotal} of the board's plaques, each named in the methodology.`
+    ? `A figure with no register row behind it is published only where the body itself announced it or the label ${labelAnnounced ? "issued or announced" : "issued"} the plaque — ${boardOffRegisterTotal} of the board's plaques, each named in the methodology.`
     : "A figure with no register behind it is not published.";
 }

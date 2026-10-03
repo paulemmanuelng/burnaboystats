@@ -3,7 +3,7 @@
 import { Fragment, useState, useEffect, useLayoutEffect, type CSSProperties } from "react";
 import Link from "next/link";
 import styles from "./mobileCerts.module.css";
-import { badgeWeight, byMostCertified } from "../lib/certs";
+import { badgeWeight, byMostCertified, isIssuerMarker } from "../lib/certs";
 import ScrollRail from "./ScrollRail";
 import { titleKey } from "../lib/titleKey";
 import { coverFor } from "../lib/covers";
@@ -503,7 +503,7 @@ export default function MobileCerts({
                       {c.x ? `${c.x}× ` : ""}
                       {tierWord(c.level, c.body)}
                       {c.body && c.body !== countries[c.c].body && (
-                        <span className={styles.badgeProgram}>
+                        <span className={isIssuerMarker(c.body) ? `${styles.badgeProgram} ${styles.badgeIssuer}` : styles.badgeProgram}>
                           {c.body.replace(countries[c.c].body, "").trim() || c.body}
                         </span>
                       )}

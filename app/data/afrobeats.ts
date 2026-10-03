@@ -204,6 +204,13 @@ export interface AfroCert {
    *  offRegisterPhrase() below, and tests/labelPlaques.test.ts holds the copy
    *  to it. Absent means a register row, which is every other plaque.
    *
+   *  A label plaque may instead be the LABEL'S OWN published announcement — a
+   *  post on its verified account naming the title, the country and the tier —
+   *  rather than a photo of the award; then it also carries `announced`. Same
+   *  ruling, same issuer, same marker; only the evidence differs, and the copy
+   *  says which. First use: Tyla's "Chanel" 🇿🇦 Gold, announced by Sony Music
+   *  Africa on its X account (@SonyMusicAfrica) on 8 Jan 2026.
+   *
    *  "announcement" when the evidence is the CERTIFYING BODY'S OWN published
    *  announcement — a post on its verified account — and its searchable
    *  register does not list the row. The body is the right one (no `body`
@@ -213,9 +220,12 @@ export interface AfroCert {
    *  account (@snep) on 6 Apr 2026 and absent from snepmusique.com's database
    *  when read on 3 Oct 2026. */
   source?: "label" | "announcement";
-  /** For `source: "announcement"`: where the body announced it ("its own X
-   *  account") and the ISO date of the post. The pill's hover text is built
-   *  from it — "France — SNEP, announced on its own X account, 6 Apr 2026". */
+  /** Where the plaque was announced ("its own X account") and the ISO date of
+   *  the post — by the body itself (`source: "announcement"`) or by the label
+   *  (`source: "label"`, a label's own announcement rather than its award).
+   *  The pill's hover text is built from it — "France — SNEP, announced on its
+   *  own X account, 6 Apr 2026"; "South Africa — Sony Music Africa, announced
+   *  on its own X account, 8 Jan 2026". */
   announced?: { via: string; on: string };
 }
 export interface AfroPeak {
@@ -434,8 +444,26 @@ export const AFROBEATS_VERIFIED_ON_17 = "2026-10-02";
  *
  *  Not a full re-read: Tyla's and Tems's verifiedOn move to this date by the
  *  ON_13 bump rule, but on 3 Oct only SNEP's database was read (for Tyla's
- *  album) and the plaque photo; no other register was re-read for either. */
+ *  album) and the plaque photo; no other register was re-read for either.
+ *  Superseded for Tyla by ON_19 the same day ("Chanel" 🇿🇦 Gold). */
 export const AFROBEATS_VERIFIED_ON_18 = "2026-10-03";
+
+/** Tyla — "Chanel" 🇿🇦 Gold, counted on the label's own announcement under the
+ *  same rulings of 3 Oct 2026 (label-issued South African plaques count; a
+ *  post on the issuer's own verified account counts where the register misses
+ *  it). Sony Music Africa, on its verified X account @SonyMusicAfrica, 8 Jan
+ *  2026: "Another milestone. Another WIN! CHANEL goes Gold in South Africa
+ *  🥇🇿🇦🎉 @Tyllaaaaaaa  S/O to the Tygers! 🐅📈Chanel Out Now! #Tyla #Chanel
+ *  #tygers". Read from the owner's screenshot of his X bookmarks (3 Oct 2026);
+ *  X is barred to our reader, so the screenshot is the read. The attached
+ *  video's "ALL TIME STREAMS 3,500,000+" is a streaming figure, not a
+ *  certification, and is not used. `source: "label"` with `announced`;
+ *  74 → 75, no new country (South Africa is already hers).
+ *  docs/sweeps/tyla-certifications-v1.md, "3 Oct 2026 — South Africa: Chanel".
+ *
+ *  Not a re-read: only the post was read; Tyla's verifiedOn moves to this
+ *  constant by the ON_13 bump rule. Tems is not on "Chanel" and stays ON_18. */
+export const AFROBEATS_VERIFIED_ON_19 = "2026-10-03";
 
 export const afrobeatsArtists: AfroArtist[] = [
   {
@@ -1584,7 +1612,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     spotifyId: "3SozjO3Lat463tQICI9LcE",
     wikipedia: "https://en.wikipedia.org/wiki/Tyla",
     image: "https://i.scdn.co/image/ab6761610000e5eb69719e4164b893213a525d25",
-    verifiedOn: AFROBEATS_VERIFIED_ON_18,
+    verifiedOn: AFROBEATS_VERIFIED_ON_19,
     swept: true,
     chartPublished: { entries: 187, territories: 52, no1s: 3 },
     releases: [
@@ -1622,7 +1650,23 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Tyla +", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg", certs: [{ c: "NO", level: "Gold" }] },
       { title: "Water", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg", certs: [{ c: "BR", level: "Diamond", x: 2 }, { c: "FR", level: "Diamond" }, { c: "ZA", level: "Platinum", x: 5, body: "Sony Music Africa", source: "label" }, { c: "US", level: "Platinum", x: 4 }, { c: "CA", level: "Platinum", x: 4 }, { c: "PT", level: "Platinum", x: 4 }, { c: "AU", level: "Platinum", x: 4 }, { c: "NZ", level: "Platinum", x: 4 }, { c: "UK", level: "Platinum", x: 2 }, { c: "CH", level: "Platinum", x: 2 }, { c: "HU", level: "Platinum", x: 2 }, { c: "GR", level: "Platinum", x: 2 }, { c: "AT", level: "Platinum" }, { c: "DK", level: "Platinum" }, { c: "ES", level: "Platinum" }, { c: "BE", level: "Platinum" }, { c: "NL", level: "Platinum" }, { c: "NO", level: "Platinum" }, { c: "PL", level: "Platinum" }, { c: "SE", level: "Platinum" }, { c: "DE", level: "Gold" }, { c: "IT", level: "Gold" }, { c: "MX", level: "Gold" }, { c: "NG", level: "Gold" }] }, // ZA ▣: Sony Music Africa plaque, five discs (owner's ruling, 3 Oct 2026)
       { title: "Push 2 Start", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Platinum" }, { c: "BR", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "CA", level: "Gold" }, { c: "FR", level: "Gold" }, { c: "GR", level: "Gold" }, { c: "HU", level: "Gold" }, { c: "UK", level: "Gold" }, { c: "ZA", level: "Gold", body: "Sony Music Africa", source: "label" }] }, // ZA ▣: Sony Music Africa plaque (owner's ruling, 3 Oct 2026)
-      { title: "Chanel", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Gold" }, { c: "AU", level: "Gold" }, { c: "FR", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "PT", level: "Gold" }, { c: "CH", level: "Gold" }, { c: "BE", level: "Gold" }, { c: "UK", level: "Silver" }] }, // BE: Ultratop 2026 singles list, "10/08/2026: Goud", read 19 Sep 2026
+      // ZA (▣), added 3 Oct 2026 — the LABEL'S OWN ANNOUNCEMENT, not a register
+      // row and not the framed award (Chanel has no disc on that plaque). Sony
+      // Music Africa, on its verified X account @SonyMusicAfrica, 8 Jan 2026:
+      // "Another milestone. Another WIN! CHANEL goes Gold in South Africa
+      // 🥇🇿🇦🎉 @Tyllaaaaaaa  S/O to the Tygers! 🐅📈Chanel Out Now! #Tyla
+      // #Chanel #tygers" — read from the owner's screenshot of his X bookmarks,
+      // 3 Oct 2026 (X is barred to our reader). Counted on the owner's rulings
+      // of 3 Oct 2026: a label-issued South African plaque counts (the AKA
+      // precedent, the award above), and an issuer's own X announcement counts
+      // where the register misses it (the album's French Or). Only the post's
+      // words are used: the title, South Africa, Gold. The video's "ALL TIME
+      // STREAMS 3,500,000+" is not a certification figure. RiSA's register held
+      // no Tyla rows when read in Aug 2026, seven months after the post. Not
+      // the Wikipedia "Chanel" 🇿🇦 Platinum the Aug sweep removed — that row is
+      // Dave & Tems's "Raindance" and stays out.
+      // docs/sweeps/tyla-certifications-v1.md, "3 Oct 2026 — South Africa: Chanel".
+      { title: "Chanel", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Gold" }, { c: "AU", level: "Gold" }, { c: "FR", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "PT", level: "Gold" }, { c: "CH", level: "Gold" }, { c: "BE", level: "Gold" }, { c: "UK", level: "Silver" }, { c: "ZA", level: "Gold", body: "Sony Music Africa", source: "label", announced: { via: "its own X account", on: "2026-01-08" } }] }, // BE: Ultratop 2026 singles list, "10/08/2026: Goud", read 19 Sep 2026; ZA ▣: see the note above
       { title: "Truth or Dare", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/1ae9486180d1f50e7dbbb099b1e66825/500x500-000000-80-0-0.jpg", certs: [{ c: "ZA", level: "Platinum", x: 3, body: "Sony Music Africa", source: "label" }, { c: "NZ", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "BR", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "PT", level: "Gold" }, { c: "UK", level: "Silver" }] }, // ZA ▣: Sony Music Africa plaque, three discs (owner's ruling, 3 Oct 2026)
       { title: "Jump", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg", certs: [{ c: "ZA", level: "Platinum", body: "Sony Music Africa", source: "label" }, { c: "US", level: "Gold" }, { c: "BR", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "UK", level: "Silver" }] }, // ZA ▣: Sony Music Africa plaque (owner's ruling, 3 Oct 2026)
       { title: "Art", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg", certs: [{ c: "ZA", level: "Platinum", body: "Sony Music Africa", source: "label" }, { c: "US", level: "Gold" }, { c: "NZ", level: "Gold" }] }, // ZA ▣: Sony Music Africa plaque (owner's ruling, 3 Oct 2026)
@@ -3072,33 +3116,59 @@ export const offRegisterCount = (a: AfroArtist) => labelPlaqueCount(a) + announc
 const andList = (xs: string[]) => (xs.length > 1 ? `${xs.slice(0, -1).join(", ")} and ${xs.at(-1)}` : xs[0]);
 
 /** The off-register plaques, one group per kind of evidence, in a fixed order
- *  (label awards, then body announcements) — the parts every "read in the
- *  issuing body's own register" sentence qualifies itself with. */
-export const offRegisterGroups = (a: AfroArtist): { n: number; where: string; from: string }[] =>
+ *  (label plaques, then body announcements) — the parts every "read in the
+ *  issuing body's own register" sentence qualifies itself with. A label group
+ *  holding both the label's award and the label's own announcement (`announced`
+ *  set) carries `split`, so the copy says how many came from each — Tyla's 9
+ *  from Sony Music Africa's framed award and "Chanel" from its X post. */
+export const offRegisterGroups = (
+  a: AfroArtist,
+): { n: number; where: string; from: string; split?: { n: number; from: string }[] }[] =>
   (["label", "announcement"] as const).flatMap((source) => {
     const certs = a.releases.flatMap((r) => r.certs.filter((c) => c.source === source));
     if (!certs.length) return [];
     const where = andList([...new Set(certs.map((c) => countryMeta(c.c).name))]);
+    if (source === "label") {
+      const awards = certs.filter((c) => !c.announced).length;
+      const posts = certs.length - awards;
+      if (!posts) return [{ n: certs.length, where, from: "the label's own award" }];
+      if (!awards) return [{ n: certs.length, where, from: "the label's own announcement" }];
+      return [
+        {
+          n: certs.length,
+          where,
+          from: "the label's own award and announcement",
+          split: [
+            { n: awards, from: "the label's own award" },
+            { n: posts, from: "its own announcement" },
+          ],
+        },
+      ];
+    }
     const bodies = [...new Set(certs.map((c) => c.body ?? countryMeta(c.c).body))];
-    const from =
-      source === "label"
-        ? "the label's own award"
-        : bodies.length === 1
-          ? `${bodies[0]}'s own announcement`
-          : "the certifying bodies' own announcements";
+    const from = bodies.length === 1 ? `${bodies[0]}'s own announcement` : "the certifying bodies' own announcements";
     return [{ n: certs.length, where, from }];
   });
 
 /** "9 plaques in South Africa, read from the label's own award, and 1 in
  *  France, read from SNEP's own announcement" — or undefined when every plaque
  *  is a register row. `short` drops the "read": "9 plaques in South Africa from
- *  the label's own award; 1 in France from SNEP's own announcement". */
+ *  the label's own award; 1 in France from SNEP's own announcement". A split
+ *  group says both halves: "10 plaques in South Africa, 9 read from the label's
+ *  own award and 1 from its own announcement" (short: "10 plaques in South
+ *  Africa, 9 from the label's own award and 1 from its own announcement" — no
+ *  brackets, since the page sets the short form inside its own). */
 export const offRegisterPhrase = (a: AfroArtist, form: "long" | "short" = "long"): string | undefined => {
   const groups = offRegisterGroups(a);
   if (!groups.length) return undefined;
-  const parts = groups.map(
-    (g, i) => `${i === 0 ? (g.n === 1 ? "1 plaque" : `${g.n} plaques`) : g.n} in ${g.where}${form === "long" ? ", read" : ""} from ${g.from}`,
-  );
+  const parts = groups.map((g, i) => {
+    const head = `${i === 0 ? (g.n === 1 ? "1 plaque" : `${g.n} plaques`) : g.n} in ${g.where}`;
+    if (g.split)
+      return form === "long"
+        ? `${head}, ${g.split.map((x, k) => `${x.n}${k === 0 ? " read" : ""} from ${x.from}`).join(" and ")}`
+        : `${head}, ${g.split.map((x) => `${x.n} from ${x.from}`).join(" and ")}`;
+    return `${head}${form === "long" ? ", read" : ""} from ${g.from}`;
+  });
   return form === "long" ? parts.join(", and ") : parts.join("; ");
 };
 
@@ -3110,11 +3180,15 @@ export const offRegisterHold = (a: AfroArtist): string => {
 };
 
 /** The hover text's tail for a plaque that is not a register row: "label-issued
- *  plaque", or "announced on its own X account, 6 Apr 2026". Undefined for a
- *  register row, whose hover stays "Country — Body". */
+ *  plaque", or "announced on its own X account, 6 Apr 2026" for a body's or a
+ *  label's own post. Undefined for a register row, whose hover stays
+ *  "Country — Body". */
 export const certProvenance = (c: AfroCert): string | undefined => {
-  if (c.source === "label") return "label-issued plaque";
-  if (c.source === "announcement" && c.announced) {
+  // A label's own announcement reads like a body's ("South Africa — Sony
+  // Music Africa, announced on its own X account, 8 Jan 2026"): the issuer
+  // before the comma is the label either way.
+  if (c.source === "label" && !c.announced) return "label-issued plaque";
+  if (c.source && c.announced) {
     const on = new Date(`${c.announced.on}T12:00:00Z`).toLocaleDateString("en-GB", {
       day: "numeric",
       month: "short",

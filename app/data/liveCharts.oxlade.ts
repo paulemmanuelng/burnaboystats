@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-03";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-03T05:23Z";
+  export const liveChartsBuiltAt = "2026-10-03T16:21Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","iTunes"];
@@ -56,14 +56,14 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 32,
-            "movement": 4
+            "position": 33,
+            "movement": 3
           },
           {
             "country": "CV",
             "name": "Cape Verde",
-            "position": 44,
-            "movement": -6
+            "position": 38,
+            "movement": 6
           },
           {
             "country": "GM",
@@ -74,7 +74,7 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 90,
+            "position": 91,
             "movement": -3
           }
         ]
@@ -82,6 +82,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/81015160c51d43ed5f8e15f07f39e9c0/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "ON YOU",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 106,
+            "movement": 7
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/0c76441e9c51769073efdebeb8a77251/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Spell",
@@ -102,25 +121,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/f15cbcfaef80f9a48a9d8173ff0c542a/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "ON YOU",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 113,
-            "movement": 9
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/0c76441e9c51769073efdebeb8a77251/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Non Living Thing",
