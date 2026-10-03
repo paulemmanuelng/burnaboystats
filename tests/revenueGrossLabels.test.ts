@@ -28,7 +28,10 @@ describe("the phone board's gross labels", () => {
     // The page's own expression at 800e4211, applied to the same rows.
     const shipped = (n: number) => `$${(n / 1e6).toFixed(2)}M`;
     const hits = collisions(shipped);
-    expect(hits).toContain("#82/#83 $0.05M");
+    // The board's last two rows (#82/#83 at 800e4211; #81/#82 since the Ziggo
+    // Dome row left the board on 3 Oct 2026), named from the data.
+    const n = revenueShows.length;
+    expect(hits).toContain(`#${n - 1}/#${n} $0.05M`);
     expect(hits.length).toBeGreaterThan(3);
   });
 

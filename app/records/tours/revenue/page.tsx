@@ -17,6 +17,11 @@ const showCount = revenueShows.length;
 const burnaShows = revenueShows.filter((s) => s.artist === "Burna Boy").length;
 const otherShows = showCount - burnaShows;
 const top = revenueShows[0];
+// The client board gets every column but `source`: the sources stay in the
+// data and are not shipped in the page (tests/revenueSources.test.ts).
+const boardShows = revenueShows.map(({ artist, venue, city, flag, tour, year, tickets, revenue }) => ({
+  artist, venue, city, flag, tour, year, tickets, revenue,
+}));
 // The dash legend is printed only while a dash is on the board: since 3 Oct
 // 2026 every row carries a headcount, and a legend for nothing reads as a bug.
 const anyDash = revenueShows.some((s) => !s.tickets);
@@ -128,7 +133,7 @@ export default function RevenuePage() {
         </section>
 
         {/* ── Filter band + board ────────────────────────────── */}
-        <RevenueBoard shows={revenueShows}>
+        <RevenueBoard shows={boardShows}>
           {/* Multi-night stands the body reports as one figure. Shown here,
               beneath the ranking, with the body's numbers — not halved into
               the board (which is how they sat from July to September 2026)

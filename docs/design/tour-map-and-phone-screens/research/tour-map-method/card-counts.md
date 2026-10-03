@@ -36,7 +36,7 @@
 | Africa | Mauritius | 1 festival or one-off appearance · 2025 | 2025 | none (line absent) | Tribeca Mall, Coca-Cola Food Fest (2025) |  |
 | Europe | United Kingdom | 10 tour dates · 3 festival and one-off appearances · 1 live milestone · 6 cities · 2018–2026 | 2018–2026 | Biggest reported night · London Stadium, London · 29 Jun 2024 · 58,973 tickets (tourRevenue.ts:31) | London Stadium (2023 & 2024) / The O2 Arena, London (2021) | yes |
 | Europe | France | 2 tour dates · 1 festival or one-off appearance · 1 city · 2021–2025 | 2021–2025 | Biggest reported night · Stade de France, Paris · 18 Apr 2025 · 43,881 tickets (tourRevenue.ts:32) | Stade de France, Paris (2025) / Accor Arena, Paris (2021) | yes |
-| Europe | Netherlands | 3 tour dates · 1 festival or one-off appearance · 2 cities · 2019–2026 | 2019–2026 | Biggest reported night · Ziggo Dome, Amsterdam · 14 Apr 2022 · 17,000 tickets (tourRevenue.ts:38) | Ziggo Dome, Amsterdam (2022) / Rotterdam Ahoy (2022 & 2026) | yes |
+| Europe | Netherlands | 3 tour dates · 1 festival or one-off appearance · 2 cities · 2019–2026 | 2019–2026 | none (line absent; the Ziggo Dome 2022 gross was held off the board 3 Oct 2026, re-run then) | Ziggo Dome, Amsterdam (2022) / Rotterdam Ahoy (2022 & 2026) | yes |
 | Europe | Belgium | 3 tour dates · 2 cities · 2019–2026 | 2019–2026 | Biggest reported night · Sportpaleis, Antwerp · 12 Dec 2023 · 8,266 tickets (tourRevenue.ts:67) | ING Arena, Brussels (2026) / Palais 12, Brussels (2019) | yes |
 | Europe | Ireland | none (no row: event lines only) | none | Biggest reported night · 3Arena, Dublin · 2022 · 7,504 tickets (tourRevenue.ts, re-run 3 Oct 2026) | 3Arena, Dublin (Mar & Dec 2022) |  |
 | Europe | Spain | 2 festival and one-off appearances · 2 cities · 2025–2026 | 2025–2026 | none (line absent) | O Beach, Ibiza (2026) / FITZ, Madrid (2025) | yes |
@@ -74,5 +74,5 @@
 | Oceania | New Zealand | 1 festival or one-off appearance · 1 city · 2025 | 2025 | none (line absent) | Afrosoul Festival, Auckland (2025) |  |
 
 Toronto: 5 tour dates (Dec 17, 2025 tours.ts:65, Dec 18, 2025 tours.ts:66, Feb 24, 2024 tours.ts:107, Feb 25, 2024 tours.ts:108, Aug 18, 2019 tours.ts:188) + 0 appearances
-Venues that can appear in a biggest line, longest first: Capital One Arena (17), Qudos Bank Arena (16), Scotiabank Arena (16), Stade de France (15), London Stadium (14), Hallenstadion (13), Lanxess Arena (13), Sportpaleis (11), Ziggo Dome (10)
+Venues that can appear in a biggest line, longest first: Capital One Arena (17), Qudos Bank Arena (16), Scotiabank Arena (16), Stade de France (15), London Stadium (14), Hallenstadion (13), Lanxess Arena (13), Sportpaleis (11)
 Longest documented lines: United States: 50 tour dates · 7 festival and one-off appearances · 2 live milestones · 30 cities · 2018–2025 (94); United Kingdom: 10 tour dates · 3 festival and one-off appearances · 1 live milestone · 6 cities · 2018–2026 (92); Morocco: 1 festival or one-off appearance · 1 live milestone · 1 city · 2024–2026 (72)

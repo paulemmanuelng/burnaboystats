@@ -719,7 +719,7 @@ What the renders show that the code alone does not:
 | **11 April** ★ | 2026 | Live | Burna Boy Live in El Gouna | El Gouna Conference & Cultural Center, Egypt | `/records/tours/festivals` |
 | **12 April** ★ | 2022 | Live | Burna Boy played Rotterdam Ahoy, Rotterdam | Space Drift World Tour | `/records/tours` |
 | **14 April** (2) ★ | 2022 | Charts | “Second Sermon (Remix)” hit No. 9 in Nigeria | Black Sherif ft. Burna Boy · TurnTable Top 100 | `/records/charts#song=Second%20Sermon%20(Remix)` |
-|  | 2022 | Live | Burna Boy played Ziggo Dome, Amsterdam | Space Drift World Tour · $1,564,720 from 17,000 tickets | `/records/tours/revenue` |
+|  | 2022 | Live | Burna Boy played Ziggo Dome, Amsterdam | Space Drift World Tour (the gross line left 3 Oct 2026, when the Ziggo Dome figure was held off the revenue board) | `/records/tours` |
 | **18 April** ★ | 2025 | Live | Burna Boy played Stade de France, Paris | First African artist to headline the Stade de France (April 2025) — a $4.53M gross. | `/records/tours/revenue` |
 | **21 April** ★ | 2025 | Live | Burna Boy played Co-op Live, Manchester | I Told Them… Tour · $1,338,176 from 13,204 tickets | `/records/tours/revenue` |
 | **27 April** ★ | 2025 | Live | Burna Boy played New Orleans Jazz & Heritage Festival | New Orleans, USA | `/records/tours/festivals` |

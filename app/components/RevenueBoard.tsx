@@ -23,7 +23,10 @@ export default function RevenueBoard({
   shows,
   children,
 }: {
-  shows: RevenueShow[];
+  /** The board's rows without their `source`: this is a client component, so
+   *  whatever it is handed ships in the page, and the sources stay in the data
+   *  (tests/revenueSources.test.ts). */
+  shows: Omit<RevenueShow, "source">[];
   /** The source note and back link, which the design keeps in this section. */
   children?: React.ReactNode;
 }) {
