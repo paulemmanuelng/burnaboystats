@@ -69,6 +69,7 @@ import { albums as albumArt } from "../data/albums";
 import { songs } from "../data/songs";
 import { coverFor } from "./covers";
 import { artAt } from "./artAt";
+import { isFeaturedKind } from "./certScope";
 
 export interface ComparableCert {
   c: string;
@@ -172,7 +173,7 @@ export const comparableArtists: ComparableArtist[] = [
     releases: a.releases.map((r) => ({
       title: r.title,
       format: (r.kind === "Albums" ? "album" : "single") as CertFormat,
-      isFeature: r.kind === "Featured appearances",
+      isFeature: isFeaturedKind(r.kind),
       cover: r.cover,
       certs: r.certs,
     })),
@@ -181,6 +182,16 @@ export const comparableArtists: ComparableArtist[] = [
 
 export const artistBySlug = (slug: string) =>
   comparableArtists.find((a) => a.slug === slug) ?? null;
+
+/** The titles this artist is FEATURED on — the releases /compare's "lead
+ *  credits only" switch leaves out. The certifications views. Lead
+ *  switch (lib/certScope) reads its featured appearances from here, so the
+ *  two pages can never disagree about a release (Paul, 3 Oct 2026: "exactly
+ *  what the compare page and others uses"). Empty for an unknown slug. */
+export function featuredTitlesOf(slug: string): Set<string> {
+  const a = artistBySlug(slug);
+  return new Set(a ? a.releases.filter((r) => r.isFeature).map((r) => r.title) : []);
+}
 
 // ---------------------------------------------------------------------------
 // Pricing

@@ -138,6 +138,11 @@
 @media (prefers-reduced-motion: no-preference) {
   .heroArt { transition: opacity 300ms var(--ease); }
 }
+/* ONE LINE at 320 in every view (lib/certScope.certKicker). The longest
+   kicker, "Outside South Africa · Lead credits", measured 278px in the 284px
+   box at 320 — 6px spare. Changing this font, size, tracking or the hero's
+   side padding means re-measuring it in a browser at 320 and updating the
+   measured constants in tests/certKicker.test.ts, which cannot measure. */
 .kicker {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
@@ -166,6 +171,9 @@
   text-transform: uppercase;
   color: var(--text-muted);
   line-height: 1.5;
+  /* "International awards as lead artist" wraps on a three-digit total; even
+     the lines out rather than leave "ARTIST" alone on the second. */
+  text-wrap: balance;
 }
 .lede {
   font-size: var(--type-lede);
@@ -243,6 +251,16 @@
   color: var(--ink-on-gold);
 }
 .chipDot { width: 7px; height: 7px; border-radius: 50%; flex: none; display: block; }
+
+/* ── The two view switches (CertViewSwitches) ─────────────────────────── */
+/* /compare's switches (certSwitches.module.css owns their look); only the
+   row's place on this screen is set here: the screen's 18px gutter, right
+   above the tier rail. At 390 the two controls stack, one per line, left
+   edges aligned (compare's own flex-wrap does it); at 320 the long state
+   label drops under its switch's name rather than overflowing. */
+.viewRow {
+  padding: 2px 18px 6px;
+}
 
 /* ── Deep-linked single-release focus (#release=…) ────────────────────── */
 /* The desktop explorer's focus bar, in this screen's tokens — same sentence,
