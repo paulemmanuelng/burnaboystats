@@ -81,9 +81,10 @@ export default function MobileTours({
     {
       href: "/records/tours/revenue",
       title: "Revenue per show",
-      // "Of the N biggest … by an African artist": the board ranks every
-      // African artist, so "N shows" alone would overclaim.
-      sub: `His ${hisShowCount} of the ${revenueShowCount} biggest reported single-show grosses by an African artist`,
+      // "Of the N … by an African artist": the board ranks every African
+      // artist, so "N shows" alone would overclaim. Not "biggest": the board
+      // has no floor, it is every verified single-show gross.
+      sub: `His ${hisShowCount} of the ${revenueShowCount} verified single-show grosses by an African artist`,
     },
     {
       href: "/records/tours/festivals",

@@ -3,8 +3,8 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { revenueShows } from "../app/data/tourRevenue";
 
-// Gold marks HIS nights. Both revenue boards list other artists too — 15 of the
-// 41 rows on /records/tours/revenue, and Fally Ipupa's La Défense Arena night
+// Gold marks HIS nights. Both revenue boards list other artists too — more than
+// half of the rows on /records/tours/revenue, and Fally Ipupa's La Défense Arena night
 // sits third in the top ten on /records/tours — so a gold gross applied to every
 // row says the whole board is Burna Boy's. mobileRevenue.module.css had always
 // scoped it (.gross muted, .grossHis gold); the two desktop boards had not.
@@ -21,11 +21,20 @@ const colorOf = (css: string, cls: string): string | null => {
 
 const BOARDS = [
   {
-    what: "the 41-row revenue board",
+    what: "the revenue board",
     css: "app/records/tours/revenue/revenue.module.css",
     tsx: "app/components/RevenueBoard.tsx",
     base: "gross",
     his: "grossHis",
+  },
+  {
+    // The stands beneath the board were all his until Wizkid's O2 run joined
+    // them (3 Oct 2026); a gold-by-default stand gross would print his money.
+    what: "the stands beneath the desktop revenue board",
+    css: "app/records/tours/revenue/revenue.module.css",
+    tsx: "app/records/tours/revenue/page.tsx",
+    base: "standGross",
+    his: "standGrossHis",
   },
   {
     what: "the top-ten table on /records/tours",

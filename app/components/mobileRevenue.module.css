@@ -175,8 +175,8 @@
   padding: 12px 18px;
   border-bottom: 1px solid var(--line);
 }
-/* The wash marks the rows that are NOT his — 27 of 41 are, so tinting those
-   would tint the board rather than pick anything out. */
+/* The wash marks the rows that are NOT his — the page is his, so the tint is
+   what picks everyone else's nights out. */
 .rowOther { background: color-mix(in srgb, var(--text) 2%, transparent); }
 .rank {
   font-family: var(--font-geist-sans), system-ui, sans-serif;
@@ -211,6 +211,54 @@
   font-size: 11px;
   color: var(--dim);
   margin-top: 4px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Multi-night runs ─────────────────────────────────────────────────
+   Beneath the board, under a heading of their own. Same row grammar as a
+   night minus the rank; the meta wraps rather than clips, so the artist, tour
+   and dates all read at 320. */
+.runs { padding-top: 26px; }
+.runsTitle {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 26px;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--text);
+  margin: 0;
+  padding: 0 18px;
+}
+.runsLede {
+  font-size: var(--type-small);
+  line-height: 1.55;
+  color: var(--text-body);
+  margin: 8px 0 0;
+  padding: 0 18px 14px;
+}
+.runsList { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.runRow {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 11px;
+  align-items: baseline;
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--line);
+}
+.runMeta {
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-caption);
+  line-height: 1.4;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+.runArtist { font-weight: 600; color: var(--text); }
+.runTickets {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  color: var(--dim);
+  margin-top: 5px;
   font-variant-numeric: tabular-nums;
 }
 
