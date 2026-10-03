@@ -20,6 +20,12 @@
  *  source note and the leaderboard's own; move it whenever the board is. */
 export const REVENUE_AS_OF = "October 2026";
 
+/** Where the board's figures come from, in one wording for every note that
+ *  describes it (the leaderboard's desktop and phone notes, the hub's note
+ *  under its top ten). Callers append ", as of REVENUE_AS_OF". */
+export const REVENUE_SOURCE =
+  "Box-office reports as published by TouringData, which republishes Billboard Boxscore and Pollstar reports — read at its site archive and in its own posts, cross-checked with press reporting";
+
 export interface RevenueShow {
   artist: string;
   venue: string;
@@ -163,9 +169,12 @@ export const revenueShows: RevenueShow[] = [
   // of TD's 3/5 total (tyla-read.md). Also in Wikipedia's We Wanna Party Tour
   // table, from Pollstar.
   { artist: "Tyla", venue: "Singapore Expo", city: "Singapore", flag: "🇸🇬", tour: "We Wanna Party Tour", year: "2025", tickets: "3,617", revenue: 385207 },
-  // TouringData's own X post of 27 May 2022 (SPACE DRIFT; the 17 Mar 2022
-  // show), read from the owner's screenshot (3 Oct 2026); with the O2 and MSG
-  // it makes TD's 3/14 total of $3,302,776 / 36,255 (burna-read.md).
+  // TouringData's own X post of 27 May 2022 (SPACE DRIFT), read from the
+  // owner's screenshot (3 Oct 2026); with the O2 and MSG it makes TD's 3/14
+  // total of $3,302,776 / 36,255 (burna-read.md). TD prints no date. He played
+  // 3Arena twice in 2022 (setlist.fm: 17 Mar and 4 Dec); a Space Drift filing
+  // posted on 27 May can only be the March night — the December one was the
+  // Love, Damini run and is not in TD's reports. The year is 2022 either way.
   { artist: "Burna Boy", venue: "3Arena", city: "Dublin", flag: "🇮🇪", tour: "Space Drift Tour", year: "2022", tickets: "7,504", revenue: 378802 },
   // Pulse Nigeria (13 Nov 2025: "5,713 tickets sold at 95.2% capacity
   // grossed $364,495") and BusinessDay (22 Oct 2025), both quoting Touring Data.
@@ -319,11 +328,14 @@ export interface RevenueStand {
   revenue: number; // USD, the stand's combined gross as the body prints it
 }
 
+// Ordered by combined gross, highest first — the section sits under a board
+// ranked by gross, and both layouts render this array in order
+// (tests/revenueGrossLabels.test.ts keeps it sorted).
 export const revenueStands: RevenueStand[] = [
-  { artist: "Burna Boy", venue: "Scotiabank Arena", city: "Toronto", flag: "🇨🇦", tour: "I Told Them… Tour", dates: "24–25 February 2024", shows: 2, tickets: "29,579", revenue: 2801928 },
-  { artist: "Burna Boy", venue: "Centre Bell", city: "Montreal", flag: "🇨🇦", tour: "I Told Them… Tour", dates: "28–29 February 2024", shows: 2, tickets: "26,303", revenue: 1904384 },
   // TouringData's own X post of 26 May 2022 (MADE IN LAGOS, 3/20 reported
   // shows, O2 Arena, London), read from the owner's screenshot (3 Oct 2026;
   // wizkid-read.md). The dates are Nairametrics' and fourthavenew.net's.
   { artist: "Wizkid", venue: "The O2 Arena", city: "London", flag: "🇬🇧", tour: "Made in Lagos Tour", dates: "28–29 November and 1 December 2021", shows: 3, tickets: "50,814", revenue: 2875468 },
+  { artist: "Burna Boy", venue: "Scotiabank Arena", city: "Toronto", flag: "🇨🇦", tour: "I Told Them… Tour", dates: "24–25 February 2024", shows: 2, tickets: "29,579", revenue: 2801928 },
+  { artist: "Burna Boy", venue: "Centre Bell", city: "Montreal", flag: "🇨🇦", tour: "I Told Them… Tour", dates: "28–29 February 2024", shows: 2, tickets: "26,303", revenue: 1904384 },
 ];

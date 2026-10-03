@@ -80,6 +80,14 @@ describe("the 3 Oct 2026 TouringData list is on the board exactly", () => {
     ]);
   });
 
+  it("Rema's 2025 tour is spelt one way on every row (HEIS Tour, as the list prints it)", () => {
+    // The list's two new Rema rows say "HEIS Tour"; the MSG row shipped as
+    // "Heis Tour" and was respelt to match. The control above carries the old
+    // spelling but corrections() only checks the list's own fix_tour_name rows.
+    const tours = new Set(revenueShows.filter((s) => s.artist === "Rema" && s.year === "2025").map((s) => s.tour));
+    expect([...tours]).toEqual(["HEIS Tour"]);
+  });
+
   it("the stand is carried at the list's figures", () => {
     const a = list.add_stand;
     const st = revenueStands.filter((s) => s.artist === a.artist && s.venue === a.venue);

@@ -156,7 +156,7 @@ export default function RecordsPage() {
               </div>
               <p className={styles.headLede}>
                 {hisShows} of the {revenueShows.length} verified African single-show grosses are
-                his — the top {showRows.length} below.
+                his. The top {showRows.length} of the full board are below.
               </p>
               <Link href="/records/tours/revenue" className={`btn btnSecondary ${styles.headBtn}`}>
                 Full leaderboard ↗

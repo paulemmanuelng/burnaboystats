@@ -4,7 +4,8 @@ import BreadcrumbBar from "../../../components/BreadcrumbBar";
 import RevenueBoard from "../../../components/RevenueBoard";
 import MobileRevenue from "../../../components/MobileRevenue";
 import { numberWord } from "../../../lib/homeData";
-import { revenueShows, revenueStands, REVENUE_AS_OF } from "../../../data/tourRevenue";
+import { compactGross } from "../../../lib/grossLabel";
+import { revenueShows, revenueStands, REVENUE_AS_OF, REVENUE_SOURCE } from "../../../data/tourRevenue";
 import { pageMetadata, datasetJsonLd } from "../../../lib/seo";
 
 // Derived, not written down. The list grows whenever a new show is reported —
@@ -16,6 +17,9 @@ const showCount = revenueShows.length;
 const burnaShows = revenueShows.filter((s) => s.artist === "Burna Boy").length;
 const otherShows = showCount - burnaShows;
 const top = revenueShows[0];
+// The dash legend is printed only while a dash is on the board: since 3 Oct
+// 2026 every row carries a headcount, and a legend for nothing reads as a bug.
+const anyDash = revenueShows.some((s) => !s.tickets);
 const topM = `$${(top.revenue / 1e6).toFixed(2)}M`;
 
 export const metadata = pageMetadata({
@@ -50,7 +54,7 @@ const revenueDataset = datasetJsonLd({
 });
 
 const SOURCE_NOTE =
-  `Box-office reports as published by TouringData, which republishes Billboard Boxscore and Pollstar reports — read at its site archive and in its own posts, cross-checked with press reporting, as of ${REVENUE_AS_OF}. Each entry is a single night's gross. Stands reported only as one combined total are listed beneath the board with the reported figures — they cannot be ranked against single nights, and no per-night split is invented for them.`;
+  `${REVENUE_SOURCE}, as of ${REVENUE_AS_OF}. Each entry is a single night's gross. Stands reported only as one combined total are listed beneath the board with the reported figures — they cannot be ranked against single nights, and no per-night split is invented for them.`;
 
 export default function RevenuePage() {
   return (
@@ -80,7 +84,7 @@ export default function RevenuePage() {
           meta: s.artist === "Burna Boy"
             ? `${s.city} · ${s.tour} · ${s.year}`
             : `${s.artist} · ${s.city} · ${s.year}`,
-          gross: `$${(s.revenue / 1e6).toFixed(2)}M`,
+          gross: compactGross(s.revenue),
           tickets: s.tickets,
           his: s.artist === "Burna Boy",
         }))}
@@ -90,11 +94,11 @@ export default function RevenuePage() {
           meta: s.artist === "Burna Boy"
             ? `${s.city} · ${s.tour} · ${s.dates} · ${s.shows} shows`
             : `${s.artist} · ${s.city} · ${s.tour} · ${s.dates} · ${s.shows} shows`,
-          gross: `$${(s.revenue / 1e6).toFixed(2)}M`,
+          gross: compactGross(s.revenue),
           tickets: `${s.tickets} over ${s.shows} nights`,
           his: s.artist === "Burna Boy",
         }))}
-        sourceNote={`Box-office reports as published by TouringData, which republishes Billboard Boxscore and Pollstar reports — read at its site archive and in its own posts, cross-checked with press reporting, as of ${REVENUE_AS_OF}. The board ranks every reported show by an African artist we have verified, not only his — a missing night means no gross for it was reported, or none we could verify yet. A dash means no headcount was published. Stands reported only as one combined total sit beneath the board with the reported figures; no per-night split is invented for them.`}
+        sourceNote={`${REVENUE_SOURCE}, as of ${REVENUE_AS_OF}. The board ranks every reported show by an African artist we have verified, not only his — a missing night means no gross for it was reported, or none we could verify yet.${anyDash ? " A dash means no headcount was published." : ""} Stands reported only as one combined total sit beneath the board with the reported figures; no per-night split is invented for them.`}
       />
 
       <div className={styles.desktopOnly}>
