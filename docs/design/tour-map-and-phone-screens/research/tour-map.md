@@ -372,7 +372,7 @@ reported night by tickets, and how the map draws the country.
 | Africa | 🇲🇺 Mauritius | 0 | 1 (399) | — | 0 · 0 | 2025 | not reported | dot |  |
 | Europe | 🇬🇧 United Kingdom | 10 (116, 118, 150, 160, 200–202, 238–240) | 3 (386, 415–416) | England Lionesses' Euro victory parade 2025 (:337) | 5 · 6 | 2018–2026 | London Stadium 2024, 58,973 (tourRevenue.ts:31) | shape |  |
 | Europe | 🇫🇷 France | 2 (117, 162) | 1 (401) | — | 1 · 1 | 2021–2025 | Stade de France 2025, 43,881 (tourRevenue.ts:32) | shape |  |
-| Europe | 🇳🇱 Netherlands | 3 (165–166, 198) | 1 (371) | — | 2 · 2 | 2019–2026 | not reported (the Ziggo Dome 2022 gross, 17,000, was held off the board 3 Oct 2026: no body reported it) | shape |  |
+| Europe | 🇳🇱 Netherlands | 3 (165–166, 198) | 1 (371) | — | 2 · 2 | 2019–2026 | not reported (the Ziggo Dome 2022 gross, 17,000, was held off the board 3 Oct 2026 until a Billboard Boxscore or Pollstar report is found) | shape |  |
 | Europe | 🇧🇪 Belgium | 3 (70, 105, 197) | 0 | — | 2 · 2 | 2019–2026 | Sportpaleis 2023, 8,266 (tourRevenue.ts:67) | shape |  |
 | Europe | 🇮🇪 Ireland | 0 | 0 | — | 0 · 0 | 2022 | not reported | shape | **known only from the map's own events list** (performedCountries.ts:64: “3Arena, Dublin (Mar & Dec 2022)”) |
 | Europe | 🇪🇸 Spain | 0 | 2 (400, 436) | — | 0 · 2 | 2025–2026 | not reported | shape |  |
@@ -437,7 +437,7 @@ shows that box office was reported for (`tours.ts:78-86`). Do not label the
 | London Stadium, London 2024 | I Told Them… Tour | 58,973 | 6,147,209 | :31 | yes |
 | Stade de France, Paris 2025 | I Told Them… Tour | 43,881 | 4,528,368 | :32 | yes |
 | La Défense Arena, Paris 2023 | Love, Damini Tour | 36,585 | 2,863,340 | :34 | **no** |
-| ~~Ziggo Dome, Amsterdam 2022~~ | Space Drift Tour | ~~17,000~~ | ~~1,564,720~~ | held off the board 3 Oct 2026 (no body reported it) | yes |
+| ~~Ziggo Dome, Amsterdam 2022~~ | Space Drift Tour | ~~17,000~~ | ~~1,564,720~~ | held off the board 3 Oct 2026, until a Billboard Boxscore or Pollstar report is found | yes |
 | The O2 Arena, London 2021 | Space Drift Tour | 15,165 | 1,347,333 | :42 | yes |
 | Capital One Arena, Washington, D.C. 2022 | Love, Damini Tour | 14,688 | 1,434,525 | :39 | yes |
 | Lanxess Arena, Cologne 2023 | I Told Them… Tour | 14,260 | 1,386,581 | :41 | yes |

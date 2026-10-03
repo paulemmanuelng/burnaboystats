@@ -21,8 +21,9 @@ value; these are the sizing and example values the brief's §3.3 and §3.5 E use
   Ireland gained its first line the same day, from his 2022 3Arena night in
   TouringData's own post; no Irish tour date is in `tours.ts`, so it carries the year.
   The Netherlands LOST its line the same day: its only reported night, the Ziggo Dome
-  2022 gross, was held off the board on the owner's ruling — no body ever reported it —
-  so, like any country with no reported night, its card has no biggest line.)
+  2022 gross, was held off the board on the owner's ruling until a Billboard Boxscore or
+  Pollstar report of it is found — so, like any country with no reported night, its card
+  has no biggest line.)
   The date comes from the matching tour date; where no row matches, the year.
 - *Best official-chart peak*: the lowest `peak` for that country across
   `albumCharts`, `singleCharts` and `featureCharts` in `charts.ts`, on the chart the

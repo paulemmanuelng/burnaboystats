@@ -24,8 +24,8 @@ export default function RevenueBoard({
   children,
 }: {
   /** The board's rows without their `source`: this is a client component, so
-   *  whatever it is handed ships in the page, and the sources stay in the data
-   *  (tests/revenueSources.test.ts). */
+   *  whatever it is handed is serialised into this page; the board never
+   *  prints a source (tests/revenueSources.test.ts). */
   shows: Omit<RevenueShow, "source">[];
   /** The source note and back link, which the design keeps in this section. */
   children?: React.ReactNode;

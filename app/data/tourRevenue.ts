@@ -72,7 +72,8 @@ export interface RevenueShow {
 // trail (the owner's boxoffice/ziggo-trail folder, READ.md): the figure's
 // earliest appearance is an UNCITED Wikipedia edit to "Ziggo Dome" on 24 May
 // 2022 (oldid 1089523983), by an account created that day (Angelinadaniels500,
-// 8 edits, its Burna Boy article edits reverted), with the tour misnamed
+// 8 edits, four of them to the Burna Boy article, its two 10 Jul ones
+// tagged Reverted), with the tour misnamed
 // "Spaceship Drift" and "17,000" — the venue's capacity — as the headcount.
 // Every later copy comes after it and descends from it, as far as the trail
 // shows: the Top Charts Africa list as reprinted by Voice of Nigeria (19 Apr
@@ -173,9 +174,12 @@ export const revenueShows: RevenueShow[] = [
   // Vancouver is also in BusinessDay (14 Jun 2024) and Pop Central (14 Jun
   // 2024); Seattle in Top Charts Africa (10 Feb 2024), which prints Edmonton's
   // pair under a wrong "State Farm Arena" label — the table names Rogers
-  // Place. Houston and Austin are in the table alone, read independently
-  // twice, the same standing as the board's other TouringData-only rows.
-  { artist: "Burna Boy", venue: "Rogers Arena", city: "Vancouver", flag: "🇨🇦", tour: "I Told Them… Tour", year: "2023", tickets: "7,198", revenue: 527395, source: "TouringData, I Told Them… Tour table (touringdata.org, via the Internet Archive, snapshot 20260205190633)" },
+  // Place. Vancouver, Seattle, Edmonton and Austin are also in TouringData's
+  // own X posts (13 Jun 2024; 6 Dec 2023; 6 Dec 2023; 23 Mar 2024), read from
+  // the owner's screenshots (3 Oct 2026; burna-backfill/READ.md), same figures.
+  // Houston is in the table alone, read independently twice, the same
+  // standing as the board's other TouringData-only rows.
+  { artist: "Burna Boy", venue: "Rogers Arena", city: "Vancouver", flag: "🇨🇦", tour: "I Told Them… Tour", year: "2023", tickets: "7,198", revenue: 527395, source: "TouringData, X post of 13 Jun 2024 (I TOLD THEM…), from the owner's screenshot; also its I Told Them… Tour table (touringdata.org, via the Internet Archive, snapshot 20260205190633)" },
   // TouringData's own X post of 29 Jul 2026 (WE WANNA PARTY), read from the
   // owner's screenshot (3 Oct 2026); with Tokyo and Singapore it makes TD's 3/5
   // total of $2,062,943 / 18,023 (tyla-read.md). Also in Wikipedia's We Wanna
@@ -187,10 +191,10 @@ export const revenueShows: RevenueShow[] = [
   // (news photo 1976090407, "at Accor Arena on January 31, 2024") and
   // concertaparis.fr's listing.
   { artist: "Davido", venue: "Accor Arena", city: "Paris", flag: "🇫🇷", tour: "Timeless Tour", year: "2024", tickets: "7,227", revenue: 501580, source: "TouringData, X post of 1 Mar 2024 (TIMELESS), from the owner's screenshot" },
-  { artist: "Burna Boy", venue: "Climate Pledge Arena", city: "Seattle", flag: "🇺🇸", tour: "I Told Them… Tour", year: "2023", tickets: "5,980", revenue: 495533, source: "TouringData, I Told Them… Tour table (touringdata.org, via the Internet Archive, snapshot 20260205190633)" },
-  { artist: "Burna Boy", venue: "Rogers Place", city: "Edmonton", flag: "🇨🇦", tour: "I Told Them… Tour", year: "2023", tickets: "6,770", revenue: 450087, source: "TouringData, I Told Them… Tour table (touringdata.org, via the Internet Archive, snapshot 20260205190633)" },
+  { artist: "Burna Boy", venue: "Climate Pledge Arena", city: "Seattle", flag: "🇺🇸", tour: "I Told Them… Tour", year: "2023", tickets: "5,980", revenue: 495533, source: "TouringData, X post of 6 Dec 2023 (I TOLD THEM…), from the owner's screenshot; also its I Told Them… Tour table (touringdata.org, via the Internet Archive, snapshot 20260205190633)" },
+  { artist: "Burna Boy", venue: "Rogers Place", city: "Edmonton", flag: "🇨🇦", tour: "I Told Them… Tour", year: "2023", tickets: "6,770", revenue: 450087, source: "TouringData, X post of 6 Dec 2023 (I TOLD THEM…), from the owner's screenshot; also its I Told Them… Tour table (touringdata.org, via the Internet Archive, snapshot 20260205190633)" },
   { artist: "Burna Boy", venue: "Toyota Center", city: "Houston", flag: "🇺🇸", tour: "I Told Them… Tour", year: "2023", tickets: "4,217", revenue: 435723, source: "TouringData, I Told Them… Tour table (touringdata.org, via the Internet Archive, snapshot 20260205190633)" },
-  { artist: "Burna Boy", venue: "Moody Center", city: "Austin", flag: "🇺🇸", tour: "I Told Them… Tour", year: "2023", tickets: "4,580", revenue: 409544, source: "TouringData, I Told Them… Tour table (touringdata.org, via the Internet Archive, snapshot 20260205190633)" },
+  { artist: "Burna Boy", venue: "Moody Center", city: "Austin", flag: "🇺🇸", tour: "I Told Them… Tour", year: "2023", tickets: "4,580", revenue: 409544, source: "TouringData, X post of 23 Mar 2024 (I TOLD THEM…), from the owner's screenshot; also its I Told Them… Tour table (touringdata.org, via the Internet Archive, snapshot 20260205190633)" },
   // TouringData's own X post of 29 Jul 2026 (WE WANNA PARTY; TD prints the
   // venue as "Arena Expo"), read from the owner's screenshot (3 Oct 2026); part
   // of TD's 3/5 total (tyla-read.md). Also in Wikipedia's We Wanna Party Tour

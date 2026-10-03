@@ -17,8 +17,9 @@ const showCount = revenueShows.length;
 const burnaShows = revenueShows.filter((s) => s.artist === "Burna Boy").length;
 const otherShows = showCount - burnaShows;
 const top = revenueShows[0];
-// The client board gets every column but `source`: the sources stay in the
-// data and are not shipped in the page (tests/revenueSources.test.ts).
+// The client board gets every column but `source`, so this page's own payload
+// carries none (the data file still reaches a shared browser chunk through
+// tours.ts/firsts.ts; no page prints a source — tests/revenueSources.test.ts).
 const boardShows = revenueShows.map(({ artist, venue, city, flag, tour, year, tickets, revenue }) => ({
   artist, venue, city, flag, tour, year, tickets, revenue,
 }));
