@@ -175,7 +175,7 @@
   padding: 12px 18px;
   border-bottom: 1px solid var(--line);
 }
-/* The wash marks the rows that are NOT his — 27 of 41 are, so tinting those
+/* The wash marks the rows that are NOT his — about two thirds are his, so tinting those
    would tint the board rather than pick anything out. */
 .rowOther { background: color-mix(in srgb, var(--text) 2%, transparent); }
 .rank {

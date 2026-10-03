@@ -9,7 +9,9 @@ import { pageMetadata, datasetJsonLd } from "../../../lib/seo";
 
 // Derived, not written down. The list grows whenever a new show is reported —
 // it was 40 entries until Tyla's Tokyo gross was added — and five separate
-// places said "40", including the JSON-LD a search engine reads.
+// places said "40", including the JSON-LD a search engine reads. It has no
+// floor (3 Oct 2026): every verified single-show gross is on it, so the copy
+// says "every … we have verified", never "the N highest".
 const showCount = revenueShows.length;
 const burnaShows = revenueShows.filter((s) => s.artist === "Burna Boy").length;
 const otherShows = showCount - burnaShows;
@@ -19,10 +21,10 @@ const topM = `$${(top.revenue / 1e6).toFixed(2)}M`;
 export const metadata = pageMetadata({
   title: "Burna Boy Concert Revenue — Highest-Grossing Shows",
   description:
-    `The ${showCount} highest-grossing single shows by an African artist, led by Burna Boy's ${topM} London Stadium concert — ranked by reported box-office revenue.`,
+    `Every verified single-show gross by an African artist — ${showCount} shows, ranked by box-office revenue and led by Burna Boy's ${topM} London Stadium concert.`,
   path: "/records/tours/revenue",
   shareTitle: "Burna Boy — Highest Revenue Per Show",
-  shareDescription: `The ${showCount} highest-grossing single shows by an African artist, ranked.`,
+  shareDescription: `Every verified single-show gross by an African artist — ${showCount} shows, ranked.`,
 });
 
 const revenueJsonLd = {
@@ -41,7 +43,7 @@ const revenueJsonLd = {
 const revenueDataset = datasetJsonLd({
   name: "Highest reported revenue per show by African artists",
   description:
-    `The ${showCount} highest-grossing single shows by an African artist, ranked by reported box-office revenue, led by Burna Boy's ${topM} London Stadium concert.`,
+    `Every reported single-show gross by an African artist we have verified — ${showCount} shows, ranked by box-office revenue, led by Burna Boy's ${topM} London Stadium concert.`,
   path: "/records/tours/revenue",
   keywords: ["Burna Boy", "box office", "highest-grossing concert", "African artist revenue", "touring revenue"],
   variableMeasured: ["Artist", "Venue", "Tour", "Year", "Tickets sold", "Revenue"],
@@ -89,7 +91,7 @@ export default function RevenuePage() {
           tickets: `${s.tickets} over ${s.shows} nights`,
           his: s.artist === "Burna Boy",
         }))}
-        sourceNote="Grosses and ticket counts from Billboard Boxscore. The board ranks every reported show by an African artist, not only his — a missing night means Boxscore never reported it. A dash means no headcount was published. Stands Boxscore reported only as one combined total sit beneath the board with the body's figures; no per-night split is invented for them."
+        sourceNote="Grosses and ticket counts from Billboard Boxscore. The board ranks every reported show by an African artist we have verified, not only his — a missing night means no gross for it was reported, or none we could verify yet. A dash means no headcount was published. Stands Boxscore reported only as one combined total sit beneath the board with the body's figures; no per-night split is invented for them."
       />
 
       <div className={styles.desktopOnly}>
@@ -106,9 +108,9 @@ export default function RevenuePage() {
               Highest <span className="inkText">Revenue Per Show</span>
             </h1>
             <p className={styles.lede}>
-              The {showCount} highest-grossing single shows by an African artist, ranked.
-              Burna Boy holds {burnaShows} of them — more than every other artist on this
-              list combined.
+              Every reported single-show gross by an African artist we have verified —{" "}
+              {showCount} shows, ranked. Burna Boy holds {burnaShows} of them
+              {burnaShows > otherShows ? " — more than every other artist on this list combined" : ""}.
             </p>
             <div className={styles.heroBtns}>
               <Link href="/records/visualized#grosses" className="btn btnSecondary">

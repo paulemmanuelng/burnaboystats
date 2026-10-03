@@ -138,8 +138,8 @@
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
-/* The gold gross marks HIS nights, so it cannot be the default — 15 of the 43
-   rows belong to other artists, and lighting all of them gold says the board is
+/* The gold gross marks HIS nights, so it cannot be the default — about a third
+   of the rows belong to other artists, and lighting all of them gold says the board is
    entirely his. mobileRevenue.module.css has always done it this way (.gross
    muted, .grossHis gold); the desktop board did not, so every artist's money
    read as his. */

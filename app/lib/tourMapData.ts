@@ -250,12 +250,16 @@ export interface BiggestLine {
 
 function biggestFor(country: string): BiggestLine | null {
   const nights = burnaNights.filter((r) => r.country === country);
-  if (nights.length) {
+  const stands = burnaStands.filter((r) => r.country === country);
+  const biggestStand = stands.length ? Math.max(...stands.map((r) => r.n)) : 0;
+  // A night leads unless a stand drew more in all than the biggest night did:
+  // Canada's Vancouver night (7,198) is its biggest single night, but the
+  // Toronto stand (29,579 over two) is the bigger reported figure there.
+  if (nights.length && Math.max(...nights.map((r) => r.n)) >= biggestStand) {
     const b = nights.reduce((a, r) => (r.n > a.n ? r : a));
     const when = nightDate(b.venue, b.year);
     return { label: "Biggest reported night", venue: b.venue, city: b.city, when, tickets: fmt(b.n), line: `${b.venue}, ${b.city} · ${when} · ${fmt(b.n)} tickets` };
   }
-  const stands = burnaStands.filter((r) => r.country === country);
   if (!stands.length) return null;
   const s = stands.reduce((a, r) => (r.n > a.n ? r : a));
   // "24–25 February 2024" -> "24–25 Feb 2024"

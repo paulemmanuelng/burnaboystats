@@ -3,8 +3,8 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { revenueShows } from "../app/data/tourRevenue";
 
-// Gold marks HIS nights. Both revenue boards list other artists too — 15 of the
-// 41 rows on /records/tours/revenue, and Fally Ipupa's La Défense Arena night
+// Gold marks HIS nights. Both revenue boards list other artists too — about a
+// third of the rows on /records/tours/revenue, and Fally Ipupa's La Défense Arena night
 // sits third in the top ten on /records/tours — so a gold gross applied to every
 // row says the whole board is Burna Boy's. mobileRevenue.module.css had always
 // scoped it (.gross muted, .grossHis gold); the two desktop boards had not.

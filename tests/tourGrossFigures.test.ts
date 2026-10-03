@@ -150,6 +150,46 @@ describe("multi-night stands are carried as the body prints them", () => {
   });
 });
 
+// ── Box-office extension, 3 Oct 2026 ──────────────────────────────────────
+describe("the ranked board holds no per-night average of a stand, and is in order", () => {
+  // Wizkid's O2 Arena "show" ($958,489 from 16,938, Made in Lagos Tour 2021)
+  // sat on the board for months: it was the AVERAGE of a sold-out three-night
+  // run reported as one total. That run is not in `revenueStands` yet (the
+  // body's exact figure is awaiting a read), so the reported run is listed
+  // here beside the carried stands — every run the guard must know about.
+  const knownRuns = [
+    ...revenueStands.map((s) => ({ name: `${s.artist}, ${s.venue} ${s.dates}`, revenue: s.revenue, tickets: s.tickets, shows: s.shows })),
+    { name: "Wizkid, The O2 Arena 28 Nov–1 Dec 2021", revenue: 2875468, tickets: "50,814", shows: 3 },
+  ];
+  const n = (t?: string) => (t ? Number(t.replace(/,/g, "")) : NaN);
+  const isAverageOf = (row: { revenue: number; tickets?: string }, run: (typeof knownRuns)[number]) =>
+    Math.abs(row.revenue - run.revenue / run.shows) < 1 ||
+    (row.tickets !== undefined && Math.abs(n(row.tickets) - n(run.tickets) / run.shows) < 1 && Math.abs(row.revenue * run.shows - run.revenue) < run.shows * 1000);
+
+  it("catches the row the site actually shipped (negative control)", () => {
+    const shipped = { artist: "Wizkid", venue: "The O2 Arena", city: "London", flag: "🇬🇧", tour: "Made in Lagos Tour", year: "2021", tickets: "16,938", revenue: 958489 };
+    expect(knownRuns.some((r) => isAverageOf(shipped, r))).toBe(true);
+    // ...and does not flag a genuine single night that happens to share the venue.
+    const burnaO2 = revenueShows.find((s) => s.artist === "Burna Boy" && s.venue === "The O2 Arena")!;
+    expect(knownRuns.some((r) => isAverageOf(burnaO2, r))).toBe(false);
+  });
+
+  it("no ranked row equals a known stand's per-night average", () => {
+    const hits = revenueShows.flatMap((s) => knownRuns.filter((r) => isAverageOf(s, r)).map((r) => `${s.artist} ${s.venue} ${s.year} = ${r.name} / ${r.shows}`));
+    expect(hits).toEqual([]);
+  });
+
+  it("rows are sorted by revenue, highest first", () => {
+    const out = revenueShows.slice(1).flatMap((s, i) => (s.revenue > revenueShows[i].revenue ? [`${s.venue} ${s.year} ($${s.revenue}) sits below ${revenueShows[i].venue} ($${revenueShows[i].revenue})`] : []));
+    expect(out).toEqual([]);
+  });
+
+  it("no show is listed twice", () => {
+    const keys = revenueShows.map((s) => `${s.artist}|${s.venue}|${s.year}|${s.revenue}`);
+    expect(keys.length).toBe(new Set(keys).size);
+  });
+});
+
 // ── Debug fixes, 24 Sep 2026 ───────────────────────────────────────────────
 describe("the biggest-concert tile and the Oceania firsts agree with the data", () => {
   it("the /records/tours tile prints the single-show gross at two places, like the hero", () => {
