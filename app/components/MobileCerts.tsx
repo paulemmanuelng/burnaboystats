@@ -21,8 +21,8 @@ import type { Faq } from "./FaqList";
 import { tierWord } from "../lib/awardName";
 import { dropDeepLink, onDeepLinkChange, readDeepLink, readSavedView, saveView } from "../lib/deepLink";
 import {
-  certCountPhrase, certsInView, certTotals, creditSwitchable, effectiveView, scopeSwitchable, viewKey, viewNoun,
-  type CertViewKey,
+  certCountPhrase, certKicker, certsInView, certTotals, creditSwitchable, effectiveView, scopeSwitchable, viewKey,
+  viewNoun, LOG_WHOLE_NOTE, type CertViewKey,
 } from "../lib/certScope";
 import { useCertView } from "../lib/useCertView";
 import CertViewSwitches from "./CertViewSwitches";
@@ -366,7 +366,11 @@ export default function MobileCerts({
             <span className={styles.heroScrim} aria-hidden="true" />
           </>
         )}
-        <div className={styles.kicker}>Certified worldwide</div>
+        {/* Says which plaques the number below counts, so it follows the
+            switches with it (lib/certScope.certKicker): "Certified worldwide"
+            with both on, "Outside Nigeria · Lead credits" with both off. A
+            word, never the colour alone; one line at 320. */}
+        <div className={styles.kicker}>{certKicker(view, homeName ?? home ?? "")}</div>
         {/* The page's <h1>. Screen 02 leads with the total rather than a worded
             title, so the total IS the heading — it reads "221 awards, 25
             countries". Both layouts sit in the DOM at once, so the document
@@ -699,6 +703,7 @@ export default function MobileCerts({
             Each international announcement as it landed — a release can appear twice in a
             year if it was certified at two tiers. Nigeria’s TCSN plaques count in the
             totals and the country grid, not in this log.
+            {narrowed && ` ${LOG_WHOLE_NOTE}`}
           </p>
         </div>
 

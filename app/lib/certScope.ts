@@ -229,3 +229,39 @@ export function viewNoun(n: number, view: CertView, one = "certification", many 
 export function certCountPhrase(total: number, countries: number, view: CertView): string {
   return `${total} ${viewNoun(total, view)} across ${count(countries, "country", "countries")}`;
 }
+
+/**
+ * The hero's kicker for a view — the line above the big number, on the phone
+ * screen (MobileCerts) and as the eyebrow of Burna Boy's desktop hero. Paul,
+ * 3 Oct 2026: "when someone toggle, since the number changes, it should
+ * adapt". It said "Certified worldwide" over "64 international awards as lead
+ * artist" until then.
+ *
+ *   both on        Certified worldwide
+ *   home left out  Outside Nigeria
+ *   features off   Worldwide · Lead credits
+ *   both off       Outside Nigeria · Lead credits
+ *
+ * The home country in full, as its switch names it ("South Africa" for Tyla).
+ *
+ * ONE LINE at 320px, in every view, for the longest home country any artist's
+ * switch is offered with (South Africa): the phone kicker is 11px mono caps,
+ * and "Certified outside South Africa · Lead credits" measured wider than the
+ * hero at 320 (tests/certKicker.test.ts records the measurement), so every
+ * narrowed form drops "Certified" — the all-view keeps the page's own words.
+ * The same wording at every width and on both layouts: there is no
+ * breakpoint in it, so the desktop eyebrow and the phone kicker never say two
+ * things about one view.
+ */
+export function certKicker(view: CertView, homeName: string): string {
+  if (view.scope === "all" && view.credit === "all") return "Certified worldwide";
+  const where = view.scope === "intl" ? `Outside ${homeName}` : "Worldwide";
+  return view.credit === "lead" ? `${where} · Lead credits` : where;
+}
+
+/** Said under the log's lede while a certs switch is off. The log is dated
+ *  announcements, not the ledger the switches narrow, so its year counts stay
+ *  the full international history — and this says so, rather than leaving
+ *  "2026 · 58" under a page reading "lead credits". */
+export const LOG_WHOLE_NOTE =
+  "The switches above leave this log whole: every international announcement, featured appearances included.";

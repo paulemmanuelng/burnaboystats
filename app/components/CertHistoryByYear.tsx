@@ -11,6 +11,8 @@ import {
   type Country,
 } from "../data/certifications";
 import { tierWord } from "../lib/awardName";
+import { useCertView } from "../lib/useCertView";
+import { LOG_WHOLE_NOTE } from "../lib/certScope";
 
 const YEARS = certHistoryYears;
 
@@ -49,10 +51,16 @@ function EventBadge({ event, countries }: { event: CertEvent; countries: Record<
 export default function CertHistoryByYear({
   history,
   countries,
+  switched = false,
 }: {
   history: CertEvent[];
   countries: Record<string, Country>;
+  /** The page carries the certs switches (/certifications), so the log says
+   *  it is not narrowed by them while one is off. */
+  switched?: boolean;
 }) {
+  const [view] = useCertView();
+  const narrowed = switched && (view.scope !== "all" || view.credit !== "all");
   // The design opens on the newest year rather than on nothing — the log is
   // the point of the section, so it should not start empty.
   const [year, setYear] = useState<number | null>(YEARS[0]);
@@ -74,6 +82,7 @@ export default function CertHistoryByYear({
             Each international announcement as it landed — a release can appear twice in a
             year if it was certified at two tiers. Nigeria’s TCSN plaques count in the
             totals and the country grid, not in this log.
+            {narrowed && ` ${LOG_WHOLE_NOTE}`}
           </p>
         </div>
 

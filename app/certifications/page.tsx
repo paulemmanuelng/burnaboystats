@@ -23,8 +23,8 @@ import { countryBoardLinks } from "../lib/certCountry";
 import CertViewSwap from "../components/CertViewSwap";
 import { featuredTitlesOf } from "../lib/certUnits";
 import {
-  certTotals, certsInView, creditSwitchable, homeCodeFor, scopeSwitchable, viewKey, viewNoun, viewsOffered,
-  type CertView, type CertViewKey,
+  ALL_VIEW, certCountPhrase, certKicker, certTotals, certsInView, creditSwitchable, homeCodeFor, scopeSwitchable, viewKey,
+  viewNoun, viewsOffered, type CertView, type CertViewKey,
 } from "../lib/certScope";
 
 // Burna Boy's side of the "Compare with…" list the board artists' pages carry:
@@ -124,7 +124,8 @@ const summary = [
 // /compare leaves out under "lead credits only" (certUnits.featuredTitlesOf —
 // his `features` array), one rule for both pages. Each narrowed view of the
 // summary strip is counted by the same helpers from the releases left in it.
-// The hero (lede and tier rail) stays the "all" view, which is the static page.
+// The hero recounts with them too — kicker, lede and tier rail (Paul, 3 Oct
+// 2026: "since the number changes, it should adapt") — on both layouts.
 const home = homeCodeFor(BURNA.country);
 const featured = featuredTitlesOf("burna-boy");
 const offered = { scope: scopeSwitchable(allItems, home), credit: creditSwitchable(allItems, featured) };
@@ -154,6 +155,48 @@ function summaryFor(view: CertView): typeof summary {
       : summary[3],
   ];
 }
+
+/** The hero rail's four tiers, counted from the releases in a view, each as a
+ *  share of THAT view's total. All four rows always, a zero included, so the
+ *  rail keeps its height when a switch flips. */
+function tierRailFor(view: CertView): typeof tierRail {
+  const t = certTotals(certsInView(allItems, { home, featured }, view));
+  return tierRail.map(({ name }) => ({
+    name,
+    count: t.tiers[name],
+    pct: `${t.total ? Math.round((t.tiers[name] / t.total) * 100) : 0}%`,
+  }));
+}
+
+// The four bodies the all-view lede names, by code — each named in a narrowed
+// view only while that view still holds a plaque from it.
+const LEDE_BODIES: readonly [code: string, name: string][] = [
+  ["US", "the RIAA (US)"], ["UK", "BPI (UK)"], ["FR", "SNEP (France)"], ["CA", "Music Canada"],
+];
+const listed = (xs: readonly string[]) =>
+  xs.length < 2 ? xs.join("") : `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}`;
+
+/**
+ * The hero sentence for a NARROWED view — one string, built here and printed
+ * by both layouts: the desktop hero below and the phone screen (MobileCerts'
+ * `ledes`), so the two say the same thing about the same view. The all-view
+ * keeps each layout's own sentence, the static page as it has always read.
+ * "the most-certified African artist in history" is a claim about the FULL
+ * count, so it stays with the all-view and no narrowed sentence makes it.
+ */
+function heroLede(view: CertView): string {
+  const inView = certsInView(allItems, { home, featured }, view);
+  const t = certTotals(inView);
+  const codes = new Set(inView.flatMap((r) => r.certs.map((c) => c.c)));
+  const tiers = (["Silver", "Gold", "Platinum", "Diamond"] as const).filter((x) => t.tiers[x] > 0);
+  const bodies = LEDE_BODIES.filter(([c]) => codes.has(c)).map(([, n]) => n);
+  return `Burna Boy has ${certCountPhrase(t.total, t.countries, view)} — ${listed(tiers)} awards${
+    bodies.length ? ` from bodies including ${listed(bodies)}` : ""
+  }.`;
+}
+const heroLedes = Object.fromEntries(viewsOffered(offered).slice(1).map((v) => [viewKey(v), heroLede(v)])) as Partial<
+  Record<CertViewKey, string>
+>;
 
 function tierRailView(rows: typeof tierRail) {
   return rows.map((t) => (
@@ -212,6 +255,7 @@ export default function CertificationsPage() {
         home={home}
         homeName={BURNA.country}
         featured={[...featured]}
+        ledes={heroLedes}
       />
 
       <div className={styles.desktopOnly}>
@@ -241,16 +285,22 @@ export default function CertificationsPage() {
           <div className={styles.heroCopy}>
             <div className={styles.eyebrow}>
               <span className={styles.eyebrowRule} aria-hidden="true" />
-              Certified worldwide
+              {/* The phone kicker's own words, per view (certKicker). */}
+              {scoped(certKicker(ALL_VIEW, BURNA.country), (v) => certKicker(v, BURNA.country))}
             </div>
             <h1 className={styles.h1}>
               Global <span className="inkText">Certifications</span>
             </h1>
             <p className={styles.lede}>
-              Burna Boy has {total} music certifications across {countryCount} countries —
-              Silver, Gold, Platinum and Diamond awards from bodies including the RIAA (US),
-              BPI (UK), SNEP (France) and Music Canada, making him the most-certified African
-              artist in history.
+              {scoped(
+                <>
+                  Burna Boy has {total} music certifications across {countryCount} countries —
+                  Silver, Gold, Platinum and Diamond awards from bodies including the RIAA (US),
+                  BPI (UK), SNEP (France) and Music Canada, making him the most-certified African
+                  artist in history.
+                </>,
+                (v) => heroLedes[viewKey(v)]
+              )}
             </p>
             <div className={styles.heroButtons}>
               {/* There was no primary action in this head. Compare takes it —
@@ -264,11 +314,10 @@ export default function CertificationsPage() {
           </div>
 
           <div className={styles.tierRail}>
-            {/* The all-view, always: it sits beside the lede's "249 music
-                certifications across 26 countries" and belongs to that
-                sentence. The switches recount the strip below and the
-                explorer, where they sit. */}
-            {tierRailView(tierRail)}
+            {/* Recounted with the switches, like the lede beside it: each
+                tier's count and its share of the view's own total. The
+                all-view is the static page. */}
+            {scoped(tierRailView(tierRail), (v) => tierRailView(tierRailFor(v)))}
           </div>
         </div>
       </section>
@@ -294,7 +343,7 @@ export default function CertificationsPage() {
       />
 
       {/* ── The dated log ────────────────────────────────────────────── */}
-      <CertHistoryByYear history={intlCertHistory} countries={COUNTRIES} />
+      <CertHistoryByYear history={intlCertHistory} countries={COUNTRIES} switched />
 
       <section className={styles.sourceBand}>
         <div className={styles.wide}>

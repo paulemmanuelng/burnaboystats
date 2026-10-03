@@ -279,15 +279,27 @@ describe("Burna Boy's /certifications", () => {
     expect(container.textContent).toContain("International awards, lead credits");
   });
 
-  it("the desktop hero rail stays the all-view, beside the lede it belongs to", async () => {
+  it("the desktop hero rail recounts with the switches, each tier a share of the view's own total", async () => {
+    // Paul, 3 Oct 2026: "since the number changes, it should adapt". The rail
+    // was the all-view always until then. Counted here from the data's own
+    // groups (his albums + singles), not by the page's helpers.
     at("/certifications");
     const { container } = render(<CertificationsPage />);
-    const rail = () => container.querySelector('[class*="tierRail"]')!.textContent;
-    const before = rail();
+    const rail = () =>
+      [...container.querySelectorAll(`.${explorerStyles.tierRail} .${explorerStyles.tierRow}`)].map((r) => r.textContent);
+    const railOf = (t: ReturnType<typeof certTotals>) =>
+      (["Diamond", "Platinum", "Gold", "Silver"] as const).map(
+        (n) => `${n}${t.tiers[n]}${t.total ? Math.round((t.tiers[n] / t.total) * 100) : 0}%`
+      );
+    expect(rail()).toEqual(railOf(certTotals(allItems)));
     await press(desktop(FEAT));
+    expect(rail()).toEqual(railOf(lead));
     await press(desktop(NG));
-    expect(rail()).toBe(before);
-    expect(container.textContent).toContain(`Burna Boy has ${totalAwards()} music certifications`);
+    const both = certTotals(
+      [...albums, ...singles].map((r) => ({ ...r, certs: r.certs.filter((c) => c.c !== "NG") })).filter((r) => r.certs.length)
+    );
+    expect(rail()).toEqual(railOf(both));
+    expect(rail()).not.toEqual(railOf(certTotals(allItems)));
   });
 
   it("a country he is certified in only as a guest leaves the chip row, and its selection resets", async () => {
