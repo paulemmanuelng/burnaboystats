@@ -1,4 +1,5 @@
 import type { Cert, Release } from "../data/certifications";
+import { CERT_PROGRAMS } from "../data/certThresholds";
 
 // True if a release satisfies every active filter — the country filter is met
 // by any cert in that country, the tier filter by any cert at that tier.
@@ -74,3 +75,14 @@ export function countryChipTitle(name: string, body: string, certs: readonly Cer
   }
   return `${name} — ${body} (${off.length} not ${off.length === 1 ? "a register row" : "register rows"})`;
 }
+
+/** A badge's marker (whatever a cert's `body` adds beyond the country's own
+ *  body) names one of two things. A PROGRAMME of that body, priced separately
+ *  in CERT_PROGRAMS — "Latin", for RIAA Latin. Or a different ISSUER: a label's
+ *  own award, counted where the register holds no row — "Sony Music Africa" on
+ *  Tyla's South African plaques (`source: "label"`), "Sony Music Colombia" on
+ *  Dai Dai's Colombian Gold. The same split app/lib/offRegister.ts makes. The
+ *  issuer marker is the one the owner asked to print smaller so the chip fits
+ *  ("reduce the text size of sony music africa so it fit perfectly", 3 Oct
+ *  2026); a programme marker stays on the 11px floor. */
+export const isIssuerMarker = (body: string): boolean => !CERT_PROGRAMS[body];

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useEffect, useLayoutEffect, useMemo, useState } from "react";
 import styles from "../certifications/certifications.module.css";
 import { tierOf, type Cert, type Country, type Release } from "../data/certifications";
-import { matches, badgeWeight, byMostCertified, countryChipTitle } from "../lib/certs";
+import { matches, badgeWeight, byMostCertified, countryChipTitle, isIssuerMarker } from "../lib/certs";
 import { releasePathFor, type ReleaseKind } from "../lib/releasePages";
 import { coverFor } from "../lib/covers";
 import { artAt } from "../lib/artAt";
@@ -49,7 +49,7 @@ function Badge({ cert, countries, dim }: { cert: Cert; countries: Countries; dim
           and it rendered identically to one. The marker is derived: whatever
           the override adds beyond the country's default body. */}
       {cert.body && cert.body !== country.body && (
-        <span className={styles.badgeProgram}>
+        <span className={isIssuerMarker(cert.body) ? `${styles.badgeProgram} ${styles.badgeIssuer}` : styles.badgeProgram}>
           {cert.body.replace(country.body, "").trim() || cert.body}
         </span>
       )}
