@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-03";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-03T05:22Z";
+  export const liveChartsBuiltAt = "2026-10-03T11:43Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -216,7 +216,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 121,
-            "movement": 6
+            "movement": 0
           }
         ]
       }
@@ -247,7 +247,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 11,
-            "movement": 2
+            "movement": 0
           }
         ]
       },
@@ -295,7 +295,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 21,
+            "position": 24,
             "movement": -16
           }
         ]
@@ -326,8 +326,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 97,
-            "movement": -13
+            "position": 100,
+            "movement": -17
           }
         ]
       },
@@ -338,8 +338,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 95,
-            "movement": -10
+            "position": 111,
+            "movement": -16
           }
         ]
       }
@@ -357,14 +357,14 @@
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
-            "position": 74,
-            "movement": 8
+            "position": 69,
+            "movement": 5
           },
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 95,
-            "movement": 22
+            "position": 77,
+            "movement": 18
           }
         ]
       },
@@ -406,8 +406,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 24,
-            "movement": -2
+            "position": 31,
+            "movement": -7
           }
         ]
       }
@@ -437,8 +437,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 128,
-            "movement": -2
+            "position": 146,
+            "movement": -18
           }
         ]
       }
@@ -493,8 +493,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 33,
-            "movement": -13
+            "position": 36,
+            "movement": -16
           }
         ]
       }
@@ -524,7 +524,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 125,
+            "position": 128,
             "movement": -10
           }
         ]
@@ -726,9 +726,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 14,
-            "movement": null,
-            "status": "new"
+            "position": 17,
+            "movement": -14
           }
         ]
       }
@@ -889,6 +888,25 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Outside",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 117,
+            "movement": 14
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ff0af89993ed3eb05eb36210fa9c21ad/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Where Dem Boyz",
     "platforms": [
       {
@@ -925,25 +943,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/8cbdf2202137ed965826a417dd88e821/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Outside",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 131,
-            "movement": 15
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ff0af89993ed3eb05eb36210fa9c21ad/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Lord I'm Amazed",
