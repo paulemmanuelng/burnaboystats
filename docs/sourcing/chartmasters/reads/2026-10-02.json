@@ -1,0 +1,41 @@
+{
+  "$comment": "Read 2 Oct 2026 in the Browser pane (Paul signed in) after Paul said ChartMasters' streams had updated. Playcounts Tool, valid_as_of per day; identity confirmed from the URL's artist_spotify_id and the page's share links / discography rows. Burna's 29 Sep total (11,109,695,269) is left out on purpose: that day gained only +2.44M against ~7M a day around it (the 30 Sep page's own 'TODAY 7.5m', 'LAST 7 DAYS +46.7m' = 23→30 Sep exactly), so pairing it would publish low. kworb skipped its 1 Oct Burna page (newest 2 Oct, raw 10,986,817,476 after a title left the list), so the career total is anchored with --kworb-frozen on ChartMasters through 30 Sep — the figure @WITTIEWIZ posted on 2 Oct to the unit (11,117,228,942) — and must be re-measured with a plain run on the CM 1 Oct <-> kworb 2 Oct pair.",
+  "readOn": "2026-10-02",
+  "artists": {
+    "burna-boy": {
+      "spotifyId": "3wcj11K77LjEY1PkEazffa",
+      "name": "Burna Boy",
+      "days": {
+        "September 30, 2026": 11117228942
+      }
+    },
+    "wizkid": {
+      "spotifyId": "3tVQdUvClmAT7URs9V3rsp",
+      "name": "Wizkid",
+      "days": {
+        "September 30, 2026": 11853007493
+      }
+    },
+    "tems": {
+      "spotifyId": "687cZJR45JO7jhk1LHIbgq",
+      "name": "Tems",
+      "days": {
+        "September 30, 2026": 6329539669
+      }
+    },
+    "asake": {
+      "spotifyId": "3a1tBryiczPAZpgoZN9Rzg",
+      "name": "Asake",
+      "days": {
+        "September 30, 2026": 4447022938
+      }
+    },
+    "tyla": {
+      "spotifyId": "3SozjO3Lat463tQICI9LcE",
+      "name": "Tyla",
+      "days": {
+        "September 30, 2026": 4875039879
+      }
+    }
+  }
+}

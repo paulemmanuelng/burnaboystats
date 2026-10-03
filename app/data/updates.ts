@@ -53,6 +53,17 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-10-03",
+    category: "Streaming",
+    // @WITTIEWIZ's monthly tally, posted 2 Oct 2026 (September 1-30, Spotify).
+    // The same account's career totals for 30 Sep match ChartMasters' Playcounts
+    // Tool to the unit (Burna 11,117,228,942, read on Paul's account the same
+    // day), so the month is ChartMasters-based; the site does not read the
+    // 31 Aug total itself (the tool serves the last 15 days only).
+    text: "224,512,885 Spotify streams in September 2026 made Burna Boy the most-streamed African artist of the month, ahead of Wizkid (183.1M) and Asake (171.0M), by @WITTIEWIZ's ChartMasters-based count.",
+    href: "/records/africas-biggest",
+  },
+  {
     date: "2026-10-02",
     category: "Charts",
     big: true,
