@@ -72,5 +72,15 @@ export function countryChipTitle(name: string, body: string, certs: readonly Cer
     const tail = [...tails][0];
     return `${name} — ${[...issuers][0]}, ${off.length > 1 && tail.endsWith("plaque") ? `${tail}s` : tail}`;
   }
+  // Every plaque off-register from one issuer, by more than one kind of
+  // evidence — Tyla's South Africa: nine from Sony Music Africa's award and
+  // "Chanel" from its own X post (3 Oct 2026). Count each kind.
+  if (off.length === certs.length && issuers.size === 1) {
+    const kinds = [...tails].map((t) => {
+      const n = off.filter((c) => c.provenance === t).length;
+      return `${n} ${n > 1 && t.endsWith("plaque") ? `${t}s` : t}`;
+    });
+    return `${name} — ${[...issuers][0]}, ${kinds.join(" and ")}`;
+  }
   return `${name} — ${body} (${off.length} not ${off.length === 1 ? "a register row" : "register rows"})`;
 }
