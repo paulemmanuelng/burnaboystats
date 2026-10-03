@@ -182,6 +182,30 @@ describe("compare-4 / plaques-5: the programme badge is on the 11px floor", () =
     expect(px("0.82em", 11)).toBeCloseTo(9.02, 2);
     expect(px("0.82em", 11.52)).toBeLessThan(11);
   });
+
+  // The ONE exemption: the issuer modifier, .badgeIssuer — a label's own award
+  // ("Sony Music Africa" on Tyla's ZA plaques), never a programme. The owner
+  // asked for it on 3 Oct 2026: "reduce the text size of sony music africa so
+  // it fit perfectly". Every other rule that sizes a marker stays on the floor;
+  // "Latin" never takes the modifier (tests/labelMarker.test.tsx).
+  const EXEMPT = ".badgeIssuer";
+  const underFloor = (css: string, parent: number) =>
+    rules(css)
+      .filter((r) => /\.badge(Program|Issuer)\b/.test(r.selector) && r.selector.trim() !== EXEMPT)
+      .filter((r) => decl(r.body, "font-size") !== undefined && !(px(decl(r.body, "font-size"), parent) >= 11))
+      .map((r) => r.selector);
+  it("no other marker rule goes under it — only the issuer modifier is exempt, and only to 9px", () => {
+    for (const [f, parent] of FILES) {
+      const css = read(f);
+      expect(underFloor(css, parent), f).toEqual([]);
+      const exempt = rules(css).filter((r) => r.selector.trim() === EXEMPT);
+      expect(exempt, f).toHaveLength(1);
+      expect(px(decl(exempt[0].body, "font-size"), parent), f).toBeGreaterThanOrEqual(9);
+    }
+  });
+  it("negative control: the exemption does not cover the programme marker at the size that shipped", () => {
+    expect(underFloor(".badgeProgram { font-size: 0.82em; }\n.badgeIssuer { font-size: 9px; }", 11)).toEqual([".badgeProgram"]);
+  });
 });
 
 describe("plaques-3: the phone board's tiles, cadence and door are on the 11px floor", () => {
