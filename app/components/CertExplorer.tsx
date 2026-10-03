@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useEffect, useLayoutEffect, useMemo, useState } from "react";
 import styles from "../certifications/certifications.module.css";
 import { tierOf, type Cert, type Country, type Release } from "../data/certifications";
-import { matches, badgeWeight, byMostCertified, countryChipTitle } from "../lib/certs";
+import { matches, badgeWeight, byMostCertified, countryChipTitle, isIssuerMarker } from "../lib/certs";
 import { releasePathFor, type ReleaseKind } from "../lib/releasePages";
 import { coverFor } from "../lib/covers";
 import { artAt } from "../lib/artAt";
@@ -55,7 +55,7 @@ function Badge({ cert, countries, dim }: { cert: Cert; countries: Countries; dim
           and it rendered identically to one. The marker is derived: whatever
           the override adds beyond the country's default body. */}
       {cert.body && cert.body !== country.body && (
-        <span className={styles.badgeProgram}>
+        <span className={isIssuerMarker(cert.body) ? `${styles.badgeProgram} ${styles.badgeIssuer}` : styles.badgeProgram}>
           {cert.body.replace(country.body, "").trim() || cert.body}
         </span>
       )}
@@ -297,13 +297,16 @@ export default function CertExplorer({
   );
   const unknownFocus = !!focus && !knownTitles.has(focus);
 
-  // Every plaque per country, for the filter chips' hover text — which says
-  // so when a country's plaques are not register rows (countryChipTitle).
-  const certsByCountry = useMemo(() => {
-    const m = new Map<string, Cert[]>();
-    for (const it of [...albums, ...singles, ...features]) for (const c of it.certs) m.set(c.c, [...(m.get(c.c) ?? []), c]);
-    return m;
-  }, [albums, singles, features]);
+  // Every plaque per country IN THE VIEW, for the filter chips' hover text —
+  // which says so when a country's plaques are not register rows
+  // (countryChipTitle). Counted from the switched view, not the full ledger: a
+  // chip filters the list the switches leave, so its hover describes those
+  // plaques ("South Africa — Sony Music Africa, 9 label-issued plaques and 1
+  // announced…" counts what a click on it will show). The All view is the full
+  // ledger, so it reads exactly as before.
+  const certsByCountry = new Map<string, Cert[]>();
+  for (const it of [...scoped.albums, ...scoped.singles, ...scoped.features])
+    for (const c of it.certs) certsByCountry.set(c.c, [...(certsByCountry.get(c.c) ?? []), c]);
 
   return (
     <>

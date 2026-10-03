@@ -7,6 +7,7 @@ import KeepExploring from "../../components/KeepExploring";
 import MobileCerts from "../../components/MobileCerts";
 import CertExplorer from "../../components/CertExplorer";
 import { lastUpdated } from "../../lib/api";
+import { isIssuerMarker } from "../../lib/certs";
 import { pageMetadata, CANONICAL_ORIGIN, datasetJsonLd } from "../../lib/seo";
 import { artistFaqs, faqJsonLd } from "../../lib/boardFaqs";
 import { tierOf, type Release, type Country } from "../../data/certifications";
@@ -278,7 +279,7 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
                     Burna's page: whatever the override adds beyond the country's
                     default body. Reads "Latin" for RIAA Latin. */}
                 {t.body && t.body !== c.body && (
-                  <span className={styles.badgeProgram}>
+                  <span className={isIssuerMarker(t.body) ? `${styles.badgeProgram} ${styles.badgeIssuer}` : styles.badgeProgram}>
                     {t.body.replace(c.body, "").trim() || t.body}
                   </span>
                 )}

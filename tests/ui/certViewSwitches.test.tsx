@@ -26,6 +26,9 @@ import {
 } from "../../app/data/certifications";
 import { certTotals, certsInScope, creditInScope } from "../../app/lib/certScope";
 import { artistBySlug, featuredTitlesOf } from "../../app/lib/certUnits";
+import artistStyles from "../../app/afrobeats/[artist]/artist.module.css";
+import mobileStyles from "../../app/components/mobileCerts.module.css";
+import explorerStyles from "../../app/certifications/certifications.module.css";
 
 /**
  * The certs views' two switches — /compare's own toggle style (Paul, 3 Oct
@@ -37,8 +40,9 @@ import { artistBySlug, featuredTitlesOf } from "../../app/lib/certUnits";
  * every document. Either layout's switch drives both, because the state is the
  * address bar's #home=0 and #feat=0 (/compare's own feat param).
  *
- * Tyla's figures are the brief's own example: 74 certifications across 24
- * countries, 65 international across 23 (her nine South African plaques out).
+ * Tyla's figures, re-read from the data after #402 added "Chanel" ZA Gold: 75
+ * certifications across 24 countries, 65 international across 23 (her ten
+ * South African plaques out), 74 as lead artist, 64 with both switches off.
  * Burna Boy's Lead figures come from the data's own groups, read here by a
  * separate path (his albums + singles), not by the page.
  */
@@ -87,7 +91,7 @@ describe("Tyla's page: both switches in both layouts", () => {
       expect(r.textContent).toContain("FeaturesFeatured appearances: on");
       expect(r.textContent).not.toMatch(/\bSA\b|\bZA\b/);
     }
-    expect(mobileH1().textContent).toMatch(/74awards24 countries/);
+    expect(mobileH1().textContent).toMatch(/75awards24 countries/);
   });
 
   it("the switches speak their state as words once off", async () => {
@@ -136,7 +140,7 @@ describe("Tyla's page: both switches in both layouts", () => {
     await press(desktop(ZA));
     expect(desktop(ZA)).toHaveAttribute("aria-checked", "true");
     expect(window.location.hash).toBe("");
-    expect(mobileH1().textContent).toMatch(/74awards24 countries/);
+    expect(mobileH1().textContent).toMatch(/75awards24 countries/);
     expect(container.textContent).toContain("certifications worldwide");
   });
 
@@ -156,8 +160,8 @@ describe("Tyla's page: both switches in both layouts", () => {
     const { container } = await artist("tyla");
     await press(mobile(FEAT));
     expect(hashParams()).toEqual({ feat: "0" });
-    expect(mobileH1().textContent).toMatch(/73awards as lead artist24 countries/);
-    expect(container.textContent).toContain("73 certifications as lead artist across 24 countries");
+    expect(mobileH1().textContent).toMatch(/74awards as lead artist24 countries/);
+    expect(container.textContent).toContain("74 certifications as lead artist across 24 countries");
     await press(desktop(ZA));
     expect(hashParams()).toEqual({ feat: "0", home: "0" });
     expect(mobileH1().textContent).toMatch(/64international awards as lead artist23 countries/);
@@ -201,7 +205,7 @@ describe("Tyla's page: both switches in both layouts", () => {
       window.location.hash = "#feat=0";
       window.dispatchEvent(new HashChangeEvent("hashchange"));
     });
-    expect(mobileH1().textContent).toMatch(/73awards as lead artist24 countries/);
+    expect(mobileH1().textContent).toMatch(/74awards as lead artist24 countries/);
   });
 
   it("the static HTML is the All view — nothing a crawler reads changes", async () => {
@@ -430,5 +434,64 @@ describe("a flip never moves the switch under the finger", () => {
     await press(b);
     expect(b).toHaveAttribute("aria-checked", "false");
     expect(scrollBy).not.toHaveBeenCalled();
+  });
+});
+
+// ── Merged with #401 (issuer marker) and #402 ("Chanel" ZA Gold) ───────────
+describe("the switched views keep #401's issuer marker and #402's caveat true", () => {
+  it("Tyla's headline caveat recounts with the view: South Africa left out leaves only France's post", async () => {
+    at("/afrobeats/tyla");
+    const { container } = await artist("tyla");
+    const prov = () => container.querySelector(`.${artistStyles.provenance}`)!.textContent ?? "";
+    expect(prov()).toContain(
+      "— except 10 plaques in South Africa, 9 read from the label's own award and 1 from its own announcement, and 1 in France, read from SNEP's own announcement, which the registers do not hold"
+    );
+    await press(desktop(ZA));
+    expect(prov()).toContain("— except 1 plaque in France, read from SNEP's own announcement, which the register does not hold");
+    expect(prov()).not.toContain("South Africa");
+    // The phone lede, the short form, follows the same switch.
+    expect(container.textContent).toContain("(1 plaque in France from SNEP's own announcement)");
+  });
+
+  it("Tems with features off: her one label plaque is a guest spot, so the caveat goes", async () => {
+    at("/afrobeats/tems#feat=0");
+    const { container } = await artist("tems");
+    const prov = container.querySelector(`.${artistStyles.provenance}`)!.textContent ?? "";
+    expect(prov).not.toContain("except");
+    expect(prov).toContain("lead credits only");
+  });
+
+  it("Tyla with features off: every Sony Music Africa marker still carries the issuer class, strip and explorer", async () => {
+    at("/afrobeats/tyla#feat=0");
+    const { container } = await artist("tyla");
+    const strip = [...container.getElementsByClassName(artistStyles.badgeProgram)];
+    const explorer = [...container.getElementsByClassName(explorerStyles.badgeProgram)];
+    const phone = [...container.getElementsByClassName(mobileStyles.badgeProgram)];
+    expect(strip).toHaveLength(1);
+    // Ten ZA plaques, all lead credits, so all ten stay in this view.
+    expect(explorer).toHaveLength(10);
+    expect(phone.length).toBeGreaterThan(0);
+    for (const el of strip) expect(el.classList.contains(artistStyles.badgeIssuer)).toBe(true);
+    for (const el of explorer) expect(el.classList.contains(explorerStyles.badgeIssuer)).toBe(true);
+    for (const el of phone) expect(el.classList.contains(mobileStyles.badgeIssuer)).toBe(true);
+  });
+
+  it("a country chip's hover counts the plaques the view shows, not the full ledger's", async () => {
+    // A fixture: South Africa holds a register row on the artist's own single
+    // and a label plaque on a guest spot. All: "(1 not a register row)".
+    // Features off leaves only the register row, so the chip reads as a plain
+    // register chip — the hover describes what a click on it will show.
+    const own = { title: "Own Single", certs: [{ c: "ZA", level: "Gold" as const }] };
+    const guest = {
+      title: "Guest Spot",
+      certs: [{ c: "ZA", level: "Gold" as const, body: "Sony Music Africa", provenance: "label-issued plaque" }, { c: "US", level: "Gold" as const }],
+    };
+    const countries = { ZA: { name: "South Africa", flag: "🇿🇦", body: "RiSA" }, US: COUNTRIES.US };
+    at("/");
+    render(<CertExplorer albums={[]} singles={[own]} features={[guest]} countries={countries} totalCerts={3} home="ZA" homeName="South Africa" featured={["Guest Spot"]} />);
+    const chip = () => screen.getByRole("button", { name: /ZA$/ });
+    expect(chip()).toHaveAttribute("title", "South Africa — RiSA (1 not a register row)");
+    await press(desktop(FEAT));
+    expect(chip()).toHaveAttribute("title", "South Africa — RiSA");
   });
 });

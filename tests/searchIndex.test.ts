@@ -6,6 +6,7 @@ import {
   chartEntries,
   chartTerritories,
   chartNo1s,
+  offRegisterGroups,
   type AfroArtist,
 } from "../app/data/afrobeats";
 import { readFileSync } from "node:fs";
@@ -196,6 +197,42 @@ describe("the curated index's typed artist counts match the data", () => {
       if (issues.length) stale.push(`${m[1]}: ${issues.join("; ")}`);
     }
     expect(stale).toEqual([]);
+  });
+
+  // The "except N in <country> from <source>" clause was a hand-typed count
+  // that nothing checked: PR #402 moved Tyla's South Africa from 9 to 10 by
+  // hand, and the next label plaque or announcement would have left it stale
+  // with every test green. It is now read against offRegisterGroups.
+  const exceptIssues = (a: AfroArtist, desc: string): string[] => {
+    const groups = offRegisterGroups(a);
+    if (!groups.length) return /\bexcept\b/.test(desc) ? ["says except, but every plaque is a register row"] : [];
+    return groups
+      .map((g, i) => `${i === 0 ? "except " : ""}${g.n} in ${g.where} from ${g.from}`)
+      .filter((want) => !desc.includes(want))
+      .map((want) => `missing "${want}"`);
+  };
+
+  it("names every off-register exception with the data's own count", () => {
+    const src = readFileSync(join(process.cwd(), "app/lib/searchIndex.ts"), "utf8");
+    const rows = [...src.matchAll(/path: "\/afrobeats\/([a-z-]+)",[\s\S]{0,600}?description: "([^"]*)"/g)];
+    expect([...new Set(rows.map((m) => m[1]))].sort()).toEqual([...new Set(hubSlugs(src))].sort());
+    const stale: string[] = [];
+    for (const m of rows) {
+      const a = afrobeatsArtists.find((x) => x.slug === m[1]);
+      if (!a) continue;
+      const issues = exceptIssues(a, m[2]);
+      if (issues.length) stale.push(`${m[1]}: ${issues.join("; ")}`);
+    }
+    expect(stale).toEqual([]);
+  });
+
+  it("negative control: the clause #400 shipped for Tyla now fails", () => {
+    const tyla = afrobeatsArtists.find((x) => x.slug === "tyla")!;
+    const shipped =
+      "Tyla's 74 certifications across 24 countries and her official chart peaks, verified at source, except 9 in South Africa from the label's own award and 1 in France from SNEP's own announcement.";
+    expect(exceptIssues(tyla, shipped)).toEqual([
+      `missing "except 10 in South Africa from the label's own award and announcement"`,
+    ]);
   });
 });
 

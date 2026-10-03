@@ -696,6 +696,22 @@
   opacity: 0.85;
 }
 
+/* The ISSUER marker — a label's own award ("Sony Music Africa" on Tyla's South
+   African plaques), not a programme. isIssuerMarker() in app/lib/certs.ts sets
+   it from the data. The owner's ask, 3 Oct 2026: "reduce the text size of sony
+   music africa so it fit perfectly" — so this marker alone sits under the 11px
+   floor; "Latin" and every programme marker stay on it (guarded in
+   tests/liveDebug0926.test.tsx). It stretches to the badge's line so the
+   divider keeps its length and the chip its height. */
+.badgeIssuer {
+  display: inline-flex;
+  align-items: center;
+  align-self: stretch;
+  font-size: 9px;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
 /* The fold control at the end of a long badge wall. Reads like the quiet
    "+47 / − less" chip the chart screens already use; the ::after stretches the
    tap target to the 44px floor without growing the pill. */

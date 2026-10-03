@@ -20,7 +20,7 @@ import {
   viewsOffered,
   type CertView,
 } from "../app/lib/certScope";
-import { afrobeatsArtists, artistBySlug, BURNA, certCount, countryCount } from "../app/data/afrobeats";
+import { afrobeatsArtists, artistBySlug, BURNA, certCount, countryCount, offRegisterHold, offRegisterPhrase } from "../app/data/afrobeats";
 import { comparableArtists, featuredTitlesOf, priceArtist } from "../app/lib/certUnits";
 import { COMPARE_KEYS } from "../app/lib/compareUrl";
 import {
@@ -66,14 +66,14 @@ describe("homeCodeFor: home is read off the artist's own record", () => {
 });
 
 describe("certsInScope", () => {
-  it("Tyla: 74 certifications in 24 countries, 65 international in 23", () => {
+  it("Tyla: 75 certifications in 24 countries, 65 international in 23 (her ten ZA plaques out)", () => {
     const tyla = artistBySlug("tyla")!;
     const home = homeCodeFor(tyla.country)!;
     const all = certTotals(certsInScope(tyla.releases, home, "all"));
     const intl = certTotals(certsInScope(tyla.releases, home, "intl"));
-    expect([all.total, all.countries]).toEqual([74, 24]);
+    expect([all.total, all.countries]).toEqual([75, 24]);
     expect([intl.total, intl.countries]).toEqual([65, 23]);
-    expect(certCountPhrase(all.total, all.countries, ALL_VIEW)).toBe("74 certifications across 24 countries");
+    expect(certCountPhrase(all.total, all.countries, ALL_VIEW)).toBe("75 certifications across 24 countries");
     expect(certCountPhrase(intl.total, intl.countries, INTL)).toBe("65 international certifications across 23 countries");
   });
 
@@ -230,10 +230,10 @@ describe("creditInScope: the board, from each release's own `kind`", () => {
     }
   });
 
-  it("Tyla: 73 as lead artist in 24 countries (her one guest plaque out)", () => {
+  it("Tyla: 74 as lead artist in 24 countries (her one guest plaque out)", () => {
     const tyla = artistBySlug("tyla")!;
     const t = certTotals(creditInScope(tyla.releases, featuredTitles(tyla), "lead"));
-    expect([t.total, t.countries]).toEqual([73, 24]);
+    expect([t.total, t.countries]).toEqual([74, 24]);
   });
 });
 
@@ -344,5 +344,86 @@ describe("the Lead switch counts exactly what /compare counts with lead credits 
       for (const r of a.releases) expect(featuredTitlesOf(a.slug).has(r.title), `${a.slug}: ${r.title}`).toBe(r.kind === "Featured appearances");
     expect([...featuredTitlesOf("burna-boy")]).toEqual(titles(features));
     expect(featuredTitlesOf("no-such-artist").size).toBe(0);
+  });
+});
+
+// ── Every view, pinned (re-read from the data on main after #401/#402) ─────
+// Re-derived 3 Oct 2026 after #402 added Tyla's "Chanel" ZA Gold (74 -> 75).
+// Exact figures, one row per artist: [plaques, countries] in each of the four
+// views. A new plaque moves these — re-read the data and update them, never
+// loosen them to a range. Each total is also recounted by a raw loop over the
+// rows (home code / featured titles), not by certsInView, so the pin and the
+// helper cannot drift together.
+describe("every view, pinned per artist", () => {
+  type Pin = { all: [number, number]; homeOff: [number, number]; featOff: [number, number]; bothOff: [number, number] };
+  const PINS: Record<string, Pin> = {
+    "burna-boy": { all: [249, 26], homeOff: [177, 25], featOff: [172, 24], bothOff: [111, 23] },
+    tyla: { all: [75, 24], homeOff: [65, 23], featOff: [74, 24], bothOff: [64, 23] },
+    wizkid: { all: [159, 21], homeOff: [88, 20], featOff: [97, 9], bothOff: [47, 8] },
+    olamide: { all: [54, 2], homeOff: [2, 1], featOff: [48, 2], bothOff: [2, 1] },
+    // No Ghanaian plaque: the home switch is not offered, so home-off IS all.
+    "black-sherif": { all: [25, 1], homeOff: [25, 1], featOff: [22, 1], bothOff: [22, 1] },
+    bnxn: { all: [65, 6], homeOff: [10, 5], featOff: [46, 1], bothOff: [0, 0] },
+  };
+  const VIEWS = { all: ALL_VIEW, homeOff: INTL, featOff: LEAD, bothOff: BOTH } as const;
+
+  for (const [slug, pin] of Object.entries(PINS)) {
+    it(slug, () => {
+      const isBurna = slug === "burna-boy";
+      const a = isBurna ? undefined : artistBySlug(slug)!;
+      const rel: { title: string; certs: { c: string; level: string }[] }[] = isBurna ? allItems : a!.releases;
+      const home = homeCodeFor(isBurna ? BURNA.country : a!.country)!;
+      const feat = new Set(featuredTitlesOf(slug));
+      const offered = { scope: scopeSwitchable(rel, home), credit: creditSwitchable(rel, feat) };
+      for (const [k, v] of Object.entries(VIEWS) as [keyof Pin, CertView][]) {
+        const view = effectiveView(v, offered);
+        const t = certTotals(certsInView(rel, { home, featured: feat }, view));
+        expect([t.total, t.countries], `${slug} ${k}`).toEqual(pin[k]);
+        // The raw recount.
+        const kept = rel
+          .filter((r) => view.credit === "all" || !feat.has(r.title))
+          .flatMap((r) => r.certs.filter((c) => view.scope === "all" || c.c !== home));
+        expect(kept.length, `${slug} ${k} raw`).toBe(t.total);
+        expect(new Set(kept.map((c) => c.c)).size, `${slug} ${k} raw countries`).toBe(t.countries);
+      }
+    });
+  }
+});
+
+// ── The off-register caveat, recounted per view (#402's helpers) ──────────
+// Every view is the same artist with fewer releases, and offRegisterPhrase /
+// offRegisterHold count it exactly as they count the full ledger — so the
+// "except …" line in a narrowed view names only the off-register plaques that
+// view still shows, and says nothing when it shows none.
+describe("the 'except …' caveat follows the view", () => {
+  const tyla = artistBySlug("tyla")!;
+  const tems = artistBySlug("tems")!;
+  const view = (a: typeof tyla, v: CertView) => ({
+    ...a,
+    releases: certsInView(a.releases, { home: homeCodeFor(a.country), featured: new Set(featuredTitlesOf(a.slug)) }, v),
+  });
+
+  it("Tyla, all: ten in South Africa (nine award, one post) and one in France", () => {
+    expect(offRegisterPhrase(view(tyla, ALL_VIEW))).toBe(
+      "10 plaques in South Africa, 9 read from the label's own award and 1 from its own announcement, and 1 in France, read from SNEP's own announcement"
+    );
+    expect(offRegisterHold(view(tyla, ALL_VIEW))).toBe("which the registers do not hold");
+  });
+
+  it("Tyla, South Africa left out: only the French post remains, in the singular", () => {
+    for (const v of [INTL, BOTH]) {
+      expect(offRegisterPhrase(view(tyla, v))).toBe("1 plaque in France, read from SNEP's own announcement");
+      expect(offRegisterHold(view(tyla, v))).toBe("which the register does not hold");
+    }
+  });
+
+  it("Tyla, features off: her guest plaque is a register row, so the caveat is the full one", () => {
+    expect(offRegisterPhrase(view(tyla, LEAD))).toBe(offRegisterPhrase(tyla));
+  });
+
+  it("Tems, features off: her one label plaque is a guest spot, so no caveat at all", () => {
+    expect(offRegisterPhrase(view(tems, ALL_VIEW))).toBe("1 plaque in South Africa, read from the label's own award");
+    expect(offRegisterPhrase(view(tems, LEAD))).toBeUndefined();
+    expect(offRegisterPhrase(view(tems, BOTH))).toBeUndefined();
   });
 });
