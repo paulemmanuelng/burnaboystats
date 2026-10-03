@@ -1,6 +1,7 @@
 import RevenueCountries from "../../../../components/RevenueCountries";
 import MobileRevenueCountries from "../../../../components/MobileRevenueCountries";
-import { revenueByCountry, usdFull } from "../../../../lib/revenueByCountry";
+import { nightsLabel, revenueByCountry, summaryLine, usdFull } from "../../../../lib/revenueByCountry";
+import { REVENUE_AS_OF } from "../../../../data/tourRevenue";
 import { pageMetadata, datasetJsonLd } from "../../../../lib/seo";
 
 /**
@@ -14,14 +15,14 @@ import { pageMetadata, datasetJsonLd } from "../../../../lib/seo";
 
 const PATH = "/records/tours/revenue/countries";
 const board = revenueByCountry();
-const { showCount, countryCount, continentCount, hisLeads } = board;
+const { countryCount, hisLeads } = board;
 
-const summary = `${showCount} reported shows in ${countryCount} countries on ${continentCount} continents`;
+const summary = summaryLine(board);
 const lede = `Every reported box-office gross by an African artist, added up country by country — ${summary}. Burna Boy leads ${hisLeads} of the ${countryCount}.`;
 
 export const metadata = pageMetadata({
   title: "Box Office Leaders by Country — African Artists",
-  description: `Who leads every country and continent for reported box office by African artists — ${showCount} shows in ${countryCount} countries, totals and best nights.`,
+  description: `Who leads every country and continent for reported box office by African artists — ${nightsLabel(board.showCount)} in ${countryCount} countries, totals and best nights.`,
   path: PATH,
   shareTitle: "Box office leaders by country",
   shareDescription: `Who leads each of ${countryCount} countries for reported box office by African artists. Burna Boy leads ${hisLeads}.`,
@@ -40,12 +41,19 @@ const listJsonLd = {
   })),
 };
 
+/** "September 2026" → "2026-09": the board's re-read month, as ISO 8601. */
+const asOf = new Date(`1 ${REVENUE_AS_OF} 12:00 UTC`);
+const dateModified = Number.isNaN(asOf.getTime())
+  ? undefined
+  : `${asOf.getUTCFullYear()}-${String(asOf.getUTCMonth() + 1).padStart(2, "0")}`;
+
 const dataset = datasetJsonLd({
   name: "Reported box office by country — African artists",
   description: `Reported box-office grosses by African artists summed by country and continent — ${summary} — with each artist's total and best single night.`,
   path: PATH,
   keywords: ["Burna Boy", "box office", "by country", "African artist revenue", "touring revenue", "Boxscore"],
-  variableMeasured: ["Country", "Continent", "Artist", "Total reported gross", "Reported shows", "Best single night"],
+  variableMeasured: ["Country", "Continent", "Artist", "Total reported gross", "Reported nights", "Best single night"],
+  dateModified,
 });
 
 export default function RevenueCountriesPage() {

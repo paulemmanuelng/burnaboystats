@@ -16,7 +16,7 @@ vi.mock("next/link", () => ({
 
 import CountriesPage from "../app/records/tours/revenue/countries/page";
 import RevenuePage from "../app/records/tours/revenue/page";
-import { revenueByCountry, usdM, usdFull } from "../app/lib/revenueByCountry";
+import { leaderLine, revenueByCountry, summaryLine, usdM, usdFull } from "../app/lib/revenueByCountry";
 import { BACK_BAR_ROUTES, ACTION_BAR_ROUTES } from "../app/lib/mobileScreens";
 import { text, trees } from "./fixtures/phoneTrees";
 
@@ -54,7 +54,7 @@ describe("every country, with its full ranked list, on both layouts", () => {
     const t = text(tree);
     for (const c of board.countries) {
       expect(t).toContain(c.name);
-      expect(t).toContain(`${c.leader.artist} leads`);
+      expect(t).toContain(`${c.leader.artist} ${leaderLine(c)}`);
     }
   });
 
@@ -78,9 +78,20 @@ describe("every country, with its full ranked list, on both layouts", () => {
   });
 
   it.each(both())("%s: the derived summary", (_w, tree) => {
-    expect(text(tree)).toContain(
-      `${board.showCount} reported shows in ${board.countryCount} countries on ${board.continentCount} continents`,
-    );
+    expect(text(tree)).toContain(summaryLine(board));
+  });
+
+  it.each(both())("%s: each country's line credits the leader with HIS total, not the country's", (_w, tree) => {
+    const heads = [...tree.querySelectorAll("h3")];
+    for (const c of board.countries) {
+      const h = heads.find((e) => text(e).includes(c.name))!;
+      const line = text(h.parentElement!);
+      expect(line, c.name).toContain(usdM(c.leader.total));
+      if (c.artists.length > 1) {
+        expect(line, c.name).toContain(`${usdM(c.leader.total)} of ${usdM(c.total)}`);
+        expect(line, c.name).not.toMatch(new RegExp(`leads · \\${usdM(c.total)}`));
+      }
+    }
   });
 });
 
@@ -103,9 +114,9 @@ describe("gold marks his figures only", () => {
   it.each(both())("%s: one gold gross per row of his, none on anyone else's", (_w, tree) => {
     const gold = [...tree.querySelectorAll('[class*="grossHis"]')].length;
     const hisCountryRows = board.countries.reduce((n, c) => n + c.artists.filter((a) => a.his).length, 0);
-    const hisContinentLeads = board.continents.filter((k) => k.leader?.his).length;
-    // Rows of his in every country, plus the phone's continent rows he leads.
-    expect(gold).toBe(hisCountryRows + (_w === "phone" ? hisContinentLeads : 0));
+    // Rows of his in every country. The phone's continent rows print the
+    // CONTINENT's total on the right, so it is never gold, even where he leads.
+    expect(gold).toBe(hisCountryRows);
   });
 });
 

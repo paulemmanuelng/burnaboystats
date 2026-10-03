@@ -58,12 +58,21 @@
   line-height: 1.5;
   color: var(--text-muted);
 }
-.cardEmpty { background: var(--bg-soft); }
+.nowrap { white-space: nowrap; }
+.cardOf {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+/* The empty card sits quieter than the cards with data: the same paper, a
+   muted heading — it says what is missing without being the loudest tile. */
 .cardEmptyTitle {
   margin-top: 8px;
   font-weight: 600;
   font-size: 15px;
-  color: var(--text);
+  color: var(--text-muted);
 }
 
 /* ── Continent sections ─────────────────────────────────────────────────── */

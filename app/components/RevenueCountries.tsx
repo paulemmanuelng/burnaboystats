@@ -4,7 +4,8 @@ import own from "../records/tours/revenue/countries/countries.module.css";
 import BreadcrumbBar from "./BreadcrumbBar";
 import {
   bestNightLine,
-  showsLabel,
+  leaderLine,
+  nightsLabel,
   standNote,
   usdFull,
   usdM,
@@ -24,10 +25,10 @@ import {
  */
 
 export const AFRICA_NOTE =
-  "Box-office reporting barely reaches venues in Africa — Billboard Boxscore and Pollstar rarely publish grosses from there — so no show on the continent has a reported gross on the board yet. Not reported, not unplayed.";
+  "Box-office reporting barely reaches venues in Africa — not reported, not unplayed.";
 
 export const METHOD_NOTE =
-  "What counts: per-show box-office grosses as reported by Billboard Boxscore & Pollstar (as aggregated by TouringData) and cross-checked against press reporting — the rows of the revenue board. An artist's total in a country is every reported gross there added up, including multi-night stands reported as one figure; the best night is a single show only. Reporting is incomplete, so an artist missing from a country means not reported, not that they did not play there.";
+  "What counts: per-show box-office grosses as reported by Billboard Boxscore & Pollstar (as aggregated by TouringData) and cross-checked against press reporting — the rows of the revenue board. An artist's total in a country is every reported gross there added up, including multi-night stands reported as one figure, and a stand counts every night it ran; the best night is a single show only. Reporting is incomplete, so an artist missing from a country means not reported, not that they did not play there — and Boxscore and Pollstar rarely publish grosses from venues in Africa, which is why the continent has no reported box office here yet.";
 
 function Runner({ k }: { k: ContinentBoard }) {
   const second = k.artists[1];
@@ -122,7 +123,10 @@ export default function RevenueCountries({
               <li key={k.continent} className={own.card}>
                 <span className={own.cardLabel}>{k.continent}</span>
                 <span className={own.cardMeta}>
-                  {showsLabel(k.shows)} · {k.countries.length} {k.countries.length === 1 ? "country" : "countries"}
+                  <span className={own.nowrap}>{nightsLabel(k.shows)}</span> ·{" "}
+                  <span className={own.nowrap}>
+                    {k.countries.length} {k.countries.length === 1 ? "country" : "countries"}
+                  </span>
                 </span>
                 <span className={`${own.cardLeader} ${k.leader!.his ? styles.hisName : styles.otherName}`}>
                   {k.leader!.artist}
@@ -130,11 +134,16 @@ export default function RevenueCountries({
                 <span className={`${own.cardGross} ${k.leader!.his ? own.cardGrossHis : ""}`}>
                   {usdM(k.leader!.total)}
                 </span>
+                {k.artists.length > 1 && (
+                  <span className={own.cardOf}>
+                    of {usdM(k.total)} in {k.continent}
+                  </span>
+                )}
                 <Runner k={k} />
               </li>
             ))}
             {africa && (
-              <li className={`${own.card} ${own.cardEmpty}`}>
+              <li className={own.card}>
                 <span className={own.cardLabel}>Africa</span>
                 <span className={own.cardEmptyTitle}>No reported box office yet</span>
                 <span className={own.cardRunner}>{AFRICA_NOTE}</span>
@@ -152,7 +161,7 @@ export default function RevenueCountries({
               <div className={own.continentHead}>
                 <h2 id={`k-${k.continent}`} className={own.continentTitle}>{k.continent}</h2>
                 <span className={own.continentMeta}>
-                  {usdM(k.total)} · {showsLabel(k.shows)}
+                  {usdM(k.total)} · {nightsLabel(k.shows)}
                 </span>
               </div>
               {k.countries.map((c) => (
@@ -162,8 +171,8 @@ export default function RevenueCountries({
                       <span aria-hidden="true">{c.flag}</span> {c.name}
                     </h3>
                     <span className={own.countryLead}>
-                      <span className={c.leader.his ? styles.hisName : styles.otherName}>{c.leader.artist}</span> leads ·{" "}
-                      {usdM(c.leader.total)} of {usdM(c.total)} · {showsLabel(c.shows)} reported
+                      <span className={c.leader.his ? styles.hisName : styles.otherName}>{c.leader.artist}</span>{" "}
+                      {leaderLine(c)}
                     </span>
                   </div>
                   <div className={styles.board} role="table" aria-label={`Box office leaders in ${c.name}`}>
@@ -171,7 +180,7 @@ export default function RevenueCountries({
                       <span role="columnheader">#</span>
                       <span role="columnheader">Artist</span>
                       <span role="columnheader">Best night</span>
-                      <span className={styles.right} role="columnheader">Shows</span>
+                      <span className={styles.right} role="columnheader">Nights</span>
                       <span className={styles.right} role="columnheader">Total</span>
                     </div>
                     {c.artists.map((a, i) => (

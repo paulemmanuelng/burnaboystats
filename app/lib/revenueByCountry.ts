@@ -21,8 +21,8 @@ import { CHART_COUNTRIES } from "../data/charts";
  * A row's country comes from its flag; the name and region from the tour map's
  * country list (data/performedCountries.ts), and for a country he has never
  * played — the board is every African artist's, not only his — the name from
- * the chart countries (data/charts.ts) and the continent from OUTSIDE_HIS_MAP
- * below. A flag none of those know THROWS: a new country cannot vanish from the
+ * the chart countries (data/charts.ts) — or OUTSIDE_HIS_MAP's own name for a
+ * country with no chart entry — and the continent from OUTSIDE_HIS_MAP below. A flag none of those know THROWS: a new country cannot vanish from the
  * page silently, and tests/revenueByCountry.test.ts fails before a build does.
  */
 
@@ -31,11 +31,15 @@ export const CONTINENT_ORDER: Continent[] = ["Africa", "Europe", "North America"
 /**
  * The continent of a country on the board that is NOT on his tour map — the
  * map's list carries the region of every country he has played, so only the
- * others need one. Add a line here when a show from a new country is reported;
- * the test names the flag that is missing.
+ * others need one. The name comes from CHART_COUNTRIES when the site charts
+ * there; a country with no chart entry carries its own `name` here. Add a line
+ * when a show from a new country is reported; the test names the flag that is
+ * missing.
  */
-const OUTSIDE_HIS_MAP: Record<string, Continent> = {
-  "🇯🇵": "Asia", // Tyla, Ariake Arena, Tokyo (2025)
+const OUTSIDE_HIS_MAP: Record<string, { continent: Continent; name?: string }> = {
+  "🇯🇵": { continent: "Asia" }, // Tyla, Ariake Arena, Tokyo (2025)
+  "🇸🇬": { continent: "Asia" }, // Tyla, Singapore — reported in PR #403's batch
+  "🇵🇭": { continent: "Asia", name: "Philippines" }, // Tyla, Manila — PR #403's batch; no chart entry
 };
 
 export interface CountryRef {
@@ -49,11 +53,12 @@ export function countryOfFlag(flag: string): CountryRef {
   const played = performedCountries.find((c) => c.flag === flag);
   if (played) return { flag, name: played.name, continent: CONTINENT_OF[played.region] };
   const charted = Object.values(CHART_COUNTRIES).find((c) => c.flag === flag);
-  const continent = OUTSIDE_HIS_MAP[flag];
-  if (charted && continent) return { flag, name: charted.name, continent };
+  const outside = OUTSIDE_HIS_MAP[flag];
+  const name = outside?.name ?? charted?.name;
+  if (outside && name) return { flag, name, continent: outside.continent };
   throw new Error(
     `revenueByCountry: no country for the flag ${flag} — add it to OUTSIDE_HIS_MAP in app/lib/revenueByCountry.ts` +
-      (charted ? "" : " (and its name to CHART_COUNTRIES, or to the tour map if he has played there)"),
+      (charted ? "" : " with its name (it has no CHART_COUNTRIES entry)"),
   );
 }
 
@@ -144,6 +149,10 @@ export interface RevenueByCountry {
   grandTotal: number;
   /** Nights, stands counted night by night. */
   showCount: number;
+  /** Single shows — the revenue board's own count. */
+  singleShows: number;
+  /** Multi-night stands, each reported as one figure. */
+  standCount: number;
   countryCount: number;
   /** Continents with any reported box office. */
   continentCount: number;
@@ -194,6 +203,8 @@ export function revenueByCountry(
     continents,
     grandTotal: countries.reduce((n, c) => n + c.total, 0),
     showCount: countries.reduce((n, c) => n + c.shows, 0),
+    singleShows: shows.length,
+    standCount: stands.length,
     countryCount: countries.length,
     continentCount: continents.filter((c) => c.countries.length > 0).length,
     hisLeads: countries.filter((c) => c.leader.his).length,
@@ -205,8 +216,34 @@ export const usdM = (n: number) => `$${(n / 1e6).toFixed(2)}M`;
 /** "$6,147,209" — the board's full form. */
 export const usdFull = (n: number) => `$${n.toLocaleString("en-US")}`;
 
-/** "1 show" / "4 shows". */
-export const showsLabel = (n: number) => `${n} ${n === 1 ? "show" : "shows"}`;
+/** "1 night" / "4 nights" — a stand counts every night it ran. */
+export const nightsLabel = (n: number) => `${n} ${n === 1 ? "night" : "nights"}`;
+
+/**
+ * "41 single shows and 2 multi-night stands (45 nights) in 10 countries on 4
+ * continents". The revenue board one click away counts single shows only, so
+ * the split is spelled out rather than calling every stand night a reported
+ * show — the stand nights were reported only as combined figures.
+ */
+export function summaryLine(b: RevenueByCountry): string {
+  const plural = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : many}`;
+  const what =
+    b.standCount === 0
+      ? plural(b.singleShows, "reported show", "reported shows")
+      : `${plural(b.singleShows, "single show", "single shows")} and ${plural(b.standCount, "multi-night stand", "multi-night stands")} (${nightsLabel(b.showCount)})`;
+  return `${what} in ${plural(b.countryCount, "country", "countries")} on ${plural(b.continentCount, "continent", "continents")}`;
+}
+
+/**
+ * The leader line under a country's name: the leader's own total against the
+ * country's, so the figure beside a gold name is never the whole country's.
+ * One artist alone says so instead of "$0.82M of $0.82M".
+ */
+export function leaderLine(c: CountryBoard): string {
+  return c.artists.length === 1
+    ? `· the only artist reported · ${usdM(c.total)} · ${nightsLabel(c.shows)}`
+    : `leads · ${usdM(c.leader.total)} of ${usdM(c.total)} · ${nightsLabel(c.shows)} reported`;
+}
 
 /**
  * The best-night line for one artist in one place. A stand never stands in for
@@ -218,7 +255,9 @@ export function bestNightLine(a: ArtistTotal): string {
   const st = a.stands[0];
   return a.stands.length === 1
     ? `${st.shows} nights reported together · ${st.venue}, ${st.city} (${st.dates})`
-    : `${a.stands.reduce((n, s) => n + s.shows, 0)} nights in ${a.stands.length} stands, each reported together — no single-night gross`;
+    : `${a.stands.reduce((n, s) => n + s.shows, 0)} nights in ${a.stands.length} stands, each reported together · ${a.stands
+        .map((s) => `${s.venue}, ${s.city}`)
+        .join("; ")}`;
 }
 
 /** The note for a stand beside a best night — the run is in the total, not the best night. */

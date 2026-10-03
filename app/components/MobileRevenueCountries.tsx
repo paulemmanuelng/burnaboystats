@@ -6,7 +6,8 @@ import BackLink from "./BackLink";
 import { AFRICA_NOTE, METHOD_NOTE } from "./RevenueCountries";
 import {
   bestNightLine,
-  showsLabel,
+  leaderLine,
+  nightsLabel,
   standNote,
   usdM,
   type ArtistTotal,
@@ -38,7 +39,7 @@ function Row({ a, rank }: { a: ArtistTotal; rank: number }) {
       </div>
       <div className={styles.right}>
         <div className={`${styles.gross} ${a.his ? styles.grossHis : ""}`}>{usdM(a.total)}</div>
-        <div className={styles.tickets}>{showsLabel(a.shows)}</div>
+        <div className={styles.tickets}>{nightsLabel(a.shows)}</div>
       </div>
     </div>
   );
@@ -79,23 +80,27 @@ export default function MobileRevenueCountries({ board, lede }: { board: Revenue
         </div>
         <div className={styles.statCell}>
           <div className={styles.statValue}>{board.showCount}</div>
-          <div className={styles.statLabel}>Reported shows</div>
+          <div className={styles.statLabel}>Reported nights</div>
         </div>
       </div>
 
       {/* ── Continents ── */}
       <h2 className={`${styles.metaBar} ${own.barTitle}`}>By continent</h2>
+      {/* The figure on the right is the CONTINENT's, muted like the bar further
+          down; the leader's own total rides in his line, against it. */}
       {withData.map((k) => (
         <div key={k.continent} className={`${styles.row} ${own.noRank} ${k.leader!.his ? "" : styles.rowOther}`}>
           <div className={styles.main}>
             <div className={`${styles.venue} ${own.artist}`}>{k.continent}</div>
             <div className={`${styles.meta} ${own.wrap}`}>
-              {k.leader!.artist} leads
-              {k.artists[1] ? ` · next ${k.artists[1].artist}, ${usdM(k.artists[1].total)}` : " · the only artist reported"}
+              <span className={k.leader!.his ? own.leadHis : own.leadOther}>{k.leader!.artist}</span>
+              {k.artists[1]
+                ? ` leads · ${usdM(k.leader!.total)} of ${usdM(k.total)} · next ${k.artists[1].artist}, ${usdM(k.artists[1].total)}`
+                : " · the only artist reported"}
             </div>
           </div>
           <div className={styles.right}>
-            <div className={`${styles.gross} ${k.leader!.his ? styles.grossHis : ""}`}>{usdM(k.leader!.total)}</div>
+            <div className={styles.gross}>{usdM(k.total)}</div>
             <div className={styles.tickets}>
               {k.countries.length} {k.countries.length === 1 ? "country" : "countries"}
             </div>
@@ -117,7 +122,7 @@ export default function MobileRevenueCountries({ board, lede }: { board: Revenue
           <h2 id={`m-${k.continent}`} className={`${styles.metaBar} ${own.barTitle} ${own.continentBar}`}>
             <span>{k.continent}</span>
             <span className={own.barRight}>
-              {usdM(k.total)} · {showsLabel(k.shows)}
+              {usdM(k.total)} · {nightsLabel(k.shows)}
             </span>
           </h2>
           {k.countries.map((c) => (
@@ -127,8 +132,8 @@ export default function MobileRevenueCountries({ board, lede }: { board: Revenue
                   <span aria-hidden="true">{c.flag}</span> {c.name}
                 </h3>
                 <span className={own.countryLead}>
-                  <span className={c.leader.his ? own.leadHis : own.leadOther}>{c.leader.artist}</span> leads ·{" "}
-                  {usdM(c.total)} across {showsLabel(c.shows)}
+                  <span className={c.leader.his ? own.leadHis : own.leadOther}>{c.leader.artist}</span>{" "}
+                  {leaderLine(c)}
                 </span>
               </div>
               {c.artists.map((a, i) => (

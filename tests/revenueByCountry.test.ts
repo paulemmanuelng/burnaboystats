@@ -4,7 +4,10 @@ import {
   revenueByCountry,
   countryOfFlag,
   bestNightLine,
+  leaderLine,
   standNote,
+  summaryLine,
+  usdM,
   CONTINENT_ORDER,
 } from "../app/lib/revenueByCountry";
 
@@ -74,6 +77,12 @@ describe("every row lands in exactly one country and one continent", () => {
     expect(countryOfFlag("🇺🇸").continent).toBe("North America");
     expect(countryOfFlag("🇯🇵")).toEqual({ flag: "🇯🇵", name: "Japan", continent: "Asia" });
   });
+
+  it("a country with no chart entry still resolves, by its own name (PR #403's Manila show)", () => {
+    expect(countryOfFlag("🇵🇭")).toEqual({ flag: "🇵🇭", name: "Philippines", continent: "Asia" });
+    expect(countryOfFlag("🇸🇬")).toEqual({ flag: "🇸🇬", name: "Singapore", continent: "Asia" });
+    expect(countryOfFlag("🇮🇪").continent).toBe("Europe");
+  });
 });
 
 describe("leaders", () => {
@@ -113,8 +122,44 @@ describe("leaders", () => {
     expect(bestNightLine(only)).toMatch(/reported together/);
   });
 
+  it("several stands and no single night still name every venue", () => {
+    const two = revenueByCountry(
+      [],
+      [stand({ venue: "Scotiabank Arena", city: "Toronto" }), stand({ venue: "Centre Bell", city: "Montreal" })],
+    ).countries[0].leader;
+    expect(bestNightLine(two)).toBe(
+      "4 nights in 2 stands, each reported together · Scotiabank Arena, Toronto; Centre Bell, Montreal",
+    );
+  });
+
+  it("the leader line carries the leader's total against the country's, never the country's alone", () => {
+    for (const c of board.countries) {
+      const line = leaderLine(c);
+      expect(line).toContain(usdM(c.leader.total));
+      if (c.artists.length > 1) expect(line).toContain(`${usdM(c.leader.total)} of ${usdM(c.total)}`);
+      else expect(line).toMatch(/^· the only artist reported/);
+    }
+  });
+
   it("hisLeads counts the countries he leads", () => {
     expect(board.hisLeads).toBe(board.countries.filter((c) => c.leader.artist === "Burna Boy").length);
+  });
+});
+
+describe("the summary splits single shows from stand nights", () => {
+  it("counts match the board: single shows are the board's own count", () => {
+    expect(board.singleShows).toBe(revenueShows.length);
+    expect(board.standCount).toBe(revenueStands.length);
+    expect(board.showCount).toBe(board.singleShows + revenueStands.reduce((n, s) => n + s.shows, 0));
+  });
+
+  it("reads as single shows and stands, nights in brackets", () => {
+    const r = revenueByCountry([show({}), show({ flag: "🇫🇷" })], [stand({ shows: 3 })]);
+    expect(summaryLine(r)).toBe(
+      "2 single shows and 1 multi-night stand (5 nights) in 3 countries on 2 continents",
+    );
+    const noStands = revenueByCountry([show({})], []);
+    expect(summaryLine(noStands)).toBe("1 reported show in 1 country on 1 continent");
   });
 });
 
@@ -125,7 +170,7 @@ describe("continents", () => {
     expect(africa).toBeDefined();
     // Holds while no African venue has a reported gross; the page prints the
     // honest card for exactly this state and a real card the day one is added.
-    if (!revenueShows.some((s) => countryOfFlag(s.flag).continent === "Africa")) {
+    if (![...revenueShows, ...revenueStands].some((s) => countryOfFlag(s.flag).continent === "Africa")) {
       expect(africa.total).toBe(0);
       expect(africa.leader).toBeNull();
     }
