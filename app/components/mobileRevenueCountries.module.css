@@ -3,6 +3,16 @@
    country heading, and a meta line that wraps rather than cutting off the
    best night. Rendered only where .screen displays (below 900px). */
 
+/* The back bar's label stays on one line ("By country", the owner's words).
+   At 320 the bar's four parts measured 44 + 79 + 94 + 44 = 261px against a
+   284px row, so the 12px gaps (36px) pushed it to two lines; below 360 the
+   gaps close to 8px and the badge's tracking eases, leaving ~7px spare. */
+.barLabel.barLabel { white-space: nowrap; flex: none; }
+@media (max-width: 359px) {
+  .bar.bar { gap: 8px; }
+  .barBadge.barBadge { letter-spacing: 0.04em; }
+}
+
 .barTitle { margin: 0; font-weight: 400; }
 .continentBar.continentBar { justify-content: space-between; color: var(--text); font-weight: 700; margin-top: 10px; }
 .barRight { color: var(--dim); font-weight: 400; font-variant-numeric: tabular-nums; }

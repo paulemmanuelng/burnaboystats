@@ -51,14 +51,14 @@ export default function MobileRevenueCountries({ board, lede }: { board: Revenue
 
   return (
     <div className={styles.screen}>
-      <div className={styles.backBar}>
+      <div className={`${styles.backBar} ${own.bar}`}>
         <BackLink href="/records/tours/revenue" aria-label="Back" className={styles.backBtn}>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true">
             <path d="M15 5l-7 7 7 7" />
           </svg>
         </BackLink>
-        <span className={styles.backLabel}>By country</span>
-        <span className={styles.badge}>{board.countryCount} countries</span>
+        <span className={`${styles.backLabel} ${own.barLabel}`}>By country</span>
+        <span className={`${styles.badge} ${own.barBadge}`}>{board.countryCount} countries</span>
         <MobileMenuButton />
       </div>
 

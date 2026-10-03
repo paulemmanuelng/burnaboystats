@@ -24,10 +24,10 @@ const boardGross =
 const boardNights = revenueShows.length + revenueStands.reduce((n, s) => n + s.shows, 0);
 
 const show = (o: Partial<RevenueShow>): RevenueShow => ({
-  artist: "Burna Boy", venue: "V", city: "C", flag: "🇬🇧", tour: "T", year: "2024", revenue: 100, ...o,
+  artist: "Burna Boy", venue: "V", city: "C", flag: "🇬🇧", tour: "T", year: "2024", revenue: 100, source: "fixture", ...o,
 });
 const stand = (o: Partial<RevenueStand>): RevenueStand => ({
-  artist: "Burna Boy", venue: "S", city: "C", flag: "🇨🇦", tour: "T", dates: "1–2 Jan", shows: 2, tickets: "1", revenue: 100, ...o,
+  artist: "Burna Boy", venue: "S", city: "C", flag: "🇨🇦", tour: "T", dates: "1–2 Jan", shows: 2, tickets: "1", revenue: 100, source: "fixture", ...o,
 });
 
 describe("the totals reconcile with the board, not with themselves", () => {
@@ -116,7 +116,7 @@ describe("leaders", () => {
     const r = revenueByCountry([show({ flag: "🇨🇦", revenue: 50 })], [stand({ revenue: 900 })]);
     const a = r.countries[0].leader;
     expect(a.best?.revenue).toBe(50);
-    expect(standNote(a)).toMatch(/2-night stand/);
+    expect(standNote(a)).toBe("Total includes a 2-night run at S reported as one figure");
     const only = revenueByCountry([], [stand({})]).countries[0].leader;
     expect(only.best).toBeNull();
     expect(bestNightLine(only)).toMatch(/reported together/);
@@ -128,7 +128,7 @@ describe("leaders", () => {
       [stand({ venue: "Scotiabank Arena", city: "Toronto" }), stand({ venue: "Centre Bell", city: "Montreal" })],
     ).countries[0].leader;
     expect(bestNightLine(two)).toBe(
-      "4 nights in 2 stands, each reported together · Scotiabank Arena, Toronto; Centre Bell, Montreal",
+      "4 nights in 2 runs, each reported together · Scotiabank Arena, Toronto; Centre Bell, Montreal",
     );
   });
 
@@ -156,10 +156,28 @@ describe("the summary splits single shows from stand nights", () => {
   it("reads as single shows and stands, nights in brackets", () => {
     const r = revenueByCountry([show({}), show({ flag: "🇫🇷" })], [stand({ shows: 3 })]);
     expect(summaryLine(r)).toBe(
-      "2 single shows and 1 multi-night stand (5 nights) in 3 countries on 2 continents",
+      "2 single shows and 1 multi-night run (5 nights) in 3 countries on 2 continents",
     );
+    const two = revenueByCountry([show({})], [stand({ shows: 3 }), stand({ flag: "🇬🇧" })]);
+    expect(summaryLine(two)).toBe("1 single show and 2 multi-night runs (6 nights) in 2 countries on 2 continents");
     const noStands = revenueByCountry([show({})], []);
     expect(summaryLine(noStands)).toBe("1 reported show in 1 country on 1 continent");
+  });
+});
+
+describe("reader-facing words follow the board's: multi-night runs, never stands", () => {
+  it("no line this module prints says stand", () => {
+    const one = revenueByCountry([show({ flag: "🇨🇦", revenue: 50 })], [stand({})]).countries[0].leader;
+    const many = revenueByCountry([show({ flag: "🇨🇦", revenue: 50 })], [stand({}), stand({ venue: "T" })]).countries[0].leader;
+    const only = revenueByCountry([], [stand({}), stand({ venue: "T" })]).countries[0].leader;
+    const lines = [
+      summaryLine(board),
+      summaryLine(revenueByCountry([show({})], [stand({}), stand({})])),
+      standNote(one)!, standNote(many)!, bestNightLine(only),
+      ...board.countries.flatMap((c) => [leaderLine(c), ...c.artists.flatMap((a) => [bestNightLine(a), standNote(a) ?? ""])]),
+    ];
+    for (const l of lines) expect(l).not.toMatch(/\bstands?\b/i);
+    expect(standNote(many)).toBe("Total includes 4 nights in 2 runs, each reported together · S, C; T, C");
   });
 });
 

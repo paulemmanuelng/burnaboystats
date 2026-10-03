@@ -1,6 +1,7 @@
 import { revenueShows, revenueStands, type RevenueShow, type RevenueStand } from "../data/tourRevenue";
 import { performedCountries, CONTINENT_OF, type Continent } from "../data/performedCountries";
 import { CHART_COUNTRIES } from "../data/charts";
+import { RUNS_HEADING } from "./multiNightRuns";
 
 /**
  * Box office by country — who leads every country and every continent for
@@ -11,10 +12,10 @@ import { CHART_COUNTRIES } from "../data/charts";
  * 3 Oct 2026) shape it:
  *
  *  1. LEADING is the artist's TOTAL reported gross in that country: the sum of
- *     every reported show there, multi-night stands included — summing is fine
+ *     every reported show there, multi-night runs included — summing is fine
  *     for a total, it is only a per-night RANKING a combined figure cannot sit
  *     in. Each artist's BEST SINGLE NIGHT rides alongside, from single shows
- *     only; a stand never stands in for one night.
+ *     only; a run never stands in for one night.
  *  2. AFRICA is shown honestly, as "no reported box office yet", rather than
  *     left out — box-office reporting barely covers venues there.
  *
@@ -25,6 +26,10 @@ import { CHART_COUNTRIES } from "../data/charts";
  * country with no chart entry — and the continent from OUTSIDE_HIS_MAP below. A flag none of those know THROWS: a new country cannot vanish from the
  * page silently, and tests/revenueByCountry.test.ts fails before a build does.
  */
+
+/** "multi-night run(s)" — the board's own heading word (lib/multiNightRuns.ts), in running prose. */
+const RUN_MANY = RUNS_HEADING.toLowerCase();
+const RUN_ONE = RUN_MANY.replace(/s$/, "");
 
 export const CONTINENT_ORDER: Continent[] = ["Africa", "Europe", "North America", "South America", "Asia", "Oceania"];
 
@@ -71,7 +76,7 @@ export interface Night {
   tickets?: string;
 }
 
-/** A stand reported as one figure for several nights. */
+/** A multi-night run ("stand" in code) reported as one figure for several nights. */
 export interface StandLine {
   venue: string;
   city: string;
@@ -84,9 +89,9 @@ export interface StandLine {
 export interface ArtistTotal {
   artist: string;
   his: boolean;
-  /** Every reported gross there, stands included. */
+  /** Every reported gross there, multi-night runs included. */
   total: number;
-  /** Nights: one per single show, and every night of a stand. */
+  /** Nights: one per single show, and every night of a multi-night run. */
   shows: number;
   /** The best SINGLE night there; null when every reported night was in a stand. */
   best: Night | null;
@@ -119,7 +124,16 @@ const HIM = "Burna Boy";
 export const rankArtists = (a: ArtistTotal, b: ArtistTotal) =>
   b.total - a.total || (b.best?.revenue ?? 0) - (a.best?.revenue ?? 0) || a.artist.localeCompare(b.artist);
 
-type Row = { kind: "show"; s: RevenueShow } | { kind: "stand"; s: RevenueStand };
+/**
+ * The rows as this page reads them. A row's `source` (where the gross was read)
+ * is data only — the page never prints it — so it is left out of the type: the
+ * full rows are accepted, nothing here can reach for it, and nothing built here
+ * (Night, StandLine) copies it into what the components render.
+ */
+type ShowIn = Omit<RevenueShow, "source">;
+type StandIn = Omit<RevenueStand, "source">;
+
+type Row = { kind: "show"; s: ShowIn } | { kind: "stand"; s: StandIn };
 
 function totals(rows: Row[]): ArtistTotal[] {
   const by = new Map<string, ArtistTotal>();
@@ -161,8 +175,8 @@ export interface RevenueByCountry {
 }
 
 export function revenueByCountry(
-  shows: RevenueShow[] = revenueShows,
-  stands: RevenueStand[] = revenueStands,
+  shows: readonly ShowIn[] = revenueShows,
+  stands: readonly StandIn[] = revenueStands,
 ): RevenueByCountry {
   const rows: Row[] = [
     ...shows.map((s) => ({ kind: "show" as const, s })),
@@ -216,21 +230,23 @@ export const usdM = (n: number) => `$${(n / 1e6).toFixed(2)}M`;
 /** "$6,147,209" — the board's full form. */
 export const usdFull = (n: number) => `$${n.toLocaleString("en-US")}`;
 
-/** "1 night" / "4 nights" — a stand counts every night it ran. */
+/** "1 night" / "4 nights" — a multi-night run counts every night it played. */
 export const nightsLabel = (n: number) => `${n} ${n === 1 ? "night" : "nights"}`;
 
 /**
- * "41 single shows and 2 multi-night stands (45 nights) in 10 countries on 4
- * continents". The revenue board one click away counts single shows only, so
- * the split is spelled out rather than calling every stand night a reported
- * show — the stand nights were reported only as combined figures.
+ * "82 single shows and 3 multi-night runs (89 nights) in 12 countries on 4
+ * continents". The revenue board one click away ranks single shows only, so
+ * the split is spelled out rather than calling every night of a run a reported
+ * show — those nights were reported only as combined figures. Reader-facing
+ * words follow the board's own (lib/multiNightRuns.ts): "multi-night runs",
+ * "nights"; the code keeps its "stand" identifiers.
  */
 export function summaryLine(b: RevenueByCountry): string {
   const plural = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : many}`;
   const what =
     b.standCount === 0
       ? plural(b.singleShows, "reported show", "reported shows")
-      : `${plural(b.singleShows, "single show", "single shows")} and ${plural(b.standCount, "multi-night stand", "multi-night stands")} (${nightsLabel(b.showCount)})`;
+      : `${plural(b.singleShows, "single show", "single shows")} and ${plural(b.standCount, RUN_ONE, RUN_MANY)} (${nightsLabel(b.showCount)})`;
   return `${what} in ${plural(b.countryCount, "country", "countries")} on ${plural(b.continentCount, "continent", "continents")}`;
 }
 
@@ -245,26 +261,30 @@ export function leaderLine(c: CountryBoard): string {
     : `leads · ${usdM(c.leader.total)} of ${usdM(c.total)} · ${nightsLabel(c.shows)} reported`;
 }
 
+/** "4 nights in 2 runs, each reported together · Scotiabank Arena, Toronto; Centre Bell, Montreal". */
+const runsLine = (stands: StandLine[]) =>
+  `${stands.reduce((n, s) => n + s.shows, 0)} nights in ${stands.length} runs, each reported together · ${stands
+    .map((s) => `${s.venue}, ${s.city}`)
+    .join("; ")}`;
+
 /**
- * The best-night line for one artist in one place. A stand never stands in for
- * a night: an artist whose only reported box office there is a stand says the
- * nights were reported together, with the run's own figures.
+ * The best-night line for one artist in one place. A multi-night run never
+ * stands in for a night: an artist whose only reported box office there is a
+ * run says the nights were reported together, with the run's own figures.
  */
 export function bestNightLine(a: ArtistTotal): string {
   if (a.best) return `Best night ${usdM(a.best.revenue)} · ${a.best.venue}, ${a.best.city} (${a.best.year})`;
   const st = a.stands[0];
   return a.stands.length === 1
     ? `${st.shows} nights reported together · ${st.venue}, ${st.city} (${st.dates})`
-    : `${a.stands.reduce((n, s) => n + s.shows, 0)} nights in ${a.stands.length} stands, each reported together · ${a.stands
-        .map((s) => `${s.venue}, ${s.city}`)
-        .join("; ")}`;
+    : runsLine(a.stands);
 }
 
-/** The note for a stand beside a best night — the run is in the total, not the best night. */
+/** The note for a multi-night run beside a best night — the run is in the total, not the best night. */
 export function standNote(a: ArtistTotal): string | null {
   if (!a.best || a.stands.length === 0) return null;
   const nights = a.stands.reduce((n, s) => n + s.shows, 0);
   return a.stands.length === 1
-    ? `Total includes a ${nights}-night stand at ${a.stands[0].venue} reported as one figure`
-    : `Total includes ${a.stands.length} stands (${nights} nights) each reported as one figure`;
+    ? `Total includes a ${nights}-night run at ${a.stands[0].venue} reported as one figure`
+    : `Total includes ${runsLine(a.stands)}`;
 }

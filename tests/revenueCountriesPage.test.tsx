@@ -16,7 +16,8 @@ vi.mock("next/link", () => ({
 
 import CountriesPage from "../app/records/tours/revenue/countries/page";
 import RevenuePage from "../app/records/tours/revenue/page";
-import { leaderLine, revenueByCountry, summaryLine, usdM, usdFull } from "../app/lib/revenueByCountry";
+import { bestNightLine, leaderLine, revenueByCountry, standNote, summaryLine, usdM, usdFull } from "../app/lib/revenueByCountry";
+import { revenueShows, revenueStands } from "../app/data/tourRevenue";
 import { BACK_BAR_ROUTES, ACTION_BAR_ROUTES } from "../app/lib/mobileScreens";
 import { text, trees } from "./fixtures/phoneTrees";
 
@@ -132,6 +133,21 @@ describe("linked both ways", () => {
       expect(a).not.toBeNull();
       expect(a!.className).toMatch(/btnPrimary/);
     }
+  });
+});
+
+describe("the board's words, and nothing it keeps as data only", () => {
+  const html = renderToStaticMarkup(<CountriesPage />);
+  it.each(both())("%s: multi-night runs, never stands (the revenue board's wording)", (_w, tree) => {
+    expect(text(tree)).not.toMatch(/\bstands?\b/i);
+  });
+  it.each(both())("%s: every artist with a run says so, by the run's own words", (_w, tree) => {
+    const t = text(tree);
+    for (const c of board.countries)
+      for (const a of c.artists) if (a.stands.length > 0) expect(t, `${c.name} ${a.artist}`).toContain(standNote(a) ?? bestNightLine(a));
+  });
+  it("no row's source line reaches the page", () => {
+    for (const r of [...revenueShows, ...revenueStands]) expect(html).not.toContain(r.source);
   });
 });
 

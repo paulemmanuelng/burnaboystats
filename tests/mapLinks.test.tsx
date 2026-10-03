@@ -254,7 +254,7 @@ describe("item 35: phone Tours gains 'More from the road', map first", () => {
       {
         href: "/records/tours/revenue",
         title: "Revenue per show",
-        sub: `His ${his} of the ${revenueShows.length} biggest reported single-show grosses by an African artist`,
+        sub: `His ${his} of the ${revenueShows.length} verified single-show grosses by an African artist`,
         arrow: "→",
       },
       {

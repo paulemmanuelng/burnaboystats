@@ -28,7 +28,7 @@ export const AFRICA_NOTE =
   "Box-office reporting barely reaches venues in Africa — not reported, not unplayed.";
 
 export const METHOD_NOTE =
-  "What counts: per-show box-office grosses as reported by Billboard Boxscore & Pollstar (as aggregated by TouringData) and cross-checked against press reporting — the rows of the revenue board. An artist's total in a country is every reported gross there added up, including multi-night stands reported as one figure, and a stand counts every night it ran; the best night is a single show only. Reporting is incomplete, so an artist missing from a country means not reported, not that they did not play there — and Boxscore and Pollstar rarely publish grosses from venues in Africa, which is why the continent has no reported box office here yet.";
+  "What counts: per-show box-office grosses as reported by Billboard Boxscore & Pollstar (as aggregated by TouringData) and cross-checked against press reporting — the rows of the revenue board. An artist's total in a country is every reported gross there added up, including multi-night runs reported as one figure, and a run counts every night it played; the best night is a single show only. Reporting is incomplete, so an artist missing from a country means not reported, not that they did not play there — and Boxscore and Pollstar rarely publish grosses from venues in Africa, which is why the continent has no reported box office here yet.";
 
 function Runner({ k }: { k: ContinentBoard }) {
   const second = k.artists[1];
