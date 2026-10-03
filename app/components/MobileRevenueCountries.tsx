@@ -66,7 +66,7 @@ export default function MobileRevenueCountries({ board, lede }: { board: Revenue
         <div className={styles.kicker}>African artists · reported box office</div>
         {/* The page's <h1> on phones; the desktop column carries its own. */}
         <h1 className={styles.title}>
-          Top-grossing artists <span className={styles.gold}>by country</span>
+          Highest-grossing artists <span className={styles.gold}>by country</span>
         </h1>
         <p className={styles.lede}>{lede}</p>
       </div>

@@ -103,7 +103,7 @@ export default function RevenueCountries({
             African artists · reported box office
           </div>
           <h1 className={styles.h1}>
-            Top-Grossing Artists <span className="inkText">by Country</span>
+            Highest-Grossing Artists <span className="inkText">by Country</span>
           </h1>
           <p className={styles.lede}>{lede}</p>
           <div className={styles.heroBtns}>

@@ -297,11 +297,11 @@ export const searchIndex: SearchDoc[] = [
     keywords: ["revenue", "box office", "grossing", "highest grossing", "boxscore", "earnings", "tour money"],
   },
   {
-    title: "Top-Grossing Artists by Country",
+    title: "Highest-Grossing Artists by Country",
     path: "/records/tours/revenue/countries",
     section: "Records",
     description: "Who leads every country and continent for reported box office by African artists, with totals and best nights.",
-    keywords: ["top grossing artists by country", "box office by country", "concert grosses", "leaders", "country", "continent", "revenue", "grossing", "boxscore", "europe", "north america", "where he leads"],
+    keywords: ["highest grossing african artists by country", "top grossing artists by country", "box office by country", "concert grosses", "leaders", "country", "continent", "revenue", "grossing", "boxscore", "europe", "north america", "where he leads"],
   },
   {
     title: "Where the World Listens",
