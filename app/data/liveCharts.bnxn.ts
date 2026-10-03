@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-03";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-03T11:43Z";
+  export const liveChartsBuiltAt = "2026-10-03T16:21Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -164,8 +164,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 16,
-            "movement": -1
+            "position": 18,
+            "movement": -2
           },
           {
             "country": "SR",
@@ -176,8 +176,8 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 28,
-            "movement": -2
+            "position": 25,
+            "movement": -1
           },
           {
             "country": "MU",
@@ -216,13 +216,6 @@
             "movement": 5
           },
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 51,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "CI",
             "name": "Côte d'Ivoire",
             "position": 51,
@@ -232,6 +225,13 @@
             "country": "OM",
             "name": "Oman",
             "position": 52,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 54,
             "movement": null,
             "status": "new"
           },
@@ -314,12 +314,6 @@
             "status": "new"
           },
           {
-            "country": "NO",
-            "name": "Norway",
-            "position": 118,
-            "movement": -14
-          },
-          {
             "country": "KN",
             "name": "Saint Kitts and Nevis",
             "position": 118,
@@ -327,22 +321,28 @@
             "status": "new"
           },
           {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 140,
-            "movement": -7
+            "country": "NO",
+            "name": "Norway",
+            "position": 123,
+            "movement": -14
           },
           {
             "country": "US",
             "name": "United States",
-            "position": 145,
-            "movement": -12
+            "position": 129,
+            "movement": -23
           },
           {
             "country": "BM",
             "name": "Bermuda",
             "position": 146,
             "movement": -115
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 146,
+            "movement": 21
           },
           {
             "country": "SC",
@@ -424,13 +424,6 @@
             "name": "Liberia",
             "position": 74,
             "movement": 54
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 82,
-            "movement": null,
-            "status": "new"
           },
           {
             "country": "CM",
@@ -520,9 +513,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 37,
-            "movement": null,
-            "status": "new"
+            "position": 58,
+            "movement": -44
           }
         ]
       },
@@ -639,13 +631,13 @@
             "country": "GD",
             "name": "Grenada",
             "position": 36,
-            "movement": -13
+            "movement": -12
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 45,
-            "movement": 68
+            "position": 66,
+            "movement": 61
           }
         ]
       },
@@ -814,7 +806,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 19,
+            "position": 32,
             "movement": null,
             "status": "new"
           }
@@ -1076,9 +1068,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 39,
-            "movement": null,
-            "status": "new"
+            "position": 60,
+            "movement": 7
           }
         ]
       },
@@ -1347,8 +1338,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 29,
-            "movement": -9
+            "position": 31,
+            "movement": -7
           }
         ]
       }
@@ -1553,51 +1544,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/a8c088ce8f133901305e47938b4f981a/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "The Game Needs Us - EP",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 37,
-            "movement": 1
-          },
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 79,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 96,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 176,
-            "movement": 19
-          },
-          {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 195,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "album"
-  },
-  {
     "title": "RnB",
     "platforms": [
       {
@@ -1643,6 +1589,44 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/8b184fef895cad0601c7d3d8fedc215b/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "The Game Needs Us - EP",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 37,
+            "movement": 1
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 79,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "BJ",
+            "name": "Benin",
+            "position": 176,
+            "movement": 19
+          },
+          {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 195,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "album"
+  },
+  {
     "title": "Sorry I'm Late",
     "platforms": [
       {
@@ -1679,7 +1663,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 124,
-            "movement": 0
+            "movement": 1
           }
         ]
       }
@@ -1715,8 +1699,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 61,
-            "movement": 3
+            "position": 60,
+            "movement": 4
           }
         ]
       }
@@ -1970,6 +1954,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/47b72924cef36764e12e24f894bb0bd9/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Oshimiri",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 82,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ba2c077cd1d6f4e3b15a2b06c58da85c/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "GWAGWALADA",
     "platforms": [
       {
@@ -2075,7 +2079,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 141,
+            "position": 162,
             "movement": null,
             "status": "new"
           }
