@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Fragment, type CSSProperties } from "react";
+import { Fragment, type CSSProperties, type ReactNode } from "react";
 import styles from "./certifications.module.css";
 import BreadcrumbBar from "../components/BreadcrumbBar";
 import MobileCerts from "../components/MobileCerts";
@@ -20,6 +20,12 @@ import { allChartItems, CHART_COUNTRIES, type ChartRelease } from "../data/chart
 import { livePlatformTotals } from "../data/liveCharts";
 import { compareWithLinks } from "../lib/comparePairs";
 import { countryBoardLinks } from "../lib/certCountry";
+import CertViewSwap from "../components/CertViewSwap";
+import { featuredTitlesOf } from "../lib/certUnits";
+import {
+  certTotals, certsInView, creditSwitchable, homeCodeFor, scopeSwitchable, viewKey, viewNoun, viewsOffered,
+  type CertView, type CertViewKey,
+} from "../lib/certScope";
 
 // Burna Boy's side of the "Compare with…" list the board artists' pages carry:
 // one pair page per board artist, each by its canonical URL (E-10, Paul,
@@ -112,6 +118,73 @@ const summary = [
   },
 ];
 
+// ── The two switches (lib/certScope), /compare's style ───────────────────
+// "Nigeria": his home country is read off his own record (BURNA.country), and
+// names the switch. "Featured appearances": his guest spots are the ones
+// /compare leaves out under "lead credits only" (certUnits.featuredTitlesOf —
+// his `features` array), one rule for both pages. Each narrowed view of the
+// summary strip is counted by the same helpers from the releases left in it.
+// The hero (lede and tier rail) stays the "all" view, which is the static page.
+const home = homeCodeFor(BURNA.country);
+const featured = featuredTitlesOf("burna-boy");
+const offered = { scope: scopeSwitchable(allItems, home), credit: creditSwitchable(allItems, featured) };
+
+function summaryFor(view: CertView): typeof summary {
+  const inView = certsInView(allItems, { home, featured }, view);
+  const t = certTotals(inView);
+  const codes = new Set(inView.flatMap((r) => r.certs.map((c) => c.c)));
+  const label = viewNoun(t.total, view);
+  return [
+    { value: String(t.total), label: label[0].toUpperCase() + label.slice(1), note: "Silver → Diamond" },
+    { value: String(t.countries), label: "Countries", note: `${new Set([...codes].map((c) => COUNTRIES[c].body)).size} issuing bodies` },
+    {
+      value: String(t.releases),
+      label: "Certified releases",
+      note: view.credit === "lead" ? "Albums and singles" : "Albums, singles, features",
+    },
+    // "New in 2026 · International awards" is international already, so the
+    // home switch leaves it as it is; with features off it counts his own
+    // releases only, like the three cells beside it.
+    view.credit === "lead"
+      ? {
+          ...summary[3],
+          value: String(intlCertHistory.filter((e) => e.year === thisYear && !featured.has(e.title)).length),
+          note: "International awards, lead credits",
+        }
+      : summary[3],
+  ];
+}
+
+function tierRailView(rows: typeof tierRail) {
+  return rows.map((t) => (
+    <div key={t.name} className={styles.tierRow}>
+      <span className={styles.tierDot} style={{ background: TIER_INK[t.name] }} aria-hidden="true" />
+      <span className={styles.tierName} style={{ color: TIER_INK[t.name] }}>{t.name}</span>
+      <span className={styles.tierCount}>{t.count}</span>
+      <span className={styles.tierPct}>{t.pct}</span>
+    </div>
+  ));
+}
+
+function summaryView(cells: typeof summary) {
+  return cells.map((s) => (
+    <div key={s.label} className={styles.summaryCell}>
+      <div className={styles.summaryValue}>{s.value}</div>
+      <div className={styles.summaryLabel}>{s.label}</div>
+      <div className={styles.summaryNote}>{s.note}</div>
+    </div>
+  ));
+}
+
+/** A block in every view the switches offer, or the one it always was. */
+function scoped(all: ReactNode, narrowed: (view: CertView) => ReactNode) {
+  const views = viewsOffered(offered);
+  if (views.length === 1) return all;
+  const byKey: Partial<Record<CertViewKey, ReactNode>> & { all: ReactNode } = { all };
+  for (const v of views.slice(1)) byKey[viewKey(v)] = narrowed(v);
+  return <CertViewSwap views={byKey} offered={offered} />;
+}
+
 export default function CertificationsPage() {
   return (
     <main id="content">
@@ -136,6 +209,9 @@ export default function CertificationsPage() {
         liveNote={burnaLiveNote}
         compareWith={compareWith}
         countryBoards={countryBoards}
+        home={home}
+        homeName={BURNA.country}
+        featured={[...featured]}
       />
 
       <div className={styles.desktopOnly}>
@@ -188,14 +264,11 @@ export default function CertificationsPage() {
           </div>
 
           <div className={styles.tierRail}>
-            {tierRail.map((t) => (
-              <div key={t.name} className={styles.tierRow}>
-                <span className={styles.tierDot} style={{ background: TIER_INK[t.name] }} aria-hidden="true" />
-                <span className={styles.tierName} style={{ color: TIER_INK[t.name] }}>{t.name}</span>
-                <span className={styles.tierCount}>{t.count}</span>
-                <span className={styles.tierPct}>{t.pct}</span>
-              </div>
-            ))}
+            {/* The all-view, always: it sits beside the lede's "249 music
+                certifications across 26 countries" and belongs to that
+                sentence. The switches recount the strip below and the
+                explorer, where they sit. */}
+            {tierRailView(tierRail)}
           </div>
         </div>
       </section>
@@ -203,13 +276,7 @@ export default function CertificationsPage() {
       {/* ── Summary strip ────────────────────────────────────────────── */}
       <section className={styles.summary}>
         <div className={styles.summaryGrid}>
-          {summary.map((s) => (
-            <div key={s.label} className={styles.summaryCell}>
-              <div className={styles.summaryValue}>{s.value}</div>
-              <div className={styles.summaryLabel}>{s.label}</div>
-              <div className={styles.summaryNote}>{s.note}</div>
-            </div>
-          ))}
+          {scoped(summaryView(summary), (v) => summaryView(summaryFor(v)))}
         </div>
       </section>
 
@@ -221,6 +288,9 @@ export default function CertificationsPage() {
         features={features}
         countries={COUNTRIES}
         totalCerts={total}
+        home={home}
+        homeName={BURNA.country}
+        featured={[...featured]}
       />
 
       {/* ── The dated log ────────────────────────────────────────────── */}

@@ -20,6 +20,12 @@ import MobileFaqSection from "./MobileFaqSection";
 import type { Faq } from "./FaqList";
 import { tierWord } from "../lib/awardName";
 import { dropDeepLink, onDeepLinkChange, readDeepLink, readSavedView, saveView } from "../lib/deepLink";
+import {
+  certCountPhrase, certsInView, certTotals, creditSwitchable, effectiveView, scopeSwitchable, viewKey, viewNoun,
+  type CertViewKey,
+} from "../lib/certScope";
+import { useCertView } from "../lib/useCertView";
+import CertViewSwitches from "./CertViewSwitches";
 
 /**
  * The mobile certifications screen.
@@ -98,6 +104,10 @@ export default function MobileCerts({
   compareSlug = "burna-boy",
   compareWith,
   countryBoards,
+  home,
+  homeName,
+  featured,
+  ledes,
 }: {
   releases: Release[];
   albums: Release[];
@@ -155,6 +165,19 @@ export default function MobileCerts({
    *  under "Compare with…" the same way. Only /certifications passes it: the
    *  boards were linked from their own index and nowhere else. */
   countryBoards?: { name: string; href: string }[];
+  /** The artist's home country code (lib/certScope.homeCodeFor) — what the
+   *  International switch leaves out. Absent = no International switch. */
+  home?: string;
+  /** The artist's home country in full ("Nigeria", "South Africa") — the
+   *  home switch's name (the artist's own `country` field). */
+  homeName?: string;
+  /** The titles of the artist's FEATURED appearances — the data's own group
+   *  (Burna Boy's `features`, the board's "Featured appearances") — which the
+   *  Lead switch leaves out. Absent or empty = no Lead switch. */
+  featured?: readonly string[];
+  /** The `lede` for each narrowed view, built on the server from the same
+   *  helpers, because the board's lede states the totals. Absent = `lede`. */
+  ledes?: Partial<Record<CertViewKey, string>>;
 }) {
   const art = (title: string) => (covers ? covers[title] : coverFor(title));
   // The list runs albums, singles and features together, so an album needs
@@ -200,20 +223,32 @@ export default function MobileCerts({
     saveView(VIEW_ID, { tier });
   }, [tier]);
 
-  const tierCount = TIER_ORDER.reduce<Record<Tier, number>>(
-    (acc, name) => {
-      acc[name] = releases.reduce(
-        (n, r) => n + r.certs.filter((c) => c.level === name).length,
-        0
-      );
-      return acc;
-    },
-    { Diamond: 0, Platinum: 0, Gold: 0, Silver: 0 }
-  );
-  const maxTier = Math.max(...TIER_ORDER.map((t) => tierCount[t]));
+  // The two switches (lib/certScope), in /compare's style: the home country
+  // ("Nigeria", "South Africa") and "Features".
+  // Each is offered only when it changes something; in a narrowed view every
+  // figure on this screen — the total, the countries, the tier bars and chips,
+  // the list — is counted from the releases left in it.
+  const [rawView, setView] = useCertView();
+  const featuredSet = new Set(featured ?? []);
+  const offered = { scope: scopeSwitchable(releases, home), credit: creditSwitchable(releases, featuredSet) };
+  const view = effectiveView(rawView, offered);
+  const narrowed = view.scope !== "all" || view.credit !== "all";
+  const inScope = certsInView(releases, { home, featured: featuredSet }, view);
+  const scopedTotals = certTotals(inScope);
+  const shownTotal = narrowed ? scopedTotals.total : total;
+  const shownCountries = narrowed ? scopedTotals.countries : countryCount;
 
-  const matching = releases
-    .filter((r) => (!focus || r.title === focus) && (!tier || r.certs.some((c) => c.level === tier)))
+  const tierCount = scopedTotals.tiers;
+  // At least 1: International + Lead can hold nothing at all (BNXN's
+  // international plaques are all on other artists' songs), and the bars and
+  // percentages must read 0, not NaN.
+  const maxTier = Math.max(1, ...TIER_ORDER.map((t) => tierCount[t]));
+  // A tier chip that the International view empties (a Diamond held only at
+  // home) leaves the rail, so its selection cannot stand either.
+  const shownTier = tier && tierCount[tier] > 0 ? tier : null;
+
+  const matching = inScope
+    .filter((r) => (!focus || r.title === focus) && (!shownTier || r.certs.some((c) => c.level === shownTier)))
     .slice()
     // Albums lead, then the songs — each block running most-certified to
     // least, labelled and numbered from 01 on its own (see isAlbumRow below).
@@ -232,9 +267,13 @@ export default function MobileCerts({
   const hidden = matching.length - rows.length;
   const isAlbumRow = (r: Release) => albumTitles.has(titleKey(r.title));
   // The filters leave nothing: the phone's own empty state, which clears what
-  // the desktop's "Clear filters" clears — the tier AND the release focus.
+  // the desktop's "Clear filters" clears — the tier, the release focus AND the
+  // two switches. Both switches off can empty a page on their own (BNXN, Tiwa
+  // Savage: every international plaque a guest spot), and a Clear that left
+  // them off did nothing at all.
   const clearFilters = () => {
     setTier(null);
+    if (narrowed) setView({ scope: "all", credit: "all" });
     if (focus) {
       setFocus(null);
       dropDeepLink("release");
@@ -257,7 +296,7 @@ export default function MobileCerts({
           </svg>
         </BackLink>
         <span className={styles.backLabel}>{backLabel}</span>
-        <span className={styles.backCount}>{total}</span>
+        <span className={styles.backCount}>{shownTotal}</span>
         <MobileMenuButton />
       </div>
 
@@ -341,16 +380,16 @@ export default function MobileCerts({
               it. Nothing to look at changes; the heading just stops being
               anonymous to anyone navigating by heading. */}
           <span className="visuallyHidden">{subject}: </span>
-          <span className={styles.total}>{total}</span>
+          <span className={styles.total}>{shownTotal}</span>
           <span className={styles.totalUnit}>
-            awards
+            {narrowed ? viewNoun(shownTotal, view, "award", "awards") : "awards"}
             <br />
-            {countryCount} {countryCount === 1 ? "country" : "countries"}
+            {shownCountries} {shownCountries === 1 ? "country" : "countries"}
           </span>
         </h1>
         <p className={styles.lede}>
-          {lede ??
-            `Silver, Gold, Platinum and Diamond awards from the RIAA, BPI, SNEP, Music Canada and ${countryCount - 4} more — across ${releases.length} certified releases.`}
+          {(narrowed ? ledes?.[viewKey(view)] ?? lede : lede) ??
+            `Silver, Gold, Platinum and Diamond awards from the RIAA, BPI, SNEP, Music Canada and ${shownCountries - 4} more — across ${inScope.length} certified releases.`}
         </p>
 
         <div className={styles.tierList}>
@@ -360,7 +399,7 @@ export default function MobileCerts({
                 <span className={styles.tierName} style={{ color: INK[name] }}>{name}</span>
                 <span className={styles.tierCount}>{tierCount[name]}</span>
                 <span className={styles.tierPct}>
-                  {Math.round((tierCount[name] / total) * 100)}%
+                  {shownTotal ? Math.round((tierCount[name] / shownTotal) * 100) : 0}%
                 </span>
               </div>
               <div className={styles.tierTrack}>
@@ -396,25 +435,43 @@ export default function MobileCerts({
         </div>
       )}
 
+      {/* The two switches, /compare's own (CertViewSwitches), one row right
+          above the tier rail they narrow (whose "All" is the way back to
+          everything). Each control wraps inside itself, compare's way, so the
+          row never scrolls sideways — see .viewRow. */}
+      <CertViewSwitches
+        view={view}
+        offered={offered}
+        onPick={setView}
+        homeName={homeName ?? home ?? ""}
+        className={styles.viewRow}
+      />
+      {/* What a switch did, said once it is done — polite, so it waits. A
+          live region speaks changes only, so the count it holds on load is
+          not read out. */}
+      <span aria-live="polite" className="visuallyHidden">
+        {certCountPhrase(shownTotal, shownCountries, view)}
+      </span>
+
       {/* Tier rail */}
       <ScrollRail id="cert-rail" className={styles.rail} label="Filter by certification tier">
         <button
           type="button"
-          className={`${styles.chip} ${!tier ? styles.chipOn : ""}`}
+          className={`${styles.chip} ${!shownTier ? styles.chipOn : ""}`}
           onClick={() => setTier(null)}
         >
-          {!tier ? null : <span className={styles.chipDot} style={{ background: INK.Gold }} />}
-          All {total}
+          {!shownTier ? null : <span className={styles.chipDot} style={{ background: INK.Gold }} />}
+          All {shownTotal}
         </button>
         {TIER_ORDER.filter((name) => tierCount[name] > 0).map((name) => (
           <button
             key={name}
             type="button"
-            className={`${styles.chip} ${tier === name ? styles.chipOn : ""}`}
-            style={tier === name ? undefined : { color: INK[name] }}
-            onClick={() => setTier(tier === name ? null : name)}
+            className={`${styles.chip} ${shownTier === name ? styles.chipOn : ""}`}
+            style={shownTier === name ? undefined : { color: INK[name] }}
+            onClick={() => setTier(shownTier === name ? null : name)}
           >
-            {tier === name ? null : <span className={styles.chipDot} style={{ background: INK[name] }} />}
+            {shownTier === name ? null : <span className={styles.chipDot} style={{ background: INK[name] }} />}
             {name} {tierCount[name]}
           </button>
         ))}

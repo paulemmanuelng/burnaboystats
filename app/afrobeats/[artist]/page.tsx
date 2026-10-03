@@ -1,5 +1,5 @@
 import { count, plural } from "../../lib/plural";
-import { Fragment } from "react";
+import { Fragment, type ReactNode } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import styles from "./artist.module.css";
@@ -37,6 +37,12 @@ import {
 } from "../../data/afrobeats";
 import { LIVE_CADENCE_ADVERB } from "../../lib/liveChartMeta";
 import { tierWord } from "../../lib/awardName";
+import CertViewSwap from "../../components/CertViewSwap";
+import { featuredTitlesOf } from "../../lib/certUnits";
+import {
+  ALL_VIEW, certsInView, creditSwitchable, homeCodeFor, scopeSwitchable, viewKey, viewNoun, viewsOffered,
+  type CertView, type CertViewKey,
+} from "../../lib/certScope";
 
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -93,7 +99,6 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
   // register rows (the owner's rulings of 3 Oct 2026), else undefined — every
   // "read in the issuing body's own register" line below qualifies itself with it.
   const offRegister = offRegisterPhrase(a);
-  const offRegisterShort = offRegisterPhrase(a, "short");
   const hold = offRegisterHold(a);
   // One formatted date for both layouts — the phone's lede carried none until
   // 17 Sep 2026 while the desktop printed it in the provenance line.
@@ -124,17 +129,40 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
   // different register with thresholds a sixteenth of the main programme's —
   // and this strip rendered them as plain US Platinum until 11 Sep 2026. Same
   // marker Burna's explorer paints beside "Dai Dai".
-  const byCountry = new Map<string, { level: Tier; x?: number; body?: string; provenance?: string }>();
   const rank: Record<Tier, number> = { Diamond: 0, Platinum: 1, Gold: 2, Silver: 3 };
-  for (const r of a.releases)
-    for (const c of r.certs) {
-      const cur = byCountry.get(c.c);
-      if (!cur || rank[c.level] < rank[cur.level] || (c.level === cur.level && (c.x ?? 1) > (cur.x ?? 1)))
-        byCountry.set(c.c, { level: c.level, x: c.x, body: c.body, provenance: certProvenance(c) });
-    }
-  const countryStrip = [...byCountry.entries()].sort(
-    (p, q) => rank[p[1].level] - rank[q[1].level] || (q[1].x ?? 1) - (p[1].x ?? 1)
-  );
+  const stripFor = (x: AfroArtist) => {
+    const byCountry = new Map<string, { level: Tier; x?: number; body?: string; provenance?: string }>();
+    for (const r of x.releases)
+      for (const c of r.certs) {
+        const cur = byCountry.get(c.c);
+        if (!cur || rank[c.level] < rank[cur.level] || (c.level === cur.level && (c.x ?? 1) > (cur.x ?? 1)))
+          byCountry.set(c.c, { level: c.level, x: c.x, body: c.body, provenance: certProvenance(c) });
+      }
+    return [...byCountry.entries()].sort(
+      (p, q) => rank[p[1].level] - rank[q[1].level] || (q[1].x ?? 1) - (p[1].x ?? 1)
+    );
+  };
+
+  // The two switches (lib/certScope), /compare's style. The home-country switch
+  // (named by a.country: "Nigeria", "South Africa") leaves out the home-country
+  // plaques; "Featured appearances" off leaves out the guest spots by
+  // /compare's own rule (certUnits.featuredTitlesOf — the releases filed under
+  // "Featured appearances"). Each view is the same artist with fewer releases,
+  // so every helper below — certCount, countryCount, tierCount,
+  // offRegisterPhrase — counts it exactly as it counts the full one. A switch
+  // is offered only when it changes something.
+  const home = homeCodeFor(a.country);
+  const featured = featuredTitlesOf(a.slug);
+  const offered = { scope: scopeSwitchable(a.releases, home), credit: creditSwitchable(a.releases, featured) };
+  const views = viewsOffered(offered);
+  const aView = (v: CertView): AfroArtist => ({ ...a, releases: certsInView(a.releases, { home, featured }, v) });
+  /** A block in every view the switches offer, or the one it always was. */
+  const scoped = (build: (x: AfroArtist, v: CertView) => ReactNode) => {
+    if (views.length === 1) return build(a, ALL_VIEW);
+    const byKey: Partial<Record<CertViewKey, ReactNode>> & { all: ReactNode } = { all: build(a, ALL_VIEW) };
+    for (const v of views.slice(1)) byKey[viewKey(v)] = build(aView(v), v);
+    return <CertViewSwap views={byKey} offered={offered} />;
+  };
 
   const dataset = a.swept
     ? datasetJsonLd({
@@ -183,6 +211,86 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
     features: mobileReleases.filter((_, idx) => a.releases[idx].kind === "Featured appearances"),
   };
 
+  // The phone's hero sentence, for either view — it states the totals.
+  function mobileLede(x: AfroArtist, view: CertView) {
+    const offRegisterShort = offRegisterPhrase(x, "short");
+    return `Every ${view.scope === "intl" ? "international " : ""}${a!.name} plaque${view.credit === "lead" ? " on a lead credit" : ""}, read in the issuing body's own register${offRegisterShort ? ` (${offRegisterShort})` : ""} — ${certCount(x)} across ${count(countryCount(x), "country", "countries")}, from ${x.releases.length} certified releases. Last verified ${verifiedLong}.`;
+  }
+
+  // "By the numbers" — the cards and the provenance line under them, for either
+  // view. The "all" view is the page as it has always read.
+  function headline(x: AfroArtist, view: CertView) {
+    const n = certCount(x);
+    const k = countryCount(x);
+    const offRegisterX = offRegisterPhrase(x);
+    return (
+      <>
+        <div className={styles.numGrid}>
+          <div className={`${styles.numCard} ${styles.numLead}`}>
+            <span className={styles.numValue}>{n}</span>
+            <span className={styles.numLabel}>{viewKey(view) === "all" ? "certifications worldwide" : viewNoun(n, view)}</span>
+          </div>
+          <div className={styles.numCard}>
+            <span className={styles.numValue}>{k}</span>
+            <span className={styles.numLabel}>{plural(k, "country", "countries")}</span>
+          </div>
+          {TIERS.map((t) =>
+            tierCount(x, t) > 0 ? (
+              <div key={t} className={styles.numCard}>
+                <span className={styles.numValue}>{tierCount(x, t)}</span>
+                <span className={styles.numLabel}>{t.toLowerCase()}</span>
+              </div>
+            ) : null
+          )}
+        </div>
+
+        {/* Verified-at-source line: the site's actual differentiator. */}
+        <p className={styles.provenance}>
+          Every figure read in an issuing body&apos;s own register
+          {offRegisterX ? ` — except ${offRegisterX}, ${offRegisterHold(x)}` : ""}
+          {" "}— last verified{" "}
+          {verifiedLong}. Counted by the same rules, set out in the{" "}
+          <Link href="/methodology#principles">methodology</Link>: one plaque per title per
+          country at its current tier, {view.credit === "lead" ? "lead credits only (featured appearances left out)" : "lead and featured credits both"}.
+        </p>
+      </>
+    );
+  }
+
+  // "Where the plaques are" — the count and the strip, for either view.
+  function strip(x: AfroArtist) {
+    const k = countryCount(x);
+    return (
+      <>
+        <div className={styles.sectionHead}>
+          <h2 id="countries" className={styles.h2}>Where the plaques are</h2>
+          <span className={styles.sectionMeta}>{count(k, "country", "countries")} · best tier shown</span>
+        </div>
+        <div className={styles.pills}>
+          {stripFor(x).map(([code, t]) => {
+            const c = countryMeta(code);
+            return (
+              <span key={code} className={`${styles.cert} ${styles[tierOf(t.level)]}`} title={`${c.name} — ${t.body ?? c.body}${t.provenance ? `, ${t.provenance}` : ""}`}>
+                <span className={styles.flag} aria-hidden="true">{c.flag}</span>
+                {t.x && t.x > 1 ? `${t.x}× ` : ""}
+                {tierWord(t.level, t.body)}
+                {/* A separate programme is a different award — derived, as on
+                    Burna's page: whatever the override adds beyond the country's
+                    default body. Reads "Latin" for RIAA Latin. */}
+                {t.body && t.body !== c.body && (
+                  <span className={styles.badgeProgram}>
+                    {t.body.replace(c.body, "").trim() || t.body}
+                  </span>
+                )}
+                <span className={styles.certCountry}>{c.name}</span>
+              </span>
+            );
+          })}
+        </div>
+      </>
+    );
+  }
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "MusicGroup",
@@ -230,7 +338,11 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
         backHref="/afrobeats"
         backLabel={a.name}
         subject={a.name}
-        lede={`Every ${a.name} plaque, read in the issuing body's own register${offRegisterShort ? ` (${offRegisterShort})` : ""} — ${total} across ${count(countries, "country", "countries")}, from ${a.releases.length} certified releases. Last verified ${verifiedLong}.`}
+        lede={mobileLede(a, ALL_VIEW)}
+        ledes={Object.fromEntries(views.slice(1).map((v) => [viewKey(v), mobileLede(aView(v), v)]))}
+        home={home}
+        homeName={a.country}
+        featured={[...featured]}
         faqs={faqs}
         showActionBar
         compareSlug={a.slug}
@@ -335,65 +447,15 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
       {a.swept && (
       <section className={styles.sectionPad} aria-labelledby="headline">
         <h2 id="headline" className={styles.h2}>By the numbers</h2>
-        <div className={styles.numGrid}>
-          <div className={`${styles.numCard} ${styles.numLead}`}>
-            <span className={styles.numValue}>{total}</span>
-            <span className={styles.numLabel}>certifications worldwide</span>
-          </div>
-          <div className={styles.numCard}>
-            <span className={styles.numValue}>{countries}</span>
-            <span className={styles.numLabel}>{plural(countries, "country", "countries")}</span>
-          </div>
-          {TIERS.map((t) =>
-            tierCount(a, t) > 0 ? (
-              <div key={t} className={styles.numCard}>
-                <span className={styles.numValue}>{tierCount(a, t)}</span>
-                <span className={styles.numLabel}>{t.toLowerCase()}</span>
-              </div>
-            ) : null
-          )}
-        </div>
-
-        {/* Verified-at-source line: the site's actual differentiator. */}
-        <p className={styles.provenance}>
-          Every figure read in an issuing body&apos;s own register
-          {offRegister ? ` — except ${offRegister}, ${hold}` : ""}
-          {" "}— last verified{" "}
-          {verifiedLong}. Counted by the same rules, set out in the{" "}
-          <Link href="/methodology#principles">methodology</Link>: one plaque per title per
-          country at its current tier, lead and featured credits both.
-        </p>
+        {/* Swapped by the explorer's switches below. */}
+        {scoped(headline)}
       </section>
       )}
 
       {/* ── Country strip ────────────────────────────────────── */}
       {a.swept && (
       <section className={styles.sectionPad} aria-labelledby="countries">
-        <div className={styles.sectionHead}>
-          <h2 id="countries" className={styles.h2}>Where the plaques are</h2>
-          <span className={styles.sectionMeta}>{count(countries, "country", "countries")} · best tier shown</span>
-        </div>
-        <div className={styles.pills}>
-          {countryStrip.map(([code, t]) => {
-            const c = countryMeta(code);
-            return (
-              <span key={code} className={`${styles.cert} ${styles[tierOf(t.level)]}`} title={`${c.name} — ${t.body ?? c.body}${t.provenance ? `, ${t.provenance}` : ""}`}>
-                <span className={styles.flag} aria-hidden="true">{c.flag}</span>
-                {t.x && t.x > 1 ? `${t.x}× ` : ""}
-                {tierWord(t.level, t.body)}
-                {/* A separate programme is a different award — derived, as on
-                    Burna's page: whatever the override adds beyond the country's
-                    default body. Reads "Latin" for RIAA Latin. */}
-                {t.body && t.body !== c.body && (
-                  <span className={styles.badgeProgram}>
-                    {t.body.replace(c.body, "").trim() || t.body}
-                  </span>
-                )}
-                <span className={styles.certCountry}>{c.name}</span>
-              </span>
-            );
-          })}
-        </div>
+        {scoped(strip)}
       </section>
       )}
 
@@ -411,6 +473,9 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
         countries={mobileCountries}
         totalCerts={total}
         covers={mobileCovers}
+        home={home}
+        homeName={a.country}
+        featured={[...featured]}
       />
 
       {/* ── Official charts, its own board ───────────────────── */}

@@ -13,6 +13,12 @@ import { track } from "../lib/analytics";
 import FilterEmpty from "./FilterEmpty";
 import { tierWord } from "../lib/awardName";
 import { dropDeepLink, onDeepLinkChange, readDeepLink, readSavedView, saveView } from "../lib/deepLink";
+import {
+  certCountPhrase, certsInView, creditSwitchable, effectiveView, scopeSwitchable, viewNoun, type CertView,
+} from "../lib/certScope";
+import { useCertView } from "../lib/useCertView";
+import CertViewSwitches from "./CertViewSwitches";
+import { count } from "../lib/plural";
 
 const TIERS = ["Diamond", "Platinum", "Gold", "Silver"];
 /** This explorer's key in the history entry's saved filters. */
@@ -132,6 +138,9 @@ export default function CertExplorer({
   totalCerts,
   covers,
   links,
+  home,
+  homeName,
+  featured: featuredTitles,
 }: {
   albums: Release[];
   singles: Release[];
@@ -143,7 +152,30 @@ export default function CertExplorer({
   /** title -> its own page. Server-built (lib/releasePages) and passed in,
    *  so the song and album datasets stay out of this client bundle. */
   links?: Record<string, string>;
+  /** The artist's home country code (lib/certScope.homeCodeFor) — what the
+   *  International switch leaves out. Absent = no International switch. */
+  home?: string;
+  /** The artist's home country in full ("Nigeria", "South Africa") — the
+   *  home switch's name (the artist's own `country` field). */
+  homeName?: string;
+  /** The titles of the artist's FEATURED appearances, by /compare's own rule
+   *  (certUnits.featuredTitlesOf, built on the server) — what the Lead
+   *  switch leaves out. Absent or empty = no Lead switch. */
+  featured?: readonly string[];
 }) {
+  // The two switches (lib/certScope), in /compare's style: the home country
+  // ("Nigeria", "South Africa") and "Featured appearances".
+  // Each is rendered only when it changes something; a switch that is not
+  // offered reads as "all" whatever the address bar says. The Lead switch's
+  // featured appearances come from the server, by /compare's rule.
+  const [rawView, setView] = useCertView();
+  const featured = useMemo(() => new Set(featuredTitles ?? []), [featuredTitles]);
+  const offered = useMemo(() => {
+    const every = [...albums, ...singles, ...features];
+    return { scope: scopeSwitchable(every, home), credit: creditSwitchable(every, featured) };
+  }, [albums, singles, features, home, featured]);
+  const view = effectiveView(rawView, offered);
+  const narrowed = view.scope !== "all" || view.credit !== "all";
   const [country, setCountry] = useState<string | null>(null);
   const [tier, setTier] = useState<string | null>(null);
   const [filtersOpen, setFiltersOpen] = useState(false);
@@ -207,22 +239,54 @@ export default function CertExplorer({
     if (country || tier) track("cert_filter", { country: country ?? "", tier: tier ?? "" });
   }, [country, tier]);
 
+  // The releases in view: under "International" every home-country plaque is
+  // gone, under "Lead" every featured appearance, and with either any release
+  // that held nothing else.
+  const inView = (v: CertView) => ({
+    albums: certsInView(albums, { home, featured }, v),
+    singles: certsInView(singles, { home, featured }, v),
+    features: certsInView(features, { home, featured }, v),
+  });
+  // A few hundred rows at most — recounted per render, no memo to keep in step.
+  const scoped = inView(view);
+  const codesOf = (g: ReturnType<typeof inView>) =>
+    new Set([...g.albums, ...g.singles, ...g.features].flatMap((r) => r.certs.map((c) => c.c)));
+  const viewCodes = codesOf(scoped);
+  // A country chip whose plaques the view leaves out (Nigeria under
+  // "International", a country Burna Boy is certified in only as a guest under
+  // "Lead") leaves the row, so a selection of it cannot stand — read as no
+  // country, and cleared from state (and the address bar) when the reader
+  // flips the switch.
+  const shownCountry = country && (!narrowed || viewCodes.has(country)) ? country : null;
+  const pickView = (patch: Partial<CertView>) => {
+    const next = { ...view, ...patch };
+    const nextNarrowed = next.scope !== "all" || next.credit !== "all";
+    if (country && nextNarrowed && !codesOf(inView(next)).has(country)) pickCountry(null);
+    setView(patch);
+  };
+
   const groups = [
-    { label: "Albums", items: albums },
-    { label: "Singles", items: singles },
-    { label: "Featured Appearances", items: features },
+    { label: "Albums", items: scoped.albums },
+    { label: "Singles", items: scoped.singles },
+    { label: "Featured Appearances", items: scoped.features },
   ].map((g) => ({
     ...g,
-    items: g.items.filter((it) => (!focus || it.title === focus) && matches(it, country, tier)).sort(byMostCertified),
+    items: g.items.filter((it) => (!focus || it.title === focus) && matches(it, shownCountry, tier)).sort(byMostCertified),
   }));
 
-  const totalAll = albums.length + singles.length + features.length;
+  const totalAll = scoped.albums.length + scoped.singles.length + scoped.features.length;
   const totalShown = groups.reduce((n, g) => n + g.items.length, 0);
   const shownCerts = groups.reduce(
     (n, g) => n + g.items.reduce((m, it) => m + it.certs.length, 0),
     0
   );
-  const active = country || tier;
+  const shownCountries = new Set(groups.flatMap((g) => g.items.flatMap((it) => it.certs.map((c) => c.c)))).size;
+  // The All view's count line reads as it always has; a narrowed view says
+  // what it is counting ("65 international certifications across 23 countries").
+  const shownPhrase = narrowed
+    ? certCountPhrase(shownCerts, shownCountries, view)
+    : `${shownCerts} ${shownCerts === 1 ? "certification" : "certifications"}`;
+  const active = shownCountry || tier;
 
   // Whether the deep-linked focus names a release this page carries — the
   // same test ChartExplorer makes. When it doesn't, the empty state has to say
@@ -281,10 +345,21 @@ export default function CertExplorer({
             announced at all. Polite, so it waits for a pause rather than
             interrupting. */}
         <span aria-live="polite" className="visuallyHidden">
-          {totalShown} {totalShown === 1 ? "release" : "releases"} shown, {shownCerts} {shownCerts === 1 ? "certification" : "certifications"}
+          {totalShown} {totalShown === 1 ? "release" : "releases"} shown, {shownPhrase}
         </span>
 
         <div id="cert-filters" className={`${styles.filterBody} ${filtersOpen ? styles.filterOpen : ""}`}>
+          {/* The two switches, /compare's own (CertViewSwitches), one row
+              above the tier and country rows they narrow. Both default on;
+              the Tier row's "All" right below is the way back to everything. */}
+          <CertViewSwitches
+            view={view}
+            offered={offered}
+            onPick={pickView}
+            homeName={homeName ?? home ?? ""}
+            className={styles.switchRow}
+          />
+
           <div className={styles.filterRow}>
             <span className={styles.filterLabel}>Tier</span>
             <button
@@ -313,13 +388,13 @@ export default function CertExplorer({
             <span className={styles.filterLabel}>Country</span>
             <button
               type="button"
-              className={`${styles.fChip} ${!country ? styles.fChipOn : ""}`}
-              aria-pressed={!country}
+              className={`${styles.fChip} ${!shownCountry ? styles.fChipOn : ""}`}
+              aria-pressed={!shownCountry}
               onClick={() => pickCountry(null)}
             >
               All
             </button>
-            {Object.entries(countries).map(([code, c]) => (
+            {Object.entries(countries).filter(([code]) => !narrowed || viewCodes.has(code)).map(([code, c]) => (
               <button
                 key={code}
                 type="button"
@@ -335,8 +410,18 @@ export default function CertExplorer({
           </div>
 
           <div className={styles.filterMeta}>
+            {/* "65 international certifications across 23 countries" in a
+                narrowed view; the All view reads as it always has. */}
             Showing <b>{totalShown}</b> of {totalAll} releases ·{" "}
-            <b>{shownCerts}</b> certifications
+            {narrowed ? (
+              <span>
+                <b>{shownCerts}</b> {viewNoun(shownCerts, view)} across {count(shownCountries, "country", "countries")}
+              </span>
+            ) : (
+              <>
+                <b>{shownCerts}</b> certifications
+              </>
+            )}
             <button
               type="button"
               className={styles.clearBtn}
@@ -368,10 +453,12 @@ export default function CertExplorer({
             unknownFocus
               ? `No release on this page is called “${focus}”. That's a broken link, not a gap in the record.`
               : `There's no ${[
+                  view.scope === "intl" && "international",
                   tier,
                   "certification",
+                  view.credit === "lead" && "as lead artist",
                   focus && `for ${focus}`,
-                  country && `from ${countries[country]?.name ?? country}`,
+                  shownCountry && `from ${countries[shownCountry]?.name ?? shownCountry}`,
                 ]
                   .filter(Boolean)
                   .join(" ")}. That's a real gap in the record, not a missing page.`
@@ -380,15 +467,22 @@ export default function CertExplorer({
             pickCountry(null);
             setTier(null);
             clearFocus();
+            // The switches too: both off can empty a page by themselves (BNXN,
+            // Tiwa Savage), and a Clear that left them off cleared nothing.
+            if (narrowed) setView({ scope: "all", credit: "all" });
           }}
           narrowest={
             focus
               ? { label: focus, drop: clearFocus }
-              : country
-                ? { label: countries[country]?.name ?? country, drop: () => pickCountry(null) }
+              : shownCountry
+                ? { label: countries[shownCountry]?.name ?? shownCountry, drop: () => pickCountry(null) }
                 : tier
                   ? { label: tier, drop: () => setTier(null) }
-                  : undefined
+                  : view.credit === "lead"
+                    ? { label: "lead credits only", drop: () => setView({ credit: "all" }) }
+                    : view.scope === "intl"
+                      ? { label: `${homeName ?? home} left out`, drop: () => setView({ scope: "all" }) }
+                      : undefined
           }
         />
       ) : (
@@ -405,7 +499,7 @@ export default function CertExplorer({
                   </div>
                   <div className={styles.groupList}>
                     {g.items.map((it) => (
-                      <CertCard key={it.title} item={it} kind={g.label === "Albums" ? "album" : "song"} countries={countries} country={country} tier={tier} covers={covers} links={links} />
+                      <CertCard key={it.title} item={it} kind={g.label === "Albums" ? "album" : "song"} countries={countries} country={shownCountry} tier={tier} covers={covers} links={links} />
                     ))}
                   </div>
                 </div>

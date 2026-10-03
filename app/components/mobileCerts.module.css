@@ -244,6 +244,16 @@
 }
 .chipDot { width: 7px; height: 7px; border-radius: 50%; flex: none; display: block; }
 
+/* ── The two view switches (CertViewSwitches) ─────────────────────────── */
+/* /compare's switches (certSwitches.module.css owns their look); only the
+   row's place on this screen is set here: the screen's 18px gutter, right
+   above the tier rail. At 390 the two controls stack, one per line, left
+   edges aligned (compare's own flex-wrap does it); at 320 the long state
+   label drops under its switch's name rather than overflowing. */
+.viewRow {
+  padding: 2px 18px 6px;
+}
+
 /* ── Deep-linked single-release focus (#release=…) ────────────────────── */
 /* The desktop explorer's focus bar, in this screen's tokens — same sentence,
    same escape hatch, so /certifications#release=Dai%20Dai reads identically on
