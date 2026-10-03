@@ -134,3 +134,20 @@ One block per run of scripts/chartmasters-anchor.mjs — what was read, what was
 - Burna Boy (identity from the select value and the share link): through 28 Sep 11,107,256,033 (the 30 Sep anchor, unchanged); through 29 Sep 11,109,695,269; through 30 Sep 11,109,695,269 — the SAME figure two days running, +2,439,236 over two days, against kworb's +6,557,034 for the single day 29→30 Sep (raw 10,989,875,203 → 10,996,432,237). The 30 Sep table also printed "−100.0%" and "N/A" in its vs-7-days column.
 - The 29 Sep ↔ kworb 30 Sep pair would move the offset 117,380,830 → 113,263,032 and publish ~4.1M low. ChartMasters' 29–30 Sep data reads as incomplete, so the offset was LEFT at 117,380,830 (the clean 28 ↔ 29 pair). Re-read once its days advance normally.
 - Same session, through 30 Sep (not used, the ledgers move only together on a sound day): Wizkid 11,846,789,925; Tems 6,323,948,145; Asake 4,440,990,714 (identity from share links). Tyla read 4,792,419,068, about 60M BELOW her 23 Sep reading, with no share link to confirm identity — treated as unconfirmed.
+
+## 2026-10-02
+
+- career total: offset 130,411,466 (ChartMasters through 2026-09-30 − kworb 2026-10-02 (frozen page; no 2026-10-01 page)); published 11,117,228,942 on kworb's 2026-10-02 page — KWORB FROZEN: the offset pairs ChartMasters with a stale page and must be re-measured with a plain run once kworb's page moves
+- burna-boy: 2026 ledger anchored at 1,917,676,268 through kworb's 2026-10-01 (was 1,914,229,262 through 2026-09-30)
+- wizkid: 2026 ledger anchored at 1,896,035,465 through kworb's 2026-10-01 (was 1,891,325,566 through 2026-09-30)
+- tems: 2026 ledger anchored at 1,888,314,691 through kworb's 2026-10-01 (was 1,882,859,106 through 2026-09-30)
+- asake: 2026 ledger anchored at 1,542,793,546 through kworb's 2026-10-01 (was 1,537,315,823 through 2026-09-30)
+- tyla: 2026 ledger anchored at 1,257,747,511 through kworb's 2026-10-01 (was 1,254,413,452 through 2026-09-30)
+- edit: app/data/streamingTotals.ts: "11.11B" → "11.12B"
+- edit: app/data/streamingTotals.ts: "11,113,813,067" → "11,117,228,942"
+- edit: app/data/africasBiggest.ts: /* live:streams-2026-tems */ 1.883B" → 1.888B"
+- edit: app/data/africasBiggest.ts: /* live:streams-2026-asof */ 2026-09-30 → 2026-10-01
+- edit: app/data/africasBiggest.ts: /* live:streams-2026-wizkid */ 1.891B" → 1.896B"
+- edit: app/data/africasBiggest.ts: /* live:streams-2026-burna */ 1.914B" → 1.918B"
+- edit: app/data/africasBiggest.ts: /* live:streams-2026-asake */ 1.537B" → 1.543B"
+- edit: app/data/africasBiggest.ts: /* live:streams-2026-tyla */ 1.254B" → 1.258B"
