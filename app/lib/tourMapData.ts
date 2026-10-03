@@ -239,7 +239,7 @@ const nightDate = (venue: string, year: number) => {
 };
 
 export interface BiggestLine {
-  label: "Biggest reported night" | "Biggest reported stand";
+  label: "Biggest reported night" | "Biggest reported multi-night run";
   venue: string;
   city: string;
   when: string;
@@ -261,12 +261,12 @@ function biggestFor(country: string): BiggestLine | null {
   // "24–25 February 2024" -> "24–25 Feb 2024"
   const when = s.dates.replace(/^(\d+)–(\d+) ([A-Z][a-z]{2})[a-z]* (\d{4})$/, "$1–$2 $3 $4");
   return {
-    label: "Biggest reported stand",
+    label: "Biggest reported multi-night run",
     venue: s.venue,
     city: s.city,
     when,
     tickets: fmt(s.n),
-    line: `${s.venue}, ${s.city} · ${when} · ${fmt(s.n)} tickets over ${s.shows} shows`,
+    line: `${s.venue}, ${s.city} · ${when} · ${fmt(s.n)} tickets over ${s.shows} nights`,
   };
 }
 

@@ -5,6 +5,7 @@ import RevenueBoard from "../../../components/RevenueBoard";
 import MobileRevenue from "../../../components/MobileRevenue";
 import { numberWord } from "../../../lib/homeData";
 import { compactGross } from "../../../lib/grossLabel";
+import { RUNS_HEADING, RUNS_LEDE, runTickets } from "../../../lib/multiNightRuns";
 import { revenueShows, revenueStands, REVENUE_AS_OF, REVENUE_SOURCE } from "../../../data/tourRevenue";
 import { pageMetadata, datasetJsonLd } from "../../../lib/seo";
 
@@ -60,7 +61,7 @@ const revenueDataset = datasetJsonLd({
 });
 
 const SOURCE_NOTE =
-  `${REVENUE_SOURCE}, as of ${REVENUE_AS_OF}. Each entry is a single night's gross. Stands reported only as one combined total are listed beneath the board with the reported figures — they cannot be ranked against single nights, and no per-night split is invented for them.`;
+  `${REVENUE_SOURCE}, as of ${REVENUE_AS_OF}. Each entry is a single night's gross. Multi-night runs reported only as one combined total are listed beneath the board with the reported figures; they cannot be ranked against single nights, and no per-night split is invented for them.`;
 
 export default function RevenuePage() {
   return (
@@ -95,16 +96,18 @@ export default function RevenuePage() {
           his: s.artist === "Burna Boy",
         }))}
         stands={revenueStands.map((s) => ({
-          venue: s.venue,
-          // Another artist's stand names its artist, as the board's rows do.
-          meta: s.artist === "Burna Boy"
-            ? `${s.city} · ${s.tour} · ${s.dates} · ${s.shows} shows`
-            : `${s.artist} · ${s.city} · ${s.tour} · ${s.dates} · ${s.shows} shows`,
+          // Every run names its artist — his too — so a row never needs the
+          // legend to say whose it is; "nights", never "shows", in this list.
+          flag: s.flag,
+          place: `${s.venue}, ${s.city}`,
+          artist: s.artist,
+          tour: s.tour,
+          dates: s.dates,
           gross: compactGross(s.revenue),
-          tickets: `${s.tickets} over ${s.shows} nights`,
+          tickets: runTickets(s.tickets, s.shows),
           his: s.artist === "Burna Boy",
         }))}
-        sourceNote={`${REVENUE_SOURCE}, as of ${REVENUE_AS_OF}. The board ranks every reported show by an African artist we have verified, not only his — a missing night means no gross for it was reported, or none we could verify yet.${anyDash ? " A dash means no headcount was published." : ""} Stands reported only as one combined total sit beneath the board with the reported figures; no per-night split is invented for them.`}
+        sourceNote={`${REVENUE_SOURCE}, as of ${REVENUE_AS_OF}. The board ranks every reported show by an African artist we have verified, not only his — a missing night means no gross for it was reported, or none we could verify yet.${anyDash ? " A dash means no headcount was published." : ""} Multi-night runs reported only as one combined total sit beneath the board with the reported figures; no per-night split is invented for them.`}
       />
 
       <div className={styles.desktopOnly}>
@@ -135,34 +138,37 @@ export default function RevenuePage() {
 
         {/* ── Filter band + board ────────────────────────────── */}
         <RevenueBoard shows={boardShows}>
-          {/* Multi-night stands the body reports as one figure. Shown here,
+          {/* Multi-night runs the body reports as one figure. Shown here,
               beneath the ranking, with the body's numbers — not halved into
               the board (which is how they sat from July to September 2026)
-              and not dropped from the page either. */}
-          <section className={styles.stands} aria-labelledby="stands-title">
-            <h2 id="stands-title" className={styles.standsTitle}>Reported as a stand — one figure for the run</h2>
+              and not dropped from the page either. Every row names its artist,
+              his included, as the board's rows do. */}
+          <section className={styles.stands} aria-labelledby="runs-title">
+            <h2 id="runs-title" className={styles.standsTitle}>{RUNS_HEADING}</h2>
+            <p className={styles.standsLede}>{RUNS_LEDE}</p>
             <ul className={styles.standsList}>
               {revenueStands.map((s) => (
                 <li key={`${s.venue}-${s.dates}`} className={styles.stand}>
                   <span className={styles.standVenue}>
-                    <span aria-hidden="true">{s.flag}</span> {s.venue}, {s.city}
+                    <span className={styles.standPlace}>
+                      {s.flag} {s.venue}, {s.city}
+                    </span>
                     <span className={styles.standMeta}>
+                      <span className={s.artist === "Burna Boy" ? styles.hisName : styles.otherName}>{s.artist}</span>
                       {" · "}
-                      {s.artist === "Burna Boy" ? "" : `${s.artist} · `}
-                      {s.tour} · {s.dates} · {s.shows} shows
+                      {s.tour} · {s.dates}
                     </span>
                   </span>
                   <span className={`${styles.standGross} ${s.artist === "Burna Boy" ? styles.standGrossHis : ""}`}>
                     ${s.revenue.toLocaleString("en-US")}
                   </span>
-                  <span className={styles.standTickets}>{s.tickets} tickets over {s.shows} nights</span>
+                  <span className={styles.standTickets}>{runTickets(s.tickets, s.shows)}</span>
                 </li>
               ))}
             </ul>
             <p className={styles.standsNote}>
-              Each of these runs was reported as one combined figure and never a per-night gross, so
-              they are shown as reported rather than ranked above — each total would
-              sit in the top five of a board of single nights it never had.
+              No per-night split is invented for them: each total would sit in the top five of a
+              board of single nights it never had.
             </p>
           </section>
           <p className={styles.sourceNote}>{SOURCE_NOTE}</p>

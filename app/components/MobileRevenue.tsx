@@ -7,6 +7,7 @@ import ScrollRail from "./ScrollRail";
 import NotReported from "./NotReported";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
+import { RUNS_HEADING, RUNS_LEDE } from "../lib/multiNightRuns";
 
 /**
  * Mobile screen 14 — Revenue per show.
@@ -42,11 +43,18 @@ export interface RevenueRow {
   his: boolean;
 }
 
-/** A stand the body reports as one figure for several nights — shown, not ranked. */
+/** A multi-night run the body reports as one figure — shown, not ranked. */
 export interface RevenueStandRow {
-  venue: string;
-  meta: string;
+  flag: string;
+  /** "Scotiabank Arena, Toronto". */
+  place: string;
+  /** Named on every row, his included. */
+  artist: string;
+  tour: string;
+  /** "24–25 February 2024": a line of its own, so a wrap never splits "24–25". */
+  dates: string;
   gross: string;
+  /** "29,579 tickets over 2 nights" — nights, never shows. */
   tickets: string;
   his: boolean;
 }
@@ -155,27 +163,30 @@ export default function MobileRevenue({
       ))}
 
       {stands.length > 0 && (
-        <>
-          {/* Same row grammar as the board, minus the rank: these are the
-              body's own combined figures for a multi-night stand, shown as
-              what they are rather than ranked against single nights. */}
-          <div className={styles.metaBar}>
-            <span>Reported as a stand — {stands.length === 1 ? "one figure for the run" : "one figure per run"}</span>
-          </div>
-          {stands.map((r) => (
-            <div key={r.venue + r.meta} className={`${styles.row} ${r.his ? "" : styles.rowOther}`}>
-              <span className={styles.rank} aria-hidden="true">—</span>
-              <div className={styles.main}>
-                <div className={styles.venue}>{r.venue}</div>
-                <div className={styles.meta}>{r.meta}</div>
-              </div>
-              <div className={styles.right}>
+        // A section of its own with a real heading: these are the body's own
+        // combined figures for runs of several nights, shown as what they are
+        // rather than ranked against single nights. Every row names its artist.
+        <section className={styles.runs} aria-labelledby="runs-title-m">
+          <h2 id="runs-title-m" className={styles.runsTitle}>{RUNS_HEADING}</h2>
+          <p className={styles.runsLede}>{RUNS_LEDE}</p>
+          <ul className={styles.runsList}>
+            {stands.map((r) => (
+              <li key={r.place + r.dates} className={`${styles.runRow} ${r.his ? "" : styles.rowOther}`}>
+                <div className={styles.main}>
+                  <div className={styles.venue}>
+                    {r.flag} {r.place}
+                  </div>
+                  <div className={styles.runMeta}>
+                    <span className={styles.runArtist}>{r.artist}</span> · {r.tour}
+                  </div>
+                  <div className={styles.runMeta}>{r.dates}</div>
+                  <div className={styles.runTickets}>{r.tickets}</div>
+                </div>
                 <div className={`${styles.gross} ${r.his ? styles.grossHis : ""}`}>{r.gross}</div>
-                <div className={styles.tickets}>{r.tickets}</div>
-              </div>
-            </div>
-          ))}
-        </>
+              </li>
+            ))}
+          </ul>
+        </section>
       )}
 
       <p className={styles.foot}>{sourceNote}</p>
