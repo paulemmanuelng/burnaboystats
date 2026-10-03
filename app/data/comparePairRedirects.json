@@ -30,13 +30,13 @@
     "permanent": true
   },
   {
-    "source": "/compare/bnxn-vs-burna-boy",
-    "destination": "/compare/burna-boy-vs-bnxn",
+    "source": "/compare/tyla-vs-burna-boy",
+    "destination": "/compare/burna-boy-vs-tyla",
     "permanent": true
   },
   {
-    "source": "/compare/tyla-vs-burna-boy",
-    "destination": "/compare/burna-boy-vs-tyla",
+    "source": "/compare/bnxn-vs-burna-boy",
+    "destination": "/compare/burna-boy-vs-bnxn",
     "permanent": true
   },
   {
@@ -120,13 +120,13 @@
     "permanent": true
   },
   {
-    "source": "/compare/bnxn-vs-wizkid",
-    "destination": "/compare/wizkid-vs-bnxn",
+    "source": "/compare/tyla-vs-wizkid",
+    "destination": "/compare/wizkid-vs-tyla",
     "permanent": true
   },
   {
-    "source": "/compare/tyla-vs-wizkid",
-    "destination": "/compare/wizkid-vs-tyla",
+    "source": "/compare/bnxn-vs-wizkid",
+    "destination": "/compare/wizkid-vs-bnxn",
     "permanent": true
   },
   {
@@ -205,13 +205,13 @@
     "permanent": true
   },
   {
-    "source": "/compare/bnxn-vs-seyi-vibez",
-    "destination": "/compare/seyi-vibez-vs-bnxn",
+    "source": "/compare/tyla-vs-seyi-vibez",
+    "destination": "/compare/seyi-vibez-vs-tyla",
     "permanent": true
   },
   {
-    "source": "/compare/tyla-vs-seyi-vibez",
-    "destination": "/compare/seyi-vibez-vs-tyla",
+    "source": "/compare/bnxn-vs-seyi-vibez",
+    "destination": "/compare/seyi-vibez-vs-bnxn",
     "permanent": true
   },
   {
@@ -285,13 +285,13 @@
     "permanent": true
   },
   {
-    "source": "/compare/bnxn-vs-davido",
-    "destination": "/compare/davido-vs-bnxn",
+    "source": "/compare/tyla-vs-davido",
+    "destination": "/compare/davido-vs-tyla",
     "permanent": true
   },
   {
-    "source": "/compare/tyla-vs-davido",
-    "destination": "/compare/davido-vs-tyla",
+    "source": "/compare/bnxn-vs-davido",
+    "destination": "/compare/davido-vs-bnxn",
     "permanent": true
   },
   {
@@ -360,13 +360,13 @@
     "permanent": true
   },
   {
-    "source": "/compare/bnxn-vs-rema",
-    "destination": "/compare/rema-vs-bnxn",
+    "source": "/compare/tyla-vs-rema",
+    "destination": "/compare/rema-vs-tyla",
     "permanent": true
   },
   {
-    "source": "/compare/tyla-vs-rema",
-    "destination": "/compare/rema-vs-tyla",
+    "source": "/compare/bnxn-vs-rema",
+    "destination": "/compare/rema-vs-bnxn",
     "permanent": true
   },
   {
@@ -430,13 +430,13 @@
     "permanent": true
   },
   {
-    "source": "/compare/bnxn-vs-asake",
-    "destination": "/compare/asake-vs-bnxn",
+    "source": "/compare/tyla-vs-asake",
+    "destination": "/compare/asake-vs-tyla",
     "permanent": true
   },
   {
-    "source": "/compare/tyla-vs-asake",
-    "destination": "/compare/asake-vs-tyla",
+    "source": "/compare/bnxn-vs-asake",
+    "destination": "/compare/asake-vs-bnxn",
     "permanent": true
   },
   {
@@ -495,13 +495,13 @@
     "permanent": true
   },
   {
-    "source": "/compare/bnxn-vs-tems",
-    "destination": "/compare/tems-vs-bnxn",
+    "source": "/compare/tyla-vs-tems",
+    "destination": "/compare/tems-vs-tyla",
     "permanent": true
   },
   {
-    "source": "/compare/tyla-vs-tems",
-    "destination": "/compare/tems-vs-tyla",
+    "source": "/compare/bnxn-vs-tems",
+    "destination": "/compare/tems-vs-bnxn",
     "permanent": true
   },
   {
@@ -560,63 +560,8 @@
     "permanent": true
   },
   {
-    "source": "/compare/tyla-vs-bnxn",
-    "destination": "/compare/bnxn-vs-tyla",
-    "permanent": true
-  },
-  {
-    "source": "/compare/omah-lay-vs-bnxn",
-    "destination": "/compare/bnxn-vs-omah-lay",
-    "permanent": true
-  },
-  {
-    "source": "/compare/olamide-vs-bnxn",
-    "destination": "/compare/bnxn-vs-olamide",
-    "permanent": true
-  },
-  {
-    "source": "/compare/ayra-starr-vs-bnxn",
-    "destination": "/compare/bnxn-vs-ayra-starr",
-    "permanent": true
-  },
-  {
-    "source": "/compare/fireboy-dml-vs-bnxn",
-    "destination": "/compare/bnxn-vs-fireboy-dml",
-    "permanent": true
-  },
-  {
-    "source": "/compare/kizz-daniel-vs-bnxn",
-    "destination": "/compare/bnxn-vs-kizz-daniel",
-    "permanent": true
-  },
-  {
-    "source": "/compare/ckay-vs-bnxn",
-    "destination": "/compare/bnxn-vs-ckay",
-    "permanent": true
-  },
-  {
-    "source": "/compare/black-sherif-vs-bnxn",
-    "destination": "/compare/bnxn-vs-black-sherif",
-    "permanent": true
-  },
-  {
-    "source": "/compare/victony-vs-bnxn",
-    "destination": "/compare/bnxn-vs-victony",
-    "permanent": true
-  },
-  {
-    "source": "/compare/ruger-vs-bnxn",
-    "destination": "/compare/bnxn-vs-ruger",
-    "permanent": true
-  },
-  {
-    "source": "/compare/oxlade-vs-bnxn",
-    "destination": "/compare/bnxn-vs-oxlade",
-    "permanent": true
-  },
-  {
-    "source": "/compare/tiwa-savage-vs-bnxn",
-    "destination": "/compare/bnxn-vs-tiwa-savage",
+    "source": "/compare/bnxn-vs-tyla",
+    "destination": "/compare/tyla-vs-bnxn",
     "permanent": true
   },
   {
@@ -672,6 +617,61 @@
   {
     "source": "/compare/tiwa-savage-vs-tyla",
     "destination": "/compare/tyla-vs-tiwa-savage",
+    "permanent": true
+  },
+  {
+    "source": "/compare/omah-lay-vs-bnxn",
+    "destination": "/compare/bnxn-vs-omah-lay",
+    "permanent": true
+  },
+  {
+    "source": "/compare/olamide-vs-bnxn",
+    "destination": "/compare/bnxn-vs-olamide",
+    "permanent": true
+  },
+  {
+    "source": "/compare/ayra-starr-vs-bnxn",
+    "destination": "/compare/bnxn-vs-ayra-starr",
+    "permanent": true
+  },
+  {
+    "source": "/compare/fireboy-dml-vs-bnxn",
+    "destination": "/compare/bnxn-vs-fireboy-dml",
+    "permanent": true
+  },
+  {
+    "source": "/compare/kizz-daniel-vs-bnxn",
+    "destination": "/compare/bnxn-vs-kizz-daniel",
+    "permanent": true
+  },
+  {
+    "source": "/compare/ckay-vs-bnxn",
+    "destination": "/compare/bnxn-vs-ckay",
+    "permanent": true
+  },
+  {
+    "source": "/compare/black-sherif-vs-bnxn",
+    "destination": "/compare/bnxn-vs-black-sherif",
+    "permanent": true
+  },
+  {
+    "source": "/compare/victony-vs-bnxn",
+    "destination": "/compare/bnxn-vs-victony",
+    "permanent": true
+  },
+  {
+    "source": "/compare/ruger-vs-bnxn",
+    "destination": "/compare/bnxn-vs-ruger",
+    "permanent": true
+  },
+  {
+    "source": "/compare/oxlade-vs-bnxn",
+    "destination": "/compare/bnxn-vs-oxlade",
+    "permanent": true
+  },
+  {
+    "source": "/compare/tiwa-savage-vs-bnxn",
+    "destination": "/compare/bnxn-vs-tiwa-savage",
     "permanent": true
   },
   {

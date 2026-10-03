@@ -41,7 +41,7 @@ const EXPECTED = {
   davido: { total: 91, diamond: 0 },
   rema: { total: 85, diamond: 5 }, // + "Secondhand" 🇵🇹 Ouro, AFP's own July 2026 award card; 23 Sep 2026: + "Calm Down" 🇨🇿 Gold and 🇸🇰 Platinum (ČNS IFPI chart badges), + "Smooth Criminal" 🇳🇬 Gold (TCSN 21 Feb 2026 capture)
   tems: { total: 75, diamond: 1 }, // + "Fountains" 🇵🇹 Ouro (AFP March 2026 card), + "Love Me JeJe" 🇵🇹 Ouro (May 2026 card, read 18 Sep); 23 Sep 2026: "Raindance" + 🇨🇿 Gold, 🇸🇰 Platinum (ČNS IFPI), 🇿🇦 Platinum (RiSA)
-  tyla: { total: 64, diamond: 2 }, // + "Chanel" 🇧🇪 Goud, Ultratop 2026 list (10 Aug 2026), read 19 Sep 2026; 23 Sep 2026: + "Tyla" 🇸🇪 Guld (cert.nr 11311); "Water" 🇸🇪 Guld → Platina is an upgrade
+  tyla: { total: 73, diamond: 2 }, // 3 Oct 2026: + nine 🇿🇦 plaques from Sony Music Africa's framed award (Water 5×, Truth or Dare 3×, Jump, Art and the album Platinum; Push 2 Start, No.1, Safer and Water (Remix) Gold) — a label plaque, not a RiSA row, counted on Paul's ruling (the AKA "All Eyes on Me" precedent); + "Chanel" 🇧🇪 Goud, Ultratop 2026 list (10 Aug 2026), read 19 Sep 2026; 23 Sep 2026: + "Tyla" 🇸🇪 Guld (cert.nr 11311); "Water" 🇸🇪 Guld → Platina is an upgrade
   "ayra-starr": { total: 42, diamond: 2 }, // 23 Sep 2026: + "Many Roads" 🇳🇬 Silver (TCSN; "Ayra Staar" [sic], Paul's ruling)
   ckay: { total: 29, diamond: 2 }, // + "Emiliana" 🇵🇹 Ouro, AFP April 2026 card, read 18 Sep 2026
   // Added 28 Aug 2026 as artists 13, 14 and 15. Nigeria read deterministically
@@ -586,8 +586,8 @@ describe("head-to-head pairings", () => {
 
   it("points off the board only where the comparison earns it", () => {
     // A pairing that leaves the board has to say something a peer pairing could
-    // not. Wizkid because that argument IS the genre's; Tyla because her 23
-    // certifying countries are the only spread within eight of his 26.
+    // not. Wizkid because that argument IS the genre's; Tyla because her 24
+    // certifying countries are the widest on the board, two short of his 26.
     // Anything else here would be the "he is bigger" page this map replaced.
     //
     // Black Sherif joined that list on 28 Aug 2026, for a reason and a

@@ -372,6 +372,22 @@ export const AFROBEATS_VERIFIED_ON_16 = "2026-10-02";
  *  title per country, at its current tier). docs/sweeps/davido-certifications-v1.md. */
 export const AFROBEATS_VERIFIED_ON_17 = "2026-10-02";
 
+/** Tyla — her South African plaques, counted on the owner's ruling of 3 Oct
+ *  2026 ("but that is same way we added the AKA certs, check their archives"
+ *  … "cant you see the plaque"). The evidence is a label-issued award, not a
+ *  register row: Sony Music Africa's framed Platinum Award "presented to 'TYLA'
+ *  … for sales in excess of [units] of the album 'TYLA'", with eight single
+ *  discs — Water 5× and Truth or Dare 3× Platinum, Jump and Art Platinum, Safer,
+ *  No.1, Water (Remix) and Push 2 Start Gold — posted by Tyla on Instagram and
+ *  by @ESCSFMRADIO on X on 11 Dec 2024, and read from the owner's photos.
+ *  RiSA's register held no Tyla rows when read in Aug 2026 (the sweep removed
+ *  the ZA claims then) and its robots.txt has barred our reader since. The
+ *  precedent is AKA's "All Eyes on Me" 19× (certifications.ts): a Sony Music
+ *  Entertainment Africa plaque the artist shared, with no RiSA row behind it.
+ *  Nine plaques, 64 → 73; South Africa is her 24th country.
+ *  docs/sweeps/tyla-certifications-v1.md, "3 Oct 2026". */
+export const AFROBEATS_VERIFIED_ON_18 = "2026-10-03";
+
 export const afrobeatsArtists: AfroArtist[] = [
   {
     slug: "olamide",
@@ -1511,21 +1527,39 @@ export const afrobeatsArtists: AfroArtist[] = [
     spotifyId: "3SozjO3Lat463tQICI9LcE",
     wikipedia: "https://en.wikipedia.org/wiki/Tyla",
     image: "https://i.scdn.co/image/ab6761610000e5eb69719e4164b893213a525d25",
-    verifiedOn: AFROBEATS_VERIFIED_ON_10,
+    verifiedOn: AFROBEATS_VERIFIED_ON_18,
     swept: true,
     chartPublished: { entries: 187, territories: 52, no1s: 3 },
     releases: [
       // Sleeves corrected 23 Sep 2026: all three Tyla album rows carried the
       // sleeve of WizTheMc's "Show Me Love (with Tyla)". TYLA is Deezer 561878142,
       // TYLA + (the deluxe) 653495621, each with its own sleeve.
-      { title: "Tyla", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg", certs: [{ c: "CA", level: "Platinum" }, { c: "BR", level: "Platinum" }, { c: "NL", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "UK", level: "Gold" }, { c: "CH", level: "Gold" }, { c: "DK", level: "Gold" }, { c: "SE", level: "Gold" }] },
+      //
+      // ZA (▣), added 3 Oct 2026 — a LABEL plaque, not a register row, counted
+      // on the owner's ruling of 3 Oct 2026 ("cant you see the plaque"), the
+      // precedent of AKA's "All Eyes on Me" 19× (certifications.ts). Sony Music
+      // Africa's framed Platinum Award "presented to 'TYLA' … for sales in excess
+      // of [units] of the album 'TYLA'", posted by Tyla on Instagram and by
+      // @ESCSFMRADIO on X, 11 Dec 2024. Its discs: Water 5× and Truth or Dare 3×
+      // Platinum; Jump and Art Platinum; Safer, No.1, Water (Remix) and Push 2
+      // Start Gold; the album Platinum (nameplate). RiSA's register held no Tyla
+      // rows when read in Aug 2026 and is barred to our reader since.
+      // docs/sweeps/tyla-certifications-v1.md, "3 Oct 2026".
+      { title: "Tyla", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg", certs: [{ c: "CA", level: "Platinum" }, { c: "BR", level: "Platinum" }, { c: "NL", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "ZA", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "UK", level: "Gold" }, { c: "CH", level: "Gold" }, { c: "DK", level: "Gold" }, { c: "SE", level: "Gold" }] }, // ZA ▣: see the ZA note below
       { title: "Tyla +", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg", certs: [{ c: "NO", level: "Gold" }] },
-      { title: "Water", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg", certs: [{ c: "BR", level: "Diamond", x: 2 }, { c: "FR", level: "Diamond" }, { c: "US", level: "Platinum", x: 4 }, { c: "CA", level: "Platinum", x: 4 }, { c: "PT", level: "Platinum", x: 4 }, { c: "AU", level: "Platinum", x: 4 }, { c: "NZ", level: "Platinum", x: 4 }, { c: "UK", level: "Platinum", x: 2 }, { c: "CH", level: "Platinum", x: 2 }, { c: "HU", level: "Platinum", x: 2 }, { c: "GR", level: "Platinum", x: 2 }, { c: "AT", level: "Platinum" }, { c: "DK", level: "Platinum" }, { c: "ES", level: "Platinum" }, { c: "BE", level: "Platinum" }, { c: "NL", level: "Platinum" }, { c: "NO", level: "Platinum" }, { c: "PL", level: "Platinum" }, { c: "SE", level: "Platinum" }, { c: "DE", level: "Gold" }, { c: "IT", level: "Gold" }, { c: "MX", level: "Gold" }, { c: "NG", level: "Gold" }] },
-      { title: "Push 2 Start", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Platinum" }, { c: "BR", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "CA", level: "Gold" }, { c: "FR", level: "Gold" }, { c: "GR", level: "Gold" }, { c: "HU", level: "Gold" }, { c: "UK", level: "Gold" }] },
+      { title: "Water", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg", certs: [{ c: "BR", level: "Diamond", x: 2 }, { c: "FR", level: "Diamond" }, { c: "ZA", level: "Platinum", x: 5 }, { c: "US", level: "Platinum", x: 4 }, { c: "CA", level: "Platinum", x: 4 }, { c: "PT", level: "Platinum", x: 4 }, { c: "AU", level: "Platinum", x: 4 }, { c: "NZ", level: "Platinum", x: 4 }, { c: "UK", level: "Platinum", x: 2 }, { c: "CH", level: "Platinum", x: 2 }, { c: "HU", level: "Platinum", x: 2 }, { c: "GR", level: "Platinum", x: 2 }, { c: "AT", level: "Platinum" }, { c: "DK", level: "Platinum" }, { c: "ES", level: "Platinum" }, { c: "BE", level: "Platinum" }, { c: "NL", level: "Platinum" }, { c: "NO", level: "Platinum" }, { c: "PL", level: "Platinum" }, { c: "SE", level: "Platinum" }, { c: "DE", level: "Gold" }, { c: "IT", level: "Gold" }, { c: "MX", level: "Gold" }, { c: "NG", level: "Gold" }] }, // ZA ▣: Sony Music Africa plaque, five discs (owner's ruling, 3 Oct 2026)
+      { title: "Push 2 Start", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Platinum" }, { c: "BR", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "CA", level: "Gold" }, { c: "FR", level: "Gold" }, { c: "GR", level: "Gold" }, { c: "HU", level: "Gold" }, { c: "UK", level: "Gold" }, { c: "ZA", level: "Gold" }] }, // ZA ▣: Sony Music Africa plaque (owner's ruling, 3 Oct 2026)
       { title: "Chanel", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Gold" }, { c: "AU", level: "Gold" }, { c: "FR", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "PT", level: "Gold" }, { c: "CH", level: "Gold" }, { c: "BE", level: "Gold" }, { c: "UK", level: "Silver" }] }, // BE: Ultratop 2026 singles list, "10/08/2026: Goud", read 19 Sep 2026
-      { title: "Truth or Dare", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/1ae9486180d1f50e7dbbb099b1e66825/500x500-000000-80-0-0.jpg", certs: [{ c: "NZ", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "BR", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "PT", level: "Gold" }, { c: "UK", level: "Silver" }] },
-      { title: "Jump", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Gold" }, { c: "BR", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "UK", level: "Silver" }] },
-      { title: "Art", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Gold" }, { c: "NZ", level: "Gold" }] },
+      { title: "Truth or Dare", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/1ae9486180d1f50e7dbbb099b1e66825/500x500-000000-80-0-0.jpg", certs: [{ c: "ZA", level: "Platinum", x: 3 }, { c: "NZ", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "BR", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "PT", level: "Gold" }, { c: "UK", level: "Silver" }] }, // ZA ▣: Sony Music Africa plaque, three discs (owner's ruling, 3 Oct 2026)
+      { title: "Jump", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg", certs: [{ c: "ZA", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "BR", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "UK", level: "Silver" }] }, // ZA ▣: Sony Music Africa plaque (owner's ruling, 3 Oct 2026)
+      { title: "Art", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg", certs: [{ c: "ZA", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "NZ", level: "Gold" }] }, // ZA ▣: Sony Music Africa plaque (owner's ruling, 3 Oct 2026)
+      // Three titles certified nowhere else, each a Gold disc on the same Sony
+      // Music Africa plaque (▣, owner's ruling, 3 Oct 2026). No.1 wears the TYLA
+      // sleeve its chart row already carries; Safer and the Travis Scott remix
+      // have no cover on the site, so they draw the placeholder.
+      { title: "No.1 (ft. Tems)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg", certs: [{ c: "ZA", level: "Gold" }] },
+      { title: "Safer", kind: "Lead singles", certs: [{ c: "ZA", level: "Gold" }] },
+      { title: "Water (Remix) (ft. Travis Scott)", kind: "Lead singles", certs: [{ c: "ZA", level: "Gold" }] },
       { title: "Dynamite — Tyla & Wizkid", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/b9de2c8e816295f124dd7b227f7fa668/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Show Me Love", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/33cc78686fd6ca7863758a5408d6eabe/500x500-000000-80-0-0.jpg", certs: [{ c: "GR", level: "Gold" }] },
     ],
