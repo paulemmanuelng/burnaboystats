@@ -266,7 +266,7 @@ export const SEGMENT_LABELS: Record<string, string> = {
   festivals: "Festivals & Shows",
   revenue: "Highest Revenue Per Show",
   // /records/tours/revenue/countries
-  countries: "Leaders by Country",
+  countries: "Top-Grossing Artists by Country",
   map: "Where He's Performed",
   listeners: "Where the World Listens",
   cars: "Car Collection",

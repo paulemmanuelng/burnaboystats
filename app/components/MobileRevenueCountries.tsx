@@ -57,16 +57,16 @@ export default function MobileRevenueCountries({ board, lede }: { board: Revenue
             <path d="M15 5l-7 7 7 7" />
           </svg>
         </BackLink>
-        <span className={styles.backLabel}>Leaders by country</span>
+        <span className={styles.backLabel}>By country</span>
         <span className={styles.badge}>{board.countryCount} countries</span>
         <MobileMenuButton />
       </div>
 
       <div className={styles.hero}>
-        <div className={styles.kicker}>Box office, by country</div>
+        <div className={styles.kicker}>African artists · reported box office</div>
         {/* The page's <h1> on phones; the desktop column carries its own. */}
         <h1 className={styles.title}>
-          Leaders by <span className={styles.gold}>country</span>
+          Top-grossing artists <span className={styles.gold}>by country</span>
         </h1>
         <p className={styles.lede}>{lede}</p>
       </div>

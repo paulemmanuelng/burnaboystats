@@ -266,6 +266,6 @@
   box-shadow: 0 0 26px color-mix(in srgb, var(--gold-glow-base) 25%, transparent);
 }
 
-/* ── Leaders by country — the way to the per-country board ────────────── */
+/* ── Top-grossing artists by country — the way to the per-country board ────────────── */
 .linkRow { padding: 16px 18px 0; }
 .linkRow > a { width: 100%; }

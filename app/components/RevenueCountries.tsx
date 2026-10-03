@@ -100,10 +100,10 @@ export default function RevenueCountries({
         <div className={`${styles.wide} ${styles.heroPad}`}>
           <div className={styles.eyebrow}>
             <span className={styles.eyebrowRule} aria-hidden="true" />
-            Box office · by country
+            African artists · reported box office
           </div>
           <h1 className={styles.h1}>
-            Leaders by <span className="inkText">Country</span>
+            Top-Grossing Artists <span className="inkText">by Country</span>
           </h1>
           <p className={styles.lede}>{lede}</p>
           <div className={styles.heroBtns}>

@@ -21,17 +21,17 @@ const summary = summaryLine(board);
 const lede = `Every reported box-office gross by an African artist, added up country by country — ${summary}. Burna Boy leads ${hisLeads} of the ${countryCount}.`;
 
 export const metadata = pageMetadata({
-  title: "Box Office Leaders by Country — African Artists",
+  title: "Top-Grossing African Artists by Country",
   description: `Who leads every country and continent for reported box office by African artists — ${nightsLabel(board.showCount)} in ${countryCount} countries, totals and best nights.`,
   path: PATH,
-  shareTitle: "Box office leaders by country",
+  shareTitle: "Top-grossing African artists by country",
   shareDescription: `Who leads each of ${countryCount} countries for reported box office by African artists. Burna Boy leads ${hisLeads}.`,
 });
 
 const listJsonLd = {
   "@context": "https://schema.org",
   "@type": "ItemList",
-  name: "Box office leaders by country — African artists",
+  name: "Top-grossing African artists by country — reported box office",
   itemListOrder: "https://schema.org/ItemListOrderDescending",
   numberOfItems: board.countries.length,
   itemListElement: board.countries.map((c, i) => ({

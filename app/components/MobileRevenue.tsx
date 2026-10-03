@@ -117,7 +117,7 @@ export default function MobileRevenue({
       {/* Box office summed by country — who leads each one (3 Oct 2026). */}
       <div className={styles.linkRow}>
         <Link href="/records/tours/revenue/countries" className="btn btnPrimary">
-          Leaders by country →
+          Top-grossing artists by country →
         </Link>
       </div>
 
