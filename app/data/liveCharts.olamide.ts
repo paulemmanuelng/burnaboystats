@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-03";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-03T05:22Z";
+  export const liveChartsBuiltAt = "2026-10-03T11:43Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","iTunes"];
@@ -155,62 +155,69 @@
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 46,
-            "movement": 7
+            "position": 54,
+            "movement": -8
           },
           {
             "country": "US",
             "name": "United States",
-            "position": 67,
-            "movement": 3
-          },
-          {
-            "country": "CA",
-            "name": "Canada",
-            "position": 69,
-            "movement": 14
+            "position": 66,
+            "movement": 1
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 70,
-            "movement": 6
+            "position": 71,
+            "movement": -1
+          },
+          {
+            "country": "CA",
+            "name": "Canada",
+            "position": 74,
+            "movement": -5
           },
           {
             "country": "UK",
             "name": "United Kingdom",
             "position": 83,
-            "movement": 19
+            "movement": 0
           },
           {
             "country": "PT",
             "name": "Portugal",
-            "position": 138,
-            "movement": 19
-          },
-          {
-            "country": "CI",
-            "name": "Côte d'Ivoire",
-            "position": 144,
-            "movement": 10
+            "position": 148,
+            "movement": -10
           },
           {
             "country": "FR",
             "name": "France",
-            "position": 145,
-            "movement": 5
+            "position": 154,
+            "movement": -9
           },
           {
             "country": "WW",
             "name": "Worldwide",
-            "position": 146,
-            "movement": 32
+            "position": 154,
+            "movement": -8
+          },
+          {
+            "country": "CI",
+            "name": "Côte d'Ivoire",
+            "position": 155,
+            "movement": -11
           },
           {
             "country": "BE",
             "name": "Belgium",
-            "position": 175,
-            "movement": 18
+            "position": 184,
+            "movement": -9
+          },
+          {
+            "country": "CH",
+            "name": "Switzerland",
+            "position": 193,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -233,9 +240,8 @@
           {
             "country": "DZ",
             "name": "Algeria",
-            "position": 14,
-            "movement": null,
-            "status": "new"
+            "position": 4,
+            "movement": 10
           }
         ]
       }
@@ -517,7 +523,7 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 57,
+            "position": 74,
             "movement": null,
             "status": "new"
           }
@@ -526,6 +532,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/81b302f950caef7e10cf377769407ff4/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Story for the Gods",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "AE",
+            "name": "United Arab Emirates",
+            "position": 23,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/dc21daa177258ea29c084c4415c4db03/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Fada Fada",
@@ -537,8 +563,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 56,
-            "movement": 1
+            "position": 66,
+            "movement": -10
           }
         ]
       }
@@ -652,8 +678,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 136,
-            "movement": 2
+            "position": 137,
+            "movement": 0
           }
         ]
       }
@@ -671,8 +697,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 142,
-            "movement": 2
+            "position": 143,
+            "movement": 0
           }
         ]
       }
@@ -690,8 +716,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 178,
-            "movement": 1
+            "position": 179,
+            "movement": -1
           }
         ]
       }
