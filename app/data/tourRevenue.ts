@@ -1,7 +1,8 @@
 // Every reported single-show gross by an African artist that we could verify,
-// ranked. There is no floor: a reported night goes on the board once its
-// figure is read at a body (TouringData, which aggregates Billboard Boxscore
-// and Pollstar) or in two press reports that quote one. Sourced from
+// ranked. There is no floor. From 3 Oct 2026 a night is added once its figure
+// is read at a body (TouringData's own tables, which carry Billboard Boxscore
+// reports) or in two press reports that quote one; rows on the board before
+// then carry their own provenance in the comments beside them. Sourced from
 // TouringData, cross-checked against press reporting and, for Burna Boy's own
 // dates, against the site's own verified tour records — last re-read on the
 // date in REVENUE_AS_OF below. This is PER-SHOW gross, distinct from the
@@ -81,6 +82,9 @@ export const revenueShows: RevenueShow[] = [
   // His, re-checked 3 Oct 2026: BusinessDay (16 Feb 2024, citing ChartsAfrica),
   // NME (22 Feb 2024) and TheRadar (24 Jun 2024) all credit $905,024 to Burna
   // Boy; only Top Charts Africa (10 Feb 2024) prints the pair under Wizkid.
+  // The 12,753 headcount is printed only by Top Charts Africa (under Wizkid),
+  // so it awaits a body read — as does the pairing with his 31 Jul 2022 night
+  // (AJC, 1 Aug 2022), the only candidate date found, which no source prints.
   { artist: "Burna Boy", venue: "State Farm Arena", city: "Atlanta", flag: "🇺🇸", tour: "Love, Damini Tour", year: "2022", tickets: "12,753", revenue: 905024 },
   { artist: "Burna Boy", venue: "Oakland Arena", city: "Oakland", flag: "🇺🇸", tour: "Love, Damini Tour", year: "2023", tickets: "9,436", revenue: 885278 },
   { artist: "Davido", venue: "Capital One Arena", city: "Washington, D.C.", flag: "🇺🇸", tour: "Timeless Tour", year: "2023", tickets: "8,577", revenue: 884147 },

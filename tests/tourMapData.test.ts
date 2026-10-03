@@ -102,6 +102,19 @@ describe("the eight drawn cases match research/countries.md", () => {
   });
 });
 
+describe("Canada's biggest line follows the design rule (3 Oct 2026)", () => {
+  // The rule (research/countries.md): the single night with the most reported
+  // tickets; a stand only where a country has no single night. Canada gained
+  // single nights (Vancouver, Edmonton) when the box-office board was extended,
+  // so its card names the night — a stand's combined headcount never competes
+  // with one night's.
+  it("names the biggest single night, not the Toronto stand", () => {
+    const big = get("Canada").big!;
+    expect(big.label).toBe("Biggest reported night");
+    expect(big.line).toBe("Rogers Arena, Vancouver · 7 Nov 2023 · 7,198 tickets");
+  });
+});
+
 describe("all 57 match research/countries.md", () => {
   it("documented lines and biggest lines, every country", () => {
     const off = tourMapCountries.flatMap((c) => {

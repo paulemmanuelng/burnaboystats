@@ -91,7 +91,7 @@ export default function RevenuePage() {
           tickets: `${s.tickets} over ${s.shows} nights`,
           his: s.artist === "Burna Boy",
         }))}
-        sourceNote="Grosses and ticket counts from Billboard Boxscore. The board ranks every reported show by an African artist we have verified, not only his — a missing night means no gross for it was reported, or none we could verify yet. A dash means no headcount was published. Stands Boxscore reported only as one combined total sit beneath the board with the body's figures; no per-night split is invented for them."
+        sourceNote="Grosses and ticket counts reported by Billboard Boxscore & Pollstar (as aggregated by TouringData), cross-checked against press reporting. The board ranks every reported show by an African artist we have verified, not only his — a missing night means no gross for it was reported, or none we could verify yet. A dash means no headcount was published. Stands Boxscore reported only as one combined total sit beneath the board with the body's figures; no per-night split is invented for them."
       />
 
       <div className={styles.desktopOnly}>

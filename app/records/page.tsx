@@ -155,8 +155,8 @@ export default function RecordsPage() {
                 <h2 className={styles.h2}>Highest revenue per show</h2>
               </div>
               <p className={styles.headLede}>
-                The biggest single-show grosses by an African artist — {hisShows} of the{" "}
-                {revenueShows.length} on the leaderboard are his.
+                {hisShows} of the {revenueShows.length} verified African single-show grosses are
+                his — the top {showRows.length} below.
               </p>
               <Link href="/records/tours/revenue" className={`btn btnSecondary ${styles.headBtn}`}>
                 Full leaderboard ↗

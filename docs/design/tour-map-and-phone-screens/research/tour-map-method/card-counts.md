@@ -55,7 +55,7 @@
 | Europe | Kosovo | 1 festival or one-off appearance · 1 city · 2024 | 2024 | none (line absent) | Sunny Hill Festival, Pristina (2024) |  |
 | Asia | United Arab Emirates | 1 festival or one-off appearance · 1 city · 2019 | 2019 | none (line absent) | One Africa Music Festival, Dubai (2019) |  |
 | North America | United States | 50 tour dates · 7 festival and one-off appearances · 2 live milestones · 30 cities · 2018–2025 | 2018–2025 | Biggest reported night · Capital One Arena, Washington, D.C. · 8 Dec 2022 · 14,688 tickets (tourRevenue.ts:39) | Madison Square Garden, New York (2022) / Citi Field, New York (2023) | yes |
-| North America | Canada | 14 tour dates · 4 cities · 2019–2025 | 2019–2025 | Biggest reported stand · Scotiabank Arena, Toronto · 24–25 Feb 2024 · 29,579 tickets over 2 shows (tourRevenue.ts:104) | Scotiabank Arena, Toronto (2024 & 2025) / Bell Centre, Montréal (2024 & 2025) | yes |
+| North America | Canada | 14 tour dates · 4 cities · 2019–2025 | 2019–2025 | Biggest reported night · Rogers Arena, Vancouver · 7 Nov 2023 · 7,198 tickets (tourRevenue.ts, re-run 3 Oct 2026) | Scotiabank Arena, Toronto (2024 & 2025) / Bell Centre, Montréal (2024 & 2025) | yes |
 | North America | Mexico | 1 live milestone · 1 city · 2026 | 2026 | none (line absent) | FIFA World Cup Opening Ceremony, Mexico City (2026) |  |
 | South America | Brazil | 1 festival or one-off appearance · 1 city · 2025 | 2025 | none (line absent) | The Town festival, São Paulo (2025) |  |
 | South America | Guyana | 1 festival or one-off appearance · 1 city · 2024 | 2024 | none (line absent) | Unforgettable Concert, National Stadium (2024) |  |

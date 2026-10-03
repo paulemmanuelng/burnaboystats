@@ -159,8 +159,15 @@ describe("the ranked board holds no per-night average of a stand, and is in orde
   // here beside the carried stands — every run the guard must know about.
   const knownRuns = [
     ...revenueStands.map((s) => ({ name: `${s.artist}, ${s.venue} ${s.dates}`, revenue: s.revenue, tickets: s.tickets, shows: s.shows })),
+    // Reported (Touring Data's X post title), not yet read at the body, so not
+    // in revenueStands. Once the stand lands there, delete this line — the
+    // test below fails once it lands, so the run is never carried twice.
     { name: "Wizkid, The O2 Arena 28 Nov–1 Dec 2021", revenue: 2875468, tickets: "50,814", shows: 3 },
   ];
+
+  it("the hand-carried Wizkid O2 run is not also in revenueStands", () => {
+    expect(revenueStands.filter((s) => s.artist === "Wizkid" && s.venue === "The O2 Arena")).toEqual([]);
+  });
   const n = (t?: string) => (t ? Number(t.replace(/,/g, "")) : NaN);
   const isAverageOf = (row: { revenue: number; tickets?: string }, run: (typeof knownRuns)[number]) =>
     Math.abs(row.revenue - run.revenue / run.shows) < 1 ||

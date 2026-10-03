@@ -358,8 +358,8 @@ export default function ToursPage() {
           <div className={`${styles.wide} ${styles.sourcePad}`}>
             <p className={styles.sourceLine}>
               Box-office figures are reported by Billboard Boxscore &amp; Pollstar (as
-              aggregated by TouringData) and cross-checked against press reporting, as of
-              September 2026. For future dates, always check official ticketing.
+              aggregated by TouringData) and cross-checked against press reporting, as of{" "}
+              {REVENUE_AS_OF}. For future dates, always check official ticketing.
             </p>
             <Link href="/records" className={`btn btnSecondary ${styles.backBtn}`}>
               ← Career Records
