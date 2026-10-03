@@ -5,9 +5,14 @@ import {
   artistBySlug,
   countryMeta,
   labelPlaqueCount,
-  labelPlaquePhrase,
+  announcementCount,
+  offRegisterCount,
+  offRegisterPhrase,
+  offRegisterHold,
+  certProvenance,
 } from "../app/data/afrobeats";
 import { artistFaqs } from "../app/lib/boardFaqs";
+import { registerUrl } from "../app/lib/dataDownloads";
 
 // LABEL-ISSUED PLAQUES (owner's ruling, 3 Oct 2026: "cant you see the plaque").
 //
@@ -19,6 +24,11 @@ import { artistFaqs } from "../app/lib/boardFaqs";
 // and on the board hub with the nine plaques beneath it (PR #400 review).
 // These tests hold the copy to the data: an artist with a `source: "label"`
 // cert never renders the unqualified claim.
+//
+// And BODY ANNOUNCEMENTS (3 Oct 2026): SNEP announced Tyla's album "Tyla" Or on
+// its own verified X account on 6 Apr 2026, a row its searchable database does
+// not list. The body is right, the register claim is not — so the same copy
+// qualifies it (`source: "announcement"`).
 
 const label = (slug: string) =>
   artistBySlug(slug)!.releases.flatMap((r) =>
@@ -61,9 +71,61 @@ describe("label-issued plaques are exactly the ruled ones", () => {
   });
 
   it("phrases the exception from the data", () => {
-    expect(labelPlaquePhrase(artistBySlug("tyla")!)).toBe("9 plaques in South Africa");
-    expect(labelPlaquePhrase(artistBySlug("tems")!)).toBe("1 plaque in South Africa");
-    expect(labelPlaquePhrase(artistBySlug("wizkid")!)).toBeUndefined();
+    expect(offRegisterPhrase(artistBySlug("tyla")!)).toBe(
+      "9 plaques in South Africa, read from the label's own award, and 1 in France, read from SNEP's own announcement",
+    );
+    expect(offRegisterPhrase(artistBySlug("tyla")!, "short")).toBe(
+      "9 plaques in South Africa from the label's own award; 1 in France from SNEP's own announcement",
+    );
+    expect(offRegisterHold(artistBySlug("tyla")!)).toBe("which the registers do not hold");
+    expect(offRegisterPhrase(artistBySlug("tems")!)).toBe("1 plaque in South Africa, read from the label's own award");
+    expect(offRegisterHold(artistBySlug("tems")!)).toBe("which the register does not hold");
+    expect(offRegisterPhrase(artistBySlug("wizkid")!)).toBeUndefined();
+  });
+});
+
+const announced = (slug: string) =>
+  artistBySlug(slug)!.releases.flatMap((r) =>
+    r.certs.filter((c) => c.source === "announcement").map((c) => `${r.title} · ${c.c} ${c.x ? `${c.x}× ` : ""}${c.level}`),
+  );
+
+describe("body announcements the register omits are exactly the ruled ones", () => {
+  it("Tyla's album in France, SNEP's own post of 6 Apr 2026, and nothing else", () => {
+    expect(announced("tyla")).toEqual(["Tyla · FR Gold"]);
+    const others = afrobeatsArtists.filter((a) => a.slug !== "tyla");
+    expect(others.filter((a) => announcementCount(a) > 0).map((a) => a.slug)).toEqual([]);
+  });
+
+  it("names the body itself (no issuer override) and dates the post", () => {
+    const fr = artistBySlug("tyla")!.releases.find((r) => r.title === "Tyla")!.certs.find((c) => c.c === "FR")!;
+    expect(fr).toEqual({ c: "FR", level: "Gold", source: "announcement", announced: { via: "its own X account", on: "2026-04-06" } });
+    expect(countryMeta("FR").body).toBe("SNEP");
+    expect(certProvenance(fr)).toBe("announced on its own X account, 6 Apr 2026");
+  });
+
+  it("the hover reads 'France — SNEP, announced on its own X account, 6 Apr 2026'", () => {
+    // The string the artist page and the explorer build: `${name} — ${body}, ${provenance}`.
+    const fr = artistBySlug("tyla")!.releases.find((r) => r.title === "Tyla")!.certs.find((c) => c.c === "FR")!;
+    expect(`${countryMeta("FR").name} — ${fr.body ?? countryMeta("FR").body}, ${certProvenance(fr)}`).toBe(
+      "France — SNEP, announced on its own X account, 6 Apr 2026",
+    );
+    // A register row keeps the plain hover.
+    const water = artistBySlug("tyla")!.releases.find((r) => r.title === "Water")!.certs.find((c) => c.c === "FR")!;
+    expect(certProvenance(water)).toBeUndefined();
+  });
+
+  it("the dataset does not link it to a register that does not list it", () => {
+    const fr = artistBySlug("tyla")!.releases.find((r) => r.title === "Tyla")!.certs.find((c) => c.c === "FR")!;
+    expect(registerUrl(fr, countryMeta("FR"))).toBeNull();
+    const water = artistBySlug("tyla")!.releases.find((r) => r.title === "Water")!.certs.find((c) => c.c === "FR")!;
+    expect(registerUrl(water, countryMeta("FR"))).toBe(countryMeta("FR").url);
+  });
+
+  it("Tyla: 74 plaques, 10 of them off-register; the album holds 11", () => {
+    const tyla = artistBySlug("tyla")!;
+    expect(tyla.releases.reduce((n, r) => n + r.certs.length, 0)).toBe(74);
+    expect(offRegisterCount(tyla)).toBe(10);
+    expect(tyla.releases.find((r) => r.title === "Tyla")!.certs).toHaveLength(11);
   });
 });
 
@@ -74,11 +136,9 @@ describe("the certifications FAQ (FAQPage structured data) qualifies the registe
   it("for every swept artist, from the data", () => {
     for (const a of afrobeatsArtists.filter((x) => x.swept)) {
       const answer = artistFaqs(a)[0].a;
-      if (labelPlaqueCount(a) > 0) {
+      if (offRegisterCount(a) > 0) {
         expect(answer, a.slug).not.toContain(UNQUALIFIED);
-        expect(answer, a.slug).toContain(
-          `except ${labelPlaquePhrase(a)}, read from the label's own award, which the register does not hold.`,
-        );
+        expect(answer, a.slug).toContain(`except ${offRegisterPhrase(a)}, ${offRegisterHold(a)}.`);
       } else {
         expect(answer, a.slug).toContain(UNQUALIFIED);
       }
@@ -87,13 +147,15 @@ describe("the certifications FAQ (FAQPage structured data) qualifies the registe
 
   it("Tyla's answer, in full", () => {
     expect(certAnswer("tyla")).toMatch(
-      /Every figure is read from the certifying body's own register, not from press coverage — except 9 plaques in South Africa, read from the label's own award, which the register does not hold\.$/,
+      /Every figure is read from the certifying body's own register, not from press coverage — except 9 plaques in South Africa, read from the label's own award, and 1 in France, read from SNEP's own announcement, which the registers do not hold\.$/,
     );
   });
 });
 
 // Every "issuing/certifying body's own register(s)" claim on the board's pages
-// must carry the label clause within the same sentence. Read from source,
+// must carry the label clause within the same sentence — and, since SNEP's
+// announced Tyla album (3 Oct 2026), the announcement clause too, unless it
+// derives its exceptions from the data (offRegisterPhrase). Read from source,
 // because three of these are static strings no data change could ever move.
 const BOARD_COPY = [
   "app/afrobeats/page.tsx",
@@ -107,7 +169,10 @@ const CLAIM = /(?:issuing|certifying)\s+bod(?:y|ies)(?:&apos;|&rsquo;|'|’)s?\s
 const unqualified = (src: string): string[] => {
   const flat = src.replace(/\s+/g, " ");
   return [...flat.matchAll(CLAIM)]
-    .filter((m) => !/label/i.test(flat.slice(m.index!, m.index! + 220)))
+    .filter((m) => {
+      const after = flat.slice(m.index!, m.index! + 260);
+      return !(/offRegister/.test(after) || (/label/i.test(after) && /announcement/i.test(after)));
+    })
     .map((m) => flat.slice(Math.max(0, m.index! - 40), m.index! + 80));
 };
 
@@ -124,6 +189,13 @@ describe("no board page claims every plaque is a register row", () => {
           <Link href="/methodology#principles">methodology</Link>: one plaque per title per
           country at its current tier, lead and featured credits both.
         </p>`;
+    expect(unqualified(shipped)).toHaveLength(1);
+  });
+
+  it("negative control: the hub lede this PR's first fix wrote, before SNEP's announcement", () => {
+    // app/afrobeats/page.tsx at 05eb3899, verbatim: names the label, not the announcement.
+    const shipped = `          every figure read in the issuing body&apos;s own register (or, where it holds no row, the
+          label&apos;s own award) rather than taken from a fan tally.`;
     expect(unqualified(shipped)).toHaveLength(1);
   });
 

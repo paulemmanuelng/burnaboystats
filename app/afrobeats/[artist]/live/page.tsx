@@ -318,13 +318,14 @@ export default async function AfroLiveChartsPage({
                   contrast, and the certifications on the{" "}
                   <Link href={`/afrobeats/${slug}`}>artist page</Link> are read from the issuing
                   bodies&apos; own registers (or, where a register holds no row, the
-                  label&apos;s own award).
+                  body&apos;s own announcement or the label&apos;s own award).
                 </>
               ) : (
                 <>
                   Official chart peaks and certifications are a different kind of record — permanent,
                   and read from the issuing bodies&apos; own registers or, where a register holds no
-                  row, the label&apos;s own award — and are not published on{" "}
+                  row, the body&apos;s own announcement or the label&apos;s own award — and are not
+                  published on{" "}
                   <Link href={`/afrobeats/${slug}`}>this artist&apos;s page</Link> until that sweep has
                   run.
                 </>

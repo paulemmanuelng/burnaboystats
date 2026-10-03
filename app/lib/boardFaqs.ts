@@ -29,7 +29,8 @@ import {
   chartNo1s,
   chartEntries,
   countryMeta,
-  labelPlaquePhrase,
+  offRegisterPhrase,
+  offRegisterHold,
   type AfroArtist,
 } from "../data/afrobeats";
 import { count } from "./plural";
@@ -111,7 +112,7 @@ export function artistFaqs(a: AfroArtist): Faq[] {
         : "Billboard's Global 200 Excl. US";
   const entries = chartEntries(a);
   const plaque = topPlaque(a);
-  const label = labelPlaquePhrase(a);
+  const offRegister = offRegisterPhrase(a);
 
   const faqs: Faq[] = [
     {
@@ -122,9 +123,10 @@ export function artistFaqs(a: AfroArtist): Faq[] {
         `its current tier${plaque ? `. The most decorated is ${plaque}` : ""}. Every figure is read ` +
         `from the certifying body's own register, not from press coverage` +
         // A label-issued plaque (source: "label", the owner's ruling of 3 Oct
-        // 2026) is not a register row, and this answer ships as FAQPage
-        // structured data — so it says which plaques are the exception.
-        (label ? ` — except ${label}, read from the label's own award, which the register does not hold.` : "."),
+        // 2026) or a body's own announcement the register omits (source:
+        // "announcement") is not a register row, and this answer ships as
+        // FAQPage structured data — so it says which plaques are the exception.
+        (offRegister ? ` — except ${offRegister}, ${offRegisterHold(a)}.` : "."),
     },
     {
       q: `How many No. 1s does ${a.name} have?`,

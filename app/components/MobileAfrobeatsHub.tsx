@@ -79,7 +79,7 @@ export default function MobileAfrobeatsHub({
         <p className={styles.lede}>
           Where Burna Boy stands among the genre&rsquo;s biggest names — counted the same way he
           is, every figure read in the issuing body&rsquo;s own register or, where it holds no
-          row, the label&rsquo;s own award.
+          row, the body&rsquo;s own announcement or the label&rsquo;s own award.
         </p>
         <div className={styles.cadence}>Re-read at each sweep, last {sweptRange} · Burna Boy&rsquo;s pages daily</div>
       </div>

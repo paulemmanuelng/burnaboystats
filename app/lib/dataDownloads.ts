@@ -137,7 +137,7 @@ interface PlaqueInput {
   release: string;
   credit: string | null;
   kind: string;
-  cert: { c: string; level: "Diamond" | "Platinum" | "Gold" | "Silver"; x?: number; body?: string };
+  cert: { c: string; level: "Diamond" | "Platinum" | "Gold" | "Silver"; x?: number; body?: string; source?: "label" | "announcement" };
   country: { name: string; body: string; url?: string };
   verifiedOn: string;
 }
@@ -157,8 +157,14 @@ export function unitsNote(cert: PlaqueInput["cert"], format: CertFormat): string
  *  Colombian Gold is Sony Music Colombia's, not Pro Música's — and the
  *  country's register cannot show an award it never made, so the link is
  *  blank rather than a dead end. A programme (RIAA Latin) is the country
- *  body's own scheme and keeps its register. */
+ *  body's own scheme and keeps its register.
+ *
+ *  A plaque the body ANNOUNCED but its register does not list (source
+ *  "announcement" — Tyla's album 🇫🇷 Or, SNEP's own X post of 6 Apr 2026) is
+ *  blank for the same reason: the register link would be a search that finds
+ *  nothing. */
 export function registerUrl(cert: PlaqueInput["cert"], country: PlaqueInput["country"]): string | null {
+  if (cert.source === "announcement") return null;
   const otherIssuer = cert.body !== undefined && cert.body !== country.body && !programOf(cert);
   return otherIssuer ? null : (country.url ?? null);
 }

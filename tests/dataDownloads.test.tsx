@@ -458,12 +458,25 @@ describe("register_url links only a register that can show the plaque", () => {
     expect(col(find("Ayra Starr", "Santa", "US"), "register_url")).toBe(countryMeta("US").url);
   });
 
+  it("Tyla's album Or, announced by SNEP on X but not in its database, gets no SNEP link", async () => {
+    // source: "announcement" (3 Oct 2026). The body is SNEP itself — no issuer
+    // override — but a link to snepmusique.com's search would find nothing.
+    const { col, find } = await certSheet();
+    const fr = find("Tyla", "Tyla", "FR");
+    expect(col(fr, "certifying_body")).toBe("SNEP");
+    expect(col(fr, "register_url")).toBe("");
+    // Negative control: her French singles ARE database rows and keep the link.
+    expect(col(find("Tyla", "Water", "FR"), "register_url")).toBe(countryMeta("FR").url);
+  });
+
   it("every other row carries its country's register", async () => {
     const { body, col } = await certSheet();
+    const announced = new Set(["Tyla|Tyla|FR"]);
     for (const r of body) {
       const c = col(r, "country_code");
       const country = col(r, "artist") === "Burna Boy" ? BURNA_COUNTRIES[c] : countryMeta(c);
       const b = col(r, "certifying_body");
+      if (announced.has(`${col(r, "artist")}|${col(r, "release")}|${c}`)) continue;
       const otherIssuer = b !== country.body && !CERT_PROGRAMS[b];
       expect(col(r, "register_url"), `${col(r, "release")} ${c}`).toBe(otherIssuer ? "" : (country.url ?? ""));
     }
