@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-02";
+  export const liveChartsUpdated = "2026-10-03";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-02T22:18Z";
+  export const liveChartsBuiltAt = "2026-10-03T05:22Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","iTunes"];
@@ -213,7 +213,7 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 31,
+            "position": 35,
             "movement": null,
             "status": "new"
           },
@@ -625,13 +625,20 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 2,
-            "movement": 6
+            "movement": 3
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 44,
-            "movement": -25
+            "position": 48,
+            "movement": -13
+          },
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 158,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -1019,7 +1026,7 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 93,
+            "position": 96,
             "movement": -10
           },
           {
@@ -1114,14 +1121,34 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 82,
-            "movement": 14
+            "position": 85,
+            "movement": -3
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ada9bcfee9900dd72f862562ae032550/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "woman",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 56,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/1724f66c550648b497bd7ccec64b9179/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "As We Get High",

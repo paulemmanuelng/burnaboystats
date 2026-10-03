@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-02";
+  export const liveChartsUpdated = "2026-10-03";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-02T22:18Z";
+  export const liveChartsBuiltAt = "2026-10-03T05:23Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","iTunes"];
@@ -100,8 +100,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 122,
-            "movement": -24
+            "position": 124,
+            "movement": -10
           }
         ]
       }
@@ -128,26 +128,6 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ce4277e03a5b88cc40761c56f24043ae/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Lova Lova",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 163,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/e17918a3b7f7137fd1e2f716d87590d1/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Once Upon A Time",

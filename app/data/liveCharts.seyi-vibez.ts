@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-02";
+  export const liveChartsUpdated = "2026-10-03";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-02T22:18Z";
+  export const liveChartsBuiltAt = "2026-10-03T05:23Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -138,6 +138,12 @@
             "movement": -13
           },
           {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 27,
+            "movement": -4
+          },
+          {
             "country": "MW",
             "name": "Malawi",
             "position": 28,
@@ -148,12 +154,6 @@
             "name": "United Arab Emirates",
             "position": 31,
             "movement": 4
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 32,
-            "movement": -8
           },
           {
             "country": "IE",
@@ -182,8 +182,8 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 70,
-            "movement": -13
+            "position": 73,
+            "movement": -15
           },
           {
             "country": "OM",
@@ -191,12 +191,6 @@
             "position": 76,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "US",
-            "name": "United States",
-            "position": 83,
-            "movement": -13
           },
           {
             "country": "TR",
@@ -209,6 +203,12 @@
             "name": "Cyprus",
             "position": 96,
             "movement": -54
+          },
+          {
+            "country": "US",
+            "name": "United States",
+            "position": 103,
+            "movement": -27
           },
           {
             "country": "MT",
@@ -270,8 +270,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 86,
-            "movement": -11
+            "position": 87,
+            "movement": -9
           }
         ]
       }
@@ -367,7 +367,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 19,
+            "position": 27,
             "movement": null,
             "status": "new"
           }
@@ -402,7 +402,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/4f0e7e1508278c9c558f8e0a6ea0de3b/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Back 2 U",
+    "title": "BACK 2 U",
     "platforms": [
       {
         "platform": "Apple Music",
@@ -437,12 +437,6 @@
             "name": "Cameroon",
             "position": 37,
             "movement": 4
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 52,
-            "movement": 19
           },
           {
             "country": "SL",
@@ -491,19 +485,6 @@
             "name": "Nigeria",
             "position": 9,
             "movement": -5
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 136,
-            "movement": null,
-            "status": "new"
           }
         ]
       },
@@ -853,7 +834,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 86,
+            "position": 135,
             "movement": null,
             "status": "new"
           }
@@ -1109,8 +1090,8 @@
           {
             "country": "GD",
             "name": "Grenada",
-            "position": 23,
-            "movement": -1
+            "position": 34,
+            "movement": -12
           }
         ]
       },
@@ -1122,93 +1103,6 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 21,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/cf3225fd6ccebd61ef2d071f59b1a5d9/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "AKPAN AKPARI",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 19,
-            "movement": -1
-          },
-          {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 48,
-            "movement": -15
-          },
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 111,
-            "movement": -44
-          },
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 197,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 21,
-            "movement": -7
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 198,
-            "movement": -162
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 15,
-            "movement": -1
-          }
-        ]
-      },
-      {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 26,
             "movement": null,
             "status": "new"
           }
@@ -1283,7 +1177,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 103,
+            "position": 163,
             "movement": null,
             "status": "new"
           }
@@ -1305,6 +1199,81 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/4f0e7e1508278c9c558f8e0a6ea0de3b/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "AKPAN AKPARI",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 19,
+            "movement": -1
+          },
+          {
+            "country": "BJ",
+            "name": "Benin",
+            "position": 48,
+            "movement": -15
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 111,
+            "movement": -44
+          },
+          {
+            "country": "NE",
+            "name": "Niger",
+            "position": 197,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 21,
+            "movement": -7
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 15,
+            "movement": -1
+          }
+        ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 26,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/cf3225fd6ccebd61ef2d071f59b1a5d9/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "FUJI MOTO",
@@ -2198,6 +2167,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/44b6b558a027125f253bbf9538541db4/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Apala Disco",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 79,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/4e44b886a595181a9bc06efabd864b89/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Billion Dollar Baby",

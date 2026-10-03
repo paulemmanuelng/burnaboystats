@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-02";
+  export const liveChartsUpdated = "2026-10-03";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-02T22:18Z";
+  export const liveChartsBuiltAt = "2026-10-03T05:22Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -74,8 +74,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 14,
-            "movement": 49
+            "position": 15,
+            "movement": -7
           },
           {
             "country": "SL",
@@ -229,20 +229,14 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 3,
-            "movement": -1
+            "position": 10,
+            "movement": -8
           },
           {
             "country": "GD",
             "name": "Grenada",
-            "position": 22,
-            "movement": -1
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 137,
-            "movement": -127
+            "position": 33,
+            "movement": -12
           }
         ]
       },
@@ -367,16 +361,16 @@
             "movement": 4
           },
           {
-            "country": "FR",
-            "name": "France",
-            "position": 19,
-            "movement": -6
-          },
-          {
             "country": "BE",
             "name": "Belgium",
             "position": 21,
             "movement": -9
+          },
+          {
+            "country": "FR",
+            "name": "France",
+            "position": 21,
+            "movement": -7
           },
           {
             "country": "CH",
@@ -441,15 +435,15 @@
           {
             "country": "MO",
             "name": "Macau",
-            "position": 29,
+            "position": 30,
             "movement": null,
             "status": "new"
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 47,
-            "movement": -25
+            "position": 51,
+            "movement": -13
           }
         ]
       }
@@ -533,34 +527,41 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "SA",
+            "name": "Saudi Arabia",
+            "position": 21,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "GH",
             "name": "Ghana",
-            "position": 21,
-            "movement": -15
+            "position": 25,
+            "movement": -14
+          },
+          {
+            "country": "AE",
+            "name": "United Arab Emirates",
+            "position": 35,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 55,
-            "movement": -1
+            "position": 51,
+            "movement": 4
           },
           {
             "country": "SZ",
             "name": "Swaziland",
             "position": 64,
-            "movement": 0
+            "movement": 3
           },
           {
             "country": "ID",
             "name": "Indonesia",
-            "position": 75,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 191,
+            "position": 145,
             "movement": null,
             "status": "new"
           }
@@ -615,17 +616,17 @@
             "movement": 20
           },
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 33,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "SL",
             "name": "Sierra Leone",
             "position": 47,
             "movement": -11
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 52,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "KE",
@@ -678,6 +679,25 @@
         ]
       },
       {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 29,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "GD",
+            "name": "Grenada",
+            "position": 37,
+            "movement": -12
+          }
+        ]
+      },
+      {
         "platform": "YouTube",
         "numberOnes": 0,
         "entries": [
@@ -704,18 +724,6 @@
             "name": "Nigeria",
             "position": 29,
             "movement": -7
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GD",
-            "name": "Grenada",
-            "position": 26,
-            "movement": -1
           }
         ]
       },
@@ -1466,62 +1474,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/4891a944de9418f059cabda0c7699160/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Baby",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 156,
-            "movement": 13
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 139,
-            "movement": -14
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 149,
-            "movement": -131
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 60,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3208072ca7af2913cacf001dbb11bbec/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "FUN",
     "platforms": [
       {
@@ -1555,8 +1507,9 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 16,
-            "movement": 160
+            "position": 22,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -1594,6 +1547,50 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/3a0c90a8279dde44ce6b19d5d41875cd/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Baby",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 156,
+            "movement": 13
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 139,
+            "movement": -14
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 60,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3208072ca7af2913cacf001dbb11bbec/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Holiday",

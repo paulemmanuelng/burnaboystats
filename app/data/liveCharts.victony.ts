@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-02";
+  export const liveChartsUpdated = "2026-10-03";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-02T22:18Z";
+  export const liveChartsBuiltAt = "2026-10-03T05:22Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -368,27 +368,41 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "DO",
+            "name": "Dominican Republic",
+            "position": 4,
+            "movement": 46
+          },
+          {
+            "country": "RO",
+            "name": "Romania",
+            "position": 31,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "BS",
             "name": "The Bahamas",
-            "position": 36,
-            "movement": -26
+            "position": 51,
+            "movement": -28
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 61,
-            "movement": -24
-          },
-          {
-            "country": "DO",
-            "name": "Dominican Republic",
-            "position": 104,
-            "movement": -63
+            "position": 65,
+            "movement": -12
           },
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 146,
+            "position": 104,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "BE",
+            "name": "Belgium",
+            "position": 159,
             "movement": null,
             "status": "new"
           }
@@ -1113,6 +1127,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/92d9434341384d2ebdca52fd613a18d6/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Belle Full",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 145,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/faf118a79e05c6fa5af763f2b0e3edc8/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Very Stubborn",

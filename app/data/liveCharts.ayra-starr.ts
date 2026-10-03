@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-02";
+  export const liveChartsUpdated = "2026-10-03";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-02T22:18Z";
+  export const liveChartsBuiltAt = "2026-10-03T05:22Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -404,48 +404,6 @@
         ]
       },
       {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FJ",
-            "name": "Fiji",
-            "position": 6,
-            "movement": -5
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 7,
-            "movement": 116
-          },
-          {
-            "country": "AI",
-            "name": "Anguilla",
-            "position": 29,
-            "movement": 0
-          },
-          {
-            "country": "ZW",
-            "name": "Zimbabwe",
-            "position": 67,
-            "movement": -12
-          },
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 135,
-            "movement": -122
-          },
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 148,
-            "movement": -25
-          }
-        ]
-      },
-      {
         "platform": "YouTube",
         "numberOnes": 0,
         "entries": [
@@ -485,6 +443,42 @@
             "name": "Zimbabwe",
             "position": 25,
             "movement": 3
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FJ",
+            "name": "Fiji",
+            "position": 6,
+            "movement": -5
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 9,
+            "movement": -5
+          },
+          {
+            "country": "AI",
+            "name": "Anguilla",
+            "position": 29,
+            "movement": 0
+          },
+          {
+            "country": "ZW",
+            "name": "Zimbabwe",
+            "position": 73,
+            "movement": -10
+          },
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 150,
+            "movement": -10
           }
         ]
       },
@@ -747,13 +741,6 @@
             "movement": 14
           },
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 98,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "SR",
             "name": "Suriname",
             "position": 109,
@@ -967,21 +954,21 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 12,
+            "movement": 5
+          },
+          {
             "country": "CV",
             "name": "Cape Verde",
             "position": 15,
             "movement": 0
           },
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 17,
-            "movement": 2
-          },
-          {
             "country": "AG",
             "name": "Antigua and Barbuda",
-            "position": 55,
+            "position": 51,
             "movement": 4
           },
           {
@@ -993,14 +980,14 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 79,
-            "movement": 4
+            "position": 74,
+            "movement": 2
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 81,
-            "movement": 14
+            "position": 84,
+            "movement": -3
           }
         ]
       },
@@ -1151,8 +1138,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 197,
-            "movement": -25
+            "position": 199,
+            "movement": -11
           }
         ]
       },
@@ -1568,16 +1555,16 @@
             "movement": 11
           },
           {
-            "country": "FR",
-            "name": "France",
-            "position": 124,
-            "movement": -9
-          },
-          {
             "country": "CG",
             "name": "Republic of the Congo",
             "position": 124,
             "movement": -34
+          },
+          {
+            "country": "FR",
+            "name": "France",
+            "position": 130,
+            "movement": -14
           },
           {
             "country": "ML",
@@ -1620,67 +1607,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/7b49d51e89ff07824c8c62043775a2ab/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Wo, man",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BG",
-            "name": "Bulgaria",
-            "position": 7,
-            "movement": 0
-          },
-          {
-            "country": "IT",
-            "name": "Italy",
-            "position": 11,
-            "movement": 0
-          },
-          {
-            "country": "IE",
-            "name": "Ireland",
-            "position": 23,
-            "movement": 4
-          },
-          {
-            "country": "RO",
-            "name": "Romania",
-            "position": 57,
-            "movement": -5
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "IT",
-            "name": "Italy",
-            "position": 44,
-            "movement": -19
-          },
-          {
-            "country": "AM",
-            "name": "Armenia",
-            "position": 67,
-            "movement": -16
-          },
-          {
-            "country": "RO",
-            "name": "Romania",
-            "position": 148,
-            "movement": -116
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/c4c1696f82feac0a7fa1e26379b9f7e2/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "19 & Dangerous",
@@ -1744,6 +1670,61 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b922c719d3a9901f749140e8f532a8d0/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Wo, man",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BG",
+            "name": "Bulgaria",
+            "position": 7,
+            "movement": 0
+          },
+          {
+            "country": "IT",
+            "name": "Italy",
+            "position": 11,
+            "movement": 0
+          },
+          {
+            "country": "IE",
+            "name": "Ireland",
+            "position": 23,
+            "movement": 4
+          },
+          {
+            "country": "RO",
+            "name": "Romania",
+            "position": 57,
+            "movement": -5
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "IT",
+            "name": "Italy",
+            "position": 33,
+            "movement": 18
+          },
+          {
+            "country": "AM",
+            "name": "Armenia",
+            "position": 79,
+            "movement": -23
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/c4c1696f82feac0a7fa1e26379b9f7e2/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Last Heartbreak Song",
@@ -1830,14 +1811,15 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 15,
-            "movement": 149
+            "position": 21,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 28,
-            "movement": -13
+            "position": 34,
+            "movement": -10
           }
         ]
       }
@@ -1874,7 +1856,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 52,
+            "position": 77,
             "movement": null,
             "status": "new"
           }
@@ -1926,8 +1908,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 9,
-            "movement": -2
+            "position": 5,
+            "movement": 8
           }
         ]
       }
@@ -2128,8 +2110,8 @@
           {
             "country": "DM",
             "name": "Dominica",
-            "position": 37,
-            "movement": -11
+            "position": 38,
+            "movement": -1
           }
         ]
       }
