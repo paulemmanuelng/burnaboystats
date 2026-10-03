@@ -281,6 +281,7 @@ export const footerFor: Record<string, FooterVariant> = {
   "/records/tours": {
     links: [
       { href: "/records/tours/revenue", label: "Revenue" },
+      { href: "/records/tours/revenue/countries", label: "Box office by country" },
       { href: "/records/tours/festivals", label: "Festivals" },
       { href: "/records/tours/map", label: "Tour map" },
       { href: "/records/firsts", label: "Firsts" },
@@ -293,6 +294,16 @@ export const footerFor: Record<string, FooterVariant> = {
       { href: "/records/tours/festivals", label: "Festivals" },
       { href: "/records/africas-biggest", label: "Africa's Biggest" },
       { href: "/afrobeats", label: "The Afrobeats Board" },
+      { href: "/methodology", label: "Methodology" },
+    ],
+  },
+  "/records/tours/revenue/countries": {
+    note: "Box-office figures via Billboard Boxscore.",
+    links: [
+      { href: "/records/tours/revenue", label: "Revenue" },
+      { href: "/records/tours", label: "Tours" },
+      { href: "/records/tours/map", label: "Tour map" },
+      { href: "/records/africas-biggest", label: "Africa's Biggest" },
       { href: "/methodology", label: "Methodology" },
     ],
   },
