@@ -313,3 +313,19 @@
   text-align: center;
   box-shadow: 0 0 26px color-mix(in srgb, var(--gold-glow-base) 25%, transparent);
 }
+
+/* ── Highest-grossing artists by country — the way to the per-country board ────────────── */
+.linkRow { padding: 16px 18px 0; }
+/* The owner's label ("Highest-grossing artists by country →") is wider than a
+   390 phone's row, so it takes two lines: the pill grows to hold them (the
+   .btn pill is a fixed 46px tall) and the lines are centred and balanced. */
+.linkRow > a {
+  width: 100%;
+  height: auto;
+  min-height: 46px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  line-height: 1.35;
+  text-align: center;
+  text-wrap: balance;
+}

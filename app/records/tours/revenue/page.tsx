@@ -129,6 +129,9 @@ export default function RevenuePage() {
               {burnaShows > otherShows ? " — more than every other artist on this list combined" : ""}.
             </p>
             <div className={styles.heroBtns}>
+              <Link href="/records/tours/revenue/countries" className="btn btnPrimary">
+                Highest-grossing artists by country →
+              </Link>
               <Link href="/records/visualized#grosses" className="btn btnSecondary">
                 See the grosses visualised →
               </Link>
