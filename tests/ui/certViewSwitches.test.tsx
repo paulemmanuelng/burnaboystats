@@ -1,6 +1,7 @@
 import { render, screen, within, act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { renderToStaticMarkup } from "react-dom/server";
+import { readFileSync } from "node:fs";
 
 vi.mock("next/navigation", () => ({
   useRouter: () => ({ push: vi.fn(), prefetch: vi.fn(), replace: vi.fn(), back: vi.fn() }),
@@ -78,20 +79,33 @@ describe("Tyla's page: both switches in both layouts", () => {
       expect(b).toHaveAttribute("aria-checked", "true");
     // Owner, 3 Oct 2026: "this should only have internal and lead, since the
     // button below already has ALL" — each row holds exactly the two switches,
-    // the home country first, named in full, then compare's features switch
-    // in compare's words.
+    // in /compare's order (Paul, 3 Oct 2026: "same"): compare's features
+    // switch first, in compare's words, then the home country, named in full.
+    // /compare's own row is read below, so the two cannot drift apart.
     expect(rows()).toHaveLength(2);
     for (const r of rows()) {
       expect(within(r).queryAllByRole("button")).toHaveLength(0);
       expect(within(r).getAllByRole("switch").map((b) => b.textContent)).toEqual([
-        "South Africa: included",
         "Featured appearances: on · every plaque held",
+        "South Africa: included",
       ]);
-      expect(r.textContent).toMatch(/^South Africa/);
+      expect(r.textContent).toMatch(/^Featured appearances/);
       expect(r.textContent).toContain("FeaturesFeatured appearances: on");
       expect(r.textContent).not.toMatch(/\bSA\b|\bZA\b/);
     }
     expect(mobileH1().textContent).toMatch(/75awards24 countries/);
+  });
+
+  it("keeps /compare's own order: its controls row names Featured appearances before Nigeria", () => {
+    // Read from compare's markup, not restated: if compare's row is ever
+    // reordered, this fails and the two are put back in step.
+    const compare = readFileSync("app/compare/page.tsx", "utf8");
+    const row = compare.slice(compare.indexOf("className={styles.controls}"));
+    const feat = row.indexOf(">Featured appearances<");
+    const home = row.indexOf(">Nigeria<");
+    expect(feat).toBeGreaterThan(-1);
+    expect(home).toBeGreaterThan(-1);
+    expect(feat).toBeLessThan(home);
   });
 
   it("the switches speak their state as words once off", async () => {
@@ -99,8 +113,8 @@ describe("Tyla's page: both switches in both layouts", () => {
     await artist("tyla");
     for (const r of rows())
       expect(within(r).getAllByRole("switch").map((b) => [b.textContent, b.getAttribute("aria-checked")])).toEqual([
-        ["South Africa: left out", "false"],
         ["Featured appearances: off · lead credits only", "false"],
+        ["South Africa: left out", "false"],
       ]);
   });
 
@@ -226,7 +240,7 @@ describe("Burna Boy's /certifications", () => {
     const { container } = render(<CertificationsPage />);
     expect(switches(NG)).toHaveLength(2);
     expect(switches(FEAT)).toHaveLength(2);
-    expect(rows()[0].textContent).toMatch(/^Nigeria/);
+    for (const r of rows()) expect(r.textContent).toMatch(/^Featured appearances.*Nigeria/);
     const intl = certTotals(certsInScope(allItems, "NG", "intl"));
     expect(mobileH1().textContent).toContain(`${totalAwards()}awards${burnaCountries} countries`);
 

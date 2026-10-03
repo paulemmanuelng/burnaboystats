@@ -56,8 +56,11 @@ function holdInPlace(el: HTMLElement, flip: () => void) {
  * a muted bold mono NAME, then a 30×16 track with a knob — gold when on — and
  * the STATE beside it.
  *
- *   NIGERIA               [●—] included        / [—○] left out
  *   FEATURED APPEARANCES  [●—] on · every plaque held / [—○] off · lead credits only
+ *   NIGERIA               [●—] included        / [—○] left out
+ *
+ * In /compare's order: Featured appearances first, then the home country
+ * (Paul, 3 Oct 2026: "same" as compare).
  *
  * The home-country switch is named by the artist's own `country`, in full
  * ("the full country name is perfect") — "Nigeria" for Burna Boy and the
@@ -101,22 +104,6 @@ export default function CertViewSwitches({
   const featOn = view.credit === "all";
   return (
     <div className={`${s.controls} ${className ?? ""}`} role="group" aria-label="Which plaques count">
-      {offered.scope && (
-        <span className={s.control}>
-          <span className={s.controlName} aria-hidden="true">{homeName}</span>
-          <button
-            type="button"
-            role="switch"
-            aria-checked={homeOn}
-            className={`${s.switch} ${homeOn ? s.switchOn : ""}`}
-            onClick={(e) => flip(e, { scope: homeOn ? "intl" : "all" })}
-          >
-            <span className={`${s.dot} ${homeOn ? s.dotOn : ""}`} aria-hidden="true" />
-            <span className="visuallyHidden">{homeName}: </span>
-            {homeOn ? "included" : "left out"}
-          </button>
-        </span>
-      )}
       {offered.credit && (
         <span className={s.control}>
           <span className={s.controlName} aria-hidden="true">
@@ -133,6 +120,22 @@ export default function CertViewSwitches({
             <span className={`${s.dot} ${featOn ? s.dotOn : ""}`} aria-hidden="true" />
             <span className="visuallyHidden">Featured appearances: </span>
             {featOn ? "on · every plaque held" : "off · lead credits only"}
+          </button>
+        </span>
+      )}
+      {offered.scope && (
+        <span className={s.control}>
+          <span className={s.controlName} aria-hidden="true">{homeName}</span>
+          <button
+            type="button"
+            role="switch"
+            aria-checked={homeOn}
+            className={`${s.switch} ${homeOn ? s.switchOn : ""}`}
+            onClick={(e) => flip(e, { scope: homeOn ? "intl" : "all" })}
+          >
+            <span className={`${s.dot} ${homeOn ? s.dotOn : ""}`} aria-hidden="true" />
+            <span className="visuallyHidden">{homeName}: </span>
+            {homeOn ? "included" : "left out"}
           </button>
         </span>
       )}

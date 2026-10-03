@@ -221,6 +221,26 @@ describe("creditInScope: the board, from each release's own `kind`", () => {
     expect(titles(creditInScope(ola.releases, featuredTitles(ola), "lead"))).toContain("Trumpet (Olamide & CKay)");
   });
 
+  it("CKay keeps it too — a co-lead is a lead on both its leads' boards (owner, 3 Oct 2026: \"add it\")", () => {
+    // TurnTable bills it "Trumpet" — "Olamide & CKay": both main artists. It
+    // had been filed as CKay's guest spot; now titled as Olamide's row is, so
+    // the two boards name one record one way. His lead-only count: 26 → 27
+    // plaques on 7 → 8 releases (one NG Gold); internationally nothing moves.
+    const ckay = artistBySlug("ckay")!;
+    const lead = creditInScope(ckay.releases, featuredTitles(ckay), "lead");
+    expect(titles(lead)).toContain("Trumpet (Olamide & CKay)");
+    expect(ckay.releases.some((r) => r.title === "Trumpet")).toBe(false);
+    // Anchored on the published figures, not re-derived from the same filter.
+    expect(certTotals(lead)).toMatchObject({ total: 27, releases: 8, countries: 15 });
+    // /compare reads the same `kind` (certUnits' isFeature): with features off
+    // and Nigeria in, his Nigerian line holds 8 plaques, not 7.
+    const units = priceArtist(comparableArtists.find((a) => a.slug === "ckay")!, { includeFeatures: false, includeNigeria: true });
+    expect(units.nigeria.plaques).toBe(8);
+    // Seyi Vibez's own "Trumpet" stays his, and stays his lead.
+    const seyi = artistBySlug("seyi-vibez")!;
+    expect(seyi.releases.find((r) => r.title === "Trumpet")?.kind).toBe("Lead singles");
+  });
+
   it("every artist loses exactly the plaques filed under \"Featured appearances\"", () => {
     for (const a of afrobeatsArtists) {
       const guest = a.releases.filter((r) => r.kind === "Featured appearances");
