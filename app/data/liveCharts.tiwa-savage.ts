@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-03";
+  export const liveChartsUpdated = "2026-10-04";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-03T21:21Z";
+  export const liveChartsBuiltAt = "2026-10-04T12:26Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","iTunes"];
@@ -56,20 +56,40 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 71,
-            "movement": 7
+            "position": 74,
+            "movement": -3
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 126,
-            "movement": 0
+            "position": 145,
+            "movement": -19
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/bb3bf375aeed10455d2ce25b8411a7e8/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Let Dem Kno",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 59,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/805c82ccfac4462bf8b465c5ad9c7ca7/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Dorobucci",
@@ -81,14 +101,33 @@
           {
             "country": "NE",
             "name": "Niger",
-            "position": 9,
-            "movement": 0
+            "position": 10,
+            "movement": -1
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/70ea3139021b354895903f2ce4da79fd/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "This One Is Personal",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 159,
+            "movement": -98
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ce4277e03a5b88cc40761c56f24043ae/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Eminado",
@@ -109,25 +148,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/556df097d6c975617e593855e293e4e7/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "This One Is Personal",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 159,
-            "movement": -98
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ce4277e03a5b88cc40761c56f24043ae/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "No Wahala",
@@ -159,8 +179,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 139,
-            "movement": -17
+            "position": 158,
+            "movement": -30
           }
         ]
       }

@@ -19,6 +19,8 @@ You don't need them to do the work. They are there so the owner and Claude Code 
 
 ---
 
+> **Round 2, 4 Oct 2026:** the owner's review of your round-1 response — 36 numbered fixes and his rulings on your §12 questions — is in [ROUND-2-FIXES.md](ROUND-2-FIXES.md). Jobs 1 and 2 are being built from round 1 with fixes 1–19 applied; this round needs Job 3 and the portrait (fixes 20–36).
+
 ## 1. The ask
 
 The owner's bar, verbatim (3 Oct 2026): *"ensure the design for pages are extremely good, claude design should make the best, so the new gross pages have the best ui/ux"*.
@@ -735,6 +737,8 @@ Target: **one note, at most 5 lines at 390**, in a footnote style (labelled shor
 ---
 
 ## 6. Job 3: certifications phone density
+
+> **Add-on, 4 Oct 2026 (owner):** keep Burna Boy's portrait at the **top right of the certifications hero**, behind the type, on phone and desktop. The image and the live values are in [PORTRAIT-CERTS-HERO.md](PORTRAIT-CERTS-HERO.md) and [assets/burna-boy-portrait-640.jpg](assets/burna-boy-portrait-640.jpg).
 
 The phone certifications screen (`/certifications`, `MobileCerts`) and the same component on every `/afrobeats/<artist>` page. **Phone only**; the desktop certifications page is reference (§6.5). Keep every fact; make it scan. Full detail: [`pages.md`](research/pages.md) C1–D.
 
