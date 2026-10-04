@@ -165,3 +165,18 @@ One block per run of scripts/chartmasters-anchor.mjs — what was read, what was
 - edit: app/data/africasBiggest.ts: /* live:streams-2026-tems */ 1.891B" → 1.894B"
 - edit: app/data/africasBiggest.ts: /* live:streams-2026-burna */ 1.922B" → 1.925B"
 - edit: app/data/africasBiggest.ts: /* live:streams-2026-asake */ 1.546B" → 1.549B"
+
+## 2026-10-04
+
+- career total: offset 123,703,059 (ChartMasters through 2026-10-02 − kworb 2026-10-03); published 11,132,178,541 on kworb's 2026-10-03 page
+- burna-boy: 2026 ledger anchored at 1,932,625,867 through kworb's 2026-10-03 (was 1,939,397,596 through 2026-10-03)
+- wizkid: 2026 ledger anchored at 1,908,427,016 through kworb's 2026-10-03 (was 1,909,815,160 through 2026-10-03)
+- tems: 2026 ledger anchored at 1,899,624,709 through kworb's 2026-10-03 (was 1,905,096,086 through 2026-10-03)
+- asake: 2026 ledger anchored at 1,555,198,391 through kworb's 2026-10-03 (was 1,559,867,461 through 2026-10-03)
+- tyla: 2026 ledger anchored at 1,264,342,179 through kworb's 2026-10-03 (was 1,264,331,348 through 2026-10-03)
+- edit: app/data/streamingTotals.ts: "11.15B" → "11.13B"
+- edit: app/data/streamingTotals.ts: "11,146,240,432" → "11,132,178,541"
+- edit: app/data/africasBiggest.ts: /* live:streams-2026-tems */ 1.905B" → 1.900B"
+- edit: app/data/africasBiggest.ts: /* live:streams-2026-wizkid */ 1.910B" → 1.908B"
+- edit: app/data/africasBiggest.ts: /* live:streams-2026-burna */ 1.939B" → 1.933B"
+- edit: app/data/africasBiggest.ts: /* live:streams-2026-asake */ 1.560B" → 1.555B"

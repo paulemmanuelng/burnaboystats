@@ -19,23 +19,31 @@
 // to kworb's raw sum before writing this string. Never hand-edit either string —
 // the next bot run overwrites it. To move the figure, move the offset.
 //
-// CURRENT ANCHOR — 4 Oct 2026, a plain run on a DIRECT read of ChartMasters'
-// Playcounts Tool (Paul's account, the site's own browser; Paul opened each
-// page, since chartmasters.org's robots.txt bars the tool's ?-URLs for
-// automated visitors):
+// CURRENT ANCHOR — 4 Oct 2026 (second read that day), a plain run on a DIRECT
+// read of ChartMasters' Playcounts Tool (Paul's account, the site's own
+// browser; Paul opened each page, since chartmasters.org's robots.txt bars the
+// tool's ?-URLs for automated visitors):
 //
-//     ChartMasters through 1 Oct    11,124,582,426
-//     kworb raw, page 2026/10/02    10,986,817,476
-//     offset                           137,764,950
+//     ChartMasters through 2 Oct    11,132,178,541
+//     kworb raw, page 2026/10/03    11,008,475,482
+//     offset                           123,703,059
 //
 // ChartMasters' day N pairs with kworb's page stamped N+1 (kworb stamps a page
-// with the day it was built). This is the same-date pair the 2 Oct anchor
-// below was waiting for: kworb had skipped its 1 Oct Burna page, so the 2 Oct
-// anchor published ChartMasters through 30 Sep directly. ChartMasters' 1 Oct
-// day is complete — its step from 30 Sep (+7,353,484) is the page's own
-// TODAY figure (7.6m), and LAST 7 DAYS reads +46.5m.
-// docs/sourcing/chartmasters/reads/2026-10-04.json.
+// with the day it was built). Why a second read: kworb had skipped its 1 Oct
+// page, so its 3 Oct build's daily column carried TWO days (1 + 2 Oct) for
+// Burna, Tems and Asake — Burna's read 14,367,844 against ChartMasters'
+// 7,596,115 for 2 Oct — and the ledgers added both on top of the first 4 Oct
+// anchor, which already held 1 Oct: Burna's 2026 total ran 6,771,729 high. The
+// same build's raw sum rose 21,658,006 (a title came back), which is the offset's
+// -14,061,891 move. ChartMasters' 2 Oct day is complete on every page (each
+// 1 → 2 Oct step equals the Total row's daily column), and Burna, Wizkid and
+// Tems match @theowensblock's 2 Oct table to the unit.
+// docs/sourcing/chartmasters/reads/2026-10-04b.json.
 // CAREER_STREAMS_ANCHOR_READ_ON below carries the date.
+//
+// The first 4 Oct read: ChartMasters through 1 Oct 11,124,582,426 against
+// kworb's 2 Oct page (raw 10,986,817,476), offset 137,764,950.
+// docs/sourcing/chartmasters/reads/2026-10-04.json.
 //
 // The previous anchor, 2 Oct 2026, published with --kworb-frozen:
 // ChartMasters through 30 Sep 11,117,228,942 against kworb's 2 Oct page as
@@ -62,6 +70,9 @@
 //     23 Sep  114,858,823  through 21 Sep ↔ page 09/22, kworb moving again
 //     25 Sep  141,218,212  through 23 Sep ↔ page 09/24, a title left kworb's list
 //     30 Sep  117,380,830  through 28 Sep ↔ page 09/29 (above)
+//      2 Oct  130,411,466  --kworb-frozen on ChartMasters through 30 Sep (above)
+//      4 Oct  137,764,950  through 1 Oct ↔ page 10/02, a title left kworb's list
+//      4 Oct  123,703,059  through 2 Oct ↔ page 10/03, the title came back (above)
 //
 // Full table in scripts/watched-metrics.json; the method, and the evidence for
 // the reads up to 17 Sep, in docs/sourcing/CAREER-STREAMS-OFFSET.md.
@@ -98,7 +109,7 @@
 // published figure.
 //
 // Method and full evidence: docs/sourcing/CAREER-STREAMS-OFFSET.md.
-export const spotifyTotalStreams = "11.15B";
+export const spotifyTotalStreams = "11.13B";
 
 /**
  * The day ChartMasters' Playcounts Tool was last read to anchor the offset —
@@ -112,7 +123,9 @@ export const spotifyTotalStreams = "11.15B";
  * kworb skipped its 1 Oct page and its 2 Oct page lost a title, so ChartMasters
  * through 30 Sep was published directly (--kworb-frozen), offset 130,411,466.
  * 4 Oct 2026: the ChartMasters-1 Oct ↔ kworb-2 Oct pair it was waiting for
- * re-measured it at 137,764,950 (plain run).
+ * re-measured it at 137,764,950 (plain run); a second read the same day, on the
+ * ChartMasters-2 Oct ↔ kworb-3 Oct pair, re-measured it at 123,703,059 after
+ * kworb's 3 Oct build carried two days and a returning title.
  * /methodology prints this date; it still said "17 September"
  * after four newer reads. Move it with every anchor read, and
  * tests/siteDebugWording.test.ts holds it to the newest read on file.
@@ -127,7 +140,7 @@ export const CAREER_STREAMS_ANCHOR_READ_ON = "2026-10-04";
 // and rounding the one live input forced its derived figures to be rounded too.
 // Both are written by the SAME metric on the same daily run, so they cannot
 // disagree with each other.
-export const spotifyTotalStreamsExact = "11,146,240,432";
+export const spotifyTotalStreamsExact = "11,132,178,541";
 
 // Every video on Burna Boy's own YouTube channel — the total its about page
 // prints for that channel alone, not his videos on other artists' channels.
