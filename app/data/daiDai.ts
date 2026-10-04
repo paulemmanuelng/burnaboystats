@@ -65,9 +65,24 @@ export const DAI_DAI_1B_RANK_ES = `${daiDaiBillionRank}.º${daiDaiBillionTied ? 
 export const DAI_DAI_SPOTIFY_DEBUT = "2026-05-15"; // entered at No. 114 on release day, Friday 15 May
 /**
  * Spotify's OWN columns, read off the Daily Top Songs Global chart dated
- * 20 Sep 2026 (charts.spotify.com, read 21 Sep — the chart page opens without
- * a login): Dai Dai — No. 11, Prev 7, Peak 1, **Streak 122**, 2,433,811
- * streams, and in the expanded row **Total days on chart 123**, first entry
+ * 3 Oct 2026: Dai Dai — No. 10, Prev 25, Peak 1, **Streak 135**, 2,652,451
+ * streams. Read on 4 Oct 2026 from Spotify Charts' own table as it appears in
+ * the screenshot Paul sent of @WITTIEWIZ's post about that chart — the dated
+ * screenshot of Spotify's own UI that tests/spotifyRun.test.ts names as a
+ * read. kworb.net's copy of the same chart (global_daily.html, "Global -
+ * 2026/10/03") prints the same row to the stream: No. 10, +15, Days 136,
+ * Pk 1 (x37), 2,652,451.
+ *
+ * **Total days on chart 136** is NOT in that screenshot (the expanded row is
+ * not shown), so it is not a body read; it is forced by one. Spotify's own
+ * expanded row said 123 on the 20 Sep chart, and its Streak column has run
+ * unbroken from 122 to 135 since, so all 13 charts in between count:
+ * 123 + 13 = 136. kworb's Days column (global_daily_totals.html, 136) is the
+ * independent check, so DAYS_OFF still has an anchor outside this file.
+ *
+ * The read before it, 20 Sep 2026 (charts.spotify.com, read 21 Sep — the
+ * chart page opens without a login): No. 11, Prev 7, Peak 1, Streak 122,
+ * 2,433,811 streams, and in the expanded row Total days on chart 123, first entry
  * 15 May 2026 at No. 114, release 14 May 2026 (Spotify prints the day before
  * for a Friday drop; the song was released on Friday 15 May, the date of
  * Billboard's release story). The 19 Sep chart, read the
@@ -84,16 +99,16 @@ export const DAI_DAI_SPOTIFY_DEBUT = "2026-05-15"; // entered at No. 114 on rele
  * number nothing on this side could check.
  */
 export const DAI_DAI_SPOTIFY_BODY_READ = {
-  date: "2026-09-20",
-  streak: 122,
-  totalDaysOnChart: 123,
+  date: "2026-10-03",
+  streak: 135,
+  totalDaysOnChart: 136,
   debutPosition: 114,
   /** The row's own Peak column on that chart: "Peak 1". The story's chapter
    *  06 figure prints it rather than typing "No. 1". */
   peak: 1,
 } as const;
-export const DAI_DAI_SPOTIFY_STREAK_SINCE = "2026-05-22"; // 122 days back from the 20 Sep body read
-export const DAI_DAI_SPOTIFY_CONFIRMED_THROUGH = "2026-09-20";
+export const DAI_DAI_SPOTIFY_STREAK_SINCE = "2026-05-22"; // 135 days back from the 3 Oct body read (122 from the 20 Sep one)
+export const DAI_DAI_SPOTIFY_CONFIRMED_THROUGH = "2026-10-03";
 /**
  * Days it has dropped off the chart, ever. SIX, all of them in 16-21 May.
  *
@@ -156,9 +171,19 @@ export const daiDaiSpotifyDaysOnChart =
  * 10–14 Jul; 17–30 Jul; 7–16 Aug; 21–22 Aug — and not at No. 1 on any chart
  * from 23 Aug (No. 2, Prev 1) to 13 Sep (No. 9). The feed's 37 stands, now
  * read at the body and confirmed through the 13 Sep chart.
+ *
+ * Carried to the 3 Oct chart on 4 Oct 2026. That chart has it at No. 10,
+ * Prev 25 (Spotify's own table, in the screenshot behind BODY_READ). The twelve
+ * charts before it, 21 Sep–2 Oct, are read day by day off kworb's history of
+ * the song (kworb.net/spotify/track/0kosUz0jePvjiz4ctmR6wL.html, robots: Allow
+ * /): 24, 26, 23, 23, 23, 14, 20, 31, 31, 28, 27, 25. So it was never at No. 1
+ * and never inside the Top 10 between the 20 Sep stamp and 3 Oct, and
+ * global_daily_totals still prints "Pk 1 (x37)". That history matches every
+ * September chart read at charts.spotify.com to the stream (7, 13, 14, 15,
+ * 19 and 20 Sep), which is what makes it usable for the gap. The 37 stands.
  */
 export const DAI_DAI_SPOTIFY_NO1_DAYS = 37;
-export const DAI_DAI_SPOTIFY_NO1_DAYS_AS_OF = "2026-09-20"; // 20 Sep chart: No. 11 (19 Sep: No. 7) — the 37 stands
+export const DAI_DAI_SPOTIFY_NO1_DAYS_AS_OF = "2026-10-03"; // 3 Oct chart: No. 10; 21 Sep–2 Oct no higher than No. 14 — the 37 stands
 export const DAI_DAI_SPOTIFY_NO1_FIRST_DAY = "2026-06-30";
 export const DAI_DAI_SPOTIFY_NO1_LAST_DAY = "2026-08-22";
 
@@ -220,8 +245,16 @@ export const DAI_DAI_SPOTIFY_NO1_ENDED_SEEN_ON = "2026-09-09";
 // so the count stops at 84 and the stamp at that chart. The charts in between
 // (16–18 Sep: 20, 20, 15) added nothing: 83 through the 15 Sep chart, 84
 // through the 19th.
-export const DAI_DAI_SPOTIFY_TOP10_DAYS = 84;
-export const DAI_DAI_SPOTIFY_TOP10_DAYS_AS_OF = "2026-09-20";
+// 85th on the chart dated 3 Oct 2026: No. 10 (Prev 25), 2,652,451 streams,
+// read on 4 Oct off Spotify Charts' own table in the screenshot Paul sent of
+// @WITTIEWIZ's post of that chart (whose text also says 85). Out of the Top 10
+// for the thirteen charts before it: 20 Sep No. 11, then 21 Sep–2 Oct 24, 26,
+// 23, 23, 23, 14, 20, 31, 31, 28, 27, 25 (kworb's day-by-day history of the
+// song). kworb's global_daily_totals T10 column reads 85 through the 3 Oct
+// chart: the independent check, as it was for the 72. 84 through the 19th,
+// 85 through 3 Oct.
+export const DAI_DAI_SPOTIFY_TOP10_DAYS = 85;
+export const DAI_DAI_SPOTIFY_TOP10_DAYS_AS_OF = "2026-10-03";
 
 const longDate = (iso: string, locale: "en-GB" | "es-ES") =>
   new Date(`${iso}T12:00:00Z`).toLocaleDateString(locale, {
