@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-03";
+  export const liveChartsUpdated = "2026-10-04";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-03T21:20Z";
+  export const liveChartsBuiltAt = "2026-10-04T12:26Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify Albums","YouTube","iTunes"];
@@ -82,6 +82,13 @@
             "name": "Nigeria",
             "position": 87,
             "movement": -1
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 99,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "ML",
@@ -222,7 +229,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 121,
-            "movement": 1
+            "movement": 5
           }
         ]
       }
@@ -265,8 +272,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 37,
-            "movement": -24
+            "position": 53,
+            "movement": -28
           }
         ]
       }
@@ -308,8 +315,41 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 18,
-            "movement": 0
+            "position": 12,
+            "movement": 6
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Love Again",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 21,
+            "movement": -1
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 89,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 156,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -339,8 +379,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 113,
-            "movement": -25
+            "position": 132,
+            "movement": -31
           }
         ]
       },
@@ -351,8 +391,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 111,
-            "movement": -16
+            "position": 105,
+            "movement": 6
           }
         ]
       }
@@ -389,8 +429,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 146,
-            "movement": -18
+            "position": 163,
+            "movement": -17
           }
         ]
       }
@@ -408,14 +448,14 @@
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
-            "position": 69,
-            "movement": 5
+            "position": 73,
+            "movement": -4
           },
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 77,
-            "movement": 18
+            "position": 76,
+            "movement": 1
           }
         ]
       },
@@ -457,34 +497,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 31,
-            "movement": -7
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Love Again",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 21,
-            "movement": -1
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 156,
-            "movement": null,
-            "status": "new"
+            "position": 34,
+            "movement": -3
           }
         ]
       }
@@ -570,6 +584,37 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Fallen Angel",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 161,
+            "movement": -4
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 9,
+            "movement": 120
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5e469a94aaac1c27a9d16e02246a73ab/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Lomo Lomo",
     "platforms": [
       {
@@ -592,45 +637,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 30,
-            "movement": -23
+            "position": 46,
+            "movement": -28
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b2293fec5dd0786bef0c480cde3222bc/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Fallen Angel",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 161,
-            "movement": -4
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 140,
-            "movement": -21
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5e469a94aaac1c27a9d16e02246a73ab/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Run Around",
@@ -644,18 +658,6 @@
             "name": "Ghana",
             "position": 24,
             "movement": -1
-          }
-        ]
-      },
-      {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 2,
-            "movement": 4
           }
         ]
       }
@@ -759,6 +761,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/9e217d2c845c86a0395cedfcd893d0b2/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "One - A COLORS SHOW",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 18,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5f34f6057f3322363d87f32b3d69003a/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Jesus Christ 2",
     "platforms": [
       {
@@ -789,25 +811,6 @@
             "name": "Ghana",
             "position": 109,
             "movement": 7
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Changes",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 49,
-            "movement": -24
           }
         ]
       }
@@ -892,6 +895,25 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Changes",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 67,
+            "movement": -30
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Letter From Overseas",
     "platforms": [
       {
@@ -909,25 +931,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/764cdb8fb8fe73e0483e557df8111d86/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Outside",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 117,
-            "movement": 14
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ff0af89993ed3eb05eb36210fa9c21ad/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "One",
@@ -1005,6 +1008,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Outside",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 157,
+            "movement": -40
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ff0af89993ed3eb05eb36210fa9c21ad/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Amazing Grace",

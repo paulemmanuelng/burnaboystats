@@ -24,7 +24,7 @@
 | Europe | 🇫🇷 France | 2 (117, 162) | 1 (401) | — | 1 · 1 | 2021–2025 | Stade de France 2025, 43,881 (tourRevenue.ts:32) | shape |  |
 | Europe | 🇳🇱 Netherlands | 3 (165–166, 198) | 1 (371) | — | 2 · 2 | 2019–2026 | not reported (the Ziggo Dome 2022 gross, 17,000, was held off the board 3 Oct 2026 until a Billboard Boxscore or Pollstar report is found) | shape |  |
 | Europe | 🇧🇪 Belgium | 3 (70, 105, 197) | 0 | — | 2 · 2 | 2019–2026 | Sportpaleis 2023, 8,266 (tourRevenue.ts:67) | shape |  |
-| Europe | 🇮🇪 Ireland | 0 | 0 | — | 0 · 0 | 2022 | not reported | shape | **known only from the map's own events list** (performedCountries.ts:64: “3Arena, Dublin (Mar & Dec 2022)”) |
+| Europe | 🇮🇪 Ireland | 1 (Space Drift, Mar 17, 2022 — added 4 Oct 2026) | 0 | — | 1 · 1 | 2022 | 3Arena 2022, 7,504 (tourRevenue.ts, added 3 Oct 2026) | shape | was known only from the map's own events list (performedCountries.ts: “3Arena, Dublin (Mar & Dec 2022)”), whose December night is not a tour date here |
 | Europe | 🇪🇸 Spain | 0 | 2 (400, 436) | — | 0 · 2 | 2025–2026 | not reported | shape |  |
 | Europe | 🇮🇹 Italy | 0 | 1 (437) | — | 0 · 1 | 2020 | not reported | shape |  |
 | Europe | 🇩🇪 Germany | 5 (103–104, 123, 127, 199) | 3 (402, 405, 420) | — | 2 · 3 | 2019–2025 | Lanxess Arena 2023, 14,260 (tourRevenue.ts:41) | shape |  |
@@ -63,13 +63,13 @@
 | Region | Countries | Dots | Dated tour shows | Festival / one-off rows | Countries with a dated show |
 |---|---|---|---|---|---|
 | Africa | 19 | 1 | 1 | 15 | 1 |
-| Europe | 19 | 1 | 28 | 25 | 8 |
+| Europe | 19 | 1 | 29 | 25 | 9 |
 | Asia | 1 | 0 | 0 | 1 | 0 |
 | North America | 3 | 0 | 64 | 7 | 2 |
 | South America | 3 | 0 | 0 | 3 | 0 |
 | Caribbean | 10 | 6 | 1 | 7 | 1 |
 | Oceania | 2 | 0 | 4 | 1 | 1 |
-| **Total** | **57** | **8** | **98** | **59** | **13** |
+| **Total** | **57** | **8** | **99** | **59** | **14** |
 
 ## tours
 | Tour (years) | Dated shows | Countries | Cities | First – last date | tours.ts lines |
@@ -77,7 +77,7 @@
 | No Sign of Weakness Tour | 22 | 7 | 21 | Oct 16, 2025 – Jan 23, 2026 | 49–70 |
 | I Told Them… Tour | 24 | 6 | 20 | Nov 3, 2023 – Aug 15, 2025 | 90–93, 101–118, 123, 127 |
 | Love, Damini Tour | 15 | 5 | 15 | Jul 17, 2022 – Jul 8, 2023 | 137–151 |
-| Space Drift World Tour | 8 | 6 | 8 | Aug 27, 2021 – Apr 28, 2022 | 160–167 |
+| Space Drift World Tour | 9 | 7 | 9 | Aug 27, 2021 – Apr 28, 2022 | 160–167 |
 | African Giant Tour | 19 | 6 | 19 | Apr 1, 2019 – Nov 9, 2019 | 178, 182–184, 188–202 |
 | Life on the Outside Tour | 10 | 2 | 10 | May 30, 2018 – Oct 25, 2018 | 211, 216–217, 224, 229–231, 238–240 |
 

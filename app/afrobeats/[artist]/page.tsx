@@ -587,8 +587,10 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
           </div>
           <div className={styles.compareCell}>
             <span className={styles.compareName}>{rival.name}</span>
-            {/* Gold marks Burna, and only Burna. Two board artists are peers
-                here, so neither cell gets to be the headline. */}
+            {/* Gold marks Burna, and only Burna, IN THIS COMPARISON — a mixed
+                pair. Two board artists are peers here, so neither cell gets to
+                be the headline. The page's own lead card above is its subject's
+                and stays gold (Paul, 4 Oct 2026; tests/goldMarksHisRows.test.ts). */}
             <span className={rival.isBurna ? `${styles.compareValue} ${styles.compareGold}` : styles.compareValue}>
               {rival.total}
             </span>

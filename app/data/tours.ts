@@ -159,6 +159,15 @@ export const tours: Tour[] = [
       { date: "Oct 8, 2021", venue: "Hollywood Bowl", city: "Los Angeles", country: "USA", cap: 17500 },
       { date: "Nov 10, 2021", venue: "Accor Arena", city: "Paris", country: "France", cap: 20300 },
       { date: "Dec 27, 2021", venue: "Eko Convention Centre (The Live Experience)", city: "Lagos", country: "Nigeria" },
+      // Added 4 Oct 2026 (owner's ruling on bo-08). Date: setlist.fm's 3Arena
+      // set of 17 Mar 2022; the night's box office is TouringData's SPACE DRIFT
+      // post of 27 May 2022 (7,504 tickets, 94.92%, $378,802 — the row in
+      // tourRevenue.ts, which says why it is the March night). Cap is the
+      // venue's listed capacity with standing, 13,000 (9,300 seated), like
+      // every other cap here; TD's 94.92% describes that night's own layout.
+      // His second 3Arena night, 4 Dec 2022, belongs to the Love, Damini run,
+      // whose dates below do not list it yet.
+      { date: "Mar 17, 2022", venue: "3Arena", city: "Dublin", country: "Ireland", cap: 13000 },
       { date: "Mar 18, 2022", venue: "Geneva Arena", city: "Geneva", country: "Switzerland", cap: 9500 },
       { date: "Apr 12, 2022", venue: "Rotterdam Ahoy", city: "Rotterdam", country: "Netherlands", cap: 16000 },
       { date: "Apr 14, 2022", venue: "Ziggo Dome", city: "Amsterdam", country: "Netherlands", cap: 17000 },

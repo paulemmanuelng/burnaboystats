@@ -157,6 +157,12 @@
 .numGrid > :last-child:nth-child(6n + 4) { grid-column: span 3; }
 .numGrid > :last-child:nth-child(6n + 5) { grid-column: span 2; }
 .numCard { background: var(--bg); padding: 20px 18px 16px; }
+/* The page's SUBJECT's own headline figure stays gold (Paul, 4 Oct 2026, on
+   c6 / tyla-totals-10: "should gold stay Burna-only there too? — no, do what's
+   best"). The Burna-only gold rule governs MIXED lists — board rows, ranks,
+   leaders, comparisons (see .compareGold below and
+   tests/goldMarksHisRows.test.ts); on an artist's own page the lead card is
+   that artist's, the way Burna's is on his. Do not "fix" this to --text. */
 .numLead .numValue { color: var(--gold); }
 .numValue {
   display: block;
