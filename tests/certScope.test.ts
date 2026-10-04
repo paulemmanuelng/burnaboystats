@@ -182,12 +182,14 @@ describe("creditInScope: Burna Boy", () => {
   // Pinned on 3 Oct 2026 against the data on main (the brief's 248 / 171 was
   // one plaque behind: the ledger holds 249). A new plaque moves these — re-read
   // the data and update them, never loosen them to a range.
-  it("249 plaques in all; 172 as lead artist; the 77 on his 24 featured appearances hidden", () => {
+  // 4 Oct 2026: 249 -> 250 and 172 -> 173 — "Dai Dai" Denmark Gold (Hitlisten,
+  // IFPI Danmark's own chart), on a lead release; Denmark was already counted.
+  it("250 plaques in all; 173 as lead artist; the 77 on his 24 featured appearances hidden", () => {
     const lead = creditInScope(allItems, burnaFeatured, "lead");
-    expect(totalAwards()).toBe(249);
+    expect(totalAwards()).toBe(250);
     expect(plaques(features)).toBe(77);
     expect(features).toHaveLength(24);
-    expect(certTotals(lead).total).toBe(172);
+    expect(certTotals(lead).total).toBe(173);
     expect(certTotals(lead).total).toBe(totalAwards() - plaques(features));
     // The lead view is exactly his albums and singles, in order.
     expect(titles(lead)).toEqual(titles([...albums, ...singles]));
@@ -266,10 +268,10 @@ describe("certsInView: the two switches compose", () => {
     const t = certTotals(both);
     const lead = [...albums, ...singles];
     expect(t.total).toBe(plaques(lead) - homeRows(lead, "NG"));
-    expect([t.total, t.countries]).toEqual([111, 23]);
+    expect([t.total, t.countries]).toEqual([112, 23]);
     expect(both.flatMap((r) => r.certs).some((c) => c.c === "NG")).toBe(false);
     expect(titles(both).some((x) => burnaFeatured.has(x))).toBe(false);
-    expect(certCountPhrase(t.total, t.countries, BOTH)).toBe("111 international certifications as lead artist across 23 countries");
+    expect(certCountPhrase(t.total, t.countries, BOTH)).toBe("112 international certifications as lead artist across 23 countries");
     // The order does not matter.
     expect(certsInScope(creditInScope(allItems, burnaFeatured, "lead"), "NG", "intl")).toEqual(both);
   });
@@ -372,6 +374,8 @@ describe("the Lead switch counts exactly what /compare counts with lead credits 
 
 // ── Every view, pinned (re-read from the data on main after #401/#402) ─────
 // Re-derived 3 Oct 2026 after #402 added Tyla's "Chanel" ZA Gold (74 -> 75).
+// 4 Oct 2026: Burna Boy +1 in every view — "Dai Dai" Denmark Gold (a lead
+// release, an international plaque, a country he already held).
 // Exact figures, one row per artist: [plaques, countries] in each of the four
 // views. A new plaque moves these — re-read the data and update them, never
 // loosen them to a range. Each total is also recounted by a raw loop over the
@@ -380,7 +384,7 @@ describe("the Lead switch counts exactly what /compare counts with lead credits 
 describe("every view, pinned per artist", () => {
   type Pin = { all: [number, number]; homeOff: [number, number]; featOff: [number, number]; bothOff: [number, number] };
   const PINS: Record<string, Pin> = {
-    "burna-boy": { all: [249, 26], homeOff: [177, 25], featOff: [172, 24], bothOff: [111, 23] },
+    "burna-boy": { all: [250, 26], homeOff: [178, 25], featOff: [173, 24], bothOff: [112, 23] },
     tyla: { all: [75, 24], homeOff: [65, 23], featOff: [74, 24], bothOff: [64, 23] },
     wizkid: { all: [159, 21], homeOff: [88, 20], featOff: [97, 9], bothOff: [47, 8] },
     olamide: { all: [54, 2], homeOff: [2, 1], featOff: [48, 2], bothOff: [2, 1] },
