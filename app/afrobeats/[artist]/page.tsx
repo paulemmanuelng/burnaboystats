@@ -35,13 +35,14 @@ import {
   offRegisterHold,
   certProvenance,
   type Tier,
+  AFROBEATS_LAST_FULL_SWEEP,
 } from "../../data/afrobeats";
 import { LIVE_CADENCE_ADVERB } from "../../lib/liveChartMeta";
 import { tierWord } from "../../lib/awardName";
 import CertViewSwap from "../../components/CertViewSwap";
 import { featuredTitlesOf } from "../../lib/certUnits";
 import {
-  ALL_VIEW, certsInView, creditSwitchable, homeCodeFor, scopeSwitchable, viewKey, viewNoun, viewsOffered,
+  ALL_VIEW, certsInView, creditSwitchable, emptyViewSentence, homeCodeFor, scopeSwitchable, viewKey, viewNoun, viewsOffered,
   type CertView, type CertViewKey,
 } from "../../lib/certScope";
 
@@ -104,6 +105,14 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
   // One formatted date for both layouts — the phone's lede carried none until
   // 17 Sep 2026 while the desktop printed it in the provenance line.
   const verifiedLong = new Date(`${a.verifiedOn}T12:00:00Z`).toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  });
+  // "Re-read at every register" dates from the last FULL sweep, not from
+  // verifiedOn, which a partial read moves (debug pass, 3 Oct 2026).
+  const fullSweepLong = new Date(`${AFROBEATS_LAST_FULL_SWEEP}T12:00:00Z`).toLocaleDateString("en-GB", {
     day: "numeric",
     month: "long",
     year: "numeric",
@@ -212,10 +221,14 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
     features: mobileReleases.filter((_, idx) => a.releases[idx].kind === "Featured appearances"),
   };
 
-  // The phone's hero sentence, for either view — it states the totals.
+  // The phone's hero sentence, for either view — it states the totals. The
+  // bracket says "except": it lists the plaques that are NOT register rows,
+  // and read as a gloss on "read in the register" without it (debug pass,
+  // 3 Oct 2026); "1 certified releases" counted like the countries beside it.
   function mobileLede(x: AfroArtist, view: CertView) {
+    if (certCount(x) === 0) return emptyViewSentence(a!.name, view, a!.country);
     const offRegisterShort = offRegisterPhrase(x, "short");
-    return `Every ${view.scope === "intl" ? "international " : ""}${a!.name} plaque${view.credit === "lead" ? " on a lead credit" : ""}, read in the issuing body's own register${offRegisterShort ? ` (${offRegisterShort})` : ""} — ${certCount(x)} across ${count(countryCount(x), "country", "countries")}, from ${x.releases.length} certified releases. Last verified ${verifiedLong}.`;
+    return `Every ${view.scope === "intl" ? "international " : ""}${a!.name} plaque${view.credit === "lead" ? " on a lead credit" : ""}, read in the issuing body's own register${offRegisterShort ? ` (except ${offRegisterShort})` : ""} — ${certCount(x)} across ${count(countryCount(x), "country", "countries")}, from ${count(x.releases.length, "certified release", "certified releases")}. Last verified ${verifiedLong}.`;
   }
 
   // "By the numbers" — the cards and the provenance line under them, for either
@@ -224,6 +237,9 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
     const n = certCount(x);
     const k = countryCount(x);
     const offRegisterX = offRegisterPhrase(x);
+    // A view that holds nothing: one sentence, not two 0 cards (and the
+    // strip below draws nothing either).
+    if (n === 0) return <p className={styles.provenance}>{emptyViewSentence(a!.name, view, a!.country)}</p>;
     return (
       <>
         <div className={styles.numGrid}>
@@ -261,6 +277,9 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
   // "Where the plaques are" — the count and the strip, for either view.
   function strip(x: AfroArtist) {
     const k = countryCount(x);
+    // Empty view: the sentence in the headline's place says it (see headline).
+    // A fragment, not null: CertViewSwap falls back to the all-view on null.
+    if (k === 0) return <></>;
     return (
       <>
         <div className={styles.sectionHead}>
@@ -585,8 +604,8 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
               was. */}
           {scoped((_x, v) => (viewKey(v) === "all" ? null : <>Every plaque held: the switches above do not narrow this pair.{" "}</>))}
           {rival.isBurna
-            ? `Burna Boy's figures update daily; this board was last re-read at every register on ${verifiedLong}.`
-            : `Both are read at source; this board was last re-read at every register on ${verifiedLong}.`}{" "}
+            ? `Burna Boy's figures update daily; this board was last re-read at every register on ${fullSweepLong}.`
+            : `Both are read at source; this board was last re-read at every register on ${fullSweepLong}.`}{" "}
           <Link href={rival.href}>{rival.name}&apos;s page ↗</Link>
         </p>
         {/* Every head-to-head page this artist is on, by its own URL — the

@@ -683,8 +683,12 @@ export const features: Release[] = [
   // is Gold / Platinum / Double / Multi and its register (read 17 Sep 2026)
   // holds no row for this title, so 19× = 390,000 ÷ the pre-2024 Platinum of
   // 20,000; /compare prices it at today's 40,000 under the ‡ rule.
+  // `body` names the ISSUER (debug pass, 3 Oct 2026): without it the CSV, the
+  // API and the methodology called this a RiSA register row. Spelled as the
+  // board spells Tyla's and Tems's plaques from the same label. Not a priced
+  // programme, so it still prices at RiSA's levels (certUnits.programOf).
   { title: "All Eyes on Me", credit: "AKA ft. Burna Boy, Da L.E.S & JR", year: 2014, cover: "https://cdn-images.dzcdn.net/images/cover/51a425dcf87f37e33159744d5685471d/500x500-000000-80-0-0.jpg", certs: [
-    { c: "ZA", level: "Platinum", x: 19 },
+    { c: "ZA", level: "Platinum", x: 19, body: "Sony Music Africa" },
   ] },
 ];
 

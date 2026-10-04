@@ -64,7 +64,7 @@ import {
   CERTS_VERIFIED_ON,
   type Tier,
 } from "../data/certifications";
-import { afrobeatsArtists, BURNA } from "../data/afrobeats";
+import { afrobeatsArtists, BURNA, AFROBEATS_LAST_FULL_SWEEP } from "../data/afrobeats";
 import { albums as albumArt } from "../data/albums";
 import { songs } from "../data/songs";
 import { coverFor } from "./covers";
@@ -96,9 +96,15 @@ export interface ComparableArtist {
   image: string;
   /** Where this artist's own ledger lives. */
   href: string;
-  /** The last day every register behind this ledger was read (ISO). A pair page
-   *  prints both sides' dates and stamps its Dataset with the newer. */
+  /** The last day this ledger was verified (ISO) — moves on a partial read
+   *  too. A pair page stamps its Dataset with the newer of the two. */
   verifiedOn: string;
+  /** The last day EVERY register behind this ledger was read (ISO): Burna
+   *  Boy's own date, and for the board its last full sweep. A pair page's
+   *  "registers read" line prints these, not `verifiedOn` (3 Oct 2026: Tyla's
+   *  verifiedOn moved on a photo and a post, and the line said "both registers
+   *  read 3 October 2026"). */
+  registersReadOn: string;
   releases: ComparableRelease[];
 }
 
@@ -148,6 +154,7 @@ const burna: ComparableArtist = {
   image: BURNA.image,
   href: BURNA.href,
   verifiedOn: CERTS_VERIFIED_ON,
+  registersReadOn: CERTS_VERIFIED_ON,
   releases: [
     ...burnaAlbums.map((r) => ({ ...r, format: "album" as const, isFeature: false })),
     ...burnaSingles.map((r) => ({ ...r, format: "single" as const, isFeature: false })),
@@ -170,6 +177,7 @@ export const comparableArtists: ComparableArtist[] = [
     image: a.image,
     href: `/afrobeats/${a.slug}`,
     verifiedOn: a.verifiedOn,
+    registersReadOn: AFROBEATS_LAST_FULL_SWEEP,
     releases: a.releases.map((r) => ({
       title: r.title,
       format: (r.kind === "Albums" ? "album" : "single") as CertFormat,

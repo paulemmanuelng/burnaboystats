@@ -718,6 +718,10 @@
   font-size: 9px;
   letter-spacing: 0.04em;
   line-height: 1;
+  /* Full strength: at 9px the programme marker's fade put the gold chips'
+     "Sony Music Africa" at 3.75:1 in light (debug pass, 3 Oct 2026); at 1 it
+     is 4.96:1, AA for its size. */
+  opacity: 1;
 }
 
 /* The fold control at the end of a long badge wall. Reads like the quiet

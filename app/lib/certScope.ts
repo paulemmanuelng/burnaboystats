@@ -282,3 +282,20 @@ export function logLedeTail(view: CertView): string {
   const home = view.scope === "intl" ? LOG_HOME_OUT : LOG_HOME_IN;
   return view.credit === "lead" ? `${home} ${LOG_FEATURES_NOTE}` : home;
 }
+
+/**
+ * The one sentence a view that holds nothing shows in place of its furniture
+ * — the phone's lede and tier bars, the desktop's numbers grid and country
+ * strip. Both switches off can empty a page (BNXN, Tiwa Savage: every
+ * international plaque a guest spot), and the page drew "0 across 0
+ * countries, from 0 certified releases" over two 0 cards and an empty strip
+ * (debug pass, 3 Oct 2026). The switch that brings the plaques back is named,
+ * as the switch itself names it. Only International + Lead can be empty —
+ * scopeSwitchable and creditSwitchable offer neither switch alone over
+ * nothing — but each case says what it is.
+ */
+export function emptyViewSentence(name: string, view: CertView, homeName: string): string {
+  if (view.credit === "lead")
+    return `Every ${view.scope === "intl" ? "international " : ""}plaque ${name} holds is a featured appearance — turn Featured appearances back on to see them.`;
+  return `Every plaque ${name} holds is in ${homeName} — turn ${homeName} back on to see them.`;
+}

@@ -35,6 +35,7 @@ import {
   dataDateLabel,
   downloadBySlug,
   downloadFilename,
+  issuerVintageNote,
 } from "../app/lib/dataDownloads";
 import { API_CACHE_CONTROL, lastUpdated } from "../app/lib/api";
 import { totalAwards, COUNTRIES as BURNA_COUNTRIES } from "../app/data/certifications";
@@ -356,13 +357,20 @@ describe("units_note carries the notes /compare prints beside the same figure", 
     return sets;
   })();
 
+  // A label's row names the register its units are priced at instead of
+  // "This body" (3 Oct 2026) — the same ‡ note, read back to its heading here.
+  const parts = (r: string[], col: (r: string[], c: string) => string) =>
+    col(r, "units_note")
+      .split("; ")
+      .map((p) => (p === issuerVintageNote(countryMeta(col(r, "country_code")).body) ? PLAQUE_NOTE_HEADINGS.vintage : p));
+
   it("flags exactly the plaques the engine flags, note by note", async () => {
     const { body, col } = await certSheet();
     for (const k of PLAQUE_NOTE_ORDER) {
       const label = PLAQUE_NOTE_HEADINGS[k];
       const csv = new Set(
         body
-          .filter((r) => col(r, "units_note").split("; ").includes(label))
+          .filter((r) => parts(r, col).includes(label))
           .map((r) => {
             const b = col(r, "certifying_body");
             return plaqueKey(col(r, "artist"), col(r, "release"), col(r, "format"), col(r, "country_code"), CERT_PROGRAMS[b] ? b : "");
@@ -382,10 +390,25 @@ describe("units_note carries the notes /compare prints beside the same figure", 
     for (const r of body) {
       const note = col(r, "units_note");
       if (!note) continue;
-      const parts = note.split("; ");
-      for (const p of parts) expect(order, note).toContain(p);
-      expect(parts, note).toEqual([...parts].sort((x, y) => order.indexOf(x) - order.indexOf(y)));
+      const ps = parts(r, col);
+      for (const p of ps) expect(order, note).toContain(p);
+      expect(ps, note).toEqual([...ps].sort((x, y) => order.indexOf(x) - order.indexOf(y)));
     }
+  });
+
+  it("a label's row names the register it is priced at, not 'This body' (3 Oct 2026)", async () => {
+    const { body, col, find } = await certSheet();
+    const issuerRows = body.filter((r) => col(r, "source") === "label" && col(r, "certified_units") !== "");
+    expect(issuerRows.length).toBeGreaterThan(10); // Tyla's ten, Tems's No.1, Burna's 19×
+    for (const r of issuerRows) {
+      expect(col(r, "units_note"), col(r, "release")).not.toContain(PLAQUE_NOTE_HEADINGS.vintage);
+      expect(col(r, "units_note"), col(r, "release")).toContain("Priced at RiSA's thresholds — RiSA raised its thresholds since 2015");
+    }
+    // Negative control, the cell that shipped on Tyla's "Water".
+    expect(col(find("Tyla", "Water", "ZA"), "units_note")).not.toBe("This body raised its thresholds since 2015");
+    // A register row keeps /compare's heading: RiSA is the body there.
+    const registerZa = body.find((r) => col(r, "country_code") === "ZA" && col(r, "source") === "register" && col(r, "units_note"))!;
+    expect(col(registerZa, "units_note")).toContain(PLAQUE_NOTE_HEADINGS.vintage);
   });
 
   it("real rows: the Greek, Swedish, Polish and New Zealand plaques /compare marks", async () => {
@@ -493,6 +516,7 @@ describe("source says what each plaque was read from (PR #400 review)", () => {
     expect(off).toEqual(
       [
         "Burna Boy|Dai Dai|CO|label",
+        "Burna Boy|All Eyes on Me|ZA|label",
         "Tems|No.1|ZA|label",
         "Tyla|Tyla|FR|announcement",
         ...["Tyla", "Water", "Push 2 Start", "Truth or Dare", "Jump", "Art", "No.1", "Safer", "Water (Remix) (ft. Travis Scott)", "Chanel"].map(

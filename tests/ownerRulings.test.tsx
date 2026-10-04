@@ -89,9 +89,14 @@ describe("the Colombian Gold is Sony Music Colombia's, and the rule says so", ()
       "A certification is only counted once it appears in the awarding body's own searchable database, or the body itself has published it.";
     expect(t).toContain(RULE);
     // The rule as it shipped ended there, over a plaque no register lists.
+    // Since the debug pass of 3 Oct 2026 "All Eyes on Me"'s 19× is marked as
+    // the Sony Music Africa plaque its data comment always called it, so the
+    // count is two — and the Colombian exception keeps its words.
     expect(t).toContain(
-      `${RULE} In Burna Boy's own record, the one exception is a market with no current public register, where the label's own plaque stands: “Dai Dai”'s Gold in Colombia, issued by Sony Music Colombia.`,
+      `${RULE} In Burna Boy's own record, the 2 exceptions are a market with no current public register, where the label's own plaque stands: “Dai Dai”'s Gold in Colombia, issued by Sony Music Colombia; and a register that holds no row for the title, where the label's own award stands: “All Eyes on Me”'s 19× Platinum in South Africa, issued by Sony Music Africa.`,
     );
+    // Negative control: "the one exception", over two, is what shipped.
+    expect(t).not.toContain("In Burna Boy's own record, the one exception is");
     expect(t).not.toContain("A certification is only counted once it appears in the awarding body's own searchable database. ");
   });
 

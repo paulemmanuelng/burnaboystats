@@ -144,10 +144,10 @@ describe("/certifications: the hero adapts to the view, phone and desktop", () =
       container.querySelector(`.${certStyles.eyebrow}`)!.textContent,
     ];
     expect(kickers()).toEqual([SHIPPED_KICKER, SHIPPED_KICKER]);
-    const feat = screen.getAllByRole("switch", { name: /^Featured appearances:/ })[0];
+    const feat = screen.getAllByRole("switch", { name: /^Featured appearances$/ })[0];
     await userEvent.click(feat);
     expect(kickers()).toEqual(["Worldwide · Lead credits", "Worldwide · Lead credits"]);
-    await userEvent.click(screen.getAllByRole("switch", { name: /^Nigeria:/ })[0]);
+    await userEvent.click(screen.getAllByRole("switch", { name: /^Nigeria$/ })[0]);
     expect(kickers()).toEqual(["Outside Nigeria · Lead credits", "Outside Nigeria · Lead credits"]);
   });
 

@@ -146,12 +146,24 @@ interface PlaqueInput {
 /** The notes /compare prints beside a priced figure, in its own headings and
  *  in the order its marks run († ‡ § ¶), joined "; ". Blank for a figure that
  *  needs none, and for an unpriced plaque, which has no figure to qualify. */
-export function unitsNote(cert: PlaqueInput["cert"], format: CertFormat): string | null {
+export function unitsNote(cert: PlaqueInput["cert"], format: CertFormat, country?: PlaqueInput["country"]): string | null {
   if (unitsForCert(cert, format).units === null) return null;
   const notes = plaqueNotes(cert, format);
-  const labels = PLAQUE_NOTE_ORDER.filter((k) => notes[k]).map((k) => PLAQUE_NOTE_HEADINGS[k]);
+  // On an ISSUER's row "This body" read as the label (certifying_body "Sony
+  // Music Africa"), which publishes no thresholds; the units are the
+  // register's (debug pass, 3 Oct 2026). Name it.
+  const issuer = country && plaqueSource(cert, country) === "label" && cert.body && cert.body !== country.body;
+  const labels = PLAQUE_NOTE_ORDER.filter((k) => notes[k]).map((k) =>
+    k === "vintage" && issuer ? issuerVintageNote(country.body) : PLAQUE_NOTE_HEADINGS[k],
+  );
   return labels.length ? labels.join("; ") : null;
 }
+
+/** The ‡ note on a label-issued plaque, priced at the register's levels:
+ *  "Priced at RiSA's thresholds — RiSA raised its thresholds since 2015" —
+ *  /compare's own heading, with the body it means named. */
+export const issuerVintageNote = (registerBody: string): string =>
+  `Priced at ${registerBody}'s thresholds — ${PLAQUE_NOTE_HEADINGS.vintage.replace(/^This body/, registerBody)}`;
 
 /** The register a reader can check this plaque in. A per-cert `body` that is
  *  NOT a separately priced programme names a different ISSUER — Dai Dai's
@@ -207,7 +219,7 @@ function plaqueRow(p: PlaqueInput): Cell[] {
     units,
     // What the figure leans on, in /compare's words — the same plaqueNotes
     // call priceArtist makes, so the two can never disagree.
-    unitsNote(p.cert, format),
+    unitsNote(p.cert, format, p.country),
     units !== null,
     units === null ? why : null,
     registerUrl(p.cert, p.country),

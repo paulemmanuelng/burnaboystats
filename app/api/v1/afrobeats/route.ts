@@ -22,6 +22,7 @@ import {
   chartEntryCount as burnaEntries,
   chartCountryCount as burnaTerritories,
 } from "../../../data/charts";
+import { plaqueSource } from "../../../lib/dataDownloads";
 
 export const dynamic = "force-static";
 
@@ -89,13 +90,21 @@ const subjectReleases = KINDS.flatMap(([items, kind]) =>
   items.map((r) => ({
     title: r.title,
     kind,
-    certifications: r.certs.map((c) => ({
-      countryCode: c.c,
-      country: BURNA_COUNTRIES[c.c]?.name ?? c.c,
-      body: c.body ?? BURNA_COUNTRIES[c.c]?.body ?? null,
-      level: c.level,
-      multiplier: c.x ?? 1,
-    })),
+    certifications: r.certs.map((c) => {
+      // The description's own rule — "without [a `source`], it is a row in
+      // the body's register" — held for the subject too: "Dai Dai"'s Colombian
+      // Gold and "All Eyes on Me"'s 19× are label plaques, and said nothing
+      // (debug pass, 3 Oct 2026). Same call the CSV's `source` column makes.
+      const source = plaqueSource(c, BURNA_COUNTRIES[c.c] ?? { name: c.c, body: c.c });
+      return {
+        countryCode: c.c,
+        country: BURNA_COUNTRIES[c.c]?.name ?? c.c,
+        body: c.body ?? BURNA_COUNTRIES[c.c]?.body ?? null,
+        level: c.level,
+        multiplier: c.x ?? 1,
+        ...(source !== "register" ? { source } : {}),
+      };
+    }),
   }))
 );
 

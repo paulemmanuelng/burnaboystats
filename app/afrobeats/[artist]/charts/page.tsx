@@ -19,6 +19,7 @@ import {
   chartGlobalLines,
   chartNo1s,
   type AfroArtist,
+  AFROBEATS_LAST_CHART_SWEEP,
 } from "../../../data/afrobeats";
 
 /** "read from each country's national chart, plus 2 Billboard global charts".
@@ -95,7 +96,10 @@ export default async function AfroArtistChartsPage({
   const { albums, singles } = split(a);
   const entries = chartEntries(a);
   const territories = chartTerritories(a);
-  const verifiedLong = new Date(`${a.verifiedOn}T12:00:00Z`).toLocaleDateString("en-GB", {
+  // The chart sweep's date, not `verifiedOn`: that moves on certification
+  // reads that read no chart (Tyla's and Tems's 3 Oct 2026), and this page
+  // said they were "re-read at every register" that day (debug pass, 3 Oct).
+  const chartSweepLong = new Date(`${AFROBEATS_LAST_CHART_SWEEP}T12:00:00Z`).toLocaleDateString("en-GB", {
     day: "numeric",
     month: "long",
     year: "numeric",
@@ -154,7 +158,7 @@ export default async function AfroArtistChartsPage({
     { num: releases, label: "Charting releases", note: "albums and singles" },
   ];
 
-  const sourceNote = `Peaks on ${sourceClause(a)} — the same standard used for Burna Boy. Genre and platform charts excluded; airplay charts only where a country publishes no other. Last re-read at every register on ${verifiedLong}.`;
+  const sourceNote = `Peaks on ${sourceClause(a)} — the same standard used for Burna Boy. Genre and platform charts excluded; airplay charts only where a country publishes no other. Last re-read in the board's chart sweep of ${chartSweepLong}.`;
 
   return (
     <main id="content">
@@ -237,7 +241,7 @@ export default async function AfroArtistChartsPage({
               countries that publish no non-airplay chart at all. Counted by exactly the standard
               behind Burna Boy&apos;s{" "}
               <Link href="/records/charts">{burnaEntries} entries and {burnaNo1s} No. 1s</Link>, so
-              the two records can be read side by side. The board was last re-read at every register on {verifiedLong}.
+              the two records can be read side by side. The board&apos;s charts were last re-read in its chart sweep of {chartSweepLong}.
             </p>
             <div className={styles.splitPanel}>
               <div className={styles.splitKicker}>This artist&apos;s record</div>

@@ -396,6 +396,9 @@ export default function MobileCerts({
             `Silver, Gold, Platinum and Diamond awards from the RIAA, BPI, SNEP, Music Canada and ${shownCountries - 4} more — across ${inScope.length} certified releases.`}
         </p>
 
+        {/* A view that holds nothing draws no bars — not even the rule above
+            them; the lede says why it is empty (lib/certScope.emptyViewSentence). */}
+        {shownTotal > 0 && (
         <div className={styles.tierList}>
           {TIER_ORDER.filter((name) => tierCount[name] > 0).map((name) => (
             <div key={name} className={styles.tierRow}>
@@ -415,6 +418,7 @@ export default function MobileCerts({
             </div>
           ))}
         </div>
+        )}
       </div>
 
       {/* The deep-linked focus, announced the way the desktop explorer announces
