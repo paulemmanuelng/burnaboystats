@@ -1,0 +1,242 @@
+<!-- EXCERPT, read-only reference. Source: design_handoff_burnaboystats/designs/mobile/Afrobeats - Mobile Artist.dc.html, lines 40-279 (phone A, home-market shape (Seyi Vibez), lines 40-177; phone B, global shape (Omah Lay), lines 179-271; the notes column, lines 273-279),
+     copied 3 Oct 2026 from the owner's copy of the bundle (design files dated 30 Sep 2026). Edit the file in your own project, not this copy. -->
+    <!-- ══════════ PHONE 1 · SEYI VIBEZ — home-market shape ══════════ -->
+    <div data-screen-label="Artist · home-market shape (Seyi Vibez)">
+      <div style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin:0 0 10px">A · Home-market shape — Seyi Vibez, 103 plaques, one country</div>
+      <div style="width:390px;background:var(--bg);border:1px solid var(--line);position:relative">
+
+        <div style="position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:12px;padding:12px 18px;background:rgba(10,10,11,0.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)">
+          <span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:999px;background:var(--soft);border:1px solid var(--line);flex:none">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 5l-7 7 7 7"></path></svg>
+          </span>
+          <span style="flex:1;font-family:var(--font-mono);font-weight:700;font-size:11px;letter-spacing:0.11em;text-transform:uppercase;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Seyi Vibez</span>
+          <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;color:var(--muted)">103</span>
+        </div>
+
+        <div style="position:relative;overflow:hidden;isolation:isolate;padding:22px 18px 20px">
+          <span style="position:absolute;top:-14%;right:-24%;width:76%;height:132%;background-image:url('https://i.scdn.co/image/ab6761610000e5eb9902f473df31601d5938e0bd');background-size:cover;background-position:36% 20%;filter:grayscale(0.3) contrast(1.03);opacity:{{ portraitOpacity }};-webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,0.35) 26%,#000 62%);mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,0.35) 26%,#000 62%);z-index:-2;pointer-events:none"></span>
+          <span style="position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,var(--bg) 32%,rgba(10,10,11,0.78) 60%,rgba(10,10,11,0.3) 100%),linear-gradient(180deg,rgba(10,10,11,0.5) 0%,rgba(10,10,11,0.08) 40%,var(--bg) 100%)"></span>
+          <div style="font-family:var(--font-mono);font-weight:700;font-size:11px;letter-spacing:0.11em;text-transform:uppercase;color:var(--gold)">The Afrobeats Board · 🇳🇬 Nigeria</div>
+          <div style="display:flex;align-items:baseline;gap:12px;margin-top:14px">
+            <span style="font-family:var(--font-heading);font-size:84px;line-height:0.84;letter-spacing:normal;color:var(--gold);font-variant-numeric:tabular-nums">103</span>
+            <span style="font-family:var(--font-mono);font-weight:700;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);line-height:1.5">verified<br>plaques</span>
+          </div>
+          <h2 style="font-family:var(--font-heading);font-weight:400;font-size:30px;line-height:1;margin:14px 0 0;text-transform:uppercase">Seyi Vibez</h2>
+          <div style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.06em;color:var(--muted);margin-top:6px">Balogun Afolabi Oluwaloseyi</div>
+          <p style="font-size:13.5px;line-height:1.5;color:#d8d8de;margin:12px 0 0;max-width:300px">Every Seyi Vibez plaque, read in the issuing body's own register — 103 across one country.</p>
+        </div>
+
+        <div style="margin:0 18px;padding:18px;background:var(--soft);border:1px solid var(--line);border-left:2px solid var(--gold)">
+          <div style="font-family:var(--font-mono);font-weight:700;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold)">The shape of the record</div>
+          <div style="font-family:var(--font-heading);font-size:26px;line-height:1;margin-top:10px;text-transform:uppercase">Entirely Nigerian</div>
+          <p style="font-size:12.5px;line-height:1.55;color:var(--muted);margin:10px 0 0">103 plaques and 114 chart entries, every one of them Nigerian — the deepest home-market record on the board. One market, read at source in TurnTable's register. Not a gap in the sweep: the record itself.</p>
+          <div style="display:flex;height:8px;border-radius:999px;overflow:hidden;margin-top:14px;background:rgba(245,244,240,0.09)">
+            <span style="width:100%;background:linear-gradient(90deg,var(--gold),var(--gold-bright))"></span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-top:7px">
+            <span>🇳🇬 Nigeria · TurnTable</span><span>100% of 103</span>
+          </div>
+        </div>
+
+        <div style="padding:22px 18px 4px">
+          <div style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted)">Tier split · tap a tier to open it</div>
+          <sc-for list="{{ tiers }}" as="t" hint-placeholder-count="3">
+            <div style="margin-top:14px">
+              <div onClick="{{ t.toggle }}" style="display:flex;align-items:center;gap:10px;min-height:44px;cursor:pointer">
+                <span style="width:9px;height:9px;border-radius:50%;background:{{ t.color }};flex:none"></span>
+                <span style="font-family:var(--font-mono);font-weight:700;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;min-width:78px">{{ t.name }}</span>
+                <span style="font-family:var(--font-heading);font-size:20px;font-variant-numeric:tabular-nums">{{ t.count }}</span>
+                <span style="font-family:var(--font-mono);font-size:11px;color:var(--muted);margin-left:auto;font-variant-numeric:tabular-nums">{{ t.pct }}%</span>
+                <span style="color:var(--muted);font-size:12px;transform:{{ t.chev }};transition:transform 0.2s ease">▾</span>
+              </div>
+              <div style="height:6px;background:rgba(245,244,240,0.09);border-radius:999px;overflow:hidden">
+                <span style="display:block;height:6px;border-radius:999px;width:{{ t.w }};background:{{ t.color }}"></span>
+              </div>
+              <sc-if value="{{ t.open }}" hint-placeholder-val="{{ false }}">
+                <div style="border-top:1px solid var(--line);margin-top:12px">
+                  <sc-for list="{{ t.rows }}" as="r" hint-placeholder-count="3">
+                    <div style="display:flex;align-items:center;gap:11px;padding:11px 0;border-bottom:1px solid var(--line);opacity:{{ r.op }}">
+                      <sc-if value="{{ r.cover }}" hint-placeholder-val="{{ true }}">
+                        <span style="width:40px;height:40px;flex:none;border-radius:4px;background-image:{{ r.coverUrl }};background-size:cover;background-position:center;border:1px solid var(--line)"></span>
+                      </sc-if>
+                      <sc-if value="{{ r.noCover }}" hint-placeholder-val="{{ false }}">
+                        <span style="width:40px;height:40px;flex:none;border-radius:4px;border:1px dashed var(--rule)"></span>
+                      </sc-if>
+                      <span style="flex:1;min-width:0">
+                        <span style="display:block;font-family:var(--font-heading);font-size:16px;line-height:1.1;text-transform:uppercase;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ r.title }}</span>
+                        <span style="display:block;font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);margin-top:4px">{{ r.meta }}</span>
+                      </span>
+                      <span style="flex:none;font-family:var(--font-mono);font-weight:700;font-size:11px;letter-spacing:0.06em;padding:5px 10px;border-radius:999px;border:1px solid {{ t.edge }};color:{{ t.color }};white-space:nowrap">{{ r.label }}</span>
+                    </div>
+                  </sc-for>
+                  <div style="display:flex;align-items:center;justify-content:space-between;min-height:50px;margin-top:12px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--soft);font-family:var(--font-mono);font-weight:700;font-size:11px;letter-spacing:0.12em;text-transform:uppercase">
+                    <span>{{ t.allLabel }}</span><span style="color:var(--gold)">↓</span>
+                  </div>
+                </div>
+              </sc-if>
+            </div>
+          </sc-for>
+          <p style="font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);margin:16px 0 0">Dashed rows bind from afrobeats.ts · one row per release, never one pill per plaque</p>
+        </div>
+
+        <div style="padding:22px 18px 0;display:flex;flex-direction:column;gap:12px">
+          <div style="position:relative;overflow:hidden;border:1px solid var(--line);border-radius:12px;background:var(--soft);padding:18px">
+            <span style="position:absolute;inset:0;background:radial-gradient(120% 140% at 0% 0%,rgba(255,182,39,0.13) 0%,rgba(255,182,39,0) 58%);pointer-events:none"></span>
+            <div style="position:relative">
+              <div style="font-family:var(--font-mono);font-weight:700;font-size:11px;letter-spacing:0.11em;text-transform:uppercase;color:var(--gold)">Official chart peaks · permanent record</div>
+              <div style="font-family:var(--font-heading);font-size:22px;line-height:1.05;text-transform:uppercase;margin-top:8px">114 entries, one chart — TurnTable NG</div>
+              <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:12px">
+                <span style="font-family:var(--font-mono);font-weight:700;font-size:10.5px;padding:5px 10px;border-radius:999px;border:1px solid var(--tier-gold-edge);background:rgba(255,182,39,0.16);color:var(--gold)">99 — No. 1</span>
+                <span style="font-family:var(--font-mono);font-weight:700;font-size:10.5px;padding:5px 10px;border-radius:999px;border:1px solid var(--tier-gold-edge);background:rgba(255,182,39,0.16);color:var(--gold)">SHAOLIN — No. 1</span>
+                <span style="font-family:var(--font-mono);font-weight:700;font-size:10.5px;padding:5px 10px;border-radius:999px;border:1px solid rgba(143,227,240,0.5);color:#8fe3f0">Loseyi Professor — No. 2</span>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-top:14px;font-family:var(--font-mono);font-weight:700;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);min-height:24px">
+                <span>Open the chart board</span><span>→</span>
+              </div>
+            </div>
+          </div>
+          <div style="position:relative;overflow:hidden;border:1px solid var(--line);border-radius:12px;background:var(--soft);padding:18px">
+            <span style="position:absolute;inset:0;background:radial-gradient(120% 140% at 0% 0%,rgba(62,209,127,0.12) 0%,rgba(62,209,127,0) 58%);pointer-events:none"></span>
+            <div style="position:relative">
+              <div style="display:flex;align-items:center;gap:8px;font-family:var(--font-mono);font-weight:700;font-size:11px;letter-spacing:0.11em;text-transform:uppercase;color:var(--live)"><span style="width:8px;height:8px;border-radius:50%;background:var(--live);display:inline-block;box-shadow:0 0 8px rgba(62,209,127,0.55)"></span> Live now · rebuilt hourly</div>
+              <div style="font-family:var(--font-heading);font-size:22px;line-height:1.05;text-transform:uppercase;margin-top:8px">Where he's charting today</div>
+              <div style="display:flex;gap:14px;margin-top:12px">
+                <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted)"><span style="display:block;font-family:var(--font-heading);font-size:24px;color:var(--text);border-bottom:1px dashed var(--rule);min-width:40px">—</span>placements</span>
+                <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted)"><span style="display:block;font-family:var(--font-heading);font-size:24px;color:var(--text);border-bottom:1px dashed var(--rule);min-width:40px">—</span>countries</span>
+                <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted)"><span style="display:block;font-family:var(--font-heading);font-size:24px;color:var(--live);border-bottom:1px dashed var(--rule);min-width:40px">—</span>at No. 1</span>
+              </div>
+              <p style="font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);margin:12px 0 0">Bound hourly from LIVE_BOARDS — never a typed figure</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin:22px 18px 0;border-top:1px solid var(--line);padding-top:18px">
+          <div style="font-family:var(--font-mono);font-weight:700;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold)">Head to head · same rules</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:12px">
+            <div style="background:var(--bg);padding:16px 14px">
+              <span style="display:block;font-family:var(--font-mono);font-weight:700;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted)">Seyi Vibez</span>
+              <span style="display:block;font-family:var(--font-heading);font-size:38px;line-height:1;margin-top:8px">103</span>
+              <span style="display:block;font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-top:6px">1 country</span>
+            </div>
+            <div style="background:var(--bg);padding:16px 14px">
+              <span style="display:block;font-family:var(--font-mono);font-weight:700;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted)">Burna Boy</span>
+              <span style="display:block;font-family:var(--font-heading);font-size:38px;line-height:1;margin-top:8px;color:var(--gold)">230</span>
+              <span style="display:block;font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-top:6px">25 countries</span>
+            </div>
+          </div>
+          <p style="font-size:12px;color:var(--muted);margin:12px 0 0;line-height:1.5">Both counted identically — one plaque per title per country at its current tier. Every figure read in an issuing body's own register, last verified 19 August 2026.</p>
+        </div>
+
+        <div style="height:96px"></div>
+        <div style="position:sticky;bottom:0;display:flex;background:rgba(10,10,11,0.96);backdrop-filter:blur(14px);border-top:1px solid var(--line);padding:10px 8px 18px">
+          <sc-for list="{{ tabs }}" as="tab" hint-placeholder-count="5">
+            <span style="flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;min-height:44px;justify-content:center;color:{{ tab.color }}">
+              <sc-if value="{{ tab.home }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 84 74" width="19" height="17" aria-hidden="true" style="display:block"><circle cx="42" cy="8" r="6.5" fill="#3ed17f"></circle><rect x="7" y="25" width="11" height="33" rx="5.5" fill="currentColor"></rect><rect x="22" y="36" width="11" height="22" rx="5.5" fill="currentColor"></rect><rect x="37" y="15" width="11" height="43" rx="5.5" fill="currentColor"></rect><rect x="52" y="36" width="11" height="22" rx="5.5" fill="currentColor"></rect><rect x="67" y="25" width="11" height="33" rx="5.5" fill="currentColor"></rect><rect x="7" y="64" width="71" height="6.5" rx="3.25" fill="currentColor"></rect></svg></sc-if><sc-if value="{{ tab.other }}" hint-placeholder-val="{{ true }}"><span style="font-size:17px;line-height:1">{{ tab.icon }}</span></sc-if>
+              <span style="font-family:var(--font-mono);font-weight:700;font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase">{{ tab.name }}</span>
+            </span>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════ PHONE 2 · OMAH LAY — global shape ══════════ -->
+    <div data-screen-label="Artist · global shape (Omah Lay)">
+      <div style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin:0 0 10px">B · Global shape — Omah Lay, 61 plaques, nine countries</div>
+      <div style="width:390px;background:var(--bg);border:1px solid var(--line);position:relative">
+
+        <div style="position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:12px;padding:12px 18px;background:rgba(10,10,11,0.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)">
+          <span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:999px;background:var(--soft);border:1px solid var(--line);flex:none">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 5l-7 7 7 7"></path></svg>
+          </span>
+          <span style="flex:1;font-family:var(--font-mono);font-weight:700;font-size:11px;letter-spacing:0.11em;text-transform:uppercase">Omah Lay</span>
+          <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;color:var(--muted)">61</span>
+        </div>
+
+        <div style="position:relative;overflow:hidden;isolation:isolate;padding:22px 18px 20px">
+          <span style="position:absolute;top:-14%;right:-24%;width:76%;height:132%;background-image:url('https://i.scdn.co/image/ab6761610000e5eb35ba3ee6067196268c5528cb');background-size:cover;background-position:44% 24%;filter:grayscale(0.25) contrast(1.03);opacity:{{ portraitOpacity }};-webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,0.35) 26%,#000 62%);mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,0.35) 26%,#000 62%);z-index:-2;pointer-events:none"></span>
+          <span style="position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,var(--bg) 32%,rgba(10,10,11,0.78) 60%,rgba(10,10,11,0.3) 100%),linear-gradient(180deg,rgba(10,10,11,0.5) 0%,rgba(10,10,11,0.08) 40%,var(--bg) 100%)"></span>
+          <div style="font-family:var(--font-mono);font-weight:700;font-size:11px;letter-spacing:0.11em;text-transform:uppercase;color:var(--gold)">The Afrobeats Board · 🇳🇬 Nigeria</div>
+          <div style="display:flex;align-items:baseline;gap:12px;margin-top:14px">
+            <span style="font-family:var(--font-heading);font-size:84px;line-height:0.84;color:var(--gold);font-variant-numeric:tabular-nums">61</span>
+            <span style="font-family:var(--font-mono);font-weight:700;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);line-height:1.5">verified<br>plaques</span>
+          </div>
+          <h2 style="font-family:var(--font-heading);font-weight:400;font-size:30px;line-height:1;margin:14px 0 0;text-transform:uppercase">Omah Lay</h2>
+          <div style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.06em;color:var(--muted);margin-top:6px">Stanley Omah Didia</div>
+          <p style="font-size:13.5px;line-height:1.5;color:#d8d8de;margin:12px 0 0;max-width:300px">Two French Diamonds — “soso” and Jul's “Namek” — and plaques in nine countries.</p>
+        </div>
+
+        <div style="padding:0 18px">
+          <div style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between;align-items:baseline"><span>Where the plaques are</span><span style="font-size:10.5px">9 countries · best tier</span></div>
+          <div style="display:flex;gap:8px;overflow-x:auto;padding:12px 0 6px;-webkit-mask-image:linear-gradient(to right,#000 calc(100% - 44px),transparent 100%);mask-image:linear-gradient(to right,#000 calc(100% - 44px),transparent 100%)">
+            <span style="flex:none;display:inline-flex;align-items:center;gap:7px;min-height:44px;padding:0 14px;border-radius:999px;border:1px solid var(--tier-diamond-edge);color:var(--tier-diamond);font-family:var(--font-mono);font-weight:700;font-size:11px;letter-spacing:0.06em;text-transform:uppercase">🇫🇷 Diamond <span style="color:var(--muted);font-weight:400">France</span></span>
+            <sc-for list="{{ boundCountries }}" as="c" hint-placeholder-count="4">
+              <span style="flex:none;display:inline-flex;align-items:center;gap:7px;min-height:44px;padding:0 14px;border-radius:999px;border:1px dashed var(--rule);color:var(--muted);font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.06em;text-transform:uppercase">{{ c }}</span>
+            </sc-for>
+          </div>
+          <p style="font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);margin:4px 0 0">Rail replaces the shape panel when a record is wide · name returns on tap</p>
+        </div>
+
+        <div style="padding:20px 18px 4px">
+          <div style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted)">Tier split · Diamond open</div>
+          <div style="margin-top:14px">
+            <div style="display:flex;align-items:center;gap:10px;min-height:44px">
+              <span style="width:9px;height:9px;border-radius:50%;background:var(--tier-diamond);flex:none"></span>
+              <span style="font-family:var(--font-mono);font-weight:700;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;min-width:78px">Diamond</span>
+              <span style="font-family:var(--font-heading);font-size:20px">2</span>
+              <span style="font-family:var(--font-mono);font-size:11px;color:var(--muted);margin-left:auto">both 🇫🇷</span>
+              <span style="color:var(--muted);font-size:12px;transform:rotate(180deg)">▾</span>
+            </div>
+            <div style="border-top:1px solid var(--line);margin-top:8px">
+              <div style="display:flex;align-items:center;gap:11px;padding:11px 0;border-bottom:1px solid var(--line)">
+                <span style="width:40px;height:40px;flex:none;border-radius:4px;border:1px dashed var(--rule)"></span>
+                <span style="flex:1;min-width:0">
+                  <span style="display:block;font-family:var(--font-heading);font-size:16px;line-height:1.1;text-transform:uppercase">soso</span>
+                  <span style="display:block;font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);margin-top:4px">Lead single · 🇫🇷 SNEP</span>
+                </span>
+                <span style="flex:none;font-family:var(--font-mono);font-weight:700;font-size:11px;padding:5px 10px;border-radius:999px;border:1px solid var(--tier-diamond-edge);color:var(--tier-diamond)">DIAMOND</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:11px;padding:11px 0;border-bottom:1px solid var(--line)">
+                <span style="width:40px;height:40px;flex:none;border-radius:4px;border:1px dashed var(--rule)"></span>
+                <span style="flex:1;min-width:0">
+                  <span style="display:block;font-family:var(--font-heading);font-size:16px;line-height:1.1;text-transform:uppercase">Namek</span>
+                  <span style="display:block;font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);margin-top:4px">Jul ft. Omah Lay · featured · 🇫🇷 SNEP</span>
+                </span>
+                <span style="flex:none;font-family:var(--font-mono);font-weight:700;font-size:11px;padding:5px 10px;border-radius:999px;border:1px solid var(--tier-diamond-edge);color:var(--tier-diamond)">DIAMOND</span>
+              </div>
+            </div>
+          </div>
+          <sc-for list="{{ omahTiers }}" as="t" hint-placeholder-count="3">
+            <div style="display:flex;align-items:center;gap:10px;min-height:44px;margin-top:8px">
+              <span style="width:9px;height:9px;border-radius:50%;background:{{ t.color }};flex:none"></span>
+              <span style="font-family:var(--font-mono);font-weight:700;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;min-width:78px">{{ t.name }}</span>
+              <span style="font-family:var(--font-mono);font-size:12px;color:var(--muted);border-bottom:1px dashed var(--rule);min-width:26px;text-align:center">—</span>
+              <span style="font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);margin-left:auto">bound · tierCount</span>
+              <span style="color:var(--muted);font-size:12px">▾</span>
+            </div>
+          </sc-for>
+          <p style="font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);margin:14px 0 0">Same accordion, same rule — 61 plaques and 9 countries fit without a 17-screen scroll</p>
+        </div>
+
+        <div style="margin:20px 18px 0;border-top:1px solid var(--line);padding-top:16px">
+          <p style="font-size:12px;color:var(--muted);line-height:1.5;margin:0">Every figure read in an issuing body's own register — last verified 19 August 2026. Counted by the same rules as Burna Boy's 230.</p>
+        </div>
+
+        <div style="height:96px"></div>
+        <div style="position:sticky;bottom:0;display:flex;background:rgba(10,10,11,0.96);backdrop-filter:blur(14px);border-top:1px solid var(--line);padding:10px 8px 18px">
+          <sc-for list="{{ tabs }}" as="tab" hint-placeholder-count="5">
+            <span style="flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;min-height:44px;justify-content:center;color:{{ tab.color }}">
+              <sc-if value="{{ tab.home }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 84 74" width="19" height="17" aria-hidden="true" style="display:block"><circle cx="42" cy="8" r="6.5" fill="#3ed17f"></circle><rect x="7" y="25" width="11" height="33" rx="5.5" fill="currentColor"></rect><rect x="22" y="36" width="11" height="22" rx="5.5" fill="currentColor"></rect><rect x="37" y="15" width="11" height="43" rx="5.5" fill="currentColor"></rect><rect x="52" y="36" width="11" height="22" rx="5.5" fill="currentColor"></rect><rect x="67" y="25" width="11" height="33" rx="5.5" fill="currentColor"></rect><rect x="7" y="64" width="71" height="6.5" rx="3.25" fill="currentColor"></rect></svg></sc-if><sc-if value="{{ tab.other }}" hint-placeholder-val="{{ true }}"><span style="font-size:17px;line-height:1">{{ tab.icon }}</span></sc-if>
+              <span style="font-family:var(--font-mono);font-weight:700;font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase">{{ tab.name }}</span>
+            </span>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <div style="max-width:300px;display:flex;flex-direction:column;gap:14px">
+      <div style="font-family:var(--font-mono);font-weight:700;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold)">The rule, and its exceptions</div>
+      <p style="font-size:12.5px;line-height:1.6;color:var(--muted);margin:0"><strong style="color:var(--text)">One screen, two states.</strong> ≤3 countries: the country strip collapses into the "shape of the record" panel — the concentration is stated as the finding it is. ≥4 countries: the panel yields to a best-tier country rail. The tier accordion is constant in both.</p>
+      <p style="font-size:12.5px;line-height:1.6;color:var(--muted);margin:0"><strong style="color:var(--text)">Density.</strong> One row per release. A release's plaques appear as its tier chip + market count; the full per-country list opens on the row (build behaviour). Worst case (Seyi, 103 plaques) is 3 section headers + 44 rows fully expanded — ~4.5 screens, down from 17.4.</p>
+      <p style="font-size:12.5px;line-height:1.6;color:var(--muted);margin:0"><strong style="color:var(--text)">Chrome.</strong> Back bar on top, five-tab bar at the foot — Paul's rule for the board, never two pinned bars. All targets ≥44px.</p>
+      <p style="font-size:12.5px;line-height:1.6;color:var(--muted);margin:0"><strong style="color:var(--text)">Zero is a value.</strong> A tier an artist doesn't hold renders as "0 · none held", never hidden (three artists have no international plaques at all).</p>
+    </div>
