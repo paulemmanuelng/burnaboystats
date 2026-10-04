@@ -377,7 +377,10 @@
 
 .methodList.methodList { grid-template-columns: 86px minmax(0, 1fr); gap: 6px 12px; }
 
-/* 320: the ladder's name column narrows so the bar keeps its length. */
+/* 320: the bar gives up a little length so the names stay whole. */
 @media (max-width: 359px) {
-  .ladderRow { grid-template-columns: 20px 112px minmax(0, 1fr) 58px; }
+  .ladderRow { grid-template-columns: 18px 122px minmax(0, 1fr) 56px; }
+  /* "United States" and "United Kingdom" keep their whole names at 320. */
+  .ladderName { font-size: 13px; gap: 5px; }
+  .ladderName .flag { font-size: 13px; }
 }
