@@ -84,13 +84,11 @@ export default function RevenuePage() {
         rows={revenueShows.map((s, i) => ({
           rank: String(i + 1).padStart(2, "0"),
           venue: s.venue,
-          // Another artist's night names its artist right under the venue —
-          // the tint alone made "whose show is this?" a legend lookup. His
-          // rows keep the tour name instead: the page is his, and his rows
-          // already carry the gold gross and the plain background.
-          meta: s.artist === "Burna Boy"
-            ? `${s.city} · ${s.tour} · ${s.year}`
-            : `${s.artist} · ${s.city} · ${s.year}`,
+          // Every row names its artist, his too, in the same place and the
+          // same format as everyone else's: "<artist> · <city> · <year>" (the
+          // owner's rule, 3 Oct 2026). The gold gross and the plain background
+          // still mark his nights; they never stand in for his name.
+          meta: `${s.artist} · ${s.city} · ${s.year}`,
           gross: compactGross(s.revenue),
           tickets: s.tickets,
           his: s.artist === "Burna Boy",

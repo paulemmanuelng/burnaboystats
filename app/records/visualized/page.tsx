@@ -195,7 +195,7 @@ const winsByBody: BarItem[] = ceremonies
   .map((c) => ({ name: shortBody(c.name), value: c.wins, displayValue: `${c.wins}` }));
 const winsByBodyPhone = winsByBody.filter((c) => c.value >= 4);
 
-// ── Scatter: tickets vs revenue per show ──
+// ── Scatter: tickets vs gross per show ──
 // Label the four highest-grossing shows. The 3rd & 4th are both La Défense Arena
 // (Fally Ipupa's and Burna's), so disambiguate by artist and drop the 4th label
 // below its dot so the two don't collide.
@@ -361,7 +361,7 @@ export default function VisualizedPage() {
         chartCount={JUMP.length}
         blocks={[
           {
-            title: "Tickets vs revenue",
+            title: "Tickets vs gross",
             // The scatter keeps a 460px minimum and scrolls inside its own
             // frame rather than shrinking its labels to nothing — so the note
             // has to say it scrolls, or a phone reader sees a cropped chart
@@ -375,8 +375,8 @@ export default function VisualizedPage() {
                 xTicks={[{ value: 0, label: "0" }, { value: 30000, label: "30k" }, { value: 60000, label: "60k" }]}
                 yTicks={[{ value: 0, label: "$0" }, { value: 3e6, label: "$3M" }, { value: 6e6, label: "$6M" }]}
                 xLabel="Tickets sold"
-                yLabel="Revenue"
-                ariaLabel="Tickets sold against revenue for the verified single shows by African artists"
+                yLabel="Gross (USD)"
+                ariaLabel="Tickets sold against box-office gross for the verified single shows by African artists"
               />
             ),
           },
@@ -635,10 +635,10 @@ export default function VisualizedPage() {
           </Link>
         </section>
 
-        {/* ── Tickets vs revenue ─────────────────────────────── */}
+        {/* ── Tickets vs gross ───────────────────────────────── */}
         <section id="tickets-revenue" className={`${styles.wrap} ${styles.sectionPad}`}>
           <div className={styles.eyebrow}>Box office</div>
-          <h2 className={styles.h2}>Tickets vs revenue</h2>
+          <h2 className={styles.h2}>Tickets vs gross</h2>
           <div className={styles.chartBody}>
             <ScatterChart
               points={scatter}
@@ -647,15 +647,15 @@ export default function VisualizedPage() {
               xTicks={[{ value: 0, label: "0" }, { value: 20000, label: "20k" }, { value: 40000, label: "40k" }, { value: 60000, label: "60k" }]}
               yTicks={[{ value: 0, label: "$0" }, { value: 2e6, label: "$2M" }, { value: 4e6, label: "$4M" }, { value: 6e6, label: "$6M" }]}
               xLabel="Tickets sold"
-              yLabel="Gross revenue"
+              yLabel="Gross (USD)"
               // Not the full list: the scatter plots only shows with a reported
               // ticket count, so the label counts the points actually drawn.
-              ariaLabel={`Scatter plot of tickets sold versus gross revenue across ${scatter.length} verified single shows`}
+              ariaLabel={`Scatter plot of tickets sold versus box-office gross across ${scatter.length} verified single shows`}
             />
           </div>
           <p className={`${styles.caption} ${styles.captionNarrow}`}>
             Each dot is a show — <span className={styles.captionLead}>gold is Burna Boy</span>.
-            Revenue tracks ticket count closely, but higher-priced rooms sit above the line:{" "}
+            Gross tracks ticket count closely, but higher-priced rooms sit above the line:{" "}
             {topShowRow.venue} turned ~{Math.round(num(topShowRow.tickets) / 1000)},000 tickets into $
             {(topShowRow.revenue / 1e6).toFixed(2)}M.
           </p>
