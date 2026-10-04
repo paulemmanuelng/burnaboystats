@@ -310,6 +310,7 @@
     "--gold-ink 35%"
   ],
   "app/globals.css": [
+    "--bg-raised 40%",
     "--glow-base 10%",
     "--glow-base 15%",
     "--gold-glow-base 22%",
@@ -495,7 +496,6 @@
     "--gold-wash-base 7%"
   ],
   "app/records/tours/revenue/revenue.module.css": [
-    "--bg-raised 40%",
     "--ember 16%",
     "--gold-wash-base 4%"
   ],

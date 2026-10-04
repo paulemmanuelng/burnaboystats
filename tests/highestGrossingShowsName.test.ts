@@ -112,7 +112,10 @@ describe("/records/tours/revenue is called “Highest-grossing shows”", () => 
     // Split-word gold: only the split word is gold, as on the child page.
     expect(page).toContain(`Highest-Grossing <span className="inkText">Shows</span>`);
     const phone = readFileSync(join(APP, "components/MobileRevenue.tsx"), "utf8");
-    expect(phone).toContain(`<span className={styles.backLabel}>Highest-grossing</span>`);
+    // The page's full name on the phone bar since the "$6.15M" badge left it
+    // (Q4, 4 Oct 2026); it said "Highest-grossing" while the badge sat beside it.
+    expect(phone).toContain(`<span className={styles.backLabel}>Highest-grossing shows</span>`);
+    expect(phone).not.toContain(`<span className={styles.backLabel}>Highest-grossing</span>`);
     expect(phone).toContain(`Highest-grossing <span className={styles.gold}>shows</span>`);
 
     expect(SEGMENT_LABELS.revenue).toBe("Highest-Grossing Shows");

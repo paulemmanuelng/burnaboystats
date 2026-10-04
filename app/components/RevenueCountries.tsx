@@ -54,10 +54,10 @@ function ArtistRow({ a, rank }: { a: ArtistTotal; rank: number }) {
   const run = runCell(a);
   return (
     <div role="row" className={`${own.row} ${a.his ? styles.rowHis : ""}`}>
-      {/* Gold on his No. 1 only: another artist's 01 is a rank, not his figure
-          (C2, 3 Oct 2026: Tyla's 01 in Japan, the Philippines and Singapore
-          was gold). */}
-      <span role="cell" className={`${styles.rank} ${a.his && rank === 1 ? styles.rankTop : ""}`}>
+      {/* Every rank in the same ink, his No. 1 included: gold marks his
+          figures only (N4, 4 Oct 2026; C2, 3 Oct 2026, had already taken it
+          off Tyla's 01 in Japan, the Philippines and Singapore). */}
+      <span role="cell" className={styles.rank}>
         {String(rank).padStart(2, "0")}
       </span>
       <span role="cell" className={a.his ? styles.hisName : styles.otherName}>

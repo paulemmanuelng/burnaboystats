@@ -37,6 +37,24 @@ const BOARDS = [
     his: "standGrossHis",
   },
   {
+    // The record night (N6, 4 Oct 2026): its figure is gold only while the
+    // night is his — the design drew it gold whoever held No. 1.
+    what: "the record-night card on the desktop shows page",
+    css: "app/records/tours/revenue/revenue.module.css",
+    tsx: "app/records/tours/revenue/page.tsx",
+    base: "recordFigure",
+    his: "recordFigureHis",
+  },
+  {
+    // The phone's record card: the shared gold stat figure (.statValue), with
+    // .recordOther taking it to ink whenever the night is not his.
+    what: "the record-night card on the phone shows screen",
+    css: "app/components/mobileRevenue.module.css",
+    tsx: "app/components/MobileRevenue.tsx",
+    base: "recordOther",
+    his: "statValue",
+  },
+  {
     what: "the top-ten table on /records/tours",
     css: "app/records/tours/tours.module.css",
     tsx: "app/records/tours/page.tsx",
@@ -130,33 +148,33 @@ describe("the /records hub: negative control", () => {
   });
 });
 
-// The rank cell too (debug pass 3 Oct 2026, bo-01 and C2). The desktop board
-// lit every top-three rank gold — the design's rule — so Fally Ipupa's "03"
-// was gold; the countries page lit every "01", so Tyla's in Japan, the
-// Philippines and Singapore were. Gold marks his figures only: the owner's
-// rule wins over the old artboard.
-describe("gold marks his ranks only, on both box-office pages", () => {
-  const rankTopUse = (tsx: string) =>
-    [...tsx.matchAll(/([^\n]*)\?\s*styles\.rankTop/g)].map((m) => m[1].replace(/.*\$\{/, "").trim());
+// The rank cell and his name (debug pass 3 Oct 2026, bo-01 and C2; the owner,
+// 4 Oct 2026, N4). #408 kept gold on HIS top-three ranks and his No. 1s, and
+// his name printed gold on both pages. The rule now: gold = his figures only —
+// his name and every rank take the same ink as everyone else's.
+describe("gold marks his figures only: never a rank, never his name", () => {
+  const BOARD_CSS = read("app/records/tours/revenue/revenue.module.css");
 
-  it("the revenue board lights a top-three rank only on his rows", () => {
-    const uses = rankTopUse(read("app/components/RevenueBoard.tsx"));
-    expect(uses.length).toBe(1);
-    expect(uses[0]).toMatch(/s\.artist === HIS && rank <= 3/);
+  it("neither box-office page lights a rank", () => {
+    for (const f of ["app/components/RevenueBoard.tsx", "app/components/RevenueCountries.tsx", "app/components/MobileRevenue.tsx"]) {
+      expect(read(f), f).not.toMatch(/styles\.rankTop/);
+    }
+    expect(BOARD_CSS).not.toMatch(/\.rankTop\s*\{/);
+    for (const cls of ["rank", "showRank"]) expect(colorOf(BOARD_CSS, cls), cls).not.toMatch(/--gold/);
   });
 
-  it("the countries page lights a No. 1 only on his rows", () => {
-    const uses = rankTopUse(read("app/components/RevenueCountries.tsx"));
-    expect(uses.length).toBe(1);
-    expect(uses[0]).toMatch(/a\.his && rank === 1/);
+  it("his name is set in the same ink as every other name", () => {
+    expect(colorOf(BOARD_CSS, "hisName")).toBe(colorOf(BOARD_CSS, "otherName"));
+    expect(colorOf(BOARD_CSS, "hisName")).not.toMatch(/--gold/);
   });
 
-  it("negative control: the conditions as they shipped at 6005ca8e are caught", () => {
-    // RevenueBoard.tsx:103 and RevenueCountries.tsx:47, verbatim.
-    const board = rankTopUse("className={`${styles.rank} ${rank <= 3 ? styles.rankTop : \"\"}`}");
-    const countries = rankTopUse("<span role=\"cell\" className={`${styles.rank} ${rank === 1 ? styles.rankTop : \"\"}`}>");
-    expect(board[0]).not.toMatch(/s\.artist === HIS && rank <= 3/);
-    expect(countries[0]).not.toMatch(/a\.his && rank === 1/);
+  it("negative control: the rules as #408 shipped them (a7530590) are caught", () => {
+    // revenue.module.css at a7530590, verbatim.
+    const shipped = `.rankTop { color: var(--gold); }
+.hisName { font-weight: 600; font-size: 14.5px; color: var(--gold); }
+.otherName { font-weight: 600; font-size: 14.5px; color: var(--text); }`;
+    expect(colorOf(shipped, "rankTop")).toMatch(/--gold/);
+    expect(colorOf(shipped, "hisName")).not.toBe(colorOf(shipped, "otherName"));
   });
 
   it("the data still puts another artist in the board's top three, so the rule is exercised", () => {
