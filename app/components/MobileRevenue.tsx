@@ -298,9 +298,12 @@ export default function MobileRevenue({
       </section>
 
       <div className={styles.spacer} />
+      {/* The one gold action leads on to the countries board (the owner, 4 Oct
+          2026: "change the button here so it can lead to the highest gross by
+          country"; no stat card on this screen). */}
       <div className={styles.actionBar}>
-        <Link href="/share" className={styles.actionPrimary}>
-          Make a stat card
+        <Link href="/records/tours/revenue/countries" className={styles.actionPrimary}>
+          Highest-grossing by country
         </Link>
       </div>
     </div>
