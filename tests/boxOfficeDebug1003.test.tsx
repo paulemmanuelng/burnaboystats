@@ -216,6 +216,27 @@ describe("k6: one gold action on the phone revenue screen", () => {
   });
 });
 
+describe("the phone action bar leads to the countries board (owner, 4 Oct 2026)", () => {
+  const bar = () => revenue.phone!.querySelector('[class*="actionBar"]')!;
+  it("its one link goes to /records/tours/revenue/countries and says so", () => {
+    const links = [...bar().querySelectorAll("a")];
+    expect(links).toHaveLength(1);
+    expect(links[0].getAttribute("href")).toBe("/records/tours/revenue/countries");
+    expect(links[0].textContent!.trim()).toBe("Highest-grossing by country");
+  });
+  it("the screen carries no stat-card link", () => {
+    expect(revenue.phone!.querySelector('a[href="/share"]')).toBeNull();
+    expect(revenue.phone!.textContent).not.toMatch(/stat card/i);
+  });
+  it("negative control: the bar as it shipped in #413 fails both", () => {
+    const shipped = new DOMParser().parseFromString(
+      `<div class="actionBar"><a href="/share" class="actionPrimary">Make a stat card</a></div>`, "text/html");
+    const a = shipped.querySelector("a")!;
+    expect(a.getAttribute("href")).not.toBe("/records/tours/revenue/countries");
+    expect(shipped.querySelector('a[href="/share"]')).not.toBeNull();
+  });
+});
+
 // ── bo-02 ───────────────────────────────────────────────────────────────────
 describe("bo-02: under 1240px the desktop board still prints every row's year", () => {
   const rows = () => [...revenue.desktop!.querySelectorAll('[role="row"]')].slice(1);
