@@ -55,6 +55,13 @@ export default function JumpSpy({
       if (root.offsetParent === null && getComputedStyle(root).position !== "fixed") return;
       let next = pairs[0].a;
       for (const p of pairs) if (p.t.getBoundingClientRect().top - offset <= 1) next = p.a;
+      // At the foot of the page the last places (Africa, South America) can
+      // never scroll up to the offset: there, the last one on screen counts.
+      const doc = document.documentElement;
+      if (window.innerHeight + window.scrollY >= doc.scrollHeight - 2) {
+        const onScreen = pairs.filter((p) => p.t.getBoundingClientRect().top < window.innerHeight);
+        if (onScreen.length) next = onScreen[onScreen.length - 1].a;
+      }
       if (next === current) return;
       current?.removeAttribute("aria-current");
       next.setAttribute("aria-current", "location");

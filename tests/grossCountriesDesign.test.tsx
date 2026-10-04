@@ -352,6 +352,34 @@ describe("JumpSpy marks the place on screen", () => {
     });
     expect(cur()).toEqual(["C"]);
   });
+  it("at the foot of the page the last place on screen is current, though it never reached the offset", async () => {
+    document.body.innerHTML = `<div id="p"></div><div id="q"></div>`;
+    const tops: Record<string, number> = { p: -50, q: 600 };
+    for (const id of ["p", "q"]) document.getElementById(id)!.getBoundingClientRect = () => ({ top: tops[id] }) as DOMRect;
+    const { container } = render(
+      <JumpSpy label="Jump to" offset={140}>
+        <a href="#p">P</a>
+        <a href="#q">Q</a>
+      </JumpSpy>,
+      { container: document.body.appendChild(document.createElement("div")) },
+    );
+    const root = container.firstElementChild as HTMLElement;
+    Object.defineProperty(root, "offsetParent", { get: () => document.body, configurable: true });
+    const doc = document.documentElement;
+    const tick = async () =>
+      act(async () => {
+        window.dispatchEvent(new Event("scroll"));
+        await new Promise((r) => requestAnimationFrame(() => r(null)));
+      });
+    // Mid-page: P, the last one scrolled past.
+    Object.defineProperty(doc, "scrollHeight", { value: 5000, configurable: true });
+    await tick();
+    expect(root.querySelector('[aria-current="location"]')!.textContent).toBe("P");
+    // At the foot: Q, on screen below the offset.
+    Object.defineProperty(doc, "scrollHeight", { value: window.innerHeight + window.scrollY, configurable: true });
+    await tick();
+    expect(root.querySelector('[aria-current="location"]')!.textContent).toBe("Q");
+  });
   it("negative control: with nothing scrolled past, the first is current — not none", async () => {
     document.body.innerHTML = `<div id="x"></div>`;
     document.getElementById("x")!.getBoundingClientRect = () => ({ top: 2000 }) as DOMRect;
