@@ -80,11 +80,12 @@ describe("isIssuerMarker: a label's own award, never a programme", () => {
     expect(label).toBeGreaterThan(0);
   });
 
-  it("in Burna Boy's ledger, every marker is a priced programme or the Colombian label plaque", () => {
+  it("in Burna Boy's ledger, every marker is a priced programme or a label plaque (Colombia's, South Africa's)", () => {
     const issuers = new Set(
       allItems.flatMap((r) => r.certs.filter((c) => c.body && c.body !== COUNTRIES[c.c].body && isIssuerMarker(c.body)).map((c) => c.body)),
     );
-    expect([...issuers]).toEqual(["Sony Music Colombia"]);
+    // "All Eyes on Me"'s 19× names Sony Music Africa since 3 Oct 2026.
+    expect([...issuers].sort()).toEqual(["Sony Music Africa", "Sony Music Colombia"]);
     expect(Object.keys(CERT_PROGRAMS)).toContain("RIAA Latin");
   });
 });
@@ -113,7 +114,9 @@ describe("the issuer modifier on the page: Tyla's South African plaques, and onl
     const all = [...m["phone ledger"], ...m["desktop explorer"]];
     expect(all.filter((x) => x.text === "Latin").every((x) => !x.issuer)).toBe(true);
     expect(all.some((x) => x.text === "Latin")).toBe(true);
-    expect(all.filter((x) => x.text !== "Latin").every((x) => x.issuer && x.text === "Sony Music Colombia")).toBe(true);
+    // Since 3 Oct 2026 "All Eyes on Me"'s 19× names its issuer too (Sony Music Africa).
+    expect(all.filter((x) => x.text !== "Latin").every((x) => x.issuer && ["Sony Music Colombia", "Sony Music Africa"].includes(x.text))).toBe(true);
+    expect(new Set(all.filter((x) => x.issuer).map((x) => x.text))).toEqual(new Set(["Sony Music Colombia", "Sony Music Africa"]));
   }, 120_000);
 });
 
@@ -131,5 +134,22 @@ describe("the programme marker keeps the 11px floor; only the issuer marker is s
     expect(ruleBody(css, ".badgeIssuer")).toMatch(/font-size:\s*9px/);
     // Same specificity, so the modifier must come later to win.
     expect(css.indexOf(".badgeIssuer {")).toBeGreaterThan(css.indexOf(".badgeProgram {"));
+    // Debug pass, 3 Oct 2026 (tyla-totals-6): the issuer marker does not
+    // inherit the programme marker's fade — 9px gold at 0.85 measured 3.75:1
+    // on the light page. Negative control: the rule as it shipped had none.
+    expect(ruleBody(css, ".badgeIssuer")).toMatch(/opacity:\s*1\s*;/);
+  });
+
+  it("negative control: the .badgeIssuer that shipped carries no opacity", () => {
+    const shipped = `.badgeProgram { font-size: max(11px, 0.82em); opacity: 0.85; }
+.badgeIssuer {
+  display: inline-flex;
+  align-items: center;
+  align-self: stretch;
+  font-size: 9px;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}`;
+    expect(ruleBody(shipped, ".badgeIssuer")).not.toMatch(/opacity:\s*1\s*;/);
   });
 });

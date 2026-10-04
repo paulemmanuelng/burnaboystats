@@ -22,10 +22,12 @@ import { compareWithLinks } from "../lib/comparePairs";
 import { countryBoardLinks } from "../lib/certCountry";
 import CertViewSwap from "../components/CertViewSwap";
 import { featuredTitlesOf } from "../lib/certUnits";
+import { withIssuerProvenance } from "../lib/certs";
 import {
   ALL_VIEW, certCountPhrase, certKicker, certTotals, certsInView, creditSwitchable, homeCodeFor, scopeSwitchable, viewKey,
-  viewNoun, viewsOffered, type CertView, type CertViewKey,
+  viewsOffered, type CertView, type CertViewKey,
 } from "../lib/certScope";
+import { plural } from "../lib/plural";
 
 // Burna Boy's side of the "Compare with…" list the board artists' pages carry:
 // one pair page per board artist, each by its canonical URL (E-10, Paul,
@@ -134,9 +136,18 @@ function summaryFor(view: CertView): typeof summary {
   const inView = certsInView(allItems, { home, featured }, view);
   const t = certTotals(inView);
   const codes = new Set(inView.flatMap((r) => r.certs.map((c) => c.c)));
-  const label = viewNoun(t.total, view);
+  // The label stays as short as the all-view's: "International certifications
+  // as lead artist" ran to two lines at 1440 and dropped its note 18px below
+  // the other three (debug pass, 3 Oct 2026). The narrowing goes in the note.
+  const narrowing = [view.scope === "intl" ? `Outside ${BURNA.country}` : "", view.credit === "lead" ? "lead credits" : ""]
+    .filter(Boolean)
+    .join(" · ");
   return [
-    { value: String(t.total), label: label[0].toUpperCase() + label.slice(1), note: "Silver → Diamond" },
+    {
+      value: String(t.total),
+      label: plural(t.total, "Certification", "Certifications"),
+      note: narrowing[0].toUpperCase() + narrowing.slice(1),
+    },
     { value: String(t.countries), label: "Countries", note: `${new Set([...codes].map((c) => COUNTRIES[c].body)).size} issuing bodies` },
     {
       value: String(t.releases),
@@ -250,8 +261,8 @@ export default function CertificationsPage() {
       {/* Mobile is its own screen in this design — one big total with the tier
           bars under it, then stacked rows — not the desktop page reflowed. */}
       <MobileCerts
-        releases={allItems}
-        albums={certAlbums}
+        releases={withIssuerProvenance(allItems)}
+        albums={withIssuerProvenance(certAlbums)}
         history={intlCertHistory}
         countries={COUNTRIES}
         total={total}
@@ -345,9 +356,9 @@ export default function CertificationsPage() {
       {/* ── Filter card + the three release groups ───────────────────── */}
       <CertExplorer
         links={releasePageLinks()}
-        albums={certAlbums}
-        singles={singles}
-        features={features}
+        albums={withIssuerProvenance(certAlbums)}
+        singles={withIssuerProvenance(singles)}
+        features={withIssuerProvenance(features)}
         countries={COUNTRIES}
         totalCerts={total}
         home={home}

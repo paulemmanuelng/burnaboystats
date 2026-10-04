@@ -108,7 +108,12 @@
 /* A faint wash on his rows, so the shape of the board — how much of it is his —
    reads before any single number does. */
 .rowHis { background: color-mix(in srgb, var(--gold-wash-base) calc(4% * var(--wash-strength)), transparent); }
-.row:hover { background: var(--bg-raised); }
+/* Hover lifts the row. On paper the full --bg-raised (#e6e0d4) took the gold
+   name and gross on his rows to 4.14:1 against #945e00 — under AA for 22px
+   Anton 400 and 14.5px text (debug pass 3 Oct 2026, k4). Light hovers 40% of
+   the way to it (4.62:1); dark keeps --bg-raised (8.80:1).
+   tests/boxOfficeDebug1003.test.tsx computes both from globals.css. */
+.row:hover { background: light-dark(color-mix(in srgb, var(--bg-raised) 40%, var(--bg)), var(--bg-raised)); }
 .right { text-align: right; }
 
 .rank {
@@ -130,6 +135,9 @@
   color: var(--text-muted);
   margin-top: 2px;
 }
+/* The year on the city line shows only where the Tour column (which prints it)
+   is folded away — see the 1239px query at the foot. */
+.cityYear { display: none; }
 .tour { font-size: 13.5px; color: var(--text-body-cool); }
 .tickets {
   font-family: var(--font-geist-sans), system-ui, sans-serif;
@@ -221,12 +229,15 @@
 }
 .back { margin-top: 18px; }
 
-/* Narrower desktops: the tour column is the first to go — it repeats what the
-   venue and year already say. */
+/* Narrower desktops: the tour column is the first to go. It was the only
+   place the year was printed, so the year moves onto the city line (bo-02,
+   3 Oct 2026: at 1024 no row showed a year, and his two Capital One Arena
+   nights read the same). */
 @media (max-width: 1239px) {
   .headRow,
   .row { grid-template-columns: 46px 130px 1fr 90px 120px; }
   .headRow > :nth-child(4),
   .row > :nth-child(4) { display: none; }
+  .cityYear { display: inline; }
   .h1 { font-size: 61px; }
 }

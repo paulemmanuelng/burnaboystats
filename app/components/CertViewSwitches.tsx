@@ -1,4 +1,4 @@
-import type { MouseEvent } from "react";
+import { useId, type MouseEvent } from "react";
 import { flushSync } from "react-dom";
 import type { CertSwitches, CertView } from "../lib/certScope";
 import s from "./certSwitches.module.css";
@@ -97,6 +97,12 @@ export default function CertViewSwitches({
   /** The host's spacing for the row. */
   className?: string;
 }) {
+  // The state word describes the switch rather than naming it (debug pass,
+  // 3 Oct 2026): the name stays "Featured appearances" / the home country
+  // whatever the state, and aria-checked says on or off, so a screen reader no
+  // longer hears a name that changes with every flip and the state twice.
+  const featStateId = useId();
+  const homeStateId = useId();
   if (!offered.scope && !offered.credit) return null;
   const flip = (e: MouseEvent<HTMLButtonElement>, patch: Partial<CertView>) =>
     holdInPlace(e.currentTarget, () => onPick(patch));
@@ -114,12 +120,13 @@ export default function CertViewSwitches({
             type="button"
             role="switch"
             aria-checked={featOn}
+            aria-label="Featured appearances"
+            aria-describedby={featStateId}
             className={`${s.switch} ${featOn ? s.switchOn : ""}`}
             onClick={(e) => flip(e, { credit: featOn ? "lead" : "all" })}
           >
             <span className={`${s.dot} ${featOn ? s.dotOn : ""}`} aria-hidden="true" />
-            <span className="visuallyHidden">Featured appearances: </span>
-            {featOn ? "on · every plaque held" : "off · lead credits only"}
+            <span id={featStateId}>{featOn ? "on · every plaque held" : "off · lead credits only"}</span>
           </button>
         </span>
       )}
@@ -130,12 +137,13 @@ export default function CertViewSwitches({
             type="button"
             role="switch"
             aria-checked={homeOn}
+            aria-label={homeName}
+            aria-describedby={homeStateId}
             className={`${s.switch} ${homeOn ? s.switchOn : ""}`}
             onClick={(e) => flip(e, { scope: homeOn ? "intl" : "all" })}
           >
             <span className={`${s.dot} ${homeOn ? s.dotOn : ""}`} aria-hidden="true" />
-            <span className="visuallyHidden">{homeName}: </span>
-            {homeOn ? "included" : "left out"}
+            <span id={homeStateId}>{homeOn ? "included" : "left out"}</span>
           </button>
         </span>
       )}

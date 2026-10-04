@@ -5,11 +5,12 @@ import { siteUrl } from "./site";
 import { updates } from "./data/updates";
 import { songs } from "./data/songs";
 import { albumPages } from "./data/albumPages";
-import { afrobeatsArtists } from "./data/afrobeats";
+import { AFROBEATS_EDITED_ON, afrobeatsArtists } from "./data/afrobeats";
 import { LIVE_BOARDS } from "./data/liveBoards";
 import { liveChartsBuiltAt } from "./data/liveCharts";
 import { carSlugs } from "./data/cars";
 import { LISTENERS_READ_ON } from "./data/listeners";
+import { REVENUE_READ_ON } from "./lib/revenueSource";
 import { isIndexableDay, onThisDayDays } from "./lib/onThisDay";
 
 /**
@@ -120,10 +121,17 @@ const contentStamp: Record<string, string> = {
   "/live-charts": liveChartsBuiltAt,
   ...Object.fromEntries(LIVE_BOARDS.map((b) => [`/afrobeats/${b.slug}/live`, b.builtAt])),
   ...Object.fromEntries(
-    sweptArtists.flatMap((a): [string, string][] => [
-      [`/afrobeats/${a.slug}`, a.verifiedOn],
-      [`/afrobeats/${a.slug}/charts`, a.verifiedOn],
-    ]),
+    sweptArtists.flatMap((a): [string, string][] => {
+      // The later of the sweep the page prints and an edit made without a
+      // register read (AFROBEATS_EDITED_ON; sw-5, 3 Oct 2026: CKay's and
+      // Olamide's "Trumpet" changed on both lists while their stamps said
+      // 18 Sep and 6 Sep).
+      const stamp = [a.verifiedOn, AFROBEATS_EDITED_ON[a.slug]].filter(Boolean).sort().at(-1)!;
+      return [
+        [`/afrobeats/${a.slug}`, stamp],
+        [`/afrobeats/${a.slug}/charts`, stamp],
+      ];
+    }),
   ),
   // The board index prints each artist's plaque and entry totals, so it changed
   // the day the most recent of those sweeps landed.
@@ -132,6 +140,11 @@ const contentStamp: Record<string, string> = {
   // /music/listeners prints its read date beside every figure; the 50 cities
   // are re-read by hand and replaced whole, so the read date is the stamp.
   "/music/listeners": LISTENERS_READ_ON,
+  // Both box-office pages print the board as last re-read at its bodies; the
+  // countries page declares the same day as its Dataset's dateModified (sw-5/C8,
+  // 3 Oct 2026: the board said 17 Sep and the countries page said nothing).
+  "/records/tours/revenue": REVENUE_READ_ON,
+  "/records/tours/revenue/countries": REVENUE_READ_ON,
   // A pair page changes when either side's registers are re-read.
   ...Object.fromEntries(
     allPairs().map(([a, b]) => [`/compare/${pairSlug(a, b)}`, [a.verifiedOn, b.verifiedOn].sort().at(-1)!]),

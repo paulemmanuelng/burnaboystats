@@ -1,5 +1,8 @@
 // Single source of truth for site navigation + cross-page "explore" links.
 // Kept free of data imports so it's safe to use in the client Nav bundle.
+// (revenueSource.ts is words only — no rows — so the box-office notes below
+// derive from the board's own wording without bundling the board.)
+import { REVENUE_FOOTER_NOTE } from "./revenueSource";
 
 export const navItems = [
   { href: "/", label: "Home" },
@@ -211,7 +214,7 @@ export const footerFor: Record<string, FooterVariant> = {
     ],
   },
   "/records": {
-    note: "Box-office figures via Billboard Boxscore.",
+    note: REVENUE_FOOTER_NOTE,
     links: [
       { href: "/music", label: "Music" },
       { href: "/certifications", label: "Certifications" },
@@ -281,15 +284,16 @@ export const footerFor: Record<string, FooterVariant> = {
   "/records/tours": {
     links: [
       { href: "/records/tours/revenue", label: "Highest-grossing shows" },
-      { href: "/records/tours/revenue/countries", label: "Box office by country" },
+      { href: "/records/tours/revenue/countries", label: "Highest-grossing artists by country" },
       { href: "/records/tours/festivals", label: "Festivals" },
       { href: "/records/tours/map", label: "Tour map" },
       { href: "/records/firsts", label: "Firsts" },
     ],
   },
   "/records/tours/revenue": {
-    note: "Box-office figures via Billboard Boxscore.",
+    note: REVENUE_FOOTER_NOTE,
     links: [
+      { href: "/records/tours/revenue/countries", label: "Highest-grossing artists by country" },
       { href: "/records/tours", label: "Tours" },
       { href: "/records/tours/festivals", label: "Festivals" },
       { href: "/records/africas-biggest", label: "Africa's Biggest" },
@@ -298,7 +302,7 @@ export const footerFor: Record<string, FooterVariant> = {
     ],
   },
   "/records/tours/revenue/countries": {
-    note: "Box-office figures via Billboard Boxscore.",
+    note: REVENUE_FOOTER_NOTE,
     links: [
       { href: "/records/tours/revenue", label: "Highest-grossing shows" },
       { href: "/records/tours", label: "Tours" },

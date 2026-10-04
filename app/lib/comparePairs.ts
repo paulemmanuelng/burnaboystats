@@ -85,7 +85,10 @@ const fmt = (n: number) => n.toLocaleString("en-US");
  *  gate (scripts/check-seo.mjs) reads them off the rendered HTML. */
 export function pairCopy(a: ComparableArtist, b: ComparableArtist) {
   const c = compare(a, b, { includeFeatures: true });
-  const scope = c.options.includeNigeria ? "Nigeria included" : "international";
+  // "outside Nigeria", not "international" (debug pass 3 Oct 2026, tyla-totals-2):
+  // Nigeria is the only home split here, so a total that holds Tyla's South
+  // African plaques must not be called international. Same words as the page.
+  const scope = c.options.includeNigeria ? "Nigeria included" : "outside Nigeria";
   const lead = c.a.total >= c.b.total ? c.a : c.b;
   const trail = lead === c.a ? c.b : c.a;
   const title = `${a.name} vs ${b.name}: Certified Units Compared`;

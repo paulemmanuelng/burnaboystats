@@ -12,7 +12,7 @@ import {
   certProvenance,
 } from "../app/data/afrobeats";
 import { artistFaqs } from "../app/lib/boardFaqs";
-import { registerUrl } from "../app/lib/dataDownloads";
+import { registerUrl, plaqueSource, certificationRows, CERT_HEADER } from "../app/lib/dataDownloads";
 import {
   burnaLabelPlaques,
   boardLabelPlaques,
@@ -21,8 +21,12 @@ import {
   provenanceTileSentence,
   certificationRule,
 } from "../app/lib/offRegister";
-import { countryChipTitle } from "../app/lib/certs";
+import { countryChipTitle, withIssuerProvenance, issuerProvenance } from "../app/lib/certs";
 import type { Cert } from "../app/data/certifications";
+import { allItems, COUNTRIES } from "../app/data/certifications";
+import { CERT_THRESHOLDS } from "../app/data/certThresholds";
+import { comparableArtists, priceArtist, unitsForCert } from "../app/lib/certUnits";
+import { GET as afrobeatsApi } from "../app/api/v1/afrobeats/route";
 
 // LABEL-ISSUED PLAQUES (owner's ruling, 3 Oct 2026: "cant you see the plaque").
 //
@@ -302,10 +306,13 @@ describe("the hub tile and the methodology card name what stands without a regis
   it("the tile counts every off-register plaque on the board, Burna Boy's included", () => {
     const swept = afrobeatsArtists.filter((a) => a.swept).reduce((n, a) => n + offRegisterCount(a), 0);
     expect(swept).toBe(12); // Tyla 11, Tems 1
-    expect(burnaLabelPlaques).toEqual(["“Dai Dai”'s Gold in Colombia, issued by Sony Music Colombia"]);
-    expect(boardOffRegisterTotal).toBe(13);
+    expect(burnaLabelPlaques).toEqual([
+      "“Dai Dai”'s Gold in Colombia, issued by Sony Music Colombia",
+      "“All Eyes on Me”'s 19× Platinum in South Africa, issued by Sony Music Africa",
+    ]);
+    expect(boardOffRegisterTotal).toBe(14);
     expect(provenanceTileSentence()).toBe(
-      "A figure with no register row behind it is published only where the body itself announced it or the label issued or announced the plaque — 13 of the board's plaques, each named in the methodology.",
+      "A figure with no register row behind it is published only where the body itself announced it or the label issued or announced the plaque — 14 of the board's plaques, each named in the methodology.",
     );
   });
 
@@ -377,5 +384,108 @@ describe("the country filter chip says when a country's plaques are not register
   it("negative control: a country of register rows keeps the plain chip", () => {
     expect(chip("tyla", "US")).toBe("United States — RIAA");
     expect(chip("wizkid", "GB")).toBe(`${countryMeta("GB").name} — ${countryMeta("GB").body}`);
+  });
+});
+
+// Debug pass, 3 Oct 2026 (tyla-totals-1): "All Eyes on Me"'s 19× Platinum is,
+// by its own data comment, Sony Music Entertainment Africa's award and not a
+// RiSA register row — the precedent Tyla's plaques were counted on — but it
+// carried no `body`, so the CSV called it "RiSA … register", the API gave it
+// no `source`, the methodology said "the one exception" and the hub tile said
+// 13. The issuer is now named; every one of those derives from it, and the
+// pricing does not move.
+
+describe("Burna Boy's 'All Eyes on Me' 19× is Sony Music Africa's label plaque", () => {
+  const release = () => allItems.find((r) => r.title === "All Eyes on Me")!;
+  const za = () => release().certs.find((c) => c.c === "ZA")!;
+
+  it("names its issuer as the board spells it", () => {
+    expect(za()).toEqual({ c: "ZA", level: "Platinum", x: 19, body: "Sony Music Africa" });
+    // The board's own spelling of the same label (Tyla's, Tems's plaques).
+    const tylaWater = artistBySlug("tyla")!.releases.find((r) => r.title === "Water")!.certs.find((c) => c.c === "ZA")!;
+    expect(za().body).toBe(tylaWater.body);
+  });
+
+  it("still prices at RiSA's levels: 19 × 40,000, and Burna Boy's /compare totals do not move", () => {
+    expect(CERT_THRESHOLDS.ZA.single!.platinum).toBe(40_000);
+    expect(unitsForCert(za(), "single").units).toBe(19 * 40_000);
+    const burna = comparableArtists.find((a) => a.slug === "burna-boy")!;
+    const stripped = {
+      ...burna,
+      releases: burna.releases.map((r) =>
+        r.title === "All Eyes on Me" ? { ...r, certs: r.certs.map(({ body: _b, ...c }) => c) } : r,
+      ),
+    };
+    for (const includeNigeria of [false, true])
+      for (const includeFeatures of [false, true]) {
+        const opts = { includeNigeria, includeFeatures };
+        expect(priceArtist(burna, opts).total, JSON.stringify(opts)).toBe(priceArtist(stripped, opts).total);
+      }
+    // ‡ still applies: today's RiSA level, raised since the award.
+    const line = priceArtist(burna, { includeNigeria: false, includeFeatures: true }).byCountry.find((l) => l.country === "ZA")!;
+    expect(line.vintage).toBeTruthy();
+  });
+
+  it("the CSV calls it a label plaque and links no register", () => {
+    expect(plaqueSource(za(), COUNTRIES.ZA)).toBe("label");
+    const col = (row: unknown[], name: (typeof CERT_HEADER)[number]) => row[CERT_HEADER.indexOf(name)];
+    const row = certificationRows.find((r) => col(r, "artist") === "Burna Boy" && col(r, "release") === "All Eyes on Me")!;
+    expect(col(row, "certifying_body")).toBe("Sony Music Africa");
+    expect(col(row, "certified_units")).toBe(760_000);
+    expect(col(row, "register_url")).toBeNull();
+    expect(col(row, "source")).toBe("label");
+    // Negative control: the row that shipped ended "…,https://risa.org.za/,2026-09-30,register".
+    expect(col(row, "register_url")).not.toBe("https://risa.org.za/");
+  });
+
+  it("the API gives the subject's off-register plaques a `source`, as the board's have", async () => {
+    const d = (await (await afrobeatsApi()).json()).data;
+    const certs = (title: string) => d.subject.releases.find((r: { title: string }) => r.title === title).certifications;
+    expect(certs("All Eyes on Me")[0]).toMatchObject({ countryCode: "ZA", body: "Sony Music Africa", multiplier: 19, source: "label" });
+    expect(certs("Dai Dai").find((c: { countryCode: string }) => c.countryCode === "CO")).toMatchObject({ body: "Sony Music Colombia", source: "label" });
+    // Negative control: a register row carries none, as the description says.
+    expect(certs("Last Last").find((c: { countryCode: string }) => c.countryCode === "UK")).not.toHaveProperty("source");
+    // RIAA Latin is a programme of the register's own body, not an issuer.
+    expect(certs("Dai Dai").find((c: { countryCode: string; body: string }) => c.countryCode === "US")).not.toHaveProperty("source");
+  });
+
+  it("the /certifications CO chip names Sony Music Colombia, not the register", () => {
+    const view = withIssuerProvenance(allItems);
+    const inCountry = (code: string) => view.flatMap((r) => r.certs.filter((c) => c.c === code));
+    expect(countryChipTitle(COUNTRIES.CO.name, COUNTRIES.CO.body, inCountry("CO"))).toBe(
+      "Colombia — Sony Music Colombia, label-issued plaque",
+    );
+    // Negative control, the title that shipped: the register body, which lists no such award.
+    expect(countryChipTitle(COUNTRIES.CO.name, COUNTRIES.CO.body, allItems.flatMap((r) => r.certs.filter((c) => c.c === "CO")))).toBe(
+      "Colombia — Pro Musica Colombia",
+    );
+    expect(countryChipTitle(COUNTRIES.ZA.name, COUNTRIES.ZA.body, inCountry("ZA"))).toBe("South Africa — RiSA (1 not a register row)");
+    // Register rows and programmes stay plain.
+    expect(issuerProvenance({ c: "US", level: "Platinum", body: "RIAA Latin" })).toBeUndefined();
+    expect(issuerProvenance({ c: "UK", level: "Gold" })).toBeUndefined();
+  });
+});
+
+// Debug pass, 3 Oct 2026 (tyla-totals-3): the countries answer said "Each is
+// awarded by that country's own certifying body" over Tyla's Sony Music Africa
+// plaques — in FAQPage structured data. No answer may say it while the artist
+// holds a plaque that is not a register row.
+describe("the countries FAQ does not credit a label's plaque to the certifying body", () => {
+  const SHIPPED = "Each is awarded by that country's own certifying body";
+  const countriesAnswer = (slug: string) =>
+    artistFaqs(artistBySlug(slug)!).find((f) => /^Which countries has /.test(f.q))?.a ?? "";
+
+  it("for every swept artist, from the data", () => {
+    for (const a of afrobeatsArtists.filter((x) => x.swept)) {
+      const answers = artistFaqs(a).map((f) => f.a).join(" ");
+      if (offRegisterCount(a) > 0) expect(answers, a.slug).not.toContain(SHIPPED);
+    }
+    expect(countriesAnswer("tyla")).toContain("Each is awarded by the certifying body or label that issued it");
+    expect(countriesAnswer("tems")).toContain("Each is awarded by the certifying body or label that issued it");
+  });
+
+  it("negative control: an all-register artist keeps the sentence that shipped", () => {
+    expect(offRegisterCount(artistBySlug("wizkid")!)).toBe(0);
+    expect(countriesAnswer("wizkid")).toContain(SHIPPED);
   });
 });

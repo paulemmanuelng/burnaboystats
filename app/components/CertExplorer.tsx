@@ -415,7 +415,7 @@ export default function CertExplorer({
           <div className={styles.filterMeta}>
             {/* "65 international certifications across 23 countries" in a
                 narrowed view; the All view reads as it always has. */}
-            Showing <b>{totalShown}</b> of {totalAll} releases ·{" "}
+            Showing <b>{totalShown}</b> of {totalAll} {totalAll === 1 ? "release" : "releases"} ·{" "}
             {narrowed ? (
               <span>
                 <b>{shownCerts}</b> {viewNoun(shownCerts, view)} across {count(shownCountries, "country", "countries")}

@@ -55,7 +55,13 @@
      the 12px gaps (36px) would push it to two lines; below 360 the gaps close
      to 8px and the badge's tracking eases, as on the by-country screen. */
   white-space: nowrap;
-  flex: none;
+  /* It gives way, not the menu: at 320 the row had ~2px spare, so a 7-character
+     badge ("$10.00M") would have pushed the menu off the bar. The label shrinks
+     and ellipsises first (k3, 3 Oct 2026). */
+  flex: 0 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .badge {
   margin-left: auto;
@@ -64,6 +70,7 @@
   letter-spacing: 0.1em;
   color: var(--gold);
   flex: none;
+  white-space: nowrap;
 }
 /* After .badge, so the eased tracking wins at the same specificity. */
 @media (max-width: 359px) {
@@ -208,6 +215,12 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+/* The board's meta line as three parts: the artist and " · year" keep their
+   width, the city between them clips (k2). white-space: pre keeps the spaces
+   at the parts' edges, which a flex item would otherwise collapse. */
+.metaSplit { display: flex; min-width: 0; }
+.metaKeep { flex: none; white-space: pre; }
+.metaCity { flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .right { text-align: right; flex: none; }
 .gross {
   font-family: var(--font-anton), sans-serif;

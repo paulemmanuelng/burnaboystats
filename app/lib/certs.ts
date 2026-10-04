@@ -97,3 +97,23 @@ export function countryChipTitle(name: string, body: string, certs: readonly Cer
  *  ("reduce the text size of sony music africa so it fit perfectly", 3 Oct
  *  2026); a programme marker stays on the 11px floor. */
 export const isIssuerMarker = (body: string): boolean => !CERT_PROGRAMS[body];
+
+/** Burna Boy's own plaques carry no `source`: an ISSUER `body` (not a priced
+ *  programme) is what marks his label plaques — "Dai Dai"'s Colombian Gold,
+ *  Sony Music Colombia's, and "All Eyes on Me"'s 19× Platinum, Sony Music
+ *  Africa's. The board's plaques get their hover tail from certProvenance in
+ *  app/data/afrobeats.ts; his get the same "label-issued plaque" here, so the
+ *  /certifications country chip reads "Colombia — Sony Music Colombia, …"
+ *  rather than the register body that holds no such award (debug pass,
+ *  3 Oct 2026). Derived, never typed into the data. */
+export const issuerProvenance = (c: Cert): string | undefined =>
+  c.provenance ?? (c.body && isIssuerMarker(c.body) ? "label-issued plaque" : undefined);
+
+/** The releases with `provenance` set on every issuer plaque — the shape the
+ *  explorers read. Releases with none are passed through untouched. */
+export const withIssuerProvenance = (releases: readonly Release[]): Release[] =>
+  releases.map((r) =>
+    r.certs.some((c) => !c.provenance && issuerProvenance(c))
+      ? { ...r, certs: r.certs.map((c) => (c.provenance || !issuerProvenance(c) ? c : { ...c, provenance: issuerProvenance(c) })) }
+      : r,
+  );

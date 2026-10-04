@@ -9,7 +9,7 @@
 // `source` field (data only: the page does not print it); the comments beside
 // a row hold the reasoning where there is any. Cross-checked against press
 // reporting and, for Burna Boy's own dates, against the site's own verified
-// tour records — last re-read on the date in REVENUE_AS_OF below. This is
+// tour records — last re-read on the date in REVENUE_READ_ON (app/lib/revenueSource.ts). This is
 // PER-SHOW gross, distinct from the tour-level totals on the main Tours page.
 //
 // Reported but not on the board, pending a body read: Tiwa Savage at O2
@@ -17,15 +17,12 @@
 // only, and not one of the sixteen Water & Garri nights in TouringData's own
 // posts.
 
-/** The month the board was last re-read at its bodies — printed on the hub's
- *  source note and the leaderboard's own; move it whenever the board is. */
-export const REVENUE_AS_OF = "October 2026";
-
-/** Where the board's figures come from, in one wording for every note that
- *  describes it (the leaderboard's desktop and phone notes, the hub's note
- *  under its top ten). Callers append ", as of REVENUE_AS_OF". */
-export const REVENUE_SOURCE =
-  "Box-office reports as published by TouringData, which republishes Billboard Boxscore and Pollstar reports — read at its site archive and in its own posts, cross-checked with press reporting";
+// When the board was last re-read (REVENUE_READ_ON, ISO day; REVENUE_AS_OF,
+// its month) and the wording every note uses for where it comes from
+// (REVENUE_SOURCE) live in app/lib/revenueSource.ts, which imports no data, so
+// the footer can share them without bundling this file (4 Oct 2026). Move
+// REVENUE_READ_ON there whenever the board is re-read. This file stays free of
+// imports, so node can read it directly (docs/design/…/derive.mjs).
 
 export interface RevenueShow {
   artist: string;
@@ -166,8 +163,8 @@ export const revenueShows: RevenueShow[] = [
   // TouringData's own X post of 21 Oct 2024, read from the owner's screenshot
   // (3 Oct 2026; tems-read.md).
   { artist: "Tems", venue: "Radio City Music Hall", city: "New York", flag: "🇺🇸", tour: "Born in the Wild Tour", year: "2024", tickets: "5,956", revenue: 547697, source: "TouringData, X post of 21 Oct 2024 (BORN IN THE WILD), from the owner's screenshot" },
-  // Burna Boy's Vancouver, Seattle, Edmonton, Houston and Austin rows (the
-  // first of them just below) are 5, 7, 9, 17 and 18 November 2023, read at
+  // Burna Boy's Seattle, Vancouver, Edmonton, Houston and Austin rows (the
+  // Vancouver row just below) are 5, 7, 9, 17 and 18 November 2023, read at
   // TouringData's own I Told Them… Tour table (touringdata.org/2025/12/29/
   // burna-boy-i-told-them-tour/, via the Internet Archive, snapshot
   // 20260205190633; same rows in the archived wp-json record of post 27489).

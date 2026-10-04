@@ -465,6 +465,37 @@ export const AFROBEATS_VERIFIED_ON_18 = "2026-10-03";
  *  constant by the ON_13 bump rule. Tems is not on "Chanel" and stays ON_18. */
 export const AFROBEATS_VERIFIED_ON_19 = "2026-10-03";
 
+/** The last day EVERY register behind the board was re-read: the 2 Oct 2026
+ *  register sweep (docs/sweeps/sweep-2026-10-02.md — "Certifications only,
+ *  Burna Boy and all nineteen board artists, every issuing body the site
+ *  cites", RiSA and Ultratop by the owner's hand). `verifiedOn` moves on any
+ *  read that changes a plaque (the ON_13 bump rule), including a partial one —
+ *  Tyla's and Tems's 3 Oct, when only SNEP's database, a plaque photo and a
+ *  label's post were read (ON_18, ON_19) — so it says "last verified", and
+ *  this says "re-read at every register" (debug pass, 3 Oct 2026). */
+export const AFROBEATS_LAST_FULL_SWEEP = "2026-10-02";
+
+/** The last chart sweep across the whole board: docs/sweeps/charts-sweep-2026-10-02.md
+ *  (twelve lanes, every lead double-verified, applied in #397). The charts
+ *  pages date their re-read from this, not from `verifiedOn`, which moves on
+ *  certification reads that read no chart. */
+export const AFROBEATS_LAST_CHART_SWEEP = "2026-10-02";
+
+/** The day a board artist's page was last EDITED without a register read —
+ *  a release's credit, title or sleeve corrected — for the sitemap's lastmod
+ *  only (app/sitemap.ts). `verifiedOn` is not moved for these: the page prints
+ *  it under "last verified", and no register was read. An artist with no entry
+ *  here is dated by verifiedOn alone.
+ *
+ *  3 Oct 2026 (#404, ac1e9bf6): CKay's "Trumpet" became a co-lead ("Lead
+ *  singles", titled "Trumpet (Olamide & CKay)"), and Olamide's "Trumpet"
+ *  sleeve was replaced, on both artists' plaque and chart lists. The sitemap
+ *  still said 18 Sep and 6 Sep (debug pass 3 Oct 2026, sw-5). */
+export const AFROBEATS_EDITED_ON: Readonly<Record<string, string>> = {
+  ckay: "2026-10-03",
+  olamide: "2026-10-03",
+};
+
 export const afrobeatsArtists: AfroArtist[] = [
   {
     slug: "olamide",

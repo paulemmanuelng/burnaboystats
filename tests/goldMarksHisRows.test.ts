@@ -50,6 +50,23 @@ const BOARDS = [
     base: "gross",
     his: "grossHis",
   },
+  {
+    // The /records hub's box-office table (found while shooting the 3 Oct
+    // debug fixes): Fally Ipupa's La Défense Arena night sits third, and his
+    // $3.16M printed gold on both layouts.
+    what: "the box-office table on the desktop /records hub",
+    css: "app/records/records.module.css",
+    tsx: "app/records/page.tsx",
+    base: "gross",
+    his: "grossHis",
+  },
+  {
+    what: "the box-office list on the phone /records hub",
+    css: "app/components/mobileRecords.module.css",
+    tsx: "app/components/MobileRecords.tsx",
+    base: "showGross",
+    his: "showGrossHis",
+  },
 ];
 
 describe("gold marks Burna Boy's grosses, not everyone's", () => {
@@ -81,5 +98,68 @@ describe("gold marks Burna Boy's grosses, not everyone's", () => {
       new RegExp(`styles\\.${b.his}`).test(tsx),
       `${b.tsx} never references ${b.his}, so the gold can never appear`,
     ).toBe(true);
+  });
+});
+
+describe("the /records hub: negative control", () => {
+  it("the gross rules as they shipped at 6005ca8e are caught", () => {
+    // records.module.css:212 and mobileRecords.module.css:216, verbatim.
+    const desktop = `.gross {
+  text-align: right;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 19px;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+}`;
+    const phone = `.showGross {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+  flex: none;
+}`;
+    expect(colorOf(desktop, "gross")).toMatch(/--gold/);
+    expect(colorOf(phone, "showGross")).toMatch(/--gold/);
+  });
+
+  it("the hub shows another artist in its rows, so the rule is exercised", () => {
+    // app/records/page.tsx feeds both layouts revenueShows.slice(0, 8).
+    expect(revenueShows.slice(0, 8).some((s) => s.artist !== "Burna Boy")).toBe(true);
+  });
+});
+
+// The rank cell too (debug pass 3 Oct 2026, bo-01 and C2). The desktop board
+// lit every top-three rank gold — the design's rule — so Fally Ipupa's "03"
+// was gold; the countries page lit every "01", so Tyla's in Japan, the
+// Philippines and Singapore were. Gold marks his figures only: the owner's
+// rule wins over the old artboard.
+describe("gold marks his ranks only, on both box-office pages", () => {
+  const rankTopUse = (tsx: string) =>
+    [...tsx.matchAll(/([^\n]*)\?\s*styles\.rankTop/g)].map((m) => m[1].replace(/.*\$\{/, "").trim());
+
+  it("the revenue board lights a top-three rank only on his rows", () => {
+    const uses = rankTopUse(read("app/components/RevenueBoard.tsx"));
+    expect(uses.length).toBe(1);
+    expect(uses[0]).toMatch(/s\.artist === HIS && rank <= 3/);
+  });
+
+  it("the countries page lights a No. 1 only on his rows", () => {
+    const uses = rankTopUse(read("app/components/RevenueCountries.tsx"));
+    expect(uses.length).toBe(1);
+    expect(uses[0]).toMatch(/a\.his && rank === 1/);
+  });
+
+  it("negative control: the conditions as they shipped at 6005ca8e are caught", () => {
+    // RevenueBoard.tsx:103 and RevenueCountries.tsx:47, verbatim.
+    const board = rankTopUse("className={`${styles.rank} ${rank <= 3 ? styles.rankTop : \"\"}`}");
+    const countries = rankTopUse("<span role=\"cell\" className={`${styles.rank} ${rank === 1 ? styles.rankTop : \"\"}`}>");
+    expect(board[0]).not.toMatch(/s\.artist === HIS && rank <= 3/);
+    expect(countries[0]).not.toMatch(/a\.his && rank === 1/);
+  });
+
+  it("the data still puts another artist in the board's top three, so the rule is exercised", () => {
+    expect(revenueShows.slice(0, 3).some((s) => s.artist !== "Burna Boy")).toBe(true);
   });
 });

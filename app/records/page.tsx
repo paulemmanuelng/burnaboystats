@@ -1,7 +1,8 @@
 import Link from "next/link";
 import styles from "./records.module.css";
 import { pageMetadata } from "../lib/seo";
-import { revenueShows, REVENUE_AS_OF } from "../data/tourRevenue";
+import { revenueShows } from "../data/tourRevenue";
+import { REVENUE_AS_OF, REVENUE_SOURCE } from "../lib/revenueSource";
 import { tours } from "../data/tours";
 import { ceremonies } from "../data/awards";
 import { numberWord } from "../lib/homeData";
@@ -186,14 +187,18 @@ export default function RecordsPage() {
                     </td>
                     <td className={styles.tour}>{s.tour} · {s.year}</td>
                     <td className={styles.tickets}>{s.tickets ?? <NotReported />}</td>
-                    <td className={styles.gross}>{usd(s.revenue)}</td>
+                    <td className={`${styles.gross} ${s.artist === "Burna Boy" ? styles.grossHis : ""}`}>
+                      {usd(s.revenue)}
+                    </td>
                   </tr>
                 ))}
               </tbody>
             </table>
+            {/* The board's own source wording (REVENUE_SOURCE), not a typed
+                copy (sw-4, 3 Oct 2026: this said "aggregating Billboard
+                Boxscore" and left Pollstar out). */}
             <p className={styles.sourceNote}>
-              Source: TouringData, aggregating Billboard Boxscore, cross-checked against press
-              reporting — {REVENUE_AS_OF}. Per-show gross, distinct from tour-level totals.
+              {REVENUE_SOURCE}, as of {REVENUE_AS_OF}. Per-show gross, distinct from tour-level totals.
             </p>
           </div>
         </section>

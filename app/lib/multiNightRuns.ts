@@ -16,3 +16,13 @@ export const RUNS_LEDE =
 
 /** "29,579 tickets over 2 nights". */
 export const runTickets = (tickets: string, nights: number) => `${tickets} tickets over ${nights} nights`;
+
+/**
+ * The lowest place any run's combined total would take among the single
+ * nights, were it ranked as one: the "top N" the desktop note prints, derived
+ * rather than typed (debug pass 3 Oct 2026, bo-06: it said "top five", true
+ * that day by hand only). Pure numbers in, so this file stays free of the
+ * board's data (it is imported by a client component).
+ */
+export const runRankCeiling = (runs: readonly number[], nights: readonly number[]) =>
+  Math.max(...runs.map((r) => 1 + nights.filter((n) => n > r).length));

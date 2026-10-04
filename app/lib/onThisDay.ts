@@ -30,7 +30,8 @@ import { albums } from "../data/albums";
 import { albumPageByTitle } from "../data/albumPages";
 import { certHistory, COUNTRIES } from "../data/certifications";
 import { albumCharts, singleCharts, featureCharts, CHART_COUNTRIES, chartTier } from "../data/charts";
-import { tours, festivals, otherShows, concerts, liveMoments, type LiveMoment } from "../data/tours";
+import { tours, festivals, otherShows, concerts, type LiveMoment } from "../data/tours";
+import { liveMoments } from "../data/liveMoments";
 import { revenueShows } from "../data/tourRevenue";
 import { ceremonies, honours } from "../data/awards";
 import {

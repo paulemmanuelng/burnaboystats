@@ -53,6 +53,10 @@
   flex: 0 0 30px;
   border-radius: 999px;
   background: var(--rule-soft);
+  /* The off track's edge, at --rule (3.3:1, WCAG 1.4.11): --rule-soft alone
+     measured 1.95:1 on the page (debug pass, 3 Oct 2026). The on track's
+     gold carries its own edge. Kept in step with compare.module.css. */
+  box-shadow: inset 0 0 0 1px var(--rule);
   transition: background var(--dur) var(--ease);
 }
 .dot::after {
@@ -66,7 +70,7 @@
   background: var(--text-muted);
   transition: left var(--dur) var(--ease), background var(--dur) var(--ease);
 }
-.dotOn { background: var(--gold); }
+.dotOn { background: var(--gold); box-shadow: none; }
 .dotOn::after { left: 16px; background: var(--ink-on-gold); }
 .switch:hover .dotOn { background: var(--gold); }
 /* compare: the site's focus rule sets border-radius 3px on the element; the

@@ -55,8 +55,10 @@ const artist = async (slug: string) => render(await ArtistPage({ params: Promise
 
 /** The desktop explorer's filter panel; the phone's switches sit outside it. */
 const panel = () => document.getElementById("cert-filters")!;
-const FEAT = /^Featured appearances:/;
-const homeName = (country: string) => new RegExp(`^${country}:`);
+// Stable names since the debug pass of 3 Oct 2026 (c4): the state is
+// aria-checked plus a description, never part of the name.
+const FEAT = /^Featured appearances$/;
+const homeName = (country: string) => new RegExp(`^${country}$`);
 /** Every copy of a switch on the page — one per layout where it is offered. */
 const switches = (name: RegExp) => screen.queryAllByRole("switch", { name });
 const desktop = (name: RegExp) => switches(name).find((b) => panel()?.contains(b))!;
@@ -85,12 +87,12 @@ describe("Tyla's page: both switches in both layouts", () => {
     expect(rows()).toHaveLength(2);
     for (const r of rows()) {
       expect(within(r).queryAllByRole("button")).toHaveLength(0);
-      expect(within(r).getAllByRole("switch").map((b) => b.textContent)).toEqual([
-        "Featured appearances: on · every plaque held",
-        "South Africa: included",
+      expect(within(r).getAllByRole("switch").map((b) => [b.getAttribute("aria-label"), b.textContent])).toEqual([
+        ["Featured appearances", "on · every plaque held"],
+        ["South Africa", "included"],
       ]);
       expect(r.textContent).toMatch(/^Featured appearances/);
-      expect(r.textContent).toContain("FeaturesFeatured appearances: on");
+      expect(r.textContent).toContain("Featureson · every plaque held");
       expect(r.textContent).not.toMatch(/\bSA\b|\bZA\b/);
     }
     expect(mobileH1().textContent).toMatch(/75awards24 countries/);
@@ -113,8 +115,8 @@ describe("Tyla's page: both switches in both layouts", () => {
     await artist("tyla");
     for (const r of rows())
       expect(within(r).getAllByRole("switch").map((b) => [b.textContent, b.getAttribute("aria-checked")])).toEqual([
-        ["Featured appearances: off · lead credits only", "false"],
-        ["South Africa: left out", "false"],
+        ["off · lead credits only", "false"],
+        ["left out", "false"],
       ]);
   });
 
@@ -247,8 +249,12 @@ describe("Burna Boy's /certifications", () => {
     await press(desktop(NG));
     expect(mobileH1().textContent).toContain(`${intl.total}international awards${intl.countries} countries`);
     expect(container.textContent).toContain(`${intl.total} international certifications across ${intl.countries} countries`);
-    // The hero's summary strip swaps with it.
-    expect(container.textContent).toContain("International certifications");
+    // The hero's summary strip swaps with it: a short label, the narrowing in
+    // its note (debug pass, 3 Oct 2026 — the long label wrapped at 1440).
+    const first = () => container.querySelector(`.${explorerStyles.summaryCell}`)!;
+    expect(first().querySelector(`.${explorerStyles.summaryValue}`)!.textContent).toBe(String(intl.total));
+    expect(first().querySelector(`.${explorerStyles.summaryLabel}`)!.textContent).toBe("Certifications");
+    expect(first().querySelector(`.${explorerStyles.summaryNote}`)!.textContent).toBe("Outside Nigeria");
     expect(screen.queryByRole("button", { name: /NG$/ })).not.toBeInTheDocument();
   });
 
@@ -273,7 +279,9 @@ describe("Burna Boy's /certifications", () => {
     expect(screen.getAllByText("Dai Dai")).toHaveLength(daiDaiBefore);
     expect(screen.getAllByText("For My Hand")).toHaveLength(handBefore);
     // The summary strip, counted from the same releases.
-    expect(container.textContent).toContain("Certifications as lead artist");
+    const first = container.querySelector(`.${explorerStyles.summaryCell}`)!;
+    expect(first.querySelector(`.${explorerStyles.summaryValue}`)!.textContent).toBe(String(lead.total));
+    expect(first.querySelector(`.${explorerStyles.summaryNote}`)!.textContent).toBe("Lead credits");
     expect(container.textContent).toContain("Albums and singles");
     // Its "New in <year>" cell too — his own releases only, labelled so.
     expect(container.textContent).toContain("International awards, lead credits");
@@ -476,7 +484,8 @@ describe("the switched views keep #401's issuer marker and #402's caveat true", 
     expect(prov()).toContain("— except 1 plaque in France, read from SNEP's own announcement, which the register does not hold");
     expect(prov()).not.toContain("South Africa");
     // The phone lede, the short form, follows the same switch.
-    expect(container.textContent).toContain("(1 plaque in France from SNEP's own announcement)");
+    // "except" since the debug pass of 3 Oct 2026 (tyla-totals-5).
+    expect(container.textContent).toContain("(except 1 plaque in France from SNEP's own announcement)");
   });
 
   it("Tems with features off: her one label plaque is a guest spot, so the caveat goes", async () => {
@@ -519,5 +528,39 @@ describe("the switched views keep #401's issuer marker and #402's caveat true", 
     expect(chip()).toHaveAttribute("title", "South Africa — RiSA (1 not a register row)");
     await press(desktop(FEAT));
     expect(chip()).toHaveAttribute("title", "South Africa — RiSA");
+  });
+});
+
+// Debug pass, 3 Oct 2026 (c4): the switches' accessible names read
+// "Featured appearances: off · lead credits only" and "South Africa: left
+// out" — a name that changed with every flip, and the state announced twice
+// (in the name and by aria-checked). The name is now the control alone; the
+// state is aria-checked, and the state words are its description.
+describe("each switch keeps one accessible name; its state is checked + described", () => {
+  it("Tyla, both layouts, before and after a flip", async () => {
+    at("/afrobeats/tyla");
+    await artist("tyla");
+    for (const b of [desktop(FEAT), mobile(FEAT)]) {
+      expect(b).toHaveAccessibleName("Featured appearances");
+      expect(b).toHaveAccessibleDescription("on · every plaque held");
+    }
+    for (const b of [desktop(ZA), mobile(ZA)]) {
+      expect(b).toHaveAccessibleName("South Africa");
+      expect(b).toHaveAccessibleDescription("included");
+    }
+    await press(mobile(FEAT));
+    await press(mobile(ZA));
+    for (const b of [desktop(FEAT), mobile(FEAT)]) {
+      expect(b).toHaveAccessibleName("Featured appearances");
+      expect(b).toHaveAccessibleDescription("off · lead credits only");
+      expect(b).toHaveAttribute("aria-checked", "false");
+    }
+    for (const b of [desktop(ZA), mobile(ZA)]) {
+      expect(b).toHaveAccessibleName("South Africa");
+      expect(b).toHaveAccessibleDescription("left out");
+    }
+    // Negative control: the names that shipped are gone.
+    expect(screen.queryAllByRole("switch", { name: "Featured appearances: off · lead credits only" })).toHaveLength(0);
+    expect(screen.queryAllByRole("switch", { name: "South Africa: left out" })).toHaveLength(0);
   });
 });

@@ -13,6 +13,7 @@ import { afrobeatsArtists, countryMeta } from "../data/afrobeats";
 import { chartEntryCount, numberOnes, chartSourceSplit, chartCountryCount } from "../data/charts";
 import { ceremonyCount } from "../data/awards";
 import { tours } from "../data/tours";
+import { REVENUE_BODY, REVENUE_REPORTS } from "../lib/revenueSource";
 import { CAREER_STREAMS_ANCHOR_READ_ON } from "../data/streamingTotals";
 import { numberWord } from "../lib/homeData";
 
@@ -94,9 +95,11 @@ const sources = [
   {
     area: "Tours & live",
     count: String(tours.length),
-    tag: "Boxscore · Pollstar · venue capacities",
+    tag: `${REVENUE_BODY} · Boxscore · Pollstar · venue capacities`,
+    // The board's own source words (app/lib/revenueSource.ts): it said Boxscore
+    // and Pollstar only, after #403 moved the board to TouringData (sw-4).
     detail:
-      "Box-office and attendance figures from Billboard Boxscore and Pollstar where available, verified venue capacities, and primary reporting for one-off shows and festival billings.",
+      `Box-office and attendance figures from ${REVENUE_REPORTS} as published by ${REVENUE_BODY}, where available; verified venue capacities; and primary reporting for one-off shows and festival billings.`,
   },
 ];
 

@@ -82,7 +82,7 @@ export default function MobileRecords({
       {/* Box office */}
       <div className={styles.boxHead}>
         <div className={styles.kicker}>Box office</div>
-        <h2 className={styles.h2}>Biggest single shows</h2>
+        <h2 className={styles.h2}>Highest-grossing shows</h2>
         <p className={styles.boxLede}>
           {hisShows} of the {showCount} verified African single-show grosses are his.
         </p>
@@ -99,7 +99,11 @@ export default function MobileRecords({
               <span className={styles.showVenue}>{s.flag} {s.venue}</span>
               <span className={styles.showMeta}>{s.artist} · {s.year}</span>
             </span>
-            <span className={styles.showGross}>${(s.revenue / 1e6).toFixed(2)}M</span>
+            <span
+              className={`${styles.showGross} ${s.artist === "Burna Boy" ? styles.showGrossHis : ""}`}
+            >
+              ${(s.revenue / 1e6).toFixed(2)}M
+            </span>
           </Link>
         ))}
       </div>

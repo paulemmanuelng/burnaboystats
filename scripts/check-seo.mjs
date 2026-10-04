@@ -12,6 +12,7 @@ import { join } from "node:path";
 import { AsyncLocalStorage } from "node:async_hooks";
 import { robotsProblem, citedImages, imageRobotsProblem } from "./seo-rules.mjs";
 import nextConfig from "../next.config.mjs";
+import { revenueSourceStrings, leaksIn } from "./client-leaks.mjs";
 
 // The headers each cited image is served with, read from next.config.mjs by
 // Next's own matcher (the reading tests/embedHeaders.test.ts uses). Next's
@@ -93,9 +94,28 @@ for (const [path, route] of cited) {
   if (problem) problems.push(`${route}: ${problem}`);
 }
 
+// Not SEO, but post-build like the rest: no box-office `source` note may sit
+// in a browser chunk (scripts/client-leaks.mjs says why).
+const revenueSources = revenueSourceStrings(await readFile("app/data/tourRevenue.ts", "utf8"));
+if (revenueSources.length === 0) problems.push("app/data/tourRevenue.ts: no source notes read — the leak scan would pass vacuously");
+async function* chunks(dir) {
+  for (const e of await readdir(dir, { withFileTypes: true })) {
+    const p = join(dir, e.name);
+    if (e.isDirectory()) yield* chunks(p);
+    else if (e.name.endsWith(".js")) yield p;
+  }
+}
+let chunkCount = 0;
+for await (const file of chunks(".next/static")) {
+  chunkCount++;
+  const hits = leaksIn(await readFile(file, "utf8"), revenueSources);
+  if (hits.length) problems.push(`${file}: ships ${hits.length} box-office source note(s), e.g. "${hits[0]}"`);
+}
+if (chunkCount === 0) problems.push(".next/static: no JS chunks found — build first");
+
 if (problems.length) {
   console.error(`SEO check failed — ${problems.length} problem(s) across ${checked} pages:\n`);
   for (const p of problems) console.error(`  ${p}`);
   process.exit(1);
 }
-console.error(`SEO check passed — ${checked} pages: titles, descriptions, canonicals, og:image, large image preview, ${cited.size} cited images indexable, one h1 per layout.`);
+console.error(`SEO check passed — ${checked} pages: titles, descriptions, canonicals, og:image, large image preview, ${cited.size} cited images indexable, one h1 per layout; no box-office source note in ${chunkCount} client chunks.`);

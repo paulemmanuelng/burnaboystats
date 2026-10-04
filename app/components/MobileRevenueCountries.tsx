@@ -6,6 +6,7 @@ import BackLink from "./BackLink";
 import { AFRICA_NOTE, METHOD_NOTE } from "./RevenueCountries";
 import {
   bestNightLine,
+  idSlug,
   leaderLine,
   nightsLabel,
   standNote,
@@ -58,7 +59,9 @@ export default function MobileRevenueCountries({ board, lede }: { board: Revenue
           </svg>
         </BackLink>
         <span className={`${styles.backLabel} ${own.barLabel}`}>By country</span>
-        <span className={`${styles.badge} ${own.barBadge}`}>{board.countryCount} countries</span>
+        {/* Every artist's countries, not his: muted, as gold marks his figures
+            only (C3, 3 Oct 2026). */}
+        <span className={`${styles.badge} ${own.barBadge} ${own.mutedBadge}`}>{board.countryCount} countries</span>
         <MobileMenuButton />
       </div>
 
@@ -79,7 +82,8 @@ export default function MobileRevenueCountries({ board, lede }: { board: Revenue
           <div className={styles.statLabel}>Countries he leads</div>
         </div>
         <div className={styles.statCell}>
-          <div className={styles.statValue}>{board.showCount}</div>
+          {/* Every artist's nights: plain ink, not his gold (C3). */}
+          <div className={`${styles.statValue} ${own.statOther}`}>{board.showCount}</div>
           <div className={styles.statLabel}>Reported nights</div>
         </div>
       </div>
@@ -118,13 +122,18 @@ export default function MobileRevenueCountries({ board, lede }: { board: Revenue
 
       {/* ── Countries, grouped by continent ── */}
       {withData.map((k) => (
-        <section key={k.continent} aria-labelledby={`m-${k.continent}`}>
-          <h2 id={`m-${k.continent}`} className={`${styles.metaBar} ${own.barTitle} ${own.continentBar}`}>
-            <span>{k.continent}</span>
+        <section key={k.continent} aria-labelledby={`m-${idSlug(k.continent)}`}>
+          {/* The bar is the section's name, so the h2 holds the continent alone;
+              its figures sit beside it, outside the heading (C9, 3 Oct 2026:
+              the name read "North America$34.31M · 60 nights"). */}
+          <div className={`${styles.metaBar} ${own.continentBar}`}>
+            <h2 id={`m-${idSlug(k.continent)}`} className={own.continentName}>
+              {k.continent}
+            </h2>
             <span className={own.barRight}>
               {usdM(k.total)} · {nightsLabel(k.shows)}
             </span>
-          </h2>
+          </div>
           {k.countries.map((c) => (
             <div key={c.flag}>
               <div className={own.countryHead}>

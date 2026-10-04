@@ -149,7 +149,10 @@ describe("the song slot's plaque count", () => {
     const p = priceRelease(wizkid, "Essence", { includeNigeria: false, includeFeatures: true });
     expect(p.pricedPlaques + p.excludedPlaques).toBe(intl);
     const t = text(await html({ mode: "songs", a: "wizkid", b: "burna-boy", sa: "Essence", sb: "Ye" }));
-    expect(t).toContain(`${intl} international plaques + ${ng} Nigerian`);
+    // "outside Nigeria", not "international" (3 Oct 2026): true of Wizkid,
+    // false of any non-Nigerian artist's song with home plaques in it.
+    expect(t).toContain(`${intl} plaques outside Nigeria + ${ng} Nigerian`);
+    expect(t).not.toContain(`${intl} international plaques + ${ng} Nigerian`);
     expect(t).toContain(`${p.pricedPlaques} of ${intl} plaques counted`);
     expect(t).not.toContain(`${essence.certs.length} plaques`);
   });
@@ -430,7 +433,7 @@ describe("the pair page derives its remaining typed figures", () => {
     const page = await html({ a: "burna-boy", b: "wizkid" });
     const t = text(page);
     const bodies = Object.keys(CERT_THRESHOLDS);
-    expect(t).toContain(`${bodies.filter((c) => c !== "NG").length} countries · international`);
+    expect(t).toContain(`${bodies.filter((c) => c !== "NG").length} countries · outside Nigeria`);
     const uk = CERT_THRESHOLDS.UK.single!.platinum!;
     expect(t).toContain(`at least ${uk.toLocaleString("en-US")}, and could be ${(uk * 2 - 10_000).toLocaleString("en-US")}`);
     expect(t).toContain(`the other ${WORDS[comparableArtists.length - 2]} are one tap away`);
@@ -587,10 +590,10 @@ describe("the pair page derives its remaining typed figures", () => {
     const burna = comparableArtists.find((x) => x.slug === "burna-boy")!;
     const wiz = comparableArtists.find((x) => x.slug === "wizkid")!;
     const long = (iso: string) => new Date(`${iso}T12:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
-    if (burna.verifiedOn === wiz.verifiedOn) {
-      expect(t).toContain(`both registers read ${long(burna.verifiedOn)}`);
+    if (burna.registersReadOn === wiz.registersReadOn) {
+      expect(t).toContain(`both registers read ${long(burna.registersReadOn)}`);
     } else {
-      expect(t).toContain(`registers read ${long(burna.verifiedOn)} (Burna Boy) and ${long(wiz.verifiedOn)} (Wizkid)`);
+      expect(t).toContain(`registers read ${long(burna.registersReadOn)} (Burna Boy) and ${long(wiz.registersReadOn)} (Wizkid)`);
     }
   });
 
@@ -598,21 +601,21 @@ describe("the pair page derives its remaining typed figures", () => {
     // Shipped 24 Sep 2026: "registers read 23 September 2026 (Burna Boy) and
     // 23 September 2026 (Wizkid)" — the same date twice.
     const byDate = new Map<string, string[]>();
-    for (const x of comparableArtists) byDate.set(x.verifiedOn, [...(byDate.get(x.verifiedOn) ?? []), x.slug]);
+    for (const x of comparableArtists) byDate.set(x.registersReadOn, [...(byDate.get(x.registersReadOn) ?? []), x.slug]);
     const same = [...byDate.values()].find((slugs) => slugs.length >= 2);
     expect(same, "no two artists share a register date to test with").toBeTruthy();
     const t = text(await html({ a: same![0], b: same![1], all: "1" }));
     const x = comparableArtists.find((c) => c.slug === same![0])!;
     const long = (iso: string) => new Date(`${iso}T12:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
-    expect(t).toContain(`both registers read ${long(x.verifiedOn)}`);
-    expect(t).not.toContain(`${long(x.verifiedOn)} (${x.name}) and ${long(x.verifiedOn)}`);
+    expect(t).toContain(`both registers read ${long(x.registersReadOn)}`);
+    expect(t).not.toContain(`${long(x.registersReadOn)} (${x.name}) and ${long(x.registersReadOn)}`);
     const dates = [...byDate.keys()];
     if (dates.length >= 2) {
       const [p, q] = [byDate.get(dates[0])![0], byDate.get(dates[1])![0]];
       const pa = comparableArtists.find((c) => c.slug === p)!;
       const qa = comparableArtists.find((c) => c.slug === q)!;
       const u = text(await html({ a: p, b: q, all: "1" }));
-      expect(u).toContain(`registers read ${long(pa.verifiedOn)} (${pa.name}) and ${long(qa.verifiedOn)} (${qa.name})`);
+      expect(u).toContain(`registers read ${long(pa.registersReadOn)} (${pa.name}) and ${long(qa.registersReadOn)} (${qa.name})`);
     }
   });
 
@@ -659,5 +662,87 @@ describe("with only side B's record picked, the header describes side B (23 Sep 
     // The string that shipped: the header described side A, which had no song.
     expect(t).not.toContain("Burna Boy · at least 0 certified units");
     expect(t).toMatch(/Smooth Criminal · at least [\d,]+ certified units/);
+  });
+});
+
+// Debug pass, 3 Oct 2026 (tyla-totals-2): since #400 Tyla holds ten South
+// African plaques, all inside /compare's Nigeria-separated total, and the page
+// still called that total "international". Nigeria is the only home split
+// here, so the off state says what it is: outside Nigeria.
+describe("the Nigeria-separated total is 'outside Nigeria', never 'international'", () => {
+  const tyla = comparableArtists.find((x) => x.slug === "tyla")!;
+  const zaInside = () => {
+    const p = compare(comparableArtists.find((x) => x.slug === "burna-boy")!, tyla, { includeNigeria: false, includeFeatures: true });
+    return [...p.b.byCountry].filter((l) => l.country === "ZA" && l.counted && l.units > 0).length;
+  };
+
+  it.each([
+    ["burna-boy", "tyla"],
+    ["tems", "tyla"],
+  ])("%s vs %s, default view", async (a, b) => {
+    // The total really holds South African plaques — otherwise this is vacuous.
+    expect(zaInside()).toBeGreaterThan(0);
+    const t = text(await html({ a, b }));
+    expect(t).toContain("certified units · outside Nigeria");
+    expect(t).toMatch(/\d+ countries · outside Nigeria/);
+    expect(t).not.toMatch(/· international/);
+    // Negative controls: the two strings that shipped on the live page.
+    expect(t).not.toContain("certified units · international");
+    expect(t).not.toContain("26 countries · international");
+  });
+
+  it("the included state is unchanged", async () => {
+    const t = text(await html({ a: "burna-boy", b: "tyla", ng: "1" }));
+    expect(t).toContain("certified units · Nigeria included");
+  });
+
+  // The head carries the same scope: pairCopy feeds the meta description, the
+  // og/twitter description, the pair Dataset and the OG share card's sub.
+  it("the pair's head copy and share card say the same, for every Tyla pair", async () => {
+    expect(zaInside()).toBeGreaterThan(0);
+    const { allPairs, pairCopy } = await import("../app/lib/comparePairs");
+    const tylaPairs = allPairs().filter(([a, b]) => a.slug === "tyla" || b.slug === "tyla");
+    expect(tylaPairs.length).toBeGreaterThan(10);
+    let separated = 0;
+    for (const [a, b] of tylaPairs) {
+      const c = pairCopy(a, b);
+      // A pair whose default view includes Nigeria (the page's own rule) says so.
+      expect(["outside Nigeria", "Nigeria included"]).toContain(c.scope);
+      if (c.scope === "outside Nigeria") separated++;
+      expect(c.description, c.description).toContain(`(${c.scope})`);
+      expect(c.sub, c.sub).toMatch(new RegExp(`certified units · ${c.scope}$`));
+      // Negative controls: the strings the built head shipped at db02865b.
+      expect(c.description).not.toContain("(international)");
+      expect(c.sub).not.toContain("certified units · international");
+    }
+    // 17 of the 19 Tyla pairs shipped "(international)"; the loop must see them.
+    expect(separated).toBeGreaterThan(10);
+    const burna = comparableArtists.find((x) => x.slug === "burna-boy")!;
+    const { description, sub } = pairCopy(burna, tyla);
+    expect(description).toMatch(/^Burna Boy at least [\d,]+ certified units vs Tyla [\d,]+ \(outside Nigeria\)/);
+    expect(sub).toMatch(/· [\d,]+ vs [\d,]+ certified units · outside Nigeria$/);
+  });
+});
+
+// Debug pass, 3 Oct 2026 (tyla-totals-4): Tyla's verifiedOn moved to 3 Oct on
+// a plaque photo, a label's post and one SNEP read, and the pair pages said
+// "both registers read 3 October 2026". The registers line dates the last
+// FULL read; verifiedOn still stamps the Dataset.
+describe("'registers read' dates the last full read, not a partial one", () => {
+  const long = (iso: string) => new Date(`${iso}T12:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
+
+  it("Tems vs Tyla", async () => {
+    const tyla = comparableArtists.find((x) => x.slug === "tyla")!;
+    expect(tyla.verifiedOn > tyla.registersReadOn).toBe(true); // the case that shipped
+    const t = text(await html({ a: "tems", b: "tyla" }));
+    expect(t).toContain(`both registers read ${long(tyla.registersReadOn)}`);
+    // Negative control: the line that shipped.
+    expect(t).not.toContain("both registers read 3 October 2026");
+  });
+
+  it("Burna Boy vs Tyla", async () => {
+    const t = text(await html({ a: "burna-boy", b: "tyla" }));
+    expect(t).not.toContain("and 3 October 2026 (Tyla)");
+    expect(t).toContain(`(Burna Boy) and ${long(comparableArtists.find((x) => x.slug === "tyla")!.registersReadOn)} (Tyla)`);
   });
 });
