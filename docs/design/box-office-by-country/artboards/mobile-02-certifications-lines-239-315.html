@@ -1,0 +1,131 @@
+<!-- EXCERPT, read-only reference. Source: design_handoff_burnaboystats/designs/mobile/Burna Boy Stats - Mobile.dc.html, lines 239-315 (screen 02 "Certifications", the markup),
+     copied 3 Oct 2026 from the owner's copy of the bundle (design files dated 30 Sep 2026). Edit the file in your own project, not this copy. -->
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div style="font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted)">02 · Certifications</div>
+      <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" dark="{{ true }}" hint-size="402px,874px">
+        <div style="background:var(--color-bg);min-height:100%;display:flex;flex-direction:column">
+          <div style="position:sticky;top:0;z-index:5;background:rgba(12,10,9,0.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--color-divider);padding:56px 18px 12px;display:flex;align-items:center;gap:12px">
+            <a href="#top" aria-label="Back" style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:999px;background:var(--color-surface);border:1px solid var(--color-divider);color:var(--color-text)">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 5l-7 7 7 7"></path></svg>
+            </a>
+            <span style="font-family:var(--font-mono);font-weight:700;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase">Certifications</span>
+            <span style="margin-left:auto;font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.1em;color:var(--mute)">{{ certTotal }}</span>
+            <button aria-label="Open menu" style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:999px;background:var(--color-surface);border:1px solid var(--color-divider);color:var(--mute);cursor:pointer;flex:none"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button>
+          </div>
+
+          <div style="padding:22px 18px 18px">
+            <div style="font-family:var(--font-mono);font-weight:700;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent)">Certified worldwide</div>
+            <div style="display:flex;align-items:baseline;gap:10px;margin-top:12px">
+              <span style="font-family:var(--font-heading);font-size:86px;line-height:0.82;color:var(--color-accent);font-variant-numeric:tabular-nums">{{ certTotal }}</span>
+              <span style="font-family:var(--font-mono);font-weight:700;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--mute)">awards<br>{{ certCountryCount }} countries</span>
+            </div>
+            <p style="font-size:13.5px;line-height:1.5;color:#d8d8de;margin:12px 0 0">Silver, Gold, Platinum and Diamond awards from the RIAA, BPI, SNEP, Music Canada and 21 more — across {{ certReleaseCount }} certified releases.</p>
+            <div style="margin-top:20px;border-top:1px solid var(--color-divider)">
+              <sc-for list="{{ tiers }}" as="t" hint-placeholder-count="4">
+                <div style="padding:13px 0;border-bottom:1px solid var(--color-divider)">
+                  <div style="display:flex;align-items:baseline;gap:10px">
+                    <span style="font-family:var(--font-mono);font-weight:700;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;min-width:74px;color:{{ t.ink }}">{{ t.name }}</span>
+                    <span style="font-family:var(--font-heading);font-size:20px;font-variant-numeric:tabular-nums">{{ t.count }}</span>
+                    <span style="font-family:var(--font-mono);font-size:10px;margin-left:auto;color:var(--mute)">{{ t.pct }}</span>
+                  </div>
+                  <div style="height:6px;background:rgba(245,240,232,0.09);margin-top:9px;border-radius:999px;overflow:hidden">
+                    <div style="height:6px;border-radius:999px;background:{{ t.grad }};width:{{ t.width }}"></div>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:8px;overflow-x:auto;padding:4px 18px 16px">
+            <sc-for list="{{ chips }}" as="c" hint-placeholder-count="4">
+              <button style="flex:none;min-height:44px;padding:0 16px;border-radius:999px;border:1px solid {{ c.border }};background:{{ c.bg }};color:{{ c.color }};font-family:var(--font-mono);font-weight:700;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;display:inline-flex;align-items:center;gap:7px"><span style="width:7px;height:7px;border-radius:50%;flex:none;background:{{ c.dot }};display:{{ c.dotShow }}"></span>{{ c.label }}</button>
+            </sc-for>
+          </div>
+
+          <div style="padding:0 18px 6px;font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--mute)">All certified releases · by plaque count</div>
+          <div style="border-top:1px solid var(--color-divider)">
+            <sc-for list="{{ certRows }}" as="r">
+              <a href="/certifications" style="display:block;padding:15px 18px;border-bottom:1px solid var(--color-divider);color:var(--color-text)">
+                <div style="display:flex;align-items:baseline;gap:10px">
+                  <span style="font-family:var(--font-mono);font-size:11px;color:var(--mute);min-width:20px">{{ r.rank }}</span>
+                  <div style="flex:1;min-width:0">
+                    <div style="font-family:var(--font-heading);font-size:19px;line-height:1.05;text-transform:uppercase">{{ r.title }}</div>
+                    <div style="font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.06em;text-transform:uppercase;color:var(--mute);margin-top:5px">{{ r.meta }}</div>
+                  </div>
+                  <span style="font-family:var(--font-mono);font-size:11px;color:var(--color-accent);white-space:nowrap">{{ r.count }}</span>
+                </div>
+                <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;padding-left:30px">
+                  <sc-for list="{{ r.badges }}" as="b">
+                    <span style="display:inline-flex;align-items:center;gap:5px;padding:4px 9px;border-radius:999px;border:1px solid {{ b.border }};color:{{ b.ink }};font-family:var(--font-mono);font-weight:700;font-size:10px;white-space:nowrap">
+                      <span style="font-size:11px;line-height:1">{{ b.flag }}</span>{{ b.label }}
+                    </span>
+                  </sc-for>
+                </div>
+              </a>
+            </sc-for>
+          </div>
+          <a href="/certifications" style="display:flex;align-items:center;justify-content:space-between;min-height:52px;margin:16px 18px 0;padding:0 18px;border-radius:999px;border:1px solid var(--color-divider);background:var(--color-surface);color:var(--color-text);font-family:var(--font-mono);font-weight:700;font-size:11px;letter-spacing:0.12em;text-transform:uppercase">All {{ certReleaseCount }} releases<span>↗</span></a>
+
+          <div style="height:110px"></div>
+
+          <div style="position:sticky;bottom:0;margin-top:auto;background:rgba(12,10,9,0.94);backdrop-filter:blur(14px);border-top:1px solid var(--color-divider);padding:12px 18px 34px;display:flex;gap:10px;align-items:center">
+            <button style="flex:1;min-height:50px;border-radius:999px;background:var(--color-accent);color:var(--color-bg);border:0;font-family:var(--font-mono);font-weight:700;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;box-shadow:0 0 26px rgba(255,182,39,0.24);cursor:pointer">Make a stat card ↗</button>
+            <button aria-label="Sort" style="width:50px;height:50px;border-radius:999px;background:var(--color-surface);border:1px solid var(--color-divider);color:var(--color-text);display:flex;align-items:center;justify-content:center;cursor:pointer">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M7 12h10M10 17h4"></path></svg>
+            </button>
+          </div>
+        </div>
+      </x-import>
+    </div>
+
+<!-- ... same file, lines 976-996 (certTotal, tier counts, certRows) -->
+  renderVals() {
+    const cover = (id) => 'https://i.scdn.co/image/' + id;
+    const CC = this.certCountries();
+    const releases = this.certData();
+    const certTotal = releases.reduce((n, r) => n + r[3].length, 0);
+    const tierCount = { Diamond: 0, Platinum: 0, Gold: 0, Silver: 0 };
+    releases.forEach(r => r[3].forEach(c => { tierCount[c[1]]++; }));
+    const maxT = Math.max(tierCount.Diamond, tierCount.Platinum, tierCount.Gold, tierCount.Silver);
+    const tierW = { Diamond: 4, Platinum: 3, Gold: 2, Silver: 1 };
+    const mktW = { US: 5, UK: 5, DE: 4, FR: 4, CA: 4, AU: 4, IT: 4, ES: 4, NL: 4, BR: 4, SE: 3, BE: 3, CH: 3, AT: 3, DK: 3, NO: 3, PL: 3, NZ: 3, NG: 2, ZA: 2, PT: 2, GR: 2, HU: 2, CO: 2, SK: 1 };
+    const wt = (c) => (mktW[c[0]] || 2) * 100 + (tierW[c[1]] || 1) * (c[2] || 1);
+    const certRows = releases.slice().sort((a, b) => b[3].length - a[3].length).map((r, i) => ({
+      rank: String(i + 1).padStart(2, '0'),
+      title: r[0],
+      meta: [r[1], r[2]].filter(Boolean).join(' · '),
+      count: r[3].length + (r[3].length === 1 ? ' cert' : ' certs'),
+      badges: r[3].slice().sort((x, y) => wt(y) - wt(x)).slice(0, 6).map(c => ({
+        flag: CC[c[0]][1], label: (c[2] ? c[2] + '× ' : '') + c[1],
+        ink: this.certInk(c[1]), border: this.certEdge(c[1])
+      }))
+    }));
+
+<!-- ... same file, lines 1184-1210 (certTotal, tiers and chips handed to the screen) -->
+      certTotal, certRows,
+      certCountryCount: Object.keys(CC).length,
+      certReleaseCount: releases.length,
+      tiers: [
+        { name: 'Diamond', grad: 'linear-gradient(90deg,#4fb9cc,#8fe3f0)' },
+        { name: 'Platinum', grad: 'linear-gradient(90deg,#9aa1ad,#dfe2e8)' },
+        { name: 'Gold', grad: 'linear-gradient(90deg,#ff7a1a,#ffd24a)' },
+        { name: 'Silver', grad: 'linear-gradient(90deg,#7e828a,#b8bcc4)' }
+      ].map(t => ({
+        name: t.name, count: tierCount[t.name], ink: this.certInk(t.name), grad: t.grad,
+        pct: Math.round(tierCount[t.name] / certTotal * 100) + '%',
+        width: (tierCount[t.name] / maxT * 100).toFixed(1) + '%'
+      })),
+      chips: [
+        { label: 'All ' + certTotal, on: true, ink: '#ffb627' },
+        { label: 'Diamond ' + tierCount.Diamond, on: false, ink: '#8fe3f0' },
+        { label: 'Platinum ' + tierCount.Platinum, on: false, ink: '#dfe2e8' },
+        { label: 'Gold ' + tierCount.Gold, on: false, ink: '#ffb627' },
+        { label: 'Silver ' + tierCount.Silver, on: false, ink: '#b8bcc4' }
+      ].map(c => ({
+        label: c.label,
+        bg: c.on ? 'var(--color-accent)' : 'transparent',
+        color: c.on ? '#0a0a0b' : c.ink,
+        border: c.on ? 'var(--color-accent)' : 'rgba(245,244,240,0.18)',
+        dot: c.ink,
+        dotShow: c.on ? 'none' : 'block'
+      })),

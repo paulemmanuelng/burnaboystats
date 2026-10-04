@@ -1,0 +1,34 @@
+<!-- EXCERPT, read-only reference. Source: design_handoff_burnaboystats/designs/desktop/Records - Tours.dc.html, lines 199-230 (the "Highest-grossing" top-10 table and the link card to /records/tours/revenue (line 225 says "ranked by reported revenue")),
+     copied 3 Oct 2026 from the owner's copy of the bundle (design files dated 30 Sep 2026). Edit the file in your own project, not this copy. -->
+  <section style="border-bottom:1px solid var(--color-divider);background:var(--color-surface)">
+    <div style="max-width:1360px;margin:0 auto;padding:42px 40px 46px">
+      <h2 style="font-size:38px;margin:0 0 6px">Highest <span style="background:linear-gradient(120deg,var(--gold-bright),var(--color-accent) 55%,var(--color-accent-2));-webkit-background-clip:text;background-clip:text;color:transparent">revenue per show</span></h2>
+      <p class="text-muted" style="font-size:13.5px;margin:0 0 20px">The top 10 single-show grosses by any African artist.</p>
+      <table class="table">
+        <thead><tr><th style="width:44px">#</th><th>Artist</th><th>Venue</th><th style="width:220px">Tour</th><th style="width:100px;text-align:right">Tickets</th><th style="width:120px;text-align:right">Gross</th></tr></thead>
+        <tbody>
+          <sc-for list="{{ shows }}" as="s">
+            <tr>
+              <td style="font-family:var(--font-mono);font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums">{{ s.rank }}</td>
+              <td style="font-weight:600;color:{{ s.artistColor }}">{{ s.artist }}</td>
+              <td>
+                <div style="font-weight:600;font-size:14.5px">{{ s.flag }} {{ s.venue }}</div>
+                <div style="font-family:var(--font-mono);font-size:11.5px;color:var(--muted);margin-top:2px">{{ s.city }}</div>
+              </td>
+              <td style="font-size:13.5px;color:#d8d8de">{{ s.tour }} · {{ s.year }}</td>
+              <td style="text-align:right;font-family:var(--font-mono);font-size:13px;color:#d8d8de;font-variant-numeric:tabular-nums">{{ s.tickets }}</td>
+              <td style="text-align:right;font-family:var(--font-heading);font-size:19px;color:var(--color-accent);font-variant-numeric:tabular-nums">{{ s.gross }}</td>
+            </tr>
+          </sc-for>
+        </tbody>
+      </table>
+      <p class="text-muted" style="font-size:12.5px;margin-top:14px;max-width:100ch;line-height:1.6">Burna Boy holds 27 of the 41 highest-grossing shows by an African artist — more than every other artist on this list combined. Box-office figures reported by Billboard Boxscore &amp; Pollstar (as aggregated by TouringData), cross-checked against press reporting, as of July 2026.</p>
+      <a href="/records/tours/revenue" style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:20px;padding:22px 26px;border:1px solid var(--border);border-radius:var(--radius-md);background:var(--color-bg);color:var(--color-text)" style-hover="border-color:var(--color-accent);background:rgba(255,182,39,0.05)">
+        <span>
+          <span style="display:block;font-family:var(--font-heading);font-size:24px;text-transform:uppercase">See the full top 41</span>
+          <span style="display:block;color:var(--muted);font-size:13.5px;margin-top:5px">Every show on the list, ranked by reported revenue</span>
+        </span>
+        <span style="color:var(--color-accent);font-weight:700;font-size:20px">→</span>
+      </a>
+    </div>
+  </section>

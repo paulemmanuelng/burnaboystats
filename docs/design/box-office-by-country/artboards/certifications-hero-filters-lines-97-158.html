@@ -1,0 +1,66 @@
+<!-- EXCERPT, read-only reference. Source: design_handoff_burnaboystats/designs/desktop/Certifications.dc.html, lines 97-121 (hero: kicker, h1, lede, tier column),
+     copied 3 Oct 2026 from the owner's copy of the bundle (design files dated 30 Sep 2026). Edit the file in your own project, not this copy. -->
+  <section style="border-bottom:1px solid var(--color-divider)">
+    <div style="max-width:1360px;margin:0 auto;padding:0 40px;display:grid;grid-template-columns:1.3fr 1fr">
+      <div style="padding:54px 48px 46px 0">
+        <div style="display:flex;align-items:center;gap:10px;font-family:var(--font-mono);font-weight:700;font-size:11.5px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted)">
+          <span style="width:22px;height:2px;background:var(--color-accent);display:block"></span>Certified worldwide
+        </div>
+        <h1 style="font-size:96px;line-height:0.88;margin:16px 0 0">Global <span style="background:linear-gradient(120deg,var(--gold-bright),var(--color-accent) 55%,var(--color-accent-2));-webkit-background-clip:text;background-clip:text;color:transparent">Certifications</span></h1>
+        <p style="font-size:17.5px;line-height:1.55;max-width:60ch;margin:18px 0 0;color:#d8d8de;text-wrap:pretty">Burna Boy has {{ total }} music certifications across {{ countryCount }} countries — Silver, Gold, Platinum and Diamond awards from bodies including the RIAA (US), BPI (UK), SNEP (France) and Music Canada, making him the most-certified African artist in history.</p>
+        <div style="display:flex;gap:10px;margin-top:26px">
+          <a class="btn btn-secondary" href="/records/visualized#certifications">See certifications by country →</a>
+          <a class="btn btn-secondary" href="/methodology">Methodology ↗</a>
+        </div>
+      </div>
+      <div style="border-left:1px solid var(--color-divider);display:flex;flex-direction:column">
+        <sc-for list="{{ tiers }}" as="t" hint-placeholder-count="4">
+          <div style="padding:22px 0 20px 40px;border-bottom:1px solid var(--color-divider);display:flex;align-items:center;gap:16px">
+            <span style="width:10px;height:10px;border-radius:50%;flex:none;background:{{ t.ink }}"></span>
+            <span style="font-family:var(--font-mono);font-weight:700;font-size:11.5px;letter-spacing:0.14em;text-transform:uppercase;color:{{ t.ink }};min-width:92px">{{ t.name }}</span>
+            <span style="font-family:var(--font-heading);font-size:30px;line-height:1;font-variant-numeric:tabular-nums">{{ t.count }}</span>
+            <span style="margin-left:auto;padding-right:40px;font-family:var(--font-mono);font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums">{{ t.pct }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+<!-- ... same file, lines 123-133 (summary strip) -->
+  <section style="border-bottom:1px solid var(--color-divider);background:var(--color-surface)">
+    <div style="max-width:1360px;margin:0 auto;padding:0 40px;display:grid;grid-template-columns:repeat(4,1fr)">
+      <sc-for list="{{ summary }}" as="s" hint-placeholder-count="4">
+        <div style="padding:28px 24px 26px;border-left:1px solid var(--color-divider)">
+          <div style="font-family:var(--font-heading);font-size:52px;line-height:0.9;color:var(--text);font-variant-numeric:tabular-nums">{{ s.value }}</div>
+          <div style="font-family:var(--font-mono);font-weight:700;font-size:11.5px;letter-spacing:0.14em;text-transform:uppercase;margin-top:12px">{{ s.label }}</div>
+          <div style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.06em;margin-top:6px;color:var(--muted)">{{ s.note }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+<!-- ... same file, lines 135-158 (filter panel: Tier and Country chip rows, Showing N of N) -->
+  <section style="border-bottom:1px solid var(--color-divider)">
+    <div style="max-width:1360px;margin:0 auto;padding:32px 40px 20px">
+      <div style="border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--color-surface);padding:18px 20px;display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px">
+          <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);min-width:70px">Tier</span>
+          <sc-for list="{{ tierChips }}" as="c" hint-placeholder-count="5">
+            <button onClick="{{ c.pick }}" style="display:inline-flex;align-items:center;gap:7px;min-height:44px;padding:0 15px;border-radius:999px;border:1px solid {{ c.border }};background:{{ c.bg }};color:{{ c.color }};font-family:inherit;font-size:13px;font-weight:600;cursor:pointer">
+              <span style="width:8px;height:8px;border-radius:50%;flex:none;background:{{ c.dot }};display:{{ c.dotShow }}"></span>{{ c.label }}
+            </button>
+          </sc-for>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px">
+          <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);min-width:70px">Country</span>
+          <sc-for list="{{ countryChips }}" as="c">
+            <button onClick="{{ c.pick }}" title="{{ c.title }}" style="display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 13px;border-radius:999px;border:1px solid {{ c.border }};background:{{ c.bg }};color:{{ c.color }};font-family:inherit;font-size:13px;font-weight:600;cursor:pointer">{{ c.flag }} {{ c.code }}</button>
+          </sc-for>
+        </div>
+        <div style="display:flex;align-items:center;gap:14px;font-size:13.5px;color:var(--muted)">
+          Showing <b style="color:var(--color-accent)">{{ shown }}</b> of {{ totalReleases }} releases · <b style="color:var(--color-accent)">{{ shownCerts }}</b> certifications
+          <button onClick="{{ clear }}" style="margin-left:auto;min-height:44px;padding:0 14px;border-radius:999px;border:1px solid var(--border);background:none;color:var(--muted);font-family:inherit;font-size:12.5px;cursor:pointer" style-hover="border-color:var(--gold-dim);color:var(--color-text)">Clear ✕</button>
+        </div>
+      </div>
+    </div>
+  </section>

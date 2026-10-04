@@ -1,0 +1,81 @@
+<!-- EXCERPT, read-only reference. Source: design_handoff_burnaboystats/designs/mobile/Burna Boy Stats - Mobile Deep Pages.dc.html, lines 405-453 (screen 14 "Revenue per show", the markup),
+     copied 3 Oct 2026 from the owner's copy of the bundle (design files dated 30 Sep 2026). Edit the file in your own project, not this copy. -->
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div style="font-family:var(--mono);font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted)">14 · Revenue per show</div>
+      <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" dark="{{ true }}" hint-size="402px,874px">
+        <div style="background:var(--bg);min-height:100%;display:flex;flex-direction:column">
+          <div style="position:sticky;top:0;z-index:5;background:rgba(12,10,9,0.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:56px 18px 12px;display:flex;align-items:center;gap:12px">
+            <span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:999px;background:var(--soft);border:1px solid var(--line);color:var(--text);flex:none"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 5l-7 7 7 7"></path></svg></span>
+            <span style="font-family:var(--mono);font-weight:700;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase">Revenue per show</span>
+            <span style="margin-left:auto;font-family:var(--mono);font-size:11px;letter-spacing:0.1em;color:var(--gold);flex:none">$6.15M</span>
+            <button aria-label="Open menu" style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:999px;background:var(--soft);border:1px solid var(--line);color:var(--muted);cursor:pointer;flex:none"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button>
+          </div>
+          <div style="padding:22px 18px 18px">
+            <div style="font-family:var(--mono);font-weight:700;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted)">Box office, per night</div>
+            <h1 style="font-size:40px;line-height:0.94;margin-top:11px">Revenue per <span style="background:linear-gradient(180deg,var(--gold-bright),var(--gold) 45%,var(--gold-2));-webkit-background-clip:text;background-clip:text;color:transparent">show</span></h1>
+            <p style="font-size:14.5px;line-height:1.55;color:#CFC7BB;margin:12px 0 0">Forty-one documented shows by African artists, ranked by gross — 27 of them his.</p>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+            <div style="background:var(--bg);padding:15px 18px"><div style="font-family:var(--anton);font-size:32px;line-height:0.9;color:var(--gold)">$6.15M</div><div style="font-family:var(--mono);font-weight:700;font-size:11px;letter-spacing:0.13em;text-transform:uppercase;margin-top:9px">Biggest night</div></div>
+            <div style="background:var(--bg);padding:15px 18px"><div style="font-family:var(--anton);font-size:32px;line-height:0.9;color:var(--gold)">58,973</div><div style="font-family:var(--mono);font-weight:700;font-size:11px;letter-spacing:0.13em;text-transform:uppercase;margin-top:9px">Tickets, London</div></div>
+          </div>
+          <div style="display:flex;gap:8px;overflow-x:auto;padding:16px 18px 14px">
+            <sc-for list="{{ revChips }}" as="c" hint-placeholder-count="3">
+              <button onClick="{{ c.pick }}" style="flex:none;min-height:44px;padding:0 16px;border-radius:999px;border:1px solid {{ c.border }};background:{{ c.bg }};color:{{ c.color }};font-family:var(--mono);font-weight:700;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer">{{ c.label }}</button>
+            </sc-for>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:13px 18px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim)">
+            <span>{{ revShown }}</span>
+            <span style="margin-left:auto;display:inline-flex;align-items:center;gap:5px"><span style="width:7px;height:7px;border-radius:999px;background:var(--gold);display:block"></span>His nights</span>
+          </div>
+          <sc-for list="{{ revRows }}" as="w" hint-placeholder-count="12">
+            <div style="display:grid;grid-template-columns:26px 1fr auto;gap:11px;align-items:baseline;padding:12px 18px;border-bottom:1px solid var(--line);background:{{ w.bg }}">
+              <span style="font-family:var(--mono);font-weight:700;font-size:11px;color:var(--dim);font-variant-numeric:tabular-nums">{{ w.rank }}</span>
+              <div style="min-width:0">
+                <div style="font-size:13.5px;line-height:1.3">{{ w.venue }}</div>
+                <div style="font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ w.meta }}</div>
+              </div>
+              <div style="text-align:right;flex:none">
+                <div style="font-family:var(--anton);font-size:17px;line-height:1;color:{{ w.ink }};font-variant-numeric:tabular-nums">{{ w.gross }}</div>
+                <div style="font-family:var(--mono);font-size:11px;color:var(--dim);margin-top:4px;font-variant-numeric:tabular-nums">{{ w.tickets }}</div>
+              </div>
+            </div>
+          </sc-for>
+          <p style="font-size:12px;line-height:1.55;color:var(--dim);padding:18px 18px 0">Grosses and ticket counts from Billboard Boxscore. The board ranks every reported show by an African artist, not only his — a missing night means Boxscore never reported it. A dash means no headcount was published.</p>
+          <div style="height:110px"></div>
+          <div style="position:sticky;bottom:0;margin-top:auto;background:rgba(12,10,9,0.94);backdrop-filter:blur(14px);border-top:1px solid var(--line);padding:12px 18px 34px">
+            <button style="width:100%;min-height:50px;border-radius:999px;background:var(--gold);color:#0a0a0b;border:0;font-family:var(--mono);font-weight:700;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;box-shadow:0 0 26px rgba(255,182,39,0.25);cursor:pointer">Make a stat card</button>
+          </div>
+        </div>
+      </x-import>
+    </div>
+
+<!-- ... same file, lines 1331-1331 (REV_ROWS, the 41 rows the screen renders) -->
+const REV_ROWS = [["01","London Stadium","London · 2024","58,973","$6.15M",1],["02","Stade de France","Paris · 2025","43,881","$4.53M",1],["03","La Défense Arena","Paris · 2023","39,048","$3.16M",0],["04","La Défense Arena","Paris · 2023","36,585","$2.86M",1],["05","Capital One Arena","Washington, D.C. · 2024","13,892","$1.72M",1],["06","TD Garden","Boston · 2024","13,219","$1.59M",1],["07","Madison Square Garden","New York · 2022","13,586","$1.58M",1],["08","Ziggo Dome","Amsterdam · 2022","17,000","$1.56M",1],["09","Capital One Arena","Washington, D.C. · 2022","14,688","$1.43M",1],["10","Scotiabank Arena","Toronto · 2024","—","$1.40M",1],["11","State Farm Arena","Atlanta · 2024","13,331","$1.39M",1],["12","Lanxess Arena","Cologne · 2023","14,260","$1.39M",1],["13","The O2 Arena","London · 2021","15,165","$1.35M",1],["14","Co-op Live","Manchester · 2025","13,204","$1.34M",1],["15","BMO Stadium","Los Angeles · 2023","10,684","$1.22M",1],["16","The O2 Arena","London · 2024","14,919","$1.20M",0],["17","Ariake Arena","Tokyo · 2025","9,050","$1.18M",0],["18","Qudos Bank Arena","Sydney · 2025","10,401","$1.12M",1],["19","Mercedes-Benz Arena","Berlin · 2023","11,839","$1.09M",1],["20","Madison Square Garden","New York · 2022","12,901","$1.00M",0],["21","Hard Rock Live","Hollywood, FL · 2024","5,591","$0.97M",1],["22","The O2 Arena","London · 2021","16,938","$0.96M",0],["23","Bell Centre","Montreal · 2024","—","$0.95M",1],["24","Scotiabank Arena","Toronto · 2024","9,652","$0.92M",0],["25","State Farm Arena","Atlanta · 2022","12,753","$0.91M",1],["26","Oakland Arena","Oakland · 2023","9,436","$0.89M",1],["27","Capital One Arena","Washington, D.C. · 2023","8,577","$0.88M",0],["28","Barclays Center","New York · 2023","8,464","$0.87M",0],["29","Madison Square Garden","New York · 2024","11,096","$0.86M",0],["30","Capital One Arena","Washington, D.C. · 2024","8,690","$0.82M",0],["31","Hallenstadion","Zurich · 2022","8,827","$0.82M",1],["32","Madison Square Garden","New York · 2024","10,185","$0.81M",0],["33","Sidney Myer Music Bowl","Melbourne · 2025","8,237","$0.81M",1],["34","Madison Square Garden","New York · 2025","—","$0.79M",0],["35","Sportpaleis","Antwerp · 2023","8,266","$0.78M",1],["36","Merriweather Post Pavilion","Columbia, MD · 2025","—","$0.70M",0],["37","Wintrust Arena","Chicago · 2024","5,775","$0.67M",1],["38","RAC Arena","Perth · 2025","6,835","$0.64M",1],["39","Addition Financial Arena","Orlando · 2022","7,137","$0.64M",1],["40","State Farm Arena","Atlanta · 2023","11,246","$0.60M",0],["41","Amalie Arena","Tampa, FL · 2024","5,890","$0.58M",1]];
+
+<!-- ... same file, lines 1429-1440 (revenue(), the chip filter) -->
+  revenue() {
+    const f = (this.state || {}).revFilter || "all";
+    const rows = REV_ROWS.filter(r => f === "all" || (f === "his" ? r[5] : !r[5]));
+    return {
+      rows: rows.map(r => ({
+        rank: r[0], venue: r[1], meta: r[2], tickets: r[3], gross: r[4],
+        ink: r[5] ? "var(--gold)" : "var(--muted)",
+        bg: r[5] ? "transparent" : "rgba(245,244,240,0.02)"
+      })),
+      count: rows.length
+    };
+  }
+
+<!-- ... same file, lines 1662-1672 (revRows / revShown / revChips) -->
+      revRows: rv.rows,
+      revShown: rv.count + (rv.count === 1 ? " show" : " shows"),
+      revChips: [{ k: "all", l: "All 41" }, { k: "his", l: "Burna Boy 27" }, { k: "other", l: "Others 14" }].map(c => {
+        const on = ((this.state || {}).revFilter || "all") === c.k;
+        return {
+          label: c.l,
+          bg: on ? "rgba(255,182,39,0.16)" : "transparent",
+          border: on ? "var(--gold)" : "var(--line)",
+          color: on ? "var(--gold)" : "var(--muted)",
+          pick: () => this.setState({ revFilter: c.k })
+        };

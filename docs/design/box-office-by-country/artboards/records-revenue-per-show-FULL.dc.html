@@ -1,0 +1,253 @@
+<!-- FULL COPY, read-only reference. Source: design_handoff_burnaboystats/designs/desktop/Records - Revenue Per Show.dc.html (all 251 lines; this two-line comment sits on top, so this copy's line N+2 is the source's line N),
+     copied 3 Oct 2026 from the owner's copy of the bundle (design files dated 30 Sep 2026). Edit the file in your own project, not this copy. -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/modernist-ed3537d9-bcc9-4d2f-87d7-604167c0ed4a/styles.css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Geist:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap">
+<style>
+  :root {
+    color-scheme: dark;
+    --color-bg: #0a0a0b;
+    --color-surface: #141416;
+    --color-surface-2: #1c1c21;
+    --color-text: #f5f4f0;
+    --color-accent: #ffb627;
+    --color-accent-2: #ff7a1a;
+    --gold-bright: #ffd24a;
+    --gold-dim: #c98a2e;
+    --muted: #9b9ba3;
+    --border: #26262b;
+    --color-divider: rgba(245,244,240,0.12);
+    --color-accent-100: rgba(255,182,39,0.07);
+    --radius-sm: 4px;
+    --radius-md: 6px;
+    --font-heading: "Anton", sans-serif;
+    --font-heading-weight: 400;
+    --font-body: "Geist", system-ui, sans-serif;
+    --font-mono: "Space Mono", ui-monospace, monospace;
+  }
+  html { background: var(--color-bg); }
+  body { margin: 0; background: var(--color-bg); color: var(--color-text); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  body::before {
+    content: ""; position: fixed; inset: 0; z-index: -3; pointer-events: none;
+    background:
+      radial-gradient(110% 70% at 50% -10%, rgba(232,176,75,0.10), transparent 55%),
+      radial-gradient(100% 80% at 50% 115%, rgba(192,57,43,0.10), transparent 55%);
+  }
+  body::after {
+    content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    box-shadow: inset 0 0 200px 40px rgba(0,0,0,0.7);
+  }
+  h1, h2, h3 { font-weight: 400; text-transform: uppercase; letter-spacing: 0.01em; }
+  .text-muted { color: var(--muted); }
+  .btn { white-space: nowrap; font-family: var(--font-mono); font-weight: 700; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 999px; height: 46px; padding: 0 26px; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease, color .2s ease; }
+  .btn-primary, .btn-primary:hover, .btn-primary:active { color: #000; -webkit-text-fill-color: #000; }
+  .btn-primary { box-shadow: 0 8px 30px rgba(255,182,39,0.24); }
+  .btn-secondary { border-color: rgba(245,244,240,0.42); background: rgba(255,255,255,0.06); }
+  .btn-secondary:hover { transform: translateY(-3px); border-color: var(--color-accent); color: var(--color-accent); }
+  a { color: var(--color-accent); text-decoration: none; }
+  a:hover { color: var(--gold-bright); }
+  /* UI-target floor — WCAG 2.2 AA (24px desktop, 44px touch). Chrome links only;
+     links inside prose are exempt and keep their natural inline box. */
+  nav a, footer a, [data-crumb] a, .ui-link {
+    display: inline-flex; align-items: center; min-height: 24px;
+  }
+  @media (pointer: coarse) { nav a, footer a, [data-crumb] a, .ui-link { min-height: 44px; } }
+  ::selection { background: rgba(255,182,39,0.3); }
+  :focus-visible { outline: 2px solid var(--gold-bright); outline-offset: 3px; }
+</style>
+</helmet>
+
+<div style="min-height:100vh;background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);font-size:15px">
+
+  <header style="position:sticky;top:0;z-index:40;background:rgba(10,10,11,0.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--color-divider)">
+    <div style="max-width:1360px;margin:0 auto;padding:14px 40px;display:flex;align-items:center;gap:26px;white-space:nowrap">
+      <a href="/" style="font-family:var(--font-heading);font-size:23px;letter-spacing:0.04em;color:var(--color-text);display:flex;align-items:baseline;gap:2px;display:inline-flex;align-items:center;gap:10px;--bbs-brand:1"><svg viewBox="0 0 84 74" width="25" height="22" aria-hidden="true" style="flex:none;display:block"><defs><linearGradient id="bbsCrownG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffb627"></stop><stop offset="1" stop-color="#ff7a1a"></stop></linearGradient></defs><circle cx="42" cy="8" r="6" fill="#3ed17f"></circle><rect x="7" y="25" width="11" height="33" rx="5.5" fill="url(#bbsCrownG)"></rect><rect x="22" y="36" width="11" height="22" rx="5.5" fill="url(#bbsCrownG)"></rect><rect x="37" y="15" width="11" height="43" rx="5.5" fill="url(#bbsCrownG)"></rect><rect x="52" y="36" width="11" height="22" rx="5.5" fill="url(#bbsCrownG)"></rect><rect x="67" y="25" width="11" height="33" rx="5.5" fill="url(#bbsCrownG)"></rect><rect x="7" y="64" width="71" height="6.5" rx="3.25" fill="url(#bbsCrownG)"></rect></svg><span style="display:inline-flex;align-items:baseline;gap:2px">BURNABOY<span style="color:var(--color-accent)">STATS</span></span></a>
+      <nav style="display:flex;gap:17px;font-family:var(--font-mono);font-size:12.5px;letter-spacing:0.12em;text-transform:uppercase;margin-right:auto">
+        <a href="/" style="color:var(--color-text)" style-hover="color:var(--color-accent)">Home</a>
+        <a href="/music" style="color:var(--color-text)" style-hover="color:var(--color-accent)">Music</a>
+        <a href="/certifications" style="color:var(--color-text)" style-hover="color:var(--color-accent)">Certifications</a>
+        <a href="/records" style="color:var(--color-accent);padding-bottom:3px;border-bottom:2px solid var(--color-accent)">Records</a>
+        <a href="/live-charts" style="color:var(--color-text)" style-hover="color:var(--color-accent)">Live Charts</a>
+        <a href="/updates" style="color:var(--color-text)" style-hover="color:var(--color-accent)">Updates</a>
+        <a href="/about" style="color:var(--color-text)" style-hover="color:var(--color-accent)">About</a>
+        <a href="/faq" style="color:var(--color-text)" style-hover="color:var(--color-accent)">FAQ</a>
+        <a href="/contact" style="color:var(--color-text)" style-hover="color:var(--color-accent)">Contact</a>
+      </nav>
+      <a class="btn btn-primary" href="/share" style="background:var(--color-accent)">Stat card ↗</a>
+    </div>
+  </header>
+
+  <nav aria-label="Breadcrumb" style="border-bottom:1px solid var(--color-divider)">
+    <div style="max-width:1360px;margin:0 auto;padding:12px 40px;display:flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:11.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted)">
+      <a href="/" style="color:var(--muted)" style-hover="color:var(--color-accent)">Home</a><span>/</span>
+      <a href="/records" style="color:var(--muted)" style-hover="color:var(--color-accent)">Records</a><span>/</span>
+      <a href="/records/tours" style="color:var(--muted)" style-hover="color:var(--color-accent)">Tours</a><span>/</span>
+      <span style="color:var(--color-text)">Revenue per show</span>
+    </div>
+  </nav>
+
+  <section style="border-bottom:1px solid var(--color-divider)">
+    <div style="max-width:1360px;margin:0 auto;padding:50px 40px 40px">
+      <div style="display:flex;align-items:center;gap:10px;font-family:var(--font-mono);font-weight:700;font-size:11.5px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted)">
+        <span style="width:22px;height:2px;background:var(--color-accent);display:block"></span>Box office · all-time
+      </div>
+      <h1 style="font-size:84px;line-height:0.88;margin:16px 0 0">Highest <span style="background:linear-gradient(120deg,var(--gold-bright),var(--color-accent) 55%,var(--color-accent-2));-webkit-background-clip:text;background-clip:text;color:transparent">Revenue Per Show</span></h1>
+      <p style="font-size:18px;line-height:1.55;max-width:62ch;margin:18px 0 0;color:#d8d8de;text-wrap:pretty">The {{ total }} highest-grossing single shows by an African artist, ranked. Burna Boy holds {{ his }} of them — more than every other artist on this list combined.</p>
+      <div style="display:flex;gap:10px;margin-top:24px">
+        <a class="btn btn-secondary" href="/records/visualized#grosses">See the grosses visualised →</a>
+      </div>
+    </div>
+  </section>
+
+  <section style="border-bottom:1px solid var(--color-divider);background:var(--color-surface)">
+    <div style="max-width:1360px;margin:0 auto;padding:22px 40px;display:flex;flex-wrap:wrap;align-items:center;gap:10px">
+      <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-right:6px">Artist</span>
+      <sc-for list="{{ chips }}" as="c">
+        <button onClick="{{ c.pick }}" style="display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border-radius:999px;border:1px solid {{ c.border }};background:{{ c.bg }};color:{{ c.color }};font-family:inherit;font-size:13px;font-weight:600;cursor:pointer">{{ c.label }}<span style="font-family:var(--font-mono);font-size:11px;opacity:0.7">{{ c.count }}</span></button>
+      </sc-for>
+      <span style="margin-left:auto;font-family:var(--font-mono);font-size:11.5px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted)">{{ shownLabel }}</span>
+    </div>
+  </section>
+
+  <section style="border-bottom:1px solid var(--color-divider)">
+    <div style="max-width:1360px;margin:0 auto;padding:26px 40px 40px">
+      <div style="border-top:1px solid var(--color-divider)">
+        <sc-for list="{{ rows }}" as="r">
+          <div style="display:grid;grid-template-columns:52px 150px 1fr 210px 100px 130px;gap:20px;align-items:center;padding:15px 8px;border-bottom:1px solid var(--color-divider);background:{{ r.bg }}" style-hover="background:rgba(245,240,232,0.05)">
+            <span style="font-family:var(--font-heading);font-size:22px;color:{{ r.rankInk }};font-variant-numeric:tabular-nums">{{ r.rank }}</span>
+            <span style="font-weight:600;font-size:14.5px;color:{{ r.artistColor }}">{{ r.artist }}</span>
+            <span style="min-width:0">
+              <span style="display:block;font-weight:600;font-size:15px">{{ r.flag }} {{ r.venue }}</span>
+              <span style="display:block;font-family:var(--font-mono);font-size:11.5px;color:var(--muted);margin-top:2px">{{ r.city }}</span>
+            </span>
+            <span style="font-size:13.5px;color:#d8d8de">{{ r.tour }}</span>
+            <span style="font-family:var(--font-mono);font-size:12.5px;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums">{{ r.tickets }}</span>
+            <span style="font-family:var(--font-heading);font-size:22px;color:var(--color-accent);text-align:right;font-variant-numeric:tabular-nums">{{ r.gross }}</span>
+          </div>
+        </sc-for>
+      </div>
+      <p class="text-muted" style="font-size:13px;line-height:1.7;margin-top:20px;max-width:104ch">Box-office figures reported by Billboard Boxscore &amp; Pollstar (as aggregated by TouringData), cross-checked against press reporting, as of July 2026. Each entry is a single night's gross — multi-night stands (e.g. Toronto &amp; Montreal) are ranked per night, not combined.</p>
+      <a class="btn btn-secondary" href="/records/tours" style="margin-top:18px">← Tours</a>
+    </div>
+  </section>
+
+  <footer style="max-width:1360px;margin:0 auto;padding:40px 40px 54px;display:flex;align-items:flex-start;gap:40px">
+    <div>
+      <div style="font-family:var(--font-heading);font-size:23px;letter-spacing:0.04em;display:flex;align-items:baseline;gap:2px;display:inline-flex;align-items:center;gap:10px;--bbs-brand:1"><svg viewBox="0 0 84 74" width="25" height="22" aria-hidden="true" style="flex:none;display:block"><defs><linearGradient id="bbsCrownG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffb627"></stop><stop offset="1" stop-color="#ff7a1a"></stop></linearGradient></defs><circle cx="42" cy="8" r="6" fill="#3ed17f"></circle><rect x="7" y="25" width="11" height="33" rx="5.5" fill="url(#bbsCrownG)"></rect><rect x="22" y="36" width="11" height="22" rx="5.5" fill="url(#bbsCrownG)"></rect><rect x="37" y="15" width="11" height="43" rx="5.5" fill="url(#bbsCrownG)"></rect><rect x="52" y="36" width="11" height="22" rx="5.5" fill="url(#bbsCrownG)"></rect><rect x="67" y="25" width="11" height="33" rx="5.5" fill="url(#bbsCrownG)"></rect><rect x="7" y="64" width="71" height="6.5" rx="3.25" fill="url(#bbsCrownG)"></rect></svg><span style="display:inline-flex;align-items:baseline;gap:2px">BURNABOY<span style="color:var(--color-accent)">STATS</span></span></div>
+      <p class="text-muted" style="font-size:12.5px;margin-top:12px;max-width:46ch;line-height:1.5">An unofficial fan site — not affiliated with or endorsed by Burna Boy. Box-office figures via Billboard Boxscore.</p>
+    </div>
+    <div style="margin-left:auto;display:flex;gap:28px;font-family:var(--font-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase">
+      <a href="/records/tours" style="color:var(--muted)" style-hover="color:var(--color-accent)">Tours</a>
+      <a href="/records/tours/festivals" style="color:var(--muted)" style-hover="color:var(--color-accent)">Festivals</a>
+      <a href="/records/africas-biggest" style="color:var(--muted)" style-hover="color:var(--color-accent)">Africa's Biggest</a>
+      <a href="/methodology" style="color:var(--muted)" style-hover="color:var(--color-accent)">Methodology</a>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:1000}}">
+class Component extends DCLogic {
+  state = { artist: null };
+
+  // app/data/tourRevenue.ts — all 41 shows
+  shows() {
+    return [
+      ['Burna Boy', 'London Stadium', 'London', '🇬🇧', 'I Told Them… Tour', '2024', '58,973', 6147209],
+      ['Burna Boy', 'Stade de France', 'Paris', '🇫🇷', 'I Told Them… Tour', '2025', '43,881', 4528368],
+      ['Fally Ipupa', 'La Défense Arena', 'Paris', '🇫🇷', 'Live In Concert', '2023', '39,048', 3160842],
+      ['Burna Boy', 'La Défense Arena', 'Paris', '🇫🇷', 'Love, Damini Tour', '2023', '36,585', 2863340],
+      ['Burna Boy', 'Capital One Arena', 'Washington, D.C.', '🇺🇸', 'I Told Them… Tour', '2024', '13,892', 1724853],
+      ['Burna Boy', 'TD Garden', 'Boston', '🇺🇸', 'I Told Them… Tour', '2024', '13,219', 1592684],
+      ['Burna Boy', 'Madison Square Garden', 'New York', '🇺🇸', 'Space Drift Tour', '2022', '13,586', 1576641],
+      ['Burna Boy', 'Ziggo Dome', 'Amsterdam', '🇳🇱', 'Space Drift Tour', '2022', '17,000', 1564720],
+      ['Burna Boy', 'Capital One Arena', 'Washington, D.C.', '🇺🇸', 'Love, Damini Tour', '2022', '14,688', 1434525],
+      ['Burna Boy', 'Scotiabank Arena', 'Toronto', '🇨🇦', 'I Told Them… Tour (1 of 2 nights)', '2024', '—', 1400964],
+      ['Burna Boy', 'State Farm Arena', 'Atlanta', '🇺🇸', 'I Told Them… Tour', '2024', '13,331', 1394173],
+      ['Burna Boy', 'Lanxess Arena', 'Cologne', '🇩🇪', 'I Told Them… Tour', '2023', '14,260', 1386581],
+      ['Burna Boy', 'The O2 Arena', 'London', '🇬🇧', 'Space Drift Tour', '2021', '15,165', 1347333],
+      ['Burna Boy', 'Co-op Live', 'Manchester', '🇬🇧', 'I Told Them… Tour', '2025', '13,204', 1338176],
+      ['Burna Boy', 'BMO Stadium', 'Los Angeles', '🇺🇸', 'I Told Them… Tour', '2023', '10,684', 1224617],
+      ['Davido', 'The O2 Arena', 'London', '🇬🇧', 'Timeless Tour', '2024', '14,919', 1201417],
+      ['Tyla', 'Ariake Arena', 'Tokyo', '🇯🇵', 'We Wanna Party Tour', '2025', '9,050', 1175124],
+      ['Burna Boy', 'Qudos Bank Arena', 'Sydney', '🇦🇺', 'No Sign of Weakness Tour', '2025', '10,401', 1116628],
+      ['Burna Boy', 'Mercedes-Benz Arena', 'Berlin', '🇩🇪', 'I Told Them… Tour', '2023', '11,839', 1089184],
+      ['Wizkid', 'Madison Square Garden', 'New York', '🇺🇸', 'More Love, Less Ego Tour', '2022', '12,901', 1002709],
+      ['Burna Boy', 'Hard Rock Live', 'Hollywood, FL', '🇺🇸', 'I Told Them… Tour', '2024', '5,591', 965925],
+      ['Wizkid', 'The O2 Arena', 'London', '🇬🇧', 'Made in Lagos Tour', '2021', '16,938', 958489],
+      ['Burna Boy', 'Bell Centre', 'Montreal', '🇨🇦', 'I Told Them… Tour (1 of 2 nights)', '2024', '—', 952192],
+      ['Asake', 'Scotiabank Arena', 'Toronto', '🇨🇦', 'Live in Canada', '2024', '9,652', 916954],
+      ['Burna Boy', 'State Farm Arena', 'Atlanta', '🇺🇸', 'Love, Damini Tour', '2022', '12,753', 905024],
+      ['Burna Boy', 'Oakland Arena', 'Oakland', '🇺🇸', 'Love, Damini Tour', '2023', '9,436', 885278],
+      ['Davido', 'Capital One Arena', 'Washington, D.C.', '🇺🇸', 'Timeless Tour', '2023', '8,577', 884147],
+      ['Asake', 'Barclays Center', 'New York', '🇺🇸', 'Work of Art Tour', '2023', '8,464', 866409],
+      ['Asake', 'Madison Square Garden', 'New York', '🇺🇸', 'Lungu Boy Tour', '2024', '11,096', 860761],
+      ['Asake', 'Capital One Arena', 'Washington, D.C.', '🇺🇸', 'Lungu Boy Tour', '2024', '8,690', 823316],
+      ['Burna Boy', 'Hallenstadion', 'Zurich', '🇨🇭', 'Love, Damini Tour', '2022', '8,827', 822939],
+      ['Davido', 'Madison Square Garden', 'New York', '🇺🇸', 'Timeless Tour', '2024', '10,185', 809689],
+      ['Burna Boy', 'Sidney Myer Music Bowl', 'Melbourne', '🇦🇺', 'No Sign of Weakness Tour', '2025', '8,237', 805250],
+      ['Rema', 'Madison Square Garden', 'New York', '🇺🇸', 'Heis Tour', '2025', '—', 793707],
+      ['Burna Boy', 'Sportpaleis', 'Antwerp', '🇧🇪', 'I Told Them… Tour', '2023', '8,266', 781236],
+      ['Davido', 'Merriweather Post Pavilion', 'Columbia, MD', '🇺🇸', '5ive Alive Tour', '2025', '—', 695845],
+      ['Burna Boy', 'Wintrust Arena', 'Chicago', '🇺🇸', 'I Told Them… Tour', '2024', '5,775', 674283],
+      ['Burna Boy', 'RAC Arena', 'Perth', '🇦🇺', 'No Sign of Weakness Tour', '2025', '6,835', 644871],
+      ['Burna Boy', 'Addition Financial Arena', 'Orlando', '🇺🇸', 'Love, Damini Tour', '2022', '7,137', 636923],
+      ['Davido', 'State Farm Arena', 'Atlanta', '🇺🇸', 'A.W.A.Y Festival', '2023', '11,246', 599343],
+      ['Burna Boy', 'Amalie Arena', 'Tampa, FL', '🇺🇸', 'I Told Them… Tour', '2024', '5,890', 580424]
+    ];
+  }
+
+  renderVals() {
+    const all = this.shows();
+    const sel = this.state.artist;
+    const usd = (n) => '$' + n.toLocaleString('en-US');
+
+    const counts = {};
+    all.forEach(s => { counts[s[0]] = (counts[s[0]] || 0) + 1; });
+
+    const rows = all.map((s, i) => ({ s, rank: i + 1 }))
+      .filter(x => !sel || x.s[0] === sel)
+      .map(x => ({
+        rank: String(x.rank).padStart(2, '0'),
+        artist: x.s[0], venue: x.s[1], city: x.s[2], flag: x.s[3],
+        tour: x.s[4] + ' · ' + x.s[5], tickets: x.s[6], gross: usd(x.s[7]),
+        artistColor: x.s[0] === 'Burna Boy' ? 'var(--color-accent)' : 'var(--color-text)',
+        rankInk: x.rank <= 3 ? 'var(--color-accent)' : 'var(--muted)',
+        bg: x.s[0] === 'Burna Boy' ? 'rgba(255,182,39,0.04)' : 'transparent'
+      }));
+
+    const artists = ['Burna Boy', 'Davido', 'Asake', 'Wizkid', 'Rema', 'Tyla', 'Fally Ipupa'];
+    const chips = [{ label: 'All artists', key: null, count: all.length }].concat(
+      artists.filter(a => counts[a]).map(a => ({ label: a, key: a, count: counts[a] }))
+    ).map(c => {
+      const on = sel === c.key;
+      return {
+        label: c.label, count: c.count,
+        bg: on ? 'rgba(255,182,39,0.16)' : 'transparent',
+        border: on ? 'var(--color-accent)' : 'var(--border)',
+        color: on ? 'var(--color-accent)' : 'var(--muted)',
+        pick: () => this.setState({ artist: sel === c.key ? null : c.key })
+      };
+    });
+
+    return {
+      rows, chips,
+      total: all.length,
+      his: counts['Burna Boy'],
+      shownLabel: rows.length + ' of ' + all.length + ' shown'
+    };
+  }
+}
+</script>
+</body>
+</html>

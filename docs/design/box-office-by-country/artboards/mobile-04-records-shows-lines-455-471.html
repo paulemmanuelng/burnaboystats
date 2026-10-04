@@ -1,0 +1,19 @@
+<!-- EXCERPT, read-only reference. Source: design_handoff_burnaboystats/designs/mobile/Burna Boy Stats - Mobile.dc.html, lines 455-471 (screen 04 "Records", the top-shows teaser linking to /records/tours/revenue),
+     copied 3 Oct 2026 from the owner's copy of the bundle (design files dated 30 Sep 2026). Edit the file in your own project, not this copy. -->
+          <div style="padding:26px 18px 8px">
+            <div style="font-family:var(--font-mono);font-weight:700;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent)">Box office</div>
+            <h2 style="font-size:24px;margin-top:8px">Biggest single shows</h2>
+            <p style="font-size:12.5px;color:var(--mute);margin:8px 0 0">{{ hisShows }} of the {{ showCount }} biggest African shows are his.</p>
+          </div>
+          <div style="border-top:1px solid var(--color-divider);margin-top:14px">
+            <sc-for list="{{ recShows }}" as="s">
+              <a href="/records/tours/revenue" style="display:flex;align-items:center;gap:12px;padding:13px 18px;border-bottom:1px solid var(--color-divider);color:var(--color-text)">
+                <span style="font-family:var(--font-mono);font-size:11px;color:var(--mute);min-width:20px">{{ s.rank }}</span>
+                <span style="flex:1;min-width:0">
+                  <span style="display:block;font-weight:600;font-size:14px">{{ s.flag }} {{ s.venue }}</span>
+                  <span style="display:block;font-family:var(--font-mono);font-size:10.5px;color:var(--mute);margin-top:3px">{{ s.artist }} · {{ s.year }}</span>
+                </span>
+                <span style="font-family:var(--font-heading);font-size:17px;color:var(--color-accent);font-variant-numeric:tabular-nums">{{ s.gross }}</span>
+              </a>
+            </sc-for>
+          </div>
