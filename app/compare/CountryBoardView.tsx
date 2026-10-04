@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import Link from "next/link";
 import styles from "./compare.module.css";
-import { fmt, keepParens, plaque, program, shortProgram, tierClass } from "./chips";
+import { fmt, keepParens, PlaqueWords, program, shortProgram, tierClass } from "./chips";
 import { href, type SP } from "../lib/compareUrl";
 import { artAt, artSrcSet } from "../lib/artAt";
 import { canonicalPair, pairSlug } from "../lib/comparePairs";
@@ -56,7 +56,7 @@ function PlaqueChip({ p, code, hideProgram = false }: { p: CountryPlaque; code: 
   const prog = hideProgram ? null : program(p, code);
   return (
     <span className={`${styles.tierChip} ${tierClass(p.level)}`}>
-      <span className={styles.tierWord}>{plaque(p)}</span>
+      <PlaqueWords top={p} />
       {prog && (
         <span className={styles.chipProgram} title={prog}>
           <span className={styles.progLong}>{prog}</span>
@@ -254,31 +254,18 @@ export function CountryBoardView({
   // One row per RECORD, not per holder. "Essence" is Wizkid's plaque and Tems'
   // — the table above rightly counts it on both lines, but a list of the
   // biggest records in a market that printed it twice read as a duplicate, so
-  // here the holders share the row.
-  const byRecord = new Map<string, { p: CountryPlaque; holders: { name: string; featured: boolean }[] }>();
-  for (const line of board.programs.flatMap((x) => x.lines)) {
-    for (const p of line.plaqueList) {
-      if (p.units === null) continue;
-      const key = `${p.title.toLowerCase()}|${p.format}`;
-      const held = byRecord.get(key);
-      const who = { name: line.artist.name, featured: p.isFeature };
-      if (held) {
-        held.holders.push(who);
-        // The same record can sit at different tiers for two holders only if a
-        // register says so; show the higher one, with its units.
-        if ((p.units ?? 0) > (held.p.units ?? 0)) held.p = p;
-      } else byRecord.set(key, { p, holders: [who] });
-    }
-  }
-  // Lead credits first. The holders arrive in board order, so "Bandana" —
-  // Fireboy DML featuring Asake — was billed to Asake, who outranks him here.
-  // The board carries no credit string for its artists, so a record whose lead
-  // act is not on the board names only its featured holder, marked as one.
-  for (const r of byRecord.values()) r.holders.sort((x, y) => Number(x.featured) - Number(y.featured));
+  // here the holders share the row. The records are the board's own
+  // (certCountry.recordsOf), matched artist WITH title: this list used to key
+  // on the title alone, which would have folded Olamide's "Loml" (Cheque ft.
+  // Olamide) and Seyi Vibez's — two records — into one row. Lead credits come
+  // first: "Bandana" is Fireboy DML featuring Asake, who outranks him here.
+  const records = board.programs.flatMap((x) => x.records).filter((r) => r.plaque.units !== null);
   // The † says "this body publishes no multiplier rule, so an N× award is
   // priced as N × Platinum". It is only a caveat where an N× award is actually
-  // on the board — the Czech card carried it above a single Gold.
-  const multiplied = board.programs.some((x) => x.lines.some((l) => l.plaqueList.some((p) => p.x > 1)));
+  // on the board — the Czech card carried it above a single Gold. A half step
+  // on top (AMPROFON's "Platino & Oro") leans on the same stacking rule, as in
+  // certUnits.plaqueNotes.
+  const multiplied = board.programs.some((x) => x.lines.some((l) => l.plaqueList.some((p) => p.x > 1 || !!p.plus)));
   const onBoard = (format?: CertFormat) =>
     !format || board.programs.some((x) => x.lines.some((l) => l.plaqueList.some((p) => p.format === format)));
   // The programme's name sits BEFORE its <dl>, not inside it: a <p> is not
@@ -308,9 +295,18 @@ export function CountryBoardView({
       <span aria-hidden="true">↗</span>
     </a>
   );
-  const biggest = [...byRecord.values()]
+  const biggest = records
+    .map((r) => ({ p: r.plaque, holders: r.holders.map((h) => ({ name: h.artist.name, featured: h.featured })) }))
     .sort((x, y) => (y.p.units ?? 0) - (x.p.units ?? 0) || x.p.title.localeCompare(y.p.title))
     .slice(0, 10);
+  // A record two artists share is on both their lines and counted ONCE in the
+  // figure above (Paul, 4 Oct 2026), so the lines sum to more than the figure
+  // by exactly these. Said under it, on a line of its own — run on after the
+  // plaque count it wrapped at 1440 with its "·" orphaned at the line's start —
+  // and in the notes below.
+  const sharedLine = board.shared
+    ? `${board.shared} ${board.shared === 1 ? "record" : "records"} shared by two or more artists, counted once`
+    : "";
   // The two leaders, in the pair pages' own canonical order.
   const top2 = board.lines.slice(0, 2).map((l) => l.artist);
   const tiedTop = board.lines.filter((l) => l.units === board.lines[0]?.units);
@@ -344,6 +340,7 @@ export function CountryBoardView({
                     : ""
                 }`
               : `${board.plaques} plaque${board.plaques === 1 ? "" : "s"} held by ${board.artists} artist${board.artists === 1 ? "" : "s"} · none priceable`}
+            {sharedLine && <span className={styles.cbFigureShared}>{sharedLine}</span>}
           </p>
         </div>
         <div className={styles.cbThresholds}>
@@ -436,6 +433,13 @@ export function CountryBoardView({
             )}
             {[...new Set([t?.singleExcluded, t?.albumExcluded].filter(Boolean) as string[])].join(" ")} Listed,
             never summed.
+          </p>
+        )}
+        {board.shared > 0 && (
+          <p>
+            <strong>Shared records</strong> — {board.shared === 1 ? "one record here is" : `${board.shared} records here are`}{" "}
+            credited to more than one of the board&apos;s artists. Each artist&apos;s line carries the plaque in full,
+            because it is theirs; the country&apos;s figure counts the plaque once, because it is one plaque.
           </p>
         )}
         {programmes.length > 0 && (

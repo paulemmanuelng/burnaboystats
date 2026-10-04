@@ -134,9 +134,12 @@ describe("the two TCSN credit rulings", () => {
   }
 
   it("the three moved artists print the sweep's date", () => {
-    for (const slug of ["wizkid", "black-sherif", "omah-lay"]) {
+    for (const slug of ["black-sherif", "omah-lay"]) {
       expect(artistBySlug(slug)!.verifiedOn, slug).toBe("2026-10-02");
     }
+    // Wizkid moved again on 4 Oct 2026 (AMPROFON's "One Dance" row re-read,
+    // AFROBEATS_VERIFIED_ON_20). A later read moves a stamp on, never back.
+    expect(artistBySlug("wizkid")!.verifiedOn >= "2026-10-02").toBe(true);
   });
 });
 

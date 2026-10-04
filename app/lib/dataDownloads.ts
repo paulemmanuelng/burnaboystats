@@ -131,6 +131,11 @@ export const CERT_HEADER = [
   "register_url",
   "verified_on",
   "source",
+  // Last, so every earlier column keeps its place: the lower tier awarded on
+  // top of `level` in the same award — "Gold" on One Dance's Mexican 4×
+  // Platinum, AMPROFON's "Platino & Oro, 4 & 1". Blank on every other row.
+  // One plaque, not two; certified_units already includes it.
+  "plus_level",
 ] as const;
 
 interface PlaqueInput {
@@ -138,7 +143,7 @@ interface PlaqueInput {
   release: string;
   credit: string | null;
   kind: string;
-  cert: { c: string; level: "Diamond" | "Platinum" | "Gold" | "Silver"; x?: number; body?: string; source?: "label" | "announcement" };
+  cert: { c: string; level: "Diamond" | "Platinum" | "Gold" | "Silver"; x?: number; plus?: "Diamond" | "Platinum" | "Gold" | "Silver"; body?: string; source?: "label" | "announcement" };
   country: { name: string; body: string; url?: string };
   verifiedOn: string;
 }
@@ -225,6 +230,7 @@ function plaqueRow(p: PlaqueInput): Cell[] {
     registerUrl(p.cert, p.country),
     p.verifiedOn,
     plaqueSource(p.cert, p.country),
+    p.cert.plus ?? null,
   ];
 }
 
@@ -399,7 +405,7 @@ export const DATA_DOWNLOADS: DataDownload[] = [
     rows: certificationRows,
     count: certificationCounts.burna + certificationCounts.board,
     countOf: "plaques",
-    what: `Every plaque for Burna Boy and the ${sweptArtists.length} artists on the Afrobeats Board — body, level, multiplier, certified units with any note the figure leans on, and the register to check it in.`,
+    what: `Every plaque for Burna Boy and the ${sweptArtists.length} artists on the Afrobeats Board — body, level, multiplier (and any lower tier awarded on top, as Mexico's AMPROFON prints "Platino & Oro"), certified units with any note the figure leans on, and the register to check it in.`,
   },
   {
     slug: "chart-peaks",

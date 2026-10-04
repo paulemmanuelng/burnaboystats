@@ -3,6 +3,18 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { revenueShows } from "../app/data/tourRevenue";
 
+// SCOPE OF THE RULE (Paul, 4 Oct 2026, ruling on c6 / tyla-totals-10).
+// "Gold marks Burna, and only Burna" governs MIXED lists: board rows, ranks,
+// leaders, head-to-heads — anywhere his figures sit beside other artists'.
+// It does NOT govern a board artist's OWN page: asked "should gold stay
+// Burna-only there too?", the owner said "no, do what's best", and the call is
+// that the page's subject keeps gold on its own headline figures — the desktop
+// "By the numbers" lead card (.numLead .numValue in artist.module.css) and the
+// phone hero's kicker and total (mobileCerts.module.css .kicker / .total,
+// shared with Burna's own screen). The last describe block below pins that
+// exception so nobody "fixes" it into --text, and no guard in this file scans
+// those pages.
+//
 // Gold marks HIS nights. Both revenue boards list other artists too — more than
 // half of the rows on /records/tours/revenue, and Fally Ipupa's La Défense Arena night
 // sits third in the top ten on /records/tours — so a gold gross applied to every
@@ -202,5 +214,44 @@ describe("gold marks his figures only: never a rank, never his name", () => {
 
   it("the data still puts another artist in the board's top three, so the rule is exercised", () => {
     expect(revenueShows.slice(0, 3).some((s) => s.artist !== "Burna Boy")).toBe(true);
+  });
+});
+
+// The exception, pinned (Paul, 4 Oct 2026). A board artist's own page is not a
+// mixed list: its lead figure is its subject's, as Burna's is on his. The
+// mixed cell on the same page — the head-to-head — still gives gold to Burna
+// only, and that is asserted here too, so the two halves of the ruling cannot
+// drift into each other.
+describe("a board artist's own page keeps gold for its own headline (ruling, 4 Oct 2026)", () => {
+  const block = (css: string, selector: string) => {
+    const esc = selector.replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace(/\s+/g, "\\s+");
+    const m = new RegExp(`(^|\\n)${esc}\\s*\\{([^}]*)\\}`).exec(css);
+    return m ? m[2] : null;
+  };
+  const colour = (css: string, selector: string) => /color:\s*([^;]+);/.exec(block(css, selector) ?? "")?.[1].trim() ?? null;
+
+  it("the desktop lead card's value is gold", () => {
+    expect(colour(read("app/afrobeats/[artist]/artist.module.css"), ".numLead .numValue")).toBe("var(--gold)");
+  });
+
+  it("the phone hero's kicker and total are gold (the screen Burna's page shares)", () => {
+    const css = read("app/components/mobileCerts.module.css");
+    expect(colour(css, ".kicker")).toBe("var(--gold)");
+    expect(colour(css, ".total")).toBe("var(--gold)");
+  });
+
+  it("the head-to-head on the same page still gives gold to Burna only", () => {
+    const tsx = read("app/afrobeats/[artist]/page.tsx");
+    expect(tsx).toMatch(/rival\.isBurna \? `\$\{styles\.compareValue\} \$\{styles\.compareGold\}` : styles\.compareValue/);
+    // The plain cell declares no colour of its own (it inherits the text
+    // colour); only the Burna variant adds gold.
+    expect(colorOf(read("app/afrobeats/[artist]/artist.module.css"), "compareValue") ?? "inherited").not.toMatch(/--gold/);
+    expect(colorOf(read("app/afrobeats/[artist]/artist.module.css"), "compareGold")).toBe("var(--gold)");
+  });
+
+  it("negative control: the selector reader sees the rule as it shipped, and a --text rule as not gold", () => {
+    // artist.module.css:160 as shipped since #120 (173a1564, 20 Aug 2026).
+    expect(colour(".numLead .numValue { color: var(--gold); }", ".numLead .numValue")).toBe("var(--gold)");
+    expect(colour(".numLead .numValue { color: var(--text); }", ".numLead .numValue")).not.toBe("var(--gold)");
   });
 });

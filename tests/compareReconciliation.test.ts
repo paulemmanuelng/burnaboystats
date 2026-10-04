@@ -28,8 +28,12 @@ describe("the compare page counts what the certifications pages count", () => {
       expect(c.x ?? 1, `${r.title} ${c.c}: label says ${shown}×`).toBe(shown);
       const u = unitsForCert(c, r.format);
       if (u.units !== null) {
-        const base = unitsForCert({ ...c, x: 1 }, r.format).units!;
-        expect(u.units, `${r.title} ${c.c}: N × tier`).toBe(base * (c.x ?? 1));
+        // N × the tier, plus one of the lower tier where the body awarded a
+        // half step on top (AMPROFON's "Platino & Oro" — "4× Platinum + Gold").
+        const { plus, ...main } = c;
+        const base = unitsForCert({ ...main, x: 1 }, r.format).units!;
+        const half = plus ? unitsForCert({ ...main, level: plus, x: 1 }, r.format).units! : 0;
+        expect(u.units, `${r.title} ${c.c}: N × tier (+ half step)`).toBe(base * (c.x ?? 1) + half);
       }
     }
   });

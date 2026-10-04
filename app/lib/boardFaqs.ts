@@ -36,15 +36,11 @@ import {
 import { count } from "./plural";
 import { opponentOf } from "./headToHead";
 import { certWeight } from "./certs";
+import { awardLabel, awardRank } from "./awardName";
 
 export interface Faq {
   q: string;
   a: string;
-}
-
-/** "Diamond", "6× Platinum" — the tier as the ledger writes it. */
-function tierLabel(level: string, x?: number): string {
-  return x && x > 1 ? `${x}× ${level}` : level;
 }
 
 /**
@@ -58,21 +54,20 @@ function tierLabel(level: string, x?: number): string {
  * "Soweto" (3× Platinum plus five more plaques) until 17 Sep 2026.
  */
 function topPlaque(a: AfroArtist): string | undefined {
-  const order = ["Diamond", "Platinum", "Gold", "Silver"];
-  let best: { title: string; label: string; rank: number; x: number; n: number; w: number } | undefined;
+  // awardRank (lib/awardName): tier, then multiplier, then any half step on
+  // top; the label is awardLabel's — "Diamond", "6× Platinum", "4× Platinum +
+  // Gold" — the words the ledger above prints.
+  let best: { title: string; label: string; rank: number; n: number; w: number } | undefined;
   for (const r of a.releases) {
     for (const c of r.certs) {
-      const rank = order.indexOf(c.level);
-      const x = c.x ?? 1;
-      if (rank < 0) continue;
+      const rank = awardRank(c);
       const n = r.certs.length;
       const w = certWeight(r);
       const better =
         !best ||
-        rank < best.rank ||
-        (rank === best.rank && x > best.x) ||
-        (rank === best.rank && x === best.x && (n > best.n || (n === best.n && w > best.w)));
-      if (better) best = { title: r.title, label: tierLabel(c.level, c.x), rank, x, n, w };
+        rank > best.rank ||
+        (rank === best.rank && (n > best.n || (n === best.n && w > best.w)));
+      if (better) best = { title: r.title, label: awardLabel(c), rank, n, w };
     }
   }
   return best ? `“${best.title}” (${best.label})` : undefined;

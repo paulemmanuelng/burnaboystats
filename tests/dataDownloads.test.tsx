@@ -136,7 +136,7 @@ describe("the three files", () => {
   it("carry exactly the published headers", async () => {
     const HEADERS = {
       certifications:
-        "artist,release,credit,format,kind,country_code,country,certifying_body,level,multiplier,certified_units,units_note,priced,unpriced_reason,register_url,verified_on,source",
+        "artist,release,credit,format,kind,country_code,country,certifying_body,level,multiplier,certified_units,units_note,priced,unpriced_reason,register_url,verified_on,source,plus_level",
       "chart-peaks":
         "artist,release,credit,format,kind,country_code,country,chart,peak,weeks_at_peak,weeks_on_chart,note",
       awards: "ceremony,year,category,work,result",

@@ -1,6 +1,7 @@
+import type { ReactNode } from "react";
 import styles from "./compare.module.css";
 import { countryMeta } from "../data/afrobeats";
-import { awardLabel } from "../lib/awardName";
+import { awardLabel, plusWord } from "../lib/awardName";
 
 /**
  * The compare section's shared display atoms — the tier chip's class, the
@@ -27,8 +28,32 @@ export const keepParens = (title: string) => {
   return m ? <>{m[1]}<span className={styles.nowrap}>{m[2]}</span></> : title;
 };
 
-export const plaque = (top: { level: string; x: number; body?: string } | null) =>
+/** "3× Platinum", "16× Platino", "4× Platinum + Gold" — awardLabel, so the
+ *  half step AMPROFON prints on top ("Platino & Oro") is never dropped. */
+export const plaque = (top: { level: string; x: number; body?: string; plus?: string } | null) =>
   top ? awardLabel(top) : "";
+
+/** A chip's words, as `.tierWord` runs: "4× Platinum" and, where the body
+ *  awarded a half step on top, "+ Gold" as a SECOND unbreakable run, with
+ *  `after` (the † ‡ § marks, a "+2") riding on the last one. One run per half
+ *  so a phone chip can wrap between them: "4× Platinum + Gold † ‡ §" as a
+ *  single nowrap run ran 30px off a 390px screen on /compare's Mexico row. */
+export function PlaqueWords({
+  top,
+  after,
+}: {
+  top: { level: string; x: number; body?: string; plus?: string } | null;
+  after?: ReactNode;
+}) {
+  if (!top?.plus) return <span className={styles.tierWord}>{plaque(top)}{after}</span>;
+  const { plus: _half, ...main } = top;
+  return (
+    <>
+      <span className={styles.tierWord}>{awardLabel(main)}</span>{" "}
+      <span className={styles.tierWord}>{plusWord(top).trim()}{after}</span>
+    </>
+  );
+}
 
 /** The marker's short form for a phone chip: "Latin" stays; a whole other
  *  issuer ("Sony Music Colombia") becomes its first word, the full name in

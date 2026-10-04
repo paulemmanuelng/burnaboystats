@@ -14,6 +14,9 @@ const releases = allItems.map((r) => ({
     body: c.body ?? COUNTRIES[c.c]?.body ?? null,
     level: c.level,
     multiplier: c.x ?? 1,
+    // A lower tier awarded on top in the same award (AMPROFON's "Platino &
+    // Oro") — the shape /api/v1/afrobeats documents. None of his rows has one.
+    ...(c.plus ? { plus: c.plus } : {}),
   })),
 }));
 

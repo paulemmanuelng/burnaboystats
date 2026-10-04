@@ -19,6 +19,8 @@ You don't need them to do the work. They are there so the owner and Claude Code 
 
 ---
 
+> **Round 2, 4 Oct 2026:** the owner's review of your round-1 response — 36 numbered fixes and his rulings on your §12 questions — is in [ROUND-2-FIXES.md](ROUND-2-FIXES.md). Jobs 1 and 2 are being built from round 1 with fixes 1–19 applied; this round needs Job 3 and the portrait (fixes 20–36).
+
 ## 1. The ask
 
 The owner's bar, verbatim (3 Oct 2026): *"ensure the design for pages are extremely good, claude design should make the best, so the new gross pages have the best ui/ux"*.

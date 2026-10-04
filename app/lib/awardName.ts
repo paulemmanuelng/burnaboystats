@@ -32,6 +32,27 @@ export const PROGRAM_TIER_NAMES: Record<string, Record<string, string>> = {
 export const tierWord = (level: string, body?: string): string =>
   (body && PROGRAM_TIER_NAMES[body]?.[level]) || level;
 
-/** The whole award: "2× Platino", "Diamond", "5× Platinum". */
-export const awardLabel = (cert: { level: string; x?: number; body?: string }): string =>
-  `${(cert.x ?? 1) > 1 ? `${cert.x}× ` : ""}${tierWord(cert.level, cert.body)}`;
+/** The half step on top, in the programme's words — " + Gold" — or "".
+ *
+ *  AMPROFON (Mexico) awards its plaques as COMBINATIONS: its register prints
+ *  "Platino & Oro | 4 & 1" — four Platinos and an Oro, one award at one date.
+ *  The data keeps the main tier and its multiplier (Platinum, 4) and carries
+ *  the lower tier on top as `plus`, so the label reads the way the register
+ *  does: "4× Platinum + Gold". One plaque, not two. */
+export const plusWord = (cert: { plus?: string; body?: string }): string =>
+  cert.plus ? ` + ${tierWord(cert.plus, cert.body)}` : "";
+
+/** The whole award: "2× Platino", "Diamond", "5× Platinum",
+ *  "4× Platinum + Gold". */
+export const awardLabel = (cert: { level: string; x?: number; body?: string; plus?: string }): string =>
+  `${(cert.x ?? 1) > 1 ? `${cert.x}× ` : ""}${tierWord(cert.level, cert.body)}${plusWord(cert)}`;
+
+const TIER_ORDER: Record<string, number> = { Silver: 1, Gold: 2, Platinum: 3, Diamond: 4 };
+
+/** One number that orders two awards, biggest highest: the tier first, then
+ *  the multiplier, then the half step on top — so "4× Platinum + Gold" sits
+ *  above "4× Platinum" and below "5× Platinum". For ORDERING plaques only
+ *  (the strip's best tier, a release's top plaque); what a plaque is worth is
+ *  app/lib/certUnits.ts's call. */
+export const awardRank = (cert: { level: string; x?: number; plus?: string }): number =>
+  (TIER_ORDER[cert.level] ?? 0) * 100_000 + (cert.x ?? 1) * 10 + (cert.plus ? TIER_ORDER[cert.plus] ?? 0 : 0);

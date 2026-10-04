@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-03";
+  export const liveChartsUpdated = "2026-10-04";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-03T21:20Z";
+  export const liveChartsBuiltAt = "2026-10-04T12:26Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","iTunes"];
@@ -153,69 +153,56 @@
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 54,
-            "movement": -8
-          },
-          {
-            "country": "US",
-            "name": "United States",
-            "position": 66,
-            "movement": 1
+            "position": 56,
+            "movement": -2
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 71,
-            "movement": -1
+            "position": 81,
+            "movement": -10
+          },
+          {
+            "country": "US",
+            "name": "United States",
+            "position": 82,
+            "movement": -16
           },
           {
             "country": "CA",
             "name": "Canada",
-            "position": 74,
-            "movement": -5
+            "position": 87,
+            "movement": -13
           },
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 83,
-            "movement": 0
+            "position": 90,
+            "movement": -7
           },
           {
             "country": "PT",
             "name": "Portugal",
-            "position": 148,
-            "movement": -10
+            "position": 176,
+            "movement": -28
           },
           {
             "country": "FR",
             "name": "France",
-            "position": 154,
-            "movement": -9
-          },
-          {
-            "country": "WW",
-            "name": "Worldwide",
-            "position": 154,
-            "movement": -8
+            "position": 179,
+            "movement": -25
           },
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
-            "position": 155,
-            "movement": -11
+            "position": 182,
+            "movement": -27
           },
           {
-            "country": "BE",
-            "name": "Belgium",
-            "position": 184,
-            "movement": -9
-          },
-          {
-            "country": "CH",
-            "name": "Switzerland",
-            "position": 193,
-            "movement": null,
-            "status": "new"
+            "country": "WW",
+            "name": "Worldwide",
+            "position": 182,
+            "movement": -28
           }
         ]
       },
@@ -238,8 +225,8 @@
           {
             "country": "DZ",
             "name": "Algeria",
-            "position": 4,
-            "movement": 10
+            "position": 54,
+            "movement": -50
           }
         ]
       }
@@ -472,16 +459,16 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/498d4ae81da58e1fcf5e2704a99e0ed8/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Kana",
+    "title": "Billionaires Club",
     "platforms": [
       {
-        "platform": "Apple Music",
+        "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 51,
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 45,
             "movement": null,
             "status": "new"
           }
@@ -489,26 +476,27 @@
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/81b302f950caef7e10cf377769407ff4/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Fada Fada",
+    "title": "New Religion",
     "platforms": [
       {
-        "platform": "Shazam",
+        "platform": "Deezer",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 66,
-            "movement": -10
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 85,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/01b08635a150d3221c128ea77d024b91/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Rock",
@@ -528,6 +516,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/fe507c621f9c8d35a93398415c261b2a/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Fada Fada",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 82,
+            "movement": -16
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Luvaluvah",
@@ -596,7 +603,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 142,
+            "position": 136,
             "movement": 3
           }
         ]
@@ -615,7 +622,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 148,
+            "position": 142,
             "movement": 3
           }
         ]
@@ -634,7 +641,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 184,
+            "position": 179,
             "movement": 2
           }
         ]

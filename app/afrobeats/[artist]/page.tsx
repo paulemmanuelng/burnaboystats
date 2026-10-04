@@ -38,7 +38,7 @@ import {
   AFROBEATS_LAST_FULL_SWEEP,
 } from "../../data/afrobeats";
 import { LIVE_CADENCE_ADVERB } from "../../lib/liveChartMeta";
-import { tierWord } from "../../lib/awardName";
+import { awardLabel, awardRank } from "../../lib/awardName";
 import CertViewSwap from "../../components/CertViewSwap";
 import { featuredTitlesOf } from "../../lib/certUnits";
 import {
@@ -139,18 +139,17 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
   // different register with thresholds a sixteenth of the main programme's —
   // and this strip rendered them as plain US Platinum until 11 Sep 2026. Same
   // marker Burna's explorer paints beside "Dai Dai".
-  const rank: Record<Tier, number> = { Diamond: 0, Platinum: 1, Gold: 2, Silver: 3 };
+  // Ranked by awardRank (lib/awardName): tier, then multiplier, then any half
+  // step on top — Wizkid's 🇲🇽 "4× Platinum + Gold" outranks a 4× Platinum.
   const stripFor = (x: AfroArtist) => {
-    const byCountry = new Map<string, { level: Tier; x?: number; body?: string; provenance?: string }>();
+    const byCountry = new Map<string, { level: Tier; x?: number; plus?: Tier; body?: string; provenance?: string }>();
     for (const r of x.releases)
       for (const c of r.certs) {
         const cur = byCountry.get(c.c);
-        if (!cur || rank[c.level] < rank[cur.level] || (c.level === cur.level && (c.x ?? 1) > (cur.x ?? 1)))
-          byCountry.set(c.c, { level: c.level, x: c.x, body: c.body, provenance: certProvenance(c) });
+        if (!cur || awardRank(c) > awardRank(cur))
+          byCountry.set(c.c, { level: c.level, x: c.x, plus: c.plus, body: c.body, provenance: certProvenance(c) });
       }
-    return [...byCountry.entries()].sort(
-      (p, q) => rank[p[1].level] - rank[q[1].level] || (q[1].x ?? 1) - (p[1].x ?? 1)
-    );
+    return [...byCountry.entries()].sort((p, q) => awardRank(q[1]) - awardRank(p[1]));
   };
 
   // The two switches (lib/certScope), /compare's style. The home-country switch
@@ -202,7 +201,9 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
     // register row ("France — SNEP, announced on its own X account, 6 Apr 2026").
     certs: r.certs.map((c) => {
       const provenance = certProvenance(c);
-      return { c: c.c, level: c.level, ...(c.x ? { x: c.x } : {}), ...(c.body ? { body: c.body } : {}), ...(provenance ? { provenance } : {}) };
+      // `plus` too: the half step AMPROFON prints on top ("4× Platinum + Gold")
+      // is part of the badge's words on both layouts.
+      return { c: c.c, level: c.level, ...(c.x ? { x: c.x } : {}), ...(c.plus ? { plus: c.plus } : {}), ...(c.body ? { body: c.body } : {}), ...(provenance ? { provenance } : {}) };
     }),
   }));
   const mobileAlbums = mobileReleases.filter((r) =>
@@ -292,8 +293,7 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
             return (
               <span key={code} className={`${styles.cert} ${styles[tierOf(t.level)]}`} title={`${c.name} — ${t.body ?? c.body}${t.provenance ? `, ${t.provenance}` : ""}`}>
                 <span className={styles.flag} aria-hidden="true">{c.flag}</span>
-                {t.x && t.x > 1 ? `${t.x}× ` : ""}
-                {tierWord(t.level, t.body)}
+                {awardLabel(t)}
                 {/* A separate programme is a different award — derived, as on
                     Burna's page: whatever the override adds beyond the country's
                     default body. Reads "Latin" for RIAA Latin. */}
@@ -587,8 +587,10 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
           </div>
           <div className={styles.compareCell}>
             <span className={styles.compareName}>{rival.name}</span>
-            {/* Gold marks Burna, and only Burna. Two board artists are peers
-                here, so neither cell gets to be the headline. */}
+            {/* Gold marks Burna, and only Burna, IN THIS COMPARISON — a mixed
+                pair. Two board artists are peers here, so neither cell gets to
+                be the headline. The page's own lead card above is its subject's
+                and stays gold (Paul, 4 Oct 2026; tests/goldMarksHisRows.test.ts). */}
             <span className={rival.isBurna ? `${styles.compareValue} ${styles.compareGold}` : styles.compareValue}>
               {rival.total}
             </span>
