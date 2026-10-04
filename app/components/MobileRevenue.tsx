@@ -76,8 +76,9 @@ export default function MobileRevenue({
 }: {
   /** The record night, No. 1 on the board. */
   record: { gross: string; his: boolean; artist: string; venue: string; city: string; year: string; tickets?: string };
-  /** Three cells under the record card; `his` cells are his figures, in gold. */
-  figs: { value: string; label: string; his: boolean }[];
+  /** Three cells under the record card, all in ink: the record figure above
+   *  carries the screen's gold (the owner, 4 Oct 2026: "so much gold there"). */
+  figs: { value: string; label: string }[];
   share: {
     segs: { artist: string; his: boolean; share: number; pct: string }[];
     his: string;
@@ -162,7 +163,7 @@ export default function MobileRevenue({
         <div className={styles.figs}>
           {figs.map((f) => (
             <div key={f.label} className={styles.fig}>
-              <span className={`${styles.figValue} ${f.his ? styles.figHis : ""}`}>{f.value}</span>
+              <span className={styles.figValue}>{f.value}</span>
               <span className={styles.figLabel}>{f.label}</span>
             </div>
           ))}

@@ -116,9 +116,9 @@ export default function RevenuePage() {
           tickets: top.tickets,
         }}
         figs={[
-          { value: `${b.hisTop10} of 10`, label: "Top ten, his", his: true },
-          { value: pct(b.hisShare), label: "His share of the board", his: true },
-          { value: String(showCount), label: `Shows · ${b.artists.length} artists`, his: false },
+          { value: `${b.hisTop10} of 10`, label: "Top ten, his" },
+          { value: pct(b.hisShare), label: "His share of the board" },
+          { value: String(showCount), label: `Shows · ${b.artists.length} artists` },
         ]}
         share={{
           segs: b.artists.map((a) => ({ artist: a.artist, his: a.his, share: a.share, pct: pct(a.share) })),
@@ -187,11 +187,11 @@ export default function RevenuePage() {
                   <span className={styles.figLabel}>Shows · {b.artists.length} artists</span>
                 </div>
                 <div className={styles.fig}>
-                  <span className={`${styles.figValue} ${styles.figHis}`}>{b.hisTop10} of 10</span>
+                  <span className={styles.figValue}>{b.hisTop10} of 10</span>
                   <span className={styles.figLabel}>Top ten that are his</span>
                 </div>
                 <div className={styles.fig}>
-                  <span className={`${styles.figValue} ${styles.figHis}`}>{pct(b.hisShare)}</span>
+                  <span className={styles.figValue}>{pct(b.hisShare)}</span>
                   <span className={styles.figLabel}>His share of the board</span>
                 </div>
                 <div className={styles.fig}>

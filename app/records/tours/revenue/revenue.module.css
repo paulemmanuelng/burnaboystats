@@ -87,7 +87,6 @@
   font-variant-numeric: tabular-nums;
 }
 /* His figures (9 of the top ten, his share) — gold marks his figures only. */
-.figHis { color: var(--gold); }
 .figLabel {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
