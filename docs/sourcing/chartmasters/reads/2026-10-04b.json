@@ -1,0 +1,46 @@
+{
+  "$comment": "Second read on 4 Oct 2026 in the Browser pane: Paul opened each Playcounts Tool URL himself, each in its own tab (chartmasters.org robots.txt disallows /spotify-streaming-numbers-tool/? for '*', so the agent did not navigate there; it read the pages Paul opened, signed in as before). valid_as_of=20261002, 'Streams updated through October 2, 2026.' on every page. Identity: the URL's artist_spotify_id plus the page's 'Audio streams for <name>' heading and, for Wizkid, Tems, Asake and Tyla, the share link's artist_name. Each 1 Oct -> 2 Oct step equals the Total row's daily column (Burna +7,596,115; Tems +5,726,112; Asake +6,492,392; Tyla +3,330,431; Wizkid +6,274,768 vs the column's 6,271,081), so 2 Oct is a complete day. Why: kworb skipped its 1 Oct page, so its 3 Oct build's daily column carried two days (1 Oct + 2 Oct) for Burna, Tems and Asake, and the stats bot added them on top of the 4 Oct re-anchor (CM 1 Oct <-> kworb 2 Oct), counting 1 Oct twice: Burna's 2026 ledger read 1,939,397,596 against ChartMasters' 1,932,625,867. Burna, Wizkid and Tems through 2 Oct also match @theowensblock's 2 Oct table to the unit. Pairs with kworb's 3 Oct pages. 1 Oct values are the first 4 Oct read (2026-10-04.json), kept for context.",
+  "readOn": "2026-10-04",
+  "artists": {
+    "burna-boy": {
+      "spotifyId": "3wcj11K77LjEY1PkEazffa",
+      "name": "Burna Boy",
+      "days": {
+        "October 1, 2026": 11124582426,
+        "October 2, 2026": 11132178541
+      }
+    },
+    "wizkid": {
+      "spotifyId": "3tVQdUvClmAT7URs9V3rsp",
+      "name": "Wizkid",
+      "days": {
+        "October 1, 2026": 11859124276,
+        "October 2, 2026": 11865399044
+      }
+    },
+    "tems": {
+      "spotifyId": "687cZJR45JO7jhk1LHIbgq",
+      "name": "Tems",
+      "days": {
+        "October 1, 2026": 6335123575,
+        "October 2, 2026": 6340849687
+      }
+    },
+    "asake": {
+      "spotifyId": "3a1tBryiczPAZpgoZN9Rzg",
+      "name": "Asake",
+      "days": {
+        "October 1, 2026": 4452935391,
+        "October 2, 2026": 4459427783
+      }
+    },
+    "tyla": {
+      "spotifyId": "3SozjO3Lat463tQICI9LcE",
+      "name": "Tyla",
+      "days": {
+        "October 1, 2026": 4878304116,
+        "October 2, 2026": 4881634547
+      }
+    }
+  }
+}

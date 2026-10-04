@@ -316,7 +316,8 @@
 }
 /* .statValue (the shared stat figure) + this: the record figure prints in ink,
    and .recordFigureHis takes it to gold only while the record night is his (N6). */
-.recordFigure.recordFigure { margin-top: 10px; font-size: 44px; line-height: 0.92; color: var(--text); }
+/* 36px, down from 44 (the owner, 4 Oct 2026: "too big in font size"). */
+.recordFigure.recordFigure { margin-top: 10px; font-size: 36px; line-height: 0.92; color: var(--text); }
 .recordFigureHis.recordFigureHis { color: var(--gold); }
 .recordLine {
   margin-top: 8px;
@@ -352,7 +353,6 @@
   color: var(--text);
   font-variant-numeric: tabular-nums;
 }
-.figHis { color: var(--gold); }
 .figLabel {
   font-family: var(--font-mono), monospace;
   font-weight: 700;

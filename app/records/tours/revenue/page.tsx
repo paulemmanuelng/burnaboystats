@@ -121,9 +121,9 @@ export default function RevenuePage() {
           tickets: top.tickets,
         }}
         figs={[
-          { value: `${b.hisTop10} of 10`, label: "Top ten, his", his: true },
-          { value: pct(b.hisShare), label: "His share of the board", his: true },
-          { value: String(showCount), label: `Shows · ${b.artists.length} artists`, his: false },
+          { value: `${b.hisTop10} of 10`, label: "Top ten, his" },
+          { value: pct(b.hisShare), label: "His share of the board" },
+          { value: String(showCount), label: `Shows · ${b.artists.length} artists` },
         ]}
         share={{
           segs: b.artists.map((a) => ({ artist: a.artist, his: a.his, share: a.share, pct: pct(a.share) })),
