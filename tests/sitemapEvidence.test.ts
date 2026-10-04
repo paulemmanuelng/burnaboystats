@@ -6,6 +6,7 @@ import { afrobeatsArtists } from "../app/data/afrobeats";
 import { LIVE_BOARDS } from "../app/data/liveBoards";
 import { liveChartsUpdated } from "../app/data/liveCharts";
 import { LISTENERS_READ_ON } from "../app/data/listeners";
+import { REVENUE_READ_ON } from "../app/lib/revenueSource";
 import { allPairs, pairSlug } from "../app/lib/comparePairs";
 import { certCountryCodes, countrySlug } from "../app/lib/certCountry";
 import { comparableArtists } from "../app/lib/certUnits";
@@ -62,6 +63,9 @@ function evidenceFor(path: string): string[] {
   if (path === "/dai-dai/es") dates.push(feedDate("/dai-dai"));
   if (path === "/live-charts") dates.push(liveChartsUpdated);
   if (path === "/music/listeners") dates.push(LISTENERS_READ_ON);
+  // Both box-office pages print the board "as of" its last read at the
+  // bodies; the countries page declares that day as its dateModified.
+  if (path === "/records/tours/revenue" || path === "/records/tours/revenue/countries") dates.push(REVENUE_READ_ON);
   const pair = allPairs().find(([a, b]) => `/compare/${pairSlug(a, b)}` === path);
   if (pair) dates.push([pair[0].verifiedOn, pair[1].verifiedOn].sort().at(-1)!);
   // A country board is dated by the artists certified THERE — derived from the

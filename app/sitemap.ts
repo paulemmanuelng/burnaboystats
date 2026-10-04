@@ -10,6 +10,7 @@ import { LIVE_BOARDS } from "./data/liveBoards";
 import { liveChartsBuiltAt } from "./data/liveCharts";
 import { carSlugs } from "./data/cars";
 import { LISTENERS_READ_ON } from "./data/listeners";
+import { REVENUE_READ_ON } from "./lib/revenueSource";
 import { isIndexableDay, onThisDayDays } from "./lib/onThisDay";
 
 /**
@@ -132,6 +133,11 @@ const contentStamp: Record<string, string> = {
   // /music/listeners prints its read date beside every figure; the 50 cities
   // are re-read by hand and replaced whole, so the read date is the stamp.
   "/music/listeners": LISTENERS_READ_ON,
+  // Both box-office pages print the board as last re-read at its bodies; the
+  // countries page declares the same day as its Dataset's dateModified (sw-5/C8,
+  // 3 Oct 2026: the board said 17 Sep and the countries page said nothing).
+  "/records/tours/revenue": REVENUE_READ_ON,
+  "/records/tours/revenue/countries": REVENUE_READ_ON,
   // A pair page changes when either side's registers are re-read.
   ...Object.fromEntries(
     allPairs().map(([a, b]) => [`/compare/${pairSlug(a, b)}`, [a.verifiedOn, b.verifiedOn].sort().at(-1)!]),

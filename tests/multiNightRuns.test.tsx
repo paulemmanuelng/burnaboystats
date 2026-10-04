@@ -107,7 +107,11 @@ describe("multi-night runs: a proper heading on both layouts", () => {
     const page = text(html);
     expect(page).not.toMatch(/Stands reported only as one combined total/);
     expect(page).not.toMatch(/Reported as a stand/);
-    expect(page.match(/Multi-night runs reported only as one combined total/g)?.length).toBe(2);
+    // Since 4 Oct 2026 (debug pass 3 Oct, bo-06) the source notes no longer
+    // repeat the runs sentence under the runs section that says it: the
+    // section's own lede carries it, once on each layout.
+    expect(page.match(/Multi-night runs reported only as one combined total/g)).toBeNull();
+    expect(page.split(RUNS_LEDE).length - 1).toBe(2);
   });
 
   it("his runs keep the gold gross; another artist's does not", () => {

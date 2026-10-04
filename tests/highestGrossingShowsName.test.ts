@@ -20,7 +20,10 @@ import { JUMP } from "../app/lib/visualizedSections";
  * still find the page.
  */
 
-const OLD = /revenue per show|highest (reported )?revenue/i;
+// "Biggest single shows" (the phone /records hub's heading, missed by #406)
+// and "the revenue board" (the countries page's method note) joined on 4 Oct
+// 2026 — debug pass 3 Oct, bo-07/sw-2 and sw-1.
+const OLD = /revenue per show|highest (reported )?revenue|biggest single shows|revenue board/i;
 
 const ROOT = join(__dirname, "..");
 const APP = join(ROOT, "app");
@@ -85,6 +88,12 @@ describe("/records/tours/revenue is called “Highest-grossing shows”", () => 
         </h1>);`)).not.toEqual([]);
     expect(oldNameHits(`export const alt = "Burna Boy — Highest Revenue Per Show";`)).not.toEqual([]);
     expect(oldNameHits(`const j = { name: "Highest reported revenue per show — African artists" };`)).not.toEqual([]);
+    // The phone /records hub's heading and the countries method note, as shipped at 6005ca8e.
+    expect(oldNameHits(`const m = (<h2 className={styles.h2}>Biggest single shows</h2>);`)).not.toEqual([]);
+    expect(
+      oldNameHits(`export const METHOD_NOTE =
+  "What counts: per-show box-office grosses as reported by Billboard Boxscore & Pollstar (as aggregated by TouringData) and cross-checked against press reporting — the rows of the revenue board. An artist's total";`),
+    ).not.toEqual([]);
     // …while a comment and a search keyword are not reader text.
     expect(oldNameHits(`/* Revenue per show */ const k = { keywords: ["revenue per show"] };`)).toEqual([]);
   });
@@ -92,7 +101,7 @@ describe("/records/tours/revenue is called “Highest-grossing shows”", () => 
   it("no reader-facing string on the site says the old name", () => {
     const hits = sourceFiles(APP).flatMap((file) => {
       const src = readFileSync(file, "utf8");
-      if (!/revenue/i.test(src)) return [];
+      if (!/revenue|biggest single/i.test(src)) return [];
       return oldNameHits(src, file).map((h) => `${relative(ROOT, file)}: ${h}`);
     });
     expect(hits).toEqual([]);
@@ -114,6 +123,14 @@ describe("/records/tours/revenue is called “Highest-grossing shows”", () => 
     expect(doc.keywords).toEqual(expect.arrayContaining(["revenue per show", "highest-grossing shows"]));
     expect(searchDocs("revenue per show")[0]?.path).toBe("/records/tours/revenue");
     expect(searchDocs("highest-grossing shows")[0]?.path).toBe("/records/tours/revenue");
+  });
+
+  it("the /records hub's box-office heading is the same on both layouts", () => {
+    // Both layouts get the treatment: #406 renamed the desktop hub only.
+    const h2 = (file: string) =>
+      [...readFileSync(join(APP, file), "utf8").matchAll(/<h2 className=\{styles\.h2\}>([^<]*)<\/h2>/g)].map((m) => m[1].trim());
+    expect(h2("records/page.tsx")).toContain("Highest-grossing shows");
+    expect(h2("components/MobileRecords.tsx")).toContain("Highest-grossing shows");
   });
 });
 

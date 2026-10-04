@@ -83,3 +83,37 @@ describe("gold marks Burna Boy's grosses, not everyone's", () => {
     ).toBe(true);
   });
 });
+
+// The rank cell too (debug pass 3 Oct 2026, bo-01 and C2). The desktop board
+// lit every top-three rank gold — the design's rule — so Fally Ipupa's "03"
+// was gold; the countries page lit every "01", so Tyla's in Japan, the
+// Philippines and Singapore were. Gold marks his figures only: the owner's
+// rule wins over the old artboard.
+describe("gold marks his ranks only, on both box-office pages", () => {
+  const rankTopUse = (tsx: string) =>
+    [...tsx.matchAll(/([^\n]*)\?\s*styles\.rankTop/g)].map((m) => m[1].replace(/.*\$\{/, "").trim());
+
+  it("the revenue board lights a top-three rank only on his rows", () => {
+    const uses = rankTopUse(read("app/components/RevenueBoard.tsx"));
+    expect(uses.length).toBe(1);
+    expect(uses[0]).toMatch(/s\.artist === HIS && rank <= 3/);
+  });
+
+  it("the countries page lights a No. 1 only on his rows", () => {
+    const uses = rankTopUse(read("app/components/RevenueCountries.tsx"));
+    expect(uses.length).toBe(1);
+    expect(uses[0]).toMatch(/a\.his && rank === 1/);
+  });
+
+  it("negative control: the conditions as they shipped at 6005ca8e are caught", () => {
+    // RevenueBoard.tsx:103 and RevenueCountries.tsx:47, verbatim.
+    const board = rankTopUse("className={`${styles.rank} ${rank <= 3 ? styles.rankTop : \"\"}`}");
+    const countries = rankTopUse("<span role=\"cell\" className={`${styles.rank} ${rank === 1 ? styles.rankTop : \"\"}`}>");
+    expect(board[0]).not.toMatch(/s\.artist === HIS && rank <= 3/);
+    expect(countries[0]).not.toMatch(/a\.his && rank === 1/);
+  });
+
+  it("the data still puts another artist in the board's top three, so the rule is exercised", () => {
+    expect(revenueShows.slice(0, 3).some((s) => s.artist !== "Burna Boy")).toBe(true);
+  });
+});

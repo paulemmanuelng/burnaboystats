@@ -357,7 +357,9 @@ export default function Home() {
 
             <div className={styles.recordsGrid}>
               <div className={styles.recordsLeft}>
-                <h3 className={styles.h3}>Highest-grossing shows</h3>
+                {/* His five only (homeData's topShows), so the title says so:
+                    the board itself is every African artist's (sw-3). */}
+                <h3 className={styles.h3}>His highest-grossing shows</h3>
                 <table className="tableBase">
                   <thead>
                     <tr>

@@ -8,7 +8,9 @@
 /* ── Continent cards ────────────────────────────────────────────────────── */
 .cards {
   list-style: none;
-  margin: 0;
+  /* 18px under the "By continent" heading — the gap .standsLede leaves under
+     the same heading on the board (C4, 3 Oct 2026: it sat on the cards' rule). */
+  margin: 18px 0 0;
   padding: 0;
   display: grid;
   /* Five cards fit one row down to the 1024 band (944px of content). The

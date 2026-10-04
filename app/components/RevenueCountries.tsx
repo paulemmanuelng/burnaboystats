@@ -2,9 +2,12 @@ import Link from "next/link";
 import styles from "../records/tours/revenue/revenue.module.css";
 import own from "../records/tours/revenue/countries/countries.module.css";
 import BreadcrumbBar from "./BreadcrumbBar";
+import { REVENUE_AS_OF, REVENUE_SOURCE } from "../lib/revenueSource";
 import {
-  bestNightLine,
+  countryInSentence,
+  idSlug,
   leaderLine,
+  runCell,
   nightsLabel,
   standNote,
   usdFull,
@@ -27,8 +30,14 @@ import {
 export const AFRICA_NOTE =
   "Box-office reporting barely reaches venues in Africa — not reported, not unplayed.";
 
+/** REVENUE_SOURCE opens a sentence on the board; mid-sentence here, lower-cased. */
+const SOURCE_MID = REVENUE_SOURCE.charAt(0).toLowerCase() + REVENUE_SOURCE.slice(1);
+
+// The source wording is the board's own (REVENUE_SOURCE), not a second typed
+// copy (sw-4/C7, 3 Oct 2026), and the board is named by its page name, never
+// "the revenue board" (sw-1).
 export const METHOD_NOTE =
-  "What counts: per-show box-office grosses as reported by Billboard Boxscore & Pollstar (as aggregated by TouringData) and cross-checked against press reporting — the rows of the revenue board. An artist's total in a country is every reported gross there added up, including multi-night runs reported as one figure, and a run counts every night it played; the best night is a single show only. Reporting is incomplete, so an artist missing from a country means not reported, not that they did not play there — and Boxscore and Pollstar rarely publish grosses from venues in Africa, which is why the continent has no reported box office here yet.";
+  `What counts is every row of the Highest-grossing shows board: ${SOURCE_MID}, as of ${REVENUE_AS_OF}. An artist's total in a country is every reported gross there added up, including multi-night runs reported as one figure, and a run counts every night it played; the best night is a single show only. Reporting is incomplete, so an artist missing from a country means not reported, not that they did not play there — and Boxscore and Pollstar rarely publish grosses from venues in Africa, which is why the continent has no reported box office here yet.`;
 
 function Runner({ k }: { k: ContinentBoard }) {
   const second = k.artists[1];
@@ -42,9 +51,13 @@ function Runner({ k }: { k: ContinentBoard }) {
 
 function ArtistRow({ a, rank }: { a: ArtistTotal; rank: number }) {
   const note = standNote(a);
+  const run = runCell(a);
   return (
     <div role="row" className={`${own.row} ${a.his ? styles.rowHis : ""}`}>
-      <span role="cell" className={`${styles.rank} ${rank === 1 ? styles.rankTop : ""}`}>
+      {/* Gold on his No. 1 only: another artist's 01 is a rank, not his figure
+          (C2, 3 Oct 2026: Tyla's 01 in Japan, the Philippines and Singapore
+          was gold). */}
+      <span role="cell" className={`${styles.rank} ${a.his && rank === 1 ? styles.rankTop : ""}`}>
         {String(rank).padStart(2, "0")}
       </span>
       <span role="cell" className={a.his ? styles.hisName : styles.otherName}>
@@ -62,10 +75,12 @@ function ArtistRow({ a, rank }: { a: ArtistTotal; rank: number }) {
             </span>
           </>
         ) : (
-          <>
-            <span className={styles.venue}>Nights reported together</span>
-            <span className={styles.city}>{bestNightLine(a)}</span>
-          </>
+          run && (
+            <>
+              <span className={styles.venue}>{run.headline}</span>
+              <span className={styles.city}>{run.line}</span>
+            </>
+          )
         )}
         {note && <span className={styles.city}>{note}</span>}
       </span>
@@ -157,9 +172,9 @@ export default function RevenueCountries({
       <section className={styles.band} aria-label="Every country">
         <div className={`${styles.wide} ${own.pad}`}>
           {withData.map((k) => (
-            <section key={k.continent} className={own.continent} aria-labelledby={`k-${k.continent}`}>
+            <section key={k.continent} className={own.continent} aria-labelledby={`k-${idSlug(k.continent)}`}>
               <div className={own.continentHead}>
-                <h2 id={`k-${k.continent}`} className={own.continentTitle}>{k.continent}</h2>
+                <h2 id={`k-${idSlug(k.continent)}`} className={own.continentTitle}>{k.continent}</h2>
                 <span className={own.continentMeta}>
                   {usdM(k.total)} · {nightsLabel(k.shows)}
                 </span>
@@ -175,7 +190,7 @@ export default function RevenueCountries({
                       {leaderLine(c)}
                     </span>
                   </div>
-                  <div className={styles.board} role="table" aria-label={`Box office leaders in ${c.name}`}>
+                  <div className={styles.board} role="table" aria-label={`Box office leaders in ${countryInSentence(c.name)}`}>
                     <div className={own.headRow} role="row">
                       <span role="columnheader">#</span>
                       <span role="columnheader">Artist</span>

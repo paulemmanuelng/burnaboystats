@@ -15,6 +15,12 @@
 
 .barTitle { margin: 0; font-weight: 400; }
 .continentBar.continentBar { justify-content: space-between; color: var(--text); font-weight: 700; margin-top: 10px; }
+/* The continent's own h2 inside its bar: the bar's mono label, nothing more. */
+.continentName { margin: 0; font: inherit; letter-spacing: inherit; text-transform: inherit; color: inherit; }
+/* Everyone's figures on a screen whose gold is his (C3): the badge reads muted
+   and the "Reported nights" stat plain ink. */
+.mutedBadge.mutedBadge { color: var(--text-muted); }
+.statOther.statOther { color: var(--text); }
 .barRight { color: var(--dim); font-weight: 400; font-variant-numeric: tabular-nums; }
 
 /* A continent row has no rank: the row's 26px rank column folds away. */

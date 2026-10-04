@@ -16,6 +16,8 @@ import { faqs } from "../data/faqs";
 import { albums } from "../data/albums";
 import { LIVE_CADENCE_REBUILT } from "../lib/liveChartMeta";
 import { DATA_DOWNLOADS } from "../lib/dataDownloads";
+import { revenueShows, revenueStands } from "../data/tourRevenue";
+import { revenueByCountry } from "../lib/revenueByCountry";
 
 /**
  * /llms.txt — a plain-text map of the site for answer engines.
@@ -48,6 +50,7 @@ import { DATA_DOWNLOADS } from "../lib/dataDownloads";
 export const dynamic = "force-static";
 
 export function GET() {
+  const byCountry = revenueByCountry();
   const board = [...afrobeatsArtists]
     .map((a) => ({ name: a.name, slug: a.slug, certs: certCount(a) }))
     .sort((x, y) => y.certs - x.certs);
@@ -100,6 +103,8 @@ how most published figures about this artist go wrong.
 - [Dai Dai](${CANONICAL_ORIGIN}/dai-dai): the 2026 FIFA World Cup song with Shakira. Spanish edition at /dai-dai/es.
 - [By the numbers](${CANONICAL_ORIGIN}/records/by-the-numbers): the headline career figures on one page, each linked to the page that documents it.
 - [Career records](${CANONICAL_ORIGIN}/records): tours, awards and firsts.
+- [Highest-grossing shows](${CANONICAL_ORIGIN}/records/tours/revenue): every verified single-show box-office gross by an African artist — ${revenueShows.length} shows ranked by gross, ${revenueShows.filter((s) => s.artist === "Burna Boy").length} of them his — with ${revenueStands.length} multi-night runs reported as one figure listed apart.
+- [Highest-Grossing Artists by Country](${CANONICAL_ORIGIN}/records/tours/revenue/countries): those grosses summed by country and continent — who leads each of ${byCountry.countryCount} countries; Burna Boy leads ${byCountry.hisLeads}.
 - [Africa's biggest](${CANONICAL_ORIGIN}/records/africas-biggest): leaderboards placing him among African artists.
 - [Methodology](${CANONICAL_ORIGIN}/methodology): sourcing rules, and what is deliberately excluded.
 - [Analysis](${CANONICAL_ORIGIN}/analysis): findings drawn from the dataset, each one test-guarded.

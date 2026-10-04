@@ -9,7 +9,8 @@ import {
   MOMENT_PLACE,
   VIEWS,
 } from "../app/lib/tourMapData";
-import { festivals, otherShows, concerts, liveMoments } from "../app/data/tours";
+import { festivals, otherShows, concerts } from "../app/data/tours";
+import { liveMoments } from "../app/data/liveMoments";
 import { performedCountries } from "../app/data/performedCountries";
 
 /**

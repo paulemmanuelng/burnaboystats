@@ -37,7 +37,7 @@ export function GET() {
   return apiJson({
     endpoint: "/tours",
     description:
-      "Tours, festival sets and one-off shows, with box-office figures where a source publishes them. `gross` and `tickets` are kept as the strings the box-office source published — they arrive rounded and qualified, and parsing them to numbers would invent precision the source never claimed. `partial: true` marks a run listed from its confirmed shows only, because its full itinerary was never documented or its routing changed, so its show count is a floor. `concerts` are his solo headline shows outside a routed tour.",
+      "Tours, festival sets and one-off shows, with box-office figures where a source publishes them. `gross` and `tickets` are kept as the strings the box-office source published — they arrive rounded and qualified, and parsing them to numbers would invent precision the source never claimed. `partial: true` marks a run listed from its confirmed shows only, because its full itinerary was never documented or its routing changed, so its show count is a floor. `concerts` are his solo headline shows outside a routed tour. `highestGrossingShows` is the Highest-grossing shows board: every verified single-show gross by an African artist, not only his, ranked by gross, each row naming its artist. `multiNightStands` are its multi-night runs — several nights at one venue reported only as one combined figure — kept apart from that ranking with the reported totals, and no per-night split.",
     count: runs.length,
     countOf: "tours",
     data: {

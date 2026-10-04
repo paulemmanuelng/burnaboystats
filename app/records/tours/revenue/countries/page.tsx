@@ -1,7 +1,7 @@
 import RevenueCountries from "../../../../components/RevenueCountries";
 import MobileRevenueCountries from "../../../../components/MobileRevenueCountries";
 import { nightsLabel, revenueByCountry, summaryLine, usdFull } from "../../../../lib/revenueByCountry";
-import { REVENUE_AS_OF } from "../../../../data/tourRevenue";
+import { REVENUE_READ_ON } from "../../../../lib/revenueSource";
 import { pageMetadata, datasetJsonLd } from "../../../../lib/seo";
 
 /**
@@ -37,15 +37,16 @@ const listJsonLd = {
   itemListElement: board.countries.map((c, i) => ({
     "@type": "ListItem",
     position: i + 1,
-    name: `${c.name} — ${c.leader.artist}, ${usdFull(c.leader.total)} reported`,
+    // The list is ordered by the COUNTRY's total, so the name prints it; the
+    // leader's own total rides after it (C6, 3 Oct 2026: Ireland at No. 10
+    // printed Burna Boy's $378,802 above the Philippines' $502,612).
+    name: `${c.name} — ${usdFull(c.total)} reported; led by ${c.leader.artist} (${usdFull(c.leader.total)})`,
   })),
 };
 
-/** "September 2026" → "2026-09": the board's re-read month, as ISO 8601. */
-const asOf = new Date(`1 ${REVENUE_AS_OF} 12:00 UTC`);
-const dateModified = Number.isNaN(asOf.getTime())
-  ? undefined
-  : `${asOf.getUTCFullYear()}-${String(asOf.getUTCMonth() + 1).padStart(2, "0")}`;
+/** The day the board was last re-read, ISO 8601 — the same stamp the sitemap
+ *  gives this route (app/sitemap.ts), so the two never disagree. */
+const dateModified = REVENUE_READ_ON;
 
 const dataset = datasetJsonLd({
   name: "Reported box office by country — African artists",

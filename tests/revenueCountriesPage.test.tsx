@@ -16,7 +16,7 @@ vi.mock("next/link", () => ({
 
 import CountriesPage from "../app/records/tours/revenue/countries/page";
 import RevenuePage from "../app/records/tours/revenue/page";
-import { bestNightLine, leaderLine, revenueByCountry, standNote, summaryLine, usdM, usdFull } from "../app/lib/revenueByCountry";
+import { bestNightLine, leaderLine, revenueByCountry, runCell, standNote, summaryLine, usdM, usdFull } from "../app/lib/revenueByCountry";
 import { revenueShows, revenueStands } from "../app/data/tourRevenue";
 import { BACK_BAR_ROUTES, ACTION_BAR_ROUTES } from "../app/lib/mobileScreens";
 import { text, trees } from "./fixtures/phoneTrees";
@@ -131,8 +131,11 @@ describe("linked both ways", () => {
     for (const tree of [r.phone!, r.desktop!]) {
       const a = tree.querySelector('a[href="/records/tours/revenue/countries"]');
       expect(a).not.toBeNull();
-      expect(a!.className).toMatch(/btnPrimary/);
     }
+    // A button on both: the desktop hero's primary; on the phone a secondary,
+    // because the action bar is that screen's one gold action (k6, 3 Oct 2026).
+    expect(r.desktop!.querySelector('a[href="/records/tours/revenue/countries"]')!.className).toMatch(/btnPrimary/);
+    expect(r.phone!.querySelector('a[href="/records/tours/revenue/countries"]')!.className).toMatch(/btnSecondary/);
   });
 });
 
@@ -141,10 +144,14 @@ describe("the board's words, and nothing it keeps as data only", () => {
   it.each(both())("%s: multi-night runs, never stands (the revenue board's wording)", (_w, tree) => {
     expect(text(tree)).not.toMatch(/\bstands?\b/i);
   });
-  it.each(both())("%s: every artist with a run says so, by the run's own words", (_w, tree) => {
+  it.each(both())("%s: every artist with a run says so, by the run's own words", (w, tree) => {
     const t = text(tree);
+    // A run-only artist: the phone prints the best-night line; the desktop
+    // prints the run in a single night's grammar (runCell, C5 — 3 Oct 2026).
+    const runOnly = (a: (typeof board.countries)[number]["artists"][number]) =>
+      w === "desktop" ? runCell(a)!.line : bestNightLine(a);
     for (const c of board.countries)
-      for (const a of c.artists) if (a.stands.length > 0) expect(t, `${c.name} ${a.artist}`).toContain(standNote(a) ?? bestNightLine(a));
+      for (const a of c.artists) if (a.stands.length > 0) expect(t, `${c.name} ${a.artist}`).toContain(standNote(a) ?? runOnly(a));
   });
   it("no row's source line reaches the page", () => {
     for (const r of [...revenueShows, ...revenueStands]) expect(html).not.toContain(r.source);

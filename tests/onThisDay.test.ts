@@ -18,7 +18,8 @@ import {
 import { albums } from "../app/data/albums";
 import { certHistory } from "../app/data/certifications";
 import { albumCharts, singleCharts, featureCharts, chartTier, type ChartRelease } from "../app/data/charts";
-import { tours, festivals, otherShows, concerts, liveMoments, type Festival } from "../app/data/tours";
+import { tours, festivals, otherShows, concerts, type Festival } from "../app/data/tours";
+import { liveMoments } from "../app/data/liveMoments";
 import { ceremonies, honours } from "../app/data/awards";
 import * as daiDai from "../app/data/daiDai";
 import { generateStaticParams } from "../app/on-this-day/[day]/page";

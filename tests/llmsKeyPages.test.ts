@@ -2,6 +2,8 @@ import { describe, it, expect } from "vitest";
 import { GET } from "../app/llms.txt/route";
 import { faqs } from "../app/data/faqs";
 import { albums } from "../app/data/albums";
+import { revenueShows, revenueStands } from "../app/data/tourRevenue";
+import { revenueByCountry } from "../app/lib/revenueByCountry";
 
 /**
  * /llms.txt is the site's map for answer engines, and its "Key pages" list is
@@ -39,6 +41,9 @@ const KEY_PAGES = [
   "/records/africas-biggest",
   "/methodology",
   "/analysis",
+  // The two box-office boards (sw-6, debug pass 3 Oct 2026: neither was listed).
+  "/records/tours/revenue",
+  "/records/tours/revenue/countries",
 ];
 
 /** The "## Key pages" section only, so a mention elsewhere doesn't count. */
@@ -69,5 +74,17 @@ describe("llms.txt key pages", () => {
     // in "How the headline figures are counted"; the same rule applies here.
     expect(section).toContain(`${faqs.length} questions`);
     expect(section).toContain(`${albums.length} studio albums`);
+  });
+
+  it("derives the box-office boards' counts too", async () => {
+    const section = await keyPagesSection();
+    const his = revenueShows.filter((s) => s.artist === "Burna Boy").length;
+    const b = revenueByCountry();
+    expect(section).toContain(`${revenueShows.length} shows ranked by gross, ${his} of them his`);
+    expect(section).toContain(`${revenueStands.length} multi-night runs`);
+    expect(section).toContain(`each of ${b.countryCount} countries; Burna Boy leads ${b.hisLeads}`);
+    // Named by their page names, never the old "revenue per show".
+    expect(section).toContain("[Highest-grossing shows]");
+    expect(section).toContain("[Highest-Grossing Artists by Country]");
   });
 });

@@ -7,7 +7,7 @@
 //   node docs/design/box-office-by-country/research/derive.mjs --json   # raw JSON
 //
 // Reads app/data/tourRevenue.ts and app/data/performedCountries.ts directly
-// (Node 24 strips the TypeScript types; neither file imports anything). It does
+// (Node 24 strips the TypeScript types; none of the files imports anything). It does
 // NOT import app/lib/revenueByCountry.ts: the point is a second, separate count.
 // The rules it follows are the page's, as the owner ruled them (3 Oct 2026):
 //
@@ -26,7 +26,8 @@ import { dirname, resolve } from "node:path";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const repo = resolve(here, "../../../..");
-const { revenueShows, revenueStands, REVENUE_AS_OF } = await import(pathToFileURL(resolve(repo, "app/data/tourRevenue.ts")).href);
+const { revenueShows, revenueStands } = await import(pathToFileURL(resolve(repo, "app/data/tourRevenue.ts")).href);
+const { REVENUE_AS_OF } = await import(pathToFileURL(resolve(repo, "app/lib/revenueSource.ts")).href);
 const { performedCountries } = await import(pathToFileURL(resolve(repo, "app/data/performedCountries.ts")).href);
 
 const HIM = "Burna Boy";

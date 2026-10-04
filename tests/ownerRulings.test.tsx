@@ -30,7 +30,7 @@ import { COUNTRIES, certSources, certIssuerIn, allItems, certHistory } from "../
 import { allChartItems } from "../app/data/charts";
 import { ceremonies } from "../app/data/awards";
 import { albums } from "../app/data/albums";
-import { liveMoments } from "../app/data/tours";
+import { liveMoments } from "../app/data/liveMoments";
 import { CERT_THRESHOLDS } from "../app/data/certThresholds";
 import { firstGroups } from "../app/data/firsts";
 import { revenueShows } from "../app/data/tourRevenue";
@@ -134,6 +134,7 @@ describe("the Stade de France first", () => {
     );
     // The gross is derived, not a second typed copy.
     expect(read("app/data/tours.ts")).not.toContain("— a $4.53M gross.");
+    expect(read("app/data/liveMoments.ts")).not.toContain("— a $4.53M gross.");
   });
 });
 

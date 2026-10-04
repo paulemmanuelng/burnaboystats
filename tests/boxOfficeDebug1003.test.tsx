@@ -1,0 +1,535 @@
+import { describe, it, expect, vi } from "vitest";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+import { renderToStaticMarkup } from "react-dom/server";
+
+vi.mock("next/navigation", () => ({
+  useRouter: () => ({ push: vi.fn(), prefetch: vi.fn(), replace: vi.fn(), back: vi.fn() }),
+  usePathname: () => "/records/tours/revenue",
+  useSearchParams: () => new URLSearchParams(),
+}));
+vi.mock("next/link", () => ({
+  default: ({ href, children, ...rest }: { href: string; children: React.ReactNode }) => (
+    <a href={href} {...rest}>
+      {children}
+    </a>
+  ),
+}));
+
+import RevenuePage from "../app/records/tours/revenue/page";
+import CountriesPage from "../app/records/tours/revenue/countries/page";
+import { chipOrder } from "../app/components/RevenueBoard";
+import { revenueShows, revenueStands } from "../app/data/tourRevenue";
+import { REVENUE_AS_OF, REVENUE_FOOTER_NOTE, REVENUE_READ_ON, REVENUE_SOURCE } from "../app/lib/revenueSource";
+import { compactGross } from "../app/lib/grossLabel";
+import { numberWord } from "../app/lib/homeData";
+import { runRankCeiling } from "../app/lib/multiNightRuns";
+import { countryInSentence, idSlug, revenueByCountry, runCell, usdFull, usdM } from "../app/lib/revenueByCountry";
+import { footerFor } from "../app/lib/links";
+import sitemap from "../app/sitemap";
+import { siteUrl } from "../app/site";
+import { GET as toursApi } from "../app/api/v1/tours/route";
+import { cssRules, declaredAt } from "./fixtures/phoneTrees";
+import { text, trees } from "./fixtures/phoneTrees";
+
+/**
+ * The live debug pass of 3 Oct 2026 over the box-office pages
+ * (/records/tours/revenue and /records/tours/revenue/countries), lane A — one
+ * block per finding, each with the value or string the site shipped as its
+ * negative control. The source-note leak (k1) is tests/tourRevenueServerOnly;
+ * the gold ranks (bo-01, C2) are in tests/goldMarksHisRows too.
+ */
+
+const read = (p: string) => readFileSync(join(process.cwd(), p), "utf8");
+const revenue = trees(renderToStaticMarkup(<RevenuePage />));
+const countriesHtml = renderToStaticMarkup(<CountriesPage />);
+const countries = trees(countriesHtml);
+const board = revenueByCountry();
+const BOARD_CSS = read("app/records/tours/revenue/revenue.module.css");
+const PHONE_CSS = read("app/components/mobileRevenue.module.css");
+
+// ── k2 ──────────────────────────────────────────────────────────────────────
+describe("k2: a phone row at 320 clips the city, never the year", () => {
+  // The five rows the pass measured truncated at 320 (scrollWidth > clientWidth).
+  const FIVE = [
+    ["Burna Boy", "Washington, D.C.", "2024"],
+    ["Burna Boy", "Washington, D.C.", "2022"],
+    ["Burna Boy", "Hollywood, FL", "2024"],
+    ["Tiwa Savage", "Silver Spring, MD", "2022"],
+    ["Tiwa Savage", "San Francisco", "2022"],
+  ] as const;
+  const metas = () => [...revenue.phone!.querySelectorAll('[class*="metaSplit"]')];
+
+  /** The year is in a part that never shrinks; the city is the part that clips. */
+  const yearKept = (meta: Element, year: string) => {
+    const parts = [...meta.children];
+    const keep = parts.filter((p) => /metaKeep/.test(p.className));
+    const city = parts.find((p) => /metaCity/.test(p.className));
+    return keep.some((p) => p.textContent === ` · ${year}`) && !!city && !city.textContent!.includes(year);
+  };
+
+  it("every phone row reads “<artist> · <city> · <year>”, the city in its own clipping part", () => {
+    expect(metas().length).toBe(revenueShows.length);
+    const wrong = revenueShows.flatMap((s, i) => {
+      const m = metas()[i];
+      return m.textContent === `${s.artist} · ${s.city} · ${s.year}` && yearKept(m, s.year) ? [] : [`#${i + 1} "${m.textContent}"`];
+    });
+    expect(wrong).toEqual([]);
+  });
+
+  it("the five rows the pass measured are among them", () => {
+    for (const [artist, city, year] of FIVE) {
+      const m = metas().find((e) => e.textContent === `${artist} · ${city} · ${year}`);
+      expect(m, `${artist} · ${city} · ${year}`).toBeDefined();
+      expect(yearKept(m!, year)).toBe(true);
+    }
+  });
+
+  it("the CSS: the line is a flex row; the artist and year keep their width, the city shrinks with an ellipsis", () => {
+    expect(declaredAt(PHONE_CSS, ".metaSplit", "display", 320)).toBe("flex");
+    expect(declaredAt(PHONE_CSS, ".metaKeep", "flex", 320)).toBe("none");
+    expect(declaredAt(PHONE_CSS, ".metaKeep", "white-space", 320)).toBe("pre");
+    expect(declaredAt(PHONE_CSS, ".metaCity", "min-width", 320)).toBe("0");
+    expect(declaredAt(PHONE_CSS, ".metaCity", "overflow", 320)).toBe("hidden");
+    expect(declaredAt(PHONE_CSS, ".metaCity", "text-overflow", 320)).toBe("ellipsis");
+  });
+
+  it("negative control: the meta line as shipped (one string, one ellipsis) fails", () => {
+    const shipped = new DOMParser().parseFromString(
+      `<div class="meta">Burna Boy · Washington, D.C. · 2024</div>`,
+      "text/html",
+    ).body.firstElementChild!;
+    expect(yearKept(shipped, "2024")).toBe(false);
+  });
+});
+
+// ── k3 ──────────────────────────────────────────────────────────────────────
+describe("k3: the phone top bar's label gives way before the menu does", () => {
+  it("the label can shrink and ellipsise; the badge and buttons cannot", () => {
+    expect(declaredAt(PHONE_CSS, ".backLabel", "flex", 320)).toBe("0 1 auto");
+    expect(declaredAt(PHONE_CSS, ".backLabel", "min-width", 320)).toBe("0");
+    expect(declaredAt(PHONE_CSS, ".backLabel", "overflow", 320)).toBe("hidden");
+    expect(declaredAt(PHONE_CSS, ".backLabel", "text-overflow", 320)).toBe("ellipsis");
+    expect(declaredAt(PHONE_CSS, ".badge", "flex", 320)).toBe("none");
+    expect(declaredAt(PHONE_CSS, ".backBtn", "flex", 320)).toBe("none");
+  });
+
+  it("a 7-character badge fits the 320 bar once the label may shrink", () => {
+    // The pass's own measurements at 320: a 284px row, 8px gaps, back and menu
+    // 44px each, "$6.15M" 43px (6 characters) — so 7.2px a character.
+    const row = 284, gaps = 3 * 8, buttons = 44 + 44, perChar = 43 / 6;
+    const badge7 = 7 * perChar; // "$10.00M"
+    const labelRoom = row - gaps - buttons - badge7;
+    expect(labelRoom).toBeGreaterThan(0);
+    // The label is 127px unclipped, so it clips rather than push the menu out.
+    expect(labelRoom).toBeLessThan(127);
+  });
+
+  it("negative control: the shipped .backLabel (flex: none) cannot shrink", () => {
+    const shipped = ".backLabel { white-space: nowrap; flex: none; }";
+    expect(declaredAt(shipped, ".backLabel", "flex", 320)).toBe("none");
+    expect(declaredAt(shipped, ".backLabel", "min-width", 320)).toBeUndefined();
+  });
+});
+
+// ── k4 ──────────────────────────────────────────────────────────────────────
+describe("k4: his gold stays AA on a hovered row in light", () => {
+  const GLOBALS = read("app/globals.css");
+  /** The light half of a `--name: light-dark(#light, #dark)` token. */
+  const lightOf = (name: string) => {
+    const m = new RegExp(`--${name}:\\s*light-dark\\((#[0-9a-f]{6}),\\s*(#[0-9a-f]{6})\\)`, "i").exec(GLOBALS);
+    if (!m) throw new Error(`no light-dark token --${name}`);
+    return m[1];
+  };
+  const rgb = (hex: string) => [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16));
+  const lum = (c: number[]) => {
+    const [r, g, b] = c.map((v) => {
+      const s = v / 255;
+      return s <= 0.03928 ? s / 12.92 : ((s + 0.055) / 1.055) ** 2.4;
+    });
+    return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+  };
+  const ratio = (a: number[], b: number[]) => {
+    const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p);
+    return (x + 0.05) / (y + 0.05);
+  };
+  const gold = rgb(lightOf("gold-ink"));
+  const bg = rgb(lightOf("bg"));
+  const raised = rgb(lightOf("bg-raised"));
+
+  /** The light hover fill a `.row:hover` background declares. */
+  const lightHover = (value: string) => {
+    if (value === "var(--bg-raised)") return raised;
+    const m = /^light-dark\(color-mix\(in srgb, var\(--bg-raised\) (\d+)%, var\(--bg\)\), var\(--bg-raised\)\)$/.exec(value);
+    if (!m) throw new Error(`unrecognised hover: ${value}`);
+    const p = Number(m[1]) / 100;
+    return raised.map((v, i) => v * p + bg[i] * (1 - p));
+  };
+
+  it("the hovered row's light fill keeps #945e00 at 4.5:1 or more", () => {
+    const hover = declaredAt(BOARD_CSS, ".row:hover", "background", 1440)!;
+    expect(ratio(gold, lightHover(hover))).toBeGreaterThanOrEqual(4.5);
+  });
+
+  it("dark keeps --bg-raised", () => {
+    expect(declaredAt(BOARD_CSS, ".row:hover", "background", 1440)).toMatch(/, var\(--bg-raised\)\)$/);
+  });
+
+  it("negative control: the shipped hover (var(--bg-raised)) is 4.14:1, under AA", () => {
+    const r = ratio(gold, lightHover("var(--bg-raised)"));
+    expect(r).toBeLessThan(4.5);
+    expect(r.toFixed(2)).toBe("4.14");
+  });
+});
+
+// ── k6 ──────────────────────────────────────────────────────────────────────
+describe("k6: one gold action on the phone revenue screen", () => {
+  it("the countries link is a secondary button; the action bar is the only gold fill", () => {
+    const a = revenue.phone!.querySelector('a[href="/records/tours/revenue/countries"]')!;
+    expect(a.className).toMatch(/\bbtnSecondary\b/);
+    expect(revenue.phone!.querySelectorAll(".btnPrimary").length).toBe(0);
+    expect(revenue.phone!.querySelectorAll('[class*="actionPrimary"]').length).toBe(1);
+  });
+
+  it("negative control: the shipped link class counts as a second gold action", () => {
+    const shipped = new DOMParser().parseFromString(`<a class="btn btnPrimary" href="/records/tours/revenue/countries">x</a>`, "text/html");
+    expect(shipped.querySelectorAll(".btnPrimary").length).toBe(1);
+  });
+});
+
+// ── bo-02 ───────────────────────────────────────────────────────────────────
+describe("bo-02: under 1240px the desktop board still prints every row's year", () => {
+  const rows = () => [...revenue.desktop!.querySelectorAll('[role="row"]')].slice(1);
+
+  it("each row's city line carries “ · <year>”, shown where the Tour column folds away", () => {
+    expect(rows().length).toBe(revenueShows.length);
+    const wrong = revenueShows.flatMap((s, i) => {
+      const y = rows()[i].querySelector('[class*="cityYear"]');
+      return y?.textContent === ` · ${s.year}` ? [] : [`#${i + 1}`];
+    });
+    expect(wrong).toEqual([]);
+    expect(declaredAt(BOARD_CSS, ".cityYear", "display", 1440)).toBe("none");
+    expect(declaredAt(BOARD_CSS, ".cityYear", "display", 1024)).toBe("inline");
+    // …because the Tour cell is what goes below 1240.
+    const fold = cssRules(BOARD_CSS).find(
+      (r) => r.media === "@media (max-width: 1239px)" && r.selector.split(",").map((x) => x.trim()).includes(".row > :nth-child(4)"),
+    );
+    expect(fold?.body).toMatch(/display:\s*none/);
+  });
+
+  it("his two Capital One Arena nights now differ at 1024", () => {
+    const visible1024 = (r: Element) => text(r.querySelector('[class*="venueCell"]'));
+    const dc = rows().filter((r) => text(r).includes("Burna Boy") && text(r).includes("Capital One Arena")).map(visible1024);
+    expect(dc.length).toBe(2);
+    expect(new Set(dc).size).toBe(2);
+  });
+
+  it("negative control: the shipped city line (no year) makes them identical", () => {
+    const shipped = ["Capital One Arena Washington, D.C.", "Capital One Arena Washington, D.C."];
+    expect(new Set(shipped).size).toBe(1);
+  });
+});
+
+// ── bo-04 ───────────────────────────────────────────────────────────────────
+describe("bo-04: the chips run Burna Boy first, then by nights on the board", () => {
+  const counts = revenueShows.reduce<Record<string, number>>((acc, s) => ({ ...acc, [s.artist]: (acc[s.artist] ?? 0) + 1 }), {});
+  const descending = (order: string[]) => order.slice(1).every((a, i, xs) => i === 0 || counts[xs[i - 1]] >= counts[a]);
+
+  it("from the data", () => {
+    const order = chipOrder(counts);
+    expect(order[0]).toBe("Burna Boy");
+    expect(order.length).toBe(Object.keys(counts).length);
+    expect(descending(order)).toBe(true);
+  });
+
+  it("the rendered chips follow it", () => {
+    const chips = [...revenue.desktop!.querySelectorAll("button[aria-pressed]")].map((b) => b.childNodes[0].textContent);
+    expect(chips).toEqual(["All artists", ...chipOrder(counts)]);
+  });
+
+  it("negative control: the shipped order is not by count", () => {
+    // The chip order the pass read off the live page.
+    const shipped = ["Burna Boy", "Davido", "Asake", "Wizkid", "Rema", "Tyla", "Fally Ipupa", "Tiwa Savage", "Tems", "Fireboy DML"];
+    expect(descending(shipped)).toBe(false);
+  });
+});
+
+// ── bo-05 ───────────────────────────────────────────────────────────────────
+describe("bo-05: the phone's biggest-night stat prints the rows' own figure", () => {
+  it("the stat cell and row 01 read the same", () => {
+    const top = revenueShows[0];
+    const stat = revenue.phone!.querySelector('[class*="statValue"]')!;
+    expect(text(stat)).toBe(compactGross(top.revenue));
+    expect(text(revenue.phone!)).toContain(`${compactGross(top.revenue)}`);
+  });
+
+  it("negative control: the shipped stat ($X.XXM) differs from the row", () => {
+    const top = revenueShows[0];
+    expect(`$${(top.revenue / 1e6).toFixed(2)}M`).not.toBe(compactGross(top.revenue));
+  });
+});
+
+// ── bo-06 ───────────────────────────────────────────────────────────────────
+describe("bo-06: the runs note is derived and said once a layout", () => {
+  const ceiling = runRankCeiling(revenueStands.map((s) => s.revenue), revenueShows.map((s) => s.revenue));
+
+  it("“top N” is the place the lowest-placed run would take among single nights", () => {
+    for (const st of revenueStands) {
+      const place = 1 + revenueShows.filter((s) => s.revenue > st.revenue).length;
+      expect(place).toBeLessThanOrEqual(ceiling);
+    }
+    expect(text(revenue.desktop!)).toContain(`each total would sit in the top ${numberWord(ceiling).toLowerCase()} of a board`);
+  });
+
+  it("the desktop says “no per-night split is invented” once, the phone once", () => {
+    const count = (t: string) => (t.match(/no per-night split is invented/gi) ?? []).length;
+    expect(count(text(revenue.desktop!))).toBe(1);
+    expect(count(text(revenue.phone!))).toBe(1);
+  });
+
+  it("negative control: the typed note as it shipped", () => {
+    const page = read("app/records/tours/revenue/page.tsx");
+    expect(page).not.toContain("each total would sit in the top five of a");
+    // The shipped desktop text said it twice in a row.
+    const shipped =
+      "No per-night split is invented for them: each total would sit in the top five of a board of single nights it never had. Box-office reports … and no per-night split is invented for them.";
+    expect((shipped.match(/no per-night split is invented/gi) ?? []).length).toBe(2);
+  });
+});
+
+// ── bo-03 / sw-4 / C7, C11 ──────────────────────────────────────────────────
+describe("bo-03 / sw-4 / C7: the box-office notes use the board's own source words", () => {
+  const names = (note?: string) => !!note && /TouringData/.test(note) && /Pollstar/.test(note) && /Boxscore/.test(note);
+
+  it("the footer note on /records and both box-office pages is REVENUE_FOOTER_NOTE", () => {
+    for (const path of ["/records", "/records/tours/revenue", "/records/tours/revenue/countries"]) {
+      expect(footerFor[path].note, path).toBe(REVENUE_FOOTER_NOTE);
+      expect(names(footerFor[path].note), path).toBe(true);
+    }
+    expect(REVENUE_FOOTER_NOTE).toBe("Box-office figures via TouringData (Billboard Boxscore and Pollstar reports).");
+  });
+
+  it("the /records hub note and the countries method note print REVENUE_SOURCE", () => {
+    const hub = read("app/records/page.tsx");
+    expect(hub).toMatch(/\{REVENUE_SOURCE\}, as of \{REVENUE_AS_OF\}/);
+    expect(hub).not.toContain("aggregating Billboard Boxscore");
+    const t = text(countries.desktop!);
+    expect(t).toContain(`${REVENUE_SOURCE.charAt(0).toLowerCase()}${REVENUE_SOURCE.slice(1)}, as of ${REVENUE_AS_OF}`);
+    expect(text(countries.phone!)).toContain(`as of ${REVENUE_AS_OF}`);
+  });
+
+  it("the revenue page's footer links the countries page; /records/tours names it by its title", () => {
+    expect(footerFor["/records/tours/revenue"].links.map((l) => l.href)).toContain("/records/tours/revenue/countries");
+    const label = footerFor["/records/tours"].links.find((l) => l.href === "/records/tours/revenue/countries")?.label;
+    expect(label).toBe("Highest-grossing artists by country");
+  });
+
+  it("negative control: the shipped footer note and label fail", () => {
+    expect(names("Box-office figures via Billboard Boxscore.")).toBe(false);
+    expect("Box office by country").not.toBe("Highest-grossing artists by country");
+  });
+});
+
+// ── sw-5 / C8 ───────────────────────────────────────────────────────────────
+describe("sw-5 / C8: both box-office routes carry the board's read date", () => {
+  const rows = sitemap();
+  const dayOf = (path: string) => (rows.find((r) => r.url === `${siteUrl}${path}`)?.lastModified as Date | undefined)?.toISOString().slice(0, 10);
+
+  it("in the sitemap, from REVENUE_READ_ON, and on the countries page's Dataset", () => {
+    expect(REVENUE_READ_ON).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    // The feed can only move a route later, never earlier than its stamp.
+    expect(dayOf("/records/tours/revenue")! >= REVENUE_READ_ON).toBe(true);
+    expect(dayOf("/records/tours/revenue/countries")! >= REVENUE_READ_ON).toBe(true);
+    expect(countriesHtml).toContain(`"dateModified":"${REVENUE_READ_ON}"`);
+    // REVENUE_AS_OF is that day's month, never a second typed date.
+    expect(REVENUE_AS_OF).toBe(new Date(`${REVENUE_READ_ON}T12:00:00Z`).toLocaleDateString("en-GB", { month: "long", year: "numeric", timeZone: "UTC" }));
+  });
+
+  it("negative control: the shipped stamp for the board (17 Sep) is older than the read", () => {
+    expect("2026-09-17" < REVENUE_READ_ON).toBe(true);
+  });
+});
+
+// ── sw-3 ────────────────────────────────────────────────────────────────────
+describe("sw-3: the home card of his five shows says they are his", () => {
+  it("is titled “His highest-grossing shows” over homeData's topShows (his only)", () => {
+    const home = read("app/page.tsx");
+    expect(home).toContain(`<h3 className={styles.h3}>His highest-grossing shows</h3>`);
+    expect(read("app/lib/homeData.ts")).toMatch(/topShows[\s\S]{0,200}artist === "Burna Boy"/);
+    // Negative control: the shipped title, which reads as the whole board.
+    expect(home).not.toContain(`<h3 className={styles.h3}>Highest-grossing shows</h3>`);
+  });
+});
+
+// ── sw-7 ────────────────────────────────────────────────────────────────────
+describe("sw-7: /api/v1/tours describes both box-office arrays", () => {
+  it("names highestGrossingShows and multiNightStands, and keeps the key", async () => {
+    const json = await toursApi().json();
+    expect(json.description).toContain("`highestGrossingShows`");
+    expect(json.description).toContain("`multiNightStands`");
+    expect(json.description).toMatch(/not only his/);
+    expect(Object.keys(json.data)).toEqual(expect.arrayContaining(["highestGrossingShows", "multiNightStands"]));
+  });
+});
+
+// ── C1 ──────────────────────────────────────────────────────────────────────
+describe("C1: every id on the countries page is one token, and every aria-labelledby resolves", () => {
+  const problems = (doc: Document) => {
+    const out: string[] = [];
+    for (const el of doc.querySelectorAll("[id]")) if (/\s/.test(el.id)) out.push(`id "${el.id}" has whitespace`);
+    for (const el of doc.querySelectorAll("[aria-labelledby]"))
+      for (const ref of el.getAttribute("aria-labelledby")!.split(/\s+/).filter(Boolean))
+        if (!doc.getElementById(ref)) out.push(`aria-labelledby "${ref}" resolves to nothing`);
+    return out;
+  };
+
+  it("on both layouts", () => {
+    expect(countries.d.querySelectorAll("[aria-labelledby]").length).toBeGreaterThan(4);
+    expect(problems(countries.d)).toEqual([]);
+    expect(idSlug("North America")).toBe("north-america");
+  });
+
+  it("negative control: the shipped North America section fails", () => {
+    const shipped = new DOMParser().parseFromString(
+      `<section aria-labelledby="k-North America"><h2 id="k-North America">North America</h2></section>`,
+      "text/html",
+    );
+    expect(problems(shipped)).toEqual([
+      `id "k-North America" has whitespace`,
+      `aria-labelledby "k-North" resolves to nothing`,
+      `aria-labelledby "America" resolves to nothing`,
+    ]);
+  });
+});
+
+// ── C2 (rendered) and bo-01 (rendered) ──────────────────────────────────────
+describe("bo-01 / C2: a gold rank sits only on his rows", () => {
+  const goldRanks = (tree: Element) =>
+    [...tree.querySelectorAll('[class*="rankTop"]')].map((r) => r.closest('[role="row"]')!);
+  it("on the revenue board", () => {
+    const rows = goldRanks(revenue.desktop!);
+    expect(rows.length).toBeGreaterThan(0);
+    for (const r of rows) expect(text(r)).toContain("Burna Boy");
+  });
+  it("on the countries tables", () => {
+    const rows = goldRanks(countries.desktop!);
+    expect(rows.length).toBe(board.hisLeads);
+    for (const r of rows) expect(r.querySelector('[class*="hisName"]')).not.toBeNull();
+  });
+});
+
+// ── C3 ──────────────────────────────────────────────────────────────────────
+describe("C3: the phone countries screen keeps gold for his figure only", () => {
+  const CSS = read("app/components/mobileRevenueCountries.module.css");
+  it("the badge (every artist's countries) and the “Reported nights” stat are not gold", () => {
+    const badge = countries.phone!.querySelector('[class*="badge"]')!;
+    expect(badge.className).toMatch(/mutedBadge/);
+    const cells = [...countries.phone!.querySelectorAll('[class*="statCell"]')];
+    const nights = cells.find((c) => /Reported nights/.test(text(c)))!.querySelector('[class*="statValue"]')!;
+    const his = cells.find((c) => /Countries he leads/.test(text(c)))!.querySelector('[class*="statValue"]')!;
+    expect(nights.className).toMatch(/statOther/);
+    expect(his.className).not.toMatch(/statOther/);
+    expect(declaredAt(CSS, ".mutedBadge.mutedBadge", "color", 390)).toBe("var(--text-muted)");
+    expect(declaredAt(CSS, ".statOther.statOther", "color", 390)).toBe("var(--text)");
+  });
+  it("negative control: the shared classes alone are gold", () => {
+    expect(declaredAt(PHONE_CSS, ".badge", "color", 390)).toBe("var(--gold)");
+    expect(declaredAt(PHONE_CSS, ".statValue", "color", 390)).toBe("var(--gold)");
+  });
+});
+
+// ── C4 ──────────────────────────────────────────────────────────────────────
+describe("C4: the continent cards sit 18px under their heading", () => {
+  it("as .standsLede leaves under the same heading on the board", () => {
+    const css = read("app/records/tours/revenue/countries/countries.module.css");
+    expect(declaredAt(css, ".cards", "margin", 1440)).toBe("18px 0 0");
+    expect(declaredAt(BOARD_CSS, ".standsLede", "margin", 1440)).toBe("10px 0 18px");
+  });
+});
+
+// ── C5 ──────────────────────────────────────────────────────────────────────
+describe("C5: a run-only cell reads like a single night's", () => {
+  const runOnly = board.countries.flatMap((c) => c.artists.filter((a) => !a.best && a.stands.length > 0).map((a) => ({ c, a })));
+  it("headline “<gross> · <venue>”, then city, dates and nights — the phrase once", () => {
+    expect(runOnly.length).toBeGreaterThan(0);
+    for (const { a } of runOnly) {
+      const cell = runCell(a)!;
+      const st = a.stands[0];
+      expect(cell.headline).toBe(`${usdM(st.revenue)} · ${st.venue}`);
+      expect(cell.line).toBe(`${st.city} · ${st.dates} · ${st.shows} nights reported together`);
+      expect(text(countries.desktop!)).toContain(cell.headline);
+    }
+  });
+  it("negative control: the shipped cell said it twice", () => {
+    const shipped = "Nights reported together\n3 nights reported together · The O2 Arena, London (28–29 November and 1 December 2021)";
+    expect((shipped.match(/nights reported together/gi) ?? []).length).toBe(2);
+    expect((text(countries.desktop!).match(/Nights reported together\s*\d+ nights reported together/gi) ?? []).length).toBe(0);
+  });
+});
+
+// ── C6 ──────────────────────────────────────────────────────────────────────
+describe("C6: the ItemList names print the total it is ordered by", () => {
+  const list = () => {
+    const scripts = [...countriesHtml.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((m) => JSON.parse(m[1]));
+    return scripts.find((s) => s["@type"] === "ItemList");
+  };
+  it("each name opens with its country's total", () => {
+    const items = list().itemListElement as { name: string }[];
+    board.countries.forEach((c, i) => {
+      expect(items[i].name).toBe(`${c.name} — ${usdFull(c.total)} reported; led by ${c.leader.artist} (${usdFull(c.leader.total)})`);
+    });
+  });
+  it("negative control: the shipped names ran out of order", () => {
+    // The live JSON-LD's last three, verbatim: 378,802 above 502,612.
+    const shipped = ["Ireland — Burna Boy, $378,802 reported", "Philippines — Tyla, $502,612 reported", "Singapore — Tyla, $385,207 reported"];
+    const n = shipped.map((s) => Number(s.match(/\$([\d,]+)/)![1].replace(/,/g, "")));
+    expect(n).not.toEqual([...n].sort((a, b) => b - a));
+  });
+});
+
+// ── C9 ──────────────────────────────────────────────────────────────────────
+describe("C9: a phone continent heading is its name alone", () => {
+  it("each section's labelling h2 holds the continent only; its figures sit beside it", () => {
+    const sections = [...countries.phone!.querySelectorAll("section[aria-labelledby]")];
+    const withData = board.continents.filter((k) => k.countries.length > 0);
+    expect(sections.length).toBe(withData.length);
+    sections.forEach((s, i) => {
+      const h2 = countries.d.getElementById(s.getAttribute("aria-labelledby")!)!;
+      expect(text(h2)).toBe(withData[i].continent);
+      expect(text(h2.parentElement)).toContain(usdM(withData[i].total));
+    });
+  });
+  it("negative control: the shipped h2 ran the figures into the name", () => {
+    expect("North America$34.31M · 60 nights").not.toBe("North America");
+  });
+});
+
+// ── C10 ─────────────────────────────────────────────────────────────────────
+describe("C10: under a million the short form is thousands", () => {
+  it("$53K, $82K, $101K — and millions from $1M", () => {
+    expect(usdM(53334)).toBe("$53K");
+    expect(usdM(82481)).toBe("$82K");
+    expect(usdM(100555)).toBe("$101K");
+    expect(usdM(999_600)).toBe("$1.00M");
+    expect(usdM(6_147_209)).toBe("$6.15M");
+  });
+  it("no “$0.xxM” on either layout", () => {
+    expect(text(countries.d.body)).not.toMatch(/\$0\.\d\dM/);
+  });
+  it("negative control: the shipped form printed $0.05M", () => {
+    expect(`$${(53334 / 1e6).toFixed(2)}M`).toBe("$0.05M");
+  });
+});
+
+// ── sw-8 ────────────────────────────────────────────────────────────────────
+describe("sw-8: the tables' labels say “the United States”", () => {
+  it("in every country table's aria-label", () => {
+    const labels = [...countries.desktop!.querySelectorAll('[role="table"]')].map((t) => t.getAttribute("aria-label"));
+    for (const c of board.countries) expect(labels).toContain(`Box office leaders in ${countryInSentence(c.name)}`);
+    expect(countryInSentence("United States")).toBe("the United States");
+    expect(countryInSentence("Philippines")).toBe("the Philippines");
+    expect(countryInSentence("Canada")).toBe("Canada");
+    // Negative control: the shipped label.
+    expect(labels).not.toContain("Box office leaders in United States");
+  });
+});
