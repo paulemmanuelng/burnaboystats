@@ -22,7 +22,7 @@ import RevenueBoard from "../app/components/RevenueBoard";
 import { revenueShows, revenueStands } from "../app/data/tourRevenue";
 import { showsBoard, pct, scaleWidth } from "../app/lib/showsBoard";
 import { REVENUE_AS_OF, REVENUE_SOURCE } from "../app/lib/revenueSource";
-import { RUNS_LEDE } from "../app/lib/multiNightRuns";
+import { RUNS_HEADING, RUNS_LEDE } from "../app/lib/multiNightRuns";
 import { compactGross } from "../app/lib/grossLabel";
 import { usdFull } from "../app/lib/revenueByCountry";
 import { declaredAt } from "./fixtures/phoneTrees";
@@ -260,7 +260,9 @@ describe("phone: artist chips keep ranks, announce the count, and name the filte
     const rail = phone.querySelector('[role="group"]') as HTMLElement;
     const chips = [...rail.querySelectorAll("button")].map((x) => x.childNodes[0].textContent);
     expect(chips[0]).toBe("All");
-    expect(chips[1]).toBe("Burna Boy");
+    // The runs chip sits between All and Burna Boy (the owner, 4 Oct 2026).
+    expect(chips[1]).toBe(RUNS_HEADING);
+    expect(chips[2]).toBe("Burna Boy");
     fireEvent.click(within(rail).getByRole("button", { name: /^Wizkid/ }));
     const rank = revenueShows.findIndex((s) => s.artist === "Wizkid") + 1;
     const n = revenueShows.filter((s) => s.artist === "Wizkid").length;
@@ -273,19 +275,30 @@ describe("phone: artist chips keep ranks, announce the count, and name the filte
 });
 
 // ── Multi-night runs (fix 12) ───────────────────────────────────────────────
+// Since 4 Oct 2026 the runs are the rail's second chip on both layouts, not a
+// section beneath the board: the lede is read from the chip's view.
 describe("fix 12: RUNS_LEDE verbatim at the runs' head on both layouts, then the derived note", () => {
   it.each(["runs-title", "runs-title-m"])("%s", (id) => {
-    const sec = page.d.querySelector(`section[aria-labelledby="${id}"]`)!;
+    const { container, unmount } = render(<RevenuePage />);
+    const desktop = container.querySelector('[class*="desktopOnly"]') as HTMLElement;
+    const phone = [...container.querySelectorAll("main > div")].find((d) => /screen/.test(d.className)) as HTMLElement;
+    const tree = id === "runs-title" ? desktop : phone;
+    // The chip by its label: getByRole over a whole layout takes seconds in jsdom.
+    fireEvent.click([...tree.querySelectorAll("button[aria-pressed]")].find((b) => b.childNodes[0].textContent === RUNS_HEADING)!);
+    const sec = container.querySelector(`section[aria-labelledby="${id}"]`)!;
     const head = text(sec.querySelector("p"));
     expect(head.startsWith(RUNS_LEDE)).toBe(true);
     expect(head).toMatch(/No per-night split is invented for them: each total would sit in the top \w+ of a board of single nights it never had\.$/);
-    // Every run: its tour in the meta, and "<n> tickets over <k> nights".
-    const lis = [...sec.querySelectorAll("li")];
+    // Every run: its nights, and its combined tickets in the tickets column;
+    // its tour where the layout's row has a Tour column (the desktop's).
+    const rows = id === "runs-title" ? [...sec.querySelectorAll('[role="row"]')].slice(1) : [...phone.querySelectorAll('[class*="showRow"]')];
+    expect(rows.length).toBe(revenueStands.length);
     revenueStands.forEach((s, i) => {
-      expect(text(lis[i])).toContain(s.tour);
-      expect(text(lis[i])).toContain(`${s.tickets} tickets over ${s.shows} nights`);
-      expect(text(lis[i])).toContain(`Run · ${s.shows} nights`);
+      if (id === "runs-title") expect(text(rows[i])).toContain(s.tour);
+      expect(text(rows[i])).toContain(`${s.shows} nights`);
+      expect(text(rows[i].querySelector('[class*="showTickets"]'))).toBe(s.tickets);
     });
+    unmount();
   });
   it("negative control: the canvas's phone lede was not RUNS_LEDE", () => {
     // GXShowsPhone.dc.html:62, verbatim.

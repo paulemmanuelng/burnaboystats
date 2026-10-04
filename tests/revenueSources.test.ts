@@ -90,9 +90,13 @@ describe("every show and stand names its source in the data", () => {
     // the post-build scan in scripts/check-seo.mjs) since 4 Oct 2026.
     const page = readFileSync("app/records/tours/revenue/page.tsx", "utf8");
     expect(page).not.toMatch(/\.source\b/);
-    expect(page).toMatch(/<RevenueBoard shows=\{boardShows\}>/);
+    // The runs ride the client board too since 4 Oct 2026 (its runs chip),
+    // handed over the same way: every field but `source`.
+    expect(page).toMatch(/<RevenueBoard shows=\{boardShows\} runs=\{boardRuns\}/);
     expect(page).not.toMatch(/boardShows = revenueShows\.map\(\(\{[^}]*\bsource\b/);
+    expect(page).not.toMatch(/boardRuns = revenueStands\.map\(\(\{[^}]*\bsource\b/);
     expect(readFileSync("app/components/RevenueBoard.tsx", "utf8")).toMatch(/shows: Omit<RevenueShow, "source">\[\]/);
+    expect(readFileSync("app/components/RevenueBoard.tsx", "utf8")).toMatch(/runs\?: Omit<RevenueStand, "source">\[\]/);
     expect(readFileSync("app/api/v1/tours/route.ts", "utf8")).not.toMatch(/\bsource: r\.source/);
   });
 });
