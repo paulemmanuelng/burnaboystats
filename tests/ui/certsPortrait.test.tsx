@@ -49,6 +49,20 @@ function parse(html: string): HTMLElement {
   host.innerHTML = html;
   return host;
 }
+/** The declarations of `selector` inside the @media block whose condition is
+ *  exactly `media` (one level of nesting, as the modules are written). */
+const mediaRuleFor = (css: string, media: string, selector: string): string | null => {
+  const flat = css.replace(/\/\*[\s\S]*?\*\//g, "");
+  const at = flat.indexOf(`@media ${media} {`);
+  if (at < 0) return null;
+  let depth = 0;
+  let end = at;
+  for (let i = flat.indexOf("{", at); i < flat.length; i++) {
+    if (flat[i] === "{") depth++;
+    else if (flat[i] === "}" && --depth === 0) { end = i; break; }
+  }
+  return ruleFor(flat.slice(flat.indexOf("{", at) + 1, end), selector);
+};
 const heroImg = (root: HTMLElement) => root.querySelector<HTMLImageElement>(`.${m.hero} img.${m.heroArt}`);
 const has = (el: Element | null, cls: string) => (el?.className ?? "").split(/\s+/).includes(cls);
 
@@ -109,11 +123,31 @@ describe("phone: the raised square is Burna Boy's /certifications only (item 34,
     expect(decl(slot, "transform")).toBe("translateY(-16%)");
     // The vertical mask is % of the fixed square, so fixed px at a given
     // width: opaque to 181px and gone by 268px at 390 (the canvas's numbers).
-    const v = decl(slot, "mask-image")!.match(/linear-gradient\(180deg, #000 0, #000 (\d+)%, transparent (\d+)%\)/)!;
+    const v = decl(slot, "mask-image")!.match(/linear-gradient\(180deg, #000 (\d+)%, transparent (\d+)%\)/)!;
     const side = 0.8 * 390;
     expect(Math.round((side * Number(v[1])) / 100)).toBe(181);
     expect(Math.round((side * Number(v[2])) / 100)).toBe(268);
     expect(decl(slot, "mask-composite")).toBe("intersect");
+  });
+
+  it("below 390 the slot's scrim holds the unit's line and, on paper, the kicker's", () => {
+    // Measured: "26 countries" read 3.7:1 dark / 3.1:1 light at 320 and 4.1:1
+    // dark at 360 over his neck; at 390 it clears 5.3:1 as drawn.
+    const base = ruleFor(PHONE_CSS, ".heroScrimSlot")!;
+    const band = mediaRuleFor(PHONE_CSS, "(max-width: 389px)", ".heroScrimSlot")!;
+    const layers = (bg: string) => bg.split(/,\s*(?=linear-gradient)/);
+    const b = layers(decl(band, "background")!);
+    expect(b[0]).toBe("linear-gradient(180deg, transparent 0, transparent 110px, color-mix(in srgb, var(--bg) 75%, transparent) 128px)");
+    // The longest kicker, on paper: 4.2:1 at 320 through the 92% band. Solid
+    // page colour to 40px in light only; dark is untouched (light-dark).
+    expect(b[1]).toBe("linear-gradient(180deg, light-dark(var(--bg), transparent) 40px, transparent 66px)");
+    // Every other layer is the slot's own scrim, unchanged.
+    expect(b.slice(2)).toEqual(layers(decl(base, "background")!));
+    // It starts under the chin at 320: the chin is at 59% of the photo.
+    const side = 0.8 * 320;
+    expect(0.59 * side - 0.16 * side).toBeLessThanOrEqual(110 + 1);
+    // No plate behind the unit.
+    expect(decl(ruleFor(PHONE_CSS, ".totalUnit")!, "background")).toBeNull();
   });
 
   it("his face is in frame at 320, 360 and 390", () => {
@@ -126,7 +160,7 @@ describe("phone: the raised square is Burna Boy's /certifications only (item 34,
     expect(decl(slot, "object-position")).toBe("center");
     const pct = (p: string) => Number(decl(slot, p)!.replace(/[^\d.-]/g, "")) / 100;
     const width = pct("width"), right = pct("right"), raise = Number(decl(slot, "transform")!.match(/-?[\d.]+/)![0]) / 100;
-    const opaqueTo = Number(decl(slot, "mask-image")!.match(/#000 0, #000 (\d+)%/)![1]) / 100;
+    const opaqueTo = Number(decl(slot, "mask-image")!.match(/180deg, #000 (\d+)%/)![1]) / 100;
     for (const W of [320, 360, 390]) {
       const side = width * W;
       const left = W - side - right * W; // right is negative: the square runs off the edge
@@ -155,23 +189,68 @@ describe("phone: the raised square is Burna Boy's /certifications only (item 34,
 
 describe("desktop /certifications: the widths follow the rail (item 36), percentages beside counts (Q6)", () => {
   it("rail 44.2% clamped 400–636; sharp copy min(480px, 33%) at right −40px; blur = rail + 40px", () => {
-    expect(decl(ruleFor(DESK_CSS, ".hero")!, "--rail")).toBe("clamp(400px, 44.2%, 636px)");
     const sharp = ruleFor(DESK_CSS, ".heroArt")!;
     expect(decl(sharp, "width")).toBe("min(480px, 33%)");
     expect(decl(sharp, "right")).toBe("-40px");
     expect(decl(sharp, "opacity")).toBe("var(--portrait-opacity, 0.42)");
-    expect(decl(ruleFor(DESK_CSS, ".heroArtBlur")!, "width")).toBe("calc(var(--rail) + 40px)");
-    expect(decl(ruleFor(DESK_CSS, ".heroScrim")!, "width")).toBe("calc(var(--rail) + 40px)");
+    expect(decl(ruleFor(DESK_CSS, ".heroArtBlur")!, "width")).toBe("calc(clamp(400px, 44.2%, 636px) + 40px)");
+    expect(decl(ruleFor(DESK_CSS, ".heroScrim")!, "width")).toBe("calc(clamp(400px, 44.2%, 636px) + 40px)");
     // Burna Boy's dark opacity is 0.42 (item 36), from portraitArt.ts.
     expect(PORTRAIT_ART["burna-boy"].opacity).toBe(0.42);
   });
 
-  it("the sharp copy never reaches the copy column at 1024, 1240 or 1440", () => {
-    for (const W of [1024, 1240, 1440]) {
-      const rail = Math.min(636, Math.max(400, 0.442 * W));
-      const sharpLeft = W + 40 - Math.min(480, 0.33 * W);
-      expect(sharpLeft, `${W}`).toBeGreaterThanOrEqual(W - rail);
+  it("the sharp copy never reaches the copy column at 1024, 1240, 1440 or 1920", () => {
+    // The live grid, not the canvas's: two columns (1.3fr | 1fr) inside a
+    // 1360px max-width with 40px gutters from 1240; stacked below it, where the
+    // copy column is the whole hero and the lede runs to 60ch (783px at its
+    // 20px, measured on the production build) from a 32px gutter.
+    const LEDE_60CH = 783;
+    const band = mediaRuleFor(DESK_CSS, "(min-width: 901px) and (max-width: 1239px)", ".heroArt")!;
+    expect(decl(band, "width")).toBe("min(480px, 33%, calc(100% - 60ch - 16px))");
+    expect(decl(band, "font-size")).toBe("var(--type-lede)"); // so its 60ch is the lede's
+    for (const W of [1024, 1100, 1192, 1239]) {
+      const sharp = Math.min(480, 0.33 * W, W - LEDE_60CH - 16);
+      const sharpLeft = W + 40 - sharp;
+      expect(sharpLeft, `${W}: the photo starts under the lede`).toBeGreaterThanOrEqual(32 + LEDE_60CH + 24);
     }
+    // Negative control: the plain two-column rule at 1024 starts at 726px,
+    // under the lede's second line — what the band rule exists to stop.
+    expect(1024 + 40 - Math.min(480, 0.33 * 1024)).toBeLessThan(32 + LEDE_60CH);
+    for (const W of [1240, 1440, 1920]) {
+      const inner = Math.min(W, 1360) - 80;
+      const railLeft = (W - Math.min(W, 1360)) / 2 + 40 + (inner * 1.3) / 2.3;
+      const sharpLeft = W + 40 - Math.min(480, 0.33 * W);
+      expect(sharpLeft, `${W}`).toBeGreaterThanOrEqual(railLeft);
+    }
+  });
+
+  it("1240–1439: the scrim keeps its 1440 px profile; from 1440 it is as drawn", () => {
+    // Measured on the production build at 1240: the percentages beside his
+    // face read 3.5:1 dark and 3.4:1 light under the rail-relative scrim.
+    const band = mediaRuleFor(DESK_CSS, "(min-width: 1240px) and (max-width: 1439px)", ".heroScrim")!;
+    expect(decl(band, "background")).toBe(
+      "linear-gradient(90deg, var(--bg) 0, color-mix(in srgb, var(--bg) 92%, transparent) 170px, color-mix(in srgb, var(--bg) 75%, transparent) 310px, transparent 430px)",
+    );
+    // Never weaker than the drawn 1440 scrim at the same distance from the
+    // gutter's edge: its stops are 100% at 0, 92% at 22%, 70% at 42% and 0 at
+    // 62% of 676px (the 1440 rail plus its gutter).
+    const stops = [...decl(band, "background")!.matchAll(/(var\(--bg\)|color-mix\(in srgb, var\(--bg\) (\d+)%, transparent\)|transparent) (\d+)(?:px)?(?=[,)])/g)]
+      .map((m) => [Number(m[3]), m[1] === "transparent" ? 0 : m[2] ? Number(m[2]) / 100 : 1] as const);
+    expect(stops.length).toBe(4);
+    const at = (st: readonly (readonly [number, number])[], x: number) => {
+      for (let i = 1; i < st.length; i++)
+        if (x <= st[i][0]) return st[i - 1][1] + ((st[i][1] - st[i - 1][1]) * (x - st[i - 1][0])) / (st[i][0] - st[i - 1][0]);
+      return st[st.length - 1][1];
+    };
+    const drawn = [[0, 1], [0.22 * 676, 0.92], [0.42 * 676, 0.7], [0.62 * 676, 0]] as const;
+    for (let x = 0; x <= 700; x += 10) expect(at(stops, x), `${x}px`).toBeGreaterThanOrEqual(at(drawn, x) - 0.03);
+    // The base rule, 1440 up, is the canvas's: rail-relative stops.
+    expect(decl(ruleFor(DESK_CSS, ".heroScrim")!, "background")).toBe(
+      "linear-gradient(90deg, var(--bg) 0%, color-mix(in srgb, var(--bg) 92%, transparent) 22%, color-mix(in srgb, var(--bg) 70%, transparent) 42%, transparent 62%)",
+    );
+    // No plates behind the words (the #415 review's ruling on the kicker).
+    expect(decl(ruleFor(DESK_CSS, ".tierPct")!, "background")).toBeNull();
+    expect(decl(ruleFor(DESK_CSS, ".tierPct")!, "box-shadow")).toBeNull();
   });
 
   it("each percentage sits beside its count, not at the page edge", () => {

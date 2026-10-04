@@ -140,11 +140,11 @@
   object-position: center;
   -webkit-mask-image:
     linear-gradient(90deg, transparent 0, rgba(0, 0, 0, 0.3) 14%, #000 44%),
-    linear-gradient(180deg, #000 0, #000 58%, transparent 86%);
+    linear-gradient(180deg, #000 58%, transparent 86%);
   -webkit-mask-composite: source-in;
   mask-image:
     linear-gradient(90deg, transparent 0, rgba(0, 0, 0, 0.3) 14%, #000 44%),
-    linear-gradient(180deg, #000 0, #000 58%, transparent 86%);
+    linear-gradient(180deg, #000 58%, transparent 86%);
   mask-composite: intersect;
 }
 /* Two scrims: one vertical so the kicker and lede sit on near-black, one
@@ -180,6 +180,29 @@
     linear-gradient(180deg, color-mix(in srgb, var(--bg) 92%, transparent) 0, color-mix(in srgb, var(--bg) 92%, transparent) 34px, transparent 66px),
     linear-gradient(90deg, var(--bg) 0%, var(--bg) 44%, color-mix(in srgb, var(--bg) 85%, transparent) 56%, color-mix(in srgb, var(--bg) 25%, transparent) 68%, transparent 78%),
     linear-gradient(180deg, transparent 0, transparent 55%, var(--bg) 100%);
+}
+/* Narrower than 390 two lines of type reach the photo, measured:
+   - the unit's second line ("26 countries") ends over his neck, below the
+     chin: 3.7:1 dark and 3.1:1 light at 320, 4.1:1 dark at 360. The photo goes
+     to the page colour from the unit's line down: 75% by 128px, starting at
+     110px, just under his chin at 320.
+   - the longest kicker ("Outside Nigeria · Lead credits") runs to the top of
+     his head: 4.2:1 at 320 and 4.5:1 at 360, on paper only, because the gold
+     ink is only 4.9:1 on clean paper and the 92% band lets the photo through.
+     On paper the band is solid to 40px (light-dark, as the box scrim's
+     kicker band does); dark stays at 92%, where it reads at 11:1.
+   Both are page-colour layers in the scrim rather than plates behind the
+   words (the #415 review turned the kicker's plate down). At 390, the width
+   the design measured, the slot is as drawn. */
+@media (max-width: 389px) {
+  .heroScrimSlot {
+    background:
+      linear-gradient(180deg, transparent 0, transparent 110px, color-mix(in srgb, var(--bg) 75%, transparent) 128px),
+      linear-gradient(180deg, light-dark(var(--bg), transparent) 40px, transparent 66px),
+      linear-gradient(180deg, color-mix(in srgb, var(--bg) 92%, transparent) 0, color-mix(in srgb, var(--bg) 92%, transparent) 34px, transparent 66px),
+      linear-gradient(90deg, var(--bg) 0%, var(--bg) 44%, color-mix(in srgb, var(--bg) 85%, transparent) 56%, color-mix(in srgb, var(--bg) 25%, transparent) 68%, transparent 78%),
+      linear-gradient(180deg, transparent 0, transparent 55%, var(--bg) 100%);
+  }
 }
 @media (prefers-reduced-motion: no-preference) {
   .heroArt { transition: opacity 300ms var(--ease); }
