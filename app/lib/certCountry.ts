@@ -275,7 +275,7 @@ export function recordsOf(lines: CountryArtistLine[], roster: ComparableArtist[]
     // The highest plaque among the holders — every holder's, where the
     // registers agree, which a test holds them to. On a tie the LEAD's row
     // names it: Wizkid files "Mood", BNXN's board files "Mood (Wizkid ft. BNXN)".
-    const score = (p: CountryPlaque) => [p.units ?? -1, rank(p.level, p.x), p.isFeature ? 0 : 1];
+    const score = (p: CountryPlaque) => [p.units ?? -1, rank(p), p.isFeature ? 0 : 1];
     const plaque = members
       .map((m) => m.plaque)
       .reduce((best, p) => {
