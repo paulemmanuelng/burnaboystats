@@ -262,6 +262,10 @@
     "--gold-glow-base 25%",
     "--text 2%"
   ],
+  "app/components/mobileRevenueCountries.module.css": [
+    "--ember 16%",
+    "--text 2%"
+  ],
   "app/components/mobileSections.module.css": [
     "--gold-wash-base 5%"
   ],
