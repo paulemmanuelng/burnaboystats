@@ -1,5 +1,6 @@
 import { allItems, COUNTRIES } from "../data/certifications";
 import { CERT_PROGRAMS } from "../data/certThresholds";
+import { awardLabel } from "./awardName";
 import { sweptArtists, countryMeta, offRegisterCount, type AfroCert } from "../data/afrobeats";
 
 // The plaques counted WITHOUT a register row behind them, across the whole
@@ -22,7 +23,7 @@ const issued = allItems.flatMap((r) =>
   r.certs
     .filter((c) => c.body && !CERT_PROGRAMS[c.body])
     .map((c) => ({
-      text: `“${r.title}”'s ${c.x && c.x > 1 ? `${c.x}× ` : ""}${c.level} in ${COUNTRIES[c.c]?.name ?? c.c}, issued by ${c.body}`,
+      text: `“${r.title}”'s ${awardLabel(c)} in ${COUNTRIES[c.c]?.name ?? c.c}, issued by ${c.body}`,
       registerRead: allItems.some((x) => x.certs.some((y) => y.c === c.c && (!y.body || CERT_PROGRAMS[y.body]))),
     })),
 );
@@ -57,8 +58,8 @@ export const boardLabelPlaques: string[] = swept.flatMap((a) => {
     const post = (x: { c: AfroCert }) => (x.c.announced ? ` on ${x.c.announced.via}, ${dateLabel(x.c.announced.on)}` : "");
     if (g.length === 1)
       return c.announced
-        ? `${a.name}'s “${r.title}” ${c.level} in ${where}, announced by ${issuer}${post(g[0])}`
-        : `${a.name}'s “${r.title}” ${c.level} in ${where}, issued by ${issuer}`;
+        ? `${a.name}'s “${r.title}” ${awardLabel(c)} in ${where}, announced by ${issuer}${post(g[0])}`
+        : `${a.name}'s “${r.title}” ${awardLabel(c)} in ${where}, issued by ${issuer}`;
     const posts = g.filter((x) => x.c.announced);
     if (!posts.length) return `${a.name}'s ${g.length} plaques in ${where}, issued by ${issuer}`;
     // A group that mixes the label's award and its own announcement names the
@@ -67,7 +68,7 @@ export const boardLabelPlaques: string[] = swept.flatMap((a) => {
     // Africa from Sony Music Africa — 9 issued on its own award and “Chanel”
     // Gold, announced on its own X account, 8 Jan 2026".
     const awards = g.length - posts.length;
-    const named = posts.map((x) => `“${x.r.title}” ${x.c.level}, announced${post(x)}`);
+    const named = posts.map((x) => `“${x.r.title}” ${awardLabel(x.c)}, announced${post(x)}`);
     const announcedPart =
       posts.length === 1 ? named[0] : `${posts.length} announced on its own posts (${named.join("; ")})`;
     return awards
@@ -90,7 +91,7 @@ export const boardAnnouncements: string[] = swept.flatMap((a) =>
       .map((c) => {
         const body = c.body ?? countryMeta(c.c).body;
         const how = c.announced ? ` on ${c.announced.via}, ${dateLabel(c.announced.on)}` : "";
-        return `${a.name}'s “${r.title}” ${c.level} in ${countryMeta(c.c).name}, announced by ${body}${how}, and not in its database`;
+        return `${a.name}'s “${r.title}” ${awardLabel(c)} in ${countryMeta(c.c).name}, announced by ${body}${how}, and not in its database`;
       }),
   ),
 );

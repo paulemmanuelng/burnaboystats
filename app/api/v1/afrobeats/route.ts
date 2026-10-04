@@ -60,6 +60,10 @@ const artists = sweptArtists.map((a) => ({
       body: c.body ?? countryMeta(c.c).body,
       level: c.level,
       multiplier: c.x ?? 1,
+      // Only where the body awarded a lower tier ON TOP, in one award:
+      // AMPROFON's "Platino & Oro, 4 & 1" on One Dance is level Platinum,
+      // multiplier 4, plus Gold — "4× Platinum + Gold", one plaque.
+      ...(c.plus ? { plus: c.plus } : {}),
       // Only on a plaque that is NOT a register row (PR #400 review): "label"
       // for a label-issued award, "announcement" for the certifying body's own
       // published announcement its database omits; `announced` says where and
@@ -102,6 +106,7 @@ const subjectReleases = KINDS.flatMap(([items, kind]) =>
         body: c.body ?? BURNA_COUNTRIES[c.c]?.body ?? null,
         level: c.level,
         multiplier: c.x ?? 1,
+        ...(c.plus ? { plus: c.plus } : {}),
         ...(source !== "register" ? { source } : {}),
       };
     }),
@@ -112,7 +117,7 @@ export function GET() {
   return apiJson({
     endpoint: "/afrobeats",
     description:
-      `The Afrobeats Board: ${artists.length + 1} artists counted by one rule — a plaque is one title in one country at its CURRENT tier, and an upgrade replaces the earlier award rather than adding to it. Chart figures are official national charts plus Billboard's two worldwide charts; platform charts (Spotify, Apple Music, iTunes) are never counted here. Re-read at each register sweep, where Burna Boy's own pages update daily. A certification with a \`source\` is not a register row: "label" is a label-issued plaque or the label's own announcement of one, "announcement" the certifying body's own published announcement (\`announced\`, on either, says where and when); without one, it is a row in the body's register.`,
+      `The Afrobeats Board: ${artists.length + 1} artists counted by one rule — a plaque is one title in one country at its CURRENT tier, and an upgrade replaces the earlier award rather than adding to it. Chart figures are official national charts plus Billboard's two worldwide charts; platform charts (Spotify, Apple Music, iTunes) are never counted here. Re-read at each register sweep, where Burna Boy's own pages update daily. A certification with a \`source\` is not a register row: "label" is a label-issued plaque or the label's own announcement of one, "announcement" the certifying body's own published announcement (\`announced\`, on either, says where and when); without one, it is a row in the body's register. A certification with a \`plus\` carries a lower tier awarded on top of \`level\` in the same award — Mexico's AMPROFON prints "Platino & Oro, 4 & 1", which is level Platinum, multiplier 4, plus Gold: one plaque, "4× Platinum + Gold".`,
     // The subject is a row on this board, not an appendix, so he is inside the
     // count — and `countOf` says so, because `data.artists` holds the board alone.
     count: artists.length + 1,

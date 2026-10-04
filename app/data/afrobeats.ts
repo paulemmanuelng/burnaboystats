@@ -1,6 +1,6 @@
 import { COUNTRIES as BURNA_COUNTRIES } from "./certifications";
 import { CHART_COUNTRIES } from "./charts";
-import { awardLabel } from "../lib/awardName";
+import { awardLabel, awardRank } from "../lib/awardName";
 
 // ─────────────────────────────────────────────────────────────────────────────
 //  THE AFROBEATS BOARD — /afrobeats
@@ -192,6 +192,16 @@ export interface AfroCert {
   c: string;
   level: Tier;
   x?: number;
+  /** A lower tier awarded ON TOP of the main one, in the same award. AMPROFON
+   *  (Mexico) prints combinations — "Platino & Oro | 4 & 1" is four Platinos
+   *  and an Oro — so One Dance 🇲🇽 is { level: "Platinum", x: 4, plus: "Gold" }
+   *  and reads "4× Platinum + Gold" (app/lib/awardName.ts awardLabel). ONE
+   *  plaque, not two: it counts once, in the main tier's class (Platinum), and
+   *  the multiplier stays on the main tier. /compare prices the half step too
+   *  (certUnits.unitsForCert adds one Gold at the country's own level).
+   *  AMPROFON rows only, until another body's notation needs it —
+   *  tests/plusTier.test.tsx holds that. */
+  plus?: Tier;
   body?: string;
   /** "label" when the evidence is a LABEL-ISSUED plaque the artist shared, not
    *  a row in the certifying body's register — counted on the owner's ruling of
@@ -402,7 +412,7 @@ export const AFROBEATS_VERIFIED_ON_15 = "2026-09-28";
  *  recordings on the owner's ruling of 2 Oct 2026, the precedent of Rema's
  *  "Smooth Criminal" and Ayra Starr's "Many Roads". The sweep re-read every
  *  body for all twenty artists; the other seventeen came back unchanged and
- *  keep the dates they had. */
+ *  keep the dates they had. Superseded for Wizkid by ON_20 on 4 Oct 2026. */
 export const AFROBEATS_VERIFIED_ON_16 = "2026-10-02";
 
 /** Davido — "Unavailable" (ft. Musa Keys) went UK Silver → Gold. Read on the
@@ -464,6 +474,18 @@ export const AFROBEATS_VERIFIED_ON_18 = "2026-10-03";
  *  Not a re-read: only the post was read; Tyla's verifiedOn moves to this
  *  constant by the ON_13 bump rule. Tems is not on "Chanel" and stays ON_18. */
 export const AFROBEATS_VERIFIED_ON_19 = "2026-10-03";
+
+/** Wizkid — "One Dance" 🇲🇽 re-read at AMPROFON's register
+ *  (amprofon.com.mx/es/pages/certificaciones.php) on 4 Oct 2026 after a fan's
+ *  correction on X: "ONE DANCE | DRAKE | PLATINO & ORO | 4 & 1 (SINGLE TRACK,
+ *  UNIVERSAL MUSIC) | 2017-01-18", the row the 12 Aug 2026 sweep read. The
+ *  plaque now reads 4× Platinum + Gold, as the register prints it (`plus`,
+ *  AfroCert) — the same award, so his total stays where it was, but a read
+ *  that changes a plaque moves verifiedOn (the ON_13 bump rule). Only that
+ *  register was read; Ayra Starr's "Santa" and Tyla's "Water" rows came back
+ *  unchanged in the same read and keep their dates.
+ *  docs/sweeps/wizkid-certifications-v1.md, "4 Oct 2026". */
+export const AFROBEATS_VERIFIED_ON_20 = "2026-10-04";
 
 /** The last day EVERY register behind the board was re-read: the 2 Oct 2026
  *  register sweep (docs/sweeps/sweep-2026-10-02.md — "Certifications only,
@@ -945,7 +967,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     spotifyId: "3tVQdUvClmAT7URs9V3rsp",
     wikipedia: "https://en.wikipedia.org/wiki/Wizkid",
     image: "https://i.scdn.co/image/ab6761610000e5ebe6ef803356b45ee5a9fa7a8a",
-    verifiedOn: AFROBEATS_VERIFIED_ON_16,
+    verifiedOn: AFROBEATS_VERIFIED_ON_20,
     swept: true,
     chartPublished: { entries: 240, territories: 33, no1s: 25 },
     releases: [
@@ -1020,7 +1042,14 @@ export const afrobeatsArtists: AfroArtist[] = [
       // 2026-10-01". DENMARK 5x -> 6x, IFPI Danmark: "22.09.2026. | Drake, Wizkid,
       // Kyla | One Dance | Universal Music | Track | 6xPlatin". Upgrades: one
       // plaque each, as before. docs/sweeps/sweep-2026-10-02.md.
-      { title: "One Dance", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/56bdb7a86a27fadb96332c0c8f1b8e81/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Diamond" }, { c: "CA", level: "Diamond" }, { c: "DE", level: "Diamond" }, { c: "FR", level: "Diamond" }, { c: "BR", level: "Diamond" }, { c: "AU", level: "Platinum", x: 17 }, { c: "NZ", level: "Platinum", x: 11 }, { c: "UK", level: "Platinum", x: 8 }, { c: "PT", level: "Platinum", x: 8 }, { c: "SE", level: "Platinum", x: 7 }, { c: "IT", level: "Platinum", x: 6 }, { c: "ES", level: "Platinum", x: 5 }, { c: "DK", level: "Platinum", x: 6 }, { c: "MX", level: "Platinum", x: 4 }, { c: "BE", level: "Platinum", x: 3 }, { c: "PL", level: "Platinum", x: 3 }, { c: "GR", level: "Platinum", x: 3 }] },
+      // MEXICO IS 4x PLATINUM + GOLD, as AMPROFON prints it. Its register
+      // (https://amprofon.com.mx/es/pages/certificaciones.php) files the row
+      // under "DRAKE" alone: "ONE DANCE | PLATINO & ORO | 4 & 1 (SINGLE TRACK,
+      // UNIVERSAL MUSIC) | 2017-01-18" — read in the 12 Aug 2026 sweep and
+      // re-read 4 Oct 2026 after a fan's correction on X. One award in
+      // AMPROFON's combined notation, so the Oro rides as `plus` (one plaque,
+      // Platinum class); it was stored as plain 4x Platinum until then.
+      { title: "One Dance", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/56bdb7a86a27fadb96332c0c8f1b8e81/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Diamond" }, { c: "CA", level: "Diamond" }, { c: "DE", level: "Diamond" }, { c: "FR", level: "Diamond" }, { c: "BR", level: "Diamond" }, { c: "AU", level: "Platinum", x: 17 }, { c: "NZ", level: "Platinum", x: 11 }, { c: "UK", level: "Platinum", x: 8 }, { c: "PT", level: "Platinum", x: 8 }, { c: "SE", level: "Platinum", x: 7 }, { c: "IT", level: "Platinum", x: 6 }, { c: "ES", level: "Platinum", x: 5 }, { c: "DK", level: "Platinum", x: 6 }, { c: "MX", level: "Platinum", x: 4, plus: "Gold" }, { c: "BE", level: "Platinum", x: 3 }, { c: "PL", level: "Platinum", x: 3 }, { c: "GR", level: "Platinum", x: 3 }] },
       { title: "Call Me Every Day", kind: "Featured appearances", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/45/79/f4/4579f47a-007d-eb5e-2227-00d0c1d5cf02/196589253460.jpg/300x300bb.jpg", certs: [{ c: "US", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "NG", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "CH", level: "Gold" }, { c: "UK", level: "Silver" }] },
       { title: "Brown Skin Girl", kind: "Featured appearances", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/aa/20/73/aa207387-444f-b04d-9b7e-7ea6c687c15e/886447863329.jpg/300x300bb.jpg", certs: [{ c: "US", level: "Gold" }, { c: "AU", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "UK", level: "Silver" }] },
       { title: "Soco", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/38518ed00d7ec413b318419d7b0fbec1/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "UK", level: "Silver" }] },
@@ -3284,11 +3313,12 @@ export const chartNo1s = (a: AfroArtist) =>
   a.charts.reduce((n, r) => n + r.entries.filter((e) => e.peak === 1).length, 0);
 
 export const topAward = (a: AfroArtist) => {
-  const rank: Record<Tier, number> = { Diamond: 0, Platinum: 1, Gold: 2, Silver: 3 };
+  // awardRank: tier, then multiplier, then any half step on top (a 4×
+  // Platinum + Gold beats a 4× Platinum, loses to a 5×).
   let best: AfroCert | null = null;
   for (const r of a.releases)
     for (const c of r.certs)
-      if (!best || rank[c.level] < rank[best.level] || (c.level === best.level && (c.x ?? 1) > (best.x ?? 1)))
+      if (!best || awardRank(c) > awardRank(best))
         best = c;
   return best;
 };

@@ -378,7 +378,7 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
     assumed:
       "AMPROFON measures singles in audio streams (video streams may be added since November 2020) and publishes no stream-to-unit ratio. Its plaques are converted at 100 streams to a unit, the ratio IFPI Danmark and IFPI Norge publish for the same measure.",
     caveat:
-      "AMPROFON publishes no multiplier rule for singles; its own register stacks the levels it has awarded. An N× award is priced here as N × Platino.",
+      "AMPROFON publishes no multiplier rule for singles; its own register stacks the levels it has awarded. An N× award is priced here as N × Platino, and a combined award (Platino & Oro, 4 & 1) as the sum of its parts, 4 × Platino + 1 × Oro.",
     single: { silver: null, gold: 220_000, platinum: 440_000, diamond: 2_200_000 },
     singleRaw: { gold: 22_000_000, platinum: 44_000_000, diamond: 220_000_000 },
     album: { silver: null, gold: 70_000, platinum: 140_000, diamond: 700_000 },

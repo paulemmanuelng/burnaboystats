@@ -14,6 +14,7 @@ import {
   COUNTRIES as CERT_COUNTRIES,
 } from "../data/certifications";
 import { songs } from "../data/songs";
+import { awardRank, plusWord } from "./awardName";
 import { albums as studioAlbums } from "../data/albums";
 import { revenueShows } from "../data/tourRevenue";
 import { firstGroups } from "../data/firsts";
@@ -64,10 +65,14 @@ const creditFor = (item: (typeof allItems)[number]) => {
   return song?.album ? `Burna Boy · ${song.album}` : "Burna Boy";
 };
 
-/** "4× Platinum" where a release is certified past 1×; plain tier otherwise. */
+/** "4× Platinum" where a release is certified past 1×; plain tier otherwise;
+ *  "4× Platinum + Gold" where the biggest one carries a half step on top
+ *  (AMPROFON's combined notation — lib/awardName). Ranked by awardRank. */
 const topAward = (item: (typeof allItems)[number], top: Tier) => {
-  const best = Math.max(...item.certs.filter((c) => c.level === top).map((c) => c.x ?? 1));
-  return best > 1 ? `${best}× ${top}` : top;
+  const held = item.certs.filter((c) => c.level === top);
+  if (!held.length) return top;
+  const best = held.reduce((a, c) => (awardRank(c) > awardRank(a) ? c : a));
+  return `${(best.x ?? 1) > 1 ? `${best.x}× ` : ""}${top}${plusWord({ plus: best.plus })}`;
 };
 
 export const ledgerRows: LedgerRow[] = [...allItems]

@@ -2,6 +2,7 @@ import { totalAwards, countryCount, allItems, tierOf, daiDaiCertCount, COUNTRIES
 import { firstGroups } from "../data/firsts";
 import { titleKey } from "./titleKey";
 import { badgeWeight } from "./certs";
+import { plusWord } from "./awardName";
 import { numberOnes, chartEntryCount, daiDaiNumberOnes, daiDaiChartEntryCount } from "../data/charts";
 import { numberOneCountryCount } from "./analysis";
 import { totalWins, totalNominations, ceremonyCount } from "../data/awards";
@@ -197,7 +198,9 @@ const highestTier = (r: (typeof allItems)[number]) => {
   const order = ["diamond", "platinum", "gold", "silver"] as const;
   for (const t of order) {
     const hit = r.certs.find((c) => tierOf(c.level) === t);
-    if (hit) return `${hit.x ? `${hit.x}× ` : ""}${hit.level}`;
+    // plusWord: a half step on top ("4× Platinum + Gold", AMPROFON's
+    // combined notation) is part of the award's name — lib/awardName.
+    if (hit) return `${hit.x ? `${hit.x}× ` : ""}${hit.level}${plusWord({ plus: hit.plus })}`;
   }
   return r.certs[0]?.level ?? "";
 };

@@ -48,6 +48,7 @@ import {
 } from "../data/certThresholds";
 import { countryMeta } from "../data/afrobeats";
 import type { Tier } from "../data/certifications";
+import { awardRank } from "./awardName";
 import {
   comparableArtists,
   programOf,
@@ -67,6 +68,9 @@ export interface CountryPlaque {
   cover?: string;
   level: Tier;
   x: number;
+  /** A lower tier awarded on top (AMPROFON's "Platino & Oro") — the chip
+   *  reads "4× Platinum + Gold"; still one plaque. */
+  plus?: Tier;
   /** The award PROGRAMME when it is not the country's default (RIAA Latin). */
   body?: string;
   /** Set when that programme is priced separately — see certUnits.programOf. */
@@ -175,8 +179,8 @@ const TAKES_THE = new Set(["US", "UK", "NL", "CZ"]);
 export const inSentence = (code: string): string =>
   `${TAKES_THE.has(code) ? "the " : ""}${countryMeta(code).name}`;
 
-const TIER_RANK: Record<Tier, number> = { Silver: 0, Gold: 1, Platinum: 2, Diamond: 3 };
-const rank = (level: Tier, x = 1) => TIER_RANK[level] * 100 + x;
+// Tier, then multiplier, then any half step on top — app/lib/awardName.ts.
+const rank = awardRank;
 
 // ---------------------------------------------------------------------------
 // ONE RECORD, SEVERAL ARTISTS — matched artist WITH title, never title alone.
@@ -271,7 +275,7 @@ export function recordsOf(lines: CountryArtistLine[], roster: ComparableArtist[]
     // The highest plaque among the holders — every holder's, where the
     // registers agree, which a test holds them to. On a tie the LEAD's row
     // names it: Wizkid files "Mood", BNXN's board files "Mood (Wizkid ft. BNXN)".
-    const score = (p: CountryPlaque) => [p.units ?? -1, rank(p.level, p.x), p.isFeature ? 0 : 1];
+    const score = (p: CountryPlaque) => [p.units ?? -1, rank(p), p.isFeature ? 0 : 1];
     const plaque = members
       .map((m) => m.plaque)
       .reduce((best, p) => {
@@ -328,7 +332,7 @@ export function priceCountry(
                 ? true
                 : held.units !== null
                   ? false
-                  : rank(cert.level, cert.x ?? 1) > rank(held.level, held.x);
+                  : rank(cert) > rank(held);
           if (!better) continue;
         }
         best.set(key, {
@@ -339,6 +343,7 @@ export function priceCountry(
           cover: release.cover,
           level: cert.level,
           x: cert.x ?? 1,
+          ...(cert.plus ? { plus: cert.plus } : {}),
           body: cert.body,
           program: programOf(cert),
           units,
@@ -358,7 +363,7 @@ export function priceCountry(
       const plaqueList = plaques.sort(
         (a, b) =>
           (b.units ?? -1) - (a.units ?? -1) ||
-          rank(b.level, b.x) - rank(a.level, a.x) ||
+          rank(b) - rank(a) ||
           a.title.localeCompare(b.title),
       );
       const priced = plaqueList.filter((p) => p.units !== null);
