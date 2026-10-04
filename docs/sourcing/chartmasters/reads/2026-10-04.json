@@ -1,0 +1,46 @@
+{
+  "$comment": "Read 4 Oct 2026 in the Browser pane: Paul opened each Playcounts Tool URL himself (chartmasters.org robots.txt disallows /spotify-streaming-numbers-tool/? for '*', so the agent did not navigate there; it read the pages Paul opened, signed in as before). valid_as_of=20261001, 'Streams updated through October 1, 2026.' on every page. Identity: the URL's artist_spotify_id plus the page's own share link (artist_name=...) and discography rows. Each artist's 30 Sep -> 1 Oct step matches the page's TODAY figure (Burna +7,353,484 vs TODAY 7.6m, equal to the Total row's daily column; LAST 7 DAYS +46.5m, pace 6.6m/day), so 1 Oct is a complete day. Pairs with kworb's 2 Oct page (kworb skipped its 1 Oct Burna page), re-measuring the offset that PR #399 set with --kworb-frozen on CM 30 Sep. 30 Sep values are the 2 Oct read (2026-10-02.json), kept for context.",
+  "readOn": "2026-10-04",
+  "artists": {
+    "burna-boy": {
+      "spotifyId": "3wcj11K77LjEY1PkEazffa",
+      "name": "Burna Boy",
+      "days": {
+        "September 30, 2026": 11117228942,
+        "October 1, 2026": 11124582426
+      }
+    },
+    "wizkid": {
+      "spotifyId": "3tVQdUvClmAT7URs9V3rsp",
+      "name": "Wizkid",
+      "days": {
+        "September 30, 2026": 11853007493,
+        "October 1, 2026": 11859124276
+      }
+    },
+    "tems": {
+      "spotifyId": "687cZJR45JO7jhk1LHIbgq",
+      "name": "Tems",
+      "days": {
+        "September 30, 2026": 6329539669,
+        "October 1, 2026": 6335123575
+      }
+    },
+    "asake": {
+      "spotifyId": "3a1tBryiczPAZpgoZN9Rzg",
+      "name": "Asake",
+      "days": {
+        "September 30, 2026": 4447022938,
+        "October 1, 2026": 4452935391
+      }
+    },
+    "tyla": {
+      "spotifyId": "3SozjO3Lat463tQICI9LcE",
+      "name": "Tyla",
+      "days": {
+        "September 30, 2026": 4875039879,
+        "October 1, 2026": 4878304116
+      }
+    }
+  }
+}
