@@ -27,6 +27,11 @@ export interface Cert {
   c: string;
   level: Tier;
   x?: number;
+  /** A lower tier awarded on top of the main one — AMPROFON's combined
+   *  "Platino & Oro" notation (4× Platinum + Gold). One plaque, not two; the
+   *  multiplier stays on the main tier. Same field as AfroCert.plus in
+   *  app/data/afrobeats.ts, which carries the board's only live case. */
+  plus?: Tier;
   body?: string; // overrides the country's default certifying body (e.g. "RIAA Latin")
   /** Hover-text tail for a board plaque that is not a register row ("label-issued
    *  plaque", "announced on its own X account, 6 Apr 2026") — set from

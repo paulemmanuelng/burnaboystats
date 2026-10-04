@@ -52,7 +52,7 @@ import type { Metadata } from "next";
 import { PICKER_FOLD, fold, pickerArtists, pickerReleases } from "../lib/comparePicker";
 import { featuredPairs, pairCopy, pairSlug } from "../lib/comparePairs";
 import { carried, href, one, type SP } from "../lib/compareUrl";
-import { fmt, keepParens, plaque, program, shortProgram, tierClass } from "./chips";
+import { fmt, keepParens, plaque, PlaqueWords, program, shortProgram, tierClass } from "./chips";
 import { marketKey, PLAQUE_NOTE_HEADINGS } from "../lib/certUnits";
 
 /** "RIAA Latin" in the US code column reads as "US · LATIN" — the country is
@@ -473,10 +473,7 @@ function Cell({ line, lead, artistMode }: { line: CountryLine | null; lead: bool
     return (
       <div className={styles.cell}>
         <span className={`${styles.tierChip} ${tierClass(line.top?.level ?? "Gold")}`}>
-          <span className={styles.tierWord}>
-            {plaque(line.top)}
-            {line.releases > 1 ? `\u00a0+${line.releases - 1}` : ""}
-          </span>
+          <PlaqueWords top={line.top} after={line.releases > 1 ? `\u00a0+${line.releases - 1}` : ""} />
           {prog && (
             <span className={styles.chipProgram} title={prog}>
               <span className={styles.progLong}>{prog}</span>
@@ -496,10 +493,7 @@ function Cell({ line, lead, artistMode }: { line: CountryLine | null; lead: bool
   return (
     <div className={styles.cell}>
       <span className={`${styles.tierChip} ${tierClass(line.top?.level ?? "Gold")}`}>
-        <span className={styles.tierWord}>
-          {plaque(line.top)}
-          {marks}
-        </span>
+        <PlaqueWords top={line.top} after={marks} />
         {prog && (
           <span className={styles.chipProgram} title={prog}>
             <span className={styles.progLong}>{prog}</span>

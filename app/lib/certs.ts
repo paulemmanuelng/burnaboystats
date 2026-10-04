@@ -44,8 +44,11 @@ export const MARKET_WEIGHT: Record<string, number> = {
 // scale so it decides first, and tier (with any multiplier) only breaks ties
 // inside the same territory. A 2x Platinum still beats a Gold in Nigeria — it
 // just no longer jumps ahead of a bigger market's plaque.
+//
+// A half step on top (AMPROFON's "4× Platinum + Gold") adds a tenth of its own
+// tier's weight: above the bare multiple, never as far as the next one.
 export const badgeWeight = (c: Cert) =>
-  (MARKET_WEIGHT[c.c] ?? 2) * 100 + (TIER_WEIGHT[c.level] ?? 1) * (c.x ?? 1);
+  (MARKET_WEIGHT[c.c] ?? 2) * 100 + (TIER_WEIGHT[c.level] ?? 1) * (c.x ?? 1) + (c.plus ? (TIER_WEIGHT[c.plus] ?? 1) / 10 : 0);
 
 export const certWeight = (r: Release) =>
   r.certs.reduce((sum, c) => sum + badgeWeight(c), 0);

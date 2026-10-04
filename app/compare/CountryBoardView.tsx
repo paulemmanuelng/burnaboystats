@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import Link from "next/link";
 import styles from "./compare.module.css";
-import { fmt, keepParens, plaque, program, shortProgram, tierClass } from "./chips";
+import { fmt, keepParens, PlaqueWords, program, shortProgram, tierClass } from "./chips";
 import { href, type SP } from "../lib/compareUrl";
 import { artAt, artSrcSet } from "../lib/artAt";
 import { canonicalPair, pairSlug } from "../lib/comparePairs";
@@ -56,7 +56,7 @@ function PlaqueChip({ p, code, hideProgram = false }: { p: CountryPlaque; code: 
   const prog = hideProgram ? null : program(p, code);
   return (
     <span className={`${styles.tierChip} ${tierClass(p.level)}`}>
-      <span className={styles.tierWord}>{plaque(p)}</span>
+      <PlaqueWords top={p} />
       {prog && (
         <span className={styles.chipProgram} title={prog}>
           <span className={styles.progLong}>{prog}</span>
@@ -277,8 +277,10 @@ export function CountryBoardView({
   for (const r of byRecord.values()) r.holders.sort((x, y) => Number(x.featured) - Number(y.featured));
   // The † says "this body publishes no multiplier rule, so an N× award is
   // priced as N × Platinum". It is only a caveat where an N× award is actually
-  // on the board — the Czech card carried it above a single Gold.
-  const multiplied = board.programs.some((x) => x.lines.some((l) => l.plaqueList.some((p) => p.x > 1)));
+  // on the board — the Czech card carried it above a single Gold. A half step
+  // on top (AMPROFON's "Platino & Oro") leans on the same stacking rule, as in
+  // certUnits.plaqueNotes.
+  const multiplied = board.programs.some((x) => x.lines.some((l) => l.plaqueList.some((p) => p.x > 1 || !!p.plus)));
   const onBoard = (format?: CertFormat) =>
     !format || board.programs.some((x) => x.lines.some((l) => l.plaqueList.some((p) => p.format === format)));
   // The programme's name sits BEFORE its <dl>, not inside it: a <p> is not

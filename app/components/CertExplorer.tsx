@@ -11,7 +11,7 @@ import { coverFor } from "../lib/covers";
 import { artAt } from "../lib/artAt";
 import { track } from "../lib/analytics";
 import FilterEmpty from "./FilterEmpty";
-import { tierWord } from "../lib/awardName";
+import { awardLabel } from "../lib/awardName";
 import { dropDeepLink, onDeepLinkChange, readDeepLink, readSavedView, saveView } from "../lib/deepLink";
 import {
   certCountPhrase, certsInView, creditSwitchable, effectiveView, scopeSwitchable, viewNoun, type CertView,
@@ -47,8 +47,9 @@ function Badge({ cert, countries, dim }: { cert: Cert; countries: Countries; dim
       title={`${country.name} — ${cert.body ?? country.body}${cert.provenance ? `, ${cert.provenance}` : ""}`}
     >
       <span className={styles.flag}>{country.flag}</span>
-      {cert.x ? `${cert.x}× ` : ""}
-      {tierWord(cert.level, cert.body)}
+      {/* awardLabel: the multiplier, the programme's own tier word and any
+          half step on top ("4× Platinum + Gold") — MobileCerts' words. */}
+      {awardLabel(cert)}
       {/* A separate program is a different award, and a tooltip is not a
           distinction a phone can see. Dai Dai's US plaque is RIAA LATIN — a
           different register with different thresholds from the main program —

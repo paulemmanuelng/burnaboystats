@@ -10,7 +10,7 @@ import {
   type CertEvent,
   type Country,
 } from "../data/certifications";
-import { tierWord } from "../lib/awardName";
+import { awardLabel } from "../lib/awardName";
 import { useCertView } from "../lib/useCertView";
 import { ALL_VIEW, logLedeTail } from "../lib/certScope";
 
@@ -42,8 +42,7 @@ function EventBadge({ event, countries }: { event: CertEvent; countries: Record<
   return (
     <span className={`${styles.cBadge} ${styles[tierOf(event.level)]}`} title={`${country.name} — ${event.body ?? country.body}`}>
       <span className={styles.flag}>{country.flag}</span>
-      {event.x ? `${event.x}× ` : ""}
-      {tierWord(event.level, event.body)}
+      {awardLabel(event)}
     </span>
   );
 }

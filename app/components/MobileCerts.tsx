@@ -18,7 +18,7 @@ import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
 import MobileFaqSection from "./MobileFaqSection";
 import type { Faq } from "./FaqList";
-import { tierWord } from "../lib/awardName";
+import { awardLabel } from "../lib/awardName";
 import { dropDeepLink, onDeepLinkChange, readDeepLink, readSavedView, saveView } from "../lib/deepLink";
 import {
   certCountPhrase, certKicker, certsInView, certTotals, creditSwitchable, effectiveView, scopeSwitchable, viewKey,
@@ -565,8 +565,9 @@ export default function MobileCerts({
                       title={c.provenance ? `${countries[c.c].name} — ${c.body ?? countries[c.c].body}, ${c.provenance}` : undefined}
                     >
                       <span className={styles.flag}>{countries[c.c].flag}</span>
-                      {c.x ? `${c.x}× ` : ""}
-                      {tierWord(c.level, c.body)}
+                      {/* awardLabel: "4× Platinum + Gold" keeps the half
+                          step AMPROFON prints on top — the explorer's words. */}
+                      {awardLabel(c)}
                       {c.body && c.body !== countries[c.c].body && (
                         <span className={isIssuerMarker(c.body) ? `${styles.badgeProgram} ${styles.badgeIssuer}` : styles.badgeProgram}>
                           {c.body.replace(countries[c.c].body, "").trim() || c.body}
@@ -741,8 +742,7 @@ export default function MobileCerts({
                 </div>
                 <span className={styles.badge} style={{ color: ink, borderColor: ink }}>
                   <span className={styles.flag}>{countries[e.country].flag}</span>
-                  {e.x ? `${e.x}× ` : ""}
-                  {tierWord(e.level, e.body)}
+                  {awardLabel(e)}
                 </span>
               </div>
             );

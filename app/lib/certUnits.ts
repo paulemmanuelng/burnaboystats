@@ -70,11 +70,15 @@ import { songs } from "../data/songs";
 import { coverFor } from "./covers";
 import { artAt } from "./artAt";
 import { isFeaturedKind } from "./certScope";
+import { awardRank } from "./awardName";
 
 export interface ComparableCert {
   c: string;
   level: Tier;
   x?: number;
+  /** A lower tier awarded on top of the main one (AMPROFON's "Platino & Oro"):
+   *  priced as one more plaque of that tier — see unitsForCert. */
+  plus?: Tier;
   /** Names the AWARD PROGRAMME when it is not the country's default. */
   body?: string;
 }
@@ -247,6 +251,23 @@ export function unitsForCert(
   }
   // Rule 2: the multiplier rides whatever tier it is on. Brazil's "2x Diamond"
   // is the live case.
+  //
+  // Rule 2b: a half step ON TOP is priced too. AMPROFON prints combined
+  // awards — "Platino & Oro | 4 & 1" — and One Dance's Mexican plaque is four
+  // Platinos AND an Oro, so it is worth 4 × Platino + 1 × Oro at the same
+  // body, programme and format, read from the same table. Still one plaque.
+  if (cert.plus) {
+    const extra = thresholdFor(cert.c, format, cert.plus, cert.body);
+    if (extra === null) {
+      // A half step at a tier the body does not publish must surface, like a
+      // main tier would, rather than silently pricing the plaque without it.
+      return {
+        units: null,
+        why: `${cert.body ?? CERT_THRESHOLDS[cert.c]?.body ?? cert.c} publishes no ${cert.plus} threshold for ${format}s.`,
+      };
+    }
+    return { units: base * (cert.x ?? 1) + extra, why: null };
+  }
   return { units: base * (cert.x ?? 1), why: null };
 }
 
@@ -302,12 +323,15 @@ export const PLAQUE_NOTE_HEADINGS: Record<keyof PlaqueNotes, string> = {
  *
  *  A separately-priced programme publishes its own scale, so the country's
  *  threshold notes are not statements about it (rule 5): RIAA Latin's
- *  Platinos carry none. The multiplier note needs a multiple — a single Gold
- *  assumes no rule for multiples, however the body writes them. */
+ *  Platinos carry none. The multiplier note needs a multiple or a half step
+ *  on top — a single Gold assumes no rule for multiples, however the body
+ *  writes them. */
 export function plaqueNotes(cert: ComparableCert, format: CertFormat): PlaqueNotes {
   const own = !programOf(cert);
   return {
-    caveat: own && (cert.x ?? 1) > 1 ? CERT_THRESHOLDS[cert.c]?.caveat : undefined,
+    // A half step on top (AMPROFON's "Platino & Oro") is priced by the same
+    // assumed stacking rule as a multiple, so it carries the same †.
+    caveat: own && ((cert.x ?? 1) > 1 || cert.plus) ? CERT_THRESHOLDS[cert.c]?.caveat : undefined,
     vintage: own ? vintageFor(cert.c, format) : undefined,
     assumed: own ? assumedFor(cert.c, format) : undefined,
     historic: own ? historicFor(cert.c, format) : undefined,
@@ -326,7 +350,7 @@ export interface CountryLine {
   /** The single biggest plaque behind this line, for display. `body` names the
    *  award PROGRAMME when it is not the country's default — RIAA Latin — so the
    *  chip can be marked the way Burna's own page marks "Dai Dai". */
-  top: { title: string; level: Tier; x: number; body?: string } | null;
+  top: { title: string; level: Tier; x: number; body?: string; plus?: Tier } | null;
   /** false = the plaque is real but its body publishes no usable threshold, so
    *  it is LISTED and never summed. A row that vanishes reads as "no plaque",
    *  which is a different and false statement. */
@@ -339,7 +363,7 @@ export interface CountryLine {
    *  also holds priced ones. Sweden is the live case: Burna's album Gold prices
    *  and his five single plaques do not, and the row has to say both — the
    *  first version of this file silently dropped the five. */
-  notCounted?: { plaques: number; top: { title: string; level: Tier; x: number; body?: string }; reason: string };
+  notCounted?: { plaques: number; top: { title: string; level: Tier; x: number; body?: string; plus?: Tier }; reason: string };
   /** The body changed its thresholds inside the window and this line is priced
    *  at today's level regardless — footnote 3, on every line for the country. */
   vintage?: string;
@@ -390,8 +414,8 @@ export function priceArtist(
 ): ArtistUnits {
   const releases = artist.releases.filter((r) => options.includeFeatures || !r.isFeature);
 
-  const TIER_RANK: Record<Tier, number> = { Silver: 0, Gold: 1, Platinum: 2, Diamond: 3 };
-  const rank = (c: ComparableCert) => TIER_RANK[c.level] * 100 + (c.x ?? 1);
+  // Tier, then multiplier, then any half step on top — app/lib/awardName.ts.
+  const rank = awardRank;
 
   // Rule 1: collapse to the highest award this release holds in this country
   // BEFORE anything is summed. Keyed on title AND format: two different
@@ -455,7 +479,7 @@ export function priceArtist(
       line.releases += 1;
       if (units > line.topUnits) {
         line.topUnits = units;
-        line.top = { title: release.title, level: cert.level, x: cert.x ?? 1, body: cert.body };
+        line.top = { title: release.title, level: cert.level, x: cert.x ?? 1, body: cert.body, ...(cert.plus ? { plus: cert.plus } : {}) };
       }
       // Like the caveat, the ¶ is the LINE's: Poland's is singles-only, and
       // Rema's Polish line opens on his album before "Calm Down" joins it.
@@ -469,7 +493,7 @@ export function priceArtist(
         body: program ?? CERT_THRESHOLDS[cert.c]?.body ?? cert.c,
         units,
         releases: 1,
-        top: { title: release.title, level: cert.level, x: cert.x ?? 1, body: cert.body },
+        top: { title: release.title, level: cert.level, x: cert.x ?? 1, body: cert.body, ...(cert.plus ? { plus: cert.plus } : {}) },
         topUnits: units,
         counted: true,
         // A programme publishes its own scale, so the country's threshold
@@ -486,7 +510,7 @@ export function priceArtist(
   // plaques, the unpriced ones attach to that line rather than vanishing.
   for (const { release, cert, why } of unpriced.values()) {
     if (cert.c === "NG" && !options.includeNigeria) continue;
-    const top = { title: release.title, level: cert.level, x: cert.x ?? 1, body: cert.body };
+    const top = { title: release.title, level: cert.level, x: cert.x ?? 1, body: cert.body, ...(cert.plus ? { plus: cert.plus } : {}) };
     // Keyed on the market for the same reason the priced lines are: a tier a
     // PROGRAMME does not award (there is no Silver Platino) must not attach
     // itself to the country's line.
@@ -498,7 +522,7 @@ export function priceArtist(
       if (!nc) priced.notCounted = { plaques: 1, top, reason: why };
       else {
         nc.plaques += 1;
-        if (rank(cert) > TIER_RANK[nc.top.level] * 100 + nc.top.x) nc.top = top;
+        if (rank(cert) > rank(nc.top)) nc.top = top;
       }
       continue;
     }
