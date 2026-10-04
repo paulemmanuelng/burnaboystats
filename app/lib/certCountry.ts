@@ -28,6 +28,15 @@
 //     cannot be priced (Colombia; Poland's singles until 23 Sep 2026) does not sink an artist to
 //     the bottom in silence: their line carries the plaque, says it is not
 //     counted, and ranks on what could be priced.
+//
+// AND ONE THING THE COUNTRY'S OWN FIGURE DOES THAT NO ARTIST LINE DOES: it
+// counts a RECORD once. "Essence" is Wizkid's plaque and Tems's, and each of
+// their lines carries it in full — that is the artist's own standing, and it
+// matches /compare line for line. But "The board's plaques here · at least
+// 2,910,000 certified units" summed those lines, so South Africa counted
+// Essence, Ginger and No.1 twice each (Paul, 4 Oct 2026: a bug, fixed). The
+// programme and country totals now sum RECORDS (`records`), matched artist
+// WITH title — see `sameRecord` — and the lines are untouched.
 // ============================================================================
 
 import {
@@ -47,6 +56,7 @@ import {
   type ComparableArtist,
   type UnitsOptions,
 } from "./certUnits";
+import { SHARED_RECORDS } from "../data/sharedRecords";
 
 /** One release's highest plaque in this country, priced. */
 export interface CountryPlaque {
@@ -86,6 +96,16 @@ export interface CountryArtistLine {
   top: CountryPlaque | null;
 }
 
+/** One RECORD certified here, however many of the board's artists are
+ *  credited on it — what the country's own totals count. */
+export interface CountryRecord {
+  /** The plaque as priced: the holders' highest, which is every holder's
+   *  where the registers agree (tests/countrySharedRecords.test.tsx). */
+  plaque: CountryPlaque;
+  /** Every board artist whose line carries it, lead credits first. */
+  holders: { artist: ComparableArtist; featured: boolean }[];
+}
+
 /** One award programme's slice of a country: its own artists, ranked, with its
  *  own subtotal. Every country has at least one — its default body — and the
  *  United States has two, because RIAA Latin certifies a Platino at 60,000
@@ -97,10 +117,16 @@ export interface CountryProgram {
   /** undefined on the country's own body; set on a separately-priced one. */
   program?: string;
   lines: CountryArtistLine[];
+  /** One per record: a plaque two artists share is ONE entry here and one on
+   *  each of their lines. The four figures below count these, not the lines,
+   *  so they are less than the lines' sum by exactly the shared plaques. */
+  records: CountryRecord[];
   units: number;
   counted: number;
   notCounted: number;
   plaques: number;
+  /** Records held by more than one line — each counted once above. */
+  shared: number;
   /** What one plaque is worth under THIS programme. */
   single: TierUnits | null;
   album: TierUnits | null;
@@ -136,6 +162,9 @@ export interface CountryBoard {
   counted: number;
   notCounted: number;
   plaques: number;
+  /** Records more than one artist holds here, each counted ONCE in the four
+   *  figures above while staying on every holder's line. */
+  shared: number;
   /** Artists holding at least one plaque here, under any programme. */
   artists: number;
   options: UnitsOptions;
@@ -148,6 +177,116 @@ export const inSentence = (code: string): string =>
 
 const TIER_RANK: Record<Tier, number> = { Silver: 0, Gold: 1, Platinum: 2, Diamond: 3 };
 const rank = (level: Tier, x = 1) => TIER_RANK[level] * 100 + x;
+
+// ---------------------------------------------------------------------------
+// ONE RECORD, SEVERAL ARTISTS — matched artist WITH title, never title alone.
+// ---------------------------------------------------------------------------
+
+const fold = (s: string) =>
+  s.toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, " ").trim();
+/** " wizkid ft bnxn " — word-padded, so a name matches a whole word only
+ *  ("Rema" is not inside "Remix", "Tems" is not inside "Items"). */
+const wordsOf = (s: string) => ` ${fold(s).replace(/[^a-z0-9]+/g, " ").trim()} `;
+
+/** The names a register files an artist under. BNXN was Buju until 2022, and
+ *  every register that certified "Mood" before then still says so. */
+const ALIASES: Record<string, string[]> = { bnxn: ["Buju"] };
+const namesOf = (a: ComparableArtist) => [a.name, ...(ALIASES[a.slug] ?? [])];
+const mentions = (text: string | undefined, a: ComparableArtist) =>
+  !!text && namesOf(a).some((n) => wordsOf(text).includes(wordsOf(n)));
+
+/** Every artist on the roster, by name — what marks a parenthetical as a
+ *  credit rather than part of the title. */
+const isCreditNote = (inner: string, roster: ComparableArtist[]) =>
+  /\b(ft|feat|featuring|with)\b|w\/|&/i.test(inner) || roster.some((a) => mentions(inner, a));
+const parentheticals = (title: string) => [...title.matchAll(/\(([^()]*)\)/g)].map((m) => m[1]);
+
+/**
+ * A title with its CREDIT annotations removed: "Mood (Wizkid ft. BNXN)",
+ * "Alaye (w/ Asake)" and "Holy Water (Davido)" are how three boards file
+ * "Mood", "Alaye" and "Holy Water". A parenthetical that is part of the title
+ * stays — "Sungba (Remix)" is not "Sungba", "Goodbye (Warm Up)" keeps its
+ * subtitle. Equal record titles are a CANDIDATE only; `sameRecord` decides.
+ */
+export function recordTitle(title: string, roster: ComparableArtist[] = comparableArtists): string {
+  return fold(title.replace(/\s*\(([^()]*)\)/g, (m, inner: string) => (isCreditNote(inner, roster) ? "" : m)));
+}
+
+/**
+ * Are two artists' plaques on one record? Same record title and format (the
+ * caller has already put them in the same country and programme) AND
+ * something that names the ARTISTS together:
+ *   1. a credit string naming the other ("Wizkid ft. Burna Boy" on Burna's
+ *      "Ginger") — Burna Boy's ledger carries these;
+ *   2. a title annotation naming the other ("Mood (Wizkid ft. BNXN)");
+ *   3. the same sleeve on both rows — every cross-artist cover was checked
+ *      against Deezer's contributor list (tests/afrobeats.test.ts pins them);
+ *   4. a register credit naming both, listed in app/data/sharedRecords.ts.
+ * Title alone never merges: "Loml" is Cheque ft. Olamide AND Seyi Vibez's own,
+ * "Alone" is Burna Boy's and BNXN's — two records each, and both stay.
+ */
+export function sameRecord(
+  x: { artist: ComparableArtist; plaque: CountryPlaque },
+  y: { artist: ComparableArtist; plaque: CountryPlaque },
+  roster: ComparableArtist[] = comparableArtists,
+): boolean {
+  const px = x.plaque;
+  const py = y.plaque;
+  if (x.artist.slug === y.artist.slug || px.format !== py.format) return false;
+  const title = recordTitle(px.title, roster);
+  if (title !== recordTitle(py.title, roster)) return false;
+  if (mentions(px.credit, y.artist) || mentions(py.credit, x.artist)) return true;
+  if (parentheticals(px.title).some((p) => mentions(p, y.artist))) return true;
+  if (parentheticals(py.title).some((p) => mentions(p, x.artist))) return true;
+  if (px.cover && px.cover === py.cover) return true;
+  return SHARED_RECORDS.some(
+    (r) =>
+      recordTitle(r.title, roster) === title &&
+      r.artists.includes(x.artist.slug) &&
+      r.artists.includes(y.artist.slug),
+  );
+}
+
+/** One programme's lines folded into RECORDS: a plaque two lines share is one
+ *  record with two holders. Grouped by record title and format, then joined
+ *  only where `sameRecord` says so (union–find, so a three-way record such as
+ *  Olamide's "99" joins whichever pairs carry the evidence). */
+export function recordsOf(lines: CountryArtistLine[], roster: ComparableArtist[] = comparableArtists): CountryRecord[] {
+  const items = lines.flatMap((l) => l.plaqueList.map((plaque) => ({ artist: l.artist, plaque })));
+  const parent = items.map((_, i) => i);
+  const find = (i: number): number => (parent[i] === i ? i : (parent[i] = find(parent[i])));
+  const byTitle = new Map<string, number[]>();
+  items.forEach((it, i) => {
+    const k = `${recordTitle(it.plaque.title, roster)}|${it.plaque.format}`;
+    byTitle.set(k, [...(byTitle.get(k) ?? []), i]);
+  });
+  for (const group of byTitle.values())
+    for (let i = 0; i < group.length; i++)
+      for (let j = i + 1; j < group.length; j++)
+        if (sameRecord(items[group[i]], items[group[j]], roster)) parent[find(group[i])] = find(group[j]);
+
+  const clusters = new Map<number, typeof items>();
+  items.forEach((it, i) => clusters.set(find(i), [...(clusters.get(find(i)) ?? []), it]));
+  return [...clusters.values()].map((members) => {
+    // The highest plaque among the holders — every holder's, where the
+    // registers agree, which a test holds them to. On a tie the LEAD's row
+    // names it: Wizkid files "Mood", BNXN's board files "Mood (Wizkid ft. BNXN)".
+    const score = (p: CountryPlaque) => [p.units ?? -1, rank(p.level, p.x), p.isFeature ? 0 : 1];
+    const plaque = members
+      .map((m) => m.plaque)
+      .reduce((best, p) => {
+        const [a, b] = [score(p), score(best)];
+        const i = a.findIndex((v, k) => v !== b[k]);
+        return i >= 0 && a[i] > b[i] ? p : best;
+      });
+    const holders = members
+      .map((m) => ({ artist: m.artist, featured: m.plaque.isFeature }))
+      // Lead credits first: "Bandana" is Fireboy DML featuring Asake, however
+      // the two rank on this board.
+      .sort((a, b) => Number(a.featured) - Number(b.featured));
+    return { plaque, holders };
+  });
+}
 
 /**
  * Every artist's standing in one country.
@@ -250,14 +389,21 @@ export function priceCountry(
   const programFor = (key: string): CountryProgram => {
     const lines = ranked(buckets.get(key) ?? []);
     const prog = key ? CERT_PROGRAMS[key] : undefined;
+    // The programme's figures count RECORDS. Summing the lines counted every
+    // shared plaque once per holder — South Africa's Essence, Ginger and No.1
+    // twice each (4 Oct 2026).
+    const records = recordsOf(lines, roster);
+    const priced = records.filter((r) => r.plaque.units !== null);
     return {
       name: key || meta.body,
       program: key || undefined,
       lines,
-      units: lines.reduce((n, l) => n + l.units, 0),
-      counted: lines.reduce((n, l) => n + l.counted, 0),
-      notCounted: lines.reduce((n, l) => n + l.notCounted, 0),
-      plaques: lines.reduce((n, l) => n + l.plaques, 0),
+      records,
+      units: priced.reduce((n, r) => n + (r.plaque.units ?? 0), 0),
+      counted: priced.length,
+      notCounted: records.length - priced.length,
+      plaques: records.length,
+      shared: records.filter((r) => r.holders.length > 1).length,
       single: prog ? prog.single : t?.single ?? null,
       album: prog ? prog.album : t?.album ?? null,
       note: prog?.note,
@@ -284,6 +430,7 @@ export function priceCountry(
     counted: programs.reduce((n, p) => n + p.counted, 0),
     notCounted: programs.reduce((n, p) => n + p.notCounted, 0),
     plaques: programs.reduce((n, p) => n + p.plaques, 0),
+    shared: programs.reduce((n, p) => n + p.shared, 0),
     // An artist certified under both programmes is ONE artist certified here.
     artists: new Set(programs.flatMap((p) => p.lines.map((l) => l.artist.slug))).size,
     options,

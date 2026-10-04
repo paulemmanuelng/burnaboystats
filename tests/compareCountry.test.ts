@@ -79,8 +79,23 @@ describe("one country, every artist — reconciled against priceArtist", () => {
       for (const r of a.releases)
         for (const c of r.certs) expected.set(`${a.slug}|${r.title}|${r.format}|${c.c}`, 1);
     const collapsed = [...expected.keys()].length;
-    const onBoards = countryBoards(OPTS).reduce((n, b) => n + b.plaques, 0);
-    expect(onBoards).toBe(collapsed);
+    const boards = countryBoards(OPTS);
+    // Every ARTIST's plaque is on its line: the lines hold exactly the collapse.
+    const onLines = boards.reduce(
+      (n, b) => n + b.programs.reduce((m, p) => m + p.lines.reduce((k, l) => k + l.plaques, 0), 0),
+      0,
+    );
+    expect(onLines).toBe(collapsed);
+    // …and the boards' own figures count each RECORD once (4 Oct 2026): the
+    // collapse less one for every extra holder of a shared record — no more,
+    // no less, so nothing is dropped and nothing is counted twice.
+    const extraHolders = boards.reduce(
+      (n, b) => n + b.programs.reduce((m, p) => m + p.records.reduce((k, r) => k + r.holders.length - 1, 0), 0),
+      0,
+    );
+    expect(extraHolders).toBeGreaterThan(0);
+    const onBoards = boards.reduce((n, b) => n + b.plaques, 0);
+    expect(onBoards).toBe(collapsed - extraHolders);
   });
 
   it("features off drops featured appearances and nothing else", () => {
@@ -88,7 +103,16 @@ describe("one country, every artist — reconciled against priceArtist", () => {
     const off = priceCountry("UK", { includeNigeria: true, includeFeatures: false });
     const featured = on.lines.flatMap((l) => l.plaqueList.filter((p) => p.isFeature)).length;
     expect(featured).toBeGreaterThan(0);
-    expect(on.plaques - off.plaques).toBe(featured);
+    const linePlaques = (b: typeof on) => b.lines.reduce((n, l) => n + l.plaques, 0);
+    expect(linePlaques(on) - linePlaques(off)).toBe(featured);
+    // The board counts records, so a featured plaque leaves the board's figure
+    // only when NO holder of that record is a lead: "Ginger" stays on Wizkid's
+    // line when Burna Boy's feature goes, and is still one UK plaque.
+    const allFeatured = on.programs
+      .flatMap((p) => p.records)
+      .filter((r) => r.holders.every((h) => h.featured)).length;
+    expect(on.plaques - off.plaques).toBe(allFeatured);
+    expect(allFeatured).toBeLessThan(featured);
   });
 });
 
@@ -170,8 +194,15 @@ describe("a separately-priced programme is its own line (Paul, 23 Sep 2026)", ()
     expect(us.programs.map((p) => p.name)).toEqual(["RIAA", "RIAA Latin"]);
     const [riaa, latin] = us.programs;
     // 45 until 25 Sep 2026: + Kizz Daniel's "Buga (Lo Lo Lo)" Gold and
-    // Oxlade's "Ku Lo Sa" Gold, both the standard programme.
-    expect(riaa.plaques).toBe(47);
+    // Oxlade's "Ku Lo Sa" Gold, both the standard programme. 47 on the artist
+    // lines; 43 RECORDS since 4 Oct 2026, because Essence (Wizkid, Tems),
+    // Ginger (Wizkid, Burna Boy), Mood (Wizkid, BNXN) and Bandana (Fireboy DML,
+    // Asake) are each one RIAA plaque on two lines.
+    expect(riaa.lines.reduce((n, l) => n + l.plaques, 0)).toBe(47);
+    expect(riaa.plaques).toBe(43);
+    expect(
+      riaa.records.filter((r) => r.holders.length > 1).map((r) => r.plaque.title).sort(),
+    ).toEqual(["Bandana", "Essence", "Ginger", "Mood"]);
     expect(latin.plaques).toBe(3);
     // 360,000 (Dai Dai 6×) + 960,000 (Santa 16×) + 120,000 (Bubalu 2×).
     expect(latin.units).toBe(1_440_000);

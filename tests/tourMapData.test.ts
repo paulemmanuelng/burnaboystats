@@ -118,10 +118,21 @@ describe("Canada's biggest line follows the design rule (3 Oct 2026)", () => {
 
 describe("Ireland's biggest line follows the same rule (3 Oct 2026)", () => {
   // His 3Arena night of March 2022 (Space Drift, TouringData's own post of
-  // 27 May 2022) joined tourRevenue.ts. Ireland has no tour date in tours.ts,
-  // so by rule 6 the line carries the year, not a day.
-  it("names the 3Arena night, dated by its year", () => {
-    expect(get("Ireland").big?.line).toBe("3Arena, Dublin · 2022 · 7,504 tickets");
+  // 27 May 2022) joined tourRevenue.ts on 3 Oct, when Ireland had no tour date
+  // in tours.ts, so by rule 6 the line carried the year alone. On 4 Oct 2026
+  // the night itself — 17 Mar 2022, 3Arena — joined the Space Drift dates (the
+  // owner's ruling on bo-08): exactly one date matches venue and year now, so
+  // the same rule gives the day.
+  it("names the 3Arena night, dated by its tour date", () => {
+    expect(get("Ireland").big?.line).toBe("3Arena, Dublin · 17 Mar 2022 · 7,504 tickets");
+  });
+
+  it("negative control: the line as it shipped on 3 Oct is no longer what the rule gives", () => {
+    expect(get("Ireland").big?.line).not.toBe("3Arena, Dublin · 2022 · 7,504 tickets");
+  });
+
+  it("Ireland now has a documented line: one tour date", () => {
+    expect(get("Ireland").documented).toBe("1 tour date · 1 city · 2022");
   });
 });
 
@@ -141,24 +152,28 @@ describe("all 57 match research/countries.md", () => {
     expect(tourMapCountries.length).toBe(Number(m[1]));
     expect(tourMapCountries.filter((c) => c.links.some((l) => l.peak !== undefined)).length).toBe(Number(m[2]));
     expect(tourMapCountries.filter((c) => c.links.some((l) => l.label.startsWith("Certifications in"))).length).toBe(Number(m[3]));
-    // Nine countries are known only from the map's event lines.
+    // Eight countries are known only from the map's event lines — nine until
+    // 4 Oct 2026, when Ireland's 3Arena night became a Space Drift tour date.
     expect(tourMapCountries.filter((c) => !c.documented).map((c) => c.name)).toEqual([
-      "Benin", "Cameroon", "Tanzania", "Zambia", "Botswana", "Ireland", "Austria", "Haiti", "Antigua & Barbuda",
+      "Benin", "Cameroon", "Tanzania", "Zambia", "Botswana", "Austria", "Haiti", "Antigua & Barbuda",
     ]);
   });
 });
 
 describe("the headline figures", () => {
-  it("156 documented shows, 96 cities, 2014–2026, London Stadium 58,973 (the brief's §3.3 totals)", () => {
+  // The brief's §3.3 totals were 98 tour dates, 156 shows and 96 cities; the
+  // Dublin night (17 Mar 2022, 3Arena) added one of each on 4 Oct 2026 —
+  // research/tour-map-method/card-counts.md says so beside each figure.
+  it("157 documented shows, 97 cities, 2014–2026, London Stadium 58,973", () => {
     expect(tourMapTotals).toMatchObject({
       countries: 57,
       regions: 7,
       continents: 6,
-      tourDates: 98,
+      tourDates: 99,
       appearances: 58,
-      documentedShows: 156,
+      documentedShows: 157,
       milestones: 6,
-      cities: 96,
+      cities: 97,
       years: "2014–2026",
       itinerariesFrom: 2018,
       biggestNight: { venue: "London Stadium", city: "London", when: "29 Jun 2024", tickets: "58,973" },
@@ -168,8 +183,9 @@ describe("the headline figures", () => {
     });
   });
 
-  it("negative control: counting the Lagos row twice would give 157, not the brief's 156", () => {
-    expect(tourMapTotals.documentedShows + rowsRepeatingATourDate.length).not.toBe(156);
+  it("negative control: counting the Lagos row twice would give 158, not 157", () => {
+    expect(tourMapTotals.documentedShows + rowsRepeatingATourDate.length).not.toBe(157);
+    expect(tourMapTotals.documentedShows + rowsRepeatingATourDate.length).toBe(158);
   });
 
   it("Toronto, for the find box: 5 documented tour dates", () => {
