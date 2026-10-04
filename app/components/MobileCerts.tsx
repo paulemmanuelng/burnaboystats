@@ -399,7 +399,7 @@ export default function MobileCerts({
           <span className="visuallyHidden">{subject}, {viewNoun(shownTotal, view)}: </span>
           <span className={styles.total}>{shownTotal}</span>
           <span className={styles.totalUnit}>
-            {shownTotal === 1 ? "Award" : "Awards"}
+            Awards
             <br />
             {shownCountries} {shownCountries === 1 ? "country" : "countries"}
           </span>

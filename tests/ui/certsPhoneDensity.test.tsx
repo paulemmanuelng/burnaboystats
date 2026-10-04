@@ -1,5 +1,6 @@
 import { render, screen, within } from "@testing-library/react";
 import { readFileSync } from "node:fs";
+import { join } from "node:path";
 
 vi.mock("next/navigation", () => ({
   useRouter: () => ({ push: vi.fn(), prefetch: vi.fn(), replace: vi.fn(), back: vi.fn() }),
@@ -178,12 +179,37 @@ describe("N2: the active tier chip is an ember edge and wash, not a gold fill", 
     expect(isFill(ruleFor(SHIPPED_STARR, '[data-brand="starrgirl"] .chipOn'))).toBe(true);
   });
 
-  it("the kicker sits on a page-colour plate, kept to its words", () => {
+  it("the kicker reads over a page-colour band in the scrim, not a plate", () => {
     // At 320 and 360 the longest kickers reach the portrait; on paper they
-    // sampled 4.0–4.5:1 against it without the plate (round-2 shots).
-    const rule = ruleFor(CSS, ".kicker")!;
-    expect(rule).toMatch(/(?:^|;|\s)background:\s*var\(--bg\)/);
-    expect(rule).toMatch(/width:\s*fit-content/);
+    // sampled 4.0–4.5:1 against it (round-2 shots). The fix is a band in the
+    // hero's own page-colour scrim, light theme only, over the kicker's line.
+    const scrim = ruleFor(CSS, ".heroScrim")!;
+    expect(scrim).toMatch(
+      /linear-gradient\(180deg, light-dark\(color-mix\(in srgb, var\(--bg\) 72%, transparent\), transparent\) 44px, transparent 72px\)/,
+    );
+    // No plate behind the words. Negative control: the plate this branch
+    // shipped before review (a pale rectangle across the photo at 320).
+    const noPlate = (rule: string) => !/(?:^|;|\s)background(?:-color)?:/.test(rule) && !/box-shadow:/.test(rule);
+    expect(noPlate(ruleFor(CSS, ".kicker")!)).toBe(true);
+    const SHIPPED_PLATE = `.kicker {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--gold);
+  width: fit-content;
+  max-width: 100%;
+  background: var(--bg);
+  box-shadow: 0 0 6px 4px var(--bg);
+}`;
+    expect(noPlate(ruleFor(SHIPPED_PLATE, ".kicker")!)).toBe(false);
+  });
+
+  it("the unit under the total is \"Awards\" in every view, even at 1 (Q2)", () => {
+    const src = readFileSync(join(process.cwd(), "app/components/MobileCerts.tsx"), "utf8");
+    expect(src).not.toMatch(/"Award"/);
+    expect(src).toMatch(/<span className=\{styles\.totalUnit\}>\s*Awards\s*<br \/>/);
   });
 
   it("the live toggle is untouched: only .viewRow's spacing moved (N1)", () => {
