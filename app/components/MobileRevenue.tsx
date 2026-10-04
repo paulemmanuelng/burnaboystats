@@ -242,13 +242,14 @@ export default function MobileRevenue({
       <div className={styles.countBar}>
         <span aria-live="polite" aria-atomic="true">
           {runsOn
-            ? // Each part on one line: at 390 "7 nights" split across two.
+            ? // Each part on one line (at 390 "7 nights" split across two), the
+              // separator ending the line it follows: "3 multi-night runs ·".
               runsCountLine(stands.length, runNights)
                 .split(" · ")
-                .map((part, i) => (
+                .map((part, i, parts) => (
                   <span key={part}>
-                    {i > 0 ? " · " : ""}
-                    <span className={styles.nowrap}>{part}</span>
+                    <span className={styles.nowrap}>{i < parts.length - 1 ? `${part} ·` : part}</span>
+                    {i < parts.length - 1 ? " " : ""}
                   </span>
                 ))
             : `${shown.length} of ${rows.length} shows${typeof view === "string" ? ` · ${view}` : ""}`}
