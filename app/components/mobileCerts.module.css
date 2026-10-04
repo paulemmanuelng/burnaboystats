@@ -850,3 +850,18 @@
   text-transform: uppercase;
   white-space: nowrap;
 }
+
+/* "Biggest shows" reads "Shows" under 390px (the owner, 4 Oct 2026: shorten it
+   if it cannot fit): beside "Compare Tiwa Savage ↗" the full label needs ~312px
+   of a 344px bar, and 390 is the narrowest width it clears with room inside the
+   gold pill. Visually hidden, not removed, so the link's name stays whole. */
+@media (max-width: 389px) {
+  .showsLong {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}

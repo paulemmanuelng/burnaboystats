@@ -9,6 +9,7 @@ import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
 import { RUNS_HEADING, RUNS_LEDE, runYear, runsCountLine, shortDates } from "../lib/multiNightRuns";
 import { HIS, RUNS_VIEW, nightCounts, railChips, type BoardView } from "../lib/showsChips";
+import { useLinkedArtist } from "../lib/useLinkedArtist";
 
 /**
  * Highest-grossing shows, the phone screen — Claude Design round 1, Job 2
@@ -32,6 +33,9 @@ import { HIS, RUNS_VIEW, nightCounts, railChips, type BoardView } from "../lib/s
  *    and Burna Boy (the owner, 4 Oct 2026), not a section beneath the board.
  *    It swaps the nights for the runs, in the rows' own format, under
  *    RUNS_LEDE and the derived note; All still counts single nights only.
+ *  - **"Biggest shows" opens it on one artist** (the owner, 4 Oct 2026):
+ *    ?artist=<slug> selects that artist's chip on mount and the rail brings
+ *    it into view; an absent or unknown slug leaves All on.
  */
 
 /** A night on the board, the phone's way. */
@@ -98,17 +102,26 @@ export default function MobileRevenue({
   /** The method note: the source line first. */
   note: { k: string; v: string }[];
 }) {
+  const counts = nightCounts(rows.map((r) => r.artist));
+  // The deep link's artist (?artist=<slug>), or null: what the rail shows
+  // until a chip is tapped. `picked` stays undefined until then.
+  const linkedArtist = useLinkedArtist(Object.keys(counts));
+  const [picked, setPicked] = useState<BoardView | undefined>(undefined);
   // null: every single night; an artist's name: theirs; RUNS_VIEW: the runs.
-  const [view, setView] = useState<BoardView>(null);
+  const view: BoardView = picked === undefined ? linkedArtist : picked;
   const runsOn = view === RUNS_VIEW;
   const [touched, setTouched] = useState(false);
+  // The deep link chose the chip, so the rail brings it into view with no tap
+  // having happened (Fireboy DML and Wizkid sit past 390).
+  const linked = picked === undefined && linkedArtist !== null;
   const activeRef = useRef<HTMLButtonElement>(null);
 
   // Fix 16: a chip tapped at the rail's edge (Wizkid, Davido) slid out of
   // sight once on; bring the active one fully into the rail. Horizontal only —
-  // the rail scrolls, never the page — and instant under reduced motion.
+  // the rail scrolls, never the page — and instant under reduced motion, or
+  // when the deep link put it there (the page has only just loaded).
   useEffect(() => {
-    if (!touched) return;
+    if (!touched && !linked) return;
     const chip = activeRef.current;
     const rail = chip?.parentElement;
     if (!chip || !rail) return;
@@ -116,12 +129,11 @@ export default function MobileRevenue({
     const left = chip.offsetLeft - rail.offsetLeft;
     const right = left + chip.offsetWidth;
     const reduce = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
-    const behavior: ScrollBehavior = reduce ? "auto" : "smooth";
+    const behavior: ScrollBehavior = reduce || !touched ? "auto" : "smooth";
     if (left - pad < rail.scrollLeft) rail.scrollTo?.({ left: Math.max(0, left - pad), behavior });
     else if (right + pad > rail.scrollLeft + rail.clientWidth) rail.scrollTo?.({ left: right + pad - rail.clientWidth, behavior });
-  }, [view, touched]);
+  }, [view, touched, linked]);
 
-  const counts = nightCounts(rows.map((r) => r.artist));
   // All, Multi-night runs, then the artists — lib/showsChips.ts, shared with the desktop.
   const chips = railChips("All", counts, rows.length, stands.length);
   const shown = runsOn ? [] : rows.filter((r) => view === null || r.artist === view);
@@ -215,7 +227,7 @@ export default function MobileRevenue({
                 className={`${styles.chip} ${on ? styles.chipOn : ""}`}
                 onClick={() => {
                   setTouched(true);
-                  setView(on ? null : c.key);
+                  setPicked(on ? null : c.key);
                 }}
               >
                 {c.label}

@@ -28,6 +28,8 @@ import {
   viewsOffered, type CertView, type CertViewKey,
 } from "../lib/certScope";
 import { plural } from "../lib/plural";
+import { showsHrefFor } from "../lib/showsBoard";
+import { SHOWS_LABEL } from "../lib/showsDeepLink";
 
 // Burna Boy's side of the "Compare with…" list the board artists' pages carry:
 // one pair page per board artist, each by its canonical URL (E-10, Paul,
@@ -37,6 +39,10 @@ const compareWith = compareWithLinks("burna-boy");
 // their own index and nothing else (26 Sep 2026), though this is the page
 // that lists the countries.
 const countryBoards = countryBoardLinks();
+// "Biggest shows": the box-office board opened on his nights, derived from the
+// board's rows (lib/showsBoard) — the phone bar's second action, and a
+// secondary button beside Compare in the desktop hero.
+const burnaShows = showsHrefFor("burna-boy");
 
 // "Plaques", not "Awards": /records/awards is "Burna Boy Awards: N Wins", and
 // while this title said "Awards" too, a "burna boy awards" search showed the
@@ -280,6 +286,7 @@ export default function CertificationsPage() {
         homeName={BURNA.country}
         featured={[...featured]}
         ledes={phoneLedes}
+        showsHref={burnaShows}
       />
 
       <div className={styles.desktopOnly}>
@@ -330,6 +337,13 @@ export default function CertificationsPage() {
               {/* There was no primary action in this head. Compare takes it —
                   the two existing links stay secondary. */}
               <Link href="/compare?a=burna-boy" className="btn btnPrimary">Compare ↗</Link>
+              {/* His nights on the box-office board, beside Compare (the
+                  owner, 4 Oct 2026); the phone bar carries it too. */}
+              {burnaShows && (
+                <Link href={burnaShows} className="btn btnSecondary">
+                  {SHOWS_LABEL} ↗
+                </Link>
+              )}
               <Link href="/records/visualized#certifications" className="btn btnSecondary">
                 See certifications by country →
               </Link>

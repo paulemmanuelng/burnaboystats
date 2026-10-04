@@ -3,6 +3,7 @@
 import { Fragment, useState, useEffect, useLayoutEffect, type CSSProperties } from "react";
 import Link from "next/link";
 import styles from "./mobileCerts.module.css";
+import { SHOWS_LABEL, SHOWS_SHORT } from "../lib/showsDeepLink";
 import { badgeWeight, byMostCertified, isIssuerMarker } from "../lib/certs";
 import ScrollRail from "./ScrollRail";
 import { titleKey } from "../lib/titleKey";
@@ -102,6 +103,7 @@ export default function MobileCerts({
   faqs,
   showActionBar = true,
   compareSlug = "burna-boy",
+  showsHref,
   compareWith,
   countryBoards,
   home,
@@ -159,6 +161,10 @@ export default function MobileCerts({
   showActionBar?: boolean;
   /** Which artist the Compare button pre-fills side A with. */
   compareSlug?: string;
+  /** "Biggest shows" — the box-office board opened on this artist's nights
+   *  (lib/showsBoard.showsHrefFor). Only an artist with a reported single
+   *  night has one; absent, the bar is as it was. */
+  showsHref?: string;
   /** Every head-to-head page this artist is on, canonical URLs — the plain
    *  "Compare with…" list under the boards (lib/comparePairs.compareWithLinks). */
   compareWith?: { name: string; href: string }[];
@@ -785,18 +791,28 @@ export default function MobileCerts({
       {/* Action bar — replaces the tab bar on a deep screen */}
       {showActionBar && (
       <div className={styles.actionBar}>
-        {/* Compare is the first action this bar has ever held that means
-            something for every artist on the roster — "/share" builds a BURNA stat
-            card, which is why the bar was suppressed on the board pages. So the
-            stat card is demoted rather than removed, and only where it exists. */}
+        {/* Compare is the bar's one gold action, for every artist on the
+            roster. Beside it, in the secondary style, "Biggest shows": the
+            box-office board opened on this artist's nights — only where they
+            have one. On Burna Boy's screen it took the Stat card's place (the
+            owner, 4 Oct 2026: phone only; the desktop keeps its stat card). */}
         <Link href={`/compare?a=${compareSlug}`} className={styles.actionPrimary}>
           {compareSlug === "burna-boy" ? "Compare ↗" : `Compare ${subject} ↗`}
         </Link>
-        {compareSlug === "burna-boy" && (
-          <Link href="/share" className={styles.actionSecondary}>
-            Stat card
+        {showsHref && (
+          // "Biggest shows", read "Shows" under 390px: the long word is only
+          // visually hidden there, so the accessible name never changes.
+          <Link href={showsHref} className={styles.actionSecondary}>
+            <span className={styles.showsLong}>{SHOWS_LABEL.slice(0, -SHOWS_SHORT.length)}</span>
+            {SHOWS_LABEL.slice(-SHOWS_SHORT.length)}
           </Link>
         )}
+        {/* The filter icon, except on a board artist's bar that carries the
+            shows button: a named Compare ("Compare Tiwa Savage ↗"), the shows
+            button and the icon cannot share one line at 320, so the icon gives
+            way there — the tier rail it scrolls to is on this screen. His bar
+            ("Compare ↗") keeps it, as does every bar without the button. */}
+        {(!showsHref || compareSlug === "burna-boy") && (
         <button
           type="button"
           aria-label="Filter by tier"
@@ -807,6 +823,7 @@ export default function MobileCerts({
             <path d="M4 7h16M7 12h10M10 17h4" />
           </svg>
         </button>
+        )}
       </div>
       )}
     </div>
