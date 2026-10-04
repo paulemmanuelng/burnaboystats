@@ -10,6 +10,7 @@ import {
   effectiveView,
   HOME_CODE_BY_COUNTRY,
   homeCodeFor,
+  isFeaturedKind,
   isLeadRelease,
   parseCredit,
   parseScope,
@@ -20,7 +21,9 @@ import {
   viewsOffered,
   type CertView,
 } from "../app/lib/certScope";
-import { afrobeatsArtists, artistBySlug, BURNA, certCount, countryCount, offRegisterHold, offRegisterPhrase } from "../app/data/afrobeats";
+import {
+  afrobeatsArtists, artistBySlug, artistInView, BURNA, certCount, countryCount, offRegisterHold, offRegisterPhrase,
+} from "../app/data/afrobeats";
 import { comparableArtists, featuredTitlesOf, priceArtist } from "../app/lib/certUnits";
 import { COMPARE_KEYS } from "../app/lib/compareUrl";
 import {
@@ -445,5 +448,55 @@ describe("the 'except …' caveat follows the view", () => {
     expect(offRegisterPhrase(view(tems, ALL_VIEW))).toBe("1 plaque in South Africa, read from the label's own award");
     expect(offRegisterPhrase(view(tems, LEAD))).toBeUndefined();
     expect(offRegisterPhrase(view(tems, BOTH))).toBeUndefined();
+  });
+});
+
+// ── 26b: offRegisterPhrase(a, form, view?) (approved 4 Oct 2026) ──────────
+// The view goes in as a parameter, so the phone caption groups only that
+// view's plaques. A thin wrapper over certsInView — the same filter as the
+// aView path above, never a second one.
+describe("26b: offRegisterPhrase takes the view", () => {
+  const tyla = artistBySlug("tyla")!;
+  const tems = artistBySlug("tems")!;
+
+  it("Tyla outside South Africa reads France's one announced plaque", () => {
+    expect(offRegisterPhrase(tyla, "short", INTL)).toBe("1 plaque in France from SNEP's own announcement");
+    expect(offRegisterPhrase(tyla, "short", BOTH)).toBe("1 plaque in France from SNEP's own announcement");
+    expect(offRegisterHold(tyla, INTL)).toBe("which the register does not hold");
+  });
+
+  it("Tems with features off holds none", () => {
+    expect(offRegisterPhrase(tems, "short", LEAD)).toBeUndefined();
+    expect(offRegisterPhrase(tems, "short", BOTH)).toBeUndefined();
+  });
+
+  it("no view, or the all-view, is the artist as given", () => {
+    for (const a of [tyla, tems]) {
+      expect(offRegisterPhrase(a, "short", ALL_VIEW)).toBe(offRegisterPhrase(a, "short"));
+      expect(offRegisterPhrase(a, "long", ALL_VIEW)).toBe(offRegisterPhrase(a));
+    }
+    // Negative control: the all-view phrase Tyla's lede shipped, which the
+    // international view must not print.
+    expect(offRegisterPhrase(tyla, "short", INTL)).not.toBe(
+      "10 plaques in South Africa, 9 from the label's own award and 1 from its own announcement; 1 in France from SNEP's own announcement",
+    );
+  });
+
+  it("every view agrees with the page's own aView path, for every swept artist", () => {
+    for (const a of afrobeatsArtists.filter((x) => x.swept)) {
+      const ctx = { home: homeCodeFor(a.country), featured: new Set(featuredTitlesOf(a.slug)) };
+      for (const v of [ALL_VIEW, INTL, LEAD, BOTH]) {
+        const viaPage = { ...a, releases: certsInView(a.releases, ctx, v) };
+        expect(offRegisterPhrase(a, "short", v), `${a.slug} ${viewKey(v)}`).toBe(offRegisterPhrase(viaPage, "short"));
+        expect(artistInView(a, v).releases).toEqual(viaPage.releases);
+      }
+    }
+  });
+
+  it("its featured titles are certUnits.featuredTitlesOf for every board artist", () => {
+    for (const a of afrobeatsArtists) {
+      const own = new Set(a.releases.filter((r) => isFeaturedKind(r.kind)).map((r) => r.title));
+      expect([...own].sort(), a.slug).toEqual([...featuredTitlesOf(a.slug)].sort());
+    }
   });
 });

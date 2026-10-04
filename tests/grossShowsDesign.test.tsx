@@ -234,10 +234,14 @@ describe("desktop board: scale bars against No. 1, kept under a filter; ranks ke
     }
   });
   it("negative control: the shipped on-states — the board's ember label, the certs rail's gold fill", () => {
-    // mobileRevenue.module.css at a7530590, and mobileCerts.module.css's .chipOn as live.
+    // mobileRevenue.module.css at a7530590, and mobileCerts.module.css's .chipOn
+    // as it shipped until the certs rail took N2's ember chip too (#415) — the
+    // literal rule, so this control does not move when the live file does.
     const shippedBoard = ".chipOn { background: color-mix(in srgb, var(--ember) calc(16% * var(--wash-strength)), transparent); border-color: var(--ember); color: var(--ember); }";
+    const shippedCertsRail =
+      ".chipOn {\n  background-color: var(--gold-fill);\n  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold-fill) 48%, var(--gold-dim) 100%);\n  border-color: var(--gold);\n  color: var(--ink-on-gold);\n}";
     expect(declaredAt(shippedBoard, ".chipOn", "color", 390)).not.toBe("var(--text)");
-    expect(declaredAt(read("app/components/mobileCerts.module.css"), ".chipOn", "background-color", 390)).toBe("var(--gold-fill)");
+    expect(declaredAt(shippedCertsRail, ".chipOn", "background-color", 390)).toBe("var(--gold-fill)");
   });
 
   it("focus: 2px gold over a 2px ground gap, on both layouts' chips", () => {

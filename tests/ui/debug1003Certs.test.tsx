@@ -23,6 +23,8 @@ import {
   afrobeatsArtists,
   artistBySlug,
   offRegisterCount,
+  offRegisterPhrase,
+  artistInView,
   AFROBEATS_LAST_FULL_SWEEP,
   AFROBEATS_LAST_CHART_SWEEP,
 } from "../../app/data/afrobeats";
@@ -54,6 +56,8 @@ const artist = async (slug: string) => render(await ArtistPage({ params: Promise
 const hashOf = (v: CertView) =>
   [v.credit === "lead" ? "feat=0" : "", v.scope === "intl" ? "home=0" : ""].filter(Boolean).join("&");
 const phoneLede = (c: HTMLElement) => c.querySelector(`.${mobileStyles.lede}`)!.textContent!;
+const longDate = (iso: string) =>
+  new Date(`${iso}T12:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
 
 /** Every (artist, view) the switches offer, with its count. */
 const offeredViews = () =>
@@ -66,21 +70,59 @@ const offeredViews = () =>
       return viewsOffered(offered).map((v) => ({ a, v, t: certTotals(certsInView(a.releases, { home, featured }, v)) }));
     });
 
-describe("tyla-totals-5: the phone lede's bracket says 'except'", () => {
-  it.each(["tyla", "tems"])("%s", async (slug) => {
-    expect(offRegisterCount(artistBySlug(slug)!)).toBeGreaterThan(0);
-    at(`/afrobeats/${slug}`);
+describe("tyla-totals-5: the phone lede says when plaques were not read in a register", () => {
+  // Round 2 of the design (4 Oct 2026) moved the off-register detail out of
+  // the lede into the caption under the tier bars. The lede keeps a derived
+  // qualifier — "…own register, except {n} noted below — …" — in exactly the
+  // views that hold an off-register plaque, or it would claim every plaque
+  // was a register row (11 of Tyla's 75 are not; 1 of Tems's 76).
+  const QUALIFIER = /read in the issuing body's own register, except (\d+) noted below — from /;
+  const qualified = (lede: string) => Number(lede.match(QUALIFIER)?.[1] ?? 0);
+  const caption = (c: HTMLElement) => c.querySelector(`.${mobileStyles.provenance}`)?.textContent ?? null;
+  const cases = offeredViews()
+    .filter((x) => ["tyla", "tems", "wizkid"].includes(x.a.slug))
+    .map((x) => [x.a.slug, viewKey(x.v), x] as const);
+
+  it.each(cases)("%s %s", async (slug, _key, x) => {
+    const n = offRegisterCount(artistInView(x.a, x.v));
+    const hash = hashOf(x.v);
+    at(`/afrobeats/${slug}${hash ? `#${hash}` : ""}`);
     const { container } = await artist(slug);
     const lede = phoneLede(container);
-    expect(lede).toMatch(/read in the issuing body's own register \(except \d+ plaques? in /);
-    // Negative control, Tyla's lede as it shipped.
-    expect(lede).not.toContain("read in the issuing body's own register (10 plaques in South Africa");
+    expect(qualified(lede)).toBe(n);
+    if (!n) expect(lede).not.toContain("except");
+    // The bracket is gone from the lede in every view; the caption carries it.
+    expect(lede).not.toContain("(except");
+    const phrase = offRegisterPhrase(x.a, "short", x.v);
+    expect(Boolean(phrase)).toBe(n > 0);
+    expect(caption(container)).toBe(
+      `${phrase ? `Read off-register: ${phrase}. ` : ""}Last verified ${longDate(x.a.verifiedOn)}.`,
+    );
   });
 
-  it("an all-register artist's lede has no bracket at all", async () => {
-    at("/afrobeats/wizkid");
-    const { container } = await artist("wizkid");
-    expect(phoneLede(container)).not.toContain("(except");
+  it("the views the review named: Tyla every view, Tems all and international; not Tems lead, not Wizkid", () => {
+    const n = (slug: string, v: CertView) => offRegisterCount(artistInView(artistBySlug(slug)!, v));
+    const ALL: CertView = { scope: "all", credit: "all" };
+    const INTL: CertView = { scope: "intl", credit: "all" };
+    const LEAD: CertView = { scope: "all", credit: "lead" };
+    const BOTH: CertView = { scope: "intl", credit: "lead" };
+    for (const v of [ALL, INTL, LEAD, BOTH]) expect(n("tyla", v), viewKey(v)).toBeGreaterThan(0);
+    expect(n("tems", ALL)).toBeGreaterThan(0);
+    expect(n("tems", INTL)).toBeGreaterThan(0);
+    expect(n("tems", LEAD)).toBe(0);
+    expect(n("tems", BOTH)).toBe(0);
+    expect(n("wizkid", ALL)).toBe(0);
+  });
+
+  it("negative controls: the lede as it shipped, and the canvas's round-2 lede", () => {
+    // Live until this change (3 Oct 2026, #406): the detail in a bracket.
+    const SHIPPED =
+      "Every Tyla plaque, read in the issuing body's own register (except 10 plaques in South Africa, 9 from the label's own award and 1 from its own announcement; 1 in France from SNEP's own announcement) — 75 across 24 countries, from 13 certified releases. Last verified 3 October 2026.";
+    expect(qualified(SHIPPED)).toBe(0);
+    // CertPhone.dc.html's Tyla lede: no qualifier at all — it claims every
+    // plaque is a register row.
+    const CANVAS = "Every Tyla plaque, read in the issuing body's own register — from 13 certified releases.";
+    expect(qualified(CANVAS)).toBe(0);
   });
 });
 
