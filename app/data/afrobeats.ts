@@ -1,6 +1,7 @@
 import { COUNTRIES as BURNA_COUNTRIES } from "./certifications";
 import { CHART_COUNTRIES } from "./charts";
 import { awardLabel, awardRank } from "../lib/awardName";
+import { certsInView, homeCodeFor, isFeaturedKind, type CertView } from "../lib/certScope";
 
 // ─────────────────────────────────────────────────────────────────────────────
 //  THE AFROBEATS BOARD — /afrobeats
@@ -3175,6 +3176,29 @@ export const offRegisterCount = (a: AfroArtist) => labelPlaqueCount(a) + announc
 
 const andList = (xs: string[]) => (xs.length > 1 ? `${xs.slice(0, -1).join(", ")} and ${xs.at(-1)}` : xs[0]);
 
+/** The artist as one certs view shows them (lib/certScope) — a thin wrapper
+ *  over certsInView, so offRegisterPhrase(a, form, view) groups only the
+ *  plaques that view holds (item 26b, approved 4 Oct 2026): outside South
+ *  Africa, Tyla's caption names France's one announced plaque and nothing in
+ *  South Africa. The featured titles are the board's own "Featured
+ *  appearances" group — certUnits.featuredTitlesOf's rule, restated here
+ *  because certUnits imports this file (tests/certScope.test.ts holds the two
+ *  equal for every board artist). No view = the artist as given. */
+export const artistInView = (a: AfroArtist, view?: CertView): AfroArtist =>
+  view
+    ? {
+        ...a,
+        releases: certsInView(
+          a.releases,
+          {
+            home: homeCodeFor(a.country),
+            featured: new Set(a.releases.filter((r) => isFeaturedKind(r.kind)).map((r) => r.title)),
+          },
+          view,
+        ),
+      }
+    : a;
+
 /** The off-register plaques, one group per kind of evidence, in a fixed order
  *  (label plaques, then body announcements) — the parts every "read in the
  *  issuing body's own register" sentence qualifies itself with. A label group
@@ -3218,8 +3242,12 @@ export const offRegisterGroups = (
  *  own award and 1 from its own announcement" (short: "10 plaques in South
  *  Africa, 9 from the label's own award and 1 from its own announcement" — no
  *  brackets, since the page sets the short form inside its own). */
-export const offRegisterPhrase = (a: AfroArtist, form: "long" | "short" = "long"): string | undefined => {
-  const groups = offRegisterGroups(a);
+export const offRegisterPhrase = (
+  a: AfroArtist,
+  form: "long" | "short" = "long",
+  view?: CertView,
+): string | undefined => {
+  const groups = offRegisterGroups(artistInView(a, view));
   if (!groups.length) return undefined;
   const parts = groups.map((g, i) => {
     const head = `${i === 0 ? (g.n === 1 ? "1 plaque" : `${g.n} plaques`) : g.n} in ${g.where}`;
@@ -3234,8 +3262,8 @@ export const offRegisterPhrase = (a: AfroArtist, form: "long" | "short" = "long"
 
 /** "which the register does not hold" — plural when the exceptions sit in more
  *  than one country's register. */
-export const offRegisterHold = (a: AfroArtist): string => {
-  const places = new Set(a.releases.flatMap((r) => r.certs.filter((c) => c.source).map((c) => c.c)));
+export const offRegisterHold = (a: AfroArtist, view?: CertView): string => {
+  const places = new Set(artistInView(a, view).releases.flatMap((r) => r.certs.filter((c) => c.source).map((c) => c.c)));
   return places.size > 1 ? "which the registers do not hold" : "which the register does not hold";
 };
 

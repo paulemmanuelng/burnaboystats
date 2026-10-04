@@ -153,6 +153,16 @@
   letter-spacing: 0.11em;
   text-transform: uppercase;
   color: var(--gold);
+  /* A page-colour plate, soft-edged, for the one line that can run into the
+     portrait: at 320 and 360 the longest kickers ("Outside Nigeria · Lead
+     credits") reach the photo, and on paper they sampled 4.0–4.5:1 against it
+     (the live site too, before round 2). The plate holds them on the page
+     colour, so they read as on plain page (5:1+); wherever the kicker already
+     sits on plain page it cannot be seen. fit-content keeps it to the words. */
+  width: fit-content;
+  max-width: 100%;
+  background: var(--bg);
+  box-shadow: 0 0 6px 4px var(--bg);
 }
 .totalRow { display: flex; align-items: baseline; gap: 10px; margin-top: 12px; }
 .total {
@@ -174,9 +184,6 @@
   text-transform: uppercase;
   color: var(--text-muted);
   line-height: 1.5;
-  /* "International awards as lead artist" wraps on a three-digit total; even
-     the lines out rather than leave "ARTIST" alone on the second. */
-  text-wrap: balance;
 }
 .lede {
   font-size: var(--type-lede);
@@ -185,38 +192,63 @@
   margin: 12px 0 0;
 }
 
-.tierList { margin-top: 20px; border-top: 1px solid var(--line); }
-.tierRow { padding: 13px 0; border-bottom: 1px solid var(--line); }
-.tierTop { display: flex; align-items: baseline; gap: 10px; }
+/* One 32px line per tier (Claude Design round 2, item 20): name · bar ·
+   count · share, the bars on the GRAD fills, the share in Geist 12.5 (mono is
+   labels only). At 320 the bar keeps ~108px of the 284px row; "100%" and a
+   three-digit count each fit their 34px column. */
+.tierList { margin-top: 12px; border-top: 1px solid var(--line); }
+.tierRow {
+  height: 32px;
+  display: grid;
+  grid-template-columns: 78px minmax(0, 1fr) 34px 34px;
+  align-items: center;
+  column-gap: 10px;
+  border-bottom: 1px solid var(--line);
+}
 .tierName {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
   font-size: 11px;
+  line-height: 1;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  min-width: 74px;
 }
 .tierCount {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
-  font-size: 20px;
+  font-size: 18px;
+  line-height: 1;
+  text-align: right;
   font-variant-numeric: tabular-nums;
 }
 .tierPct {
   font-family: var(--font-geist-sans), system-ui, sans-serif;
-  font-size: var(--type-small);
-  margin-left: auto;
+  /* 12.5px, not --type-small (13.5px): the canvas's size, and what fits
+     "100%" in the 34px column. */
+  font-size: 12.5px;
+  line-height: 1;
+  text-align: right;
   color: var(--text-muted);
   font-variant-numeric: tabular-nums;
 }
 .tierTrack {
+  display: block;
   height: 6px;
   background: color-mix(in srgb, var(--ink-wash-base) 9%, transparent);
-  margin-top: 9px;
   border-radius: 999px;
   overflow: hidden;
 }
-.tierFill { height: 6px; border-radius: 999px; }
+.tierFill { display: block; height: 6px; border-radius: 999px; }
+
+/* The provenance caption under the tier bars (board artists only, items
+   25/26/26b): which plaques are not register rows, then the date. */
+.provenance {
+  margin: 12px 0 0;
+  font-size: 12.5px;
+  line-height: 18px;
+  color: var(--text-muted);
+  text-wrap: pretty;
+}
 
 /* ── Tier rail ────────────────────────────────────────────────────────── */
 .rail {
@@ -246,12 +278,21 @@
   gap: 7px;
   white-space: nowrap;
 }
+/* The ACTIVE chip, on both rails (the tier rail and the dated log's year
+   rail): an ember edge, an ember wash and an ink label — not a gold fill
+   (owner's ruling N2, 4 Oct 2026). The Compare action is the one gold fill on
+   the screen. The washes are the ruled values — rgba(179,71,0,.10) on paper,
+   rgba(255,122,26,.16) on the dark page — written as --ember at 10% / 16%
+   (--ember IS #b34700 / #ff7a1a), not the house calc(16% * --wash-strength),
+   which gives ~6.7% on paper. */
 .chipOn {
-  background-color: var(--gold-fill);
-  /* The gold ramp — the site's one treatment for a gold fill. */
-  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold-fill) 48%, var(--gold-dim) 100%);
-  border-color: var(--gold);
-  color: var(--ink-on-gold);
+  border-color: var(--ember);
+  background-image: none;
+  background-color: light-dark(
+    color-mix(in srgb, var(--ember) 10%, transparent),
+    color-mix(in srgb, var(--ember) 16%, transparent)
+  );
+  color: var(--text);
 }
 .chipDot { width: 7px; height: 7px; border-radius: 50%; flex: none; display: block; }
 
@@ -262,7 +303,10 @@
    edges aligned (compare's own flex-wrap does it); at 320 the long state
    label drops under its switch's name rather than overflowing. */
 .viewRow {
-  padding: 2px 18px 6px;
+  /* Inside the hero now (round 2, item 17), which already carries the 18px
+     gutter — so no side padding of its own. */
+  padding: 0;
+  margin-top: 14px;
 }
 
 /* ── Deep-linked single-release focus (#release=…) ────────────────────── */
@@ -767,19 +811,23 @@
   color: var(--brand-accent-ink);
 }
 
-/* The active filter pill. Same deepened ramp and white label as the primary
-   button in the header, for the same reason: on the bright display stops
-   white measures 2.71:1, which is below what a button label needs. These
-   hues at 72% value put it above 5:1.
+/* The active filter pill, in N2's shape (owner's ruling, 4 Oct 2026) and her
+   colour: a brand edge, a brand wash and an ink label — no fill. It was a
+   brand gradient fill, which would have stood beside the Compare action as a
+   second filled control. The edge is the accent INK (6.44:1 on paper, ~6:1 on
+   the dark page), the wash the same 10% / 16% the base chip uses.
 
    Only .chipOn — the ACTIVE pill. The per-tier chips beside it keep their
    tier colours, because that is what distinguishes Diamond from Gold. */
 [data-brand="starrgirl"] .chipOn {
-  background-color: var(--brand-fill);
-  background-image: linear-gradient(180deg, var(--brand-fill-hi) 0%, var(--brand-fill) 52%, var(--brand-fill-lo) 100%);
-  border-color: var(--brand-fill);
-  color: #ffffff;
-  -webkit-text-fill-color: #ffffff;
+  border-color: var(--brand-accent-ink);
+  background-image: none;
+  background-color: light-dark(
+    color-mix(in srgb, var(--brand-accent-ink) 10%, transparent),
+    color-mix(in srgb, var(--brand-accent-ink) 16%, transparent)
+  );
+  color: var(--text);
+  -webkit-text-fill-color: var(--text);
 }
 
 /* The stat card, demoted. Outlined rather than filled so one gold action leads

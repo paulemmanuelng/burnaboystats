@@ -66,7 +66,7 @@ const mobile = (name: RegExp) => switches(name).find((b) => !panel()?.contains(b
 const press = (b: HTMLElement) => userEvent.click(b);
 /** The switch rows, desktop and phone. */
 const rows = () => screen.queryAllByRole("group", { name: "Which plaques count" });
-const mobileH1 = () => screen.getAllByRole("heading", { level: 1 }).find((h) => /awards?/.test(h.textContent ?? ""))!;
+const mobileH1 = () => screen.getAllByRole("heading", { level: 1 }).find((h) => /awards?/i.test(h.textContent ?? ""))!;
 const hashParams = () => Object.fromEntries(new URLSearchParams(window.location.hash.replace(/^#/, "")));
 const ZA = homeName("South Africa");
 const NG = homeName("Nigeria");
@@ -95,7 +95,7 @@ describe("Tyla's page: both switches in both layouts", () => {
       expect(r.textContent).toContain("Featureson · every plaque held");
       expect(r.textContent).not.toMatch(/\bSA\b|\bZA\b/);
     }
-    expect(mobileH1().textContent).toMatch(/75awards24 countries/);
+    expect(mobileH1().textContent).toMatch(/Tyla, certifications: 75Awards24 countries/);
   });
 
   it("keeps /compare's own order: its controls row names Featured appearances before Nigeria", () => {
@@ -149,14 +149,14 @@ describe("Tyla's page: both switches in both layouts", () => {
     expect(container.textContent).not.toContain("certifications worldwide");
     expect(screen.queryByRole("button", { name: /ZA$/ })).not.toBeInTheDocument();
     // The phone screen follows the same switch.
-    expect(mobileH1().textContent).toMatch(/65international awards23 countries/);
+    expect(mobileH1().textContent).toMatch(/Tyla, international certifications: 65Awards23 countries/);
     expect(mobile(ZA)).toHaveAttribute("aria-checked", "false");
 
     // Pressed again, it is back on: every plaque back.
     await press(desktop(ZA));
     expect(desktop(ZA)).toHaveAttribute("aria-checked", "true");
     expect(window.location.hash).toBe("");
-    expect(mobileH1().textContent).toMatch(/75awards24 countries/);
+    expect(mobileH1().textContent).toMatch(/Tyla, certifications: 75Awards24 countries/);
     expect(container.textContent).toContain("certifications worldwide");
   });
 
@@ -165,7 +165,7 @@ describe("Tyla's page: both switches in both layouts", () => {
     const { container } = await artist("tyla");
     await press(mobile(ZA));
     expect(window.location.hash).toBe("#home=0");
-    expect(mobileH1().textContent).toMatch(/65international awards23 countries/);
+    expect(mobileH1().textContent).toMatch(/Tyla, international certifications: 65Awards23 countries/);
     expect(screen.getByRole("button", { name: "All 65" })).toBeInTheDocument();
     const live = [...container.querySelectorAll('[aria-live="polite"]')].map((n) => n.textContent);
     expect(live).toContain("65 international certifications across 23 countries");
@@ -176,11 +176,11 @@ describe("Tyla's page: both switches in both layouts", () => {
     const { container } = await artist("tyla");
     await press(mobile(FEAT));
     expect(hashParams()).toEqual({ feat: "0" });
-    expect(mobileH1().textContent).toMatch(/74awards as lead artist24 countries/);
+    expect(mobileH1().textContent).toMatch(/Tyla, certifications as lead artist: 74Awards24 countries/);
     expect(container.textContent).toContain("74 certifications as lead artist across 24 countries");
     await press(desktop(ZA));
     expect(hashParams()).toEqual({ feat: "0", home: "0" });
-    expect(mobileH1().textContent).toMatch(/64international awards as lead artist23 countries/);
+    expect(mobileH1().textContent).toMatch(/Tyla, international certifications as lead artist: 64Awards23 countries/);
     expect(container.textContent).toContain("64 international certifications as lead artist across 23 countries");
     // Turning one switch off leaves the other standing.
     await press(mobile(FEAT));
@@ -201,14 +201,14 @@ describe("Tyla's page: both switches in both layouts", () => {
   it("a shared #home=0&feat=0 link opens that view", async () => {
     at("/afrobeats/tyla#home=0&feat=0");
     const { container } = await artist("tyla");
-    expect(mobileH1().textContent).toMatch(/64international awards as lead artist23 countries/);
+    expect(mobileH1().textContent).toMatch(/Tyla, international certifications as lead artist: 64Awards23 countries/);
     expect(container.textContent).toContain("64 international certifications as lead artist across 23 countries");
   });
 
   it("a ?home=0 link is read too, and switching back on takes it out of the address bar", async () => {
     at("/afrobeats/tyla?home=0");
     await artist("tyla");
-    expect(mobileH1().textContent).toMatch(/65international awards23 countries/);
+    expect(mobileH1().textContent).toMatch(/Tyla, international certifications: 65Awards23 countries/);
     expect(desktop(ZA)).toHaveAttribute("aria-checked", "false");
     await press(desktop(ZA));
     expect(window.location.search + window.location.hash).toBe("");
@@ -221,7 +221,7 @@ describe("Tyla's page: both switches in both layouts", () => {
       window.location.hash = "#feat=0";
       window.dispatchEvent(new HashChangeEvent("hashchange"));
     });
-    expect(mobileH1().textContent).toMatch(/74awards as lead artist24 countries/);
+    expect(mobileH1().textContent).toMatch(/Tyla, certifications as lead artist: 74Awards24 countries/);
   });
 
   it("the static HTML is the All view — nothing a crawler reads changes", async () => {
@@ -244,10 +244,10 @@ describe("Burna Boy's /certifications", () => {
     expect(switches(FEAT)).toHaveLength(2);
     for (const r of rows()) expect(r.textContent).toMatch(/^Featured appearances.*Nigeria/);
     const intl = certTotals(certsInScope(allItems, "NG", "intl"));
-    expect(mobileH1().textContent).toContain(`${totalAwards()}awards${burnaCountries} countries`);
+    expect(mobileH1().textContent).toContain(`Burna Boy, certifications: ${totalAwards()}Awards${burnaCountries} countries`);
 
     await press(desktop(NG));
-    expect(mobileH1().textContent).toContain(`${intl.total}international awards${intl.countries} countries`);
+    expect(mobileH1().textContent).toContain(`Burna Boy, international certifications: ${intl.total}Awards${intl.countries} countries`);
     expect(container.textContent).toContain(`${intl.total} international certifications across ${intl.countries} countries`);
     // The hero's summary strip swaps with it: a short label, the narrowing in
     // its note (debug pass, 3 Oct 2026 — the long label wrapped at 1440).
@@ -273,7 +273,7 @@ describe("Burna Boy's /certifications", () => {
     expect(window.location.hash).toBe("#feat=0");
     expect(lead.total).toBe(totalAwards() - features.reduce((n, r) => n + r.certs.length, 0));
     expect(container.textContent).toContain(`${lead.total} certifications as lead artist across ${lead.countries} countries`);
-    expect(mobileH1().textContent).toContain(`${lead.total}awards as lead artist${lead.countries} countries`);
+    expect(mobileH1().textContent).toContain(`Burna Boy, certifications as lead artist: ${lead.total}Awards${lead.countries} countries`);
     expect(screen.queryByRole("heading", { name: "Featured Appearances" })).not.toBeInTheDocument();
     expect(screen.queryAllByText("Location").length).toBeLessThan(rowsBefore);
     expect(screen.getAllByText("Dai Dai")).toHaveLength(daiDaiBefore);
@@ -389,7 +389,7 @@ describe("a switch only where it changes something", () => {
   it("a view that holds nothing reads 0, not NaN (BNXN, International + Lead)", async () => {
     at("/afrobeats/bnxn#home=0&feat=0");
     const { container } = await artist("bnxn");
-    expect(mobileH1().textContent).toMatch(/0international awards as lead artist0 countries/);
+    expect(mobileH1().textContent).toMatch(/BNXN, international certifications as lead artist: 0Awards0 countries/);
     expect(container.textContent).not.toContain("NaN");
     expect(container.textContent).toContain("There's no international certification as lead artist");
   });
@@ -405,11 +405,11 @@ describe("an empty view's Clear turns the switches back on", () => {
   it("the phone's Clear filters", async () => {
     at("/afrobeats/bnxn#home=0&feat=0");
     await artist("bnxn");
-    expect(mobileH1().textContent).toMatch(/0international awards as lead artist/);
+    expect(mobileH1().textContent).toMatch(/international certifications as lead artist: 0Awards/);
     // The phone's empty state is its own role="status" block (MobileCerts).
     const phoneClear = screen.getAllByRole("button", { name: "Clear filters" }).find((b) => b.closest('[role="status"]'))!;
     await userEvent.click(phoneClear);
-    expect(mobileH1().textContent).toContain(`${all}awards`);
+    expect(mobileH1().textContent).toContain(`${all}Awards`);
     expect(window.location.hash).toBe("");
     for (const b of screen.getAllByRole("switch")) expect(b).toHaveAttribute("aria-checked", "true");
   });
@@ -421,7 +421,7 @@ describe("an empty view's Clear turns the switches back on", () => {
     const clears = screen.getAllByRole("button", { name: "Clear filters" });
     await userEvent.click(clears.find((b) => !b.closest('[role="status"]'))!);
     expect(window.location.hash).toBe("");
-    expect(mobileH1().textContent).toContain(`${all}awards`);
+    expect(mobileH1().textContent).toContain(`${all}Awards`);
   });
 });
 
@@ -483,9 +483,9 @@ describe("the switched views keep #401's issuer marker and #402's caveat true", 
     await press(desktop(ZA));
     expect(prov()).toContain("— except 1 plaque in France, read from SNEP's own announcement, which the register does not hold");
     expect(prov()).not.toContain("South Africa");
-    // The phone lede, the short form, follows the same switch.
-    // "except" since the debug pass of 3 Oct 2026 (tyla-totals-5).
-    expect(container.textContent).toContain("(except 1 plaque in France from SNEP's own announcement)");
+    // The phone's provenance caption, the short form, follows the same switch
+    // (item 26b): it moved out of the lede's bracket in round 2.
+    expect(container.textContent).toContain("Read off-register: 1 plaque in France from SNEP's own announcement.");
   });
 
   it("Tems with features off: her one label plaque is a guest spot, so the caveat goes", async () => {
