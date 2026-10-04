@@ -121,6 +121,32 @@
   -webkit-mask-image: none;
   mask-image: none;
 }
+/* Burna Boy's /certifications hero ONLY (Claude Design round 2, item 34,
+   option b; MobileCerts portraitSlot="square"). Every board artist keeps the
+   cover box above, because each focal X in portraitArt.ts was tuned against
+   it. His is a fixed square, 80% of the hero's width, set right −22% and
+   raised by 16% of its own height, so his face sits beside the total and
+   does not move when a switch changes the lede's length. Not cropped: a
+   square photo in a square box, so --focal has nothing to aim here.
+   The masks are % of that square, never of the hero, so they are fixed px
+   for a given width: opaque to 58% (181px at 390) and gone by 86% (268px). */
+.heroArtSlot {
+  top: 0;
+  right: -22%;
+  width: 80%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  transform: translateY(-16%);
+  object-position: center;
+  -webkit-mask-image:
+    linear-gradient(90deg, transparent 0, rgba(0, 0, 0, 0.3) 14%, #000 44%),
+    linear-gradient(180deg, #000 0, #000 58%, transparent 86%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(90deg, transparent 0, rgba(0, 0, 0, 0.3) 14%, #000 44%),
+    linear-gradient(180deg, #000 0, #000 58%, transparent 86%);
+  mask-composite: intersect;
+}
 /* Two scrims: one vertical so the kicker and lede sit on near-black, one
    horizontal so the portrait dissolves rather than ending in a hard edge. */
 .heroScrim {
@@ -143,6 +169,17 @@
        the kicker sits at a fixed 22px from the top while the hero's height
        follows the lede. */
     linear-gradient(180deg, light-dark(color-mix(in srgb, var(--bg) 72%, transparent), transparent) 44px, transparent 72px);
+}
+/* The raised square's own scrims, in the page colour in both themes (round 2,
+   item 34): a band over the kicker's line (92% to 34px, gone by 66px), solid
+   page across the type's column to 44% and clear by 78%, and the foot of the
+   hero back to the page from 55% down, so the lede and the switches below the
+   photo always sit on the page colour. */
+.heroScrimSlot {
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--bg) 92%, transparent) 0, color-mix(in srgb, var(--bg) 92%, transparent) 34px, transparent 66px),
+    linear-gradient(90deg, var(--bg) 0%, var(--bg) 44%, color-mix(in srgb, var(--bg) 85%, transparent) 56%, color-mix(in srgb, var(--bg) 25%, transparent) 68%, transparent 78%),
+    linear-gradient(180deg, transparent 0, transparent 55%, var(--bg) 100%);
 }
 @media (prefers-reduced-motion: no-preference) {
   .heroArt { transition: opacity 300ms var(--ease); }

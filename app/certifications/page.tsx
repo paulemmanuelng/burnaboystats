@@ -269,6 +269,7 @@ export default function CertificationsPage() {
         countryCount={countryCount}
         portrait={BURNA.image}
         portraitSlug="burna-boy"
+        portraitSlot="square"
         subject="Burna Boy"
         chartsHref="/records/charts"
         liveHref="/live-charts"
@@ -291,7 +292,7 @@ export default function CertificationsPage() {
             scrim the copy is read against. All three are decorative. */}
         <span
           className={styles.heroArtBlur}
-          style={{ backgroundImage: `url(${BURNA.image})`, "--focal": burnaArt.focal } as CSSProperties}
+          style={{ backgroundImage: `url(${BURNA.image})`, "--focal": burnaArt.focal, "--grayscale": burnaArt.grayscale } as CSSProperties}
           aria-hidden="true"
         />
         <span
