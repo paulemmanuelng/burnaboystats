@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import sitemap from "../app/sitemap";
 import { sweptArtists } from "../app/data/afrobeats";
 import { updates } from "../app/data/updates";
-import { afrobeatsArtists } from "../app/data/afrobeats";
+import { AFROBEATS_EDITED_ON, afrobeatsArtists } from "../app/data/afrobeats";
 import { LIVE_BOARDS } from "../app/data/liveBoards";
 import { liveChartsUpdated } from "../app/data/liveCharts";
 import { LISTENERS_READ_ON } from "../app/data/listeners";
@@ -82,6 +82,8 @@ function evidenceFor(path: string): string[] {
     (a) => path === `/afrobeats/${a.slug}` || path === `/afrobeats/${a.slug}/charts`,
   );
   if (artist) dates.push(artist.verifiedOn);
+  // An edit made without a register read (a credit or sleeve corrected).
+  if (artist && AFROBEATS_EDITED_ON[artist.slug]) dates.push(AFROBEATS_EDITED_ON[artist.slug]);
   return dates.filter((d): d is string => Boolean(d));
 }
 

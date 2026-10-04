@@ -5,7 +5,7 @@ import { siteUrl } from "./site";
 import { updates } from "./data/updates";
 import { songs } from "./data/songs";
 import { albumPages } from "./data/albumPages";
-import { afrobeatsArtists } from "./data/afrobeats";
+import { AFROBEATS_EDITED_ON, afrobeatsArtists } from "./data/afrobeats";
 import { LIVE_BOARDS } from "./data/liveBoards";
 import { liveChartsBuiltAt } from "./data/liveCharts";
 import { carSlugs } from "./data/cars";
@@ -121,10 +121,17 @@ const contentStamp: Record<string, string> = {
   "/live-charts": liveChartsBuiltAt,
   ...Object.fromEntries(LIVE_BOARDS.map((b) => [`/afrobeats/${b.slug}/live`, b.builtAt])),
   ...Object.fromEntries(
-    sweptArtists.flatMap((a): [string, string][] => [
-      [`/afrobeats/${a.slug}`, a.verifiedOn],
-      [`/afrobeats/${a.slug}/charts`, a.verifiedOn],
-    ]),
+    sweptArtists.flatMap((a): [string, string][] => {
+      // The later of the sweep the page prints and an edit made without a
+      // register read (AFROBEATS_EDITED_ON; sw-5, 3 Oct 2026: CKay's and
+      // Olamide's "Trumpet" changed on both lists while their stamps said
+      // 18 Sep and 6 Sep).
+      const stamp = [a.verifiedOn, AFROBEATS_EDITED_ON[a.slug]].filter(Boolean).sort().at(-1)!;
+      return [
+        [`/afrobeats/${a.slug}`, stamp],
+        [`/afrobeats/${a.slug}/charts`, stamp],
+      ];
+    }),
   ),
   // The board index prints each artist's plaque and entry totals, so it changed
   // the day the most recent of those sweeps landed.

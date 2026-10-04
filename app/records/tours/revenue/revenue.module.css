@@ -112,7 +112,7 @@
    name and gross on his rows to 4.14:1 against #945e00 — under AA for 22px
    Anton 400 and 14.5px text (debug pass 3 Oct 2026, k4). Light hovers 40% of
    the way to it (4.62:1); dark keeps --bg-raised (8.80:1).
-   tests/revenueHoverContrast.test.ts computes both from globals.css. */
+   tests/boxOfficeDebug1003.test.tsx computes both from globals.css. */
 .row:hover { background: light-dark(color-mix(in srgb, var(--bg-raised) 40%, var(--bg)), var(--bg-raised)); }
 .right { text-align: right; }
 

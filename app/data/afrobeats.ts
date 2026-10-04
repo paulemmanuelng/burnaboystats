@@ -481,6 +481,21 @@ export const AFROBEATS_LAST_FULL_SWEEP = "2026-10-02";
  *  certification reads that read no chart. */
 export const AFROBEATS_LAST_CHART_SWEEP = "2026-10-02";
 
+/** The day a board artist's page was last EDITED without a register read —
+ *  a release's credit, title or sleeve corrected — for the sitemap's lastmod
+ *  only (app/sitemap.ts). `verifiedOn` is not moved for these: the page prints
+ *  it under "last verified", and no register was read. An artist with no entry
+ *  here is dated by verifiedOn alone.
+ *
+ *  3 Oct 2026 (#404, ac1e9bf6): CKay's "Trumpet" became a co-lead ("Lead
+ *  singles", titled "Trumpet (Olamide & CKay)"), and Olamide's "Trumpet"
+ *  sleeve was replaced, on both artists' plaque and chart lists. The sitemap
+ *  still said 18 Sep and 6 Sep (debug pass 3 Oct 2026, sw-5). */
+export const AFROBEATS_EDITED_ON: Readonly<Record<string, string>> = {
+  ckay: "2026-10-03",
+  olamide: "2026-10-03",
+};
+
 export const afrobeatsArtists: AfroArtist[] = [
   {
     slug: "olamide",

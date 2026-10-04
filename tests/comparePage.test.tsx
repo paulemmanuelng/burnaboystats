@@ -695,6 +695,33 @@ describe("the Nigeria-separated total is 'outside Nigeria', never 'international
     const t = text(await html({ a: "burna-boy", b: "tyla", ng: "1" }));
     expect(t).toContain("certified units · Nigeria included");
   });
+
+  // The head carries the same scope: pairCopy feeds the meta description, the
+  // og/twitter description, the pair Dataset and the OG share card's sub.
+  it("the pair's head copy and share card say the same, for every Tyla pair", async () => {
+    expect(zaInside()).toBeGreaterThan(0);
+    const { allPairs, pairCopy } = await import("../app/lib/comparePairs");
+    const tylaPairs = allPairs().filter(([a, b]) => a.slug === "tyla" || b.slug === "tyla");
+    expect(tylaPairs.length).toBeGreaterThan(10);
+    let separated = 0;
+    for (const [a, b] of tylaPairs) {
+      const c = pairCopy(a, b);
+      // A pair whose default view includes Nigeria (the page's own rule) says so.
+      expect(["outside Nigeria", "Nigeria included"]).toContain(c.scope);
+      if (c.scope === "outside Nigeria") separated++;
+      expect(c.description, c.description).toContain(`(${c.scope})`);
+      expect(c.sub, c.sub).toMatch(new RegExp(`certified units · ${c.scope}$`));
+      // Negative controls: the strings the built head shipped at db02865b.
+      expect(c.description).not.toContain("(international)");
+      expect(c.sub).not.toContain("certified units · international");
+    }
+    // 17 of the 19 Tyla pairs shipped "(international)"; the loop must see them.
+    expect(separated).toBeGreaterThan(10);
+    const burna = comparableArtists.find((x) => x.slug === "burna-boy")!;
+    const { description, sub } = pairCopy(burna, tyla);
+    expect(description).toMatch(/^Burna Boy at least [\d,]+ certified units vs Tyla [\d,]+ \(outside Nigeria\)/);
+    expect(sub).toMatch(/· [\d,]+ vs [\d,]+ certified units · outside Nigeria$/);
+  });
 });
 
 // Debug pass, 3 Oct 2026 (tyla-totals-4): Tyla's verifiedOn moved to 3 Oct on

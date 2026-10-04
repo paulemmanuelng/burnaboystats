@@ -28,6 +28,7 @@ import {
   numberWord,
 } from "./lib/homeData";
 import { updates } from "./data/updates";
+import { REVENUE_BODY, REVENUE_REPORTS } from "./lib/revenueSource";
 import { DAI_DAI_SPOTIFY_NO1_DAYS } from "./data/daiDai";
 import NotReported from "./components/NotReported";
 import OnThisDayBand from "./components/OnThisDayBand";
@@ -386,7 +387,7 @@ export default function Home() {
                   </tbody>
                 </table>
                 <p className={styles.sourceNote}>
-                  Source: TouringData / Billboard Boxscore · the {topTour.name} grossed{" "}
+                  Source: {REVENUE_BODY} ({REVENUE_REPORTS}) · the {topTour.name} grossed{" "}
                   {topTour.gross}
                   {topTour.tickets ? ` from ${topTour.tickets} tickets` : ""}
                   {topTour.shows ? ` across ${topTour.shows} reported shows` : ""} — the

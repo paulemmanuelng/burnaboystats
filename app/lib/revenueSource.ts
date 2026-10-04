@@ -3,7 +3,7 @@
 // imports, so the footer (app/lib/links.ts, which the client nav bundles) can
 // derive its note from the same words without pulling in the board's rows and
 // their `source` notes (tests/tourRevenueServerOnly.test.ts).
-// app/data/tourRevenue.ts re-exports these; import them from either.
+// Import them from here; app/data/tourRevenue.ts does not re-export them.
 
 /** The body the board reads, and the reports it republishes. */
 export const REVENUE_BODY = "TouringData";

@@ -20,7 +20,8 @@ import RevenuePage from "../app/records/tours/revenue/page";
 import CountriesPage from "../app/records/tours/revenue/countries/page";
 import { chipOrder } from "../app/components/RevenueBoard";
 import { revenueShows, revenueStands } from "../app/data/tourRevenue";
-import { REVENUE_AS_OF, REVENUE_FOOTER_NOTE, REVENUE_READ_ON, REVENUE_SOURCE } from "../app/lib/revenueSource";
+import { AFROBEATS_EDITED_ON, afrobeatsArtists } from "../app/data/afrobeats";
+import { REVENUE_AS_OF, REVENUE_BODY, REVENUE_FOOTER_NOTE, REVENUE_READ_ON, REVENUE_REPORTS, REVENUE_SOURCE } from "../app/lib/revenueSource";
 import { compactGross } from "../app/lib/grossLabel";
 import { numberWord } from "../app/lib/homeData";
 import { runRankCeiling } from "../app/lib/multiNightRuns";
@@ -324,6 +325,26 @@ describe("bo-03 / sw-4 / C7: the box-office notes use the board's own source wor
     expect(label).toBe("Highest-grossing artists by country");
   });
 
+  // The two places the first pass left typed (review of #408): the home card's
+  // note under his five shows, and /methodology's Tours & live card, which the
+  // desktop page and MobileMethodology both render from the one `sources` row.
+  it("the home note and /methodology's Tours & live card derive from REVENUE_BODY / REVENUE_REPORTS", async () => {
+    const home = read("app/page.tsx");
+    expect(home).toContain("Source: {REVENUE_BODY} ({REVENUE_REPORTS}) · the {topTour.name} grossed");
+    expect(names(`Source: ${REVENUE_BODY} (${REVENUE_REPORTS})`)).toBe(true);
+    const { default: Methodology } = await import("../app/methodology/page");
+    const m = renderToStaticMarkup(<Methodology />).replace(/<[^>]+>/g, " ").replace(/&amp;/g, "&");
+    const card = `Box-office and attendance figures from ${REVENUE_REPORTS} as published by ${REVENUE_BODY}, where available`;
+    expect(names(card)).toBe(true);
+    // Both layouts: the desktop list and the phone's MobileMethodology.
+    expect(m.split(card).length - 1).toBe(2);
+    // Negative controls: the strings both places shipped at db02865b.
+    expect(home).not.toContain("Source: TouringData / Billboard Boxscore");
+    expect(m).not.toContain("Box-office and attendance figures from Billboard Boxscore and Pollstar where available");
+    expect(names("Source: TouringData / Billboard Boxscore")).toBe(false);
+    expect(names("Box-office and attendance figures from Billboard Boxscore and Pollstar where available")).toBe(false);
+  });
+
   it("negative control: the shipped footer note and label fail", () => {
     expect(names("Box-office figures via Billboard Boxscore.")).toBe(false);
     expect("Box office by country").not.toBe("Highest-grossing artists by country");
@@ -347,6 +368,32 @@ describe("sw-5 / C8: both box-office routes carry the board's read date", () => 
 
   it("negative control: the shipped stamp for the board (17 Sep) is older than the read", () => {
     expect("2026-09-17" < REVENUE_READ_ON).toBe(true);
+  });
+
+  // The finding's second half: #404 (merged 3 Oct 2026, ac1e9bf6) changed
+  // CKay's and Olamide's "Trumpet" on their plaque and chart lists without a
+  // register read, so verifiedOn (printed as "last verified") stays put and
+  // an edited-on stamp dates the routes. The anchor is #404's own date, typed
+  // here rather than read off AFROBEATS_EDITED_ON.
+  const EDITED_404 = "2026-10-03";
+  it.each(["/afrobeats/ckay", "/afrobeats/ckay/charts", "/afrobeats/olamide", "/afrobeats/olamide/charts"])(
+    "%s is dated no earlier than #404's edit",
+    (path) => {
+      expect(dayOf(path), path).toBeDefined();
+      expect(dayOf(path)! >= EDITED_404, `${path} says ${dayOf(path)}`).toBe(true);
+    },
+  );
+
+  it("the date comes from the edited-on stamp, so verifiedOn keeps meaning the last register read", () => {
+    for (const slug of ["ckay", "olamide"]) {
+      expect(afrobeatsArtists.find((x) => x.slug === slug)?.swept, slug).toBe(true);
+      expect(AFROBEATS_EDITED_ON[slug]).toBe(EDITED_404);
+    }
+    expect(read("app/sitemap.ts")).toMatch(/\[a\.verifiedOn, AFROBEATS_EDITED_ON\[a\.slug\]\]/);
+  });
+
+  it("negative control: the stamps the built sitemap shipped (18 Sep, 6 Sep) fail", () => {
+    for (const shipped of ["2026-09-18", "2026-09-06"]) expect(shipped >= EDITED_404).toBe(false);
   });
 });
 
