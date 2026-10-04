@@ -30,18 +30,18 @@ const anyDash = revenueShows.some((s) => !s.tickets);
 const topM = `$${(top.revenue / 1e6).toFixed(2)}M`;
 
 export const metadata = pageMetadata({
-  title: "Burna Boy Concert Revenue — Highest-Grossing Shows",
+  title: "Burna Boy Box Office — Highest-Grossing Shows",
   description:
-    `Every verified single-show gross by an African artist — ${showCount} shows, ranked by box-office revenue and led by Burna Boy's ${topM} London Stadium concert.`,
+    `Every verified single-show gross by an African artist — ${showCount} shows, ranked by box-office gross and led by Burna Boy's ${topM} London Stadium concert.`,
   path: "/records/tours/revenue",
-  shareTitle: "Burna Boy — Highest Revenue Per Show",
+  shareTitle: "Burna Boy — Highest-Grossing Shows",
   shareDescription: `Every verified single-show gross by an African artist — ${showCount} shows, ranked.`,
 });
 
 const revenueJsonLd = {
   "@context": "https://schema.org",
   "@type": "ItemList",
-  name: "Highest reported revenue per show — African artists",
+  name: "Highest-grossing shows — African artists",
   itemListOrder: "https://schema.org/ItemListOrderDescending",
   numberOfItems: revenueShows.length,
   itemListElement: revenueShows.map((s, i) => ({
@@ -52,12 +52,12 @@ const revenueJsonLd = {
 };
 
 const revenueDataset = datasetJsonLd({
-  name: "Highest reported revenue per show by African artists",
+  name: "Highest-grossing shows by African artists",
   description:
-    `Every reported single-show gross by an African artist we have verified — ${showCount} shows, ranked by box-office revenue, led by Burna Boy's ${topM} London Stadium concert.`,
+    `Every reported single-show gross by an African artist we have verified — ${showCount} shows, ranked by box-office gross, led by Burna Boy's ${topM} London Stadium concert.`,
   path: "/records/tours/revenue",
-  keywords: ["Burna Boy", "box office", "highest-grossing concert", "African artist revenue", "touring revenue"],
-  variableMeasured: ["Artist", "Venue", "Tour", "Year", "Tickets sold", "Revenue"],
+  keywords: ["Burna Boy", "box office", "highest-grossing shows", "highest-grossing concert", "African artist revenue", "touring revenue"],
+  variableMeasured: ["Artist", "Venue", "Tour", "Year", "Tickets sold", "Gross"],
 });
 
 const SOURCE_NOTE =
@@ -84,13 +84,11 @@ export default function RevenuePage() {
         rows={revenueShows.map((s, i) => ({
           rank: String(i + 1).padStart(2, "0"),
           venue: s.venue,
-          // Another artist's night names its artist right under the venue —
-          // the tint alone made "whose show is this?" a legend lookup. His
-          // rows keep the tour name instead: the page is his, and his rows
-          // already carry the gold gross and the plain background.
-          meta: s.artist === "Burna Boy"
-            ? `${s.city} · ${s.tour} · ${s.year}`
-            : `${s.artist} · ${s.city} · ${s.year}`,
+          // Every row names its artist, his too, in the same place and the
+          // same format as everyone else's: "<artist> · <city> · <year>" (the
+          // owner's rule, 3 Oct 2026). The gold gross and the plain background
+          // still mark his nights; they never stand in for his name.
+          meta: `${s.artist} · ${s.city} · ${s.year}`,
           gross: compactGross(s.revenue),
           tickets: s.tickets,
           his: s.artist === "Burna Boy",
@@ -121,7 +119,7 @@ export default function RevenuePage() {
               Box office · all-time
             </div>
             <h1 className={styles.h1}>
-              Highest <span className="inkText">Revenue Per Show</span>
+              Highest-Grossing <span className="inkText">Shows</span>
             </h1>
             <p className={styles.lede}>
               Every reported single-show gross by an African artist we have verified —{" "}
@@ -129,6 +127,9 @@ export default function RevenuePage() {
               {burnaShows > otherShows ? " — more than every other artist on this list combined" : ""}.
             </p>
             <div className={styles.heroBtns}>
+              <Link href="/records/tours/revenue/countries" className="btn btnPrimary">
+                Highest-grossing artists by country →
+              </Link>
               <Link href="/records/visualized#grosses" className="btn btnSecondary">
                 See the grosses visualised →
               </Link>

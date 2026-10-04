@@ -290,11 +290,18 @@ export const searchIndex: SearchDoc[] = [
     keywords: ["festivals", "afro nation", "coachella", "glastonbury", "north sea jazz", "headline"],
   },
   {
-    title: "Highest Revenue Per Show",
+    title: "Highest-Grossing Shows",
     path: "/records/tours/revenue",
     section: "Records",
     description: "Box-office and highest-grossing concert figures.",
-    keywords: ["revenue", "box office", "grossing", "highest grossing", "boxscore", "earnings", "tour money"],
+    keywords: ["highest-grossing shows", "revenue per show", "highest revenue per show", "revenue", "box office", "grossing", "highest grossing", "boxscore", "earnings", "tour money"],
+  },
+  {
+    title: "Highest-Grossing Artists by Country",
+    path: "/records/tours/revenue/countries",
+    section: "Records",
+    description: "Who leads every country and continent for reported box office by African artists, with totals and best nights.",
+    keywords: ["highest grossing african artists by country", "top grossing artists by country", "box office by country", "concert grosses", "leaders", "country", "continent", "revenue", "grossing", "boxscore", "europe", "north america", "where he leads"],
   },
   {
     title: "Where the World Listens",

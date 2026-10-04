@@ -248,6 +248,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/share", priority: 0.7, changeFrequency: "monthly" },
     { path: "/records/tours/festivals", priority: 0.6, changeFrequency: "monthly" },
     { path: "/records/tours/revenue", priority: 0.6, changeFrequency: "monthly" },
+    { path: "/records/tours/revenue/countries", priority: 0.6, changeFrequency: "monthly" },
     { path: "/records/cars", priority: 0.6, changeFrequency: "monthly" },
     ...carSlugs.map((slug) => ({ path: `/records/cars/${slug}`, priority: 0.5, changeFrequency: "monthly" as const })),
     { path: "/records/tours/map", priority: 0.6, changeFrequency: "monthly" },

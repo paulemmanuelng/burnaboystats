@@ -40,12 +40,76 @@
   export const liveChartsUpdated = "2026-10-03";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-03T16:21Z";
+  export const liveChartsBuiltAt = "2026-10-03T21:21Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","Spotify Albums","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
+  {
+    "title": "RU The World",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 53,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 126,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 169,
+            "movement": -1
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 177,
+            "movement": -79
+          },
+          {
+            "country": "GW",
+            "name": "Guinea-Bissau",
+            "position": 197,
+            "movement": -123
+          },
+          {
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 198,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Spotify Albums",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 81,
+            "movement": -6
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/78b014342472081dff80a8cafe54b8ca/500x500-000000-80-0-0.jpg"
+  },
   {
     "title": "Girlfriend",
     "platforms": [
@@ -54,25 +118,24 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "GW",
-            "name": "Guinea-Bissau",
-            "position": 114,
+            "country": "PG",
+            "name": "Papua New Guinea",
+            "position": 124,
             "movement": null,
             "status": "new"
           },
           {
-            "country": "NE",
-            "name": "Niger",
-            "position": 188,
+            "country": "FJ",
+            "name": "Fiji",
+            "position": 144,
             "movement": null,
             "status": "new"
           },
           {
             "country": "LR",
             "name": "Liberia",
-            "position": 190,
-            "movement": null,
-            "status": "new"
+            "position": 197,
+            "movement": -7
           }
         ]
       },
@@ -101,8 +164,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 158,
-            "movement": -12
+            "position": 167,
+            "movement": -17
           }
         ]
       }
@@ -120,27 +183,20 @@
           {
             "country": "LR",
             "name": "Liberia",
-            "position": 99,
-            "movement": 52
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 111,
-            "movement": 26
+            "position": 87,
+            "movement": 12
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 128,
-            "movement": -18
+            "position": 131,
+            "movement": -3
           },
           {
             "country": "NE",
             "name": "Niger",
-            "position": 200,
-            "movement": null,
-            "status": "new"
+            "position": 155,
+            "movement": 45
           }
         ]
       },
@@ -151,8 +207,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 151,
-            "movement": 30
+            "position": 191,
+            "movement": -40
           }
         ]
       }
@@ -168,31 +224,23 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "PG",
-            "name": "Papua New Guinea",
-            "position": 66,
-            "movement": 25
-          },
-          {
-            "country": "GW",
-            "name": "Guinea-Bissau",
-            "position": 86,
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 126,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "PG",
+            "name": "Papua New Guinea",
+            "position": 136,
+            "movement": -70
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 167,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 179,
-            "movement": null,
-            "status": "new"
+            "position": 178,
+            "movement": -11
           }
         ]
       },
@@ -220,146 +268,35 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 64,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "NG",
             "name": "Nigeria",
-            "position": 66,
-            "movement": -7
+            "position": 67,
+            "movement": -1
           },
           {
-            "country": "NE",
-            "name": "Niger",
-            "position": 133,
-            "movement": null,
-            "status": "new"
+            "country": "LR",
+            "name": "Liberia",
+            "position": 79,
+            "movement": -15
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 137,
-            "movement": -16
+            "position": 154,
+            "movement": -17
           },
           {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 167,
-            "movement": -63
+            "country": "GW",
+            "name": "Guinea-Bissau",
+            "position": 196,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/589173416a36ce1395e49b85c4e6a9f8/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "RU The World",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GW",
-            "name": "Guinea-Bissau",
-            "position": 74,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 98,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 168,
-            "movement": 15
-          }
-        ]
-      },
-      {
-        "platform": "Spotify Albums",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 81,
-            "movement": -6
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/78b014342472081dff80a8cafe54b8ca/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Addiction",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GW",
-            "name": "Guinea-Bissau",
-            "position": 78,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/78b014342472081dff80a8cafe54b8ca/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Body Tuff",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 103,
-            "movement": 24
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/e920314212c8ffd3e5286a73be6ceeb8/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Muhammad Ali",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GW",
-            "name": "Guinea-Bissau",
-            "position": 116,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/a979738c47be5a49e276347f78dc0547/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "WeWe",
@@ -381,16 +318,16 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/b42b9963b567481843c14d0f3991639c/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Bounce",
+    "title": "Tour",
     "platforms": [
       {
-        "platform": "Spotify",
+        "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 197,
+            "country": "LR",
+            "name": "Liberia",
+            "position": 134,
             "movement": null,
             "status": "new"
           }
@@ -398,7 +335,27 @@
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/47ff5c26da8186dd164697a1371d48eb/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/78b014342472081dff80a8cafe54b8ca/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Goddess",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 189,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/e018a10f3cf2b892e24027f77ff80677/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Ilashe",
@@ -410,34 +367,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 179,
-            "movement": -16
+            "position": 190,
+            "movement": -11
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/589173416a36ce1395e49b85c4e6a9f8/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "R.U.",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 185,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/78b014342472081dff80a8cafe54b8ca/500x500-000000-80-0-0.jpg"
   }
 ];
   

@@ -72,6 +72,24 @@ export function dropDeepLink(...keys: string[]): void {
 }
 
 /**
+ * Put one deep-link key in the fragment (and out of the query string), without
+ * a navigation — the view-mode counterpart of dropDeepLink, for a control whose
+ * state should survive a shared link (the certs views' #home=0, #feat=0). A
+ * plain in-page anchor ("#faq") is not a deep link and is replaced, not mangled
+ * into "#faq=&home=0".
+ */
+export function writeDeepLink(key: string, value: string): void {
+  const raw = window.location.hash.replace(/^#/, "");
+  const hash = new URLSearchParams(raw.includes("=") ? raw : "");
+  const search = new URLSearchParams(window.location.search);
+  if (hash.get(key) === value && !search.has(key)) return;
+  hash.set(key, value);
+  search.delete(key);
+  const q = search.toString();
+  replaceUrl(`${window.location.pathname}${q ? `?${q}` : ""}#${hash.toString()}`);
+}
+
+/**
  * Calls `apply` whenever the fragment changes to a deep link or to nothing.
  * A plain in-page anchor ("#faq") is left alone: it is not a filter, and
  * treating it as "no focus" would drop the reader's focus on a jump.

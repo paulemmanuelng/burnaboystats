@@ -10,7 +10,7 @@ import BackLink from "./BackLink";
 import { RUNS_HEADING, RUNS_LEDE } from "../lib/multiNightRuns";
 
 /**
- * Mobile screen 14 — Revenue per show.
+ * Mobile screen 14 — Highest-grossing shows.
  *
  * Built from designs/mobile/Burna Boy Stats - Mobile Deep Pages.dc.html, screen
  * 14 and its `revenue()` method.
@@ -97,7 +97,7 @@ export default function MobileRevenue({
             <path d="M15 5l-7 7 7 7" />
           </svg>
         </BackLink>
-        <span className={styles.backLabel}>Revenue per show</span>
+        <span className={styles.backLabel}>Highest-grossing</span>
         <span className={styles.badge}>{topGross}</span>
         <MobileMenuButton />
       </div>
@@ -108,7 +108,7 @@ export default function MobileRevenue({
             carries two — one per layout, and only ever one is visible. The SEO
             gate checks that pairing rather than a bare count. */}
         <h1 className={styles.title}>
-          Revenue per <span className={styles.gold}>show</span>
+          Highest-grossing <span className={styles.gold}>shows</span>
         </h1>
         <p className={styles.lede}>{lede}</p>
       </div>
@@ -120,6 +120,13 @@ export default function MobileRevenue({
             <div className={styles.statLabel}>{s.label}</div>
           </div>
         ))}
+      </div>
+
+      {/* Box office summed by country — who leads each one (3 Oct 2026). */}
+      <div className={styles.linkRow}>
+        <Link href="/records/tours/revenue/countries" className="btn btnPrimary">
+          Highest-grossing artists by country →
+        </Link>
       </div>
 
       <ScrollRail className={styles.rail} label="Filter the board">
