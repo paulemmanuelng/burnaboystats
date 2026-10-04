@@ -250,9 +250,10 @@
    to stay legible as a raised surface. */
 .jumpCard { background: var(--bg-soft); min-width: 0; }
 .jumpCardAlt { background: var(--bg); margin-top: 20px; }
-/* The owner's hover rule: the surface presses to --bg-raised, no gold wash. */
+/* The owner's hover rule: the surface presses to --bg-raised, no gold wash —
+   on every Tours card (item 37, approved 4 Oct 2026). */
 .jumpCard:hover { border-color: var(--gold); background: var(--bg-raised); }
-.jumpCardAlt:hover { border-color: var(--gold); background: color-mix(in srgb, var(--gold-wash-base) calc(5% * var(--wash-strength)), transparent); }
+.jumpCardAlt:hover { border-color: var(--gold); background: var(--bg-raised); }
 /* Keyboard focus keeps the card's own corner: the global a:focus-visible rule
    (0,1,1) sets border-radius: 3px and would win over the 0,1,0 card rule. */
 .jumpCard:focus-visible,

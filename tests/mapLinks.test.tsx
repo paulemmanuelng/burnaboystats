@@ -150,7 +150,18 @@ describe("item 36: the desktop cards row, map first, then Festivals", () => {
   };
 
   it("both cards hover to --bg-raised", () => {
-    expect(pressesToRaised(read("app/records/tours/tours.module.css"), ".jumpCard:hover")).toBe(true);
+    const css = read("app/records/tours/tours.module.css");
+    expect(pressesToRaised(css, ".jumpCard:hover")).toBe(true);
+    // The second card (the Festivals card under the pair) kept the gold wash
+    // until item 37 (approved 4 Oct 2026).
+    expect(pressesToRaised(css, ".jumpCardAlt:hover")).toBe(true);
+    expect(declared(ruleFor(css, ".jumpCardAlt:hover"), "border-color")).toBe("var(--gold)");
+  });
+
+  it("negative control: .jumpCardAlt:hover as shipped until item 37 was a gold wash", () => {
+    const SHIPPED =
+      ".jumpCardAlt:hover { border-color: var(--gold); background: color-mix(in srgb, var(--gold-wash-base) calc(5% * var(--wash-strength)), transparent); }";
+    expect(pressesToRaised(SHIPPED, ".jumpCardAlt:hover")).toBe(false);
   });
 
   it("negative control: the hover rule as shipped until 30 Sep 2026 was a gold wash", () => {
