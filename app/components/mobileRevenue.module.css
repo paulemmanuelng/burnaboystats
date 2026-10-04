@@ -314,10 +314,10 @@
   text-transform: uppercase;
   color: var(--text-muted);
 }
-/* .statValue (the shared stat figure, gold) + this: the record figure is gold
-   only while the record night is his (N6). */
-.recordFigure.recordFigure { margin-top: 10px; font-size: 44px; line-height: 0.92; }
-.recordOther.recordOther { color: var(--text); }
+/* .statValue (the shared stat figure) + this: the record figure prints in ink,
+   and .recordFigureHis takes it to gold only while the record night is his (N6). */
+.recordFigure.recordFigure { margin-top: 10px; font-size: 44px; line-height: 0.92; color: var(--text); }
+.recordFigureHis.recordFigureHis { color: var(--gold); }
 .recordLine {
   margin-top: 8px;
   font-size: var(--type-caption);

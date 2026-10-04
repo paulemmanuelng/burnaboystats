@@ -46,13 +46,14 @@ const BOARDS = [
     his: "recordFigureHis",
   },
   {
-    // The phone's record card: the shared gold stat figure (.statValue), with
-    // .recordOther taking it to ink whenever the night is not his.
+    // The phone's record card: .recordFigure prints in ink and only
+    // .recordFigureHis, applied while the night is his, carries the gold —
+    // the same shape as the desktop card (review of #413).
     what: "the record-night card on the phone shows screen",
     css: "app/components/mobileRevenue.module.css",
     tsx: "app/components/MobileRevenue.tsx",
-    base: "recordOther",
-    his: "statValue",
+    base: "recordFigure",
+    his: "recordFigureHis",
   },
   {
     what: "the top-ten table on /records/tours",
@@ -113,9 +114,31 @@ describe("gold marks Burna Boy's grosses, not everyone's", () => {
   it.each(BOARDS.map((b) => [b.what, b] as const))("%s: applies it conditionally", (_w, b) => {
     const tsx = read(b.tsx);
     expect(
-      new RegExp(`styles\\.${b.his}`).test(tsx),
+      new RegExp(`styles\\.${b.his}\\b`).test(tsx),
       `${b.tsx} never references ${b.his}, so the gold can never appear`,
     ).toBe(true);
+    expect(
+      unconditional(tsx, b.his),
+      `${b.tsx} applies ${b.his} outside a "his ? … : …" branch, so it is gold for everyone`,
+    ).toEqual([]);
+  });
+});
+
+/** Every reference to styles.<cls> that is NOT the truthy branch of a ternary
+ *  ("cond ? styles.cls : …") — i.e. a class that is applied whoever's row it is. */
+const unconditional = (tsx: string, cls: string): string[] =>
+  [...tsx.matchAll(new RegExp(`(.{0,40})styles\\.${cls}\\b`, "g"))]
+    .filter((m) => !/\?\s*$/.test(m[1]))
+    .map((m) => m[0].trim());
+
+describe("the conditional check: negative control", () => {
+  it("catches the phone record card as #413 first shipped it (151396b7)", () => {
+    // MobileRevenue.tsx at 151396b7, verbatim: the gold .statValue was on the
+    // figure for every artist, and the old BOARDS entry named it the his-class.
+    const shipped = '<span className={`${styles.statValue} ${styles.recordFigure} ${record.his ? "" : styles.recordOther}`}>';
+    expect(unconditional(shipped, "statValue")).not.toEqual([]);
+    // …and passes the line as it ships now.
+    expect(unconditional(read("app/components/MobileRevenue.tsx"), "recordFigureHis")).toEqual([]);
   });
 });
 

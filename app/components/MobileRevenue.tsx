@@ -150,7 +150,7 @@ export default function MobileRevenue({
             <span>{record.year}</span>
           </span>
           {/* The rows' own form (bo-05), gold only while the night is his (N6). */}
-          <span className={`${styles.statValue} ${styles.recordFigure} ${record.his ? "" : styles.recordOther}`}>
+          <span className={`${styles.statValue} ${styles.recordFigure} ${record.his ? styles.recordFigureHis : ""}`}>
             {record.gross}
           </span>
           <span className={styles.recordLine}>

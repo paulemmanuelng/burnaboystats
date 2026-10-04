@@ -35,6 +35,10 @@ const boardShows = revenueShows.map(({ artist, venue, city, flag, tour, year, ti
 // every row carries a headcount, and a note for nothing reads as a bug.
 const anyDash = revenueShows.some((s) => !s.tickets);
 const topM = `$${(top.revenue / 1e6).toFixed(2)}M`;
+// Who and where the No. 1 is, from the row itself: the meta and the Dataset
+// once typed "Burna Boy's … London Stadium concert", which would name the wrong
+// artist and venue the day another night took No. 1 (N6, "anywhere it prints").
+const TOP_LEAD = `${top.artist}${top.artist.endsWith("s") ? "'" : "'s"} ${topM} ${top.venue} concert`;
 // The place the weakest-placed run would take among single nights — "top N" in
 // the runs' head, never typed.
 const runCeiling = runRankCeiling(revenueStands.map((s) => s.revenue), revenueShows.map((s) => s.revenue));
@@ -45,7 +49,7 @@ const SOURCE = `${REVENUE_SOURCE}, as of ${REVENUE_AS_OF}.`;
 export const metadata = pageMetadata({
   title: "Burna Boy Box Office — Highest-Grossing Shows",
   description:
-    `Every verified single-show gross by an African artist — ${showCount} shows, ranked by box-office gross and led by Burna Boy's ${topM} London Stadium concert.`,
+    `Every verified single-show gross by an African artist — ${showCount} shows, ranked by box-office gross and led by ${TOP_LEAD}.`,
   path: "/records/tours/revenue",
   shareTitle: "Burna Boy — Highest-Grossing Shows",
   shareDescription: `Every verified single-show gross by an African artist — ${showCount} shows, ranked.`,
@@ -67,7 +71,7 @@ const revenueJsonLd = {
 const revenueDataset = datasetJsonLd({
   name: "Highest-grossing shows by African artists",
   description:
-    `Every reported single-show gross by an African artist we have verified — ${showCount} shows, ranked by box-office gross, led by Burna Boy's ${topM} London Stadium concert.`,
+    `Every reported single-show gross by an African artist we have verified — ${showCount} shows, ranked by box-office gross, led by ${TOP_LEAD}.`,
   path: "/records/tours/revenue",
   keywords: ["Burna Boy", "box office", "highest-grossing shows", "highest-grossing concert", "African artist revenue", "touring revenue"],
   variableMeasured: ["Artist", "Venue", "Tour", "Year", "Tickets sold", "Gross"],
