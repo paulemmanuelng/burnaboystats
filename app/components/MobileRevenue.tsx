@@ -1,4 +1,4 @@
-"use client"; // the artist chips filter the board
+"use client"; // the chips filter the board
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
@@ -7,8 +7,8 @@ import ScrollRail from "./ScrollRail";
 import NotReported from "./NotReported";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
-import { RUNS_HEADING, RUNS_LEDE } from "../lib/multiNightRuns";
-import { HIS, chipOrder, nightCounts } from "../lib/showsChips";
+import { RUNS_HEADING, RUNS_LEDE, runYear, runsCountLine, shortDates } from "../lib/multiNightRuns";
+import { HIS, RUNS_VIEW, nightCounts, railChips, type BoardView } from "../lib/showsChips";
 
 /**
  * Highest-grossing shows, the phone screen — Claude Design round 1, Job 2
@@ -28,6 +28,10 @@ import { HIS, chipOrder, nightCounts } from "../lib/showsChips";
  *    while the record night is his (N6). Every row names its artist, his too.
  *  - **No badge on the back bar** (Q4): the record card states the figure
  *    directly beneath it, and the label takes the page's full name.
+ *  - **The multi-night runs are a chip**, second on the rail between "All"
+ *    and Burna Boy (the owner, 4 Oct 2026), not a section beneath the board.
+ *    It swaps the nights for the runs, in the rows' own format, under
+ *    RUNS_LEDE and the derived note; All still counts single nights only.
  */
 
 /** A night on the board, the phone's way. */
@@ -53,14 +57,14 @@ export interface RevenueStandRow {
   flag: string;
   venue: string;
   city: string;
-  /** Named on every row, his included. */
+  /** Named on every row, his included, where a night's row names its artist. */
   artist: string;
-  tour: string;
-  /** "24–25 February 2024": kept on one line, so "24–25" never splits. */
+  /** The data's own, "24–25 February 2024"; the row prints it short. */
   dates: string;
   nights: number;
+  /** Already formatted, e.g. "$2.875M": the rows' own form. */
   gross: string;
-  /** "29,579 tickets over 2 nights" — nights, never shows. */
+  /** The combined headcount, "29,579", as a night's row prints its own. */
   tickets: string;
   his: boolean;
 }
@@ -87,13 +91,16 @@ export default function MobileRevenue({
     spread: string;
   };
   rows: RevenueRow[];
+  /** The runs chip's rows, in the data's order. */
   stands?: RevenueStandRow[];
-  /** The derived "top N" sentence said after RUNS_LEDE. */
+  /** The derived "top N" sentence said after RUNS_LEDE in the runs view. */
   runsNote: string;
   /** The method note: the source line first. */
   note: { k: string; v: string }[];
 }) {
-  const [artist, setArtist] = useState<string | null>(null);
+  // null: every single night; an artist's name: theirs; RUNS_VIEW: the runs.
+  const [view, setView] = useState<BoardView>(null);
+  const runsOn = view === RUNS_VIEW;
   const [touched, setTouched] = useState(false);
   const activeRef = useRef<HTMLButtonElement>(null);
 
@@ -112,14 +119,13 @@ export default function MobileRevenue({
     const behavior: ScrollBehavior = reduce ? "auto" : "smooth";
     if (left - pad < rail.scrollLeft) rail.scrollTo?.({ left: Math.max(0, left - pad), behavior });
     else if (right + pad > rail.scrollLeft + rail.clientWidth) rail.scrollTo?.({ left: right + pad - rail.clientWidth, behavior });
-  }, [artist, touched]);
+  }, [view, touched]);
 
   const counts = nightCounts(rows.map((r) => r.artist));
-  const chips = [
-    { key: null as string | null, label: "All", count: rows.length },
-    ...chipOrder(counts).map((a) => ({ key: a as string | null, label: a, count: counts[a] })),
-  ];
-  const shown = rows.filter((r) => !artist || r.artist === artist);
+  // All, Multi-night runs, then the artists — lib/showsChips.ts, shared with the desktop.
+  const chips = railChips("All", counts, rows.length, stands.length);
+  const shown = runsOn ? [] : rows.filter((r) => view === null || r.artist === view);
+  const runNights = stands.reduce((t, r) => t + r.nights, 0);
 
   return (
     <div className={styles.screen}>
@@ -197,9 +203,9 @@ export default function MobileRevenue({
       </div>
 
       <div className={styles.railStick}>
-        <ScrollRail className={styles.rail} label="Filter the board by artist">
+        <ScrollRail className={styles.rail} label="Filter the board">
           {chips.map((c) => {
-            const on = artist === c.key;
+            const on = view === c.key;
             return (
               <button
                 key={c.label}
@@ -209,7 +215,7 @@ export default function MobileRevenue({
                 className={`${styles.chip} ${on ? styles.chipOn : ""}`}
                 onClick={() => {
                   setTouched(true);
-                  setArtist(on ? null : c.key);
+                  setView(on ? null : c.key);
                 }}
               >
                 {c.label}
@@ -220,9 +226,34 @@ export default function MobileRevenue({
         </ScrollRail>
       </div>
 
+      {runsOn && (
+        // The runs' one explanation, above their rows (fix 12): RUNS_LEDE
+        // verbatim, then the derived "top N" note. RUNS_HEADING, the section's
+        // heading until 4 Oct 2026, now names the chip and labels this view.
+        <section className={styles.runsHead} aria-labelledby="runs-title-m">
+          <h2 id="runs-title-m" className="visuallyHidden">
+            {RUNS_HEADING}
+          </h2>
+          <p className={styles.runsLede}>
+            {RUNS_LEDE} {runsNote}
+          </p>
+        </section>
+      )}
+
       <div className={styles.countBar}>
         <span aria-live="polite" aria-atomic="true">
-          {shown.length} of {rows.length} shows{artist ? ` · ${artist}` : ""}
+          {runsOn
+            ? // Each part on one line (at 390 "7 nights" split across two), the
+              // separator ending the line it follows: "3 multi-night runs ·".
+              runsCountLine(stands.length, runNights)
+                .split(" · ")
+                .map((part, i, parts) => (
+                  <span key={part}>
+                    <span className={styles.nowrap}>{i < parts.length - 1 ? `${part} ·` : part}</span>
+                    {i < parts.length - 1 ? " " : ""}
+                  </span>
+                ))
+            : `${shown.length} of ${rows.length} shows${typeof view === "string" ? ` · ${view}` : ""}`}
         </span>
         <span aria-hidden="true">Gross · tickets</span>
       </div>
@@ -249,43 +280,41 @@ export default function MobileRevenue({
         </div>
       ))}
 
-      {stands.length > 0 && (
-        // A section of its own with a real heading: these are the body's own
-        // combined figures for runs of several nights, shown as what they are
-        // rather than ranked against single nights. One explanation, at the
-        // head (fix 12): RUNS_LEDE verbatim, then the derived "top N" note.
-        <section className={styles.runs} aria-labelledby="runs-title-m">
-          <h2 id="runs-title-m" className={styles.runsTitle}>{RUNS_HEADING}</h2>
-          <p className={styles.runsLede}>
-            {RUNS_LEDE} {runsNote}
-          </p>
-          <ul className={styles.runsList}>
-            {stands.map((r) => (
-              <li key={r.venue + r.dates} className={styles.runRow}>
-                <span className={styles.runHead}>
-                  <span className={styles.runMarker}>
-                    <span className={styles.runMarkerBars} aria-hidden="true">
-                      <span />
-                      <span />
-                    </span>
-                    <span>Run · {r.nights} nights</span>
-                  </span>
-                  <span className={styles.runVenue}>
-                    {r.flag} {r.venue}
-                  </span>
-                </span>
-                <span className={`${styles.gross} ${r.his ? styles.grossHis : styles.grossOther}`}>{r.gross}</span>
-                <span className={styles.runMeta}>
-                  {r.artist} · {r.city} · {r.tour}
-                </span>
-                <span className={styles.runMeta}>
-                  <span className={styles.nowrap}>{r.dates}</span> · <span className={styles.nowrap}>{r.tickets}</span>
-                </span>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
+      {runsOn &&
+        // A run in a night's row format: the run mark where the rank would be
+        // (a run is never ranked), the venue, "<artist> · <city> · <year>" in
+        // the same place as every row's, then the nights and dates; the
+        // combined gross and tickets on the right, his gross gold.
+        stands.map((r) => (
+          <div key={r.venue + r.dates} className={`${styles.row} ${styles.showRow}`}>
+            <span className={`${styles.rank} ${styles.showRank} ${styles.runRank}`}>
+              <span className={styles.runMarkerBars} aria-hidden="true">
+                <span />
+                <span />
+              </span>
+              <span className="visuallyHidden">Run</span>
+            </span>
+            <div className={styles.main}>
+              <div className={`${styles.venue} ${styles.showVenue}`}>
+                {r.flag} {r.venue}
+              </div>
+              <div className={`${styles.meta} ${styles.metaSplit}`}>
+                <span className={styles.metaKeep}>{r.artist} · </span>
+                <span className={styles.metaCity}>{r.city}</span>
+                <span className={styles.metaKeep}> · {runYear(r.dates)}</span>
+              </div>
+              {/* "3 nights · 28–29 Nov & 1 Dec 2021": wraps between its parts, never inside the dates. */}
+              <div className={`${styles.meta} ${styles.runNights}`}>
+                <span className={styles.nowrap}>{r.nights} nights</span> ·{" "}
+                <span className={styles.nowrap}>{shortDates(r.dates)}</span>
+              </div>
+            </div>
+            <div className={styles.right}>
+              <div className={`${styles.gross} ${r.his ? styles.grossHis : styles.grossOther}`}>{r.gross}</div>
+              <div className={`${styles.tickets} ${styles.showTickets}`}>{r.tickets}</div>
+            </div>
+          </div>
+        ))}
 
       <section className={styles.method} aria-label="Sources and method">
         <dl className={styles.methodList}>
