@@ -5,8 +5,9 @@ import RevenueBoard from "../../../components/RevenueBoard";
 import MobileRevenue from "../../../components/MobileRevenue";
 import { numberWord } from "../../../lib/homeData";
 import { compactGross } from "../../../lib/grossLabel";
-import { RUNS_HEADING, RUNS_LEDE, runTickets } from "../../../lib/multiNightRuns";
-import { revenueShows, revenueStands, REVENUE_AS_OF, REVENUE_SOURCE } from "../../../data/tourRevenue";
+import { RUNS_HEADING, RUNS_LEDE, runRankCeiling, runTickets } from "../../../lib/multiNightRuns";
+import { revenueShows, revenueStands } from "../../../data/tourRevenue";
+import { REVENUE_AS_OF, REVENUE_READ_ON, REVENUE_SOURCE } from "../../../lib/revenueSource";
 import { pageMetadata, datasetJsonLd } from "../../../lib/seo";
 
 // Derived, not written down. The list grows whenever a new show is reported —
@@ -19,8 +20,8 @@ const burnaShows = revenueShows.filter((s) => s.artist === "Burna Boy").length;
 const otherShows = showCount - burnaShows;
 const top = revenueShows[0];
 // The client board gets every column but `source`, so this page's own payload
-// carries none (the data file still reaches a shared browser chunk through
-// tours.ts/firsts.ts; no page prints a source — tests/revenueSources.test.ts).
+// carries none; no page prints a source (tests/revenueSources.test.ts), and no
+// client module imports the data file (tests/tourRevenueServerOnly.test.ts).
 const boardShows = revenueShows.map(({ artist, venue, city, flag, tour, year, tickets, revenue }) => ({
   artist, venue, city, flag, tour, year, tickets, revenue,
 }));
@@ -28,6 +29,9 @@ const boardShows = revenueShows.map(({ artist, venue, city, flag, tour, year, ti
 // 2026 every row carries a headcount, and a legend for nothing reads as a bug.
 const anyDash = revenueShows.some((s) => !s.tickets);
 const topM = `$${(top.revenue / 1e6).toFixed(2)}M`;
+// The place the weakest-placed run would take among single nights — "top N" in
+// the note under the runs, never typed.
+const runCeiling = runRankCeiling(revenueStands.map((s) => s.revenue), revenueShows.map((s) => s.revenue));
 
 export const metadata = pageMetadata({
   title: "Burna Boy Box Office — Highest-Grossing Shows",
@@ -58,10 +62,12 @@ const revenueDataset = datasetJsonLd({
   path: "/records/tours/revenue",
   keywords: ["Burna Boy", "box office", "highest-grossing shows", "highest-grossing concert", "African artist revenue", "touring revenue"],
   variableMeasured: ["Artist", "Venue", "Tour", "Year", "Tickets sold", "Gross"],
+  // The sitemap's stamp for this route (app/sitemap.ts), so the two agree.
+  dateModified: REVENUE_READ_ON,
 });
 
 const SOURCE_NOTE =
-  `${REVENUE_SOURCE}, as of ${REVENUE_AS_OF}. Each entry is a single night's gross. Multi-night runs reported only as one combined total are listed beneath the board with the reported figures; they cannot be ranked against single nights, and no per-night split is invented for them.`;
+  `${REVENUE_SOURCE}, as of ${REVENUE_AS_OF}. Each entry is a single night's gross.`;
 
 export default function RevenuePage() {
   return (
@@ -78,7 +84,9 @@ export default function RevenuePage() {
         lede={`${numberWord(showCount)} documented shows by African artists, ranked by gross — ${burnaShows} of them his.`}
         counts={{ all: showCount, his: burnaShows, other: otherShows }}
         stats={[
-          { value: topM, label: "Biggest night" },
+          // The badge keeps the short $X.XXM; this cell sits over the rows, so
+          // it prints the rows' own form (bo-05: "$6.15M" above "$6.147M").
+          { value: compactGross(top.revenue), label: "Biggest night" },
           { value: top.tickets ?? "—", label: `Tickets, ${top.city}` },
         ]}
         rows={revenueShows.map((s, i) => ({
@@ -87,8 +95,11 @@ export default function RevenuePage() {
           // Every row names its artist, his too, in the same place and the
           // same format as everyone else's: "<artist> · <city> · <year>" (the
           // owner's rule, 3 Oct 2026). The gold gross and the plain background
-          // still mark his nights; they never stand in for his name.
-          meta: `${s.artist} · ${s.city} · ${s.year}`,
+          // still mark his nights; they never stand in for his name. Passed as
+          // fields so the phone row clips the city, never the year (k2).
+          artist: s.artist,
+          city: s.city,
+          year: s.year,
           gross: compactGross(s.revenue),
           tickets: s.tickets,
           his: s.artist === "Burna Boy",
@@ -105,7 +116,7 @@ export default function RevenuePage() {
           tickets: runTickets(s.tickets, s.shows),
           his: s.artist === "Burna Boy",
         }))}
-        sourceNote={`${REVENUE_SOURCE}, as of ${REVENUE_AS_OF}. The board ranks every reported show by an African artist we have verified, not only his — a missing night means no gross for it was reported, or none we could verify yet.${anyDash ? " A dash means no headcount was published." : ""} Multi-night runs reported only as one combined total sit beneath the board with the reported figures; no per-night split is invented for them.`}
+        sourceNote={`${REVENUE_SOURCE}, as of ${REVENUE_AS_OF}. The board ranks every reported show by an African artist we have verified, not only his — a missing night means no gross for it was reported, or none we could verify yet.${anyDash ? " A dash means no headcount was published." : ""} No per-night split is invented for a multi-night run.`}
       />
 
       <div className={styles.desktopOnly}>
@@ -168,8 +179,8 @@ export default function RevenuePage() {
               ))}
             </ul>
             <p className={styles.standsNote}>
-              No per-night split is invented for them: each total would sit in the top five of a
-              board of single nights it never had.
+              No per-night split is invented for them: each total would sit in the top{" "}
+              {numberWord(runCeiling).toLowerCase()} of a board of single nights it never had.
             </p>
           </section>
           <p className={styles.sourceNote}>{SOURCE_NOTE}</p>

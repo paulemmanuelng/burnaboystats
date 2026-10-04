@@ -82,7 +82,7 @@ export default function MobileRecords({
       {/* Box office */}
       <div className={styles.boxHead}>
         <div className={styles.kicker}>Box office</div>
-        <h2 className={styles.h2}>Biggest single shows</h2>
+        <h2 className={styles.h2}>Highest-grossing shows</h2>
         <p className={styles.boxLede}>
           {hisShows} of the {showCount} verified African single-show grosses are his.
         </p>

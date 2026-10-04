@@ -35,7 +35,12 @@ type Filter = "all" | "his" | "other";
 export interface RevenueRow {
   rank: string;
   venue: string;
-  meta: string;
+  /** The meta line, "<artist> · <city> · <year>", as three fields: at 320 the
+   *  city clips and the year never does (k2, 3 Oct 2026 — his two Capital One
+   *  Arena nights lost the year to the ellipsis and read identically). */
+  artist: string;
+  city: string;
+  year: string;
   /** Already formatted, e.g. "$6.15M". */
   gross: string;
   /** Boxscore does not always publish a headcount. */
@@ -122,9 +127,11 @@ export default function MobileRevenue({
         ))}
       </div>
 
-      {/* Box office summed by country — who leads each one (3 Oct 2026). */}
+      {/* Box office summed by country — who leads each one (3 Oct 2026). A
+          secondary button: the action bar is this screen's one gold action
+          (k6, 3 Oct 2026 — two gold fills shared the first viewport). */}
       <div className={styles.linkRow}>
-        <Link href="/records/tours/revenue/countries" className="btn btnPrimary">
+        <Link href="/records/tours/revenue/countries" className="btn btnSecondary">
           Highest-grossing artists by country →
         </Link>
       </div>
@@ -158,7 +165,11 @@ export default function MobileRevenue({
           <span className={styles.rank}>{r.rank}</span>
           <div className={styles.main}>
             <div className={styles.venue}>{r.venue}</div>
-            <div className={styles.meta}>{r.meta}</div>
+            <div className={`${styles.meta} ${styles.metaSplit}`}>
+              <span className={styles.metaKeep}>{r.artist} · </span>
+              <span className={styles.metaCity}>{r.city}</span>
+              <span className={styles.metaKeep}> · {r.year}</span>
+            </div>
           </div>
           <div className={styles.right}>
             <div className={`${styles.gross} ${r.his ? styles.grossHis : ""}`}>{r.gross}</div>

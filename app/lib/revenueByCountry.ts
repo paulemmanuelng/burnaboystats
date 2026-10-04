@@ -225,10 +225,35 @@ export function revenueByCountry(
   };
 }
 
-/** "$6.15M" — the board's short form. */
-export const usdM = (n: number) => `$${(n / 1e6).toFixed(2)}M`;
+/**
+ * "$6.15M" — the board's short form; under a million, "$53K" (debug pass
+ * 3 Oct 2026, C10: "$0.05M" for Fireboy DML's Metro Theatre night read as
+ * fifty thousand only after a second look). A figure that rounds to 1,000K
+ * prints as millions.
+ */
+export const usdM = (n: number) => {
+  const k = Math.round(n / 1e3);
+  return k < 1000 ? `$${k}K` : `$${(n / 1e6).toFixed(2)}M`;
+};
 /** "$6,147,209" — the board's full form. */
 export const usdFull = (n: number) => `$${n.toLocaleString("en-US")}`;
+
+/**
+ * A country's name as a sentence carries it: "the United States", "the United
+ * Kingdom", "the Philippines", "Canada" (sw-8, 3 Oct 2026: the tables' labels
+ * read "Box office leaders in United States"). The same list as /on-this-day's
+ * inCountry (app/lib/onThisDay.ts).
+ */
+const TAKES_THE = /^(United |Czech Republic$|Netherlands$|Dominican Republic$|Philippines$|Bahamas$)/;
+export const countryInSentence = (name: string) => `${TAKES_THE.test(name) ? "the " : ""}${name}`;
+
+/**
+ * An id fragment from a name: "North America" → "north-america". An id with a
+ * space breaks every aria-labelledby that points at it — the attribute is a
+ * space-separated list of ids, so "k-North America" asked for "k-North" and
+ * "America", and the section had no name (C1, 3 Oct 2026).
+ */
+export const idSlug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 
 /** "1 night" / "4 nights" — a multi-night run counts every night it played. */
 export const nightsLabel = (n: number) => `${n} ${n === 1 ? "night" : "nights"}`;
@@ -278,6 +303,23 @@ export function bestNightLine(a: ArtistTotal): string {
   return a.stands.length === 1
     ? `${st.shows} nights reported together · ${st.venue}, ${st.city} (${st.dates})`
     : runsLine(a.stands);
+}
+
+/**
+ * The desktop best-night cell for an artist whose only box office in a place
+ * is multi-night runs, in the single night's own grammar: a headline of
+ * "<gross> · <venue>" and a line of "<city> · <dates> · <n> nights reported
+ * together" (C5, 3 Oct 2026: the cell read "Nights reported together", then
+ * "3 nights reported together · …" under it). Null when there is a best night.
+ */
+export function runCell(a: ArtistTotal): { headline: string; line: string } | null {
+  if (a.best || a.stands.length === 0) return null;
+  if (a.stands.length === 1) {
+    const st = a.stands[0];
+    return { headline: `${usdM(st.revenue)} · ${st.venue}`, line: `${st.city} · ${st.dates} · ${st.shows} nights reported together` };
+  }
+  const sum = a.stands.reduce((n, s) => n + s.revenue, 0);
+  return { headline: `${usdM(sum)} · ${a.stands.length} ${RUN_MANY}`, line: runsLine(a.stands) };
 }
 
 /** The note for a multi-night run beside a best night — the run is in the total, not the best night. */

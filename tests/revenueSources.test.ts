@@ -85,9 +85,9 @@ describe("every show and stand names its source in the data", () => {
   });
 
   it("the sources are never printed: the revenue page reads no .source, its client board takes rows without it, /api/v1 maps no source field", () => {
-    // Not a bundle guarantee: tours.ts and firsts.ts import revenueShows and are
-    // imported by client components, so the data file (sources included) ships
-    // in a shared browser chunk. The owner's rule is that no page PRINTS them.
+    // The owner's rule is that no page PRINTS them. That they never SHIP in a
+    // browser chunk either is tests/tourRevenueServerOnly.test.ts's job (and
+    // the post-build scan in scripts/check-seo.mjs) since 4 Oct 2026.
     const page = readFileSync("app/records/tours/revenue/page.tsx", "utf8");
     expect(page).not.toMatch(/\.source\b/);
     expect(page).toMatch(/<RevenueBoard shows=\{boardShows\}>/);

@@ -30,7 +30,8 @@
 // ============================================================================
 
 import { performedCountries, REGION_ORDER, CONTINENT_OF, type PerformedCountry, type Region } from "../data/performedCountries";
-import { tours, festivals, otherShows, concerts, liveMoments } from "../data/tours";
+import { tours, festivals, otherShows, concerts } from "../data/tours";
+import { liveMoments } from "../data/liveMoments";
 import { revenueShows, revenueStands } from "../data/tourRevenue";
 import { albumCharts, singleCharts, featureCharts, CHART_COUNTRIES } from "../data/charts";
 import { allItems as certifiedReleases } from "../data/certifications";
