@@ -53,6 +53,17 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-10-04",
+    category: "Charts",
+    // daiDai.ts DAI_DAI_SPOTIFY_TOP10_DAYS / BODY_READ: the 3 Oct chart, read off
+    // Spotify Charts' own table in the screenshot Paul sent of @WITTIEWIZ's post
+    // (No. 10, Prev 25, Streak 135, 2,652,451); kworb's global_daily_totals T10 85
+    // is the check. The African record: kworb's T10 column, lead credits — Rema's
+    // "Calm Down" 22, CKay's "love nwantiti" 6, Tyla's "CHANEL" 6.
+    text: "Back inside Spotify’s global Top 10: “Dai Dai” rose 15 places to No. 10 on the chart dated 3 October with 2,652,451 streams — its 85th day in the Top 10 and a 135th straight day on the chart. No African song has spent longer in the global Top 10.",
+    href: "/dai-dai",
+  },
+  {
     date: "2026-10-03",
     category: "Streaming",
     // @WITTIEWIZ's monthly tally, posted 2 Oct 2026 (September 1-30, Spotify).
