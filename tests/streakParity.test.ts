@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { updates } from "../app/data/updates";
-import { daiDaiYouTubeDaysAtNo1, DAI_DAI_SPOTIFY_NO1_DAYS, DAI_DAI_SPOTIFY_WEEKLY_NO1_WEEKS, DAI_DAI_APPLE_EUROPE_NO1_DAYS, DAI_DAI_ITUNES_WORLDWIDE_NO1_DAYS, DAI_DAI_UWC_NO1_WEEKS, DAI_DAI_SPOTIFY_MUSIC_VIDEO_NO1_DAYS } from "../app/data/daiDai";
+import { daiDaiYouTubeDaysAtNo1, DAI_DAI_SPOTIFY_NO1_DAYS, DAI_DAI_SPOTIFY_TOP10_DAYS, DAI_DAI_SPOTIFY_WEEKLY_NO1_WEEKS, DAI_DAI_APPLE_EUROPE_NO1_DAYS, DAI_DAI_ITUNES_WORLDWIDE_NO1_DAYS, DAI_DAI_UWC_NO1_WEEKS, DAI_DAI_SPOTIFY_MUSIC_VIDEO_NO1_DAYS } from "../app/data/daiDai";
 
 // Platform streaks — Spotify's daily and weekly charts, Apple Music, iTunes,
 // Mediatraffic, YouTube — are the one class of figure on /dai-dai with nowhere
@@ -76,6 +76,23 @@ const STREAKS: Streak[] = [
       `(\\d+) days at No\\. 1`,
     ],
     topic: `Global Daily Top Songs`,
+  },
+  {
+    id: "Spotify Global Daily — days inside the Top 10",
+    // The Top 10 total rides in the No. 1 card's sentence ("with 85 days inside
+    // the global Top 10 in all") and is read from DAI_DAI_SPOTIFY_TOP10_DAYS.
+    // Added 4 Oct 2026, when the feed logged the 85th: the same floor as the
+    // rows here, so the card can never print a total the feed has passed.
+    page: `with \\$\\{DAI_DAI_SPOTIFY_TOP10_DAYS\\} days inside the global Top 10`,
+    derived: DAI_DAI_SPOTIFY_TOP10_DAYS,
+    feed: [
+      // "its 84th day in the Top 10", "an 83rd day inside the Top 10"
+      `${ORD} day (?:in|inside) the (?:global )?Top 10`,
+      // "65 days inside the global Top 10", "62 of those days spent inside…"
+      `(\\d+) days inside the global Top 10`,
+      `(\\d+) of those days spent inside the global Top 10`,
+    ],
+    topic: `global Top 10`,
   },
   {
     id: "Spotify Global Weekly — weeks at No. 1",
@@ -190,5 +207,29 @@ describe("platform streaks on /dai-dai never fall behind the updates feed", () =
       shown,
       `the card says ${s.derived ?? card![1]} but updates.ts already published ${best.n} on ${best.date}. The page is contradicting the site's own log — running ahead of the feed is fine, behind it is not.`,
     ).toBeGreaterThanOrEqual(best.n);
+  });
+});
+
+// Negative control for the Top 10 row, with the value the card shipped until
+// 4 Oct 2026: 84, counted through the 19 Sep chart. Once the feed logs the 85th
+// day (the 3 Oct chart), a card still reading 84 has fallen behind the site's
+// own log, and the floor above must say so.
+describe("the Top 10 row catches a card left behind the feed", () => {
+  const SHIPPED_UNTIL_2026_10_04 = 84;
+  const row = STREAKS.find((s) => s.id === "Spotify Global Daily — days inside the Top 10")!;
+
+  it("reads the feed's newest Top 10 total, and the shipped 84 falls short of it", () => {
+    const hits = inFeed(row);
+    const best = hits.reduce((a, b) => (b.n > a.n ? b : a));
+    expect(SHIPPED_UNTIL_2026_10_04, `the feed's newest Top 10 total is ${best.n} (${best.date})`).toBeLessThan(best.n);
+    expect(DAI_DAI_SPOTIFY_TOP10_DAYS).toBeGreaterThanOrEqual(best.n);
+  });
+
+  it("reads the shipped line's own wording, so the 84th was caught as 84", () => {
+    // The 20 Sep 2026 entry, as it shipped.
+    const line = "Back inside Spotify’s global Top 10: “Dai Dai” rose eight places to No. 7 on the chart dated 19 September with 2,934,986 streams — its 84th day in the Top 10 — and has now led Spotify Switzerland’s daily chart for 101 days, past the 99 that “One Dance” logged in 2016.";
+    expect(updates.some((u) => u.date === "2026-09-20" && u.text === line), "the 20 Sep entry is no longer in the feed as shipped").toBe(true);
+    const read = row.feed.flatMap((p) => [...line.matchAll(new RegExp(p, "g"))].map((m) => Number(m[1])));
+    expect(read).toEqual([SHIPPED_UNTIL_2026_10_04]);
   });
 });

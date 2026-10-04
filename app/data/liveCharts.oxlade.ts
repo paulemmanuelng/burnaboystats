@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-04";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-04T12:26Z";
+  export const liveChartsBuiltAt = "2026-10-04T21:31Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","iTunes"];
@@ -56,14 +56,14 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 33,
-            "movement": 0
+            "position": 32,
+            "movement": 2
           },
           {
             "country": "CV",
             "name": "Cape Verde",
-            "position": 44,
-            "movement": 0
+            "position": 46,
+            "movement": -2
           },
           {
             "country": "GM",
@@ -74,8 +74,28 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 89,
-            "movement": 1
+            "position": 92,
+            "movement": 2
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TN",
+            "name": "Tunisia",
+            "position": 32,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "LY",
+            "name": "Libya",
+            "position": 120,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -93,9 +113,8 @@
           {
             "country": "SB",
             "name": "Solomon Islands",
-            "position": 13,
-            "movement": null,
-            "status": "new"
+            "position": 24,
+            "movement": -11
           }
         ]
       }
@@ -132,9 +151,8 @@
           {
             "country": "SB",
             "name": "Solomon Islands",
-            "position": 52,
-            "movement": null,
-            "status": "new"
+            "position": 73,
+            "movement": -21
           }
         ]
       }
@@ -151,14 +169,34 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 148,
-            "movement": -3
+            "position": 146,
+            "movement": 2
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/3c57bd1b739e7a954dce46888a3612a6/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "OFA: Deluxe Edition",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 178,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/39dff396e3a352f6b78dfdfc3cc652bd/500x500-000000-80-0-0.jpg"
   }
 ];
   
