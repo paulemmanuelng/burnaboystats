@@ -334,6 +334,13 @@
   position: relative;
   overflow: hidden;
   isolation: isolate;
+  /* The page colour as the hero's own ground. The scrim below now covers only
+     the rail and its gutter, so without this the copy column showed the
+     body's top glow (~#141414 in dark) and the scrim's solid left edge drew a
+     hard step to --bg (#0a0a0b) down the hero, 44px left of the rail. The
+     scrim used to span the hero and paint the copy column --bg itself, so this
+     keeps the column exactly as it was. */
+  background: var(--bg);
 }
 
 /* Burna Boy's portrait, behind the hero.

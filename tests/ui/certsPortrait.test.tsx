@@ -195,6 +195,11 @@ describe("desktop /certifications: the widths follow the rail (item 36), percent
     expect(decl(sharp, "opacity")).toBe("var(--portrait-opacity, 0.42)");
     expect(decl(ruleFor(DESK_CSS, ".heroArtBlur")!, "width")).toBe("calc(clamp(400px, 44.2%, 636px) + 40px)");
     expect(decl(ruleFor(DESK_CSS, ".heroScrim")!, "width")).toBe("calc(clamp(400px, 44.2%, 636px) + 40px)");
+    // The scrim covers only the rail and its gutter, so the hero carries the
+    // page colour itself: otherwise the body's glow shows in the copy column
+    // and the scrim's solid edge is a seam (dark: 22 -> 10 at 1240, measured).
+    expect(decl(ruleFor(DESK_CSS, ".hero")!, "background")).toBe("var(--bg)");
+    expect(decl(ruleFor(DESK_CSS, ".heroArtBlur")!, "clip-path")).toBe("inset(0)");
     // Burna Boy's dark opacity is 0.42 (item 36), from portraitArt.ts.
     expect(PORTRAIT_ART["burna-boy"].opacity).toBe(0.42);
   });
