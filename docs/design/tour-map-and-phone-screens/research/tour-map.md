@@ -24,10 +24,13 @@ re-run.
 
 - **The map says one thing:** 57 countries in 7 regions, all in one flat gold
   wash (`app/records/tours/map/map.module.css:222-229`). The data behind it
-  says much more, and it is uneven. There are 98 dated tour shows, but they
-  cover only 13 countries. The other 44 countries are known from festival and
+  says much more, and it is uneven. There are 99 dated tour shows, but they
+  cover only 14 countries. The other 43 countries are known from festival and
   one-off rows, from a ceremony, or only from the map's own two-line event list.
-  Nine countries appear nowhere in the site's data except that list. §2.
+  Eight countries appear nowhere in the site's data except that list. §2.
+  (Written as 98 shows, 13 and 44 countries and nine; Ireland moved over on
+  4 Oct 2026, when 3Arena, Dublin, 17 Mar 2022 joined the Space Drift dates on
+  the owner's ruling, bo-08.)
 - **The review's numbers mostly hold.** Re-measured: 46 of 57 countries under
   12 px on a side on the 375 px phone map, island dots 2.4 px, played vs
   unplayed 1.55:1 in light and 2.58:1 in dark, and the HTML carrying the
@@ -240,7 +243,7 @@ skip link.
 | File | Rows | Fields | Notes |
 |---|---|---|---|
 | `performedCountries.ts:37-110` | 57 countries | `name`, `code` (ISO numeric = the shape id), `region` (7 values), `flag`, `events` (strings like "London Stadium (2023 & 2024)"), `more?` (hand-set boolean), `marker?` (x, y in map units) (`:20-35`) | **This is the map's only input.** `events` are free text. The year is inside the string and has no field. `more` is typed by hand. A test checks only that countries with more than two tour dates carry it (`tests/tourMap.test.ts:123-138`). |
-| `tours.ts:43-243` `tours[].dates` | 98 dated shows in 6 tours | `date` ("Oct 16, 2025"), `venue`, `city`, `country` ("USA", "UK" or a full name), `cap?` (`:17-23`) | `cap` is the venue's **listed capacity**, not attendance (`:4-5`). 80 of 98 rows have it. Itineraries start in 2018 (Life on the Outside, `:205-242`). Space Drift is flagged `partial: true` (`:158`), because not every date is documented. |
+| `tours.ts:43-243` `tours[].dates` | 99 dated shows in 6 tours (98 until 4 Oct 2026) | `date` ("Oct 16, 2025"), `venue`, `city`, `country` ("USA", "UK" or a full name), `cap?` (`:17-23`) | `cap` is the venue's **listed capacity**, not attendance (`:4-5`). 81 of 99 rows have it (80 of 98 until Dublin's 3Arena, cap 13,000, joined on 4 Oct 2026). Itineraries start in 2018 (Life on the Outside, `:205-242`). Space Drift is flagged `partial: true` (`:158`), because not every date is documented. |
 | `tours.ts:25-41` `tours[]` | 6 tours | `name`, `years`, `gross?`, `tickets?`, `shows?`, `meta?`, `note`, `record?`, `partial?` | Tour-level gross: I Told Them… $30.46M / 302,801 / 22 reported shows (`:76-86`). Love, Damini "$11.8M" (`:133`). The other tours have none. |
 | `tours.ts:367-407` `festivals` | 32 | `year`, `date?` (ISO), `name`, `location` (free text), `note` (`:353-364`) | Festivals he **headlined**. |
 | `tours.ts:410-424` `otherShows` | 13 | same | Festivals and one-offs where he was **not** the headliner. |
@@ -249,7 +252,7 @@ skip link.
 | `tours.ts:284-329` `upcomingShows` | 3 | `venue`, `city`, `country`, `when`, `cap?`, `note`, `source` (`:272-282`) | Announced, not played: Stade de France 25 Oct 2026 (NFL halftime), Apple Music Hall London 29 Oct 2026 (cap 600), London Stadium "2027". Counted in no total (`:263-266`). |
 | `tourRevenue.ts:30-80` `revenueShows` | 41 rows, **26 of them Burna Boy** | `artist`, `venue`, `city`, `flag`, `tour`, `year`, `tickets?`, `revenue` (USD) (`:12-21`) | Boxscore / TouringData **per-night** gross. All 26 Burna rows have tickets. The file is "as of" September 2026 (`:10`). |
 | `tourRevenue.ts:103-106` `revenueStands` | 2 | `venue`, `city`, `dates`, `shows`, `tickets`, `revenue` (`:91-101`) | Toronto 24–25 Feb 2024 (29,579 tickets, $2,801,928) and Montreal 28–29 Feb 2024 (26,303, $1,904,384): **two-night totals with no per-night figure**. The file forbids splitting them (`:23-29,82-90`). |
-| `listeners.ts:42-93` | 50 cities | `city`, `country`, `code`, `numeric`, `lon`, `lat`, `listeners` (`:27-37`) | Spotify top-50 cities, read 24 Sep 2026 (`:21`). **The only city coordinates in the repo.** 20 of the 51 tour-date cities are in it (counting its "New York City" as New York), as are 14 of the festival and one-off cities, some of which are also tour cities (`tour-map-method/`). |
+| `listeners.ts:42-93` | 50 cities | `city`, `country`, `code`, `numeric`, `lon`, `lat`, `listeners` (`:27-37`) | Spotify top-50 cities, read 24 Sep 2026 (`:21`). **The only city coordinates in the repo.** 21 of the 52 tour-date cities are in it (20 of 51 until Dublin became a tour-date city on 4 Oct 2026) (counting its "New York City" as New York), as are 14 of the festival and one-off cities, some of which are also tour cities (`tour-map-method/`). |
 
 ### 2b. What does not exist
 
@@ -306,12 +309,12 @@ and the contrast.
 |---|---|---|
 | Countries on the map | **57** (49 shapes + 8 dots) | `performedCountries.ts:117` |
 | Regions | **7** (six continents) | `performedCountries.ts:118`, `page.tsx:39-52` |
-| Dated tour shows | **98** | `tours.ts` `dates` rows |
-| … in countries | **13**: US 50, Canada 14, UK 10, Germany 5, Australia 4, Netherlands 3, Belgium 3, Switzerland 3, France 2, Sweden 1, Denmark 1, Nigeria 1, Barbados 1 | same |
-| … in distinct city names | **51** (as typed, so "Inglewood", "Elmont, NY", "Irving" and "Morrison, CO" each count separately from LA, New York, Dallas and Denver) | same |
+| Dated tour shows | **99** (98 until 4 Oct 2026) | `tours.ts` `dates` rows |
+| … in countries | **14**: US 50, Canada 14, UK 10, Germany 5, Australia 4, Netherlands 3, Belgium 3, Switzerland 3, France 2, Sweden 1, Denmark 1, Nigeria 1, Barbados 1, Ireland 1 (Ireland since 4 Oct 2026) | same |
+| … in distinct city names | **52** (51 until Dublin, 4 Oct 2026; as typed, so "Inglewood", "Elmont, NY", "Irving" and "Morrison, CO" each count separately from LA, New York, Dallas and Denver) | same |
 | … years | **2018–2026** (30 May 2018 to 23 Jan 2026) | `tours.ts:211`, `:70` |
 | Festival and one-off rows | **59** = 32 headlined + 13 other + 14 concerts; 31 have a day-level date; they cover 41 countries | `tours.ts:367-445` |
-| City names across tour and festival rows | **92** distinct strings (51 tour + 41 festival-only), with the same caveat | derived |
+| City names across tour and festival rows | **93** distinct strings (52 tour + 41 festival-only; 92 until Dublin, 4 Oct 2026), with the same caveat | derived |
 | Live moments | 17: 7 repeat a show, 3 name no place, 1 is a broadcast, and 6 add a placed appearance (Mexico, Morocco, Turkey, the UK parade, two in the US) | `tours.ts:331-349` |
 | Box-office nights (Burna, per night, with tickets) | **26**, plus 2 two-night stands | `tourRevenue.ts:30-80,103-106` |
 | Documented years, all sources | **2014–2026** (2014 comes only from the Uganda event text "Club MegaFest, Namboole Stadium (2014)", `performedCountries.ts:43`; the earliest row is NATIVELAND, 22 Dec 2016, `tours.ts:390`) | derived |
@@ -328,16 +331,16 @@ a press headcount with no ticket count. Citi Field 2023 (capacity 41,922,
 | Region | Countries | Dots | Dated tour shows | Festival / one-off rows | Countries with a dated show |
 |---|---|---|---|---|---|
 | Africa | 19 | 1 | 1 | 15 | 1 |
-| Europe | 19 | 1 | 28 | 25 | 8 |
+| Europe | 19 | 1 | 29 | 25 | 9 |
 | Asia | 1 | 0 | 0 | 1 | 0 |
 | North America | 3 | 0 | 64 | 7 | 2 |
 | South America | 3 | 0 | 0 | 3 | 0 |
 | Caribbean | 10 | 6 | 1 | 7 | 1 |
 | Oceania | 2 | 0 | 4 | 1 | 1 |
-| **Total** | **57** | **8** | **98** | **59** | **13** |
+| **Total** | **57** | **8** | **99** | **59** | **14** |
 
 Africa has as many countries as Europe (19 each) but one dated show, against
-Europe's 28. A map shaded by show count would make Africa almost disappear.
+Europe's 29 (28 until Dublin joined, 4 Oct 2026). A map shaded by show count would make Africa almost disappear.
 That is a true reading of what the site has documented, not of where he has
 played.
 
@@ -374,7 +377,7 @@ reported night by tickets, and how the map draws the country.
 | Europe | 🇫🇷 France | 2 (117, 162) | 1 (401) | — | 1 · 1 | 2021–2025 | Stade de France 2025, 43,881 (tourRevenue.ts:32) | shape |  |
 | Europe | 🇳🇱 Netherlands | 3 (165–166, 198) | 1 (371) | — | 2 · 2 | 2019–2026 | not reported (the Ziggo Dome 2022 gross, 17,000, was held off the board 3 Oct 2026 until a Billboard Boxscore or Pollstar report is found) | shape |  |
 | Europe | 🇧🇪 Belgium | 3 (70, 105, 197) | 0 | — | 2 · 2 | 2019–2026 | Sportpaleis 2023, 8,266 (tourRevenue.ts:67) | shape |  |
-| Europe | 🇮🇪 Ireland | 0 | 0 | — | 0 · 0 | 2022 | not reported | shape | **known only from the map's own events list** (performedCountries.ts:64: “3Arena, Dublin (Mar & Dec 2022)”) |
+| Europe | 🇮🇪 Ireland | 1 (Space Drift, Mar 17, 2022 — added 4 Oct 2026) | 0 | — | 1 · 1 | 2022 | 3Arena 2022, 7,504 (tourRevenue.ts, added 3 Oct 2026) | shape | was known only from the map's own events list (performedCountries.ts: “3Arena, Dublin (Mar & Dec 2022)”), whose December night is not a tour date here |
 | Europe | 🇪🇸 Spain | 0 | 2 (400, 436) | — | 0 · 2 | 2025–2026 | not reported | shape |  |
 | Europe | 🇮🇹 Italy | 0 | 1 (437) | — | 0 · 1 | 2020 | not reported | shape |  |
 | Europe | 🇩🇪 Germany | 5 (103–104, 123, 127, 199) | 3 (402, 405, 420) | — | 2 · 3 | 2019–2025 | Lanxess Arena 2023, 14,260 (tourRevenue.ts:41) | shape |  |
@@ -422,7 +425,7 @@ country's best chart peak, plaque count and certifications board, is in
 | No Sign of Weakness Tour | 22 | 7 | 21 | Oct 16, 2025 – Jan 23, 2026 | 49–70 |
 | I Told Them… Tour | 24 | 6 | 20 | Nov 3, 2023 – Aug 15, 2025 | 90–93, 101–118, 123, 127 |
 | Love, Damini Tour | 15 | 5 | 15 | Jul 17, 2022 – Jul 8, 2023 | 137–151 |
-| Space Drift World Tour (`partial`) | 8 | 6 | 8 | Aug 27, 2021 – Apr 28, 2022 | 160–167 |
+| Space Drift World Tour (`partial`) | 9 | 7 | 9 | Aug 27, 2021 – Apr 28, 2022 | 160–167 |
 | African Giant Tour | 19 | 6 | 19 | Apr 1, 2019 – Nov 9, 2019 | 178, 182–184, 188–202 |
 | Life on the Outside Tour | 10 | 2 | 10 | May 30, 2018 – Oct 25, 2018 | 211, 216–217, 224, 229–231, 238–240 |
 
@@ -495,18 +498,22 @@ marker, and no shaped country to have one.
    (`tours.ts:433`). The only other Nigeria row is NATIVELAND 2016
    (`:390`). A map sized by shows would make his home country one of the
    smallest marks.
-3. **Nine countries appear only in the map's own event text.** Benin,
-   Cameroon, Tanzania, Zambia, Botswana, Ireland, Austria, Haiti and Antigua &
+3. **Eight countries appear only in the map's own event text.** Benin,
+   Cameroon, Tanzania, Zambia, Botswana, Austria, Haiti and Antigua &
    Barbuda have no row in `tours`, `festivals`, `otherShows` or `concerts`
    (lines in §2f). Any derived count (dates, cities, years) is **zero or
-   empty** for them unless new rows are added.
+   empty** for them unless new rows are added. Ireland was the ninth until
+   4 Oct 2026, when its 3Arena night of 17 Mar 2022 was added as a Space
+   Drift tour date (owner's ruling, bo-08); its 4 Dec 2022 night is still
+   only in the event text.
 4. **Two countries are known only from a ceremony.** Mexico: the FIFA World
    Cup Opening Ceremony (`tours.ts:333`, `performedCountries.ts:88`). Turkey:
    the UEFA Champions League final kick-off show (`tours.ts:342`,
    `performedCountries.ts:75`). Morocco has a festival row (Mawazine 2024,
    `:369`) plus the AFCON finale (`:334`).
-5. **44 of 57 countries have no dated tour show.** Per-country "dates" means
-   tour dates for 13 countries, and festival or one-off rows (years, some with
+5. **43 of 57 countries have no dated tour show** (44 until Ireland's
+   Dublin date, 4 Oct 2026). Per-country "dates" means tour dates for 14
+   countries, and festival or one-off rows (years, some with
    a day) for the rest.
 6. **The US's biggest reported night is an arena** (Capital One Arena 2022,
    14,688, `tourRevenue.ts:39`), because Citi Field 2023 has no Boxscore row.
@@ -553,7 +560,7 @@ and [`../shots/tourmap-desktop-1440-dark-uk-card-over-masthead.jpg`](../shots/to
 | COUNT header left-aligned over right-aligned numbers | header text starts x ≈ 284, numbers end x 346.5 | ✔ |
 | Flags split from names | desktop: Norway, Antigua & Barbuda (measured); phone: Benin and Botswana visible in the screenshot | ✔ (phone not measured row by row) |
 | Tab order is geometry-file order | live DOM order: Tanzania, Canada, United States, Kenya, Haiti, Bahamas, Norway, … then the 8 dots last | ✔ |
-| tours.ts: 98 dated shows, 51 cities, 13 countries, 2018–2026 | 98, 51, 13, 2018–2026 | ✔ |
+| tours.ts: 98 dated shows, 51 cities, 13 countries, 2018–2026 | 98, 51, 13, 2018–2026 (99, 52, 14 since Dublin, 4 Oct 2026) | ✔ |
 | "76 festival and one-off rows" | **59** (32 + 13 + 14). 76 is 59 plus the 17 live moments | ✘ wrong |
 | "tourRevenue.ts has tickets for 28 nights" | **26** single nights with tickets, plus **2** two-night stands (4 nights, no per-night split) | ✘ wrong |
 | "19 tour cities already have coordinates in listeners.ts" | 20 when "New York City" is read as New York, 19 without | ≈ |

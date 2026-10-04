@@ -1201,7 +1201,9 @@
   margin: 0;
 }
 /* "3 records shared by two or more artists, counted once" — its own line under
-   the plaque count, so no "·" ever starts a line (4 Oct 2026). */
+   the plaque count, so this note never starts a line with "·" (4 Oct 2026).
+   The meta line above it can still wrap before "· 36 of 36 plaques counted"
+   at 390; that wrap predates this note. */
 .cbFigureShared { display: block; margin-top: 2px; }
 .cbThresholds {
   border: 1px solid var(--rule);

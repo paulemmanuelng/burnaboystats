@@ -147,6 +147,27 @@ describe("all 57 match research/countries.md", () => {
     expect(off).toEqual([]);
   });
 
+  // The "Card links, in order" column. Ireland's row kept only its chart-peak
+  // link after its 17 Mar 2022 tour date shipped (review of #412, 4 Oct 2026),
+  // while the card itself opened with "Tour dates on the Tours page".
+  const mdLinks = (name: string) => {
+    const line = countriesMd.split("\n").find((l) => l.split("|")[2]?.trim() === name)!;
+    const cell = line.split("|")[8].trim();
+    return cell === "none" ? [] : cell.split("<br>").map((s) => s.split(" → ")[0].trim());
+  };
+  const cardLinks = (name: string) =>
+    get(name).links.map((l) => (l.peak !== undefined ? `${l.label} No. ${l.peak}` : l.label));
+  it("card links, in order, every country", () => {
+    const off = tourMapCountries.flatMap((c) =>
+      JSON.stringify(cardLinks(c.name)) === JSON.stringify(mdLinks(c.name)) ? [] : [`${c.name}: ${cardLinks(c.name).join(" / ")}`],
+    );
+    expect(off).toEqual([]);
+  });
+  it("negative control: Ireland's row as it shipped in #412 does not match its card", () => {
+    expect(cardLinks("Ireland")).toEqual(["Tour dates on the Tours page", "Chart peak here: No. 2"]);
+    expect(cardLinks("Ireland")).not.toEqual(["Chart peak here: No. 2"]);
+  });
+
   it("the totals line: 28 chart peaks, 21 plaque countries, 21 boards linked", () => {
     const m = /\*\*Totals:\*\* (\d+) countries · (\d+) with a Burna Boy chart peak · (\d+) with at least one Burna Boy plaque/.exec(countriesMd)!;
     expect(tourMapCountries.length).toBe(Number(m[1]));
