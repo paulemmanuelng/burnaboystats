@@ -59,7 +59,7 @@ export const footerColumns: { label: string; links: { href: string; label: strin
       { href: "/records", label: "All career records" },
       { href: "/records/awards", label: "Awards" },
       { href: "/records/tours", label: "Tours" },
-      { href: "/records/tours/revenue", label: "Tour revenue" },
+      { href: "/records/tours/revenue", label: "Highest-grossing shows" },
       { href: "/records/tours/festivals", label: "Festivals" },
       { href: "/records/tours/map", label: "Tour map" },
       { href: "/records/firsts", label: "Firsts" },
@@ -280,7 +280,7 @@ export const footerFor: Record<string, FooterVariant> = {
   },
   "/records/tours": {
     links: [
-      { href: "/records/tours/revenue", label: "Revenue" },
+      { href: "/records/tours/revenue", label: "Highest-grossing shows" },
       { href: "/records/tours/revenue/countries", label: "Box office by country" },
       { href: "/records/tours/festivals", label: "Festivals" },
       { href: "/records/tours/map", label: "Tour map" },
@@ -300,7 +300,7 @@ export const footerFor: Record<string, FooterVariant> = {
   "/records/tours/revenue/countries": {
     note: "Box-office figures via Billboard Boxscore.",
     links: [
-      { href: "/records/tours/revenue", label: "Revenue" },
+      { href: "/records/tours/revenue", label: "Highest-grossing shows" },
       { href: "/records/tours", label: "Tours" },
       { href: "/records/tours/map", label: "Tour map" },
       { href: "/records/africas-biggest", label: "Africa's Biggest" },
@@ -310,7 +310,7 @@ export const footerFor: Record<string, FooterVariant> = {
   "/records/tours/festivals": {
     links: [
       { href: "/records/tours", label: "Tours" },
-      { href: "/records/tours/revenue", label: "Revenue" },
+      { href: "/records/tours/revenue", label: "Highest-grossing shows" },
       { href: "/records/tours/map", label: "Tour map" },
       { href: "/records/firsts", label: "Firsts" },
     ],

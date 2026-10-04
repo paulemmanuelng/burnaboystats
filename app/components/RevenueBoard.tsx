@@ -6,7 +6,7 @@ import type { RevenueShow } from "../data/tourRevenue";
 import NotReported from "./NotReported";
 
 /**
- * The revenue-per-show board.
+ * The highest-grossing-shows board.
  *
  * Filtering never renumbers: each row keeps its rank in the full list, so
  * narrowing to one artist shows *where* their nights sit among everyone's
@@ -77,7 +77,7 @@ export default function RevenueBoard({
 
       <section className={styles.band}>
         <div className={`${styles.wide} ${styles.boardPad}`}>
-          <div className={styles.board} role="table" aria-label="Highest revenue per show">
+          <div className={styles.board} role="table" aria-label="Highest-grossing shows">
             <div className={styles.headRow} role="row">
               <span role="columnheader">#</span>
               <span role="columnheader">Artist</span>

@@ -152,7 +152,7 @@ export default function RecordsPage() {
             <div className={styles.head}>
               <div>
                 <div className={styles.kicker}>Box office</div>
-                <h2 className={styles.h2}>Highest revenue per show</h2>
+                <h2 className={styles.h2}>Highest-grossing shows</h2>
               </div>
               <p className={styles.headLede}>
                 {hisShows} of the {revenueShows.length} verified African single-show grosses are

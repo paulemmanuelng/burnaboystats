@@ -1,4 +1,4 @@
-/* Mobile screen 14 — Revenue per show.
+/* Mobile screen 14 — Highest-grossing shows (was "Revenue per show").
    designs/mobile/Burna Boy Stats - Mobile Deep Pages.dc.html, values verbatim.
    Shown only below the mobile breakpoint; the desktop page is its own layout. */
 .screen { display: none; }
@@ -49,6 +49,13 @@
   font-size: 11px;
   letter-spacing: 0.11em;
   text-transform: uppercase;
+  /* One line at 320 ("Highest-grossing", 3 Oct 2026). Space Mono at 11px with
+     0.11em tracking is 7.94px a character: 16 characters = 127px. The bar is
+     44 (back) + 127 + 47 (badge) + 44 (menu) = 262px against a 284px row, so
+     the 12px gaps (36px) would push it to two lines; below 360 the gaps close
+     to 8px and the badge's tracking eases, as on the by-country screen. */
+  white-space: nowrap;
+  flex: none;
 }
 .badge {
   margin-left: auto;
@@ -57,6 +64,11 @@
   letter-spacing: 0.1em;
   color: var(--gold);
   flex: none;
+}
+/* After .badge, so the eased tracking wins at the same specificity. */
+@media (max-width: 359px) {
+  .backBar { gap: 8px; }
+  .badge { letter-spacing: 0.04em; }
 }
 
 /* ── Hero ─────────────────────────────────────────────────────────────── */

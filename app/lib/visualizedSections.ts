@@ -13,7 +13,7 @@ export const JUMP = [
   { href: "#live-platforms", label: "Charting now" },
   { href: "#regions", label: "Regions" },
   { href: "#grosses", label: "Grosses" },
-  { href: "#tickets-revenue", label: "Tickets vs revenue" },
+  { href: "#tickets-revenue", label: "Tickets vs gross" }, // id kept: old links still land
   { href: "#certifications", label: "Certifications" },
   { href: "#tiers", label: "Tiers" },
   { href: "#chart-peaks", label: "Chart peaks" },

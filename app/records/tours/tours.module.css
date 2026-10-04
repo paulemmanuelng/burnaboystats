@@ -287,7 +287,7 @@
 .jumpDesc { display: block; color: var(--text-muted); font-size: 13.5px; margin-top: 5px; }
 .jumpArrow { color: var(--gold); font-weight: 700; font-size: 20px; flex: none; }
 
-/* ── Revenue per show ───────────────────────────────────────────────────── */
+/* ── Highest-grossing shows ─────────────────────────────────────────────── */
 .revenuePad { padding: 42px 40px 46px; }
 .colRank { width: 44px; }
 .colTour { width: 220px; }

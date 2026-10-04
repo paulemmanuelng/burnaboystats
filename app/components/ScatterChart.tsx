@@ -15,6 +15,10 @@ export interface Tick {
   label: string;
 }
 
+// The region's name reads the axis label mid-sentence: lower only its first
+// letter, so "Gross (USD)" reads "against gross (USD)", never "gross (usd)".
+const lowerFirst = (s: string) => s.charAt(0).toLowerCase() + s.slice(1);
+
 // A scatter plot (correlation). Pure SVG, responsive via viewBox. Points draw
 // muted-first so the gold marks sit on top; a thin surface ring separates
 // overlapping dots. Hover text via native <title>.
@@ -47,7 +51,7 @@ export default function ScatterChart({
   return (
     // Focusable: under 460px the chart scrolls sideways, and a scroll box with
     // nothing focusable inside it cannot be scrolled from a keyboard.
-    <div className={styles.wrap} tabIndex={0} role="region" aria-label={`Scatter chart: ${xLabel} against ${yLabel.toLowerCase()}`}>
+    <div className={styles.wrap} tabIndex={0} role="region" aria-label={`Scatter chart: ${xLabel} against ${lowerFirst(yLabel)}`}>
       <svg viewBox={`0 0 ${W} ${H}`} className={styles.svg} role="img" aria-label={ariaLabel}>
         {/* horizontal gridlines + y labels */}
         {yTicks.map((t, i) => (

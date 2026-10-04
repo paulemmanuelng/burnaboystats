@@ -259,11 +259,11 @@ export default function ToursPage() {
           </div>
         </section>
 
-        {/* ── Highest revenue per show ───────────────────────── */}
+        {/* ── Highest-grossing shows ───────────────────────────── */}
         <section className={styles.bandSurface}>
           <div className={`${styles.wide} ${styles.revenuePad}`}>
             <h2 className={styles.h2}>
-              Highest <span className="inkText">revenue per show</span>
+              Highest-grossing <span className="inkText">shows</span>
             </h2>
             <p className={styles.headLede}>
               The top 10 single-show grosses by any African artist.
@@ -319,7 +319,7 @@ export default function ToursPage() {
                   See all {revenueShows.length}
                 </span>
                 <span className={styles.jumpDesc}>
-                  Every show on the list, ranked by reported revenue
+                  Every show on the list, ranked by reported gross
                 </span>
               </span>
               <span className={styles.jumpArrow} aria-hidden="true">
