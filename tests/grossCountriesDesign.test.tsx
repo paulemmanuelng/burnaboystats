@@ -36,7 +36,7 @@ import {
   usdFull,
   usdM,
 } from "../app/lib/revenueByCountry";
-import { declaredAt, text, trees } from "./fixtures/phoneTrees";
+import { cssRules, declaredAt, text, trees } from "./fixtures/phoneTrees";
 
 /**
  * Highest-Grossing Artists by Country, the new design — Claude Design round 1
@@ -333,6 +333,30 @@ describe("the run marker inside a row is the page's own (the shows page dropped 
     expect(declaredAt(PHONE_CSS, ".runMarker", "border-radius", 390)).toBeUndefined();
     for (const f of ["app/components/RevenueCountries.tsx", "app/components/MobileRevenueCountries.tsx"])
       expect(read(f), f).not.toMatch(/styles\.runMarker\b/);
+  });
+});
+
+describe("fix 8: the best-night column gets its room at 1440", () => {
+  // The fixed tracks beside the flexible best-night column, summed.
+  const fixed = (t: string) => t.split(/\s+(?![^(]*\))/).filter((x) => /^\d+px$/.test(x)).reduce((n, x) => n + parseFloat(x), 0);
+  // The head and the rows share one rule (".headRow, .row"), in both bands.
+  const template = (band: "base" | "1024") =>
+    cssRules(DESK_CSS)
+      .filter((r) => r.selector.split(",").map((x) => x.trim()).join(",") === ".headRow,.row")
+      .filter((r) => (band === "base" ? r.media === null : r.media === "@media (max-width: 1239px)"))
+      .map((r) => /grid-template-columns:\s*([^;]+);/.exec(r.body)?.[1])
+      .at(-1);
+  it("the fixed columns give up at least 40px against the canvas, for the head and the rows alike", () => {
+    const t = template("base")!;
+    expect(t).toMatch(/minmax\(0, 1fr\)/);
+    expect(fixed(t)).toBeLessThanOrEqual(fixed("32px 150px minmax(0, 1fr) 64px 130px 150px") - 40);
+    expect(template("1024")).toMatch(/minmax\(0, 1fr\)/);
+  });
+  it("negative control: the template this PR first shipped (590cae87), the canvas's, gave nothing", () => {
+    // countries.module.css at 590cae87 and GXCountriesDesk, verbatim.
+    const shipped = "32px 150px minmax(0, 1fr) 64px 130px 150px";
+    expect(fixed(shipped)).toBe(526);
+    expect(fixed(shipped)).toBeGreaterThan(fixed("32px 150px minmax(0, 1fr) 64px 130px 150px") - 40);
   });
 });
 
