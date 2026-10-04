@@ -155,21 +155,36 @@ describe("selecting the chip shows exactly the runs, under RUNS_LEDE", () => {
     expect(() => runYear("24–25 February")).toThrow();
   });
 
-  it.each(WHATS)("%s: selecting it again, or All, returns to every single night", (what) => {
+  // One mount and two clicks a test: a whole-page render per click is the
+  // slow part in jsdom, and plain `vitest run` gives each test 5 s.
+  it.each(WHATS)("%s: selecting it again returns to every single night", (what) => {
     const m = mount();
     const tree = m.layouts[what];
     fireEvent.click(chip(tree, RUNS_HEADING));
     fireEvent.click(chip(tree, RUNS_HEADING));
     expect(rowsOf(what, tree).length).toBe(revenueShows.length);
     expect(chip(tree, ALL[what]).getAttribute("aria-pressed")).toBe("true");
+    expect(text(tree).includes(RUNS_LEDE)).toBe(false);
+    m.unmount();
+  });
+
+  it.each(WHATS)("%s: All returns to every single night", (what) => {
+    const m = mount();
+    const tree = m.layouts[what];
     fireEvent.click(chip(tree, RUNS_HEADING));
     fireEvent.click(chip(tree, ALL[what]));
     expect(rowsOf(what, tree).length).toBe(revenueShows.length);
     expect(text(tree).includes(RUNS_LEDE)).toBe(false);
-    // And an artist's chip from the runs view goes straight to their nights.
+    m.unmount();
+  });
+
+  it.each(WHATS)("%s: an artist's chip from the runs goes straight to their nights", (what) => {
+    const m = mount();
+    const tree = m.layouts[what];
     fireEvent.click(chip(tree, RUNS_HEADING));
     fireEvent.click(chip(tree, HIS));
     expect(rowsOf(what, tree).length).toBe(counts[HIS]);
+    expect(chip(tree, RUNS_HEADING).getAttribute("aria-pressed")).toBe("false");
     m.unmount();
   });
 });

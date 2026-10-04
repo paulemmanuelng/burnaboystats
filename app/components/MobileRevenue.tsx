@@ -242,7 +242,15 @@ export default function MobileRevenue({
       <div className={styles.countBar}>
         <span aria-live="polite" aria-atomic="true">
           {runsOn
-            ? runsCountLine(stands.length, runNights)
+            ? // Each part on one line: at 390 "7 nights" split across two.
+              runsCountLine(stands.length, runNights)
+                .split(" · ")
+                .map((part, i) => (
+                  <span key={part}>
+                    {i > 0 ? " · " : ""}
+                    <span className={styles.nowrap}>{part}</span>
+                  </span>
+                ))
             : `${shown.length} of ${rows.length} shows${typeof view === "string" ? ` · ${view}` : ""}`}
         </span>
         <span aria-hidden="true">Gross · tickets</span>
