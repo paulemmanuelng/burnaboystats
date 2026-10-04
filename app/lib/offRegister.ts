@@ -12,12 +12,21 @@ import { sweptArtists, countryMeta, offRegisterCount, type AfroCert } from "../d
 
 /** Burna Boy's label plaques: a per-cert `body` that is not a separately
  *  priced programme names a different ISSUER ("Dai Dai"'s Colombian Gold,
- *  Sony Music Colombia). */
-export const burnaLabelPlaques = allItems.flatMap((r) =>
+ *  Sony Music Colombia; "All Eyes on Me"'s South African 19× Platinum, Sony
+ *  Music Africa). Each says why the label's plaque stands: a market with no
+ *  current public register (Paul's ruling, 24 Sep 2026, on Colombia), or a
+ *  register he holds other rows in that holds none for this title — read
+ *  from the data, not typed: a country where none of his plaques is a
+ *  register row has no register this site reads. */
+const issued = allItems.flatMap((r) =>
   r.certs
     .filter((c) => c.body && !CERT_PROGRAMS[c.body])
-    .map((c) => `“${r.title}”'s ${c.level} in ${COUNTRIES[c.c]?.name ?? c.c}, issued by ${c.body}`),
+    .map((c) => ({
+      text: `“${r.title}”'s ${c.x && c.x > 1 ? `${c.x}× ` : ""}${c.level} in ${COUNTRIES[c.c]?.name ?? c.c}, issued by ${c.body}`,
+      registerRead: allItems.some((x) => x.certs.some((y) => y.c === c.c && (!y.body || CERT_PROGRAMS[y.body]))),
+    })),
 );
+export const burnaLabelPlaques = issued.map((x) => x.text);
 
 const swept = sweptArtists;
 
@@ -96,9 +105,18 @@ export function certificationRule(): string {
     announced.length ? ", or the body itself has published it" : ""
   }.`;
   const parts: string[] = [];
-  if (burnaLabelPlaques.length)
+  // Count-aware (debug pass, 3 Oct 2026): "the one exception" was true of
+  // "Dai Dai" alone, and stopped being true when "All Eyes on Me" was marked as
+  // the label plaque it always was. Each kind keeps its own reason.
+  const noRegister = issued.filter((x) => !x.registerRead).map((x) => x.text);
+  const noRow = issued.filter((x) => x.registerRead).map((x) => x.text);
+  const kinds = [
+    noRegister.length ? `a market with no current public register, where the label's own plaque stands: ${noRegister.join("; ")}` : "",
+    noRow.length ? `a register that holds no row for the title, where the label's own award stands: ${noRow.join("; ")}` : "",
+  ].filter(Boolean);
+  if (issued.length)
     parts.push(
-      `In Burna Boy's own record, the one exception is a market with no current public register, where the label's own plaque stands: ${burnaLabelPlaques.join("; ")}.`,
+      `In Burna Boy's own record, ${issued.length === 1 ? "the one exception is" : `the ${issued.length} exceptions are`} ${kinds.join("; and ")}.`,
     );
   if (boardLabelPlaques.length)
     parts.push(

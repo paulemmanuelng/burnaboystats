@@ -465,6 +465,22 @@ export const AFROBEATS_VERIFIED_ON_18 = "2026-10-03";
  *  constant by the ON_13 bump rule. Tems is not on "Chanel" and stays ON_18. */
 export const AFROBEATS_VERIFIED_ON_19 = "2026-10-03";
 
+/** The last day EVERY register behind the board was re-read: the 2 Oct 2026
+ *  register sweep (docs/sweeps/sweep-2026-10-02.md — "Certifications only,
+ *  Burna Boy and all nineteen board artists, every issuing body the site
+ *  cites", RiSA and Ultratop by the owner's hand). `verifiedOn` moves on any
+ *  read that changes a plaque (the ON_13 bump rule), including a partial one —
+ *  Tyla's and Tems's 3 Oct, when only SNEP's database, a plaque photo and a
+ *  label's post were read (ON_18, ON_19) — so it says "last verified", and
+ *  this says "re-read at every register" (debug pass, 3 Oct 2026). */
+export const AFROBEATS_LAST_FULL_SWEEP = "2026-10-02";
+
+/** The last chart sweep across the whole board: docs/sweeps/charts-sweep-2026-10-02.md
+ *  (twelve lanes, every lead double-verified, applied in #397). The charts
+ *  pages date their re-read from this, not from `verifiedOn`, which moves on
+ *  certification reads that read no chart. */
+export const AFROBEATS_LAST_CHART_SWEEP = "2026-10-02";
+
 export const afrobeatsArtists: AfroArtist[] = [
   {
     slug: "olamide",

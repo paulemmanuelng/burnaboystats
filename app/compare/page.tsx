@@ -258,7 +258,7 @@ function Slot({
   const img = isSong ? release.cover : artist.image;
   const title = isSong ? release.title : artist.name;
   // The plaque count is split so it agrees with the header beneath it, whose
-  // denominator is the international plaques: "20 plaques" over "17 of 19
+  // denominator is the plaques outside Nigeria: "20 plaques" over "17 of 19
   // counted" read as a contradiction until the Nigerian one was named.
   const ngCount = isSong ? release.certs.filter((c) => c.c === "NG").length : 0;
   // Segments, not one string: each is rendered nowrap and the line breaks
@@ -268,7 +268,7 @@ function Slot({
     ? [artist.name, release.isFeature ? "featured" : release.format === "album" ? "album" : "lead single",
        release.credit ?? "",
        ngCount
-         ? `${release.certs.length - ngCount} international plaque${release.certs.length - ngCount === 1 ? "" : "s"} + ${ngCount} Nigerian`
+         ? `${release.certs.length - ngCount} plaque${release.certs.length - ngCount === 1 ? "" : "s"} outside Nigeria + ${ngCount} Nigerian`
          : `${release.certs.length} plaque${release.certs.length === 1 ? "" : "s"}`]
         .filter(Boolean)
     : isRecordMode(mode)
@@ -723,7 +723,10 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
   // used to write ng=0 / feat=0 into every shared URL, and on a default-included
   // pair the round trip left ng=1, hiding the "by default" label and the why-line.
   const ngDefault = a && b && !refused && !record ? nigeriaDefault(a, b, includeFeatures).on : false;
-  const scope = ngOn ? `${pricedBodies.length} countries · Nigeria included` : `${pricedBodies.filter((c) => c !== "NG").length} countries · international`;
+  // "outside Nigeria", not "international": Nigeria is the only home split on
+  // /compare, and a non-Nigerian artist's home plaques (Tyla's ten in South
+  // Africa) are inside the separated total (debug pass, 3 Oct 2026).
+  const scope = ngOn ? `${pricedBodies.length} countries · Nigeria included` : `${pricedBodies.filter((c) => c !== "NG").length} countries · outside Nigeria`;
   const trailing = (n: string) => (n.endsWith("s") ? `${n}'` : `${n}'s`);
 
   // The ONE breadcrumb trail this page emits (the site-wide one stands down
@@ -974,7 +977,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
                 <p className={styles.headName}><span className={styles.headNameName}>{nameA || a?.name}{"\u00a0"}</span><span className={styles.headNameQual}>{"·\u00a0at least"}</span></p>
                 <p className={`${styles.figure} ${leadA ? styles.figureLead : styles.figureBehind}`}>{fmt(totalA)}</p>
                 <p className={styles.headMeta}>
-                  certified units · {ngOn ? "Nigeria included" : "international"}
+                  certified units · {ngOn ? "Nigeria included" : "outside Nigeria"}
                   {sideA ? ` · ${sideA.pricedPlaques} of ${sideA.pricedPlaques + sideA.excludedPlaques} plaques counted` : ""}
                   {sideA?.excludedPlaques ? ` · ${sideA.excludedPlaques} not comparable` : ""}
                 </p>
@@ -987,7 +990,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
                   <p className={styles.headName}><span className={styles.headNameName}>{nameB}{"\u00a0"}</span><span className={styles.headNameQual}>{"·\u00a0at least"}</span></p>
                   <p className={`${styles.figure} ${leadA ? styles.figureBehind : styles.figureLead}`}>{fmt(totalB)}</p>
                   <p className={styles.headMeta}>
-                    certified units · {ngOn ? "Nigeria included" : "international"}
+                    certified units · {ngOn ? "Nigeria included" : "outside Nigeria"}
                     {sideB ? ` · ${sideB.pricedPlaques} of ${sideB.pricedPlaques + sideB.excludedPlaques} plaques counted` : ""}
                     {sideB?.excludedPlaques ? ` · ${sideB.excludedPlaques} not comparable` : ""}
                   </p>
@@ -1023,9 +1026,9 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
               <span className={styles.scope}>
                 {scope}
                 {ready && a && b && !record
-                  ? a.verifiedOn === b.verifiedOn
-                    ? ` · both registers read ${longDate(a.verifiedOn)}`
-                    : ` · registers read ${longDate(a.verifiedOn)} (${a.name}) and ${longDate(b.verifiedOn)} (${b.name})`
+                  ? a.registersReadOn === b.registersReadOn
+                    ? ` · both registers read ${longDate(a.registersReadOn)}`
+                    : ` · registers read ${longDate(a.registersReadOn)} (${a.name}) and ${longDate(b.registersReadOn)} (${b.name})`
                   : ""}
               </span>
             </div>

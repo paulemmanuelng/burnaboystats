@@ -204,7 +204,13 @@ export function artistFaqs(a: AfroArtist): Faq[] {
       a:
         `${a.name} holds plaques in ${count(countries, "country", "countries")}` +
         `${list.length ? `, including ${list.slice(0, 6).join(", ")}` : ""}` +
-        `${list.length > 6 ? " and more" : ""}. Each is awarded by that country's own certifying body, ` +
+        `${list.length > 6 ? " and more" : ""}. ` +
+        // Not "that country's own certifying body" over a label's own plaque
+        // (Tyla's ten in South Africa, Tems's No.1): this ships as FAQPage
+        // structured data too (debug pass, 3 Oct 2026).
+        (offRegister
+          ? "Each is awarded by the certifying body or label that issued it, "
+          : "Each is awarded by that country's own certifying body, ") +
         `and the full country-by-country breakdown is on this page.`,
     });
   }
