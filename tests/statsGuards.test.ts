@@ -51,7 +51,17 @@ describe("a running-year total is a ledger of dated dailies, never a run-date su
     }
   });
 
-  it("the anchor is ChartMasters through 30 Sep 2026 minus each 2025 close, and the ledger only ever moves forward from it", () => {
+  it("the anchor is ChartMasters through 1 Oct 2026 minus each 2025 close, and the ledger only ever moves forward from it", () => {
+    // Re-anchored 4 Oct 2026 on ChartMasters' Playcounts Tool (Paul's account,
+    // docs/sourcing/chartmasters/reads/2026-10-04.json): totals through 1 Oct
+    // minus the same 2025 closes, dated by the kworb-stamp convention (N+1 =
+    // 2 Oct) — a plain run on the pair the 2 Oct --kworb-frozen anchor was
+    // waiting for. Burna's 1,925,029,752, Wizkid's 1,902,152,248 and Tems'
+    // 1,893,898,597 match @theowensblock's / @WizStatz's tables to the unit.
+    // The 2 Oct anchor it replaces (ChartMasters through 30 Sep, dated 1 Oct):
+    // 1,917,676,268 / 1,896,035,465 / 1,888,314,691 / 1,542,793,546 /
+    // 1,257,747,511.
+    //
     // Re-anchored 2 Oct 2026 on ChartMasters' Playcounts Tool (Paul's account,
     // docs/sourcing/chartmasters/reads/2026-10-02.json): totals through 30 Sep
     // minus the same 2025 closes, dated by the kworb-stamp convention (N+1 =
@@ -83,14 +93,14 @@ describe("a running-year total is a ledger of dated dailies, never a run-date su
     // 1,807,644,361 / 1,460,097,619 / 1,208,808,241); the 10 Sep one is in
     // docs/sourcing/STREAMS-2026-ANCHOR.md.
     const tracker: Record<string, number> = {
-      "streams-2026-burna": 1_917_676_268,
-      "streams-2026-wizkid": 1_896_035_465,
-      "streams-2026-tems": 1_888_314_691,
-      "streams-2026-asake": 1_542_793_546,
-      "streams-2026-tyla": 1_257_747_511,
+      "streams-2026-burna": 1_925_029_752,
+      "streams-2026-wizkid": 1_902_152_248,
+      "streams-2026-tems": 1_893_898_597,
+      "streams-2026-asake": 1_548_705_999,
+      "streams-2026-tyla": 1_261_011_748,
     };
     for (const m of group) {
-      expect(m.anchor, m.id).toMatchObject({ date: "2026-10-01", value: tracker[m.id] });
+      expect(m.anchor, m.id).toMatchObject({ date: "2026-10-02", value: tracker[m.id] });
       expect(m.checkpoint.date >= m.anchor.date, `${m.id}: the checkpoint cannot precede the anchor`).toBe(true);
       expect(m.checkpoint.value >= m.anchor.value, m.id).toBe(true);
       for (const d of Object.keys(m.readings ?? {})) expect(d > m.checkpoint.date, `${m.id}: a daily on or before the checkpoint is already inside it`).toBe(true);
