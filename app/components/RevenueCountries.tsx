@@ -18,7 +18,6 @@ import {
   runsNote,
   shareOf,
   summaryLine,
-  usdFull,
   usdM,
   widthPct,
   type ArtistTotal,
@@ -33,6 +32,9 @@ import {
  * with the review's fixes 1–10 and the owner's rulings Q1 and N4 where they
  * differ from the canvas. The phone screen is MobileRevenueCountries, its own
  * component; both read the one derived board (app/lib/revenueByCountry.ts).
+ *
+ * One money form on the screen: the short one, "$15.50M" / "$385K" (fix 4) —
+ * the hero, the ladder, the index, the heads and the rows agree.
  *
  * Gold marks HIS figures only (tests/goldMarksHisRows.test.ts): his gross, his
  * best night, his runs, his part of every bar, the countries he leads. His
@@ -122,7 +124,7 @@ function RunLines({ a }: { a: ArtistTotal }) {
   return (
     <>
       {a.stands.map((st) => {
-        const r = runParts(st, usdFull);
+        const r = runParts(st, usdM);
         return (
           <span key={`${st.venue}-${st.dates}`} className={own.run}>
             <span className={styles.runMarker}>
@@ -145,8 +147,10 @@ function RunLines({ a }: { a: ArtistTotal }) {
 function ArtistRow({ a, rank, c }: { a: ArtistTotal; rank: number; c: CountryBoard }) {
   const note = runsNote(a);
   const share = shareOf(a, c);
+  // No wash on his rows: the canvas row is clear but for hover, and gold
+  // marks his figures only (N4).
   return (
-    <div role="row" className={`${own.row} ${a.his ? styles.rowHis : ""}`}>
+    <div role="row" className={own.row}>
       {/* Every rank in the same ink, his No. 1 included: gold marks his
           figures only (N4, 4 Oct 2026; C2, 3 Oct 2026, had already taken it
           off Tyla's 01 in Japan, the Philippines and Singapore). */}
@@ -161,7 +165,7 @@ function ArtistRow({ a, rank, c }: { a: ArtistTotal; rank: number; c: CountryBoa
         {a.best && (
           <>
             <span className={own.bestLine}>
-              <span className={`${own.bestFig} ${a.his ? own.bestHis : ""}`}>{usdFull(a.best.revenue)}</span> ·{" "}
+              <span className={`${own.bestFig} ${a.his ? own.bestHis : ""}`}>{usdM(a.best.revenue)}</span> ·{" "}
               {a.best.venue}
             </span>
             <span className={own.bestMeta}>
@@ -183,7 +187,7 @@ function ArtistRow({ a, rank, c }: { a: ArtistTotal; rank: number; c: CountryBoa
         <span className={own.sharePct}>{pct(share)}</span>
       </span>
       <span role="cell" className={`${styles.gross} ${own.total} ${a.his ? styles.grossHis : styles.grossOther}`}>
-        {usdFull(a.total)}
+        {usdM(a.total)}
       </span>
     </div>
   );
@@ -191,7 +195,7 @@ function ArtistRow({ a, rank, c }: { a: ArtistTotal; rank: number; c: CountryBoa
 
 function CountryBlock({ c }: { c: CountryBoard }) {
   const single = c.artists.length === 1;
-  const callout = leadsOnTotal(c, usdFull, "desk");
+  const callout = leadsOnTotal(c, usdM, "desk");
   return (
     <div id={countryAnchor(c.name)} className={own.country}>
       <div className={own.countryHead}>
@@ -208,13 +212,13 @@ function CountryBlock({ c }: { c: CountryBoard }) {
           {single ? (
             <>
               · the only artist reported ·{" "}
-              <span className={`${own.leadFig} ${c.leader.his ? own.leadHis : ""}`}>{usdFull(c.total)}</span> ·{" "}
+              <span className={`${own.leadFig} ${c.leader.his ? own.leadHis : ""}`}>{usdM(c.total)}</span> ·{" "}
               {nightsLabel(c.shows)} reported
             </>
           ) : (
             <>
-              leads · <span className={`${own.leadFig} ${c.leader.his ? own.leadHis : ""}`}>{usdFull(c.leader.total)}</span>{" "}
-              of {usdFull(c.total)} · {pct(shareOf(c.leader, c))} · {nightsLabel(c.shows)} reported
+              leads · <span className={`${own.leadFig} ${c.leader.his ? own.leadHis : ""}`}>{usdM(c.leader.total)}</span>{" "}
+              of {usdM(c.total)} · {pct(shareOf(c.leader, c))} · {nightsLabel(c.shows)} reported
             </>
           )}
         </span>

@@ -332,7 +332,10 @@
 .headRow,
 .row {
   display: grid;
-  grid-template-columns: 32px 150px minmax(0, 1fr) 64px 130px 150px;
+  /* Best single night takes ~44px from Nights, Share and Total (fix 8): the
+     short money form ("$15.50M") needs far less than full dollars did, and
+     Canada's run lines stop wrapping to three lines at 1440. */
+  grid-template-columns: 32px 150px minmax(0, 1fr) 56px 120px 106px;
   gap: 16px;
 }
 .headRow {
@@ -503,7 +506,7 @@
   .main { grid-template-columns: minmax(0, 1fr); gap: 0; }
   .index { display: none; }
   .headRow,
-  .row { grid-template-columns: 28px 128px minmax(0, 1fr) 56px 140px; }
+  .row { grid-template-columns: 28px 128px minmax(0, 1fr) 56px 106px; }
   .headRow > :nth-child(5),
   .row > :nth-child(5) { display: none; }
   .continentTitle { font-size: 34px; }

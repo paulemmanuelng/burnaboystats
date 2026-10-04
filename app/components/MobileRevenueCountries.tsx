@@ -234,7 +234,9 @@ export default function MobileRevenueCountries({ board }: { board: RevenueByCoun
             <span className={styles.figLabel}>Continents</span>
           </div>
           <div className={styles.fig}>
-            <span className={`${styles.figValue} ${styles.figHis}`}>
+            {/* His figure, gold: this screen's own class — the shared phone
+                stylesheet has no gold tile since #420 (shows hero, owner). */}
+            <span className={`${styles.figValue} ${own.figHis}`}>
               {board.hisLeads} of {board.countryCount}
             </span>
             <span className={styles.figLabel}>He leads</span>

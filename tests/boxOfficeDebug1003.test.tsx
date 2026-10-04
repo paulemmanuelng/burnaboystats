@@ -559,7 +559,18 @@ describe("C3: the phone countries screen keeps gold for his figure only", () => 
     expect(value("He leads").className).toMatch(/figHis/);
     expect(declaredAt(CSS, ".mutedBadge.mutedBadge", "color", 390)).toBe("var(--text-muted)");
     expect(declaredAt(PHONE_CSS, ".figValue", "color", 390)).toBe("var(--text)");
-    expect(declaredAt(PHONE_CSS, ".figHis", "color", 390)).toBe("var(--gold)");
+    // His tile's gold is this screen's own class: the shared phone stylesheet
+    // has carried no .figHis since #420 (tests/showsHeroGold).
+    expect(declaredAt(CSS, ".figHis.figHis", "color", 390)).toBe("var(--gold)");
+    expect(PHONE_CSS).not.toMatch(/\.figHis\b/);
+    expect(read("app/components/MobileRevenueCountries.tsx")).not.toMatch(/styles\.figHis/);
+  });
+  it("negative control: the tile as this page first shipped it took its gold from the shared sheet", () => {
+    // MobileRevenueCountries.tsx at 590cae87 (PR #417 before the rebase onto #420), verbatim.
+    const shipped = "<span className={`${styles.figValue} ${styles.figHis}`}>";
+    expect(shipped).toMatch(/styles\.figHis/);
+    // That sheet no longer declares it, so the class came out as "undefined" and the tile went ink.
+    expect(declaredAt(PHONE_CSS, ".figHis", "color", 390)).toBeUndefined();
   });
   it("negative control: the shared classes alone are gold", () => {
     expect(declaredAt(PHONE_CSS, ".badge", "color", 390)).toBe("var(--gold)");
@@ -586,7 +597,8 @@ describe("C5: a run-only artist's row reads like a single night's, the run said 
     expect(runOnly.length).toBeGreaterThan(0);
     for (const { a } of runOnly)
       for (const st of a.stands) {
-        const d = runParts(st, usdFull);
+        // One money form a screen (fix 4): the short form on both since 4 Oct.
+        const d = runParts(st, usdM);
         expect(text(countries.desktop!)).toContain(`${d.marker}${d.gross} · ${d.place} · ${d.meta}`);
         const p = runParts(st, usdM);
         expect(text(countries.phone!)).toContain(`${p.marker}${p.gross}${p.place} · ${p.meta}`);
@@ -622,14 +634,25 @@ describe("C6: the ItemList names print the total it is ordered by", () => {
 
 // ── C9 ──────────────────────────────────────────────────────────────────────
 describe("C9: a phone continent heading is its name alone", () => {
-  it("each continent section's labelling h2 holds the continent only; its figures sit beside it", () => {
-    const withData = board.continents.filter((k) => k.countries.length > 0);
-    for (const k of withData) {
+  it("exactly one labelled section per continent — the empty ones too — plus the ladder and the continent strip", () => {
+    // Since the round-1 design (4 Oct 2026, Q1) Africa and South America have
+    // sections of their own; the ladder and "By continent" are labelled too.
+    const sections = [...countries.phone!.querySelectorAll("section[aria-labelledby]")].map((s) => s.getAttribute("aria-labelledby"));
+    expect(sections).toEqual([
+      "m-ladder-title",
+      "m-continents-title",
+      ...board.continents.map((k) => `m-${idSlug(k.continent)}-title`),
+    ]);
+    expect(board.continents.some((k) => k.countries.length === 0)).toBe(true);
+  });
+  it("each continent section's labelling h2 holds the continent only; its figures, where it has any, sit beside it", () => {
+    for (const k of board.continents) {
       const s = countries.phone!.querySelector(`section[aria-labelledby="m-${idSlug(k.continent)}-title"]`)!;
       expect(s, k.continent).not.toBeNull();
       const h2 = countries.d.getElementById(s.getAttribute("aria-labelledby")!)!;
       expect(text(h2)).toBe(k.continent);
-      expect(text(h2.parentElement)).toContain(usdM(k.total));
+      if (k.countries.length > 0) expect(text(h2.parentElement)).toContain(usdM(k.total));
+      else expect(text(h2.parentElement), k.continent).not.toMatch(/\$/);
     }
   });
   it("negative control: the shipped h2 ran the figures into the name", () => {

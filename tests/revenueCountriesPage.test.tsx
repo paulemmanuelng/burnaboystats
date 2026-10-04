@@ -36,9 +36,10 @@ const both = () => [
   ["phone", phone!],
   ["desktop", desktop!],
 ] as const;
-/** Each layout's money form (one a screen, review fix 4): the desktop's
- *  tables print full dollars, the phone the short form. */
-const money = (w: "phone" | "desktop") => (w === "desktop" ? usdFull : usdM);
+/** Each layout's money form (one a screen, review fix 4): the short form on
+ *  both since the 4 Oct review — the desktop's hero, ladder and index already
+ *  printed it, so its heads and rows came over to them. */
+const money = (_w: "phone" | "desktop") => usdM;
 /** Each layout's leader line: the phone drops the closing "reported". */
 const lead = (w: "phone" | "desktop", c: (typeof board.countries)[number]) =>
   leaderLine(c, money(w), { reported: w === "desktop" });
@@ -75,12 +76,13 @@ describe("every country, with its full ranked list, on both layouts", () => {
     expect(ranks.length).toBe(rows);
   });
 
-  it("desktop prints each artist's total in full, phone in short form", () => {
+  it("both layouts print each artist's total in the short form", () => {
     const d = text(desktop!);
     const p = text(phone!);
     for (const c of board.countries)
       for (const a of c.artists) {
-        expect(d).toContain(usdFull(a.total));
+        expect(d).toContain(usdM(a.total));
+        expect(d).not.toContain(usdFull(a.total));
         expect(p).toContain(usdM(a.total));
       }
   });

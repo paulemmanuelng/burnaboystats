@@ -163,7 +163,7 @@ describe("the country ladder: every country, its leader named, each bar a jump l
 });
 
 // ── Money ───────────────────────────────────────────────────────────────────
-describe("fix 4: money under $1M prints thousands; one money form on the phone", () => {
+describe("fix 4: money under $1M prints thousands; one money form on each layout", () => {
   it("no “$0.xxM” anywhere, and the phone prints only the short form", () => {
     for (const [, tree] of both()) expect(text(tree)).not.toMatch(/\$0\.\d\dM/);
     // The phone's short form only: never full dollars, never the three-place
@@ -178,7 +178,35 @@ describe("fix 4: money under $1M prints thousands; one money form on the phone",
     expect(t).toContain(`leads · ${usdM(us.leader.total)} of ${usdM(us.total)}`);
     expect(t).toContain(`Burna Boy${usdM(us.leader.total)}`);
   });
-  it("negative control: the canvas's phone row and head disagreed", () => {
+  it("the desktop prints the short form only too: hero, ladder, index, heads, rows and runs agree", () => {
+    // The desktop's hero, ladder, continent cards and "Jump to" index print
+    // "$26.92M"; since the 4 Oct review its heads, rows, runs and callouts do
+    // as well (fix 4: one money form per screen).
+    const d = text(page.desktop!).replace(SOURCE_LINE, "");
+    expect(d).not.toMatch(/\$\d{1,3}(,\d{3})+/);
+    expect(d).not.toMatch(/\$\d+\.\d{3}M|\$\d+\.\dK/);
+    const us = board.countries.find((c) => c.name === "United States")!;
+    const nav = page.desktop!.querySelector('nav[aria-label="Jump to a country"]')!;
+    expect(text(nav)).toContain(`United States${usdM(us.total)}`);
+    expect(d).toContain(`leads · ${usdM(us.leader.total)} of ${usdM(us.total)}`);
+    expect(d).toContain(usdM(us.leader.total));
+    expect(d).not.toContain(usdFull(us.total));
+    // No full-dollar formatter left in the desktop component.
+    expect(read("app/components/RevenueCountries.tsx")).not.toMatch(/usdFull/);
+  });
+  it("negative control: the desktop as this PR first built it printed two forms side by side", () => {
+    // The 1440 build at 590cae87, verbatim: the index beside the US head.
+    const shippedIndex = "United States$26.92M";
+    const shippedHead = "$15,495,482 of $26,920,799";
+    expect(shippedIndex).toMatch(/\$\d+\.\d\dM/);
+    expect(shippedHead).toMatch(/\$\d{1,3}(,\d{3})+/);
+    expect(text(page.desktop!)).not.toContain("$15,495,482 of $26,920,799");
+    // And #408's desktop row (a7530590, RevenueCountries.tsx:70 and :91,
+    // verbatim) mixed them inside one row: the best night short, the total full.
+    const shippedRow = ["{usdM(a.best.revenue)} · {a.best.venue}", "{usdFull(a.total)}"];
+    expect(shippedRow.join(" ")).toMatch(/usdM[\s\S]*usdFull/);
+  });
+  it("negative control: the canvas's phone row and head disagreed (the phone never shipped the compact form)", () => {
     // GXCountriesPhone: head "$15.50M", row "$15.495M" (B.compact).
     const us = board.countries.find((c) => c.name === "United States")!;
     expect(`$${(us.leader.total / 1e6).toFixed(3)}M`).toBe("$15.495M");
@@ -193,7 +221,7 @@ describe("fix 6: a one-artist country is a normal row", () => {
     expect(singles.length).toBeGreaterThan(0);
   });
   it.each(both())("%s: the head says “the only artist reported”; the row has rank 01, the artist, the best night, nights and total", (w, tree) => {
-    const fmt = w === "desktop" ? usdFull : usdM;
+    const fmt = usdM;
     for (const c of singles) {
       const block = page.d.getElementById(countryAnchor(c.name, w === "phone"))!;
       const head = text(block.querySelector("h3")!.parentElement);
@@ -232,7 +260,7 @@ describe("fix 7: “1 night”, his best night gold on both layouts, the callout
   });
   it.each(both())("%s: the Canada callout names the leader", (w, tree) => {
     const canada = board.countries.find((c) => c.name === "Canada")!;
-    const line = leadsOnTotal(canada, w === "desktop" ? usdFull : usdM, w === "desktop" ? "desk" : "phone");
+    const line = leadsOnTotal(canada, usdM, w === "desktop" ? "desk" : "phone");
     if (line) {
       expect(text(tree)).toContain(`Leads on total${line}`);
       expect(line).toContain(canada.leader.artist);
@@ -266,6 +294,24 @@ describe("N4: his name is set like every other name, on both layouts", () => {
     expect(shipped).toMatch(/leadHis[^}]*\}>\{c\.leader\.artist\}/);
     expect(declaredAt(shippedCss, ".leadHis", "color", 390)).toBe("var(--gold)");
     expect(read("app/components/MobileRevenueCountries.tsx")).not.toMatch(/leadHis[^<]*\}>\{(c\.leader|L|k\.leader!?)\.artist\}/);
+  });
+});
+
+describe("N4: his desktop rows carry no wash — the row is clear but for hover", () => {
+  it("no desktop row of his carries a his-only class, and the shared sheet no longer declares one", () => {
+    const rows = [...page.desktop!.querySelectorAll('[role="row"]')];
+    const his = rows.filter((r) => [...r.children].some((c) => text(c) === "Burna Boy"));
+    expect(his.length).toBeGreaterThanOrEqual(board.hisLeads);
+    for (const r of rows) expect(r.className, text(r).slice(0, 40)).not.toMatch(/rowHis/);
+    expect(read("app/records/tours/revenue/revenue.module.css")).not.toMatch(/\.rowHis\b/);
+    expect(declaredAt(DESK_CSS, ".row", "background", 1440)).toBeUndefined();
+  });
+  it("negative control: the row as this PR first built it (590cae87) washed his rows gold", () => {
+    // RevenueCountries.tsx:149 at 590cae87, verbatim, and the class it rendered.
+    const shipped = "<div role=\"row\" className={`${own.row} ${a.his ? styles.rowHis : \"\"}`}>";
+    expect(shipped).toMatch(/styles\.rowHis/);
+    const rendered = new DOMParser().parseFromString(`<div role="row" class="row rowHis"><span>Burna Boy</span></div>`, "text/html");
+    expect(rendered.querySelector('[role="row"]')!.className).toMatch(/rowHis/);
   });
 });
 
@@ -311,10 +357,12 @@ describe("item 3: the desktop “Jump to” index and the phone's continent rail
     const global = read("app/globals.css");
     expect(global).toMatch(/a:focus-visible,[\s\S]{0,200}\{\s*outline: 2px solid var\(--gold\);\s*outline-offset: 2px;/);
   });
-  it("negative control: the canvas's back bar drew a second gold — a gold-filled “12 countries” pill (fix 2)", () => {
-    // GXCountriesPhone.dc.html:158, verbatim.
-    const canvas = `<span style="flex:none;height:26px;display:inline-flex;align-items:center;padding:0 10px;border-radius:999px;background:var(--fill);color:var(--ink);font:700 11px/1 'Space Mono',monospace;letter-spacing:.06em;text-transform:uppercase;outline:var(--slot)">{{ badge }}</span>`;
-    expect(canvas).toMatch(/background:var\(--fill\)/);
+  it("negative control: the badge as the page shipped it before C3 was the shared gold badge (fix 2)", () => {
+    // MobileRevenueCountries.tsx at a88639e2 (live 3 Oct 2026), verbatim; the
+    // canvas (GXCountriesPhone.dc.html:158) drew the same second gold, filled.
+    const shipped = "<span className={`${styles.badge} ${own.barBadge}`}>{board.countryCount} countries</span>";
+    expect(shipped).not.toMatch(/mutedBadge/);
+    expect(declaredAt(PHONE_CSS, ".badge", "color", 390)).toBe("var(--gold)");
     const badge = page.phone!.querySelector('[class*="badge"]')!;
     expect(badge.className).toMatch(/mutedBadge/);
     expect(declaredAt(PHONE_OWN, ".mutedBadge.mutedBadge", "color", 390)).toBe("var(--text-muted)");
@@ -453,10 +501,15 @@ describe("items 8 / fix 10: the share card carries the ladder and names each lea
     expect(ogSrc).toMatch(/note\?: string/);
     expect(ogSrc).toMatch(/hisShare\?: number/);
   });
-  it("negative control: the canvas's card labelled rows by flag and country only", () => {
-    // GXOG.dc.html: label `${c.flag} ${c.name}` — no leader (review fix 10).
-    const canvasLabel = (c: { flag: string; name: string }) => `${c.flag} ${c.name}`;
-    const japan = board.countries.find((c) => c.name === "Japan")!;
-    expect(canvasLabel(japan)).not.toContain(japan.leader.artist);
+  it("negative control: the card the page shipped named only him, never another leader", () => {
+    // opengraph-image.tsx at a534d98e (main before this PR): its whole text,
+    // with the board's figures filled in. The canvas (GXOG.dc.html) labelled
+    // its rows `${c.flag} ${c.name}` — no leader either (review fix 10).
+    const shipped = `African artists · box office Highest-Grossing Artists by Country Who leads each of ${board.countryCount} countries for reported box office by African artists — Burna Boy leads ${board.hisLeads}`;
+    const others = [...new Set(ladderRows(board).map((r) => r.leader))].filter((l) => l !== "Burna Boy");
+    expect(others).toContain("Tyla");
+    for (const l of others) expect(shipped).not.toContain(l);
+    // Today's card carries a leader note on every row.
+    expect(read("app/records/tours/revenue/countries/opengraph-image.tsx")).toMatch(/note: r\.leader/);
   });
 });

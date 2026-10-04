@@ -500,8 +500,7 @@
     "--gold-wash-base 7%"
   ],
   "app/records/tours/revenue/revenue.module.css": [
-    "--ember 16%",
-    "--gold-wash-base 4%"
+    "--ember 16%"
   ],
   "app/records/tours/tours.module.css": [
     "--gold-ink 28%",
