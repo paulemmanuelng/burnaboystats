@@ -187,7 +187,9 @@ export default function RecordsPage() {
                     </td>
                     <td className={styles.tour}>{s.tour} · {s.year}</td>
                     <td className={styles.tickets}>{s.tickets ?? <NotReported />}</td>
-                    <td className={styles.gross}>{usd(s.revenue)}</td>
+                    <td className={`${styles.gross} ${s.artist === "Burna Boy" ? styles.grossHis : ""}`}>
+                      {usd(s.revenue)}
+                    </td>
                   </tr>
                 ))}
               </tbody>

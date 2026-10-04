@@ -99,7 +99,11 @@ export default function MobileRecords({
               <span className={styles.showVenue}>{s.flag} {s.venue}</span>
               <span className={styles.showMeta}>{s.artist} · {s.year}</span>
             </span>
-            <span className={styles.showGross}>${(s.revenue / 1e6).toFixed(2)}M</span>
+            <span
+              className={`${styles.showGross} ${s.artist === "Burna Boy" ? styles.showGrossHis : ""}`}
+            >
+              ${(s.revenue / 1e6).toFixed(2)}M
+            </span>
           </Link>
         ))}
       </div>

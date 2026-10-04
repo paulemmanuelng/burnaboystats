@@ -217,10 +217,11 @@
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
   font-size: 18px;
-  color: var(--gold);
+  color: var(--text-muted);
   font-variant-numeric: tabular-nums;
   flex: none;
 }
+.showGrossHis { color: var(--gold); }
 
 .allBtn {
   display: flex;
