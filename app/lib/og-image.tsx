@@ -47,6 +47,136 @@ export function ogImage({ kicker, title, sub }: { kicker: string; title: string;
   );
 }
 
+/** One bar of a ladder card: its label, its length (0–1 of the longest), and
+ *  whether it is his — gold if so, the --other neutral if not. */
+export interface OgLadderRow {
+  label: string;
+  w: number;
+  his: boolean;
+}
+
+/** The two box-office cards' shape (Claude Design round 1, 4 Oct 2026,
+ *  GXOG.dc.html): kicker, title and one big figure at the left, a ladder of
+ *  bars at the right, the address and a foot line along the bottom. */
+export interface OgLadderCard {
+  kicker: string;
+  title: string;
+  /** The figure, e.g. "$6,147,209". */
+  big: string;
+  /** Gold only when the figure is his (N6): another artist's record prints in ink. */
+  bigHis: boolean;
+  bigCap: string;
+  graphTitle: string;
+  rows: OgLadderRow[];
+  /** The page's path; the card prints it through cardUrl. */
+  path: string;
+  foot: string;
+}
+
+/**
+ * The ladder variant of the share card. Satori lays out flexbox only, so every
+ * box is a flex container; colours are the dark card's literals (the cards stay
+ * gold on near-black for every page). A ladder label is "{artist} · {venue}"
+ * in a fixed column with an ellipsis (review fix 11: two rows both read
+ * "La Défense Arena", told apart by colour alone).
+ */
+export function ogLadder(card: OgLadderCard) {
+  const GOLD = "#ffb627";
+  const OTHER = "#74747e";
+  return new ImageResponse(
+    (
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          position: "relative",
+          display: "flex",
+          background: "#0a0a0b",
+          backgroundImage: "radial-gradient(circle at 0% 0%, rgba(255,182,39,0.12), rgba(10,10,11,0) 60%)",
+          color: "#f5f4f0",
+          fontFamily: "sans-serif",
+        }}
+      >
+        <div style={{ position: "absolute", top: 46, left: 64, display: "flex" }}>
+          <OgLockup />
+        </div>
+        <div style={{ position: "absolute", left: 64, top: 140, width: 540, display: "flex", flexDirection: "column" }}>
+          <div style={{ display: "flex", fontFamily: "Space Mono", fontSize: 16, letterSpacing: 2.2, color: GOLD, textTransform: "uppercase" }}>
+            {card.kicker}
+          </div>
+          <div style={{ display: "flex", marginTop: 18, fontFamily: "Anton", fontSize: 64, lineHeight: 0.98, textTransform: "uppercase" }}>
+            {card.title}
+          </div>
+          <div style={{ display: "flex", alignItems: "flex-end", marginTop: 28 }}>
+            <div style={{ display: "flex", flexShrink: 0, fontFamily: "Anton", fontSize: 76, lineHeight: 0.9, color: card.bigHis ? GOLD : "#f5f4f0" }}>
+              {card.big}
+            </div>
+            <div style={{ display: "flex", flexShrink: 1, minWidth: 0, marginLeft: 18, paddingBottom: 4, fontSize: 20, lineHeight: 1.3, color: "#cfc7bb", maxWidth: 260 }}>
+              {card.bigCap}
+            </div>
+          </div>
+        </div>
+        <div style={{ position: "absolute", right: 64, top: 140, width: 500, display: "flex", flexDirection: "column" }}>
+          <div style={{ display: "flex", fontFamily: "Space Mono", fontSize: 13, letterSpacing: 1.6, color: "#9b9ba3", textTransform: "uppercase" }}>
+            {card.graphTitle}
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", marginTop: 14 }}>
+            {card.rows.map((r, i) => (
+              <div key={i} style={{ display: "flex", alignItems: "center", height: 20, marginTop: i ? 7 : 0 }}>
+                <div
+                  style={{
+                    display: "block",
+                    width: 250,
+                    fontSize: 15,
+                    color: "#f5f4f0",
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                  }}
+                >
+                  {r.label}
+                </div>
+                <div style={{ display: "flex", marginLeft: 12, width: 238, height: 10, background: "#1c1c21", borderRadius: 2 }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      width: Math.max(3, Math.round(238 * r.w)),
+                      height: 10,
+                      borderRadius: 2,
+                      background: r.his ? GOLD : OTHER,
+                    }}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div
+          style={{
+            position: "absolute",
+            left: 64,
+            right: 64,
+            bottom: 48,
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "flex-end",
+            borderTop: "1px solid rgba(245,244,240,0.14)",
+            paddingTop: 20,
+          }}
+        >
+          <div style={{ display: "flex", fontFamily: "Space Mono", fontSize: 16, letterSpacing: 1, color: "#f5f4f0" }}>
+            {cardUrl(card.path)}
+          </div>
+          <div style={{ display: "flex", fontFamily: "Space Mono", fontSize: 13, letterSpacing: 1.6, color: "#9b9ba3", textTransform: "uppercase" }}>
+            {card.foot}
+          </div>
+        </div>
+      </div>
+    ),
+    { ...size, fonts: ogFonts }
+  );
+}
+
 /**
  * The address a share card prints, bottom-left: BURNABOYSTATS.COM/dai-dai.
  *

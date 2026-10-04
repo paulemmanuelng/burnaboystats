@@ -1,24 +1,33 @@
 /* Highest-grossing shows (was "Revenue per show") — desktop.
-   designs/desktop/Records - Revenue Per Show.dc.html, values verbatim.
+   Claude Design round 1, 4 Oct 2026: designs/desktop/GXShowsDesk.dc.html,
+   "the record night" direction, with the review's fixes and the owner's
+   rulings where they differ. RevenueCountries (Highest-Grossing Artists by
+   Country) imports this file too, for its hero, names, ranks and grosses —
+   the shared classes are marked.
 
-   Hidden below 900px, where MobileDeepPage renders screen 14 instead. */
+   Hidden below 900px, where MobileRevenue renders the phone screen instead. */
 .desktopOnly { display: block; }
 @media (max-width: 900px) { .desktopOnly { display: none; } }
 
+/* Shared with the countries page. */
 .band { border-bottom: 1px solid var(--line); }
-.filterBand { border-bottom: 1px solid var(--line); background: var(--bg-soft); }
 .wide { max-width: 1360px; margin: 0 auto; padding: 0 40px; }
 
+/* The shows page: one column of the site's width, as the canvas draws it. */
+.page { max-width: 1360px; margin: 0 auto; padding: 0 40px; box-sizing: border-box; }
+
 /* ── Hero ───────────────────────────────────────────────────────────────── */
+/* Shared with the countries page. */
 .heroPad { padding: 50px 40px 40px; }
 .eyebrow {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   font-family: var(--font-mono), monospace;
   font-weight: 700;
-  font-size: 11.5px;
-  letter-spacing: 0.18em;
+  font-size: var(--type-label);
+  line-height: var(--type-label-lh);
+  letter-spacing: var(--type-label-tracking);
   text-transform: uppercase;
   color: var(--text-muted);
 }
@@ -27,8 +36,8 @@
   font-family: var(--font-anton), sans-serif;
   font-weight: 400; /* Anton has no bold cut */
   font-size: 84px;
-  line-height: 0.88;
-  letter-spacing: 0.01em;
+  line-height: 0.94;
+  letter-spacing: 0.005em;
   text-transform: uppercase;
   margin: 16px 0 0;
 }
@@ -40,14 +49,175 @@
   color: var(--text-body-cool);
   text-wrap: pretty;
 }
-.heroBtns { display: flex; gap: 10px; margin-top: 24px; }
+.heroBtns { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
 
-/* ── Filter band ────────────────────────────────────────────────────────── */
-.filterPad { padding: 22px 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+/* The shows hero: the story at the left, the record night at the right. */
+.heroGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 440px;
+  gap: 64px;
+  padding: 36px 0 40px;
+}
+.heroMain { display: flex; flex-direction: column; min-width: 0; }
+.heroLede.heroLede { font-size: 20px; line-height: 1.5; max-width: 46ch; margin-top: 20px; color: var(--text-body); }
+
+.figs {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: 28px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.fig {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px 16px 16px 0;
+  border-right: 1px solid var(--line);
+  min-width: 0;
+}
+.fig + .fig { padding-left: 16px; }
+.fig:last-child { border-right: 0; }
+.figValue {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 1;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+/* His figures (9 of the top ten, his share) — gold marks his figures only. */
+.figHis { color: var(--gold); }
+.figLabel {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  line-height: 1.2;
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* The record night. */
+.record {
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--bg-soft);
+  padding: 28px 28px 24px;
+}
+.recordHead {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  line-height: 1.2;
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.recordFigure {
+  margin-top: 18px;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 72px;
+  line-height: 0.9;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+/* Gold only while the record night is his (N6, 4 Oct 2026). */
+.recordFigureHis { color: var(--gold); }
+.recordArtist { margin-top: 16px; font-size: 15px; font-weight: 600; color: var(--text); }
+.recordPlace { margin-top: 4px; font-size: var(--type-small); line-height: 1.5; color: var(--text-body); }
+.recordStats { display: grid; grid-template-columns: 1fr 1fr; margin-top: 20px; border-top: 1px solid var(--line); }
+.recordStat { display: flex; flex-direction: column; gap: 6px; padding-top: 14px; }
+.recordStatValue {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 1;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+.recordStatLabel {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  line-height: 1.2;
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.recordFoot { margin-top: 12px; font-size: var(--type-caption); line-height: 1.45; color: var(--text-muted); }
+
+/* ── Share of the board's gross ─────────────────────────────────────────── */
+.share { padding: 0 0 32px; }
+.shareHead { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+.shareTitle {
+  margin: 0;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  line-height: 1.2;
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+  color: var(--text);
+}
+.shareSum { font-size: var(--type-small); color: var(--text-body); font-variant-numeric: tabular-nums; }
+.shareName { font-weight: 600; color: var(--text); }
+.shareGold { font-weight: 600; color: var(--gold); }
+/* His segment gold, everyone else's --other; a 2px ground gap between
+   segments, so the pair never reads by colour alone (design §8, item 7). */
+.shareBar {
+  display: flex;
+  gap: 2px;
+  height: 14px;
+  margin-top: 10px;
+  background: var(--bg-soft-2);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.seg { display: block; min-width: 2px; background: var(--other); }
+.segHis { background: var(--gold-fill); }
+.shareKey {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+  margin-top: 8px;
+  font-size: var(--type-caption);
+  line-height: 1.45;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.shareKeyName { color: var(--text); }
+
+/* The bars grow once, on first view (0.3s); the global reduced-motion rule in
+   globals.css takes them straight to their end. A filter swaps rows with no
+   animation: the board drops .boardGrow at the first tap. */
+.grow .seg,
+.boardGrow .scaleFill { animation: barGrow var(--dur-slow) var(--ease-out) both; transform-origin: left center; }
+@keyframes barGrow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+/* ── Filter box ─────────────────────────────────────────────────────────── */
+.filterBox {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 20px;
+  border-radius: 6px;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+}
 .filterLabel {
   font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.12em;
+  font-weight: 700;
+  font-size: var(--type-label);
+  letter-spacing: var(--type-label-tracking);
   text-transform: uppercase;
   color: var(--text-muted);
   margin-right: 6px;
@@ -57,65 +227,79 @@
   align-items: center;
   gap: 8px;
   /* 40px is the design's; it clears the pointer target floor on a desktop-only
-     control, and the row it sits in has 10px of gap around it. */
+     control, and the row it sits in has 8px of gap around it. */
   min-height: 40px;
-  padding: 0 16px;
+  padding: 0 14px;
   border-radius: 999px;
-  border: 1px solid var(--border);
-  background: transparent;
-  color: var(--text-muted);
+  border: 1px solid var(--btn-edge);
+  background: var(--bg);
+  color: var(--text);
   font-family: inherit;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
-  transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease),
-    background var(--dur-fast) var(--ease);
+  transition: border-color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease);
 }
-.chip:hover { border-color: var(--gold); color: var(--gold); }
-.chipOn { background: color-mix(in srgb, var(--ember) calc(16% * var(--wash-strength)), transparent); border-color: var(--ember); color: var(--ember); }
-.chipCount { font-family: var(--font-mono), monospace; font-size: 11px; opacity: var(--text-fade); }
+.chip:hover { border-color: var(--ember); }
+/* On: a 2px ember edge (border + 1px inset, so the chip never changes size),
+   the ember wash, the label in ink — never colour alone, never gold (N2). */
+.chipOn {
+  border-color: var(--ember);
+  box-shadow: inset 0 0 0 1px var(--ember);
+  background: color-mix(in srgb, var(--ember) calc(16% * var(--wash-strength)), var(--bg));
+  color: var(--text);
+}
+/* Focus: 2px gold over a 2px ground gap, so it shows on the on-state too. */
+.chip:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--gold); }
+.chipOn:focus-visible { box-shadow: inset 0 0 0 1px var(--ember), 0 0 0 2px var(--bg), 0 0 0 4px var(--gold); }
+.chipCount { font-family: var(--font-mono), monospace; font-size: 11px; font-weight: 700; color: var(--text-muted); opacity: var(--text-fade); }
 .shown {
   margin-left: auto;
   font-family: var(--font-mono), monospace;
-  font-size: 11.5px;
-  letter-spacing: 0.08em;
+  font-weight: 700;
+  font-size: var(--type-label);
+  letter-spacing: var(--type-label-tracking);
   text-transform: uppercase;
   color: var(--text-muted);
 }
 
 /* ── Board ──────────────────────────────────────────────────────────────── */
-.boardPad { padding: 26px 40px 40px; }
+/* Shared with the countries page. */
 .board { border-top: 1px solid var(--line); }
+.filterBox + .board { border-top: 0; margin-top: 24px; }
+
 .headRow,
 .row {
   display: grid;
-  grid-template-columns: 52px 150px 1fr 210px 100px 130px;
-  gap: 20px;
+  grid-template-columns: 32px 130px minmax(0, 1.4fr) minmax(0, 1fr) 48px 72px 150px 130px;
+  gap: 16px;
   align-items: center;
-  padding: 15px 8px;
+  padding: 8px 12px;
   border-bottom: 1px solid var(--line);
 }
 .headRow {
-  padding: 10px 8px;
+  padding: 0 12px 10px;
   font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.08em;
+  font-weight: 700;
+  font-size: var(--type-label);
+  line-height: 1.2;
+  letter-spacing: var(--type-label-tracking);
   text-transform: uppercase;
   color: var(--text-muted);
-  border-bottom-width: 2px;
+  border-bottom: 2px solid var(--rule);
 }
-.row { transition: background var(--dur-fast) var(--ease); }
-/* A faint wash on his rows, so the shape of the board — how much of it is his —
-   reads before any single number does. */
-.rowHis { background: color-mix(in srgb, var(--gold-wash-base) calc(4% * var(--wash-strength)), transparent); }
-/* Hover lifts the row. On paper the full --bg-raised (#e6e0d4) took the gold
-   name and gross on his rows to 4.14:1 against #945e00 — under AA for 22px
-   Anton 400 and 14.5px text (debug pass 3 Oct 2026, k4). Light hovers 40% of
-   the way to it (4.62:1); dark keeps --bg-raised (8.80:1).
+.row { min-height: 56px; box-sizing: border-box; transition: background var(--dur-fast) var(--ease); }
+/* Hover lifts the row onto --hover (globals.css): on paper 40% of the way to
+   --bg-raised, where his gold gross holds 4.62:1 (k4, 3 Oct 2026 — the full
+   --bg-raised took it to 4.14:1); in dark, --bg-raised itself (8.80:1).
    tests/boxOfficeDebug1003.test.tsx computes both from globals.css. */
-.row:hover { background: light-dark(color-mix(in srgb, var(--bg-raised) 40%, var(--bg)), var(--bg-raised)); }
+.row:hover { background: var(--hover); }
+/* Shared with the countries page: a faint wash on his rows there. */
+.rowHis { background: color-mix(in srgb, var(--gold-wash-base) calc(4% * var(--wash-strength)), transparent); }
 .right { text-align: right; }
 
+/* Shared with the countries page (its Anton ranks). Never gold: every rank is
+   a label, his included (N4, 4 Oct 2026). */
 .rank {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
@@ -123,22 +307,41 @@
   color: var(--text-muted);
   font-variant-numeric: tabular-nums;
 }
-.rankTop { color: var(--gold); }
-.hisName { font-weight: 600; font-size: 14.5px; color: var(--gold); }
-.otherName { font-weight: 600; font-size: 14.5px; color: var(--text); }
-.venueCell { min-width: 0; }
+/* The shows board's rank: the canvas's small mono label. */
+.showRank {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1;
+  color: var(--dim);
+  font-variant-numeric: tabular-nums;
+}
+/* Shared with the countries page. His name is set like every other name: the
+   same ink, place and format (N4, 4 Oct 2026). The two classes stay so a row
+   can still be found as his. */
+.hisName { font-weight: 600; font-size: 14px; color: var(--text); }
+.otherName { font-weight: 600; font-size: 14px; color: var(--text); }
+.venueCell { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
 .venue { display: block; font-weight: 600; font-size: 15px; }
+.showVenue { display: block; font-size: 14px; line-height: 1.3; }
 .city {
   display: block;
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   font-size: var(--type-caption);
+  line-height: 1.3;
   color: var(--text-muted);
-  margin-top: 2px;
 }
-/* The year on the city line shows only where the Tour column (which prints it)
-   is folded away — see the 1239px query at the foot. */
+/* The year on the city line shows only where the Tour and Year columns are
+   folded away — see the 1239px query at the foot. */
 .cityYear { display: none; }
-.tour { font-size: 13.5px; color: var(--text-body-cool); }
+.tour { font-size: var(--type-caption); line-height: 1.35; color: var(--text-muted); }
+.year {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--text-body);
+}
+/* Shared with the countries page. */
 .tickets {
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   font-size: var(--type-small);
@@ -146,30 +349,45 @@
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
+.showTickets {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--text-body);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+/* The scale bar: linear against the No. 1 night, min 2px, kept under a
+   filter. His bar gold, everyone else's --other. Decorative: the exact gross
+   sits beside it. */
+.scale { display: flex; height: 6px; background: var(--bg-soft-2); border-radius: 2px; }
+.scaleFill { display: block; min-width: 2px; border-radius: 2px; background: var(--other); }
+.scaleFillHis { background: var(--gold-fill); }
 /* The gold gross marks HIS nights, so it cannot be the default — more than half
-   of the rows belong to other artists, and lighting all of them gold says the board is
-   entirely his. mobileRevenue.module.css has always done it this way (.gross
-   muted, .grossHis gold); the desktop board did not, so every artist's money
-   read as his. */
+   of the rows belong to other artists, and lighting all of them gold says the
+   board is entirely his. Shared with the countries page (muted there). */
 .gross {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
   font-size: 22px;
+  line-height: 1;
   color: var(--text-muted);
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
+/* Everyone else's gross on the shows board, in ink (the canvas). */
+.grossOther { color: var(--text); }
 .grossHis { color: var(--gold); }
 
-/* Multi-night runs beneath the board: a section of its own with a real
-   heading and a one-line lede, then the same row grammar as the board's rows,
-   without a rank — they are shown, not placed. */
-.stands { margin-top: 40px; border-top: 1px solid var(--line); padding-top: 26px; }
+/* ── Multi-night runs ───────────────────────────────────────────────────── */
+/* One explanation at the head (fix 12): RUNS_LEDE, then the derived note. */
+.stands { padding-top: 64px; }
+/* Shared with the countries page. */
 .standsTitle {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400; /* Anton has no bold cut */
   font-size: 38px;
-  line-height: 1.05;
+  line-height: 1;
   letter-spacing: 0.01em;
   text-transform: uppercase;
   color: var(--text);
@@ -178,48 +396,88 @@
 .standsLede {
   font-size: var(--type-body);
   line-height: 1.6;
-  max-width: 62ch;
+  max-width: 68ch;
   margin: 10px 0 18px;
-  color: var(--text-body-cool);
+  color: var(--text-body);
   text-wrap: pretty;
 }
-.standsList { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.standsList { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--rule); }
 .stand {
   display: grid;
-  grid-template-columns: 1fr 160px 220px;
-  gap: 20px;
-  align-items: baseline;
-  padding: 15px 8px;
+  grid-template-columns: 150px 130px minmax(0, 1fr) 150px 130px;
+  gap: 16px;
+  align-items: center;
+  min-height: 64px;
+  box-sizing: border-box;
+  padding: 10px 12px;
   border-bottom: 1px solid var(--line);
 }
-.standVenue { min-width: 0; }
-.standPlace { display: block; font-weight: 600; font-size: 15px; }
-.standMeta { display: block; margin-top: 3px; font-size: 13.5px; color: var(--text-body-cool); }
-.standMeta .hisName,
-.standMeta .otherName { font-size: inherit; }
+.runMarker {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 22px;
+  padding: 0 9px;
+  border-radius: 999px;
+  border: 1px solid var(--btn-edge);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.runMarkerBars { display: flex; gap: 2px; }
+.runMarkerBars > span { width: 3px; height: 9px; background: currentColor; display: block; }
+.standVenue { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.standPlace { display: block; font-size: 14px; }
+.standMeta { display: block; font-size: var(--type-caption); color: var(--text-muted); }
+.nowrap { white-space: nowrap; }
 .standGross {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
   font-size: 22px;
-  color: var(--text-muted);
+  line-height: 1;
+  color: var(--text);
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 /* Gold for his runs only, as on the board: Wizkid's O2 run sits here too. */
 .standGrossHis { color: var(--gold); }
 .standTickets {
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
-  font-size: var(--type-small);
-  color: var(--text-muted);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--text-body);
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
-.standsNote { font-size: 13px; line-height: 1.7; margin: 12px 0 0; max-width: 104ch; color: var(--text-muted); }
-@media (max-width: 720px) {
-  .stand { grid-template-columns: 1fr; gap: 2px; }
-  .standGross, .standTickets { text-align: left; }
-}
 
+/* ── Sources and method ─────────────────────────────────────────────────── */
+.method { margin-top: 48px; padding-top: 24px; border-top: 2px solid var(--rule); }
+.methodList {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr);
+  gap: 10px 24px;
+  max-width: 900px;
+  font-size: var(--type-small);
+  line-height: 1.5;
+}
+.methodRow { display: contents; }
+.methodRow dt {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  line-height: 20px;
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.methodRow dd { margin: 0; color: var(--text-body); }
+/* Shared with the countries page. */
 .sourceNote {
   font-size: 13px;
   line-height: 1.7;
@@ -227,17 +485,24 @@
   max-width: 104ch;
   color: var(--text-muted);
 }
-.back { margin-top: 18px; }
+.back { margin: 40px 0 64px; }
 
-/* Narrower desktops: the tour column is the first to go. It was the only
-   place the year was printed, so the year moves onto the city line (bo-02,
+/* The 1024 band: the h1 steps to 61px and the record card narrows to 360px.
+   The Tour and Year columns go; the year moves onto the city line (bo-02,
    3 Oct 2026: at 1024 no row showed a year, and his two Capital One Arena
-   nights read the same). */
+   nights read the same). The scale column narrows but stays. */
 @media (max-width: 1239px) {
+  .heroGrid { grid-template-columns: minmax(0, 1fr) 360px; gap: 32px; }
+  .heroLede.heroLede { font-size: 18px; }
+  .figValue { font-size: 32px; }
+  .recordFigure { font-size: 56px; }
   .headRow,
-  .row { grid-template-columns: 46px 130px 1fr 90px 120px; }
+  .row { grid-template-columns: 28px 112px minmax(0, 1fr) 64px 96px 120px; }
   .headRow > :nth-child(4),
-  .row > :nth-child(4) { display: none; }
+  .row > :nth-child(4),
+  .headRow > :nth-child(5),
+  .row > :nth-child(5) { display: none; }
   .cityYear { display: inline; }
+  .stand { grid-template-columns: 140px 112px minmax(0, 1fr) 120px 120px; }
   .h1 { font-size: 61px; }
 }

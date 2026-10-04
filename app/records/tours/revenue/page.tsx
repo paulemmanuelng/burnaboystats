@@ -8,35 +8,48 @@ import { compactGross } from "../../../lib/grossLabel";
 import { RUNS_HEADING, RUNS_LEDE, runRankCeiling, runTickets } from "../../../lib/multiNightRuns";
 import { revenueShows, revenueStands } from "../../../data/tourRevenue";
 import { REVENUE_AS_OF, REVENUE_READ_ON, REVENUE_SOURCE } from "../../../lib/revenueSource";
+import { usdFull } from "../../../lib/revenueByCountry";
+import { pct, showsBoard } from "../../../lib/showsBoard";
 import { pageMetadata, datasetJsonLd } from "../../../lib/seo";
 
-// Derived, not written down. The list grows whenever a new show is reported —
-// it was 40 entries until Tyla's Tokyo gross was added — and five separate
-// places said "40", including the JSON-LD a search engine reads. It has no
-// floor (3 Oct 2026): every verified single-show gross is on it, so the copy
-// says "every … we have verified", never "the N highest".
-const showCount = revenueShows.length;
-const burnaShows = revenueShows.filter((s) => s.artist === "Burna Boy").length;
-const otherShows = showCount - burnaShows;
-const top = revenueShows[0];
+// Highest-grossing shows — Claude Design round 1 (4 Oct 2026), Job 2, "the
+// record night" direction: designs/desktop/GXShowsDesk.dc.html and
+// GXShowsPhone.dc.html, with the review's fixes 11–19 and the owner's rulings
+// (Q4, N2, N4, N6) where they differ from the canvas.
+//
+// Every figure is derived from the board's rows (lib/showsBoard.ts), never
+// typed: the list grows whenever a new show is reported. It has no floor
+// (3 Oct 2026): every verified single-show gross is on it, so the copy says
+// "every … we have verified", never "the N highest".
+const b = showsBoard();
+const { top, last } = b;
+const showCount = b.count;
+const burnaShows = b.hisCount;
 // The client board gets every column but `source`, so this page's own payload
 // carries none; no page prints a source (tests/revenueSources.test.ts), and no
 // client module imports the data file (tests/tourRevenueServerOnly.test.ts).
 const boardShows = revenueShows.map(({ artist, venue, city, flag, tour, year, tickets, revenue }) => ({
   artist, venue, city, flag, tour, year, tickets, revenue,
 }));
-// The dash legend is printed only while a dash is on the board: since 3 Oct
-// 2026 every row carries a headcount, and a legend for nothing reads as a bug.
+// The dash note is printed only while a dash is on the board: since 3 Oct 2026
+// every row carries a headcount, and a note for nothing reads as a bug.
 const anyDash = revenueShows.some((s) => !s.tickets);
 const topM = `$${(top.revenue / 1e6).toFixed(2)}M`;
+// Who and where the No. 1 is, from the row itself: the meta and the Dataset
+// once typed "Burna Boy's … London Stadium concert", which would name the wrong
+// artist and venue the day another night took No. 1 (N6, "anywhere it prints").
+const TOP_LEAD = `${top.artist}${top.artist.endsWith("s") ? "'" : "'s"} ${topM} ${top.venue} concert`;
 // The place the weakest-placed run would take among single nights — "top N" in
-// the note under the runs, never typed.
+// the runs' head, never typed.
 const runCeiling = runRankCeiling(revenueStands.map((s) => s.revenue), revenueShows.map((s) => s.revenue));
+/** Said once a layout, at the runs' head after RUNS_LEDE (fix 12, bo-06). */
+const RUNS_SPLIT_NOTE = `No per-night split is invented for them: each total would sit in the top ${numberWord(runCeiling).toLowerCase()} of a board of single nights it never had.`;
+const SOURCE = `${REVENUE_SOURCE}, as of ${REVENUE_AS_OF}.`;
 
 export const metadata = pageMetadata({
   title: "Burna Boy Box Office — Highest-Grossing Shows",
   description:
-    `Every verified single-show gross by an African artist — ${showCount} shows, ranked by box-office gross and led by Burna Boy's ${topM} London Stadium concert.`,
+    `Every verified single-show gross by an African artist — ${showCount} shows, ranked by box-office gross and led by ${TOP_LEAD}.`,
   path: "/records/tours/revenue",
   shareTitle: "Burna Boy — Highest-Grossing Shows",
   shareDescription: `Every verified single-show gross by an African artist — ${showCount} shows, ranked.`,
@@ -58,7 +71,7 @@ const revenueJsonLd = {
 const revenueDataset = datasetJsonLd({
   name: "Highest-grossing shows by African artists",
   description:
-    `Every reported single-show gross by an African artist we have verified — ${showCount} shows, ranked by box-office gross, led by Burna Boy's ${topM} London Stadium concert.`,
+    `Every reported single-show gross by an African artist we have verified — ${showCount} shows, ranked by box-office gross, led by ${TOP_LEAD}.`,
   path: "/records/tours/revenue",
   keywords: ["Burna Boy", "box office", "highest-grossing shows", "highest-grossing concert", "African artist revenue", "touring revenue"],
   variableMeasured: ["Artist", "Venue", "Tour", "Year", "Tickets sold", "Gross"],
@@ -66,8 +79,23 @@ const revenueDataset = datasetJsonLd({
   dateModified: REVENUE_READ_ON,
 });
 
-const SOURCE_NOTE =
-  `${REVENUE_SOURCE}, as of ${REVENUE_AS_OF}. Each entry is a single night's gross.`;
+/** The method note under the runs, desktop wording (GXShowsDesk). The source
+ *  line is REVENUE_SOURCE + ", as of " + REVENUE_AS_OF — never typed (fix 18). */
+const DESK_NOTE = [
+  { k: "Source", v: SOURCE },
+  { k: "Each row", v: "One single night’s reported gross." },
+  { k: "What is ranked", v: "Every reported show by an African artist we have verified, not only his." },
+  { k: "A missing night", v: "No gross was reported for it, or none we could verify yet." },
+  ...(anyDash ? [{ k: "A dash", v: "No headcount was published." }] : []),
+];
+/** The phone's, with its short labels (GXShowsPhone); the same source line. */
+const PHONE_NOTE = [
+  { k: "Source", v: SOURCE },
+  { k: "Each row", v: "One single night’s gross." },
+  { k: "Ranked", v: "Every verified show by an African artist, not only his." },
+  { k: "Missing", v: "Not reported, or not verified yet." },
+  ...(anyDash ? [{ k: "Dash", v: "No headcount was published." }] : []),
+];
 
 export default function RevenuePage() {
   return (
@@ -75,28 +103,39 @@ export default function RevenuePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(revenueJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(revenueDataset) }} />
 
-      {/* Mobile is screen 14 — a working chip filter over the board, gross and
-          headcount right-aligned, no bars. Ranks are baked before filtering, so
-          narrowing to one artist shows WHERE their nights sit on the full board
-          rather than re-ranking them against themselves. */}
+      {/* The phone screen: its own component (never the desktop's), from
+          GXShowsPhone. One money form on it: the rows' compact gross. */}
       <MobileRevenue
-        topGross={topM}
-        lede={`${numberWord(showCount)} documented shows by African artists, ranked by gross — ${burnaShows} of them his.`}
-        counts={{ all: showCount, his: burnaShows, other: otherShows }}
-        stats={[
-          // The badge keeps the short $X.XXM; this cell sits over the rows, so
-          // it prints the rows' own form (bo-05: "$6.15M" above "$6.147M").
-          { value: compactGross(top.revenue), label: "Biggest night" },
-          { value: top.tickets ?? "—", label: `Tickets, ${top.city}` },
+        record={{
+          gross: compactGross(top.revenue),
+          his: top.his,
+          artist: top.artist,
+          venue: top.venue,
+          city: top.city,
+          year: top.year,
+          tickets: top.tickets,
+        }}
+        figs={[
+          { value: `${b.hisTop10} of 10`, label: "Top ten, his", his: true },
+          { value: pct(b.hisShare), label: "His share of the board", his: true },
+          { value: String(showCount), label: `Shows · ${b.artists.length} artists`, his: false },
         ]}
+        share={{
+          segs: b.artists.map((a) => ({ artist: a.artist, his: a.his, share: a.share, pct: pct(a.share) })),
+          his: compactGross(b.hisGross),
+          board: compactGross(b.boardGross),
+          last: compactGross(last.revenue),
+          spread: `${b.spread}×`,
+        }}
         rows={revenueShows.map((s, i) => ({
           rank: String(i + 1).padStart(2, "0"),
+          flag: s.flag,
           venue: s.venue,
           // Every row names its artist, his too, in the same place and the
           // same format as everyone else's: "<artist> · <city> · <year>" (the
-          // owner's rule, 3 Oct 2026). The gold gross and the plain background
-          // still mark his nights; they never stand in for his name. Passed as
-          // fields so the phone row clips the city, never the year (k2).
+          // owner's rule, 3 Oct 2026). The gold gross still marks his nights;
+          // it never stands in for his name. Passed as fields so the phone row
+          // clips the city, never the year (k2).
           artist: s.artist,
           city: s.city,
           year: s.year,
@@ -105,89 +144,190 @@ export default function RevenuePage() {
           his: s.artist === "Burna Boy",
         }))}
         stands={revenueStands.map((s) => ({
-          // Every run names its artist — his too — so a row never needs the
+          // Every run names its artist — his too — so a row never needs a
           // legend to say whose it is; "nights", never "shows", in this list.
           flag: s.flag,
-          place: `${s.venue}, ${s.city}`,
+          venue: s.venue,
+          city: s.city,
           artist: s.artist,
           tour: s.tour,
           dates: s.dates,
+          nights: s.shows,
           gross: compactGross(s.revenue),
           tickets: runTickets(s.tickets, s.shows),
           his: s.artist === "Burna Boy",
         }))}
-        sourceNote={`${REVENUE_SOURCE}, as of ${REVENUE_AS_OF}. The board ranks every reported show by an African artist we have verified, not only his — a missing night means no gross for it was reported, or none we could verify yet.${anyDash ? " A dash means no headcount was published." : ""} No per-night split is invented for a multi-night run.`}
+        runsNote={RUNS_SPLIT_NOTE}
+        note={PHONE_NOTE}
       />
 
       <div className={styles.desktopOnly}>
         <BreadcrumbBar path="/records/tours/revenue" />
 
-        {/* ── Hero ───────────────────────────────────────────── */}
-        <section className={styles.band}>
-          <div className={`${styles.wide} ${styles.heroPad}`}>
-            <div className={styles.eyebrow}>
-              <span className={styles.eyebrowRule} aria-hidden="true" />
-              Box office · all-time
+        <div className={styles.page}>
+          {/* ── Hero: the story, then the record night ─────────── */}
+          <section className={styles.heroGrid}>
+            <div className={styles.heroMain}>
+              <div className={styles.eyebrow}>
+                <span className={styles.eyebrowRule} aria-hidden="true" />
+                African artists · reported box office
+              </div>
+              <h1 className={styles.h1}>
+                Highest-Grossing <span className="inkText">Shows</span>
+              </h1>
+              {/* Fix 3: "every single night reported" overstated it — reported
+                  nights are held off the board until a body is read. */}
+              <p className={`${styles.lede} ${styles.heroLede}`}>
+                Every reported single night by an African artist we have verified, ranked by gross — from{" "}
+                {usdFull(top.revenue)} to {usdFull(last.revenue)}.
+              </p>
+              <div className={styles.figs}>
+                <div className={styles.fig}>
+                  <span className={styles.figValue}>{showCount}</span>
+                  <span className={styles.figLabel}>Shows · {b.artists.length} artists</span>
+                </div>
+                <div className={styles.fig}>
+                  <span className={`${styles.figValue} ${styles.figHis}`}>{b.hisTop10} of 10</span>
+                  <span className={styles.figLabel}>Top ten that are his</span>
+                </div>
+                <div className={styles.fig}>
+                  <span className={`${styles.figValue} ${styles.figHis}`}>{pct(b.hisShare)}</span>
+                  <span className={styles.figLabel}>His share of the board</span>
+                </div>
+                <div className={styles.fig}>
+                  <span className={styles.figValue}>{b.millionPlus}</span>
+                  <span className={styles.figLabel}>Nights of $1M or more</span>
+                </div>
+              </div>
+              <div className={styles.heroBtns}>
+                <Link href="/records/tours/revenue/countries" className="btn btnPrimary">
+                  Highest-grossing artists by country →
+                </Link>
+                <Link href="/records/visualized#grosses" className="btn btnSecondary">
+                  The grosses visualised ↗
+                </Link>
+              </div>
             </div>
-            <h1 className={styles.h1}>
-              Highest-Grossing <span className="inkText">Shows</span>
-            </h1>
-            <p className={styles.lede}>
-              Every reported single-show gross by an African artist we have verified —{" "}
-              {showCount} shows, ranked. Burna Boy holds {burnaShows} of them
-              {burnaShows > otherShows ? " — more than every other artist on this list combined" : ""}.
-            </p>
-            <div className={styles.heroBtns}>
-              <Link href="/records/tours/revenue/countries" className="btn btnPrimary">
-                Highest-grossing artists by country →
-              </Link>
-              <Link href="/records/visualized#grosses" className="btn btnSecondary">
-                See the grosses visualised →
-              </Link>
-            </div>
-          </div>
-        </section>
 
-        {/* ── Filter band + board ────────────────────────────── */}
-        <RevenueBoard shows={boardShows}>
-          {/* Multi-night runs the body reports as one figure. Shown here,
-              beneath the ranking, with the body's numbers — not halved into
-              the board (which is how they sat from July to September 2026)
-              and not dropped from the page either. Every row names its artist,
-              his included, as the board's rows do. */}
-          <section className={styles.stands} aria-labelledby="runs-title">
-            <h2 id="runs-title" className={styles.standsTitle}>{RUNS_HEADING}</h2>
-            <p className={styles.standsLede}>{RUNS_LEDE}</p>
-            <ul className={styles.standsList}>
-              {revenueStands.map((s) => (
-                <li key={`${s.venue}-${s.dates}`} className={styles.stand}>
-                  <span className={styles.standVenue}>
-                    <span className={styles.standPlace}>
-                      {s.flag} {s.venue}, {s.city}
-                    </span>
-                    <span className={styles.standMeta}>
-                      <span className={s.artist === "Burna Boy" ? styles.hisName : styles.otherName}>{s.artist}</span>
-                      {" · "}
-                      {s.tour} · {s.dates}
-                    </span>
-                  </span>
-                  <span className={`${styles.standGross} ${s.artist === "Burna Boy" ? styles.standGrossHis : ""}`}>
-                    ${s.revenue.toLocaleString("en-US")}
-                  </span>
-                  <span className={styles.standTickets}>{runTickets(s.tickets, s.shows)}</span>
-                </li>
-              ))}
-            </ul>
-            <p className={styles.standsNote}>
-              No per-night split is invented for them: each total would sit in the top{" "}
-              {numberWord(runCeiling).toLowerCase()} of a board of single nights it never had.
-            </p>
+            {/* The record night. Its figure is gold only while the night is
+                his (N6, 4 Oct 2026): another artist at No. 1 prints in ink. */}
+            <article className={styles.record} aria-label="The biggest night on the board">
+              <span className={styles.recordHead}>
+                <span>No. 01 · the biggest night</span>
+                <span>{top.year}</span>
+              </span>
+              <span className={`${styles.recordFigure} ${top.his ? styles.recordFigureHis : ""}`}>
+                {usdFull(top.revenue)}
+              </span>
+              <span className={styles.recordArtist}>{top.artist}</span>
+              <span className={styles.recordPlace}>
+                {top.flag} {top.venue}, {top.city} · {top.tour}
+              </span>
+              <div className={styles.recordStats}>
+                <div className={styles.recordStat}>
+                  <span className={styles.recordStatValue}>{top.tickets ?? "—"}</span>
+                  <span className={styles.recordStatLabel}>Tickets</span>
+                </div>
+                <div className={styles.recordStat}>
+                  <span className={styles.recordStatValue}>{b.spread}×</span>
+                  <span className={styles.recordStatLabel}>Top night ÷ smallest</span>
+                </div>
+              </div>
+              <span className={styles.recordFoot}>
+                Smallest: {last.artist} · {last.venue}, {last.city} · {last.year} · {usdFull(last.revenue)}
+              </span>
+            </article>
           </section>
-          <p className={styles.sourceNote}>{SOURCE_NOTE}</p>
-          <Link href="/records/tours" className={`btn btnSecondary ${styles.back}`}>
-            ← Tours
-          </Link>
-        </RevenueBoard>
+
+          {/* ── Share of the board's gross, by artist ──────────── */}
+          <section className={styles.share} aria-labelledby="share-title">
+            <div className={styles.shareHead}>
+              <h2 id="share-title" className={styles.shareTitle}>
+                Share of the board’s gross
+              </h2>
+              <span className={styles.shareSum}>
+                <span className={styles.shareName}>Burna Boy</span> ·{" "}
+                <span className={styles.shareGold}>{usdFull(b.hisGross)}</span> of {usdFull(b.boardGross)} ·{" "}
+                <span className={styles.shareGold}>{pct(b.hisShare)}</span> · {burnaShows} shows
+              </span>
+            </div>
+            <div
+              className={`${styles.shareBar} ${styles.grow}`}
+              role="img"
+              aria-label={b.artists.map((a) => `${a.artist} ${pct(a.share)}`).join(", ")}
+            >
+              {b.artists.map((a) => (
+                <span
+                  key={a.artist}
+                  className={`${styles.seg} ${a.his ? styles.segHis : ""}`}
+                  style={{ width: `${(100 * a.share).toFixed(2)}%` }}
+                />
+              ))}
+            </div>
+            <div className={styles.shareKey} aria-hidden="true">
+              {b.artists.map((a) => (
+                <span key={a.artist}>
+                  <span className={styles.shareKeyName}>{a.artist}</span> {pct(a.share)}
+                </span>
+              ))}
+            </div>
+          </section>
+
+          {/* ── Filter box + board ─────────────────────────────── */}
+          <RevenueBoard shows={boardShows}>
+            {/* Multi-night runs the body reports as one figure. Shown here,
+                beneath the ranking, with the body's numbers — not halved into
+                the board (which is how they sat from July to September 2026)
+                and not dropped from the page either. One explanation, at the
+                head; every row names its artist, his included. */}
+            <section className={styles.stands} aria-labelledby="runs-title">
+              <h2 id="runs-title" className={styles.standsTitle}>{RUNS_HEADING}</h2>
+              <p className={styles.standsLede}>
+                {RUNS_LEDE} {RUNS_SPLIT_NOTE}
+              </p>
+              <ul className={styles.standsList}>
+                {revenueStands.map((s) => (
+                  <li key={`${s.venue}-${s.dates}`} className={styles.stand}>
+                    <span className={styles.runMarker}>
+                      <span className={styles.runMarkerBars} aria-hidden="true">
+                        <span />
+                        <span />
+                      </span>
+                      <span>Run · {s.shows} nights</span>
+                    </span>
+                    <span className={s.artist === "Burna Boy" ? styles.hisName : styles.otherName}>{s.artist}</span>
+                    <span className={styles.standVenue}>
+                      <span className={styles.standPlace}>
+                        {s.flag} {s.venue}, {s.city}
+                      </span>
+                      <span className={styles.standMeta}>
+                        {s.tour} · <span className={styles.nowrap}>{s.dates}</span>
+                      </span>
+                    </span>
+                    <span className={styles.standTickets}>{runTickets(s.tickets, s.shows)}</span>
+                    <span className={`${styles.standGross} ${s.artist === "Burna Boy" ? styles.standGrossHis : ""}`}>
+                      {usdFull(s.revenue)}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+
+            <section className={styles.method} aria-label="Sources and method">
+              <dl className={styles.methodList}>
+                {DESK_NOTE.map((n) => (
+                  <div key={n.k} className={styles.methodRow}>
+                    <dt>{n.k}</dt>
+                    <dd>{n.v}</dd>
+                  </div>
+                ))}
+              </dl>
+              <Link href="/records/tours" className={`btn btnSecondary ${styles.back}`}>
+                ← Tours
+              </Link>
+            </section>
+          </RevenueBoard>
+        </div>
       </div>
     </main>
   );

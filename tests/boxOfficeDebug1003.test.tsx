@@ -104,32 +104,40 @@ describe("k2: a phone row at 320 clips the city, never the year", () => {
   });
 });
 
-// ── k3 ──────────────────────────────────────────────────────────────────────
-describe("k3: the phone top bar's label gives way before the menu does", () => {
-  it("the label can shrink and ellipsise; the badge and buttons cannot", () => {
+// ── k3 (and Q4, 4 Oct 2026) ───────────────────────────────────────────────
+describe("k3 / Q4: the phone top bar names the page, with no badge, and its label gives way first", () => {
+  const LABEL = "Highest-grossing shows";
+  const bar = () => revenue.phone!.querySelector('[class*="backBar"]')!;
+
+  it("the label can shrink and ellipsise; the buttons cannot (k3's four declarations, kept)", () => {
     expect(declaredAt(PHONE_CSS, ".backLabel", "flex", 320)).toBe("0 1 auto");
     expect(declaredAt(PHONE_CSS, ".backLabel", "min-width", 320)).toBe("0");
     expect(declaredAt(PHONE_CSS, ".backLabel", "overflow", 320)).toBe("hidden");
     expect(declaredAt(PHONE_CSS, ".backLabel", "text-overflow", 320)).toBe("ellipsis");
-    expect(declaredAt(PHONE_CSS, ".badge", "flex", 320)).toBe("none");
+    expect(declaredAt(PHONE_CSS, ".backLabel", "white-space", 320)).toBe("nowrap");
     expect(declaredAt(PHONE_CSS, ".backBtn", "flex", 320)).toBe("none");
+    // The gaps close to 8px under 360, as before.
+    expect(declaredAt(PHONE_CSS, ".backBar", "gap", 320)).toBe("8px");
+    expect(declaredAt(PHONE_CSS, ".backBar", "gap", 390)).toBe("12px");
   });
 
-  it("a 7-character badge fits the 320 bar once the label may shrink", () => {
+  it("the shows bar carries the full name and no badge (Q4: the record card states the figure beneath)", () => {
+    expect(text(bar().querySelector('[class*="backLabel"]'))).toBe(LABEL);
+    expect(bar().querySelector('[class*="badge"]')).toBeNull();
+    expect(text(bar())).not.toMatch(/\$\d/);
+  });
+
+  it("the full name fits the 320 bar now the badge is gone", () => {
     // The pass's own measurements at 320: a 284px row, 8px gaps, back and menu
-    // 44px each, "$6.15M" 43px (6 characters) — so 7.2px a character.
-    const row = 284, gaps = 3 * 8, buttons = 44 + 44, perChar = 43 / 6;
-    const badge7 = 7 * perChar; // "$10.00M"
-    const labelRoom = row - gaps - buttons - badge7;
-    expect(labelRoom).toBeGreaterThan(0);
-    // The label is 127px unclipped, so it clips rather than push the menu out.
-    expect(labelRoom).toBeLessThan(127);
+    // 44px each; Space Mono 11px at 0.11em is 7.94px a character.
+    const row = 284, buttons = 44 + 44, perChar = 7.94;
+    const room = row - 2 * 8 - buttons;
+    expect(LABEL.length * perChar).toBeLessThanOrEqual(room);
   });
 
-  it("negative control: the shipped .backLabel (flex: none) cannot shrink", () => {
-    const shipped = ".backLabel { white-space: nowrap; flex: none; }";
-    expect(declaredAt(shipped, ".backLabel", "flex", 320)).toBe("none");
-    expect(declaredAt(shipped, ".backLabel", "min-width", 320)).toBeUndefined();
+  it("negative control: with the shipped badge (\"$6.15M\", 43px) the full name could not fit", () => {
+    const row = 284, buttons = 44 + 44, perChar = 7.94, badge = 43;
+    expect(LABEL.length * perChar).toBeGreaterThan(row - 3 * 8 - buttons - badge);
   });
 });
 
@@ -158,8 +166,16 @@ describe("k4: his gold stays AA on a hovered row in light", () => {
   const bg = rgb(lightOf("bg"));
   const raised = rgb(lightOf("bg-raised"));
 
+  /** The `--hover` token's value in globals.css (4 Oct 2026: the hover moved
+   *  into a token, so a row's `var(--hover)` resolves through it). */
+  const hoverToken = () => {
+    const m = /--hover:\s*([^;]+);/.exec(GLOBALS);
+    if (!m) throw new Error("no --hover token");
+    return m[1].trim();
+  };
   /** The light hover fill a `.row:hover` background declares. */
-  const lightHover = (value: string) => {
+  const lightHover = (value: string): number[] => {
+    if (value === "var(--hover)") return lightHover(hoverToken());
     if (value === "var(--bg-raised)") return raised;
     const m = /^light-dark\(color-mix\(in srgb, var\(--bg-raised\) (\d+)%, var\(--bg\)\), var\(--bg-raised\)\)$/.exec(value);
     if (!m) throw new Error(`unrecognised hover: ${value}`);
@@ -173,7 +189,9 @@ describe("k4: his gold stays AA on a hovered row in light", () => {
   });
 
   it("dark keeps --bg-raised", () => {
-    expect(declaredAt(BOARD_CSS, ".row:hover", "background", 1440)).toMatch(/, var\(--bg-raised\)\)$/);
+    const hover = declaredAt(BOARD_CSS, ".row:hover", "background", 1440)!;
+    expect(hover).toBe("var(--hover)");
+    expect(hoverToken()).toMatch(/, var\(--bg-raised\)\)$/);
   });
 
   it("negative control: the shipped hover (var(--bg-raised)) is 4.14:1, under AA", () => {
@@ -449,19 +467,34 @@ describe("C1: every id on the countries page is one token, and every aria-labell
   });
 });
 
-// ── C2 (rendered) and bo-01 (rendered) ──────────────────────────────────────
-describe("bo-01 / C2: a gold rank sits only on his rows", () => {
-  const goldRanks = (tree: Element) =>
-    [...tree.querySelectorAll('[class*="rankTop"]')].map((r) => r.closest('[role="row"]')!);
+// ── C2 / bo-01 (rendered), as N4 ruled (4 Oct 2026) ──────────────────────
+describe("bo-01 / C2 / N4: no rank is gold on either box-office page, his included", () => {
+  // The owner, 4 Oct 2026 (N4): gold marks his FIGURES; his name and every rank
+  // are set like everyone else's. #408 had kept gold on his top-three ranks
+  // (the board) and his No. 1s (the countries tables).
+  const goldRanks = (tree: Element) => [...tree.querySelectorAll('[class*="rankTop"]')];
   it("on the revenue board", () => {
-    const rows = goldRanks(revenue.desktop!);
-    expect(rows.length).toBeGreaterThan(0);
-    for (const r of rows) expect(text(r)).toContain("Burna Boy");
+    expect(revenue.desktop!.querySelectorAll('[role="row"]').length).toBeGreaterThan(revenueShows.length);
+    expect(goldRanks(revenue.desktop!)).toEqual([]);
+    expect(goldRanks(revenue.phone!)).toEqual([]);
   });
   it("on the countries tables", () => {
-    const rows = goldRanks(countries.desktop!);
-    expect(rows.length).toBe(board.hisLeads);
-    for (const r of rows) expect(r.querySelector('[class*="hisName"]')).not.toBeNull();
+    expect(board.hisLeads).toBeGreaterThan(0);
+    expect(goldRanks(countries.desktop!)).toEqual([]);
+  });
+  it("and no rank class on either page carries gold", () => {
+    expect(BOARD_CSS).not.toMatch(/\.rankTop\b/);
+    for (const sel of [".rank", ".showRank"]) expect(declaredAt(BOARD_CSS, sel, "color", 1440), sel).not.toMatch(/--gold/);
+    expect(declaredAt(PHONE_CSS, ".rank", "color", 390)).not.toMatch(/--gold/);
+  });
+  it("negative control: the rank cells as #408 shipped them light his rows", () => {
+    // RevenueBoard.tsx and RevenueCountries.tsx at a7530590, verbatim.
+    const shippedBoard = "className={`${styles.rank} ${s.artist === HIS && rank <= 3 ? styles.rankTop : \"\"}`}";
+    const shippedCountries = "className={`${styles.rank} ${a.his && rank === 1 ? styles.rankTop : \"\"}`}";
+    expect(shippedBoard).toMatch(/styles\.rankTop/);
+    expect(shippedCountries).toMatch(/styles\.rankTop/);
+    expect(read("app/components/RevenueBoard.tsx")).not.toMatch(/styles\.rankTop/);
+    expect(read("app/components/RevenueCountries.tsx")).not.toMatch(/styles\.rankTop/);
   });
 });
 

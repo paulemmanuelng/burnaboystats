@@ -1,5 +1,9 @@
-/* Mobile screen 14 — Highest-grossing shows (was "Revenue per show").
-   designs/mobile/Burna Boy Stats - Mobile Deep Pages.dc.html, values verbatim.
+/* Highest-grossing shows, the phone screen (was "Revenue per show").
+   Claude Design round 1, 4 Oct 2026: designs/desktop/GXShowsPhone.dc.html,
+   with the review's fixes and the owner's rulings where they differ. The
+   Highest-Grossing Artists by Country phone screen (MobileRevenueCountries)
+   reuses the shared parts here — back bar, hero, stat grid, rows, action bar —
+   so the shows-only parts carry their own class names below.
    Shown only below the mobile breakpoint; the desktop page is its own layout. */
 .screen { display: none; }
 
@@ -49,15 +53,15 @@
   font-size: 11px;
   letter-spacing: 0.11em;
   text-transform: uppercase;
-  /* One line at 320 ("Highest-grossing", 3 Oct 2026). Space Mono at 11px with
-     0.11em tracking is 7.94px a character: 16 characters = 127px. The bar is
-     44 (back) + 127 + 47 (badge) + 44 (menu) = 262px against a 284px row, so
-     the 12px gaps (36px) would push it to two lines; below 360 the gaps close
-     to 8px and the badge's tracking eases, as on the by-country screen. */
+  /* One line at 320. Space Mono at 11px with 0.11em tracking is 7.94px a
+     character. On the shows screen the badge is gone (Q4, 4 Oct 2026) and the
+     label is the page's full name, "Highest-grossing shows": 22 characters =
+     175px against 284 − 44 − 44 − 2×8 = 180px at 320 (the gaps close to 8px
+     below 360). The by-country screen keeps its badge. */
   white-space: nowrap;
-  /* It gives way, not the menu: at 320 the row had ~2px spare, so a 7-character
-     badge ("$10.00M") would have pushed the menu off the bar. The label shrinks
-     and ellipsises first (k3, 3 Oct 2026). */
+  /* It gives way, not the menu: in a fallback font (Space Mono not yet
+     loaded) the label can outrun its 180px, and the menu must stay on the
+     bar. The label shrinks and ellipsises first (k3, 3 Oct 2026). */
   flex: 0 1 auto;
   min-width: 0;
   overflow: hidden;
@@ -72,7 +76,8 @@
   flex: none;
   white-space: nowrap;
 }
-/* After .badge, so the eased tracking wins at the same specificity. */
+/* The badge is the by-country screen's (its count of countries, muted).
+   After .badge, so the eased tracking wins at the same specificity. */
 @media (max-width: 359px) {
   .backBar { gap: 8px; }
   .badge { letter-spacing: 0.04em; }
@@ -143,31 +148,6 @@
 }
 
 
-/* ── Filter chips ─────────────────────────────────────────────────────── */
-.rail {
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  padding: 16px 18px 14px;
-  scrollbar-width: none;
-}
-.chip {
-  flex: none;
-  min-height: 44px;
-  padding: 0 16px;
-  border-radius: 999px;
-  border: 1px solid var(--line);
-  background: transparent;
-  color: var(--text-muted);
-  font-family: var(--font-mono), monospace;
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  cursor: pointer;
-}
-.chipOn { background: color-mix(in srgb, var(--ember) calc(16% * var(--wash-strength)), transparent); border-color: var(--ember); color: var(--ember); }
 
 .metaBar {
   display: flex;
@@ -182,8 +162,6 @@
   text-transform: uppercase;
   color: var(--dim);
 }
-.legend { margin-left: auto; display: inline-flex; align-items: center; gap: 5px; }
-.legendDot { width: 7px; height: 7px; border-radius: 999px; background: var(--gold); display: block; }
 
 /* ── One night ────────────────────────────────────────────────────────── */
 .row {
@@ -239,53 +217,6 @@
   font-variant-numeric: tabular-nums;
 }
 
-/* ── Multi-night runs ─────────────────────────────────────────────────
-   Beneath the board, under a heading of their own. Same row grammar as a
-   night minus the rank; the meta wraps rather than clips, so the artist, tour
-   and dates all read at 320. */
-.runs { padding-top: 26px; }
-.runsTitle {
-  font-family: var(--font-anton), sans-serif;
-  font-weight: 400; /* Anton has no bold cut */
-  font-size: 26px;
-  line-height: 1;
-  letter-spacing: 0.01em;
-  text-transform: uppercase;
-  color: var(--text);
-  margin: 0;
-  padding: 0 18px;
-}
-.runsLede {
-  font-size: var(--type-small);
-  line-height: 1.55;
-  color: var(--text-body);
-  margin: 8px 0 0;
-  padding: 0 18px 14px;
-}
-.runsList { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
-.runRow {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 11px;
-  align-items: baseline;
-  padding: 12px 18px;
-  border-bottom: 1px solid var(--line);
-}
-.runMeta {
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
-  font-size: var(--type-caption);
-  line-height: 1.4;
-  color: var(--text-muted);
-  margin-top: 2px;
-}
-.runArtist { font-weight: 600; color: var(--text); }
-.runTickets {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  color: var(--dim);
-  margin-top: 5px;
-  font-variant-numeric: tabular-nums;
-}
 
 .foot {
   font-size: 12px;
@@ -339,18 +270,301 @@
   box-shadow: 0 0 26px color-mix(in srgb, var(--gold-glow-base) 25%, transparent);
 }
 
-/* ── Highest-grossing artists by country — the way to the per-country board ────────────── */
-.linkRow { padding: 16px 18px 0; }
-/* The owner's label ("Highest-grossing artists by country →") is wider than a
-   390 phone's row, so it takes two lines: the pill grows to hold them (the
-   .btn pill is a fixed 46px tall) and the lines are centred and balanced. */
-.linkRow > a {
-  width: 100%;
-  height: auto;
-  min-height: 46px;
-  padding-top: 12px;
-  padding-bottom: 12px;
-  line-height: 1.35;
-  text-align: center;
-  text-wrap: balance;
+/* ══ Highest-grossing shows only (GXShowsPhone) ══════════════════════════ */
+
+/* The back bar without its badge (Q4): the menu keeps the right edge. */
+.showBar > :last-child { margin-left: auto; }
+
+.showHero { padding: 20px 18px 0; }
+.showKicker {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1.2;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  white-space: nowrap;
 }
+.showKickerRule { width: 18px; height: 2px; background: var(--ember); display: block; flex: none; }
+.showHero .title { margin-top: 10px; line-height: 38px; }
+
+/* The record night. */
+.record {
+  display: flex;
+  flex-direction: column;
+  margin-top: 16px;
+  padding: 14px 14px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: var(--bg-soft);
+}
+.recordHead {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1.2;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+/* .statValue (the shared stat figure) + this: the record figure prints in ink,
+   and .recordFigureHis takes it to gold only while the record night is his (N6). */
+.recordFigure.recordFigure { margin-top: 10px; font-size: 44px; line-height: 0.92; color: var(--text); }
+.recordFigureHis.recordFigureHis { color: var(--gold); }
+.recordLine {
+  margin-top: 8px;
+  font-size: var(--type-caption);
+  line-height: 1.45;
+  color: var(--text-body);
+}
+.recordArtist { font-weight: 600; color: var(--text); }
+
+/* 9 of 10 · 65.7% · 82 */
+.figs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 14px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.fig {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 8px 10px 0;
+  border-right: 1px solid var(--line);
+  min-width: 0;
+}
+.fig + .fig { padding-left: 8px; }
+.fig:last-child { border-right: 0; }
+.figValue {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 1;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+.figHis { color: var(--gold); }
+.figLabel {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1.25;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* The board's gross by artist: his segment gold, everyone else's --other, a
+   2px ground gap between segments so the pair is never told by colour alone. */
+.shareBar {
+  display: flex;
+  gap: 2px;
+  height: 10px;
+  margin-top: 14px;
+  background: var(--bg-soft-2);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.seg { display: block; min-width: 2px; background: var(--other); }
+.segHis { background: var(--gold-fill); }
+.grow .seg { animation: segGrow var(--dur-slow) var(--ease-out) both; transform-origin: left center; }
+@keyframes segGrow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.shareCap {
+  margin: 6px 0 0;
+  font-size: var(--type-caption);
+  line-height: 1.45;
+  color: var(--text-muted);
+}
+.shareName { color: var(--text); }
+.shareGold { color: var(--gold); font-weight: 600; }
+
+/* The way to Highest-Grossing Artists by Country: a secondary pill, label at
+   the left and the arrow at the right (item 13). */
+.countriesLink.countriesLink {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-top: 16px;
+  padding: 0 20px;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+/* ── Artist chips: sticky under the back bar, a fade at the scrolling edge
+   (ScrollRail), every chip 44px. ─────────────────────────────────────────── */
+.railStick {
+  position: sticky;
+  top: calc(69px + env(safe-area-inset-top, 0px));
+  z-index: 4;
+  margin-top: 4px;
+  background: var(--scrim);
+  backdrop-filter: blur(14px);
+}
+.rail {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 10px 18px;
+  scrollbar-width: none;
+}
+.chip {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 44px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid var(--btn-edge);
+  background: var(--bg-soft);
+  color: var(--text);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.chipCount { color: var(--text-muted); font-variant-numeric: tabular-nums; }
+/* On: a 2px ember edge (the border plus a 1px inset, so the chip never
+   changes size) and the ember wash, the label in ink — never a gold fill: the
+   action bar is the screen's one gold action (N2, 4 Oct 2026). */
+.chipOn {
+  border-color: var(--ember);
+  box-shadow: inset 0 0 0 1px var(--ember);
+  background: color-mix(in srgb, var(--ember) calc(16% * var(--wash-strength)), var(--bg-soft));
+  color: var(--text);
+}
+/* Focus: 2px gold over a 2px ground gap, so it shows on the ember on-state. */
+.chip:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--gold);
+}
+.chipOn:focus-visible { box-shadow: inset 0 0 0 1px var(--ember), 0 0 0 2px var(--bg), 0 0 0 4px var(--gold); }
+
+.countBar {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 6px 18px 8px;
+  border-bottom: 2px solid var(--rule);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1.2;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* The column key keeps one line; the count (with the filter's name, "1 of 82
+   shows · Tiwa Savage") is what wraps at 320. */
+.countBar > :first-child { min-width: 0; }
+.countBar > :last-child { flex: none; white-space: nowrap; }
+
+/* ── A night ──────────────────────────────────────────────────────────── */
+.showRow.showRow {
+  grid-template-columns: 24px minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: start;
+  padding: 10px 18px;
+}
+.showRank.showRank {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  line-height: 20px;
+  color: var(--dim);
+}
+.showVenue.showVenue { font-size: 14px; line-height: 20px; font-weight: 600; }
+.showRow .meta { margin-top: 2px; line-height: 1.45; }
+.showRow .gross { line-height: 20px; }
+.grossOther { color: var(--text); }
+.showTickets.showTickets { color: var(--text-muted); margin-top: 0; line-height: 18px; }
+
+/* ── Multi-night runs ─────────────────────────────────────────────────
+   Beneath the board, under a heading of their own and one explanation.
+   Three lines a run: marker and venue, then who, where and which tour, then
+   the dates (never split) and the tickets over the nights. */
+.runs { padding: 28px 18px 0; }
+.runsTitle {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 26px;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--text);
+  margin: 0;
+}
+.runsLede {
+  font-size: var(--type-small);
+  line-height: 1.5;
+  color: var(--text-body);
+  margin: 8px 0 0;
+}
+.runsList { list-style: none; margin: 12px 0 0; padding: 0; border-top: 2px solid var(--rule); }
+.runRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 3px 10px;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+}
+/* The venue wraps under the marker rather than clip: at 320 "Scotiabank
+   Arena" beside the marker was cut to "Scoti…". */
+.runHead { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; min-width: 0; }
+.runMarker {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 22px;
+  padding: 0 7px;
+  border-radius: 999px;
+  border: 1px solid var(--btn-edge);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.runMarkerBars { display: flex; gap: 2px; }
+.runMarkerBars > span { width: 3px; height: 8px; background: currentColor; display: block; }
+.runVenue { min-width: 0; font-size: 14px; line-height: 20px; font-weight: 600; }
+.runRow .gross { text-align: right; align-self: start; line-height: 22px; }
+.runMeta {
+  grid-column: 1 / 3;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-caption);
+  line-height: 1.45;
+  color: var(--text-muted);
+}
+.nowrap { white-space: nowrap; }
+
+/* ── Sources and method ───────────────────────────────────────────────── */
+.method { margin: 24px 18px 0; padding-top: 12px; border-top: 2px solid var(--rule); }
+.methodList { margin: 0; display: grid; grid-template-columns: 78px minmax(0, 1fr); gap: 5px 12px; }
+.methodRow { display: contents; }
+.methodRow dt {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 18px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.methodRow dd { margin: 0; font-size: var(--type-caption); line-height: 1.45; color: var(--text-body); }
