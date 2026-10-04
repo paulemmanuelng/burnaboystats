@@ -173,8 +173,11 @@ describe("every country with a row carries its documented line", () => {
     expect(tourMapCountries.find((c) => c.name === "Belgium")!.documented).toBe("3 tour dates · 2 cities · 2019–2026");
   });
 
-  it("only the nine known from the map's own event lines have none", () => {
-    expect(tourMapCountries.filter((c) => !c.documented)).toHaveLength(9);
+  // Nine until 4 Oct 2026: Ireland's 3Arena night (17 Mar 2022) became a
+  // Space Drift tour date, so Ireland's card has a documented line now.
+  it("only the eight known from the map's own event lines have none", () => {
+    expect(tourMapCountries.filter((c) => !c.documented)).toHaveLength(8);
+    expect(tourMapCountries.find((c) => c.name === "Ireland")!.documented).toBe("1 tour date · 1 city · 2022");
   });
 
   it("no card says '…and more' any more, and the flag is gone from the data", () => {
