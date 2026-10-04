@@ -1,7 +1,7 @@
 import { revenueShows, revenueStands, type RevenueShow, type RevenueStand } from "../data/tourRevenue";
 import { performedCountries, CONTINENT_OF, type Continent } from "../data/performedCountries";
 import { CHART_COUNTRIES } from "../data/charts";
-import { RUNS_HEADING, runTickets } from "./multiNightRuns";
+import { RUNS_HEADING } from "./multiNightRuns";
 import { pct } from "./showsChips";
 
 /**
@@ -260,6 +260,11 @@ export const countryInSentence = (name: string) => `${TAKES_THE.test(name) ? "th
 export const idSlug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 
 /** "1 night" / "4 nights" — a multi-night run counts every night it played. */
+/** A run's tickets, said with its nights: "{tickets} tickets over {k} nights"
+ *  (the standing run grammar; #418 retired the shows page's copy, runTickets,
+ *  when its runs became a chip view). */
+export const runTickets = (tickets: string, nights: number) => `${tickets} tickets over ${nights} nights`;
+
 export const nightsLabel = (n: number) => `${n} ${n === 1 ? "night" : "nights"}`;
 
 /**
