@@ -273,6 +273,17 @@ describe("the phone action bar", () => {
     expect(shows.className).toBe(mobileStyles.actionSecondary);
   });
 
+  it("the label is one inline run in the flex link, so the space after \"Biggest\" survives", () => {
+    const shows = barOf(parse(renderToStaticMarkup(<CertificationsPage />))).querySelector('a[href^="/records/tours/revenue"]')!;
+    expect(shows.childNodes.length).toBe(1);
+    expect(text(shows.firstElementChild)).toBe(SHOWS_LABEL);
+  });
+
+  it("negative control: the label as first built — two flex items — is caught (it rendered BIGGESTSHOWS at 390)", () => {
+    const first = parse(`<a class="x" href="/records/tours/revenue?artist=burna-boy"><span class="showsLong">Biggest </span>shows</a>`).body.firstElementChild!;
+    expect(first.childNodes.length).not.toBe(1);
+  });
+
   it("under 390px it reads \"Shows\": the long word is visually hidden, never removed", () => {
     expect(SHOWS_LABEL.endsWith(SHOWS_SHORT.toLowerCase())).toBe(true);
     const css = readFileSync(join(process.cwd(), "app/components/mobileCerts.module.css"), "utf8");

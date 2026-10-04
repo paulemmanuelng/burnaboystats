@@ -801,10 +801,14 @@ export default function MobileCerts({
         </Link>
         {showsHref && (
           // "Biggest shows", read "Shows" under 390px: the long word is only
-          // visually hidden there, so the accessible name never changes.
+          // visually hidden there, so the accessible name never changes. One
+          // inline run inside the flex link: as two flex items, the space
+          // after "Biggest" was trimmed and the label read "BIGGESTSHOWS".
           <Link href={showsHref} className={styles.actionSecondary}>
-            <span className={styles.showsLong}>{SHOWS_LABEL.slice(0, -SHOWS_SHORT.length)}</span>
-            {SHOWS_LABEL.slice(-SHOWS_SHORT.length)}
+            <span>
+              <span className={styles.showsLong}>{SHOWS_LABEL.slice(0, -SHOWS_SHORT.length)}</span>
+              {SHOWS_LABEL.slice(-SHOWS_SHORT.length)}
+            </span>
           </Link>
         )}
         {/* The filter icon, except on a board artist's bar that carries the
