@@ -108,10 +108,10 @@ export function ogLadder(card: OgLadderCard) {
             {card.title}
           </div>
           <div style={{ display: "flex", alignItems: "flex-end", marginTop: 28 }}>
-            <div style={{ display: "flex", fontFamily: "Anton", fontSize: 76, lineHeight: 0.9, color: card.bigHis ? GOLD : "#f5f4f0" }}>
+            <div style={{ display: "flex", flexShrink: 0, fontFamily: "Anton", fontSize: 76, lineHeight: 0.9, color: card.bigHis ? GOLD : "#f5f4f0" }}>
               {card.big}
             </div>
-            <div style={{ display: "flex", marginLeft: 18, paddingBottom: 4, fontSize: 20, lineHeight: 1.3, color: "#cfc7bb", maxWidth: 260 }}>
+            <div style={{ display: "flex", flexShrink: 1, minWidth: 0, marginLeft: 18, paddingBottom: 4, fontSize: 20, lineHeight: 1.3, color: "#cfc7bb", maxWidth: 260 }}>
               {card.bigCap}
             </div>
           </div>

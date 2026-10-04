@@ -108,6 +108,16 @@ describe("N6: another artist at No. 1 — the record figure prints in ink", () =
     expect(cap("Burna Boy · London Stadium · 2024 — No. 1 of 82")).toBe(false);
   });
 
+  it("the share card's big figure never shrinks under its caption", () => {
+    // Widening the caption to the canvas's 260px let Satori shrink the figure,
+    // and the caption printed over "$6,147,209" (seen in the re-shot card).
+    const fig = bigFigure(og.default());
+    expect(fig.style!.flexShrink).toBe(0);
+    // Negative control: the figure's style as 151396b7 shipped it, verbatim.
+    const shipped: Record<string, unknown> = { display: "flex", fontFamily: "Anton", fontSize: 76, lineHeight: 0.9, color: "#ffb627" };
+    expect(shipped.flexShrink).not.toBe(0);
+  });
+
   it("the meta description and the Dataset name the No. 1's artist and venue, never a typed one", () => {
     expect(metadata.description).toMatch(/led by Fally Ipupa's \$\d+\.\d{2}M La Défense Arena concert\./);
     expect(metadata.description).not.toMatch(/Burna Boy's/);
