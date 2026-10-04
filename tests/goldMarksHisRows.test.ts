@@ -40,13 +40,16 @@ const BOARDS = [
     his: "grossHis",
   },
   {
-    // The stands beneath the board were all his until Wizkid's O2 run joined
-    // them (3 Oct 2026); a gold-by-default stand gross would print his money.
-    what: "the stands beneath the desktop revenue board",
+    // The runs were all his until Wizkid's O2 run joined them (3 Oct 2026); a
+    // gold-by-default run gross would print his money. Since 4 Oct 2026 they
+    // are the board's "Multi-night runs" chip, in the board's own rows, so
+    // their gross takes the board's classes in RevenueBoard.tsx (the section
+    // beneath the board, with .standGross / .standGrossHis, is gone).
+    what: "the multi-night runs in the desktop board's runs chip",
     css: "app/records/tours/revenue/revenue.module.css",
-    tsx: "app/records/tours/revenue/page.tsx",
-    base: "standGross",
-    his: "standGrossHis",
+    tsx: "app/components/RevenueBoard.tsx",
+    base: "gross",
+    his: "grossHis",
   },
   {
     // The record night (N6, 4 Oct 2026): its figure is gold only while the

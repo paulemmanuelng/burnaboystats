@@ -5,7 +5,7 @@ import RevenueBoard from "../../../components/RevenueBoard";
 import MobileRevenue from "../../../components/MobileRevenue";
 import { numberWord } from "../../../lib/homeData";
 import { compactGross } from "../../../lib/grossLabel";
-import { RUNS_HEADING, RUNS_LEDE, runRankCeiling, runTickets } from "../../../lib/multiNightRuns";
+import { runRankCeiling } from "../../../lib/multiNightRuns";
 import { revenueShows, revenueStands } from "../../../data/tourRevenue";
 import { REVENUE_AS_OF, REVENUE_READ_ON, REVENUE_SOURCE } from "../../../lib/revenueSource";
 import { usdFull } from "../../../lib/revenueByCountry";
@@ -31,6 +31,10 @@ const burnaShows = b.hisCount;
 const boardShows = revenueShows.map(({ artist, venue, city, flag, tour, year, tickets, revenue }) => ({
   artist, venue, city, flag, tour, year, tickets, revenue,
 }));
+// The runs, the same way: everything but `source`, for the board's runs chip.
+const boardRuns = revenueStands.map(({ artist, venue, city, flag, tour, dates, shows, tickets, revenue }) => ({
+  artist, venue, city, flag, tour, dates, shows, tickets, revenue,
+}));
 // The dash note is printed only while a dash is on the board: since 3 Oct 2026
 // every row carries a headcount, and a note for nothing reads as a bug.
 const anyDash = revenueShows.some((s) => !s.tickets);
@@ -42,7 +46,8 @@ const TOP_LEAD = `${top.artist}${top.artist.endsWith("s") ? "'" : "'s"} ${topM} 
 // The place the weakest-placed run would take among single nights — "top N" in
 // the runs' head, never typed.
 const runCeiling = runRankCeiling(revenueStands.map((s) => s.revenue), revenueShows.map((s) => s.revenue));
-/** Said once a layout, at the runs' head after RUNS_LEDE (fix 12, bo-06). */
+/** Said once a layout, at the runs' head after RUNS_LEDE (fix 12, bo-06) —
+ *  since 4 Oct 2026 the runs chip's view, on both layouts. */
 const RUNS_SPLIT_NOTE = `No per-night split is invented for them: each total would sit in the top ${numberWord(runCeiling).toLowerCase()} of a board of single nights it never had.`;
 const SOURCE = `${REVENUE_SOURCE}, as of ${REVENUE_AS_OF}.`;
 
@@ -79,7 +84,7 @@ const revenueDataset = datasetJsonLd({
   dateModified: REVENUE_READ_ON,
 });
 
-/** The method note under the runs, desktop wording (GXShowsDesk). The source
+/** The method note under the board, desktop wording (GXShowsDesk). The source
  *  line is REVENUE_SOURCE + ", as of " + REVENUE_AS_OF — never typed (fix 18). */
 const DESK_NOTE = [
   { k: "Source", v: SOURCE },
@@ -144,17 +149,16 @@ export default function RevenuePage() {
           his: s.artist === "Burna Boy",
         }))}
         stands={revenueStands.map((s) => ({
-          // Every run names its artist — his too — so a row never needs a
-          // legend to say whose it is; "nights", never "shows", in this list.
+          // The runs chip's rows. Every run names its artist — his too — in the
+          // board rows' place and format; "nights", never "shows".
           flag: s.flag,
           venue: s.venue,
           city: s.city,
           artist: s.artist,
-          tour: s.tour,
           dates: s.dates,
           nights: s.shows,
           gross: compactGross(s.revenue),
-          tickets: runTickets(s.tickets, s.shows),
+          tickets: s.tickets,
           his: s.artist === "Burna Boy",
         }))}
         runsNote={RUNS_SPLIT_NOTE}
@@ -274,45 +278,9 @@ export default function RevenuePage() {
           </section>
 
           {/* ── Filter box + board ─────────────────────────────── */}
-          <RevenueBoard shows={boardShows}>
-            {/* Multi-night runs the body reports as one figure. Shown here,
-                beneath the ranking, with the body's numbers — not halved into
-                the board (which is how they sat from July to September 2026)
-                and not dropped from the page either. One explanation, at the
-                head; every row names its artist, his included. */}
-            <section className={styles.stands} aria-labelledby="runs-title">
-              <h2 id="runs-title" className={styles.standsTitle}>{RUNS_HEADING}</h2>
-              <p className={styles.standsLede}>
-                {RUNS_LEDE} {RUNS_SPLIT_NOTE}
-              </p>
-              <ul className={styles.standsList}>
-                {revenueStands.map((s) => (
-                  <li key={`${s.venue}-${s.dates}`} className={styles.stand}>
-                    <span className={styles.runMarker}>
-                      <span className={styles.runMarkerBars} aria-hidden="true">
-                        <span />
-                        <span />
-                      </span>
-                      <span>Run · {s.shows} nights</span>
-                    </span>
-                    <span className={s.artist === "Burna Boy" ? styles.hisName : styles.otherName}>{s.artist}</span>
-                    <span className={styles.standVenue}>
-                      <span className={styles.standPlace}>
-                        {s.flag} {s.venue}, {s.city}
-                      </span>
-                      <span className={styles.standMeta}>
-                        {s.tour} · <span className={styles.nowrap}>{s.dates}</span>
-                      </span>
-                    </span>
-                    <span className={styles.standTickets}>{runTickets(s.tickets, s.shows)}</span>
-                    <span className={`${styles.standGross} ${s.artist === "Burna Boy" ? styles.standGrossHis : ""}`}>
-                      {usdFull(s.revenue)}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </section>
-
+          {/* The multi-night runs are the board's second chip, beside "All
+              artists" (the owner, 4 Oct 2026), not a section beneath it. */}
+          <RevenueBoard shows={boardShows} runs={boardRuns} runsNote={RUNS_SPLIT_NOTE}>
             <section className={styles.method} aria-label="Sources and method">
               <dl className={styles.methodList}>
                 {DESK_NOTE.map((n) => (

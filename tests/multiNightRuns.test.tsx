@@ -1,5 +1,6 @@
 import { describe, it, expect, vi } from "vitest";
 import { renderToStaticMarkup } from "react-dom/server";
+import { render, fireEvent } from "@testing-library/react";
 
 vi.mock("next/navigation", () => ({
   useRouter: () => ({ push: vi.fn(), prefetch: vi.fn(), replace: vi.fn(), back: vi.fn() }),
@@ -16,55 +17,81 @@ vi.mock("next/link", () => ({
 
 import RevenuePage from "../app/records/tours/revenue/page";
 import { revenueStands } from "../app/data/tourRevenue";
-import { RUNS_HEADING, RUNS_LEDE } from "../app/lib/multiNightRuns";
+import { RUNS_HEADING, RUNS_LEDE, runYear, shortDates } from "../app/lib/multiNightRuns";
 
 /**
- * The runs beneath the revenue board — concerts reported only as one combined
- * total for several nights. The owner, 3 Oct 2026: "the list that shows the
- * concerts with more that one night, ensure they are properly stated so it has
- * a good heading". Until then both layouts headed it with a mono label,
- * "Reported as a stand — one figure for the run", and the phone rows said
- * "· 2 shows" beside "over 2 nights".
+ * The multi-night runs — concerts reported only as one combined total for
+ * several nights. The owner, 3 Oct 2026: "the list that shows the concerts with
+ * more that one night, ensure they are properly stated so it has a good
+ * heading". Until then both layouts headed it with a mono label, "Reported as a
+ * stand — one figure for the run", and the phone rows said "· 2 shows" beside
+ * "over 2 nights".
  *
- * Both layouts sit in the DOM at once, so one render covers the desktop section
- * (#runs-title) and the phone's (#runs-title-m).
+ * Since 4 Oct 2026 the runs are a chip on the board's rail, between All and
+ * Burna Boy (the owner: "let's [take] the multi-night runs and put it here"),
+ * not a section beneath the board. These assertions moved with them: each one
+ * now reads the chip's view, on both layouts, with RUNS_HEADING as the view's
+ * accessible heading (#runs-title, #runs-title-m). The chip itself is pinned
+ * in tests/runsChip.test.tsx.
  */
-
-const html = renderToStaticMarkup(<RevenuePage />);
 
 const decode = (s: string) =>
   s.replace(/&amp;/g, "&").replace(/&#x27;|&#39;/g, "'").replace(/&quot;/g, '"').replace(/&lt;/g, "<").replace(/&gt;/g, ">");
 /** What a reader sees: tags out, entities decoded, whitespace collapsed. */
-const text = (s: string) => decode(s.replace(/<[^>]+>/g, " ")).replace(/\s+/g, " ").trim();
+const textOf = (s: string) => decode(s.replace(/<[^>]+>/g, " ")).replace(/\s+/g, " ").trim();
+const text = (el: Element | null | undefined) => (el?.textContent ?? "").replace(/\s+/g, " ").trim();
 
-/** The section a heading id labels, as markup. */
-const sectionFor = (src: string, id: string) => {
-  const open = src.indexOf(`aria-labelledby="${id}"`);
-  if (open < 0) return null;
-  const start = src.lastIndexOf("<section", open);
-  return src.slice(start, src.indexOf("</section>", open) + "</section>".length);
-};
-/** Its list rows, as reader text. */
-const rowsOf = (section: string) => [...section.matchAll(/<li\b[\s\S]*?<\/li>/g)].map((m) => text(m[0]));
+/** A chip by its label (its first text node), read from the DOM: getByRole
+ *  over a whole layout of 82 rows takes seconds in jsdom. */
+const chipNamed = (tree: Element, name: string) =>
+  [...tree.querySelectorAll("button[aria-pressed]")].find((b) => b.childNodes[0].textContent === name) as HTMLElement;
+
+/** The page with the runs chip on, on both layouts (both sit in the DOM at once). */
+function runsView() {
+  const { container, unmount } = render(<RevenuePage />);
+  const desktop = container.querySelector('[class*="desktopOnly"]') as HTMLElement;
+  const phone = [...container.querySelectorAll("main > div")].find((d) => /screen/.test(d.className)) as HTMLElement;
+  for (const tree of [desktop, phone]) {
+    fireEvent.click(chipNamed(tree, RUNS_HEADING));
+  }
+  return { container, desktop, phone, unmount };
+}
+
+/** Each layout's run rows and the text around them, in the runs view. */
+const LAYOUTS = [
+  {
+    what: "desktop",
+    id: "runs-title",
+    view: (v: ReturnType<typeof runsView>) => v.desktop.querySelector('section[aria-labelledby="runs-title"]') as HTMLElement,
+    rows: (v: ReturnType<typeof runsView>) => [
+      ...v.desktop.querySelectorAll('section[aria-labelledby="runs-title"] [role="row"]'),
+    ].slice(1),
+  },
+  {
+    what: "phone",
+    id: "runs-title-m",
+    // The phone's heading and lede sit above the live count, then the rows.
+    view: (v: ReturnType<typeof runsView>) => v.phone,
+    rows: (v: ReturnType<typeof runsView>) => [...v.phone.querySelectorAll('[class*="showRow"]')],
+  },
+] as const;
 
 /** Every way the old list put it: the "stand" jargon and "shows" for nights. */
 const jargon = (readerText: string) =>
   [/\bstands?\b/i, /\bshows?\b/i].filter((re) => re.test(readerText)).map(String);
 
-const LAYOUTS = [
-  { what: "desktop", id: "runs-title", tag: "h2" },
-  { what: "phone", id: "runs-title-m", tag: "h2" },
-] as const;
-
-describe("multi-night runs: a proper heading on both layouts", () => {
-  it.each(LAYOUTS)("$what: the section is headed \"Multi-night runs\" with the one-line lede", ({ id, tag }) => {
-    const sec = sectionFor(html, id);
-    expect(sec, `no section labelled by #${id}`).not.toBeNull();
-    const h = new RegExp(`<${tag}[^>]*id="${id}"[^>]*>([\\s\\S]*?)</${tag}>`).exec(sec!);
-    expect(h, `#${id} is not an <${tag}>`).not.toBeNull();
-    expect(text(h![1])).toBe(RUNS_HEADING);
+describe("multi-night runs: a proper heading on both layouts, now the chip's view", () => {
+  it.each(LAYOUTS)("$what: the view is headed \"Multi-night runs\" with the one-line lede", ({ id }) => {
+    const v = runsView();
+    const h = v.container.querySelector(`#${id}`);
+    expect(h, `no #${id}`).not.toBeNull();
+    expect(h!.tagName).toBe("H2");
+    expect(text(h)).toBe(RUNS_HEADING);
     expect(RUNS_HEADING).toBe("Multi-night runs");
-    expect(text(sec!)).toContain(RUNS_LEDE);
+    const sec = v.container.querySelector(`section[aria-labelledby="${id}"]`);
+    expect(sec, `no section labelled by #${id}`).not.toBeNull();
+    expect(text(sec)).toContain(RUNS_LEDE);
+    v.unmount();
   });
 
   it("the lede says what the list is, in one sentence", () => {
@@ -74,26 +101,38 @@ describe("multi-night runs: a proper heading on both layouts", () => {
     expect(RUNS_LEDE.split(/[.!?](\s|$)/).filter((x) => x && x.trim()).length).toBe(1);
   });
 
-  it.each(LAYOUTS)("$what: one row per run, each naming its artist (his too), venue, city, tour and dates", ({ id }) => {
-    const rows = rowsOf(sectionFor(html, id)!);
+  it.each(LAYOUTS)("$what: one row per run, each naming its artist (his too), venue, city, year and dates", (l) => {
+    const v = runsView();
+    const rows = l.rows(v).map((r) => text(r));
     expect(rows.length).toBe(revenueStands.length);
     expect(revenueStands.some((s) => s.artist === "Burna Boy"), "no run of his: the 'his too' half proves nothing").toBe(true);
     revenueStands.forEach((s, i) => {
-      for (const part of [s.flag, s.venue, s.city, s.artist, s.tour, s.dates]) {
+      for (const part of [s.flag, s.venue, s.city, s.artist, runYear(s.dates), shortDates(s.dates)]) {
         expect(rows[i], `row ${i + 1} (${s.venue}) is missing "${part}"`).toContain(part);
       }
+      // The desktop board has a Tour column; a phone night's row has none, and
+      // a run takes that row's format (the owner, 4 Oct 2026).
+      if (l.what === "desktop") expect(rows[i]).toContain(s.tour);
     });
+    v.unmount();
   });
 
-  it.each(LAYOUTS)("$what: tickets read \"<n> tickets over <k> nights\"", ({ id }) => {
-    const rows = rowsOf(sectionFor(html, id)!);
+  it.each(LAYOUTS)("$what: each run states its nights and its combined tickets", (l) => {
+    const v = runsView();
+    const rows = l.rows(v);
     revenueStands.forEach((s, i) => {
-      expect(rows[i]).toContain(`${s.tickets} tickets over ${s.shows} nights`);
+      expect(text(rows[i].querySelector('[class*="runNights"]'))).toBe(`${s.shows} nights · ${shortDates(s.dates)}`);
+      expect(text(rows[i].querySelector('[class*="showTickets"]'))).toBe(s.tickets);
     });
+    v.unmount();
   });
 
-  it.each(LAYOUTS)("$what: says \"nights\", never \"shows\" or \"stand\", anywhere in the section", ({ id }) => {
-    expect(jargon(text(sectionFor(html, id)!))).toEqual([]);
+  it.each(LAYOUTS)("$what: says \"nights\", never \"shows\" or \"stand\", anywhere in the view", (l) => {
+    const v = runsView();
+    const live = (l.what === "desktop" ? v.desktop : v.phone).querySelector('[aria-live="polite"]');
+    const said = [text(v.container.querySelector(`section[aria-labelledby="${l.id}"]`)), text(live), ...l.rows(v).map((r) => text(r))].join(" ");
+    expect(jargon(said)).toEqual([]);
+    v.unmount();
   });
 
   it("negative control: the heading and phone row as they shipped at f6048e12 fail the wording check", () => {
@@ -103,24 +142,28 @@ describe("multi-night runs: a proper heading on both layouts", () => {
     ).not.toEqual([]);
   });
 
-  it("the source notes say \"multi-night runs\", not \"stands\"", () => {
-    const page = text(html);
+  it("the source notes say \"multi-night runs\", not \"stands\"; RUNS_LEDE is said once a layout, in the chip's view only", () => {
+    const page = textOf(renderToStaticMarkup(<RevenuePage />));
     expect(page).not.toMatch(/Stands reported only as one combined total/);
     expect(page).not.toMatch(/Reported as a stand/);
     // Since 4 Oct 2026 (debug pass 3 Oct, bo-06) the source notes no longer
-    // repeat the runs sentence under the runs section that says it: the
-    // section's own lede carries it, once on each layout.
+    // repeat the runs sentence; the runs' own lede carries it — since the
+    // chip (4 Oct), only while the chip is on, once on each layout.
     expect(page.match(/Multi-night runs reported only as one combined total/g)).toBeNull();
-    expect(page.split(RUNS_LEDE).length - 1).toBe(2);
+    expect(page.split(RUNS_LEDE).length - 1).toBe(0);
+    const v = runsView();
+    expect(text(v.container).split(RUNS_LEDE).length - 1).toBe(2);
+    v.unmount();
   });
 
-  it("his runs keep the gold gross; another artist's does not", () => {
-    for (const id of ["runs-title", "runs-title-m"]) {
-      const lis = [...sectionFor(html, id)!.matchAll(/<li\b[\s\S]*?<\/li>/g)].map((m) => m[0]);
-      revenueStands.forEach((s, i) => {
-        const gold = /class="[^"]*(standGrossHis|grossHis)[^"]*"/.test(lis[i]);
-        expect(gold, `${id} row ${i + 1} (${s.artist})`).toBe(s.artist === "Burna Boy");
-      });
-    }
+  it.each(LAYOUTS)("$what: his runs keep the gold gross; another artist's does not", (l) => {
+    const v = runsView();
+    const rows = l.rows(v);
+    expect(revenueStands.some((s) => s.artist !== "Burna Boy"), "every run is his: the 'not gold' half proves nothing").toBe(true);
+    revenueStands.forEach((s, i) => {
+      const gold = rows[i].querySelectorAll('[class*="grossHis"]').length === 1;
+      expect(gold, `${l.what} row ${i + 1} (${s.artist})`).toBe(s.artist === "Burna Boy");
+    });
+    v.unmount();
   });
 });

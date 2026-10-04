@@ -1,9 +1,11 @@
 /**
- * Reader-facing words for the multi-night runs beneath the revenue board —
+ * Reader-facing words for the multi-night runs on the revenue board —
  * concerts the body reports only as one combined total for several nights
  * (`revenueStands` in app/data/tourRevenue.ts). One home, so the desktop
- * section and the phone list say the same thing (the owner, 3 Oct 2026: "ensure
- * they are properly stated so it has a good heading").
+ * board and the phone list say the same thing (the owner, 3 Oct 2026: "ensure
+ * they are properly stated so it has a good heading"). Since 4 Oct 2026 they
+ * are a chip on the board's rail, beside "All", rather than a section beneath
+ * it; RUNS_HEADING names the chip and labels its view.
  *
  * "Nights", never "shows": the board above ranks single shows, and a run is a
  * number of nights at one venue. The code keeps its "stand" identifiers.
@@ -14,8 +16,25 @@ export const RUNS_HEADING = "Multi-night runs";
 export const RUNS_LEDE =
   "Concerts played over two or more nights at the same venue and reported only as one combined total, so they're listed here rather than ranked against single nights.";
 
-/** "29,579 tickets over 2 nights". */
-export const runTickets = (tickets: string, nights: number) => `${tickets} tickets over ${nights} nights`;
+/** "3 multi-night runs · 7 nights" — the count line while the runs chip is on
+ *  (the owner, 4 Oct 2026: the runs moved into a chip beside "All"). */
+export function runsCountLine(runs: number, nights: number): string {
+  const word = RUNS_HEADING.toLowerCase();
+  return `${runs} ${runs === 1 ? word.replace(/s$/, "") : word} · ${nights} ${nights === 1 ? "night" : "nights"}`;
+}
+
+const MONTHS = /\b(January|February|March|April|May|June|July|August|September|October|November|December)\b/g;
+
+/** "28–29 Nov & 1 Dec 2021" from the data's "28–29 November and 1 December
+ *  2021": a run's dates, short enough for a board row's second line. */
+export const shortDates = (dates: string) => dates.replace(MONTHS, (m) => m.slice(0, 3)).replace(/ and /g, " & ");
+
+/** A run's year, as a board row prints one: the last year on its dates. */
+export function runYear(dates: string): string {
+  const m = /(\d{4})\s*$/.exec(dates);
+  if (!m) throw new Error(`runYear: no year at the end of "${dates}"`);
+  return m[1];
+}
 
 /**
  * The lowest place any run's combined total would take among the single

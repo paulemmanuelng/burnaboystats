@@ -2,6 +2,7 @@ import { describe, it, expect, vi } from "vitest";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { renderToStaticMarkup } from "react-dom/server";
+import { render, fireEvent } from "@testing-library/react";
 
 vi.mock("next/navigation", () => ({
   useRouter: () => ({ push: vi.fn(), prefetch: vi.fn(), replace: vi.fn(), back: vi.fn() }),
@@ -24,7 +25,7 @@ import { AFROBEATS_EDITED_ON, afrobeatsArtists } from "../app/data/afrobeats";
 import { REVENUE_AS_OF, REVENUE_BODY, REVENUE_FOOTER_NOTE, REVENUE_READ_ON, REVENUE_REPORTS, REVENUE_SOURCE } from "../app/lib/revenueSource";
 import { compactGross } from "../app/lib/grossLabel";
 import { numberWord } from "../app/lib/homeData";
-import { runRankCeiling } from "../app/lib/multiNightRuns";
+import { RUNS_HEADING, runRankCeiling } from "../app/lib/multiNightRuns";
 import { countryInSentence, idSlug, revenueByCountry, runCell, usdFull, usdM } from "../app/lib/revenueByCountry";
 import { footerFor } from "../app/lib/links";
 import sitemap from "../app/sitemap";
@@ -284,7 +285,8 @@ describe("bo-04: the chips run Burna Boy first, then by nights on the board", ()
 
   it("the rendered chips follow it", () => {
     const chips = [...revenue.desktop!.querySelectorAll("button[aria-pressed]")].map((b) => b.childNodes[0].textContent);
-    expect(chips).toEqual(["All artists", ...chipOrder(counts)]);
+    // All artists, then the runs chip (the owner, 4 Oct 2026), then the artists.
+    expect(chips).toEqual(["All artists", RUNS_HEADING, ...chipOrder(counts)]);
   });
 
   it("negative control: the shipped order is not by count", () => {
@@ -313,18 +315,37 @@ describe("bo-05: the phone's biggest-night stat prints the rows' own figure", ()
 describe("bo-06: the runs note is derived and said once a layout", () => {
   const ceiling = runRankCeiling(revenueStands.map((s) => s.revenue), revenueShows.map((s) => s.revenue));
 
+  /** Both layouts with the runs chip on: the note is said in its view since 4 Oct 2026. */
+  const runsOn = () => {
+    const r = render(<RevenuePage />);
+    const desktop = r.container.querySelector('[class*="desktopOnly"]') as HTMLElement;
+    const phone = [...r.container.querySelectorAll("main > div")].find((d) => /screen/.test(d.className)) as HTMLElement;
+    // The chip by its label: getByRole over a whole layout takes seconds in jsdom.
+    for (const tree of [desktop, phone]) {
+      fireEvent.click([...tree.querySelectorAll("button[aria-pressed]")].find((b) => b.childNodes[0].textContent === RUNS_HEADING)!);
+    }
+    return { ...r, desktop, phone };
+  };
+
   it("“top N” is the place the lowest-placed run would take among single nights", () => {
     for (const st of revenueStands) {
       const place = 1 + revenueShows.filter((s) => s.revenue > st.revenue).length;
       expect(place).toBeLessThanOrEqual(ceiling);
     }
-    expect(text(revenue.desktop!)).toContain(`each total would sit in the top ${numberWord(ceiling).toLowerCase()} of a board`);
+    const v = runsOn();
+    expect(text(v.desktop)).toContain(`each total would sit in the top ${numberWord(ceiling).toLowerCase()} of a board`);
+    v.unmount();
   });
 
   it("the desktop says “no per-night split is invented” once, the phone once", () => {
     const count = (t: string) => (t.match(/no per-night split is invented/gi) ?? []).length;
-    expect(count(text(revenue.desktop!))).toBe(1);
-    expect(count(text(revenue.phone!))).toBe(1);
+    const v = runsOn();
+    expect(count(text(v.desktop))).toBe(1);
+    expect(count(text(v.phone))).toBe(1);
+    v.unmount();
+    // …and not at all while the chip is off: it belongs to the runs' view.
+    expect(count(text(revenue.desktop!))).toBe(0);
+    expect(count(text(revenue.phone!))).toBe(0);
   });
 
   it("negative control: the typed note as it shipped", () => {

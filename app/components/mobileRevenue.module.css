@@ -493,65 +493,24 @@
 .showTickets.showTickets { color: var(--text-muted); margin-top: 0; line-height: 18px; }
 
 /* ── Multi-night runs ─────────────────────────────────────────────────
-   Beneath the board, under a heading of their own and one explanation.
-   Three lines a run: marker and venue, then who, where and which tour, then
-   the dates (never split) and the tickets over the nights. */
-.runs { padding: 28px 18px 0; }
-.runsTitle {
-  font-family: var(--font-anton), sans-serif;
-  font-weight: 400; /* Anton has no bold cut */
-  font-size: 26px;
-  line-height: 1;
-  letter-spacing: 0.01em;
-  text-transform: uppercase;
-  color: var(--text);
-  margin: 0;
-}
+   The runs chip's view (the owner, 4 Oct 2026: the runs moved from a section
+   beneath the board into a chip between "All" and Burna Boy). One
+   explanation above the count (fix 12), then a night's row format: the run
+   mark in the rank's place, then a third line for the nights and dates. */
+.runsHead { padding: 12px 18px 10px; }
 .runsLede {
   font-size: var(--type-small);
   line-height: 1.5;
   color: var(--text-body);
-  margin: 8px 0 0;
+  margin: 0;
 }
-.runsList { list-style: none; margin: 12px 0 0; padding: 0; border-top: 2px solid var(--rule); }
-.runRow {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 3px 10px;
-  align-items: center;
-  padding: 10px 0;
-  border-bottom: 1px solid var(--line);
-}
-/* The venue wraps under the marker rather than clip: at 320 "Scotiabank
-   Arena" beside the marker was cut to "Scoti…". */
-.runHead { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; min-width: 0; }
-.runMarker {
-  flex: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  height: 22px;
-  padding: 0 7px;
-  border-radius: 999px;
-  border: 1px solid var(--btn-edge);
-  font-family: var(--font-mono), monospace;
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
+/* Centred on the venue's 20px line, where a rank would sit. */
+.runRank.runRank { display: flex; align-items: center; height: 20px; }
 .runMarkerBars { display: flex; gap: 2px; }
 .runMarkerBars > span { width: 3px; height: 8px; background: currentColor; display: block; }
-.runVenue { min-width: 0; font-size: 14px; line-height: 20px; font-weight: 600; }
-.runRow .gross { text-align: right; align-self: start; line-height: 22px; }
-.runMeta {
-  grid-column: 1 / 3;
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
-  font-size: var(--type-caption);
-  line-height: 1.45;
-  color: var(--text-muted);
-}
+/* The nights line wraps between "3 nights" and the dates, never inside them,
+   rather than clip at 320 as the meta line above it does. */
+.runNights.runNights { white-space: normal; overflow: visible; margin-top: 1px; }
 .nowrap { white-space: nowrap; }
 
 /* ── Sources and method ───────────────────────────────────────────────── */

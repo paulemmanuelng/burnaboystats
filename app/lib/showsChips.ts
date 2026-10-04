@@ -1,8 +1,9 @@
 /**
- * The artist chips over the highest-grossing-shows board, on both layouts.
+ * The chips over the highest-grossing-shows board, on both layouts: All, then
+ * Multi-night runs, then the artists (railChips below).
  *
- * Burna Boy first (the page is his), then every other artist by how many
- * nights they hold on the board, most first — derived, so a new artist lands
+ * Among the artists, Burna Boy first (the page is his), then every other
+ * artist by how many nights they hold on the board, most first — derived, so a new artist lands
  * in place rather than after a typed list (debug pass 3 Oct 2026, bo-04: the
  * design's fixed order had left Tiwa Savage, 16 nights, after two one-night
  * artists). Ties keep the order they first appear on the board.
@@ -10,7 +11,37 @@
  * Pure: it takes counts, never the board's rows, so the client components that
  * call it bundle no data (tests/tourRevenueServerOnly.test.ts).
  */
+import { RUNS_HEADING } from "./multiNightRuns";
+
 export const HIS = "Burna Boy";
+
+/**
+ * The rail's "Multi-night runs" chip (the owner, 4 Oct 2026: "take the
+ * multi-night runs and put it here … in between All and Burna Boy"). A view of
+ * its own, never an artist: a symbol, so no artist's name can ever select it.
+ */
+export const RUNS_VIEW: unique symbol = Symbol(RUNS_HEADING);
+
+/** What the board shows: every single night (null), one artist's, or the runs. */
+export type BoardView = string | null | typeof RUNS_VIEW;
+
+export interface RailChip {
+  key: BoardView;
+  label: string;
+  count: number;
+}
+
+/**
+ * The rail, in order, on both layouts: All (every single night), then
+ * Multi-night runs while there are any (counted in runs, never folded into
+ * All's nights), then the artists by chipOrder.
+ */
+export function railChips(allLabel: string, counts: Record<string, number>, nights: number, runs: number): RailChip[] {
+  const all: RailChip = { key: null, label: allLabel, count: nights };
+  const run: RailChip = { key: RUNS_VIEW, label: RUNS_HEADING, count: runs };
+  const artists = chipOrder(counts).map((a): RailChip => ({ key: a, label: a, count: counts[a] }));
+  return runs > 0 ? [all, run, ...artists] : [all, ...artists];
+}
 
 /** Burna Boy first, then by nights on the board (most first); ties keep board order. */
 export function chipOrder(counts: Record<string, number>): string[] {
