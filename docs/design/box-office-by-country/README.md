@@ -736,6 +736,8 @@ Target: **one note, at most 5 lines at 390**, in a footnote style (labelled shor
 
 ## 6. Job 3: certifications phone density
 
+> **Add-on, 4 Oct 2026 (owner):** keep Burna Boy's portrait at the **top right of the certifications hero**, behind the type, on phone and desktop. The image and the live values are in [PORTRAIT-CERTS-HERO.md](PORTRAIT-CERTS-HERO.md) and [assets/burna-boy-portrait-640.jpg](assets/burna-boy-portrait-640.jpg).
+
 The phone certifications screen (`/certifications`, `MobileCerts`) and the same component on every `/afrobeats/<artist>` page. **Phone only**; the desktop certifications page is reference (§6.5). Keep every fact; make it scan. Full detail: [`pages.md`](research/pages.md) C1–D.
 
 ### 6.1 What exists today
