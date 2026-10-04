@@ -43,99 +43,27 @@
   },
   {
     "file": "app/certifications/certifications.module.css",
-    "line": 368,
-    "literal": "rgba(0, 0, 0, 0.25)",
-    "reason": "deferred: no token is byte-identical in dark"
+    "line": 375,
+    "literal": "rgba(0, 0, 0, 0.35)",
+    "reason": "mask alpha ramp, not a painted colour: only the alpha channel is read, so it is the same in both themes"
   },
   {
     "file": "app/certifications/certifications.module.css",
-    "line": 368,
+    "line": 376,
+    "literal": "rgba(0, 0, 0, 0.35)",
+    "reason": "mask alpha ramp, not a painted colour: only the alpha channel is read, so it is the same in both themes"
+  },
+  {
+    "file": "app/certifications/certifications.module.css",
+    "line": 375,
     "literal": "#000",
-    "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
+    "reason": "mask alpha ramp, not a painted colour: only the alpha channel is read, so it is the same in both themes"
   },
   {
     "file": "app/certifications/certifications.module.css",
-    "line": 368,
+    "line": 376,
     "literal": "#000",
-    "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
-  },
-  {
-    "file": "app/certifications/certifications.module.css",
-    "line": 368,
-    "literal": "rgba(0, 0, 0, 0.42)",
-    "reason": "deferred: no token is byte-identical in dark"
-  },
-  {
-    "file": "app/certifications/certifications.module.css",
-    "line": 369,
-    "literal": "rgba(0, 0, 0, 0.25)",
-    "reason": "deferred: no token is byte-identical in dark"
-  },
-  {
-    "file": "app/certifications/certifications.module.css",
-    "line": 369,
-    "literal": "#000",
-    "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
-  },
-  {
-    "file": "app/certifications/certifications.module.css",
-    "line": 369,
-    "literal": "#000",
-    "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
-  },
-  {
-    "file": "app/certifications/certifications.module.css",
-    "line": 369,
-    "literal": "rgba(0, 0, 0, 0.42)",
-    "reason": "deferred: no token is byte-identical in dark"
-  },
-  {
-    "file": "app/certifications/certifications.module.css",
-    "line": 385,
-    "literal": "rgba(0, 0, 0, 0.3)",
-    "reason": "deferred: no token is byte-identical in dark"
-  },
-  {
-    "file": "app/certifications/certifications.module.css",
-    "line": 385,
-    "literal": "#000",
-    "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
-  },
-  {
-    "file": "app/certifications/certifications.module.css",
-    "line": 385,
-    "literal": "#000",
-    "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
-  },
-  {
-    "file": "app/certifications/certifications.module.css",
-    "line": 385,
-    "literal": "rgba(0, 0, 0, 0.5)",
-    "reason": "deferred: no token is byte-identical in dark"
-  },
-  {
-    "file": "app/certifications/certifications.module.css",
-    "line": 386,
-    "literal": "rgba(0, 0, 0, 0.3)",
-    "reason": "deferred: no token is byte-identical in dark"
-  },
-  {
-    "file": "app/certifications/certifications.module.css",
-    "line": 386,
-    "literal": "#000",
-    "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
-  },
-  {
-    "file": "app/certifications/certifications.module.css",
-    "line": 386,
-    "literal": "#000",
-    "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
-  },
-  {
-    "file": "app/certifications/certifications.module.css",
-    "line": 386,
-    "literal": "rgba(0, 0, 0, 0.5)",
-    "reason": "deferred: no token is byte-identical in dark"
+    "reason": "mask alpha ramp, not a painted colour: only the alpha channel is read, so it is the same in both themes"
   },
   {
     "file": "app/components/BirthdayCelebration.module.css",
@@ -196,6 +124,42 @@
     "line": 108,
     "literal": "#000",
     "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
+  },
+  {
+    "file": "app/components/mobileCerts.module.css",
+    "line": 142,
+    "literal": "rgba(0, 0, 0, 0.3)",
+    "reason": "mask alpha ramp, not a painted colour: only the alpha channel is read, so it is the same in both themes"
+  },
+  {
+    "file": "app/components/mobileCerts.module.css",
+    "line": 146,
+    "literal": "rgba(0, 0, 0, 0.3)",
+    "reason": "mask alpha ramp, not a painted colour: only the alpha channel is read, so it is the same in both themes"
+  },
+  {
+    "file": "app/components/mobileCerts.module.css",
+    "line": 142,
+    "literal": "#000",
+    "reason": "mask alpha ramp, not a painted colour: only the alpha channel is read, so it is the same in both themes"
+  },
+  {
+    "file": "app/components/mobileCerts.module.css",
+    "line": 143,
+    "literal": "#000",
+    "reason": "mask alpha ramp, not a painted colour: only the alpha channel is read, so it is the same in both themes"
+  },
+  {
+    "file": "app/components/mobileCerts.module.css",
+    "line": 146,
+    "literal": "#000",
+    "reason": "mask alpha ramp, not a painted colour: only the alpha channel is read, so it is the same in both themes"
+  },
+  {
+    "file": "app/components/mobileCerts.module.css",
+    "line": 147,
+    "literal": "#000",
+    "reason": "mask alpha ramp, not a painted colour: only the alpha channel is read, so it is the same in both themes"
   },
   {
     "file": "app/components/mobileCerts.module.css",

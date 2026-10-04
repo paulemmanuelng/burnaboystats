@@ -65,6 +65,22 @@ export const updates: Update[] = [
     href: "/dai-dai",
   },
   {
+    date: "2026-10-04",
+    category: "Charts",
+    // daiDai.ts DAI_DAI_SPOTIFY_TOP10_DAYS / BODY_READ: the 3 Oct chart, read off
+    // Spotify Charts' own table in the screenshot Paul sent of @WITTIEWIZ's post
+    // (No. 10, Prev 25, Streak 135, 2,652,451); kworb's global_daily_totals T10 85
+    // is the check. The African record counts feature credits too, by the
+    // artist's nationality, and is judged on Spotify's own chart, which starts on
+    // 1 Jan 2017 (the owner's 24 Sep 2026 ruling on Spotify Global firsts). The
+    // runners-up on kworb's T10 column: Rema's "Calm Down" 22, Dave & Tems'
+    // "Raindance" 22, CKay's "love nwantiti" 6, Tyla's "CHANEL" 6. "One Dance"
+    // (Wizkid featured) reads 187 there, almost all of it its 2016 run, before
+    // Spotify's own chart begins.
+    text: "Back inside Spotify’s global Top 10: “Dai Dai” rose 15 places to No. 10 on the chart dated 3 October with 2,652,451 streams — its 85th day in the Top 10 and a 135th straight day on the chart. No African song has spent longer in the global Top 10.",
+    href: "/dai-dai",
+  },
+  {
     date: "2026-10-03",
     category: "Streaming",
     // @WITTIEWIZ's monthly tally, posted 2 Oct 2026 (September 1-30, Spotify).

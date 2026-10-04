@@ -90,6 +90,7 @@ export default function MobileCerts({
   covers,
   portrait,
   portraitSlug,
+  portraitSlot = "box",
   brand,
   chartsHref,
   liveHref,
@@ -137,6 +138,12 @@ export default function MobileCerts({
   portrait?: string;
   /** Which artist's treatment to use — see app/lib/portraitArt.ts. */
   portraitSlug?: string;
+  /** Where the portrait sits (Claude Design round 2, item 34, option b).
+   *  "square" is Burna Boy's /certifications hero ONLY: a fixed square, 80% of
+   *  the hero's width, raised beside the total. Every board artist keeps "box",
+   *  the live cover box their portraitArt.ts focal X was tuned against; Davido's
+   *  emblem branch rides on "box" too. tests/ui/certsPortrait.test.tsx. */
+  portraitSlot?: "box" | "square";
   /** This artist's official chart peaks, if they have a board. */
   chartsHref?: string;
   /** This artist's live board, if they have one. */
@@ -192,6 +199,16 @@ export default function MobileCerts({
   // this job for free.
   const albumTitles = new Set(albums.map((a) => titleKey(a.title)));
   const portraitArt = portraitArtFor(portraitSlug ?? "burna-boy");
+  // The raised square (Burna Boy's /certifications only) or the live cover box.
+  // The square paints at its own width, 80% of a full-width hero, so `sizes`
+  // describes it directly; the box's 190vw is explained at the <img> below.
+  const square = portraitSlot === "square";
+  const heroArtClass = square
+    ? `${styles.heroArt} ${styles.heroArtSlot}`
+    : portraitArt.mode === "emblem"
+      ? `${styles.heroArt} ${styles.heroArtEmblem}`
+      : styles.heroArt;
+  const heroArtSizes = square ? "80vw" : "190vw";
   const [tier, setTier] = useState<Tier | null>(null);
   // Rows whose full badge wall is open — keyed by title, folded by default.
   const [openBadges, setOpenBadges] = useState<Set<string>>(new Set());
@@ -331,7 +348,10 @@ export default function MobileCerts({
                 but its aspect-ratio is 2/5, and `cover` fits the 640 square by the
                 LONG axis — so the image paints ~783px wide and is cropped to 313.
                 Describing the box would let a DPR-1 phone pick the 320 rung for a
-                783px render: a soft hero where the background always fetched 640. */}
+                783px render: a soft hero where the background always fetched 640.
+                Burna Boy's raised square is not cropped at all — a square image
+                in a square box 80% of the hero wide — so it says 80vw, and the
+                preload below says the same (heroArtSizes). */}
             {/* Preload, media-gated to phones. Worth doing because of an accident
                 this conversion removed: the desktop hero used to be an EAGER <img>
                 on the same URL, so phones were quietly riding its fetch. Now that
@@ -350,15 +370,15 @@ export default function MobileCerts({
               rel="preload"
               as="image"
               imageSrcSet={spotifySrcSet(portrait)}
-              imageSizes="190vw"
+              imageSizes={heroArtSizes}
               media="(max-width: 900px)"
               fetchPriority="high"
             />
             <picture style={{ display: "contents" }}>
-              <source media="(max-width: 900px)" srcSet={spotifySrcSet(portrait)} sizes="190vw" />
+              <source media="(max-width: 900px)" srcSet={spotifySrcSet(portrait)} sizes={heroArtSizes} />
             { }
             <img
-              className={portraitArt.mode === "emblem" ? `${styles.heroArt} ${styles.heroArtEmblem}` : styles.heroArt}
+              className={heroArtClass}
               src={BLANK_PIXEL}
               alt=""
               style={{
@@ -371,7 +391,7 @@ export default function MobileCerts({
               decoding="async"
             />
             </picture>
-            <span className={styles.heroScrim} aria-hidden="true" />
+            <span className={square ? `${styles.heroScrim} ${styles.heroScrimSlot}` : styles.heroScrim} aria-hidden="true" />
           </>
         )}
         {/* Says which plaques the number below counts, so it follows the
