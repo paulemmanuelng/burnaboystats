@@ -387,6 +387,27 @@
 .runFig { font-weight: 600; color: var(--text); }
 .runHis { color: var(--gold); }
 
+/* The run marker, this screen's own since #418 took the runs section (and
+   its marker) off the shows phone screen (a534d98e mobileRevenue.module.css). */
+.runMarker {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 22px;
+  padding: 0 7px;
+  border-radius: 999px;
+  border: 1px solid var(--btn-edge);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.runMarkerBars { display: flex; gap: 2px; }
+.runMarkerBars > span { width: 3px; height: 8px; background: currentColor; display: block; }
+
 .methodList.methodList { grid-template-columns: 86px minmax(0, 1fr); gap: 6px 12px; }
 
 /* 320: the bar gives up a little length so the names stay whole. */

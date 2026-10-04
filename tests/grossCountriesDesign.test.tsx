@@ -315,6 +315,27 @@ describe("N4: his desktop rows carry no wash — the row is clear but for hover"
   });
 });
 
+describe("the run marker inside a row is the page's own (the shows page dropped its marker in #418)", () => {
+  it("both sheets draw the pill, and every run prints one", () => {
+    for (const [css, w] of [[DESK_CSS, 1440], [PHONE_OWN, 390]] as const) {
+      expect(declaredAt(css, ".runMarker", "border-radius", w)).toBe("999px");
+      expect(declaredAt(css, ".runMarker", "border", w)).toBe("1px solid var(--btn-edge)");
+    }
+    const runs = board.countries.reduce((n, c) => n + c.artists.reduce((m, a) => m + a.stands.length, 0), 0);
+    expect(runs).toBeGreaterThan(0);
+    for (const [, tree] of both()) expect(tree.querySelectorAll('[class*="runMarker"]:not([class*="runMarkerBars"])').length).toBe(runs);
+  });
+  it("negative control: the classes this page first borrowed are gone from the shared sheets", () => {
+    // RevenueCountries.tsx at 590cae87, verbatim: the marker came from the shows sheet.
+    const shipped = "<span className={styles.runMarker}>";
+    expect(shipped).toMatch(/styles\.runMarker/);
+    expect(declaredAt(read("app/records/tours/revenue/revenue.module.css"), ".runMarker", "border-radius", 1440)).toBeUndefined();
+    expect(declaredAt(PHONE_CSS, ".runMarker", "border-radius", 390)).toBeUndefined();
+    for (const f of ["app/components/RevenueCountries.tsx", "app/components/MobileRevenueCountries.tsx"])
+      expect(read(f), f).not.toMatch(/styles\.runMarker\b/);
+  });
+});
+
 // ── Jump navigation ─────────────────────────────────────────────────────────
 describe("item 3: the desktop “Jump to” index and the phone's continent rail", () => {
   it("desktop: every continent and every country, each link landing on its own block", () => {

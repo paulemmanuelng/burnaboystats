@@ -83,8 +83,8 @@ function Row({ a, rank }: { a: ArtistTotal; rank: number }) {
           return (
             <span key={`${st.venue}-${st.dates}`} className={own.run}>
               <span className={own.runHead}>
-                <span className={styles.runMarker}>
-                  <span className={styles.runMarkerBars} aria-hidden="true">
+                <span className={own.runMarker}>
+                  <span className={own.runMarkerBars} aria-hidden="true">
                     <span />
                     <span />
                   </span>

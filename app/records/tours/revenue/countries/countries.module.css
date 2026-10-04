@@ -457,6 +457,28 @@
 .runText { min-width: 0; }
 .runFig { font-weight: 600; color: var(--text); font-variant-numeric: tabular-nums; }
 .runHis { color: var(--gold); }
+
+/* The run marker, this page's own since #418 took the runs section (and its
+   marker) off the shows page: the pill, the two bars, the words — as the
+   board drew it (a534d98e revenue.module.css). */
+.runMarker {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 22px;
+  padding: 0 9px;
+  border-radius: 999px;
+  border: 1px solid var(--btn-edge);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.runMarkerBars { display: flex; gap: 2px; }
+.runMarkerBars > span { width: 3px; height: 9px; background: currentColor; display: block; }
 .nights {
   text-align: right;
   font-family: var(--font-mono), monospace;

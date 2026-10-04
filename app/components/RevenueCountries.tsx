@@ -127,8 +127,8 @@ function RunLines({ a }: { a: ArtistTotal }) {
         const r = runParts(st, usdM);
         return (
           <span key={`${st.venue}-${st.dates}`} className={own.run}>
-            <span className={styles.runMarker}>
-              <span className={styles.runMarkerBars} aria-hidden="true">
+            <span className={own.runMarker}>
+              <span className={own.runMarkerBars} aria-hidden="true">
                 <span />
                 <span />
               </span>
