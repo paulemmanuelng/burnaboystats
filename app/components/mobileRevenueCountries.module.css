@@ -1,7 +1,12 @@
-/* Box office by country — the phone screen's additions to the revenue
-   screen's parts (mobileRevenue.module.css): headings for the meta bars, the
-   country heading, and a meta line that wraps rather than cutting off the
-   best night. Rendered only where .screen displays (below 900px). */
+/* Highest-Grossing Artists by Country — the phone screen. Claude Design round
+   1, 4 Oct 2026, Job 1: designs/desktop/GXCountriesPhone.dc.html, with the
+   review's fixes and the owner's rulings where they differ. The back bar,
+   kicker, h1, figure tiles, share-bar segments, run marker, method note and
+   action bar are the shows screen's own parts (mobileRevenue.module.css);
+   this file adds the rest. Rendered only where .screen displays (≤900px).
+
+   Gold marks HIS figures only; his name, every rank and every other figure
+   are ink or muted (N4). One gold action on the screen: the action bar (N2). */
 
 /* The back bar's label stays on one line ("By country", the owner's words).
    At 320 the bar's four parts measured 44 + 79 + 94 + 44 = 261px against a
@@ -12,44 +17,367 @@
   .bar.bar { gap: 8px; }
   .barBadge.barBadge { letter-spacing: 0.04em; }
 }
-
-.barTitle { margin: 0; font-weight: 400; }
-.continentBar.continentBar { justify-content: space-between; color: var(--text); font-weight: 700; margin-top: 10px; }
-/* The continent's own h2 inside its bar: the bar's mono label, nothing more. */
-.continentName { margin: 0; font: inherit; letter-spacing: inherit; text-transform: inherit; color: inherit; }
-/* Everyone's figures on a screen whose gold is his (C3): the badge reads muted
-   and the "Reported nights" stat plain ink. */
+/* Everyone's figure on a screen whose gold is his (C3; review fix 2): the
+   badge is plain muted text — no fill, no border. */
 .mutedBadge.mutedBadge { color: var(--text-muted); }
-.statOther.statOther { color: var(--text); }
-.barRight { color: var(--dim); font-weight: 400; font-variant-numeric: tabular-nums; }
 
-/* A continent row has no rank: the row's 26px rank column folds away. */
-.noRank.noRank { grid-template-columns: 1fr auto; }
+/* ── Hero ─────────────────────────────────────────────────────────────── */
+.grand { display: flex; align-items: flex-end; gap: 12px; margin-top: 18px; }
+.grandValue {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 56px;
+  line-height: 0.9;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+.grandLabel {
+  padding-bottom: 4px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1.35;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.figs.figs { margin-top: 16px; }
+.share { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-top: 14px; }
+.shareSum { font-size: var(--type-caption); line-height: 1.45; color: var(--text-body); font-variant-numeric: tabular-nums; }
+.shareGold { font-weight: 600; color: var(--gold); }
+.sharePct {
+  flex: none;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+}
+.heroBar.heroBar { margin-top: 8px; }
 
-.artist { font-weight: 600; }
-.wrap.wrap { white-space: normal; overflow: visible; text-overflow: clip; line-height: 1.45; }
+/* A name in a lead line: ink for everyone, his included (N4). */
+.leadName { font-weight: 600; color: var(--text); }
+/* The leader's figure: ink, gold only where it is his. */
+.leadFig { font-weight: 600; color: var(--text); font-variant-numeric: tabular-nums; }
+.leadHis { color: var(--gold); }
 
-.countryHead {
+/* ── The country ladder ───────────────────────────────────────────────── */
+.ladderSec { padding-top: 22px; }
+.ladderHead {
   display: flex;
-  flex-direction: column;
-  gap: 3px;
-  padding: 14px 18px 10px;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0 18px 8px;
+  border-bottom: 2px solid var(--rule);
+}
+.ladderTitle {
+  margin: 0;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1.2;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+.key {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1.2;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.keySwatch { display: inline-block; width: 8px; height: 8px; margin: 0 5px 0 10px; }
+.keySwatch:first-child { margin-left: 0; }
+.keyOther { background: var(--other); }
+.ladder { list-style: none; margin: 0; padding: 0; }
+.ladderRow {
+  display: grid;
+  grid-template-columns: 20px 128px minmax(0, 1fr) 62px;
+  align-items: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 4px 18px;
+  box-sizing: border-box;
+  border-bottom: 1px solid var(--line);
+  color: var(--text);
+  text-decoration: none;
+}
+.ladderRow:active { background: var(--hover); }
+.ladderPos {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1;
+  color: var(--dim);
+  font-variant-numeric: tabular-nums;
+}
+.ladderWho { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.ladderName {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  font-size: 13.5px;
+  line-height: 1.3;
+  font-weight: 600;
+  white-space: nowrap;
+}
+/* A name that outruns its column ends in an ellipsis, never a hard cut. */
+.clip { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+/* The flag sits on the name's own line box, not above it. */
+.ladderName .flag { line-height: inherit; }
+/* The leader under the country, muted, the same for everyone (fix 5). */
+.ladderLeader {
+  padding-left: 20px;
+  font-size: 11.5px;
+  line-height: 1.3;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.flag { font-size: 14px; line-height: 1; flex: none; }
+.ladderTrack { display: flex; height: 8px; min-width: 0; background: var(--bg-soft-2); border-radius: 2px; }
+.ladderFill { display: flex; gap: 2px; min-width: 3px; border-radius: 2px; overflow: hidden; }
+.ladderTotal {
+  text-align: right;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+/* The bars grow once, on first view (0.3s); the global reduced-motion rule
+   draws them at full length at once. */
+.grow { animation: ladderGrow var(--dur-slow) var(--ease-out) both; transform-origin: left center; }
+@keyframes ladderGrow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+/* ── The jump control: sticky under the back bar ─────────────────────── */
+.railStick {
+  position: sticky;
+  top: calc(69px + env(safe-area-inset-top, 0px));
+  z-index: 4;
+  background: var(--scrim);
+  backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--line);
 }
+.rail {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 12px 18px;
+  scrollbar-width: none;
+}
+.chip {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 14px;
+  box-sizing: border-box;
+  border-radius: 999px;
+  border: 1px solid var(--btn-edge);
+  background: var(--bg-soft);
+  color: var(--text);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.chipEmpty { color: var(--text-muted); }
+/* The continent on screen: the Job 2 chip on-state — a 2px ember edge (the
+   border plus a 1px inset, so the chip never changes size) and the ember
+   wash, the label in ink. Never a gold fill (N2): the action bar is the
+   screen's one gold action. */
+.chip[aria-current] {
+  border-color: var(--ember);
+  box-shadow: inset 0 0 0 1px var(--ember);
+  background: color-mix(in srgb, var(--ember) calc(16% * var(--wash-strength)), var(--bg-soft));
+  color: var(--text);
+}
+/* Focus: 2px gold over a 2px ground gap, so it shows on the ember on-state. */
+.chip:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--gold); }
+.chip[aria-current]:focus-visible { box-shadow: inset 0 0 0 1px var(--ember), 0 0 0 2px var(--bg), 0 0 0 4px var(--gold); }
+
+/* ── Continents ───────────────────────────────────────────────────────── */
+.contSec { padding: 22px 18px 0; }
+.secTitle,
+.groupTitle {
+  margin: 0;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+.secTitle { margin-bottom: 10px; }
+.contRow { padding: 12px 0; border-top: 1px solid var(--line); }
+.contTop { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+.contName {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+.contTotal {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+.contBar {
+  display: flex;
+  gap: 2px;
+  height: 6px;
+  margin: 8px 0;
+  background: var(--bg-soft-2);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.contLead { font-size: var(--type-caption); line-height: 1.45; color: var(--text-body); font-variant-numeric: tabular-nums; }
+.contMeta,
+.emptyTitle {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1.3;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.contMeta { margin-top: 2px; color: var(--text-muted); }
+.emptyTitle { color: var(--text); text-align: right; }
+.emptyNote { margin-top: 6px; font-size: var(--type-caption); line-height: 1.45; color: var(--text-muted); }
+
+/* Not reported (Africa, South America — Q1): hatched, always with the words. */
+.hatch {
+  padding: 10px 12px;
+  border-radius: 4px;
+  background: repeating-linear-gradient(135deg, var(--hatch) 0 1px, transparent 1px 8px);
+}
+.emptyBlock { margin: 12px 18px 0; padding: 14px; border: 1px solid var(--line); border-radius: 6px; }
+.emptyBlock .emptyTitle { text-align: left; }
+.emptyBlock .emptyNote { color: var(--text-body); }
+
+/* ── A continent's countries ──────────────────────────────────────────── */
+.group { padding-top: 26px; }
+/* A jump lands below the back bar AND the held jump control (69 + 69px). */
+.group[id],
+.country[id] { scroll-margin-top: calc(150px + env(safe-area-inset-top, 0px)); }
+.groupHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+  padding: 0 18px 8px;
+  border-bottom: 2px solid var(--rule);
+}
+.groupMeta {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.country { border-bottom: 1px solid var(--line); }
+.countryHead { padding: 16px 18px 10px; }
 /* Anton, at its only weight — a 600 here made the browser fake a bold cut. */
 .countryName {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
   font-size: 20px;
-  line-height: 1;
+  line-height: 1.1;
   letter-spacing: 0.01em;
-  margin: 0;
 }
+.countryName .flag { font-size: 17px; }
 .countryLead {
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  margin-top: 6px;
   font-size: var(--type-caption);
+  line-height: 1.45;
+  color: var(--text-body);
+  font-variant-numeric: tabular-nums;
+}
+.splitBar {
+  display: flex;
+  gap: 2px;
+  height: 6px;
+  margin-top: 8px;
+  background: var(--bg-soft-2);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.callout { margin: 8px 0 0; font-size: var(--type-caption); line-height: 1.45; color: var(--text-body); }
+.calloutLabel {
+  margin-right: 6px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+/* One artist in one country: rank, name, total; then nights, the best single
+   night and its place, and any runs nested under a left rule. Wraps, never
+   cuts: the year always shows. */
+.row {
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr) auto;
+  gap: 4px 8px;
+  padding: 10px 18px;
+  border-top: 1px solid var(--line);
+}
+.row:active { background: var(--hover); }
+/* The page is his, so the faint tint picks everyone else's rows out. */
+.rowOther { background: color-mix(in srgb, var(--text) 2%, transparent); }
+.rank {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 20px;
+  color: var(--dim);
+  font-variant-numeric: tabular-nums;
+}
+.artist { font-size: 14px; line-height: 20px; font-weight: 600; color: var(--text); min-width: 0; }
+.total.total { line-height: 20px; text-align: right; }
+.sub {
+  grid-column: 2 / 4;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: var(--type-caption);
+  line-height: 1.45;
   color: var(--text-muted);
   font-variant-numeric: tabular-nums;
 }
-.leadHis { color: var(--gold); font-weight: 600; }
-.leadOther { color: var(--text); font-weight: 600; }
+.subStrong { font-weight: 600; color: var(--text-body); }
+.bestFig { font-weight: 600; color: var(--text-body); }
+.bestHis { color: var(--gold); }
+.run { display: flex; flex-direction: column; gap: 3px; padding-left: 10px; border-left: 2px solid var(--rule); }
+.runHead { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; }
+.runFig { font-weight: 600; color: var(--text); }
+.runHis { color: var(--gold); }
+
+.methodList.methodList { grid-template-columns: 86px minmax(0, 1fr); gap: 6px 12px; }
+
+/* 320: the ladder's name column narrows so the bar keeps its length. */
+@media (max-width: 359px) {
+  .ladderRow { grid-template-columns: 20px 112px minmax(0, 1fr) 58px; }
+}

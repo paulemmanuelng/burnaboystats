@@ -31,7 +31,7 @@ const colorOf = (css: string, cls: string): string | null => {
   return c ? c[1].trim() : null;
 };
 
-const BOARDS = [
+const BOARDS: { what: string; css: string; tsx: string; base: string; his: string; ns?: string }[] = [
   {
     what: "the revenue board",
     css: "app/records/tours/revenue/revenue.module.css",
@@ -69,6 +69,71 @@ const BOARDS = [
     tsx: "app/components/MobileRevenue.tsx",
     base: "recordFigure",
     his: "recordFigureHis",
+  },
+  // Highest-Grossing Artists by Country, round-1 design (4 Oct 2026): every
+  // figure on it that can be his — and is gold only on his rows.
+  {
+    what: "the country tables' totals on the desktop countries page",
+    css: "app/records/tours/revenue/revenue.module.css",
+    tsx: "app/components/RevenueCountries.tsx",
+    base: "gross",
+    his: "grossHis",
+  },
+  {
+    what: "the best single night in the desktop country tables",
+    css: "app/records/tours/revenue/countries/countries.module.css",
+    tsx: "app/components/RevenueCountries.tsx",
+    base: "bestFig",
+    his: "bestHis",
+    ns: "own",
+  },
+  {
+    what: "a run's gross inside a desktop country row",
+    css: "app/records/tours/revenue/countries/countries.module.css",
+    tsx: "app/components/RevenueCountries.tsx",
+    base: "runFig",
+    his: "runHis",
+    ns: "own",
+  },
+  {
+    what: "the leader's figure in a desktop country head and continent card",
+    css: "app/records/tours/revenue/countries/countries.module.css",
+    tsx: "app/components/RevenueCountries.tsx",
+    base: "leadFig",
+    his: "leadHis",
+    ns: "own",
+  },
+  {
+    what: "the phone countries rows' totals",
+    css: "app/components/mobileRevenue.module.css",
+    tsx: "app/components/MobileRevenueCountries.tsx",
+    base: "gross",
+    his: "grossHis",
+  },
+  {
+    // Review fix 7: his best night was ink on the phone, gold on desktop.
+    what: "the best single night in the phone countries rows",
+    css: "app/components/mobileRevenueCountries.module.css",
+    tsx: "app/components/MobileRevenueCountries.tsx",
+    base: "bestFig",
+    his: "bestHis",
+    ns: "own",
+  },
+  {
+    what: "a run's gross inside a phone country row",
+    css: "app/components/mobileRevenueCountries.module.css",
+    tsx: "app/components/MobileRevenueCountries.tsx",
+    base: "runFig",
+    his: "runHis",
+    ns: "own",
+  },
+  {
+    what: "the leader's figure in a phone country head and continent row",
+    css: "app/components/mobileRevenueCountries.module.css",
+    tsx: "app/components/MobileRevenueCountries.tsx",
+    base: "leadFig",
+    his: "leadHis",
+    ns: "own",
   },
   {
     what: "the top-ten table on /records/tours",
@@ -128,12 +193,13 @@ describe("gold marks Burna Boy's grosses, not everyone's", () => {
 
   it.each(BOARDS.map((b) => [b.what, b] as const))("%s: applies it conditionally", (_w, b) => {
     const tsx = read(b.tsx);
+    const ns = b.ns ?? "styles";
     expect(
-      new RegExp(`styles\\.${b.his}\\b`).test(tsx),
+      new RegExp(`${ns}\\.${b.his}\\b`).test(tsx),
       `${b.tsx} never references ${b.his}, so the gold can never appear`,
     ).toBe(true);
     expect(
-      unconditional(tsx, b.his),
+      unconditional(tsx, b.his, ns),
       `${b.tsx} applies ${b.his} outside a "his ? … : …" branch, so it is gold for everyone`,
     ).toEqual([]);
   });
@@ -141,8 +207,8 @@ describe("gold marks Burna Boy's grosses, not everyone's", () => {
 
 /** Every reference to styles.<cls> that is NOT the truthy branch of a ternary
  *  ("cond ? styles.cls : …") — i.e. a class that is applied whoever's row it is. */
-const unconditional = (tsx: string, cls: string): string[] =>
-  [...tsx.matchAll(new RegExp(`(.{0,40})styles\\.${cls}\\b`, "g"))]
+const unconditional = (tsx: string, cls: string, ns = "styles"): string[] =>
+  [...tsx.matchAll(new RegExp(`(.{0,40})${ns}\\.${cls}\\b`, "g"))]
     .filter((m) => !/\?\s*$/.test(m[1]))
     .map((m) => m[0].trim());
 

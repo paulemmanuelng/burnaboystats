@@ -26,7 +26,7 @@ import { REVENUE_AS_OF, REVENUE_BODY, REVENUE_FOOTER_NOTE, REVENUE_READ_ON, REVE
 import { compactGross } from "../app/lib/grossLabel";
 import { numberWord } from "../app/lib/homeData";
 import { RUNS_HEADING, runRankCeiling } from "../app/lib/multiNightRuns";
-import { countryInSentence, idSlug, revenueByCountry, runCell, usdFull, usdM } from "../app/lib/revenueByCountry";
+import { countryInSentence, idSlug, revenueByCountry, runParts, usdFull, usdM } from "../app/lib/revenueByCountry";
 import { footerFor } from "../app/lib/links";
 import sitemap from "../app/sitemap";
 import { siteUrl } from "../app/site";
@@ -374,9 +374,11 @@ describe("bo-03 / sw-4 / C7: the box-office notes use the board's own source wor
     const hub = read("app/records/page.tsx");
     expect(hub).toMatch(/\{REVENUE_SOURCE\}, as of \{REVENUE_AS_OF\}/);
     expect(hub).not.toContain("aggregating Billboard Boxscore");
-    const t = text(countries.desktop!);
-    expect(t).toContain(`${REVENUE_SOURCE.charAt(0).toLowerCase()}${REVENUE_SOURCE.slice(1)}, as of ${REVENUE_AS_OF}`);
-    expect(text(countries.phone!)).toContain(`as of ${REVENUE_AS_OF}`);
+    // Since the round-1 design (4 Oct 2026) the countries note is a list whose
+    // Source line is REVENUE_SOURCE + ", as of " + REVENUE_AS_OF, as on the
+    // shows page (review fix 18) — on both layouts.
+    for (const tree of [countries.desktop!, countries.phone!])
+      expect(text(tree)).toContain(`${REVENUE_SOURCE}, as of ${REVENUE_AS_OF}.`);
   });
 
   it("the revenue page's footer links the countries page; /records/tours names it by its title", () => {
@@ -543,16 +545,21 @@ describe("bo-01 / C2 / N4: no rank is gold on either box-office page, his includ
 // ── C3 ──────────────────────────────────────────────────────────────────────
 describe("C3: the phone countries screen keeps gold for his figure only", () => {
   const CSS = read("app/components/mobileRevenueCountries.module.css");
-  it("the badge (every artist's countries) and the “Reported nights” stat are not gold", () => {
+  // The round-1 design (4 Oct 2026) replaced the two stat cells with three
+  // figure tiles (Nights · Continents · He leads); the rule is unchanged:
+  // everyone's figures in ink, his gold. The badge stays plain muted text
+  // (review fix 2).
+  it("the badge (every artist's countries) and the nights figure are not gold; “He leads” is", () => {
     const badge = countries.phone!.querySelector('[class*="badge"]')!;
     expect(badge.className).toMatch(/mutedBadge/);
-    const cells = [...countries.phone!.querySelectorAll('[class*="statCell"]')];
-    const nights = cells.find((c) => /Reported nights/.test(text(c)))!.querySelector('[class*="statValue"]')!;
-    const his = cells.find((c) => /Countries he leads/.test(text(c)))!.querySelector('[class*="statValue"]')!;
-    expect(nights.className).toMatch(/statOther/);
-    expect(his.className).not.toMatch(/statOther/);
+    const labels = [...countries.phone!.querySelectorAll('[class*="figLabel"]')];
+    const value = (label: string) => labels.find((l) => text(l) === label)!.parentElement!.querySelector('[class*="figValue"]')!;
+    expect(value("Nights").className).not.toMatch(/figHis/);
+    expect(value("Continents").className).not.toMatch(/figHis/);
+    expect(value("He leads").className).toMatch(/figHis/);
     expect(declaredAt(CSS, ".mutedBadge.mutedBadge", "color", 390)).toBe("var(--text-muted)");
-    expect(declaredAt(CSS, ".statOther.statOther", "color", 390)).toBe("var(--text)");
+    expect(declaredAt(PHONE_CSS, ".figValue", "color", 390)).toBe("var(--text)");
+    expect(declaredAt(PHONE_CSS, ".figHis", "color", 390)).toBe("var(--gold)");
   });
   it("negative control: the shared classes alone are gold", () => {
     expect(declaredAt(PHONE_CSS, ".badge", "color", 390)).toBe("var(--gold)");
@@ -570,17 +577,21 @@ describe("C4: the continent cards sit 18px under their heading", () => {
 });
 
 // ── C5 ──────────────────────────────────────────────────────────────────────
-describe("C5: a run-only cell reads like a single night's", () => {
+describe("C5: a run-only artist's row reads like a single night's, the run said once", () => {
+  // Since the round-1 design (4 Oct 2026) a run prints inside its artist's
+  // row with the board's run marker, its own gross and place, and the board's
+  // run meta — on both layouts. Wizkid's O2 run is the case: no single night.
   const runOnly = board.countries.flatMap((c) => c.artists.filter((a) => !a.best && a.stands.length > 0).map((a) => ({ c, a })));
-  it("headline “<gross> · <venue>”, then city, dates and nights — the phrase once", () => {
+  it("the marker, then “<gross> · <venue>, <city> · <tour> · <dates> · <tickets> over <n> nights” — no “reported together”", () => {
     expect(runOnly.length).toBeGreaterThan(0);
-    for (const { a } of runOnly) {
-      const cell = runCell(a)!;
-      const st = a.stands[0];
-      expect(cell.headline).toBe(`${usdM(st.revenue)} · ${st.venue}`);
-      expect(cell.line).toBe(`${st.city} · ${st.dates} · ${st.shows} nights reported together`);
-      expect(text(countries.desktop!)).toContain(cell.headline);
-    }
+    for (const { a } of runOnly)
+      for (const st of a.stands) {
+        const d = runParts(st, usdFull);
+        expect(text(countries.desktop!)).toContain(`${d.marker}${d.gross} · ${d.place} · ${d.meta}`);
+        const p = runParts(st, usdM);
+        expect(text(countries.phone!)).toContain(`${p.marker}${p.gross}${p.place} · ${p.meta}`);
+      }
+    for (const tree of [countries.desktop!, countries.phone!]) expect(text(tree)).not.toMatch(/reported together/i);
   });
   it("negative control: the shipped cell said it twice", () => {
     const shipped = "Nights reported together\n3 nights reported together · The O2 Arena, London (28–29 November and 1 December 2021)";
@@ -611,15 +622,15 @@ describe("C6: the ItemList names print the total it is ordered by", () => {
 
 // ── C9 ──────────────────────────────────────────────────────────────────────
 describe("C9: a phone continent heading is its name alone", () => {
-  it("each section's labelling h2 holds the continent only; its figures sit beside it", () => {
-    const sections = [...countries.phone!.querySelectorAll("section[aria-labelledby]")];
+  it("each continent section's labelling h2 holds the continent only; its figures sit beside it", () => {
     const withData = board.continents.filter((k) => k.countries.length > 0);
-    expect(sections.length).toBe(withData.length);
-    sections.forEach((s, i) => {
+    for (const k of withData) {
+      const s = countries.phone!.querySelector(`section[aria-labelledby="m-${idSlug(k.continent)}-title"]`)!;
+      expect(s, k.continent).not.toBeNull();
       const h2 = countries.d.getElementById(s.getAttribute("aria-labelledby")!)!;
-      expect(text(h2)).toBe(withData[i].continent);
-      expect(text(h2.parentElement)).toContain(usdM(withData[i].total));
-    });
+      expect(text(h2)).toBe(k.continent);
+      expect(text(h2.parentElement)).toContain(usdM(k.total));
+    }
   });
   it("negative control: the shipped h2 ran the figures into the name", () => {
     expect("North America$34.31M · 60 nights").not.toBe("North America");

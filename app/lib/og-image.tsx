@@ -53,6 +53,13 @@ export interface OgLadderRow {
   label: string;
   w: number;
   his: boolean;
+  /** A muted name after the label — the countries card's leader, the same
+   *  for everyone, his included (review fix 10). */
+  note?: string;
+  /** A split bar: the part of it that is his, 0–1, gold, the rest --other,
+   *  a 2px gap between them (the countries ladder). Unset, the whole bar is
+   *  one colour by `his`. */
+  hisShare?: number;
 }
 
 /** The two box-office cards' shape (Claude Design round 1, 4 Oct 2026,
@@ -123,29 +130,55 @@ export function ogLadder(card: OgLadderCard) {
           <div style={{ display: "flex", flexDirection: "column", marginTop: 14 }}>
             {card.rows.map((r, i) => (
               <div key={i} style={{ display: "flex", alignItems: "center", height: 20, marginTop: i ? 7 : 0 }}>
-                <div
-                  style={{
-                    display: "block",
-                    width: 250,
-                    fontSize: 15,
-                    color: "#f5f4f0",
-                    whiteSpace: "nowrap",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                  }}
-                >
-                  {r.label}
-                </div>
-                <div style={{ display: "flex", marginLeft: 12, width: 238, height: 10, background: "#1c1c21", borderRadius: 2 }}>
+                {r.note === undefined ? (
                   <div
                     style={{
-                      display: "flex",
-                      width: Math.max(3, Math.round(238 * r.w)),
-                      height: 10,
-                      borderRadius: 2,
-                      background: r.his ? GOLD : OTHER,
+                      display: "block",
+                      width: 250,
+                      fontSize: 15,
+                      color: "#f5f4f0",
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
                     }}
-                  />
+                  >
+                    {r.label}
+                  </div>
+                ) : (
+                  <div style={{ display: "flex", width: 250, fontSize: 15, whiteSpace: "nowrap" }}>
+                    <div style={{ display: "flex", flexShrink: 0, color: "#f5f4f0" }}>{r.label}</div>
+                    <div
+                      style={{
+                        display: "block",
+                        flexShrink: 1,
+                        minWidth: 0,
+                        marginLeft: 8,
+                        color: "#9b9ba3",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                      }}
+                    >
+                      {r.note}
+                    </div>
+                  </div>
+                )}
+                <div style={{ display: "flex", marginLeft: 12, width: 238, height: 10, background: "#1c1c21", borderRadius: 2 }}>
+                  {r.hisShare === undefined ? (
+                    <div
+                      style={{
+                        display: "flex",
+                        width: Math.max(3, Math.round(238 * r.w)),
+                        height: 10,
+                        borderRadius: 2,
+                        background: r.his ? GOLD : OTHER,
+                      }}
+                    />
+                  ) : (
+                    <div style={{ display: "flex", width: Math.max(3, Math.round(238 * r.w)), height: 10, borderRadius: 2, overflow: "hidden" }}>
+                      {r.hisShare > 0 && <div style={{ display: "flex", width: `${(100 * r.hisShare).toFixed(2)}%`, minWidth: 2, height: 10, background: GOLD }} />}
+                      {r.hisShare < 1 && <div style={{ display: "flex", flexGrow: 1, minWidth: 2, height: 10, marginLeft: r.hisShare > 0 ? 2 : 0, background: OTHER }} />}
+                    </div>
+                  )}
                 </div>
               </div>
             ))}

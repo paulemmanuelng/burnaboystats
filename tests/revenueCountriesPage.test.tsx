@@ -16,7 +16,8 @@ vi.mock("next/link", () => ({
 
 import CountriesPage from "../app/records/tours/revenue/countries/page";
 import RevenuePage from "../app/records/tours/revenue/page";
-import { bestNightLine, leaderLine, revenueByCountry, runCell, standNote, summaryLine, usdM, usdFull } from "../app/lib/revenueByCountry";
+import { leaderLine, revenueByCountry, runParts, runsNote, summaryLine, usdM, usdFull } from "../app/lib/revenueByCountry";
+import { AFRICA_NOTE, SOUTH_AMERICA_NOTE } from "../app/components/RevenueCountries";
 import { revenueShows, revenueStands } from "../app/data/tourRevenue";
 import { BACK_BAR_ROUTES, ACTION_BAR_ROUTES } from "../app/lib/mobileScreens";
 import { text, trees } from "./fixtures/phoneTrees";
@@ -35,6 +36,12 @@ const both = () => [
   ["phone", phone!],
   ["desktop", desktop!],
 ] as const;
+/** Each layout's money form (one a screen, review fix 4): the desktop's
+ *  tables print full dollars, the phone the short form. */
+const money = (w: "phone" | "desktop") => (w === "desktop" ? usdFull : usdM);
+/** Each layout's leader line: the phone drops the closing "reported". */
+const lead = (w: "phone" | "desktop", c: (typeof board.countries)[number]) =>
+  leaderLine(c, money(w), { reported: w === "desktop" });
 
 describe("both layouts render", () => {
   it("has a phone screen and a desktop column, one h1 each", () => {
@@ -51,11 +58,11 @@ describe("both layouts render", () => {
 });
 
 describe("every country, with its full ranked list, on both layouts", () => {
-  it.each(both())("%s: every country's name and leader", (_w, tree) => {
+  it.each(both())("%s: every country's name and leader", (w, tree) => {
     const t = text(tree);
     for (const c of board.countries) {
       expect(t).toContain(c.name);
-      expect(t).toContain(`${c.leader.artist} ${leaderLine(c)}`);
+      expect(t).toContain(`${c.leader.artist} ${lead(w, c)}`);
     }
   });
 
@@ -78,28 +85,55 @@ describe("every country, with its full ranked list, on both layouts", () => {
       }
   });
 
-  it.each(both())("%s: the derived summary", (_w, tree) => {
-    expect(text(tree)).toContain(summaryLine(board));
+  it.each(both())("%s: the derived summary, in the method note", (_w, tree) => {
+    expect(text(tree.querySelector('[aria-label="How this page counts"]'))).toContain(summaryLine(board));
   });
 
-  it.each(both())("%s: each country's line credits the leader with HIS total, not the country's", (_w, tree) => {
+  it.each(both())("%s: each country's line credits the leader with HIS total, not the country's", (w, tree) => {
     const heads = [...tree.querySelectorAll("h3")];
+    const fmt = money(w);
     for (const c of board.countries) {
       const h = heads.find((e) => text(e).includes(c.name))!;
       const line = text(h.parentElement!);
-      expect(line, c.name).toContain(usdM(c.leader.total));
+      expect(line, c.name).toContain(fmt(c.leader.total));
       if (c.artists.length > 1) {
-        expect(line, c.name).toContain(`${usdM(c.leader.total)} of ${usdM(c.total)}`);
-        expect(line, c.name).not.toMatch(new RegExp(`leads · \\${usdM(c.total)}`));
+        expect(line, c.name).toContain(`${fmt(c.leader.total)} of ${fmt(c.total)}`);
+        expect(line, c.name).not.toContain(`leads · ${fmt(c.total)}`);
       }
     }
   });
 });
 
-describe("Africa is shown, not left out (owner ruling 2)", () => {
-  it.each(both())("%s: the Africa card says no reported box office yet", (_w, tree) => {
-    const africa = board.continents.find((k) => k.continent === "Africa")!;
-    if (africa.countries.length === 0) expect(text(tree)).toMatch(/Africa.*No reported box office yet/);
+describe("Africa and South America are shown, not left out (owner rulings: Africa 3 Oct; South America Q1, 4 Oct 2026)", () => {
+  const empty = board.continents.filter((k) => k.countries.length === 0).map((k) => k.continent);
+  it("today both have no reported box office — otherwise these checks prove nothing", () => {
+    expect(empty).toEqual(expect.arrayContaining(["Africa", "South America"]));
+  });
+  it.each(both())("%s: each has a strip cell and a closing section saying “No reported box office yet”, with its note", (_w, tree) => {
+    const t = text(tree);
+    for (const [k, note] of [["Africa", AFRICA_NOTE], ["South America", SOUTH_AMERICA_NOTE]] as const) {
+      if (!empty.includes(k)) continue;
+      // Twice a layout: the continent strip, and the place's own section.
+      expect(t.split(note).length - 1, k).toBe(2);
+      expect(t).toMatch(new RegExp(`${k}\\s*(—\\s*)?No reported box office yet`, "i"));
+      const section = [...tree.querySelectorAll("section[aria-labelledby]")].find(
+        (s) => text(tree.ownerDocument.getElementById(s.getAttribute("aria-labelledby")!)) === k,
+      );
+      expect(section, `${k} has its own section`).toBeDefined();
+      expect(text(section)).toContain("No reported box office yet");
+    }
+  });
+  it.each(both())("%s: the method note names both", (_w, tree) => {
+    const t = text(tree.querySelector('[aria-label="How this page counts"]'));
+    expect(t).toMatch(/Africa/);
+    expect(t).toMatch(/South America/);
+  });
+  it("negative control: the shipped page (a7530590) drew Africa only — no South America anywhere", () => {
+    // RevenueCountries.tsx at a7530590 filtered to `k.continent === "Africa" && k.countries.length === 0`.
+    const shipped = board.continents.filter((k) => k.continent === "Africa" && k.countries.length === 0).map((k) => k.continent);
+    expect(shipped).not.toContain("South America");
+    // The canvas's South America note repeated its heading (review, item 2's nit).
+    expect(SOUTH_AMERICA_NOTE).not.toMatch(/No reported box office/);
   });
 });
 
@@ -144,14 +178,20 @@ describe("the board's words, and nothing it keeps as data only", () => {
   it.each(both())("%s: multi-night runs, never stands (the revenue board's wording)", (_w, tree) => {
     expect(text(tree)).not.toMatch(/\bstands?\b/i);
   });
-  it.each(both())("%s: every artist with a run says so, by the run's own words", (w, tree) => {
+  it.each(both())("%s: every run sits inside its artist's row, marked, with its own figures", (w, tree) => {
     const t = text(tree);
-    // A run-only artist: the phone prints the best-night line; the desktop
-    // prints the run in a single night's grammar (runCell, C5 — 3 Oct 2026).
-    const runOnly = (a: (typeof board.countries)[number]["artists"][number]) =>
-      w === "desktop" ? runCell(a)!.line : bestNightLine(a);
     for (const c of board.countries)
-      for (const a of c.artists) if (a.stands.length > 0) expect(t, `${c.name} ${a.artist}`).toContain(standNote(a) ?? runOnly(a));
+      for (const a of c.artists)
+        for (const st of a.stands) {
+          const r = runParts(st, money(w));
+          expect(t, `${c.name} ${a.artist}`).toContain(r.marker);
+          expect(t, `${c.name} ${a.artist}`).toContain(`${r.place} · ${r.meta}`);
+          expect(t, `${c.name} ${a.artist}`).toContain(r.gross);
+        }
+  });
+  it("desktop: an artist with nights AND runs says the runs are in the total, never in the best night", () => {
+    const t = text(desktop!);
+    for (const c of board.countries) for (const a of c.artists) if (runsNote(a)) expect(t).toContain(runsNote(a)!);
   });
   it("no row's source line reaches the page", () => {
     for (const r of [...revenueShows, ...revenueStands]) expect(html).not.toContain(r.source);
