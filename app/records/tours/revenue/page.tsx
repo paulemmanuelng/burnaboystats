@@ -187,11 +187,11 @@ export default function RevenuePage() {
                   <span className={styles.figLabel}>Shows · {b.artists.length} artists</span>
                 </div>
                 <div className={styles.fig}>
-                  <span className={styles.figValue}>{b.hisTop10} of 10</span>
+                  <span className={`${styles.figValue} ${styles.figHis}`}>{b.hisTop10} of 10</span>
                   <span className={styles.figLabel}>Top ten that are his</span>
                 </div>
                 <div className={styles.fig}>
-                  <span className={styles.figValue}>{pct(b.hisShare)}</span>
+                  <span className={`${styles.figValue} ${styles.figHis}`}>{pct(b.hisShare)}</span>
                   <span className={styles.figLabel}>His share of the board</span>
                 </div>
                 <div className={styles.fig}>

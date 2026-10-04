@@ -24,7 +24,8 @@ import { declaredAt, trees } from "./fixtures/phoneTrees";
  * $6.147M here is too big in font size, reduce it a bit and the there's so
  * much gold there fix it". The record night's figure keeps the gold (while the
  * night is his, N6 — tests/recordNightGold); the figure tiles under it go to
- * ink on both layouts, and the phone figure drops from 44px to 36px.
+ * ink, and the figure drops from 44px to 36px. PHONE ONLY: "pc version is ok,
+ * no need to shrink pc" — the desktop hero is unchanged, gold tiles included.
  */
 
 const read = (p: string) => readFileSync(join(process.cwd(), p), "utf8");
@@ -32,14 +33,14 @@ const page = trees(renderToStaticMarkup(<RevenuePage />));
 const goldTiles = (root: Element) => [...root.querySelectorAll('[class*="figHis"]')];
 
 describe("shows hero: one gold figure, a smaller record night (owner, 4 Oct 2026)", () => {
-  it("no figure tile is gold, on either layout", () => {
-    expect(page.desktop!.querySelectorAll('[class*="figValue"]').length).toBeGreaterThan(0);
+  it("no figure tile is gold on the phone", () => {
     expect(page.phone!.querySelectorAll('[class*="figValue"]').length).toBeGreaterThan(0);
-    expect(goldTiles(page.desktop!)).toEqual([]);
     expect(goldTiles(page.phone!)).toEqual([]);
-    for (const css of ["app/records/tours/revenue/revenue.module.css", "app/components/mobileRevenue.module.css"]) {
-      expect(read(css), css).not.toMatch(/\.figHis\b/);
-    }
+    expect(read("app/components/mobileRevenue.module.css")).not.toMatch(/\.figHis\b/);
+  });
+
+  it("the desktop hero is untouched: its two his tiles keep the gold", () => {
+    expect(goldTiles(page.desktop!)).toHaveLength(2);
   });
 
   it("the record night keeps the gold while it is his", () => {
