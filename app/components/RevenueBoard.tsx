@@ -6,6 +6,7 @@ import type { RevenueShow, RevenueStand } from "../data/tourRevenue";
 import NotReported from "./NotReported";
 import { HIS, RUNS_VIEW, chipOrder, nightCounts, railChips, scaleWidth, shownLine, type BoardView } from "../lib/showsChips";
 import { RUNS_HEADING, RUNS_LEDE, runYear, runsCountLine, shortDates } from "../lib/multiNightRuns";
+import { useLinkedArtist } from "../lib/useLinkedArtist";
 
 /**
  * The highest-grossing-shows board (desktop) — Claude Design round 1, Job 2
@@ -27,6 +28,11 @@ import { RUNS_HEADING, RUNS_LEDE, runYear, runsCountLine, shortDates } from "../
  * under RUNS_LEDE and the page's derived split note; a run is never ranked, so
  * its rank cell carries the run mark and its scale cell stays empty. The runs
  * never join All's nights or an artist's: All counts single nights only.
+ *
+ * "Biggest shows" (the owner, 4 Oct 2026): ?artist=<slug> opens the board on
+ * that artist's chip — the certifications pages' button links here that way.
+ * Read on mount, client-side, so the page stays static; an absent or unknown
+ * slug leaves All on, and the chips behave as ever afterwards.
  */
 
 export { chipOrder };
@@ -48,15 +54,19 @@ export default function RevenueBoard({
   /** The source note and the back link, which follow the rows. */
   children?: React.ReactNode;
 }) {
+  const counts = nightCounts(shows.map((s) => s.artist));
+  // The deep link's artist (?artist=<slug>), or null: what the board shows
+  // until a chip is tapped. `picked` stays undefined until then.
+  const linked = useLinkedArtist(Object.keys(counts));
+  const [picked, setPicked] = useState<BoardView | undefined>(undefined);
   // null: every single night; an artist's name: theirs; RUNS_VIEW: the runs.
-  const [view, setView] = useState<BoardView>(null);
+  const view: BoardView = picked === undefined ? linked : picked;
   const runsOn = view === RUNS_VIEW;
   // The bars grow once, on first view (design §10); a filter swaps rows with
   // no animation, so the class goes at the first tap. Reduced motion: the
   // global rule in globals.css takes every animation to its end state.
   const [touched, setTouched] = useState(false);
 
-  const counts = nightCounts(shows.map((s) => s.artist));
   // All, Multi-night runs, then the artists — lib/showsChips.ts, shared with the phone.
   const chips = railChips("All artists", counts, shows.length, runs.length);
   const topGross = shows[0]?.revenue ?? 1;
@@ -100,7 +110,7 @@ export default function RevenueBoard({
               onClick={() => {
                 setTouched(true);
                 // "All artists" is never toggled off; any other chip toggles back to all.
-                setView(on ? null : c.key);
+                setPicked(on ? null : c.key);
               }}
               className={`${styles.chip} ${on ? styles.chipOn : ""}`}
             >

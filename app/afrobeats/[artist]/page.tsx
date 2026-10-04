@@ -13,6 +13,8 @@ import { artistFaqs, faqJsonLd } from "../../lib/boardFaqs";
 import { tierOf, type Release, type Country } from "../../data/certifications";
 import { opponentOf } from "../../lib/headToHead";
 import { compareWithLinks } from "../../lib/comparePairs";
+import { showsHrefFor } from "../../lib/showsBoard";
+import { SHOWS_LABEL } from "../../lib/showsDeepLink";
 import { andMore, topBody, topPlatform } from "../../lib/boardNotes";
 import { liveBoardFor } from "../../data/liveBoards";
 import { spotifyImage, spotifySrcSet } from "../../lib/spotifyImage";
@@ -130,6 +132,10 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
   const plats = live ? topPlatform(live.platformTotals) : { total: 0 };
   const liveNote = andMore(plats.top, plats.total);
   const compareWith = compareWithLinks(a.slug);
+  // "Biggest shows": the box-office board opened on their nights — undefined
+  // while they have no reported single night (lib/showsBoard), so their bars
+  // stay as they were.
+  const shows = showsHrefFor(a.slug);
   const idx = afrobeatsArtists.findIndex((x) => x.slug === a.slug);
   const next = afrobeatsArtists[(idx + 1) % afrobeatsArtists.length];
 
@@ -381,6 +387,7 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
         faqs={faqs}
         showActionBar
         compareSlug={a.slug}
+        showsHref={shows}
         compareWith={compareWith}
       />
 
@@ -458,6 +465,13 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
                 <Link href={`/compare?a=${a.slug}`} className="btn btnSecondary">
                   Compare ↗
                 </Link>
+                {/* Their nights on the box-office board, beside Compare — only
+                    while they have one (the owner, 4 Oct 2026). */}
+                {shows && (
+                  <Link href={shows} className="btn btnSecondary">
+                    {SHOWS_LABEL} ↗
+                  </Link>
+                )}
               </div>
             </div>
           </div>

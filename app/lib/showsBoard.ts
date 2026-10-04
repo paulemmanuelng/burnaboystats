@@ -1,5 +1,6 @@
 import { revenueShows, type RevenueShow } from "../data/tourRevenue";
 import { HIS } from "./showsChips";
+import { artistSlug, showsHref } from "./showsDeepLink";
 
 /**
  * Highest-grossing shows (/records/tours/revenue) — the figures the page's
@@ -89,6 +90,26 @@ export function showsBoard(rows: readonly RevenueShow[] = revenueShows): ShowsBo
     spread: Math.round(top.revenue / last.revenue),
     artists,
   };
+}
+
+/**
+ * The artists holding at least one reported single night on the board, in
+ * board order — the ones the certifications pages give a "Biggest shows"
+ * button. A multi-night run alone is not a night (it is never on the ranked
+ * board), so it earns no button.
+ */
+export function artistsWithNights(rows: readonly RevenueShow[] = revenueShows): string[] {
+  return [...new Set(rows.map((s) => s.artist))];
+}
+
+/**
+ * The "Biggest shows" link for the artist filed under `slug` (the Afrobeats
+ * Board's slug, or "burna-boy") — /records/tours/revenue?artist=<slug> — or
+ * undefined while they have no reported night, which keeps their bar as it was.
+ */
+export function showsHrefFor(slug: string, rows: readonly RevenueShow[] = revenueShows): string | undefined {
+  const name = artistsWithNights(rows).find((a) => artistSlug(a) === slug);
+  return name ? showsHref(name) : undefined;
 }
 
 // Pure formatters shared with the client boards, which cannot import this file.
