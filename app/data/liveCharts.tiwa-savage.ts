@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-04";
+  export const liveChartsUpdated = "2026-10-05";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-04T21:31Z";
+  export const liveChartsBuiltAt = "2026-10-05T05:46Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","iTunes"];
@@ -70,26 +70,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/bb3bf375aeed10455d2ce25b8411a7e8/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Let Dem Kno",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 88,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/805c82ccfac4462bf8b465c5ad9c7ca7/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Dorobucci",
@@ -158,8 +138,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 173,
-            "movement": -34
+            "position": 182,
+            "movement": -33
           }
         ]
       }

@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-04";
+  export const liveChartsUpdated = "2026-10-05";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-04T21:31Z";
+  export const liveChartsBuiltAt = "2026-10-05T05:46Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","iTunes"];
@@ -394,12 +394,6 @@
             "movement": -3
           },
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 79,
-            "movement": -37
-          },
-          {
             "country": "TZ",
             "name": "Tanzania",
             "position": 99,
@@ -532,20 +526,20 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 14,
-            "movement": -8
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 95,
-            "movement": -94
+            "position": 16,
+            "movement": -7
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 98,
-            "movement": -34
+            "position": 107,
+            "movement": -32
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 142,
+            "movement": -138
           }
         ]
       },
@@ -1024,7 +1018,7 @@
             "country": "UG",
             "name": "Uganda",
             "position": 87,
-            "movement": 2
+            "movement": -4
           }
         ]
       },
@@ -1054,8 +1048,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 90,
-            "movement": 1
+            "position": 91,
+            "movement": 0
           },
           {
             "country": "BE",
@@ -1068,33 +1062,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/aed5606a9b6dd1485de036b6852d08ce/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Moving",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 90,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 137,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/f913fed89932ceb56f7809aa7f811c0c/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Isaka II",
@@ -1154,26 +1121,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/b38a20520a3084e0e07332273a98158a/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Godly",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 71,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ed64774f56cf5d0f3fcb8e25c9fe39f6/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "10 Toes",
     "platforms": [
       {
@@ -1191,6 +1138,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/d9cbcfdbfb5dab6a1a37aeae7039d83c/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Moving",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 137,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/f913fed89932ceb56f7809aa7f811c0c/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "WATER SPIRIT",

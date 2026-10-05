@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-04";
+  export const liveChartsUpdated = "2026-10-05";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-04T21:31Z";
+  export const liveChartsBuiltAt = "2026-10-05T05:46Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -60,6 +60,13 @@
             "movement": 0
           },
           {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 37,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "LR",
             "name": "Liberia",
             "position": 41,
@@ -75,13 +82,6 @@
             "country": "NE",
             "name": "Niger",
             "position": 78,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 84,
             "movement": null,
             "status": "new"
           },
@@ -244,7 +244,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 122,
+            "position": 126,
             "movement": -1
           }
         ]
@@ -252,56 +252,6 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/6c62324aa93ed6be667929a5ab922f65/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Expresso",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 13,
-            "movement": 0
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 92,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 148,
-            "movement": -35
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 105,
-            "movement": 6
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Sacrifice",
@@ -338,8 +288,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 70,
-            "movement": -33
+            "position": 79,
+            "movement": -31
           }
         ]
       }
@@ -406,15 +356,57 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 76,
-            "movement": null,
-            "status": "new"
+            "position": 63,
+            "movement": 17
           },
           {
             "country": "LR",
             "name": "Liberia",
             "position": 174,
             "movement": -18
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Expresso",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 13,
+            "movement": 0
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 160,
+            "movement": -37
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 105,
+            "movement": 6
           }
         ]
       }
@@ -522,37 +514,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Fallen Angel",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 154,
-            "movement": 7
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 3,
-            "movement": 137
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5e469a94aaac1c27a9d16e02246a73ab/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "So it Goes",
     "platforms": [
       {
@@ -578,6 +539,37 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/3fe94d046b5097983f35fcc47037c799/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Fallen Angel",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 154,
+            "movement": 7
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 4,
+            "movement": 2
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5e469a94aaac1c27a9d16e02246a73ab/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Lomo Lomo",
     "platforms": [
       {
@@ -599,8 +591,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 63,
-            "movement": -33
+            "position": 72,
+            "movement": -31
           }
         ]
       }
@@ -898,7 +890,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 10,
+            "position": 12,
             "movement": null,
             "status": "new"
           }
@@ -994,34 +986,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 84,
-            "movement": -36
+            "position": 92,
+            "movement": -32
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "One - A COLORS SHOW",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 86,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5f34f6057f3322363d87f32b3d69003a/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Lord I'm Amazed",
@@ -1079,6 +1051,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ff0af89993ed3eb05eb36210fa9c21ad/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "One - A COLORS SHOW",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 128,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5f34f6057f3322363d87f32b3d69003a/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Amazing Grace",

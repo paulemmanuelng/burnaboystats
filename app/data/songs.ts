@@ -126,7 +126,7 @@ export const songs: Song[] = [
     // and placed on 2019's African Giant — the kicker dates the album from
     // albums.ts, this field dates the song.
     year: 2018,
-    spotifyStreams: "432M",
+    spotifyStreams: "433M",
     album: "African Giant",
     cover: "https://i.scdn.co/image/ab67616d0000b273a9c13c1a5538f87146ac8ca5",
     spotify: "https://open.spotify.com/track/1zIk8RJEKGvoH4FioFnGyJ",
@@ -161,7 +161,7 @@ export const songs: Song[] = [
     album: "The Last Wun",
     cover: "https://i.scdn.co/image/ab67616d0000b27303a253cffd6d9e556ef4eec5",
     spotify: "https://open.spotify.com/track/0WsC4ETIXyiHDMXRaPMvKe",
-    spotifyStreams: "317M",
+    spotifyStreams: "318M",
     tagline: "Burna Boy's highest-ever Billboard Hot 100 peak",
     blurb:
       "A feature on Gunna's 2025 album The Last Wun, “WGFT” gave Burna Boy his highest position ever on the US Billboard Hot 100 — No. 16 — blending Gunna's melodic trap with Burna's Afrobeats cadence. It charted in 13 countries and gave him his first US Top 20 single.",

@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-04";
+  export const liveChartsUpdated = "2026-10-05";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-04T21:31Z";
+  export const liveChartsBuiltAt = "2026-10-05T05:46Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -54,16 +54,16 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 2,
-            "movement": 7
-          },
-          {
             "country": "UG",
             "name": "Uganda",
             "position": 2,
             "movement": 0
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 3,
+            "movement": 5
           },
           {
             "country": "TD",
@@ -229,23 +229,29 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "BM",
+            "name": "Bermuda",
+            "position": 4,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "UG",
             "name": "Uganda",
-            "position": 18,
-            "movement": -4
+            "position": 20,
+            "movement": -6
           },
           {
             "country": "GD",
             "name": "Grenada",
             "position": 40,
-            "movement": -3
+            "movement": -2
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 112,
-            "movement": null,
-            "status": "new"
+            "position": 157,
+            "movement": -131
           }
         ]
       },
@@ -364,16 +370,16 @@
             "movement": -9
           },
           {
+            "country": "FR",
+            "name": "France",
+            "position": 28,
+            "movement": 0
+          },
+          {
             "country": "LU",
             "name": "Luxembourg",
             "position": 28,
             "movement": -3
-          },
-          {
-            "country": "FR",
-            "name": "France",
-            "position": 29,
-            "movement": -4
           },
           {
             "country": "BE",
@@ -414,14 +420,14 @@
           {
             "country": "MO",
             "name": "Macau",
-            "position": 64,
-            "movement": -14
+            "position": 66,
+            "movement": -16
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 100,
-            "movement": -33
+            "position": 109,
+            "movement": -32
           }
         ]
       },
@@ -463,8 +469,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 26,
-            "movement": 6
+            "position": 25,
+            "movement": -2
           },
           {
             "country": "GM",
@@ -573,7 +579,7 @@
             "country": "GD",
             "name": "Grenada",
             "position": 44,
-            "movement": -3
+            "movement": -2
           }
         ]
       },
@@ -768,6 +774,19 @@
         ]
       },
       {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 72,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
         "platform": "Shazam",
         "numberOnes": 0,
         "entries": [
@@ -783,6 +802,93 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/123eb0268dfea84370a28c4a2114dc28/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Who's Dat Girl",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 55,
+            "movement": -2
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 58,
+            "movement": 0
+          },
+          {
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 60,
+            "movement": 6
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 70,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 76,
+            "movement": 33
+          },
+          {
+            "country": "NE",
+            "name": "Niger",
+            "position": 105,
+            "movement": 15
+          },
+          {
+            "country": "SN",
+            "name": "Senegal",
+            "position": 108,
+            "movement": -3
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 111,
+            "movement": 40
+          },
+          {
+            "country": "SC",
+            "name": "Seychelles",
+            "position": 139,
+            "movement": -10
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 166,
+            "movement": 1
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 195,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/fe3deba215d998d74542663a84621852/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Rema Compilation",
@@ -870,86 +976,6 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/47d4b2f030cf6387a1f36dde2ce29e9b/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Who's Dat Girl",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 55,
-            "movement": -2
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 58,
-            "movement": 0
-          },
-          {
-            "country": "TZ",
-            "name": "Tanzania",
-            "position": 60,
-            "movement": 6
-          },
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 76,
-            "movement": 33
-          },
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 105,
-            "movement": 15
-          },
-          {
-            "country": "SN",
-            "name": "Senegal",
-            "position": 108,
-            "movement": -3
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 111,
-            "movement": 40
-          },
-          {
-            "country": "SC",
-            "name": "Seychelles",
-            "position": 139,
-            "movement": -10
-          },
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 166,
-            "movement": 1
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 195,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/fe3deba215d998d74542663a84621852/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Soweto",
@@ -1271,25 +1297,26 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 50,
-            "movement": 1
+            "movement": -4
           },
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 63,
-            "movement": 2
-          },
-          {
-            "country": "SA",
-            "name": "Saudi Arabia",
-            "position": 72,
-            "movement": -68
+            "position": 66,
+            "movement": -3
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 75,
-            "movement": -34
+            "position": 84,
+            "movement": -32
+          },
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 199,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -1542,6 +1569,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/3208072ca7af2913cacf001dbb11bbec/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "MARCH AM",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ES",
+            "name": "Spain",
+            "position": 74,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/4891a944de9418f059cabda0c7699160/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Alien",
     "platforms": [
       {
@@ -1551,8 +1598,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 47,
-            "movement": -31
+            "position": 56,
+            "movement": -30
           }
         ]
       }
