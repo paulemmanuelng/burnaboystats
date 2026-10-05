@@ -288,6 +288,12 @@ export default function CertExplorer({
     ? certCountPhrase(shownCerts, shownCountries, view)
     : `${shownCerts} ${shownCerts === 1 ? "certification" : "certifications"}`;
   const active = shownCountry || tier;
+  // The switches leave nothing at all (Tiwa Savage, BNXN with both off): no
+  // tier or country can narrow an empty view, so their rows and the Clear
+  // that resets them are not offered — the phone hides its tier rail the same
+  // way (B-11 / B-missed, 4 Oct 2026). The empty card's own Clear turns the
+  // switches back on.
+  const emptyView = totalAll === 0;
 
   // Whether the deep-linked focus names a release this page carries — the
   // same test ChartExplorer makes. When it doesn't, the empty state has to say
@@ -364,6 +370,7 @@ export default function CertExplorer({
             className={styles.switchRow}
           />
 
+          {!emptyView && (
           <div className={styles.filterRow}>
             <span className={styles.filterLabel}>Tier</span>
             <button
@@ -387,7 +394,9 @@ export default function CertExplorer({
               </button>
             ))}
           </div>
+          )}
 
+          {!emptyView && (
           <div className={styles.filterRow}>
             <span className={styles.filterLabel}>Country</span>
             <button
@@ -412,6 +421,7 @@ export default function CertExplorer({
               </button>
             ))}
           </div>
+          )}
 
           <div className={styles.filterMeta}>
             {/* "65 international certifications across 23 countries" in a
@@ -426,6 +436,7 @@ export default function CertExplorer({
                 <b>{shownCerts}</b> certifications
               </>
             )}
+            {!emptyView && (
             <button
               type="button"
               className={styles.clearBtn}
@@ -436,6 +447,7 @@ export default function CertExplorer({
             >
               Clear ✕
             </button>
+            )}
           </div>
         </div>
       </div>

@@ -18,6 +18,7 @@ import {
   boardLabelPlaques,
   boardAnnouncements,
   boardOffRegisterTotal,
+  burnaAnnouncements,
   provenanceTileSentence,
   certificationRule,
 } from "../app/lib/offRegister";
@@ -310,10 +311,18 @@ describe("the hub tile and the methodology card name what stands without a regis
       "“Dai Dai”'s Gold in Colombia, issued by Sony Music Colombia",
       "“All Eyes on Me”'s 19× Platinum in South Africa, issued by Sony Music Africa",
     ]);
-    expect(boardOffRegisterTotal).toBe(14);
+    // Fifteen since 5 Oct 2026: Dai Dai's Danish Gold, read on IFPI Danmark's
+    // Hitlisten chart with no register row yet, was invisible here and the
+    // tile said 14 (D-02).
+    expect(burnaAnnouncements).toEqual([
+      "“Dai Dai”'s Gold in Denmark, published by IFPI Denmark on Hitlisten, its official chart, in week 38 of 2026, and not yet in its database",
+    ]);
+    expect(boardOffRegisterTotal).toBe(15);
     expect(provenanceTileSentence()).toBe(
-      "A figure with no register row behind it is published only where the body itself announced it or the label issued or announced the plaque — 14 of the board's plaques, each named in the methodology.",
+      "A figure with no register row behind it is published only where the body itself announced it or the label issued or announced the plaque — 15 of the board's plaques, each named in the methodology.",
     );
+    // Negative control: the tile as it shipped on 4 Oct 2026 (live /afrobeats).
+    expect(provenanceTileSentence()).not.toContain("— 14 of the board's plaques");
   });
 
   it("the methodology names every one of them", () => {
@@ -328,7 +337,7 @@ describe("the hub tile and the methodology card name what stands without a regis
     expect(boardAnnouncements).toEqual([
       "Tyla's “Tyla” Gold in France, announced by SNEP on its own X account, 6 Apr 2026, and not in its database",
     ]);
-    for (const x of [...burnaLabelPlaques, ...boardLabelPlaques, ...boardAnnouncements]) expect(rule).toContain(x);
+    for (const x of [...burnaLabelPlaques, ...burnaAnnouncements, ...boardLabelPlaques, ...boardAnnouncements]) expect(rule).toContain(x);
     expect(rule).toContain("On the Afrobeats board, a label's own plaque or announcement stands where the register holds no row:");
     // The post announces a Gold; it does not say the label issued a plaque, so
     // the rule must not call all ten "issued by" — the wording this PR first

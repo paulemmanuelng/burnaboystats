@@ -2,7 +2,7 @@ import Link from "next/link";
 import styles from "./records.module.css";
 import { pageMetadata } from "../lib/seo";
 import { revenueShows } from "../data/tourRevenue";
-import { REVENUE_AS_OF, REVENUE_SOURCE } from "../lib/revenueSource";
+import { REVENUE_AS_OF, REVENUE_SOURCE, revenueRowBody } from "../lib/revenueSource";
 import { tours } from "../data/tours";
 import { ceremonies } from "../data/awards";
 import { numberWord } from "../lib/homeData";
@@ -52,9 +52,12 @@ const headline = [
     value: topShow.tickets ?? "—",
     label: "Tickets, one night",
     // Scoped to the source (A-49, Paul, 24 Sep 2026): the 2023 London Stadium
-    // night is put at "about 60,000" elsewhere on the site, with no Boxscore
-    // row, so "biggest reported" overstated what this figure can claim.
-    note: "Biggest African crowd in Billboard's box-office figures",
+    // night is put at "about 60,000" elsewhere on the site, with no reported
+    // row, so "biggest reported" overstated what this figure can claim. The
+    // source is the one the night's row was read at — TouringData, not the
+    // "Billboard's box-office figures" it named until 5 Oct 2026, beside a
+    // footer crediting TouringData (F-04).
+    note: `Biggest African crowd in ${revenueRowBody(topShow.source)}'s box-office reports`,
     href: "/records/tours/revenue",
   },
   {

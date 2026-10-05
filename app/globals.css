@@ -1939,7 +1939,18 @@ a[class*="__certRow"]:focus-visible,
   }
   /* Focus and fragment scrolling clear the fixed bars (WCAG 2.4.11): a
      keyboard user tabbing to a chip near the fold was landing under the tab
-     bar with nothing focused on screen. /compare stacks a second bar. */
+     bar with nothing focused on screen. /compare stacks a second bar.
+     A deep screen's own action bar is the same hazard: on the countries board
+     eight stops in a row (Switzerland to the continent rail) and on
+     /certifications the year rail were focused wholly under it (debug pass
+     4 Oct 2026, E-01). The bar is 12 + 50 + 12 px and its 1px rule, plus the
+     inset, and 4px more so the focus ring (2px at a 2px offset) clears it too.
+     Bottom only: a top padding would stack on the [id] scroll-margin-top and
+     push every jump ~137px lower. Written first so the tab bar's and
+     /compare's rules below win where they apply. */
+  html:has([class*="__actionBar"]) {
+    scroll-padding-bottom: calc(80px + env(safe-area-inset-bottom, 22px));
+  }
   html:has(.mobileTabBarPresent) {
     scroll-padding-bottom: calc(64px + max(30px, env(safe-area-inset-bottom, 0px)));
   }

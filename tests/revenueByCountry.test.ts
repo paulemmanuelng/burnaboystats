@@ -135,7 +135,9 @@ describe("leaders", () => {
       marker: "Run · 2 nights",
       gross: "$2,801,928",
       place: "Scotiabank Arena, Toronto",
-      meta: "I Told Them… Tour · 24–25 February 2024 · 29,579 tickets over 2 nights",
+      // The shows page's short dates since the debug pass of 4 Oct 2026
+      // (A-06): "24–25 February 2024" broke inside the date on both layouts.
+      meta: "I Told Them… Tour · 24–25 Feb 2024 · 29,579 tickets over 2 nights",
     });
     expect(runParts(st).gross).toBe("$2.80M");
   });

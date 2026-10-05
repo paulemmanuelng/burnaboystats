@@ -7,7 +7,7 @@ import { numberWord } from "../../../lib/homeData";
 import { compactGross } from "../../../lib/grossLabel";
 import { runRankCeiling } from "../../../lib/multiNightRuns";
 import { revenueShows, revenueStands } from "../../../data/tourRevenue";
-import { REVENUE_AS_OF, REVENUE_READ_ON, REVENUE_SOURCE } from "../../../lib/revenueSource";
+import { REVENUE_AS_OF, REVENUE_SOURCE, REVENUE_STAMP } from "../../../lib/revenueSource";
 import { usdFull } from "../../../lib/revenueByCountry";
 import { pct, showsBoard } from "../../../lib/showsBoard";
 import { pageMetadata, datasetJsonLd } from "../../../lib/seo";
@@ -81,7 +81,7 @@ const revenueDataset = datasetJsonLd({
   keywords: ["Burna Boy", "box office", "highest-grossing shows", "highest-grossing concert", "African artist revenue", "touring revenue"],
   variableMeasured: ["Artist", "Venue", "Tour", "Year", "Tickets sold", "Gross"],
   // The sitemap's stamp for this route (app/sitemap.ts), so the two agree.
-  dateModified: REVENUE_READ_ON,
+  dateModified: REVENUE_STAMP,
 });
 
 /** The method note under the board, desktop wording (GXShowsDesk). The source

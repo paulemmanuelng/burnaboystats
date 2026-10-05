@@ -11,7 +11,7 @@ import KeepExploring from "../components/KeepExploring";
 import { siteUrl } from "../site";
 import {
   COUNTRIES, albums as certAlbums, singles, features, certHistory, intlCertHistory, allItems,
-  totalAwards, tierCounts, certifiedReleaseCount, countryCount, certSources, CERTS_VERIFIED_ON,
+  totalAwards, tierCounts, certifiedReleaseCount, countryCount, certSources, CERTS_VERIFIED_ON, CERTS_STAMP, announcedClause,
 } from "../data/certifications";
 import { pageMetadata, datasetJsonLd } from "../lib/seo";
 import { portraitArtFor } from "../lib/portraitArt";
@@ -21,6 +21,7 @@ import { livePlatformTotals } from "../data/liveCharts";
 import { compareWithLinks } from "../lib/comparePairs";
 import { countryBoardLinks } from "../lib/certCountry";
 import CertViewSwap from "../components/CertViewSwap";
+import { wholePercents } from "../lib/wholePercents";
 import { featuredTitlesOf } from "../lib/certUnits";
 import { withIssuerProvenance } from "../lib/certs";
 import {
@@ -78,6 +79,10 @@ const certDataset = datasetJsonLd({
   path: "/certifications",
   keywords: ["Burna Boy", "certifications", "RIAA", "BPI", "Gold", "Platinum", "Diamond", "music sales"],
   variableMeasured: ["Certification level", "Country", "Release"],
+  // The later of the day the registers were last read (printed under its
+  // sources) and an edit made without a read — the sitemap's lastmod for this
+  // route, so the two agree (D-04, 4 Oct 2026).
+  dateModified: CERTS_STAMP,
 });
 
 const burnaArt = portraitArtFor("burna-boy");
@@ -104,10 +109,13 @@ const TIER_INK: Record<string, string> = {
   Silver: "var(--tier-silver-ink)",
 };
 
-const tierRail = tierCounts().map(({ name, count }) => ({
+// Shares by largest remainder, so the rail always adds to 100 (B-10).
+const railCounts = tierCounts();
+const railPcts = wholePercents(railCounts.map((t) => t.count));
+const tierRail = railCounts.map(({ name, count }, i) => ({
   name,
   count,
-  pct: `${Math.round((count / total) * 100)}%`,
+  pct: `${railPcts[i]}%`,
 }));
 
 const thisYear = Math.max(...certHistory.map((e) => e.year));
@@ -178,10 +186,11 @@ function summaryFor(view: CertView): typeof summary {
  *  rail keeps its height when a switch flips. */
 function tierRailFor(view: CertView): typeof tierRail {
   const t = certTotals(certsInView(allItems, { home, featured }, view));
-  return tierRail.map(({ name }) => ({
+  const pcts = wholePercents(tierRail.map(({ name }) => t.tiers[name]));
+  return tierRail.map(({ name }, i) => ({
     name,
     count: t.tiers[name],
-    pct: `${t.total ? Math.round((t.tiers[name] / t.total) * 100) : 0}%`,
+    pct: `${pcts[i]}%`,
   }));
 }
 
@@ -388,8 +397,8 @@ export default function CertificationsPage() {
         <div className={styles.wide}>
           <p className={styles.source}>
             Sources: {certSources()} — each award read at the body&apos;s own register (or, in
-            a market with no current public register, from the label&apos;s own plaque), most
-            recently on {certsVerifiedLong}. Each row shows a release&apos;s current level in
+            a market with no current public register, from the label&apos;s own plaque
+            {announcedClause("; or from ")}), most recently on {certsVerifiedLong}. Each row shows a release&apos;s current level in
             every country; “×” denotes multi-platinum.
           </p>
         </div>

@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect, vi, beforeEach } from "vitest";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { renderToStaticMarkup } from "react-dom/server";
@@ -27,6 +27,12 @@ import { compactGross } from "../app/lib/grossLabel";
 import { usdFull } from "../app/lib/revenueByCountry";
 import { declaredAt } from "./fixtures/phoneTrees";
 import { text, trees } from "./fixtures/phoneTrees";
+
+// The boards keep the reader's chip in the address bar and in this history
+// entry (lib/useBoardView; debug pass 4 Oct 2026, A-03). Each test starts on a
+// fresh entry at the bare address, as a fresh visit does — not on the chip a
+// previous test left there.
+beforeEach(() => window.history.replaceState(null, "", "/"));
 
 /**
  * Highest-grossing shows, the new design — Claude Design round 1 (4 Oct 2026),
@@ -210,10 +216,12 @@ describe("desktop board: scale bars against No. 1, kept under a filter; ranks ke
   it("filtering to Tiwa Savage keeps her board ranks and the No. 1 scale, and announces the count", () => {
     const { container, getByRole } = render(<RevenueBoard shows={boardShows} />);
     const live = container.querySelector('[aria-live="polite"]')!;
-    expect(live.textContent).toBe(`${revenueShows.length} of ${revenueShows.length} shown`);
+    // The phone's words on both layouts since 4 Oct 2026 (A-11): "shows", and
+    // the artist named — the desktop said "16 of 82 shown".
+    expect(live.textContent).toBe(`${revenueShows.length} of ${revenueShows.length} shows`);
     fireEvent.click(getByRole("button", { name: /^Tiwa Savage/ }));
     const hers = revenueShows.map((s, i) => ({ s, rank: i + 1 })).filter((r) => r.s.artist === "Tiwa Savage");
-    expect(live.textContent).toBe(`${hers.length} of ${revenueShows.length} shown`);
+    expect(live.textContent).toBe(`${hers.length} of ${revenueShows.length} shows · Tiwa Savage`);
     const rows = [...container.querySelectorAll('[role="row"]')].slice(1);
     expect(rows.map((r) => r.children[0].textContent)).toEqual(hers.map((h) => String(h.rank).padStart(2, "0")));
     rows.forEach((r, i) => {

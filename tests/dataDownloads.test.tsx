@@ -494,7 +494,9 @@ describe("register_url links only a register that can show the plaque", () => {
 
   it("every other row carries its country's register", async () => {
     const { body, col } = await certSheet();
-    const announced = new Set(["Tyla|Tyla|FR"]);
+    // The body's own publication, its register not yet listing the row: no
+    // register link (Dai Dai 🇩🇰 since 5 Oct 2026, C-05).
+    const announced = new Set(["Tyla|Tyla|FR", "Burna Boy|Dai Dai|DK"]);
     for (const r of body) {
       const c = col(r, "country_code");
       const country = col(r, "artist") === "Burna Boy" ? BURNA_COUNTRIES[c] : countryMeta(c);
@@ -516,6 +518,10 @@ describe("source says what each plaque was read from (PR #400 review)", () => {
     expect(off).toEqual(
       [
         "Burna Boy|Dai Dai|CO|label",
+        // Read on Hitlisten, IFPI Danmark's chart; its register had no row on
+        // 5 Oct 2026. The CSV said "register", with a register link that finds
+        // nothing, until then (C-05/D-02).
+        "Burna Boy|Dai Dai|DK|announcement",
         "Burna Boy|All Eyes on Me|ZA|label",
         "Tems|No.1|ZA|label",
         "Tyla|Tyla|FR|announcement",

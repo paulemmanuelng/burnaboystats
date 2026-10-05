@@ -29,7 +29,11 @@ const OPTS = { includeNigeria: true, includeFeatures: true };
 describe("Dai Dai: Gold in Denmark", () => {
   it("holds one Danish plaque, Gold, issued by IFPI Danmark itself", () => {
     expect(daiDai.credit).toBe("Shakira & Burna Boy");
-    expect(daiDai.certs.filter((c) => c.c === "DK")).toEqual([{ c: "DK", level: "Gold" }]);
+    // Marked as the body's own publication since 5 Oct 2026 (C-05/D-02): read
+    // on Hitlisten, its register not yet listing the row.
+    expect(daiDai.certs.filter((c) => c.c === "DK")).toEqual([
+      { c: "DK", level: "Gold", source: "announcement", announced: { via: "Hitlisten, its official chart, in week 38 of 2026" } },
+    ]);
     // No `body` override: the issuer is the country's own body.
     expect(COUNTRIES.DK.body).toBe("IFPI Denmark");
   });

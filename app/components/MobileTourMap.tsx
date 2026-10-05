@@ -333,7 +333,9 @@ export default function MobileTourMap({ data }: { data: TourMapProps }) {
                     // A flag stays on the line of its name.
                     return `${c.flag ? `${c.flag} ` : ""}${c.name.replace(/ /g, " ")}`;
                   })
-                  .join(" · ")}
+                  // A separator ends the line it follows, never starts one:
+                  // "· Switzerland" opened a line of Europe (F-12, 4 Oct 2026).
+                  .join("\u00a0· ")}
               </p>
             </div>
           ))}

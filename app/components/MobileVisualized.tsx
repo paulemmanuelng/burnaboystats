@@ -36,6 +36,9 @@ export interface MobileTimeChart {
 
 export interface MobileBar {
   name: string;
+  /** Whose row it is, said after the name — "(Burna)", "(Fally)" — on every
+   *  row of a list of several artists' (F-08). Never truncated. */
+  tag?: string;
   value: string;
   /** 0–1 of the largest value in this set. */
   frac: number;
@@ -141,7 +144,10 @@ export default function MobileVisualized({
             {c.items.map((it, i) => (
               <div key={i} className={styles.barRow}>
                 <div className={styles.barHead}>
-                  <span className={styles.barName}>{it.name}</span>
+                  <span className={styles.barName}>
+                    <span className={styles.barVenue}>{it.name}</span>
+                    {it.tag && <span className={styles.barTag}> ({it.tag})</span>}
+                  </span>
                   <span className={styles.barValue}>{it.value}</span>
                 </div>
                 <div className={styles.barTrack}>

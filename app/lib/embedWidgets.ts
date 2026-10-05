@@ -12,7 +12,7 @@
 // should cost them a few kilobytes, not the whole app.
 
 import { spotifyTotalStreams, spotifyTotalStreamsExact } from "../data/streamingTotals";
-import { totalAwards, countryCount, tierCounts, CERTS_VERIFIED_ON } from "../data/certifications";
+import { totalAwards, countryCount, tierCounts, CERTS_VERIFIED_ON, announcedPlaques } from "../data/certifications";
 import { daiDaiNumberOnes, daiDaiChartEntryCount, weeksAtPeak } from "../data/charts";
 import { DAI_DAI_SPOTIFY_NO1_DAYS } from "../data/daiDai";
 import { openingClause } from "./bandHeadline";
@@ -157,7 +157,9 @@ export const EMBED_WIDGETS: EmbedWidget[] = [
         l: t.name,
         ink: `--tier-${t.name.toLowerCase()}-ink`,
       })),
-      source: `each certifying body's own register, most recently read ${longDate(CERTS_VERIFIED_ON)}`,
+      // "or published chart" while a plaque rests on one (Dai Dai 🇩🇰, Hitlisten;
+      // C-05, 4 Oct 2026) — derived, so it goes when the register lists it.
+      source: `each certifying body's own register${announcedPlaques.length ? " or published chart" : ""}, most recently read ${longDate(CERTS_VERIFIED_ON)}`,
       href: "/certifications",
     },
   },

@@ -3,13 +3,13 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import styles from "./mobileRevenue.module.css";
-import ScrollRail from "./ScrollRail";
+import ScrollRail, { bringIntoRail } from "./ScrollRail";
 import NotReported from "./NotReported";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
 import { RUNS_HEADING, RUNS_LEDE, runYear, runsCountLine, shortDates } from "../lib/multiNightRuns";
-import { HIS, RUNS_VIEW, nightCounts, railChips, type BoardView } from "../lib/showsChips";
-import { useLinkedArtist } from "../lib/useLinkedArtist";
+import { HIS, RUNS_VIEW, nightCounts, railChips, shownLine } from "../lib/showsChips";
+import { useBoardView } from "../lib/useBoardView";
 
 /**
  * Highest-grossing shows, the phone screen — Claude Design round 1, Job 2
@@ -34,8 +34,10 @@ import { useLinkedArtist } from "../lib/useLinkedArtist";
  *    It swaps the nights for the runs, in the rows' own format, under
  *    RUNS_LEDE and the derived note; All still counts single nights only.
  *  - **"Biggest shows" opens it on one artist** (the owner, 4 Oct 2026):
- *    ?artist=<slug> selects that artist's chip on mount and the rail brings
- *    it into view; an absent or unknown slug leaves All on.
+ *    ?artist=<slug> selects that artist's chip on mount, the page scrolls
+ *    once to the rail (A-10) and the rail brings the chip clear of its fade;
+ *    an absent or unknown slug leaves All on. The address bar and this
+ *    history entry follow every chip after that (lib/useBoardView, A-03).
  */
 
 /** A night on the board, the phone's way. */
@@ -103,36 +105,39 @@ export default function MobileRevenue({
   note: { k: string; v: string }[];
 }) {
   const counts = nightCounts(rows.map((r) => r.artist));
-  // The deep link's artist (?artist=<slug>), or null: what the rail shows
-  // until a chip is tapped. `picked` stays undefined until then.
-  const linkedArtist = useLinkedArtist(Object.keys(counts));
-  const [picked, setPicked] = useState<BoardView | undefined>(undefined);
   // null: every single night; an artist's name: theirs; RUNS_VIEW: the runs.
-  const view: BoardView = picked === undefined ? linkedArtist : picked;
+  // The deep link's artist (?artist=<slug>) until a chip is tapped, or the
+  // chip this history entry kept (Back from the countries board).
+  const { view, pick, arrivedLinked } = useBoardView(Object.keys(counts), "shows-phone");
   const runsOn = view === RUNS_VIEW;
   const [touched, setTouched] = useState(false);
-  // The deep link chose the chip, so the rail brings it into view with no tap
-  // having happened (Fireboy DML and Wizkid sit past 390).
-  const linked = picked === undefined && linkedArtist !== null;
   const activeRef = useRef<HTMLButtonElement>(null);
+  const stickRef = useRef<HTMLDivElement>(null);
+  const arrived = useRef(false);
+
+  // A-10: opened on one artist ("Biggest shows"), the page goes to the rail
+  // once, instantly, held under the back bar (its scroll-margin-top), so the
+  // artist's nights start on screen rather than under the record card.
+  useEffect(() => {
+    const el = stickRef.current;
+    if (!arrivedLinked || arrived.current || !el || el.getClientRects().length === 0) return;
+    arrived.current = true;
+    el.scrollIntoView?.({ block: "start", behavior: "instant" });
+  }, [arrivedLinked]);
 
   // Fix 16: a chip tapped at the rail's edge (Wizkid, Davido) slid out of
-  // sight once on; bring the active one fully into the rail. Horizontal only —
-  // the rail scrolls, never the page — and instant under reduced motion, or
-  // when the deep link put it there (the page has only just loaded).
+  // sight once on; bring the active one into the rail, clear of the edge
+  // fades (A-01: an 18px pad left its count under the 44px fade). Horizontal
+  // only — the rail scrolls, never the page — and instant under reduced
+  // motion or before any tap (a deep link, a restored chip): "instant", not
+  // "auto", which the rail's scroll-behavior: smooth animates (E-05).
   useEffect(() => {
-    if (!touched && !linked) return;
     const chip = activeRef.current;
     const rail = chip?.parentElement;
     if (!chip || !rail) return;
-    const pad = 18;
-    const left = chip.offsetLeft - rail.offsetLeft;
-    const right = left + chip.offsetWidth;
     const reduce = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
-    const behavior: ScrollBehavior = reduce || !touched ? "auto" : "smooth";
-    if (left - pad < rail.scrollLeft) rail.scrollTo?.({ left: Math.max(0, left - pad), behavior });
-    else if (right + pad > rail.scrollLeft + rail.clientWidth) rail.scrollTo?.({ left: right + pad - rail.clientWidth, behavior });
-  }, [view, touched, linked]);
+    bringIntoRail(rail, chip, reduce || !touched ? "instant" : "smooth");
+  }, [view, touched]);
 
   // All, Multi-night runs, then the artists — lib/showsChips.ts, shared with the desktop.
   const chips = railChips("All", counts, rows.length, stands.length);
@@ -174,7 +179,13 @@ export default function MobileRevenue({
           </span>
           <span className={styles.recordLine}>
             <span className={styles.recordArtist}>{record.artist}</span> · {record.venue}, {record.city}
-            {record.tickets ? ` · ${record.tickets} tickets` : ""}
+            {/* The count with its unit, never "58,973 | tickets" (A-14). */}
+            {record.tickets ? (
+              <>
+                {" · "}
+                <span className={styles.nowrap}>{record.tickets} tickets</span>
+              </>
+            ) : null}
           </span>
         </article>
 
@@ -214,7 +225,7 @@ export default function MobileRevenue({
         </Link>
       </div>
 
-      <div className={styles.railStick}>
+      <div ref={stickRef} className={styles.railStick}>
         <ScrollRail className={styles.rail} label="Filter the board">
           {chips.map((c) => {
             const on = view === c.key;
@@ -227,7 +238,7 @@ export default function MobileRevenue({
                 className={`${styles.chip} ${on ? styles.chipOn : ""}`}
                 onClick={() => {
                   setTouched(true);
-                  setPicked(on ? null : c.key);
+                  pick(on ? null : c.key);
                 }}
               >
                 {c.label}
@@ -265,7 +276,7 @@ export default function MobileRevenue({
                     {i < parts.length - 1 ? " " : ""}
                   </span>
                 ))
-            : `${shown.length} of ${rows.length} shows${typeof view === "string" ? ` · ${view}` : ""}`}
+            : shownLine(shown.length, rows.length, typeof view === "string" ? view : undefined)}
         </span>
         <span aria-hidden="true">Gross · tickets</span>
       </div>

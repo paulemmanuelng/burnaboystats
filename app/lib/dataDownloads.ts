@@ -404,7 +404,10 @@ export const DATA_DOWNLOADS: DataDownload[] = [
     header: CERT_HEADER,
     rows: certificationRows,
     count: certificationCounts.burna + certificationCounts.board,
-    countOf: "plaques",
+    // One row per artist's plaque, so a record two artists share is two rows —
+    // "artist plaques", beside /compare/in's records-once total (F-03/C-08,
+    // 4 Oct 2026). /press and llms.txt print this word.
+    countOf: "artist plaques",
     what: `Every plaque for Burna Boy and the ${sweptArtists.length} artists on the Afrobeats Board — body, level, multiplier (and any lower tier awarded on top, as Mexico's AMPROFON prints "Platino & Oro"), certified units with any note the figure leans on, and the register to check it in.`,
   },
   {

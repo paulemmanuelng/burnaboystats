@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect, vi, beforeEach } from "vitest";
 import { renderToStaticMarkup } from "react-dom/server";
 import { render, fireEvent } from "@testing-library/react";
 
@@ -18,6 +18,12 @@ vi.mock("next/link", () => ({
 import RevenuePage from "../app/records/tours/revenue/page";
 import { revenueStands } from "../app/data/tourRevenue";
 import { RUNS_HEADING, RUNS_LEDE, runYear, shortDates } from "../app/lib/multiNightRuns";
+
+// The boards keep the reader's chip in the address bar and in this history
+// entry (lib/useBoardView; debug pass 4 Oct 2026, A-03). Each test starts on a
+// fresh entry at the bare address, as a fresh visit does — not on the chip a
+// previous test left there.
+beforeEach(() => window.history.replaceState(null, "", "/"));
 
 /**
  * The multi-night runs — concerts reported only as one combined total for

@@ -571,6 +571,9 @@
   /* The foot room comes from body's tab-bar padding and Keep exploring's own
      margin; 88px here stacked on both and read as a hole in the page. */
   .wrap { padding: 0 16px 28px; }
+  /* The kicker sat on the breadcrumb bar's bottom rule with no gap on every
+     compare page, wrapped bar or not (debug pass 4 Oct 2026, F-11). */
+  .kicker { margin-top: 16px; }
 
   /* Mode: one full-width pill, equal thirds (design: height 44). Three long
      labels do not fit 343px, so the phone shows the short ones. */
@@ -643,7 +646,11 @@
      not "C-H", and can match the row to the footnote that names it. */
   .countryName { position: absolute; left: 0; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   .countryCode { font-size: 11px; letter-spacing: 0.06em; color: var(--text); }
-  .tierChip { letter-spacing: 0.03em; padding: 3px 6px; border-radius: 999px; white-space: normal; }
+  /* 13px, not 999px: a one-line chip (25.6px tall) still draws as a full
+     pill, but one that wraps — Wizkid's MX "4× Platinum + Gold † ‡ §", two
+     lines, 46px — becomes a rounded rectangle whose text clears the corners
+     instead of touching the curve (debug pass 4 Oct 2026, F-01). */
+  .tierChip { letter-spacing: 0.03em; padding: 3px 6px; border-radius: 13px; white-space: normal; }
   .units { font-size: 12px; }
   /* Specificity: ".table tr" above is 0,1,1 — a bare ".collapseRow" lost, and
      the fold sat in the 78px country column as a nine-line sliver. */

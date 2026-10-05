@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect, vi, beforeEach } from "vitest";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { renderToStaticMarkup } from "react-dom/server";
@@ -22,7 +22,7 @@ import CountriesPage from "../app/records/tours/revenue/countries/page";
 import { chipOrder } from "../app/components/RevenueBoard";
 import { revenueShows, revenueStands } from "../app/data/tourRevenue";
 import { AFROBEATS_EDITED_ON, afrobeatsArtists } from "../app/data/afrobeats";
-import { REVENUE_AS_OF, REVENUE_BODY, REVENUE_FOOTER_NOTE, REVENUE_READ_ON, REVENUE_REPORTS, REVENUE_SOURCE } from "../app/lib/revenueSource";
+import { REVENUE_AS_OF, REVENUE_BODY, REVENUE_FOOTER_NOTE, REVENUE_READ_ON, REVENUE_REPORTS, REVENUE_SOURCE, REVENUE_STAMP } from "../app/lib/revenueSource";
 import { compactGross } from "../app/lib/grossLabel";
 import { numberWord } from "../app/lib/homeData";
 import { RUNS_HEADING, runRankCeiling } from "../app/lib/multiNightRuns";
@@ -33,6 +33,12 @@ import { siteUrl } from "../app/site";
 import { GET as toursApi } from "../app/api/v1/tours/route";
 import { cssRules, declaredAt } from "./fixtures/phoneTrees";
 import { text, trees } from "./fixtures/phoneTrees";
+
+// The boards keep the reader's chip in the address bar and in this history
+// entry (lib/useBoardView; debug pass 4 Oct 2026, A-03). Each test starts on a
+// fresh entry at the bare address, as a fresh visit does — not on the chip a
+// previous test left there.
+beforeEach(() => window.history.replaceState(null, "", "/"));
 
 /**
  * The live debug pass of 3 Oct 2026 over the box-office pages
@@ -423,7 +429,11 @@ describe("sw-5 / C8: both box-office routes carry the board's read date", () => 
     // The feed can only move a route later, never earlier than its stamp.
     expect(dayOf("/records/tours/revenue")! >= REVENUE_READ_ON).toBe(true);
     expect(dayOf("/records/tours/revenue/countries")! >= REVENUE_READ_ON).toBe(true);
-    expect(countriesHtml).toContain(`"dateModified":"${REVENUE_READ_ON}"`);
+    // The page and the sitemap share one stamp: the read, or a later edit
+    // made without one (REVENUE_STAMP, 5 Oct 2026).
+    expect(REVENUE_STAMP >= REVENUE_READ_ON).toBe(true);
+    expect(countriesHtml).toContain(`"dateModified":"${REVENUE_STAMP}"`);
+    expect(dayOf("/records/tours/revenue/countries")).toBe(REVENUE_STAMP);
     // REVENUE_AS_OF is that day's month, never a second typed date.
     expect(REVENUE_AS_OF).toBe(new Date(`${REVENUE_READ_ON}T12:00:00Z`).toLocaleDateString("en-GB", { month: "long", year: "numeric", timeZone: "UTC" }));
   });
@@ -451,7 +461,10 @@ describe("sw-5 / C8: both box-office routes carry the board's read date", () => 
       expect(afrobeatsArtists.find((x) => x.slug === slug)?.swept, slug).toBe(true);
       expect(AFROBEATS_EDITED_ON[slug]).toBe(EDITED_404);
     }
-    expect(read("app/sitemap.ts")).toMatch(/\[a\.verifiedOn, AFROBEATS_EDITED_ON\[a\.slug\]\]/);
+    // One helper since 5 Oct 2026 (D-05): the sitemap and the pages' Dataset
+    // dateModified both read pageStamp, the later of the two.
+    expect(read("app/data/afrobeats.ts")).toMatch(/pageStamp = [\s\S]{0,120}\[a\.verifiedOn, AFROBEATS_EDITED_ON\[a\.slug\]\]/);
+    expect(read("app/sitemap.ts")).toContain("const stamp = pageStamp(a);");
   });
 
   it("negative control: the stamps the built sitemap shipped (18 Sep, 6 Sep) fail", () => {
@@ -549,19 +562,19 @@ describe("C3: the phone countries screen keeps gold for his figure only", () => 
   // figure tiles (Nights · Continents · He leads); the rule is unchanged:
   // everyone's figures in ink, his gold. The badge stays plain muted text
   // (review fix 2).
-  it("the badge (every artist's countries) and the nights figure are not gold; “He leads” is", () => {
+  it("the badge (every artist's countries) and the nights figure are not gold; nor, since 4 Oct (A-04), “He leads”", () => {
     const badge = countries.phone!.querySelector('[class*="badge"]')!;
     expect(badge.className).toMatch(/mutedBadge/);
     const labels = [...countries.phone!.querySelectorAll('[class*="figLabel"]')];
     const value = (label: string) => labels.find((l) => text(l) === label)!.parentElement!.querySelector('[class*="figValue"]')!;
     expect(value("Nights").className).not.toMatch(/figHis/);
     expect(value("Continents").className).not.toMatch(/figHis/);
-    expect(value("He leads").className).toMatch(/figHis/);
+    // The owner's #420 ruling on the shows phone hero, carried here in the
+    // debug pass of 4 Oct 2026 (A-04): the tiles are ink, "9 of 12" too.
+    expect(value("He leads").className).not.toMatch(/figHis/);
     expect(declaredAt(CSS, ".mutedBadge.mutedBadge", "color", 390)).toBe("var(--text-muted)");
     expect(declaredAt(PHONE_CSS, ".figValue", "color", 390)).toBe("var(--text)");
-    // His tile's gold is this screen's own class: the shared phone stylesheet
-    // has carried no .figHis since #420 (tests/showsHeroGold).
-    expect(declaredAt(CSS, ".figHis.figHis", "color", 390)).toBe("var(--gold)");
+    expect(declaredAt(CSS, ".figHis.figHis", "color", 390)).toBeUndefined();
     expect(PHONE_CSS).not.toMatch(/\.figHis\b/);
     expect(read("app/components/MobileRevenueCountries.tsx")).not.toMatch(/styles\.figHis/);
   });

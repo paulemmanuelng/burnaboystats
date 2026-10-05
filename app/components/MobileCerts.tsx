@@ -22,9 +22,10 @@ import type { Faq } from "./FaqList";
 import { awardLabel } from "../lib/awardName";
 import { dropDeepLink, onDeepLinkChange, readDeepLink, readSavedView, saveView } from "../lib/deepLink";
 import {
-  certCountPhrase, certKicker, certsInView, certTotals, creditSwitchable, effectiveView, scopeSwitchable, viewKey,
+  ALL_VIEW, certCountPhrase, certKicker, certsInView, certTotals, creditSwitchable, effectiveView, scopeSwitchable, viewKey,
   viewNoun, logLedeTail, type CertViewKey,
 } from "../lib/certScope";
+import { wholePercents } from "../lib/wholePercents";
 import { useCertView } from "../lib/useCertView";
 import CertViewSwitches from "./CertViewSwitches";
 
@@ -269,6 +270,16 @@ export default function MobileCerts({
   const shownCountries = narrowed ? scopedTotals.countries : countryCount;
 
   const tierCount = scopedTotals.tiers;
+  // Each tier's share of the view, by largest remainder so the column adds
+  // to 100 (B-10: Olamide's 31/24/44 read 99%, Rema's 11/55/26/9 101%).
+  const tierPctList = wholePercents(TIER_ORDER.map((t) => tierCount[t]));
+  const tierPct = Object.fromEntries(TIER_ORDER.map((t, i) => [t, tierPctList[i]])) as Record<Tier, number>;
+  // The kicker, and whether it is one of the long scoped ones ("Outside
+  // Nigeria · Lead credits") — longer than the all-view's "Certified
+  // worldwide". Only those reach the raised square's face at 320 and 360, so
+  // only they take the light kicker band (B-02).
+  const kicker = certKicker(view, homeName ?? home ?? "");
+  const longKicker = kicker.length > certKicker(ALL_VIEW, homeName ?? home ?? "").length;
   const caption = shownTotal > 0 ? provenance?.[viewKey(view)] : undefined;
   // At least 1: International + Lead can hold nothing at all (BNXN's
   // international plaques are all on other artists' songs), and the bars and
@@ -397,14 +408,21 @@ export default function MobileCerts({
               decoding="async"
             />
             </picture>
-            <span className={square ? `${styles.heroScrim} ${styles.heroScrimSlot}` : styles.heroScrim} aria-hidden="true" />
+            <span
+              className={
+                square
+                  ? `${styles.heroScrim} ${styles.heroScrimSlot} ${longKicker ? styles.heroScrimLongKicker : ""}`
+                  : styles.heroScrim
+              }
+              aria-hidden="true"
+            />
           </>
         )}
         {/* Says which plaques the number below counts, so it follows the
             switches with it (lib/certScope.certKicker): "Certified worldwide"
             with both on, "Outside Nigeria · Lead credits" with both off. A
             word, never the colour alone; one line at 320. */}
-        <div className={styles.kicker}>{certKicker(view, homeName ?? home ?? "")}</div>
+        <div className={styles.kicker}>{kicker}</div>
         {/* The page's <h1>. Screen 02 leads with the total rather than a worded
             title, so the total IS the heading — it reads "221 awards, 25
             countries". Both layouts sit in the DOM at once, so the document
@@ -424,10 +442,12 @@ export default function MobileCerts({
               23 countries". */}
           <span className="visuallyHidden">{subject}, {viewNoun(shownTotal, view)}: </span>
           <span className={styles.total}>{shownTotal}</span>
+          {/* One text node: as two, the space between them was lost to the
+              accessibility tree, which read "26COUNTRIES" (E-15). */}
           <span className={styles.totalUnit}>
             Awards
             <br />
-            {shownCountries} {shownCountries === 1 ? "country" : "countries"}
+            {`${shownCountries} ${shownCountries === 1 ? "country" : "countries"}`}
           </span>
         </h1>
         <p className={styles.lede}>
@@ -470,9 +490,7 @@ export default function MobileCerts({
                 />
               </span>
               <span className={styles.tierCount}>{tierCount[name]}</span>
-              <span className={styles.tierPct}>
-                {shownTotal ? Math.round((tierCount[name] / shownTotal) * 100) : 0}%
-              </span>
+              <span className={styles.tierPct}>{tierPct[name]}%</span>
             </div>
           ))}
         </div>
@@ -509,8 +527,11 @@ export default function MobileCerts({
           Clear turns the switches back on (round 2, item 24). */}
       {shownTotal > 0 && (
       <ScrollRail id="cert-rail" className={styles.rail} label="Filter by certification tier">
+        {/* Toggle buttons, so each says whether it is on (E-03), as the
+            year rail below and the shows rail do. */}
         <button
           type="button"
+          aria-pressed={!shownTier}
           className={`${styles.chip} ${!shownTier ? styles.chipOn : ""}`}
           onClick={() => setTier(null)}
         >
@@ -521,12 +542,14 @@ export default function MobileCerts({
           <button
             key={name}
             type="button"
+            aria-pressed={shownTier === name}
             className={`${styles.chip} ${shownTier === name ? styles.chipOn : ""}`}
             style={shownTier === name ? undefined : { color: INK[name] }}
             onClick={() => setTier(shownTier === name ? null : name)}
           >
             {shownTier === name ? null : <span className={styles.chipDot} style={{ background: INK[name] }} />}
-            {name} {tierCount[name]}
+            {/* One text node, so it is named "Diamond 7", not "DIAMOND7" (E-15). */}
+            {`${name} ${tierCount[name]}`}
           </button>
         ))}
       </ScrollRail>
@@ -836,12 +859,21 @@ export default function MobileCerts({
             button and the icon cannot share one line at 320, so the icon gives
             way there — the tier rail it scrolls to is on this screen. His bar
             ("Compare ↗") keeps it, as does every bar without the button. */}
-        {(!showsHref || compareSlug === "burna-boy") && (
+        {/* A view that holds nothing has no tier rail (round 2, item 24), so
+            no icon that scrolls to it either (B-11: BNXN with both switches
+            off offered one that did nothing). The scroll is instant under
+            reduced motion (E-13): the global reduce rule cannot stop a
+            scripted smooth scroll. */}
+        {shownTotal > 0 && (!showsHref || compareSlug === "burna-boy") && (
         <button
           type="button"
           aria-label="Filter by tier"
           className={styles.actionIcon}
-          onClick={() => document.getElementById("cert-rail")?.scrollIntoView({ behavior: "smooth" })}
+          onClick={() =>
+            document.getElementById("cert-rail")?.scrollIntoView({
+              behavior: window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth",
+            })
+          }
         >
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
             <path d="M4 7h16M7 12h10M10 17h4" />
