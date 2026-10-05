@@ -61,7 +61,7 @@ export const updates: Update[] = [
     // BURNA BOY | DAI DAI | SONY MUSIC | GULD" at No. 32; week 37 has no badge.
     // The register (to 22.09.2026) has no row yet (certifications.ts, the release
     // row). The ordinals are this day's count, guarded in tests/daiDaiDenmarkGold.
-    text: `“Dai Dai” is Gold in Denmark: Hitlisten, IFPI Danmark's own chart, marks Shakira & Burna Boy's single Guld in week 38 of 2026 — ${dkSingle.gold!.toLocaleString("en-US")} units. An eighteenth country for the song, and Burna Boy's 250th plaque.`,
+    text: `“Dai Dai” is Gold in Denmark: Hitlisten, IFPI Danmark's own chart, lists Shakira & Burna Boy's single at Guld in week 38 of 2026 — ${dkSingle.gold!.toLocaleString("en-US")} units. An eighteenth country for the song, and Burna Boy's 250th plaque.`,
     href: "/dai-dai",
   },
   {
