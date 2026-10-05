@@ -37,9 +37,16 @@ function faces() {
 // counted (Tyla's and Tems's South African ones, the owner's ruling; Burna
 // Boy's "All Eyes on Me" before them). It now reads "from the body or label
 // that issued it".
+//
+// v5 (5 Oct 2026): the footer's "plaques" became "artist plaques" — the sum
+// counts a record two artists share once per holder, where /compare/in counts
+// it once (F-03/C-08). Faces, read date and total did not move, so the id
+// would not have either, and a platform that cached v4 would keep "1,338
+// plaques" (review of the 4 Oct debug PR). A footer WORDING change re-versions
+// here, as v3 and v4 did.
 export function generateImageMetadata() {
   const total = afrobeatsArtists.reduce((n, a) => n + certCount(a), 0) + totalAwards();
-  const sig = `v4|${faces().map((f) => `${f.name}:${f.n}`).join("|")}|${AFROBEATS_VERIFIED_ON}|${total}`;
+  const sig = `v5|${faces().map((f) => `${f.name}:${f.n}`).join("|")}|${AFROBEATS_VERIFIED_ON}|${total}`;
   return [{ id: ogId(sig), alt, size, contentType }];
 }
 
@@ -191,7 +198,9 @@ export default function Image() {
           </div>
           <div style={{ display: "flex" }}>·</div>
           <div style={{ display: "flex" }}>
-            {`${(boardTotal + totalAwards()).toLocaleString("en-US")} plaques, each read from the body or label that issued it`}
+            {/* "artist plaques": a shared record counts once per holder here,
+                once in all on /compare/in (F-03/C-08, 4 Oct 2026). */}
+            {`${(boardTotal + totalAwards()).toLocaleString("en-US")} artist plaques, each read from the body or label that issued it`}
           </div>
         </div>
       </div>

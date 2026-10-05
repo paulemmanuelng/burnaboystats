@@ -1,4 +1,4 @@
-import { allItems, COUNTRIES } from "../data/certifications";
+import { allItems, announcedPlaques, COUNTRIES } from "../data/certifications";
 import { CERT_PROGRAMS } from "../data/certThresholds";
 import { awardLabel } from "./awardName";
 import { sweptArtists, countryMeta, offRegisterCount, type AfroCert } from "../data/afrobeats";
@@ -29,14 +29,29 @@ const issued = allItems.flatMap((r) =>
 );
 export const burnaLabelPlaques = issued.map((x) => x.text);
 
+/** Burna Boy's plaques read from the certifying body's own publication, its
+ *  register not yet listing the row (`source: "announcement"`): "“Dai Dai”'s
+ *  Gold in Denmark, published by IFPI Denmark on Hitlisten, its official chart,
+ *  in week 38 of 2026, and not yet in its database". Invisible here until
+ *  5 Oct 2026, so the methodology named two exceptions and the hub counted 14
+ *  over a Danish Gold no register lists (D-02). */
+export const burnaAnnouncements = announcedPlaques.map(({ release: r, cert: c }) => {
+  const body = c.body ?? COUNTRIES[c.c]?.body ?? c.c;
+  const where = c.announced ? ` on ${c.announced.via}${c.announced.on ? `, ${dateLabel(c.announced.on)}` : ""}` : "";
+  return `“${r.title}”'s ${awardLabel(c)} in ${COUNTRIES[c.c]?.name ?? c.c}, published by ${body}${where}, and not yet in its database`;
+});
+
 const swept = sweptArtists;
 
 /** Every plaque on the board that is not a register row, counted the way the
  *  board total counts (per artist, so a featured plaque on two boards is two). */
-export const boardOffRegisterTotal = burnaLabelPlaques.length + swept.reduce((n, a) => n + offRegisterCount(a), 0);
+export const boardOffRegisterTotal =
+  burnaLabelPlaques.length + burnaAnnouncements.length + swept.reduce((n, a) => n + offRegisterCount(a), 0);
 
-const dateLabel = (iso: string) =>
-  new Date(`${iso}T12:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
+// A declaration, so burnaAnnouncements above can call it.
+function dateLabel(iso: string): string {
+  return new Date(`${iso}T12:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
+}
 
 /** The board's label plaques, one entry per artist, issuer and country:
  *  "Tyla's 9 plaques in South Africa, issued by Sony Music Africa", or, for a
@@ -103,7 +118,7 @@ export const boardAnnouncements: string[] = swept.flatMap((a) =>
 export function certificationRule(): string {
   const announced = boardAnnouncements;
   const rule = `A certification is only counted once it appears in the awarding body's own searchable database${
-    announced.length ? ", or the body itself has published it" : ""
+    announced.length || burnaAnnouncements.length ? ", or the body itself has published it" : ""
   }.`;
   const parts: string[] = [];
   // Count-aware (debug pass, 3 Oct 2026): "the one exception" was true of
@@ -114,10 +129,17 @@ export function certificationRule(): string {
   const kinds = [
     noRegister.length ? `a market with no current public register, where the label's own plaque stands: ${noRegister.join("; ")}` : "",
     noRow.length ? `a register that holds no row for the title, where the label's own award stands: ${noRow.join("; ")}` : "",
+    // The body's own publication ahead of its database (D-02, 4 Oct 2026).
+    burnaAnnouncements.length
+      ? `a register that has not yet listed the award, where the body's own publication stands: ${burnaAnnouncements.join("; ")}`
+      : "",
   ].filter(Boolean);
-  if (issued.length)
+  const exceptions = issued.length + burnaAnnouncements.length;
+  if (exceptions)
     parts.push(
-      `In Burna Boy's own record, ${issued.length === 1 ? "the one exception is" : `the ${issued.length} exceptions are`} ${kinds.join("; and ")}.`,
+      `In Burna Boy's own record, ${exceptions === 1 ? "the one exception is" : `the ${exceptions} exceptions are`} ${
+        kinds.length > 1 ? `${kinds.slice(0, -1).join("; ")}; and ${kinds.at(-1)}` : kinds[0]
+      }.`,
     );
   if (boardLabelPlaques.length)
     parts.push(

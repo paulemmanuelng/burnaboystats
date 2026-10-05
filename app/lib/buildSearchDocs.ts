@@ -27,6 +27,7 @@ import { titleKey } from "./titleKey";
 import { allPairs, pairSlug } from "./comparePairs";
 import { certCountryCodes, countrySlug, priceCountry, pricingPhrase } from "./certCountry";
 import { onThisDayDays, MONTHS } from "./onThisDay";
+import { tours } from "../data/tours";
 import type { SearchDoc } from "./searchIndex";
 
 export function buildSearchDocs(): SearchDoc[] {
@@ -165,6 +166,16 @@ export function buildSearchDocs(): SearchDoc[] {
     const month = MONTHS[d.month - 1].toLowerCase();
     const years = [...new Set(d.events.map((e) => e.year))].sort();
     const n = d.events.length;
+    // A tour date's venue and city, so "dublin" or "3arena" lands on the day
+    // he played there. Neither found anything when Dublin's 3Arena night was
+    // added on 4 Oct 2026 (debug pass, D-06). Tour dates only: a festival's
+    // place is its own page's.
+    const places = d.events.flatMap((e) => {
+      if (e.source.data !== "tours") return [];
+      const { tour, index } = e.source;
+      const show = tours.find((t) => t.name === tour)?.dates?.[index];
+      return show ? [show.venue.replace(/\s*\(.*\)$/, ""), show.city] : [];
+    });
     add({
       title: `On this day: ${d.label}`,
       path: `/on-this-day/${d.slug}`,
@@ -172,7 +183,7 @@ export function buildSearchDocs(): SearchDoc[] {
       description: `${n} Burna Boy milestone${n === 1 ? "" : "s"} dated ${d.label}, ${years.length > 1 ? `${years[0]}–${years.at(-1)}` : years[0]}.`,
       // The title already reads "On this day: 7 October"; the keyword is the
       // American order, "october 7".
-      keywords: [`${month} ${d.day}`],
+      keywords: [`${month} ${d.day}`, ...new Set(places.map((x) => x.toLowerCase()))],
     });
   }
 

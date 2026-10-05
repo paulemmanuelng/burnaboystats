@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import styles from "./mobileTours.module.css";
 import { tourMeta } from "../lib/tourMeta";
+import { REVENUE_BODY, REVENUE_REPORTS } from "../lib/revenueSource";
 import { upcomingShows, type Tour } from "../data/tours";
 import NotReported from "./NotReported";
 import MobileMenuButton from "./MobileMenuButton";
@@ -254,7 +255,10 @@ export default function MobileTours({
       </nav>
 
       <p className={styles.footNote}>
-        Tour grosses come from Billboard Boxscore. The per-date figure is the{" "}
+        {/* The board's own credit (revenueSource.ts, no data imports, so the
+            client bundle stays clean): it said "Billboard Boxscore" alone until
+            5 Oct 2026, while the desktop page credits TouringData (D-03). */}
+        Tour grosses come from {REVENUE_BODY}, which republishes {REVENUE_REPORTS}. The per-date figure is the{" "}
         <strong>venue&apos;s capacity</strong>, not tickets sold — tours.ts records
         capacity, and only some nights have a Boxscore headcount. A dash means the run has
         no reported gross, not that it was small. Dates shown are a documented sample, not

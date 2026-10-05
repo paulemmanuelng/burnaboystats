@@ -77,7 +77,10 @@ export const homeScoreboard: ScoreboardStat[] = [
     value: topTour?.gross ?? "—",
     label: "Highest tour gross",
     glyph: "tour",
+    // A TOUR total (Boxscore's, as tours.ts carries it), so it links where the
+    // tours are — /records/tours, as the phone tile already does — not the
+    // per-show board, which prints no tour totals (F-04/F-missed, 4 Oct 2026).
     source: "Billboard Boxscore",
-    href: "/records/tours/revenue",
+    href: "/records/tours",
   },
 ];

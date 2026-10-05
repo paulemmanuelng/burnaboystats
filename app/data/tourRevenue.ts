@@ -369,5 +369,8 @@ export const revenueStands: RevenueStand[] = [
   // wizkid-read.md). The dates are Nairametrics' and fourthavenew.net's.
   { artist: "Wizkid", venue: "The O2 Arena", city: "London", flag: "🇬🇧", tour: "Made in Lagos Tour", dates: "28–29 November and 1 December 2021", shows: 3, tickets: "50,814", revenue: 2875468, source: "TouringData, X post of 26 May 2022 (MADE IN LAGOS), from the owner's screenshot" },
   { artist: "Burna Boy", venue: "Scotiabank Arena", city: "Toronto", flag: "🇨🇦", tour: "I Told Them… Tour", dates: "24–25 February 2024", shows: 2, tickets: "29,579", revenue: 2801928, source: "TouringData, X post of 30 Apr 2024 (I TOLD THEM…), from the owner's screenshot" },
-  { artist: "Burna Boy", venue: "Centre Bell", city: "Montreal", flag: "🇨🇦", tour: "I Told Them… Tour", dates: "28–29 February 2024", shows: 2, tickets: "26,303", revenue: 1904384, source: "TouringData, X post of 30 Apr 2024 (I TOLD THEM…), from the owner's screenshot" },
+  // "Bell Centre", as the venue's own English site (centrebell.ca/en) and
+  // tours.ts name it; it read "Centre Bell" here until 5 Oct 2026, so
+  // /api/v1/tours spelled one arena two ways (D-07).
+  { artist: "Burna Boy", venue: "Bell Centre", city: "Montreal", flag: "🇨🇦", tour: "I Told Them… Tour", dates: "28–29 February 2024", shows: 2, tickets: "26,303", revenue: 1904384, source: "TouringData, X post of 30 Apr 2024 (I TOLD THEM…), from the owner's screenshot" },
 ];
