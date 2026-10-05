@@ -3,6 +3,7 @@
 import { Fragment, useState, useEffect, useLayoutEffect, type CSSProperties } from "react";
 import Link from "next/link";
 import styles from "./mobileCerts.module.css";
+import { SHOWS_LABEL, SHOWS_SHORT } from "../lib/showsDeepLink";
 import { badgeWeight, byMostCertified, isIssuerMarker } from "../lib/certs";
 import ScrollRail from "./ScrollRail";
 import { titleKey } from "../lib/titleKey";
@@ -90,6 +91,7 @@ export default function MobileCerts({
   covers,
   portrait,
   portraitSlug,
+  portraitSlot = "box",
   brand,
   chartsHref,
   liveHref,
@@ -102,12 +104,14 @@ export default function MobileCerts({
   faqs,
   showActionBar = true,
   compareSlug = "burna-boy",
+  showsHref,
   compareWith,
   countryBoards,
   home,
   homeName,
   featured,
   ledes,
+  provenance,
 }: {
   releases: Release[];
   albums: Release[];
@@ -136,6 +140,12 @@ export default function MobileCerts({
   portrait?: string;
   /** Which artist's treatment to use — see app/lib/portraitArt.ts. */
   portraitSlug?: string;
+  /** Where the portrait sits (Claude Design round 2, item 34, option b).
+   *  "square" is Burna Boy's /certifications hero ONLY: a fixed square, 80% of
+   *  the hero's width, raised beside the total. Every board artist keeps "box",
+   *  the live cover box their portraitArt.ts focal X was tuned against; Davido's
+   *  emblem branch rides on "box" too. tests/ui/certsPortrait.test.tsx. */
+  portraitSlot?: "box" | "square";
   /** This artist's official chart peaks, if they have a board. */
   chartsHref?: string;
   /** This artist's live board, if they have one. */
@@ -158,6 +168,10 @@ export default function MobileCerts({
   showActionBar?: boolean;
   /** Which artist the Compare button pre-fills side A with. */
   compareSlug?: string;
+  /** "Biggest shows" — the box-office board opened on this artist's nights
+   *  (lib/showsBoard.showsHrefFor). Only an artist with a reported single
+   *  night has one; absent, the bar is as it was. */
+  showsHref?: string;
   /** Every head-to-head page this artist is on, canonical URLs — the plain
    *  "Compare with…" list under the boards (lib/comparePairs.compareWithLinks). */
   compareWith?: { name: string; href: string }[];
@@ -178,6 +192,12 @@ export default function MobileCerts({
   /** The `lede` for each narrowed view, built on the server from the same
    *  helpers, because the board's lede states the totals. Absent = `lede`. */
   ledes?: Partial<Record<CertViewKey, string>>;
+  /** The provenance caption under the tier bars, per view ("all" included),
+   *  built on the server: "Read off-register: {phrase}. Last verified {date}."
+   *  or "Last verified {date}." (Claude Design round 2, items 25/26/26b). Only
+   *  the board passes it; Burna Boy's /certifications prints none, and a view
+   *  that holds nothing prints none either. */
+  provenance?: Partial<Record<CertViewKey, string>>;
 }) {
   const art = (title: string) => (covers ? covers[title] : coverFor(title));
   // The list runs albums, singles and features together, so an album needs
@@ -185,6 +205,16 @@ export default function MobileCerts({
   // this job for free.
   const albumTitles = new Set(albums.map((a) => titleKey(a.title)));
   const portraitArt = portraitArtFor(portraitSlug ?? "burna-boy");
+  // The raised square (Burna Boy's /certifications only) or the live cover box.
+  // The square paints at its own width, 80% of a full-width hero, so `sizes`
+  // describes it directly; the box's 190vw is explained at the <img> below.
+  const square = portraitSlot === "square";
+  const heroArtClass = square
+    ? `${styles.heroArt} ${styles.heroArtSlot}`
+    : portraitArt.mode === "emblem"
+      ? `${styles.heroArt} ${styles.heroArtEmblem}`
+      : styles.heroArt;
+  const heroArtSizes = square ? "80vw" : "190vw";
   const [tier, setTier] = useState<Tier | null>(null);
   // Rows whose full badge wall is open — keyed by title, folded by default.
   const [openBadges, setOpenBadges] = useState<Set<string>>(new Set());
@@ -239,6 +269,7 @@ export default function MobileCerts({
   const shownCountries = narrowed ? scopedTotals.countries : countryCount;
 
   const tierCount = scopedTotals.tiers;
+  const caption = shownTotal > 0 ? provenance?.[viewKey(view)] : undefined;
   // At least 1: International + Lead can hold nothing at all (BNXN's
   // international plaques are all on other artists' songs), and the bars and
   // percentages must read 0, not NaN.
@@ -323,7 +354,10 @@ export default function MobileCerts({
                 but its aspect-ratio is 2/5, and `cover` fits the 640 square by the
                 LONG axis — so the image paints ~783px wide and is cropped to 313.
                 Describing the box would let a DPR-1 phone pick the 320 rung for a
-                783px render: a soft hero where the background always fetched 640. */}
+                783px render: a soft hero where the background always fetched 640.
+                Burna Boy's raised square is not cropped at all — a square image
+                in a square box 80% of the hero wide — so it says 80vw, and the
+                preload below says the same (heroArtSizes). */}
             {/* Preload, media-gated to phones. Worth doing because of an accident
                 this conversion removed: the desktop hero used to be an EAGER <img>
                 on the same URL, so phones were quietly riding its fetch. Now that
@@ -342,15 +376,15 @@ export default function MobileCerts({
               rel="preload"
               as="image"
               imageSrcSet={spotifySrcSet(portrait)}
-              imageSizes="190vw"
+              imageSizes={heroArtSizes}
               media="(max-width: 900px)"
               fetchPriority="high"
             />
             <picture style={{ display: "contents" }}>
-              <source media="(max-width: 900px)" srcSet={spotifySrcSet(portrait)} sizes="190vw" />
+              <source media="(max-width: 900px)" srcSet={spotifySrcSet(portrait)} sizes={heroArtSizes} />
             { }
             <img
-              className={portraitArt.mode === "emblem" ? `${styles.heroArt} ${styles.heroArtEmblem}` : styles.heroArt}
+              className={heroArtClass}
               src={BLANK_PIXEL}
               alt=""
               style={{
@@ -363,7 +397,7 @@ export default function MobileCerts({
               decoding="async"
             />
             </picture>
-            <span className={styles.heroScrim} aria-hidden="true" />
+            <span className={square ? `${styles.heroScrim} ${styles.heroScrimSlot}` : styles.heroScrim} aria-hidden="true" />
           </>
         )}
         {/* Says which plaques the number below counts, so it follows the
@@ -383,10 +417,15 @@ export default function MobileCerts({
               a single <h1> reading "103 awards / 21 countries" and no name in
               it. Nothing to look at changes; the heading just stops being
               anonymous to anyone navigating by heading. */}
-          <span className="visuallyHidden">{subject}: </span>
+          {/* The scope words live in the kicker above (owner's ruling Q2, 4 Oct
+              2026), so the visible unit is the same in every view; the hidden
+              span keeps the heading whole for anyone navigating by headings:
+              "Tyla, international certifications as lead artist: 64 Awards,
+              23 countries". */}
+          <span className="visuallyHidden">{subject}, {viewNoun(shownTotal, view)}: </span>
           <span className={styles.total}>{shownTotal}</span>
           <span className={styles.totalUnit}>
-            {narrowed ? viewNoun(shownTotal, view, "award", "awards") : "awards"}
+            Awards
             <br />
             {shownCountries} {shownCountries === 1 ? "country" : "countries"}
           </span>
@@ -396,29 +435,51 @@ export default function MobileCerts({
             `Silver, Gold, Platinum and Diamond awards from the RIAA, BPI, SNEP, Music Canada and ${shownCountries - 4} more — across ${inScope.length} certified releases.`}
         </p>
 
+        {/* The two switches, /compare's own (CertViewSwitches), moved as they
+            are — not restyled — to sit under the lede (Claude Design round 2,
+            item 17; owner's ruling N1, 4 Oct 2026), above the tier bars they
+            recount. Each control wraps inside itself, compare's way, so the
+            row never scrolls sideways — see .viewRow. */}
+        <CertViewSwitches
+          view={view}
+          offered={offered}
+          onPick={setView}
+          homeName={homeName ?? home ?? ""}
+          className={styles.viewRow}
+        />
+        {/* What a switch did, said once it is done — polite, so it waits. A
+            live region speaks changes only, so the count it holds on load is
+            not read out. It keeps the scoped noun (ruling Q2). */}
+        <span aria-live="polite" className="visuallyHidden">
+          {certCountPhrase(shownTotal, shownCountries, view)}
+        </span>
+
         {/* A view that holds nothing draws no bars — not even the rule above
             them; the lede says why it is empty (lib/certScope.emptyViewSentence). */}
         {shownTotal > 0 && (
         <div className={styles.tierList}>
           {TIER_ORDER.filter((name) => tierCount[name] > 0).map((name) => (
+            // One 32px line per tier (round 2, item 20): name · bar · count ·
+            // share. The bars stay linear to the view's largest tier (maxTier).
             <div key={name} className={styles.tierRow}>
-              <div className={styles.tierTop}>
-                <span className={styles.tierName} style={{ color: INK[name] }}>{name}</span>
-                <span className={styles.tierCount}>{tierCount[name]}</span>
-                <span className={styles.tierPct}>
-                  {shownTotal ? Math.round((tierCount[name] / shownTotal) * 100) : 0}%
-                </span>
-              </div>
-              <div className={styles.tierTrack}>
-                <div
+              <span className={styles.tierName} style={{ color: INK[name] }}>{name}</span>
+              <span className={styles.tierTrack}>
+                <span
                   className={styles.tierFill}
                   style={{ width: `${(tierCount[name] / maxTier) * 100}%`, background: GRAD[name] }}
                 />
-              </div>
+              </span>
+              <span className={styles.tierCount}>{tierCount[name]}</span>
+              <span className={styles.tierPct}>
+                {shownTotal ? Math.round((tierCount[name] / shownTotal) * 100) : 0}%
+              </span>
             </div>
           ))}
         </div>
         )}
+        {/* Where the plaques were read and when, per view (item 26b): the
+            detail the lede's "except N noted below" points at. */}
+        {caption && <p className={styles.provenance}>{caption}</p>}
       </div>
 
       {/* The deep-linked focus, announced the way the desktop explorer announces
@@ -443,25 +504,10 @@ export default function MobileCerts({
         </div>
       )}
 
-      {/* The two switches, /compare's own (CertViewSwitches), one row right
-          above the tier rail they narrow (whose "All" is the way back to
-          everything). Each control wraps inside itself, compare's way, so the
-          row never scrolls sideways — see .viewRow. */}
-      <CertViewSwitches
-        view={view}
-        offered={offered}
-        onPick={setView}
-        homeName={homeName ?? home ?? ""}
-        className={styles.viewRow}
-      />
-      {/* What a switch did, said once it is done — polite, so it waits. A
-          live region speaks changes only, so the count it holds on load is
-          not read out. */}
-      <span aria-live="polite" className="visuallyHidden">
-        {certCountPhrase(shownTotal, shownCountries, view)}
-      </span>
-
-      {/* Tier rail */}
+      {/* Tier rail. A view that holds nothing has no tiers to filter, so no
+          rail and no list label either — only the empty card below, whose
+          Clear turns the switches back on (round 2, item 24). */}
+      {shownTotal > 0 && (
       <ScrollRail id="cert-rail" className={styles.rail} label="Filter by certification tier">
         <button
           type="button"
@@ -484,8 +530,9 @@ export default function MobileCerts({
           </button>
         ))}
       </ScrollRail>
+      )}
 
-      <div className={styles.listLabel}>Most-certified releases</div>
+      {shownTotal > 0 && <div className={styles.listLabel}>Most-certified releases</div>}
 
       {matching.length === 0 && (
         <div className={styles.empty} role="status">
@@ -764,18 +811,32 @@ export default function MobileCerts({
       {/* Action bar — replaces the tab bar on a deep screen */}
       {showActionBar && (
       <div className={styles.actionBar}>
-        {/* Compare is the first action this bar has ever held that means
-            something for every artist on the roster — "/share" builds a BURNA stat
-            card, which is why the bar was suppressed on the board pages. So the
-            stat card is demoted rather than removed, and only where it exists. */}
+        {/* Compare is the bar's one gold action, for every artist on the
+            roster. Beside it, in the secondary style, "Biggest shows": the
+            box-office board opened on this artist's nights — only where they
+            have one. On Burna Boy's screen it took the Stat card's place (the
+            owner, 4 Oct 2026: phone only; the desktop keeps its stat card). */}
         <Link href={`/compare?a=${compareSlug}`} className={styles.actionPrimary}>
           {compareSlug === "burna-boy" ? "Compare ↗" : `Compare ${subject} ↗`}
         </Link>
-        {compareSlug === "burna-boy" && (
-          <Link href="/share" className={styles.actionSecondary}>
-            Stat card
+        {showsHref && (
+          // "Biggest shows", read "Shows" under 390px: the long word is only
+          // visually hidden there, so the accessible name never changes. One
+          // inline run inside the flex link: as two flex items, the space
+          // after "Biggest" was trimmed and the label read "BIGGESTSHOWS".
+          <Link href={showsHref} className={styles.actionSecondary}>
+            <span>
+              <span className={styles.showsLong}>{SHOWS_LABEL.slice(0, -SHOWS_SHORT.length)}</span>
+              {SHOWS_LABEL.slice(-SHOWS_SHORT.length)}
+            </span>
           </Link>
         )}
+        {/* The filter icon, except on a board artist's bar that carries the
+            shows button: a named Compare ("Compare Tiwa Savage ↗"), the shows
+            button and the icon cannot share one line at 320, so the icon gives
+            way there — the tier rail it scrolls to is on this screen. His bar
+            ("Compare ↗") keeps it, as does every bar without the button. */}
+        {(!showsHref || compareSlug === "burna-boy") && (
         <button
           type="button"
           aria-label="Filter by tier"
@@ -786,6 +847,7 @@ export default function MobileCerts({
             <path d="M4 7h16M7 12h10M10 17h4" />
           </svg>
         </button>
+        )}
       </div>
       )}
     </div>

@@ -13,6 +13,8 @@ import { artistFaqs, faqJsonLd } from "../../lib/boardFaqs";
 import { tierOf, type Release, type Country } from "../../data/certifications";
 import { opponentOf } from "../../lib/headToHead";
 import { compareWithLinks } from "../../lib/comparePairs";
+import { showsHrefFor } from "../../lib/showsBoard";
+import { SHOWS_LABEL } from "../../lib/showsDeepLink";
 import { andMore, topBody, topPlatform } from "../../lib/boardNotes";
 import { liveBoardFor } from "../../data/liveBoards";
 import { spotifyImage, spotifySrcSet } from "../../lib/spotifyImage";
@@ -33,6 +35,7 @@ import {
   topAward,
   offRegisterPhrase,
   offRegisterHold,
+  offRegisterCount,
   certProvenance,
   type Tier,
   AFROBEATS_LAST_FULL_SWEEP,
@@ -129,6 +132,10 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
   const plats = live ? topPlatform(live.platformTotals) : { total: 0 };
   const liveNote = andMore(plats.top, plats.total);
   const compareWith = compareWithLinks(a.slug);
+  // "Biggest shows": the box-office board opened on their nights — undefined
+  // while they have no reported single night (lib/showsBoard), so their bars
+  // stay as they were.
+  const shows = showsHrefFor(a.slug);
   const idx = afrobeatsArtists.findIndex((x) => x.slug === a.slug);
   const next = afrobeatsArtists[(idx + 1) % afrobeatsArtists.length];
 
@@ -222,14 +229,27 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
     features: mobileReleases.filter((_, idx) => a.releases[idx].kind === "Featured appearances"),
   };
 
-  // The phone's hero sentence, for either view — it states the totals. The
-  // bracket says "except": it lists the plaques that are NOT register rows,
-  // and read as a gloss on "read in the register" without it (debug pass,
-  // 3 Oct 2026); "1 certified releases" counted like the countries beside it.
+  // The phone's hero sentence, for either view. Round 2 of the design (4 Oct
+  // 2026) moved the counts to the big number and the off-register detail and
+  // the date to the caption under the tier bars (mobileProvenance), so the
+  // sentence keeps only what stays true in that place: where the plaques were
+  // read and how many releases hold them. It still says when some plaques were
+  // NOT read in a register ("except 11 noted below") — without that, Tyla's
+  // lede would claim all 75 came from one, when 11 did not.
   function mobileLede(x: AfroArtist, view: CertView) {
     if (certCount(x) === 0) return emptyViewSentence(a!.name, view, a!.country);
-    const offRegisterShort = offRegisterPhrase(x, "short");
-    return `Every ${view.scope === "intl" ? "international " : ""}${a!.name} plaque${view.credit === "lead" ? " on a lead credit" : ""}, read in the issuing body's own register${offRegisterShort ? ` (except ${offRegisterShort})` : ""} — ${certCount(x)} across ${count(countryCount(x), "country", "countries")}, from ${count(x.releases.length, "certified release", "certified releases")}. Last verified ${verifiedLong}.`;
+    const offRegisterN = offRegisterCount(x);
+    return `Every ${view.scope === "intl" ? "international " : ""}${a!.name} plaque${view.credit === "lead" ? " on a lead credit" : ""}, read in the issuing body's own register${offRegisterN ? `, except ${offRegisterN} noted below` : ""} — from ${count(x.releases.length, "certified release", "certified releases")}.`;
+  }
+
+  // The phone's provenance caption under the tier bars, for either view: which
+  // plaques are not register rows, recounted for the view (offRegisterPhrase's
+  // view parameter, item 26b), then the date. A view that holds nothing has no
+  // caption — its lede is the one sentence (emptyViewSentence).
+  function mobileProvenance(view: CertView): string | undefined {
+    if (certCount(aView(view)) === 0) return undefined;
+    const phrase = offRegisterPhrase(a!, "short", view);
+    return phrase ? `Read off-register: ${phrase}. Last verified ${verifiedLong}.` : `Last verified ${verifiedLong}.`;
   }
 
   // "By the numbers" — the cards and the provenance line under them, for either
@@ -360,12 +380,14 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
         subject={a.name}
         lede={mobileLede(a, ALL_VIEW)}
         ledes={Object.fromEntries(views.slice(1).map((v) => [viewKey(v), mobileLede(aView(v), v)]))}
+        provenance={Object.fromEntries(views.map((v) => [viewKey(v), mobileProvenance(v)]))}
         home={home}
         homeName={a.country}
         featured={[...featured]}
         faqs={faqs}
         showActionBar
         compareSlug={a.slug}
+        showsHref={shows}
         compareWith={compareWith}
       />
 
@@ -443,6 +465,13 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
                 <Link href={`/compare?a=${a.slug}`} className="btn btnSecondary">
                   Compare ↗
                 </Link>
+                {/* Their nights on the box-office board, beside Compare — only
+                    while they have one (the owner, 4 Oct 2026). */}
+                {shows && (
+                  <Link href={shows} className="btn btnSecondary">
+                    {SHOWS_LABEL} ↗
+                  </Link>
+                )}
               </div>
             </div>
           </div>

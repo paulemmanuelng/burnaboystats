@@ -267,6 +267,21 @@ export const singles: Release[] = [
     // Singles and the Top 200 Streams, where week 38 read PL. Moved to the end of
     // the list with the upgrade, as the newest award.
     { c: "PT", level: "Platinum", x: 2 },
+    // DK Gold is IFPI Danmark's own statement: Hitlisten (hitlisten.nu, the
+    // body's official chart), Track Top-40 "Uge 38 - 2026", read 4 Oct 2026:
+    // "SHAKIRA & BURNA BOY | DAI DAI | SONY MUSIC | GULD" at No. 32, the GULD in
+    // the row's Certificeringsstatus field. Uge 37 carries the same row with no
+    // badge, so the Gold first appears on the week-38 chart. The page prints no
+    // chart or award date (only "Hitlisterne offentliggøres hver onsdag kl.
+    // 00.01"), so the plaque is dated by the read and the log row below carries
+    // no `date`.
+    // IFPI Danmark's register (http://ifpi.dk/certificeringer-0, pages 0–2) ran
+    // only to 22.09.2026 on 4 Oct and had no Dai Dai row yet — its rows lag the
+    // chart, as RIAA's database lagged its own 6X post above. Re-check the
+    // register for the row (and its date) once it moves past 22.09.2026.
+    // Danish single Gold is 45,000 units (4.5M streams at 100 a unit). One row,
+    // credit and title matched; label Sony Music. Eighteenth country.
+    { c: "DK", level: "Gold" },
   ] },
   { title: "Last Last", year: 2022, certs: [
     { c: "CA", level: "Platinum", x: 4 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum", x: 2 },
@@ -1067,6 +1082,12 @@ export const certHistory: CertEvent[] = [
   // 2026 | Single | 1x Gold | Sony Music Entertainment Germany GmbH | Epic".
   // Seventeenth country for the song.
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "DE", level: "Gold", year: 2026 },
+  // 4 Oct 2026 — Denmark. Hitlisten, IFPI Danmark's own Track Top-40, "Uge 38 -
+  // 2026": "SHAKIRA & BURNA BOY | DAI DAI | SONY MUSIC | GULD" (week 37: no
+  // badge). The chart prints no award date and the register (to 22.09.2026)
+  // has no row yet, so no `date` here — see the release row; re-check the
+  // register. Eighteenth country for the song.
+  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "DK", level: "Gold", year: 2026 },
 ];
 
 // Helpers
@@ -1109,7 +1130,7 @@ export const intlCertHistory = certHistory.filter((e) => e.country !== "NG");
 /** The most recent day a certifying body's own register was read for this
  *  file. Printed on the page's sources line in place of a typed "as of" month
  *  — bump it on every body read, in the same edit as the row it changes. */
-export const CERTS_VERIFIED_ON = "2026-09-30";
+export const CERTS_VERIFIED_ON = "2026-10-04";
 
 /** "Dai Dai" Platinum plaques beyond the US Latin 2× — the "Platinum in N more"
  *  rail note on the story and its Spanish twin, counted rather than typed after

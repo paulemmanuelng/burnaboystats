@@ -33,7 +33,7 @@ import { cars, totalValueUsd } from "../app/data/cars";
  */
 
 describe("handoff checklist — data integrity", () => {
-  it("counts 249 certifications across 26 countries", () => {
+  it("counts 250 certifications across 26 countries", () => {
     const certs = allItems.reduce((n, item) => n + item.certs.length, 0);
     const countries = new Set(allItems.flatMap((i) => i.certs.map((c) => c.c))).size;
 
@@ -43,14 +43,17 @@ describe("handoff checklist — data integrity", () => {
     // Silver -> Gold the same day is an upgrade and moves no total.
     // 248 -> 249 on 30 Sep 2026: "Alone" Portugal Gold, AFP/Audiogest's own
     // award card (its Facebook post; read from the repost, confirmed by Paul).
-    expect(certs).toBe(249);
+    // 249 -> 250 on 4 Oct 2026: "Dai Dai" Denmark Gold, the GULD badge on
+    // Hitlisten, IFPI Danmark's own chart (Track Top-40, Uge 38 - 2026). A new
+    // country for the song; Denmark already held his plaques, so 26 holds.
+    expect(certs).toBe(250);
     expect(countries).toBe(26); // Czechia joins
     // The page-facing helpers must agree with the raw reduce.
     expect(totalAwards()).toBe(certs);
     expect(certCountryCount).toBe(Object.keys(CERT_COUNTRIES).length);
   });
 
-  it("splits into 7 Diamond / 103 Platinum / 105 Gold / 34 Silver", () => {
+  it("splits into 7 Diamond / 103 Platinum / 106 Gold / 34 Silver", () => {
     // 6 Aug 2026: “Dai Dai” Portugal upgraded Gold → Platinum (AFP week-31 PDF).
     const byLevel = (level: string) =>
       allItems.reduce((n, i) => n + i.certs.filter((c) => c.level === level).length, 0);
@@ -82,11 +85,12 @@ describe("handoff checklist — data integrity", () => {
     // BPI register's award card (25.09.2026). Gold 103 -> 104, Silver 35 -> 34;
     // an upgrade, so the total is unchanged.
     // 30 Sep 2026: "Alone" Portugal Gold, a new plaque (AFP's award card): Gold 104 -> 105.
-    expect(byLevel("Gold")).toBe(105); // + 4 NG Golds, + Ye NG, + Dai Dai DE, + Dai Dai BE, + City Boys PT, + "Dai Dai" in Poland (ZPAV), + Ginger CH, − Dai Dai GR, − My Oasis UK, + Dai Dai UK, + Alone PT
+    // 4 Oct 2026: "Dai Dai" Denmark Gold, a new plaque (Hitlisten, Uge 38): Gold 105 -> 106.
+    expect(byLevel("Gold")).toBe(106); // + 4 NG Golds, + Ye NG, + Dai Dai DE, + Dai Dai BE, + City Boys PT, + "Dai Dai" in Poland (ZPAV), + Ginger CH, − Dai Dai GR, − My Oasis UK, + Dai Dai UK, + Alone PT, + Dai Dai DK
     expect(byLevel("Silver")).toBe(34); // + 5 NG Silvers, − Ye NG; On the Low NG left this tier for Gold; My Oasis UK came back to it; Dai Dai UK left it for Gold
 
     const sum = byLevel("Diamond") + byLevel("Platinum") + byLevel("Gold") + byLevel("Silver");
-    expect(sum).toBe(249);
+    expect(sum).toBe(250);
   });
 
   // A test NAME is not an assertion, which is how this one came to read "280

@@ -121,6 +121,32 @@
   -webkit-mask-image: none;
   mask-image: none;
 }
+/* Burna Boy's /certifications hero ONLY (Claude Design round 2, item 34,
+   option b; MobileCerts portraitSlot="square"). Every board artist keeps the
+   cover box above, because each focal X in portraitArt.ts was tuned against
+   it. His is a fixed square, 80% of the hero's width, set right −22% and
+   raised by 16% of its own height, so his face sits beside the total and
+   does not move when a switch changes the lede's length. Not cropped: a
+   square photo in a square box, so --focal has nothing to aim here.
+   The masks are % of that square, never of the hero, so they are fixed px
+   for a given width: opaque to 58% (181px at 390) and gone by 86% (268px). */
+.heroArtSlot {
+  top: 0;
+  right: -22%;
+  width: 80%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  transform: translateY(-16%);
+  object-position: center;
+  -webkit-mask-image:
+    linear-gradient(90deg, transparent 0, rgba(0, 0, 0, 0.3) 14%, #000 44%),
+    linear-gradient(180deg, #000 58%, transparent 86%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(90deg, transparent 0, rgba(0, 0, 0, 0.3) 14%, #000 44%),
+    linear-gradient(180deg, #000 58%, transparent 86%);
+  mask-composite: intersect;
+}
 /* Two scrims: one vertical so the kicker and lede sit on near-black, one
    horizontal so the portrait dissolves rather than ending in a hard edge. */
 .heroScrim {
@@ -133,7 +159,50 @@
        brightest region behind it, and several of these shots have pale
        backdrops. Darken the horizontal scrim until it does, per the spec. */
     linear-gradient(90deg, var(--bg) 38%, color-mix(in srgb, var(--bg) 78%, transparent) 62%, color-mix(in srgb, var(--bg) 35%, transparent) 100%),
-    linear-gradient(180deg, color-mix(in srgb, var(--bg) 55%, transparent) 0%, color-mix(in srgb, var(--bg) 10%, transparent) 40%, var(--bg) 100%);
+    linear-gradient(180deg, color-mix(in srgb, var(--bg) 55%, transparent) 0%, color-mix(in srgb, var(--bg) 10%, transparent) 40%, var(--bg) 100%),
+    /* The kicker's band, on paper only. At 320 and 360 the longest kickers
+       ("Outside Nigeria · Lead credits") run into the portrait, and on paper
+       they sampled 4.0–4.5:1 against it (live too, before round 2). A
+       page-colour band over the top 44px, fading out by 72px, holds them on
+       near-paper without a plate behind the words; the dark page already
+       clears 7:1 there, so it stays as it was (transparent). In px, because
+       the kicker sits at a fixed 22px from the top while the hero's height
+       follows the lede. */
+    linear-gradient(180deg, light-dark(color-mix(in srgb, var(--bg) 72%, transparent), transparent) 44px, transparent 72px);
+}
+/* The raised square's own scrims, in the page colour in both themes (round 2,
+   item 34): a band over the kicker's line (92% to 34px, gone by 66px), solid
+   page across the type's column to 44% and clear by 78%, and the foot of the
+   hero back to the page from 55% down, so the lede and the switches below the
+   photo always sit on the page colour. */
+.heroScrimSlot {
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--bg) 92%, transparent) 0, color-mix(in srgb, var(--bg) 92%, transparent) 34px, transparent 66px),
+    linear-gradient(90deg, var(--bg) 0%, var(--bg) 44%, color-mix(in srgb, var(--bg) 85%, transparent) 56%, color-mix(in srgb, var(--bg) 25%, transparent) 68%, transparent 78%),
+    linear-gradient(180deg, transparent 0, transparent 55%, var(--bg) 100%);
+}
+/* Narrower than 390 two lines of type reach the photo, measured:
+   - the unit's second line ("26 countries") ends over his neck, below the
+     chin: 3.7:1 dark and 3.1:1 light at 320, 4.1:1 dark at 360. The photo goes
+     to the page colour from the unit's line down: 75% by 128px, starting at
+     110px, just under his chin at 320.
+   - the longest kicker ("Outside Nigeria · Lead credits") runs to the top of
+     his head: 4.2:1 at 320 and 4.5:1 at 360, on paper only, because the gold
+     ink is only 4.9:1 on clean paper and the 92% band lets the photo through.
+     On paper the band is solid to 40px (light-dark, as the box scrim's
+     kicker band does); dark stays at 92%, where it reads at 11:1.
+   Both are page-colour layers in the scrim rather than plates behind the
+   words (the #415 review turned the kicker's plate down). At 390, the width
+   the design measured, the slot is as drawn. */
+@media (max-width: 389px) {
+  .heroScrimSlot {
+    background:
+      linear-gradient(180deg, transparent 0, transparent 110px, color-mix(in srgb, var(--bg) 75%, transparent) 128px),
+      linear-gradient(180deg, light-dark(var(--bg), transparent) 40px, transparent 66px),
+      linear-gradient(180deg, color-mix(in srgb, var(--bg) 92%, transparent) 0, color-mix(in srgb, var(--bg) 92%, transparent) 34px, transparent 66px),
+      linear-gradient(90deg, var(--bg) 0%, var(--bg) 44%, color-mix(in srgb, var(--bg) 85%, transparent) 56%, color-mix(in srgb, var(--bg) 25%, transparent) 68%, transparent 78%),
+      linear-gradient(180deg, transparent 0, transparent 55%, var(--bg) 100%);
+  }
 }
 @media (prefers-reduced-motion: no-preference) {
   .heroArt { transition: opacity 300ms var(--ease); }
@@ -174,9 +243,6 @@
   text-transform: uppercase;
   color: var(--text-muted);
   line-height: 1.5;
-  /* "International awards as lead artist" wraps on a three-digit total; even
-     the lines out rather than leave "ARTIST" alone on the second. */
-  text-wrap: balance;
 }
 .lede {
   font-size: var(--type-lede);
@@ -185,38 +251,63 @@
   margin: 12px 0 0;
 }
 
-.tierList { margin-top: 20px; border-top: 1px solid var(--line); }
-.tierRow { padding: 13px 0; border-bottom: 1px solid var(--line); }
-.tierTop { display: flex; align-items: baseline; gap: 10px; }
+/* One 32px line per tier (Claude Design round 2, item 20): name · bar ·
+   count · share, the bars on the GRAD fills, the share in Geist 12.5 (mono is
+   labels only). At 320 the bar keeps ~108px of the 284px row; "100%" and a
+   three-digit count each fit their 34px column. */
+.tierList { margin-top: 12px; border-top: 1px solid var(--line); }
+.tierRow {
+  height: 32px;
+  display: grid;
+  grid-template-columns: 78px minmax(0, 1fr) 34px 34px;
+  align-items: center;
+  column-gap: 10px;
+  border-bottom: 1px solid var(--line);
+}
 .tierName {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
   font-size: 11px;
+  line-height: 1;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  min-width: 74px;
 }
 .tierCount {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
-  font-size: 20px;
+  font-size: 18px;
+  line-height: 1;
+  text-align: right;
   font-variant-numeric: tabular-nums;
 }
 .tierPct {
   font-family: var(--font-geist-sans), system-ui, sans-serif;
-  font-size: var(--type-small);
-  margin-left: auto;
+  /* 12.5px, not --type-small (13.5px): the canvas's size, and what fits
+     "100%" in the 34px column. */
+  font-size: 12.5px;
+  line-height: 1;
+  text-align: right;
   color: var(--text-muted);
   font-variant-numeric: tabular-nums;
 }
 .tierTrack {
+  display: block;
   height: 6px;
   background: color-mix(in srgb, var(--ink-wash-base) 9%, transparent);
-  margin-top: 9px;
   border-radius: 999px;
   overflow: hidden;
 }
-.tierFill { height: 6px; border-radius: 999px; }
+.tierFill { display: block; height: 6px; border-radius: 999px; }
+
+/* The provenance caption under the tier bars (board artists only, items
+   25/26/26b): which plaques are not register rows, then the date. */
+.provenance {
+  margin: 12px 0 0;
+  font-size: 12.5px;
+  line-height: 18px;
+  color: var(--text-muted);
+  text-wrap: pretty;
+}
 
 /* ── Tier rail ────────────────────────────────────────────────────────── */
 .rail {
@@ -246,12 +337,21 @@
   gap: 7px;
   white-space: nowrap;
 }
+/* The ACTIVE chip, on both rails (the tier rail and the dated log's year
+   rail): an ember edge, an ember wash and an ink label — not a gold fill
+   (owner's ruling N2, 4 Oct 2026). The Compare action is the one gold fill on
+   the screen. The washes are the ruled values — rgba(179,71,0,.10) on paper,
+   rgba(255,122,26,.16) on the dark page — written as --ember at 10% / 16%
+   (--ember IS #b34700 / #ff7a1a), not the house calc(16% * --wash-strength),
+   which gives ~6.7% on paper. */
 .chipOn {
-  background-color: var(--gold-fill);
-  /* The gold ramp — the site's one treatment for a gold fill. */
-  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold-fill) 48%, var(--gold-dim) 100%);
-  border-color: var(--gold);
-  color: var(--ink-on-gold);
+  border-color: var(--ember);
+  background-image: none;
+  background-color: light-dark(
+    color-mix(in srgb, var(--ember) 10%, transparent),
+    color-mix(in srgb, var(--ember) 16%, transparent)
+  );
+  color: var(--text);
 }
 .chipDot { width: 7px; height: 7px; border-radius: 50%; flex: none; display: block; }
 
@@ -262,7 +362,10 @@
    edges aligned (compare's own flex-wrap does it); at 320 the long state
    label drops under its switch's name rather than overflowing. */
 .viewRow {
-  padding: 2px 18px 6px;
+  /* Inside the hero now (round 2, item 17), which already carries the 18px
+     gutter — so no side padding of its own. */
+  padding: 0;
+  margin-top: 14px;
 }
 
 /* ── Deep-linked single-release focus (#release=…) ────────────────────── */
@@ -767,19 +870,23 @@
   color: var(--brand-accent-ink);
 }
 
-/* The active filter pill. Same deepened ramp and white label as the primary
-   button in the header, for the same reason: on the bright display stops
-   white measures 2.71:1, which is below what a button label needs. These
-   hues at 72% value put it above 5:1.
+/* The active filter pill, in N2's shape (owner's ruling, 4 Oct 2026) and her
+   colour: a brand edge, a brand wash and an ink label — no fill. It was a
+   brand gradient fill, which would have stood beside the Compare action as a
+   second filled control. The edge is the accent INK (6.44:1 on paper, ~6:1 on
+   the dark page), the wash the same 10% / 16% the base chip uses.
 
    Only .chipOn — the ACTIVE pill. The per-tier chips beside it keep their
    tier colours, because that is what distinguishes Diamond from Gold. */
 [data-brand="starrgirl"] .chipOn {
-  background-color: var(--brand-fill);
-  background-image: linear-gradient(180deg, var(--brand-fill-hi) 0%, var(--brand-fill) 52%, var(--brand-fill-lo) 100%);
-  border-color: var(--brand-fill);
-  color: #ffffff;
-  -webkit-text-fill-color: #ffffff;
+  border-color: var(--brand-accent-ink);
+  background-image: none;
+  background-color: light-dark(
+    color-mix(in srgb, var(--brand-accent-ink) 10%, transparent),
+    color-mix(in srgb, var(--brand-accent-ink) 16%, transparent)
+  );
+  color: var(--text);
+  -webkit-text-fill-color: var(--text);
 }
 
 /* The stat card, demoted. Outlined rather than filled so one gold action leads
@@ -802,4 +909,19 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
   white-space: nowrap;
+}
+
+/* "Biggest shows" reads "Shows" under 390px (the owner, 4 Oct 2026: shorten it
+   if it cannot fit): beside "Compare Tiwa Savage ↗" the full label needs ~312px
+   of a 344px bar, and 390 is the narrowest width it clears with room inside the
+   gold pill. Visually hidden, not removed, so the link's name stays whole. */
+@media (max-width: 389px) {
+  .showsLong {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
 }
