@@ -12,7 +12,10 @@ const plaques = boards.reduce((n, b) => n + b.plaques, 0);
 const card = {
   kicker: "Certified units",
   title: "By country",
-  sub: `${certCountryCodes().length} markets · ${plaques.toLocaleString("en-US")} plaques · each priced at its own body's threshold`,
+  // Records counted once (a plaque two artists share is one plaque in its
+  // country), and no claim that each is priced at its own body's threshold —
+  // Greece's and Colombia's are not (debug pass, 5 Oct 2026).
+  sub: `${certCountryCodes().length} markets · ${plaques.toLocaleString("en-US")} plaques, each record counted once · priced market by market`,
 };
 
 export const generateImageMetadata = () => ogVersions(card, alt);

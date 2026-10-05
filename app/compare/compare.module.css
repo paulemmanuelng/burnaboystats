@@ -1306,6 +1306,14 @@
   text-transform: uppercase;
   color: var(--text-muted);
 }
+/* "+ 2 more at 500,000 units: …" — the records level with the tenth, named
+   under the list rather than cut from it by the alphabet (5 Oct 2026). */
+.cbBiggestMore {
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
+  color: var(--text-muted);
+  margin: 10px 0 0;
+}
 
 @media (max-width: 760px) {
   /* On a phone the plaque-value card is a fold, shut until tapped, holding the
