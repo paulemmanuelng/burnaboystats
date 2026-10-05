@@ -2,6 +2,7 @@ import { COUNTRIES as BURNA_COUNTRIES } from "./certifications";
 import { CHART_COUNTRIES } from "./charts";
 import { awardLabel, awardRank } from "../lib/awardName";
 import { certsInView, homeCodeFor, isFeaturedKind, type CertView } from "../lib/certScope";
+import { count } from "../lib/plural";
 
 // ─────────────────────────────────────────────────────────────────────────────
 //  THE AFROBEATS BOARD — /afrobeats
@@ -551,6 +552,18 @@ export const AFROBEATS_EDITED_ON: Readonly<Record<string, string>> = {
  *  18 Sep while the sitemap said 3 Oct (debug pass 4 Oct 2026, D-05). */
 export const pageStamp = (a: { slug: string; verifiedOn: string }): string =>
   [a.verifiedOn, AFROBEATS_EDITED_ON[a.slug]].filter((d): d is string => Boolean(d)).sort().at(-1)!;
+
+/** The date an artist page prints after "last verified": the later of the
+ *  artist's own `verifiedOn` and the last full sweep. `verifiedOn` is the day
+ *  a read last CHANGED a plaque, and the 2 Oct 2026 sweep re-read every body
+ *  for all twenty artists while seventeen of them kept older dates — so
+ *  Olamide's page said "last verified 6 September 2026" two lines above "this
+ *  board was last re-read at every register on 2 October 2026" (debug pass,
+ *  5 Oct 2026). A page cannot say it was last verified before it was last read
+ *  (the ON_13 rule). The last-change stamp stays `verifiedOn` everywhere it
+ *  means that: pageStamp, the CSV's verified_on, the Dataset's dateModified. */
+export const lastVerifiedOn = (a: { verifiedOn: string }): string =>
+  a.verifiedOn > AFROBEATS_LAST_FULL_SWEEP ? a.verifiedOn : AFROBEATS_LAST_FULL_SWEEP;
 
 export const afrobeatsArtists: AfroArtist[] = [
   {
@@ -3355,6 +3368,31 @@ export const chartGlobalLines = (a: AfroArtist) =>
   new Set(
     a.charts.flatMap((r) => r.entries.map((e) => e.c)).filter((c) => c === "GLB" || c === "GLBX")
   ).size;
+
+/** ", plus 2 Billboard global charts", or "" for an artist who has charted on
+ *  neither — the disclosure every chart-standard sentence beside the territory
+ *  count carries (see chartGlobalLines). */
+export const chartGlobalsClause = (a: AfroArtist): string => {
+  const globals = chartGlobalLines(a);
+  return globals ? `, plus ${count(globals, "Billboard global chart", "Billboard global charts")}` : "";
+};
+
+/** "each country's principal national chart, plus 2 Billboard global charts".
+ *
+ *  The territory count includes Billboard's Global 200 and Global 200 Excl. US
+ *  wherever the artist has charted on them, so a flat "each country's principal
+ *  national chart" over that figure is false for two of them — the same
+ *  countries-vs-territories confusion PR #160 fixed across the Burna Boy pages,
+ *  inherited here by the board. One derivation, used by the charts page's meta
+ *  description, Dataset node and both layouts' ledes, and by the artist page's
+ *  chart card (which said "Principal national chart per country" under
+ *  Calm Down's Global 200 No. 1 until the debug pass of 5 Oct 2026).
+ *
+ *  `principal` is dropped in the meta description only: it is worth 10 of the
+ *  160 characters check-seo allows, and the page body still spells the full
+ *  standard out under "Where the charts come from". */
+export const chartSourceClause = (a: AfroArtist, short = false): string =>
+  `${short ? "each country's national chart" : "each country's principal national chart"}${chartGlobalsClause(a)}`;
 /**
  * Each country's BEST peak, best countries first — the OG share card's chips.
  *

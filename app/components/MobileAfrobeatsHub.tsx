@@ -45,7 +45,7 @@ export default function MobileAfrobeatsHub({
   artists,
   chartRail,
   liveRail,
-  sweptRange,
+  fullSweep,
   liveNote,
 }: {
   boardCount: number;
@@ -53,7 +53,9 @@ export default function MobileAfrobeatsHub({
   artists: HubTile[];
   chartRail: HubPill[];
   liveRail: HubPill[];
-  sweptRange: string;
+  /** The day every register was last re-read, formatted — the last full
+   *  sweep, not a range of the artists' last-change dates (5 Oct 2026). */
+  fullSweep: string;
   liveNote: string;
 }) {
   return (
@@ -81,7 +83,7 @@ export default function MobileAfrobeatsHub({
           is, every figure read in the issuing body&rsquo;s own register or, where it holds no
           row, the body&rsquo;s own announcement or the label&rsquo;s own award.
         </p>
-        <div className={styles.cadence}>Re-read at each sweep, last {sweptRange} · Burna Boy&rsquo;s pages daily</div>
+        <div className={styles.cadence}>Re-read at each sweep, last {fullSweep} · Burna Boy&rsquo;s pages daily</div>
       </div>
 
       {/* The door. He is not a cell in the wall — he is the way into the site. */}
@@ -245,7 +247,7 @@ export default function MobileAfrobeatsHub({
       <div className={styles.foot}>
         <p>
           Counted under the rules on the <Link href="/methodology">methodology page</Link>.
-          Last read at source {sweptRange}.
+          Every register last re-read {fullSweep}.
         </p>
       </div>
     </div>
