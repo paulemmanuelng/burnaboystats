@@ -33,14 +33,17 @@ import { updates } from "../app/data/updates";
  * The values live once, in globals.css (--chip-on-edge / --chip-on-wash /
  * --chip-on-ink), and every phone on-state rule points at them, so no rail
  * can drift back to gold on its own. This file holds that:
- *   1. every chip on-state rule in a phone stylesheet carries no gold, and
- *      uses the three tokens (bar the four exceptions named below, each with
- *      its reason);
+ *   1. every on-state rule a phone draws is classified: a selected chip
+ *      carries no gold and uses the three tokens (bar the four exceptions
+ *      named below, each with its reason), and a control that is not a chip
+ *      (the tab bar, a segmented picker…) is named as one. An on-state the
+ *      guard has never seen fails until someone classifies it;
  *   2. the tokens resolve to N2's RULED values, and the certifications rail —
  *      the reference — computes exactly what it computed before;
  *   3. the one chip rail both layouts share (the song picker) takes N2 at
  *      phone width only, and the laptop keeps its gold;
- *   4. no phone screen paints a chip's on-state inline (the /updates rail did).
+ *   4. no phone screen paints a pressed chip's colours inline (the /updates
+ *      rail did); an unselected chip may still wear its own ink (certs tiers).
  * Desktop chips are out of scope: the ruling was about phone screens.
  */
 
@@ -84,16 +87,20 @@ function rulesOf(css: string): Rule[] {
 }
 
 /**
- * A chip's selected state: a chip / pill / ratio / pick class ending in On, or
- * one carrying an ARIA selected state. Focus rings (:focus-visible, the site's
- * gold ring) and press feedback (:active) are other states, not the selection.
- * Segmented controls (.segOn), the tab bar (.tabOn) and the nav sheet's row
- * are not chips.
+ * An on-state selector: ANY class ending in On (.chipOn, .filterOn, .tabOn…)
+ * or an ARIA selected state ([aria-pressed], [aria-pressed="true"],
+ * [aria-selected="true"], [aria-current], [aria-checked]; never ="false").
+ * The net is deliberately wide: a selected chip must not come back gold under
+ * a name the guard didn't think of, so every on-state it catches has to be
+ * classified below: the shared tokens, a named exception, or a named control
+ * that is not a chip. Focus rings (:focus-visible, the site's gold ring) and
+ * press feedback (:active) are other states, not the selection.
  */
-const ON_STATE =
-  /\.[A-Za-z]*(?:chip|Chip|pill|Pill|ratio|Ratio|pick|Pick)[A-Za-z]*On\b|\.[A-Za-z]*(?:chip|Chip|pill|Pill)[A-Za-z]*\[aria-(?:pressed|current|selected|checked)/;
-const isOnState = (r: Rule) =>
-  r.selectors.some((s) => ON_STATE.test(s) && !/:focus-visible|:active\b/.test(s));
+const ON_CLASS = /\.[A-Za-z][\w-]*On\b(?![\w-])/g;
+const ON_ARIA = /\[aria-(?:pressed|selected|checked|current)(?!=["']?false)/;
+const isOnSelector = (s: string) =>
+  (new RegExp(ON_CLASS.source).test(s) || ON_ARIA.test(s)) && !/:focus-visible|:active\b/.test(s);
+const isOnState = (r: Rule) => r.selectors.some(isOnSelector);
 
 const GOLD = /var\(--gold|--ink-on-gold|#945e00|#ffb627|#ffd24a|#c98a2e|148,\s*94,\s*0|255,\s*182,\s*39/i;
 const hasGold = (r: Rule) => GOLD.test(Object.values(r.decls).join(";"));
@@ -102,16 +109,32 @@ const isN2 = (d: Record<string, string>) =>
   (d["background"] === "var(--chip-on-wash)" || d["background-color"] === "var(--chip-on-wash)") &&
   d["color"] === "var(--chip-on-ink)";
 
-const PHONE_FILES = readdirSync(join(ROOT, "app/components"))
-  .filter((f) => /^mobile[A-Z]\w*\.module\.css$/.test(f))
-  .map((f) => `app/components/${f}`);
+/** Every stylesheet under app/, recursively. */
+const cssUnder = (dir: string): string[] =>
+  readdirSync(join(ROOT, dir), { withFileTypes: true }).flatMap((e) =>
+    e.isDirectory() ? cssUnder(`${dir}/${e.name}`) : e.name.endsWith(".css") ? [`${dir}/${e.name}`] : [],
+  );
+const ALL_CSS = cssUnder("app");
+const PHONE_FILES = ALL_CSS.filter((f) => /^app\/components\/mobile[A-Z]\w*\.module\.css$/.test(f));
+/** Stylesheets both layouts share: only their phone (max-width) blocks are phone rules. */
+const SHARED_FILES = ALL_CSS.filter((f) => !PHONE_FILES.includes(f));
 
-/** Every chip on-state rule on a phone screen, keyed file::selectors. */
-function phoneOnStates(): Map<string, Rule> {
-  const m = new Map<string, Rule>();
-  for (const f of PHONE_FILES)
-    for (const r of rulesOf(read(f))) if (isOnState(r)) m.set(`${f}::${r.selectors.join(", ")}`, r);
-  return m;
+type OnState = { key: string; file: string; rule: Rule };
+/** Every on-state rule a phone draws: all of a phone stylesheet's, and those
+ *  inside a shared stylesheet's max-width blocks (the song picker's, say). */
+function phoneOnStates(): OnState[] {
+  const out: OnState[] = [];
+  const add = (file: string, rule: Rule) => out.push({ key: `${file}::${rule.selectors.join(", ")}`, file, rule });
+  for (const f of PHONE_FILES) for (const r of rulesOf(read(f))) if (isOnState(r)) add(f, r);
+  for (const f of SHARED_FILES)
+    for (const r of rulesOf(read(f))) if (r.media && /max-width/.test(r.media) && isOnState(r)) add(f, r);
+  return out;
+}
+/** The one rule under a key (a key that matches twice is itself a failure). */
+function onState(key: string): Rule {
+  const hits = phoneOnStates().filter((s) => s.key === key);
+  expect(hits.length, key).toBe(1);
+  return hits[0].rule;
 }
 
 /** The rules that point at the shared tokens — every one this change touched. */
@@ -125,12 +148,13 @@ const N2_RULES = [
   "app/components/mobileStatCards.module.css::.chipOn",
   "app/components/mobileStatCards.module.css::.ratioOn",
   "app/components/mobileUpdates.module.css::.chipOn",
+  "app/music/[song]/song.module.css::.pickOn, .pickOn:hover",
 ];
 
 /**
- * The phone on-states that are NOT the shared tokens, each for a reason. None
- * of them is gold; each keeps its own check. A new rail is not added here: it
- * uses the tokens.
+ * The phone chip on-states that are NOT the shared tokens, each for a reason.
+ * None of them is gold; each keeps its own check. A new rail is not added
+ * here: it uses the tokens.
  */
 const EXCEPTIONS: Record<string, { why: string; check: (d: Record<string, string>) => boolean }> = {
   'app/components/mobileCerts.module.css::[data-brand="starrgirl"] .chipOn': {
@@ -153,49 +177,90 @@ const EXCEPTIONS: Record<string, { why: string; check: (d: Record<string, string
   },
 };
 
+/**
+ * On-states a phone draws that are NOT chips, by file and class. These are out
+ * of the ruling and may stay gold. Listing one is a decision, so each says
+ * what it is; a class not listed here is a chip until someone says otherwise.
+ * (The other non-chip on-states, .dotOn on the certs and /compare switches,
+ * .langOn on Dai Dai's language radio and .dayOn on its day strip, sit in
+ * shared stylesheets' base rules, which serve both layouts; the scan above
+ * reads only a shared sheet's phone blocks.)
+ */
+const NOT_CHIPS: Record<string, string> = {
+  "app/components/mobileTabBar.module.css::.tabOn": "the tab bar's current tab: navigation, not a filter rail",
+  "app/components/mobileEmbed.module.css::.segOn": "the /embed theme picker: a segmented control",
+  "app/components/mobileOnThisDay.module.css::.calCellOn":
+    "a dated day in the On This Day calendar (On = has entries); the pressed day is --bg-raised",
+  "app/components/mobileTourMap.module.css::.regionOn": "the tour map's current region: a list row with an ink rule",
+  "app/components/DaiDaiReplay.module.css::.mapToggleOn": "the Dai Dai replay map's Europe / World switch: an ink fill",
+};
+/** A rule whose every on-selector names only listed non-chip classes. */
+const notChip = (file: string, r: Rule) =>
+  r.selectors.filter(isOnSelector).every((s) => {
+    const cls = s.match(ON_CLASS);
+    return !!cls && cls.every((c) => `${file}::${c}` in NOT_CHIPS);
+  });
+
+/** What the guard says about one on-state rule: null when it holds. */
+function verdict(s: OnState): string | null {
+  if (N2_RULES.includes(s.key))
+    return isN2(s.rule.decls) ? null : `${s.key} — use var(--chip-on-edge) / var(--chip-on-wash) / var(--chip-on-ink)`;
+  const ex = EXCEPTIONS[s.key];
+  if (ex) return ex.check(s.rule.decls) ? null : `${s.key} — the exception no longer holds (${ex.why})`;
+  if (notChip(s.file, s.rule)) return null;
+  return `${s.key} — an unclassified on-state: a selected chip uses the --chip-on-* tokens (add it to N2_RULES); a control that is not a chip goes in NOT_CHIPS with its reason`;
+}
+
 describe("phone chips: the selected chip is N2's everywhere (owner, 5 Oct 2026)", () => {
   it("finds the phone stylesheets and their on-states (the scan is not empty)", () => {
     expect(PHONE_FILES.length).toBeGreaterThan(30);
-    const found = [...phoneOnStates().keys()];
+    const found = phoneOnStates().map((s) => s.key);
     for (const k of [...N2_RULES, ...Object.keys(EXCEPTIONS)]) expect(found, k).toContain(k);
+    // Every listed non-chip is still there, so the list cannot go stale.
+    const classes = new Set(phoneOnStates().flatMap((s) => s.rule.selectors.flatMap((x) => (x.match(ON_CLASS) ?? []).map((c) => `${s.file}::${c}`))));
+    for (const k of Object.keys(NOT_CHIPS)) expect([...classes], k).toContain(k);
   });
 
   it("no phone chip on-state carries gold", () => {
-    const gold = [...phoneOnStates()].filter(([, r]) => hasGold(r)).map(([k]) => k);
+    const gold = phoneOnStates()
+      .filter((s) => !notChip(s.file, s.rule) && hasGold(s.rule))
+      .map((s) => s.key);
     expect(gold, "a selected chip on a phone is never gold: point it at --chip-on-*").toEqual([]);
   });
 
-  it("every phone chip on-state uses the shared tokens, bar the named exceptions", () => {
-    const off: string[] = [];
-    for (const [k, r] of phoneOnStates()) {
-      const ex = EXCEPTIONS[k];
-      if (ex) {
-        if (!ex.check(r.decls)) off.push(`${k} — the exception no longer holds (${ex.why})`);
-      } else if (!isN2(r.decls)) {
-        off.push(`${k} — use var(--chip-on-edge) / var(--chip-on-wash) / var(--chip-on-ink)`);
-      }
-    }
+  it("every phone on-state is classified: the shared tokens, a named exception, or a named non-chip", () => {
+    const off = phoneOnStates().map(verdict).filter((v): v is string => v !== null);
     expect(off).toEqual([]);
-    for (const k of N2_RULES) expect(isN2(phoneOnStates().get(k)!.decls), k).toBe(true);
+    for (const k of N2_RULES) expect(isN2(onState(k).decls), k).toBe(true);
   });
 
-  it("negative controls: the shipped gold on-states fail both checks", () => {
+  it("negative controls: the shipped gold on-states fail, under any name a rail might use", () => {
     // mobileOfficialCharts.module.css's .chipOn as it shipped on main
     // (3e4dedf4), the selected chip on /records/charts and every board
     // artist's chart screen — the rule the owner's question was about.
-    const SHIPPED_CHARTS =
-      ".chipOn { background: color-mix(in srgb, var(--gold-wash-base) calc(16% * var(--wash-strength)), transparent); border-color: var(--gold); color: var(--gold); }";
+    const SHIPPED_BODY =
+      "{ background: color-mix(in srgb, var(--gold-wash-base) calc(16% * var(--wash-strength)), transparent); border-color: var(--gold); color: var(--gold); }";
     // /records/africas-biggest's selected year he took: a solid gold fill.
     const SHIPPED_YEAR = ".yearPillHis.yearPillOn { background: var(--gold); color: var(--bg); border-color: var(--gold); }";
-    for (const css of [SHIPPED_CHARTS, SHIPPED_YEAR]) {
+    const AWARDS = "app/components/mobileAwards.module.css";
+    // The shipped body under the old name, and under the two selector shapes
+    // the first version of this guard did not see: a class that isn't called
+    // chip/pill/ratio/pick, and a bare aria-pressed selector.
+    for (const css of [`.chipOn ${SHIPPED_BODY}`, SHIPPED_YEAR, `.filterOn ${SHIPPED_BODY}`, `.tag[aria-pressed="true"] ${SHIPPED_BODY}`]) {
       const [r] = rulesOf(css);
-      expect(isOnState(r)).toBe(true);
-      expect(hasGold(r)).toBe(true);
-      expect(isN2(r.decls)).toBe(false);
+      expect(isOnState(r), css).toBe(true);
+      expect(hasGold(r), css).toBe(true);
+      expect(isN2(r.decls), css).toBe(false);
+      expect(notChip(AWARDS, r), css).toBe(false);
+      expect(verdict({ key: `${AWARDS}::${r.selectors.join(", ")}`, file: AWARDS, rule: r }), css).not.toBeNull();
     }
-    // The detector does not wave through a non-chip on-state either way: the
-    // tab bar's gold current tab is not a chip, and stays as it is.
-    expect(isOnState(rulesOf(".tabOn { color: var(--gold); }")[0])).toBe(false);
+    // A listed non-chip passes only in its own file: the tab bar's gold tab
+    // is fine there, and a .tabOn turning up on a rail elsewhere is not.
+    const tab = rulesOf(".tabOn { color: var(--gold); }")[0];
+    expect(notChip("app/components/mobileTabBar.module.css", tab)).toBe(true);
+    expect(notChip(AWARDS, tab)).toBe(false);
+    // An off state is not an on-state.
+    expect(isOnState(rulesOf('.tag[aria-pressed="false"] { color: var(--gold); }')[0])).toBe(false);
   });
 });
 
@@ -288,7 +353,7 @@ describe("the shared tokens are N2's values", () => {
   color: var(--text);
 }`;
     const was = rulesOf(SHIPPED)[0].decls;
-    const now = phoneOnStates().get("app/components/mobileCerts.module.css::.chipOn")!.decls;
+    const now = onState("app/components/mobileCerts.module.css::.chipOn").decls;
     expect(Object.keys(now).sort()).toEqual(Object.keys(was).sort());
     expect(now["background-image"]).toBe(was["background-image"]);
     for (const dark of [false, true])
@@ -340,25 +405,113 @@ describe("the song picker takes N2 at phone width only", () => {
 
 /* ── /updates: the on-state was inline ───────────────────────────────────── */
 
-describe("no phone screen paints a chip's on-state inline", () => {
-  /** The opening tags of every aria-pressed button in a component. */
-  const pressedTags = (src: string) =>
-    src
-      .split("<button")
-      .slice(1)
-      .map((c) => c.split(/\n\s*>\s*\n/)[0])
-      .filter((t) => t.includes("aria-pressed"));
-  const inlineState = (tag: string) => /style=\{[^\n]*(?:borderColor|color):/.test(tag);
+/**
+ * Reading a button's opening tag the way JSX does: braces nest, strings hold
+ * anything, and the tag ends at the first `>` outside both (so `=>` inside an
+ * onClick, or a child's style={…}, is never mistaken for the button's).
+ */
+function scan(src: string, from: number, stop: (c: string, depth: number, i: number) => boolean): number {
+  let depth = 0;
+  let quote: string | null = null;
+  for (let i = from; i < src.length; i++) {
+    const c = src[i];
+    if (quote) {
+      if (c === quote && src[i - 1] !== "\\") quote = null;
+      continue;
+    }
+    if (c === '"' || c === "'" || c === "`") quote = c;
+    else if (c === "{" || c === "(" || c === "[") depth++;
+    else if (c === "}" || c === ")" || c === "]") {
+      depth--;
+      if (stop(c, depth, i)) return i;
+    } else if (stop(c, depth, i)) return i;
+  }
+  return src.length;
+}
+/** The opening tag of every aria-pressed button in a component. */
+const pressedTags = (src: string) =>
+  src
+    .split("<button")
+    .slice(1)
+    .map((c) => c.slice(0, scan(c, 0, (ch, d) => ch === ">" && d === 0)))
+    .filter((t) => /\saria-pressed=/.test(t));
+/** The JS expression of attr={…} in a tag, or null. */
+function attrExpr(tag: string, name: string): string | null {
+  const m = new RegExp(`\\s${name}=\\{`).exec(tag);
+  if (!m) return null;
+  const open = m.index + m[0].length - 1;
+  const close = scan(tag, open, (ch, d) => ch === "}" && d === 0);
+  return tag.slice(open + 1, close).trim();
+}
+/** `c ? a : b` split at its top level, or null when the expression isn't one. */
+function ternary(e: string): [string, string, string] | null {
+  let q = -1;
+  let nest = 0;
+  let split: [string, string, string] | null = null;
+  scan(e, 0, (ch, d, i) => {
+    if (d !== 0) return false;
+    if (ch === "?" && e[i + 1] !== "." && e[i + 1] !== "?" && e[i - 1] !== "?") {
+      if (q < 0) q = i;
+      else nest++;
+    } else if (ch === ":" && q >= 0) {
+      if (nest > 0) nest--;
+      else {
+        split = [e.slice(0, q).trim(), e.slice(q + 1, i).trim(), e.slice(i + 1).trim()];
+        return true;
+      }
+    }
+    return false;
+  });
+  return split;
+}
+const norm = (s: string): string => {
+  const t = s.replace(/\s+/g, "");
+  const inside = t.slice(1, -1);
+  const wraps = t.startsWith("(") && t.endsWith(")") && scan(inside, 0, (ch, d) => d < 0) === inside.length;
+  return wraps ? norm(inside) : t;
+};
+/** The ways a condition is written negated: !c, !(c), and === ↔ !==. */
+const negations = (c: string): string[] =>
+  [`!${c}`, `!(${c})`, c.startsWith("!") ? c.slice(1) : "", c.replace("!==", "==="), c.replace("===", "!==")]
+    .filter((x) => x && x !== c)
+    .map(norm);
+/**
+ * The inline style a button wears WHILE PRESSED. A style={c ? a : b} whose c
+ * is the aria-pressed condition wears a when pressed, b when not; a negated c
+ * the other way round. A style with no condition is worn in both states. A
+ * condition the guard cannot tie to aria-pressed counts both branches, so an
+ * unreadable rule fails rather than passes.
+ */
+function pressedStyle(tag: string): string | null {
+  const style = attrExpr(tag, "style");
+  if (!style) return null;
+  const t = ternary(style);
+  if (!t) return style;
+  const [cond, a, b] = t;
+  const pressed = attrExpr(tag, "aria-pressed");
+  if (pressed !== null && norm(cond) === norm(pressed)) return a;
+  if (pressed !== null && negations(norm(pressed)).includes(norm(cond))) return b;
+  return `${a} ${b}`;
+}
+/** A pressed chip painting its own colours inline, outside the stylesheet. */
+const inlineState = (tag: string) => /\b(?:borderColor|color|background|backgroundColor)\s*:/.test(pressedStyle(tag) ?? "");
 
-  it("no aria-pressed chip in a phone component sets its colours inline", () => {
+describe("no phone screen paints a chip's pressed state inline", () => {
+  it("no aria-pressed chip in a phone component sets its pressed colours inline", () => {
     const off: string[] = [];
+    let seen = 0;
     for (const f of readdirSync(join(ROOT, "app/components")).filter((x) => /^Mobile\w*\.tsx$/.test(x)))
-      for (const t of pressedTags(read(`app/components/${f}`))) if (inlineState(t)) off.push(`${f}: ${t.trim().slice(0, 120)}`);
+      for (const t of pressedTags(read(`app/components/${f}`))) {
+        seen++;
+        if (inlineState(t)) off.push(`${f}: ${t.trim().slice(0, 160)}`);
+      }
+    expect(seen, "the scan reads the phone components' toggle chips").toBeGreaterThan(10);
     expect(off).toEqual([]);
   });
 
-  it("negative control: the /updates All chip as it shipped", () => {
-    const SHIPPED = `<button
+  it("negative controls: the /updates chips as they shipped paint the pressed state inline", () => {
+    // MobileUpdates.tsx on main (3e4dedf4): the All chip, then a category chip.
+    const SHIPPED_ALL = `<button
           type="button"
           aria-pressed={cat === null}
           onClick={() => setCat(null)}
@@ -366,8 +519,42 @@ describe("no phone screen paints a chip's on-state inline", () => {
           style={cat === null ? { borderColor: "var(--gold)", color: "var(--gold)" } : undefined}
         >
           All {items.length}`;
-    const [tag] = pressedTags(SHIPPED);
-    expect(inlineState(tag)).toBe(true);
+    const SHIPPED_CATEGORY = `<button
+              key={c}
+              type="button"
+              aria-pressed={on}
+              onClick={() => setCat(on ? null : c)}
+              className={styles.chip}
+              style={on ? { borderColor: ink, color: ink } : undefined}
+            >
+              <span className={styles.chipDot} style={{ background: ink }} aria-hidden="true" />`;
+    for (const src of [SHIPPED_ALL, SHIPPED_CATEGORY]) {
+      const [tag] = pressedTags(src);
+      expect(inlineState(tag), src).toBe(true);
+    }
+  });
+
+  it("passing control: the certs tier chips (#426) colour the OFF state inline, which is not the selection", () => {
+    // MobileCerts.tsx's tier rail as #426 shipped it (e5f12cc4): an unselected
+    // tier wears its own ink inline; the selected one wears .chipOn (N2).
+    const TIER_CHIP = `<button
+            key={name}
+            type="button"
+            aria-pressed={shownTier === name}
+            className={\`\${styles.chip} \${shownTier === name ? styles.chipOn : ""}\`}
+            style={shownTier === name ? undefined : { color: INK[name] }}
+            onClick={() => setTier(shownTier === name ? null : name)}
+          >
+            {shownTier === name ? null : <span className={styles.chipDot} style={{ background: INK[name] }} />}`;
+    const [tag] = pressedTags(TIER_CHIP);
+    expect(pressedStyle(tag)).toBe("undefined");
+    expect(inlineState(tag)).toBe(false);
+    // The same tag with the branches swapped paints the pressed chip, and
+    // fails — written either way round.
+    expect(inlineState(tag.replace("? undefined : { color: INK[name] }", "? { color: INK[name] } : undefined"))).toBe(true);
+    expect(inlineState(tag.replace("shownTier === name ? undefined", "shownTier !== name ? undefined"))).toBe(true);
+    // A style with no condition is worn while pressed too.
+    expect(inlineState(tag.replace("style={shownTier === name ? undefined : { color: INK[name] }}", "style={{ color: INK[name] }}"))).toBe(true);
   });
 
   it("the /updates rail renders the class: All on, then a category on, its dot still in its colour", () => {

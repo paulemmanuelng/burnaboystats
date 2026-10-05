@@ -164,7 +164,7 @@
      values, rgba(179,71,0,.10) on paper and rgba(255,122,26,.16) on the dark
      page: --ember at 10% / 16%, not the house calc(16% * --wash-strength),
      which gives ~6.7% on paper. Declared once here so no rail can drift:
-     tests/phoneChipsN2.test.ts holds every phone on-state rule to these. */
+     tests/phoneChipsN2.test.tsx holds every phone on-state rule to these. */
   --chip-on-edge: var(--ember);
   --chip-on-wash: light-dark(
     color-mix(in srgb, var(--ember) 10%, transparent),
