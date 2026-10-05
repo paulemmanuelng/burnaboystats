@@ -5,8 +5,9 @@ import { REVENUE_READ_ON } from "../../../../lib/revenueSource";
 import { pageMetadata, datasetJsonLd } from "../../../../lib/seo";
 
 /**
- * /records/tours/revenue/countries — who leads every country and continent for
- * reported box office by African artists.
+ * /records/tours/revenue/countries — Highest-Grossing Artists by Country: who
+ * leads every country and continent for reported box office by African
+ * artists. Claude Design round 1 (4 Oct 2026), Job 1, "ranked bars".
  *
  * Nothing here is typed: countries, continents, leaders, counts and totals all
  * come from the revenue board's rows through app/lib/revenueByCountry.ts, so
@@ -18,7 +19,12 @@ const board = revenueByCountry();
 const { countryCount, hisLeads } = board;
 
 const summary = summaryLine(board);
-const lede = `Every reported box-office gross by an African artist, added up country by country — ${summary}. Burna Boy leads ${hisLeads} of the ${countryCount}.`;
+// Review fix 3: "every reported gross" overstated it — reported nights are
+// held off the board until a body is read — so the lede says "verified". The
+// rest is the canvas's (GXCountriesDesk): what the bars are, and whose the
+// gold is. The phone screen draws no lede; its figures carry the story.
+const lede =
+  "Every verified, reported box-office gross by an African artist, added up country by country. Bars are each country’s total; the gold part is Burna Boy’s.";
 
 export const metadata = pageMetadata({
   title: "Highest-Grossing African Artists by Country",
@@ -62,7 +68,7 @@ export default function RevenueCountriesPage() {
     <main id="content">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(listJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(dataset) }} />
-      <MobileRevenueCountries board={board} lede={lede} />
+      <MobileRevenueCountries board={board} />
       <RevenueCountries board={board} lede={lede} path={PATH} />
     </main>
   );

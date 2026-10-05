@@ -1,164 +1,537 @@
-/* Box office by country — desktop. The hero, names, ranks and grosses are the
-   revenue board's own classes (../revenue.module.css); this file adds only the
-   continent cards, the country headings and the five-column row. Hidden below
-   900px with the rest of .desktopOnly, where MobileRevenueCountries renders. */
+/* Highest-Grossing Artists by Country — desktop. Claude Design round 1,
+   4 Oct 2026, Job 1, "ranked bars": designs/desktop/GXCountriesDesk.dc.html,
+   with the review's fixes 1–10 and the owner's rulings where they differ.
+   The eyebrow, h1, lede, figure tiles, run marker and method note are the
+   shows page's own classes (../revenue.module.css); this file adds the share
+   bar, the country ladder, the continent strip, the sticky index and the
+   country tables. Hidden below 900px with the rest of .desktopOnly, where
+   MobileRevenueCountries renders the phone screen.
 
-.pad { padding: 30px 40px 40px; }
+   Colour: gold marks HIS figures and his part of every bar; everyone else's
+   segments are --other, set apart from his by a 2px ground gap, never by
+   colour alone (item 7). Names and ranks are ink for everyone (N4). */
 
-/* ── Continent cards ────────────────────────────────────────────────────── */
+/* ── Hero: the story at the left, the ladder at the right ─────────────── */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 560px);
+  gap: 64px;
+  padding: 36px 0 48px;
+  border-bottom: 2px solid var(--rule);
+}
+.h1.h1 { font-size: 84px; }
+.figs.figs { margin-top: 32px; }
+
+/* His share of every reported gross. */
+.share { margin-top: 24px; }
+.shareHead { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+.shareSum { font-size: 13.5px; line-height: 1.5; color: var(--text-body); font-variant-numeric: tabular-nums; }
+.shareGold { font-weight: 600; color: var(--gold); }
+.sharePctBig {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 1;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+}
+.heroBar {
+  display: flex;
+  gap: 2px;
+  height: 12px;
+  margin-top: 10px;
+  background: var(--bg-soft-2);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.shareCap {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 8px;
+  font-size: var(--type-caption);
+  line-height: 1.45;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* A bar segment: everyone else's in --other, his in the gold fill. */
+.seg { display: block; min-width: 2px; background: var(--other); }
+.segHis { background: var(--gold-fill); }
+
+/* The bars grow once, on first view (0.3s, the site curve); the global
+   reduced-motion rule in globals.css draws them at full length at once. */
+.grow { animation: countryGrow var(--dur-slow) var(--ease-out) both; transform-origin: left center; }
+@keyframes countryGrow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+/* ── The country ladder ──────────────────────────────────────────────── */
+.ladderCol { min-width: 0; display: flex; flex-direction: column; }
+.ladderHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--rule);
+}
+.ladderTitle,
+.key {
+  margin: 0;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  line-height: 1.2;
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+  color: var(--text);
+}
+.key { color: var(--text-muted); white-space: nowrap; }
+.keySwatch { display: inline-block; width: 10px; height: 10px; margin: 0 6px 0 14px; vertical-align: -1px; }
+.keySwatch:first-child { margin-left: 0; }
+.keyOther { background: var(--other); }
+.ladder { list-style: none; margin: 0; padding: 0; }
+/* Each row is a link to its country's block: the bars are the way in. */
+.ladderRow {
+  display: grid;
+  grid-template-columns: 28px 132px 84px minmax(0, 1fr) 72px;
+  align-items: center;
+  gap: 12px;
+  min-height: 36px;
+  padding: 0 4px;
+  border-bottom: 1px solid var(--line);
+  color: var(--text);
+  text-decoration: none;
+  transition: background var(--dur-fast) var(--ease);
+}
+.ladderRow:hover { background: var(--hover); }
+.ladderPos {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1;
+  color: var(--dim);
+  font-variant-numeric: tabular-nums;
+}
+.ladderName {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  font-size: 13.5px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+/* A name that outruns its column ends in an ellipsis, never a hard cut. */
+.clip { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+/* Each leader named, muted, the same for everyone (review fix 5). */
+.ladderLeader {
+  min-width: 0;
+  font-size: var(--type-caption);
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ladderTrack { display: flex; height: 10px; background: var(--bg-soft-2); border-radius: 2px; min-width: 0; }
+.ladderFill { display: flex; gap: 2px; min-width: 3px; border-radius: 2px; overflow: hidden; }
+.ladderTotal {
+  text-align: right;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 1;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+.ladderNote { margin: 12px 0 0; font-size: var(--type-caption); line-height: 1.45; color: var(--text-muted); }
+.flag { font-size: 15px; line-height: 1; flex: none; }
+
+/* ── Continents, said once ───────────────────────────────────────────── */
+.continents { padding: 48px 0; border-bottom: 2px solid var(--rule); }
+.sectionTitle {
+  margin: 0;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 38px;
+  line-height: 1;
+  text-transform: uppercase;
+}
 .cards {
   list-style: none;
   /* 18px under the "By continent" heading — the gap .standsLede leaves under
-     the same heading on the board (C4, 3 Oct 2026: it sat on the cards' rule). */
+     the same heading on the board (C4, 3 Oct 2026). */
   margin: 18px 0 0;
   padding: 0;
   display: grid;
-  /* Five cards fit one row down to the 1024 band (944px of content). The
-     hairlines are drawn per card, not as a gap over a filled grid, so a card
-     that does wrap leaves page background beside it — not a grey slab. */
-  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-  border-top: 1px solid var(--line);
-  border-left: 1px solid var(--line);
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
 }
 .card {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  padding: 18px 20px 20px;
-  background: var(--bg);
-  border-right: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
+  gap: 10px;
   min-width: 0;
+  min-height: 196px;
+  padding: 20px 20px 22px;
+  background: var(--bg-soft);
+  box-sizing: border-box;
 }
-.cardLabel {
+.cardHead { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.cardName {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+.cardPos {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
-  font-size: 11.5px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ember);
+  font-size: 11px;
+  letter-spacing: var(--type-label-tracking);
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.cardTotal {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 1;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
 }
 .cardMeta {
   font-family: var(--font-mono), monospace;
+  font-weight: 700;
   font-size: 11px;
-  letter-spacing: 0.06em;
-  color: var(--text-muted);
-  font-variant-numeric: tabular-nums;
-}
-.cardLeader { margin-top: 8px; }
-.cardGross {
-  font-family: var(--font-anton), sans-serif;
-  font-weight: 400;
-  font-size: 34px;
-  line-height: 1;
-  color: var(--text-muted);
-  font-variant-numeric: tabular-nums;
-}
-.cardGrossHis { color: var(--gold); }
-.cardRunner {
-  font-size: var(--type-caption);
-  line-height: 1.5;
-  color: var(--text-muted);
-}
-.metaLine { display: block; white-space: nowrap; }
-.cardOf {
-  white-space: nowrap;
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.06em;
-  color: var(--text-muted);
-  font-variant-numeric: tabular-nums;
-}
-/* The empty card sits quieter than the cards with data: the same paper, a
-   muted heading — it says what is missing without being the loudest tile. */
-.cardEmptyTitle {
-  margin-top: 8px;
-  font-weight: 600;
-  font-size: 15px;
-  color: var(--text-muted);
-}
-
-/* ── Continent sections ─────────────────────────────────────────────────── */
-.continent + .continent { margin-top: 44px; }
-.continentHead {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 16px;
-  flex-wrap: wrap;
-  border-bottom: 2px solid var(--line);
-  padding-bottom: 10px;
-}
-.continentTitle {
-  font-family: var(--font-anton), sans-serif;
-  font-weight: 400;
-  font-size: 40px;
-  line-height: 0.95;
-  letter-spacing: 0.01em;
-  text-transform: uppercase;
-  margin: 0;
-}
-.continentMeta {
-  font-family: var(--font-mono), monospace;
-  font-size: 11.5px;
-  letter-spacing: 0.08em;
+  line-height: 1.35;
+  letter-spacing: var(--type-label-tracking);
   text-transform: uppercase;
   color: var(--text-muted);
-  font-variant-numeric: tabular-nums;
 }
-
-/* ── One country ────────────────────────────────────────────────────────── */
-.country { margin-top: 26px; }
-.countryHead {
+/* "2 countries" never breaks across lines (fix 8). */
+.nowrap { white-space: nowrap; }
+.cardBar {
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 8px 20px;
-  flex-wrap: wrap;
-  padding: 0 8px 10px;
+  gap: 2px;
+  height: 6px;
+  margin-top: 4px;
+  background: var(--bg-soft-2);
+  border-radius: 2px;
+  overflow: hidden;
 }
-/* Anton, at its only weight — a 600 here made the browser fake a bold cut. */
-.countryName {
-  font-family: var(--font-anton), sans-serif;
-  font-weight: 400;
-  font-size: 26px;
-  line-height: 1;
-  letter-spacing: 0.01em;
-  margin: 0;
+.cardLead { font-size: 13.5px; line-height: 1.45; color: var(--text-body); font-variant-numeric: tabular-nums; }
+.cardNext { font-size: var(--type-caption); line-height: 1.45; color: var(--text-muted); }
+
+/* A name in a lead line: ink for everyone, his included (N4). */
+.leadName { font-weight: 600; color: var(--text); }
+/* The leader's figure: ink, and gold only where the figure is his. */
+.leadFig { font-weight: 600; color: var(--text); font-variant-numeric: tabular-nums; }
+.leadHis { color: var(--gold); }
+
+/* Not-reported continents (Africa, and South America — Q1): a hatched cell
+   that always carries the words, never an empty one (item 2). */
+.hatch {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: repeating-linear-gradient(135deg, var(--hatch) 0 1px, transparent 1px 8px);
+  border-radius: 4px;
 }
-.countryLead {
-  font-size: var(--type-small);
+.cardEmpty .hatch { flex: 1; justify-content: flex-end; margin: -2px -4px 0; padding: 12px; }
+.emptyTitle {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1.3;
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+  color: var(--text);
+}
+.emptyNote { font-size: var(--type-caption); line-height: 1.45; color: var(--text-muted); }
+.emptyBlock { margin-top: 16px; padding: 24px; border: 1px solid var(--line); border-radius: 6px; }
+.emptyBlock .emptyTitle { font-size: 13px; letter-spacing: 0.08em; }
+.emptyBlock .emptyNote { font-size: 13.5px; line-height: 1.5; color: var(--text-body); max-width: 62ch; }
+
+/* ── The countries, beside the sticky index ──────────────────────────── */
+.main {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 48px;
+  padding: 48px 0 0;
+  align-items: start;
+}
+.index {
+  position: sticky;
+  top: 84px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-right: 8px;
+  border-right: 1px solid var(--line);
+}
+.indexTitle {
+  padding: 0 0 12px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  line-height: 1.2;
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
   color: var(--text-muted);
+}
+.indexGroup { display: flex; flex-direction: column; gap: 2px; }
+.indexGroup + .indexGroup { margin-top: 12px; }
+.indexContinent,
+.indexLink {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 28px;
+  padding: 0 8px;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background var(--dur-fast) var(--ease);
+}
+.indexContinent {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  line-height: 1.2;
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.indexLink { font-size: 13px; font-weight: 600; line-height: 1.2; color: var(--text-body); }
+.indexLink .flag { font-size: 13px; }
+.indexContinent:hover,
+.indexLink:hover { background: var(--hover); color: var(--text); }
+.indexName { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.indexVal {
+  margin-left: auto;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--dim);
   font-variant-numeric: tabular-nums;
 }
+/* The country on screen: an ember edge and a soft fill (JumpSpy sets
+   aria-current as the reader scrolls). */
+.indexContinent[aria-current],
+.indexLink[aria-current] {
+  color: var(--text);
+  background: var(--bg-soft-2);
+  box-shadow: inset 2px 0 0 var(--ember);
+}
 
-/* The revenue board's row, five columns: rank, artist, best night, shows,
-   total. Same padding, hairlines and hover as .row there. */
+.tables { min-width: 0; }
+/* The column heads, once over every table (each table names its own for a
+   screen reader). Share of country folds away under 1240px. */
 .headRow,
 .row {
   display: grid;
-  grid-template-columns: 52px 160px minmax(0, 1fr) 80px 140px;
-  gap: 20px;
-  align-items: center;
-  padding: 13px 8px;
-  border-bottom: 1px solid var(--line);
+  /* Best single night takes ~54px from Artist, Share and Total (fix 8): the
+     short money form ("$15.50M") needs far less room than full dollars did,
+     the longest name on the board fits 120px, and Canada's run lines go from
+     three lines to two at 1440 (measured on the build, 4 Oct 2026). */
+  grid-template-columns: 32px 120px minmax(0, 1fr) 56px 110px 100px;
+  gap: 16px;
 }
 .headRow {
-  padding: 10px 8px;
+  padding: 0 12px 10px;
+  border-bottom: 2px solid var(--rule);
   font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.08em;
+  font-weight: 700;
+  font-size: var(--type-label);
+  line-height: 1.2;
+  letter-spacing: var(--type-label-tracking);
   text-transform: uppercase;
   color: var(--text-muted);
-  border-bottom-width: 2px;
 }
-.row { transition: background var(--dur-fast) var(--ease); }
-.row:hover { background: var(--bg-raised); }
 
-.backRow { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.continent { padding: 40px 0 0; }
+/* Jumps land below the sticky masthead with room to spare. */
+.continent[id],
+.country[id] { scroll-margin-top: 88px; }
+.continentTitle {
+  display: inline;
+  margin: 0;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 1;
+  text-transform: uppercase;
+}
+.continentMeta {
+  margin-left: 16px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
 
+.country { padding-top: 24px; }
+.countryHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 24px;
+  padding: 0 12px 12px;
+}
+.countryName {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 1.05;
+  white-space: nowrap;
+}
+.countryName .flag { font-size: 22px; }
+.countryLead {
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: var(--text-body);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.countryBar {
+  display: flex;
+  gap: 2px;
+  height: 8px;
+  margin: 0 12px 4px;
+  background: var(--bg-soft-2);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.callout { margin: 8px 12px 4px; font-size: var(--type-caption); line-height: 1.45; color: var(--text-body); }
+.calloutLabel {
+  margin-right: 8px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+  color: var(--text);
+}
+.table { margin-top: 8px; }
+
+/* One artist's row. Hover lifts it onto --hover (globals.css), where his gold
+   still holds 4.62:1 on paper (k4). */
+.row {
+  align-items: start;
+  padding: 14px 12px;
+  border-top: 1px solid var(--line);
+  transition: background var(--dur-fast) var(--ease);
+}
+.row:hover { background: var(--hover); }
+.rank {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 22px;
+  color: var(--dim);
+  font-variant-numeric: tabular-nums;
+}
+.row > :nth-child(2) { line-height: 22px; }
+.bestCell { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.bestLine { font-size: 13.5px; line-height: 22px; }
+.bestFig { font-weight: 600; color: var(--text); font-variant-numeric: tabular-nums; }
+.bestHis { color: var(--gold); }
+.bestMeta { font-size: var(--type-caption); line-height: 1.45; color: var(--text-muted); }
+/* A run inside its artist's row, never split into nights. */
+.run {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: var(--type-caption);
+  line-height: 1.45;
+  color: var(--text-body);
+}
+.run > :first-child { flex: none; height: 20px; }
+.runText { min-width: 0; }
+.runFig { font-weight: 600; color: var(--text); font-variant-numeric: tabular-nums; }
+.runHis { color: var(--gold); }
+
+/* The run marker, this page's own since #418 took the runs section (and its
+   marker) off the shows page: the pill, the two bars, the words — as the
+   board drew it (a534d98e revenue.module.css). */
+.runMarker {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 22px;
+  padding: 0 9px;
+  border-radius: 999px;
+  border: 1px solid var(--btn-edge);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.runMarkerBars { display: flex; gap: 2px; }
+.runMarkerBars > span { width: 3px; height: 9px; background: currentColor; display: block; }
+.nights {
+  text-align: right;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 22px;
+  font-variant-numeric: tabular-nums;
+}
+.shareCell { display: flex; align-items: center; gap: 8px; height: 22px; }
+.shareTrack { flex: 1; display: flex; height: 6px; background: var(--bg-soft-2); border-radius: 2px; overflow: hidden; }
+.shareFill { display: block; min-width: 2px; background: var(--other); }
+.shareFillHis { background: var(--gold-fill); }
+.sharePct {
+  width: 44px;
+  text-align: right;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.total.total { line-height: 22px; }
+
+.backRow { display: flex; flex-wrap: wrap; gap: 12px; margin: 40px 0 0; padding-bottom: 64px; }
+
+/* ── The 1024 band (901–1239px) ──────────────────────────────────────── */
+/* The h1 steps to 61px and the ladder narrows to 420px. The hero's four
+   figures go two by two, so "$68.87M" never runs into "89" and every label
+   keeps to two lines (fix 8). The continent strip goes three across. The
+   sticky index goes — the continent and country headings do its work — and
+   the share-of-country column folds away; the bar over each table still
+   shows the split. */
 @media (max-width: 1239px) {
+  .hero { grid-template-columns: minmax(0, 1fr) minmax(0, 420px); gap: 40px; }
+  .h1.h1 { font-size: 61px; }
+  .figs.figs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .figs.figs > :nth-child(n) { border-right: 0; padding-left: 0; padding-right: 16px; }
+  .figs.figs > :nth-child(odd) { border-right: 1px solid var(--line); }
+  .figs.figs > :nth-child(even) { padding-left: 16px; }
+  .figs.figs > :nth-child(-n + 2) { border-bottom: 1px solid var(--line); }
+  /* "United Kingdom" keeps its whole name in 128px at 13px. */
+  .ladderRow { grid-template-columns: 22px 128px 62px minmax(0, 1fr) 62px; gap: 10px; min-height: 34px; }
+  .ladderName { font-size: 13px; gap: 6px; }
+  .sectionTitle { font-size: 32px; }
+  .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .card { min-height: 170px; }
+  .main { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .index { display: none; }
   .headRow,
-  .row { grid-template-columns: 46px 130px minmax(0, 1fr) 64px 120px; gap: 16px; }
+  .row { grid-template-columns: 28px 120px minmax(0, 1fr) 56px 100px; }
+  .headRow > :nth-child(5),
+  .row > :nth-child(5) { display: none; }
   .continentTitle { font-size: 34px; }
+  .countryName { font-size: 24px; }
 }

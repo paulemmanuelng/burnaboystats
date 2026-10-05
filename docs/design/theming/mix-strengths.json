@@ -275,6 +275,10 @@
     "--gold-glow-base 25%",
     "--text 2%"
   ],
+  "app/components/mobileRevenueCountries.module.css": [
+    "--ember 16%",
+    "--text 2%"
+  ],
   "app/components/mobileSections.module.css": [
     "--gold-wash-base 5%"
   ],
@@ -509,8 +513,7 @@
     "--gold-wash-base 7%"
   ],
   "app/records/tours/revenue/revenue.module.css": [
-    "--ember 16%",
-    "--gold-wash-base 4%"
+    "--ember 16%"
   ],
   "app/records/tours/tours.module.css": [
     "--gold-ink 28%",

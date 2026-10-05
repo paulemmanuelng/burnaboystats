@@ -294,8 +294,6 @@
    --bg-raised took it to 4.14:1); in dark, --bg-raised itself (8.80:1).
    tests/boxOfficeDebug1003.test.tsx computes both from globals.css. */
 .row:hover { background: var(--hover); }
-/* Shared with the countries page: a faint wash on his rows there. */
-.rowHis { background: color-mix(in srgb, var(--gold-wash-base) calc(4% * var(--wash-strength)), transparent); }
 .right { text-align: right; }
 
 /* Shared with the countries page (its Anton ranks). Never gold: every rank is

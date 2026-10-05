@@ -2,6 +2,7 @@ import { revenueShows, revenueStands, type RevenueShow, type RevenueStand } from
 import { performedCountries, CONTINENT_OF, type Continent } from "../data/performedCountries";
 import { CHART_COUNTRIES } from "../data/charts";
 import { RUNS_HEADING } from "./multiNightRuns";
+import { pct } from "./showsChips";
 
 /**
  * Box office by country — who leads every country and every continent for
@@ -80,8 +81,10 @@ export interface Night {
 export interface StandLine {
   venue: string;
   city: string;
+  tour: string;
   dates: string;
   shows: number;
+  tickets: string;
   revenue: number;
 }
 
@@ -150,7 +153,8 @@ function totals(rows: Row[]): ArtistTotal[] {
         a.best = { venue: s.venue, city: s.city, year: s.year, revenue: s.revenue, tickets: s.tickets };
     } else {
       a.shows += r.s.shows;
-      a.stands.push({ venue: r.s.venue, city: r.s.city, dates: r.s.dates, shows: r.s.shows, revenue: r.s.revenue });
+      const st = r.s;
+      a.stands.push({ venue: st.venue, city: st.city, tour: st.tour, dates: st.dates, shows: st.shows, tickets: st.tickets, revenue: st.revenue });
     }
   }
   return [...by.values()].sort(rankArtists);
@@ -256,6 +260,11 @@ export const countryInSentence = (name: string) => `${TAKES_THE.test(name) ? "th
 export const idSlug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 
 /** "1 night" / "4 nights" — a multi-night run counts every night it played. */
+/** A run's tickets, said with its nights: "{tickets} tickets over {k} nights"
+ *  (the standing run grammar; #418 retired the shows page's copy, runTickets,
+ *  when its runs became a chip view). */
+export const runTickets = (tickets: string, nights: number) => `${tickets} tickets over ${nights} nights`;
+
 export const nightsLabel = (n: number) => `${n} ${n === 1 ? "night" : "nights"}`;
 
 /**
@@ -275,58 +284,124 @@ export function summaryLine(b: RevenueByCountry): string {
   return `${what} in ${plural(b.countryCount, "country", "countries")} on ${plural(b.continentCount, "continent", "continents")}`;
 }
 
+/** A money formatter: usdM ("$15.50M", "$385K") or usdFull ("$15,495,482"). */
+export type Money = (n: number) => string;
+
 /**
- * The leader line under a country's name: the leader's own total against the
- * country's, so the figure beside a gold name is never the whole country's.
- * One artist alone says so instead of "$0.82M of $0.82M".
+ * The leader line beside a country's name: the leader's own total against the
+ * country's, their share of it and the nights reported there, so the figure
+ * beside a name is never the whole country's. One artist alone says so instead
+ * of "$0.82M of $0.82M" (review fix 6). The desktop prints full dollars, the
+ * phone the short form (one money form a screen, fix 4); the phone drops the
+ * closing "reported" (GXCountriesPhone).
  */
-export function leaderLine(c: CountryBoard): string {
+export function leaderLine(c: CountryBoard, fmt: Money = usdM, { reported = true }: { reported?: boolean } = {}): string {
+  const nights = `${nightsLabel(c.shows)}${reported ? " reported" : ""}`;
   return c.artists.length === 1
-    ? `· the only artist reported · ${usdM(c.total)} · ${nightsLabel(c.shows)}`
-    : `leads · ${usdM(c.leader.total)} of ${usdM(c.total)} · ${nightsLabel(c.shows)} reported`;
+    ? `· the only artist reported · ${fmt(c.total)} · ${nights}`
+    : `leads · ${fmt(c.leader.total)} of ${fmt(c.total)} · ${pct(c.leader.total / c.total)} · ${nights}`;
 }
 
-/** "4 nights in 2 runs, each reported together · Scotiabank Arena, Toronto; Centre Bell, Montreal". */
-const runsLine = (stands: StandLine[]) =>
-  `${stands.reduce((n, s) => n + s.shows, 0)} nights in ${stands.length} runs, each reported together · ${stands
-    .map((s) => `${s.venue}, ${s.city}`)
-    .join("; ")}`;
-
-/**
- * The best-night line for one artist in one place. A multi-night run never
- * stands in for a night: an artist whose only reported box office there is a
- * run says the nights were reported together, with the run's own figures.
- */
-export function bestNightLine(a: ArtistTotal): string {
-  if (a.best) return `Best night ${usdM(a.best.revenue)} · ${a.best.venue}, ${a.best.city} (${a.best.year})`;
-  const st = a.stands[0];
-  return a.stands.length === 1
-    ? `${st.shows} nights reported together · ${st.venue}, ${st.city} (${st.dates})`
-    : runsLine(a.stands);
+/** One multi-night run as a row prints it: the marker, its gross, where, and
+ *  "{tour} · {dates} · {tickets} tickets over {k} nights" — the board's own
+ *  run grammar (lib/multiNightRuns.ts), the tour in the meta. */
+export function runParts(st: StandLine, fmt: Money = usdM) {
+  return {
+    marker: `Run · ${st.shows} nights`,
+    gross: fmt(st.revenue),
+    place: `${st.venue}, ${st.city}`,
+    meta: `${st.tour} · ${st.dates} · ${runTickets(st.tickets, st.shows)}`,
+  };
 }
 
 /**
- * The desktop best-night cell for an artist whose only box office in a place
- * is multi-night runs, in the single night's own grammar: a headline of
- * "<gross> · <venue>" and a line of "<city> · <dates> · <n> nights reported
- * together" (C5, 3 Oct 2026: the cell read "Nights reported together", then
- * "3 nights reported together · …" under it). Null when there is a best night.
+ * The note under an artist who has single nights AND runs in a place: the
+ * runs are in the total, never in the best night (GXCountriesDesk). Null when
+ * there is no best night (the runs stand in the best-night slot themselves)
+ * or no run.
  */
-export function runCell(a: ArtistTotal): { headline: string; line: string } | null {
-  if (a.best || a.stands.length === 0) return null;
-  if (a.stands.length === 1) {
-    const st = a.stands[0];
-    return { headline: `${usdM(st.revenue)} · ${st.venue}`, line: `${st.city} · ${st.dates} · ${st.shows} nights reported together` };
-  }
-  const sum = a.stands.reduce((n, s) => n + s.revenue, 0);
-  return { headline: `${usdM(sum)} · ${a.stands.length} ${RUN_MANY}`, line: runsLine(a.stands) };
-}
-
-/** The note for a multi-night run beside a best night — the run is in the total, not the best night. */
-export function standNote(a: ArtistTotal): string | null {
+export function runsNote(a: ArtistTotal): string | null {
   if (!a.best || a.stands.length === 0) return null;
   const nights = a.stands.reduce((n, s) => n + s.shows, 0);
   return a.stands.length === 1
-    ? `Total includes a ${nights}-night run at ${a.stands[0].venue} reported as one figure`
-    : `Total includes ${runsLine(a.stands)}`;
+    ? `Total includes a ${nights}-night run, reported as one figure.`
+    : `Total includes ${nights} nights in ${a.stands.length} runs, each reported as one figure.`;
 }
+
+/** "Burna Boy’s" / "Wizkid’s" / "Tems’" — the possessive the callout prints. */
+const possessive = (name: string) => `${name}${name.endsWith("s") ? "’" : "’s"}`;
+
+/**
+ * "Leads on total": where the leader leads on total but someone else holds the
+ * biggest single night there, one derived line says so, so the order reads as
+ * correct rather than as a bug (design S1, Canada). It names the leader, never
+ * "his" (review fix 7). The desktop's long form adds the runs' share and the
+ * venue; the phone's is shorter. Null when the leader also has the best night.
+ */
+export function leadsOnTotal(c: CountryBoard, fmt: Money, form: "desk" | "phone"): string | null {
+  const top = c.artists.filter((a) => a.best).sort((a, b) => b.best!.revenue - a.best!.revenue)[0];
+  if (!top || top.artist === c.leader.artist) return null;
+  const L = c.leader;
+  const runs = L.stands.length;
+  const runGross = L.stands.reduce((n, s) => n + s.revenue, 0);
+  const runWords = `${runs} ${runs === 1 ? "run" : "runs"}`;
+  if (form === "desk") {
+    const first = runs
+      ? `${runWords} ${runs === 1 ? "makes" : "make"} up ${fmt(runGross)} (${pct(runGross / L.total)}) of ${possessive(L.artist)} total. `
+      : "";
+    return `${first}${top.artist} has the biggest single night here, ${fmt(top.best!.revenue)} at ${top.best!.venue}.`;
+  }
+  const first = runs ? `${runWords} ${runs === 1 ? "is" : "are"} ${fmt(runGross)} of ${possessive(L.artist)} ${fmt(L.total)}. ` : "";
+  return `${first}${top.artist} has the biggest single night, ${fmt(top.best!.revenue)}.`;
+}
+
+/** Each artist's share of a country (or continent) total, 0–1. */
+export const shareOf = (a: { total: number }, of: { total: number }) => a.total / of.total;
+
+/** His total in a country: 0 where he has no reported night there. */
+export const hisTotalIn = (c: { artists: readonly ArtistTotal[] }) => c.artists.find((a) => a.his)?.total ?? 0;
+
+/** The anchor of a country's block — the desktop's, or the phone's ("m-" first). */
+export const countryAnchor = (name: string, phone = false) => `${phone ? "m-" : ""}country-${idSlug(name)}`;
+/** The anchor of a continent's section: "k-europe" on desktop, "m-europe" on the phone. */
+export const continentAnchor = (continent: string, phone = false) => `${phone ? "m" : "k"}-${idSlug(continent)}`;
+
+/**
+ * The page's hero figures, all from the board: his summed gross and share,
+ * everyone else's, how many other artists, and the continents counted. "Of 6"
+ * is CONTINENT_ORDER's length, never typed.
+ */
+export function heroFigures(b: RevenueByCountry) {
+  const hisTotal = b.countries.reduce((n, c) => n + hisTotalIn(c), 0);
+  const others = new Set(b.countries.flatMap((c) => c.artists.filter((a) => !a.his).map((a) => a.artist)));
+  return {
+    hisTotal,
+    hisShare: hisTotal / b.grandTotal,
+    othersTotal: b.grandTotal - hisTotal,
+    otherArtists: others.size,
+    continentsAll: CONTINENT_ORDER.length,
+  };
+}
+
+/**
+ * The country ladder: every country by total, the bar's length linear against
+ * the largest country (design §8), his part of it, and the leader named for
+ * every row — his too, in the same place and ink (review fix 5).
+ */
+export function ladderRows(b: RevenueByCountry) {
+  const max = Math.max(...b.countries.map((c) => c.total));
+  return b.countries.map((c, i) => ({
+    rank: String(i + 1).padStart(2, "0"),
+    flag: c.flag,
+    name: c.name,
+    leader: c.leader.artist,
+    total: c.total,
+    /** The bar's length, 0–1 of the largest country. */
+    w: c.total / max,
+    /** His part of the bar, 0–1 of the country. */
+    his: hisTotalIn(c) / c.total,
+  }));
+}
+
+/** A bar width as CSS: "57.55%". */
+export const widthPct = (share: number) => `${(100 * share).toFixed(2)}%`;
