@@ -384,7 +384,7 @@ describe("A-06 / E-11 / D-13 / A-missed: a run's dates and its “tickets over n
     const lines = [...tree.querySelectorAll(`.${runClass}`)];
     expect(lines.length).toBe(runs.length);
     for (const { st } of runs) {
-      const units = [shortDates(st.dates), runTickets(st.tickets, st.shows)];
+      const units = [st.tour, shortDates(st.dates), runTickets(st.tickets, st.shows)];
       const line = lines.find((l) => (l.textContent ?? "").replace(/\s+/g, " ").includes(st.venue))!;
       expect(missing(line, units), `${w} ${st.venue}`).toEqual([]);
       // "·" always rides on the line before: a no-break space ahead of it.
@@ -473,14 +473,15 @@ describe("E-01: focus is never hidden under a phone action bar", () => {
   const g = css("app/globals.css");
   it("any page with an action bar pads its bottom scroll by the bar's height — bottom only", () => {
     const rule = ruleOf(g, 'html:has([class*="__actionBar"])')!;
-    expect(rule).toMatch(/scroll-padding-bottom:\s*calc\(76px \+ env\(safe-area-inset-bottom, 22px\)\)/);
+    expect(rule).toMatch(/scroll-padding-bottom:\s*calc\(80px \+ env\(safe-area-inset-bottom, 22px\)\)/);
     expect(rule).not.toMatch(/scroll-padding-top/);
     // Before the tab bar's and /compare's, so theirs win where they apply.
     const mine = g.indexOf('html:has([class*="__actionBar"])');
     expect(mine).toBeGreaterThan(0);
     expect(mine).toBeLessThan(g.indexOf("html:has(.mobileTabBarPresent)"));
     expect(mine).toBeLessThan(g.indexOf("html:has(.compareBoardBar)"));
-    // 76 covers the bar: 12 + 50 + 12 padding and its 1px rule.
+    // 80 covers the bar — 12 + 50 + 12 padding and its 1px rule — and the
+    // 4px focus ring (2px outline at a 2px offset) below the focused row.
     const bar = ruleOf(css("app/components/mobileRevenue.module.css"), ".actionBar")!;
     expect(bar).toMatch(/padding: 12px 18px calc\(12px/);
     expect(ruleOf(css("app/components/mobileCerts.module.css"), ".actionPrimary")).toMatch(/min-height:\s*50px/);
@@ -650,10 +651,12 @@ describe("F-12: a tour-map region list never starts a line with “·”", () =>
 });
 
 describe("F-13: the home title keeps “Dai Dai” together", () => {
-  it("a no-break space inside it, and the title balances its lines (live: “DAI”” alone)", () => {
+  it("a no-break space inside it (live: “DAI”” alone on the second line)", () => {
     const html = renderToStaticMarkup(<Home />);
     expect(html).toContain(`“Dai${NB}Dai”`);
     expect(html).not.toContain("“Dai Dai”</h2>");
-    expect(ruleOf(css("app/page.module.css"), ".historyTitle")).toMatch(/text-wrap:\s*balance/);
+    // Not text-wrap: balance — measured on the preview at 1440 it split the
+    // name instead: "Shakira × Burna" / "Boy — “Dai Dai”".
+    expect(ruleOf(css("app/page.module.css"), ".historyTitle")).not.toMatch(/text-wrap:\s*balance/);
   });
 });

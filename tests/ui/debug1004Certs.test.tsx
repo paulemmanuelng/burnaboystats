@@ -260,9 +260,9 @@ describe("B-05 / D-10 / E-02: the phone controls' only edge is ≥ 3:1 against t
 // ── B-06 / E-08 ────────────────────────────────────────────────────────────
 describe("B-06 / E-08: the gold kicker on the light hero card ≥ 4.5:1", () => {
   const scrim = ARTIST_CSS.replace(/\/\*[\s\S]*?\*\//g, "").match(/\.heroScrim\s*\{([^}]*)\}/)![1];
-  it("a page-colour band over the kicker's 56px, light only (dark transparent), one gold kept", () => {
+  it("a page-colour band over the kicker's 52px (it sits at 31–47px), light only (dark transparent), one gold kept", () => {
     expect(scrim).toContain(
-      "linear-gradient(180deg, light-dark(color-mix(in srgb, var(--bg) 85%, transparent), transparent) 56px, transparent 96px)",
+      "linear-gradient(180deg, light-dark(color-mix(in srgb, var(--bg) 85%, transparent), transparent) 52px, transparent 160px)",
     );
     expect(ARTIST_CSS.replace(/\/\*[\s\S]*?\*\//g, "").match(/\.kicker\s*\{([^}]*)\}/)![1]).toMatch(/color:\s*var\(--gold\)/);
   });

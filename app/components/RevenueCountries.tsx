@@ -73,15 +73,16 @@ export const keepCounts = (s: string) => s.replace(/(\d[\d,.]*) (?=\S)/g, (_, n:
 
 /**
  * A run's meta on either layout: "{tour} · {dates} · {tickets} tickets over
- * {k} nights", the dates and the tickets each kept whole and every separator
- * ending the line it follows (A-06, E-11, D-13: "28– | 29 November",
- * "50,814 | tickets", "over 3 | nights" on desktop and phone).
+ * {k} nights", the tour, the dates and the tickets each kept whole and every
+ * separator ending the line it follows (A-06, E-11, D-13: "28– | 29 November",
+ * "50,814 | tickets", "over 3 | nights" on desktop and phone; on the preview,
+ * "Made in Lagos | Tour" at 320, 920 and 1240).
  */
 export function RunMeta({ st, keep }: { st: StandLine; keep: string }) {
   const m = runMetaParts(st);
   return (
     <>
-      {m.tour}
+      <span className={keep}>{m.tour}</span>
       {NB}· <span className={keep}>{m.dates}</span>
       {NB}· <span className={keep}>{m.tickets}</span>
     </>

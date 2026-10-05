@@ -175,7 +175,8 @@ export default function Home() {
             <div>
               <div className={styles.historyKicker}>History made · 19 July 2026</div>
               {/* A no-break space inside the title, so it never leaves
-                  "DAI”" alone on a line (F-13, 4 Oct 2026). */}
+                  "DAI”" alone on a line (F-13, 4 Oct 2026). Not text-wrap:
+                  balance, which split "Burna | Boy" at 1440 instead. */}
               <h2 className={styles.historyTitle}>Shakira × Burna Boy — “Dai{"\u00a0"}Dai”</h2>
             </div>
             <div className={styles.historyRow}>
