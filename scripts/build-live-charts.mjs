@@ -29,6 +29,7 @@ import {
   extractCountryChart,
   mergeChartPlacements,
   titleKey,
+  stripInvisible,
   servesCoverArt,
 } from "./stats-lib.mjs";
 import { liveArtist, LIVE_ARTISTS, placementFloor, dropRefusal } from "./live-artists.mjs";
@@ -287,7 +288,12 @@ for (const spec of CHART_SWEEPS) {
     }
     for (const w of work.values()) {
       const mine = rows.get(w.artist.slug);
-      for (const row of mine) row.release = w.aliasByKey?.get(titleKey(row.release)) ?? row.release;
+      // Invisible characters off first, so a swept row stores the title a
+      // reader sees (stripInvisible, stats-lib.mjs).
+      for (const row of mine) {
+        row.release = stripInvisible(row.release);
+        row.release = w.aliasByKey?.get(titleKey(row.release)) ?? row.release;
+      }
 
       // A sweep may only add placements to a release the artist page already
       // knows, or to one an explicit alias named. Anything else is the credit

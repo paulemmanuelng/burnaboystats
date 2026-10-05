@@ -78,7 +78,12 @@ export const LIVE_ARTISTS = {
       { artist: "DJ Tunez", title: "Cool Me Down", release: "Cool Me Down" },
       { artist: "Naira Marley", title: "Wow", release: "Wow" },
     ],
-    titleAliases: { "Kese (Dance)": "Kese" },
+    // "Final (Baba Nla)" is the release's full title and "Final" the one most
+    // charts print: one record, one sleeve on Deezer, and the board split it
+    // into "Final 7 charts" and "Final (Baba Nla) 1 chart" (debug pass,
+    // 5 Oct 2026). The base-title rule keeps a parenthetical as a version, so
+    // it takes an alias.
+    titleAliases: { "Kese (Dance)": "Kese", "Final (Baba Nla)": "Final" },
     out: "liveCharts.wizkid.ts",
     // Collection starts the day this is switched on — a run can only ever be
     // plotted from the first day something was watching. Turned on 17 Aug 2026
