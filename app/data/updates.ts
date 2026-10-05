@@ -34,6 +34,7 @@ const plSingle = CERT_THRESHOLDS.PL.single!;
 const ukSingle = CERT_THRESHOLDS.UK.single!;
 const esSingle = CERT_THRESHOLDS.ES.single!;
 const ptSingle = CERT_THRESHOLDS.PT.single!;
+const dkSingle = CERT_THRESHOLDS.DK.single!;
 
 export type UpdateCategory = "Charts" | "Certifications" | "Streaming" | "Firsts & Records" | "Awards" | "Tours" | "Lifestyle";
 
@@ -52,6 +53,17 @@ export interface Update {
 }
 
 export const updates: Update[] = [
+  {
+    date: "2026-10-04",
+    category: "Certifications",
+    big: true,
+    // Hitlisten, IFPI Danmark's own Track Top-40, "Uge 38 - 2026": "SHAKIRA &
+    // BURNA BOY | DAI DAI | SONY MUSIC | GULD" at No. 32; week 37 has no badge.
+    // The register (to 22.09.2026) has no row yet (certifications.ts, the release
+    // row). The ordinals are this day's count, guarded in tests/daiDaiDenmarkGold.
+    text: `“Dai Dai” is Gold in Denmark: Hitlisten, IFPI Danmark's own chart, lists Shakira & Burna Boy's single at Guld in week 38 of 2026 — ${dkSingle.gold!.toLocaleString("en-US")} units. An eighteenth country for the song, and Burna Boy's 250th plaque.`,
+    href: "/dai-dai",
+  },
   {
     date: "2026-10-04",
     category: "Charts",
