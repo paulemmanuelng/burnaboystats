@@ -42,10 +42,10 @@
   color: var(--text-muted);
 }
 .figs.figs { margin-top: 16px; }
-/* "He leads 9 of 12": his figure, gold — this screen's own class. The shared
-   phone stylesheet has carried no gold tile since #420 (the owner's "so much
-   gold" ruling on the shows hero); tests/showsHeroGold keeps it out of there. */
-.figHis.figHis { color: var(--gold); }
+/* The hero's tiles are ink, "He leads 9 of 12" too, and so is his 65.3%:
+   the owner's #420 "so much gold" ruling on the shows hero, carried here
+   (debug pass 4 Oct 2026, A-04). $44.99M in the caption stays the one gold
+   figure, as $40.280M does on the shows hero. */
 .share { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-top: 14px; }
 .shareSum { font-size: var(--type-caption); line-height: 1.45; color: var(--text-body); font-variant-numeric: tabular-nums; }
 .shareGold { font-weight: 600; color: var(--gold); }
@@ -55,10 +55,12 @@
   font-weight: 400;
   font-size: 22px;
   line-height: 1;
-  color: var(--gold);
+  color: var(--text);
   font-variant-numeric: tabular-nums;
 }
 .heroBar.heroBar { margin-top: 8px; }
+/* A count and its unit, a date, a figure and its share: one unit each. */
+.nowrap { white-space: nowrap; }
 
 /* A name in a lead line: ink for everyone, his included (N4). */
 .leadName { font-weight: 600; color: var(--text); }

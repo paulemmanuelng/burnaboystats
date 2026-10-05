@@ -3,6 +3,54 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import styles from "./scrollRail.module.css";
 
+/** The edge fade's width (scrollRail.module.css: 44px of mask). */
+export const RAIL_FADE = 44;
+/** How far in from a faded edge an item is brought: the fade plus 8px, so
+ *  no part of it sits under the mask (debug 4 Oct 2026, A-01: an 18px pad
+ *  left the deep-linked chip's count under the 44px fade). */
+export const RAIL_PAD = RAIL_FADE + 8;
+
+/** Smooth, unless the reader asked for reduced motion. */
+export const railBehavior = (): ScrollBehavior =>
+  typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth";
+
+/**
+ * Scroll `rail` sideways just enough that `item` sits clear of both edge
+ * fades — RAIL_PAD in from an edge that still has more beyond it. An edge the
+ * rail scrolls flush to has no fade, so the first and last items need no pad.
+ *
+ * Pass "instant", never "auto", for a jump: `.rail` sets scroll-behavior:
+ * smooth, so "auto" animates (B-missed, 4 Oct 2026). Returns where it went.
+ */
+export function bringIntoRail(rail: HTMLElement, item: HTMLElement, behavior: ScrollBehavior): number {
+  const max = rail.scrollWidth - rail.clientWidth;
+  if (max <= 0) return rail.scrollLeft;
+  const left = item.getBoundingClientRect().left - rail.getBoundingClientRect().left + rail.scrollLeft;
+  const right = left + item.getBoundingClientRect().width;
+  let to = rail.scrollLeft;
+  if (left - RAIL_PAD < to) to = left - RAIL_PAD;
+  else if (right + RAIL_PAD > to + rail.clientWidth) to = right + RAIL_PAD - rail.clientWidth;
+  to = Math.max(0, Math.min(max, Math.round(to)));
+  if (to !== Math.round(rail.scrollLeft)) rail.scrollTo?.({ left: to, behavior });
+  return to;
+}
+
+/** The rail's own child that holds `node` (a chip, a card), or null. */
+function itemOf(rail: HTMLElement, node: EventTarget | null): HTMLElement | null {
+  let el = node instanceof HTMLElement ? node : null;
+  while (el && el.parentElement !== rail) el = el.parentElement;
+  return el;
+}
+
+/** Focus from the keyboard, not a press: a press already sees its target. */
+function keyboardFocus(el: Element): boolean {
+  try {
+    return el.matches(":focus-visible");
+  } catch {
+    return true;
+  }
+}
+
 /**
  * A horizontally scrolling rail with edge fades.
  *
@@ -53,6 +101,14 @@ export default function ScrollRail({
         edges.end ? styles.fadeEnd : ""
       }`}
       onScroll={measure}
+      // A chip reached by Tab can sit under a fade with only a sliver showing:
+      // the browser scrolls a focused element only when it is wholly hidden
+      // (A-02, 4 Oct 2026). Bring it clear, as a tapped chip is.
+      onFocus={(e) => {
+        const rail = e.currentTarget;
+        const item = itemOf(rail, e.target);
+        if (item && keyboardFocus(e.target as Element)) bringIntoRail(rail, item, railBehavior());
+      }}
       // A scrollable region needs to be reachable and announced; without this
       // a keyboard user cannot scroll it at all.
       tabIndex={0}

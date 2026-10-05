@@ -77,11 +77,14 @@ describe("the hero: total, nights, continents, the countries he leads, his share
     expect(text(page.desktop!)).toContain(`${usdM(hero.othersTotal)} · ${hero.otherArtists} other artists`);
   });
 
-  it("“9 of 12” and his share are gold; the total and the nights are ink", () => {
-    for (const [, tree] of both()) {
+  it("desktop: “9 of 12” is gold; phone: every hero tile is ink (A-04); the total and the nights ink on both", () => {
+    for (const [w, tree] of both()) {
       const vals = [...tree.querySelectorAll('[class*="figValue"]')];
       const leads = vals.find((v) => text(v) === `${board.hisLeads} of ${board.countryCount}`)!;
-      expect(leads.className).toMatch(/figHis/);
+      // The owner's #420 ruling on the shows phone hero ("so much gold"),
+      // carried to this phone hero on 4 Oct 2026; the desktop hero keeps it.
+      if (w === "desktop") expect(leads.className).toMatch(/figHis/);
+      else expect(leads.className).not.toMatch(/figHis/);
       const nights = vals.find((v) => text(v) === String(board.showCount))!;
       expect(nights.className).not.toMatch(/figHis/);
     }

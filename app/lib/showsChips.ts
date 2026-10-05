@@ -58,8 +58,13 @@ export function nightCounts(artists: readonly string[]): Record<string, number> 
   }, {});
 }
 
-/** The polite live region's words: "32 of 82 shown". */
-export const shownLine = (shown: number, total: number) => `${shown} of ${total} shown`;
+/**
+ * The polite live region's words, on both layouts (A-11, 4 Oct 2026: the
+ * desktop said "16 of 82 shown" and named nobody while the phone said "16 of
+ * 82 shows · Tiwa Savage"): "82 of 82 shows", "16 of 82 shows · Tiwa Savage".
+ */
+export const shownLine = (shown: number, total: number, artist?: string) =>
+  `${shown} of ${total} shows${artist ? ` · ${artist}` : ""}`;
 
 /**
  * A row's scale bar: its gross as a percentage of the No. 1 night's, to two

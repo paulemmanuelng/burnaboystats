@@ -330,19 +330,23 @@ const jsonLd = datasetJsonLd({
 
 // Mobile carries the charts that survive one column: three ranked-bar sets and
 // three donuts. Each is a slice of a chart the desktop page draws in full.
-const toBars = (items: BarItem[], n: number) => {
+const toBars = (items: BarItem[], n: number, { tagEvery = false }: { tagEvery?: boolean } = {}) => {
   const top = items.slice(0, n);
   const max = Math.max(...top.map((b) => b.value));
   // The mobile rows drop the meta line desktop shows, so two rows sharing a
   // name — the grosses list's pair of La Défense Arena shows — would read as
   // the same show twice. When names collide within the slice, append the
   // short artist tag, matching the scatter's "La Défense (Fally)" convention.
+  // `tagEvery`: a list of several artists' rows tags every row, so each one
+  // names its artist in the same place, as the desktop's meta line does —
+  // not only the colliding pair, which left "London Stadium $6.15M" to say
+  // whose night it was by colour alone (debug pass 4 Oct 2026, F-08).
   const nameCount: Record<string, number> = {};
   top.forEach((b) => (nameCount[b.name] = (nameCount[b.name] || 0) + 1));
   return top.map((b) => ({
-    name:
-      [b.flag, b.name].filter(Boolean).join(" ") +
-      (nameCount[b.name] > 1 && b.disambig ? ` (${b.disambig})` : ""),
+    name: [b.flag, b.name].filter(Boolean).join(" "),
+    // Its own field, so a long venue truncates and the artist never does.
+    tag: (tagEvery || nameCount[b.name] > 1) && b.disambig ? b.disambig : undefined,
     value: b.displayValue,
     frac: b.value / max,
     his: b.tone !== "muted",
@@ -415,7 +419,7 @@ export default function VisualizedPage() {
           {
             title: "Biggest single-show grosses",
             note: `Gold is Burna Boy — ${burnaShowCount} of the ${revenueShows.length} verified nights.`,
-            items: toBars(grosses, 6),
+            items: toBars(grosses, 6, { tagEvery: true }),
           },
           {
             title: "Certifications by country",

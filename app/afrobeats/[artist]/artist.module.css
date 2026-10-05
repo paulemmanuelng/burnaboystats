@@ -72,7 +72,15 @@
 .heroScrim {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, color-mix(in srgb, var(--bg) 55%, transparent), color-mix(in srgb, var(--bg) 90%, transparent));
+  background:
+    /* The kicker's band, on paper only: the gold kicker ("🇳🇬 Nigeria",
+       11px) sat on the blurred art at 3.7–4.2:1 for most of the board in
+       light (debug pass 4 Oct 2026, B-06/E-08). Page colour at 85% over the
+       card's top 56px, where the kicker sits, gone by 96px; dark already
+       passes, so it stays transparent there. One gold on paper (globals.css),
+       so the ground moves, not the ink. */
+    linear-gradient(180deg, light-dark(color-mix(in srgb, var(--bg) 85%, transparent), transparent) 56px, transparent 96px),
+    linear-gradient(180deg, color-mix(in srgb, var(--bg) 55%, transparent), color-mix(in srgb, var(--bg) 90%, transparent));
 }
 .heroGrid {
   position: relative;
@@ -575,6 +583,9 @@
 /* Hero actions — the chart board and the live board, named with their own
    figures so the button says what is behind it. */
 .heroActions { display: flex; flex-wrap: wrap; gap: 12px; }
+/* Compare and Biggest shows: one row of their own, together (B-04). The pair
+   takes the whole row, so it always starts one, and never splits. */
+.heroPair { display: flex; flex-wrap: wrap; gap: 12px; flex-basis: 100%; }
 /* No gap of its own: the dot sits .btn's 6px from the label, which is what it
    has always painted. This rule said 9px, but until 23 Sep 2026 its sheet
    loaded before globals.css and .btn won the tie. Since the root layout
@@ -583,7 +594,8 @@
    9px would win. tests/rootLayoutCss.test.ts. */
 .heroLive { display: inline-flex; align-items: center; }
 @media (max-width: 760px) {
-  .heroActions { flex-direction: column; align-items: stretch; }
+  .heroActions,
+  .heroPair { flex-direction: column; align-items: stretch; }
   .heroActions a { justify-content: center; text-align: center; }
 }
 

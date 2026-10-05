@@ -310,5 +310,53 @@
     "line": 290,
     "literal": "rgba(245, 240, 232, 0.55)",
     "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
+  },
+  {
+    "file": "app/certifications/certifications.module.css",
+    "line": 430,
+    "literal": "rgba(0, 0, 0, 0.35)",
+    "reason": "mask alpha ramp, not a painted colour: only the alpha channel is read, so it is the same in both themes"
+  },
+  {
+    "file": "app/certifications/certifications.module.css",
+    "line": 430,
+    "literal": "#000",
+    "reason": "mask alpha ramp, not a painted colour: only the alpha channel is read, so it is the same in both themes"
+  },
+  {
+    "file": "app/certifications/certifications.module.css",
+    "line": 431,
+    "literal": "rgba(0, 0, 0, 0.35)",
+    "reason": "mask alpha ramp, not a painted colour: only the alpha channel is read, so it is the same in both themes"
+  },
+  {
+    "file": "app/certifications/certifications.module.css",
+    "line": 431,
+    "literal": "#000",
+    "reason": "mask alpha ramp, not a painted colour: only the alpha channel is read, so it is the same in both themes"
+  },
+  {
+    "file": "app/certifications/certifications.module.css",
+    "line": 434,
+    "literal": "#000",
+    "reason": "mask alpha ramp, not a painted colour: only the alpha channel is read, so it is the same in both themes"
+  },
+  {
+    "file": "app/certifications/certifications.module.css",
+    "line": 435,
+    "literal": "#000",
+    "reason": "mask alpha ramp, not a painted colour: only the alpha channel is read, so it is the same in both themes"
+  },
+  {
+    "file": "app/components/mobileCerts.module.css",
+    "line": 134,
+    "literal": "#000",
+    "reason": "mask alpha ramp, not a painted colour: only the alpha channel is read, so it is the same in both themes"
+  },
+  {
+    "file": "app/components/mobileCerts.module.css",
+    "line": 135,
+    "literal": "#000",
+    "reason": "mask alpha ramp, not a painted colour: only the alpha channel is read, so it is the same in both themes"
   }
 ]

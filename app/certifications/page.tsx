@@ -21,6 +21,7 @@ import { livePlatformTotals } from "../data/liveCharts";
 import { compareWithLinks } from "../lib/comparePairs";
 import { countryBoardLinks } from "../lib/certCountry";
 import CertViewSwap from "../components/CertViewSwap";
+import { wholePercents } from "../lib/wholePercents";
 import { featuredTitlesOf } from "../lib/certUnits";
 import { withIssuerProvenance } from "../lib/certs";
 import {
@@ -104,10 +105,13 @@ const TIER_INK: Record<string, string> = {
   Silver: "var(--tier-silver-ink)",
 };
 
-const tierRail = tierCounts().map(({ name, count }) => ({
+// Shares by largest remainder, so the rail always adds to 100 (B-10).
+const railCounts = tierCounts();
+const railPcts = wholePercents(railCounts.map((t) => t.count));
+const tierRail = railCounts.map(({ name, count }, i) => ({
   name,
   count,
-  pct: `${Math.round((count / total) * 100)}%`,
+  pct: `${railPcts[i]}%`,
 }));
 
 const thisYear = Math.max(...certHistory.map((e) => e.year));
@@ -178,10 +182,11 @@ function summaryFor(view: CertView): typeof summary {
  *  rail keeps its height when a switch flips. */
 function tierRailFor(view: CertView): typeof tierRail {
   const t = certTotals(certsInView(allItems, { home, featured }, view));
-  return tierRail.map(({ name }) => ({
+  const pcts = wholePercents(tierRail.map(({ name }) => t.tiers[name]));
+  return tierRail.map(({ name }, i) => ({
     name,
     count: t.tiers[name],
-    pct: `${t.total ? Math.round((t.tiers[name] / t.total) * 100) : 0}%`,
+    pct: `${pcts[i]}%`,
   }));
 }
 

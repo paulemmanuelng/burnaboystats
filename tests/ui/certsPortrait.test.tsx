@@ -70,8 +70,12 @@ const has = (el: Element | null, cls: string) => (el?.className ?? "").split(/\s
 // against. It must stay exactly this.
 const SHIPPED_BOX =
   "position: absolute; top: 50%; right: -24%; width: 76%; aspect-ratio: 2 / 5; transform: translateY(-50%); object-fit: cover; object-position: var(--focal, center 24%); filter: grayscale(var(--grayscale, 0.25)) contrast(1.03); opacity: var(--portrait-opacity, 0.42); -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.3) 14%, #000 44%); mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.3) 14%, #000 44%); z-index: -2; pointer-events: none;";
+// Davido's emblem as it shipped: it never reset .heroArt's translateY(-50%),
+// so the 92%-tall box was lifted by half its height (B-07, 4 Oct 2026).
 const SHIPPED_EMBLEM =
   "top: 4%; right: -4%; width: 58%; height: 92%; object-fit: contain; -webkit-mask-image: none; mask-image: none;";
+const EMBLEM =
+  "top: 4%; right: -4%; width: 58%; height: auto; aspect-ratio: 1 / 1; transform: none; object-fit: contain; -webkit-mask-image: none; mask-image: none;";
 
 describe("phone: the raised square is Burna Boy's /certifications only (item 34, option b)", () => {
   it("/certifications: the square slot and its scrim; sizes and the preload agree at 80vw", () => {
@@ -106,9 +110,13 @@ describe("phone: the raised square is Burna Boy's /certifications only (item 34,
     expect(afrobeatsArtists.some((a) => a.slug === "davido")).toBe(true);
   });
 
-  it("the board's cover box and the emblem are the rules that shipped, unchanged", () => {
+  it("the board's cover box is the rule that shipped, unchanged; the emblem resets its transform", () => {
     expect(ruleFor(PHONE_CSS, ".heroArt")).toBe(SHIPPED_BOX);
-    expect(ruleFor(PHONE_CSS, ".heroArtEmblem")).toBe(SHIPPED_EMBLEM);
+    expect(ruleFor(PHONE_CSS, ".heroArtEmblem")).toBe(EMBLEM);
+    // Negative control: the shipped emblem set no transform of its own, so it
+    // inherited the box's translateY(-50%) (live: y −143…322 in a 69–575 hero).
+    expect(decl(SHIPPED_EMBLEM, "transform")).toBeNull();
+    expect(decl(SHIPPED_BOX, "transform")).toBe("translateY(-50%)");
     // Negative control: the slot is a different box, so a .heroArt rewritten
     // to it would fail the line above.
     expect(ruleFor(PHONE_CSS, ".heroArtSlot")).not.toBe(SHIPPED_BOX);
@@ -130,19 +138,28 @@ describe("phone: the raised square is Burna Boy's /certifications only (item 34,
     expect(decl(slot, "mask-composite")).toBe("intersect");
   });
 
-  it("below 390 the slot's scrim holds the unit's line and, on paper, the kicker's", () => {
+  it("below 390 the slot's scrim holds the unit's line and, on paper under a long kicker, the kicker's", () => {
     // Measured: "26 countries" read 3.7:1 dark / 3.1:1 light at 320 and 4.1:1
     // dark at 360 over his neck; at 390 it clears 5.3:1 as drawn.
     const base = ruleFor(PHONE_CSS, ".heroScrimSlot")!;
     const band = mediaRuleFor(PHONE_CSS, "(max-width: 389px)", ".heroScrimSlot")!;
+    const long = mediaRuleFor(PHONE_CSS, "(max-width: 389px)", ".heroScrimSlot.heroScrimLongKicker")!;
     const layers = (bg: string) => bg.split(/,\s*(?=linear-gradient)/);
     const b = layers(decl(band, "background")!);
-    expect(b[0]).toBe("linear-gradient(180deg, transparent 0, transparent 110px, color-mix(in srgb, var(--bg) 75%, transparent) 128px)");
+    const l = layers(decl(long, "background")!);
+    const KICKER_BAND = "linear-gradient(180deg, light-dark(var(--bg), transparent) 40px, transparent 66px)";
+    for (const x of [b, l])
+      expect(x[0]).toBe("linear-gradient(180deg, transparent 0, transparent 110px, color-mix(in srgb, var(--bg) 75%, transparent) 128px)");
     // The longest kicker, on paper: 4.2:1 at 320 through the 92% band. Solid
-    // page colour to 40px in light only; dark is untouched (light-dark).
-    expect(b[1]).toBe("linear-gradient(180deg, light-dark(var(--bg), transparent) 40px, transparent 66px)");
+    // page colour to 40px in light only; dark is untouched (light-dark) — and
+    // only under a long kicker, which runs over his eyes at 320 anyway. Under
+    // "Certified worldwide" the band washed his eyes and glasses to paper at
+    // 320 and 360 for nothing (B-02/D-12/E-04, 4 Oct 2026).
+    expect(l[1]).toBe(KICKER_BAND);
+    expect(b).not.toContain(KICKER_BAND);
     // Every other layer is the slot's own scrim, unchanged.
-    expect(b.slice(2)).toEqual(layers(decl(base, "background")!));
+    expect(b.slice(1)).toEqual(layers(decl(base, "background")!));
+    expect(l.slice(2)).toEqual(layers(decl(base, "background")!));
     // It starts under the chin at 320: the chin is at 59% of the photo.
     const side = 0.8 * 320;
     expect(0.59 * side - 0.16 * side).toBeLessThanOrEqual(110 + 1);
@@ -188,10 +205,23 @@ describe("phone: the raised square is Burna Boy's /certifications only (item 34,
 });
 
 describe("desktop /certifications: the widths follow the rail (item 36), percentages beside counts (Q6)", () => {
-  it("rail 44.2% clamped 400–636; sharp copy min(480px, 33%) at right −40px; blur = rail + 40px", () => {
+  it("rail 44.2% clamped 400–636; sharp copy min(480px, 33%) at right −40px (held to the grid past 1440); blur = rail + 40px", () => {
     const sharp = ruleFor(DESK_CSS, ".heroArt")!;
     expect(decl(sharp, "width")).toBe("min(480px, 33%)");
-    expect(decl(sharp, "right")).toBe("-40px");
+    // −40px up to 1440, then anchored to the 1360 grid (debug pass 4 Oct 2026,
+    // B-03/D-15/E-06): measured live, the plain −40px left 320 of the 440
+    // visible px past the tier rail at 1920.
+    expect(decl(sharp, "right")).toBe("max(-40px, calc(50% - 760px))");
+    expect(decl(ruleFor(DESK_CSS, ".heroArtBlur")!, "right")).toBe("max(0px, calc(50% - 720px))");
+    expect(decl(ruleFor(DESK_CSS, ".heroScrim")!, "right")).toBe("max(0px, calc(50% - 720px))");
+    const right = (W: number) => Math.max(-40, W / 2 - 760);
+    const railEnd = (W: number) => (W - Math.min(W, 1360)) / 2 + Math.min(W, 1360) - 40;
+    // At and below 1440 the art is exactly where it was; above it the art's
+    // right edge keeps 1440's 120px past the rail's end.
+    for (const W of [1024, 1240, 1440]) expect(right(W)).toBe(-40);
+    for (const W of [1440, 1600, 1920, 2560]) expect(W - right(W) - railEnd(W), `${W}`).toBe(120);
+    // Negative control: right −40px at 1920 ends the art 360px past the rail.
+    expect(1920 + 40 - railEnd(1920)).toBe(360);
     expect(decl(sharp, "opacity")).toBe("var(--portrait-opacity, 0.42)");
     expect(decl(ruleFor(DESK_CSS, ".heroArtBlur")!, "width")).toBe("calc(clamp(400px, 44.2%, 636px) + 40px)");
     expect(decl(ruleFor(DESK_CSS, ".heroScrim")!, "width")).toBe("calc(clamp(400px, 44.2%, 636px) + 40px)");
@@ -224,7 +254,7 @@ describe("desktop /certifications: the widths follow the rail (item 36), percent
     for (const W of [1240, 1440, 1920]) {
       const inner = Math.min(W, 1360) - 80;
       const railLeft = (W - Math.min(W, 1360)) / 2 + 40 + (inner * 1.3) / 2.3;
-      const sharpLeft = W + 40 - Math.min(480, 0.33 * W);
+      const sharpLeft = W - Math.max(-40, W / 2 - 760) - Math.min(480, 0.33 * W);
       expect(sharpLeft, `${W}`).toBeGreaterThanOrEqual(railLeft);
     }
   });

@@ -1,6 +1,7 @@
 "use client"; // marks the jump link for the place on screen
 
 import { useEffect, useRef } from "react";
+import { bringIntoRail } from "./ScrollRail";
 
 /**
  * A jump list that knows where the reader is: the desktop "Jump to" index on
@@ -66,13 +67,13 @@ export default function JumpSpy({
       current?.removeAttribute("aria-current");
       next.setAttribute("aria-current", "location");
       current = next;
-      // Keep the current chip in view on a rail that scrolls sideways.
+      // Keep the current chip in view on a rail that scrolls sideways — clear
+      // of the rail's edge fades, not merely inside its box (A-08, 4 Oct 2026:
+      // Asia at 312–373 in a 390 rail sat under the end fade, never scrolled).
+      // "instant" under reduced motion: the rail's scroll-behavior: smooth
+      // would animate "auto".
       const rail = next.closest<HTMLElement>("[data-jump-rail], [role=\"group\"]");
-      if (rail) {
-        const left = next.getBoundingClientRect().left - rail.getBoundingClientRect().left + rail.scrollLeft;
-        const out = left < rail.scrollLeft || left + next.offsetWidth > rail.scrollLeft + rail.clientWidth;
-        if (out) rail.scrollTo({ left: Math.max(0, left - 18), behavior: reduce?.matches ? "auto" : "smooth" });
-      }
+      if (rail && root.contains(rail)) bringIntoRail(rail, next, reduce?.matches ? "instant" : "smooth");
     };
     const onScroll = () => {
       if (!frame) frame = requestAnimationFrame(update);

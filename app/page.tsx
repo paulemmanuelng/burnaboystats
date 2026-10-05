@@ -174,7 +174,9 @@ export default function Home() {
           <div className={styles.historyInner}>
             <div>
               <div className={styles.historyKicker}>History made · 19 July 2026</div>
-              <h2 className={styles.historyTitle}>Shakira × Burna Boy — “Dai Dai”</h2>
+              {/* A no-break space inside the title, so it never leaves
+                  "DAI”" alone on a line (F-13, 4 Oct 2026). */}
+              <h2 className={styles.historyTitle}>Shakira × Burna Boy — “Dai{"\u00a0"}Dai”</h2>
             </div>
             <div className={styles.historyRow}>
               <p className={styles.historyText}>

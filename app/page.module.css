@@ -356,6 +356,7 @@
   line-height: 1.05;
   letter-spacing: 0.01em;
   text-transform: uppercase;
+  text-wrap: balance;
   margin: 14px 0 0;
 }
 .historyRow {

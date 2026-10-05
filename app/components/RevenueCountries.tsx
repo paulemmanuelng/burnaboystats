@@ -14,6 +14,7 @@ import {
   ladderRows,
   leadsOnTotal,
   nightsLabel,
+  runMetaParts,
   runParts,
   runsNote,
   shareOf,
@@ -24,6 +25,7 @@ import {
   type ContinentBoard,
   type CountryBoard,
   type RevenueByCountry,
+  type StandLine,
 } from "../lib/revenueByCountry";
 
 /**
@@ -59,6 +61,33 @@ export const emptyNote = (continent: string) =>
  *  (review fix 18, as on Highest-grossing shows). */
 export const SOURCE_LINE = `${REVENUE_SOURCE}, as of ${REVENUE_AS_OF}.`;
 
+/** A no-break space: binds a separator to the words before it, so a line
+ *  never starts with "· ". */
+export const NB = "\u00a0";
+
+/** Every count held to the word after it — "(89 nights)", "12 countries" —
+ *  for prose the page prints as one string (A-missed, 4 Oct 2026: the method
+ *  note broke "(89 | nights)" on both layouts). Display only: the data,
+ *  JSON-LD and metadata keep plain spaces. */
+export const keepCounts = (s: string) => s.replace(/(\d[\d,.]*) (?=\S)/g, (_, n: string) => `${n}${NB}`);
+
+/**
+ * A run's meta on either layout: "{tour} · {dates} · {tickets} tickets over
+ * {k} nights", the dates and the tickets each kept whole and every separator
+ * ending the line it follows (A-06, E-11, D-13: "28– | 29 November",
+ * "50,814 | tickets", "over 3 | nights" on desktop and phone).
+ */
+export function RunMeta({ st, keep }: { st: StandLine; keep: string }) {
+  const m = runMetaParts(st);
+  return (
+    <>
+      {m.tour}
+      {NB}· <span className={keep}>{m.dates}</span>
+      {NB}· <span className={keep}>{m.tickets}</span>
+    </>
+  );
+}
+
 /**
  * How the page counts — the method note, desktop wording (GXCountriesDesk's
  * five rows), with the source line and the two empty continents (Q1).
@@ -69,9 +98,11 @@ export function methodNote(b: RevenueByCountry, form: "desk" | "phone") {
     { k: "Source", v: SOURCE_LINE },
     {
       k: desk ? "What counts" : "Counts",
-      v: desk
-        ? `Every row of Highest-grossing shows and its multi-night runs: ${summaryLine(b)}.`
-        : `${summaryLine(b)}.`.replace(/^./, (c) => c.toUpperCase()),
+      v: keepCounts(
+        desk
+          ? `Every row of Highest-grossing shows and its multi-night runs: ${summaryLine(b)}.`
+          : `${summaryLine(b)}.`.replace(/^./, (c) => c.toUpperCase())
+      ),
     },
     {
       k: desk ? "A country total" : "Totals",
@@ -135,7 +166,9 @@ function RunLines({ a }: { a: ArtistTotal }) {
               <span>{r.marker}</span>
             </span>
             <span className={own.runText}>
-              <span className={`${own.runFig} ${a.his ? own.runHis : ""}`}>{r.gross}</span> · {r.place} · {r.meta}
+              <span className={`${own.runFig} ${a.his ? own.runHis : ""}`}>{r.gross}</span>
+              {NB}· {r.place}
+              {NB}· <RunMeta st={st} keep={own.nowrap} />
             </span>
           </span>
         );
@@ -170,7 +203,7 @@ function ArtistRow({ a, rank, c }: { a: ArtistTotal; rank: number; c: CountryBoa
             </span>
             <span className={own.bestMeta}>
               {a.best.city} · {a.best.year}
-              {a.best.tickets ? ` · ${a.best.tickets} tickets` : ""}
+              {a.best.tickets ? `${NB}· ${a.best.tickets}${NB}tickets` : ""}
             </span>
           </>
         )}
@@ -212,13 +245,15 @@ function CountryBlock({ c }: { c: CountryBoard }) {
           {single ? (
             <>
               · the only artist reported ·{" "}
-              <span className={`${own.leadFig} ${c.leader.his ? own.leadHis : ""}`}>{usdM(c.total)}</span> ·{" "}
-              {nightsLabel(c.shows)} reported
+              <span className={`${own.leadFig} ${c.leader.his ? own.leadHis : ""}`}>{usdM(c.total)}</span>
+              {NB}· <span className={own.nowrap}>{nightsLabel(c.shows)}</span> reported
             </>
           ) : (
             <>
               leads · <span className={`${own.leadFig} ${c.leader.his ? own.leadHis : ""}`}>{usdM(c.leader.total)}</span>{" "}
-              of {usdM(c.total)} · {pct(shareOf(c.leader, c))} · {nightsLabel(c.shows)} reported
+              of {usdM(c.total)}
+              {NB}· {pct(shareOf(c.leader, c))}
+              {NB}· <span className={own.nowrap}>{nightsLabel(c.shows)}</span> reported
             </>
           )}
         </span>
@@ -285,9 +320,13 @@ function ContinentCard({ k, rank }: { k: ContinentBoard; rank: number }) {
         <span className={`${own.seg} ${L.his ? own.segHis : ""}`} style={{ width: widthPct(shareOf(L, k)) }} />
         {k.artists.length > 1 && <span className={own.seg} style={{ flex: 1 }} />}
       </span>
+      {/* The figure and its share as one unit: "$21.18M | · 61.7%" and
+          "$2.06M · | 100.0%" left the share alone on a line (A-13). */}
       <span className={own.cardLead}>
         <span className={own.leadName}>{L.artist}</span> leads ·{" "}
-        <span className={`${own.leadFig} ${L.his ? own.leadHis : ""}`}>{usdM(L.total)}</span> · {pct(shareOf(L, k))}
+        <span className={own.nowrap}>
+          <span className={`${own.leadFig} ${L.his ? own.leadHis : ""}`}>{usdM(L.total)}</span> · {pct(shareOf(L, k))}
+        </span>
       </span>
       <span className={own.cardNext}>{next ? `Next: ${next.artist} · ${usdM(next.total)}` : "The only artist reported"}</span>
     </li>
@@ -468,7 +507,7 @@ export default function RevenueCountries({
               <span>Artist</span>
               <span>Best single night</span>
               <span className={styles.right}>Nights</span>
-              <span className={own.shareHeadCell}>Share of country</span>
+              <span>Share of country</span>
               <span className={styles.right}>Total gross</span>
             </div>
 
