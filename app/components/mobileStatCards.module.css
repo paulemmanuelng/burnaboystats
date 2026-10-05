@@ -114,7 +114,10 @@
   white-space: nowrap;
   cursor: pointer;
 }
-.chipOn { border-color: var(--gold); background: color-mix(in srgb, var(--gold-wash-base) calc(16% * var(--wash-strength)), transparent); color: var(--gold); }
+/* The selected chip: N2's ember edge, ember wash and ink label (globals.css
+   --chip-on-*), as on every phone rail since 5 Oct 2026. It was gold, beside
+   the screen's one gold fill, the save action. */
+.chipOn { border-color: var(--chip-on-edge); background: var(--chip-on-wash); color: var(--chip-on-ink); }
 
 /* ── The card preview ─────────────────────────────────────────────────── */
 .stage { padding: 0 18px;   position: relative; /* anchors the failed overlay */
@@ -149,7 +152,8 @@
   text-transform: uppercase;
   cursor: pointer;
 }
-.ratioOn { background: var(--bg-soft); border-color: var(--gold); color: var(--gold); }
+/* The selected ratio: the same N2 selected pill as the record chips above. */
+.ratioOn { background: var(--chip-on-wash); border-color: var(--chip-on-edge); color: var(--chip-on-ink); }
 
 .note {
   font-family: var(--font-mono), monospace;

@@ -153,7 +153,10 @@
   white-space: nowrap;
   cursor: pointer;
 }
-.chipOn { background: color-mix(in srgb, var(--ember) calc(16% * var(--wash-strength)), transparent); border-color: var(--ember); color: var(--ember); }
+/* The selected chip: N2's ember edge, ember wash and INK label (globals.css
+   --chip-on-*), as on every phone rail since 5 Oct 2026. It had the ember
+   edge already, but an ember label and the thinner house wash. */
+.chipOn { background: var(--chip-on-wash); border-color: var(--chip-on-edge); color: var(--chip-on-ink); }
 
 .metaBar {
   display: flex;
@@ -294,14 +297,18 @@
   cursor: pointer;
 }
 .yearPillHis { color: var(--gold); border-color: color-mix(in srgb, var(--gold-wash-base) calc(38% * var(--wash-strength)), transparent); }
-.yearPillOn {
-  background: var(--text);
-  color: var(--bg);
-  border-color: var(--text);
+/* The selected pill: N2's ember edge, ember wash and ink label (globals.css
+   --chip-on-*), as on every phone rail since 5 Oct 2026. It was an ink fill,
+   and a solid GOLD fill on a year he took — a second gold fill on the screen.
+   The selected pill still wins over the gold one (the compound selector holds
+   that whatever the order): a year he took, while selected, is the selected
+   pill, and the panel beneath it says "He won the year". */
+.yearPillOn,
+.yearPillHis.yearPillOn {
+  background: var(--chip-on-wash);
+  color: var(--chip-on-ink);
+  border-color: var(--chip-on-edge);
 }
-/* The selected pill wins over the gold one: a year he took, while selected,
-   is still the selected pill. */
-.yearPillHis.yearPillOn { background: var(--gold); color: var(--bg); border-color: var(--gold); }
 .yearPill:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
 
 .yearPanel { margin-top: 10px; }

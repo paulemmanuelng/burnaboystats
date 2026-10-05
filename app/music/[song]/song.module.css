@@ -334,6 +334,14 @@
   .wrap { padding: 0 18px; }
   .crumbs { padding: 12px 18px 0; }
   .pickerPad { padding: 14px 18px 0; }
+  /* The song on screen, in the picker: N2's selected chip on a phone (an
+     ember edge, an ember wash, an ink label; globals.css --chip-on-*), as on
+     every phone rail since 5 Oct 2026. This picker is the one chip rail both
+     layouts share, so the laptop keeps its gold .pickOn above, as every
+     desktop chip does. :hover too, so a tap's sticky hover cannot put the
+     gold edge back on the chip it just selected. */
+  .pickOn,
+  .pickOn:hover { border-color: var(--chip-on-edge); background: var(--chip-on-wash); color: var(--chip-on-ink); }
   .heroPad { padding: 18px 18px 0; }
   .sectionPad { padding: 30px 18px 0; }
   /* Screen 26 centres the hero over its own blurred cover, rather than the

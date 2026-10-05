@@ -160,7 +160,6 @@
     "--glow-base 15%"
   ],
   "app/components/mobileAfricasBiggest.module.css": [
-    "--ember 16%",
     "--gold-wash-base 38%",
     "--gold-wash-base 8%"
   ],
@@ -188,7 +187,6 @@
     "--gold-wash-base 8%"
   ],
   "app/components/mobileAwards.module.css": [
-    "--ember 16%",
     "--green 45%",
     "--green 9%"
   ],
@@ -214,8 +212,6 @@
     "--bg 92%",
     "--brand-accent-ink 10%",
     "--brand-accent-ink 16%",
-    "--ember 10%",
-    "--ember 16%",
     "--gold-glow-base 24%",
     "--gold-ink 40%",
     "--gold-ink 40%",
@@ -227,7 +223,6 @@
   "app/components/mobileDeepPage.module.css": [
     "--gold-glow-base 25%",
     "--gold-ink 55%",
-    "--gold-wash-base 16%",
     "--gold-wash-base 30%",
     "--gold-wash-base 55%",
     "--gold-wash-base 6%",
@@ -269,7 +264,6 @@
   ],
   "app/components/mobileOfficialCharts.module.css": [
     "--gold-glow-base 25%",
-    "--gold-wash-base 16%",
     "--gold-wash-base 8%"
   ],
   "app/components/mobileRecords.module.css": [
@@ -290,7 +284,6 @@
   "app/components/mobileStatCards.module.css": [
     "--gold-glow-base 25%",
     "--gold-ink 28%",
-    "--gold-wash-base 16%",
     "--veil-base 82%"
   ],
   "app/components/mobileTourMap.module.css": [
@@ -333,6 +326,8 @@
   ],
   "app/globals.css": [
     "--bg-raised 40%",
+    "--ember 10%",
+    "--ember 16%",
     "--glow-base 10%",
     "--glow-base 15%",
     "--gold-glow-base 22%",

@@ -159,6 +159,9 @@
   gap: 7px;
   white-space: nowrap;
 }
+/* The selected chip: N2's ember edge, ember wash and ink label (globals.css
+   --chip-on-*), as on every phone rail since 5 Oct 2026. */
+.chipOn { background: var(--chip-on-wash); border-color: var(--chip-on-edge); color: var(--chip-on-ink); }
 .chipDot { width: 7px; height: 7px; border-radius: 50%; flex: none; display: block; }
 
 /* ── Feed ─────────────────────────────────────────────────────────────── */

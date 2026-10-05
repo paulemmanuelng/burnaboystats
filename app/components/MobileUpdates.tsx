@@ -119,14 +119,16 @@ export default function MobileUpdates({
           note above the form) sits right here, not three entries down. */}
       {subscribeEnabled && landed && <SubscribeBox id="digest-m" compact entries="#entries-m" />}
 
-      {/* Filter rail */}
+      {/* Filter rail. The selected chip is N2's ember edge, wash and ink label
+          (styles.chipOn); a category keeps its colour on its dot, as the
+          certifications tiers do. It was the category's colour (gold for
+          "All") on the edge and label, set inline (owner, 5 Oct 2026). */}
       <div className={styles.rail}>
         <button
           type="button"
           aria-pressed={cat === null}
           onClick={() => setCat(null)}
-          className={styles.chip}
-          style={cat === null ? { borderColor: "var(--gold)", color: "var(--gold)" } : undefined}
+          className={`${styles.chip} ${cat === null ? styles.chipOn : ""}`}
         >
           All {items.length}
         </button>
@@ -139,8 +141,7 @@ export default function MobileUpdates({
               type="button"
               aria-pressed={on}
               onClick={() => setCat(on ? null : c)}
-              className={styles.chip}
-              style={on ? { borderColor: ink, color: ink } : undefined}
+              className={`${styles.chip} ${on ? styles.chipOn : ""}`}
             >
               <span className={styles.chipDot} style={{ background: ink }} aria-hidden="true" />
               {c} {counts[c]}
