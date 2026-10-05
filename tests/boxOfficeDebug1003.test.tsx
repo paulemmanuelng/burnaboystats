@@ -22,7 +22,7 @@ import CountriesPage from "../app/records/tours/revenue/countries/page";
 import { chipOrder } from "../app/components/RevenueBoard";
 import { revenueShows, revenueStands } from "../app/data/tourRevenue";
 import { AFROBEATS_EDITED_ON, afrobeatsArtists } from "../app/data/afrobeats";
-import { REVENUE_AS_OF, REVENUE_BODY, REVENUE_FOOTER_NOTE, REVENUE_READ_ON, REVENUE_REPORTS, REVENUE_SOURCE } from "../app/lib/revenueSource";
+import { REVENUE_AS_OF, REVENUE_BODY, REVENUE_FOOTER_NOTE, REVENUE_READ_ON, REVENUE_REPORTS, REVENUE_SOURCE, REVENUE_STAMP } from "../app/lib/revenueSource";
 import { compactGross } from "../app/lib/grossLabel";
 import { numberWord } from "../app/lib/homeData";
 import { RUNS_HEADING, runRankCeiling } from "../app/lib/multiNightRuns";
@@ -423,7 +423,11 @@ describe("sw-5 / C8: both box-office routes carry the board's read date", () => 
     // The feed can only move a route later, never earlier than its stamp.
     expect(dayOf("/records/tours/revenue")! >= REVENUE_READ_ON).toBe(true);
     expect(dayOf("/records/tours/revenue/countries")! >= REVENUE_READ_ON).toBe(true);
-    expect(countriesHtml).toContain(`"dateModified":"${REVENUE_READ_ON}"`);
+    // The page and the sitemap share one stamp: the read, or a later edit
+    // made without one (REVENUE_STAMP, 5 Oct 2026).
+    expect(REVENUE_STAMP >= REVENUE_READ_ON).toBe(true);
+    expect(countriesHtml).toContain(`"dateModified":"${REVENUE_STAMP}"`);
+    expect(dayOf("/records/tours/revenue/countries")).toBe(REVENUE_STAMP);
     // REVENUE_AS_OF is that day's month, never a second typed date.
     expect(REVENUE_AS_OF).toBe(new Date(`${REVENUE_READ_ON}T12:00:00Z`).toLocaleDateString("en-GB", { month: "long", year: "numeric", timeZone: "UTC" }));
   });

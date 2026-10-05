@@ -2,6 +2,7 @@ import { apiJson } from "../../../lib/api";
 import { tours, festivals, otherShows, concerts } from "../../../data/tours";
 import { revenueShows, revenueStands } from "../../../data/tourRevenue";
 import { countryCount as performedCountryCount } from "../../../data/performedCountries";
+import { partialReason } from "../../../lib/tourMeta";
 
 export const dynamic = "force-static";
 
@@ -17,11 +18,16 @@ const runs = tours.map((t) => ({
   gross: t.gross ?? null,
   tickets: t.tickets ?? null,
   shows: t.shows ?? t.dates?.length ?? null,
-  // data/tours.ts's own meaning: the full itinerary was never documented or
-  // the routing changed, so only confirmed shows are listed and the show count
-  // is a floor. It said "a run still in progress", which Space Drift (2021–22)
+  // data/tours.ts's own meaning: the full itinerary was never documented, the
+  // routing changed, or the list leaves known nights out, so only confirmed
+  // shows are listed and the show count is a floor. It said "a run still in progress", which Space Drift (2021–22)
   // is not.
   partial: t.partial ?? false,
+  // Why, in the words printed under its dates on /records/tours. A single
+  // reason in the description below said every partial run's itinerary was
+  // "never documented" — untrue of Love, Damini, announced in full and partial
+  // only because this list leaves known nights out (C-07 review, 5 Oct 2026).
+  partialNote: partialReason(t),
   note: t.note,
   dates:
     t.dates?.map((d) => ({
@@ -37,7 +43,7 @@ export function GET() {
   return apiJson({
     endpoint: "/tours",
     description:
-      "Tours, festival sets and one-off shows, with box-office figures where a source publishes them. `gross` and `tickets` are kept as the strings the box-office source published — they arrive rounded and qualified, and parsing them to numbers would invent precision the source never claimed. `partial: true` marks a run listed from its confirmed shows only, because its full itinerary was never documented or its routing changed, so its show count is a floor. `concerts` are his solo headline shows outside a routed tour. `highestGrossingShows` is the Highest-grossing shows board: every verified single-show gross by an African artist, not only his, ranked by gross, each row naming its artist. `multiNightStands` are its multi-night runs — several nights at one venue reported only as one combined figure — kept apart from that ranking with the reported totals, and no per-night split.",
+      "Tours, festival sets and one-off shows, with box-office figures where a source publishes them. `gross` and `tickets` are kept as the strings the box-office source published — they arrive rounded and qualified, and parsing them to numbers would invent precision the source never claimed. `partial: true` marks a run this list does not hold in full, so its show count is a floor; `partialNote` gives that run's own reason, as printed under its dates on /records/tours (null for a run listed in full). `concerts` are his solo headline shows outside a routed tour. `highestGrossingShows` is the Highest-grossing shows board: every verified single-show gross by an African artist, not only his, ranked by gross, each row naming its artist. `multiNightStands` are its multi-night runs — several nights at one venue reported only as one combined figure — kept apart from that ranking with the reported totals, and no per-night split.",
     count: runs.length,
     countOf: "tours",
     data: {

@@ -1,7 +1,7 @@
 import RevenueCountries from "../../../../components/RevenueCountries";
 import MobileRevenueCountries from "../../../../components/MobileRevenueCountries";
 import { nightsLabel, revenueByCountry, summaryLine, usdFull } from "../../../../lib/revenueByCountry";
-import { REVENUE_READ_ON } from "../../../../lib/revenueSource";
+import { REVENUE_STAMP } from "../../../../lib/revenueSource";
 import { pageMetadata, datasetJsonLd } from "../../../../lib/seo";
 
 /**
@@ -50,9 +50,10 @@ const listJsonLd = {
   })),
 };
 
-/** The day the board was last re-read, ISO 8601 — the same stamp the sitemap
- *  gives this route (app/sitemap.ts), so the two never disagree. */
-const dateModified = REVENUE_READ_ON;
+/** The later of the board's last re-read and an edit made without one, ISO
+ *  8601 — the same stamp the sitemap gives this route (app/sitemap.ts), so
+ *  the two never disagree. */
+const dateModified = REVENUE_STAMP;
 
 const dataset = datasetJsonLd({
   name: "Reported box office by country — African artists",

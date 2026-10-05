@@ -73,6 +73,28 @@ export function daiDaiRegisterClauses(units = daiDai): string[] {
 }
 const registerClauses = daiDaiRegisterClauses();
 
+/** The fan estimate's lines for markets where it claims units, named as it
+ *  names them, with the plaque codes a body there would file the song under.
+ *  "MENA" covers the region's markets, any of which pricing the song breaks
+ *  "no register prices the song at all" there. */
+export const DAI_DAI_FAN_MARKETS: { name: string; codes: string[] }[] = [
+  { name: "India", codes: ["IN"] },
+  { name: "MENA", codes: ["MENA", "AE", "SA", "EG", "LB", "MA", "QA", "KW", "BH", "OM", "JO"] },
+  { name: "Brazil", codes: ["BR"] },
+  { name: "Mexico", codes: ["MX"] },
+];
+
+/** The fan markets where the song holds no plaque — the ones the paragraph may
+ *  say "no register prices the song at all" of. Derived from its plaques, so a
+ *  market drops out of the sentence the day a body there certifies the song
+ *  (the sentence was typed until 5 Oct 2026; review of the 4 Oct debug PR). */
+export function daiDaiUnpricedMarkets(certs: { c: string }[] = daiDai?.release.certs ?? []): string[] {
+  const held = new Set(certs.map((x) => x.c));
+  return DAI_DAI_FAN_MARKETS.filter((m) => !m.codes.some((c) => held.has(c))).map((m) => m.name);
+}
+const unpricedMarkets = daiDaiUnpricedMarkets();
+const listJoin = (xs: string[]) => (xs.length < 2 ? xs.join("") : `${xs.slice(0, -1).join(", ")} and ${xs.at(-1)}`);
+
 export const unsourcedBodies: RejectedClaim[] = [
   { claim: "ASCAP Awards", reason: "No primary source names him for a specific song or year." },
   { claim: "The FABYs", reason: "No primary source names him at all." },
@@ -113,7 +135,9 @@ export const disputedCounts: RejectedClaim[] = [
   {
     claim: "“Dai Dai” — 6,050,000 units sold worldwide",
     reason:
-      `A fan estimate, not a figure any body or platform publishes. No certifying body states worldwide units for a single, and pure sales run in the low thousands a week, so a total that size can only be streams converted to units at a ratio of the poster's choosing — its lines for India, MENA, Brazil and Mexico sit where no register prices the song at all.${
+      `A fan estimate, not a figure any body or platform publishes. No certifying body states worldwide units for a single, and pure sales run in the low thousands a week, so a total that size can only be streams converted to units at a ratio of the poster's choosing${
+        unpricedMarkets.length ? ` — its lines for ${listJoin(unpricedMarkets)} sit where no register prices the song at all` : ""
+      }.${
         registerClauses.length ? ` Where a register does speak, it says less: ${registerClauses.join("; ")}.` : ""
       } This site prices the song's ${daiDai?.release.certs.length ?? 0} plaques at their own bodies' thresholds — at least ${fmt(daiDai?.total ?? 0)} certified units across the ${daiDai?.pricedPlaques ?? 0} that can be priced — and publishes no worldwide total.`,
   },

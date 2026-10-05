@@ -4,7 +4,8 @@
 // `shows` lists documented dates (venue · city · capacity). Capacities are the
 // venues' standard listed capacities. Where a full itinerary was never publicly
 // documented (early tours) or a routing changed (cancellations), only confirmed
-// shows are listed — `partial: true` flags those.
+// shows are listed — `partial: true` flags those, as it does a run whose list
+// here leaves known nights out (`partialNote` says so, Love, Damini).
 
 // No value import from ./tourRevenue here: this file reaches client bundles
 // (MobileTours, and CertExplorer/TracklistDialog through albumPages), and
@@ -36,6 +37,14 @@ export interface Tour {
   record?: boolean;
   dates?: Show[];
   partial?: boolean;
+  /**
+   * Why a `partial` run is partial, in the words of the note under its dates,
+   * where the stock reason ("the full itinerary was never publicly
+   * documented") is not true. The Love, Damini Tour was announced in full; it
+   * is partial only because the list here leaves nights out. Set, the note
+   * keeps the date count and the capacities sentence around it (lib/tourMeta).
+   */
+  partialNote?: string;
 }
 
 /** The day the tour data — this file and the map's own country lines
@@ -43,8 +52,9 @@ export interface Tour {
  *  /records/tours and /records/tours/map. Their content has no feed entry of
  *  its own: Dublin's 3Arena night joined Space Drift on 4 Oct 2026 while both
  *  routes still advertised 25 Sep and 15 Aug (debug pass 4 Oct, D-04). Bump it
- *  with any edit to the dates, tours or map lines; tests/sitemapContentStamps
- *  .test.ts fingerprints the data and fails until it is moved.
+ *  with any edit to the dates, tours or map lines; tests/debug1004Data.test.tsx
+ *  ("TOURS_EDITED_ON moves with the tour data") fingerprints the data and
+ *  fails until it is moved.
  *  5 Oct 2026: Love, Damini marked `partial`, Ireland's map line (C-07). */
 export const TOURS_EDITED_ON = "2026-10-05";
 
@@ -144,7 +154,11 @@ export const tours: Tour[] = [
     // his second 3Arena night, Dublin, Dec 2022 (see Space Drift below), and
     // the La Défense Arena night of 2023 that the box-office board grosses
     // under this tour — so /api/v1/tours must not publish it as complete.
+    // Its itinerary was announced in full, so the note under its dates says
+    // only that the list is not the whole run (C-07 review, 5 Oct 2026: the
+    // stock "never publicly documented" was false here).
     partial: true,
+    partialNote: "Not every night of the run is listed here.",
     note: "The stadium-era run behind the album — off the back of his Madison Square Garden debut, it made him the first African artist to headline a UK stadium (London Stadium) and to sell out a US stadium (Citi Field). The tour grossed roughly $11.8M across its dates.",
     dates: [
       { date: "Jul 17, 2022", venue: "Tipsy All White Beach Party", city: "Bridgetown", country: "Barbados" },

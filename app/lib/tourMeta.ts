@@ -16,12 +16,29 @@ export function tourMeta(t: Tour): string {
   return `${t.dates?.length ?? 0} documented dates`;
 }
 
+/** Why a partial run is partial, where the run gives no reason of its own. */
+export const PARTIAL_STOCK_NOTE = "Confirmed dates only — the full itinerary was never publicly documented.";
+
+/** Why this run's list is not the whole run — its own reason where it has one
+ *  (`partialNote`), else the stock one; null for a run listed in full. The
+ *  note under its dates and /api/v1/tours both say this, so neither can give
+ *  a reason the other does not. */
+export function partialReason(t: Tour): string | null {
+  if (!t.partial) return null;
+  return t.partialNote ?? PARTIAL_STOCK_NOTE;
+}
+
 /** The note under an opened tour's date table. */
 export function tourDateNote(t: Tour): string {
-  if (t.partial) return "Confirmed dates only — the full itinerary was never publicly documented.";
-
   const dates = t.dates?.length ?? 0;
   const capacities = "Capacities are the venues’ standard listed capacities.";
+
+  // A run with its own reason for being partial keeps the count and the
+  // capacities sentence: the Love, Damini Tour was announced in full, and the
+  // stock reason below said otherwise once it was marked partial (C-07 review,
+  // 5 Oct 2026).
+  if (t.partial && t.partialNote) return `${dates} documented dates. ${t.partialNote} ${capacities}`;
+  if (t.partial) return PARTIAL_STOCK_NOTE;
 
   // The header says "22 shows" and the table below it lists 24 dates. Both are
   // right and they count different things — box office is only reported for

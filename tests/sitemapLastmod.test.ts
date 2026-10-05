@@ -3,7 +3,8 @@ import sitemap from "../app/sitemap";
 import { updates } from "../app/data/updates";
 import { AFROBEATS_EDITED_ON, afrobeatsArtists, sweptArtists } from "../app/data/afrobeats";
 import { TOURS_EDITED_ON } from "../app/data/tours";
-import { CERTS_VERIFIED_ON } from "../app/data/certifications";
+import { CERTS_EDITED_ON, CERTS_VERIFIED_ON } from "../app/data/certifications";
+import { REVENUE_EDITED_ON } from "../app/lib/revenueSource";
 import { liveChartsUpdated } from "../app/data/liveCharts";
 import { LIVE_BOARDS } from "../app/data/liveBoards";
 import { siteUrl } from "../app/site";
@@ -92,6 +93,8 @@ describe("sitemap lastmod", () => {
       ...Object.values(AFROBEATS_EDITED_ON),
       TOURS_EDITED_ON,
       CERTS_VERIFIED_ON,
+      CERTS_EDITED_ON,
+      REVENUE_EDITED_ON,
     ]
       .sort()
       .at(-1)!;

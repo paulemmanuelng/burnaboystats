@@ -1163,6 +1163,19 @@ export const announcedClause = (lead: string): string =>
  *  — bump it on every body read, in the same edit as the row it changes. */
 export const CERTS_VERIFIED_ON = "2026-10-04";
 
+/** The day this file's plaques last changed WITHOUT a register read — a
+ *  plaque's provenance marked, a body or source corrected. 5 Oct 2026: "Dai
+ *  Dai"'s Danish Gold marked `source: "announcement"` (C-05/D-02), which moved
+ *  the methodology's exceptions and the board's off-register count while every
+ *  route that prints them still said 4 Oct or older. Move it with any such
+ *  edit; tests/debug1004Data.test.tsx fingerprints the provenance fields and
+ *  fails until it is moved. The page still PRINTS CERTS_VERIFIED_ON. */
+export const CERTS_EDITED_ON = "2026-10-05";
+
+/** The date the routes that print these plaques are stamped with — the later
+ *  of the read and the edit (sitemap lastmod, /certifications' dateModified). */
+export const CERTS_STAMP = [CERTS_VERIFIED_ON, CERTS_EDITED_ON].sort().at(-1)!;
+
 /** "Dai Dai" Platinum plaques beyond the US Latin 2× — the "Platinum in N more"
  *  rail note on the story and its Spanish twin, counted rather than typed after
  *  Greece's upgrade left the Spanish edition saying 5 while English said 6. */

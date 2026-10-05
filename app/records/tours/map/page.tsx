@@ -6,7 +6,7 @@ import { countryCount, regionCount } from "../../../data/performedCountries";
 import TourMapText from "../../../components/TourMapText";
 import { tourMapProps } from "../../../lib/tourMapData";
 import { TOURS_EDITED_ON } from "../../../data/tours";
-import { REVENUE_READ_ON } from "../../../lib/revenueSource";
+import { REVENUE_STAMP } from "../../../lib/revenueSource";
 import styles from "./map.module.css";
 
 export const metadata = pageMetadata({
@@ -25,7 +25,7 @@ const dataset = datasetJsonLd({
   variableMeasured: ["Country", "Region", "Notable performances"],
   // The later of the tour data's last edit and the box-office board's read —
   // the sitemap's lastmod for this route (D-04, 4 Oct 2026).
-  dateModified: [TOURS_EDITED_ON, REVENUE_READ_ON].sort().at(-1)!,
+  dateModified: [TOURS_EDITED_ON, REVENUE_STAMP].sort().at(-1)!,
 });
 
 /**

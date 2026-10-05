@@ -23,8 +23,8 @@ import { siteUrl } from "../app/site";
 import ArtistPage from "../app/afrobeats/[artist]/page";
 import CertificationsPage from "../app/certifications/page";
 import RecordsPage from "../app/records/page";
-import { disputedCounts, daiDaiRegisterClauses, DAI_DAI_FAN_LINES } from "../app/data/rejectedClaims";
-import { allItems, COUNTRIES, CERTS_VERIFIED_ON, announcedPlaques } from "../app/data/certifications";
+import { disputedCounts, daiDaiRegisterClauses, daiDaiUnpricedMarkets, DAI_DAI_FAN_LINES, DAI_DAI_FAN_MARKETS } from "../app/data/rejectedClaims";
+import { allItems, COUNTRIES, CERTS_VERIFIED_ON, CERTS_EDITED_ON, CERTS_STAMP, announcedPlaques } from "../app/data/certifications";
 import { artistBySlug, priceRelease } from "../app/lib/certUnits";
 import { awardLabel } from "../app/lib/awardName";
 import { CERT_HEADER, certificationRows, DATA_DOWNLOADS, plaqueSource, registerUrl } from "../app/lib/dataDownloads";
@@ -34,7 +34,7 @@ import { GET as llmsTxt } from "../app/llms.txt/route";
 import { EMBED_WIDGETS } from "../app/lib/embedWidgets";
 import { onThisDayEvents, tourKey } from "../app/lib/onThisDay";
 import { revenueShows, revenueStands } from "../app/data/tourRevenue";
-import { REVENUE_BODY, REVENUE_READ_ON, revenueRowBody } from "../app/lib/revenueSource";
+import { REVENUE_BODY, REVENUE_EDITED_ON, REVENUE_READ_ON, REVENUE_STAMP, revenueRowBody } from "../app/lib/revenueSource";
 import { getStatCards } from "../app/lib/statCards";
 import { homeScoreboard } from "../app/lib/homeScoreboard";
 import { tours, festivals, otherShows, concerts, upcomingShows, TOURS_EDITED_ON } from "../app/data/tours";
@@ -43,6 +43,10 @@ import { tourMapCountries } from "../app/lib/tourMapData";
 import { searchDocs } from "../app/lib/searchIndex";
 import { AFROBEATS_EDITED_ON, afrobeatsArtists, pageStamp } from "../app/data/afrobeats";
 import { comparableArtists } from "../app/lib/certUnits";
+import { tourDateNote } from "../app/lib/tourMeta";
+import ToursExplorer from "../app/components/ToursExplorer";
+import { provenanceTileSentence } from "../app/lib/offRegister";
+import { generateImageMetadata as afrobeatsOgMetadata } from "../app/afrobeats/opengraph-image";
 
 /**
  * The live-debug findings of 4–5 Oct 2026 on data and sourcing, one block per
@@ -111,6 +115,28 @@ describe("C-03: the 6,050,000 rebuttal says only what the registers say today", 
       'BVMI: "holds no award", holds one',
       'Music Canada: "holds no award", holds one',
     ]);
+  });
+
+  it("\"no register prices the song at all\" names only fan markets where the song holds no plaque", () => {
+    const held = new Set(dd.release.certs.map((x) => x.c));
+    const named = reason.match(/its lines for (.+?) sit where no register prices the song at all/)?.[1] ?? "";
+    for (const m of DAI_DAI_FAN_MARKETS) {
+      const certified = m.codes.some((c) => held.has(c));
+      // A market the sentence names holds no plaque; one it leaves out holds one.
+      expect(named.includes(m.name), m.name).toBe(!certified);
+    }
+    // Today: none of the four is certified, so the sentence names all four.
+    expect(daiDaiUnpricedMarkets()).toEqual(["India", "MENA", "Brazil", "Mexico"]);
+    expect(named).toBe("India, MENA, Brazil and Mexico");
+    // Negative control: the typed sentence that shipped, against the song
+    // with a Mexican plaque (AMPROFON) — the market drops out of the list, and
+    // the shipped words still name it.
+    const shipped = "its lines for India, MENA, Brazil and Mexico sit where no register prices the song at all";
+    const withMx = [...dd.release.certs, { c: "MX" }];
+    expect(daiDaiUnpricedMarkets(withMx)).toEqual(["India", "MENA", "Brazil"]);
+    expect(shipped).toContain("Mexico");
+    // Every market certified: the clause goes, not a list of none.
+    expect(daiDaiUnpricedMarkets([{ c: "IN" }, { c: "AE" }, { c: "BR" }, { c: "MX" }])).toEqual([]);
   });
 });
 
@@ -233,10 +259,42 @@ describe("C-07: a map line names no more nights than the card counts; Love, Dami
     expect(overstated("Ireland", "3Arena, Dublin (Mar & Dec 2022)", datesIn("Ireland"))).toHaveLength(1);
   });
 
-  it("/api/v1/tours publishes Love, Damini as a partial run", async () => {
+  it("the note under Love, Damini's dates keeps its count and capacities, and says only that the list is short", () => {
+    const ld = tours.find((t) => t.name === "Love, Damini Tour")!;
+    const want = `${ld.dates!.length} documented dates. ${ld.partialNote} Capacities are the venues’ standard listed capacities.`;
+    expect(tourDateNote(ld)).toBe(want);
+    // What live printed before it was marked partial, both sentences kept.
+    expect(want).toContain(`${ld.dates!.length} documented dates.`);
+    expect(want).toContain("Capacities are the venues’ standard listed capacities.");
+    expect(ld.partialNote).toBe("Not every night of the run is listed here.");
+    // Rendered: the desktop accordion opens the record tour by default, so the
+    // run is passed as one to open it. The note sits under its date table.
+    const html = renderToStaticMarkup(<ToursExplorer tours={[{ ...ld, record: true }]} />);
+    expect(text(html)).toContain(want);
+    expect(ld.dates!.filter((d) => d.cap).length).toBeGreaterThan(0); // the capacities sentence describes a column with values
+    // Negative control: the note the PR's first push printed for it — false for
+    // a publicly announced stadium tour — and the capacities sentence it dropped.
+    const shipped = "Confirmed dates only — the full itinerary was never publicly documented.";
+    expect(text(html)).not.toContain("the full itinerary was never publicly documented");
+    expect(tourDateNote({ ...ld, partialNote: undefined })).toBe(shipped);
+    // A partial run with no reason of its own keeps the stock note (Space Drift).
+    expect(tourDateNote(tours.find((t) => t.name === "Space Drift World Tour")!)).toBe(shipped);
+  });
+
+  it("/api/v1/tours publishes Love, Damini as a partial run, with its own reason", async () => {
     const body = await json(toursJson());
     const ld = body.data.tours.find((t: { name: string }) => t.name === "Love, Damini Tour");
     expect(ld.partial).toBe(true); // false, beside its own definition, until 5 Oct 2026
+    // The reason is the one printed under its dates, not the stock one.
+    expect(ld.partialNote).toBe("Not every night of the run is listed here.");
+    expect(tourDateNote(tours.find((t) => t.name === "Love, Damini Tour")!)).toContain(ld.partialNote);
+    const sd = body.data.tours.find((t: { name: string }) => t.name === "Space Drift World Tour");
+    expect(sd.partialNote).toBe(tourDateNote(tours.find((t) => t.name === "Space Drift World Tour")!));
+    expect(body.data.tours.filter((t: { partial: boolean; partialNote: string | null }) => !t.partial && t.partialNote !== null)).toEqual([]);
+    // Negative control: the description the PR's first push served, which
+    // gave every partial run the untrue "never documented" reason.
+    expect(body.description).not.toContain("because its full itinerary was never documented or its routing changed");
+    expect(body.description).toContain("`partialNote` gives that run's own reason");
   });
 
   it("a gross joins only its own tour's night: every joined row names the tour the date is on", () => {
@@ -277,8 +335,8 @@ describe("D-04: /certifications, /records/tours and the map are dated by their d
 
   it("the Datasets declare the same day", () => {
     const certs = read("app/certifications/page.tsx");
-    expect(certs).toContain("dateModified: CERTS_VERIFIED_ON,");
-    expect(read("app/records/tours/map/page.tsx")).toContain("dateModified: [TOURS_EDITED_ON, REVENUE_READ_ON].sort().at(-1)!,");
+    expect(certs).toContain("dateModified: CERTS_STAMP,");
+    expect(read("app/records/tours/map/page.tsx")).toContain("dateModified: [TOURS_EDITED_ON, REVENUE_STAMP].sort().at(-1)!,");
   });
 
   it("TOURS_EDITED_ON moves with the tour data: an edit to it without a new stamp fails here", () => {
@@ -287,12 +345,13 @@ describe("D-04: /certifications, /records/tours and the map are dated by their d
     // moved the routes' dates (D-04); this is what would have said so.
     const print = (data: unknown) => createHash("sha256").update(JSON.stringify(data)).digest("hex").slice(0, 16);
     const fingerprint = print({ tours, festivals, otherShows, concerts, upcomingShows, performedCountries });
-    expect({ fingerprint, stamp: TOURS_EDITED_ON }).toEqual({ fingerprint: "c00742a4a0cfbdf7", stamp: "2026-10-05" });
-    // Negative control: the data before this PR's two edits (Love, Damini not
-    // partial; Ireland's "(Mar & Dec 2022)") prints another fingerprint, so an
-    // edit that leaves the stamp behind cannot pass.
+    expect({ fingerprint, stamp: TOURS_EDITED_ON }).toEqual({ fingerprint: "c62c848c36874513", stamp: "2026-10-05" });
+    // Negative control: the data before this PR's edits (Love, Damini not
+    // partial and with no reason of its own; Ireland's "(Mar & Dec 2022)")
+    // prints another fingerprint, so an edit that leaves the stamp behind
+    // cannot pass.
     const before = {
-      tours: tours.map((t) => (t.name === "Love, Damini Tour" ? { ...t, partial: undefined } : t)),
+      tours: tours.map((t) => (t.name === "Love, Damini Tour" ? { ...t, partial: undefined, partialNote: undefined } : t)),
       festivals,
       otherShows,
       concerts,
@@ -300,6 +359,70 @@ describe("D-04: /certifications, /records/tours and the map are dated by their d
       performedCountries: performedCountries.map((c) => (c.name === "Ireland" ? { ...c, events: ["3Arena, Dublin (Mar & Dec 2022)"] } : c)),
     };
     expect(print(before)).not.toBe(fingerprint);
+  });
+});
+
+// ── D-04, review: the routes still dated behind their content ──────────────
+describe("D-04 (review): /methodology, /afrobeats and the box-office routes are dated by their data", () => {
+  const rows = sitemap();
+  const day = (path: string) => {
+    const r = rows.find((x) => x.url === `${siteUrl}${path}`);
+    return r?.lastModified ? new Date(r.lastModified).toISOString().slice(0, 10) : undefined;
+  };
+  const print = (data: unknown) => createHash("sha256").update(JSON.stringify(data)).digest("hex").slice(0, 16);
+  const boardNewest = afrobeatsArtists.filter((a) => a.swept).map(pageStamp).sort().at(-1)!;
+
+  it("/methodology and /afrobeats: at least the plaques they print, Burna Boy's and the board's", () => {
+    for (const path of ["/methodology", "/afrobeats"]) {
+      expect(day(path)! >= CERTS_STAMP, path).toBe(true);
+      expect(day(path)! >= boardNewest, path).toBe(true);
+    }
+    // What they print that moved on 5 Oct: the board's off-register count.
+    expect(provenanceTileSentence()).toContain(`of the board's plaques`);
+    // Negative controls: the lastmods the PR's preview served.
+    expect("2026-09-14" >= CERTS_STAMP).toBe(false); // /methodology
+    expect("2026-10-04" >= CERTS_STAMP).toBe(false); // /afrobeats, max(verifiedOn)
+  });
+
+  it("the box-office routes: the read, or a later edit to the rows", () => {
+    expect(REVENUE_STAMP).toBe([REVENUE_READ_ON, REVENUE_EDITED_ON].sort().at(-1));
+    for (const path of ["/records/tours/revenue", "/records/tours/revenue/countries", "/records/tours", "/records/tours/map", "/records"])
+      expect(day(path)! >= REVENUE_STAMP, path).toBe(true);
+    // /records prints the board's rows and the crowd tile's publisher, read
+    // off its row; the preview served 2026-10-03 for it, as it did for the
+    // board itself (negative control below).
+    expect(read("app/records/tours/revenue/page.tsx")).toContain("dateModified: REVENUE_STAMP,");
+    // Negative control: the preview's /records/tours/revenue, while it printed
+    // 5 Oct's "Bell Centre".
+    expect("2026-10-03" >= REVENUE_STAMP).toBe(false);
+  });
+
+  it("REVENUE_EDITED_ON moves with the board's rows: an edit without a new stamp fails here", () => {
+    // Re-pin BOTH when a row changes, and move REVENUE_EDITED_ON (or, for a
+    // re-read at the bodies, REVENUE_READ_ON) to the day of the edit.
+    const fingerprint = print({ revenueShows, revenueStands });
+    expect({ fingerprint, stamp: REVENUE_STAMP }).toEqual({ fingerprint: "cea412f8680ec9bb", stamp: "2026-10-05" });
+    // Negative control: the rows with Montreal's arena as it shipped.
+    const before = { revenueShows, revenueStands: revenueStands.map((r) => (r.venue === "Bell Centre" ? { ...r, venue: "Centre Bell" } : r)) };
+    expect(print(before)).not.toBe(fingerprint);
+  });
+
+  it("CERTS_EDITED_ON moves with the plaques' provenance: an edit without a new stamp fails here", () => {
+    // The fields an edit without a register read changes: who issued it, where
+    // it was published, what it was read from. Re-pin BOTH when one changes,
+    // and move CERTS_EDITED_ON (or CERTS_VERIFIED_ON, for a read).
+    const provenance = (items: typeof allItems) =>
+      items.flatMap((r) =>
+        r.certs.filter((c) => c.source || c.announced || c.body || c.provenance).map((c) => ({ title: r.title, ...c })),
+      );
+    const fingerprint = print(provenance(allItems));
+    expect({ fingerprint, stamp: CERTS_STAMP }).toEqual({ fingerprint: "7572e76e4221bba5", stamp: "2026-10-05" });
+    expect(CERTS_STAMP).toBe([CERTS_VERIFIED_ON, CERTS_EDITED_ON].sort().at(-1));
+    // Negative control: the Danish Gold as it shipped, a plain register row.
+    const before = allItems.map((r) =>
+      r.title === "Dai Dai" ? { ...r, certs: r.certs.map((c) => (c.c === "DK" ? { c: c.c, level: c.level } : c)) } : r,
+    );
+    expect(print(provenance(before))).not.toBe(fingerprint);
   });
 });
 
@@ -395,6 +518,16 @@ describe("F-03/C-08: the per-artist plaque total is worded \"artist plaques\"", 
     expect(read("app/afrobeats/opengraph-image.tsx")).toContain('toLocaleString("en-US")} artist plaques, each read from the body or label that issued it');
     // The comment's stale "1,212" is gone (the total was 1,338 on 4 Oct).
     expect(read("app/compare/opengraph-image.tsx")).not.toContain("1,212");
+  });
+
+  it("the /afrobeats card re-versions with its footer wording, so its URL moves", () => {
+    // Faces, read date and total are unchanged, so only the version key moves
+    // the id; without it a cached "1,338 plaques" card stays up (review, C-08).
+    const [meta] = afrobeatsOgMetadata();
+    expect(read("app/afrobeats/opengraph-image.tsx")).toContain("const sig = `v5|");
+    // Negative control: the og:image id live served on 5 Oct 2026, which the
+    // PR's first push (key still v4) reproduced.
+    expect(meta.id).not.toBe("1pez3cv");
   });
 });
 

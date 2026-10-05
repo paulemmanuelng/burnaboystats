@@ -399,3 +399,136 @@ describe("a renamed or subtitled title cannot hide a shared record", () => {
     expect(src).not.toContain('"Sungba (Remix)" is not "Sungba"');
   });
 });
+
+// ─────────────────────────────────────────────────────────────────────────────
+// A FULLY renamed title — no base title in common — could still hide a shared
+// record from the guard above (review of the 4 Oct debug PR: Tems's "Isaka"
+// renamed "Isaka 6AM", "Isaka - 6AM" or "6AM" split Nigeria's record again and
+// that guard still passed). So these two guards read no title at all:
+//   - THE SLEEVE. A guard on any shared sleeve is not workable: 164 cross-
+//     artist pairs on the boards share an ALBUM sleeve and are different
+//     records (a feature on another's album, the MIL tracks). So it reads a
+//     single's own sleeve — one that carries one title per artist across every
+//     artist's whole release list — and holds every two artists' plaques on
+//     it, in one programme, to one record, unless the pair is listed below as
+//     two records.
+//   - THE CREDIT. A plaque whose credit names another artist on the same
+//     board and programme sits in a record that artist holds too.
+// ─────────────────────────────────────────────────────────────────────────────
+
+/** Cross-artist pairs on one single's sleeve that are two different records,
+ *  by title and by the registers' own rows. Listed by hand so that a NEW pair
+ *  on a shared single sleeve has to be looked at before it can pass. */
+const KNOWN_DIFFERENT_ON_ONE_SLEEVE = [
+  "NG 2Factor[asake] | Lalala (Young Jonn & Rema)[rema]",
+  "NG Last Time[omah-lay] | Many Roads[ayra-starr]",
+];
+
+/** Plaques whose credit names another board artist and are rightly not that
+ *  artist's record. None today; listed by hand, like the sleeves above. */
+const KNOWN_DIFFERENT_BY_CREDIT: string[] = [];
+
+/** Is there one record, of this format, that both artists hold? Merging needs
+ *  a shared base title (certCountry rule 5), so the record's own title is one
+ *  of the two artists' — no plaque identity is needed to find it. */
+const heldTogether = (records: CountryRecord[], format: string, slugs: string[], titles: string[]) =>
+  records.some(
+    (r) =>
+      r.plaque.format === format &&
+      slugs.every((s) => r.holders.some((h) => h.artist.slug === s)) &&
+      titles.some((t) => baseTitle(t) === baseTitle(r.plaque.title)),
+  );
+
+describe("a single's own sleeve, or a credit: two artists' plaques on it are one record, or a listed pair", () => {
+  const titlesBySleeve = new Map<string, Map<string, Set<string>>>();
+  for (const a of comparableArtists)
+    for (const r of a.releases) {
+      if (!r.cover) continue;
+      const bySlug = titlesBySleeve.get(r.cover) ?? new Map<string, Set<string>>();
+      bySlug.set(a.slug, (bySlug.get(a.slug) ?? new Set()).add(baseTitle(r.title)));
+      titlesBySleeve.set(r.cover, bySlug);
+    }
+  /** An album's sleeve carries two or more titles for one artist. */
+  const singleSleeve = (cover: string) => [...(titlesBySleeve.get(cover)?.values() ?? [])].every((s) => s.size === 1);
+
+  function splitOnSleeve(code: string, lines: CountryArtistLine[], records: CountryRecord[]): string[] {
+    const items = lines.flatMap((l) => l.plaqueList.map((x) => ({ slug: l.artist.slug, title: x.title, cover: x.cover, format: x.format })));
+    const out: string[] = [];
+    for (let i = 0; i < items.length; i++)
+      for (let j = i + 1; j < items.length; j++) {
+        const [a, b] = [items[i], items[j]];
+        if (a.slug === b.slug || a.format !== b.format || !a.cover || a.cover !== b.cover || !singleSleeve(a.cover)) continue;
+        if (!heldTogether(records, a.format, [a.slug, b.slug], [a.title, b.title]))
+          out.push(`${code} ${[`${a.title}[${a.slug}]`, `${b.title}[${b.slug}]`].sort().join(" | ")}`);
+      }
+    return out;
+  }
+
+  const norm = (s: string) => ` ${s.toLowerCase().replace(/[^a-z0-9]+/g, " ")} `;
+  function splitByCredit(code: string, lines: CountryArtistLine[], records: CountryRecord[]): string[] {
+    const out: string[] = [];
+    for (const l of lines)
+      for (const x of l.plaqueList)
+        for (const other of lines)
+          if (other.artist.slug !== l.artist.slug && x.credit && norm(x.credit).includes(norm(other.artist.name)))
+            if (!heldTogether(records, x.format, [l.artist.slug, other.artist.slug], [x.title]))
+              out.push(`${code} ${x.title}[${l.artist.slug}] credits ${other.artist.slug}`);
+    return out;
+  }
+
+  const boards = countryBoards({ includeNigeria: true, includeFeatures: true });
+
+  it("every board: no unlisted pair on a single's sleeve sits in two records", () => {
+    const split = boards.flatMap((b) => b.programs.flatMap((p) => splitOnSleeve(b.code, p.lines, p.records)));
+    expect(split.filter((x) => !KNOWN_DIFFERENT_ON_ONE_SLEEVE.includes(x))).toEqual([]);
+    // The list holds only pairs that still exist, so it cannot rot into a pass.
+    expect([...new Set(split)].sort()).toEqual([...KNOWN_DIFFERENT_ON_ONE_SLEEVE].sort());
+  });
+
+  it("every board: a plaque whose credit names another board artist sits in a record that artist holds", () => {
+    const split = boards.flatMap((b) => b.programs.flatMap((p) => splitByCredit(b.code, p.lines, p.records)));
+    expect(split.filter((x) => !KNOWN_DIFFERENT_BY_CREDIT.includes(x))).toEqual([]);
+    expect([...new Set(split)].sort()).toEqual([...KNOWN_DIFFERENT_BY_CREDIT].sort());
+    // It is not vacuous: credited plaques naming another board artist exist.
+    const credited = boards.flatMap((b) =>
+      b.programs.flatMap((p) => p.lines.flatMap((l) => l.plaqueList.filter((x) => p.lines.some((o) => o !== l && !!x.credit && norm(x.credit).includes(norm(o.artist.name)))))),
+    );
+    expect(credited.length).toBeGreaterThan(0);
+  });
+
+  /** Nigeria's lines with one artist's plaque retitled, and the board's own
+   *  records rebuilt from them (recordsOf, the function the site runs). */
+  const retitled = (slug: string, from: string, to: string) => {
+    const p = priceCountry("NG").programs[0];
+    const lines = p.lines.map((l) =>
+      l.artist.slug === slug ? { ...l, plaqueList: l.plaqueList.map((x) => (x.title === from ? { ...x, title: to } : x)) } : l,
+    );
+    expect(lines.flatMap((l) => l.plaqueList).some((x) => x.title === to)).toBe(true);
+    return { lines, records: recordsOf(lines) };
+  };
+
+  it("negative control: Tems's Isaka renamed in full — the board splits it, and the sleeve guard fails", () => {
+    const ng = priceCountry("NG").programs[0];
+    const format = ng.lines.find((l) => l.artist.slug === "omah-lay")!.plaqueList.find((x) => x.title === "Isaka (6AM)")!.format;
+    expect(heldTogether(ng.records, format, ["tems", "omah-lay"], ["Isaka (6AM)"])).toBe(true); // as the board stands
+    // The three renames the review ran through the site's recordsOf.
+    for (const to of ["Isaka 6AM", "Isaka - 6AM", "6AM"]) {
+      const { lines, records } = retitled("tems", "Isaka (6AM)", to);
+      // The merge rule alone does not catch it — that is why this guard exists.
+      expect(heldTogether(records, format, ["tems", "omah-lay"], ["Isaka (6AM)", to]), to).toBe(false);
+      expect(splitOnSleeve("NG", lines, records), to).toContain(`NG ${["Isaka (6AM)[omah-lay]", `${to}[tems]`].sort().join(" | ")}`);
+    }
+    // And the board as it shipped on 4 Oct 2026, Isaka in two records.
+    const p = priceCountry("NG").programs[0];
+    const shipped = p.records.flatMap((r) => (baseTitle(r.plaque.title) === "isaka" ? r.holders.map((h) => ({ ...r, holders: [h] })) : [r]));
+    expect(splitOnSleeve("NG", p.lines, shipped)).toContain("NG Isaka (6AM)[omah-lay] | Isaka (6AM)[tems]");
+  });
+
+  it("negative control: a credited plaque whose other artist's title is renamed in full fails the credit guard", () => {
+    const p = priceCountry("NG").programs[0];
+    const burna = p.lines.find((l) => l.artist.slug === "burna-boy")!.plaqueList.find((x) => x.title === "Sungba (Remix)")!;
+    expect(norm(burna.credit ?? "")).toContain(" asake ");
+    const { lines, records } = retitled("asake", "Sungba", "Sungba Remix");
+    expect(splitByCredit("NG", lines, records)).toContain("NG Sungba (Remix)[burna-boy] credits asake");
+  });
+});

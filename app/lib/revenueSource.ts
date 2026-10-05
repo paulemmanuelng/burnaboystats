@@ -30,6 +30,18 @@ export function revenueRowBody(source: string): string {
  *  and REVENUE_AS_OF is read off it. */
 export const REVENUE_READ_ON = "2026-10-03";
 
+/** The day a board row last changed WITHOUT a re-read at its bodies — a venue
+ *  spelled the venue's own way, a tour renamed. 5 Oct 2026: Montreal's
+ *  "Centre Bell" became "Bell Centre" (D-07) while both box-office routes
+ *  still said 3 Oct (review of the 4 Oct debug PR). Move it with any such edit
+ *  to app/data/tourRevenue.ts; tests/debug1004Data.test.tsx fingerprints the
+ *  rows and fails until it is moved. REVENUE_AS_OF stays on the read. */
+export const REVENUE_EDITED_ON = "2026-10-05";
+
+/** The date the box-office routes are stamped with — the later of the read
+ *  and the edit: the sitemap's lastmod and the pages' Dataset dateModified. */
+export const REVENUE_STAMP = [REVENUE_READ_ON, REVENUE_EDITED_ON].sort().at(-1)!;
+
 /** The month the board was last re-read — printed on the hub's source note
  *  and the leaderboard's own. Derived from REVENUE_READ_ON, never typed. */
 export const REVENUE_AS_OF = new Date(`${REVENUE_READ_ON}T12:00:00Z`).toLocaleDateString("en-GB", {

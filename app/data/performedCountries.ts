@@ -65,7 +65,7 @@ export const performedCountries: PerformedCountry[] = [
   { name: "Belgium", code: 56, region: "Europe", flag: "🇧🇪", events: ["ING Arena, Brussels (2026)", "Palais 12, Brussels (2019)"] },
   // "(Mar & Dec 2022)" until 5 Oct 2026, beside a documented count of one tour
   // date: only the March night is a listed date (tours.ts, Space Drift). A line
-  // names no more nights than the card counts (C-07; tests/tourMapData.test.ts).
+  // names no more nights than the card counts (C-07; tests/debug1004Data.test.tsx).
   { name: "Ireland", code: 372, region: "Europe", flag: "🇮🇪", events: ["3Arena, Dublin (2022)"] },
   { name: "Spain", code: 724, region: "Europe", flag: "🇪🇸", events: ["O Beach, Ibiza (2026)", "FITZ, Madrid (2025)"] },
   { name: "Italy", code: 380, region: "Europe", flag: "🇮🇹", events: ["Atlantico, Rome (2020)"] },

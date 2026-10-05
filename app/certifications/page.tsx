@@ -11,7 +11,7 @@ import KeepExploring from "../components/KeepExploring";
 import { siteUrl } from "../site";
 import {
   COUNTRIES, albums as certAlbums, singles, features, certHistory, intlCertHistory, allItems,
-  totalAwards, tierCounts, certifiedReleaseCount, countryCount, certSources, CERTS_VERIFIED_ON, announcedClause,
+  totalAwards, tierCounts, certifiedReleaseCount, countryCount, certSources, CERTS_VERIFIED_ON, CERTS_STAMP, announcedClause,
 } from "../data/certifications";
 import { pageMetadata, datasetJsonLd } from "../lib/seo";
 import { portraitArtFor } from "../lib/portraitArt";
@@ -78,9 +78,10 @@ const certDataset = datasetJsonLd({
   path: "/certifications",
   keywords: ["Burna Boy", "certifications", "RIAA", "BPI", "Gold", "Platinum", "Diamond", "music sales"],
   variableMeasured: ["Certification level", "Country", "Release"],
-  // The day the registers were last read — the date the page prints under its
-  // sources and the sitemap's lastmod for this route (D-04, 4 Oct 2026).
-  dateModified: CERTS_VERIFIED_ON,
+  // The later of the day the registers were last read (printed under its
+  // sources) and an edit made without a read — the sitemap's lastmod for this
+  // route, so the two agree (D-04, 4 Oct 2026).
+  dateModified: CERTS_STAMP,
 });
 
 const burnaArt = portraitArtFor("burna-boy");
