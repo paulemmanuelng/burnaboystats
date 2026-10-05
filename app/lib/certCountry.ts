@@ -53,10 +53,13 @@ import {
   comparableArtists,
   programOf,
   unitsForCert,
+  floorUnits,
+  sumUnits,
   DEFAULT_OPTIONS,
   type ComparableArtist,
   type UnitsOptions,
 } from "./certUnits";
+import type { ExactUnits } from "../data/certThresholds";
 import { SHARED_RECORDS } from "../data/sharedRecords";
 
 /** One release's highest plaque in this country, priced. */
@@ -77,6 +80,9 @@ export interface CountryPlaque {
   program?: string;
   /** null = a real plaque this body publishes no usable threshold for. */
   units: number | null;
+  /** `units` before it was floored — what a line or a country sums, flooring
+   *  the sum once (certUnits.addUnits). Set wherever `units` is. */
+  exact?: ExactUnits;
   /** Why it could not be priced. */
   why?: string;
 }
@@ -96,7 +102,9 @@ export interface CountryArtistLine {
   plaques: number;
   /** Highest-priced first, then the unpriced ones by tier. */
   plaqueList: CountryPlaque[];
-  /** The biggest plaque behind the line, for the chip. */
+  /** The HIGHEST award behind the line, for the chip and the "Highest plaque"
+   *  column — by tier, then units (5 Oct 2026: Asake's UK line showed a Silver
+   *  single over his Gold album because the single is worth more units). */
   top: CountryPlaque | null;
 }
 
@@ -362,7 +370,7 @@ export function priceCountry(
     for (const release of releases) {
       for (const cert of release.certs) {
         if (cert.c !== code) continue;
-        const { units, why } = unitsForCert(cert, release.format);
+        const { units, why, exact } = unitsForCert(cert, release.format);
         const key = `${release.title}|${release.format}`;
         const held = best.get(key);
         if (held) {
@@ -388,6 +396,7 @@ export function priceCountry(
           body: cert.body,
           program: programOf(cert),
           units,
+          ...(exact ? { exact } : {}),
           why: why ?? undefined,
         });
       }
@@ -413,12 +422,16 @@ export function priceCountry(
         {
           artist,
           program: k || undefined,
-          units: priced.reduce((n, p) => n + (p.units ?? 0), 0),
+          // Summed exactly and floored once — the rule priceArtist applies
+          // to the same line (certUnits.addUnits).
+          units: floorUnits(sumUnits(priced.map((p) => p.exact))),
           counted: priced.length,
           notCounted: plaqueList.length - priced.length,
           plaques: plaqueList.length,
           plaqueList,
-          top: plaqueList[0] ?? null,
+          // The highest AWARD, units breaking a tie — as priceArtist picks its
+          // chip. An unpriced line keeps the list's own first.
+          top: [...priced].sort((a, b) => rank(b) - rank(a) || (b.units ?? 0) - (a.units ?? 0))[0] ?? plaqueList[0] ?? null,
         },
       ]);
     }
@@ -445,7 +458,7 @@ export function priceCountry(
       program: key || undefined,
       lines,
       records,
-      units: priced.reduce((n, r) => n + (r.plaque.units ?? 0), 0),
+      units: floorUnits(sumUnits(priced.map((r) => r.plaque.exact))),
       counted: priced.length,
       notCounted: records.length - priced.length,
       plaques: records.length,
@@ -561,9 +574,16 @@ export function pricingPhrase(board: CountryBoard, own = "own thresholds"): stri
   if (!board.counted) return null;
   const t = board.thresholds;
   if (t?.pricedAt) return t.pricedAt;
-  if (t?.plnPerSingle) return `${board.body}'s levels (singles at ${t.plnPerSingle} zł each)`;
-  return `${board.body}'s ${own}`;
+  if (t?.plnPerSingle) return `${bodyOwner(board.body)}'s levels (singles at ${t.plnPerSingle} zł each)`;
+  return `${bodyOwner(board.body)}'s ${own}`;
 }
+
+/** A body's name ready for a possessive: "TurnTable (TCSN)" → "TurnTable",
+ *  "ČNS IFPI (Czechia)" → "ČNS IFPI". The parenthetical tells two bodies'
+ *  names apart in a list; before "'s" it printed "TurnTable (TCSN)'s own
+ *  published threshold" (debug pass, 5 Oct 2026), and the country is already
+ *  the page's subject. */
+export const bodyOwner = (body: string): string => body.replace(/\s*\([^)]*\)$/, "");
 
 /**
  * Title, description and share copy for one country page, from the live

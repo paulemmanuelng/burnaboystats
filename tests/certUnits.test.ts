@@ -1074,7 +1074,8 @@ describe("the 23 Sep 2026 sweep's plaques are all priced", () => {
       expect(release, `${slug} has no ${format} "${title}"`).toBeTruthy();
       const cert = release!.certs.find((c) => c.c === country);
       expect(cert?.level, `${title} ${country}`).toBe(level);
-      expect(unitsForCert(cert!, format)).toEqual({ units, why: null });
+      // toMatchObject: the result also carries `exact`, the unfloored figure sums use.
+      expect(unitsForCert(cert!, format)).toMatchObject({ units, why: null });
       // …and the engine sums it: nothing for this country and format lands in
       // the unpriced list once Nigeria and features are both in.
       const all = priceArtist(bySlug(slug), { includeNigeria: true, includeFeatures: true });

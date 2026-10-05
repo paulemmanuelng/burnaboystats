@@ -219,7 +219,8 @@ describe("the 2 Oct 2026 sweep's plaques are all priced", () => {
       const release = a.releases.find((r) => r.title === title && r.format === "single");
       expect(release, `${slug} has no single "${title}"`).toBeTruthy();
       const cert = release!.certs.find((c) => c.c === country)!;
-      expect(unitsForCert(cert, "single")).toEqual({ units, why: null });
+      // toMatchObject: the result also carries `exact`, the unfloored figure sums use.
+      expect(unitsForCert(cert, "single")).toMatchObject({ units, why: null });
       const all = priceArtist(a, { includeNigeria: true, includeFeatures: true });
       expect(all.excluded.filter((e) => e.country === country && e.format === "single")).toEqual([]);
     });

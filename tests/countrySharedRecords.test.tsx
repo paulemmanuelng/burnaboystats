@@ -266,12 +266,14 @@ describe("every board: one record, counted once — and only one", () => {
     // UK 41,620,000 / 7 / 94, the figures the live boards printed on 4 Oct.
     // NG moved again the same day (debug pass, compareIn-01): Tyla's "Dynamite
     // — Tyla & Wizkid" and Wizkid's "Dynamite (Tyla & Wizkid)" are one record,
-    // titled one way since — it had read 70,550,000 / 70 / 673.
+    // titled one way since — it had read 70,550,000 / 70 / 673. FR moved by
+    // rounding only (compareIn-03): its stream-priced plaques are summed
+    // exactly and floored once — it had read 11,283,327 / 11,183,327.
     expect(changed).toEqual({
       NG: { lines: 81_850_000, units: 70_500_000, shared: 71, plaques: 672 },
       US: { lines: 73_940_000, units: 67_440_000, shared: 4, plaques: 46 },
       UK: { lines: 43_620_000, units: 41_420_000, shared: 8, plaques: 93 },
-      FR: { lines: 11_283_327, units: 11_183_327, shared: 1, plaques: 59 },
+      FR: { lines: 11_283_329, units: 11_183_333, shared: 1, plaques: 59 },
       CA: { lines: 6_920_000, units: 6_560_000, shared: 4, plaques: 65 },
       ZA: { lines: 2_910_000, units: 2_690_000, shared: 3, plaques: 36 },
       NZ: { lines: 2_137_500, units: 2_017_500, shared: 3, plaques: 55 },

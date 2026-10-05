@@ -1163,6 +1163,16 @@ export const announcedClause = (lead: string): string =>
  *  — bump it on every body read, in the same edit as the row it changes. */
 export const CERTS_VERIFIED_ON = "2026-10-04";
 
+/** The last day EVERY register behind this file was read: the 2 Oct 2026
+ *  register sweep (docs/sweeps/sweep-2026-10-02.md — "Certifications only,
+ *  Burna Boy and all nineteen board artists, every issuing body the site
+ *  cites"). CERTS_VERIFIED_ON moves on any body read — it moved to 4 Oct on
+ *  the one IFPI Danmark / Hitlisten read for "Dai Dai"'s Danish Gold — so a
+ *  pair page's "registers read" line takes this, as the board's side takes
+ *  AFROBEATS_LAST_FULL_SWEEP (debug pass, 5 Oct 2026). Move it with the next
+ *  full sweep. */
+export const CERTS_LAST_FULL_SWEEP = "2026-10-02";
+
 /** The day this file's plaques last changed WITHOUT a register read — a
  *  plaque's provenance marked, a body or source corrected. 5 Oct 2026: "Dai
  *  Dai"'s Danish Gold marked `source: "announcement"` (C-05/D-02), which moved
