@@ -5,12 +5,14 @@ import { siteUrl } from "./site";
 import { updates } from "./data/updates";
 import { songs } from "./data/songs";
 import { albumPages } from "./data/albumPages";
-import { AFROBEATS_EDITED_ON, afrobeatsArtists } from "./data/afrobeats";
+import { afrobeatsArtists, pageStamp } from "./data/afrobeats";
 import { LIVE_BOARDS } from "./data/liveBoards";
 import { liveChartsBuiltAt } from "./data/liveCharts";
 import { carSlugs } from "./data/cars";
 import { LISTENERS_READ_ON } from "./data/listeners";
 import { REVENUE_READ_ON } from "./lib/revenueSource";
+import { TOURS_EDITED_ON } from "./data/tours";
+import { CERTS_VERIFIED_ON } from "./data/certifications";
 import { isIndexableDay, onThisDayDays } from "./lib/onThisDay";
 
 /**
@@ -72,7 +74,7 @@ const sweptArtists = afrobeatsArtists.filter((a) => a.swept);
 const countryBoardStamps: Record<string, string> = Object.fromEntries(
   certCountryCodes().map((code) => [
     `/compare/in/${countrySlug(code)}`,
-    priceCountry(code).lines.map((l) => l.artist.verifiedOn).sort().at(-1)!,
+    priceCountry(code).lines.map((l) => pageStamp(l.artist)).sort().at(-1)!,
   ]),
 );
 
@@ -125,8 +127,9 @@ const contentStamp: Record<string, string> = {
       // The later of the sweep the page prints and an edit made without a
       // register read (AFROBEATS_EDITED_ON; sw-5, 3 Oct 2026: CKay's and
       // Olamide's "Trumpet" changed on both lists while their stamps said
-      // 18 Sep and 6 Sep).
-      const stamp = [a.verifiedOn, AFROBEATS_EDITED_ON[a.slug]].filter(Boolean).sort().at(-1)!;
+      // 18 Sep and 6 Sep). pageStamp is the same date the pages declare as
+      // their Dataset's dateModified (D-05, 4 Oct 2026).
+      const stamp = pageStamp(a);
       return [
         [`/afrobeats/${a.slug}`, stamp],
         [`/afrobeats/${a.slug}/charts`, stamp],
@@ -145,9 +148,21 @@ const contentStamp: Record<string, string> = {
   // 3 Oct 2026: the board said 17 Sep and the countries page said nothing).
   "/records/tours/revenue": REVENUE_READ_ON,
   "/records/tours/revenue/countries": REVENUE_READ_ON,
-  // A pair page changes when either side's registers are re-read.
+  // The tours page and the map print the tour data (TOURS_EDITED_ON) and the
+  // box-office board's nights and grosses (the map's "Biggest reported night"
+  // lines, the tours page's source note "as of" the board's read), so each is
+  // dated by the later of the two (D-04, 4 Oct 2026: they said 25 Sep and
+  // 15 Aug while printing Dublin's 4 Oct night).
+  "/records/tours": [TOURS_EDITED_ON, REVENUE_READ_ON].sort().at(-1)!,
+  "/records/tours/map": [TOURS_EDITED_ON, REVENUE_READ_ON].sort().at(-1)!,
+  // The certifications page prints "most recently on <CERTS_VERIFIED_ON>" and
+  // every plaque counted to that read; its Dataset declares the same day. It
+  // said 30 Sep while printing the 250th plaque of 4 Oct (D-04).
+  "/certifications": CERTS_VERIFIED_ON,
+  // A pair page changes when either side's registers are re-read, or either
+  // side's page is edited without a read (pageStamp).
   ...Object.fromEntries(
-    allPairs().map(([a, b]) => [`/compare/${pairSlug(a, b)}`, [a.verifiedOn, b.verifiedOn].sort().at(-1)!]),
+    allPairs().map(([a, b]) => [`/compare/${pairSlug(a, b)}`, [pageStamp(a), pageStamp(b)].sort().at(-1)!]),
   ),
   ...countryBoardStamps,
   // The index of those boards prints every market's artists, plaques and

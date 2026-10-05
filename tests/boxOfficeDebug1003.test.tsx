@@ -451,7 +451,10 @@ describe("sw-5 / C8: both box-office routes carry the board's read date", () => 
       expect(afrobeatsArtists.find((x) => x.slug === slug)?.swept, slug).toBe(true);
       expect(AFROBEATS_EDITED_ON[slug]).toBe(EDITED_404);
     }
-    expect(read("app/sitemap.ts")).toMatch(/\[a\.verifiedOn, AFROBEATS_EDITED_ON\[a\.slug\]\]/);
+    // One helper since 5 Oct 2026 (D-05): the sitemap and the pages' Dataset
+    // dateModified both read pageStamp, the later of the two.
+    expect(read("app/data/afrobeats.ts")).toMatch(/pageStamp = [\s\S]{0,120}\[a\.verifiedOn, AFROBEATS_EDITED_ON\[a\.slug\]\]/);
+    expect(read("app/sitemap.ts")).toContain("const stamp = pageStamp(a);");
   });
 
   it("negative control: the stamps the built sitemap shipped (18 Sep, 6 Sep) fail", () => {

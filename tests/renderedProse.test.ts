@@ -60,7 +60,9 @@ describe("figures print the way the rest of the site prints them", () => {
   it("the Afrobeats share card groups its plaque total", () => {
     // The footer read "1238 plaques"; every other surface says 1,238.
     const src = read("app/afrobeats/opengraph-image.tsx");
-    expect(src).toContain('(boardTotal + totalAwards()).toLocaleString("en-US")} plaques');
+    // "artist plaques" since 5 Oct 2026 (F-03/C-08): a shared record counts
+    // once per holder in this total, once in all on /compare/in.
+    expect(src).toContain('(boardTotal + totalAwards()).toLocaleString("en-US")} artist plaques');
   });
 
   it("the phone Tours lede keeps tours and countries performed in apart", () => {

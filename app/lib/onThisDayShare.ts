@@ -22,6 +22,7 @@ import { coverFor } from "./covers";
 import { spotifyImage } from "./spotifyImage";
 import { cardUrl } from "./og-image";
 import { cardTextWidth } from "./cardTextWidth";
+import { REVENUE_PUBLISHERS } from "./revenueSource";
 import {
   KIND_MARK,
   isRecordLine,
@@ -82,7 +83,9 @@ export function eventCover(e: OnThisDayEvent): string | null {
  * §2 "Post card": "the body for certifications, charts, awards and streaming,
  * and Billboard Boxscore for grossed shows. A place, tour or label is left
  * off."). A release's body is its record label and an ungrossed show's is its
- * tour or its town, so those cards print no source at all.
+ * tour or its town, so those cards print no source at all. A grossed show's
+ * publisher is the one its box-office row was read at — TouringData, for
+ * every row today, not the Boxscore the design named (4 Oct 2026).
  */
 export function sharePublisher(e: OnThisDayEvent): string | null {
   switch (e.kind) {
@@ -92,7 +95,10 @@ export function sharePublisher(e: OnThisDayEvent): string | null {
     case "streaming":
       return e.body;
     case "show":
-      return e.body === "Billboard Boxscore" ? e.body : null;
+      // A grossed night's publisher (whichever the row names — TouringData
+      // today); a tour's name is not one. Changed with onThisDay.ts's body in
+      // one commit, or the card prints no source at all (F-04, 4 Oct 2026).
+      return (REVENUE_PUBLISHERS as readonly string[]).includes(e.body) ? e.body : null;
     case "release":
       return null;
   }

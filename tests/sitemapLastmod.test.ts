@@ -1,7 +1,9 @@
 import { describe, it, expect } from "vitest";
 import sitemap from "../app/sitemap";
 import { updates } from "../app/data/updates";
-import { afrobeatsArtists, sweptArtists } from "../app/data/afrobeats";
+import { AFROBEATS_EDITED_ON, afrobeatsArtists, sweptArtists } from "../app/data/afrobeats";
+import { TOURS_EDITED_ON } from "../app/data/tours";
+import { CERTS_VERIFIED_ON } from "../app/data/certifications";
 import { liveChartsUpdated } from "../app/data/liveCharts";
 import { LIVE_BOARDS } from "../app/data/liveBoards";
 import { siteUrl } from "../app/site";
@@ -81,7 +83,18 @@ describe("sitemap lastmod", () => {
     // lives on each artist as `verifiedOn`, and the board routes take their
     // lastmod from it. On 25 Sep 2026 Oxlade and Tiwa Savage were verified a
     // day after the feed's newest entry, which is a real date, not tomorrow.
-    const newestFact = [...updates.map((u) => u.date), ...sweptArtists.map((a) => a.verifiedOn)].sort().at(-1)!;
+    // So do the dated content stamps a route's data carries (an edit made
+    // without a register read, the tour data's last edit, the registers' last
+    // read; D-04/D-05, 5 Oct 2026) — each a real date a change was made.
+    const newestFact = [
+      ...updates.map((u) => u.date),
+      ...sweptArtists.map((a) => a.verifiedOn),
+      ...Object.values(AFROBEATS_EDITED_ON),
+      TOURS_EDITED_ON,
+      CERTS_VERIFIED_ON,
+    ]
+      .sort()
+      .at(-1)!;
     const pipeline = new Set(pipelineRoutes.map((r) => `${siteUrl}${r.path}`));
     const ahead = rows
       .filter((r) => !pipeline.has(r.url))

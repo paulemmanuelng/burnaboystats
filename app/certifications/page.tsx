@@ -11,7 +11,7 @@ import KeepExploring from "../components/KeepExploring";
 import { siteUrl } from "../site";
 import {
   COUNTRIES, albums as certAlbums, singles, features, certHistory, intlCertHistory, allItems,
-  totalAwards, tierCounts, certifiedReleaseCount, countryCount, certSources, CERTS_VERIFIED_ON,
+  totalAwards, tierCounts, certifiedReleaseCount, countryCount, certSources, CERTS_VERIFIED_ON, announcedClause,
 } from "../data/certifications";
 import { pageMetadata, datasetJsonLd } from "../lib/seo";
 import { portraitArtFor } from "../lib/portraitArt";
@@ -78,6 +78,9 @@ const certDataset = datasetJsonLd({
   path: "/certifications",
   keywords: ["Burna Boy", "certifications", "RIAA", "BPI", "Gold", "Platinum", "Diamond", "music sales"],
   variableMeasured: ["Certification level", "Country", "Release"],
+  // The day the registers were last read — the date the page prints under its
+  // sources and the sitemap's lastmod for this route (D-04, 4 Oct 2026).
+  dateModified: CERTS_VERIFIED_ON,
 });
 
 const burnaArt = portraitArtFor("burna-boy");
@@ -388,8 +391,8 @@ export default function CertificationsPage() {
         <div className={styles.wide}>
           <p className={styles.source}>
             Sources: {certSources()} — each award read at the body&apos;s own register (or, in
-            a market with no current public register, from the label&apos;s own plaque), most
-            recently on {certsVerifiedLong}. Each row shows a release&apos;s current level in
+            a market with no current public register, from the label&apos;s own plaque
+            {announcedClause("; or from ")}), most recently on {certsVerifiedLong}. Each row shows a release&apos;s current level in
             every country; “×” denotes multi-platinum.
           </p>
         </div>

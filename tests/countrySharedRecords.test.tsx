@@ -17,7 +17,17 @@ vi.mock("next/link", () => ({
 
 import ComparePage from "../app/compare/page";
 import { comparableArtists, priceArtist } from "../app/lib/certUnits";
-import { countryBoards, countryCopy, priceCountry, recordTitle } from "../app/lib/certCountry";
+import { readFileSync } from "node:fs";
+import {
+  baseTitle,
+  countryBoards,
+  countryCopy,
+  priceCountry,
+  recordsOf,
+  recordTitle,
+  type CountryArtistLine,
+  type CountryRecord,
+} from "../app/lib/certCountry";
 import { SHARED_RECORDS } from "../app/data/sharedRecords";
 
 /**
@@ -143,9 +153,11 @@ describe("every board: one record, counted once — and only one", () => {
           const tiers = new Set(
             r.holders.map((h) => {
               const line = p.lines.find((l) => l.artist.slug === h.artist.slug)!;
-              const own = line.plaqueList.find(
-                (x) => x.format === r.plaque.format && recordTitle(x.title) === recordTitle(r.plaque.title),
-              )!;
+              // By record title, or — for a record joined on its base title,
+              // "Sungba (Remix)" on Burna Boy's line, "Sungba" on Asake's — by that.
+              const own =
+                line.plaqueList.find((x) => x.format === r.plaque.format && recordTitle(x.title) === recordTitle(r.plaque.title)) ??
+                line.plaqueList.find((x) => x.format === r.plaque.format && baseTitle(x.title) === baseTitle(r.plaque.title))!;
               return `${own.level} ${own.x}`;
             }),
           );
@@ -245,15 +257,145 @@ describe("every board: one record, counted once — and only one", () => {
         .filter((b) => b.shared > 0)
         .map((b) => [b.code, { lines: lineSum(b), units: b.units, shared: b.shared, plaques: b.plaques }]),
     );
+    // NG and UK moved again on 5 Oct 2026 (C-01/D-01): "Sungba" (Asake) and
+    // "Sungba (Remix)" (Burna Boy's line) are one record in both, "Isaka" and
+    // "Isaka (6AM)" one in Nigeria — NG had read 71,050,000 / 68 / 675 and the
+    // UK 41,620,000 / 7 / 94, the figures the live boards printed on 4 Oct.
     expect(changed).toEqual({
-      NG: { lines: 81_850_000, units: 71_050_000, shared: 68, plaques: 675 },
+      NG: { lines: 81_850_000, units: 70_550_000, shared: 70, plaques: 673 },
       US: { lines: 73_940_000, units: 67_440_000, shared: 4, plaques: 46 },
-      UK: { lines: 43_620_000, units: 41_620_000, shared: 7, plaques: 94 },
+      UK: { lines: 43_620_000, units: 41_420_000, shared: 8, plaques: 93 },
       FR: { lines: 11_283_327, units: 11_183_327, shared: 1, plaques: 59 },
       CA: { lines: 6_920_000, units: 6_560_000, shared: 4, plaques: 65 },
       ZA: { lines: 2_910_000, units: 2_690_000, shared: 3, plaques: 36 },
       NZ: { lines: 2_137_500, units: 2_017_500, shared: 3, plaques: 55 },
       CH: { lines: 755_000, units: 710_000, shared: 2, plaques: 25 },
     });
+  });
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// A renamed or subtitled title cannot hide a shared record (debug pass 4 Oct
+// 2026, C-01/D-01 and the guard gap beside them). The same-title test above
+// buckets by record title, which keeps "(Remix)" and "(6AM)", so it was blind
+// to two double counts: Asake's "Sungba" and Burna Boy's "Sungba (Remix)" —
+// one BPI row ("ASAKE | SUNGBA"), one TCSN row ("Sungba | Asake ft. Burna
+// Boy"), one sleeve — on the Nigerian and UK boards, and Tems's "Isaka" and
+// Omah Lay's "Isaka (6AM)" (TCSN: "Isaka (6Am) | Ciza, Tems & Omah Lay"), one
+// sleeve, in Nigeria.
+// ─────────────────────────────────────────────────────────────────────────────
+
+interface Holder {
+  slug: string;
+  name: string;
+  title: string;
+  cover?: string;
+  credit?: string;
+  format: string;
+}
+
+/** Every pair of two artists' plaques in one programme that the evidence says
+ *  is ONE record — the same base title and format, AND the same sleeve or a
+ *  credit naming the other — but that sit in two records. */
+function unmergedPairs(code: string, lines: CountryArtistLine[], records: CountryRecord[]): string[] {
+  const recordOf = new Map<string, number>();
+  records.forEach((r, i) =>
+    r.holders.forEach((h) => {
+      const line = lines.find((l) => l.artist.slug === h.artist.slug)!;
+      for (const x of line.plaqueList)
+        if (x.format === r.plaque.format && baseTitle(x.title) === baseTitle(r.plaque.title)) recordOf.set(`${h.artist.slug}|${x.title}|${x.format}`, i);
+    }),
+  );
+  const items: Holder[] = lines.flatMap((l) =>
+    l.plaqueList.map((x) => ({ slug: l.artist.slug, name: l.artist.name, title: x.title, cover: x.cover, credit: x.credit, format: x.format })),
+  );
+  const names = (credit: string | undefined, name: string) =>
+    !!credit && ` ${credit.toLowerCase().replace(/[^a-z0-9]+/g, " ")} `.includes(` ${name.toLowerCase().replace(/[^a-z0-9]+/g, " ")} `);
+  const out: string[] = [];
+  for (let i = 0; i < items.length; i++)
+    for (let j = i + 1; j < items.length; j++) {
+      const [a, b] = [items[i], items[j]];
+      if (a.slug === b.slug || a.format !== b.format || baseTitle(a.title) !== baseTitle(b.title)) continue;
+      const evidence = (!!a.cover && a.cover === b.cover) || names(a.credit, b.name) || names(b.credit, a.name);
+      if (!evidence) continue;
+      const [ra, rb] = [recordOf.get(`${a.slug}|${a.title}|${a.format}`), recordOf.get(`${b.slug}|${b.title}|${b.format}`)];
+      if (ra === undefined || ra !== rb) out.push(`${code} ${[`${a.title}[${a.slug}]`, `${b.title}[${b.slug}]`].sort().join(" | ")}`);
+    }
+  return out;
+}
+
+describe("a renamed or subtitled title cannot hide a shared record", () => {
+  const holdersOf = (b: ReturnType<typeof priceCountry>, title: string) =>
+    b.programs
+      .flatMap((p) => p.records)
+      .filter((r) => baseTitle(r.plaque.title) === baseTitle(title))
+      .map((r) => `${r.plaque.title} (${r.holders.map((h) => h.artist.slug).join(", ")})`);
+
+  it("Sungba is one record in Nigeria and the UK, Isaka one in Nigeria", () => {
+    const ng = priceCountry("NG");
+    const uk = priceCountry("UK");
+    // The lead's row names the record (recordsOf), as the registers print it.
+    expect(holdersOf(ng, "Sungba")).toEqual(["Sungba (asake, burna-boy)"]);
+    expect(holdersOf(uk, "Sungba")).toEqual(["Sungba (asake, burna-boy)"]);
+    expect(holdersOf(ng, "Isaka")).toEqual(["Isaka (6AM) (tems, omah-lay)"]);
+    // Each artist's own line keeps its plaque: the fix touches the country's
+    // figures only.
+    const line = (b: typeof ng, slug: string) => b.programs.flatMap((p) => p.lines).find((l) => l.artist.slug === slug)!;
+    expect(line(ng, "burna-boy").plaqueList.map((x) => x.title)).toContain("Sungba (Remix)");
+    expect(line(ng, "asake").plaqueList.map((x) => x.title)).toContain("Sungba");
+    expect(line(uk, "burna-boy").plaqueList.map((x) => x.title)).toContain("Sungba (Remix)");
+  });
+
+  it("every board: no two artists' plaques on one sleeve or credit, under one base title, sit in two records", () => {
+    const bad = countryBoards({ includeNigeria: true, includeFeatures: true }).flatMap((b) =>
+      b.programs.flatMap((p) => unmergedPairs(b.code, p.lines, p.records)),
+    );
+    expect(bad).toEqual([]);
+  });
+
+  it("negative control: the boards as they shipped on 4 Oct 2026 — Sungba in two records — fail it", () => {
+    for (const code of ["NG", "UK"]) {
+      const p = priceCountry(code).programs[0];
+      // Split the merged record back into one record per holder, as it shipped.
+      const shipped = p.records.flatMap((r) =>
+        baseTitle(r.plaque.title) === "sungba" ? r.holders.map((h) => ({ ...r, holders: [h] })) : [r],
+      );
+      expect(unmergedPairs(code, p.lines, shipped)).toEqual([`${code} Sungba (Remix)[burna-boy] | Sungba[asake]`]);
+    }
+  });
+
+  it("the title Tems's line shipped with, plain \"Isaka\", now joins on the sleeve alone", () => {
+    const p = priceCountry("NG").programs[0];
+    const lines = p.lines.map((l) =>
+      l.artist.slug === "tems" ? { ...l, plaqueList: l.plaqueList.map((x) => (x.title === "Isaka (6AM)" ? { ...x, title: "Isaka" } : x)) } : l,
+    );
+    const isaka = recordsOf(lines).filter((r) => baseTitle(r.plaque.title) === "isaka");
+    expect(isaka.map((r) => r.holders.map((h) => h.artist.slug).sort())).toEqual([["omah-lay", "tems"]]);
+  });
+
+  it("a base title alone never joins: two artists' different records stay two", () => {
+    // Same base title, no shared sleeve and no credit naming the other: two
+    // records (the pinned same-title pairs above all pass through this rule).
+    const p = priceCountry("NG").programs[0];
+    const loml = p.records.filter((r) => baseTitle(r.plaque.title) === "loml");
+    expect(loml.length).toBe(2);
+  });
+
+  it("the boards print the records' figures, and the strings the live boards shipped are gone", () => {
+    const ng = countryCopy(priceCountry("NG"));
+    const uk = countryCopy(priceCountry("UK"));
+    expect(ng.description).toContain("20 artists, 673 plaques, at least 70,550,000 certified units.");
+    expect(uk.description).toContain("17 artists, 93 plaques, at least 41,420,000 certified units.");
+    // Live, 5 Oct 2026 (curl; debug pass C-01/D-01).
+    expect(ng.description).not.toContain("675 plaques, at least 71,050,000");
+    expect(uk.description).not.toContain("94 plaques, at least 41,620,000");
+    const hub = countryBoards().reduce((n, b) => n + b.plaques, 0);
+    expect(hub).toBe(1_240);
+    expect(hub).not.toBe(1_243);
+  });
+
+  it("the comment that called \"Sungba (Remix)\" a different record from \"Sungba\" is gone", () => {
+    const src = readFileSync("app/lib/certCountry.ts", "utf8");
+    expect(src).not.toContain('"Sungba (Remix)" is not "Sungba"');
   });
 });

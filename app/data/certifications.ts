@@ -37,6 +37,19 @@ export interface Cert {
    *  plaque", "announced on its own X account, 6 Apr 2026") — set from
    *  certProvenance() in app/data/afrobeats.ts, never typed here. */
   provenance?: string;
+  /** What the plaque was read from when it is NOT a row in the body's own
+   *  register — the field AfroCert in app/data/afrobeats.ts already carries,
+   *  and app/lib/dataDownloads.ts plaqueSource() reads. "announcement": the
+   *  certifying body's own publication, its register not yet listing the row
+   *  (Dai Dai 🇩🇰 Gold, IFPI Danmark's Hitlisten chart). Absent = a register
+   *  row; a label's plaque is marked by an issuer `body` instead. Until 5 Oct
+   *  2026 Burna Boy's certs had no such field, so the CSV called the Danish
+   *  Gold a "register" row with a register link that finds nothing (C-05). */
+  source?: "label" | "announcement";
+  /** Where the body published it, as the copy names it ("Hitlisten, its
+   *  official chart, in week 38 of 2026"). `on` only where the publication
+   *  prints a date. */
+  announced?: { via: string; on?: string };
 }
 
 export interface Release {
@@ -281,7 +294,10 @@ export const singles: Release[] = [
     // register for the row (and its date) once it moves past 22.09.2026.
     // Danish single Gold is 45,000 units (4.5M streams at 100 a unit). One row,
     // credit and title matched; label Sony Music. Eighteenth country.
-    { c: "DK", level: "Gold" },
+    // `source: "announcement"` (C-05, 5 Oct 2026): the register still had no
+    // row on 5 Oct (pages 0–1 newest 22.09.2026), so the CSV/API name the
+    // chart, not the register. Drop both fields when IFPI Danmark lists it.
+    { c: "DK", level: "Gold", source: "announcement", announced: { via: "Hitlisten, its official chart, in week 38 of 2026" } },
   ] },
   { title: "Last Last", year: 2022, certs: [
     { c: "CA", level: "Platinum", x: 4 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum", x: 2 },
@@ -1126,6 +1142,21 @@ export function tierCounts(): { name: Tier; count: number }[] {
 // make the year-on-year comparison read high. Nigerian plaques still count
 // everywhere else: the worldwide total, the country grid, every release's row.
 export const intlCertHistory = certHistory.filter((e) => e.country !== "NG");
+
+/** Burna Boy's plaques read from the certifying body's own publication rather
+ *  than a register row (`source: "announcement"`) — the copy that says every
+ *  award was "read at the body's own register" names these, derived, so it
+ *  cannot go on saying so over one (C-05/D-02, 4 Oct 2026). */
+export const announcedPlaques = allItems.flatMap((r) =>
+  r.certs.filter((c) => c.source === "announcement").map((cert) => ({ release: r, cert })),
+);
+
+/** The clause the register-rule copies add while any such plaque stands:
+ *  "the body's own published chart" for Dai Dai's Hitlisten Gold. Empty when
+ *  none does, and the copy reads exactly as it did before. Reword it if an
+ *  announcement that is not a chart is ever added. */
+export const announcedClause = (lead: string): string =>
+  announcedPlaques.length ? `${lead}the body's own published chart where its register has not yet listed the award` : "";
 
 /** The most recent day a certifying body's own register was read for this
  *  file. Printed on the page's sources line in place of a typed "as of" month

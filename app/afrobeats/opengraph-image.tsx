@@ -191,7 +191,9 @@ export default function Image() {
           </div>
           <div style={{ display: "flex" }}>·</div>
           <div style={{ display: "flex" }}>
-            {`${(boardTotal + totalAwards()).toLocaleString("en-US")} plaques, each read from the body or label that issued it`}
+            {/* "artist plaques": a shared record counts once per holder here,
+                once in all on /compare/in (F-03/C-08, 4 Oct 2026). */}
+            {`${(boardTotal + totalAwards()).toLocaleString("en-US")} artist plaques, each read from the body or label that issued it`}
           </div>
         </div>
       </div>

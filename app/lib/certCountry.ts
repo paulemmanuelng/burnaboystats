@@ -209,11 +209,26 @@ const parentheticals = (title: string) => [...title.matchAll(/\(([^()]*)\)/g)].m
  * A title with its CREDIT annotations removed: "Mood (Wizkid ft. BNXN)",
  * "Alaye (w/ Asake)" and "Holy Water (Davido)" are how three boards file
  * "Mood", "Alaye" and "Holy Water". A parenthetical that is part of the title
- * stays — "Sungba (Remix)" is not "Sungba", "Goodbye (Warm Up)" keeps its
- * subtitle. Equal record titles are a CANDIDATE only; `sameRecord` decides.
+ * stays here — "Goodbye (Warm Up)" keeps its subtitle, "Isaka (6AM)" its
+ * "(6AM)". Equal record titles are a CANDIDATE only; `sameRecord` decides.
+ *
+ * A subtitle does not make a second record on its own, though: Burna Boy's
+ * ledger files "Sungba (Remix)" (Asake ft. Burna Boy) where the BPI and TCSN
+ * both print the award plainly as "Sungba", the same row as Asake's own board
+ * line, on the same sleeve. Such a pair shares a `baseTitle` and is joined on
+ * the sleeve or the credit (`sameRecord`, rule 5) — the debug pass of 4 Oct
+ * 2026 found it counted twice on the Nigerian and UK boards.
  */
 export function recordTitle(title: string, roster: ComparableArtist[] = comparableArtists): string {
   return fold(title.replace(/\s*\(([^()]*)\)/g, (m, inner: string) => (isCreditNote(inner, roster) ? "" : m)));
+}
+
+/** The title with EVERY parenthetical removed — "Sungba (Remix)", "Isaka
+ *  (6AM)" and "Mood (Wizkid ft. BNXN)" are "sungba", "isaka" and "mood". The
+ *  widest candidate key: a pair that shares it but not its `recordTitle` is one
+ *  record only on the strongest evidence (`sameRecord`, rule 5). */
+export function baseTitle(title: string): string {
+  return fold(title.replace(/\s*\([^()]*\)/g, ""));
 }
 
 /**
@@ -228,6 +243,12 @@ export function recordTitle(title: string, roster: ComparableArtist[] = comparab
  *   4. a register credit naming both, listed in app/data/sharedRecords.ts.
  * Title alone never merges: "Loml" is Cheque ft. Olamide AND Seyi Vibez's own,
  * "Alone" is Burna Boy's and BNXN's — two records each, and both stay.
+ *
+ *   5. Where only the BASE title agrees ("Sungba (Remix)" against "Sungba"),
+ *      the same sleeve or a credit naming the other, and nothing weaker: a
+ *      renamed or subtitled title must not hide a shared record (debug pass,
+ *      4 Oct 2026), but a title annotation or a register list cannot vouch
+ *      for a title it does not carry.
  */
 export function sameRecord(
   x: { artist: ComparableArtist; plaque: CountryPlaque },
@@ -238,7 +259,12 @@ export function sameRecord(
   const py = y.plaque;
   if (x.artist.slug === y.artist.slug || px.format !== py.format) return false;
   const title = recordTitle(px.title, roster);
-  if (title !== recordTitle(py.title, roster)) return false;
+  if (title !== recordTitle(py.title, roster)) {
+    if (baseTitle(px.title) !== baseTitle(py.title)) return false;
+    return (
+      (!!px.cover && px.cover === py.cover) || mentions(px.credit, y.artist) || mentions(py.credit, x.artist)
+    );
+  }
   if (mentions(px.credit, y.artist) || mentions(py.credit, x.artist)) return true;
   if (parentheticals(px.title).some((p) => mentions(p, y.artist))) return true;
   if (parentheticals(py.title).some((p) => mentions(p, x.artist))) return true;
@@ -252,22 +278,37 @@ export function sameRecord(
 }
 
 /** One programme's lines folded into RECORDS: a plaque two lines share is one
- *  record with two holders. Grouped by record title and format, then joined
+ *  record with two holders. Grouped by BASE title and format, then joined
  *  only where `sameRecord` says so (union–find, so a three-way record such as
- *  Olamide's "99" joins whichever pairs carry the evidence). */
+ *  Olamide's "99" joins whichever pairs carry the evidence). Pairs whose record
+ *  titles agree are joined first, and two groups that already hold the same
+ *  artist are never joined: an artist's own "X" and "X (Remix)" are two of his
+ *  plaques, whichever other line names them both. */
 export function recordsOf(lines: CountryArtistLine[], roster: ComparableArtist[] = comparableArtists): CountryRecord[] {
   const items = lines.flatMap((l) => l.plaqueList.map((plaque) => ({ artist: l.artist, plaque })));
   const parent = items.map((_, i) => i);
   const find = (i: number): number => (parent[i] === i ? i : (parent[i] = find(parent[i])));
-  const byTitle = new Map<string, number[]>();
+  const slugsOf = items.map((it) => new Set([it.artist.slug]));
+  const join = (a: number, b: number) => {
+    const [ra, rb] = [find(a), find(b)];
+    if (ra === rb || [...slugsOf[ra]].some((s) => slugsOf[rb].has(s))) return;
+    parent[ra] = rb;
+    for (const s of slugsOf[ra]) slugsOf[rb].add(s);
+  };
+  const byBase = new Map<string, number[]>();
   items.forEach((it, i) => {
-    const k = `${recordTitle(it.plaque.title, roster)}|${it.plaque.format}`;
-    byTitle.set(k, [...(byTitle.get(k) ?? []), i]);
+    const k = `${baseTitle(it.plaque.title)}|${it.plaque.format}`;
+    byBase.set(k, [...(byBase.get(k) ?? []), i]);
   });
-  for (const group of byTitle.values())
-    for (let i = 0; i < group.length; i++)
-      for (let j = i + 1; j < group.length; j++)
-        if (sameRecord(items[group[i]], items[group[j]], roster)) parent[find(group[i])] = find(group[j]);
+  const titleOf = items.map((it) => recordTitle(it.plaque.title, roster));
+  for (const exact of [true, false])
+    for (const group of byBase.values())
+      for (let i = 0; i < group.length; i++)
+        for (let j = i + 1; j < group.length; j++) {
+          const [a, b] = [group[i], group[j]];
+          if ((titleOf[a] === titleOf[b]) !== exact) continue;
+          if (sameRecord(items[a], items[b], roster)) join(a, b);
+        }
 
   const clusters = new Map<number, typeof items>();
   items.forEach((it, i) => clusters.set(find(i), [...(clusters.get(find(i)) ?? []), it]));

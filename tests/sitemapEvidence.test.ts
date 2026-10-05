@@ -7,6 +7,8 @@ import { LIVE_BOARDS } from "../app/data/liveBoards";
 import { liveChartsUpdated } from "../app/data/liveCharts";
 import { LISTENERS_READ_ON } from "../app/data/listeners";
 import { REVENUE_READ_ON } from "../app/lib/revenueSource";
+import { TOURS_EDITED_ON } from "../app/data/tours";
+import { CERTS_VERIFIED_ON } from "../app/data/certifications";
 import { allPairs, pairSlug } from "../app/lib/comparePairs";
 import { certCountryCodes, countrySlug } from "../app/lib/certCountry";
 import { comparableArtists } from "../app/lib/certUnits";
@@ -48,11 +50,17 @@ const feedDate = (path: string): string | undefined =>
 
 const swept = afrobeatsArtists.filter((a) => a.swept);
 
-/** Newest sweep among the artists holding a plaque in this country. */
+/** An artist's sweep, or a later edit made without a register read (a
+ *  title, credit or sleeve corrected) — AFROBEATS_EDITED_ON, read here
+ *  directly rather than through the pageStamp helper the sitemap calls. */
+const artistEvidence = (a: { slug: string; verifiedOn: string }): string =>
+  [a.verifiedOn, AFROBEATS_EDITED_ON[a.slug] ?? ""].sort().at(-1)!;
+
+/** Newest sweep (or edit) among the artists holding a plaque in this country. */
 const countryEvidence = (code: string): string | undefined =>
   comparableArtists
     .filter((a) => a.releases.some((r) => r.certs.some((x) => x.c === code)))
-    .map((a) => a.verifiedOn)
+    .map(artistEvidence)
     .sort()
     .at(-1);
 
@@ -67,7 +75,11 @@ function evidenceFor(path: string): string[] {
   // bodies; the countries page declares that day as its dateModified.
   if (path === "/records/tours/revenue" || path === "/records/tours/revenue/countries") dates.push(REVENUE_READ_ON);
   const pair = allPairs().find(([a, b]) => `/compare/${pairSlug(a, b)}` === path);
-  if (pair) dates.push([pair[0].verifiedOn, pair[1].verifiedOn].sort().at(-1)!);
+  if (pair) dates.push([artistEvidence(pair[0]), artistEvidence(pair[1])].sort().at(-1)!);
+  // The tours page and the map print the tour data and the box-office board's
+  // nights; /certifications prints the registers' read date (D-04, 4 Oct 2026).
+  if (path === "/records/tours" || path === "/records/tours/map") dates.push(TOURS_EDITED_ON, REVENUE_READ_ON);
+  if (path === "/certifications") dates.push(CERTS_VERIFIED_ON);
   // A country board is dated by the artists certified THERE — derived from the
   // plaques themselves here, not from the board builder the sitemap calls.
   const code = certCountryCodes().find((c) => `/compare/in/${countrySlug(c)}` === path);

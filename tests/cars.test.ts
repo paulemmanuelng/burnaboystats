@@ -294,31 +294,61 @@ describe("computed figures (CARS-HANDOFF §7)", () => {
 // were the aggregator-era counts that this file has since re-priced: five of
 // those vehicles are now carried as sold or unconfirmed and are out of the
 // live totals by rule. Every other surface (the /records/cars page, the FAQ,
-// the nav, search) already derives from carCount and totalValueFormatted; the
-// log was the one place still typing them.
+// the nav, search) derives from carCount and totalValueFormatted. The log is
+// the exception by rule since 4 Oct 2026: a dated entry states its own day's
+// garage, so it is held to that day, not to today.
 describe("the updates log's garage totals", () => {
-  const garageEntries = updates.filter((u) => u.href === "/records/cars");
+  const garageEntries = updates.filter((u) => u.href.startsWith("/records/cars"));
+  const sizesOf = (text: string) => [...text.matchAll(/(\d+)[- ](?:cars?|vehicles?)\b/g)].map((m) => Number(m[1]));
+  const valuesOf = (text: string) => [...text.matchAll(/\$[\d.]+ ?(?:M\b|million)/g)].map((m) => m[0]);
+  const stated = garageEntries
+    .filter((u) => sizesOf(u.text).length || valuesOf(u.text).length)
+    .map((u) => ({ date: u.date, sizes: sizesOf(u.text), values: valuesOf(u.text) }));
 
-  it("states a collection size only where it matches the data", () => {
-    const sizes = garageEntries.flatMap((u) => [
-      ...u.text.matchAll(/(\d+)[- ](?:cars?|vehicles?)\b/g),
-    ].map((m) => ({ n: Number(m[1]), text: u.text })));
-    const wrong = sizes.filter((s) => s.n !== carCount);
+  // A dated entry is a SNAPSHOT (owner ruling, 4 Oct 2026): it states the
+  // garage of its own day. Until 5 Oct 2026 these entries interpolated the
+  // live carCount and totalValueFormatted, so the 8 Sep correction and the
+  // 5 Jul Maybach entry both counted the SLS bought on 23 Sep (16 cars,
+  // $17.54M). Each day's figure, with the commit that states it:
+  const GARAGE_OF_THE_DAY: Record<string, { size: number; value: string }> = {
+    // e28dd5ea: "now at 15 cars worth a reported $16.46M" (before the
+    // Chiron's re-conversion, which the 8 Sep entry records).
+    "2026-07-05": { size: 15, value: "$16.46M" },
+    // a46ca5c4: "moves the fleet total from $16.46M to $16.84M".
+    "2026-09-08": { size: 15, value: "$16.84M" },
+    // cb442b8a: "Add the 2010 SLS AMG to the garage: sixteen cars, $17.54M".
+    "2026-09-23": { size: 16, value: "$17.54M" },
+  };
+
+  it("states each day's own garage: one size and one value a day, as of that day", () => {
+    const wrong = stated.filter((s) => {
+      const day = GARAGE_OF_THE_DAY[s.date];
+      return !day || s.sizes.some((n) => n !== day.size) || s.values.some((v) => v !== day.value);
+    });
     expect(
-      wrong.map((s) => `${s.n} cars — "${s.text.slice(0, 70)}…"`),
-      `an update states a collection size other than the ${carCount} data/cars.ts counts. Interpolate carCount instead of typing a figure the re-pricing pass has moved on from.`
+      wrong.map((s) => `${s.date}: ${s.sizes.join("/")} cars, ${s.values.join("/")}`),
+      "a garage entry states a total other than its own day's — type that day's figure (and pin it here with its commit)",
     ).toEqual([]);
   });
 
-  it("states a collection value only where it matches the data", () => {
-    const values = garageEntries.flatMap((u) => [
-      ...u.text.matchAll(/\$[\d.]+ ?(?:M\b|million)/g),
-    ].map((m) => ({ v: m[0], text: u.text })));
-    const wrong = values.filter((v) => v.v !== totalValueFormatted);
-    expect(
-      wrong.map((v) => `${v.v} — "${v.text.slice(0, 70)}…"`),
-      `an update values the collection at something other than ${totalValueFormatted}. Interpolate totalValueFormatted.`
-    ).toEqual([]);
+  it("the newest garage total is the live one, so a car added without a log line fails", () => {
+    const newest = [...stated].sort((a, b) => a.date.localeCompare(b.date)).at(-1)!;
+    expect(newest.sizes).toContain(carCount);
+    expect(newest.values).toContain(totalValueFormatted);
+  });
+
+  it("negative control: the interpolated lines that shipped fail the day check", () => {
+    // Live /updates on 4 Oct 2026 (debug pass, C-missed): the 8 Sep and 5 Jul
+    // entries as the interpolation rendered them.
+    const shipped = [
+      { date: "2026-09-08", text: "A correction to the garage total, now $17.54M across 16 cars: the Bugatti Chiron's ₦9 billion is re-converted" },
+      { date: "2026-07-05", text: "with his confirmed collection now at 16 cars worth a reported $17.54M." },
+    ];
+    for (const u of shipped) {
+      const day = GARAGE_OF_THE_DAY[u.date];
+      expect(sizesOf(u.text).every((n) => n === day.size), u.date).toBe(false);
+      expect(valuesOf(u.text).every((v) => v === day.value), u.date).toBe(false);
+    }
   });
 
   it("still states the total somewhere, so the log is not silently emptied", () => {

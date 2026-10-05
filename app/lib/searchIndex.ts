@@ -294,7 +294,11 @@ export const searchIndex: SearchDoc[] = [
     path: "/records/tours/revenue",
     section: "Records",
     description: "Box-office and highest-grossing concert figures.",
-    keywords: ["highest-grossing shows", "revenue per show", "highest revenue per show", "revenue", "box office", "grossing", "highest grossing", "boxscore", "earnings", "tour money"],
+    // "biggest shows" is the label of the buttons that link here (#422), and
+    // "Multi-night runs" the board's own chip (#418): the search found Tours &
+    // Live and Dai Dai for the first and nothing for the second (D-06, 4 Oct
+    // 2026). The runs are a view of this page, so they land here.
+    keywords: ["highest-grossing shows", "biggest shows", "biggest concerts", "multi-night runs", "multi-night", "multi night", "stands", "revenue per show", "highest revenue per show", "revenue", "box office", "grossing", "highest grossing", "boxscore", "touringdata", "earnings", "tour money"],
   },
   {
     title: "Highest-Grossing Artists by Country",

@@ -42,6 +42,7 @@ import {
   DAI_DAI_YT_FIRST_NO1,
 } from "../data/daiDai";
 import { awardLabel } from "./awardName";
+import { revenueRowBody } from "./revenueSource";
 
 // The kinds — shape plus word, in ink — live in a module of their own, so a
 // client component can draw a mark without pulling this file's datasets into
@@ -291,6 +292,11 @@ function awardEvents(): OnThisDayEvent[] {
   return out;
 }
 
+/** A tour's name with its "World"/"Tour" words dropped — "Space Drift World
+ *  Tour" and the board's "Space Drift Tour" are one run. */
+export const tourKey = (name: string) =>
+  name.toLowerCase().replace(/\b(?:world )?tour\b/g, "").replace(/\s+/g, " ").trim();
+
 /** "London Stadium (sold out)", "Stade de France, Paris" → the venue alone. */
 const momentVenue = (m: LiveMoment) => m.title.split(/ \(| — |, /)[0].trim();
 const bareVenue = (v: string) => v.replace(/\s*\(.*\)$/, "").trim();
@@ -305,12 +311,19 @@ function showEvents(): OnThisDayEvent[] {
       const date = showDateIso(s.date);
       if (!date) return;
       const year = date.slice(0, 4);
-      // A Boxscore gross is joined on venue and year, and only where the tour
-      // played that venue once that year — two nights share one reported row.
+      // A reported gross is joined on venue, year AND tour, and only where the
+      // tour played that venue once that year — two nights share one reported
+      // row. The tour matters (C-07 hazard, 5 Oct 2026): his second 3Arena
+      // night of 2022 was a Love, Damini date, and a venue-and-year join would
+      // hand it the March Space Drift night's $378,802 the day it is listed.
+      // The board names tours as TouringData does ("Space Drift Tour" against
+      // this file's "Space Drift World Tour"), so both are compared by tourKey.
       const sameVenue = (t.dates ?? []).filter((d) => d.venue === s.venue && d.date.endsWith(year));
       const gross =
         sameVenue.length === 1
-          ? revenueShows.filter((r) => r.artist === "Burna Boy" && r.venue === bareVenue(s.venue) && r.year === year)
+          ? revenueShows.filter(
+              (r) => r.artist === "Burna Boy" && r.venue === bareVenue(s.venue) && r.year === year && tourKey(r.tour) === tourKey(t.name),
+            )
           : [];
       const row = gross.length === 1 ? gross[0] : undefined;
       // A live moment names the same night where its venue and year match.
@@ -324,7 +337,9 @@ function showEvents(): OnThisDayEvent[] {
         kind: "show",
         headline: `Burna Boy played ${s.venue}, ${s.city}`,
         detail: moment ? moment.text : [t.name, grossLine].filter(Boolean).join(" · "),
-        body: row ? "Billboard Boxscore" : t.name,
+        // The publisher the row was read at (TouringData for every row today),
+        // never a hard-coded "Billboard Boxscore" (C-06, 4 Oct 2026).
+        body: row ? revenueRowBody(row.source) : t.name,
         href: row ? "/records/tours/revenue" : "/records/tours",
         source: { data: "tours", tour: t.name, index },
         rank: moment ? (moment.record ? 79 : 70) : row ? 46 + Math.min(row.revenue / 1e6, 6) : 34,

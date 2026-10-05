@@ -5,6 +5,8 @@ import { pageMetadata, datasetJsonLd } from "../../../lib/seo";
 import { countryCount, regionCount } from "../../../data/performedCountries";
 import TourMapText from "../../../components/TourMapText";
 import { tourMapProps } from "../../../lib/tourMapData";
+import { TOURS_EDITED_ON } from "../../../data/tours";
+import { REVENUE_READ_ON } from "../../../lib/revenueSource";
 import styles from "./map.module.css";
 
 export const metadata = pageMetadata({
@@ -21,6 +23,9 @@ const dataset = datasetJsonLd({
   path: "/records/tours/map",
   keywords: ["Burna Boy", "tour", "countries performed", "live performances", "concerts", "festivals"],
   variableMeasured: ["Country", "Region", "Notable performances"],
+  // The later of the tour data's last edit and the box-office board's read —
+  // the sitemap's lastmod for this route (D-04, 4 Oct 2026).
+  dateModified: [TOURS_EDITED_ON, REVENUE_READ_ON].sort().at(-1)!,
 });
 
 /**

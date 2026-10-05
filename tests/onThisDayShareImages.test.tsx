@@ -130,12 +130,16 @@ describe("the post card, 1080×1350", () => {
     expect(c.source).toBeNull();
   });
 
-  it("28 April: the longest headline at the last step, 80; the record line prints, and Billboard Boxscore is the source", () => {
+  it("28 April: the longest headline at the last step, 80; the record line prints, and TouringData is the source", () => {
     const c = dayPostCard(day("28-april"));
     expect(Math.max(...onThisDayDays.map((d) => d.lead.headline.length))).toBe(c.headline.length);
     expect(c.headSize).toBe(80); // 69 characters
     expect(c.record).toBe("First African artist to sell out the world's most famous arena.");
-    expect(c.source).toBe("BILLBOARD BOXSCORE");
+    // The publisher the night's box-office row was read at. "BILLBOARD
+    // BOXSCORE" until 5 Oct 2026, over a row sourced to TouringData's X post
+    // (debug pass 4 Oct, C-06/D-03/E-12).
+    expect(c.source).toBe("TOURINGDATA");
+    expect(c.source).not.toBe("BILLBOARD BOXSCORE");
   });
 
   it("11 July: the album's cover, and no record label as a source", () => {
@@ -183,7 +187,10 @@ describe("the post card, 1080×1350", () => {
   it("the kind line gives way to the source, a step at a time, and never wraps", () => {
     // The six days it wrapped on, set in full, until 26 Sep 2026.
     expect(dayPostCard(day("2-march")).kindLine).toBe("AWARDS · + 1 MORE ON THIS DAY"); // beside BOSTON CITY COUNCIL
-    expect(dayPostCard(day("24-october")).kindLine).toBe("SHOW · + 2 MORE ON THIS DAY"); // BILLBOARD BOXSCORE
+    // 24 October's shortened beside BILLBOARD BOXSCORE; beside TOURINGDATA,
+    // its source since 5 Oct 2026, it fits in full.
+    expect(dayPostCard(day("24-october")).kindLine).toBe("SHOW · + 2 MORE MILESTONES ON THIS DAY");
+    expect(dayPostCard(day("24-october")).source).toBe("TOURINGDATA");
     for (const slug of ["17-july", "31-august"]) expect(dayPostCard(day(slug)).kindLine).toBe("CHARTS · + 2 MORE ON THIS DAY"); // TURNTABLE TOP 100 ALBUMS
     expect(dayPostCard(day("3-november")).kindLine).toBe("CHARTS · + 3 MORE ON THIS DAY");
     // The sixth, 10 November, beside NIGERIA ENTERTAINMENT AWARDS, had room
@@ -257,7 +264,9 @@ describe("the post card, 1080×1350", () => {
     const printed = onThisDayDays.map((d) => dayPostCard(d).source).filter((s): s is string => Boolean(s));
     expect(printed.filter((s) => notPublishers.has(s))).toEqual([]);
     // Not vacuous: the bodies behind certifications, charts and grosses do print.
-    expect(printed).toEqual(expect.arrayContaining(["BPI", "TURNTABLE TOP 100", "BILLBOARD BOXSCORE"]));
+    expect(printed).toEqual(expect.arrayContaining(["BPI", "TURNTABLE TOP 100", "TOURINGDATA"]));
+    // No grossed night names a body its row was not read at (C-06).
+    expect(printed).not.toContain("BILLBOARD BOXSCORE");
   });
 
   it("a negative control: the first build printed the lead's tour and label as its source", () => {
@@ -834,7 +843,9 @@ describe("the post card leads with the milestone, not the date (Paul, 26 Sep 202
     // Not vacuous: the days the full kind line wrapped on are among them,
     // each now in a shorter form — and 10 November, which prints no source
     // now, in full on one line.
-    for (const slug of ["2-march", "17-july", "31-august", "24-october", "3-november"]) {
+    // (24 October left this list on 5 Oct 2026: its source is TOURINGDATA,
+    // shorter than the BILLBOARD BOXSCORE it wrapped beside.)
+    for (const slug of ["2-march", "17-july", "31-august", "3-november"]) {
       expect(dayPostCard(day(slug)).kindLine, slug).not.toMatch(/MILESTONES? ON THIS DAY$/);
     }
     expect(dayPostCard(day("10-november")).kindLine).toMatch(/MILESTONE ON THIS DAY$/);

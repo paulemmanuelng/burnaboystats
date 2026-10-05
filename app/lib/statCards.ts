@@ -1,4 +1,4 @@
-import { totalAwards, countryCount, allItems, tierOf, daiDaiCertCount, COUNTRIES, CERTS_VERIFIED_ON } from "../data/certifications";
+import { totalAwards, countryCount, allItems, tierOf, daiDaiCertCount, COUNTRIES, CERTS_VERIFIED_ON, announcedClause } from "../data/certifications";
 import { firstGroups } from "../data/firsts";
 import { titleKey } from "./titleKey";
 import { badgeWeight } from "./certs";
@@ -10,6 +10,7 @@ import { spotifyFollowersDisplay, SPOTIFY_FOLLOWERS_READ_ON } from "../data/spot
 import { BURNA_PEAK_LISTENERS, BURNA_PEAK_LISTENERS_SET_ON, BURNA_PEAK_LISTENERS_SET_ON_LONG } from "../data/africasBiggest";
 import { lastUpdated } from "./api";
 import { revenueShows } from "../data/tourRevenue";
+import { revenueRowBody } from "./revenueSource";
 import { tours } from "../data/tours";
 
 // The record tour and the record night, read off the data the tour pages use —
@@ -67,7 +68,7 @@ export function getStatCards(): StatCard[] {
       source: "RIAA · BPI · SNEP · IFPI",
       watermark: "GOLD",
       href: "/certifications",
-      detail: `Every award is counted once it appears in the issuing body's own searchable database, or, in a market with no current public register, on the label's own plaque. ${diamond} of them are Diamond${diamondBodies.length === 1 ? `, all awarded by ${diamondBodies[0]}` : `, across ${diamondBodies.join(" · ")}`}.`,
+      detail: `Every award is counted once it appears in the issuing body's own searchable database, or, in a market with no current public register, on the label's own plaque${announcedClause(", or on ")}. ${diamond} of them are Diamond${diamondBodies.length === 1 ? `, all awarded by ${diamondBodies[0]}` : `, across ${diamondBodies.join(" · ")}`}.`,
       value: `${totalAwards()}`,
       label: `certifications across ${countryCount} countries`,
       kicker: "The most-certified African artist in history",
@@ -131,7 +132,9 @@ export function getStatCards(): StatCard[] {
       source: "Billboard Boxscore",
       watermark: "TOUR",
       href: "/records/tours",
-      detail: `Box-office gross across North America and Europe. His ${topShow.venue} night alone took ${usd(topShow.revenue)} from ${topShow.tickets} tickets — the biggest concert ever by an African artist.`,
+      // The tour total is Boxscore's; the one night is a box-office row read at
+      // TouringData, so the clause names its own publisher (F-04, 4 Oct 2026).
+      detail: `Box-office gross across North America and Europe. His ${topShow.venue} night alone took ${usd(topShow.revenue)} from ${topShow.tickets} tickets, per ${revenueRowBody(topShow.source)} — the biggest concert ever by an African artist.`,
       value: topTour.gross!,
       label: "highest-grossing African tour ever",
       kicker: "The I Told Them… Tour",
@@ -154,7 +157,9 @@ export function getStatCards(): StatCard[] {
     },
     {
       id: "concert",
-      source: "Billboard Boxscore",
+      // The publisher the night's row was read at — TouringData, not the
+      // "Billboard Boxscore" the card printed until 5 Oct 2026 (F-04).
+      source: revenueRowBody(topShow.source),
       watermark: "LIVE",
       href: "/records/tours/revenue",
       detail: `${topShow.tickets} tickets at ${topShow.venue}, June ${showYear(topShow.year)} — the highest-grossing single concert by any African artist, a year after his 2023 night there made him the first African artist to headline a UK stadium.`,
