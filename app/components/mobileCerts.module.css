@@ -343,15 +343,14 @@
    the screen. The washes are the ruled values — rgba(179,71,0,.10) on paper,
    rgba(255,122,26,.16) on the dark page — written as --ember at 10% / 16%
    (--ember IS #b34700 / #ff7a1a), not the house calc(16% * --wash-strength),
-   which gives ~6.7% on paper. */
+   which gives ~6.7% on paper. Since 5 Oct 2026 those values live once, in
+   globals.css as --chip-on-edge / --chip-on-wash / --chip-on-ink, because
+   every phone chip rail now draws its selected chip this way. */
 .chipOn {
-  border-color: var(--ember);
+  border-color: var(--chip-on-edge);
   background-image: none;
-  background-color: light-dark(
-    color-mix(in srgb, var(--ember) 10%, transparent),
-    color-mix(in srgb, var(--ember) 16%, transparent)
-  );
-  color: var(--text);
+  background-color: var(--chip-on-wash);
+  color: var(--chip-on-ink);
 }
 .chipDot { width: 7px; height: 7px; border-radius: 50%; flex: none; display: block; }
 

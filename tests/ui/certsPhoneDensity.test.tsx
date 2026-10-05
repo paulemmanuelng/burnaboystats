@@ -138,13 +138,19 @@ describe("N2: the active tier chip is an ember edge and wash, not a gold fill", 
   it(".chipOn: ember border, the ruled washes, ink label, no fill", () => {
     const rule = ruleFor(CSS, ".chipOn")!;
     expect(isFill(rule)).toBe(false);
-    expect(rule).toMatch(/border-color:\s*var\(--ember\)/);
+    // Since 5 Oct 2026 the values live once in globals.css, shared by every
+    // phone chip rail (tests/phoneChipsN2.test.tsx resolves them per theme).
+    expect(rule).toMatch(/border-color:\s*var\(--chip-on-edge\)/);
     expect(rule).toMatch(/background-image:\s*none/);
+    expect(rule).toMatch(/background-color:\s*var\(--chip-on-wash\)/);
+    expect(rule).toMatch(/(?:^|;|\s)color:\s*var\(--chip-on-ink\)/);
+    const globals = readFileSync("app/globals.css", "utf8").replace(/\/\*[\s\S]*?\*\//g, "");
+    expect(globals).toMatch(/--chip-on-edge:\s*var\(--ember\);/);
+    expect(globals).toMatch(/--chip-on-ink:\s*var\(--text\);/);
     // The ruled washes: --ember (#b34700 / #ff7a1a) at 10% on paper, 16% dark.
-    expect(rule.replace(/\s+/g, "")).toContain(
-      "light-dark(color-mix(insrgb,var(--ember)10%,transparent),color-mix(insrgb,var(--ember)16%,transparent))",
+    expect(globals.replace(/\s+/g, "")).toContain(
+      "--chip-on-wash:light-dark(color-mix(insrgb,var(--ember)10%,transparent),color-mix(insrgb,var(--ember)16%,transparent));",
     );
-    expect(rule).toMatch(/(?:^|;|\s)color:\s*var\(--text\)/);
   });
 
   it("Ayra Starr's override keeps N2's shape in her colour", () => {

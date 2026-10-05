@@ -156,6 +156,21 @@
   /* Records signature. In dark it IS --grad-b; on paper it deepens, because it
      is read as text and --grad-b (a gradient stop) never has to be. */
   --ember: light-dark(#b34700, #ff7a1a);
+  /* The SELECTED chip on every phone rail: an ember edge, an ember wash and an
+     ink label, never a gold fill, so the screen's one gold fill stays its
+     action (Compare, Make a stat card, the action bar). Owner's ruling N2 on
+     the certifications rail (#415, 4 Oct 2026), carried to every phone chip
+     on 5 Oct 2026 ("do what is best": they match). The washes are N2's ruled
+     values, rgba(179,71,0,.10) on paper and rgba(255,122,26,.16) on the dark
+     page: --ember at 10% / 16%, not the house calc(16% * --wash-strength),
+     which gives ~6.7% on paper. Declared once here so no rail can drift:
+     tests/phoneChipsN2.test.ts holds every phone on-state rule to these. */
+  --chip-on-edge: var(--ember);
+  --chip-on-wash: light-dark(
+    color-mix(in srgb, var(--ember) 10%, transparent),
+    color-mix(in srgb, var(--ember) 16%, transparent)
+  );
+  --chip-on-ink: var(--text);
   /* The hover / pressed surface, previously hand-mixed at each call site. */
   --bg-raised: light-dark(#e6e0d4, #24242a);
   /* Box-office pages (Claude Design round 1, 4 Oct 2026, §8). --hover is the

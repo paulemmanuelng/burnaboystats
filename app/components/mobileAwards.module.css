@@ -153,7 +153,10 @@
   white-space: nowrap;
   cursor: pointer;
 }
-.chipOn { background: color-mix(in srgb, var(--ember) calc(16% * var(--wash-strength)), transparent); border-color: var(--ember); color: var(--ember); }
+/* The selected chip: N2's ember edge, ember wash and INK label (globals.css
+   --chip-on-*), as on every phone rail since 5 Oct 2026. It had the ember
+   edge already, but an ember label and the thinner house wash. */
+.chipOn { background: var(--chip-on-wash); border-color: var(--chip-on-edge); color: var(--chip-on-ink); }
 
 .metaBar {
   display: flex;
