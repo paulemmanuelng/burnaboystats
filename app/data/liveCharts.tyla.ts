@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-05";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-05T05:46Z";
+  export const liveChartsBuiltAt = "2026-10-05T14:46Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify Albums","iTunes"];
@@ -100,13 +100,6 @@
             "name": "Malawi",
             "position": 86,
             "movement": 80
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 99,
-            "movement": null,
-            "status": "new"
           },
           {
             "country": "QA",
@@ -185,13 +178,6 @@
             "position": 178,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 198,
-            "movement": null,
-            "status": "new"
           }
         ]
       },
@@ -214,7 +200,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 11,
+            "position": 49,
             "movement": null,
             "status": "new"
           }
@@ -285,7 +271,7 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 23,
+            "position": 35,
             "movement": null,
             "status": "new"
           },
@@ -310,8 +296,8 @@
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 46,
-            "movement": -1
+            "position": 58,
+            "movement": -12
           }
         ]
       }
@@ -322,24 +308,6 @@
   {
     "title": "SHE DID IT AGAIN",
     "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "HR",
-            "name": "Croatia",
-            "position": 35,
-            "movement": 14
-          },
-          {
-            "country": "RO",
-            "name": "Romania",
-            "position": 200,
-            "movement": -6
-          }
-        ]
-      },
       {
         "platform": "Apple Music",
         "numberOnes": 0,
@@ -360,9 +328,20 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 107,
-            "movement": null,
-            "status": "new"
+            "position": 71,
+            "movement": 102
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "HR",
+            "name": "Croatia",
+            "position": 26,
+            "movement": 9
           }
         ]
       }
@@ -381,15 +360,13 @@
             "country": "IT",
             "name": "Italy",
             "position": 61,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "CH",
             "name": "Switzerland",
             "position": 86,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       },
@@ -420,22 +397,19 @@
             "country": "AU",
             "name": "Australia",
             "position": 75,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "SE",
             "name": "Sweden",
             "position": 93,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "NO",
             "name": "Norway",
             "position": 95,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       }
@@ -465,8 +439,8 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 166,
-            "movement": 2
+            "position": 176,
+            "movement": -10
           }
         ]
       },
@@ -478,7 +452,7 @@
             "country": "JM",
             "name": "Jamaica",
             "position": 63,
-            "movement": 11
+            "movement": 0
           }
         ]
       }
@@ -517,7 +491,7 @@
             "country": "UG",
             "name": "Uganda",
             "position": 41,
-            "movement": -6
+            "movement": -5
           }
         ]
       }

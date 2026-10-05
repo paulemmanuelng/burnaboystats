@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-05";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-05T05:46Z";
+  export const liveChartsBuiltAt = "2026-10-05T14:46Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","iTunes"];
@@ -154,56 +154,38 @@
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 56,
-            "movement": -2
+            "position": 59,
+            "movement": -3
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 81,
-            "movement": -10
-          },
-          {
-            "country": "US",
-            "name": "United States",
-            "position": 82,
-            "movement": -16
+            "position": 92,
+            "movement": -11
           },
           {
             "country": "CA",
             "name": "Canada",
-            "position": 87,
-            "movement": -13
+            "position": 105,
+            "movement": -18
+          },
+          {
+            "country": "US",
+            "name": "United States",
+            "position": 116,
+            "movement": -34
           },
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 90,
-            "movement": -7
+            "position": 118,
+            "movement": -28
           },
           {
             "country": "PT",
             "name": "Portugal",
-            "position": 176,
-            "movement": -28
-          },
-          {
-            "country": "FR",
-            "name": "France",
-            "position": 179,
-            "movement": -25
-          },
-          {
-            "country": "CI",
-            "name": "Côte d'Ivoire",
-            "position": 182,
-            "movement": -27
-          },
-          {
-            "country": "WW",
-            "name": "Worldwide",
-            "position": 182,
-            "movement": -28
+            "position": 197,
+            "movement": -21
           }
         ]
       },
@@ -227,7 +209,7 @@
             "country": "DZ",
             "name": "Algeria",
             "position": 54,
-            "movement": -50
+            "movement": 0
           }
         ]
       }
@@ -422,6 +404,32 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/2f5c91242bfb5ed7be4ccb2b435b6f7f/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Fada Fada",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 76,
+            "movement": 6
+          },
+          {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 197,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Unruly",
     "platforms": [
       {
@@ -463,8 +471,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 85,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       }
@@ -492,25 +499,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/fe507c621f9c8d35a93398415c261b2a/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Fada Fada",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 82,
-            "movement": -16
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Luvaluvah",
     "platforms": [
       {
@@ -522,25 +510,6 @@
             "name": "Nigeria",
             "position": 196,
             "movement": 0
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Billionaires Club",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 170,
-            "movement": -131
           }
         ]
       }
@@ -596,8 +565,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 150,
-            "movement": -13
+            "position": 154,
+            "movement": -15
           }
         ]
       }
@@ -615,8 +584,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 156,
-            "movement": -13
+            "position": 160,
+            "movement": -15
           }
         ]
       }
@@ -634,8 +603,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 193,
-            "movement": -13
+            "position": 197,
+            "movement": -15
           }
         ]
       }

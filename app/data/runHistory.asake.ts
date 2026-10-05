@@ -17,7 +17,14 @@
     position: number;
   }
   
-  export const runHistory: RunPoint[] = [];
+  export const runHistory: RunPoint[] = [
+  {
+    "date": "2026-10-05",
+    "release": "IKEBE 3000",
+    "platform": "Shazam",
+    "position": 150
+  }
+];
   
   /** The dated series for one release on one platform, oldest first. A song's
    *  unless `kind` says album: a title track and its album share the name. */

@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-05";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-05T05:46Z";
+  export const liveChartsBuiltAt = "2026-10-05T14:46Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","iTunes"];
@@ -322,8 +322,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 187,
-            "movement": 13
+            "position": 181,
+            "movement": 6
           }
         ]
       },
@@ -335,7 +335,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 59,
-            "movement": 35
+            "movement": 0
           }
         ]
       }
@@ -527,19 +527,19 @@
             "country": "ZW",
             "name": "Zimbabwe",
             "position": 16,
-            "movement": -7
+            "movement": -4
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 107,
-            "movement": -32
+            "position": 111,
+            "movement": -30
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 142,
-            "movement": -138
+            "position": 183,
+            "movement": -123
           }
         ]
       },
@@ -562,8 +562,8 @@
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 162,
-            "movement": 3
+            "position": 154,
+            "movement": 8
           }
         ]
       }
@@ -653,8 +653,8 @@
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
-            "position": 139,
-            "movement": 0
+            "position": 135,
+            "movement": 4
           }
         ]
       }
@@ -941,8 +941,7 @@
             "country": "SV",
             "name": "El Salvador",
             "position": 43,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       }
@@ -995,50 +994,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/39ef498a2ba8764bae8c87f00ae13441/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Forever",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 198,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 87,
-            "movement": -4
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CI",
-            "name": "Côte d'Ivoire",
-            "position": 200,
-            "movement": -2
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ada9bcfee9900dd72f862562ae032550/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Namek",
     "platforms": [
       {
@@ -1048,8 +1003,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 91,
-            "movement": 0
+            "position": 90,
+            "movement": -1
           },
           {
             "country": "BE",
@@ -1119,6 +1074,38 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b38a20520a3084e0e07332273a98158a/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Forever",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 198,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 87,
+            "movement": -3
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ada9bcfee9900dd72f862562ae032550/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "10 Toes",

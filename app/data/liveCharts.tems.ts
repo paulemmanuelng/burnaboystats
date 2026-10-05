@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-05";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-05T05:46Z";
+  export const liveChartsBuiltAt = "2026-10-05T14:46Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -93,7 +93,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 19,
-            "movement": 0
+            "movement": 2
           },
           {
             "country": "MN",
@@ -297,7 +297,7 @@
             "country": "NL",
             "name": "Netherlands",
             "position": 55,
-            "movement": -8
+            "movement": 1
           },
           {
             "country": "MR",
@@ -326,8 +326,8 @@
           {
             "country": "NZ",
             "name": "New Zealand",
-            "position": 63,
-            "movement": -5
+            "position": 64,
+            "movement": -1
           },
           {
             "country": "TT",
@@ -362,8 +362,8 @@
           {
             "country": "DE",
             "name": "Germany",
-            "position": 70,
-            "movement": 7
+            "position": 71,
+            "movement": 15
           },
           {
             "country": "BB",
@@ -413,12 +413,6 @@
             "name": "St. Lucia",
             "position": 109,
             "movement": 47
-          },
-          {
-            "country": "AU",
-            "name": "Australia",
-            "position": 110,
-            "movement": 23
           },
           {
             "country": "SZ",
@@ -476,6 +470,12 @@
             "movement": 40
           },
           {
+            "country": "AU",
+            "name": "Australia",
+            "position": 119,
+            "movement": 8
+          },
+          {
             "country": "EE",
             "name": "Estonia",
             "position": 121,
@@ -513,12 +513,6 @@
             "movement": 29
           },
           {
-            "country": "NO",
-            "name": "Norway",
-            "position": 142,
-            "movement": 9
-          },
-          {
             "country": "SK",
             "name": "Slovakia",
             "position": 146,
@@ -537,10 +531,22 @@
             "movement": 19
           },
           {
+            "country": "NO",
+            "name": "Norway",
+            "position": 152,
+            "movement": -10
+          },
+          {
             "country": "KH",
             "name": "Cambodia",
             "position": 157,
             "movement": -8
+          },
+          {
+            "country": "CA",
+            "name": "Canada",
+            "position": 158,
+            "movement": 10
           },
           {
             "country": "ML",
@@ -569,8 +575,8 @@
           {
             "country": "IT",
             "name": "Italy",
-            "position": 182,
-            "movement": 8
+            "position": 179,
+            "movement": 9
           },
           {
             "country": "NG",
@@ -584,12 +590,6 @@
             "position": 183,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "CA",
-            "name": "Canada",
-            "position": 186,
-            "movement": -6
           },
           {
             "country": "KN",
@@ -619,369 +619,381 @@
             "country": "US",
             "name": "United States",
             "position": 4,
-            "movement": 2
+            "movement": 0
+          },
+          {
+            "country": "MY",
+            "name": "Malaysia",
+            "position": 5,
+            "movement": 1
           },
           {
             "country": "CL",
             "name": "Chile",
             "position": 6,
-            "movement": 2
+            "movement": 0
           },
           {
-            "country": "MY",
-            "name": "Malaysia",
+            "country": "PE",
+            "name": "Peru",
             "position": 6,
-            "movement": 0
+            "movement": 1
           },
           {
             "country": "WW",
             "name": "Worldwide",
             "position": 6,
-            "movement": 6
-          },
-          {
-            "country": "PE",
-            "name": "Peru",
-            "position": 7,
-            "movement": 4
-          },
-          {
-            "country": "VE",
-            "name": "Venezuela",
-            "position": 7,
-            "movement": 5
+            "movement": 0
           },
           {
             "country": "AR",
             "name": "Argentina",
-            "position": 9,
-            "movement": 4
+            "position": 8,
+            "movement": 1
+          },
+          {
+            "country": "VE",
+            "name": "Venezuela",
+            "position": 8,
+            "movement": -1
           },
           {
             "country": "PT",
             "name": "Portugal",
             "position": 10,
-            "movement": 5
+            "movement": 0
+          },
+          {
+            "country": "MX",
+            "name": "Mexico",
+            "position": 11,
+            "movement": 2
           },
           {
             "country": "SG",
             "name": "Singapore",
-            "position": 10,
-            "movement": 5
+            "position": 11,
+            "movement": -1
           },
           {
             "country": "TH",
             "name": "Thailand",
-            "position": 10,
-            "movement": 2
+            "position": 11,
+            "movement": -1
           },
           {
             "country": "AU",
             "name": "Australia",
             "position": 12,
-            "movement": 2
+            "movement": 0
           },
           {
-            "country": "MX",
-            "name": "Mexico",
+            "country": "UY",
+            "name": "Uruguay",
             "position": 13,
             "movement": 7
           },
           {
-            "country": "CO",
-            "name": "Colombia",
-            "position": 15,
-            "movement": 9
+            "country": "SA",
+            "name": "Saudi Arabia",
+            "position": 14,
+            "movement": 3
+          },
+          {
+            "country": "UZ",
+            "name": "Uzbekistan",
+            "position": 14,
+            "movement": 8
           },
           {
             "country": "CR",
             "name": "Costa Rica",
-            "position": 16,
-            "movement": 6
-          },
-          {
-            "country": "ID",
-            "name": "Indonesia",
-            "position": 17,
-            "movement": 1
-          },
-          {
-            "country": "NZ",
-            "name": "New Zealand",
-            "position": 17,
-            "movement": 3
-          },
-          {
-            "country": "SA",
-            "name": "Saudi Arabia",
-            "position": 17,
+            "position": 15,
             "movement": 1
           },
           {
             "country": "CA",
             "name": "Canada",
-            "position": 18,
-            "movement": 6
-          },
-          {
-            "country": "PH",
-            "name": "Philippines",
-            "position": 19,
+            "position": 16,
             "movement": 2
           },
           {
-            "country": "UY",
-            "name": "Uruguay",
-            "position": 20,
-            "movement": 7
+            "country": "CO",
+            "name": "Colombia",
+            "position": 16,
+            "movement": -1
+          },
+          {
+            "country": "ID",
+            "name": "Indonesia",
+            "position": 17,
+            "movement": 0
+          },
+          {
+            "country": "NZ",
+            "name": "New Zealand",
+            "position": 17,
+            "movement": 0
           },
           {
             "country": "IL",
             "name": "Israel",
-            "position": 21,
-            "movement": 7
+            "position": 18,
+            "movement": 3
+          },
+          {
+            "country": "PH",
+            "name": "Philippines",
+            "position": 18,
+            "movement": 1
           },
           {
             "country": "AE",
             "name": "United Arab Emirates",
-            "position": 22,
-            "movement": 0
-          },
-          {
-            "country": "UZ",
-            "name": "Uzbekistan",
-            "position": 22,
-            "movement": 11
-          },
-          {
-            "country": "KZ",
-            "name": "Kazakhstan",
-            "position": 23,
-            "movement": 8
+            "position": 20,
+            "movement": 2
           },
           {
             "country": "GR",
             "name": "Greece",
-            "position": 24,
-            "movement": 3
+            "position": 22,
+            "movement": 2
+          },
+          {
+            "country": "KZ",
+            "name": "Kazakhstan",
+            "position": 22,
+            "movement": 1
+          },
+          {
+            "country": "CH",
+            "name": "Switzerland",
+            "position": 23,
+            "movement": 7
           },
           {
             "country": "UK",
             "name": "United Kingdom",
+            "position": 24,
+            "movement": 2
+          },
+          {
+            "country": "NO",
+            "name": "Norway",
             "position": 26,
-            "movement": 7
+            "movement": 4
+          },
+          {
+            "country": "EG",
+            "name": "Egypt",
+            "position": 28,
+            "movement": 4
           },
           {
             "country": "DE",
             "name": "Germany",
             "position": 28,
-            "movement": 7
-          },
-          {
-            "country": "NO",
-            "name": "Norway",
-            "position": 30,
-            "movement": 4
-          },
-          {
-            "country": "CH",
-            "name": "Switzerland",
-            "position": 30,
-            "movement": 3
-          },
-          {
-            "country": "EG",
-            "name": "Egypt",
-            "position": 32,
-            "movement": 5
+            "movement": 0
           },
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 33,
-            "movement": 5
+            "position": 36,
+            "movement": -3
+          },
+          {
+            "country": "ES",
+            "name": "Spain",
+            "position": 37,
+            "movement": 11
+          },
+          {
+            "country": "AT",
+            "name": "Austria",
+            "position": 38,
+            "movement": 7
           },
           {
             "country": "BE",
             "name": "Belgium",
-            "position": 41,
-            "movement": 9
+            "position": 39,
+            "movement": 2
+          },
+          {
+            "country": "DK",
+            "name": "Denmark",
+            "position": 39,
+            "movement": 4
           },
           {
             "country": "RO",
             "name": "Romania",
             "position": 41,
-            "movement": 6
-          },
-          {
-            "country": "DK",
-            "name": "Denmark",
-            "position": 43,
-            "movement": 8
-          },
-          {
-            "country": "FI",
-            "name": "Finland",
-            "position": 43,
-            "movement": 5
-          },
-          {
-            "country": "AT",
-            "name": "Austria",
-            "position": 45,
-            "movement": 4
+            "movement": 0
           },
           {
             "country": "BG",
             "name": "Bulgaria",
             "position": 45,
-            "movement": 5
-          },
-          {
-            "country": "IE",
-            "name": "Ireland",
-            "position": 46,
-            "movement": 8
-          },
-          {
-            "country": "IN",
-            "name": "India",
-            "position": 48,
-            "movement": 3
-          },
-          {
-            "country": "ES",
-            "name": "Spain",
-            "position": 48,
-            "movement": 19
+            "movement": 0
           },
           {
             "country": "CZ",
             "name": "Czech Republic",
-            "position": 53,
-            "movement": 5
+            "position": 45,
+            "movement": 8
           },
           {
-            "country": "FR",
-            "name": "France",
-            "position": 54,
-            "movement": 11
-          },
-          {
-            "country": "DZ",
-            "name": "Algeria",
-            "position": 56,
-            "movement": 1
+            "country": "FI",
+            "name": "Finland",
+            "position": 45,
+            "movement": -2
           },
           {
             "country": "IT",
             "name": "Italy",
-            "position": 57,
-            "movement": 19
-          },
-          {
-            "country": "AZ",
-            "name": "Azerbaijan",
-            "position": 60,
+            "position": 45,
             "movement": 12
           },
           {
-            "country": "VN",
-            "name": "Vietnam",
-            "position": 64,
-            "movement": 12
+            "country": "FR",
+            "name": "France",
+            "position": 46,
+            "movement": 8
+          },
+          {
+            "country": "IE",
+            "name": "Ireland",
+            "position": 47,
+            "movement": -1
+          },
+          {
+            "country": "IN",
+            "name": "India",
+            "position": 51,
+            "movement": -3
+          },
+          {
+            "country": "DZ",
+            "name": "Algeria",
+            "position": 53,
+            "movement": 3
           },
           {
             "country": "CN",
             "name": "China",
-            "position": 68,
-            "movement": 17
-          },
-          {
-            "country": "MA",
-            "name": "Morocco",
-            "position": 68,
-            "movement": 9
+            "position": 58,
+            "movement": 10
           },
           {
             "country": "SE",
             "name": "Sweden",
-            "position": 68,
-            "movement": -7
+            "position": 58,
+            "movement": 10
           },
           {
-            "country": "PL",
-            "name": "Poland",
-            "position": 73,
-            "movement": 12
+            "country": "AZ",
+            "name": "Azerbaijan",
+            "position": 63,
+            "movement": -3
           },
           {
-            "country": "UA",
-            "name": "Ukraine",
-            "position": 77,
-            "movement": 14
+            "country": "VN",
+            "name": "Vietnam",
+            "position": 63,
+            "movement": 1
+          },
+          {
+            "country": "MA",
+            "name": "Morocco",
+            "position": 67,
+            "movement": 1
           },
           {
             "country": "HR",
             "name": "Croatia",
-            "position": 84,
-            "movement": 24
+            "position": 70,
+            "movement": 14
           },
           {
             "country": "HU",
             "name": "Hungary",
-            "position": 87,
-            "movement": 29
+            "position": 70,
+            "movement": 17
+          },
+          {
+            "country": "PL",
+            "name": "Poland",
+            "position": 71,
+            "movement": 2
+          },
+          {
+            "country": "UA",
+            "name": "Ukraine",
+            "position": 72,
+            "movement": 5
           },
           {
             "country": "TN",
             "name": "Tunisia",
-            "position": 87,
-            "movement": 15
-          },
-          {
-            "country": "KR",
-            "name": "South Korea",
-            "position": 88,
-            "movement": 22
+            "position": 78,
+            "movement": 9
           },
           {
             "country": "TR",
             "name": "Turkey",
-            "position": 103,
-            "movement": 10
+            "position": 90,
+            "movement": 13
+          },
+          {
+            "country": "KR",
+            "name": "South Korea",
+            "position": 94,
+            "movement": -6
           },
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 106,
-            "movement": 49
+            "position": 95,
+            "movement": 11
           },
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 111,
-            "movement": 32
+            "position": 98,
+            "movement": 13
           },
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 154,
-            "movement": 17
+            "position": 150,
+            "movement": 4
+          },
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 181,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "CI",
+            "name": "Côte d'Ivoire",
+            "position": 185,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "BY",
             "name": "Belarus",
-            "position": 187,
-            "movement": null,
-            "status": "new"
+            "position": 188,
+            "movement": -1
           },
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 191,
-            "movement": null,
-            "status": "new"
+            "position": 188,
+            "movement": 3
           }
         ]
       },
@@ -1192,103 +1204,109 @@
       },
       {
         "platform": "iTunes",
-        "numberOnes": 1,
+        "numberOnes": 0,
         "entries": [
-          {
-            "country": "HU",
-            "name": "Hungary",
-            "position": 1,
-            "movement": 16
-          },
-          {
-            "country": "GR",
-            "name": "Greece",
-            "position": 2,
-            "movement": null,
-            "status": "new"
-          },
           {
             "country": "MD",
             "name": "Moldova",
             "position": 2,
-            "movement": 17
+            "movement": -1
+          },
+          {
+            "country": "GR",
+            "name": "Greece",
+            "position": 5,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "HU",
+            "name": "Hungary",
+            "position": 6,
+            "movement": 0
           },
           {
             "country": "LB",
             "name": "Lebanon",
             "position": 6,
+            "movement": -4
+          },
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 8,
+            "movement": 0
+          },
+          {
+            "country": "IN",
+            "name": "India",
+            "position": 19,
+            "movement": 6
+          },
+          {
+            "country": "UZ",
+            "name": "Uzbekistan",
+            "position": 34,
+            "movement": -31
+          },
+          {
+            "country": "AM",
+            "name": "Armenia",
+            "position": 47,
+            "movement": -18
+          },
+          {
+            "country": "LU",
+            "name": "Luxembourg",
+            "position": 68,
+            "movement": -55
+          },
+          {
+            "country": "RO",
+            "name": "Romania",
+            "position": 70,
             "movement": null,
             "status": "new"
           },
           {
             "country": "KZ",
             "name": "Kazakhstan",
-            "position": 7,
-            "movement": -5
-          },
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 13,
-            "movement": -4
-          },
-          {
-            "country": "UZ",
-            "name": "Uzbekistan",
-            "position": 27,
-            "movement": -26
-          },
-          {
-            "country": "IN",
-            "name": "India",
-            "position": 29,
-            "movement": 12
-          },
-          {
-            "country": "LU",
-            "name": "Luxembourg",
-            "position": 29,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "RO",
-            "name": "Romania",
-            "position": 33,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "AM",
-            "name": "Armenia",
-            "position": 45,
-            "movement": -17
-          },
-          {
-            "country": "PL",
-            "name": "Poland",
-            "position": 54,
-            "movement": 47
-          },
-          {
-            "country": "CZ",
-            "name": "Czech Republic",
-            "position": 72,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "SK",
-            "name": "Slovakia",
-            "position": 74,
-            "movement": null,
-            "status": "new"
+            "position": 73,
+            "movement": -67
           },
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 77,
-            "movement": 93
+            "position": 86,
+            "movement": 37
+          },
+          {
+            "country": "SK",
+            "name": "Slovakia",
+            "position": 95,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "BR",
+            "name": "Brazil",
+            "position": 135,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "PL",
+            "name": "Poland",
+            "position": 151,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "RU",
+            "name": "Russia",
+            "position": 151,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -1378,41 +1396,37 @@
             "country": "AE",
             "name": "United Arab Emirates",
             "position": 22,
-            "movement": 50
+            "movement": 0
           },
           {
             "country": "SA",
             "name": "Saudi Arabia",
             "position": 49,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "SG",
             "name": "Singapore",
             "position": 51,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "TH",
             "name": "Thailand",
             "position": 57,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "SN",
             "name": "Senegal",
             "position": 59,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "ZA",
             "name": "South Africa",
             "position": 62,
-            "movement": -20
+            "movement": 0
           }
         ]
       }
@@ -1430,8 +1444,8 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 17,
-            "movement": -1
+            "position": 12,
+            "movement": 2
           },
           {
             "country": "BM",
@@ -1612,6 +1626,12 @@
             "movement": -24
           },
           {
+            "country": "CA",
+            "name": "Canada",
+            "position": 192,
+            "movement": -8
+          },
+          {
             "country": "TZ",
             "name": "Tanzania",
             "position": 195,
@@ -1692,62 +1712,63 @@
           {
             "country": "KZ",
             "name": "Kazakhstan",
-            "position": 63,
+            "position": 61,
             "movement": 2
           },
           {
             "country": "MA",
             "name": "Morocco",
-            "position": 70,
-            "movement": 3
+            "position": 68,
+            "movement": 2
           },
           {
             "country": "ID",
             "name": "Indonesia",
-            "position": 112,
-            "movement": 12
+            "position": 98,
+            "movement": 14
           },
           {
             "country": "TN",
             "name": "Tunisia",
-            "position": 122,
-            "movement": 10
+            "position": 106,
+            "movement": 16
           },
           {
             "country": "BR",
             "name": "Brazil",
-            "position": 133,
-            "movement": 18
+            "position": 119,
+            "movement": 14
           },
           {
             "country": "PT",
             "name": "Portugal",
-            "position": 171,
-            "movement": 24
+            "position": 180,
+            "movement": -9
           },
           {
-            "country": "SN",
-            "name": "Senegal",
-            "position": 174,
-            "movement": -1
-          },
-          {
-            "country": "PH",
-            "name": "Philippines",
-            "position": 200,
-            "movement": -36
+            "country": "IL",
+            "name": "Israel",
+            "position": 185,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
       {
         "platform": "iTunes",
-        "numberOnes": 0,
+        "numberOnes": 1,
         "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 1,
+            "movement": 60
+          },
           {
             "country": "GD",
             "name": "Grenada",
             "position": 3,
-            "movement": -2
+            "movement": 0
           },
           {
             "country": "BW",
@@ -1757,34 +1778,128 @@
             "status": "new"
           },
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 4,
-            "movement": 2
-          },
-          {
             "country": "ZW",
             "name": "Zimbabwe",
             "position": 18,
-            "movement": -7
+            "movement": -4
           },
           {
             "country": "KH",
             "name": "Cambodia",
-            "position": 19,
-            "movement": -8
+            "position": 27,
+            "movement": -10
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 61,
-            "movement": -31
+            "position": 65,
+            "movement": -30
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/21ffdcad2bde4b25ba9a5a3a53193b05/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Hold On",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "US",
+            "name": "United States",
+            "position": 18,
+            "movement": 36
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 42,
+            "movement": 41
+          },
+          {
+            "country": "SN",
+            "name": "Senegal",
+            "position": 57,
+            "movement": 46
+          },
+          {
+            "country": "WW",
+            "name": "Worldwide",
+            "position": 62,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "CA",
+            "name": "Canada",
+            "position": 68,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 71,
+            "movement": 74
+          },
+          {
+            "country": "ZM",
+            "name": "Zambia",
+            "position": 127,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NZ",
+            "name": "New Zealand",
+            "position": 136,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "CI",
+            "name": "Côte d'Ivoire",
+            "position": 140,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "FR",
+            "name": "France",
+            "position": 146,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "AU",
+            "name": "Australia",
+            "position": 172,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 174,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 187,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/aeeee8ad4c59f8b6440d19006f0f06e7/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Born in the Wild",
@@ -1906,8 +2021,8 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 112,
-            "movement": -2
+            "position": 110,
+            "movement": -5
           },
           {
             "country": "TC",
@@ -1945,14 +2060,14 @@
           {
             "country": "BM",
             "name": "Bermuda",
-            "position": 63,
-            "movement": -17
+            "position": 64,
+            "movement": -15
           },
           {
             "country": "US",
             "name": "United States",
-            "position": 152,
-            "movement": 26
+            "position": 197,
+            "movement": -74
           }
         ]
       },
@@ -1963,8 +2078,8 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 47,
-            "movement": -1
+            "position": 44,
+            "movement": 3
           }
         ]
       },
@@ -1994,8 +2109,9 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 26,
-            "movement": 70
+            "position": 33,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "KE",
@@ -2116,8 +2232,7 @@
             "country": "BS",
             "name": "The Bahamas",
             "position": 5,
-            "movement": null,
-            "status": "new"
+            "movement": -2
           }
         ]
       }
@@ -2147,8 +2262,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 158,
-            "movement": -131
+            "position": 199,
+            "movement": -120
           }
         ]
       },
@@ -2228,47 +2343,6 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/584f40f4d2b62b611a7ab8561b656ff3/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Hold On",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "US",
-            "name": "United States",
-            "position": 54,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 83,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "SN",
-            "name": "Senegal",
-            "position": 103,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 145,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/aeeee8ad4c59f8b6440d19006f0f06e7/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Isaka II",
@@ -2383,7 +2457,7 @@
             "country": "GD",
             "name": "Grenada",
             "position": 84,
-            "movement": 0
+            "movement": -1
           }
         ]
       }
