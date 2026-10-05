@@ -291,9 +291,11 @@ export type Money = (n: number) => string;
  * The leader line beside a country's name: the leader's own total against the
  * country's, their share of it and the nights reported there, so the figure
  * beside a name is never the whole country's. One artist alone says so instead
- * of "$0.82M of $0.82M" (review fix 6). The desktop prints full dollars, the
- * phone the short form (one money form a screen, fix 4); the phone drops the
- * closing "reported" (GXCountriesPhone).
+ * of "$0.82M of $0.82M" (review fix 6). Both layouts print the short form,
+ * the default here (one money form on the screen, review fix 4, 4 Oct 2026:
+ * RevenueCountries formats with usdM throughout); it said the desktop printed
+ * full dollars until 5 Oct (A-05). The phone drops the closing "reported"
+ * (GXCountriesPhone).
  */
 export function leaderLine(c: CountryBoard, fmt: Money = usdM, { reported = true }: { reported?: boolean } = {}): string {
   const nights = `${nightsLabel(c.shows)}${reported ? " reported" : ""}`;

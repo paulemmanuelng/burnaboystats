@@ -5555,7 +5555,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 1 April, 2019.",
     "keywords": [
-      "april 1"
+      "april 1",
+      "brighton music hall",
+      "boston"
     ],
     "generated": true
   },
@@ -5615,7 +5617,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 10 December, 2023.",
     "keywords": [
-      "december 10"
+      "december 10",
+      "lanxess arena",
+      "cologne"
     ],
     "generated": true
   },
@@ -5645,7 +5649,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "2 Burna Boy milestones dated 10 November, 2018–2021.",
     "keywords": [
-      "november 10"
+      "november 10",
+      "accor arena",
+      "paris"
     ],
     "generated": true
   },
@@ -5655,7 +5661,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 10 September, 2019.",
     "keywords": [
-      "september 10"
+      "september 10",
+      "buckhead theatre",
+      "atlanta"
     ],
     "generated": true
   },
@@ -5705,7 +5713,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 11 March, 2024.",
     "keywords": [
-      "march 11"
+      "march 11",
+      "amalie arena",
+      "tampa, fl"
     ],
     "generated": true
   },
@@ -5725,7 +5735,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 12 April, 2022.",
     "keywords": [
-      "april 12"
+      "april 12",
+      "rotterdam ahoy",
+      "rotterdam"
     ],
     "generated": true
   },
@@ -5745,7 +5757,11 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "2 Burna Boy milestones dated 12 December, 2023–2025.",
     "keywords": [
-      "december 12"
+      "december 12",
+      "prudential center",
+      "newark",
+      "sportpaleis",
+      "antwerp"
     ],
     "generated": true
   },
@@ -5755,7 +5771,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 12 June, 2018.",
     "keywords": [
-      "june 12"
+      "june 12",
+      "the crocodile",
+      "seattle"
     ],
     "generated": true
   },
@@ -5765,7 +5783,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 12 March, 2024.",
     "keywords": [
-      "march 12"
+      "march 12",
+      "hard rock live",
+      "hollywood, fl"
     ],
     "generated": true
   },
@@ -5775,7 +5795,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 12 November, 2025.",
     "keywords": [
-      "november 12"
+      "november 12",
+      "red rocks amphitheatre",
+      "morrison, co"
     ],
     "generated": true
   },
@@ -5795,7 +5817,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 13 September, 2019.",
     "keywords": [
-      "september 13"
+      "september 13",
+      "theatre of living arts",
+      "philadelphia"
     ],
     "generated": true
   },
@@ -5805,7 +5829,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "2 Burna Boy milestones dated 14 April, 2022.",
     "keywords": [
-      "april 14"
+      "april 14",
+      "ziggo dome",
+      "amsterdam"
     ],
     "generated": true
   },
@@ -5835,7 +5861,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 14 June, 2018.",
     "keywords": [
-      "june 14"
+      "june 14",
+      "house of blues",
+      "houston"
     ],
     "generated": true
   },
@@ -5845,7 +5873,11 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "2 Burna Boy milestones dated 15 August, 2019–2025.",
     "keywords": [
-      "august 15"
+      "august 15",
+      "waldbühne",
+      "berlin",
+      "l'olympia",
+      "montreal"
     ],
     "generated": true
   },
@@ -5855,7 +5887,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 15 December, 2025.",
     "keywords": [
-      "december 15"
+      "december 15",
+      "bell centre",
+      "montreal"
     ],
     "generated": true
   },
@@ -5865,7 +5899,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 15 January, 2026.",
     "keywords": [
-      "january 15"
+      "january 15",
+      "avicii arena",
+      "stockholm"
     ],
     "generated": true
   },
@@ -5905,7 +5941,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 15 September, 2019.",
     "keywords": [
-      "september 15"
+      "september 15",
+      "the fillmore silver spring",
+      "washington, d.c."
     ],
     "generated": true
   },
@@ -5915,7 +5953,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "5 Burna Boy milestones dated 16 August, 2019–2023.",
     "keywords": [
-      "august 16"
+      "august 16",
+      "union hall",
+      "edmonton"
     ],
     "generated": true
   },
@@ -5935,7 +5975,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 16 June, 2018.",
     "keywords": [
-      "june 16"
+      "june 16",
+      "union nightclub",
+      "los angeles"
     ],
     "generated": true
   },
@@ -5945,7 +5987,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 16 November, 2025.",
     "keywords": [
-      "november 16"
+      "november 16",
+      "climate pledge arena",
+      "seattle"
     ],
     "generated": true
   },
@@ -5955,7 +5999,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "2 Burna Boy milestones dated 16 October, 2020–2025.",
     "keywords": [
-      "october 16"
+      "october 16",
+      "sidney myer music bowl",
+      "melbourne"
     ],
     "generated": true
   },
@@ -5965,7 +6011,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 17 August, 2019.",
     "keywords": [
-      "august 17"
+      "august 17",
+      "vogue theatre",
+      "vancouver"
     ],
     "generated": true
   },
@@ -5975,7 +6023,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 17 December, 2025.",
     "keywords": [
-      "december 17"
+      "december 17",
+      "scotiabank arena",
+      "toronto"
     ],
     "generated": true
   },
@@ -5995,7 +6045,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 17 January, 2026.",
     "keywords": [
-      "january 17"
+      "january 17",
+      "royal arena",
+      "copenhagen"
     ],
     "generated": true
   },
@@ -6005,7 +6057,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "3 Burna Boy milestones dated 17 July, 2022–2025.",
     "keywords": [
-      "july 17"
+      "july 17",
+      "tipsy all white beach party",
+      "bridgetown"
     ],
     "generated": true
   },
@@ -6015,7 +6069,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 17 March, 2022.",
     "keywords": [
-      "march 17"
+      "march 17",
+      "3arena",
+      "dublin"
     ],
     "generated": true
   },
@@ -6025,7 +6081,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 17 November, 2023.",
     "keywords": [
-      "november 17"
+      "november 17",
+      "toyota center",
+      "houston"
     ],
     "generated": true
   },
@@ -6035,7 +6093,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 18 April, 2025.",
     "keywords": [
-      "april 18"
+      "april 18",
+      "stade de france",
+      "paris"
     ],
     "generated": true
   },
@@ -6045,7 +6105,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 18 August, 2019.",
     "keywords": [
-      "august 18"
+      "august 18",
+      "rebel",
+      "toronto"
     ],
     "generated": true
   },
@@ -6055,7 +6117,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 18 December, 2025.",
     "keywords": [
-      "december 18"
+      "december 18",
+      "scotiabank arena",
+      "toronto"
     ],
     "generated": true
   },
@@ -6085,7 +6149,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 18 March, 2022.",
     "keywords": [
-      "march 18"
+      "march 18",
+      "geneva arena",
+      "geneva"
     ],
     "generated": true
   },
@@ -6105,7 +6171,11 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "2 Burna Boy milestones dated 18 November, 2023–2025.",
     "keywords": [
-      "november 18"
+      "november 18",
+      "oakland arena",
+      "oakland",
+      "moody center",
+      "austin"
     ],
     "generated": true
   },
@@ -6115,7 +6185,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 18 October, 2025.",
     "keywords": [
-      "october 18"
+      "october 18",
+      "qudos bank arena",
+      "sydney"
     ],
     "generated": true
   },
@@ -6165,7 +6237,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 19 November, 2025.",
     "keywords": [
-      "november 19"
+      "november 19",
+      "intuit dome",
+      "inglewood"
     ],
     "generated": true
   },
@@ -6185,7 +6259,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 2 June, 2018.",
     "keywords": [
-      "june 2"
+      "june 2",
+      "gramercy theatre",
+      "new york"
     ],
     "generated": true
   },
@@ -6195,7 +6271,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "2 Burna Boy milestones dated 2 March, 2024.",
     "keywords": [
-      "march 2"
+      "march 2",
+      "td garden",
+      "boston"
     ],
     "generated": true
   },
@@ -6225,7 +6303,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 20 January, 2026.",
     "keywords": [
-      "january 20"
+      "january 20",
+      "hallenstadion",
+      "zurich"
     ],
     "generated": true
   },
@@ -6235,7 +6315,11 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "2 Burna Boy milestones dated 20 October, 2019–2025.",
     "keywords": [
-      "october 20"
+      "october 20",
+      "brisbane entertainment centre",
+      "brisbane",
+      "palais 12",
+      "brussels"
     ],
     "generated": true
   },
@@ -6245,7 +6329,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 20 September, 2019.",
     "keywords": [
-      "september 20"
+      "september 20",
+      "the fillmore",
+      "san francisco"
     ],
     "generated": true
   },
@@ -6255,7 +6341,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 21 April, 2025.",
     "keywords": [
-      "april 21"
+      "april 21",
+      "co-op live",
+      "manchester"
     ],
     "generated": true
   },
@@ -6275,7 +6363,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 21 February, 2024.",
     "keywords": [
-      "february 21"
+      "february 21",
+      "wintrust arena",
+      "chicago"
     ],
     "generated": true
   },
@@ -6285,7 +6375,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "2 Burna Boy milestones dated 21 July, 2022.",
     "keywords": [
-      "july 21"
+      "july 21",
+      "aretha franklin amphitheatre",
+      "detroit"
     ],
     "generated": true
   },
@@ -6325,7 +6417,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "2 Burna Boy milestones dated 22 July, 2022.",
     "keywords": [
-      "july 22"
+      "july 22",
+      "the armory",
+      "minneapolis"
     ],
     "generated": true
   },
@@ -6345,7 +6439,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 22 November, 2025.",
     "keywords": [
-      "november 22"
+      "november 22",
+      "toyota center",
+      "houston"
     ],
     "generated": true
   },
@@ -6375,7 +6471,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "3 Burna Boy milestones dated 23 January, 2025–2026.",
     "keywords": [
-      "january 23"
+      "january 23",
+      "ing arena",
+      "brussels"
     ],
     "generated": true
   },
@@ -6385,7 +6483,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "2 Burna Boy milestones dated 23 July, 2022–2024.",
     "keywords": [
-      "july 23"
+      "july 23",
+      "huntington bank pavilion at northerly island",
+      "chicago"
     ],
     "generated": true
   },
@@ -6415,7 +6515,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 24 February, 2024.",
     "keywords": [
-      "february 24"
+      "february 24",
+      "scotiabank arena",
+      "toronto"
     ],
     "generated": true
   },
@@ -6425,7 +6527,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "2 Burna Boy milestones dated 24 July, 2022–2025.",
     "keywords": [
-      "july 24"
+      "july 24",
+      "toyota center",
+      "houston"
     ],
     "generated": true
   },
@@ -6435,7 +6539,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 24 November, 2025.",
     "keywords": [
-      "november 24"
+      "november 24",
+      "american airlines center",
+      "dallas"
     ],
     "generated": true
   },
@@ -6445,7 +6551,13 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "3 Burna Boy milestones dated 24 October, 2018–2025.",
     "keywords": [
-      "october 24"
+      "october 24",
+      "rac arena",
+      "perth",
+      "afas live",
+      "amsterdam",
+      "thekla",
+      "bristol"
     ],
     "generated": true
   },
@@ -6465,7 +6577,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 25 February, 2024.",
     "keywords": [
-      "february 25"
+      "february 25",
+      "scotiabank arena",
+      "toronto"
     ],
     "generated": true
   },
@@ -6495,7 +6609,11 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "2 Burna Boy milestones dated 25 October, 2018–2019.",
     "keywords": [
-      "october 25"
+      "october 25",
+      "columbiahalle",
+      "berlin",
+      "o2 academy 2",
+      "birmingham"
     ],
     "generated": true
   },
@@ -6565,7 +6683,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "2 Burna Boy milestones dated 27 August, 2021–2026.",
     "keywords": [
-      "august 27"
+      "august 27",
+      "the o2 arena",
+      "london"
     ],
     "generated": true
   },
@@ -6575,7 +6695,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 27 December, 2021.",
     "keywords": [
-      "december 27"
+      "december 27",
+      "eko convention centre",
+      "lagos"
     ],
     "generated": true
   },
@@ -6595,7 +6717,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 27 July, 2022.",
     "keywords": [
-      "july 27"
+      "july 27",
+      "the pavilion at toyota music factory",
+      "irving"
     ],
     "generated": true
   },
@@ -6605,7 +6729,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 28 April, 2022.",
     "keywords": [
-      "april 28"
+      "april 28",
+      "madison square garden",
+      "new york"
     ],
     "generated": true
   },
@@ -6615,7 +6741,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 28 August, 2019.",
     "keywords": [
-      "august 28"
+      "august 28",
+      "house of blues",
+      "san diego"
     ],
     "generated": true
   },
@@ -6625,7 +6753,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 28 February, 2024.",
     "keywords": [
-      "february 28"
+      "february 28",
+      "bell centre",
+      "montreal"
     ],
     "generated": true
   },
@@ -6655,7 +6785,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 29 August, 2019.",
     "keywords": [
-      "august 29"
+      "august 29",
+      "the wiltern",
+      "los angeles"
     ],
     "generated": true
   },
@@ -6665,7 +6797,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 29 February, 2024.",
     "keywords": [
-      "february 29"
+      "february 29",
+      "bell centre",
+      "montreal"
     ],
     "generated": true
   },
@@ -6675,7 +6809,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 29 July, 2022.",
     "keywords": [
-      "july 29"
+      "july 29",
+      "leader bank pavilion",
+      "boston"
     ],
     "generated": true
   },
@@ -6685,7 +6821,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "2 Burna Boy milestones dated 29 June, 2024.",
     "keywords": [
-      "june 29"
+      "june 29",
+      "london stadium",
+      "london"
     ],
     "generated": true
   },
@@ -6715,7 +6853,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 3 December, 2025.",
     "keywords": [
-      "december 3"
+      "december 3",
+      "td garden",
+      "boston"
     ],
     "generated": true
   },
@@ -6745,7 +6885,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "2 Burna Boy milestones dated 3 June, 2022–2023.",
     "keywords": [
-      "june 3"
+      "june 3",
+      "london stadium",
+      "london"
     ],
     "generated": true
   },
@@ -6765,7 +6907,11 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "4 Burna Boy milestones dated 3 November, 2019–2023.",
     "keywords": [
-      "november 3"
+      "november 3",
+      "bmo stadium",
+      "los angeles",
+      "the sse arena, wembley",
+      "london"
     ],
     "generated": true
   },
@@ -6785,7 +6931,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 30 July, 2022.",
     "keywords": [
-      "july 30"
+      "july 30",
+      "osheaga festival",
+      "montreal"
     ],
     "generated": true
   },
@@ -6805,7 +6953,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 30 May, 2018.",
     "keywords": [
-      "may 30"
+      "may 30",
+      "howard theatre",
+      "washington, d.c."
     ],
     "generated": true
   },
@@ -6815,7 +6965,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 30 November, 2022.",
     "keywords": [
-      "november 30"
+      "november 30",
+      "hallenstadion",
+      "zurich"
     ],
     "generated": true
   },
@@ -6845,7 +6997,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "2 Burna Boy milestones dated 31 July, 2022–2026.",
     "keywords": [
-      "july 31"
+      "july 31",
+      "state farm arena",
+      "atlanta"
     ],
     "generated": true
   },
@@ -6865,7 +7019,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "2 Burna Boy milestones dated 31 May, 2018–2024.",
     "keywords": [
-      "may 31"
+      "may 31",
+      "underground arts",
+      "philadelphia"
     ],
     "generated": true
   },
@@ -6885,7 +7041,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 4 September, 2019.",
     "keywords": [
-      "september 4"
+      "september 4",
+      "summit",
+      "denver"
     ],
     "generated": true
   },
@@ -6895,7 +7053,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 5 December, 2025.",
     "keywords": [
-      "december 5"
+      "december 5",
+      "capital one arena",
+      "washington, d.c."
     ],
     "generated": true
   },
@@ -6925,7 +7085,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "2 Burna Boy milestones dated 5 November, 2020–2023.",
     "keywords": [
-      "november 5"
+      "november 5",
+      "climate pledge arena",
+      "seattle"
     ],
     "generated": true
   },
@@ -6935,7 +7097,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 6 December, 2025.",
     "keywords": [
-      "december 6"
+      "december 6",
+      "ubs arena",
+      "elmont, ny"
     ],
     "generated": true
   },
@@ -6945,7 +7109,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 6 July, 2025.",
     "keywords": [
-      "july 6"
+      "july 6",
+      "summerjam festival",
+      "cologne"
     ],
     "generated": true
   },
@@ -6975,7 +7141,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 6 November, 2019.",
     "keywords": [
-      "november 6"
+      "november 6",
+      "albert hall",
+      "manchester"
     ],
     "generated": true
   },
@@ -7025,7 +7193,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 7 March, 2024.",
     "keywords": [
-      "march 7"
+      "march 7",
+      "capital one arena",
+      "washington, d.c."
     ],
     "generated": true
   },
@@ -7035,7 +7205,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 7 November, 2023.",
     "keywords": [
-      "november 7"
+      "november 7",
+      "rogers arena",
+      "vancouver"
     ],
     "generated": true
   },
@@ -7045,7 +7217,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "2 Burna Boy milestones dated 7 October, 2018–2021.",
     "keywords": [
-      "october 7"
+      "october 7",
+      "o2 academy brixton",
+      "london"
     ],
     "generated": true
   },
@@ -7065,7 +7239,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 8 April, 2023.",
     "keywords": [
-      "april 8"
+      "april 8",
+      "oakland arena",
+      "oakland"
     ],
     "generated": true
   },
@@ -7075,7 +7251,11 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "3 Burna Boy milestones dated 8 December, 2022–2025.",
     "keywords": [
-      "december 8"
+      "december 8",
+      "state farm arena",
+      "atlanta",
+      "capital one arena",
+      "washington, d.c."
     ],
     "generated": true
   },
@@ -7085,7 +7265,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "2 Burna Boy milestones dated 8 July, 2022–2023.",
     "keywords": [
-      "july 8"
+      "july 8",
+      "citi field",
+      "new york"
     ],
     "generated": true
   },
@@ -7095,7 +7277,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "2 Burna Boy milestones dated 8 June, 2018–2023.",
     "keywords": [
-      "june 8"
+      "june 8",
+      "bottom lounge",
+      "chicago"
     ],
     "generated": true
   },
@@ -7105,7 +7289,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 8 October, 2021.",
     "keywords": [
-      "october 8"
+      "october 8",
+      "hollywood bowl",
+      "los angeles"
     ],
     "generated": true
   },
@@ -7115,7 +7301,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "3 Burna Boy milestones dated 8 September, 2019–2024.",
     "keywords": [
-      "september 8"
+      "september 8",
+      "house of blues",
+      "chicago"
     ],
     "generated": true
   },
@@ -7125,7 +7313,11 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "2 Burna Boy milestones dated 9 December, 2022–2023.",
     "keywords": [
-      "december 9"
+      "december 9",
+      "mercedes-benz arena",
+      "berlin",
+      "addition financial arena",
+      "orlando"
     ],
     "generated": true
   },
@@ -7145,7 +7337,9 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "1 Burna Boy milestone dated 9 March, 2024.",
     "keywords": [
-      "march 9"
+      "march 9",
+      "state farm arena",
+      "atlanta"
     ],
     "generated": true
   },
@@ -7155,7 +7349,11 @@ export const generatedDocs: SearchDoc[] = [
     "section": "On this day",
     "description": "2 Burna Boy milestones dated 9 November, 2019–2023.",
     "keywords": [
-      "november 9"
+      "november 9",
+      "rogers place",
+      "edmonton",
+      "o2 academy",
+      "leicester"
     ],
     "generated": true
   },

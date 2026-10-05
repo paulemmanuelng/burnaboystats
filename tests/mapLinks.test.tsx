@@ -309,20 +309,30 @@ describe("item 35: phone Tours gains 'More from the road', map first", () => {
 
 describe("item 69: the phone Tours footnote stays the build's own", () => {
   // Map Links §1 had added "and Pollstar"; the fix put the artboard back to the
-  // footnote as it ships, so the build's line must not move.
+  // footnote as it ships, so the build's line must not move — except its first
+  // sentence, which named Billboard Boxscore alone while the desktop page and
+  // the box-office board credit TouringData (debug pass 4 Oct 2026, D-03). That
+  // sentence is now the board's own credit, from app/lib/revenueSource.ts; the
+  // rest is the build's line, word for word.
   const SHIPPED =
     "Tour grosses come from Billboard Boxscore. The per-date figure is the venue's capacity, not tickets sold — tours.ts records capacity, and only some nights have a Boxscore headcount. A dash means the run has no reported gross, not that it was small. Dates shown are a documented sample, not the full itinerary.";
+  const NOW =
+    "Tour grosses come from TouringData, which republishes Billboard Boxscore and Pollstar reports. The per-date figure is the venue's capacity, not tickets sold — tours.ts records capacity, and only some nights have a Boxscore headcount. A dash means the run has no reported gross, not that it was small. Dates shown are a documented sample, not the full itinerary.";
 
-  it("reads exactly as shipped, with no Pollstar added", () => {
+  it("reads as the build's own, its source sentence the board's credit", () => {
     const foot = clean(toursDoc().querySelector('[class*="_screen_"] [class*="_footNote_"]')?.textContent);
-    expect(foot).toBe(SHIPPED);
-    expect(foot).not.toContain("Pollstar");
+    expect(foot).toBe(NOW);
+    // Only the first sentence moved.
+    expect(foot.slice(foot.indexOf(". ") + 2)).toBe(SHIPPED.slice(SHIPPED.indexOf(". ") + 2));
+    // Negative control: the Boxscore-only line that shipped until 5 Oct 2026.
+    expect(foot).not.toBe(SHIPPED);
   });
 
   it("negative control: the footnote Map Links §1 first drew would fail it", () => {
     const DRAWN =
       "Box-office figures are reported by Billboard Boxscore and Pollstar. The per-date figure inside each tour is the venue's capacity, not tickets sold. A dash means the run has no reported gross, not that it was small.";
     expect(DRAWN).not.toBe(SHIPPED);
+    expect(DRAWN).not.toBe(NOW);
     expect(DRAWN).toContain("Pollstar");
   });
 });

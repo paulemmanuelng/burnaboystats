@@ -20,6 +20,7 @@ import {
   chartNo1s,
   type AfroArtist,
   AFROBEATS_LAST_CHART_SWEEP,
+  pageStamp,
 } from "../../../data/afrobeats";
 
 /** "read from each country's national chart, plus 2 Billboard global charts".
@@ -136,9 +137,11 @@ export default async function AfroArtistChartsPage({
     keywords: [a.name, "chart positions", "official charts", "peak chart position", "Afrobeats charts"],
     variableMeasured: ["Peak chart position", "Country / territory", "Release", "Chart"],
         // The sweep that produced these figures, not the newest date in the whole
-        // updates feed. sitemap.ts already uses verifiedOn for this route and says
-        // the two can never disagree; dateModified was the half that disagreed.
-        dateModified: a.verifiedOn,
+        // updates feed — or a later edit made without a register read. One
+        // helper, pageStamp, dates this and the sitemap's lastmod, so the two
+        // cannot disagree (they did for CKay and Olamide: 18 Sep / 6 Sep here,
+        // 3 Oct there; debug pass 4 Oct 2026, D-05).
+        dateModified: pageStamp(a),
     about: { name: a.name, sameAs: [a.wikipedia, `https://open.spotify.com/artist/${a.spotifyId}`] },
   });
 

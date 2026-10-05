@@ -39,6 +39,7 @@ import {
   certProvenance,
   type Tier,
   AFROBEATS_LAST_FULL_SWEEP,
+  pageStamp,
 } from "../../data/afrobeats";
 import { LIVE_CADENCE_ADVERB } from "../../lib/liveChartMeta";
 import { awardLabel, awardRank } from "../../lib/awardName";
@@ -188,9 +189,11 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
         keywords: [a.name, "certifications", "RIAA", "BPI", "gold", "platinum", "diamond", "Afrobeats"],
         variableMeasured: ["Certification tier", "Country / territory", "Release", "Certifying body"],
         // The sweep that produced these figures, not the newest date in the whole
-        // updates feed. sitemap.ts already uses verifiedOn for this route and says
-        // the two can never disagree; dateModified was the half that disagreed.
-        dateModified: a.verifiedOn,
+        // updates feed — or a later edit made without a register read. One
+        // helper, pageStamp, dates this and the sitemap's lastmod, so the two
+        // cannot disagree (they did for CKay and Olamide: 18 Sep / 6 Sep here,
+        // 3 Oct there; debug pass 4 Oct 2026, D-05).
+        dateModified: pageStamp(a),
         about: { name: a.name, sameAs: [a.wikipedia, `https://open.spotify.com/artist/${a.spotifyId}`] },
       })
     : null;

@@ -26,12 +26,74 @@ export interface RejectedClaim {
 
 /** Bodies named in circulating tallies that no primary source ties to him. */
 import { artistBySlug, priceRelease } from "../lib/certUnits";
+import { awardLabel } from "../lib/awardName";
+import { COUNTRIES } from "./certifications";
 
 // The song's certified floor, derived so it moves with the plaques (three
 // arrived in the month to 14 Sep 2026); a typed figure here would be stale
 // within weeks. Nigeria is irrelevant — the song holds no NG plaque.
 const daiDai = priceRelease(artistBySlug("burna-boy")!, "Dai Dai");
 const fmt = (n: number) => n.toLocaleString("en-US");
+
+/** The fan estimate's own lines for markets where a register DOES price the
+ *  song — the figures the rebuttal answers. Typed: they are the circulating
+ *  claim's numbers, not the site's. */
+export const DAI_DAI_FAN_LINES: { c: string; units: number }[] = [
+  { c: "US", units: 935_000 },
+  { c: "UK", units: 370_000 },
+];
+
+/**
+ * "the RIAA's only award is its Latin programme's 6× Platino, at least
+ * 360,000 units, not 935,000" — one clause per fan line, each DERIVED from the
+ * song's plaques in that market (priceRelease, the figures /compare prices),
+ * and only where the register still says less than the fan figure.
+ *
+ * The paragraph typed them until 5 Oct 2026, and every one had gone stale:
+ * it said 2× Platino and 120,000 (the data: 6×, 360,000), BPI Silver and
+ * 200,000 "not 370,000" (the data: Gold, 400,000 — above the figure it
+ * rebutted), and that BVMI and Music Canada "hold no award" (the data: German
+ * Gold and Canadian 2× Platinum). Debug pass 4 Oct 2026, C-03.
+ */
+export function daiDaiRegisterClauses(units = daiDai): string[] {
+  if (!units) return [];
+  return DAI_DAI_FAN_LINES.flatMap(({ c, units: fan }) => {
+    const lines = units.byCountry.filter((l) => l.country === c && l.counted && l.top);
+    const floor = lines.reduce((n, l) => n + l.units, 0);
+    if (!lines.length || floor >= fan) return [];
+    const body = COUNTRIES[c]?.body ?? c;
+    const awards = lines.map((l) => {
+      const label = awardLabel(l.top!);
+      const programme = l.program ? `its ${l.program.replace(new RegExp(`^${body} `), "")} programme's ` : "";
+      return `${programme}${label}`;
+    });
+    const plaques = lines.reduce((n, l) => n + l.releases, 0);
+    return [`the ${body}'s ${plaques === 1 ? "only award is " : "awards are "}${awards.join(" and ")}, at least ${fmt(floor)} units, not ${fmt(fan)}`];
+  });
+}
+const registerClauses = daiDaiRegisterClauses();
+
+/** The fan estimate's lines for markets where it claims units, named as it
+ *  names them, with the plaque codes a body there would file the song under.
+ *  "MENA" covers the region's markets, any of which pricing the song breaks
+ *  "no register prices the song at all" there. */
+export const DAI_DAI_FAN_MARKETS: { name: string; codes: string[] }[] = [
+  { name: "India", codes: ["IN"] },
+  { name: "MENA", codes: ["MENA", "AE", "SA", "EG", "LB", "MA", "QA", "KW", "BH", "OM", "JO"] },
+  { name: "Brazil", codes: ["BR"] },
+  { name: "Mexico", codes: ["MX"] },
+];
+
+/** The fan markets where the song holds no plaque — the ones the paragraph may
+ *  say "no register prices the song at all" of. Derived from its plaques, so a
+ *  market drops out of the sentence the day a body there certifies the song
+ *  (the sentence was typed until 5 Oct 2026; review of the 4 Oct debug PR). */
+export function daiDaiUnpricedMarkets(certs: { c: string }[] = daiDai?.release.certs ?? []): string[] {
+  const held = new Set(certs.map((x) => x.c));
+  return DAI_DAI_FAN_MARKETS.filter((m) => !m.codes.some((c) => held.has(c))).map((m) => m.name);
+}
+const unpricedMarkets = daiDaiUnpricedMarkets();
+const listJoin = (xs: string[]) => (xs.length < 2 ? xs.join("") : `${xs.slice(0, -1).join(", ")} and ${xs.at(-1)}`);
 
 export const unsourcedBodies: RejectedClaim[] = [
   { claim: "ASCAP Awards", reason: "No primary source names him for a specific song or year." },
@@ -73,7 +135,11 @@ export const disputedCounts: RejectedClaim[] = [
   {
     claim: "“Dai Dai” — 6,050,000 units sold worldwide",
     reason:
-      `A fan estimate, not a figure any body or platform publishes. No certifying body states worldwide units for a single, and pure sales run in the low thousands a week, so a total that size can only be streams converted to units at a ratio of the poster's choosing — its lines for India, MENA, Brazil and Mexico sit where no register prices the song at all. Where a register does speak, it says less: the RIAA's only award is the Latin programme's 2× Platino, at least 120,000 units, not 935,000; the BPI's is Silver, at least 200,000, not 370,000; BVMI and Music Canada hold no award for the song. This site prices the song's ${daiDai?.release.certs.length ?? 0} plaques at their own bodies' thresholds — at least ${fmt(daiDai?.total ?? 0)} certified units across the ${daiDai?.pricedPlaques ?? 0} that can be priced — and publishes no worldwide total.`,
+      `A fan estimate, not a figure any body or platform publishes. No certifying body states worldwide units for a single, and pure sales run in the low thousands a week, so a total that size can only be streams converted to units at a ratio of the poster's choosing${
+        unpricedMarkets.length ? ` — its lines for ${listJoin(unpricedMarkets)} sit where no register prices the song at all` : ""
+      }.${
+        registerClauses.length ? ` Where a register does speak, it says less: ${registerClauses.join("; ")}.` : ""
+      } This site prices the song's ${daiDai?.release.certs.length ?? 0} plaques at their own bodies' thresholds — at least ${fmt(daiDai?.total ?? 0)} certified units across the ${daiDai?.pricedPlaques ?? 0} that can be priced — and publishes no worldwide total.`,
   },
 ];
 

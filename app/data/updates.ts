@@ -24,11 +24,15 @@
 // career award tally) — reserve present/"just happened" phrasing for things
 // that are genuinely new this week (a debut chart peak, a fresh streaming high).
 
-// Figures a log entry shares with a page are imported, never retyped: the
-// garage entries below stated three different collection sizes for one garage.
-import { carCount, totalValueFormatted } from "./cars";
+// A dated entry is a SNAPSHOT (owner ruling, 4 Oct 2026): a running total it
+// states — the plaque count, the garage's size and value — is the figure of
+// its own day, typed, never interpolated from the live data. Interpolated, the
+// 23 Sep sweep entry read "250 plaques in all" by 4 Oct, and the 8 Sep and
+// 5 Jul garage entries counted a car bought on 23 Sep (debug pass 4 Oct, C-02).
+// tests/updatesSnapshots.test.ts refuses a running total in any entry. A
+// FIXED figure (a body's threshold) is still imported, so a typo cannot creep
+// in beside the register's own number.
 import { CERT_THRESHOLDS } from "./certThresholds";
-import { totalAwards } from "./certifications";
 
 const plSingle = CERT_THRESHOLDS.PL.single!;
 const ukSingle = CERT_THRESHOLDS.UK.single!;
@@ -252,7 +256,8 @@ export const updates: Update[] = [
     category: "Certifications",
     // TCSN's own register, read in its 21 Feb 2026 capture: rows added between
     // 8 and 21 Feb 2026, below the live page's 500-row cap. Hence past tense.
-    text: `Nine more Nigerian plaques, from TurnTable's own register: “No Panic”, “Buy You Life”, “28 Grams” and “Born Winner” were certified Gold, the title track “No Sign of Weakness”, “Change Your Mind”, “Empty Chairs”, “Sweet Love” and “4 Kampé II” Silver, and “Ye” rose to Gold — ${totalAwards()} plaques in all.`,
+    // 248: the day's total (commit 86c3863f, "Burna Boy 239 -> 248").
+    text: `Nine more Nigerian plaques, from TurnTable's own register: “No Panic”, “Buy You Life”, “28 Grams” and “Born Winner” were certified Gold, the title track “No Sign of Weakness”, “Change Your Mind”, “Empty Chairs”, “Sweet Love” and “4 Kampé II” Silver, and “Ye” rose to Gold — 248 plaques in all.`,
     href: "/certifications",
     big: true,
   },
@@ -293,8 +298,9 @@ export const updates: Update[] = [
     date: "2026-09-23",
     category: "Lifestyle",
     // Price: the $700,000 the car's page states (Paul, 23 Sep 2026: that
-    // figure only). The count and total are the garage's own, interpolated.
-    text: `A 2010 Mercedes-Benz SLS AMG — the gullwing, black over tan, about 6,000 miles — joined the garage in September, bought from AbujaCar in Abuja at a reported $700,000. The collection now stands at ${carCount} cars worth a reported ${totalValueFormatted}.`,
+    // figure only). The count and total are the garage's of that day (commit
+    // cb442b8a, "sixteen cars, $17.54M") — a snapshot, not the live figure.
+    text: "A 2010 Mercedes-Benz SLS AMG — the gullwing, black over tan, about 6,000 miles — joined the garage in September, bought from AbujaCar in Abuja at a reported $700,000. The collection now stands at 16 cars worth a reported $17.54M.",
     href: "/records/cars/mercedes-sls-amg",
   },
   {
@@ -667,7 +673,10 @@ export const updates: Update[] = [
   {
     date: "2026-09-08",
     category: "Lifestyle",
-    text: `A correction to the garage total, now ${totalValueFormatted} across ${carCount} cars: the Bugatti Chiron's ₦9 billion is re-converted at CBN's ₦1,370.19 to the dollar, the last trading day before the 4 July reveal — not the ₦1,454 it had been. Nothing about the car changed; only the arithmetic did.`,
+    // The garage of 8 Sep: 15 cars at $16.84M once the Chiron was re-converted
+    // (commit a46ca5c4: "moves the fleet total from $16.46M to $16.84M"). The
+    // SLS, the sixteenth, came on 23 Sep; interpolated, this read 16 / $17.54M.
+    text: `A correction to the garage total, now $16.84M across 15 cars: the Bugatti Chiron's ₦9 billion is re-converted at CBN's ₦1,370.19 to the dollar, the last trading day before the 4 July reveal — not the ₦1,454 it had been. Nothing about the car changed; only the arithmetic did.`,
     href: "/records/cars",
   },
   {
@@ -2034,17 +2043,21 @@ export const updates: Update[] = [
     // re-classified — five of those vehicles are now carried as sold or
     // unconfirmed and are out of the live totals by rule ("Live totals (count
     // + value) count CURRENT cars only"). So the total is stated once, on the
-    // entry that reports the site's own verified position, and it reads from
-    // cars.ts rather than being typed — the same figure /records/cars, /faq
-    // and the nav already render. The acquisitions themselves are the news and
-    // are untouched.
+    // entry that reports the site's own verified position. It read from
+    // cars.ts until 5 Oct 2026, which made a 5 Jul entry count the car of
+    // 23 Sep; it now states that day's garage, typed, as every dated entry
+    // states its own day's totals (owner ruling, 4 Oct 2026). The acquisitions
+    // themselves are the news and are untouched.
     text: "A vintage Ferrari Testarossa joins the fleet — spotted in London before being moved into his Lagos penthouse.",
     href: "/records/cars",
   },
   {
     date: "2026-07-05",
     category: "Lifestyle",
-    text: `Two Mercedes-Maybach GLS 600s: Burna Boy bought a pair — gifting one to his mother and keeping the other for his own garage — with his confirmed collection now at ${carCount} cars worth a reported ${totalValueFormatted}.`,
+    // As the entry first shipped (e28dd5ea): 15 cars, $16.46M — the total before
+    // the 8 Sep correction re-converted the Chiron, which its own entry above
+    // records. Interpolated, this read 16 cars / $17.54M (C-02).
+    text: "Two Mercedes-Maybach GLS 600s: Burna Boy bought a pair — gifting one to his mother and keeping the other for his own garage — with his confirmed collection now at 15 cars worth a reported $16.46M.",
     href: "/records/cars",
   },
   {

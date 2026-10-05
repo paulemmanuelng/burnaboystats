@@ -34,6 +34,7 @@ import { liveMoments } from "../app/data/liveMoments";
 import { CERT_THRESHOLDS } from "../app/data/certThresholds";
 import { firstGroups } from "../app/data/firsts";
 import { revenueShows } from "../app/data/tourRevenue";
+import { revenueRowBody } from "../app/lib/revenueSource";
 import { updates } from "../app/data/updates";
 import { songs, songPageCount, daiDaiStoryPage } from "../app/data/songs";
 import { afrobeatsArtists } from "../app/data/afrobeats";
@@ -92,19 +93,27 @@ describe("the Colombian Gold is Sony Music Colombia's, and the rule says so", ()
     // Since the debug pass of 3 Oct 2026 "All Eyes on Me"'s 19× is marked as
     // the Sony Music Africa plaque its data comment always called it, so the
     // count is two — and the Colombian exception keeps its words.
+    // Three since 5 Oct 2026 (D-02): Dai Dai's Danish Gold, read on IFPI
+    // Danmark's Hitlisten chart before its register lists the row, is named as
+    // the third kind. The Colombian and South African words are unchanged.
     expect(t).toContain(
-      `${RULE} In Burna Boy's own record, the 2 exceptions are a market with no current public register, where the label's own plaque stands: “Dai Dai”'s Gold in Colombia, issued by Sony Music Colombia; and a register that holds no row for the title, where the label's own award stands: “All Eyes on Me”'s 19× Platinum in South Africa, issued by Sony Music Africa.`,
+      `${RULE} In Burna Boy's own record, the 3 exceptions are a market with no current public register, where the label's own plaque stands: “Dai Dai”'s Gold in Colombia, issued by Sony Music Colombia; a register that holds no row for the title, where the label's own award stands: “All Eyes on Me”'s 19× Platinum in South Africa, issued by Sony Music Africa; and a register that has not yet listed the award, where the body's own publication stands: “Dai Dai”'s Gold in Denmark, published by IFPI Denmark on Hitlisten, its official chart, in week 38 of 2026, and not yet in its database.`,
     );
-    // Negative control: "the one exception", over two, is what shipped.
+    // Negative controls: "the one exception", over two, shipped first; "the 2
+    // exceptions", with no Denmark, shipped on 4 Oct 2026.
     expect(t).not.toContain("In Burna Boy's own record, the one exception is");
+    expect(t).not.toContain("In Burna Boy's own record, the 2 exceptions are");
     expect(t).not.toContain("A certification is only counted once it appears in the awarding body's own searchable database. ");
   });
 
   it("every other copy of the rule carries the same exception", () => {
     expect(read("app/curator/page.tsx")).toContain("(or, in a market with no current public register, on the label's own plaque)");
-    expect(read("app/lib/statCards.ts")).toContain("or, in a market with no current public register, on the label's own plaque.");
+    // Followed by the published-chart clause while one stands (C-05/D-02).
+    expect(read("app/lib/statCards.ts")).toContain("or, in a market with no current public register, on the label's own plaque${announcedClause(\", or on \")}.");
+    // Followed, since 5 Oct 2026, by the published-chart clause while Dai Dai's
+    // Danish Gold stands on Hitlisten (announcedClause, C-05/D-02).
     expect(read("app/certifications/page.tsx").replace(/\s+/g, " ")).toContain(
-      "(or, in a market with no current public register, from the label&apos;s own plaque)",
+      "(or, in a market with no current public register, from the label&apos;s own plaque {announcedClause(\"; or from \")})",
     );
     expect(read("app/api/v1/certifications/route.ts")).toContain("in a market with no current public register, the label's own plaque");
   });
@@ -248,7 +257,12 @@ describe("/records' crowd tile says whose figures it is", () => {
     const tickets = (s: string | undefined) => Number((s ?? "0").replace(/,/g, ""));
     expect(tickets(top.tickets)).toBe(Math.max(...revenueShows.map((r) => tickets(r.tickets))));
     const src = read("app/records/page.tsx");
-    expect(src).toContain(`note: "Biggest African crowd in Billboard's box-office figures",`);
+    // Scoped to the source the night's row was read at (F-04, 5 Oct 2026):
+    // TouringData, the body the page's own footer credits — not "Billboard's
+    // box-office figures", which it said beside that footer.
+    expect(src).toContain("note: `Biggest African crowd in ${revenueRowBody(topShow.source)}'s box-office reports`,");
+    expect(revenueRowBody(top.source)).toBe("TouringData");
+    expect(src).not.toContain(`note: "Biggest African crowd in Billboard's box-office figures",`);
     expect(src).not.toContain(`note: "Biggest reported African crowd",`);
   });
 });

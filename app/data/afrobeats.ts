@@ -517,7 +517,17 @@ export const AFROBEATS_LAST_CHART_SWEEP = "2026-10-02";
 export const AFROBEATS_EDITED_ON: Readonly<Record<string, string>> = {
   ckay: "2026-10-03",
   olamide: "2026-10-03",
+  // 5 Oct 2026: "Isaka" retitled "Isaka (6AM)", as TCSN prints it (C-01).
+  tems: "2026-10-05",
 };
+
+/** The date a board artist's pages are stamped with — the later of the sweep
+ *  the page prints (`verifiedOn`) and an edit made without a register read
+ *  (AFROBEATS_EDITED_ON). One helper for the sitemap's lastmod and the pages'
+ *  own Dataset dateModified, which had disagreed: /afrobeats/ckay declared
+ *  18 Sep while the sitemap said 3 Oct (debug pass 4 Oct 2026, D-05). */
+export const pageStamp = (a: { slug: string; verifiedOn: string }): string =>
+  [a.verifiedOn, AFROBEATS_EDITED_ON[a.slug]].filter((d): d is string => Boolean(d)).sort().at(-1)!;
 
 export const afrobeatsArtists: AfroArtist[] = [
   {
@@ -1609,7 +1619,11 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Damages", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/3d1528266cd1263f06d630c1c73376d5/500x500-000000-80-0-0.jpg", certs: [{ c: "CA", level: "Gold" }, { c: "NG", level: "Gold" }, { c: "UK", level: "Silver" }] },
       { title: "Love Me JeJe", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/4bfd7acfa6aaa14c1497f19aeb5a0536/500x500-000000-80-0-0.jpg", certs: [{ c: "NZ", level: "Platinum" }, { c: "UK", level: "Gold" }, { c: "NG", level: "Gold" }, { c: "PT", level: "Gold" }] }, // PT: AFP "Galardões de Ouro de Maio de 2026" card (Audiogest post, 8 Jun 2026), read 18 Sep 2026
       { title: "Found", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/b3aea8ba7c55e2eafd6672ff29668bdb/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "NZ", level: "Gold" }] },
-      { title: "Isaka", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/d015c74bed325b8928343913858fb3c2/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
+      // Titled as TCSN prints it, "Isaka (6Am) | Ciza, Tems & Omah Lay"
+      // (docs/sourcing/results/board-raw.json), and as Omah Lay's line files the
+      // same award. It read plain "Isaka" until 5 Oct 2026, and the Nigerian
+      // board counted the one record twice (debug pass 4 Oct, C-01).
+      { title: "Isaka (6AM)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/d015c74bed325b8928343913858fb3c2/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Replay", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/b3aea8ba7c55e2eafd6672ff29668bdb/500x500-000000-80-0-0.jpg", certs: [{ c: "NZ", level: "Gold" }] },
       { title: "Get It Right (ft. Asake)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/66c0e3ff739ce671cee90fea6eb1047c/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       // CA Platinum (2 Oct 2026): Music Canada's row prints "DAVE | Raindance"
