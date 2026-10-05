@@ -1,7 +1,7 @@
 import { revenueShows, revenueStands, type RevenueShow, type RevenueStand } from "../data/tourRevenue";
 import { performedCountries, CONTINENT_OF, type Continent } from "../data/performedCountries";
 import { CHART_COUNTRIES } from "../data/charts";
-import { RUNS_HEADING } from "./multiNightRuns";
+import { RUNS_HEADING, shortDates } from "./multiNightRuns";
 import { pct } from "./showsChips";
 
 /**
@@ -306,15 +306,29 @@ export function leaderLine(c: CountryBoard, fmt: Money = usdM, { reported = true
 
 /** One multi-night run as a row prints it: the marker, its gross, where, and
  *  "{tour} · {dates} · {tickets} tickets over {k} nights" — the board's own
- *  run grammar (lib/multiNightRuns.ts), the tour in the meta. */
+ *  run grammar (lib/multiNightRuns.ts), the tour in the meta.
+ *
+ *  The dates are the shows page's short form, "28–29 Nov & 1 Dec 2021"
+ *  (shortDates), and runMetaParts gives the meta in its three parts, so each
+ *  layout can keep the dates and the "tickets over nights" whole: the full
+ *  dates broke "28– | 29 November" and left "nights" alone on a line at
+ *  920–1920 and on phones (debug pass 4 Oct 2026, A-06, E-11, D-13). */
 export function runParts(st: StandLine, fmt: Money = usdM) {
+  const m = runMetaParts(st);
   return {
     marker: `Run · ${st.shows} nights`,
     gross: fmt(st.revenue),
     place: `${st.venue}, ${st.city}`,
-    meta: `${st.tour} · ${st.dates} · ${runTickets(st.tickets, st.shows)}`,
+    meta: `${m.tour} · ${m.dates} · ${m.tickets}`,
   };
 }
+
+/** A run's meta in its three parts, as runParts joins them with " · ". */
+export const runMetaParts = (st: StandLine) => ({
+  tour: st.tour,
+  dates: shortDates(st.dates),
+  tickets: runTickets(st.tickets, st.shows),
+});
 
 /**
  * The note under an artist who has single nights AND runs in a place: the

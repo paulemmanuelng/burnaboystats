@@ -302,8 +302,11 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
   function strip(x: AfroArtist) {
     const k = countryCount(x);
     // Empty view: the sentence in the headline's place says it (see headline).
-    // A fragment, not null: CertViewSwap falls back to the all-view on null.
-    if (k === 0) return <></>;
+    // `false`, not null and not an empty fragment: CertViewSwap falls back to
+    // the all-view on a nullish view, and the RSC payload flattens a keyless
+    // fragment to its children — `<></>` reached the client as undefined, so
+    // Tiwa Savage's empty view showed the all-view strip (debug 4 Oct, B-01).
+    if (k === 0) return false;
     return (
       <>
         <div className={styles.sectionHead}>
@@ -452,7 +455,8 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
                   are named with their own figures, so each says what is behind
                   it; Compare is an action, worded as it is everywhere else on
                   the site, and short enough that the row stays one line at
-                  desktop widths (a figure on it pushed it to a second line). */}
+                  desktop widths (a figure on it pushed it to a second line)
+                  — for an artist without a shows button. */}
               <div className={styles.heroActions}>
                 {a.charts.length > 0 && (
                   <Link href={`/afrobeats/${a.slug}/charts`} className="btn btnPrimary">
@@ -465,14 +469,24 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
                     Live charts — {live.placements} placements today
                   </Link>
                 )}
-                <Link href={`/compare?a=${a.slug}`} className="btn btnSecondary">
-                  Compare ↗
-                </Link>
                 {/* Their nights on the box-office board, beside Compare — only
-                    while they have one (the owner, 4 Oct 2026). */}
-                {shows && (
-                  <Link href={shows} className="btn btnSecondary">
-                    {SHOWS_LABEL} ↗
+                    while they have one (the owner, 4 Oct 2026). The two go
+                    on their own row together, after the live-charts button:
+                    four buttons never fit one row, and "Biggest shows" was
+                    left alone on a line of its own at 1024, 1440 and 1920
+                    (debug pass 4 Oct 2026, B-04). */}
+                {shows ? (
+                  <span className={styles.heroPair}>
+                    <Link href={`/compare?a=${a.slug}`} className="btn btnSecondary">
+                      Compare ↗
+                    </Link>
+                    <Link href={shows} className="btn btnSecondary">
+                      {SHOWS_LABEL} ↗
+                    </Link>
+                  </span>
+                ) : (
+                  <Link href={`/compare?a=${a.slug}`} className="btn btnSecondary">
+                    Compare ↗
                   </Link>
                 )}
               </div>

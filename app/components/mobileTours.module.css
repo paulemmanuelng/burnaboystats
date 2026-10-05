@@ -111,7 +111,10 @@
   font-weight: 400;
   font-size: 34px;
   line-height: 0.9;
-  color: var(--gold);
+  /* Ink, not gold: the owner's #420 "so much gold" ruling on the shows hero,
+     carried to this hero (debug pass 4 Oct 2026, F-06). The desktop tiles,
+     the /records phone tiles and the festivals grid are ink already. */
+  color: var(--text);
   font-variant-numeric: tabular-nums;
 }
 .statLabel {

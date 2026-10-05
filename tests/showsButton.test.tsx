@@ -24,9 +24,10 @@ import RevenuePage from "../app/records/tours/revenue/page";
 import ArtistPage from "../app/afrobeats/[artist]/page";
 import CertificationsPage from "../app/certifications/page";
 import mobileStyles from "../app/components/mobileCerts.module.css";
-import { revenueShows } from "../app/data/tourRevenue";
+import { revenueShows, revenueStands } from "../app/data/tourRevenue";
 import { afrobeatsArtists } from "../app/data/afrobeats";
-import { nightCounts, shownLine } from "../app/lib/showsChips";
+import { nightCounts, railChips, shownLine } from "../app/lib/showsChips";
+import { RAIL_FADE } from "../app/components/ScrollRail";
 import { artistsWithNights, showsHrefFor } from "../app/lib/showsBoard";
 import { SHOWS_LABEL, SHOWS_SHORT, artistForSlug, artistSlug, showsHref } from "../app/lib/showsDeepLink";
 
@@ -112,8 +113,11 @@ describe("?artist=<slug> opens the board on that artist's chip", () => {
     const { desktop, phone, unmount } = mountRevenue(`/records/tours/revenue?artist=${artistSlug(artist)}`);
     expect(pressed(desktop)).toEqual([artist]);
     expect(pressed(phone)).toEqual([artist]);
-    expect(live(desktop)).toBe(shownLine(counts[artist], TOTAL));
+    // Both layouts word it the same since the debug pass of 4 Oct 2026 (A-11):
+    // the desktop said "16 of 82 shown" and named nobody.
+    expect(live(desktop)).toBe(shownLine(counts[artist], TOTAL, artist));
     expect(live(phone)).toBe(`${counts[artist]} of ${TOTAL} shows · ${artist}`);
+    expect(live(desktop)).toBe(live(phone));
     // Every row the desktop shows is theirs.
     const rows = [...desktop.querySelectorAll('[role="table"] [role="row"]')].slice(1);
     expect(rows.length).toBe(counts[artist]);
@@ -151,31 +155,49 @@ describe("?artist=<slug> opens the board on that artist's chip", () => {
     unmount();
   });
 
-  it("the phone rail brings the linked chip into view, instantly; an unknown slug scrolls nothing", () => {
-    // jsdom has no layout: give each chip a place on a 390px rail.
+  it("the phone rail brings the linked chip clear of its edge fade, instantly; an unknown slug scrolls nothing", () => {
+    // jsdom has no layout: give each chip a place on a 390px rail, 100px
+    // apart and 90px wide, and the rail its scroll width.
     const scrollTo = vi.fn();
     const proto = HTMLElement.prototype as unknown as { scrollTo?: unknown };
     const had = proto.scrollTo;
     proto.scrollTo = scrollTo;
-    const isChip = (el: HTMLElement) => el.matches("button[aria-pressed]");
-    const idx = (el: HTMLElement) => [...(el.parentElement?.children ?? [])].indexOf(el);
+    const isChip = (el: Element) => el.matches("button[aria-pressed]");
+    const isRail = (el: Element) => !!el.querySelector(":scope > button[aria-pressed]");
+    const idx = (el: Element) => [...(el.parentElement?.children ?? [])].indexOf(el);
+    const rect = (left: number, width: number) => ({ left, width, right: left + width, top: 0, bottom: 44, height: 44, x: left, y: 0, toJSON() {} }) as DOMRect;
+    const W = 390;
     const spies = [
-      vi.spyOn(HTMLElement.prototype, "offsetLeft", "get").mockImplementation(function (this: HTMLElement) {
-        return isChip(this) ? idx(this) * 100 : 0;
+      vi.spyOn(HTMLElement.prototype, "getBoundingClientRect").mockImplementation(function (this: HTMLElement) {
+        return isChip(this) ? rect(idx(this) * 100, 90) : rect(0, W);
       }),
-      vi.spyOn(HTMLElement.prototype, "offsetWidth", "get").mockImplementation(function (this: HTMLElement) {
-        return isChip(this) ? 90 : 390;
+      vi.spyOn(HTMLElement.prototype, "scrollWidth", "get").mockImplementation(function (this: HTMLElement) {
+        return isRail(this) ? this.children.length * 100 : W;
       }),
-      vi.spyOn(HTMLElement.prototype, "clientWidth", "get").mockImplementation(() => 390),
+      vi.spyOn(HTMLElement.prototype, "clientWidth", "get").mockImplementation(() => W),
     ];
     try {
-      const last = Object.keys(counts).sort((a, b) => counts[a] - counts[b])[0];
-      const a = mountRevenue(`/records/tours/revenue?artist=${artistSlug(last)}`);
+      // The second-to-last chip: far enough along to need the scroll, and
+      // short of the rail's end, so the end fade stays on beside it.
+      const order = railChips("All", counts, TOTAL, revenueStands.length).map((c) => c.label);
+      const artist = order[order.length - 2];
+      const a = mountRevenue(`/records/tours/revenue?artist=${artistSlug(artist)}`);
       const railCalls = scrollTo.mock.calls.filter(([o]) => o && typeof o === "object" && "left" in o);
       expect(railCalls.length).toBeGreaterThan(0);
       const [opts] = railCalls[railCalls.length - 1];
-      expect(opts.behavior).toBe("auto");
-      expect(opts.left).toBeGreaterThan(0);
+      // "instant", not "auto": the rail's scroll-behavior: smooth animated
+      // "auto" (E-05) — the shipped call passed "auto".
+      expect(opts.behavior).toBe("instant");
+      const i = order.indexOf(artist);
+      const max = order.length * 100 - W;
+      const right = i * 100 + 90 - opts.left;
+      expect(opts.left).toBeLessThan(max - 2); // the end fade is still on…
+      expect(right).toBeLessThanOrEqual(W - RAIL_FADE); // …and the chip ends clear of it (A-01)
+      // Negative control: the shipped pad of 18px left the chip's last 26px
+      // under the 44px fade (Tiwa Savage at 233–371 in a 390 rail, live).
+      const shipped = i * 100 + 90 - (i * 100 + 90 + 18 - W);
+      expect(shipped).toBe(372);
+      expect(shipped).toBeGreaterThan(W - RAIL_FADE);
       a.unmount();
 
       scrollTo.mockClear();

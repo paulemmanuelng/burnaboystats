@@ -123,10 +123,12 @@
   font-size: 12.5px;
   flex: 1;
   min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  /* The venue truncates; the artist's tag beside it never does (F-08). */
+  display: flex;
   white-space: nowrap;
 }
+.barVenue { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.barTag { flex: none; white-space: pre; }
 .barValue {
   font-family: var(--font-mono), monospace;
   font-weight: 700;

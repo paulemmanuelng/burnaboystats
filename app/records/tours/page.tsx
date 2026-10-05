@@ -312,7 +312,9 @@ export default function ToursPage() {
             <p className={styles.sourceNote}>
               Burna Boy holds {hisShowCount} of the {revenueShows.length} verified single-show
               grosses by an African artist
-              {hisShowCount > revenueShows.length - hisShowCount ? " — more than every other artist on this list combined" : ""}.
+              {hisShowCount > revenueShows.length - hisShowCount ? " — more than every other artist on this list combined" : ""}.{" "}
+              {/* The space is explicit: JSX drops a newline between "." and an
+                  expression, which shipped "artist.Box-office reports" (B-08). */}
               {REVENUE_SOURCE}, as of {REVENUE_AS_OF}.
             </p>
             <Link href="/records/tours/revenue" className={styles.jumpCardAlt}>

@@ -5,7 +5,7 @@ import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
 import JumpSpy from "./JumpSpy";
 import ScrollRail from "./ScrollRail";
-import { emptyNote, methodNote } from "./RevenueCountries";
+import { NB, RunMeta, emptyNote, methodNote } from "./RevenueCountries";
 import { pct } from "../lib/showsChips";
 import {
   continentAnchor,
@@ -41,6 +41,23 @@ import {
 /** The continent rail's short names, so six chips stay readable. */
 const SHORT: Record<string, string> = { "North America": "N. America", "South America": "S. America" };
 
+/**
+ * A continent chip's words: "N. America" on screen, and an accessible name
+ * that starts with what is on screen — "N. America (North America)" — so a
+ * speech-input user who says the visible label is understood (WCAG 2.5.3;
+ * E-14, 4 Oct 2026: the aria-label "North America" replaced the label).
+ */
+function ChipName({ continent }: { continent: string }) {
+  const short = SHORT[continent];
+  if (!short) return <>{continent}</>;
+  return (
+    <>
+      {short}
+      <span className="visuallyHidden"> ({continent})</span>
+    </>
+  );
+}
+
 /** The bar under a heading: his part gold, the rest --other, a 2px gap. */
 function SplitBar({ c }: { c: CountryBoard }) {
   return (
@@ -66,16 +83,16 @@ function Row({ a, rank }: { a: ArtistTotal; rank: number }) {
       <span className={own.sub}>
         {a.best ? (
           <span>
-            <span className={own.subStrong}>{nightsLabel(a.shows)}</span> · best{" "}
+            <span className={`${own.subStrong} ${own.nowrap}`}>{nightsLabel(a.shows)}</span> · best{" "}
             {/* His best night is gold on the phone too (fix 7). */}
             <span className={`${own.bestFig} ${a.his ? own.bestHis : ""}`}>{usdM(a.best.revenue)}</span>
-            {a.best.tickets ? ` · ${a.best.tickets} tickets` : ""}
+            {a.best.tickets ? `${NB}· ${a.best.tickets}${NB}tickets` : ""}
             <br />
             {a.best.venue} · {a.best.city} · {a.best.year}
           </span>
         ) : (
           <span>
-            <span className={own.subStrong}>{nightsLabel(a.shows)}</span> · no single night reported here
+            <span className={`${own.subStrong} ${own.nowrap}`}>{nightsLabel(a.shows)}</span> · no single night reported here
           </span>
         )}
         {a.stands.map((st) => {
@@ -92,8 +109,10 @@ function Row({ a, rank }: { a: ArtistTotal; rank: number }) {
                 </span>
                 <span className={`${own.runFig} ${a.his ? own.runHis : ""}`}>{r.gross}</span>
               </span>
+              {/* The dates and "tickets over nights" each kept whole (A-06). */}
               <span>
-                {r.place} · {r.meta}
+                {r.place}
+                {NB}· <RunMeta st={st} keep={own.nowrap} />
               </span>
             </span>
           );
@@ -120,13 +139,16 @@ function CountryBlock({ c }: { c: CountryBoard }) {
           {single ? (
             <>
               · the only artist reported ·{" "}
-              <span className={`${own.leadFig} ${c.leader.his ? own.leadHis : ""}`}>{usdM(c.total)}</span> ·{" "}
-              {nightsLabel(c.shows)}
+              <span className={`${own.leadFig} ${c.leader.his ? own.leadHis : ""}`}>{usdM(c.total)}</span>
+              {NB}· <span className={own.nowrap}>{nightsLabel(c.shows)}</span>
             </>
           ) : (
+            // "12 | nights" split at 320 and 360 (A-07): the count keeps its unit.
             <>
               leads · <span className={`${own.leadFig} ${c.leader.his ? own.leadHis : ""}`}>{usdM(c.leader.total)}</span> of{" "}
-              {usdM(c.total)} · {pct(shareOf(c.leader, c))} · {nightsLabel(c.shows)}
+              {usdM(c.total)}
+              {NB}· {pct(shareOf(c.leader, c))}
+              {NB}· <span className={own.nowrap}>{nightsLabel(c.shows)}</span>
             </>
           )}
         </div>
@@ -171,13 +193,20 @@ function ContinentRow({ k }: { k: ContinentBoard }) {
         <span className={`${styles.seg} ${L.his ? styles.segHis : ""}`} style={{ width: widthPct(shareOf(L, k)) }} />
         {k.artists.length > 1 && <span className={styles.seg} style={{ flex: 1 }} />}
       </span>
+      {/* The figure and its share as one unit, as on desktop (A-13). */}
       <div className={own.contLead}>
         <span className={own.leadName}>{L.artist}</span> leads ·{" "}
-        <span className={`${own.leadFig} ${L.his ? own.leadHis : ""}`}>{usdM(L.total)}</span> · {pct(shareOf(L, k))} ·{" "}
-        {next ? `next ${next.artist}, ${usdM(next.total)}` : "the only artist reported"}
+        <span className={own.nowrap}>
+          <span className={`${own.leadFig} ${L.his ? own.leadHis : ""}`}>{usdM(L.total)}</span> · {pct(shareOf(L, k))}
+        </span>
+        {NB}· {next ? `next ${next.artist}, ${usdM(next.total)}` : "the only artist reported"}
       </div>
       <div className={own.contMeta}>
-        {nightsLabel(k.shows)} · {k.countries.length} {k.countries.length === 1 ? "country" : "countries"}
+        <span className={own.nowrap}>{nightsLabel(k.shows)}</span>
+        {NB}·{" "}
+        <span className={own.nowrap}>
+          {k.countries.length} {k.countries.length === 1 ? "country" : "countries"}
+        </span>
       </div>
     </div>
   );
@@ -234,14 +263,15 @@ export default function MobileRevenueCountries({ board }: { board: RevenueByCoun
             <span className={styles.figLabel}>Continents</span>
           </div>
           <div className={styles.fig}>
-            {/* His figure, gold: this screen's own class — the shared phone
-                stylesheet has no gold tile since #420 (shows hero, owner). */}
-            <span className={`${styles.figValue} ${own.figHis}`}>
+            {/* Ink, like every tile here: the owner's #420 ruling on the
+                shows hero ("so much gold"), carried to this one (A-04). */}
+            <span className={styles.figValue}>
               {board.hisLeads} of {board.countryCount}
             </span>
             <span className={styles.figLabel}>He leads</span>
           </div>
         </div>
+        {/* $44.99M is the hero's one gold figure; the share beside it is ink. */}
         <div className={own.share}>
           <span className={own.shareSum}>
             <span className={own.leadName}>Burna Boy</span> · <span className={own.shareGold}>{usdM(hero.hisTotal)}</span>{" "}
@@ -315,9 +345,8 @@ export default function MobileRevenueCountries({ board }: { board: RevenueByCoun
               key={k.continent}
               href={`#${continentAnchor(k.continent, true)}`}
               className={`${own.chip} ${k.countries.length === 0 ? own.chipEmpty : ""}`}
-              aria-label={SHORT[k.continent] ? k.continent : undefined}
             >
-              {SHORT[k.continent] ?? k.continent}
+              <ChipName continent={k.continent} />
             </a>
           ))}
         </ScrollRail>

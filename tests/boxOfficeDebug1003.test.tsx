@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect, vi, beforeEach } from "vitest";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { renderToStaticMarkup } from "react-dom/server";
@@ -33,6 +33,12 @@ import { siteUrl } from "../app/site";
 import { GET as toursApi } from "../app/api/v1/tours/route";
 import { cssRules, declaredAt } from "./fixtures/phoneTrees";
 import { text, trees } from "./fixtures/phoneTrees";
+
+// The boards keep the reader's chip in the address bar and in this history
+// entry (lib/useBoardView; debug pass 4 Oct 2026, A-03). Each test starts on a
+// fresh entry at the bare address, as a fresh visit does — not on the chip a
+// previous test left there.
+beforeEach(() => window.history.replaceState(null, "", "/"));
 
 /**
  * The live debug pass of 3 Oct 2026 over the box-office pages
@@ -556,19 +562,19 @@ describe("C3: the phone countries screen keeps gold for his figure only", () => 
   // figure tiles (Nights · Continents · He leads); the rule is unchanged:
   // everyone's figures in ink, his gold. The badge stays plain muted text
   // (review fix 2).
-  it("the badge (every artist's countries) and the nights figure are not gold; “He leads” is", () => {
+  it("the badge (every artist's countries) and the nights figure are not gold; nor, since 4 Oct (A-04), “He leads”", () => {
     const badge = countries.phone!.querySelector('[class*="badge"]')!;
     expect(badge.className).toMatch(/mutedBadge/);
     const labels = [...countries.phone!.querySelectorAll('[class*="figLabel"]')];
     const value = (label: string) => labels.find((l) => text(l) === label)!.parentElement!.querySelector('[class*="figValue"]')!;
     expect(value("Nights").className).not.toMatch(/figHis/);
     expect(value("Continents").className).not.toMatch(/figHis/);
-    expect(value("He leads").className).toMatch(/figHis/);
+    // The owner's #420 ruling on the shows phone hero, carried here in the
+    // debug pass of 4 Oct 2026 (A-04): the tiles are ink, "9 of 12" too.
+    expect(value("He leads").className).not.toMatch(/figHis/);
     expect(declaredAt(CSS, ".mutedBadge.mutedBadge", "color", 390)).toBe("var(--text-muted)");
     expect(declaredAt(PHONE_CSS, ".figValue", "color", 390)).toBe("var(--text)");
-    // His tile's gold is this screen's own class: the shared phone stylesheet
-    // has carried no .figHis since #420 (tests/showsHeroGold).
-    expect(declaredAt(CSS, ".figHis.figHis", "color", 390)).toBe("var(--gold)");
+    expect(declaredAt(CSS, ".figHis.figHis", "color", 390)).toBeUndefined();
     expect(PHONE_CSS).not.toMatch(/\.figHis\b/);
     expect(read("app/components/MobileRevenueCountries.tsx")).not.toMatch(/styles\.figHis/);
   });

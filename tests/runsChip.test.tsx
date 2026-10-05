@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect, vi, beforeEach } from "vitest";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { renderToStaticMarkup } from "react-dom/server";
@@ -23,6 +23,12 @@ import { RUNS_HEADING, RUNS_LEDE, runYear, runsCountLine, shortDates } from "../
 import { RUNS_VIEW, chipOrder, nightCounts, railChips } from "../app/lib/showsChips";
 import { compactGross } from "../app/lib/grossLabel";
 import { trees } from "./fixtures/phoneTrees";
+
+// The boards keep the reader's chip in the address bar and in this history
+// entry (lib/useBoardView; debug pass 4 Oct 2026, A-03). Each test starts on a
+// fresh entry at the bare address, as a fresh visit does — not on the chip a
+// previous test left there.
+beforeEach(() => window.history.replaceState(null, "", "/"));
 
 /**
  * The "Multi-night runs" chip (the owner, 4 Oct 2026, on the shows page's

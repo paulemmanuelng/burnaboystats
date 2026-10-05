@@ -83,6 +83,8 @@
   font-weight: 400;
   font-size: 40px;
   line-height: 1;
+  /* "9 of 10" broke to "9 of" / "10" at 901–939 (A-12, 4 Oct 2026). */
+  white-space: nowrap;
   color: var(--text);
   font-variant-numeric: tabular-nums;
 }
@@ -212,6 +214,9 @@
   border-radius: 6px;
   background: var(--bg-soft);
   border: 1px solid var(--line);
+  /* A "Biggest shows" link scrolls here once (A-10): clear of the 69px
+     sticky navbar, with the [id] jumps' breathing room. */
+  scroll-margin-top: calc(88px + env(safe-area-inset-top, 0px));
 }
 .filterLabel {
   font-family: var(--font-mono), monospace;

@@ -1,5 +1,6 @@
 import RevenueCountries from "../../../../components/RevenueCountries";
 import MobileRevenueCountries from "../../../../components/MobileRevenueCountries";
+import AnchorTwins from "../../../../components/AnchorTwins";
 import { nightsLabel, revenueByCountry, summaryLine, usdFull } from "../../../../lib/revenueByCountry";
 import { REVENUE_STAMP } from "../../../../lib/revenueSource";
 import { pageMetadata, datasetJsonLd } from "../../../../lib/seo";
@@ -71,6 +72,8 @@ export default function RevenueCountriesPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(dataset) }} />
       <MobileRevenueCountries board={board} />
       <RevenueCountries board={board} lede={lede} path={PATH} />
+      {/* A place's link from one layout lands on the other's copy (A-15). */}
+      <AnchorTwins />
     </main>
   );
 }

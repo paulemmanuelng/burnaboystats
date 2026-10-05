@@ -254,7 +254,9 @@
   text-transform: uppercase;
   color: var(--text-muted);
 }
-.tileStat strong { color: var(--gold); font-weight: 700; }
+/* Ink: the phone's tile grid is the other artists' (his is the hero), and
+   gold marks his figures only on a mixed list (F-02, 4 Oct 2026). */
+.tileStat strong { color: var(--text); font-weight: 700; }
 .badge {
   font-family: var(--font-mono), monospace;
   font-weight: 700;

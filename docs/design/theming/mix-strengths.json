@@ -5,6 +5,7 @@
   ],
   "app/afrobeats/[artist]/artist.module.css": [
     "--bg 55%",
+    "--bg 85%",
     "--bg 90%",
     "--cyan 55%",
     "--cyan 55%",
@@ -195,13 +196,18 @@
     "--bg 10%",
     "--bg 25%",
     "--bg 25%",
+    "--bg 25%",
     "--bg 35%",
     "--bg 55%",
     "--bg 72%",
     "--bg 75%",
+    "--bg 75%",
     "--bg 78%",
     "--bg 85%",
     "--bg 85%",
+    "--bg 85%",
+    "--bg 92%",
+    "--bg 92%",
     "--bg 92%",
     "--bg 92%",
     "--bg 92%",
@@ -216,8 +222,7 @@
     "--gold-wash-base 6%",
     "--gold-wash-base 6%",
     "--gold-wash-base 8%",
-    "--ink-wash-base 9%",
-    "--text 18%"
+    "--ink-wash-base 9%"
   ],
   "app/components/mobileDeepPage.module.css": [
     "--gold-glow-base 25%",

@@ -164,7 +164,10 @@
   text-transform: uppercase;
   color: var(--muted);
 }
-.tileStat strong { color: var(--gold); font-size: 14px; }
+/* A mixed list: every tile's plaque count in ink, only his gold (debug pass
+   4 Oct 2026, F-02 — all twenty were gold). */
+.tileStat strong { color: var(--text); font-size: 14px; }
+.tileAnchor .tileStat strong { color: var(--gold); }
 .tileHook {
   margin-top: 8px;
   font-size: 12.5px;
