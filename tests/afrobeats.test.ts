@@ -114,6 +114,91 @@ describe("the Afrobeats board", () => {
         expect(annot.test(r.title), `${a.slug} → ${r.title}`).toBe(false);
   });
 
+  // Debug pass, 5 Oct 2026. Three ways a register's or a sweep document's own
+  // text shipped as a title, each with the string that shipped as its
+  // negative control.
+  //  1. A Markdown escape: the sweep doc writes Tyla's album "A\*Pop", and the
+  //     parser kept the backslash and dropped the asterisk — "A\Pop".
+  //  2. TCSN's owner tag: the register disambiguates "Everyday (Fireboy Dml)"
+  //     from Wizkid's "Everyday" and "Stubborn (Victony)" from nobody's; on
+  //     the artist's own page the tag is his own name, mis-cased.
+  //  3. The register's Title Case run over an ordinal, an apostrophe or a
+  //     stylised name: "January 9Th", "What'S Poppin", "5Hrs Till Nairobi",
+  //     "La La (ft. Ckay)", and the acronyms "Iq", "Bd Baby", "Ig Story".
+  const MARKDOWN_ESCAPE = /\\/;
+  const REGISTER_CASING = /\d(?:St|Nd|Rd|Th|Hrs?)\b|[a-z]'[A-Z]|\bCkay\b|\bDml\b/;
+  const REGISTER_ACRONYMS = new Set(["Iq", "Bd Baby", "Ig Story", "Nsnv", "Whatsapp", "40 Btc", "Romeo Must Die (Rmd)"]);
+  const ownTag = (title: string, name: string) =>
+    title.match(/\(([^()]*)\)\s*$/)?.[1].toLowerCase() === name.toLowerCase();
+
+  it("no title carries a Markdown escape, its own artist's name as a tag, or a register's mis-casing", () => {
+    const bad: string[] = [];
+    for (const a of afrobeatsArtists)
+      for (const r of [...a.releases, ...a.charts]) {
+        const t = r.title;
+        if (MARKDOWN_ESCAPE.test(t) || REGISTER_CASING.test(t) || REGISTER_ACRONYMS.has(t) || ownTag(t, a.name))
+          bad.push(`${a.slug} → ${t}`);
+      }
+    expect(bad).toEqual([]);
+    expect(artistBySlug("tyla")!.charts.some((r) => r.title === "A*POP")).toBe(true);
+  });
+
+  it("negative control: every title the guard above rejects is one that shipped", () => {
+    const shipped: [string, string][] = [
+      ["A\\Pop", "Tyla"],
+      ["Everyday (Fireboy Dml)", "Fireboy DML"],
+      ["Stubborn (Victony)", "Victony"],
+      ["Julie (Olamide)", "Olamide"],
+      ["January 9Th", "Black Sherif"],
+      ["What'S Poppin", "BNXN"],
+      ["5Hrs Till Nairobi", "BNXN"],
+      ["La La (ft. Ckay)", "Davido"],
+      ["Iq", "Seyi Vibez"],
+    ];
+    for (const [t, name] of shipped)
+      expect(
+        MARKDOWN_ESCAPE.test(t) || REGISTER_CASING.test(t) || REGISTER_ACRONYMS.has(t) || ownTag(t, name),
+        t,
+      ).toBe(true);
+    // And real titles the casing pattern must leave alone.
+    for (const t of ["2Factor", "You4Me", "Isaka (6AM)", "One Dance"]) expect(REGISTER_CASING.test(t), t).toBe(false);
+  });
+
+  // One record, one spelling, on an artist's certifications and charts pages
+  // alike: "Bad Since 97" against "Bad Since '97", "Ponpon" against "Pon Pon",
+  // "90s" against "90's" (debug pass, 5 Oct 2026). Titles equal once accents,
+  // apostrophes, dots, hyphens and spaces are folded must match letter for
+  // letter — case aside: "understand" is how Omah Lay styles it and TCSN's
+  // "Understand" is the same title, a styling, not a second spelling.
+  it("spells one record one way across an artist's plaques and chart rows", () => {
+    const fold = (t: string) =>
+      t.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[\s'’.\-]/g, "");
+    const split: string[] = [];
+    for (const a of afrobeatsArtists) {
+      const by = new Map<string, Set<string>>();
+      for (const r of [...a.releases, ...a.charts]) {
+        const k = fold(r.title);
+        by.set(k, (by.get(k) ?? new Set()).add(r.title.toLowerCase()));
+      }
+      for (const titles of by.values()) if (titles.size > 1) split.push(`${a.slug}: ${[...titles].join(" / ")}`);
+    }
+    expect(split).toEqual([]);
+    // Spellings no fold can see, settled on the record's own title.
+    const titles = (slug: string) => {
+      const a = artistBySlug(slug)!;
+      return [...a.releases, ...a.charts].map((r) => r.title);
+    };
+    expect(titles("rema")).not.toContain("Favorite Girl"); // Darkoo's "Favourite Girl"
+    expect(titles("rema")).not.toContain("LaLaLa"); // Young Jonn's "Lalala"
+    expect(titles("wizkid")).not.toContain("Ololufe");
+    expect(titles("wizkid")).not.toContain("Apres Minuit");
+    // Negative control: the pairs that shipped fold together and differ.
+    for (const [x, y] of [["Bad Since 97", "Bad Since '97"], ["Ponpon", "Pon Pon"], ["90s", "90's"], ["Ololufe", "Ololufé"]]) {
+      expect(fold(x), `${x} / ${y}`).toBe(fold(y));
+      expect(x.toLowerCase()).not.toBe(y.toLowerCase());
+    }
+  });
+
   it("cover art, where present, is a real https URL", () => {
     for (const a of afrobeatsArtists)
       for (const r of [...a.releases, ...a.charts])
@@ -391,6 +476,18 @@ describe("records that appear on two boards", () => {
     //                two titles no longer meet here.
     //   "Woman"      Rema's own 2020 single (NG 25) against Omah Lay's (NG 5)
     //                and Joeboy & Oxlade (NG 100).
+    // 5 Oct 2026: three titles lost the register's owner tag (the debug pass's
+    // A-07 — TCSN's "Outside (Buju)", "Julie (Olamide)", and the board's own
+    // "Mukulu (BNXN)", which disambiguate inside the register, not on the
+    // artist's page) and now meet a same-titled row on another board. Each is
+    // a different record, told apart by its sleeve and TurnTable's artiste line:
+    //   "Julie"    Olamide's (NG 16) against Davido's Oriade album track
+    //              (NG 28, 2026).
+    //   "Outside"  BNXN's (NG 6) against Fireboy DML's own (NG 25) — the
+    //              same pair the certification boards keep apart
+    //              (tests/countrySharedRecords.test.tsx, "NG outside").
+    //   "Mukulu"   BNXN's own 2023 single (NG 66) against Olamide & Rema's
+    //              2022 record (Rema's NG 32).
     // And one that IS the same record, answered per credit on purpose: "Soweto"
     // — Victony's NG 4 is the "Soweto (Remix)" printing credited Victony, Tempoe
     // & Omah Lay, which does not credit Rema; Rema's best credited printing is
@@ -400,6 +497,7 @@ describe("records that appear on two boards", () => {
       "Special|NG", "Pray|NG", "Diamonds|NG", "Everyday|NG", "Blessings|NG",
       "Oshe|NG", "Energy|NG", "Forgiveness|NG", "Ole|NG", "Lately|NG", "Bounce|NG",
       "Alubarika|NG", "Melanin|NG", "Running|NG", "Woman|NG", "Soweto|NG",
+      "Julie|NG", "Outside|NG", "Mukulu|NG",
     ]);
     const conflicts: string[] = [];
     for (const [title, per] of shared()) {
@@ -476,6 +574,9 @@ describe("records that appear on two boards", () => {
         // 3 Oct 2026: the co-lead single on both its leads' boards, one title on
         // both since CKay's row stopped being a bare "Trumpet" (NG 15 on both).
         "Trumpet (Olamide & CKay)",
+        // 5 Oct 2026: three different records under one title once the
+        // register's owner tags came off them, in `known` above.
+        "Julie", "Mukulu", "Outside",
       ].sort(),
     );
   });

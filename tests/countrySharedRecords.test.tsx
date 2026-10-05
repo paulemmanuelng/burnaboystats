@@ -185,10 +185,13 @@ describe("every board: one record, counted once — and only one", () => {
     "NG reason": "Reason[asake] | Reason[omah-lay]",
     // BNXN's (NG chart 2) against Wizkid's own (tests/afrobeats.test.ts).
     "NG pray": "Pray[bnxn] | Pray[wizkid]",
-    // Wizkid's against Fireboy DML's, TCSN's own disambiguator on his.
-    "NG everyday": "Everyday (Fireboy Dml)[fireboy-dml] | Everyday[wizkid]",
-    // TCSN files them as "Outside (Buju)" and "Outside (Fireboy Dml)".
-    "NG outside": "Outside (Buju)[bnxn] | Outside (Fireboy Dml)[fireboy-dml]",
+    // Wizkid's against Fireboy DML's: two sleeves. TCSN tells them apart by
+    // filing his as "Everyday (Fireboy Dml)" — its own disambiguator, which
+    // stays in the register and off his page (debug pass, 5 Oct 2026).
+    "NG everyday": "Everyday[fireboy-dml] | Everyday[wizkid]",
+    // TCSN files them as "Outside (Buju)" and "Outside (Fireboy Dml)"; two
+    // sleeves, two records, each titled plainly on its own board.
+    "NG outside": "Outside[bnxn] | Outside[fireboy-dml]",
     // Wizkid ft. Drake (Silver) against Omah Lay's (Gold): two sleeves, two tiers.
     "NG come closer": "Come Closer[omah-lay] | Come Closer[wizkid]",
     // Wizkid ft. BNXN is one record on both their lines; Asake's "Mood" wears
@@ -261,8 +264,11 @@ describe("every board: one record, counted once — and only one", () => {
     // "Sungba (Remix)" (Burna Boy's line) are one record in both, "Isaka" and
     // "Isaka (6AM)" one in Nigeria — NG had read 71,050,000 / 68 / 675 and the
     // UK 41,620,000 / 7 / 94, the figures the live boards printed on 4 Oct.
+    // NG moved again the same day (debug pass, compareIn-01): Tyla's "Dynamite
+    // — Tyla & Wizkid" and Wizkid's "Dynamite (Tyla & Wizkid)" are one record,
+    // titled one way since — it had read 70,550,000 / 70 / 673.
     expect(changed).toEqual({
-      NG: { lines: 81_850_000, units: 70_550_000, shared: 70, plaques: 673 },
+      NG: { lines: 81_850_000, units: 70_500_000, shared: 71, plaques: 672 },
       US: { lines: 73_940_000, units: 67_440_000, shared: 4, plaques: 46 },
       UK: { lines: 43_620_000, units: 41_420_000, shared: 8, plaques: 93 },
       FR: { lines: 11_283_327, units: 11_183_327, shared: 1, plaques: 59 },
@@ -384,14 +390,16 @@ describe("a renamed or subtitled title cannot hide a shared record", () => {
   it("the boards print the records' figures, and the strings the live boards shipped are gone", () => {
     const ng = countryCopy(priceCountry("NG"));
     const uk = countryCopy(priceCountry("UK"));
-    expect(ng.description).toContain("20 artists, 673 plaques, at least 70,550,000 certified units.");
+    expect(ng.description).toContain("20 artists, 672 plaques, at least 70,500,000 certified units.");
     expect(uk.description).toContain("17 artists, 93 plaques, at least 41,420,000 certified units.");
     // Live, 5 Oct 2026 (curl; debug pass C-01/D-01).
     expect(ng.description).not.toContain("675 plaques, at least 71,050,000");
     expect(uk.description).not.toContain("94 plaques, at least 41,620,000");
     const hub = countryBoards().reduce((n, b) => n + b.plaques, 0);
-    expect(hub).toBe(1_240);
+    // 1,240 until "Dynamite" was one Nigerian record (5 Oct 2026, compareIn-01).
+    expect(hub).toBe(1_239);
     expect(hub).not.toBe(1_243);
+    expect(ng.description).not.toContain("673 plaques, at least 70,550,000");
   });
 
   it("the comment that called \"Sungba (Remix)\" a different record from \"Sungba\" is gone", () => {
