@@ -257,6 +257,10 @@ export interface AfroPeak {
 
 export interface AfroRelease {
   title: string;
+  /** The sweep's filing, kept as it stands (Paul, 6 Oct 2026). Billing order
+   *  decides where nothing else does — the act billed first leads, the rest
+   *  are featured — and the ruled exception is "Trumpet" (Olamide & CKay), a
+   *  lead single for both (3 Oct 2026). See app/lib/certScope.ts. */
   kind: "Albums" | "Lead singles" | "Featured appearances";
   cover?: string;
   certs: AfroCert[];
@@ -528,7 +532,8 @@ export const AFROBEATS_EDITED_ON: Readonly<Record<string, string>> = {
   olamide: "2026-10-05",
   // 5 Oct 2026: "Isaka" retitled "Isaka (6AM)", as TCSN prints it (C-01); and
   // an open-run chart note (above).
-  tems: "2026-10-05",
+  // 6 Oct 2026: "Isaka (6AM)" refiled as a featured appearance (afrobeatsB-02).
+  tems: "2026-10-06",
   tyla: "2026-10-05",
   "fireboy-dml": "2026-10-05",
   bnxn: "2026-10-05",
@@ -1655,11 +1660,6 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Damages", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/3d1528266cd1263f06d630c1c73376d5/500x500-000000-80-0-0.jpg", certs: [{ c: "CA", level: "Gold" }, { c: "NG", level: "Gold" }, { c: "UK", level: "Silver" }] },
       { title: "Love Me JeJe", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/4bfd7acfa6aaa14c1497f19aeb5a0536/500x500-000000-80-0-0.jpg", certs: [{ c: "NZ", level: "Platinum" }, { c: "UK", level: "Gold" }, { c: "NG", level: "Gold" }, { c: "PT", level: "Gold" }] }, // PT: AFP "Galardões de Ouro de Maio de 2026" card (Audiogest post, 8 Jun 2026), read 18 Sep 2026
       { title: "Found", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/b3aea8ba7c55e2eafd6672ff29668bdb/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "NZ", level: "Gold" }] },
-      // Titled as TCSN prints it, "Isaka (6Am) | Ciza, Tems & Omah Lay"
-      // (docs/sourcing/results/board-raw.json), and as Omah Lay's line files the
-      // same award. It read plain "Isaka" until 5 Oct 2026, and the Nigerian
-      // board counted the one record twice (debug pass 4 Oct, C-01).
-      { title: "Isaka (6AM)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/d015c74bed325b8928343913858fb3c2/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Replay", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/b3aea8ba7c55e2eafd6672ff29668bdb/500x500-000000-80-0-0.jpg", certs: [{ c: "NZ", level: "Gold" }] },
       { title: "Get It Right (ft. Asake)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/66c0e3ff739ce671cee90fea6eb1047c/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       // CA Platinum (2 Oct 2026): Music Canada's row prints "DAVE | Raindance"
@@ -1672,6 +1672,15 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Essence", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Platinum", x: 5 }, { c: "CA", level: "Platinum", x: 3 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "NG", level: "Platinum", x: 2 }, { c: "ZA", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum" }, { c: "CH", level: "Platinum" }, { c: "FR", level: "Gold" }] },
       { title: "Fountains", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/ea8f80f2edb20885ac8aed8751716794/500x500-000000-80-0-0.jpg", certs: [{ c: "NZ", level: "Gold" }, { c: "AU", level: "Gold" }, { c: "PT", level: "Gold" }, { c: "UK", level: "Silver" }] },
       { title: "Move", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/c3e2a951678a28a3f541a69c866583d4/500x500-000000-80-0-0.jpg", certs: [{ c: "BR", level: "Platinum" }, { c: "US", level: "Gold" }] },
+      // Titled as TCSN prints it, "Isaka (6Am) | Ciza, Tems & Omah Lay"
+      // (docs/sourcing/results/board-raw.json), and as Omah Lay's line files the
+      // same award. It read plain "Isaka" until 5 Oct 2026, and the Nigerian
+      // board counted the one record twice (debug pass 4 Oct, C-01).
+      // A featured appearance, as Omah Lay's line files it (Paul, 6 Oct 2026,
+      // afrobeatsB-02): Ciza is billed first, Tems second — the board's
+      // billing-order rule. It was a lead single here until 6 Oct 2026, the
+      // one record filed two ways.
+      { title: "Isaka (6AM)", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/d015c74bed325b8928343913858fb3c2/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       // ZA Gold ▣ (3 Oct 2026): Tyla's "No.1" (feat. Tems), a Gold disc on Sony
       // Music Africa's framed award to Tyla — a LABEL plaque, not a RiSA row,
       // counted on the owner's ruling of 3 Oct 2026 ("cant you see the plaque")
