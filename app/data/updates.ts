@@ -1921,7 +1921,7 @@ export const updates: Update[] = [
   {
     date: "2026-07-11",
     category: "Firsts & Records",
-    text: "Oceania records stack up: the No Sign of Weakness run grossed $3.12M from 30,946 tickets across four arena shows — the highest-grossing tour and most tickets ever by an African act in the region.",
+    text: "Oceania records stack up: the No Sign of Weakness run grossed $3.12M from 30,946 tickets across its four shows — the highest-grossing tour and most tickets ever by an African act in the region.",
     href: "/records/firsts",
   },
   {

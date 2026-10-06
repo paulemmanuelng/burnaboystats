@@ -55,14 +55,16 @@ export interface Tour {
  *  with any edit to the dates, tours or map lines; tests/debug1004Data.test.tsx
  *  ("TOURS_EDITED_ON moves with the tour data") fingerprints the data and
  *  fails until it is moved.
- *  5 Oct 2026: Love, Damini marked `partial`, Ireland's map line (C-07). */
-export const TOURS_EDITED_ON = "2026-10-05";
+ *  5 Oct 2026: Love, Damini marked `partial`, Ireland's map line (C-07).
+ *  6 Oct 2026: No Sign of Weakness note says "its four shows", not "four
+ *  arena shows" — Melbourne's Sidney Myer Music Bowl is outdoors (tourscars-21). */
+export const TOURS_EDITED_ON = "2026-10-06";
 
 export const tours: Tour[] = [
   {
     name: "No Sign of Weakness Tour",
     years: "2025–26",
-    note: "His most expansive run yet — a genuine world tour across Oceania (Oct 2025), North America (Nov–Dec 2025) and Europe (Jan 2026), performed largely on a 360° in-the-round stage. He became the first Nigerian artist to headline Red Rocks, and the Oceania leg alone grossed $3.12M from 30,946 tickets across four arena shows — the most for an African artist there.",
+    note: "His most expansive run yet — a genuine world tour across Oceania (Oct 2025), North America (Nov–Dec 2025) and Europe (Jan 2026), performed largely on a 360° in-the-round stage. He became the first Nigerian artist to headline Red Rocks, and the Oceania leg alone grossed $3.12M from 30,946 tickets across its four shows — the most for an African artist there.",
     dates: [
       { date: "Oct 16, 2025", venue: "Sidney Myer Music Bowl", city: "Melbourne", country: "Australia", cap: 12000 },
       { date: "Oct 18, 2025", venue: "Qudos Bank Arena", city: "Sydney", country: "Australia", cap: 21000 },

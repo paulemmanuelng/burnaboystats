@@ -204,7 +204,7 @@ export const firstGroups: FirstGroup[] = [
       { year: "2024", title: "Highest-grossing single concert by any African artist", text: "London Stadium — $6.15M from 58,973 fans." },
       { year: "2025", title: "First African artist to gross over $1M from a single Oceania concert", text: "On the No Sign of Weakness Oceania run (which grossed $3.12M in total)." },
       { year: "2025", title: "Highest-grossing tour by an African artist in Oceania", text: "The No Sign of Weakness Oceania run grossed $3.12M from 30,946 tickets across four shows." },
-      { year: "2025", title: "First African artist to play four arenas in a single Oceania tour", text: "The four-date No Sign of Weakness run — also the most tickets (30,946) sold in the region by an African act." },
+      { year: "2025", title: "First African artist to play four arena-scale shows in a single Oceania tour", text: "The four-date No Sign of Weakness run — also the most tickets (30,946) sold in the region by an African act." },
     ],
   },
 ];

@@ -345,7 +345,9 @@ describe("D-04: /certifications, /records/tours and the map are dated by their d
     // moved the routes' dates (D-04); this is what would have said so.
     const print = (data: unknown) => createHash("sha256").update(JSON.stringify(data)).digest("hex").slice(0, 16);
     const fingerprint = print({ tours, festivals, otherShows, concerts, upcomingShows, performedCountries });
-    expect({ fingerprint, stamp: TOURS_EDITED_ON }).toEqual({ fingerprint: "c62c848c36874513", stamp: "2026-10-05" });
+    // Re-pinned 6 Oct 2026: No Sign of Weakness's note, "across its four
+    // shows" (tourscars-21).
+    expect({ fingerprint, stamp: TOURS_EDITED_ON }).toEqual({ fingerprint: "fcb08b183e049c12", stamp: "2026-10-06" });
     // Negative control: the data before this PR's edits (Love, Damini not
     // partial and with no reason of its own; Ireland's "(Mar & Dec 2022)")
     // prints another fingerprint, so an edit that leaves the stamp behind
