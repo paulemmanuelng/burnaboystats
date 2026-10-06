@@ -22,6 +22,30 @@ export interface FirstGroup {
   items: First[];
 }
 
+/**
+ * THE ORDER INSIDE A CATEGORY (Paul, 6 Oct 2026, records-15): headline first.
+ * Every category opens with its biggest or most notable first — the item its
+ * `opensWith` names — and the rest follow newest first by year; items of the
+ * same year keep the order they are written in below. So nothing here is
+ * hand-sorted, a new item lands in its year on its own, and both layouts
+ * (records/firsts/page.tsx and MobileFirsts) and the home page's
+ * one-per-category strip read the same order.
+ *
+ * The categories had mixed newest-first, oldest-first and appended order
+ * (debug pass 5 Oct 2026). An `opensWith` that names no item in its category
+ * leaves the category newest-first, and tests/debug1005Rulings.test.tsx fails.
+ */
+export interface DraftGroup extends FirstGroup {
+  /** The title of the item the category opens with: its headline. */
+  opensWith: string;
+}
+
+export function orderFirsts({ label, opensWith, items }: DraftGroup): FirstGroup {
+  const lead = items.find((f) => f.title === opensWith);
+  const rest = items.filter((f) => f !== lead).sort((a, b) => Number(b.year) - Number(a.year));
+  return { label, items: lead ? [lead, ...rest] : rest };
+}
+
 const bestPriorCertYear = bestIntlYearBefore(2026);
 
 // ---------------------------------------------------------------------------
@@ -69,9 +93,11 @@ const dayMonthYear = (iso: string) =>
 const stadeDeFrance = revenueShows.find((r) => r.artist === "Burna Boy" && r.venue === "Stade de France");
 const stadeDeFranceGross = stadeDeFrance ? ` — a $${(stadeDeFrance.revenue / 1e6).toFixed(2)}M night` : "";
 
-export const firstGroups: FirstGroup[] = [
+/** As written — `firstGroups`, below, is what every page reads. */
+export const draftFirstGroups: DraftGroup[] = [
   {
     label: "Stadiums & arenas",
+    opensWith: "First African artist to headline & sell out a US stadium",
     items: [
       { year: "2025", title: "First Nigerian artist to headline Red Rocks Amphitheatre", text: "Opening the North American leg of the No Sign of Weakness tour at the iconic Colorado venue (12 November 2025)." },
       { year: "2025", title: "First African artist to headline a stadium concert in New Zealand", text: "Headlining the inaugural Afrosoul Festival at Auckland's Go Media Stadium." },
@@ -86,6 +112,7 @@ export const firstGroups: FirstGroup[] = [
   },
   {
     label: "World stages",
+    opensWith: "First African artist to perform at a FIFA World Cup Final halftime show",
     items: [
       { year: "2026", title: "First African artist to perform at a FIFA World Cup Final halftime show", text: "Took the 2026 final's halftime stage (19 July) — the first African artist ever to do so — alongside Madonna, Shakira, BTS, Justin Bieber and Coldplay." },
       { year: "2026", title: "First African artist to headline a FIFA World Cup opening ceremony", text: "Mexico City, performing the official tournament song “Dai Dai” with Shakira." },
@@ -97,6 +124,7 @@ export const firstGroups: FirstGroup[] = [
   },
   {
     label: "Awards & honours",
+    opensWith: "First winner of the Grammy for Best Global Music Album",
     items: [
       { year: "2021", title: "First winner of the Grammy for Best Global Music Album", text: "Twice as Tall took the award in its debut year — the category renamed from Best World Music Album." },
       { year: "2023", title: "First African artist to win a Billboard Music Award as lead artist", text: "Recognised at the Billboard Music Awards as a headline act — the first African to win one in his own right." },
@@ -112,6 +140,7 @@ export const firstGroups: FirstGroup[] = [
   },
   {
     label: "Charts & streaming",
+    opensWith: "First African artist to reach No. 1 on the Billboard Global 200",
     items: [
       { year: "2026", title: "First African artist to reach No. 1 on the Billboard Global 200", text: "“Dai Dai” (with Shakira) topped Billboard's flagship worldwide chart in July 2026 — no African artist had ever led the US-inclusive Global 200 before." },
       { year: "2026", title: "First African artist to top Spotify's Global Music Video Chart", text: "“Dai Dai” (with Shakira) debuted at No. 1 on Spotify's newly launched Global Music Video Chart in July 2026 — the first African artist ever to top it." },
@@ -199,6 +228,7 @@ export const firstGroups: FirstGroup[] = [
   },
   {
     label: "Box office",
+    opensWith: "Highest-grossing single concert by any African artist",
     items: [
       { year: "2025", title: "Highest-grossing tour ever by an African artist", text: "The I Told Them… Tour grossed $30.46M across 22 reported shows." },
       { year: "2024", title: "Highest-grossing single concert by any African artist", text: "London Stadium — $6.15M from 58,973 fans." },
@@ -208,6 +238,8 @@ export const firstGroups: FirstGroup[] = [
     ],
   },
 ];
+
+export const firstGroups: FirstGroup[] = draftFirstGroups.map(orderFirsts);
 
 export const allFirsts: First[] = firstGroups.flatMap((g) => g.items);
 export const firstsCount = allFirsts.length;
