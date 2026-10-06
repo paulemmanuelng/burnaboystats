@@ -211,8 +211,11 @@ const closingSections = [
 const allBodies = Object.keys(CERT_THRESHOLDS).length;
 const TIERS = ["silver", "gold", "platinum", "diamond"] as const;
 const fmtUnits = (n: number | null | undefined) => (n == null ? "—" : n.toLocaleString("en-GB"));
-/** "IFPI Austria (Verband …)" → "IFPI Austria"; "BRMA — Belgian …" → "BRMA". */
-const shortBody = (b: string) => b.split(" (")[0].split(" — ")[0];
+// The bodies print under ONE name each, the one the registers list above and
+// the /compare boards use (countryMeta's), not the threshold table's own
+// `body` string: this page said "Ultratop Belgium" in one list and "BRMA
+// Belgium" in the next, and "Audiogest" under an "AFP" register (debug pass
+// 5 Oct 2026, core-08).
 const raisedBodies = Object.values(CERT_THRESHOLDS)
   .filter((c) => c.vintage)
   .sort((x, y) => countryMeta(x.code).name.localeCompare(countryMeta(y.code).name));
@@ -606,7 +609,7 @@ export default function MethodologyPage() {
             {historicBodies.length > 0 && (
               <>
                 {" "}{historicBodies.length === 1 ? "One body" : `${historicBodies.length} bodies`} —{" "}
-                {joinNames(historicBodies.map((c) => shortBody(c.body)))} — {historicBodies.length === 1 ? "publishes" : "publish"} no
+                {joinNames(historicBodies.map((c) => countryMeta(c.code).body))} — {historicBodies.length === 1 ? "publishes" : "publish"} no
                 current level at all. Its plaques are priced at the last level ever published
                 for it: IFPI&apos;s own International Certification Award levels list, updated
                 June 2013 (singles Gold 3,000 / Platinum 6,000; international-repertoire albums
@@ -702,7 +705,7 @@ export default function MethodologyPage() {
           <ul className={styles.historyList}>
             {raisedBodies.map((c) => (
               <li key={c.code}>
-                <strong>{countryMeta(c.code).flag} {shortBody(c.body)}</strong> — {c.vintage}
+                <strong>{countryMeta(c.code).flag} {countryMeta(c.code).body}</strong> — {c.vintage}
               </li>
             ))}
           </ul>
@@ -716,7 +719,7 @@ export default function MethodologyPage() {
               <ul className={styles.historyList}>
                 {paragraphBodies.map((c) => (
                   <li key={c.code}>
-                    <strong>{countryMeta(c.code).flag} {shortBody(c.body)}</strong> — {c.historic}
+                    <strong>{countryMeta(c.code).flag} {countryMeta(c.code).body}</strong> — {c.historic}
                   </li>
                 ))}
               </ul>
@@ -758,7 +761,7 @@ export default function MethodologyPage() {
                 {thresholdRows.map((r) => (
                   <tr key={r.code}>
                     <th scope="row">
-                      <span aria-hidden="true">{countryMeta(r.code).flag}</span> {shortBody(r.body)}
+                      <span aria-hidden="true">{countryMeta(r.code).flag}</span> {countryMeta(r.code).body}
                       {/* A ¶ that covers one format sits on that format's figures, not
                           on the body: Poland's album levels are today's units. */}
                       {r.historic && !r.historicFormat && <span title={r.historic} aria-label="historic level"> ¶</span>}

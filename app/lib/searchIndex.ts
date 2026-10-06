@@ -901,9 +901,15 @@ function score(doc: SearchDoc, q: string): number {
  * "I Told Them…" are the same query. app/lib/titleKey.ts does this for data
  * joins; search needs it for the same reason and did not have it — three dots
  * returned nothing while the ellipsis character worked.
+ *
+ * Accents fold away too (5 Oct 2026): Colombia's body took its accent, "Pro
+ * Música Colombia" (core-08), and a reader typing "pro musica" — as the site
+ * itself spelt it until then — must still find it.
  */
 const fold = (s: string) =>
   s
+    .normalize("NFD")
+    .replace(/\p{M}/gu, "")
     .replace(/…/g, "...")
     .replace(/[‘’]/g, "'")
     .replace(/[“”]/g, '"')
