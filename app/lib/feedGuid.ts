@@ -29,8 +29,11 @@
  *
  * Empty on 26 Sep 2026: the numbering the feed serves now — after PR #340 — is
  * the one readers hold, so it is the one kept.
+ *
+ * 6 Oct 2026 (core-07): /records/tours/festivals#2026-09-17-0, the Luna Loca
+ * entry — a repeat of the 15 Aug launch entry, framed as a list change.
  */
-export const RETIRED_FEED_SLOTS: readonly { date: string; n: number }[] = [];
+export const RETIRED_FEED_SLOTS: readonly { date: string; n: number }[] = [{ date: "2026-09-17", n: 0 }];
 
 export function feedGuids<T extends { date: string; href: string }>(
   entries: readonly T[],

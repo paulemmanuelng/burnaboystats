@@ -284,7 +284,7 @@ export const updates: Update[] = [
     category: "Certifications",
     // Poland's singles priced (Paul, 23 Sep 2026: "we have to use 62,500 until
     // anything changes"). The unit figures are the threshold table's own.
-    text: `Poland's plaques now count toward Burna Boy's certified units: ZPAV sets single levels in złoty, converted at the 2 zł a single its own tables used until the end of 2024, so “Dai Dai”'s Gold is ${plSingle.gold!.toLocaleString("en-US")} units and “We Pray”'s Platinum ${plSingle.platinum!.toLocaleString("en-US")}.`,
+    text: `Burna Boy's Polish plaques in certified units: “Dai Dai”'s Gold is ${plSingle.gold!.toLocaleString("en-US")} units and “We Pray”'s Platinum ${plSingle.platinum!.toLocaleString("en-US")}, ZPAV's złoty levels at the 2 zł a single its own tables used until the end of 2024.`,
     href: "/compare/in/poland",
   },
   {
@@ -391,7 +391,7 @@ export const updates: Update[] = [
   {
     date: "2026-09-17",
     category: "Awards",
-    text: "The strike rate now counts decided nominations only: 82 wins from 234 decided — 35% — with 8 results still to come at ceremonies not yet held (Caribbean Music Awards, VMAs, NRJ, the Headies).",
+    text: "Burna Boy's awards strike rate is 35%: 82 wins from 234 decided nominations, with 8 results still to come at ceremonies not yet held (Caribbean Music Awards, VMAs, NRJ, the Headies).",
     href: "/records/awards",
   },
   {
@@ -465,19 +465,13 @@ export const updates: Update[] = [
   {
     date: "2026-09-17",
     category: "Tours",
-    text: "Toronto and Montreal, February 2024, leave the single-show ranking and sit beneath it as stands: Boxscore reports each as one combined figure — $2,801,928 over 29,579 tickets and $1,904,384 over 26,303, two nights each — and never a per-night gross, so the board no longer halves them.",
+    text: "Burna Boy's Toronto and Montreal shows, February 2024, were two-night stands that Boxscore reports as one figure each, never per night: $2,801,928 over 29,579 tickets and $1,904,384 over 26,303.",
     href: "/records/tours/revenue",
   },
   {
     date: "2026-09-17",
     category: "Tours",
     text: "Gurtenfestival 2024, re-read at the organisers' own count: 18,000 on his night, the Thursday, at a festival capped at 20,000 a day — not the 80,000 the page carried, which exceeded the whole edition's 73,000 entries. Sunny Hill 2024 loses its unsourced ~15,000.",
-    href: "/records/tours/festivals",
-  },
-  {
-    date: "2026-09-17",
-    category: "Tours",
-    text: "The Luna Loca launch at O Beach Ibiza (14 August 2026), his first Ibiza performance, joins the festivals and one-off shows list — it was already on the performance map and in this feed, and the list's counts now include it.",
     href: "/records/tours/festivals",
   },
   {
@@ -520,7 +514,7 @@ export const updates: Update[] = [
   {
     date: "2026-09-16",
     category: "Certifications",
-    text: "“We Pray” with Coldplay is Gold in the UK: BPI's register dates the award 1 May 2026, the step up from the Silver of January 2025. The plaque was already counted at Gold; the dated log now carries the upgrade as its own 2026 event.",
+    text: "“We Pray” with Coldplay is Gold in the UK: BPI's register dates the award 1 May 2026, the step up from the Silver of January 2025.",
     href: "/certifications",
   },
   {
@@ -582,7 +576,7 @@ export const updates: Update[] = [
   {
     date: "2026-09-14",
     category: "Certifications",
-    text: "A circulating 6,050,000 worldwide units for “Dai Dai” goes on the methodology page's list of counts this site does not carry: no certifying body or platform publishes worldwide units for a single, so the figure is streams converted to units at a ratio of the poster's choosing.",
+    text: "A circulating 6,050,000 worldwide units for “Dai Dai” is not a certification: no certifying body or platform publishes worldwide units for a single, so the figure is streams converted to units at a ratio of the poster's choosing.",
     href: "/methodology",
   },
   {
@@ -613,7 +607,7 @@ export const updates: Update[] = [
   {
     date: "2026-09-12",
     category: "Certifications",
-    text: "The compare page now counts every plaque an artist holds: featured appearances are in by default, and Burna Boy's international floor reads at least 30,215,157 certified units across 167 of his 171 plaques. The four that cannot yet be priced are listed on the page.",
+    text: "Burna Boy's international plaques, featured appearances included, add up to at least 30,215,157 certified units: 167 of his 171 priced at each body's own published level, and four that cannot yet be priced.",
     href: "/compare/burna-boy-vs-wizkid",
   },
   {
@@ -796,7 +790,7 @@ export const updates: Update[] = [
   {
     date: "2026-08-27",
     category: "Certifications",
-    text: "A Swedish plaque that was never on the site: “On The Low” is Platinum in Sweden, certificate no. 10448, awarded 16 August 2023, read at Grammotex alongside “Ye” Platinum (no. 10450), “African Giant” Gold (no. 10452) and “Gbona” Gold (no. 10453).",
+    text: "“On the Low” is Platinum in Sweden, certificate no. 10448, awarded 16 August 2023, read at Grammotex alongside “Ye” Platinum (no. 10450), “African Giant” Gold (no. 10452) and “Gbona” Gold (no. 10453).",
     href: "/certifications",
   },
   {
@@ -1191,7 +1185,7 @@ export const updates: Update[] = [
   {
     date: "2026-08-07",
     category: "Streaming",
-    text: "Career Spotify streams tick up to 10.65B across every lead and featured credit — now refreshed daily from kworb's live artist total plus the documented featured-credits gap it misses.",
+    text: "Career Spotify streams tick up to 10.65B across every lead and featured credit.",
     href: "/records/by-the-numbers",
   },
   {
