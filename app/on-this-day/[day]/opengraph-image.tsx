@@ -24,7 +24,10 @@ export async function generateImageMetadata({ params }: { params: Promise<{ day:
   const p = previewFor(slug);
   return [
     {
-      id: ogId([p?.kicker ?? slug, p?.headline ?? "", p?.meta ?? "", p?.cover ?? "", cardUrl(`/on-this-day/${slug}`)].join("|")),
+      // The credit is in the id only where there is one (otd-01): a day whose
+      // lead gains a credit line re-versions alone, every other day keeps its
+      // id, and no OG_ART bump moves every card.
+      id: ogId([p?.kicker ?? slug, p?.headline ?? "", ...(p?.credit ? [p.credit] : []), p?.meta ?? "", p?.cover ?? "", cardUrl(`/on-this-day/${slug}`)].join("|")),
       alt: p?.alt ?? alt,
       size,
       contentType,
@@ -127,6 +130,11 @@ export default async function Image({ params }: { params: Promise<{ day: string 
               >
                 {keepTogether(p.headline)}
               </div>
+              {/* A featured record's credit, in the post card's record grey
+                  (otd-01): the milestone is his, the record someone else's. */}
+              {p.credit && (
+                <div style={{ display: "flex", fontSize: 28, lineHeight: 1.25, color: "#CFC7BB" }}>{p.credit}</div>
+              )}
               <div style={{ display: "flex", alignItems: "center", gap: 12, fontSize: p.metaSize, letterSpacing: 0.12 * p.metaSize, color: "#c9c9d0" }}>
                 <ShareMark kind={p.kind} size={18} color="#c9c9d0" />
                 <div style={{ display: "flex" }}>{p.meta}</div>

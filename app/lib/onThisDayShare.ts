@@ -25,6 +25,8 @@ import { cardTextWidth } from "./cardTextWidth";
 import { REVENUE_PUBLISHERS } from "./revenueSource";
 import {
   KIND_MARK,
+  creditedHeadline,
+  guestCredit,
   isRecordLine,
   onThisDayDays,
   onThisDayEvents,
@@ -242,6 +244,10 @@ export interface DayPreview {
   /** The lead's headline in capitals: the hero. */
   headline: string;
   headSize: number;
+  /** The record's credit under the headline when the lead is someone else's
+   *  record with Burna Boy featured — "Stormzy ft. Ed Sheeran & Burna Boy"
+   *  (guestCredit, otd-01) — else null. */
+  credit: string | null;
   /** A 300px cover when the lead has 640px art, else null. */
   cover: string | null;
   kind: OnThisDayKind;
@@ -263,13 +269,14 @@ export function dayPreview(day: OnThisDayDay): DayPreview {
     kicker: `Burna Boy · On this day · ${day.label}`.toUpperCase(),
     headline: lead.headline.toUpperCase(),
     headSize: previewHeadSize(lead.headline.length, Boolean(art)),
+    credit: guestCredit(lead),
     // The tile is 300px wide on a 1200px card; Spotify serves a 300 rung.
     cover: art ? spotifyImage(art, 300) : null,
     kind: lead.kind,
     meta,
     metaSize: previewMetaSize(meta, Boolean(art)),
     url: cardUrl(`/on-this-day/${day.slug}`),
-    alt: `Burna Boy on this day, ${day.label}: ${lead.year} — ${lead.headline}`,
+    alt: `Burna Boy on this day, ${day.label}: ${lead.year} — ${creditedHeadline(lead)}`,
   };
 }
 
@@ -299,7 +306,9 @@ export interface DayPostCard {
   /** The lead's headline in capitals: the hero, the largest text on the card. */
   headline: string;
   headSize: number;
-  /** The lead's record sentence, when its detail states one; else null. */
+  /** The lead's record sentence, when its detail states one; else, for
+   *  someone else's record with Burna Boy featured, its credit line
+   *  (guestCredit, otd-01); else null. */
   record: string | null;
   /** The milestone's year — never a relative age: a saved card is reposted
    *  for years. */
@@ -374,7 +383,7 @@ export function dayPostCard(day: OnThisDayDay, { withCover = true }: { withCover
     coverSize: headSize >= 104 ? 420 : 360,
     headline,
     headSize,
-    record: isRecordLine(lead) ? lead.detail : null,
+    record: isRecordLine(lead) ? lead.detail : guestCredit(lead),
     year: String(lead.year),
     kind: lead.kind,
     kindLine: cardKindLine(KIND_MARK[lead.kind].word, more, source),
