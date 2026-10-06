@@ -410,6 +410,20 @@ export function priceCountry(
       byProgram.set(k, [...(byProgram.get(k) ?? []), p]);
     }
     for (const [k, plaques] of byProgram) {
+      // The highest AWARD, units breaking a tie, and a full tie kept by the
+      // first in the artist's release order — priceArtist's pick exactly, so a
+      // pair page and this board name the same record on the same line. Taken
+      // BEFORE the sort below, which orders ties by title: the board's
+      // "Highest plaque" read "Bella" and "Emiliana" in France where the pair
+      // pages read "One Dance" and "love nwantiti" (review, 5 Oct 2026).
+      // An unpriced line keeps its highest tier, the first met on a tie, as
+      // priceArtist's listed lines do.
+      const firstHighest = (xs: CountryPlaque[]) =>
+        xs.reduce<CountryPlaque | null>(
+          (t, p) => (!t || rank(p) > rank(t) || (rank(p) === rank(t) && (p.units ?? 0) > (t.units ?? 0)) ? p : t),
+          null,
+        );
+      const top = firstHighest(plaques.filter((p) => p.units !== null)) ?? firstHighest(plaques);
       const plaqueList = plaques.sort(
         (a, b) =>
           (b.units ?? -1) - (a.units ?? -1) ||
@@ -429,9 +443,7 @@ export function priceCountry(
           notCounted: plaqueList.length - priced.length,
           plaques: plaqueList.length,
           plaqueList,
-          // The highest AWARD, units breaking a tie — as priceArtist picks its
-          // chip. An unpriced line keeps the list's own first.
-          top: [...priced].sort((a, b) => rank(b) - rank(a) || (b.units ?? 0) - (a.units ?? 0))[0] ?? plaqueList[0] ?? null,
+          top,
         },
       ]);
     }

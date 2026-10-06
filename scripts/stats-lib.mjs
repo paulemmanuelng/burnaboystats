@@ -763,16 +763,6 @@ export function extractCountryChart(html, code, spec, who = DEFAULT_WHO) {
 }
 
 /**
- * Matching key for a release title. The artist page and the country charts
- * name the same record differently — "On the Low" vs "On The Low", "For My
- * Hand" vs "For My Hand (feat. Ed Sheeran)" — and matching on the raw string
- * created a second copy of the song, splitting its placements across two rows.
- *
- * Only casing, punctuation and featured-artist credits are normalised away.
- * Version suffixes stay significant: "Dai Dai (Instrumental)" and "Dai Dai
- * (Clean Bandit Remix)" chart separately and must not fold into "Dai Dai".
- */
-/**
  * A title without the invisible characters kworb sometimes serves inside it.
  * Its artist pages printed "Getting Paid (feat. Asake, Wizkid, Skillibeng)"
  * with U+200B zero-width spaces before "(", inside "feat" and before ")", and
@@ -785,6 +775,16 @@ export function stripInvisible(title) {
   return String(title).replace(/[\u200B-\u200D\u2060\uFEFF]/g, "");
 }
 
+/**
+ * Matching key for a release title. The artist page and the country charts
+ * name the same record differently — "On the Low" vs "On The Low", "For My
+ * Hand" vs "For My Hand (feat. Ed Sheeran)" — and matching on the raw string
+ * created a second copy of the song, splitting its placements across two rows.
+ *
+ * Only casing, punctuation and featured-artist credits are normalised away.
+ * Version suffixes stay significant: "Dai Dai (Instrumental)" and "Dai Dai
+ * (Clean Bandit Remix)" chart separately and must not fold into "Dai Dai".
+ */
 export function titleKey(title) {
   return stripInvisible(title)
     .replace(/\s*[([](?:feat|ft|with|w\/)\.?\s[^)\]]*[)\]]/gi, "")

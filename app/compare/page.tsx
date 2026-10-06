@@ -817,9 +817,12 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
               </>
             )
           ) : countryMode ? (
+            // No own-body promise: Greece is priced at IFPI's June 2013 level
+            // and Colombia not at all, as the index lead just below names them
+            // (debug pass, 5 Oct 2026). Same wording as the page's meta.
             <>
               The rest of this page asks who has more. This asks who has more <em>where</em> — one market, every
-              artist, priced at that country&apos;s own certifying body&apos;s published threshold.
+              artist, each plaque priced at the threshold its country&apos;s page names.
             </>
           ) : (
             <>

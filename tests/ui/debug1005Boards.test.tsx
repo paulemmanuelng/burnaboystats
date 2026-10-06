@@ -103,6 +103,10 @@ describe("the /compare/in country boards", () => {
     expect(t).toContain("plaques — a record two artists share counted once —");
     expect(t).toMatch(/Every figure is a floor, priced at the body named beside it — Greece's at IFPI's last published level \(June 2013\), Colombia's not at all ¹ ?\./);
     expect(t).not.toContain("every plaque is priced at the body named beside it");
+    // The h1 lede above that sentence made the same promise and contradicted
+    // it; the shipped string is the negative control.
+    expect(t).toContain("one market, every artist, each plaque priced at the threshold its country's page names.");
+    expect(t).not.toContain("priced at that country's own certifying body's published threshold");
     for (const [code, mark] of [["MX", "§"], ["SE", "§"], ["PL", "¶"], ["GR", "¶"]] as const) {
       const b = priceCountry(code);
       expect(t, code).toContain(`${b.units.toLocaleString("en-US")} ${mark}`);
