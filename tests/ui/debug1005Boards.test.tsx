@@ -207,7 +207,8 @@ describe("the pair pages", () => {
 
   it("compareA-04: footnote 1 names both Colombian issuers", async () => {
     const t = text(await compare({ a: "burna-boy", b: "rema" }));
-    expect(t).toContain("Colombia (Sony Music Colombia · Pro Musica Colombia)");
+    // "Pro Música", with its accent: one name per body (core-08, #429).
+    expect(t).toContain("Colombia (Sony Music Colombia · Pro Música Colombia)");
   });
 
   it("compareA-06: Burna Boy's registers carry his last full sweep's date", async () => {

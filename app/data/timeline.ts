@@ -62,7 +62,7 @@ export const timelineEras: TimelineEra[] = [
     entries: [
       { date: "2010", title: "The career begins", text: "Burna Boy starts releasing music out of Port Harcourt, working with producer LeriQ in the Aristokrat camp.", kind: "milestone" },
       { date: "2012", title: "“Like to Party” breaks through", text: "The breakout single that carried him onto Nigerian radio, later the lead track of his debut album.", href: "/music/like-to-party", kind: "chart" },
-      { date: "2013", title: "L.I.F.E — the debut album", text: "Leaving an Impact For Eternity, released on Aristokrat Records. It earned Album of the Year nominations at the 2014 Headies and Nigeria Entertainment Awards.", href: "/music/albums/life", kind: "album" },
+      { date: "2013", title: "L.I.F.E — the debut album", text: "Leaving an Impact for Eternity, released on Aristokrat Records. It earned Album of the Year nominations at the 2014 Headies and Nigeria Entertainment Awards.", href: "/music/albums/life", kind: "album" },
       { date: "2015", title: "On a Spaceship", text: "The second album, self-released on his own Spaceship label — the imprint still on every record since.", href: "/music/albums/on-a-spaceship", kind: "album" },
     ],
   },
@@ -96,12 +96,14 @@ export const timelineEras: TimelineEra[] = [
     intro:
       "Madison Square Garden, stadiums on two continents, a UK No. 1 album and the Grammys' main stage — the era the records piled up.",
     entries: [
-      { date: "Apr 2022", title: "First Nigerian artist to headline & sell out Madison Square Garden", text: "One night at the Garden — and the Ziggo Dome sellout follows the same year.", href: "/records/firsts", kind: "tour" },
+      { date: "Apr 2022", title: "First Nigerian artist to headline & sell out Madison Square Garden", text: "One night at the Garden, the Space Drift tour finale, two weeks after his sold-out Ziggo Dome night in Amsterdam.", href: "/records/firsts", kind: "tour" },
       { date: "Jul 2022", title: "Love, Damini — and “Last Last”", text: "The personal album reaches No. 2 in the UK and the Netherlands — the highest-charting Nigerian album in Billboard 200 history at No. 14 — while “Last Last” becomes one of the most-certified African songs ever.", href: "/music/albums/love-damini", kind: "album" },
       { date: "Jun 2023", title: "First African artist to perform at a UEFA Champions League final", text: "Istanbul, before Manchester City vs Inter — his first global football stage.", href: "/records/firsts", kind: "milestone" },
+      // Jun–Jul 2023, in its place in the year: London Stadium 3 Jun, Citi Field
+      // 8 Jul (tours.ts). A bare "2023" sat after "Sep 2023" (5 Oct 2026, core-17).
+      { date: "Jun–Jul 2023", title: "Stadium history, twice", text: "First African artist to headline and sell out a UK stadium (London Stadium) and a US stadium (Citi Field) — in the same year.", href: "/records/firsts", kind: "tour" },
       // No. 1 on the Official Albums Chart dated 1 Sep 2023 (released 25 Aug).
       { date: "Sep 2023", title: "I Told Them… debuts at UK No. 1", text: "The first Afrobeats album ever to top the UK Official Albums Chart — and a No. 1 in Nigeria.", href: "/music/albums/i-told-them", kind: "album" },
-      { date: "2023", title: "Stadium history, twice", text: "First African artist to headline and sell out a UK stadium (London Stadium) and a US stadium (Citi Field) — in the same year.", href: "/records/firsts", kind: "tour" },
       { date: iToldThemRun.years, title: "The I Told Them… Tour", text: `The arena-and-stadium run behind the album, ${iToldThemRun.from} to ${iToldThemRun.to}. When Billboard Boxscore published the full tally in 2025, it stood at $30.46M and 302,801 tickets — the highest-grossing tour ever by an African artist.`, href: "/records/tours", kind: "tour" },
       { date: "Feb 2024", title: "First African artist on the Grammys' main telecast stage", text: "A medley from I Told Them… with Brandy and 21 Savage.", href: "/records/firsts", kind: "milestone" },
       { date: "2024", title: "The biggest single show by any African artist", text: "London Stadium: $6.15M grossed and 58,973 tickets in one night.", href: "/records/tours/revenue", kind: "tour" },

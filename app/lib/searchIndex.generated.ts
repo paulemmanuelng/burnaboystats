@@ -1961,11 +1961,11 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Certified units in Colombia",
     "path": "/compare/in/colombia",
     "section": "Compare",
-    "description": "Every Afrobeats plaque awarded in Colombia, listed, not priced: Pro Musica Colombia publishes no unit threshold.",
+    "description": "Every Afrobeats plaque awarded in Colombia, listed, not priced: Pro Música Colombia publishes no unit threshold.",
     "keywords": [
       "colombia",
       "co",
-      "pro musica colombia",
+      "pro música colombia",
       "certified units",
       "certifications",
       "certifications in colombia",
@@ -2250,11 +2250,11 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Certified units in Switzerland",
     "path": "/compare/in/switzerland",
     "section": "Compare",
-    "description": "Every Afrobeats plaque awarded in Switzerland, priced at IFPI's own thresholds and ranked by artist.",
+    "description": "Every Afrobeats plaque awarded in Switzerland, priced at IFPI Switzerland's own thresholds and ranked by artist.",
     "keywords": [
       "switzerland",
       "ch",
-      "ifpi",
+      "ifpi switzerland",
       "certified units",
       "certifications",
       "certifications in switzerland",
@@ -5430,12 +5430,12 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Switzerland",
     "path": "/certifications#country=CH",
     "section": "Country",
-    "description": "Certifications awarded in Switzerland by IFPI.",
+    "description": "Certifications awarded in Switzerland by IFPI Switzerland.",
     "keywords": [
       "ch",
       "country",
       "certified",
-      "ifpi"
+      "ifpi switzerland"
     ],
     "generated": true
   },
@@ -5942,8 +5942,8 @@ export const generatedDocs: SearchDoc[] = [
     "description": "1 Burna Boy milestone dated 15 September, 2019.",
     "keywords": [
       "september 15",
-      "the fillmore silver spring",
-      "washington, d.c."
+      "the fillmore",
+      "silver spring, md"
     ],
     "generated": true
   },

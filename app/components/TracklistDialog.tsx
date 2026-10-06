@@ -98,7 +98,7 @@ export default function TracklistDialog({ releases }: { releases: Release[] }) {
                 <div className={styles.dialogKicker}>{kind} · {album.year}</div>
                 <h3 className={styles.dialogTitle}>{album.title}</h3>
                 <div className={styles.dialogSub}>
-                  {album.label} · {album.tracks.length} tracks
+                  {album.credit ? `${album.credit} · ` : ""}{album.label} · {album.tracks.length} tracks
                   {album.editionNote && <span className={styles.dialogEdition}> · {album.editionNote}</span>}
                 </div>
               </div>

@@ -38,6 +38,7 @@ import {
   boardsOthersLead,
   youtubeWorldRank,
 } from "../../lib/africaBoards";
+import { enGbDate } from "../../lib/dates";
 
 // The design draws eight bars showing the climb. The series is logged daily
 // rather than monthly, so the last eight readings sit within half a million of
@@ -54,7 +55,7 @@ const barPoints = Array.from({ length: BARS }, (_, i) =>
 // a 25% climb.
 const barMax = Math.max(...barPoints.map((p) => p.value));
 const barDate = (iso: string) =>
-  new Date(`${iso}T00:00:00Z`).toLocaleDateString("en-GB", {
+  enGbDate(new Date(`${iso}T00:00:00Z`), {
     day: "numeric",
     month: "short",
     timeZone: "UTC",

@@ -276,11 +276,13 @@ describe("compareA-03: the fold counts countries not already on screen", () => {
 });
 
 describe("compareA-04: footnote 1 names every issuer in a country", () => {
-  it("Burna Boy vs Rema: Sony Music Colombia and Pro Musica Colombia", () => {
+  it("Burna Boy vs Rema: Sony Music Colombia and Pro Música Colombia", () => {
     const c = compare(comparable("burna-boy")!, comparable("rema")!);
     const co = c.notCounted.filter((n) => n.country === "CO");
     expect(co).toHaveLength(1);
-    expect(co[0].issuer).toBe("Sony Music Colombia · Pro Musica Colombia");
+    // The body keeps its accent since core-08 of the same debug pass (one
+    // name per certifying body; #429).
+    expect(co[0].issuer).toBe("Sony Music Colombia · Pro Música Colombia");
   });
 });
 

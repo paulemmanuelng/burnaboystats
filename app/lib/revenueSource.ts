@@ -33,10 +33,14 @@ export const REVENUE_READ_ON = "2026-10-03";
 /** The day a board row last changed WITHOUT a re-read at its bodies — a venue
  *  spelled the venue's own way, a tour renamed. 5 Oct 2026: Montreal's
  *  "Centre Bell" became "Bell Centre" (D-07) while both box-office routes
- *  still said 3 Oct (review of the 4 Oct debug PR). Move it with any such edit
+ *  still said 3 Oct (review of the 4 Oct debug PR). 6 Oct 2026: the 5 Oct
+ *  debug pass gave Space Drift's three rows the tour's own name, "Space Drift
+ *  World Tour" (records-12); that edit landed on the 6th, after main already
+ *  said 10-05 for the Bell Centre, so the stamp moves with it (review of that
+ *  PR). Move it with any such edit
  *  to app/data/tourRevenue.ts; tests/debug1004Data.test.tsx fingerprints the
  *  rows and fails until it is moved. REVENUE_AS_OF stays on the read. */
-export const REVENUE_EDITED_ON = "2026-10-05";
+export const REVENUE_EDITED_ON = "2026-10-06";
 
 /** The date the box-office routes are stamped with — the later of the read
  *  and the edit: the sitemap's lastmod and the pages' Dataset dateModified. */

@@ -466,7 +466,7 @@ describe("Burna Boy's 'All Eyes on Me' 19× is Sony Music Africa's label plaque"
     );
     // Negative control, the title that shipped: the register body, which lists no such award.
     expect(countryChipTitle(COUNTRIES.CO.name, COUNTRIES.CO.body, allItems.flatMap((r) => r.certs.filter((c) => c.c === "CO")))).toBe(
-      "Colombia — Pro Musica Colombia",
+      "Colombia — Pro Música Colombia",
     );
     expect(countryChipTitle(COUNTRIES.ZA.name, COUNTRIES.ZA.body, inCountry("ZA"))).toBe("South Africa — RiSA (1 not a register row)");
     // Register rows and programmes stay plain.

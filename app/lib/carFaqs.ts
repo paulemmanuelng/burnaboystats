@@ -32,16 +32,20 @@ import type { Faq } from "./boardFaqs";
 
 const capitalise = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
-/** "two he has reportedly sold and three that haven't been seen with him in
- *  years" — the page's two reasons a car is not counted, each only when a car
- *  carries it. */
+/** "two he has reportedly sold and three whose current ownership is
+ *  unconfirmed" — the page's two reasons a car is not counted, each only when
+ *  a car carries it. "Unconfirmed" is what every one of those rows is tagged,
+ *  and it holds for all of them: the Bentley and the Range Rover have not been
+ *  sighted with him, but the G63's reason is that it is absent from the fan
+ *  research. The answer said all three "haven't been seen with him in years"
+ *  until 5 Oct 2026. */
 function notCountedPhrase(): string {
   const sold = soldCars.length;
   const unseen = unconfirmedCars.length;
   const parts = [
     sold > 0 ? `${cardinalWord(sold)} he has reportedly sold` : "",
     unseen > 0
-      ? `${cardinalWord(unseen)} that ${plural(unseen, "hasn't", "haven't")} been seen with him in years`
+      ? `${cardinalWord(unseen)} whose current ownership is unconfirmed`
       : "",
   ].filter(Boolean);
   return parts.join(" and ");
@@ -86,8 +90,8 @@ export const carFaqs: Faq[] = [
     a:
       `Burna Boy's ${carCount} confirmed cars are worth a reported ${totalValueReported} in total: ` +
       `the sum of each car's reported price${estimateClause()}. The prices are import-inclusive, so ` +
-      `they run higher than international sticker prices, and cars he has sold or not been seen with ` +
-      `in years are left out.`,
+      `they run higher than international sticker prices, and cars he has sold or whose ownership is ` +
+      `unconfirmed are left out.`,
   },
   {
     q: "What is Burna Boy's most expensive car?",

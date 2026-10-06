@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import styles from "../records/tours/tours.module.css";
 import type { Tour } from "../data/tours";
-import { tourMeta, tourDateNote } from "../lib/tourMeta";
+import { tourMeta, tourDateNote, NO_TOUR_TOTAL } from "../lib/tourMeta";
 import { track } from "../lib/analytics";
 import NotReported from "./NotReported";
 
@@ -64,7 +64,10 @@ export default function ToursExplorer({ tours }: { tours: Tour[] }) {
               </span>
               <span className={styles.tourFigs}>
                 <span className={`${styles.grossFig} ${t.gross ? "" : styles.grossNone}`}>
-                  {t.gross ?? <NotReported />}
+                  {/* A missing TOUR TOTAL, not a missing gross: No Sign of
+                      Weakness and Space Drift have reported nights on the
+                      board below (debug pass 5 Oct 2026). */}
+                  {t.gross ?? <NotReported what={NO_TOUR_TOTAL} />}
                 </span>
                 <span className={styles.tourMeta}>{tourMeta(t)}</span>
               </span>

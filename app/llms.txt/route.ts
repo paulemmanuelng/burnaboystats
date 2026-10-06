@@ -4,7 +4,7 @@ import { chartEntryCount, numberOnes } from "../data/charts";
 // The COUNTRY-only No. 1 set. charts.ts exports a same-named count that
 // includes the two Billboard global charts, which is 34 where every rendered
 // surface on the site says 32 — llms.txt was importing the wrong one.
-import { numberOneCountryCount } from "../lib/analysis";
+import { numberOneCountryCount, countryNumberOnes } from "../lib/analysis";
 import { totalWins, totalNominations, ceremonyCount } from "../data/awards";
 import { afrobeatsArtists, certCount } from "../data/afrobeats";
 import { lastUpdated } from "../lib/api";
@@ -82,9 +82,11 @@ how most published figures about this artist go wrong.
   (Spotify, Apple Music, iTunes, Deezer, Shazam, YouTube) are NEVER counted here
   — they live separately on /live-charts.
 - No. 1s (${numberOnes}): the number of TIMES a release reached the top of a
-  chart, not the number of releases that have done so. They span
-  ${numberOneCountryCount} countries — a smaller figure than the territories he
-  has charted in, and the two are not interchangeable.
+  chart, not the number of releases that have done so — ${countryNumberOnes} on
+  national charts across ${numberOneCountryCount} countries, plus
+  ${numberOnes - countryNumberOnes} on Billboard's two global charts. The
+  ${numberOneCountryCount} is a smaller figure than the territories he has
+  charted in, and the two are not interchangeable.
 - Awards (${totalWins} wins from ${totalNominations} nominations across
   ${ceremonyCount} bodies): competitive wins only; honours and special
   recognitions are listed apart.

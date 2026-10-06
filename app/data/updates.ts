@@ -300,7 +300,7 @@ export const updates: Update[] = [
     // Price: the $700,000 the car's page states (Paul, 23 Sep 2026: that
     // figure only). The count and total are the garage's of that day (commit
     // cb442b8a, "sixteen cars, $17.54M") — a snapshot, not the live figure.
-    text: "A 2010 Mercedes-Benz SLS AMG — the gullwing, black over tan, about 6,000 miles — joined the garage in September, bought from AbujaCar in Abuja at a reported $700,000. The collection now stands at 16 cars worth a reported $17.54M.",
+    text: "A 2010 Mercedes-Benz SLS AMG — the gullwing, black over tan, about 6,000 miles — joined the garage in September, bought from Abuja Car in Abuja at a reported $700,000. The collection now stands at 16 cars worth a reported $17.54M.",
     href: "/records/cars/mercedes-sls-amg",
   },
   {
@@ -440,7 +440,7 @@ export const updates: Update[] = [
     date: "2026-09-17",
     category: "Tours",
     big: true,
-    text: "Burna Boy will headline the halftime show at the first NFL game ever played in France: Pittsburgh Steelers v New Orleans Saints at Stade de France on Sunday 25 October, 2:30 pm CEST — the NFL's own announcement, and a return to the stadium he was the first African artist to headline in April 2025.",
+    text: "Burna Boy will headline the halftime show at the first NFL game ever played in France: Pittsburgh Steelers v New Orleans Saints at Stade de France on Sunday 25 October, 2:30 pm CET — the NFL's own announcement, and a return to the stadium he was the first African artist to headline in April 2025.",
     href: "/records/tours",
   },
   {
@@ -712,7 +712,7 @@ export const updates: Update[] = [
   {
     date: "2026-09-02",
     category: "Streaming",
-    text: "A ninth song past 300 million: “wgft”, Gunna’s single featuring Burna Boy, crossed the mark on Spotify on 1 September at 300,255,936. Five of the nine are past 400 million: “Location”, “Last Last”, “On the Low”, “Own It” and “Dai Dai”.",
+    text: "A ninth song past 300 million: “WGFT”, Gunna’s single featuring Burna Boy, crossed the mark on Spotify on 1 September at 300,255,936. Five of the nine are past 400 million: “Location”, “Last Last”, “On the Low”, “Own It” and “Dai Dai”.",
     href: "/records/africas-biggest",
   },
   {
@@ -772,7 +772,7 @@ export const updates: Update[] = [
   {
     date: "2026-08-28",
     category: "Certifications",
-    text: "A 232nd plaque, from the one Portuguese route nobody had read: “Wgft” with Gunna is certified Ouro by AFP/Audiogest, announced on the body's own award card in its March 2026 batch — his seventh Portuguese plaque.",
+    text: "A 232nd plaque, from the one Portuguese route nobody had read: “WGFT” with Gunna is certified Ouro by AFP/Audiogest, announced on the body's own award card in its March 2026 batch — his seventh Portuguese plaque.",
     href: "/certifications",
   },
   {
@@ -784,7 +784,7 @@ export const updates: Update[] = [
   {
     date: "2026-08-27",
     category: "Certifications",
-    text: "“On The Low” gains a plaque and corrects one: Sweden is added (IFPI Sverige, Platinum, certificate no. 10448, awarded 16 August 2023) and Nigeria is corrected from Silver to Gold, the tier TCSN gives. That is ten countries for the song; the catalogue stands at 231.",
+    text: "“On the Low” gains a plaque and corrects one: Sweden is added (IFPI Sverige, Platinum, certificate no. 10448, awarded 16 August 2023) and Nigeria is corrected from Silver to Gold, the tier TCSN gives. That is ten countries for the song; the catalogue stands at 231.",
     href: "/certifications",
   },
   {

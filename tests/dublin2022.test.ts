@@ -24,7 +24,8 @@ describe("Dublin, 17 Mar 2022 (3Arena, Space Drift)", () => {
 
   it("is the night the box-office row reports", () => {
     const row = revenueShows.filter((r) => r.artist === "Burna Boy" && r.venue === "3Arena");
-    expect(row.map((r) => [r.year, r.tickets, r.revenue, r.tour])).toEqual([["2022", "7,504", 378802, "Space Drift Tour"]]);
+    // The tour's own name since 5 Oct 2026 (records-12); "Space Drift Tour" before.
+    expect(row.map((r) => [r.year, r.tickets, r.revenue, r.tour])).toEqual([["2022", "7,504", 378802, "Space Drift World Tour"]]);
   });
 
   it("On This Day gains the show on 17 March, with its gross", () => {

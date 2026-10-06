@@ -8,8 +8,11 @@ import { sameTitle } from "../lib/titleKey";
 // beside the count (both layouts and the tracklist dialog) rather than
 // changing the count.
 // `label` is the ℗ credit as the linked release prints it, in its order — Bad
-// Habit is on the four Atlantic-era albums from Twice as Tall on; Outside's
-// linked edition credits Spaceship Entertainment and Atlantic only.
+// Habit is on the Atlantic-era releases from African Giant and Steel & Copper
+// (2019) on; Outside's linked edition credits Spaceship Entertainment and
+// Atlantic only. A co-artist is not a label: Steel & Copper's DJDS credit
+// sat in this field ("with DJDS · Spaceship") until 5 Oct 2026, dropping
+// Atlantic and Bad Habit from its ℗ line; it lives in `credit` now.
 // `cover` = official album artwork served by Spotify (displayed unmodified,
 // attributed, and linked back to Spotify — see the Music page).
 export interface AlbumEntry {
@@ -26,6 +29,9 @@ export interface AlbumEntry {
    */
   released?: string;
   label: string;
+  /** A co-artist billed on the release ("with DJDS"), printed before the label
+   *  on the card and in the tracklist dialog. Never put one in `label`. */
+  credit?: string;
   tracks: string[];
   /** When the Spotify release the card links to is not the standard edition. */
   editionNote?: string;
@@ -203,7 +209,11 @@ export const eps: AlbumEntry[] = [
     spotify: "https://open.spotify.com/album/7z1KSudQMWVOFpSjhxL6Qm",
     cover: "https://i.scdn.co/image/ab67616d0000b27376cd360b4344922af3685208",
     year: 2019,
-    label: "with DJDS · Spaceship",
+    // ℗ Atlantic/Bad Habit/Spaceship Records, ℗ 2019 Atlantic Recording
+    // Corporation — read on Spotify and Apple 17 Sep 2026 (the Darko FAQ's
+    // "through Atlantic, Bad Habit and Spaceship Records").
+    label: "Atlantic · Bad Habit · Spaceship",
+    credit: "with DJDS",
     tracks: ["34", "Innocent Man", "Darko", "Thuggin"],
   },
 ];

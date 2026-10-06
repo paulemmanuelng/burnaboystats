@@ -66,7 +66,9 @@ describe("the Colombian Gold is Sony Music Colombia's, and the rule says so", ()
     // The US plaques name two programmes, not one issuer: the body stays.
     expect(certIssuerIn("US")).toBe("RIAA");
     // The register link is untouched.
-    expect(COUNTRIES.CO.body).toBe("Pro Musica Colombia");
+    // Spelt with its accent since 5 Oct 2026 (core-08); the ruling is about the
+    // issuer, not the spelling.
+    expect(COUNTRIES.CO.body).toBe("Pro Música Colombia");
     expect(COUNTRIES.CO.url).toBe("https://pro-musica.co/");
   });
 
@@ -107,15 +109,17 @@ describe("the Colombian Gold is Sony Music Colombia's, and the rule says so", ()
   });
 
   it("every other copy of the rule carries the same exception", () => {
-    expect(read("app/curator/page.tsx")).toContain("(or, in a market with no current public register, on the label's own plaque)");
+    // Each followed, since 5 Oct 2026, by the no-row label route while "All Eyes
+    // on Me"'s 19× Platinum stands (noRowLabelClause, core-12).
+    expect(read("app/curator/page.tsx")).toContain("(or, in a market with no current public register, on the label's own plaque${noRowLabelClause(\"; \", \"on \")}).");
     // Followed by the published-chart clause while one stands (C-05/D-02).
-    expect(read("app/lib/statCards.ts")).toContain("or, in a market with no current public register, on the label's own plaque${announcedClause(\", or on \")}.");
+    expect(read("app/lib/statCards.ts")).toContain("or, in a market with no current public register, on the label's own plaque${noRowLabelClause(\", or, \", \"on \")}${announcedClause(\", or on \")}.");
     // Followed, since 5 Oct 2026, by the published-chart clause while Dai Dai's
     // Danish Gold stands on Hitlisten (announcedClause, C-05/D-02).
     expect(read("app/certifications/page.tsx").replace(/\s+/g, " ")).toContain(
-      "(or, in a market with no current public register, from the label&apos;s own plaque {announcedClause(\"; or from \")})",
+      "(or, in a market with no current public register, from the label&apos;s own plaque {noRowLabelClause(\"; \", \"from \")} {announcedClause(\"; or from \")})",
     );
-    expect(read("app/api/v1/certifications/route.ts")).toContain("in a market with no current public register, the label's own plaque");
+    expect(read("app/api/v1/certifications/route.ts")).toContain("in a market with no current public register, the label's own plaque${noRowLabelClause(\", or, \")}");
   });
 });
 

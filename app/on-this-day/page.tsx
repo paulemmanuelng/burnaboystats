@@ -64,7 +64,7 @@ export default function OnThisDayPage() {
                 On This <span className="inkText">Day</span>
               </h1>
               <p className={styles.calLede}>
-                {onThisDayEvents.length} dated milestones on {onThisDayDays.length} days of the year: album
+                {onThisDayEvents.length} dated milestones on {onThisDayDays.length} days of the year:
                 releases, chart peaks, certifications, awards and shows, each filed on the day it happened.
                 Pick a date for everything on it.
               </p>
@@ -110,7 +110,7 @@ export default function OnThisDayPage() {
               Only records that carry their own day are here: a certification on the award date its body&apos;s
               register prints, a chart peak on the issue that first carried it, a show on the night itself. A
               record known only by its year stays off the calendar until its day is read — see the{" "}
-              <Link href="/methodology">methodology</Link>.
+              <Link href="/methodology#dates">methodology</Link>.
             </p>
           </div>
         </div>

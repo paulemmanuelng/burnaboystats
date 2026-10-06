@@ -283,7 +283,11 @@ function awardEvents(): OnThisDayEvent[] {
       kind: "award",
       headline: h.title,
       detail: h.note ?? h.org,
-      body: h.org,
+      // The publisher, not the place: "BPI · United Kingdom" is how
+      // /records/awards labels the honour, and the 15 July card printed
+      // "BPI · UNITED KINGDOM" where the ten BPI certification cards print
+      // "BPI" (5 Oct 2026, otd-11).
+      body: h.org.split(" · ")[0],
       href: "/records/awards",
       source: { data: "honours", index },
       rank: 68,
@@ -292,8 +296,10 @@ function awardEvents(): OnThisDayEvent[] {
   return out;
 }
 
-/** A tour's name with its "World"/"Tour" words dropped — "Space Drift World
- *  Tour" and the board's "Space Drift Tour" are one run. */
+/** A tour's name with its "World"/"Tour" words dropped, so a board row and a
+ *  tour that name one run differently still join. The board said "Space Drift
+ *  Tour" against tours.ts's "Space Drift World Tour" until 5 Oct 2026, when it
+ *  took the tour's own name; the key keeps any later difference harmless. */
 export const tourKey = (name: string) =>
   name.toLowerCase().replace(/\b(?:world )?tour\b/g, "").replace(/\s+/g, " ").trim();
 
@@ -316,8 +322,9 @@ function showEvents(): OnThisDayEvent[] {
       // row. The tour matters (C-07 hazard, 5 Oct 2026): his second 3Arena
       // night of 2022 was a Love, Damini date, and a venue-and-year join would
       // hand it the March Space Drift night's $378,802 the day it is listed.
-      // The board names tours as TouringData does ("Space Drift Tour" against
-      // this file's "Space Drift World Tour"), so both are compared by tourKey.
+      // Both sides are compared by tourKey, so a board row that names the run
+      // differently from tours.ts (as "Space Drift Tour" did until 5 Oct 2026)
+      // still joins.
       const sameVenue = (t.dates ?? []).filter((d) => d.venue === s.venue && d.date.endsWith(year));
       const gross =
         sameVenue.length === 1
@@ -691,7 +698,7 @@ export const milestones = (n: number) => `${n} milestone${n === 1 ? "" : "s"}`;
 // ── A day's page ────────────────────────────────────────────────────────────
 
 /**
- * A detail that states a record: "First African artist to sell out the
+ * A detail that states a record: "First Nigerian artist to sell out the
  * world's most famous arena.", "…the highest-grossing single concert by any
  * African artist." The day page prints these as record lines, not as the
  * muted detail. Decided by these patterns over the data (the design response
@@ -760,7 +767,7 @@ export function dayLedeShort(day: OnThisDayDay): string {
 
 // ── A day's metadata ────────────────────────────────────────────────────────
 
-/** A headline closed as a sentence, once: four leads already end in "D.C.",
+/** A headline closed as a sentence, once: some leads already end in "D.C.",
  *  and a joined "." printed "Washington, D.C.." in their descriptions. */
 export const asSentence = (s: string) => (/[.!?]$/.test(s) ? s : `${s}.`);
 

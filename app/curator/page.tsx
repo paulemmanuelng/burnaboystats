@@ -3,8 +3,9 @@ import styles from "./curator.module.css";
 import BreadcrumbBar from "../components/BreadcrumbBar";
 import KeepExploring from "../components/KeepExploring";
 import MobileCurator from "../components/MobileCurator";
-import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime } from "../lib/seo";
+import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME } from "../lib/seo";
 import { totalAwards, countryCount } from "../data/certifications";
+import { noRowLabelClause } from "../lib/offRegister";
 import { chartEntryCount, numberOnes } from "../data/charts";
 import { totalWins } from "../data/awards";
 import { updates } from "../data/updates";
@@ -83,7 +84,7 @@ const sources = [
   {
     kind: "Certification",
     source:
-      "The certifying body's own database (or, in a market with no current public register, on the label's own plaque).",
+      `The certifying body's own database (or, in a market with no current public register, on the label's own plaque${noRowLabelClause("; ", "on ")}).`,
   },
   { kind: "Chart peak", source: "The chart's owner, when it publishes it." },
   {
@@ -150,7 +151,10 @@ export default function CuratorPage() {
     "@type": "ProfilePage",
     name: "About the Curator",
     url: `${CANONICAL_ORIGIN}/curator`,
-    dateModified: asDateTime(lastReviewed),
+    // No dateModified: the sitemap deliberately ships no lastmod for this page
+    // (tests/sitemapEvidence.test.ts), and the value here was the newest date
+    // anywhere in the feed, not a change to this page (debug pass 5 Oct 2026,
+    // seo-12). The page still prints when the site's data was last reviewed.
     inLanguage: "en",
     isPartOf: { "@type": "WebSite", name: SITE_NAME, url: CANONICAL_ORIGIN },
     // knowsAbout used to assert expertise the page never evidenced. The bio

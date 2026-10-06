@@ -10,7 +10,6 @@ import { tours } from "../data/tours";
 import { numberWord } from "../lib/homeData";
 import { totalAwards, countryCount } from "../data/certifications";
 import { numberOnes } from "../data/charts";
-import { chartedCountryCount } from "../lib/analysis";
 
 export const metadata = pageMetadata({
   title: "Burna Boy Career Timeline — 2010 to Today",
@@ -58,9 +57,11 @@ const grossOf = (g?: string) => (g ? Number.parseFloat(g.replace(/[^0-9.]/g, "")
 const topTour = [...tours].sort((a, b) => grossOf(b.gross) - grossOf(a.gross))[0];
 const today = [
   { v: String(totalAwards()), l: `certifications · ${countryCount} countries`, href: "/certifications" },
-  // chartedCountryCount, not chartCountryCount: the label says "countries",
-  // and the headline territory figure counts Billboard's two global charts.
-  { v: String(numberOnes), l: `No. 1s · ${chartedCountryCount} countries charted`, href: "/records/charts" },
+  // Placements, as /press and the stat card label them. A charted-countries
+  // figure beside the No. 1 count read as the countries the No. 1s span — the
+  // pairing the stat card dropped on 24 Sep (A-41), still here until 5 Oct
+  // 2026 (core-06).
+  { v: String(numberOnes), l: "No. 1 placements worldwide", href: "/records/charts" },
   // The record tour by gross, not by a typed figure or a typed flag.
   { v: topTour.gross!, l: "the record tour", href: "/records/tours" },
 ];

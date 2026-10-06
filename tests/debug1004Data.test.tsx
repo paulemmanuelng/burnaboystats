@@ -177,12 +177,19 @@ describe("C-05/D-02: the Danish Gold is named as the chart it was read on", () =
 
   it("the embed's source line and /certifications' sources line name the chart", () => {
     const certs = EMBED_WIDGETS.find((w) => w.slug === "certifications")!;
-    expect(certs.content.source).toMatch(/^each certifying body's own register or published chart, most recently read /);
-    // Shipped: "each certifying body's own register, most recently read 4 October 2026".
+    // Since 5 Oct 2026 (core-12) it names the label's plaque too, the route
+    // "Dai Dai"'s Colombian Gold and "All Eyes on Me"'s 19× Platinum rest on.
+    expect(certs.content.source).toMatch(
+      /^each certifying body's own register — or, where it lists none, a label's own plaque or the body's published chart — most recently read /,
+    );
+    // Shipped: "each certifying body's own register, most recently read 4 October 2026",
+    // then "each certifying body's own register or published chart, most recently read …".
+    expect(certs.content.source).not.toMatch(/^each certifying body's own register or published chart, most recently read/);
     expect(certs.content.source).not.toMatch(/^each certifying body's own register, most recently read/);
     const t = text(renderToStaticMarkup(<CertificationsPage />));
+    // With, since 5 Oct 2026, the no-row label route between them (core-12).
     expect(t).toContain(
-      "(or, in a market with no current public register, from the label's own plaque; or from the body's own published chart where its register has not yet listed the award)",
+      "(or, in a market with no current public register, from the label's own plaque; where the register holds no row for the title, from the label's own award; or from the body's own published chart where its register has not yet listed the award)",
     );
   });
 });
@@ -345,9 +352,34 @@ describe("D-04: /certifications, /records/tours and the map are dated by their d
     // moved the routes' dates (D-04); this is what would have said so.
     const print = (data: unknown) => createHash("sha256").update(JSON.stringify(data)).digest("hex").slice(0, 16);
     const fingerprint = print({ tours, festivals, otherShows, concerts, upcomingShows, performedCountries });
-    // Re-pinned 6 Oct 2026: No Sign of Weakness's note, "across its four
-    // shows" (tourscars-21).
-    expect({ fingerprint, stamp: TOURS_EDITED_ON }).toEqual({ fingerprint: "fcb08b183e049c12", stamp: "2026-10-06" });
+    // The stamp is the day the edit LANDS: main already said 2026-10-05 (the
+    // first 5 Oct merge) before the debug pass's edits below were committed on
+    // 6 Oct, so leaving it there dated them a day early (review of that PR).
+    // Re-pinned 6 Oct 2026 when the records lane's five "Sep" notes (core-19)
+    // merged onto the tours lane's edits; the stamp was already that day.
+    // Re-pinned again the same day when the owner's rulings merged: No Sign of
+    // Weakness's note, "across its four shows" (tourscars-21).
+    expect({ fingerprint, stamp: TOURS_EDITED_ON }).toEqual({ fingerprint: "149269fa92f5e646", stamp: "2026-10-06" });
+    // Negative control for core-19: the notes' "Sept" as it shipped is another
+    // fingerprint.
+    const septAsShipped = (rows: typeof festivals) => rows.map((r) => ({ ...r, note: r.note.replace(/\b(\d{1,2} )?Sep\b/g, "$1Sept") }));
+    expect(
+      print({ tours, festivals: septAsShipped(festivals), otherShows: septAsShipped(otherShows), concerts: septAsShipped(concerts), upcomingShows, performedCountries }),
+    ).not.toBe(fingerprint);
+    // Negative control for the 5 Oct debug pass's edits: the Fillmore back
+    // under Washington, D.C., as it shipped, is another fingerprint.
+    const fillmoreAsShipped = tours.map((t) => ({
+      ...t,
+      dates: t.dates?.map((d) => (d.venue === "The Fillmore" && d.city === "Silver Spring, MD" ? { ...d, venue: "The Fillmore Silver Spring", city: "Washington, D.C." } : d)),
+    }));
+    expect(print({ tours: fillmoreAsShipped, festivals, otherShows, concerts, upcomingShows, performedCountries })).not.toBe(fingerprint);
+    // Negative control for tourscars-21: the note's "four arena shows", as it
+    // shipped, is another fingerprint.
+    const arenaAsShipped = tours.map((t) =>
+      t.name === "No Sign of Weakness Tour" ? { ...t, note: t.note.replace("across its four shows", "across four arena shows") } : t,
+    );
+    expect(arenaAsShipped).not.toEqual(tours);
+    expect(print({ tours: arenaAsShipped, festivals, otherShows, concerts, upcomingShows, performedCountries })).not.toBe(fingerprint);
     // Negative control: the data before this PR's edits (Love, Damini not
     // partial and with no reason of its own; Ireland's "(Mar & Dec 2022)")
     // prints another fingerprint, so an edit that leaves the stamp behind
@@ -403,28 +435,47 @@ describe("D-04 (review): /methodology, /afrobeats and the box-office routes are 
     // Re-pin BOTH when a row changes, and move REVENUE_EDITED_ON (or, for a
     // re-read at the bodies, REVENUE_READ_ON) to the day of the edit.
     const fingerprint = print({ revenueShows, revenueStands });
-    expect({ fingerprint, stamp: REVENUE_STAMP }).toEqual({ fingerprint: "cea412f8680ec9bb", stamp: "2026-10-05" });
+    // 2026-10-06: the day Space Drift's rename landed; main already said
+    // 2026-10-05 for the Bell Centre edit before it (review of the 5 Oct PR).
+    expect({ fingerprint, stamp: REVENUE_STAMP }).toEqual({ fingerprint: "f96dc013b02eb5dc", stamp: "2026-10-06" });
     // Negative control: the rows with Montreal's arena as it shipped.
     const before = { revenueShows, revenueStands: revenueStands.map((r) => (r.venue === "Bell Centre" ? { ...r, venue: "Centre Bell" } : r)) };
     expect(print(before)).not.toBe(fingerprint);
+    // And with Space Drift's board name as it shipped until the 5 Oct debug pass.
+    const spaceDriftAsShipped = { revenueShows: revenueShows.map((r) => (r.tour === "Space Drift World Tour" ? { ...r, tour: "Space Drift Tour" } : r)), revenueStands };
+    expect(print(spaceDriftAsShipped)).not.toBe(fingerprint);
   });
 
   it("CERTS_EDITED_ON moves with the plaques' provenance: an edit without a new stamp fails here", () => {
     // The fields an edit without a register read changes: who issued it, where
-    // it was published, what it was read from. Re-pin BOTH when one changes,
-    // and move CERTS_EDITED_ON (or CERTS_VERIFIED_ON, for a read).
+    // it was published, what it was read from — and each country's body as the
+    // routes print it (/certifications, /compare/in, /methodology, the CSV).
+    // Re-pin BOTH when one changes, and move CERTS_EDITED_ON (or
+    // CERTS_VERIFIED_ON, for a read).
     const provenance = (items: typeof allItems) =>
       items.flatMap((r) =>
         r.certs.filter((c) => c.source || c.announced || c.body || c.provenance).map((c) => ({ title: r.title, ...c })),
       );
-    const fingerprint = print(provenance(allItems));
-    expect({ fingerprint, stamp: CERTS_STAMP }).toEqual({ fingerprint: "7572e76e4221bba5", stamp: "2026-10-05" });
+    const bodies = (countries: typeof COUNTRIES) => Object.entries(countries).map(([code, c]) => [code, c.body]);
+    const fingerprint = print({ plaques: provenance(allItems), bodies: bodies(COUNTRIES) });
+    // 2026-10-06: core-08's two body names (IFPI Switzerland, Pro Música
+    // Colombia) landed then, after main already said 2026-10-05 for the Danish
+    // Gold; the bodies were outside this fingerprint, so nothing caught it
+    // (review of the 5 Oct debug PR).
+    expect({ fingerprint, stamp: CERTS_STAMP }).toEqual({ fingerprint: "bee59f0ffdc3f742", stamp: "2026-10-06" });
     expect(CERTS_STAMP).toBe([CERTS_VERIFIED_ON, CERTS_EDITED_ON].sort().at(-1));
     // Negative control: the Danish Gold as it shipped, a plain register row.
     const before = allItems.map((r) =>
       r.title === "Dai Dai" ? { ...r, certs: r.certs.map((c) => (c.c === "DK" ? { c: c.c, level: c.level } : c)) } : r,
     );
-    expect(print(provenance(before))).not.toBe(fingerprint);
+    expect(print({ plaques: provenance(before), bodies: bodies(COUNTRIES) })).not.toBe(fingerprint);
+    // And the two bodies as they shipped until the 5 Oct debug pass.
+    const bodiesAsShipped = {
+      ...COUNTRIES,
+      CH: { ...COUNTRIES.CH, body: "IFPI" },
+      CO: { ...COUNTRIES.CO, body: "Pro Musica Colombia" },
+    };
+    expect(print({ plaques: provenance(allItems), bodies: bodies(bodiesAsShipped) })).not.toBe(fingerprint);
   });
 });
 

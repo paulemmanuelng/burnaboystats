@@ -1,5 +1,5 @@
 import { updates } from "../data/updates";
-import { CANONICAL_ORIGIN, SITE_NAME } from "../lib/seo";
+import { CANONICAL_ORIGIN, SITE_NAME, FEED_DESCRIPTION } from "../lib/seo";
 import { feedGuids } from "../lib/feedGuid";
 
 // RSS 2.0 feed of the Latest Updates, so fans and aggregators can subscribe to
@@ -42,7 +42,7 @@ export function GET() {
   <channel>
     <title>${SITE_NAME} — Latest Updates</title>
     <link>${CANONICAL_ORIGIN}/updates</link>
-    <description>Real Burna Boy news as it happens — chart peaks, certifications, streaming milestones and records.</description>
+    <description>${escapeXml(FEED_DESCRIPTION)}</description>
     <language>en</language>
     <atom:link href="${feedUrl}" rel="self" type="application/rss+xml" />
 ${items}

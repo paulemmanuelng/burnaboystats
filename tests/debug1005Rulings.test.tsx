@@ -459,7 +459,9 @@ describe("otd-01: a featured record's share surfaces carry its credit", () => {
     // 23 May's lead is that joint billing: no credit line, as before.
     expect(dayPostCard(dayBySlug("23-may")!).record).toBeNull();
     expect(dayPreview(dayBySlug("23-may")!).credit).toBeNull();
-    expect(dayPostCard(dayBySlug("28-april")!).record).toBe("First African artist to sell out the world's most famous arena.");
+    // "Nigerian", as the tours lane of the same pass corrected the line
+    // (liveMoments.ts, 5 Oct 2026).
+    expect(dayPostCard(dayBySlug("28-april")!).record).toBe("First Nigerian artist to sell out the world's most famous arena.");
   });
 
   it("negative control: 3 January's surfaces as they shipped named no one else", () => {

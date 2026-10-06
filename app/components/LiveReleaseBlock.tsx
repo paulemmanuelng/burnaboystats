@@ -25,6 +25,9 @@ export interface ReleaseSummary {
   /** The monogram drawn when there is no art. */
   letter: string;
   title: string;
+  /** The title as the site spells it, where it differs from the feed's
+   *  (lib/liveChartTitles). `title` stays the feed's, for the panel lookup. */
+  displayTitle?: string;
   kind: "song" | "album";
   ep: boolean;
   total: number;
@@ -91,7 +94,7 @@ export default function LiveReleaseBlock({
           ) : (
             <span className={styles.coverFallback} data-letter={r.letter} aria-hidden="true" />
           )}
-          {r.title}
+          {r.displayTitle ?? r.title}
           {/* The feed only knows song vs album; the two EPs deserve their
               real name. Sits inside the "Albums & EPs" section either way. */}
           {r.kind === "album" && r.ep && <span className={styles.epTag}>EP</span>}

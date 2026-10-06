@@ -98,10 +98,13 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Burna Boy Stats",
-    description: "Certifications, discography and milestones of the African Giant.",
     // The pages that set no metadata of their own inherit this block; the rest
     // carry the same creator through pageMetadata (lib/seo.ts).
+    //
+    // No title or description here: Next fills both from the page's resolved
+    // openGraph when twitter has none. The home page's X card read "Burna Boy
+    // Stats" / "Certifications, discography and milestones of the African
+    // Giant." beside its own og tags until 5 Oct 2026 (debug pass, seo-09).
     creator: TWITTER_CREATOR,
   },
 };
@@ -238,7 +241,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             hoists these resource hints into <head>. */}
         <link rel="preconnect" href="https://i.scdn.co" />
         <link rel="dns-prefetch" href="https://i.scdn.co" />
-        <a href="#content" className="skipLink">Skip to content</a>
+        {/* lang="en" on the shared chrome (skip link, nav, menu sheet, footer):
+            it is English on every route, and on /dai-dai/es the document's
+            language is Spanish, so without it a screen reader read this text
+            with Spanish pronunciation (WCAG 3.1.2; 5 Oct 2026, music-04). */}
+        <a href="#content" className="skipLink" lang="en">Skip to content</a>
         {/* Subtle film-grain texture overlay (sits behind content) */}
         <div className="grain" aria-hidden="true" />
 
@@ -298,7 +305,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <SpeedInsights />
 
         {/* FOOTER — shown on every page */}
-        <footer className="footer">
+        <footer className="footer" lang="en">
           <FooterNav />
         </footer>
       </body>

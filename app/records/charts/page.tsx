@@ -13,9 +13,26 @@ import {
   chartEntryCount,
   numberOnes,
   chartCountryCount,
+  BURNA_LAST_CHART_SWEEP,
 } from "../../data/charts";
 import { pageMetadata, datasetJsonLd } from "../../lib/seo";
 import { chartCovers } from "../../lib/chartCovers";
+import { byReachOrder } from "../../lib/chartOrder";
+
+/** "October 2026" — the month of the last read at the chart bodies. */
+const checkedAsOf = new Date(`${BURNA_LAST_CHART_SWEEP}T12:00:00Z`).toLocaleDateString("en-GB", {
+  month: "long",
+  year: "numeric",
+  timeZone: "UTC",
+});
+
+// Most-charted first on BOTH layouts. The phone printed the data file's
+// insertion order (Own It leading the features, Outside's one chart above No
+// Sign of Weakness's nine) while the desktop explorer sorted by reach on the
+// same page (5 Oct 2026, records-03).
+const albums = [...albumCharts].sort(byReachOrder);
+const singles = [...singleCharts].sort(byReachOrder);
+const features = [...featureCharts].sort(byReachOrder);
 
 export const metadata = pageMetadata({
   title: `Burna Boy Chart History — ${numberOnes} No. 1s & Chart Peaks`,
@@ -37,7 +54,7 @@ export default function ChartsPage() {
   const allReleases = albumCharts.length + singleCharts.length + featureCharts.length;
   // Cover art by title, resolved here so the catalogue stays out of the
   // client bundle. ONE object for both layouts: the RSC payload sends it once.
-  const covers = chartCovers(albumCharts, singleCharts, featureCharts);
+  const covers = chartCovers(albums, singles, features);
   const stats = [
     { num: chartEntryCount, label: "Chart entries", note: "official charts only" },
     { num: numberOnes, label: "No. 1 peaks", note: "placements, not releases" },
@@ -74,9 +91,9 @@ export default function ChartsPage() {
           flat list would throw away the peak pills, the country filter and
           the grouping that this page exists for. */}
       <MobileOfficialCharts
-        albums={albumCharts}
-        singles={singleCharts}
-        features={featureCharts}
+        albums={albums}
+        singles={singles}
+        features={features}
         countries={CHART_COUNTRIES}
         entryCount={chartEntryCount}
         territoryCount={chartCountryCount}
@@ -116,9 +133,9 @@ export default function ChartsPage() {
 
       <div className={styles.explorerWrap}>
         <ChartExplorer
-          albums={albumCharts}
-          singles={singleCharts}
-          features={featureCharts}
+          albums={albums}
+          singles={singles}
+          features={features}
           countries={CHART_COUNTRIES}
           covers={covers}
         />
@@ -132,7 +149,9 @@ export default function ChartsPage() {
           disclosed as airplay carve-outs — all on 1-3 Sep 2026. An "as of
           August" stamp over rows that did not exist in August is false about
           those rows, which is the only reason this one moved. Do NOT bump it
-          because the calendar did: it dates the checking, not the visit. */}
+          because the calendar did: it dates the checking, not the visit. Since
+          5 Oct 2026 it is read off BURNA_LAST_CHART_SWEEP (data/charts.ts), the
+          2 Oct 2026 sweep that added the MK and SI rows. */}
       <section className={styles.sourceWrap}>
         <div className={styles.sourceGrid}>
           <p className={styles.source}>
@@ -152,7 +171,7 @@ export default function ChartsPage() {
             countries that publish no non-airplay national chart at all, the airplay chart is
             the only national chart there is, and is used. Where a country runs both, the
             non-airplay chart wins. Figures are peak-so-far, cross-checked against the chart
-            bodies&apos; cited data as of September 2026.
+            bodies&apos; cited data as of {checkedAsOf}.
           </p>
           <div className={styles.splitPanel}>
             <div className={styles.splitKicker}>Where the charts come from</div>

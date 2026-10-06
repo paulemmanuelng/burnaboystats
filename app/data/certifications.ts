@@ -98,7 +98,10 @@ export const COUNTRIES: Record<string, Country> = {
   // Swiss certification is REQUEST-BASED, like TCSN: ifpi.ch publishes thresholds only
   // and charges CHF 75 + VAT for a GfK check, so absence never implies uncertified.
   // The awarded roster sits on hitparade.ch, which is behind a Cloudflare bot-wall.
-  CH: { name: "Switzerland", flag: "🇨🇭", body: "IFPI", url: "https://www.ifpi.ch/edelmetallpruefung" },
+  // "IFPI Switzerland", in the "IFPI <country>" form of every other national
+  // group here: plain "IFPI" also names the umbrella body, which /compare/in
+  // quotes for Greece on the same page (debug pass 5 Oct 2026, core-08).
+  CH: { name: "Switzerland", flag: "🇨🇭", body: "IFPI Switzerland", url: "https://www.ifpi.ch/edelmetallpruefung" },
   AT: { name: "Austria", flag: "🇦🇹", body: "IFPI Austria", url: "https://ifpi.at/auszeichnungen/" },
   HU: { name: "Hungary", flag: "🇭🇺", body: "MAHASZ", url: "https://slagerlistak.hu/arany-es-platinalemezek/adatbazis" },
   // ČNS IFPI publishes no standalone award list: the tier is printed inside the
@@ -127,7 +130,10 @@ export const COUNTRIES: Record<string, Country> = {
   // up" NG entries against the register — see PR #97 and its correction comment.
   NG: { name: "Nigeria", flag: "🇳🇬", body: "TurnTable (TCSN)", url: "https://turntablecharts.com/certification" },
   BR: { name: "Brazil", flag: "🇧🇷", body: "Pro-Música Brasil", url: "https://pro-musicabr.org.br/certificados/" },
-  CO: { name: "Colombia", flag: "🇨🇴", body: "Pro Musica Colombia", url: "https://pro-musica.co/" },
+  // "Música" with its accent, as the body and the threshold notes spell it
+  // (debug pass 5 Oct 2026, core-08: the hero said "Pro Musica" above a note
+  // saying "Pro Música").
+  CO: { name: "Colombia", flag: "🇨🇴", body: "Pro Música Colombia", url: "https://pro-musica.co/" },
 };
 
 export const albums: Release[] = [
@@ -433,6 +439,14 @@ export const singles: Release[] = [
   { title: "Different Size", credit: "feat. Victony", year: 2022, cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Platinum" },
   ] },
+  // Burna Boy's own Love, Damini track with Popcaan as the guest — "feat."
+  // names the guests on a release he leads (lib/api.ts CREDIT_NOTE), Music
+  // Canada's row reads "Burna Boy — Toni-Ann Singh", and charts.ts files it
+  // under singles. It sat in `features` until 5 Oct 2026 (records-01), so the
+  // lead-credits views on /certifications and /compare dropped its 2 plaques.
+  { title: "Toni-Ann Singh", credit: "feat. Popcaan", year: 2022, cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [
+    { c: "CA", level: "Gold" }, { c: "NG", level: "Silver" },
+  ] },
   { title: "Big 7", year: 2023, cover: "https://cdn-images.dzcdn.net/images/cover/f5f99a13558a35bbec024b3587357300/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Platinum" },
   ] },
@@ -697,9 +711,6 @@ export const features: Release[] = [
   // on the same lead/featured design as "Tshwala Bam (Remix)" above.
   { title: "Yaba Buluku (Remix)", credit: "DJ Tárico & Burna Boy ft. Preck & Nelson Tivane", year: 2021, cover: "https://cdn-images.dzcdn.net/images/cover/838ae1b6384d70287eb799afdb50512c/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Gold" },
-  ] },
-  { title: "Toni-Ann Singh", credit: "feat. Popcaan", year: 2022, cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [
-    { c: "CA", level: "Gold" }, { c: "NG", level: "Silver" },
   ] },
   // Byron Messia's record, Burna Boy featured — the credit charts.ts carries,
   // with the lead act Official Charts prints ("TALIBANS by BYRON MESSIA", read
@@ -1189,10 +1200,14 @@ export const CERTS_LAST_FULL_SWEEP = "2026-10-02";
  *  plaque's provenance marked, a body or source corrected. 5 Oct 2026: "Dai
  *  Dai"'s Danish Gold marked `source: "announcement"` (C-05/D-02), which moved
  *  the methodology's exceptions and the board's off-register count while every
- *  route that prints them still said 4 Oct or older. Move it with any such
+ *  route that prints them still said 4 Oct or older. 6 Oct 2026: two bodies'
+ *  names in COUNTRIES corrected, "IFPI Switzerland" and "Pro Música Colombia"
+ *  (debug pass 5 Oct, core-08, landed on the 6th), which /certifications,
+ *  /compare/in, /methodology and the CSV all print. Move it with any such
  *  edit; tests/debug1004Data.test.tsx fingerprints the provenance fields and
- *  fails until it is moved. The page still PRINTS CERTS_VERIFIED_ON. */
-export const CERTS_EDITED_ON = "2026-10-05";
+ *  the bodies' names and fails until it is moved. The page still PRINTS
+ *  CERTS_VERIFIED_ON. */
+export const CERTS_EDITED_ON = "2026-10-06";
 
 /** The date the routes that print these plaques are stamped with — the later
  *  of the read and the edit (sitemap lastmod, /certifications' dateModified). */

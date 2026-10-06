@@ -50,8 +50,12 @@ export const searchStats: Record<string, string> = {
   "/analysis": `${findings.length} findings`,
   "/api": "CC BY 4.0",
   "/updates": `${updates.length} entries`,
-  "/about": `${countryCount} countries`,
-  "/methodology": `${ceremonyCount} bodies`,
+  // Each chip names its dataset: "26 countries" sat a few rows from "Where
+  // He's Performed … 57 countries", and "48 bodies" beside a methodology page
+  // that lists 27 certifying bodies (5 Oct 2026, crossSite-15). /methodology's
+  // own count strip says "award bodies".
+  "/about": `${countryCount} certifying countries`,
+  "/methodology": `${ceremonyCount} award bodies`,
   // Per-song rows quote Spotify streams where the bot has a verified figure.
   ...Object.fromEntries(
     songs.map((s) => [`/music/${s.slug}`, s.spotifyStreams ?? ""])

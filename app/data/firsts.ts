@@ -4,7 +4,7 @@
 // confirmed are listed — nothing is included on a single unverified claim.
 
 import { totalAwards, countryCount, certsInYear, bestIntlYearBefore } from "./certifications";
-import { BURNA_YT_AUDIENCE_WORDS, BURNA_HOT_100_ENTRIES_WORD } from "./africasBiggest";
+import { BURNA_YT_AUDIENCE_WORDS, BURNA_YT_AUDIENCE_SET_ON_LONG, BURNA_HOT_100_ENTRIES_WORD } from "./africasBiggest";
 import { revenueShows } from "./tourRevenue";
 
 export interface First {
@@ -149,7 +149,12 @@ export const draftFirstGroups: DraftGroup[] = [
       { year: "2026", title: "First African artist to reach 60 million Spotify monthly listeners", text: "Crossed 60 million on 8 August 2026 — 60,012,272 listeners at No. 37 among all artists worldwide, the first and only African act ever at that height. The next-closest African peak is under 47 million." },
       { year: "2026", title: "First African artist to reach 50 million Spotify monthly listeners", text: "Crossed 50 million in July 2026 — the first African artist ever to reach the mark, powered by the “Dai Dai” World Cup run — then kept climbing." },
       { year: "2026", title: "First Nigerian artist to surpass 4 billion YouTube views", text: "His channel passed 4 billion views across 344 videos — 4,029,086,804 read at youtube.com/@BurnaBoy on 3 September 2026. The next-highest Nigerian tally is Wizkid's 2.66 billion, then Rema (2.60B) and Davido (2.47B), so the mark is his alone by more than a billion views." },
-      { year: "2026", title: "First African artist to surpass 700 million YouTube Music monthly audience", text: `Burna Boy's monthly audience on YouTube Music passed 700 million in July 2026 — now ${BURNA_YT_AUDIENCE_WORDS}, a first for any African artist, and the sixth-biggest audience ever recorded worldwide, above Lady Gaga (862M) and Michael Jackson (741M).` },
+      // A peak, not a reading of today (929M was set 12 Aug 2026; the platform
+      // showed 875M on a later day), and YouTube, as the board it links to
+      // names it. It said "now 929 million" on "YouTube Music" until 5 Oct
+      // 2026 (records-09); the old title's stat card is aliased in
+      // lib/statCards.ts.
+      { year: "2026", title: "First African artist to surpass 700 million monthly audience on YouTube", text: `Burna Boy's monthly audience on YouTube passed 700 million in July 2026 and peaked at ${BURNA_YT_AUDIENCE_WORDS} on ${BURNA_YT_AUDIENCE_SET_ON_LONG} — a first for any African artist, and the sixth-biggest audience ever recorded worldwide, above Lady Gaga (862M) and Michael Jackson (741M).` },
       { year: "2026", title: "Longest run by an African song on Apple Music's Global Top 100", text: `“Last Last” spent at least ${APPLE_TOP_100.days} consecutive days on the Apple Music Global Top 100, peaking at No. 12 — no other African song has spent even 120 days on the chart. A completed run, not a running one: ${APPLE_TOP_100.days} is the last count taken, on ${dayMonthYear(APPLE_TOP_100.countedOn)}, and the song was off the chart when it was read again on ${dayMonthYear(APPLE_TOP_100.absentOn)}.` },
       { year: "2026", title: "First entry on Billboard's Adult Contemporary chart", text: "“Dai Dai” with Shakira debuted at No. 14 on the Adult Contemporary chart dated 29 August 2026 — a radio format that had never played him before. It is Shakira's second entry on the chart, after “Hips Don't Lie” reached No. 24 in 2007." },
       { year: "2026", title: "First African artist to chart the Billboard Hot 100 six years running", text: "An unbroken run from 2021 through 2026." },

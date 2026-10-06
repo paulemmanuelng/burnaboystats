@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import sitemap from "../app/sitemap";
 import { sweptArtists } from "../app/data/afrobeats";
 import { updates } from "../app/data/updates";
-import { AFROBEATS_EDITED_ON, afrobeatsArtists } from "../app/data/afrobeats";
+import { AFROBEATS_EDITED_ON, AFROBEATS_LAST_CHART_SWEEP, afrobeatsArtists } from "../app/data/afrobeats";
 import { LIVE_BOARDS } from "../app/data/liveBoards";
 import { liveChartsUpdated } from "../app/data/liveCharts";
 import { LISTENERS_READ_ON } from "../app/data/listeners";
@@ -91,6 +91,11 @@ function evidenceFor(path: string): string[] {
   // and every swept artist's.
   if (path === "/afrobeats" || path === "/methodology")
     dates.push(CERTS_VERIFIED_ON, CERTS_EDITED_ON, ...swept.map(artistEvidence));
+  // The head-to-head index prints every artist's chip, ordered by plaque
+  // count — Burna Boy's among them (debug pass 5 Oct 2026, compareA-10).
+  if (path === "/compare") dates.push(CERTS_VERIFIED_ON, CERTS_EDITED_ON, ...swept.map(artistEvidence));
+  // /analysis computes its findings from his plaques (seo-12, 5 Oct 2026).
+  if (path === "/analysis") dates.push(CERTS_VERIFIED_ON, CERTS_EDITED_ON);
   // A country board is dated by the artists certified THERE — derived from the
   // plaques themselves here, not from the board builder the sitemap calls.
   const code = certCountryCodes().find((c) => `/compare/in/${countrySlug(c)}` === path);
@@ -107,6 +112,9 @@ function evidenceFor(path: string): string[] {
   if (artist) dates.push(artist.verifiedOn);
   // An edit made without a register read (a credit or sleeve corrected).
   if (artist && AFROBEATS_EDITED_ON[artist.slug]) dates.push(AFROBEATS_EDITED_ON[artist.slug]);
+  // Both pages print chart rows, re-read in the board's last chart sweep
+  // ("Last re-read in the board's chart sweep of 2 October 2026").
+  if (artist) dates.push(AFROBEATS_LAST_CHART_SWEEP);
   return dates.filter((d): d is string => Boolean(d));
 }
 

@@ -148,7 +148,10 @@ describe("/curator", () => {
   describe("How I work (items 46, 70)", () => {
     const rows = (t: Element) =>
       [...t.querySelectorAll("dl > div")].map((r) => [text(r.querySelector("dt")), text(r.querySelector("dd"))]);
-    const PLAQUE = "(or, in a market with no current public register, on the label's own plaque)";
+    // The owner's words, kept verbatim; since 5 Oct 2026 the no-row route
+    // ("All Eyes on Me"'s 19× Platinum) follows them inside the bracket (core-12).
+    const PLAQUE = "(or, in a market with no current public register, on the label's own plaque";
+    const NO_ROW = "; where the register holds no row for the title, on the label's own award)";
 
     it("sets an intro line, one row per kind of figure, and the closing prose", () => {
       for (const t of both()) {
@@ -156,7 +159,7 @@ describe("/curator", () => {
           "Nothing goes up unverified (the methodology page sets the method out). For each kind of figure, one source wins:",
         );
         expect(rows(t).map((r) => r[0])).toEqual(["Certification", "Chart peak", "Streaming figure", "Career total"]);
-        expect(rows(t)[0][1]).toBe(`The certifying body's own database ${PLAQUE}.`);
+        expect(rows(t)[0][1]).toBe(`The certifying body's own database ${PLAQUE}${NO_ROW}.`);
         expect(rows(t)[3][1]).toBe("kworb's per-track sum, anchored on a dated ChartMasters read. Spotify never publishes it.");
       }
     });

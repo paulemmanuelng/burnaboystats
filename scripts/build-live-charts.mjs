@@ -31,6 +31,7 @@ import {
   titleKey,
   stripInvisible,
   servesCoverArt,
+  withPlacements,
 } from "./stats-lib.mjs";
 import { liveArtist, LIVE_ARTISTS, placementFloor, dropRefusal } from "./live-artists.mjs";
 
@@ -346,7 +347,9 @@ for (const spec of CHART_SWEEPS) {
 // ── Per artist: artwork, totals, and the files ───────────────────────────
 for (const w of work.values()) {
   const artist = w.artist;
-  const releases = w.releases;
+  // A release with no placement left is not charting: drop it before the
+  // artwork, the totals and the write (stats-lib withPlacements).
+  const releases = (w.releases = withPlacements(w.releases));
   const previous = w.previous;
   const OUT = new URL(`../app/data/${artist.out}`, import.meta.url);
   const RUN_OUT = artist.runOut ? new URL(`../app/data/${artist.runOut}`, import.meta.url) : null;

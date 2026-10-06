@@ -21,7 +21,7 @@ import {
 import { liveCharts } from "../../data/liveCharts";
 import { LIVE_CADENCE_ES } from "../../lib/liveChartMeta";
 import { daiDaiCertCount } from "../../data/certifications";
-import { DAI_DAI_2026_MOST_NO1_THROUGH_LONG_ES, DAI_DAI_COVER, DAI_DAI_RELEASE_DATE, DAI_DAI_HALFTIME_DATE, DAI_DAI_VIDEO_ID, DAI_DAI_SPOTIFY_BODY_READ, DAI_DAI_VIDEO_VIEWS, DAI_DAI_1B_DAYS, DAI_DAI_1B_RANK_ES, DAI_DAI_SPOTIFY_STREAMS, DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_NO1_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_NO1_FIRST_LONG_ES, DAI_DAI_SPOTIFY_NO1_LAST_LONG_ES, DAI_DAI_SPOTIFY_TOP10_DAYS, DAI_DAI_SPOTIFY_DAYS_OFF, DAI_DAI_SPOTIFY_NO1_DAYS, DAI_DAI_ITUNES_NO1_COUNTRIES, DAI_DAI_STORY_PUBLISHED, DAI_DAI_SPOTIFY_WEEKLY_NO1_WEEKS, DAI_DAI_APPLE_EUROPE_NO1_DAYS, DAI_DAI_ITUNES_WORLDWIDE_NO1_DAYS, DAI_DAI_UWC_NO1_WEEKS, DAI_DAI_DEEZER_WORLDWIDE_PEAK, DAI_DAI_SPOTIFY_MUSIC_VIDEO_NO1_DAYS, BURNA_GLOBAL_DIGITAL_ARTIST_POSITION, BURNA_GLOBAL_DIGITAL_ARTIST_POINTS, daiDaiSpotifyDaysOnChart, daiDaiSpotifyStraightDays, daiDaiYouTubeDaysAtNo1 } from "../../data/daiDai";
+import { DAI_DAI_2026_MOST_NO1_THROUGH_LONG_ES, DAI_DAI_COVER, DAI_DAI_RELEASE_DATE, DAI_DAI_HALFTIME_DATE, DAI_DAI_VIDEO_ID, DAI_DAI_SPOTIFY_BODY_READ, DAI_DAI_VIDEO_VIEWS, DAI_DAI_1B_DAYS, DAI_DAI_1B_RANK_ES, DAI_DAI_SPOTIFY_STREAMS, DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_NO1_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_NO1_FIRST_LONG_ES, DAI_DAI_SPOTIFY_NO1_LAST_LONG_ES, DAI_DAI_SPOTIFY_TOP10_DAYS, DAI_DAI_SPOTIFY_DAYS_OFF, DAI_DAI_SPOTIFY_NO1_DAYS, DAI_DAI_ITUNES_NO1_COUNTRIES, DAI_DAI_STORY_PUBLISHED, DAI_DAI_SPOTIFY_WEEKLY_NO1_WEEKS, DAI_DAI_APPLE_EUROPE_NO1_DAYS, DAI_DAI_ITUNES_WORLDWIDE_NO1_DAYS, DAI_DAI_APPLE_ITUNES_DAYS_AS_OF_LONG_ES, DAI_DAI_ITUNES_NO1_COUNTRIES_AS_OF_LONG_ES, DAI_DAI_UWC_NO1_WEEKS, DAI_DAI_DEEZER_WORLDWIDE_PEAK, DAI_DAI_SPOTIFY_MUSIC_VIDEO_NO1_DAYS, BURNA_GLOBAL_DIGITAL_ARTIST_POSITION, BURNA_GLOBAL_DIGITAL_ARTIST_POINTS, daiDaiSpotifyDaysOnChart, daiDaiSpotifyStraightDays, daiDaiYouTubeDaysAtNo1 } from "../../data/daiDai";
 import { spotifyImage, spotifySrcSet } from "../../lib/spotifyImage";
 import { daiDaiEsOgId } from "./ogId";
 import LangSwitch from "../LangSwitch";
@@ -121,7 +121,7 @@ export const metadata = pageMetadata({
   path: ES_PATH,
   shareTitle: "La historia de Dai Dai — Shakira y Burna Boy",
   shareDescription:
-    "El himno del Mundial 2026 de Shakira y Burna Boy — número 1 en el mundo entero.",
+    "El himno del Mundial 2026 de Shakira y Burna Boy — número 1 en el mundo entero, e interpretado en el show de medio tiempo de la Final.",
   locale: "es_ES",
   languages: { en: EN_PATH, es: ES_PATH, "x-default": EN_PATH },
   article: { publishedTime: PUBLISHED },
@@ -287,7 +287,7 @@ export default function DaiDaiPageES() {
     // que no se releía desde el 4 de agosto y no puede fecharse sin publicar
     // una semana de lista que nadie ha leído. El pico se mantiene.
     { c: "AE", l: "en el Official MENA Chart Top 20 y en la lista US World Digital Song Sales de Billboard", other: "MENA" },
-    { c: "UK", l: `en la lista oficial de sencillos del Reino Unido — ${cardinalWord(weeksUK, "es")} semanas en ese pico, del 30 de julio al 27 de agosto de 2026, en una estancia de ${runUK} semanas contada hasta la lista del 24 de septiembre (N.º 31). La primera canción de un Mundial de la FIFA que entra en el top 10 británico, muy por encima del N.º 21 que alcanzó “Waka Waka” de la propia Shakira` },
+    { c: "UK", l: `en la lista oficial de sencillos del Reino Unido — ${cardinalWord(weeksUK, "es")} semanas en ese pico, del 30 de julio al 27 de agosto de 2026, en una estancia de ${runUK} semanas contada hasta la lista del 24 de septiembre (N.º 31). La primera canción de un Mundial de la FIFA que entra en el top 10 británico, y con diferencia la canción mundialista más alta en la historia de esa lista, por encima del N.º 21 que alcanzó “Waka Waka” de la propia Shakira` },
     { c: "CA", l: "en el Billboard Canadian Hot 100 — un nuevo pico y el primer top 10 de Burna Boy en Canadá, donde su mejor posición había sido el N.º 14. Es también el primer top 10 canadiense de Shakira desde “She Wolf” en 2009" },
     { c: "US", l: "en el Billboard Hot 100 de Estados Unidos — un salto del 42 al 17 en la lista del 1 de agosto, el pico más alto de una canción mundialista en la historia del Hot 100. Luminate registró 8,6 millones de reproducciones en Estados Unidos (+69 %), 13,9 millones de audiencia radial (+11 %) y 7.000 copias vendidas (+322 %) en la semana de seguimiento del 17 al 23 de julio" },
     { c: "UK", l: "en el número 1 del Big Top 40 del Reino Unido (las listas del 9 al 30 de agosto de 2026) — la cuenta atrás nacional de las cadenas Capital y Heart, con Burna Boy recibiendo la placa de número 1", other: "BIG_TOP_40" },
@@ -302,8 +302,8 @@ export default function DaiDaiPageES() {
         { v: `${DAI_DAI_SPOTIFY_NO1_DAYS} días`, l: `en total en el número 1 de la lista Global Daily Top Songs de Spotify —algo inédito para un artista africano, y la canción con más días en el número 1 de todo 2026 hasta la lista del ${DAI_DAI_2026_MOST_NO1_THROUGH_LONG_ES}—. Es un total cerrado: el primero en la lista del ${DAI_DAI_SPOTIFY_NO1_FIRST_LONG_ES} y el último en la del ${DAI_DAI_SPOTIFY_NO1_LAST_LONG_ES}, confirmado día a día hasta la lista del ${DAI_DAI_SPOTIFY_NO1_READ_ON_LONG_ES} — con ${DAI_DAI_SPOTIFY_TOP10_DAYS} días dentro del top 10 mundial en total, contados hasta esa misma lista`, k: "Spotify global diaria, N.º 1" },
         { v: `${DAI_DAI_SPOTIFY_WEEKLY_NO1_WEEKS} semanas`, l: "en el número 1 de la lista Global Weekly Top Songs de Spotify — una racha cerrada en la lista del 27 de agosto — en una estancia de 16 semanas contada hasta la lista del 10 de septiembre de 2026, con un pico de 40,28 millones de reproducciones en una sola semana", k: "Spotify global semanal, N.º 1" },
         { v: `${daiDaiSpotifyStraightDays}`, l: `entró en la lista Global Daily Top Songs de Spotify el 15 de mayo de 2026, el mismo día de su lanzamiento — cayó de ella durante ${cardinalWord(DAI_DAI_SPOTIFY_DAYS_OFF, "es")} días, volvió el 22 de mayo y no ha salido desde entonces: ${daiDaiSpotifyStraightDays} seguidos en la lista y ${daiDaiSpotifyDaysOnChart} en total, contados hasta la lista del ${DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG_ES}, que imprime ambas cifras en sus propias columnas (Spotify Charts)`, k: `Spotify global diaria — entró en el N.º ${debutAt}, luego días seguidos en la lista`, live: true },
-        { v: `${DAI_DAI_APPLE_EUROPE_NO1_DAYS} días`, l: "en el número 1 de la lista europea de Apple Music, más 11 días en la cima de la lista mundial de Apple Music", k: "Apple Music Europa, N.º 1" },
-        { v: `${DAI_DAI_ITUNES_WORLDWIDE_NO1_DAYS} días`, l: "en el número 1 de la lista mundial de canciones de iTunes, y 15 días en la cima de la lista europea de iTunes", k: "iTunes mundial, N.º 1" },
+        { v: `${DAI_DAI_APPLE_EUROPE_NO1_DAYS} días`, l: `en el número 1 de la lista europea de Apple Music, según el último recuento, del ${DAI_DAI_APPLE_ITUNES_DAYS_AS_OF_LONG_ES} — más 11 días en la cima de la lista mundial de Apple Music`, k: "Apple Music Europa, N.º 1" },
+        { v: `${DAI_DAI_ITUNES_WORLDWIDE_NO1_DAYS} días`, l: `en el número 1 de la lista mundial de canciones de iTunes, según el último recuento, del ${DAI_DAI_APPLE_ITUNES_DAYS_AS_OF_LONG_ES}, y 15 días en la cima de la lista europea de iTunes`, k: "iTunes mundial, N.º 1" },
         { v: liveOnesValue, l: liveOnesLabel, k: liveOnesKey, live: true },
       ],
     },
@@ -311,7 +311,7 @@ export default function DaiDaiPageES() {
       title: "Rankings mundiales",
       rows: [
         { v: `${DAI_DAI_UWC_NO1_WEEKS} semanas`, l: "en el número 1 del United World Chart de Mediatraffic — 230.000 puntos en la semana del 26 de septiembre, y la primera canción de Burna Boy que lo lidera", k: "United World Chart, N.º 1" },
-        { v: `${DAI_DAI_ITUNES_NO1_COUNTRIES}`, l: `en la lista de canciones de iTunes en ${DAI_DAI_ITUNES_NO1_COUNTRIES} países — Estados Unidos, Reino Unido, Canadá, Francia, Italia, Nueva Zelanda, India, España, Portugal, Hungría y decenas más, Bielorrusia la más reciente`, k: "iTunes N.º 1, países" },
+        { v: `${DAI_DAI_ITUNES_NO1_COUNTRIES}`, l: `en la lista de canciones de iTunes en ${DAI_DAI_ITUNES_NO1_COUNTRIES} países — Estados Unidos, Reino Unido, Canadá, Francia, Italia, Nueva Zelanda, India, España, Portugal, Hungría y decenas más, Bielorrusia la más reciente, según el último recuento, del ${DAI_DAI_ITUNES_NO1_COUNTRIES_AS_OF_LONG_ES}`, k: "iTunes N.º 1, países" },
         // Igual que en la edición inglesa: pico fechado, en pasado, sin el "23".
         { v: `N.º ${DAI_DAI_DEEZER_WORLDWIDE_PEAK}`, l: "en el Deezer Worldwide Top 100 — su pico, alcanzado el 26 de julio de 2026, cuando estaba en las listas de 57 países", k: "Deezer Worldwide, pico" },
         { v: `${DAI_DAI_SPOTIFY_MUSIC_VIDEO_NO1_DAYS} días`, l: "en el número 1 de la lista Global Music Video de Spotify, según el último recuento en la lista del 23 de agosto — es una playlist diaria sin archivo, así que el recuento se lleva a mano", k: "Spotify Global Music Video, N.º 1" },
@@ -362,6 +362,14 @@ export default function DaiDaiPageES() {
       a: `“Dai Dai” alcanzó el número ${peakUK} de la lista oficial de sencillos del Reino Unido — la primera canción de un Mundial de la FIFA que entra en el top 10 británico, y con diferencia la canción mundialista más alta en la historia de esa lista, por encima de “Waka Waka (This Time for Africa)” de la propia Shakira, que llegó al número 21 en 2010.`,
     },
     {
+      q: "¿Cuándo fue el show de medio tiempo de la Final del Mundial 2026?",
+      a: `El primer show de medio tiempo de una Final del Mundial de la FIFA se celebró el ${halftimeLong} en el MetLife Stadium. Shakira y Burna Boy interpretaron “Dai Dai”, acompañados en el escenario por los Triplets Ghetto Kids de Uganda.`,
+    },
+    {
+      q: "¿Quiénes actuaron en el show de medio tiempo de la Final?",
+      a: `El primer show de medio tiempo de una Final del Mundial contó con Madonna, Shakira y Burna Boy (interpretando “Dai Dai”), BTS, Justin Bieber, el director de orquesta Gustavo Dudamel y el PS22 Chorus junto a Coldplay, con producción de Global Citizen, el ${halftimeLong} en el MetLife Stadium.`,
+    },
+    {
       q: "¿Quiénes son los Ghetto Kids que actuaron con Shakira y Burna Boy?",
       a: "Los Triplets Ghetto Kids de Uganda —un grupo infantil de baile de Kampala que se hizo viral en internet— acompañaron a Shakira y Burna Boy en el escenario durante “Dai Dai” en el show de medio tiempo de la Final del Mundial 2026, después de que Shakira los invitara a la actuación.",
     },
@@ -369,14 +377,6 @@ export default function DaiDaiPageES() {
       q: "¿Cuántas certificaciones tiene “Dai Dai”?",
       // Built from the plaque wall, as chapter 05 is (see the English edition).
       a: `“Dai Dai” tiene ${daiDaiCertCount} certificaciones: ${plaqueSentence("es")}.`,
-    },
-    {
-      q: "¿Cuándo fue el show de medio tiempo de la Final del Mundial 2026?",
-      a: `El primer show de medio tiempo de una Final del Mundial de la FIFA se celebró el ${halftimeLong} en el MetLife Stadium. Shakira y Burna Boy interpretaron “Dai Dai”, acompañados en el escenario por los Triplets Ghetto Kids de Uganda.`,
-    },
-    {
-      q: "¿Quiénes actuaron en el show de medio tiempo de la Final?",
-      a: `El primer show de medio tiempo de una Final del Mundial contó con Madonna, Shakira y Burna Boy (interpretando “Dai Dai”), BTS, Justin Bieber, el director de orquesta Gustavo Dudamel y el PS22 Chorus junto a Coldplay, con producción de Global Citizen, el ${halftimeLong} en el MetLife Stadium.`,
     },
   ];
 
@@ -401,11 +401,26 @@ export default function DaiDaiPageES() {
     { name: "Coldplay", img: "https://i.scdn.co/image/ab6761610000e5eb1ba8fc5f5c73e7e9313cc6eb", tag: "con el PS22 Chorus" },
   ];
 
+  // The Spanish edition writes its own trail, in Spanish, as /dai-dai writes
+  // its English one. The generated trail (lib/seo.ts) published "Home › The
+  // Dai Dai Story › Español" — English but for the leaf — on a page whose
+  // every other field is Spanish (5 Oct 2026, seo-07).
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Inicio", item: CANONICAL_ORIGIN },
+      { "@type": "ListItem", position: 2, name: "La historia de Dai Dai", item: `${CANONICAL_ORIGIN}${EN_PATH}` },
+      { "@type": "ListItem", position: 3, name: "Español", item: `${CANONICAL_ORIGIN}${ES_PATH}` },
+    ],
+  };
+
   return (
     <main id="content" lang="es">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(eventJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
 
       {/* The same hero as the English edition, in Spanish: one primary action
           and the EN/ES switch; the halftime link lives in chapter 07. */}
