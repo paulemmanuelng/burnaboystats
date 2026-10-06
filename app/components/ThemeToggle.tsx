@@ -66,6 +66,27 @@ function getChoice(): Choice {
 /** On the server there is no storage, and dark is what the markup assumes. */
 const getServerChoice = (): Choice => "dark";
 
+/** The strip behind a phone's status bar, per applied theme — layout.tsx's
+ *  pre-paint script writes the same two values. */
+const THEME_COLOR = { light: "#f7f4ee", dark: "#0a0a0b" } as const;
+
+/**
+ * Every theme-color tag to the APPLIED theme (data-theme on <html>).
+ *
+ * The tag is not ours to keep: it is the router's (layout.tsx's viewport), and
+ * a client-side navigation can drop it and insert a fresh one carrying the
+ * server's dark value. After a flip to light, tapping from /music to /records
+ * did exactly that and turned the status-bar strip black over a paper page
+ * until the next full load (debug pass 5 Oct 2026, V-global-10). So this runs
+ * on every theme-color tag, and again whenever <head> changes.
+ */
+function paintThemeColor() {
+  const want = THEME_COLOR[document.documentElement.dataset.theme === "light" ? "light" : "dark"];
+  document.querySelectorAll('meta[name="theme-color"]').forEach((m) => {
+    if (m.getAttribute("content") !== want) m.setAttribute("content", want);
+  });
+}
+
 const OPTIONS: { value: Choice; label: string; icon: ReactElement }[] = [
   {
     value: "dark",
@@ -116,14 +137,19 @@ export default function ThemeToggle({
       document.documentElement.dataset.theme = t;
       // The strip behind the iOS status bar sits above the masthead, which now
       // themes — so it has to follow, or a light page keeps a black band.
-      document
-        .querySelector('meta[name="theme-color"]')
-        ?.setAttribute("content", t === "light" ? "#f7f4ee" : "#0a0a0b");
+      paintThemeColor();
     };
     apply();
-    if (choice !== "system") return;
+    // ...and keeps following after the router re-renders the tag. Writing the
+    // value it wants fires this once more and finds nothing left to change.
+    const head = new MutationObserver(paintThemeColor);
+    head.observe(document.head, { childList: true, subtree: true, attributes: true, attributeFilter: ["content"] });
+    if (choice !== "system") return () => head.disconnect();
     mq.addEventListener("change", apply);
-    return () => mq.removeEventListener("change", apply);
+    return () => {
+      head.disconnect();
+      mq.removeEventListener("change", apply);
+    };
   }, [choice]);
 
   const pick = (next: Choice) => {
