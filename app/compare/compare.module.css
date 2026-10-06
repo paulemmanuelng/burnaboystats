@@ -357,6 +357,18 @@
 .bar { height: 6px; background: var(--bg-raised); border-radius: 3px; overflow: hidden; }
 .barFill { height: 100%; background: var(--text); }
 .barFillBehind { background: var(--text-muted); }
+/* Above the phone each cell stacks name, figure, meta and bar from the top,
+   and the grid gives both cells the taller one's height. The bar takes the
+   cell's foot, so when one side's meta runs to a second line ("… 177 of 178
+   counted · 1 not comparable") both bars stay level: that side's bar sat
+   20px below the other (live at 1440 on every Burna Boy and Rema pair but
+   one, at 1024 on 25 more, and in song mode; debug pass, 5 Oct 2026). The
+   figures and meta lines keep their places. The phone, where it is the label
+   that wraps, stacks its cells from the foot instead (below). */
+@media (min-width: 761px) {
+  .headCell { display: flex; flex-direction: column; }
+  .headCell > .bar { margin-top: auto; }
+}
 .diffRow {
   display: flex;
   flex-wrap: wrap;
