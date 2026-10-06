@@ -149,6 +149,7 @@ const N2_RULES = [
   "app/components/mobileStatCards.module.css::.ratioOn",
   "app/components/mobileUpdates.module.css::.chipOn",
   "app/music/[song]/song.module.css::.pickOn, .pickOn:hover",
+  "app/search/search.module.css::.chipOn, .chipOn:hover",
 ];
 
 /**
