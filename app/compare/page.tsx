@@ -310,17 +310,23 @@ function Slot({
   return (
     <div className={styles.slot} id={`slot-${side}`}>
       {img ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={artAt(img, 112)}
-          srcSet={artSrcSet(img, 56)}
-          sizes="56px"
-          alt=""
-          className={`${styles.art} ${isSong ? "" : styles.artRound}`}
-          width={56}
-          height={56}
-          decoding="async"
-        />
+        // In a <picture> so React does not make this eager image a preload
+        // hint: hints ride in the RSC payload, so every page whose links
+        // prefetched a pair downloaded both its avatars unseen (20 on /compare
+        // at 1024, debug pass 5 Oct 2026). display: contents keeps the <img>
+        // the slot's flex item.
+        <picture style={{ display: "contents" }}>
+          <img
+            src={artAt(img, 112)}
+            srcSet={artSrcSet(img, 56)}
+            sizes="56px"
+            alt=""
+            className={`${styles.art} ${isSong ? "" : styles.artRound}`}
+            width={56}
+            height={56}
+            decoding="async"
+          />
+        </picture>
       ) : (
         <div className={`${styles.art} ${isSong ? "" : styles.artRound}`} aria-hidden="true" />
       )}

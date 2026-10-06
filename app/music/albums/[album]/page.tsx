@@ -156,23 +156,32 @@ export default async function AlbumPage({ params }: { params: Promise<{ album: s
       {/* ── Hero ─────────────────────────────────────────────── */}
       <section className={styles.heroPad}>
         <div className={styles.heroCard}>
+          {/* Backdrop and cover each sit in a <picture> for React, as on a
+              song page: an eager <img> outside one becomes a preload hint in
+              the RSC payload, so every page whose links prefetched an album
+              downloaded both — the 300px backdrop and a 640px cover on a
+              phone, 113–204 KB an album from /updates (debug pass, 5 Oct 2026).
+              The cover is still eager and early in the HTML, where the
+              browser finds it on its own. display: contents keeps the boxes. */}
           {record.cover && (
-            // eslint-disable-next-line @next/next/no-img-element -- decorative backdrop; next/image can't blur-scale a remote CDN image here
-            <img className={styles.heroBackdrop} src={spotifyImage(record.cover, 300)} alt="" aria-hidden="true" />
+            <picture style={{ display: "contents" }}>
+              <img className={styles.heroBackdrop} src={spotifyImage(record.cover, 300)} alt="" aria-hidden="true" />
+            </picture>
           )}
           <div className={styles.heroScrim} />
           <div className={styles.heroGrid}>
             {record.cover && (
-              // eslint-disable-next-line @next/next/no-img-element -- remote Spotify CDN cover with an explicit srcset
-              <img
-                className={styles.cover}
-                src={spotifyImage(record.cover, 300)}
-                srcSet={spotifySrcSet(record.cover)}
-                sizes="236px"
-                alt={`${page.title} cover`}
-                width={236}
-                height={236}
-              />
+              <picture style={{ display: "contents" }}>
+                <img
+                  className={styles.cover}
+                  src={spotifyImage(record.cover, 300)}
+                  srcSet={spotifySrcSet(record.cover)}
+                  sizes="236px"
+                  alt={`${page.title} cover`}
+                  width={236}
+                  height={236}
+                />
+              </picture>
             )}
             <div>
               <div className={styles.kicker}>
