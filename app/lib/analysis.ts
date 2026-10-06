@@ -132,7 +132,7 @@ export const marketsByVolume: MarketProfile[] = Object.keys(CHART_COUNTRIES)
   .filter((c) => !isGlobalChart(c))
   .map(marketProfile)
   .filter((m) => m.entries > 0)
-  .sort((a, b) => b.entries - a.entries || a.bestPeak - b.bestPeak);
+  .sort((a, b) => b.entries - a.entries || a.bestPeak - b.bestPeak || a.country.localeCompare(b.country));
 
 /** Certification counts per country, most first. */
 export const certsByCountry = (() => {

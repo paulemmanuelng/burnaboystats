@@ -1,7 +1,8 @@
 import { describe, it, expect } from "vitest";
 import { songs } from "../app/data/songs";
+import { albumPages } from "../app/data/albumPages";
 import { allItems, COUNTRIES, tierOf } from "../app/data/certifications";
-import { allChartItems, singleCharts, featureCharts } from "../app/data/charts";
+import { allChartItems, singleCharts, featureCharts, CHART_COUNTRIES } from "../app/data/charts";
 
 /**
  * A hand-typed certification list in songs.ts has to match the cert data.
@@ -132,6 +133,99 @@ describe("song-page extra facts", () => {
     const problems = songs.flatMap((song) =>
       (song.extraFacts ?? []).filter((f) => RESTATES.test(f.l)).map((f) => `${song.title}: "${f.v} — ${f.l}"`),
     );
+    expect(problems).toEqual([]);
+  });
+
+  /**
+   * "Certified in N countries" and an "Is X certified?" answer are typed beside
+   * a table that is derived. /music/alone's meta said "certified in five
+   * countries" and its FAQ listed five countries for a month after Portugal's
+   * Gold (AFP card, 30 Sep 2026) made the table six (5 Oct 2026 debug pass,
+   * seo-02). The Platinum-list guard above never looked at FAQs or the meta.
+   */
+  it("a typed certified-country count or FAQ country list matches the cert data", () => {
+    const WORDS: Record<string, number> = {
+      one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10, eleven: 11, twelve: 12,
+    };
+    const problems: string[] = [];
+    for (const song of songs) {
+      const cert = (allItems as any[]).find((r) => r.title === song.title);
+      const codes: string[] = [...new Set<string>((cert?.certs ?? []).map((c: any) => c.c))];
+      const texts = [song.blurb, song.metaDescription, ...(song.faqs ?? []).map((f) => f.a)];
+      for (const text of texts) {
+        for (const m of text.matchAll(/certified in (\w+) countries/gi)) {
+          const n = /^\d+$/.test(m[1]) ? Number(m[1]) : WORDS[m[1].toLowerCase()];
+          if (n != null && n !== codes.length)
+            problems.push(`${song.title}: "${m[0]}" but the cert data holds ${codes.length}`);
+        }
+      }
+      // An answer to "Is X certified?" that lists countries is the whole list
+      // unless it says "including".
+      for (const f of song.faqs ?? []) {
+        if (!/^Is “[^”]+” certified\?$/.test(f.q) || /including/i.test(f.a)) continue;
+        const named = (code: string) => {
+          const name = COUNTRIES[code]?.name ?? code;
+          return f.a.includes(name) || f.a.includes(ALIAS[name] ?? name);
+        };
+        const missing = codes.filter((c) => !named(c));
+        if (missing.length) problems.push(`${song.title}: "${f.q}" leaves out ${missing.join(", ")}`);
+      }
+    }
+    expect(problems).toEqual([]);
+  });
+
+  /**
+   * "France — its highest national peak" sat on /music/alone over a Nigerian
+   * No. 17 the TurnTable sweep added on 18 Sep 2026, and the FAQ's "best peaks
+   * were No. 19 in France…" left Nigeria out (seo-02). A superlative about a
+   * peak has to be the data's.
+   */
+  it("a typed 'highest national peak' or 'best peaks were' names the data's best", () => {
+    const problems: string[] = [];
+    for (const song of songs) {
+      const chart = allChartItems.find((r) => r.title === song.title);
+      if (!chart) continue;
+      const national = chart.entries.filter((e) => e.c !== "GLB" && e.c !== "GLBX");
+      const best = Math.min(...national.map((e) => e.peak));
+      for (const f of song.extraFacts ?? []) {
+        const v = Number(/^No\. (\d+)$/.exec(f.v)?.[1]);
+        if (/highest national peak/i.test(f.l) && v !== best)
+          problems.push(`${song.title}: "${f.v} — ${f.l}" but its best national peak is No. ${best}`);
+        const outside = /highest peak outside (.+)$/i.exec(f.l)?.[1];
+        if (outside) {
+          const code = Object.keys(CHART_COUNTRIES).find((c) => CHART_COUNTRIES[c].name === outside);
+          const rest = Math.min(...national.filter((e) => e.c !== code).map((e) => e.peak));
+          if (!code || v !== rest) problems.push(`${song.title}: "${f.v} — ${f.l}" but the best peak outside ${outside} is No. ${rest}`);
+        }
+      }
+      for (const f of song.faqs ?? []) {
+        const m = /best peaks were No\. (\d+)/.exec(f.a);
+        if (m && Number(m[1]) !== best)
+          problems.push(`${song.title}: "${m[0]}" but its best national peak is No. ${best}`);
+      }
+    }
+    expect(problems).toEqual([]);
+  });
+
+  /**
+   * The page derives a "best chart peak worldwide" card; a typed card with the
+   * same figure is a duplicate unless it adds a record the derived card cannot
+   * say ("highest-ever Hot 100 peak", "the first Afrobeats album to top it").
+   * Last Last lost its two duplicates on 17 Sep 2026; City Boys' "No. 2 —
+   * Nigeria" and No Sign of Weakness's "No. 1 — Nigeria" repeated the pattern
+   * (music-14, 5 Oct 2026).
+   */
+  it("a typed card that repeats the derived best peak adds a record", () => {
+    const problems: string[] = [];
+    for (const page of [...songs, ...albumPages] as { title: string; extraFacts?: { v: string; l: string }[] }[]) {
+      const chart = allChartItems.find((r) => r.title === page.title);
+      if (!chart) continue;
+      const best = Math.min(...chart.entries.map((e) => e.peak));
+      for (const f of page.extraFacts ?? []) {
+        if (f.v === `No. ${best}` && !/highest|first|record|biggest|only/i.test(f.l))
+          problems.push(`${page.title}: "${f.v} — ${f.l}" repeats the derived best-peak card`);
+      }
+    }
     expect(problems).toEqual([]);
   });
 

@@ -1,4 +1,4 @@
-import type { Cert, Release } from "../data/certifications";
+import { COUNTRIES, type Cert, type Release } from "../data/certifications";
 import { CERT_PROGRAMS } from "../data/certThresholds";
 
 // True if a release satisfies every active filter — the country filter is met
@@ -120,3 +120,27 @@ export const withIssuerProvenance = (releases: readonly Release[]): Release[] =>
       ? { ...r, certs: r.certs.map((c) => (c.provenance || !issuerProvenance(c) ? c : { ...c, provenance: issuerProvenance(c) })) }
       : r,
   );
+
+/** The body that issued one plaque: its own `body` (a label's award, a
+ *  programme), else its country's. A programme folds into the body that runs
+ *  it — RIAA Latin is the RIAA's (CERT_PROGRAMS) — and ČNS IFPI's Slovak and
+ *  Czech registers are one body, as the sources line already prints them. */
+export const issuerOf = (c: Pick<Cert, "c" | "body">): string => {
+  const own = COUNTRIES[c.c]?.body ?? c.c;
+  const b = c.body ?? own;
+  if (CERT_PROGRAMS[b]) return own;
+  return /^ČNS IFPI/.test(b) ? "ČNS IFPI" : b;
+};
+
+/**
+ * How many bodies issued the plaques in a set of releases.
+ *
+ * /certifications counted the distinct `body` strings of the COUNTRIES map —
+ * the registers, not who issued his plaques. The all-view's 26 came out right
+ * only because two errors cancelled two others (Pro Musica Colombia, which
+ * issued none of his plaques, and ČNS IFPI counted twice, against Sony Music
+ * Colombia and Sony Music Africa left out), and both lead-credit views printed
+ * one too many (5 Oct 2026 debug pass, records-20).
+ */
+export const issuingBodyCount = (rows: readonly Release[]): number =>
+  new Set(rows.flatMap((r) => r.certs.map(issuerOf))).size;

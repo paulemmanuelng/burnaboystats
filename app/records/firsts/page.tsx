@@ -35,11 +35,13 @@ export default function FirstsPage() {
         sections={firstGroups.map((g) => ({
           name: g.label,
           // The design's row is the year and the milestone alone; `text` is the
-          // supporting detail and stays on the desktop page, which is what the
-          // source note points at.
+          // supporting detail and stays on the desktop layout.
           rows: g.items.map((f) => ({ lead: f.year, title: f.title })),
         }))}
-        sourceNote="Each milestone is a documented first, sourced on the desktop page. Tap a category to open it."
+        // The note said each first was "sourced on the desktop page": that
+        // layout has no per-item sources (one blanket cross-check paragraph),
+        // and it is the same URL with this layout hidden (5 Oct 2026, records-11).
+        sourceNote="Every milestone was cross-checked against multiple sources before it was listed. Tap a category to open it."
       />
 
       <div className={styles.desktopOnly}>

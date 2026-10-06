@@ -17,7 +17,10 @@ export const API_VERSION = "v1";
 // uses for lastmod. It is not every change, though: the stats bot refreshes
 // figures (streaming counts, chart runs) without logging an entry, so a
 // payload can change under an unchanged `updated`. UPDATED_NOTE says so, and
-// points consumers at the ETag, which does move with the bytes.
+// points consumers at the ETag, which does move with the bytes. The two
+// live-charts snapshots are the exception: their `updated` is the day the
+// snapshot was taken (liveChartsUpdated, board.updated), and the note said
+// nothing of it until 5 Oct 2026 (core-13).
 export const lastUpdated = [...updates.map((u) => u.date)].sort().at(-1)!;
 
 export const LICENSE = {
@@ -130,7 +133,7 @@ export function apiJson(envelope: Envelope) {
 export const ENVELOPE_NOTE =
   "Every response uses the same envelope — the data, plus where it came from and when it last changed. The two live-charts snapshots are the exception: they keep releases at the top level, with no data key, because the live page's own panels read it there.";
 export const UPDATED_NOTE =
-  "updated is the date of the newest entry in the site's news log, not the last deploy. Figures refreshed between entries, such as streaming counts, can change without moving it, so to tell whether a payload has changed, send the ETag from your last fetch back as If-None-Match: an unchanged payload answers 304. The two live-charts snapshots also carry builtAt, the minute the board was rebuilt: use that, not updated, to detect a new snapshot.";
+  "updated is the date of the newest entry in the site's news log, not the last deploy; on the two live-charts snapshots it is the day the snapshot was taken. Figures refreshed between entries, such as streaming counts, can change without moving it, so to tell whether a payload has changed, send the ETag from your last fetch back as If-None-Match: an unchanged payload answers 304. The two live-charts snapshots also carry builtAt, the minute the board was rebuilt: use that, not updated, to detect a new snapshot.";
 /**
  * How the `credit` field reads, in /charts and /certifications alike. Both
  * datasets write it from Burna Boy's side, and a bare "with Stromae" read to a

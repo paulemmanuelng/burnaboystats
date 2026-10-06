@@ -7,6 +7,7 @@ import { cadenceOf, reachOf, numberOnesOf, countriesOf, platformCountries, relea
 import LiveReleaseBlock, { type ReleaseSummary } from "../components/LiveReleaseBlock";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime, BURNA_BOY_REF } from "../lib/seo";
 import { releaseArt } from "../lib/liveReleaseArt";
+import { catalogueTitle } from "../lib/liveChartTitles";
 import { spotifyImage } from "../lib/spotifyImage";
 import {
   liveCharts,
@@ -54,9 +55,18 @@ const reach = reachOf;
 // title, totals and the five best chips — instead of the whole dataset. Each
 // row's art (cover, monogram, EP flag) is resolved here too, so the site's
 // catalogue stays out of the client bundle (lib/liveReleaseArt.ts).
+// The site's spelling of each title for the reader (lib/liveChartTitles):
+// kworb's "wgft", "WE PRAY" and "No Sign Of Weakness" are WGFT, We Pray and
+// No Sign of Weakness everywhere else. `title` stays raw for the panel lookup.
+const shown = (title: string) => {
+  const t = catalogueTitle(title);
+  return t === title ? {} : { displayTitle: t };
+};
+
 const preview = (r: (typeof liveCharts)[number]): ReleasePreview => ({
   kind: r.kind,
   title: r.title,
+  ...shown(r.title),
   ...releaseArt(r),
   total: reachOf(r),
   no1: numberOnesOf(r),
@@ -69,6 +79,7 @@ const preview = (r: (typeof liveCharts)[number]): ReleasePreview => ({
 
 const summarize = (r: (typeof liveCharts)[number]): ReleaseSummary => ({
   title: r.title,
+  ...shown(r.title),
   kind: r.kind,
   ...releaseArt(r),
   total: reachOf(r),

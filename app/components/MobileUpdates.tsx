@@ -5,6 +5,7 @@ import Link from "next/link";
 import SubscribeBox, { landedFromLocation } from "./SubscribeBox";
 import styles from "./mobileUpdates.module.css";
 import { inkFor } from "../lib/updateInk";
+import { noSept } from "../lib/dates";
 import type { Update, UpdateCategory } from "../data/updates";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
@@ -72,7 +73,7 @@ export default function MobileUpdates({
             <span className={styles.tagDot} style={{ background: ink }} aria-hidden="true" />
             {u.category}
           </span>
-          <span className={styles.rowDate}>{DATE_FMT.format(asDate(u.date))}</span>
+          <span className={styles.rowDate}>{noSept(DATE_FMT.format(asDate(u.date)))}</span>
         </div>
         <div className={styles.rowText}>{u.text}</div>
       </Link>

@@ -122,8 +122,14 @@ describe("the tiles' sub-lines", () => {
         // The figure is the data's own: weeks at the peak, not a typed number.
         const n = g.weeksAtPeak!;
         expect(n).toBeGreaterThan(1);
-        const want = t.tileSoFar.replace("{n}", String(n)).replace(/\b(No\.|n\.º) (?=\d)/gi, "$1 ");
+        // Both runs are closed (the last week held is off No. 1), so the
+        // poster states the total: "7 weeks at No. 1 so far" sat over a run
+        // charts.ts records as closed at seven until 5 Oct 2026 (music-03).
+        const lastPt = g.pts[g.pts.length - 1];
+        expect(lastPt.s === "on" && lastPt.p === 1, `${g.code}'s run is still open — the poster should say so far`).toBe(false);
+        const want = t.tileTotal.replace("{n}", String(n)).replace(/\b(No\.|n\.º) (?=\d)/gi, "$1 ");
         expect(sub).toBe(want);
+        expect(sub).not.toMatch(/so far|hasta ahora/);
         expect(sub).toMatch(lang === "en" ? /No\. 1/ : /n\.º 1/);
         expect(splitsNo(sub)).toBe(false);
       }
@@ -153,6 +159,19 @@ describe("the tiles' sub-lines", () => {
     for (let i = 0; i < first; i++) fireEvent.keyDown(s, { key: "ArrowRight" });
     expect(s.getAttribute("aria-valuenow")).toBe(String(first));
     expect(subOf(container.querySelector('div[data-code="GLBX"]'))).toBe("1 week at No. 1 so far");
+  });
+
+  it("the closed-run total reads 'week' for one, and the labels keep the plain space", () => {
+    expect(EN_REPLAY_LABELS.tileTotal).toBe("{n} weeks at No. 1");
+    expect(EN_REPLAY_LABELS.tileTotalOne).toBe("{n} week at No. 1");
+    expect(ES_REPLAY_LABELS.tileTotal).toBe("{n} semanas en el n.º 1");
+    expect(ES_REPLAY_LABELS.tileTotalOne).toBe("{n} semana en el n.º 1");
+  });
+
+  it("negative control: the shipped poster sub-line said 'so far' over a closed run", () => {
+    // As /dai-dai and /dai-dai/es served the poster on 5 Oct 2026.
+    for (const shipped of ["7 weeks at No. 1 so far", "10 semanas en el n.º 1 hasta ahora"])
+      expect(shipped).toMatch(/so far|hasta ahora/);
   });
 
   it("negative control: the shipped sub-line split No. 1", () => {

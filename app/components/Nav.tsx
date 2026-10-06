@@ -43,6 +43,7 @@ export default function Nav({ suggested }: { suggested: readonly SuggestedDoc[] 
 
   return (
     <header
+      lang="en"
       className={`navbar${scrolled ? " navScrolled" : ""}${ownChrome ? " navDesktopOnly" : ""}`}
     >
       <nav className="navInner container" aria-label="Primary">

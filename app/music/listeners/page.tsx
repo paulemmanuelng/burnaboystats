@@ -88,7 +88,7 @@ export default function ListenersPage() {
             A city in the top {cityCount}, sized by its monthly listeners
             <span className="visuallyHidden">. </span>
             <span className={styles.swatch} aria-hidden="true" />
-            A country with at least one
+            A country with at least one city in the top {cityCount}
           </figcaption>
         </figure>
 

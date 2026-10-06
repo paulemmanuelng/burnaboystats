@@ -1,6 +1,7 @@
 import { apiJson } from "../../../lib/api";
 import { allItems, COUNTRIES, totalAwards, countryCount, announcedPlaques } from "../../../data/certifications";
 import { plaqueSource } from "../../../lib/dataDownloads";
+import { noRowLabelClause } from "../../../lib/offRegister";
 
 export const dynamic = "force-static";
 
@@ -30,7 +31,7 @@ export function GET() {
   return apiJson({
     endpoint: "/certifications",
     description:
-      `Certifications by release, each verified against the awarding body's own database or, in a market with no current public register, the label's own plaque (\`body\` names the issuer)${
+      `Certifications by release, each verified against the awarding body's own database or, in a market with no current public register, the label's own plaque${noRowLabelClause(", or, ")} (\`body\` names the issuer)${
         announcedPlaques.length
           ? ", or the body's own published chart where its database has not yet listed the award (`source: \"announcement\"`)"
           : ""

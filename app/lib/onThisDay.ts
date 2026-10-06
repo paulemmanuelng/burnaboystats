@@ -283,7 +283,11 @@ function awardEvents(): OnThisDayEvent[] {
       kind: "award",
       headline: h.title,
       detail: h.note ?? h.org,
-      body: h.org,
+      // The publisher, not the place: "BPI · United Kingdom" is how
+      // /records/awards labels the honour, and the 15 July card printed
+      // "BPI · UNITED KINGDOM" where the ten BPI certification cards print
+      // "BPI" (5 Oct 2026, otd-11).
+      body: h.org.split(" · ")[0],
       href: "/records/awards",
       source: { data: "honours", index },
       rank: 68,
@@ -734,7 +738,7 @@ export function dayLedeShort(day: OnThisDayDay): string {
 
 // ── A day's metadata ────────────────────────────────────────────────────────
 
-/** A headline closed as a sentence, once: four leads already end in "D.C.",
+/** A headline closed as a sentence, once: some leads already end in "D.C.",
  *  and a joined "." printed "Washington, D.C.." in their descriptions. */
 export const asSentence = (s: string) => (/[.!?]$/.test(s) ? s : `${s}.`);
 

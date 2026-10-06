@@ -12,6 +12,7 @@ import { countryNumberOnes, numberOneCountryCount } from "../lib/analysis";
 import { recentArrivalSentence } from "../lib/recentNumberOnes";
 import { spotifyImage } from "../lib/spotifyImage";
 import { liveChartsUpdated } from "../data/liveCharts";
+import { enGbDate } from "../lib/dates";
 
 // The Dai Dai cover, already used by the hero card and the OG image.
 const DAI_DAI_COVER = "https://i.scdn.co/image/ab67616d0000b27303cadf1b3fe324c1dc710ed4";
@@ -112,7 +113,7 @@ export default function TodaysNumber() {
     {/* ROW 3 — the status line, on the page background, divided by the same
         hairline. The green dot moved up to row 1; one live dot in the panel. */}
     <div className={styles.status}>
-      <span className={styles.statusText}>{changedSentence}</span>
+      {changedSentence && <span className={styles.statusText}>{changedSentence}</span>}
       <Link href="/live-charts" className={styles.statusLink}>
         Live board ↗
       </Link>
@@ -123,7 +124,7 @@ export default function TodaysNumber() {
 
 /** "9 Sep 2026" — the day the live snapshot was read, in the panel's own voice. */
 function shortDate(iso: string) {
-  return new Date(`${iso}T12:00:00Z`).toLocaleDateString("en-GB", {
+  return enGbDate(new Date(`${iso}T12:00:00Z`), {
     day: "numeric",
     month: "short",
     year: "numeric",

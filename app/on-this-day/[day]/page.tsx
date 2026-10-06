@@ -8,6 +8,7 @@ import { KindPill } from "../../components/OnThisDayKind";
 import { pageMetadata, CANONICAL_ORIGIN } from "../../lib/seo";
 import { cardFilename, cardPath, cardPreviewSrc } from "../../lib/cardPreview";
 import { BLANK_PIXEL } from "../../lib/blankPixel";
+import { sharePublisher } from "../../lib/onThisDayShare";
 import {
   dayBySlug,
   dayLede,
@@ -178,9 +179,15 @@ export default async function OnThisDayDayPage({ params }: { params: Promise<{ d
                 <span>Download the card</span>
                 <span aria-hidden="true">↓</span>
               </a>
+              {/* "and the source" only where the lead has a publisher: a release
+                  and an ungrossed show print none, and the line promised one on
+                  79 cards (5 Oct 2026, otd-02). sharePublisher, not the card's
+                  own source slot, so a headline that already names its
+                  publisher (30 June's Spotify) still counts as naming it. */}
               <p className={styles.cardBenefit}>
-                Posts whole on Instagram and X, with no crop. It names the date and the source, so it stays true
-                wherever it&apos;s reposted.
+                Posts whole on Instagram and X, with no crop.{" "}
+                {sharePublisher(day.lead) ? "It names the date and the source" : "It names the date"}, so it stays
+                true wherever it&apos;s reposted.
               </p>
             </aside>
           </div>

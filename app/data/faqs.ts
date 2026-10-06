@@ -18,6 +18,12 @@ import { countryCount as performedCountryCount, regionCount } from "./performedC
 import { festivals } from "./tours";
 import { carCount, totalValueReported, topCarValueFormatted } from "./cars";
 import { BURNA_HOT_100_ENTRIES } from "./africasBiggest";
+// The leaf module, not daiDai.ts: the root layout reaches this file through
+// navGroups. The claim can still be overtaken, so it is printed with its date,
+// as /dai-dai and /records/africas-biggest print it; the FAQ said "the
+// longest-running No. 1 by any 2026 release", undated, over a total of two
+// spells (5 Oct 2026, core-02).
+import { DAI_DAI_2026_MOST_NO1_THROUGH_LONG } from "./daiDaiNo1Claim";
 
 const total = totalAwards();
 const grammyNoms = ceremonies.find((c) => c.name === "Grammy Awards")?.noms.length ?? 0;
@@ -69,7 +75,7 @@ export const faqs: { g: GroupId; q: string; a: string }[] = [
   {
     g: "worldcup",
     q: "What is Burna Boy's World Cup song?",
-    a: `"Dai Dai", his collaboration with Shakira, is the official song of the 2026 FIFA World Cup. It reached No. 1 on both Billboard global charts and on the official singles chart in ${daiDaiNumberOnes} countries, and spent 37 days at No. 1 on Spotify's Global Daily Top Songs chart as the most-streamed song in the world, between 30 June and 22 August 2026 — the longest-running No. 1 by any 2026 release.`,
+    a: `"Dai Dai", his collaboration with Shakira, is the official song of the 2026 FIFA World Cup. It reached No. 1 on both Billboard global charts and on the official singles chart in ${daiDaiNumberOnes} countries, and spent 37 days at No. 1 on Spotify's Global Daily Top Songs chart as the most-streamed song in the world, between 30 June and 22 August 2026 — the most days at No. 1 by any song in 2026 through the chart dated ${DAI_DAI_2026_MOST_NO1_THROUGH_LONG}.`,
   },
   {
     g: "awards",

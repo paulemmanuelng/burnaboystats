@@ -1,4 +1,5 @@
 import styles from "./TimeSeriesChart.module.css";
+import { enGbDate } from "../lib/dates";
 
 /**
  * A dated line chart — the site's first chart with a TIME axis.
@@ -34,7 +35,7 @@ export interface SeriesAnnotation {
 const shortDate = (iso: string, yearly: boolean) =>
   yearly
     ? new Date(`${iso}T12:00:00Z`).toLocaleDateString("en-GB", { year: "numeric" })
-    : new Date(`${iso}T12:00:00Z`).toLocaleDateString("en-GB", {
+    : enGbDate(new Date(`${iso}T12:00:00Z`), {
         day: "numeric",
         month: "short",
       });
