@@ -1,11 +1,14 @@
 "use client"; // interactive: open a tour to see its dates/venues/capacities
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "../records/tours/tours.module.css";
 import type { Tour } from "../data/tours";
 import { tourMeta, tourDateNote, NO_TOUR_TOTAL } from "../lib/tourMeta";
 import { track } from "../lib/analytics";
 import { holdInPlace } from "../lib/holdInPlace";
+import { dropDeepLink } from "../lib/deepLink";
+import { DATE_PARAM, TOUR_PARAM, showDateIso, tourSlug } from "../lib/tourDeepLink";
+import { useTourDeepLink } from "../lib/useTourDeepLink";
 import NotReported from "./NotReported";
 
 /**
@@ -27,6 +30,10 @@ const defaultOpen = (tours: Tour[]) => tours.find((t) => t.record)?.name ?? null
 
 export default function ToursExplorer({ tours }: { tours: Tour[] }) {
   const [open, setOpen] = useState<string | null>(() => defaultOpen(tours));
+  const rootRef = useRef<HTMLDivElement>(null);
+  // #tour=<slug>&date=<day> — On This Day's link for a night — opens that
+  // tour over the default and brings the night's row into view (V-otd-02).
+  useTourDeepLink(tours, setOpen, rootRef);
 
   // Track which tours people open into.
   useEffect(() => {
@@ -34,7 +41,7 @@ export default function ToursExplorer({ tours }: { tours: Tour[] }) {
   }, [open]);
 
   return (
-    <div className={styles.accordion}>
+    <div ref={rootRef} className={styles.accordion}>
       {tours.map((t) => {
         const isOpen = open === t.name;
         const panelId = `tour-${t.name.replace(/[^a-z0-9]+/gi, "-").toLowerCase()}`;
@@ -48,7 +55,13 @@ export default function ToursExplorer({ tours }: { tours: Tour[] }) {
               // shuts the panel above it: the row rose 1,158px, off the top of
               // the screen (V-tourscars-01, 5 Oct 2026). holdInPlace keeps the
               // clicked row where the pointer was and opens its dates under it.
-              onClick={(e) => holdInPlace(e.currentTarget, () => setOpen(isOpen ? null : t.name))}
+              // Picking a tour takes the link's out of the address bar, so a
+              // reload does not put it back.
+              onClick={(e) => {
+                holdInPlace(e.currentTarget, () => setOpen(isOpen ? null : t.name));
+                dropDeepLink(TOUR_PARAM, DATE_PARAM);
+              }}
+              data-tour={tourSlug(t.name)}
               className={`${styles.tourRow} ${isOpen ? styles.tourRowOpen : ""}`}
             >
               <span
@@ -92,7 +105,7 @@ export default function ToursExplorer({ tours }: { tours: Tour[] }) {
                   </thead>
                   <tbody>
                     {t.dates?.map((d) => (
-                      <tr key={`${d.date}-${d.venue}`}>
+                      <tr key={`${d.date}-${d.venue}`} data-show={showDateIso(d.date) ?? undefined}>
                         <td className={styles.dDate}>{d.date}</td>
                         <td className={styles.dVenue}>{d.venue}</td>
                         <td className={styles.dCity}>{d.city}</td>

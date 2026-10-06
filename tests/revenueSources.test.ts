@@ -140,7 +140,8 @@ describe("Burna Boy's Ziggo Dome 2022 gross is held off the board (owner, 3 Oct 
     expect(e.headline).toBe("Burna Boy played Ziggo Dome, Amsterdam");
     expect(e.detail).not.toMatch(/\$|tickets/);
     expect(e.body).not.toBe("Billboard Boxscore");
-    expect(e.href).toBe("/records/tours");
+    // Its tour night on the tours page, not the box-office board (V-otd-02).
+    expect(e.href).toBe("/records/tours#tour=space-drift-world-tour&date=2022-04-14");
   });
 
   it("the tour map's Netherlands card has no biggest line (the design rule for no reported night)", () => {
