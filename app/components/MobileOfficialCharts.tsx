@@ -149,7 +149,7 @@ export default function MobileOfficialCharts({
 
   const charted = new Set(all.flatMap((r) => r.entries.map((e) => e.c)));
   const countryChips = (countryRail ?? COUNTRY_RAIL).filter((c) => charted.has(c));
-  const chipKey = countryChips.join(",");
+  const chartedKey = [...charted].sort().join(",");
 
   // Read the deep link on mount — client-only, exactly as ChartExplorer does
   // it, so the page stays statically rendered — and again whenever the
@@ -158,25 +158,30 @@ export default function MobileOfficialCharts({
   // story's link focused the desktop explorer and not the phone (24 Sep
   // 2026). The focused release is unfolded at the same time: the bar
   // promises "every chart entry", and Dai Dai's 59 would otherwise still be
-  // folded away behind the "+47". #country= selects that chip when the rail
-  // has one. The rails come back from this history entry on Back.
+  // folded away behind the "+47". #country= takes any country this screen
+  // charts, not only the seventeen on the rail: search sends every territory
+  // without a plaque here (Argentina, Japan, Iceland, Hong Kong…), and one
+  // off the rail used to be dropped, so the tap opened all 103 releases under
+  // a lit "All" (V-records-04, debug pass 5 Oct 2026). A country off the rail
+  // is announced in a bar instead of a chip. The rails come back from this
+  // history entry on Back.
   useLayoutEffect(() => {
-    const chips = chipKey.split(",");
+    const known = chartedKey.split(",");
     const saved = readSavedView<{ peakMax: number | null; only: string | null }>(VIEW_ID);
     const read = (initial: boolean) => {
       const s = readDeepLink("song", initial);
       setFocus(s);
       if (s) setUnfolded(new Set([s]));
       const c = readDeepLink("country", false);
-      if (!initial || c) setOnly(c && chips.includes(c) ? c : null);
+      if (!initial || c) setOnly(c && known.includes(c) ? c : null);
       if (initial && saved) {
         setPeakMax(PEAKS.some((p) => p.key === saved.peakMax) ? saved.peakMax : null);
-        setOnly(saved.only && chips.includes(saved.only) ? saved.only : null);
+        setOnly(saved.only && known.includes(saved.only) ? saved.only : null);
       }
     };
     read(true);
     return onDeepLinkChange(() => read(false));
-  }, [chipKey]);
+  }, [chartedKey]);
 
   useEffect(() => {
     saveView(VIEW_ID, { peakMax, only });
@@ -308,6 +313,18 @@ export default function MobileOfficialCharts({
           </span>
           <button type="button" className={styles.focusClear} onClick={clearFocus}>
             Show all releases ✕
+          </button>
+        </div>
+      )}
+      {/* A deep-linked country with no chip on the rail — nothing below would
+          be lit to say the list is narrowed, so the bar says it. */}
+      {only && !countryChips.includes(only) && (
+        <div className={styles.focusBar}>
+          <span>
+            Showing chart entries in <b>{countries[only]?.name ?? only}</b>
+          </span>
+          <button type="button" className={styles.focusClear} onClick={() => pickOnly(null)}>
+            Show all countries ✕
           </button>
         </div>
       )}

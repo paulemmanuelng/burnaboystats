@@ -4,7 +4,7 @@ import { Fragment, useState, useEffect, useLayoutEffect, type CSSProperties } fr
 import Link from "next/link";
 import styles from "./mobileCerts.module.css";
 import { SHOWS_LABEL, SHOWS_SHORT } from "../lib/showsDeepLink";
-import { badgeWeight, byMostCertified, isIssuerMarker, issuingBodyCount } from "../lib/certs";
+import { badgeWeight, byMostCertified, certMatches, isIssuerMarker, issuingBodyCount, matches } from "../lib/certs";
 import ScrollRail from "./ScrollRail";
 import { titleKey } from "../lib/titleKey";
 import { coverFor } from "../lib/covers";
@@ -14,7 +14,7 @@ import { count } from "../lib/plural";
 import { BLANK_PIXEL } from "../lib/blankPixel";
 import { portraitArtFor } from "../lib/portraitArt";
 import { certHistoryYears } from "../data/certifications";
-import type { CertEvent, Country, Release } from "../data/certifications";
+import type { Cert, CertEvent, Country, Release } from "../data/certifications";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
 import MobileFaqSection from "./MobileFaqSection";
@@ -23,7 +23,7 @@ import { awardLabel } from "../lib/awardName";
 import { dropDeepLink, onDeepLinkChange, readDeepLink, readSavedView, saveView } from "../lib/deepLink";
 import {
   ALL_VIEW, certCountPhrase, certKicker, certsInView, certTotals, creditSwitchable, effectiveView, scopeSwitchable, viewKey,
-  viewNoun, logLedeTail, type CertViewKey,
+  viewNoun, logLedeTail, type CertView, type CertViewKey,
 } from "../lib/certScope";
 import { wholePercents } from "../lib/wholePercents";
 import { useCertView } from "../lib/useCertView";
@@ -228,6 +228,14 @@ export default function MobileCerts({
   // wrapper, so this screen never saw it: on a phone the tap landed on the
   // whole unfiltered ledger with nothing to say a filter was ever meant.
   const [focus, setFocus] = useState<string | null>(null);
+  // A single-country focus, deep-linked via #country=… — search's link for
+  // every certifying country. The desktop ledger has read it since 24 Sep
+  // 2026, as a lit chip in its country row; this screen has no country row
+  // and read only #release=, so on a phone a search result for Belgium
+  // opened the whole unfiltered ledger of 250 plaques with nothing to say a
+  // filter was meant (V-records-04, debug pass 5 Oct 2026). It narrows the
+  // list and says so in a bar, the way #release= does.
+  const [country, setCountry] = useState<string | null>(null);
 
   // Read the deep link on mount — client-only, exactly as CertExplorer
   // does it, so /certifications stays statically rendered. The FRAGMENT is the
@@ -240,20 +248,34 @@ export default function MobileCerts({
   // the tier comes back from this history entry on Back. A layout effect so
   // the list is right before the browser restores the scroll offset over it.
   useLayoutEffect(() => {
-    const saved = readSavedView<{ tier: Tier | null }>(VIEW_ID);
+    const saved = readSavedView<{ tier: Tier | null; country?: string | null }>(VIEW_ID);
     const read = (initial: boolean) => {
       const r = readDeepLink("release", initial);
       setFocus(r);
       if (r) setOpenBadges(new Set([r]));
-      if (initial && saved) setTier(saved.tier && TIER_ORDER.includes(saved.tier) ? saved.tier : null);
+      // CertExplorer's reading, word for word: a country this page has no
+      // name for is no focus at all.
+      const c = readDeepLink("country", false);
+      if (!initial || c) setCountry(c && countries[c] ? c : null);
+      if (initial && saved) {
+        setTier(saved.tier && TIER_ORDER.includes(saved.tier) ? saved.tier : null);
+        setCountry(saved.country && countries[saved.country] ? saved.country : null);
+      }
     };
     read(true);
     return onDeepLinkChange(() => read(false));
-  }, []);
+  }, [countries]);
 
   useEffect(() => {
-    saveView(VIEW_ID, { tier });
-  }, [tier]);
+    saveView(VIEW_ID, { tier, country });
+  }, [tier, country]);
+
+  // Clearing the country takes it out of the address bar too, or a reload
+  // puts it back (C-10).
+  const pickCountry = (c: string | null) => {
+    setCountry(c);
+    dropDeepLink("country");
+  };
 
   // The two switches (lib/certScope), in /compare's style: the home country
   // ("Nigeria", "South Africa") and "Features".
@@ -289,9 +311,29 @@ export default function MobileCerts({
   // A tier chip that the International view empties (a Diamond held only at
   // home) leaves the rail, so its selection cannot stand either.
   const shownTier = tier && tierCount[tier] > 0 ? tier : null;
+  // The desktop's rule for a country the view leaves out (Nigeria under
+  // "International"): read as no country, and dropped from state and the
+  // address bar when the reader flips the switch that leaves it out.
+  const holds = (list: Release[], c: string) => list.some((r) => r.certs.some((x) => x.c === c));
+  const shownCountry = country && (!narrowed || holds(inScope, country)) ? country : null;
+  const pickView = (patch: Partial<CertView>) => {
+    const next = { ...view, ...patch };
+    const nextNarrowed = next.scope !== "all" || next.credit !== "all";
+    if (country && nextNarrowed && !holds(certsInView(releases, { home, featured: featuredSet }, next), country)) {
+      pickCountry(null);
+    }
+    setView(patch);
+  };
+  // With a country focused, a row's plaques from there lead and the rest are
+  // dimmed, as on the desktop ledger: Dai Dai folds at twelve of its eighteen,
+  // and by weight alone its Colombian, Czech, Greek, Hungarian, Portuguese and
+  // Slovak plaques all sat behind the "+6" — the row a filter kept, without
+  // the plaque that kept it (the charts screen's V-records-03, here).
+  const lit = (c: Cert) => !shownCountry || certMatches(c, shownCountry, shownTier);
 
   const matching = inScope
-    .filter((r) => (!focus || r.title === focus) && (!shownTier || r.certs.some((c) => c.level === shownTier)))
+    // Tier and country on the SAME plaque (lib/certs.matches, V-records-01).
+    .filter((r) => (!focus || r.title === focus) && matches(r, shownCountry, shownTier))
     .slice()
     // Albums lead, then the songs — each block running most-certified to
     // least, labelled and numbered from 01 on its own (see isAlbumRow below).
@@ -316,6 +358,7 @@ export default function MobileCerts({
   // them off did nothing at all.
   const clearFilters = () => {
     setTier(null);
+    pickCountry(null);
     if (narrowed) setView({ scope: "all", credit: "all" });
     if (focus) {
       setFocus(null);
@@ -464,7 +507,7 @@ export default function MobileCerts({
         <CertViewSwitches
           view={view}
           offered={offered}
-          onPick={setView}
+          onPick={pickView}
           homeName={homeName ?? home ?? ""}
           className={styles.viewRow}
         />
@@ -519,6 +562,16 @@ export default function MobileCerts({
             }}
           >
             Show all releases ✕
+          </button>
+        </div>
+      )}
+      {shownCountry && (
+        <div className={styles.focusBar}>
+          <span>
+            Showing certifications from <b>{countries[shownCountry].name}</b>
+          </span>
+          <button type="button" className={styles.focusClear} onClick={() => pickCountry(null)}>
+            Show all countries ✕
           </button>
         </div>
       )}
@@ -620,7 +673,9 @@ export default function MobileCerts({
                 // "+N" chip opens the rest in place, "− less" folds it back.
                 // Thresholds live here on purpose: fold at >15, show 12, so
                 // the chip never appears just to hide two badges.
-                const sorted = [...r.certs].sort((x, y) => badgeWeight(y) - badgeWeight(x));
+                const sorted = [...r.certs].sort(
+                  (x, y) => Number(lit(y)) - Number(lit(x)) || badgeWeight(y) - badgeWeight(x)
+                );
                 const folded = sorted.length > 15 && !openBadges.has(r.title);
                 return (folded ? sorted.slice(0, 12) : sorted);
               })()
@@ -632,7 +687,7 @@ export default function MobileCerts({
                   return (
                     <span
                       key={`${c.c}-${c.level}-${c.x ?? 1}`}
-                      className={styles.badge}
+                      className={lit(c) ? styles.badge : `${styles.badge} ${styles.badgeDim}`}
                       style={{ color: ink, borderColor: ink }}
                       title={c.provenance ? `${countries[c.c].name} — ${c.body ?? countries[c.c].body}, ${c.provenance}` : undefined}
                     >
