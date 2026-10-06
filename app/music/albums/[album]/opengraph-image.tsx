@@ -6,7 +6,8 @@ import { albums } from "../../../data/albums";
 import { albumCharts } from "../../../data/charts";
 import { albums as certAlbums } from "../../../data/certifications";
 import { sameTitle } from "../../../lib/titleKey";
-import { albumTiles, tilesSig } from "../../../lib/ogStatTiles";
+import { cardSig } from "../../../lib/boardCards";
+import { albumCardStats } from "../../../lib/musicCards";
 
 export function generateStaticParams() {
   return albumPageSlugs.map((album) => ({ album }));
@@ -46,13 +47,13 @@ export async function generateImageMetadata({
   const albumAlt = page ? `${page.title}, the Burna Boy album — chart peaks, certifications and stats` : alt;
   // The tiles AS PRINTED join the id too: "1 COUNTRIES" / "1 CERTS" became
   // "1 COUNTRY" / "1 CERT" on 5 Oct 2026 with every figure unchanged.
-  const tiles = tilesSig(tilesFor(albumStats(slug)));
+  const tiles = cardSig(tilesFor(albumStats(slug)));
   return [{ id: ogId(`${slug}|${peak}|${countries}|${certCount}|${tiles}|${cardUrl(`/music/albums/${slug}`)}`), alt: albumAlt, size, contentType }];
 }
 
 /** The stat tiles, singular where the count is one (debug pass 5 Oct 2026). */
 const tilesFor = ({ record, countries, peak, certCount }: ReturnType<typeof albumStats>) =>
-  albumTiles(peak, countries, certCount, record ? record.tracks.length : null);
+  albumCardStats(peak, countries, certCount, record ? record.tracks.length : null);
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";

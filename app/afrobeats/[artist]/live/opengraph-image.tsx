@@ -5,7 +5,6 @@ import { artistBySlug } from "../../../data/afrobeats";
 import { LIVE_BOARDS, liveBoardFor } from "../../../data/liveBoards";
 import { LIVE_CADENCE, liveTitleRows } from "../../../lib/liveChartMeta";
 import { plural } from "../../../lib/plural";
-import { liveTiles, tilesSig } from "../../../lib/ogStatTiles";
 
 export function generateStaticParams() {
   return LIVE_BOARDS.map((b) => ({ artist: b.slug }));
@@ -17,14 +16,15 @@ export async function generateImageMetadata({ params }: { params: Promise<{ arti
   // The card is a snapshot, so its id has to move with the snapshot — otherwise
   // a scraper keeps serving whatever it read the first time. Survives the
   // param-less probe Next runs while collecting page data.
-  // The rows and tiles AS PRINTED join it: three rows, singular labels and
-  // the description's tie-break all changed the picture on 5 Oct 2026, and a
-  // snapshot that had not moved would have kept the old card.
+  // The title rows AS PRINTED join it too: three rows and the description's
+  // tie-break changed the picture on 5 Oct 2026, and a snapshot that had not
+  // moved would have kept the old card. The tiles' labels follow from the
+  // figures already in it (services, not chart lines, since 5 Oct 2026).
   const sig = b
-    ? `${slug}|live|${b.updated}|${b.placements}|${b.countries}|${b.numberOnes}|${liveTitleRows(b.releases)
+    ? `${slug}|live|${b.updated}|${b.placements}|${b.countries}|${b.numberOnes}|${b.services}|${liveTitleRows(b.releases)
         .slice(0, LIVE_CARD_ROWS)
         .map((t) => `${t.best}:${t.title}:${t.reach}`)
-        .join(",")}|${tilesSig(tilesFor(b))}|${cardUrl(`/afrobeats/${slug}/live`)}`
+        .join(",")}|${cardUrl(`/afrobeats/${slug}/live`)}`
     : `${slug}`;
   const artist = artistBySlug(slug);
   return [{ id: ogId(sig), alt: artist ? `${artist.name} — live platform chart placements, ${LIVE_CADENCE}` : alt, size, contentType }];
@@ -32,9 +32,6 @@ export async function generateImageMetadata({ params }: { params: Promise<{ arti
 
 /** How many title rows the card draws. */
 const LIVE_CARD_ROWS = 3;
-
-/** The stat tiles, singular where the count is one (debug pass 5 Oct 2026). */
-const tilesFor = (b: NonNullable<ReturnType<typeof liveBoardFor>>) => liveTiles(b.placements, b.countries, b.platformTotals.length);
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
@@ -58,7 +55,15 @@ export default async function Image({ params }: { params: Promise<{ artist: stri
   // live card (debug pass 5 Oct 2026, seo-19).
   const top = liveTitleRows(b?.releases ?? []).slice(0, LIVE_CARD_ROWS);
 
-  const stats = b ? tilesFor(b) : [];
+  const stats = b
+    ? [
+        { v: `${b.placements}`, l: b.placements === 1 ? "Placement" : "Placements" },
+        { v: `${b.countries}`, l: b.countries === 1 ? "Country" : "Countries" },
+        // Services, not chart lines — Spotify's albums chart is Spotify
+        // (debug pass, 5 Oct 2026).
+        { v: `${b.services}`, l: b.services === 1 ? "Platform" : "Platforms" },
+      ]
+    : [];
 
   return new ImageResponse(
     (

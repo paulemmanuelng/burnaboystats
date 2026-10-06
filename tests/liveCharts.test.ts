@@ -8,6 +8,7 @@ import {
   extractCountryChart,
   mergeChartPlacements,
   titleKey,
+  stripInvisible,
   servesCoverArt,
   DEEZER_NO_COVER,
 } from "../scripts/stats-lib.mjs";
@@ -398,6 +399,40 @@ describe("titleKey", () => {
   it("keeps version suffixes significant — they chart separately", () => {
     expect(titleKey("Dai Dai")).not.toBe(titleKey("Dai Dai (Instrumental)"));
     expect(titleKey("Dai Dai")).not.toBe(titleKey("Dai Dai (Clean Bandit Remix)"));
+  });
+
+  // Debug pass, 5 Oct 2026: kworb's artist page served "Getting Paid (feat.
+  // Asake, Wizkid, Skillibeng)" with zero-width spaces before "(", inside
+  // "feat" and before ")", so the credit pattern could not see the credit and
+  // the record opened a second row on Wizkid's and Asake's boards.
+  const SHIPPED = "Getting Paid \u200b(f\u200beat\u200b. Asake, Wizkid, Skillibeng\u200b)";
+
+  it("folds a credit laced with zero-width characters", () => {
+    expect(titleKey(SHIPPED)).toBe(titleKey("Getting Paid"));
+    expect(titleKey("Happiness \u200b(f\u200beat\u200b. Asake, Gunna\u200b)")).toBe(titleKey("Happiness"));
+    expect(stripInvisible(SHIPPED)).toBe("Getting Paid (feat. Asake, Wizkid, Skillibeng)");
+    // Negative control: the key as it was, without the strip, kept them apart.
+    const before = (t: string) =>
+      t.replace(/\s*[([](?:feat|ft|with|w\/)\.?\s[^)\]]*[)\]]/gi, "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+    expect(before(SHIPPED)).not.toBe(before("Getting Paid"));
+  });
+
+  it("merges a swept row into its release and stores the title clean", () => {
+    const releases: { title: string; kind: string; platforms: { platform: string; entries: unknown[] }[] }[] = [
+      { title: "Getting Paid", kind: "song", platforms: [{ platform: "Spotify", entries: [{ country: "KE", name: "Kenya", position: 7 }] }] },
+    ];
+    mergeChartPlacements(releases, [{ platform: "Apple Music", release: SHIPPED, country: "NG", name: "Nigeria", position: 179 }]);
+    expect(releases).toHaveLength(1);
+    const fresh: { title: string }[] = [];
+    mergeChartPlacements(fresh, [{ platform: "Apple Music", release: SHIPPED, country: "NG", name: "Nigeria", position: 179 }]);
+    expect(fresh[0].title).toBe("Getting Paid (feat. Asake, Wizkid, Skillibeng)");
+  });
+
+  it("reads a zero-width title off the artist page clean", () => {
+    const cell = CELL.replace("<b>Test Song</b>", "<b>Getting Paid \u200b(f\u200beat\u200b. Asake\u200b)</b>");
+    const titles = extractLiveCharts(cell).map((r: { title: string }) => r.title);
+    expect(titles).toContain("Getting Paid (feat. Asake)");
+    expect(titles.some((t: string) => /[\u200B-\u200D\u2060\uFEFF]/.test(t))).toBe(false);
   });
 });
 

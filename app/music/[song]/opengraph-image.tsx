@@ -5,7 +5,8 @@ import { songBySlug, songSlugs } from "../../data/songs";
 import { allChartItems } from "../../data/charts";
 import { allItems } from "../../data/certifications";
 import { albumYearByTitle } from "../../data/albums";
-import { songTiles, tilesSig } from "../../lib/ogStatTiles";
+import { cardSig } from "../../lib/boardCards";
+import { songCardStats } from "../../lib/musicCards";
 
 export function generateStaticParams() {
   return songSlugs.map((song) => ({ song }));
@@ -45,7 +46,7 @@ export async function generateImageMetadata({
   const songAlt = song ? `${song.title} by ${song.credit ?? "Burna Boy"} — chart peaks, certifications and stats` : alt;
   // The tiles AS PRINTED join the id too: "1 COUNTRIES" / "1 CERTS" became
   // "1 COUNTRY" / "1 CERT" on 5 Oct 2026 with every figure unchanged.
-  const tiles = tilesSig(songTiles(peak, countries, certCount));
+  const tiles = cardSig(songCardStats(peak, countries, certCount));
   return [{ id: ogId(`${slug}|${song?.credit ?? ""}|${peak}|${countries}|${certCount}|${tiles}|${cardUrl(`/music/${slug}`)}`), alt: songAlt, size, contentType }];
 }
 
@@ -60,7 +61,7 @@ export default async function Image({ params }: { params: Promise<{ song: string
   const { song: slug } = await params;
   const { song, countries, peak, certCount } = songStats(slug);
 
-  const stats = songTiles(peak, countries, certCount);
+  const stats = songCardStats(peak, countries, certCount);
 
   return new ImageResponse(
     (

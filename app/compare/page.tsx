@@ -7,13 +7,18 @@ import { countryMeta, artistBySlug as boardArtist, pageStamp } from "../data/afr
 import { CERT_THRESHOLDS } from "../data/certThresholds";
 import { numberWord } from "../lib/homeData";
 
+// As the rest of the page names them: "the Czech Republic", the name its
+// table row, h1 and breadcrumb print — the card said "Czechia" (debug pass,
+// 5 Oct 2026). Both are right; one page uses one.
+const nameOf = (code: string) => (code === "NL" ? "the Netherlands" : code === "CZ" ? "the Czech Republic" : countryMeta(code).name);
+
 // The bodies that publish their levels in streams AND their own download
 // equivalence — the same filter /methodology uses. Typed, this card named four
 // (France, Denmark, Norway, the Netherlands) while the table below it priced
 // Czech and Slovak plaques by the same rule.
 const streamRatioNames = Object.values(CERT_THRESHOLDS)
   .filter((t) => t.singleRaw && !t.assumed)
-  .map((t) => (t.code === "NL" ? "the Netherlands" : t.code === "CZ" ? "Czechia" : countryMeta(t.code).name))
+  .map((t) => nameOf(t.code))
   .sort((a, b) => a.replace(/^the /, "").localeCompare(b.replace(/^the /, "")));
 const streamRatioBodies = `${streamRatioNames.slice(0, -1).join(", ")} and ${streamRatioNames[streamRatioNames.length - 1]}`;
 
@@ -23,7 +28,6 @@ const streamRatioBodies = `${streamRatioNames.slice(0, -1).join(", ")} and ${str
 // 20 Sep 2026, when it was priced at IFPI's June 2013 level and marked ¶, and
 // Poland left the revenue list on 23 Sep 2026, when its złoty were divided by
 // ZPAV's own 2 zł a single — ¶ too.)
-const nameOf = (code: string) => (code === "NL" ? "the Netherlands" : code === "CZ" ? "Czechia" : countryMeta(code).name);
 const joinNames = (xs: string[]) => (xs.length <= 1 ? xs.join("") : `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}`);
 const byName = (a: string, b: string) => a.replace(/^the /, "").localeCompare(b.replace(/^the /, ""));
 /** Bodies whose song levels are streams with no download-equivalence — priced at an assumed ratio, marked §. */
@@ -53,7 +57,7 @@ import { PICKER_FOLD, fold, pickerArtists, pickerReleases } from "../lib/compare
 import { featuredPairs, pairCopy, pairSlug } from "../lib/comparePairs";
 import { carried, href, one, type SP } from "../lib/compareUrl";
 import { fmt, keepParens, plaque, PlaqueWords, program, shortProgram, tierClass } from "./chips";
-import { marketKey, PLAQUE_NOTE_HEADINGS } from "../lib/certUnits";
+import { caveatParagraph, marketKey, notCountedNotes, PLAQUE_NOTE_HEADINGS } from "../lib/certUnits";
 
 /** "RIAA Latin" in the US code column reads as "US · LATIN" — the country is
  *  already spelled beside it, so the column carries what makes this row a
@@ -281,7 +285,13 @@ function Slot({
       : [
           "artist totals",
           priced ? `${priced.pricedPlaques} counted` : "",
-          priced ? `${priced.byCountry.length} ${priced.byCountry.length === 1 ? "country" : "countries"}` : "",
+          // Countries HELD, counted once: the lines are markets, so a RIAA
+          // Latin line beside a RIAA line is one country, and a listed-only
+          // line (Colombia) is a country too (debug pass, 5 Oct 2026).
+          priced ? (() => {
+            const n = new Set([...priced.byCountry, ...priced.listed].map((l) => l.country)).size;
+            return `${n} ${n === 1 ? "country" : "countries"}`;
+          })() : "",
         ].filter(Boolean);
 
   return (
@@ -671,9 +681,8 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
   // table and the dagger had no footnote at all.
   const noteSource = useSongs
     ? {
-        notCounted: [...spa!.listed, ...spb!.listed, ...spa!.byCountry.filter((l) => l.notCounted), ...spb!.byCountry.filter((l) => l.notCounted)]
-          .filter((l, i, xs) => xs.findIndex((y) => y.country === l.country) === i)
-          .map((l) => ({ country: l.country, body: l.body, issuer: (l.top ?? l.notCounted?.top)?.body, reason: l.reason ?? l.notCounted?.reason ?? "" })),
+        // One per country, every issuer named — the engine's own rule.
+        notCounted: notCountedNotes([...spa!.listed, ...spb!.listed, ...spa!.byCountry.filter((l) => l.notCounted), ...spb!.byCountry.filter((l) => l.notCounted)]),
         caveats: [...new Set([...spa!.caveats, ...spb!.caveats])],
         vintages: [...new Set([...spa!.vintages, ...spb!.vintages])],
         assumptions: [...new Set([...spa!.assumptions, ...spb!.assumptions])],
@@ -707,11 +716,21 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
   const foldedIn = (rowsIn: ComparisonRow[]) => rowsIn.reduce((m, r) => m + unpricedIn(r.a) + unpricedIn(r.b), 0);
   const foldedNotCounted = c && !showAll ? c.collapsed.reduce((n, t) => n + foldedIn(t.rows), 0) : 0;
 
+  // "1 of 1 plaque counted", not "plaques" (Tiwa Savage's one NZ Gold outside
+  // Nigeria, 5 Oct 2026): plural on the denominator.
+  const plaquesOf = (x: ArtistUnits) => {
+    const n = x.pricedPlaques + x.excludedPlaques;
+    return `${n} plaque${n === 1 ? "" : "s"}`;
+  };
   const tie = ready && totalA === totalB;
   const leadA = totalA >= totalB;
   const max = Math.max(totalA, totalB, 1);
   const diff = Math.abs(totalA - totalB);
   const ratio = Math.min(totalA, totalB) > 0 ? Math.max(totalA, totalB) / Math.min(totalA, totalB) : null;
+  // "1,848×", not "1848.0×": a separator like every other figure here, and no
+  // decimal once it means nothing (debug pass, 5 Oct 2026). Under 10 the
+  // tenth still says something — 1.4× is not 1×.
+  const ratioWords = (r: number) => (r >= 10 ? Math.round(r).toLocaleString("en-US") : r.toFixed(1));
   const ngOn = c?.options.includeNigeria ?? soloNg;
   // What the switch returns to when turned back: the pair's own default. It
   // used to write ng=0 / feat=0 into every shared URL, and on a default-included
@@ -801,9 +820,12 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
               </>
             )
           ) : countryMode ? (
+            // No own-body promise: Greece is priced at IFPI's June 2013 level
+            // and Colombia not at all, as the index lead just below names them
+            // (debug pass, 5 Oct 2026). Same wording as the page's meta.
             <>
               The rest of this page asks who has more. This asks who has more <em>where</em> — one market, every
-              artist, priced at that country&apos;s own certifying body&apos;s published threshold.
+              artist, each plaque priced at the threshold its country&apos;s page names.
             </>
           ) : (
             <>
@@ -975,7 +997,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
                 <p className={`${styles.figure} ${leadA ? styles.figureLead : styles.figureBehind}`}>{fmt(totalA)}</p>
                 <p className={styles.headMeta}>
                   certified units · {ngOn ? "Nigeria included" : "outside Nigeria"}
-                  {sideA ? ` · ${sideA.pricedPlaques} of ${sideA.pricedPlaques + sideA.excludedPlaques} plaques counted` : ""}
+                  {sideA ? ` · ${sideA.pricedPlaques} of ${plaquesOf(sideA)} counted` : ""}
                   {sideA?.excludedPlaques ? ` · ${sideA.excludedPlaques} not comparable` : ""}
                 </p>
                 <div className={styles.bar}>
@@ -988,7 +1010,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
                   <p className={`${styles.figure} ${leadA ? styles.figureBehind : styles.figureLead}`}>{fmt(totalB)}</p>
                   <p className={styles.headMeta}>
                     certified units · {ngOn ? "Nigeria included" : "outside Nigeria"}
-                    {sideB ? ` · ${sideB.pricedPlaques} of ${sideB.pricedPlaques + sideB.excludedPlaques} plaques counted` : ""}
+                    {sideB ? ` · ${sideB.pricedPlaques} of ${plaquesOf(sideB)} counted` : ""}
                     {sideB?.excludedPlaques ? ` · ${sideB.excludedPlaques} not comparable` : ""}
                   </p>
                   <div className={styles.bar}>
@@ -1001,14 +1023,16 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
             <div className={`${styles.diffRow} ${ready ? "" : styles.diffRowSolo}`}>
               {ready && tie ? (
                 <p className={styles.diff}>
-                  <strong>Level</strong> — both at least {fmt(totalA)} certified units
-                  {totalA === 0 && !ngOn ? ". Neither holds a certification outside Nigeria; include it to compare them." : "."}
+                  {/* The zero case says nothing more here: the note under the
+                      Nigeria strip names both artists and the action, and the
+                      page said it twice (debug pass, 5 Oct 2026). */}
+                  <strong>Level</strong> — both at least {fmt(totalA)} certified units.
                 </p>
               ) : ready ? (
                 <p className={styles.diff}>
                   <strong>{leadA ? nameA : nameB}</strong> leads by at least{"\u00a0"}{fmt(diff)} certified units
                   {ratio && ratio >= 1.05
-                    ? `\u00a0— a floor ${ratio.toFixed(1)}× the size of ${trailing(leadA ? nameB : nameA)}`
+                    ? `\u00a0— a floor ${ratioWords(ratio)}× the size of ${trailing(leadA ? nameB : nameA)}`
                     : ""}.
                 </p>
               ) : (
@@ -1070,7 +1094,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
               <table className={styles.table} role="table">
                 <thead role="rowgroup">
                   <tr role="row">
-                    <th scope="col" role="columnheader">Country<span className={styles.thSep}> · </span><span className={styles.thCount}>{rows.length}</span></th>
+                    <th scope="col" role="columnheader">Country<span className={styles.thSep}> · </span><span className={styles.thCount}>{new Set(rows.map((r) => r.country)).size}</span></th>
                     <th scope="col" role="columnheader" className={styles.thNum}>{nameA}</th>
                     <th scope="col" role="columnheader" className={styles.thNum}>{nameB}</th>
                   </tr>
@@ -1111,7 +1135,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
                     <tr key={t.side} role="row" className={styles.collapseRow}>
                       <td role="cell" colSpan={3}>
                         <span className={styles.collapseText}>
-                          + {t.countries} further countries where only {t.artist} is certified ·{" "}
+                          + {t.countries} further {t.countries === 1 ? "country" : "countries"} where only {t.artist} is certified ·{" "}
                           <span className={styles.collapseUnits}>at least{"\u00a0"}{fmt(t.units)}</span>
                           {foldedIn(t.rows) > 0 ? <> · {foldedIn(t.rows)} plaque{foldedIn(t.rows) === 1 ? "" : "s"} not counted{"\u00a0"}<span className={styles.mark}>¹</span></> : null}
                         </span>
@@ -1137,7 +1161,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
                 </p>
               )}
               {visibleCaveat && shownCaveats.length > 0 && (
-                <p><strong><span className={styles.mark}>†</span> {PLAQUE_NOTE_HEADINGS.caveat}</strong> — {shownCaveats.join(" ")}</p>
+                <p><strong><span className={styles.mark}>†</span> {PLAQUE_NOTE_HEADINGS.caveat}</strong> — {caveatParagraph(shownCaveats)}</p>
               )}
               {visibleVintage && noteSource.vintages.length > 0 && (
                 <p>
@@ -1152,9 +1176,10 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
               )}
               {visibleAssumed && shownAssumptions.length > 0 && (
                 <p>
-                  <strong><span className={styles.mark}>§</span> {PLAQUE_NOTE_HEADINGS.assumed}</strong> — the body publishes its levels in
-                  streams and no download-equivalence, so this page converts at {assumedRatio} streams to a unit, the ratio
-                  Denmark and Norway publish for the same measure. {shownAssumptions.join(" ")}
+                  {/* Each body's own note already gives the ratio and where it
+                      comes from; a generic lead before them said it a third
+                      time (debug pass, 5 Oct 2026). */}
+                  <strong><span className={styles.mark}>§</span> {PLAQUE_NOTE_HEADINGS.assumed}</strong> — {shownAssumptions.join(" ")}
                 </p>
               )}
               {visibleHistoric && shownHistorics.length > 0 && (

@@ -12,11 +12,14 @@ import { certCountryCodes } from "../../lib/certCountry";
  */
 export const metadata: Metadata = pageMetadata({
   title: "Certified Units by Country — Afrobeats Artists",
+  // Not "every plaque priced at that country's own body's threshold": Greece's
+  // are priced at IFPI's June 2013 level and Colombia's not at all, as their
+  // own pages say (debug pass, 5 Oct 2026).
   description:
-    `Where Afrobeats is certified: ${certCountryCodes().length} markets, every plaque priced at that country's own body's published threshold, artists ranked market by market.`,
+    `Where Afrobeats is certified: ${certCountryCodes().length} markets, each plaque priced at the threshold its country page names, artists ranked market by market.`,
   path: "/compare/in",
   shareTitle: "Certified units by country",
-  shareDescription: "One market, every artist — priced at each body's own published threshold.",
+  shareDescription: "One market, every artist — priced market by market.",
 });
 
 export default async function CountryIndexPage() {

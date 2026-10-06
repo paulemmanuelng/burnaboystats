@@ -26,10 +26,11 @@ import { CERTS_STAMP, COUNTRIES } from "../app/data/certifications";
 import { CERT_THRESHOLDS } from "../app/data/certThresholds";
 import { allPairs, pairSlug } from "../app/lib/comparePairs";
 import { comparableArtists, unitsForCert } from "../app/lib/certUnits";
-import { countryBoards, pricedClause } from "../app/lib/certCountry";
+import { countryBoards } from "../app/lib/certCountry";
 import { liveTitleRows } from "../app/lib/liveChartMeta";
 import { LIVE_BOARDS } from "../app/data/liveBoards";
-import { songTiles, albumTiles, boardArtistTiles, boardChartTiles, liveTiles, tilesSig } from "../app/lib/ogStatTiles";
+import { songCardStats, albumCardStats } from "../app/lib/musicCards";
+import { cardSig } from "../app/lib/boardCards";
 import { ANALYSIS_STAMP } from "../app/lib/analysisStamp";
 import { searchDocs } from "../app/lib/searchIndex";
 import { totalAwards } from "../app/data/certifications";
@@ -62,18 +63,33 @@ describe("a page that prints chart rows is dated no earlier than the chart sweep
     for (const a of swept) expect(chartPageStamp(a), a.slug).toBe([pageStamp(a), AFROBEATS_LAST_CHART_SWEEP].sort().at(-1));
   });
 
-  it("the sitemap and both pages' Dataset agree, and Seyi Vibez no longer says 6 Sep", async () => {
-    const seyi = bySlug("seyi-vibez");
-    expect(pageStamp(seyi)).toBe("2026-09-06"); // its plaque stamp, unchanged
-    for (const path of ["/afrobeats/seyi-vibez", "/afrobeats/seyi-vibez/charts"]) expect(lastmod(path), path).toBe(chartPageStamp(seyi));
+  it("the sitemap and both pages' Dataset agree, for every artist whose pages print chart rows", () => {
+    for (const a of swept.filter((x) => x.charts.length > 0)) {
+      for (const path of [`/afrobeats/${a.slug}`, `/afrobeats/${a.slug}/charts`]) expect(lastmod(path), path).toBe(chartPageStamp(a));
+      expect(chartPageStamp(a) >= AFROBEATS_LAST_CHART_SWEEP, a.slug).toBe(true);
+    }
+    // Seyi Vibez's routes served 6 Sep on 5 Oct 2026, his plaque stamp then.
+    // The board-title edits of the same debug pass (#428) moved his pageStamp
+    // past the chart sweep since; the negative control is the shipped date.
+    expect(chartPageStamp(bySlug("seyi-vibez"))).not.toBe("2026-09-06");
+  });
+
+  it("Asake's pages, whose plaque stamp is still 6 Sep, declare the chart sweep in their Dataset", async () => {
+    const asake = bySlug("asake");
+    expect(pageStamp(asake)).toBe("2026-09-06"); // its plaque stamp, no edit since
     const dated = async (el: Promise<React.ReactElement>) =>
       ldOf(renderToStaticMarkup(await el)).find((n) => n["@type"] === "Dataset")?.dateModified;
-    expect(await dated(ArtistChartsPage({ params: Promise.resolve({ artist: "seyi-vibez" }) }))).toBe(chartPageStamp(seyi));
-    expect(await dated(ArtistPage({ params: Promise.resolve({ artist: "seyi-vibez" }) }))).toBe(chartPageStamp(seyi));
-    // Negative control: the date both routes served on 5 Oct 2026.
-    expect(chartPageStamp(seyi)).not.toBe("2026-09-06");
-    // CKay and Olamide keep their later edit (D-05).
-    for (const slug of ["ckay", "olamide"]) expect(chartPageStamp(bySlug(slug))).toBe("2026-10-03");
+    expect(await dated(ArtistChartsPage({ params: Promise.resolve({ artist: "asake" }) }))).toBe(chartPageStamp(asake));
+    expect(await dated(ArtistPage({ params: Promise.resolve({ artist: "asake" }) }))).toBe(chartPageStamp(asake));
+    // Negative control: pageStamp alone, the date these routes carried.
+    expect(chartPageStamp(asake)).not.toBe(pageStamp(asake));
+    expect(chartPageStamp(asake)).toBe(AFROBEATS_LAST_CHART_SWEEP);
+    // A later edit made without a register read is kept (D-05): CKay's 3 Oct,
+    // Olamide's 5 Oct.
+    for (const slug of ["ckay", "olamide"]) {
+      expect(pageStamp(bySlug(slug)) > AFROBEATS_LAST_CHART_SWEEP, slug).toBe(true);
+      expect(chartPageStamp(bySlug(slug)), slug).toBe(pageStamp(bySlug(slug)));
+    }
   });
 });
 
@@ -101,19 +117,20 @@ describe("the /compare routes are dated by the same helper the sitemap uses", ()
 
 // ── compareA-13 ─────────────────────────────────────────────────────────────
 describe("the /compare share cards claim only the pricing the data supports", () => {
-  it("the clause says 'each' only when every plaque is priced", () => {
-    expect(pricedClause(10, 10)).toBe("each priced at its own body's threshold");
-    expect(pricedClause(1336, 1338)).toBe("1,336 priced at their own body's threshold");
-  });
-
+  // The wording is the boards pass's (#428, compareIn-04): "priced country by
+  // country" / "priced market by market", no "each" — Greece's plaques are
+  // priced at IFPI's June 2013 level and Colombia's not at all.
   it("today two Colombian plaques cannot be priced, so neither card says 'each'", () => {
     const certs = comparableArtists.flatMap((a) => a.releases.flatMap((r) => r.certs.map((c) => ({ c, r }))));
     const priced = certs.filter(({ c, r }) => unitsForCert(c, r.format).units !== null).length;
     expect(certs.length - priced).toBeGreaterThan(0);
-    for (const f of ["app/compare/opengraph-image.tsx", "app/compare/in/opengraph-image.tsx"]) {
-      expect(read(f), f).not.toMatch(/· each priced at its own body's threshold`/);
-      expect(read(f), f).toContain("pricedClause(priced, plaques)");
-    }
+    const shipped = /each priced at its own body's threshold/;
+    // Negative control: the /compare/in card's sub line as it shipped (main at
+    // e6ebef4f); the /compare card's ended on the same clause.
+    expect("  sub: `${certCountryCodes().length} markets · ${plaques.toLocaleString(\"en-US\")} plaques · each priced at its own body's threshold`,").toMatch(shipped);
+    for (const f of ["app/compare/opengraph-image.tsx", "app/compare/in/opengraph-image.tsx"]) expect(read(f), f).not.toMatch(shipped);
+    expect(read("app/compare/opengraph-image.tsx")).toContain("· priced country by country`");
+    expect(read("app/compare/in/opengraph-image.tsx")).toContain("· priced market by market`");
     const boards = countryBoards();
     expect(boards.reduce((n, b) => n + b.counted, 0)).toBeLessThan(boards.reduce((n, b) => n + b.plaques, 0));
   });
@@ -174,17 +191,34 @@ describe("a live page's description and share card read the same rows", () => {
 
 // ── seo-05 ───────────────────────────────────────────────────────────────────
 describe("share-card stat labels go singular at one", () => {
-  it("each template's tiles, at one and at many", () => {
-    expect(songTiles("#3", 1, 1).map((t) => t.l)).toEqual(["Best peak", "Country", "Cert"]);
-    expect(songTiles("No. 1", 2, 5).map((t) => t.l)).toEqual(["Best peak", "Countries", "Certs"]);
-    expect(albumTiles(null, 1, 1, 14).map((t) => t.l)).toEqual(["Country", "Cert", "Tracks"]);
-    expect(boardArtistTiles(1, 1, 1, 1).map((t) => t.l)).toEqual(["Certification", "Country", "Chart entry", "No. 1 peak"]);
-    expect(boardChartTiles(129, 1, 13).map((t) => t.l)).toEqual(["Chart entries", "Territory", "No. 1 peaks"]);
-    expect(liveTiles(3, 1, 1).map((t) => t.l)).toEqual(["Placements", "Country", "Platform"]);
+  // The board's artist and charts cards: artistCardStats / chartsCardStats
+  // (app/lib/boardCards.ts), held at one and at many in
+  // tests/debug1005Boards.test.ts (afrobeatsB-08). The song and album cards
+  // build on the same CardStat shape and cardSig.
+  it("the song and album tiles, at one and at many", () => {
+    expect(songCardStats("#3", 1, 1).map((t) => t.l)).toEqual(["Best peak", "Country", "Cert"]);
+    expect(songCardStats("No. 1", 2, 5).map((t) => t.l)).toEqual(["Best peak", "Countries", "Certs"]);
+    expect(albumCardStats(null, 1, 1, 14).map((t) => t.l)).toEqual(["Country", "Cert", "Tracks"]);
+    expect(albumCardStats(null, 2, 2, 1).map((t) => t.l)).toEqual(["Countries", "Certs", "Track"]);
+  });
+
+  it("the live card's three tiles each have a singular", () => {
+    const src = read("app/afrobeats/[artist]/live/opengraph-image.tsx");
+    for (const [n, one, many] of [
+      ["placements", "Placement", "Placements"],
+      ["countries", "Country", "Countries"],
+      ["services", "Platform", "Platforms"],
+    ]) {
+      expect(src, many).toContain(`l: b.${n} === 1 ? "${one}" : "${many}"`);
+    }
   });
 
   it("the labels join each card's image id, so a scraped preview re-fetches", () => {
-    expect(tilesSig(songTiles("#3", 1, 1))).not.toBe("#3 Best peak,1 Countries,1 Certs");
+    expect(cardSig(songCardStats("#3", 1, 1))).not.toBe(cardSig([
+      { v: "#3", l: "Best peak" },
+      { v: "1", l: "Countries" },
+      { v: "1", l: "Certs" },
+    ]));
     for (const f of [
       "app/music/[song]/opengraph-image.tsx",
       "app/music/albums/[album]/opengraph-image.tsx",
@@ -193,7 +227,10 @@ describe("share-card stat labels go singular at one", () => {
       "app/afrobeats/[artist]/live/opengraph-image.tsx",
     ]) {
       const src = read(f);
-      expect(src, f).toContain("tilesSig(");
+      // The live card's labels follow from the figures its id already folds
+      // (placements, countries, services); the others fold cardSig.
+      if (f.includes("/live/")) expect(src, f).toMatch(/\|\$\{b\.placements\}\|\$\{b\.countries\}\|\$\{b\.numberOnes\}\|\$\{b\.services\}\|/);
+      else expect(src, f).toContain("cardSig(");
       // No hard-coded plural label left behind.
       expect(src, f).not.toMatch(/l: "(Countries|Certs|Territories|No\. 1 peaks|Certifications|Chart entries|Placements|Platforms)"/);
       expect(src, f).not.toMatch(/\{t\.reach\} charts/);

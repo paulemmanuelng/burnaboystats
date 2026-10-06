@@ -1,7 +1,6 @@
 import { ogImage, ogVersions, size, contentType } from "../lib/og-image";
-import { comparableArtists, unitsForCert } from "../lib/certUnits";
+import { comparableArtists } from "../lib/certUnits";
 import { CERT_THRESHOLDS } from "../data/certThresholds";
-import { pricedClause } from "../lib/certCountry";
 
 export { size, contentType };
 export const alt = "Certified units, compared — two Afrobeats artists at each body's own threshold";
@@ -24,19 +23,10 @@ const plaques = comparableArtists.reduce(
 // the word says which this is.
 const bodies = Object.keys(CERT_THRESHOLDS).length;
 
-// How many of those plaques CAN be priced. The sub ended "each priced at its
-// own body's threshold" until 5 Oct 2026 while two Colombian plaques (no
-// published thresholds) were not — the claim this comment's first paragraph
-// already ruled out. Derived, so a newly unpriceable market shows up here.
-const priced = comparableArtists.reduce(
-  (n, a) => n + a.releases.reduce((m, r) => m + r.certs.filter((c) => unitsForCert(c, r.format).units !== null).length, 0),
-  0,
-);
-
 const card = {
   kicker: "Certified units",
   title: "Compared",
-  sub: `${comparableArtists.length} artists · ${plaques.toLocaleString("en-US")} artist plaques across ${bodies} countries · ${pricedClause(priced, plaques)}`,
+  sub: `${comparableArtists.length} artists · ${plaques.toLocaleString("en-US")} artist plaques across ${bodies} countries · priced country by country`,
 };
 
 export const generateImageMetadata = () => ogVersions(card, alt);

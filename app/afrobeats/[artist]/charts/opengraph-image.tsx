@@ -1,8 +1,8 @@
 import { ImageResponse } from "next/og";
 import { ogId, cardUrl } from "../../../lib/og-image";
 import { OgLockup, ogFonts } from "../../../lib/og-lockup";
-import { artistBySlug, afrobeatsArtists, chartEntries, chartTerritories, chartNo1s, chartCountryMeta, bestPeaks } from "../../../data/afrobeats";
-import { boardChartTiles, tilesSig } from "../../../lib/ogStatTiles";
+import { artistBySlug, afrobeatsArtists, chartCountryMeta, bestPeaks } from "../../../data/afrobeats";
+import { chartsCardStats, cardSig } from "../../../lib/boardCards";
 
 export function generateStaticParams() {
   return afrobeatsArtists.filter((a) => a.charts.length > 0).map((a) => ({ artist: a.slug }));
@@ -12,18 +12,14 @@ export async function generateImageMetadata({ params }: { params: Promise<{ arti
   const { artist: slug } = await params;
   const a = artistBySlug(slug);
   // Survives the param-less probe Next runs while collecting page data.
-  // The tiles AS PRINTED, and the two-row chip cap, join the id: both changed
-  // the picture on 5 Oct 2026 with every figure unchanged ("1 TERRITORIES").
+  // Labels and figures both (5 Oct 2026: "1 Territories" became "1 Territory"),
+  // and the two-row chip cap, which changed the picture of every three-row card
+  // with no figure moving (debug pass 5 Oct 2026, seo-19).
   const sig = a
-    ? `${slug}|charts|${chartEntries(a)}|${chartTerritories(a)}|${chartNo1s(a)}|${tilesSig(chartTiles(a))}|chips-2rows|${cardUrl(`/afrobeats/${slug}/charts`)}`
+    ? `${slug}|charts|${cardSig(chartsCardStats(a))}|chips-2rows|${cardUrl(`/afrobeats/${slug}/charts`)}`
     : `${slug}`;
   return [{ id: ogId(sig), alt: a ? `${a.name} — official chart peaks by country, read from each country's own chart` : alt, size, contentType }];
 }
-
-/** The stat tiles, singular where the count is one (debug pass 5 Oct 2026:
- *  Seyi Vibez's card read "1 TERRITORIES", Victony's "1 NO. 1 PEAKS"). */
-const chartTiles = (a: NonNullable<ReturnType<typeof artistBySlug>>) =>
-  boardChartTiles(chartEntries(a), chartTerritories(a), chartNo1s(a));
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
@@ -68,7 +64,7 @@ export default async function Image({ params }: { params: Promise<{ artist: stri
   // bestPeaks carries the non-obvious dedupe (and its history) in one tested place.
   const best = a ? bestPeaks(a, 8) : [];
 
-  const stats = a ? chartTiles(a) : [];
+  const stats = a ? chartsCardStats(a) : [];
 
   const node = (showFlags: boolean) => (
     (

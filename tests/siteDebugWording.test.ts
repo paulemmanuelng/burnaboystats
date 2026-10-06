@@ -156,9 +156,9 @@ describe("No. 1 is spelled with a space, and the album with its ellipsis (A-30)"
     }
     // The tiles moved to one helper on 5 Oct 2026 (singular labels, seo-05);
     // the peak tile still prints the peak as the id folds it.
-    expect(read(CARDS[0])).toContain("songTiles(peak, countries, certCount)");
-    expect(read(CARDS[1])).toContain("albumTiles(peak, countries, certCount,");
-    expect(read("app/lib/ogStatTiles.ts")).toContain('if (peak != null) out.push({ v: peak, l: "Best peak" });');
+    expect(read(CARDS[0])).toContain("songCardStats(peak, countries, certCount)");
+    expect(read(CARDS[1])).toContain("albumCardStats(peak, countries, certCount,");
+    expect(read("app/lib/musicCards.ts")).toContain('if (peak != null) out.push({ v: peak, l: "Best peak" });');
   });
 });
 

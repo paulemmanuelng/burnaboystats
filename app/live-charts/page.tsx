@@ -3,7 +3,7 @@ import styles from "./liveCharts.module.css";
 import KeepExploring from "../components/KeepExploring";
 import BreadcrumbBar from "../components/BreadcrumbBar";
 import MobileLiveCharts, { type ReleasePreview } from "../components/MobileLiveCharts";
-import { cadenceOf, reachOf, numberOnesOf, countriesOf, releaseKey, LIVE_CADENCE, LIVE_CADENCE_ADVERB } from "../lib/liveChartMeta";
+import { cadenceOf, reachOf, numberOnesOf, countriesOf, platformCountries, releaseKey, LIVE_CADENCE, LIVE_CADENCE_ADVERB } from "../lib/liveChartMeta";
 import LiveReleaseBlock, { type ReleaseSummary } from "../components/LiveReleaseBlock";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime, BURNA_BOY_REF } from "../lib/seo";
 import { releaseArt } from "../lib/liveReleaseArt";
@@ -75,7 +75,8 @@ const summarize = (r: (typeof liveCharts)[number]): ReleaseSummary => ({
   no1: numberOnesOf(r),
   platforms: r.platforms.map((p) => ({
     platform: p.platform,
-    count: p.entries.length,
+    // Countries, not placements: a worldwide chart is not a country.
+    countries: platformCountries(p.entries),
     numberOnes: p.numberOnes,
   })),
 });

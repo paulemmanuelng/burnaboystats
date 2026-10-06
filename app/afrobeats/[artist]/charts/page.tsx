@@ -18,30 +18,16 @@ import {
   chartTerritories,
   chartGlobalLines,
   chartNo1s,
+  chartSourceClause,
   type AfroArtist,
   AFROBEATS_LAST_CHART_SWEEP,
   chartPageStamp,
 } from "../../../data/afrobeats";
 
-/** "read from each country's national chart, plus 2 Billboard global charts".
- *
- *  The territory count includes Billboard's Global 200 and Global 200 Excl. US
- *  wherever the artist has charted on them, so a flat "each country's principal
- *  national chart" over that figure is false for two of them — the same
- *  countries-vs-territories confusion PR #160 fixed across the Burna Boy pages,
- *  inherited here by the board. One derivation, used by the meta description,
- *  the Dataset node and both layouts' ledes, so they cannot drift apart.
- *
- *  `principal` is dropped in the meta description only: it is worth 10 of the
- *  160 characters check-seo allows, and the page body still spells the full
- *  standard out under "Where the charts come from". */
-const sourceClause = (a: AfroArtist, short = false) => {
-  const globals = chartGlobalLines(a);
-  const national = short ? "each country's national chart" : "each country's principal national chart";
-  return globals
-    ? `${national}, plus ${count(globals, "Billboard global chart", "Billboard global charts")}`
-    : national;
-};
+/** "read from each country's national chart, plus 2 Billboard global charts" —
+ *  one derivation, in app/data/afrobeats.ts, shared with the artist page's
+ *  chart card (debug pass, 5 Oct 2026). */
+const sourceClause = chartSourceClause;
 
 /** The No. 1 clause, or nothing. Oxlade and Tiwa Savage (25 Sep 2026) were
  *  the first board artists with no chart No. 1, and the templates printed the
@@ -210,7 +196,7 @@ export default async function AfroArtistChartsPage({
           <p className={styles.lede}>
             {/* A single expression: JSX drops the space after an expression when
                 the sentence wraps to the next line, which published "24of them". */}
-            {`${a.name}’s peak positions on the world’s official charts — ${count(entries, "entry", "entries")} across ${count(territories, "territory", "territories")}${ofThemAtNo1(no1s)}, read from ${sourceClause(a)} rather than a platform or genre listing.`}
+            {`${a.name}’s peak positions on the world’s official charts — ${count(entries, "entry", "entries")} across ${count(territories, "territory", "territories")}${ofThemAtNo1(no1s)}, read from ${sourceClause(a)}, not from a platform or genre listing.`}
           </p>
 
           <div className={styles.statGrid}>
