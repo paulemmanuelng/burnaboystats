@@ -482,13 +482,14 @@ function SongPicker({
 function Cell({ line, lead, artistMode }: { line: CountryLine | null; lead: boolean; artistMode: boolean }) {
   // A blank cell reads as a rendering fault, so the words are the value.
   if (!line) return <span className={styles.noPlaque}>No plaque</span>;
-  // No-break spaces: a mark on its own line inside a 104px phone chip read
-  // as a stray glyph. The marks share one face (.mark) — Space Mono has no ‡,
-  // and its † pulled a latin-ext subset the site never preloads.
-  // ¶ (U+00B6) is Latin-1 and sits in every face .mark names, so it needs
-  // no subset of its own.
+  // No-break spaces between the marks: one mark on its own line inside a
+  // 104px phone chip read as a stray glyph. The group as a whole may take
+  // the chip's next line (PlaqueWords). The marks share one face (.mark) —
+  // Space Mono has no ‡, and its † pulled a latin-ext subset the site never
+  // preloads. ¶ (U+00B6) is Latin-1 and sits in every face .mark names, so
+  // it needs no subset of its own.
   const markList = [line.caveat ? "†" : null, line.vintage ? "‡" : null, line.assumed ? "§" : null, line.historic ? "¶" : null].filter(Boolean);
-  const marks = markList.length ? <>{"\u00a0"}<span className={styles.mark}>{markList.join("\u00a0")}</span></> : null;
+  const marks = markList.length ? <span className={styles.mark}>{markList.join("\u00a0")}</span> : null;
   // A programme line already says which programme it is, in the country column
   // — the chip repeating "Latin" beside it was saying it twice.
   const prog = line.program ? null : program(line.top, line.country);
@@ -516,7 +517,7 @@ function Cell({ line, lead, artistMode }: { line: CountryLine | null; lead: bool
   return (
     <div className={styles.cell}>
       <span className={`${styles.tierChip} ${tierClass(line.top?.level ?? "Gold")}`}>
-        <PlaqueWords top={line.top} after={marks} />
+        <PlaqueWords top={line.top} marks={marks} />
         {prog && (
           <span className={styles.chipProgram} title={prog}>
             <span className={styles.progLong}>{prog}</span>

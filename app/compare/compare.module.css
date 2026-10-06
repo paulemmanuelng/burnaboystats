@@ -743,6 +743,12 @@
   /* The flag + code need 41px; the value cells were starved to 104px. */
   .table tr { grid-template-columns: 56px minmax(0, 1fr) minmax(0, 1fr); gap: 8px; }
   .tierChip { letter-spacing: 0; padding: 3px 5px; }
+  /* "US · LATIN" is the one code that cannot sit beside its flag in 56px:
+     "LATIN" was 37px with 30px left, and ran 7px over the column into the
+     chip or "No plaque" beside it (debug pass 5 Oct 2026, V-compareB-04). A
+     code with no room takes the line under the flag; two-letter codes fit
+     beside it and never wrap. */
+  .country { flex-wrap: wrap; row-gap: 2px; }
 }
 
 /* ── sticky board bar (phone) ─────────────────────────────────

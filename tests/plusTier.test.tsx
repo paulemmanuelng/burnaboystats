@@ -243,8 +243,10 @@ describe("the label renders with its half step on every surface that prints a ti
     expect(text(pairHtml)).toContain("4× Platinum + Gold");
     // Two unbreakable runs, not one: "4× Platinum + Gold † ‡ §" as a single
     // nowrap run pushed /compare/burna-boy-vs-wizkid 30px past a 390px screen.
-    // The phone chip wraps between the halves (chips.tsx PlaqueWords).
-    for (const h of [boardHtml, pairHtml]) expect(h).toMatch(/4× Platinum<\/span>\s*<span[^>]*>\+ Gold/);
+    // The phone chip wraps between the halves (chips.tsx PlaqueWords). On the
+    // pair page "+ Gold" shares a plain span with its † ‡ § marks, so the
+    // marks can take a line of their own (V-compareB-04).
+    for (const h of [boardHtml, pairHtml]) expect(h).toMatch(/4× Platinum<\/span>\s*(?:<span>)?<span[^>]*>\+ Gold<\/span>/);
     // …and a chip with no half step keeps its one run.
     expect(boardHtml).toMatch(/>4× Platinum<\/span><\/span>/);
   });

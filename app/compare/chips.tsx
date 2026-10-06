@@ -35,22 +35,36 @@ export const plaque = (top: { level: string; x: number; body?: string; plus?: st
 
 /** A chip's words, as `.tierWord` runs: "4× Platinum" and, where the body
  *  awarded a half step on top, "+ Gold" as a SECOND unbreakable run, with
- *  `after` (the † ‡ § marks, a "+2") riding on the last one. One run per half
- *  so a phone chip can wrap between them: "4× Platinum + Gold † ‡ §" as a
- *  single nowrap run ran 30px off a 390px screen on /compare's Mexico row. */
+ *  `after` (a "+2") riding on the last one. One run per half so a phone chip
+ *  can wrap between them: "4× Platinum + Gold † ‡ §" as a single nowrap run
+ *  ran 30px off a 390px screen on /compare's Mexico row.
+ *
+ *  `marks` (the † ‡ §) follow the last run behind an ordinary space, in one
+ *  plain span with it: a phone chip with no room puts them on a line of their
+ *  own, together, under the words. Glued to the words they made Ayra Starr's
+ *  Mexico chip "4× Platinum † ‡ §" 118px in a 108px cell at 320, into the
+ *  next column (debug pass 5 Oct 2026, V-compareB-04). Inline, not a flex
+ *  item of the chip, so a chip that fits sets them exactly as before: same
+ *  baseline, same space. On desktop the chip is nowrap and nothing breaks. */
 export function PlaqueWords({
   top,
   after,
+  marks,
 }: {
   top: { level: string; x: number; body?: string; plus?: string } | null;
   after?: ReactNode;
+  marks?: ReactNode;
 }) {
-  if (!top?.plus) return <span className={styles.tierWord}>{plaque(top)}{after}</span>;
+  const last = (words: string) => {
+    const run = <span className={styles.tierWord}>{words}{after}</span>;
+    return marks ? <span>{run}{" "}{marks}</span> : run;
+  };
+  if (!top?.plus) return last(plaque(top));
   const { plus: _half, ...main } = top;
   return (
     <>
       <span className={styles.tierWord}>{awardLabel(main)}</span>{" "}
-      <span className={styles.tierWord}>{plusWord(top).trim()}{after}</span>
+      {last(plusWord(top).trim())}
     </>
   );
 }
