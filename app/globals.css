@@ -1958,6 +1958,14 @@ a[class*="__certRow"]:focus-visible,
   html:has([class*="__actionBar"]) {
     scroll-padding-bottom: calc(80px + env(safe-area-inset-bottom, 22px));
   }
+  /* The song and album pages' bar is the same 12 + 50 + 12 px bar, but its
+     class is mobileActionBar, and the match above is case-sensitive, so it
+     never applied: tabbing down a song page put "all certifications" and
+     "Next song" wholly under the bar (debug pass 5 Oct 2026, V-music-02,
+     when the album pages took the same bar). */
+  html:has([class*="__mobileActionBar"]) {
+    scroll-padding-bottom: calc(80px + env(safe-area-inset-bottom, 22px));
+  }
   html:has(.mobileTabBarPresent) {
     scroll-padding-bottom: calc(64px + max(30px, env(safe-area-inset-bottom, 0px)));
   }

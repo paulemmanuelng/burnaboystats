@@ -362,6 +362,33 @@ export default async function AlbumPage({ params }: { params: Promise<{ album: s
       </section>
 
       {/* ── Onward ───────────────────────────────────────────── */}
+      {/* Screen 26's sticky action bar, the song page's own. The shared
+          stylesheet hides the hero's "Play on Spotify" below 900px because
+          this bar carries it, and the album page never drew the bar — so on a
+          phone none of the eight albums had a Spotify link at all, and the
+          five-tab bar stands down here too (mobileScreens.ts counts every
+          /music/ deep screen as carrying its own), leaving the screen with no
+          foot (debug pass 5 Oct 2026, V-music-02 / V-global-16). */}
+      {record.spotify && (
+        <div className={styles.mobileActionBar}>
+          <a
+            className={styles.mobilePrimary}
+            href={record.spotify}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            ▶ Play on Spotify
+          </a>
+          <Link href="/share" aria-label="Make a stat card" className={styles.mobileShare}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+              <path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7" />
+              <path d="M12 3v12" />
+              <path d="m7 8 5-5 5 5" />
+            </svg>
+          </Link>
+        </div>
+      )}
+
       <section className={styles.onward}>
         <Link href="/music" className="btn btnSecondary">← Full discography</Link>
         {nextAlbum.slug !== page.slug && (
