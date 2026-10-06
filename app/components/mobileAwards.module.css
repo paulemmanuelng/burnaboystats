@@ -178,7 +178,12 @@
 
 /* ── One award body ───────────────────────────────────────────────────── */
 .bodyHead { display: flex; align-items: baseline; gap: 8px; padding: 20px 18px 10px; }
+/* The name takes the wrap and the "3 of 6 won" tally stays one line beside
+   it. With the tally free to shrink, a long name (IRAWMA, AAEA, Channel O)
+   squeezed it into "3 / of / 6" — 5 bodies at 390px, 16 at 320px. */
 .bodyName {
+  min-width: 0;
+  overflow-wrap: break-word;
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
   font-size: 20px;
@@ -189,6 +194,8 @@
   margin: 0;
 }
 .tally {
+  flex: none;
+  white-space: nowrap;
   margin-left: auto;
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   font-weight: 700;
@@ -198,6 +205,7 @@
 }
 .tallyWon { color: var(--gold); }
 .tallyLabel {
+  flex: none;
   font-family: var(--font-mono), monospace;
   font-size: 11px;
   letter-spacing: 0.1em;
