@@ -306,7 +306,10 @@ export default function DaiDaiPage() {
   ];
 
   const numbersLabels: NumbersLabels = {
-    national: "National charts",
+    // "Charts", not "National charts": the table also holds a regional chart
+    // (MENA), a radio countdown (Big Top 40) and an airplay chart (Rhythmic
+    // Airplay) — Paul, 6 Oct 2026 (music-16).
+    national: "Charts",
     cols: { country: "Country", chart: "Chart", peak: "Peak", weeksAt1: "Weeks at No. 1", weeksOn: "Weeks on chart" },
     peak: "No. {n}",
     notStated: "not stated",
