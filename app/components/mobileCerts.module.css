@@ -110,21 +110,30 @@
   pointer-events: none;
 }
 
-/* Davido's shot reads as a crown mark rather than a face, so it is contained
-   rather than cropped and keeps its edges instead of dissolving into the page.
-   A square at the hero's top right, beside the total — no longer .heroArt's
-   translateY(-50%), which this rule never reset: it lifted a 92%-tall box by
-   half its height, so the crown sat centred on the hero's top edge, clipped
-   under the kicker, and ended in a hard line across the total (debug pass
-   4 Oct 2026, B-07). A square image in a square box, so contain fills it. */
+/* Davido's shot reads as a crown mark rather than a face, so it keeps its
+   edges instead of dissolving into the page. At the hero's top right, beside
+   the total — no longer .heroArt's translateY(-50%), which this rule never
+   reset: it lifted a 92%-tall box by half its height, so the crown sat centred
+   on the hero's top edge, clipped under the kicker, and ended in a hard line
+   across the total (debug pass 4 Oct 2026, B-07).
+   A band, not a square, and in px from the hero's top: it ends above the
+   lede. The photo is a gold crown (x 30–71%, y 34–69% of the 640) centred on
+   flat black, and as a 58%-wide square (226px at 390) its box ran 90.8px into
+   the lede — the crown's points over "issuing body's", and on paper its grey
+   ground under the first two lines (debug pass 5 Oct 2026, V-afrobeats-10).
+   `cover` at the box's width crops only that black ground, so the crown is
+   the size it was, beside the "91". The lede starts 155.6px below the hero's
+   top in every view (one-line kicker + total row, measured 320–900), so the
+   band ends at 150 whatever the lede says; its top is the old 4% of a 505px
+   hero. Capped at 260px so the crown (35% of the width tall) stays inside
+   130px on the tablets that still get this layout. */
 .heroArtEmblem {
-  top: 4%;
+  top: 20px;
   right: -4%;
-  width: 58%;
-  height: auto;
-  aspect-ratio: 1 / 1;
+  width: min(58%, 260px);
+  height: 130px;
   transform: none;
-  object-fit: contain;
+  object-fit: cover;
   -webkit-mask-image: none;
   mask-image: none;
 }

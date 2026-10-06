@@ -74,8 +74,12 @@ const SHIPPED_BOX =
 // so the 92%-tall box was lifted by half its height (B-07, 4 Oct 2026).
 const SHIPPED_EMBLEM =
   "top: 4%; right: -4%; width: 58%; height: 92%; object-fit: contain; -webkit-mask-image: none; mask-image: none;";
-const EMBLEM =
+// …and as B-07 left it: a 58%-wide square from 4% of the hero, whose box ran
+// 90.8px into the lede at 390 (V-afrobeats-10, debug pass 5 Oct 2026).
+const B07_EMBLEM =
   "top: 4%; right: -4%; width: 58%; height: auto; aspect-ratio: 1 / 1; transform: none; object-fit: contain; -webkit-mask-image: none; mask-image: none;";
+const EMBLEM =
+  "top: 20px; right: -4%; width: min(58%, 260px); height: 130px; transform: none; object-fit: cover; -webkit-mask-image: none; mask-image: none;";
 
 describe("phone: the raised square is Burna Boy's /certifications only (item 34, option b)", () => {
   it("/certifications: the square slot and its scrim; sizes and the preload agree at 80vw", () => {
@@ -120,6 +124,65 @@ describe("phone: the raised square is Burna Boy's /certifications only (item 34,
     // Negative control: the slot is a different box, so a .heroArt rewritten
     // to it would fail the line above.
     expect(ruleFor(PHONE_CSS, ".heroArtSlot")).not.toBe(SHIPPED_BOX);
+  });
+
+  it("Davido's crown is whole, beside the total and clear of the lede at every phone width (V-afrobeats-10)", () => {
+    // Measured live on /afrobeats/davido (6 Oct 2026, dark and light): the
+    // lede starts 155.6px below the hero's top at 320, 360, 375, 390, 430, 600
+    // and 900, in every view — the kicker is one line and the total row a
+    // fixed 92px (51.6–143.6), so nothing above the lede moves. The hero is
+    // 505.6px tall at 390 with the default lede.
+    const LEDE_TOP = 155.6;
+    const TOTAL = { y0: 51.6, y1: 143.6 };
+    // The crown in the 640 photo, read off the image in the page: every pixel
+    // more than 40 levels off its flat #0b0b0b ground.
+    const CROWN = { x0: 0.3, x1: 0.71, y0: 0.34, y1: 0.69 };
+    // `cover` crops by object-position, and Davido's is the centre.
+    expect(PORTRAIT_ART.davido.focal).toBe("center");
+    const place = (rule: string, W: number, heroH: number) => {
+      const len = (v: string, of: number) => (v.endsWith("%") ? (parseFloat(v) / 100) * of : parseFloat(v));
+      const w = decl(rule, "width")!;
+      const cap = w.match(/^min\(([\d.]+%), ([\d.]+px)\)$/);
+      const boxW = cap ? Math.min(len(cap[1], W), len(cap[2], W)) : len(w, W);
+      const boxH = decl(rule, "height") === "auto" ? boxW : len(decl(rule, "height")!, heroH);
+      const top = len(decl(rule, "top")!, heroH);
+      const left = W - boxW + len(decl(rule, "right")!, W) * -1;
+      // A square photo: contain fits the short side, cover the long one.
+      const side = decl(rule, "object-fit") === "cover" ? Math.max(boxW, boxH) : Math.min(boxW, boxH);
+      const ox = left + (boxW - side) / 2, oy = top + (boxH - side) / 2;
+      return {
+        box: { top, bottom: top + boxH, left, right: left + boxW },
+        crown: { x0: ox + CROWN.x0 * side, x1: ox + CROWN.x1 * side, y0: oy + CROWN.y0 * side, y1: oy + CROWN.y1 * side },
+      };
+    };
+    const rule = ruleFor(PHONE_CSS, ".heroArtEmblem")!;
+    for (const W of [320, 360, 375, 390, 430, 600, 768, 900]) {
+      const { box, crown } = place(rule, W, 505.6);
+      // The box ends above the lede, so neither the crown nor (on paper) its
+      // grey ground can reach the words.
+      expect(box.bottom, `${W}: box into the lede`).toBeLessThanOrEqual(LEDE_TOP);
+      // The whole crown: the crop takes only black.
+      expect(crown.y0, `${W}: crown cut at the top`).toBeGreaterThanOrEqual(box.top);
+      expect(crown.y1, `${W}: crown cut at the bottom`).toBeLessThanOrEqual(box.bottom);
+      expect(crown.x0, `${W}: crown cut at the left`).toBeGreaterThanOrEqual(box.left);
+      expect(crown.x1, `${W}: crown off the screen`).toBeLessThanOrEqual(W);
+      // Beside the total, not over the kicker.
+      const mid = (crown.y0 + crown.y1) / 2;
+      expect(mid, `${W}: crown not beside the total`).toBeGreaterThanOrEqual(TOTAL.y0);
+      expect(mid, `${W}: crown not beside the total`).toBeLessThanOrEqual(TOTAL.y1);
+      if (W <= 430) {
+        // On phones the crown is the size B-07 drew it, in the same columns.
+        const was = place(B07_EMBLEM, W, 505.6).crown;
+        expect(crown.x0).toBeCloseTo(was.x0, 6);
+        expect(crown.x1).toBeCloseTo(was.x1, 6);
+      }
+    }
+    // Negative control, B-07's square at 390 (measured live: y 89.2–315.4 on
+    // a hero from 69, the lede from 224.6): box and crown both in the lede.
+    const b07 = place(B07_EMBLEM, 390, 505.6);
+    expect(b07.box.bottom).toBeCloseTo(315.4 - 69, 0);
+    expect(b07.box.bottom).toBeGreaterThan(LEDE_TOP);
+    expect(b07.crown.y1).toBeGreaterThan(LEDE_TOP);
   });
 
   it("the slot's geometry: 80% wide, right −22%, raised 16%, masks in % of the square", () => {
