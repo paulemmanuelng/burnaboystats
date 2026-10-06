@@ -81,7 +81,7 @@ async function lastInk(text: string, fontSize: number, fonts: Fonts) {
   return -1;
 }
 const drift = async (words: [string, string], size: number, fonts: Fonts) =>
-  Math.abs((await lastInk(words.join(" "), size, fonts)) - (await lastInk(words.join(" "), size, fonts)));
+  Math.abs((await lastInk(words.join(" "), size, fonts)) - (await lastInk(words.join("\u00a0"), size, fonts)));
 
 // The five gaps the live cards showed, at the square card's sizes: a label of
 // up to 42 characters at 52px (african-giant's 34), up to 64 at 44px

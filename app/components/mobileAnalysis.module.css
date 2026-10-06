@@ -175,7 +175,7 @@
   -webkit-hyphenate-limit-after: 4;
 }
 
-.body {font-size: var(--type-body); line-height: var(--type-body-lh); color: var(--text-body); margin: 20px 0 0; }
+.body { font-size: var(--type-body); line-height: var(--type-body-lh); color: var(--text-body); margin: 20px 0 0; }
 
 .links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px; }
 .link {
