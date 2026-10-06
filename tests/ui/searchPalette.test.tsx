@@ -2,9 +2,11 @@ import { act, render, screen, fireEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 const push = vi.fn();
+// The route, as a test moves it (V-global-01 below).
+let pathname = "/";
 vi.mock("next/navigation", () => ({
   useRouter: () => ({ push, prefetch: vi.fn(), replace: vi.fn(), back: vi.fn() }),
-  usePathname: () => "/",
+  usePathname: () => pathname,
 }));
 
 import SearchPalette from "../../app/components/SearchPalette";
@@ -43,6 +45,7 @@ beforeEach(() => {
     return (gone ? [] : [{}]) as unknown as DOMRectList;
   });
   push.mockClear();
+  pathname = "/";
   window.history.replaceState({}, "", "/");
   document.body.style.overflow = "";
 });
@@ -155,5 +158,47 @@ describe("C-04: a result on the page you are on moves the fragment itself", () =
     cmdK();
     await userEvent.type(screen.getByRole("combobox", { name: "Search query" }), "gbona{Enter}");
     await vi.waitFor(() => expect(push).toHaveBeenCalledWith("/certifications#release=Gbona"));
+  });
+});
+
+/**
+ * V-global-01, the full-site debug of 5 Oct 2026 (phone, 390): the overlay was
+ * rendered inside the sticky header, whose stacking context (z-index 50) held
+ * the overlay's 200 below the tab bar's 60. The tab bar stayed bright and live
+ * over the open palette; a tap on Music went to /music with the palette still
+ * mounted, invisible there (that screen hides the header), and a swipe then
+ * scrolled nothing: 0 -> 0 against 0 -> 502 on a fresh load, until a reload.
+ */
+describe("V-global-01: the palette covers the page and shuts on a route change", () => {
+  it("puts its overlay straight under <body>, outside the header", () => {
+    render(
+      <header className="navbar">
+        <SearchPalette suggested={suggested} />
+      </header>
+    );
+    cmdK();
+    const overlay = palette()!.parentElement!;
+    expect(overlay.parentElement).toBe(document.body);
+    expect(overlay.closest("header")).toBeNull();
+  });
+
+  it("closes and hands the scroll back when the route changes under it", () => {
+    const { rerender } = render(<SearchPalette suggested={suggested} />);
+    cmdK();
+    expect(palette()).toBeInTheDocument();
+    expect(document.body.style.overflow).toBe("hidden");
+
+    pathname = "/music"; // the tab bar's Music tab
+    rerender(<SearchPalette suggested={suggested} />);
+
+    expect(palette()).not.toBeInTheDocument();
+    expect(document.body.style.overflow).toBe("");
+  });
+
+  it("stays open while the route does not change (control)", () => {
+    const { rerender } = render(<SearchPalette suggested={suggested} />);
+    cmdK();
+    rerender(<SearchPalette suggested={suggested} />);
+    expect(palette()).toBeInTheDocument();
   });
 });

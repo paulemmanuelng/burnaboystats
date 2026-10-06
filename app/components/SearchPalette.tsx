@@ -1,7 +1,9 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { useRouter } from "next/navigation";
+import { usePagePath } from "../lib/pagePath";
 import styles from "./SearchPalette.module.css";
 import type { SearchDoc } from "../lib/searchIndex";
 import type { SuggestedDoc } from "../lib/searchSuggested";
@@ -83,6 +85,22 @@ export default function SearchPalette({ suggested }: { suggested: readonly Sugge
     setQuery("");
     setActive(0);
   }, []);
+
+  // Any route change closes it. The header lives in the layout, so it stays
+  // mounted across navigation: a tap on the phone tab bar under the open
+  // palette (5 Oct 2026, V-global-01) took the page to /music with the palette
+  // still open — invisible there, because /music hides this header, and
+  // holding the scroll lock below until a reload.
+  // Done while rendering, React's way to follow a changing value: an effect
+  // would paint the stale palette once more first.
+  const pathname = usePagePath();
+  const [shownOn, setShownOn] = useState(pathname);
+  if (pathname !== shownOn) {
+    setShownOn(pathname);
+    setOpen(false);
+    setQuery("");
+    setActive(0);
+  }
 
   const go = useCallback(
     (path: string) => {
@@ -266,7 +284,15 @@ export default function SearchPalette({ suggested }: { suggested: readonly Sugge
         <kbd className={styles.kbd}>⌘K</kbd>
       </button>
 
-      {open && (
+      {/* Into <body>, not inside the header. The sticky header (z-index 50)
+          is its own stacking context, so the overlay's 200 only ranked it
+          inside the bar: the phone tab bar (60) stayed bright and tappable
+          over the dimmed page. And once the bar is scrolled, its
+          backdrop-filter makes it the containing block for anything fixed
+          inside it, so on desktop the scrim shrank to a strip across the top
+          and the page under the panel was neither dimmed nor a dismiss target.
+          Out here `position: fixed; inset: 0` is the viewport. */}
+      {open && createPortal(
         <div className={styles.overlay} role="presentation" onClick={close}>
           <div
             ref={panelRef}
@@ -344,7 +370,8 @@ export default function SearchPalette({ suggested }: { suggested: readonly Sugge
               </div>
             )}
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );
