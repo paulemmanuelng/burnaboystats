@@ -28,7 +28,6 @@ import {
   countryCount,
   chartNo1s,
   chartEntries,
-  countryMeta,
   offRegisterPhrase,
   offRegisterHold,
   type AfroArtist,
@@ -37,6 +36,7 @@ import { count } from "./plural";
 import { opponentOf } from "./headToHead";
 import { certWeight } from "./certs";
 import { awardLabel, awardRank } from "./awardName";
+import { inSentence } from "./certCountry";
 
 export interface Faq {
   q: string;
@@ -155,10 +155,13 @@ export function artistFaqs(a: AfroArtist): Faq[] {
         `Because TurnTable's public certification page shows only part of its own register: it ` +
         `serves a hard cap of 500 rows and currently displays no Silver awards at all, for any ` +
         `artist. ${a.name} holds ${count(ngSilver, "Silver plaque", "Silver plaques")} among ` +
-        `${count(ngCerts.length, "Nigerian plaque", "Nigerian plaques")} here, so at least that many ` +
-        `cannot appear on the live page. They are read from the same register's own archived ` +
+        `${count(ngCerts.length, "Nigerian plaque", "Nigerian plaques")} here, so at least ` +
+        // One Silver is "it", not "they": Tems holds exactly one (debug pass,
+        // 5 Oct 2026). This ships as FAQPage structured data too.
+        `${ngSilver === 1 ? "that one" : "that many"} cannot appear on the live page. ` +
+        `${ngSilver === 1 ? "It is" : "They are"} read from the same register's own archived ` +
         `captures rather than inferred — open the February 2026 capture and search ` +
-        `${a.name}'s name to see them.`,
+        `${a.name}'s name to see ${ngSilver === 1 ? "it" : "them"}.`,
     });
   }
 
@@ -191,15 +194,26 @@ export function artistFaqs(a: AfroArtist): Faq[] {
     // ones people recognise.
     const byCount = new Map<string, number>();
     for (const r of a.releases) for (const c of r.certs) byCount.set(c.c, (byCount.get(c.c) ?? 0) + 1);
+    // As each name reads in a sentence: "the United Kingdom", "the United States".
     const list = [...byCount.entries()]
       .sort((x, y) => y[1] - x[1])
-      .map(([code]) => countryMeta(code).name);
+      .map(([code]) => inSentence(code));
+    // "including" only before a partial list. A complete one is the answer
+    // itself, with its "and": Olamide's read "2 countries, including Nigeria,
+    // United Kingdom." and Black Sherif's "1 country, including Nigeria."
+    // (debug pass, 5 Oct 2026).
+    const named =
+      list.length > 6
+        ? `, including ${list.slice(0, 6).join(", ")} and more`
+        : list.length > 1
+          ? `: ${list.slice(0, -1).join(", ")} and ${list.at(-1)}`
+          : list.length === 1
+            ? `: ${list[0]}`
+            : "";
     faqs.push({
       q: `Which countries has ${a.name} been certified in?`,
       a:
-        `${a.name} holds plaques in ${count(countries, "country", "countries")}` +
-        `${list.length ? `, including ${list.slice(0, 6).join(", ")}` : ""}` +
-        `${list.length > 6 ? " and more" : ""}. ` +
+        `${a.name} holds plaques in ${count(countries, "country", "countries")}${named}. ` +
         // Not "that country's own certifying body" over a label's own plaque
         // (Tyla's ten in South Africa, Tems's No.1): this ships as FAQPage
         // structured data too (debug pass, 3 Oct 2026).

@@ -94,6 +94,18 @@ export const countriesOf = (entries: { country: string }[]) =>
       .filter((c) => !NOT_A_COUNTRY.has(c))
   ).size;
 
+/** "12 countries" for one platform's placements, counted by countriesOf — the
+ *  per-platform chips printed `entries.length`, so a release on a platform's
+ *  worldwide chart read one country more than its own country list holds
+ *  (Tems's "Raindance", Shazam: 64 against 63; debug pass, 5 Oct 2026). A
+ *  platform whose only placement is its worldwide chart says so rather than
+ *  "0 countries". */
+export const platformCountries = (entries: { country: string }[]): string => {
+  const n = countriesOf(entries);
+  if (n === 0 && entries.some((e) => NOT_A_COUNTRY.has(e.country))) return "worldwide";
+  return `${n} ${n === 1 ? "country" : "countries"}`;
+};
+
 /**
  * The releases as the live-charts API serves them: Britain under one code.
  *

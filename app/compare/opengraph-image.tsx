@@ -26,7 +26,7 @@ const bodies = Object.keys(CERT_THRESHOLDS).length;
 const card = {
   kicker: "Certified units",
   title: "Compared",
-  sub: `${comparableArtists.length} artists · ${plaques.toLocaleString("en-US")} artist plaques across ${bodies} countries · each priced at its own body's threshold`,
+  sub: `${comparableArtists.length} artists · ${plaques.toLocaleString("en-US")} artist plaques across ${bodies} countries · priced country by country`,
 };
 
 export const generateImageMetadata = () => ogVersions(card, alt);

@@ -5,7 +5,7 @@ import bar from "../artist.module.css";
 import KeepExploring from "../../../components/KeepExploring";
 import MobileLiveCharts, { type ReleasePreview } from "../../../components/MobileLiveCharts";
 import LiveReleaseBlock, { type ReleaseSummary } from "../../../components/LiveReleaseBlock";
-import { cadenceOf, reachOf, numberOnesOf, releaseKey, LIVE_CADENCE, LIVE_CADENCE_LABEL, LIVE_CADENCE_ADVERB } from "../../../lib/liveChartMeta";
+import { cadenceOf, reachOf, numberOnesOf, platformCountries, releaseKey, LIVE_CADENCE, LIVE_CADENCE_LABEL, LIVE_CADENCE_ADVERB } from "../../../lib/liveChartMeta";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime } from "../../../lib/seo";
 import { artistBySlug } from "../../../data/afrobeats";
 import { releaseArt } from "../../../lib/liveReleaseArt";
@@ -108,7 +108,8 @@ const summarize = (r: LiveBoard["releases"][number]): ReleaseSummary => ({
   no1: numberOnesOf(r),
   platforms: r.platforms.map((p) => ({
     platform: p.platform,
-    count: p.entries.length,
+    // Countries, not placements: a worldwide chart is not a country.
+    countries: platformCountries(p.entries),
     numberOnes: p.numberOnes,
   })),
 });
@@ -169,6 +170,8 @@ export default async function AfroLiveChartsPage({
         backHref={`/afrobeats/${slug}`}
         backLabel={`${a.name} · live charts`}
         chartsHref={a.charts.length > 0 ? `/afrobeats/${slug}/charts` : `/afrobeats/${slug}`}
+        // The desktop notice's words: "counted separately on the chart board".
+        chartsLabel={a.charts.length > 0 ? `${a.name}'s chart board` : `${a.name}'s page`}
         heading={{ lead: `${a.name} Live`, gold: "Charts" }}
         source={board.api}
       />

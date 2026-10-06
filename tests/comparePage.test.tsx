@@ -414,7 +414,7 @@ describe("the method card names every stream-ratio body the table prices", () =>
     expect(card.length).toBeGreaterThan(20);
     for (const t of Object.values(CERT_THRESHOLDS)) {
       if (!t.singleRaw || t.assumed) continue;
-      const name = t.code === "NL" ? "Netherlands" : t.code === "CZ" ? "Czechia" : countryMeta(t.code).name;
+      const name = t.code === "NL" ? "Netherlands" : countryMeta(t.code).name;
       expect(card, `${t.code} is priced by its own ratio and should be named`).toContain(name);
     }
     for (const code of ["BE", "BR", "SE", "MX"]) {
@@ -428,7 +428,8 @@ describe("the method card names every stream-ratio body the table prices", () =>
 // four figures that follow CERT_THRESHOLDS and comparableArtists but did not.
 describe("the pair page derives its remaining typed figures", () => {
   const WORDS = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty"];
-  const nameOf = (code: string) => (code === "NL" ? "the Netherlands" : code === "CZ" ? "Czechia" : countryMeta(code).name);
+  // "the Czech Republic", as the table row, h1 and breadcrumb name it (5 Oct 2026).
+  const nameOf = (code: string) => (code === "NL" ? "the Netherlands" : code === "CZ" ? "the Czech Republic" : countryMeta(code).name);
 
   it("the scope line counts the priced bodies, the lede prints the UK single Platinum, the exit card counts the rest", async () => {
     const page = await html({ a: "burna-boy", b: "wizkid" });
@@ -744,6 +745,14 @@ describe("'registers read' dates the last full read, not a partial one", () => {
   it("Burna Boy vs Tyla", async () => {
     const t = text(await html({ a: "burna-boy", b: "tyla" }));
     expect(t).not.toContain("and 3 October 2026 (Tyla)");
-    expect(t).toContain(`(Burna Boy) and ${long(comparableArtists.find((x) => x.slug === "tyla")!.registersReadOn)} (Tyla)`);
+    // Since 5 Oct 2026 Burna Boy's side dates his last FULL sweep too (debug
+    // pass, compareA-06) — the 2 Oct sweep that read the board's registers —
+    // so the two dates are one. It read "4 October 2026 (Burna Boy)", the day
+    // of a single IFPI Danmark read.
+    const burna = comparableArtists.find((x) => x.slug === "burna-boy")!;
+    const tyla = comparableArtists.find((x) => x.slug === "tyla")!;
+    expect(burna.registersReadOn).toBe(tyla.registersReadOn);
+    expect(t).toContain(`both registers read ${long(tyla.registersReadOn)}`);
+    expect(t).not.toContain("4 October 2026 (Burna Boy)");
   });
 });

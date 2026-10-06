@@ -16,7 +16,7 @@ export async function generateImageMetadata({ params }: { params: Promise<{ arti
   // a scraper keeps serving whatever it read the first time. Survives the
   // param-less probe Next runs while collecting page data.
   const sig = b
-    ? `${slug}|live|${b.updated}|${b.placements}|${b.countries}|${b.numberOnes}|${cardUrl(`/afrobeats/${slug}/live`)}`
+    ? `${slug}|live|${b.updated}|${b.placements}|${b.countries}|${b.numberOnes}|${b.services}|${cardUrl(`/afrobeats/${slug}/live`)}`
     : `${slug}`;
   const artist = artistBySlug(slug);
   return [{ id: ogId(sig), alt: artist ? `${artist.name} — live platform chart placements, ${LIVE_CADENCE}` : alt, size, contentType }];
@@ -57,9 +57,11 @@ export default async function Image({ params }: { params: Promise<{ artist: stri
 
   const stats = b
     ? [
-        { v: `${b.placements}`, l: "Placements" },
-        { v: `${b.countries}`, l: "Countries" },
-        { v: `${b.platformTotals.length}`, l: "Platforms" },
+        { v: `${b.placements}`, l: b.placements === 1 ? "Placement" : "Placements" },
+        { v: `${b.countries}`, l: b.countries === 1 ? "Country" : "Countries" },
+        // Services, not chart lines — Spotify's albums chart is Spotify
+        // (debug pass, 5 Oct 2026).
+        { v: `${b.services}`, l: b.services === 1 ? "Platform" : "Platforms" },
       ]
     : [];
 

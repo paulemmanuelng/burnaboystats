@@ -2114,7 +2114,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Certified units in Nigeria",
     "path": "/compare/in/nigeria",
     "section": "Compare",
-    "description": "Every Afrobeats plaque awarded in Nigeria, priced at TurnTable (TCSN)'s own thresholds and ranked by artist.",
+    "description": "Every Afrobeats plaque awarded in Nigeria, priced at TurnTable's own thresholds and ranked by artist.",
     "keywords": [
       "nigeria",
       "ng",
@@ -2182,7 +2182,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Certified units in Slovakia",
     "path": "/compare/in/slovakia",
     "section": "Compare",
-    "description": "Every Afrobeats plaque awarded in Slovakia, priced at ČNS IFPI (Slovakia)'s own thresholds and ranked by artist.",
+    "description": "Every Afrobeats plaque awarded in Slovakia, priced at ČNS IFPI's own thresholds and ranked by artist.",
     "keywords": [
       "slovakia",
       "sk",
@@ -2267,7 +2267,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Certified units in the Czech Republic",
     "path": "/compare/in/czech-republic",
     "section": "Compare",
-    "description": "Every Afrobeats plaque awarded in the Czech Republic, priced at ČNS IFPI (Czechia)'s own thresholds and ranked by artist.",
+    "description": "Every Afrobeats plaque awarded in the Czech Republic, priced at ČNS IFPI's own thresholds and ranked by artist.",
     "keywords": [
       "czech republic",
       "cz",

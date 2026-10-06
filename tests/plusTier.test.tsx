@@ -107,7 +107,8 @@ describe("One Dance in Mexico", () => {
 
   it("is priced at 4 × Platino + 1 × Oro, from AMPROFON's own single levels", () => {
     const t = CERT_THRESHOLDS.MX.single!;
-    expect(unitsForCert(oneDanceMx(), "single")).toEqual({ units: 4 * t.platinum! + t.gold!, why: null });
+    // toMatchObject: the result also carries `exact`, the unfloored figure sums use.
+    expect(unitsForCert(oneDanceMx(), "single")).toMatchObject({ units: 4 * t.platinum! + t.gold!, why: null });
     // The control: the same award without the half step is the bare multiple.
     const { plus: _drop, ...bare } = oneDanceMx();
     expect(unitsForCert(bare, "single").units).toBe(4 * t.platinum!);
