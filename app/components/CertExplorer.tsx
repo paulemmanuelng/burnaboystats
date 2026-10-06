@@ -260,6 +260,15 @@ export default function CertExplorer({
   // country, and cleared from state (and the address bar) when the reader
   // flips the switch.
   const shownCountry = country && (!narrowed || viewCodes.has(country)) ? country : null;
+  // The tiers the view holds, and only those, make the Tier row — as on the
+  // phone's rail (MobileCerts, tierCount > 0). All four were offered on every
+  // page, so the ten board artists with no Diamond had a Diamond chip whose
+  // one click led to "There's no Diamond certification" (V-afrobeats-04, 5
+  // Oct 2026). Read from the switched view, like the country row: a tier the
+  // switches leave out (Tems' one Diamond is a featured appearance) leaves
+  // the row, and a selection of it reads as no tier, as the phone's does.
+  const viewTiers = new Set<string>([...scoped.albums, ...scoped.singles, ...scoped.features].flatMap((r) => r.certs.map((c) => c.level)));
+  const shownTier = tier && viewTiers.has(tier) ? tier : null;
   const pickView = (patch: Partial<CertView>) => {
     const next = { ...view, ...patch };
     const nextNarrowed = next.scope !== "all" || next.credit !== "all";
@@ -273,7 +282,7 @@ export default function CertExplorer({
     { label: "Featured Appearances", items: scoped.features },
   ].map((g) => ({
     ...g,
-    items: g.items.filter((it) => (!focus || it.title === focus) && matches(it, shownCountry, tier)).sort(byMostCertified),
+    items: g.items.filter((it) => (!focus || it.title === focus) && matches(it, shownCountry, shownTier)).sort(byMostCertified),
   }));
 
   const totalAll = scoped.albums.length + scoped.singles.length + scoped.features.length;
@@ -281,7 +290,7 @@ export default function CertExplorer({
   // The plaques the filters leave lit — the count line's figure. Every plaque
   // on the kept releases read "Showing 7 of 93 releases · 74 certifications"
   // under Diamond, against the hero's 7 Diamonds (debug, 5 Oct 2026).
-  const shownCertList = groups.flatMap((g) => g.items.flatMap((it) => it.certs.filter((c) => certMatches(c, shownCountry, tier))));
+  const shownCertList = groups.flatMap((g) => g.items.flatMap((it) => it.certs.filter((c) => certMatches(c, shownCountry, shownTier))));
   const shownCerts = shownCertList.length;
   const shownCountries = new Set(shownCertList.map((c) => c.c)).size;
   // The All view's count line reads as it always has; a narrowed view says
@@ -289,7 +298,7 @@ export default function CertExplorer({
   const shownPhrase = narrowed
     ? certCountPhrase(shownCerts, shownCountries, view)
     : `${shownCerts} ${shownCerts === 1 ? "certification" : "certifications"}`;
-  const active = shownCountry || tier;
+  const active = shownCountry || shownTier;
   // The switches leave nothing at all (Tiwa Savage, BNXN with both off): no
   // tier or country can narrow an empty view, so their rows and the Clear
   // that resets them are not offered — the phone hides its tier rail the same
@@ -377,19 +386,19 @@ export default function CertExplorer({
             <span className={styles.filterLabel}>Tier</span>
             <button
               type="button"
-              className={`${styles.fChip} ${!tier ? styles.fChipOn : ""}`}
-              aria-pressed={!tier}
+              className={`${styles.fChip} ${!shownTier ? styles.fChipOn : ""}`}
+              aria-pressed={!shownTier}
               onClick={() => setTier(null)}
             >
               All
             </button>
-            {TIERS.map((t) => (
+            {TIERS.filter((t) => viewTiers.has(t)).map((t) => (
               <button
                 key={t}
                 type="button"
-                className={`${styles.fChip} ${tier === t ? styles.fChipOn : ""}`}
-                aria-pressed={tier === t}
-                onClick={() => setTier(tier === t ? null : t)}
+                className={`${styles.fChip} ${shownTier === t ? styles.fChipOn : ""}`}
+                aria-pressed={shownTier === t}
+                onClick={() => setTier(shownTier === t ? null : t)}
               >
                 <span className={styles.chipDot} style={{ background: TIER_INK[t] }} aria-hidden="true" />
                 {t}
@@ -472,7 +481,7 @@ export default function CertExplorer({
               ? `No release on this page is called “${focus}”. That's a broken link, not a gap in the record.`
               : `There's no ${[
                   view.scope === "intl" && "international",
-                  tier,
+                  shownTier,
                   "certification",
                   view.credit === "lead" && "as lead artist",
                   focus && `for ${focus}`,
@@ -494,8 +503,8 @@ export default function CertExplorer({
               ? { label: focus, drop: clearFocus }
               : shownCountry
                 ? { label: countries[shownCountry]?.name ?? shownCountry, drop: () => pickCountry(null) }
-                : tier
-                  ? { label: tier, drop: () => setTier(null) }
+                : shownTier
+                  ? { label: shownTier, drop: () => setTier(null) }
                   : view.credit === "lead"
                     ? { label: "lead credits only", drop: () => setView({ credit: "all" }) }
                     : view.scope === "intl"
@@ -517,7 +526,7 @@ export default function CertExplorer({
                   </div>
                   <div className={styles.groupList}>
                     {g.items.map((it) => (
-                      <CertCard key={it.title} item={it} kind={g.label === "Albums" ? "album" : "song"} countries={countries} country={shownCountry} tier={tier} covers={covers} links={links} />
+                      <CertCard key={it.title} item={it} kind={g.label === "Albums" ? "album" : "song"} countries={countries} country={shownCountry} tier={shownTier} covers={covers} links={links} />
                     ))}
                   </div>
                 </div>
