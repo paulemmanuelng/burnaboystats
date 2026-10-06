@@ -255,6 +255,20 @@
   .root { display: none; }
 }
 
+/* From 901 to 1239px the desktop bar's hamburger opens this sheet too, and it
+   stretched edge to edge: 1000px-wide rows, a full-width Appearance control
+   and "tap to dismiss" under a mouse (6 Oct 2026, V-global-17). Here it keeps
+   panel G's own 402px and hangs from the right edge under the hamburger; the
+   dimmed page beside it is the dismiss target, so the hint goes. Below 901
+   the phone layout is fluid to 900, as designed. */
+@media (min-width: 901px) {
+  .sheet {
+    left: auto;
+    width: 402px;
+  }
+  .dismissHint { display: none; }
+}
+
 /* Appearance row — the sheet's last block, under the list and above the foot.
    Divided from the navigation because it is not navigation: it changes how
    the site looks rather than where you are in it. */
