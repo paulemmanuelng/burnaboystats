@@ -125,6 +125,40 @@
   color: var(--gold-bright-ink);
 }
 
+/* The phone layout (to 900px) pins a bar to the foot of the screen: the
+   five-tab bar on top-level screens, a page action bar on deep ones. At
+   bottom: 22px the banner lay over it — on home all five tabs were hidden,
+   on /certifications and the song pages the Compare and Play buttons peeked
+   out half-covered (debug pass 5 Oct 2026, V-global-20). So it sits 12px
+   above whichever bar the page drew. Same hooks as globals.css's
+   scroll-padding rules, in the same order: the tab bar's rules come after
+   the action bar's so they win where they apply.
+   - an action bar: 12 + 50 + 12 px, its 1px rule, and the inset its own
+     padding adds;
+   - /share's bar stacks a second row of buttons: 12 + 50 + 9 + 46 + 12 px,
+     the same rule and inset;
+   - the tab bar: --tabbar-h, the sum it is built from;
+   - /compare's board bar, 69px, sits on the tab bar;
+   - the app-level error and loading states hide the tab bar, so nothing
+     is there to clear. */
+@media (max-width: 900px) {
+  :global(body:has([class*="__actionBar"], [class*="__mobileActionBar"])) .banner {
+    bottom: calc(75px + env(safe-area-inset-bottom, 22px) + 12px);
+  }
+  :global(body:has([class*="__actionBar"] > [class*="__secondaryRow"])) .banner {
+    bottom: calc(130px + env(safe-area-inset-bottom, 22px) + 12px);
+  }
+  :global(body:has(.mobileTabBarPresent)) .banner {
+    bottom: calc(var(--tabbar-h) + 12px);
+  }
+  :global(body:has(.compareBoardBar)) .banner {
+    bottom: calc(var(--tabbar-h) + 69px + 12px);
+  }
+  :global(body:has(.appStateShell)) .banner {
+    bottom: 22px;
+  }
+}
+
 @media (max-width: 520px) {
   .banner {
     left: 12px;
