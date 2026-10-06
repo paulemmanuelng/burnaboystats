@@ -8018,12 +8018,13 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Jerusalema (Remix)",
     "path": "/music/jerusalema",
     "section": "Release",
-    "description": "Master KG, Nomcebo & Burna Boy — 6 certifications · 17 chart entries.",
+    "description": "Master KG ft. Burna Boy & Nomcebo Zikode — 6 certifications · 17 chart entries.",
     "keywords": [
       "master",
-      "nomcebo",
       "burna",
       "boy",
+      "nomcebo",
+      "zikode",
       "song",
       "release"
     ],
@@ -8690,7 +8691,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Tshwala Bam (Remix)",
     "path": "/certifications#release=Tshwala%20Bam%20(Remix)",
     "section": "Release",
-    "description": "TitoM & Yuppe ft. S.N.E & Burna Boy — 1 certification · 1 chart entry.",
+    "description": "TitoM, Yuppe & Burna Boy ft. S.N.E — 1 certification · 1 chart entry.",
     "keywords": [
       "titom",
       "yuppe",
@@ -8837,11 +8838,14 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Yaba Buluku (Remix)",
     "path": "/certifications#release=Yaba%20Buluku%20(Remix)",
     "section": "Release",
-    "description": "DJ Tárico & Burna Boy — 1 certification · 1 chart entry.",
+    "description": "DJ Tárico & Burna Boy ft. Preck & Nelson Tivane — 1 certification · 1 chart entry.",
     "keywords": [
       "tarico",
       "burna",
       "boy",
+      "preck",
+      "nelson",
+      "tivane",
       "song",
       "release"
     ],

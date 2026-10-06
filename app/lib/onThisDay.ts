@@ -707,6 +707,35 @@ export const milestones = (n: number) => `${n} milestone${n === 1 ? "" : "s"}`;
 const RECORD_LINE = /(^|\b)(first (african|nigerian)|highest-grossing|most famous)/i;
 export const isRecordLine = (e: Pick<OnThisDayEvent, "detail">) => RECORD_LINE.test(e.detail);
 
+/**
+ * The record's credit line when the record is someone else's and Burna Boy is
+ * featured on it — "Stormzy ft. Ed Sheeran & Burna Boy" — else null. The
+ * share surfaces (the post card's record slot, the link preview, the page's
+ * title and description, the share text) print a chart peak's or a
+ * certification's headline alone, and so presented Stormzy's "Own It" as a
+ * bare Burna Boy milestone; the day page's row already carried the credit
+ * (debug pass 5 Oct 2026, otd-01; Paul, 6 Oct 2026). The brief's rule is that
+ * a feature is "credited exactly as on the record" (docs/design/on-this-day).
+ *
+ * Read off the detail's first segment, where chart and certification events
+ * put the credit (creditLine): a feature is a credit with Burna Boy AFTER its
+ * "ft." His own lead with a guest ("Burna Boy feat. Ed Sheeran") and a joint
+ * billing ("Phyno & Burna Boy", "TitoM, Yuppe & Burna Boy ft. S.N.E") are not
+ * someone else's record, and print as they did.
+ */
+export function guestCredit(e: Pick<OnThisDayEvent, "kind" | "detail">): string | null {
+  if (e.kind !== "chart" && e.kind !== "certification") return null;
+  const credit = e.detail.split(" · ")[0];
+  return / ft\. (?:.+ )?Burna Boy\b/.test(credit) && !/^Burna Boy\b/.test(credit) ? credit : null;
+}
+
+/** The lead's headline with its guest credit, where it has one: "“Own It” hit
+ *  No. 1 in the United Kingdom (Stormzy ft. Ed Sheeran & Burna Boy)". */
+export const creditedHeadline = (e: Pick<OnThisDayEvent, "kind" | "detail" | "headline">) => {
+  const credit = guestCredit(e);
+  return credit ? `${e.headline} (${credit})` : e.headline;
+};
+
 export interface OnThisDayYear {
   year: number;
   /** The lead first when it falls in this year, then by rank. */
@@ -755,7 +784,9 @@ export function dayPageTitle(day: OnThisDayDay): string {
   const n = day.events.length;
   const counted = `Burna Boy on This Day: ${day.label} — ${n} Milestone${n === 1 ? "" : "s"}`;
   if (n > 1) return counted;
-  const named = `${day.label} ${day.lead.year}: ${day.lead.headline}`;
+  // Credited (otd-01): a featured record's title names its lead act, and so
+  // usually outruns the 60 and takes the counted form.
+  const named = `${day.label} ${day.lead.year}: ${creditedHeadline(day.lead)}`;
   return named.length <= TITLE_MAX ? named : counted;
 }
 
@@ -763,7 +794,7 @@ export function dayPageTitle(day: OnThisDayDay): string {
  *  falls back to a count and a span when it does not. */
 export function dayPageDescription(day: OnThisDayDay): string {
   const n = day.events.length;
-  const rich = `${day.lead.year}: ${asSentence(day.lead.headline)}${n > 1 ? ` Plus ${n - 1} more Burna Boy milestone${n === 2 ? "" : "s"} dated ${day.label}.` : ` Burna Boy on this day, ${day.label}.`}`;
+  const rich = `${day.lead.year}: ${asSentence(creditedHeadline(day.lead))}${n > 1 ? ` Plus ${n - 1} more Burna Boy milestone${n === 2 ? "" : "s"} dated ${day.label}.` : ` Burna Boy on this day, ${day.label}.`}`;
   return rich.length <= 160
     ? rich
     : `${milestones(n)} dated ${day.label}, ${yearSpan(day.events)} — releases, chart peaks, certifications and shows, each linked to its source.`;
@@ -771,11 +802,11 @@ export function dayPageDescription(day: OnThisDayDay): string {
 
 /** The link preview's description, and the start of a shared post's text:
  *  "2023: “On the Low” was certified Platinum in Sweden." */
-export const dayShareLine = (day: OnThisDayDay) => `${day.lead.year}: ${asSentence(day.lead.headline)}`;
+export const dayShareLine = (day: OnThisDayDay) => `${day.lead.year}: ${asSentence(creditedHeadline(day.lead))}`;
 
 /** What "Save or share" hands the share sheet: the day, the lead, the page. */
 export const dayShareText = (day: OnThisDayDay, origin: string) =>
-  `Burna Boy on this day, ${day.label}: ${day.lead.year} — ${asSentence(day.lead.headline)} ${origin}/on-this-day/${day.slug}`;
+  `Burna Boy on this day, ${day.label}: ${day.lead.year} — ${asSentence(creditedHeadline(day.lead))} ${origin}/on-this-day/${day.slug}`;
 
 /** A pager card's line under a neighbour's lead: "2020 · Release · 2 milestones". */
 export function dayMeta(day: OnThisDayDay): string {

@@ -29,6 +29,7 @@ import { navGroups } from "../app/lib/navGroups";
 import { CANONICAL_ORIGIN } from "../app/lib/seo";
 import {
   calendarToday,
+  creditedHeadline,
   dayBySlug,
   dayPageTitle,
   dayShareText,
@@ -332,7 +333,8 @@ describe("SEO D: a one-milestone day's title names the milestone where it fits",
       const t = dayPageTitle(d);
       expect(t.length, t).toBeLessThanOrEqual(60);
       const counted = `Burna Boy on This Day: ${d.label} — ${d.events.length} Milestone${d.events.length === 1 ? "" : "s"}`;
-      const named = `${d.label} ${d.lead.year}: ${d.lead.headline}`;
+      // Credited where the lead is someone else's record (otd-01, 6 Oct 2026).
+      const named = `${d.label} ${d.lead.year}: ${creditedHeadline(d.lead)}`;
       expect(t, d.slug).toBe(d.events.length > 1 || named.length > 60 ? counted : named);
     }
   });

@@ -345,7 +345,8 @@ describe("a renamed or subtitled title cannot hide a shared record", () => {
     // The lead's row names the record (recordsOf), as the registers print it.
     expect(holdersOf(ng, "Sungba")).toEqual(["Sungba (asake, burna-boy)"]);
     expect(holdersOf(uk, "Sungba")).toEqual(["Sungba (asake, burna-boy)"]);
-    expect(holdersOf(ng, "Isaka")).toEqual(["Isaka (6AM) (tems, omah-lay)"]);
+    // Both featured since 6 Oct 2026 (afrobeatsB-02), so no lead goes first.
+    expect(holdersOf(ng, "Isaka")).toEqual(["Isaka (6AM) (omah-lay, tems)"]);
     // Each artist's own line keeps its plaque: the fix touches the country's
     // figures only.
     const line = (b: typeof ng, slug: string) => b.programs.flatMap((p) => p.lines).find((l) => l.artist.slug === slug)!;

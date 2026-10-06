@@ -552,7 +552,7 @@ export const featureCharts: ChartRelease[] = [
     // VG-lista's No.26 (2019-48) is NOT added: VG-lista was a Top 20 then.
     { c: "LT", peak: 25 }, { c: "SK", peak: 48 }, { c: "CZ", peak: 66 }, { c: "DE", peak: 75 },
   ] },
-  { title: "Jerusalema (Remix)", credit: "Master KG ft. Nomcebo Zikode & Burna Boy", year: 2020, entries: [
+  { title: "Jerusalema (Remix)", credit: "Master KG ft. Burna Boy & Nomcebo Zikode", year: 2020, entries: [
     { c: "BE", peak: 1 }, { c: "CH", peak: 1 }, { c: "HU", peak: 1 }, { c: "NL", peak: 1 },
     { c: "SR", peak: 1 }, { c: "AT", peak: 2 }, { c: "FR", peak: 2 },
     { c: "IT", peak: 2 }, { c: "DE", peak: 3 }, { c: "SE", peak: 3 }, { c: "IE", peak: 4 },
@@ -618,7 +618,7 @@ export const featureCharts: ChartRelease[] = [
   { title: "Loved by You", credit: "Justin Bieber ft. Burna Boy", year: 2021, entries: [{ c: "NG", peak: 4, peakDate: "2021-03-25" }, { c: "DK", peak: 28 }, { c: "SK", peak: 49 }, { c: "US", peak: 87 }, { c: "SE", peak: 100 }] },
   { title: "Ginger", credit: "Wizkid ft. Burna Boy", year: 2020, entries: [{ c: "NG", peak: 1, peakDate: "2020-11-05" }, { c: "UK", peak: 67 }] },
   { title: "Sungba (Remix)", credit: "Asake ft. Burna Boy", year: 2022, entries: [{ c: "NG", peak: 1, peakDate: "2022-03-31" }] },
-  { title: "Tshwala Bam (Remix)", credit: "TitoM, Yuppe & Burna Boy feat. S.N.E", year: 2024, entries: [{ c: "NG", peak: 1, peakDate: "2024-05-23" }] },
+  { title: "Tshwala Bam (Remix)", credit: "TitoM, Yuppe & Burna Boy ft. S.N.E", year: 2024, entries: [{ c: "NG", peak: 1, peakDate: "2024-05-23" }] },
   // ── Nigeria sweep, 18 Sep 2026 ─────────────────────────────────────────
   // Every issue of TurnTable's Official Nigeria Top 100 (306 issues, 5 Nov
   // 2020 → 10 Sep 2026, the Top 50 era included) walked at the body's own

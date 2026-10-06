@@ -66,15 +66,14 @@ describe("releases carried in both charts.ts and certifications.ts", () => {
   });
 
   it("credits a release in both files or neither", () => {
-    // Presence, not wording. The two files bill the same collaborators
-    // differently on purpose — certifications.ts abbreviates a long line
-    // ("Coldplay ft. Burna Boy & others" for We Pray, "Master KG, Nomcebo &
-    // Burna Boy" for Jerusalema (Remix)) and states Burna Boy's own billing
-    // ("TitoM & Yuppe ft. S.N.E & Burna Boy") where charts.ts prints the
-    // chart's full credit line. Those three are style, not drift, so equality
-    // here would only invite someone to flatten them. Talibans II was a fourth
-    // until Paul ruled on its lead act (24 Sep 2026): both files now credit
-    // "Byron Messia ft. Burna Boy" — tests/ownerRulings.test.tsx.
+    // Presence, not wording. The two files can bill the same collaborators
+    // differently — certifications.ts abbreviates a long line ("Coldplay ft.
+    // Burna Boy & others" for We Pray). Jerusalema (Remix) and Tshwala Bam
+    // (Remix) were billed two ways as well until Paul ruled on 6 Oct 2026
+    // (records-02): one credit for each, with Yaba Buluku (Remix), across
+    // certifications.ts, charts.ts and awards.ts — tests/debug1005Rulings.test.tsx.
+    // Talibans II was another until Paul ruled on its lead act (24 Sep 2026):
+    // both files now credit "Byron Messia ft. Burna Boy" — tests/ownerRulings.test.tsx.
     //
     // A credit that exists on one side and not the other is different: it is
     // the same release shown as a collaboration on one page and as a solo

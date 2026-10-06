@@ -329,7 +329,10 @@ export default function DaiDaiPageES() {
   ];
 
   const numbersLabels: NumbersLabels = {
-    national: "Listas nacionales",
+    // "Listas", no "Listas nacionales": la tabla también tiene una lista
+    // regional (MENA), una cuenta atrás de radio (Big Top 40) y una de airplay
+    // (Rhythmic Airplay) — Paul, 6 Oct 2026 (music-16).
+    national: "Listas",
     cols: { country: "País", chart: "Lista", peak: "Pico", weeksAt1: "Semanas en el N.º 1", weeksOn: "Semanas en lista" },
     peak: "N.º {n}",
     notStated: "no consta",

@@ -47,8 +47,12 @@ const assumedRatio = (() => {
   const t = Object.values(CERT_THRESHOLDS).find((x) => x.assumed && x.singleRaw?.platinum && x.single?.platinum);
   return t ? Math.round(t.singleRaw!.platinum! / t.single!.platinum!) : 100;
 })();
-/** How many countries the table can price, and how many of those are not Nigeria. */
-const pricedBodies = Object.keys(CERT_THRESHOLDS);
+/** How many countries the table covers — every body with a threshold row,
+ *  Colombia included, whose plaques are listed rather than priced — for the
+ *  scope line's "N countries checked" (compareA-02). It is the method's
+ *  coverage, the same on every pair, not the pair's own spread: the table's
+ *  "Country · N" header counts that. */
+const coveredBodies = Object.keys(CERT_THRESHOLDS);
 const longDate = (iso: string) =>
   new Date(`${iso}T12:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
 const ukPlatinum = CERT_THRESHOLDS.UK.single!.platinum!;
@@ -739,7 +743,9 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
   // "outside Nigeria", not "international": Nigeria is the only home split on
   // /compare, and a non-Nigerian artist's home plaques (Tyla's ten in South
   // Africa) are inside the separated total (debug pass, 3 Oct 2026).
-  const scope = ngOn ? `${pricedBodies.length} countries · Nigeria included` : `${pricedBodies.filter((c) => c !== "NG").length} countries · outside Nigeria`;
+  // "countries checked": the coverage, labelled, so it does not read as the
+  // pair's own spread beside a one-row table (Paul, 6 Oct 2026, compareA-02).
+  const scope = ngOn ? `${coveredBodies.length} countries checked · Nigeria included` : `${coveredBodies.filter((c) => c !== "NG").length} countries checked · outside Nigeria`;
   const trailing = (n: string) => (n.endsWith("s") ? `${n}'` : `${n}'s`);
 
   // The ONE breadcrumb trail this page emits (the site-wide one stands down

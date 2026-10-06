@@ -28,6 +28,21 @@ import { count, plural } from "./plural";
  * `kind: "Featured appearances"`, Burna Boy's `features` array — never parsed
  * out of a title or a credit line.
  *
+ * On the board the `kind` is the sweep's filing, record by record, and Paul
+ * kept those filings as they stand (6 Oct 2026, afrobeatsB-02). Where the
+ * billing order is the only evidence, it decides: the act billed first is the
+ * lead and the acts after it are featured — so "Isaka (6AM)" (Ciza, Tems &
+ * Omah Lay) is a featured appearance for both Tems and Omah Lay, never a lead
+ * for one and a feature for the other (tests/debug1005Rulings.test.tsx holds
+ * every shared Nigerian record to that: the board artists billed after its
+ * lead are filed one way). The ruled exception is "Trumpet" (Olamide &
+ * CKay): a co-lead, a lead single on BOTH artists' boards although CKay is
+ * billed second (Paul, 3 Oct 2026: "a co-lead is a lead on both its leads'
+ * boards"). The board's other second-billed lead singles (Olamide's, BNXN's,
+ * Victony's and more) are filings Paul kept as they stood on 6 Oct 2026, not
+ * exceptions waiting to be fixed: no sweep refiles them by billing order
+ * without his word.
+ *
  * The two compose: International + Lead is the international plaques on
  * releases where the artist is lead. "all" + "all" is the view every page has
  * always shown, and the one the server renders, so nothing a crawler reads
