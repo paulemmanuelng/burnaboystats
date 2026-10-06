@@ -53,6 +53,17 @@ const tierRun = (t: TierUnits, body?: string) =>
     .map(([name, n]) => `${tierWord(name, body)} ${fmt(n as number)}`)
     .join(" · ");
 
+/** The index and a board, in the reader's features state. The pretty routes
+ *  render a fixed query with features on, so a features-off view keeps the
+ *  query route, which /compare canonicalises to the pretty one. "Change
+ *  country" always did; the index's 27 rows linked the pretty board and
+ *  turned features back on under the reader — Mexico read 1,980,000 on the
+ *  row and opened at 3,960,000 (debug pass, 5 Oct 2026). The query is the
+ *  one the board's own switch writes, so the two land on one URL. */
+const indexHref = (includeFeatures: boolean) => (includeFeatures ? "/compare/in" : "/compare?mode=country&feat=0");
+const boardHref = (code: string, includeFeatures: boolean) =>
+  includeFeatures ? `/compare/in/${countrySlug(code)}` : `/compare?mode=country&country=${countrySlug(code)}&feat=0`;
+
 /** One clause, unbreakable: its spaces become no-break spaces. */
 const nb = (clause: string) => clause.replace(/ /g, "\u00a0");
 
@@ -140,7 +151,7 @@ function CountryIndex({ options }: { options: { includeNigeria: boolean; include
             {boards.map((b) => (
               <tr key={b.code} role="row">
                 <td role="cell" className={styles.cbNameCell}>
-                  <Link href={`/compare/in/${countrySlug(b.code)}`} className={styles.cbCountryLink}>
+                  <Link href={boardHref(b.code, options.includeFeatures)} className={styles.cbCountryLink}>
                     <span className={styles.flag} aria-hidden="true">{b.flag}</span>
                     <span className={styles.cbCountryName}>{b.name}</span>
                     <span className={styles.countryCode}>{b.code}</span>
@@ -384,7 +395,7 @@ export function CountryBoardView({
                 query twin (/compare?mode=country) canonicalises there anyway.
                 /compare/in reads no search params, so a features-off view
                 keeps the query route (compare/page.tsx, the mode segment). */}
-            <Link href={includeFeatures ? "/compare/in" : "/compare?mode=country&feat=0"} className={styles.cbChange}>
+            <Link href={indexHref(includeFeatures)} className={styles.cbChange}>
               <span className={styles.cbChangeText}>Change country</span>
               <span aria-hidden="true">✕</span>
             </Link>
@@ -566,7 +577,7 @@ export function CountryBoardView({
               {board.lines[0]?.artist.name} is the only one of the {comparableArtists.length} certified in{" "}
               {board.inSentence}. Every other market is one tap away.
             </p>
-            <Link href="/compare/in" className="btn btnPrimary">
+            <Link href={indexHref(includeFeatures)} className="btn btnPrimary">
               Every market <span aria-hidden="true">↗</span>
             </Link>
           </>
