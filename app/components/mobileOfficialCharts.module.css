@@ -204,10 +204,18 @@
 }
 
 /* ── Count + peak-band legend ─────────────────────────────────────────── */
+/* The count sits left and the legend right, as the design has it. Where the
+   two don't fit side by side (every board at 320px) the legend drops to its
+   own row under the count; no label ever breaks inside itself. The old
+   `.legendItem:nth-of-type(1)` push never matched (the count is the first
+   span), so the legend sat packed against the count and, at 320, each label
+   wrapped word by word ("27 / RELEASES", "NO. / 1"). V-afrobeats-06. */
 .legendBar {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 10px;
+  justify-content: space-between;
+  gap: 8px 10px;
   padding: 14px 18px;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
@@ -217,8 +225,9 @@
   text-transform: uppercase;
   color: var(--dim);
 }
-.legendItem { display: inline-flex; align-items: center; gap: 5px; }
-.legendItem:nth-of-type(1) { margin-left: auto; }
+.legendCount { white-space: nowrap; }
+.legend { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; }
+.legendItem { display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; }
 .legendDot { width: 7px; height: 7px; border-radius: 999px; display: block; }
 .dotOne { background: var(--gold); }
 .dotTen { background: var(--cyan); }

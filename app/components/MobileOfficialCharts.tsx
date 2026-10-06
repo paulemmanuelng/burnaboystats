@@ -372,22 +372,26 @@ export default function MobileOfficialCharts({
         </ScrollRail>
       </div>
 
-      {/* Count + peak-band legend */}
+      {/* Count + peak-band legend. The three bands are one group, so a phone
+          too narrow for the count beside them (320px) moves the whole legend
+          under the count instead of breaking every label in two. */}
       <div className={styles.legendBar}>
-        <span>
+        <span className={styles.legendCount}>
           {shown} {shown === 1 ? "release" : "releases"}
         </span>
-        <span className={styles.legendItem}>
-          <span className={`${styles.legendDot} ${styles.dotOne}`} aria-hidden="true" />
-          No. 1
-        </span>
-        <span className={styles.legendItem}>
-          <span className={`${styles.legendDot} ${styles.dotTen}`} aria-hidden="true" />
-          Top 10
-        </span>
-        <span className={styles.legendItem}>
-          <span className={`${styles.legendDot} ${styles.dotForty}`} aria-hidden="true" />
-          Top 40
+        <span className={styles.legend}>
+          <span className={styles.legendItem}>
+            <span className={`${styles.legendDot} ${styles.dotOne}`} aria-hidden="true" />
+            No. 1
+          </span>
+          <span className={styles.legendItem}>
+            <span className={`${styles.legendDot} ${styles.dotTen}`} aria-hidden="true" />
+            Top 10
+          </span>
+          <span className={styles.legendItem}>
+            <span className={`${styles.legendDot} ${styles.dotForty}`} aria-hidden="true" />
+            Top 40
+          </span>
         </span>
       </div>
 
