@@ -208,10 +208,13 @@ export default function ChartExplorer({
   }, [country, peak]);
 
   const peakMax = peak ? PEAKS.find((p) => p.key === peak)!.max : null;
+  // One entry has to meet both filters, as the chips' dimming, the table and
+  // the phone screen all test it. Two separate .some() calls let a No. 1
+  // elsewhere and a lower Nigerian peak keep Dai Dai under No. 1 + NG with
+  // every chip dimmed: 13 releases against the table's 9 (5 Oct 2026).
   const keep = (it: ExplorerRelease) =>
     (!focus || it.title === focus) &&
-    (!country || it.entries.some((e) => e.c === country)) &&
-    (!peakMax || it.entries.some((e) => e.peak <= peakMax));
+    it.entries.some((e) => (!country || e.c === country) && (!peakMax || e.peak <= peakMax));
 
   // Most-charted first — the one comparator, shared with the board's chart
   // pages so the phone gets the same order (app/lib/chartOrder.ts).
