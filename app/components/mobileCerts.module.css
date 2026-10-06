@@ -543,7 +543,7 @@
   white-space: nowrap;
 }
 .flag { font-size: 11px; line-height: 1; }
-/* A plaque the #country= focus is not about — the desktop ledger's .badgeDim. */
+/* A plaque the tier chip or #country= focus is not about — the desktop ledger's .badgeDim. */
 .badgeDim { opacity: 0.26; }
 
 .allBtn {
