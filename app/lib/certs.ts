@@ -1,16 +1,22 @@
 import { COUNTRIES, type Cert, type Release } from "../data/certifications";
 import { CERT_PROGRAMS } from "../data/certThresholds";
 
-// True if a release satisfies every active filter — the country filter is met
-// by any cert in that country, the tier filter by any cert at that tier.
+// True if one plaque satisfies every active filter: in that country AND at that
+// tier. The badge a filter leaves lit, and the plaque the count line counts.
+export function certMatches(c: Cert, country: string | null, tier: string | null): boolean {
+  return (!country || c.c === country) && (!tier || c.level === tier);
+}
+
+// True if a release holds a plaque that satisfies every active filter. Both
+// tests on the SAME plaque: testing them on any two let Diamond + Nigeria keep
+// Last Last (a French Diamond, a Nigerian Platinum) with every badge dimmed,
+// where it should say there is no Nigerian Diamond (debug, 5 Oct 2026).
 export function matches(
   item: Release,
   country: string | null,
   tier: string | null
 ): boolean {
-  const hasCountry = !country || item.certs.some((c) => c.c === country);
-  const hasTier = !tier || item.certs.some((c) => c.level === tier);
-  return hasCountry && hasTier;
+  return (!country && !tier) || item.certs.some((c) => certMatches(c, country, tier));
 }
 
 // Ordering weight for a certification. Used for DISPLAY ORDER ONLY — it never
