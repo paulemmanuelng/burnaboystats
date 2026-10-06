@@ -135,7 +135,7 @@ export default function MobileOnThisDayIndex({ today }: { today: OnThisDayToday 
           out the three kinds of date. */}
       <p className={styles.calNote}>
         Only records that carry their own day are here. A record known only by its year stays off the calendar
-        until its day is read — see the <Link href="/methodology">methodology</Link>.
+        until its day is read — see the <Link href="/methodology#dates">methodology</Link>.
       </p>
     </div>
   );

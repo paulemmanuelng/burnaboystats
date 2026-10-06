@@ -126,7 +126,7 @@ export default function MobileOnThisDayDay({ day }: { day: OnThisDayDay }) {
 
       <p className={styles.dayNote}>
         Every milestone here is filed on the day its own source prints.{" "}
-        <Link href="/methodology">How dates are filed</Link>
+        <Link href="/methodology#dates">How dates are filed</Link>
       </p>
     </div>
   );

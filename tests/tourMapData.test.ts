@@ -185,7 +185,9 @@ describe("the headline figures", () => {
   // The brief's §3.3 totals were 98 tour dates, 156 shows and 96 cities; the
   // Dublin night (17 Mar 2022, 3Arena) added one of each on 4 Oct 2026 —
   // research/tour-map-method/card-counts.md says so beside each figure.
-  it("157 documented shows, 97 cities, 2014–2026, London Stadium 58,973", () => {
+  // 5 Oct 2026: 97 -> 98 cities — the Fillmore Silver Spring night is filed in
+  // Silver Spring, MD, not Washington, D.C. (seo-06).
+  it("157 documented shows, 98 cities, 2014–2026, London Stadium 58,973", () => {
     expect(tourMapTotals).toMatchObject({
       countries: 57,
       regions: 7,
@@ -194,7 +196,7 @@ describe("the headline figures", () => {
       appearances: 58,
       documentedShows: 157,
       milestones: 6,
-      cities: 97,
+      cities: 98,
       years: "2014–2026",
       itinerariesFrom: 2018,
       biggestNight: { venue: "London Stadium", city: "London", when: "29 Jun 2024", tickets: "58,973" },

@@ -254,7 +254,9 @@ describe("ruling 6: the copy the first build kept now reads as the artboards dra
 
   it("the desktop lede joins with a colon", () => {
     const html = renderToStaticMarkup(CalendarPage()).replace(/\s+/g, " ");
-    expect(html).toContain(`${onThisDayEvents.length} dated milestones on ${onThisDayDays.length} days of the year: album releases`);
+    // "releases", not "album releases", since 5 Oct 2026: one of the nine is
+    // the "Dai Dai" single (otd-09).
+    expect(html).toContain(`${onThisDayEvents.length} dated milestones on ${onThisDayDays.length} days of the year: releases`);
     expect(html).not.toContain("days of the year — album releases");
   });
 
@@ -263,7 +265,8 @@ describe("ruling 6: the copy the first build kept now reads as the artboards dra
     expect(note.textContent!.replace(/\s+/g, " ").trim()).toBe(
       "Only records that carry their own day are here. A record known only by its year stays off the calendar until its day is read — see the methodology.",
     );
-    expect(note.querySelector("a")!.getAttribute("href")).toBe("/methodology");
+    // To the section that answers it since 5 Oct 2026 (otd-03).
+    expect(note.querySelector("a")!.getAttribute("href")).toBe("/methodology#dates");
   });
 
   it("the calendar link preview's sub-line is the artboard's", () => {
@@ -366,8 +369,10 @@ describe("SEO E: no description ends a sentence twice", () => {
   it("a negative control, with the description 7 March shipped", () => {
     // Read off the built page before the fix (next start, 26 Sep 2026).
     expect(DOUBLE.test("2024: Burna Boy played Capital One Arena, Washington, D.C.. Burna Boy on this day, 7 March.")).toBe(true);
-    // And the four days whose lead ends in "D.C." still end it once.
+    // And the days whose lead ends in "D.C." still end it once. Three since
+    // 5 Oct 2026: 15 September's Fillmore Silver Spring is filed in Silver
+    // Spring, MD, its own town (seo-06).
     const dc = onThisDayDays.filter((d) => d.lead.headline.endsWith("D.C."));
-    expect(dc.map((d) => d.slug).sort()).toEqual(["15-september", "30-may", "5-december", "7-march"]);
+    expect(dc.map((d) => d.slug).sort()).toEqual(["30-may", "5-december", "7-march"]);
   });
 });

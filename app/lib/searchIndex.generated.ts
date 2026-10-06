@@ -5943,7 +5943,7 @@ export const generatedDocs: SearchDoc[] = [
     "keywords": [
       "september 15",
       "the fillmore silver spring",
-      "washington, d.c."
+      "silver spring, md"
     ],
     "generated": true
   },

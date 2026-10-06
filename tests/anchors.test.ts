@@ -43,6 +43,34 @@ function anchorsIn(src: string) {
   ];
 }
 
+/**
+ * The [start, end) spans of each `<div className={styles.desktopOnly}>` block,
+ * found by counting <div> and </div> from its opening tag (self-closing divs
+ * count as neither; a "<div>" inside a comment is blanked out first, keeping
+ * every index where it was). An unclosed block runs to the end of the file,
+ * which errs toward calling an id desktop-only.
+ */
+export function desktopSpans(src: string): [number, number][] {
+  const s = src.replace(/\/\*[\s\S]*?\*\//g, (c) => " ".repeat(c.length));
+  const spans: [number, number][] = [];
+  for (const m of s.matchAll(/<div className=\{styles\.desktopOnly\}>/g)) {
+    const tag = /<div\b[^>]*?(\/)?>|<\/div>/g;
+    tag.lastIndex = m.index!;
+    let depth = 0;
+    let end = s.length;
+    for (let t = tag.exec(s); t; t = tag.exec(s)) {
+      if (t[0] === "</div>") depth--;
+      else if (!t[1]) depth++;
+      if (depth === 0) {
+        end = t.index;
+        break;
+      }
+    }
+    spans.push([m.index!, end]);
+  }
+  return spans;
+}
+
 describe("anchor targets", () => {
   it("every literal anchor points at an id the app actually renders", () => {
     const dead: string[] = [];
@@ -67,12 +95,28 @@ describe("anchor targets", () => {
           if (!s.includes("desktopOnly")) return true;
           const idAt = s.indexOf(`id="${a}"`);
           const gateAt = s.indexOf("styles.desktopOnly");
-          // Defined before the desktop wrapper opens, or in a mobile component.
-          return gateAt === -1 || idAt < gateAt;
+          if (gateAt === -1) return true;
+          // Outside every desktopOnly block: before the first opens, or after
+          // it closes (a shared section between the two wrappers, as
+          // /methodology's #certified-units and #dates are).
+          return !desktopSpans(s).some(([from, to]) => idAt > from && idAt < to);
         });
         if (!reachable) bad.push(`${file} -> #${a} (only inside .desktopOnly)`);
       }
     }
     expect(bad).toEqual([]);
+  });
+});
+
+describe("desktopSpans", () => {
+  it("closes a block at its own </div>, nested divs and self-closing ones included", () => {
+    const src = `<main><div className={styles.desktopOnly}><div><p id="in" />{/* a <div> in a comment */}</div><div className="x" /></div><section id="out" /></main>`;
+    const spans = desktopSpans(src);
+    expect(spans).toHaveLength(1);
+    const inside = (id: string) => spans.some(([a, b]) => src.indexOf(`id="${id}"`) > a && src.indexOf(`id="${id}"`) < b);
+    expect(inside("in")).toBe(true);
+    // Negative control: what the old "after the first wrapper opens" rule called desktop-only.
+    expect(inside("out")).toBe(false);
+    expect(src.indexOf('id="out"') > src.indexOf("styles.desktopOnly")).toBe(true);
   });
 });

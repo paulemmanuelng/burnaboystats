@@ -8,7 +8,7 @@
 - Festival and one-off appearances: 58 (59 rows, 1 repeating a tour date)
 - Documented shows (tour dates + appearances): 157 (156 until 4 Oct 2026)
 - Live milestones with a place (not in the shows figure): 6
-- Cities (distinct names across tour dates, appearances and placed milestones): 97 (tour dates alone: 52; Dublin since 4 Oct 2026)
+- Cities (distinct names across tour dates, appearances and placed milestones): 98 (tour dates alone: 53; Dublin since 4 Oct 2026; Silver Spring, MD since 5 Oct 2026, when the Fillmore Silver Spring night left Washington, D.C.)
 - Years: 2014–2026
 
 ## Per country: the documented line and the biggest line
@@ -54,7 +54,7 @@
 | Europe | Austria | none (no row: event lines only) | none | none (line absent) | Gasometer, Vienna (2020) |  |
 | Europe | Kosovo | 1 festival or one-off appearance · 1 city · 2024 | 2024 | none (line absent) | Sunny Hill Festival, Pristina (2024) |  |
 | Asia | United Arab Emirates | 1 festival or one-off appearance · 1 city · 2019 | 2019 | none (line absent) | One Africa Music Festival, Dubai (2019) |  |
-| North America | United States | 50 tour dates · 7 festival and one-off appearances · 2 live milestones · 30 cities · 2018–2025 | 2018–2025 | Biggest reported night · Capital One Arena, Washington, D.C. · 8 Dec 2022 · 14,688 tickets (tourRevenue.ts:39) | Madison Square Garden, New York (2022) / Citi Field, New York (2023) | yes |
+| North America | United States | 50 tour dates · 7 festival and one-off appearances · 2 live milestones · 31 cities · 2018–2025 | 2018–2025 | Biggest reported night · Capital One Arena, Washington, D.C. · 8 Dec 2022 · 14,688 tickets (tourRevenue.ts:39) | Madison Square Garden, New York (2022) / Citi Field, New York (2023) | yes |
 | North America | Canada | 14 tour dates · 4 cities · 2019–2025 | 2019–2025 | Biggest reported night · Rogers Arena, Vancouver · 7 Nov 2023 · 7,198 tickets (tourRevenue.ts, re-run 3 Oct 2026) | Scotiabank Arena, Toronto (2024 & 2025) / Bell Centre, Montréal (2024 & 2025) | yes |
 | North America | Mexico | 1 live milestone · 1 city · 2026 | 2026 | none (line absent) | FIFA World Cup Opening Ceremony, Mexico City (2026) |  |
 | South America | Brazil | 1 festival or one-off appearance · 1 city · 2025 | 2025 | none (line absent) | The Town festival, São Paulo (2025) |  |
@@ -75,4 +75,4 @@
 
 Toronto: 5 tour dates (Dec 17, 2025 tours.ts:65, Dec 18, 2025 tours.ts:66, Feb 24, 2024 tours.ts:107, Feb 25, 2024 tours.ts:108, Aug 18, 2019 tours.ts:188) + 0 appearances
 Venues that can appear in a biggest line, longest first: Capital One Arena (17), Qudos Bank Arena (16), Scotiabank Arena (16), Stade de France (15), London Stadium (14), Hallenstadion (13), Lanxess Arena (13), Sportpaleis (11)
-Longest documented lines: United States: 50 tour dates · 7 festival and one-off appearances · 2 live milestones · 30 cities · 2018–2025 (94); United Kingdom: 10 tour dates · 3 festival and one-off appearances · 1 live milestone · 6 cities · 2018–2026 (92); Morocco: 1 festival or one-off appearance · 1 live milestone · 1 city · 2024–2026 (72)
+Longest documented lines: United States: 50 tour dates · 7 festival and one-off appearances · 2 live milestones · 31 cities · 2018–2025 (94); United Kingdom: 10 tour dates · 3 festival and one-off appearances · 1 live milestone · 6 cities · 2018–2026 (92); Morocco: 1 festival or one-off appearance · 1 live milestone · 1 city · 2024–2026 (72)
