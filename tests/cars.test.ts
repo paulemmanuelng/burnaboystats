@@ -200,7 +200,7 @@ describe("the garage — the sixteen current cars as pages", () => {
     // so a new null has to be said out loud here.
     const nulls = garage
       .flatMap((c) =>
-        (["weight", "zeroToHundred", "topSpeed"] as const).filter((k) => c.specs[k] === null).map((k) => `${c.slug}:${k}`),
+        (["weight", "zeroToHundred", "topSpeed", "drivetrain"] as const).filter((k) => c.specs[k] === null).map((k) => `${c.slug}:${k}`),
       )
       .sort();
     expect(nulls).toEqual([
@@ -209,6 +209,7 @@ describe("the garage — the sixteen current cars as pages", () => {
       "rolls-royce-cullinan-black-badge:topSpeed",
       "rolls-royce-cullinan-black-badge:weight",
       "rolls-royce-cullinan-black-badge:zeroToHundred",
+      "rolls-royce-dawn:drivetrain",
     ]);
     // The Cullinan's note says why all three are missing; the GLS 600's says
     // the cited release has no weight. A note that fell out of step with the
@@ -232,7 +233,10 @@ describe("computed figures (CARS-HANDOFF §7)", () => {
   it("the value bar is always drawn; the spec bars wait on verification", () => {
     for (const c of garage) {
       const bars = performanceBars(c);
-      expect(bars.map((b) => b.key)).toEqual(["Power / weight", "0–100 km/h", "Top speed", "Reported value"]);
+      // The value bar takes the word every other value label on the page uses:
+      // "estimated" where the site chose the figure (valueWord).
+      expect(bars.map((b) => b.key)).toEqual(["Power / weight", "0–100 km/h", "Top speed", `${valueWord(c) === "estimated" ? "Estimated" : "Reported"} value`]);
+      expect(bars[3].aria.startsWith(`${bars[3].key} $`)).toBe(true);
       const value = bars[3];
       expect(value.pending).toBe(false);
       expect(value.share).toBeGreaterThanOrEqual(0.03);
@@ -418,5 +422,62 @@ describe("the car pages' value word and sweep stamp", () => {
     for (const f of ["app/records/cars/page.tsx", "app/records/cars/[car]/page.tsx"]) {
       expect(readFileSync(join(process.cwd(), f), "utf8"), f).toContain("addedOnLabel(");
     }
+  });
+});
+
+// Debug pass, 5 Oct 2026: four car pages said something their own data did not.
+describe("each car page agrees with its own row (debug pass 5 Oct 2026)", () => {
+  it("the GLS 600's value bar says 'Estimated value', like the rest of its page", () => {
+    const gls = carBySlug("mercedes-maybach-gls-600")!;
+    const bar = performanceBars(gls)[3];
+    expect(bar.key).toBe("Estimated value");
+    expect(bar.aria).toMatch(/^Estimated value \$250,000, /);
+    // Negative control: the bar as it shipped, beside an "estimated value" box.
+    expect(bar.key).not.toBe("Reported value");
+    // A reported car keeps its word.
+    expect(performanceBars(carBySlug("bugatti-chiron")!)[3].key).toBe("Reported value");
+  });
+
+  it("a car with no year on record never says its model year is 'reported'", () => {
+    // The Revuelto's note said "the model year of his car is reported, not
+    // confirmed" above a provenance line reading "Model year not reported".
+    const SHIPPED = "the model year of his car is reported, not confirmed.";
+    for (const c of garage.filter((x) => !x.year)) {
+      expect(c.specs.note ?? "", c.slug).not.toMatch(/model year[^.]*\bis reported\b/i);
+    }
+    expect(SHIPPED).toMatch(/model year[^.]*\bis reported\b/i);
+    expect(carBySlug("lamborghini-revuelto")!.specs.note).toContain("no source states the model year of his car");
+  });
+
+  it("a year that dates a purchase is labelled 'acquired', not a model year", () => {
+    // The S680's only dated source is his own Story of 11 Nov 2022 announcing
+    // the car; the page printed "Model year 2022" and the index's ItemList
+    // "(2022)". The Aventador SVJ, announced the same way, was already "acquired".
+    const s680 = carBySlug("mercedes-maybach-s680")!;
+    expect([s680.year, s680.yearIs]).toEqual([2022, "acquired"]);
+    expect(carBySlug("lamborghini-aventador-svj-roadster")!.yearIs).toBe("acquired");
+  });
+
+  it("the Dawn's panel shows only what a Rolls-Royce page states, and says where each row is from", () => {
+    const dawn = carBySlug("rolls-royce-dawn")!;
+    expect(dawn.specs.drivetrain).toBeNull();
+    expect(dawn.specs.engine).toBe("6.6L twin-turbo V12");
+    expect(dawn.specs.note).toMatch(/launch release \(PressClub, 8 September 2015\)/);
+    expect(dawn.specs.note).toMatch(/Neither states the driven wheels/);
+  });
+
+  it("the 328 GTS's link names the lift's own year beside the post's date", () => {
+    // The desc dates the crane lift to August 2025; the button read only
+    // "Crane-lift photos, 23 Aug 2026" — the repost's date.
+    const f328 = carBySlug("ferrari-328-gts")!;
+    expect(f328.desc).toContain("in August 2025");
+    expect(f328.linkLabel).toContain("Aug 2025");
+    expect(f328.linkLabel).not.toBe("Crane-lift photos, 23 Aug 2026");
+  });
+
+  it("the dealer is named one way, 'Abuja Car', in every row and the feed", () => {
+    const text = [...cars.map((c) => c.desc), ...updates.map((u) => u.text)].join("\n");
+    expect(text).toContain("Abuja Car");
+    expect(text).not.toMatch(/AbujaCar|Abuja Car Limited/);
   });
 });
