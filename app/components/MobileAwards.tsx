@@ -69,7 +69,11 @@ export default function MobileAwards({
       name: c.name,
       wins: c.noms.filter((n) => n.won).length,
       total: c.noms.length,
-      rows: c.noms.filter((n) => (filter === "all" ? true : filter === "wins" ? n.won : !n.won)),
+      // Year order, as the desktop explorer sorts them: the data is in entry
+      // order, and AFRIMMA's read 2026 ×4, 2018, 2019 … (5 Oct 2026, records-14).
+      rows: c.noms
+        .filter((n) => (filter === "all" ? true : filter === "wins" ? n.won : !n.won))
+        .sort((a, b) => a.year - b.year),
     }))
     .filter((b) => b.rows.length > 0);
 

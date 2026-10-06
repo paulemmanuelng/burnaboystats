@@ -35,6 +35,7 @@ import { livePlatformTotals, liveChartsUpdated } from "../../data/liveCharts";
 import { performedCountries } from "../../data/performedCountries";
 import { A2_TO_ISO } from "../../lib/isoCodes";
 import { LIVE_CADENCE } from "../../lib/liveChartMeta";
+import { shortStamp } from "../../lib/dates";
 
 export const metadata = pageMetadata({
   title: "Burna Boy, Visualized — Career Stats in Charts",
@@ -47,6 +48,8 @@ export const metadata = pageMetadata({
 
 // ── Chart data (built from the same sources the detail pages filter) ──
 const burnaShowCount = revenueShows.filter((s) => s.artist === "Burna Boy").length;
+// The phone's "biggest certifying countries": six, and any tied with the sixth.
+const CERTS_PHONE = 6;
 // Every country that has certified something, not only the twelve charted.
 const certifyingCountryCount = new Set(
   [...albums, ...singles, ...features].flatMap((it) => it.certs.map((c) => c.c))
@@ -65,13 +68,20 @@ const grosses: BarItem[] = revenueShows.slice(0, 12).map((s) => ({
   tone: s.artist === "Burna Boy" ? "gold" : "muted",
 }));
 
+/** The first `n`, and every item tied with the n-th on value. A plain slice
+ *  dropped Australia, level with Denmark on 10 plaques, from the phone's six by
+ *  object insertion order (5 Oct 2026, records-21). */
+const withTies = <T,>(xs: T[], n: number, value: (x: T) => number): T[] =>
+  xs.filter((x, i) => i < n || (xs[n - 1] !== undefined && value(x) === value(xs[n - 1])));
+
 const certsByCountry: BarItem[] = (() => {
   const counts: Record<string, number> = {};
   for (const it of [...albums, ...singles, ...features])
     for (const c of it.certs) counts[c.c] = (counts[c.c] || 0) + 1;
-  return Object.entries(counts)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 12)
+  const nameOf = (code: string) => COUNTRIES[code]?.name ?? code;
+  // Equal counts in name order, so a tie never falls to insertion order.
+  const ranked = Object.entries(counts).sort((a, b) => b[1] - a[1] || nameOf(a[0]).localeCompare(nameOf(b[0])));
+  return withTies(ranked, 12, (e) => e[1])
     .map(([code, n]) => ({
       flag: COUNTRIES[code]?.flag,
       name: COUNTRIES[code]?.name ?? code,
@@ -80,6 +90,11 @@ const certsByCountry: BarItem[] = (() => {
       displayValue: String(n),
     }));
 })();
+const certsPhone = withTies(certsByCountry, CERTS_PHONE, (b) => b.value);
+
+// "5 Oct 2026", the site's stamp: both layouts printed the raw ISO day,
+// "Last swept 2026-10-05." (5 Oct 2026, records-22).
+const sweptOn = shortStamp(liveChartsUpdated);
 
 // ── The climb ────────────────────────────────────────────────────────────
 // The only dated series the site keeps: monthly listeners through the "Dai
@@ -236,22 +251,24 @@ const tierSegments: DonutSeg[] = [
 // ── Donut: chart entries by how high they peaked ──
 // The last band is unbounded, not 41-100: the data holds peaks of 143 and 194,
 // and the binning below is an `else`. Labelled 41+ so it says what it holds.
-const peakBands = { "No. 1": 0, "Top 5": 0, "Top 10": 0, "Top 40": 0, "41+": 0 };
+// The bands are exclusive, so each is labelled by its range: "Top 5 55" sat
+// beside a caption saying 101 reached the Top 5 (5 Oct 2026, records-13).
+const peakBands = { "No. 1": 0, "2–5": 0, "6–10": 0, "11–40": 0, "41+": 0 };
 for (const r of [...albumCharts, ...singleCharts, ...featureCharts])
   for (const e of r.entries) {
     if (e.peak === 1) peakBands["No. 1"]++;
-    else if (e.peak <= 5) peakBands["Top 5"]++;
-    else if (e.peak <= 10) peakBands["Top 10"]++;
-    else if (e.peak <= 40) peakBands["Top 40"]++;
+    else if (e.peak <= 5) peakBands["2–5"]++;
+    else if (e.peak <= 10) peakBands["6–10"]++;
+    else if (e.peak <= 40) peakBands["11–40"]++;
     else peakBands["41+"]++;
   }
 const totalEntries = Object.values(peakBands).reduce((a, b) => a + b, 0);
-const top5Count = peakBands["No. 1"] + peakBands["Top 5"];
+const top5Count = peakBands["No. 1"] + peakBands["2–5"];
 const peakSegments: DonutSeg[] = [
   { label: "No. 1", value: peakBands["No. 1"], color: "var(--peak-band-1)" },
-  { label: "Top 5", value: peakBands["Top 5"], color: "var(--peak-band-5)" },
-  { label: "Top 10", value: peakBands["Top 10"], color: "var(--peak-band-10)" },
-  { label: "Top 40", value: peakBands["Top 40"], color: "var(--peak-band-40)" },
+  { label: "2–5", value: peakBands["2–5"], color: "var(--peak-band-5)" },
+  { label: "6–10", value: peakBands["6–10"], color: "var(--peak-band-10)" },
+  { label: "11–40", value: peakBands["11–40"], color: "var(--peak-band-40)" },
   { label: "41+", value: peakBands["41+"], color: "var(--peak-band-rest)" },
 ];
 
@@ -423,8 +440,8 @@ export default function VisualizedPage() {
           },
           {
             title: "Certifications by country",
-            note: `The 6 biggest of ${certifyingCountryCount} certifying countries — Nigeria leads on ${certsByCountry[0]?.value}.`,
-            items: toBars(certsByCountry, 6),
+            note: `The ${certsPhone.length} biggest of ${certifyingCountryCount} certifying countries — Nigeria leads on ${certsByCountry[0]?.value}.`,
+            items: toBars(certsPhone, certsPhone.length),
           },
           {
             title: "Most-decorated stages",
@@ -440,7 +457,7 @@ export default function VisualizedPage() {
           },
           {
             title: "Where he is charting right now",
-            note: `${livePlacementTotal} placements on today's board — country charts only, ${LIVE_CADENCE}. Last swept ${liveChartsUpdated}.`,
+            note: `${livePlacementTotal} placements on today's board — country charts only, ${LIVE_CADENCE}. Last swept ${sweptOn}.`,
             items: toBars(livePlatformBars, livePlatformBars.length),
           },
           {
@@ -594,7 +611,7 @@ export default function VisualizedPage() {
             <span className={styles.captionLead}>
               {`${livePlacementTotal} placements on today’s board`}
             </span>{" "}
-            — country charts only, {LIVE_CADENCE}. Last swept {liveChartsUpdated}.
+            — country charts only, {LIVE_CADENCE}. Last swept {sweptOn}.
           </p>
           <Link href="/live-charts" className={`btn btnSecondary ${styles.cta}`}>
             The live board ↗
@@ -670,7 +687,7 @@ export default function VisualizedPage() {
           <div className={styles.eyebrow}>Certified worldwide</div>
           <h2 className={styles.h2}>Certifications by country</h2>
           <div className={styles.chartBody}>
-            <RankedBars items={certsByCountry} ariaLabel="Burna Boy's music certifications by country — the top 12" />
+            <RankedBars items={certsByCountry} ariaLabel={`Burna Boy's music certifications by country — the top ${certsByCountry.length}`} />
           </div>
           <p className={`${styles.caption} ${styles.captionNarrow}`}>
             The {certsByCountry.length} biggest of {certifyingCountryCount} certifying

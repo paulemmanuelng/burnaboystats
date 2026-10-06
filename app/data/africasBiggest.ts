@@ -1,7 +1,8 @@
-import { spotifyFollowersRead, followersCompact, SPOTIFY_FOLLOWERS_READ_ON } from "./spotify";
+import { spotifyFollowersRead, followersCompact, SPOTIFY_FOLLOWERS_READ_ON, spotifyGlobalRank } from "./spotify";
 import { monthlyListenersSeries } from "./trends";
 import {
   hot100Top,
+  hot100Standings,
   hot100PeakStandings,
   HOT100_TOP,
   HOT100_COUNTRIES,
@@ -101,9 +102,10 @@ export const BURNA_PEAK_LISTENERS_RISE = {
     ((peakPoint.value - monthlyListenersSeries[0].value) / monthlyListenersSeries[0].value) * 100,
 };
 
-/** His YouTube Music monthly audience, at its peak. Exported because four
- *  files quoted this figure by hand — it sat at 840M in eight places while
- *  YouTube Music itself showed 844M. One home, imported everywhere. */
+/** His monthly audience on YouTube (YouTube for Artists), at its peak.
+ *  Exported because four files quoted this figure by hand — it sat at 840M in
+ *  eight places while the platform itself showed 844M. One home, imported
+ *  everywhere, and one name: "YouTube", as the board's source says. */
 export const BURNA_YT_AUDIENCE = "929M";
 export const BURNA_YT_AUDIENCE_WORDS = "929 million";
 /** The day the peak was set — TYPED, because no trendSeries tracks the YouTube
@@ -186,6 +188,16 @@ export const HIGHLIGHT = "Burna Boy";
  * only formats them the way the page's other boards read — flag and detail
  * under the name, the figure on the right. A tie shares its rank.
  */
+/** An act's Hot 100 entries — one per song its credit line names — off the
+ *  Billboard rows the weeks board is built from (data/hot100Weeks.ts). The
+ *  entries board typed these and stamped them "As of July 2026" beside a
+ *  30 Sep 2026 read that confirms every one (5 Oct 2026, crossSite-13). */
+const hot100SongsOf = (name: string): number => {
+  const s = hot100Standings.find((x) => x.name === name);
+  if (!s) throw new Error(`${name} has no Hot 100 rows in data/hot100Weeks.ts`);
+  return s.songs;
+};
+
 const hot100WeeksEntries: RankEntry[] = hot100Top.map((s, i) => ({
   name: s.name,
   sub: `${HOT100_COUNTRIES[s.country].flag} ${count(s.songs, "song", "songs")} · best No. ${s.bestPeak}`,
@@ -495,7 +507,7 @@ export const statBoxes: LeaderboardBox[] = [
       { name: "CKay", sub: "🇳🇬 Nigeria", value: "34.78M" },
     ],
     note: `Burna Boy is the first African artist ever to reach 50 million Spotify monthly listeners — and the first past ${Math.floor(parseFloat(BURNA_PEAK_LISTENERS))} million, a milestone no African act had crossed before. That ${BURNA_PEAK_LISTENERS} is an all-time high set on ${BURNA_PEAK_LISTENERS_SET_ON_LONG}, not a reading of today: monthly listeners rise and fall with a release cycle, and this board records each artist at their highest.`,
-    source: `Peak Spotify monthly listeners, as of August 2026. Burna Boy, Tyla, Tems and Rema are kworb's recorded peaks; CKay's is his Spotify peak from the “Love Nwantiti” run, which predates kworb's coverage of him. Burna Boy's peak was last raised on ${BURNA_PEAK_LISTENERS_SET_ON_LONG} and moves only when he sets a new high.`,
+    source: `Peak Spotify monthly listeners, as of August 2026. Burna Boy, Tyla, Tems and Rema are kworb's recorded peaks; CKay's is his Spotify peak from the “Love Nwantiti” run, which predates kworb's coverage of him. Burna Boy's peak was last raised on ${BURNA_PEAK_LISTENERS_SET_ON_LONG} and moves only when he sets a new high. Where he sits today is another figure: No. ${spotifyGlobalRank} among all artists worldwide by current monthly listeners, on kworb's live listener chart.`,
   },
   {
     id: "biggest-spotify-debut",
@@ -519,14 +531,14 @@ export const statBoxes: LeaderboardBox[] = [
     layout: "list",
     entries: [
       { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: `${BURNA_HOT_100_ENTRIES}` },
-      { name: "Tems", sub: "🇳🇬 Nigeria", value: "8" },
-      { name: "Seether", sub: "🇿🇦 South Africa", value: "7" },
-      { name: "Wizkid", sub: "🇳🇬 Nigeria", value: "5" },
-      { name: "Tyla & Hugh Masekela", sub: "🇿🇦 South Africa · tied", value: "4" },
+      { name: "Tems", sub: "🇳🇬 Nigeria", value: `${hot100SongsOf("Tems")}` },
+      { name: "Seether", sub: "🇿🇦 South Africa", value: `${hot100SongsOf("Seether")}` },
+      { name: "Wizkid", sub: "🇳🇬 Nigeria", value: `${hot100SongsOf("Wizkid")}` },
+      { name: "Tyla & Hugh Masekela", sub: "🇿🇦 South Africa · tied", value: `${hot100SongsOf("Tyla")}` },
     ],
-    note: `Burna Boy has the most Billboard Hot 100 entries of any African artist in history — ${BURNA_HOT_100_ENTRIES}, extended by “Dai Dai” with Shakira. Tems is next with 8 — the most ever by an African woman. Hugh Masekela and Tyla are tied on 4; Masekela was the first African act to top the chart (“Grazing in the Grass,” No. 1, 1968).`,
+    note: `Burna Boy has the most Billboard Hot 100 entries of any African artist in history — ${BURNA_HOT_100_ENTRIES}, extended by “Dai Dai” with Shakira. Tems is next with ${hot100SongsOf("Tems")} — the most ever by an African woman. Hugh Masekela and Tyla are tied on ${hot100SongsOf("Tyla")}; Masekela was the first African act to top the chart (“Grazing in the Grass,” No. 1, 1968).`,
     source:
-      `Career Billboard Hot 100 entries by African artists, from Billboard chart histories. Burna Boy (${BURNA_HOT_100_ENTRIES}), Tems (8) and Tyla (4) confirmed via Billboard; Seether (7), Wizkid (5) and Hugh Masekela (4) cross-checked against Billboard and chart-stat trackers. As of July 2026.`,
+      `Career Billboard Hot 100 entries by African artists — one per song whose credit line names the artist, lead or featured — counted from the Billboard chart-history rows the weeks board on this page is built from: Burna Boy (${BURNA_HOT_100_ENTRIES}), Tems (${hot100SongsOf("Tems")}), Seether (${hot100SongsOf("Seether")}), Wizkid (${hot100SongsOf("Wizkid")}), Tyla (${hot100SongsOf("Tyla")}) and Hugh Masekela (${hot100SongsOf("Hugh Masekela")}). Read ${HOT100_READ_ON_LONG}, as of the chart dated ${HOT100_CHART_DATE_LONG}.`,
   },
   {
     // Paul, 27 Sep 2026: this board lives here and nowhere else. Scope is every
@@ -550,10 +562,10 @@ export const statBoxes: LeaderboardBox[] = [
       { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "15" },
       { name: "Tems", sub: "🇳🇬 Nigeria", value: "8" },
       { name: "Tyla", sub: "🇿🇦 South Africa · tied", value: "6" },
-      { name: "Rema", sub: "🇳🇬 Nigeria · tied", value: "6" },
+      { name: "Rema", sub: "🇳🇬 Nigeria · tied", value: "6", tie: true },
       { name: "CKay & Seether", sub: "🇳🇬 Nigeria · 🇿🇦 South Africa · tied", value: "4" },
     ],
-    note: "Burna Boy has the most songs past 200 million Spotify streams of any African artist — 15, well clear of the field. He owns the 300M tier too, and is now nine deep in it: “Dai Dai” crossed in August 2026 as his eighth, and Gunna’s “wgft” became the ninth on 1 September. The next-deepest is Tyla with six, then Tems with five. Counts include lead and featured credits, and separate song versions are counted individually (as trackers list them).",
+    note: "Burna Boy has the most songs past 200 million Spotify streams of any African artist — 15, well clear of the field. He owns the 300M tier too, and is now nine deep in it: “Dai Dai” crossed in August 2026 as his eighth, and Gunna’s “WGFT” became the ninth on 1 September. The next-deepest is Tyla with six, then Tems with five. Counts include lead and featured credits, and separate song versions are counted individually (as trackers list them).",
     source:
       "Songs with 200M+ Spotify streams (all credits), counted from kworb.net stream totals, read 28 September 2026 — figures shift as songs cross the threshold. CKay’s fourth is the North African remix of “love nwantiti” (204M), a separate version the rule above counts on its own; Tyla’s sixth is WizTheMc’s “Show Me Love (with Tyla)”. Seether’s four are “Fake It”, “Remedy”, “Fine Again” and their “Careless Whisper” (205M).",
   },
@@ -623,7 +635,7 @@ export const statBoxes: LeaderboardBox[] = [
       { name: "Burna Boy", value: "14.3M" },
       { name: "Tems", value: "10.6M" },
     ],
-    note: "The board on this page Burna Boy does not lead, and it is here for that reason. It counts one day's streams across an artist's entire catalogue, which peaks hardest the day an album lands — so it rewards the size of a release week rather than the length of a run. His best day is 14.3 million, fourth behind Wizkid, Asake and Davido.",
+    note: "Burna Boy does not lead this board, and it is here for that reason. It counts one day's streams across an artist's entire catalogue, which peaks hardest the day an album lands — so it rewards the size of a release week rather than the length of a run. His best day is 14.3 million, fourth behind Wizkid, Asake and Davido.",
     source:
       "Highest single-day Spotify streams across an artist's full catalogue, from chart-tracking accounts, as of 22 August 2026. Nigerian artists only — a national list, not the pan-African comparison the rest of this page makes. Top five shown; the ranking continues CKay (8.2M), Ayra Starr (7.8M), Omah Lay (7.7M), ODUMODUBLVCK (7.5M) and Olamide (7.4M).",
   },
@@ -692,7 +704,9 @@ export const statBoxes: LeaderboardBox[] = [
     layout: "list",
     entries: [
       { name: "Burna Boy", sub: "🇳🇬 “Dai Dai” (with Shakira)", value: "No. 1" },
-      { name: "Tems", sub: "🇳🇬 “Wait for U” (with Future & Drake)", value: "No. 1" },
+      // Level with Burna Boy, so it shares rank 1 (the page's rule: a tie
+      // shares its rank). It read "2" until 5 Oct 2026 (records-18).
+      { name: "Tems", sub: "🇳🇬 “Wait for U” (with Future & Drake)", value: "No. 1", tie: true },
     ],
     note: "Only two African artists have ever sent a song to No. 1 on Apple Music's Global Top 100 — Burna Boy with “Dai Dai” (the first and only male African artist to do it) and Tems with “Wait for U”. Burna Boy is also the only African artist with two songs peaking inside the global top two: “Dai Dai” at No. 1 and “WGFT” (with Gunna) at No. 2.",
     source: "Songs by African artists to reach No. 1 on the Apple Music Global Top 100. As of July 2026.",

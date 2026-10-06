@@ -23,6 +23,16 @@ import { totalAwards } from "../data/certifications";
 const listJoin = (xs: string[]) =>
   xs.length > 1 ? `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}` : (xs[0] ?? "");
 
+/** The markets chart: the top ten by charting releases, and every market tied
+ *  with the tenth. A plain slice(0, 10) dropped Suriname, level with Belgium on
+ *  10 entries and on its best peak, by CHART_COUNTRIES key order (5 Oct 2026,
+ *  records-21). */
+const MARKETS_SHOWN = 10;
+export const marketsShown = marketsByVolume.filter(
+  (m, i, a) => i < MARKETS_SHOWN || m.entries === a[MARKETS_SHOWN - 1]?.entries,
+);
+const marketsTied = marketsShown.filter((m) => m.entries === marketsShown[MARKETS_SHOWN - 1]?.entries);
+
 // The four findings, lifted out of the /analysis page so the homepage can lead
 // with one. They were the only genuine editorial voice on the site and they sat
 // three clicks deep, behind a footer link.
@@ -138,12 +148,13 @@ export const findings: Finding[] = [
     ],
     chartLabel: "Chart entries by market",
     bars: toBars(
-      marketsByVolume
-        .slice(0, 10)
-        .map((m) => ({ name: m.country, n: m.entries, hot: m.code === "UK" || m.code === "US" }))
+      marketsShown.map((m) => ({ name: m.country, n: m.entries, hot: m.code === "UK" || m.code === "US" }))
     ),
-    chartNote:
-      "Top 10 markets by number of charting releases. The US sits high on volume and nowhere on peaks.",
+    chartNote: `Top ${marketsShown.length} markets by number of charting releases${
+      marketsShown.length > MARKETS_SHOWN
+        ? ` — ${listJoin(marketsTied.map((m) => m.country))} tie on ${marketsTied[0].entries}`
+        : ""
+    }. The US sits high on volume and nowhere on peaks.`,
   },
   {
     id: "diamond-country",

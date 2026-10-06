@@ -213,6 +213,15 @@ const highestTier = (r: (typeof allItems)[number]) => {
 
 // Satori wraps but never scrolls; a run-on kicker would collide with the
 // value block, so the derived families clamp it at a sentence-ish length.
+/** A first renamed after its stat card may have been shared: the old link's
+ *  key → the current title's key. 5 Oct 2026 (records-09): the YouTube
+ *  audience first said "YouTube Music", which its own board does not. */
+export const FIRST_KEY_ALIASES: Record<string, string> = {
+  [titleKey("First African artist to surpass 700 million YouTube Music monthly audience")]: titleKey(
+    "First African artist to surpass 700 million monthly audience on YouTube",
+  ),
+};
+
 const clamp = (s: string, n = 150) => (s.length <= n ? s : `${s.slice(0, n - 1).trimEnd()}…`);
 
 // The bodies behind the number, most representative first — the same
@@ -256,7 +265,7 @@ export function findCard(id: string | null): StatCard | undefined {
   }
 
   if (id.startsWith("first-")) {
-    const key = id.slice(6);
+    const key = FIRST_KEY_ALIASES[id.slice(6)] ?? id.slice(6);
     const f = firstGroups.flatMap((g) => g.items).find((it) => titleKey(it.title) === key);
     if (!f) return undefined;
     return {
