@@ -177,12 +177,19 @@ describe("C-05/D-02: the Danish Gold is named as the chart it was read on", () =
 
   it("the embed's source line and /certifications' sources line name the chart", () => {
     const certs = EMBED_WIDGETS.find((w) => w.slug === "certifications")!;
-    expect(certs.content.source).toMatch(/^each certifying body's own register or published chart, most recently read /);
-    // Shipped: "each certifying body's own register, most recently read 4 October 2026".
+    // Since 5 Oct 2026 (core-12) it names the label's plaque too, the route
+    // "Dai Dai"'s Colombian Gold and "All Eyes on Me"'s 19× Platinum rest on.
+    expect(certs.content.source).toMatch(
+      /^each certifying body's own register — or, where it lists none, a label's own plaque or the body's published chart — most recently read /,
+    );
+    // Shipped: "each certifying body's own register, most recently read 4 October 2026",
+    // then "each certifying body's own register or published chart, most recently read …".
+    expect(certs.content.source).not.toMatch(/^each certifying body's own register or published chart, most recently read/);
     expect(certs.content.source).not.toMatch(/^each certifying body's own register, most recently read/);
     const t = text(renderToStaticMarkup(<CertificationsPage />));
+    // With, since 5 Oct 2026, the no-row label route between them (core-12).
     expect(t).toContain(
-      "(or, in a market with no current public register, from the label's own plaque; or from the body's own published chart where its register has not yet listed the award)",
+      "(or, in a market with no current public register, from the label's own plaque; where the register holds no row for the title, from the label's own award; or from the body's own published chart where its register has not yet listed the award)",
     );
   });
 });

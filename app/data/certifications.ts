@@ -433,6 +433,14 @@ export const singles: Release[] = [
   { title: "Different Size", credit: "feat. Victony", year: 2022, cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Platinum" },
   ] },
+  // Burna Boy's own Love, Damini track with Popcaan as the guest — "feat."
+  // names the guests on a release he leads (lib/api.ts CREDIT_NOTE), Music
+  // Canada's row reads "Burna Boy — Toni-Ann Singh", and charts.ts files it
+  // under singles. It sat in `features` until 5 Oct 2026 (records-01), so the
+  // lead-credits views on /certifications and /compare dropped its 2 plaques.
+  { title: "Toni-Ann Singh", credit: "feat. Popcaan", year: 2022, cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [
+    { c: "CA", level: "Gold" }, { c: "NG", level: "Silver" },
+  ] },
   { title: "Big 7", year: 2023, cover: "https://cdn-images.dzcdn.net/images/cover/f5f99a13558a35bbec024b3587357300/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Platinum" },
   ] },
@@ -685,9 +693,6 @@ export const features: Release[] = [
   ] },
   { title: "Yaba Buluku (Remix)", credit: "DJ Tárico & Burna Boy", year: 2021, cover: "https://cdn-images.dzcdn.net/images/cover/838ae1b6384d70287eb799afdb50512c/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Gold" },
-  ] },
-  { title: "Toni-Ann Singh", credit: "feat. Popcaan", year: 2022, cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [
-    { c: "CA", level: "Gold" }, { c: "NG", level: "Silver" },
   ] },
   // Byron Messia's record, Burna Boy featured — the credit charts.ts carries,
   // with the lead act Official Charts prints ("TALIBANS by BYRON MESSIA", read

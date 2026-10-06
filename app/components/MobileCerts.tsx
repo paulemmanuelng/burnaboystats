@@ -4,7 +4,7 @@ import { Fragment, useState, useEffect, useLayoutEffect, type CSSProperties } fr
 import Link from "next/link";
 import styles from "./mobileCerts.module.css";
 import { SHOWS_LABEL, SHOWS_SHORT } from "../lib/showsDeepLink";
-import { badgeWeight, byMostCertified, isIssuerMarker } from "../lib/certs";
+import { badgeWeight, byMostCertified, isIssuerMarker, issuingBodyCount } from "../lib/certs";
 import ScrollRail from "./ScrollRail";
 import { titleKey } from "../lib/titleKey";
 import { coverFor } from "../lib/covers";
@@ -452,7 +452,7 @@ export default function MobileCerts({
         </h1>
         <p className={styles.lede}>
           {(narrowed ? ledes?.[viewKey(view)] ?? lede : lede) ??
-            `Silver, Gold, Platinum and Diamond awards from the RIAA, BPI, SNEP, Music Canada and ${shownCountries - 4} more — across ${inScope.length} certified releases.`}
+            `Silver, Gold, Platinum and Diamond awards from the RIAA, BPI, SNEP, Music Canada and ${issuingBodyCount(inScope) - 4} more — across ${inScope.length} certified releases.`}
         </p>
 
         {/* The two switches, /compare's own (CertViewSwitches), moved as they

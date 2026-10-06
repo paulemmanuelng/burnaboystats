@@ -11,6 +11,7 @@ import { BURNA_PEAK_LISTENERS, BURNA_PEAK_LISTENERS_SET_ON, BURNA_PEAK_LISTENERS
 import { lastUpdated } from "./api";
 import { revenueShows } from "../data/tourRevenue";
 import { revenueRowBody } from "./revenueSource";
+import { noRowLabelClause } from "./offRegister";
 import { tours } from "../data/tours";
 
 // The record tour and the record night, read off the data the tour pages use —
@@ -68,7 +69,7 @@ export function getStatCards(): StatCard[] {
       source: "RIAA · BPI · SNEP · IFPI",
       watermark: "GOLD",
       href: "/certifications",
-      detail: `Every award is counted once it appears in the issuing body's own searchable database, or, in a market with no current public register, on the label's own plaque${announcedClause(", or on ")}. ${diamond} of them are Diamond${diamondBodies.length === 1 ? `, all awarded by ${diamondBodies[0]}` : `, across ${diamondBodies.join(" · ")}`}.`,
+      detail: `Every award is counted once it appears in the issuing body's own searchable database, or, in a market with no current public register, on the label's own plaque${noRowLabelClause(", or, ", "on ")}${announcedClause(", or on ")}. ${diamond} of them are Diamond${diamondBodies.length === 1 ? `, all awarded by ${diamondBodies[0]}` : `, across ${diamondBodies.join(" · ")}`}.`,
       value: `${totalAwards()}`,
       label: `certifications across ${countryCount} countries`,
       kicker: "The most-certified African artist in history",

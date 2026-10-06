@@ -29,6 +29,20 @@ const issued = allItems.flatMap((r) =>
 );
 export const burnaLabelPlaques = issued.map((x) => x.text);
 
+/** His label plaques in a market whose register the site DOES read, which
+ *  holds no row for the title — "All Eyes on Me"'s 19× Platinum in South
+ *  Africa, Sony Music Africa's. */
+export const burnaNoRowLabelPlaques = issued.filter((x) => x.registerRead).map((x) => x.text);
+
+/** The clause the short copies of the certification rule add while any such
+ *  plaque stands. They named only the no-register route (Colombia), so on
+ *  /share, /curator, /api/v1/certifications and /certifications the 19×
+ *  Platinum had no route that admitted it (5 Oct 2026, core-12). `on` is the
+ *  preposition each copy's list uses ("on ", "from ", or none). Empty when
+ *  none stands, and the copy reads as it did before. */
+export const noRowLabelClause = (lead: string, on = ""): string =>
+  burnaNoRowLabelPlaques.length ? `${lead}where the register holds no row for the title, ${on}the label's own award` : "";
+
 /** Burna Boy's plaques read from the certifying body's own publication, its
  *  register not yet listing the row (`source: "announcement"`): "“Dai Dai”'s
  *  Gold in Denmark, published by IFPI Denmark on Hitlisten, its official chart,

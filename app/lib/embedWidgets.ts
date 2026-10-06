@@ -13,6 +13,7 @@
 
 import { spotifyTotalStreams, spotifyTotalStreamsExact } from "../data/streamingTotals";
 import { totalAwards, countryCount, tierCounts, CERTS_VERIFIED_ON, announcedPlaques } from "../data/certifications";
+import { burnaLabelPlaques } from "./offRegister";
 import { daiDaiNumberOnes, daiDaiChartEntryCount, weeksAtPeak } from "../data/charts";
 import { DAI_DAI_SPOTIFY_NO1_DAYS } from "../data/daiDai";
 import { openingClause } from "./bandHeadline";
@@ -21,6 +22,12 @@ import { esc } from "./emailChrome";
 import { CANONICAL_ORIGIN } from "./seo";
 import { embedTokenDeclarations } from "./embedTheme";
 import type { EmbedMeta } from "./embedSnippet";
+
+/** The routes besides a register row that Burna Boy's plaques rest on. */
+const otherRoutes = [
+  burnaLabelPlaques.length ? "a label's own plaque" : "",
+  announcedPlaques.length ? "the body's published chart" : "",
+].filter(Boolean);
 
 export interface EmbedStat {
   v: string;
@@ -159,7 +166,10 @@ export const EMBED_WIDGETS: EmbedWidget[] = [
       })),
       // "or published chart" while a plaque rests on one (Dai Dai 🇩🇰, Hitlisten;
       // C-05, 4 Oct 2026) — derived, so it goes when the register lists it.
-      source: `each certifying body's own register${announcedPlaques.length ? " or published chart" : ""}, most recently read ${longDate(CERTS_VERIFIED_ON)}`,
+      // The other routes in, while any plaque rests on one: a label's own
+      // plaque ("Dai Dai" 🇨🇴, "All Eyes on Me" 🇿🇦 — counted in these tiers
+      // and named nowhere until 5 Oct 2026, core-12) and the body's own chart.
+      source: `each certifying body's own register${otherRoutes.length ? ` — or, where it lists none, ${otherRoutes.join(" or ")} —` : ","} most recently read ${longDate(CERTS_VERIFIED_ON)}`,
       href: "/certifications",
     },
   },

@@ -23,7 +23,8 @@ import { countryBoardLinks } from "../lib/certCountry";
 import CertViewSwap from "../components/CertViewSwap";
 import { wholePercents } from "../lib/wholePercents";
 import { featuredTitlesOf } from "../lib/certUnits";
-import { withIssuerProvenance } from "../lib/certs";
+import { issuingBodyCount, withIssuerProvenance } from "../lib/certs";
+import { noRowLabelClause } from "../lib/offRegister";
 import {
   ALL_VIEW, certCountPhrase, certKicker, certTotals, certsInView, creditSwitchable, homeCodeFor, scopeSwitchable, viewKey,
   viewsOffered, type CertView, type CertViewKey,
@@ -119,9 +120,9 @@ const tierRail = railCounts.map(({ name, count }, i) => ({
 }));
 
 const thisYear = Math.max(...certHistory.map((e) => e.year));
-const issuingBodies = new Set(
-  Object.values(COUNTRIES).map((c) => c.body)
-).size;
+// Counted from who issued his plaques (lib/certs issuingBodyCount), not from
+// the COUNTRIES register map: the lead-credit views printed one body too many.
+const issuingBodies = issuingBodyCount(allItems);
 
 const summary = [
   { value: String(total), label: "Total certifications", note: "Silver → Diamond" },
@@ -149,7 +150,6 @@ const offered = { scope: scopeSwitchable(allItems, home), credit: creditSwitchab
 function summaryFor(view: CertView): typeof summary {
   const inView = certsInView(allItems, { home, featured }, view);
   const t = certTotals(inView);
-  const codes = new Set(inView.flatMap((r) => r.certs.map((c) => c.c)));
   // The label stays as short as the all-view's: "International certifications
   // as lead artist" ran to two lines at 1440 and dropped its note 18px below
   // the other three (debug pass, 3 Oct 2026). The narrowing goes in the note.
@@ -162,7 +162,7 @@ function summaryFor(view: CertView): typeof summary {
       label: plural(t.total, "Certification", "Certifications"),
       note: narrowing[0].toUpperCase() + narrowing.slice(1),
     },
-    { value: String(t.countries), label: "Countries", note: `${new Set([...codes].map((c) => COUNTRIES[c].body)).size} issuing bodies` },
+    { value: String(t.countries), label: "Countries", note: `${issuingBodyCount(inView)} issuing bodies` },
     {
       value: String(t.releases),
       label: "Certified releases",
@@ -398,6 +398,7 @@ export default function CertificationsPage() {
           <p className={styles.source}>
             Sources: {certSources()} — each award read at the body&apos;s own register (or, in
             a market with no current public register, from the label&apos;s own plaque
+            {noRowLabelClause("; ", "from ")}
             {announcedClause("; or from ")}), most recently on {certsVerifiedLong}. Each row shows a release&apos;s current level in
             every country; “×” denotes multi-platinum.
           </p>
