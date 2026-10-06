@@ -26,6 +26,8 @@ function walk(dir: string, out: string[] = []) {
   return out;
 }
 
+const read = (p: string) => readFileSync(p, "utf8");
+
 const FILES = walk("app");
 const SRC = new Map(FILES.map((f) => [f, readFileSync(f, "utf8")]));
 
@@ -43,17 +45,27 @@ function anchorsIn(src: string) {
   ];
 }
 
+/** The wrapper's opening tag, in both spellings the app uses: the bare
+ *  `<div className={styles.desktopOnly}>` and a template literal that adds a
+ *  class (`${styles.desktopOnly} ${styles.exploreRail}`, /dai-dai's rail). */
+const DESKTOP_OPEN = /<div className=\{(?:styles\.desktopOnly|`[^`]*\$\{styles\.desktopOnly\}[^`]*`)\}>/g;
+
 /**
- * The [start, end) spans of each `<div className={styles.desktopOnly}>` block,
- * found by counting <div> and </div> from its opening tag (self-closing divs
- * count as neither; a "<div>" inside a comment is blanked out first, keeping
- * every index where it was). An unclosed block runs to the end of the file,
- * which errs toward calling an id desktop-only.
+ * The [start, end) spans of each desktopOnly `<div>` block, found by counting
+ * <div> and </div> from its opening tag (self-closing divs count as neither; a
+ * "<div>" inside a comment is blanked out first, keeping every index where it
+ * was). An unclosed block runs to the end of the file, which errs toward
+ * calling an id desktop-only — and so does a `styles.desktopOnly` gate in any
+ * other form (another tag, a className built some other way): it is not
+ * walked, it runs from where it stands to the end of the file, the rule this
+ * guard had before it walked blocks at all.
  */
 export function desktopSpans(src: string): [number, number][] {
   const s = src.replace(/\/\*[\s\S]*?\*\//g, (c) => " ".repeat(c.length));
   const spans: [number, number][] = [];
-  for (const m of s.matchAll(/<div className=\{styles\.desktopOnly\}>/g)) {
+  const openers: [number, number][] = [];
+  for (const m of s.matchAll(DESKTOP_OPEN)) {
+    openers.push([m.index!, m.index! + m[0].length]);
     const tag = /<div\b[^>]*?(\/)?>|<\/div>/g;
     tag.lastIndex = m.index!;
     let depth = 0;
@@ -68,6 +80,8 @@ export function desktopSpans(src: string): [number, number][] {
     }
     spans.push([m.index!, end]);
   }
+  for (const g of s.matchAll(/styles\.desktopOnly\b/g))
+    if (!openers.some(([from, to]) => g.index! >= from && g.index! < to)) spans.push([g.index!, s.length]);
   return spans;
 }
 
@@ -118,5 +132,34 @@ describe("desktopSpans", () => {
     // Negative control: what the old "after the first wrapper opens" rule called desktop-only.
     expect(inside("out")).toBe(false);
     expect(src.indexOf('id="out"') > src.indexOf("styles.desktopOnly")).toBe(true);
+  });
+
+  const inside = (src: string, id: string) =>
+    desktopSpans(src).some(([a, b]) => src.indexOf(`id="${id}"`) > a && src.indexOf(`id="${id}"`) < b);
+
+  it("walks the template-literal wrapper /dai-dai's explore rail uses", () => {
+    // The opening tag as app/dai-dai/page.tsx and app/dai-dai/es/page.tsx write it.
+    const OPEN = "<div className={`${styles.desktopOnly} ${styles.exploreRail}`}>";
+    expect(read("app/dai-dai/page.tsx")).toContain(OPEN);
+    expect(read("app/dai-dai/es/page.tsx")).toContain(OPEN);
+    const src = `<main>${OPEN}<a id="in" /></div><section id="out" /></main>`;
+    expect(inside(src, "in")).toBe(true);
+    expect(inside(src, "out")).toBe(false);
+    // Negative control: the exact-form opener this guard matched before saw no
+    // block in that tag, so every id in the rail counted as reachable on phones.
+    expect([...src.matchAll(/<div className=\{styles\.desktopOnly\}>/g)]).toHaveLength(0);
+    const daiDai = read("app/dai-dai/page.tsx");
+    expect(desktopSpans(daiDai).some(([a]) => a === daiDai.indexOf(OPEN))).toBe(true);
+  });
+
+  it("a gate in any other form runs to the end of the file; desktopOnlyInline is not a gate", () => {
+    // app/components/BackToTop.tsx's button, as it is written.
+    const GATE = 'className={`${styles.btn} ${show ? styles.show : ""} ${styles.desktopOnly}`}';
+    expect(read("app/components/BackToTop.tsx")).toContain(GATE);
+    const src = `<p id="before" /><button ${GATE}><span id="after" /></button><p id="later" />`;
+    expect(inside(src, "before")).toBe(false);
+    expect(inside(src, "after")).toBe(true);
+    expect(inside(src, "later")).toBe(true);
+    expect(desktopSpans('<span className={styles.desktopOnlyInline} /><p id="x" />')).toEqual([]);
   });
 });

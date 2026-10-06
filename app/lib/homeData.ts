@@ -61,9 +61,15 @@ const albumTitles = new Set(certAlbums.map((a) => titleKey(a.title)));
 /** A track list's title without its guest: "Gum Body (feat. Jorja Smith)" is
  *  "Gum Body", "Killin Dem (with Zlatan)" is "Killin Dem". */
 const bareTrack = (t: string) => t.replace(/\s*\((?:feat|with)\.?[^)]*\)\s*$/i, "");
+/** A ledger title its album's track list spells another way:
+ *  certifications.ts and charts.ts say "Onyeka (Baby)", Twice as Tall's track
+ *  list "Onyeka", so the row read a bare "Burna Boy". */
+const TRACK_LIST_TITLE: Record<string, string> = { "Onyeka (Baby)": "Onyeka" };
 /** The studio album whose standard track list holds the title. */
-const studioAlbumOf = (title: string) =>
-  studioAlbums.find((a) => a.tracks.some((t) => sameTitle(bareTrack(t), title)))?.title;
+const studioAlbumOf = (title: string) => {
+  const listed = TRACK_LIST_TITLE[title] ?? title;
+  return studioAlbums.find((a) => a.tracks.some((t) => sameTitle(bareTrack(t), listed)))?.title;
+};
 
 const creditFor = (item: (typeof allItems)[number]) => {
   if (albumTitles.has(titleKey(item.title))) return "Album";

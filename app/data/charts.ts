@@ -278,7 +278,7 @@ export const albumCharts: ChartRelease[] = [
     // dateCreated 2 Nov is the record stamp. Dated to the Thursday that closes
     // the printed week, like every other TurnTable peak
     // (docs/sweeps/burna-boy-nigeria-2026-09-18.md).
-    { c: "UK", peak: 2 }, { c: "NG", peak: 3, peakDate: "2022-11-03", note: "Peak still open — read while the release is still on the chart, so it may yet climb." }, { c: "NL", peak: 2 }, { c: "CA", peak: 6 }, { c: "SE", peak: 12 },
+    { c: "UK", peak: 2 }, { c: "NG", peak: 3, peakDate: "2022-11-03", note: "Peak still open — still on TurnTable's Top 100 Albums at the 10 Sep 2026 issue, so it may yet climb." }, { c: "NL", peak: 2 }, { c: "CA", peak: 6 }, { c: "SE", peak: 12 },
     { c: "US", peak: 14 }, { c: "FR", peak: 17 }, { c: "IE", peak: 23 }, { c: "BE", peak: 24 },
     { c: "DE", peak: 61 },
     // Read 2 Oct 2026: Schweizer Hitparade Alben, 17 Jul 2022 (6, new; 10
@@ -291,7 +291,7 @@ export const albumCharts: ChartRelease[] = [
     // TurnTable Official Top 50 Albums (now Top 100 Albums): 17 on the 2 Feb 2023
     // and 16 Feb 2023 issues; 25 was its debut on the chart's first issue,
     // 2 Nov 2022. Every issue to 10 Sep 2026 read (26, 184 weeks, still charting).
-    { c: "FR", peak: 29 }, { c: "IE", peak: 31 }, { c: "NO", peak: 34 }, { c: "NG", peak: 17, note: "TurnTable Official Top 100 Albums — 17 on the 2 and 16 February 2023 issues; still charting." }, { c: "SE", peak: 47 }, { c: "US", peak: 54 },
+    { c: "FR", peak: 29 }, { c: "IE", peak: 31 }, { c: "NO", peak: 34 }, { c: "NG", peak: 17, note: "TurnTable Official Top 100 Albums — 17 on the 2 and 16 February 2023 issues; still on the chart at the 10 Sep 2026 issue." }, { c: "SE", peak: 47 }, { c: "US", peak: 54 },
     { c: "AT", peak: 69 },
   ] },
   { title: "African Giant", year: 2019, entries: [
@@ -301,7 +301,7 @@ export const albumCharts: ChartRelease[] = [
     // 2019 at 64; TurnTable Official Top 100 Albums peak 23 on the 30 Jul 2026
     // issue, still on the chart (36 on 10 Sep 2026, 158 weeks). Germany's 80
     // was not on Offizielle Charts' run and is out.
-    { c: "NL", peak: 12 }, { c: "UK", peak: 16 }, { c: "NG", peak: 23, note: "Peak still open — read while the album is still on the Top 100, so it may yet climb." },
+    { c: "NL", peak: 12 }, { c: "UK", peak: 16 }, { c: "NG", peak: 23, note: "Peak still open — still on TurnTable's Top 100 Albums at the 10 Sep 2026 issue, so it may yet climb." },
     { c: "CA", peak: 33 }, { c: "FR", peak: 54 }, { c: "BE", peak: 58 }, { c: "CH", peak: 64 },
     { c: "IE", peak: 80 }, { c: "US", peak: 104 },
   ] },
@@ -310,7 +310,7 @@ export const albumCharts: ChartRelease[] = [
   // of the 193 archive issues, 5 Jan 2023 → 10 Sep 2026 (89 on the last). Read
   // at the ttc-proxy archive 18 Sep 2026. Outside had no chart row at all.
   { title: "Outside", year: 2018, entries: [
-    { c: "NG", peak: 41, note: "Peak still open — read while the release is still on the chart, so it may yet climb." },
+    { c: "NG", peak: 41, note: "Peak still open — still on TurnTable's Top 100 Albums at the 10 Sep 2026 issue, so it may yet climb." },
   ] },
   { title: "No Sign of Weakness", year: 2025, entries: [
     // Schweizer Hitparade Alben Top 100, issue of 20 Jul 2025: 28, one week

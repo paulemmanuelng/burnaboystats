@@ -182,12 +182,6 @@ export interface LeaderboardBox {
 // Name highlighted across every box (the site's subject).
 export const HIGHLIGHT = "Burna Boy";
 
-/**
- * The rows of "Most weeks on the Billboard Hot 100". Every figure is computed
- * in data/hot100Weeks.ts from Billboard's own rows, one per credited song; this
- * only formats them the way the page's other boards read — flag and detail
- * under the name, the figure on the right. A tie shares its rank.
- */
 /** An act's Hot 100 entries — one per song its credit line names — off the
  *  Billboard rows the weeks board is built from (data/hot100Weeks.ts). The
  *  entries board typed these and stamped them "As of July 2026" beside a
@@ -198,6 +192,26 @@ const hot100SongsOf = (name: string): number => {
   return s.songs;
 };
 
+/** The one figure a shared row prints for acts tied on Hot 100 entries. The
+ *  entries board's "Tyla & Hugh Masekela · tied" row and its note's "tied on
+ *  N" read one count for two acts, so this throws at load the day their
+ *  counts part, rather than print a tie that no longer holds. */
+export const tiedHot100Count = (...names: string[]): number => {
+  const counts = names.map(hot100SongsOf);
+  if (counts.some((n) => n !== counts[0]))
+    throw new Error(
+      `Hot 100 entries: ${names.map((n, i) => `${n} ${counts[i]}`).join(", ")} are no longer tied — give each act its own row`,
+    );
+  return counts[0];
+};
+const TYLA_MASEKELA_HOT100 = tiedHot100Count("Tyla", "Hugh Masekela");
+
+/**
+ * The rows of "Most weeks on the Billboard Hot 100". Every figure is computed
+ * in data/hot100Weeks.ts from Billboard's own rows, one per credited song; this
+ * only formats them the way the page's other boards read — flag and detail
+ * under the name, the figure on the right. A tie shares its rank.
+ */
 const hot100WeeksEntries: RankEntry[] = hot100Top.map((s, i) => ({
   name: s.name,
   sub: `${HOT100_COUNTRIES[s.country].flag} ${count(s.songs, "song", "songs")} · best No. ${s.bestPeak}`,
@@ -534,9 +548,9 @@ export const statBoxes: LeaderboardBox[] = [
       { name: "Tems", sub: "🇳🇬 Nigeria", value: `${hot100SongsOf("Tems")}` },
       { name: "Seether", sub: "🇿🇦 South Africa", value: `${hot100SongsOf("Seether")}` },
       { name: "Wizkid", sub: "🇳🇬 Nigeria", value: `${hot100SongsOf("Wizkid")}` },
-      { name: "Tyla & Hugh Masekela", sub: "🇿🇦 South Africa · tied", value: `${hot100SongsOf("Tyla")}` },
+      { name: "Tyla & Hugh Masekela", sub: "🇿🇦 South Africa · tied", value: `${TYLA_MASEKELA_HOT100}` },
     ],
-    note: `Burna Boy has the most Billboard Hot 100 entries of any African artist in history — ${BURNA_HOT_100_ENTRIES}, extended by “Dai Dai” with Shakira. Tems is next with ${hot100SongsOf("Tems")} — the most ever by an African woman. Hugh Masekela and Tyla are tied on ${hot100SongsOf("Tyla")}; Masekela was the first African act to top the chart (“Grazing in the Grass,” No. 1, 1968).`,
+    note: `Burna Boy has the most Billboard Hot 100 entries of any African artist in history — ${BURNA_HOT_100_ENTRIES}, extended by “Dai Dai” with Shakira. Tems is next with ${hot100SongsOf("Tems")} — the most ever by an African woman. Hugh Masekela and Tyla are tied on ${TYLA_MASEKELA_HOT100}; Masekela was the first African act to top the chart (“Grazing in the Grass,” No. 1, 1968).`,
     source:
       `Career Billboard Hot 100 entries by African artists — one per song whose credit line names the artist, lead or featured — counted from the Billboard chart-history rows the weeks board on this page is built from: Burna Boy (${BURNA_HOT_100_ENTRIES}), Tems (${hot100SongsOf("Tems")}), Seether (${hot100SongsOf("Seether")}), Wizkid (${hot100SongsOf("Wizkid")}), Tyla (${hot100SongsOf("Tyla")}) and Hugh Masekela (${hot100SongsOf("Hugh Masekela")}). Read ${HOT100_READ_ON_LONG}, as of the chart dated ${HOT100_CHART_DATE_LONG}.`,
   },

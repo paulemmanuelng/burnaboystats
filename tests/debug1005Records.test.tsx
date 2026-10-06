@@ -20,8 +20,8 @@ import { albums, eps, compilations } from "../app/data/albums";
 import { albumPages } from "../app/data/albumPages";
 import { songs } from "../app/data/songs";
 import { allItems, features, singles, COUNTRIES } from "../app/data/certifications";
-import { singleCharts, BURNA_LAST_CHART_SWEEP } from "../app/data/charts";
-import { statBoxes, BURNA_YT_AUDIENCE, BURNA_YT_AUDIENCE_WORDS, rankOf } from "../app/data/africasBiggest";
+import { singleCharts, allChartItems, BURNA_LAST_CHART_SWEEP } from "../app/data/charts";
+import { statBoxes, BURNA_YT_AUDIENCE, BURNA_YT_AUDIENCE_WORDS, rankOf, tiedHot100Count } from "../app/data/africasBiggest";
 import { HOT100_READ_ON_LONG, HOT100_CHART_DATE_LONG } from "../app/data/hot100Weeks";
 import { stats as byTheNumbers } from "../app/data/byTheNumbers";
 import { firstGroups } from "../app/data/firsts";
@@ -105,6 +105,24 @@ describe("music-08: an ongoing chart claim in song or album prose carries a date
   it("every 'still charting' sentence names the issue it was read on", () => {
     const texts = [...albumPages, ...songs].flatMap((p) => [p.blurb, ...(p.faqs ?? []).map((f) => f.a)]);
     expect(texts.flatMap(undated)).toEqual([]);
+  });
+  it("every chart-entry note that says a run is still going names the issue it was read on", () => {
+    // charts.ts notes print in the /records/charts title, aria-label and the
+    // phone's hidden text. Twice as Tall's Nigerian note read "still charting"
+    // and three "Peak still open" notes "read while … still on the chart", all
+    // with no date; every one was read on the 10 Sep 2026 issue.
+    // The date has to sit in the clause that makes the claim: Twice as Tall's
+    // note carried a year, but it was the peak's ("February 2023").
+    const ONGOING = /still (?:charting|on\b)/i;
+    const undatedClaim = (note: string) =>
+      note.split(/[;—]/).some((clause) => ONGOING.test(clause) && !/\b20\d\d\b/.test(clause));
+    const notes = allChartItems.flatMap((r) => r.entries.map((e) => [`${r.title} ${e.c}`, e.note ?? ""] as const));
+    expect(notes.filter(([, n]) => undatedClaim(n)).map(([k]) => k)).toEqual([]);
+    // Negative controls: two of the notes as they shipped.
+    expect(undatedClaim("TurnTable Official Top 100 Albums — 17 on the 2 and 16 February 2023 issues; still charting.")).toBe(true);
+    expect(undatedClaim("Peak still open — read while the release is still on the chart, so it may yet climb.")).toBe(true);
+    // "Peak still open" alone is not an ongoing claim the guard should read.
+    expect(undatedClaim("Peak still open — 41 on the 4 Jul 2024 issue")).toBe(false);
   });
   it("negative control: the African Giant answer as it shipped", () => {
     expect(
@@ -299,6 +317,14 @@ describe("records-04/05/18: the Africa's Biggest boards", () => {
     const src = box("most-hot-100-entries").source;
     expect(src).toContain(`Read ${HOT100_READ_ON_LONG}, as of the chart dated ${HOT100_CHART_DATE_LONG}.`);
     expect(src).not.toContain("As of July 2026");
+  });
+
+  it("crossSite-13: the shared 'Tyla & Hugh Masekela · tied' row holds only while their counts are equal", () => {
+    const row = box("most-hot-100-entries").entries.find((e) => e.name === "Tyla & Hugh Masekela")!;
+    expect(row.value).toBe(`${tiedHot100Count("Tyla", "Hugh Masekela")}`);
+    expect(box("most-hot-100-entries").note).toContain(`tied on ${tiedHot100Count("Tyla", "Hugh Masekela")};`);
+    // Negative control: two acts that are not tied (Tems 8, Tyla 4) throw.
+    expect(() => tiedHot100Count("Tyla", "Tems")).toThrow(/no longer tied/);
   });
 
   it("crossSite-03: the monthly-listeners board prints the rank the by-the-numbers tile links it for", () => {
@@ -526,6 +552,13 @@ describe("core-16: home ledger credits name the album", () => {
     const bare = ledgerRows.filter((r) => r.credit === "Burna Boy").map((r) => r.title);
     const onAnAlbum = bare.filter((t) => albums.some((a) => a.tracks.some((tr) => titleKey(tr.replace(/\s*\((?:feat|with)\.?[^)]*\)\s*$/i, "")) === titleKey(t))));
     expect(onAnAlbum).toEqual([]);
+  });
+  it("'Onyeka (Baby)' names Twice as Tall, whose track list spells it 'Onyeka'", () => {
+    expect(ledgerRows.find((r) => r.title === "Onyeka (Baby)")?.credit).toBe("Burna Boy · Twice as Tall");
+    // Negative control: the two spellings are not one title key, which is why
+    // the row read a bare "Burna Boy".
+    expect(titleKey("Onyeka (Baby)")).not.toBe(titleKey("Onyeka"));
+    expect(albums.find((a) => a.title === "Twice as Tall")!.tracks).toContain("Onyeka");
   });
 });
 

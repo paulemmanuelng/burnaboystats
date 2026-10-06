@@ -336,11 +336,21 @@ function creditAgrees(siteRelease, group, list) {
   return extrasOk;
 }
 
+/** "2026-09-10" → "10 Sep 2026", the site's short date (never ICU's "Sept"). */
+const SHORT_MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+function issueDay(iso) {
+  const [y, m, d] = iso.split("-").map(Number);
+  return `${d} ${SHORT_MONTHS[m - 1]} ${y}`;
+}
+
 function compare(site, singlesGroups, albumGroups, latest) {
   const { albumCharts, singleCharts, featureCharts } = site.charts;
   const corrections = [], additions = [], unmatched = [], confirmed = [];
   const used = new Set();
-  const OPEN_NOTE = "Peak still open — read while the release is still on the chart, so it may yet climb.";
+  // An open run names the issue it was last read on: an undated "still on the
+  // chart" goes stale with nothing to show it (5 Oct 2026 debug; charts.ts's
+  // notes are guarded in tests/debug1005Records.test.tsx).
+  const openNote = (g) => `Peak still open — still on the chart at the ${issueDay(g.lastDate)} issue, so it may yet climb.`;
 
   function matchRelease(rel, groups, list) {
     const k = looseKey(rel.title);
@@ -392,19 +402,19 @@ function compare(site, singlesGroups, albumGroups, latest) {
         if (m.group.peak !== ng.peak) {
           corrections.push({ list, title: rel.title, credit: rel.credit ?? null, year: rel.year, matchedBy: m.how, sitePeak: ng.peak, walkPeak: m.group.peak,
             direction: m.group.peak < ng.peak ? "site UNDERSTATES — chart peak is higher (better rank)" : "site OVERSTATES — chart never went that high",
-            creditAgrees: m.creditAgrees, proposedEntry: `{ c: "NG", peak: ${m.group.peak}${m.group.open ? `, note: "${OPEN_NOTE}"` : ""} }`, evidence: evidence(m.group, m) });
+            creditAgrees: m.creditAgrees, proposedEntry: `{ c: "NG", peak: ${m.group.peak}${m.group.open ? `, note: "${openNote(m.group)}"` : ""} }`, evidence: evidence(m.group, m) });
         } else {
           confirmed.push({ list, title: rel.title, credit: rel.credit ?? null, year: rel.year, sitePeak: ng.peak, matchedBy: m.how, creditAgrees: m.creditAgrees, evidence: evidence(m.group, m) });
           // same peak — still worth knowing if the note should change
           if (m.group.open && !ng.note) {
             additions.push({ list, kind: "note-only", title: rel.title, credit: rel.credit ?? null, year: rel.year, sitePeak: ng.peak,
-              proposedEntry: `{ c: "NG", peak: ${ng.peak}, note: "${OPEN_NOTE}" }`, evidence: evidence(m.group, m), creditAgrees: m.creditAgrees });
+              proposedEntry: `{ c: "NG", peak: ${ng.peak}, note: "${openNote(m.group)}" }`, evidence: evidence(m.group, m), creditAgrees: m.creditAgrees });
           }
         }
       } else if (m) {
         additions.push({ list, kind: "new-NG-entry", title: rel.title, credit: rel.credit ?? null, year: rel.year, creditAgrees: m.creditAgrees, matchedBy: m.how,
           ngPlaque: (list === "albums" ? site.ngPlaqued.albums : site.ngPlaqued.songs).get(looseKey(rel.title)) ?? null,
-          proposedEntry: `{ c: "NG", peak: ${m.group.peak}${m.group.open ? `, note: "${OPEN_NOTE}"` : ""} }`, evidence: evidence(m.group, m) });
+          proposedEntry: `{ c: "NG", peak: ${m.group.peak}${m.group.open ? `, note: "${openNote(m.group)}"` : ""} }`, evidence: evidence(m.group, m) });
       }
     }
   }
@@ -420,7 +430,7 @@ function compare(site, singlesGroups, albumGroups, latest) {
       newReleases.push({ chart, list, title: g.title, credit: g.artiste, lead: g.lead, year: firstYear,
         releaseYearOnFile: usable ? cr.year : null, creditOnFile: cr?.credit ?? null, certRowMatch: cr?.how ?? null, certRowTitle: cr?.title ?? null, certRowDifferentLead: !!cr?.differentLead,
         ngPlaque: (chart === "albums" ? site.ngPlaqued.albums : site.ngPlaqued.songs).get(looseKey(g.title)) ?? null,
-        proposedRow: proposeRow(g, list, OPEN_NOTE, usable ? cr.year : null), evidence: evidence(g) });
+        proposedRow: proposeRow(g, list, openNote, usable ? cr.year : null), evidence: evidence(g) });
     }
   }
   return { corrections, additions, newReleases, unmatched, confirmed };
@@ -441,9 +451,9 @@ function siteCreditFor(g, list) {
   return raw.replace(/\bfeat\.\s*/gi, "ft. ").replace(/\bfeaturing\s+/gi, "ft. ").replace(/\bft\s+/gi, "ft. ");
 }
 
-function proposeRow(g, list, OPEN_NOTE, releaseYear) {
+function proposeRow(g, list, openNote, releaseYear) {
   const credit = siteCreditFor(g, list);
-  const entry = `{ c: "NG", peak: ${g.peak}${g.open ? `, note: "${OPEN_NOTE}"` : ""} }`;
+  const entry = `{ c: "NG", peak: ${g.peak}${g.open ? `, note: "${openNote(g)}"` : ""} }`;
   const t = g.title.replace(/"/g, '\\"');
   return `{ title: "${t}", ${credit ? `credit: "${credit.replace(/"/g, '\\"')}", ` : ""}year: ${releaseYear ?? g.firstDate.slice(0, 4)}, entries: [${entry}] }`;
 }
