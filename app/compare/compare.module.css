@@ -567,6 +567,11 @@
   gap: 14px;
   justify-items: start;
 }
+/* A pair page ends on its exit; a country board's comes before the method
+   notes, whose rule sat on the button's bottom edge with no gap on all 27
+   boards (debug pass 5 Oct 2026, V-compareIn-03). The 40px the notes leave
+   above a rule. */
+.exitBoard { margin-bottom: 40px; }
 .exitKicker {
   font-family: var(--font-mono), monospace;
   font-size: var(--type-label);

@@ -549,7 +549,7 @@ export function CountryBoardView({
         )}
       </div>
 
-      <section className={styles.exit} aria-label="Next">
+      <section className={`${styles.exit} ${styles.exitBoard}`} aria-label="Next">
         <h2 className={styles.exitKicker}>Next</h2>
         {pair ? (
           <>
