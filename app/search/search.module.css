@@ -53,6 +53,14 @@
   outline: none;
   min-width: 0;
 }
+/* The field's gold edge (above) is the focus ring. `outline: none` on .input
+   alone lost to globals.css's input:focus-visible (0,1,1 beats 0,1,0), so a
+   second 2px gold box drew inside the lit field (V-core-09, 6 Oct 2026). Same
+   fix as the tour map's .findInput. */
+.input:focus-visible { outline: none; }
+/* One clear control: the "Clear ✕" pill. type="search" also drew the
+   browser's own ✕ beside it (blue in Chrome and Safari). */
+.input::-webkit-search-cancel-button { -webkit-appearance: none; appearance: none; }
 .input::placeholder { color: var(--dim); }
 .clear {
   position: relative;
