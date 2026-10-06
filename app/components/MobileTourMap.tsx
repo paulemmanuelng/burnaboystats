@@ -54,9 +54,12 @@ export default function MobileTourMap({ data }: { data: TourMapProps }) {
   const [tabCode, setTabCode] = useState(order[0]);
   const [live, setLive] = useState("");
   const [urlRead, setUrlRead] = useState(false);
+  const [reveal, setReveal] = useState(0);
 
   const svgRef = useRef<SVGSVGElement | null>(null);
   const chipsRef = useRef<HTMLDivElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const barRef = useRef<HTMLDivElement>(null);
   const scrollOnOpen = useRef(false);
 
   const box = views[view];
@@ -101,12 +104,38 @@ export default function MobileTourMap({ data }: { data: TourMapProps }) {
     if (window.matchMedia?.("(max-width: 900px)").matches) chipsRef.current?.scrollIntoView?.({ block: "start" });
   }, [selected, note]);
 
+  // A tap (or Enter) opens the panel in the flow under the map, and that is
+  // below the fold: at 390x844 its top lands at 750 and the fixed "Festivals
+  // & shows" bar starts at 769, at 375x667 the bar starts at 592, so the tap
+  // seemed only to outline the country (debug pass 5 Oct 2026,
+  // V-tourscars-03). When the panel's head (name, region, Close) is not clear
+  // of the bar, the page scrolls to where a deep link opens it: the chips
+  // under the back bar, the map whole, the panel's top beneath. On a screen
+  // too short for all three it scrolls just far enough to clear the head. A
+  // head already in view moves nothing. Every tap counts, the selected
+  // country's own included.
+  useEffect(() => {
+    if (!reveal) return;
+    const head = panelRef.current?.firstElementChild;
+    const bar = barRef.current;
+    const chips = chipsRef.current;
+    if (!head || !bar || !chips) return;
+    const hidden = head.getBoundingClientRect().bottom - bar.getBoundingClientRect().top;
+    if (hidden <= 0) return;
+    const toChips = chips.getBoundingClientRect().top - (parseFloat(getComputedStyle(chips).scrollMarginTop) || 0);
+    window.scrollBy({
+      top: Math.max(hidden, toChips),
+      behavior: window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+    });
+  }, [reveal]);
+
   const select = (code: number) => {
     setSelected(code);
     setTabCode(code);
     setNote(null);
     url.open(byCode.get(code)!.a2);
     setLive("Pinned. Links follow.");
+    setReveal((n) => n + 1);
   };
   const clear = () => {
     const had = selected !== null || note !== null;
@@ -298,7 +327,7 @@ export default function MobileTourMap({ data }: { data: TourMapProps }) {
 
         <div className={styles.panelSlot}>
           {panel ? (
-            <TourMapPanel country={panel} itinerariesFrom={totals.itinerariesFrom} onClose={clear} />
+            <TourMapPanel country={panel} itinerariesFrom={totals.itinerariesFrom} onClose={clear} panelRef={panelRef} />
           ) : note ? (
             <div className={styles.note} role="status">
               <span>{note}</span>
@@ -349,7 +378,7 @@ export default function MobileTourMap({ data }: { data: TourMapProps }) {
 
       <div className={styles.spacer} />
 
-      <div className={styles.actionBar}>
+      <div ref={barRef} className={styles.actionBar}>
         <Link href="/records/tours/festivals" className={styles.actionPrimary}>
           Festivals &amp; shows
         </Link>
