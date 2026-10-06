@@ -15,6 +15,8 @@
  * when the in-app history stack it describes stops being ours.
  */
 
+import { ROUTER_KEYS } from "./deepLink";
+
 let depth = 0;
 let poppedAt = 0;
 
@@ -52,5 +54,63 @@ export function hasInAppHistory(): boolean {
     return new URL(ref).origin === window.location.origin;
   } catch {
     return false;
+  }
+}
+
+/**
+ * In-page "#…" jumps must not strand Back (debug 5 Oct 2026, V-otd-01).
+ *
+ * A plain <a href="#…"> is a fragment navigation: the browser adds a history
+ * entry of its own, and that entry's state is null. The app router keeps its
+ * route tree in history.state, and on Back or Forward it ignores an entry
+ * without one (Next's onPopState returns on `!event.state`). So after a jump —
+ * the phone calendar's month grid and "Months ↑", the FAQ chips, the firsts
+ * and timeline jump rows — opening another page and pressing Back changed the
+ * address bar to the jump's #… and left the other page on screen.
+ *
+ * NavHistoryTracker calls noteJumpClick on every click and settleJump when
+ * the jump has happened. The browser still jumps exactly as it always has —
+ * scroll, focus point, :target, hashchange; afterwards the entry it made gets
+ * the router's state from the entry it was made from: same page, same route
+ * tree, only the fragment differs. Back then lands on an entry the router
+ * knows, at the place the reader left. Passing the router's own keys makes its
+ * patched replaceState step aside, so nothing else about the entry changes.
+ */
+let jump: { page: string; router: Record<string, unknown> } | null = null;
+
+const pageOf = (href: string) => href.split("#")[0];
+
+/** A click (capture phase): note a same-page "#…" link's router state. */
+export function noteJumpClick(e: MouseEvent): void {
+  if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+  const a = (e.target as Element | null)?.closest?.("a[href]");
+  if (!(a instanceof HTMLAnchorElement)) return;
+  if ((a.target && a.target !== "_self") || a.hasAttribute("download")) return;
+  if (!a.href.includes("#") || pageOf(a.href) !== pageOf(window.location.href)) return;
+
+  const state = window.history.state as Record<string, unknown> | null;
+  if (!state?.__NA) return;
+  const router = Object.fromEntries(Object.entries(state).filter(([k]) => ROUTER_KEYS.has(k)));
+  jump = { page: pageOf(a.href), router };
+  // Chrome has jumped by the time this runs. An engine that jumps later fires
+  // popstate (and hashchange) as it does, and settleJump runs then.
+  setTimeout(settleJump, 0);
+}
+
+/** After a noted click, on popstate and on hashchange: stamp the jump's entry. */
+export function settleJump(): void {
+  if (!jump) return;
+  if (pageOf(window.location.href) !== jump.page) {
+    jump = null;
+    return;
+  }
+  // Still the router's entry: the jump hasn't happened yet, or was cancelled.
+  if ((window.history.state as Record<string, unknown> | null)?.__NA) return;
+  const { router } = jump;
+  jump = null;
+  try {
+    window.history.replaceState(router, "", window.location.href);
+  } catch {
+    // A sandboxed frame can refuse; Back is no worse than before.
   }
 }
