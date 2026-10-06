@@ -26,7 +26,7 @@ type Json = Record<string, unknown>;
 // that CHANGES THE URL must leave them out, so the router's patched
 // replaceState copies them back and updates its own idea of the URL — pass
 // them in and it steps aside, and the next router update puts the old URL back.
-const ROUTER_KEYS = new Set(["__NA", "__PRIVATE_NEXTJS_INTERNALS_TREE"]);
+export const ROUTER_KEYS = new Set(["__NA", "__PRIVATE_NEXTJS_INTERNALS_TREE"]);
 
 function ownState(): Json {
   const s = window.history.state as Json | null;

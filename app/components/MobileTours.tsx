@@ -7,6 +7,7 @@ import { tourMeta, NO_TOUR_TOTAL } from "../lib/tourMeta";
 import { REVENUE_BODY, REVENUE_REPORTS } from "../lib/revenueSource";
 import { upcomingShows, type Tour } from "../data/tours";
 import NotReported from "./NotReported";
+import { holdInPlace } from "../lib/holdInPlace";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
 
@@ -186,7 +187,10 @@ export default function MobileTours({
               type="button"
               className={styles.tourBtn}
               aria-expanded={isOpen}
-              onClick={() => setOpen(isOpen ? null : t.name)}
+              // One tour open at a time: tapping a row below the open one shut
+              // the list above it and threw the tapped row 1,545px off the top
+              // (V-tourscars-01, 5 Oct 2026). Held under the finger instead.
+              onClick={(e) => holdInPlace(e.currentTarget, () => setOpen(isOpen ? null : t.name))}
             >
               <div className={styles.tourTop}>
                 <div className={styles.tourMain}>

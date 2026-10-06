@@ -5,6 +5,7 @@ import styles from "../records/tours/tours.module.css";
 import type { Tour } from "../data/tours";
 import { tourMeta, tourDateNote, NO_TOUR_TOTAL } from "../lib/tourMeta";
 import { track } from "../lib/analytics";
+import { holdInPlace } from "../lib/holdInPlace";
 import NotReported from "./NotReported";
 
 /**
@@ -43,7 +44,11 @@ export default function ToursExplorer({ tours }: { tours: Tour[] }) {
               type="button"
               aria-expanded={isOpen}
               aria-controls={panelId}
-              onClick={() => setOpen(isOpen ? null : t.name)}
+              // One tour open at a time, so opening a row BELOW the open one
+              // shuts the panel above it: the row rose 1,158px, off the top of
+              // the screen (V-tourscars-01, 5 Oct 2026). holdInPlace keeps the
+              // clicked row where the pointer was and opens its dates under it.
+              onClick={(e) => holdInPlace(e.currentTarget, () => setOpen(isOpen ? null : t.name))}
               className={`${styles.tourRow} ${isOpen ? styles.tourRowOpen : ""}`}
             >
               <span
