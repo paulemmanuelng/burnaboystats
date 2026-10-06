@@ -113,7 +113,7 @@ export default function TodaysNumber() {
     {/* ROW 3 — the status line, on the page background, divided by the same
         hairline. The green dot moved up to row 1; one live dot in the panel. */}
     <div className={styles.status}>
-      <span className={styles.statusText}>{changedSentence}</span>
+      {changedSentence && <span className={styles.statusText}>{changedSentence}</span>}
       <Link href="/live-charts" className={styles.statusLink}>
         Live board ↗
       </Link>

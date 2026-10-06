@@ -3,6 +3,13 @@
 import type { Metadata } from "next";
 
 export const SITE_NAME = "Burna Boy Stats";
+
+/** What the news feed is, in one sentence: the RSS channel's description and
+ *  /updates' share description. The share card said "What's new on the site,
+ *  tracked as it happens." — a changelog's words for a feed that carries only
+ *  Burna Boy news (5 Oct 2026, seo-13). */
+export const FEED_DESCRIPTION =
+  "Real Burna Boy news as it happens — chart peaks, certifications, streaming milestones and records.";
 // Canonical production origin (stable — used for absolute URLs in structured data).
 export const CANONICAL_ORIGIN = "https://burnaboystats.com";
 

@@ -189,7 +189,7 @@ export default function MobileHome({ onThisDay = null }: { onThisDay?: OnThisDay
         </p>
         <div className={styles.statusRow}>
           <span className={styles.statusDot} aria-hidden="true" />
-          <span>{changedSentence}</span>
+          {changedSentence && <span>{changedSentence}</span>}
           <Link href="/live-charts" className={styles.statusLink}>
             Live board ↗
           </Link>
