@@ -1,8 +1,11 @@
 "use client"; // the cards open the shared tracklist dialog
 
+import Link from "next/link";
 import styles from "../music/music.module.css";
 import { spotifyBgVars } from "../lib/spotifyImage";
+import { opensDialog } from "../lib/clickIntent";
 import type { AlbumEntry } from "../data/albums";
+import { albumPageByTitle } from "../data/albumPages";
 
 /**
  * The release grids.
@@ -33,7 +36,7 @@ export default function Discography({
             <span className={styles.wideCover} style={cover(a)} />
             <span>
               <span className={styles.wideTitle}>{a.title}</span>
-              <span className={styles.cardLabel}>{a.year} · {a.label}</span>
+              <span className={styles.cardLabel}>{a.year} · {a.credit ? `${a.credit} · ` : ""}{a.label}</span>
               <span className={styles.cardTracks} title={a.editionNote}>{a.tracks.length} tracks{a.editionNote ? " (standard)" : ""} ↗</span>
             </span>
           </button>
@@ -42,24 +45,54 @@ export default function Discography({
     );
   }
 
+  // A studio album with its own page is a real link to it: /music printed no
+  // /music/albums/ href at all (5 Oct 2026, music-09), so crawlers and no-JS
+  // readers had no path from the hub to the eight album pages, and the only
+  // route was a button inside a dialog that mounts on tap. The plain click
+  // still opens the dialog; EPs and the compilation have no page and stay
+  // buttons.
   return (
     <div className={layout === "pair" ? styles.pairGrid : styles.albumGrid}>
-      {albums.map((a) => (
-        <button
-          key={a.title}
-          className={styles.albumCard}
-          onClick={() => open(a.title)}
-          aria-label={`View the tracklist for ${a.title}`}
-        >
-          <span className={styles.albumCover} style={cover(a)} />
-          <span className={styles.albumRow}>
-            <span className={styles.albumTitle}>{a.title}</span>
-            <span className={styles.albumYear}>{a.year}</span>
-          </span>
-          <span className={styles.cardLabel}>{a.label}</span>
-          <span className={styles.cardTracks} title={a.editionNote}>{a.tracks.length} tracks{a.editionNote ? " (standard)" : ""} ↗</span>
-        </button>
-      ))}
+      {albums.map((a) => {
+        const inner = (
+          <>
+            <span className={styles.albumCover} style={cover(a)} />
+            <span className={styles.albumRow}>
+              <span className={styles.albumTitle}>{a.title}</span>
+              <span className={styles.albumYear}>{a.year}</span>
+            </span>
+            <span className={styles.cardLabel}>{a.credit ? `${a.credit} · ` : ""}{a.label}</span>
+            <span className={styles.cardTracks} title={a.editionNote}>{a.tracks.length} tracks{a.editionNote ? " (standard)" : ""} ↗</span>
+          </>
+        );
+        const page = albumPageByTitle(a.title);
+        return page ? (
+          <Link
+            key={a.title}
+            href={`/music/albums/${page.slug}`}
+            prefetch={false}
+            className={styles.albumCard}
+            aria-haspopup="dialog"
+            aria-label={`View the tracklist for ${a.title}`}
+            onClick={(e) => {
+              if (!opensDialog(e)) return;
+              e.preventDefault();
+              open(a.title);
+            }}
+          >
+            {inner}
+          </Link>
+        ) : (
+          <button
+            key={a.title}
+            className={styles.albumCard}
+            onClick={() => open(a.title)}
+            aria-label={`View the tracklist for ${a.title}`}
+          >
+            {inner}
+          </button>
+        );
+      })}
     </div>
   );
 }

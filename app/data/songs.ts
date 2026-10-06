@@ -8,6 +8,15 @@
 // Everything stated here is verifiable from the chart/cert data or from
 // well-documented history — no invented figures.
 
+import { allItems } from "./certifications";
+import { cardinalWord } from "../lib/plural";
+
+/** How many countries certify a title, read off certifications.ts. A meta line
+ *  that typed the count went stale: “Alone” said “certified in five countries”
+ *  after Portugal's Gold (30 Sep 2026) made it six (5 Oct 2026 debug pass). */
+const certCountriesOf = (title: string): string =>
+  cardinalWord(new Set(allItems.find((r) => r.title === title)?.certs.map((c) => c.c) ?? []).size);
+
 export interface SongFact {
   v: string;
   l: string;
@@ -196,7 +205,7 @@ export const songs: Song[] = [
     blurb:
       "A celebratory highlight from I Told Them… (2023), “City Boys” became one of the album's biggest songs — a swaggering Afrobeats anthem that reached No. 2 in Nigeria, charted in eight countries and went 4× Platinum at home.",
     extraFacts: [
-      { v: "No. 2", l: "Nigeria (TurnTable Top 100)" },
+      { v: "No. 14", l: "UK Official Singles Chart" },
       { v: "4× Platinum", l: "in Nigeria, plus Platinum in Canada & France" },
       { v: "I Told Them…", l: "a standout single from the 2023 album" },
     ],
@@ -256,7 +265,7 @@ export const songs: Song[] = [
     blurb:
       "Burna Boy's contribution to the Black Panther: Wakanda Forever soundtrack (2022), a Marvel record that put Afrobeats at the centre of one of the biggest films of the year. It became a genuine international hit in its own right — No. 19 in France, No. 28 in the UK and a run across nine official charts — and topped the UK's Afrobeats chart.",
     extraFacts: [
-      { v: "No. 19", l: "France (SNEP) — its highest national peak" },
+      { v: "No. 19", l: "France (SNEP) — its highest peak outside Nigeria" },
       { v: "No. 28", l: "UK Official Singles Chart" },
       { v: "No. 1", l: "UK Official Afrobeats Chart" },
       { v: "Marvel", l: "from the Black Panther: Wakanda Forever soundtrack" },
@@ -268,16 +277,16 @@ export const songs: Song[] = [
       },
       {
         q: "How did “Alone” chart?",
-        a: "“Alone” charted in eight countries plus the Billboard Global 200 — its best peaks were No. 19 in France, No. 28 on the UK Official Singles Chart and No. 45 in Switzerland. It also reached No. 1 on the UK's Official Afrobeats Chart.",
+        a: "“Alone” charted in eight countries plus the Billboard Global 200 — its best peaks were No. 17 in Nigeria (TurnTable Top 100), No. 19 in France and No. 28 on the UK Official Singles Chart. It also reached No. 1 on the UK's Official Afrobeats Chart.",
       },
       {
         q: "Is “Alone” certified?",
-        a: "Yes — “Alone” is certified Platinum in Nigeria, Gold in the United States, New Zealand and France, and Silver in the United Kingdom.",
+        a: "Yes — “Alone” is certified Platinum in Nigeria, Gold in the United States, New Zealand, France and Portugal, and Silver in the United Kingdom.",
       },
     ],
     metaTitle: "Burna Boy “Alone” — the Wakanda Forever Song & Its Chart Run",
     metaDescription:
-      "Burna Boy's “Alone” from Black Panther: Wakanda Forever (2022): No. 19 in France, No. 28 in the UK, and certified in five countries.",
+      `Burna Boy's “Alone” from Black Panther: Wakanda Forever (2022): No. 19 in France, No. 28 in the UK, and certified in ${certCountriesOf("Alone")} countries.`,
   },
   {
     slug: "23",
@@ -473,7 +482,7 @@ export const songs: Song[] = [
       },
       {
         q: "What were the singles from L.I.F.E?",
-        a: "Five: “Like to Party” (2012), “Tonight” (2012), “Always Love You” (2013), “Run My Race” (2013) and “Yawa Dey” (2013).",
+        a: "Five: “Like to Party” (2012), “Tonight” (2012), “Always Love You” (2013), “Run My Race” (2013) and “#Yawadey” (2013).",
       },
     ],
     metaTitle: "Burna Boy “Like to Party” — His Breakout Song (2012)",

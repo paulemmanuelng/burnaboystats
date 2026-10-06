@@ -5,6 +5,8 @@ import Link from "next/link";
 import styles from "./mobileMusic.module.css";
 import { spotifyImage, spotifySrcSet } from "../lib/spotifyImage";
 import type { AlbumEntry } from "../data/albums";
+import { albumPageByTitle } from "../data/albumPages";
+import { opensDialog } from "../lib/clickIntent";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
 import { spotifyTotalStreams } from "../data/streamingTotals";
@@ -55,27 +57,54 @@ export default function MobileMusic({
 
   // One card renderer for albums, EPs and the compilation — same grammar,
   // different lists.
-  const releaseCard = (a: AlbumEntry) => (
-    <button
-      key={a.title}
-      type="button"
-      className={styles.albumCard}
-      aria-label={`View the tracklist for ${a.title}`}
-      onClick={() =>
-        window.dispatchEvent(new CustomEvent("open-tracklist", { detail: a.title }))
-      }
-    >
-      <span
-        className={styles.albumCover}
-        style={a.cover ? { backgroundImage: `url(${spotifyImage(a.cover, 300)})` } : undefined}
-      />
-      <span className={styles.albumTitle}>{a.title}</span>
-      <span className={styles.albumMeta}>
-        <span>{a.year}</span>
-        <span className={styles.albumTracks} title={a.editionNote}>{a.tracks.length} trk{a.editionNote ? " · std" : ""}</span>
-      </span>
-    </button>
-  );
+  // A studio album with its own page is a real link to it, as on desktop
+  // (Discography): the plain tap still opens the tracklist sheet, but the
+  // href gives crawlers, no-JS readers and a long-press a route to the page.
+  const openTracklist = (title: string) =>
+    window.dispatchEvent(new CustomEvent("open-tracklist", { detail: title }));
+  const releaseCard = (a: AlbumEntry) => {
+    const inner = (
+      <>
+        <span
+          className={styles.albumCover}
+          style={a.cover ? { backgroundImage: `url(${spotifyImage(a.cover, 300)})` } : undefined}
+        />
+        <span className={styles.albumTitle}>{a.title}</span>
+        <span className={styles.albumMeta}>
+          <span>{a.year}</span>
+          <span className={styles.albumTracks} title={a.editionNote}>{a.tracks.length} trk{a.editionNote ? " · std" : ""}</span>
+        </span>
+      </>
+    );
+    const page = albumPageByTitle(a.title);
+    return page ? (
+      <Link
+        key={a.title}
+        href={`/music/albums/${page.slug}`}
+        prefetch={false}
+        className={styles.albumCard}
+        aria-haspopup="dialog"
+        aria-label={`View the tracklist for ${a.title}`}
+        onClick={(e) => {
+          if (!opensDialog(e)) return;
+          e.preventDefault();
+          openTracklist(a.title);
+        }}
+      >
+        {inner}
+      </Link>
+    ) : (
+      <button
+        key={a.title}
+        type="button"
+        className={styles.albumCard}
+        aria-label={`View the tracklist for ${a.title}`}
+        onClick={() => openTracklist(a.title)}
+      >
+        {inner}
+      </button>
+    );
+  };
 
   return (
     <div className={styles.screen}>
