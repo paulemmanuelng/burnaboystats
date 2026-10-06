@@ -230,14 +230,16 @@
 }
 .nomMain { min-width: 0; }
 .category { font-size: 13.5px; line-height: 1.35; }
+/* The work wraps and the row grows, as the category above it does. It was one
+   line with an ellipsis and nothing on a phone revealed the rest: 11 works cut
+   at 390 and 28 at 320 ("Sungba (Remix) (As…", "Yaba Buluku (Remix) (DJ T…"),
+   the credit being the part lost. Desktop's .work has always wrapped. At 320
+   the longest real one takes four lines (debug of 5 Oct 2026, V-records-10). */
 .work {
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   font-size: var(--type-caption);
   color: var(--text-muted);
   margin-top: 3px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 .result {
   flex: none;

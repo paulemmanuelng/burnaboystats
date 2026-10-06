@@ -243,15 +243,15 @@
 .rowMain { min-width: 0; }
 .rowName { display: block; font-size: 13px; font-weight: 600; color: var(--text); }
 .rowHis .rowName { color: var(--gold); }
+/* The song line wraps rather than ending in an ellipsis that nothing on a phone
+   revealed (1 cut at 390, 7 at 320: "“Calm Down” (Remix) / “Water” & “Ch…").
+   The longest real one is two lines at 320 (debug of 5 Oct 2026, V-records-10). */
 .rowSub {
   display: block;
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   font-size: var(--type-caption);
   color: var(--text-muted);
   margin-top: 2px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 .rowHis .rowSub { color: var(--gold-dim); }
 .rowValue {
