@@ -737,8 +737,12 @@
 }
 /* The desktop foot strip yields to the sticky bar wherever the tab bar exists
    (the site's chrome switches at 900, this page's layout at 760; between the
-   two, both exits were showing). */
-@media (max-width: 900px) { .exit { display: none; } }
+   two, both exits were showing). Only a pair's strip: the bar renders only
+   beside it. Hiding every .exit took the country boards' own "Next" (the
+   head-to-head, or "Every market") off phones and the 760–900 band with
+   nothing in its place, so all 27 boards ended at "How this is counted"
+   (debug pass 5 Oct 2026, V-compareIn-01). */
+@media (max-width: 900px) { .exitPair { display: none; } }
 @media (max-width: 360px) {
   /* The flag + code need 41px; the value cells were starved to 104px. */
   .table tr { grid-template-columns: 56px minmax(0, 1fr) minmax(0, 1fr); gap: 8px; }

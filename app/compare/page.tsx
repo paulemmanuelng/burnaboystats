@@ -1302,7 +1302,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
         )}
 
         {ready && (
-          <section className={styles.exit} aria-label="Next">
+          <section className={`${styles.exit} ${styles.exitPair}`} aria-label="Next">
             <h2 className={styles.exitKicker}>Next</h2>
             <p className={styles.exitLead}>
               Two artists priced against each other — the other {numberWord(comparableArtists.length - 2).toLowerCase()} are one tap
