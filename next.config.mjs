@@ -79,10 +79,14 @@ const nextConfig = {
           // so it does not fall back to default-src — without this the policy
           // would have blocked the form the moment it stopped being report-only.
           "connect-src 'self' https://va.vercel-scripts.com https://vitals.vercel-insights.com https://formsubmit.co",
-          // The one embedded player on the site, created only when a reader
-          // taps a /dai-dai video poster. Without this, frame-src falls back to
-          // default-src 'self' and the tap would be reported as a violation.
-          "frame-src https://www.youtube-nocookie.com",
+          // The site frames two things. Its own widgets: /embed, the gallery
+          // page, previews each /embed/<widget> in an iframe (EmbedGallery,
+          // MobileEmbed). And the one third-party player, created only when a
+          // reader taps a /dai-dai video poster. A declared frame-src does not
+          // fall back to default-src, so 'self' has to be named: without it
+          // every visit to /embed filed one violation per preview (8 a load,
+          // read live 6 Oct 2026), and an enforcing policy would blank them.
+          "frame-src 'self' https://www.youtube-nocookie.com",
           "frame-ancestors 'self'",
           "base-uri 'self'",
           "form-action 'self'",
