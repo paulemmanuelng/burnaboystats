@@ -589,3 +589,16 @@ export function countryCopy(board: CountryBoard) {
     sub: `${artists} · ${plaques} · ${board.counted ? `at least ${n(board.units)} units` : "not priceable"}`,
   };
 }
+
+/**
+ * The share cards' pricing clause, true whatever the data does: "each priced
+ * at its own body's threshold" only when every plaque is, otherwise how many
+ * are — "1,336 priced at their own body's threshold". The /compare and
+ * /compare/in cards claimed "each" over Colombia's unpriced plaques until
+ * 5 Oct 2026 (debug pass, compareA-13).
+ */
+export function pricedClause(priced: number, plaques: number): string {
+  return priced === plaques
+    ? "each priced at its own body's threshold"
+    : `${priced.toLocaleString("en-US")} priced at their own body's threshold`;
+}

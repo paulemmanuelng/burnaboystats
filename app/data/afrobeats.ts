@@ -529,6 +529,16 @@ export const AFROBEATS_EDITED_ON: Readonly<Record<string, string>> = {
 export const pageStamp = (a: { slug: string; verifiedOn: string }): string =>
   [a.verifiedOn, AFROBEATS_EDITED_ON[a.slug]].filter((d): d is string => Boolean(d)).sort().at(-1)!;
 
+/** The date an artist's two pages that PRINT CHART ROWS are stamped with —
+ *  the artist page (its chart-entry totals) and its charts page ("Last re-read
+ *  in the board's chart sweep of …"): pageStamp, or the last chart sweep where
+ *  that is later. pageStamp reads no chart date, so /afrobeats/seyi-vibez/charts
+ *  declared 6 Sep beside 2 Oct's sweep rows (129 entries, up from 115; debug
+ *  pass 5 Oct 2026). The sitemap and both pages' Dataset read this one helper.
+ *  The pair pages and the hub print plaques only and stay on pageStamp. */
+export const chartPageStamp = (a: { slug: string; verifiedOn: string }): string =>
+  [pageStamp(a), AFROBEATS_LAST_CHART_SWEEP].sort().at(-1)!;
+
 export const afrobeatsArtists: AfroArtist[] = [
   {
     slug: "olamide",

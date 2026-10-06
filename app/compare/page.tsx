@@ -3,7 +3,7 @@ import styles from "./compare.module.css";
 import BreadcrumbBar from "../components/BreadcrumbBar";
 import { pageMetadata, datasetJsonLd, SEGMENT_LABELS } from "../lib/seo";
 import { siteUrl } from "../site";
-import { countryMeta, artistBySlug as boardArtist } from "../data/afrobeats";
+import { countryMeta, artistBySlug as boardArtist, pageStamp } from "../data/afrobeats";
 import { CERT_THRESHOLDS } from "../data/certThresholds";
 import { numberWord } from "../lib/homeData";
 
@@ -760,9 +760,12 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
           const board = boardArtist(x.slug);
           return board ? { name: x.name, sameAs: [board.wikipedia, `https://open.spotify.com/artist/${board.spotifyId}`] } : { name: x.name };
         }),
-        // The newer of the two sides' register reads — the day the comparison
-        // last changed; the sitemap stamps the pair with the same date.
-        dateModified: [a.verifiedOn, b.verifiedOn].sort().at(-1)!,
+        // The newer of the two sides' stamps — a register read, or an edit
+        // made without one (pageStamp) — the day the comparison last changed;
+        // the sitemap stamps the pair with the same helper. verifiedOn alone
+        // left 48 Tems, Olamide and CKay pairs a day or more behind their
+        // sitemap rows (debug pass 5 Oct 2026).
+        dateModified: [pageStamp(a), pageStamp(b)].sort().at(-1)!,
       })
     : null;
 

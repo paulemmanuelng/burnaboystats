@@ -39,7 +39,7 @@ import {
   certProvenance,
   type Tier,
   AFROBEATS_LAST_FULL_SWEEP,
-  pageStamp,
+  chartPageStamp,
 } from "../../data/afrobeats";
 import { LIVE_CADENCE_ADVERB } from "../../lib/liveChartMeta";
 import { awardLabel, awardRank } from "../../lib/awardName";
@@ -63,9 +63,13 @@ export async function generateMetadata({ params }: { params: Promise<{ artist: s
   // length. The title carries the page's ranking claim as a figure, the way the
   // site's own certification titles do, and it moves when the register does —
   // a pending artist has nothing verified yet, so it must not claim a number.
+  //
+  // "Plaques", as Burna Boy's own certifications title says (26 Sep 2026): the
+  // board titles said "159 Awards in 21 Countries" until 5 Oct 2026, and
+  // "Awards" reads as trophies won. Longest swept title: 54 of 60 characters.
   return pageMetadata({
     title: a.swept
-      ? `${a.name} Certifications — ${certCount(a)} Awards in ${countryCount(a)} ${
+      ? `${a.name} Certifications — ${count(certCount(a), "Plaque", "Plaques")} in ${countryCount(a)} ${
           countryCount(a) === 1 ? "Country" : "Countries"
         }`
       : `${a.name} — The Afrobeats Board`,
@@ -190,10 +194,12 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
         variableMeasured: ["Certification tier", "Country / territory", "Release", "Certifying body"],
         // The sweep that produced these figures, not the newest date in the whole
         // updates feed — or a later edit made without a register read. One
-        // helper, pageStamp, dates this and the sitemap's lastmod, so the two
-        // cannot disagree (they did for CKay and Olamide: 18 Sep / 6 Sep here,
-        // 3 Oct there; debug pass 4 Oct 2026, D-05).
-        dateModified: pageStamp(a),
+        // helper dates this and the sitemap's lastmod, so the two cannot
+        // disagree (they did for CKay and Olamide: 18 Sep / 6 Sep here, 3 Oct
+        // there; debug pass 4 Oct 2026, D-05). chartPageStamp, not pageStamp:
+        // the page prints chart rows, and the board's chart sweep of 2 Oct
+        // changed them for artists whose plaque stamp is older (5 Oct 2026).
+        dateModified: chartPageStamp(a),
         about: { name: a.name, sameAs: [a.wikipedia, `https://open.spotify.com/artist/${a.spotifyId}`] },
       })
     : null;

@@ -11,6 +11,7 @@ import {
   topAward,
   plaqueLabel,
 } from "../../data/afrobeats";
+import { boardArtistTiles, tilesSig } from "../../lib/ogStatTiles";
 
 export function generateStaticParams() {
   return afrobeatsSlugs.map((artist) => ({ artist }));
@@ -22,12 +23,19 @@ export async function generateImageMetadata({ params }: { params: Promise<{ arti
   // Figures move with each weekly review; fold them into the id so a cached
   // preview follows the artist rather than freezing at first scrape. Next probes
   // this route once with no params, so the id must survive an undefined slug.
+  // The tiles AS PRINTED join it too: "1 COUNTRIES" and "1 NO. 1 PEAKS"
+  // became singular on 5 Oct 2026 with every figure unchanged.
   const sig = a
-    ? `${slug}|${certCount(a)}|${countryCount(a)}|${chartEntries(a)}|${chartNo1s(a)}|${cardUrl(`/afrobeats/${slug}`)}`
+    ? `${slug}|${certCount(a)}|${countryCount(a)}|${chartEntries(a)}|${chartNo1s(a)}|${tilesSig(artistTiles(a))}|${cardUrl(`/afrobeats/${slug}`)}`
     : `${slug}`;
   // The alt names the artist; every board card carried the one generic alt below.
   return [{ id: ogId(sig), alt: a ? `${a.name} on the Afrobeats Board — certifications and chart records, verified at source` : alt, size, contentType }];
 }
+
+/** The stat tiles, singular where the count is one (debug pass 5 Oct 2026:
+ *  Black Sherif's card read "1 COUNTRIES" and "1 NO. 1 PEAKS"). */
+const artistTiles = (a: NonNullable<ReturnType<typeof artistBySlug>>) =>
+  boardArtistTiles(certCount(a), countryCount(a), chartEntries(a), chartNo1s(a));
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
@@ -40,14 +48,7 @@ export default async function Image({ params }: { params: Promise<{ artist: stri
   const a = artistBySlug(slug);
   const award = a ? topAward(a) : null;
 
-  const stats = a?.swept
-    ? [
-        { v: `${certCount(a)}`, l: "Certifications" },
-        { v: `${countryCount(a)}`, l: "Countries" },
-        { v: `${chartEntries(a)}`, l: "Chart entries" },
-        { v: `${chartNo1s(a)}`, l: "No. 1 peaks" },
-      ]
-    : [];
+  const stats = a?.swept ? artistTiles(a) : [];
 
   return new ImageResponse(
     (

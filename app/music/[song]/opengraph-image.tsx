@@ -5,6 +5,7 @@ import { songBySlug, songSlugs } from "../../data/songs";
 import { allChartItems } from "../../data/charts";
 import { allItems } from "../../data/certifications";
 import { albumYearByTitle } from "../../data/albums";
+import { songTiles, tilesSig } from "../../lib/ogStatTiles";
 
 export function generateStaticParams() {
   return songSlugs.map((song) => ({ song }));
@@ -42,8 +43,12 @@ export async function generateImageMetadata({
   // song cards re-version alone again, rather than bumping OG_ART for all.
   // The alt names the song and its credit; every song card carried the one generic alt below.
   const songAlt = song ? `${song.title} by ${song.credit ?? "Burna Boy"} — chart peaks, certifications and stats` : alt;
-  return [{ id: ogId(`${slug}|${song?.credit ?? ""}|${peak}|${countries}|${certCount}|${cardUrl(`/music/${slug}`)}`), alt: songAlt, size, contentType }];
+  // The tiles AS PRINTED join the id too: "1 COUNTRIES" / "1 CERTS" became
+  // "1 COUNTRY" / "1 CERT" on 5 Oct 2026 with every figure unchanged.
+  const tiles = tilesSig(songTiles(peak, countries, certCount));
+  return [{ id: ogId(`${slug}|${song?.credit ?? ""}|${peak}|${countries}|${certCount}|${tiles}|${cardUrl(`/music/${slug}`)}`), alt: songAlt, size, contentType }];
 }
+
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
@@ -55,11 +60,7 @@ export default async function Image({ params }: { params: Promise<{ song: string
   const { song: slug } = await params;
   const { song, countries, peak, certCount } = songStats(slug);
 
-  const stats = [
-    peak != null && { v: peak, l: "Best peak" },
-    countries > 0 && { v: `${countries}`, l: "Countries" },
-    certCount > 0 && { v: `${certCount}`, l: "Certs" },
-  ].filter(Boolean) as { v: string; l: string }[];
+  const stats = songTiles(peak, countries, certCount);
 
   return new ImageResponse(
     (
