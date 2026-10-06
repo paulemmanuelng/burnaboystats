@@ -72,6 +72,7 @@ export default function MobileLiveCharts({
   // component was his before it was shared. The board passes its own.
   backHref = "/",
   backLabel = "Live Charts",
+  backDetail,
   chartsHref = "/records/charts",
   chartsLabel = "Chart Records",
   heading,
@@ -85,6 +86,9 @@ export default function MobileLiveCharts({
   updated: string;
   backHref?: string;
   backLabel?: string;
+  /** The label's second half ("live charts" on a board page), printed after
+   *  " · " only while it fits on the bar's one line — see .backLabel. */
+  backDetail?: string;
   /** Where this artist's OFFICIAL chart peaks live. Defaults to Burna Boy's,
    *  which is right on his own page and wrong on every board page — they
    *  were sending readers to his chart records instead of the artist's. */
@@ -114,7 +118,10 @@ export default function MobileLiveCharts({
             <path d="M15 5l-7 7 7 7" />
           </svg>
         </BackLink>
-        <span className={styles.backLabel}>{backLabel}</span>
+        <span className={styles.backLabel}>
+          <span className={styles.backName}>{backLabel}</span>
+          {backDetail && <span className={styles.backDetail}>{` · ${backDetail}`}</span>}
+        </span>
         <span className={styles.livePill}>
           <span className={styles.liveDot} aria-hidden="true" />
           Live

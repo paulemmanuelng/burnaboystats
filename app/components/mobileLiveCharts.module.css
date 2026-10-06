@@ -50,7 +50,27 @@
   font-size: 11px;
   letter-spacing: 0.11em;
   text-transform: uppercase;
+  /* One line, always. A board page's label is the artist's name and a detail
+     ("Fireboy DML · live charts"), and with nothing holding it to a line it
+     broke in two on every board at 320 and on the longer names at 390, the
+     detail's last word alone on the second line. The two halves are flex items
+     that wrap, and the box is one line tall with the overflow clipped, so where
+     both don't fit the detail wraps out of sight whole; it only repeats the
+     screen's H1 and the pill beside it. The name, alone, ellipses rather than
+     breaks (debug pass, 5 Oct 2026). */
+  display: flex;
+  flex-wrap: wrap;
+  min-width: 0;
+  height: 1lh;
+  overflow: hidden;
 }
+.backName {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.backDetail { white-space: pre; }
 .livePill {
   margin-left: auto;
   display: flex;

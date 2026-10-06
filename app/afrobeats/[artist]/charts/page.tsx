@@ -171,7 +171,8 @@ export default async function AfroArtistChartsPage({
         covers={covers}
         countryRail={railOrder}
         backHref={`/afrobeats/${a.slug}`}
-        backLabel={`${a.name} · charts`}
+        backLabel={a.name}
+        backDetail="charts"
         heading={{ lead: a.name, gold: "charts" }}
         lede={`${count(entries, "entry", "entries")} across ${count(territories, "territory", "territories")}${ofThemAtNo1(no1s)} — every peak read from ${sourceClause(a)}.`}
         sourceNote={sourceNote}

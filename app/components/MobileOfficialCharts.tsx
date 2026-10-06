@@ -83,6 +83,7 @@ export default function MobileOfficialCharts({
   sourceNote,
   backHref = "/records",
   backLabel = "Official charts",
+  backDetail,
   heading,
   lede,
   countryRail,
@@ -114,6 +115,9 @@ export default function MobileOfficialCharts({
   sourceNote?: string;
   backHref?: string;
   backLabel?: string;
+  /** The label's second half ("charts" on a board page), printed after " · "
+   *  only while it fits on the bar's one line — see .backLabel. */
+  backDetail?: string;
   /** The screen's own H1, in two parts. Defaults to "Official charts". */
   heading?: { lead: string; gold: string };
   lede?: string;
@@ -263,7 +267,10 @@ export default function MobileOfficialCharts({
             <path d="M15 5l-7 7 7 7" />
           </svg>
         </BackLink>
-        <span className={styles.backLabel}>{backLabel}</span>
+        <span className={styles.backLabel}>
+          <span className={styles.backName}>{backLabel}</span>
+          {backDetail && <span className={styles.backDetail}>{` · ${backDetail}`}</span>}
+        </span>
         <span className={styles.badge}>{entryCount}</span>
         <MobileMenuButton />
       </div>
