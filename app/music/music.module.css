@@ -412,13 +412,15 @@
 }
 .dialogClose:hover { border-color: var(--gold); color: var(--gold); }
 .dialogBody { padding: 20px 24px 24px; }
+/* The dialog's actions: Spotify, then the album's own page. A row with the
+   site's 10px action gap, wrapping to two rows on a phone. */
+.dialogActions { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; }
+.dialogActions :global(.btn) { height: 44px; }
 /* Spotify green is the platform's own mark, not a site accent. */
 .spotifyBtn {
   background: #1db954;
   color: #06241a;
   -webkit-text-fill-color: #06241a;
-  height: 44px;
-  margin-bottom: 18px;
 }
 .spotifyBtn:hover { background: #1ed760; }
 .trackList { display: flex; flex-direction: column; }
