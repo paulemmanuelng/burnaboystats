@@ -70,7 +70,7 @@ export const performedCountries: PerformedCountry[] = [
   { name: "Spain", code: 724, region: "Europe", flag: "🇪🇸", events: ["O Beach, Ibiza (2026)", "FITZ, Madrid (2025)"] },
   { name: "Italy", code: 380, region: "Europe", flag: "🇮🇹", events: ["Atlantico, Rome (2020)"] },
   { name: "Germany", code: 276, region: "Europe", flag: "🇩🇪", events: ["Waldbühne, Berlin (2025)", "Superbloom Festival, Munich (2024)"] },
-  { name: "Switzerland", code: 756, region: "Europe", flag: "🇨🇭", events: ["Paléo Festival, Nyon (2024)", "Hallenstadion, Zürich (2022 & 2026)"] },
+  { name: "Switzerland", code: 756, region: "Europe", flag: "🇨🇭", events: ["Paléo Festival, Nyon (2024)", "Hallenstadion, Zurich (2022 & 2026)"] },
   { name: "Sweden", code: 752, region: "Europe", flag: "🇸🇪", events: ["Avicii Arena, Stockholm (2026)"] },
   { name: "Norway", code: 578, region: "Europe", flag: "🇳🇴", events: ["Stavern Festival (2024)"] },
   { name: "Denmark", code: 208, region: "Europe", flag: "🇩🇰", events: ["Royal Arena, Copenhagen (2026)", "Roskilde Festival (2023)"] },
@@ -85,11 +85,11 @@ export const performedCountries: PerformedCountry[] = [
   { name: "Kosovo", code: 383, region: "Europe", flag: "", events: ["Sunny Hill Festival, Pristina (2024)"], marker: { x: 495.5, y: 98.7 } },
 
   // ── Asia / Middle East ──
-  { name: "United Arab Emirates", code: 784, region: "Asia", flag: "🇦🇪", events: ["One Africa Music Festival, Dubai (2019)"] },
+  { name: "United Arab Emirates", code: 784, region: "Asia", flag: "🇦🇪", events: ["One Africa Music Fest, Dubai (2019)"] },
 
   // ── North America ──
   { name: "United States", code: 840, region: "North America", flag: "🇺🇸", events: ["Madison Square Garden, New York (2022)", "Citi Field, New York (2023)"] },
-  { name: "Canada", code: 124, region: "North America", flag: "🇨🇦", events: ["Scotiabank Arena, Toronto (2024 & 2025)", "Bell Centre, Montréal (2024 & 2025)"] },
+  { name: "Canada", code: 124, region: "North America", flag: "🇨🇦", events: ["Scotiabank Arena, Toronto (2024 & 2025)", "Bell Centre, Montreal (2024 & 2025)"] },
   { name: "Mexico", code: 484, region: "North America", flag: "🇲🇽", events: ["FIFA World Cup Opening Ceremony, Mexico City (2026)"] },
 
   // ── South America ──
@@ -100,7 +100,7 @@ export const performedCountries: PerformedCountry[] = [
   // ── Caribbean ──
   { name: "Jamaica", code: 388, region: "Caribbean", flag: "🇯🇲", events: ["National Stadium, Kingston (2022)"] },
   { name: "Curaçao", code: 531, region: "Caribbean", flag: "🇨🇼", events: ["Festival Center Brievengat, Willemstad (2022)"], marker: { x: 273.5, y: 194 } },
-  { name: "Barbados", code: 52, region: "Caribbean", flag: "🇧🇧", events: ["Tipsy Beach Party, Bridgetown (2022)"], marker: { x: 303, y: 190.8 } },
+  { name: "Barbados", code: 52, region: "Caribbean", flag: "🇧🇧", events: ["Tipsy All White Beach Party, Bridgetown (2022)"], marker: { x: 303, y: 190.8 } },
   { name: "Bahamas", code: 44, region: "Caribbean", flag: "🇧🇸", events: ["Spilligate Festival, Nassau (2024)"] },
   { name: "St Kitts & Nevis", code: 659, region: "Caribbean", flag: "🇰🇳", events: ["St Kitts Music Festival (2023)"], marker: { x: 294.1, y: 176.4 } },
   { name: "Dominica", code: 212, region: "Caribbean", flag: "🇩🇲", events: ["World Creole Music Festival, Roseau (2022)"], marker: { x: 299.2, y: 183.4 } },

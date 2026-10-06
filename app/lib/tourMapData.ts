@@ -94,7 +94,6 @@ export const ROW_PLACE: Record<string, { country: string; city: string | null }>
   "New Orleans, USA": { country: "United States", city: "New Orleans" },
   "El Gouna Conference & Cultural Center, Egypt": { country: "Egypt", city: "El Gouna" },
   "Belgravia Sports Club, Zimbabwe": { country: "Zimbabwe", city: "Harare" },
-  "Eko Convention Centre, Lagos": { country: "Nigeria", city: "Lagos" },
   Jamaica: { country: "Jamaica", city: "Kingston" },
   "Sheraton Gardens, Kampala": { country: "Uganda", city: "Kampala" },
   "FITZ, Madrid": { country: "Spain", city: "Madrid" },
@@ -110,16 +109,19 @@ export const ROW_PLACE: Record<string, { country: string; city: string | null }>
 
 /**
  * Where each live moment happened, read off its own text, and whether it is a
- * show counted above. `null` = the text names no place (the World Cup final's
- * halftime show, the two Grammy stages); `repeats: true` = the same night as a
- * tour date or a festival row (London Stadium, Citi Field, Madison Square
- * Garden, Stade de France, Red Rocks, National Stadium Jamaica), or not a live
- * show at all (One World, a broadcast filmed in Lagos). Six are left, and they
- * are the "live milestones" (rule 3). Same table as tour-map-method/derive.py,
- * LM_PLACE; a new moment fails the test until it is placed here.
+ * show counted above. `null` = the text names no place (the two Grammy
+ * stages); `repeats: true` = the same night as a tour date or a festival row
+ * (London Stadium, Citi Field, Madison Square Garden, Stade de France, Red
+ * Rocks, National Stadium Jamaica), or not a live show at all (One World, a
+ * broadcast filmed in Lagos). Seven are left, and they are the "live
+ * milestones" (rule 3). The World Cup final's halftime show was `null` until
+ * 5 Oct 2026, only because its text named no place; the site places it at
+ * MetLife Stadium, East Rutherford (faqs.ts, the /dai-dai page's Event), and
+ * so does its text now. Same table as tour-map-method/derive.py, LM_PLACE; a
+ * new moment fails the test until it is placed here.
  */
 export const MOMENT_PLACE: Record<string, { country: string; city: string; repeats: boolean } | null> = {
-  "FIFA World Cup Final halftime show": null,
+  "FIFA World Cup Final halftime show": { country: "United States", city: "East Rutherford", repeats: false },
   "FIFA World Cup Opening Ceremony": { country: "Mexico", city: "Mexico City", repeats: false },
   "AFCON 2025 Fan Zone grand finale": { country: "Morocco", city: "Rabat", repeats: false },
   "Stade de France, Paris": { country: "France", city: "Paris", repeats: true },
@@ -194,9 +196,10 @@ const allRows = [...festivals, ...otherShows, ...concerts].map((f) => {
 
 /**
  * The tour date a festival or one-off row repeats, if any (rule 2): same
- * country and year, and the same day, or the same city and venue. Today that
- * is one row: the concerts row "Burna Boy: The Live Experience", Lagos, which
- * is the tour date of 27 Dec 2021.
+ * country and year, and the same day, or the same city and venue. Today there
+ * is none. Until 5 Oct 2026 there was one: the concerts row "Burna Boy: The
+ * Live Experience", Lagos, which is the Space Drift date of 27 Dec 2021 — the
+ * row was removed from `concerts`, so the other pages no longer count it twice.
  */
 function repeatsTourDate(f: (typeof allRows)[number]): DatedShow | undefined {
   return datedShows.find((s) => {

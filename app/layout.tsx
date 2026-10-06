@@ -98,10 +98,13 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Burna Boy Stats",
-    description: "Certifications, discography and milestones of the African Giant.",
     // The pages that set no metadata of their own inherit this block; the rest
     // carry the same creator through pageMetadata (lib/seo.ts).
+    //
+    // No title or description here: Next fills both from the page's resolved
+    // openGraph when twitter has none. The home page's X card read "Burna Boy
+    // Stats" / "Certifications, discography and milestones of the African
+    // Giant." beside its own og tags until 5 Oct 2026 (debug pass, seo-09).
     creator: TWITTER_CREATOR,
   },
 };

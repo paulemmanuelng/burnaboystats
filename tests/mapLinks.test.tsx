@@ -316,16 +316,39 @@ describe("item 69: the phone Tours footnote stays the build's own", () => {
   // rest is the build's line, word for word.
   const SHIPPED =
     "Tour grosses come from Billboard Boxscore. The per-date figure is the venue's capacity, not tickets sold — tours.ts records capacity, and only some nights have a Boxscore headcount. A dash means the run has no reported gross, not that it was small. Dates shown are a documented sample, not the full itinerary.";
-  const NOW =
+  // The footnote as it shipped on 5 Oct 2026, after the 4 Oct credit fix.
+  const SHIPPED_1005 =
     "Tour grosses come from TouringData, which republishes Billboard Boxscore and Pollstar reports. The per-date figure is the venue's capacity, not tickets sold — tours.ts records capacity, and only some nights have a Boxscore headcount. A dash means the run has no reported gross, not that it was small. Dates shown are a documented sample, not the full itinerary.";
+  // The debug pass of 5 Oct 2026 rewrote the rest: the handoff lists the file
+  // name in reader copy as a code fix still owed (README §10), and the dash
+  // sits beside No Sign of Weakness and Space Drift, whose single nights ARE on
+  // the board — so it means no tour total, not "no reported gross".
+  const NOW =
+    "Tour grosses come from TouringData, which republishes Billboard Boxscore and Pollstar reports. The per-date figure is the venue's capacity, not tickets sold; only some nights have a reported headcount. A dash means no tour total has been reported, not that the run was small; single nights from a run can still be on the Highest-grossing shows board. Some runs list only their confirmed dates.";
 
   it("reads as the build's own, its source sentence the board's credit", () => {
     const foot = clean(toursDoc().querySelector('[class*="_screen_"] [class*="_footNote_"]')?.textContent);
     expect(foot).toBe(NOW);
-    // Only the first sentence moved.
-    expect(foot.slice(foot.indexOf(". ") + 2)).toBe(SHIPPED.slice(SHIPPED.indexOf(". ") + 2));
-    // Negative control: the Boxscore-only line that shipped until 5 Oct 2026.
+    // The first sentence is still the board's own credit.
+    expect(foot.slice(0, foot.indexOf(". ") + 1)).toBe(SHIPPED_1005.slice(0, SHIPPED_1005.indexOf(". ") + 1));
+    // No reader copy names a data file, or says a dash means no gross at all.
+    expect(foot).not.toMatch(/\.ts\b|no reported gross/);
+    // Negative controls: the Boxscore-only line that shipped until 5 Oct 2026,
+    // and the line that followed it the same day.
     expect(foot).not.toBe(SHIPPED);
+    expect(SHIPPED_1005).toMatch(/\.ts\b|no reported gross/);
+  });
+
+  it("the dash beside a run with no tour total says so, on both layouts", () => {
+    // Space Drift and No Sign of Weakness have reported nights on the board;
+    // their tour total is what is missing. The screen-reader text said "Not
+    // reported" until 5 Oct 2026.
+    const html = renderToStaticMarkup(ToursPage());
+    const labels = [...html.matchAll(/<span class="visuallyHidden">([^<]*)<\/span>/g)].map((m) => m[1]);
+    const noTotal = tours.filter((t) => !t.gross).length;
+    expect(noTotal).toBeGreaterThan(0);
+    // Every gross-less run, once in the desktop list and once on the phone.
+    expect(labels.filter((l) => l === "No tour total reported").length).toBe(2 * noTotal);
   });
 
   it("negative control: the footnote Map Links §1 first drew would fail it", () => {

@@ -3,7 +3,8 @@ import { ogId, cardUrl } from "../../../lib/og-image";
 import { OgLockup, ogFonts } from "../../../lib/og-lockup";
 import { artistBySlug } from "../../../data/afrobeats";
 import { LIVE_BOARDS, liveBoardFor } from "../../../data/liveBoards";
-import { LIVE_CADENCE } from "../../../lib/liveChartMeta";
+import { LIVE_CADENCE, liveTitleRows } from "../../../lib/liveChartMeta";
+import { plural } from "../../../lib/plural";
 
 export function generateStaticParams() {
   return LIVE_BOARDS.map((b) => ({ artist: b.slug }));
@@ -15,12 +16,22 @@ export async function generateImageMetadata({ params }: { params: Promise<{ arti
   // The card is a snapshot, so its id has to move with the snapshot — otherwise
   // a scraper keeps serving whatever it read the first time. Survives the
   // param-less probe Next runs while collecting page data.
+  // The title rows AS PRINTED join it too: three rows and the description's
+  // tie-break changed the picture on 5 Oct 2026, and a snapshot that had not
+  // moved would have kept the old card. The tiles' labels follow from the
+  // figures already in it (services, not chart lines, since 5 Oct 2026).
   const sig = b
-    ? `${slug}|live|${b.updated}|${b.placements}|${b.countries}|${b.numberOnes}|${b.services}|${cardUrl(`/afrobeats/${slug}/live`)}`
+    ? `${slug}|live|${b.updated}|${b.placements}|${b.countries}|${b.numberOnes}|${b.services}|${liveTitleRows(b.releases)
+        .slice(0, LIVE_CARD_ROWS)
+        .map((t) => `${t.best}:${t.title}:${t.reach}`)
+        .join(",")}|${cardUrl(`/afrobeats/${slug}/live`)}`
     : `${slug}`;
   const artist = artistBySlug(slug);
   return [{ id: ogId(sig), alt: artist ? `${artist.name} — live platform chart placements, ${LIVE_CADENCE}` : alt, size, contentType }];
 }
+
+/** How many title rows the card draws. */
+const LIVE_CARD_ROWS = 3;
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
@@ -36,24 +47,13 @@ export default async function Image({ params }: { params: Promise<{ artist: stri
 
   // One row per TITLE. A title track charts as both a song and an album —
   // Seyi Vibez's "FUJI MOTO" is both — and the card listed the same name twice
-  // at two positions, which reads as a bug rather than as two charts.
-  const byTitle = new Map<string, { title: string; best: number; reach: number }>();
-  for (const r of b?.releases ?? []) {
-    const positions = r.platforms.flatMap((p) => p.entries.map((e) => e.position));
-    if (!positions.length) continue;
-    const row = {
-      title: r.title,
-      best: Math.min(...positions),
-      reach: r.platforms.reduce((n, p) => n + p.entries.length, 0),
-    };
-    const seen = byTitle.get(r.title);
-    if (!seen || row.reach > seen.reach) {
-      byTitle.set(r.title, seen ? { ...row, reach: seen.reach + row.reach, best: Math.min(seen.best, row.best) } : row);
-    } else {
-      byTitle.set(r.title, { ...seen, reach: seen.reach + row.reach, best: Math.min(seen.best, row.best) });
-    }
-  }
-  const top = [...byTitle.values()].sort((x, y) => y.reach - x.reach).slice(0, 4);
+  // at two positions, which reads as a bug rather than as two charts. The
+  // rows are liveTitleRows, the ones the page's description leads with.
+  //
+  // Three rows, not four: the fourth left the list, the tiles and the footer
+  // about 1px apart and ran the footer ~27px into the bottom padding on every
+  // live card (debug pass 5 Oct 2026, seo-19).
+  const top = liveTitleRows(b?.releases ?? []).slice(0, LIVE_CARD_ROWS);
 
   const stats = b
     ? [
@@ -108,12 +108,12 @@ export default async function Image({ params }: { params: Promise<{ artist: stri
             <div style={{ display: "flex", width: 16, height: 16, borderRadius: 8, background: LIVE }} />
             Charting right now
           </div>
-          <div style={{ display: "flex", fontSize: 88, fontWeight: 800, letterSpacing: -3, lineHeight: 1, marginTop: 14, marginBottom: 10, color: GOLD }}>
+          <div style={{ display: "flex", fontSize: 88, fontWeight: 800, letterSpacing: -3, lineHeight: 1, marginTop: 14, color: GOLD }}>
             {a?.name ?? "Artist"}
           </div>
         </div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: 14, marginTop: 8 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
           {top.map((t) => (
             <div key={t.title} style={{ display: "flex", alignItems: "center", gap: 18 }}>
               <div
@@ -132,7 +132,7 @@ export default async function Image({ params }: { params: Promise<{ artist: stri
               </div>
               <div style={{ display: "flex", fontSize: 30, fontWeight: 700 }}>{t.title}</div>
               <div style={{ display: "flex", fontSize: 24, color: "#9b9ba3" }}>
-                {t.reach} charts
+                {t.reach} {plural(t.reach, "chart", "charts")}
               </div>
             </div>
           ))}

@@ -72,7 +72,7 @@ describe("a day's events, grouped by year", () => {
 describe("record lines are read off the data", () => {
   it("promotes the record sentences and leaves plain details alone", () => {
     // The literal details the site prints.
-    expect(isRecordLine({ detail: "First African artist to sell out the world's most famous arena." })).toBe(true);
+    expect(isRecordLine({ detail: "First Nigerian artist to sell out the world's most famous arena." })).toBe(true);
     expect(isRecordLine({ detail: "$6.15M from 58,973 tickets: the highest-grossing single concert by any African artist." })).toBe(true);
     expect(isRecordLine({ detail: "IFPI Sverige" })).toBe(false);
     expect(isRecordLine({ detail: "African Giant Tour" })).toBe(false);

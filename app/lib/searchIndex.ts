@@ -901,12 +901,28 @@ function score(doc: SearchDoc, q: string): number {
  * "I Told Them…" are the same query. app/lib/titleKey.ts does this for data
  * joins; search needs it for the same reason and did not have it — three dots
  * returned nothing while the ellipsis character worked.
+ *
+ * Accents fold away too (5 Oct 2026): Colombia's body took its accent, "Pro
+ * Música Colombia" (core-08), and a reader typing "pro musica" — as the site
+ * itself spelt it until then — must still find it.
+ *
+ * Everything before the whitespace step only changes a string with a
+ * non-ASCII character in it, and fold runs on every title, description and
+ * keyword of every doc for each query word: NFD on all of them doubled the
+ * search test's run and timed it out under the full suite (review of the
+ * 5 Oct debug PR). A plain-ASCII string, nearly all of them, skips it.
  */
+const NON_ASCII = /[^\x00-\x7f]/;
 const fold = (s: string) =>
-  s
-    .replace(/…/g, "...")
-    .replace(/[‘’]/g, "'")
-    .replace(/[“”]/g, '"')
+  (NON_ASCII.test(s)
+    ? s
+        .normalize("NFD")
+        .replace(/\p{M}/gu, "")
+        .replace(/…/g, "...")
+        .replace(/[‘’]/g, "'")
+        .replace(/[“”]/g, '"')
+    : s
+  )
     .replace(/\s+/g, " ")
     .trim()
     .toLowerCase();
@@ -929,10 +945,22 @@ function docsWithKeyword(k: string): number {
 /** At most this many docs share a keyword that names one of them. */
 const NAMING_KEYWORD = 5;
 
+/**
+ * Each doc's fields folded once, not once per query word: the docs are static,
+ * and scoring folded every title, description and keyword of all of them for
+ * every word typed (review of the 5 Oct 2026 debug PR).
+ */
+type FoldedDoc = { title: string; desc: string; keywords: string[] };
+const foldedDocs = new WeakMap<SearchDoc, FoldedDoc>();
+function folded(doc: SearchDoc): FoldedDoc {
+  let f = foldedDocs.get(doc);
+  if (!f) foldedDocs.set(doc, (f = { title: fold(doc.title), desc: fold(doc.description), keywords: doc.keywords.map(fold) }));
+  return f;
+}
+
 /** Score one field against one word. */
 function exactWordScore(doc: SearchDoc, w: string): number {
-  const title = fold(doc.title);
-  const desc = fold(doc.description);
+  const { title, desc, keywords } = folded(doc);
   // An exact title is an exact title wherever it came from — typing "Location"
   // should reach the record, not a page that merely mentions it.
   if (title === w) return 100;
@@ -942,12 +970,12 @@ function exactWordScore(doc: SearchDoc, w: string): number {
   // Kingdom 7th, and "us" led with Jerusalema (Remix), whose title merely
   // contains the letters (24 Sep 2026). A category keyword stays where it was,
   // or "chart" would fill the palette with forty countries.
-  if (g && doc.keywords.some((k) => fold(k) === w) && docsWithKeyword(w) <= NAMING_KEYWORD) return 75;
+  if (g && keywords.includes(w) && docsWithKeyword(w) <= NAMING_KEYWORD) return 75;
   if (title.startsWith(w)) return g ? 50 : 80;
   if (title.includes(w)) return g ? 30 : 60;
-  if (doc.keywords.some((k) => fold(k) === w)) return g ? 40 : 55;
-  if (doc.keywords.some((k) => fold(k).startsWith(w))) return g ? 25 : 45;
-  if (doc.keywords.some((k) => fold(k).includes(w))) return g ? 18 : 35;
+  if (keywords.includes(w)) return g ? 40 : 55;
+  if (keywords.some((k) => k.startsWith(w))) return g ? 25 : 45;
+  if (keywords.some((k) => k.includes(w))) return g ? 18 : 35;
   if (desc.includes(w)) return g ? 10 : 20;
   return 0;
 }
@@ -968,7 +996,8 @@ function wordScore(doc: SearchDoc, w: string): number {
   const s = exactWordScore(doc, w);
   if (s || w.length < 4 || !w.endsWith("s")) return s;
   const one = w.slice(0, -1);
-  if (!hasWord(fold(doc.title), one) && !doc.keywords.some((k) => hasWord(fold(k), one))) return 0;
+  const { title, keywords } = folded(doc);
+  if (!hasWord(title, one) && !keywords.some((k) => hasWord(k, one))) return 0;
   return Math.round(exactWordScore(doc, one) / 2);
 }
 

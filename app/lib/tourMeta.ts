@@ -48,3 +48,10 @@ export function tourDateNote(t: Tour): string {
   }
   return `${dates} documented dates. ${capacities}`;
 }
+
+/** What the dash in a tour's gross slot means: no TOUR TOTAL was reported.
+ *  Single nights of a run can still be on the box-office board — No Sign of
+ *  Weakness and Space Drift both have some — so the slot must not say the run
+ *  has "no reported gross" (debug pass 5 Oct 2026). One wording for both
+ *  layouts' screen-reader text. */
+export const NO_TOUR_TOTAL = "No tour total reported";

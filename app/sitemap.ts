@@ -5,7 +5,7 @@ import { siteUrl } from "./site";
 import { updates } from "./data/updates";
 import { songs } from "./data/songs";
 import { albumPages } from "./data/albumPages";
-import { afrobeatsArtists, pageStamp } from "./data/afrobeats";
+import { afrobeatsArtists, pageStamp, chartPageStamp } from "./data/afrobeats";
 import { LIVE_BOARDS } from "./data/liveBoards";
 import { liveChartsBuiltAt } from "./data/liveCharts";
 import { carSlugs } from "./data/cars";
@@ -13,6 +13,7 @@ import { LISTENERS_READ_ON } from "./data/listeners";
 import { REVENUE_STAMP } from "./lib/revenueSource";
 import { TOURS_EDITED_ON } from "./data/tours";
 import { CERTS_STAMP } from "./data/certifications";
+import { ANALYSIS_STAMP } from "./lib/analysisStamp";
 import { isIndexableDay, onThisDayDays } from "./lib/onThisDay";
 
 /**
@@ -127,9 +128,11 @@ const contentStamp: Record<string, string> = {
       // The later of the sweep the page prints and an edit made without a
       // register read (AFROBEATS_EDITED_ON; sw-5, 3 Oct 2026: CKay's and
       // Olamide's "Trumpet" changed on both lists while their stamps said
-      // 18 Sep and 6 Sep). pageStamp is the same date the pages declare as
-      // their Dataset's dateModified (D-05, 4 Oct 2026).
-      const stamp = pageStamp(a);
+      // 18 Sep and 6 Sep) — and, since both pages print chart rows, the last
+      // chart sweep (chartPageStamp; 5 Oct 2026: Seyi Vibez's charts page said
+      // 6 Sep beside rows re-read on 2 Oct). It is the same date the pages
+      // declare as their Dataset's dateModified (D-05, 4 Oct 2026).
+      const stamp = chartPageStamp(a);
       return [
         [`/afrobeats/${a.slug}`, stamp],
         [`/afrobeats/${a.slug}/charts`, stamp],
@@ -147,7 +150,15 @@ const contentStamp: Record<string, string> = {
   // plaques — so its stamp is theirs. The feed alone held it at 14 Sep while
   // the Dai Dai paragraph changed on 4 Oct and its exceptions on 5 Oct.
   "/methodology": [...sweptArtists.map(pageStamp), CERTS_STAMP].sort().at(-1)!,
+  // The head-to-head index prints every artist's chip, ordered by plaque
+  // count, and featured pairs — so it changed the day the newest plaque list
+  // did. With no stamp it fell back to the feed (Burna-only by ruling) and
+  // said 23 Sep while its chips were re-ordered on 3 Oct (debug pass 5 Oct).
+  "/compare": [...sweptArtists.map(pageStamp), CERTS_STAMP].sort().at(-1)!,
   "/updates": [...updates.map((u) => u.date)].sort().at(-1)!,
+  // /analysis computes its findings from his plaques and chart entries; its
+  // Article declares the same stamp (debug pass 5 Oct 2026, seo-12).
+  "/analysis": ANALYSIS_STAMP,
   // /music/listeners prints its read date beside every figure; the 50 cities
   // are re-read by hand and replaced whole, so the read date is the stamp.
   "/music/listeners": LISTENERS_READ_ON,
@@ -301,9 +312,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/methodology", priority: 0.6, changeFrequency: "monthly" },
     { path: "/curator", priority: 0.5, changeFrequency: "monthly" },
     { path: "/press", priority: 0.6, changeFrequency: "monthly" },
-    // Naija @ 66, the Independence Day key hunt (1-2 Oct 2026): its board moves
-    // through the hunt, then it stands as the results page.
-    { path: "/naija66", priority: 0.5, changeFrequency: "daily" },
+    // Naija @ 66, the Independence Day key hunt (1-2 Oct 2026): its board moved
+    // through the hunt; it now stands as the finished results page, so it was
+    // advertised as "daily" for nothing until 5 Oct 2026 (debug pass, core-21).
+    { path: "/naija66", priority: 0.5, changeFrequency: "monthly" },
     { path: "/embed", priority: 0.6, changeFrequency: "monthly" },
     { path: "/about", priority: 0.5, changeFrequency: "monthly" },
     { path: "/contact", priority: 0.4, changeFrequency: "monthly" },

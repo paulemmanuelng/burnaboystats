@@ -9,6 +9,7 @@ import { updates } from "../data/updates";
 import { numberWord } from "../lib/homeData";
 import { chartEntryCount, daiDaiChartEntryCount } from "../data/charts";
 import { totalAwards } from "../data/certifications";
+import { ANALYSIS_STAMP } from "../lib/analysisStamp";
 
 export const metadata = pageMetadata({
   title: "Burna Boy Chart Analysis — What the Numbers Actually Say",
@@ -34,9 +35,11 @@ export default function AnalysisPage() {
     description:
       "Four findings drawn from Burna Boy's complete chart and certification record.",
     url: `${CANONICAL_ORIGIN}/analysis`,
-    // The page first shipped 25 Jul 2026 (git history); modified tracks the feed.
+    // The page first shipped 25 Jul 2026 (git history). Modified is the page's
+    // own stamp, the one the sitemap reports — not the newest feed date
+    // anywhere on the site (debug pass 5 Oct 2026, seo-12).
     datePublished: "2026-07-25",
-    dateModified: asDateTime(lastReviewed),
+    dateModified: asDateTime(ANALYSIS_STAMP),
     inLanguage: "en",
     isPartOf: { "@type": "WebSite", name: SITE_NAME, url: CANONICAL_ORIGIN },
     about: BURNA_BOY_REF,

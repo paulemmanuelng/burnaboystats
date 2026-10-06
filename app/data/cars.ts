@@ -157,7 +157,9 @@ export interface CarSpecs {
   zeroToHundred: string | null;
   /** km/h — or null, as above. */
   topSpeed: string | null;
-  drivetrain: string;
+  /** Null where no page of the maker's states it — the Dawn's sheet and its
+   *  launch release both leave it out (debug pass 5 Oct 2026). */
+  drivetrain: string | null;
   weight: string | null;
   /** "base model" on the one-off conversions — nobody has measured those. */
   basis: "as built" | "base model";
@@ -292,7 +294,7 @@ export const cars: Car[] = [
   {
     make: "McLaren", model: "Senna (MSO Carbon Edition)",
     valueUsd: 2_000_000, valueNaira: "₦2.9 billion",
-    desc: "A track-bred hypercar named after Ayrton Senna, finished in exposed carbon fibre (MSO). Delivered by Abuja Car Limited in June 2025, whose sale post priced it at ₦3.2 billion; press reports ran to ₦3.5 billion. The ₦2.9 billion here is the import-inclusive figure from the July 2026 fan breakdown.",
+    desc: "A track-bred hypercar named after Ayrton Senna, finished in exposed carbon fibre (MSO). Delivered by Abuja Car in June 2025, whose sale post priced it at ₦3.2 billion; press reports ran to ₦3.5 billion. The ₦2.9 billion here is the import-inclusive figure from the July 2026 fan breakdown.",
     link: "https://autojosh.com/burna-boy-splashes-n3-2-billion-on-a-mclaren-senna-hypercar/",
     slug: "mclaren-senna",
     subtitle: "TRACK-BRED HYPERCAR IN EXPOSED MSO CARBON",
@@ -347,7 +349,7 @@ export const cars: Car[] = [
     link: "https://autojosh.com/burna-boy-acquires-the-first-ever-lamborghini-revuelto-in-nigeria-worth-n1-billion/",
     slug: "lamborghini-revuelto",
     subtitle: "LAMBORGHINI'S FIRST PLUG-IN V12 FLAGSHIP — REPORTED AS NIGERIA'S FIRST",
-    specs: { engine: "6.5L naturally aspirated V12 plug-in hybrid", power: "1,001 hp", zeroToHundred: "2.5 s", topSpeed: ">350 km/h", drivetrain: "AWD", weight: "1,772 kg (dry)", basis: "as built", source: "https://www.lamborghini.com/en-en/models/revuelto-models/revuelto", note: "1,772 kg is Lamborghini's launch dry weight, which its page still carries in structured data; the page's own table now lists MY26 at 1,780 kg and MY27 at 1,795 kg, and the model year of his car is reported, not confirmed.", verified: true },
+    specs: { engine: "6.5L naturally aspirated V12 plug-in hybrid", power: "1,001 hp", zeroToHundred: "2.5 s", topSpeed: ">350 km/h", drivetrain: "AWD", weight: "1,772 kg (dry)", basis: "as built", source: "https://www.lamborghini.com/en-en/models/revuelto-models/revuelto", note: "1,772 kg is Lamborghini's launch dry weight, which its page still carries in structured data; the page's own table now lists MY26 at 1,780 kg and MY27 at 1,795 kg, and no source states the model year of his car.", verified: true },
     num: { hp: 1001, kg: 1772, acc: 2.5, vmax: 350 },
     palette: ["#e5c806", "#f4e266", "#866a16", "#48433a", "#272625"],
     heroSize: [898, 660],
@@ -402,13 +404,21 @@ export const cars: Car[] = [
     // Wayback copy of Rolls-Royce's own EU technical sheet (July 2019) — V12,
     // 563 bhp, 5.0 s, 250 km/h governed, 2,560 kg unladen DIN. Displacement,
     // the turbos and RWD are not on that sheet.
+    // 5 Oct 2026 (debug pass): the panel showed "6.6L twin-turbo V12" and
+    // "RWD" under that verified sheet. Rolls-Royce's own launch release
+    // ("Rolls-Royce Dawn – Uncompromised Drophead Luxury", PressClub
+    // T0233267EN, 8 Sep 2015) states "the beloved twin-turbo 6.6-litre V12",
+    // so the engine stands, cited in the note. Neither that release (page or
+    // attached text, technical specifications included) nor the sheet states
+    // the driven wheels, and no other Rolls-Royce page found that day does,
+    // so the drivetrain is null — the Cullinan's rule, not a borrowed "RWD".
     make: "Rolls-Royce", model: "Dawn", year: 2019, yearIs: "acquired",
     valueUsd: 700_000, valueNaira: "₦1 billion",
     desc: "A four-seat luxury drop-top convertible — the red Dawn he showed off in July 2020, bought the previous Christmas as a gift to himself for a successful 2019. Reported at ₦200 million when he bought it (AutoJosh, July 2020) and ₦507.5m / $350,000 by Pulse Nigeria (November 2025); the ₦1 billion here is the July 2026 import-inclusive estimate the whole list is priced on.",
     link: "https://autojosh.com/burna-boy-flaunts-rolls-royce-dawn/",
     slug: "rolls-royce-dawn",
     subtitle: "FOUR-SEAT V12 DROP-TOP — A CHRISTMAS 2019 GIFT TO HIMSELF",
-    specs: { engine: "6.6L twin-turbo V12", power: "563 hp", zeroToHundred: "5.0 s", topSpeed: "250 km/h (governed)", drivetrain: "RWD", weight: "2,560 kg (unladen, DIN)", basis: "as built", source: "https://web.archive.org/web/20190918010018/https://www.rolls-roycemotorcars.com/content/dam/rollsroyce-website/Brochures/2019/dawn/tech-spec/Dawn_Overview_Tech_Sheet_EU_July_19.pdf", note: "Rolls-Royce has withdrawn the Dawn and its showroom page now redirects to the home page, so the source is an archived copy of Rolls-Royce's own Dawn technical specification sheet (EU, July 2019), which states the V12, 563 bhp, 5.0 s to 100 km/h, 250 km/h governed and 2,560 kg unladen (DIN).", verified: true },
+    specs: { engine: "6.6L twin-turbo V12", power: "563 hp", zeroToHundred: "5.0 s", topSpeed: "250 km/h (governed)", drivetrain: null, weight: "2,560 kg (unladen, DIN)", basis: "as built", source: "https://web.archive.org/web/20190918010018/https://www.rolls-roycemotorcars.com/content/dam/rollsroyce-website/Brochures/2019/dawn/tech-spec/Dawn_Overview_Tech_Sheet_EU_July_19.pdf", note: "Rolls-Royce has withdrawn the Dawn and its showroom page now redirects to the home page, so the source is an archived copy of Rolls-Royce's own Dawn technical specification sheet (EU, July 2019), which states the V12, 563 bhp, 5.0 s to 100 km/h, 250 km/h governed and 2,560 kg unladen (DIN). The displacement and twin turbocharging are not on that sheet; they are from Rolls-Royce's Dawn launch release (PressClub, 8 September 2015). Neither states the driven wheels, so no drivetrain is shown.", verified: true, readOn: "5 October 2026" },
     num: { hp: 563, kg: 2560, acc: 5.0, vmax: 250 },
     palette: ["#691c23", "#9b7778", "#6a6968", "#474746", "#272727"],
     heroSize: [898, 660],
@@ -440,7 +450,7 @@ export const cars: Car[] = [
     make: "Mercedes-Benz", model: "SLS AMG", year: 2010, yearIs: "model",
     valueUsd: 700_000, valueNaira: "₦930 million", valueBasis: "reported",
     addedOn: "2026-09-23",
-    desc: "The gullwing — a 2010 SLS AMG coupé in black over tan, showing about 6,000 miles, bought in September 2026 from AbujaCar in Abuja, the dealer that also supplied the Chiron and the Senna, whose own video carries the car marked SOLD and off to Lagos. Reported at over $700,000 on 9 September 2026; neither AbujaCar nor Burna Boy has published a figure.",
+    desc: "The gullwing — a 2010 SLS AMG coupé in black over tan, showing about 6,000 miles, bought in September 2026 from Abuja Car in Abuja, the dealer that also supplied the Chiron and the Senna, whose own video carries the car marked SOLD and off to Lagos. Reported at over $700,000 on 9 September 2026; neither Abuja Car nor Burna Boy has published a figure.",
     slug: "mercedes-sls-amg",
     subtitle: "THE GULLWING — 2010 SLS AMG, ABOUT 6,000 MILES",
     // Spec check 23 Sep 2026, read in a browser off the archived release: "The
@@ -501,7 +511,10 @@ export const cars: Car[] = [
     // Legit.ng (27 Aug 2026); the naira is that dollar at the list's rate.
     // Pulse Nigeria (26 Nov 2025) carries the car as an S650 at ₦330.6m
     // ($228,000). Presence and identity are Paul's pending call (18 Sep 2026).
-    make: "Mercedes-Maybach", model: "S680 4MATIC", year: 2022,
+    // Year: the 11 Nov 2022 Story dates the purchase, not the model year — so
+    // "acquired", like the Aventador SVJ announced the same way that month
+    // (debug pass 5 Oct 2026). The page printed "Model year 2022" until then.
+    make: "Mercedes-Maybach", model: "S680 4MATIC", year: 2022, yearIs: "acquired",
     valueUsd: 300_000, valueNaira: "₦440 million",
     desc: "The chauffeur-focused, range-topping S-Class — announced by Burna Boy himself in an Instagram Story on 11 November 2022 (\"Got this too because everyone needs a Maybach\"), as reported by Pulse Nigeria; a Story carries no permalink, so none is linked.",
     slug: "mercedes-maybach-s680",
@@ -569,7 +582,7 @@ export const cars: Car[] = [
     slug: "ferrari-328-gts",
     subtitle: "THE FINAL 308/328 — REPORTEDLY HIS PENTHOUSE FERRARI",
     link: "https://x.com/ThatOjoBoy/status/2091566373323350385",
-    linkLabel: "Crane-lift photos, 23 Aug 2026",
+    linkLabel: "Aug 2025 crane-lift photos, reposted 23 Aug 2026",
     // Spec check 16 Sep 2026: read off ferrari.com's 328 GTS page under its
     // tabs — Engine "199 kW (270 hp) at 7000 rpm", Bodywork "1273kg (dry)",
     // Performance "263km/h" and "0-100 KM/H 6.4sec". The "270 hp" is the

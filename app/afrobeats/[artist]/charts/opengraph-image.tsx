@@ -12,9 +12,11 @@ export async function generateImageMetadata({ params }: { params: Promise<{ arti
   const { artist: slug } = await params;
   const a = artistBySlug(slug);
   // Survives the param-less probe Next runs while collecting page data.
-  // Labels and figures both (5 Oct 2026: "1 Territories" became "1 Territory").
+  // Labels and figures both (5 Oct 2026: "1 Territories" became "1 Territory"),
+  // and the two-row chip cap, which changed the picture of every three-row card
+  // with no figure moving (debug pass 5 Oct 2026, seo-19).
   const sig = a
-    ? `${slug}|charts|${cardSig(chartsCardStats(a))}|${cardUrl(`/afrobeats/${slug}/charts`)}`
+    ? `${slug}|charts|${cardSig(chartsCardStats(a))}|chips-2rows|${cardUrl(`/afrobeats/${slug}/charts`)}`
     : `${slug}`;
   return [{ id: ogId(sig), alt: a ? `${a.name} — official chart peaks by country, read from each country's own chart` : alt, size, contentType }];
 }
@@ -111,7 +113,11 @@ export default async function Image({ params }: { params: Promise<{ artist: stri
           </div>
         </div>
 
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 12, maxWidth: 1060 }}>
+        {/* At most two rows of chips (64px each + the 12px gap). A third row —
+            Tyla's, Tems's and Asake's — left the list, the tiles and the
+            footer about 1px apart (debug pass 5 Oct 2026, seo-19). bestPeaks
+            runs best-first, so only the lowest peaks drop. */}
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 12, maxWidth: 1060, maxHeight: 140, overflow: "hidden" }}>
           {best.map((e) => {
             // The chart resolver, like the page: these chips are chart rows.
             const meta = chartCountryMeta(e.c);

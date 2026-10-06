@@ -69,7 +69,7 @@ describe("a country board", () => {
     // the card: the programme note below names Sony's own levels, which are
     // real and are the reason that plaque cannot go on Colombia's scale.
     const card = t.slice(t.indexOf("What one plaque is worth here"), t.indexOf("Artists ranked"));
-    expect(card).toContain("Pro Musica Colombia's register");
+    expect(card).toContain("Pro Música Colombia's register");
     expect(card).not.toContain("own levels");
   });
 

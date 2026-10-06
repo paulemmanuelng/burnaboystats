@@ -6,7 +6,7 @@ export const alt = "About Burna Boy — biography & career timeline";
 const card = {
   kicker: "Biography",
   title: "The African Giant",
-  sub: "The story of Damini Ogulu — Afro-Fusion pioneer & Grammy winner",
+  sub: "The story of Damini Ogulu — Afro-fusion pioneer & Grammy winner",
 };
 
 // Versioned by the card's own contents, so a cached preview follows the copy.
