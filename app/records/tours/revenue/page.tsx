@@ -11,6 +11,7 @@ import { REVENUE_AS_OF, REVENUE_SOURCE, REVENUE_STAMP } from "../../../lib/reven
 import { usdFull } from "../../../lib/revenueByCountry";
 import { pct, showsBoard } from "../../../lib/showsBoard";
 import { pageMetadata, datasetJsonLd } from "../../../lib/seo";
+import { showsBoardTitle } from "../../../lib/showsTitle";
 
 // Highest-grossing shows — Claude Design round 1 (4 Oct 2026), Job 2, "the
 // record night" direction: designs/desktop/GXShowsDesk.dc.html and
@@ -51,12 +52,16 @@ const runCeiling = runRankCeiling(revenueStands.map((s) => s.revenue), revenueSh
 const RUNS_SPLIT_NOTE = `No per-night split is invented for them: each total would sit in the top ${numberWord(runCeiling).toLowerCase()} of a board of single nights it never had.`;
 const SOURCE = `${REVENUE_SOURCE}, as of ${REVENUE_AS_OF}.`;
 
+// The No. 1 night's artist, derived (seo-11): the board is every African
+// artist's, and a typed "Burna Boy" would go stale the day another night leads.
+const TITLE = showsBoardTitle(top.artist);
+
 export const metadata = pageMetadata({
-  title: "Burna Boy Box Office — Highest-Grossing Shows",
+  title: TITLE,
   description:
     `Every verified single-show gross by an African artist — ${showCount} shows, ranked by box-office gross and led by ${TOP_LEAD}.`,
   path: "/records/tours/revenue",
-  shareTitle: "Burna Boy — Highest-Grossing Shows",
+  shareTitle: TITLE,
   shareDescription: `Every verified single-show gross by an African artist — ${showCount} shows, ranked.`,
 });
 
