@@ -608,7 +608,11 @@ export const features: Release[] = [
     { c: "UK", level: "Platinum", x: 3 }, { c: "NZ", level: "Platinum" }, { c: "DK", level: "Platinum" },
     { c: "AU", level: "Gold" }, { c: "BR", level: "Gold" }, { c: "PT", level: "Gold" },
   ] },
-  { title: "Jerusalema (Remix)", credit: "Master KG, Nomcebo & Burna Boy", year: 2020, certs: [
+  // One credit for this record across certifications.ts, charts.ts and
+  // songs.ts (Paul, 6 Oct 2026, records-02): the billing every register that
+  // certifies it for Burna Boy prints — SNEP, FIMI, BVMI and IFPI Austria all
+  // read "Master KG feat. Burna Boy & Nomcebo Zikode".
+  { title: "Jerusalema (Remix)", credit: "Master KG ft. Burna Boy & Nomcebo Zikode", year: 2020, certs: [
     { c: "FR", level: "Diamond" }, { c: "IT", level: "Platinum", x: 4 }, { c: "BE", level: "Platinum", x: 2 },
     { c: "DE", level: "Platinum" }, { c: "PT", level: "Platinum", x: 2 }, { c: "AT", level: "Gold" },
   ] },
@@ -646,7 +650,12 @@ export const features: Release[] = [
   { title: "Sungba (Remix)", credit: "Asake ft. Burna Boy", year: 2022, cover: "https://cdn-images.dzcdn.net/images/cover/671d8a1ee4c2d4ca3e7c32877bbfee6a/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Platinum", x: 4 }, { c: "UK", level: "Silver" },
   ] },
-  { title: "Tshwala Bam (Remix)", credit: "TitoM & Yuppe ft. S.N.E & Burna Boy", year: 2024, certs: [
+  // Credited as TCSN prints it, "Tshwala Bam | TitoM, Yuppe & Burna Boy ft.
+  // S.N.E" (docs/sourcing/results/burna-raw.json), as charts.ts does (Paul,
+  // 6 Oct 2026, records-02). That billing is an "A & B" joint one; which
+  // section such a record belongs in waits on Paul's lead/featured music-data
+  // design, so it stays here until he rules.
+  { title: "Tshwala Bam (Remix)", credit: "TitoM, Yuppe & Burna Boy ft. S.N.E", year: 2024, certs: [
     { c: "NG", level: "Platinum", x: 4 },
   ] },
   { title: "Second Sermon (Remix)", credit: "Black Sherif ft. Burna Boy", year: 2021, cover: "https://cdn-images.dzcdn.net/images/cover/6d35385e5b10cc9daea1e7c8dfdf5cff/500x500-000000-80-0-0.jpg", certs: [
@@ -683,7 +692,10 @@ export const features: Release[] = [
   { title: "Enjoy Yourself (Remix)", credit: "Pop Smoke ft. Burna Boy", year: 2020, cover: "https://cdn-images.dzcdn.net/images/cover/337e152ccbf267774a30a08fbceae106/500x500-000000-80-0-0.jpg", certs: [
     { c: "NZ", level: "Gold" }, { c: "AU", level: "Gold" },
   ] },
-  { title: "Yaba Buluku (Remix)", credit: "DJ Tárico & Burna Boy", year: 2021, cover: "https://cdn-images.dzcdn.net/images/cover/838ae1b6384d70287eb799afdb50512c/500x500-000000-80-0-0.jpg", certs: [
+  // One credit across certifications.ts, charts.ts and awards.ts (Paul,
+  // 6 Oct 2026, records-02): the full line TurnTable prints. Its section waits
+  // on the same lead/featured design as "Tshwala Bam (Remix)" above.
+  { title: "Yaba Buluku (Remix)", credit: "DJ Tárico & Burna Boy ft. Preck & Nelson Tivane", year: 2021, cover: "https://cdn-images.dzcdn.net/images/cover/838ae1b6384d70287eb799afdb50512c/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Gold" },
   ] },
   { title: "Toni-Ann Singh", credit: "feat. Popcaan", year: 2022, cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [

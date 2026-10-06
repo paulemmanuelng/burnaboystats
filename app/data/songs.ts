@@ -217,7 +217,7 @@ export const songs: Song[] = [
   {
     slug: "jerusalema",
     title: "Jerusalema (Remix)",
-    credit: "Master KG ft. Nomcebo Zikode & Burna Boy",
+    credit: "Master KG ft. Burna Boy & Nomcebo Zikode",
     year: 2020,
     album: "Single",
     cover: "https://i.scdn.co/image/ab67616d0000b2739d07e4e641b9ee80b0f713d0",
