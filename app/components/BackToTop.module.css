@@ -51,7 +51,15 @@
   }
 }
 
-/* Hidden on mobile: a fixed bottom bar always occupies this corner there. */
-@media (max-width: 900px) {
+/* Shown only where the page has a margin to hold it. The widest content
+   measure is 1360px with 40px side padding, so the margin is
+   (viewport - 1360) / 2 + 40; the button's lane is its 28px offset plus its
+   46px width, 74px, and the margin first clears it (6px to spare) at 1440,
+   the width the desktop designs are drawn at. Below that the content runs to
+   24-40px of the edge and the button sat on its right-hand figures: the
+   revenue board's grosses, the calendar's last column, /compare/in's units,
+   /search's focused rows. On a phone (<=900px) a fixed bottom bar always
+   occupies this corner too. BackToTop.tsx reads the same query. */
+@media (max-width: 1439px) {
   .desktopOnly { display: none; }
 }

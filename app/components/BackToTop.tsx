@@ -10,27 +10,30 @@ export default function BackToTop() {
 
   useEffect(() => {
     const onScroll = () => setShow(window.scrollY > 700);
-    // The button is display:none at phone width (below), so it listens only
-    // at desktop width: a phone's scroll runs no handler for it.
-    const phone = window.matchMedia("(max-width: 900px)");
+    // The button is display:none below 1440px (BackToTop.module.css), so it
+    // listens only where it shows: a phone's or a narrow window's scroll runs
+    // no handler for it.
+    const hidden = window.matchMedia("(max-width: 1439px)");
     const attach = () => {
       window.removeEventListener("scroll", onScroll);
-      if (phone.matches) return;
+      if (hidden.matches) return;
       window.addEventListener("scroll", onScroll, { passive: true });
       onScroll();
     };
     attach();
-    phone.addEventListener("change", attach);
+    hidden.addEventListener("change", attach);
     return () => {
-      phone.removeEventListener("change", attach);
+      hidden.removeEventListener("change", attach);
       window.removeEventListener("scroll", onScroll);
     };
   }, []);
 
-  // Desktop only. Every mobile screen carries a fixed bottom bar — the tab bar,
-  // or Certifications' action bar — and this button is positioned in the same
-  // corner at a higher z-index, so it lands on top of whichever is there. The
-  // mobile design has no back-to-top control at all.
+  // Wide desktop only (1440px and up). Every mobile screen carries a fixed
+  // bottom bar — the tab bar, or Certifications' action bar — and this button
+  // is positioned in the same corner at a higher z-index, so it lands on top of
+  // whichever is there; the mobile design has no back-to-top control at all.
+  // Between 901 and 1439px the content column runs to within 24-40px of the
+  // edge, so the 46px button sat on its right-hand figures.
   return (
     <button
       type="button"
