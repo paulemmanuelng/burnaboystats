@@ -2,6 +2,8 @@ import { ImageResponse } from "next/og";
 import type { StatCard } from "./statCards";
 import { CARD_SIZES, type CardRatio } from "./cardSizes";
 import { BURNA_PORTRAIT } from "./artistImages";
+import { ogFonts } from "./og-lockup";
+import { withoutKerning } from "./unkernedFont";
 
 /**
  * The downloadable share card, built from designs/desktop/Share.dc.html.
@@ -21,6 +23,17 @@ const GOLD = "#ffb627";
 // The design's card face: a warm near-black, lit from the top right.
 const FACE = "linear-gradient(155deg, #1A1410 0%, #0C0A09 55%, #140F0A 100%)";
 const GOLD_GRAD = "linear-gradient(180deg, #ffd24a 0%, #ffb627 45%, #f5890b 100%)";
+
+/**
+ * The card's fonts: the site's card list with Geist's kerning off, as the On
+ * This Day images have drawn since 26 Sep (lib/unkernedFont.ts). With no list
+ * the card got next/og's stock Geist, which Satori measures letter by letter
+ * and draws kerned, so a word with tight pairs left a double-width gap after
+ * it — "CERTIFICATIONS␣␣ACROSS", "FOLLOWERS␣␣—", "most-certified␣␣African"
+ * on the PNG people post (debug pass 5 Oct 2026, V-core-07). The same Geist
+ * file otherwise, at the head of the list, so `sans-serif` still lands on it.
+ */
+export const statCardFonts = ogFonts.map((f) => (f.name === "geist" ? { ...f, data: withoutKerning(f.data) } : f));
 
 export function statCardImage(card: StatCard, ratio: CardRatio = "square") {
   const size = CARD_SIZES[ratio];
@@ -311,6 +324,7 @@ export function statCardImage(card: StatCard, ratio: CardRatio = "square") {
     ),
     {
       ...size,
+      fonts: statCardFonts,
       // Satori renders take real time, and the figures only change with a
       // deploy — which busts the CDN cache on its own. Caching makes ratio
       // flips and re-downloads instant instead of a fresh render each time.

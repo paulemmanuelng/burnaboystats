@@ -13,6 +13,7 @@ import { DAI_DAI_HALFTIME_DATE, DAI_DAI_RELEASE_DATE } from "../data/daiDai";
 import { daiDaiFrames, daiDaiRuns, endBest, frameOf, GLOBAL_CODES, type Status } from "../data/daiDaiRuns";
 import { countryName } from "./DaiDaiRecord";
 import { worldShapes, MAP_W, MAP_H } from "../data/worldShapes";
+import type { ReplaySource } from "./daiDaiReplayLabels";
 
 /** One week of one chart, as the player needs it. */
 export interface ReplayPoint {
@@ -23,8 +24,9 @@ export interface ReplayPoint {
   d: string;
   /** The body's own label ("semaine 28", "W34"), when it numbers its weeks. */
   l?: string;
-  /** The repo file that states it; absent for an unread week. */
-  src?: string;
+  /** The record that states it (sourceOf), which the card names in words;
+   *  absent for an unread week. */
+  src?: ReplaySource;
 }
 
 export interface ReplayRun {
@@ -89,6 +91,17 @@ function centreOf(d: string): [number, number] {
 }
 const shapeD = new Map(worldShapes.map((s) => [s.code, s.d]));
 
+/** The repo file a reading is transcribed from (RunPoint.source), as the record
+ *  a reader knows it by. The path itself stays on the server: it is the
+ *  tests' handle on the quote, and a reader can do nothing with it. */
+export function sourceOf(file: string): ReplaySource | undefined {
+  if (file === "app/data/charts.ts") return "charts";
+  if (file === "app/data/updates.ts") return "feed";
+  if (file === "app/dai-dai/page.tsx" || file === "app/data/daiDai.ts") return "page";
+  if (file.startsWith("docs/")) return "notes";
+  return undefined;
+}
+
 const MONTHS_SHORT = {
   en: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
   es: ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sept", "oct", "nov", "dic"],
@@ -124,13 +137,16 @@ export function buildReplayData(lang: "en" | "es"): ReplayData {
       weeksAtPeak: r.weeksAtPeak ?? null,
       best: endBest(r),
       ...(!r.points.length && r.iso !== undefined && shapeD.has(r.iso) ? { mark: centreOf(shapeD.get(r.iso)!) } : {}),
-      pts: r.points.map((p) => ({
-        s: p.status,
-        ...(p.pos !== undefined ? { p: p.pos } : {}),
-        d: longDate(p.chartDate, lang),
-        ...(p.label ? { l: p.label } : {}),
-        ...(p.source ? { src: p.source } : {}),
-      })),
+      pts: r.points.map((p) => {
+        const src = sourceOf(p.source);
+        return {
+          s: p.status,
+          ...(p.pos !== undefined ? { p: p.pos } : {}),
+          d: longDate(p.chartDate, lang),
+          ...(p.label ? { l: p.label } : {}),
+          ...(src ? { src } : {}),
+        };
+      }),
     };
   };
 

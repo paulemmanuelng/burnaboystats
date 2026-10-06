@@ -138,8 +138,17 @@
   gap: 20px;
   align-items: start;
 }
+/* The map rides beside the ranking. The ranking runs 783px at the end frame
+   and the map is 430: unstuck, it left a 353px blank under the map, and with
+   the play button in view the map's top sat under the 69px nav (at 1280 × 720
+   only its bottom 180px showed) — debug pass 5 Oct 2026, V-music-07. Stuck
+   86px down, as the FAQ and awards asides are, the whole map stays on screen
+   from the ranking's first band to the transport. The grid's align-items:
+   start is what leaves it room to move. Two columns only: from 1239 down the
+   ranking sits under the map (tablet) or above it (phone). */
 .mapCol {
-  position: relative;
+  position: sticky;
+  top: 86px;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -848,6 +857,10 @@
 @media (max-width: 1239px) {
   .body {
     grid-template-columns: minmax(0, 1fr);
+  }
+  .mapCol {
+    position: relative;
+    top: auto;
   }
 }
 

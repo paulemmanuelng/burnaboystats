@@ -228,8 +228,16 @@ describe("matches() filter logic", () => {
     expect(matches(item, null, "Gold")).toBe(false);
   });
   it("matches on country + tier together", () => {
-    expect(matches(item, "FR", "Platinum")).toBe(true);
+    expect(matches(item, "FR", "Diamond")).toBe(true);
+    expect(matches(item, "NG", "Platinum")).toBe(true);
     expect(matches(item, "US", "Platinum")).toBe(false);
+  });
+  // Both filters on ONE plaque. A French Diamond and a Nigerian Platinum is not
+  // a French Platinum: the live page kept Last Last under Diamond + Nigeria
+  // with every badge dimmed (debug, 5 Oct 2026).
+  it("does not let the country and the tier match on two different plaques", () => {
+    expect(matches(item, "FR", "Platinum")).toBe(false);
+    expect(matches(item, "NG", "Diamond")).toBe(false);
   });
 });
 

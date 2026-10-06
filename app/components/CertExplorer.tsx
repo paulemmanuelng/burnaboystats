@@ -5,10 +5,10 @@ import Link from "next/link";
 import { useEffect, useLayoutEffect, useMemo, useState } from "react";
 import styles from "../certifications/certifications.module.css";
 import { tierOf, type Cert, type Country, type Release } from "../data/certifications";
-import { matches, badgeWeight, byMostCertified, countryChipTitle, isIssuerMarker } from "../lib/certs";
+import { matches, certMatches, badgeWeight, byMostCertified, countryChipTitle, isIssuerMarker } from "../lib/certs";
 import { releasePathFor, type ReleaseKind } from "../lib/releasePages";
 import { coverFor } from "../lib/covers";
-import { artAt } from "../lib/artAt";
+import { coverTile } from "../lib/coverTile";
 import { track } from "../lib/analytics";
 import FilterEmpty from "./FilterEmpty";
 import { awardLabel } from "../lib/awardName";
@@ -94,8 +94,9 @@ function CertCard({
           /* The site's own lookup knows Burna's catalogue only — a board artist
              passes their covers in, exactly as MobileCerts does. Sized at 114,
              3x the 38px tile: those covers are Deezer 500px and Apple 300px
-             files, 1.9 MB on /afrobeats/wizkid for 0.3 MB of pixels (23 Sep 2026). */
-          style={{ backgroundImage: `url(${artAt((covers ? covers[item.title] : coverFor(item.title)) ?? "", 114)})` }}
+             files, 1.9 MB on /afrobeats/wizkid for 0.3 MB of pixels (23 Sep 2026).
+             No art on file draws the release's initial (lib/coverTile.ts). */
+          {...coverTile(covers ? covers[item.title] : coverFor(item.title), item.title, 114)}
         />
         <span className={styles.certText}>
           {/* A row was a dead end: the best writing on the site lives on the
@@ -123,7 +124,7 @@ function CertCard({
         {[...item.certs]
           .sort((x, y) => badgeWeight(y) - badgeWeight(x))
           .map((cert) => {
-            const dim = !!((country && cert.c !== country) || (tier && cert.level !== tier));
+            const dim = !certMatches(cert, country, tier);
             return <Badge key={cert.c} cert={cert} countries={countries} dim={dim} />;
           })}
       </div>
@@ -277,11 +278,12 @@ export default function CertExplorer({
 
   const totalAll = scoped.albums.length + scoped.singles.length + scoped.features.length;
   const totalShown = groups.reduce((n, g) => n + g.items.length, 0);
-  const shownCerts = groups.reduce(
-    (n, g) => n + g.items.reduce((m, it) => m + it.certs.length, 0),
-    0
-  );
-  const shownCountries = new Set(groups.flatMap((g) => g.items.flatMap((it) => it.certs.map((c) => c.c)))).size;
+  // The plaques the filters leave lit — the count line's figure. Every plaque
+  // on the kept releases read "Showing 7 of 93 releases · 74 certifications"
+  // under Diamond, against the hero's 7 Diamonds (debug, 5 Oct 2026).
+  const shownCertList = groups.flatMap((g) => g.items.flatMap((it) => it.certs.filter((c) => certMatches(c, shownCountry, tier))));
+  const shownCerts = shownCertList.length;
+  const shownCountries = new Set(shownCertList.map((c) => c.c)).size;
   // The All view's count line reads as it always has; a narrowed view says
   // what it is counting ("65 international certifications across 23 countries").
   const shownPhrase = narrowed

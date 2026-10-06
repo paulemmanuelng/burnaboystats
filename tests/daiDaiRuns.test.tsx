@@ -443,7 +443,8 @@ describe("the player", () => {
     expect(card.textContent).toContain("Schweizer Hitparade");
     expect(card.textContent).toContain("Chart dated 19 July 2026");
     expect(card.textContent).toMatch(/\d+th week at No\. 1/);
-    expect(card.textContent).toContain("Source: app/data/updates.ts");
+    // The record that holds the reading, in words; never the repo path (V-music-06).
+    expect(card.textContent).toContain("Source: the site's Latest Updates");
   });
 
   it("the ranking is one tab stop: arrows move between countries and the card follows", () => {

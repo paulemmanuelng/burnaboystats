@@ -1,6 +1,6 @@
 "use client"; // each tour opens its own date list
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
 import styles from "./mobileTours.module.css";
 import { tourMeta, NO_TOUR_TOTAL } from "../lib/tourMeta";
@@ -8,6 +8,9 @@ import { REVENUE_BODY, REVENUE_REPORTS } from "../lib/revenueSource";
 import { upcomingShows, type Tour } from "../data/tours";
 import NotReported from "./NotReported";
 import { holdInPlace } from "../lib/holdInPlace";
+import { dropDeepLink } from "../lib/deepLink";
+import { DATE_PARAM, TOUR_PARAM, showDateIso, tourSlug } from "../lib/tourDeepLink";
+import { useTourDeepLink } from "../lib/useTourDeepLink";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
 
@@ -64,6 +67,11 @@ export default function MobileTours({
   headlinedCount: number;
 }) {
   const [open, setOpen] = useState<string | null>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
+  // #tour=<slug>&date=<day> — On This Day's link for a night — opens that
+  // tour and brings the night's row into view; every tour starts shut here,
+  // so the bare link left the night under a ▸ (V-otd-02, 5 Oct 2026).
+  useTourDeepLink(tours, setOpen, rootRef);
 
   const stats = [
     { v: String(tours.length), l: "Tours", n: yearSpan },
@@ -96,7 +104,7 @@ export default function MobileTours({
   ];
 
   return (
-    <div className={styles.screen}>
+    <div ref={rootRef} className={styles.screen}>
       {/* Back bar */}
       <div className={styles.backBar}>
         <BackLink href="/records" aria-label="Back" className={styles.backBtn}>
@@ -190,7 +198,13 @@ export default function MobileTours({
               // One tour open at a time: tapping a row below the open one shut
               // the list above it and threw the tapped row 1,545px off the top
               // (V-tourscars-01, 5 Oct 2026). Held under the finger instead.
-              onClick={(e) => holdInPlace(e.currentTarget, () => setOpen(isOpen ? null : t.name))}
+              // Picking a tour takes the link's out of the address bar, so a
+              // reload does not put it back.
+              onClick={(e) => {
+                holdInPlace(e.currentTarget, () => setOpen(isOpen ? null : t.name));
+                dropDeepLink(TOUR_PARAM, DATE_PARAM);
+              }}
+              data-tour={tourSlug(t.name)}
             >
               <div className={styles.tourTop}>
                 <div className={styles.tourMain}>
@@ -218,7 +232,7 @@ export default function MobileTours({
                 </div>
                 {t.dates?.length ? (
                   t.dates.map((d) => (
-                    <div key={`${d.date}-${d.venue}`} className={styles.dateRow}>
+                    <div key={`${d.date}-${d.venue}`} className={styles.dateRow} data-show={showDateIso(d.date) ?? undefined}>
                       <div className={styles.dateMain}>
                         <div className={styles.dateVenue}>{d.venue}</div>
                         <div className={styles.dateMeta}>

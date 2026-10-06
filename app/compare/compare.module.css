@@ -357,6 +357,18 @@
 .bar { height: 6px; background: var(--bg-raised); border-radius: 3px; overflow: hidden; }
 .barFill { height: 100%; background: var(--text); }
 .barFillBehind { background: var(--text-muted); }
+/* Above the phone each cell stacks name, figure, meta and bar from the top,
+   and the grid gives both cells the taller one's height. The bar takes the
+   cell's foot, so when one side's meta runs to a second line ("… 177 of 178
+   counted · 1 not comparable") both bars stay level: that side's bar sat
+   20px below the other (live at 1440 on every Burna Boy and Rema pair but
+   one, at 1024 on 25 more, and in song mode; debug pass, 5 Oct 2026). The
+   figures and meta lines keep their places. The phone, where it is the label
+   that wraps, stacks its cells from the foot instead (below). */
+@media (min-width: 761px) {
+  .headCell { display: flex; flex-direction: column; }
+  .headCell > .bar { margin-top: auto; }
+}
 .diffRow {
   display: flex;
   flex-wrap: wrap;
@@ -555,6 +567,11 @@
   gap: 14px;
   justify-items: start;
 }
+/* A pair page ends on its exit; a country board's comes before the method
+   notes, whose rule sat on the button's bottom edge with no gap on all 27
+   boards (debug pass 5 Oct 2026, V-compareIn-03). The 40px the notes leave
+   above a rule. */
+.exitBoard { margin-bottom: 40px; }
 .exitKicker {
   font-family: var(--font-mono), monospace;
   font-size: var(--type-label);
@@ -725,12 +742,22 @@
 }
 /* The desktop foot strip yields to the sticky bar wherever the tab bar exists
    (the site's chrome switches at 900, this page's layout at 760; between the
-   two, both exits were showing). */
-@media (max-width: 900px) { .exit { display: none; } }
+   two, both exits were showing). Only a pair's strip: the bar renders only
+   beside it. Hiding every .exit took the country boards' own "Next" (the
+   head-to-head, or "Every market") off phones and the 760–900 band with
+   nothing in its place, so all 27 boards ended at "How this is counted"
+   (debug pass 5 Oct 2026, V-compareIn-01). */
+@media (max-width: 900px) { .exitPair { display: none; } }
 @media (max-width: 360px) {
   /* The flag + code need 41px; the value cells were starved to 104px. */
   .table tr { grid-template-columns: 56px minmax(0, 1fr) minmax(0, 1fr); gap: 8px; }
   .tierChip { letter-spacing: 0; padding: 3px 5px; }
+  /* "US · LATIN" is the one code that cannot sit beside its flag in 56px:
+     "LATIN" was 37px with 30px left, and ran 7px over the column into the
+     chip or "No plaque" beside it (debug pass 5 Oct 2026, V-compareB-04). A
+     code with no room takes the line under the flag; two-letter codes fit
+     beside it and never wrap. */
+  .country { flex-wrap: wrap; row-gap: 2px; }
 }
 
 /* ── sticky board bar (phone) ─────────────────────────────────

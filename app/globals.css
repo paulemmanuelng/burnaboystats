@@ -621,6 +621,30 @@ html {
   scroll-margin-top: calc(88px + env(safe-area-inset-top, 0px));
 }
 
+/* Keyboard focus clears the same bars (WCAG 2.4.11). The rule above reaches
+   only elements with an id, so a link or button scrolled into view by Tab
+   could stop wholly under the bar: Shift+Tab up /records/awards at 1440 left
+   "See wins by award body" at 23–69px behind the navbar, and on a phone the
+   browser brings the control to the very top, under the back bar or the
+   navbar (/certifications, /compare/burna-boy-vs-wizkid at 390; debug pass
+   5 Oct 2026, V-global-05). 81px is the 69px bar, the 4px ring (2px at a 2px
+   offset) and 8px of air; it stays below the asides that stick lower (84px
+   and down), so their own links never count as covered. :where() keeps it
+   at zero specificity: an [id] or a module's own scroll-margin-top wins.
+   Not scroll-padding-top on html: that stacks on every margin above, and
+   the browser then reads the bars' own controls as hidden and scrolls the
+   page ~457px whenever one takes focus. */
+:where(a[href], button, input, select, textarea, summary, iframe, [tabindex]) {
+  scroll-margin-top: calc(81px + env(safe-area-inset-top, 0px));
+}
+/* …except inside the bars that stick at the top. Their controls never move,
+   so a margin there scrolls the page under them each time one takes focus —
+   73–76px for the navbar's and a back bar's (Open menu gets focus back when
+   the menu sheet closes), 7–19px per step along a stuck chip rail. */
+:where(.navbar, [class*="__backBar"], [class*="__mobileBackBar"], [class*="__railStick"], [class*="__heroPad"], [class*="__dialogHead"]) * {
+  scroll-margin-top: 0;
+}
+
 body {
   /* Landscape on a notched phone: flow content stays clear of the notch. */
   padding-left: env(safe-area-inset-left, 0px);
@@ -1834,6 +1858,13 @@ a.fact:hover {
 .skipLink:focus {
   top: 12px;
 }
+/* "Back to top" (BackToTop.tsx) hands focus to <main id="content"> so the next
+   Tab starts from the top of the content. That focus is a place to continue
+   from, not a control: without this the [tabindex] ring below drew a gold
+   outline round the whole page body after a keyboard press. */
+main#content:focus {
+  outline: none;
+}
 
 /* A consistent, visible keyboard focus ring on every interactive element.
    The handoff specifies the accent at a 2px offset; the list covers form
@@ -1949,6 +1980,14 @@ a[class*="__certRow"]:focus-visible,
      push every jump ~137px lower. Written first so the tab bar's and
      /compare's rules below win where they apply. */
   html:has([class*="__actionBar"]) {
+    scroll-padding-bottom: calc(80px + env(safe-area-inset-bottom, 22px));
+  }
+  /* The song and album pages' bar is the same 12 + 50 + 12 px bar, but its
+     class is mobileActionBar, and the match above is case-sensitive, so it
+     never applied: tabbing down a song page put "all certifications" and
+     "Next song" wholly under the bar (debug pass 5 Oct 2026, V-music-02,
+     when the album pages took the same bar). */
+  html:has([class*="__mobileActionBar"]) {
     scroll-padding-bottom: calc(80px + env(safe-area-inset-bottom, 22px));
   }
   html:has(.mobileTabBarPresent) {

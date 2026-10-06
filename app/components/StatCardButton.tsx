@@ -104,10 +104,10 @@ export default function StatCardButton({
   async function download() {
     setDownloading(true);
     track("stat_card_download", { stat: cardId, ratio });
-    // Same caption the copy button writes, so a native share sheet carries the
-    // figure and its source rather than a bare image. MobileStatCards has always
-    // passed one; these two call sites did not.
-    await saveCard(src, `burna-boy-${cardId}-${ratio}.png`, `${value} — ${label}. ${source}.`);
+    // A download, as the button says: this dialog lives on the desktop home
+    // only, and desktop browsers that can share files would otherwise open the
+    // OS share sheet and save nothing. See app/lib/saveCard.ts.
+    await saveCard(src, `burna-boy-${cardId}-${ratio}.png`, undefined, { preferDownload: true });
     setDownloading(false);
   }
 

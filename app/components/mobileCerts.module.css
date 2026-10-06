@@ -543,6 +543,8 @@
   white-space: nowrap;
 }
 .flag { font-size: 11px; line-height: 1; }
+/* A plaque the #country= focus is not about — the desktop ledger's .badgeDim. */
+.badgeDim { opacity: 0.26; }
 
 .allBtn {
   display: flex;
@@ -748,6 +750,21 @@
   background-color: var(--bg-soft);
   border: 1px solid var(--line);
 }
+/* No art on file: the release's initial, the monogram tile the live-charts
+   rows draw (mobileLiveCharts.module.css), rather than an empty bordered
+   square. */
+.rowCover[data-letter] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(140deg, color-mix(in srgb, var(--gold-wash-base) calc(22% * var(--wash-strength)), transparent), color-mix(in srgb, var(--gold-wash-base) 6%, transparent));
+  border-color: color-mix(in srgb, var(--gold-ink) 28%, transparent);
+  color: var(--gold);
+  font-family: var(--font-mono), monospace;
+  line-height: 1;
+  font-size: 14px;
+}
+.rowCover[data-letter]::before { content: attr(data-letter); }
 /* Holds the tile so its art waits until the row nears the viewport, as on the
    charts screen (mobileOfficialCharts.module.css, .coverSlot, 23 Sep 2026).
    The tile keeps its url() and painting; the slot takes its size and its

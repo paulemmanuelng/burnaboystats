@@ -22,7 +22,8 @@ import { cleanQuery } from "../lib/searchQuery";
  * imports so the whole dataset never ships to the browser — see lib/searchStats.
  */
 
-// Section colours, matching the meanings those hues carry site-wide.
+// Section colours for the result rows' kind tags, matching the meanings those
+// hues carry site-wide. Not the filter chips: a pressed chip is .chipOn.
 const SECTION_INK: Record<string, [string, string]> = {
   Site: ["var(--text-muted)", "var(--border)"],
   Records: ["var(--gold-bright-ink)", "color-mix(in srgb, var(--gold-bright-ink) 45%, transparent)"],
@@ -165,27 +166,27 @@ export default function SearchResults({
 
         <div className={styles.filters}>
           <span className={styles.filterLabel}>Filter</span>
+          {/* One pressed state for every chip, from the stylesheet (.chipOn):
+              it was the section's ink inline, which ten sections didn't have,
+              so pressing them changed nothing you could see (V-core-01). */}
           <button
             type="button"
             aria-pressed={active === null}
             onClick={() => setSection(null)}
-            className={styles.chip}
-            style={active === null ? { borderColor: "var(--gold)", color: "var(--gold)" } : undefined}
+            className={`${styles.chip} ${active === null ? styles.chipOn : ""}`}
           >
             All
             <span className={styles.chipCount}>{base.length}</span>
           </button>
           {sections.map((s) => {
             const on = active === s;
-            const [color, border] = inkFor(s);
             return (
               <button
                 key={s}
                 type="button"
                 aria-pressed={on}
                 onClick={() => setSection(on ? null : s)}
-                className={styles.chip}
-                style={on ? { borderColor: border, color } : undefined}
+                className={`${styles.chip} ${on ? styles.chipOn : ""}`}
               >
                 {s}
                 <span className={styles.chipCount}>{counts[s]}</span>

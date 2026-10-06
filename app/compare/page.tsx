@@ -72,6 +72,8 @@ const programShort = (name: string, country: string) => {
   return `${country} · ${(tail || name).toUpperCase()}`;
 };
 import { CountryBoardView } from "./CountryBoardView";
+import { HeadSync } from "./HeadSync";
+import { KeepFocus } from "./KeepFocus";
 import { countryCopy, countryFromSlug, countrySlug, priceCountry, pricingPhrase } from "../lib/certCountry";
 import { artAt, artSrcSet } from "../lib/artAt";
 import {
@@ -79,6 +81,7 @@ import {
   comparableArtists,
   compare,
   nigeriaDefault,
+  nigeriaDefaultSolo,
   priceArtist,
   priceRelease,
   type ArtistUnits,
@@ -130,7 +133,13 @@ const BASE_METADATA = pageMetadata({
  * /compare. Titles stay derived from the data; nothing here is typed.
  */
 export async function generateMetadata({ searchParams }: { searchParams: Promise<SP> }): Promise<Metadata> {
-  const sp = await searchParams;
+  return compareMetadata(await searchParams);
+}
+
+/** generateMetadata's answer for one query, shared with the page so the tab
+ *  can be given the same title and canonical after a client-side toggle
+ *  (HeadSync). */
+function compareMetadata(sp: SP): Metadata {
   const mode = readMode(one(sp.mode));
   // Country mode canonicals to the pretty route the same way a filled pair
   // does: /compare?mode=country&country=canada and /compare/in/canada are one
@@ -301,17 +310,23 @@ function Slot({
   return (
     <div className={styles.slot} id={`slot-${side}`}>
       {img ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={artAt(img, 112)}
-          srcSet={artSrcSet(img, 56)}
-          sizes="56px"
-          alt=""
-          className={`${styles.art} ${isSong ? "" : styles.artRound}`}
-          width={56}
-          height={56}
-          decoding="async"
-        />
+        // In a <picture> so React does not make this eager image a preload
+        // hint: hints ride in the RSC payload, so every page whose links
+        // prefetched a pair downloaded both its avatars unseen (20 on /compare
+        // at 1024, debug pass 5 Oct 2026). display: contents keeps the <img>
+        // the slot's flex item.
+        <picture style={{ display: "contents" }}>
+          <img
+            src={artAt(img, 112)}
+            srcSet={artSrcSet(img, 56)}
+            sizes="56px"
+            alt=""
+            className={`${styles.art} ${isSong ? "" : styles.artRound}`}
+            width={56}
+            height={56}
+            decoding="async"
+          />
+        </picture>
       ) : (
         <div className={`${styles.art} ${isSong ? "" : styles.artRound}`} aria-hidden="true" />
       )}
@@ -473,13 +488,14 @@ function SongPicker({
 function Cell({ line, lead, artistMode }: { line: CountryLine | null; lead: boolean; artistMode: boolean }) {
   // A blank cell reads as a rendering fault, so the words are the value.
   if (!line) return <span className={styles.noPlaque}>No plaque</span>;
-  // No-break spaces: a mark on its own line inside a 104px phone chip read
-  // as a stray glyph. The marks share one face (.mark) — Space Mono has no ‡,
-  // and its † pulled a latin-ext subset the site never preloads.
-  // ¶ (U+00B6) is Latin-1 and sits in every face .mark names, so it needs
-  // no subset of its own.
+  // No-break spaces between the marks: one mark on its own line inside a
+  // 104px phone chip read as a stray glyph. The group as a whole may take
+  // the chip's next line (PlaqueWords). The marks share one face (.mark) —
+  // Space Mono has no ‡, and its † pulled a latin-ext subset the site never
+  // preloads. ¶ (U+00B6) is Latin-1 and sits in every face .mark names, so
+  // it needs no subset of its own.
   const markList = [line.caveat ? "†" : null, line.vintage ? "‡" : null, line.assumed ? "§" : null, line.historic ? "¶" : null].filter(Boolean);
-  const marks = markList.length ? <>{"\u00a0"}<span className={styles.mark}>{markList.join("\u00a0")}</span></> : null;
+  const marks = markList.length ? <span className={styles.mark}>{markList.join("\u00a0")}</span> : null;
   // A programme line already says which programme it is, in the country column
   // — the chip repeating "Latin" beside it was saying it twice.
   const prog = line.program ? null : program(line.top, line.country);
@@ -507,7 +523,7 @@ function Cell({ line, lead, artistMode }: { line: CountryLine | null; lead: bool
   return (
     <div className={styles.cell}>
       <span className={`${styles.tierChip} ${tierClass(line.top?.level ?? "Gold")}`}>
-        <PlaqueWords top={line.top} after={marks} />
+        <PlaqueWords top={line.top} marks={marks} />
         {prog && (
           <span className={styles.chipProgram} title={prog}>
             <span className={styles.progLong}>{prog}</span>
@@ -536,9 +552,18 @@ function Cell({ line, lead, artistMode }: { line: CountryLine | null; lead: bool
 }
 
 export default async function ComparePage({ searchParams }: { searchParams: Promise<SP> }) {
+  const sp = await searchParams;
+  const head = compareMetadata(sp);
   // Called, not rendered as an element: the awaited tree is plain markup,
   // which is what the tests (renderToStaticMarkup) and Next both want.
-  return CompareView({ sp: await searchParams, path: "/compare" });
+  // HeadSync only here: the pair, board and /compare/in routes have metadata
+  // of their own that never reads the query, and the client caches it right.
+  return (
+    <>
+      <HeadSync title={String(head.title)} canonical={new URL(String(head.alternates?.canonical ?? "/compare"), siteUrl).href} />
+      {await CompareView({ sp, path: "/compare" })}
+    </>
+  );
 }
 
 /**
@@ -601,13 +626,25 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
       })
     : null;
 
-  // One side filled: the solo figure honours the Nigeria switch too. It used to
-  // hardcode Nigeria off, so the switch it rendered was inert and Seyi Vibez
-  // landed on "at least 0" with no way to see his 7,750,000.
-  const soloNg = ngParam === "1";
   // Solo pricing also backs the slots on a REFUSED pairing (same artist twice),
   // so they never print "· · 0 countries" for an artist with a real catalogue.
-  const soloPriced = a && !countryMode && (!both || sameArtist) ? priceArtist(a, { includeNigeria: soloNg, includeFeatures }) : null;
+  // The one filled side is priced WHICHEVER slot holds it: side B alone (every
+  // pair page's side-A "Change ✕" lands there) printed "Davido · artist totals"
+  // with no counts and no headline, where side A alone printed both (debug
+  // pass, 6 Oct 2026).
+  const solo = a ?? b;
+  const soloSide = solo && !countryMode && (!both || sameArtist) ? solo : null;
+  // One side filled: the solo figure honours the Nigeria switch too. It used to
+  // hardcode Nigeria off, so the switch it rendered was inert and Seyi Vibez
+  // landed on "at least 0" with no way to see his 7,750,000. ...and with no
+  // `ng` it takes the artist's own default, the one every pairing of theirs
+  // opens on: Seyi Vibez alone still read "at least 0 · 0 of 0 plaques
+  // counted · 0 countries" where each of his pair pages reads 11,125,000
+  // (debug pass, 6 Oct 2026). Tap him first, or "Change ✕" off side B of any
+  // seyi-vibez-vs-* page, and that is where you landed.
+  const soloDefault = soloSide ? nigeriaDefaultSolo(soloSide, includeFeatures) : null;
+  const soloNg = ngParam ? ngParam === "1" : Boolean(soloDefault?.on);
+  const soloPriced = soloSide ? priceArtist(soloSide, { includeNigeria: soloNg, includeFeatures }) : null;
   const refused = Boolean(sameArtist || sameRecording);
 
   const songPriced = (art: ComparableArtist | null, rel: ComparableRelease | null, ngIn: boolean) =>
@@ -625,7 +662,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
   // A refused pairing renders its refusal and nothing else — no card, no hint.
   // It was printing "at least 0 certified units" beneath "That is Burna Boy on
   // both sides", which is a number the page never established.
-  const partial = countryMode || refused ? false : record ? Boolean(spa || spb) : Boolean(a);
+  const partial = countryMode || refused ? false : record ? Boolean(spa || spb) : Boolean(solo);
 
   // The side being described, whichever mode is on — and in song mode with one
   // song chosen, that side is the SONG, never the artist. The header card was
@@ -633,12 +670,13 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
   // beside the artist's plaque count.
   // With only side B's record picked, the one header card describes THAT
   // record: it read "Burna Boy · at least 0 certified units" beside a Smooth
-  // Criminal chosen on the right (review, 23 Sep 2026).
+  // Criminal chosen on the right (review, 23 Sep 2026). Artist totals do the
+  // same with only side B's artist chosen: the card is that artist's.
   const sideA: ArtistUnits | null = record ? spa ?? (ready ? null : spb) : c?.a ?? soloPriced ?? null;
   const sideB: ArtistUnits | null = record ? spb : c?.b ?? null;
   const totalA = sideA?.total ?? 0;
   const totalB = sideB?.total ?? 0;
-  const nameA = record && songA ? songA.title : record && songB && !spa ? songB.title : a?.name ?? "";
+  const nameA = record && songA ? songA.title : record && songB && !spa ? songB.title : solo?.name ?? "";
   const nameB = record && songB ? songB.title : b?.name ?? "";
 
   const byMax = (x: ComparisonRow, y: ComparisonRow) =>
@@ -736,10 +774,14 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
   // tenth still says something — 1.4× is not 1×.
   const ratioWords = (r: number) => (r >= 10 ? Math.round(r).toLocaleString("en-US") : r.toFixed(1));
   const ngOn = c?.options.includeNigeria ?? soloNg;
-  // What the switch returns to when turned back: the pair's own default. It
-  // used to write ng=0 / feat=0 into every shared URL, and on a default-included
-  // pair the round trip left ng=1, hiding the "by default" label and the why-line.
-  const ngDefault = a && b && !refused && !record ? nigeriaDefault(a, b, includeFeatures).on : false;
+  // What the switch returns to when turned back: the pair's own default (with
+  // one side filled, that artist's). It used to write ng=0 / feat=0 into every
+  // shared URL, and on a default-included pair the round trip left ng=1,
+  // hiding the "by default" label and the why-line.
+  const ngDefault = a && b && !refused && !record ? nigeriaDefault(a, b, includeFeatures).on : Boolean(soloDefault?.on);
+  // The why-line, for a pair and for one side alone: a default that flips
+  // Nigeria in is always said on screen.
+  const ngWhy = ngParam || refused ? null : c ? (c.nigeria.on ? c.nigeria.reason : null) : soloDefault?.on ? soloDefault.reason : null;
   // "outside Nigeria", not "international": Nigeria is the only home split on
   // /compare, and a non-Nigerian artist's home plaques (Tyla's ten in South
   // Africa) are inside the separated total (debug pass, 3 Oct 2026).
@@ -798,6 +840,9 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       {dataset && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(dataset) }} />}
+      {/* The toggles below are links, and on a pair page or a board they
+          leave the route: this hands focus back to the one that was used. */}
+      <KeepFocus />
       <BreadcrumbBar path={path} leaf={leaf} parents={[{ label: "Certifications", href: "/certifications" }]} />
       <main id="content" className={styles.wrap}>
         {/* A pair page (/compare/<a>-vs-<b>) is its own page for search, so its
@@ -892,7 +937,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
           <div className={styles.slots}>
             <Slot artist={a} release={songA} priced={c?.a ?? soloPriced ?? null} sp={sp} side="a" mode={mode} refused={sameArtist} />
             <span className={styles.vs}>vs</span>
-            <Slot artist={b} release={songB} priced={c?.b ?? (sameArtist ? soloPriced : null) ?? null} sp={sp} side="b" mode={mode} refused={sameArtist} />
+            <Slot artist={b} release={songB} priced={c?.b ?? (sameArtist || !a ? soloPriced : null) ?? null} sp={sp} side="b" mode={mode} refused={sameArtist} />
           </div>
         )}
 
@@ -939,6 +984,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
               <Link
                 href={href(sp, { feat: includeFeatures ? "0" : null })}
                 scroll={false}
+                data-keep-focus="feat"
                 className={`${styles.switch} ${includeFeatures ? styles.switchOn : ""}`}
               >
                 <span className={`${styles.dot} ${includeFeatures ? styles.dotOn : ""}`} />
@@ -950,7 +996,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
           {!countryMode && (
             <span className={styles.control}>
               <span className={styles.controlName}>Nigeria</span>
-              <Link href={href(sp, { ng: ngOn ? (ngDefault ? "0" : null) : ngDefault ? null : "1" })} scroll={false} className={`${styles.switch} ${ngOn ? styles.switchOn : ""}`}>
+              <Link href={href(sp, { ng: ngOn ? (ngDefault ? "0" : null) : ngDefault ? null : "1" })} scroll={false} data-keep-focus="ng" className={`${styles.switch} ${ngOn ? styles.switchOn : ""}`}>
                 <span className={`${styles.dot} ${ngOn ? styles.dotOn : ""}`} />
                 <span className="visuallyHidden">Nigeria: </span>
                 {ngOn ? (ngParam ? "included" : "included · by default") : "separated"}
@@ -984,11 +1030,11 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
           </section>
         )}
 
-        {c && c.nigeria.on && !ngParam && c.nigeria.reason && (
+        {ngWhy && (
           <p className={styles.why}>
             <span className={styles.whyMark} aria-hidden="true">i</span>
             <span className={styles.whyText}>
-              <strong>Nigeria included by default</strong> — {c.nigeria.reason.replace(/^Nigeria included: /, "")}
+              <strong>Nigeria included by default</strong> — {ngWhy.replace(/^Nigeria included: /, "")}
             </span>
           </p>
         )}
@@ -1062,7 +1108,13 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
           </>
         )}
 
-        {c && ready && (
+        {/* Only when a side on screen holds a Nigerian plaque. Two records
+            without one ("Dai Dai" and "One Dance", 85 of the 831 on the board)
+            printed "Dai Dai — 0 plaques · at least 0 / One Dance — 0 plaques ·
+            at least 0" over an "Include Nigeria" that changed nothing but the
+            labels: same figures, same 23 rows (debug pass, 6 Oct 2026). Every
+            artist holds some, so artist totals keep the strip. */}
+        {c && ready && (sideA?.nigeria.plaques ?? 0) + (sideB?.nigeria.plaques ?? 0) > 0 && (
           <section className={styles.ngStrip} aria-label="Nigeria">
             <h2 className={styles.ngHead}><span aria-hidden="true">🇳🇬</span> Nigeria — {ngOn ? "included" : "separated"}.</h2>
             <p className={`${styles.ngText} ${styles.ngWhy}`}>
@@ -1074,7 +1126,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
               <span>{nameA} — {sideA?.nigeria.plaques ?? 0} plaque{(sideA?.nigeria.plaques ?? 0) === 1 ? "" : "s"} · at least{"\u00a0"}{fmt(sideA?.nigeria.units ?? 0)}</span>
               <span>{nameB} — {sideB?.nigeria.plaques ?? 0} plaque{(sideB?.nigeria.plaques ?? 0) === 1 ? "" : "s"} · at least{"\u00a0"}{fmt(sideB?.nigeria.units ?? 0)}</span>
             </div>
-            <Link href={href(sp, { ng: ngOn ? (ngDefault ? "0" : null) : ngDefault ? null : "1" })} scroll={false} className={styles.ngAction}>
+            <Link href={href(sp, { ng: ngOn ? (ngDefault ? "0" : null) : ngDefault ? null : "1" })} scroll={false} data-keep-focus="ng-strip" className={styles.ngAction}>
               {ngOn ? "Separate Nigeria" : "Include Nigeria"}
             </Link>
           </section>
@@ -1133,7 +1185,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
                         {/* Not scroll={false}: collapsing the table above the reader
                             clamped the page to its new bottom with this link under the
                             header. The fragment lands them at the top of the folded table. */}
-                        <Link href={`${href(sp, { all: null })}#country-table`} className={styles.showAll}>Show fewer <span aria-hidden="true">↑</span></Link>
+                        <Link href={`${href(sp, { all: null })}#country-table`} data-keep-focus="all" className={styles.showAll}>Show fewer <span aria-hidden="true">↑</span></Link>
                       </td>
                     </tr>
                   )}
@@ -1149,7 +1201,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
                             default navigation put the reader back at the top of
                             the page (scrollY 1600 → 43), losing the rows they
                             had just asked for. */}
-                        <Link href={href(sp, { all: "1" })} scroll={false} className={styles.showAll}>Show all <span aria-hidden="true">↓</span></Link>
+                        <Link href={href(sp, { all: "1" })} scroll={false} data-keep-focus="all" className={styles.showAll}>Show all <span aria-hidden="true">↓</span></Link>
                       </td>
                     </tr>
                   ))}
@@ -1256,7 +1308,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
         )}
 
         {ready && (
-          <section className={styles.exit} aria-label="Next">
+          <section className={`${styles.exit} ${styles.exitPair}`} aria-label="Next">
             <h2 className={styles.exitKicker}>Next</h2>
             <p className={styles.exitLead}>
               Two artists priced against each other — the other {numberWord(comparableArtists.length - 2).toLowerCase()} are one tap

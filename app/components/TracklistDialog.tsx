@@ -81,6 +81,7 @@ export default function TracklistDialog({ releases }: { releases: Release[] }) {
     a.cover ? { backgroundImage: `url(${spotifyImage(a.cover, 600)})` } : undefined;
 
   if (!album) return null;
+  const albumPage = albumPageByTitle(album.title);
 
   return (
         <div className={styles.backdrop} onClick={() => setOpen(null)} role="presentation">
@@ -111,23 +112,29 @@ export default function TracklistDialog({ releases }: { releases: Release[] }) {
               </button>
             </div>
             <div className={styles.dialogBody}>
-              {album.spotify && (
-                <a
-                  className={`btn ${styles.spotifyBtn}`}
-                  href={album.spotify}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Play on Spotify ↗
-                </a>
-              )}
-              {albumPageByTitle(album.title) && (
-                <Link
-                  className={`btn ${styles.spotifyBtn}`}
-                  href={`/music/albums/${albumPageByTitle(album.title)!.slug}`}
-                >
-                  Full album page →
-                </Link>
+              {/* Only the Spotify link wears Spotify green. The album page is
+                  the site's own, so it is the site's secondary pill — it was a
+                  second green .spotifyBtn, read as another Spotify action, and
+                  the two sat edge to edge with no gap at 1440 (debug pass
+                  5 Oct 2026, V-music-03). One row, so the gap is the row's. */}
+              {(album.spotify || albumPage) && (
+                <div className={styles.dialogActions}>
+                  {album.spotify && (
+                    <a
+                      className={`btn ${styles.spotifyBtn}`}
+                      href={album.spotify}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Play on Spotify ↗
+                    </a>
+                  )}
+                  {albumPage && (
+                    <Link className="btn btnSecondary" href={`/music/albums/${albumPage.slug}`}>
+                      Full album page →
+                    </Link>
+                  )}
+                </div>
               )}
               <div className={styles.trackList}>
                 {album.tracks.map((t, i) => (

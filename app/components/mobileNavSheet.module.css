@@ -102,6 +102,17 @@
   flex: none;
 }
 
+/* Everything under the head: the search, the list, Appearance and the foot.
+   On a tall screen a column in which only the list scrolls, the other three
+   staying put as panel G draws them; on a short one it scrolls as one (the
+   max-height query at the end). */
+.content {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
 .search {
   margin: 14px 18px 0;
   min-height: 48px;
@@ -261,4 +272,26 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text-muted);
+}
+
+/* A short screen scrolls everything under the head as one (5 Oct 2026,
+   V-global-04). With only the list scrolling, the parts pinned round it (head
+   111px, search 62, Appearance 101, foot 75) left the 30 rows a slot of
+   h - 425px: 242 on a 667px phone (iPhone SE/8, and about what Safari leaves
+   of an 844px iPhone with its bars showing), three rows whole; 143 at 568,
+   one row; and on a phone on its side none at all, with the foot spilling
+   onto the dismiss strip. Below about 780px that slot is shorter than what is
+   pinned round it, so here the search, Appearance and the foot scroll with the
+   list and only the head (the close button) stays: 7 rows show on opening at
+   667 and every row is reachable in landscape. The design's 812px screen and
+   anything taller keep the pinned foot. */
+@media (max-height: 780px) {
+  .content {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .list {
+    flex: none;
+    overflow-y: visible;
+  }
 }

@@ -690,23 +690,8 @@ export function nigeriaDefault(
    *  rescue because this was counting plaques the view had already excluded. */
   includeFeatures = DEFAULT_OPTIONS.includeFeatures,
 ): NigeriaDefault {
-  const scoped = (x: ComparableArtist): ComparableArtist => ({
-    ...x,
-    releases: x.releases.filter((r) => includeFeatures || !r.isFeature),
-  });
-  const empty = [a, b].filter((x) => internationalCountryCount(scoped(x)) === 0);
-  if (empty.length) {
-    const names = empty.map((x) => x.name).join(" and ");
-    return {
-      on: true,
-      // "outside Nigeria", not "international": Black Sherif is Ghanaian, and
-      // every one of his 25 Nigerian plaques is international for him — the
-      // line said he had none (debug pass, 5 Oct 2026; page.tsx and
-      // comparePairs adopted the same words on 3 Oct). With featured
-      // appearances off the count is of lead credits, and says so.
-      reason: `Nigeria included: ${names} ${empty.length > 1 ? "have" : "has"} no certifications outside Nigeria${includeFeatures ? "" : " as lead artist"}.`,
-    };
-  }
+  const empty = noneOutsideNigeria([a, b], includeFeatures);
+  if (empty.on) return empty;
   if (isHomeMarketArtist(a) && isHomeMarketArtist(b)) {
     return {
       on: true,
@@ -714,6 +699,43 @@ export function nigeriaDefault(
     };
   }
   return { on: false, reason: null };
+}
+
+/**
+ * The same default for ONE artist — /compare with one side filled (or the same
+ * artist twice). Only the first clause carries over: it is about the artist,
+ * and it fires in every pairing that artist is in, whoever the other side is.
+ * The second is about the pair. The one-side state hardcoded Nigeria off, so
+ * Seyi Vibez alone, every one of his 102 plaques Nigerian, read "at least 0 ·
+ * 0 of 0 plaques counted" where each of his pair pages opens on 11,125,000
+ * (debug pass, 6 Oct 2026).
+ */
+export function nigeriaDefaultSolo(
+  a: ComparableArtist,
+  includeFeatures = DEFAULT_OPTIONS.includeFeatures,
+): NigeriaDefault {
+  return noneOutsideNigeria([a], includeFeatures);
+}
+
+/** The first clause: a side with no plaque outside Nigeria among the plaques
+ *  the view counts. */
+function noneOutsideNigeria(artists: ComparableArtist[], includeFeatures: boolean): NigeriaDefault {
+  const scoped = (x: ComparableArtist): ComparableArtist => ({
+    ...x,
+    releases: x.releases.filter((r) => includeFeatures || !r.isFeature),
+  });
+  const empty = artists.filter((x) => internationalCountryCount(scoped(x)) === 0);
+  if (!empty.length) return { on: false, reason: null };
+  const names = empty.map((x) => x.name).join(" and ");
+  return {
+    on: true,
+    // "outside Nigeria", not "international": Black Sherif is Ghanaian, and
+    // every one of his 25 Nigerian plaques is international for him — the
+    // line said he had none (debug pass, 5 Oct 2026; page.tsx and
+    // comparePairs adopted the same words on 3 Oct). With featured
+    // appearances off the count is of lead credits, and says so.
+    reason: `Nigeria included: ${names} ${empty.length > 1 ? "have" : "has"} no certifications outside Nigeria${includeFeatures ? "" : " as lead artist"}.`,
+  };
 }
 
 // ---------------------------------------------------------------------------

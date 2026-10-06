@@ -57,12 +57,14 @@ export default function UpdatesFeed({ items }: { items: Update[] }) {
       <section className={styles.bandSurface}>
         <div className={`${styles.wide} ${styles.filterPad}`}>
           <span className={styles.filterLabel}>Filter</span>
+          {/* One pressed state for every chip, from the stylesheet (.chipOn):
+              it was painted inline, a category in its own ink, so a pressed
+              "Lifestyle" kept the resting label (V-core-12). */}
           <button
             type="button"
             aria-pressed={cat === null}
             onClick={() => setCat(null)}
-            className={styles.chip}
-            style={cat === null ? { borderColor: "var(--gold)", color: "var(--gold)" } : undefined}
+            className={`${styles.chip} ${cat === null ? styles.chipOn : ""}`}
           >
             All
             <span className={styles.chipCount}>{items.length}</span>
@@ -76,8 +78,7 @@ export default function UpdatesFeed({ items }: { items: Update[] }) {
                 type="button"
                 aria-pressed={on}
                 onClick={() => setCat(on ? null : c)}
-                className={styles.chip}
-                style={on ? { borderColor: ink, color: ink } : undefined}
+                className={`${styles.chip} ${on ? styles.chipOn : ""}`}
               >
                 <span className={styles.chipDot} style={{ background: ink }} aria-hidden="true" />
                 {c}

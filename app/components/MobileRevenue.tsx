@@ -10,6 +10,7 @@ import BackLink from "./BackLink";
 import { RUNS_HEADING, RUNS_LEDE, runYear, runsCountLine, shortDates } from "../lib/multiNightRuns";
 import { HIS, RUNS_VIEW, nightCounts, railChips, shownLine } from "../lib/showsChips";
 import { useBoardView } from "../lib/useBoardView";
+import { artistSlug } from "../lib/showsDeepLink";
 
 /**
  * Highest-grossing shows, the phone screen — Claude Design round 1, Job 2
@@ -286,7 +287,8 @@ export default function MobileRevenue({
       </div>
 
       {shown.map((r) => (
-        <div key={r.rank} className={`${styles.row} ${styles.showRow}`}>
+        // data-shows-row: whose night, for the deep link's first paint (lib/showsDeepLink).
+        <div key={r.rank} className={`${styles.row} ${styles.showRow}`} data-shows-row={artistSlug(r.artist)}>
           <span className={`${styles.rank} ${styles.showRank}`}>{r.rank}</span>
           <div className={styles.main}>
             <div className={`${styles.venue} ${styles.showVenue}`}>

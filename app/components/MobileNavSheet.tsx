@@ -70,6 +70,15 @@ export default function MobileNavSheet({
       if (e.key === "Escape") setOpen(false);
     };
     window.addEventListener("keydown", onKey);
+    // Back (a phone's back button or swipe) and Forward close it. The sheet
+    // lives in the layout, so it stays mounted across navigation: Back with it
+    // open took /music to / underneath and left it covering the page, the tab
+    // bar hidden and Home now marked as here (5 Oct 2026, V-global-02). The
+    // traversal, not the path, is the signal: a Back that moves only the
+    // fragment (/certifications#country=BE to /certifications) changes the
+    // page under the sheet without changing the path.
+    const onPop = () => setOpen(false);
+    window.addEventListener("popstate", onPop);
     // Focus the close button, so the first Tab lands inside the sheet rather
     // than on the page behind it.
     closeRef.current?.focus();
@@ -77,6 +86,7 @@ export default function MobileNavSheet({
     return () => {
       document.body.classList.remove("navSheetOpen");
       window.removeEventListener("keydown", onKey);
+      window.removeEventListener("popstate", onPop);
       // Hand focus back to whatever opened us.
       openerRef.current?.focus();
     };
@@ -131,59 +141,65 @@ export default function MobileNavSheet({
           </button>
         </div>
 
-        {/* Search sits above the list: faster than scanning 22 rows, and the
-            primary way into the dataset. */}
-        <Link href="/search" className={styles.search} onClick={() => setOpen(false)}>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true">
-            <circle cx="11" cy="11" r="7" />
-            <path d="m20 20-3.5-3.5" />
-          </svg>
-          <span className={styles.searchText}>Search {searchHint}…</span>
-        </Link>
-
-        <div className={styles.list}>
-          {groups.map((g) => (
-            <div key={g.name} className={styles.group}>
-              <div className={styles.groupName}>{g.name}</div>
-              {g.items.map((item) => {
-                const active = pathname === item.href;
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    aria-current={active ? "page" : undefined}
-                    className={`${styles.row} ${active ? styles.rowActive : ""}`}
-                    onClick={() => setOpen(false)}
-                  >
-                    {/* The active marker is a rule plus a tinted row, not gold
-                        text alone — colour on its own fails anyone who cannot
-                        distinguish it. */}
-                    <span className={styles.rule} aria-hidden="true" />
-                    <span className={styles.label} lang={item.lang}>{item.label}</span>
-                    {item.meta && <span className={styles.meta}>{item.meta}</span>}
-                  </Link>
-                );
-              })}
-            </div>
-          ))}
-          <div className={styles.listEnd} />
-        </div>
-
-        {/* Appearance — two taps from anywhere on the site, which is why it
-            lives here rather than in a settings page the site does not have. */}
-        <div className={styles.appearance}>
-          <div className={styles.appearanceLabel}>Appearance</div>
-          <ThemeToggle variant="full" />
-        </div>
-
-        <div className={styles.foot}>
-          <span className={styles.status}>
-            <span className={styles.dot} aria-hidden="true" />
-            Updated {updated}
-          </span>
-          <Link href="/share" className={styles.statCard} onClick={() => setOpen(false)}>
-            Stat card ↗
+        {/* Everything under the head. On a tall screen it is a column whose
+            list scrolls between the search above and Appearance and the foot
+            below; on a short one (see the CSS) it scrolls as one, so the list
+            is not left a slot of a row or three (5 Oct 2026, V-global-04). */}
+        <div className={styles.content}>
+          {/* Search sits above the list: faster than scanning 22 rows, and the
+              primary way into the dataset. */}
+          <Link href="/search" className={styles.search} onClick={() => setOpen(false)}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true">
+              <circle cx="11" cy="11" r="7" />
+              <path d="m20 20-3.5-3.5" />
+            </svg>
+            <span className={styles.searchText}>Search {searchHint}…</span>
           </Link>
+
+          <div className={styles.list}>
+            {groups.map((g) => (
+              <div key={g.name} className={styles.group}>
+                <div className={styles.groupName}>{g.name}</div>
+                {g.items.map((item) => {
+                  const active = pathname === item.href;
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      aria-current={active ? "page" : undefined}
+                      className={`${styles.row} ${active ? styles.rowActive : ""}`}
+                      onClick={() => setOpen(false)}
+                    >
+                      {/* The active marker is a rule plus a tinted row, not gold
+                          text alone — colour on its own fails anyone who cannot
+                          distinguish it. */}
+                      <span className={styles.rule} aria-hidden="true" />
+                      <span className={styles.label} lang={item.lang}>{item.label}</span>
+                      {item.meta && <span className={styles.meta}>{item.meta}</span>}
+                    </Link>
+                  );
+                })}
+              </div>
+            ))}
+            <div className={styles.listEnd} />
+          </div>
+
+          {/* Appearance — two taps from anywhere on the site, which is why it
+              lives here rather than in a settings page the site does not have. */}
+          <div className={styles.appearance}>
+            <div className={styles.appearanceLabel}>Appearance</div>
+            <ThemeToggle variant="full" />
+          </div>
+
+          <div className={styles.foot}>
+            <span className={styles.status}>
+              <span className={styles.dot} aria-hidden="true" />
+              Updated {updated}
+            </span>
+            <Link href="/share" className={styles.statCard} onClick={() => setOpen(false)}>
+              Stat card ↗
+            </Link>
+          </div>
         </div>
       </div>
     </div>

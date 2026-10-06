@@ -156,23 +156,32 @@ export default async function AlbumPage({ params }: { params: Promise<{ album: s
       {/* ── Hero ─────────────────────────────────────────────── */}
       <section className={styles.heroPad}>
         <div className={styles.heroCard}>
+          {/* Backdrop and cover each sit in a <picture> for React, as on a
+              song page: an eager <img> outside one becomes a preload hint in
+              the RSC payload, so every page whose links prefetched an album
+              downloaded both — the 300px backdrop and a 640px cover on a
+              phone, 113–204 KB an album from /updates (debug pass, 5 Oct 2026).
+              The cover is still eager and early in the HTML, where the
+              browser finds it on its own. display: contents keeps the boxes. */}
           {record.cover && (
-            // eslint-disable-next-line @next/next/no-img-element -- decorative backdrop; next/image can't blur-scale a remote CDN image here
-            <img className={styles.heroBackdrop} src={spotifyImage(record.cover, 300)} alt="" aria-hidden="true" />
+            <picture style={{ display: "contents" }}>
+              <img className={styles.heroBackdrop} src={spotifyImage(record.cover, 300)} alt="" aria-hidden="true" />
+            </picture>
           )}
           <div className={styles.heroScrim} />
           <div className={styles.heroGrid}>
             {record.cover && (
-              // eslint-disable-next-line @next/next/no-img-element -- remote Spotify CDN cover with an explicit srcset
-              <img
-                className={styles.cover}
-                src={spotifyImage(record.cover, 300)}
-                srcSet={spotifySrcSet(record.cover)}
-                sizes="236px"
-                alt={`${page.title} cover`}
-                width={236}
-                height={236}
-              />
+              <picture style={{ display: "contents" }}>
+                <img
+                  className={styles.cover}
+                  src={spotifyImage(record.cover, 300)}
+                  srcSet={spotifySrcSet(record.cover)}
+                  sizes="236px"
+                  alt={`${page.title} cover`}
+                  width={236}
+                  height={236}
+                />
+              </picture>
             )}
             <div>
               <div className={styles.kicker}>
@@ -362,6 +371,33 @@ export default async function AlbumPage({ params }: { params: Promise<{ album: s
       </section>
 
       {/* ── Onward ───────────────────────────────────────────── */}
+      {/* Screen 26's sticky action bar, the song page's own. The shared
+          stylesheet hides the hero's "Play on Spotify" below 900px because
+          this bar carries it, and the album page never drew the bar — so on a
+          phone none of the eight albums had a Spotify link at all, and the
+          five-tab bar stands down here too (mobileScreens.ts counts every
+          /music/ deep screen as carrying its own), leaving the screen with no
+          foot (debug pass 5 Oct 2026, V-music-02 / V-global-16). */}
+      {record.spotify && (
+        <div className={styles.mobileActionBar}>
+          <a
+            className={styles.mobilePrimary}
+            href={record.spotify}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            ▶ Play on Spotify
+          </a>
+          <Link href="/share" aria-label="Make a stat card" className={styles.mobileShare}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+              <path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7" />
+              <path d="M12 3v12" />
+              <path d="m7 8 5-5 5 5" />
+            </svg>
+          </Link>
+        </div>
+      )}
+
       <section className={styles.onward}>
         <Link href="/music" className="btn btnSecondary">← Full discography</Link>
         {nextAlbum.slug !== page.slug && (

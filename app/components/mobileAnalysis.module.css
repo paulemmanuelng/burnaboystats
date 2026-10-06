@@ -163,6 +163,16 @@
   color: var(--text-muted);
   margin-top: 6px;
   line-height: 1.35;
+  /* "certifications" is 102px of mono and a third of the row holds 73px at
+     320 (97 at 390), so it ran under the next cell ("Nigeria certificatio").
+     It hyphenates now ("certifica-tions"); the 4-letter limits keep short
+     words like "country" whole, so the other labels break where they did.
+     overflow-wrap is the backstop for a word with no break that fits. */
+  overflow-wrap: anywhere;
+  hyphens: auto;
+  hyphenate-limit-chars: auto 4 4;
+  -webkit-hyphenate-limit-before: 4;
+  -webkit-hyphenate-limit-after: 4;
 }
 
 .body { font-size: var(--type-body); line-height: var(--type-body-lh); color: var(--text-body); margin: 20px 0 0; }

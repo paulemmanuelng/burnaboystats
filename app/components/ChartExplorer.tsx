@@ -6,7 +6,7 @@ import type { ChartCountry } from "../data/charts";
 import { chartTier } from "../lib/chartTier";
 import { track } from "../lib/analytics";
 import { spotifyImage } from "../lib/spotifyImage";
-import { artAt } from "../lib/artAt";
+import { coverTile } from "../lib/coverTile";
 import FilterEmpty from "./FilterEmpty";
 import { byReachOrder } from "../lib/chartOrder";
 import { dropDeepLink, onDeepLinkChange, readDeepLink, readSavedView, saveView } from "../lib/deepLink";
@@ -66,8 +66,9 @@ function Row({
           aria-hidden="true"
           /* 114 = 3x the 38px tile. A board artist's Deezer (500px) and
              Apple (300px) art arrived as it was, 2.9 MB of cards for 0.4 MB
-             of pixels on /afrobeats/wizkid/charts (23 Sep 2026). */
-          style={{ backgroundImage: `url(${artAt(cover(item.title) ?? "", 114)})` }}
+             of pixels on /afrobeats/wizkid/charts (23 Sep 2026). No art on
+             file draws the release's initial (lib/coverTile.ts). */
+          {...coverTile(cover(item.title), item.title, 114)}
         />
         <span className={styles.rowText}>
         <span className={styles.title}>{item.title}</span>
@@ -207,10 +208,13 @@ export default function ChartExplorer({
   }, [country, peak]);
 
   const peakMax = peak ? PEAKS.find((p) => p.key === peak)!.max : null;
+  // One entry has to meet both filters, as the chips' dimming, the table and
+  // the phone screen all test it. Two separate .some() calls let a No. 1
+  // elsewhere and a lower Nigerian peak keep Dai Dai under No. 1 + NG with
+  // every chip dimmed: 13 releases against the table's 9 (5 Oct 2026).
   const keep = (it: ExplorerRelease) =>
     (!focus || it.title === focus) &&
-    (!country || it.entries.some((e) => e.c === country)) &&
-    (!peakMax || it.entries.some((e) => e.peak <= peakMax));
+    it.entries.some((e) => (!country || e.c === country) && (!peakMax || e.peak <= peakMax));
 
   // Most-charted first — the one comparator, shared with the board's chart
   // pages so the phone gets the same order (app/lib/chartOrder.ts).
@@ -528,7 +532,7 @@ export default function ChartExplorer({
                     <span
                       className={styles.tCover}
                       aria-hidden="true"
-                      style={{ backgroundImage: `url(${spotifyImage(cover(r.song) ?? "", 64)})` }}
+                      {...coverTile(cover(r.song), r.song, 64, spotifyImage)}
                     />
                     <span className={styles.tSong}>
                       {r.song}

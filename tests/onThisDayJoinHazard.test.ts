@@ -38,7 +38,8 @@ describe("a second night at a grossed venue never takes the first night's gross"
     expect(dec).toBeDefined();
     expect(dec.detail).toBe("Love, Damini Tour");
     expect(dec.detail).not.toMatch(/\$378,802|7,504 tickets/);
-    expect(dec.href).toBe("/records/tours");
+    // Its tour night on the tours page, not the box-office board (V-otd-02).
+    expect(dec.href).toBe("/records/tours#tour=love-damini-tour&date=2022-12-04");
     const mar = events.find((e) => e.id === "show:2022-03-17:3arena")!;
     expect(mar.detail).toBe("Space Drift World Tour · $378,802 from 7,504 tickets");
   });

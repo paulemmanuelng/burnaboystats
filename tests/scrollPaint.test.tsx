@@ -450,17 +450,31 @@ describe("the site bar and back-to-top listen only where they can be seen", () =
     nav.path = "/on-this-day";
   });
 
-  it("back-to-top: no scroll listener at phone width, where it is display:none", () => {
-    for (const [phone, want] of [
-      [true, 0],
-      [false, 1],
+  it("back-to-top: no scroll listener below 1440px, where it is display:none", () => {
+    // A real viewport width answers every max-width query the component asks,
+    // so the test does not need to know which one it is.
+    for (const [width, want] of [
+      [390, 0],
+      [1024, 0],
+      [1439, 0],
+      [1440, 1],
+      [1920, 1],
     ] as const) {
-      const restore = atWidth(phone);
+      const mm = window.matchMedia;
+      window.matchMedia = ((q: string) => ({
+        matches: (() => {
+          const max = /max-width:\s*(\d+)px/.exec(q);
+          return max ? width <= Number(max[1]) : false;
+        })(),
+        media: q,
+        addEventListener: () => {},
+        removeEventListener: () => {},
+      })) as unknown as typeof window.matchMedia;
       try {
         const types = windowListeners(() => void render(<BackToTop />));
-        expect(types.filter((t) => t === "scroll"), phone ? "phone" : "desktop").toHaveLength(want);
+        expect(types.filter((t) => t === "scroll"), `${width}px`).toHaveLength(want);
       } finally {
-        restore();
+        window.matchMedia = mm;
       }
     }
   });

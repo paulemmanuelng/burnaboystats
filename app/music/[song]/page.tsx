@@ -12,6 +12,7 @@ import { albumPageByTitle } from "../../data/albumPages";
 import { albumYearByTitle } from "../../data/albums";
 import MobileMenuButton from "../../components/MobileMenuButton";
 import BackLink from "../../components/BackLink";
+import PickerRail from "./PickerRail";
 import { awardLabel } from "../../lib/awardName";
 
 // Only the known song slugs are valid routes — anything else 404s.
@@ -208,14 +209,14 @@ export default async function SongPage({ params }: { params: Promise<{ song: str
           the RSC payload, again on every page that prefetched a song.
           display: contents keeps the <img> the chip's flex item.
 
-          And no chip prefetches. A prefetched song page brings its own hero's
+          And no chip prefetches. A prefetched song page brought its own hero's
           preload hint, so the chips in view fetched seven other songs' 300px
           covers (~210 KB at 1440 DPR1, 640px ones on a phone) on every song
           page, for pages the reader had not asked for (live-site debug, 26 Sep
           2026). The /afrobeats tile walls made the same trade. */}
       <section className={styles.pickerPad}>
         <div className={styles.pickerLabel}>All {songPageCount} song pages</div>
-        <div className={styles.picker}>
+        <PickerRail className={styles.picker} current={song.slug}>
           {/* Dai Dai's story lives at /dai-dai and leads the hub's song grid,
               so it leads here too — the same chip, linking out (A-38). */}
           <Link href={daiDaiStoryPage.href} className={styles.pick} prefetch={false}>
@@ -240,30 +241,35 @@ export default async function SongPage({ params }: { params: Promise<{ song: str
               <span className={styles.pickYear}>{s.year}</span>
             </Link>
           ))}
-        </div>
+        </PickerRail>
       </section>
 
       {/* ── Hero ─────────────────────────────────────────────── */}
       <section className={styles.heroPad}>
         <div className={styles.heroCard}>
-          {/* The blurred backdrop is decoration, so it sits in a <picture> and
-              asks for no preload hint: the cover beside it is the one image
-              this page hints, and the only one a prefetch of it carries. */}
+          {/* The backdrop and the cover each sit in a <picture>, so neither
+              is a preload hint and a prefetch of this page fetches no image.
+              The cover kept its hint until 5 Oct 2026, and every page whose
+              links prefetched a song downloaded its 640px cover on a phone
+              (~86–110 KB a song: /updates, and /music/darko for Like to
+              Party). Still eager and early in the HTML, where the browser
+              finds it on its own; display: contents keeps the boxes. */}
           <picture style={{ display: "contents" }}>
             <img className={styles.heroBackdrop} src={spotifyImage(song.cover, 300)} alt="" aria-hidden="true" />
           </picture>
           <div className={styles.heroScrim} />
           <div className={styles.heroGrid}>
-            {/* eslint-disable-next-line @next/next/no-img-element -- remote Spotify CDN cover with an explicit srcset */}
-            <img
-              className={styles.cover}
-              src={spotifyImage(song.cover, 300)}
-              srcSet={spotifySrcSet(song.cover)}
-              sizes="236px"
-              alt={`${song.title} cover`}
-              width={236}
-              height={236}
-            />
+            <picture style={{ display: "contents" }}>
+              <img
+                className={styles.cover}
+                src={spotifyImage(song.cover, 300)}
+                srcSet={spotifySrcSet(song.cover)}
+                sizes="236px"
+                alt={`${song.title} cover`}
+                width={236}
+                height={236}
+              />
+            </picture>
             <div>
               <div className={styles.kicker}>
                 {albumPageByTitle(song.album) ? (

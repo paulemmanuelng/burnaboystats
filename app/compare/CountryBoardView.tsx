@@ -53,6 +53,28 @@ const tierRun = (t: TierUnits, body?: string) =>
     .map(([name, n]) => `${tierWord(name, body)} ${fmt(n as number)}`)
     .join(" · ");
 
+/** The index and a board, in the reader's features state. The pretty routes
+ *  render a fixed query with features on, so a features-off view keeps the
+ *  query route, which /compare canonicalises to the pretty one. "Change
+ *  country" always did; the index's 27 rows linked the pretty board and
+ *  turned features back on under the reader — Mexico read 1,980,000 on the
+ *  row and opened at 3,960,000 (debug pass, 5 Oct 2026). The query is the
+ *  one the board's own switch writes, so the two land on one URL. */
+const indexHref = (includeFeatures: boolean) => (includeFeatures ? "/compare/in" : "/compare?mode=country&feat=0");
+const boardHref = (code: string, includeFeatures: boolean) =>
+  includeFeatures ? `/compare/in/${countrySlug(code)}` : `/compare?mode=country&country=${countrySlug(code)}&feat=0`;
+
+/** An index row's country: flag, name, code. */
+function CountryName({ b }: { b: { flag: string; name: string; code: string } }) {
+  return (
+    <>
+      <span className={styles.flag} aria-hidden="true">{b.flag}</span>
+      <span className={styles.cbCountryName}>{b.name}</span>
+      <span className={styles.countryCode}>{b.code}</span>
+    </>
+  );
+}
+
 /** One clause, unbreakable: its spaces become no-break spaces. */
 const nb = (clause: string) => clause.replace(/ /g, "\u00a0");
 
@@ -140,11 +162,19 @@ function CountryIndex({ options }: { options: { includeNigeria: boolean; include
             {boards.map((b) => (
               <tr key={b.code} role="row">
                 <td role="cell" className={styles.cbNameCell}>
-                  <Link href={`/compare/in/${countrySlug(b.code)}`} className={styles.cbCountryLink}>
-                    <span className={styles.flag} aria-hidden="true">{b.flag}</span>
-                    <span className={styles.cbCountryName}>{b.name}</span>
-                    <span className={styles.countryCode}>{b.code}</span>
-                  </Link>
+                  {/* Features on (the default, and what a crawler reads): the
+                      pretty board itself, written out so the route checklist
+                      sees its one inbound link. Features off: the query board
+                      that keeps them off (boardHref, V-compareIn-02). */}
+                  {options.includeFeatures ? (
+                    <Link href={`/compare/in/${countrySlug(b.code)}`} className={styles.cbCountryLink}>
+                      <CountryName b={b} />
+                    </Link>
+                  ) : (
+                    <Link href={boardHref(b.code, false)} className={styles.cbCountryLink}>
+                      <CountryName b={b} />
+                    </Link>
+                  )}
                 </td>
                 <td role="cell" className={styles.cbMetaCell}>
                   <span className={styles.cbCoverage}>
@@ -193,17 +223,23 @@ function ArtistRow({ line, board, lead, place }: { line: CountryArtistLine; boar
       <td role="cell" className={styles.cbArtistCell}>
         <Link href={a.href} className={styles.cbArtistLink}>
           {a.image ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={artAt(a.image, 72)}
-              srcSet={artSrcSet(a.image, 36)}
-              sizes="36px"
-              alt=""
-              className={styles.cbFace}
-              width={36}
-              height={36}
-              decoding="async"
-            />
+            // In a <picture> so React does not make this eager face a preload
+            // hint: hints ride in the RSC payload, so every page whose links
+            // prefetched a board downloaded its faces and covers unseen (15
+            // from /updates for Poland's, debug pass 5 Oct 2026). display:
+            // contents keeps the <img> the link's flex item.
+            <picture style={{ display: "contents" }}>
+              <img
+                src={artAt(a.image, 72)}
+                srcSet={artSrcSet(a.image, 36)}
+                sizes="36px"
+                alt=""
+                className={styles.cbFace}
+                width={36}
+                height={36}
+                decoding="async"
+              />
+            </picture>
           ) : (
             <span className={styles.cbFace} aria-hidden="true" />
           )}
@@ -384,7 +420,7 @@ export function CountryBoardView({
                 query twin (/compare?mode=country) canonicalises there anyway.
                 /compare/in reads no search params, so a features-off view
                 keeps the query route (compare/page.tsx, the mode segment). */}
-            <Link href={includeFeatures ? "/compare/in" : "/compare?mode=country&feat=0"} className={styles.cbChange}>
+            <Link href={indexHref(includeFeatures)} className={styles.cbChange}>
               <span className={styles.cbChangeText}>Change country</span>
               <span aria-hidden="true">✕</span>
             </Link>
@@ -482,8 +518,11 @@ export function CountryBoardView({
             {biggest.map(({ p, holders }) => (
               <li key={`${p.title}|${p.format}`} className={styles.cbPlaqueRow}>
                 {p.cover ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img src={artAt(p.cover, 72)} srcSet={artSrcSet(p.cover, 36)} sizes="36px" alt="" className={styles.cbArt} width={36} height={36} decoding="async" />
+                  // In a <picture> for React, as the faces above: no preload
+                  // hint, so a prefetch of this board fetches no covers.
+                  <picture style={{ display: "contents" }}>
+                    <img src={artAt(p.cover, 72)} srcSet={artSrcSet(p.cover, 36)} sizes="36px" alt="" className={styles.cbArt} width={36} height={36} decoding="async" />
+                  </picture>
                 ) : (
                   <span className={styles.cbArt} aria-hidden="true" />
                 )}
@@ -538,7 +577,7 @@ export function CountryBoardView({
         )}
       </div>
 
-      <section className={styles.exit} aria-label="Next">
+      <section className={`${styles.exit} ${styles.exitBoard}`} aria-label="Next">
         <h2 className={styles.exitKicker}>Next</h2>
         {pair ? (
           <>
@@ -566,7 +605,7 @@ export function CountryBoardView({
               {board.lines[0]?.artist.name} is the only one of the {comparableArtists.length} certified in{" "}
               {board.inSentence}. Every other market is one tap away.
             </p>
-            <Link href="/compare/in" className="btn btnPrimary">
+            <Link href={indexHref(includeFeatures)} className="btn btnPrimary">
               Every market <span aria-hidden="true">↗</span>
             </Link>
           </>

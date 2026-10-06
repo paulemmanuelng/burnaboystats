@@ -73,7 +73,9 @@ export interface RunPoint {
   status: Status;
   /** Only when status === "on". */
   pos?: number;
-  /** The repo file that states it — shown in the card's footnote. */
+  /** The repo file that states it. The card's footnote names the record it
+   *  is ("the site's Latest Updates"), never the path (sourceOf in
+   *  app/components/daiDaiReplayData.ts). */
   source: string;
   /** The words in that file that state this week ("" when unread). Kept on
    *  the server: tests/daiDaiRuns.test.tsx finds every one in its file. */

@@ -44,7 +44,8 @@ async function paletteWithHeldIndex({ shippedArrows = false } = {}) {
     // in 1653dae8, verbatim, put back into the real palette:
     //   setActive((i) => Math.min(i + 1, results.length - 1));
     //   setActive((i) => Math.max(i - 1, 0));
-    vi.doMock("../../app/components/searchPaletteActive", () => ({
+    vi.doMock("../../app/components/searchPaletteActive", async (importOriginal) => ({
+      ...(await importOriginal<typeof import("../../app/components/searchPaletteActive")>()),
       nextActive: (i: number, key: string, count: number) => {
         const results = { length: count };
         return key === "ArrowDown" ? Math.min(i + 1, results.length - 1) : Math.max(i - 1, 0);

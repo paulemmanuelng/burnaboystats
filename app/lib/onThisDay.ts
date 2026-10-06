@@ -43,6 +43,7 @@ import {
 } from "../data/daiDai";
 import { awardLabel } from "./awardName";
 import { revenueRowBody } from "./revenueSource";
+import { showDateIso, tourDateHref } from "./tourDeepLink";
 
 // The kinds — shape plus word, in ink — live in a module of their own, so a
 // client component can draw a mark without pulling this file's datasets into
@@ -87,18 +88,11 @@ export const MONTHS = [
   "July", "August", "September", "October", "November", "December",
 ] as const;
 
-const MON3: Record<string, number> = {
-  Jan: 1, Feb: 2, Mar: 3, Apr: 4, May: 5, Jun: 6, Jul: 7, Aug: 8, Sep: 9, Oct: 10, Nov: 11, Dec: 12,
-};
-
 const pad = (n: number) => String(n).padStart(2, "0");
 
-/** A tour show's "Oct 16, 2025" as "2025-10-16"; null for anything else. */
-export function showDateIso(s: string): string | null {
-  const m = s.match(/^([A-Z][a-z]{2}) (\d{1,2}), (\d{4})$/);
-  if (!m || !MON3[m[1]]) return null;
-  return `${m[3]}-${pad(MON3[m[1]])}-${pad(Number(m[2]))}`;
-}
+// A tour show's "Oct 16, 2025" as "2025-10-16" — in lib/tourDeepLink, where
+// the tours page reads the same dates back out of a show row's link.
+export { showDateIso };
 
 const ORDINAL = ["debut", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth", "eleventh", "twelfth"];
 
@@ -347,7 +341,9 @@ function showEvents(): OnThisDayEvent[] {
         // The publisher the row was read at (TouringData for every row today),
         // never a hard-coded "Billboard Boxscore" (C-06, 4 Oct 2026).
         body: row ? revenueRowBody(row.source) : t.name,
-        href: row ? "/records/tours/revenue" : "/records/tours",
+        // The night itself: its tour open and its row in view. A bare
+        // /records/tours landed on every tour shut (V-otd-02, 5 Oct 2026).
+        href: row ? "/records/tours/revenue" : tourDateHref(t.name, s.date),
         source: { data: "tours", tour: t.name, index },
         rank: moment ? (moment.record ? 79 : 70) : row ? 46 + Math.min(row.revenue / 1e6, 6) : 34,
       });

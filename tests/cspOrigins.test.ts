@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { readFileSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
+import { embedPath } from "../app/lib/embedSnippet";
 
 /**
  * Every external origin the code reaches for is named in the CSP.
@@ -205,5 +206,72 @@ describe("the enforced security headers survive an edit to next.config.mjs", () 
       );
     expect(read(shipped)).toEqual([false]);
     expect(read(bad)).toEqual([true]);
+  });
+});
+
+/**
+ * Every frame the app draws is one frame-src allows.
+ *
+ * frame-src is declared, so it does not fall back to default-src 'self'. It
+ * named only the /dai-dai YouTube player, and /embed — the widget gallery —
+ * frames the site's own /embed/<widget> in both of its layouts: every visit
+ * filed 8 report-only violations ("Framing 'https://burnaboystats.com/embed/
+ * latest' violates … frame-src https://www.youtube-nocookie.com", read live in
+ * headless Chrome, 6 Oct 2026) to /api/csp-report, 8 more on each theme
+ * switch, and an enforcing policy would have blanked every preview.
+ *
+ * A frame whose src is a literal https URL needs that origin. A path on this
+ * site needs 'self' — a literal starting with "/", or embedPath, checked to
+ * hand out one. Any other src is one this guard cannot read, and it says so.
+ */
+describe("frame-src allows every iframe the app draws", () => {
+  /** A directive's whole source list, keywords such as 'self' included. */
+  const sourceList = (src: string, directive: string) => {
+    const m = new RegExp(`"${directive} ([^"]*)"`).exec(src);
+    if (!m) throw new Error(`no ${directive} in the policy`);
+    return m[1].split(/\s+/);
+  };
+
+  /** [file, the source the frame needs]: its src's https origin, or 'self'. */
+  const frames: [string, string | null][] = [];
+  for (const f of walk(join(ROOT, "app"))) {
+    if (!f.endsWith(".tsx")) continue;
+    const text = readFileSync(f, "utf8");
+    for (const m of text.matchAll(/<iframe\b[^<]*?\bsrc=(?:"([^"]*)"|\{\s*[`"']([^`"']*)|\{([^}]*)\})/g)) {
+      const lit = m[1] ?? m[2];
+      let need: string | null = null;
+      if (lit !== undefined) {
+        const origin = /^(https:\/\/[a-z0-9.-]+)/i.exec(lit);
+        need = origin ? origin[1].toLowerCase() : lit.startsWith("/") ? "'self'" : null;
+      } else if (/^embedPath\(/.test(m[3].trim())) {
+        need = embedPath("latest", "auto").startsWith("/") && embedPath("latest", "dark").startsWith("/") ? "'self'" : null;
+      }
+      frames.push([f.slice(ROOT.length + 1), need]);
+    }
+  }
+  const notAllowed = (frameSrc: string[]) => frames.filter(([, need]) => !frameSrc.includes(need!)).map(([f]) => f);
+
+  it("finds the site's frames, and can read every one", () => {
+    const files = frames.map(([f]) => f);
+    expect(files).toEqual(
+      expect.arrayContaining([
+        "app/components/EmbedGallery.tsx",
+        "app/components/MobileEmbed.tsx",
+        "app/components/DaiDaiVideoPoster.tsx",
+      ]),
+    );
+    expect(frames.filter(([, need]) => need === null).map(([f]) => f), "an iframe src this guard cannot read").toEqual([]);
+  });
+
+  it("the policy's frame-src allows them all", () => {
+    expect(notAllowed(sourceList(CONFIG, "frame-src")), "the app frames something frame-src does not allow").toEqual([]);
+  });
+
+  it("negative control: the shipped frame-src refuses the /embed previews, in both layouts", () => {
+    const shipped = `"frame-src https://www.youtube-nocookie.com",`;
+    expect(notAllowed(sourceList(shipped, "frame-src")).sort()).toEqual([
+      "app/components/EmbedGallery.tsx",
+      "app/components/MobileEmbed.tsx",
+    ]);
   });
 });

@@ -793,6 +793,14 @@
      second-in-a-row spans the two that remain. */
   .albumGrid > :last-child:nth-child(3n + 1) { grid-column: span 3; }
   .albumGrid > :last-child:nth-child(3n + 2) { grid-column: span 2; }
+  /* The CARD spans to fill the row; its COVER must not. .albumCover is
+     aspect-ratio: 1 and fills its width, so the two-column eighth card drew a
+     603px square beside 283px neighbours at 1024 and stretched the last row
+     to 713px (debug pass 5 Oct 2026, V-core-04). Capped to one column's
+     worth, from the card's padding (18) and the grid gap (2) — the same cap
+     /music's wall carries (music.module.css). */
+  .albumGrid > :last-child:nth-child(3n + 2) .albumCover { max-width: calc(50% - 19px); }
+  .albumGrid > :last-child:nth-child(3n + 1) .albumCover { max-width: calc(33.333% - 25.33px); }
   .recordsGrid { grid-template-columns: 1fr; }
   .recordsLeft { padding: 28px 0 8px; }
   .recordsRight { border-left: none; border-top: 1px solid var(--line); padding: 40px 0 8px; }

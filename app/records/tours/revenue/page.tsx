@@ -12,6 +12,8 @@ import { usdFull } from "../../../lib/revenueByCountry";
 import { pct, showsBoard } from "../../../lib/showsBoard";
 import { pageMetadata, datasetJsonLd } from "../../../lib/seo";
 import { showsBoardTitle } from "../../../lib/showsTitle";
+import { nightCounts } from "../../../lib/showsChips";
+import { SHOWS_PRE_PAINT, showsPrePaintCss } from "../../../lib/showsDeepLink";
 
 // Highest-grossing shows — Claude Design round 1 (4 Oct 2026), Job 2, "the
 // record night" direction: designs/desktop/GXShowsDesk.dc.html and
@@ -51,6 +53,11 @@ const runCeiling = runRankCeiling(revenueStands.map((s) => s.revenue), revenueSh
  *  since 4 Oct 2026 the runs chip's view, on both layouts. */
 const RUNS_SPLIT_NOTE = `No per-night split is invented for them: each total would sit in the top ${numberWord(runCeiling).toLowerCase()} of a board of single nights it never had.`;
 const SOURCE = `${REVENUE_SOURCE}, as of ${REVENUE_AS_OF}.`;
+/** A "Biggest shows" link's first paint (V-tourscars-02): the inline script
+ *  marks <html> with ?artist= (or #artist=) before either board is parsed, and
+ *  these rules — one per artist holding a chip, the boards' own list — show
+ *  that artist's nights only, so hydrating changes no row (lib/showsDeepLink). */
+const FIRST_PAINT_CSS = showsPrePaintCss(Object.keys(nightCounts(revenueShows.map((s) => s.artist))));
 
 // The No. 1 night's artist, derived (seo-11): the board is every African
 // artist's, and a typed "Burna Boy" would go stale the day another night leads.
@@ -112,6 +119,8 @@ export default function RevenuePage() {
     <main id="content">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(revenueJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(revenueDataset) }} />
+      <script dangerouslySetInnerHTML={{ __html: SHOWS_PRE_PAINT }} />
+      <style dangerouslySetInnerHTML={{ __html: FIRST_PAINT_CSS }} />
 
       {/* The phone screen: its own component (never the desktop's), from
           GXShowsPhone. One money form on it: the rows' compact gross. */}

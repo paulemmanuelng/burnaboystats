@@ -24,6 +24,12 @@
  *      so it cannot outrun the browser.
  *   3. Opening the image in a new tab, so an iOS user without the share sheet
  *      can still long-press → Add to Photos.
+ *
+ * A button that says "Download PNG" passes `preferDownload` and starts at 2.
+ * The desktop layouts' buttons do: desktop Chrome, Edge and Safari can share
+ * files too, so on a share-first route their "↓ Download PNG" opened the OS
+ * share sheet and saved nothing (debug pass 5 Oct 2026, V-core-06). The phone
+ * screens keep the sheet, and say so — "Save or share ↓".
  */
 
 /**
@@ -50,7 +56,8 @@ export type SaveOutcome = "shared" | "downloaded" | "opened" | "cancelled" | "fa
 export async function saveCard(
   src: string,
   filename: string,
-  shareText?: string
+  shareText?: string,
+  { preferDownload = false }: { preferDownload?: boolean } = {}
 ): Promise<SaveOutcome> {
   let blob: Blob;
   try {
@@ -65,8 +72,8 @@ export async function saveCard(
 
   const file = new File([blob], filename, { type: blob.type || "image/png" });
 
-  // 1. Native share sheet.
-  if (typeof navigator !== "undefined" && navigator.canShare?.({ files: [file] })) {
+  // 1. Native share sheet — unless the button promised a download.
+  if (!preferDownload && typeof navigator !== "undefined" && navigator.canShare?.({ files: [file] })) {
     try {
       await navigator.share({ files: [file], text: shareText });
       return "shared";

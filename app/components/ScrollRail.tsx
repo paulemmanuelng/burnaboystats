@@ -67,12 +67,21 @@ export default function ScrollRail({
   children,
   label,
   id,
+  role = "group",
+  pinnedStart = false,
 }: {
   className: string;
   children: React.ReactNode;
   label?: string;
   /** Anchor target — for the action-bar buttons that scroll back to a rail. */
   id?: string;
+  /** "region" for a scroll box that is a landmark of its own — a table, not a
+   *  rail of chips (the /methodology threshold table). */
+  role?: "group" | "region";
+  /** The rail's first column is sticky, so nothing leaves past the start edge
+   *  unannounced: it slides under the pinned column. A start fade would only
+   *  wash out that column's labels, so only the end edge fades. */
+  pinnedStart?: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [edges, setEdges] = useState({ start: false, end: false });
@@ -97,7 +106,7 @@ export default function ScrollRail({
     <div
       ref={ref}
       id={id}
-      className={`${className} ${styles.rail} ${edges.start ? styles.fadeStart : ""} ${
+      className={`${className} ${styles.rail} ${edges.start && !pinnedStart ? styles.fadeStart : ""} ${
         edges.end ? styles.fadeEnd : ""
       }`}
       onScroll={measure}
@@ -112,7 +121,7 @@ export default function ScrollRail({
       // A scrollable region needs to be reachable and announced; without this
       // a keyboard user cannot scroll it at all.
       tabIndex={0}
-      role="group"
+      role={role}
       aria-label={label}
     >
       {children}

@@ -5,7 +5,7 @@ import Link from "next/link";
 import styles from "./mobileOfficialCharts.module.css";
 import ScrollRail from "./ScrollRail";
 import FilterEmpty from "./FilterEmpty";
-import { artAt } from "../lib/artAt";
+import { coverTile } from "../lib/coverTile";
 import { plural } from "../lib/plural";
 import type { ChartCountry } from "../data/charts";
 import type { ExplorerRelease, CoverMap } from "./ChartExplorer";
@@ -149,7 +149,7 @@ export default function MobileOfficialCharts({
 
   const charted = new Set(all.flatMap((r) => r.entries.map((e) => e.c)));
   const countryChips = (countryRail ?? COUNTRY_RAIL).filter((c) => charted.has(c));
-  const chipKey = countryChips.join(",");
+  const chartedKey = [...charted].sort().join(",");
 
   // Read the deep link on mount — client-only, exactly as ChartExplorer does
   // it, so the page stays statically rendered — and again whenever the
@@ -158,25 +158,30 @@ export default function MobileOfficialCharts({
   // story's link focused the desktop explorer and not the phone (24 Sep
   // 2026). The focused release is unfolded at the same time: the bar
   // promises "every chart entry", and Dai Dai's 59 would otherwise still be
-  // folded away behind the "+47". #country= selects that chip when the rail
-  // has one. The rails come back from this history entry on Back.
+  // folded away behind the "+47". #country= takes any country this screen
+  // charts, not only the seventeen on the rail: search sends every territory
+  // without a plaque here (Argentina, Japan, Iceland, Hong Kong…), and one
+  // off the rail used to be dropped, so the tap opened all 103 releases under
+  // a lit "All" (V-records-04, debug pass 5 Oct 2026). A country off the rail
+  // is announced in a bar instead of a chip. The rails come back from this
+  // history entry on Back.
   useLayoutEffect(() => {
-    const chips = chipKey.split(",");
+    const known = chartedKey.split(",");
     const saved = readSavedView<{ peakMax: number | null; only: string | null }>(VIEW_ID);
     const read = (initial: boolean) => {
       const s = readDeepLink("song", initial);
       setFocus(s);
       if (s) setUnfolded(new Set([s]));
       const c = readDeepLink("country", false);
-      if (!initial || c) setOnly(c && chips.includes(c) ? c : null);
+      if (!initial || c) setOnly(c && known.includes(c) ? c : null);
       if (initial && saved) {
         setPeakMax(PEAKS.some((p) => p.key === saved.peakMax) ? saved.peakMax : null);
-        setOnly(saved.only && chips.includes(saved.only) ? saved.only : null);
+        setOnly(saved.only && known.includes(saved.only) ? saved.only : null);
       }
     };
     read(true);
     return onDeepLinkChange(() => read(false));
-  }, [chipKey]);
+  }, [chartedKey]);
 
   useEffect(() => {
     saveView(VIEW_ID, { peakMax, only });
@@ -216,9 +221,12 @@ export default function MobileOfficialCharts({
         )
         .map((r) => {
           const best = Math.min(...r.entries.map((e) => e.peak));
-          // Matching peaks lead; the rest stay visible but dimmed.
-          const peaks = [...r.entries]
-            .sort((a, b) => a.peak - b.peak)
+          // Matching peaks lead; the rest stay visible but dimmed. The sort
+          // has to read `off`: sorted by peak alone, Dai Dai under Nigeria
+          // showed twelve dimmed No. 1s and a "+58" with its Nigerian pill
+          // folded behind it, on 16 of the 17 rail countries (debug pass,
+          // 5 Oct 2026). A row the filter kept must show why it was kept.
+          const peaks = r.entries
             .map((e) => ({
               code: e.c,
               flag: countries[e.c]?.flag ?? "🏳",
@@ -228,7 +236,8 @@ export default function MobileOfficialCharts({
               // the phone dropped it, so both layouts carry it the same way.
               note: e.note,
               off: Boolean((peakMax && e.peak > peakMax) || (only && e.c !== only)),
-            }));
+            }))
+            .sort((a, b) => Number(a.off) - Number(b.off) || a.peak - b.peak);
           return {
             title: r.title,
             credit: [r.credit, r.year].filter(Boolean).join(" · "),
@@ -304,6 +313,18 @@ export default function MobileOfficialCharts({
           </span>
           <button type="button" className={styles.focusClear} onClick={clearFocus}>
             Show all releases ✕
+          </button>
+        </div>
+      )}
+      {/* A deep-linked country with no chip on the rail — nothing below would
+          be lit to say the list is narrowed, so the bar says it. */}
+      {only && !countryChips.includes(only) && (
+        <div className={styles.focusBar}>
+          <span>
+            Showing chart entries in <b>{countries[only]?.name ?? only}</b>
+          </span>
+          <button type="button" className={styles.focusClear} onClick={() => pickOnly(null)}>
+            Show all countries ✕
           </button>
         </div>
       )}
@@ -433,8 +454,10 @@ export default function MobileOfficialCharts({
                       /* 102 = 3x the 34px tile. A board artist's art arrived as
                          Deezer's 500px and Apple's 300px files here, 2.9 MB of
                          /afrobeats/wizkid/charts on a phone for 0.3 MB of pixels
-                         (23 Sep 2026). Spotify covers still resolve to 300. */
-                      style={{ backgroundImage: `url(${artAt(cover(r.title) ?? "", 102)})` }}
+                         (23 Sep 2026). Spotify covers still resolve to 300.
+                         No art on file draws the release's initial
+                         (lib/coverTile.ts). */
+                      {...coverTile(cover(r.title), r.title, 102)}
                     />
                   </span>
                   <span className={styles.rowMain}>
@@ -454,7 +477,7 @@ export default function MobileOfficialCharts({
                     <div
                       className={styles.rowCover}
                       aria-hidden="true"
-                      style={{ backgroundImage: `url(${artAt(cover(r.title) ?? "", 102)})` }}
+                      {...coverTile(cover(r.title), r.title, 102)}
                     />
                   </div>
                   <div className={styles.rowMain}>

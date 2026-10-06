@@ -140,7 +140,7 @@ function prefetchingPickerLinks(src: string): string[] {
   return [...section.matchAll(/<Link\b[^>]*>/g)].map((m) => m[0]).filter((tag) => !/\bprefetch=\{false\}/.test(tag));
 }
 
-describe("a song page prefetches no other song, and a prefetch of it carries one hint", () => {
+describe("a song page prefetches no other song, and a prefetch of it carries no image", () => {
   it("the rules refuse what /music/last-last shipped", () => {
     // Its hero, served on 26 Sep 2026: backdrop and cover, both hinted.
     const shippedHero = parse(
@@ -169,7 +169,7 @@ describe("a song page prefetches no other song, and a prefetch of it carries one
     expect(prefetchingPickerLinks(src)).toEqual([]);
   });
 
-  it("on every song page: the chips do not prefetch, and only the cover is hinted", async () => {
+  it("on every song page: the chips do not prefetch, and no image is hinted", async () => {
     for (const slug of songSlugs) {
       const doc = parse(renderToStaticMarkup(await SongPage({ params: Promise.resolve({ song: slug }) })));
       const chips = [...doc.querySelectorAll("a")].filter((a) =>
@@ -177,8 +177,9 @@ describe("a song page prefetches no other song, and a prefetch of it carries one
       );
       expect(chips.length, slug).toBeGreaterThan(0);
       expect(chips.filter((a) => a.getAttribute("data-prefetch") !== "false").map((a) => a.getAttribute("href")), slug).toEqual([]);
-      // What a prefetch of this page downloads: its own cover, nothing more.
-      expect(hinted(doc.body).map((i) => i.getAttribute("class")), slug).toEqual([songStyles.cover]);
+      // What a prefetch of this page downloads: no image. Its own cover was
+      // the one hint until 5 Oct 2026 (tests/ui/prefetchNoImageHints.test.tsx).
+      expect(hinted(doc.body).map((i) => i.getAttribute("class")), slug).toEqual([]);
       // The backdrop is still there, still eager, and takes no box of its own.
       const backdrop = [...doc.querySelectorAll("img")].find((i) => i.classList.contains(songStyles.heroBackdrop))!;
       expect(backdrop, slug).toBeTruthy();

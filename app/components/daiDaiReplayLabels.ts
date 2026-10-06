@@ -6,6 +6,12 @@
  * Nothing here states a figure. Counts, dates and positions all arrive as data
  * (app/components/daiDaiReplayData.ts) and fill the braces.
  */
+
+/** The record that holds a reading, as the card names it. daiDaiReplayData.ts
+ *  maps each repo file to one of these; the card never prints the file itself
+ *  (5 Oct 2026: "Source: app/data/charts.ts" meant nothing to a reader). */
+export type ReplaySource = "charts" | "feed" | "page" | "notes";
+
 export interface ReplayLabels {
   kicker: string;
   title: string;
@@ -74,6 +80,10 @@ export interface ReplayLabels {
   cardDated: string;
   /** "Source: {src}" */
   cardSource: string;
+  /** {src}: the site's chart records (charts.ts, and the end frame's peaks),
+   *  its Latest Updates (updates.ts), this page (its dated lines and chapter
+   *  02's Global 200 run), or its research notes (docs/). */
+  sources: Record<ReplaySource, string>;
   close: string;
   play: string;
   pause: string;
@@ -156,6 +166,12 @@ export const EN_REPLAY_LABELS: ReplayLabels = {
   cardPeak: "peak",
   cardDated: "Chart dated {date}",
   cardSource: "Source: {src}",
+  sources: {
+    charts: "the site's chart records",
+    feed: "the site's Latest Updates",
+    page: "this page",
+    notes: "the site's research notes",
+  },
   close: "Close",
   play: "Play",
   pause: "Pause",
@@ -231,6 +247,12 @@ export const ES_REPLAY_LABELS: ReplayLabels = {
   cardPeak: "pico",
   cardDated: "Lista del {date}",
   cardSource: "Fuente: {src}",
+  sources: {
+    charts: "los registros de listas del sitio",
+    feed: "las novedades del sitio",
+    page: "esta página",
+    notes: "las notas de investigación del sitio",
+  },
   close: "Cerrar",
   play: "Reproducir",
   pause: "Pausa",

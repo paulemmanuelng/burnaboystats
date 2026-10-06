@@ -412,13 +412,15 @@
 }
 .dialogClose:hover { border-color: var(--gold); color: var(--gold); }
 .dialogBody { padding: 20px 24px 24px; }
+/* The dialog's actions: Spotify, then the album's own page. A row with the
+   site's 10px action gap, wrapping to two rows on a phone. */
+.dialogActions { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; }
+.dialogActions :global(.btn) { height: 44px; }
 /* Spotify green is the platform's own mark, not a site accent. */
 .spotifyBtn {
   background: #1db954;
   color: #06241a;
   -webkit-text-fill-color: #06241a;
-  height: 44px;
-  margin-bottom: 18px;
 }
 .spotifyBtn:hover { background: #1ed760; }
 .trackList { display: flex; flex-direction: column; }
@@ -438,6 +440,19 @@
   font-variant-numeric: tabular-nums;
 }
 .trackName { font-size: 14.5px; }
+/* On a phone the head kept its 620px-dialog sizes — a 104px cover, 24px
+   padding, a 20px gap either side of the text — and left the title and meta a
+   112px column at 390 (82 at 360): "Atlantic · Bad Habit · Spaceship" and the
+   edition note wrapped a word a line, and the sticky head took 287 of the
+   dialog's 726px on On a Spaceship (debug pass 5 Oct 2026, V-music-04). A
+   smaller cover and phone padding give the text 192px at 390; the body takes
+   the head's side padding so the cover and the tracklist share an edge. */
+@media (max-width: 560px) {
+  .backdrop { padding: 16px; }
+  .dialogHead { padding: 16px 18px; gap: 14px; }
+  .dialogCover { width: 64px; height: 64px; }
+  .dialogBody { padding: 18px 18px 20px; }
+}
 
 @media (max-width: 1239px) {
   .wide, .heroGrid { padding-inline: 32px; }
