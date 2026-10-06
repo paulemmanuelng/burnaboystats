@@ -33,6 +33,7 @@ import { DAI_DAI_SPOTIFY_NO1_DAYS } from "./data/daiDai";
 import NotReported from "./components/NotReported";
 import OnThisDayBand from "./components/OnThisDayBand";
 import { onThisDayFor } from "./lib/onThisDay";
+import { enGbDate } from "./lib/dates";
 
 /**
  * The On this day card turns over with London's calendar day, and nothing else
@@ -53,9 +54,10 @@ export const revalidate = 3600;
  */
 
 // The freshness chip reads off the feed rather than a typed date.
-const lastVerified = new Date(
-  `${updates.reduce((m, u) => (u.date > m ? u.date : m), updates[0].date)}T00:00:00`
-).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+const lastVerified = enGbDate(
+  new Date(`${updates.reduce((m, u) => (u.date > m ? u.date : m), updates[0].date)}T00:00:00`),
+  { day: "numeric", month: "short", year: "numeric" },
+);
 
 // Tier colours carry data meaning and are never recoloured to gold.
 //

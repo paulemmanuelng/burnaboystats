@@ -2,6 +2,7 @@ import { allItems, announcedPlaques, COUNTRIES } from "../data/certifications";
 import { CERT_PROGRAMS } from "../data/certThresholds";
 import { awardLabel } from "./awardName";
 import { sweptArtists, countryMeta, offRegisterCount, type AfroCert } from "../data/afrobeats";
+import { enGbDate } from "./dates";
 
 // The plaques counted WITHOUT a register row behind them, across the whole
 // board — Burna Boy's own ledger and every swept artist's — in one place, so
@@ -64,7 +65,7 @@ export const boardOffRegisterTotal =
 
 // A declaration, so burnaAnnouncements above can call it.
 function dateLabel(iso: string): string {
-  return new Date(`${iso}T12:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
+  return enGbDate(new Date(`${iso}T12:00:00Z`), { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
 }
 
 /** The board's label plaques, one entry per artist, issuer and country:

@@ -35,6 +35,7 @@ import { API_VERSION, lastUpdated } from "./api";
 import { faqs } from "../data/faqs";
 import { stats as byTheNumbers } from "../data/byTheNumbers";
 import { JUMP as visualizedCharts } from "./visualizedSections";
+import { enGbDate } from "./dates";
 
 export interface NavRow {
   label: string;
@@ -126,7 +127,7 @@ export const navRoutes = navGroups.flatMap((g) => g.items.map((i) => i.href));
 export const navSearchHint = `${totalAwards()} certs, ${chartEntryCount} entries`;
 
 /** The footer's status line: when the data was last verified. */
-export const navUpdated = new Date(lastUpdated).toLocaleDateString("en-GB", {
+export const navUpdated = enGbDate(new Date(lastUpdated), {
   day: "numeric",
   month: "short",
   year: "numeric",

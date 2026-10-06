@@ -2,6 +2,7 @@ import { COUNTRIES as BURNA_COUNTRIES } from "./certifications";
 import { CHART_COUNTRIES } from "./charts";
 import { awardLabel, awardRank } from "../lib/awardName";
 import { certsInView, homeCodeFor, isFeaturedKind, type CertView } from "../lib/certScope";
+import { enGbDate } from "../lib/dates";
 
 // ─────────────────────────────────────────────────────────────────────────────
 //  THE AFROBEATS BOARD — /afrobeats
@@ -3291,7 +3292,7 @@ export const certProvenance = (c: AfroCert): string | undefined => {
   // before the comma is the label either way.
   if (c.source === "label" && !c.announced) return "label-issued plaque";
   if (c.source && c.announced) {
-    const on = new Date(`${c.announced.on}T12:00:00Z`).toLocaleDateString("en-GB", {
+    const on = enGbDate(new Date(`${c.announced.on}T12:00:00Z`), {
       day: "numeric",
       month: "short",
       year: "numeric",
