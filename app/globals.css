@@ -1834,6 +1834,13 @@ a.fact:hover {
 .skipLink:focus {
   top: 12px;
 }
+/* "Back to top" (BackToTop.tsx) hands focus to <main id="content"> so the next
+   Tab starts from the top of the content. That focus is a place to continue
+   from, not a control: without this the [tabindex] ring below drew a gold
+   outline round the whole page body after a keyboard press. */
+main#content:focus {
+  outline: none;
+}
 
 /* A consistent, visible keyboard focus ring on every interactive element.
    The handoff specifies the accent at a 2px offset; the list covers form

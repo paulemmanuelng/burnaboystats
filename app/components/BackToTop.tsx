@@ -3,6 +3,25 @@
 import { useState, useEffect } from "react";
 import styles from "./BackToTop.module.css";
 
+// Scroll to the top AND take keyboard focus there. Scrolling alone left the
+// sequential-focus point on this button, after <main> and before the footer,
+// and the button hides at the top (visibility:hidden), so focus fell to <body>
+// and the next Tab focused the footer's first link, scrolling the page all the
+// way back down. Focus goes to <main id="content">, the skip link's target, so
+// Tab continues from the start of the content (Shift+Tab reaches the nav). A
+// <main> is not focusable, so it takes tabindex="-1" only while it holds focus;
+// preventScroll keeps the smooth scroll; globals.css draws no ring round it.
+function backToTop() {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+  const main = document.getElementById("content");
+  if (!main) return;
+  if (!main.hasAttribute("tabindex")) {
+    main.setAttribute("tabindex", "-1");
+    main.addEventListener("blur", () => main.removeAttribute("tabindex"), { once: true });
+  }
+  main.focus({ preventScroll: true });
+}
+
 // A small floating "back to top" control that fades in once the reader is deep
 // into a long page (charts, certifications, tours…) and is hidden otherwise.
 export default function BackToTop() {
@@ -40,7 +59,7 @@ export default function BackToTop() {
       aria-label="Back to top"
       lang="en"
       className={`${styles.btn} ${show ? styles.show : ""} ${styles.desktopOnly}`}
-      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      onClick={backToTop}
     >
       <span aria-hidden="true">↑</span>
     </button>
