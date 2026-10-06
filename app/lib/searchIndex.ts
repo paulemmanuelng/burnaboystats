@@ -165,7 +165,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Jerusalema (Remix)",
     path: "/music/jerusalema",
     section: "Song",
-    description: "Master KG, Nomcebo & Burna Boy “Jerusalema” remix — No. 1 in five countries, Diamond in France.",
+    description: "Master KG, Burna Boy & Nomcebo “Jerusalema” remix — No. 1 in five countries, Diamond in France.",
     keywords: ["jerusalema", "remix", "master kg", "nomcebo", "song", "dance challenge", "diamond", "2020"],
   },
   {

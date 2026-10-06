@@ -260,7 +260,9 @@ export interface AfroRelease {
   /** The sweep's filing, kept as it stands (Paul, 6 Oct 2026). Billing order
    *  decides where nothing else does — the act billed first leads, the rest
    *  are featured — and the ruled exception is "Trumpet" (Olamide & CKay), a
-   *  lead single for both (3 Oct 2026). See app/lib/certScope.ts. */
+   *  lead single for both (3 Oct 2026). The other second-billed lead singles
+   *  were kept as they stood on 6 Oct 2026; they are not exceptions to fix.
+   *  See app/lib/certScope.ts. */
   kind: "Albums" | "Lead singles" | "Featured appearances";
   cover?: string;
   certs: AfroCert[];

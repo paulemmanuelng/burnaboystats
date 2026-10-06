@@ -34,10 +34,14 @@ import { count, plural } from "./plural";
  * lead and the acts after it are featured — so "Isaka (6AM)" (Ciza, Tems &
  * Omah Lay) is a featured appearance for both Tems and Omah Lay, never a lead
  * for one and a feature for the other (tests/debug1005Rulings.test.tsx holds
- * every shared record to that). The ruled exception is "Trumpet" (Olamide &
+ * every shared Nigerian record to that: the board artists billed after its
+ * lead are filed one way). The ruled exception is "Trumpet" (Olamide &
  * CKay): a co-lead, a lead single on BOTH artists' boards although CKay is
  * billed second (Paul, 3 Oct 2026: "a co-lead is a lead on both its leads'
- * boards").
+ * boards"). The board's other second-billed lead singles (Olamide's, BNXN's,
+ * Victony's and more) are filings Paul kept as they stood on 6 Oct 2026, not
+ * exceptions waiting to be fixed: no sweep refiles them by billing order
+ * without his word.
  *
  * The two compose: International + Lead is the international plaques on
  * releases where the artist is lead. "all" + "all" is the view every page has

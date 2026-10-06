@@ -240,7 +240,7 @@ export const songs: Song[] = [
         a: "It was a global phenomenon — No. 1 in Belgium, Switzerland, Hungary, the Netherlands and Suriname, charting in 16 countries and certified Diamond in France and 4× Platinum in Italy.",
       },
     ],
-    metaTitle: "“Jerusalema (Remix)” — Master KG, Nomcebo & Burna Boy Stats",
+    metaTitle: "“Jerusalema (Remix)” — Master KG, Burna Boy & Nomcebo Stats",
     metaDescription:
       "Burna Boy on the “Jerusalema” remix: No. 1 in five countries, Diamond in France and 17 chart entries during the global #JerusalemaDanceChallenge — full stats.",
   },

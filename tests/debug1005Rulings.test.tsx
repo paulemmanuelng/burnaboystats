@@ -27,6 +27,7 @@ import { allItems } from "../app/data/certifications";
 import { featureCharts, singleCharts } from "../app/data/charts";
 import { ceremonies } from "../app/data/awards";
 import { songs } from "../app/data/songs";
+import { searchIndex } from "../app/lib/searchIndex";
 import { revenueShows } from "../app/data/tourRevenue";
 import { showsBoard } from "../app/lib/showsBoard";
 import { showsBoardTitle } from "../app/lib/showsTitle";
@@ -108,7 +109,7 @@ describe("music-16: the Dai Dai chart table's heading covers every row", () => {
 });
 
 // ── afrobeatsB-02 ──────────────────────────────────────────────────────────
-describe("afrobeatsB-02: a record led by an act off the board is filed one way for every board artist on it", () => {
+describe("afrobeatsB-02: the board artists billed after a record's lead are filed one way", () => {
   const raw = JSON.parse(read("docs/sourcing/results/board-raw.json")) as { artist: string; title: string; country: string }[];
   /** The act a register credit bills first: "Ciza, Tems & Omah Lay" → "ciza". */
   const firstBilled = (credit: string) => credit.split(/,| & | ft\.? | feat\.? /i)[0].trim().toLowerCase();
@@ -123,10 +124,10 @@ describe("afrobeatsB-02: a record led by an act off the board is filed one way f
         holders: r.holders.map((h) => ({ slug: h.artist.slug, name: h.artist.name, featured: h.featured })),
       }));
 
-  /** Shared Nigerian records whose TCSN credit names every holder and bills
-   *  first an act that is none of them — every board artist on it billed
-   *  after its lead. */
-  const ledOffBoard = (recs: Rec[]) =>
+  /** Shared Nigerian records whose TCSN credit names every holder, each with
+   *  `after`: the holders billed after the act it bills first — every holder
+   *  when that act is off the board. */
+  const billed = (recs: Rec[]) =>
     recs.flatMap((r) => {
       const row = raw.find(
         (x) =>
@@ -136,16 +137,20 @@ describe("afrobeatsB-02: a record led by an act off the board is filed one way f
       );
       if (!row) return [];
       const lead = firstBilled(row.artist);
-      return r.holders.some((h) => h.name.toLowerCase() === lead) ? [] : [{ ...r, credit: row.artist }];
+      return [{ ...r, credit: row.artist, after: r.holders.filter((h) => h.name.toLowerCase() !== lead) }];
     });
 
-  /** Such records filed a lead for one holder and a feature for another. */
+  /** The records led by an act off the board. */
+  const ledOffBoard = (recs: Rec[]) => billed(recs).filter((r) => r.after.length === r.holders.length);
+
+  /** Records whose holders billed after the lead are filed a lead for one and
+   *  a feature for another — whether the lead is on the board or not. */
   const splitFilings = (recs: Rec[]) =>
-    ledOffBoard(recs)
-      .filter((r) => new Set(r.holders.map((h) => h.featured)).size > 1)
+    billed(recs)
+      .filter((r) => new Set(r.after.map((h) => h.featured)).size > 1)
       .map(
         (r) =>
-          `${r.title} (${r.credit}): ${[...r.holders]
+          `${r.title} (${r.credit}): ${[...r.after]
             .sort((a, b) => a.slug.localeCompare(b.slug))
             .map((h) => `${h.slug} ${h.featured ? "featured" : "lead"}`)
             .join(", ")}`,
@@ -159,6 +164,22 @@ describe("afrobeatsB-02: a record led by an act off the board is filed one way f
     expect(led.length).toBeGreaterThanOrEqual(7);
     expect(led.map((r) => r.title)).toContain("Isaka (6AM)");
     expect(splitFilings(ngRecords())).toEqual([]);
+  });
+
+  it("it holds where a board artist leads too: the board artists billed after them are filed one way", () => {
+    // Not vacuous: 99 (Olamide, Seyi Vibez, Asake & Young Jonn), Gwagwalada
+    // (BNXN, Seyi Vibez & Kizz Daniel) and Uptown Disco (Olamide, Fireboy DML &
+    // Asake) each put two board artists after a board lead.
+    const ledOnBoard = billed(ngRecords()).filter((r) => r.after.length > 1 && r.after.length < r.holders.length);
+    expect(ledOnBoard.map((r) => r.title)).toEqual(expect.arrayContaining(["99", "Gwagwalada", "Uptown Disco"]));
+    // Negative control: "Gwagwalada" with Seyi Vibez's filing flipped to a lead
+    // single while Kizz Daniel's stays a feature — a split that a guard over
+    // off-board leads alone would pass, since BNXN, its lead, is on the board.
+    const flipped = ngRecords().map((r) =>
+      r.title === "Gwagwalada" ? { ...r, holders: r.holders.map((h) => (h.slug === "seyi-vibez" ? { ...h, featured: false } : h)) } : r,
+    );
+    expect(ledOffBoard(flipped).map((r) => r.title)).not.toContain("Gwagwalada");
+    expect(splitFilings(flipped)).toEqual(["Gwagwalada (BNXN, Seyi Vibez & Kizz Daniel): kizz-daniel featured, seyi-vibez lead"]);
   });
 
   it("“Isaka (6AM)” — Ciza, Tems & Omah Lay — is a featured appearance on both boards", () => {
@@ -205,6 +226,27 @@ describe("records-02: one credit per record across the certifications, charts, a
     const works = ceremonies.flatMap((c) => c.noms).filter((n) => n.work?.startsWith("Yaba Buluku (Remix) ("));
     expect(works.map((n) => n.work)).toEqual([`Yaba Buluku (Remix) (${cert("Yaba Buluku (Remix)")})`]);
     expect(songs.find((s) => s.slug === "jerusalema")?.credit).toBe(cert("Jerusalema (Remix)"));
+  });
+
+  /** A short form of the Jerusalema credit bills its acts in the record's
+   *  order: Burna Boy before Nomcebo, as "Master KG ft. Burna Boy & Nomcebo
+   *  Zikode" does. */
+  const burnaBeforeNomcebo = (s: string) => s.includes("Burna Boy") && s.indexOf("Burna Boy") < s.indexOf("Nomcebo");
+
+  it("Jerusalema's short forms — its song page title and its search entry — keep the credit's billing order", () => {
+    expect(burnaBeforeNomcebo(cert("Jerusalema (Remix)")!)).toBe(true);
+    const song = songs.find((s) => s.slug === "jerusalema")!;
+    const entry = searchIndex.find((d) => d.path === "/music/jerusalema")!;
+    expect(burnaBeforeNomcebo(song.metaTitle)).toBe(true);
+    expect(burnaBeforeNomcebo(entry.description)).toBe(true);
+  });
+
+  it("negative control: the short forms as they shipped billed Nomcebo first", () => {
+    const shipped = [
+      "“Jerusalema (Remix)” — Master KG, Nomcebo & Burna Boy Stats",
+      "Master KG, Nomcebo & Burna Boy “Jerusalema” remix — No. 1 in five countries, Diamond in France.",
+    ];
+    expect(shipped.filter(burnaBeforeNomcebo)).toEqual([]);
   });
 
   it("negative control: the strings as they shipped disagreed", () => {
