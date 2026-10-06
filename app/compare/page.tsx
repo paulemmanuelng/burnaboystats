@@ -1096,7 +1096,13 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
           </>
         )}
 
-        {c && ready && (
+        {/* Only when a side on screen holds a Nigerian plaque. Two records
+            without one ("Dai Dai" and "One Dance", 85 of the 831 on the board)
+            printed "Dai Dai — 0 plaques · at least 0 / One Dance — 0 plaques ·
+            at least 0" over an "Include Nigeria" that changed nothing but the
+            labels: same figures, same 23 rows (debug pass, 6 Oct 2026). Every
+            artist holds some, so artist totals keep the strip. */}
+        {c && ready && (sideA?.nigeria.plaques ?? 0) + (sideB?.nigeria.plaques ?? 0) > 0 && (
           <section className={styles.ngStrip} aria-label="Nigeria">
             <h2 className={styles.ngHead}><span aria-hidden="true">🇳🇬</span> Nigeria — {ngOn ? "included" : "separated"}.</h2>
             <p className={`${styles.ngText} ${styles.ngWhy}`}>
