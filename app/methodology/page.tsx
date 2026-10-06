@@ -6,6 +6,7 @@ import KeepExploring from "../components/KeepExploring";
 import BreadcrumbBar from "../components/BreadcrumbBar";
 import MobileMethodology from "../components/MobileMethodology";
 import AnchorTwins from "../components/AnchorTwins";
+import ScrollRail from "../components/ScrollRail";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime, BURNA_BOY_REF } from "../lib/seo";
 import { updates } from "../data/updates";
 import { totalAwards, countryCount, COUNTRIES, allItems } from "../data/certifications";
@@ -768,14 +769,34 @@ export default function MethodologyPage() {
               </>
             )}
           </p>
-          {/* Focusable, so a keyboard can scroll the 720px table on a phone. */}
-          <div className={styles.tableScroll} tabIndex={0} role="region" aria-label="Threshold table">
+          {/* Focusable, so a keyboard can scroll the table on a phone. There it
+              is ~750px in a 354px box: the body column is pinned, each figure
+              column names its own tier, and the right edge fades while figures
+              remain. Shipped, the first view was body names and the cut-off
+              heading "SINGLE · SILVER / GOL", and a scrolled view showed figures
+              with no body beside them (debug pass 5 Oct 2026, V-core-05). */}
+          <ScrollRail className={styles.tableScroll} role="region" label="Threshold table" pinnedStart>
             <table className={styles.thresholdTable}>
               <thead>
                 <tr>
                   <th scope="col">Body</th>
-                  <th scope="col" colSpan={4}>Single · Silver / Gold / Platinum / Diamond</th>
-                  <th scope="col" colSpan={4}>Album · Silver / Gold / Platinum / Diamond</th>
+                  {(["Single", "Album"] as const).map((f) => (
+                    <th key={f} scope="col" colSpan={4}>
+                      <span className={styles.format}>{f}</span>
+                      <span className={styles.tierList}> · Silver / Gold / Platinum / Diamond</span>
+                    </th>
+                  ))}
+                </tr>
+                {/* Phones only (the desktop heading lists the tiers inline). */}
+                <tr className={styles.tierRow}>
+                  <td />
+                  {(["single", "album"] as const).flatMap((f) =>
+                    TIERS.map((t) => (
+                      <th key={`${f}-${t}`} scope="col">
+                        {t[0].toUpperCase() + t.slice(1)}
+                      </th>
+                    )),
+                  )}
                 </tr>
               </thead>
               <tbody>
@@ -785,7 +806,7 @@ export default function MethodologyPage() {
                       <span aria-hidden="true">{countryMeta(r.code).flag}</span> {countryMeta(r.code).body}
                       {/* A ¶ that covers one format sits on that format's figures, not
                           on the body: Poland's album levels are today's units. */}
-                      {r.historic && !r.historicFormat && <span title={r.historic} aria-label="historic level"> ¶</span>}
+                      {r.historic && !r.historicFormat && <span title={r.historic} aria-label="historic level">&nbsp;¶</span>}
                       <span className={styles.thresholdCountry}>{countryMeta(r.code).name}</span>
                     </th>
                     {r.single ? (
@@ -798,7 +819,9 @@ export default function MethodologyPage() {
                         </td>
                       ))
                     ) : (
-                      <td colSpan={4} className={styles.thresholdListed}>listed — {r.singleExcluded ?? "not priced"}</td>
+                      <td colSpan={4} className={styles.thresholdListed}>
+                        <span className={styles.listedNote}>listed — {r.singleExcluded ?? "not priced"}</span>
+                      </td>
                     )}
                     {r.album ? (
                       TIERS.map((t) => (
@@ -810,13 +833,15 @@ export default function MethodologyPage() {
                         </td>
                       ))
                     ) : (
-                      <td colSpan={4} className={styles.thresholdListed}>listed — {r.albumExcluded ?? "not priced"}</td>
+                      <td colSpan={4} className={styles.thresholdListed}>
+                        <span className={styles.listedNote}>listed — {r.albumExcluded ?? "not priced"}</span>
+                      </td>
                     )}
                   </tr>
                 ))}
               </tbody>
             </table>
-          </div>
+          </ScrollRail>
           <p className={styles.p}>
             {/* 30,000 / 500,000 is 6% — 1/16.7, not "a sixteenth" (5 Oct 2026, core-15). */}
             The RIAA&apos;s Latin programme certifies at {latinShare}% of the standard scale —

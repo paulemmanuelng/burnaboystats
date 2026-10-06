@@ -330,7 +330,11 @@
 }
 .thresholdTable tbody th { text-align: left; font-weight: 600; white-space: nowrap; }
 .thresholdCountry { display: block; font-weight: 400; font-size: var(--type-caption); color: var(--text-muted); }
-.thresholdListed { text-align: left; color: var(--text-muted); font-size: var(--type-caption); white-space: normal; min-width: 220px; }
+/* Scoped to the table: as a bare class it lost to `.thresholdTable td`'s
+   text-align: right, and the note ran ragged on the left. */
+.thresholdTable .thresholdListed { text-align: left; color: var(--text-muted); font-size: var(--type-caption); white-space: normal; min-width: 220px; }
+/* The desktop heading names the tiers inline; a phone gets this row instead. */
+.tierRow { display: none; }
 .mobileFoot { display: none; }
 @media (max-width: 900px) {
   .shared { padding: 18px 18px 0; border-top: 1px solid var(--line); }
@@ -340,6 +344,31 @@
   .shared .blockH { font-size: 18px; }
   .shared .p { font-size: var(--type-small); line-height: var(--type-small-lh); margin-top: 12px; }
   .thresholdTable { min-width: 640px; }
+  /* ~750px of table in a 354px box (V-core-05, 5 Oct 2026). The body column is
+     pinned and narrowed — its name wraps above the country — so every figure
+     scrolls past with its body beside it; ScrollRail fades the right edge
+     while figures remain. Each figure column names its own tier: the inline
+     "Single · Silver / Gold / Platinum / Diamond" spanned four columns and was
+     cut mid-word by the box's edge. The format's name and a "listed" note hold
+     at the pinned column's edge while their cells scroll under it; the note is
+     measured to the box (cqi) less the pin, its padding and the 44px fade. */
+  .tableScroll { container-type: inline-size; --pin: 120px; }
+  .thresholdTable tr > :first-child {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    width: var(--pin);
+    min-width: var(--pin);
+    white-space: normal;
+    background: var(--bg);
+    box-shadow: inset -1px 0 var(--line);
+  }
+  .tierList { display: none; }
+  .tierRow { display: table-row; }
+  .thresholdTable thead tr:first-child > * { border-bottom: 0; padding-bottom: 2px; }
+  .thresholdTable .tierRow > * { text-align: right; padding-top: 2px; }
+  .format { position: sticky; left: calc(var(--pin) + 10px); display: inline-block; }
+  .listedNote { position: sticky; left: calc(var(--pin) + 10px); display: block; max-width: calc(100cqi - var(--pin) - 64px); }
   /* The phone screen's action bar is fixed; this is the room it needs. */
   .mobileFoot { display: block; height: 104px; }
 }
