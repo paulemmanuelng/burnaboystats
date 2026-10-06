@@ -298,7 +298,7 @@ export const ceremonies: Ceremony[] = [
     noms: [
       { year: 2014, category: "Best New Act", won: false },
       { year: 2015, category: "Best Collaboration", work: "All Eyes on Me", won: true },
-      { year: 2016, category: "Best Collaboration", work: "Baddest (AKA ft. Burna Boy, Yanga & Khuli Chana)", won: false },
+      { year: 2016, category: "Best Collaboration", work: "Baddest (AKA ft. Burna Boy, Khuli Chana & Yanga Chief)", won: false },
       { year: 2016, category: "Listener's Choice", won: false },
     ],
   },
@@ -348,7 +348,7 @@ export const ceremonies: Ceremony[] = [
       { year: 2023, category: "Album of the Year", work: "Love, Damini", won: true },
       { year: 2023, category: "Song of the Year", work: "Last Last", won: false },
       { year: 2025, category: "Album of the Year", work: "No Sign of Weakness", won: true },
-      { year: 2025, category: "Best African Collaboration", work: "Laho II (with Shallipopi)", won: true },
+      { year: 2025, category: "Best African Collaboration", work: "Laho II (Shallipopi & Burna Boy)", won: true },
       { year: 2025, category: "Artiste of the Year", won: false },
       { year: 2025, category: "Best Male Artiste in Western Africa", work: "Update", won: false },
       { year: 2025, category: "Best African Artiste, Duo or Group in African Pop", work: "Change Your Mind (ft. Shaboozey)", won: false },
@@ -638,7 +638,7 @@ export const ceremonies: Ceremony[] = [
       // Burna Boy)" among the honorees (Billboard Pro, Paul Grein, 23 Sep 2026,
       // with SESAC's chief creative officer quoted and SESAC's Mario Prins
       // pictured). SESAC's own news page had not posted it on 23 Sep.
-      { year: 2026, date: "2026-09-22", category: "Top Songs honoree", work: "WGFT (with Gunna)", won: true },
+      { year: 2026, date: "2026-09-22", category: "Top Songs honoree", work: "WGFT (Gunna ft. Burna Boy)", won: true },
     ],
   },
   {
@@ -720,7 +720,7 @@ export const ceremonies: Ceremony[] = [
   {
     name: "South African Hip Hop Awards",
     noms: [
-      { year: 2015, category: "Best Collaboration", work: "Baddest (AKA ft. Burna Boy, Khuli Chana & Yanga)", won: false },
+      { year: 2015, category: "Best Collaboration", work: "Baddest (AKA ft. Burna Boy, Khuli Chana & Yanga Chief)", won: false },
       { year: 2015, category: "Video of the Year", work: "All Eyes on Me (AKA ft. Burna Boy, JR & Da L.E.S)", won: false },
       { year: 2015, category: "Video of the Year", work: "P.A.I.D (Da L.E.S ft. AKA & Burna Boy)", won: false },
     ],

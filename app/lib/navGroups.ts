@@ -35,12 +35,15 @@ import { API_VERSION, lastUpdated } from "./api";
 import { faqs } from "../data/faqs";
 import { stats as byTheNumbers } from "../data/byTheNumbers";
 import { JUMP as visualizedCharts } from "./visualizedSections";
+import { enGbDate } from "./dates";
 
 export interface NavRow {
   label: string;
   href: string;
   /** Right-hand figure. Empty string renders no count. */
   meta: string;
+  /** The label's language when it is not the sheet's English. */
+  lang?: string;
 }
 
 export interface NavGroup {
@@ -92,7 +95,7 @@ export const navGroups: NavGroup[] = [
       // The Spanish edition, listed in its own language so a Spanish reader
       // recognises it. It had exactly one inbound link (from the English
       // page), which is thin for a page whose whole job is ranking in Spanish.
-      { label: "Dai Dai en español", href: "/dai-dai/es", meta: "ES" },
+      { label: "Dai Dai en español", href: "/dai-dai/es", meta: "ES", lang: "es" },
       { label: "Stat cards", href: "/share", meta: "" },
       // 26 Sep 2026: +/embed, beside the stat cards as it is in the home
       // footer's "The site" column — the footer is hidden on phones, and this
@@ -124,7 +127,7 @@ export const navRoutes = navGroups.flatMap((g) => g.items.map((i) => i.href));
 export const navSearchHint = `${totalAwards()} certs, ${chartEntryCount} entries`;
 
 /** The footer's status line: when the data was last verified. */
-export const navUpdated = new Date(lastUpdated).toLocaleDateString("en-GB", {
+export const navUpdated = enGbDate(new Date(lastUpdated), {
   day: "numeric",
   month: "short",
   year: "numeric",

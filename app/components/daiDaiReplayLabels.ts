@@ -32,6 +32,12 @@ export interface ReplayLabels {
    *  strings keep a plain space. */
   tileSoFar: string;
   tileSoFarOne: string;
+  /** The poster and end frames' sub-line for a run that has closed — the
+   *  last week held is off No. 1 — so "so far" would promise more (5 Oct 2026:
+   *  the poster read "7 weeks at No. 1 so far" over a Global 200 run the site
+   *  records as closed at seven). */
+  tileTotal: string;
+  tileTotalOne: string;
   tileUnread: string;
   tileOff: string;
   tileNoChart: string;
@@ -123,6 +129,8 @@ export const EN_REPLAY_LABELS: ReplayLabels = {
   posNoChart: "×",
   tileSoFar: "{n} weeks at No. 1 so far",
   tileSoFarOne: "{n} week at No. 1 so far",
+  tileTotal: "{n} weeks at No. 1",
+  tileTotalOne: "{n} week at No. 1",
   tileUnread: "not read this week",
   tileOff: "not on the chart",
   tileNoChart: "no chart this week",
@@ -196,6 +204,8 @@ export const ES_REPLAY_LABELS: ReplayLabels = {
   posNoChart: "×",
   tileSoFar: "{n} semanas en el n.º 1 hasta ahora",
   tileSoFarOne: "{n} semana en el n.º 1 hasta ahora",
+  tileTotal: "{n} semanas en el n.º 1",
+  tileTotalOne: "{n} semana en el n.º 1",
   tileUnread: "sin lectura esta semana",
   tileOff: "fuera de la lista",
   tileNoChart: "sin lista esta semana",

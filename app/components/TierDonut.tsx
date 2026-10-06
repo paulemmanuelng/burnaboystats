@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import styles from "./TierDonut.module.css";
+import { wholePercents } from "../lib/wholePercents";
 
 export interface DonutSeg {
   label: string;
@@ -40,6 +41,14 @@ export default function TierDonut({
   const R = 78;
   const C = 2 * Math.PI * R;
   const arcs = buildArcs(segments, total, C, 3);
+
+  // Shares by largest remainder, so the legend adds to 100: rounded one by one,
+  // the peak donut on /records/visualized read 12/14/8/35/30 — 99% (5 Oct
+  // 2026, records-16). Only when `total` is the segments' own sum, which is
+  // how every caller draws it; otherwise each share is rounded against it.
+  const sum = segments.reduce((a, s) => a + s.value, 0);
+  const pcts =
+    sum === total ? wholePercents(segments.map((s) => s.value)) : segments.map((s) => Math.round((s.value / total) * 100));
 
   return (
     <div className={styles.wrap}>
@@ -86,7 +95,7 @@ export default function TierDonut({
             <span className={styles.legendLabel}>{s.label}</span>
             <span className={styles.legendVal}>
               {s.value}
-              <span className={styles.pct}>{Math.round((s.value / total) * 100)}%</span>
+              <span className={styles.pct}>{pcts[i]}%</span>
             </span>
           </li>
         ))}

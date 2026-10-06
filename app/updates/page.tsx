@@ -7,7 +7,7 @@ import SubscribeBox from "../components/SubscribeBox";
 import BreadcrumbBar from "../components/BreadcrumbBar";
 import KeepExploring from "../components/KeepExploring";
 import { updates } from "../data/updates";
-import { pageMetadata } from "../lib/seo";
+import { pageMetadata, FEED_DESCRIPTION } from "../lib/seo";
 
 // pageMetadata() advertises the RSS feed, here as on every page, so readers
 // auto-discover it.
@@ -17,7 +17,7 @@ export const metadata = pageMetadata({
     "Every recent update to Burna Boy Stats — new chart peaks, certifications, streaming milestones and records, tracked as they happen.",
   path: "/updates",
   shareTitle: "Burna Boy Stats — Latest Updates",
-  shareDescription: "What's new on the site, tracked as it happens.",
+  shareDescription: FEED_DESCRIPTION,
 });
 
 // ── Derived ────────────────────────────────────────────────────────────────

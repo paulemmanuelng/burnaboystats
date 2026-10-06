@@ -5,6 +5,7 @@ import KeepExploring from "../components/KeepExploring";
 import MobileCurator from "../components/MobileCurator";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME } from "../lib/seo";
 import { totalAwards, countryCount } from "../data/certifications";
+import { noRowLabelClause } from "../lib/offRegister";
 import { chartEntryCount, numberOnes } from "../data/charts";
 import { totalWins } from "../data/awards";
 import { updates } from "../data/updates";
@@ -83,7 +84,7 @@ const sources = [
   {
     kind: "Certification",
     source:
-      "The certifying body's own database (or, in a market with no current public register, on the label's own plaque).",
+      `The certifying body's own database (or, in a market with no current public register, on the label's own plaque${noRowLabelClause("; ", "on ")}).`,
   },
   { kind: "Chart peak", source: "The chart's owner, when it publishes it." },
   {

@@ -46,6 +46,9 @@ function movement(e: { movement?: number | null; status?: "new" | "re" }) {
 export interface ReleasePreview {
   kind: "song" | "album";
   title: string;
+  /** The title as the site spells it, where it differs from the feed's
+   *  (lib/liveChartTitles). `title` stays the feed's, for the panel lookup. */
+  displayTitle?: string;
   /** The row's art, resolved on the server (lib/liveReleaseArt.ts) so the
    *  site's catalogue stays out of this bundle. Absent: no art on file. */
   cover?: string;
@@ -215,7 +218,7 @@ export default function MobileLiveCharts({
                   )}
                   <span className={styles.rowMain}>
                     <span className={styles.rowTitle}>
-                      {r.title}
+                      {r.displayTitle ?? r.title}
                       {/* Albums sit in the same list as songs — the desktop
                           page separates them into sections, and this tag is
                           that distinction at phone size. */}

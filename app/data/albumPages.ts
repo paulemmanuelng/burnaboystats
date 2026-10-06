@@ -34,9 +34,9 @@ export const albumPages: AlbumPage[] = [
   {
     slug: "life",
     title: "L.I.F.E",
-    tagline: "The debut — Leaving an Impact For Eternity",
+    tagline: "The debut — Leaving an Impact for Eternity",
     blurb:
-      "Burna Boy's 2013 debut studio album on Aristokrat Records, its title an acronym for Leaving an Impact For Eternity. Carried by “Like to Party”, “Tonight” and “Run My Race”, it announced a sound already fluent in Fela's afrobeat and dancehall — and was an Album of the Year nominee at both The Headies and the Nigeria Entertainment Awards in 2014.",
+      "Burna Boy's 2013 debut studio album on Aristokrat Records, its title an acronym for Leaving an Impact for Eternity. Carried by “Like to Party”, “Tonight” and “Run My Race”, it announced a sound already fluent in Fela's afrobeat and dancehall — and was an Album of the Year nominee at both The Headies and the Nigeria Entertainment Awards in 2014.",
     extraFacts: [
       { v: "2× nom", l: "Album of the Year — The Headies and the Nigeria Entertainment Awards, 2014" },
       { v: "15", l: "tracks on the standard edition, with 2face Idibia, Timaya, Wizkid, Olamide and Reminisce among the guests" },
@@ -44,7 +44,7 @@ export const albumPages: AlbumPage[] = [
     faqs: [
       {
         q: "What does L.I.F.E stand for?",
-        a: "L.I.F.E is an acronym for Leaving an Impact For Eternity — the title of Burna Boy's 2013 debut studio album, released on Aristokrat Records.",
+        a: "L.I.F.E is an acronym for Leaving an Impact for Eternity — the title of Burna Boy's 2013 debut studio album, released on Aristokrat Records.",
       },
       {
         q: "Which songs are on L.I.F.E?",
@@ -57,7 +57,7 @@ export const albumPages: AlbumPage[] = [
     ],
     metaTitle: "L.I.F.E — Burna Boy's 2013 Debut Album",
     metaDescription:
-      "L.I.F.E (Leaving an Impact For Eternity), Burna Boy's 2013 debut: “Like to Party”, guests from Wizkid to 2face, and 2014 Album of the Year nominations.",
+      "L.I.F.E (Leaving an Impact for Eternity), Burna Boy's 2013 debut: “Like to Party”, guests from Wizkid to 2face, and 2014 Album of the Year nominations.",
   },
   {
     slug: "on-a-spaceship",
@@ -80,7 +80,7 @@ export const albumPages: AlbumPage[] = [
       },
       {
         q: "What is the best-known song on On a Spaceship?",
-        a: "“Rizzla” has endured as the album's cult favourite — it has its own deep-dive page on this site with the story of its afro-dancehall groove.",
+        a: "“Rizzla” has endured as the album's cult favourite — released as a single on 24 March 2016 and singled out by Pulse Nigeria and NotJustOk, it has its own deep-dive page on this site.",
       },
     ],
     metaTitle: "On a Spaceship — Burna Boy's 2015 Album",
@@ -137,7 +137,7 @@ export const albumPages: AlbumPage[] = [
       },
       {
         q: "How did African Giant chart?",
-        a: "African Giant charted in nine countries, peaking at No. 12 in the Netherlands, No. 16 in the UK, No. 23 in Nigeria (where it is still charting) and No. 104 on the US Billboard 200.",
+        a: "African Giant charted in nine countries, peaking at No. 12 in the Netherlands, No. 16 in the UK, No. 23 in Nigeria (its peak on TurnTable's Top 100 Albums of 30 July 2026 — still on that chart at the 10 September 2026 issue) and No. 104 on the US Billboard 200.",
       },
     ],
     metaTitle: "African Giant — Burna Boy's Grammy-Nominated 2019 Album",
@@ -241,7 +241,7 @@ export const albumPages: AlbumPage[] = [
       { v: "2025", l: "Album of the Year — AFRIMA (9th edition)" },
       { v: "2026", l: "Grammy-nominated — Best Global Music Album" },
       { v: "16", l: "tracks, with Travis Scott, Mick Jagger, Stromae and Shaboozey featuring" },
-      { v: "No. 1", l: "Nigeria — plus No. 6 in the UK" },
+      { v: "No. 6", l: "UK Official Albums Chart" },
     ],
     faqs: [
       {

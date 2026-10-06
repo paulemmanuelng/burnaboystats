@@ -98,6 +98,8 @@ export default function MobileNavSheet({
       aria-modal="true"
       aria-label="Site menu"
       hidden={!open}
+      // English chrome, also on /dai-dai/es, whose document is Spanish.
+      lang="en"
     >
       {/* The visible strip at the foot is part of this backdrop, which is why
           the backdrop covers the whole viewport rather than stopping at 76px. */}
@@ -157,7 +159,7 @@ export default function MobileNavSheet({
                         text alone — colour on its own fails anyone who cannot
                         distinguish it. */}
                     <span className={styles.rule} aria-hidden="true" />
-                    <span className={styles.label}>{item.label}</span>
+                    <span className={styles.label} lang={item.lang}>{item.label}</span>
                     {item.meta && <span className={styles.meta}>{item.meta}</span>}
                   </Link>
                 );

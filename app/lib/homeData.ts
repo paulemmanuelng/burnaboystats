@@ -58,11 +58,29 @@ const albumTitles = new Set(certAlbums.map((a) => titleKey(a.title)));
  * leads keeps that artist's billing; his own singles name the album they came
  * from, which is the fact a reader actually wants there.
  */
+/** A track list's title without its guest: "Gum Body (feat. Jorja Smith)" is
+ *  "Gum Body", "Killin Dem (with Zlatan)" is "Killin Dem". */
+const bareTrack = (t: string) => t.replace(/\s*\((?:feat|with)\.?[^)]*\)\s*$/i, "");
+/** A ledger title its album's track list spells another way:
+ *  certifications.ts and charts.ts say "Onyeka (Baby)", Twice as Tall's track
+ *  list "Onyeka", so the row read a bare "Burna Boy". */
+const TRACK_LIST_TITLE: Record<string, string> = { "Onyeka (Baby)": "Onyeka" };
+/** The studio album whose standard track list holds the title. */
+const studioAlbumOf = (title: string) => {
+  const listed = TRACK_LIST_TITLE[title] ?? title;
+  return studioAlbums.find((a) => a.tracks.some((t) => sameTitle(bareTrack(t), listed)))?.title;
+};
+
 const creditFor = (item: (typeof allItems)[number]) => {
   if (albumTitles.has(titleKey(item.title))) return "Album";
   if (item.credit) return /^feat\./i.test(item.credit) ? `Burna Boy ${item.credit}` : item.credit;
+  // The song page's album first; else the album whose track list holds it.
+  // Only songs with a page were looked up, so "Gbona" and 33 more album
+  // tracks read a bare "Burna Boy" beside "On the Low · African Giant"
+  // (5 Oct 2026, core-16).
   const song = songs.find((sg) => sameTitle(sg.title, item.title));
-  return song?.album ? `Burna Boy · ${song.album}` : "Burna Boy";
+  const album = song?.album ?? studioAlbumOf(item.title);
+  return album ? `Burna Boy · ${album}` : "Burna Boy";
 };
 
 /** "4× Platinum" where a release is certified past 1×; plain tier otherwise;

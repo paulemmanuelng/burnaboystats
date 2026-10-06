@@ -177,12 +177,19 @@ describe("C-05/D-02: the Danish Gold is named as the chart it was read on", () =
 
   it("the embed's source line and /certifications' sources line name the chart", () => {
     const certs = EMBED_WIDGETS.find((w) => w.slug === "certifications")!;
-    expect(certs.content.source).toMatch(/^each certifying body's own register or published chart, most recently read /);
-    // Shipped: "each certifying body's own register, most recently read 4 October 2026".
+    // Since 5 Oct 2026 (core-12) it names the label's plaque too, the route
+    // "Dai Dai"'s Colombian Gold and "All Eyes on Me"'s 19× Platinum rest on.
+    expect(certs.content.source).toMatch(
+      /^each certifying body's own register — or, where it lists none, a label's own plaque or the body's published chart — most recently read /,
+    );
+    // Shipped: "each certifying body's own register, most recently read 4 October 2026",
+    // then "each certifying body's own register or published chart, most recently read …".
+    expect(certs.content.source).not.toMatch(/^each certifying body's own register or published chart, most recently read/);
     expect(certs.content.source).not.toMatch(/^each certifying body's own register, most recently read/);
     const t = text(renderToStaticMarkup(<CertificationsPage />));
+    // With, since 5 Oct 2026, the no-row label route between them (core-12).
     expect(t).toContain(
-      "(or, in a market with no current public register, from the label's own plaque; or from the body's own published chart where its register has not yet listed the award)",
+      "(or, in a market with no current public register, from the label's own plaque; where the register holds no row for the title, from the label's own award; or from the body's own published chart where its register has not yet listed the award)",
     );
   });
 });
@@ -348,7 +355,15 @@ describe("D-04: /certifications, /records/tours and the map are dated by their d
     // The stamp is the day the edit LANDS: main already said 2026-10-05 (the
     // first 5 Oct merge) before the debug pass's edits below were committed on
     // 6 Oct, so leaving it there dated them a day early (review of that PR).
-    expect({ fingerprint, stamp: TOURS_EDITED_ON }).toEqual({ fingerprint: "748012a1992ee200", stamp: "2026-10-06" });
+    // Re-pinned 6 Oct 2026 when the records lane's five "Sep" notes (core-19)
+    // merged onto the tours lane's edits; the stamp was already that day.
+    expect({ fingerprint, stamp: TOURS_EDITED_ON }).toEqual({ fingerprint: "9e109cc9029e8d18", stamp: "2026-10-06" });
+    // Negative control for core-19: the notes' "Sept" as it shipped is another
+    // fingerprint.
+    const septAsShipped = (rows: typeof festivals) => rows.map((r) => ({ ...r, note: r.note.replace(/\b(\d{1,2} )?Sep\b/g, "$1Sept") }));
+    expect(
+      print({ tours, festivals: septAsShipped(festivals), otherShows: septAsShipped(otherShows), concerts: septAsShipped(concerts), upcomingShows, performedCountries }),
+    ).not.toBe(fingerprint);
     // Negative control for the 5 Oct debug pass's edits: the Fillmore back
     // under Washington, D.C., as it shipped, is another fingerprint.
     const fillmoreAsShipped = tours.map((t) => ({

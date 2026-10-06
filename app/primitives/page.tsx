@@ -53,8 +53,14 @@ const TOKENS = [
   ["--gold", "Brand"],
   ["--gold-bright", "Brand bright"],
   ["--gold-dim", "Brand dim"],
-  ["--cyan", "Diamond · Top 10"],
-  ["--silver", "Platinum · Top 40"],
+  // Peak-band tokens only (globals.css): the tiers have their own inks since
+  // the tier tags moved off --cyan/--silver (5 Oct 2026, core-20).
+  ["--cyan", "Top 10 peak band"],
+  ["--silver", "Top 40 peak band"],
+  ["--tier-diamond-ink", "Diamond"],
+  ["--tier-platinum-ink", "Platinum"],
+  ["--tier-gold-ink", "Gold"],
+  ["--tier-silver-ink", "Silver"],
   ["--green", "Live · positive"],
   ["--live", "Live-data pulse"],
 ];

@@ -35,6 +35,7 @@ export default function BackToTop() {
     <button
       type="button"
       aria-label="Back to top"
+      lang="en"
       className={`${styles.btn} ${show ? styles.show : ""} ${styles.desktopOnly}`}
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
     >

@@ -211,6 +211,10 @@ const closingSections = [
 const allBodies = Object.keys(CERT_THRESHOLDS).length;
 const TIERS = ["silver", "gold", "platinum", "diamond"] as const;
 const fmtUnits = (n: number | null | undefined) => (n == null ? "—" : n.toLocaleString("en-GB"));
+/** The Latin programme's Platino as a share of a standard RIAA Platinum: 6. */
+const latinShare = Math.round(
+  ((CERT_PROGRAMS["RIAA Latin"].single.platinum ?? 0) / (CERT_THRESHOLDS.US.single?.platinum ?? 1)) * 100,
+);
 // The bodies print under ONE name each, the one the registers list above and
 // the /compare boards use (countryMeta's), not the threshold table's own
 // `body` string: this page said "Ultratop Belgium" in one list and "BRMA
@@ -317,9 +321,11 @@ export default function MethodologyPage() {
           </div>
         </section>
 
-        {/* ── The four rules ─────────────────────────────────── */}
+        {/* ── The rules ──────────────────────────────────────────
+            Counted, not typed: the eyebrow said "Four rules" over five
+            (5 Oct 2026, core-03). */}
         <section className={`${styles.wrap} ${styles.sectionPad}`} aria-labelledby="principles">
-          <div className={styles.eyebrow}>Four rules</div>
+          <div className={styles.eyebrow}>{numberWord(principles.length)} rules</div>
           <h2 id="principles" className={styles.h2}>How a figure gets verified</h2>
           <div className={styles.principleGrid}>
             {principles.map((pr, i) => (
@@ -433,7 +439,7 @@ export default function MethodologyPage() {
             figure. The clearest example is on this site already: &ldquo;Dai Dai&rdquo; holds
             6× Platino from the RIAA&apos;s <em>Latin</em> programme — Premios de Oro y
             Platino, which certifies a Platino at 60,000 units and 6× at 360,000, while a
-            standard RIAA Platinum is 1,000,000, sixteen times as much. Every award here is
+            standard RIAA Platinum is 1,000,000, more than sixteen times as much. Every award here is
             printed under the name its own programme gives it, and counted on its own line,
             for exactly that reason. Never add tiers across programmes and read the result
             as scale.
@@ -580,7 +586,7 @@ export default function MethodologyPage() {
             <Link href="/compare">The compare page</Link> does the one thing the section
             above says a plaque count cannot: it puts two catalogues on a single scale.
             It can only do that by pricing every plaque at <em>its own body&apos;s
-            published threshold</em> and being explicit about what that buys, so four
+            published threshold</em> and being explicit about what that buys, so five
             rules govern it.
           </p>
           <p className={styles.p}>
@@ -797,11 +803,27 @@ export default function MethodologyPage() {
             </table>
           </div>
           <p className={styles.p}>
-            The RIAA&apos;s Latin programme certifies at a sixteenth of the standard scale —
+            {/* 30,000 / 500,000 is 6% — 1/16.7, not "a sixteenth" (5 Oct 2026, core-15). */}
+            The RIAA&apos;s Latin programme certifies at {latinShare}% of the standard scale —
             Oro {fmtUnits(CERT_PROGRAMS["RIAA Latin"].single.gold)}, Platino{" "}
             {fmtUnits(CERT_PROGRAMS["RIAA Latin"].single.platinum)}, Diamante{" "}
             {fmtUnits(CERT_PROGRAMS["RIAA Latin"].single.diamond)} — and the three Latin
             plaques on the board are priced on it and marked.
+          </p>
+        </section>
+
+        {/* On This Day's "How dates are filed" links land here, on both
+            layouts (shared, like the section above). They pointed at the page
+            top, and nothing on it said how a date is filed (5 Oct 2026, otd-03). */}
+        <section className={styles.shared} aria-labelledby="dates">
+          <div className={styles.eyebrow}>On this day</div>
+          <h2 id="dates" className={styles.h2}>How dates are filed</h2>
+          <p className={styles.p}>
+            <Link href="/on-this-day">The calendar</Link> holds only records that carry
+            their own day, each filed on the date its own source prints: a certification
+            on the award date its body&apos;s register gives, a chart peak on the issue
+            that first carried it, a show on the night itself. A record known only by its
+            year stays off the calendar until its day is read.
           </p>
         </section>
 

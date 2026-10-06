@@ -718,7 +718,7 @@ export const updates: Update[] = [
   {
     date: "2026-09-02",
     category: "Streaming",
-    text: "A ninth song past 300 million: “wgft”, Gunna’s single featuring Burna Boy, crossed the mark on Spotify on 1 September at 300,255,936. Five of the nine are past 400 million: “Location”, “Last Last”, “On the Low”, “Own It” and “Dai Dai”.",
+    text: "A ninth song past 300 million: “WGFT”, Gunna’s single featuring Burna Boy, crossed the mark on Spotify on 1 September at 300,255,936. Five of the nine are past 400 million: “Location”, “Last Last”, “On the Low”, “Own It” and “Dai Dai”.",
     href: "/records/africas-biggest",
   },
   {
@@ -778,7 +778,7 @@ export const updates: Update[] = [
   {
     date: "2026-08-28",
     category: "Certifications",
-    text: "A 232nd plaque, from the one Portuguese route nobody had read: “Wgft” with Gunna is certified Ouro by AFP/Audiogest, announced on the body's own award card in its March 2026 batch — his seventh Portuguese plaque.",
+    text: "A 232nd plaque, from the one Portuguese route nobody had read: “WGFT” with Gunna is certified Ouro by AFP/Audiogest, announced on the body's own award card in its March 2026 batch — his seventh Portuguese plaque.",
     href: "/certifications",
   },
   {
@@ -790,13 +790,13 @@ export const updates: Update[] = [
   {
     date: "2026-08-27",
     category: "Certifications",
-    text: "“On The Low” gains a plaque and corrects one: Sweden is added (IFPI Sverige, Platinum, certificate no. 10448, awarded 16 August 2023) and Nigeria is corrected from Silver to Gold, the tier TCSN gives. That is ten countries for the song; the catalogue stands at 231.",
+    text: "“On the Low” gains a plaque and corrects one: Sweden is added (IFPI Sverige, Platinum, certificate no. 10448, awarded 16 August 2023) and Nigeria is corrected from Silver to Gold, the tier TCSN gives. That is ten countries for the song; the catalogue stands at 231.",
     href: "/certifications",
   },
   {
     date: "2026-08-27",
     category: "Certifications",
-    text: "A Swedish plaque that was never on the site: “On The Low” is Platinum in Sweden, certificate no. 10448, awarded 16 August 2023, read at Grammotex alongside “Ye” Platinum (no. 10450), “African Giant” Gold (no. 10452) and “Gbona” Gold (no. 10453).",
+    text: "A Swedish plaque that was never on the site: “On the Low” is Platinum in Sweden, certificate no. 10448, awarded 16 August 2023, read at Grammotex alongside “Ye” Platinum (no. 10450), “African Giant” Gold (no. 10452) and “Gbona” Gold (no. 10453).",
     href: "/certifications",
   },
   {

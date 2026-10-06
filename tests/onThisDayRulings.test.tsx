@@ -254,7 +254,9 @@ describe("ruling 6: the copy the first build kept now reads as the artboards dra
 
   it("the desktop lede joins with a colon", () => {
     const html = renderToStaticMarkup(CalendarPage()).replace(/\s+/g, " ");
-    expect(html).toContain(`${onThisDayEvents.length} dated milestones on ${onThisDayDays.length} days of the year: album releases`);
+    // "releases", not "album releases", since 5 Oct 2026: one of the nine is
+    // the "Dai Dai" single (otd-09).
+    expect(html).toContain(`${onThisDayEvents.length} dated milestones on ${onThisDayDays.length} days of the year: releases`);
     expect(html).not.toContain("days of the year — album releases");
   });
 
@@ -263,7 +265,8 @@ describe("ruling 6: the copy the first build kept now reads as the artboards dra
     expect(note.textContent!.replace(/\s+/g, " ").trim()).toBe(
       "Only records that carry their own day are here. A record known only by its year stays off the calendar until its day is read — see the methodology.",
     );
-    expect(note.querySelector("a")!.getAttribute("href")).toBe("/methodology");
+    // To the section that answers it since 5 Oct 2026 (otd-03).
+    expect(note.querySelector("a")!.getAttribute("href")).toBe("/methodology#dates");
   });
 
   it("the calendar link preview's sub-line is the artboard's", () => {

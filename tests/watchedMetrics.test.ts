@@ -186,7 +186,9 @@ describe("every leaderboard is ordered by the numbers it prints", () => {
   // app/data/hot100Weeks.ts since 30 Sep 2026. Judged on the loaded values
   // instead — placings ascending, magnitudes descending — and still counted, so
   // the total below cannot drop by a board going quiet.
-  const DERIVED_AT_LOAD = new Set(["most-followed-spotify", "billboard-hot-100-peak"]);
+  // most-hot-100-entries since 5 Oct 2026: its values are read off the
+  // Billboard rows in hot100Weeks.ts, not typed (crossSite-13).
+  const DERIVED_AT_LOAD = new Set(["most-followed-spotify", "billboard-hot-100-peak", "most-hot-100-entries"]);
 
   it("lists descending values, on every board that prints comparable numbers", () => {
     const raw = readFileSync("app/data/africasBiggest.ts", "utf8");
