@@ -6,7 +6,7 @@ import type { ChartCountry } from "../data/charts";
 import { chartTier } from "../lib/chartTier";
 import { track } from "../lib/analytics";
 import { spotifyImage } from "../lib/spotifyImage";
-import { artAt } from "../lib/artAt";
+import { coverTile } from "../lib/coverTile";
 import FilterEmpty from "./FilterEmpty";
 import { byReachOrder } from "../lib/chartOrder";
 import { dropDeepLink, onDeepLinkChange, readDeepLink, readSavedView, saveView } from "../lib/deepLink";
@@ -66,8 +66,9 @@ function Row({
           aria-hidden="true"
           /* 114 = 3x the 38px tile. A board artist's Deezer (500px) and
              Apple (300px) art arrived as it was, 2.9 MB of cards for 0.4 MB
-             of pixels on /afrobeats/wizkid/charts (23 Sep 2026). */
-          style={{ backgroundImage: `url(${artAt(cover(item.title) ?? "", 114)})` }}
+             of pixels on /afrobeats/wizkid/charts (23 Sep 2026). No art on
+             file draws the release's initial (lib/coverTile.ts). */
+          {...coverTile(cover(item.title), item.title, 114)}
         />
         <span className={styles.rowText}>
         <span className={styles.title}>{item.title}</span>
@@ -528,7 +529,7 @@ export default function ChartExplorer({
                     <span
                       className={styles.tCover}
                       aria-hidden="true"
-                      style={{ backgroundImage: `url(${spotifyImage(cover(r.song) ?? "", 64)})` }}
+                      {...coverTile(cover(r.song), r.song, 64, spotifyImage)}
                     />
                     <span className={styles.tSong}>
                       {r.song}

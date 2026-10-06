@@ -5,7 +5,7 @@ import Link from "next/link";
 import styles from "./mobileOfficialCharts.module.css";
 import ScrollRail from "./ScrollRail";
 import FilterEmpty from "./FilterEmpty";
-import { artAt } from "../lib/artAt";
+import { coverTile } from "../lib/coverTile";
 import { plural } from "../lib/plural";
 import type { ChartCountry } from "../data/charts";
 import type { ExplorerRelease, CoverMap } from "./ChartExplorer";
@@ -433,8 +433,10 @@ export default function MobileOfficialCharts({
                       /* 102 = 3x the 34px tile. A board artist's art arrived as
                          Deezer's 500px and Apple's 300px files here, 2.9 MB of
                          /afrobeats/wizkid/charts on a phone for 0.3 MB of pixels
-                         (23 Sep 2026). Spotify covers still resolve to 300. */
-                      style={{ backgroundImage: `url(${artAt(cover(r.title) ?? "", 102)})` }}
+                         (23 Sep 2026). Spotify covers still resolve to 300.
+                         No art on file draws the release's initial
+                         (lib/coverTile.ts). */
+                      {...coverTile(cover(r.title), r.title, 102)}
                     />
                   </span>
                   <span className={styles.rowMain}>
@@ -454,7 +456,7 @@ export default function MobileOfficialCharts({
                     <div
                       className={styles.rowCover}
                       aria-hidden="true"
-                      style={{ backgroundImage: `url(${artAt(cover(r.title) ?? "", 102)})` }}
+                      {...coverTile(cover(r.title), r.title, 102)}
                     />
                   </div>
                   <div className={styles.rowMain}>

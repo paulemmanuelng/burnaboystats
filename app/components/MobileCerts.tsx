@@ -9,7 +9,7 @@ import ScrollRail from "./ScrollRail";
 import { titleKey } from "../lib/titleKey";
 import { coverFor } from "../lib/covers";
 import { spotifySrcSet } from "../lib/spotifyImage";
-import { artAt } from "../lib/artAt";
+import { coverTile } from "../lib/coverTile";
 import { count } from "../lib/plural";
 import { BLANK_PIXEL } from "../lib/blankPixel";
 import { portraitArtFor } from "../lib/portraitArt";
@@ -593,8 +593,9 @@ export default function MobileCerts({
                   className={styles.rowCover}
                   aria-hidden="true"
                   /* 102 = 3x the 34px tile, not a board artist's 500px Deezer
-                     or 300px Apple art (23 Sep 2026). */
-                  style={{ backgroundImage: `url(${artAt(art(r.title) ?? "", 102)})` }}
+                     or 300px Apple art (23 Sep 2026). No art on file draws
+                     the release's initial (lib/coverTile.ts). */
+                  {...coverTile(art(r.title), r.title, 102)}
                 />
               </span>
               <div className={styles.rowMain}>

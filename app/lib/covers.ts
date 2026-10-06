@@ -187,7 +187,5 @@ export function coverFor(title: string, kind?: "song" | "album"): string | undef
   return base !== k ? (OWN_COVERS[base] ?? TRACK_COVERS[base]) : undefined;
 }
 
-/** First letter, for the fallback tile when there is no art. */
-export function monogramFor(title: string): string {
-  return (title.trim()[0] ?? "?").toUpperCase();
-}
+/** First letter, for the fallback tile when there is no art (lib/monogram.ts). */
+export { monogramFor } from "./monogram";
