@@ -39,6 +39,7 @@ import { generateMetadata as liveMetadata } from "../app/afrobeats/[artist]/live
 import PairPage from "../app/compare/[pair]/page";
 import AfrobeatsPage from "../app/afrobeats/page";
 import AnalysisPage from "../app/analysis/page";
+import UnmergePage from "../app/analysis/spotify-unmerge/page";
 import MethodologyPage from "../app/methodology/page";
 
 // The SEO, share-card and site-wide copy findings of the debug pass of
@@ -252,6 +253,19 @@ describe("a page's JSON-LD date is the page's own, not the newest feed date anyw
   it("/api, /press and /curator, which the sitemap leaves undated by design, declare no dateModified", () => {
     for (const f of ["app/api/page.tsx", "app/press/page.tsx", "app/curator/page.tsx"]) expect(read(f), f).not.toMatch(/^\s+dateModified:/m);
     for (const p of ["/api", "/press", "/curator"]) expect(lastmod(p), p).toBeUndefined();
+  });
+
+  it("/analysis/spotify-unmerge, whose live career figure has no as-of date, declares no dateModified", async () => {
+    // It declared lastUpdated — the newest feed date anywhere (10-04 on 5 Oct)
+    // — beside a sitemap row on its own feed entries (09-17): two dates for one
+    // page (review of the 5 Oct debug PR). The figure that moves is the stats
+    // bot's daily career total, which carries no date of its own, so neither
+    // value is the page's. datePublished stays.
+    const nodes = ldOf(renderToStaticMarkup(await UnmergePage()));
+    for (const n of nodes) expect(n.dateModified, String(n["@type"])).toBeUndefined();
+    const article = nodes.find((n) => n["@type"] === "Article")!;
+    expect(article.datePublished).toBe("2026-08-21");
+    expect(read("app/analysis/spotify-unmerge/page.tsx")).not.toMatch(/^\s+dateModified:/m);
   });
 });
 

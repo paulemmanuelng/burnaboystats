@@ -55,11 +55,14 @@ export interface Tour {
  *  with any edit to the dates, tours or map lines; tests/debug1004Data.test.tsx
  *  ("TOURS_EDITED_ON moves with the tour data") fingerprints the data and
  *  fails until it is moved.
- *  5 Oct 2026: Love, Damini marked `partial`, Ireland's map line (C-07);
- *  then the 5 Oct debug pass: the Fillmore filed under Silver Spring, MD, the
- *  Lagos concerts row that repeated a Space Drift date removed, the
- *  Coachella, Brixton and NFL-kick-off wording, and the map's spellings. */
-export const TOURS_EDITED_ON = "2026-10-05";
+ *  5 Oct 2026: Love, Damini marked `partial`, Ireland's map line (C-07).
+ *  6 Oct 2026: the 5 Oct debug pass's edits, which landed a day later — the
+ *  Fillmore filed under Silver Spring, MD, the Lagos concerts row that
+ *  repeated a Space Drift date removed, the Coachella, Brixton and
+ *  NFL-kick-off wording, and the map's spellings. main already said 10-05
+ *  before they were committed, so leaving it there would not have moved
+ *  either route's lastmod (review of that PR). */
+export const TOURS_EDITED_ON = "2026-10-06";
 
 export const tours: Tour[] = [
   {

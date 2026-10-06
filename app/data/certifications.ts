@@ -1173,10 +1173,14 @@ export const CERTS_VERIFIED_ON = "2026-10-04";
  *  plaque's provenance marked, a body or source corrected. 5 Oct 2026: "Dai
  *  Dai"'s Danish Gold marked `source: "announcement"` (C-05/D-02), which moved
  *  the methodology's exceptions and the board's off-register count while every
- *  route that prints them still said 4 Oct or older. Move it with any such
+ *  route that prints them still said 4 Oct or older. 6 Oct 2026: two bodies'
+ *  names in COUNTRIES corrected, "IFPI Switzerland" and "Pro Música Colombia"
+ *  (debug pass 5 Oct, core-08, landed on the 6th), which /certifications,
+ *  /compare/in, /methodology and the CSV all print. Move it with any such
  *  edit; tests/debug1004Data.test.tsx fingerprints the provenance fields and
- *  fails until it is moved. The page still PRINTS CERTS_VERIFIED_ON. */
-export const CERTS_EDITED_ON = "2026-10-05";
+ *  the bodies' names and fails until it is moved. The page still PRINTS
+ *  CERTS_VERIFIED_ON. */
+export const CERTS_EDITED_ON = "2026-10-06";
 
 /** The date the routes that print these plaques are stamped with — the later
  *  of the read and the edit (sitemap lastmod, /certifications' dateModified). */

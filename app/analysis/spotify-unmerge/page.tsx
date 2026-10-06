@@ -3,8 +3,7 @@ import styles from "./unmerge.module.css";
 import KeepExploring from "../../components/KeepExploring";
 import BreadcrumbBar from "../../components/BreadcrumbBar";
 import MobileUnmerge, { type SumStep } from "../../components/MobileUnmerge";
-import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime, BURNA_BOY_REF } from "../../lib/seo";
-import { lastUpdated } from "../../lib/api";
+import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, BURNA_BOY_REF } from "../../lib/seo";
 import { spotifyTotalStreams, spotifyTotalStreamsExact } from "../../data/streamingTotals";
 
 /**
@@ -46,8 +45,13 @@ const FINDERS_NOW = "3.4 million";
 // at source. A publication date does not move, so it is deliberately NOT taken
 // from the updates feed: datePublished was reading `lastUpdated`, the newest
 // date anywhere on the site, so the ClaimReview re-dated itself every time an
-// unrelated fact was logged. dateModified still uses lastUpdated, which is
-// what that field is for.
+// unrelated fact was logged. dateModified read lastUpdated too until the
+// review of the 5 Oct 2026 debug PR (seo-12), and is gone: that is the newest
+// date anywhere in the feed (10-04 on 5 Oct), not this page's, and the sitemap
+// dates the route by its own feed entries (09-17). What moves here is the stats
+// bot's daily career total, which carries no as-of date. If the bot ever writes
+// one beside spotifyTotalStreamsExact, that date can be dateModified here and
+// a contentStamp entry in app/sitemap.ts, both at once.
 const PUBLISHED = "2026-08-21";
 
 // The one live input on this page, and everything after it is derived.
@@ -272,7 +276,6 @@ export default function SpotifyUnmergePage() {
     description:
       "The February 2026 Spotify correction explained: two remixes were un-merged and about 309 million streams moved to the original recordings. Nothing was deleted.",
     datePublished: PUBLISHED,
-    dateModified: asDateTime(lastUpdated),
     inLanguage: "en",
     author: { "@type": "Organization", name: SITE_NAME, url: CANONICAL_ORIGIN },
     publisher: { "@type": "Organization", name: SITE_NAME, url: CANONICAL_ORIGIN },

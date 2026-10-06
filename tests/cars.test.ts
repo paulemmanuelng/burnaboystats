@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { readFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
-import { cars, garage, carSlugs, carBySlug, currentCars, carCount, totalValueFormatted, valueWord, addedOnLabel } from "../app/data/cars";
+import { cars, garage, carSlugs, carBySlug, currentCars, carCount, totalValueFormatted, valueWord, addedOnLabel, CARS_SPECS_CHECKED } from "../app/data/cars";
 import { updates } from "../app/data/updates";
 import { carTitle, carDescription, performanceBars, neighbours, garageBest, modelShort } from "../app/lib/garage";
 
@@ -464,6 +464,12 @@ describe("each car page agrees with its own row (debug pass 5 Oct 2026)", () => 
     expect(dawn.specs.engine).toBe("6.6L twin-turbo V12");
     expect(dawn.specs.note).toMatch(/launch release \(PressClub, 8 September 2015\)/);
     expect(dawn.specs.note).toMatch(/Neither states the driven wheels/);
+    // The page's provenance line dates the read this panel rests on: the
+    // launch release was read on 5 Oct 2026, not in the 16 Sep garage pass
+    // its footer still named (review of the 5 Oct debug PR).
+    expect(dawn.specs.readOn).toBe("5 October 2026");
+    expect(readFileSync(join(process.cwd(), "app/records/cars/[car]/page.tsx"), "utf8")).toContain("{car.specs.readOn ?? CARS_SPECS_CHECKED}");
+    expect(dawn.specs.readOn ?? CARS_SPECS_CHECKED).not.toBe("16 September 2026");
   });
 
   it("the 328 GTS's link names the lift's own year beside the post's date", () => {
