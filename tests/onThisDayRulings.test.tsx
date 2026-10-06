@@ -366,8 +366,10 @@ describe("SEO E: no description ends a sentence twice", () => {
   it("a negative control, with the description 7 March shipped", () => {
     // Read off the built page before the fix (next start, 26 Sep 2026).
     expect(DOUBLE.test("2024: Burna Boy played Capital One Arena, Washington, D.C.. Burna Boy on this day, 7 March.")).toBe(true);
-    // And the four days whose lead ends in "D.C." still end it once.
+    // And the days whose lead ends in "D.C." still end it once. Three since
+    // 5 Oct 2026: 15 September's night at the Fillmore is filed under its own
+    // town, Silver Spring, MD (debug pass, tourscars-19).
     const dc = onThisDayDays.filter((d) => d.lead.headline.endsWith("D.C."));
-    expect(dc.map((d) => d.slug).sort()).toEqual(["15-september", "30-may", "5-december", "7-march"]);
+    expect(dc.map((d) => d.slug).sort()).toEqual(["30-may", "5-december", "7-march"]);
   });
 });

@@ -345,7 +345,14 @@ describe("D-04: /certifications, /records/tours and the map are dated by their d
     // moved the routes' dates (D-04); this is what would have said so.
     const print = (data: unknown) => createHash("sha256").update(JSON.stringify(data)).digest("hex").slice(0, 16);
     const fingerprint = print({ tours, festivals, otherShows, concerts, upcomingShows, performedCountries });
-    expect({ fingerprint, stamp: TOURS_EDITED_ON }).toEqual({ fingerprint: "c62c848c36874513", stamp: "2026-10-05" });
+    expect({ fingerprint, stamp: TOURS_EDITED_ON }).toEqual({ fingerprint: "748012a1992ee200", stamp: "2026-10-05" });
+    // Negative control for the 5 Oct debug pass's edits: the Fillmore back
+    // under Washington, D.C., as it shipped, is another fingerprint.
+    const fillmoreAsShipped = tours.map((t) => ({
+      ...t,
+      dates: t.dates?.map((d) => (d.venue === "The Fillmore" && d.city === "Silver Spring, MD" ? { ...d, venue: "The Fillmore Silver Spring", city: "Washington, D.C." } : d)),
+    }));
+    expect(print({ tours: fillmoreAsShipped, festivals, otherShows, concerts, upcomingShows, performedCountries })).not.toBe(fingerprint);
     // Negative control: the data before this PR's edits (Love, Damini not
     // partial and with no reason of its own; Ireland's "(Mar & Dec 2022)")
     // prints another fingerprint, so an edit that leaves the stamp behind
@@ -401,10 +408,13 @@ describe("D-04 (review): /methodology, /afrobeats and the box-office routes are 
     // Re-pin BOTH when a row changes, and move REVENUE_EDITED_ON (or, for a
     // re-read at the bodies, REVENUE_READ_ON) to the day of the edit.
     const fingerprint = print({ revenueShows, revenueStands });
-    expect({ fingerprint, stamp: REVENUE_STAMP }).toEqual({ fingerprint: "cea412f8680ec9bb", stamp: "2026-10-05" });
+    expect({ fingerprint, stamp: REVENUE_STAMP }).toEqual({ fingerprint: "f96dc013b02eb5dc", stamp: "2026-10-05" });
     // Negative control: the rows with Montreal's arena as it shipped.
     const before = { revenueShows, revenueStands: revenueStands.map((r) => (r.venue === "Bell Centre" ? { ...r, venue: "Centre Bell" } : r)) };
     expect(print(before)).not.toBe(fingerprint);
+    // And with Space Drift's board name as it shipped until the 5 Oct debug pass.
+    const spaceDriftAsShipped = { revenueShows: revenueShows.map((r) => (r.tour === "Space Drift World Tour" ? { ...r, tour: "Space Drift Tour" } : r)), revenueStands };
+    expect(print(spaceDriftAsShipped)).not.toBe(fingerprint);
   });
 
   it("CERTS_EDITED_ON moves with the plaques' provenance: an edit without a new stamp fails here", () => {

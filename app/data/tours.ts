@@ -55,7 +55,10 @@ export interface Tour {
  *  with any edit to the dates, tours or map lines; tests/debug1004Data.test.tsx
  *  ("TOURS_EDITED_ON moves with the tour data") fingerprints the data and
  *  fails until it is moved.
- *  5 Oct 2026: Love, Damini marked `partial`, Ireland's map line (C-07). */
+ *  5 Oct 2026: Love, Damini marked `partial`, Ireland's map line (C-07);
+ *  then the 5 Oct debug pass: the Fillmore filed under Silver Spring, MD, the
+ *  Lagos concerts row that repeated a Space Drift date removed, the
+ *  Coachella, Brixton and NFL-kick-off wording, and the map's spellings. */
 export const TOURS_EDITED_ON = "2026-10-05";
 
 export const tours: Tour[] = [
@@ -101,6 +104,20 @@ export const tours: Tour[] = [
     // ($15,192,820 / 152,378) plus Europe 6 ($15,270,754 / 150,423). The two
     // regions sum to 22, which is the check that says 22 is the reported count
     // and not a stale copy of an older itinerary.
+    //
+    // The board's 22 nights add up to $30,452,307 / 303,432, not this total
+    // (debug pass 5 Oct 2026, tourscars-02) — and both are TouringData's own
+    // figures. Europe's six nights equal its Europe total exactly. Every North
+    // America night matches TD's per-show posts and its tour table (read
+    // 29 Dec 2025, archived 5 Feb 2026) to the dollar and the ticket, the four
+    // of its 13 Jun 2024 post included (owner's screenshot); yet that post's
+    // running total moved by $3,809,864 / 31,940, not the rows' $3,798,597 /
+    // 32,571. The same day TD put Canada at "69,219 tickets sold in 6 shows",
+    // while its six Canadian rows sum to 69,850: the 631 tickets are the whole
+    // gap, so TD's aggregate carries one Canadian night differently from the
+    // night's own row. TD publishes no corrected row, so neither side is
+    // changed here: the rows stay as TD posted each night, this total as TD
+    // totals the tour. tests/debug1005Tours.test.tsx pins the arithmetic.
     shows: 22,
     record: true,
     note: "The highest-grossing tour by an African artist in history — $30.46M from 302,801 tickets across 22 shows in North America and Europe, averaging about $1.4M a night. It also included the record-breaking London Stadium concert.",
@@ -233,7 +250,10 @@ export const tours: Tour[] = [
       { date: "Sep 8, 2019", venue: "House of Blues", city: "Chicago", country: "USA", cap: 1300 },
       { date: "Sep 10, 2019", venue: "Buckhead Theatre", city: "Atlanta", country: "USA", cap: 2500 },
       { date: "Sep 13, 2019", venue: "Theatre of Living Arts", city: "Philadelphia", country: "USA", cap: 1000 },
-      { date: "Sep 15, 2019", venue: "The Fillmore Silver Spring", city: "Washington, D.C.", country: "USA", cap: 2000 },
+      // Filed under its own town, as the box-office board files the same venue
+      // (tourRevenue.ts, Tiwa Savage) and as this file files Elmont, Inglewood
+      // and Newark: it sat under "Washington, D.C." until 5 Oct 2026.
+      { date: "Sep 15, 2019", venue: "The Fillmore", city: "Silver Spring, MD", country: "USA", cap: 2000 },
       { date: "Sep 20, 2019", venue: "The Fillmore", city: "San Francisco", country: "USA", cap: 1150 },
       { date: "Oct 20, 2019", venue: "Palais 12", city: "Brussels", country: "Belgium" },
       { date: "Oct 24, 2019", venue: "AFAS Live", city: "Amsterdam", country: "Netherlands", cap: 6000 },
@@ -247,7 +267,7 @@ export const tours: Tour[] = [
     name: "Life on the Outside Tour",
     years: "2018",
     meta: "First world tour",
-    note: "His first international headline tour, behind Outside — his Atlantic Records debut. An intimate club-and-theatre run across North America in early summer, then a sold-out UK leg in the autumn capped by a packed O2 Academy Brixton — growing his audience beyond Nigeria, just before the African Giant era.",
+    note: "His first international headline tour, behind Outside — his Atlantic Records debut. An intimate club-and-theatre run across North America in early summer, then a sold-out UK leg in the autumn, its biggest night a packed O2 Academy Brixton — growing his audience beyond Nigeria, just before the African Giant era.",
     dates: [
       { date: "May 30, 2018", venue: "Howard Theatre", city: "Washington, D.C.", country: "USA", cap: 1100 },
       // Underground Arts, not The Foundry: the tour poster has "5/31
@@ -335,10 +355,12 @@ export const upcomingShows: UpcomingShow[] = [
     city: "Paris",
     country: "France",
     when: "25 Oct 2026",
-    note: "Headlines the halftime show at the first NFL game ever played in France — Pittsburgh Steelers v New Orleans Saints, 2:30 pm CEST — back at the stadium he was the first African artist to headline, in April 2025. One of seven halftime shows across the league's 2026 international games.",
+    note: "Headlines the halftime show at the first NFL game ever played in France — Pittsburgh Steelers v New Orleans Saints, 2:30 pm CET (9:30 am ET) — back at the stadium he was the first African artist to headline, in April 2025. One of seven halftime shows across the league's 2026 international games.",
     // nfl.com/news/burna-boy-headline-halftime-show-2026-nfl-paris-game-oct-25
     // and @NFL on X, 17 Sep 2026: "Sunday, Oct. 25 at 2:30 p.m. CEST (9:30 a.m.
-    // ET) at Stade de France".
+    // ET) at Stade de France". The NFL's "CEST" is wrong: France returns to
+    // CET that very morning, and 9:30 am EDT (US daylight time runs to 1 Nov)
+    // is 13:30 UTC — 2:30 pm CET. The page said "CEST" until 5 Oct 2026.
     short: "Halftime show at the first NFL game in France, Steelers\u00a0v\u00a0Saints.",
     source: "Announced by the NFL, 17 September 2026",
   },
@@ -440,10 +462,15 @@ export const festivals: Festival[] = [
 
 // Other festivals & one-off shows he performed at (NOT as the headliner).
 export const otherShows: Festival[] = [
+  // The NATIVE's weekend-one review: he "strolled unto the Coachella main
+  // stage" (Sunday 14 Apr 2019, 4:15 pm).
   { year: "2019", name: "Coachella", location: "Indio, USA", note: "His Coachella debut, performing across both weekends on the main Coachella Stage." },
   { year: "2021", name: "Governors Ball Music Festival", location: "New York, USA", note: "A Sunday main-stage set at Citi Field, on a bill headlined by Post Malone." },
   { year: "2021", date: "2021-09-25", name: "Global Citizen Live", location: "New York, USA", note: "Performed on the Great Lawn in Central Park (25 Sept 2021), ahead of headliners Coldplay, Billie Eilish and Jennifer Lopez." },
-  { year: "2023", name: "Coachella", location: "Indio, USA", note: "Returned to Coachella for a second appearance, on a bigger stage than his 2019 debut." },
+  // "On a bigger stage than his 2019 debut" until 5 Oct 2026 — nothing is
+  // bigger than the main Coachella Stage he played in 2019, and no source here
+  // names the 2023 stage.
+  { year: "2023", name: "Coachella", location: "Indio, USA", note: "Returned to Coachella in 2023 for his second appearance." },
   { year: "2024", name: "Glastonbury Festival", location: "Worthy Farm, UK", note: "A primetime Pyramid Stage set, immediately before Sunday headliner SZA, on a bill topped by Dua Lipa and Coldplay." },
   { year: "2025", name: "Wireless Festival", location: "London, UK", note: "A top-billed name on the Sunday line-up at Finsbury Park, on a bill headlined by Drake — who headlined all three days." },
   { year: "2025", date: "2025-09-06", name: "The Town", location: "São Paulo, Brazil", note: "His first show in Brazil — a Skyline Stage set at the giant São Paulo festival (Autódromo de Interlagos, 6 Sept 2025), on a day topped by headliner Travis Scott, before a roughly 100,000-strong daily crowd." },
@@ -462,7 +489,11 @@ export const concerts: Festival[] = [
   // Friday 3 June, on stage at 22:55 local: GreedySouth's review, 4 Jun 2022
   // ("On Friday the 3rd of June, Harare's Belgravia Sports Club was host").
   { year: "2022", date: "2022-06-03", name: "Burna Boy Live in Harare", location: "Belgravia Sports Club, Zimbabwe", note: "His Zimbabwe debut (3 June 2022) — also remembered for declining to wear a ruling-party (ZANU-PF) scarf, refusing any political endorsement." },
-  { year: "2021", name: "Burna Boy: The Live Experience", location: "Eko Convention Centre, Lagos", note: "His sold-out Lagos homecoming concert — a hometown spectacle staged as a newly-crowned Grammy winner." },
+  // "Burna Boy: The Live Experience" (Lagos, 2021) was listed here until 5 Oct
+  // 2026 while also being the Space Drift date of 27 Dec 2021 — one night,
+  // counted as a tour date AND a solo concert "separate from the routed
+  // tours", so /records/tours and /festivals said 59 appearances and the map
+  // 58. It is the tour date; Space Drift's note carries the Lagos homecoming.
   { year: "2022", name: "National Stadium, Kingston", location: "Jamaica", note: "His first-ever headline concert in Jamaica — about 19,000 fans, joined on stage by Popcaan and Lila Iké, planting his flag in the home of reggae and dancehall." },
   { year: "2019", date: "2019-03-22", name: "Burna Boy Xperience", location: "Sheraton Gardens, Kampala", note: "A packed Kampala headline concert (22 March 2019) — his return to Uganda after debuting at Namboole Stadium's Club MegaFest in 2014." },
   { year: "2025", name: "Burna Boy Live in Madrid", location: "FITZ, Madrid", note: "Two nights in the Spanish capital (5–6 Nov 2025)." },

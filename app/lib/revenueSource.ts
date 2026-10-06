@@ -33,7 +33,9 @@ export const REVENUE_READ_ON = "2026-10-03";
 /** The day a board row last changed WITHOUT a re-read at its bodies — a venue
  *  spelled the venue's own way, a tour renamed. 5 Oct 2026: Montreal's
  *  "Centre Bell" became "Bell Centre" (D-07) while both box-office routes
- *  still said 3 Oct (review of the 4 Oct debug PR). Move it with any such edit
+ *  still said 3 Oct (review of the 4 Oct debug PR). The same day's debug pass
+ *  gave Space Drift's three rows the tour's own name, "Space Drift World Tour"
+ *  (records-12). Move it with any such edit
  *  to app/data/tourRevenue.ts; tests/debug1004Data.test.tsx fingerprints the
  *  rows and fails until it is moved. REVENUE_AS_OF stays on the read. */
 export const REVENUE_EDITED_ON = "2026-10-05";
