@@ -150,8 +150,8 @@ export interface CountryThresholds {
    *  Two bodies (Paul, 12 Sep 2026: "no cert should go unseen"): Ifpi Sverige
    *  and AMPROFON both publish their song levels in streams and no
    *  download-equivalence, so their plaques were listed and never summed.
-   *  They are converted at 100 streams to a unit — the ratio IFPI Danmark and
-   *  IFPI Norge publish for the same measure — and the page says so. */
+   *  They are converted at 100 streams to a unit — the ratio IFPI Denmark and
+   *  IFPI Norway publish for the same measure — and the page says so. */
   assumed?: string;
   /** Set where the body RAISED its thresholds inside the window. Attached to
    *  every line for the country, not only multiplied ones, and rendered as the
@@ -259,7 +259,7 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
     normalised:
       "Found 10 Sep 2026; the body's site had been unreachable from every earlier route. ČNS IFPI's rules effective 9 March 2026 state every threshold in SUBSCRIPTION STREAMS — Zlatý singl 2,500,000, Platinový singl 5,000,000, Zlaté album 5,000,000, Platinové album 10,000,000 — and publish the equivalence «1 download = 222 subscription streamů», which is what these are divided by. Both formats normalised. The body awards Zlatý and Platinový only: no Silver, no Diamond, no multiplier rule. Eligible releases: from 1 January 2022 onward.",
     caveat:
-      "ČNS IFPI states no multiplier rule; an N× award is priced here as N × Platinum.",
+      "ČNS IFPI states no multiplier rule. An N× award is priced here as N × Platinum.",
     vintage:
       "ČNS IFPI's stream thresholds have not moved, but its download equivalence fell from 225 to 222 subscription streams on 9 March 2026, so the same threshold is worth slightly more units today than in 2025. Priced at today's ratio. Before July 2025 Czech certification ran on CZK revenue — a different measure.",
     body: "ČNS IFPI — Česká národní skupina IFPI",
@@ -374,11 +374,11 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
     // 9.3 / 18.6 / 93 million before (the body's criteria PDF, read 12 Sep
     // 2026). Video streams may be added since November 2020; no ratio.
     normalised:
-      "SINGLES converted: AMPROFON publishes single levels in audio streams (Oro 22,000,000) and no download-equivalence. Divided by 100 streams to a unit — the ratio IFPI Danmark and IFPI Norge publish — see `assumed`. Albums were already units.",
+      "SINGLES converted: AMPROFON publishes single levels in audio streams (Oro 22,000,000) and no download-equivalence. Divided by 100 streams to a unit — the ratio IFPI Denmark and IFPI Norway publish — see `assumed`. Albums were already units.",
     assumed:
-      "AMPROFON measures singles in audio streams (video streams may be added since November 2020) and publishes no stream-to-unit ratio. Its plaques are converted at 100 streams to a unit, the ratio IFPI Danmark and IFPI Norge publish for the same measure.",
+      "AMPROFON measures singles in audio streams (video streams may be added since November 2020) and publishes no stream-to-unit ratio. Its plaques are converted at 100 streams to a unit, the ratio IFPI Denmark and IFPI Norway publish for the same measure.",
     caveat:
-      "AMPROFON publishes no multiplier rule for singles; its own register stacks the levels it has awarded. An N× award is priced here as N × Platino, and a combined award (Platino & Oro, 4 & 1) as the sum of its parts, 4 × Platino + 1 × Oro.",
+      "AMPROFON publishes no multiplier rule for singles; its own register stacks the levels it has awarded. An N× award is priced here as N × Platinum, and a combined award (Platino & Oro, 4 & 1) as the sum of its parts, 4 × Platinum + 1 × Gold.",
     single: { silver: null, gold: 220_000, platinum: 440_000, diamond: 2_200_000 },
     singleRaw: { gold: 22_000_000, platinum: 44_000_000, diamond: 220_000_000 },
     album: { silver: null, gold: 70_000, platinum: 140_000, diamond: 700_000 },
@@ -414,7 +414,7 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
   NO: {
     code: "NO",
     caveat:
-      "IFPI Norge publishes no written multiplier rule, although its trophy register carries a Nivå column running 1x to 9x beside the Platina marker. An N× award is priced here as N × Platinum.",
+      "IFPI Norway publishes no written multiplier rule, although its trophy register carries a Nivå column running 1x to 9x beside the Platina marker. An N× award is priced here as N × Platinum.",
     body: "IFPI Norge AS",
     sourceUrl: "https://ifpi.no/vilkar/",
     normalised:
@@ -481,7 +481,7 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
     body: "Audiogest (issuer of the galardões under the AFP/Audiogest TOP regime; AFP – Associação Fonográfica Portuguesa has no live website)",
     sourceUrl: "https://audiogest.pt/documents/files/Regulamento%20_%20TOP%20e%20Galard%C3%A3o_novas%20altera%C3%A7%C3%B5es%20_%202025%281%29.pdf",
     vintage:
-      "Audiogest raised its single levels from 5,000 / 10,000 / 100,000 to 12,000 / 25,000 / 250,000 on 1 January 2024. Albums did not move. Priced at today's level; a plaque awarded before 2024 may have cleared the lower bar.",
+      "AFP/Audiogest raised its single levels from 5,000 / 10,000 / 100,000 to 12,000 / 25,000 / 250,000 on 1 January 2024. Albums did not move. Priced at today's level; a plaque awarded before 2024 may have cleared the lower bar.",
     single: { silver: null, gold: 12_000, platinum: 25_000, diamond: 250_000 },
     floor: { single: { silver: null, gold: 5_000, platinum: 10_000, diamond: 100_000 } },
     album: { silver: null, gold: 3_500, platinum: 7_000, diamond: 70_000 },
@@ -503,9 +503,9 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
     // 2017-12). «Enbart streams får räknas» — and capped streams at that, per
     // its Guld och Platina-guide.
     normalised:
-      "SINGLES converted: IFPI Sverige publishes song levels in capped streams (Guld 6,000,000) and no download-equivalence. Divided by 100 streams to a unit — the ratio IFPI Danmark and IFPI Norge publish — see `assumed`. Albums were already units.",
+      "SINGLES converted: IFPI Sverige publishes song levels in capped streams (Guld 6,000,000) and no download-equivalence. Divided by 100 streams to a unit — the ratio IFPI Denmark and IFPI Norway publish — see `assumed`. Albums were already units.",
     assumed:
-      "IFPI Sverige counts songs in capped streams only (since 1 January 2018) and publishes no stream-to-unit ratio. Its plaques are converted at 100 streams to a unit, the ratio IFPI Danmark and IFPI Norge publish for the same measure; capped streams undercount plays, so the figure is a floor.",
+      "IFPI Sverige counts songs in capped streams only (since 1 January 2018) and publishes no stream-to-unit ratio. Its plaques are converted at 100 streams to a unit, the ratio IFPI Denmark and IFPI Norway publish for the same measure; capped streams undercount plays, so the figure is a floor.",
     vintage:
       "IFPI Sverige raised its song levels on 1 January 2024 from 4 and 8 million streams to 6 and 12 million — 40,000 / 80,000 to 60,000 / 120,000 units at 100 streams to a unit. Priced at today's level; a plaque awarded before then may have cleared the lower bar.",
     single: { silver: null, gold: 60_000, platinum: 120_000, diamond: null },
@@ -518,7 +518,7 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
     normalised:
       "Found 10 Sep 2026 in a 21 May 2026 archive of the body's own PDF, confirmed current by ČNS IFPI's awards page as captured 1 September 2026. The Slovak rules effective 9 March 2026 state every threshold in SUBSCRIPTION STREAMS — Zlatý singel 850,000, Platinový singel 1,700,000, Zlatý album 1,750,000, Platinový album 3,500,000 — and publish «1 download = 217 subscription streamov», which is what these are divided by. Both formats normalised. Zlatý and Platinový only: no Silver, no Diamond, no multiplier rule.",
     caveat:
-      "ČNS IFPI's Slovak rules state no multiplier rule; an N× award is priced here as N × Platinum.",
+      "ČNS IFPI's Slovak rules state no multiplier rule. An N× award is priced here as N × Platinum.",
     vintage:
       "ČNS IFPI's Slovak stream thresholds have not moved, but its download equivalence fell from 240 to 217 subscription streams on 9 March 2026, with two unarchived revisions between, so the same threshold is worth more units today than in 2025. Priced at today's ratio. Until 2022 the Slovak awards ran on euro revenue — a different measure.",
     body: "ČNS IFPI — Česká národní skupina IFPI (which administers the Slovak awards; SNS IFPI / ifpi.sk is the Slovak national group)",
@@ -580,6 +580,55 @@ export function thresholdFor(
   const tiers = CERT_THRESHOLDS[code]?.[format];
   if (!tiers) return null;
   return tiers[key] ?? null;
+}
+
+/** A number of units as an exact fraction, `num / den`. */
+export interface ExactUnits {
+  num: number;
+  den: number;
+}
+
+/** The stream-to-unit ratio a format's stored levels were divided by, where
+ *  the body prints them in streams (`singleRaw` / `albumRaw`): 215 for NVPI's
+ *  singles and 2150 for its albums, 222 for ČNS IFPI, 217 for its Slovak
+ *  rules, 150 for SNEP, 100 for the bodies that publish it or are priced at
+ *  the § ratio. Read off the stored pair rather than typed a second time —
+ *  tests/debug1005Boards.test.ts holds every stored level to floor(raw / ratio).
+ *  null where the format is stored in units already. */
+export function streamRatio(code: string, format: CertFormat): number | null {
+  const c = CERT_THRESHOLDS[code];
+  const raw = format === "single" ? c?.singleRaw : c?.albumRaw;
+  const tiers = c?.[format];
+  if (!raw || !tiers) return null;
+  const key = (Object.keys(raw) as (keyof TierUnits)[]).find((k) => raw[k] && tiers[k]);
+  return key ? Math.round(raw[key]! / tiers[key]!) : null;
+}
+
+/**
+ * `thresholdFor`, exactly: the level as the fraction the body's own figures
+ * give — NVPI's single Gold is 10,000,000 / 215 = 46,511.63 units, where the
+ * table stores the floored 46,511.
+ *
+ * The stored integer is right for one plaque, and wrong for a SUM of them:
+ * three Dutch plaques worth 130,232.56 between them added up to 130,231 while
+ * Tyla's two, worth exactly the same, added up to 130,232 — and the board
+ * ranked her above Burna Boy on a rounding remainder rather than on the rule
+ * that breaks a tie, more plaques first (debug pass, 5 Oct 2026). certUnits
+ * sums these and floors each sum once.
+ */
+export function exactThresholdFor(
+  code: string,
+  format: CertFormat,
+  tier: "Silver" | "Gold" | "Platinum" | "Diamond",
+  program?: string,
+): ExactUnits | null {
+  const units = thresholdFor(code, format, tier, program);
+  if (units === null) return null;
+  if (program && CERT_PROGRAMS[program]) return { num: units, den: 1 };
+  const c = CERT_THRESHOLDS[code];
+  const raw = (format === "single" ? c?.singleRaw : c?.albumRaw)?.[tier.toLowerCase() as keyof TierUnits];
+  const ratio = streamRatio(code, format);
+  return raw && ratio ? { num: raw, den: ratio } : { num: units, den: 1 };
 }
 
 /** Why a format cannot be priced at all, or null when it can. */

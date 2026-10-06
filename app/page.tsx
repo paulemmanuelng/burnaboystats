@@ -108,7 +108,7 @@ export default function Home() {
             <div className={styles.heroCopy}>
               <div className={styles.eyebrow}>
                 <span className={styles.eyebrowRule} aria-hidden="true" />
-                The African Giant · Est. 2010 · Afro-Fusion
+                The African Giant · Est. 2010 · Afro-fusion
               </div>
               <h1 className={styles.title}>
                 Burna <span className="inkText">Boy</span>

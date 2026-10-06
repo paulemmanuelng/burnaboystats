@@ -4,6 +4,7 @@ import BreadcrumbBar from "../../../components/BreadcrumbBar";
 import MobileFestivals from "../../../components/MobileFestivals";
 import { numberWord } from "../../../lib/homeData";
 import { festivals, otherShows, concerts, type Festival } from "../../../data/tours";
+import { byYearDesc, PHONE_SOURCE_NOTE } from "../../../lib/festivalOrder";
 import { pageMetadata } from "../../../lib/seo";
 
 export const metadata = pageMetadata({
@@ -15,8 +16,6 @@ export const metadata = pageMetadata({
   shareDescription: "Every festival he's headlined, plus other big-stage appearances.",
 });
 
-const byYearDesc = (rows: Festival[]) =>
-  [...rows].sort((a, b) => Number(b.year) - Number(a.year));
 
 const headlined = byYearDesc(festivals);
 const soloConcerts = byYearDesc(concerts);
@@ -82,7 +81,7 @@ export default function FestivalsPage() {
           { name: "Solo concerts", rows: soloConcerts.map(toRow) },
           { name: "Other appearances", rows: others.map(toRow) },
         ]}
-        sourceNote="From each festival's own line-up archive. tours.ts records no capacity field, so sections run newest-first rather than by size."
+        sourceNote={PHONE_SOURCE_NOTE}
       />
 
       <div className={styles.desktopOnly}>

@@ -64,6 +64,14 @@ describe("one country, every artist — reconciled against priceArtist", () => {
           if (line.units !== units) mismatches.push(`${where}: units ${line.units} vs ${units}`);
           if (line.counted !== countedPlaques) mismatches.push(`${where}: counted ${line.counted} vs ${countedPlaques}`);
           if (line.notCounted !== unpriced) mismatches.push(`${where}: not counted ${line.notCounted} vs ${unpriced}`);
+          // The chip names the same record on both: where two plaques tie on
+          // award and units, the pair page kept the first in release order and
+          // the board's "Highest plaque" the first alphabetically — Burna Boy's
+          // French line read "Dai Dai" on one and "Be Honest" on the other
+          // (review of the 5 Oct 2026 debug pass).
+          const top = (counted ?? listed)?.top ?? null;
+          const said = (t: { title: string; level: string; x: number } | null) => (t ? `${t.title} · ${t.x}× ${t.level}` : "none");
+          if (said(line.top) !== said(top)) mismatches.push(`${where}: top ${said(line.top)} vs ${said(top)}`);
         }
       }
     }

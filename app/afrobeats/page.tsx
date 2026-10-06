@@ -18,6 +18,7 @@ import {
   plaqueLabel,
   chartEntries,
   BURNA,
+  AFROBEATS_LAST_FULL_SWEEP,
 } from "../data/afrobeats";
 import { provenanceTileSentence } from "../lib/offRegister";
 import { totalAwards, countryCount as burnaCountries } from "../data/certifications";
@@ -44,24 +45,19 @@ export const metadata = pageMetadata({
 // so the order has to be the number, not an opinion.
 const ranked = [...sweptArtists].sort((a, b) => certCount(b) - certCount(a));
 
-// The two sweep dates as one range — "17–19 August 2026" — so the provenance
-// tile moves when the sweeps do instead of carrying a typed string.
-// Read from the artists' OWN verifiedOn dates rather than from named constants.
-// It was built from AFROBEATS_VERIFIED_ON and _2 alone, so it went on claiming
-// "17-19 August" while _3 through _6 (21, 26 and 28 August) had been added and
-// four more sweeps had happened. Derived, it cannot fall behind an expansion.
-const sweptRange = (() => {
-  const d = (iso: string) => new Date(`${iso}T12:00:00Z`);
-  const iso = sweptArtists.map((x) => x.verifiedOn).sort();
-  const a = d(iso[0]);
-  const b = d(iso[iso.length - 1]);
-  const month = (x: Date) => x.toLocaleDateString("en-GB", { month: "long", timeZone: "UTC" });
-  const year = b.getUTCFullYear();
-  if (a.getTime() === b.getTime()) return `${a.getUTCDate()} ${month(a)} ${year}`;
-  return month(a) === month(b) && a.getUTCFullYear() === year
-    ? `${a.getUTCDate()}–${b.getUTCDate()} ${month(b)} ${year}`
-    : `${a.getUTCDate()} ${month(a)} – ${b.getUTCDate()} ${month(b)} ${year}`;
-})();
+// The day every register behind the board was last re-read — the last FULL
+// sweep (AFROBEATS_LAST_FULL_SWEEP), the date the artist pages print beside
+// "re-read at every register". This read a range, "6 September – 4 October
+// 2026", built from the artists' verifiedOn dates, which are the days a read
+// last CHANGED a plaque: seventeen artists came back unchanged from the 2 Oct
+// sweep and kept older dates, and a partial read moved two later. "Last on <a
+// four-week range>" said neither (debug pass, 5 Oct 2026).
+const fullSweepLong = new Date(`${AFROBEATS_LAST_FULL_SWEEP}T12:00:00Z`).toLocaleDateString("en-GB", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+  timeZone: "UTC",
+});
 
 // Every dot is a computed pair. Burna leads the list so he paints last-but-one
 // under nobody; the plot itself does not care about order.
@@ -126,15 +122,24 @@ const jsonLd = {
     "Certification and chart records for Afrobeats' biggest artists, each read in the issuing body's own register or, where it holds no row, the body's own announcement or the label's own award.",
   // An ItemList, not hasPart: hasPart takes CreativeWork parts of this page,
   // while what the board actually publishes is a ranked list of artists.
+  //
+  // Burna Boy first, as the visible board opens with him — his row links to
+  // /certifications, as his tile does. The list held the 19 board artists only
+  // and opened on Wizkid until 5 Oct 2026, while the meta description named
+  // 20 (debug pass, seo-10). His count leads every board count, so the order
+  // stays descending (tests/debug1005Seo.test.tsx holds that).
   mainEntity: {
     "@type": "ItemList",
-    numberOfItems: ranked.length + pendingArtists.length,
+    numberOfItems: 1 + ranked.length + pendingArtists.length,
     itemListOrder: "https://schema.org/ItemListOrderDescending",
-    itemListElement: [...ranked, ...pendingArtists].map((a, i) => ({
+    itemListElement: [
+      { name: BURNA.name, url: `${CANONICAL_ORIGIN}${BURNA.href}` },
+      ...[...ranked, ...pendingArtists].map((a) => ({ name: a.name, url: `${CANONICAL_ORIGIN}/afrobeats/${a.slug}` })),
+    ].map((x, i) => ({
       "@type": "ListItem",
       position: i + 1,
-      url: `${CANONICAL_ORIGIN}/afrobeats/${a.slug}`,
-      name: a.name,
+      url: x.url,
+      name: x.name,
     })),
   },
 };
@@ -169,7 +174,7 @@ export default function AfrobeatsPage() {
         }))}
         chartRail={chartPeakRail}
         liveRail={liveRail}
-        sweptRange={sweptRange}
+        fullSweep={fullSweepLong}
         liveNote={liveCadenceNote}
       />
 
@@ -194,7 +199,7 @@ export default function AfrobeatsPage() {
           body&apos;s own announcement or the label&apos;s own award) rather than taken from a fan tally.
         </p>
         <p className={styles.cadence}>
-          The board is re-read at each register sweep — last on {sweptRange}. Burna Boy&apos;s own pages update daily.
+          The board is re-read at each register sweep — last on {fullSweepLong}. Burna Boy&apos;s own pages update daily.
         </p>
       </section>
 
@@ -273,10 +278,14 @@ export default function AfrobeatsPage() {
           <Link href="/methodology#sources" className={`${styles.tile} ${styles.tileRule}`}>
             <span className={styles.tileBody}>
               <span className={styles.ruleKicker}>Provenance</span>
-              <span className={styles.ruleName}>Read at source, {sweptRange}</span>
+              <span className={styles.ruleName}>Read at source, re-read {fullSweepLong}</span>
+              {/* The count is the ARTISTS whose registers are swept, all of
+                  them, Burna Boy included — "19 register sweeps" beside a list
+                  of register names read as nineteen registers or nineteen
+                  sweeps, and was neither (debug pass, 5 Oct 2026). */}
               <span className={styles.ruleBody}>
-                {sweptArtists.length} register sweeps — RIAA, BPI, SNEP, TurnTable and their
-                equivalents — re-read at each sweep, last on {sweptRange}.{" "}
+                All {boardNames.length} artists&apos; registers — RIAA, BPI, SNEP, TurnTable and their
+                equivalents — re-read at each sweep, last on {fullSweepLong}.{" "}
                 {provenanceTileSentence()}
               </span>
               <span className={styles.ruleLink}>Where the figures come from →</span>
@@ -348,8 +357,8 @@ export default function AfrobeatsPage() {
 
         <p className={styles.foot}>
           Counted under the rules on the{" "}
-          <Link href="/methodology#principles">methodology page</Link>. Last read at source{" "}
-          {sweptRange}.
+          <Link href="/methodology#principles">methodology page</Link>. Every register last re-read{" "}
+          {fullSweepLong}.
         </p>
       </section>
 

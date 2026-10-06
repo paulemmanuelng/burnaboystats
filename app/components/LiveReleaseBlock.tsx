@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import styles from "../live-charts/liveCharts.module.css";
-import { cadenceOf } from "../lib/liveChartMeta";
+import { cadenceOf, platformCountries } from "../lib/liveChartMeta";
 import { useLiveRelease } from "../lib/useLiveRelease";
 import { spotifyImage } from "../lib/spotifyImage";
 import type { LiveEntry } from "../data/liveCharts";
@@ -32,7 +32,9 @@ export interface ReleaseSummary {
   ep: boolean;
   total: number;
   no1: number;
-  platforms: { platform: string; count: number; numberOnes: number }[];
+  /** `countries`: "12 countries", as platformCountries words it — the
+   *  worldwide chart is a chart, not a country. */
+  platforms: { platform: string; countries: string; numberOnes: number }[];
 }
 
 import { flagFor } from "../lib/flagFor";
@@ -101,9 +103,7 @@ export default function LiveReleaseBlock({
           {r.platforms.map((p) => (
             <span key={p.platform} className={styles.chip}>
               <span className={styles.chipPlatform}>{p.platform}</span>
-              <span className={styles.chipCount}>
-                {p.count} {p.count === 1 ? "country" : "countries"}
-              </span>
+              <span className={styles.chipCount}>{p.countries}</span>
               {p.numberOnes > 0 && (
                 <span className={styles.chipNo1}>{p.numberOnes} at No.&nbsp;1</span>
               )}
@@ -145,7 +145,7 @@ export default function LiveReleaseBlock({
           <h3 className={styles.platformName}>
             {p.platform}
             <span className={styles.platformCount}>
-              {p.entries.length} {p.entries.length === 1 ? "country" : "countries"}
+              {platformCountries(p.entries)}
               <span className={styles.platformCadence}> · {cadenceOf(p.platform)}</span>
             </span>
           </h3>

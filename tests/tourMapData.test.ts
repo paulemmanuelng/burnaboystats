@@ -48,8 +48,13 @@ describe("every row is placed, so nothing is counted in the wrong country", () =
     const places = [...Object.values(ROW_PLACE), ...Object.values(MOMENT_PLACE).flatMap((p) => (p ? [p] : []))];
     expect(places.filter((p) => !names.has(p.country)).map((p) => p.country)).toEqual([]);
   });
-  it("the one row that repeats a tour date is the Lagos Live Experience", () => {
-    expect(rowsRepeatingATourDate).toEqual(["Burna Boy: The Live Experience"]);
+  it("no row repeats a tour date (the Lagos Live Experience left the concerts list, 5 Oct 2026)", () => {
+    // It was the Space Drift date of 27 Dec 2021 AND a concerts row, so the
+    // map counted it once while /records/tours and /festivals counted 59
+    // appearances (debug pass 5 Oct 2026). Now every list counts it once.
+    expect(rowsRepeatingATourDate).toEqual([]);
+    expect(concerts.map((c) => c.name)).not.toContain("Burna Boy: The Live Experience");
+    expect(festivals.length + otherShows.length + concerts.length).toBe(tourMapTotals.appearances);
   });
 });
 
@@ -184,10 +189,11 @@ describe("all 57 match research/countries.md", () => {
 describe("the headline figures", () => {
   // The brief's §3.3 totals were 98 tour dates, 156 shows and 96 cities; the
   // Dublin night (17 Mar 2022, 3Arena) added one of each on 4 Oct 2026 —
-  // research/tour-map-method/card-counts.md says so beside each figure.
-  // 5 Oct 2026: 97 -> 98 cities — the Fillmore Silver Spring night is filed in
-  // Silver Spring, MD, not Washington, D.C. (seo-06).
-  it("157 documented shows, 98 cities, 2014–2026, London Stadium 58,973", () => {
+  // research/tour-map-method/card-counts.md says so beside each figure. On
+  // 5 Oct 2026 the Fillmore (15 Sep 2019) was filed under Silver Spring, MD,
+  // its own town, and the World Cup Final halftime show was placed at MetLife
+  // Stadium, East Rutherford: two cities and one milestone more.
+  it("157 documented shows, 99 cities, 2014–2026, London Stadium 58,973", () => {
     expect(tourMapTotals).toMatchObject({
       countries: 57,
       regions: 7,
@@ -195,8 +201,8 @@ describe("the headline figures", () => {
       tourDates: 99,
       appearances: 58,
       documentedShows: 157,
-      milestones: 6,
-      cities: 98,
+      milestones: 7,
+      cities: 99,
       years: "2014–2026",
       itinerariesFrom: 2018,
       biggestNight: { venue: "London Stadium", city: "London", when: "29 Jun 2024", tickets: "58,973" },
@@ -206,9 +212,30 @@ describe("the headline figures", () => {
     });
   });
 
-  it("negative control: counting the Lagos row twice would give 158, not 157", () => {
-    expect(tourMapTotals.documentedShows + rowsRepeatingATourDate.length).not.toBe(157);
-    expect(tourMapTotals.documentedShows + rowsRepeatingATourDate.length).toBe(158);
+  it("the shows figure is the tour dates plus every appearance row, each night once", () => {
+    // Before 5 Oct 2026 the map was right only because it de-duplicated the
+    // Lagos row; the lists themselves now hold it once, so the sum is plain.
+    expect(tourMapTotals.documentedShows).toBe(tourMapTotals.tourDates + festivals.length + otherShows.length + concerts.length);
+  });
+
+  it("the United States card counts the World Cup Final at MetLife and files the Fillmore under Silver Spring", () => {
+    const us = get("United States");
+    expect(us.documented).toBe("50 tour dates · 7 festival and one-off appearances · 3 live milestones · 32 cities · 2018–2026");
+    // Negative control: the card as it read on 5 Oct 2026.
+    expect(us.documented).not.toBe("50 tour dates · 7 festival and one-off appearances · 2 live milestones · 30 cities · 2018–2025");
+    expect(MOMENT_PLACE["FIFA World Cup Final halftime show"]).toEqual({ country: "United States", city: "East Rutherford", repeats: false });
+    expect(tourMapCities.find((c) => c.city === "Washington, D.C.")?.line).toBe("4 documented tour dates");
+    expect(tourMapCities.find((c) => c.city === "Silver Spring, MD")?.line).toBe("1 documented tour date");
+  });
+
+  it("the map's event lines spell places and festivals the way the records do", () => {
+    // Zürich beside "Hallenstadion, Zurich" in one card; Montréal, the long
+    // form of One Africa Music Fest and a short Tipsy Beach Party — 5 Oct 2026.
+    const lines = performedCountries.flatMap((c) => c.events).join("\n");
+    expect(lines).not.toMatch(/Zürich|Montréal|One Africa Music Festival|Tipsy Beach Party/);
+    expect(lines).toContain("Hallenstadion, Zurich (2022 & 2026)");
+    expect(lines).toContain("One Africa Music Fest, Dubai (2019)");
+    expect(otherShows.some((f) => f.name === "One Africa Music Fest")).toBe(true);
   });
 
   it("Toronto, for the find box: 5 documented tour dates", () => {

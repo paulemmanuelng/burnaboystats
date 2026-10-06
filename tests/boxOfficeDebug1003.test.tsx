@@ -459,12 +459,17 @@ describe("sw-5 / C8: both box-office routes carry the board's read date", () => 
   it("the date comes from the edited-on stamp, so verifiedOn keeps meaning the last register read", () => {
     for (const slug of ["ckay", "olamide"]) {
       expect(afrobeatsArtists.find((x) => x.slug === slug)?.swept, slug).toBe(true);
-      expect(AFROBEATS_EDITED_ON[slug]).toBe(EDITED_404);
+      // A later edit may move the stamp on (Olamide's titles, 5 Oct 2026),
+      // never back before #404's.
+      expect(AFROBEATS_EDITED_ON[slug] >= EDITED_404, slug).toBe(true);
     }
     // One helper since 5 Oct 2026 (D-05): the sitemap and the pages' Dataset
     // dateModified both read pageStamp, the later of the two.
     expect(read("app/data/afrobeats.ts")).toMatch(/pageStamp = [\s\S]{0,120}\[a\.verifiedOn, AFROBEATS_EDITED_ON\[a\.slug\]\]/);
-    expect(read("app/sitemap.ts")).toContain("const stamp = pageStamp(a);");
+    // The artist routes take the later of that and the chart sweep since the
+    // 5 Oct debug pass (chartPageStamp builds on pageStamp).
+    expect(read("app/sitemap.ts")).toContain("const stamp = chartPageStamp(a);");
+    expect(read("app/data/afrobeats.ts")).toMatch(/chartPageStamp = [\s\S]{0,120}\[pageStamp\(a\), AFROBEATS_LAST_CHART_SWEEP\]/);
   });
 
   it("negative control: the stamps the built sitemap shipped (18 Sep, 6 Sep) fail", () => {

@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import styles from "./mobileLiveCharts.module.css";
 import { artAt } from "../lib/artAt";
-import { cadenceOf, LIVE_CADENCE, releaseKey } from "../lib/liveChartMeta";
+import { cadenceOf, LIVE_CADENCE, platformCountries, releaseKey } from "../lib/liveChartMeta";
 import { useLiveRelease } from "../lib/useLiveRelease";
 import ScrollRail from "./ScrollRail";
 import MobileMenuButton from "./MobileMenuButton";
@@ -73,6 +73,7 @@ export default function MobileLiveCharts({
   backHref = "/",
   backLabel = "Live Charts",
   chartsHref = "/records/charts",
+  chartsLabel = "Chart Records",
   heading,
   source,
 }: {
@@ -88,6 +89,10 @@ export default function MobileLiveCharts({
    *  which is right on his own page and wrong on every board page — they
    *  were sending readers to his chart records instead of the artist's. */
   chartsHref?: string;
+  /** The words on that link. "Chart Records" is Burna Boy's page; the board
+   *  passes "Wizkid's chart board", because "Chart Records" elsewhere on a
+   *  board page links to HIS records (debug pass, 5 Oct 2026). */
+  chartsLabel?: string;
   /** The screen's own H1, in two parts. Defaults to "Live Charts". */
   heading?: { lead: string; gold: string };
   /** Where the expanded rows fetch their country lists from. */
@@ -134,7 +139,7 @@ export default function MobileLiveCharts({
             guess from a div. */}
         <p className={styles.notice}>
           <strong>Platform charts, not official charts.</strong> Career peaks live on{" "}
-          <Link href={chartsHref}>Chart Records</Link>.
+          <Link href={chartsHref}>{chartsLabel}</Link>.
         </p>
       </div>
 
@@ -316,7 +321,7 @@ function LivePanel({
           <div className={styles.platformHead}>
             <span className={styles.platformBlockName}>{p.platform}</span>
             <span className={styles.platformBlockMeta}>
-              {p.entries.length} {p.entries.length === 1 ? "country" : "countries"} ·{" "}
+              {platformCountries(p.entries)} ·{" "}
               {cadenceOf(p.platform)}
             </span>
           </div>

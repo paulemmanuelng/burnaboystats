@@ -300,7 +300,7 @@ export const updates: Update[] = [
     // Price: the $700,000 the car's page states (Paul, 23 Sep 2026: that
     // figure only). The count and total are the garage's of that day (commit
     // cb442b8a, "sixteen cars, $17.54M") — a snapshot, not the live figure.
-    text: "A 2010 Mercedes-Benz SLS AMG — the gullwing, black over tan, about 6,000 miles — joined the garage in September, bought from AbujaCar in Abuja at a reported $700,000. The collection now stands at 16 cars worth a reported $17.54M.",
+    text: "A 2010 Mercedes-Benz SLS AMG — the gullwing, black over tan, about 6,000 miles — joined the garage in September, bought from Abuja Car in Abuja at a reported $700,000. The collection now stands at 16 cars worth a reported $17.54M.",
     href: "/records/cars/mercedes-sls-amg",
   },
   {
@@ -440,7 +440,7 @@ export const updates: Update[] = [
     date: "2026-09-17",
     category: "Tours",
     big: true,
-    text: "Burna Boy will headline the halftime show at the first NFL game ever played in France: Pittsburgh Steelers v New Orleans Saints at Stade de France on Sunday 25 October, 2:30 pm CEST — the NFL's own announcement, and a return to the stadium he was the first African artist to headline in April 2025.",
+    text: "Burna Boy will headline the halftime show at the first NFL game ever played in France: Pittsburgh Steelers v New Orleans Saints at Stade de France on Sunday 25 October, 2:30 pm CET — the NFL's own announcement, and a return to the stadium he was the first African artist to headline in April 2025.",
     href: "/records/tours",
   },
   {

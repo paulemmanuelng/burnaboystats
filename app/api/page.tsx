@@ -4,7 +4,7 @@ import KeepExploring from "../components/KeepExploring";
 import BreadcrumbBar from "../components/BreadcrumbBar";
 import CopyButton from "../components/CopyButton";
 import MobileApi from "../components/MobileApi";
-import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime, BURNA_BOY_REF } from "../lib/seo";
+import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, BURNA_BOY_REF } from "../lib/seo";
 import { API_VERSION, lastUpdated, ENVELOPE_NOTE, UPDATED_NOTE, CREDIT_NOTE } from "../lib/api";
 import { chartsSample } from "../lib/chartsPayload";
 import { chartEntryCount, chartCountryCount, numberOnes, CHART_COUNTRIES, allChartItems } from "../data/charts";
@@ -113,7 +113,10 @@ export default function ApiPage() {
     url: `${CANONICAL_ORIGIN}/api`,
     license: "https://creativecommons.org/licenses/by/4.0/",
     isAccessibleForFree: true,
-    dateModified: asDateTime(lastUpdated),
+    // No dateModified: the sitemap deliberately ships no lastmod for this page
+    // (tests/sitemapEvidence.test.ts), and the value here was the newest date
+    // anywhere in the feed, not a change to this page (debug pass 5 Oct 2026,
+    // seo-12). The page still prints when the site's data was last reviewed.
     creator: { "@type": "Organization", name: SITE_NAME, url: CANONICAL_ORIGIN },
     about: BURNA_BOY_REF,
     keywords: ["Burna Boy", "charts", "certifications", "Afrobeats", "music data", "open data"],

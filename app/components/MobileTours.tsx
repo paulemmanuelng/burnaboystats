@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import styles from "./mobileTours.module.css";
-import { tourMeta } from "../lib/tourMeta";
+import { tourMeta, NO_TOUR_TOTAL } from "../lib/tourMeta";
 import { REVENUE_BODY, REVENUE_REPORTS } from "../lib/revenueSource";
 import { upcomingShows, type Tour } from "../data/tours";
 import NotReported from "./NotReported";
@@ -199,7 +199,7 @@ export default function MobileTours({
                   </div>
                 </div>
                 <span className={`${styles.tourGross} ${t.gross ? "" : styles.grossNone}`}>
-                  {t.gross ?? <NotReported />}
+                  {t.gross ?? <NotReported what={NO_TOUR_TOTAL} />}
                 </span>
                 <span className={styles.caret} aria-hidden="true">{isOpen ? "▾" : "▸"}</span>
               </div>
@@ -258,11 +258,14 @@ export default function MobileTours({
         {/* The board's own credit (revenueSource.ts, no data imports, so the
             client bundle stays clean): it said "Billboard Boxscore" alone until
             5 Oct 2026, while the desktop page credits TouringData (D-03). */}
+        {/* Until 5 Oct 2026 this named the data file ("tours.ts records
+            capacity") and said a dash meant "no reported gross" — false for No
+            Sign of Weakness and Space Drift, whose nights are on the board. */}
         Tour grosses come from {REVENUE_BODY}, which republishes {REVENUE_REPORTS}. The per-date figure is the{" "}
-        <strong>venue&apos;s capacity</strong>, not tickets sold — tours.ts records
-        capacity, and only some nights have a Boxscore headcount. A dash means the run has
-        no reported gross, not that it was small. Dates shown are a documented sample, not
-        the full itinerary.
+        <strong>venue&apos;s capacity</strong>, not tickets sold; only some nights have a
+        reported headcount. A dash means no tour total has been reported, not that the run
+        was small; single nights from a run can still be on the Highest-grossing shows
+        board. Some runs list only their confirmed dates.
       </p>
 
       <div className={styles.spacer} />

@@ -14,6 +14,8 @@ def read(p):
         return f.read().split("\n")
 
 tours_src = read("app/data/tours.ts")
+# liveMoments moved to its own file on 4 Oct 2026 (app/data/liveMoments.ts).
+lm_src = read("app/data/liveMoments.ts")
 rev_src = read("app/data/tourRevenue.ts")
 pc_src = read("app/data/performedCountries.ts")
 ws_src = read("app/data/worldShapes.ts")
@@ -134,15 +136,15 @@ fest = arr("festivals", None) + arr("otherShows", None) + arr("concerts", None)
 
 # ── liveMoments: place only where the text names one (manual, cited) ───────
 lm = []
-lo = next(i for i, l in enumerate(tours_src, 1) if l.startswith("export const liveMoments"))
-for i in range(lo + 1, len(tours_src) + 1):
-    line = tours_src[i - 1]
+lo = next(i for i, l in enumerate(lm_src, 1) if l.startswith("export const liveMoments"))
+for i in range(lo + 1, len(lm_src) + 1):
+    line = lm_src[i - 1]
     if line.startswith("];"):
         break
     if line.strip().startswith("{ year:"):
         lm.append({"year": int(field(line, "year")), "title": field(line, "title"), "line": i})
 LM_PLACE = {  # title -> (country, city, duplicate-of-dated-show?)
-    "FIFA World Cup Final halftime show": (None, None, False),  # text names no place
+    "FIFA World Cup Final halftime show": ("United States", "East Rutherford", False),  # MetLife Stadium (its text names it since 5 Oct 2026)
     "FIFA World Cup Opening Ceremony": ("Mexico", "Mexico City", False),
     "AFCON 2025 Fan Zone grand finale": ("Morocco", "Rabat", False),
     "Stade de France, Paris": ("France", "Paris", True),
@@ -179,7 +181,7 @@ for i, line in enumerate(rev_src, 1):
                        "shows": num(line, "shows"), "tickets": int(field(line, "tickets").replace(",", "")),
                        "revenue": num(line, "revenue"), "line": i})
 FLAG_COUNTRY = {"🇬🇧": "United Kingdom", "🇫🇷": "France", "🇺🇸": "United States", "🇳🇱": "Netherlands",
-                "🇩🇪": "Germany", "🇦🇺": "Australia", "🇨🇭": "Switzerland", "🇧🇪": "Belgium", "🇨🇦": "Canada"}
+                "🇩🇪": "Germany", "🇦🇺": "Australia", "🇨🇭": "Switzerland", "🇧🇪": "Belgium", "🇨🇦": "Canada", "🇮🇪": "Ireland"}
 for r in rev:
     r["country"] = FLAG_COUNTRY[r["flag"]]
     # join to a dated tour show by venue + year

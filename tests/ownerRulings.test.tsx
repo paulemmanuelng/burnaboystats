@@ -66,7 +66,9 @@ describe("the Colombian Gold is Sony Music Colombia's, and the rule says so", ()
     // The US plaques name two programmes, not one issuer: the body stays.
     expect(certIssuerIn("US")).toBe("RIAA");
     // The register link is untouched.
-    expect(COUNTRIES.CO.body).toBe("Pro Musica Colombia");
+    // Spelt with its accent since 5 Oct 2026 (core-08); the ruling is about the
+    // issuer, not the spelling.
+    expect(COUNTRIES.CO.body).toBe("Pro Música Colombia");
     expect(COUNTRIES.CO.url).toBe("https://pro-musica.co/");
   });
 

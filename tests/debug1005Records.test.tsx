@@ -630,7 +630,11 @@ describe("seo-13: /updates shares as Burna Boy news", () => {
 
 describe("seo-06: the Fillmore Silver Spring is in Silver Spring", () => {
   it("filed in its own town, so 15 September no longer says Washington", () => {
-    const row = tours.flatMap((t) => t.dates ?? []).find((d) => d.venue === "The Fillmore Silver Spring")!;
+    // The venue is "The Fillmore" in Silver Spring, MD since main's tours lane
+    // of the same pass (tourscars-19) fixed the same row; this guard keeps the
+    // records lane's finding pinned to the night itself.
+    const row = tours.flatMap((t) => t.dates ?? []).find((d) => d.date === "Sep 15, 2019")!;
+    expect(row.venue).toBe("The Fillmore");
     expect(row.city).toBe("Silver Spring, MD");
     expect(dayBySlug("15-september")!.lead.headline).not.toMatch(/Washington, D\.C\./);
   });

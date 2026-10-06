@@ -2,11 +2,12 @@ import { Fragment } from "react";
 import Link from "next/link";
 import styles from "./compare.module.css";
 import { fmt, keepParens, PlaqueWords, program, shortProgram, tierClass } from "./chips";
-import { href, type SP } from "../lib/compareUrl";
+import type { SP } from "../lib/compareUrl";
 import { artAt, artSrcSet } from "../lib/artAt";
 import { canonicalPair, pairSlug } from "../lib/comparePairs";
 import { comparableArtists } from "../lib/certUnits";
 import {
+  bodyOwner,
   countryBoards,
   countrySlug,
   priceCountry,
@@ -16,6 +17,7 @@ import {
   type CountryProgram,
 } from "../lib/certCountry";
 import { CERT_PROGRAMS, type CertFormat, type TierUnits } from "../data/certThresholds";
+import { tierWord } from "../lib/awardName";
 
 /**
  * /compare in COUNTRY mode — one market, every artist, ranked by the units
@@ -37,8 +39,10 @@ import { CERT_PROGRAMS, type CertFormat, type TierUnits } from "../data/certThre
  */
 
 /** Gold 40,000 · Platinum 80,000 · Diamond 800,000 — the tiers a body awards,
- *  in order, skipping the ones it does not. A null tier is not a gap. */
-const tierRun = (t: TierUnits) =>
+ *  in order, skipping the ones it does not. A null tier is not a gap. Named as
+ *  the programme names them: RIAA Latin's card read "Gold 30,000 · Platinum
+ *  60,000" beside its own Platino chips (debug pass, 5 Oct 2026). */
+const tierRun = (t: TierUnits, body?: string) =>
   ([
     ["Silver", t.silver],
     ["Gold", t.gold],
@@ -46,8 +50,30 @@ const tierRun = (t: TierUnits) =>
     ["Diamond", t.diamond],
   ] as const)
     .filter(([, n]) => n !== null)
-    .map(([name, n]) => `${name} ${fmt(n as number)}`)
+    .map(([name, n]) => `${tierWord(name, body)} ${fmt(n as number)}`)
     .join(" · ");
+
+/** One clause, unbreakable: its spaces become no-break spaces. */
+const nb = (clause: string) => clause.replace(/ /g, "\u00a0");
+
+/** Does this board hold a plaque of this format? A format-scoped note (the
+ *  singles-only § and ‡, Poland's ¶) applies only where it does. No format:
+ *  the note covers both. */
+const formatOnBoard = (board: CountryBoard, format?: CertFormat) =>
+  !format || board.programs.some((x) => x.lines.some((l) => l.plaqueList.some((p) => p.format === format)));
+
+/** The marks a board's figure carries on the index, as the pair pages mark a
+ *  country's row: § for a stream ratio the body does not publish (Mexico,
+ *  Sweden), ¶ for a figure it no longer prints (Greece, Poland's singles). The
+ *  footer below the index said plaques were "marked §" and "marked ¶" and no
+ *  row carried either (debug pass, 5 Oct 2026). */
+const boardMarks = (board: CountryBoard): string[] => {
+  const t = board.thresholds;
+  return [
+    t?.assumed && formatOnBoard(board, t.assumedFormat) ? "§" : null,
+    t?.historic && formatOnBoard(board, t.historicFormat) ? "¶" : null,
+  ].filter((m): m is string => Boolean(m));
+};
 
 function PlaqueChip({ p, code, hideProgram = false }: { p: CountryPlaque; code: string; hideProgram?: boolean }) {
   // Inside a programme's own table the marker is the table's title repeated on
@@ -73,13 +99,32 @@ function PlaqueChip({ p, code, hideProgram = false }: { p: CountryPlaque; code: 
 function CountryIndex({ options }: { options: { includeNigeria: boolean; includeFeatures: boolean } }) {
   const boards = countryBoards(options);
   const totalPlaques = boards.reduce((n, b) => n + b.plaques, 0);
+  // Where "priced at the body named beside it" is not the whole story, said
+  // by name and derived: IFPI Greece publishes no current level (its board is
+  // priced at IFPI's June 2013 one) and Colombia's body publishes none at all.
+  // The lead promised every plaque its own body's price (debug pass, 5 Oct 2026).
+  const elsewhere = boards.filter((b) => b.counted && b.thresholds?.pricedAt).map((b) => `${b.name}'s at ${b.thresholds!.pricedAt}`);
+  const unpriced = boards.filter((b) => !b.counted).map((b) => `${b.name}'s`);
+  const listed = (xs: string[]) => (xs.length < 2 ? xs.join("") : `${xs.slice(0, -1).join(", ")} and ${xs.at(-1)}`);
   return (
     <>
       <div className={styles.cbIndexHead}>
         <h2 className={styles.cbIndexTitle}>Pick a market</h2>
         <p className={styles.cbIndexLead}>
-          {boards.length} countries, {fmt(totalPlaques)} plaques, {boards[0]?.artists ?? 0} artists deep in the
-          biggest. Every figure is a floor, and every plaque is priced at the body named beside it.
+          {/* "Plaques" here counts RECORDS: one two artists share is one plaque
+              in its country (Paul, 4 Oct 2026), where the site's artist-plaque
+              totals count it once per holder — said, so the two figures do not
+              read as a contradiction. */}
+          {boards.length} countries, {fmt(totalPlaques)} plaques — a record two artists share counted once —{" "}
+          {boards[0]?.artists ?? 0} artists deep in the biggest. Every figure is a floor, priced at the body named
+          beside it{elsewhere.length ? ` — ${listed(elsewhere)}` : ""}
+          {unpriced.length ? (
+            <>
+              {elsewhere.length ? ", " : " — "}
+              {listed(unpriced)} not at all{"\u00a0"}<span className={styles.mark}>¹</span>
+            </>
+          ) : null}
+          .
         </p>
       </div>
       <div className={styles.cbWrap}>
@@ -109,7 +154,10 @@ function CountryIndex({ options }: { options: { includeNigeria: boolean; include
                 </td>
                 <td role="cell" className={`${styles.tdNum} ${styles.cbUnitsCell}`}>
                   {b.counted ? (
-                    <span className={`${styles.units} ${styles.unitsLead}`}>{fmt(b.units)}</span>
+                    <span className={`${styles.units} ${styles.unitsLead}`}>
+                      {fmt(b.units)}
+                      {boardMarks(b).length > 0 && <>{"\u00a0"}<span className={styles.mark}>{boardMarks(b).join(" ")}</span></>}
+                    </span>
                   ) : (
                     <span className={styles.notCounted}>not counted{" "}<span className={styles.mark}>¹</span></span>
                   )}
@@ -131,14 +179,16 @@ function CountryIndex({ options }: { options: { includeNigeria: boolean; include
   );
 }
 
-function ArtistRow({ line, board, lead, place }: { line: CountryArtistLine; board: CountryBoard; lead: number; place: number }) {
+function ArtistRow({ line, board, lead, place }: { line: CountryArtistLine; board: CountryBoard; lead: number; place: number | null }) {
   // A row inside a programme's table carries that programme by definition.
   const ownProgram = Boolean(line.program);
   const a = line.artist;
   return (
     <tr role="row">
       <td role="cell" className={styles.cbRankCell}>
-        <span className={styles.cbRank}>{place}</span>
+        {/* No place where nothing is priced: Colombia ranked its two plaques
+            1 and 2 by the artists' names, then said nobody leads (5 Oct 2026). */}
+        <span className={styles.cbRank}>{place ?? "–"}</span>
       </td>
       <td role="cell" className={styles.cbArtistCell}>
         <Link href={a.href} className={styles.cbArtistLink}>
@@ -202,7 +252,7 @@ function ProgramTable({ prog, board, split }: { prog: CountryProgram; board: Cou
           <span className={styles.cbProgramName}>{prog.name}</span>
           <span className={styles.cbProgramMeta}>
             {prog.lines.length} artist{prog.lines.length === 1 ? "" : "s"} · {prog.plaques} plaque
-            {prog.plaques === 1 ? "" : "s"} · {prog.single?.platinum ? `Platinum ${fmt(prog.single.platinum)}` : "no published level"}
+            {prog.plaques === 1 ? "" : "s"} · {prog.single?.platinum ? `${tierWord("Platinum", prog.program)} ${fmt(prog.single.platinum)}` : "no published level"}
           </span>
           <span className={`${styles.units} ${styles.unitsLead} ${styles.cbProgramUnits}`}>{fmt(prog.units)}</span>
         </p>
@@ -219,7 +269,7 @@ function ProgramTable({ prog, board, split }: { prog: CountryProgram; board: Cou
           </thead>
           <tbody role="rowgroup">
             {prog.lines.map((l, i) => (
-              <ArtistRow key={l.artist.slug} line={l} board={board} lead={lead} place={i + 1} />
+              <ArtistRow key={l.artist.slug} line={l} board={board} lead={lead} place={prog.counted ? i + 1 : null} />
             ))}
           </tbody>
         </table>
@@ -229,10 +279,11 @@ function ProgramTable({ prog, board, split }: { prog: CountryProgram; board: Cou
 }
 
 export function CountryBoardView({
-  sp,
   code,
   includeFeatures,
 }: {
+  /** The page's query, as every view receives it. Unread since the "Change
+   *  country" link stopped building a query-string URL (5 Oct 2026). */
   sp: SP;
   /** null = nothing picked yet; the index is the picker. */
   code: string | null;
@@ -266,8 +317,7 @@ export function CountryBoardView({
   // on top (AMPROFON's "Platino & Oro") leans on the same stacking rule, as in
   // certUnits.plaqueNotes.
   const multiplied = board.programs.some((x) => x.lines.some((l) => l.plaqueList.some((p) => p.x > 1 || !!p.plus)));
-  const onBoard = (format?: CertFormat) =>
-    !format || board.programs.some((x) => x.lines.some((l) => l.plaqueList.some((p) => p.format === format)));
+  const onBoard = (format?: CertFormat) => formatOnBoard(board, format);
   // The programme's name sits BEFORE its <dl>, not inside it: a <p> is not
   // allowed in a definition list, and the two-programme US card failed as one.
   const levelLists = board.programs.map((prog) => (
@@ -276,11 +326,11 @@ export function CountryBoardView({
       <dl className={styles.cbThList}>
         <div className={styles.cbThRow}>
           <dt>Single</dt>
-          <dd>{prog.single ? tierRun(prog.single) : <>not priced{"\u00a0"}<span className={styles.mark}>¹</span></>}</dd>
+          <dd>{prog.single ? tierRun(prog.single, prog.program) : <>not priced{"\u00a0"}<span className={styles.mark}>¹</span></>}</dd>
         </div>
         <div className={styles.cbThRow}>
           <dt>Album</dt>
-          <dd>{prog.album ? tierRun(prog.album) : <>not priced{"\u00a0"}<span className={styles.mark}>¹</span></>}</dd>
+          <dd>{prog.album ? tierRun(prog.album, prog.program) : <>not priced{"\u00a0"}<span className={styles.mark}>¹</span></>}</dd>
         </div>
       </dl>
     </Fragment>
@@ -291,14 +341,19 @@ export function CountryBoardView({
           that publishes none is linked as a register instead. Where the
           board is priced at someone else's level (`pricedAt`: Greece, at
           IFPI's June 2013 international table), the link says so. */}
-      {t.pricedAt ?? (t.single || t.album ? `${board.body}'s own levels` : `${board.body}'s register`)}{" "}
+      {t.pricedAt ?? (t.single || t.album ? `${bodyOwner(board.body)}'s own levels` : `${bodyOwner(board.body)}'s register`)}{" "}
       <span aria-hidden="true">↗</span>
     </a>
   );
-  const biggest = records
+  const byUnits = records
     .map((r) => ({ p: r.plaque, holders: r.holders.map((h) => ({ name: h.artist.name, featured: h.featured })) }))
-    .sort((x, y) => (y.p.units ?? 0) - (x.p.units ?? 0) || x.p.title.localeCompare(y.p.title))
-    .slice(0, 10);
+    .sort((x, y) => (y.p.units ?? 0) - (x.p.units ?? 0) || x.p.title.localeCompare(y.p.title));
+  const biggest = byUnits.slice(0, 10);
+  // The ten stop mid-tie on most boards — Nigeria's tenth is a 500,000 with two
+  // more at 500,000 behind it, cut by the alphabet. Those are named under the
+  // list rather than dropped (debug pass, 5 Oct 2026); a line, not a fold.
+  const cut = biggest.length === 10 ? biggest[9].p.units : null;
+  const moreAtCut = cut === null ? [] : byUnits.slice(10).filter((r) => r.p.units === cut);
   // A record two artists share is on both their lines and counted ONCE in the
   // figure above (Paul, 4 Oct 2026), so the lines sum to more than the figure
   // by exactly these. Said under it, on a line of its own — run on after the
@@ -310,6 +365,11 @@ export function CountryBoardView({
   // The two leaders, in the pair pages' own canonical order.
   const top2 = board.lines.slice(0, 2).map((l) => l.artist);
   const tiedTop = board.lines.filter((l) => l.units === board.lines[0]?.units);
+  // Level at SECOND, behind one leader: "Burna Boy and CKay lead Austria" named
+  // CKay over Tyla on the same 30,000 by the alphabet (debug pass, 5 Oct 2026).
+  const tiedSecond = board.lines.slice(1).filter((l) => l.units === board.lines[1]?.units);
+  const names = (ls: CountryArtistLine[]) =>
+    ls.length < 2 ? ls.map((l) => l.artist.name).join("") : `${ls.slice(0, -1).map((l) => l.artist.name).join(", ")} and ${ls[ls.length - 1].artist.name}`;
   const pair = top2.length === 2 ? canonicalPair(top2[0], top2[1]) : null;
 
   return (
@@ -320,7 +380,11 @@ export function CountryBoardView({
             <span className={styles.cbBigFlag} aria-hidden="true">{board.flag}</span>
             <span className={styles.cbHeadName}>{board.name}</span>
             <span className={styles.cbHeadBody}>{board.body}</span>
-            <Link href={href(sp, { country: null })} className={styles.cbChange}>
+            {/* The index's canonical URL, as the mode switch links it: the
+                query twin (/compare?mode=country) canonicalises there anyway.
+                /compare/in reads no search params, so a features-off view
+                keeps the query route (compare/page.tsx, the mode segment). */}
+            <Link href={includeFeatures ? "/compare/in" : "/compare?mode=country&feat=0"} className={styles.cbChange}>
               <span className={styles.cbChangeText}>Change country</span>
               <span aria-hidden="true">✕</span>
             </Link>
@@ -332,14 +396,30 @@ export function CountryBoardView({
               count and no figure. Printing "0" there says the plaques are
               worth nothing, which is the opposite of what the data means. */}
           <p className={styles.cbFigure}>{board.counted ? fmt(board.units) : <span aria-hidden="true">—</span>}</p>
+          {/* Each clause holds together (no-break spaces inside it, and before
+              each "·"), so a line can only break after a "·" — and the programme split takes a
+              line of its own, like the shared-records note, because run on it
+              wrapped at 1440 with a stray leading "·" (US) and Nigeria's
+              left "COUNTED" alone on a line (debug pass, 5 Oct 2026). */}
           <p className={styles.cbFigureMeta}>
             {board.counted
-              ? `certified units · ${board.artists} of ${comparableArtists.length} artists certified · ${board.counted} of ${board.plaques} plaque${board.plaques === 1 ? "" : "s"} counted${board.notCounted ? ` · ${board.notCounted} not counted` : ""}${
-                  board.programs.length > 1
-                    ? ` · ${board.programs.map((p) => `${p.plaques} at ${p.name}`).join(", ")}`
-                    : ""
-                }`
-              : `${board.plaques} plaque${board.plaques === 1 ? "" : "s"} held by ${board.artists} artist${board.artists === 1 ? "" : "s"} · none priceable`}
+              ? [
+                  "certified units",
+                  `${board.artists} of ${comparableArtists.length} artists certified`,
+                  `${board.counted} of ${board.plaques} plaque${board.plaques === 1 ? "" : "s"} counted`,
+                  board.notCounted ? `${board.notCounted} not counted` : "",
+                ]
+                  .filter(Boolean)
+                  .map(nb)
+                  .join("\u00a0· ")
+              : [`${board.plaques} plaque${board.plaques === 1 ? "" : "s"} held by ${board.artists} artist${board.artists === 1 ? "" : "s"}`, "none priceable"]
+                  .map(nb)
+                  .join("\u00a0· ")}
+            {board.counted && board.programs.length > 1 && (
+              <span className={styles.cbFigureShared}>
+                {board.programs.map((p) => nb(`${p.plaques} at ${p.name}`)).join(", ")}
+              </span>
+            )}
             {sharedLine && <span className={styles.cbFigureShared}>{sharedLine}</span>}
           </p>
         </div>
@@ -418,6 +498,11 @@ export function CountryBoardView({
               </li>
             ))}
           </ul>
+          {moreAtCut.length > 0 && cut !== null && (
+            <p className={styles.cbBiggestMore}>
+              + {moreAtCut.length} more at {fmt(cut)} units: {moreAtCut.map((r) => r.p.title).join(", ")}.
+            </p>
+          )}
         </section>
       )}
 
@@ -463,6 +548,8 @@ export function CountryBoardView({
                   (23 Sep 2026). The pair link still takes the first two. */}
               {board.counted && tiedTop.length > 2
                 ? `${tiedTop.slice(0, -1).map((l) => l.artist.name).join(", ")} and ${tiedTop[tiedTop.length - 1].artist.name} share the lead in ${board.inSentence}. The head-to-head puts ${board.lines[0].artist.name} and ${board.lines[1].artist.name} side by side in every country at once.`
+                : board.counted && tiedTop.length === 1 && tiedSecond.length > 1
+                ? `${board.lines[0].artist.name} leads ${board.inSentence}; ${names(tiedSecond)} share second. The head-to-head puts ${board.lines[0].artist.name} and ${board.lines[1].artist.name} side by side in every country at once.`
                 : board.counted
                 ? `${board.lines[0].artist.name} and ${board.lines[1].artist.name} lead ${board.inSentence}. The head-to-head puts them side by side in every country at once.`
                 : `No plaque here can be priced, so nobody leads ${board.inSentence}. The head-to-head compares ${board.lines[0].artist.name} and ${board.lines[1].artist.name} everywhere one can.`}

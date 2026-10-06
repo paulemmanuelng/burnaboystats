@@ -32,6 +32,7 @@ import {
   chartEntries,
   chartTerritories,
   chartNo1s,
+  chartGlobalsClause,
   topAward,
   offRegisterPhrase,
   offRegisterHold,
@@ -39,7 +40,8 @@ import {
   certProvenance,
   type Tier,
   AFROBEATS_LAST_FULL_SWEEP,
-  pageStamp,
+  lastVerifiedOn,
+  chartPageStamp,
 } from "../../data/afrobeats";
 import { LIVE_CADENCE_ADVERB } from "../../lib/liveChartMeta";
 import { awardLabel, awardRank } from "../../lib/awardName";
@@ -63,9 +65,13 @@ export async function generateMetadata({ params }: { params: Promise<{ artist: s
   // length. The title carries the page's ranking claim as a figure, the way the
   // site's own certification titles do, and it moves when the register does —
   // a pending artist has nothing verified yet, so it must not claim a number.
+  //
+  // "Plaques", as Burna Boy's own certifications title says (26 Sep 2026): the
+  // board titles said "159 Awards in 21 Countries" until 5 Oct 2026, and
+  // "Awards" reads as trophies won. Longest swept title: 54 of 60 characters.
   return pageMetadata({
     title: a.swept
-      ? `${a.name} Certifications — ${certCount(a)} Awards in ${countryCount(a)} ${
+      ? `${a.name} Certifications — ${count(certCount(a), "Plaque", "Plaques")} in ${countryCount(a)} ${
           countryCount(a) === 1 ? "Country" : "Countries"
         }`
       : `${a.name} — The Afrobeats Board`,
@@ -107,8 +113,11 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
   const offRegister = offRegisterPhrase(a);
   const hold = offRegisterHold(a);
   // One formatted date for both layouts — the phone's lede carried none until
-  // 17 Sep 2026 while the desktop printed it in the provenance line.
-  const verifiedLong = new Date(`${a.verifiedOn}T12:00:00Z`).toLocaleDateString("en-GB", {
+  // 17 Sep 2026 while the desktop printed it in the provenance line. The later
+  // of verifiedOn and the last full sweep: verifiedOn is the last read that
+  // CHANGED a plaque, and thirteen pages said "last verified 6 September"
+  // under "re-read at every register on 2 October" (debug pass, 5 Oct 2026).
+  const verifiedLong = new Date(`${lastVerifiedOn(a)}T12:00:00Z`).toLocaleDateString("en-GB", {
     day: "numeric",
     month: "long",
     year: "numeric",
@@ -190,10 +199,12 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
         variableMeasured: ["Certification tier", "Country / territory", "Release", "Certifying body"],
         // The sweep that produced these figures, not the newest date in the whole
         // updates feed — or a later edit made without a register read. One
-        // helper, pageStamp, dates this and the sitemap's lastmod, so the two
-        // cannot disagree (they did for CKay and Olamide: 18 Sep / 6 Sep here,
-        // 3 Oct there; debug pass 4 Oct 2026, D-05).
-        dateModified: pageStamp(a),
+        // helper dates this and the sitemap's lastmod, so the two cannot
+        // disagree (they did for CKay and Olamide: 18 Sep / 6 Sep here, 3 Oct
+        // there; debug pass 4 Oct 2026, D-05). chartPageStamp, not pageStamp:
+        // the page prints chart rows, and the board's chart sweep of 2 Oct
+        // changed them for artists whose plaque stamp is older (5 Oct 2026).
+        dateModified: chartPageStamp(a),
         about: { name: a.name, sameAs: [a.wikipedia, `https://open.spotify.com/artist/${a.spotifyId}`] },
       })
     : null;
@@ -570,7 +581,10 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
                     nested <a> is invalid HTML — it broke hydration. The
                     methodology link the reader needs is in the provenance line
                     above, outside the card. */}
-                Principal national chart per country — the standard set out in the methodology.
+                {/* The territory count above includes Billboard's global
+                    charts wherever the artist has one (chartGlobalLines), so
+                    the standard names them — the charts page's own clause. */}
+                {`Principal national chart per country${chartGlobalsClause(a)} — the standard set out in the methodology.`}
               </span>
             </span>
             <span className={styles.chartCtaArrow} aria-hidden="true">
@@ -595,13 +609,15 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
               </h2>
               <span className={styles.chartCtaFigures}>
                 <span className={styles.chartFig}>
-                  <b>{live.placements}</b> placements
+                  <b>{live.placements}</b> {plural(live.placements, "placement", "placements")}
                 </span>
                 <span className={styles.chartFig}>
-                  <b>{live.countries}</b> countries
+                  <b>{live.countries}</b> {plural(live.countries, "country", "countries")}
                 </span>
+                {/* Services, not chart lines: Spotify's weekly albums chart is
+                    Spotify, and the sentence below names six services. */}
                 <span className={styles.chartFig}>
-                  <b>{live.platformTotals.length}</b> platforms
+                  <b>{live.services}</b> {plural(live.services, "platform", "platforms")}
                 </span>
               </span>
               <span className={styles.chartCtaNote}>

@@ -1,14 +1,14 @@
 ## Rows that repeat a tour date (counted once, as the tour date)
 
-- concerts tours.ts:433 "Burna Boy: The Live Experience", Eko Convention Centre, Lagos (2021) = tour date tours.ts:163 Dec 27, 2021, Eko Convention Centre (The Live Experience)
+- None since 5 Oct 2026. Until then: concerts tours.ts:433 "Burna Boy: The Live Experience", Eko Convention Centre, Lagos (2021) = tour date tours.ts:163 Dec 27, 2021, Eko Convention Centre (The Live Experience). The concerts row was removed, so the other pages stopped counting the night twice; the map's figures did not move.
 
 ## Headline totals
 
 - Tour dates: 99 (98 until 4 Oct 2026, when 3Arena, Dublin, 17 Mar 2022 joined the Space Drift dates)
-- Festival and one-off appearances: 58 (59 rows, 1 repeating a tour date)
+- Festival and one-off appearances: 58 (58 rows since 5 Oct 2026; 59 rows, 1 repeating a tour date, until then)
 - Documented shows (tour dates + appearances): 157 (156 until 4 Oct 2026)
-- Live milestones with a place (not in the shows figure): 6
-- Cities (distinct names across tour dates, appearances and placed milestones): 98 (tour dates alone: 53; Dublin since 4 Oct 2026; Silver Spring, MD since 5 Oct 2026, when the Fillmore Silver Spring night left Washington, D.C.)
+- Live milestones with a place (not in the shows figure): 7 (6 until 5 Oct 2026, when the World Cup Final halftime show was placed at MetLife Stadium, East Rutherford)
+- Cities (distinct names across tour dates, appearances and placed milestones): 99 (tour dates alone: 53; Dublin since 4 Oct 2026; Silver Spring, MD and East Rutherford since 5 Oct 2026)
 - Years: 2014–2026
 
 ## Per country: the documented line and the biggest line
@@ -42,7 +42,7 @@
 | Europe | Spain | 2 festival and one-off appearances · 2 cities · 2025–2026 | 2025–2026 | none (line absent) | O Beach, Ibiza (2026) / FITZ, Madrid (2025) | yes |
 | Europe | Italy | 1 festival or one-off appearance · 1 city · 2020 | 2020 | none (line absent) | Atlantico, Rome (2020) |  |
 | Europe | Germany | 5 tour dates · 3 festival and one-off appearances · 3 cities · 2019–2025 | 2019–2025 | Biggest reported night · Lanxess Arena, Cologne · 10 Dec 2023 · 14,260 tickets (tourRevenue.ts:41) | Waldbühne, Berlin (2025) / Superbloom Festival, Munich (2024) | yes |
-| Europe | Switzerland | 3 tour dates · 2 festival and one-off appearances · 4 cities · 2022–2026 | 2022–2026 | Biggest reported night · Hallenstadion, Zurich · 30 Nov 2022 · 8,827 tickets (tourRevenue.ts:63) | Paléo Festival, Nyon (2024) / Hallenstadion, Zürich (2022 & 2026) | yes |
+| Europe | Switzerland | 3 tour dates · 2 festival and one-off appearances · 4 cities · 2022–2026 | 2022–2026 | Biggest reported night · Hallenstadion, Zurich · 30 Nov 2022 · 8,827 tickets (tourRevenue.ts:63) | Paléo Festival, Nyon (2024) / Hallenstadion, Zurich (2022 & 2026) | yes |
 | Europe | Sweden | 1 tour date · 1 city · 2026 | 2026 | none (line absent) | Avicii Arena, Stockholm (2026) |  |
 | Europe | Norway | 1 festival or one-off appearance · 1 city · 2024 | 2024 | none (line absent) | Stavern Festival (2024) |  |
 | Europe | Denmark | 1 tour date · 1 festival or one-off appearance · 2 cities · 2023–2026 | 2023–2026 | none (line absent) | Royal Arena, Copenhagen (2026) / Roskilde Festival (2023) |  |
@@ -53,16 +53,16 @@
 | Europe | Greece | 1 festival or one-off appearance · 1 city · 2021 | 2021 | none (line absent) | SNF Nostos Festival, Athens (2021) |  |
 | Europe | Austria | none (no row: event lines only) | none | none (line absent) | Gasometer, Vienna (2020) |  |
 | Europe | Kosovo | 1 festival or one-off appearance · 1 city · 2024 | 2024 | none (line absent) | Sunny Hill Festival, Pristina (2024) |  |
-| Asia | United Arab Emirates | 1 festival or one-off appearance · 1 city · 2019 | 2019 | none (line absent) | One Africa Music Festival, Dubai (2019) |  |
-| North America | United States | 50 tour dates · 7 festival and one-off appearances · 2 live milestones · 31 cities · 2018–2025 | 2018–2025 | Biggest reported night · Capital One Arena, Washington, D.C. · 8 Dec 2022 · 14,688 tickets (tourRevenue.ts:39) | Madison Square Garden, New York (2022) / Citi Field, New York (2023) | yes |
-| North America | Canada | 14 tour dates · 4 cities · 2019–2025 | 2019–2025 | Biggest reported night · Rogers Arena, Vancouver · 7 Nov 2023 · 7,198 tickets (tourRevenue.ts, re-run 3 Oct 2026) | Scotiabank Arena, Toronto (2024 & 2025) / Bell Centre, Montréal (2024 & 2025) | yes |
+| Asia | United Arab Emirates | 1 festival or one-off appearance · 1 city · 2019 | 2019 | none (line absent) | One Africa Music Fest, Dubai (2019) |  |
+| North America | United States | 50 tour dates · 7 festival and one-off appearances · 3 live milestones · 32 cities · 2018–2026 | 2018–2026 | Biggest reported night · Capital One Arena, Washington, D.C. · 8 Dec 2022 · 14,688 tickets (tourRevenue.ts:39) | Madison Square Garden, New York (2022) / Citi Field, New York (2023) | yes |
+| North America | Canada | 14 tour dates · 4 cities · 2019–2025 | 2019–2025 | Biggest reported night · Rogers Arena, Vancouver · 7 Nov 2023 · 7,198 tickets (tourRevenue.ts, re-run 3 Oct 2026) | Scotiabank Arena, Toronto (2024 & 2025) / Bell Centre, Montreal (2024 & 2025) | yes |
 | North America | Mexico | 1 live milestone · 1 city · 2026 | 2026 | none (line absent) | FIFA World Cup Opening Ceremony, Mexico City (2026) |  |
 | South America | Brazil | 1 festival or one-off appearance · 1 city · 2025 | 2025 | none (line absent) | The Town festival, São Paulo (2025) |  |
 | South America | Guyana | 1 festival or one-off appearance · 1 city · 2024 | 2024 | none (line absent) | Unforgettable Concert, National Stadium (2024) |  |
 | South America | Suriname | 1 festival or one-off appearance · 1 city · 2022 | 2022 | none (line absent) | Live in Paramaribo (2022) |  |
 | Caribbean | Jamaica | 1 festival or one-off appearance · 1 city · 2022 | 2022 | none (line absent) | National Stadium, Kingston (2022) |  |
 | Caribbean | Curaçao | 1 festival or one-off appearance · 1 city · 2022 | 2022 | none (line absent) | Festival Center Brievengat, Willemstad (2022) |  |
-| Caribbean | Barbados | 1 tour date · 1 city · 2022 | 2022 | none (line absent) | Tipsy Beach Party, Bridgetown (2022) |  |
+| Caribbean | Barbados | 1 tour date · 1 city · 2022 | 2022 | none (line absent) | Tipsy All White Beach Party, Bridgetown (2022) |  |
 | Caribbean | Bahamas | 1 festival or one-off appearance · 1 city · 2024 | 2024 | none (line absent) | Spilligate Festival, Nassau (2024) |  |
 | Caribbean | St Kitts & Nevis | 1 festival or one-off appearance · 2023 | 2023 | none (line absent) | St Kitts Music Festival (2023) |  |
 | Caribbean | Dominica | 1 festival or one-off appearance · 1 city · 2022 | 2022 | none (line absent) | World Creole Music Festival, Roseau (2022) |  |
@@ -75,4 +75,4 @@
 
 Toronto: 5 tour dates (Dec 17, 2025 tours.ts:65, Dec 18, 2025 tours.ts:66, Feb 24, 2024 tours.ts:107, Feb 25, 2024 tours.ts:108, Aug 18, 2019 tours.ts:188) + 0 appearances
 Venues that can appear in a biggest line, longest first: Capital One Arena (17), Qudos Bank Arena (16), Scotiabank Arena (16), Stade de France (15), London Stadium (14), Hallenstadion (13), Lanxess Arena (13), Sportpaleis (11)
-Longest documented lines: United States: 50 tour dates · 7 festival and one-off appearances · 2 live milestones · 31 cities · 2018–2025 (94); United Kingdom: 10 tour dates · 3 festival and one-off appearances · 1 live milestone · 6 cities · 2018–2026 (92); Morocco: 1 festival or one-off appearance · 1 live milestone · 1 city · 2024–2026 (72)
+Longest documented lines: United States: 50 tour dates · 7 festival and one-off appearances · 3 live milestones · 32 cities · 2018–2026 (94); United Kingdom: 10 tour dates · 3 festival and one-off appearances · 1 live milestone · 6 cities · 2018–2026 (92); Morocco: 1 festival or one-off appearance · 1 live milestone · 1 city · 2024–2026 (72)

@@ -44,13 +44,29 @@ export interface LiveBoard {
   countries: number;
   numberOnes: number;
   platformTotals: { platform: string; placements: number; numberOnes: number }[];
+  /** How many SERVICES the placements come from — Spotify once, however many
+   *  of its charts carry the artist. See `serviceCount`. */
+  services: number;
 }
+
+/** The service a platform's chart belongs to. "Spotify Albums" is Spotify's
+ *  weekly albums chart: a chart line of its own on the live page's "By
+ *  platform" grid, but the same service as "Spotify". */
+const SERVICE_OF: Record<string, string> = { "Spotify Albums": "Spotify" };
+
+/** Distinct services among a board's platform lines. The artist page's live
+ *  card printed `platformTotals.length` — "7 platforms" for Rema beside a
+ *  sentence naming six services, CKay's 4 from three (debug pass, 5 Oct
+ *  2026). */
+export const serviceCount = (platforms: { platform: string }[]): number =>
+  new Set(platforms.map((p) => SERVICE_OF[p.platform] ?? p.platform)).size;
 
 /** Totals derived from the rows, so they can never disagree with what renders. */
 function board(slug: string, releases: LiveRelease[], updated: string, builtAt: string): LiveBoard {
   const entries = releases.flatMap((r) => r.platforms.flatMap((p) => p.entries));
   const platforms = [...new Set(releases.flatMap((r) => r.platforms.map((p) => p.platform)))];
   return {
+    services: serviceCount(platforms.map((platform) => ({ platform }))),
     slug,
     releases,
     updated,

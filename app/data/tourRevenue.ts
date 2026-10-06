@@ -63,7 +63,7 @@ export interface RevenueShow {
 // (3 Oct 2026; wizkid-read.md). The dates are the press's.
 //
 // HELD OFF THE RANKED BOARD: Burna Boy at the Ziggo Dome, Amsterdam, 14 April
-// 2022 (Space Drift Tour), carried until 3 Oct 2026 as "$1,564,720 from
+// 2022 (Space Drift World Tour), carried until 3 Oct 2026 as "$1,564,720 from
 // 17,000 tickets". The SHOW is real and sold out (The Profiling, 14 Apr 2022;
 // setlist.fm) and stays in tours.ts and firsts.ts; only the GROSS left. Its
 // trail (the owner's boxoffice/ziggo-trail folder, READ.md): the figure's
@@ -89,11 +89,11 @@ export const revenueShows: RevenueShow[] = [
   { artist: "Burna Boy", venue: "La Défense Arena", city: "Paris", flag: "🇫🇷", tour: "Love, Damini Tour", year: "2023", tickets: "36,585", revenue: 2863340, source: "TouringData, X post of 20 Dec 2023 (LOVE, DAMINI), from the owner's screenshot" },
   { artist: "Burna Boy", venue: "Capital One Arena", city: "Washington, D.C.", flag: "🇺🇸", tour: "I Told Them… Tour", year: "2024", tickets: "13,892", revenue: 1724853, source: "TouringData, X post of 13 Jun 2024 (I TOLD THEM…), from the owner's screenshot" },
   { artist: "Burna Boy", venue: "TD Garden", city: "Boston", flag: "🇺🇸", tour: "I Told Them… Tour", year: "2024", tickets: "13,219", revenue: 1592684, source: "TouringData, X post of 30 Apr 2024 (I TOLD THEM…), from the owner's screenshot" },
-  { artist: "Burna Boy", venue: "Madison Square Garden", city: "New York", flag: "🇺🇸", tour: "Space Drift Tour", year: "2022", tickets: "13,586", revenue: 1576641, source: "TouringData, X post of 25 May 2022 (SPACE DRIFT), from the owner's screenshot" },
+  { artist: "Burna Boy", venue: "Madison Square Garden", city: "New York", flag: "🇺🇸", tour: "Space Drift World Tour", year: "2022", tickets: "13,586", revenue: 1576641, source: "TouringData, X post of 25 May 2022 (SPACE DRIFT), from the owner's screenshot" },
   { artist: "Burna Boy", venue: "Capital One Arena", city: "Washington, D.C.", flag: "🇺🇸", tour: "Love, Damini Tour", year: "2022", tickets: "14,688", revenue: 1434525, source: "TouringData, X post of 12 Dec 2022 (LOVE, DAMINI), from the owner's screenshot" },
   { artist: "Burna Boy", venue: "State Farm Arena", city: "Atlanta", flag: "🇺🇸", tour: "I Told Them… Tour", year: "2024", tickets: "13,331", revenue: 1394173, source: "TouringData, X post of 23 Mar 2024 (I TOLD THEM…), from the owner's screenshot" },
   { artist: "Burna Boy", venue: "Lanxess Arena", city: "Cologne", flag: "🇩🇪", tour: "I Told Them… Tour", year: "2023", tickets: "14,260", revenue: 1386581, source: "TouringData, X post of 30 Apr 2024 (I TOLD THEM…), from the owner's screenshot" },
-  { artist: "Burna Boy", venue: "The O2 Arena", city: "London", flag: "🇬🇧", tour: "Space Drift Tour", year: "2021", tickets: "15,165", revenue: 1347333, source: "TouringData, X post of 27 May 2022 (SPACE DRIFT), from the owner's screenshot" },
+  { artist: "Burna Boy", venue: "The O2 Arena", city: "London", flag: "🇬🇧", tour: "Space Drift World Tour", year: "2021", tickets: "15,165", revenue: 1347333, source: "TouringData, X post of 27 May 2022 (SPACE DRIFT), from the owner's screenshot" },
   { artist: "Burna Boy", venue: "Co-op Live", city: "Manchester", flag: "🇬🇧", tour: "I Told Them… Tour", year: "2025", tickets: "13,204", revenue: 1338176, source: "TouringData, X post of 29 Dec 2025 (I TOLD THEM…), from the owner's screenshot" },
   { artist: "Burna Boy", venue: "BMO Stadium", city: "Los Angeles", flag: "🇺🇸", tour: "I Told Them… Tour", year: "2023", tickets: "10,684", revenue: 1224617, source: "TouringData, X post of 23 Jan 2024 (I TOLD THEM…), from the owner's screenshot" },
   { artist: "Davido", venue: "The O2 Arena", city: "London", flag: "🇬🇧", tour: "Timeless Tour", year: "2024", tickets: "14,919", revenue: 1201417, source: "TouringData, X post of 1 Mar 2024 (TIMELESS), from the owner's screenshot" },
@@ -203,7 +203,7 @@ export const revenueShows: RevenueShow[] = [
   // 3Arena twice in 2022 (setlist.fm: 17 Mar and 4 Dec); a Space Drift filing
   // posted on 27 May can only be the March night — the December one was the
   // Love, Damini run and is not in TD's reports. The year is 2022 either way.
-  { artist: "Burna Boy", venue: "3Arena", city: "Dublin", flag: "🇮🇪", tour: "Space Drift Tour", year: "2022", tickets: "7,504", revenue: 378802, source: "TouringData, X post of 27 May 2022 (SPACE DRIFT), from the owner's screenshot" },
+  { artist: "Burna Boy", venue: "3Arena", city: "Dublin", flag: "🇮🇪", tour: "Space Drift World Tour", year: "2022", tickets: "7,504", revenue: 378802, source: "TouringData, X post of 27 May 2022 (SPACE DRIFT), from the owner's screenshot" },
   // Pulse Nigeria (13 Nov 2025: "5,713 tickets sold at 95.2% capacity
   // grossed $364,495") and BusinessDay (22 Oct 2025), both quoting Touring Data;
   // TD's own X post of 21 Oct 2025 (THE 5IVE ALIVE) prints the same

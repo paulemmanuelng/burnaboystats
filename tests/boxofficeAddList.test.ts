@@ -41,10 +41,15 @@ describe("the 3 Oct 2026 TouringData list is on the board exactly", () => {
     expect(list.add_shows.filter((r) => !/^\d{4}$/.test(r.year)).map((r) => `${r.artist}|${r.venue}`).sort()).toEqual(Object.keys(CONFIRMED).sort());
   });
 
+  // Tour names the board has since given their tour's own name, as tours.ts
+  // spells it — the list itself stays as the owner sent it. 5 Oct 2026:
+  // "Space Drift Tour" -> "Space Drift World Tour" (debug pass, records-12).
+  const RENAMED: Record<string, string> = { "Space Drift Tour": "Space Drift World Tour" };
+
   it.each(list.add_shows.map((r) => [`${r.artist}, ${r.venue}`, r] as const))("%s", (_n, r) => {
     const rows = revenueShows.filter((s) => s.artist === r.artist && s.venue === r.venue && s.year === yearOf(r));
     expect(rows.length, "exactly one row on the board").toBe(1);
-    expect([rows[0].revenue, rows[0].tickets, rows[0].tour, rows[0].flag]).toEqual([r.revenue, r.tickets, r.tour, r.flag]);
+    expect([rows[0].revenue, rows[0].tickets, rows[0].tour, rows[0].flag]).toEqual([r.revenue, r.tickets, RENAMED[r.tour] ?? r.tour, r.flag]);
   });
 
   type Row = { artist: string; venue: string; tour: string; tickets?: string };

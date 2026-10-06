@@ -3,6 +3,7 @@ import { CHART_COUNTRIES } from "./charts";
 import { awardLabel, awardRank } from "../lib/awardName";
 import { certsInView, homeCodeFor, isFeaturedKind, type CertView } from "../lib/certScope";
 import { enGbDate } from "../lib/dates";
+import { count } from "../lib/plural";
 
 // ─────────────────────────────────────────────────────────────────────────────
 //  THE AFROBEATS BOARD — /afrobeats
@@ -517,9 +518,32 @@ export const AFROBEATS_LAST_CHART_SWEEP = "2026-10-02";
  *  still said 18 Sep and 6 Sep (debug pass 3 Oct 2026, sw-5). */
 export const AFROBEATS_EDITED_ON: Readonly<Record<string, string>> = {
   ckay: "2026-10-03",
-  olamide: "2026-10-03",
-  // 5 Oct 2026: "Isaka" retitled "Isaka (6AM)", as TCSN prints it (C-01).
+  // 5 Oct 2026 (debug pass, board titles and chart notes): titles corrected
+  // without a register read — TCSN's owner tags dropped ("Everyday (Fireboy
+  // Dml)", "Julie (Olamide)", "Outside (Buju)", "Stubborn (Victony)"), the
+  // register's Title Case undone ("January 9th", "What's Poppin'", "IQ",
+  // "CKay"), one spelling per record across an artist's plaques and chart rows,
+  // Tyla's "A*POP" and "Dynamite (Tyla & Wizkid)", Davido's "Ke Star (Remix)"
+  // and BNXN's "Loose Emotions"; and the maintainer's "Re-read in a later
+  // capture." taken off 31 open-run chart notes.
+  olamide: "2026-10-05",
+  // 5 Oct 2026: "Isaka" retitled "Isaka (6AM)", as TCSN prints it (C-01); and
+  // an open-run chart note (above).
   tems: "2026-10-05",
+  tyla: "2026-10-05",
+  "fireboy-dml": "2026-10-05",
+  bnxn: "2026-10-05",
+  victony: "2026-10-05",
+  "black-sherif": "2026-10-05",
+  "seyi-vibez": "2026-10-05",
+  davido: "2026-10-05",
+  rema: "2026-10-05",
+  wizkid: "2026-10-05",
+  "ayra-starr": "2026-10-05",
+  "omah-lay": "2026-10-05",
+  "kizz-daniel": "2026-10-05",
+  ruger: "2026-10-05",
+  "tiwa-savage": "2026-10-05",
 };
 
 /** The date a board artist's pages are stamped with — the later of the sweep
@@ -529,6 +553,30 @@ export const AFROBEATS_EDITED_ON: Readonly<Record<string, string>> = {
  *  18 Sep while the sitemap said 3 Oct (debug pass 4 Oct 2026, D-05). */
 export const pageStamp = (a: { slug: string; verifiedOn: string }): string =>
   [a.verifiedOn, AFROBEATS_EDITED_ON[a.slug]].filter((d): d is string => Boolean(d)).sort().at(-1)!;
+
+/** The date an artist page prints after "last verified": the later of the
+ *  artist's own `verifiedOn` and the last full sweep. `verifiedOn` is the day
+ *  a read last CHANGED a plaque, and the 2 Oct 2026 sweep re-read every body
+ *  for all twenty artists while seventeen of them kept older dates — so
+ *  Olamide's page said "last verified 6 September 2026" two lines above "this
+ *  board was last re-read at every register on 2 October 2026" (debug pass,
+ *  5 Oct 2026). A page cannot say it was last verified before it was last read
+ *  (the ON_13 rule). The stamps that mean the last change build on
+ *  `verifiedOn`, not on this: pageStamp and chartPageStamp (the sitemap and
+ *  the Datasets' dateModified) and the CSV's verified_on. */
+export const lastVerifiedOn = (a: { verifiedOn: string }): string =>
+  a.verifiedOn > AFROBEATS_LAST_FULL_SWEEP ? a.verifiedOn : AFROBEATS_LAST_FULL_SWEEP;
+
+/** The date an artist's two pages that PRINT CHART ROWS are stamped with —
+ *  the artist page (its chart-entry totals) and its charts page ("Last re-read
+ *  in the board's chart sweep of …"): pageStamp, or the last chart sweep where
+ *  that is later. pageStamp reads no chart date, so /afrobeats/seyi-vibez/charts
+ *  declared 6 Sep beside 2 Oct's sweep rows (129 entries, up from 115; debug
+ *  pass 5 Oct 2026). The sitemap and both pages' Dataset read this one helper.
+ *  The pair pages and the hub print plaques only and stay on pageStamp. Not
+ *  the "last verified" date the pages print: that is lastVerifiedOn (above). */
+export const chartPageStamp = (a: { slug: string; verifiedOn: string }): string =>
+  [pageStamp(a), AFROBEATS_LAST_CHART_SWEEP].sort().at(-1)!;
 
 export const afrobeatsArtists: AfroArtist[] = [
   {
@@ -584,14 +632,14 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Green Light", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/86879e468db8f534635643b3ab9e2e11/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Hasibunallah", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/ba/6d/fb/ba6dfb0f-3eb5-d02a-79f6-6a4483231e13/199316074352_cover.jpg/300x300bb.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Hate Me", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/9730046d9d02853ef4e3c606dee32e1d/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
-      { title: "Julie (Olamide)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/bdfe7c01a5c1aff44cfd2345a67fa4b4/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
+      { title: "Julie", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/bdfe7c01a5c1aff44cfd2345a67fa4b4/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Knockout", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/fe/9e/cc/fe9ecc76-31bc-3187-8ce8-68f01d951d75/197342670760_cover.jpg/300x300bb.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Loml", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/6dc0a8dd13e69c6b5af9c4198e926a3e/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Makaveli", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/fe/9e/cc/fe9ecc76-31bc-3187-8ce8-68f01d951d75/197342670760_cover.jpg/300x300bb.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Modupe", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/17/f4/22/17f422f2-c38f-d23e-a107-a98dea869980/198025166457.jpg/300x300bb.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Mukulu (Olamide & Rema)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/498d4ae81da58e1fcf5e2704a99e0ed8/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Ojemba", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/f667ded5a40cf0e5a1851216d4fad53d/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
-      { title: "Ponpon", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/bdfe7c01a5c1aff44cfd2345a67fa4b4/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
+      { title: "Pon Pon", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/bdfe7c01a5c1aff44cfd2345a67fa4b4/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Problem", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/498d4ae81da58e1fcf5e2704a99e0ed8/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Shibebe", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/498d4ae81da58e1fcf5e2704a99e0ed8/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Somebody", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/bdfe7c01a5c1aff44cfd2345a67fa4b4/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
@@ -636,7 +684,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Trumpet (Olamide & CKay)", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/c4230c9e47469a112e9f05745c603c44/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 15 }] },
       { title: "Way Back", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/a650ff7ae72f6df3476ce7ddfefa4200/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 15 }] },
       { title: "FUJI PARTY", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/9b55814d80a5c5ed1ee99d1630fc76d7/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 16 }] },
-      { title: "Julie (Olamide)", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/bdfe7c01a5c1aff44cfd2345a67fa4b4/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 16 }] },
+      { title: "Julie", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/bdfe7c01a5c1aff44cfd2345a67fa4b4/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 16 }] },
       { title: "Skido", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/ebd3e7b46a4d85fb7a46e4cfc3dcbf14/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 16 }] },
       { title: "Arizona", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/3cd8b90db9e881f5dc6d5de08893749d/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 17 }] },
       { title: "Celebrate", kind: "Singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/07/c6/76/07c6765f-432b-5fe3-fbaf-d6cc5548c3c1/197342301527_cover.jpg/300x300bb.jpg", entries: [{ c: "NG", peak: 18 }] },
@@ -739,7 +787,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Body", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/c98671159d2fdba497f51ba29f0d610d/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Dreamer", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "First Sermon", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/34ee6e50ac8f41496639c6cfec16fa8e/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
-      { title: "January 9Th", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/87118306c311ac9408e937346f922f56/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
+      { title: "January 9th", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/87118306c311ac9408e937346f922f56/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "One", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/02/ad/43/02ad437c-67b2-bd74-3ef0-3ae8e47e397c/840054905889.png/300x300bb.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Rebel Music", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/6e/17/19/6e1719b2-a766-e5fd-ea06-bb470a3a0e58/197342791595_cover.jpg/300x300bb.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "The Homeless Song", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/6c62324aa93ed6be667929a5ab922f65/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
@@ -779,7 +827,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "The Homeless Song", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/6c62324aa93ed6be667929a5ab922f65/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 88 }] },
       { title: "Oil In My Head", kind: "Singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/73/16/88/73168899-de60-6429-b70b-6de58aefe55e/194690942938_cover.jpg/300x300bb.jpg", entries: [{ c: "NG", peak: 95 }] },
       // ── Charts sweep, 2 Oct 2026 (docs/sweeps/charts-sweep-2026-10-02.md) ──
-      { title: "Jolie", kind: "Singles", entries: [{ c: "NG", peak: 73, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 2 weeks in (17 to 24 Sep 2026), after reaching No. 73 on 17 Sep. Re-read in a later capture." }] },
+      { title: "Jolie", kind: "Singles", entries: [{ c: "NG", peak: 73, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 2 weeks in (17 to 24 Sep 2026), after reaching No. 73 on 17 Sep." }] },
       { title: "Love Again", kind: "Singles", entries: [{ c: "NG", peak: 78 }] },
       { title: "IRON BOY", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 3 }] },
       { title: "The Villain I Never Was", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/6c62324aa93ed6be667929a5ab922f65/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 6 }] },
@@ -812,7 +860,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Cold Outside", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/60603c888769eed295f9807da2fc964b/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
       { title: "Feeling", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/d91495fa367186de1d1e217b5b1bdaaf/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
       { title: "Finesse", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/3cd08785ca6d2a471c70f774fc3e9b8c/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }, { c: "US", level: "Gold" }, { c: "UK", level: "Gold" }, { c: "CA", level: "Platinum" }, { c: "NZ", level: "Gold" }, { c: "FR", level: "Platinum" }] },
-      { title: "Outside (Buju)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/50ec0e90f94913bcde8443b952cc1162/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
+      { title: "Outside", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/50ec0e90f94913bcde8443b952cc1162/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
       { title: "For Days", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/99ab461acf3040d231c824f66893a811/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "I Alone", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/47b72924cef36764e12e24f894bb0bd9/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Ilashe", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/589173416a36ce1395e49b85c4e6a9f8/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
@@ -822,9 +870,9 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Mood (Wizkid ft. BNXN)", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/ad33274548de3455303618bb650b6d86/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "UK", level: "Silver" }, { c: "CA", level: "Gold" }, { c: "NZ", level: "Gold" }] },
       { title: "Ole", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/82813fcf300b4a32405e93fdaa89a5dd/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Phenomena", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/46e288e8e53f80f89164b0a15d57f9c1/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
-      { title: "Romeo Must Die (Rmd)", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/b4/89/ea/b489eaf0-b41c-cfc7-d1eb-0f1ea87f7318/197342522229_cover.jpg/300x300bb.jpg", certs: [{ c: "NG", level: "Platinum" }] },
+      { title: "Romeo Must Die (RMD)", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/b4/89/ea/b489eaf0-b41c-cfc7-d1eb-0f1ea87f7318/197342522229_cover.jpg/300x300bb.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Set Up", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/47b72924cef36764e12e24f894bb0bd9/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
-      { title: "5Hrs Till Nairobi", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/47b72924cef36764e12e24f894bb0bd9/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
+      { title: "5hrs Till Nairobi", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/47b72924cef36764e12e24f894bb0bd9/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Best Of Me", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/29/55/b7/2955b7f3-0b1a-2909-b062-24282b2611b6/197342321792_cover.jpg/300x300bb.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Confident", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/198288ca213776de9e6fb90ee7bd2f1b/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Hustle", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/d2761ab6aeb64ad59ed87448869e8531/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
@@ -839,7 +887,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Totori", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/19/5f/70/195f709f-ada5-2cfd-14a0-925b548c1a84/199316032659_cover.jpg/300x300bb.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Traboski", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/ed19be301de0091b7598d2919f8453e8/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Bad Man Wicked", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/332d8b3586d040e4d5ef670f3987dcfc/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
-      { title: "Bad Since 97", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/332d8b3586d040e4d5ef670f3987dcfc/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
+      { title: "Bad Since '97", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/332d8b3586d040e4d5ef670f3987dcfc/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Captain", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/47b72924cef36764e12e24f894bb0bd9/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Close To Me", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/8c885973dcd5c94020744878bc28b79e/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Come Alive", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/498d4ae81da58e1fcf5e2704a99e0ed8/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
@@ -853,7 +901,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Omo Elewa", kind: "Lead singles", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Oshimiri", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/18/5f/45/185f4543-0986-25e3-9c40-bc9bd540b951/197342986700_cover.jpg/300x300bb.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Regret", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/29/55/b7/2955b7f3-0b1a-2909-b062-24282b2611b6/197342321792_cover.jpg/300x300bb.jpg", certs: [{ c: "NG", level: "Silver" }] },
-      { title: "What'S Poppin", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/0d9187f4ee220b37b30cb49c56350fe7/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
+      { title: "What's Poppin'", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/0d9187f4ee220b37b30cb49c56350fe7/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Wo Wo (Remix)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/cdc44c70f1bf956b3330a9ad3d059d82/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Yes Sir", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/19/5f/70/195f709f-ada5-2cfd-14a0-925b548c1a84/199316032659_cover.jpg/300x300bb.jpg", certs: [{ c: "NG", level: "Silver" }] },
     ],
@@ -874,7 +922,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Very Soon", kind: "Singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/19/5f/70/195f709f-ada5-2cfd-14a0-925b548c1a84/199316032659_cover.jpg/300x300bb.jpg", entries: [{ c: "NG", peak: 4 }] },
       { title: "Pidgin & English", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/a8c088ce8f133901305e47938b4f981a/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 5 }] },
       { title: "Kilometer", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/75c97bac9bb9c479dd3680a865037629/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 6 }] },
-      { title: "Outside (Buju)", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/50ec0e90f94913bcde8443b952cc1162/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 6 }] },
+      { title: "Outside", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/50ec0e90f94913bcde8443b952cc1162/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 6 }] },
       { title: "Italy", kind: "Singles", entries: [{ c: "NG", peak: 7 }] },
       { title: "Laye Mi", kind: "Singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/19/5f/70/195f709f-ada5-2cfd-14a0-925b548c1a84/199316032659_cover.jpg/300x300bb.jpg", entries: [{ c: "NG", peak: 7 }] },
       { title: "Traboski", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/ed19be301de0091b7598d2919f8453e8/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 7 }] },
@@ -925,8 +973,8 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "In Jesus Name", kind: "Singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/19/5f/70/195f709f-ada5-2cfd-14a0-925b548c1a84/199316032659_cover.jpg/300x300bb.jpg", entries: [{ c: "NG", peak: 63 }] },
       { title: "Cutesy", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/47b72924cef36764e12e24f894bb0bd9/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 65 }] },
       { title: "In My Mind - A COLORS SHOW", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/cb7a603e54e53b2fe960de2b46786a81/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 65 }] },
-      { title: "Mukulu (BNXN)", kind: "Singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/29/55/b7/2955b7f3-0b1a-2909-b062-24282b2611b6/197342321792_cover.jpg/300x300bb.jpg", entries: [{ c: "NG", peak: 66 }] },
-      { title: "Loose Emotiona", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/332d8b3586d040e4d5ef670f3987dcfc/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 67 }] },
+      { title: "Mukulu", kind: "Singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/29/55/b7/2955b7f3-0b1a-2909-b062-24282b2611b6/197342321792_cover.jpg/300x300bb.jpg", entries: [{ c: "NG", peak: 66 }] },
+      { title: "Loose Emotions", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/332d8b3586d040e4d5ef670f3987dcfc/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 67 }] },
       { title: "Oshimiri", kind: "Singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/18/5f/45/185f4543-0986-25e3-9c40-bc9bd540b951/197342986700_cover.jpg/300x300bb.jpg", entries: [{ c: "NG", peak: 68 }] },
       { title: "Regret", kind: "Singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/29/55/b7/2955b7f3-0b1a-2909-b062-24282b2611b6/197342321792_cover.jpg/300x300bb.jpg", entries: [{ c: "NG", peak: 70 }] },
       { title: "What's Poppin'", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/0d9187f4ee220b37b30cb49c56350fe7/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 70 }] },
@@ -959,9 +1007,9 @@ export const afrobeatsArtists: AfroArtist[] = [
       // make the board's first same-title-different-kind pair, and cover lookups
       // here key on title alone (Object.fromEntries(releases.map(r => [r.title,
       // r.cover]))), so the two rows would collide. Needs a decision, not a guess.
-      { title: "WHO THIS", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/eae1950cf642fef40ae06c76d29dc1b8/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 24, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 5 weeks in (27 Aug to 24 Sep 2026), after reaching No. 24 on 10 Sep. Re-read in a later capture." }] }, // TurnTable week 37: rank 24, highestPosition 24, 3 weeks (read 17 Sep 2026)
+      { title: "WHO THIS", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/eae1950cf642fef40ae06c76d29dc1b8/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 24, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 5 weeks in (27 Aug to 24 Sep 2026), after reaching No. 24 on 10 Sep." }] }, // TurnTable week 37: rank 24, highestPosition 24, 3 weeks (read 17 Sep 2026)
       // ── Charts sweep, 2 Oct 2026 (docs/sweeps/charts-sweep-2026-10-02.md) ──
-      { title: "Online", kind: "Singles", entries: [{ c: "NG", peak: 20, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 1 week in (24 Sep 2026). Re-read in a later capture." }] },
+      { title: "Online", kind: "Singles", entries: [{ c: "NG", peak: 20, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 1 week in (24 Sep 2026)." }] },
       { title: "CAPTAIN", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/47b72924cef36764e12e24f894bb0bd9/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 1 }] },
       { title: "Sincerely, Benson", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/a8c088ce8f133901305e47938b4f981a/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 2 }] },
       { title: "RnB", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/589173416a36ce1395e49b85c4e6a9f8/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 2 }] },
@@ -1163,7 +1211,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Alaye", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/a4c216574fd4d381c73a4df2f512f599/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 3 }] },
       { title: "No Stress", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 4 }] },
       { title: "Money & Love", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/e4286ac8a38829b6cf5d225c311bccf7/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 4 }] },
-      { title: "Ololufe", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/24a4bbe1d6d25c216426e42587156a04/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 4 }] },
+      { title: "Ololufé", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/24a4bbe1d6d25c216426e42587156a04/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 4 }] },
       { title: "Iskolodo", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/a4c216574fd4d381c73a4df2f512f599/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 5 }] },
       { title: "Troubled Mind", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 5 }] },
       { title: "Abracadabra (Remix)", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/291718c2c29f3636a50fcdf9a1cc29b1/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 7 }] },
@@ -1183,7 +1231,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "A Million Blessings", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 12 }] },
       { title: "Like That (bomboclatt)", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/904cf12b649b141254ed4bde749910c1/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 12 }] },
       { title: "Smile", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 13 }] },
-      { title: "Apres Minuit", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 13 }] },
+      { title: "Après Minuit", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 13 }] },
       { title: "Wow", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/e4286ac8a38829b6cf5d225c311bccf7/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 15 }] },
       { title: "Apala Disco (Remix)", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/4e44b886a595181a9bc06efabd864b89/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 15 }] },
       { title: "Break Me Down", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 15 }] },
@@ -1310,7 +1358,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "For You", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/ed05b8ce0b7f23d98282ed515664c286/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Dada", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/6f3cbf0c6e006c8e49ff6cf036d85c87/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Hmmm", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/d40b73f50ac9badee18d53685c838aba/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
-      { title: "Ke Star", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/5a54ff0e04934271e7acec9af3dd55d8/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
+      { title: "Ke Star (Remix)", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/5a54ff0e04934271e7acec9af3dd55d8/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Yebo Lapho", kind: "Featured appearances", certs: [{ c: "ZA", level: "Platinum" }] },
       { title: "Gang", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/41fc3e7a3430f3a5e1c1780b57c3147f/500x500-000000-80-0-0.jpg", certs: [{ c: "FR", level: "Gold" }] },
       { title: "Galorizzy (Ecool, Davido, Mavo & Morravey ft. Scotts Maphuma & Iphxne DJ)", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/434231b43c8376a6a54dadff7316cc36/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
@@ -1375,13 +1423,13 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Shopping Spree (ft. Chris Brown & Young Thug)", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 8 }] },
       { title: "Champion Sound (Davido & Focalistic)", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/594be4990d2be6af325a4a0825960a9a/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 8 }] },
       { title: "Something Fishy", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 9 }] },
-      { title: "La La (ft. Ckay)", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 10 }] },
-      { title: "Watawi (Ckay ft. Davido, Focalistic & Abidoza)", kind: "Singles", entries: [{ c: "NG", peak: 10 }] },
+      { title: "La La (ft. CKay)", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 10 }] },
+      { title: "Watawi (CKay ft. Davido, Focalistic & Abidoza)", kind: "Singles", entries: [{ c: "NG", peak: 10 }] },
       { title: "All (Rexxie ft. Davido)", kind: "Singles", entries: [{ c: "NG", peak: 11 }] },
       { title: "Heaven", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 12 }] },
       { title: "Cho Cho (Zlatan ft. Mayorkun & Davido)", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/a660b5ee0e40f869a94208274a7602a1/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 12 }] },
       { title: "Maserati (Remix) (Olakira ft. Davido)", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/1713aad5a0a697ac1db7ce7b8a167c27/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 17 }] },
-      { title: "Ke Star (Remix) (Focalistic & Davido ft. Virgo Deep)", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/5a54ff0e04934271e7acec9af3dd55d8/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 15 }] },
+      { title: "Ke Star (Remix) (Focalistic & Davido ft. Vigro Deep)", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/5a54ff0e04934271e7acec9af3dd55d8/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 15 }] },
       { title: "Tanana (ft. Tiwa Savage)", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 16 }] },
       { title: "Very Special", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 18 }] },
       { title: "Fade (ft. Bella Shmurda)", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 19 }] },
@@ -1542,14 +1590,14 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Benin Boys", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/5e376f766f35708db51b9c3295fef2ce/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 1 }] },
       { title: "Fi Kan We Kan", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/e4c2c39678f951dd57f09d2e98cd4062/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 1 }] },
       { title: "FUN", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/c8e5156cfb208f46ca97fd26072becce/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 1 }] },
-      { title: "LaLaLa", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/0dd0b79a37a28f75ab7f61b38d0dccda/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 1 }] },
+      { title: "Lalala", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/0dd0b79a37a28f75ab7f61b38d0dccda/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 1 }] },
       { title: "Won Da Mo", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/342ebddd40c9c6b60b9d432d7e609f20/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 1 }] },
       { title: "Bout U", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/6d2d72d718d4ad08f355e40b0ec94a33/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 2 }] },
       { title: "Who's Dat Girl", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/fe3deba215d998d74542663a84621852/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 2 }] },
       { title: "HEHEHE", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/4891a944de9418f059cabda0c7699160/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 3 }] },
       { title: "OZEBA", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/4891a944de9418f059cabda0c7699160/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 3 }] },
-      { title: "Favorite Girl", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/6f7959be27296229ca33841aa07d5c79/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 3 }] },
-      { title: "TEA", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/6ad6ca24531d374241de87ca5e3211ca/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 3, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 7 weeks in (13 Aug to 24 Sep 2026), after reaching No. 3 on 13 and 20 Aug. Re-read in a later capture." }] },
+      { title: "Favourite Girl", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/6f7959be27296229ca33841aa07d5c79/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 3 }] },
+      { title: "TEA", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/6ad6ca24531d374241de87ca5e3211ca/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 3, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 7 weeks in (13 Aug to 24 Sep 2026), after reaching No. 3 on 13 and 20 Aug." }] },
       { title: "Kelebu", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/9762353430bf3c5816735dca5d916a96/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 5 }] },
       { title: "YAYO", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/4891a944de9418f059cabda0c7699160/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 6 }] },
       { title: "Goals", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/8d26b51a325ab59c594708d1c8c71bf2/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 62 }] },
@@ -1557,7 +1605,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Dimension", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/1a396a54bf82fb0a7cc1eb27daaf3eea/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 5 }, { c: "UK", peak: 58 }] },
       { title: "One Time", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/ba08c9e25ee1fcea15893d5e09706fcb/500x500-000000-80-0-0.jpg", entries: [{ c: "FR", peak: 171 }] },
       // ── Charts sweep, 2 Oct 2026 (docs/sweeps/charts-sweep-2026-10-02.md) ──
-      { title: "Oh No", kind: "Singles", entries: [{ c: "NG", peak: 2, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 2 weeks in (17 to 24 Sep 2026), after reaching No. 2 on 17 Sep. Re-read in a later capture." }, { c: "SR", peak: 27, note: "Peak still open — a new entry on the 17–24 Sep 2026 Nationale Top 40, the newest list when read 2 Oct 2026. Re-read in a later capture." }] },
+      { title: "Oh No", kind: "Singles", entries: [{ c: "NG", peak: 2, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 2 weeks in (17 to 24 Sep 2026), after reaching No. 2 on 17 Sep." }, { c: "SR", peak: 27, note: "Peak still open — a new entry on the 17–24 Sep 2026 Nationale Top 40, the newest list when read 2 Oct 2026." }] },
       { title: "Smooth Criminal", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/9f343b559a9382c0d35ba0c9eca79159/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 2 }] },
       { title: "Holiday", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/d4f61945703f34bba42311d1ec703f94/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 3 }] },
       { title: "Bounce", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/e26def467fccdcadca010b8c0f00fd0f/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 4 }] },
@@ -1647,7 +1695,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "No.1", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg", certs: [{ c: "ZA", level: "Gold", body: "Sony Music Africa", source: "label" }] },
     ],
     charts: [
-      { title: "Raindance", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/02552930a9bbf685ec4f683ff0ca2029/500x500-000000-80-0-0.jpg", entries: [{ c: "UK", peak: 1 }, { c: "LU", peak: 1 }, { c: "GR", peak: 1 }, { c: "AE", peak: 1 }, { c: "SA", peak: 1 }, { c: "CH", peak: 2 }, { c: "LT", peak: 2, weeksAtPeak: 3, weeks: 42, note: "Peak still open — still on AGATA's Top 100 when read 2 Oct 2026 (2026-W40, No. 51), 42 weeks in since 2025-W51; No. 2 in 2026-W3, W4 and W9. Re-read in a later capture." }, { c: "IN", peak: 2 }, { c: "LB", peak: 3 }, { c: "ZA", peak: 4 }, { c: "PT", peak: 4 }, { c: "SE", peak: 4 }, { c: "NL", peak: 5 }, { c: "DK", peak: 5 }, { c: "LV", peak: 5 }, { c: "NZ", peak: 5 }, { c: "IE", peak: 6 }, { c: "SK", peak: 6 }, { c: "NG", peak: 7 }, { c: "DE", peak: 7 }, { c: "AT", peak: 7 }, { c: "CZ", peak: 8 }, { c: "RU", peak: 8 }, { c: "AU", peak: 8 }, { c: "GLBX", peak: 8 }, { c: "NO", peak: 12 }, { c: "MY", peak: 12 }, { c: "KZ", peak: 12 }, { c: "GLB", peak: 12 }, { c: "RO", peak: 14 }, { c: "IS", peak: 15 }, { c: "SG", peak: 17 }, { c: "BE", peak: 19 }, { c: "FR", peak: 19 }, { c: "HU", peak: 25 }, { c: "CA", peak: 25 }, { c: "IL", peak: 27 }, { c: "SR", peak: 29 }, { c: "FI", peak: 30 }, { c: "IT", peak: 40 }, { c: "US", peak: 42 }, { c: "PH", peak: 53 }, { c: "PL", peak: 65 }, { c: "MD", peak: 69 }, { c: "EE", peak: 80 }] },
+      { title: "Raindance", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/02552930a9bbf685ec4f683ff0ca2029/500x500-000000-80-0-0.jpg", entries: [{ c: "UK", peak: 1 }, { c: "LU", peak: 1 }, { c: "GR", peak: 1 }, { c: "AE", peak: 1 }, { c: "SA", peak: 1 }, { c: "CH", peak: 2 }, { c: "LT", peak: 2, weeksAtPeak: 3, weeks: 42, note: "Peak still open — still on AGATA's Top 100 when read 2 Oct 2026 (2026-W40, No. 51), 42 weeks in since 2025-W51; No. 2 in 2026-W3, W4 and W9." }, { c: "IN", peak: 2 }, { c: "LB", peak: 3 }, { c: "ZA", peak: 4 }, { c: "PT", peak: 4 }, { c: "SE", peak: 4 }, { c: "NL", peak: 5 }, { c: "DK", peak: 5 }, { c: "LV", peak: 5 }, { c: "NZ", peak: 5 }, { c: "IE", peak: 6 }, { c: "SK", peak: 6 }, { c: "NG", peak: 7 }, { c: "DE", peak: 7 }, { c: "AT", peak: 7 }, { c: "CZ", peak: 8 }, { c: "RU", peak: 8 }, { c: "AU", peak: 8 }, { c: "GLBX", peak: 8 }, { c: "NO", peak: 12 }, { c: "MY", peak: 12 }, { c: "KZ", peak: 12 }, { c: "GLB", peak: 12 }, { c: "RO", peak: 14 }, { c: "IS", peak: 15 }, { c: "SG", peak: 17 }, { c: "BE", peak: 19 }, { c: "FR", peak: 19 }, { c: "HU", peak: 25 }, { c: "CA", peak: 25 }, { c: "IL", peak: 27 }, { c: "SR", peak: 29 }, { c: "FI", peak: 30 }, { c: "IT", peak: 40 }, { c: "US", peak: 42 }, { c: "PH", peak: 53 }, { c: "PL", peak: 65 }, { c: "MD", peak: 69 }, { c: "EE", peak: 80 }] },
       { title: "Wait For U", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/d1bd3da6698dd5eafc5b4514317039c4/500x500-000000-80-0-0.jpg", entries: [{ c: "US", peak: 1 }, { c: "ZA", peak: 1 }, { c: "GLB", peak: 2 }, { c: "CA", peak: 3 }, { c: "NZ", peak: 7 }, { c: "UK", peak: 8 }, { c: "IS", peak: 11 }, { c: "AU", peak: 12 }, { c: "LU", peak: 17 }, { c: "NG", peak: 18 }, { c: "IE", peak: 21 }, { c: "GR", peak: 21 }, { c: "LT", peak: 28 }, { c: "GLBX", peak: 29 }, { c: "CH", peak: 34 }, { c: "NL", peak: 59 }, { c: "AT", peak: 65 }, { c: "PT", peak: 68 }, { c: "DE", peak: 77 }, { c: "SK", peak: 78 }, { c: "FR", peak: 135 }] },
       { title: "Essence", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 2 }, { c: "US", peak: 9 }, { c: "ZA", peak: 15 }, { c: "NZ", peak: 15 }, { c: "UK", peak: 16 }, { c: "GLB", peak: 28 }, { c: "CA", peak: 30 }, { c: "IE", peak: 41 }, { c: "GLBX", peak: 60 }, { c: "NL", peak: 76 }, { c: "CH", peak: 95 }, { c: "PT", peak: 108 }] },
       { title: "Fountains", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/ea8f80f2edb20885ac8aed8751716794/500x500-000000-80-0-0.jpg", entries: [{ c: "ZA", peak: 14 }, { c: "NG", peak: 21 }, { c: "US", peak: 26 }, { c: "GLB", peak: 26 }, { c: "AU", peak: 36 }, { c: "CA", peak: 36 }, { c: "LT", peak: 79 }, { c: "PT", peak: 43 }, { c: "GLBX", peak: 45 }, { c: "GR", peak: 57 }, { c: "FR", peak: 70 }] },
@@ -1753,7 +1801,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "No.1", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg", certs: [{ c: "ZA", level: "Gold", body: "Sony Music Africa", source: "label" }] },
       { title: "Safer", kind: "Lead singles", certs: [{ c: "ZA", level: "Gold", body: "Sony Music Africa", source: "label" }] },
       { title: "Water (Remix) (ft. Travis Scott)", kind: "Lead singles", certs: [{ c: "ZA", level: "Gold", body: "Sony Music Africa", source: "label" }] },
-      { title: "Dynamite — Tyla & Wizkid", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/b9de2c8e816295f124dd7b227f7fa668/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
+      { title: "Dynamite (Tyla & Wizkid)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/b9de2c8e816295f124dd7b227f7fa668/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Show Me Love", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/33cc78686fd6ca7863758a5408d6eabe/500x500-000000-80-0-0.jpg", certs: [{ c: "GR", level: "Gold" }] },
     ],
     charts: [
@@ -1785,7 +1833,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Mr. Nonchalant", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg", entries: [{ c: "ZA", peak: 20 }] },
       { title: "WWP", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/b9de2c8e816295f124dd7b227f7fa668/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 18 }] },
       { title: "Tyla", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg", entries: [{ c: "NL", peak: 11 }, { c: "CH", peak: 12 }, { c: "NZ", peak: 16 }, { c: "UK", peak: 19 }, { c: "NO", peak: 19 }, { c: "PT", peak: 23 }, { c: "US", peak: 24 }, { c: "NG", peak: 25 }, { c: "CA", peak: 26 }, { c: "FR", peak: 31 }, { c: "LT", peak: 36 }, { c: "BE", peak: 44 }, { c: "AT", peak: 48 }, { c: "AU", peak: 48 }, { c: "SE", peak: 57 }, { c: "IE", peak: 59 }, { c: "JP", peak: 65 }, { c: "ES", peak: 73 }, { c: "DE", peak: 86 }] },
-      { title: "A\\Pop", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg", entries: [{ c: "CH", peak: 19 }, { c: "NZ", peak: 21 }, { c: "AU", peak: 28 }, { c: "DE", peak: 37 }, { c: "UK", peak: 43 }, { c: "US", peak: 43 }, { c: "BE", peak: 48 }, { c: "FR", peak: 56 }, { c: "NL", peak: 64 }, { c: "PT", peak: 64 }, { c: "NG", peak: 77 }, { c: "ES", peak: 89 }] },
+      { title: "A*POP", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg", entries: [{ c: "CH", peak: 19 }, { c: "NZ", peak: 21 }, { c: "AU", peak: 28 }, { c: "DE", peak: 37 }, { c: "UK", peak: 43 }, { c: "US", peak: 43 }, { c: "BE", peak: 48 }, { c: "FR", peak: 56 }, { c: "NL", peak: 64 }, { c: "PT", peak: 64 }, { c: "NG", peak: 77 }, { c: "ES", peak: 89 }] },
     ],
   },
   {
@@ -1906,9 +1954,9 @@ export const afrobeatsArtists: AfroArtist[] = [
       // PROPHON's World TOP 10 — the combined list Dai Dai's BG row uses (see
       // Rema's "Calm Down" for why it is not a repertoire component). No. 2 on
       // 4–10 Sep and again 25 Sep–1 Oct 2026; still on the list when read 2 Oct.
-      { title: "Wo, man", kind: "Singles", entries: [{ c: "BG", peak: 2, note: "Peak still open — still on PROPHON's World TOP 10 when read 2 Oct 2026, 6 issues in (21 Aug to 25 Sep 2026), No. 2 on 4 Sep and again on 25 Sep. Re-read in a later capture." }] },
+      { title: "Wo, man", kind: "Singles", entries: [{ c: "BG", peak: 2, note: "Peak still open — still on PROPHON's World TOP 10 when read 2 Oct 2026, 6 issues in (21 Aug to 25 Sep 2026), No. 2 on 4 Sep and again on 25 Sep." }] },
       // Nigeria: TurnTable Official Top 100 Albums — week 34 (20 Aug 2026) rank 2 on debut, weeks 35 and 36 highestPosition 2 (read 17 Sep 2026). The 6 Sep sweep held the row over a 2-vs-3 conflict with TurnTable's written week-34 report; the body's own payload says 2 across three issues.
-      { title: "Starrgirl", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/64f822132d39a3677d59f745a248a2ce/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 2, note: "Peak still open — still on the Top 100 Albums when read 2 Oct 2026, 5 weeks in (20 Aug to 17 Sep 2026, the newest albums issue), after reaching No. 2 on 20 Aug. Re-read in a later capture." }, { c: "FR", peak: 100 }] },
+      { title: "Starrgirl", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/64f822132d39a3677d59f745a248a2ce/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 2, note: "Peak still open — still on the Top 100 Albums when read 2 Oct 2026, 5 weeks in (20 Aug to 17 Sep 2026, the newest albums issue), after reaching No. 2 on 20 Aug." }, { c: "FR", peak: 100 }] },
       { title: "The Year I Turned 21", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/d096ea1c1019d1af67c0a2e434890e1e/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 1 }, { c: "FR", peak: 72 }, { c: "UK", peak: 80 }, { c: "CA", peak: 89 }, { c: "US", peak: 195 }] },
       { title: "19 & Dangerous", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/b922c719d3a9901f749140e8f532a8d0/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 7 }] },
     ],
@@ -2205,7 +2253,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "it's yours", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/fc81a1daef5228b3e31fb1f37bc1ad67/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 33 }] },
       { title: "One Call", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/a9b6e5da215b7be592fcfc2bfe966703/500x500-000000-80-0-0.jpg", entries: [{ c: "SR", peak: 8 }, { c: "NG", peak: 35 }] },
       // TurnTable week 37 (10 Sep 2026): debut at 35, credited "bees & honey, OMAH LAY, BEAM & Gyptian" on the chart body's own line — a featured entry under the lead-and-featured rule, as Gut Genug is. Read 17 Sep 2026.
-      { title: "As We Get High", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/b4d2ad60759dd994a1a8440baa1c61e8/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 25, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 3 weeks in (10 to 24 Sep 2026), after reaching No. 25 on 17 Sep. Re-read in a later capture." }] },
+      { title: "As We Get High", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/b4d2ad60759dd994a1a8440baa1c61e8/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 25, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 3 weeks in (10 to 24 Sep 2026), after reaching No. 25 on 17 Sep." }] },
       { title: "temptations", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/e51306cd0211b33a043b1fef073026e5/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 47 }] },
       { title: "understand", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/ebaba8c1ec645c396628a92f7aca871b/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 1 }] },
       { title: "how to luv", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/e51306cd0211b33a043b1fef073026e5/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 68 }] },
@@ -2216,7 +2264,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "never forget", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/fc81a1daef5228b3e31fb1f37bc1ad67/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 90 }] },
       { title: "recognize", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/e51306cd0211b33a043b1fef073026e5/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 94 }] },
       // ── Charts sweep, 2 Oct 2026 (docs/sweeps/charts-sweep-2026-10-02.md) ──
-      { title: "Company", kind: "Singles", entries: [{ c: "MK", peak: 4, note: "Radiomonitor's widget shows the current week only; read 2 Oct 2026, the run's best may be higher." }, { c: "NG", peak: 100, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 1 week in (24 Sep 2026). Re-read in a later capture." }] },
+      { title: "Company", kind: "Singles", entries: [{ c: "MK", peak: 4, note: "Radiomonitor's widget shows the current week only; read 2 Oct 2026, the run's best may be higher." }, { c: "NG", peak: 100, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 1 week in (24 Sep 2026)." }] },
       { title: "Godly", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/ed64774f56cf5d0f3fcb8e25c9fe39f6/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 1 }] },
       { title: "Forever (Remix)", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/ada9bcfee9900dd72f862562ae032550/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 1 }] },
       { title: "Infinity", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/2f5c91242bfb5ed7be4ccb2b435b6f7f/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 2 }] },
@@ -2275,7 +2323,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "234", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/bd6ee4f7ca4e570c6a0b6319f7e57730/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Apala Interlude", kind: "Lead singles", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Bank Of America", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/bd6ee4f7ca4e570c6a0b6319f7e57730/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
-      { title: "Bd Baby", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/bd6ee4f7ca4e570c6a0b6319f7e57730/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
+      { title: "BD Baby", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/bd6ee4f7ca4e570c6a0b6319f7e57730/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Billion Dollar", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/bd6ee4f7ca4e570c6a0b6319f7e57730/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Casablanca", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/44b6b558a027125f253bbf9538541db4/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Catalyst", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/3f47680977ad5f31c014b7d49127ce8a/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
@@ -2294,7 +2342,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Gangsta", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/bd6ee4f7ca4e570c6a0b6319f7e57730/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Para Boi", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/48381e9f42170865f4eaa548d3b014c4/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Psalm 23", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/bd6ee4f7ca4e570c6a0b6319f7e57730/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
-      { title: "90s", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/83b784692505844a0ce0b4ba3b99029a/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
+      { title: "90's", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/83b784692505844a0ce0b4ba3b99029a/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Abu Dhabi", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/44b6b558a027125f253bbf9538541db4/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Alaska", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/48381e9f42170865f4eaa548d3b014c4/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Albert Einstein", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/44b6b558a027125f253bbf9538541db4/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
@@ -2308,8 +2356,8 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Go Low", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/bd6ee4f7ca4e570c6a0b6319f7e57730/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "God Sent", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/3f47680977ad5f31c014b7d49127ce8a/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Highlife Interlude", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/c8ebad7f5af3f521ca579199d9e05150/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
-      { title: "Ig Story", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/48381e9f42170865f4eaa548d3b014c4/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
-      { title: "Iq", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/bd6ee4f7ca4e570c6a0b6319f7e57730/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
+      { title: "IG Story", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/48381e9f42170865f4eaa548d3b014c4/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
+      { title: "IQ", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/bd6ee4f7ca4e570c6a0b6319f7e57730/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Kingdom", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/6954c3e880713a3d27089b7a0ad8570d/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Manchester", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/44b6b558a027125f253bbf9538541db4/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Migos", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/c8ebad7f5af3f521ca579199d9e05150/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
@@ -2329,7 +2377,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Fuji Party", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/9b55814d80a5c5ed1ee99d1630fc76d7/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "G.O.A.T", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/48381e9f42170865f4eaa548d3b014c4/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Loml", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/c8ebad7f5af3f521ca579199d9e05150/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
-      { title: "Nsnv", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/3f47680977ad5f31c014b7d49127ce8a/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
+      { title: "NSNV", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/3f47680977ad5f31c014b7d49127ce8a/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Ogochukwu", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/bd6ee4f7ca4e570c6a0b6319f7e57730/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Over Sabi", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/3f47680977ad5f31c014b7d49127ce8a/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Para Mode", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/3f47680977ad5f31c014b7d49127ce8a/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
@@ -2347,14 +2395,14 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Ogo", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/79212a851adfab930b307e93a4402cb5/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Realize", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/b8d730f2e9759962519d125a2fe4e4d0/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Set Up", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/47b72924cef36764e12e24f894bb0bd9/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
-      { title: "Whatsapp", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/cc74c9cd480b52460eaa03f4ee75f937/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
+      { title: "WhatsApp", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/cc74c9cd480b52460eaa03f4ee75f937/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "247", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/bd47fb7f9480aa36a6a136dc423e30c7/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Bounce", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/541a6bd7704ca3ec57542cd9b964479c/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Let There Be Light", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/0d3b3f15e7c633880a6653e97ab81cd2/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Gang", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/ba2c077cd1d6f4e3b15a2b06c58da85c/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "On God (Vibez Inc, ODUMODUBLVCK & Tml Vibez)", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/4bd46ae32cb5d4ceaf64d487aa4bcb07/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Richer", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/cbece273781ad75851cb62a87fe877e2/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
-      { title: "40 Btc", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/7ed287317374905089708c8db5e302ab/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
+      { title: "40 BTC", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/7ed287317374905089708c8db5e302ab/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "4ck Up", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/4235ec7d2986f726a07f8093fd2b6061/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Different Conversation Live 4", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/da6a056bf3a91276bdae05ebebe4d535/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Goated", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/b1dc126a2f91edc548817a2f1a55473f/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
@@ -2372,7 +2420,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Giza", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/1120c9c53e59dcbaffb9d7f77908db16/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 2 }] },
       { title: "GTA", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/4f0e7e1508278c9c558f8e0a6ea0de3b/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 2 }] },
       // TurnTable Official Nigeria Top 100, week 37 (issue dated 10 Sep 2026): rank 10, highestPosition 8, 2 weeks — read 17 Sep 2026.
-      { title: "BACK 2 U", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/625f9538bb2952a5b160aef95aeb7ed0/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 4, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 4 weeks in (3 to 24 Sep 2026), after reaching No. 4 on 24 Sep. Re-read in a later capture." }] },
+      { title: "BACK 2 U", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/625f9538bb2952a5b160aef95aeb7ed0/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 4, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 4 weeks in (3 to 24 Sep 2026), after reaching No. 4 on 24 Sep." }] },
       { title: "Hat-Trick", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/6954c3e880713a3d27089b7a0ad8570d/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 2 }] },
       { title: "MY HEALER", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/ff869559b2b6b876cc2b7811bb7e4436/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 2 }] },
       { title: "Different Pattern", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/7811d182331cada5bb161fbb2edf0f40/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 3 }] },
@@ -2421,7 +2469,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Set Up", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/47b72924cef36764e12e24f894bb0bd9/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 26 }] },
       { title: "Abu Dhabi", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/44b6b558a027125f253bbf9538541db4/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 27 }] },
       { title: "Kingdom", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/6954c3e880713a3d27089b7a0ad8570d/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 27 }] },
-      { title: "Ig Story", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/48381e9f42170865f4eaa548d3b014c4/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 28 }] },
+      { title: "IG Story", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/48381e9f42170865f4eaa548d3b014c4/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 28 }] },
       { title: "Manchester", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/44b6b558a027125f253bbf9538541db4/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 28 }] },
       { title: "Fakosi (Remix)", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/d39b0eaf1167e601ad1b22569d248ad4/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 29 }] },
       { title: "Albert Einstein", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/44b6b558a027125f253bbf9538541db4/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 30 }] },
@@ -2463,24 +2511,24 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "All The Time", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/c8ebad7f5af3f521ca579199d9e05150/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 73 }] },
       { title: "4ck Up", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/4235ec7d2986f726a07f8093fd2b6061/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 74 }] },
       { title: "Gangsta (original)", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/bd6ee4f7ca4e570c6a0b6319f7e57730/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 74 }] },
-      { title: "Iq", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/bd6ee4f7ca4e570c6a0b6319f7e57730/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 78 }] },
+      { title: "IQ", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/bd6ee4f7ca4e570c6a0b6319f7e57730/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 78 }] },
       { title: "Ten", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/bd6ee4f7ca4e570c6a0b6319f7e57730/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 79 }] },
       { title: "Realize", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/b8d730f2e9759962519d125a2fe4e4d0/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 80 }] },
       { title: "Shine", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/cdfc27515f589b8125a8e88ce735d134/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 80 }] },
       { title: "Mamba", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/6c4eaf373c6d7442169ed566f72638c0/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 92 }] },
       // ── Charts sweep, 2 Oct 2026 (docs/sweeps/charts-sweep-2026-10-02.md) ──
       { title: "Volume", kind: "Singles", entries: [{ c: "NG", peak: 1, note: "No. 1 on its debut, the issue of 24 Sep 2026 — the newest read 2 Oct 2026, so the run is still open." }] },
-      { title: "Ilome", kind: "Singles", entries: [{ c: "NG", peak: 3, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 1 week in (24 Sep 2026). Re-read in a later capture." }] },
-      { title: "Diamonds", kind: "Singles", entries: [{ c: "NG", peak: 5, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 1 week in (24 Sep 2026). Re-read in a later capture." }] },
-      { title: "Pansa", kind: "Singles", entries: [{ c: "NG", peak: 7, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 1 week in (24 Sep 2026). Re-read in a later capture." }] },
-      { title: "GOD", kind: "Singles", entries: [{ c: "NG", peak: 9, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 1 week in (24 Sep 2026). Re-read in a later capture." }] },
-      { title: "Swaguu (single)", kind: "Singles", entries: [{ c: "NG", peak: 13, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 1 week in (24 Sep 2026). Re-read in a later capture." }] },
-      { title: "Melanin", kind: "Singles", entries: [{ c: "NG", peak: 14, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 1 week in (24 Sep 2026). Re-read in a later capture." }] },
-      { title: "El Jaja", kind: "Singles", entries: [{ c: "NG", peak: 15, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 1 week in (24 Sep 2026). Re-read in a later capture." }] },
-      { title: "Alubarika", kind: "Singles", entries: [{ c: "NG", peak: 16, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 1 week in (24 Sep 2026). Re-read in a later capture." }] },
-      { title: "Akpan Akpari", kind: "Singles", entries: [{ c: "NG", peak: 17, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 1 week in (24 Sep 2026). Re-read in a later capture." }] },
-      { title: "Alafia", kind: "Singles", entries: [{ c: "NG", peak: 18, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 1 week in (24 Sep 2026). Re-read in a later capture." }] },
-      { title: "Oble (Original)", kind: "Singles", entries: [{ c: "NG", peak: 23, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 1 week in (24 Sep 2026). Re-read in a later capture." }] },
+      { title: "Ilome", kind: "Singles", entries: [{ c: "NG", peak: 3, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 1 week in (24 Sep 2026)." }] },
+      { title: "Diamonds", kind: "Singles", entries: [{ c: "NG", peak: 5, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 1 week in (24 Sep 2026)." }] },
+      { title: "Pansa", kind: "Singles", entries: [{ c: "NG", peak: 7, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 1 week in (24 Sep 2026)." }] },
+      { title: "GOD", kind: "Singles", entries: [{ c: "NG", peak: 9, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 1 week in (24 Sep 2026)." }] },
+      { title: "Swaguu (single)", kind: "Singles", entries: [{ c: "NG", peak: 13, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 1 week in (24 Sep 2026)." }] },
+      { title: "Melanin", kind: "Singles", entries: [{ c: "NG", peak: 14, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 1 week in (24 Sep 2026)." }] },
+      { title: "El Jaja", kind: "Singles", entries: [{ c: "NG", peak: 15, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 1 week in (24 Sep 2026)." }] },
+      { title: "Alubarika", kind: "Singles", entries: [{ c: "NG", peak: 16, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 1 week in (24 Sep 2026)." }] },
+      { title: "Akpan Akpari", kind: "Singles", entries: [{ c: "NG", peak: 17, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 1 week in (24 Sep 2026)." }] },
+      { title: "Alafia", kind: "Singles", entries: [{ c: "NG", peak: 18, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 1 week in (24 Sep 2026)." }] },
+      { title: "Oble (Original)", kind: "Singles", entries: [{ c: "NG", peak: 23, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 1 week in (24 Sep 2026)." }] },
       { title: "Billion Dollar", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/bd6ee4f7ca4e570c6a0b6319f7e57730/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 10 }] },
       { title: "Billion Dollar Baby 2.0", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/bd6ee4f7ca4e570c6a0b6319f7e57730/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 1 }] },
       { title: "NAHAMciaga – EP", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/7811d182331cada5bb161fbb2edf0f40/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 1 }] },
@@ -2513,10 +2561,10 @@ export const afrobeatsArtists: AfroArtist[] = [
     releases: [
       { title: "Pity This Boy", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/92d9434341384d2ebdca52fd613a18d6/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 3 }] },
       { title: "Soweto", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/a21fb655cf3e2fc8b05db68fc6eb34b1/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 3 }, { c: "PT", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "UK", level: "Gold" }, { c: "ES", level: "Gold" }, { c: "FR", level: "Gold" }] },
-      { title: "Stubborn (Victony)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/8ecef1fd19cf7846a2fe2cf0e3ef3532/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
+      { title: "Stubborn", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/8ecef1fd19cf7846a2fe2cf0e3ef3532/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
       { title: "Different Size", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
-      { title: "Everything (Victony)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/04f0aa35363a5f1d380cf0d898738084/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
-      { title: "Golibe (Fola)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/a742269ca782601c794d592fc3570628/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
+      { title: "Everything", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/04f0aa35363a5f1d380cf0d898738084/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
+      { title: "Golibe", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/a742269ca782601c794d592fc3570628/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Holy Father", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/7c44504f57343c69b9a6e2219cb857ab/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Kolomental", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/1e70681ffc17bc33020aea63c1654dd5/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "OHEMA", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/2222c3405fde64a7b5660d7d063f2971/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
@@ -2532,7 +2580,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Rosemary", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/e5f927ff1190f95950fc1a604b654cc6/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
     ],
     charts: [
-      { title: "SLICK", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/3be386ed5da6f28d57ce4808d7d07802/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 1 }, { c: "SR", peak: 4, note: "Peak still open — still on the Nationale Top 40 when read 2 Oct 2026, 6 weeks in (13–20 Aug to 17–24 Sep 2026), at No. 4 on the last two lists. Re-read in a later capture." }, { c: "UK", peak: 99 }] },
+      { title: "SLICK", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/3be386ed5da6f28d57ce4808d7d07802/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 1 }, { c: "SR", peak: 4, note: "Peak still open — still on the Nationale Top 40 when read 2 Oct 2026, 6 weeks in (13–20 Aug to 17–24 Sep 2026), at No. 4 on the last two lists." }, { c: "UK", peak: 99 }] },
       { title: "PITY THIS BOY", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/92d9434341384d2ebdca52fd613a18d6/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 2 }] },
       { title: "Stubborn", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/8ecef1fd19cf7846a2fe2cf0e3ef3532/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 2 }] },
       { title: "Soweto", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/a21fb655cf3e2fc8b05db68fc6eb34b1/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 4 }, { c: "CH", peak: 29 }, { c: "NL", peak: 46 }, { c: "UK", peak: 65 }, { c: "CA", peak: 76 }, { c: "GLBX", peak: 175 }] },
@@ -2561,14 +2609,14 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Hello", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/56bbf7807715d0374f6b8084268052e2/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 35 }] },
       { title: "Sawa", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/78aa5e4e8f3b6c345057c0ecc236fc20/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 36 }] },
       { title: "Belle Full", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/faf118a79e05c6fa5af763f2b0e3edc8/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 37 }] },
-      { title: "WHO THIS", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/eae1950cf642fef40ae06c76d29dc1b8/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 24, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 5 weeks in (27 Aug to 24 Sep 2026), after reaching No. 24 on 10 Sep. Re-read in a later capture." }] }, // TurnTable week 37: rank 24, highestPosition 24, 3 weeks (read 17 Sep 2026)
+      { title: "WHO THIS", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/eae1950cf642fef40ae06c76d29dc1b8/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 24, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 5 weeks in (27 Aug to 24 Sep 2026), after reaching No. 24 on 10 Sep." }] }, // TurnTable week 37: rank 24, highestPosition 24, 3 weeks (read 17 Sep 2026)
       { title: "My Darling", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/a3032dcd9afff6195ffe3a7730afde02/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 46 }] },
       { title: "STARLIFE", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/eae1950cf642fef40ae06c76d29dc1b8/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 51 }] },
       { title: "Holy Father", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/7c44504f57343c69b9a6e2219cb857ab/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 2 }] },
       { title: "2FRESH", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/eae1950cf642fef40ae06c76d29dc1b8/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 61 }] },
       { title: "Cough Syrup", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/47b72924cef36764e12e24f894bb0bd9/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 62 }] },
       { title: "Anita", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/8ecef1fd19cf7846a2fe2cf0e3ef3532/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 63 }] },
-      { title: "TWIN", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/eae1950cf642fef40ae06c76d29dc1b8/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 18, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 5 weeks in (27 Aug to 24 Sep 2026), after reaching No. 18 on 3, 10 and 17 Sep. Re-read in a later capture." }] }, // TurnTable week 37: rank 18, highestPosition 18, 3 weeks (read 17 Sep 2026)
+      { title: "TWIN", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/eae1950cf642fef40ae06c76d29dc1b8/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 18, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 5 weeks in (27 Aug to 24 Sep 2026), after reaching No. 18 on 3, 10 and 17 Sep." }] }, // TurnTable week 37: rank 18, highestPosition 18, 3 weeks (read 17 Sep 2026)
       { title: "TYPO", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/eae1950cf642fef40ae06c76d29dc1b8/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 69 }] },
       { title: "TOO LIT", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/eae1950cf642fef40ae06c76d29dc1b8/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 70 }] },
       { title: "PINO", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/eae1950cf642fef40ae06c76d29dc1b8/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 72 }] },
@@ -2604,7 +2652,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Peru", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/4ab733790d692331a550d79a27e254ae/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum", x: 3 }, { c: "FR", level: "Diamond" }, { c: "US", level: "Platinum" }, { c: "DK", level: "Platinum" }, { c: "NZ", level: "Platinum" }] },
       { title: "Playboy", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/20b709c21edd2d8924cf88132a94ff1e/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
       { title: "All Of Us (Ashawo)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/48963b4c8969105192017e3dbe543fc9/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
-      { title: "Everyday (Fireboy Dml)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/86d8d6db321a04e6b49342da728b2e58/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
+      { title: "Everyday", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/86d8d6db321a04e6b49342da728b2e58/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "History", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/a0db260ae940d4870a73c5a735408d67/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Iseoluwa", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/a687087e03dff683b56b53044b52c551/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "So It Goes", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/3fe94d046b5097983f35fcc47037c799/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
@@ -2614,7 +2662,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Firegun", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/2b530c47b3e4d511423fd52ed35b04dd/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Running", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/3fe3018e8c21ff7c1ea65cf28a3e4fec/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Vex For U", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/05c226d5c2a070709a27f6e335ac7b67/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
-      { title: "Yawa (Fireboy Dml)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/e01d168e57db1df9f9ce27151aff6d23/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
+      { title: "Yawa", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/e01d168e57db1df9f9ce27151aff6d23/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Airplane Mode", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/bd9b968d69b674b887fc7e166af5ae23/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Back N Forth", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/a687087e03dff683b56b53044b52c551/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Diana", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/48963b4c8969105192017e3dbe543fc9/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
@@ -2623,7 +2671,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Like I Do", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/9b8ce8a62a6484f053bdd2cf80818a2d/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Obaa Sima", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/50606da0b42d56b340881942967d4f62/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Olufunmi Reimagined", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/41d430848198837fbc5c0bb86a703444/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
-      { title: "Outside (Fireboy Dml)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/50606da0b42d56b340881942967d4f62/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
+      { title: "Outside", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/50606da0b42d56b340881942967d4f62/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Shibebe", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/498d4ae81da58e1fcf5e2704a99e0ed8/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Southy Love", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/d598629f8f3ab55d660f91c0498e2cd7/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Vibration", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/9b8ce8a62a6484f053bdd2cf80818a2d/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
@@ -2684,7 +2732,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "change your life", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/a687087e03dff683b56b53044b52c551/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 100 }] },
       { title: "Body", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/c98671159d2fdba497f51ba29f0d610d/500x500-000000-80-0-0.jpg", entries: [{ c: "BE", peak: 17 }, { c: "NL", peak: 17 }] },
       // ── Charts sweep, 2 Oct 2026 (docs/sweeps/charts-sweep-2026-10-02.md) ──
-      { title: "IMALI", kind: "Singles", entries: [{ c: "NG", peak: 22, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 2 weeks in (17 to 24 Sep 2026), after reaching No. 22 on 24 Sep. Re-read in a later capture." }] },
+      { title: "IMALI", kind: "Singles", entries: [{ c: "NG", peak: 22, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 2 weeks in (17 to 24 Sep 2026), after reaching No. 22 on 24 Sep." }] },
       { title: "Playboy (single)", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/20b709c21edd2d8924cf88132a94ff1e/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 2 }] },
       { title: "History", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/a0db260ae940d4870a73c5a735408d67/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 4 }] },
       { title: "Ozumba Mbadiwe (Remix)", kind: "Singles", entries: [{ c: "NG", peak: 4 }] },
@@ -2874,7 +2922,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Anchovy", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/2ac63dd6fe23d319b5b6ef545f36f642/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 49 }] },
       { title: "Eyo", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/7f5dd177b9c16d06857bf6e30c74e558/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 60 }] },
       { title: "Holy Romance", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/9658aebc4a65018fae791d3573774830/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 68 }] },
-      { title: "Owo Oluwa", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/45fa3c5eefecb0ca4d057277f419af7a/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 8, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 2 weeks in (17 to 24 Sep 2026), after reaching No. 8 on 24 Sep. Re-read in a later capture." }] },
+      { title: "Owo Oluwa", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/45fa3c5eefecb0ca4d057277f419af7a/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 8, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 2 weeks in (17 to 24 Sep 2026), after reaching No. 8 on 24 Sep." }] },
       { title: "Red & Green", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/2ac63dd6fe23d319b5b6ef545f36f642/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 92 }] },
       { title: "Uncle K: Lemon Chase", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/7f5dd177b9c16d06857bf6e30c74e558/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 1 }] },
       { title: "TZA - EP", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/69d136ea3b7e745bfeda1796e2494289/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 1 }] },
@@ -2932,7 +2980,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Bienvenue", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/8f89536c6e127e62e6c3f266a1947025/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 18 }] },
       { title: "Make Way", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/96a26f019ffc8debb633b87562fa257a/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 19 }] },
       { title: "Red Flags", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/78b014342472081dff80a8cafe54b8ca/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 21 }] },
-      { title: "Do Nothing", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/572b0dc0138ad1d2b37264e18cd75bf2/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 22, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 7 weeks in (13 Aug to 24 Sep 2026), after reaching No. 22 on 20 Aug. Re-read in a later capture." }] },
+      { title: "Do Nothing", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/572b0dc0138ad1d2b37264e18cd75bf2/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 22, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 7 weeks in (13 Aug to 24 Sep 2026), after reaching No. 22 on 20 Aug." }] },
       { title: "Snapchat", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/ff9947dd8e69e04e37ab50e243e0d0d5/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 23 }] },
       { title: "Luv Again", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/96a26f019ffc8debb633b87562fa257a/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 25 }] },
       { title: "WeWe", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/b42b9963b567481843c14d0f3991639c/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 26 }] },
@@ -2943,7 +2991,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "All Of Us", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/d4550c150794b13165f60f13405857ad/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 38 }] },
       { title: "Bae Bae", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/589173416a36ce1395e49b85c4e6a9f8/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 40 }] },
       { title: "All Die", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/572b0dc0138ad1d2b37264e18cd75bf2/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 42 }] },
-      { title: "Private Chef", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/572b0dc0138ad1d2b37264e18cd75bf2/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 52, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 7 weeks in (13 Aug to 24 Sep 2026), after reaching No. 52 on 20 Aug. Re-read in a later capture." }] },
+      { title: "Private Chef", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/572b0dc0138ad1d2b37264e18cd75bf2/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 52, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 7 weeks in (13 Aug to 24 Sep 2026), after reaching No. 52 on 20 Aug." }] },
       { title: "Toro (A Colors Show)", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/c38db16bf4037e1297c7eeb154e18d07/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 60 }] },
       { title: "Body Tuff", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/e920314212c8ffd3e5286a73be6ceeb8/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 69 }] },
       { title: "Till We Die", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/609ad9a5e70a318f5a2c0fe5f93d7ff1/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 73 }] },
@@ -3044,7 +3092,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Somebody's Son", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/4eafcb4aaf8c114be22cb15604860a21/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 5 }] },
       // TurnTable Top 100: No. 7 on 30 Jul 2026 (week 31), No. 34 on the latest issue read (17 Sep 2026), 16 issues from 4 Jun. The standard open-run note says "first weeks"; this run is 16 weeks old, so it says what was read.
       // Re-read 2 Oct 2026 (charts sweep): No. 82 on the 24 Sep issue, 17 issues from 4 Jun, still on the chart.
-      { title: "Energy", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/d810fadc02c818d3ed7d6af2d6c8d2de/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 7, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 17 weeks in (4 Jun to 24 Sep 2026), after reaching No. 7 on 30 Jul. Re-read in a later capture." }] },
+      { title: "Energy", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/d810fadc02c818d3ed7d6af2d6c8d2de/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 7, note: "Peak still open — still on the Top 100 when read 2 Oct 2026, 17 weeks in (4 Jun to 24 Sep 2026), after reaching No. 7 on 30 Jul." }] },
       { title: "Jaiye Foreign", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/8feb72523177276c2e6d4afb9f1f704b/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 8 }] },
       { title: "100 MILLION", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/534e46217bbee53226d572fbdd51a54a/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 8 }] },
       { title: "Forgiveness", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/a86863fed5b5f6318f6da589eeeb48ba/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 8 }] },
@@ -3333,6 +3381,31 @@ export const chartGlobalLines = (a: AfroArtist) =>
   new Set(
     a.charts.flatMap((r) => r.entries.map((e) => e.c)).filter((c) => c === "GLB" || c === "GLBX")
   ).size;
+
+/** ", plus 2 Billboard global charts", or "" for an artist who has charted on
+ *  neither — the disclosure every chart-standard sentence beside the territory
+ *  count carries (see chartGlobalLines). */
+export const chartGlobalsClause = (a: AfroArtist): string => {
+  const globals = chartGlobalLines(a);
+  return globals ? `, plus ${count(globals, "Billboard global chart", "Billboard global charts")}` : "";
+};
+
+/** "each country's principal national chart, plus 2 Billboard global charts".
+ *
+ *  The territory count includes Billboard's Global 200 and Global 200 Excl. US
+ *  wherever the artist has charted on them, so a flat "each country's principal
+ *  national chart" over that figure is false for two of them — the same
+ *  countries-vs-territories confusion PR #160 fixed across the Burna Boy pages,
+ *  inherited here by the board. One derivation, used by the charts page's meta
+ *  description, Dataset node and both layouts' ledes, and by the artist page's
+ *  chart card (which said "Principal national chart per country" under
+ *  Calm Down's Global 200 No. 1 until the debug pass of 5 Oct 2026).
+ *
+ *  `principal` is dropped in the meta description only: it is worth 10 of the
+ *  160 characters check-seo allows, and the page body still spells the full
+ *  standard out under "Where the charts come from". */
+export const chartSourceClause = (a: AfroArtist, short = false): string =>
+  `${short ? "each country's national chart" : "each country's principal national chart"}${chartGlobalsClause(a)}`;
 /**
  * Each country's BEST peak, best countries first — the OG share card's chips.
  *

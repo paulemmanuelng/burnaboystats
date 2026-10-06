@@ -6,6 +6,8 @@ import { albums } from "../../../data/albums";
 import { albumCharts } from "../../../data/charts";
 import { albums as certAlbums } from "../../../data/certifications";
 import { sameTitle } from "../../../lib/titleKey";
+import { cardSig } from "../../../lib/boardCards";
+import { albumCardStats } from "../../../lib/musicCards";
 
 export function generateStaticParams() {
   return albumPageSlugs.map((album) => ({ album }));
@@ -43,8 +45,15 @@ export async function generateImageMetadata({
   // preview. The album cards re-version alone, rather than bumping OG_ART.
   // The alt names the album; every album card carried the one generic alt below.
   const albumAlt = page ? `${page.title}, the Burna Boy album — chart peaks, certifications and stats` : alt;
-  return [{ id: ogId(`${slug}|${peak}|${countries}|${certCount}|${cardUrl(`/music/albums/${slug}`)}`), alt: albumAlt, size, contentType }];
+  // The tiles AS PRINTED join the id too: "1 COUNTRIES" / "1 CERTS" became
+  // "1 COUNTRY" / "1 CERT" on 5 Oct 2026 with every figure unchanged.
+  const tiles = cardSig(tilesFor(albumStats(slug)));
+  return [{ id: ogId(`${slug}|${peak}|${countries}|${certCount}|${tiles}|${cardUrl(`/music/albums/${slug}`)}`), alt: albumAlt, size, contentType }];
 }
+
+/** The stat tiles, singular where the count is one (debug pass 5 Oct 2026). */
+const tilesFor = ({ record, countries, peak, certCount }: ReturnType<typeof albumStats>) =>
+  albumCardStats(peak, countries, certCount, record ? record.tracks.length : null);
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
@@ -54,14 +63,10 @@ const GOLD = "#ffb627";
 
 export default async function Image({ params }: { params: Promise<{ album: string }> }) {
   const { album: slug } = await params;
-  const { page, record, countries, peak, certCount } = albumStats(slug);
+  const stats0 = albumStats(slug);
+  const { page, record } = stats0;
 
-  const stats = [
-    peak != null && { v: peak, l: "Best peak" },
-    countries > 0 && { v: `${countries}`, l: "Countries" },
-    certCount > 0 && { v: `${certCount}`, l: "Certs" },
-    record && { v: `${record.tracks.length}`, l: "Tracks" },
-  ].filter(Boolean) as { v: string; l: string }[];
+  const stats = tilesFor(stats0);
 
   return new ImageResponse(
     (

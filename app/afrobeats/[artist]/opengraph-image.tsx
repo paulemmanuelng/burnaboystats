@@ -1,16 +1,8 @@
 import { ImageResponse } from "next/og";
 import { ogId, cardUrl } from "../../lib/og-image";
 import { OgLockup, ogFonts } from "../../lib/og-lockup";
-import {
-  artistBySlug,
-  afrobeatsSlugs,
-  certCount,
-  countryCount,
-  chartEntries,
-  chartNo1s,
-  topAward,
-  plaqueLabel,
-} from "../../data/afrobeats";
+import { artistBySlug, afrobeatsSlugs, topAward, plaqueLabel } from "../../data/afrobeats";
+import { artistCardStats, cardSig } from "../../lib/boardCards";
 
 export function generateStaticParams() {
   return afrobeatsSlugs.map((artist) => ({ artist }));
@@ -22,8 +14,10 @@ export async function generateImageMetadata({ params }: { params: Promise<{ arti
   // Figures move with each weekly review; fold them into the id so a cached
   // preview follows the artist rather than freezing at first scrape. Next probes
   // this route once with no params, so the id must survive an undefined slug.
+  // The labels ride in the id too ("1 Country", not "1 Countries"; 5 Oct
+  // 2026), so a card whose words change is re-scraped like one whose figures do.
   const sig = a
-    ? `${slug}|${certCount(a)}|${countryCount(a)}|${chartEntries(a)}|${chartNo1s(a)}|${cardUrl(`/afrobeats/${slug}`)}`
+    ? `${slug}|${cardSig(a.swept ? artistCardStats(a) : [])}|${cardUrl(`/afrobeats/${slug}`)}`
     : `${slug}`;
   // The alt names the artist; every board card carried the one generic alt below.
   return [{ id: ogId(sig), alt: a ? `${a.name} on the Afrobeats Board — certifications and chart records, verified at source` : alt, size, contentType }];
@@ -40,14 +34,7 @@ export default async function Image({ params }: { params: Promise<{ artist: stri
   const a = artistBySlug(slug);
   const award = a ? topAward(a) : null;
 
-  const stats = a?.swept
-    ? [
-        { v: `${certCount(a)}`, l: "Certifications" },
-        { v: `${countryCount(a)}`, l: "Countries" },
-        { v: `${chartEntries(a)}`, l: "Chart entries" },
-        { v: `${chartNo1s(a)}`, l: "No. 1 peaks" },
-      ]
-    : [];
+  const stats = a?.swept ? artistCardStats(a) : [];
 
   return new ImageResponse(
     (

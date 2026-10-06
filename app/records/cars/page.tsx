@@ -136,7 +136,7 @@ export default function CarsPage() {
         <section className={styles.mFormer} aria-labelledby="m-former">
           <h3 id="m-former" className={styles.mFormerTitle}>No longer counted</h3>
           <p className={styles.mFormerNote}>
-            <b className={styles.mFormerLead}>Not pictured:</b> recorded but not counted — sold, or not seen with him in years. No page of their own.
+            <b className={styles.mFormerLead}>Not pictured:</b> recorded but not counted — sold, or ownership unconfirmed. No page of their own.
           </p>
           <div className={styles.mFormerList}>
             {former.map((c) => (
@@ -258,8 +258,8 @@ export default function CarsPage() {
           </h2>
           <p className={styles.formerLede}>
             <b className={styles.formerLead}>Not pictured: these cars are recorded but not counted.</b>{" "}
-            Kept for the record — cars he&apos;s reportedly sold, or that haven&apos;t been
-            seen with him in years. They don&apos;t count toward the totals above and have no
+            Kept for the record — cars he&apos;s reportedly sold, or whose current ownership is
+            unconfirmed. They don&apos;t count toward the totals above and have no
             page of their own.
           </p>
           <div className={styles.formerList}>

@@ -54,17 +54,19 @@ import {
   historicFor,
   vintageFor,
   assumedFor,
-  thresholdFor,
+  exactThresholdFor,
   type CertFormat,
+  type ExactUnits,
 } from "../data/certThresholds";
 import {
   albums as burnaAlbums,
   singles as burnaSingles,
   features as burnaFeatures,
   CERTS_VERIFIED_ON,
+  CERTS_LAST_FULL_SWEEP,
   type Tier,
 } from "../data/certifications";
-import { afrobeatsArtists, BURNA, AFROBEATS_LAST_FULL_SWEEP } from "../data/afrobeats";
+import { afrobeatsArtists, BURNA, AFROBEATS_LAST_FULL_SWEEP, countryMeta } from "../data/afrobeats";
 import { albums as albumArt } from "../data/albums";
 import { songs } from "../data/songs";
 import { coverFor } from "./covers";
@@ -103,8 +105,9 @@ export interface ComparableArtist {
   /** The last day this ledger was verified (ISO) — moves on a partial read
    *  too. A pair page stamps its Dataset with the newer of the two. */
   verifiedOn: string;
-  /** The last day EVERY register behind this ledger was read (ISO): Burna
-   *  Boy's own date, and for the board its last full sweep. A pair page's
+  /** The last day EVERY register behind this ledger was read (ISO): his
+   *  last full sweep for Burna Boy (CERTS_LAST_FULL_SWEEP), the board's for
+   *  every board artist (AFROBEATS_LAST_FULL_SWEEP). A pair page's
    *  "registers read" line prints these, not `verifiedOn` (3 Oct 2026: Tyla's
    *  verifiedOn moved on a photo and a post, and the line said "both registers
    *  read 3 October 2026"). */
@@ -158,7 +161,9 @@ const burna: ComparableArtist = {
   image: BURNA.image,
   href: BURNA.href,
   verifiedOn: CERTS_VERIFIED_ON,
-  registersReadOn: CERTS_VERIFIED_ON,
+  // His last FULL sweep, not CERTS_VERIFIED_ON, which a one-register read
+  // moves (Dai Dai's Danish Gold, 4 Oct 2026; debug pass, 5 Oct 2026).
+  registersReadOn: CERTS_LAST_FULL_SWEEP,
   releases: [
     ...burnaAlbums.map((r) => ({ ...r, format: "album" as const, isFeature: false })),
     ...burnaSingles.map((r) => ({ ...r, format: "single" as const, isFeature: false })),
@@ -226,11 +231,32 @@ export const DEFAULT_OPTIONS: UnitsOptions = {
   includeFeatures: true,
 };
 
-/** Units behind one plaque, or null with the reason it cannot be priced. */
+// ---------------------------------------------------------------------------
+// Exact sums. A level a body prints in streams is a fraction of a unit
+// (NVPI's single Gold is 10,000,000 / 215), and floored plaque by plaque the
+// remainders are lost from every sum: three Dutch plaques worth 130,232.56
+// added up to 130,231 beside Tyla's two at 130,232, and the board ranked her
+// first on the remainder (debug pass, 5 Oct 2026). So a plaque carries its
+// exact worth, a line or a total sums those, and each sum is floored ONCE.
+// Integer fractions, not floats: 3 × 50,000,000 / 150 is exactly 1,000,000.
+// ---------------------------------------------------------------------------
+
+const gcd = (a: number, b: number): number => (b ? gcd(b, a % b) : a);
+export const ZERO_UNITS: ExactUnits = { num: 0, den: 1 };
+export const addUnits = (a: ExactUnits, b: ExactUnits): ExactUnits => {
+  const den = (a.den / gcd(a.den, b.den)) * b.den;
+  return { num: a.num * (den / a.den) + b.num * (den / b.den), den };
+};
+export const floorUnits = (e: ExactUnits): number => Math.floor(e.num / e.den);
+export const sumUnits = (xs: (ExactUnits | null | undefined)[]): ExactUnits =>
+  xs.reduce<ExactUnits>((n, x) => (x ? addUnits(n, x) : n), ZERO_UNITS);
+
+/** Units behind one plaque, or null with the reason it cannot be priced.
+ *  `units` is the plaque's own figure, floored; `exact` is what sums use. */
 export function unitsForCert(
   cert: ComparableCert,
   format: CertFormat,
-): { units: number | null; why: string | null } {
+): { units: number | null; why: string | null; exact?: ExactUnits } {
   // RULE 4, and the one that bit hardest. A body can run more than one award
   // programme and their tiers are NOT interchangeable: RIAA Latin certifies a
   // Platino at 60,000 units against the standard programme's 1,000,000. The
@@ -239,7 +265,7 @@ export function unitsForCert(
   // certifications.ts had warned against for months.
   const excluded = exclusionFor(cert.c, format, cert.body);
   if (excluded) return { units: null, why: excluded };
-  const base = thresholdFor(cert.c, format, cert.level, cert.body);
+  const base = exactThresholdFor(cert.c, format, cert.level, cert.body);
   if (base === null) {
     // Audited to zero occurrences on 10 Sep 2026 — every plaque's tier exists at
     // its own body. Kept because a new plaque could arrive at a tier the body
@@ -256,8 +282,9 @@ export function unitsForCert(
   // awards — "Platino & Oro | 4 & 1" — and One Dance's Mexican plaque is four
   // Platinos AND an Oro, so it is worth 4 × Platino + 1 × Oro at the same
   // body, programme and format, read from the same table. Still one plaque.
+  const multiplied: ExactUnits = { num: base.num * (cert.x ?? 1), den: base.den };
   if (cert.plus) {
-    const extra = thresholdFor(cert.c, format, cert.plus, cert.body);
+    const extra = exactThresholdFor(cert.c, format, cert.plus, cert.body);
     if (extra === null) {
       // A half step at a tier the body does not publish must surface, like a
       // main tier would, rather than silently pricing the plaque without it.
@@ -266,9 +293,10 @@ export function unitsForCert(
         why: `${cert.body ?? CERT_THRESHOLDS[cert.c]?.body ?? cert.c} publishes no ${cert.plus} threshold for ${format}s.`,
       };
     }
-    return { units: base * (cert.x ?? 1) + extra, why: null };
+    const exact = addUnits(multiplied, extra);
+    return { units: floorUnits(exact), why: null, exact };
   }
-  return { units: base * (cert.x ?? 1), why: null };
+  return { units: floorUnits(multiplied), why: null, exact: multiplied };
 }
 
 /** The programme a plaque was awarded under, when the body runs more than one
@@ -318,6 +346,17 @@ export const PLAQUE_NOTE_HEADINGS: Record<keyof PlaqueNotes, string> = {
   historic: "Historic figure",
 };
 
+/** The † footnote's body. Several bodies' notes end on the same rule — "An N×
+ *  award is priced here as N × Platinum." — and a table with four of them on
+ *  screen printed it four times (debug pass, 5 Oct 2026). Said once, at the
+ *  end, where two or more share it; each body's own note keeps it on the
+ *  country boards, which print one body at a time. */
+export const SHARED_MULTIPLE_RULE = "An N× award is priced here as N × Platinum.";
+export function caveatParagraph(caveats: string[]): string {
+  const sharing = caveats.filter((c) => c.endsWith(` ${SHARED_MULTIPLE_RULE}`));
+  if (sharing.length < 2) return caveats.join(" ");
+  return [...caveats.map((c) => (sharing.includes(c) ? c.slice(0, -SHARED_MULTIPLE_RULE.length).trim() : c)), SHARED_MULTIPLE_RULE].join(" ");
+}
 /** The notes ONE priced plaque carries — the rule priceArtist applies to every
  *  line, and the CSV to every row.
  *
@@ -421,7 +460,7 @@ export function priceArtist(
   // BEFORE anything is summed. Keyed on title AND format: two different
   // releases sharing a name — an album and its title-track single — are two
   // releases, and keying on the title alone silently folded them into one.
-  const best = new Map<string, { release: ComparableRelease; cert: ComparableCert; units: number }>();
+  const best = new Map<string, { release: ComparableRelease; cert: ComparableCert; units: number; exact: ExactUnits }>();
   // Unpriceable plaques, also collapsed per release per country and ranked by
   // tier, so the chip shown is the HIGHEST one held there rather than the first
   // one enumerated. Poland, before its singles were priced, was showing
@@ -431,7 +470,7 @@ export function priceArtist(
 
   for (const release of releases) {
     for (const cert of release.certs) {
-      const { units, why } = unitsForCert(cert, release.format);
+      const { units, why, exact } = unitsForCert(cert, release.format);
       const key = `${release.title}|${release.format}|${cert.c}`;
       if (units === null) {
         const ek = `${cert.c}|${release.format}`;
@@ -446,16 +485,17 @@ export function priceArtist(
         continue;
       }
       const held = best.get(key);
-      if (!held || units > held.units) best.set(key, { release, cert, units });
+      if (!held || units > held.units) best.set(key, { release, cert, units, exact: exact ?? { num: units, den: 1 } });
     }
   }
 
-  const lines = new Map<string, CountryLine & { topUnits: number }>();
+  // `exact` is the line's sum before it is floored — see addUnits.
+  const lines = new Map<string, CountryLine & { topUnits: number; exact: ExactUnits }>();
   const listedLines = new Map<string, CountryLine & { topRank: number }>();
   let nigeriaUnits = 0;
   let nigeriaPlaques = 0;
 
-  for (const { release, cert, units } of best.values()) {
+  for (const { release, cert, units, exact } of best.values()) {
     if (cert.c === "NG") {
       nigeriaUnits += units;
       nigeriaPlaques += 1;
@@ -475,9 +515,16 @@ export function priceArtist(
     const key = marketKey(cert.c, program);
     const line = lines.get(key);
     if (line) {
-      line.units += units;
+      line.exact = addUnits(line.exact, exact);
+      line.units = floorUnits(line.exact);
       line.releases += 1;
-      if (units > line.topUnits) {
+      // The chip is the HIGHEST award on the line, units only breaking a tie
+      // between equal awards: Asake's UK line showed a Silver single (200,000
+      // units) over his Gold album (100,000), "Silver · 7 plaques · top
+      // shown" beside a UK Gold (debug pass, 5 Oct 2026). certCountry picks
+      // its lines' `top` by the same rule; tests/compareCountry.test.ts holds
+      // the two together.
+      if (rank(cert) > rank(line.top!) || (rank(cert) === rank(line.top!) && units > line.topUnits)) {
         line.topUnits = units;
         line.top = { title: release.title, level: cert.level, x: cert.x ?? 1, body: cert.body, ...(cert.plus ? { plus: cert.plus } : {}) };
       }
@@ -492,6 +539,7 @@ export function priceArtist(
         // default body never awarded these.
         body: program ?? CERT_THRESHOLDS[cert.c]?.body ?? cert.c,
         units,
+        exact,
         releases: 1,
         top: { title: release.title, level: cert.level, x: cert.x ?? 1, body: cert.body, ...(cert.plus ? { plus: cert.plus } : {}) },
         topUnits: units,
@@ -549,7 +597,7 @@ export function priceArtist(
   }
 
   const byCountry = [...lines.values()]
-    .map(({ topUnits: _drop, ...line }) => line)
+    .map(({ topUnits: _drop, exact: _exact, ...line }) => line)
     .sort((a, b) => b.units - a.units || a.country.localeCompare(b.country));
 
   const exclusions = [...excluded.values()].sort((a, b) => b.plaques - a.plaques);
@@ -651,7 +699,12 @@ export function nigeriaDefault(
     const names = empty.map((x) => x.name).join(" and ");
     return {
       on: true,
-      reason: `Nigeria included: ${names} ${empty.length > 1 ? "have" : "has"} no international certifications.`,
+      // "outside Nigeria", not "international": Black Sherif is Ghanaian, and
+      // every one of his 25 Nigerian plaques is international for him — the
+      // line said he had none (debug pass, 5 Oct 2026; page.tsx and
+      // comparePairs adopted the same words on 3 Oct). With featured
+      // appearances off the count is of lead credits, and says so.
+      reason: `Nigeria included: ${names} ${empty.length > 1 ? "have" : "has"} no certifications outside Nigeria${includeFeatures ? "" : " as lead artist"}.`,
     };
   }
   if (isHomeMarketArtist(a) && isHomeMarketArtist(b)) {
@@ -714,6 +767,32 @@ export interface Comparison {
   assumptions: string[];
   /** Footnote 5 — lines resting on a figure the body no longer prints (¶). */
   historics: string[];
+}
+
+/** Footnote 1's entries: one per COUNTRY, naming every issuer behind its
+ *  unpriced plaques. De-duplicated on the country alone, it named the first
+ *  side's: Burna Boy vs Rema read "Colombia (Sony Music Colombia)" over Rema's
+ *  Pro Musica Colombia Diamond (debug pass, 5 Oct 2026). The song mode on
+ *  /compare builds its footnote here too. */
+export function notCountedNotes(
+  lines: CountryLine[],
+): { country: string; body: string; issuer?: string; reason: string }[] {
+  const byCountry = new Map<string, CountryLine[]>();
+  for (const l of lines) byCountry.set(l.country, [...(byCountry.get(l.country) ?? []), l]);
+  return [...byCountry.values()].map((group) => {
+    const first = group[0];
+    const issuers = [
+      // The UNPRICED plaque's issuer: a listed line's own top, or what rides
+      // unpriced on a priced line. A plaque naming no issuer is the body's.
+      ...new Set(group.map((l) => (l.counted ? l.notCounted?.top : l.top)?.body ?? countryMeta(l.country).body)),
+    ];
+    return {
+      country: first.country,
+      body: first.body,
+      issuer: issuers.length ? issuers.join(" · ") : undefined,
+      reason: first.reason ?? first.notCounted?.reason ?? "",
+    };
+  });
 }
 
 /**
@@ -797,22 +876,25 @@ export function compare(
     collapsed.push({
       side,
       artist: (side === "a" ? pa : pb).artist.name,
-      countries: tail.length,
+      countries: 0, // counted below, once the rows on screen are known
       units: tail.reduce((n, r) => n + ((side === "a" ? r.a : r.b)?.units ?? 0), 0),
       rows: tail,
     });
   }
 
   const rows = ordered.filter((r) => !folded.has(r));
+  // COUNTRIES, not market rows, and none already on screen: a folded RIAA
+  // Latin line is the United States, whose RIAA row is visible above it — "+ 14
+  // further countries" on Burna Boy vs Davido held 13 (debug pass, 5 Oct 2026).
+  for (const t of collapsed)
+    t.countries = new Set(t.rows.map((r) => r.country).filter((code) => !rows.some((r) => r.country === code))).size;
 
-  const notCounted = [
+  const notCounted = notCountedNotes([
     ...pa.listed,
     ...pb.listed,
     ...pa.byCountry.filter((l) => l.notCounted),
     ...pb.byCountry.filter((l) => l.notCounted),
-  ]
-    .filter((l, i, xs) => xs.findIndex((y) => y.country === l.country) === i)
-    .map((l) => ({ country: l.country, body: l.body, issuer: (l.top ?? l.notCounted?.top)?.body, reason: l.reason ?? l.notCounted?.reason ?? "" }));
+  ]);
 
   return {
     a: pa,

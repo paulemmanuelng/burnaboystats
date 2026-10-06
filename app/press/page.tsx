@@ -4,7 +4,7 @@ import BreadcrumbBar from "../components/BreadcrumbBar";
 import KeepExploring from "../components/KeepExploring";
 import CopyButton from "../components/CopyButton";
 import MobilePress from "../components/MobilePress";
-import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime, BURNA_BOY_REF } from "../lib/seo";
+import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, BURNA_BOY_REF } from "../lib/seo";
 import { totalAwards, countryCount } from "../data/certifications";
 import { chartEntryCount, numberOnes } from "../data/charts";
 // The country figure, not the headline territory figure: the site's
@@ -189,7 +189,10 @@ export default function PressPage() {
     description:
       "Verified Burna Boy statistics, free to use with attribution — citation formats, open API and shareable stat cards.",
     url: `${CANONICAL_ORIGIN}/press`,
-    dateModified: asDateTime(lastReviewed),
+    // No dateModified: the sitemap deliberately ships no lastmod for this page
+    // (tests/sitemapEvidence.test.ts), and the value here was the newest date
+    // anywhere in the feed, not a change to this page (debug pass 5 Oct 2026,
+    // seo-12). The page still prints when the site's data was last reviewed.
     inLanguage: "en",
     isPartOf: { "@type": "WebSite", name: SITE_NAME, url: CANONICAL_ORIGIN },
     about: BURNA_BOY_REF,

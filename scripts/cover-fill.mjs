@@ -92,7 +92,8 @@ const norm = (s) =>
 
 /** The board's chart rows often carry the whole credit in the title —
  *  "Activate (Stonebwoy ft. Davido)", "Ke Star (Remix) (Focalistic & Davido ft.
- *  Virgo Deep)" — because that is how the chart printed it. Deezer calls the
+ *  Vigro Deep)" — because that is how the chart printed it (TurnTable spells
+ *  the producer "Virgo Deep"; the board corrects the name, 5 Oct 2026). Deezer calls the
  *  record "Activate". Only the LAST parenthetical is dropped, and only when it
  *  reads like a credit, so "Dada (Remix) (Young Jonn ft. Davido)" keeps its
  *  (Remix) and "One Love (Bob Marley: One Love)" keeps everything.

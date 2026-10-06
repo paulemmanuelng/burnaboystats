@@ -615,7 +615,7 @@ export function extractLiveCharts(html) {
       songs.push({
         // NFC: kworb serves some titles decomposed ("Oriade" + a combining
         // acute), and Satori draws the accent detached on the OG card.
-        title: title.replace(/&amp;/g, "&").trim().normalize("NFC"),
+        title: stripInvisible(title.replace(/&amp;/g, "&")).trim().normalize("NFC"),
         platforms: platforms.sort((a, b) => b.entries.length - a.entries.length),
       });
     }
@@ -763,6 +763,19 @@ export function extractCountryChart(html, code, spec, who = DEFAULT_WHO) {
 }
 
 /**
+ * A title without the invisible characters kworb sometimes serves inside it.
+ * Its artist pages printed "Getting Paid (feat. Asake, Wizkid, Skillibeng)"
+ * with U+200B zero-width spaces before "(", inside "feat" and before ")", and
+ * no pattern that needs "(feat" to be contiguous could see the credit: the
+ * same record opened a second row on Wizkid's and Asake's live boards, beside
+ * "Happiness (feat. Asake, Gunna)" carrying them too (debug pass, 5 Oct 2026).
+ * Zero-width space, non-joiner, joiner, word joiner and the BOM.
+ */
+export function stripInvisible(title) {
+  return String(title).replace(/[\u200B-\u200D\u2060\uFEFF]/g, "");
+}
+
+/**
  * Matching key for a release title. The artist page and the country charts
  * name the same record differently — "On the Low" vs "On The Low", "For My
  * Hand" vs "For My Hand (feat. Ed Sheeran)" — and matching on the raw string
@@ -773,7 +786,7 @@ export function extractCountryChart(html, code, spec, who = DEFAULT_WHO) {
  * (Clean Bandit Remix)" chart separately and must not fold into "Dai Dai".
  */
 export function titleKey(title) {
-  return String(title)
+  return stripInvisible(title)
     .replace(/\s*[([](?:feat|ft|with|w\/)\.?\s[^)\]]*[)\]]/gi, "")
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, " ")
@@ -793,7 +806,7 @@ export function mergeChartPlacements(releases, rows) {
       (r) => titleKey(r.title) === titleKey(row.release) && r.kind !== "album"
     );
     if (!release) {
-      release = { title: row.release, kind: "song", platforms: [] };
+      release = { title: stripInvisible(row.release), kind: "song", platforms: [] };
       releases.push(release);
     }
     let block = release.platforms.find((p) => p.platform === row.platform);

@@ -42,6 +42,34 @@ export const LIVE_CADENCE_ES = "actualizado varias veces al día";
 export const reachOf = (r: { platforms: { entries: unknown[] }[] }) =>
   r.platforms.reduce((n, p) => n + p.entries.length, 0);
 
+/**
+ * A board's charting releases merged BY TITLE — one row per name, its
+ * placements summed and its best position the best of either — most
+ * placements first, the better position breaking a tie.
+ *
+ * One helper for the live page's meta description and its share card, which
+ * had grouped differently: the card merged a title track's song and album
+ * ("SWAGUU 40 charts") while the description ranked them apart ("SWAGUU … on
+ * 32 charts"), and on a tie the card kept the data's order (Ruger: "POE"
+ * first) where the description took the better position ("RnB") — debug pass
+ * 5 Oct 2026, seo-03 and seo-15. The card merges by title on purpose: a name
+ * listed twice at two positions reads as a bug.
+ */
+export function liveTitleRows(releases: { title: string; platforms: { entries: { position: number }[] }[] }[]) {
+  const byTitle = new Map<string, { title: string; best: number; reach: number }>();
+  for (const r of releases) {
+    const positions = r.platforms.flatMap((p) => p.entries.map((e) => e.position));
+    if (!positions.length) continue;
+    const seen = byTitle.get(r.title);
+    const best = Math.min(...positions);
+    byTitle.set(
+      r.title,
+      seen ? { title: r.title, reach: seen.reach + positions.length, best: Math.min(seen.best, best) } : { title: r.title, reach: positions.length, best },
+    );
+  }
+  return [...byTitle.values()].sort((x, y) => y.reach - x.reach || x.best - y.best);
+}
+
 /** No. 1s for a release. `numberOnes` is a subset of `entries`, never additive. */
 export const numberOnesOf = (r: { platforms: { numberOnes: number }[] }) =>
   r.platforms.reduce((n, p) => n + p.numberOnes, 0);
@@ -93,6 +121,18 @@ export const countriesOf = (entries: { country: string }[]) =>
       .map((e) => COUNTRY_ALIASES[e.country] ?? e.country)
       .filter((c) => !NOT_A_COUNTRY.has(c))
   ).size;
+
+/** "12 countries" for one platform's placements, counted by countriesOf — the
+ *  per-platform chips printed `entries.length`, so a release on a platform's
+ *  worldwide chart read one country more than its own country list holds
+ *  (Tems's "Raindance", Shazam: 64 against 63; debug pass, 5 Oct 2026). A
+ *  platform whose only placement is its worldwide chart says so rather than
+ *  "0 countries". */
+export const platformCountries = (entries: { country: string }[]): string => {
+  const n = countriesOf(entries);
+  if (n === 0 && entries.some((e) => NOT_A_COUNTRY.has(e.country))) return "worldwide";
+  return `${n} ${n === 1 ? "country" : "countries"}`;
+};
 
 /**
  * The releases as the live-charts API serves them: Britain under one code.

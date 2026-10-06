@@ -5,10 +5,11 @@ import bar from "../artist.module.css";
 import KeepExploring from "../../../components/KeepExploring";
 import MobileLiveCharts, { type ReleasePreview } from "../../../components/MobileLiveCharts";
 import LiveReleaseBlock, { type ReleaseSummary } from "../../../components/LiveReleaseBlock";
-import { cadenceOf, reachOf, numberOnesOf, releaseKey, LIVE_CADENCE, LIVE_CADENCE_LABEL, LIVE_CADENCE_ADVERB } from "../../../lib/liveChartMeta";
+import { cadenceOf, reachOf, numberOnesOf, platformCountries, releaseKey, liveTitleRows, LIVE_CADENCE, LIVE_CADENCE_LABEL, LIVE_CADENCE_ADVERB } from "../../../lib/liveChartMeta";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime } from "../../../lib/seo";
 import { artistBySlug } from "../../../data/afrobeats";
 import { releaseArt } from "../../../lib/liveReleaseArt";
+import { count } from "../../../lib/plural";
 import { LIVE_BOARDS, liveBoardFor, type LiveBoard } from "../../../data/liveBoards";
 
 export const dynamicParams = false;
@@ -18,15 +19,12 @@ export function generateStaticParams() {
 
 /** The record doing the most work on a board right now — most charts, best
  *  position as the tie-break. It names the page rather than leaving nine
- *  descriptions identical but for two numbers. */
+ *  descriptions identical but for two numbers. Read off liveTitleRows, the
+ *  rows the share card prints, so the two previews name the same title with
+ *  the same count (debug pass 5 Oct 2026). */
 function leadRelease(board: LiveBoard) {
-  return [...board.releases]
-    .map((r) => {
-      const positions = r.platforms.flatMap((p) => p.entries.map((e) => e.position));
-      return { title: r.title, charts: positions.length, best: Math.min(...positions) };
-    })
-    .filter((r) => r.charts > 0)
-    .sort((x, y) => y.charts - x.charts || x.best - y.best)[0];
+  const top = liveTitleRows(board.releases)[0];
+  return top ? { title: top.title, charts: top.reach, best: top.best } : undefined;
 }
 
 /**
@@ -50,7 +48,10 @@ function liveDescription(
     // charts — Black Sherif's lead was published as "at No. 1 across 33" off a
     // single No. 1. `best` is its best position ANYWHERE; `charts` is how many
     // charts it sits on. Two different facts, so the sentence names both.
-    ? `${name} is on ${board.placements} platform charts in ${board.countries} countries right now, led by \u201C${lead.title}\u201D, best No. ${lead.best}, on ${lead.charts} charts.`
+    // "is on 281 platform charts" until 5 Oct 2026: 281 is PLACEMENTS — one
+    // release per chart, so several releases on one chart count several times
+    // (Wizkid's 281 sit on 89 platform charts). The share card says placements.
+    ? `${name} has ${count(board.placements, "placement", "placements")} on platform charts in ${count(board.countries, "country", "countries")} right now, led by \u201C${lead.title}\u201D, best No. ${lead.best}, on ${count(lead.charts, "chart", "charts")}.`
     : `Every ${name} release charting right now: ${board.placements} live placements across ${board.countries} countries.`;
   for (const tail of LIVE_TAILS) {
     const full = `${head} ${tail}`;
@@ -108,7 +109,8 @@ const summarize = (r: LiveBoard["releases"][number]): ReleaseSummary => ({
   no1: numberOnesOf(r),
   platforms: r.platforms.map((p) => ({
     platform: p.platform,
-    count: p.entries.length,
+    // Countries, not placements: a worldwide chart is not a country.
+    countries: platformCountries(p.entries),
     numberOnes: p.numberOnes,
   })),
 });
@@ -169,6 +171,8 @@ export default async function AfroLiveChartsPage({
         backHref={`/afrobeats/${slug}`}
         backLabel={`${a.name} · live charts`}
         chartsHref={a.charts.length > 0 ? `/afrobeats/${slug}/charts` : `/afrobeats/${slug}`}
+        // The desktop notice's words: "counted separately on the chart board".
+        chartsLabel={a.charts.length > 0 ? `${a.name}'s chart board` : `${a.name}'s page`}
         heading={{ lead: `${a.name} Live`, gold: "Charts" }}
         source={board.api}
       />

@@ -6,6 +6,7 @@ import styles from "./mobileOfficialCharts.module.css";
 import ScrollRail from "./ScrollRail";
 import FilterEmpty from "./FilterEmpty";
 import { artAt } from "../lib/artAt";
+import { plural } from "../lib/plural";
 import type { ChartCountry } from "../data/charts";
 import type { ExplorerRelease, CoverMap } from "./ChartExplorer";
 import MobileMenuButton from "./MobileMenuButton";
@@ -278,8 +279,11 @@ export default function MobileOfficialCharts({
       <div className={styles.statGrid}>
         {[
           { v: entryCount, l: "Chart entries", n: "official charts only" },
-          { v: numberOnes, l: "No. 1 peaks", n: "placements" },
-          { v: territoryCount, l: "Territories", n: territoryNote },
+          // Singular at 1, as the desktop grid already was: Black Sherif's
+          // phone screen read "1 / No. 1 peaks" and "1 / Territories" (debug
+          // pass, 5 Oct 2026).
+          { v: numberOnes, l: plural(numberOnes, "No. 1 peak", "No. 1 peaks"), n: "placements" },
+          { v: territoryCount, l: plural(territoryCount, "Territory", "Territories"), n: territoryNote },
           { v: releaseCount, l: "Releases", n: "charting" },
         ].map((s) => (
           <div key={s.l} className={styles.statCell}>

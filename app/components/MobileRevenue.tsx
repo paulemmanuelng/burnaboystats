@@ -213,8 +213,12 @@ export default function MobileRevenue({
         </div>
         <p className={styles.shareCap}>
           Gross by artist · <span className={styles.shareName}>{HIS}</span> ·{" "}
-          <span className={styles.shareGold}>{share.his}</span> of {share.board} · down to {share.last},{" "}
-          {share.spread} smaller
+          {/* "down to {last}, {spread} smaller" until 5 Oct 2026: under "Gross
+              by artist" that read as the smallest ARTIST's total, but it is the
+              smallest single night, and the spread is top night ÷ that night
+              (the desktop labels both so). */}
+          <span className={styles.shareGold}>{share.his}</span> of {share.board} · smallest night {share.last} ·
+          top night {share.spread} bigger
         </p>
 
         {/* Highest-Grossing Artists by Country. A secondary button: the action
