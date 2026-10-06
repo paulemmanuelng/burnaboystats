@@ -64,6 +64,17 @@ const indexHref = (includeFeatures: boolean) => (includeFeatures ? "/compare/in"
 const boardHref = (code: string, includeFeatures: boolean) =>
   includeFeatures ? `/compare/in/${countrySlug(code)}` : `/compare?mode=country&country=${countrySlug(code)}&feat=0`;
 
+/** An index row's country: flag, name, code. */
+function CountryName({ b }: { b: { flag: string; name: string; code: string } }) {
+  return (
+    <>
+      <span className={styles.flag} aria-hidden="true">{b.flag}</span>
+      <span className={styles.cbCountryName}>{b.name}</span>
+      <span className={styles.countryCode}>{b.code}</span>
+    </>
+  );
+}
+
 /** One clause, unbreakable: its spaces become no-break spaces. */
 const nb = (clause: string) => clause.replace(/ /g, "\u00a0");
 
@@ -151,11 +162,19 @@ function CountryIndex({ options }: { options: { includeNigeria: boolean; include
             {boards.map((b) => (
               <tr key={b.code} role="row">
                 <td role="cell" className={styles.cbNameCell}>
-                  <Link href={boardHref(b.code, options.includeFeatures)} className={styles.cbCountryLink}>
-                    <span className={styles.flag} aria-hidden="true">{b.flag}</span>
-                    <span className={styles.cbCountryName}>{b.name}</span>
-                    <span className={styles.countryCode}>{b.code}</span>
-                  </Link>
+                  {/* Features on (the default, and what a crawler reads): the
+                      pretty board itself, written out so the route checklist
+                      sees its one inbound link. Features off: the query board
+                      that keeps them off (boardHref, V-compareIn-02). */}
+                  {options.includeFeatures ? (
+                    <Link href={`/compare/in/${countrySlug(b.code)}`} className={styles.cbCountryLink}>
+                      <CountryName b={b} />
+                    </Link>
+                  ) : (
+                    <Link href={boardHref(b.code, false)} className={styles.cbCountryLink}>
+                      <CountryName b={b} />
+                    </Link>
+                  )}
                 </td>
                 <td role="cell" className={styles.cbMetaCell}>
                   <span className={styles.cbCoverage}>

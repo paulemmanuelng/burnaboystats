@@ -24,6 +24,10 @@ import S from "../../app/methodology/methodology.module.css";
 import ScrollRail, { RAIL_FADE } from "../../app/components/ScrollRail";
 import railStyles from "../../app/components/scrollRail.module.css";
 
+/** The pinned body column's width on a phone. A literal in the sheet: a
+ *  module may not declare a custom property (tests/cssColourTokens.test.ts). */
+const PIN = 120;
+
 /**
  * V-core-05, the full-site debug of 5 Oct 2026. On a phone /methodology's
  * "Every threshold the compare page uses" table is ~750px in a 354px box.
@@ -131,8 +135,8 @@ describe("V-core-05: the phone threshold table keeps every figure beside its bod
     expect(r).not.toBeNull();
     expect(decl(r!.body, "background")).toBe("var(--bg)");
     // Narrowed: a fixed pin, so the format label and the note can hold at its edge.
-    expect(decl(r!.body, "width")).toBe("var(--pin)");
-    expect(rules(SHEET).find((x) => x.media === PHONE && x.selector === ".tableScroll")?.body).toMatch(/--pin:\s*120px/);
+    expect(decl(r!.body, "width")).toBe(`${PIN}px`);
+    expect(decl(r!.body, "min-width")).toBe(`${PIN}px`);
   });
 
   it("every figure column names its own tier, on a row only a phone shows", () => {
@@ -162,12 +166,12 @@ describe("V-core-05: the phone threshold table keeps every figure beside its bod
     for (const sel of [".format", ".listedNote"]) {
       const body = all.find((x) => x.selector === sel)!.body;
       expect(decl(body, "position"), sel).toBe("sticky");
-      expect(decl(body, "left"), sel).toBe("calc(var(--pin) + 10px)");
+      expect(decl(body, "left"), sel).toBe(`${PIN + 10}px`);
     }
     // The note's measure: the box, less the pin, 10px of padding each side and
     // ScrollRail's fade — so no line of it sits under the fade.
     const max = decl(all.find((x) => x.selector === ".listedNote")!.body, "max-width")!;
-    const less = Number(max.match(/^calc\(100cqi - var\(--pin\) - (\d+)px\)$/)![1]);
+    const less = Number(max.match(new RegExp(`^calc\\(100cqi - ${PIN}px - (\\d+)px\\)$`))![1]);
     expect(less).toBe(10 + 10 + RAIL_FADE);
     expect(decl(all.find((x) => x.selector === ".tableScroll")!.body, "container-type")).toBe("inline-size");
   });

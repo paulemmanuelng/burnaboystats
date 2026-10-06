@@ -352,13 +352,13 @@
      cut mid-word by the box's edge. The format's name and a "listed" note hold
      at the pinned column's edge while their cells scroll under it; the note is
      measured to the box (cqi) less the pin, its padding and the 44px fade. */
-  .tableScroll { container-type: inline-size; --pin: 120px; }
+  .tableScroll { container-type: inline-size; }
   .thresholdTable tr > :first-child {
     position: sticky;
     left: 0;
     z-index: 1;
-    width: var(--pin);
-    min-width: var(--pin);
+    width: 120px;
+    min-width: 120px;
     white-space: normal;
     background: var(--bg);
     box-shadow: inset -1px 0 var(--line);
@@ -367,8 +367,8 @@
   .tierRow { display: table-row; }
   .thresholdTable thead tr:first-child > * { border-bottom: 0; padding-bottom: 2px; }
   .thresholdTable .tierRow > * { text-align: right; padding-top: 2px; }
-  .format { position: sticky; left: calc(var(--pin) + 10px); display: inline-block; }
-  .listedNote { position: sticky; left: calc(var(--pin) + 10px); display: block; max-width: calc(100cqi - var(--pin) - 64px); }
+  .format { position: sticky; left: 130px; display: inline-block; }
+  .listedNote { position: sticky; left: 130px; display: block; max-width: calc(100cqi - 120px - 64px); }
   /* The phone screen's action bar is fixed; this is the room it needs. */
   .mobileFoot { display: block; height: 104px; }
 }

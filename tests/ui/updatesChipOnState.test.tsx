@@ -1,7 +1,6 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import { render, screen, within } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { fireEvent, render, screen } from "@testing-library/react";
 
 vi.mock("next/link", () => ({
   default: ({ href, children, ...rest }: { href: string; children: React.ReactNode }) => (
@@ -51,14 +50,18 @@ function rule(selector: string): Record<string, string> {
   return decls(m[1]);
 }
 
-const chips = () => within(screen.getByText("Filter").parentElement as HTMLElement).getAllByRole("button");
 /** The chip's name: its text without the count. */
 const label = (b: HTMLElement) => (b.textContent ?? "").replace(/\d+$/, "").trim();
 
 describe("V-core-12: every pressed /updates chip looks pressed", () => {
-  it("each chip, pressed in turn, alone carries the on-state class and paints nothing inline", async () => {
+  // fireEvent and querySelectorAll, as tests/ui/searchChipOnState.test.tsx:
+  // every press re-renders the whole feed, and userEvent plus getAllByRole
+  // took this to 2.4s under a full-suite load, half of vitest's 5s default.
+  it("each chip, pressed in turn, alone carries the on-state class and paints nothing inline", () => {
     expect(styles.chipOn).toBeTruthy();
     render(<UpdatesFeed items={updates} />);
+    const bar = screen.getByText("Filter").parentElement as HTMLElement;
+    const chips = () => Array.from(bar.querySelectorAll<HTMLElement>("button"));
     const all = chips();
     const names = all.map(label);
     expect(names[0]).toBe("All");
@@ -72,7 +75,7 @@ describe("V-core-12: every pressed /updates chip looks pressed", () => {
     expect(all[0].getAttribute("style")).toBeNull();
 
     for (let i = 1; i < all.length; i++) {
-      await userEvent.click(chips()[i]);
+      fireEvent.click(chips()[i]);
       const now = chips();
       expect(now.filter((b) => b.getAttribute("aria-pressed") === "true").map(label), names[i]).toEqual([names[i]]);
       expect(now[i].className, names[i]).toContain(styles.chipOn);
@@ -83,8 +86,10 @@ describe("V-core-12: every pressed /updates chip looks pressed", () => {
       // The category still reads in its own colour, on the dot.
       const dot = now[i].querySelector(`.${styles.chipDot}`) as HTMLElement;
       expect(dot.style.background, names[i]).toBe(inkFor(names[i] as Parameters<typeof inkFor>[0]));
-      await userEvent.click(now[0]);
     }
+    // And back to All: it alone is pressed again.
+    fireEvent.click(chips()[0]);
+    expect(chips().filter((b) => b.getAttribute("aria-pressed") === "true").map(label)).toEqual(["All"]);
   });
 
   it("the on-state differs from the resting chip in edge, wash and label: the design's gold", () => {

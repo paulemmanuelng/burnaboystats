@@ -1,7 +1,6 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import { render, screen, within } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { fireEvent, render, screen } from "@testing-library/react";
 
 vi.mock("next/navigation", () => ({
   useSearchParams: () => new URLSearchParams(window.location.search),
@@ -58,13 +57,19 @@ function rule(selector: string, phone: boolean): Record<string, string> {
   return decls(m[1]);
 }
 
-const chips = () => within(screen.getByText("Filter").parentElement as HTMLElement).getAllByRole("button");
 const label = (b: HTMLElement) => (b.firstChild?.textContent ?? "").trim();
 
 describe("V-core-01: every pressed search chip looks pressed", () => {
-  it("each chip, pressed in turn, alone carries the on-state class and paints nothing inline", async () => {
+  // Kept cheap on purpose: "a" lists most of the index, and every press
+  // re-renders it. With userEvent, getAllByRole and a press of "All" between
+  // chips this ran past vitest's 5s default under a full-suite load (2.3s
+  // alone), so it presses each chip straight after the last with fireEvent
+  // and reads the bar with querySelectorAll.
+  it("each chip, pressed in turn, alone carries the on-state class and paints nothing inline", () => {
     expect(styles.chipOn).toBeTruthy();
     render(<SearchResults initialQuery="a" stats={{}} />);
+    const bar = screen.getByText("Filter").parentElement as HTMLElement;
+    const chips = () => Array.from(bar.querySelectorAll<HTMLElement>("button"));
     const all = chips();
     // "a" offers every section the index has: the ten that had no ink among them.
     const names = all.map(label);
@@ -78,7 +83,7 @@ describe("V-core-01: every pressed search chip looks pressed", () => {
     expect(all[0].getAttribute("style")).toBeNull();
 
     for (let i = 1; i < all.length; i++) {
-      await userEvent.click(chips()[i]);
+      fireEvent.click(chips()[i]);
       const now = chips();
       const on = now.filter((b) => b.getAttribute("aria-pressed") === "true");
       expect(on.map(label), names[i]).toEqual([names[i]]);
@@ -87,8 +92,13 @@ describe("V-core-01: every pressed search chip looks pressed", () => {
         expect(b.getAttribute("style"), label(b)).toBeNull();
         if (b !== now[i]) expect(b.className, `${label(b)} while ${names[i]} is pressed`).not.toContain(styles.chipOn);
       }
-      await userEvent.click(now[0]);
     }
+    // And back to All: it alone is pressed again.
+    fireEvent.click(chips()[0]);
+    const back = chips();
+    expect(back.filter((b) => b.getAttribute("aria-pressed") === "true").map(label)).toEqual(["All"]);
+    expect(back[0].className).toContain(styles.chipOn);
+    for (const b of back.slice(1)) expect(b.className, label(b)).not.toContain(styles.chipOn);
   });
 
   it("the laptop's on-state differs from the resting chip in edge, wash and label: the design's gold", () => {
