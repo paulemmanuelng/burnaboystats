@@ -28,6 +28,7 @@ import {
 import { wholePercents } from "../lib/wholePercents";
 import { useCertView } from "../lib/useCertView";
 import CertViewSwitches from "./CertViewSwitches";
+import { holdInPlace } from "../lib/holdInPlace";
 
 /**
  * The mobile certifications screen.
@@ -675,13 +676,22 @@ export default function MobileCerts({
       {/* The whole ledger is here — the button opens the rest in place rather
           than sending a phone reader to the desktop table. It only appears
           when there is actually something left to reveal: filtering to
-          Diamond leaves six releases, all of them already on screen. */}
+          Diamond leaves six releases, all of them already on screen.
+          Folding back holds the button under the finger (lib/holdInPlace):
+          the rows it removes sit ABOVE it, so the page shrank by ~8,000px
+          under a reader at the foot of the list and the browser left them on
+          the FAQ, the button 187px off the top on Wizkid's phone page and
+          4,973px on /certifications (V-afrobeats-01, debug pass 5 Oct 2026).
+          Opening is left alone: the new rows land below row 10, where the
+          reader is about to read on. */}
       {matching.length > ROWS_SHOWN && (
         <button
           type="button"
           className={styles.allBtn}
           aria-expanded={expanded}
-          onClick={() => setExpanded((o) => !o)}
+          onClick={(e) =>
+            expanded ? holdInPlace(e.currentTarget, () => setExpanded(false)) : setExpanded(true)
+          }
         >
           {expanded ? `Show the top ${ROWS_SHOWN}` : `All ${matching.length} releases`}
           <span aria-hidden="true">{expanded ? "↑" : `+${hidden}`}</span>
