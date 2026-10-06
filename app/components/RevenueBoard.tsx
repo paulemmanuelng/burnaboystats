@@ -7,6 +7,7 @@ import NotReported from "./NotReported";
 import { HIS, RUNS_VIEW, chipOrder, nightCounts, railChips, scaleWidth, shownLine } from "../lib/showsChips";
 import { RUNS_HEADING, RUNS_LEDE, runYear, runsCountLine, shortDates } from "../lib/multiNightRuns";
 import { useBoardView } from "../lib/useBoardView";
+import { artistSlug } from "../lib/showsDeepLink";
 
 /**
  * The highest-grossing-shows board (desktop) — Claude Design round 1, Job 2
@@ -210,7 +211,13 @@ export default function RevenueBoard({
           {rows.map(({ s, rank }) => {
             const his = s.artist === HIS;
             return (
-              <div key={`${s.artist}-${s.venue}-${s.year}-${s.revenue}`} role="row" className={styles.row}>
+              <div
+                key={`${s.artist}-${s.venue}-${s.year}-${s.revenue}`}
+                role="row"
+                className={styles.row}
+                // Whose night, for the deep link's first paint (lib/showsDeepLink).
+                data-shows-row={artistSlug(s.artist)}
+              >
                 {/* Every rank in the same ink, his included (N4, 4 Oct 2026). */}
                 <span role="cell" className={styles.showRank}>
                   {String(rank).padStart(2, "0")}

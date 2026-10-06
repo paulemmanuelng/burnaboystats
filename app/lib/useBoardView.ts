@@ -1,9 +1,9 @@
 "use client"; // reads and writes the address bar and this history entry
 
 import { useEffect, useLayoutEffect, useState } from "react";
-import { dropDeepLink, readSavedView, replaceUrl, saveView } from "./deepLink";
+import { dropDeepLink, readDeepLink, readSavedView, replaceUrl, saveView } from "./deepLink";
 import { RUNS_VIEW, type BoardView } from "./showsChips";
-import { SHOWS_PARAM, artistSlug } from "./showsDeepLink";
+import { SHOWS_MARK, SHOWS_PARAM, artistForSlug, artistSlug } from "./showsDeepLink";
 import { useLinkedArtist } from "./useLinkedArtist";
 
 /**
@@ -72,6 +72,22 @@ export function useBoardView(artists: readonly string[], id: string) {
   }, [id, picked]);
 
   const view: BoardView = picked === undefined ? linked : picked;
+
+  // The first paint's mark (SHOWS_PRE_PAINT, V-tourscars-02) hides every
+  // other artist's nights until this board renders the same rows: the link's
+  // artist (or All, for a slug no chip has, which no rule hides), or a chip
+  // the reader picked. Not during hydration, which renders All from the
+  // server snapshot; the client snapshot's render follows before paint, and
+  // the mark goes with it, so nothing on screen changes. Both boards check.
+  useLayoutEffect(() => {
+    const root = document.documentElement;
+    if (!root.hasAttribute(SHOWS_MARK)) return;
+    if (picked !== undefined || view === artistForSlug(readDeepLink(SHOWS_PARAM), artists)) {
+      root.removeAttribute(SHOWS_MARK);
+    }
+    // The artists are the board's, fixed for the page.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [view, picked]);
 
   /** A chip tapped: the board, the address bar and this entry follow it. */
   const pick = (next: BoardView) => {
