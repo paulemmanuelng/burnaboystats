@@ -1,6 +1,7 @@
 "use client"; // the phone fold
 
 import { useState } from "react";
+import { holdInPlace } from "../lib/holdInPlace";
 import styles from "./DaiDaiConquest.module.css";
 
 /**
@@ -112,8 +113,21 @@ export default function DaiDaiConquest({
         ))}
       </ol>
 
+      {/* Folding back holds the button under the finger (lib/holdInPlace).
+          Everything the fold removes sits ABOVE the button — the cells past
+          the first thirty, and the names that made the open grid three
+          across — so the grid shrank under a reader at its foot and the page
+          did not follow: tapped at y=600 on a 390 phone, the button landed
+          at −261 on /dai-dai and −274 on /dai-dai/es, with the replay's
+          chips in its place (V-music-05, debug pass 5 Oct 2026). Opening is
+          left alone: the grid grows downward from where the reader is. */}
       {folds ? (
-        <button type="button" className={styles.fold} aria-expanded={open} onClick={() => setOpen((o) => !o)}>
+        <button
+          type="button"
+          className={styles.fold}
+          aria-expanded={open}
+          onClick={(e) => (open ? holdInPlace(e.currentTarget, () => setOpen(false)) : setOpen(true))}
+        >
           <span>{open ? t.showFewer : fill(t.showAll)}</span>
           <span aria-hidden="true">{open ? "↑" : "↓"}</span>
         </button>
