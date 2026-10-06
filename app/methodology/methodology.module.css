@@ -336,6 +336,8 @@
   .shared { padding: 18px 18px 0; border-top: 1px solid var(--line); }
   .shared .h2 { font-size: 22px; }
   .shared .h3 { font-size: 18px; margin-top: 28px; }
+  /* The claims list's three headings, shared since 6 Oct 2026 (core-11). */
+  .shared .blockH { font-size: 18px; }
   .shared .p { font-size: var(--type-small); line-height: var(--type-small-lh); margin-top: 12px; }
   .thresholdTable { min-width: 640px; }
   /* The phone screen's action bar is fixed; this is the room it needs. */

@@ -25,9 +25,23 @@ export function twinAnchor(id: string): string | null {
   return null;
 }
 
+/** A page's own twins, named in either direction (`pairs`), then the
+ *  countries board's rule. /methodology's #principles and #sources are the
+ *  desktop copies; the phone's are #m-principles and #m-sources (debug pass
+ *  5 Oct 2026, core-11 — the /afrobeats links to them reached nothing on a
+ *  phone). */
+export function twinOf(id: string, pairs?: Readonly<Record<string, string>>): string | null {
+  if (pairs) {
+    if (Object.hasOwn(pairs, id)) return pairs[id];
+    const back = Object.keys(pairs).find((k) => pairs[k] === id);
+    if (back) return back;
+  }
+  return twinAnchor(id);
+}
+
 const hasBox = (el: Element) => el.getClientRects().length > 0;
 
-export default function AnchorTwins() {
+export default function AnchorTwins({ pairs }: { pairs?: Readonly<Record<string, string>> } = {}) {
   useEffect(() => {
     const go = (behavior: ScrollBehavior) => {
       let id: string;
@@ -39,7 +53,7 @@ export default function AnchorTwins() {
       if (!id) return;
       const target = document.getElementById(id);
       if (target && hasBox(target)) return; // the browser already went there
-      const twinId = twinAnchor(id);
+      const twinId = twinOf(id, pairs);
       const twin = twinId ? document.getElementById(twinId) : null;
       if (twin && hasBox(twin)) twin.scrollIntoView?.({ block: "start", behavior });
     };
@@ -48,6 +62,6 @@ export default function AnchorTwins() {
     const onHash = () => go(window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth");
     window.addEventListener("hashchange", onHash);
     return () => window.removeEventListener("hashchange", onHash);
-  }, []);
+  }, [pairs]);
   return null;
 }

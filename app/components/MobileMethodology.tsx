@@ -67,8 +67,12 @@ export default function MobileMethodology({
         </div>
       </div>
 
+      {/* m-principles / m-sources: the phone's copies of the desktop's
+          #principles and #sources. An id is used once a document, so a link to
+          /methodology#principles reaches these through the page's AnchorTwins
+          (debug pass 5 Oct 2026, core-11). */}
       <div className={styles.block}>
-        <h2 className={styles.blockTitle}>How a figure gets verified</h2>
+        <h2 id="m-principles" className={styles.blockTitle}>How a figure gets verified</h2>
         {principles.map((p) => (
           <div key={p.h} className={styles.item}>
             {/* Body font, sentence case — a principle is a statement, not one of
@@ -80,7 +84,7 @@ export default function MobileMethodology({
       </div>
 
       <div className={`${styles.block} ${styles.blockSoft}`}>
-        <h2 className={styles.blockTitle}>Where the numbers come from</h2>
+        <h2 id="m-sources" className={styles.blockTitle}>Where the numbers come from</h2>
         {sources.map((s) => (
           <div key={s.area} className={styles.item}>
             <div className={styles.area}>{s.area}</div>

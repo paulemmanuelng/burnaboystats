@@ -5,6 +5,7 @@ import styles from "./methodology.module.css";
 import KeepExploring from "../components/KeepExploring";
 import BreadcrumbBar from "../components/BreadcrumbBar";
 import MobileMethodology from "../components/MobileMethodology";
+import AnchorTwins from "../components/AnchorTwins";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime, BURNA_BOY_REF } from "../lib/seo";
 import { updates } from "../data/updates";
 import { totalAwards, countryCount, COUNTRIES, allItems } from "../data/certifications";
@@ -16,6 +17,10 @@ import { tours } from "../data/tours";
 import { REVENUE_BODY, REVENUE_REPORTS } from "../lib/revenueSource";
 import { CAREER_STREAMS_ANCHOR_READ_ON } from "../data/streamingTotals";
 import { numberWord } from "../lib/homeData";
+
+/** The two chapters each layout prints in its own words: the desktop's ids,
+ *  linked from /afrobeats and every board page, and the phone's twins. */
+const LAYOUT_TWINS = { principles: "m-principles", sources: "m-sources" } as const;
 
 export const metadata = pageMetadata({
   title: "Methodology — How Burna Boy Stats Verifies Every Number",
@@ -333,14 +338,22 @@ export default function MethodologyPage() {
           </div>
         </section>
 
-        {/* ── Primary sources ────────────────────────────────── */}
+      </div>
+
+        {/* Shared, not desktop-only (Paul, 6 Oct 2026, core-11): the
+            accessibility statement, the claims checked and not published and
+            the registers render ONCE, outside both layout trees — like "How
+            /compare counts" below — so a phone reads them too and their anchors
+            resolve on either layout. They were added on 21 Aug (#135/#137),
+            after the phone design, inside the desktop tree. The desktop tree is
+            split around them, so a desktop reads them where it always did. */}
         {/* An accessibility statement, on the methodology page rather than its own
             route: it belongs beside the other statements about how this site is
             built, and a route nobody links reads as compliance theatre. Written
             as what is true today including what is not done, because a statement
             that only claims successes is worth nothing to the person relying on
             it. */}
-        <section className={`${styles.wrap} ${styles.sectionPad}`} aria-labelledby="accessibility">
+        <section className={styles.shared} aria-labelledby="accessibility">
           <div className={styles.eyebrow}>Accessibility</div>
           <h2 id="accessibility" className={styles.h2}>Who can read this site</h2>
           <p className={styles.p}>
@@ -372,7 +385,7 @@ export default function MethodologyPage() {
             It also answers the question an inflated tally raises every few
             months — "why is your count lower" — with a list instead of an
             assertion. */}
-        <section className={`${styles.wrap} ${styles.sectionPad}`} aria-labelledby="rejected">
+        <section className={styles.shared} aria-labelledby="rejected">
           <div className={styles.eyebrow}>What did not make it</div>
           <h2 id="rejected" className={styles.h2}>Claims checked and not published</h2>
           <p className={styles.p}>
@@ -419,7 +432,7 @@ export default function MethodologyPage() {
             number is traced to whoever awarded it. Only bodies whose page has
             been opened and confirmed are listed — a dead link to a primary
             source is worse than no link. */}
-        <section className={`${styles.wrap} ${styles.sectionPad}`} aria-labelledby="registers">
+        <section className={styles.shared} aria-labelledby="registers">
           <div className={styles.eyebrow}>The registers</div>
           <h2 id="registers" className={styles.h2}>Who awards a plaque, and what it means</h2>
           <p className={styles.p}>
@@ -452,6 +465,8 @@ export default function MethodologyPage() {
           </ul>
         </section>
 
+      <div className={styles.desktopOnly}>
+        {/* ── Primary sources ────────────────────────────────── */}
         <section className={`${styles.wrap} ${styles.sectionPad}`} aria-labelledby="sources">
           <div className={styles.eyebrow}>Primary sources</div>
           <h2 id="sources" className={styles.h2}>Where the numbers come from</h2>
@@ -808,6 +823,9 @@ export default function MethodologyPage() {
       {/* The phone screen's own action bar is fixed; this keeps the shared
           section's last line above it (the screen's spacer moved here). */}
       <div className={styles.mobileFoot} aria-hidden="true" />
+      {/* /methodology#principles or #sources on a phone lands on the phone's
+          copy (core-11). */}
+      <AnchorTwins pairs={LAYOUT_TWINS} />
     </main>
   );
 }
