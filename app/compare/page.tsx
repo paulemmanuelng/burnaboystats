@@ -623,7 +623,12 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
   const soloNg = ngParam === "1";
   // Solo pricing also backs the slots on a REFUSED pairing (same artist twice),
   // so they never print "· · 0 countries" for an artist with a real catalogue.
-  const soloPriced = a && !countryMode && (!both || sameArtist) ? priceArtist(a, { includeNigeria: soloNg, includeFeatures }) : null;
+  // The one filled side is priced WHICHEVER slot holds it: side B alone (every
+  // pair page's side-A "Change ✕" lands there) printed "Davido · artist totals"
+  // with no counts and no headline, where side A alone printed both (debug
+  // pass, 6 Oct 2026).
+  const solo = a ?? b;
+  const soloPriced = solo && !countryMode && (!both || sameArtist) ? priceArtist(solo, { includeNigeria: soloNg, includeFeatures }) : null;
   const refused = Boolean(sameArtist || sameRecording);
 
   const songPriced = (art: ComparableArtist | null, rel: ComparableRelease | null, ngIn: boolean) =>
@@ -641,7 +646,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
   // A refused pairing renders its refusal and nothing else — no card, no hint.
   // It was printing "at least 0 certified units" beneath "That is Burna Boy on
   // both sides", which is a number the page never established.
-  const partial = countryMode || refused ? false : record ? Boolean(spa || spb) : Boolean(a);
+  const partial = countryMode || refused ? false : record ? Boolean(spa || spb) : Boolean(solo);
 
   // The side being described, whichever mode is on — and in song mode with one
   // song chosen, that side is the SONG, never the artist. The header card was
@@ -649,12 +654,13 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
   // beside the artist's plaque count.
   // With only side B's record picked, the one header card describes THAT
   // record: it read "Burna Boy · at least 0 certified units" beside a Smooth
-  // Criminal chosen on the right (review, 23 Sep 2026).
+  // Criminal chosen on the right (review, 23 Sep 2026). Artist totals do the
+  // same with only side B's artist chosen: the card is that artist's.
   const sideA: ArtistUnits | null = record ? spa ?? (ready ? null : spb) : c?.a ?? soloPriced ?? null;
   const sideB: ArtistUnits | null = record ? spb : c?.b ?? null;
   const totalA = sideA?.total ?? 0;
   const totalB = sideB?.total ?? 0;
-  const nameA = record && songA ? songA.title : record && songB && !spa ? songB.title : a?.name ?? "";
+  const nameA = record && songA ? songA.title : record && songB && !spa ? songB.title : solo?.name ?? "";
   const nameB = record && songB ? songB.title : b?.name ?? "";
 
   const byMax = (x: ComparisonRow, y: ComparisonRow) =>
@@ -908,7 +914,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
           <div className={styles.slots}>
             <Slot artist={a} release={songA} priced={c?.a ?? soloPriced ?? null} sp={sp} side="a" mode={mode} refused={sameArtist} />
             <span className={styles.vs}>vs</span>
-            <Slot artist={b} release={songB} priced={c?.b ?? (sameArtist ? soloPriced : null) ?? null} sp={sp} side="b" mode={mode} refused={sameArtist} />
+            <Slot artist={b} release={songB} priced={c?.b ?? (sameArtist || !a ? soloPriced : null) ?? null} sp={sp} side="b" mode={mode} refused={sameArtist} />
           </div>
         )}
 
