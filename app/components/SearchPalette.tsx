@@ -196,9 +196,16 @@ export default function SearchPalette({ suggested }: { suggested: readonly Sugge
     };
     window.addEventListener("keydown", onKey);
     window.addEventListener("open-search", onOpen);
+    // Back and Forward close it too. The route-change reset above covers a
+    // Back to another page, but not one that moves only the fragment:
+    // /certifications#country=BE back to /certifications unfiltered the
+    // ledger under the open palette and left it holding the scroll lock
+    // (5 Oct 2026, V-global-02).
+    window.addEventListener("popstate", close);
     return () => {
       window.removeEventListener("keydown", onKey);
       window.removeEventListener("open-search", onOpen);
+      window.removeEventListener("popstate", close);
     };
   }, [close]);
 

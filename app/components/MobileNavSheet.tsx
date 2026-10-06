@@ -70,6 +70,15 @@ export default function MobileNavSheet({
       if (e.key === "Escape") setOpen(false);
     };
     window.addEventListener("keydown", onKey);
+    // Back (a phone's back button or swipe) and Forward close it. The sheet
+    // lives in the layout, so it stays mounted across navigation: Back with it
+    // open took /music to / underneath and left it covering the page, the tab
+    // bar hidden and Home now marked as here (5 Oct 2026, V-global-02). The
+    // traversal, not the path, is the signal: a Back that moves only the
+    // fragment (/certifications#country=BE to /certifications) changes the
+    // page under the sheet without changing the path.
+    const onPop = () => setOpen(false);
+    window.addEventListener("popstate", onPop);
     // Focus the close button, so the first Tab lands inside the sheet rather
     // than on the page behind it.
     closeRef.current?.focus();
@@ -77,6 +86,7 @@ export default function MobileNavSheet({
     return () => {
       document.body.classList.remove("navSheetOpen");
       window.removeEventListener("keydown", onKey);
+      window.removeEventListener("popstate", onPop);
       // Hand focus back to whatever opened us.
       openerRef.current?.focus();
     };
