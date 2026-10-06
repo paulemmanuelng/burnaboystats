@@ -9,7 +9,7 @@ import styles from "./SearchPalette.module.css";
 import type { SearchDoc } from "../lib/searchIndex";
 import type { SuggestedDoc } from "../lib/searchSuggested";
 import { track } from "../lib/analytics";
-import { nextActive } from "./searchPaletteActive";
+import { nextActive, revealRow } from "./searchPaletteActive";
 
 // Site-wide command palette: a search button in the nav that opens a ⌘K / Ctrl+K
 // modal to jump to any page. Pure client-side over the static index — no backend.
@@ -62,6 +62,7 @@ export default function SearchPalette({ suggested }: { suggested: readonly Sugge
   const [active, setActive] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
+  const listRef = useRef<HTMLUListElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
   // Whatever had focus when the palette opened, so closing can hand it back
   // instead of dumping a keyboard user at the top of the document.
@@ -230,8 +231,11 @@ export default function SearchPalette({ suggested }: { suggested: readonly Sugge
       e.preventDefault();
       // Clamped at row 0, so a press while the index is still loading (no
       // rows yet) leaves the first result highlighted when it lands.
-      const key = e.key;
-      setActive((i) => nextActive(i, key, results.length));
+      const next = nextActive(active, e.key, results.length);
+      setActive(next);
+      // The list scrolls, and the row the keys reach is kept in it
+      // (V-global-03). Keys only: a pointer can see what it is on.
+      revealRow(listRef.current, next);
     } else if (e.key === "Enter") {
       e.preventDefault();
       const choose = (list: readonly { path: string }[]) => {
@@ -329,6 +333,8 @@ export default function SearchPalette({ suggested }: { suggested: readonly Sugge
                 onChange={(e) => {
                   setQuery(e.target.value);
                   setActive(0);
+                  // A new query starts at the top, where row 0 is.
+                  revealRow(listRef.current, 0);
                 }}
                 onKeyDown={onInputKey}
                 aria-label="Search query"
@@ -350,7 +356,7 @@ export default function SearchPalette({ suggested }: { suggested: readonly Sugge
             </div>
 
             {results.length > 0 ? (
-              <ul id={listboxId} className={styles.results} role="listbox" aria-label="Search results">
+              <ul ref={listRef} id={listboxId} className={styles.results} role="listbox" aria-label="Search results">
                 {!query.trim() && (
                   <li role="presentation" className={styles.groupLabel}>Popular pages</li>
                 )}
