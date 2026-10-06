@@ -12,6 +12,7 @@ import { albumPageByTitle } from "../../data/albumPages";
 import { albumYearByTitle } from "../../data/albums";
 import MobileMenuButton from "../../components/MobileMenuButton";
 import BackLink from "../../components/BackLink";
+import PickerRail from "./PickerRail";
 import { awardLabel } from "../../lib/awardName";
 
 // Only the known song slugs are valid routes — anything else 404s.
@@ -215,7 +216,7 @@ export default async function SongPage({ params }: { params: Promise<{ song: str
           2026). The /afrobeats tile walls made the same trade. */}
       <section className={styles.pickerPad}>
         <div className={styles.pickerLabel}>All {songPageCount} song pages</div>
-        <div className={styles.picker}>
+        <PickerRail className={styles.picker} current={song.slug}>
           {/* Dai Dai's story lives at /dai-dai and leads the hub's song grid,
               so it leads here too — the same chip, linking out (A-38). */}
           <Link href={daiDaiStoryPage.href} className={styles.pick} prefetch={false}>
@@ -240,7 +241,7 @@ export default async function SongPage({ params }: { params: Promise<{ song: str
               <span className={styles.pickYear}>{s.year}</span>
             </Link>
           ))}
-        </div>
+        </PickerRail>
       </section>
 
       {/* ── Hero ─────────────────────────────────────────────── */}
