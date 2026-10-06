@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useRouter } from "next/navigation";
 import { usePagePath } from "../lib/pagePath";
+import { noteJump } from "../lib/backNav";
 import styles from "./SearchPalette.module.css";
 import type { SearchDoc } from "../lib/searchIndex";
 import type { SuggestedDoc } from "../lib/searchSuggested";
@@ -111,9 +112,13 @@ export default function SearchPalette({ suggested }: { suggested: readonly Sugge
       // that moves only the fragment fires no hashchange — the address bar
       // changed and the page did not. A plain fragment navigation does fire
       // it, and the explorers listen (lib/deepLink.ts).
+      // Noted first (lib/backNav), so that entry keeps the router's state and
+      // Back from a page opened after it still lands here (V-otd-01).
       const to = new URL(path, window.location.href);
-      if (to.hash && to.pathname === window.location.pathname) window.location.assign(to.href);
-      else router.push(path);
+      if (to.hash && to.pathname === window.location.pathname) {
+        noteJump(to.href);
+        window.location.assign(to.href);
+      } else router.push(path);
     },
     [query, close, router]
   );

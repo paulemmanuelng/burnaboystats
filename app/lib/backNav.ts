@@ -80,21 +80,31 @@ let jump: { page: string; router: Record<string, unknown> } | null = null;
 
 const pageOf = (href: string) => href.split("#")[0];
 
+/**
+ * Note a same-page "#…" navigation that is about to happen, with the router
+ * state of the entry it starts from. Links reach it through noteJumpClick; a
+ * script that moves the fragment itself calls it first — the search palette
+ * does, for a result on the page you are already on (C-04), which is the same
+ * plain fragment navigation as a link.
+ */
+export function noteJump(href: string): void {
+  if (!href.includes("#") || pageOf(href) !== pageOf(window.location.href)) return;
+  const state = window.history.state as Record<string, unknown> | null;
+  if (!state?.__NA) return;
+  const router = Object.fromEntries(Object.entries(state).filter(([k]) => ROUTER_KEYS.has(k)));
+  jump = { page: pageOf(href), router };
+  // Chrome has jumped by the time this runs. An engine that jumps later fires
+  // popstate (and hashchange) as it does, and settleJump runs then.
+  setTimeout(settleJump, 0);
+}
+
 /** A click (capture phase): note a same-page "#…" link's router state. */
 export function noteJumpClick(e: MouseEvent): void {
   if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
   const a = (e.target as Element | null)?.closest?.("a[href]");
   if (!(a instanceof HTMLAnchorElement)) return;
   if ((a.target && a.target !== "_self") || a.hasAttribute("download")) return;
-  if (!a.href.includes("#") || pageOf(a.href) !== pageOf(window.location.href)) return;
-
-  const state = window.history.state as Record<string, unknown> | null;
-  if (!state?.__NA) return;
-  const router = Object.fromEntries(Object.entries(state).filter(([k]) => ROUTER_KEYS.has(k)));
-  jump = { page: pageOf(a.href), router };
-  // Chrome has jumped by the time this runs. An engine that jumps later fires
-  // popstate (and hashchange) as it does, and settleJump runs then.
-  setTimeout(settleJump, 0);
+  noteJump(a.href);
 }
 
 /** After a noted click, on popstate and on hashchange: stamp the jump's entry. */
@@ -105,11 +115,15 @@ export function settleJump(): void {
     return;
   }
   // Still the router's entry: the jump hasn't happened yet, or was cancelled.
-  if ((window.history.state as Record<string, unknown> | null)?.__NA) return;
+  const own = window.history.state as Record<string, unknown> | null;
+  if (own?.__NA) return;
   const { router } = jump;
   jump = null;
   try {
-    window.history.replaceState(router, "", window.location.href);
+    // Over whatever the new entry already holds: an explorer listening for
+    // the hashchange may have saved its filters on it first (lib/deepLink
+    // saveView), and those belong to this entry.
+    window.history.replaceState({ ...own, ...router }, "", window.location.href);
   } catch {
     // A sandboxed frame can refuse; Back is no worse than before.
   }

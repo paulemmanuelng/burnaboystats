@@ -10,6 +10,7 @@ vi.mock("next/navigation", () => ({
 }));
 
 import SearchPalette from "../../app/components/SearchPalette";
+import NavHistoryTracker from "../../app/components/NavHistoryTracker";
 import { suggestedSearchDocs } from "../../app/lib/searchSuggested";
 
 // The suggestions as layout.tsx builds them on the server.
@@ -151,6 +152,26 @@ describe("C-04: a result on the page you are on moves the fragment itself", () =
     expect(push).not.toHaveBeenCalled();
     await vi.waitFor(() => expect(heard).toHaveBeenCalled());
     window.removeEventListener("hashchange", heard);
+  });
+
+  it("leaves that entry the router's state, so Back from a page opened after it lands here (V-otd-01)", async () => {
+    // location.assign of a fragment is the same plain fragment navigation as
+    // a "#…" link: the entry it makes has no state, and the app router ignores
+    // a Back onto it. Same page, same route tree: the entry gets the router's.
+    const ROUTER = { __NA: true, __PRIVATE_NEXTJS_INTERNALS_TREE: { tree: ["", {}], renderedSearch: "" } };
+    window.history.replaceState(ROUTER, "", "/certifications");
+
+    render(
+      <>
+        <NavHistoryTracker />
+        <SearchPalette suggested={suggested} />
+      </>
+    );
+    cmdK();
+    await userEvent.type(screen.getByRole("combobox", { name: "Search query" }), "gbona{Enter}");
+
+    await vi.waitFor(() => expect(window.location.pathname + window.location.hash).toBe("/certifications#release=Gbona"));
+    await vi.waitFor(() => expect(window.history.state).toEqual(ROUTER));
   });
 
   it("still pushes through the router to another page", async () => {

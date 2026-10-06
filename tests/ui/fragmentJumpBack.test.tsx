@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { render, cleanup } from "@testing-library/react";
 import NavHistoryTracker from "../../app/components/NavHistoryTracker";
+import { noteJump, settleJump } from "../../app/lib/backNav";
 
 vi.mock("next/navigation", () => ({
   usePathname: () => "/on-this-day",
@@ -96,6 +97,17 @@ describe("in-page jumps keep the router's history state (V-otd-01)", () => {
     link("#month-march").click();
     await settled();
     expect(window.history.state).toEqual(ROUTER);
+  });
+
+  it("keeps what the jump's entry already holds when it stamps it", () => {
+    // An explorer that hears the hashchange first saves its filters on the
+    // new entry (lib/deepLink saveView); stamping must not wipe them.
+    noteJump(new URL("#release=Gbona", window.location.href).href);
+    window.history.pushState(null, "", "#release=Gbona"); // the browser's jump
+    const views = { load: "x", views: { certs: { tier: "gold" } } };
+    window.history.replaceState({ bbsViews: views }, "");
+    settleJump();
+    expect(window.history.state).toEqual({ bbsViews: views, ...ROUTER });
   });
 
   it("a cancelled click is left alone", async () => {
