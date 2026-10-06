@@ -317,7 +317,7 @@ export default function DaiDaiReplay({ data, labels: t }: { data: ReplayData; la
         pos: fillIn(t.pos, { p: cardRun.best }),
         status: cardRun.weeksAtPeak != null ? fillIn(t.cardPeakWeeks, { n: cardRun.weeksAtPeak }) : t.cardPeak,
         label: cardRun.pts.length ? null : t.cardNotRecorded,
-        source: fillIn(t.cardSource, { src: "app/data/charts.ts" }),
+        source: fillIn(t.cardSource, { src: t.sources.charts }),
       };
     }
     if (!cardRun.pts.length) return { ...base, pos: t.posUnread, status: t.cardNotRecorded, label: null, source: null };
@@ -333,7 +333,7 @@ export default function DaiDaiReplay({ data, labels: t }: { data: ReplayData; la
           : p.s === "no-chart"
             ? t.cardNoChart
             : t.cardOff;
-    return { ...base, pos, status, label: p.l ?? fillIn(t.cardDated, { date: p.d }), source: p.src ? fillIn(t.cardSource, { src: p.src }) : null };
+    return { ...base, pos, status, label: p.l ?? fillIn(t.cardDated, { date: p.d }), source: p.src ? fillIn(t.cardSource, { src: t.sources[p.src] }) : null };
   })();
 
   const codeFrom = (target: EventTarget | null) => (target instanceof Element ? target.closest("[data-code]")?.getAttribute("data-code") ?? null : null);
