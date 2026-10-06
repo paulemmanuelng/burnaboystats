@@ -440,6 +440,19 @@ export const DAI_DAI_APPLE_EUROPE_NO1_DAYS = 58;
  *  "by 21 August had reached a 40th on the worldwide iTunes songs chart". */
 export const DAI_DAI_ITUNES_WORLDWIDE_NO1_DAYS = 40;
 
+/**
+ * The day the two counts above were last counted (commit 8fc728e9, 21 Aug
+ * 2026). Both editions print it beside them, as their sibling rows print
+ * theirs: until 5 Oct 2026 the Apple Music Europe and iTunes worldwide rows,
+ * and the iTunes-countries row, were the only undated figures in the record's
+ * lists (music-06).
+ */
+export const DAI_DAI_APPLE_ITUNES_DAYS_AS_OF = "2026-08-21";
+export const DAI_DAI_APPLE_ITUNES_DAYS_AS_OF_LONG = longDate(DAI_DAI_APPLE_ITUNES_DAYS_AS_OF, "en-GB");
+export const DAI_DAI_APPLE_ITUNES_DAYS_AS_OF_LONG_ES = longDate(DAI_DAI_APPLE_ITUNES_DAYS_AS_OF, "es-ES");
+export const DAI_DAI_ITUNES_NO1_COUNTRIES_AS_OF_LONG = longDate(DAI_DAI_ITUNES_NO1_COUNTRIES_AS_OF, "en-GB");
+export const DAI_DAI_ITUNES_NO1_COUNTRIES_AS_OF_LONG_ES = longDate(DAI_DAI_ITUNES_NO1_COUNTRIES_AS_OF, "es-ES");
+
 /** Weeks at No. 1 on Mediatraffic's United World Chart. The log, 23 Sep 2026:
  *  "A 13th week atop Mediatraffic's United World Chart … in the chart week
  *  dated 26 September, on 230,000 points". */

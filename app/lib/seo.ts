@@ -226,6 +226,9 @@ const OWN_BREADCRUMB = [
   /^\/certifications$/,
   /^\/timeline$/,
   /^\/dai-dai$/,
+  // The Spanish edition writes its trail in Spanish (Inicio › La historia de
+  // Dai Dai › Español); the generated one was English but for the leaf.
+  /^\/dai-dai\/es$/,
   /^\/records\/awards$/,
   // A car page's leaf is "Bugatti Chiron", which the slug cannot spell.
   /^\/records\/cars\/[^/]+$/,
@@ -297,11 +300,10 @@ export const SEGMENT_LABELS: Record<string, string> = {
   oxlade: "Oxlade",
   "tiwa-savage": "Tiwa Savage",
   "dai-dai": "The Dai Dai Story",
-  // The leaf of /dai-dai/es. /dai-dai hand-writes its own trail, but the
-  // Spanish edition is not in OWN_BREADCRUMB, so it takes the generated one —
-  // and with no entry here it published `"name":"es"` as the leaf of its
-  // BreadcrumbList, which is what Google was actually shown for an INDEXED
-  // page. Spanish, because it names the Spanish edition to a Spanish reader.
+  // The leaf of /dai-dai/es. With no entry here the generated trail published
+  // `"name":"es"` as the leaf of an INDEXED page's BreadcrumbList. Since 5 Oct
+  // 2026 the edition writes its own, Spanish trail (OWN_BREADCRUMB above); the
+  // label stays so a generated trail could never fall back to the raw slug.
   es: "Español",
   share: "Stat Cards",
   faq: "FAQ",

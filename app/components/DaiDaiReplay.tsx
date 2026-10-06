@@ -407,9 +407,15 @@ export default function DaiDaiReplay({ data, labels: t }: { data: ReplayData; la
 
   // ── The two globals ────────────────────────────────────────────────────────
   const soFar = (n: number) => fillIn(n === 1 ? t.tileSoFarOne : t.tileSoFar, { n });
+  const runTotal = (n: number) => fillIn(n === 1 ? t.tileTotalOne : t.tileTotal, { n });
   const tiles = data.globals.map((g) => {
     if (endLike) {
-      return { g, sw: bandOf(g.best), pos: fillIn(t.pos, { p: g.best }), sub: soFar(g.weeksAtPeak ?? readNo1s(g, last)) };
+      // The poster and end frames sum the whole run. "So far" is true only
+      // while the last week held is still at No. 1; once it is off, the run
+      // is closed (charts.ts: Global 200 "closed at seven", Excl. US "final").
+      const stillOn = g.pts[last]?.s === "on" && g.pts[last]?.p === 1;
+      const n = g.weeksAtPeak ?? readNo1s(g, last);
+      return { g, sw: bandOf(g.best), pos: fillIn(t.pos, { p: g.best }), sub: stillOn ? soFar(n) : runTotal(n) };
     }
     const p = g.pts[frame];
     if (p.s === "on") return { g, sw: bandOf(p.p!), pos: fillIn(t.pos, { p: p.p! }), sub: soFar(readNo1s(g, frame)) };

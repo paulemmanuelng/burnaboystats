@@ -106,14 +106,15 @@ const STREAKS: Streak[] = [
   },
   {
     id: "Apple Music Europe — days at No. 1",
-    page: `v: \`\\$\\{DAI_DAI_APPLE_EUROPE_NO1_DAYS\\} days\`, l: "at No\\. 1 on Apple Music${A}s European songs`,
+    // A template literal since 5 Oct 2026, when the row gained its date (music-06).
+    page: `v: \`\\$\\{DAI_DAI_APPLE_EUROPE_NO1_DAYS\\} days\`, l: [\`"]at No\\. 1 on Apple Music${A}s European songs`,
     derived: DAI_DAI_APPLE_EUROPE_NO1_DAYS,
     feed: [`${ORD} day atop Apple Music${A}s European`, `at No\\. 1 for (\\d+) days`],
     topic: `Apple Music${A}s European`,
   },
   {
     id: "iTunes worldwide — days at No. 1",
-    page: `v: \`\\$\\{DAI_DAI_ITUNES_WORLDWIDE_NO1_DAYS\\} days\`, l: "at No\\. 1 on the worldwide iTunes songs`,
+    page: `v: \`\\$\\{DAI_DAI_ITUNES_WORLDWIDE_NO1_DAYS\\} days\`, l: [\`"]at No\\. 1 on the worldwide iTunes songs`,
     derived: DAI_DAI_ITUNES_WORLDWIDE_NO1_DAYS,
     feed: [`${ORD} on the worldwide iTunes`, `${ORD} day at No\\. 1 on worldwide iTunes`],
     topic: `worldwide iTunes`,
