@@ -216,9 +216,12 @@ export default function MobileOfficialCharts({
         )
         .map((r) => {
           const best = Math.min(...r.entries.map((e) => e.peak));
-          // Matching peaks lead; the rest stay visible but dimmed.
-          const peaks = [...r.entries]
-            .sort((a, b) => a.peak - b.peak)
+          // Matching peaks lead; the rest stay visible but dimmed. The sort
+          // has to read `off`: sorted by peak alone, Dai Dai under Nigeria
+          // showed twelve dimmed No. 1s and a "+58" with its Nigerian pill
+          // folded behind it, on 16 of the 17 rail countries (debug pass,
+          // 5 Oct 2026). A row the filter kept must show why it was kept.
+          const peaks = r.entries
             .map((e) => ({
               code: e.c,
               flag: countries[e.c]?.flag ?? "🏳",
@@ -228,7 +231,8 @@ export default function MobileOfficialCharts({
               // the phone dropped it, so both layouts carry it the same way.
               note: e.note,
               off: Boolean((peakMax && e.peak > peakMax) || (only && e.c !== only)),
-            }));
+            }))
+            .sort((a, b) => Number(a.off) - Number(b.off) || a.peak - b.peak);
           return {
             title: r.title,
             credit: [r.credit, r.year].filter(Boolean).join(" · "),
