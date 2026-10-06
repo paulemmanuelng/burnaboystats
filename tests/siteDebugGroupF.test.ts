@@ -226,8 +226,9 @@ describe("F-10: DJ Tárico keeps his accent, and the credit convention is stated
   it("spells the credit the way the chart record does", () => {
     const cert = allItems.find((r) => r.title === "Yaba Buluku (Remix)");
     const chart = allChartItems.find((r) => r.title === "Yaba Buluku (Remix)");
-    expect(cert?.credit).toBe("DJ Tárico & Burna Boy");
-    expect(chart?.credit?.startsWith("DJ Tárico")).toBe(true);
+    // One credit in both files since 6 Oct 2026 (records-02): the full line.
+    expect(cert?.credit).toBe("DJ Tárico & Burna Boy ft. Preck & Nelson Tivane");
+    expect(chart?.credit).toBe(cert?.credit);
     expect(JSON.stringify(allItems)).not.toContain("DJ Tarico");
   });
 
@@ -236,7 +237,7 @@ describe("F-10: DJ Tárico keeps his accent, and the credit convention is stated
     const shipped = '{ year: 2021, category: "Best African Collaboration", work: "Yaba Buluku (Remix) (DJ Tarico ft. Burna Boy)", won: false }';
     expect(shipped).toContain("DJ Tarico");
     expect(JSON.stringify(ceremonies)).not.toContain("DJ Tarico");
-    expect(ceremonies.some((c) => c.noms.some((n) => n.work === "Yaba Buluku (Remix) (DJ Tárico ft. Burna Boy)"))).toBe(true);
+    expect(ceremonies.some((c) => c.noms.some((n) => n.work === "Yaba Buluku (Remix) (DJ Tárico & Burna Boy ft. Preck & Nelson Tivane)"))).toBe(true);
   });
 
   it("still finds the record by the unaccented name", () => {

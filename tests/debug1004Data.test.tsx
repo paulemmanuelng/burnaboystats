@@ -357,7 +357,9 @@ describe("D-04: /certifications, /records/tours and the map are dated by their d
     // 6 Oct, so leaving it there dated them a day early (review of that PR).
     // Re-pinned 6 Oct 2026 when the records lane's five "Sep" notes (core-19)
     // merged onto the tours lane's edits; the stamp was already that day.
-    expect({ fingerprint, stamp: TOURS_EDITED_ON }).toEqual({ fingerprint: "9e109cc9029e8d18", stamp: "2026-10-06" });
+    // Re-pinned again the same day when the owner's rulings merged: No Sign of
+    // Weakness's note, "across its four shows" (tourscars-21).
+    expect({ fingerprint, stamp: TOURS_EDITED_ON }).toEqual({ fingerprint: "149269fa92f5e646", stamp: "2026-10-06" });
     // Negative control for core-19: the notes' "Sept" as it shipped is another
     // fingerprint.
     const septAsShipped = (rows: typeof festivals) => rows.map((r) => ({ ...r, note: r.note.replace(/\b(\d{1,2} )?Sep\b/g, "$1Sept") }));
@@ -371,6 +373,13 @@ describe("D-04: /certifications, /records/tours and the map are dated by their d
       dates: t.dates?.map((d) => (d.venue === "The Fillmore" && d.city === "Silver Spring, MD" ? { ...d, venue: "The Fillmore Silver Spring", city: "Washington, D.C." } : d)),
     }));
     expect(print({ tours: fillmoreAsShipped, festivals, otherShows, concerts, upcomingShows, performedCountries })).not.toBe(fingerprint);
+    // Negative control for tourscars-21: the note's "four arena shows", as it
+    // shipped, is another fingerprint.
+    const arenaAsShipped = tours.map((t) =>
+      t.name === "No Sign of Weakness Tour" ? { ...t, note: t.note.replace("across its four shows", "across four arena shows") } : t,
+    );
+    expect(arenaAsShipped).not.toEqual(tours);
+    expect(print({ tours: arenaAsShipped, festivals, otherShows, concerts, upcomingShows, performedCountries })).not.toBe(fingerprint);
     // Negative control: the data before this PR's edits (Love, Damini not
     // partial and with no reason of its own; Ireland's "(Mar & Dec 2022)")
     // prints another fingerprint, so an edit that leaves the stamp behind

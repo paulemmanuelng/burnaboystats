@@ -2,9 +2,11 @@ import { ogLadder, ogId, cardUrl, size, contentType, type OgLadderCard } from ".
 import { usdFull } from "../../../lib/revenueByCountry";
 import { showsBoard } from "../../../lib/showsBoard";
 import { revenueShows } from "../../../data/tourRevenue";
+import { showsBoardTitle } from "../../../lib/showsTitle";
 
 export { size, contentType };
-export const alt = "Burna Boy — Highest-Grossing Shows";
+/** The page's own title, its No. 1 night's artist derived (seo-11). */
+export const alt = showsBoardTitle(showsBoard().top.artist);
 
 // Claude Design round 1 (4 Oct 2026), GXOG.dc.html, page "shows": the record
 // night at the left, the top twelve nights as scale bars at the right, each

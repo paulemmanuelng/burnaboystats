@@ -435,7 +435,7 @@ describe("the pair page derives its remaining typed figures", () => {
     const page = await html({ a: "burna-boy", b: "wizkid" });
     const t = text(page);
     const bodies = Object.keys(CERT_THRESHOLDS);
-    expect(t).toContain(`${bodies.filter((c) => c !== "NG").length} countries · outside Nigeria`);
+    expect(t).toContain(`${bodies.filter((c) => c !== "NG").length} countries checked · outside Nigeria`);
     const uk = CERT_THRESHOLDS.UK.single!.platinum!;
     expect(t).toContain(`at least ${uk.toLocaleString("en-US")}, and could be ${(uk * 2 - 10_000).toLocaleString("en-US")}`);
     expect(t).toContain(`the other ${WORDS[comparableArtists.length - 2]} are one tap away`);
@@ -686,7 +686,7 @@ describe("the Nigeria-separated total is 'outside Nigeria', never 'international
     expect(zaInside()).toBeGreaterThan(0);
     const t = text(await html({ a, b }));
     expect(t).toContain("certified units · outside Nigeria");
-    expect(t).toMatch(/\d+ countries · outside Nigeria/);
+    expect(t).toMatch(/\d+ countries checked · outside Nigeria/);
     expect(t).not.toMatch(/· international/);
     // Negative controls: the two strings that shipped on the live page.
     expect(t).not.toContain("certified units · international");
