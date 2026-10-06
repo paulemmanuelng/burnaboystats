@@ -1,54 +1,13 @@
 import { useId, type MouseEvent } from "react";
-import { flushSync } from "react-dom";
 import type { CertSwitches, CertView } from "../lib/certScope";
 import s from "./certSwitches.module.css";
+import { holdInPlace } from "../lib/holdInPlace";
 
-/**
- * Flip a switch and keep it under the finger. A switch narrows content ABOVE
- * its row — the phone's hero unit and lede, the board's "By the numbers" and
- * country strip, a tier row that empties — so the row would move after the
- * tap: −148px on Olamide's phone page with Nigeria left out, where the browser
- * has no scroll anchoring (Safari), −74px where it has (review, 3 Oct 2026).
- *
- * So: read the switch's place, commit the new view synchronously (flushSync —
- * every block that listens to the view re-renders in this same task), and
- * scroll by however far the switch moved, before anything is painted. Scroll
- * anchoring is held off for that moment so Chrome's own correction cannot add
- * to ours; a second look on the next frame catches anything that settled late
- * (a wrapped line, a font). "instant" because the site scrolls smoothly by
- * default (globals.css), and a glide would be the very movement we remove.
- */
-// Flips inside one frame overlap (two quick taps): anchoring is held off from
-// the first until the last has settled, and only then given back as it was.
-let holds = 0;
-let anchorBefore = "";
-
-function holdInPlace(el: HTMLElement, flip: () => void) {
-  const before = el.getBoundingClientRect().top;
-  const root = document.documentElement;
-  if (holds++ === 0) {
-    anchorBefore = root.style.overflowAnchor;
-    root.style.overflowAnchor = "none";
-  }
-  try {
-    flushSync(flip);
-  } catch (err) {
-    if (--holds === 0) root.style.overflowAnchor = anchorBefore;
-    throw err;
-  }
-  const settle = () => {
-    if (!el.isConnected) return;
-    const moved = el.getBoundingClientRect().top - before;
-    if (Math.abs(moved) >= 1) window.scrollBy({ top: moved, behavior: "instant" });
-  };
-  settle();
-  const done = () => {
-    settle();
-    if (--holds === 0) root.style.overflowAnchor = anchorBefore;
-  };
-  if (typeof requestAnimationFrame === "function") requestAnimationFrame(done);
-  else done();
-}
+// A flip never moves the switch on screen: lib/holdInPlace reads the
+// switch's place, commits the view synchronously and scrolls by however
+// far the content above moved it (−148px on Olamide's phone page with
+// Nigeria left out; review, 3 Oct 2026). It lived here until 6 Oct 2026,
+// when the tours accordion needed the same hold.
 
 /**
  * The certs views' two switches, in /compare's own toggle style (Paul, 3 Oct
