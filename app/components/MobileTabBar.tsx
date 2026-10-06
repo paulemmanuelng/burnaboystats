@@ -65,10 +65,21 @@ const BAR_LABEL = { en: "Tab bar", es: "Barra de pestañas" } as const;
  * /afrobeats/{artist}/charts and a live board at /afrobeats/{artist}/live, so
  * both are charts pages that begin with neither /live-charts nor /records. The
  * bar lit nothing at all on eighteen routes.
+ *
+ * Two more did the same until 6 Oct 2026 (debug V-global-15), each lit as its
+ * phone artboard lights it:
+ * - the board hub, /afrobeats — Charts, as "Afrobeats - Mobile Hub" draws it
+ *   (its two rails are the chart peaks and the live board), the same tab as
+ *   the chart and live boards under it;
+ * - /compare, every pair page and every /compare/in/<country> board — Certs,
+ *   as "Compare" M1–M3 draw it and as the trail files them (Home ›
+ *   Certifications › Compare).
+ * The Dai Dai story stays unlit: the approved redesign ("Dai Dai Redesign",
+ * 26 Sep 2026) draws all five tabs muted, in English and in Spanish.
  */
 const ALSO: Record<string, RegExp> = {
-  "/live-charts": /^\/(records\/charts|afrobeats\/[^/]+\/(charts|live))$/,
-  "/certifications": /^\/afrobeats\/[^/]+$/,
+  "/live-charts": /^\/(records\/charts|afrobeats|afrobeats\/[^/]+\/(charts|live))$/,
+  "/certifications": /^\/(afrobeats\/[^/]+|compare(\/.+)?)$/,
   // The calendar and its day pages are records filed by date — the artboards
   // light Records on both — but live at /on-this-day, not under /records.
   "/records": /^\/on-this-day(\/[^/]+)?$/,
