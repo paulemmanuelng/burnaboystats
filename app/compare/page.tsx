@@ -73,6 +73,7 @@ const programShort = (name: string, country: string) => {
 };
 import { CountryBoardView } from "./CountryBoardView";
 import { HeadSync } from "./HeadSync";
+import { KeepFocus } from "./KeepFocus";
 import { countryCopy, countryFromSlug, countrySlug, priceCountry, pricingPhrase } from "../lib/certCountry";
 import { artAt, artSrcSet } from "../lib/artAt";
 import {
@@ -832,6 +833,9 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       {dataset && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(dataset) }} />}
+      {/* The toggles below are links, and on a pair page or a board they
+          leave the route: this hands focus back to the one that was used. */}
+      <KeepFocus />
       <BreadcrumbBar path={path} leaf={leaf} parents={[{ label: "Certifications", href: "/certifications" }]} />
       <main id="content" className={styles.wrap}>
         {/* A pair page (/compare/<a>-vs-<b>) is its own page for search, so its
@@ -973,6 +977,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
               <Link
                 href={href(sp, { feat: includeFeatures ? "0" : null })}
                 scroll={false}
+                data-keep-focus="feat"
                 className={`${styles.switch} ${includeFeatures ? styles.switchOn : ""}`}
               >
                 <span className={`${styles.dot} ${includeFeatures ? styles.dotOn : ""}`} />
@@ -984,7 +989,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
           {!countryMode && (
             <span className={styles.control}>
               <span className={styles.controlName}>Nigeria</span>
-              <Link href={href(sp, { ng: ngOn ? (ngDefault ? "0" : null) : ngDefault ? null : "1" })} scroll={false} className={`${styles.switch} ${ngOn ? styles.switchOn : ""}`}>
+              <Link href={href(sp, { ng: ngOn ? (ngDefault ? "0" : null) : ngDefault ? null : "1" })} scroll={false} data-keep-focus="ng" className={`${styles.switch} ${ngOn ? styles.switchOn : ""}`}>
                 <span className={`${styles.dot} ${ngOn ? styles.dotOn : ""}`} />
                 <span className="visuallyHidden">Nigeria: </span>
                 {ngOn ? (ngParam ? "included" : "included · by default") : "separated"}
@@ -1114,7 +1119,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
               <span>{nameA} — {sideA?.nigeria.plaques ?? 0} plaque{(sideA?.nigeria.plaques ?? 0) === 1 ? "" : "s"} · at least{"\u00a0"}{fmt(sideA?.nigeria.units ?? 0)}</span>
               <span>{nameB} — {sideB?.nigeria.plaques ?? 0} plaque{(sideB?.nigeria.plaques ?? 0) === 1 ? "" : "s"} · at least{"\u00a0"}{fmt(sideB?.nigeria.units ?? 0)}</span>
             </div>
-            <Link href={href(sp, { ng: ngOn ? (ngDefault ? "0" : null) : ngDefault ? null : "1" })} scroll={false} className={styles.ngAction}>
+            <Link href={href(sp, { ng: ngOn ? (ngDefault ? "0" : null) : ngDefault ? null : "1" })} scroll={false} data-keep-focus="ng-strip" className={styles.ngAction}>
               {ngOn ? "Separate Nigeria" : "Include Nigeria"}
             </Link>
           </section>
@@ -1173,7 +1178,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
                         {/* Not scroll={false}: collapsing the table above the reader
                             clamped the page to its new bottom with this link under the
                             header. The fragment lands them at the top of the folded table. */}
-                        <Link href={`${href(sp, { all: null })}#country-table`} className={styles.showAll}>Show fewer <span aria-hidden="true">↑</span></Link>
+                        <Link href={`${href(sp, { all: null })}#country-table`} data-keep-focus="all" className={styles.showAll}>Show fewer <span aria-hidden="true">↑</span></Link>
                       </td>
                     </tr>
                   )}
@@ -1189,7 +1194,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
                             default navigation put the reader back at the top of
                             the page (scrollY 1600 → 43), losing the rows they
                             had just asked for. */}
-                        <Link href={href(sp, { all: "1" })} scroll={false} className={styles.showAll}>Show all <span aria-hidden="true">↓</span></Link>
+                        <Link href={href(sp, { all: "1" })} scroll={false} data-keep-focus="all" className={styles.showAll}>Show all <span aria-hidden="true">↓</span></Link>
                       </td>
                     </tr>
                   ))}
