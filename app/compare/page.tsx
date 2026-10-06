@@ -80,6 +80,7 @@ import {
   comparableArtists,
   compare,
   nigeriaDefault,
+  nigeriaDefaultSolo,
   priceArtist,
   priceRelease,
   type ArtistUnits,
@@ -617,10 +618,6 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
       })
     : null;
 
-  // One side filled: the solo figure honours the Nigeria switch too. It used to
-  // hardcode Nigeria off, so the switch it rendered was inert and Seyi Vibez
-  // landed on "at least 0" with no way to see his 7,750,000.
-  const soloNg = ngParam === "1";
   // Solo pricing also backs the slots on a REFUSED pairing (same artist twice),
   // so they never print "· · 0 countries" for an artist with a real catalogue.
   // The one filled side is priced WHICHEVER slot holds it: side B alone (every
@@ -628,7 +625,18 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
   // with no counts and no headline, where side A alone printed both (debug
   // pass, 6 Oct 2026).
   const solo = a ?? b;
-  const soloPriced = solo && !countryMode && (!both || sameArtist) ? priceArtist(solo, { includeNigeria: soloNg, includeFeatures }) : null;
+  const soloSide = solo && !countryMode && (!both || sameArtist) ? solo : null;
+  // One side filled: the solo figure honours the Nigeria switch too. It used to
+  // hardcode Nigeria off, so the switch it rendered was inert and Seyi Vibez
+  // landed on "at least 0" with no way to see his 7,750,000. ...and with no
+  // `ng` it takes the artist's own default, the one every pairing of theirs
+  // opens on: Seyi Vibez alone still read "at least 0 · 0 of 0 plaques
+  // counted · 0 countries" where each of his pair pages reads 11,125,000
+  // (debug pass, 6 Oct 2026). Tap him first, or "Change ✕" off side B of any
+  // seyi-vibez-vs-* page, and that is where you landed.
+  const soloDefault = soloSide ? nigeriaDefaultSolo(soloSide, includeFeatures) : null;
+  const soloNg = ngParam ? ngParam === "1" : Boolean(soloDefault?.on);
+  const soloPriced = soloSide ? priceArtist(soloSide, { includeNigeria: soloNg, includeFeatures }) : null;
   const refused = Boolean(sameArtist || sameRecording);
 
   const songPriced = (art: ComparableArtist | null, rel: ComparableRelease | null, ngIn: boolean) =>
@@ -758,10 +766,14 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
   // tenth still says something — 1.4× is not 1×.
   const ratioWords = (r: number) => (r >= 10 ? Math.round(r).toLocaleString("en-US") : r.toFixed(1));
   const ngOn = c?.options.includeNigeria ?? soloNg;
-  // What the switch returns to when turned back: the pair's own default. It
-  // used to write ng=0 / feat=0 into every shared URL, and on a default-included
-  // pair the round trip left ng=1, hiding the "by default" label and the why-line.
-  const ngDefault = a && b && !refused && !record ? nigeriaDefault(a, b, includeFeatures).on : false;
+  // What the switch returns to when turned back: the pair's own default (with
+  // one side filled, that artist's). It used to write ng=0 / feat=0 into every
+  // shared URL, and on a default-included pair the round trip left ng=1,
+  // hiding the "by default" label and the why-line.
+  const ngDefault = a && b && !refused && !record ? nigeriaDefault(a, b, includeFeatures).on : Boolean(soloDefault?.on);
+  // The why-line, for a pair and for one side alone: a default that flips
+  // Nigeria in is always said on screen.
+  const ngWhy = ngParam || refused ? null : c ? (c.nigeria.on ? c.nigeria.reason : null) : soloDefault?.on ? soloDefault.reason : null;
   // "outside Nigeria", not "international": Nigeria is the only home split on
   // /compare, and a non-Nigerian artist's home plaques (Tyla's ten in South
   // Africa) are inside the separated total (debug pass, 3 Oct 2026).
@@ -1006,11 +1018,11 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
           </section>
         )}
 
-        {c && c.nigeria.on && !ngParam && c.nigeria.reason && (
+        {ngWhy && (
           <p className={styles.why}>
             <span className={styles.whyMark} aria-hidden="true">i</span>
             <span className={styles.whyText}>
-              <strong>Nigeria included by default</strong> — {c.nigeria.reason.replace(/^Nigeria included: /, "")}
+              <strong>Nigeria included by default</strong> — {ngWhy.replace(/^Nigeria included: /, "")}
             </span>
           </p>
         )}
