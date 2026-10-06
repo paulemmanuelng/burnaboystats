@@ -72,6 +72,7 @@ const programShort = (name: string, country: string) => {
   return `${country} · ${(tail || name).toUpperCase()}`;
 };
 import { CountryBoardView } from "./CountryBoardView";
+import { HeadSync } from "./HeadSync";
 import { countryCopy, countryFromSlug, countrySlug, priceCountry, pricingPhrase } from "../lib/certCountry";
 import { artAt, artSrcSet } from "../lib/artAt";
 import {
@@ -130,7 +131,13 @@ const BASE_METADATA = pageMetadata({
  * /compare. Titles stay derived from the data; nothing here is typed.
  */
 export async function generateMetadata({ searchParams }: { searchParams: Promise<SP> }): Promise<Metadata> {
-  const sp = await searchParams;
+  return compareMetadata(await searchParams);
+}
+
+/** generateMetadata's answer for one query, shared with the page so the tab
+ *  can be given the same title and canonical after a client-side toggle
+ *  (HeadSync). */
+function compareMetadata(sp: SP): Metadata {
   const mode = readMode(one(sp.mode));
   // Country mode canonicals to the pretty route the same way a filled pair
   // does: /compare?mode=country&country=canada and /compare/in/canada are one
@@ -536,9 +543,18 @@ function Cell({ line, lead, artistMode }: { line: CountryLine | null; lead: bool
 }
 
 export default async function ComparePage({ searchParams }: { searchParams: Promise<SP> }) {
+  const sp = await searchParams;
+  const head = compareMetadata(sp);
   // Called, not rendered as an element: the awaited tree is plain markup,
   // which is what the tests (renderToStaticMarkup) and Next both want.
-  return CompareView({ sp: await searchParams, path: "/compare" });
+  // HeadSync only here: the pair, board and /compare/in routes have metadata
+  // of their own that never reads the query, and the client caches it right.
+  return (
+    <>
+      <HeadSync title={String(head.title)} canonical={new URL(String(head.alternates?.canonical ?? "/compare"), siteUrl).href} />
+      {await CompareView({ sp, path: "/compare" })}
+    </>
+  );
 }
 
 /**
