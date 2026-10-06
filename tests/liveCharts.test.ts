@@ -10,6 +10,7 @@ import {
   titleKey,
   servesCoverArt,
   DEEZER_NO_COVER,
+  withPlacements,
 } from "../scripts/stats-lib.mjs";
 import {
   liveCharts,
@@ -117,6 +118,31 @@ describe("extractLiveCharts", () => {
 
   it("returns nothing for markup with no placements", () => {
     expect(extractLiveCharts("<td><div class='wrap'><b>Empty</b></div></td>")).toEqual([]);
+  });
+});
+
+describe("a release with no placement is not charting", () => {
+  // "Own It" was published with `"platforms": []` on 5 Oct 2026 (core-01):
+  // counted in "39 Releases charting", listed as "0 charts" with an expander
+  // that opened nothing, and counted by /search and /api/v1/live-charts. The
+  // same shape is in the bot's commits of 16 Sep, 23 Sep and 4 Oct.
+  it("every release in every live file has at least one entry", () => {
+    const empty = [
+      ...liveCharts.map((r) => ({ who: "burna-boy", r })),
+      ...LIVE_BOARDS.flatMap((b) => b.releases.map((r) => ({ who: b.slug, r }))),
+    ]
+      .filter(({ r }) => !r.platforms.some((p) => p.entries.length > 0))
+      .map(({ who, r }) => `${who}: ${r.kind} "${r.title}"`);
+    expect(empty).toEqual([]);
+  });
+
+  it("the builder drops one (negative control: the Own It block as it shipped)", () => {
+    const shipped = [
+      { title: "Dai Dai", kind: "song", platforms: [{ platform: "Spotify", numberOnes: 0, entries: [{ country: "NG", name: "Nigeria", position: 3 }] }] },
+      { title: "Own It", platforms: [], kind: "song" },
+      { title: "Stripped", kind: "song", platforms: [{ platform: "Apple Music", numberOnes: 0, entries: [] }] },
+    ];
+    expect(withPlacements(shipped).map((r: { title: string }) => r.title)).toEqual(["Dai Dai"]);
   });
 });
 

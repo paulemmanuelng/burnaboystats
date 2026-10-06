@@ -78,8 +78,9 @@ export async function generateMetadata({ params }: { params: Promise<{ artist: s
 /** The explorer wants releases; the board stores them by kind. Albums and
  *  singles only — the sweeps record a featured credit as the release it is. */
 // Sorted HERE, not inside the shared mobile component: MobileOfficialCharts is
-// also Burna Boy's own /records/charts screen, whose order is hand-set from the
-// design file. The board's pages want the explorer's order on both layouts.
+// also Burna Boy's own /records/charts screen, which sorts its own rows the
+// same way (since 5 Oct 2026). The board's pages want the explorer's order on
+// both layouts.
 const split = (a: AfroArtist) => ({
   albums: a.charts.filter((r) => r.kind === "Albums").sort(byReachOrder),
   singles: a.charts.filter((r) => r.kind === "Singles").sort(byReachOrder),

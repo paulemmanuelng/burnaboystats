@@ -823,6 +823,18 @@ export function mergeChartPlacements(releases, rows) {
   return releases.sort((a, b) => reach(b) - reach(a));
 }
 
+/**
+ * The releases still on at least one chart. The carry-forward and the fresh
+ * sweep both strip a platform whose entries are gone, but nothing dropped a
+ * release left with none, so "Own It" was published with `"platforms": []` —
+ * counted as a charting release (39 for 38), listed as "0 charts" with an
+ * expander that opened nothing (5 Oct 2026, core-01; bot commits of 16 Sep,
+ * 23 Sep and 4 Oct carried the same shape).
+ */
+export function withPlacements(releases) {
+  return releases.filter((r) => r.platforms.some((p) => p.entries.length > 0));
+}
+
 // ── Cover art ──────────────────────────────────────────────────────────────
 // d41d8cd98f00b204e9800998ecf8427e is the MD5 of the empty string, and Deezer
 // serves it as "no cover": a release whose sleeve Deezer has dropped answers

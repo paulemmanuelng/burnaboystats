@@ -27,6 +27,15 @@
 //  tables, June 2026. peak = highest position reached so far.
 // ============================================================
 
+/** The day Burna Boy's rows in this file were last read at the chart bodies —
+ *  the 2 Oct 2026 charts sweep (docs/sweeps/charts-sweep-2026-10-02.md), which
+ *  added the MK and SI rows and re-read others ("read 2 Oct 2026" below).
+ *  /records/charts prints its month as the source line's "as of", which had
+ *  stayed "September 2026" over those rows (5 Oct 2026, crossSite-08). Move it
+ *  with the next read; tests/debug1005Records.test.tsx holds it to the newest
+ *  "read <day>" note in this file. */
+export const BURNA_LAST_CHART_SWEEP = "2026-10-02";
+
 export interface ChartCountry {
   name: string;
   flag: string;
