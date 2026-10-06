@@ -227,6 +227,11 @@ export default function ChartExplorer({
   ];
   const totalAll = albums.length + singles.length + features.length;
   const totalShown = groups.reduce((n, g) => n + g.items.length, 0);
+  // The table counts entries, not releases, and its "Showing n of …" needs the
+  // entry total the way the cards' needs totalAll: it read "Showing 9 of all
+  // chart entries" (6 Oct 2026), a count with nothing to measure it against.
+  const entriesAll = [...albums, ...singles, ...features].reduce((n, r) => n + r.entries.length, 0);
+  const entryNoun = (n: number) => (n === 1 ? "chart entry" : "chart entries");
 
   // Whether the deep-linked focus names a release this page actually carries.
   // It usually does; when it doesn't, the empty state has to say something
@@ -375,7 +380,7 @@ export default function ChartExplorer({
         </div>
         <span className={styles.viewHint}>
           {view === "table"
-            ? `${flatRows.length} chart entries · click a header to sort`
+            ? `${flatRows.length} ${entryNoun(flatRows.length)} · click a header to sort`
             : "Grouped by release · every peak shown"}
         </span>
 
@@ -421,7 +426,7 @@ export default function ChartExplorer({
             waits for a pause rather than interrupting. */}
         <span aria-live="polite" className="visuallyHidden">
           {view === "table"
-            ? `${flatRows.length} ${flatRows.length === 1 ? "chart entry" : "chart entries"} shown`
+            ? `${flatRows.length} ${entryNoun(flatRows.length)} shown`
             : `${totalShown} ${totalShown === 1 ? "release" : "releases"} shown`}
         </span>
         <div id="chart-filters" className={`${styles.filterBody} ${filtersOpen ? styles.filterOpen : ""}`}>
@@ -458,7 +463,7 @@ export default function ChartExplorer({
           {active && (
             <div className={styles.filterMeta}>
               Showing <b>{view === "table" ? flatRows.length : totalShown}</b> of{" "}
-              {view === "table" ? "all" : totalAll} {view === "table" ? "chart entries" : "releases"}
+              {view === "table" ? `${entriesAll} ${entryNoun(entriesAll)}` : `${totalAll} releases`}
               <button className={styles.clearBtn} onClick={() => { pickCountry(null); setPeak(null); }}>
                 Clear ✕
               </button>

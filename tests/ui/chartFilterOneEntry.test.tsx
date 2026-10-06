@@ -63,7 +63,8 @@ describe("ChartExplorer: the peak and the country meet on one chart entry", () =
 
     // And the cards agree with the table, which always counted entries.
     await userEvent.click(screen.getByRole("button", { name: "Table" }));
-    expect(meta(container)).toContain(`Showing ${both.length} of all chart entries`);
+    const entries = releases.reduce((n, r) => n + r.entries.length, 0);
+    expect(meta(container)).toContain(`Showing ${both.length} of ${entries} chart entries`);
   });
 
   it("leaves the unfiltered list whole on every chart page", () => {
