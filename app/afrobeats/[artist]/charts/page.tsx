@@ -21,7 +21,7 @@ import {
   chartSourceClause,
   type AfroArtist,
   AFROBEATS_LAST_CHART_SWEEP,
-  pageStamp,
+  chartPageStamp,
 } from "../../../data/afrobeats";
 
 /** "read from each country's national chart, plus 2 Billboard global charts" —
@@ -124,10 +124,12 @@ export default async function AfroArtistChartsPage({
     variableMeasured: ["Peak chart position", "Country / territory", "Release", "Chart"],
         // The sweep that produced these figures, not the newest date in the whole
         // updates feed — or a later edit made without a register read. One
-        // helper, pageStamp, dates this and the sitemap's lastmod, so the two
-        // cannot disagree (they did for CKay and Olamide: 18 Sep / 6 Sep here,
-        // 3 Oct there; debug pass 4 Oct 2026, D-05).
-        dateModified: pageStamp(a),
+        // helper dates this and the sitemap's lastmod, so the two cannot
+        // disagree (they did for CKay and Olamide: 18 Sep / 6 Sep here, 3 Oct
+        // there; debug pass 4 Oct 2026, D-05). chartPageStamp, not pageStamp:
+        // the page prints chart rows, and the board's chart sweep of 2 Oct
+        // changed them for artists whose plaque stamp is older (5 Oct 2026).
+        dateModified: chartPageStamp(a),
     about: { name: a.name, sameAs: [a.wikipedia, `https://open.spotify.com/artist/${a.spotifyId}`] },
   });
 

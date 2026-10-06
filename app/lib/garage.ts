@@ -3,7 +3,7 @@
 // the data (CARS-HANDOFF.md §7).
 
 import type { CSSProperties } from "react";
-import { garage, type GarageCar } from "../data/cars";
+import { garage, valueWord, type GarageCar } from "../data/cars";
 
 /** "Chiron (Venuum Widebody)" → "Chiron". The parenthetical is a qualifier,
  *  not part of the name, and it breaks a 54px headline. */
@@ -121,6 +121,7 @@ export function performanceBars(car: GarageCar): PerformanceBar[] {
   const usdShare = car.valueUsd / garageBest.usd;
   const wait = "pending verification";
   const unpublished = (what: string) => `${what}: the manufacturer publishes no ${what.toLowerCase()} for this car`;
+  const valueKey = `${valueWord(car) === "estimated" ? "Estimated" : "Reported"} value`;
   return [
     {
       key: "Power / weight",
@@ -156,10 +157,13 @@ export function performanceBars(car: GarageCar): PerformanceBar[] {
       pending,
     },
     {
-      key: "Reported value",
+      // The value box, the provenance line and og:description all call the
+      // GLS 600's figure "estimated" (valueWord); this bar said "Reported
+      // value" for it until 5 Oct 2026.
+      key: valueKey,
       value: usdShort(car.valueUsd),
       share: width(usdShare),
-      aria: `Reported value ${usdFull(car.valueUsd)}, ${pct(usdShare)}% of the most expensive in the collection`,
+      aria: `${valueKey} ${usdFull(car.valueUsd)}, ${pct(usdShare)}% of the most expensive in the collection`,
       pending: false,
     },
   ];

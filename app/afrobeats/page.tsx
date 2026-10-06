@@ -122,15 +122,24 @@ const jsonLd = {
     "Certification and chart records for Afrobeats' biggest artists, each read in the issuing body's own register or, where it holds no row, the body's own announcement or the label's own award.",
   // An ItemList, not hasPart: hasPart takes CreativeWork parts of this page,
   // while what the board actually publishes is a ranked list of artists.
+  //
+  // Burna Boy first, as the visible board opens with him — his row links to
+  // /certifications, as his tile does. The list held the 19 board artists only
+  // and opened on Wizkid until 5 Oct 2026, while the meta description named
+  // 20 (debug pass, seo-10). His count leads every board count, so the order
+  // stays descending (tests/debug1005Seo.test.tsx holds that).
   mainEntity: {
     "@type": "ItemList",
-    numberOfItems: ranked.length + pendingArtists.length,
+    numberOfItems: 1 + ranked.length + pendingArtists.length,
     itemListOrder: "https://schema.org/ItemListOrderDescending",
-    itemListElement: [...ranked, ...pendingArtists].map((a, i) => ({
+    itemListElement: [
+      { name: BURNA.name, url: `${CANONICAL_ORIGIN}${BURNA.href}` },
+      ...[...ranked, ...pendingArtists].map((a) => ({ name: a.name, url: `${CANONICAL_ORIGIN}/afrobeats/${a.slug}` })),
+    ].map((x, i) => ({
       "@type": "ListItem",
       position: i + 1,
-      url: `${CANONICAL_ORIGIN}/afrobeats/${a.slug}`,
-      name: a.name,
+      url: x.url,
+      name: x.name,
     })),
   },
 };

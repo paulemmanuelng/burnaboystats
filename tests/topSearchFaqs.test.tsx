@@ -121,8 +121,25 @@ describe("/records/cars answers the three questions it is searched for", () => {
     expect(statesTheSize(a)).toBe(true);
     expect(a.toLowerCase()).toContain(`${cardinalWord(sold + unseen)} more are recorded but not counted`);
     expect(a).toContain(`${cardinalWord(sold)} he has reportedly sold`);
-    expect(a).toContain(`${cardinalWord(unseen)} that haven't been seen with him in years`);
+    expect(a).toContain(`${cardinalWord(unseen)} whose current ownership is unconfirmed`);
     expect(a.split(/(?<=\.)\s/).length, "one or two sentences").toBeLessThanOrEqual(2);
+  });
+
+  it("names the reason every unconfirmed car shares, not one only some of them have (debug pass 5 Oct 2026)", () => {
+    // The G63 is unconfirmed because it is absent from the fan research, not
+    // because it has gone unseen — its own row says so. A claim about sightings
+    // is false for it, so no answer, and neither layout's note, may make one.
+    const g63 = cars.find((c) => c.status === "unconfirmed" && c.model === "G63")!;
+    expect(g63.desc).toMatch(/Absent from the latest top-fan ownership research/);
+    expect(g63.desc).not.toMatch(/seen with him|sighted/);
+    const SEEN = /(not|haven't|hasn't|n't) (been )?seen with him in years/i;
+    for (const f of carFaqs) expect(f.a, f.q).not.toMatch(SEEN);
+    expect(read("app/records/cars/page.tsx")).not.toMatch(/seen with him in years|haven&apos;t been\s+seen with him/);
+    // Negative control: the live answer and phone note as they read on 5 Oct 2026, verbatim.
+    const SHIPPED_ANSWER =
+      "Burna Boy currently owns 16 confirmed cars. Five more are recorded but not counted: two he has reportedly sold and three that haven't been seen with him in years.";
+    expect(SHIPPED_ANSWER).toMatch(SEEN);
+    expect("recorded but not counted — sold, or not seen with him in years. No page of their own.").toMatch(/seen with him in years/);
   });
 
   it("worth: the reported total of the current cars, and the estimate named as one", () => {

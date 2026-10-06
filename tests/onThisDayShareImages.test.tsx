@@ -134,7 +134,9 @@ describe("the post card, 1080×1350", () => {
     const c = dayPostCard(day("28-april"));
     expect(Math.max(...onThisDayDays.map((d) => d.lead.headline.length))).toBe(c.headline.length);
     expect(c.headSize).toBe(80); // 69 characters
-    expect(c.record).toBe("First African artist to sell out the world's most famous arena.");
+    // "First African" until 5 Oct 2026 — a claim no source on the site makes;
+    // the verified first and TouringData's 25 May 2022 post say Nigerian.
+    expect(c.record).toBe("First Nigerian artist to sell out the world's most famous arena.");
     // The publisher the night's box-office row was read at. "BILLBOARD
     // BOXSCORE" until 5 Oct 2026, over a row sourced to TouringData's X post
     // (debug pass 4 Oct, C-06/D-03/E-12).

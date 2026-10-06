@@ -560,10 +560,22 @@ export const pageStamp = (a: { slug: string; verifiedOn: string }): string =>
  *  Olamide's page said "last verified 6 September 2026" two lines above "this
  *  board was last re-read at every register on 2 October 2026" (debug pass,
  *  5 Oct 2026). A page cannot say it was last verified before it was last read
- *  (the ON_13 rule). The last-change stamp stays `verifiedOn` everywhere it
- *  means that: pageStamp, the CSV's verified_on, the Dataset's dateModified. */
+ *  (the ON_13 rule). The stamps that mean the last change build on
+ *  `verifiedOn`, not on this: pageStamp and chartPageStamp (the sitemap and
+ *  the Datasets' dateModified) and the CSV's verified_on. */
 export const lastVerifiedOn = (a: { verifiedOn: string }): string =>
   a.verifiedOn > AFROBEATS_LAST_FULL_SWEEP ? a.verifiedOn : AFROBEATS_LAST_FULL_SWEEP;
+
+/** The date an artist's two pages that PRINT CHART ROWS are stamped with —
+ *  the artist page (its chart-entry totals) and its charts page ("Last re-read
+ *  in the board's chart sweep of …"): pageStamp, or the last chart sweep where
+ *  that is later. pageStamp reads no chart date, so /afrobeats/seyi-vibez/charts
+ *  declared 6 Sep beside 2 Oct's sweep rows (129 entries, up from 115; debug
+ *  pass 5 Oct 2026). The sitemap and both pages' Dataset read this one helper.
+ *  The pair pages and the hub print plaques only and stay on pageStamp. Not
+ *  the "last verified" date the pages print: that is lastVerifiedOn (above). */
+export const chartPageStamp = (a: { slug: string; verifiedOn: string }): string =>
+  [pageStamp(a), AFROBEATS_LAST_CHART_SWEEP].sort().at(-1)!;
 
 export const afrobeatsArtists: AfroArtist[] = [
   {

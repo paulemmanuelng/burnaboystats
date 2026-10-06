@@ -150,8 +150,8 @@ export interface CountryThresholds {
    *  Two bodies (Paul, 12 Sep 2026: "no cert should go unseen"): Ifpi Sverige
    *  and AMPROFON both publish their song levels in streams and no
    *  download-equivalence, so their plaques were listed and never summed.
-   *  They are converted at 100 streams to a unit — the ratio IFPI Danmark and
-   *  IFPI Norge publish for the same measure — and the page says so. */
+   *  They are converted at 100 streams to a unit — the ratio IFPI Denmark and
+   *  IFPI Norway publish for the same measure — and the page says so. */
   assumed?: string;
   /** Set where the body RAISED its thresholds inside the window. Attached to
    *  every line for the country, not only multiplied ones, and rendered as the
@@ -374,9 +374,9 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
     // 9.3 / 18.6 / 93 million before (the body's criteria PDF, read 12 Sep
     // 2026). Video streams may be added since November 2020; no ratio.
     normalised:
-      "SINGLES converted: AMPROFON publishes single levels in audio streams (Oro 22,000,000) and no download-equivalence. Divided by 100 streams to a unit — the ratio IFPI Danmark and IFPI Norge publish — see `assumed`. Albums were already units.",
+      "SINGLES converted: AMPROFON publishes single levels in audio streams (Oro 22,000,000) and no download-equivalence. Divided by 100 streams to a unit — the ratio IFPI Denmark and IFPI Norway publish — see `assumed`. Albums were already units.",
     assumed:
-      "AMPROFON measures singles in audio streams (video streams may be added since November 2020) and publishes no stream-to-unit ratio. Its plaques are converted at 100 streams to a unit, the ratio IFPI Danmark and IFPI Norge publish for the same measure.",
+      "AMPROFON measures singles in audio streams (video streams may be added since November 2020) and publishes no stream-to-unit ratio. Its plaques are converted at 100 streams to a unit, the ratio IFPI Denmark and IFPI Norway publish for the same measure.",
     caveat:
       "AMPROFON publishes no multiplier rule for singles; its own register stacks the levels it has awarded. An N× award is priced here as N × Platinum, and a combined award (Platino & Oro, 4 & 1) as the sum of its parts, 4 × Platinum + 1 × Gold.",
     single: { silver: null, gold: 220_000, platinum: 440_000, diamond: 2_200_000 },
@@ -414,7 +414,7 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
   NO: {
     code: "NO",
     caveat:
-      "IFPI Norge publishes no written multiplier rule, although its trophy register carries a Nivå column running 1x to 9x beside the Platina marker. An N× award is priced here as N × Platinum.",
+      "IFPI Norway publishes no written multiplier rule, although its trophy register carries a Nivå column running 1x to 9x beside the Platina marker. An N× award is priced here as N × Platinum.",
     body: "IFPI Norge AS",
     sourceUrl: "https://ifpi.no/vilkar/",
     normalised:
@@ -481,7 +481,7 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
     body: "Audiogest (issuer of the galardões under the AFP/Audiogest TOP regime; AFP – Associação Fonográfica Portuguesa has no live website)",
     sourceUrl: "https://audiogest.pt/documents/files/Regulamento%20_%20TOP%20e%20Galard%C3%A3o_novas%20altera%C3%A7%C3%B5es%20_%202025%281%29.pdf",
     vintage:
-      "Audiogest raised its single levels from 5,000 / 10,000 / 100,000 to 12,000 / 25,000 / 250,000 on 1 January 2024. Albums did not move. Priced at today's level; a plaque awarded before 2024 may have cleared the lower bar.",
+      "AFP/Audiogest raised its single levels from 5,000 / 10,000 / 100,000 to 12,000 / 25,000 / 250,000 on 1 January 2024. Albums did not move. Priced at today's level; a plaque awarded before 2024 may have cleared the lower bar.",
     single: { silver: null, gold: 12_000, platinum: 25_000, diamond: 250_000 },
     floor: { single: { silver: null, gold: 5_000, platinum: 10_000, diamond: 100_000 } },
     album: { silver: null, gold: 3_500, platinum: 7_000, diamond: 70_000 },
@@ -503,9 +503,9 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
     // 2017-12). «Enbart streams får räknas» — and capped streams at that, per
     // its Guld och Platina-guide.
     normalised:
-      "SINGLES converted: IFPI Sverige publishes song levels in capped streams (Guld 6,000,000) and no download-equivalence. Divided by 100 streams to a unit — the ratio IFPI Danmark and IFPI Norge publish — see `assumed`. Albums were already units.",
+      "SINGLES converted: IFPI Sverige publishes song levels in capped streams (Guld 6,000,000) and no download-equivalence. Divided by 100 streams to a unit — the ratio IFPI Denmark and IFPI Norway publish — see `assumed`. Albums were already units.",
     assumed:
-      "IFPI Sverige counts songs in capped streams only (since 1 January 2018) and publishes no stream-to-unit ratio. Its plaques are converted at 100 streams to a unit, the ratio IFPI Danmark and IFPI Norge publish for the same measure; capped streams undercount plays, so the figure is a floor.",
+      "IFPI Sverige counts songs in capped streams only (since 1 January 2018) and publishes no stream-to-unit ratio. Its plaques are converted at 100 streams to a unit, the ratio IFPI Denmark and IFPI Norway publish for the same measure; capped streams undercount plays, so the figure is a floor.",
     vintage:
       "IFPI Sverige raised its song levels on 1 January 2024 from 4 and 8 million streams to 6 and 12 million — 40,000 / 80,000 to 60,000 / 120,000 units at 100 streams to a unit. Priced at today's level; a plaque awarded before then may have cleared the lower bar.",
     single: { silver: null, gold: 60_000, platinum: 120_000, diamond: null },
