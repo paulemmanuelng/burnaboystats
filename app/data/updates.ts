@@ -75,6 +75,16 @@ export const updates: Update[] = [
     href: "/dai-dai",
   },
   {
+    date: "2026-10-07",
+    category: "Streaming",
+    // A total, not a run: his 400th day on the chart dated 4 Oct 2026, two days
+    // before the 402 the board reads (SPOTIFY_TOP_ARTISTS_DAILY in
+    // africasBiggest.ts). Typed, as a snapshot; tests/spotifyTopArtistsDays.test.ts
+    // reconciles it, and the 16/17 Aug entries, with that reading.
+    text: "400 days in all on Spotify's Global Daily Top Artists chart: Burna Boy reached the mark on the chart dated 4 October, the most of any African artist since the chart's archive began in October 2021. Rema is next on 328.",
+    href: "/records/africas-biggest",
+  },
+  {
     date: "2026-10-04",
     category: "Certifications",
     big: true,
