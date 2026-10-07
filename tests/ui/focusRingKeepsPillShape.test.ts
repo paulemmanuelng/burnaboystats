@@ -7,7 +7,8 @@ import { readFileSync } from "node:fs";
  * On the live site, read in headless Chrome at 1440 and 390, dark and light,
  * 7 Oct: Tab onto any pill — the box-office board's artist chips, the
  * countries page's continent chips, the certifications tier chips, the
- * masthead's "Stat card", the search pill, the menu sheet's "Stat card" — and
+ * masthead's "Stat card", the search pill, the menu sheet's "Stat card" (both
+ * "Box office", the gross page, since 7 Oct 2026) — and
  * it computed border-radius 3px instead of its 999px, so the pill turned into
  * a 3px-cornered box with a square gold ring around it. The cause was the
  * global keyboard ring in globals.css: `a:focus-visible, button:focus-visible
@@ -114,8 +115,8 @@ const PILLS: [string, string, string, string][] = [
   ["box-office artist chip (phone)", "app/components/mobileRevenue.module.css", ".chip", "button"],
   ["countries continent chip (phone)", "app/components/mobileRevenueCountries.module.css", ".chip", "a"],
   ["certifications tier chip", "app/certifications/certifications.module.css", ".fChip", "button"],
-  ["masthead Stat card (.btn)", "app/globals.css", ".btn", "a"],
-  ["menu sheet Stat card", "app/components/mobileNavSheet.module.css", ".statCard", "a"],
+  ["masthead Box office (.btn)", "app/globals.css", ".btn", "a"],
+  ["menu sheet Box office", "app/components/mobileNavSheet.module.css", ".boxOffice", "a"],
   ["search pill", "app/components/SearchPalette.module.css", ".trigger", "button"],
 ];
 

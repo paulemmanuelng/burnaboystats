@@ -196,8 +196,16 @@ export default function MobileNavSheet({
               <span className={styles.dot} aria-hidden="true" />
               Updated {updated}
             </span>
-            <Link href="/share" className={styles.statCard} onClick={() => setOpen(false)}>
-              Stat card ↗
+            {/* The gross page, as in the desktop bar (Nav.tsx), where "Stat
+                card ↗" sat until 7 Oct 2026. Stat cards keep their row in the
+                list above. */}
+            <Link
+              href="/records/tours/revenue"
+              className={styles.boxOffice}
+              aria-current={pathname === "/records/tours/revenue" ? "page" : undefined}
+              onClick={() => setOpen(false)}
+            >
+              Box office ↗
             </Link>
           </div>
         </div>

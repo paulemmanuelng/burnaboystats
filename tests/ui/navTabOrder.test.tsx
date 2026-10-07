@@ -28,7 +28,8 @@ import { suggestedSearchDocs } from "../../app/lib/searchSuggested";
  * wordmark and the three controls at the far right, so the focus ring jumped
  * right, then back left, then along the row. The links sat LAST in Nav.tsx's
  * source and globals.css moved them to the front with `order: -1`, which moves
- * the boxes but not the Tab order.
+ * the boxes but not the Tab order. (The bar's last pill, "Stat card" in that
+ * reading, has been "Box office", the gross page, since 7 Oct 2026.)
  *
  * Fixed in the source: the links come first, and nothing in the bar is
  * reordered by CSS, so Tab follows the row as drawn. Desktop only — below 1240
@@ -68,7 +69,7 @@ function reordered(css: string, classes: readonly string[]): string[] {
 }
 
 describe("V-core-11: the desktop header's Tab order follows the row on screen", () => {
-  it("the section links come straight after the wordmark, before the theme flip, search and Stat card", () => {
+  it("the section links come straight after the wordmark, before the theme flip, search and Box office", () => {
     const { container } = render(<Nav suggested={suggestedSearchDocs()} />);
     const nav = container.querySelector<HTMLElement>('nav[aria-label="Primary"]')!;
     const stops = tabStops(nav);
@@ -78,14 +79,14 @@ describe("V-core-11: the desktop header's Tab order follows the row on screen", 
     expect(stops.slice(1, 1 + labels.length)).toEqual(labels);
     // The far-right controls all follow the last section link.
     const last = stops.indexOf(labels[labels.length - 1]);
-    for (const control of ["Search the site", "Stat card"]) {
+    for (const control of ["Search the site", "Box office"]) {
       expect(stops.indexOf(control), control).toBeGreaterThan(last);
     }
     expect(stops.findIndex((s) => /^Switch to (dark|light) mode$/.test(s))).toBeGreaterThan(last);
   });
 
   it("nothing in the bar is moved by CSS `order`, so what is drawn is what Tab walks", () => {
-    expect(reordered(read("app/globals.css"), ["navRight", "navLinks", "navStatCard", "navToggle", "brand"])).toEqual([]);
+    expect(reordered(read("app/globals.css"), ["navRight", "navLinks", "navBoxOffice", "navToggle", "brand"])).toEqual([]);
     expect(reordered(read("app/components/themeToggle.module.css"), ["mini", "seg", "compact"])).toEqual([]);
     expect(reordered(read("app/components/SearchPalette.module.css"), ["trigger"])).toEqual([]);
   });
