@@ -80,6 +80,10 @@
 /* ── Headline strip ─────────────────────────────────────────────────────── */
 .headlineGrid { display: grid; grid-template-columns: repeat(3, 1fr); }
 .headlineCell { padding: 28px 24px 26px; border-left: 1px solid var(--line); }
+/* Rules between the cells only, as on Records, Firsts and Awards: a rule before
+   the first cell opened the strip at the content edge with nothing to close it
+   after the third. */
+.headlineCell:first-child { border-left: none; }
 /* White, not gold. Two of the three are records held against other artists, and
    the strip reads as one row — colouring them gold would claim a distinction
    the third doesn't have. */
