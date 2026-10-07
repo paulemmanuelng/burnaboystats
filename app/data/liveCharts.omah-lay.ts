@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-07";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-07T06:06Z";
+  export const liveChartsBuiltAt = "2026-10-07T13:30Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","iTunes"];
@@ -323,8 +323,20 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 183,
-            "movement": -2
+            "position": 187,
+            "movement": -4
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 36,
+            "movement": 40
           }
         ]
       }
@@ -380,13 +392,6 @@
             "name": "Liberia",
             "position": 89,
             "movement": 46
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 94,
-            "movement": null,
-            "status": "new"
           },
           {
             "country": "SN",
@@ -557,8 +562,8 @@
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
-            "position": 131,
-            "movement": 4
+            "position": 133,
+            "movement": -2
           }
         ]
       }
@@ -617,16 +622,16 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "ZW",
-            "name": "Zimbabwe",
-            "position": 27,
-            "movement": -5
-          },
-          {
             "country": "GH",
             "name": "Ghana",
-            "position": 155,
-            "movement": -22
+            "position": 2,
+            "movement": 137
+          },
+          {
+            "country": "ZW",
+            "name": "Zimbabwe",
+            "position": 9,
+            "movement": 14
           }
         ]
       },
@@ -649,8 +654,8 @@
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 146,
-            "movement": 8
+            "position": 147,
+            "movement": -1
           }
         ]
       }
@@ -856,7 +861,7 @@
           {
             "country": "QA",
             "name": "Qatar",
-            "position": 26,
+            "position": 33,
             "movement": null,
             "status": "new"
           }
@@ -912,7 +917,8 @@
         ]
       }
     ],
-    "kind": "album"
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/c9d87c5a3f02efbf52b0a27d553f1a87/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "MY HEALER",
@@ -1008,11 +1014,10 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 76,
-            "movement": null,
-            "status": "new"
+            "country": "KE",
+            "name": "Kenya",
+            "position": 53,
+            "movement": -51
           }
         ]
       }
@@ -1054,29 +1059,36 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/c9d87c5a3f02efbf52b0a27d553f1a87/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Godly",
+    "title": "As We Get High",
     "platforms": [
       {
-        "platform": "Apple Music",
+        "platform": "Spotify",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "GW",
-            "name": "Guinea-Bissau",
-            "position": 6,
-            "movement": 53
-          },
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 134,
+            "movement": 24
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 72,
-            "movement": -42
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 73,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ed64774f56cf5d0f3fcb8e25c9fe39f6/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b4d2ad60759dd994a1a8440baa1c61e8/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Namek",
@@ -1088,8 +1100,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 90,
-            "movement": -2
+            "position": 85,
+            "movement": 3
           },
           {
             "country": "BE",
@@ -1144,8 +1156,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 77,
-            "movement": 5
+            "position": 78,
+            "movement": 6
           }
         ]
       },
@@ -1156,15 +1168,33 @@
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
-            "position": 200,
-            "movement": null,
-            "status": "new"
+            "position": 195,
+            "movement": 5
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ada9bcfee9900dd72f862562ae032550/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Godly",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GW",
+            "name": "Guinea-Bissau",
+            "position": 6,
+            "movement": 53
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ed64774f56cf5d0f3fcb8e25c9fe39f6/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "it's yours",
@@ -1224,45 +1254,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/d9cbcfdbfb5dab6a1a37aeae7039d83c/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "As We Get High",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 134,
-            "movement": 24
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b4d2ad60759dd994a1a8440baa1c61e8/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "PAMI",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 95,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b38a20520a3084e0e07332273a98158a/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Free My Mind",
@@ -1339,7 +1330,8 @@
         ]
       }
     ],
-    "kind": "album"
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ed64774f56cf5d0f3fcb8e25c9fe39f6/500x500-000000-80-0-0.jpg"
   }
 ];
   

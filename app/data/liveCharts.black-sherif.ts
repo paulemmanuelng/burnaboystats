@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-07";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-07T06:06Z";
+  export const liveChartsBuiltAt = "2026-10-07T13:30Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -140,16 +140,16 @@
             "movement": 52
           },
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 65,
-            "movement": 0
-          },
-          {
             "country": "SL",
             "name": "Sierra Leone",
             "position": 68,
             "movement": 88
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 85,
+            "movement": -53
           },
           {
             "country": "NG",
@@ -178,7 +178,8 @@
         ]
       }
     ],
-    "kind": "album"
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "The Villain I Never Was",
@@ -233,7 +234,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 119,
-            "movement": 2
+            "movement": 7
           }
         ]
       }
@@ -264,7 +265,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 22,
-            "movement": -8
+            "movement": 0
           }
         ]
       },
@@ -312,14 +313,52 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 124,
-            "movement": -23
+            "position": 146,
+            "movement": -36
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "So it Goes",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 75,
+            "movement": -10
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 126,
+            "movement": -19
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 40,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3fe94d046b5097983f35fcc47037c799/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Kwaku the Traveller",
@@ -331,14 +370,14 @@
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 87,
-            "movement": -5
+            "position": 97,
+            "movement": -10
           },
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
-            "position": 121,
-            "movement": -29
+            "position": 154,
+            "movement": -33
           }
         ]
       },
@@ -380,7 +419,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 44,
+            "position": 50,
             "movement": -6
           }
         ]
@@ -411,8 +450,34 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 119,
-            "movement": -8
+            "position": 137,
+            "movement": -18
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Love Again",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 24,
+            "movement": 0
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 166,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -442,40 +507,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 37,
-            "movement": -27
+            "position": 58,
+            "movement": -36
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/8652533854fa49e3c364a77c4e2ae9b5/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Love Again",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 24,
-            "movement": 0
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 166,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Frontline",
@@ -499,39 +538,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 153,
-            "movement": 16
+            "position": 156,
+            "movement": -3
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "So it Goes",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 75,
-            "movement": -10
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 126,
-            "movement": -19
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3fe94d046b5097983f35fcc47037c799/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Fallen Angel",
@@ -555,14 +569,46 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 55,
-            "movement": -27
+            "position": 76,
+            "movement": -36
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5e469a94aaac1c27a9d16e02246a73ab/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Amazing Grace",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 189,
+            "movement": -7
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 34,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Run Around",
@@ -907,25 +953,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/8cbdf2202137ed965826a417dd88e821/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "ROAD RUNNERS",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 63,
-            "movement": -25
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/65d37fc3fcc95d0e9a5558f498da9e4a/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Lomo Lomo",
     "platforms": [
       {
@@ -935,14 +962,33 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 118,
-            "movement": -23
+            "position": 140,
+            "movement": -36
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b2293fec5dd0786bef0c480cde3222bc/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "ROAD RUNNERS",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 84,
+            "movement": -36
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/65d37fc3fcc95d0e9a5558f498da9e4a/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Changes",
@@ -954,33 +1000,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 138,
-            "movement": -23
+            "position": 160,
+            "movement": -36
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Amazing Grace",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 189,
-            "movement": -7
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
   }
 ];
   

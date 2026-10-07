@@ -994,13 +994,13 @@
     "date": "2026-10-07",
     "release": "Dai Dai",
     "platform": "Deezer",
-    "position": 70
+    "position": 40
   },
   {
     "date": "2026-10-07",
     "release": "Dai Dai",
     "platform": "Shazam",
-    "position": 43
+    "position": 46
   },
   {
     "date": "2026-10-07",

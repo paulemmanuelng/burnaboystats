@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-07";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-07T06:06Z";
+  export const liveChartsBuiltAt = "2026-10-07T13:30Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","iTunes"];
@@ -56,14 +56,14 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 33,
-            "movement": 1
+            "position": 28,
+            "movement": 5
           },
           {
             "country": "CV",
             "name": "Cape Verde",
-            "position": 40,
-            "movement": 7
+            "position": 46,
+            "movement": 1
           },
           {
             "country": "GM",
@@ -74,7 +74,7 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 81,
+            "position": 83,
             "movement": 6
           }
         ]
@@ -132,8 +132,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 93,
-            "movement": 4
+            "position": 91,
+            "movement": 2
           }
         ]
       }
@@ -158,7 +158,8 @@
         ]
       }
     ],
-    "kind": "album"
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/52543bcf18dd3d65bfd5f99697893386/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "DKT",

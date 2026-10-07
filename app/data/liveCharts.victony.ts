@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-07";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-07T06:06Z";
+  export const liveChartsBuiltAt = "2026-10-07T13:30Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -224,94 +224,94 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 33,
-            "movement": 2
-          },
-          {
             "country": "UG",
             "name": "Uganda",
-            "position": 33,
-            "movement": 2
+            "position": 32,
+            "movement": 1
+          },
+          {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 34,
+            "movement": -1
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 42,
-            "movement": 0
+            "position": 43,
+            "movement": -1
           },
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 42,
-            "movement": 0
+            "position": 43,
+            "movement": -1
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 46,
+            "position": 45,
             "movement": 1
           },
           {
             "country": "ZM",
             "name": "Zambia",
-            "position": 73,
-            "movement": 4
+            "position": 75,
+            "movement": -2
           },
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 84,
-            "movement": -2
+            "position": 91,
+            "movement": -7
           },
           {
             "country": "WW",
             "name": "Worldwide",
-            "position": 98,
-            "movement": 3
+            "position": 99,
+            "movement": -1
           },
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 108,
-            "movement": -12
+            "position": 101,
+            "movement": 7
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 122,
-            "movement": 0
-          },
-          {
-            "country": "FR",
-            "name": "France",
-            "position": 134,
-            "movement": 4
+            "position": 120,
+            "movement": 2
           },
           {
             "country": "TZ",
             "name": "Tanzania",
-            "position": 138,
-            "movement": -7
+            "position": 140,
+            "movement": -2
+          },
+          {
+            "country": "FR",
+            "name": "France",
+            "position": 145,
+            "movement": -11
           },
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
-            "position": 146,
-            "movement": -5
+            "position": 148,
+            "movement": -2
           },
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 170,
-            "movement": 10
+            "position": 158,
+            "movement": 12
           },
           {
             "country": "AE",
             "name": "United Arab Emirates",
-            "position": 182,
-            "movement": -10
+            "position": 200,
+            "movement": -18
           }
         ]
       },
@@ -380,29 +380,29 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 49,
-            "movement": -28
-          },
-          {
-            "country": "DO",
-            "name": "Dominican Republic",
-            "position": 85,
-            "movement": -7
-          },
-          {
-            "country": "BE",
-            "name": "Belgium",
-            "position": 93,
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 17,
             "movement": null,
             "status": "new"
           },
           {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 49,
+            "movement": -27
+          },
+          {
+            "country": "DO",
+            "name": "Dominican Republic",
+            "position": 87,
+            "movement": -8
+          },
+          {
             "country": "GH",
             "name": "Ghana",
-            "position": 170,
-            "movement": -21
+            "position": 188,
+            "movement": -34
           }
         ]
       },
@@ -411,22 +411,16 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "CI",
-            "name": "Côte d'Ivoire",
-            "position": 49,
-            "movement": 15
-          },
-          {
             "country": "NG",
             "name": "Nigeria",
-            "position": 78,
-            "movement": -31
+            "position": 22,
+            "movement": 4
           },
           {
-            "country": "SN",
-            "name": "Senegal",
-            "position": 98,
-            "movement": -73
+            "country": "CI",
+            "name": "Côte d'Ivoire",
+            "position": 50,
+            "movement": -18
           }
         ]
       },
@@ -693,20 +687,7 @@
           {
             "country": "RO",
             "name": "Romania",
-            "position": 148,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "JM",
-            "name": "Jamaica",
-            "position": 25,
+            "position": 185,
             "movement": null,
             "status": "new"
           }
@@ -770,7 +751,7 @@
             "country": "KE",
             "name": "Kenya",
             "position": 84,
-            "movement": -28
+            "movement": -27
           }
         ]
       },
@@ -824,7 +805,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 79,
+            "position": 84,
             "movement": -5
           }
         ]
@@ -836,7 +817,7 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 13,
+            "position": 2,
             "movement": null,
             "status": "new"
           }
@@ -1019,18 +1000,49 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/56bbf7807715d0374f6b8084268052e2/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "STARLIFE",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 183,
+            "movement": 14
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 58,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/eae1950cf642fef40ae06c76d29dc1b8/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "PINO",
     "platforms": [
       {
         "platform": "Deezer",
-        "numberOnes": 0,
+        "numberOnes": 1,
         "entries": [
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 9,
-            "movement": null,
-            "status": "new"
+            "position": 1,
+            "movement": 37
           }
         ]
       }
@@ -1086,7 +1098,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 97,
+            "position": 100,
             "movement": null,
             "status": "new"
           }
@@ -1114,25 +1126,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2222c3405fde64a7b5660d7d063f2971/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "STARLIFE",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 183,
-            "movement": 14
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/eae1950cf642fef40ae06c76d29dc1b8/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "PITY THIS BOY",

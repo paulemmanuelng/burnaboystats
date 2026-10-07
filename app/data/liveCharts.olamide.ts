@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-07";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-07T06:06Z";
+  export const liveChartsBuiltAt = "2026-10-07T13:30Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","iTunes"];
@@ -146,14 +146,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 52,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "SN",
-            "name": "Senegal",
-            "position": 81,
+            "position": 60,
             "movement": null,
             "status": "new"
           }
@@ -248,32 +241,32 @@
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 79,
-            "movement": -20
+            "position": 90,
+            "movement": -11
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 126,
-            "movement": -34
+            "position": 144,
+            "movement": -18
           },
           {
             "country": "CA",
             "name": "Canada",
-            "position": 129,
-            "movement": -24
+            "position": 168,
+            "movement": -39
           },
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 140,
-            "movement": -22
+            "position": 180,
+            "movement": -40
           },
           {
             "country": "US",
             "name": "United States",
-            "position": 152,
-            "movement": -36
+            "position": 193,
+            "movement": -41
           }
         ]
       },
@@ -288,18 +281,6 @@
             "movement": -4
           }
         ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "DZ",
-            "name": "Algeria",
-            "position": 25,
-            "movement": 29
-          }
-        ]
       }
     ],
     "kind": "song",
@@ -308,25 +289,6 @@
   {
     "title": "99",
     "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 85,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 180,
-            "movement": 1
-          }
-        ]
-      },
       {
         "platform": "Spotify",
         "numberOnes": 0,
@@ -340,14 +302,26 @@
         ]
       },
       {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 180,
+            "movement": 1
+          }
+        ]
+      },
+      {
         "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 24,
-            "movement": -22
+            "position": 79,
+            "movement": -76
           }
         ]
       },
@@ -358,9 +332,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 41,
-            "movement": null,
-            "status": "new"
+            "position": 29,
+            "movement": 5
           }
         ]
       }
@@ -402,7 +375,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 3,
+            "position": 9,
             "movement": null,
             "status": "new"
           }
@@ -504,14 +477,54 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 160,
-            "movement": 3
+            "position": 168,
+            "movement": -5
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/6c243844bbecece7ab92e5f5799111a5/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Synchro System",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 62,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/1d54453224f17a5f5271d50f793fca7b/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Billionaires Club",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 98,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Triumphant",
@@ -531,26 +544,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2f5c91242bfb5ed7be4ccb2b435b6f7f/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Jinja",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 85,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/498d4ae81da58e1fcf5e2704a99e0ed8/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Fada Fada",
@@ -650,6 +643,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/636b24b8b52148a55ce3bf9c263ba19e/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Jinja",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 138,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/498d4ae81da58e1fcf5e2704a99e0ed8/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Vision 2020",
     "platforms": [
       {
@@ -659,9 +672,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 190,
-            "movement": null,
-            "status": "new"
+            "position": 176,
+            "movement": 14
           }
         ]
       }
@@ -698,33 +710,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 154,
-            "movement": 3
+            "position": 162,
+            "movement": -5
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/dc21daa177258ea29c084c4415c4db03/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Baddest Guy Ever Liveth",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 197,
-            "movement": 2
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/15b2af0e10dba1c44ddbe8b0c587d5e4/500x500-000000-80-0-0.jpg"
   }
 ];
   
