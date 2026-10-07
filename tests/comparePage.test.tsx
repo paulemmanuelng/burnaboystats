@@ -319,6 +319,20 @@ describe("album vs album", () => {
     expect(text(ha)).not.toContain("artist totals");
   });
 
+  // Debug pass 5 Oct 2026 (V-compareA-10): Wizkid's picker read "Wizkid · all 1
+  // certified album" over a search box saying "Search 1 albums". "All" is for
+  // a set of several; one album is just one album.
+  it("an artist with ONE certified album reads '1 certified album', not 'all 1'", async () => {
+    const one = comparableArtists.find((x) => x.releases.filter((r) => r.format === "album").length === 1);
+    expect(one).toBeDefined();
+    const h = await html({ mode: "albums", a: one!.slug });
+    const pa = h.split("pickWrap")[1];
+    expect(text(pa)).toContain(`${one!.name} · 1 certified album`);
+    expect(text(pa)).not.toContain("all 1 certified");
+    expect(pa).toContain('placeholder="Search 1 album"');
+    expect(pa).not.toContain('placeholder="Search 1 albums"');
+  });
+
   it("an artist with no certified album says so and offers the song mode", async () => {
     const t = text(await html({ mode: "albums", a: "olamide" }));
     expect(t).toContain("Olamide holds no certified album on this site");
