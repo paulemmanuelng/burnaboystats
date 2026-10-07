@@ -188,9 +188,26 @@ describe("every leaderboard is ordered by the numbers it prints", () => {
   // the total below cannot drop by a board going quiet.
   // most-hot-100-entries since 5 Oct 2026: its values are read off the
   // Billboard rows in hot100Weeks.ts, not typed (crossSite-13).
+  // spotify-top-artists-peak since 7 Oct 2026: its rows are built and sorted
+  // by spotifyWeeklyPeakEntries, his peak read from SPOTIFY_TOP_ARTISTS_WEEKLY_PEAK.
+  // spotify-top-artists-days, added the same day, from SPOTIFY_TOP_ARTISTS_DAILY.
   // The 500M-songs board (7 Oct 2026) is counted from the bot's kworb
   // snapshot in data/african500m.ts.
-  const DERIVED_AT_LOAD = new Set(["most-followed-spotify", "billboard-hot-100-peak", "most-hot-100-entries", "most-500m-stream-songs"]);
+  const DERIVED_AT_LOAD = new Set([
+    "most-followed-spotify",
+    "billboard-hot-100-peak",
+    "most-hot-100-entries",
+    "spotify-top-artists-peak",
+    "spotify-top-artists-days",
+    "most-500m-stream-songs",
+  ]);
+  // "N days" reads as a placing above (fewer is faster), but on a days-on-chart
+  // board more is better: those are judged as magnitudes, descending.
+  const MORE_DAYS_LEADS = new Set(["spotify-top-artists-days"]);
+  const daysTotal = (v: string): number | null => {
+    const m = /^([\d,]+) days$/.exec(v.trim());
+    return m ? Number(m[1].replace(/,/g, "")) : null;
+  };
 
   it("lists descending values, on every board that prints comparable numbers", () => {
     const raw = readFileSync("app/data/africasBiggest.ts", "utf8");
@@ -262,8 +279,8 @@ describe("every leaderboard is ordered by the numbers it prints", () => {
       const scanned = lists.filter((l) => l.id === id);
       expect(scanned.every((l) => l.values.length === 0), `${id} types its values again — drop it from DERIVED_AT_LOAD`).toBe(true);
       const values = statBoxes.find((b) => b.id === id)!.entries!.map((e) => e.value ?? "");
-      const asc = values.every((v) => rank(v) !== null);
-      const nums = values.map(asc ? rank : magnitude);
+      const asc = !MORE_DAYS_LEADS.has(id) && values.every((v) => rank(v) !== null);
+      const nums = values.map(asc ? rank : MORE_DAYS_LEADS.has(id) ? daysTotal : magnitude);
       expect(nums.every((n) => n !== null), `${id}: unreadable values ${values.join(", ")}`).toBe(true);
       judged += 1;
       for (let k = 1; k < nums.length; k++) {
@@ -280,8 +297,10 @@ describe("every leaderboard is ordered by the numbers it prints", () => {
     // three earlier years print no totals.
     // 17 since 11 Sep 2026: the fastest-to-a-billion board, judged as days.
     // 18 since 25 Sep 2026: the Spotify Global album board, judged as ranks.
-    // 19 since 7 Oct 2026: the 500M-songs board, judged as counts.
-    expect(judged, "ranked lists actually judged").toBe(19);
+    // 19 since 7 Oct 2026: the days-on-chart board, judged as days, descending
+    // (the weekly-peak board moved from the scan to DERIVED_AT_LOAD that day).
+    // 20 the same day: the 500M-songs board, judged as counts at load.
+    expect(judged, "ranked lists actually judged").toBe(20);
   });
 });
 

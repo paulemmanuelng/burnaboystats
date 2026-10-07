@@ -16,7 +16,7 @@ import {
   peakReachedOn,
   shortTitle,
 } from "./hot100Weeks";
-import { count, cardinalWord } from "../lib/plural";
+import { count, plural, cardinalWord } from "../lib/plural";
 import { DAI_DAI_2026_MOST_NO1_THROUGH_LONG } from "./daiDaiNo1Claim";
 import { standings500, songLine500, AS_OF_500M_LONG, NOTE_500M, SOURCE_500M } from "./african500m";
 
@@ -399,6 +399,234 @@ const dayMonth = (iso: string) =>
     month: "long",
     timeZone: "UTC",
   });
+
+/**
+ * Spotify's Daily Top Artists: Global chart (the top 200 artists of
+ * each day, charts.spotify.com/charts/view/artist-global-daily/<date>): ONE
+ * dated reading, approved for the page on 7 Oct 2026. The board, its note and
+ * its source print nothing typed: every figure is read from this constant, so
+ * a re-read is one edit here.
+ *
+ * What the number counts: TOTAL days on the chart since Spotify's archive of it
+ * begins (21 Oct 2021). It is the chart's own `appearancesOnChart` field on the
+ * artist's latest appearance, which already includes every earlier day. It is
+ * NOT a continuous run. `streak` is the run, and is printed separately. (Two
+ * August feed entries called the total "the longest run"; the guard in
+ * tests/spotifyTopArtistsDays.test.ts holds the board to the right word.)
+ *
+ * How the field was read, 7 Oct 2026, from the chart page's own JSON (no
+ * screenshots): 552 of the 1,812 chart dates. One date a week from the chart
+ * dated 6 Oct 2026 back to the archive's start, a second weekly set three days
+ * off the first, and every day after each artist's last sighting to fix their
+ * exact last day, so no unread stretch is longer than three days. What that
+ * cannot rule out: a return of three days or fewer that fell wholly between
+ * dates read after an artist's last sighting. Rema would need 75 such days to
+ * pass Burna Boy, so the top is not in doubt; the small totals (Wizkid, Davido,
+ * Seyi Vibez, Omah Lay) could be a few days short. Fireboy DML and Black Sherif
+ * were on no date read, so neither has a run longer than three days there.
+ * CKay's first date is the archive's first day, so his total counts from it.
+ *
+ * African by nationality (17 Sep 2026): GIMS (French, born in DR Congo), Dave
+ * (British), Stromae and Damso (Belgian) appeared and are not compared.
+ *
+ * Re-read the whole field on one day, never his row alone. Platform data: never
+ * copy any of it into charts.ts.
+ */
+export interface TopArtistsDaysRow {
+  name: string;
+  country: string;
+  flag: string;
+  /** Total days on the chart, as of `lastOn`. */
+  days: number;
+  /** Their latest chart date: the reading's own chart date if still on it. */
+  lastOn: string;
+  /** Their position on `lastOn`. */
+  lastRank: number;
+  /** Best daily position, and the chart date it was first reached. */
+  peak: number;
+  peakOn: string;
+}
+export const SPOTIFY_TOP_ARTISTS_DAILY = {
+  source: "charts.spotify.com Daily Top Artists: Global",
+  /** Positions on each day's chart. */
+  chartSize: 200,
+  /** The first chart date in Spotify's archive of it. */
+  archiveStart: "2021-10-21",
+  /** The chart the reading is as of, and the day it was read. */
+  chartDate: "2026-10-06",
+  readOn: "2026-10-07",
+  // Burna Boy, on the chart dated `chartDate`.
+  totalDays: 402,
+  streak: 139,
+  rank: 172,
+  peak: 40,
+  peakDate: "2022-07-08",
+  firstEntry: "2022-07-08",
+  // The method: chart dates read, and the longest unread stretch between them.
+  datesRead: 552,
+  maxGap: 3,
+  /** Every other African artist found on the chart, as of their last day on it. */
+  field: [
+    { name: "Rema", country: "Nigeria", flag: "🇳🇬", days: 328, lastOn: "2024-07-18", lastRank: 195, peak: 110, peakOn: "2023-04-29" },
+    { name: "Tems", country: "Nigeria", flag: "🇳🇬", days: 189, lastOn: "2026-06-30", lastRank: 180, peak: 100, peakOn: "2026-02-07" },
+    { name: "Tyla", country: "South Africa", flag: "🇿🇦", days: 126, lastOn: "2026-02-02", lastRank: 189, peak: 106, peakOn: "2025-12-31" },
+    { name: "CKay", country: "Nigeria", flag: "🇳🇬", days: 115, lastOn: "2022-02-13", lastRank: 198, peak: 53, peakOn: "2021-10-23" },
+    { name: "Asake", country: "Nigeria", flag: "🇳🇬", days: 65, lastOn: "2026-08-04", lastRank: 200, peak: 28, peakOn: "2026-05-01" },
+    { name: "Ayra Starr", country: "Nigeria", flag: "🇳🇬", days: 60, lastOn: "2024-06-27", lastRank: 197, peak: 124, peakOn: "2024-05-31" },
+    { name: "Wizkid", country: "Nigeria", flag: "🇳🇬", days: 15, lastOn: "2026-01-27", lastRank: 191, peak: 33, peakOn: "2024-11-22" },
+    { name: "Davido", country: "Nigeria", flag: "🇳🇬", days: 13, lastOn: "2026-08-02", lastRank: 183, peak: 34, peakOn: "2025-04-18" },
+    { name: "Seyi Vibez", country: "Nigeria", flag: "🇳🇬", days: 4, lastOn: "2026-09-21", lastRank: 182, peak: 76, peakOn: "2026-09-18" },
+    { name: "Omah Lay", country: "Nigeria", flag: "🇳🇬", days: 3, lastOn: "2026-04-05", lastRank: 175, peak: 139, peakOn: "2026-04-03" },
+  ],
+  /** On the archive's first chart already, so their totals count from it. */
+  onFirstChart: ["CKay"],
+  /** Looked for, and on no chart date read. */
+  notFound: ["Fireboy DML", "Black Sherif"],
+  /** On the chart, but not African artists by nationality. */
+  notAfrican: [
+    { name: "Dave", nationality: "British", days: 389 },
+    { name: "GIMS", nationality: "French", days: 312 },
+    { name: "Stromae", nationality: "Belgian", days: 32 },
+    { name: "Damso", nationality: "Belgian", days: 11 },
+  ],
+} as const;
+
+const TOP_ARTISTS = SPOTIFY_TOP_ARTISTS_DAILY;
+const dayNumber = (iso: string) => Date.parse(`${iso}T00:00:00Z`) / 86_400_000;
+/** A chart date's place in the archive: its first chart is day 1. */
+export const topArtistsArchiveDay = (iso: string) => dayNumber(iso) - dayNumber(TOP_ARTISTS.archiveStart) + 1;
+/** The reading's chart as a day of the archive: "day 1,812". */
+export const SPOTIFY_TOP_ARTISTS_CHART_DAY = topArtistsArchiveDay(TOP_ARTISTS.chartDate);
+
+/** The African field ranked by total days, his row built from the constant. */
+export const spotifyTopArtistsDays: TopArtistsDaysRow[] = [
+  {
+    name: HIGHLIGHT,
+    country: "Nigeria",
+    flag: "🇳🇬",
+    days: TOP_ARTISTS.totalDays,
+    lastOn: TOP_ARTISTS.chartDate,
+    lastRank: TOP_ARTISTS.rank,
+    peak: TOP_ARTISTS.peak,
+    peakOn: TOP_ARTISTS.peakDate,
+  },
+  ...TOP_ARTISTS.field,
+].sort((a, b) => b.days - a.days);
+
+/** The board's rows: the top five, as the page's other boards show. */
+const TOP_ARTISTS_SHOWN = 5;
+const topArtistsDaysEntries: RankEntry[] = spotifyTopArtistsDays.slice(0, TOP_ARTISTS_SHOWN).map((r, i, rows) => ({
+  name: r.name,
+  sub: `${r.flag} ${r.country} · best No. ${r.peak}`,
+  value: `${withCommas(r.days)} days`,
+  ...(i > 0 && r.days === rows[i - 1].days ? { tie: true as const } : {}),
+}));
+
+/**
+ * The board's note, from the ranked rows. A function of the rows so the tests
+ * can hand it a re-read's shape (a runner-up still on the chart, say) and see
+ * the sentence the page would print.
+ */
+export function spotifyTopArtistsDaysNote(rows: readonly TopArtistsDaysRow[]): string {
+  const [first, second] = rows;
+  const him = rows.find((r) => r.name === HIGHLIGHT)!;
+  const chart = "Spotify's Global Daily Top Artists chart";
+  const archive = `since Spotify's archive of it began on ${monthYear(TOP_ARTISTS.archiveStart)}`;
+  // He is on the reading's own chart, so his total runs to that day; every
+  // other row is as of the artist's last day on it.
+  const onThatDay = rows.filter((r) => r.lastOn === TOP_ARTISTS.chartDate);
+  const alone = onThatDay.length === 1 && onThatDay[0] === him;
+  const lead =
+    first === him
+      ? `${HIGHLIGHT} has spent more days on ${chart} than any other African artist: ${withCommas(him.days)} in all, counted across every daily chart ${archive}. That is a total, not one unbroken run. `
+      : `${first.name} has spent the most days on ${chart} of any African artist, ${withCommas(first.days)} ${archive}; ${HIGHLIGHT} has ${withCommas(him.days)}, a total rather than one unbroken run. `;
+  // A runner-up still on the reading's chart is not "last on the chart" on it.
+  const next =
+    first === him && second
+      ? `${second.name} is next on ${withCommas(second.days)}, ${count(first.days - second.days, "day", "days")} behind, ` +
+        (second.lastOn === TOP_ARTISTS.chartDate
+          ? "and is still on the chart. "
+          : `and was last on the chart on ${monthYear(second.lastOn)}. `)
+      : "";
+  const firstDay = TOP_ARTISTS.peakDate === TOP_ARTISTS.firstEntry ? ", his first day on the chart" : "";
+  return (
+    lead +
+    next +
+    `On the chart dated ${monthYear(TOP_ARTISTS.chartDate)} ${HIGHLIGHT} was No. ${TOP_ARTISTS.rank}, on a current run of ${TOP_ARTISTS.streak} straight ${plural(TOP_ARTISTS.streak, "day", "days")}` +
+    (alone ? ", and the only African artist on it" : "") +
+    `. His best placing is No. ${TOP_ARTISTS.peak}, on ${monthYear(TOP_ARTISTS.peakDate)}${firstDay}.`
+  );
+}
+const topArtistsDaysNote = spotifyTopArtistsDaysNote(spotifyTopArtistsDays);
+
+const topArtistsDaysSource = (() => {
+  const rest = spotifyTopArtistsDays.slice(TOP_ARTISTS_SHOWN);
+  const offChart = spotifyTopArtistsDays
+    .slice(0, TOP_ARTISTS_SHOWN)
+    .filter((r) => r.lastOn !== TOP_ARTISTS.chartDate)
+    .map((r) => `${r.name} ${monthYear(r.lastOn)}`);
+  const byNationality = TOP_ARTISTS.notAfrican.map((r) => `${r.name} (${r.nationality}, ${withCommas(r.days)} days)`);
+  const gap = `${cardinalWord(TOP_ARTISTS.maxGap)} ${plural(TOP_ARTISTS.maxGap, "day", "days")}`;
+  const early = [...TOP_ARTISTS.onFirstChart];
+  return (
+    `Total days on Spotify's Daily Top Artists: Global chart (the top ${TOP_ARTISTS.chartSize} artists each day), from the chart's own data on Spotify Charts (charts.spotify.com), ` +
+    `read ${monthYear(TOP_ARTISTS.readOn)} as of the chart dated ${monthYear(TOP_ARTISTS.chartDate)}, day ${withCommas(SPOTIFY_TOP_ARTISTS_CHART_DAY)} of an archive that begins on ${monthYear(TOP_ARTISTS.archiveStart)}. ` +
+    `Each total is the chart's own count of an artist's days on it, taken at their latest appearance, so it includes every earlier day. ` +
+    (offChart.length ? `Last on the chart: ${andList(offChart)}. ` : "") +
+    (rest.length ? `The ranking continues ${andList(rest.map((r) => `${r.name} (${withCommas(r.days)})`))}. ` : "") +
+    `African artists are counted by nationality: ${andList(byNationality)} appeared on the chart but are not in the comparison. ${andList([...TOP_ARTISTS.notFound])} were on none of the dates read. ` +
+    `${withCommas(TOP_ARTISTS.datesRead)} of the ${withCommas(SPOTIFY_TOP_ARTISTS_CHART_DAY)} chart dates were read — one a week, a second weekly set ${gap} off the first, and every day after each artist's last sighting — so no unread stretch is longer than ${gap}. ` +
+    `A return of ${gap} or fewer falling wholly between dates read would be missed, so the total of an artist no longer on the chart could be a few days short.` +
+    (early.length
+      ? ` ${andList(early)} ${early.length === 1 ? "was" : "were"} already on the archive's first chart, so ${andList(early.map((n) => `${n}'s`))} ${early.length === 1 ? "count starts" : "counts start"} there, on ${monthYear(TOP_ARTISTS.archiveStart)}.`
+      : "")
+  );
+})();
+
+/**
+ * His best placing on Spotify's Weekly Top Artists: Global chart, re-read on
+ * Spotify Charts itself (charts.spotify.com/charts/view/artist-global-weekly/
+ * 2026-07-23) on 7 Oct 2026. `chartDate` is the Thursday that closes the
+ * Friday-to-Thursday week. The board's other four peaks are as chart-tracking
+ * accounts published them in July 2026 and were not re-read.
+ */
+export const SPOTIFY_TOP_ARTISTS_WEEKLY_PEAK = {
+  rank: 64,
+  chartDate: "2026-07-23",
+  readOn: "2026-10-07",
+} as const;
+/** "17–23 July 2026": the Friday-to-Thursday week a weekly chart date closes,
+ *  spelled as the album board's source spells its weeks ("28 April–4 May 2023"). */
+export const spotifyWeekOf = (thursday: string): string => {
+  const end = new Date(`${thursday}T12:00:00Z`);
+  const start = new Date(end.getTime() - 6 * 86_400_000);
+  const month = (d: Date) => d.toLocaleDateString("en-GB", { month: "long", timeZone: "UTC" });
+  const y = end.getUTCFullYear();
+  if (start.getUTCFullYear() !== y) return `${monthYear(start.toISOString().slice(0, 10))}–${monthYear(thursday)}`;
+  return start.getUTCMonth() === end.getUTCMonth()
+    ? `${start.getUTCDate()}–${end.getUTCDate()} ${month(end)} ${y}`
+    : `${start.getUTCDate()} ${month(start)}–${end.getUTCDate()} ${month(end)} ${y}`;
+};
+const WEEKLY_PEAK_WEEK = spotifyWeekOf(SPOTIFY_TOP_ARTISTS_WEEKLY_PEAK.chartDate);
+/** The weekly board's rows, ranked by peak: his from the reading above, the
+ *  other four as chart-tracking accounts published them in July 2026. Sorted,
+ *  so a re-read that moves his peak moves his row, and the badge, with it. */
+export const spotifyWeeklyPeakEntries = (hisPeak: number): RankEntry[] =>
+  [
+    { name: "CKay", peak: 56 },
+    { name: "Asake", peak: 63 },
+    { name: HIGHLIGHT, peak: hisPeak },
+    { name: "Wizkid", peak: 96 },
+    { name: "Tems", peak: 105 },
+  ]
+    .sort((a, b) => a.peak - b.peak)
+    .map((r, i, rows) => ({
+      name: r.name,
+      sub: "🇳🇬 Nigeria",
+      value: `No. ${r.peak}`,
+      ...(i > 0 && r.peak === rows[i - 1].peak ? { tie: true as const } : {}),
+    }));
+const weeklyPeakEntries = spotifyWeeklyPeakEntries(SPOTIFY_TOP_ARTISTS_WEEKLY_PEAK.rank);
 
 export const statBoxes: LeaderboardBox[] = [
   {
@@ -804,16 +1032,22 @@ export const statBoxes: LeaderboardBox[] = [
     title: "Highest peak on Spotify's Global Weekly Top Artists chart",
     meta: "Spotify Weekly Top Artists · Nigerian artists · all-time peak",
     layout: "list",
-    entries: [
-      { name: "CKay", sub: "🇳🇬 Nigeria", value: "No. 56" },
-      { name: "Asake", sub: "🇳🇬 Nigeria", value: "No. 63" },
-      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "No. 64" },
-      { name: "Wizkid", sub: "🇳🇬 Nigeria", value: "No. 96" },
-      { name: "Tems", sub: "🇳🇬 Nigeria", value: "No. 105" },
-    ],
-    note: "Burna Boy hit a new career peak of No. 64 on Spotify's Global Weekly Top Artists chart in the week of 17–23 July 2026, on the back of the “Dai Dai” run. Note the scope: this is a NIGERIAN ranking, not an African one — Tyla is absent from it, and her peak monthly-listeners figure (46.58M) is higher than Tems' (45.58M), who places No. 105 here, so a full African list would very likely include her.",
-    source:
-      "Best all-time peak on Spotify's Global Weekly Top Artists chart, per chart-tracking accounts. Nigerian artists only — the underlying list does not cover the rest of Africa. As of July 2026.",
+    entries: weeklyPeakEntries,
+    note: `Burna Boy hit a new career peak of No. ${SPOTIFY_TOP_ARTISTS_WEEKLY_PEAK.rank} on Spotify's Global Weekly Top Artists chart in the week of ${WEEKLY_PEAK_WEEK}, on the back of the “Dai Dai” run. Note the scope: this is a NIGERIAN ranking, not an African one — Tyla is absent from it, and her peak monthly-listeners figure (46.58M) is higher than Tems' (45.58M), who places No. 105 here, so a full African list would very likely include her.`,
+    source: `Best all-time peak on Spotify's Weekly Top Artists: Global chart. Burna Boy's No. ${SPOTIFY_TOP_ARTISTS_WEEKLY_PEAK.rank}, on the chart for the week of ${WEEKLY_PEAK_WEEK}, is read on Spotify Charts itself (charts.spotify.com), last on ${monthYear(SPOTIFY_TOP_ARTISTS_WEEKLY_PEAK.readOn)}; the other four peaks are as chart-tracking accounts published them in July 2026. Nigerian artists only — the underlying list does not cover the rest of Africa.`,
+  },
+  {
+    // Approved 7 Oct 2026. Nothing here is typed: rows, note and source are
+    // built from SPOTIFY_TOP_ARTISTS_DAILY above, where the read, its method
+    // and its nationality calls are kept. It sits beside the weekly-peak board
+    // it complements; tests/spotifyTopArtistsDays.test.ts holds both.
+    id: "spotify-top-artists-days",
+    title: "Most days on Spotify's Global Daily Top Artists chart",
+    meta: "Spotify Daily Top Artists Global · African artists · total days",
+    layout: "list",
+    entries: topArtistsDaysEntries,
+    note: topArtistsDaysNote,
+    source: topArtistsDaysSource,
   },
 ];
 
