@@ -92,7 +92,10 @@ describe("today comes from the server, hourly", () => {
     const next = nextDated(EMPTY);
     const [, m, d] = EMPTY.split("-").map(Number);
     const label = `${d} ${MONTHS[m - 1]}`;
-    const sentence = `Nothing is dated ${label}. Next: ${next.day.label}, in ${plural(next.ahead, "day")}.`;
+    // Each figure held to its word by a no-break space (V-otd-03), so the
+    // panel never ends a line on "in 1" with "day." below it.
+    const bind = (s: string) => s.replace(" ", "\u00a0");
+    const sentence = `Nothing is dated ${bind(label)}. Next: ${bind(next.day.label)}, in ${bind(plural(next.ahead, "day"))}.`;
     for (const host of [desk, phone]) {
       const ringed = host.querySelectorAll('[aria-current="date"]');
       expect(ringed.length).toBe(1);
@@ -260,7 +263,7 @@ describe("the phone's month panels and month jumps", () => {
         const open = [...s.querySelectorAll("a")].find((a) => a.getAttribute("href")?.startsWith("/on-this-day/"))!;
         expect(open.getAttribute("href")).toBe(`/on-this-day/${want.slug}`);
         expect(s.textContent).toContain(want.lead.headline);
-        expect(s.textContent).toContain(`${want.label} · ${plural(want.events.length, "milestone")} · ${span(want)}`);
+        expect(s.textContent!.replace(/\u00a0/g, " ")).toContain(`${want.label} · ${plural(want.events.length, "milestone")} · ${span(want)}`);
       });
     }
   });

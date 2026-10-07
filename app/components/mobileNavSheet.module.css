@@ -129,7 +129,18 @@
   letter-spacing: 0.06em;
   text-align: left;
 }
-.searchText { flex: 1; }
+/* One line, whatever the counts (6 Oct 2026, V-global-21). At 320px the pill
+   leaves the hint 226px and "Search 250 certs, 384 entries…" needs 242, so it
+   broke onto a second line, 38px of text in the 48px pill. Held to one line it
+   ends in an ellipsis on the narrowest phones ("…384 entri…"), and from 340px
+   it reads in full as before. The accessible name keeps the whole hint. */
+.searchText {
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 .list {
   flex: 1;
@@ -253,6 +264,20 @@
    any more. One control, one breakpoint. */
 @media (min-width: 1240px) {
   .root { display: none; }
+}
+
+/* From 901 to 1239px the desktop bar's hamburger opens this sheet too, and it
+   stretched edge to edge: 1000px-wide rows, a full-width Appearance control
+   and "tap to dismiss" under a mouse (6 Oct 2026, V-global-17). Here it keeps
+   panel G's own 402px and hangs from the right edge under the hamburger; the
+   dimmed page beside it is the dismiss target, so the hint goes. Below 901
+   the phone layout is fluid to 900, as designed. */
+@media (min-width: 901px) {
+  .sheet {
+    left: auto;
+    width: 402px;
+  }
+  .dismissHint { display: none; }
 }
 
 /* Appearance row — the sheet's last block, under the list and above the foot.

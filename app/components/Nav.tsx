@@ -58,10 +58,33 @@ export default function Nav({ suggested }: { suggested: readonly SuggestedDoc[] 
         </Link>
 
         <div className="navRight">
+          {/* The section links come first in the source because they come
+              first on screen, right after the wordmark: Tab then runs
+              wordmark → sections → theme → search → Stat card, left to right.
+              They used to sit last here and were moved up with CSS `order`,
+              so focus jumped to the far-right controls and back. Below 1240
+              they are display:none and the hamburger's sheet carries them. */}
+          <ul id="primary-menu" className="navLinks">
+            {navItems.map((item) => {
+              const active = pathname === item.href;
+              return (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    aria-current={active ? "page" : undefined}
+                    className={active ? "navActive" : undefined}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+
           {/* Appearance, phone only: a single tap that flips dark <-> light,
               sitting in the slack between the wordmark and the search circle.
-              It comes FIRST so it lands in that gap rather than crowding the
-              hamburger. */}
+              It comes FIRST of the controls so it lands in that gap rather
+              than crowding the hamburger. */}
           <ThemeToggle variant="mini" />
 
           {/* Site search — opens a ⌘K command palette */}
@@ -100,23 +123,6 @@ export default function Nav({ suggested }: { suggested: readonly SuggestedDoc[] 
             <span className="navToggleBar" />
             <span className="navToggleBar" />
           </button>
-
-          <ul id="primary-menu" className="navLinks">
-            {navItems.map((item) => {
-              const active = pathname === item.href;
-              return (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    aria-current={active ? "page" : undefined}
-                    className={active ? "navActive" : undefined}
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
         </div>
       </nav>
     </header>

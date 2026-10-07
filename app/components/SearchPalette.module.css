@@ -30,6 +30,15 @@
   padding: 1px 5px;
   line-height: 1.4;
 }
+/* ⌘K is a keyboard hint. Below 640 it goes with the label (see the end of
+   this file), but from 641 up a touch tablet, or a phone turned sideways,
+   still showed "Search ⌘K" on a pill that only takes taps. A touch-first
+   pointer drops the hint at every width; the "Search" label stays. */
+@media (pointer: coarse) {
+  .kbd {
+    display: none;
+  }
+}
 
 /* Modal overlay + centred panel. */
 .overlay {

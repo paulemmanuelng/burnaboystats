@@ -11,8 +11,14 @@ import styles from "./BackToTop.module.css";
 // Tab continues from the start of the content (Shift+Tab reaches the nav). A
 // <main> is not focusable, so it takes tabindex="-1" only while it holds focus;
 // preventScroll keeps the smooth scroll; globals.css draws no ring round it.
+// A reader who asked for reduced motion gets an instant jump: an explicit
+// behavior outranks html's scroll-behavior, so the global reduced-motion
+// switch (scroll-behavior: auto) could not stop a "smooth" passed here.
 function backToTop() {
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  window.scrollTo({
+    top: 0,
+    behavior: window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth",
+  });
   const main = document.getElementById("content");
   if (!main) return;
   if (!main.hasAttribute("tabindex")) {

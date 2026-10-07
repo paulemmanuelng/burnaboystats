@@ -10,6 +10,7 @@ import {
   MONTHS,
   calendarDayLabel,
   calendarMonthDays,
+  keepSeparators,
   milestones,
   monthDefault,
   monthSub,
@@ -111,7 +112,8 @@ export default function MobileOnThisDayIndex({ today }: { today: OnThisDayToday 
           slug: d.slug,
           label: d.label,
           count: d.events.length,
-          meta: `${d.label} · ${milestones(d.events.length)} · ${yearSpan(d.events)}`,
+          meta: keepSeparators(`${d.label} · ${milestones(d.events.length)}`),
+          span: yearSpan(d.events),
           headline: d.lead.headline,
           kind: d.lead.kind,
         }));

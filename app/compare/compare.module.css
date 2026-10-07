@@ -31,7 +31,10 @@
   letter-spacing: var(--type-label-tracking);
   text-transform: uppercase;
   color: var(--text-muted);
-  margin: 0 0 14px;
+  /* The kicker sat on the breadcrumb bar's bottom rule with no gap on every
+     compare page, wrapped bar or not: phones first (debug pass 4 Oct 2026,
+     F-11), then desktop, where the fix had not reached (5 Oct, V-compareIn-10). */
+  margin: 16px 0 14px;
 }
 .h1 {
   font-family: var(--font-anton), var(--font-display), sans-serif;
@@ -528,7 +531,20 @@
   text-transform: uppercase;
   color: var(--text-muted);
 }
-.showAll { color: var(--gold); margin-left: 10px; }
+/* One treatment on both layouts: the mono label the phone already drew. On
+   desktop it was 16px sentence-case sans beside the mono caption, and from
+   761px the row ran out of room between "Show" and "all ↓" (debug pass 5 Oct
+   2026, V-compareA-09). */
+.showAll {
+  color: var(--gold);
+  margin-left: 10px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
 
 /* ── footnotes + methodology ──────────────────────────────── */
 .notes {
@@ -588,9 +604,6 @@
   /* The foot room comes from body's tab-bar padding and Keep exploring's own
      margin; 88px here stacked on both and read as a hole in the page. */
   .wrap { padding: 0 16px 28px; }
-  /* The kicker sat on the breadcrumb bar's bottom rule with no gap on every
-     compare page, wrapped bar or not (debug pass 4 Oct 2026, F-11). */
-  .kicker { margin-top: 16px; }
 
   /* Mode: one full-width pill, equal thirds (design: height 44). Three long
      labels do not fit 343px, so the phone shows the short ones. */
@@ -737,7 +750,7 @@
   .table tr { border-bottom-color: var(--line); }
   .table thead tr { align-items: end; }
   .table .ngRow { padding-left: 8px; padding-right: 8px; margin: 0 -8px; }
-  .showAll { margin-left: 0; min-height: 44px; display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono), monospace; font-weight: 700; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; }
+  .showAll { margin-left: 0; min-height: 44px; display: inline-flex; align-items: center; gap: 6px; }
 
 }
 /* The desktop foot strip yields to the sticky bar wherever the tab bar exists
@@ -1039,12 +1052,17 @@
 /* A 44px target around the 36px face and name, without moving the row: the
    link was 36px tall with nothing extending it (live, 26 Sep 2026). */
 .cbArtistLink::after { content: ""; position: absolute; inset: -4px 0; }
+/* The face keeps its edge in both themes: Davido's photo is a gold crown on
+   black, so on the dark page its edge vanished and a crown floated in the
+   slot (debug pass 5 Oct 2026). An outer ring, as /dai-dai's lineup photos
+   have: an inset shadow paints under an <img>'s picture. */
 .cbFace {
   width: 36px;
   height: 36px;
   border-radius: 50%;
   object-fit: cover;
   background: var(--bg-raised);
+  box-shadow: 0 0 0 1px var(--line);
   flex: none;
   display: inline-block;
 }
@@ -1133,6 +1151,11 @@
   align-items: baseline;
   gap: 4px 12px;
   margin: 18px 0 8px;
+}
+/* The rule opens the SECOND programme only: the first sits straight under the
+   country head's own rule, and a second rule 26px below it with nothing
+   between them read as an empty double line (debug pass, 5 Oct 2026). */
+.cbProgram + .cbProgram .cbProgramHead {
   padding-top: 14px;
   border-top: 1px solid var(--rule);
 }
@@ -1150,7 +1173,9 @@
   text-transform: uppercase;
   color: var(--text-muted);
 }
-.cbProgramUnits { margin-left: auto; }
+/* The subtotal ends where the column it totals ends: the units cell and its
+   header are inset by the table's 14px cell padding (0 on a phone, below). */
+.cbProgramUnits { margin-left: auto; padding-right: 14px; }
 .cbThProgram {
   font-family: var(--font-mono), monospace;
   font-size: var(--type-label);
@@ -1301,7 +1326,12 @@
   margin: 0;
 }
 .cbThNote:empty { display: none; }
-.cbRegister { color: var(--gold); font-size: var(--type-caption); }
+/* A 44px target around the body's link, without moving it: in the phone fold
+   it was a 20px line under the 44px summary, the one control on the card below
+   the page's floor (live, 7 Oct 2026). Centred on the link, so a link that
+   wraps keeps its own box and gains whatever 44px needs. */
+.cbRegister { position: relative; color: var(--gold); font-size: var(--type-caption); }
+.cbRegister::after { content: ""; position: absolute; inset: calc(50% - 22px) 0; }
 
 /* the biggest plaques in this market */
 .cbBiggest { margin-bottom: 28px; }
@@ -1384,6 +1414,7 @@
   }
   .cbTable th, .cbTable td { display: block; padding: 0; border-bottom: 0; min-width: 0; }
   .cbTable th.thNum, .cbTable td.tdNum { text-align: right; }
+  .cbProgramUnits { padding-right: 0; }
   .cbBoardTable tbody tr:hover td { background: transparent; }
   /* Index rows: country then units, the coverage line full-width beneath.
      Placed explicitly, all of it: a cell that spans pushes every auto-placed

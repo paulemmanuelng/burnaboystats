@@ -53,17 +53,29 @@ export const subscribeNever = () => () => {};
 
 export type SaveOutcome = "shared" | "downloaded" | "opened" | "cancelled" | "failed";
 
+/** The card as a blob: the one network step between a tap and the sheet. */
+export async function fetchCard(src: string): Promise<Blob> {
+  const res = await fetch(src);
+  if (!res.ok) throw new Error(String(res.status));
+  return res.blob();
+}
+
+/**
+ * `card` is that blob fetched before the tap. The share sheet opens only
+ * inside the tap's user activation, which the fetch spends: Chrome allows 5 s,
+ * iOS Safari may allow less, and an On This Day card took 0.8 s warm and
+ * 1.6–2 s cold (debug pass 5 Oct 2026, V-otd-10). Held past that, the sheet
+ * was refused and the tap fell through to a download. See OnThisDaySaveCard.
+ */
 export async function saveCard(
   src: string,
   filename: string,
   shareText?: string,
-  { preferDownload = false }: { preferDownload?: boolean } = {}
+  { preferDownload = false, card }: { preferDownload?: boolean; card?: Promise<Blob> } = {}
 ): Promise<SaveOutcome> {
   let blob: Blob;
   try {
-    const res = await fetch(src);
-    if (!res.ok) throw new Error(String(res.status));
-    blob = await res.blob();
+    blob = await (card ?? fetchCard(src));
   } catch {
     // Never leave the user with a dead button: the image itself is reachable.
     window.open(src, "_blank", "noopener");

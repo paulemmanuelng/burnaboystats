@@ -330,7 +330,10 @@ export default function MobileCerts({
   // and by weight alone its Colombian, Czech, Greek, Hungarian, Portuguese and
   // Slovak plaques all sat behind the "+6" — the row a filter kept, without
   // the plaque that kept it (the charts screen's V-records-03, here).
-  const lit = (c: Cert) => !shownCountry || certMatches(c, shownCountry, shownTier);
+  // A tier chip alone does the same (V-afrobeats-09): with SILVER picked,
+  // Wizkid's rows showed every Platinum and Gold at full strength beside the
+  // one Silver that kept the row, where the desktop dims all but the Silver.
+  const lit = (c: Cert) => (!shownCountry && !shownTier) || certMatches(c, shownCountry, shownTier);
 
   const matching = inScope
     // Tier and country on the SAME plaque (lib/certs.matches, V-records-01).

@@ -77,7 +77,7 @@ const programShort = (name: string, country: string) => {
 import { CountryBoardView } from "./CountryBoardView";
 import { HeadSync } from "./HeadSync";
 import { KeepFocus } from "./KeepFocus";
-import { countryCopy, countryFromSlug, countrySlug, priceCountry, pricingPhrase } from "../lib/certCountry";
+import { countryCopy, countryFromSlug, countryIndexCopy, countrySlug, priceCountry, pricingPhrase } from "../lib/certCountry";
 import { artAt, artSrcSet } from "../lib/artAt";
 import {
   artistBySlug,
@@ -149,9 +149,9 @@ function compareMetadata(sp: SP): Metadata {
   // board, and only one of them should be indexed.
   if (mode === "country") {
     const code = countryFromSlug(one(sp.country) ?? "");
-    if (!code) {
-      return { ...BASE_METADATA, alternates: { canonical: "/compare/in" } };
-    }
+    // No market named: the index, with /compare/in's own title over its
+    // "Certified units by country" h1, not the hub's (V-compareA-11).
+    if (!code) return pageMetadata({ ...countryIndexCopy(), path: "/compare/in" });
     const board = priceCountry(code);
     const copy = countryCopy(board);
     const url = `/compare/in/${countrySlug(code)}`;
@@ -282,7 +282,7 @@ function Slot({
   // counted" read as a contradiction until the Nigerian one was named.
   const ngCount = isSong ? release.certs.filter((c) => c.c === "NG").length : 0;
   // Segments, not one string: each is rendered nowrap and the line breaks
-  // only at a separator, so a phone never opens a line with "·" or splits
+  // only after a separator, so a phone never opens a line with "·" or splits
   // "+ 1 Nigerian" across two.
   const meta: string[] = isSong
     ? [artist.name, release.isFeature ? "featured" : release.format === "album" ? "album" : "lead single",
@@ -336,13 +336,15 @@ function Slot({
       <div className={styles.slotBody}>
         <p className={styles.slotTitle}>{keepParens(title)}</p>
         <p className={styles.slotMeta}>
-          {/* A line may break only at the space before a separator: short
-              segments are glued with no-break spaces, the "·" rides with the
-              segment it introduces. Long segments still wrap inside. */}
+          {/* A line may break only at the space after a separator: short
+              segments are glued with no-break spaces, the "·" ends the
+              segment it follows, so it ends a line and never starts one
+              ("· 25 countries" opened a line, debug pass 5 Oct 2026). Long
+              segments still wrap inside. */}
           {meta.map((m, i) => (
             <span key={i}>
               {i > 0 ? " " : ""}
-              <span className={styles.metaSeg}>{i > 0 ? "·\u00a0" : ""}{m.length <= 22 ? m.replace(/ /g, "\u00a0") : m}</span>
+              <span className={styles.metaSeg}>{m.length <= 22 ? m.replace(/ /g, "\u00a0") : m}{i < meta.length - 1 ? "\u00a0·" : ""}</span>
             </span>
           ))}
         </p>
@@ -434,7 +436,9 @@ function SongPicker({
         <span className={styles.pickLabel}>
           {q
             ? `${matches.length} of ${all.length} match “${query}”`
-            : `${artist.name} · all ${all.length} certified\u00a0${all.length === 1 ? noun(mode) : noun(mode, true)}`}
+            : all.length === 1
+              ? `${artist.name} · 1 certified\u00a0${noun(mode)}`
+              : `${artist.name} · all ${all.length} certified\u00a0${noun(mode, true)}`}
         </span>
         <Link
           href={href(sp, { [side]: null, [target]: null, [field]: null })}
@@ -454,7 +458,7 @@ function SongPicker({
             name={field}
             defaultValue={query}
             className={styles.searchInput}
-            placeholder={`Search ${all.length} ${noun(mode, true)}`}
+            placeholder={`Search ${all.length} ${noun(mode, all.length !== 1)}`}
             aria-label={`Search ${artist.name}'s certified ${noun(mode, true)}`}
             autoComplete="off"
             autoCorrect="off"
@@ -538,10 +542,14 @@ function Cell({ line, lead, artistMode }: { line: CountryLine | null; lead: bool
         {fmt(line.units)}
       </span>
       {/* In artist mode one chip stands for a sum of several plaques: say how
-          many, and that the chip is the top one. */}
+          many, and that the chip is the top one. Two glued segments, as in the
+          slot meta and the Nigeria strip: the "·" ends the first and the line
+          may break only at the space after it, so a phone cell reads
+          "4 plaques ·" / "top shown" on every row, never "4 plaques · top" /
+          "shown" beside "10 plaques ·" / "top shown", and no line opens on "·". */}
       {artistMode && line.releases > 1 && (
         <span className={styles.notCounted}>
-          {line.releases} plaques · top shown
+          {line.releases}{"\u00a0"}plaques{"\u00a0"}· top{"\u00a0"}shown
         </span>
       )}
       {/* The same country's unpriced plaques, which used to vanish here. */}
@@ -557,6 +565,23 @@ function Cell({ line, lead, artistMode }: { line: CountryLine | null; lead: bool
 export default async function ComparePage({ searchParams }: { searchParams: Promise<SP> }) {
   const sp = await searchParams;
   const head = compareMetadata(sp);
+  // Country mode on the query string is the board /compare/in(/<country>)
+  // renders, with a switch the pretty route cannot hold (features off, and
+  // "Change country" with features off) — the canonical above already says
+  // so. Its breadcrumb is the pretty route's too: Compare / By country /
+  // Canada. It was always "/compare", so a features-off board dropped the two
+  // crumbs back to the index under a "Certified units in Canada" h1
+  // (V-compareIn-04, debug pass 7 Oct 2026). The leaf is the name the pretty
+  // route prints (priceCountry's name is countryMeta's), read without pricing
+  // the board a second time.
+  const countryMode = readMode(one(sp.mode)) === "country";
+  const countryCode = countryMode ? countryFromSlug(one(sp.country) ?? "") : null;
+  const crumbs =
+    !countryMode
+      ? { path: "/compare" }
+      : countryCode
+        ? { path: `/compare/in/${countrySlug(countryCode)}`, leaf: countryMeta(countryCode).name }
+        : { path: "/compare/in" };
   // Called, not rendered as an element: the awaited tree is plain markup,
   // which is what the tests (renderToStaticMarkup) and Next both want.
   // HeadSync only here: the pair, board and /compare/in routes have metadata
@@ -564,7 +589,7 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
   return (
     <>
       <HeadSync title={String(head.title)} canonical={new URL(String(head.alternates?.canonical ?? "/compare"), siteUrl).href} />
-      {await CompareView({ sp, path: "/compare" })}
+      {await CompareView({ sp, ...crumbs })}
     </>
   );
 }
@@ -769,6 +794,10 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
   };
   const tie = ready && totalA === totalB;
   const leadA = totalA >= totalB;
+  // A side is styled behind only when it trails: level totals ("Level — both
+  // at least 0") muted B's figure and bar as if A led (debug pass, 5 Oct 2026).
+  const behindA = totalA < totalB;
+  const behindB = totalB < totalA;
   const max = Math.max(totalA, totalB, 1);
   const diff = Math.abs(totalA - totalB);
   const ratio = Math.min(totalA, totalB) > 0 ? Math.max(totalA, totalB) / Math.min(totalA, totalB) : null;
@@ -1049,27 +1078,27 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
             <div className={`${styles.head} ${ready ? "" : styles.headSolo}`} id="result">
               <div className={styles.headCell}>
                 <p className={styles.headName}><span className={styles.headNameName}>{nameA || a?.name}{"\u00a0"}</span><span className={styles.headNameQual}>{"·\u00a0at least"}</span></p>
-                <p className={`${styles.figure} ${leadA ? styles.figureLead : styles.figureBehind}`}>{fmt(totalA)}</p>
+                <p className={`${styles.figure} ${behindA ? styles.figureBehind : styles.figureLead}`}>{fmt(totalA)}</p>
                 <p className={styles.headMeta}>
                   certified units · {ngOn ? "Nigeria included" : "outside Nigeria"}
                   {sideA ? ` · ${sideA.pricedPlaques} of ${plaquesOf(sideA)} counted` : ""}
                   {sideA?.excludedPlaques ? ` · ${sideA.excludedPlaques} not comparable` : ""}
                 </p>
                 <div className={styles.bar}>
-                  <div className={`${styles.barFill} ${leadA ? "" : styles.barFillBehind}`} style={{ width: `${(totalA / max) * 100}%` }} />
+                  <div className={`${styles.barFill} ${behindA ? styles.barFillBehind : ""}`} style={{ width: `${(totalA / max) * 100}%` }} />
                 </div>
               </div>
               {ready && (
                 <div className={styles.headCell}>
                   <p className={styles.headName}><span className={styles.headNameName}>{nameB}{"\u00a0"}</span><span className={styles.headNameQual}>{"·\u00a0at least"}</span></p>
-                  <p className={`${styles.figure} ${leadA ? styles.figureBehind : styles.figureLead}`}>{fmt(totalB)}</p>
+                  <p className={`${styles.figure} ${behindB ? styles.figureBehind : styles.figureLead}`}>{fmt(totalB)}</p>
                   <p className={styles.headMeta}>
                     certified units · {ngOn ? "Nigeria included" : "outside Nigeria"}
                     {sideB ? ` · ${sideB.pricedPlaques} of ${plaquesOf(sideB)} counted` : ""}
                     {sideB?.excludedPlaques ? ` · ${sideB.excludedPlaques} not comparable` : ""}
                   </p>
                   <div className={styles.bar}>
-                    <div className={`${styles.barFill} ${leadA ? styles.barFillBehind : ""}`} style={{ width: `${(totalB / max) * 100}%` }} />
+                    <div className={`${styles.barFill} ${behindB ? styles.barFillBehind : ""}`} style={{ width: `${(totalB / max) * 100}%` }} />
                   </div>
                 </div>
               )}
@@ -1081,11 +1110,11 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
                   {/* The zero case says nothing more here: the note under the
                       Nigeria strip names both artists and the action, and the
                       page said it twice (debug pass, 5 Oct 2026). */}
-                  <strong>Level</strong> — both at least {fmt(totalA)} certified units.
+                  <strong>Level</strong> — both {"at\u00a0least\u00a0"}{fmt(totalA)} certified units.
                 </p>
               ) : ready ? (
                 <p className={styles.diff}>
-                  <strong>{leadA ? nameA : nameB}</strong> leads by at least{"\u00a0"}{fmt(diff)} certified units
+                  <strong>{leadA ? nameA : nameB}</strong> leads by {"at\u00a0least\u00a0"}{fmt(diff)} certified units
                   {ratio && ratio >= 1.05
                     ? `\u00a0— a floor ${ratioWords(ratio)}× the size of ${trailing(leadA ? nameB : nameA)}`
                     : ""}.
@@ -1125,9 +1154,13 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
               sold — only that nobody applied. A gap between two artists there can measure paperwork rather
               than sales, which is why it is counted on its own line.
             </p>
+            {/* "at least N" is one unit and the "·" ends the segment before it,
+                so a phone breaks after the dot, never between "at" and "least"
+                and never with a line that opens on "·" — the slot meta's rule
+                (debug pass, 7 Oct 2026). */}
             <div className={styles.ngFigures}>
-              <span>{nameA} — {sideA?.nigeria.plaques ?? 0} plaque{(sideA?.nigeria.plaques ?? 0) === 1 ? "" : "s"} · at least{"\u00a0"}{fmt(sideA?.nigeria.units ?? 0)}</span>
-              <span>{nameB} — {sideB?.nigeria.plaques ?? 0} plaque{(sideB?.nigeria.plaques ?? 0) === 1 ? "" : "s"} · at least{"\u00a0"}{fmt(sideB?.nigeria.units ?? 0)}</span>
+              <span>{nameA} — {sideA?.nigeria.plaques ?? 0} plaque{(sideA?.nigeria.plaques ?? 0) === 1 ? "" : "s"}{"\u00a0·"} {"at\u00a0least\u00a0"}{fmt(sideA?.nigeria.units ?? 0)}</span>
+              <span>{nameB} — {sideB?.nigeria.plaques ?? 0} plaque{(sideB?.nigeria.plaques ?? 0) === 1 ? "" : "s"}{"\u00a0·"} {"at\u00a0least\u00a0"}{fmt(sideB?.nigeria.units ?? 0)}</span>
             </div>
             <Link href={href(sp, { ng: ngOn ? (ngDefault ? "0" : null) : ngDefault ? null : "1" })} scroll={false} data-keep-focus="ng-strip" className={styles.ngAction}>
               {ngOn ? "Separate Nigeria" : "Include Nigeria"}

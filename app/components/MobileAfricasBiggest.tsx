@@ -47,13 +47,17 @@ function YearBoard({ years }: { years: BoardYear[] }) {
   if (!year) return null;
   return (
     <div className={styles.yearBoard}>
-      <div className={styles.yearPills} role="tablist" aria-label="Year">
+      {/* Pressed buttons in a group, as every other chip rail on the site is
+          (CertHistoryByYear, MobileCerts). These were ARIA tabs until 6 Oct
+          (V-records-14): the tab roles promise arrow keys and a single tab
+          stop, and the rail had neither — ArrowRight on 2026 did nothing, and
+          all five pills sat in the Tab order. */}
+      <div className={styles.yearPills} role="group" aria-label="Year">
         {years.map((y, i) => (
           <button
             key={y.label}
             type="button"
-            role="tab"
-            aria-selected={i === at}
+            aria-pressed={i === at}
             className={`${styles.yearPill} ${i === at ? styles.yearPillOn : ""} ${
               y.his ? styles.yearPillHis : ""
             }`}
@@ -63,7 +67,7 @@ function YearBoard({ years }: { years: BoardYear[] }) {
           </button>
         ))}
       </div>
-      <div className={styles.yearPanel} role="tabpanel" aria-label={year.label}>
+      <div className={styles.yearPanel}>
         <p className={styles.yearState}>
           {year.inProgress ? (
             <>

@@ -42,7 +42,7 @@
   justify-content: center;
   border-radius: 999px;
   background: var(--bg-soft);
-  border: 1px solid var(--line);
+  border: 1px solid var(--btn-edge);
   color: var(--text);
   flex: none;
 }
@@ -491,6 +491,7 @@
   text-transform: uppercase;
   color: var(--text-muted);
 }
+.calPanelSpan { white-space: nowrap; }
 .calPanelHeadline { display: flex; align-items: flex-start; gap: 8px; font-size: 15px; line-height: 1.35; font-weight: 600; }
 .calPanelMark { flex: none; display: block; width: 11px; height: 11px; margin-top: 4px; color: var(--text); }
 .calPanelOpen {
@@ -626,6 +627,22 @@
 }
 .cardThumb { display: block; width: 144px; height: 180px; border-radius: var(--radius-sm); overflow: hidden; box-shadow: var(--shadow); }
 .cardThumb img { display: block; width: 144px; height: 180px; }
+/* Until the drawn card is in (a cold one takes up to ~1.5 s), the thumbnail
+   wears the site's loading skeleton (app/search/loading.module.css) rather than
+   standing empty in the block (V-otd-05). OnThisDayCardPreview drops the class
+   on load. */
+@keyframes cardWait {
+  0% { background-position: -420px 0; }
+  100% { background-position: 420px 0; }
+}
+.cardThumbLoading {
+  background: linear-gradient(90deg, var(--bg-soft) 8%, var(--bg-soft-2) 20%, var(--bg-soft) 34%);
+  background-size: 420px 100%;
+  animation: cardWait 1.3s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cardThumbLoading { animation: none; background: var(--bg-soft); }
+}
 .cardCopy { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
 .cardName { margin: 0; font-size: 15px; line-height: 1.35; font-weight: 600; }
 .cardNote { margin: 0; font-size: var(--type-caption); line-height: var(--type-caption-lh); color: var(--text-muted); }

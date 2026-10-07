@@ -235,8 +235,12 @@ export default function MobileTours({
                     <div key={`${d.date}-${d.venue}`} className={styles.dateRow} data-show={showDateIso(d.date) ?? undefined}>
                       <div className={styles.dateMain}>
                         <div className={styles.dateVenue}>{d.venue}</div>
+                        {/* City first, then country, as the announced list
+                            above reads: "USA Atlanta" ran the two together
+                            (V-tourscars-07). Desktop gives each a column. The
+                            date kept whole: at 320 "Apr 12," / "2022" split. */}
                         <div className={styles.dateMeta}>
-                          {d.country} {d.city} · {d.date}
+                          {d.city}, {d.country} · {d.date.replace(/ /g, " ")}
                         </div>
                       </div>
                       <span className={styles.dateCap}>

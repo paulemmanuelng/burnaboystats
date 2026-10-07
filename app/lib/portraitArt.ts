@@ -14,7 +14,8 @@
 //               the type instead of competing with it
 //
 // "emblem" is Davido's: his shot reads as a crown mark rather than a face, so it
-// is contained rather than cropped, and it keeps its edges instead of dissolving.
+// sits in a band beside the total, cropped only of the black around the crown,
+// and it keeps its edges instead of dissolving (mobileCerts.module.css).
 
 export type PortraitMode = "default" | "emblem";
 
@@ -43,7 +44,7 @@ export const PORTRAIT_ART: Record<string, PortraitArt> = {
   // needs X≈23% to land in the visible window. "center" showed the empty
   // right side of a dark rust backdrop — his hero rendered as nothing.
   wizkid: { focal: "23% 24%", opacity: 0.46, grayscale: 0.25, mode: "default" },
-  // Contained, not cropped, and no mask fade — the crown is a mark, not a face.
+  // The whole crown, never cropped — a mark, not a face.
   davido: { focal: "center", opacity: 0.3, grayscale: 0, mode: "emblem" },
   // Face ~45% across, hard white flare on the right — aim left of centre.
   rema: { focal: "37% 24%", opacity: 0.52, grayscale: 0.15, mode: "default" }, // backlit dark shot — the Tems treatment

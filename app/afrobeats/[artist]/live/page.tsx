@@ -169,7 +169,8 @@ export default async function AfroLiveChartsPage({
         numberOnes={board.numberOnes}
         updated={updatedLabel}
         backHref={`/afrobeats/${slug}`}
-        backLabel={`${a.name} · live charts`}
+        backLabel={a.name}
+        backDetail="live charts"
         chartsHref={a.charts.length > 0 ? `/afrobeats/${slug}/charts` : `/afrobeats/${slug}`}
         // The desktop notice's words: "counted separately on the chart board".
         chartsLabel={a.charts.length > 0 ? `${a.name}'s chart board` : `${a.name}'s page`}

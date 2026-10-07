@@ -72,6 +72,16 @@ export default async function SongPage({ params }: { params: Promise<{ song: str
   const longestWordLength = (v: string) =>
     Math.max(...v.split(/\s+/).map((w) => w.length));
 
+  // A hashtag is one word to the browser, so the label's overflow-wrap
+  // backstop split "#JerusalemaDanceChallenge" at whichever letter met the
+  // card's edge: "#JerusalemaDanceCh / allenge" at 390. A <wbr> before each
+  // capital inside a hashtag lets the line end between the words it is made
+  // of instead. The label's text is unchanged.
+  const breakableLabel = (l: string) =>
+    l
+      .split(/(?<=#[A-Za-z0-9]*[a-z0-9])(?=[A-Z])/)
+      .flatMap((part, i) => (i === 0 ? [part] : [<wbr key={i} />, part]));
+
   // A song the record simply doesn't hold a figure for. The design is explicit
   // that these slots stay on the page as dashes rather than disappearing —
   // an absent record is itself a fact, and a vanished card looks like a bug.
@@ -323,7 +333,7 @@ export default async function SongPage({ params }: { params: Promise<{ song: str
                   </span>
                   {f.missing && <span className={styles.numBadge}>History only</span>}
                 </span>
-                <span className={styles.numLabel}>{f.l}</span>
+                <span className={styles.numLabel}>{breakableLabel(f.l)}</span>
               </div>
             ))}
           </div>
@@ -461,7 +471,7 @@ export default async function SongPage({ params }: { params: Promise<{ song: str
       <section className={styles.onward}>
         <Link href="/music" className="btn btnSecondary">← Full discography</Link>
         <Link href={`/music/${nextSong.slug}`} className="btn btnPrimary">
-          Next song: {nextSong.title} →
+          Next song: {nextSong.title}{" "}→
         </Link>
         <Link href="/dai-dai" className="btn btnSecondary">The Dai Dai story ↗</Link>
       </section>

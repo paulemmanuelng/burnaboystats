@@ -83,6 +83,7 @@ export default function MobileOfficialCharts({
   sourceNote,
   backHref = "/records",
   backLabel = "Official charts",
+  backDetail,
   heading,
   lede,
   countryRail,
@@ -114,6 +115,9 @@ export default function MobileOfficialCharts({
   sourceNote?: string;
   backHref?: string;
   backLabel?: string;
+  /** The label's second half ("charts" on a board page), printed after " · "
+   *  only while it fits on the bar's one line — see .backLabel. */
+  backDetail?: string;
   /** The screen's own H1, in two parts. Defaults to "Official charts". */
   heading?: { lead: string; gold: string };
   lede?: string;
@@ -263,7 +267,10 @@ export default function MobileOfficialCharts({
             <path d="M15 5l-7 7 7 7" />
           </svg>
         </BackLink>
-        <span className={styles.backLabel}>{backLabel}</span>
+        <span className={styles.backLabel}>
+          <span className={styles.backName}>{backLabel}</span>
+          {backDetail && <span className={styles.backDetail}>{` · ${backDetail}`}</span>}
+        </span>
         <span className={styles.badge}>{entryCount}</span>
         <MobileMenuButton />
       </div>
@@ -372,22 +379,26 @@ export default function MobileOfficialCharts({
         </ScrollRail>
       </div>
 
-      {/* Count + peak-band legend */}
+      {/* Count + peak-band legend. The three bands are one group, so a phone
+          too narrow for the count beside them (320px) moves the whole legend
+          under the count instead of breaking every label in two. */}
       <div className={styles.legendBar}>
-        <span>
+        <span className={styles.legendCount}>
           {shown} {shown === 1 ? "release" : "releases"}
         </span>
-        <span className={styles.legendItem}>
-          <span className={`${styles.legendDot} ${styles.dotOne}`} aria-hidden="true" />
-          No. 1
-        </span>
-        <span className={styles.legendItem}>
-          <span className={`${styles.legendDot} ${styles.dotTen}`} aria-hidden="true" />
-          Top 10
-        </span>
-        <span className={styles.legendItem}>
-          <span className={`${styles.legendDot} ${styles.dotForty}`} aria-hidden="true" />
-          Top 40
+        <span className={styles.legend}>
+          <span className={styles.legendItem}>
+            <span className={`${styles.legendDot} ${styles.dotOne}`} aria-hidden="true" />
+            No. 1
+          </span>
+          <span className={styles.legendItem}>
+            <span className={`${styles.legendDot} ${styles.dotTen}`} aria-hidden="true" />
+            Top 10
+          </span>
+          <span className={styles.legendItem}>
+            <span className={`${styles.legendDot} ${styles.dotForty}`} aria-hidden="true" />
+            Top 40
+          </span>
         </span>
       </div>
 

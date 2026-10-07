@@ -4,6 +4,19 @@
    screen 26; the shape holds at both widths (cover over copy, then the same
    sections), so the sizes step down rather than a second layout being drawn. */
 .wrap { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
+/* The design draws every block of the page (crumbs, picker, hero, sections,
+   onward buttons) at that 1240px measure, centred, each with its own 40px
+   gutter. The blocks carried the gutter but not the measure, so from 1241px
+   up the page ran edge to edge (40-1400 at 1440, past the header bar's
+   64-1376 and the footer's 80-1360) instead of on one edge inside them
+   (V-music-14).
+   The album pages share these classes. Below 1240 the cap never bites, so
+   1024 and every phone layout are unchanged. */
+.crumbs,
+.pickerPad,
+.heroPad,
+.sectionPad,
+.onward { max-width: 1240px; margin-inline: auto; }
 
 .crumbs {
   padding: 16px 40px 0;
@@ -92,6 +105,17 @@
   text-transform: uppercase;
   color: var(--text-muted);
 }
+/* The album name is a link, and the only one from a song to its album page.
+   In the kicker's own ink with no line under it, it read as plain text, so it
+   takes the prose links' mark (globals.css): a thin underline in its own
+   colour, which a <div> does not get from that rule, and the crumbs' gold on
+   hover. The album pages share this module; their kicker has no link. */
+.kicker a {
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+.kicker a:hover { color: var(--gold); }
 .title {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400; /* Anton has no bold cut */
@@ -201,7 +225,9 @@
 /* "Diamond in France" is a value too — it just isn't a number. */
 .numValueLong { font-size: 30px; }
 /* anywhere: a label can hold one word wider than a phone card, and
-   "#JerusalemaDanceChallenge" ran 19px past the card's edge at 390. */
+   "#JerusalemaDanceChallenge" ran 19px past the card's edge at 390. The
+   song page now puts a <wbr> between a hashtag's words, so it breaks there
+   first ("#JerusalemaDance / Challenge" at 390); this is the backstop. */
 .numLabel { font-size: 13px; line-height: 1.6; color: var(--text-body); margin-top: 11px; overflow-wrap: anywhere; }
 
 /* State E — a figure the record doesn't hold.
@@ -306,6 +332,15 @@
 .faqA { font-size: var(--type-body); line-height: var(--type-body-lh); color: var(--text-body); margin: 0; }
 
 .onward { display: flex; gap: 10px; flex-wrap: wrap; padding: 44px 40px 76px; }
+/* "Next album: No Sign of Weakness →" is wider than a phone: at 390 it broke
+   onto two lines inside the global .btn's fixed 46px, left-aligned, with the
+   arrow alone on the second (V-music-11) — and at 320 so did five more album
+   pills and two song ones ("Next song: Jerusalema (Remix) →"). Both pages join
+   the arrow to the title with a no-break space; here a label that still wraps
+   is centred and the pill grows to hold it. One line is unchanged: 20.8px of
+   text + 20px of padding + the border is under 46px, so min-height keeps
+   every one-line pill at 46. */
+.onward :global(.btn) { height: auto; min-height: 46px; padding-block: 10px; text-align: center; }
 
 @media (max-width: 1239px) {
   .title { font-size: 49px; }
@@ -428,7 +463,7 @@
     justify-content: center;
     border-radius: 999px;
     background: var(--bg-soft);
-    border: 1px solid var(--line);
+    border: 1px solid var(--btn-edge);
     color: var(--text);
     flex: none;
   }

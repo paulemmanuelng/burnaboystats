@@ -995,11 +995,14 @@ a {
   padding-inline: 40px;
   white-space: nowrap;
 }
-/* Right-hand group: search trigger + hamburger + nav links.
-   The links are ordered first and push everything else to the far right, so
-   the bar reads wordmark → sections → search → Stat card, as the design has
-   it. Doing it in CSS keeps the toggle button ahead of the menu it controls
-   in the DOM, which is what assistive tech wants. */
+/* Right-hand group: nav links + theme flip + search trigger + Stat card +
+   hamburger. The links come first in the source and their margin-right: auto
+   pushes everything else to the far right, so the bar reads wordmark →
+   sections → search → Stat card, as the design has it, and Tab follows the
+   same line. It used to be done with `order: -1` on links that sat last in
+   the source (to keep the hamburger ahead of a menu it no longer controls —
+   it opens the sheet, and the links are display:none whenever it shows), so
+   focus went to the far-right controls first and then back to the left. */
 .navRight {
   display: flex;
   align-items: center;
@@ -1033,7 +1036,6 @@ a {
   display: flex;
   gap: 17px;
   list-style: none;
-  order: -1;
   margin-right: auto;
   margin-left: 26px;
 }
@@ -1880,6 +1882,14 @@ summary:focus-visible,
 [tabindex]:focus-visible {
   outline: 2px solid var(--gold);
   outline-offset: 2px;
+}
+/* The ring follows the control's own corners. It sat in the rule above, whose
+   (0,1,1) beat every one-class pill (.chip, .btn: 999px), so a focused pill
+   turned into a 3px-cornered box with a square ring (debug pass 5 Oct 2026,
+   V-global-09). :where() holds it at zero specificity: a control that draws
+   its own corners keeps them, and only one that has none — a text link, a
+   row — still gets the 3px softening. */
+:where(a, button, input, select, textarea, summary, [tabindex]):where(:focus-visible) {
   border-radius: 3px;
 }
 
