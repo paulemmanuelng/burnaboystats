@@ -543,12 +543,13 @@ function Cell({ line, lead, artistMode }: { line: CountryLine | null; lead: bool
       </span>
       {/* In artist mode one chip stands for a sum of several plaques: say how
           many, and that the chip is the top one. Two glued segments, as in the
-          Nigeria strip: the line may break only at the space before the "·", so a
-          phone cell reads "4 plaques" / "· top shown" on every row, never
-          "4 plaques · top" / "shown" beside "10 plaques ·" / "top shown". */}
+          slot meta and the Nigeria strip: the "·" ends the first and the line
+          may break only at the space after it, so a phone cell reads
+          "4 plaques ·" / "top shown" on every row, never "4 plaques · top" /
+          "shown" beside "10 plaques ·" / "top shown", and no line opens on "·". */}
       {artistMode && line.releases > 1 && (
         <span className={styles.notCounted}>
-          {line.releases}{"\u00a0"}plaques ·{"\u00a0"}top{"\u00a0"}shown
+          {line.releases}{"\u00a0"}plaques{"\u00a0"}· top{"\u00a0"}shown
         </span>
       )}
       {/* The same country's unpriced plaques, which used to vanish here. */}
@@ -1153,11 +1154,13 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
               sold — only that nobody applied. A gap between two artists there can measure paperwork rather
               than sales, which is why it is counted on its own line.
             </p>
-            {/* "· at least N" is one unit, so a phone breaks before the dot,
-                never between "at" and "least" (debug pass, 7 Oct 2026). */}
+            {/* "at least N" is one unit and the "·" ends the segment before it,
+                so a phone breaks after the dot, never between "at" and "least"
+                and never with a line that opens on "·" — the slot meta's rule
+                (debug pass, 7 Oct 2026). */}
             <div className={styles.ngFigures}>
-              <span>{nameA} — {sideA?.nigeria.plaques ?? 0} plaque{(sideA?.nigeria.plaques ?? 0) === 1 ? "" : "s"} {"·\u00a0at\u00a0least\u00a0"}{fmt(sideA?.nigeria.units ?? 0)}</span>
-              <span>{nameB} — {sideB?.nigeria.plaques ?? 0} plaque{(sideB?.nigeria.plaques ?? 0) === 1 ? "" : "s"} {"·\u00a0at\u00a0least\u00a0"}{fmt(sideB?.nigeria.units ?? 0)}</span>
+              <span>{nameA} — {sideA?.nigeria.plaques ?? 0} plaque{(sideA?.nigeria.plaques ?? 0) === 1 ? "" : "s"}{"\u00a0·"} {"at\u00a0least\u00a0"}{fmt(sideA?.nigeria.units ?? 0)}</span>
+              <span>{nameB} — {sideB?.nigeria.plaques ?? 0} plaque{(sideB?.nigeria.plaques ?? 0) === 1 ? "" : "s"}{"\u00a0·"} {"at\u00a0least\u00a0"}{fmt(sideB?.nigeria.units ?? 0)}</span>
             </div>
             <Link href={href(sp, { ng: ngOn ? (ngDefault ? "0" : null) : ngDefault ? null : "1" })} scroll={false} data-keep-focus="ng-strip" className={styles.ngAction}>
               {ngOn ? "Separate Nigeria" : "Include Nigeria"}

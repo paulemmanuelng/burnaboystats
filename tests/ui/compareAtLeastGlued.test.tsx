@@ -34,11 +34,13 @@ import styles from "../../app/compare/compare.module.css";
  * number was a no-break space.
  *
  * Layout is not measured in jsdom, so this pins what makes the layout work:
- * "· at least N" carries no ordinary space (the dot leads the qualifier, the
- * site's " · " convention), so a phone breaks before the dot; and the
- * lead line's "at least N" carries none either. Checked live by grafting the
- * same text onto every pair page at 390 and 320 (dark and light): no line
- * starts with "least", no line count or strip height changes, no overflow.
+ * "at least N" carries no ordinary space and the "·" ends the segment before
+ * it ("25 plaques ·", no-break space before the dot), so a phone breaks after
+ * the dot and never opens a line with it, the rule the slot meta above
+ * follows (V-compareA-07, review of 7 Oct 2026); the lead line's "at least N"
+ * carries no ordinary space either. Checked live by grafting the same text
+ * onto pair pages at 390 and 320 (dark and light): no line starts with "least"
+ * or "·", no strip line grows, nothing overflows.
  */
 
 const html = (el: React.ReactElement) => {
@@ -49,8 +51,15 @@ const html = (el: React.ReactElement) => {
 const pair = async (slug: string) => html(await PairPage({ params: Promise.resolve({ pair: slug }) }));
 const page = async (sp: Record<string, string>) => html(await ComparePage({ searchParams: Promise.resolve(sp) }));
 
-/** A strip line ends in "· at least N": nothing after its last ordinary space breaks. */
-const stripGlued = (t: string) => /^· at least [\d,]+$/.test(t.slice(t.lastIndexOf(" ") + 1));
+/**
+ * A strip line ends "plaques\u00a0· at\u00a0least\u00a0N": the tail after its last
+ * ordinary space is "at least N" glued, and the text before that space ends
+ * in the "·", itself glued to "plaques".
+ */
+const stripGlued = (t: string) => {
+  const cut = t.lastIndexOf(" ");
+  return /^at\u00a0least\u00a0[\d,]+$/.test(t.slice(cut + 1)) && /plaques?\u00a0·$/.test(t.slice(0, cut));
+};
 /** The lead line holds "at least N", with no ordinary space anywhere in it. */
 const leadGlued = (t: string) => /at least [\d,]+/.test(t) && !/at[ ]least|least[ ]\d/.test(t);
 
@@ -65,8 +74,11 @@ describe("negative control: the lines the live site shipped fail", () => {
     expect(stripGlued("Ayra Starr — 24 plaques · at least 2,775,000")).toBe(false);
     expect(leadGlued("Asake leads by at least 6,413,334 certified units — a floor 1.8× the size of Ayra Starr's.")).toBe(false);
     expect(leadGlued("Level — both at least 0 certified units.")).toBe(false);
+    // The first fix's dot-leads form opened a phone line on "·": it fails too.
+    expect(stripGlued("Black Sherif — 25 plaques ·\u00a0at\u00a0least\u00a01,550,000")).toBe(false);
     // ...and the glued forms pass.
-    expect(stripGlued("Black Sherif — 25 plaques · at least 1,550,000")).toBe(true);
+    expect(stripGlued("Black Sherif — 25 plaques\u00a0· at\u00a0least\u00a01,550,000")).toBe(true);
+    expect(stripGlued("Wizkid — 1 plaque\u00a0· at\u00a0least\u00a050,000")).toBe(true);
     expect(leadGlued("Asake leads by at least 6,413,334 certified units.")).toBe(true);
   });
 });

@@ -33,12 +33,13 @@ import styles from "../../app/compare/compare.module.css";
  * "10 PLAQUES ·" / "TOP SHOWN" beside "7 PLAQUES · TOP" / "SHOWN" on the
  * same screen. From 768 up the line is one line.
  *
- * The fix glues it into two segments, as the slot meta does: "N plaques" and
- * "· top shown", with an ordinary space only before the "·". Layout is not
- * measured in jsdom, so this pins the break opportunities. Checked live by
- * grafting the same text onto the shipped pages at 320–1440 (dark and light):
- * every phone row reads "N PLAQUES" / "· TOP SHOWN", the cell keeps its two
- * lines (35.2px) and nothing runs past it; 768 and up are one line as before.
+ * The fix glues it into two segments, as the slot meta does: "N plaques ·"
+ * and "top shown", with an ordinary space only after the "·", so the dot ends
+ * a line and never opens one (the slot meta's rule, V-compareA-07; review of
+ * 7 Oct 2026). Layout is not measured in jsdom, so this pins the break
+ * opportunities. Checked live by grafting the same text onto the shipped
+ * pages at 390 and 320 (dark and light): every phone row that wraps reads
+ * "N PLAQUES ·" / "TOP SHOWN", no row grows and nothing runs past its cell.
  */
 
 const html = (el: React.ReactElement) => {
@@ -59,15 +60,15 @@ function countLines(root: HTMLElement) {
     .filter((t) => /^\d+ plaques · top shown$/.test(norm(t)));
 }
 
-/** "N plaques" / "· top shown", and nowhere else. */
+/** "N plaques ·" / "top shown", and nowhere else. */
 function breaksOnlyAtTheDot(text: string) {
   const n = norm(text).split(" ")[0];
-  expect(breakable(text), JSON.stringify(text)).toEqual([`${n}\u00a0plaques`, "·\u00a0top\u00a0shown"]);
+  expect(breakable(text), JSON.stringify(text)).toEqual([`${n}\u00a0plaques\u00a0·`, "top\u00a0shown"]);
 }
 
-describe("the artist-mode count line breaks only before its “·”", () => {
+describe("the artist-mode count line breaks only after its “·”", () => {
   for (const slug of ["tyla-vs-ayra-starr", "burna-boy-vs-wizkid", "burna-boy-vs-tems", "davido-vs-asake"]) {
-    it(`${slug}: every count line is “N plaques” / “· top shown”`, async () => {
+    it(`${slug}: every count line is “N plaques ·” / “top shown”`, async () => {
       const lines = countLines(await pair(slug));
       expect(lines.length, slug).toBeGreaterThan(3);
       for (const t of lines) breaksOnlyAtTheDot(t);
@@ -85,5 +86,7 @@ describe("the artist-mode count line breaks only before its “·”", () => {
     const shipped = "4 plaques · top shown";
     expect(breakable(shipped)).toEqual(["4", "plaques", "·", "top", "shown"]);
     expect(() => breaksOnlyAtTheDot(shipped)).toThrow();
+    // The first fix's form opened a phone line on "·" ("4 plaques" / "· top shown").
+    expect(() => breaksOnlyAtTheDot("4\u00a0plaques ·\u00a0top\u00a0shown")).toThrow();
   });
 });
