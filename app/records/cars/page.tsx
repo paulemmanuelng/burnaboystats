@@ -197,7 +197,7 @@ export default function CarsPage() {
           <div className={styles.tally}>
             <span className={styles.tallyLabel}>By marque</span>
             {makeTally.map(([make, n]) => (
-              <span key={make} className={styles.tallyChip}>
+              <span key={make} className={styles.tallyItem}>
                 <b className={styles.tallyNum}>{n}</b>
                 <span className={styles.tallyMake}>{make}</span>
               </span>
