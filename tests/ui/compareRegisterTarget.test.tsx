@@ -249,8 +249,9 @@ describe("V-compareIn-09: the certifying body's link takes a 44px tap without mo
     expect(LINE).toBe(20);
   });
 
-  it("all 27 markets are checked", () => {
-    expect(COUNTRIES.length).toBe(27);
+  // 28 since 7 Oct 2026: Turkey's board (label-issued Diamonds, owner's ruling).
+  it("all 28 markets are checked", () => {
+    expect(COUNTRIES.length).toBe(28);
   });
 
   it.each(COUNTRIES)("/compare/in/%s", async (slug) => {

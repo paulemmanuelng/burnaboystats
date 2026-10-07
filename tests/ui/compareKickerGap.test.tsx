@@ -211,8 +211,9 @@ const PHONE_ANCHOR = ".wrap { padding: 0 16px 28px; }";
 const SHIPPED_PHONE = "  .kicker { margin-top: 16px; }";
 
 describe("V-compareIn-10: the kicker clears the breadcrumb bar's rule on every width", () => {
-  it("all 27 country boards are checked", () => {
-    expect(certCountryCodes().length).toBe(27);
+  // 28 since 7 Oct 2026: Turkey's board (label-issued Diamonds, owner's ruling).
+  it("all 28 country boards are checked", () => {
+    expect(certCountryCodes().length).toBe(28);
   });
 
   it.each(PAGES)("%s: 16px between the bar's rule and the kicker", async (_path, load) => {
