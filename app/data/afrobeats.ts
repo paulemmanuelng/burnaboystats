@@ -1,6 +1,7 @@
 import { COUNTRIES as BURNA_COUNTRIES } from "./certifications";
 import { CHART_COUNTRIES } from "./charts";
-import { awardLabel, awardRank } from "../lib/awardName";
+import { awardLabel } from "../lib/awardName";
+import { headlineAward } from "../lib/headlineAward";
 import { certsInView, homeCodeFor, isFeaturedKind, type CertView } from "../lib/certScope";
 import { enGbDate } from "../lib/dates";
 import { plaqueMarker } from "../lib/issuerMarker";
@@ -3520,16 +3521,17 @@ export const bestPeaks = (a: AfroArtist, n: number) =>
 export const chartNo1s = (a: AfroArtist) =>
   a.charts.reduce((n, r) => n + r.entries.filter((e) => e.peak === 1).length, 0);
 
-export const topAward = (a: AfroArtist) => {
-  // awardRank: tier, then multiplier, then any half step on top (a 4×
-  // Platinum + Gold beats a 4× Platinum, loses to a 5×).
-  let best: AfroCert | null = null;
-  for (const r of a.releases)
-    for (const c of r.certs)
-      if (!best || awardRank(c) > awardRank(best))
-        best = c;
-  return best;
-};
+/** The plaque that heads the artist's record — the hub tile's badge, the meta
+ *  description's "topped by", the share card's "Highest award".
+ *  awardRank: tier, then multiplier, then any half step on top (a 4×
+ *  Platinum + Gold beats a 4× Platinum, loses to a 5×) — and never a label's
+ *  own plaque (owner's ruling, 7 Oct 2026; lib/headlineAward). Tyla's is
+ *  Pro-Música Brasil's "Water" 2× Diamond, not Epic Records' Turkish 3×. */
+export const topAward = (a: AfroArtist): AfroCert | null =>
+  headlineAward(
+    a.releases.flatMap((r) => r.certs),
+    (c) => countryMeta(c.c).body,
+  );
 
 /** Plaque label in the site's own wording — "5× Platinum", "Silver". */
 /** "16× Platinum", or "16× Platinum · Latin" when the plaque is from a separate
