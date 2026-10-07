@@ -333,6 +333,14 @@ describe("every picker chip fits the phone's row", () => {
   }
 });
 
+/*
+ * The negative controls below are a record of one live read (7 Oct 2026):
+ * the shipped stylesheet run over the data as it stood that day. A later data
+ * change that adds a chip wider than a phone's row (a long "(…)" credit) moves
+ * LIVE_ROWS_RIGHT, which is then updated from what this model gives: the
+ * picker can only grow under the old stylesheet. The tests above are the
+ * guard on the site; these only prove the model reads the old pages right.
+ */
 describe("negative control: the shipped stylesheet, which the live site measured", () => {
   let SHIPPED = "";
   beforeAll(() => {
@@ -378,7 +386,8 @@ describe("negative control: the shipped stylesheet, which the live site measured
         }
       }
     }
-    expect(Object.fromEntries(over)).toEqual({
+    // The seven read live, each at its measured width; a song added later may join them.
+    expect(Object.fromEntries(over)).toMatchObject({
       Galorizzy: 541.45,
       Nakupenda: 508.86,
       Watawi: 345.86,
@@ -423,8 +432,12 @@ describe("V-compareB-05 still holds: the bracket moves whole where it fits", () 
         }
       }
     }
-    expect([...wrapped[390]].sort()).toEqual(["Galorizzy", "Nakupenda"]);
-    expect([...wrapped[360]].sort()).toEqual(["Galorizzy", "Nakupenda", "On God", "Watawi"]);
-    expect([...wrapped[320]].sort()).toEqual(["Easy With Me", "Galorizzy", "Grooving", "Like", "Nakupenda", "On God", "Watawi"]);
+    // The ones the live graft wrapped, 7 Oct 2026. A song added later with a
+    // bracket wider than the row joins them, wrapped the same way, and passes.
+    expect([...wrapped[390]]).toEqual(expect.arrayContaining(["Galorizzy", "Nakupenda"]));
+    expect([...wrapped[360]]).toEqual(expect.arrayContaining(["Galorizzy", "Nakupenda", "On God", "Watawi"]));
+    expect([...wrapped[320]]).toEqual(expect.arrayContaining(["Easy With Me", "Galorizzy", "Grooving", "Like", "Nakupenda", "On God", "Watawi"]));
+    // …and a bracket that fits never splits: on a 390 row, none of the 320-only ones.
+    for (const name of ["Easy With Me", "Grooving", "Like", "On God", "Watawi"]) expect(wrapped[390].has(name), name).toBe(false);
   });
 });
